@@ -3,11 +3,11 @@
 	<test name="CharacterCrud" enabled="true" preserve-order="true">
 		<groups>
 			<run>				
-				
+				<include name="characterPdfGeneration" />
 			</run>
 		</groups>
 		<classes>
-			
+			<class name="com.softwaremagico.tm.export.pdf.CharacterSheetCreation" />
 		</classes>
 	</test>
 </suite>

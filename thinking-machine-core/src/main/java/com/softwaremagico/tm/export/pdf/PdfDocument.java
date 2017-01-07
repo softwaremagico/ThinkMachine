@@ -55,10 +55,10 @@ public abstract class PdfDocument {
 	protected int fontSize = 12;
 	protected String font = FontFactory.HELVETICA;
 	protected int fontType = Font.BOLD;
-	protected int rightMargin = 50;
-	protected int leftMargin = 50;
-	protected int topMargin = 65;
-	protected int bottomMargin = 55;
+	protected int rightMargin = 30;
+	protected int leftMargin = 30;
+	protected int topMargin = 30;
+	protected int bottomMargin = 60;
 	protected Image bgImage;
 	private float opacity = 0.6f;
 
@@ -66,7 +66,7 @@ public abstract class PdfDocument {
 
 	}
 
-	protected Document documentData(Document document) {
+	protected Document addMetaData(Document document) {
 		document.addTitle("Fading Suns Character File");
 		document.addAuthor("Software Magico");
 		document.addCreator("The Thinking Machine");
@@ -77,10 +77,10 @@ public abstract class PdfDocument {
 	}
 
 	protected void generatePDF(Document document, PdfWriter writer) throws EmptyPdfBodyException, Exception {
-		documentData(document);
+		addMetaData(document);
 		document.open();
 		startBackgroundImage();
-		createPagePDF(document, writer, font);
+		createPagePDF(document);
 		document.close();
 	}
 
@@ -112,11 +112,7 @@ public abstract class PdfDocument {
 
 	protected abstract Rectangle getPageSize();
 
-	protected abstract String fileCreatedOkTag();
-
-	protected abstract String fileCreatedBadTag();
-
-	protected abstract void createPagePDF(Document document, PdfWriter writer, String font) throws Exception;
+	protected abstract void createPagePDF(Document document) throws Exception;
 
 	/**
 	 * Creates an empty cell.
@@ -341,26 +337,26 @@ public abstract class PdfDocument {
 	/**
 	 * Event class to draw the background image for table headers.
 	 */
-	class CellBgEvent implements PdfPCellEvent {
-
-		@Override
-		public void cellLayout(PdfPCell cell, Rectangle rect, PdfContentByte[] canvas) {
-
-			// try {
-			// Image cellBgImage = Image.getInstance(Path.getBackgroundPath());
-			// PdfContentByte cb = canvas[PdfPTable.BACKGROUNDCANVAS];
-			// if (cellBgImage != null) {
-			// cellBgImage.scaleAbsolute(rect.getWidth(), rect.getHeight());
-			// cb.addImage(cellBgImage, rect.getWidth(), 0, 0, rect.getHeight(),
-			// rect.getLeft(),
-			// rect.getBottom());
-			// }
-			//
-			// } catch (IOException | DocumentException e) {
-			// MachineLog.errorMessage(this.getClass().getName(), e);
-			// }
-		}
-	}
+//	class CellBgEvent implements PdfPCellEvent {
+//
+//		@Override
+//		public void cellLayout(PdfPCell cell, Rectangle rect, PdfContentByte[] canvas) {
+//
+//			// try {
+//			// Image cellBgImage = Image.getInstance(Path.getBackgroundPath());
+//			// PdfContentByte cb = canvas[PdfPTable.BACKGROUNDCANVAS];
+//			// if (cellBgImage != null) {
+//			// cellBgImage.scaleAbsolute(rect.getWidth(), rect.getHeight());
+//			// cb.addImage(cellBgImage, rect.getWidth(), 0, 0, rect.getHeight(),
+//			// rect.getLeft(),
+//			// rect.getBottom());
+//			// }
+//			//
+//			// } catch (IOException | DocumentException e) {
+//			// MachineLog.errorMessage(this.getClass().getName(), e);
+//			// }
+//		}
+//	}
 
 	/**
 	 * Event for adding a background image to a table.
