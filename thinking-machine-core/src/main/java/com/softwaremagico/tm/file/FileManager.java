@@ -4,12 +4,12 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MyFile {
+public class FileManager {
 
 	/**
 	 * Creates a new instance of MyFile
 	 */
-	private MyFile() {
+	private FileManager() {
 	}
 
 	/**
@@ -103,11 +103,25 @@ public class MyFile {
 		return text;
 	}
 
-	public static String readTextFromJar(String s) {
+	public static List<String> readTextFromJarInLines(String file) {
+		List<String> contents = new ArrayList<>();
+		String thisLine;
+		try {
+			InputStream is = FileManager.class.getResourceAsStream(file);
+			BufferedReader br = new BufferedReader(new InputStreamReader(is));
+			while ((thisLine = br.readLine()) != null) {
+				contents.add(thisLine);
+			}
+		} catch (Exception e) {
+		}
+		return contents;
+	}
+
+	public static String readTextFromJar(String file) {
 		String totalText = "";
 		String thisLine;
 		try {
-			InputStream is = MyFile.class.getResourceAsStream(s);
+			InputStream is = FileManager.class.getResourceAsStream(file);
 			BufferedReader br = new BufferedReader(new InputStreamReader(is));
 			while ((thisLine = br.readLine()) != null) {
 				totalText += thisLine;
