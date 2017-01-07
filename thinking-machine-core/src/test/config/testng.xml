@@ -1,0 +1,13 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="1" verbose="1" name="LibroDeEsher">
+	<test name="CharacterCrud" enabled="true" preserve-order="true">
+		<groups>
+			<run>				
+				
+			</run>
+		</groups>
+		<classes>
+			
+		</classes>
+	</test>
+</suite>
