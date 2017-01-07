@@ -1,11 +1,12 @@
-package com.softwaremagico.tm.export.pdf.elements;
+package com.softwaremagico.tm.pdf.characteristics;
 
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
-import com.softwaremagico.tm.export.pdf.FadingSunsTheme;
+import com.softwaremagico.tm.pdf.FadingSunsTheme;
+import com.softwaremagico.tm.pdf.elements.BaseElement;
 
 public class CharacteristicsTable extends BaseElement {
 
@@ -13,6 +14,10 @@ public class CharacteristicsTable extends BaseElement {
 		float[] widths = { 1f, 1f, 1f, 1f };
 		PdfPTable table = new PdfPTable(widths);
 		setTablePropierties(table);
+		
+		PdfPCell separator = createSeparator();
+		separator.setColspan(widths.length);
+		table.addCell(separator);
 
 		Phrase content = new Phrase("CARACTERÍSTICAS", new Font(FadingSunsTheme.getTitleFont(),
 				FadingSunsTheme.TITLE_FONT_SIZE));
@@ -31,10 +36,6 @@ public class CharacteristicsTable extends BaseElement {
 				"Fe (3)" }));
 		table.addCell(new CharacteristicColumn("Otras",
 				new String[] { "Iniciativa", "Movimiento", "Defensa" }));
-
-		PdfPCell separator = createSeparator();
-		separator.setColspan(widths.length);
-		table.addCell(separator);
 
 		return table;
 	}

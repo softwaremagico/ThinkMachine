@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.export.pdf;
+package com.softwaremagico.tm.pdf;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Element;
@@ -6,8 +6,9 @@ import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.PdfPTable;
-import com.softwaremagico.tm.export.pdf.elements.CharacterBasicsTable;
-import com.softwaremagico.tm.export.pdf.elements.CharacteristicsTable;
+import com.softwaremagico.tm.pdf.characteristics.CharacteristicsTable;
+import com.softwaremagico.tm.pdf.info.CharacterBasicsTable;
+import com.softwaremagico.tm.pdf.skills.SkillsTable;
 
 public class CharacterSheet extends PdfDocument {
 
@@ -27,6 +28,8 @@ public class CharacterSheet extends PdfDocument {
 		document.add(mainTable);
 		PdfPTable characteristicsTable = CharacteristicsTable.getCharacterBasicsTable();
 		document.add(characteristicsTable);
+		PdfPTable skillsTable = SkillsTable.getSkillsTable();
+		document.add(skillsTable);
 		document.newPage();
 	}
 

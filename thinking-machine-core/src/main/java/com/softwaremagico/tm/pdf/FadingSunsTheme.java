@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.export.pdf;
+package com.softwaremagico.tm.pdf;
 
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Font;

@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.export.pdf.elements;
+package com.softwaremagico.tm.pdf.elements;
 
 import java.io.IOException;
 
@@ -13,7 +13,8 @@ import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
-import com.softwaremagico.tm.export.pdf.FadingSunsTheme;
+import com.softwaremagico.tm.pdf.FadingSunsTheme;
+import com.softwaremagico.tm.pdf.info.CharacterBasicsTable;
 
 public class BaseElement {
 
@@ -58,7 +59,7 @@ public class BaseElement {
 		return cell;
 	}
 
-	protected static void setCellProperties(PdfPCell cell) {
+	public static void setCellProperties(PdfPCell cell) {
 		cell.setBorder(0);
 		cell.setPadding(0);
 		cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
@@ -95,7 +96,7 @@ public class BaseElement {
 		return cell;
 	}
 
-	protected static void setTablePropierties(PdfPTable table) {
+	public static void setTablePropierties(PdfPTable table) {
 		table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_LEFT);
 		table.getDefaultCell().setVerticalAlignment(Element.ALIGN_MIDDLE);
 		table.setWidthPercentage(100);

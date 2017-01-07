@@ -6,6 +6,7 @@ import java.net.MalformedURLException;
 import org.testng.annotations.Test;
 
 import com.itextpdf.text.DocumentException;
+import com.softwaremagico.tm.pdf.CharacterSheet;
 
 @Test(groups = { "characterPdfGeneration" })
 public class CharacterSheetCreation {

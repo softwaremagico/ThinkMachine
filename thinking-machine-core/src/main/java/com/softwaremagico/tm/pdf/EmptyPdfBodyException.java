@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.export.pdf;
+package com.softwaremagico.tm.pdf;
 
 public class EmptyPdfBodyException extends Exception {
 	private static final long serialVersionUID = -8207546492378482320L;

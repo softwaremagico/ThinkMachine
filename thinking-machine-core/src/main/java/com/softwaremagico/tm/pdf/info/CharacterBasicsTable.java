@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.export.pdf.elements;
+package com.softwaremagico.tm.pdf.info;
 
 import java.awt.Color;
 import java.io.IOException;
@@ -7,8 +7,9 @@ import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
-import com.softwaremagico.tm.export.pdf.FadingSunsTheme;
 import com.softwaremagico.tm.log.MachineLog;
+import com.softwaremagico.tm.pdf.FadingSunsTheme;
+import com.softwaremagico.tm.pdf.elements.BaseElement;
 
 public class CharacterBasicsTable extends BaseElement {
 
@@ -19,11 +20,6 @@ public class CharacterBasicsTable extends BaseElement {
 		table.addCell(getFirstColumnTable());
 		table.addCell(getSecondColumnTable());
 		table.addCell(getThirdColumnTable());
-		
-		PdfPCell separator = createSeparator();
-		separator.setColspan(widths.length);
-		table.addCell(separator);
-
 		return table;
 	}
 
