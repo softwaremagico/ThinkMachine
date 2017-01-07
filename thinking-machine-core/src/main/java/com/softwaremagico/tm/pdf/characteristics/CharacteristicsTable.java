@@ -14,7 +14,7 @@ public class CharacteristicsTable extends BaseElement {
 		float[] widths = { 1f, 1f, 1f, 1f };
 		PdfPTable table = new PdfPTable(widths);
 		setTablePropierties(table);
-		
+
 		PdfPCell separator = createSeparator();
 		separator.setColspan(widths.length);
 		table.addCell(separator);
@@ -39,39 +39,5 @@ public class CharacteristicsTable extends BaseElement {
 
 		return table;
 	}
-	// private static PdfPCell getBodyTable() {
-	// float[] widths = { 1f };
-	// PdfPTable table = new PdfPTable(widths);
-	// setTablePropierties(table);
-	//
-	// table.addCell(createField("Nombre:"));
-	// table.addCell(createField("Jugador:"));
-	// table.addCell(createField("Género:"));
-	// table.addCell(createField("Edad:"));
-	//
-	// PdfPCell cell = new PdfPCell();
-	// setCellProperties(cell);
-	//
-	// cell.addElement(table);
-	//
-	// return cell;
-	// }
-	//
-	// private static PdfPCell createCharacteristicPack() {
-	// float[] widths = { 1f, 5f };
-	// PdfPTable table = new PdfPTable(widths);
-	// setTablePropierties(table);
-	//
-	// table.addCell(createField("Cuerpo"));
-	// table.addCell(createField("Fuerza (3)"));
-	// table.addCell(createField("Destreza (3)"));
-	// table.addCell(createField("Resistencia (3)"));
-	//
-	// PdfPCell cell = new PdfPCell();
-	// setCellProperties(cell);
-	//
-	// cell.addElement(table);
-	//
-	// return cell;
-	// }
+
 }
