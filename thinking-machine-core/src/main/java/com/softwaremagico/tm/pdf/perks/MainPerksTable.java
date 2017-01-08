@@ -9,30 +9,40 @@ public class MainPerksTable extends BaseElement {
 	public final static int PADDING = 2;
 
 	public static PdfPTable getPerksTable() {
-		float[] widths = { 4f, 4f, 1f };
+		float[] widths = { 4f, 0.1f, 4f, 0.1f, 1f };
 		PdfPTable table = new PdfPTable(widths);
 		setTablePropierties(table);
+		table.getDefaultCell().setPadding(PADDING);
 
-		PdfPCell separator = createSeparator();
-		separator.setPadding(PADDING);
-		table.addCell(separator);
-		table.addCell(separator);
-		table.addCell(separator);
+		PdfPCell whiteSeparator = createWhiteSeparator();
+		whiteSeparator.setColspan(widths.length);
+		table.addCell(whiteSeparator);
+
+		PdfPCell blackSeparator = createBlackSeparator();
+		whiteSeparator.setColspan(1);
+		table.addCell(blackSeparator);
+		table.addCell(whiteSeparator);
+		table.addCell(blackSeparator);
+		table.addCell(whiteSeparator);
+
+		PdfPCell victoryPointsCell = new PdfPCell(new VictoryPointsTable());
+		victoryPointsCell.setPadding(0);
+		victoryPointsCell.setRowspan(2);
+		table.addCell(victoryPointsCell);
 
 		PdfPCell blessingCell = new PdfPCell(new BlessingTable());
 		blessingCell.setPadding(0);
 		blessingCell.setBorder(0);
 		table.addCell(blessingCell);
+		
+		table.addCell(whiteSeparator);
 
 		PdfPCell perksCell = new PdfPCell(new PerksTable());
 		perksCell.setPadding(0);
 		perksCell.setBorder(0);
 		table.addCell(perksCell);
-
-		PdfPCell victoryPointsCell = new PdfPCell(new VictoryPointsTable());
-		victoryPointsCell.setPadding(0);
-		//victoryPointsCell.setBorder();
-		table.addCell(victoryPointsCell);
+		
+		table.addCell(whiteSeparator);
 
 		return table;
 	}
