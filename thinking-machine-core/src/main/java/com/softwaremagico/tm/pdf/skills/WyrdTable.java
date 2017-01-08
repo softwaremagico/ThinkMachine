@@ -54,7 +54,7 @@ public class WyrdTable extends PdfPTable {
 		Phrase content = new Phrase(text, font);
 		PdfPCell circleCell = new PdfPCell(content);
 		circleCell.setHorizontalAlignment(Element.ALIGN_CENTER);
-		circleCell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+		circleCell.setVerticalAlignment(Element.ALIGN_TOP);
 		circleCell.setBorder(0);
 		circleCell.setMinimumHeight(MainSkillsTable.HEIGHT / CIRCLES);
 		return circleCell;

@@ -8,6 +8,7 @@ import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.softwaremagico.tm.pdf.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.elements.BaseElement;
+import com.softwaremagico.tm.pdf.elements.CellPaddingEvent;
 
 public class OccultismTable extends PdfPTable {
 	private final static int ROW_WIDTH = 68;
@@ -80,11 +81,9 @@ public class OccultismTable extends PdfPTable {
 
 	private PdfPCell createRectangle() {
 		PdfPCell box = new PdfPCell();
-		box.setMinimumHeight(10);
-		box.setBorderWidthTop(0.5f);
-		box.setBorderWidthLeft(0.5f);
-		box.setBorderWidthRight(0.5f);
-		box.setBorderWidthBottom(0.5f);
+		box.setMinimumHeight(15);
+		box.setBorder(0);
+		box.setCellEvent(new CellPaddingEvent());
 		return box;
 	}
 

@@ -22,17 +22,17 @@ public class MainSkillsTable extends BaseElement {
 		
 		PdfPCell vitalityCell = new PdfPCell(new VitalityTable());
 		vitalityCell.setBorder(Rectangle.BOTTOM | Rectangle.RIGHT | Rectangle.TOP | Rectangle.LEFT);
-		vitalityCell.setPadding(PADDING);
+		vitalityCell.setPadding(0);
 		table.addCell(vitalityCell);
 		
 		PdfPCell skillsCell = new PdfPCell(SkillsTable.getSkillsTable());
 		skillsCell.setBorder(0);
-		skillsCell.setPadding(PADDING);		
+		skillsCell.setPadding(0);		
 		table.addCell(skillsCell);
 		
 		PdfPCell wyrdCell = new PdfPCell(new WyrdTable());
 		wyrdCell.setBorder(Rectangle.BOTTOM | Rectangle.RIGHT | Rectangle.TOP | Rectangle.LEFT);
-		wyrdCell.setPadding(PADDING);
+		wyrdCell.setPadding(0);
 		table.addCell(wyrdCell);
 		return table;
 	}

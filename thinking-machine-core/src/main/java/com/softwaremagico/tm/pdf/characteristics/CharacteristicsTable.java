@@ -27,6 +27,7 @@ public class CharacteristicsTable extends BaseElement {
 		titleCell.setHorizontalAlignment(Element.ALIGN_CENTER);
 		titleCell.setFixedHeight(30);
 		table.addCell(titleCell);
+		table.getDefaultCell().setPadding(0);
 
 		table.addCell(new CharacteristicColumn("Cuerpo", new String[] { "Fuerza (3)", "Destreza (3)",
 				"Resistencia (3)" }));

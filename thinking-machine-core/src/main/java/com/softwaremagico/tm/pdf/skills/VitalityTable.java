@@ -27,7 +27,7 @@ public class VitalityTable extends PdfPTable {
 
 		for (int i = 1; i <= MODIFICATORS_SPAN; i++) {
 			addCell(createValue("-" + (i * 2), new Font(FadingSunsTheme.getLineFont(),
-					FadingSunsTheme.CHARACTERISTICS_TITLE_FONT_SIZE - 4)));
+					FadingSunsTheme.CHARACTERISTICS_TITLE_FONT_SIZE - 4), Element.ALIGN_MIDDLE));
 			addCell(createCircle());
 		}
 		// addCell(space());
@@ -54,14 +54,14 @@ public class VitalityTable extends PdfPTable {
 
 	private PdfPCell createCircle() {
 		return createValue("O", new Font(FadingSunsTheme.getTitleFont(),
-				FadingSunsTheme.CHARACTERISTICS_TITLE_FONT_SIZE));
+				FadingSunsTheme.CHARACTERISTICS_TITLE_FONT_SIZE), Element.ALIGN_TOP);
 	}
 
-	private PdfPCell createValue(String text, Font font) {
+	private PdfPCell createValue(String text, Font font, int alignment) {
 		Phrase content = new Phrase(text, font);
 		PdfPCell circleCell = new PdfPCell(content);
 		circleCell.setHorizontalAlignment(Element.ALIGN_CENTER);
-		circleCell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+		circleCell.setVerticalAlignment(alignment);
 		circleCell.setBorder(0);
 		circleCell.setMinimumHeight(MainSkillsTable.HEIGHT / CIRCLES);
 		return circleCell;

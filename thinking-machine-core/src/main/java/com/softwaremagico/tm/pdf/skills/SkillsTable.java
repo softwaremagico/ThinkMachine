@@ -105,6 +105,7 @@ public class SkillsTable extends BaseElement {
 		occulstimCell.setColspan(2);
 		occulstimCell.addElement(occultismTable);
 		occulstimCell.setVerticalAlignment(Element.ALIGN_BOTTOM);
+		occulstimCell.setPadding(0);
 		table.addCell(occulstimCell);
 
 		cell.addElement(table);
@@ -115,7 +116,7 @@ public class SkillsTable extends BaseElement {
 	private static PdfPCell createTitle(String text) {
 		PdfPCell cell = getCell(text, 0, 2, Element.ALIGN_CENTER, BaseColor.WHITE,
 				FadingSunsTheme.getTitleFont(), FadingSunsTheme.SKILLS_TITLE_FONT_SIZE);
-		cell.setMinimumHeight(MainSkillsTable.HEIGHT / (ROWS / TITLE_ROWSPAN) + 3);
+		cell.setMinimumHeight(MainSkillsTable.HEIGHT / (ROWS / TITLE_ROWSPAN) +1);
 		cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		return cell;
 	}

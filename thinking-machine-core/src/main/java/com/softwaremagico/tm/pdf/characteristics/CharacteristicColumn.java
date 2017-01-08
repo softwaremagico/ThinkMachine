@@ -8,6 +8,7 @@ import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.softwaremagico.tm.pdf.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.elements.BaseElement;
+import com.softwaremagico.tm.pdf.elements.CellPaddingEvent;
 
 public class CharacteristicColumn extends PdfPTable {
 	private final static int ROW_WIDTH = 60;
@@ -29,31 +30,34 @@ public class CharacteristicColumn extends PdfPTable {
 		titleCell.setRowspan(rowspan);
 		titleCell.setBackgroundColor(BaseColor.BLACK);
 		titleCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+		
 		return titleCell;
 	}
 
 	private PdfPCell createContent(String[] content) {
-		float[] widths = { 3f, 1f };
+		float[] widths = { 3f, 1f , 0.1f};
 		PdfPTable table = new PdfPTable(widths);
 		BaseElement.setTablePropierties(table);
 		table.getDefaultCell().setBorder(0);
 
 		for (String text : content) {
-			PdfPCell characteristicTitle = new PdfPCell(new Phrase(text, new Font(FadingSunsTheme.getLineFont(),
-					FadingSunsTheme.CHARACTERISTICS_LINE_FONT_SIZE)));
+			PdfPCell characteristicTitle = new PdfPCell(new Phrase(text, new Font(
+					FadingSunsTheme.getLineFont(), FadingSunsTheme.CHARACTERISTICS_LINE_FONT_SIZE)));
 			characteristicTitle.setBorder(0);
-			characteristicTitle.setMinimumHeight(ROW_WIDTH /content.length);
+			characteristicTitle.setMinimumHeight(ROW_WIDTH / content.length);
 			table.addCell(characteristicTitle);
-			
 
 			// Rectangle
 			PdfPCell box = new PdfPCell();
 			box.setMinimumHeight(10);
-			box.setBorderWidthTop(0.5f);
-			box.setBorderWidthLeft(0.5f);
-			box.setBorderWidthRight(0.5f);
-			box.setBorderWidthBottom(0.5f);
+			box.setBorder(0);
+			box.setCellEvent(new CellPaddingEvent());
 			table.addCell(box);
+			
+			//Margin
+			PdfPCell margin = new PdfPCell();
+			margin.setBorder(0);
+			table.addCell(margin);
 		}
 
 		PdfPCell cell = new PdfPCell();
