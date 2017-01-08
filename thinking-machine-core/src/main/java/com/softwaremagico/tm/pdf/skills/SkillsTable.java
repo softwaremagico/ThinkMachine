@@ -6,6 +6,7 @@ import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.softwaremagico.tm.pdf.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.elements.BaseElement;
+import com.softwaremagico.tm.pdf.skills.occultism.OccultismTable;
 import com.softwaremagico.tm.skills.SkillFactory;
 
 public class SkillsTable extends BaseElement {
@@ -13,6 +14,7 @@ public class SkillsTable extends BaseElement {
 	private final static int TITLE_ROWSPAN = 2;
 	private static int learnedSkillsAdded = 0;
 	private final static String GAP = "____";
+	private final static int OCCULTISM_ROWS = 5;
 
 	public static PdfPTable getSkillsTable() {
 		float[] widths = { 1f, 1f, 1f };
@@ -89,10 +91,21 @@ public class SkillsTable extends BaseElement {
 		}
 
 		// Complete with empty skills.
-		for (int i = addedElements; i < ROWS; i++) {
+		for (int i = addedElements; i < ROWS - OCCULTISM_ROWS; i++) {
 			table.addCell(createSkillLine("____________"));
 			table.addCell(createSkillLine(GAP));
 		}
+
+		// Add Occultism table
+		PdfPTable occultismTable = new OccultismTable();
+		PdfPCell occulstimCell = new PdfPCell();
+		//setCellProperties(occulstimCell);
+		//occulstimCell.setRowspan(widths.length);
+		occulstimCell.setRowspan(OCCULTISM_ROWS);
+		occulstimCell.setColspan(2);
+		occulstimCell.addElement(occultismTable);
+		occulstimCell.setVerticalAlignment(Element.ALIGN_BOTTOM);
+		table.addCell(occulstimCell);
 
 		cell.addElement(table);
 		cell.setVerticalAlignment(Element.ALIGN_TOP);

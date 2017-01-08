@@ -1,53 +1,47 @@
-Hablar Terrano (3)
-Abrir Cerraduras
-Academia (i)
-Alquimia (i)
-Arco
-Arte  [                        ]
-Artesanía
-Ballesta
-Burocracia (n,i,g)
-Buscar
-Callejeo
-Ciencia (g) [              ]
-Ciencia (g) [              ]
-Ciencia (g) [              ]
-Concentración (i)
-Conducir [                 ]
-Conducir [                 ]
-Conocimiento [         ]
-Conocimiento [         ]
-Conocimiento [         ]
-Conocimiento Animal
-Cuerpo Estoico (i)
-Curar
-Disfrazar
-Empatía
-Etiqueta (n)
-Hablar [                     ]
-Hablar [                     ]
-Hablar [                     ]
-Interpretación
+Burocracia
+Con. del Cuerpo
+Guerra
 Investigar
-Juego
-Lanzar
-Leer  [                       ]
-Leer  [                       ]
-Máquina Pensante (g)
-Medicina (i,g)
-Mente Estoica (i)
-Militar (n,g) [             ]
-Militar (n,g) [             ]
+Observar
+Ciencia Aplicada
+Ciencia Social
+Ciencia de la Física
+Ciencia de la Vida
+Terraformismo
+Armas de Energía
+Armas de Fuego
+Arquería
+Artefacto CaC
+Artillería Pesada
+Artillería de Supresión
+Lucha CaC
+Demoliciones
+Bestia de Tiro
+Embarcación
 Montar
-Prestidigitación
-Rastrear
-Redención (g) [         ]
-Redención (g) [         ]
-Redención (g) [         ]
-Sociedad   [               ]
-Sociedad   [               ]
-Subterfugio
+Conducir Aeronave
+Conducir Nave
+Conducir Vehículo
+Arte  [                        ]
+Disfrazarse
+Interpretar  [             ]
+Juego
+Oficio [                      ]
+Abrir Cerraduras
+Callejear
+Juego de Manos
+Sigilo
+Torturar
+Atletismo
+Autocontrol
 Supervivencia
-Tortura
-Traje Espacial
-Xeno-Empatía
+Saber  [                     ]
+Saber  [                     ]
+Xenología [                ]
+Empatía
+Etiqueta
+Artería
+Liderazgo 
+Mantenimiento Naves
+Recup. Tecnológica
+Máquina Pensante
