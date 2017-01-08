@@ -34,8 +34,8 @@ public class CharacterSheet extends PdfDocument {
 		document.add(skillsTable);
 		PdfPTable perksTable = MainPerksTable.getPerksTable();
 		document.add(perksTable);
-		PdfPTable othersTable = MainOthersTable.getOthersTable();
-		document.add(othersTable);
+//		PdfPTable othersTable = MainOthersTable.getOthersTable();
+//		document.add(othersTable);
 
 		document.newPage();
 	}

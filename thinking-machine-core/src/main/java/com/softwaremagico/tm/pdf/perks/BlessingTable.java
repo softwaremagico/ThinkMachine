@@ -10,7 +10,6 @@ import com.softwaremagico.tm.pdf.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.elements.BaseElement;
 
 public class BlessingTable extends PdfPTable {
-	private final static int EMPTY_ROWS = 6;
 	private final static String GAP = "____";
 	private final static float[] WIDTHS = { 8f, 2f, 5f, 10f };
 
@@ -23,7 +22,7 @@ public class BlessingTable extends PdfPTable {
 		addCell(createLine("Rasgo"));
 		addCell(createLine("Situación"));
 
-		for (int i = 0; i < EMPTY_ROWS; i++) {
+		for (int i = 0; i < MainPerksTable.EMPTY_ROWS; i++) {
 			addCell(createLine(GAP+GAP+GAP+GAP+GAP));
 			addCell(createLine(GAP));
 			addCell(createLine(GAP+GAP+GAP));

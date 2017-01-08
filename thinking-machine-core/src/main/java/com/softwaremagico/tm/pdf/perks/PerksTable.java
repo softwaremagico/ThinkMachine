@@ -10,8 +10,7 @@ import com.softwaremagico.tm.pdf.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.elements.BaseElement;
 
 public class PerksTable extends PdfPTable {
-	private final static int EMPTY_ROWS = 6;
-	private final static String GAP = "______";
+	private final static String GAP = "_____";
 	private final static float[] WIDTHS = { 2f, 5f, 2f, 5f };
 
 	public PerksTable() {
@@ -23,7 +22,7 @@ public class PerksTable extends PdfPTable {
 		addCell(createLine("Pts."));
 		addCell(createLine("Afliciones"));
 
-		for (int i = 0; i < EMPTY_ROWS*2; i++) {
+		for (int i = 0; i < MainPerksTable.EMPTY_ROWS * 2; i++) {
 			addCell(createLine(GAP));
 			addCell(createLine(GAP + GAP + GAP + GAP));
 		}
