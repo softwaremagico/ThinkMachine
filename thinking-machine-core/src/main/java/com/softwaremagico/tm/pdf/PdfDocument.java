@@ -58,7 +58,7 @@ public abstract class PdfDocument {
 	protected int rightMargin = 30;
 	protected int leftMargin = 30;
 	protected int topMargin = 30;
-	protected int bottomMargin = 60;
+	protected int bottomMargin = 30;
 	protected Image bgImage;
 	private float opacity = 0.6f;
 

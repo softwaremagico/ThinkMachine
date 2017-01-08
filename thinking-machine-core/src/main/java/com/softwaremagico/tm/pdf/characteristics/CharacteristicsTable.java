@@ -9,6 +9,7 @@ import com.softwaremagico.tm.pdf.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.elements.BaseElement;
 
 public class CharacteristicsTable extends BaseElement {
+	private final static String GAP = "   ";
 
 	public static PdfPTable getCharacterBasicsTable() {
 		float[] widths = { 1f, 1f, 1f, 1f };
@@ -29,14 +30,14 @@ public class CharacteristicsTable extends BaseElement {
 		table.addCell(titleCell);
 		table.getDefaultCell().setPadding(0);
 
-		table.addCell(new CharacteristicColumn("Cuerpo", new String[] { "Fuerza (3)", "Destreza (3)",
-				"Resistencia (3)" }));
-		table.addCell(new CharacteristicColumn("Mente", new String[] { "Astucia (3)", "Percepción (3)",
-				"Tecnología (3)" }));
-		table.addCell(new CharacteristicColumn("Espíritu", new String[] { "Presencia (3)", "Voluntad (3)",
-				"Fe (3)" }));
-		table.addCell(new CharacteristicColumn("Otras",
-				new String[] { "Iniciativa", "Movimiento", "Defensa (1)" }));
+		table.addCell(new CharacteristicColumn("Cuerpo", new String[] { "Fuerza (" + GAP + ")",
+				"Destreza (" + GAP + ")", "Resistencia (" + GAP + ")" }));
+		table.addCell(new CharacteristicColumn("Mente", new String[] { "Astucia (" + GAP + ")",
+				"Percepción (" + GAP + ")", "Tecnología (" + GAP + ")" }));
+		table.addCell(new CharacteristicColumn("Espíritu", new String[] { "Presencia (" + GAP + ")",
+				"Voluntad (" + GAP + ")", "Fe (" + GAP + ")" }));
+		table.addCell(new CharacteristicColumn("Otras", new String[] { "Iniciativa",
+				"Movimiento (" + GAP + ")", "Defensa (1)" }));
 
 		return table;
 	}

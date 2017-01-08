@@ -5,7 +5,6 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.softwaremagico.tm.pdf.elements.BaseElement;
 
 public class MainPerksTable extends BaseElement {
-	public final static int HEIGHT = 150;
 	public final static int PADDING = 2;
 
 	public static PdfPTable getPerksTable() {
