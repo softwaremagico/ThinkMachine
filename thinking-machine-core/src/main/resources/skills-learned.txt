@@ -3,49 +3,49 @@ Abrir Cerraduras
 Academia (i)
 Alquimia (i)
 Arco
-Arte []
+Arte  [                        ]
 Artesanía
 Ballesta
 Burocracia (n,i,g)
 Buscar
 Callejeo
-Ciencia (g) []
-Ciencia (g) []
-Ciencia (g) []
+Ciencia (g) [              ]
+Ciencia (g) [              ]
+Ciencia (g) [              ]
 Concentración (i)
-Conducir []
-Conducir []
-Conocimiento []
-Conocimiento []
-Conocimiento []
+Conducir [                 ]
+Conducir [                 ]
+Conocimiento [         ]
+Conocimiento [         ]
+Conocimiento [         ]
 Conocimiento Animal
 Cuerpo Estoico (i)
 Curar
 Disfrazar
 Empatía
 Etiqueta (n)
-Hablar []
-Hablar []
-Hablar []
+Hablar [                     ]
+Hablar [                     ]
+Hablar [                     ]
 Interpretación
 Investigar
 Juego
 Lanzar
-Leer []
-Leer []
+Leer  [                       ]
+Leer  [                       ]
 Máquina Pensante (g)
 Medicina (i,g)
 Mente Estoica (i)
-Militar (n,g) []
-Militar (n,g) []
+Militar (n,g) [             ]
+Militar (n,g) [             ]
 Montar
 Prestidigitación
 Rastrear
-Redención (g) []
-Redención (g) []
-Redención (g) []
-Sociedad []
-Sociedad []
+Redención (g) [         ]
+Redención (g) [         ]
+Redención (g) [         ]
+Sociedad   [               ]
+Sociedad   [               ]
 Subterfugio
 Supervivencia
 Tortura

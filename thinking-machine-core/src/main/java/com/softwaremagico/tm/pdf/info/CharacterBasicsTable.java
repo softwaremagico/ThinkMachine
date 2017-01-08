@@ -3,6 +3,7 @@ package com.softwaremagico.tm.pdf.info;
 import java.awt.Color;
 import java.io.IOException;
 
+import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.pdf.PdfPCell;
@@ -85,10 +86,9 @@ public class CharacterBasicsTable extends BaseElement {
 	}
 
 	private static PdfPCell getCell(String text, int colspan, int align, Color color) {
-		PdfPCell cell = getCell(text, 0, colspan, align, com.itextpdf.text.BaseColor.WHITE,
-				FadingSunsTheme.getLineFont(), FadingSunsTheme.CHARACTER_BASICS_FONT_SIZE);
+		PdfPCell cell = getCell(text, 0, colspan, align, BaseColor.WHITE, FadingSunsTheme.getLineFont(),
+				FadingSunsTheme.CHARACTER_BASICS_FONT_SIZE);
 		return cell;
 	}
-
 
 }

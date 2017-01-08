@@ -1,5 +1,6 @@
 package com.softwaremagico.tm.skills;
 
+import java.util.Collections;
 import java.util.List;
 
 import com.softwaremagico.tm.file.FileManager;
@@ -13,6 +14,7 @@ public class SkillFactory {
 	public static List<String> getNaturalSkills() {
 		if (naturalSkills == null) {
 			naturalSkills = FileManager.getFileFromResources(NATURAL_SKILLS_FILE);
+			Collections.sort(naturalSkills);
 		}
 		return naturalSkills;
 	}
@@ -20,6 +22,7 @@ public class SkillFactory {
 	public static List<String> getLearnedSkills() {
 		if (learnedSkills == null) {
 			learnedSkills = FileManager.getFileFromResources(LEARNED_SKILLS_FILE);
+			Collections.sort(learnedSkills);
 		}
 		return learnedSkills;
 	}

@@ -63,7 +63,7 @@ public class VitalityTable extends PdfPTable {
 		circleCell.setHorizontalAlignment(Element.ALIGN_CENTER);
 		circleCell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		circleCell.setBorder(0);
-		circleCell.setMinimumHeight(SkillsTable.HEIGHT / CIRCLES);
+		circleCell.setMinimumHeight(MainSkillsTable.HEIGHT / CIRCLES);
 		return circleCell;
 	}
 
