@@ -1,5 +1,5 @@
 Burocracia
-Con. del Cuerpo
+Conocim. del Cuerpo
 Guerra
 Investigar
 Observar
@@ -14,14 +14,14 @@ Arquería
 Artefacto CaC
 Artillería Pesada
 Artillería de Supresión
-Lucha CaC
+Cuerpo a Cuerpo
 Demoliciones
-Bestia de Tiro
-Embarcación
+Cond. Bestia de Tiro
+Cond. Embarcación
 Montar
 Conducir Aeronave
-Conducir Nave
-Conducir Vehículo
+Conducir Nave Espac.
+Conducir Vehíc. Terr.
 Arte  [                        ]
 Disfrazarse
 Interpretar  [             ]
@@ -43,5 +43,5 @@ Etiqueta
 Artería
 Liderazgo 
 Mantenimiento Naves
-Recup. Tecnológica
+Recuper. Tecnológica
 Máquina Pensante
