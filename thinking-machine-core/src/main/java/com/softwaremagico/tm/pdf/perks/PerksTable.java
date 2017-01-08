@@ -11,7 +11,7 @@ import com.softwaremagico.tm.pdf.elements.BaseElement;
 
 public class PerksTable extends PdfPTable {
 	private final static int EMPTY_ROWS = 6;
-	private final static String GAP = "_____";
+	private final static String GAP = "______";
 	private final static float[] WIDTHS = { 2f, 5f, 2f, 5f };
 
 	public PerksTable() {

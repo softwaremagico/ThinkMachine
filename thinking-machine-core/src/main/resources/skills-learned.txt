@@ -11,22 +11,22 @@ Terraformismo
 Armas de Energía
 Armas de Fuego
 Arquería
-Artefacto CaC
+Artefacto Cuerpo a C.
 Artillería Pesada
 Artillería de Supresión
 Cuerpo a Cuerpo
 Demoliciones
-Cond. Bestia de Tiro
-Cond. Embarcación
+Conducir Bestia de Tiro
+Conducir Embarcación
 Montar
 Conducir Aeronave
-Conducir Nave Espac.
-Conducir Vehíc. Terr.
-Arte  [                        ]
+Conducir Nave Espacial
+Conducir Vehíc. Terrestre
+Arte  [                            ]
 Disfrazarse
-Interpretar  [             ]
+Interpretar  [                   ]
 Juego
-Oficio [                      ]
+Oficio [                            ]
 Abrir Cerraduras
 Callejear
 Juego de Manos
@@ -35,13 +35,13 @@ Torturar
 Atletismo
 Autocontrol
 Supervivencia
-Saber  [                     ]
-Saber  [                     ]
-Xenología [                ]
+Saber  [                          ]
+Saber  [                          ]
+Xenología [                     ]
 Empatía
 Etiqueta
 Artería
 Liderazgo 
-Mantenimiento Naves
-Recuper. Tecnológica
+Mantenimiento de Naves
+Recuperación Tecnológic.
 Máquina Pensante

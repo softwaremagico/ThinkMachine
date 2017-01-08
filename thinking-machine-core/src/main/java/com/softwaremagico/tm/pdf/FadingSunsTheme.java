@@ -7,7 +7,7 @@ import com.itextpdf.text.pdf.BaseFont;
 
 public abstract class FadingSunsTheme {
 	public final static String LOGO_IMAGE = "fading-suns.png";
-	public final static String LINE_FONT_NAME = "DejaVuSans.ttf";
+	public final static String LINE_FONT_NAME = "DejaVuSansCondensed.ttf";
 	public final static String TITLE_FONT_NAME = "Roman Antique.ttf";
 
 	public final static int TITLE_FONT_SIZE = 18;
