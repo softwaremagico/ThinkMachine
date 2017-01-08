@@ -8,6 +8,7 @@ import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.softwaremagico.tm.pdf.characteristics.CharacteristicsTable;
 import com.softwaremagico.tm.pdf.info.CharacterBasicsTable;
+import com.softwaremagico.tm.pdf.perks.MainPerksTable;
 import com.softwaremagico.tm.pdf.skills.MainSkillsTable;
 
 public class CharacterSheet extends PdfDocument {
@@ -30,6 +31,8 @@ public class CharacterSheet extends PdfDocument {
 		document.add(characteristicsTable);
 		PdfPTable skillsTable = MainSkillsTable.getSkillsTable();
 		document.add(skillsTable);
+		PdfPTable perksTable = MainPerksTable.getPerksTable();
+		document.add(perksTable);
 		document.newPage();
 	}
 

@@ -18,8 +18,7 @@ import com.softwaremagico.tm.pdf.info.CharacterBasicsTable;
 
 public class BaseElement {
 
-
-	protected static PdfPCell getCell(String text, int border, int colspan, int align, BaseColor color,
+	public static PdfPCell getCell(String text, int border, int colspan, int align, BaseColor color,
 			BaseFont font, float fontSize) {
 		// Paragraph p = new Paragraph(text, new Font(font, fontSize));
 		Phrase content = new Phrase(text, new Font(font, fontSize));
@@ -52,7 +51,8 @@ public class BaseElement {
 	}
 
 	public static PdfPCell createLogoCell() throws DocumentException, IOException {
-		Image image = Image.getInstance(CharacterBasicsTable.class.getResource("/" + FadingSunsTheme.LOGO_IMAGE));
+		Image image = Image.getInstance(CharacterBasicsTable.class.getResource("/"
+				+ FadingSunsTheme.LOGO_IMAGE));
 		PdfPCell cell = new PdfPCell(image, true);
 		setCellProperties(cell);
 		cell.setPaddingTop(20);
@@ -71,7 +71,7 @@ public class BaseElement {
 		table.setWidthPercentage(100);
 		table.addCell(createWhiteSeparator());
 		table.addCell(createBlackSeparator());
-		//table.addCell(createWhiteSeparator());
+		// table.addCell(createWhiteSeparator());
 
 		PdfPCell cell = new PdfPCell();
 		cell.addElement(table);

@@ -25,7 +25,7 @@ public class OccultismTable extends PdfPTable {
 	}
 
 	private PdfPCell createTitle(String text) {
-		Font font = new Font(FadingSunsTheme.getTitleFont(), FadingSunsTheme.OCCULSTISMO_TITLE_FONT_SIZE);
+		Font font = new Font(FadingSunsTheme.getTitleFont(), FadingSunsTheme.OCCULSTISM_TITLE_FONT_SIZE);
 		font.setColor(BaseColor.WHITE);
 		Phrase content = new Phrase(text, font);
 		PdfPCell titleCell = new PdfPCell(content);
