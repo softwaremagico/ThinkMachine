@@ -23,9 +23,12 @@ Conducir Aeronave
 Conducir Nave Espacial
 Conducir Vehíc. Terrestre
 Arte  [                            ]
+Arte  [                            ]
 Disfrazarse
 Interpretar  [                   ]
+Interpretar  [                   ]
 Juego
+Oficio [                            ]
 Oficio [                            ]
 Abrir Cerraduras
 Callejear
@@ -37,6 +40,7 @@ Autocontrol
 Supervivencia
 Saber  [                          ]
 Saber  [                          ]
+Xenología [                     ]
 Xenología [                     ]
 Empatía
 Etiqueta

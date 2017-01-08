@@ -10,7 +10,7 @@ import com.softwaremagico.tm.pdf.FadingSunsTheme;
 
 public class WyrdTable extends PdfPTable {
 	private final static float[] WIDTHS = { 1f, 1f };
-	private final static int CIRCLES = 20;
+	private final static int CIRCLES = 23;
 	private final static int TITLE_SPAN = 5;
 
 	public WyrdTable() {

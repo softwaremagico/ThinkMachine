@@ -10,7 +10,7 @@ import com.softwaremagico.tm.pdf.skills.occultism.OccultismTable;
 import com.softwaremagico.tm.skills.SkillFactory;
 
 public class SkillsTable extends BaseElement {
-	private final static int ROWS = 26;
+	private final static int ROWS = 30;
 	private final static int TITLE_ROWSPAN = 2;
 	private static int learnedSkillsAdded = 0;
 	private final static String GAP = "____";
