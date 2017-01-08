@@ -9,7 +9,7 @@ import com.itextpdf.text.DocumentException;
 import com.softwaremagico.tm.pdf.CharacterSheet;
 
 @Test(groups = { "characterPdfGeneration" })
-public class CharacterSheetCreation {
+public class CharacterSheetCreationTest {
 	private final static String PDF_PATH_COMBINED = System.getProperty("java.io.tmpdir") + "/FadingSuns.pdf";
 
 	@Test

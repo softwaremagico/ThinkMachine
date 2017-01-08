@@ -1,8 +1,20 @@
 package com.softwaremagico.tm.file;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.io.StringWriter;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
+
+import com.softwaremagico.tm.log.MachineLog;
 
 public class FileManager {
 
@@ -103,6 +115,29 @@ public class FileManager {
 		return text;
 	}
 
+	public static List<String> getFileFromResources(String fileName) {
+		List<String> contents = new ArrayList<>();
+
+		// Get file from resources folder
+		ClassLoader classLoader = FileManager.class.getClassLoader();
+		File file = new File(classLoader.getResource(fileName).getFile());
+
+		try (Scanner scanner = new Scanner(file)) {
+			while (scanner.hasNextLine()) {
+				String line = scanner.nextLine();
+				if (line.length() > 0) {
+					contents.add(line);
+				}
+			}
+			scanner.close();
+		} catch (IOException e) {
+			MachineLog.errorMessage(FileManager.class.getName(), e);
+		}
+
+		return contents;
+
+	}
+
 	public static List<String> readTextFromJarInLines(String file) {
 		List<String> contents = new ArrayList<>();
 		String thisLine;
@@ -113,6 +148,7 @@ public class FileManager {
 				contents.add(thisLine);
 			}
 		} catch (Exception e) {
+			MachineLog.errorMessage(FileManager.class.getName(), e);
 		}
 		return contents;
 	}
@@ -127,6 +163,7 @@ public class FileManager {
 				totalText += thisLine;
 			}
 		} catch (Exception e) {
+			MachineLog.errorMessage(FileManager.class.getName(), e);
 		}
 		return totalText;
 	}
