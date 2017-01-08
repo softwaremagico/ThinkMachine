@@ -19,7 +19,7 @@ public class OccultismTable extends PdfPTable {
 		addCell(createTitle("Ocultismo"));
 		addCell(createContent());
 		setWidthPercentage(100);
-		setPaddingTop(0);
+		getDefaultCell().setPadding(0);
 		setSpacingAfter(0);
 		setSpacingBefore(0);
 	}
@@ -41,10 +41,13 @@ public class OccultismTable extends PdfPTable {
 		PdfPTable table = new PdfPTable(widths);
 		BaseElement.setTablePropierties(table);
 		table.getDefaultCell().setBorder(0);
+		table.getDefaultCell().setPadding(0);
+		table.getDefaultCell().setVerticalAlignment(Element.ALIGN_MIDDLE);
 
 		PdfPCell psiTitleCell = new PdfPCell(new Phrase("Psi", new Font(FadingSunsTheme.getLineFont(),
 				FadingSunsTheme.CHARACTERISTICS_LINE_FONT_SIZE)));
 		psiTitleCell.setBorder(0);
+		//psiTitleCell.setMinimumHeight(30);
 		psiTitleCell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 		table.addCell(psiTitleCell);
 
@@ -60,6 +63,7 @@ public class OccultismTable extends PdfPTable {
 		PdfPCell teurgyTitleCell = new PdfPCell(new Phrase("Teúrgia", new Font(FadingSunsTheme.getLineFont(),
 				FadingSunsTheme.CHARACTERISTICS_LINE_FONT_SIZE)));
 		teurgyTitleCell.setBorder(0);
+		//eurgyTitleCell.setMinimumHeight(30);
 		teurgyTitleCell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 		table.addCell(teurgyTitleCell);
 
@@ -74,6 +78,7 @@ public class OccultismTable extends PdfPTable {
 
 		PdfPCell cell = new PdfPCell();
 		cell.addElement(table);
+		cell.setPadding(0);
 		BaseElement.setCellProperties(cell);
 
 		return cell;

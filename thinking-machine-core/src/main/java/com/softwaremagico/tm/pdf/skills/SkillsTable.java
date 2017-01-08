@@ -92,7 +92,7 @@ public class SkillsTable extends BaseElement {
 
 		// Complete with empty skills.
 		for (int i = addedElements; i < ROWS - OCCULTISM_ROWS; i++) {
-			table.addCell(createSkillLine("____________"));
+			table.addCell(createSkillLine("_____________________"));
 			table.addCell(createSkillLine(GAP));
 		}
 

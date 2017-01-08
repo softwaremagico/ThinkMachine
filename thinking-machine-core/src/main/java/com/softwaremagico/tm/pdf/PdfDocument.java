@@ -93,8 +93,8 @@ public abstract class PdfDocument {
 		// if (!MyFile.fileExist(path)) {
 		try {
 			PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(path));
-			TableFooter event = new TableFooter();
-			writer.setPageEvent(event);
+			//TableFooter event = new TableFooter();
+			//writer.setPageEvent(event);
 			generatePDF(document, writer);
 		} catch (NullPointerException e) {
 			MachineLog.errorMessage(this.getClass().getName(), e);
