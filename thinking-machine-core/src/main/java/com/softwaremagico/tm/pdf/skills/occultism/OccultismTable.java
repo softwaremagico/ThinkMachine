@@ -11,7 +11,7 @@ import com.softwaremagico.tm.pdf.elements.BaseElement;
 import com.softwaremagico.tm.pdf.elements.CellPaddingEvent;
 
 public class OccultismTable extends PdfPTable {
-	private final static int ROW_WIDTH = 68;
+	private final static int ROW_WIDTH = 70;
 	private final static float[] widths = { 1f, 6f };
 
 	public OccultismTable() {
@@ -66,7 +66,7 @@ public class OccultismTable extends PdfPTable {
 		table.addCell(createRectangle());
 		table.addCell(createRectangle());
 
-		PdfPCell proudTitleCell = new PdfPCell(new Phrase("Orgullo", new Font(FadingSunsTheme.getLineFont(),
+		PdfPCell proudTitleCell = new PdfPCell(new Phrase("Soberbia", new Font(FadingSunsTheme.getLineFont(),
 				FadingSunsTheme.CHARACTERISTICS_LINE_FONT_SIZE)));
 		proudTitleCell.setBorder(0);
 		proudTitleCell.setHorizontalAlignment(Element.ALIGN_LEFT);

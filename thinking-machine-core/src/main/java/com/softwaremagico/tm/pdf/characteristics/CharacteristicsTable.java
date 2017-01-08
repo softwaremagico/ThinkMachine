@@ -36,7 +36,7 @@ public class CharacteristicsTable extends BaseElement {
 		table.addCell(new CharacteristicColumn("Espíritu", new String[] { "Presencia (3)", "Voluntad (3)",
 				"Fe (3)" }));
 		table.addCell(new CharacteristicColumn("Otras",
-				new String[] { "Iniciativa", "Movimiento", "Defensa" }));
+				new String[] { "Iniciativa", "Movimiento", "Defensa (1)" }));
 
 		return table;
 	}
