@@ -9,6 +9,7 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.softwaremagico.tm.pdf.characteristics.CharacteristicsTableFactory;
 import com.softwaremagico.tm.pdf.fighting.FightingTable;
 import com.softwaremagico.tm.pdf.info.CharacterBasicsTableFactory;
+import com.softwaremagico.tm.pdf.others.AnnotationsTable;
 import com.softwaremagico.tm.pdf.perks.MainPerksTableFactory;
 import com.softwaremagico.tm.pdf.skills.MainSkillsTableFactoryFactory;
 import com.softwaremagico.tm.pdf.skills.occultism.PowerTable;
@@ -38,6 +39,7 @@ public class CharacterSheet extends PdfDocument {
 		document.newPage();
 		// PdfPTable othersTable = MainOthersTable.getOthersTable();
 		// document.add(othersTable);
+		document.add(new AnnotationsTable());
 		document.add(new PowerTable());
 		document.add(new FightingTable());
 

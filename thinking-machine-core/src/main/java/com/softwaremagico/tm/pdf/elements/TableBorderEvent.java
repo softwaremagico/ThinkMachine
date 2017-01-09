@@ -1,5 +1,7 @@
 package com.softwaremagico.tm.pdf.elements;
 
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfPRow;
 import com.itextpdf.text.pdf.PdfPTable;
@@ -33,8 +35,12 @@ public class TableBorderEvent implements PdfPTableEventAfterSplit {
 		float x2 = width[width.length - 1];
 		float y1 = heights[0];
 		float y2 = heights[heights.length - 1];
+
 		PdfContentByte cb = canvas[PdfPTable.LINECANVAS];
-		cb.rectangle(x1, y1, x2 - x1, y2 - y1);
+		Rectangle rect1 = new Rectangle(x1, y1, x2, y2);
+		rect1.setBorder(Rectangle.BOX);
+		rect1.setBorderWidth(2);
+		cb.rectangle(rect1);
 		cb.stroke();
 	}
 }
