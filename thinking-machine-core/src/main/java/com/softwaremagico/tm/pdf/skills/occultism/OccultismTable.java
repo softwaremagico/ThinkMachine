@@ -1,6 +1,5 @@
 package com.softwaremagico.tm.pdf.skills.occultism;
 
-import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.Phrase;
@@ -9,14 +8,15 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.softwaremagico.tm.pdf.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.elements.BaseElement;
 import com.softwaremagico.tm.pdf.elements.CellPaddingEvent;
+import com.softwaremagico.tm.pdf.elements.VerticalHeaderPdfPTable;
 
-public class OccultismTable extends PdfPTable {
+public class OccultismTable extends VerticalHeaderPdfPTable {
 	private final static int ROW_WIDTH = 70;
 	private final static float[] widths = { 1f, 6f };
 
 	public OccultismTable() {
 		super(widths);
-		addCell(createTitle("Ocultismo"));
+		addCell(createVerticalTitle("Ocultismo", 1));
 		addCell(createContent());
 		setWidthPercentage(100);
 		getDefaultCell().setPadding(0);
@@ -24,15 +24,10 @@ public class OccultismTable extends PdfPTable {
 		setSpacingBefore(0);
 	}
 
-	private PdfPCell createTitle(String text) {
-		Font font = new Font(FadingSunsTheme.getTitleFont(), FadingSunsTheme.OCCULSTISM_TITLE_FONT_SIZE);
-		font.setColor(BaseColor.WHITE);
-		Phrase content = new Phrase(text, font);
-		PdfPCell titleCell = new PdfPCell(content);
+	@Override
+	protected PdfPCell createVerticalTitle(String title, int rowspan) {
+		PdfPCell titleCell = super.createVerticalTitle(title, rowspan);
 		titleCell.setMinimumHeight(ROW_WIDTH);
-		titleCell.setRotation(90);
-		titleCell.setBackgroundColor(BaseColor.BLACK);
-		titleCell.setHorizontalAlignment(Element.ALIGN_CENTER);
 		return titleCell;
 	}
 
@@ -44,34 +39,30 @@ public class OccultismTable extends PdfPTable {
 		table.getDefaultCell().setPadding(0);
 		table.getDefaultCell().setVerticalAlignment(Element.ALIGN_MIDDLE);
 
-		PdfPCell psiTitleCell = new PdfPCell(new Phrase("Psi", new Font(FadingSunsTheme.getLineFont(),
-				FadingSunsTheme.CHARACTERISTICS_LINE_FONT_SIZE)));
+		PdfPCell psiTitleCell = new PdfPCell(new Phrase("Psi", new Font(FadingSunsTheme.getLineFont(), FadingSunsTheme.CHARACTERISTICS_LINE_FONT_SIZE)));
 		psiTitleCell.setBorder(0);
-		//psiTitleCell.setMinimumHeight(30);
+		// psiTitleCell.setMinimumHeight(30);
 		psiTitleCell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 		table.addCell(psiTitleCell);
 
 		table.addCell(createRectangle());
 		table.addCell(createRectangle());
 
-		PdfPCell eagerTitleCell = new PdfPCell(new Phrase("Ansia", new Font(FadingSunsTheme.getLineFont(),
-				FadingSunsTheme.CHARACTERISTICS_LINE_FONT_SIZE)));
+		PdfPCell eagerTitleCell = new PdfPCell(new Phrase("Ansia", new Font(FadingSunsTheme.getLineFont(), FadingSunsTheme.CHARACTERISTICS_LINE_FONT_SIZE)));
 		eagerTitleCell.setBorder(0);
 		eagerTitleCell.setHorizontalAlignment(Element.ALIGN_LEFT);
 		table.addCell(eagerTitleCell);
 
-		PdfPCell teurgyTitleCell = new PdfPCell(new Phrase("Teúrgia", new Font(FadingSunsTheme.getLineFont(),
-				FadingSunsTheme.CHARACTERISTICS_LINE_FONT_SIZE)));
+		PdfPCell teurgyTitleCell = new PdfPCell(new Phrase("Teúrgia", new Font(FadingSunsTheme.getLineFont(), FadingSunsTheme.CHARACTERISTICS_LINE_FONT_SIZE)));
 		teurgyTitleCell.setBorder(0);
-		//eurgyTitleCell.setMinimumHeight(30);
+		// eurgyTitleCell.setMinimumHeight(30);
 		teurgyTitleCell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 		table.addCell(teurgyTitleCell);
 
 		table.addCell(createRectangle());
 		table.addCell(createRectangle());
 
-		PdfPCell proudTitleCell = new PdfPCell(new Phrase("Soberbia", new Font(FadingSunsTheme.getLineFont(),
-				FadingSunsTheme.CHARACTERISTICS_LINE_FONT_SIZE)));
+		PdfPCell proudTitleCell = new PdfPCell(new Phrase("Soberbia", new Font(FadingSunsTheme.getLineFont(), FadingSunsTheme.CHARACTERISTICS_LINE_FONT_SIZE)));
 		proudTitleCell.setBorder(0);
 		proudTitleCell.setHorizontalAlignment(Element.ALIGN_LEFT);
 		table.addCell(proudTitleCell);
@@ -90,6 +81,11 @@ public class OccultismTable extends PdfPTable {
 		box.setBorder(0);
 		box.setCellEvent(new CellPaddingEvent());
 		return box;
+	}
+
+	@Override
+	protected int getTitleFontSize() {
+		return FadingSunsTheme.OCCULSTISM_TITLE_FONT_SIZE;
 	}
 
 }

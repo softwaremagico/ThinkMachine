@@ -2,19 +2,17 @@ package com.softwaremagico.tm.pdf.perks;
 
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Element;
-import com.itextpdf.text.Font;
-import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
-import com.itextpdf.text.pdf.PdfPTable;
 import com.softwaremagico.tm.pdf.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.elements.BaseElement;
+import com.softwaremagico.tm.pdf.elements.VerticalHeaderPdfPTable;
 
-public class VictoryPointsTable extends PdfPTable {
+public class VictoryPointsTable extends VerticalHeaderPdfPTable {
 	private final static float[] WIDTHS = { 3f, 4f, 4f };
 
 	public VictoryPointsTable() {
 		super(WIDTHS);
-		addCell(createTitle());
+		addCell(createVerticalTitle("Tabla de Victoria", 12));
 
 		addCell(createSubTitle("Dado", BaseColor.WHITE));
 		addCell(createSubTitle("PV", BaseColor.WHITE));
@@ -54,22 +52,8 @@ public class VictoryPointsTable extends PdfPTable {
 
 	}
 
-	private PdfPCell createTitle() {
-		Font font = new Font(FadingSunsTheme.getTitleFont(), FadingSunsTheme.VICTORY_POINTS_TITLE_FONT_SIZE);
-		font.setColor(BaseColor.WHITE);
-		Phrase content = new Phrase("Tabla de Victoria", font);
-		PdfPCell titleCell = new PdfPCell(content);
-		titleCell.setPadding(0);
-		titleCell.setRowspan(12);
-		titleCell.setRotation(90);
-		titleCell.setHorizontalAlignment(Element.ALIGN_CENTER);
-		titleCell.setBackgroundColor(BaseColor.BLACK);
-		return titleCell;
-	}
-
 	private static PdfPCell createLine(String text, BaseColor color) {
-		PdfPCell cell = BaseElement.getCell(text, 0, 1, Element.ALIGN_CENTER, color, FadingSunsTheme.getLineFont(),
-				FadingSunsTheme.VICTORY_POINTS_FONT_SIZE);
+		PdfPCell cell = BaseElement.getCell(text, 0, 1, Element.ALIGN_CENTER, color, FadingSunsTheme.getLineFont(), FadingSunsTheme.VICTORY_POINTS_FONT_SIZE);
 		cell.setMinimumHeight(11);
 		cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		return cell;
@@ -81,6 +65,11 @@ public class VictoryPointsTable extends PdfPTable {
 		cell.setMinimumHeight(13);
 		cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		return cell;
+	}
+
+	@Override
+	protected int getTitleFontSize() {
+		return FadingSunsTheme.VICTORY_POINTS_TITLE_FONT_SIZE;
 	}
 
 }
