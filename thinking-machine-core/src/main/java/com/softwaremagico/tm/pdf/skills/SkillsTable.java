@@ -116,7 +116,7 @@ public class SkillsTable extends BaseElement {
 	private static PdfPCell createTitle(String text) {
 		PdfPCell cell = getCell(text, 0, 2, Element.ALIGN_CENTER, BaseColor.WHITE,
 				FadingSunsTheme.getTitleFont(), FadingSunsTheme.SKILLS_TITLE_FONT_SIZE);
-		cell.setMinimumHeight(MainSkillsTableFactory.HEIGHT / (ROWS / TITLE_ROWSPAN) +1);
+		cell.setMinimumHeight(MainSkillsTableFactoryFactory.HEIGHT / (ROWS / TITLE_ROWSPAN) +1);
 		cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		return cell;
 	}
@@ -124,7 +124,7 @@ public class SkillsTable extends BaseElement {
 	private static PdfPCell createSkillLine(String text) {
 		PdfPCell cell = getCell(text, 0, 1, Element.ALIGN_LEFT, BaseColor.WHITE,
 				FadingSunsTheme.getLineFont(), FadingSunsTheme.SKILLS_LINE_FONT_SIZE);
-		cell.setMinimumHeight((MainSkillsTableFactory.HEIGHT / ROWS));
+		cell.setMinimumHeight((MainSkillsTableFactoryFactory.HEIGHT / ROWS));
 		cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		return cell;
 	}

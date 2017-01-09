@@ -4,7 +4,7 @@ import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.softwaremagico.tm.pdf.elements.BaseElement;
 
-public class MainPerksTable extends BaseElement {
+public class MainPerksTableFactory extends BaseElement {
 	protected final static int EMPTY_ROWS = 8;
 	public final static int PADDING = 2;
 
@@ -37,7 +37,7 @@ public class MainPerksTable extends BaseElement {
 		
 		table.addCell(whiteSeparator);
 
-		PdfPCell perksCell = new PdfPCell(new PerksTable());
+		PdfPCell perksCell = new PdfPCell(new BenefitsTable());
 		perksCell.setPadding(0);
 		perksCell.setBorder(0);
 		table.addCell(perksCell);

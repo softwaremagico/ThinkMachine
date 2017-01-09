@@ -8,6 +8,7 @@ import com.itextpdf.text.pdf.BaseFont;
 public abstract class FadingSunsTheme {
 	public final static String LOGO_IMAGE = "fading-suns.png";
 	public final static String LINE_FONT_NAME = "DejaVuSansCondensed.ttf";
+	public final static String TABLE_SUBTITLE_FONT_NAME = "DejaVuSansCondensed-Oblique.ttf";
 	public final static String LINE_BOLD_FONT_NAME = "DejaVuSansCondensed-Bold.ttf";
 	public final static String TITLE_FONT_NAME = "Roman Antique.ttf";
 
@@ -19,15 +20,17 @@ public abstract class FadingSunsTheme {
 	public final static int SKILLS_LINE_FONT_SIZE = 10;
 	public final static int OCCULSTISM_TITLE_FONT_SIZE = 12;
 	public final static int PERKS_TITLE_FONT_SIZE = 12;
-	public final static int PERKS_SUBTITLE_FONT_SIZE = 8;
+	public final static int TABLE_LINE_FONT_SIZE = 8;
 	public final static int VICTORY_POINTS_FONT_SIZE = 6;
 	public final static int VICTORY_POINTS_TITLE_FONT_SIZE = 12;
+	public final static int FIGHTING_TITLE_FONT_SIZE = 12;
 	
 	public final static int DEFAULT_MARGIN = 3;
 
 	private static BaseFont lineFont;
 	private static BaseFont lineBoldFont;
 	private static BaseFont titleFont;
+	private static BaseFont tableSubtitleFont;
 
 	public static BaseFont getLineFont() {
 		if (lineFont == null) {
@@ -55,6 +58,16 @@ public abstract class FadingSunsTheme {
 			titleFont = font.getBaseFont();
 		}
 		return titleFont;
+	}
+	
+
+	public static BaseFont getSubtitleFont() {
+		if (tableSubtitleFont == null) {
+			Font font = FontFactory.getFont("/" + TABLE_SUBTITLE_FONT_NAME, BaseFont.IDENTITY_H, BaseFont.EMBEDDED,
+					0.8f, Font.ITALIC, BaseColor.BLACK);
+			tableSubtitleFont = font.getBaseFont();
+		}
+		return tableSubtitleFont;
 	}
 
 }

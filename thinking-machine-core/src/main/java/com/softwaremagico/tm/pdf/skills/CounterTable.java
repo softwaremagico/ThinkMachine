@@ -33,7 +33,7 @@ public abstract class CounterTable extends VerticalHeaderPdfPTable {
 		circleCell.setHorizontalAlignment(Element.ALIGN_CENTER);
 		circleCell.setVerticalAlignment(alignment);
 		circleCell.setBorder(0);
-		circleCell.setMinimumHeight(MainSkillsTableFactory.HEIGHT / CIRCLES);
+		circleCell.setMinimumHeight(MainSkillsTableFactoryFactory.HEIGHT / CIRCLES);
 		return circleCell;
 	}
 

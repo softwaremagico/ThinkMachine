@@ -25,8 +25,25 @@ public abstract class VerticalHeaderPdfPTable extends PdfPTable {
 		titleCell.setRowspan(rowspan);
 		titleCell.setRotation(90);
 		titleCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+		//titleCell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		titleCell.setBackgroundColor(BaseColor.BLACK);
 		return titleCell;
+	}
+
+	protected static PdfPCell createElementLine(String text) {
+		PdfPCell cell = BaseElement.getCell(text, 0, 1, Element.ALIGN_CENTER, BaseColor.WHITE, FadingSunsTheme.getLineFont(),
+				FadingSunsTheme.TABLE_LINE_FONT_SIZE);
+		cell.setMinimumHeight(10);
+		cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+		return cell;
+	}
+	
+	protected static PdfPCell createTableSubtitleElement(String text) {
+		PdfPCell cell = BaseElement.getCell(text, 0, 1, Element.ALIGN_CENTER, BaseColor.WHITE, FadingSunsTheme.getSubtitleFont(),
+				FadingSunsTheme.TABLE_LINE_FONT_SIZE);
+		cell.setMinimumHeight(10);
+		cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+		return cell;
 	}
 
 }

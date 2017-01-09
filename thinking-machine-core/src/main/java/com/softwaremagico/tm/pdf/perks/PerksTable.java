@@ -9,41 +9,47 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.softwaremagico.tm.pdf.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.elements.BaseElement;
 
-public class PerksTable extends PdfPTable {
-	private final static String GAP = "_____";
-	private final static float[] WIDTHS = { 2f, 5f, 2f, 5f };
+public abstract class PerksTable extends PdfPTable {
+	private float[] columnWidths;
 
-	public PerksTable() {
-		super(WIDTHS);
-		addCell(createTitle());
-
-		addCell(createLine("Pts."));
-		addCell(createLine("Beneficios"));
-		addCell(createLine("Pts."));
-		addCell(createLine("Afliciones"));
-
-		for (int i = 0; i < MainPerksTable.EMPTY_ROWS * 2; i++) {
-			addCell(createLine(GAP));
-			addCell(createLine(GAP + GAP + GAP + GAP));
-		}
+	public PerksTable(float[] widths) {
+		super(widths);
+		setColumnWidths(widths);
 	}
 
-	private PdfPCell createTitle() {
+	protected PdfPCell createTitle(String title) {
 		Font font = new Font(FadingSunsTheme.getTitleFont(), FadingSunsTheme.PERKS_TITLE_FONT_SIZE);
-		Phrase content = new Phrase("BENEFICIOS/AFLICIONES", font);
+		Phrase content = new Phrase(title, font);
 		PdfPCell titleCell = new PdfPCell(content);
 		titleCell.setRowspan(2);
-		titleCell.setColspan(WIDTHS.length);
+		titleCell.setColspan(getColumnWidths().length);
 		titleCell.setHorizontalAlignment(Element.ALIGN_CENTER);
 		titleCell.setBorder(0);
 		return titleCell;
 	}
 
-	private static PdfPCell createLine(String text) {
-		PdfPCell cell = BaseElement.getCell(text, 0, 1, Element.ALIGN_CENTER, BaseColor.WHITE,
-				FadingSunsTheme.getLineFont(), FadingSunsTheme.PERKS_SUBTITLE_FONT_SIZE);
+	protected static PdfPCell createSubtitleLine(String text) {
+		PdfPCell cell = BaseElement.getCell(text, 0, 1, Element.ALIGN_CENTER, BaseColor.WHITE, FadingSunsTheme.getSubtitleFont(),
+				FadingSunsTheme.TABLE_LINE_FONT_SIZE);
 		cell.setMinimumHeight(10);
 		cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		return cell;
 	}
+
+	protected static PdfPCell createLine(String text) {
+		PdfPCell cell = BaseElement.getCell(text, 0, 1, Element.ALIGN_CENTER, BaseColor.WHITE, FadingSunsTheme.getLineFont(),
+				FadingSunsTheme.TABLE_LINE_FONT_SIZE);
+		cell.setMinimumHeight(10);
+		cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+		return cell;
+	}
+
+	public float[] getColumnWidths() {
+		return columnWidths;
+	}
+
+	private void setColumnWidths(float[] columnWidths) {
+		this.columnWidths = columnWidths;
+	}
+
 }

@@ -6,11 +6,11 @@ import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.PdfPTable;
-import com.softwaremagico.tm.pdf.characteristics.CharacteristicsTable;
-import com.softwaremagico.tm.pdf.info.CharacterBasicsTable;
-import com.softwaremagico.tm.pdf.others.MainOthersTable;
-import com.softwaremagico.tm.pdf.perks.MainPerksTable;
-import com.softwaremagico.tm.pdf.skills.MainSkillsTableFactory;
+import com.softwaremagico.tm.pdf.characteristics.CharacteristicsTableFactory;
+import com.softwaremagico.tm.pdf.fighting.FightingTable;
+import com.softwaremagico.tm.pdf.info.CharacterBasicsTableFactory;
+import com.softwaremagico.tm.pdf.perks.MainPerksTableFactory;
+import com.softwaremagico.tm.pdf.skills.MainSkillsTableFactoryFactory;
 
 public class CharacterSheet extends PdfDocument {
 
@@ -26,18 +26,18 @@ public class CharacterSheet extends PdfDocument {
 	@Override
 	protected void createPagePDF(Document document) throws Exception {
 		// addBackGroundImage(document, Path.returnBackgroundPath(), writer);
-		PdfPTable mainTable = CharacterBasicsTable.getCharacterBasicsTable();
+		PdfPTable mainTable = CharacterBasicsTableFactory.getCharacterBasicsTable();
 		document.add(mainTable);
-		PdfPTable characteristicsTable = CharacteristicsTable.getCharacterBasicsTable();
+		PdfPTable characteristicsTable = CharacteristicsTableFactory.getCharacterBasicsTable();
 		document.add(characteristicsTable);
-		PdfPTable skillsTable = MainSkillsTableFactory.getSkillsTable();
+		PdfPTable skillsTable = MainSkillsTableFactoryFactory.getSkillsTable();
 		document.add(skillsTable);
-		PdfPTable perksTable = MainPerksTable.getPerksTable();
+		PdfPTable perksTable = MainPerksTableFactory.getPerksTable();
 		document.add(perksTable);
-//		PdfPTable othersTable = MainOthersTable.getOthersTable();
-//		document.add(othersTable);
-//		PdfPTable perksTable = MainPerksTable.getPerksTable();
-//		document.add(perksTable);
+		document.newPage();
+		// PdfPTable othersTable = MainOthersTable.getOthersTable();
+		// document.add(othersTable);
+		 document.add(new FightingTable());
 
 		document.newPage();
 	}

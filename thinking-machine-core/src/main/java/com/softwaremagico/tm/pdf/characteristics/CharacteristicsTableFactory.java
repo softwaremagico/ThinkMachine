@@ -8,7 +8,7 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.softwaremagico.tm.pdf.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.elements.BaseElement;
 
-public class CharacteristicsTable extends BaseElement {
+public class CharacteristicsTableFactory extends BaseElement {
 	private final static String GAP = "   ";
 
 	public static PdfPTable getCharacterBasicsTable() {

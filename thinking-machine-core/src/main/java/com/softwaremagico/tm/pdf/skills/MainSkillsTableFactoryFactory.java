@@ -6,7 +6,7 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.softwaremagico.tm.pdf.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.elements.BaseElement;
 
-public class MainSkillsTableFactory extends BaseElement {
+public class MainSkillsTableFactoryFactory extends BaseElement {
 	public final static int HEIGHT = 400;
 	public final static int PADDING = 2;
 

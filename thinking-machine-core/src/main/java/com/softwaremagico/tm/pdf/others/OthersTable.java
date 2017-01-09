@@ -40,7 +40,7 @@ public class OthersTable extends PdfPTable {
 
 	private static PdfPCell createLine(String text) {
 		PdfPCell cell = BaseElement.getCell(text, 0, 1, Element.ALIGN_CENTER, BaseColor.WHITE,
-				FadingSunsTheme.getLineFont(), FadingSunsTheme.PERKS_SUBTITLE_FONT_SIZE);
+				FadingSunsTheme.getLineFont(), FadingSunsTheme.TABLE_LINE_FONT_SIZE);
 		cell.setMinimumHeight(10);
 		cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		return cell;

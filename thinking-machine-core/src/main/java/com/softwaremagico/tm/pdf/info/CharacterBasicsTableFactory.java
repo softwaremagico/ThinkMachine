@@ -12,7 +12,7 @@ import com.softwaremagico.tm.log.MachineLog;
 import com.softwaremagico.tm.pdf.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.elements.BaseElement;
 
-public class CharacterBasicsTable extends BaseElement {
+public class CharacterBasicsTableFactory extends BaseElement {
 
 	public static PdfPTable getCharacterBasicsTable() {
 		float[] widths = { 1f, 1f, 1f };
@@ -64,7 +64,7 @@ public class CharacterBasicsTable extends BaseElement {
 		try {
 			return createLogoCell();
 		} catch (DocumentException | IOException e) {
-			MachineLog.errorMessage(CharacterBasicsTable.class.getName(), e);
+			MachineLog.errorMessage(CharacterBasicsTableFactory.class.getName(), e);
 		}
 		return null;
 	}

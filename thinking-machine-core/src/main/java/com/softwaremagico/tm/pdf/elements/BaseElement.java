@@ -14,7 +14,7 @@ import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.softwaremagico.tm.pdf.FadingSunsTheme;
-import com.softwaremagico.tm.pdf.info.CharacterBasicsTable;
+import com.softwaremagico.tm.pdf.info.CharacterBasicsTableFactory;
 
 public class BaseElement {
 
@@ -51,7 +51,7 @@ public class BaseElement {
 	}
 
 	public static PdfPCell createLogoCell() throws DocumentException, IOException {
-		Image image = Image.getInstance(CharacterBasicsTable.class.getResource("/"
+		Image image = Image.getInstance(CharacterBasicsTableFactory.class.getResource("/"
 				+ FadingSunsTheme.LOGO_IMAGE));
 		PdfPCell cell = new PdfPCell(image, true);
 		setCellProperties(cell);
