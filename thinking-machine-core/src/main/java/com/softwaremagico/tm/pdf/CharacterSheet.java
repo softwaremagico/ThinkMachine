@@ -11,6 +11,7 @@ import com.softwaremagico.tm.pdf.fighting.FightingTable;
 import com.softwaremagico.tm.pdf.info.CharacterBasicsTableFactory;
 import com.softwaremagico.tm.pdf.perks.MainPerksTableFactory;
 import com.softwaremagico.tm.pdf.skills.MainSkillsTableFactoryFactory;
+import com.softwaremagico.tm.pdf.skills.occultism.PowerTable;
 
 public class CharacterSheet extends PdfDocument {
 
@@ -37,7 +38,8 @@ public class CharacterSheet extends PdfDocument {
 		document.newPage();
 		// PdfPTable othersTable = MainOthersTable.getOthersTable();
 		// document.add(othersTable);
-		 document.add(new FightingTable());
+		document.add(new PowerTable());
+		document.add(new FightingTable());
 
 		document.newPage();
 	}

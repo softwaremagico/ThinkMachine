@@ -4,11 +4,11 @@ import com.softwaremagico.tm.pdf.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.elements.VerticalHeaderPdfPTable;
 
 public class FightingTable extends VerticalHeaderPdfPTable {
-	private final static float[] widths = { 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f };
-	private final static int ROWS = 5;
+	private final static float[] WIDTHS = { 1f, 3f, 3f, 3f, 3f, 3f, 3f, 3f, 3f, 3f };
+	private final static int ROWS = 8;
 
 	public FightingTable() {
-		super(widths);
+		super(WIDTHS);
 		addCell(createVerticalTitle("COMBATE", ROWS + 1));
 		addCell(createTableSubtitleElement("Acción"));
 		addCell(createTableSubtitleElement("Tirada"));
