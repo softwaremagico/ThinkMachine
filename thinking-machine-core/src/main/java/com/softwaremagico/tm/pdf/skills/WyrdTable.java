@@ -8,7 +8,7 @@ public class WyrdTable extends CounterTable {
 	public WyrdTable() {
 		super(WIDTHS);
 		addCell(createCircle());
-		addCell(createVerticalTitle("Wyrd", TITLE_SPAN));
+		addCell(createLateralVerticalTitle("Wyrd", TITLE_SPAN));
 		for (int i = 0; i < TITLE_SPAN; i++) {
 			addCell(createCircle());
 		}
@@ -19,8 +19,8 @@ public class WyrdTable extends CounterTable {
 	}
 
 	@Override
-	protected PdfPCell createVerticalTitle(String title, int rowspan) {
-		PdfPCell titleCell = super.createVerticalTitle(title, rowspan);
+	protected PdfPCell createLateralVerticalTitle(String title, int rowspan) {
+		PdfPCell titleCell = super.createLateralVerticalTitle(title, rowspan);
 		titleCell.setRotation(270);
 		return titleCell;
 	}

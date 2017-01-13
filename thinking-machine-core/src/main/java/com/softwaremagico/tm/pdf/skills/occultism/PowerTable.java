@@ -1,16 +1,16 @@
 package com.softwaremagico.tm.pdf.skills.occultism;
 
 import com.softwaremagico.tm.pdf.FadingSunsTheme;
-import com.softwaremagico.tm.pdf.elements.VerticalHeaderPdfPTable;
+import com.softwaremagico.tm.pdf.elements.LateralHeaderPdfPTable;
 
-public class PowerTable extends VerticalHeaderPdfPTable {
+public class PowerTable extends LateralHeaderPdfPTable {
 	private final static float[] WIDTHS = { 1f, 5f, 2f, 5f, 4f, 4f, 4f, 3f };
 	private final static int ROWS = 15;
 	private final static String GAP = "__";
 
 	public PowerTable() {
 		super(WIDTHS);
-		addCell(createVerticalTitle("Poderes Ocultos", ROWS + 1));
+		addCell(createLateralVerticalTitle("Poderes Ocultos", ROWS + 1));
 
 		addCell(createTableSubtitleElement("Poder/Rito"));
 		addCell(createTableSubtitleElement("Nivel"));

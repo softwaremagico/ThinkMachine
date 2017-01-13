@@ -7,16 +7,15 @@ import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.softwaremagico.tm.pdf.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.elements.BaseElement;
-import com.softwaremagico.tm.pdf.elements.CellPaddingEvent;
-import com.softwaremagico.tm.pdf.elements.VerticalHeaderPdfPTable;
+import com.softwaremagico.tm.pdf.elements.LateralHeaderPdfPTable;
 
-public class OccultismTable extends VerticalHeaderPdfPTable {
+public class OccultismTable extends LateralHeaderPdfPTable {
 	private final static int ROW_WIDTH = 70;
 	private final static float[] widths = { 1f, 6f };
 
 	public OccultismTable() {
 		super(widths);
-		addCell(createVerticalTitle("Ocultismo", 1));
+		addCell(createLateralVerticalTitle("Ocultismo", 1));
 		addCell(createContent());
 		setWidthPercentage(100);
 		getDefaultCell().setPadding(0);
@@ -25,8 +24,8 @@ public class OccultismTable extends VerticalHeaderPdfPTable {
 	}
 
 	@Override
-	protected PdfPCell createVerticalTitle(String title, int rowspan) {
-		PdfPCell titleCell = super.createVerticalTitle(title, rowspan);
+	protected PdfPCell createLateralVerticalTitle(String title, int rowspan) {
+		PdfPCell titleCell = super.createLateralVerticalTitle(title, rowspan);
 		titleCell.setMinimumHeight(ROW_WIDTH);
 		return titleCell;
 	}
@@ -73,14 +72,6 @@ public class OccultismTable extends VerticalHeaderPdfPTable {
 		BaseElement.setCellProperties(cell);
 
 		return cell;
-	}
-
-	private PdfPCell createRectangle() {
-		PdfPCell box = new PdfPCell();
-		box.setMinimumHeight(15);
-		box.setBorder(0);
-		box.setCellEvent(new CellPaddingEvent());
-		return box;
 	}
 
 	@Override

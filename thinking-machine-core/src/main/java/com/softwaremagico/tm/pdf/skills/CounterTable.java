@@ -5,9 +5,9 @@ import com.itextpdf.text.Font;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.softwaremagico.tm.pdf.FadingSunsTheme;
-import com.softwaremagico.tm.pdf.elements.VerticalHeaderPdfPTable;
+import com.softwaremagico.tm.pdf.elements.LateralHeaderPdfPTable;
 
-public abstract class CounterTable extends VerticalHeaderPdfPTable {
+public abstract class CounterTable extends LateralHeaderPdfPTable {
 	protected final static float[] WIDTHS = { 1f, 1f };
 	protected final static int CIRCLES = 23;
 	protected final static int TITLE_SPAN = 5;

@@ -1,15 +1,15 @@
 package com.softwaremagico.tm.pdf.fighting;
 
 import com.softwaremagico.tm.pdf.FadingSunsTheme;
-import com.softwaremagico.tm.pdf.elements.VerticalHeaderPdfPTable;
+import com.softwaremagico.tm.pdf.elements.LateralHeaderPdfPTable;
 
-public class FireArmsTable extends VerticalHeaderPdfPTable {
+public class FireArmsTable extends LateralHeaderPdfPTable {
 	private final static float[] WIDTHS = { 1f, 4f, 3f, 3f, 3f };
 	private final static int ROWS = 10;
 
 	public FireArmsTable() {
 		super(WIDTHS);
-		addCell(createVerticalTitle("Armas de Fuego", ROWS + 1));
+		addCell(createLateralVerticalTitle("Armas de Fuego", ROWS + 1));
 		addCell(createTableSubtitleElement("Acción"));
 		addCell(createTableSubtitleElement("Inicia."));
 		addCell(createTableSubtitleElement("Dif."));

@@ -16,12 +16,12 @@ Artillería Pesada
 Artillería de Supresión
 Cuerpo a Cuerpo
 Demoliciones
-Conducir Bestia de Tiro
-Conducir Embarcación
+Controlar Bestia de Tiro
+Controlar Embarcación
 Montar
-Conducir Aeronave
-Conducir Nave Espacial
-Conducir Vehíc. Terrestre
+Controlar Aeronave
+Controlar Nave Espacial
+Controlar Vehíc. Terrestre
 Arte  [                            ]
 Arte  [                            ]
 Disfrazarse

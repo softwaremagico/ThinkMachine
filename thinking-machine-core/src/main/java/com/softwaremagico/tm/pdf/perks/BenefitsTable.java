@@ -17,8 +17,8 @@ public class BenefitsTable extends VerticalTable {
 		addCell(createSubtitleLine("Afliciones"));
 
 		for (int i = 0; i < MainPerksTableFactory.EMPTY_ROWS * 2; i++) {
-			addCell(createLine(GAP));
-			addCell(createLine(GAP + GAP + GAP + GAP));
+			addCell(createElementLine(GAP));
+			addCell(createElementLine(GAP + GAP + GAP + GAP));
 		}
 	}
 

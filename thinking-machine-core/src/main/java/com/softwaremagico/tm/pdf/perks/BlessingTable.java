@@ -17,10 +17,10 @@ public class BlessingTable extends VerticalTable {
 		addCell(createSubtitleLine("Situación"));
 
 		for (int i = 0; i < MainPerksTableFactory.EMPTY_ROWS; i++) {
-			addCell(createLine(GAP + GAP + GAP + GAP + GAP));
-			addCell(createLine(GAP));
-			addCell(createLine(GAP + GAP + GAP));
-			addCell(createLine(GAP + GAP + GAP + GAP + GAP + GAP));
+			addCell(createElementLine(GAP + GAP + GAP + GAP + GAP));
+			addCell(createElementLine(GAP));
+			addCell(createElementLine(GAP + GAP + GAP));
+			addCell(createElementLine(GAP + GAP + GAP + GAP + GAP + GAP));
 		}
 	}
 }

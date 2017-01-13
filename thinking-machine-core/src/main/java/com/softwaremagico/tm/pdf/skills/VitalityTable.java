@@ -12,7 +12,7 @@ public class VitalityTable extends CounterTable {
 
 	public VitalityTable() {
 		super(WIDTHS);
-		addCell(createVerticalTitle("Vitalidad", TITLE_SPAN));
+		addCell(createLateralVerticalTitle("Vitalidad", TITLE_SPAN));
 		for (int i = 0; i < TITLE_SPAN; i++) {
 			addCell(createCircle());
 		}

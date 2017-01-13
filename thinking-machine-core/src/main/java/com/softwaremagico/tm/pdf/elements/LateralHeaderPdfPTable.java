@@ -5,19 +5,18 @@ import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
-import com.itextpdf.text.pdf.PdfPTable;
 import com.softwaremagico.tm.pdf.FadingSunsTheme;
 
-public abstract class VerticalHeaderPdfPTable extends PdfPTable {
+public abstract class LateralHeaderPdfPTable extends CustomPdfTable {
 
-	protected VerticalHeaderPdfPTable(float[] widths) {
+	protected LateralHeaderPdfPTable(float[] widths) {
 		super(widths);
 		setTableEvent(new TableBorderEvent());
 	}
 
 	protected abstract int getTitleFontSize();
 
-	protected PdfPCell createVerticalTitle(String title, int rowspan) {
+	protected PdfPCell createLateralVerticalTitle(String title, int rowspan) {
 		Font font = new Font(FadingSunsTheme.getTitleFont(), getTitleFontSize());
 		font.setColor(BaseColor.WHITE);
 		Phrase content = new Phrase(title, font);
@@ -31,17 +30,9 @@ public abstract class VerticalHeaderPdfPTable extends PdfPTable {
 		return titleCell;
 	}
 
-	protected static PdfPCell createElementLine(String text) {
-		PdfPCell cell = BaseElement.getCell(text, 0, 1, Element.ALIGN_CENTER, BaseColor.WHITE, FadingSunsTheme.getLineFont(),
-				FadingSunsTheme.TABLE_LINE_FONT_SIZE);
-		cell.setMinimumHeight(10);
-		cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-		return cell;
-	}
-
 	protected static PdfPCell createTableSubtitleElement(String text) {
-		PdfPCell cell = BaseElement.getCell(text, 0, 1, Element.ALIGN_CENTER, BaseColor.WHITE, FadingSunsTheme.getSubtitleFont(),
-				FadingSunsTheme.TABLE_LINE_FONT_SIZE);
+		PdfPCell cell = BaseElement.getCell(text, 0, 1, Element.ALIGN_CENTER, BaseColor.WHITE,
+				FadingSunsTheme.getSubtitleFont(), FadingSunsTheme.TABLE_LINE_FONT_SIZE);
 		cell.setMinimumHeight(10);
 		cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		return cell;

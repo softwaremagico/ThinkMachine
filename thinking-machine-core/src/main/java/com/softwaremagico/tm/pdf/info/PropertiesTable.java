@@ -11,7 +11,7 @@ public class PropertiesTable extends VerticalTable {
 
 		addCell(createTitle("Propiedades"));
 		for (int i = 0; i < ROWS; i++) {
-			addCell(createLine("______________________________________________"));
+			addCell(createElementLine("______________________________________________"));
 		}
 	}
 }

@@ -5,14 +5,14 @@ import com.itextpdf.text.Element;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.softwaremagico.tm.pdf.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.elements.BaseElement;
-import com.softwaremagico.tm.pdf.elements.VerticalHeaderPdfPTable;
+import com.softwaremagico.tm.pdf.elements.LateralHeaderPdfPTable;
 
-public class VictoryPointsTable extends VerticalHeaderPdfPTable {
+public class VictoryPointsTable extends LateralHeaderPdfPTable {
 	private final static float[] WIDTHS = { 3f, 4f, 4f };
 
 	public VictoryPointsTable() {
 		super(WIDTHS);
-		addCell(createVerticalTitle("Tabla de Victoria", 12));
+		addCell(createLateralVerticalTitle("Tabla de Victoria", 12));
 
 		addCell(createSubTitle("Dado", BaseColor.WHITE));
 		addCell(createSubTitle("PV", BaseColor.WHITE));

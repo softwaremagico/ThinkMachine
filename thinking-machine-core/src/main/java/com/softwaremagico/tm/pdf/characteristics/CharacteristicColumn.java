@@ -6,16 +6,15 @@ import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.softwaremagico.tm.pdf.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.elements.BaseElement;
-import com.softwaremagico.tm.pdf.elements.CellPaddingEvent;
-import com.softwaremagico.tm.pdf.elements.VerticalHeaderPdfPTable;
+import com.softwaremagico.tm.pdf.elements.LateralHeaderPdfPTable;
 
-public class CharacteristicColumn extends VerticalHeaderPdfPTable {
+public class CharacteristicColumn extends LateralHeaderPdfPTable {
 	private final static int ROW_WIDTH = 60;
 	private final static float[] widths = { 1f, 5f };
 
 	public CharacteristicColumn(String title, String[] content) {
 		super(widths);
-		addCell(createVerticalTitle(title, content.length));
+		addCell(createLateralVerticalTitle(title, content.length));
 		addCell(createContent(content));
 	}
 
@@ -26,18 +25,14 @@ public class CharacteristicColumn extends VerticalHeaderPdfPTable {
 		table.getDefaultCell().setBorder(0);
 
 		for (String text : content) {
-			PdfPCell characteristicTitle = new PdfPCell(new Phrase(text,
-					new Font(FadingSunsTheme.getLineFont(), FadingSunsTheme.CHARACTERISTICS_LINE_FONT_SIZE)));
+			PdfPCell characteristicTitle = new PdfPCell(new Phrase(text, new Font(
+					FadingSunsTheme.getLineFont(), FadingSunsTheme.CHARACTERISTICS_LINE_FONT_SIZE)));
 			characteristicTitle.setBorder(0);
 			characteristicTitle.setMinimumHeight(ROW_WIDTH / content.length);
 			table.addCell(characteristicTitle);
 
 			// Rectangle
-			PdfPCell box = new PdfPCell();
-			box.setMinimumHeight(10);
-			box.setBorder(0);
-			box.setCellEvent(new CellPaddingEvent());
-			table.addCell(box);
+			table.addCell(createRectangle());
 
 			// Margin
 			PdfPCell margin = new PdfPCell();

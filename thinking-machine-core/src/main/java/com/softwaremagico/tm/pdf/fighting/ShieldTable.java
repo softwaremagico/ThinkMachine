@@ -7,43 +7,40 @@ import com.softwaremagico.tm.pdf.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.elements.BaseElement;
 import com.softwaremagico.tm.pdf.elements.LateralHeaderPdfPTable;
 
-public class ArmourTable extends LateralHeaderPdfPTable {
-	private final static float[] WIDTHS = { 1f, 1f, 1f, 1f };
+public class ShieldTable extends LateralHeaderPdfPTable {
+	private final static float[] WIDTHS = { 1f, 4f };
 	private final static int ROWS = 4;
 
-	public ArmourTable() {
+	public ShieldTable() {
 		super(WIDTHS);
 		getDefaultCell().setBorder(0);
-
-		addCell(createLateralVerticalTitle("Armadura", ROWS + 1));
+		
+		
+		addCell(createLateralVerticalTitle("Escudos", ROWS + 1));
 
 		PdfPCell nameCell = createElementLine("_________________");
 		nameCell.setColspan(WIDTHS.length);
 		nameCell.setMinimumHeight(20);
 		addCell(nameCell);
-		PdfPCell protectionCell = createElementLine("Protección: ____ d");
-		protectionCell.setColspan(WIDTHS.length);
-		addCell(protectionCell);
 
-		addCell(getArmourProperty("D"));
-		addCell(getArmourProperty("F"));
-		addCell(getArmourProperty("L"));
-		addCell(getArmourProperty("P"));
-		addCell(getArmourProperty("I"));
-		addCell(getArmourProperty("E"));
-
+		addCell(getShieldRange());
+		addCell(createElementLine("Impactos: _______"));
+		addCell(createElementLine("_________________"));
 	}
 
-	private PdfPTable getArmourProperty(String text) {
-		float[] widths = { 1f, 1f };
+	private PdfPTable getShieldRange() {
+		float[] widths = { 1f, 1f, 1f, 1f, 1f };
 		PdfPTable table = new PdfPTable(widths);
 		BaseElement.setTablePropierties(table);
 		table.getDefaultCell().setBorder(0);
 		table.getDefaultCell().setPadding(0);
 		table.getDefaultCell().setVerticalAlignment(Element.ALIGN_MIDDLE);
 
+		table.addCell(createElementLine("("));
 		table.addCell(createRectangle());
-		table.addCell(createElementLine(text));
+		table.addCell(createElementLine("/"));
+		table.addCell(createRectangle());
+		table.addCell(createElementLine(")"));
 
 		return table;
 	}

@@ -10,7 +10,7 @@ import com.softwaremagico.tm.pdf.characteristics.CharacteristicsTableFactory;
 import com.softwaremagico.tm.pdf.cybernetics.CyberneticsTable;
 import com.softwaremagico.tm.pdf.elements.BaseElement;
 import com.softwaremagico.tm.pdf.fighting.FightingManoeuvres;
-import com.softwaremagico.tm.pdf.fighting.FightingTable;
+import com.softwaremagico.tm.pdf.fighting.WeaponsAndArmours;
 import com.softwaremagico.tm.pdf.info.CharacterBasicsTableFactory;
 import com.softwaremagico.tm.pdf.info.DescriptionTable;
 import com.softwaremagico.tm.pdf.info.PropertiesTable;
@@ -48,7 +48,7 @@ public class CharacterSheet extends PdfDocument {
 		document.add(createRearTable());
 		document.add(new CyberneticsTable());
 		document.add(FightingManoeuvres.getFightingManoeuvresTable());
-		document.add(new FightingTable());
+		document.add(WeaponsAndArmours.getWeaponsAndArmoursTable());
 
 		document.newPage();
 	}

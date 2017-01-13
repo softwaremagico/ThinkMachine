@@ -5,15 +5,15 @@ import com.itextpdf.text.Element;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.softwaremagico.tm.pdf.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.elements.BaseElement;
-import com.softwaremagico.tm.pdf.elements.VerticalHeaderPdfPTable;
+import com.softwaremagico.tm.pdf.elements.LateralHeaderPdfPTable;
 
-public class AnnotationsTable extends VerticalHeaderPdfPTable {
+public class AnnotationsTable extends LateralHeaderPdfPTable {
 	private final static float[] WIDTHS = { 1f, 24f };
 	private final static int CELL_HEIGHT = 70;
 
 	public AnnotationsTable() {
 		super(WIDTHS);
-		addCell(createVerticalTitle("Anotaciones", 2));
+		addCell(createLateralVerticalTitle("Anotaciones", 2));
 
 		addCell(createSubtitleLine("Del personaje"));
 		addCell(createSubtitleLine("La historia"));

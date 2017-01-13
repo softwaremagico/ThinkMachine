@@ -11,24 +11,24 @@ public class CyberneticsTable extends VerticalTable {
 		super(WIDTHS);
 
 		addCell(createTitle("Cibernética"));
-		addCell(createLine("Nombre"));
-		addCell(createLine("Pts."));
-		addCell(createLine("Inc."));
-		addCell(createLine("Usabilidad"));
-		addCell(createLine("Calidad"));
-		addCell(createLine("Activación"));
-		addCell(createLine("Apariencia"));
-		addCell(createLine("Otros"));
+		addCell(createElementLine("Nombre"));
+		addCell(createElementLine("Pts."));
+		addCell(createElementLine("Inc."));
+		addCell(createElementLine("Usabilidad"));
+		addCell(createElementLine("Calidad"));
+		addCell(createElementLine("Activación"));
+		addCell(createElementLine("Apariencia"));
+		addCell(createElementLine("Otros"));
 
 		for (int i = 0; i < ROWS; i++) {
-			addCell(createLine(GAP + GAP + GAP));
-			addCell(createLine(GAP));
-			addCell(createLine(GAP));
-			addCell(createLine(GAP + GAP));
-			addCell(createLine(GAP + GAP));
-			addCell(createLine(GAP + GAP));
-			addCell(createLine(GAP + GAP));
-			addCell(createLine(GAP + GAP + GAP + GAP));
+			addCell(createElementLine(GAP + GAP + GAP));
+			addCell(createElementLine(GAP));
+			addCell(createElementLine(GAP));
+			addCell(createElementLine(GAP + GAP));
+			addCell(createElementLine(GAP + GAP));
+			addCell(createElementLine(GAP + GAP));
+			addCell(createElementLine(GAP + GAP));
+			addCell(createElementLine(GAP + GAP + GAP + GAP));
 		}
 	}
 }
