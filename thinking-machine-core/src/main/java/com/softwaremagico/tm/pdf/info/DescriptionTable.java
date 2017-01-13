@@ -9,17 +9,15 @@ public class DescriptionTable extends VerticalTable {
 		super(WIDTHS);
 
 		addCell(createTitle("Descripción"));
-		addCell(createLine("Fecha de Nacimiento ________"));
-		addCell(createLine("Cabello ______________"));
-		addCell(createLine("Ojos _________________"));
-		addCell(createLine("Complexión ______________"));
-		addCell(createLine("Estatura ____________"));
-		addCell(createLine("Peso ____________"));
-		addCell(createLine("Imagen ____________"));
-		addCell(createLine("_______________________"));
-		addCell(createLine("_______________________"));
-		addCell(createLine("_______________________"));
-		addCell(createLine("_______________________"));
-		addCell(createLine("_______________________"));
+		addCell(createLine("Fecha de Nacimiento _________________________"));
+		addCell(createLine("Cabello _______________________________________"));
+		addCell(createLine("Ojos __________________________________________"));
+		addCell(createLine("Complexión __________________________________"));
+		addCell(createLine("Estatura _____________________________________"));
+		addCell(createLine("Peso _________________________________________"));
+		addCell(createLine("Imagen ______________________________________"));
+		addCell(createLine("______________________________________________"));
+		addCell(createLine("______________________________________________"));
+		addCell(createLine("______________________________________________"));
 	}
 }
