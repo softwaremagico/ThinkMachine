@@ -79,11 +79,15 @@ public class BaseElement {
 
 		return cell;
 	}
-	
+
 	public static PdfPCell createBigSeparator() {
+		return createBigSeparator(98);
+	}
+
+	public static PdfPCell createBigSeparator(int width) {
 		float[] widths = { 1f };
 		PdfPTable table = new PdfPTable(widths);
-		table.setWidthPercentage(98);
+		table.setWidthPercentage(width);
 		table.addCell(createWhiteSeparator());
 		table.addCell(createBlackSeparator());
 		table.addCell(createWhiteSeparator());
@@ -107,7 +111,7 @@ public class BaseElement {
 		PdfPCell cell = new PdfPCell();
 		cell.setBackgroundColor(BaseColor.WHITE);
 		setCellProperties(cell);
-		cell.setMinimumHeight(10f);
+		cell.setMinimumHeight(6f);
 		return cell;
 	}
 

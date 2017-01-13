@@ -15,6 +15,7 @@ import com.softwaremagico.tm.pdf.info.CharacterBasicsTableFactory;
 import com.softwaremagico.tm.pdf.info.DescriptionTable;
 import com.softwaremagico.tm.pdf.info.PropertiesTable;
 import com.softwaremagico.tm.pdf.others.AnnotationsTable;
+import com.softwaremagico.tm.pdf.others.OthersTable;
 import com.softwaremagico.tm.pdf.perks.MainPerksTableFactory;
 import com.softwaremagico.tm.pdf.skills.MainSkillsTableFactoryFactory;
 import com.softwaremagico.tm.pdf.skills.occultism.PowerTable;
@@ -43,10 +44,7 @@ public class CharacterSheet extends PdfDocument {
 		PdfPTable perksTable = MainPerksTableFactory.getPerksTable();
 		document.add(perksTable);
 		document.newPage();
-		// PdfPTable othersTable = MainOthersTable.getOthersTable();
-		// document.add(othersTable);
 		document.add(createRearTable());
-		document.add(new CyberneticsTable());
 		document.add(FightingManoeuvres.getFightingManoeuvresTable());
 		document.add(WeaponsAndArmours.getWeaponsAndArmoursTable());
 
@@ -63,23 +61,31 @@ public class CharacterSheet extends PdfDocument {
 		cell.setColspan(2);
 		mainTable.addCell(cell);
 
-		mainTable.addCell(BaseElement.createBigSeparator());
-		PdfPCell separatorCell = new PdfPCell(BaseElement.createBigSeparator());
+		PdfPCell blackSeparator = BaseElement.createBigSeparator(90);
+		mainTable.addCell(blackSeparator);
+
+		PdfPCell separatorCell = new PdfPCell(BaseElement.createWhiteSeparator());
 		separatorCell.setColspan(2);
 		mainTable.addCell(separatorCell);
 
 		mainTable.addCell(new PropertiesTable());
+
 		PdfPCell psiCell = new PdfPCell(new PowerTable());
 		psiCell.setColspan(2);
 		mainTable.addCell(psiCell);
 
-		return mainTable;
-	}
+		mainTable.addCell(BaseElement.createBigSeparator(90));
 
-	private static void addEmptyLine(Paragraph paragraph, int number) {
-		for (int i = 0; i < number; i++) {
-			paragraph.add(new Paragraph(" "));
-		}
+		mainTable.addCell(separatorCell);
+
+		PdfPTable othersTable = new OthersTable();
+		mainTable.addCell(othersTable);
+
+		PdfPCell cyberneticsCell = new PdfPCell(new CyberneticsTable());
+		cyberneticsCell.setColspan(2);
+		mainTable.addCell(cyberneticsCell);
+
+		return mainTable;
 	}
 
 }

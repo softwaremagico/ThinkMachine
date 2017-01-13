@@ -5,11 +5,11 @@ import com.softwaremagico.tm.pdf.elements.LateralHeaderPdfPTable;
 
 public class FireArmsTable extends LateralHeaderPdfPTable {
 	private final static float[] WIDTHS = { 1.2f, 4f, 3f, 3f, 5f };
-	private final static int ROWS = 10;
+	private final static int ROWS = 12;
 
 	public FireArmsTable() {
 		super(WIDTHS);
-		addCell(createLateralVerticalTitle("Armas de Fuego", ROWS + 1));
+		addCell(createLateralVerticalTitle("Disparo", ROWS + 1));
 		addCell(createTableSubtitleElement("Acción"));
 		addCell(createTableSubtitleElement("RA"));
 		addCell(createTableSubtitleElement("Daño"));

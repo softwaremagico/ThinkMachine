@@ -10,9 +10,9 @@ import com.softwaremagico.tm.pdf.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.elements.BaseElement;
 
 public class OthersTable extends PdfPTable {
-	private final static int EMPTY_ROWS = 3;
-	private final static String GAP = "_______";
-	private final static float[] WIDTHS = { 5f, 1f };
+	private final static int EMPTY_ROWS = 6;
+	private final static String GAP = "_____";
+	private final static float[] WIDTHS = { 6f, 1f };
 
 	public OthersTable() {
 		super(WIDTHS);
@@ -22,7 +22,7 @@ public class OthersTable extends PdfPTable {
 		addCell(createLine("Nivel"));
 
 		for (int i = 0; i < EMPTY_ROWS; i++) {
-			addCell(createLine(GAP + GAP + GAP + GAP + GAP));
+			addCell(createLine(GAP + GAP + GAP + GAP + GAP + GAP));
 			addCell(createLine(GAP));
 		}
 	}

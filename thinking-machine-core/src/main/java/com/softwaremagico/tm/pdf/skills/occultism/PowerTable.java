@@ -4,8 +4,8 @@ import com.softwaremagico.tm.pdf.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.elements.LateralHeaderPdfPTable;
 
 public class PowerTable extends LateralHeaderPdfPTable {
-	private final static float[] WIDTHS = { 1f, 5f, 2f, 5f, 4f, 4f, 4f, 3f };
-	private final static int ROWS = 15;
+	private final static float[] WIDTHS = { 1.25f, 5f, 2f, 5f, 4f, 4f, 4f, 3f };
+	private final static int ROWS = 10;
 	private final static String GAP = "__";
 
 	public PowerTable() {

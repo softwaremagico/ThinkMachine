@@ -14,7 +14,7 @@ public class WeaponsAndArmours extends BaseElement {
 		table.getDefaultCell().setPadding(PADDING);
 		table.getDefaultCell().setBorder(0);
 
-		PdfPCell fireArmsCell = new PdfPCell(new FightingTable());
+		PdfPCell fireArmsCell = new PdfPCell(new WeaponsTable());
 		fireArmsCell.setRowspan(2);
 		table.addCell(fireArmsCell);
 

@@ -14,10 +14,16 @@ public class FightingManoeuvres extends BaseElement {
 		table.getDefaultCell().setPadding(PADDING);
 		table.getDefaultCell().setBorder(0);
 
+		table.addCell(BaseElement.createWhiteSeparator());
+		table.addCell(BaseElement.createWhiteSeparator());
+
+		table.addCell(BaseElement.createWhiteSeparator());
+		table.addCell(BaseElement.createWhiteSeparator());
+
 		PdfPCell fireArmsCell = new PdfPCell(new FireArmsTable());
 		table.addCell(fireArmsCell);
 
-		PdfPCell fencingCell = new PdfPCell(new FencingTable());
+		PdfPCell fencingCell = new PdfPCell(new FightingTable());
 		table.addCell(fencingCell);
 
 		return table;
