@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.pdf.perks;
+package com.softwaremagico.tm.pdf.elements;
 
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Element;
@@ -7,18 +7,17 @@ import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.softwaremagico.tm.pdf.FadingSunsTheme;
-import com.softwaremagico.tm.pdf.elements.BaseElement;
 
-public abstract class PerksTable extends PdfPTable {
+public abstract class VerticalTable extends PdfPTable {
 	private float[] columnWidths;
 
-	public PerksTable(float[] widths) {
+	public VerticalTable(float[] widths) {
 		super(widths);
 		setColumnWidths(widths);
 	}
 
 	protected PdfPCell createTitle(String title) {
-		Font font = new Font(FadingSunsTheme.getTitleFont(), FadingSunsTheme.PERKS_TITLE_FONT_SIZE);
+		Font font = new Font(FadingSunsTheme.getTitleFont(), FadingSunsTheme.VERTICALTABLE_TITLE_FONT_SIZE);
 		Phrase content = new Phrase(title, font);
 		PdfPCell titleCell = new PdfPCell(content);
 		titleCell.setRowspan(2);

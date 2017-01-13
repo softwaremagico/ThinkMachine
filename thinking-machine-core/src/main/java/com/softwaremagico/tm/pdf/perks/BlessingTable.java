@@ -1,7 +1,9 @@
 package com.softwaremagico.tm.pdf.perks;
 
+import com.softwaremagico.tm.pdf.elements.VerticalTable;
 
-public class BlessingTable extends PerksTable {
+
+public class BlessingTable extends VerticalTable {
 	private final static String GAP = "___";
 	private final static float[] WIDTHS = { 8f, 2f, 5f, 10f };
 

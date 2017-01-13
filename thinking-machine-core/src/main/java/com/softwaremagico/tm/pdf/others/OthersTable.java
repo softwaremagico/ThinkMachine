@@ -28,7 +28,7 @@ public class OthersTable extends PdfPTable {
 	}
 
 	private PdfPCell createTitle() {
-		Font font = new Font(FadingSunsTheme.getTitleFont(), FadingSunsTheme.PERKS_TITLE_FONT_SIZE);
+		Font font = new Font(FadingSunsTheme.getTitleFont(), FadingSunsTheme.VERTICALTABLE_TITLE_FONT_SIZE);
 		Phrase content = new Phrase("OTROS RASGOS", font);
 		PdfPCell titleCell = new PdfPCell(content);
 		titleCell.setRowspan(2);
