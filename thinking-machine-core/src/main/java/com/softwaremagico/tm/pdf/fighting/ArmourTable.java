@@ -8,7 +8,7 @@ import com.softwaremagico.tm.pdf.elements.BaseElement;
 import com.softwaremagico.tm.pdf.elements.LateralHeaderPdfPTable;
 
 public class ArmourTable extends LateralHeaderPdfPTable {
-	private final static float[] WIDTHS = { 1f, 1f, 1f, 1f };
+	private final static float[] WIDTHS = { 0.75f, 1f, 1f, 1f };
 	private final static int ROWS = 5;
 
 	public ArmourTable() {
