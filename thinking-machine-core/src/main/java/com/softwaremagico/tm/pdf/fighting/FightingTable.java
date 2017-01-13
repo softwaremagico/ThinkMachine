@@ -4,8 +4,8 @@ import com.softwaremagico.tm.pdf.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.elements.LateralHeaderPdfPTable;
 
 public class FightingTable extends LateralHeaderPdfPTable {
-	private final static float[] WIDTHS = { 1f, 4f, 5f, 3f, 3f, 3f, 3f, 3f, 3f, 3f };
-	private final static int ROWS = 10;
+	private final static float[] WIDTHS = { 1f, 4f, 5f, 3f, 3f, 3f, 3f, 3f, 3f, 3f, 5f };
+	private final static int ROWS = 12;
 
 	public FightingTable() {
 		super(WIDTHS);
@@ -19,12 +19,14 @@ public class FightingTable extends LateralHeaderPdfPTable {
 		addCell(createTableSubtitleElement("Carga."));
 		addCell(createTableSubtitleElement("Cad."));
 		addCell(createTableSubtitleElement("Tam"));
+		addCell(createTableSubtitleElement("Otros"));
 
 		addCell(createElementLine("Puñetazo"));
 		addCell(createElementLine("Des + Pelea"));
 		addCell(createElementLine(""));
 		addCell(createElementLine(""));
 		addCell(createElementLine("2d"));
+		addCell(createElementLine(""));
 		addCell(createElementLine(""));
 		addCell(createElementLine(""));
 		addCell(createElementLine(""));
@@ -39,6 +41,7 @@ public class FightingTable extends LateralHeaderPdfPTable {
 		addCell(createElementLine(""));
 		addCell(createElementLine(""));
 		addCell(createElementLine(""));
+		addCell(createElementLine(""));
 
 		addCell(createElementLine("Presa"));
 		addCell(createElementLine("Des + Pelea"));
@@ -49,12 +52,14 @@ public class FightingTable extends LateralHeaderPdfPTable {
 		addCell(createElementLine(""));
 		addCell(createElementLine(""));
 		addCell(createElementLine(""));
+		addCell(createElementLine(""));
 
 		addCell(createElementLine("Carga"));
 		addCell(createElementLine("Des + Pelea"));
 		addCell(createElementLine("-3"));
 		addCell(createElementLine(""));
 		addCell(createElementLine("3d"));
+		addCell(createElementLine(""));
 		addCell(createElementLine(""));
 		addCell(createElementLine(""));
 		addCell(createElementLine(""));
@@ -70,6 +75,7 @@ public class FightingTable extends LateralHeaderPdfPTable {
 			addCell(createElementLine("______"));
 			addCell(createElementLine("______"));
 			addCell(createElementLine("______"));
+			addCell(createElementLine("___________"));
 		}
 
 	}

@@ -18,14 +18,15 @@ public class ShieldTable extends LateralHeaderPdfPTable {
 		
 		addCell(createLateralVerticalTitle("Escudos", ROWS + 1));
 
-		PdfPCell nameCell = createElementLine("_________________");
+		PdfPCell nameCell = createElementLine("___________________");
 		nameCell.setColspan(WIDTHS.length);
 		nameCell.setMinimumHeight(20);
 		addCell(nameCell);
 
 		addCell(getShieldRange());
-		addCell(createElementLine("Impactos: _______"));
-		addCell(createElementLine("_________________"));
+		addCell(createElementLine("Impactos: _________"));
+		addCell(createElementLine("___________________"));
+		addCell(createElementLine("___________________"));
 	}
 
 	private PdfPTable getShieldRange() {

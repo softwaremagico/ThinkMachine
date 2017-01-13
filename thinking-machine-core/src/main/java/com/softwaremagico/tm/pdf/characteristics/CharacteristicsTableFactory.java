@@ -31,7 +31,7 @@ public class CharacteristicsTableFactory extends BaseElement {
 		table.getDefaultCell().setPadding(0);
 
 		table.addCell(new CharacteristicColumn("Cuerpo", new String[] { "Fuerza (" + GAP + ")",
-				"Destreza (" + GAP + ")", "Resistencia (" + GAP + ")" }));
+				"Destreza (" + GAP + ")", "Fortaleza (" + GAP + ")" }));
 		table.addCell(new CharacteristicColumn("Mente", new String[] { "Astucia (" + GAP + ")",
 				"Percepción (" + GAP + ")", "Tecnología (" + GAP + ")" }));
 		table.addCell(new CharacteristicColumn("Espíritu", new String[] { "Presencia (" + GAP + ")",

@@ -9,7 +9,7 @@ import com.softwaremagico.tm.pdf.elements.LateralHeaderPdfPTable;
 
 public class ArmourTable extends LateralHeaderPdfPTable {
 	private final static float[] WIDTHS = { 1f, 1f, 1f, 1f };
-	private final static int ROWS = 4;
+	private final static int ROWS = 5;
 
 	public ArmourTable() {
 		super(WIDTHS);
@@ -17,13 +17,17 @@ public class ArmourTable extends LateralHeaderPdfPTable {
 
 		addCell(createLateralVerticalTitle("Armadura", ROWS + 1));
 
-		PdfPCell nameCell = createElementLine("_________________");
+		PdfPCell nameCell = createElementLine("___________________");
 		nameCell.setColspan(WIDTHS.length);
 		nameCell.setMinimumHeight(20);
 		addCell(nameCell);
 		PdfPCell protectionCell = createElementLine("Protección: ____ d");
 		protectionCell.setColspan(WIDTHS.length);
 		addCell(protectionCell);
+		
+		PdfPCell malusCell = createElementLine("Fr: __  Ds: __  In: __");
+		malusCell.setColspan(WIDTHS.length);
+		addCell(malusCell);
 
 		addCell(getArmourProperty("D"));
 		addCell(getArmourProperty("F"));
