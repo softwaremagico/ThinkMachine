@@ -9,7 +9,7 @@ public class BenefitsTable extends VerticalTable {
 
 	public BenefitsTable() {
 		super(WIDTHS);
-		addCell(createTitle("BENEFICIOS/AFLICIONES"));
+		addCell(createTitle("Beneficios/Afliciones"));
 
 		addCell(createSubtitleLine("Pts."));
 		addCell(createSubtitleLine("Beneficios"));

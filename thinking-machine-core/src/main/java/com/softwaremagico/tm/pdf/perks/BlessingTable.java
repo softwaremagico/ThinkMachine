@@ -9,7 +9,7 @@ public class BlessingTable extends VerticalTable {
 
 	public BlessingTable() {
 		super(WIDTHS);
-		addCell(createTitle("BENDICIONES/MALDICIONES"));
+		addCell(createTitle("Bendiciones/Maldiciones"));
 
 		addCell(createSubtitleLine("Nombre"));
 		addCell(createSubtitleLine("+/-"));

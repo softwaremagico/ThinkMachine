@@ -7,11 +7,13 @@ import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.softwaremagico.tm.pdf.characteristics.CharacteristicsTableFactory;
+import com.softwaremagico.tm.pdf.cybernetics.CyberneticsTable;
 import com.softwaremagico.tm.pdf.elements.BaseElement;
 import com.softwaremagico.tm.pdf.fighting.FightingManoeuvres;
 import com.softwaremagico.tm.pdf.fighting.FightingTable;
 import com.softwaremagico.tm.pdf.info.CharacterBasicsTableFactory;
 import com.softwaremagico.tm.pdf.info.DescriptionTable;
+import com.softwaremagico.tm.pdf.info.PropertiesTable;
 import com.softwaremagico.tm.pdf.others.AnnotationsTable;
 import com.softwaremagico.tm.pdf.perks.MainPerksTableFactory;
 import com.softwaremagico.tm.pdf.skills.MainSkillsTableFactoryFactory;
@@ -44,6 +46,7 @@ public class CharacterSheet extends PdfDocument {
 		// PdfPTable othersTable = MainOthersTable.getOthersTable();
 		// document.add(othersTable);
 		document.add(createRearTable());
+		document.add(new CyberneticsTable());
 		document.add(FightingManoeuvres.getFightingManoeuvresTable());
 		document.add(new FightingTable());
 
@@ -65,7 +68,7 @@ public class CharacterSheet extends PdfDocument {
 		separatorCell.setColspan(2);
 		mainTable.addCell(separatorCell);
 
-		mainTable.addCell(new DescriptionTable());
+		mainTable.addCell(new PropertiesTable());
 		PdfPCell psiCell = new PdfPCell(new PowerTable());
 		psiCell.setColspan(2);
 		mainTable.addCell(psiCell);
