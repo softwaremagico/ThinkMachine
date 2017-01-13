@@ -9,7 +9,7 @@ public class FightingTable extends LateralHeaderPdfPTable {
 
 	public FightingTable() {
 		super(WIDTHS);
-		addCell(createLateralVerticalTitle("Combate", ROWS + 1));
+		addCell(createLateralVerticalTitle("Cuerpo a Cuerpo", ROWS + 1));
 		addCell(createTableSubtitleElement("Acción"));
 		addCell(createTableSubtitleElement("RA"));
 		addCell(createTableSubtitleElement("Daño"));

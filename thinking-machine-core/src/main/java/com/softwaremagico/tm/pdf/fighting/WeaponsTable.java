@@ -10,13 +10,13 @@ public class WeaponsTable extends LateralHeaderPdfPTable {
 	public WeaponsTable() {
 		super(WIDTHS);
 		addCell(createLateralVerticalTitle("Armas", ROWS + 1));
-		addCell(createTableSubtitleElement("Acción"));
+		addCell(createTableSubtitleElement("Arma"));
 		addCell(createTableSubtitleElement("Tirada"));
 		addCell(createTableSubtitleElement("RA"));
 		addCell(createTableSubtitleElement("Daño"));
 		addCell(createTableSubtitleElement("Fue/Alc"));
-		addCell(createTableSubtitleElement("Carga."));
-		addCell(createTableSubtitleElement("Cad."));
+		addCell(createTableSubtitleElement("Disparos"));
+		addCell(createTableSubtitleElement("Ratio"));
 		addCell(createTableSubtitleElement("Tam"));
 		addCell(createTableSubtitleElement("Otros"));
 

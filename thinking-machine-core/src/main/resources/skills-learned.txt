@@ -33,11 +33,12 @@ Oficio [                            ]
 Abrir Cerraduras
 Callejear
 Juego de Manos
-Sigilo
 Torturar
 Atletismo
 Autocontrol
 Supervivencia
+Saber  [                          ]
+Saber  [                          ]
 Saber  [                          ]
 Saber  [                          ]
 Xenología [                     ]

@@ -4,7 +4,7 @@ import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.softwaremagico.tm.pdf.elements.BaseElement;
 
-public class FightingManoeuvres extends BaseElement {
+public class FightingManeuvers extends BaseElement {
 	public final static int PADDING = 2;
 
 	public static PdfPTable getFightingManoeuvresTable() {

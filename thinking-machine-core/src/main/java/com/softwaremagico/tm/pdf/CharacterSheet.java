@@ -2,14 +2,13 @@ package com.softwaremagico.tm.pdf;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.PageSize;
-import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.softwaremagico.tm.pdf.characteristics.CharacteristicsTableFactory;
 import com.softwaremagico.tm.pdf.cybernetics.CyberneticsTable;
 import com.softwaremagico.tm.pdf.elements.BaseElement;
-import com.softwaremagico.tm.pdf.fighting.FightingManoeuvres;
+import com.softwaremagico.tm.pdf.fighting.FightingManeuvers;
 import com.softwaremagico.tm.pdf.fighting.WeaponsAndArmours;
 import com.softwaremagico.tm.pdf.info.CharacterBasicsTableFactory;
 import com.softwaremagico.tm.pdf.info.DescriptionTable;
@@ -45,7 +44,7 @@ public class CharacterSheet extends PdfDocument {
 		document.add(perksTable);
 		document.newPage();
 		document.add(createRearTable());
-		document.add(FightingManoeuvres.getFightingManoeuvresTable());
+		document.add(FightingManeuvers.getFightingManoeuvresTable());
 		document.add(WeaponsAndArmours.getWeaponsAndArmoursTable());
 
 		document.newPage();
