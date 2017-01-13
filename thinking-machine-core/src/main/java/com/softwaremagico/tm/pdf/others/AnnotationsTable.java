@@ -13,10 +13,10 @@ public class AnnotationsTable extends VerticalHeaderPdfPTable {
 
 	public AnnotationsTable() {
 		super(WIDTHS);
-		addCell(createVerticalTitle("ANOTACIONES", 2));
+		addCell(createVerticalTitle("Anotaciones", 2));
 
-		addCell(createSubtitleLine("DEL PERSONAJE"));
-		addCell(createSubtitleLine("LA HISTORIA"));
+		addCell(createSubtitleLine("Del personaje"));
+		addCell(createSubtitleLine("La historia"));
 	}
 
 	@Override

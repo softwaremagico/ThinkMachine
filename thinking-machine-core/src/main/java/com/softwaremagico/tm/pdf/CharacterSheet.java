@@ -7,6 +7,7 @@ import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.softwaremagico.tm.pdf.characteristics.CharacteristicsTableFactory;
+import com.softwaremagico.tm.pdf.fighting.FightingManoeuvres;
 import com.softwaremagico.tm.pdf.fighting.FightingTable;
 import com.softwaremagico.tm.pdf.info.CharacterBasicsTableFactory;
 import com.softwaremagico.tm.pdf.others.AnnotationsTable;
@@ -41,6 +42,7 @@ public class CharacterSheet extends PdfDocument {
 		// document.add(othersTable);
 		document.add(new AnnotationsTable());
 		document.add(new PowerTable());
+		document.add(FightingManoeuvres.getFightingManoeuvresTable());
 		document.add(new FightingTable());
 
 		document.newPage();

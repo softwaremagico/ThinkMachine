@@ -10,7 +10,7 @@ public class PowerTable extends VerticalHeaderPdfPTable {
 
 	public PowerTable() {
 		super(WIDTHS);
-		addCell(createVerticalTitle("PODERES OCULTOS", ROWS + 1));
+		addCell(createVerticalTitle("Poderes Ocultos", ROWS + 1));
 
 		addCell(createTableSubtitleElement("Poder/Rito"));
 		addCell(createTableSubtitleElement("Nivel"));
