@@ -3,11 +3,11 @@ Conocim. del Cuerpo
 Guerra
 Investigar
 Observar
-Ciencia Aplicada
+Ciencia Aplicada *
 Ciencia Social
-Ciencia de la Física
-Ciencia de la Vida
-Terraformismo
+Ciencia de la Física *
+Ciencia de la Vida *
+Terraformismo *
 Armas de Energía
 Armas de Fuego
 Arquería
@@ -20,7 +20,7 @@ Controlar Bestia de Tiro
 Controlar Embarcación
 Montar
 Controlar Aeronave
-Controlar Nave Espacial
+Controlar Nave Espacial *
 Controlar Vehíc. Terrestre
 Arte  [                            ]
 Arte  [                            ]
@@ -47,6 +47,6 @@ Empatía
 Etiqueta
 Artería
 Liderazgo 
-Mantenimiento de Naves
-Recuperación Tecnológic.
-Máquina Pensante
+Mantenimiento de Naves *
+Recuperación Tecnológic. *
+Máquina Pensante *

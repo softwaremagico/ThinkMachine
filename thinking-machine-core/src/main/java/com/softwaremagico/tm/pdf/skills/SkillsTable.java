@@ -4,10 +4,11 @@ import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
+import com.softwaremagico.tm.character.skills.Skill;
+import com.softwaremagico.tm.character.skills.SkillFactory;
 import com.softwaremagico.tm.pdf.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.elements.BaseElement;
 import com.softwaremagico.tm.pdf.skills.occultism.OccultismTable;
-import com.softwaremagico.tm.skills.SkillFactory;
 
 public class SkillsTable extends BaseElement {
 	private final static int ROWS = 30;
@@ -32,15 +33,15 @@ public class SkillsTable extends BaseElement {
 		setTablePropierties(table);
 
 		table.addCell(createTitle("Habilidades Naturales"));
-		for (String skill : SkillFactory.getNaturalSkills()) {
-			table.addCell(createSkillLine(skill));
+		for (Skill skill : SkillFactory.getNaturalSkills()) {
+			table.addCell(createSkillElement(skill));
 			table.addCell(createSkillLine(GAP));
 		}
 
 		table.addCell(createTitle("Habilidades Adquiridas"));
 		for (int i = 0; i < Math.min(SkillFactory.getLearnedSkills().size(), ROWS - (2 * TITLE_ROWSPAN)
 				- SkillFactory.getNaturalSkills().size()); i++) {
-			table.addCell(createSkillLine(SkillFactory.getLearnedSkills().get(i)));
+			table.addCell(createSkillElement(SkillFactory.getLearnedSkills().get(i)));
 			table.addCell(createSkillLine(GAP));
 			learnedSkillsAdded++;
 		}
@@ -63,7 +64,7 @@ public class SkillsTable extends BaseElement {
 		int maxElements = Math.min(SkillFactory.getLearnedSkills().size(), ROWS + learnedSkillsAdded);
 
 		for (int i = learnedSkillsAdded; i < maxElements; i++) {
-			table.addCell(createSkillLine(SkillFactory.getLearnedSkills().get(i)));
+			table.addCell(createSkillElement(SkillFactory.getLearnedSkills().get(i)));
 			table.addCell(createSkillLine(GAP));
 			learnedSkillsAdded++;
 		}
@@ -84,7 +85,7 @@ public class SkillsTable extends BaseElement {
 		int maxElements = Math.min(SkillFactory.getLearnedSkills().size(), ROWS + learnedSkillsAdded);
 
 		for (int i = learnedSkillsAdded; i < maxElements; i++) {
-			table.addCell(createSkillLine(SkillFactory.getLearnedSkills().get(i)));
+			table.addCell(createSkillElement(SkillFactory.getLearnedSkills().get(i)));
 			table.addCell(createSkillLine(GAP));
 			learnedSkillsAdded++;
 			addedElements++;
@@ -99,8 +100,8 @@ public class SkillsTable extends BaseElement {
 		// Add Occultism table
 		PdfPTable occultismTable = new OccultismTable();
 		PdfPCell occulstimCell = new PdfPCell();
-		//setCellProperties(occulstimCell);
-		//occulstimCell.setRowspan(widths.length);
+		// setCellProperties(occulstimCell);
+		// occulstimCell.setRowspan(widths.length);
 		occulstimCell.setRowspan(OCCULTISM_ROWS);
 		occulstimCell.setColspan(2);
 		occulstimCell.addElement(occultismTable);
@@ -116,7 +117,17 @@ public class SkillsTable extends BaseElement {
 	private static PdfPCell createTitle(String text) {
 		PdfPCell cell = getCell(text, 0, 2, Element.ALIGN_CENTER, BaseColor.WHITE,
 				FadingSunsTheme.getTitleFont(), FadingSunsTheme.SKILLS_TITLE_FONT_SIZE);
-		cell.setMinimumHeight(MainSkillsTableFactoryFactory.HEIGHT / (ROWS / TITLE_ROWSPAN) +1);
+		cell.setMinimumHeight(MainSkillsTableFactoryFactory.HEIGHT / (ROWS / TITLE_ROWSPAN) + 1);
+		cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+		return cell;
+	}
+
+	private static PdfPCell createSkillElement(Skill skill) {
+		System.out.println(skill.isFromGuild() + " -> " + skill.getName());
+		PdfPCell cell = getCell(skill.getName(), 0, 1, Element.ALIGN_LEFT, BaseColor.WHITE,
+				skill.isFromGuild() ? FadingSunsTheme.getLineItalicFont() : FadingSunsTheme.getLineFont(),
+				FadingSunsTheme.SKILLS_LINE_FONT_SIZE);
+		cell.setMinimumHeight((MainSkillsTableFactoryFactory.HEIGHT / ROWS));
 		cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		return cell;
 	}
