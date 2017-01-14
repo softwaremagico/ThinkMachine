@@ -4,8 +4,8 @@ import com.softwaremagico.tm.pdf.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.elements.LateralHeaderPdfPTable;
 
 public class CyberneticsTable extends LateralHeaderPdfPTable {
-	private final static float[] WIDTHS = { 0.8f, 3f, 1f, 1f, 2f, 2f, 2f, 2f, 4f };
-	private final static int ROWS = 8;
+	private final static float[] WIDTHS = { 0.8f, 3f, 1f, 1f, 2f, 2f, 2f, 2f, 3f };
+	private final static int ROWS = 9;
 	private final static String GAP = "____";
 
 	public CyberneticsTable() {
