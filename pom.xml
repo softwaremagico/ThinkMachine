@@ -8,11 +8,14 @@
 	<name>The Thinking Machine</name>
 	<url></url>
 	
+	<organization>
+		<name>Softwaremagico</name>
+		<url>https://github.com/jorgehortelano/TheThinkingMachine</url>
+	</organization>
 	
 	<modules>
 		<module>thinking-machine-core</module>
-	</modules>
-	
+	</modules>	
 	
 	<properties>
 		<main.basedir>${project.basedir}</main.basedir>
@@ -25,6 +28,7 @@
 		<itext.version>5.5.10</itext.version>
 		<log4j.version>1.2.17</log4j.version>
 		<org.testng.version>6.8.7</org.testng.version>
+		<license-maven-plugin.version>1.12</license-maven-plugin.version>
 	</properties>
 	
 	
@@ -44,6 +48,28 @@
 				<artifactId>maven-resources-plugin</artifactId>
 				<version>${maven-resources-plugin.version}</version>
 			</plugin>
+			 <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>license-maven-plugin</artifactId>
+                <version>${license-maven-plugin.version}</version>
+                <configuration>
+                    <inceptionYear>2017</inceptionYear>
+                    <licenseName>gnugpl</licenseName>
+        			<licenseResolver>file://${main.basedir}/license</licenseResolver>
+                    <excludes>
+                        <exclude>**/licenses.properties</exclude>
+                    </excludes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>first</id>
+                        <goals>
+                            <goal>update-file-header</goal>
+                        </goals>
+                        <phase>package</phase>
+                    </execution>
+                </executions>
+            </plugin>
 		</plugins>
 	</build>
 	
