@@ -147,7 +147,6 @@ public class SkillsTable extends BaseElement {
 	}
 
 	private static PdfPCell createSkillElement(Skill skill) {
-		System.out.println(skill.isFromGuild() + " -> " + skill.getName());
 		PdfPCell cell = getCell(skill.getName(), 0, 1, Element.ALIGN_LEFT, BaseColor.WHITE,
 				skill.isFromGuild() ? FadingSunsTheme.getLineItalicFont() : FadingSunsTheme.getLineFont(),
 				FadingSunsTheme.SKILLS_LINE_FONT_SIZE);
