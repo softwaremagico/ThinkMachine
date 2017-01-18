@@ -1,0 +1,149 @@
+Bureaucracy
+Investigation
+Observe
+Physick
+Warfare
+Combat
+Artifact Melee
+Archery
+Artillery
+Demolitions
+Energy Guns
+Fight
+Gunnery
+Melee
+Slug Guns
+Throwing
+Control
+Aircraft
+Beastcraft
+Landcraft
+Spacecraft*
+Watercraft
+Ride
+Creative
+Arts
+Craft
+Gaming
+Performance
+Lore
+Phoenix Empire Lore
+Beast Lore
+Faction Lore
+Item Lore
+Jumpweb Lore*
+Planetary Lore
+System Lore*
+Xeno Lore
+Malefaction
+Lockpicking
+Sleight of hand
+Sneak
+Streetwise
+Torture
+Physical
+Athletics
+Self Control
+Survival
+Vigor
+Sciences
+Applied Science*
+Life Science*
+Social Science
+Physical Science*
+Terraforming*
+Social
+Empathy
+Etiquette
+Influence
+Knavery
+Leadership
+Technical
+Spacecraft Operations*
+Tech Redemption*
+Think Machine*
+
+
+Body Characteristics
+Strength
+Dexterity
+Endurance
+
+Mind Characteristics
+Wits
+Perception
+Tech
+
+Spirit Characteristics
+Presence
+Will
+Faith
+
+
+Occult Characteristics
+Psi and Urge
+Theurgy and Hubris
+RITE/POWER
+ROLL
+COMP
+RANGE
+DUR
+WYRD
+
+Defense
+Movement
+Initiative
+
+Wyrd
+Vitality
+
+
+Traits
+Blessings & Curses
+Benefices & Afflictions
+NAME
+VALUE
+TRAIT
+SITUATION
+TYPE
+VALUE
+
+
+Victory
+Chart
+
+Combat
+ACTION
+ROLL
+GOAL DMG
+EFFECT
+
+
+Body Modifications
+WEAPONS
+MELEE WEAPONS
+GOAL
+DMG
+STR
+SIZE
+
+RANGED WEAPONS
+GOAL
+DMG
+STR
+RANGE
+SHOTS
+RATE
+SIZE
+
+
+Player:
+Age: Hair :
+Alliance : Gender :
+Race: Height: Eyes :
+Rank : Native Planet: Weight: Skin :
+Character Concept:
+Behavior:
+Appearance:
+NOTES:
+OCCULT STIGMA
