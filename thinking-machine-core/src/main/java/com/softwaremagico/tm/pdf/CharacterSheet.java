@@ -40,7 +40,7 @@ import com.softwaremagico.tm.pdf.info.PropertiesTable;
 import com.softwaremagico.tm.pdf.others.AnnotationsTable;
 import com.softwaremagico.tm.pdf.others.OthersTable;
 import com.softwaremagico.tm.pdf.perks.MainPerksTableFactory;
-import com.softwaremagico.tm.pdf.skills.MainSkillsTableFactoryFactory;
+import com.softwaremagico.tm.pdf.skills.MainSkillsTableFactory;
 import com.softwaremagico.tm.pdf.skills.occultism.PowerTable;
 
 public class CharacterSheet extends PdfDocument {
@@ -62,7 +62,7 @@ public class CharacterSheet extends PdfDocument {
 		document.add(mainTable);
 		PdfPTable characteristicsTable = CharacteristicsTableFactory.getCharacterBasicsTable();
 		document.add(characteristicsTable);
-		PdfPTable skillsTable = MainSkillsTableFactoryFactory.getSkillsTable();
+		PdfPTable skillsTable = MainSkillsTableFactory.getSkillsTable();
 		document.add(skillsTable);
 		PdfPTable perksTable = MainPerksTableFactory.getPerksTable();
 		document.add(perksTable);

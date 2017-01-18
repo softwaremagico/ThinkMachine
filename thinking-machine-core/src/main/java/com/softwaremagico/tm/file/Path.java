@@ -29,6 +29,7 @@ import java.io.File;
 public class Path {
 	private final static String APPLICATION_FOLDER = "thinking-machine";
 	public static final String TRANSLATIONS_FOLDER = "translations";
+	public static final String SKILLS_FOLDER = "skills";
 
 	private Path() {
 	}
@@ -42,8 +43,7 @@ public class Path {
 			} else {
 				return "";
 			}
-		} else if (soName.contains("Windows") || soName.contains("windows") || soName.contains("vista")
-				|| soName.contains("Vista")) {
+		} else if (soName.contains("Windows") || soName.contains("windows") || soName.contains("vista") || soName.contains("Vista")) {
 			return "";
 		}
 		return "";
@@ -54,7 +54,11 @@ public class Path {
 	}
 
 	public static String getTranslatorPath() {
-		return getRootPath() + "translations" + File.separator;
+		return getRootPath() + TRANSLATIONS_FOLDER + File.separator;
+	}
+
+	public static String getSkillsRootPath() {
+		return getRootPath() + TRANSLATIONS_FOLDER + File.separator + SKILLS_FOLDER + File.separator;
 	}
 
 	public static String getBackgroundPath() {
@@ -64,7 +68,6 @@ public class Path {
 	public static String getBannerPath() {
 		return getImagePath() + "banner" + File.separator + "banner.png";
 	}
-	
 
 	public static String getLogoPath() {
 		return getImagePath() + "fading-suns.png";

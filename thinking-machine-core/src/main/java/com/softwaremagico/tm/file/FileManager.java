@@ -48,9 +48,6 @@ public class FileManager {
 	private FileManager() {
 	}
 
-	/**
-	 * Devuelve las lineas de un fichero leido anteriormente.
-	 */
 	public static List<String> inLines(String filename) throws FileNotFoundException, IOException {
 		String OS = System.getProperty("os.name");
 		if (OS.contains("Windows Vista")) {
@@ -80,11 +77,7 @@ public class FileManager {
 		 */
 	}
 
-	/**
-	 * Devuelve el fichero leido como una lista de lineas.
-	 */
-	private static List<String> readTextFileInLines(String filename, String mode)
-			throws FileNotFoundException {
+	private static List<String> readTextFileInLines(String filename, String mode) throws FileNotFoundException {
 		List<String> contents = new ArrayList<>();
 
 		BufferedReader input = null;
@@ -109,9 +102,6 @@ public class FileManager {
 		return contents;
 	}
 
-	/**
-	 * Devuelve el fichero leido como un unico string.
-	 */
 	public static String readTextFile(String filename) {
 		File file = new File(filename);
 		if (!file.exists()) {
@@ -123,9 +113,6 @@ public class FileManager {
 		return text;
 	}
 
-	/**
-	 * Devuelve el fichero leido como un unico string.
-	 */
 	private static String readTextFile(String filename, String mode) throws FileNotFoundException {
 		String text = "";
 		List<String> doc = readTextFileInLines(filename, mode);

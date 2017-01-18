@@ -24,11 +24,16 @@ package com.softwaremagico.tm.character.skills;
  * #L%
  */
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 import com.softwaremagico.tm.file.FileManager;
+import com.softwaremagico.tm.file.Path;
+import com.softwaremagico.tm.language.Translator;
+import com.softwaremagico.tm.log.MachineLog;
 
 public class SkillFactory {
 	private final static String NATURAL_SKILLS_FILE = "skills-natural.txt";
@@ -36,11 +41,18 @@ public class SkillFactory {
 	private static List<Skill> naturalSkills;
 	private static List<Skill> learnedSkills;
 
+	private final static String skillsPath = "../" + Path.getSkillsRootPath() + Translator.getLanguage();
+
 	public static List<Skill> getNaturalSkills() {
 		if (naturalSkills == null) {
 			naturalSkills = new ArrayList<>();
-			for (String skillName : FileManager.getFileFromResources(NATURAL_SKILLS_FILE)) {
-				naturalSkills.add(new Skill(skillName));
+			try {
+				for (String skillName : FileManager.inLines(skillsPath + File.separator + NATURAL_SKILLS_FILE)) {
+					naturalSkills.add(new Skill(skillName));
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+				MachineLog.errorMessage(SkillFactory.class.getName(), e);
 			}
 			Collections.sort(naturalSkills);
 		}
@@ -49,9 +61,14 @@ public class SkillFactory {
 
 	public static List<Skill> getLearnedSkills() {
 		if (learnedSkills == null) {
-			learnedSkills = new ArrayList<>();
-			for (String skillName : FileManager.getFileFromResources(LEARNED_SKILLS_FILE)) {
-				learnedSkills.add(new Skill(skillName));
+			try {
+				learnedSkills = new ArrayList<>();
+				for (String skillName : FileManager.inLines(skillsPath + File.separator + LEARNED_SKILLS_FILE)) {
+					learnedSkills.add(new Skill(skillName));
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+				MachineLog.errorMessage(SkillFactory.class.getName(), e);
 			}
 			Collections.sort(learnedSkills);
 		}
