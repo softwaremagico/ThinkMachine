@@ -29,6 +29,7 @@ import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
+import com.softwaremagico.tm.language.Translator;
 import com.softwaremagico.tm.pdf.characteristics.CharacteristicsTableFactory;
 import com.softwaremagico.tm.pdf.cybernetics.CyberneticsTable;
 import com.softwaremagico.tm.pdf.elements.BaseElement;
@@ -47,7 +48,12 @@ public class CharacterSheet extends PdfDocument {
 	private final static float[] REAR_TABLE_WIDTHS = { 1f, 1f, 1f };
 
 	public CharacterSheet() {
-		super();
+		this(Translator.DEFAULT_LANGUAGE);
+	}
+
+	public CharacterSheet(String language) {
+		super(language);
+		Translator.setLanguage(language);
 	}
 
 	@Override

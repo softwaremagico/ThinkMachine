@@ -57,7 +57,7 @@ public class Translator implements ITranslator {
 	private boolean showedMessage = false;
 	private static List<Language> languagesList = null;
 	private static HashMap<String, HashMap<String, String>> tagTranslations;
-	private static String language = "es";
+	private static String language = DEFAULT_LANGUAGE;
 
 	public Translator(String filePath) {
 		tagTranslations = new HashMap<>();
@@ -205,16 +205,21 @@ public class Translator implements ITranslator {
 		if (file.exists()) {
 			// Get from folder
 			return file;
-		} else {
-			try {
-				if (Translator.class.getClassLoader().getResource(Path.TRANSLATIONS_FOLDER + File.separator + xmlFile) != null) {
-					file = new File(Translator.class.getClassLoader().getResource(Path.TRANSLATIONS_FOLDER + File.separator + xmlFile).toURI());
-					if (file.exists()) {
-						return file;
-					}
+		}
+		file = new File(".." + File.separator + Path.getTranslatorPath() + xmlFile);
+		if (file.exists()) {
+			// Get from folder
+			return file;
+		}
+
+		try {
+			if (Translator.class.getClassLoader().getResource(Path.TRANSLATIONS_FOLDER + File.separator + xmlFile) != null) {
+				file = new File(Translator.class.getClassLoader().getResource(Path.TRANSLATIONS_FOLDER + File.separator + xmlFile).toURI());
+				if (file.exists()) {
+					return file;
 				}
-			} catch (URISyntaxException e) {
 			}
+		} catch (URISyntaxException e) {
 		}
 		return null;
 	}
@@ -224,6 +229,6 @@ public class Translator implements ITranslator {
 	}
 
 	public static void setLanguage(String language) {
-		Translator.language = language;
+		Translator.language = language.toLowerCase();
 	}
 }

@@ -1,9 +1,10 @@
 package com.softwaremagico.tm.language;
-/*
+
+/*-
  * #%L
- * KendoTournamentGenerator
+ * The Thinking Machine (Core)
  * %%
- * Copyright (C) 2008 - 2012 Softwaremagico
+ * Copyright (C) 2017 Softwaremagico
  * %%
  * This software is designed by Jorge Hortelano Otero. Jorge Hortelano Otero
  * <softwaremagico@gmail.com> Valencia (Spain).
@@ -56,7 +57,7 @@ public class Language implements Comparable<Language> {
 	public int compareTo(Language otherLanguage) {
 		return getName().compareTo(otherLanguage.getName());
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

@@ -24,22 +24,32 @@ package com.softwaremagico.tm.export.pdf;
  * #L%
  */
 
+import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 
 import org.testng.annotations.Test;
 
 import com.itextpdf.text.DocumentException;
+import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.pdf.CharacterSheet;
 
 @Test(groups = { "characterPdfGeneration" })
 public class CharacterSheetCreationTest {
-	private final static String PDF_PATH_COMBINED = System.getProperty("java.io.tmpdir") + "/FadingSuns.pdf";
+	private final static String PDF_PATH_OUTPUT = System.getProperty("java.io.tmpdir") + File.separator;
 
 	@Test
-	public void combinedPdf() throws MalformedURLException, DocumentException, IOException {
-		CharacterSheet sheet = new CharacterSheet();
-		sheet.createFile(PDF_PATH_COMBINED);
+	public void combinedPdfSpanish() throws MalformedURLException, DocumentException, IOException {
+		LanguagePool.clearCache();
+		CharacterSheet sheet = new CharacterSheet("es");
+		sheet.createFile(PDF_PATH_OUTPUT + "FadingSuns_ES.pdf");
+	}
+
+	@Test
+	public void combinedPdfEnglish() throws MalformedURLException, DocumentException, IOException {
+		LanguagePool.clearCache();
+		CharacterSheet sheet = new CharacterSheet("en");
+		sheet.createFile(PDF_PATH_OUTPUT + "FadingSuns_EN.pdf");
 	}
 
 }

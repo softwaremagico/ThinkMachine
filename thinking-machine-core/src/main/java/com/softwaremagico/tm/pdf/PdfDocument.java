@@ -62,16 +62,22 @@ public abstract class PdfDocument {
 	protected Image bgImage;
 	private float opacity = 0.6f;
 
+	private String language;
+
+	protected PdfDocument(String language) {
+		this.language = language;
+	}
+
 	private void startBackgroundImage() {
 
 	}
 
 	protected Document addMetaData(Document document) {
-		document.addTitle("Fading Suns Character File");
+		document.addTitle("Fading Suns Character Sheet");
 		document.addAuthor("Software Magico");
 		document.addCreator("The Thinking Machine");
 		document.addSubject("Role");
-		document.addKeywords("Role, Fading Suns, FS");
+		document.addKeywords("Role, Fading Suns, FS, " + language);
 		document.addCreationDate();
 		return document;
 	}
@@ -93,8 +99,8 @@ public abstract class PdfDocument {
 		// if (!MyFile.fileExist(path)) {
 		try {
 			PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(path));
-			//TableFooter event = new TableFooter();
-			//writer.setPageEvent(event);
+			// TableFooter event = new TableFooter();
+			// writer.setPageEvent(event);
 			generatePDF(document, writer);
 		} catch (NullPointerException e) {
 			MachineLog.errorMessage(this.getClass().getName(), e);
@@ -151,8 +157,7 @@ public abstract class PdfDocument {
 	 *            Cursive, Bold, ...
 	 * @return
 	 */
-	public PdfPCell getCell(String text, int border, int colspan, int align,
-			com.itextpdf.text.BaseColor color, String font, int fontSize, int fontType) {
+	public PdfPCell getCell(String text, int border, int colspan, int align, com.itextpdf.text.BaseColor color, String font, int fontSize, int fontType) {
 		Paragraph p = new Paragraph(text, FontFactory.getFont(font, fontSize, fontType));
 		PdfPCell cell = new PdfPCell(p);
 		cell.setColspan(colspan);
@@ -180,8 +185,7 @@ public abstract class PdfDocument {
 	 * @return
 	 */
 	public PdfPCell getCell(String text) {
-		return getCell(text, 0, 1, Element.ALIGN_LEFT, com.itextpdf.text.BaseColor.WHITE, font, fontSize,
-				fontType);
+		return getCell(text, 0, 1, Element.ALIGN_LEFT, com.itextpdf.text.BaseColor.WHITE, font, fontSize, fontType);
 	}
 
 	/**
@@ -192,8 +196,7 @@ public abstract class PdfDocument {
 	 * @return
 	 */
 	public PdfPCell getCellSize(String text, int fontSize) {
-		return getCell(text, 0, 1, Element.ALIGN_LEFT, com.itextpdf.text.BaseColor.WHITE, font, fontSize,
-				fontType);
+		return getCell(text, 0, 1, Element.ALIGN_LEFT, com.itextpdf.text.BaseColor.WHITE, font, fontSize, fontType);
 	}
 
 	/**
@@ -206,8 +209,7 @@ public abstract class PdfDocument {
 	 * @return
 	 */
 	public PdfPCell getCell(String text, int colspan) {
-		return getCell(text, 0, colspan, Element.ALIGN_LEFT, com.itextpdf.text.BaseColor.WHITE, font,
-				fontSize, fontType);
+		return getCell(text, 0, colspan, Element.ALIGN_LEFT, com.itextpdf.text.BaseColor.WHITE, font, fontSize, fontType);
 	}
 
 	/**
@@ -239,8 +241,7 @@ public abstract class PdfDocument {
 	 * @return
 	 */
 	public PdfPCell getCell(String text, int border, int colspan, int align) {
-		return getCell(text, border, colspan, align, com.itextpdf.text.BaseColor.WHITE, font, fontSize,
-				fontType);
+		return getCell(text, border, colspan, align, com.itextpdf.text.BaseColor.WHITE, font, fontSize, fontType);
 	}
 
 	/**
@@ -276,8 +277,7 @@ public abstract class PdfDocument {
 	 * @return
 	 */
 	public PdfPCell getHeader(String text, int border, int align, int fontSize, int colspan) {
-		return getCell(text, border, colspan, align, new com.itextpdf.text.BaseColor(255, 255, 255), font,
-				fontSize, Font.BOLD);
+		return getCell(text, border, colspan, align, new com.itextpdf.text.BaseColor(255, 255, 255), font, fontSize, Font.BOLD);
 	}
 
 	/**
@@ -337,26 +337,27 @@ public abstract class PdfDocument {
 	/**
 	 * Event class to draw the background image for table headers.
 	 */
-//	class CellBgEvent implements PdfPCellEvent {
-//
-//		@Override
-//		public void cellLayout(PdfPCell cell, Rectangle rect, PdfContentByte[] canvas) {
-//
-//			// try {
-//			// Image cellBgImage = Image.getInstance(Path.getBackgroundPath());
-//			// PdfContentByte cb = canvas[PdfPTable.BACKGROUNDCANVAS];
-//			// if (cellBgImage != null) {
-//			// cellBgImage.scaleAbsolute(rect.getWidth(), rect.getHeight());
-//			// cb.addImage(cellBgImage, rect.getWidth(), 0, 0, rect.getHeight(),
-//			// rect.getLeft(),
-//			// rect.getBottom());
-//			// }
-//			//
-//			// } catch (IOException | DocumentException e) {
-//			// MachineLog.errorMessage(this.getClass().getName(), e);
-//			// }
-//		}
-//	}
+	// class CellBgEvent implements PdfPCellEvent {
+	//
+	// @Override
+	// public void cellLayout(PdfPCell cell, Rectangle rect, PdfContentByte[]
+	// canvas) {
+	//
+	// // try {
+	// // Image cellBgImage = Image.getInstance(Path.getBackgroundPath());
+	// // PdfContentByte cb = canvas[PdfPTable.BACKGROUNDCANVAS];
+	// // if (cellBgImage != null) {
+	// // cellBgImage.scaleAbsolute(rect.getWidth(), rect.getHeight());
+	// // cb.addImage(cellBgImage, rect.getWidth(), 0, 0, rect.getHeight(),
+	// // rect.getLeft(),
+	// // rect.getBottom());
+	// // }
+	// //
+	// // } catch (IOException | DocumentException e) {
+	// // MachineLog.errorMessage(this.getClass().getName(), e);
+	// // }
+	// }
+	// }
 
 	/**
 	 * Event for adding a background image to a table.
@@ -364,16 +365,13 @@ public abstract class PdfDocument {
 	class TableBgEvent implements PdfPTableEvent {
 
 		@Override
-		public void tableLayout(PdfPTable ppt, float[][] widths, float[] heights, int headerRows,
-				int rowStart, PdfContentByte[] pcbs) {
+		public void tableLayout(PdfPTable ppt, float[][] widths, float[] heights, int headerRows, int rowStart, PdfContentByte[] pcbs) {
 			try {
 				if (bgImage != null) {
 					int row = 0;
 					int columns = widths[row].length - 1;
-					Rectangle rect = new Rectangle(widths[row][0], heights[0], widths[row][columns],
-							heights[row + 1]);
-					pcbs[PdfPTable.BASECANVAS].addImage(bgImage, rect.getWidth(), 0, 0, -rect.getHeight(),
-							rect.getLeft(), rect.getTop());
+					Rectangle rect = new Rectangle(widths[row][0], heights[0], widths[row][columns], heights[row + 1]);
+					pcbs[PdfPTable.BASECANVAS].addImage(bgImage, rect.getWidth(), 0, 0, -rect.getHeight(), rect.getLeft(), rect.getTop());
 				}
 			} catch (Exception e) {
 				MachineLog.errorMessage(this.getClass().getName(), e);
@@ -436,8 +434,7 @@ public abstract class PdfDocument {
 				PdfPCell cell = new PdfPCell(Image.getInstance(total));
 				cell.setBorder(Rectangle.TOP);
 				table.addCell(cell);
-				table.writeSelectedRows(0, -1, 34, table.getTotalHeight() + bottomMargin,
-						writer.getDirectContent());
+				table.writeSelectedRows(0, -1, 34, table.getTotalHeight() + bottomMargin, writer.getDirectContent());
 			} catch (DocumentException de) {
 				throw new ExceptionConverter(de);
 			}
@@ -451,8 +448,7 @@ public abstract class PdfDocument {
 		 */
 		@Override
 		public void onCloseDocument(PdfWriter writer, Document document) {
-			ColumnText.showTextAligned(total, Element.ALIGN_LEFT,
-					new Phrase(String.valueOf(writer.getPageNumber() - 1)), 2, 2, 0);
+			ColumnText.showTextAligned(total, Element.ALIGN_LEFT, new Phrase(String.valueOf(writer.getPageNumber() - 1)), 2, 2, 0);
 		}
 	}
 }

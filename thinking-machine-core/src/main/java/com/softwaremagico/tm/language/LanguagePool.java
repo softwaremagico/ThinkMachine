@@ -52,4 +52,8 @@ public class LanguagePool {
 		}
 		return translator;
 	}
+
+	public static void clearCache() {
+		existingTranslators = new HashMap<>();
+	}
 }
