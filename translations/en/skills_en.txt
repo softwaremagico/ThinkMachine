@@ -8,9 +8,6 @@ RANGE
 DUR
 WYRD
 
-Wyrd
-Vitality
-
 
 Traits
 Blessings & Curses

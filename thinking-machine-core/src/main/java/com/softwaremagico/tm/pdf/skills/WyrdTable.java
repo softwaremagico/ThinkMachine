@@ -25,14 +25,18 @@ package com.softwaremagico.tm.pdf.skills;
  */
 
 import com.itextpdf.text.pdf.PdfPCell;
+import com.softwaremagico.tm.language.ITranslator;
+import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.pdf.FadingSunsTheme;
 
 public class WyrdTable extends CounterTable {
+	private static ITranslator translator = null;
 
 	public WyrdTable() {
 		super(WIDTHS);
+		translator = LanguagePool.getTranslator("character_sheet.xml");
 		addCell(createCircle());
-		addCell(createLateralVerticalTitle("Wyrd", TITLE_SPAN));
+		addCell(createLateralVerticalTitle(translator.getTranslatedText("wyrd"), TITLE_SPAN));
 		for (int i = 0; i < TITLE_SPAN; i++) {
 			addCell(createCircle());
 		}

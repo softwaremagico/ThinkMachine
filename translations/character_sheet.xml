@@ -68,4 +68,12 @@
 		<en>Defense</en>
 		<es>Defensa</es>
 	</defenseValue>
+	<vitality>
+		<en>Vitality</en>
+		<es>Vitalidad</es>
+	</vitality>
+	<wyrd>
+		<en>Wyrd</en>
+		<es>Wyrd</es>
+	</wyrd>
 </translator>
