@@ -30,10 +30,13 @@ import com.itextpdf.text.Font;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
+import com.softwaremagico.tm.language.ITranslator;
+import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.pdf.FadingSunsTheme;
 
 public abstract class CustomPdfTable extends PdfPTable {
 	private float[] columnWidths;
+	private static ITranslator translator = LanguagePool.getTranslator("character_sheet.xml");
 
 	public CustomPdfTable(float[] widths) {
 		super(widths);
@@ -52,8 +55,8 @@ public abstract class CustomPdfTable extends PdfPTable {
 	}
 
 	protected static PdfPCell createElementLine(String text) {
-		PdfPCell cell = BaseElement.getCell(text, 0, 1, Element.ALIGN_CENTER, BaseColor.WHITE,
-				FadingSunsTheme.getLineFont(), FadingSunsTheme.TABLE_LINE_FONT_SIZE);
+		PdfPCell cell = BaseElement.getCell(text, 0, 1, Element.ALIGN_CENTER, BaseColor.WHITE, FadingSunsTheme.getLineFont(),
+				FadingSunsTheme.TABLE_LINE_FONT_SIZE);
 		cell.setMinimumHeight(10);
 		cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		return cell;
@@ -73,6 +76,10 @@ public abstract class CustomPdfTable extends PdfPTable {
 		box.setBorder(0);
 		box.setCellEvent(new CellPaddingEvent());
 		return box;
+	}
+
+	public static ITranslator getTranslator() {
+		return translator;
 	}
 
 }

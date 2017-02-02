@@ -37,13 +37,15 @@ import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
+import com.softwaremagico.tm.language.ITranslator;
+import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.pdf.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.info.CharacterBasicsTableFactory;
 
 public class BaseElement {
+	private static ITranslator translator = LanguagePool.getTranslator("character_sheet.xml");
 
-	public static PdfPCell getCell(String text, int border, int colspan, int align, BaseColor color,
-			BaseFont font, float fontSize) {
+	public static PdfPCell getCell(String text, int border, int colspan, int align, BaseColor color, BaseFont font, float fontSize) {
 		// Paragraph p = new Paragraph(text, new Font(font, fontSize));
 		Phrase content = new Phrase(text, new Font(font, fontSize));
 		PdfPCell cell = new PdfPCell(content);
@@ -55,8 +57,7 @@ public class BaseElement {
 		return cell;
 	}
 
-	protected PdfPCell getCell(String text, int border, int colspan, int align,
-			com.itextpdf.text.BaseColor color, String font, int fontSize, int fontType) {
+	protected PdfPCell getCell(String text, int border, int colspan, int align, com.itextpdf.text.BaseColor color, String font, int fontSize, int fontType) {
 		Paragraph p = new Paragraph(text, FontFactory.getFont(font, fontSize, fontType));
 		PdfPCell cell = new PdfPCell(p);
 		cell.setColspan(colspan);
@@ -75,8 +76,7 @@ public class BaseElement {
 	}
 
 	public static PdfPCell createLogoCell() throws DocumentException, IOException {
-		Image image = Image.getInstance(CharacterBasicsTableFactory.class.getResource("/"
-				+ FadingSunsTheme.LOGO_IMAGE));
+		Image image = Image.getInstance(CharacterBasicsTableFactory.class.getResource("/" + FadingSunsTheme.LOGO_IMAGE));
 		PdfPCell cell = new PdfPCell(image, true);
 		setCellProperties(cell);
 		cell.setPaddingTop(20);
@@ -146,5 +146,9 @@ public class BaseElement {
 		table.setPaddingTop(0);
 		table.setSpacingAfter(0);
 		table.setSpacingBefore(0);
+	}
+
+	public static ITranslator getTranslator() {
+		return translator;
 	}
 }

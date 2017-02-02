@@ -24,26 +24,22 @@ package com.softwaremagico.tm.pdf.info;
  * #L%
  */
 
-import com.softwaremagico.tm.language.ITranslator;
-import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.pdf.elements.VerticalTable;
 
 public class DescriptionTable extends VerticalTable {
 	private final static float[] WIDTHS = { 1f };
-	private static ITranslator translator = null;
 
 	public DescriptionTable() {
 		super(WIDTHS);
-		translator = LanguagePool.getTranslator("character_sheet.xml");
 
-		addCell(createTitle(translator.getTranslatedText("description")));
-		addCell(createElementLine(translator.getTranslatedText("descriptionBirthdate")));
-		addCell(createElementLine(translator.getTranslatedText("descriptionHair")));
-		addCell(createElementLine(translator.getTranslatedText("descriptionEyes")));
-		addCell(createElementLine(translator.getTranslatedText("descriptionComplexion")));
-		addCell(createElementLine(translator.getTranslatedText("descriptionHeight")));
-		addCell(createElementLine(translator.getTranslatedText("descriptionWeight")));
-		addCell(createElementLine(translator.getTranslatedText("descriptionAppearance")));
+		addCell(createTitle(getTranslator().getTranslatedText("description")));
+		addCell(createElementLine(getTranslator().getTranslatedText("descriptionBirthdate")));
+		addCell(createElementLine(getTranslator().getTranslatedText("descriptionHair")));
+		addCell(createElementLine(getTranslator().getTranslatedText("descriptionEyes")));
+		addCell(createElementLine(getTranslator().getTranslatedText("descriptionComplexion")));
+		addCell(createElementLine(getTranslator().getTranslatedText("descriptionHeight")));
+		addCell(createElementLine(getTranslator().getTranslatedText("descriptionWeight")));
+		addCell(createElementLine(getTranslator().getTranslatedText("descriptionAppearance")));
 		addCell(createElementLine("______________________________________________"));
 		addCell(createElementLine("______________________________________________"));
 		addCell(createElementLine("______________________________________________"));

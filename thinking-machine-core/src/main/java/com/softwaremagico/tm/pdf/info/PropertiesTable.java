@@ -33,7 +33,7 @@ public class PropertiesTable extends VerticalTable {
 	public PropertiesTable() {
 		super(WIDTHS);
 
-		addCell(createTitle("Propiedades"));
+		addCell(createTitle(getTranslator().getTranslatedText("properties")));
 		for (int i = 0; i < ROWS; i++) {
 			addCell(createElementLine("______________________________________________"));
 		}

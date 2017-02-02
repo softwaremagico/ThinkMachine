@@ -64,6 +64,10 @@
 		<en>Appearance __________________________________</en>
 		<es>Imagen ______________________________________</es>
 	</descriptionAppearance>
+	<properties>
+		<en>Properties</en>
+		<es>Propiedades</es>
+	</properties>
 	<characteristics>
 		<en>Characteristics</en>
 		<es>Características</es>

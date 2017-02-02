@@ -26,8 +26,6 @@ package com.softwaremagico.tm.pdf.skills;
 
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
-import com.softwaremagico.tm.language.ITranslator;
-import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.pdf.FadingSunsTheme;
 
 public class VitalityTable extends CounterTable {
@@ -35,12 +33,10 @@ public class VitalityTable extends CounterTable {
 	private final static int CIRCLES = 23;
 	private final static int TITLE_SPAN = 5;
 	private final static int MODIFICATORS_SPAN = 5;
-	private static ITranslator translator = null;
 
 	public VitalityTable() {
 		super(WIDTHS);
-		translator = LanguagePool.getTranslator("character_sheet.xml");
-		addCell(createLateralVerticalTitle(translator.getTranslatedText("vitality"), TITLE_SPAN));
+		addCell(createLateralVerticalTitle(getTranslator().getTranslatedText("vitality"), TITLE_SPAN));
 		for (int i = 0; i < TITLE_SPAN; i++) {
 			addCell(createCircle());
 		}
