@@ -32,13 +32,17 @@ import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
+import com.softwaremagico.tm.language.ITranslator;
+import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.log.MachineLog;
 import com.softwaremagico.tm.pdf.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.elements.BaseElement;
 
 public class CharacterBasicsTableFactory extends BaseElement {
+	private static ITranslator translator = null;
 
 	public static PdfPTable getCharacterBasicsTable() {
+		translator = LanguagePool.getTranslator("character_sheet.xml");
 		float[] widths = { 1f, 1f, 1f };
 		PdfPTable table = new PdfPTable(widths);
 		setTablePropierties(table);
@@ -53,10 +57,10 @@ public class CharacterBasicsTableFactory extends BaseElement {
 		PdfPTable table = new PdfPTable(widths);
 		setTablePropierties(table);
 
-		table.addCell(createField("Nombre:"));
-		table.addCell(createField("Jugador:"));
-		table.addCell(createField("Género:"));
-		table.addCell(createField("Edad:"));
+		table.addCell(createField(translator.getTranslatedText("infoName")));
+		table.addCell(createField(translator.getTranslatedText("infoPlayer")));
+		table.addCell(createField(translator.getTranslatedText("infoGender")));
+		table.addCell(createField(translator.getTranslatedText("infoAge")));
 
 		PdfPCell cell = new PdfPCell();
 		setCellProperties(cell);
@@ -71,10 +75,10 @@ public class CharacterBasicsTableFactory extends BaseElement {
 		PdfPTable table = new PdfPTable(widths);
 		setTablePropierties(table);
 
-		table.addCell(createField("Raza:"));
-		table.addCell(createField("Planeta:"));
-		table.addCell(createField("Alianza:"));
-		table.addCell(createField("Rango:"));
+		table.addCell(createField(translator.getTranslatedText("infoRace")));
+		table.addCell(createField(translator.getTranslatedText("infoPlanet")));
+		table.addCell(createField(translator.getTranslatedText("infoAlliance")));
+		table.addCell(createField(translator.getTranslatedText("infoRank")));
 
 		PdfPCell cell = new PdfPCell();
 		setCellProperties(cell);

@@ -1,5 +1,37 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <translator>
+	<infoName>
+		<en>Name:</en>
+		<es>Nombre:</es>
+	</infoName>
+	<infoPlayer>
+		<en>Player:</en>
+		<es>Jugador:</es>
+	</infoPlayer>
+	<infoGender>
+		<en>Gender:</en>
+		<es>Género:</es>
+	</infoGender>
+	<infoAge>
+		<en>Age:</en>
+		<es>Edad:</es>
+	</infoAge>
+	<infoRace>
+		<en>Race:</en>
+		<es>Raza:</es>
+	</infoRace>
+	<infoPlanet>
+		<en>Planet:</en>
+		<es>Planeta:</es>
+	</infoPlanet>
+	<infoAlliance>
+		<en>Alliance:</en>
+		<es>Alianza:</es>
+	</infoAlliance>
+	<infoRank>
+		<en>Rank:</en>
+		<es>Rango:</es>
+	</infoRank>
 	<characteristics>
 		<en>Characteristics</en>
 		<es>Características</es>

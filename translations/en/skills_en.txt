@@ -48,11 +48,10 @@ RATE
 SIZE
 
 
-Player:
-Age: Hair :
-Alliance : Gender :
-Race: Height: Eyes :
-Rank : Native Planet: Weight: Skin :
+
+Hair :
+Height: Eyes :
+Weight: Skin :
 Character Concept:
 Behavior:
 Appearance:
