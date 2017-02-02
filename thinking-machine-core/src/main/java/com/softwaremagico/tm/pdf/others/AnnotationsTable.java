@@ -37,10 +37,10 @@ public class AnnotationsTable extends LateralHeaderPdfPTable {
 
 	public AnnotationsTable() {
 		super(WIDTHS);
-		addCell(createLateralVerticalTitle("Anotaciones", 2));
+		addCell(createLateralVerticalTitle(getTranslator().getTranslatedText("annotationsTable"), 2));
 
-		addCell(createSubtitleLine("Del personaje"));
-		addCell(createSubtitleLine("La historia"));
+		addCell(createSubtitleLine(getTranslator().getTranslatedText("characterAnnotations")));
+		addCell(createSubtitleLine(getTranslator().getTranslatedText("historyAnnotations")));
 	}
 
 	@Override

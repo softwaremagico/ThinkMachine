@@ -204,4 +204,52 @@
 		<en>Wyrd</en>
 		<es>Coste</es>
 	</occultismTableCost>
+	<othersTable>
+		<en>Others</en>
+		<es>Otros</es>
+	</othersTable>
+	<annotationsTable>
+		<en>Annotations</en>
+		<es>Anotaciones</es>
+	</annotationsTable>
+	<characterAnnotations>
+		<en>From Character</en>
+		<es>Del personaje</es>
+	</characterAnnotations>
+	<historyAnnotations>
+		<en>The history</en>
+		<es>La historia</es>
+	</historyAnnotations>
+	<blessingTable>
+		<en>Blessings / Curses</en>
+		<es>Bendiciones / Maldiciones</es>
+	</blessingTable>
+	<blessingTableName>
+		<en>Name</en>
+		<es>Nombre</es>
+	</blessingTableName>
+	<blessingTableTrait>
+		<en>Trait</en>
+		<es>Rasgo</es>
+	</blessingTableTrait>
+	<blessingTableSituation>
+		<en>Situation</en>
+		<es>Situación</es>
+	</blessingTableSituation>
+	<beneficesTable>
+		<en>Benefices / Afflictions</en>
+		<es>Beneficios / Afliciones</es>
+	</beneficesTable>
+	<beneficesTablePoints>
+		<en>Pts.</en>
+		<es>Pts.</es>
+	</beneficesTablePoints>
+	<benefices>
+		<en>Benefices</en>
+		<es>Beneficios</es>
+	</benefices>
+	<afflictions>
+		<en>Afflictions</en>
+		<es>Afliciones</es>
+	</afflictions>
 </translator>

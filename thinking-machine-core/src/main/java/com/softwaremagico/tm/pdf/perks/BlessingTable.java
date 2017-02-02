@@ -33,12 +33,12 @@ public class BlessingTable extends VerticalTable {
 
 	public BlessingTable() {
 		super(WIDTHS);
-		addCell(createTitle("Bendiciones/Maldiciones"));
+		addCell(createTitle(getTranslator().getTranslatedText("blessingTable")));
 
-		addCell(createSubtitleLine("Nombre"));
+		addCell(createSubtitleLine(getTranslator().getTranslatedText("blessingTableName")));
 		addCell(createSubtitleLine("+/-"));
-		addCell(createSubtitleLine("Rasgo"));
-		addCell(createSubtitleLine("Situación"));
+		addCell(createSubtitleLine(getTranslator().getTranslatedText("blessingTableTrait")));
+		addCell(createSubtitleLine(getTranslator().getTranslatedText("blessingTableSituation")));
 
 		for (int i = 0; i < MainPerksTableFactory.EMPTY_ROWS; i++) {
 			addCell(createElementLine(GAP + GAP + GAP + GAP + GAP));

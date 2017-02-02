@@ -33,7 +33,7 @@ public class OthersTable extends VerticalTable {
 	public OthersTable() {
 		super(WIDTHS);
 		getDefaultCell().setPaddingRight(20);
-		addCell(createTitle("Otros"));
+		addCell(createTitle(getTranslator().getTranslatedText("othersTable")));
 
 		for (int i = 0; i < EMPTY_ROWS; i++) {
 			addCell(createElementLine("_______________________________________________"));
