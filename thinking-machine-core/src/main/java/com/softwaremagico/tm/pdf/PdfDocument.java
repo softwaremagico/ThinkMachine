@@ -451,4 +451,8 @@ public abstract class PdfDocument {
 			ColumnText.showTextAligned(total, Element.ALIGN_LEFT, new Phrase(String.valueOf(writer.getPageNumber() - 1)), 2, 2, 0);
 		}
 	}
+
+	public String getLanguage() {
+		return language;
+	}
 }

@@ -28,51 +28,53 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.softwaremagico.tm.file.FileManager;
 import com.softwaremagico.tm.file.Path;
-import com.softwaremagico.tm.language.Translator;
 import com.softwaremagico.tm.log.MachineLog;
 
 public class SkillFactory {
 	private final static String NATURAL_SKILLS_FILE = "skills-natural.txt";
 	private final static String LEARNED_SKILLS_FILE = "skills-learned.txt";
-	private static List<Skill> naturalSkills;
-	private static List<Skill> learnedSkills;
+	// Language and skills.
+	private static Map<String, List<Skill>> naturalSkills = new HashMap<>();
+	private static Map<String, List<Skill>> learnedSkills = new HashMap<>();
 
-	private final static String skillsPath = "../" + Path.getSkillsRootPath() + Translator.getLanguage();
+	private final static String skillsPath = "../" + Path.getSkillsRootPath();
 
-	public static List<Skill> getNaturalSkills() {
-		if (naturalSkills == null) {
-			naturalSkills = new ArrayList<>();
+	public static List<Skill> getNaturalSkills(String language) {
+		if (naturalSkills.get(language) == null) {
+			naturalSkills.put(language, new ArrayList<Skill>());
 			try {
-				for (String skillName : FileManager.inLines(skillsPath + File.separator + NATURAL_SKILLS_FILE)) {
-					naturalSkills.add(new Skill(skillName));
+				for (String skillName : FileManager.inLines(skillsPath + language + File.separator + NATURAL_SKILLS_FILE)) {
+					naturalSkills.get(language).add(new Skill(skillName));
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
 				MachineLog.errorMessage(SkillFactory.class.getName(), e);
 			}
-			Collections.sort(naturalSkills);
+			Collections.sort(naturalSkills.get(language));
 		}
-		return naturalSkills;
+		return naturalSkills.get(language);
 	}
 
-	public static List<Skill> getLearnedSkills() {
-		if (learnedSkills == null) {
+	public static List<Skill> getLearnedSkills(String language) {
+		if (learnedSkills.get(language) == null) {
 			try {
-				learnedSkills = new ArrayList<>();
-				for (String skillName : FileManager.inLines(skillsPath + File.separator + LEARNED_SKILLS_FILE)) {
-					learnedSkills.add(new Skill(skillName));
+				learnedSkills.put(language, new ArrayList<Skill>());
+				for (String skillName : FileManager.inLines(skillsPath + language + File.separator + LEARNED_SKILLS_FILE)) {
+					learnedSkills.get(language).add(new Skill(skillName));
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
 				MachineLog.errorMessage(SkillFactory.class.getName(), e);
 			}
-			Collections.sort(learnedSkills);
+			Collections.sort(learnedSkills.get(language));
 		}
-		return learnedSkills;
+		return learnedSkills.get(language);
 	}
 
 }

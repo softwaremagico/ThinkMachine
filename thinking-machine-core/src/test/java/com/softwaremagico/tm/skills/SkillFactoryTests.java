@@ -35,7 +35,7 @@ public class SkillFactoryTests {
 
 	@Test
 	public void readSkills() {
-		Assert.assertEquals(9, SkillFactory.getNaturalSkills().size());
-		Assert.assertEquals(51, SkillFactory.getLearnedSkills().size());
+		Assert.assertEquals(9, SkillFactory.getNaturalSkills("es").size());
+		Assert.assertEquals(51, SkillFactory.getLearnedSkills("es").size());
 	}
 }

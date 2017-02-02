@@ -41,30 +41,32 @@ public class SkillsTable extends BaseElement {
 	private final static String GAP = "____";
 	private final static int OCCULTISM_ROWS = 5;
 
-	public static PdfPTable getSkillsTable() {
+	public static PdfPTable getSkillsTable(String language) {
 		float[] widths = { 1f, 1f, 1f };
 		PdfPTable table = new PdfPTable(widths);
 		setTablePropierties(table);
-		table.addCell(getFirstColumnTable());
-		table.addCell(getSecondColumnTable());
-		table.addCell(getThirdColumnTable());
+		learnedSkillsAdded = 0;
+		table.addCell(getFirstColumnTable(language));
+		table.addCell(getSecondColumnTable(language));
+		table.addCell(getThirdColumnTable(language));
 		return table;
 	}
 
-	private static PdfPCell getFirstColumnTable() {
+	private static PdfPCell getFirstColumnTable(String language) {
 		float[] widths = { 4f, 1f };
 		PdfPTable table = new PdfPTable(widths);
 		setTablePropierties(table);
 
 		table.addCell(createTitle(getTranslator().getTranslatedText("naturalSkills")));
-		for (Skill skill : SkillFactory.getNaturalSkills()) {
+		for (Skill skill : SkillFactory.getNaturalSkills(language)) {
 			table.addCell(createSkillElement(skill));
 			table.addCell(createSkillLine(GAP));
 		}
 
 		table.addCell(createTitle(getTranslator().getTranslatedText("learnedSkills")));
-		for (int i = 0; i < Math.min(SkillFactory.getLearnedSkills().size(), ROWS - (2 * TITLE_ROWSPAN) - SkillFactory.getNaturalSkills().size()); i++) {
-			table.addCell(createSkillElement(SkillFactory.getLearnedSkills().get(i)));
+		for (int i = 0; i < Math.min(SkillFactory.getLearnedSkills(language).size(), ROWS - (2 * TITLE_ROWSPAN)
+				- SkillFactory.getNaturalSkills(language).size()); i++) {
+			table.addCell(createSkillElement(SkillFactory.getLearnedSkills(language).get(i)));
 			table.addCell(createSkillLine(GAP));
 			learnedSkillsAdded++;
 		}
@@ -77,17 +79,17 @@ public class SkillsTable extends BaseElement {
 		return cell;
 	}
 
-	private static PdfPCell getSecondColumnTable() {
+	private static PdfPCell getSecondColumnTable(String language) {
 		float[] widths = { 4f, 1f };
 		PdfPTable table = new PdfPTable(widths);
 		setTablePropierties(table);
 		PdfPCell cell = new PdfPCell();
 		setCellProperties(cell);
 
-		int maxElements = Math.min(SkillFactory.getLearnedSkills().size(), ROWS + learnedSkillsAdded);
+		int maxElements = Math.min(SkillFactory.getLearnedSkills(language).size(), ROWS + learnedSkillsAdded);
 
 		for (int i = learnedSkillsAdded; i < maxElements; i++) {
-			table.addCell(createSkillElement(SkillFactory.getLearnedSkills().get(i)));
+			table.addCell(createSkillElement(SkillFactory.getLearnedSkills(language).get(i)));
 			table.addCell(createSkillLine(GAP));
 			learnedSkillsAdded++;
 		}
@@ -97,7 +99,7 @@ public class SkillsTable extends BaseElement {
 		return cell;
 	}
 
-	private static PdfPCell getThirdColumnTable() {
+	private static PdfPCell getThirdColumnTable(String language) {
 		float[] widths = { 4f, 1f };
 		PdfPTable table = new PdfPTable(widths);
 		setTablePropierties(table);
@@ -105,10 +107,10 @@ public class SkillsTable extends BaseElement {
 		setCellProperties(cell);
 
 		int addedElements = 0;
-		int maxElements = Math.min(SkillFactory.getLearnedSkills().size(), ROWS + learnedSkillsAdded);
+		int maxElements = Math.min(SkillFactory.getLearnedSkills(language).size(), ROWS + learnedSkillsAdded);
 
 		for (int i = learnedSkillsAdded; i < maxElements; i++) {
-			table.addCell(createSkillElement(SkillFactory.getLearnedSkills().get(i)));
+			table.addCell(createSkillElement(SkillFactory.getLearnedSkills(language).get(i)));
 			table.addCell(createSkillLine(GAP));
 			learnedSkillsAdded++;
 			addedElements++;
