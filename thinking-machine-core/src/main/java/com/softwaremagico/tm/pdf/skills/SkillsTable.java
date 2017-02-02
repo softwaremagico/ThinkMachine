@@ -56,15 +56,14 @@ public class SkillsTable extends BaseElement {
 		PdfPTable table = new PdfPTable(widths);
 		setTablePropierties(table);
 
-		table.addCell(createTitle("Habilidades Naturales"));
+		table.addCell(createTitle(getTranslator().getTranslatedText("naturalSkills")));
 		for (Skill skill : SkillFactory.getNaturalSkills()) {
 			table.addCell(createSkillElement(skill));
 			table.addCell(createSkillLine(GAP));
 		}
 
-		table.addCell(createTitle("Habilidades Adquiridas"));
-		for (int i = 0; i < Math.min(SkillFactory.getLearnedSkills().size(), ROWS - (2 * TITLE_ROWSPAN)
-				- SkillFactory.getNaturalSkills().size()); i++) {
+		table.addCell(createTitle(getTranslator().getTranslatedText("learnedSkills")));
+		for (int i = 0; i < Math.min(SkillFactory.getLearnedSkills().size(), ROWS - (2 * TITLE_ROWSPAN) - SkillFactory.getNaturalSkills().size()); i++) {
 			table.addCell(createSkillElement(SkillFactory.getLearnedSkills().get(i)));
 			table.addCell(createSkillLine(GAP));
 			learnedSkillsAdded++;
@@ -139,25 +138,22 @@ public class SkillsTable extends BaseElement {
 	}
 
 	private static PdfPCell createTitle(String text) {
-		PdfPCell cell = getCell(text, 0, 2, Element.ALIGN_CENTER, BaseColor.WHITE,
-				FadingSunsTheme.getTitleFont(), FadingSunsTheme.SKILLS_TITLE_FONT_SIZE);
+		PdfPCell cell = getCell(text, 0, 2, Element.ALIGN_CENTER, BaseColor.WHITE, FadingSunsTheme.getTitleFont(), FadingSunsTheme.SKILLS_TITLE_FONT_SIZE);
 		cell.setMinimumHeight(MainSkillsTableFactory.HEIGHT / (ROWS / TITLE_ROWSPAN) + 1);
 		cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		return cell;
 	}
 
 	private static PdfPCell createSkillElement(Skill skill) {
-		PdfPCell cell = getCell(skill.getName(), 0, 1, Element.ALIGN_LEFT, BaseColor.WHITE,
-				skill.isFromGuild() ? FadingSunsTheme.getLineItalicFont() : FadingSunsTheme.getLineFont(),
-				FadingSunsTheme.SKILLS_LINE_FONT_SIZE);
+		PdfPCell cell = getCell(skill.getName(), 0, 1, Element.ALIGN_LEFT, BaseColor.WHITE, skill.isFromGuild() ? FadingSunsTheme.getLineItalicFont()
+				: FadingSunsTheme.getLineFont(), FadingSunsTheme.SKILLS_LINE_FONT_SIZE);
 		cell.setMinimumHeight((MainSkillsTableFactory.HEIGHT / ROWS));
 		cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		return cell;
 	}
 
 	private static PdfPCell createSkillLine(String text) {
-		PdfPCell cell = getCell(text, 0, 1, Element.ALIGN_LEFT, BaseColor.WHITE,
-				FadingSunsTheme.getLineFont(), FadingSunsTheme.SKILLS_LINE_FONT_SIZE);
+		PdfPCell cell = getCell(text, 0, 1, Element.ALIGN_LEFT, BaseColor.WHITE, FadingSunsTheme.getLineFont(), FadingSunsTheme.SKILLS_LINE_FONT_SIZE);
 		cell.setMinimumHeight((MainSkillsTableFactory.HEIGHT / ROWS));
 		cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		return cell;

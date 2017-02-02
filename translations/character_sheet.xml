@@ -144,4 +144,12 @@
 		<en>Wyrd</en>
 		<es>Wyrd</es>
 	</wyrd>
+	<naturalSkills>
+		<en>Natural Skills</en>
+		<es>Habilidades Naturales</es>
+	</naturalSkills>
+	<learnedSkills>
+		<en>Learned Skills</en>
+		<es>Habilidades Adquiridas</es>
+	</learnedSkills>
 </translator>
