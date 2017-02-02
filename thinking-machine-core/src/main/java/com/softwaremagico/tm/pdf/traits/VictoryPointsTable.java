@@ -36,10 +36,10 @@ public class VictoryPointsTable extends LateralHeaderPdfPTable {
 
 	public VictoryPointsTable() {
 		super(WIDTHS);
-		addCell(createLateralVerticalTitle("Tabla de Victoria", 12));
+		addCell(createLateralVerticalTitle(getTranslator().getTranslatedText("victoryChart"), 12));
 
-		addCell(createSubTitle("Dado", BaseColor.WHITE));
-		addCell(createSubTitle("PV", BaseColor.WHITE));
+		addCell(createSubTitle(getTranslator().getTranslatedText("dice"), BaseColor.WHITE));
+		addCell(createSubTitle(getTranslator().getTranslatedText("victoryPoints"), BaseColor.WHITE));
 
 		addCell(createLine("1", BaseColor.LIGHT_GRAY));
 		addCell(createLine("0", BaseColor.LIGHT_GRAY));

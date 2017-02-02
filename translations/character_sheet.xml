@@ -252,4 +252,16 @@
 		<en>Afflictions</en>
 		<es>Afliciones</es>
 	</afflictions>
+	<victoryChart>
+		<en>Victory Chart</en>
+		<es>Tabla de Victoria</es>
+	</victoryChart>
+	<dice>
+		<en>Dice</en>
+		<es>Dado</es>
+	</dice>
+	<victoryPoints>
+		<en>VP</en>
+		<es>PV</es>
+	</victoryPoints>
 </translator>

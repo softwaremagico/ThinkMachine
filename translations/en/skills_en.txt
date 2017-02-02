@@ -1,17 +1,3 @@
-Traits
-Blessings & Curses
-Benefices & Afflictions
-NAME
-VALUE
-TRAIT
-SITUATION
-TYPE
-VALUE
-
-
-Victory
-Chart
-
 Combat
 ACTION
 ROLL
