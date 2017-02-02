@@ -39,7 +39,7 @@ public class OccultismTable extends LateralHeaderPdfPTable {
 
 	public OccultismTable() {
 		super(widths);
-		addCell(createLateralVerticalTitle("Ocultismo", 1));
+		addCell(createLateralVerticalTitle(getTranslator().getTranslatedText("occultism"), 1));
 		addCell(createContent());
 		setWidthPercentage(100);
 		getDefaultCell().setPadding(0);
@@ -62,7 +62,7 @@ public class OccultismTable extends LateralHeaderPdfPTable {
 		table.getDefaultCell().setPadding(0);
 		table.getDefaultCell().setVerticalAlignment(Element.ALIGN_MIDDLE);
 
-		PdfPCell psiTitleCell = new PdfPCell(new Phrase("Psi", new Font(FadingSunsTheme.getLineFont(), FadingSunsTheme.CHARACTERISTICS_LINE_FONT_SIZE)));
+		PdfPCell psiTitleCell = new PdfPCell(new Phrase(getTranslator().getTranslatedText("psi"), new Font(FadingSunsTheme.getLineFont(), FadingSunsTheme.CHARACTERISTICS_LINE_FONT_SIZE)));
 		psiTitleCell.setBorder(0);
 		// psiTitleCell.setMinimumHeight(30);
 		psiTitleCell.setHorizontalAlignment(Element.ALIGN_RIGHT);
@@ -71,12 +71,12 @@ public class OccultismTable extends LateralHeaderPdfPTable {
 		table.addCell(createRectangle());
 		table.addCell(createRectangle());
 
-		PdfPCell urgeTitleCell = new PdfPCell(new Phrase("Ansia", new Font(FadingSunsTheme.getLineFont(), FadingSunsTheme.CHARACTERISTICS_LINE_FONT_SIZE)));
+		PdfPCell urgeTitleCell = new PdfPCell(new Phrase(getTranslator().getTranslatedText("urge"), new Font(FadingSunsTheme.getLineFont(), FadingSunsTheme.CHARACTERISTICS_LINE_FONT_SIZE)));
 		urgeTitleCell.setBorder(0);
 		urgeTitleCell.setHorizontalAlignment(Element.ALIGN_LEFT);
 		table.addCell(urgeTitleCell);
 
-		PdfPCell teurgyTitleCell = new PdfPCell(new Phrase("Teúrgia", new Font(FadingSunsTheme.getLineFont(), FadingSunsTheme.CHARACTERISTICS_LINE_FONT_SIZE)));
+		PdfPCell teurgyTitleCell = new PdfPCell(new Phrase(getTranslator().getTranslatedText("theurgy"), new Font(FadingSunsTheme.getLineFont(), FadingSunsTheme.CHARACTERISTICS_LINE_FONT_SIZE)));
 		teurgyTitleCell.setBorder(0);
 		// eurgyTitleCell.setMinimumHeight(30);
 		teurgyTitleCell.setHorizontalAlignment(Element.ALIGN_RIGHT);
@@ -85,7 +85,7 @@ public class OccultismTable extends LateralHeaderPdfPTable {
 		table.addCell(createRectangle());
 		table.addCell(createRectangle());
 
-		PdfPCell hubrisTitleCell = new PdfPCell(new Phrase("Soberbia", new Font(FadingSunsTheme.getLineFont(), FadingSunsTheme.CHARACTERISTICS_LINE_FONT_SIZE)));
+		PdfPCell hubrisTitleCell = new PdfPCell(new Phrase(getTranslator().getTranslatedText("hubris"), new Font(FadingSunsTheme.getLineFont(), FadingSunsTheme.CHARACTERISTICS_LINE_FONT_SIZE)));
 		hubrisTitleCell.setBorder(0);
 		hubrisTitleCell.setHorizontalAlignment(Element.ALIGN_LEFT);
 		table.addCell(hubrisTitleCell);

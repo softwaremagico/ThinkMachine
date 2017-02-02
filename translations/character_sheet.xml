@@ -152,4 +152,24 @@
 		<en>Learned Skills</en>
 		<es>Habilidades Adquiridas</es>
 	</learnedSkills>
+	<occultism>
+		<en>Occultism</en>
+		<es>Ocultismo</es>
+	</occultism>
+	<psi>
+		<en>Psi</en>
+		<es>Psi</es>
+	</psi>
+	<urge>
+		<en>Urge</en>
+		<es>Ansia</es>
+	</urge>
+	<theurgy>
+		<en>Theurgy</en>
+		<es>Teúrgia</es>
+	</theurgy>
+	<hubris>
+		<en>Hubris</en>
+		<es>Soberbia</es>
+	</hubris>
 </translator>
