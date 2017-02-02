@@ -49,11 +49,8 @@ SIZE
 
 
 
-Hair :
-Height: Eyes :
-Weight: Skin :
+Skin :
 Character Concept:
 Behavior:
-Appearance:
 NOTES:
 OCCULT STIGMA

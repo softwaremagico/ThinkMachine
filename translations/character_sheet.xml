@@ -32,6 +32,38 @@
 		<en>Rank:</en>
 		<es>Rango:</es>
 	</infoRank>
+	<description>
+		<en>Description</en>
+		<es>Descripción</es>
+	</description>
+	<descriptionBirthdate>
+		<en>Birthdate _____________________________________</en>
+		<es>Fecha de Nacimiento _________________________</es>
+	</descriptionBirthdate>
+	<descriptionHair>
+		<en>Hair __________________________________________</en>
+		<es>Cabello _______________________________________</es>
+	</descriptionHair>
+	<descriptionEyes>
+		<en>Eyes _________________________________________</en>
+		<es>Ojos __________________________________________</es>
+	</descriptionEyes>
+	<descriptionWeight>
+		<en>Weight _______________________________________</en>
+		<es>Peso _________________________________________</es>
+	</descriptionWeight>
+	<descriptionHeight>
+		<en>Height _______________________________________</en>
+		<es>Estatura _____________________________________</es>
+	</descriptionHeight>
+	<descriptionComplexion>
+		<en>Complexion __________________________________</en>
+		<es>Complexión __________________________________</es>
+	</descriptionComplexion>
+	<descriptionAppearance>
+		<en>Appearance __________________________________</en>
+		<es>Imagen ______________________________________</es>
+	</descriptionAppearance>
 	<characteristics>
 		<en>Characteristics</en>
 		<es>Características</es>
