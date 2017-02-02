@@ -172,4 +172,36 @@
 		<en>Hubris</en>
 		<es>Soberbia</es>
 	</hubris>
+	<occultismPowers>
+		<en>Occultism Powers</en>
+		<es>Poderes Ocultos</es>
+	</occultismPowers>
+	<occultismTablePower>
+		<en>Rite/Power</en>
+		<es>Poder/Rito</es>
+	</occultismTablePower>
+	<occultismTableLevel>
+		<en>Level</en>
+		<es>Nivel</es>
+	</occultismTableLevel>
+	<occultismTableRoll>
+		<en>Roll</en>
+		<es>Tirada</es>
+	</occultismTableRoll>
+	<occultismTableRange>
+		<en>Range</en>
+		<es>Alcance</es>
+	</occultismTableRange>
+	<occultismTableDuration>
+		<en>Duration</en>
+		<es>Duración</es>
+	</occultismTableDuration>
+	<occultismTableRequirements>
+		<en>Component</en>
+		<es>Requisitos</es>
+	</occultismTableRequirements>
+	<occultismTableCost>
+		<en>Wyrd</en>
+		<es>Coste</es>
+	</occultismTableCost>
 </translator>

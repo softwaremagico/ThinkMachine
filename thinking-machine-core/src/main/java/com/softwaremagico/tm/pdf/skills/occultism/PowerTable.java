@@ -34,15 +34,14 @@ public class PowerTable extends LateralHeaderPdfPTable {
 
 	public PowerTable() {
 		super(WIDTHS);
-		addCell(createLateralVerticalTitle("Poderes Ocultos", ROWS + 1));
-
-		addCell(createTableSubtitleElement("Poder/Rito"));
-		addCell(createTableSubtitleElement("Nivel"));
-		addCell(createTableSubtitleElement("Tirada"));
-		addCell(createTableSubtitleElement("Alcance"));
-		addCell(createTableSubtitleElement("Duración"));
-		addCell(createTableSubtitleElement("Requisitos"));
-		addCell(createTableSubtitleElement("Coste"));
+		addCell(createLateralVerticalTitle(getTranslator().getTranslatedText("occultismPowers"), ROWS + 1));
+		addCell(createTableSubtitleElement(getTranslator().getTranslatedText("occultismTablePower")));
+		addCell(createTableSubtitleElement(getTranslator().getTranslatedText("occultismTableLevel")));
+		addCell(createTableSubtitleElement(getTranslator().getTranslatedText("occultismTableRoll")));
+		addCell(createTableSubtitleElement(getTranslator().getTranslatedText("occultismTableRange")));
+		addCell(createTableSubtitleElement(getTranslator().getTranslatedText("occultismTableDuration")));
+		addCell(createTableSubtitleElement(getTranslator().getTranslatedText("occultismTableRequirements")));
+		addCell(createTableSubtitleElement(getTranslator().getTranslatedText("occultismTableCost")));
 
 		for (int i = 0; i < ROWS; i++) {
 			addCell(createElementLine(GAP + GAP + GAP + GAP + GAP));
