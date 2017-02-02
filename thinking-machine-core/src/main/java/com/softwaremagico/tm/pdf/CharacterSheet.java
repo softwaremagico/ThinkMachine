@@ -40,9 +40,9 @@ import com.softwaremagico.tm.pdf.info.DescriptionTable;
 import com.softwaremagico.tm.pdf.info.PropertiesTable;
 import com.softwaremagico.tm.pdf.others.AnnotationsTable;
 import com.softwaremagico.tm.pdf.others.OthersTable;
-import com.softwaremagico.tm.pdf.perks.MainPerksTableFactory;
 import com.softwaremagico.tm.pdf.skills.MainSkillsTableFactory;
 import com.softwaremagico.tm.pdf.skills.occultism.PowerTable;
+import com.softwaremagico.tm.pdf.traits.MainPerksTableFactory;
 
 public class CharacterSheet extends PdfDocument {
 	private final static float[] REAR_TABLE_WIDTHS = { 1f, 1f, 1f };

@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.pdf.perks;
+package com.softwaremagico.tm.pdf.traits;
 
 /*-
  * #%L
