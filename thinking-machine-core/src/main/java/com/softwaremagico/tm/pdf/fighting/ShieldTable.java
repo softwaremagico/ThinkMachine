@@ -38,9 +38,8 @@ public class ShieldTable extends LateralHeaderPdfPTable {
 	public ShieldTable() {
 		super(WIDTHS);
 		getDefaultCell().setBorder(0);
-		
-		
-		addCell(createLateralVerticalTitle("Escudos", ROWS + 1));
+
+		addCell(createLateralVerticalTitle(getTranslator().getTranslatedText("shield"), ROWS + 1));
 
 		PdfPCell nameCell = createElementLine("___________________");
 		nameCell.setColspan(WIDTHS.length);
@@ -48,7 +47,7 @@ public class ShieldTable extends LateralHeaderPdfPTable {
 		addCell(nameCell);
 
 		addCell(getShieldRange());
-		addCell(createElementLine("Impactos: _________"));
+		addCell(createElementLine(getTranslator().getTranslatedText("shieldHits")));
 		addCell(createElementLine("___________________"));
 		addCell(createElementLine("___________________"));
 	}

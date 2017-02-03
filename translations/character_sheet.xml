@@ -480,4 +480,12 @@
 		<en>E</en>
 		<es>E</es>
 	</armorElectricAbbreviature>
+	<shield>
+		<en>Energy Shield</en>
+		<es>Escudios</es>
+	</shield>
+	<shieldHits>
+		<en>Hits: ______________</en>
+		<es>Impactos: _________</es>
+	</shieldHits>
 </translator>
