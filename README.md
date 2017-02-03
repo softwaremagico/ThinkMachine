@@ -1,2 +1,2 @@
-<img src="./images/ThinkingMachine.png" width="128" alt="BlackGecko" align="middle"> 
+<img src="./images/ThinkingMachine_logo.png" width="128" alt="BlackGecko" align="middle"> 
 # The Thinking Machine
