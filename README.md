@@ -35,9 +35,11 @@ Basically, what you must do is add a new line under the one containing the word 
 
 `<languages abbrev="it" >Italiano</languages>`
 
-After adding a language, you can now translate the file `character_sheet.xml`. Add the new translations using the tag defined in the previous file. In our example, you need to write the new text as `<it>Some new italian text</it>`. Create a translation for any element thats appear on this file. 
+The `abbrev` value will be used in the next steps of the translation. 
 
-The last steap is to add the skills that you want to shown into the character sheet. This must be done in a folder called with the same language tag as defined before. In our example, create a folder called `it` in the `skills` folder that is inside the `translations` folder. Here you must create two files called exactly `skills-natural.txt` and `skills-learned.txt`. In each file add each skill in a separate row. The application will add the skills in the correct place of the character sheet and will sort it alphabetically for you.
+After adding a language, you must now translate the file `character_sheet.xml`. Add the new translations using the tag defined in the previous file. In our example, you need to write the new text as `<it>Some new italian text</it>`. Create a translation for any element thats appear on this file. 
+
+The last step is adding the skills that you want to shown into the character sheet. This must be done in a folder called with the same language tag as defined before. In our example, create a folder called `it` in the `skills` folder that is inside the `translations` folder. Here you must create two files called exactly `skills-natural.txt` and `skills-learned.txt`. In each file add each skill in a separate row. The application will add the skills in the correct place of the character sheet and will sort it alphabetically for you.
 
 If you have any doubt, check the already existing files as examples to see the structure of the needed files. It is really easy to do. When all texts are translated, the character sheets is ready to be generated. For this purpose, you must execute this command: 
 
