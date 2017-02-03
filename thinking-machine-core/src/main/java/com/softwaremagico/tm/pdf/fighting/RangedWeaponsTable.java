@@ -27,49 +27,49 @@ package com.softwaremagico.tm.pdf.fighting;
 import com.softwaremagico.tm.pdf.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.elements.LateralHeaderPdfPTable;
 
-public class FireArmsTable extends LateralHeaderPdfPTable {
+public class RangedWeaponsTable extends LateralHeaderPdfPTable {
 	private final static float[] WIDTHS = { 1.2f, 4f, 3f, 3f, 5f };
 	private final static int ROWS = 12;
 
-	public FireArmsTable() {
+	public RangedWeaponsTable() {
 		super(WIDTHS);
-		addCell(createLateralVerticalTitle("Disparo", ROWS + 1));
-		addCell(createTableSubtitleElement("Acción"));
-		addCell(createTableSubtitleElement("RA"));
-		addCell(createTableSubtitleElement("Daño"));
-		addCell(createTableSubtitleElement("Otros"));
+		addCell(createLateralVerticalTitle(getTranslator().getTranslatedText("rangedWeapons"), ROWS + 1));
+		addCell(createTableSubtitleElement(getTranslator().getTranslatedText("weaponsAction")));
+		addCell(createTableSubtitleElement(getTranslator().getTranslatedText("weaponGoal")));
+		addCell(createTableSubtitleElement(getTranslator().getTranslatedText("weaponDamage")));
+		addCell(createTableSubtitleElement(getTranslator().getTranslatedText("weaponsOthers")));
 
-		addCell(createElementLine("Apuntar"));
-		addCell(createElementLine("+1/turno"));
+		addCell(createElementLine(getTranslator().getTranslatedText("aimAction")));
+		addCell(createElementLine("+1/" + getTranslator().getTranslatedText("roundAbbreviature")));
 		addCell(createElementLine(""));
-		addCell(createElementLine("Máx 3 turnos"));
+		addCell(createElementLine(getTranslator().getTranslatedText("aimEffect")));
 
-		addCell(createElementLine("Barrido"));
-		addCell(createElementLine("-1/m"));
-		addCell(createElementLine("+1"));
-		addCell(createElementLine(""));
+//		addCell(createElementLine("Barrido"));
+//		addCell(createElementLine("-1/" + getTranslator().getTranslatedText("meterAbbreviature")));
+//		addCell(createElementLine("+1"));
+//		addCell(createElementLine(""));
 
-		addCell(createElementLine("Ráfaga (3)"));
+		addCell(createElementLine(getTranslator().getTranslatedText("burstAction") + " (3)"));
 		addCell(createElementLine("+2"));
 		addCell(createElementLine("+3"));
 		addCell(createElementLine(""));
 
-		addCell(createElementLine("Ráfaga (6)"));
+		addCell(createElementLine(getTranslator().getTranslatedText("burstAction") + " (6)"));
 		addCell(createElementLine("-2"));
 		addCell(createElementLine("+5"));
-		addCell(createElementLine("Ignora 2 Defensa"));
+		addCell(createElementLine(getTranslator().getTranslatedText("burst6Effect")));
 
-		addCell(createElementLine("Cargador Vacío"));
+		addCell(createElementLine(getTranslator().getTranslatedText("emptyClipAction")));
 		addCell(createElementLine("-4"));
 		addCell(createElementLine("+7"));
-		addCell(createElementLine("Ignora 3 Defensa"));
+		addCell(createElementLine(getTranslator().getTranslatedText("emptyClipEffect")));
 
-		addCell(createElementLine("Fuego Supresión"));
+		addCell(createElementLine(getTranslator().getTranslatedText("supressingFireAction")));
 		addCell(createElementLine("-2"));
 		addCell(createElementLine("  "));
-		addCell(createElementLine("Especial"));
+		addCell(createElementLine(getTranslator().getTranslatedText("weaponSpecial")));
 
-		for (int i = 0; i < ROWS - 6; i++) {
+		for (int i = 0; i < ROWS - 5; i++) {
 			addCell(createElementLine("_____________"));
 			addCell(createElementLine("______"));
 			addCell(createElementLine("______"));

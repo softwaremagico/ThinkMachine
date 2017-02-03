@@ -44,10 +44,10 @@ public class FightingManeuvers extends BaseElement {
 		table.addCell(BaseElement.createWhiteSeparator());
 		table.addCell(BaseElement.createWhiteSeparator());
 
-		PdfPCell fireArmsCell = new PdfPCell(new FireArmsTable());
+		PdfPCell fireArmsCell = new PdfPCell(new RangedWeaponsTable());
 		table.addCell(fireArmsCell);
 
-		PdfPCell fencingCell = new PdfPCell(new FightingTable());
+		PdfPCell fencingCell = new PdfPCell(new MeleeWeaponsTable());
 		table.addCell(fencingCell);
 
 		return table;

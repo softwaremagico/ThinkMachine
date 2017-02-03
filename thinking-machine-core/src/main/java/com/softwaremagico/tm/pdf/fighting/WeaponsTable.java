@@ -33,16 +33,16 @@ public class WeaponsTable extends LateralHeaderPdfPTable {
 
 	public WeaponsTable() {
 		super(WIDTHS);
-		addCell(createLateralVerticalTitle("Armas", ROWS + 1));
-		addCell(createTableSubtitleElement("Arma"));
-		addCell(createTableSubtitleElement("Tirada"));
-		addCell(createTableSubtitleElement("RA"));
-		addCell(createTableSubtitleElement("Daño"));
-		addCell(createTableSubtitleElement("Fue/Alc"));
-		addCell(createTableSubtitleElement("Disparos"));
-		addCell(createTableSubtitleElement("Ratio"));
-		addCell(createTableSubtitleElement("Tam"));
-		addCell(createTableSubtitleElement("Otros"));
+		addCell(createLateralVerticalTitle(getTranslator().getTranslatedText("weapons"), ROWS + 1));
+		addCell(createTableSubtitleElement(getTranslator().getTranslatedText("weapon")));
+		addCell(createTableSubtitleElement(getTranslator().getTranslatedText("weaponRoll")));
+		addCell(createTableSubtitleElement(getTranslator().getTranslatedText("weaponGoal")));
+		addCell(createTableSubtitleElement(getTranslator().getTranslatedText("weaponDamage")));
+		addCell(createTableSubtitleElement(getTranslator().getTranslatedText("weaponRange")));
+		addCell(createTableSubtitleElement(getTranslator().getTranslatedText("weaponShots")));
+		addCell(createTableSubtitleElement(getTranslator().getTranslatedText("weaponRate")));
+		addCell(createTableSubtitleElement(getTranslator().getTranslatedText("weaponSize")));
+		addCell(createTableSubtitleElement(getTranslator().getTranslatedText("weaponsOthers")));
 
 		for (int i = 0; i < ROWS; i++) {
 			addCell(createElementLine("___________"));

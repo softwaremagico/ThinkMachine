@@ -300,4 +300,148 @@
 		<en>Others</en>
 		<es>Otros</es>
 	</cyberneticsOthers>
+	<weapons>
+		<en>Weapons</en>
+		<en>Armas</en>
+	</weapons>
+	<weapon>
+		<en>Weapon</en>
+		<en>Arma</en>
+	</weapon>
+	<rangedWeapons>
+		<en>Ranged Weapons</en>
+		<en>Disparo</en>
+	</rangedWeapons>
+	<meleeWeapons>
+		<en>Melee Weapons</en>
+		<en>Cuerpo a Cuerpo</en>
+	</meleeWeapons>
+	<weaponRoll>
+		<en>Roll</en>
+		<es>Tirada</es>
+	</weaponRoll>
+	<weaponDamage>
+		<en>Dmg</en>
+		<es>Daño</es>
+	</weaponDamage>
+	<weaponShots>
+		<en>Shots</en>
+		<en>Disparos</en>
+	</weaponShots>
+	<weaponRange>
+		<en>Str/Rng</en>
+		<es>Fue/Alc</es>
+	</weaponRange>
+	<weaponGoal>
+		<en>Goal</en>
+		<es>RA</es>
+	</weaponGoal>
+	<weaponSize>
+		<en>Size</en>
+		<es>Tam</es>
+	</weaponSize>
+	<weaponRate>
+		<en>Rate</en>
+		<es>Ratio</es>
+	</weaponRate>
+	<weaponsOthers>
+		<en>Others</en>
+		<es>Otros</es>
+	</weaponsOthers>
+	<weaponsAction>
+		<en>Action</en>
+		<es>Acción</es>
+	</weaponsAction>
+	<actionStrike>
+		<en>Strike</en>
+		<es>Golpear</es>
+	</actionStrike>
+	<actionGrapple>
+		<en>Grapple</en>
+		<es>Presa</es>
+	</actionGrapple>
+	<actionKnockdown>
+		<en>Knockdown</en>
+		<es>Derribar</es>
+	</actionKnockdown>
+	<actionKnockout>
+		<en>Knockout</en>
+		<es>Noquear</es>
+	</actionKnockout>
+	<actionDisarm>
+		<en>Disarm</en>
+		<es>Desarmar</es>
+	</actionDisarm>
+	<actionCharge>
+		<en>Charge</en>
+		<es>Cargar</es>
+	</actionCharge>
+	<diceAbbreviature>
+		<en>d</en>
+		<es>d</es>
+	</diceAbbreviature>
+	<meterAbbreviature>
+		<en>m</en>
+		<es>m</es>
+	</meterAbbreviature>
+	<maximumAbbreviature>
+		<en>Max</en>
+		<es>Máx</es>
+	</maximumAbbreviature>
+	<weaponAbbreviature>
+		<en>Wpn</en>
+		<es>Arm</es>
+	</weaponAbbreviature>
+	<weaponSpecial>
+		<en>Special</en>
+		<es>Especial</es>
+	</weaponSpecial>
+	<strengthAbbreviature>
+		<en>Str</en>
+		<es>Fu</es>
+	</strengthAbbreviature>
+	<dexterityAbbreviature>
+		<en>Dx</en>
+		<es>Ds</es>
+	</dexterityAbbreviature>
+	<vigorAbbreviature>
+		<en>Vig</en>
+		<es>Vig</es>
+	</vigorAbbreviature>
+	<meleeAbbreviature>
+		<en>Ml</en>
+		<es>Pel</es>
+	</meleeAbbreviature>
+	<roundAbbreviature>
+		<en>turn</en>
+		<es>turno</es>
+	</roundAbbreviature>
+	<aimAction>
+		<en>Aim</en>
+		<es>Apuntar</es>
+	</aimAction>
+	<burstAction>
+		<en>Burst</en>
+		<es>Ráfaga</es>
+	</burstAction>
+	<emptyClipAction>
+		<en>Empty Clip</en>
+		<es>Cargador Vacío</es>
+	</emptyClipAction>
+	<supressingFireAction>
+		<en>Supressing Fire</en>
+		<es>Fuego Supresión</es>
+	</supressingFireAction>
+	<aimEffect>
+		<en>Max 3 turns</en>
+		<es>Máx 3 turnos</es>
+	</aimEffect>
+	<burst6Effect>
+		<en>Ignore 2 Defense</en>
+		<es>Ignora 2 Defensa</es>
+	</burst6Effect>
+	<emptyClipEffect>
+		<en>Ignore 3 Defense</en>
+		<es>Ignora 3 Defensa</es>
+	</emptyClipEffect>
 </translator>
