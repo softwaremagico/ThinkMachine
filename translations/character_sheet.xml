@@ -264,4 +264,40 @@
 		<en>VP</en>
 		<es>PV</es>
 	</victoryPoints>
+	<cybernetics>
+		<en>Cybernetics</en>
+		<es>Cibernética</es>
+	</cybernetics>
+	<cyberneticsName>
+		<en>Name</en>
+		<es>Nombre</es>
+	</cyberneticsName>
+	<cyberneticsPoints>
+		<en>Pts.</en>
+		<es>Pts.</es>
+	</cyberneticsPoints>
+	<cyberneticsUsability>
+		<en>Usability</en>
+		<es>Usabilidad</es>
+	</cyberneticsUsability>
+	<cyberneticsIncompatibility>
+		<en>Inc.</en>
+		<es>Inc.</es>
+	</cyberneticsIncompatibility>
+	<cyberneticsQuality>
+		<en>Quality</en>
+		<es>Calidad</es>
+	</cyberneticsQuality>
+	<cyberneticsActivtation>
+		<en>Activation</en>
+		<es>Activación</es>
+	</cyberneticsActivtation>
+	<cyberneticsAppearence>
+		<en>Appearen.</en>
+		<es>Apariencia</es>
+	</cyberneticsAppearence>
+	<cyberneticsOthers>
+		<en>Others</en>
+		<es>Otros</es>
+	</cyberneticsOthers>
 </translator>

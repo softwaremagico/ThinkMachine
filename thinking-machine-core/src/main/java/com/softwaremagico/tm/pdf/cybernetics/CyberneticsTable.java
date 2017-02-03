@@ -35,15 +35,15 @@ public class CyberneticsTable extends LateralHeaderPdfPTable {
 	public CyberneticsTable() {
 		super(WIDTHS);
 
-		addCell(createLateralVerticalTitle("Cibernética", ROWS + 1));
-		addCell(createTableSubtitleElement("Nombre"));
-		addCell(createTableSubtitleElement("Pts."));
-		addCell(createTableSubtitleElement("Inc."));
-		addCell(createTableSubtitleElement("Usabilidad"));
-		addCell(createTableSubtitleElement("Calidad"));
-		addCell(createTableSubtitleElement("Activación"));
-		addCell(createTableSubtitleElement("Apariencia"));
-		addCell(createTableSubtitleElement("Otros"));
+		addCell(createLateralVerticalTitle(getTranslator().getTranslatedText("cybernetics"), ROWS + 1));
+		addCell(createTableSubtitleElement(getTranslator().getTranslatedText("cyberneticsName")));
+		addCell(createTableSubtitleElement(getTranslator().getTranslatedText("cyberneticsPoints")));
+		addCell(createTableSubtitleElement(getTranslator().getTranslatedText("cyberneticsIncompatibility")));
+		addCell(createTableSubtitleElement(getTranslator().getTranslatedText("cyberneticsUsability")));
+		addCell(createTableSubtitleElement(getTranslator().getTranslatedText("cyberneticsQuality")));
+		addCell(createTableSubtitleElement(getTranslator().getTranslatedText("cyberneticsActivtation")));
+		addCell(createTableSubtitleElement(getTranslator().getTranslatedText("cyberneticsAppearence")));
+		addCell(createTableSubtitleElement(getTranslator().getTranslatedText("cyberneticsOthers")));
 
 		for (int i = 0; i < ROWS - 1; i++) {
 			addCell(createElementLine(GAP + GAP + GAP));
