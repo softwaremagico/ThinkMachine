@@ -22,7 +22,8 @@ If you are interested into translate this character sheet to a different languag
 - [character_sheet.xml] (./translations/character_sheet.xml) Contains all tags and words used into the PDF file. All texts are shown exactly as written, therefore take care about whitespaces, length of underscores, etc. 
 - [skills] (./translations/skills/) A folder for each language containin two files: Natural Skills and Learned Skills. Any skill added here will be shown in the correct place of the character sheet. All skills are sorted alphabetically. 
 
-The firsts two are defined as XML, but do not worry if you do not know what it is, because it is very easy to change. The first thing to do is add the language. For this, you should modify the file included in the translations folder called languages.xml.
+The firsts two files are defined as XML, but do not worry if you do not know what it is, because it is very easy to change. The first thing to do is add the language. For this, you should modify the file included in the translations folder called `languages.xml`.
+
 ```
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <translator> 
@@ -31,11 +32,11 @@ The firsts two are defined as XML, but do not worry if you do not know what it i
 </translator>
 ```
 
-Basically, what you must do is add a new line under the one containing the word “Español” the same way and BEFORE the one that contains the code </translator>. Changing the name of the language that we want the program show and the content of “abbrev” with a code that connect with it. This code will be the one we use on the files for searching the available languages. For example, if we want to add Italian to the program we should add a line containing: 
+Basically, what you must do is to add a new line under the one containing the word “Español” the same way and BEFORE the one that contains the code `</translator>`. Changing the name of the language that we want the program show and the content of “abbrev” with a code that connect with it. This code will be the one we use on the files for searching the available languages. For example, if we want to add Italian to the program we should add a line containing: 
 
 `<languages abbrev="it" >Italiano</languages>`
 
-The `abbrev` value will be used in the next steps of the translation. 
+Also the `abbrev` value will be used in the next steps of the translation. 
 
 After adding a language, you must now translate the file `character_sheet.xml`. Add the new translations using the tag defined in the previous file. In our example, you need to write the new text as `<it>Some new italian text</it>`. Create a translation for any element thats appear on this file. 
 
