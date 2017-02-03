@@ -408,6 +408,10 @@
 		<en>Vig</en>
 		<es>Vig</es>
 	</vigorAbbreviature>
+	<iniciativeAbbreviature>
+		<en>In</en>
+		<es>In</es>
+	</iniciativeAbbreviature>
 	<meleeAbbreviature>
 		<en>Ml</en>
 		<es>Pel</es>
@@ -444,4 +448,36 @@
 		<en>Ignore 3 Defense</en>
 		<es>Ignora 3 Defensa</es>
 	</emptyClipEffect>
+	<armor>
+		<en>Armor</en>
+		<es>Armadura</es>
+	</armor>
+	<armorRating>
+		<en>Rating</en>
+		<es>Protección</es>
+	</armorRating>
+	<armorHardAbbreviature>
+		<en>H</en>
+		<es>D</es>
+	</armorHardAbbreviature>
+	<armorFireAbbreviature>
+		<en>F</en>
+		<es>F</es>
+	</armorFireAbbreviature>
+	<armorLaserAbbreviature>
+		<en>L</en>
+		<es>L</es>
+	</armorLaserAbbreviature>
+	<armorPlasmAbbreviature>
+		<en>P</en>
+		<es>P</es>
+	</armorPlasmAbbreviature>
+	<armorShockAbbreviature>
+		<en>S</en>
+		<es>I</es>
+	</armorShockAbbreviature>
+	<armorElectricAbbreviature>
+		<en>E</en>
+		<es>E</es>
+	</armorElectricAbbreviature>
 </translator>

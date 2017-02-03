@@ -39,26 +39,29 @@ public class ArmourTable extends LateralHeaderPdfPTable {
 		super(WIDTHS);
 		getDefaultCell().setBorder(0);
 
-		addCell(createLateralVerticalTitle("Armadura", ROWS + 1));
+		addCell(createLateralVerticalTitle(getTranslator().getTranslatedText("armor"), ROWS + 1));
 
 		PdfPCell nameCell = createElementLine("___________________");
 		nameCell.setColspan(WIDTHS.length);
 		nameCell.setMinimumHeight(20);
 		addCell(nameCell);
-		PdfPCell protectionCell = createElementLine("Protección: ____ d");
+		PdfPCell protectionCell = createElementLine(getTranslator().getTranslatedText("armorRating") + ": ____ "
+				+ getTranslator().getTranslatedText("diceAbbreviature"));
 		protectionCell.setColspan(WIDTHS.length);
 		addCell(protectionCell);
-		
-		PdfPCell malusCell = createElementLine("Fr: __  Ds: __  In: __");
+
+		PdfPCell malusCell = createElementLine(getTranslator().getTranslatedText("strengthAbbreviature") + ": __  "
+				+ getTranslator().getTranslatedText("dexterityAbbreviature") + ": __  "
+				+ getTranslator().getTranslatedText("iniciativeAbbreviature") + ": __");
 		malusCell.setColspan(WIDTHS.length);
 		addCell(malusCell);
 
-		addCell(getArmourProperty("D"));
-		addCell(getArmourProperty("F"));
-		addCell(getArmourProperty("L"));
-		addCell(getArmourProperty("P"));
-		addCell(getArmourProperty("I"));
-		addCell(getArmourProperty("E"));
+		addCell(getArmourProperty(getTranslator().getTranslatedText("armorHardAbbreviature")));
+		addCell(getArmourProperty(getTranslator().getTranslatedText("armorFireAbbreviature")));
+		addCell(getArmourProperty(getTranslator().getTranslatedText("armorLaserAbbreviature")));
+		addCell(getArmourProperty(getTranslator().getTranslatedText("armorPlasmAbbreviature")));
+		addCell(getArmourProperty(getTranslator().getTranslatedText("armorShockAbbreviature")));
+		addCell(getArmourProperty(getTranslator().getTranslatedText("armorElectricAbbreviature")));
 
 	}
 
