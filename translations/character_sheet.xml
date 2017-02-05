@@ -302,19 +302,19 @@
 	</cyberneticsOthers>
 	<weapons>
 		<en>Weapons</en>
-		<en>Armas</en>
+		<es>Armas</es>
 	</weapons>
 	<weapon>
 		<en>Weapon</en>
-		<en>Arma</en>
+		<es>Arma</es>
 	</weapon>
 	<rangedWeapons>
 		<en>Ranged Weapons</en>
-		<en>Disparo</en>
+		<es>Disparo</es>
 	</rangedWeapons>
 	<meleeWeapons>
 		<en>Melee Weapons</en>
-		<en>Cuerpo a Cuerpo</en>
+		<es>Cuerpo a Cuerpo</es>
 	</meleeWeapons>
 	<weaponRoll>
 		<en>Roll</en>
@@ -326,7 +326,7 @@
 	</weaponDamage>
 	<weaponShots>
 		<en>Shots</en>
-		<en>Disparos</en>
+		<es>Disparos</es>
 	</weaponShots>
 	<weaponRange>
 		<en>Str/Rng</en>
