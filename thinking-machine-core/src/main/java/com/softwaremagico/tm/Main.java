@@ -1,5 +1,10 @@
 package com.softwaremagico.tm;
 
+import java.io.File;
+
+import com.softwaremagico.tm.language.LanguagePool;
+import com.softwaremagico.tm.pdf.CharacterSheet;
+
 /*-
  * #%L
  * The Thinking Machine (Core)
@@ -25,9 +30,39 @@ package com.softwaremagico.tm;
  */
 
 public class Main {
-	
+	private static final int LANGUAGE = 0;
+	private static final int FILE_DESTINATION_PATH = 1;
+	private static String language, destinationPath;
+
 	public static void main(String[] args) {
-		
+		if (args.length < 1) {
+			System.out.println("Execute with parameters:");
+			System.out.println("\t	language	The language to print the sheet file.");
+			System.out.println("\t	path		The path to store the file.");
+			System.out.println();
+			System.out.println("Example:");
+			System.out.println("\tmvn exec:java -Dexec.args=\"en /tmp\"");
+			System.exit(0);
+		}
+		setArguments(args);
+
+		LanguagePool.clearCache();
+		CharacterSheet sheet = new CharacterSheet(language);
+		sheet.createFile(destinationPath + "FadingSuns_" + language.toUpperCase() + ".pdf");
 	}
 
+	private static void setArguments(String[] args) {
+
+		if (args.length <= LANGUAGE) {
+			language = "en";
+		} else {
+			language = args[LANGUAGE];
+		}
+
+		if (args.length <= FILE_DESTINATION_PATH) {
+			destinationPath = System.getProperty("java.io.tmpdir");
+		} else {
+			destinationPath = args[FILE_DESTINATION_PATH] + File.separator;
+		}
+	}
 }

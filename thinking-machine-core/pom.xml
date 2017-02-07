@@ -4,18 +4,19 @@
 	<artifactId>thinking-machine-core</artifactId>
 	<packaging>jar</packaging>
 	<name>The Thinking Machine (Core)</name>
-	
+
 	<parent>
 		<groupId>com.softwaremagico</groupId>
 		<artifactId>thinking-machine</artifactId>
 		<version>0.2.0</version>
 	</parent>
-	
+
 	<properties>
 		<main.basedir>${basedir}/..</main.basedir>
+		<maven-assembly-plugin.version>2.5.3</maven-assembly-plugin.version>
 		<database.script.autogeneration.folder>${main.basedir}/database/</database.script.autogeneration.folder>
 		<mainClass>com.softwaremagico.tm.Main</mainClass>
-		<splashImage>images/splash.png</splashImage>
+		<splashImage>images/ThinkingMachine_logo.png</splashImage>
 	</properties>
 
 	<build>
@@ -46,9 +47,7 @@
 				<configuration>
 					<executable>java</executable>
 					<mainClass>${mainClass}</mainClass>
-					<!--<arguments>
-						<argument>-splash:${splashImage}</argument>
-					</arguments> -->
+					<arguments> <argument>-splash:${splashImage}</argument> </arguments>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -64,7 +63,7 @@
 						</manifest>
 						<manifestEntries>
 							<Implementation-Version>${project.parent.version}</Implementation-Version>
-							<!-- <SplashScreen-Image>${splashImage}</SplashScreen-Image> -->
+							<SplashScreen-Image>${splashImage}</SplashScreen-Image>
 						</manifestEntries>
 					</archive>
 				</configuration>
