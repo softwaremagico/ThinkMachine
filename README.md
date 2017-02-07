@@ -51,3 +51,7 @@ The application has been created using Maven with Java. Therefore, for excuting 
 mvn exec:java -Dexec.args="en /path/to/file"
 ```
 Where `en` is the language to obtain the file (now can be `en`, `es`) and `/path/to/file` must be a valid path where the application has permissions to generate a file. If this execution is too complex for you, you can always do a pull request on this project and I will generate it for you. 
+
+## Notes
+This software has been developed using the [iText library] (http://itextpdf.com/) for PDF generation. 
+Fading Suns is a TradeMark owned by Holistic Design. 
