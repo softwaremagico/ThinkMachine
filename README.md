@@ -42,5 +42,11 @@ After adding a language, you must now translate the file `character_sheet.xml`. 
 
 The last step is adding the skills that you want to shown into the character sheet. This must be done in a folder called with the same language tag as defined before. In our example, create a folder called `it` in the `skills` folder that is inside the `translations` folder. Here you must create two files called exactly `skills-natural.txt` and `skills-learned.txt`. In each file add each skill in a separate row. The application will add the skills in the correct place of the character sheet and will sort it alphabetically for you.
 
-If you have any doubt, check the already existing files as examples to see the structure of the needed files. It is really easy to do. When all texts are translated, the character sheets is ready to be generated. For this purpose, you must execute this command: 
+If you have any doubt, check the already existing files as examples to see the structure of the needed files. It is really easy to do. 
 
+When all texts are translated, the character sheets is ready to be generated. The application has been created using Maven with Java. Therefore, for excuting this application you need both Maven and Java installed on your machine. Then you must execute this command inside the `thinking-machine-core` folder: 
+
+```
+mvn exec:java -Dexec.args="en /path/to/file"
+```
+Where `en` is the language to obtain the file (now can be `en`, `es`) and `/path/to/file` must be a valid path where the application has permissions to generate a file. If this execution is too complex for you, you can always do a pull request on this project and I will generate it for you. 
