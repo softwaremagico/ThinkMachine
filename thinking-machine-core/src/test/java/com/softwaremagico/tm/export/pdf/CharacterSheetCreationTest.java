@@ -57,14 +57,14 @@ public class CharacterSheetCreationTest {
 	@Test
 	public void characterPdfEnglish() throws MalformedURLException, DocumentException, IOException {
 		CharacterPlayer player = new CharacterPlayer();
-		player.setName("John Sephard");
-		player.setPlayer("Player 1");
-		player.setGender(Gender.MALE);
-		player.setAge(30);
-		player.setRace("Human");
-		player.setPlanet("Sutek");
-		player.setAlliance("Hazat");
-		player.setRank("Knight");
+		player.getInfo().setName("John Sephard");
+		player.getInfo().setPlayer("Player 1");
+		player.getInfo().setGender(Gender.MALE);
+		player.getInfo().setAge(30);
+		player.getInfo().setRace("Human");
+		player.getInfo().setPlanet("Sutek");
+		player.getInfo().setAlliance("Hazat");
+		player.getInfo().setRank("Knight");
 
 		LanguagePool.clearCache();
 		CharacterSheet sheet = new CharacterSheet(player, "es");

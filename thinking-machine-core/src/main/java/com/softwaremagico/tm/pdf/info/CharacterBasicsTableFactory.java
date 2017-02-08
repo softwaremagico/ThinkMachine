@@ -105,7 +105,7 @@ public class CharacterBasicsTableFactory extends BaseElement {
 		if (characterPlayer == null) {
 			table.addCell(getCell(LINE, Element.ALIGN_LEFT));
 		} else {
-			table.addCell(getHandwrittingCell(characterPlayer.getTranslatedParameter(tag), Element.ALIGN_LEFT));
+			table.addCell(getHandwrittingCell(characterPlayer.getInfo().getTranslatedParameter(tag), Element.ALIGN_LEFT));
 		}
 
 		PdfPCell cell = new PdfPCell();
