@@ -24,7 +24,6 @@ package com.softwaremagico.tm.pdf.info;
  * #L%
  */
 
-import java.awt.Color;
 import java.io.IOException;
 
 import com.itextpdf.text.BaseColor;
@@ -32,30 +31,35 @@ import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
+import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.log.MachineLog;
 import com.softwaremagico.tm.pdf.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.elements.BaseElement;
 
 public class CharacterBasicsTableFactory extends BaseElement {
-	public static PdfPTable getCharacterBasicsTable() {
+	private final static String LINE = "_______________";
+	private final static String LANGUAGE_PREFIX = "info";
+	private final static int MAX_VALUE_LENGTH = 13;
+
+	public static PdfPTable getCharacterBasicsTable(CharacterPlayer characterPlayer) {
 		float[] widths = { 1f, 1f, 1f };
 		PdfPTable table = new PdfPTable(widths);
 		setTablePropierties(table);
-		table.addCell(getFirstColumnTable());
-		table.addCell(getSecondColumnTable());
+		table.addCell(getFirstColumnTable(characterPlayer));
+		table.addCell(getSecondColumnTable(characterPlayer));
 		table.addCell(getThirdColumnTable());
 		return table;
 	}
 
-	private static PdfPCell getFirstColumnTable() {
+	private static PdfPCell getFirstColumnTable(CharacterPlayer characterPlayer) {
 		float[] widths = { 1f };
 		PdfPTable table = new PdfPTable(widths);
 		setTablePropierties(table);
 
-		table.addCell(createField(getTranslator().getTranslatedText("infoName")));
-		table.addCell(createField(getTranslator().getTranslatedText("infoPlayer")));
-		table.addCell(createField(getTranslator().getTranslatedText("infoGender")));
-		table.addCell(createField(getTranslator().getTranslatedText("infoAge")));
+		table.addCell(createField(characterPlayer, "name"));
+		table.addCell(createField(characterPlayer, "player"));
+		table.addCell(createField(characterPlayer, "gender"));
+		table.addCell(createField(characterPlayer, "age"));
 
 		PdfPCell cell = new PdfPCell();
 		setCellProperties(cell);
@@ -65,15 +69,15 @@ public class CharacterBasicsTableFactory extends BaseElement {
 		return cell;
 	}
 
-	private static PdfPCell getSecondColumnTable() {
+	private static PdfPCell getSecondColumnTable(CharacterPlayer characterPlayer) {
 		float[] widths = { 1f };
 		PdfPTable table = new PdfPTable(widths);
 		setTablePropierties(table);
 
-		table.addCell(createField(getTranslator().getTranslatedText("infoRace")));
-		table.addCell(createField(getTranslator().getTranslatedText("infoPlanet")));
-		table.addCell(createField(getTranslator().getTranslatedText("infoAlliance")));
-		table.addCell(createField(getTranslator().getTranslatedText("infoRank")));
+		table.addCell(createField(characterPlayer, "race"));
+		table.addCell(createField(characterPlayer, "planet"));
+		table.addCell(createField(characterPlayer, "alliance"));
+		table.addCell(createField(characterPlayer, "rank"));
 
 		PdfPCell cell = new PdfPCell();
 		setCellProperties(cell);
@@ -92,14 +96,17 @@ public class CharacterBasicsTableFactory extends BaseElement {
 		return null;
 	}
 
-	private static PdfPCell createField(String text) {
+	private static PdfPCell createField(CharacterPlayer characterPlayer, String tag) {
 		float[] widths = { 0.7f, 1f };
 		PdfPTable table = new PdfPTable(widths);
 		setTablePropierties(table);
 
-		Color color = new Color(255, 255, 255);
-		table.addCell(getCell(text, 1, Element.ALIGN_RIGHT, color));
-		table.addCell(getCell("_______________", 1, Element.ALIGN_LEFT, color));
+		table.addCell(getCell(getTranslatedTag(tag), Element.ALIGN_RIGHT));
+		if (characterPlayer == null) {
+			table.addCell(getCell(LINE, Element.ALIGN_LEFT));
+		} else {
+			table.addCell(getHandwrittingCell(characterPlayer.getTranslatedParameter(tag), Element.ALIGN_LEFT));
+		}
 
 		PdfPCell cell = new PdfPCell();
 		cell.addElement(table);
@@ -108,10 +115,24 @@ public class CharacterBasicsTableFactory extends BaseElement {
 		return cell;
 	}
 
-	private static PdfPCell getCell(String text, int colspan, int align, Color color) {
-		PdfPCell cell = getCell(text, 0, colspan, align, BaseColor.WHITE, FadingSunsTheme.getLineFont(),
-				FadingSunsTheme.CHARACTER_BASICS_FONT_SIZE);
+	private static PdfPCell getCell(String text, int align) {
+		PdfPCell cell = getCell(text, 0, 1, align, BaseColor.WHITE, FadingSunsTheme.getLineFont(), FadingSunsTheme.CHARACTER_BASICS_FONT_SIZE);
 		return cell;
+	}
+
+	private static PdfPCell getHandwrittingCell(String text, int align) {
+		PdfPCell cell = getCell(text, 0, 1, align, BaseColor.WHITE, FadingSunsTheme.getHandwrittingFont(), FadingSunsTheme.CHARACTER_BASICS_FONT_SIZE - 1);
+		return cell;
+	}
+
+	private static String getTranslatedTag(String tag) {
+		String value = getTranslator().getTranslatedText(LANGUAGE_PREFIX + tag.substring(0, 1).toUpperCase() + tag.substring(1));
+		if (value != null) {
+			if (value.length() > MAX_VALUE_LENGTH) {
+				return value.substring(0, MAX_VALUE_LENGTH + 1);
+			}
+		}
+		return value;
 	}
 
 }

@@ -29,6 +29,7 @@ import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
+import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.language.Translator;
 import com.softwaremagico.tm.pdf.characteristics.CharacteristicsTableFactory;
 import com.softwaremagico.tm.pdf.cybernetics.CyberneticsTable;
@@ -46,6 +47,7 @@ import com.softwaremagico.tm.pdf.traits.MainPerksTableFactory;
 
 public class CharacterSheet extends PdfDocument {
 	private final static float[] REAR_TABLE_WIDTHS = { 1f, 1f, 1f };
+	private CharacterPlayer characterPlayer = null;
 
 	public CharacterSheet() {
 		this(Translator.DEFAULT_LANGUAGE);
@@ -56,6 +58,11 @@ public class CharacterSheet extends PdfDocument {
 		Translator.setLanguage(language);
 	}
 
+	public CharacterSheet(CharacterPlayer characterPlayer, String language) {
+		this(language);
+		this.characterPlayer = characterPlayer;
+	}
+
 	@Override
 	protected Rectangle getPageSize() {
 		return PageSize.A4;
@@ -64,7 +71,7 @@ public class CharacterSheet extends PdfDocument {
 	@Override
 	protected void createPagePDF(Document document) throws Exception {
 		// addBackGroundImage(document, Path.returnBackgroundPath(), writer);
-		PdfPTable mainTable = CharacterBasicsTableFactory.getCharacterBasicsTable();
+		PdfPTable mainTable = CharacterBasicsTableFactory.getCharacterBasicsTable(getCharacterPlayer());
 		document.add(mainTable);
 		PdfPTable characteristicsTable = CharacteristicsTableFactory.getCharacterBasicsTable();
 		document.add(characteristicsTable);
@@ -115,6 +122,10 @@ public class CharacterSheet extends PdfDocument {
 		mainTable.addCell(cyberneticsCell);
 
 		return mainTable;
+	}
+
+	public CharacterPlayer getCharacterPlayer() {
+		return characterPlayer;
 	}
 
 }

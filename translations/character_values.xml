@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<translator>
+	<male>
+		<en>Male</en>
+		<es>Varón</es>
+	</male>
+	<female>
+		<en>Female</en>
+		<es>Mujer</es>
+	</female>
+	<human>
+		<en>Human</en>
+		<es>Humano</es>
+	</human>
+</translator>

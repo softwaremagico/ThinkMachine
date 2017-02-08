@@ -31,6 +31,8 @@ import java.net.MalformedURLException;
 import org.testng.annotations.Test;
 
 import com.itextpdf.text.DocumentException;
+import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.character.Gender;
 import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.pdf.CharacterSheet;
 
@@ -39,17 +41,34 @@ public class CharacterSheetCreationTest {
 	private final static String PDF_PATH_OUTPUT = System.getProperty("java.io.tmpdir") + File.separator;
 
 	@Test
-	public void combinedPdfSpanish() throws MalformedURLException, DocumentException, IOException {
+	public void emptyPdfSpanish() throws MalformedURLException, DocumentException, IOException {
 		LanguagePool.clearCache();
 		CharacterSheet sheet = new CharacterSheet("es");
 		sheet.createFile(PDF_PATH_OUTPUT + "FadingSuns_ES.pdf");
 	}
 
 	@Test
-	public void combinedPdfEnglish() throws MalformedURLException, DocumentException, IOException {
+	public void emptyPdfEnglish() throws MalformedURLException, DocumentException, IOException {
 		LanguagePool.clearCache();
 		CharacterSheet sheet = new CharacterSheet("en");
 		sheet.createFile(PDF_PATH_OUTPUT + "FadingSuns_EN.pdf");
+	}
+
+	@Test
+	public void characterPdfEnglish() throws MalformedURLException, DocumentException, IOException {
+		CharacterPlayer player = new CharacterPlayer();
+		player.setName("John Sephard");
+		player.setPlayer("Player 1");
+		player.setGender(Gender.MALE);
+		player.setAge(30);
+		player.setRace("Human");
+		player.setPlanet("Sutek");
+		player.setAlliance("Hazat");
+		player.setRank("Knight");
+
+		LanguagePool.clearCache();
+		CharacterSheet sheet = new CharacterSheet(player, "es");
+		sheet.createFile(PDF_PATH_OUTPUT + "CharacterFS_ES.pdf");
 	}
 
 }

@@ -36,6 +36,7 @@ public abstract class FadingSunsTheme {
 	public final static String TABLE_SUBTITLE_FONT_NAME = "DejaVuSansCondensed-Oblique.ttf";
 	public final static String LINE_BOLD_FONT_NAME = "DejaVuSansCondensed-Bold.ttf";
 	public final static String TITLE_FONT_NAME = "Roman Antique.ttf";
+	public final static String HANDWRITTING_FONT_NAME = "ArchitectsDaughter.ttf";
 
 	public final static int TITLE_FONT_SIZE = 18;
 	public final static int CHARACTER_BASICS_FONT_SIZE = 12;
@@ -62,6 +63,7 @@ public abstract class FadingSunsTheme {
 	private static BaseFont lineBoldFont;
 	private static BaseFont titleFont;
 	private static BaseFont tableSubtitleFont;
+	private static BaseFont handwrittingFont;
 
 	public static BaseFont getLineFont() {
 		if (lineFont == null) {
@@ -108,6 +110,15 @@ public abstract class FadingSunsTheme {
 			tableSubtitleFont = font.getBaseFont();
 		}
 		return tableSubtitleFont;
+	}
+	
+	public static BaseFont getHandwrittingFont() {
+		if (handwrittingFont == null) {
+			Font font = FontFactory.getFont("/" + HANDWRITTING_FONT_NAME, BaseFont.IDENTITY_H, BaseFont.EMBEDDED,
+					0.8f, Font.NORMAL, BaseColor.BLACK);
+			handwrittingFont = font.getBaseFont();
+		}
+		return handwrittingFont;
 	}
 
 }

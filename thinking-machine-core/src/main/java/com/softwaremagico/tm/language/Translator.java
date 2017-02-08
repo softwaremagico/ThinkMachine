@@ -122,13 +122,15 @@ public class Translator implements ITranslator {
 		if (tagTranslations.get(language).get(tag) == null) {
 			tagTranslations.get(language).put(tag, readTag(tag, language));
 		}
-		if (tagTranslations.get(language).get(tag) == null) {
-			return "Invalida tag '" + tag + "'.";
-		}
-		if (args != null) {
-			return String.format(tagTranslations.get(language).get(tag), args);
-		} else {
-			return tagTranslations.get(language).get(tag);
+		try {
+			if (args != null) {
+				return String.format(tagTranslations.get(language).get(tag), args);
+
+			} else {
+				return tagTranslations.get(language).get(tag);
+			}
+		} catch (NullPointerException npe) {
+			return null;
 		}
 	}
 
