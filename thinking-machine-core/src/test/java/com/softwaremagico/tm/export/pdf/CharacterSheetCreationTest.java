@@ -33,6 +33,7 @@ import org.testng.annotations.Test;
 import com.itextpdf.text.DocumentException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.Gender;
+import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.pdf.CharacterSheet;
 
@@ -65,6 +66,16 @@ public class CharacterSheetCreationTest {
 		player.getInfo().setPlanet("Sutek");
 		player.getInfo().setAlliance("Hazat");
 		player.getInfo().setRank("Knight");
+		
+		player.getCharacteristics().getCharacteristic(CharacteristicName.STRENGTH).setValue(1);
+		player.getCharacteristics().getCharacteristic(CharacteristicName.DEXTERITY).setValue(2);
+		player.getCharacteristics().getCharacteristic(CharacteristicName.ENDURANCE).setValue(3);
+		player.getCharacteristics().getCharacteristic(CharacteristicName.WITS).setValue(4);
+		player.getCharacteristics().getCharacteristic(CharacteristicName.PERCEPTION).setValue(5);
+		player.getCharacteristics().getCharacteristic(CharacteristicName.TECH).setValue(6);
+		player.getCharacteristics().getCharacteristic(CharacteristicName.PRESENCE).setValue(7);
+		player.getCharacteristics().getCharacteristic(CharacteristicName.WILL).setValue(8);
+		player.getCharacteristics().getCharacteristic(CharacteristicName.FAITH).setValue(9);
 
 		LanguagePool.clearCache();
 		CharacterSheet sheet = new CharacterSheet(player, "es");
