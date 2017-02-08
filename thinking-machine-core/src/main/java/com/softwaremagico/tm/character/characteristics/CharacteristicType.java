@@ -6,7 +6,9 @@ public enum CharacteristicType {
 
 	MIND(CharacteristicName.WITS, CharacteristicName.PERCEPTION, CharacteristicName.TECH),
 
-	SPIRIT(CharacteristicName.PRESENCE, CharacteristicName.WILL, CharacteristicName.FAITH);
+	SPIRIT(CharacteristicName.PRESENCE, CharacteristicName.WILL, CharacteristicName.FAITH),
+
+	OTHERS(CharacteristicName.INITIATIVE, CharacteristicName.MOVEMENT, CharacteristicName.DEFENSE);
 
 	private final CharacteristicName[] characteristics;
 
@@ -16,6 +18,10 @@ public enum CharacteristicType {
 
 	public CharacteristicName[] getCharacteristics() {
 		return characteristics;
+	}
+
+	public String getTranslationTag() {
+		return name().toLowerCase() + "Characteristics";
 	}
 
 }

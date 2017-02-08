@@ -73,7 +73,7 @@ public class CharacterSheet extends PdfDocument {
 		// addBackGroundImage(document, Path.returnBackgroundPath(), writer);
 		PdfPTable mainTable = CharacterBasicsTableFactory.getCharacterBasicsTable(getCharacterPlayer());
 		document.add(mainTable);
-		PdfPTable characteristicsTable = CharacteristicsTableFactory.getCharacterBasicsTable();
+		PdfPTable characteristicsTable = CharacteristicsTableFactory.getCharacterBasicsTable(getCharacterPlayer());
 		document.add(characteristicsTable);
 		PdfPTable skillsTable = MainSkillsTableFactory.getSkillsTable(getLanguage());
 		document.add(skillsTable);

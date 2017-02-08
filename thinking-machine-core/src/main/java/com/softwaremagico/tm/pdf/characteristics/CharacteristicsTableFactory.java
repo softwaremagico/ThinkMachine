@@ -29,13 +29,14 @@ import com.itextpdf.text.Font;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
+import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.character.characteristics.CharacteristicType;
 import com.softwaremagico.tm.pdf.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.elements.BaseElement;
 
 public class CharacteristicsTableFactory extends BaseElement {
-	private final static String GAP = "   ";
 
-	public static PdfPTable getCharacterBasicsTable() {
+	public static PdfPTable getCharacterBasicsTable(CharacterPlayer characterPlayer) {
 		float[] widths = { 1f, 1f, 1f, 1f };
 		PdfPTable table = new PdfPTable(widths);
 		setTablePropierties(table);
@@ -54,20 +55,9 @@ public class CharacteristicsTableFactory extends BaseElement {
 		table.addCell(titleCell);
 		table.getDefaultCell().setPadding(0);
 
-		table.addCell(new CharacteristicColumn(getTranslator().getTranslatedText("bodyCharacteristics"), new String[] {
-				getTranslator().getTranslatedText("strengthCharacteristic") + " (" + GAP + ")",
-				getTranslator().getTranslatedText("dexterityCharacteristic") + " (" + GAP + ")",
-				getTranslator().getTranslatedText("enduranceCharacteristic") + " (" + GAP + ")" }));
-		table.addCell(new CharacteristicColumn(getTranslator().getTranslatedText("mindCharacteristics"), new String[] {
-				getTranslator().getTranslatedText("witsCharacteristic") + " (" + GAP + ")",
-				getTranslator().getTranslatedText("perceptionCharacteristic") + " (" + GAP + ")",
-				getTranslator().getTranslatedText("techCharacteristic") + " (" + GAP + ")" }));
-		table.addCell(new CharacteristicColumn(getTranslator().getTranslatedText("spiritCharacteristics"), new String[] {
-				getTranslator().getTranslatedText("presenceCharacteristic") + " (" + GAP + ")",
-				getTranslator().getTranslatedText("willCharacteristic") + " (" + GAP + ")", getTranslator().getTranslatedText("faithCharacteristic") + " (" + GAP + ")" }));
-		table.addCell(new CharacteristicColumn(getTranslator().getTranslatedText("othersCharacteristics"), new String[] {
-				getTranslator().getTranslatedText("initiativeValue"), getTranslator().getTranslatedText("movementValue") + " (" + GAP + ")",
-				getTranslator().getTranslatedText("defenseValue") + " (1)" }));
+		for (CharacteristicType type : CharacteristicType.values()) {
+			table.addCell(new CharacteristicColumn(characterPlayer, type, type.getCharacteristics()));
+		}
 
 		return table;
 	}

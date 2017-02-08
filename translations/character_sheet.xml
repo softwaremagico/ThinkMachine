@@ -124,18 +124,18 @@
 		<en>Others</en>
 		<es>Otras</es>
 	</othersCharacteristics>
-	<initiativeValue>
+	<initiativeCharacteristic>
 		<en>Initiative</en>
 		<es>Iniciativa</es>
-	</initiativeValue>
-	<movementValue>
+	</initiativeCharacteristic>
+	<movementCharacteristic>
 		<en>Movement</en>
 		<es>Movimiento</es>
-	</movementValue>
-	<defenseValue>
+	</movementCharacteristic>
+	<defenseCharacteristic>
 		<en>Defense</en>
 		<es>Defensa</es>
-	</defenseValue>
+	</defenseCharacteristic>
 	<vitality>
 		<en>Vitality</en>
 		<es>Vitalidad</es>

@@ -1,11 +1,9 @@
 package com.softwaremagico.tm.character;
 
+import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.characteristics.Characteristics;
-import com.softwaremagico.tm.language.ITranslator;
-import com.softwaremagico.tm.language.LanguagePool;
 
 public class CharacterPlayer {
-	private static ITranslator translator = LanguagePool.getTranslator("character_values.xml");
 
 	// Basic description of the character.
 	private CharacterInfo info;
@@ -32,6 +30,22 @@ public class CharacterPlayer {
 
 	public Characteristics getCharacteristics() {
 		return characteristics;
+	}
+
+	/**
+	 * Gets the starting value for a characteristic depending on the race.
+	 * 
+	 * @param characteristicName
+	 * @return
+	 */
+	public Integer getStartingValue(CharacteristicName characteristicName) {
+		if (CharacteristicName.DEFENSE.equals(characteristicName)) {
+			return 1;
+		}
+		if (CharacteristicName.MOVEMENT.equals(characteristicName)) {
+			return 5;
+		}
+		return 3;
 	}
 
 }

@@ -18,9 +18,19 @@ public enum CharacteristicName {
 
 	WILL,
 
-	FAITH;
+	FAITH,
+
+	INITIATIVE,
+
+	MOVEMENT,
+
+	DEFENSE;
 
 	private CharacteristicName() {
 
+	}
+
+	public String getTranslationTag() {
+		return name().toLowerCase() + "Characteristic";
 	}
 }

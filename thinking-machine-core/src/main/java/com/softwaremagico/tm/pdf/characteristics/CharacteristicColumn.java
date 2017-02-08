@@ -25,32 +25,48 @@ package com.softwaremagico.tm.pdf.characteristics;
  */
 
 import com.itextpdf.text.Font;
+import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
+import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.character.characteristics.CharacteristicName;
+import com.softwaremagico.tm.character.characteristics.CharacteristicType;
 import com.softwaremagico.tm.pdf.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.elements.BaseElement;
 import com.softwaremagico.tm.pdf.elements.LateralHeaderPdfPTable;
 
 public class CharacteristicColumn extends LateralHeaderPdfPTable {
+	private final static String GAP = "   ";
 	private final static int ROW_WIDTH = 60;
 	private final static float[] widths = { 1f, 5f };
 
-	public CharacteristicColumn(String title, String[] content) {
+	public CharacteristicColumn(CharacterPlayer characterPlayer, CharacteristicType characteristicType, CharacteristicName[] content) {
 		super(widths);
-		addCell(createLateralVerticalTitle(title, content.length));
-		addCell(createContent(content));
+		addCell(createLateralVerticalTitle(getTranslator().getTranslatedText(characteristicType.getTranslationTag()), content.length));
+		addCell(createContent(characterPlayer, content));
 	}
 
-	private PdfPCell createContent(String[] content) {
+	private PdfPCell createContent(CharacterPlayer characterPlayer, CharacteristicName[] content) {
 		float[] widths = { 3f, 1f, 0.1f };
 		PdfPTable table = new PdfPTable(widths);
 		BaseElement.setTablePropierties(table);
 		table.getDefaultCell().setBorder(0);
 
-		for (String text : content) {
-			PdfPCell characteristicTitle = new PdfPCell(new Phrase(text, new Font(
-					FadingSunsTheme.getLineFont(), FadingSunsTheme.CHARACTERISTICS_LINE_FONT_SIZE)));
+		for (CharacteristicName characteristicName : content) {
+			Paragraph paragraph = new Paragraph();
+			paragraph.add(new Paragraph(getTranslator().getTranslatedText(characteristicName.getTranslationTag()), new Font(FadingSunsTheme.getLineFont(),
+					FadingSunsTheme.CHARACTERISTICS_LINE_FONT_SIZE)));
+			paragraph.add(new Paragraph(" (", new Font(FadingSunsTheme.getLineFont(), FadingSunsTheme.CHARACTERISTICS_LINE_FONT_SIZE)));
+			if (characterPlayer == null) {
+				paragraph.add(new Paragraph(GAP, new Font(FadingSunsTheme.getLineFont(), FadingSunsTheme.CHARACTERISTICS_LINE_FONT_SIZE)));
+			} else {
+				paragraph.add(new Paragraph(characterPlayer.getStartingValue(characteristicName) + "", new Font(FadingSunsTheme.getHandwrittingFont(),
+						FadingSunsTheme.CHARACTERISTICS_LINE_FONT_SIZE - 1)));
+			}
+			paragraph.add(new Paragraph(")", new Font(FadingSunsTheme.getLineFont(), FadingSunsTheme.CHARACTERISTICS_LINE_FONT_SIZE)));
+
+			PdfPCell characteristicTitle = new PdfPCell(paragraph);
 			characteristicTitle.setBorder(0);
 			characteristicTitle.setMinimumHeight(ROW_WIDTH / content.length);
 			table.addCell(characteristicTitle);
@@ -74,6 +90,13 @@ public class CharacteristicColumn extends LateralHeaderPdfPTable {
 	@Override
 	protected int getTitleFontSize() {
 		return FadingSunsTheme.CHARACTERISTICS_TITLE_FONT_SIZE;
+	}
+
+	private static String getCharacteristicWithValue(CharacterPlayer characterPlayer, CharacteristicName characteristicName) {
+		if (characterPlayer == null) {
+			return getTranslator().getTranslatedText(characteristicName.getTranslationTag()) + " (" + GAP + ")";
+		}
+		return getTranslator().getTranslatedText(characteristicName.getTranslationTag()) + " ( " + characterPlayer.getStartingValue(characteristicName) + " )";
 	}
 
 }
