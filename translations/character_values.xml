@@ -12,4 +12,8 @@
 		<en>Human</en>
 		<es>Humano</es>
 	</human>
+	<knight>
+		<en>Knight</en>
+		<es>Caballero</es>
+	</knight>
 </translator>

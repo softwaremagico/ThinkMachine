@@ -29,7 +29,6 @@ import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.pdf.FadingSunsTheme;
 
 public class WyrdTable extends CounterTable {
-	private int addedCircle = 0;
 
 	public WyrdTable(CharacterPlayer characterPlayer) {
 		super(WIDTHS);
@@ -48,12 +47,12 @@ public class WyrdTable extends CounterTable {
 		}
 	}
 
-	private PdfPCell getCircle(CharacterPlayer characterPlayer) {
-		if (CIRCLES - addedCircle == characterPlayer.getWyrdValue().intValue()) {
-			return selectedCircle();
-		} else {
-			return unselectedCircle();
+	@Override
+	protected int getSelectedValue(CharacterPlayer characterPlayer) {
+		if (characterPlayer != null) {
+			return characterPlayer.getWyrdValue().intValue();
 		}
+		return -1;
 	}
 
 	@Override

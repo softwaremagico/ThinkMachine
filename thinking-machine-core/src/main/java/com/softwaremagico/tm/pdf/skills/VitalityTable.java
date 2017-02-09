@@ -26,7 +26,6 @@ package com.softwaremagico.tm.pdf.skills;
 
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
-import com.itextpdf.text.pdf.PdfPCell;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.pdf.FadingSunsTheme;
 
@@ -35,7 +34,6 @@ public class VitalityTable extends CounterTable {
 	private final static int CIRCLES = 23;
 	private final static int TITLE_SPAN = 5;
 	private final static int MODIFICATORS_SPAN = 5;
-	private int addedCircle = 0;
 
 	public VitalityTable(CharacterPlayer characterPlayer) {
 		super(WIDTHS);
@@ -59,12 +57,12 @@ public class VitalityTable extends CounterTable {
 		}
 	}
 
-	private PdfPCell getCircle(CharacterPlayer characterPlayer) {
-		if (CIRCLES - addedCircle == characterPlayer.getVitalityValue().intValue()) {
-			return selectedCircle();
-		} else {
-			return unselectedCircle();
+	@Override
+	protected int getSelectedValue(CharacterPlayer characterPlayer) {
+		if (characterPlayer != null) {
+			return characterPlayer.getVitalityValue().intValue();
 		}
+		return -1;
 	}
 
 	@Override
