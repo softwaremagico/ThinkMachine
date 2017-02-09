@@ -24,14 +24,17 @@ package com.softwaremagico.tm.pdf.traits;
  * #L%
  */
 
+import com.itextpdf.text.pdf.PdfPCell;
+import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.pdf.elements.VerticalTable;
 
-
 public class BeneficesTable extends VerticalTable {
-	private final static String GAP = "_____";
+	private final static String GAP = "__________________";
+	private final static int NAME_COLUMN_WIDTH = 80;
+	private final static int COST_COLUMN_WIDTH = 25;
 	private final static float[] WIDTHS = { 2f, 5f, 2f, 5f };
 
-	public BeneficesTable() {
+	public BeneficesTable(CharacterPlayer characterPlayer) {
 		super(WIDTHS);
 		addCell(createTitle(getTranslator().getTranslatedText("beneficesTable")));
 
@@ -41,10 +44,57 @@ public class BeneficesTable extends VerticalTable {
 		addCell(createSubtitleLine(getTranslator().getTranslatedText("afflictions")));
 
 		for (int i = 0; i < MainPerksTableFactory.EMPTY_ROWS * 2; i++) {
-			addCell(createEmptyElementLine(GAP));
-			addCell(createEmptyElementLine(GAP + GAP + GAP + GAP));
+			if (i % 2 == 0) {
+				addCell(getBeneficesCost(characterPlayer, i / 2));
+				addCell(getBenefices(characterPlayer, i / 2));
+			} else {
+				addCell(getAfflictionsCost(characterPlayer, i / 2));
+				addCell(getAfflictions(characterPlayer, i / 2));
+			}
 		}
 	}
 
-	
+	private PdfPCell getBenefices(CharacterPlayer characterPlayer, int row) {
+		try {
+			if (characterPlayer != null) {
+				return createElementLine(characterPlayer.getBenefits().get(row).getName(), NAME_COLUMN_WIDTH);
+			}
+		} catch (Exception e) {
+
+		}
+		return createEmptyElementLine(GAP, NAME_COLUMN_WIDTH);
+	}
+
+	private PdfPCell getBeneficesCost(CharacterPlayer characterPlayer, int row) {
+		try {
+			if (characterPlayer != null) {
+				return createElementLine(characterPlayer.getBenefits().get(row).getCost() + "", COST_COLUMN_WIDTH);
+			}
+		} catch (Exception e) {
+
+		}
+		return createEmptyElementLine(GAP, COST_COLUMN_WIDTH);
+	}
+
+	private PdfPCell getAfflictions(CharacterPlayer characterPlayer, int row) {
+		try {
+			if (characterPlayer != null) {
+				return createElementLine(characterPlayer.getAfflictions().get(row).getName(), NAME_COLUMN_WIDTH);
+			}
+		} catch (Exception e) {
+
+		}
+		return createEmptyElementLine(GAP, NAME_COLUMN_WIDTH);
+	}
+
+	private PdfPCell getAfflictionsCost(CharacterPlayer characterPlayer, int row) {
+		try {
+			if (characterPlayer != null) {
+				return createElementLine(characterPlayer.getAfflictions().get(row).getCost() + "", COST_COLUMN_WIDTH);
+			}
+		} catch (Exception e) {
+
+		}
+		return createEmptyElementLine(GAP, COST_COLUMN_WIDTH);
+	}
 }

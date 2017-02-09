@@ -59,14 +59,14 @@ public class MainPerksTableFactory extends BaseElement {
 		blessingCell.setPadding(0);
 		blessingCell.setBorder(0);
 		table.addCell(blessingCell);
-		
+
 		table.addCell(whiteSeparator);
 
-		PdfPCell perksCell = new PdfPCell(new BeneficesTable());
+		PdfPCell perksCell = new PdfPCell(new BeneficesTable(characterPlayer));
 		perksCell.setPadding(0);
 		perksCell.setBorder(0);
 		table.addCell(perksCell);
-		
+
 		table.addCell(whiteSeparator);
 
 		return table;

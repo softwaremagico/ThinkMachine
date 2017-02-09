@@ -34,6 +34,7 @@ import com.itextpdf.text.DocumentException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.Gender;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
+import com.softwaremagico.tm.character.traits.Benefit;
 import com.softwaremagico.tm.character.traits.Blessing;
 import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.pdf.CharacterSheet;
@@ -91,6 +92,10 @@ public class CharacterSheetCreationTest {
 		player.addBlessing(new Blessing("Elegante", 1, 1, "Influenciar", ""));
 		player.addBlessing(new Blessing("Curioso", 2, 2, "Presencia", "Ante algo nuevo"));
 		player.addBlessing(new Blessing("Crédulo", -2, -2, "Voluntad", "Si se le engatusa"));
+		
+		player.addBenefit(new Benefit("Estigma", -1));
+		player.addBenefit(new Benefit("Herencia", 3));
+		player.addBenefit(new Benefit("Filoespada", 12));
 
 		LanguagePool.clearCache();
 		CharacterSheet sheet = new CharacterSheet(player);

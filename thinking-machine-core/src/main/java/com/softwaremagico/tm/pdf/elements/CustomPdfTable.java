@@ -82,7 +82,6 @@ public abstract class CustomPdfTable extends PdfPTable {
 	protected static PdfPCell createElementLine(String text, int maxWidth) {
 		String remainingText = CellUtils.getSubStringFitsIn(text, FadingSunsTheme.getHandwrittingFont(),
 				FadingSunsTheme.getHandWrittingFontSize(FadingSunsTheme.TABLE_LINE_FONT_SIZE), maxWidth);
-		System.out.println(remainingText);
 		return createElementLine(remainingText);
 	}
 

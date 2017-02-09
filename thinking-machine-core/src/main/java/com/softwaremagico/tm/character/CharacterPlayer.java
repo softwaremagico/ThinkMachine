@@ -11,6 +11,7 @@ import com.softwaremagico.tm.character.characteristics.Characteristics;
 import com.softwaremagico.tm.character.occultism.Occultism;
 import com.softwaremagico.tm.character.skills.SelectedSkill;
 import com.softwaremagico.tm.character.skills.SkillFactory;
+import com.softwaremagico.tm.character.traits.Benefit;
 import com.softwaremagico.tm.character.traits.Blessing;
 
 public class CharacterPlayer {
@@ -29,6 +30,7 @@ public class CharacterPlayer {
 	private Map<String, SelectedSkill> skills;
 
 	private List<Blessing> blessings;
+	private List<Benefit> benefits;
 
 	public CharacterPlayer(String language) {
 		this.language = language;
@@ -41,6 +43,7 @@ public class CharacterPlayer {
 		occultism = new Occultism();
 		skills = new HashMap<>();
 		blessings = new ArrayList<>();
+		benefits = new ArrayList<>();
 	}
 
 	public CharacterInfo getInfo() {
@@ -123,6 +126,31 @@ public class CharacterPlayer {
 	}
 
 	public List<Blessing> getBlessings() {
-		return blessings;
+		return Collections.unmodifiableList(blessings);
+	}
+
+	public void addBenefit(Benefit benefit) {
+		benefits.add(benefit);
+		Collections.sort(benefits);
+	}
+
+	public List<Benefit> getBenefits() {
+		List<Benefit> positiveBenefits = new ArrayList<>();
+		for (Benefit benefit : benefits) {
+			if (benefit.getCost() >= 0) {
+				positiveBenefits.add(benefit);
+			}
+		}
+		return Collections.unmodifiableList(positiveBenefits);
+	}
+
+	public List<Benefit> getAfflictions() {
+		List<Benefit> afflictions = new ArrayList<>();
+		for (Benefit benefit : benefits) {
+			if (benefit.getCost() < 0) {
+				afflictions.add(benefit);
+			}
+		}
+		return Collections.unmodifiableList(afflictions);
 	}
 }
