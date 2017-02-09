@@ -21,14 +21,14 @@ Montar
 Controlar Aeronave
 Controlar Nave Espacial *
 Controlar Vehíc. Terrestre
-Arte  [                            ]
-Arte  [                            ]
+Arte  []
+Arte  []
 Disfrazarse
-Interpretar  [                   ]
-Interpretar  [                   ]
+Interpretar  []
+Interpretar  []
 Juego
-Oficio [                            ]
-Oficio [                            ]
+Oficio []
+Oficio []
 Abrir Cerraduras
 Callejear
 Juego de Manos
@@ -36,12 +36,12 @@ Torturar
 Atletismo
 Autocontrol
 Supervivencia
-Saber  [                          ]
-Saber  [                          ]
-Saber  [                          ]
-Saber  [                          ]
-Xenología [                     ]
-Xenología [                     ]
+Saber  []
+Saber  []
+Saber  []
+Saber  []
+Xenología []
+Xenología []
 Empatía
 Etiqueta
 Artería

@@ -21,14 +21,14 @@ Ride
 Aircraft
 Spacecraft *
 Landcraft
-Arts  [                            ]
-Arts  [                            ]
+Arts  []
+Arts  []
 Disguise
-Performance  [                ]
-Performance  [                ]
+Performance  []
+Performance  []
 Gaming
-Craft [                            ]
-Craft [                            ]
+Craft []
+Craft []
 Lockpicking
 Streetwise
 Sleight of hand
@@ -36,12 +36,12 @@ Torture
 Athletics
 Self Control
 Survival
-Lore  [                             ]
-Lore  [                             ]
-Lore  [                             ]
-Lore  [                             ]
-Xeno Lore [                    ]
-Xeno Lore [                    ]
+Lore  []
+Lore  []
+Lore  []
+Lore  []
+Xeno Lore []
+Xeno Lore []
 Empatía
 Etiquette
 Knavery

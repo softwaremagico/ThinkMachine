@@ -4,6 +4,6 @@ Observe
 Melee
 Phoenix Empire Lore
 Planetary Lore
-Lore [                      ]
+Lore []
 Sneak
 Vigor
