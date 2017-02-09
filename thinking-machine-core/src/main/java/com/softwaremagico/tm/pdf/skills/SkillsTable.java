@@ -28,7 +28,7 @@ import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
-import com.softwaremagico.tm.character.skills.Skill;
+import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.character.skills.SkillFactory;
 import com.softwaremagico.tm.pdf.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.elements.BaseElement;
@@ -58,7 +58,7 @@ public class SkillsTable extends BaseElement {
 		setTablePropierties(table);
 
 		table.addCell(createTitle(getTranslator().getTranslatedText("naturalSkills")));
-		for (Skill skill : SkillFactory.getNaturalSkills(language)) {
+		for (AvailableSkill skill : SkillFactory.getNaturalSkills(language)) {
 			table.addCell(createSkillElement(skill));
 			table.addCell(createSkillLine(GAP));
 		}
@@ -146,7 +146,7 @@ public class SkillsTable extends BaseElement {
 		return cell;
 	}
 
-	private static PdfPCell createSkillElement(Skill skill) {
+	private static PdfPCell createSkillElement(AvailableSkill skill) {
 		PdfPCell cell = getCell(skill.getName(), 0, 1, Element.ALIGN_LEFT, BaseColor.WHITE, skill.isFromGuild() ? FadingSunsTheme.getLineItalicFont()
 				: FadingSunsTheme.getLineFont(), FadingSunsTheme.SKILLS_LINE_FONT_SIZE);
 		cell.setMinimumHeight((MainSkillsTableFactory.HEIGHT / ROWS));

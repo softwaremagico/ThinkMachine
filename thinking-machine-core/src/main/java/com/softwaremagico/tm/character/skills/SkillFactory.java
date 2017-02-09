@@ -40,17 +40,17 @@ public class SkillFactory {
 	private final static String NATURAL_SKILLS_FILE = "skills-natural.txt";
 	private final static String LEARNED_SKILLS_FILE = "skills-learned.txt";
 	// Language and skills.
-	private static Map<String, List<Skill>> naturalSkills = new HashMap<>();
-	private static Map<String, List<Skill>> learnedSkills = new HashMap<>();
+	private static Map<String, List<AvailableSkill>> naturalSkills = new HashMap<>();
+	private static Map<String, List<AvailableSkill>> learnedSkills = new HashMap<>();
 
 	private final static String skillsPath = "../" + Path.getSkillsRootPath();
 
-	public static List<Skill> getNaturalSkills(String language) {
+	public static List<AvailableSkill> getNaturalSkills(String language) {
 		if (naturalSkills.get(language) == null) {
-			naturalSkills.put(language, new ArrayList<Skill>());
+			naturalSkills.put(language, new ArrayList<AvailableSkill>());
 			try {
 				for (String skillName : FileManager.inLines(skillsPath + language + File.separator + NATURAL_SKILLS_FILE)) {
-					naturalSkills.get(language).add(new Skill(skillName));
+					naturalSkills.get(language).add(new AvailableSkill(skillName));
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -61,12 +61,12 @@ public class SkillFactory {
 		return naturalSkills.get(language);
 	}
 
-	public static List<Skill> getLearnedSkills(String language) {
+	public static List<AvailableSkill> getLearnedSkills(String language) {
 		if (learnedSkills.get(language) == null) {
 			try {
-				learnedSkills.put(language, new ArrayList<Skill>());
+				learnedSkills.put(language, new ArrayList<AvailableSkill>());
 				for (String skillName : FileManager.inLines(skillsPath + language + File.separator + LEARNED_SKILLS_FILE)) {
-					learnedSkills.get(language).add(new Skill(skillName));
+					learnedSkills.get(language).add(new AvailableSkill(skillName));
 				}
 			} catch (IOException e) {
 				e.printStackTrace();

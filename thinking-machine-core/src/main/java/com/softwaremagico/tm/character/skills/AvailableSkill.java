@@ -24,19 +24,19 @@ package com.softwaremagico.tm.character.skills;
  * #L%
  */
 
-public class Skill implements Comparable<Skill> {
+public class AvailableSkill implements Comparable<AvailableSkill> {
 
 	private String name;
 
 	private boolean fromGuild;
 
-	public Skill(String name) {
+	public AvailableSkill(String name) {
 		fromGuild = name.contains("*");
 		this.name = name.replace("*", "").trim();
 	}
 
 	@Override
-	public int compareTo(Skill skill) {
+	public int compareTo(AvailableSkill skill) {
 		return getName().compareTo(skill.getName());
 	}
 
