@@ -31,13 +31,28 @@ import com.itextpdf.text.pdf.PdfPCellEvent;
 import com.itextpdf.text.pdf.PdfPTable;
 
 public class CellPaddingEvent implements PdfPCellEvent {
+	private int border = 1;
+
+	public CellPaddingEvent() {
+
+	}
+
+	public CellPaddingEvent(int border) {
+		this.border = border;
+	}
+
 	public void cellLayout(PdfPCell cell, Rectangle position, PdfContentByte[] canvases) {
 		float x1 = position.getLeft() + 2;
 		float x2 = position.getRight() - 2;
 		float y1 = position.getTop() - 2;
 		float y2 = position.getBottom() + 2;
 		PdfContentByte canvas = canvases[PdfPTable.LINECANVAS];
-		canvas.rectangle(x1, y1, x2 - x1, y2 - y1);
+
+		Rectangle rect = new Rectangle(x1, y1, x2, y2);
+		rect.setBorder(Rectangle.BOX);
+		rect.setBorderWidth(border);
+		canvas.rectangle(rect);
+
 		canvas.stroke();
 	}
 }

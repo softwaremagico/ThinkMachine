@@ -25,20 +25,34 @@ package com.softwaremagico.tm.pdf.skills;
  */
 
 import com.itextpdf.text.pdf.PdfPCell;
+import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.pdf.FadingSunsTheme;
 
 public class WyrdTable extends CounterTable {
+	private int addedCircle = 0;
 
-	public WyrdTable() {
+	public WyrdTable(CharacterPlayer characterPlayer) {
 		super(WIDTHS);
-		addCell(createCircle());
+		addedCircle = 0;
+		addCell(getCircle(characterPlayer));
+		addedCircle++;
 		addCell(createLateralVerticalTitle(getTranslator().getTranslatedText("wyrd"), TITLE_SPAN));
 		for (int i = 0; i < TITLE_SPAN; i++) {
-			addCell(createCircle());
+			addCell(getCircle(characterPlayer));
+			addedCircle++;
 		}
 		addCell(space(CIRCLES - TITLE_SPAN));
 		for (int i = 0; i < CIRCLES - TITLE_SPAN; i++) {
-			addCell(createCircle());
+			addCell(getCircle(characterPlayer));
+			addedCircle++;
+		}
+	}
+
+	private PdfPCell getCircle(CharacterPlayer characterPlayer) {
+		if (CIRCLES - addedCircle == characterPlayer.getWyrdValue().intValue()) {
+			return selectedCircle();
+		} else {
+			return unselectedCircle();
 		}
 	}
 

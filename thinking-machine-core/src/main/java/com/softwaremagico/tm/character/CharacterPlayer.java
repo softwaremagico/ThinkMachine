@@ -11,6 +11,9 @@ public class CharacterPlayer {
 	// Characteristics.
 	private Characteristics characteristics;
 
+	// All Psi/Teurgy powers
+	private Occultism occultism;
+
 	public CharacterPlayer() {
 		reset();
 	}
@@ -18,6 +21,7 @@ public class CharacterPlayer {
 	private void reset() {
 		info = new CharacterInfo();
 		characteristics = new Characteristics();
+		occultism = new Occultism();
 	}
 
 	public CharacterInfo getInfo() {
@@ -62,6 +66,14 @@ public class CharacterPlayer {
 			return getStartingValue(characteristicName);
 		}
 		return getCharacteristics().getCharacteristic(characteristicName).getValue();
+	}
+
+	public Integer getVitalityValue() {
+		return getValue(CharacteristicName.ENDURANCE) + 5;
+	}
+
+	public Integer getWyrdValue() {
+		return Math.max(getValue(CharacteristicName.WILL), getValue(CharacteristicName.FAITH)) + occultism.getExtraWyrd();
 	}
 
 }

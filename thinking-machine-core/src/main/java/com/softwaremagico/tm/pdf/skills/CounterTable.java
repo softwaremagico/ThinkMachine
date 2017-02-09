@@ -29,6 +29,7 @@ import com.itextpdf.text.Font;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.softwaremagico.tm.pdf.FadingSunsTheme;
+import com.softwaremagico.tm.pdf.elements.CellPaddingEvent;
 import com.softwaremagico.tm.pdf.elements.LateralHeaderPdfPTable;
 
 public abstract class CounterTable extends LateralHeaderPdfPTable {
@@ -47,17 +48,28 @@ public abstract class CounterTable extends LateralHeaderPdfPTable {
 		return emptyCell;
 	}
 
-	protected PdfPCell createCircle() {
-		return createValue("O", new Font(FadingSunsTheme.getTitleFont(), FadingSunsTheme.CHARACTERISTICS_TITLE_FONT_SIZE), Element.ALIGN_TOP);
+	protected PdfPCell unselectedCircle() {
+		PdfPCell cell = createValue("O", new Font(FadingSunsTheme.getTitleFont(), FadingSunsTheme.CHARACTERISTICS_TITLE_FONT_SIZE), Element.ALIGN_MIDDLE);
+		return cell;
+	}
+
+	protected PdfPCell selectedCircle() {
+		PdfPCell cell = unselectedCircle();
+		cell.setCellEvent(new CellPaddingEvent(2));
+		return cell;
 	}
 
 	protected PdfPCell createValue(String text, Font font, int alignment) {
 		Phrase content = new Phrase(text, font);
 		PdfPCell circleCell = new PdfPCell(content);
+		// Not putting correctly the "o" at the center of the cell.
+		// http://stackoverflow.com/questions/5554553/itext-pdftable-cell-vertical-alignment
+		circleCell.setPaddingTop(-4f);
 		circleCell.setHorizontalAlignment(Element.ALIGN_CENTER);
 		circleCell.setVerticalAlignment(alignment);
 		circleCell.setBorder(0);
-		circleCell.setMinimumHeight(MainSkillsTableFactory.HEIGHT / CIRCLES);
+		// Some position corrections.
+		circleCell.setMinimumHeight((MainSkillsTableFactory.HEIGHT / CIRCLES) + 1.3f);
 		return circleCell;
 	}
 
