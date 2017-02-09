@@ -1,9 +1,9 @@
-Influenciar (3)
-Lanzar (3)
-Observar (3)
-Pelear (3)
-Saber [Imperio Fénix] (3)
-Saber Planetario (3)
-Saber [                      ] (3)
-Sigilo (3)
-Vigor (3)
+Influenciar
+Lanzar
+Observar
+Pelear
+Saber [Imperio Fénix]
+Saber Planetario
+Saber [                      ]
+Sigilo
+Vigor

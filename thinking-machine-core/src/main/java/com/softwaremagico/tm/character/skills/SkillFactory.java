@@ -50,7 +50,7 @@ public class SkillFactory {
 			naturalSkills.put(language, new ArrayList<AvailableSkill>());
 			try {
 				for (String skillName : FileManager.inLines(skillsPath + language + File.separator + NATURAL_SKILLS_FILE)) {
-					naturalSkills.get(language).add(new AvailableSkill(skillName));
+					naturalSkills.get(language).add(new AvailableSkill(skillName, true));
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -66,7 +66,7 @@ public class SkillFactory {
 			try {
 				learnedSkills.put(language, new ArrayList<AvailableSkill>());
 				for (String skillName : FileManager.inLines(skillsPath + language + File.separator + LEARNED_SKILLS_FILE)) {
-					learnedSkills.get(language).add(new AvailableSkill(skillName));
+					learnedSkills.get(language).add(new AvailableSkill(skillName, false));
 				}
 			} catch (IOException e) {
 				e.printStackTrace();

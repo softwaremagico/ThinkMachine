@@ -164,15 +164,15 @@ public class SkillsTable extends BaseElement {
 	}
 
 	private static PdfPCell createSkillElement(AvailableSkill skill) {
-		PdfPCell cell = getCell(skill.getName(), 0, 1, Element.ALIGN_LEFT, BaseColor.WHITE, skill.isFromGuild() ? FadingSunsTheme.getLineItalicFont()
-				: FadingSunsTheme.getLineFont(), FadingSunsTheme.SKILLS_LINE_FONT_SIZE);
+		PdfPCell cell = getCell(skill.getName() + (skill.isNatural() ? " (3)" : ""), 0, 1, Element.ALIGN_LEFT, BaseColor.WHITE,
+				skill.isFromGuild() ? FadingSunsTheme.getLineItalicFont() : FadingSunsTheme.getLineFont(), FadingSunsTheme.SKILLS_LINE_FONT_SIZE);
 		cell.setMinimumHeight((MainSkillsTableFactory.HEIGHT / ROWS));
 		cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		return cell;
 	}
 
 	private static PdfPCell createSkillLine(String text) {
-		PdfPCell cell = getCell(text, 0, 1, Element.ALIGN_LEFT, BaseColor.WHITE, FadingSunsTheme.getLineFont(), FadingSunsTheme.SKILLS_LINE_FONT_SIZE);
+		PdfPCell cell = getCell(text, 0, 1, Element.ALIGN_CENTER, BaseColor.WHITE, FadingSunsTheme.getLineFont(), FadingSunsTheme.SKILLS_LINE_FONT_SIZE);
 		cell.setMinimumHeight((MainSkillsTableFactory.HEIGHT / ROWS));
 		cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		return cell;

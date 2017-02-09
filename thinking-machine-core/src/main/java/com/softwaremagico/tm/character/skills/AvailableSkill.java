@@ -28,10 +28,12 @@ public class AvailableSkill implements Comparable<AvailableSkill> {
 
 	private String name;
 	private boolean fromGuild;
+	private boolean natural;
 
-	public AvailableSkill(String name) {
+	public AvailableSkill(String name, boolean natural) {
 		fromGuild = name.contains("*");
 		this.name = name.replace("*", "").trim();
+		this.natural = natural;
 	}
 
 	@Override
@@ -50,6 +52,10 @@ public class AvailableSkill implements Comparable<AvailableSkill> {
 	@Override
 	public String toString() {
 		return getName();
+	}
+
+	public boolean isNatural() {
+		return natural;
 	}
 
 }
