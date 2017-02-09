@@ -5,11 +5,11 @@ import java.util.Map;
 
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.characteristics.Characteristics;
-import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.character.skills.SelectedSkill;
 import com.softwaremagico.tm.character.skills.SkillFactory;
 
 public class CharacterPlayer {
+	private String language;
 
 	// Basic description of the character.
 	private CharacterInfo info;
@@ -23,7 +23,8 @@ public class CharacterPlayer {
 	// Skills
 	private Map<String, SelectedSkill> skills;
 
-	public CharacterPlayer() {
+	public CharacterPlayer(String language) {
+		this.language = language;
 		reset();
 	}
 
@@ -92,8 +93,15 @@ public class CharacterPlayer {
 
 	public Integer getSkillValue(String skillName) {
 		if (skills.get(skillName) == null) {
+			if (SkillFactory.isNaturalSkill(skillName, language)) {
+				return 3;
+			}
 			return null;
 		}
 		return skills.get(skillName).getValue();
+	}
+
+	public String getLanguage() {
+		return language;
 	}
 }

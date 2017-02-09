@@ -57,7 +57,7 @@ public class CharacterSheetCreationTest {
 
 	@Test
 	public void characterPdfEnglish() throws MalformedURLException, DocumentException, IOException {
-		CharacterPlayer player = new CharacterPlayer();
+		CharacterPlayer player = new CharacterPlayer("es");
 		player.getInfo().setName("John Sephard");
 		player.getInfo().setPlayer("Player 1");
 		player.getInfo().setGender(Gender.MALE);
@@ -66,7 +66,7 @@ public class CharacterSheetCreationTest {
 		player.getInfo().setPlanet("Sutek");
 		player.getInfo().setAlliance("Hazat");
 		player.getInfo().setRank("Knight");
-		
+
 		player.getCharacteristics().getCharacteristic(CharacteristicName.STRENGTH).setValue(1);
 		player.getCharacteristics().getCharacteristic(CharacteristicName.DEXTERITY).setValue(2);
 		player.getCharacteristics().getCharacteristic(CharacteristicName.ENDURANCE).setValue(3);
@@ -76,11 +76,16 @@ public class CharacterSheetCreationTest {
 		player.getCharacteristics().getCharacteristic(CharacteristicName.PRESENCE).setValue(7);
 		player.getCharacteristics().getCharacteristic(CharacteristicName.WILL).setValue(8);
 		player.getCharacteristics().getCharacteristic(CharacteristicName.FAITH).setValue(9);
-		
+
 		player.addSkill("Influenciar", 5);
+		player.addSkill("Sigilo", 4);
+		player.addSkill("Juego", 4);
+		player.addSkill("Abrir Cerraduras", 6);
+		player.addSkill("Armas de Energía", 6);
+		player.addSkill("Guerra", 8);
 
 		LanguagePool.clearCache();
-		CharacterSheet sheet = new CharacterSheet(player, "es");
+		CharacterSheet sheet = new CharacterSheet(player);
 		sheet.createFile(PDF_PATH_OUTPUT + "CharacterFS_ES.pdf");
 	}
 

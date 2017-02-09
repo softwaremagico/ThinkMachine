@@ -77,4 +77,12 @@ public class SkillFactory {
 		return learnedSkills.get(language);
 	}
 
+	public static boolean isNaturalSkill(String skillName, String language) {
+		for (AvailableSkill availableSkill : getNaturalSkills(language)) {
+			if (availableSkill.getName().equals(skillName)) {
+				return true;
+			}
+		}
+		return false;
+	}
 }
