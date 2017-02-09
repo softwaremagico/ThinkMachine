@@ -51,7 +51,7 @@ public class MainSkillsTableFactory extends BaseElement {
 		vitalityCell.setPadding(0);
 		table.addCell(vitalityCell);
 
-		PdfPCell skillsCell = new PdfPCell(SkillsTable.getSkillsTable(language));
+		PdfPCell skillsCell = new PdfPCell(SkillsTable.getSkillsTable(characterPlayer, language));
 		skillsCell.setBorder(0);
 		skillsCell.setPadding(0);
 		skillsCell.setPaddingRight(FadingSunsTheme.DEFAULT_MARGIN);

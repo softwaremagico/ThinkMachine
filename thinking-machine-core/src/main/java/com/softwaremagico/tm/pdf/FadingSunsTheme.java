@@ -115,7 +115,7 @@ public abstract class FadingSunsTheme {
 		return handwrittingFont;
 	}
 
-	public static int convertToHandWrittingFontSize(int originalSize) {
+	public static int getHandWrittingFontSize(int originalSize) {
 		return originalSize - 1;
 	}
 

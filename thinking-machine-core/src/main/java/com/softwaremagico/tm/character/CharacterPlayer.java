@@ -1,7 +1,13 @@
 package com.softwaremagico.tm.character;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.characteristics.Characteristics;
+import com.softwaremagico.tm.character.skills.AvailableSkill;
+import com.softwaremagico.tm.character.skills.SelectedSkill;
+import com.softwaremagico.tm.character.skills.SkillFactory;
 
 public class CharacterPlayer {
 
@@ -14,6 +20,9 @@ public class CharacterPlayer {
 	// All Psi/Teurgy powers
 	private Occultism occultism;
 
+	// Skills
+	private Map<String, SelectedSkill> skills;
+
 	public CharacterPlayer() {
 		reset();
 	}
@@ -22,6 +31,7 @@ public class CharacterPlayer {
 		info = new CharacterInfo();
 		characteristics = new Characteristics();
 		occultism = new Occultism();
+		skills = new HashMap<>();
 	}
 
 	public CharacterInfo getInfo() {
@@ -76,4 +86,14 @@ public class CharacterPlayer {
 		return Math.max(getValue(CharacteristicName.WILL), getValue(CharacteristicName.FAITH)) + occultism.getExtraWyrd();
 	}
 
+	public void addSkill(String skillName, int value) {
+		skills.put(skillName, new SelectedSkill(skillName, value));
+	}
+
+	public Integer getSkillValue(String skillName) {
+		if (skills.get(skillName) == null) {
+			return null;
+		}
+		return skills.get(skillName).getValue();
+	}
 }

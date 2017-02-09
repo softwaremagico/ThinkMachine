@@ -61,7 +61,7 @@ public class CharacteristicColumn extends LateralHeaderPdfPTable {
 				paragraph.add(new Paragraph(GAP, new Font(FadingSunsTheme.getLineFont(), FadingSunsTheme.CHARACTERISTICS_LINE_FONT_SIZE)));
 			} else {
 				paragraph.add(new Paragraph(characterPlayer.getStartingValue(characteristicName) + "", new Font(FadingSunsTheme.getHandwrittingFont(),
-						FadingSunsTheme.convertToHandWrittingFontSize(FadingSunsTheme.CHARACTERISTICS_LINE_FONT_SIZE))));
+						FadingSunsTheme.getHandWrittingFontSize(FadingSunsTheme.CHARACTERISTICS_LINE_FONT_SIZE))));
 			}
 			paragraph.add(new Paragraph(")", new Font(FadingSunsTheme.getLineFont(), FadingSunsTheme.CHARACTERISTICS_LINE_FONT_SIZE)));
 

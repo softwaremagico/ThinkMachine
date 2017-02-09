@@ -76,6 +76,8 @@ public class CharacterSheetCreationTest {
 		player.getCharacteristics().getCharacteristic(CharacteristicName.PRESENCE).setValue(7);
 		player.getCharacteristics().getCharacteristic(CharacteristicName.WILL).setValue(8);
 		player.getCharacteristics().getCharacteristic(CharacteristicName.FAITH).setValue(9);
+		
+		player.addSkill("Influenciar (3)", 5);
 
 		LanguagePool.clearCache();
 		CharacterSheet sheet = new CharacterSheet(player, "es");

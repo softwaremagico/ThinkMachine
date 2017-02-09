@@ -27,7 +27,6 @@ package com.softwaremagico.tm.character.skills;
 public class AvailableSkill implements Comparable<AvailableSkill> {
 
 	private String name;
-
 	private boolean fromGuild;
 
 	public AvailableSkill(String name) {

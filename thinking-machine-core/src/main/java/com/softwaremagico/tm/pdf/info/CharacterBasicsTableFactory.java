@@ -122,7 +122,7 @@ public class CharacterBasicsTableFactory extends BaseElement {
 
 	private static PdfPCell getHandwrittingCell(String text, int align) {
 		PdfPCell cell = getCell(text, 0, 1, align, BaseColor.WHITE, FadingSunsTheme.getHandwrittingFont(),
-				FadingSunsTheme.convertToHandWrittingFontSize(FadingSunsTheme.CHARACTER_BASICS_FONT_SIZE));
+				FadingSunsTheme.getHandWrittingFontSize(FadingSunsTheme.CHARACTER_BASICS_FONT_SIZE));
 		return cell;
 	}
 

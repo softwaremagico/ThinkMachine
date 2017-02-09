@@ -28,6 +28,7 @@ import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
+import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.character.skills.SkillFactory;
 import com.softwaremagico.tm.pdf.FadingSunsTheme;
@@ -41,18 +42,18 @@ public class SkillsTable extends BaseElement {
 	private final static String GAP = "____";
 	private final static int OCCULTISM_ROWS = 5;
 
-	public static PdfPTable getSkillsTable(String language) {
+	public static PdfPTable getSkillsTable(CharacterPlayer characterPlayer, String language) {
 		float[] widths = { 1f, 1f, 1f };
 		PdfPTable table = new PdfPTable(widths);
 		setTablePropierties(table);
 		learnedSkillsAdded = 0;
-		table.addCell(getFirstColumnTable(language));
-		table.addCell(getSecondColumnTable(language));
-		table.addCell(getThirdColumnTable(language));
+		table.addCell(getFirstColumnTable(characterPlayer, language));
+		table.addCell(getSecondColumnTable(characterPlayer, language));
+		table.addCell(getThirdColumnTable(characterPlayer, language));
 		return table;
 	}
 
-	private static PdfPCell getFirstColumnTable(String language) {
+	private static PdfPCell getFirstColumnTable(CharacterPlayer characterPlayer, String language) {
 		float[] widths = { 4f, 1f };
 		PdfPTable table = new PdfPTable(widths);
 		setTablePropierties(table);
@@ -60,14 +61,22 @@ public class SkillsTable extends BaseElement {
 		table.addCell(createTitle(getTranslator().getTranslatedText("naturalSkills")));
 		for (AvailableSkill skill : SkillFactory.getNaturalSkills(language)) {
 			table.addCell(createSkillElement(skill));
-			table.addCell(createSkillLine(GAP));
+			if (characterPlayer == null) {
+				table.addCell(createSkillLine(GAP));
+			} else {
+				table.addCell(createSkillValue(characterPlayer.getSkillValue(skill.getName())));
+			}
 		}
 
 		table.addCell(createTitle(getTranslator().getTranslatedText("learnedSkills")));
 		for (int i = 0; i < Math.min(SkillFactory.getLearnedSkills(language).size(), ROWS - (2 * TITLE_ROWSPAN)
 				- SkillFactory.getNaturalSkills(language).size()); i++) {
 			table.addCell(createSkillElement(SkillFactory.getLearnedSkills(language).get(i)));
-			table.addCell(createSkillLine(GAP));
+			if (characterPlayer == null) {
+				table.addCell(createSkillLine(GAP));
+			} else {
+				table.addCell(createSkillValue(characterPlayer.getSkillValue(SkillFactory.getLearnedSkills(language).get(i).getName())));
+			}
 			learnedSkillsAdded++;
 		}
 
@@ -79,7 +88,7 @@ public class SkillsTable extends BaseElement {
 		return cell;
 	}
 
-	private static PdfPCell getSecondColumnTable(String language) {
+	private static PdfPCell getSecondColumnTable(CharacterPlayer characterPlayer, String language) {
 		float[] widths = { 4f, 1f };
 		PdfPTable table = new PdfPTable(widths);
 		setTablePropierties(table);
@@ -90,7 +99,11 @@ public class SkillsTable extends BaseElement {
 
 		for (int i = learnedSkillsAdded; i < maxElements; i++) {
 			table.addCell(createSkillElement(SkillFactory.getLearnedSkills(language).get(i)));
-			table.addCell(createSkillLine(GAP));
+			if (characterPlayer == null) {
+				table.addCell(createSkillLine(GAP));
+			} else {
+				table.addCell(createSkillValue(characterPlayer.getSkillValue(SkillFactory.getLearnedSkills(language).get(i).getName())));
+			}
 			learnedSkillsAdded++;
 		}
 
@@ -99,7 +112,7 @@ public class SkillsTable extends BaseElement {
 		return cell;
 	}
 
-	private static PdfPCell getThirdColumnTable(String language) {
+	private static PdfPCell getThirdColumnTable(CharacterPlayer characterPlayer, String language) {
 		float[] widths = { 4f, 1f };
 		PdfPTable table = new PdfPTable(widths);
 		setTablePropierties(table);
@@ -111,7 +124,11 @@ public class SkillsTable extends BaseElement {
 
 		for (int i = learnedSkillsAdded; i < maxElements; i++) {
 			table.addCell(createSkillElement(SkillFactory.getLearnedSkills(language).get(i)));
-			table.addCell(createSkillLine(GAP));
+			if (characterPlayer == null) {
+				table.addCell(createSkillLine(GAP));
+			} else {
+				table.addCell(createSkillValue(characterPlayer.getSkillValue(SkillFactory.getLearnedSkills(language).get(i).getName())));
+			}
 			learnedSkillsAdded++;
 			addedElements++;
 		}
@@ -156,6 +173,17 @@ public class SkillsTable extends BaseElement {
 
 	private static PdfPCell createSkillLine(String text) {
 		PdfPCell cell = getCell(text, 0, 1, Element.ALIGN_LEFT, BaseColor.WHITE, FadingSunsTheme.getLineFont(), FadingSunsTheme.SKILLS_LINE_FONT_SIZE);
+		cell.setMinimumHeight((MainSkillsTableFactory.HEIGHT / ROWS));
+		cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+		return cell;
+	}
+
+	private static PdfPCell createSkillValue(Integer value) {
+		if (value == null) {
+			return createSkillLine(GAP);
+		}
+		PdfPCell cell = getCell(value + "", 0, 1, Element.ALIGN_CENTER, BaseColor.WHITE, FadingSunsTheme.getHandwrittingFont(),
+				FadingSunsTheme.getHandWrittingFontSize(FadingSunsTheme.SKILLS_LINE_FONT_SIZE));
 		cell.setMinimumHeight((MainSkillsTableFactory.HEIGHT / ROWS));
 		cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		return cell;
