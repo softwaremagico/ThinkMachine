@@ -83,6 +83,9 @@ public class CharacterSheetCreationTest {
 		player.addSkill("Abrir Cerraduras", 6);
 		player.addSkill("Armas de Energía", 6);
 		player.addSkill("Guerra", 8);
+		
+		player.getOccultism().setPsiValue(4);
+		player.getOccultism().setUrge(1);
 
 		LanguagePool.clearCache();
 		CharacterSheet sheet = new CharacterSheet(player);

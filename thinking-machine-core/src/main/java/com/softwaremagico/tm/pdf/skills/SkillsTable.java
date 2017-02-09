@@ -145,7 +145,7 @@ public class SkillsTable extends BaseElement {
 		}
 
 		// Add Occultism table
-		PdfPTable occultismTable = new OccultismTable();
+		PdfPTable occultismTable = new OccultismTable(characterPlayer);
 		PdfPCell occulstimCell = new PdfPCell();
 		// setCellProperties(occulstimCell);
 		// occulstimCell.setRowspan(widths.length);

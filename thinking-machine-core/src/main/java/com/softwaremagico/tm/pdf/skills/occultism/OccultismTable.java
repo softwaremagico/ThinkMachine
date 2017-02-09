@@ -29,6 +29,7 @@ import com.itextpdf.text.Font;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
+import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.pdf.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.elements.BaseElement;
 import com.softwaremagico.tm.pdf.elements.LateralHeaderPdfPTable;
@@ -37,10 +38,10 @@ public class OccultismTable extends LateralHeaderPdfPTable {
 	private final static int ROW_WIDTH = 70;
 	private final static float[] widths = { 1f, 6f };
 
-	public OccultismTable() {
+	public OccultismTable(CharacterPlayer characterPlayer) {
 		super(widths);
 		addCell(createLateralVerticalTitle(getTranslator().getTranslatedText("occultism"), 1));
-		addCell(createContent());
+		addCell(createContent(characterPlayer));
 		setWidthPercentage(100);
 		getDefaultCell().setPadding(0);
 		setSpacingAfter(0);
@@ -54,7 +55,7 @@ public class OccultismTable extends LateralHeaderPdfPTable {
 		return titleCell;
 	}
 
-	private PdfPCell createContent() {
+	private PdfPCell createContent(CharacterPlayer characterPlayer) {
 		float[] widths = { 3f, 1f, 1f, 3f };
 		PdfPTable table = new PdfPTable(widths);
 		BaseElement.setTablePropierties(table);
@@ -62,30 +63,44 @@ public class OccultismTable extends LateralHeaderPdfPTable {
 		table.getDefaultCell().setPadding(0);
 		table.getDefaultCell().setVerticalAlignment(Element.ALIGN_MIDDLE);
 
-		PdfPCell psiTitleCell = new PdfPCell(new Phrase(getTranslator().getTranslatedText("psi"), new Font(FadingSunsTheme.getLineFont(), FadingSunsTheme.CHARACTERISTICS_LINE_FONT_SIZE)));
+		PdfPCell psiTitleCell = new PdfPCell(new Phrase(getTranslator().getTranslatedText("psi"), new Font(FadingSunsTheme.getLineFont(),
+				FadingSunsTheme.CHARACTERISTICS_LINE_FONT_SIZE)));
 		psiTitleCell.setBorder(0);
 		// psiTitleCell.setMinimumHeight(30);
 		psiTitleCell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 		table.addCell(psiTitleCell);
 
-		table.addCell(createRectangle());
-		table.addCell(createRectangle());
+		if (characterPlayer == null) {
+			table.addCell(createRectangle());
+			table.addCell(createRectangle());
+		} else {
+			table.addCell(createRectangle(characterPlayer.getOccultism().getPsiValue()));
+			table.addCell(createRectangle(characterPlayer.getOccultism().getUrge()));
+		}
 
-		PdfPCell urgeTitleCell = new PdfPCell(new Phrase(getTranslator().getTranslatedText("urge"), new Font(FadingSunsTheme.getLineFont(), FadingSunsTheme.CHARACTERISTICS_LINE_FONT_SIZE)));
+		PdfPCell urgeTitleCell = new PdfPCell(new Phrase(getTranslator().getTranslatedText("urge"), new Font(FadingSunsTheme.getLineFont(),
+				FadingSunsTheme.CHARACTERISTICS_LINE_FONT_SIZE)));
 		urgeTitleCell.setBorder(0);
 		urgeTitleCell.setHorizontalAlignment(Element.ALIGN_LEFT);
 		table.addCell(urgeTitleCell);
 
-		PdfPCell teurgyTitleCell = new PdfPCell(new Phrase(getTranslator().getTranslatedText("theurgy"), new Font(FadingSunsTheme.getLineFont(), FadingSunsTheme.CHARACTERISTICS_LINE_FONT_SIZE)));
+		PdfPCell teurgyTitleCell = new PdfPCell(new Phrase(getTranslator().getTranslatedText("theurgy"), new Font(FadingSunsTheme.getLineFont(),
+				FadingSunsTheme.CHARACTERISTICS_LINE_FONT_SIZE)));
 		teurgyTitleCell.setBorder(0);
 		// eurgyTitleCell.setMinimumHeight(30);
 		teurgyTitleCell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 		table.addCell(teurgyTitleCell);
 
-		table.addCell(createRectangle());
-		table.addCell(createRectangle());
+		if (characterPlayer == null) {
+			table.addCell(createRectangle());
+			table.addCell(createRectangle());
+		} else {
+			table.addCell(createRectangle(characterPlayer.getOccultism().getTeurgyValue()));
+			table.addCell(createRectangle(characterPlayer.getOccultism().getHubris()));
+		}
 
-		PdfPCell hubrisTitleCell = new PdfPCell(new Phrase(getTranslator().getTranslatedText("hubris"), new Font(FadingSunsTheme.getLineFont(), FadingSunsTheme.CHARACTERISTICS_LINE_FONT_SIZE)));
+		PdfPCell hubrisTitleCell = new PdfPCell(new Phrase(getTranslator().getTranslatedText("hubris"), new Font(FadingSunsTheme.getLineFont(),
+				FadingSunsTheme.CHARACTERISTICS_LINE_FONT_SIZE)));
 		hubrisTitleCell.setBorder(0);
 		hubrisTitleCell.setHorizontalAlignment(Element.ALIGN_LEFT);
 		table.addCell(hubrisTitleCell);

@@ -104,4 +104,8 @@ public class CharacterPlayer {
 	public String getLanguage() {
 		return language;
 	}
+
+	public Occultism getOccultism() {
+		return occultism;
+	}
 }
