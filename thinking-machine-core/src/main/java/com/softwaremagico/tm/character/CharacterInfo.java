@@ -48,7 +48,7 @@ public class CharacterInfo {
 		if (translatedText != null) {
 			return translatedText;
 		}
-		return xmlTag;
+		return parameterValue.toString();
 	}
 
 	public String getName() {
