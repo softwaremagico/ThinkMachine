@@ -34,6 +34,7 @@ import com.itextpdf.text.DocumentException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.Gender;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
+import com.softwaremagico.tm.character.traits.Blessing;
 import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.pdf.CharacterSheet;
 
@@ -83,9 +84,13 @@ public class CharacterSheetCreationTest {
 		player.addSkill("Abrir Cerraduras", 6);
 		player.addSkill("Armas de Energía", 6);
 		player.addSkill("Guerra", 8);
-		
+
 		player.getOccultism().setPsiValue(4);
 		player.getOccultism().setUrge(1);
+
+		player.addBlessing(new Blessing("Elegante", 1, 1, "Influenciar", ""));
+		player.addBlessing(new Blessing("Curioso", 2, 2, "Presencia", "Ante algo nuevo"));
+		player.addBlessing(new Blessing("Crédulo", -2, -2, "Voluntad", "Si se le engatusa"));
 
 		LanguagePool.clearCache();
 		CharacterSheet sheet = new CharacterSheet(player);

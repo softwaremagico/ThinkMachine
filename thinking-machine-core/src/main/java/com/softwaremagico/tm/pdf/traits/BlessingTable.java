@@ -24,14 +24,20 @@ package com.softwaremagico.tm.pdf.traits;
  * #L%
  */
 
+import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.character.traits.Blessing;
 import com.softwaremagico.tm.pdf.elements.VerticalTable;
 
-
 public class BlessingTable extends VerticalTable {
-	private final static String GAP = "___";
+	private final static String GAP = "__________________";
+	private final static int NAME_COLUMN_WIDTH = 60;
+	private final static int BONIFICATION_COLUMN_WIDTH = 15;
+	private final static int TRAIT_COLUMN_WIDTH = 42;
+	private final static int SITUATION_COLUMN_WIDTH = 80;
+
 	private final static float[] WIDTHS = { 8f, 2f, 5f, 10f };
 
-	public BlessingTable() {
+	public BlessingTable(CharacterPlayer characterPlayer) {
 		super(WIDTHS);
 		addCell(createTitle(getTranslator().getTranslatedText("blessingTable")));
 
@@ -40,11 +46,23 @@ public class BlessingTable extends VerticalTable {
 		addCell(createSubtitleLine(getTranslator().getTranslatedText("blessingTableTrait")));
 		addCell(createSubtitleLine(getTranslator().getTranslatedText("blessingTableSituation")));
 
-		for (int i = 0; i < MainPerksTableFactory.EMPTY_ROWS; i++) {
-			addCell(createElementLine(GAP + GAP + GAP + GAP + GAP));
-			addCell(createElementLine(GAP));
-			addCell(createElementLine(GAP + GAP + GAP));
-			addCell(createElementLine(GAP + GAP + GAP + GAP + GAP + GAP));
+		int addedBlessings = 0;
+		if (characterPlayer != null) {
+			for (Blessing blessing : characterPlayer.getBlessings()) {
+				addCell(createElementLine(blessing.getName(), NAME_COLUMN_WIDTH));
+				addCell(createElementLine(blessing.getBonification() > 0 ? "+" + blessing.getBonification() : blessing.getBonification() + "",
+						BONIFICATION_COLUMN_WIDTH));
+				addCell(createElementLine(blessing.getTrait(), TRAIT_COLUMN_WIDTH));
+				addCell(createElementLine(blessing.getSituation(), SITUATION_COLUMN_WIDTH));
+				addedBlessings++;
+			}
+		}
+
+		for (int i = 0; i < MainPerksTableFactory.EMPTY_ROWS - addedBlessings; i++) {
+			addCell(createEmptyElementLine(GAP, NAME_COLUMN_WIDTH));
+			addCell(createEmptyElementLine(GAP, BONIFICATION_COLUMN_WIDTH));
+			addCell(createEmptyElementLine(GAP, TRAIT_COLUMN_WIDTH));
+			addCell(createEmptyElementLine(GAP, SITUATION_COLUMN_WIDTH));
 		}
 	}
 }

@@ -35,7 +35,7 @@ public class PropertiesTable extends VerticalTable {
 
 		addCell(createTitle(getTranslator().getTranslatedText("properties")));
 		for (int i = 0; i < ROWS; i++) {
-			addCell(createElementLine("______________________________________________"));
+			addCell(createEmptyElementLine("______________________________________________"));
 		}
 	}
 }

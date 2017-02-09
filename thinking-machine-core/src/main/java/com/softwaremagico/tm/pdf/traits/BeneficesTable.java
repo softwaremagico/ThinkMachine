@@ -41,8 +41,8 @@ public class BeneficesTable extends VerticalTable {
 		addCell(createSubtitleLine(getTranslator().getTranslatedText("afflictions")));
 
 		for (int i = 0; i < MainPerksTableFactory.EMPTY_ROWS * 2; i++) {
-			addCell(createElementLine(GAP));
-			addCell(createElementLine(GAP + GAP + GAP + GAP));
+			addCell(createEmptyElementLine(GAP));
+			addCell(createEmptyElementLine(GAP + GAP + GAP + GAP));
 		}
 	}
 

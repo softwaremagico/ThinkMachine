@@ -34,6 +34,7 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.pdf.FadingSunsTheme;
+import com.softwaremagico.tm.pdf.utils.CellUtils;
 
 public abstract class CustomPdfTable extends PdfPTable {
 	private float[] columnWidths;
@@ -55,12 +56,34 @@ public abstract class CustomPdfTable extends PdfPTable {
 		return titleCell;
 	}
 
-	protected static PdfPCell createElementLine(String text) {
+	protected static PdfPCell createEmptyElementLine(String text) {
 		PdfPCell cell = BaseElement.getCell(text, 0, 1, Element.ALIGN_CENTER, BaseColor.WHITE, FadingSunsTheme.getLineFont(),
 				FadingSunsTheme.TABLE_LINE_FONT_SIZE);
 		cell.setMinimumHeight(10);
 		cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		return cell;
+	}
+
+	protected static PdfPCell createEmptyElementLine(String text, int maxWidth) {
+		String remainingText = CellUtils.getSubStringFitsIn(text, FadingSunsTheme.getLineFont(), FadingSunsTheme.TABLE_LINE_FONT_SIZE, maxWidth);
+		return createEmptyElementLine(remainingText);
+	}
+
+	protected static PdfPCell createElementLine(String text) {
+		PdfPCell cell = BaseElement.getCell(
+				CellUtils.getSubStringFitsIn(text, FadingSunsTheme.getHandwrittingFont(),
+						FadingSunsTheme.getHandWrittingFontSize(FadingSunsTheme.TABLE_LINE_FONT_SIZE), 70), 0, 1, Element.ALIGN_CENTER, BaseColor.WHITE,
+				FadingSunsTheme.getHandwrittingFont(), FadingSunsTheme.getHandWrittingFontSize(FadingSunsTheme.TABLE_LINE_FONT_SIZE));
+		cell.setMinimumHeight(10);
+		cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+		return cell;
+	}
+
+	protected static PdfPCell createElementLine(String text, int maxWidth) {
+		String remainingText = CellUtils.getSubStringFitsIn(text, FadingSunsTheme.getHandwrittingFont(),
+				FadingSunsTheme.getHandWrittingFontSize(FadingSunsTheme.TABLE_LINE_FONT_SIZE), maxWidth);
+		System.out.println(remainingText);
+		return createElementLine(remainingText);
 	}
 
 	public float[] getColumnWidths() {

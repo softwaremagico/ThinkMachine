@@ -33,15 +33,15 @@ public class DescriptionTable extends VerticalTable {
 		super(WIDTHS);
 
 		addCell(createTitle(getTranslator().getTranslatedText("description")));
-		addCell(createElementLine(getTranslator().getTranslatedText("descriptionBirthdate")));
-		addCell(createElementLine(getTranslator().getTranslatedText("descriptionHair")));
-		addCell(createElementLine(getTranslator().getTranslatedText("descriptionEyes")));
-		addCell(createElementLine(getTranslator().getTranslatedText("descriptionComplexion")));
-		addCell(createElementLine(getTranslator().getTranslatedText("descriptionHeight")));
-		addCell(createElementLine(getTranslator().getTranslatedText("descriptionWeight")));
-		addCell(createElementLine(getTranslator().getTranslatedText("descriptionAppearance")));
-		addCell(createElementLine("______________________________________________"));
-		addCell(createElementLine("______________________________________________"));
-		addCell(createElementLine("______________________________________________"));
+		addCell(createEmptyElementLine(getTranslator().getTranslatedText("descriptionBirthdate")));
+		addCell(createEmptyElementLine(getTranslator().getTranslatedText("descriptionHair")));
+		addCell(createEmptyElementLine(getTranslator().getTranslatedText("descriptionEyes")));
+		addCell(createEmptyElementLine(getTranslator().getTranslatedText("descriptionComplexion")));
+		addCell(createEmptyElementLine(getTranslator().getTranslatedText("descriptionHeight")));
+		addCell(createEmptyElementLine(getTranslator().getTranslatedText("descriptionWeight")));
+		addCell(createEmptyElementLine(getTranslator().getTranslatedText("descriptionAppearance")));
+		addCell(createEmptyElementLine("______________________________________________"));
+		addCell(createEmptyElementLine("______________________________________________"));
+		addCell(createEmptyElementLine("______________________________________________"));
 	}
 }

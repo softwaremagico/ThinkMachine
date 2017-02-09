@@ -39,51 +39,51 @@ public class MeleeWeaponsTable extends LateralHeaderPdfPTable {
 		addCell(createTableSubtitleElement(getTranslator().getTranslatedText("weaponDamage")));
 		addCell(createTableSubtitleElement(getTranslator().getTranslatedText("weaponsOthers")));
 
-		addCell(createElementLine(getTranslator().getTranslatedText("actionStrike")));
-		addCell(createElementLine(""));
-		addCell(createElementLine("2" + getTranslator().getTranslatedText("diceAbbreviature") + "/"
+		addCell(createEmptyElementLine(getTranslator().getTranslatedText("actionStrike")));
+		addCell(createEmptyElementLine(""));
+		addCell(createEmptyElementLine("2" + getTranslator().getTranslatedText("diceAbbreviature") + "/"
 				+ getTranslator().getTranslatedText("weaponAbbreviature")));
-		addCell(createElementLine(""));
+		addCell(createEmptyElementLine(""));
 
-		addCell(createElementLine(getTranslator().getTranslatedText("actionGrapple")));
-		addCell(createElementLine(""));
-		addCell(createElementLine("2" + getTranslator().getTranslatedText("diceAbbreviature")));
-		addCell(createElementLine(getTranslator().getTranslatedText("strengthAbbreviature") + "+"
+		addCell(createEmptyElementLine(getTranslator().getTranslatedText("actionGrapple")));
+		addCell(createEmptyElementLine(""));
+		addCell(createEmptyElementLine("2" + getTranslator().getTranslatedText("diceAbbreviature")));
+		addCell(createEmptyElementLine(getTranslator().getTranslatedText("strengthAbbreviature") + "+"
 				+ getTranslator().getTranslatedText("vigorAbbreviature") + "/" + getTranslator().getTranslatedText("strengthAbbreviature")
 				+ "+" + getTranslator().getTranslatedText("vigorAbbreviature")));
 
-		addCell(createElementLine(getTranslator().getTranslatedText("actionKnockdown")));
-		addCell(createElementLine(""));
-		addCell(createElementLine("3" + getTranslator().getTranslatedText("diceAbbreviature")));
-		addCell(createElementLine(getTranslator().getTranslatedText("strengthAbbreviature") + "+"
+		addCell(createEmptyElementLine(getTranslator().getTranslatedText("actionKnockdown")));
+		addCell(createEmptyElementLine(""));
+		addCell(createEmptyElementLine("3" + getTranslator().getTranslatedText("diceAbbreviature")));
+		addCell(createEmptyElementLine(getTranslator().getTranslatedText("strengthAbbreviature") + "+"
 				+ getTranslator().getTranslatedText("meleeAbbreviature") + "/" + getTranslator().getTranslatedText("dexterityAbbreviature")
 				+ "+" + getTranslator().getTranslatedText("vigorAbbreviature")));
 
-		addCell(createElementLine(getTranslator().getTranslatedText("actionDisarm")));
-		addCell(createElementLine("-4"));
-		addCell(createElementLine("2" + getTranslator().getTranslatedText("diceAbbreviature") + "/"
+		addCell(createEmptyElementLine(getTranslator().getTranslatedText("actionDisarm")));
+		addCell(createEmptyElementLine("-4"));
+		addCell(createEmptyElementLine("2" + getTranslator().getTranslatedText("diceAbbreviature") + "/"
 				+ getTranslator().getTranslatedText("weaponAbbreviature")));
-		addCell(createElementLine(getTranslator().getTranslatedText("weaponDamage") + "/"
+		addCell(createEmptyElementLine(getTranslator().getTranslatedText("weaponDamage") + "/"
 				+ getTranslator().getTranslatedText("strengthAbbreviature") + "+" + getTranslator().getTranslatedText("vigorAbbreviature")));
 
-		addCell(createElementLine(getTranslator().getTranslatedText("actionKnockout")));
-		addCell(createElementLine("-4"));
-		addCell(createElementLine("2" + getTranslator().getTranslatedText("diceAbbreviature") + "/"
+		addCell(createEmptyElementLine(getTranslator().getTranslatedText("actionKnockout")));
+		addCell(createEmptyElementLine("-4"));
+		addCell(createEmptyElementLine("2" + getTranslator().getTranslatedText("diceAbbreviature") + "/"
 				+ getTranslator().getTranslatedText("weaponAbbreviature")));
-		addCell(createElementLine(getTranslator().getTranslatedText("weaponSpecial")));
+		addCell(createEmptyElementLine(getTranslator().getTranslatedText("weaponSpecial")));
 
-		addCell(createElementLine(getTranslator().getTranslatedText("actionCharge")));
-		addCell(createElementLine(""));
-		addCell(createElementLine("1" + getTranslator().getTranslatedText("diceAbbreviature") + "/"
+		addCell(createEmptyElementLine(getTranslator().getTranslatedText("actionCharge")));
+		addCell(createEmptyElementLine(""));
+		addCell(createEmptyElementLine("1" + getTranslator().getTranslatedText("diceAbbreviature") + "/"
 				+ getTranslator().getTranslatedText("meterAbbreviature")));
-		addCell(createElementLine(getTranslator().getTranslatedText("maximumAbbreviature") + " 4"
+		addCell(createEmptyElementLine(getTranslator().getTranslatedText("maximumAbbreviature") + " 4"
 				+ getTranslator().getTranslatedText("diceAbbreviature")));
 
 		for (int i = 0; i < ROWS - 6; i++) {
-			addCell(createElementLine("_____________"));
-			addCell(createElementLine("______"));
-			addCell(createElementLine("______"));
-			addCell(createElementLine("_________________"));
+			addCell(createEmptyElementLine("_____________"));
+			addCell(createEmptyElementLine("______"));
+			addCell(createEmptyElementLine("______"));
+			addCell(createEmptyElementLine("_________________"));
 		}
 
 	}

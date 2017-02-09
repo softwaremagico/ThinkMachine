@@ -1,12 +1,17 @@
 package com.softwaremagico.tm.character;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.characteristics.Characteristics;
+import com.softwaremagico.tm.character.occultism.Occultism;
 import com.softwaremagico.tm.character.skills.SelectedSkill;
 import com.softwaremagico.tm.character.skills.SkillFactory;
+import com.softwaremagico.tm.character.traits.Blessing;
 
 public class CharacterPlayer {
 	private String language;
@@ -23,6 +28,8 @@ public class CharacterPlayer {
 	// Skills
 	private Map<String, SelectedSkill> skills;
 
+	private List<Blessing> blessings;
+
 	public CharacterPlayer(String language) {
 		this.language = language;
 		reset();
@@ -33,6 +40,7 @@ public class CharacterPlayer {
 		characteristics = new Characteristics();
 		occultism = new Occultism();
 		skills = new HashMap<>();
+		blessings = new ArrayList<>();
 	}
 
 	public CharacterInfo getInfo() {
@@ -107,5 +115,14 @@ public class CharacterPlayer {
 
 	public Occultism getOccultism() {
 		return occultism;
+	}
+
+	public void addBlessing(Blessing blessing) {
+		blessings.add(blessing);
+		Collections.sort(blessings);
+	}
+
+	public List<Blessing> getBlessings() {
+		return blessings;
 	}
 }

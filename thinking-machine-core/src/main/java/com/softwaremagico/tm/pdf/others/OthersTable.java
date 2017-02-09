@@ -36,7 +36,7 @@ public class OthersTable extends VerticalTable {
 		addCell(createTitle(getTranslator().getTranslatedText("othersTable")));
 
 		for (int i = 0; i < EMPTY_ROWS; i++) {
-			addCell(createElementLine("_______________________________________________"));
+			addCell(createEmptyElementLine("_______________________________________________"));
 		}
 	}
 }

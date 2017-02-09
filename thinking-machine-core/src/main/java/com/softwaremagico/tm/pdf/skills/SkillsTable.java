@@ -24,11 +24,8 @@ package com.softwaremagico.tm.pdf.skills;
  * #L%
  */
 
-import java.util.Arrays;
-
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Element;
-import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.softwaremagico.tm.character.CharacterPlayer;
@@ -37,6 +34,7 @@ import com.softwaremagico.tm.character.skills.SkillFactory;
 import com.softwaremagico.tm.pdf.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.elements.BaseElement;
 import com.softwaremagico.tm.pdf.skills.occultism.OccultismTable;
+import com.softwaremagico.tm.pdf.utils.CellUtils;
 
 public class SkillsTable extends BaseElement {
 	private final static int ROWS = 30;
@@ -46,6 +44,7 @@ public class SkillsTable extends BaseElement {
 	private final static int OCCULTISM_ROWS = 5;
 	private final static int MAX_SKILL_COLUMN_WIDTH = 115;
 	private final static String DEFAULT_NATURAL_SKILL_VALUE = " (3)";
+	private final static String DEFAULT_WHITE_SPACES = "                                ";
 
 	public static PdfPTable getSkillsTable(CharacterPlayer characterPlayer, String language) {
 		float[] widths = { 1f, 1f, 1f };
@@ -202,13 +201,15 @@ public class SkillsTable extends BaseElement {
 				float usedWidth = FadingSunsTheme.getLineItalicFont().getWidthPoint(
 						skill.getName() + " []" + (skill.isNatural() ? DEFAULT_NATURAL_SKILL_VALUE : ""), FadingSunsTheme.SKILLS_LINE_FONT_SIZE);
 				sufix.append(" [");
-				sufix.append(getWhiteSpaces(FadingSunsTheme.getLineItalicFont(), FadingSunsTheme.SKILLS_LINE_FONT_SIZE, MAX_SKILL_COLUMN_WIDTH - usedWidth));
+				sufix.append(CellUtils.getSubStringFitsIn(DEFAULT_WHITE_SPACES, FadingSunsTheme.getLineItalicFont(), FadingSunsTheme.SKILLS_LINE_FONT_SIZE,
+						MAX_SKILL_COLUMN_WIDTH - usedWidth));
 				sufix.append("]");
 			} else {
 				float usedWidth = FadingSunsTheme.getLineFont().getWidthPoint(skill.getName() + " []" + (skill.isNatural() ? DEFAULT_NATURAL_SKILL_VALUE : ""),
 						FadingSunsTheme.SKILLS_LINE_FONT_SIZE);
 				sufix.append(" [");
-				sufix.append(getWhiteSpaces(FadingSunsTheme.getLineFont(), FadingSunsTheme.SKILLS_LINE_FONT_SIZE, MAX_SKILL_COLUMN_WIDTH - usedWidth));
+				sufix.append(CellUtils.getSubStringFitsIn(DEFAULT_WHITE_SPACES, FadingSunsTheme.getLineFont(), FadingSunsTheme.SKILLS_LINE_FONT_SIZE,
+						MAX_SKILL_COLUMN_WIDTH - usedWidth));
 				sufix.append("]");
 			}
 		}
@@ -219,23 +220,6 @@ public class SkillsTable extends BaseElement {
 		}
 
 		return sufix.toString();
-	}
-
-	private static String getWhiteSpaces(BaseFont font, int fontSize, float width) {
-		int numberOfSpaces = 1;
-
-		while (true) {
-			if (font.getWidthPoint(createWhiteLine(numberOfSpaces), fontSize) > width) {
-				return createWhiteLine(numberOfSpaces - 1);
-			}
-			numberOfSpaces++;
-		}
-	}
-
-	private static String createWhiteLine(int charLength) {
-		char[] repeat = new char[charLength];
-		Arrays.fill(repeat, ' ');
-		return new String(repeat);
 	}
 
 }

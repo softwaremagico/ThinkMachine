@@ -26,13 +26,14 @@ package com.softwaremagico.tm.pdf.traits;
 
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
+import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.pdf.elements.BaseElement;
 
 public class MainPerksTableFactory extends BaseElement {
 	protected final static int EMPTY_ROWS = 8;
 	public final static int PADDING = 2;
 
-	public static PdfPTable getPerksTable() {
+	public static PdfPTable getPerksTable(CharacterPlayer characterPlayer) {
 		float[] widths = { 4f, 0.1f, 4f, 0.1f, 1f };
 		PdfPTable table = new PdfPTable(widths);
 		setTablePropierties(table);
@@ -54,7 +55,7 @@ public class MainPerksTableFactory extends BaseElement {
 		victoryPointsCell.setRowspan(2);
 		table.addCell(victoryPointsCell);
 
-		PdfPCell blessingCell = new PdfPCell(new BlessingTable());
+		PdfPCell blessingCell = new PdfPCell(new BlessingTable(characterPlayer));
 		blessingCell.setPadding(0);
 		blessingCell.setBorder(0);
 		table.addCell(blessingCell);

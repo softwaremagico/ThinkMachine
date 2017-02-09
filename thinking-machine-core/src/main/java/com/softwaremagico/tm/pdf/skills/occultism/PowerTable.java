@@ -44,13 +44,13 @@ public class PowerTable extends LateralHeaderPdfPTable {
 		addCell(createTableSubtitleElement(getTranslator().getTranslatedText("occultismTableCost")));
 
 		for (int i = 0; i < ROWS; i++) {
-			addCell(createElementLine(GAP + GAP + GAP + GAP + GAP));
-			addCell(createElementLine(GAP + GAP));
-			addCell(createElementLine(GAP + GAP + GAP + GAP + GAP));
-			addCell(createElementLine(GAP + GAP + GAP + GAP));
-			addCell(createElementLine(GAP + GAP + GAP + GAP + GAP));
-			addCell(createElementLine(GAP + GAP + GAP + GAP));
-			addCell(createElementLine(GAP + GAP + GAP));
+			addCell(createEmptyElementLine(GAP + GAP + GAP + GAP + GAP));
+			addCell(createEmptyElementLine(GAP + GAP));
+			addCell(createEmptyElementLine(GAP + GAP + GAP + GAP + GAP));
+			addCell(createEmptyElementLine(GAP + GAP + GAP + GAP));
+			addCell(createEmptyElementLine(GAP + GAP + GAP + GAP + GAP));
+			addCell(createEmptyElementLine(GAP + GAP + GAP + GAP));
+			addCell(createEmptyElementLine(GAP + GAP + GAP));
 		}
 
 	}

@@ -46,14 +46,14 @@ public class CyberneticsTable extends LateralHeaderPdfPTable {
 		addCell(createTableSubtitleElement(getTranslator().getTranslatedText("cyberneticsOthers")));
 
 		for (int i = 0; i < ROWS - 1; i++) {
-			addCell(createElementLine(GAP + GAP + GAP));
-			addCell(createElementLine(GAP));
-			addCell(createElementLine(GAP));
-			addCell(createElementLine(GAP + GAP));
-			addCell(createElementLine(GAP + GAP));
-			addCell(createElementLine(GAP + GAP));
-			addCell(createElementLine(GAP + GAP));
-			addCell(createElementLine(GAP + GAP + GAP + GAP));
+			addCell(createEmptyElementLine(GAP + GAP + GAP));
+			addCell(createEmptyElementLine(GAP));
+			addCell(createEmptyElementLine(GAP));
+			addCell(createEmptyElementLine(GAP + GAP));
+			addCell(createEmptyElementLine(GAP + GAP));
+			addCell(createEmptyElementLine(GAP + GAP));
+			addCell(createEmptyElementLine(GAP + GAP));
+			addCell(createEmptyElementLine(GAP + GAP + GAP + GAP));
 		}
 	}
 

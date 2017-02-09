@@ -45,15 +45,15 @@ public class WeaponsTable extends LateralHeaderPdfPTable {
 		addCell(createTableSubtitleElement(getTranslator().getTranslatedText("weaponsOthers")));
 
 		for (int i = 0; i < ROWS; i++) {
-			addCell(createElementLine("___________"));
-			addCell(createElementLine("_____________"));
-			addCell(createElementLine("_____"));
-			addCell(createElementLine("______"));
-			addCell(createElementLine("________"));
-			addCell(createElementLine("______"));
-			addCell(createElementLine("______"));
-			addCell(createElementLine("______"));
-			addCell(createElementLine("__________________"));
+			addCell(createEmptyElementLine("___________"));
+			addCell(createEmptyElementLine("_____________"));
+			addCell(createEmptyElementLine("_____"));
+			addCell(createEmptyElementLine("______"));
+			addCell(createEmptyElementLine("________"));
+			addCell(createEmptyElementLine("______"));
+			addCell(createEmptyElementLine("______"));
+			addCell(createEmptyElementLine("______"));
+			addCell(createEmptyElementLine("__________________"));
 		}
 
 		// addCell(createElementLine(""));

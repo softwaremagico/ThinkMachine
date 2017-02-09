@@ -39,41 +39,41 @@ public class RangedWeaponsTable extends LateralHeaderPdfPTable {
 		addCell(createTableSubtitleElement(getTranslator().getTranslatedText("weaponDamage")));
 		addCell(createTableSubtitleElement(getTranslator().getTranslatedText("weaponsOthers")));
 
-		addCell(createElementLine(getTranslator().getTranslatedText("aimAction")));
-		addCell(createElementLine("+1/" + getTranslator().getTranslatedText("roundAbbreviature")));
-		addCell(createElementLine(""));
-		addCell(createElementLine(getTranslator().getTranslatedText("aimEffect")));
+		addCell(createEmptyElementLine(getTranslator().getTranslatedText("aimAction")));
+		addCell(createEmptyElementLine("+1/" + getTranslator().getTranslatedText("roundAbbreviature")));
+		addCell(createEmptyElementLine(""));
+		addCell(createEmptyElementLine(getTranslator().getTranslatedText("aimEffect")));
 
 //		addCell(createElementLine("Barrido"));
 //		addCell(createElementLine("-1/" + getTranslator().getTranslatedText("meterAbbreviature")));
 //		addCell(createElementLine("+1"));
 //		addCell(createElementLine(""));
 
-		addCell(createElementLine(getTranslator().getTranslatedText("burstAction") + " (3)"));
-		addCell(createElementLine("+2"));
-		addCell(createElementLine("+3"));
-		addCell(createElementLine(""));
+		addCell(createEmptyElementLine(getTranslator().getTranslatedText("burstAction") + " (3)"));
+		addCell(createEmptyElementLine("+2"));
+		addCell(createEmptyElementLine("+3"));
+		addCell(createEmptyElementLine(""));
 
-		addCell(createElementLine(getTranslator().getTranslatedText("burstAction") + " (6)"));
-		addCell(createElementLine("-2"));
-		addCell(createElementLine("+5"));
-		addCell(createElementLine(getTranslator().getTranslatedText("burst6Effect")));
+		addCell(createEmptyElementLine(getTranslator().getTranslatedText("burstAction") + " (6)"));
+		addCell(createEmptyElementLine("-2"));
+		addCell(createEmptyElementLine("+5"));
+		addCell(createEmptyElementLine(getTranslator().getTranslatedText("burst6Effect")));
 
-		addCell(createElementLine(getTranslator().getTranslatedText("emptyClipAction")));
-		addCell(createElementLine("-4"));
-		addCell(createElementLine("+7"));
-		addCell(createElementLine(getTranslator().getTranslatedText("emptyClipEffect")));
+		addCell(createEmptyElementLine(getTranslator().getTranslatedText("emptyClipAction")));
+		addCell(createEmptyElementLine("-4"));
+		addCell(createEmptyElementLine("+7"));
+		addCell(createEmptyElementLine(getTranslator().getTranslatedText("emptyClipEffect")));
 
-		addCell(createElementLine(getTranslator().getTranslatedText("supressingFireAction")));
-		addCell(createElementLine("-2"));
-		addCell(createElementLine("  "));
-		addCell(createElementLine(getTranslator().getTranslatedText("weaponSpecial")));
+		addCell(createEmptyElementLine(getTranslator().getTranslatedText("supressingFireAction")));
+		addCell(createEmptyElementLine("-2"));
+		addCell(createEmptyElementLine("  "));
+		addCell(createEmptyElementLine(getTranslator().getTranslatedText("weaponSpecial")));
 
 		for (int i = 0; i < ROWS - 5; i++) {
-			addCell(createElementLine("_____________"));
-			addCell(createElementLine("______"));
-			addCell(createElementLine("______"));
-			addCell(createElementLine("_________________"));
+			addCell(createEmptyElementLine("_____________"));
+			addCell(createEmptyElementLine("______"));
+			addCell(createEmptyElementLine("______"));
+			addCell(createEmptyElementLine("_________________"));
 		}
 
 	}
