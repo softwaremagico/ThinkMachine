@@ -26,7 +26,6 @@ package com.softwaremagico.tm.pdf.characteristics;
 
 import com.itextpdf.text.Font;
 import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.softwaremagico.tm.character.CharacterPlayer;
@@ -62,7 +61,7 @@ public class CharacteristicColumn extends LateralHeaderPdfPTable {
 				paragraph.add(new Paragraph(GAP, new Font(FadingSunsTheme.getLineFont(), FadingSunsTheme.CHARACTERISTICS_LINE_FONT_SIZE)));
 			} else {
 				paragraph.add(new Paragraph(characterPlayer.getStartingValue(characteristicName) + "", new Font(FadingSunsTheme.getHandwrittingFont(),
-						FadingSunsTheme.CHARACTERISTICS_LINE_FONT_SIZE - 1)));
+						FadingSunsTheme.convertToHandWrittingFontSize(FadingSunsTheme.CHARACTERISTICS_LINE_FONT_SIZE))));
 			}
 			paragraph.add(new Paragraph(")", new Font(FadingSunsTheme.getLineFont(), FadingSunsTheme.CHARACTERISTICS_LINE_FONT_SIZE)));
 
@@ -72,7 +71,11 @@ public class CharacteristicColumn extends LateralHeaderPdfPTable {
 			table.addCell(characteristicTitle);
 
 			// Rectangle
-			table.addCell(createRectangle());
+			if (characterPlayer == null) {
+				table.addCell(createRectangle());
+			} else {
+				table.addCell(createRectangle(characterPlayer.getValue(characteristicName)));
+			}
 
 			// Margin
 			PdfPCell margin = new PdfPCell();
@@ -90,13 +93,6 @@ public class CharacteristicColumn extends LateralHeaderPdfPTable {
 	@Override
 	protected int getTitleFontSize() {
 		return FadingSunsTheme.CHARACTERISTICS_TITLE_FONT_SIZE;
-	}
-
-	private static String getCharacteristicWithValue(CharacterPlayer characterPlayer, CharacteristicName characteristicName) {
-		if (characterPlayer == null) {
-			return getTranslator().getTranslatedText(characteristicName.getTranslationTag()) + " (" + GAP + ")";
-		}
-		return getTranslator().getTranslatedText(characteristicName.getTranslationTag()) + " ( " + characterPlayer.getStartingValue(characteristicName) + " )";
 	}
 
 }

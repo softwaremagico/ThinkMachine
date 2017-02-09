@@ -45,7 +45,23 @@ public class CharacterPlayer {
 		if (CharacteristicName.MOVEMENT.equals(characteristicName)) {
 			return 5;
 		}
+		if (CharacteristicName.INITIATIVE.equals(characteristicName)) {
+			return getStartingValue(CharacteristicName.DEXTERITY) + getStartingValue(CharacteristicName.WITS);
+		}
 		return 3;
+	}
+
+	public Integer getValue(CharacteristicName characteristicName) {
+		if (CharacteristicName.INITIATIVE.equals(characteristicName)) {
+			return getValue(CharacteristicName.DEXTERITY) + getValue(CharacteristicName.WITS);
+		}
+		if (CharacteristicName.DEFENSE.equals(characteristicName)) {
+			return getStartingValue(characteristicName);
+		}
+		if (CharacteristicName.MOVEMENT.equals(characteristicName)) {
+			return getStartingValue(characteristicName);
+		}
+		return getCharacteristics().getCharacteristic(characteristicName).getValue();
 	}
 
 }

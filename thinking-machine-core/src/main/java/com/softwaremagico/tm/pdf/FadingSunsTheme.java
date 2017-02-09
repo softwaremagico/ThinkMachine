@@ -56,6 +56,8 @@ public abstract class FadingSunsTheme {
 	public final static int ARMOUR_TITLE_FONT_SIZE = 12;
 	public final static int CYBERNETICS_TITLE_FONT_SIZE = 12;
 	
+	public final static int HANDWRITTING_DEFAULT_FONT_SIZE = 10;
+
 	public final static int DEFAULT_MARGIN = 3;
 
 	private static BaseFont lineFont;
@@ -67,58 +69,54 @@ public abstract class FadingSunsTheme {
 
 	public static BaseFont getLineFont() {
 		if (lineFont == null) {
-			Font font = FontFactory.getFont("/" + LINE_FONT_NAME, BaseFont.IDENTITY_H, BaseFont.EMBEDDED,
-					0.8f, Font.NORMAL, BaseColor.BLACK);
+			Font font = FontFactory.getFont("/" + LINE_FONT_NAME, BaseFont.IDENTITY_H, BaseFont.EMBEDDED, 0.8f, Font.NORMAL, BaseColor.BLACK);
 			lineFont = font.getBaseFont();
 		}
 		return lineFont;
 	}
-	
+
 	public static BaseFont getLineItalicFont() {
 		if (lineItalicFont == null) {
-			Font font = FontFactory.getFont("/" + LINE_FONT_ITALIC_NAME, BaseFont.IDENTITY_H, BaseFont.EMBEDDED,
-					0.8f, Font.ITALIC, BaseColor.BLACK);
+			Font font = FontFactory.getFont("/" + LINE_FONT_ITALIC_NAME, BaseFont.IDENTITY_H, BaseFont.EMBEDDED, 0.8f, Font.ITALIC, BaseColor.BLACK);
 			lineItalicFont = font.getBaseFont();
 		}
 		return lineItalicFont;
 	}
-	
+
 	public static BaseFont getLineFontBold() {
 		if (lineBoldFont == null) {
-			Font font = FontFactory.getFont("/" + LINE_BOLD_FONT_NAME, BaseFont.IDENTITY_H, BaseFont.EMBEDDED,
-					0.8f, Font.BOLD, BaseColor.BLACK);
+			Font font = FontFactory.getFont("/" + LINE_BOLD_FONT_NAME, BaseFont.IDENTITY_H, BaseFont.EMBEDDED, 0.8f, Font.BOLD, BaseColor.BLACK);
 			lineBoldFont = font.getBaseFont();
 		}
 		return lineBoldFont;
 	}
 
-
 	public static BaseFont getTitleFont() {
 		if (titleFont == null) {
-			Font font = FontFactory.getFont("/" + TITLE_FONT_NAME, BaseFont.IDENTITY_H, BaseFont.EMBEDDED,
-					0.8f, Font.NORMAL, BaseColor.BLACK);
+			Font font = FontFactory.getFont("/" + TITLE_FONT_NAME, BaseFont.IDENTITY_H, BaseFont.EMBEDDED, 0.8f, Font.NORMAL, BaseColor.BLACK);
 			titleFont = font.getBaseFont();
 		}
 		return titleFont;
 	}
-	
 
 	public static BaseFont getSubtitleFont() {
 		if (tableSubtitleFont == null) {
-			Font font = FontFactory.getFont("/" + TABLE_SUBTITLE_FONT_NAME, BaseFont.IDENTITY_H, BaseFont.EMBEDDED,
-					0.8f, Font.ITALIC, BaseColor.BLACK);
+			Font font = FontFactory.getFont("/" + TABLE_SUBTITLE_FONT_NAME, BaseFont.IDENTITY_H, BaseFont.EMBEDDED, 0.8f, Font.ITALIC, BaseColor.BLACK);
 			tableSubtitleFont = font.getBaseFont();
 		}
 		return tableSubtitleFont;
 	}
-	
+
 	public static BaseFont getHandwrittingFont() {
 		if (handwrittingFont == null) {
-			Font font = FontFactory.getFont("/" + HANDWRITTING_FONT_NAME, BaseFont.IDENTITY_H, BaseFont.EMBEDDED,
-					0.8f, Font.NORMAL, BaseColor.BLACK);
+			Font font = FontFactory.getFont("/" + HANDWRITTING_FONT_NAME, BaseFont.IDENTITY_H, BaseFont.EMBEDDED, 0.8f, Font.NORMAL, BaseColor.BLACK);
 			handwrittingFont = font.getBaseFont();
 		}
 		return handwrittingFont;
+	}
+
+	public static int convertToHandWrittingFontSize(int originalSize) {
+		return originalSize - 1;
 	}
 
 }

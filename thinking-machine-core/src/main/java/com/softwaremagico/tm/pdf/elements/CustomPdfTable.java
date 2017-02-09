@@ -27,6 +27,7 @@ package com.softwaremagico.tm.pdf.elements;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
+import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
@@ -72,6 +73,19 @@ public abstract class CustomPdfTable extends PdfPTable {
 
 	protected PdfPCell createRectangle() {
 		PdfPCell box = new PdfPCell();
+		box.setMinimumHeight(15);
+		box.setBorder(0);
+		box.setCellEvent(new CellPaddingEvent());
+		return box;
+	}
+
+	protected PdfPCell createRectangle(Integer value) {
+		if (value == null) {
+			return createRectangle();
+		}
+		PdfPCell box = new PdfPCell(new Paragraph(value + "", new Font(FadingSunsTheme.getHandwrittingFont(), FadingSunsTheme.HANDWRITTING_DEFAULT_FONT_SIZE)));
+		box.setVerticalAlignment(Element.ALIGN_MIDDLE);
+		box.setHorizontalAlignment(Element.ALIGN_CENTER);
 		box.setMinimumHeight(15);
 		box.setBorder(0);
 		box.setCellEvent(new CellPaddingEvent());
