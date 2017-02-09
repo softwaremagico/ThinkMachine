@@ -55,9 +55,12 @@ Where `en` is the language to obtain the file (now can be `en`, `es`) and `/path
 ## Notes
 This software has been developed using the [iText library] (http://itextpdf.com/) for PDF generation. 
 Fading Suns is a TradeMark owned by Holistic Design. 
+Fonts used in this project: DejaVuSans, ArchitectsDaughter and Roman Antique. 
 
 ## Versions
 
 0.1.0 Basic PDF generation
 
 0.2.0 Multilingual added (English and Spanish).
+
+*0.3.0 Filling up the sheet.*
