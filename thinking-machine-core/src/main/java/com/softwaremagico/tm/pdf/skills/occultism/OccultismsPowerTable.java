@@ -24,15 +24,16 @@ package com.softwaremagico.tm.pdf.skills.occultism;
  * #L%
  */
 
+import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.pdf.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.elements.LateralHeaderPdfPTable;
 
-public class PowerTable extends LateralHeaderPdfPTable {
+public class OccultismsPowerTable extends LateralHeaderPdfPTable {
 	private final static float[] WIDTHS = { 1.25f, 5f, 2f, 5f, 4f, 4f, 4f, 3f };
 	private final static int ROWS = 10;
 	private final static String GAP = "__";
 
-	public PowerTable() {
+	public OccultismsPowerTable(CharacterPlayer characterPlayer) {
 		super(WIDTHS);
 		addCell(createLateralVerticalTitle(getTranslator().getTranslatedText("occultismPowers"), ROWS + 1));
 		addCell(createTableSubtitleElement(getTranslator().getTranslatedText("occultismTablePower")));
