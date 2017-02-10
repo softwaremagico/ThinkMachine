@@ -46,6 +46,7 @@ public abstract class FadingSunsTheme {
 	public final static int SKILLS_LINE_FONT_SIZE = 10;
 	public final static int OCCULSTISM_TITLE_FONT_SIZE = 12;
 	public final static int OCCULSTISM_POWERS_TITLE_FONT_SIZE = 12;
+	public final static int OCCULSTISM_POWERS_CONTENT_FONT_SIZE = 6;
 	public final static int ANNOTATIONS_TITLE_FONT_SIZE = 12;
 	public final static int ANNOTATIONS_SUBTITLE_FONT_SIZE = 9;
 	public final static int VERTICALTABLE_TITLE_FONT_SIZE = 12;

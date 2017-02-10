@@ -42,7 +42,7 @@ import com.softwaremagico.tm.pdf.info.PropertiesTable;
 import com.softwaremagico.tm.pdf.others.AnnotationsTable;
 import com.softwaremagico.tm.pdf.others.OthersTable;
 import com.softwaremagico.tm.pdf.skills.MainSkillsTableFactory;
-import com.softwaremagico.tm.pdf.skills.occultism.PowerTable;
+import com.softwaremagico.tm.pdf.skills.occultism.OccultismsPowerTable;
 import com.softwaremagico.tm.pdf.traits.MainPerksTableFactory;
 
 public class CharacterSheet extends PdfDocument {
@@ -106,7 +106,7 @@ public class CharacterSheet extends PdfDocument {
 
 		mainTable.addCell(new PropertiesTable());
 
-		PdfPCell psiCell = new PdfPCell(new PowerTable());
+		PdfPCell psiCell = new PdfPCell(new OccultismsPowerTable(getCharacterPlayer()));
 		psiCell.setColspan(2);
 		mainTable.addCell(psiCell);
 

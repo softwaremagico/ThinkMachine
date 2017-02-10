@@ -74,14 +74,20 @@ public abstract class CustomPdfTable extends PdfPTable {
 				CellUtils.getSubStringFitsIn(text, FadingSunsTheme.getHandwrittingFont(),
 						FadingSunsTheme.getHandWrittingFontSize(FadingSunsTheme.TABLE_LINE_FONT_SIZE), 70), 0, 1, Element.ALIGN_CENTER, BaseColor.WHITE,
 				FadingSunsTheme.getHandwrittingFont(), FadingSunsTheme.getHandWrittingFontSize(FadingSunsTheme.TABLE_LINE_FONT_SIZE));
-		cell.setMinimumHeight(10);
+		cell.setMinimumHeight(12);
 		cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		return cell;
 	}
 
 	protected static PdfPCell createElementLine(String text, int maxWidth) {
-		String remainingText = CellUtils.getSubStringFitsIn(text, FadingSunsTheme.getHandwrittingFont(),
-				FadingSunsTheme.getHandWrittingFontSize(FadingSunsTheme.TABLE_LINE_FONT_SIZE), maxWidth);
+		return createElementLine(text, maxWidth, FadingSunsTheme.getHandWrittingFontSize(FadingSunsTheme.TABLE_LINE_FONT_SIZE));
+	}
+
+	protected static PdfPCell createElementLine(String text, int maxWidth, int fontSize) {
+		if (text == null) {
+			text = "";
+		}
+		String remainingText = CellUtils.getSubStringFitsIn(text, FadingSunsTheme.getHandwrittingFont(), fontSize, maxWidth);
 		return createElementLine(remainingText);
 	}
 

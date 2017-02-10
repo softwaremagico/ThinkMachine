@@ -34,6 +34,7 @@ import com.itextpdf.text.DocumentException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.Gender;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
+import com.softwaremagico.tm.character.occultism.OccultismPower;
 import com.softwaremagico.tm.character.traits.Benefit;
 import com.softwaremagico.tm.character.traits.Blessing;
 import com.softwaremagico.tm.language.LanguagePool;
@@ -89,10 +90,18 @@ public class CharacterSheetCreationTest {
 		player.getOccultism().setPsiValue(4);
 		player.getOccultism().setUrge(1);
 
-		player.addBlessing(new Blessing("Elegante", 1, 1, "Influenciar", ""));
+		player.getOccultism().addOccultismPower(new OccultismPower("Mano Levitante", "Vol+Autoc.", 1, "Sensorial", "Temporal", "", 1));
+		player.getOccultism().addOccultismPower(new OccultismPower("Mano Lanzadora", "Vol+Autoc.", 2, "Sensorial", "Temporal", "", 1));
+		player.getOccultism().addOccultismPower(new OccultismPower("Sensibilidad", "Vol+Observar", 1, "Sensorial", "Temporal", "", 1));
+		player.getOccultism().addOccultismPower(new OccultismPower("Fortalecer", "Vol+Vigor", 1, null, "Temporal", "", 1));
+		player.getOccultism().addOccultismPower(new OccultismPower("Vigorizar", "Vol+Vigor", 2, null, "Temporal", "", 1));
+		player.getOccultism().addOccultismPower(new OccultismPower("Agilizar", "Vol+Atletismo", 3, null, "Temporal", "", 1));
+		player.getOccultism().addOccultismPower(new OccultismPower("Endurecer", "Vol+Vigor", 1, null, "Temporal", "", 1));
+		
+		player.addBlessing(new Blessing("Elegante", 1, 1, "Influenciar", "--"));
 		player.addBlessing(new Blessing("Curioso", 2, 2, "Presencia", "Ante algo nuevo"));
 		player.addBlessing(new Blessing("Crédulo", -2, -2, "Voluntad", "Si se le engatusa"));
-		
+
 		player.addBenefit(new Benefit("Estigma", -1));
 		player.addBenefit(new Benefit("Herencia", 3));
 		player.addBenefit(new Benefit("Filoespada", 12));
