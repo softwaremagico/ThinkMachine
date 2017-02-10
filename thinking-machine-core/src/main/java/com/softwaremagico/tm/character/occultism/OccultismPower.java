@@ -1,7 +1,8 @@
 package com.softwaremagico.tm.character.occultism;
 
-public class OccultismPower implements Comparable<OccultismPower> {
-	private String name;
+import com.softwaremagico.tm.Element;
+
+public class OccultismPower extends Element<OccultismPower> {
 	private String roll;
 	private int level;
 	private String range;
@@ -10,17 +11,13 @@ public class OccultismPower implements Comparable<OccultismPower> {
 	private int cost;
 
 	public OccultismPower(String name, String roll, int level, String range, String duration, String requirements, int cost) {
-		this.name = name;
+		super(name);
 		this.roll = roll;
 		this.level = level;
 		this.range = range;
 		this.duration = duration;
 		this.requirements = requirements;
 		this.cost = cost;
-	}
-
-	public String getName() {
-		return name;
 	}
 
 	public String getRoll() {
@@ -45,16 +42,6 @@ public class OccultismPower implements Comparable<OccultismPower> {
 
 	public int getCost() {
 		return cost;
-	}
-
-	@Override
-	public int compareTo(OccultismPower power) {
-		return getName().compareTo(power.getName());
-	}
-
-	@Override
-	public String toString() {
-		return getName();
 	}
 
 }

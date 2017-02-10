@@ -91,13 +91,13 @@ public class CharacterSheetCreationTest {
 		player.getOccultism().setPsiValue(4);
 		player.getOccultism().setUrge(1);
 
-		player.getOccultism().addOccultismPower(new OccultismPower("Mano Levitante", "Vol+Autoc.", 1, "Sensorial", "Temporal", "", 1));
-		player.getOccultism().addOccultismPower(new OccultismPower("Mano Lanzadora", "Vol+Autoc.", 2, "Sensorial", "Temporal", "", 1));
-		player.getOccultism().addOccultismPower(new OccultismPower("Sensibilidad", "Vol+Observar", 1, "Sensorial", "Temporal", "", 1));
-		player.getOccultism().addOccultismPower(new OccultismPower("Fortalecer", "Vol+Vigor", 1, null, "Temporal", "", 1));
-		player.getOccultism().addOccultismPower(new OccultismPower("Vigorizar", "Vol+Vigor", 2, null, "Temporal", "", 1));
-		player.getOccultism().addOccultismPower(new OccultismPower("Agilizar", "Vol+Atletismo", 3, null, "Temporal", "", 1));
-		player.getOccultism().addOccultismPower(new OccultismPower("Endurecer", "Vol+Vigor", 4, null, "Temporal", "", 1));
+		player.getOccultism().addElement(new OccultismPower("Mano Levitante", "Vol+Autoc.", 1, "Sensorial", "Temporal", "", 1));
+		player.getOccultism().addElement(new OccultismPower("Mano Lanzadora", "Vol+Autoc.", 2, "Sensorial", "Temporal", "", 1));
+		player.getOccultism().addElement(new OccultismPower("Sensibilidad", "Vol+Observar", 1, "Sensorial", "Temporal", "", 1));
+		player.getOccultism().addElement(new OccultismPower("Fortalecer", "Vol+Vigor", 1, null, "Temporal", "", 1));
+		player.getOccultism().addElement(new OccultismPower("Vigorizar", "Vol+Vigor", 2, null, "Temporal", "", 1));
+		player.getOccultism().addElement(new OccultismPower("Agilizar", "Vol+Atletismo", 3, null, "Temporal", "", 1));
+		player.getOccultism().addElement(new OccultismPower("Endurecer", "Vol+Vigor", 4, null, "Temporal", "", 1));
 
 		player.addBlessing(new Blessing("Elegante", 1, 1, "Influenciar", "--"));
 		player.addBlessing(new Blessing("Curioso", 2, 2, "Presencia", "Ante algo nuevo"));
@@ -107,8 +107,8 @@ public class CharacterSheetCreationTest {
 		player.addBenefit(new Benefit("Herencia", 3));
 		player.addBenefit(new Benefit("Filoespada", 12));
 
-		player.getCybernetics().addDevice(new Device("Ojo de Ingeniero", 6, 5, "Normal", "Normal", "Automático", "Visible", ""));
-		player.getCybernetics().addDevice(new Device("Jonás", 7, 4, "Normal", "Normal", "Ds+Arquería", "Incógnito", ""));
+		player.getCybernetics().addElement(new Device("Ojo de Ingeniero", 6, 5, "Normal", "Normal", "Automático", "Visible", ""));
+		player.getCybernetics().addElement(new Device("Jonás", 7, 4, "Normal", "Normal", "Ds+Arquería", "Incógnito", ""));
 
 		LanguagePool.clearCache();
 		CharacterSheet sheet = new CharacterSheet(player);

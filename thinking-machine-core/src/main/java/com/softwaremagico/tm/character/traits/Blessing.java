@@ -1,22 +1,19 @@
 package com.softwaremagico.tm.character.traits;
 
-public class Blessing implements Comparable<Blessing> {
-	private String name;
+import com.softwaremagico.tm.Element;
+
+public class Blessing extends Element<Blessing> {
 	private Integer cost;
 	private Integer bonification;
 	private String trait;
 	private String situation;
 
 	public Blessing(String name, Integer cost, Integer bonification, String trait, String situation) {
-		this.name = name;
+		super(name);
 		this.cost = cost;
 		this.bonification = bonification;
 		this.trait = trait;
 		this.situation = situation;
-	}
-
-	public String getName() {
-		return name;
 	}
 
 	public Integer getCost() {
@@ -35,13 +32,4 @@ public class Blessing implements Comparable<Blessing> {
 		return situation;
 	}
 
-	@Override
-	public int compareTo(Blessing blessing) {
-		return getName().compareTo(blessing.getName());
-	}
-
-	@Override
-	public String toString() {
-		return getName();
-	}
 }

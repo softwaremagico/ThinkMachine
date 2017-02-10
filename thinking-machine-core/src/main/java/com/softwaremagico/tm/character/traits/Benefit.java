@@ -1,29 +1,17 @@
 package com.softwaremagico.tm.character.traits;
 
-public class Benefit implements Comparable<Benefit> {
-	private String name;
+import com.softwaremagico.tm.Element;
+
+public class Benefit extends Element<Benefit> {
 	private int cost;
 
 	public Benefit(String name, int cost) {
-		this.name = name;
+		super(name);
 		this.cost = cost;
-	}
-
-	public String getName() {
-		return name;
 	}
 
 	public int getCost() {
 		return cost;
 	}
 
-	@Override
-	public int compareTo(Benefit benefit) {
-		return getName().compareTo(benefit.getName());
-	}
-
-	@Override
-	public String toString() {
-		return getName();
-	}
 }

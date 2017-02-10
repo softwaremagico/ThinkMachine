@@ -1,7 +1,8 @@
 package com.softwaremagico.tm.character.cybernetics;
 
-public class Device implements Comparable<Device> {
-	private String name;
+import com.softwaremagico.tm.Element;
+
+public class Device extends Element<Device> {
 	private int points;
 	private int incompatibility;
 	private String usability;
@@ -11,8 +12,7 @@ public class Device implements Comparable<Device> {
 	private String others;
 
 	public Device(String name, int points, int incompatibility, String usability, String quality, String activation, String appearence, String others) {
-		super();
-		this.name = name;
+		super(name);
 		this.points = points;
 		this.incompatibility = incompatibility;
 		this.usability = usability;
@@ -20,10 +20,6 @@ public class Device implements Comparable<Device> {
 		this.activation = activation;
 		this.appearence = appearence;
 		this.others = others;
-	}
-
-	public String getName() {
-		return name;
 	}
 
 	public int getPoints() {
@@ -52,15 +48,5 @@ public class Device implements Comparable<Device> {
 
 	public String getOthers() {
 		return others;
-	}
-
-	@Override
-	public int compareTo(Device device) {
-		return getName().compareTo(device.getName());
-	}
-
-	@Override
-	public String toString() {
-		return getName();
 	}
 }
