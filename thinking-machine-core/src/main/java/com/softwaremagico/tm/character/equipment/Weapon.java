@@ -25,6 +25,12 @@ public class Weapon extends Element<Weapon> {
 		this.tech = tech;
 	}
 
+	public Weapon(String name, String roll, int goal, int damage, String strengthOrRange, Integer shots, String rate, int tech, Size size,
+			String others) {
+		this(name, roll, goal, damage, strengthOrRange, shots, rate, tech, size);
+		setOthers(others);
+	}
+
 	public String getRoll() {
 		return roll;
 	}

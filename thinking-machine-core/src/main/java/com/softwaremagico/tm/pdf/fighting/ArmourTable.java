@@ -80,8 +80,8 @@ public class ArmourTable extends LateralHeaderPdfPTable {
 		PdfPCell malusCell;
 		if (characterPlayer == null || characterPlayer.getArmour() == null) {
 			malusCell = createEmptyElementLine(getTranslator().getTranslatedText("strengthAbbreviature") + ":__  "
-					+ getTranslator().getTranslatedText("dexterityAbbreviature") + ":__  " + getTranslator().getTranslatedText("iniciativeAbbreviature")
-					+ ":__ " + getTranslator().getTranslatedText("enduranceAbbreviature") + ":__");
+					+ getTranslator().getTranslatedText("dexterityAbbreviature") + ":__  "  + getTranslator().getTranslatedText("enduranceAbbreviature") + ":__ " + getTranslator().getTranslatedText("iniciativeAbbreviature")
+					+ ":__");
 		} else {
 			Paragraph paragraph = new Paragraph();
 			paragraph.add(new Paragraph(getTranslator().getTranslatedText("strengthAbbreviature") + ":", new Font(FadingSunsTheme.getLineFont(),
@@ -94,14 +94,14 @@ public class ArmourTable extends LateralHeaderPdfPTable {
 			paragraph.add(new Paragraph(characterPlayer.getArmour().getDexterityBonus() + " ", new Font(FadingSunsTheme.getHandwrittingFont(),
 					FadingSunsTheme.ARMOUR_CONTENT_FONT_SIZE)));
 
-			paragraph.add(new Paragraph(" " + getTranslator().getTranslatedText("iniciativeAbbreviature") + ":", new Font(FadingSunsTheme.getLineFont(),
-					FadingSunsTheme.TABLE_LINE_FONT_SIZE)));
-			paragraph.add(new Paragraph(characterPlayer.getArmour().getInitiativeBonus() + " ", new Font(FadingSunsTheme.getHandwrittingFont(),
-					FadingSunsTheme.ARMOUR_CONTENT_FONT_SIZE)));
-
 			paragraph.add(new Paragraph(" " + getTranslator().getTranslatedText("enduranceAbbreviature") + ":", new Font(FadingSunsTheme.getLineFont(),
 					FadingSunsTheme.TABLE_LINE_FONT_SIZE)));
 			paragraph.add(new Paragraph(characterPlayer.getArmour().getEnduranceBonus() + " ", new Font(FadingSunsTheme.getHandwrittingFont(),
+					FadingSunsTheme.ARMOUR_CONTENT_FONT_SIZE)));
+			
+			paragraph.add(new Paragraph(" " + getTranslator().getTranslatedText("iniciativeAbbreviature") + ":", new Font(FadingSunsTheme.getLineFont(),
+					FadingSunsTheme.TABLE_LINE_FONT_SIZE)));
+			paragraph.add(new Paragraph(characterPlayer.getArmour().getInitiativeBonus() + " ", new Font(FadingSunsTheme.getHandwrittingFont(),
 					FadingSunsTheme.ARMOUR_CONTENT_FONT_SIZE)));
 
 			malusCell = createEmptyElementLine("");

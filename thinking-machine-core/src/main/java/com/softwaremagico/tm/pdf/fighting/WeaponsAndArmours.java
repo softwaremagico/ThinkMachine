@@ -33,7 +33,7 @@ public class WeaponsAndArmours extends BaseElement {
 	public final static int PADDING = 2;
 
 	public static PdfPTable getWeaponsAndArmoursTable(CharacterPlayer characterPlayer) {
-		float[] widths = { 4f, 1f };
+		float[] widths = { 4f, 1.1f };
 		PdfPTable table = new PdfPTable(widths);
 		setTablePropierties(table);
 		table.getDefaultCell().setPadding(PADDING);
@@ -46,7 +46,7 @@ public class WeaponsAndArmours extends BaseElement {
 		PdfPCell armourCell = new PdfPCell(new ArmourTable(characterPlayer));
 		table.addCell(armourCell);
 
-		PdfPCell shieldCell = new PdfPCell(new ShieldTable());
+		PdfPCell shieldCell = new PdfPCell(new ShieldTable(characterPlayer));
 		table.addCell(shieldCell);
 
 		return table;

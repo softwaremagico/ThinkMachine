@@ -10,6 +10,7 @@ import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.characteristics.Characteristics;
 import com.softwaremagico.tm.character.cybernetics.Cybernetics;
 import com.softwaremagico.tm.character.equipment.Armour;
+import com.softwaremagico.tm.character.equipment.Shield;
 import com.softwaremagico.tm.character.equipment.Weapons;
 import com.softwaremagico.tm.character.occultism.Occultism;
 import com.softwaremagico.tm.character.skills.SelectedSkill;
@@ -41,6 +42,8 @@ public class CharacterPlayer {
 
 	private Armour armour;
 
+	private Shield shield;
+
 	public CharacterPlayer(String language) {
 		this.language = language;
 		reset();
@@ -56,6 +59,7 @@ public class CharacterPlayer {
 		cybernetics = new Cybernetics();
 		weapons = new Weapons();
 		setArmour(null);
+		setShield(null);
 	}
 
 	public CharacterInfo getInfo() {
@@ -180,5 +184,13 @@ public class CharacterPlayer {
 
 	public void setArmour(Armour armour) {
 		this.armour = armour;
+	}
+
+	public Shield getShield() {
+		return shield;
+	}
+
+	public void setShield(Shield shield) {
+		this.shield = shield;
 	}
 }
