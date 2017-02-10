@@ -22,7 +22,7 @@ public class CostCalculator {
 		cost += getTraitsCosts(characterPlayer);
 		cost += getPsiPowersCosts(characterPlayer);
 		cost += getCyberneticsCost(characterPlayer);
-		cost += getCombatStylesCost(characterPlayer);
+		//cost += getCombatStylesCost(characterPlayer);
 		return cost;
 	}
 
@@ -99,17 +99,6 @@ public class CostCalculator {
 		int cost = 0;
 		for (Device device : characterPlayer.getCybernetics().getElements()) {
 			cost += device.getPoints();
-		}
-		return cost;
-	}
-
-	private static int getCombatStylesCost(CharacterPlayer characterPlayer) {
-		int cost = 0;
-		for (CombatStyle style : characterPlayer.getMeleeCombatStyles()) {
-			cost += style.getCost();
-		}
-		for (CombatStyle style : characterPlayer.getRangedCombatStyles()) {
-			cost += style.getCost();
 		}
 		return cost;
 	}

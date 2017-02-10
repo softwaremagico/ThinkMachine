@@ -119,7 +119,7 @@ public class CharacterSheetCreationTest {
 		player.getCybernetics().addElement(new Device("Ojo de Ingeniero", 6, 5, "Normal", "Normal", "Automático", "Visible", ""));
 		player.getCybernetics().addElement(new Device("Jonás", 7, 4, "Normal", "Normal", "Ds+Arquería", "Incógnito", ""));
 
-		CombatStyle gun = new CombatStyle("gun");
+		CombatStyle gun = new CombatStyle("Pistola");
 		gun.addElement(new CombatAction("Disparo Instantáneo", null, null, "-2 por 3 disparos"));
 		gun.addElement(new CombatAction("Rueda y Dispara", null, null, "Mover 3m"));
 		gun.addElement(new CombatAction("Corre y Dispara", null, null, "Especial"));

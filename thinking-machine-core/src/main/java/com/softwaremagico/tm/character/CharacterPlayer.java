@@ -22,6 +22,8 @@ import com.softwaremagico.tm.character.traits.Benefit;
 import com.softwaremagico.tm.character.traits.Blessing;
 
 public class CharacterPlayer {
+	private final static int COMBAT_STYLE_COST = 5;
+
 	private String language;
 
 	// Basic description of the character.
@@ -164,6 +166,12 @@ public class CharacterPlayer {
 			if (benefit.getCost() >= 0) {
 				positiveBenefits.add(benefit);
 			}
+		}
+		for (CombatStyle style : getMeleeCombatStyles()) {
+			positiveBenefits.add(new Benefit(style.getName(), COMBAT_STYLE_COST));
+		}
+		for (CombatStyle style : getRangedCombatStyles()) {
+			positiveBenefits.add(new Benefit(style.getName(), COMBAT_STYLE_COST));
 		}
 		return Collections.unmodifiableList(positiveBenefits);
 	}
