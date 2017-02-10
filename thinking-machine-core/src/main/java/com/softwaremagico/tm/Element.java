@@ -1,7 +1,7 @@
 package com.softwaremagico.tm;
 
 public class Element<T extends Element<?>> implements Comparable<T> {
-	private String name;
+	private final String name;
 
 	public Element(String name) {
 		this.name = name;

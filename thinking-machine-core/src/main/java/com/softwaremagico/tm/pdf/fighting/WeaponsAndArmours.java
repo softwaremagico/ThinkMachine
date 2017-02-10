@@ -43,7 +43,7 @@ public class WeaponsAndArmours extends BaseElement {
 		fireArmsCell.setRowspan(2);
 		table.addCell(fireArmsCell);
 
-		PdfPCell armourCell = new PdfPCell(new ArmourTable());
+		PdfPCell armourCell = new PdfPCell(new ArmourTable(characterPlayer));
 		table.addCell(armourCell);
 
 		PdfPCell shieldCell = new PdfPCell(new ShieldTable());

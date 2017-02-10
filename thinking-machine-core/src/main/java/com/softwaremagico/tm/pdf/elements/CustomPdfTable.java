@@ -108,10 +108,14 @@ public abstract class CustomPdfTable extends PdfPTable {
 	}
 
 	protected PdfPCell createRectangle(Integer value) {
+		return createRectangle(value + "");
+	}
+
+	protected PdfPCell createRectangle(String value) {
 		if (value == null) {
 			return createRectangle();
 		}
-		PdfPCell box = new PdfPCell(new Paragraph(value + "", new Font(FadingSunsTheme.getHandwrittingFont(), FadingSunsTheme.HANDWRITTING_DEFAULT_FONT_SIZE)));
+		PdfPCell box = new PdfPCell(new Paragraph(value, new Font(FadingSunsTheme.getHandwrittingFont(), FadingSunsTheme.HANDWRITTING_DEFAULT_FONT_SIZE)));
 		box.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		box.setHorizontalAlignment(Element.ALIGN_CENTER);
 		box.setMinimumHeight(15);

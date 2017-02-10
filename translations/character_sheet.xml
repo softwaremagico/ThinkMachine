@@ -404,6 +404,10 @@
 		<en>Dx</en>
 		<es>Ds</es>
 	</dexterityAbbreviature>
+	<enduranceAbbreviature>
+		<en>En</en>
+		<es>Fr</es>
+	</enduranceAbbreviature>
 	<vigorAbbreviature>
 		<en>Vig</en>
 		<es>Vig</es>

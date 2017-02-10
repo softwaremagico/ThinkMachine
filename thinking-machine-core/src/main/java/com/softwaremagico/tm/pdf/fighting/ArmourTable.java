@@ -25,8 +25,11 @@ package com.softwaremagico.tm.pdf.fighting;
  */
 
 import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
+import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.pdf.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.elements.BaseElement;
 import com.softwaremagico.tm.pdf.elements.LateralHeaderPdfPTable;
@@ -34,38 +37,99 @@ import com.softwaremagico.tm.pdf.elements.LateralHeaderPdfPTable;
 public class ArmourTable extends LateralHeaderPdfPTable {
 	private final static float[] WIDTHS = { 0.75f, 1f, 1f, 1f };
 	private final static int ROWS = 5;
+	private final static String GAP = "___________________";
+	private final static int NAME_COLUMN_WIDTH = 70;
 
-	public ArmourTable() {
+	public ArmourTable(CharacterPlayer characterPlayer) {
 		super(WIDTHS);
 		getDefaultCell().setBorder(0);
 
 		addCell(createLateralVerticalTitle(getTranslator().getTranslatedText("armor"), ROWS + 1));
 
-		PdfPCell nameCell = createEmptyElementLine("___________________");
+		PdfPCell nameCell;
+		if (characterPlayer == null || characterPlayer.getArmour() == null) {
+			nameCell = createEmptyElementLine(GAP);
+		} else {
+			nameCell = createElementLine(characterPlayer.getArmour().getName(), NAME_COLUMN_WIDTH, FadingSunsTheme.ARMOUR_CONTENT_FONT_SIZE);
+		}
 		nameCell.setColspan(WIDTHS.length);
 		nameCell.setMinimumHeight(20);
 		addCell(nameCell);
-		PdfPCell protectionCell = createEmptyElementLine(getTranslator().getTranslatedText("armorRating") + ": ____ "
-				+ getTranslator().getTranslatedText("diceAbbreviature"));
+		PdfPCell protectionCell;
+		if (characterPlayer == null || characterPlayer.getArmour() == null) {
+			protectionCell = createEmptyElementLine(getTranslator().getTranslatedText("armorRating") + ": ____ "
+					+ getTranslator().getTranslatedText("diceAbbreviature"));
+		} else {
+			Paragraph paragraph = new Paragraph();
+			paragraph.add(new Paragraph(getTranslator().getTranslatedText("armorRating") + ": ", new Font(FadingSunsTheme.getLineFont(),
+					FadingSunsTheme.TABLE_LINE_FONT_SIZE)));
+
+			paragraph.add(new Paragraph(characterPlayer.getArmour().getProtection() + " ", new Font(FadingSunsTheme.getHandwrittingFont(),
+					FadingSunsTheme.ARMOUR_CONTENT_FONT_SIZE)));
+
+			paragraph.add(new Paragraph(getTranslator().getTranslatedText("diceAbbreviature"), new Font(FadingSunsTheme.getLineFont(),
+					FadingSunsTheme.TABLE_LINE_FONT_SIZE)));
+
+			protectionCell = createEmptyElementLine("");
+
+			protectionCell.setPhrase(paragraph);
+		}
 		protectionCell.setColspan(WIDTHS.length);
 		addCell(protectionCell);
 
-		PdfPCell malusCell = createEmptyElementLine(getTranslator().getTranslatedText("strengthAbbreviature") + ": __  "
-				+ getTranslator().getTranslatedText("dexterityAbbreviature") + ": __  "
-				+ getTranslator().getTranslatedText("iniciativeAbbreviature") + ": __");
+		PdfPCell malusCell;
+		if (characterPlayer == null || characterPlayer.getArmour() == null) {
+			malusCell = createEmptyElementLine(getTranslator().getTranslatedText("strengthAbbreviature") + ":__  "
+					+ getTranslator().getTranslatedText("dexterityAbbreviature") + ":__  " + getTranslator().getTranslatedText("iniciativeAbbreviature")
+					+ ":__ " + getTranslator().getTranslatedText("enduranceAbbreviature") + ":__");
+		} else {
+			Paragraph paragraph = new Paragraph();
+			paragraph.add(new Paragraph(getTranslator().getTranslatedText("strengthAbbreviature") + ":", new Font(FadingSunsTheme.getLineFont(),
+					FadingSunsTheme.TABLE_LINE_FONT_SIZE)));
+			paragraph.add(new Paragraph(characterPlayer.getArmour().getStrengthBonus() + " ", new Font(FadingSunsTheme.getHandwrittingFont(),
+					FadingSunsTheme.ARMOUR_CONTENT_FONT_SIZE)));
+
+			paragraph.add(new Paragraph(" " + getTranslator().getTranslatedText("dexterityAbbreviature") + ":", new Font(FadingSunsTheme.getLineFont(),
+					FadingSunsTheme.TABLE_LINE_FONT_SIZE)));
+			paragraph.add(new Paragraph(characterPlayer.getArmour().getDexterityBonus() + " ", new Font(FadingSunsTheme.getHandwrittingFont(),
+					FadingSunsTheme.ARMOUR_CONTENT_FONT_SIZE)));
+
+			paragraph.add(new Paragraph(" " + getTranslator().getTranslatedText("iniciativeAbbreviature") + ":", new Font(FadingSunsTheme.getLineFont(),
+					FadingSunsTheme.TABLE_LINE_FONT_SIZE)));
+			paragraph.add(new Paragraph(characterPlayer.getArmour().getInitiativeBonus() + " ", new Font(FadingSunsTheme.getHandwrittingFont(),
+					FadingSunsTheme.ARMOUR_CONTENT_FONT_SIZE)));
+
+			paragraph.add(new Paragraph(" " + getTranslator().getTranslatedText("enduranceAbbreviature") + ":", new Font(FadingSunsTheme.getLineFont(),
+					FadingSunsTheme.TABLE_LINE_FONT_SIZE)));
+			paragraph.add(new Paragraph(characterPlayer.getArmour().getEnduranceBonus() + " ", new Font(FadingSunsTheme.getHandwrittingFont(),
+					FadingSunsTheme.ARMOUR_CONTENT_FONT_SIZE)));
+
+			malusCell = createEmptyElementLine("");
+
+			malusCell.setPhrase(paragraph);
+		}
 		malusCell.setColspan(WIDTHS.length);
 		addCell(malusCell);
 
-		addCell(getArmourProperty(getTranslator().getTranslatedText("armorHardAbbreviature")));
-		addCell(getArmourProperty(getTranslator().getTranslatedText("armorFireAbbreviature")));
-		addCell(getArmourProperty(getTranslator().getTranslatedText("armorLaserAbbreviature")));
-		addCell(getArmourProperty(getTranslator().getTranslatedText("armorPlasmAbbreviature")));
-		addCell(getArmourProperty(getTranslator().getTranslatedText("armorShockAbbreviature")));
-		addCell(getArmourProperty(getTranslator().getTranslatedText("armorElectricAbbreviature")));
+		if (characterPlayer == null || characterPlayer.getArmour() == null) {
+			addCell(getArmourProperty(getTranslator().getTranslatedText("armorHardAbbreviature"), false));
+			addCell(getArmourProperty(getTranslator().getTranslatedText("armorFireAbbreviature"), false));
+			addCell(getArmourProperty(getTranslator().getTranslatedText("armorLaserAbbreviature"), false));
+			addCell(getArmourProperty(getTranslator().getTranslatedText("armorPlasmAbbreviature"), false));
+			addCell(getArmourProperty(getTranslator().getTranslatedText("armorShockAbbreviature"), false));
+			addCell(getArmourProperty(getTranslator().getTranslatedText("armorElectricAbbreviature"), false));
+		} else {
+			addCell(getArmourProperty(getTranslator().getTranslatedText("armorHardAbbreviature"), characterPlayer.getArmour().isHard()));
+			addCell(getArmourProperty(getTranslator().getTranslatedText("armorFireAbbreviature"), characterPlayer.getArmour().isFire()));
+			addCell(getArmourProperty(getTranslator().getTranslatedText("armorLaserAbbreviature"), characterPlayer.getArmour().isLaser()));
+			addCell(getArmourProperty(getTranslator().getTranslatedText("armorPlasmAbbreviature"), characterPlayer.getArmour().isPlasma()));
+			addCell(getArmourProperty(getTranslator().getTranslatedText("armorShockAbbreviature"), characterPlayer.getArmour().isShock()));
+			addCell(getArmourProperty(getTranslator().getTranslatedText("armorElectricAbbreviature"), characterPlayer.getArmour().isElectrical()));
+		}
 
 	}
 
-	private PdfPTable getArmourProperty(String text) {
+	private PdfPTable getArmourProperty(String text, boolean selected) {
 		float[] widths = { 1f, 1f };
 		PdfPTable table = new PdfPTable(widths);
 		BaseElement.setTablePropierties(table);
@@ -73,7 +137,11 @@ public class ArmourTable extends LateralHeaderPdfPTable {
 		table.getDefaultCell().setPadding(0);
 		table.getDefaultCell().setVerticalAlignment(Element.ALIGN_MIDDLE);
 
-		table.addCell(createRectangle());
+		if (!selected) {
+			table.addCell(createRectangle());
+		} else {
+			table.addCell(createRectangle("X"));
+		}
 		table.addCell(createEmptyElementLine(text));
 
 		return table;

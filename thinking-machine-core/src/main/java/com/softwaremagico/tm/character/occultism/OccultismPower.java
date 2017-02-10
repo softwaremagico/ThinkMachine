@@ -3,12 +3,12 @@ package com.softwaremagico.tm.character.occultism;
 import com.softwaremagico.tm.Element;
 
 public class OccultismPower extends Element<OccultismPower> {
-	private String roll;
-	private int level;
-	private String range;
-	private String duration;
-	private String requirements;
-	private int cost;
+	private final String roll;
+	private final int level;
+	private final String range;
+	private final String duration;
+	private final String requirements;
+	private final int cost;
 
 	public OccultismPower(String name, String roll, int level, String range, String duration, String requirements, int cost) {
 		super(name);

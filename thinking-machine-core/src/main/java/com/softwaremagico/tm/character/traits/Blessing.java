@@ -3,10 +3,10 @@ package com.softwaremagico.tm.character.traits;
 import com.softwaremagico.tm.Element;
 
 public class Blessing extends Element<Blessing> {
-	private Integer cost;
-	private Integer bonification;
-	private String trait;
-	private String situation;
+	private final Integer cost;
+	private final Integer bonification;
+	private final String trait;
+	private final String situation;
 
 	public Blessing(String name, Integer cost, Integer bonification, String trait, String situation) {
 		super(name);
