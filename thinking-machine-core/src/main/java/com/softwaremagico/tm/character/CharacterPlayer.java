@@ -9,6 +9,7 @@ import java.util.Map;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.characteristics.Characteristics;
 import com.softwaremagico.tm.character.cybernetics.Cybernetics;
+import com.softwaremagico.tm.character.equipment.Weapons;
 import com.softwaremagico.tm.character.occultism.Occultism;
 import com.softwaremagico.tm.character.skills.SelectedSkill;
 import com.softwaremagico.tm.character.skills.SkillFactory;
@@ -35,6 +36,8 @@ public class CharacterPlayer {
 
 	private Cybernetics cybernetics;
 
+	private Weapons weapons;
+
 	public CharacterPlayer(String language) {
 		this.language = language;
 		reset();
@@ -48,6 +51,7 @@ public class CharacterPlayer {
 		blessings = new ArrayList<>();
 		benefits = new ArrayList<>();
 		cybernetics = new Cybernetics();
+		weapons = new Weapons();
 	}
 
 	public CharacterInfo getInfo() {
@@ -160,5 +164,9 @@ public class CharacterPlayer {
 
 	public Cybernetics getCybernetics() {
 		return cybernetics;
+	}
+
+	public Weapons getWeapons() {
+		return weapons;
 	}
 }

@@ -82,7 +82,7 @@ public class CharacterSheet extends PdfDocument {
 		document.newPage();
 		document.add(createRearTable());
 		document.add(FightingManeuvers.getFightingManoeuvresTable());
-		document.add(WeaponsAndArmours.getWeaponsAndArmoursTable());
+		document.add(WeaponsAndArmours.getWeaponsAndArmoursTable(getCharacterPlayer()));
 
 		document.newPage();
 	}

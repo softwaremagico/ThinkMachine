@@ -24,14 +24,26 @@ package com.softwaremagico.tm.pdf.fighting;
  * #L%
  */
 
+import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.character.equipment.Weapon;
 import com.softwaremagico.tm.pdf.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.elements.LateralHeaderPdfPTable;
 
 public class WeaponsTable extends LateralHeaderPdfPTable {
-	private final static float[] WIDTHS = { 1.6f, 4f, 5f, 2f, 3f, 3f, 3f, 3f, 3f, 7f };
+	private final static float[] WIDTHS = { 1.6f, 6f, 5f, 2f, 3f, 3f, 3f, 3f, 2f, 7f };
 	private final static int ROWS = 12;
+	private final static String GAP = "__________________";
+	private final static int NAME_COLUMN_WIDTH = 60;
+	private final static int ROLL_COLUMN_WIDTH = 45;
+	private final static int GOAL_COLUMN_WIDTH = 15;
+	private final static int DAMAGE_COLUMN_WIDTH = 30;
+	private final static int RANGE_COLUMN_WIDTH = 30;
+	private final static int SHOTS_COLUMN_WIDTH = 30;
+	private final static int RATE_COLUMN_WIDTH = 30;
+	private final static int SIZE_COLUMN_WIDTH = 15;
+	private final static int OTHERS_COLUMN_WIDTH = 75;
 
-	public WeaponsTable() {
+	public WeaponsTable(CharacterPlayer characterPlayer) {
 		super(WIDTHS);
 		addCell(createLateralVerticalTitle(getTranslator().getTranslatedText("weapons"), ROWS + 1));
 		addCell(createTableSubtitleElement(getTranslator().getTranslatedText("weapon")));
@@ -44,29 +56,34 @@ public class WeaponsTable extends LateralHeaderPdfPTable {
 		addCell(createTableSubtitleElement(getTranslator().getTranslatedText("weaponSize")));
 		addCell(createTableSubtitleElement(getTranslator().getTranslatedText("weaponsOthers")));
 
-		for (int i = 0; i < ROWS; i++) {
-			addCell(createEmptyElementLine("___________"));
-			addCell(createEmptyElementLine("_____________"));
-			addCell(createEmptyElementLine("_____"));
-			addCell(createEmptyElementLine("______"));
-			addCell(createEmptyElementLine("________"));
-			addCell(createEmptyElementLine("______"));
-			addCell(createEmptyElementLine("______"));
-			addCell(createEmptyElementLine("______"));
-			addCell(createEmptyElementLine("__________________"));
+		int addedWeapons = 0;
+		if (characterPlayer != null) {
+			for (Weapon weapon : characterPlayer.getWeapons().getElements()) {
+				addCell(createElementLine(weapon.getName(), NAME_COLUMN_WIDTH, FadingSunsTheme.OCCULSTISM_POWERS_CONTENT_FONT_SIZE));
+				addCell(createElementLine(weapon.getRoll(), ROLL_COLUMN_WIDTH, FadingSunsTheme.OCCULSTISM_POWERS_CONTENT_FONT_SIZE));
+				addCell(createElementLine(weapon.getGoal() + "", GOAL_COLUMN_WIDTH, FadingSunsTheme.OCCULSTISM_POWERS_CONTENT_FONT_SIZE));
+				addCell(createElementLine(weapon.getDamage() + "d", DAMAGE_COLUMN_WIDTH, FadingSunsTheme.OCCULSTISM_POWERS_CONTENT_FONT_SIZE));
+				addCell(createElementLine(weapon.getStrengthOrRange(), RANGE_COLUMN_WIDTH, FadingSunsTheme.OCCULSTISM_POWERS_CONTENT_FONT_SIZE));
+				addCell(createElementLine(weapon.getShots() + "", SHOTS_COLUMN_WIDTH, FadingSunsTheme.OCCULSTISM_POWERS_CONTENT_FONT_SIZE));
+				addCell(createElementLine(weapon.getRate(), RATE_COLUMN_WIDTH, FadingSunsTheme.OCCULSTISM_POWERS_CONTENT_FONT_SIZE));
+				addCell(createElementLine(weapon.getSize().toString(), SIZE_COLUMN_WIDTH, FadingSunsTheme.OCCULSTISM_POWERS_CONTENT_FONT_SIZE));
+				addCell(createElementLine(weapon.getOthers(), OTHERS_COLUMN_WIDTH, FadingSunsTheme.OCCULSTISM_POWERS_CONTENT_FONT_SIZE));
+
+				addedWeapons++;
+			}
 		}
 
-		// addCell(createElementLine(""));
-		// addCell(createElementLine(""));
-		// addCell(createElementLine(""));
-		// addCell(createElementLine(""));
-		// addCell(createElementLine(""));
-		// addCell(createElementLine(""));
-		// addCell(createElementLine(""));
-		// addCell(createElementLine(""));
-		// addCell(createElementLine(""));
-		// addCell(createElementLine(""));
-
+		for (int i = 0; i < ROWS - addedWeapons; i++) {
+			addCell(createEmptyElementLine(GAP, NAME_COLUMN_WIDTH));
+			addCell(createEmptyElementLine(GAP, ROLL_COLUMN_WIDTH));
+			addCell(createEmptyElementLine(GAP, GOAL_COLUMN_WIDTH));
+			addCell(createEmptyElementLine(GAP, DAMAGE_COLUMN_WIDTH));
+			addCell(createEmptyElementLine(GAP, RANGE_COLUMN_WIDTH));
+			addCell(createEmptyElementLine(GAP, SHOTS_COLUMN_WIDTH));
+			addCell(createEmptyElementLine(GAP, RATE_COLUMN_WIDTH));
+			addCell(createEmptyElementLine(GAP, SIZE_COLUMN_WIDTH));
+			addCell(createEmptyElementLine(GAP, OTHERS_COLUMN_WIDTH));
+		}
 	}
 
 	@Override

@@ -35,6 +35,8 @@ import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.Gender;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.cybernetics.Device;
+import com.softwaremagico.tm.character.equipment.Size;
+import com.softwaremagico.tm.character.equipment.Weapon;
 import com.softwaremagico.tm.character.occultism.OccultismPower;
 import com.softwaremagico.tm.character.traits.Benefit;
 import com.softwaremagico.tm.character.traits.Blessing;
@@ -109,6 +111,9 @@ public class CharacterSheetCreationTest {
 
 		player.getCybernetics().addElement(new Device("Ojo de Ingeniero", 6, 5, "Normal", "Normal", "Automático", "Visible", ""));
 		player.getCybernetics().addElement(new Device("Jonás", 7, 4, "Normal", "Normal", "Ds+Arquería", "Incógnito", ""));
+
+		player.getWeapons().addElement(new Weapon("Maza", "Ds+Lucha", 0, 5, "4", null, null, 1, Size.L));
+		player.getWeapons().addElement(new Weapon("Martech Oro", "Ds+Ar. Energía", 1, 5, "10/20", 15, "2", 6, Size.S));
 
 		LanguagePool.clearCache();
 		CharacterSheet sheet = new CharacterSheet(player);
