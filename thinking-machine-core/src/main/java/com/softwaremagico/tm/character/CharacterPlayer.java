@@ -8,6 +8,7 @@ import java.util.Map;
 
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.characteristics.Characteristics;
+import com.softwaremagico.tm.character.combat.CombatActions;
 import com.softwaremagico.tm.character.cybernetics.Cybernetics;
 import com.softwaremagico.tm.character.equipment.Armour;
 import com.softwaremagico.tm.character.equipment.Shield;
@@ -44,6 +45,10 @@ public class CharacterPlayer {
 
 	private Shield shield;
 
+	private CombatActions meleeCombatActions;
+
+	private CombatActions rangedCombatActions;
+
 	public CharacterPlayer(String language) {
 		this.language = language;
 		reset();
@@ -58,6 +63,8 @@ public class CharacterPlayer {
 		benefits = new ArrayList<>();
 		cybernetics = new Cybernetics();
 		weapons = new Weapons();
+		meleeCombatActions = new CombatActions();
+		rangedCombatActions = new CombatActions();
 		setArmour(null);
 		setShield(null);
 	}
@@ -192,5 +199,13 @@ public class CharacterPlayer {
 
 	public void setShield(Shield shield) {
 		this.shield = shield;
+	}
+
+	public CombatActions getMeleeCombatActions() {
+		return meleeCombatActions;
+	}
+
+	public CombatActions getRangedCombatActions() {
+		return rangedCombatActions;
 	}
 }

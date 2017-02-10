@@ -34,6 +34,7 @@ import com.itextpdf.text.DocumentException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.Gender;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
+import com.softwaremagico.tm.character.combat.CombatAction;
 import com.softwaremagico.tm.character.cybernetics.Device;
 import com.softwaremagico.tm.character.equipment.Armour;
 import com.softwaremagico.tm.character.equipment.Shield;
@@ -114,11 +115,18 @@ public class CharacterSheetCreationTest {
 		player.getCybernetics().addElement(new Device("Ojo de Ingeniero", 6, 5, "Normal", "Normal", "Automático", "Visible", ""));
 		player.getCybernetics().addElement(new Device("Jonás", 7, 4, "Normal", "Normal", "Ds+Arquería", "Incógnito", ""));
 
-		player.getWeapons().addElement(new Weapon("Maza", "Ds+Lucha", 0, 5, "4", null, null, 1, Size.L));
+		player.getMeleeCombatActions().addElement(new CombatAction("Palma Real", null, "-1", ""));
+		player.getMeleeCombatActions().addElement(new CombatAction("Con un Pie en el Trono", 4, null, "+4 a resistir derribos"));
+		player.getMeleeCombatActions().addElement(new CombatAction("Decreto Imperial", null, "+1/1W", null));
+		player.getRangedCombatActions().addElement(new CombatAction("Disparo Instantáneo", null, null, "-2 por 3 disparos"));
+		player.getRangedCombatActions().addElement(new CombatAction("Rueda y Dispara", null, null, "Mover 3m"));
+		player.getRangedCombatActions().addElement(new CombatAction("Corre y Dispara", null, null, "Especial"));
+
+		player.getWeapons().addElement(new Weapon("Maza", "Ds+Lucha", null, 5, "4", null, null, 1, Size.L));
 		player.getWeapons().addElement(new Weapon("Martech Oro", "Ds+Ar. Energía", 1, 5, "10/20", 15, "2", 6, Size.S, "Láser"));
 
 		player.setArmour(new Armour("Cuero Sintético", 7, true, false, false, false, false, false, true, 6, -1, 0, 0, 0));
-		
+
 		player.setShield(new Shield("Escudo de Asalto", 5, 15, 20));
 
 		LanguagePool.clearCache();

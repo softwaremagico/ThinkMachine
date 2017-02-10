@@ -4,7 +4,7 @@ import com.softwaremagico.tm.Element;
 
 public class Weapon extends Element<Weapon> {
 	private final String roll;
-	private final int goal;
+	private final Integer goal;
 	private final int damage;
 	private final String strengthOrRange;
 	private final Integer shots;
@@ -13,7 +13,8 @@ public class Weapon extends Element<Weapon> {
 	private final int tech;
 	private String others;
 
-	public Weapon(String name, String roll, int goal, int damage, String strengthOrRange, Integer shots, String rate, int tech, Size size) {
+	public Weapon(String name, String roll, Integer goal, int damage, String strengthOrRange, Integer shots, String rate, int tech,
+			Size size) {
 		super(name);
 		this.roll = roll;
 		this.goal = goal;
@@ -25,8 +26,8 @@ public class Weapon extends Element<Weapon> {
 		this.tech = tech;
 	}
 
-	public Weapon(String name, String roll, int goal, int damage, String strengthOrRange, Integer shots, String rate, int tech, Size size,
-			String others) {
+	public Weapon(String name, String roll, Integer goal, int damage, String strengthOrRange, Integer shots, String rate, int tech,
+			Size size, String others) {
 		this(name, roll, goal, damage, strengthOrRange, shots, rate, tech, size);
 		setOthers(others);
 	}
@@ -35,7 +36,7 @@ public class Weapon extends Element<Weapon> {
 		return roll;
 	}
 
-	public int getGoal() {
+	public Integer getGoal() {
 		return goal;
 	}
 

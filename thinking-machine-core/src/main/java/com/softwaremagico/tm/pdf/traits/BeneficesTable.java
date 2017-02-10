@@ -68,7 +68,7 @@ public class BeneficesTable extends VerticalTable {
 	private PdfPCell getBeneficesCost(CharacterPlayer characterPlayer, int row) {
 		try {
 			if (characterPlayer != null) {
-				return createElementLine(characterPlayer.getBenefits().get(row).getCost() + "", COST_COLUMN_WIDTH);
+				return createElementLine(characterPlayer.getBenefits().get(row).getCost(), COST_COLUMN_WIDTH);
 			}
 		} catch (Exception e) {
 
@@ -90,7 +90,7 @@ public class BeneficesTable extends VerticalTable {
 	private PdfPCell getAfflictionsCost(CharacterPlayer characterPlayer, int row) {
 		try {
 			if (characterPlayer != null) {
-				return createElementLine(characterPlayer.getAfflictions().get(row).getCost() + "", COST_COLUMN_WIDTH);
+				return createElementLine(characterPlayer.getAfflictions().get(row).getCost(), COST_COLUMN_WIDTH);
 			}
 		} catch (Exception e) {
 

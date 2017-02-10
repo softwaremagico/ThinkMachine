@@ -24,14 +24,21 @@ package com.softwaremagico.tm.pdf.fighting;
  * #L%
  */
 
+import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.character.combat.CombatAction;
 import com.softwaremagico.tm.pdf.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.elements.LateralHeaderPdfPTable;
 
 public class MeleeWeaponsTable extends LateralHeaderPdfPTable {
 	private final static float[] WIDTHS = { 1.2f, 4f, 3f, 3f, 5f };
 	private final static int ROWS = 12;
+	private final static String GAP = "_________________";
+	private final static int NAME_COLUMN_WIDHT = 50;
+	private final static int GOAL_COLUMN_WIDHT = 40;
+	private final static int DAMAGE_COLUMN_WIDHT = 40;
+	private final static int OTHERS_COLUMN_WIDHT = 60;
 
-	public MeleeWeaponsTable() {
+	public MeleeWeaponsTable(CharacterPlayer characterPlayer) {
 		super(WIDTHS);
 		addCell(createLateralVerticalTitle(getTranslator().getTranslatedText("meleeWeapons"), ROWS + 1));
 		addCell(createTableSubtitleElement(getTranslator().getTranslatedText("weaponsAction")));
@@ -79,11 +86,22 @@ public class MeleeWeaponsTable extends LateralHeaderPdfPTable {
 		addCell(createEmptyElementLine(getTranslator().getTranslatedText("maximumAbbreviature") + " 4"
 				+ getTranslator().getTranslatedText("diceAbbreviature")));
 
-		for (int i = 0; i < ROWS - 6; i++) {
-			addCell(createEmptyElementLine("_____________"));
-			addCell(createEmptyElementLine("______"));
-			addCell(createEmptyElementLine("______"));
-			addCell(createEmptyElementLine("_________________"));
+		int addedActions = 0;
+		if (characterPlayer != null) {
+			for (CombatAction action : characterPlayer.getMeleeCombatActions().getElements()) {
+				addCell(createElementLine(action.getName(), NAME_COLUMN_WIDHT, FadingSunsTheme.COMBAT_ACTIONS_CONTENT_FONT_SIZE));
+				addCell(createElementLine(action.getGoal(), GOAL_COLUMN_WIDHT, FadingSunsTheme.COMBAT_ACTIONS_CONTENT_FONT_SIZE));
+				addCell(createElementLine(action.getDamage(), DAMAGE_COLUMN_WIDHT, FadingSunsTheme.COMBAT_ACTIONS_CONTENT_FONT_SIZE));
+				addCell(createElementLine(action.getOthers(), OTHERS_COLUMN_WIDHT, FadingSunsTheme.COMBAT_ACTIONS_CONTENT_FONT_SIZE));
+				addedActions++;
+			}
+		}
+
+		for (int i = 0; i < ROWS - 5 - addedActions; i++) {
+			addCell(createEmptyElementLine(GAP, NAME_COLUMN_WIDHT));
+			addCell(createEmptyElementLine(GAP, GOAL_COLUMN_WIDHT));
+			addCell(createEmptyElementLine(GAP, DAMAGE_COLUMN_WIDHT));
+			addCell(createEmptyElementLine(GAP, OTHERS_COLUMN_WIDHT));
 		}
 
 	}
