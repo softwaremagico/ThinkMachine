@@ -80,7 +80,8 @@ public class Translator implements ITranslator {
 			usedDoc = db.parse(file);
 			usedDoc.getDocumentElement().normalize();
 		} catch (SAXParseException ex) {
-			String text = "Parsing error" + ".\n Line: " + ex.getLineNumber() + "\nUri: " + ex.getSystemId() + "\nMessage: " + ex.getMessage();
+			String text = "Parsing error" + ".\n Line: " + ex.getLineNumber() + "\nUri: " + ex.getSystemId() + "\nMessage: "
+					+ ex.getMessage();
 			MachineLog.severe(Translator.class.getName(), text);
 			MachineLog.errorMessage(Translator.class.getName(), ex);
 		} catch (SAXException ex) {
@@ -151,8 +152,8 @@ public class Translator implements ITranslator {
 						// npe.printStackTrace();
 						if (!retried) {
 							if (!showedMessage) {
-								MachineLog.warning(Translator.class.getName(), "There is a problem with tag: " + tag + " in  language: \"" + language
-										+ "\". We tray to use english language instead.");
+								MachineLog.warning(Translator.class.getName(), "There is a problem with tag: " + tag + " in  language: \""
+										+ language + "\". We tray to use english language instead.");
 								showedMessage = true;
 							}
 							retried = true;
@@ -191,8 +192,8 @@ public class Translator implements ITranslator {
 			for (int s = 0; s < nodeLst.getLength(); s++) {
 				Node fstNode = nodeLst.item(s);
 				try {
-					Language lang = new Language(fstNode.getTextContent(), fstNode.getAttributes().getNamedItem("abbrev").getNodeValue(), fstNode
-							.getAttributes().getNamedItem("flag").getNodeValue());
+					Language lang = new Language(fstNode.getTextContent(), fstNode.getAttributes().getNamedItem("abbrev").getNodeValue(),
+							fstNode.getAttributes().getNamedItem("flag").getNodeValue());
 					languagesList.add(lang);
 				} catch (NullPointerException npe) {
 					MachineLog.severe(Translator.class.getName(), "Error retrieving the available languages. Check your installation.");
@@ -232,5 +233,10 @@ public class Translator implements ITranslator {
 
 	public static void setLanguage(String language) {
 		Translator.language = language.toLowerCase();
+	}
+
+	@Override
+	public String convertToXmlTag(String text) {
+		return text.substring(0, 1).toLowerCase() + text.substring(1);
 	}
 }

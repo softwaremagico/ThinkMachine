@@ -28,13 +28,17 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.itextpdf.text.DocumentException;
 import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.character.CostCalculator;
 import com.softwaremagico.tm.character.Gender;
+import com.softwaremagico.tm.character.Race;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.combat.CombatAction;
+import com.softwaremagico.tm.character.combat.CombatStyle;
 import com.softwaremagico.tm.character.cybernetics.Device;
 import com.softwaremagico.tm.character.equipment.Armour;
 import com.softwaremagico.tm.character.equipment.Shield;
@@ -71,7 +75,7 @@ public class CharacterSheetCreationTest {
 		player.getInfo().setPlayer("Player 1");
 		player.getInfo().setGender(Gender.MALE);
 		player.getInfo().setAge(30);
-		player.getInfo().setRace("Human");
+		player.setRace(new Race("Human", 3, 3, 3, 3, 3, 3, 3, 3, 3, 5, 0, 0, 0, 0, 0));
 		player.getInfo().setPlanet("Sutek");
 		player.getInfo().setAlliance("Hazat");
 		player.getInfo().setRank("Knight");
@@ -115,12 +119,17 @@ public class CharacterSheetCreationTest {
 		player.getCybernetics().addElement(new Device("Ojo de Ingeniero", 6, 5, "Normal", "Normal", "Automático", "Visible", ""));
 		player.getCybernetics().addElement(new Device("Jonás", 7, 4, "Normal", "Normal", "Ds+Arquería", "Incógnito", ""));
 
-		player.getMeleeCombatActions().addElement(new CombatAction("Palma Real", null, "-1", ""));
-		player.getMeleeCombatActions().addElement(new CombatAction("Con un Pie en el Trono", 4, null, "+4 a resistir derribos"));
-		player.getMeleeCombatActions().addElement(new CombatAction("Decreto Imperial", null, "+1/1W", null));
-		player.getRangedCombatActions().addElement(new CombatAction("Disparo Instantáneo", null, null, "-2 por 3 disparos"));
-		player.getRangedCombatActions().addElement(new CombatAction("Rueda y Dispara", null, null, "Mover 3m"));
-		player.getRangedCombatActions().addElement(new CombatAction("Corre y Dispara", null, null, "Especial"));
+		CombatStyle gun = new CombatStyle("gun");
+		gun.addElement(new CombatAction("Disparo Instantáneo", null, null, "-2 por 3 disparos"));
+		gun.addElement(new CombatAction("Rueda y Dispara", null, null, "Mover 3m"));
+		gun.addElement(new CombatAction("Corre y Dispara", null, null, "Especial"));
+		player.getRangedCombatStyles().add(gun);
+
+		CombatStyle shaidan = new CombatStyle("Shydan");
+		shaidan.addElement(new CombatAction("Palma Real", null, "-1", ""));
+		shaidan.addElement(new CombatAction("Con un Pie en el Trono", 4, null, "+4 a resistir derribos"));
+		shaidan.addElement(new CombatAction("Decreto Imperial", null, "+1/1W", null));
+		player.getMeleeCombatStyles().add(shaidan);
 
 		player.getWeapons().addElement(new Weapon("Maza", "Ds+Lucha", null, 5, "4", null, null, 1, Size.L));
 		player.getWeapons().addElement(new Weapon("Martech Oro", "Ds+Ar. Energía", 1, 5, "10/20", 15, "2", 6, Size.S, "Láser"));
@@ -132,5 +141,7 @@ public class CharacterSheetCreationTest {
 		LanguagePool.clearCache();
 		CharacterSheet sheet = new CharacterSheet(player);
 		sheet.createFile(PDF_PATH_OUTPUT + "CharacterFS_ES.pdf");
+
+		Assert.assertEquals(CostCalculator.getCost(player), 61);
 	}
 }

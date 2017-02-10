@@ -26,6 +26,7 @@ package com.softwaremagico.tm.pdf.fighting;
 
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.combat.CombatAction;
+import com.softwaremagico.tm.character.combat.CombatStyle;
 import com.softwaremagico.tm.pdf.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.elements.LateralHeaderPdfPTable;
 
@@ -79,12 +80,14 @@ public class RangedWeaponsTable extends LateralHeaderPdfPTable {
 
 		int addedActions = 0;
 		if (characterPlayer != null) {
-			for (CombatAction action : characterPlayer.getRangedCombatActions().getElements()) {
-				addCell(createElementLine(action.getName(), NAME_COLUMN_WIDHT, FadingSunsTheme.COMBAT_ACTIONS_CONTENT_FONT_SIZE));
-				addCell(createElementLine(action.getGoal(), GOAL_COLUMN_WIDHT, FadingSunsTheme.COMBAT_ACTIONS_CONTENT_FONT_SIZE));
-				addCell(createElementLine(action.getDamage(), DAMAGE_COLUMN_WIDHT, FadingSunsTheme.COMBAT_ACTIONS_CONTENT_FONT_SIZE));
-				addCell(createElementLine(action.getOthers(), OTHERS_COLUMN_WIDHT, FadingSunsTheme.COMBAT_ACTIONS_CONTENT_FONT_SIZE));
-				addedActions++;
+			for (CombatStyle style : characterPlayer.getRangedCombatStyles()) {
+				for (CombatAction action : style.getElements()) {
+					addCell(createElementLine(action.getName(), NAME_COLUMN_WIDHT, FadingSunsTheme.COMBAT_ACTIONS_CONTENT_FONT_SIZE));
+					addCell(createElementLine(action.getGoal(), GOAL_COLUMN_WIDHT, FadingSunsTheme.COMBAT_ACTIONS_CONTENT_FONT_SIZE));
+					addCell(createElementLine(action.getDamage(), DAMAGE_COLUMN_WIDHT, FadingSunsTheme.COMBAT_ACTIONS_CONTENT_FONT_SIZE));
+					addCell(createElementLine(action.getOthers(), OTHERS_COLUMN_WIDHT, FadingSunsTheme.COMBAT_ACTIONS_CONTENT_FONT_SIZE));
+					addedActions++;
+				}
 			}
 		}
 

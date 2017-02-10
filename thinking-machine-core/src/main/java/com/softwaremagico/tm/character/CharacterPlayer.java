@@ -7,13 +7,15 @@ import java.util.List;
 import java.util.Map;
 
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
+import com.softwaremagico.tm.character.characteristics.CharacteristicValue;
 import com.softwaremagico.tm.character.characteristics.Characteristics;
-import com.softwaremagico.tm.character.combat.CombatActions;
+import com.softwaremagico.tm.character.combat.CombatStyle;
 import com.softwaremagico.tm.character.cybernetics.Cybernetics;
 import com.softwaremagico.tm.character.equipment.Armour;
 import com.softwaremagico.tm.character.equipment.Shield;
 import com.softwaremagico.tm.character.equipment.Weapons;
 import com.softwaremagico.tm.character.occultism.Occultism;
+import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.character.skills.SelectedSkill;
 import com.softwaremagico.tm.character.skills.SkillFactory;
 import com.softwaremagico.tm.character.traits.Benefit;
@@ -24,6 +26,8 @@ public class CharacterPlayer {
 
 	// Basic description of the character.
 	private CharacterInfo info;
+
+	private Race race;
 
 	// Characteristics.
 	private Characteristics characteristics;
@@ -45,9 +49,9 @@ public class CharacterPlayer {
 
 	private Shield shield;
 
-	private CombatActions meleeCombatActions;
+	private List<CombatStyle> meleeCombatActions;
 
-	private CombatActions rangedCombatActions;
+	private List<CombatStyle> rangedCombatActions;
 
 	public CharacterPlayer(String language) {
 		this.language = language;
@@ -63,8 +67,8 @@ public class CharacterPlayer {
 		benefits = new ArrayList<>();
 		cybernetics = new Cybernetics();
 		weapons = new Weapons();
-		meleeCombatActions = new CombatActions();
-		rangedCombatActions = new CombatActions();
+		meleeCombatActions = new ArrayList<>();
+		rangedCombatActions = new ArrayList<>();
 		setArmour(null);
 		setShield(null);
 	}
@@ -91,13 +95,10 @@ public class CharacterPlayer {
 		if (CharacteristicName.DEFENSE.equals(characteristicName)) {
 			return 1;
 		}
-		if (CharacteristicName.MOVEMENT.equals(characteristicName)) {
-			return 5;
-		}
 		if (CharacteristicName.INITIATIVE.equals(characteristicName)) {
 			return getStartingValue(CharacteristicName.DEXTERITY) + getStartingValue(CharacteristicName.WITS);
 		}
-		return 3;
+		return getRaceCharacteristicStartingValue(characteristicName);
 	}
 
 	public Integer getValue(CharacteristicName characteristicName) {
@@ -201,11 +202,58 @@ public class CharacterPlayer {
 		this.shield = shield;
 	}
 
-	public CombatActions getMeleeCombatActions() {
+	public List<CombatStyle> getMeleeCombatStyles() {
 		return meleeCombatActions;
 	}
 
-	public CombatActions getRangedCombatActions() {
+	public List<CombatStyle> getRangedCombatStyles() {
 		return rangedCombatActions;
+	}
+
+	public Race getRace() {
+		return race;
+	}
+
+	public void setRace(Race race) {
+		this.race = race;
+	}
+
+	public int getCost() {
+		int cost = 0;
+		if (getRace() != null) {
+			cost += getRace().getCost();
+		}
+		cost += getCharacteristicsCost();
+		cost += getSkillCosts();
+		return cost;
+	}
+
+	private int getCharacteristicsCost() {
+		int characteristicCost = 0;
+		for (CharacteristicName characteristicName : CharacteristicName.getBasicCharacteristics()) {
+			characteristicCost += getValue(characteristicName) - getRaceCharacteristicStartingValue(characteristicName);
+		}
+		return characteristicCost;
+	}
+
+	private int getSkillCosts() {
+		int cost = 0;
+		for (AvailableSkill skill : SkillFactory.getNaturalSkills(language)) {
+			cost += getSkillValue(skill.getName()) - 3;
+		}
+		for (AvailableSkill skill : SkillFactory.getLearnedSkills(language)) {
+			cost += getSkillValue(skill.getName());
+		}
+		return cost;
+	}
+
+	private int getRaceCharacteristicStartingValue(CharacteristicName characteristicName) {
+		if (getRace() != null) {
+			CharacteristicValue value = getRace().getValue(characteristicName);
+			if (value != null) {
+				return value.getValue();
+			}
+		}
+		return 0;
 	}
 }
