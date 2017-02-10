@@ -117,7 +117,7 @@ public class CharacterSheet extends PdfDocument {
 		PdfPTable othersTable = new OthersTable();
 		mainTable.addCell(othersTable);
 
-		PdfPCell cyberneticsCell = new PdfPCell(new CyberneticsTable());
+		PdfPCell cyberneticsCell = new PdfPCell(new CyberneticsTable(getCharacterPlayer()));
 		cyberneticsCell.setColspan(2);
 		mainTable.addCell(cyberneticsCell);
 

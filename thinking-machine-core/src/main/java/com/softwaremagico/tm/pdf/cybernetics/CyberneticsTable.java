@@ -24,15 +24,25 @@ package com.softwaremagico.tm.pdf.cybernetics;
  * #L%
  */
 
+import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.character.cybernetics.Device;
 import com.softwaremagico.tm.pdf.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.elements.LateralHeaderPdfPTable;
 
 public class CyberneticsTable extends LateralHeaderPdfPTable {
 	private final static float[] WIDTHS = { 0.8f, 3f, 1f, 1f, 2f, 2f, 2f, 2f, 3f };
 	private final static int ROWS = 9;
-	private final static String GAP = "____";
+	private final static String GAP = "__________________";
+	private final static int NAME_COLUMN_WIDTH = 50;
+	private final static int POINTS_COLUMN_WIDTH = 15;
+	private final static int INCOMPATIBILITY_COLUMN_WIDTH = 15;
+	private final static int USABILITY_COLUMN_WIDTH = 32;
+	private final static int QUALITY_COLUMN_WIDTH = 32;
+	private final static int ACTIVATION_COLUMN_WIDTH = 32;
+	private final static int APPEARENCE_COLUMN_WIDTH = 32;
+	private final static int OTHERS_COLUMN_WIDTH = 40;
 
-	public CyberneticsTable() {
+	public CyberneticsTable(CharacterPlayer characterPlayer) {
 		super(WIDTHS);
 
 		addCell(createLateralVerticalTitle(getTranslator().getTranslatedText("cybernetics"), ROWS + 1));
@@ -45,15 +55,30 @@ public class CyberneticsTable extends LateralHeaderPdfPTable {
 		addCell(createTableSubtitleElement(getTranslator().getTranslatedText("cyberneticsAppearence")));
 		addCell(createTableSubtitleElement(getTranslator().getTranslatedText("cyberneticsOthers")));
 
-		for (int i = 0; i < ROWS - 1; i++) {
-			addCell(createEmptyElementLine(GAP + GAP + GAP));
-			addCell(createEmptyElementLine(GAP));
-			addCell(createEmptyElementLine(GAP));
-			addCell(createEmptyElementLine(GAP + GAP));
-			addCell(createEmptyElementLine(GAP + GAP));
-			addCell(createEmptyElementLine(GAP + GAP));
-			addCell(createEmptyElementLine(GAP + GAP));
-			addCell(createEmptyElementLine(GAP + GAP + GAP + GAP));
+		int addedDevices = 0;
+		if (characterPlayer != null) {
+			for (Device device : characterPlayer.getCybernetics().getDevices()) {
+				addCell(createElementLine(device.getName(), NAME_COLUMN_WIDTH, FadingSunsTheme.CYBERNETICS_CONTENT_FONT_SIZE));
+				addCell(createElementLine(device.getPoints() + "", POINTS_COLUMN_WIDTH, FadingSunsTheme.CYBERNETICS_CONTENT_FONT_SIZE));
+				addCell(createElementLine(device.getIncompatibility() + "", INCOMPATIBILITY_COLUMN_WIDTH, FadingSunsTheme.CYBERNETICS_CONTENT_FONT_SIZE));
+				addCell(createElementLine(device.getUsability(), USABILITY_COLUMN_WIDTH, FadingSunsTheme.CYBERNETICS_CONTENT_FONT_SIZE));
+				addCell(createElementLine(device.getQuality(), QUALITY_COLUMN_WIDTH, FadingSunsTheme.CYBERNETICS_CONTENT_FONT_SIZE));
+				addCell(createElementLine(device.getActivation(), ACTIVATION_COLUMN_WIDTH, FadingSunsTheme.CYBERNETICS_CONTENT_FONT_SIZE));
+				addCell(createElementLine(device.getAppearence(), APPEARENCE_COLUMN_WIDTH, FadingSunsTheme.CYBERNETICS_CONTENT_FONT_SIZE));
+				addCell(createElementLine(device.getOthers(), OTHERS_COLUMN_WIDTH, FadingSunsTheme.CYBERNETICS_CONTENT_FONT_SIZE));
+				addedDevices++;
+			}
+		}
+
+		for (int i = 0; i < ROWS - addedDevices - 1; i++) {
+			addCell(createEmptyElementLine(GAP, NAME_COLUMN_WIDTH));
+			addCell(createEmptyElementLine(GAP, POINTS_COLUMN_WIDTH));
+			addCell(createEmptyElementLine(GAP, INCOMPATIBILITY_COLUMN_WIDTH));
+			addCell(createEmptyElementLine(GAP, USABILITY_COLUMN_WIDTH));
+			addCell(createEmptyElementLine(GAP, QUALITY_COLUMN_WIDTH));
+			addCell(createEmptyElementLine(GAP, ACTIVATION_COLUMN_WIDTH));
+			addCell(createEmptyElementLine(GAP, APPEARENCE_COLUMN_WIDTH));
+			addCell(createEmptyElementLine(GAP, OTHERS_COLUMN_WIDTH));
 		}
 	}
 
