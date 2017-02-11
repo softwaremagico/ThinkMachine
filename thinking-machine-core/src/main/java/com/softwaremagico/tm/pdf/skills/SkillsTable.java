@@ -26,6 +26,8 @@ package com.softwaremagico.tm.pdf.skills;
 
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.softwaremagico.tm.character.CharacterPlayer;
@@ -40,7 +42,7 @@ public class SkillsTable extends BaseElement {
 	private final static int ROWS = 30;
 	private final static int TITLE_ROWSPAN = 2;
 	private static int learnedSkillsAdded = 0;
-	private final static String GAP = "____";
+	private final static String SKILL_VALUE_GAP = "____";
 	private final static int OCCULTISM_ROWS = 5;
 	private final static int MAX_SKILL_COLUMN_WIDTH = 115;
 	private final static String DEFAULT_NATURAL_SKILL_VALUE = " (3)";
@@ -63,11 +65,15 @@ public class SkillsTable extends BaseElement {
 		setTablePropierties(table);
 
 		table.addCell(createTitle(getTranslator().getTranslatedText("naturalSkills")));
-		for (AvailableSkill skill : SkillFactory.getNaturalSkills(language)) {
-			table.addCell(createSkillElement(characterPlayer, skill));
-			if (characterPlayer == null) {
-				table.addCell(createSkillLine(GAP));
-			} else {
+
+		if (characterPlayer == null) {
+			for (AvailableSkill skill : SkillFactory.getNaturalSkills(language)) {
+				table.addCell(createSkillElement(characterPlayer, skill));
+				table.addCell(createSkillLine(SKILL_VALUE_GAP));
+			}
+		} else {
+			for (AvailableSkill skill : characterPlayer.getNaturalSkills()) {
+				table.addCell(createSkillElement(characterPlayer, skill));
 				table.addCell(createSkillValue(characterPlayer.getSkillValue(skill.getName())));
 			}
 		}
@@ -77,7 +83,7 @@ public class SkillsTable extends BaseElement {
 				- SkillFactory.getNaturalSkills(language).size()); i++) {
 			table.addCell(createSkillElement(characterPlayer, SkillFactory.getLearnedSkills(language).get(i)));
 			if (characterPlayer == null) {
-				table.addCell(createSkillLine(GAP));
+				table.addCell(createSkillLine(SKILL_VALUE_GAP));
 			} else {
 				table.addCell(createSkillValue(characterPlayer.getSkillValue(SkillFactory.getLearnedSkills(language).get(i).getName())));
 			}
@@ -104,7 +110,7 @@ public class SkillsTable extends BaseElement {
 		for (int i = learnedSkillsAdded; i < maxElements; i++) {
 			table.addCell(createSkillElement(characterPlayer, SkillFactory.getLearnedSkills(language).get(i)));
 			if (characterPlayer == null) {
-				table.addCell(createSkillLine(GAP));
+				table.addCell(createSkillLine(SKILL_VALUE_GAP));
 			} else {
 				table.addCell(createSkillValue(characterPlayer.getSkillValue(SkillFactory.getLearnedSkills(language).get(i).getName())));
 			}
@@ -129,7 +135,7 @@ public class SkillsTable extends BaseElement {
 		for (int i = learnedSkillsAdded; i < maxElements; i++) {
 			table.addCell(createSkillElement(characterPlayer, SkillFactory.getLearnedSkills(language).get(i)));
 			if (characterPlayer == null) {
-				table.addCell(createSkillLine(GAP));
+				table.addCell(createSkillLine(SKILL_VALUE_GAP));
 			} else {
 				table.addCell(createSkillValue(characterPlayer.getSkillValue(SkillFactory.getLearnedSkills(language).get(i).getName())));
 			}
@@ -139,8 +145,8 @@ public class SkillsTable extends BaseElement {
 
 		// Complete with empty skills.
 		for (int i = addedElements; i < ROWS - OCCULTISM_ROWS; i++) {
-			table.addCell(createSkillLine("_____________________"));
-			table.addCell(createSkillLine(GAP));
+			table.addCell(createSkillLine("________________________"));
+			table.addCell(createSkillLine(SKILL_VALUE_GAP));
 		}
 
 		// Add Occultism table
@@ -161,22 +167,23 @@ public class SkillsTable extends BaseElement {
 	}
 
 	private static PdfPCell createTitle(String text) {
-		PdfPCell cell = getCell(text, 0, 2, Element.ALIGN_CENTER, BaseColor.WHITE, FadingSunsTheme.getTitleFont(), FadingSunsTheme.SKILLS_TITLE_FONT_SIZE);
+		PdfPCell cell = getCell(text, 0, 2, Element.ALIGN_CENTER, BaseColor.WHITE, FadingSunsTheme.getTitleFont(),
+				FadingSunsTheme.SKILLS_TITLE_FONT_SIZE);
 		cell.setMinimumHeight(MainSkillsTableFactory.HEIGHT / (ROWS / TITLE_ROWSPAN) + 1);
 		cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		return cell;
 	}
 
 	private static PdfPCell createSkillElement(CharacterPlayer characterPlayer, AvailableSkill skill) {
-		PdfPCell cell = getCell(skill.getName() + createSkillSufix(characterPlayer, skill), 0, 1, Element.ALIGN_LEFT, BaseColor.WHITE,
-				skill.isFromGuild() ? FadingSunsTheme.getLineItalicFont() : FadingSunsTheme.getLineFont(), FadingSunsTheme.SKILLS_LINE_FONT_SIZE);
+		PdfPCell cell = getCell(createSkillSufix(characterPlayer, skill), 0, 1, Element.ALIGN_LEFT, BaseColor.WHITE);
 		cell.setMinimumHeight((MainSkillsTableFactory.HEIGHT / ROWS));
 		cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		return cell;
 	}
 
 	private static PdfPCell createSkillLine(String text) {
-		PdfPCell cell = getCell(text, 0, 1, Element.ALIGN_CENTER, BaseColor.WHITE, FadingSunsTheme.getLineFont(), FadingSunsTheme.SKILLS_LINE_FONT_SIZE);
+		PdfPCell cell = getCell(text, 0, 1, Element.ALIGN_LEFT, BaseColor.WHITE, FadingSunsTheme.getLineFont(),
+				FadingSunsTheme.SKILLS_LINE_FONT_SIZE);
 		cell.setMinimumHeight((MainSkillsTableFactory.HEIGHT / ROWS));
 		cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		return cell;
@@ -184,7 +191,7 @@ public class SkillsTable extends BaseElement {
 
 	private static PdfPCell createSkillValue(Integer value) {
 		if (value == null) {
-			return createSkillLine(GAP);
+			return createSkillLine(SKILL_VALUE_GAP);
 		}
 		PdfPCell cell = getCell(value + "", 0, 1, Element.ALIGN_CENTER, BaseColor.WHITE, FadingSunsTheme.getHandwrittingFont(),
 				FadingSunsTheme.getHandWrittingFontSize(FadingSunsTheme.SKILLS_LINE_FONT_SIZE));
@@ -193,33 +200,62 @@ public class SkillsTable extends BaseElement {
 		return cell;
 	}
 
-	private static String createSkillSufix(CharacterPlayer characterPlayer, AvailableSkill skill) {
-		StringBuilder sufix = new StringBuilder();
+	private static Paragraph createSkillSufix(CharacterPlayer characterPlayer, AvailableSkill skill) {
+		Paragraph paragraph = new Paragraph();
 		// Add number first to calculate length.
 		if (skill.isGeneralizable()) {
 			if (skill.isFromGuild()) {
 				float usedWidth = FadingSunsTheme.getLineItalicFont().getWidthPoint(
-						skill.getName() + " []" + (skill.isNatural() ? DEFAULT_NATURAL_SKILL_VALUE : ""), FadingSunsTheme.SKILLS_LINE_FONT_SIZE);
-				sufix.append(" [");
-				sufix.append(CellUtils.getSubStringFitsIn(DEFAULT_WHITE_SPACES, FadingSunsTheme.getLineItalicFont(), FadingSunsTheme.SKILLS_LINE_FONT_SIZE,
-						MAX_SKILL_COLUMN_WIDTH - usedWidth));
-				sufix.append("]");
-			} else {
-				float usedWidth = FadingSunsTheme.getLineFont().getWidthPoint(skill.getName() + " []" + (skill.isNatural() ? DEFAULT_NATURAL_SKILL_VALUE : ""),
+						skill.getName() + " []" + (skill.isNatural() ? DEFAULT_NATURAL_SKILL_VALUE : ""),
 						FadingSunsTheme.SKILLS_LINE_FONT_SIZE);
-				sufix.append(" [");
-				sufix.append(CellUtils.getSubStringFitsIn(DEFAULT_WHITE_SPACES, FadingSunsTheme.getLineFont(), FadingSunsTheme.SKILLS_LINE_FONT_SIZE,
-						MAX_SKILL_COLUMN_WIDTH - usedWidth));
-				sufix.append("]");
+				paragraph.add(new Paragraph(skill.getName() + " [", new Font(FadingSunsTheme.getLineItalicFont(),
+						FadingSunsTheme.SKILLS_LINE_FONT_SIZE)));
+				if (skill.getGeneralization() == null) {
+					paragraph.add(new Paragraph(CellUtils.getSubStringFitsIn(DEFAULT_WHITE_SPACES, FadingSunsTheme.getLineItalicFont(),
+							FadingSunsTheme.SKILLS_LINE_FONT_SIZE, MAX_SKILL_COLUMN_WIDTH - usedWidth), new Font(FadingSunsTheme
+							.getLineFont(), FadingSunsTheme.SKILLS_LINE_FONT_SIZE)));
+				} else {
+					paragraph.add(new Paragraph(CellUtils.getSubStringFitsIn(skill.getGeneralization(),
+							FadingSunsTheme.getHandwrittingFont(),
+							FadingSunsTheme.getHandWrittingFontSize(FadingSunsTheme.SKILLS_LINE_FONT_SIZE), MAX_SKILL_COLUMN_WIDTH
+									- usedWidth), new Font(FadingSunsTheme.getHandwrittingFont(), FadingSunsTheme
+							.getHandWrittingFontSize(FadingSunsTheme.SKILLS_LINE_FONT_SIZE))));
+				}
+				paragraph.add(new Paragraph("]", new Font(FadingSunsTheme.getLineFont(), FadingSunsTheme.SKILLS_LINE_FONT_SIZE)));
+			} else {
+				float usedWidth = FadingSunsTheme.getLineFont().getWidthPoint(
+						skill.getName() + " []" + (skill.isNatural() ? DEFAULT_NATURAL_SKILL_VALUE : ""),
+						FadingSunsTheme.SKILLS_LINE_FONT_SIZE);
+				paragraph.add(new Paragraph(skill.getName() + " [", new Font(FadingSunsTheme.getLineFont(),
+						FadingSunsTheme.SKILLS_LINE_FONT_SIZE)));
+				if (skill.getGeneralization() == null) {
+					paragraph.add(new Paragraph(CellUtils.getSubStringFitsIn(DEFAULT_WHITE_SPACES, FadingSunsTheme.getLineFont(),
+							FadingSunsTheme.SKILLS_LINE_FONT_SIZE, MAX_SKILL_COLUMN_WIDTH - usedWidth), new Font(FadingSunsTheme
+							.getLineFont(), FadingSunsTheme.SKILLS_LINE_FONT_SIZE)));
+				} else {
+					paragraph.add(new Paragraph(CellUtils.getSubStringFitsIn(skill.getGeneralization(),
+							FadingSunsTheme.getHandwrittingFont(),
+							FadingSunsTheme.getHandWrittingFontSize(FadingSunsTheme.SKILLS_LINE_FONT_SIZE), MAX_SKILL_COLUMN_WIDTH
+									- usedWidth), new Font(FadingSunsTheme.getHandwrittingFont(), FadingSunsTheme
+							.getHandWrittingFontSize(FadingSunsTheme.SKILLS_LINE_FONT_SIZE))));
+				}
+				paragraph.add(new Paragraph("]", new Font(FadingSunsTheme.getLineFont(), FadingSunsTheme.SKILLS_LINE_FONT_SIZE)));
+			}
+		} else {
+			if (skill.isFromGuild()) {
+				paragraph.add(new Paragraph(skill.getName(), new Font(FadingSunsTheme.getLineItalicFont(),
+						FadingSunsTheme.SKILLS_LINE_FONT_SIZE)));
+			} else {
+				paragraph.add(new Paragraph(skill.getName(), new Font(FadingSunsTheme.getLineFont(),
+						FadingSunsTheme.SKILLS_LINE_FONT_SIZE)));
 			}
 		}
 		// Put number at the end.
 		if (skill.isNatural()) {
-			sufix = new StringBuilder(sufix.toString().replace(DEFAULT_NATURAL_SKILL_VALUE, ""));
-			sufix.append(DEFAULT_NATURAL_SKILL_VALUE);
+			paragraph.add(new Paragraph(DEFAULT_NATURAL_SKILL_VALUE, new Font(FadingSunsTheme.getLineFont(),
+					FadingSunsTheme.SKILLS_LINE_FONT_SIZE)));
 		}
 
-		return sufix.toString();
+		return paragraph;
 	}
-
 }

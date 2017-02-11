@@ -30,6 +30,7 @@ public class AvailableSkill implements Comparable<AvailableSkill> {
 	private boolean fromGuild;
 	private boolean natural;
 	private boolean generalizable;
+	private String generalization;
 
 	public AvailableSkill(String name, boolean natural) {
 		generalizable = name.contains("[]");
@@ -63,6 +64,14 @@ public class AvailableSkill implements Comparable<AvailableSkill> {
 
 	public boolean isGeneralizable() {
 		return generalizable;
+	}
+
+	public String getGeneralization() {
+		return generalization;
+	}
+
+	public void setGeneralization(String generalization) {
+		this.generalization = generalization;
 	}
 
 }

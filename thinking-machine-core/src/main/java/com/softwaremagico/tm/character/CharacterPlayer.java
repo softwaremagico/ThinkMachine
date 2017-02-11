@@ -264,4 +264,21 @@ public class CharacterPlayer {
 		}
 		return 0;
 	}
+
+	public List<AvailableSkill> getNaturalSkills() {
+		List<AvailableSkill> naturalSkills = new ArrayList<>();
+		boolean planet = false;
+		for (AvailableSkill skill : SkillFactory.getNaturalSkills(language)) {
+			if (skill.isGeneralizable()) {
+				if (!planet) {
+					skill.setGeneralization(getInfo().getPlanet());
+					planet = true;
+				} else {
+					skill.setGeneralization(getInfo().getAlliance());
+				}
+			}
+			naturalSkills.add(skill);
+		}
+		return naturalSkills;
+	}
 }

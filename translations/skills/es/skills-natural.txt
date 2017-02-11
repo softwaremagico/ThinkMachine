@@ -3,7 +3,7 @@ Lanzar
 Observar
 Pelear
 Saber [Imperio Fénix]
-Saber Planetario
+Saber []
 Saber []
 Sigilo
 Vigor
