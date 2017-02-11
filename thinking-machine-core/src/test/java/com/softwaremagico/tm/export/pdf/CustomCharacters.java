@@ -15,6 +15,8 @@ import com.softwaremagico.tm.character.Race;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.cybernetics.Device;
 import com.softwaremagico.tm.character.equipment.Shield;
+import com.softwaremagico.tm.character.equipment.Size;
+import com.softwaremagico.tm.character.equipment.Weapon;
 import com.softwaremagico.tm.character.occultism.OccultismPower;
 import com.softwaremagico.tm.character.traits.Benefit;
 import com.softwaremagico.tm.character.traits.Blessing;
@@ -48,6 +50,7 @@ public class CustomCharacters {
 
 		player.addSkill("Influenciar", 4);
 		player.addSkill("Observar", 5);
+		player.addSkill("Sigilo", 6);
 		player.addSkill("Vigor", 5);
 		player.addSkill("Abrir Cerraduras", 2);
 		player.addSkill("Armas de Energía", 5);
@@ -121,12 +124,12 @@ public class CustomCharacters {
 		player.addSkill("Sigilo", 8);
 		player.addSkill("Vigor", 8);
 		player.addSkill("Abrir Cerraduras", 4);
-		player.addSkill("Arte [Dibujar]", 1);
+		player.addSkill("Arte [Música]", 1);
 		player.addSkill("Autocontrol", 2);
 		player.addSkill("Callejear", 3);
 		player.addSkill("Conocim. del Cuerpo", 1);
 		player.addSkill("Controlar Embarcación", 1);
-		player.addSkill("Cuerpo a Cuerpo", 4);
+		player.addSkill("Artefacto Cuerpo a C.", 4);
 		player.addSkill("Etiqueta", 4);
 		player.addSkill("Investigar", 4);
 		player.addSkill("Liderazgo", 2);
@@ -136,8 +139,12 @@ public class CustomCharacters {
 		player.addBlessing(new Blessing("Marca Horrible", -2, -2, "Influencia", "Si es visible"));
 
 		player.addBenefit(new Benefit("Rango Caballero", 4));
-		player.addBenefit(new Benefit("Idioma", 2));
+		player.addBenefit(new Benefit("Idioma Latín", 2));
 		player.addBenefit(new Benefit("Decreto Imperial", 4));
+		player.addBenefit(new Benefit("Espada de Flujo", 11));
+		player.addBenefit(new Benefit("Vendetta", -2));
+		
+		player.getWeapons().addElement(new Weapon("Espada de Flujo", "Ds+Art.", 1, 7, "3", null, null, 8, Size.L, "Plasma"));
 
 		LanguagePool.clearCache();
 		CharacterSheet sheet = new CharacterSheet(player);
