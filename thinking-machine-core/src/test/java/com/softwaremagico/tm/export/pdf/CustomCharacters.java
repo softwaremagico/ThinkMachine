@@ -13,13 +13,8 @@ import com.softwaremagico.tm.character.CostCalculator;
 import com.softwaremagico.tm.character.Gender;
 import com.softwaremagico.tm.character.Race;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
-import com.softwaremagico.tm.character.combat.CombatAction;
-import com.softwaremagico.tm.character.combat.CombatStyle;
 import com.softwaremagico.tm.character.cybernetics.Device;
-import com.softwaremagico.tm.character.equipment.Armour;
 import com.softwaremagico.tm.character.equipment.Shield;
-import com.softwaremagico.tm.character.equipment.Size;
-import com.softwaremagico.tm.character.equipment.Weapon;
 import com.softwaremagico.tm.character.occultism.OccultismPower;
 import com.softwaremagico.tm.character.traits.Benefit;
 import com.softwaremagico.tm.character.traits.Blessing;
@@ -246,6 +241,7 @@ public class CustomCharacters {
 		player.getOccultism().addElement(new OccultismPower("Mano Duelista", "Vol+Autoc.", 4, "Sensorial", "Temporal", "", 1));
 		player.getOccultism().addElement(new OccultismPower("Intuir", "Vol+Empatía", 1, "Toque", "Instantáneo", "", 1));
 		player.getOccultism().addElement(new OccultismPower("Emocionar", "Presencia+Influenciar", 2, "Toque", "Instantáneo", "", 1));
+		player.getOccultism().setExtraWyrd(3);
 		
 
 		player.addBlessing(new Blessing("Recto", 2, 2, "Fe", "Corregir al errado"));

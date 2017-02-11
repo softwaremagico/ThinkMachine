@@ -34,7 +34,6 @@ public class CostCalculator {
 		cost += getCyberneticsCost(characterPlayer);
 		MachineLog.info(CostCalculator.class.getName(), "Cybernetics cost: "
 				+ getCyberneticsCost(characterPlayer));
-		// cost += getCombatStylesCost(characterPlayer);
 		MachineLog.info(CostCalculator.class.getName(), "Total cost: " + cost);
 		return cost;
 	}
