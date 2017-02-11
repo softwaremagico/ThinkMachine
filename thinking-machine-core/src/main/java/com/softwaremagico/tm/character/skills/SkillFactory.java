@@ -31,6 +31,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import com.softwaremagico.tm.file.FileManager;
 import com.softwaremagico.tm.file.Path;
@@ -49,7 +50,8 @@ public class SkillFactory {
 		if (naturalSkills.get(language) == null) {
 			naturalSkills.put(language, new ArrayList<AvailableSkill>());
 			try {
-				for (String skillName : FileManager.inLines(skillsPath + language + File.separator + NATURAL_SKILLS_FILE)) {
+				for (String skillName : FileManager.inLines(skillsPath + language + File.separator
+						+ NATURAL_SKILLS_FILE)) {
 					naturalSkills.get(language).add(new AvailableSkill(skillName, true));
 				}
 			} catch (IOException e) {
@@ -65,8 +67,19 @@ public class SkillFactory {
 		if (learnedSkills.get(language) == null) {
 			try {
 				learnedSkills.put(language, new ArrayList<AvailableSkill>());
-				for (String skillName : FileManager.inLines(skillsPath + language + File.separator + LEARNED_SKILLS_FILE)) {
-					learnedSkills.get(language).add(new AvailableSkill(skillName, false));
+				String lastSkillName = null;
+				int added = 0;
+				for (String skillName : FileManager.inLines(skillsPath + language + File.separator
+						+ LEARNED_SKILLS_FILE)) {
+					AvailableSkill skill = new AvailableSkill(skillName, false);
+					if (Objects.equals(lastSkillName, skillName)) {
+						added++;
+					} else {
+						added = 0;
+					}
+					skill.setIndexOfGeneralization(added);
+					learnedSkills.get(language).add(skill);
+					lastSkillName = skillName;
 				}
 			} catch (IOException e) {
 				e.printStackTrace();

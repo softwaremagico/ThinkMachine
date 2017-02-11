@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.characteristics.CharacteristicValue;
@@ -17,6 +18,7 @@ import com.softwaremagico.tm.character.equipment.Weapons;
 import com.softwaremagico.tm.character.occultism.Occultism;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.character.skills.SelectedSkill;
+import com.softwaremagico.tm.character.skills.Skill;
 import com.softwaremagico.tm.character.skills.SkillFactory;
 import com.softwaremagico.tm.character.traits.Benefit;
 import com.softwaremagico.tm.character.traits.Blessing;
@@ -39,6 +41,7 @@ public class CharacterPlayer {
 
 	// Skills
 	private Map<String, SelectedSkill> skills;
+	private List<String> skillNameOrdered;
 
 	private List<Blessing> blessings;
 	private List<Benefit> benefits;
@@ -65,6 +68,7 @@ public class CharacterPlayer {
 		characteristics = new Characteristics();
 		occultism = new Occultism();
 		skills = new HashMap<>();
+		skillNameOrdered = new ArrayList<>();
 		blessings = new ArrayList<>();
 		benefits = new ArrayList<>();
 		cybernetics = new Cybernetics();
@@ -121,21 +125,67 @@ public class CharacterPlayer {
 	}
 
 	public Integer getWyrdValue() {
-		return Math.max(getValue(CharacteristicName.WILL), getValue(CharacteristicName.FAITH)) + occultism.getExtraWyrd();
+		return Math.max(getValue(CharacteristicName.WILL), getValue(CharacteristicName.FAITH))
+				+ occultism.getExtraWyrd();
 	}
 
 	public void addSkill(String skillName, int value) {
 		skills.put(skillName, new SelectedSkill(skillName, value));
+		skillNameOrdered.add(skillName);
+		Collections.sort(skillNameOrdered);
 	}
 
-	public Integer getSkillValue(String skillName) {
-		if (skills.get(skillName) == null) {
-			if (SkillFactory.isNaturalSkill(skillName, language)) {
+	private Integer getSkillValue(Skill skill) {
+		if (skills.get(skill.getName()) == null) {
+			if (SkillFactory.isNaturalSkill(skill.getName(), language)) {
 				return 3;
 			}
 			return null;
 		}
-		return skills.get(skillName).getValue();
+		return skills.get(skill.getName()).getValue();
+	}
+
+	public Integer getSkillValue(AvailableSkill skill) {
+		SelectedSkill selectedSkill = getSelectedSkill(skill);
+		// Use the skill with generalization.
+		if (selectedSkill != null) {
+			return getSkillValue(selectedSkill);
+		} else {
+			// Use a simple skill if not generalization.
+			if (!skill.isGeneralizable() || skill.isNatural()) {
+				return getSkillValue((Skill) skill);
+			} else {
+				return null;
+			}
+		}
+	}
+
+	/**
+	 * Gets the selected skill by specialization.
+	 * 
+	 * @param skill
+	 * @return
+	 */
+	public SelectedSkill getSelectedSkill(AvailableSkill skill) {
+		if (skill.isGeneralizable() && skill.getGeneralization() == null) {
+			// Check for specializations.
+			int order = 0;
+			for (String skillName : skillNameOrdered) {
+				if (skillName.contains("[")) {
+					String skillPrefix = skillName.substring(0, skillName.indexOf("[")).trim();
+					if (Objects.equals(skillPrefix, skill.getName())) {
+						if (order == skill.getIndexOfGeneralization()) {
+							return skills.get(skillName);
+						} else {
+							order++;
+						}
+					} else {
+						order = 0;
+					}
+				}
+			}
+		}
+		return null;
 	}
 
 	public String getLanguage() {
@@ -224,35 +274,6 @@ public class CharacterPlayer {
 
 	public void setRace(Race race) {
 		this.race = race;
-	}
-
-	public int getCost() {
-		int cost = 0;
-		if (getRace() != null) {
-			cost += getRace().getCost();
-		}
-		cost += getCharacteristicsCost();
-		cost += getSkillCosts();
-		return cost;
-	}
-
-	private int getCharacteristicsCost() {
-		int characteristicCost = 0;
-		for (CharacteristicName characteristicName : CharacteristicName.getBasicCharacteristics()) {
-			characteristicCost += getValue(characteristicName) - getRaceCharacteristicStartingValue(characteristicName);
-		}
-		return characteristicCost;
-	}
-
-	private int getSkillCosts() {
-		int cost = 0;
-		for (AvailableSkill skill : SkillFactory.getNaturalSkills(language)) {
-			cost += getSkillValue(skill.getName()) - 3;
-		}
-		for (AvailableSkill skill : SkillFactory.getLearnedSkills(language)) {
-			cost += getSkillValue(skill.getName());
-		}
-		return cost;
 	}
 
 	private int getRaceCharacteristicStartingValue(CharacteristicName characteristicName) {

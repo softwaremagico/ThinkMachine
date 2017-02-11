@@ -1,16 +1,11 @@
 package com.softwaremagico.tm.character.skills;
 
-public class SelectedSkill {
-	private String name;
+public class SelectedSkill extends Skill {
 	private int value;
 
 	public SelectedSkill(String name, int value) {
-		this.name = name;
+		super(name);
 		this.value = value;
-	}
-
-	public String getName() {
-		return name;
 	}
 
 	public int getValue() {

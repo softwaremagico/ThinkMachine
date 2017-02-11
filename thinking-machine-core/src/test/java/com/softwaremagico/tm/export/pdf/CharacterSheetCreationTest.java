@@ -96,6 +96,8 @@ public class CharacterSheetCreationTest {
 		player.addSkill("Abrir Cerraduras", 6);
 		player.addSkill("Armas de Energía", 6);
 		player.addSkill("Guerra", 8);
+		player.addSkill("Saber [Red de Salto]", 4);
+		player.addSkill("Saber [Bestias]", 2);
 
 		player.getOccultism().setPsiValue(4);
 		player.getOccultism().setUrge(1);
@@ -142,6 +144,6 @@ public class CharacterSheetCreationTest {
 		CharacterSheet sheet = new CharacterSheet(player);
 		sheet.createFile(PDF_PATH_OUTPUT + "CharacterFS_ES.pdf");
 
-		Assert.assertEquals(CostCalculator.getCost(player), 61);
+		Assert.assertEquals(CostCalculator.getCost(player), 55);
 	}
 }

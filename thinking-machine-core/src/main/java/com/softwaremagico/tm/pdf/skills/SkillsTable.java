@@ -74,7 +74,7 @@ public class SkillsTable extends BaseElement {
 		} else {
 			for (AvailableSkill skill : characterPlayer.getNaturalSkills()) {
 				table.addCell(createSkillElement(characterPlayer, skill));
-				table.addCell(createSkillValue(characterPlayer.getSkillValue(skill.getName())));
+				table.addCell(createSkillValue(characterPlayer.getSkillValue(skill)));
 			}
 		}
 
@@ -85,7 +85,7 @@ public class SkillsTable extends BaseElement {
 			if (characterPlayer == null) {
 				table.addCell(createSkillLine(SKILL_VALUE_GAP));
 			} else {
-				table.addCell(createSkillValue(characterPlayer.getSkillValue(SkillFactory.getLearnedSkills(language).get(i).getName())));
+				table.addCell(createSkillValue(characterPlayer.getSkillValue(SkillFactory.getLearnedSkills(language).get(i))));
 			}
 			learnedSkillsAdded++;
 		}
@@ -112,7 +112,7 @@ public class SkillsTable extends BaseElement {
 			if (characterPlayer == null) {
 				table.addCell(createSkillLine(SKILL_VALUE_GAP));
 			} else {
-				table.addCell(createSkillValue(characterPlayer.getSkillValue(SkillFactory.getLearnedSkills(language).get(i).getName())));
+				table.addCell(createSkillValue(characterPlayer.getSkillValue(SkillFactory.getLearnedSkills(language).get(i))));
 			}
 			learnedSkillsAdded++;
 		}
@@ -137,7 +137,7 @@ public class SkillsTable extends BaseElement {
 			if (characterPlayer == null) {
 				table.addCell(createSkillLine(SKILL_VALUE_GAP));
 			} else {
-				table.addCell(createSkillValue(characterPlayer.getSkillValue(SkillFactory.getLearnedSkills(language).get(i).getName())));
+				table.addCell(createSkillValue(characterPlayer.getSkillValue(SkillFactory.getLearnedSkills(language).get(i))));
 			}
 			learnedSkillsAdded++;
 			addedElements++;
@@ -210,12 +210,21 @@ public class SkillsTable extends BaseElement {
 						FadingSunsTheme.SKILLS_LINE_FONT_SIZE);
 				paragraph.add(new Paragraph(skill.getName() + " [", new Font(FadingSunsTheme.getLineItalicFont(),
 						FadingSunsTheme.SKILLS_LINE_FONT_SIZE)));
-				if (skill.getGeneralization() == null) {
+				//if (skill.getGeneralization() == null) {
+				if (characterPlayer.getSelectedSkill(skill) == null) {
+					if(skill.getGeneralization()!=null){
+						paragraph.add(new Paragraph(CellUtils.getSubStringFitsIn(skill.getGeneralization(),
+								FadingSunsTheme.getHandwrittingFont(),
+								FadingSunsTheme.getHandWrittingFontSize(FadingSunsTheme.SKILLS_LINE_FONT_SIZE), MAX_SKILL_COLUMN_WIDTH
+										- usedWidth), new Font(FadingSunsTheme.getHandwrittingFont(), FadingSunsTheme
+								.getHandWrittingFontSize(FadingSunsTheme.SKILLS_LINE_FONT_SIZE))));
+					}else{
 					paragraph.add(new Paragraph(CellUtils.getSubStringFitsIn(DEFAULT_WHITE_SPACES, FadingSunsTheme.getLineItalicFont(),
 							FadingSunsTheme.SKILLS_LINE_FONT_SIZE, MAX_SKILL_COLUMN_WIDTH - usedWidth), new Font(FadingSunsTheme
 							.getLineFont(), FadingSunsTheme.SKILLS_LINE_FONT_SIZE)));
+					}
 				} else {
-					paragraph.add(new Paragraph(CellUtils.getSubStringFitsIn(skill.getGeneralization(),
+					paragraph.add(new Paragraph(CellUtils.getSubStringFitsIn(characterPlayer.getSelectedSkill(skill).getName(),
 							FadingSunsTheme.getHandwrittingFont(),
 							FadingSunsTheme.getHandWrittingFontSize(FadingSunsTheme.SKILLS_LINE_FONT_SIZE), MAX_SKILL_COLUMN_WIDTH
 									- usedWidth), new Font(FadingSunsTheme.getHandwrittingFont(), FadingSunsTheme
@@ -228,12 +237,20 @@ public class SkillsTable extends BaseElement {
 						FadingSunsTheme.SKILLS_LINE_FONT_SIZE);
 				paragraph.add(new Paragraph(skill.getName() + " [", new Font(FadingSunsTheme.getLineFont(),
 						FadingSunsTheme.SKILLS_LINE_FONT_SIZE)));
-				if (skill.getGeneralization() == null) {
+				if (characterPlayer.getSelectedSkill(skill) == null) {
+					if(skill.getGeneralization()!=null){
+						paragraph.add(new Paragraph(CellUtils.getSubStringFitsIn(skill.getGeneralization(),
+								FadingSunsTheme.getHandwrittingFont(),
+								FadingSunsTheme.getHandWrittingFontSize(FadingSunsTheme.SKILLS_LINE_FONT_SIZE), MAX_SKILL_COLUMN_WIDTH
+										- usedWidth), new Font(FadingSunsTheme.getHandwrittingFont(), FadingSunsTheme
+								.getHandWrittingFontSize(FadingSunsTheme.SKILLS_LINE_FONT_SIZE))));
+					}else{
 					paragraph.add(new Paragraph(CellUtils.getSubStringFitsIn(DEFAULT_WHITE_SPACES, FadingSunsTheme.getLineFont(),
 							FadingSunsTheme.SKILLS_LINE_FONT_SIZE, MAX_SKILL_COLUMN_WIDTH - usedWidth), new Font(FadingSunsTheme
 							.getLineFont(), FadingSunsTheme.SKILLS_LINE_FONT_SIZE)));
+					}
 				} else {
-					paragraph.add(new Paragraph(CellUtils.getSubStringFitsIn(skill.getGeneralization(),
+					paragraph.add(new Paragraph(CellUtils.getSubStringFitsIn(characterPlayer.getSelectedSkill(skill).getName().replace(skill.getName(),  "").replace("[", "").replace("]", "").trim(),
 							FadingSunsTheme.getHandwrittingFont(),
 							FadingSunsTheme.getHandWrittingFontSize(FadingSunsTheme.SKILLS_LINE_FONT_SIZE), MAX_SKILL_COLUMN_WIDTH
 									- usedWidth), new Font(FadingSunsTheme.getHandwrittingFont(), FadingSunsTheme

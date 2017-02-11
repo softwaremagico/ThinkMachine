@@ -21,7 +21,7 @@ public class CostCalculator {
 		cost += getTraitsCosts(characterPlayer);
 		cost += getPsiPowersCosts(characterPlayer);
 		cost += getCyberneticsCost(characterPlayer);
-		//cost += getCombatStylesCost(characterPlayer);
+		// cost += getCombatStylesCost(characterPlayer);
 		return cost;
 	}
 
@@ -37,17 +37,18 @@ public class CostCalculator {
 	private static int getSkillCosts(CharacterPlayer characterPlayer) {
 		int cost = 0;
 		for (AvailableSkill skill : SkillFactory.getNaturalSkills(characterPlayer.getLanguage())) {
-			cost += characterPlayer.getSkillValue(skill.getName()) - 3;
+			cost += characterPlayer.getSkillValue(skill) - 3;
 		}
 		for (AvailableSkill skill : SkillFactory.getLearnedSkills(characterPlayer.getLanguage())) {
-			if (characterPlayer.getSkillValue(skill.getName()) != null) {
-				cost += characterPlayer.getSkillValue(skill.getName());
+			if (characterPlayer.getSkillValue(skill) != null) {
+				cost += characterPlayer.getSkillValue(skill);
 			}
 		}
 		return cost - 30;
 	}
 
-	private static int getRaceCharacteristicStartingValue(CharacterPlayer characterPlayer, CharacteristicName characteristicName) {
+	private static int getRaceCharacteristicStartingValue(CharacterPlayer characterPlayer,
+			CharacteristicName characteristicName) {
 		if (characterPlayer.getRace() != null) {
 			CharacteristicValue value = characterPlayer.getRace().getValue(characteristicName);
 			if (value != null) {

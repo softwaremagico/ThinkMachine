@@ -24,38 +24,23 @@ package com.softwaremagico.tm.character.skills;
  * #L%
  */
 
-public class AvailableSkill implements Comparable<AvailableSkill> {
-
-	private String name;
+public class AvailableSkill extends Skill {
 	private boolean fromGuild;
 	private boolean natural;
 	private boolean generalizable;
-	private String generalization;
+	private String generalization = null;
+	private int indexOfGeneralization = 0;
 
 	public AvailableSkill(String name, boolean natural) {
 		generalizable = name.contains("[]");
 		name = name.replace("[]", "").trim();
 		fromGuild = name.contains("*");
-		this.name = name.replace("*", "").trim();
+		setName(name.replace("*", "").trim());
 		this.natural = natural;
-	}
-
-	@Override
-	public int compareTo(AvailableSkill skill) {
-		return getName().compareTo(skill.getName());
 	}
 
 	public boolean isFromGuild() {
 		return fromGuild;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	@Override
-	public String toString() {
-		return getName();
 	}
 
 	public boolean isNatural() {
@@ -72,6 +57,14 @@ public class AvailableSkill implements Comparable<AvailableSkill> {
 
 	public void setGeneralization(String generalization) {
 		this.generalization = generalization;
+	}
+
+	public int getIndexOfGeneralization() {
+		return indexOfGeneralization;
+	}
+
+	public void setIndexOfGeneralization(int indexOfGeneralization) {
+		this.indexOfGeneralization = indexOfGeneralization;
 	}
 
 }
