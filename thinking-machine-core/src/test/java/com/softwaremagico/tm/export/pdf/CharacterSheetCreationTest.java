@@ -69,7 +69,7 @@ public class CharacterSheetCreationTest {
 	}
 
 	@Test
-	public void characterPdfEnglish() throws MalformedURLException, DocumentException, IOException {
+	public void characterPdfSpanish() throws MalformedURLException, DocumentException, IOException {
 		CharacterPlayer player = new CharacterPlayer("es");
 		player.getInfo().setName("John Sephard");
 		player.getInfo().setPlayer("Player 1");
@@ -144,6 +144,6 @@ public class CharacterSheetCreationTest {
 		CharacterSheet sheet = new CharacterSheet(player);
 		sheet.createFile(PDF_PATH_OUTPUT + "CharacterFS_ES.pdf");
 
-		Assert.assertEquals(CostCalculator.getCost(player), 55);
+		Assert.assertEquals(CostCalculator.getCost(player), 51);
 	}
 }

@@ -41,10 +41,15 @@ public class CharacterInfo {
 	}
 
 	private String getTranslation(Object parameterValue) {
-		String xmlTag = parameterValue.toString().substring(0, 1).toLowerCase() + parameterValue.toString().substring(1);
-		String translatedText = translator.getTranslatedText(xmlTag);
-		if (translatedText != null) {
-			return translatedText;
+		try {
+			String xmlTag = parameterValue.toString().substring(0, 1).toLowerCase()
+					+ parameterValue.toString().substring(1);
+			String translatedText = translator.getTranslatedText(xmlTag);
+			if (translatedText != null) {
+				return translatedText;
+			}
+		} catch (Exception e) {
+
 		}
 		return parameterValue.toString();
 	}

@@ -110,10 +110,13 @@ public class CharacterBasicsTableFactory extends BaseElement {
 			table.addCell(getCell(LINE, Element.ALIGN_LEFT));
 		} else {
 			if (tag.equals("race")) {
-				table.addCell(getHandwrittingCell(
-						translator.getTranslatedText(translator.convertToXmlTag(characterPlayer.getRace().getName())), Element.ALIGN_LEFT));
+				String raceValue = translator.getTranslatedText(translator.convertToXmlTag(characterPlayer
+						.getRace().getName()));
+				table.addCell(getHandwrittingCell(raceValue != null ? raceValue : characterPlayer.getRace()
+						.getName(), Element.ALIGN_LEFT));
 			} else {
-				table.addCell(getHandwrittingCell(characterPlayer.getInfo().getTranslatedParameter(tag), Element.ALIGN_LEFT));
+				table.addCell(getHandwrittingCell(characterPlayer.getInfo().getTranslatedParameter(tag),
+						Element.ALIGN_LEFT));
 			}
 		}
 
@@ -137,7 +140,8 @@ public class CharacterBasicsTableFactory extends BaseElement {
 	}
 
 	private static String getTranslatedTag(String tag) {
-		String value = getTranslator().getTranslatedText(LANGUAGE_PREFIX + tag.substring(0, 1).toUpperCase() + tag.substring(1));
+		String value = getTranslator().getTranslatedText(
+				LANGUAGE_PREFIX + tag.substring(0, 1).toUpperCase() + tag.substring(1));
 		if (value != null) {
 			if (value.length() > MAX_VALUE_LENGTH) {
 				return value.substring(0, MAX_VALUE_LENGTH + 1);

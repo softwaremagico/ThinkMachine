@@ -41,7 +41,7 @@ public enum CharacteristicName {
 
 	public static CharacteristicName[] getBasicCharacteristics() {
 		return new CharacteristicName[] { CharacteristicName.STRENGTH, CharacteristicName.DEXTERITY, CharacteristicName.ENDURANCE,
-				CharacteristicName.WILL, CharacteristicName.PERCEPTION, CharacteristicName.TECH, CharacteristicName.PRESENCE,
-				CharacteristicName.WITS, CharacteristicName.FAITH };
+				CharacteristicName.WITS, CharacteristicName.PERCEPTION, CharacteristicName.TECH, CharacteristicName.PRESENCE,
+				CharacteristicName.WILL, CharacteristicName.FAITH };
 	}
 }

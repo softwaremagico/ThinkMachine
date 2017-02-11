@@ -130,7 +130,11 @@ public class CharacterPlayer {
 	}
 
 	public void addSkill(String skillName, int value) {
-		skills.put(skillName, new SelectedSkill(skillName, value));
+		addSkill(skillName, value, false);
+	}
+
+	public void addSkill(String skillName, int value, boolean special) {
+		skills.put(skillName, new SelectedSkill(skillName, value, special));
 		skillNameOrdered.add(skillName);
 		Collections.sort(skillNameOrdered);
 	}
@@ -158,6 +162,13 @@ public class CharacterPlayer {
 				return null;
 			}
 		}
+	}
+
+	public boolean isSkillSpecial(AvailableSkill skill) {
+		if (getSelectedSkill(skill) != null && getSelectedSkill(skill).isSpecial()) {
+			return true;
+		}
+		return false;
 	}
 
 	/**

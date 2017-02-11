@@ -176,7 +176,7 @@ public class Translator implements ITranslator {
 
 				}
 			}
-			MachineLog.severe(this.getClass().getName(), "No tag for: " + tag + ".");
+			MachineLog.debug(this.getClass().getName(), "No tag for: " + tag + ".");
 			return null;
 		} catch (NullPointerException npe) {
 			return null;

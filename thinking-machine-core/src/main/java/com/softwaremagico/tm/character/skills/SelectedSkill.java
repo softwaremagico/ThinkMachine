@@ -1,18 +1,20 @@
 package com.softwaremagico.tm.character.skills;
 
 public class SelectedSkill extends Skill {
-	private int value;
+	private final int value;
+	private final boolean special;
 
-	public SelectedSkill(String name, int value) {
+	public SelectedSkill(String name, int value, boolean special) {
 		super(name);
 		this.value = value;
+		this.special = special;
 	}
 
 	public int getValue() {
 		return value;
 	}
 
-	public void setValue(int value) {
-		this.value = value;
+	public boolean isSpecial() {
+		return special;
 	}
 }

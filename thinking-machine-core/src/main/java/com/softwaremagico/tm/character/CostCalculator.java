@@ -8,20 +8,34 @@ import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.character.skills.SkillFactory;
 import com.softwaremagico.tm.character.traits.Benefit;
 import com.softwaremagico.tm.character.traits.Blessing;
+import com.softwaremagico.tm.log.MachineLog;
 
 public class CostCalculator {
 
 	public static int getCost(CharacterPlayer characterPlayer) {
 		int cost = 0;
+		MachineLog.info(CostCalculator.class.getName(), "################## "
+				+ characterPlayer.getInfo().getName());
 		if (characterPlayer.getRace() != null) {
 			cost += characterPlayer.getRace().getCost();
+			MachineLog.info(CostCalculator.class.getName(), "Race cost: "
+					+ characterPlayer.getRace().getCost());
 		}
 		cost += getCharacteristicsCost(characterPlayer);
+		MachineLog.info(CostCalculator.class.getName(), "Characteristics cost: "
+				+ getCharacteristicsCost(characterPlayer));
 		cost += getSkillCosts(characterPlayer);
+		MachineLog.info(CostCalculator.class.getName(), "Skills cost: " + getSkillCosts(characterPlayer));
 		cost += getTraitsCosts(characterPlayer);
+		MachineLog.info(CostCalculator.class.getName(), "Traits cost: " + getTraitsCosts(characterPlayer));
 		cost += getPsiPowersCosts(characterPlayer);
+		MachineLog.info(CostCalculator.class.getName(), "Psi powers cost: "
+				+ getPsiPowersCosts(characterPlayer));
 		cost += getCyberneticsCost(characterPlayer);
+		MachineLog.info(CostCalculator.class.getName(), "Cybernetics cost: "
+				+ getCyberneticsCost(characterPlayer));
 		// cost += getCombatStylesCost(characterPlayer);
+		MachineLog.info(CostCalculator.class.getName(), "Total cost: " + cost);
 		return cost;
 	}
 
@@ -31,7 +45,7 @@ public class CostCalculator {
 			characteristicCost += characterPlayer.getValue(characteristicName)
 					- getRaceCharacteristicStartingValue(characterPlayer, characteristicName);
 		}
-		return characteristicCost - 20;
+		return (characteristicCost - 20) * 3;
 	}
 
 	private static int getSkillCosts(CharacterPlayer characterPlayer) {
@@ -40,11 +54,14 @@ public class CostCalculator {
 			cost += characterPlayer.getSkillValue(skill) - 3;
 		}
 		for (AvailableSkill skill : SkillFactory.getLearnedSkills(characterPlayer.getLanguage())) {
+			if (characterPlayer.isSkillSpecial(skill)) {
+				continue;
+			}
 			if (characterPlayer.getSkillValue(skill) != null) {
 				cost += characterPlayer.getSkillValue(skill);
 			}
 		}
-		return cost - 30;
+		return (cost - 30);
 	}
 
 	private static int getRaceCharacteristicStartingValue(CharacterPlayer characterPlayer,
