@@ -16,8 +16,6 @@ public class CharacterInfo {
 
 	private Integer age;
 
-	private String race;
-
 	private String planet;
 
 	private String alliance;
@@ -55,10 +53,15 @@ public class CharacterInfo {
 	}
 
 	private String getTranslation(Object parameterValue) {
-		String xmlTag = parameterValue.toString().substring(0, 1).toLowerCase() + parameterValue.toString().substring(1);
-		String translatedText = translator.getTranslatedText(xmlTag);
-		if (translatedText != null) {
-			return translatedText;
+		try {
+			String xmlTag = parameterValue.toString().substring(0, 1).toLowerCase()
+					+ parameterValue.toString().substring(1);
+			String translatedText = translator.getTranslatedText(xmlTag);
+			if (translatedText != null) {
+				return translatedText;
+			}
+		} catch (Exception e) {
+
 		}
 		return parameterValue.toString();
 	}
@@ -93,14 +96,6 @@ public class CharacterInfo {
 
 	public void setAge(Integer age) {
 		this.age = age;
-	}
-
-	public String getRace() {
-		return race;
-	}
-
-	public void setRace(String race) {
-		this.race = race;
 	}
 
 	public String getPlanet() {

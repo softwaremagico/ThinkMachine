@@ -27,11 +27,13 @@
 		<groups>
 			<run>				
 				<include name="characterPdfGeneration" />
+				<include name="customCharacterGeneration" />
 				<include name="skillFactory" />
 			</run>
 		</groups>
 		<classes>
 			<class name="com.softwaremagico.tm.export.pdf.CharacterSheetCreationTest" />
+			<class name="com.softwaremagico.tm.export.pdf.CustomCharacters" />
 			<class name="com.softwaremagico.tm.skills.SkillFactoryTests" />
 		</classes>
 	</test>

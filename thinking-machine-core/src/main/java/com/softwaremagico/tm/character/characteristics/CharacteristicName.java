@@ -38,4 +38,10 @@ public enum CharacteristicName {
 	public String toString() {
 		return name().toLowerCase();
 	}
+
+	public static CharacteristicName[] getBasicCharacteristics() {
+		return new CharacteristicName[] { CharacteristicName.STRENGTH, CharacteristicName.DEXTERITY, CharacteristicName.ENDURANCE,
+				CharacteristicName.WITS, CharacteristicName.PERCEPTION, CharacteristicName.TECH, CharacteristicName.PRESENCE,
+				CharacteristicName.WILL, CharacteristicName.FAITH };
+	}
 }

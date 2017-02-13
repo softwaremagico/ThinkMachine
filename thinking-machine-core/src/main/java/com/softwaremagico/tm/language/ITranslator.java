@@ -34,4 +34,6 @@ public interface ITranslator {
 
 	String getTranslatedText(String tag, String language, Object[] args);
 
+	String convertToXmlTag(String text);
+
 }

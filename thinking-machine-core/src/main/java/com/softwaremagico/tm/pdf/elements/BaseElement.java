@@ -57,7 +57,19 @@ public class BaseElement {
 		return cell;
 	}
 
-	protected PdfPCell getCell(String text, int border, int colspan, int align, com.itextpdf.text.BaseColor color, String font, int fontSize, int fontType) {
+	public static PdfPCell getCell(Paragraph paragraph, int border, int colspan, int align, BaseColor color) {
+		// Paragraph p = new Paragraph(text, new Font(font, fontSize));
+		PdfPCell cell = new PdfPCell(paragraph);
+		cell.setColspan(colspan);
+		cell.setBorderWidth(border);
+		cell.setHorizontalAlignment(align);
+		cell.setBackgroundColor(color);
+
+		return cell;
+	}
+
+	protected PdfPCell getCell(String text, int border, int colspan, int align, com.itextpdf.text.BaseColor color, String font,
+			int fontSize, int fontType) {
 		Paragraph p = new Paragraph(text, FontFactory.getFont(font, fontSize, fontType));
 		PdfPCell cell = new PdfPCell(p);
 		cell.setColspan(colspan);

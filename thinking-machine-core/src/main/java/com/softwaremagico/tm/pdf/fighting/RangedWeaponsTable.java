@@ -24,14 +24,22 @@ package com.softwaremagico.tm.pdf.fighting;
  * #L%
  */
 
+import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.character.combat.CombatAction;
+import com.softwaremagico.tm.character.combat.CombatStyle;
 import com.softwaremagico.tm.pdf.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.elements.LateralHeaderPdfPTable;
 
 public class RangedWeaponsTable extends LateralHeaderPdfPTable {
 	private final static float[] WIDTHS = { 1.2f, 4f, 3f, 3f, 5f };
 	private final static int ROWS = 12;
+	private final static String GAP = "_________________";
+	private final static int NAME_COLUMN_WIDHT = 50;
+	private final static int GOAL_COLUMN_WIDHT = 40;
+	private final static int DAMAGE_COLUMN_WIDHT = 40;
+	private final static int OTHERS_COLUMN_WIDHT = 60;
 
-	public RangedWeaponsTable() {
+	public RangedWeaponsTable(CharacterPlayer characterPlayer) {
 		super(WIDTHS);
 		addCell(createLateralVerticalTitle(getTranslator().getTranslatedText("rangedWeapons"), ROWS + 1));
 		addCell(createTableSubtitleElement(getTranslator().getTranslatedText("weaponsAction")));
@@ -44,10 +52,11 @@ public class RangedWeaponsTable extends LateralHeaderPdfPTable {
 		addCell(createEmptyElementLine(""));
 		addCell(createEmptyElementLine(getTranslator().getTranslatedText("aimEffect")));
 
-//		addCell(createElementLine("Barrido"));
-//		addCell(createElementLine("-1/" + getTranslator().getTranslatedText("meterAbbreviature")));
-//		addCell(createElementLine("+1"));
-//		addCell(createElementLine(""));
+		// addCell(createElementLine("Barrido"));
+		// addCell(createElementLine("-1/" +
+		// getTranslator().getTranslatedText("meterAbbreviature")));
+		// addCell(createElementLine("+1"));
+		// addCell(createElementLine(""));
 
 		addCell(createEmptyElementLine(getTranslator().getTranslatedText("burstAction") + " (3)"));
 		addCell(createEmptyElementLine("+2"));
@@ -69,11 +78,24 @@ public class RangedWeaponsTable extends LateralHeaderPdfPTable {
 		addCell(createEmptyElementLine("  "));
 		addCell(createEmptyElementLine(getTranslator().getTranslatedText("weaponSpecial")));
 
-		for (int i = 0; i < ROWS - 5; i++) {
-			addCell(createEmptyElementLine("_____________"));
-			addCell(createEmptyElementLine("______"));
-			addCell(createEmptyElementLine("______"));
-			addCell(createEmptyElementLine("_________________"));
+		int addedActions = 0;
+		if (characterPlayer != null) {
+			for (CombatStyle style : characterPlayer.getRangedCombatStyles()) {
+				for (CombatAction action : style.getElements()) {
+					addCell(createElementLine(action.getName(), NAME_COLUMN_WIDHT, FadingSunsTheme.COMBAT_ACTIONS_CONTENT_FONT_SIZE));
+					addCell(createElementLine(action.getGoal(), GOAL_COLUMN_WIDHT, FadingSunsTheme.COMBAT_ACTIONS_CONTENT_FONT_SIZE));
+					addCell(createElementLine(action.getDamage(), DAMAGE_COLUMN_WIDHT, FadingSunsTheme.COMBAT_ACTIONS_CONTENT_FONT_SIZE));
+					addCell(createElementLine(action.getOthers(), OTHERS_COLUMN_WIDHT, FadingSunsTheme.COMBAT_ACTIONS_CONTENT_FONT_SIZE));
+					addedActions++;
+				}
+			}
+		}
+
+		for (int i = 0; i < ROWS - 5 - addedActions; i++) {
+			addCell(createEmptyElementLine(GAP, NAME_COLUMN_WIDHT));
+			addCell(createEmptyElementLine(GAP, GOAL_COLUMN_WIDHT));
+			addCell(createEmptyElementLine(GAP, DAMAGE_COLUMN_WIDHT));
+			addCell(createEmptyElementLine(GAP, OTHERS_COLUMN_WIDHT));
 		}
 
 	}

@@ -26,12 +26,13 @@ package com.softwaremagico.tm.pdf.fighting;
 
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
+import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.pdf.elements.BaseElement;
 
 public class FightingManeuvers extends BaseElement {
 	public final static int PADDING = 2;
 
-	public static PdfPTable getFightingManoeuvresTable() {
+	public static PdfPTable getFightingManoeuvresTable(CharacterPlayer characterPlayer) {
 		float[] widths = { 1f, 1f };
 		PdfPTable table = new PdfPTable(widths);
 		setTablePropierties(table);
@@ -44,10 +45,10 @@ public class FightingManeuvers extends BaseElement {
 		table.addCell(BaseElement.createWhiteSeparator());
 		table.addCell(BaseElement.createWhiteSeparator());
 
-		PdfPCell fireArmsCell = new PdfPCell(new RangedWeaponsTable());
+		PdfPCell fireArmsCell = new PdfPCell(new RangedWeaponsTable(characterPlayer));
 		table.addCell(fireArmsCell);
 
-		PdfPCell fencingCell = new PdfPCell(new MeleeWeaponsTable());
+		PdfPCell fencingCell = new PdfPCell(new MeleeWeaponsTable(characterPlayer));
 		table.addCell(fencingCell);
 
 		return table;

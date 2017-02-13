@@ -50,8 +50,7 @@ public class BlessingTable extends VerticalTable {
 		if (characterPlayer != null) {
 			for (Blessing blessing : characterPlayer.getBlessings()) {
 				addCell(createElementLine(blessing.getName(), NAME_COLUMN_WIDTH));
-				addCell(createElementLine(blessing.getBonification() > 0 ? "+" + blessing.getBonification() : blessing.getBonification() + "",
-						BONIFICATION_COLUMN_WIDTH));
+				addCell(createElementLine(blessing.getBonification(), BONIFICATION_COLUMN_WIDTH));
 				addCell(createElementLine(blessing.getTrait(), TRAIT_COLUMN_WIDTH));
 				addCell(createElementLine(blessing.getSituation(), SITUATION_COLUMN_WIDTH));
 				addedBlessings++;

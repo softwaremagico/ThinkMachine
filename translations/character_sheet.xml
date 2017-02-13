@@ -397,7 +397,7 @@
 		<es>Especial</es>
 	</weaponSpecial>
 	<strengthAbbreviature>
-		<en>Str</en>
+		<en>St</en>
 		<es>Fu</es>
 	</strengthAbbreviature>
 	<dexterityAbbreviature>
@@ -489,7 +489,7 @@
 		<es>Escudos</es>
 	</shield>
 	<shieldHits>
-		<en>Hits: ______________</en>
-		<es>Impactos: _________</es>
+		<en>Hits: </en>
+		<es>Impactos: </es>
 	</shieldHits>
 </translator>
