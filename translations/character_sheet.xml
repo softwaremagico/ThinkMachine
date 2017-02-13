@@ -36,34 +36,34 @@
 		<en>Description</en>
 		<es>Descripción</es>
 	</description>
-	<descriptionBirthdate>
+	<infoBirthdate>
 		<en>Birthdate _____________________________________</en>
 		<es>Fecha de Nacimiento _________________________</es>
-	</descriptionBirthdate>
-	<descriptionHair>
+	</infoBirthdate>
+	<infoHair>
 		<en>Hair __________________________________________</en>
 		<es>Cabello _______________________________________</es>
-	</descriptionHair>
-	<descriptionEyes>
+	</infoHair>
+	<infoEyes>
 		<en>Eyes _________________________________________</en>
 		<es>Ojos __________________________________________</es>
-	</descriptionEyes>
-	<descriptionWeight>
+	</infoEyes>
+	<infoWeight>
 		<en>Weight _______________________________________</en>
 		<es>Peso _________________________________________</es>
-	</descriptionWeight>
-	<descriptionHeight>
+	</infoWeight>
+	<infoHeight>
 		<en>Height _______________________________________</en>
 		<es>Estatura _____________________________________</es>
-	</descriptionHeight>
-	<descriptionComplexion>
+	</infoHeight>
+	<infoComplexion>
 		<en>Complexion __________________________________</en>
 		<es>Complexión __________________________________</es>
-	</descriptionComplexion>
-	<descriptionAppearance>
+	</infoComplexion>
+	<infoComplexion>
 		<en>Appearance __________________________________</en>
 		<es>Imagen ______________________________________</es>
-	</descriptionAppearance>
+	</infoComplexion>
 	<properties>
 		<en>Properties</en>
 		<es>Propiedades</es>

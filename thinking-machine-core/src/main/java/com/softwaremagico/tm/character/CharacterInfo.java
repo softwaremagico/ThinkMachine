@@ -24,6 +24,18 @@ public class CharacterInfo {
 
 	private String rank;
 
+	private String birthdate;
+
+	private String hair;
+
+	private String eye;
+
+	private String complexión;
+
+	private String height;
+
+	private String weight;
+
 	public String getTranslatedParameter(String fieldName) {
 		for (Field field : this.getClass().getDeclaredFields()) {
 			// field.setAccessible(true); //Make it public.
@@ -113,6 +125,54 @@ public class CharacterInfo {
 
 	public void setRank(String rank) {
 		this.rank = rank;
+	}
+
+	public String getBirthdate() {
+		return birthdate;
+	}
+
+	public void setBirthdate(String birthdate) {
+		this.birthdate = birthdate;
+	}
+
+	public String getHair() {
+		return hair;
+	}
+
+	public void setHair(String hair) {
+		this.hair = hair;
+	}
+
+	public String getEye() {
+		return eye;
+	}
+
+	public void setEye(String eye) {
+		this.eye = eye;
+	}
+
+	public String getComplexión() {
+		return complexión;
+	}
+
+	public void setComplexión(String complexión) {
+		this.complexión = complexión;
+	}
+
+	public String getHeight() {
+		return height;
+	}
+
+	public void setHeight(String height) {
+		this.height = height;
+	}
+
+	public String getWeight() {
+		return weight;
+	}
+
+	public void setWeight(String weight) {
+		this.weight = weight;
 	}
 
 }

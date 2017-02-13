@@ -24,24 +24,55 @@ package com.softwaremagico.tm.pdf.info;
  * #L%
  */
 
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.pdf.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.elements.VerticalTable;
+import com.softwaremagico.tm.pdf.utils.CellUtils;
 
 public class DescriptionTable extends VerticalTable {
 	private final static float[] WIDTHS = { 1f };
+	private final static String LANGUAGE_PREFIX = "info";
+	private final static String GAP = "______________________________________________";
+	private final static int COLUMN_WIDTH = 200;
 
-	public DescriptionTable() {
+	public DescriptionTable(CharacterPlayer characterPlayer) {
 		super(WIDTHS);
 
 		addCell(createTitle(getTranslator().getTranslatedText("description")));
-		addCell(createEmptyElementLine(getTranslator().getTranslatedText("descriptionBirthdate")));
-		addCell(createEmptyElementLine(getTranslator().getTranslatedText("descriptionHair")));
-		addCell(createEmptyElementLine(getTranslator().getTranslatedText("descriptionEyes")));
-		addCell(createEmptyElementLine(getTranslator().getTranslatedText("descriptionComplexion")));
-		addCell(createEmptyElementLine(getTranslator().getTranslatedText("descriptionHeight")));
-		addCell(createEmptyElementLine(getTranslator().getTranslatedText("descriptionWeight")));
-		addCell(createEmptyElementLine(getTranslator().getTranslatedText("descriptionAppearance")));
-		addCell(createEmptyElementLine("______________________________________________"));
-		addCell(createEmptyElementLine("______________________________________________"));
-		addCell(createEmptyElementLine("______________________________________________"));
+		addCell(createLine(characterPlayer, "birthdate"));
+		addCell(createLine(characterPlayer, "hair"));
+		addCell(createLine(characterPlayer, "eyes"));
+		addCell(createLine(characterPlayer, "complexion"));
+		addCell(createLine(characterPlayer, "height"));
+		addCell(createLine(characterPlayer, "weight"));
+		addCell(createLine(characterPlayer, "appearance"));
+		addCell(createEmptyElementLine(GAP));
+		addCell(createEmptyElementLine(GAP));
+		addCell(createEmptyElementLine(GAP));
+	}
+
+	private PdfPCell createLine(CharacterPlayer characterPlayer, String tag) {
+		Paragraph paragraph = new Paragraph();
+
+		String text = getTranslator().getTranslatedText(LANGUAGE_PREFIX + tag) + ":";
+		float textWidth = FadingSunsTheme.getLineFont().getWidthPoint(text, FadingSunsTheme.TABLE_LINE_FONT_SIZE);
+
+		paragraph.add(new Paragraph(text, new Font(FadingSunsTheme.getLineFont(), FadingSunsTheme.TABLE_LINE_FONT_SIZE)));
+		if (characterPlayer == null || characterPlayer.getInfo().getTranslatedParameter(tag) != null) {
+			paragraph.add(new Paragraph(CellUtils.getSubStringFitsIn(GAP, FadingSunsTheme.getLineFont(), FadingSunsTheme.TABLE_LINE_FONT_SIZE, COLUMN_WIDTH
+					- textWidth), new Font(FadingSunsTheme.getLineFont(), FadingSunsTheme.TABLE_LINE_FONT_SIZE)));
+		} else {
+			paragraph.add(new Paragraph(CellUtils.getSubStringFitsIn(characterPlayer.getInfo().getTranslatedParameter(tag),
+					FadingSunsTheme.getHandwrittingFont(), FadingSunsTheme.INFO_CONTENT_FONT_SIZE, COLUMN_WIDTH - textWidth), new Font(FadingSunsTheme
+					.getHandwrittingFont(), FadingSunsTheme.INFO_CONTENT_FONT_SIZE)));
+		}
+
+		PdfPCell cell = createEmptyElementLine("");
+		cell.setPhrase(paragraph);
+
+		return cell;
 	}
 }
