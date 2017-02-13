@@ -47,7 +47,9 @@
 				<configuration>
 					<executable>java</executable>
 					<mainClass>${mainClass}</mainClass>
-					<arguments> <argument>-splash:${splashImage}</argument> </arguments>
+					<arguments>
+						<argument>-splash:${splashImage}</argument>
+					</arguments>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -73,6 +75,12 @@
 	</build>
 
 	<dependencies>
+		<!-- JSON -->
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>${gson.version}</version>
+		</dependency>
 		<!-- PDF -->
 		<dependency>
 			<groupId>com.itextpdf</groupId>

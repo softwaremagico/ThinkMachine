@@ -489,7 +489,7 @@
 		<es>Escudos</es>
 	</shield>
 	<shieldHits>
-		<en>Hits: ______________</en>
-		<es>Impactos: _________</es>
+		<en>Hits: </en>
+		<es>Impactos: </es>
 	</shieldHits>
 </translator>

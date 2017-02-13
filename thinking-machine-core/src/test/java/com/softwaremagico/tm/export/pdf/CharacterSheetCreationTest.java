@@ -27,6 +27,9 @@ package com.softwaremagico.tm.export.pdf;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Arrays;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -47,12 +50,14 @@ import com.softwaremagico.tm.character.equipment.Weapon;
 import com.softwaremagico.tm.character.occultism.OccultismPower;
 import com.softwaremagico.tm.character.traits.Benefit;
 import com.softwaremagico.tm.character.traits.Blessing;
+import com.softwaremagico.tm.json.CharacterJsonManager;
 import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.pdf.CharacterSheet;
 
 @Test(groups = { "characterPdfGeneration" })
 public class CharacterSheetCreationTest {
 	private final static String PDF_PATH_OUTPUT = System.getProperty("java.io.tmpdir") + File.separator;
+	private CharacterPlayer player;
 
 	@Test
 	public void emptyPdfSpanish() throws MalformedURLException, DocumentException, IOException {
@@ -70,7 +75,7 @@ public class CharacterSheetCreationTest {
 
 	@Test
 	public void characterPdfSpanish() throws MalformedURLException, DocumentException, IOException {
-		CharacterPlayer player = new CharacterPlayer("es");
+		player = new CharacterPlayer("es");
 		player.getInfo().setName("John Sephard");
 		player.getInfo().setPlayer("Player 1");
 		player.getInfo().setGender(Gender.MALE);
@@ -79,7 +84,7 @@ public class CharacterSheetCreationTest {
 		player.getInfo().setPlanet("Sutek");
 		player.getInfo().setAlliance("Hazat");
 		player.getInfo().setRank("Knight");
-		
+
 		player.getInfo().setBirthdate("4996-09-16");
 		player.getInfo().setHair("Moreno");
 		player.getInfo().setEyes("Marrones");
@@ -152,5 +157,18 @@ public class CharacterSheetCreationTest {
 		sheet.createFile(PDF_PATH_OUTPUT + "CharacterFS_ES.pdf");
 
 		Assert.assertEquals(CostCalculator.getCost(player), 51);
+	}
+
+	@Test(dependsOnMethods = { "characterPdfSpanish" })
+	public void exportToJson() throws MalformedURLException, DocumentException, IOException {
+		String jsonText = CharacterJsonManager.toJson(player);
+		// get json to object.
+		CharacterPlayer importedCharacter = CharacterJsonManager.fromJson(jsonText);
+		CharacterSheet sheet = new CharacterSheet(importedCharacter);
+		sheet.createFile(PDF_PATH_OUTPUT + "CharacterFS_ES_2.pdf");
+
+//		byte[] f1 = Files.readAllBytes(Paths.get(PDF_PATH_OUTPUT, "CharacterFS_ES.pdf"));
+//		byte[] f2 = Files.readAllBytes(Paths.get(PDF_PATH_OUTPUT, "CharacterFS_ES_2.pdf"));
+//		Assert.assertEquals(f1, f2);
 	}
 }

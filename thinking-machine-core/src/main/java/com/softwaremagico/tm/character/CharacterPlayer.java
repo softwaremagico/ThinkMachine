@@ -57,6 +57,10 @@ public class CharacterPlayer {
 	private List<CombatStyle> meleeCombatActions;
 
 	private List<CombatStyle> rangedCombatActions;
+	
+	public CharacterPlayer() {
+		reset();
+	}
 
 	public CharacterPlayer(String language) {
 		this.language = language;
@@ -125,8 +129,7 @@ public class CharacterPlayer {
 	}
 
 	public Integer getWyrdValue() {
-		return Math.max(getValue(CharacteristicName.WILL), getValue(CharacteristicName.FAITH))
-				+ occultism.getExtraWyrd();
+		return Math.max(getValue(CharacteristicName.WILL), getValue(CharacteristicName.FAITH)) + occultism.getExtraWyrd();
 	}
 
 	public void addSkill(String skillName, int value) {
@@ -312,5 +315,13 @@ public class CharacterPlayer {
 			naturalSkills.add(skill);
 		}
 		return naturalSkills;
+	}
+
+	@Override
+	public String toString() {
+		if (getInfo() != null && getInfo().getName() != null) {
+			return getInfo().getName();
+		}
+		return super.toString();
 	}
 }
