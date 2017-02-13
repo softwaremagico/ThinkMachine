@@ -1,8 +1,12 @@
 package com.softwaremagico.tm;
 
 import java.io.File;
+import java.io.IOException;
 
+import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.json.CharacterJsonManager;
 import com.softwaremagico.tm.language.LanguagePool;
+import com.softwaremagico.tm.log.MachineLog;
 import com.softwaremagico.tm.pdf.CharacterSheet;
 
 /*-
@@ -32,27 +36,41 @@ import com.softwaremagico.tm.pdf.CharacterSheet;
 public class Main {
 	private static final int LANGUAGE = 0;
 	private static final int FILE_DESTINATION_PATH = 1;
-	private static String language, destinationPath;
+	private static final int JSON_FILE = 2;
+	private static String language, destinationPath, jsonFile;
 
 	public static void main(String[] args) {
-		if (args.length < 1) {
+		if (args.length < 2) {
 			System.out.println("Execute with parameters:");
 			System.out.println("\t	language	The language to print the sheet file.");
 			System.out.println("\t	path		The path to store the file.");
+			System.out.println("\t	character	The character definition (as Json) to fill up the sheet.");
 			System.out.println();
 			System.out.println("Example:");
-			System.out.println("\tmvn exec:java -Dexec.args=\"en /tmp\"");
+			System.out.println("\tmvn exec:java -Dexec.args=\"en /tmp character.json\"");
 			System.exit(0);
 		}
 		setArguments(args);
 
 		LanguagePool.clearCache();
-		CharacterSheet sheet = new CharacterSheet(language);
-		sheet.createFile(destinationPath + "FadingSuns_" + language.toUpperCase() + ".pdf");
+		CharacterSheet sheet;
+		if (jsonFile == null) {
+			sheet = new CharacterSheet(language);
+			sheet.createFile(destinationPath + "FadingSuns_" + language.toUpperCase() + ".pdf");
+		} else {
+			try {
+				CharacterPlayer player = CharacterJsonManager.fromFile(jsonFile);
+				sheet = new CharacterSheet(player);
+				sheet.createFile(destinationPath + "FadingSuns_" + language.toUpperCase() + ".pdf");
+
+				player = CharacterJsonManager.fromFile(jsonFile);
+			} catch (IOException e) {
+				MachineLog.errorMessage(Main.class.getName(), e);
+			}
+		}
 	}
 
 	private static void setArguments(String[] args) {
-
 		if (args.length <= LANGUAGE) {
 			language = "en";
 		} else {
@@ -63,6 +81,12 @@ public class Main {
 			destinationPath = System.getProperty("java.io.tmpdir");
 		} else {
 			destinationPath = args[FILE_DESTINATION_PATH] + File.separator;
+		}
+
+		if (args.length <= JSON_FILE) {
+			jsonFile = null;
+		} else {
+			jsonFile = args[JSON_FILE];
 		}
 	}
 }
