@@ -56,11 +56,12 @@ public abstract class FadingSunsTheme {
 	public final static int FIGHTING_TITLE_FONT_SIZE = 12;
 	public final static int ARMOUR_TITLE_FONT_SIZE = 12;
 	public final static int ARMOUR_CONTENT_FONT_SIZE = 7;
+	public final static int SHIELD_CONTENT_FONT_SIZE = 7;
 	public final static int WEAPONS_CONTENT_FONT_SIZE = 6;
 	public final static int CYBERNETICS_TITLE_FONT_SIZE = 12;
 	public final static int CYBERNETICS_CONTENT_FONT_SIZE = 6;
-	public final static int INFO_CONTENT_FONT_SIZE = 7;
 	public final static int COMBAT_ACTIONS_CONTENT_FONT_SIZE = 6;
+	public final static int INFO_CONTENT_FONT_SIZE = 7;
 	
 	public final static int HANDWRITTING_DEFAULT_FONT_SIZE = 10;
 

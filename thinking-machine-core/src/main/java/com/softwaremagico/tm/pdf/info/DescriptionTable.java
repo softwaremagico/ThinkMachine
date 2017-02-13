@@ -24,6 +24,7 @@ package com.softwaremagico.tm.pdf.info;
  * #L%
  */
 
+import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPCell;
@@ -35,8 +36,8 @@ import com.softwaremagico.tm.pdf.utils.CellUtils;
 public class DescriptionTable extends VerticalTable {
 	private final static float[] WIDTHS = { 1f };
 	private final static String LANGUAGE_PREFIX = "info";
-	private final static String GAP = "______________________________________________";
-	private final static int COLUMN_WIDTH = 200;
+	private final static String GAP = "_______________________________________________";
+	private final static int COLUMN_WIDTH = 170;
 
 	public DescriptionTable(CharacterPlayer characterPlayer) {
 		super(WIDTHS);
@@ -49,19 +50,21 @@ public class DescriptionTable extends VerticalTable {
 		addCell(createLine(characterPlayer, "height"));
 		addCell(createLine(characterPlayer, "weight"));
 		addCell(createLine(characterPlayer, "appearance"));
-		addCell(createEmptyElementLine(GAP));
-		addCell(createEmptyElementLine(GAP));
-		addCell(createEmptyElementLine(GAP));
+		addCell(createEmptyElementLine(GAP, COLUMN_WIDTH));
+		addCell(createEmptyElementLine(GAP, COLUMN_WIDTH));
+		addCell(createEmptyElementLine(GAP, COLUMN_WIDTH));
 	}
 
 	private PdfPCell createLine(CharacterPlayer characterPlayer, String tag) {
 		Paragraph paragraph = new Paragraph();
 
-		String text = getTranslator().getTranslatedText(LANGUAGE_PREFIX + tag) + ":";
-		float textWidth = FadingSunsTheme.getLineFont().getWidthPoint(text, FadingSunsTheme.TABLE_LINE_FONT_SIZE);
+		String text = getTranslatedTag(tag);
+		// Spaces at the end are eliminated. For calculating width we can put
+		// the characters in different order.
+		float textWidth = FadingSunsTheme.getLineFont().getWidthPoint(text + " :", FadingSunsTheme.TABLE_LINE_FONT_SIZE);
 
-		paragraph.add(new Paragraph(text, new Font(FadingSunsTheme.getLineFont(), FadingSunsTheme.TABLE_LINE_FONT_SIZE)));
-		if (characterPlayer == null || characterPlayer.getInfo().getTranslatedParameter(tag) != null) {
+		paragraph.add(new Paragraph(text + ": ", new Font(FadingSunsTheme.getLineFont(), FadingSunsTheme.TABLE_LINE_FONT_SIZE)));
+		if (characterPlayer == null || characterPlayer.getInfo().getTranslatedParameter(tag) == null) {
 			paragraph.add(new Paragraph(CellUtils.getSubStringFitsIn(GAP, FadingSunsTheme.getLineFont(), FadingSunsTheme.TABLE_LINE_FONT_SIZE, COLUMN_WIDTH
 					- textWidth), new Font(FadingSunsTheme.getLineFont(), FadingSunsTheme.TABLE_LINE_FONT_SIZE)));
 		} else {
@@ -71,8 +74,14 @@ public class DescriptionTable extends VerticalTable {
 		}
 
 		PdfPCell cell = createEmptyElementLine("");
+		cell.setHorizontalAlignment(Element.ALIGN_LEFT);
 		cell.setPhrase(paragraph);
 
 		return cell;
+	}
+
+	private static String getTranslatedTag(String tag) {
+		String value = getTranslator().getTranslatedText(LANGUAGE_PREFIX + tag.substring(0, 1).toUpperCase() + tag.substring(1));
+		return value;
 	}
 }

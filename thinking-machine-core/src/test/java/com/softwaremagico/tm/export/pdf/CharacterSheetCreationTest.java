@@ -79,6 +79,13 @@ public class CharacterSheetCreationTest {
 		player.getInfo().setPlanet("Sutek");
 		player.getInfo().setAlliance("Hazat");
 		player.getInfo().setRank("Knight");
+		
+		player.getInfo().setBirthdate("4996-09-16");
+		player.getInfo().setHair("Moreno");
+		player.getInfo().setEyes("Marrones");
+		player.getInfo().setComplexion("Delgado");
+		player.getInfo().setHeight("1,76m");
+		player.getInfo().setWeight("78kg");
 
 		player.getCharacteristics().getCharacteristic(CharacteristicName.STRENGTH).setValue(1);
 		player.getCharacteristics().getCharacteristic(CharacteristicName.DEXTERITY).setValue(2);

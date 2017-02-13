@@ -37,33 +37,33 @@
 		<es>Descripción</es>
 	</description>
 	<infoBirthdate>
-		<en>Birthdate _____________________________________</en>
-		<es>Fecha de Nacimiento _________________________</es>
+		<en>Birthdate</en>
+		<es>Fecha de Nacimiento</es>
 	</infoBirthdate>
 	<infoHair>
-		<en>Hair __________________________________________</en>
-		<es>Cabello _______________________________________</es>
+		<en>Hair</en>
+		<es>Cabello</es>
 	</infoHair>
 	<infoEyes>
-		<en>Eyes _________________________________________</en>
-		<es>Ojos __________________________________________</es>
+		<en>Eyes</en>
+		<es>Ojos</es>
 	</infoEyes>
 	<infoWeight>
-		<en>Weight _______________________________________</en>
-		<es>Peso _________________________________________</es>
+		<en>Weight</en>
+		<es>Peso</es>
 	</infoWeight>
 	<infoHeight>
-		<en>Height _______________________________________</en>
-		<es>Estatura _____________________________________</es>
+		<en>Height</en>
+		<es>Estatura</es>
 	</infoHeight>
 	<infoComplexion>
-		<en>Complexion __________________________________</en>
-		<es>Complexión __________________________________</es>
+		<en>Complexion</en>
+		<es>Complexión</es>
 	</infoComplexion>
-	<infoComplexion>
-		<en>Appearance __________________________________</en>
-		<es>Imagen ______________________________________</es>
-	</infoComplexion>
+	<infoAppearance>
+		<en>Appearance</en>
+		<es>Imagen</es>
+	</infoAppearance>
 	<properties>
 		<en>Properties</en>
 		<es>Propiedades</es>
@@ -397,7 +397,7 @@
 		<es>Especial</es>
 	</weaponSpecial>
 	<strengthAbbreviature>
-		<en>St</en>
+		<en>Str</en>
 		<es>Fu</es>
 	</strengthAbbreviature>
 	<dexterityAbbreviature>
@@ -489,7 +489,7 @@
 		<es>Escudos</es>
 	</shield>
 	<shieldHits>
-		<en>Hits: </en>
-		<es>Impactos: </es>
+		<en>Hits: ______________</en>
+		<es>Impactos: _________</es>
 	</shieldHits>
 </translator>

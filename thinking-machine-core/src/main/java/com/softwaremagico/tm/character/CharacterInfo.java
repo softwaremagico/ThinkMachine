@@ -26,9 +26,9 @@ public class CharacterInfo {
 
 	private String hair;
 
-	private String eye;
+	private String eyes;
 
-	private String complexión;
+	private String complexion;
 
 	private String height;
 
@@ -138,22 +138,6 @@ public class CharacterInfo {
 		this.hair = hair;
 	}
 
-	public String getEye() {
-		return eye;
-	}
-
-	public void setEye(String eye) {
-		this.eye = eye;
-	}
-
-	public String getComplexión() {
-		return complexión;
-	}
-
-	public void setComplexión(String complexión) {
-		this.complexión = complexión;
-	}
-
 	public String getHeight() {
 		return height;
 	}
@@ -168,6 +152,22 @@ public class CharacterInfo {
 
 	public void setWeight(String weight) {
 		this.weight = weight;
+	}
+
+	public String getEyes() {
+		return eyes;
+	}
+
+	public void setEyes(String eyes) {
+		this.eyes = eyes;
+	}
+
+	public String getComplexion() {
+		return complexion;
+	}
+
+	public void setComplexion(String complexion) {
+		this.complexion = complexion;
 	}
 
 }
