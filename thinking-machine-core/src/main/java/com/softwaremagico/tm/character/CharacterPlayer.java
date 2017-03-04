@@ -121,7 +121,11 @@ public class CharacterPlayer {
 		if (CharacteristicName.MOVEMENT.equals(characteristicName)) {
 			return getStartingValue(characteristicName);
 		}
-		return getCharacteristics().getCharacteristic(characteristicName).getValue();
+		Integer value = getCharacteristics().getCharacteristic(characteristicName).getValue();
+		if(value!=null){
+			return value;
+		}
+		return 0;
 	}
 
 	public Integer getVitalityValue() {
