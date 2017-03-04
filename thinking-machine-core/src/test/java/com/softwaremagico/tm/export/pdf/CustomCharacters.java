@@ -14,6 +14,7 @@ import com.softwaremagico.tm.character.Gender;
 import com.softwaremagico.tm.character.Race;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.cybernetics.Device;
+import com.softwaremagico.tm.character.equipment.Armour;
 import com.softwaremagico.tm.character.equipment.Shield;
 import com.softwaremagico.tm.character.equipment.Size;
 import com.softwaremagico.tm.character.equipment.Weapon;
@@ -262,6 +263,55 @@ public class CustomCharacters {
 		LanguagePool.clearCache();
 		CharacterSheet sheet = new CharacterSheet(player);
 		sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Noelia.pdf");
+
+		Assert.assertEquals(CostCalculator.getCost(player), 40);
+	}
+	
+	@Test
+	public void createGolemCharacer() throws MalformedURLException, DocumentException, IOException {
+		CharacterPlayer player = new CharacterPlayer("es");
+		player.getInfo().setPlayer("");
+		player.getInfo().setGender(Gender.FEMALE);
+		player.setRace(new Race("Gólem", 5, 5, 5, 3, 3, 6, 0, 0, 0, 6, 0, 0, 0, 0, 0));
+		player.getInfo().setPlanet("Ligaheim");
+		player.getInfo().setAlliance("Gólem");
+
+		player.getCharacteristics().getCharacteristic(CharacteristicName.STRENGTH).setValue(12);
+		player.getCharacteristics().getCharacteristic(CharacteristicName.DEXTERITY).setValue(7);
+		player.getCharacteristics().getCharacteristic(CharacteristicName.ENDURANCE).setValue(9);
+		player.getCharacteristics().getCharacteristic(CharacteristicName.WITS).setValue(5);
+		player.getCharacteristics().getCharacteristic(CharacteristicName.PERCEPTION).setValue(5);
+		player.getCharacteristics().getCharacteristic(CharacteristicName.TECH).setValue(5);
+
+		player.addSkill("Observar", 6);
+		player.addSkill("Vigor", 7);
+		player.addSkill("Lanzar", 5);
+		player.addSkill("Controlar Nave Espacial", 1);
+		player.addSkill("Controlar Vehíc. Terrestre", 3);
+		player.addSkill("Mantenimiento de Naves", 3);
+		player.addSkill("Guerra", 3);
+		player.addSkill("Saber [Cualquiera]", 3);
+	
+
+		player.addBlessing(new Blessing("Crédulo", -2, -2, "Voluntad", "Lo engatusan"));
+		player.addBlessing(new Blessing("Justificado", -2, -2, "Voluntad", "Se cuestion su juicio"));
+		
+		player.getCybernetics().addElement(
+				new Device("Omnienchufe", 1, 0, "Normal", "Normal", "Automático", "Oculto",
+						""));
+		player.getCybernetics().addElement(
+				new Device("Interfaz de Datos (Suprema)", 1, 1, "Normal", "Normal", "Automático", "Oculto",
+						"Suprema"));
+		player.getCybernetics().addElement(
+				new Device("Armadura", 1, 2, "Normal", "Normal", "Automático", "Oculto",
+						"2d"));
+		
+		player.setArmour(new Armour("Piel", 2, false, false, false, false, false, false, false, 5, 0, 0, 0, 0));
+
+
+		LanguagePool.clearCache();
+		CharacterSheet sheet = new CharacterSheet(player);
+		sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Golem.pdf");
 
 		Assert.assertEquals(CostCalculator.getCost(player), 40);
 	}
