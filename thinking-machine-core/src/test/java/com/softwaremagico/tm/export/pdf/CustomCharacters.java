@@ -77,7 +77,7 @@ public class CustomCharacters {
 		player.addBlessing(new Blessing("Enemigo Animales", -2, -2, "Todo", "Excepto combate"));
 		player.addBlessing(new Blessing("Marca Horrible", -2, -2, "Influencia", "Si es visible"));
 
-		player.addBenefit(new Benefit("Idioma Suprema", 2));
+		player.addBenefit(new Benefit("Idioma Turing", 2));
 		player.addBenefit(new Benefit("Asociado", 4));
 		player.addBenefit(new Benefit("1000 fénix", 4));
 		player.addBenefit(new Benefit("Red de Información", 3));
@@ -300,8 +300,8 @@ public class CustomCharacters {
 				new Device("Omnienchufe", 1, 0, "Normal", "Normal", "Automático", "Oculto",
 						""));
 		player.getCybernetics().addElement(
-				new Device("Interfaz de Datos (Suprema)", 1, 1, "Normal", "Normal", "Automático", "Oculto",
-						"Suprema"));
+				new Device("Interfaz de Datos (Turing)", 1, 1, "Normal", "Normal", "Automático", "Oculto",
+						"Turing"));
 		player.getCybernetics().addElement(
 				new Device("Armadura", 1, 2, "Normal", "Normal", "Automático", "Oculto",
 						"2d"));
