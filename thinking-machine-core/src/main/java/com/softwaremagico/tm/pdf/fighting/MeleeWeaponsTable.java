@@ -49,40 +49,49 @@ public class MeleeWeaponsTable extends LateralHeaderPdfPTable {
 
 		addCell(createEmptyElementLine(getTranslator().getTranslatedText("actionStrike")));
 		addCell(createEmptyElementLine(""));
-		addCell(createEmptyElementLine("2" + getTranslator().getTranslatedText("diceAbbreviature") + "/"
+		addCell(createEmptyElementLine((2 + characterPlayer.getStrengthDamangeModification())
+				+ getTranslator().getTranslatedText("diceAbbreviature") + "/"
 				+ getTranslator().getTranslatedText("weaponAbbreviature")));
 		addCell(createEmptyElementLine(""));
 
 		addCell(createEmptyElementLine(getTranslator().getTranslatedText("actionGrapple")));
 		addCell(createEmptyElementLine(""));
-		addCell(createEmptyElementLine("2" + getTranslator().getTranslatedText("diceAbbreviature")));
+		addCell(createEmptyElementLine((2 + characterPlayer.getStrengthDamangeModification())
+				+ getTranslator().getTranslatedText("diceAbbreviature")));
 		addCell(createEmptyElementLine(getTranslator().getTranslatedText("strengthAbbreviature") + "+"
-				+ getTranslator().getTranslatedText("vigorAbbreviature") + "/" + getTranslator().getTranslatedText("strengthAbbreviature")
-				+ "+" + getTranslator().getTranslatedText("vigorAbbreviature")));
+				+ getTranslator().getTranslatedText("vigorAbbreviature") + "/"
+				+ getTranslator().getTranslatedText("strengthAbbreviature") + "+"
+				+ getTranslator().getTranslatedText("vigorAbbreviature")));
 
 		addCell(createEmptyElementLine(getTranslator().getTranslatedText("actionKnockdown")));
 		addCell(createEmptyElementLine(""));
-		addCell(createEmptyElementLine("3" + getTranslator().getTranslatedText("diceAbbreviature")));
+		addCell(createEmptyElementLine((3 + characterPlayer.getStrengthDamangeModification())
+				+ getTranslator().getTranslatedText("diceAbbreviature")));
 		addCell(createEmptyElementLine(getTranslator().getTranslatedText("strengthAbbreviature") + "+"
-				+ getTranslator().getTranslatedText("meleeAbbreviature") + "/" + getTranslator().getTranslatedText("dexterityAbbreviature")
-				+ "+" + getTranslator().getTranslatedText("vigorAbbreviature")));
+				+ getTranslator().getTranslatedText("meleeAbbreviature") + "/"
+				+ getTranslator().getTranslatedText("dexterityAbbreviature") + "+"
+				+ getTranslator().getTranslatedText("vigorAbbreviature")));
 
 		addCell(createEmptyElementLine(getTranslator().getTranslatedText("actionDisarm")));
 		addCell(createEmptyElementLine("-4"));
-		addCell(createEmptyElementLine("2" + getTranslator().getTranslatedText("diceAbbreviature") + "/"
+		addCell(createEmptyElementLine((2 + characterPlayer.getStrengthDamangeModification())
+				+ getTranslator().getTranslatedText("diceAbbreviature") + "/"
 				+ getTranslator().getTranslatedText("weaponAbbreviature")));
 		addCell(createEmptyElementLine(getTranslator().getTranslatedText("weaponDamage") + "/"
-				+ getTranslator().getTranslatedText("strengthAbbreviature") + "+" + getTranslator().getTranslatedText("vigorAbbreviature")));
+				+ getTranslator().getTranslatedText("strengthAbbreviature") + "+"
+				+ getTranslator().getTranslatedText("vigorAbbreviature")));
 
 		addCell(createEmptyElementLine(getTranslator().getTranslatedText("actionKnockout")));
 		addCell(createEmptyElementLine("-4"));
-		addCell(createEmptyElementLine("2" + getTranslator().getTranslatedText("diceAbbreviature") + "/"
+		addCell(createEmptyElementLine((2 + characterPlayer.getStrengthDamangeModification())
+				+ getTranslator().getTranslatedText("diceAbbreviature") + "/"
 				+ getTranslator().getTranslatedText("weaponAbbreviature")));
 		addCell(createEmptyElementLine(getTranslator().getTranslatedText("weaponSpecial")));
 
 		addCell(createEmptyElementLine(getTranslator().getTranslatedText("actionCharge")));
 		addCell(createEmptyElementLine(""));
-		addCell(createEmptyElementLine("1" + getTranslator().getTranslatedText("diceAbbreviature") + "/"
+		addCell(createEmptyElementLine((1 + characterPlayer.getStrengthDamangeModification())
+				+ getTranslator().getTranslatedText("diceAbbreviature") + "/"
 				+ getTranslator().getTranslatedText("meterAbbreviature")));
 		addCell(createEmptyElementLine(getTranslator().getTranslatedText("maximumAbbreviature") + " 4"
 				+ getTranslator().getTranslatedText("diceAbbreviature")));
@@ -91,10 +100,14 @@ public class MeleeWeaponsTable extends LateralHeaderPdfPTable {
 		if (characterPlayer != null) {
 			for (CombatStyle style : characterPlayer.getMeleeCombatStyles()) {
 				for (CombatAction action : style.getElements()) {
-					addCell(createElementLine(action.getName(), NAME_COLUMN_WIDHT, FadingSunsTheme.COMBAT_ACTIONS_CONTENT_FONT_SIZE));
-					addCell(createElementLine(action.getGoal(), GOAL_COLUMN_WIDHT, FadingSunsTheme.COMBAT_ACTIONS_CONTENT_FONT_SIZE));
-					addCell(createElementLine(action.getDamage(), DAMAGE_COLUMN_WIDHT, FadingSunsTheme.COMBAT_ACTIONS_CONTENT_FONT_SIZE));
-					addCell(createElementLine(action.getOthers(), OTHERS_COLUMN_WIDHT, FadingSunsTheme.COMBAT_ACTIONS_CONTENT_FONT_SIZE));
+					addCell(createElementLine(action.getName(), NAME_COLUMN_WIDHT,
+							FadingSunsTheme.COMBAT_ACTIONS_CONTENT_FONT_SIZE));
+					addCell(createElementLine(action.getGoal(), GOAL_COLUMN_WIDHT,
+							FadingSunsTheme.COMBAT_ACTIONS_CONTENT_FONT_SIZE));
+					addCell(createElementLine(action.getDamage(), DAMAGE_COLUMN_WIDHT,
+							FadingSunsTheme.COMBAT_ACTIONS_CONTENT_FONT_SIZE));
+					addCell(createElementLine(action.getOthers(), OTHERS_COLUMN_WIDHT,
+							FadingSunsTheme.COMBAT_ACTIONS_CONTENT_FONT_SIZE));
 					addedActions++;
 				}
 			}

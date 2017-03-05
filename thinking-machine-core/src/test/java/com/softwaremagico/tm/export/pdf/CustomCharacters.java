@@ -278,19 +278,24 @@ public class CustomCharacters {
 
 		player.getCharacteristics().getCharacteristic(CharacteristicName.STRENGTH).setValue(12);
 		player.getCharacteristics().getCharacteristic(CharacteristicName.DEXTERITY).setValue(7);
-		player.getCharacteristics().getCharacteristic(CharacteristicName.ENDURANCE).setValue(9);
+		player.getCharacteristics().getCharacteristic(CharacteristicName.ENDURANCE).setValue(10);
 		player.getCharacteristics().getCharacteristic(CharacteristicName.WITS).setValue(5);
-		player.getCharacteristics().getCharacteristic(CharacteristicName.PERCEPTION).setValue(5);
+		player.getCharacteristics().getCharacteristic(CharacteristicName.PERCEPTION).setValue(7);
 		player.getCharacteristics().getCharacteristic(CharacteristicName.TECH).setValue(5);
 
 		player.addSkill("Observar", 6);
+		player.addSkill("Pelear", 5);
 		player.addSkill("Vigor", 7);
 		player.addSkill("Lanzar", 5);
+		player.addSkill("Atletismo", 4);
+		player.addSkill("Autocontrol", 5);
 		player.addSkill("Controlar Nave Espacial", 1);
 		player.addSkill("Controlar Vehíc. Terrestre", 3);
 		player.addSkill("Mantenimiento de Naves", 3);
 		player.addSkill("Guerra", 3);
 		player.addSkill("Saber [Cualquiera]", 3);
+		player.addSkill("Máquina Pensante", 3);
+		player.addSkill("Recuperación Tecnológic.", 3);
 	
 
 		player.addBlessing(new Blessing("Crédulo", -2, -2, "Voluntad", "Lo engatusan"));

@@ -57,7 +57,7 @@ public class CharacterPlayer {
 	private List<CombatStyle> meleeCombatActions;
 
 	private List<CombatStyle> rangedCombatActions;
-	
+
 	public CharacterPlayer() {
 		reset();
 	}
@@ -122,7 +122,7 @@ public class CharacterPlayer {
 			return getStartingValue(characteristicName);
 		}
 		Integer value = getCharacteristics().getCharacteristic(characteristicName).getValue();
-		if(value!=null){
+		if (value != null) {
 			return value;
 		}
 		return 0;
@@ -133,7 +133,8 @@ public class CharacterPlayer {
 	}
 
 	public Integer getWyrdValue() {
-		return Math.max(getValue(CharacteristicName.WILL), getValue(CharacteristicName.FAITH)) + occultism.getExtraWyrd();
+		return Math.max(getValue(CharacteristicName.WILL), getValue(CharacteristicName.FAITH))
+				+ occultism.getExtraWyrd();
 	}
 
 	public void addSkill(String skillName, int value) {
@@ -327,5 +328,17 @@ public class CharacterPlayer {
 			return getInfo().getName();
 		}
 		return super.toString();
+	}
+
+	public int getStrengthDamangeModification() {
+		try {
+			int strength = getCharacteristics().getCharacteristic(CharacteristicName.STRENGTH).getValue();
+			if (strength > 5) {
+				return strength / 3 - 1;
+			}
+		} catch (NullPointerException npe) {
+
+		}
+		return 0;
 	}
 }
