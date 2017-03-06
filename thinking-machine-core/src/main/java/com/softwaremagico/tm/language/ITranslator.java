@@ -40,4 +40,6 @@ public interface ITranslator {
 
 	List<String> getAllTranslatedElements();
 
+	String getNodeValue(String tag, String node);
+
 }

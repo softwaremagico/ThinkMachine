@@ -26,9 +26,10 @@
 	</investigation>
 	<appliedScience>
 		<translator>
-			<en>Applied Science *</en>
-			<es>Ciencia Aplicada *</es>
+			<en>Applied Science</en>
+			<es>Ciencia Aplicada</es>
 		</translator>
+		<guildSkill>true</guildSkill>
 	</appliedScience>
 	<socialScience>
 		<translator>
@@ -38,21 +39,24 @@
 	</socialScience>
 	<physicalScience>
 		<translator>
-			<en>Physical Science *</en>
-			<es>Ciencia de la Física *</es>
+			<en>Physical Science</en>
+			<es>Ciencia de la Física</es>
 		</translator>
+		<guildSkill>true</guildSkill>
 	</physicalScience>
 	<lifeScience>
 		<translator>
-			<en>Life Science *</en>
-			<es>Ciencia de la Vida *</es>
+			<en>Life Science</en>
+			<es>Ciencia de la Vida</es>
 		</translator>
+		<guildSkill>true</guildSkill>
 	</lifeScience>
 	<terraforming>
 		<translator>
-			<en>Terraforming *</en>
-			<es>Terraformismo *</es>
+			<en>Terraforming</en>
+			<es>Terraformismo</es>
 		</translator>
+		<guildSkill>true</guildSkill>
 	</terraforming>
 	<energyGuns>
 		<translator>
@@ -128,9 +132,10 @@
 	</aircraft>
 	<spacecraft>
 		<translator>
-			<en>Spacecraft *</en>
-			<es>Controlar Nave Espacial *</es>
+			<en>Spacecraft</en>
+			<es>Controlar Nave Espacial</es>
 		</translator>
+		<guildSkill>true</guildSkill>
 	</spacecraft>
 	<landcarft>
 		<translator>
@@ -140,15 +145,17 @@
 	</landcarft>
 	<arts>
 		<translator>
-			<en>Arts []</en>
-			<es>Arte []</es>
+			<en>Arts</en>
+			<es>Arte</es>
 		</translator>
+		<generalizable>true</generalizable>
 	</arts>
 	<arts2>
 		<translator>
-			<en>Arts []</en>
-			<es>Arte []</es>
+			<en>Arts</en>
+			<es>Arte</es>
 		</translator>
+		<generalizable>true</generalizable>
 	</arts2>
 	<disguise>
 		<translator>
@@ -158,15 +165,17 @@
 	</disguise>
 	<performance>
 		<translator>
-			<en>Performance []</en>
-			<es>Interpretar []</es>
+			<en>Performance</en>
+			<es>Interpretar</es>
 		</translator>
+		<generalizable>true</generalizable>
 	</performance>
 	<performance2>
 		<translator>
-			<en>Performance []</en>
-			<es>Interpretar []</es>
+			<en>Performance</en>
+			<es>Interpretar</es>
 		</translator>
+		<generalizable>true</generalizable>
 	</performance2>
 	<gaming>
 		<translator>
@@ -176,15 +185,17 @@
 	</gaming>
 	<craft>
 		<translator>
-			<en>Craft []</en>
-			<es>Oficio []</es>
+			<en>Craft</en>
+			<es>Oficio</es>
 		</translator>
+		<generalizable>true</generalizable>
 	</craft>
 	<craft2>
 		<translator>
-			<en>Craft []</en>
-			<es>Oficio []</es>
+			<en>Craft</en>
+			<es>Oficio</es>
 		</translator>
+		<generalizable>true</generalizable>
 	</craft2>
 	<lockpicking>
 		<translator>
@@ -230,39 +241,45 @@
 	</survival>
 	<lore>
 		<translator>
-			<en>Lore []</en>
-			<es>Saber []</es>
+			<en>Lore</en>
+			<es>Saber</es>
 		</translator>
+		<generalizable>true</generalizable>
 	</lore>
 	<lore2>
 		<translator>
-			<en>Lore []</en>
-			<es>Saber []</es>
+			<en>Lore</en>
+			<es>Saber</es>
 		</translator>
+		<generalizable>true</generalizable>
 	</lore2>
 	<lore3>
 		<translator>
-			<en>Lore []</en>
-			<es>Saber []</es>
+			<en>Lore</en>
+			<es>Saber</es>
 		</translator>
+		<generalizable>true</generalizable>
 	</lore3>
 	<lore4>
 		<translator>
-			<en>Lore []</en>
-			<es>Saber []</es>
+			<en>Lore</en>
+			<es>Saber</es>
 		</translator>
+		<generalizable>true</generalizable>
 	</lore4>
 	<xenoLore>
 		<translator>
-			<en>Xeno Lore []</en>
-			<es>Xenología []</es>
+			<en>Xeno Lore</en>
+			<es>Xenología</es>
 		</translator>
+		<generalizable>true</generalizable>
 	</xenoLore>
 	<xenoLore2>
 		<translator>
-			<en>Xeno Lore []</en>
-			<es>Xenología []</es>
+			<en>Xeno Lore</en>
+			<es>Xenología</es>
 		</translator>
+		<generalizable>true</generalizable>
 	</xenoLore2>
 	<empathy>
 		<translator>
@@ -290,20 +307,23 @@
 	</leadership>
 	<spacecraftOperations>
 		<translator>
-			<en>Spacecraft Operations *</en>
-			<es>Mantenimiento de Naves *</es>
+			<en>Spacecraft Operations</en>
+			<es>Mantenimiento de Naves</es>
 		</translator>
+		<guildSkill>true</guildSkill>
 	</spacecraftOperations>
 	<techRedemption>
 		<translator>
-			<en>Tech Redemption *</en>
-			<es>Recuperación Tecnológic. *</es>
+			<en>Tech Redemption</en>
+			<es>Recuperación Tecnológic.</es>
 		</translator>
+		<guildSkill>true</guildSkill>
 	</techRedemption>
 	<thinkMachine>
 		<translator>
-			<en>Think Machine *</en>
-			<es>Máquina Pensante *</es>
+			<en>Think Machine</en>
+			<es>Máquina Pensante</es>
 		</translator>
+		<guildSkill>true</guildSkill>
 	</thinkMachine>
 </skills>

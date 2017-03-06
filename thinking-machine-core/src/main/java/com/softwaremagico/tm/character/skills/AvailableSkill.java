@@ -33,10 +33,7 @@ public class AvailableSkill extends Skill {
 	private String skillId;
 
 	public AvailableSkill(String skillId, String name, boolean natural) {
-		generalizable = name.contains("[]");
-		name = name.replace("[]", "").trim();
-		fromGuild = name.contains("*");
-		setName(name.replace("*", "").trim());
+		setName(name.trim());
 		this.natural = natural;
 		this.skillId = skillId;
 	}
@@ -71,6 +68,14 @@ public class AvailableSkill extends Skill {
 
 	public String getSkillId() {
 		return skillId;
+	}
+
+	public void setGeneralizable(boolean generalizable) {
+		this.generalizable = generalizable;
+	}
+
+	public void setFromGuild(boolean fromGuild) {
+		this.fromGuild = fromGuild;
 	}
 
 }

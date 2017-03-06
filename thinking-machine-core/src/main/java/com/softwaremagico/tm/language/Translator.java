@@ -147,21 +147,39 @@ public class Translator implements ITranslator {
 		return nodes;
 	}
 
+	@Override
+	public String getNodeValue(String tag, String node) {
+		NodeList nodeList = doc.getElementsByTagName(tag);
+		for (int child = 0; child < nodeList.getLength(); child++) {
+			Node firstNode = nodeList.item(child);
+			if (firstNode.getNodeType() == Node.ELEMENT_NODE) {
+				Element firstElement = (Element) firstNode;
+				try {
+					NodeList firstNodeElementList = firstElement.getElementsByTagName(node);
+					Element firstNodeElement = (Element) firstNodeElementList.item(0);
+					return firstNodeElement.getChildNodes().item(0).getNodeValue().trim();
+				} catch (NullPointerException npe) {
+					return null;
+				}
+			}
+		}
+		return null;
+	}
+
 	private String readTag(String tag, String language) {
 		try {
-			NodeList nodeLst = doc.getElementsByTagName(tag);
-			for (int s = 0; s < nodeLst.getLength(); s++) {
-				Node fstNode = nodeLst.item(s);
-				if (fstNode.getNodeType() == Node.ELEMENT_NODE) {
-					Element fstElmnt = (Element) fstNode;
-					NodeList fstNmElmntLst = fstElmnt.getElementsByTagName(language);
-					Element fstNmElmnt = (Element) fstNmElmntLst.item(0);
+			NodeList nodeList = doc.getElementsByTagName(tag);
+			for (int child = 0; child < nodeList.getLength(); child++) {
+				Node firstNode = nodeList.item(child);
+				if (firstNode.getNodeType() == Node.ELEMENT_NODE) {
+					Element firstElement = (Element) firstNode;
+					NodeList firstNodeElementList = firstElement.getElementsByTagName(language);
+					Element firstNodeElement = (Element) firstNodeElementList.item(0);
 					try {
-						NodeList fstNm = fstNmElmnt.getChildNodes();
+						NodeList firstNodeList = firstNodeElement.getChildNodes();
 						retried = false;
-						return ((Node) fstNm.item(0)).getNodeValue().trim();
+						return ((Node) firstNodeList.item(0)).getNodeValue().trim();
 					} catch (NullPointerException npe) {
-						// npe.printStackTrace();
 						if (!retried) {
 							if (!showedMessage) {
 								MachineLog.warning(Translator.class.getName(), "There is a problem with tag: " + tag + " in  language: \"" + language

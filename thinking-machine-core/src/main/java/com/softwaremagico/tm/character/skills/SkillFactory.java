@@ -35,6 +35,8 @@ import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
 
 public class SkillFactory {
+	private final static String GUILD_SKILL_TAG = "guildSkill";
+	private final static String GENERALIZABLE_SKILL_TAG = "generalizable";
 	// Language and skills.
 	private static Map<String, List<AvailableSkill>> naturalSkills = new HashMap<>();
 	private static Map<String, List<AvailableSkill>> learnedSkills = new HashMap<>();
@@ -46,7 +48,7 @@ public class SkillFactory {
 		if (naturalSkills.get(language) == null) {
 			naturalSkills.put(language, new ArrayList<AvailableSkill>());
 			for (String skillId : translatorNaturalSkills.getAllTranslatedElements()) {
-				naturalSkills.get(language).add(new AvailableSkill(skillId, getTranslation(translatorNaturalSkills, skillId, language), true));
+				naturalSkills.get(language).add(createSkill(translatorNaturalSkills, skillId, language, true));
 			}
 			Collections.sort(naturalSkills.get(language));
 		}
@@ -59,15 +61,15 @@ public class SkillFactory {
 			String lastSkillName = null;
 			int added = 0;
 			for (String skillId : translatorLearnedSkills.getAllTranslatedElements()) {
-				AvailableSkill skill = new AvailableSkill(skillId, getTranslation(translatorLearnedSkills, skillId, language), false);
-				if (Objects.equals(lastSkillName, getTranslation(translatorLearnedSkills, skillId, language))) {
+				AvailableSkill skill = createSkill(translatorLearnedSkills, skillId, language, false);
+				if (Objects.equals(lastSkillName, skill.getName())) {
 					added++;
 				} else {
 					added = 0;
 				}
 				skill.setIndexOfGeneralization(added);
 				learnedSkills.get(language).add(skill);
-				lastSkillName = getTranslation(translatorLearnedSkills, skillId, language);
+				lastSkillName = skill.getName();
 			}
 			Collections.sort(learnedSkills.get(language));
 		}
@@ -83,7 +85,12 @@ public class SkillFactory {
 		return false;
 	}
 
-	private static String getTranslation(ITranslator translator, String skillId, String language) {
-		return translator.getTranslatedText(skillId, language);
+	private static AvailableSkill createSkill(ITranslator translator, String skillId, String language, boolean isNatural) {
+		AvailableSkill skill = new AvailableSkill(skillId, translator.getTranslatedText(skillId, language), isNatural);
+		String generalizable = translator.getNodeValue(skillId, GENERALIZABLE_SKILL_TAG);
+		skill.setGeneralizable(Boolean.parseBoolean(generalizable));
+		String guildSkill = translator.getNodeValue(skillId, GUILD_SKILL_TAG);
+		skill.setFromGuild(Boolean.parseBoolean(guildSkill));
+		return skill;
 	}
 }
