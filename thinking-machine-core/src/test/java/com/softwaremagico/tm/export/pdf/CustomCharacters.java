@@ -10,6 +10,7 @@ import org.testng.annotations.Test;
 import com.itextpdf.text.DocumentException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.CostCalculator;
+import com.softwaremagico.tm.character.FreeStyleCharacterCreation;
 import com.softwaremagico.tm.character.Gender;
 import com.softwaremagico.tm.character.Race;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
@@ -95,7 +96,7 @@ public class CustomCharacters {
 		CharacterSheet sheet = new CharacterSheet(player);
 		sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Paola.pdf");
 
-		Assert.assertEquals(CostCalculator.getCost(player), 40);
+		Assert.assertEquals(CostCalculator.getCost(player), FreeStyleCharacterCreation.FREE_AVAILABLE_POINTS);
 	}
 
 	@Test
@@ -151,7 +152,7 @@ public class CustomCharacters {
 		CharacterSheet sheet = new CharacterSheet(player);
 		sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Ana.pdf");
 
-		Assert.assertEquals(CostCalculator.getCost(player), 40);
+		Assert.assertEquals(CostCalculator.getCost(player), FreeStyleCharacterCreation.FREE_AVAILABLE_POINTS);
 	}
 
 	@Test
@@ -205,7 +206,7 @@ public class CustomCharacters {
 		CharacterSheet sheet = new CharacterSheet(player);
 		sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Carlos.pdf");
 
-		Assert.assertEquals(CostCalculator.getCost(player), 40);
+		Assert.assertEquals(CostCalculator.getCost(player), FreeStyleCharacterCreation.FREE_AVAILABLE_POINTS);
 	}
 	
 	@Test
@@ -264,7 +265,7 @@ public class CustomCharacters {
 		CharacterSheet sheet = new CharacterSheet(player);
 		sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Noelia.pdf");
 
-		Assert.assertEquals(CostCalculator.getCost(player), 40);
+		Assert.assertEquals(CostCalculator.getCost(player), FreeStyleCharacterCreation.FREE_AVAILABLE_POINTS);
 	}
 	
 	@Test

@@ -1,7 +1,5 @@
 package com.softwaremagico.tm.character;
 
-import com.softwaremagico.tm.character.characteristics.CharacteristicName;
-import com.softwaremagico.tm.character.characteristics.CharacteristicValue;
 import com.softwaremagico.tm.character.cybernetics.Device;
 import com.softwaremagico.tm.character.occultism.OccultismPower;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
@@ -14,37 +12,27 @@ public class CostCalculator {
 
 	public static int getCost(CharacterPlayer characterPlayer) {
 		int cost = 0;
-		MachineLog.info(CostCalculator.class.getName(), "################## "
-				+ characterPlayer.getInfo().getName());
+		MachineLog.info(CostCalculator.class.getName(), "################## " + characterPlayer.getInfo().getName());
 		if (characterPlayer.getRace() != null) {
 			cost += characterPlayer.getRace().getCost();
-			MachineLog.info(CostCalculator.class.getName(), "Race cost: "
-					+ characterPlayer.getRace().getCost());
+			MachineLog.info(CostCalculator.class.getName(), "Race cost: " + characterPlayer.getRace().getCost());
 		}
 		cost += getCharacteristicsCost(characterPlayer);
-		MachineLog.info(CostCalculator.class.getName(), "Characteristics cost: "
-				+ getCharacteristicsCost(characterPlayer));
+		MachineLog.info(CostCalculator.class.getName(), "Characteristics cost: " + getCharacteristicsCost(characterPlayer));
 		cost += getSkillCosts(characterPlayer);
 		MachineLog.info(CostCalculator.class.getName(), "Skills cost: " + getSkillCosts(characterPlayer));
 		cost += getTraitsCosts(characterPlayer);
 		MachineLog.info(CostCalculator.class.getName(), "Traits cost: " + getTraitsCosts(characterPlayer));
 		cost += getPsiPowersCosts(characterPlayer);
-		MachineLog.info(CostCalculator.class.getName(), "Psi powers cost: "
-				+ getPsiPowersCosts(characterPlayer));
+		MachineLog.info(CostCalculator.class.getName(), "Psi powers cost: " + getPsiPowersCosts(characterPlayer));
 		cost += getCyberneticsCost(characterPlayer);
-		MachineLog.info(CostCalculator.class.getName(), "Cybernetics cost: "
-				+ getCyberneticsCost(characterPlayer));
+		MachineLog.info(CostCalculator.class.getName(), "Cybernetics cost: " + getCyberneticsCost(characterPlayer));
 		MachineLog.info(CostCalculator.class.getName(), "Total cost: " + cost);
 		return cost;
 	}
 
 	private static int getCharacteristicsCost(CharacterPlayer characterPlayer) {
-		int characteristicCost = 0;
-		for (CharacteristicName characteristicName : CharacteristicName.getBasicCharacteristics()) {
-			characteristicCost += characterPlayer.getValue(characteristicName)
-					- getRaceCharacteristicStartingValue(characterPlayer, characteristicName);
-		}
-		return (characteristicCost - 20) * 3;
+		return (characterPlayer.getCharacteristicsTotalPoints() - FreeStyleCharacterCreation.CHARACTERISTICS_POINTS) * 3;
 	}
 
 	private static int getSkillCosts(CharacterPlayer characterPlayer) {
@@ -60,25 +48,14 @@ public class CostCalculator {
 				cost += characterPlayer.getSkillValue(skill);
 			}
 		}
-		return (cost - 30);
-	}
-
-	private static int getRaceCharacteristicStartingValue(CharacterPlayer characterPlayer,
-			CharacteristicName characteristicName) {
-		if (characterPlayer.getRace() != null) {
-			CharacteristicValue value = characterPlayer.getRace().getValue(characteristicName);
-			if (value != null) {
-				return value.getValue();
-			}
-		}
-		return 0;
+		return (cost - FreeStyleCharacterCreation.SKILLS_POINTS);
 	}
 
 	private static int getTraitsCosts(CharacterPlayer characterPlayer) {
 		int cost = 0;
 		cost += getBlessingCosts(characterPlayer);
 		cost += getBenefitsCosts(characterPlayer);
-		return cost - 10;
+		return cost - FreeStyleCharacterCreation.TRAITS_POINTS;
 	}
 
 	private static int getBlessingCosts(CharacterPlayer characterPlayer) {

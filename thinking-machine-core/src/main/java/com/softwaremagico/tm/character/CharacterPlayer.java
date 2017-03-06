@@ -133,8 +133,7 @@ public class CharacterPlayer {
 	}
 
 	public Integer getWyrdValue() {
-		return Math.max(getValue(CharacteristicName.WILL), getValue(CharacteristicName.FAITH))
-				+ occultism.getExtraWyrd();
+		return Math.max(getValue(CharacteristicName.WILL), getValue(CharacteristicName.FAITH)) + occultism.getExtraWyrd();
 	}
 
 	public void addSkill(String skillName, int value) {
@@ -340,5 +339,13 @@ public class CharacterPlayer {
 
 		}
 		return 0;
+	}
+
+	public int getCharacteristicsTotalPoints() {
+		int characteristicCost = 0;
+		for (CharacteristicName characteristicName : CharacteristicName.getBasicCharacteristics()) {
+			characteristicCost += getValue(characteristicName) - getStartingValue(characteristicName);
+		}
+		return characteristicCost;
 	}
 }

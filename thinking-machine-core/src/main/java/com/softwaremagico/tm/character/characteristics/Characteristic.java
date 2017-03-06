@@ -9,7 +9,10 @@ public class Characteristic {
 	}
 
 	public Integer getValue() {
-		return value;
+		if (value != null) {
+			return value;
+		}
+		return 0;
 	}
 
 	public void setValue(Integer value) {
