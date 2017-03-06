@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<translator>
+	<bureaucracy>
+		<en>Bureaucracy</en>
+		<es>Burocracia</es>
+	</bureaucracy>
+	<physick>
+		<en>Physick</en>
+		<es>Conocim. del Cuerpo</es>
+	</physick>
+	<warfare>
+		<en>Warfare</en>
+		<es>Guerra</es>
+	</warfare>
+	<investigation>
+		<en>Investigation</en>
+		<es>Investigar</es>
+	</investigation>
+	<appliedScience>
+		<en>Applied Science *</en>
+		<es>Ciencia Aplicada *</es>
+	</appliedScience>
+	<socialScience>
+		<en>Social Science</en>
+		<es>Ciencia Social</es>
+	</socialScience>
+	<physicalScience>
+		<en>Physical Science *</en>
+		<es>Ciencia de la Física *</es>
+	</physicalScience>
+	<lifeScience>
+		<en>Life Science *</en>
+		<es>Ciencia de la Vida *</es>
+	</lifeScience>
+	<terraforming>
+		<en>Terraforming *</en>
+		<es>Terraformismo *</es>
+	</terraforming>
+	<energyGuns>
+		<en>Energy Guns</en>
+		<es>Armas de Energía</es>
+	</energyGuns>
+	<slugGuns>
+		<en>Slug Guns</en>
+		<es>Armas de Fuego</es>
+	</slugGuns>
+	<archery>
+		<en>Archery</en>
+		<es>Arquería</es>
+	</archery>
+	<artifactMelee>
+		<en>Artifact Melee</en>
+		<es>Artefacto Cuerpo a C.</es>
+	</artifactMelee>
+	<gunnery>
+		<en>Gunnery</en>
+		<es>Artillería de Supresión</es>
+	</gunnery>
+	<artillery>
+		<en>Artillery</en>
+		<es>Artillería Pesada</es>
+	</artillery>
+	<fight>
+		<en>Fight</en>
+		<es>Cuerpo a Cuerpo</es>
+	</fight>
+	<demolitions>
+		<en>Demolitions</en>
+		<es>Demoliciones</es>
+	</demolitions>
+	<beastcraft>
+		<en>Beastcraft</en>
+		<es>Controlar Bestia de Tiro</es>
+	</beastcraft>
+	<watercraft>
+		<en>Watercraft</en>
+		<es>Controlar Embarcación</es>
+	</watercraft>
+	<ride>
+		<en>Ride</en>
+		<es>Montar</es>
+	</ride>
+	<aircraft>
+		<en>Aircraft</en>
+		<es>Controlar Aeronave</es>
+	</aircraft>
+	<spacecraft>
+		<en>Spacecraft *</en>
+		<es>Controlar Nave Espacial *</es>
+	</spacecraft>
+	<landcarft>
+		<en>Landcraft</en>
+		<es>Controlar Vehíc. Terrestre</es>
+	</landcarft>
+	<arts>
+		<en>Arts  []</en>
+		<es>Arte  []</es>
+	</arts>
+	<arts2>
+		<en>Arts  []</en>
+		<es>Arte  []</es>
+	</arts2>
+	<disguise>
+		<en>Disguise</en>
+		<es>Disfrazarse</es>
+	</disguise>
+	<performance>
+		<en>Performance  []</en>
+		<es>Interpretar  []</es>
+	</performance>
+	<performance2>
+		<en>Performance  []</en>
+		<es>Interpretar  []</es>
+	</performance2>
+	<gaming>
+		<en>Gaming</en>
+		<es>Juego</es>
+	</gaming>
+	<craft>
+		<en>Craft []</en>
+		<es>Oficio []</es>
+	</craft>
+	<craft2>
+		<en>Craft []</en>
+		<es>Oficio []</es>
+	</craft2>
+	<lockpicking>
+		<en>Lockpicking</en>
+		<es>Abrir Cerraduras</es>
+	</lockpicking>
+	<streetWise>
+		<en>Streetwise</en>
+		<es>Callejear</es>
+	</streetWise>
+	<sleightOfHand>
+		<en>Sleight of hand</en>
+		<es>Juego de Manos</es>
+	</sleightOfHand>
+	<torture>
+		<en>Torture</en>
+		<es>Torturar</es>
+	</torture>
+	<atheltics>
+		<en>Athletics</en>
+		<es>Atletismo</es>
+	</atheltics>
+	<selfControl>
+		<en>Self Control</en>
+		<es>Autocontrol</es>
+	</selfControl>
+	<survival>
+		<en>Survival</en>
+		<es>Supervivencia</es>
+	</survival>
+	<lore>
+		<en>Lore  []</en>
+		<es>Saber  []</es>
+	</lore>
+	<lore2>
+		<en>Lore  []</en>
+		<es>Saber  []</es>
+	</lore2>
+	<lore3>
+		<en>Lore  []</en>
+		<es>Saber  []</es>
+	</lore3>
+	<lore4>
+		<en>Lore  []</en>
+		<es>Saber  []</es>
+	</lore4>
+	<xenoLore>
+		<en>Xeno Lore []</en>
+		<es>Xenología []</es>
+	</xenoLore>
+	<xenoLore2>
+		<en>Xeno Lore []</en>
+		<es>Xenología []</es>
+	</xenoLore2>
+	<empathy>
+		<en>Empathy</en>
+		<es>Empatía</es>
+	</empathy>
+	<etiquette>
+		<en>Etiquette</en>
+		<es>Etiqueta</es>
+	</etiquette>
+	<knavery>
+		<en>Knavery</en>
+		<es>Artería</es>
+	</knavery>
+	<leadership>
+		<en>Leadership</en>
+		<es>Liderazgo</es>
+	</leadership>
+	<spacecraftOperations>
+		<en>Spacecraft Operations *</en>
+		<es>Mantenimiento de Naves *</es>
+	</spacecraftOperations>
+	<techRedemption>
+		<en>Tech Redemption *</en>
+		<es>Recuperación Tecnológic. *</es>
+	</techRedemption>
+	<thinkMachine>
+		<en>Think Machine *</en>
+		<es>Máquina Pensante *</es>
+	</thinkMachine>
+</translator>

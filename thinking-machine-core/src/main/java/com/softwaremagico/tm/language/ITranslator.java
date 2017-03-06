@@ -1,5 +1,7 @@
 package com.softwaremagico.tm.language;
 
+import java.util.List;
+
 /*-
  * #%L
  * The Thinking Machine (Core)
@@ -35,5 +37,7 @@ public interface ITranslator {
 	String getTranslatedText(String tag, String language, Object[] args);
 
 	String convertToXmlTag(String text);
+
+	List<String> getAllTranslatedElements();
 
 }

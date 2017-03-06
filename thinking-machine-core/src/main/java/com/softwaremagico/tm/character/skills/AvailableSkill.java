@@ -30,13 +30,15 @@ public class AvailableSkill extends Skill {
 	private boolean generalizable;
 	private String generalization = null;
 	private int indexOfGeneralization = 0;
+	private String skillId;
 
-	public AvailableSkill(String name, boolean natural) {
+	public AvailableSkill(String skillId, String name, boolean natural) {
 		generalizable = name.contains("[]");
 		name = name.replace("[]", "").trim();
 		fromGuild = name.contains("*");
 		setName(name.replace("*", "").trim());
 		this.natural = natural;
+		this.skillId = skillId;
 	}
 
 	public boolean isFromGuild() {
@@ -65,6 +67,10 @@ public class AvailableSkill extends Skill {
 
 	public void setIndexOfGeneralization(int indexOfGeneralization) {
 		this.indexOfGeneralization = indexOfGeneralization;
+	}
+
+	public String getSkillId() {
+		return skillId;
 	}
 
 }

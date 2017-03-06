@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<translator>
+	<influence>
+		<en>Influence</en>
+		<es>Influenciar</es>
+	</influence>
+	<throwing>
+		<en>Throwing</en>
+		<es>Lanzar</es>
+	</throwing>
+	<observe>
+		<en>Observe</en>
+		<es>Observar</es>
+	</observe>
+	<melee>
+		<en>Melee</en>
+		<es>Pelear</es>
+	</melee>
+	<phoenixEmpireLore>
+		<en>Lore [Phoenix Empire]</en>
+		<es>Saber [Imperio Fénix]</es>
+	</phoenixEmpireLore>
+	<planetaryLore>
+		<en>Lore []</en>
+		<es>Saber []</es>
+	</planetaryLore>
+	<factionLore>
+		<en>Lore []</en>
+		<es>Saber []</es>
+	</factionLore>
+	<sneak>
+		<en>Sneak</en>
+		<es>Sigilo</es>
+	</sneak>
+	<vigor>
+		<en>Vigor</en>
+		<es>Vigor</es>
+	</vigor>
+</translator>

@@ -1,9 +1,0 @@
-Influence
-Throwing
-Observe
-Melee
-Phoenix Empire Lore
-Planetary Lore
-Lore []
-Sneak
-Vigor
