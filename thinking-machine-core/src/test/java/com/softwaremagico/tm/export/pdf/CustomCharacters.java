@@ -270,11 +270,13 @@ public class CustomCharacters {
 	@Test
 	public void createGolemCharacer() throws MalformedURLException, DocumentException, IOException {
 		CharacterPlayer player = new CharacterPlayer("es");
-		player.getInfo().setPlayer("");
+		player.getInfo().setPlayer("PNJ");
+		player.getInfo().setName("A (Prototipo A)");
 		player.getInfo().setGender(Gender.FEMALE);
 		player.setRace(new Race("Gólem", 5, 5, 5, 3, 3, 6, 0, 0, 0, 6, 0, 0, 0, 0, 0));
 		player.getInfo().setPlanet("Ligaheim");
 		player.getInfo().setAlliance("Gólem");
+		player.getInfo().setAge(1432);
 
 		player.getCharacteristics().getCharacteristic(CharacteristicName.STRENGTH).setValue(12);
 		player.getCharacteristics().getCharacteristic(CharacteristicName.DEXTERITY).setValue(7);
