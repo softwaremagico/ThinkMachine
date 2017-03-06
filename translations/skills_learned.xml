@@ -1,207 +1,309 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
-<translator>
+<skills>
 	<bureaucracy>
-		<en>Bureaucracy</en>
-		<es>Burocracia</es>
+		<translator>
+			<en>Bureaucracy</en>
+			<es>Burocracia</es>
+		</translator>
 	</bureaucracy>
 	<physick>
-		<en>Physick</en>
-		<es>Conocim. del Cuerpo</es>
+		<translator>
+			<en>Physick</en>
+			<es>Conocim. del Cuerpo</es>
+		</translator>
 	</physick>
 	<warfare>
-		<en>Warfare</en>
-		<es>Guerra</es>
+		<translator>
+			<en>Warfare</en>
+			<es>Guerra</es>
+		</translator>
 	</warfare>
 	<investigation>
-		<en>Investigation</en>
-		<es>Investigar</es>
+		<translator>
+			<en>Investigation</en>
+			<es>Investigar</es>
+		</translator>
 	</investigation>
 	<appliedScience>
-		<en>Applied Science *</en>
-		<es>Ciencia Aplicada *</es>
+		<translator>
+			<en>Applied Science *</en>
+			<es>Ciencia Aplicada *</es>
+		</translator>
 	</appliedScience>
 	<socialScience>
-		<en>Social Science</en>
-		<es>Ciencia Social</es>
+		<translator>
+			<en>Social Science</en>
+			<es>Ciencia Social</es>
+		</translator>
 	</socialScience>
 	<physicalScience>
-		<en>Physical Science *</en>
-		<es>Ciencia de la Física *</es>
+		<translator>
+			<en>Physical Science *</en>
+			<es>Ciencia de la Física *</es>
+		</translator>
 	</physicalScience>
 	<lifeScience>
-		<en>Life Science *</en>
-		<es>Ciencia de la Vida *</es>
+		<translator>
+			<en>Life Science *</en>
+			<es>Ciencia de la Vida *</es>
+		</translator>
 	</lifeScience>
 	<terraforming>
-		<en>Terraforming *</en>
-		<es>Terraformismo *</es>
+		<translator>
+			<en>Terraforming *</en>
+			<es>Terraformismo *</es>
+		</translator>
 	</terraforming>
 	<energyGuns>
-		<en>Energy Guns</en>
-		<es>Armas de Energía</es>
+		<translator>
+			<en>Energy Guns</en>
+			<es>Armas de Energía</es>
+		</translator>
 	</energyGuns>
 	<slugGuns>
-		<en>Slug Guns</en>
-		<es>Armas de Fuego</es>
+		<translator>
+			<en>Slug Guns</en>
+			<es>Armas de Fuego</es>
+		</translator>
 	</slugGuns>
 	<archery>
-		<en>Archery</en>
-		<es>Arquería</es>
+		<translator>
+			<en>Archery</en>
+			<es>Arquería</es>
+		</translator>
 	</archery>
 	<artifactMelee>
-		<en>Artifact Melee</en>
-		<es>Artefacto Cuerpo a C.</es>
+		<translator>
+			<en>Artifact Melee</en>
+			<es>Artefacto Cuerpo a C.</es>
+		</translator>
 	</artifactMelee>
 	<gunnery>
-		<en>Gunnery</en>
-		<es>Artillería de Supresión</es>
+		<translator>
+			<en>Gunnery</en>
+			<es>Artillería de Supresión</es>
+		</translator>
 	</gunnery>
 	<artillery>
-		<en>Artillery</en>
-		<es>Artillería Pesada</es>
+		<translator>
+			<en>Artillery</en>
+			<es>Artillería Pesada</es>
+		</translator>
 	</artillery>
 	<fight>
-		<en>Fight</en>
-		<es>Cuerpo a Cuerpo</es>
+		<translator>
+			<en>Fight</en>
+			<es>Cuerpo a Cuerpo</es>
+		</translator>
 	</fight>
 	<demolitions>
-		<en>Demolitions</en>
-		<es>Demoliciones</es>
+		<translator>
+			<en>Demolitions</en>
+			<es>Demoliciones</es>
+		</translator>
 	</demolitions>
 	<beastcraft>
-		<en>Beastcraft</en>
-		<es>Controlar Bestia de Tiro</es>
+		<translator>
+			<en>Beastcraft</en>
+			<es>Controlar Bestia de Tiro</es>
+		</translator>
 	</beastcraft>
 	<watercraft>
-		<en>Watercraft</en>
-		<es>Controlar Embarcación</es>
+		<translator>
+			<en>Watercraft</en>
+			<es>Controlar Embarcación</es>
+		</translator>
 	</watercraft>
 	<ride>
-		<en>Ride</en>
-		<es>Montar</es>
+		<translator>
+			<en>Ride</en>
+			<es>Montar</es>
+		</translator>
 	</ride>
 	<aircraft>
-		<en>Aircraft</en>
-		<es>Controlar Aeronave</es>
+		<translator>
+			<en>Aircraft</en>
+			<es>Controlar Aeronave</es>
+		</translator>
 	</aircraft>
 	<spacecraft>
-		<en>Spacecraft *</en>
-		<es>Controlar Nave Espacial *</es>
+		<translator>
+			<en>Spacecraft *</en>
+			<es>Controlar Nave Espacial *</es>
+		</translator>
 	</spacecraft>
 	<landcarft>
-		<en>Landcraft</en>
-		<es>Controlar Vehíc. Terrestre</es>
+		<translator>
+			<en>Landcraft</en>
+			<es>Controlar Vehíc. Terrestre</es>
+		</translator>
 	</landcarft>
 	<arts>
-		<en>Arts  []</en>
-		<es>Arte  []</es>
+		<translator>
+			<en>Arts []</en>
+			<es>Arte []</es>
+		</translator>
 	</arts>
 	<arts2>
-		<en>Arts  []</en>
-		<es>Arte  []</es>
+		<translator>
+			<en>Arts []</en>
+			<es>Arte []</es>
+		</translator>
 	</arts2>
 	<disguise>
-		<en>Disguise</en>
-		<es>Disfrazarse</es>
+		<translator>
+			<en>Disguise</en>
+			<es>Disfrazarse</es>
+		</translator>
 	</disguise>
 	<performance>
-		<en>Performance  []</en>
-		<es>Interpretar  []</es>
+		<translator>
+			<en>Performance []</en>
+			<es>Interpretar []</es>
+		</translator>
 	</performance>
 	<performance2>
-		<en>Performance  []</en>
-		<es>Interpretar  []</es>
+		<translator>
+			<en>Performance []</en>
+			<es>Interpretar []</es>
+		</translator>
 	</performance2>
 	<gaming>
-		<en>Gaming</en>
-		<es>Juego</es>
+		<translator>
+			<en>Gaming</en>
+			<es>Juego</es>
+		</translator>
 	</gaming>
 	<craft>
-		<en>Craft []</en>
-		<es>Oficio []</es>
+		<translator>
+			<en>Craft []</en>
+			<es>Oficio []</es>
+		</translator>
 	</craft>
 	<craft2>
-		<en>Craft []</en>
-		<es>Oficio []</es>
+		<translator>
+			<en>Craft []</en>
+			<es>Oficio []</es>
+		</translator>
 	</craft2>
 	<lockpicking>
-		<en>Lockpicking</en>
-		<es>Abrir Cerraduras</es>
+		<translator>
+			<en>Lockpicking</en>
+			<es>Abrir Cerraduras</es>
+		</translator>
 	</lockpicking>
 	<streetWise>
-		<en>Streetwise</en>
-		<es>Callejear</es>
+		<translator>
+			<en>Streetwise</en>
+			<es>Callejear</es>
+		</translator>
 	</streetWise>
 	<sleightOfHand>
-		<en>Sleight of hand</en>
-		<es>Juego de Manos</es>
+		<translator>
+			<en>Sleight of hand</en>
+			<es>Juego de Manos</es>
+		</translator>
 	</sleightOfHand>
 	<torture>
-		<en>Torture</en>
-		<es>Torturar</es>
+		<translator>
+			<en>Torture</en>
+			<es>Torturar</es>
+		</translator>
 	</torture>
 	<atheltics>
-		<en>Athletics</en>
-		<es>Atletismo</es>
+		<translator>
+			<en>Athletics</en>
+			<es>Atletismo</es>
+		</translator>
 	</atheltics>
 	<selfControl>
-		<en>Self Control</en>
-		<es>Autocontrol</es>
+		<translator>
+			<en>Self Control</en>
+			<es>Autocontrol</es>
+		</translator>
 	</selfControl>
 	<survival>
-		<en>Survival</en>
-		<es>Supervivencia</es>
+		<translator>
+			<en>Survival</en>
+			<es>Supervivencia</es>
+		</translator>
 	</survival>
 	<lore>
-		<en>Lore  []</en>
-		<es>Saber  []</es>
+		<translator>
+			<en>Lore []</en>
+			<es>Saber []</es>
+		</translator>
 	</lore>
 	<lore2>
-		<en>Lore  []</en>
-		<es>Saber  []</es>
+		<translator>
+			<en>Lore []</en>
+			<es>Saber []</es>
+		</translator>
 	</lore2>
 	<lore3>
-		<en>Lore  []</en>
-		<es>Saber  []</es>
+		<translator>
+			<en>Lore []</en>
+			<es>Saber []</es>
+		</translator>
 	</lore3>
 	<lore4>
-		<en>Lore  []</en>
-		<es>Saber  []</es>
+		<translator>
+			<en>Lore []</en>
+			<es>Saber []</es>
+		</translator>
 	</lore4>
 	<xenoLore>
-		<en>Xeno Lore []</en>
-		<es>Xenología []</es>
+		<translator>
+			<en>Xeno Lore []</en>
+			<es>Xenología []</es>
+		</translator>
 	</xenoLore>
 	<xenoLore2>
-		<en>Xeno Lore []</en>
-		<es>Xenología []</es>
+		<translator>
+			<en>Xeno Lore []</en>
+			<es>Xenología []</es>
+		</translator>
 	</xenoLore2>
 	<empathy>
-		<en>Empathy</en>
-		<es>Empatía</es>
+		<translator>
+			<en>Empathy</en>
+			<es>Empatía</es>
+		</translator>
 	</empathy>
 	<etiquette>
-		<en>Etiquette</en>
-		<es>Etiqueta</es>
+		<translator>
+			<en>Etiquette</en>
+			<es>Etiqueta</es>
+		</translator>
 	</etiquette>
 	<knavery>
-		<en>Knavery</en>
-		<es>Artería</es>
+		<translator>
+			<en>Knavery</en>
+			<es>Artería</es>
+		</translator>
 	</knavery>
 	<leadership>
-		<en>Leadership</en>
-		<es>Liderazgo</es>
+		<translator>
+			<en>Leadership</en>
+			<es>Liderazgo</es>
+		</translator>
 	</leadership>
 	<spacecraftOperations>
-		<en>Spacecraft Operations *</en>
-		<es>Mantenimiento de Naves *</es>
+		<translator>
+			<en>Spacecraft Operations *</en>
+			<es>Mantenimiento de Naves *</es>
+		</translator>
 	</spacecraftOperations>
 	<techRedemption>
-		<en>Tech Redemption *</en>
-		<es>Recuperación Tecnológic. *</es>
+		<translator>
+			<en>Tech Redemption *</en>
+			<es>Recuperación Tecnológic. *</es>
+		</translator>
 	</techRedemption>
 	<thinkMachine>
-		<en>Think Machine *</en>
-		<es>Máquina Pensante *</es>
+		<translator>
+			<en>Think Machine *</en>
+			<es>Máquina Pensante *</es>
+		</translator>
 	</thinkMachine>
-</translator>
+</skills>

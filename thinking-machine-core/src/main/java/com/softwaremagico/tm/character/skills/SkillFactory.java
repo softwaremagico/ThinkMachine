@@ -46,7 +46,7 @@ public class SkillFactory {
 		if (naturalSkills.get(language) == null) {
 			naturalSkills.put(language, new ArrayList<AvailableSkill>());
 			for (String skillId : translatorNaturalSkills.getAllTranslatedElements()) {
-				naturalSkills.get(language).add(new AvailableSkill(skillId, translatorNaturalSkills.getTranslatedText(skillId, language), true));
+				naturalSkills.get(language).add(new AvailableSkill(skillId, getTranslation(translatorNaturalSkills, skillId, language), true));
 			}
 			Collections.sort(naturalSkills.get(language));
 		}
@@ -59,15 +59,15 @@ public class SkillFactory {
 			String lastSkillName = null;
 			int added = 0;
 			for (String skillId : translatorLearnedSkills.getAllTranslatedElements()) {
-				AvailableSkill skill = new AvailableSkill(skillId, translatorLearnedSkills.getTranslatedText(skillId, language), false);
-				if (Objects.equals(lastSkillName, translatorLearnedSkills.getTranslatedText(skillId, language))) {
+				AvailableSkill skill = new AvailableSkill(skillId, getTranslation(translatorLearnedSkills, skillId, language), false);
+				if (Objects.equals(lastSkillName, getTranslation(translatorLearnedSkills, skillId, language))) {
 					added++;
 				} else {
 					added = 0;
 				}
 				skill.setIndexOfGeneralization(added);
 				learnedSkills.get(language).add(skill);
-				lastSkillName = translatorLearnedSkills.getTranslatedText(skillId, language);
+				lastSkillName = getTranslation(translatorLearnedSkills, skillId, language);
 			}
 			Collections.sort(learnedSkills.get(language));
 		}
@@ -81,5 +81,9 @@ public class SkillFactory {
 			}
 		}
 		return false;
+	}
+
+	private static String getTranslation(ITranslator translator, String skillId, String language) {
+		return translator.getTranslatedText(skillId, language);
 	}
 }

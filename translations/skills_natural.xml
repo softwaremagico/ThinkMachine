@@ -1,39 +1,57 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
-<translator>
+<skills>
 	<influence>
-		<en>Influence</en>
-		<es>Influenciar</es>
+		<translator>
+			<en>Influence</en>
+			<es>Influenciar</es>
+		</translator>
 	</influence>
 	<throwing>
-		<en>Throwing</en>
-		<es>Lanzar</es>
+		<translator>
+			<en>Throwing</en>
+			<es>Lanzar</es>
+		</translator>
 	</throwing>
 	<observe>
-		<en>Observe</en>
-		<es>Observar</es>
+		<translator>
+			<en>Observe</en>
+			<es>Observar</es>
+		</translator>
 	</observe>
 	<melee>
-		<en>Melee</en>
-		<es>Pelear</es>
+		<translator>
+			<en>Melee</en>
+			<es>Pelear</es>
+		</translator>
 	</melee>
 	<phoenixEmpireLore>
-		<en>Lore [Phoenix Empire]</en>
-		<es>Saber [Imperio Fénix]</es>
+		<translator>
+			<en>Lore [Phoenix Empire]</en>
+			<es>Saber [Imperio Fénix]</es>
+		</translator>
 	</phoenixEmpireLore>
 	<planetaryLore>
-		<en>Lore []</en>
-		<es>Saber []</es>
+		<translator>
+			<en>Lore []</en>
+			<es>Saber []</es>
+		</translator>
 	</planetaryLore>
 	<factionLore>
-		<en>Lore []</en>
-		<es>Saber []</es>
+		<translator>
+			<en>Lore []</en>
+			<es>Saber []</es>
+		</translator>
 	</factionLore>
 	<sneak>
-		<en>Sneak</en>
-		<es>Sigilo</es>
+		<translator>
+			<en>Sneak</en>
+			<es>Sigilo</es>
+		</translator>
 	</sneak>
 	<vigor>
-		<en>Vigor</en>
-		<es>Vigor</es>
+		<translator>
+			<en>Vigor</en>
+			<es>Vigor</es>
+		</translator>
 	</vigor>
-</translator>
+</skills>

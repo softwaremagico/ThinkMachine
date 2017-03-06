@@ -137,7 +137,7 @@ public class Translator implements ITranslator {
 	@Override
 	public List<String> getAllTranslatedElements() {
 		List<String> nodes = new ArrayList<>();
-		Element element = (Element) (doc.getElementsByTagName("translator").item(0));
+		Element element = (Element) (doc.getDocumentElement());
 		NodeList nodeList = element.getChildNodes();
 		for (int i = 0; i < nodeList.getLength(); i++) {
 			if (nodeList.item(i).getNodeType() == Node.ELEMENT_NODE) {
