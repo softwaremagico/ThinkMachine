@@ -37,6 +37,7 @@ import com.softwaremagico.tm.language.LanguagePool;
 public class SkillFactory {
 	private final static String GUILD_SKILL_TAG = "guildSkill";
 	private final static String GENERALIZABLE_SKILL_TAG = "generalizable";
+	private final static String GROUP_SKILL_TAG = "group";
 	// Language and skills.
 	private static Map<String, List<AvailableSkill>> naturalSkills = new HashMap<>();
 	private static Map<String, List<AvailableSkill>> learnedSkills = new HashMap<>();
@@ -91,6 +92,9 @@ public class SkillFactory {
 		skill.setGeneralizable(Boolean.parseBoolean(generalizable));
 		String guildSkill = translator.getNodeValue(skillId, GUILD_SKILL_TAG);
 		skill.setFromGuild(Boolean.parseBoolean(guildSkill));
+		String group = translator.getNodeValue(skillId, GROUP_SKILL_TAG);
+		skill.setSkillGroup(SkillGroup.getSkillGroup(group));
+
 		return skill;
 	}
 }

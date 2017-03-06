@@ -5,53 +5,62 @@
 			<en>Influence</en>
 			<es>Influenciar</es>
 		</translator>
+		<group>social</group>
 	</influence>
 	<throwing>
 		<translator>
 			<en>Throwing</en>
 			<es>Lanzar</es>
 		</translator>
+		<group>combat</group>
 	</throwing>
 	<observe>
 		<translator>
 			<en>Observe</en>
 			<es>Observar</es>
 		</translator>
+		<group>analytical</group>
 	</observe>
 	<melee>
 		<translator>
 			<en>Melee</en>
 			<es>Pelear</es>
 		</translator>
+		<group>combat</group>
 	</melee>
 	<phoenixEmpireLore>
 		<translator>
 			<en>Lore [Phoenix Empire]</en>
 			<es>Saber [Imperio Fénix]</es>
 		</translator>
+		<group>lore</group>
 	</phoenixEmpireLore>
 	<planetaryLore>
 		<translator>
 			<en>Lore []</en>
 			<es>Saber []</es>
 		</translator>
+		<group>lore</group>
 	</planetaryLore>
 	<factionLore>
 		<translator>
 			<en>Lore []</en>
 			<es>Saber []</es>
 		</translator>
+		<group>lore</group>
 	</factionLore>
 	<sneak>
 		<translator>
 			<en>Sneak</en>
 			<es>Sigilo</es>
 		</translator>
+		<group>malefaction</group>
 	</sneak>
 	<vigor>
 		<translator>
 			<en>Vigor</en>
 			<es>Vigor</es>
 		</translator>
+		<group>physical</group>
 	</vigor>
 </skills>
