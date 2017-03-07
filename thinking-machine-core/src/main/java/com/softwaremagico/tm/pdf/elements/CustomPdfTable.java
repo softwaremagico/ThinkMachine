@@ -116,7 +116,7 @@ public abstract class CustomPdfTable extends PdfPTable {
 		PdfPCell box = new PdfPCell();
 		box.setMinimumHeight(15);
 		box.setBorder(0);
-		box.setCellEvent(new CellPaddingEvent());
+		box.setCellEvent(new CellCompleteBoxEvent());
 		return box;
 	}
 
@@ -134,7 +134,7 @@ public abstract class CustomPdfTable extends PdfPTable {
 		box.setHorizontalAlignment(Element.ALIGN_CENTER);
 		box.setMinimumHeight(15);
 		box.setBorder(0);
-		box.setCellEvent(new CellPaddingEvent());
+		box.setCellEvent(new CellCompleteBoxEvent());
 		return box;
 	}
 
