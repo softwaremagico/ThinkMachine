@@ -29,7 +29,7 @@
 				<include name="characterPdfGeneration" />
 				<include name="customCharacterGeneration" />
 				<include name="skillFactory" />
-				<include name="randomCharacter" />
+				<exclude name="randomCharacter" />
 			</run>
 		</groups>
 		<classes>

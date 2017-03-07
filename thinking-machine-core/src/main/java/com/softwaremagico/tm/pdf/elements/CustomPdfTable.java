@@ -46,7 +46,7 @@ public abstract class CustomPdfTable extends PdfPTable {
 	}
 
 	protected PdfPCell createTitle(String title, int fontSize) {
-		Font font = new Font(FadingSunsTheme.getTitleFont());
+		Font font = new Font(FadingSunsTheme.getTitleFont(), fontSize);
 		Phrase content = new Phrase(title, font);
 		PdfPCell titleCell = new PdfPCell(content);
 		titleCell.setRowspan(2);

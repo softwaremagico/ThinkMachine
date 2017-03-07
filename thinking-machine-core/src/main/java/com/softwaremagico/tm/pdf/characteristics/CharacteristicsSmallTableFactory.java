@@ -24,6 +24,7 @@ package com.softwaremagico.tm.pdf.characteristics;
  * #L%
  */
 
+import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
@@ -41,10 +42,11 @@ public class CharacteristicsSmallTableFactory extends BaseElement {
 		setTablePropierties(table);
 		table.getDefaultCell().setBorder(0);
 
-		Phrase content = new Phrase(getTranslator().getTranslatedText("characteristics").toUpperCase(), new Font(FadingSunsTheme.getTitleFont(),
+		Phrase content = new Phrase(getTranslator().getTranslatedText("characteristics"), new Font(FadingSunsTheme.getTitleFont(),
 				FadingSunsTheme.CHARACTER_SMALL_TITLE_FONT_SIZE));
 		PdfPCell titleCell = new PdfPCell(content);
 		setCellProperties(titleCell);
+		titleCell.setHorizontalAlignment(Element.ALIGN_CENTER);
 		titleCell.setColspan(widths.length);
 		titleCell.setFixedHeight(30);
 		table.addCell(titleCell);

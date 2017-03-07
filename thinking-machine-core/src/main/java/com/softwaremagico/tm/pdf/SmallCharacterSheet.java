@@ -10,6 +10,7 @@ import com.softwaremagico.tm.language.Translator;
 import com.softwaremagico.tm.pdf.characteristics.CharacteristicsSmallTableFactory;
 import com.softwaremagico.tm.pdf.elements.BaseElement;
 import com.softwaremagico.tm.pdf.info.CharacterBasicsSmallTableFactory;
+import com.softwaremagico.tm.pdf.skills.LearnedSkillsSmallTable;
 import com.softwaremagico.tm.pdf.skills.NaturalSkillsSmallTable;
 
 public class SmallCharacterSheet extends PdfDocument {
@@ -40,27 +41,34 @@ public class SmallCharacterSheet extends PdfDocument {
 
 	@Override
 	protected void createPagePDF(Document document) throws Exception {
-		float[] widths = { 1f, 1f };
+		float[] widths = { 2f, 1f };
 		PdfPTable mainTable = new PdfPTable(widths);
 		BaseElement.setTablePropierties(mainTable);
+		mainTable.getDefaultCell().setBorder(0);
 
 		PdfPTable infoTable = CharacterBasicsSmallTableFactory.getCharacterBasicsTable(getCharacterPlayer());
 		PdfPCell infoCell = new PdfPCell(infoTable);
-		infoCell.setColspan(2);
-		infoCell.setBorder(1);
 		mainTable.addCell(infoCell);
+
+		PdfPTable learnedSkillsTable = LearnedSkillsSmallTable.getSkillsTable(getCharacterPlayer(), getLanguage());
+		PdfPCell learnedSkillsCell = new PdfPCell(learnedSkillsTable);
+		learnedSkillsCell.setColspan(2);
+		learnedSkillsCell.setRowspan(2);
+		mainTable.addCell(learnedSkillsCell);
+
+		PdfPTable basicTable = new PdfPTable(new float[] { 5f, 4f });
+		BaseElement.setTablePropierties(basicTable);
+		basicTable.getDefaultCell().setBorder(0);
 
 		PdfPTable characteristicsTable = CharacteristicsSmallTableFactory.getCharacteristicsBasicsTable(getCharacterPlayer());
 		PdfPCell characteristicCell = new PdfPCell(characteristicsTable);
-		characteristicCell.setColspan(2);
-		characteristicCell.setBorder(1);
-		mainTable.addCell(characteristicCell);
+		basicTable.addCell(characteristicCell);
 
 		PdfPTable naturalSkillsTable = NaturalSkillsSmallTable.getSkillsTable(getCharacterPlayer(), getLanguage());
 		PdfPCell naturalSkillsCell = new PdfPCell(naturalSkillsTable);
-		naturalSkillsCell.setColspan(2);
-		naturalSkillsCell.setBorder(1);
-		mainTable.addCell(naturalSkillsCell);
+		basicTable.addCell(naturalSkillsCell);
+		
+		mainTable.addCell(basicTable);
 
 		document.add(mainTable);
 	}

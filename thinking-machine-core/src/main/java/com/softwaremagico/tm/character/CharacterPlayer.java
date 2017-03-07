@@ -342,7 +342,6 @@ public class CharacterPlayer {
 			if (skill.isGeneralizable()) {
 				if (!planet) {
 					skill.setGeneralization(getInfo().getPlanet());
-					System.out.println(getInfo().getPlanet());
 					planet = true;
 				} else {
 					skill.setGeneralization(getInfo().getAlliance());
@@ -351,6 +350,16 @@ public class CharacterPlayer {
 			naturalSkills.add(skill);
 		}
 		return naturalSkills;
+	}
+
+	public List<AvailableSkill> getLearnedSkills() {
+		List<AvailableSkill> learnedSkills = new ArrayList<>();
+		for (AvailableSkill skill : SkillFactory.getLearnedSkills(language)) {
+			if (getSkillValue(skill) != null) {
+				learnedSkills.add(skill);
+			}
+		}
+		return learnedSkills;
 	}
 
 	@Override
