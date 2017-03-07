@@ -31,6 +31,8 @@ import com.itextpdf.text.pdf.BaseFont;
 
 public abstract class FadingSunsTheme {
 	public final static String LOGO_IMAGE = "fading-suns.png";
+	public final static String RIGHT_CORNER_IMAGE = "rightCorner.png";
+	public final static String LEFT_CORNER_IMAGE = "leftCorner.png";
 	public final static String LINE_FONT_NAME = "DejaVuSansCondensed.ttf";
 	public final static String LINE_FONT_ITALIC_NAME = "DejaVuSansCondensed-Oblique.ttf";
 	public final static String TABLE_SUBTITLE_FONT_NAME = "DejaVuSansCondensed-Oblique.ttf";
