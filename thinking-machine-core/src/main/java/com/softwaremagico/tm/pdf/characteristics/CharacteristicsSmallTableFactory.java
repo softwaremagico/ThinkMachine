@@ -39,6 +39,7 @@ public class CharacteristicsSmallTableFactory extends BaseElement {
 		float[] widths = { 1f, 1f };
 		PdfPTable table = new PdfPTable(widths);
 		setTablePropierties(table);
+		table.getDefaultCell().setBorder(0);
 
 		Phrase content = new Phrase(getTranslator().getTranslatedText("characteristics").toUpperCase(), new Font(FadingSunsTheme.getTitleFont(),
 				FadingSunsTheme.CHARACTER_SMALL_TITLE_FONT_SIZE));

@@ -52,7 +52,7 @@ public abstract class CharacterBasicsTableFactory extends BaseElement {
 	}
 
 	protected static String getTranslatedTag(String tag) {
-		String value = translator.getTranslatedText(LANGUAGE_PREFIX + tag.substring(0, 1).toUpperCase() + tag.substring(1));
+		String value = getTranslator().getTranslatedText(LANGUAGE_PREFIX + tag.substring(0, 1).toUpperCase() + tag.substring(1));
 		if (value != null) {
 			if (value.length() > MAX_VALUE_LENGTH) {
 				return value.substring(0, MAX_VALUE_LENGTH + 1);

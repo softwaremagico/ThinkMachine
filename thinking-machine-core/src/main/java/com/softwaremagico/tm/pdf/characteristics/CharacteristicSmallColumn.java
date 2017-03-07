@@ -96,7 +96,7 @@ public class CharacteristicSmallColumn extends CustomPdfTable {
 
 	private static PdfPCell getHandwrittingCell(String text, int align) {
 		PdfPCell cell = BaseElement.getCell(text, 0, 0, align, BaseColor.WHITE, FadingSunsTheme.getHandwrittingFont(),
-				FadingSunsTheme.getHandWrittingFontSize(FadingSunsTheme.CHARACTER_SMALL_BASICS_FONT_SIZE));
+				FadingSunsTheme.getHandWrittingFontSize(FadingSunsTheme.CHARACTER_SMALL_CHARACTERISTICS_LINE_FONT_SIZE));
 		return cell;
 	}
 

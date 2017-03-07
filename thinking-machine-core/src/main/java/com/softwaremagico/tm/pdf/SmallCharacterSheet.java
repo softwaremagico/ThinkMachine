@@ -10,6 +10,7 @@ import com.softwaremagico.tm.language.Translator;
 import com.softwaremagico.tm.pdf.characteristics.CharacteristicsSmallTableFactory;
 import com.softwaremagico.tm.pdf.elements.BaseElement;
 import com.softwaremagico.tm.pdf.info.CharacterBasicsSmallTableFactory;
+import com.softwaremagico.tm.pdf.skills.NaturalSkillsSmallTable;
 
 public class SmallCharacterSheet extends PdfDocument {
 	private CharacterPlayer characterPlayer = null;
@@ -48,12 +49,18 @@ public class SmallCharacterSheet extends PdfDocument {
 		infoCell.setColspan(2);
 		infoCell.setBorder(1);
 		mainTable.addCell(infoCell);
-		
+
 		PdfPTable characteristicsTable = CharacteristicsSmallTableFactory.getCharacteristicsBasicsTable(getCharacterPlayer());
 		PdfPCell characteristicCell = new PdfPCell(characteristicsTable);
 		characteristicCell.setColspan(2);
 		characteristicCell.setBorder(1);
 		mainTable.addCell(characteristicCell);
+
+		PdfPTable naturalSkillsTable = NaturalSkillsSmallTable.getSkillsTable(getCharacterPlayer(), getLanguage());
+		PdfPCell naturalSkillsCell = new PdfPCell(naturalSkillsTable);
+		naturalSkillsCell.setColspan(2);
+		naturalSkillsCell.setBorder(1);
+		mainTable.addCell(naturalSkillsCell);
 
 		document.add(mainTable);
 	}
