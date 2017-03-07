@@ -71,7 +71,9 @@ public abstract class FadingSunsTheme {
 	public final static int CHARACTER_SMALL_CHARACTERISTICS_TITLE_FONT_SIZE = 8;
 	public final static int CHARACTER_SMALL_CHARACTERISTICS_LINE_FONT_SIZE = 7;
 	public final static int CHARACTER_SMALL_SKILLS_TITLE_FONT_SIZE = CHARACTER_SMALL_TITLE_FONT_SIZE;
+	public final static int CHARACTER_SMALL_BLESSING_TITLE_FONT_SIZE = CHARACTER_SMALL_TITLE_FONT_SIZE;
 	public final static int CHARACTER_SMALL_SKILLS_LINE_FONT_SIZE = 7;
+	public final static int CHARACTER_SMALL_TABLE_LINE_FONT_SIZE = 6;
 	
 	public final static int HANDWRITTING_DEFAULT_FONT_SIZE = 10;
 

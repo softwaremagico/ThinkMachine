@@ -39,10 +39,10 @@ public class BeneficesTable extends VerticalTable {
 		super(WIDTHS);
 		addCell(createTitle(getTranslator().getTranslatedText("beneficesTable"), FadingSunsTheme.VERTICALTABLE_TITLE_FONT_SIZE));
 
-		addCell(createSubtitleLine(getTranslator().getTranslatedText("beneficesTablePoints")));
-		addCell(createSubtitleLine(getTranslator().getTranslatedText("benefices")));
-		addCell(createSubtitleLine(getTranslator().getTranslatedText("beneficesTablePoints")));
-		addCell(createSubtitleLine(getTranslator().getTranslatedText("afflictions")));
+		addCell(createSubtitleLine(getTranslator().getTranslatedText("beneficesTablePoints"), FadingSunsTheme.TABLE_LINE_FONT_SIZE));
+		addCell(createSubtitleLine(getTranslator().getTranslatedText("benefices"), FadingSunsTheme.TABLE_LINE_FONT_SIZE));
+		addCell(createSubtitleLine(getTranslator().getTranslatedText("beneficesTablePoints"), FadingSunsTheme.TABLE_LINE_FONT_SIZE));
+		addCell(createSubtitleLine(getTranslator().getTranslatedText("afflictions"), FadingSunsTheme.TABLE_LINE_FONT_SIZE));
 
 		for (int i = 0; i < MainPerksTableFactory.EMPTY_ROWS * 2; i++) {
 			if (i % 2 == 0) {

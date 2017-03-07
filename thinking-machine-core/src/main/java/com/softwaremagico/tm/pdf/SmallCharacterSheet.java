@@ -12,6 +12,7 @@ import com.softwaremagico.tm.pdf.elements.BaseElement;
 import com.softwaremagico.tm.pdf.info.CharacterBasicsSmallTableFactory;
 import com.softwaremagico.tm.pdf.skills.LearnedSkillsSmallTable;
 import com.softwaremagico.tm.pdf.skills.NaturalSkillsSmallTable;
+import com.softwaremagico.tm.pdf.traits.SmallBlessingTable;
 
 public class SmallCharacterSheet extends PdfDocument {
 	private CharacterPlayer characterPlayer = null;
@@ -45,6 +46,7 @@ public class SmallCharacterSheet extends PdfDocument {
 		PdfPTable mainTable = new PdfPTable(widths);
 		BaseElement.setTablePropierties(mainTable);
 		mainTable.getDefaultCell().setBorder(0);
+		mainTable.getDefaultCell().setPadding(0);
 
 		PdfPTable infoTable = CharacterBasicsSmallTableFactory.getCharacterBasicsTable(getCharacterPlayer());
 		PdfPCell infoCell = new PdfPCell(infoTable);
@@ -53,7 +55,7 @@ public class SmallCharacterSheet extends PdfDocument {
 		PdfPTable learnedSkillsTable = LearnedSkillsSmallTable.getSkillsTable(getCharacterPlayer(), getLanguage());
 		PdfPCell learnedSkillsCell = new PdfPCell(learnedSkillsTable);
 		learnedSkillsCell.setColspan(2);
-		learnedSkillsCell.setRowspan(2);
+		learnedSkillsCell.setRowspan(3);
 		mainTable.addCell(learnedSkillsCell);
 
 		PdfPTable basicTable = new PdfPTable(new float[] { 5f, 4f });
@@ -67,8 +69,17 @@ public class SmallCharacterSheet extends PdfDocument {
 		PdfPTable naturalSkillsTable = NaturalSkillsSmallTable.getSkillsTable(getCharacterPlayer(), getLanguage());
 		PdfPCell naturalSkillsCell = new PdfPCell(naturalSkillsTable);
 		basicTable.addCell(naturalSkillsCell);
-		
+
 		mainTable.addCell(basicTable);
+
+		PdfPTable blessingsTable = new SmallBlessingTable(getCharacterPlayer());
+		PdfPCell blessingsCell = new PdfPCell(blessingsTable);
+		mainTable.addCell(blessingsCell);
+
+		// PdfPCell victoryPointsCell = new PdfPCell(new VictoryPointsTable());
+		// victoryPointsCell.setPadding(0);
+		// victoryPointsCell.setRowspan(2);
+		// mainTable.addCell(victoryPointsCell);
 
 		document.add(mainTable);
 	}

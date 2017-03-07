@@ -28,9 +28,9 @@ public abstract class CharacterBasicsTableFactory extends BaseElement {
 		} else {
 			if (tag.equals("race")) {
 				String raceValue = translator.getTranslatedText(translator.convertToXmlTag(characterPlayer.getRace().getName()));
-				table.addCell(getHandwrittingCell(raceValue != null ? raceValue : characterPlayer.getRace().getName(), Element.ALIGN_LEFT, fontSize));
+				table.addCell(getHandwrittingCell(raceValue != null ? raceValue : characterPlayer.getRace().getName(), Element.ALIGN_LEFT, fontSize - 1));
 			} else {
-				table.addCell(getHandwrittingCell(characterPlayer.getInfo().getTranslatedParameter(tag), Element.ALIGN_LEFT, fontSize));
+				table.addCell(getHandwrittingCell(characterPlayer.getInfo().getTranslatedParameter(tag), Element.ALIGN_LEFT, fontSize - 1));
 			}
 		}
 
@@ -48,6 +48,7 @@ public abstract class CharacterBasicsTableFactory extends BaseElement {
 
 	protected static PdfPCell getHandwrittingCell(String text, int align, int fontSize) {
 		PdfPCell cell = getCell(text, 0, 1, align, BaseColor.WHITE, FadingSunsTheme.getHandwrittingFont(), FadingSunsTheme.getHandWrittingFontSize(fontSize));
+		cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		return cell;
 	}
 

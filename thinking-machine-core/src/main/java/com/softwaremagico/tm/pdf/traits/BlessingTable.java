@@ -42,10 +42,10 @@ public class BlessingTable extends VerticalTable {
 		super(WIDTHS);
 		addCell(createTitle(getTranslator().getTranslatedText("blessingTable"), FadingSunsTheme.VERTICALTABLE_TITLE_FONT_SIZE));
 
-		addCell(createSubtitleLine(getTranslator().getTranslatedText("blessingTableName")));
-		addCell(createSubtitleLine("+/-"));
-		addCell(createSubtitleLine(getTranslator().getTranslatedText("blessingTableTrait")));
-		addCell(createSubtitleLine(getTranslator().getTranslatedText("blessingTableSituation")));
+		addCell(createSubtitleLine(getTranslator().getTranslatedText("blessingTableName"), FadingSunsTheme.TABLE_LINE_FONT_SIZE));
+		addCell(createSubtitleLine("+/-", FadingSunsTheme.TABLE_LINE_FONT_SIZE));
+		addCell(createSubtitleLine(getTranslator().getTranslatedText("blessingTableTrait"), FadingSunsTheme.TABLE_LINE_FONT_SIZE));
+		addCell(createSubtitleLine(getTranslator().getTranslatedText("blessingTableSituation"), FadingSunsTheme.TABLE_LINE_FONT_SIZE));
 
 		int addedBlessings = 0;
 		if (characterPlayer != null) {
