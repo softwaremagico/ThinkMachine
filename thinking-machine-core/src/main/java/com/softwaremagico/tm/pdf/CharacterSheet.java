@@ -36,7 +36,7 @@ import com.softwaremagico.tm.pdf.cybernetics.CyberneticsTable;
 import com.softwaremagico.tm.pdf.elements.BaseElement;
 import com.softwaremagico.tm.pdf.fighting.FightingManeuvers;
 import com.softwaremagico.tm.pdf.fighting.WeaponsAndArmours;
-import com.softwaremagico.tm.pdf.info.CharacterBasicsTableFactory;
+import com.softwaremagico.tm.pdf.info.CharacterBasicsCompleteTableFactory;
 import com.softwaremagico.tm.pdf.info.DescriptionTable;
 import com.softwaremagico.tm.pdf.info.PropertiesTable;
 import com.softwaremagico.tm.pdf.others.AnnotationsTable;
@@ -70,10 +70,9 @@ public class CharacterSheet extends PdfDocument {
 
 	@Override
 	protected void createPagePDF(Document document) throws Exception {
-		// addBackGroundImage(document, Path.returnBackgroundPath(), writer);
-		PdfPTable mainTable = CharacterBasicsTableFactory.getCharacterBasicsTable(getCharacterPlayer());
+		PdfPTable mainTable = CharacterBasicsCompleteTableFactory.getCharacterBasicsTable(getCharacterPlayer());
 		document.add(mainTable);
-		PdfPTable characteristicsTable = CharacteristicsTableFactory.getCharacterBasicsTable(getCharacterPlayer());
+		PdfPTable characteristicsTable = CharacteristicsTableFactory.getCharacteristicsBasicsTable(getCharacterPlayer());
 		document.add(characteristicsTable);
 		PdfPTable skillsTable = MainSkillsTableFactory.getSkillsTable(getCharacterPlayer(), getLanguage());
 		document.add(skillsTable);

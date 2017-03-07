@@ -42,7 +42,7 @@ public class DescriptionTable extends VerticalTable {
 	public DescriptionTable(CharacterPlayer characterPlayer) {
 		super(WIDTHS);
 
-		addCell(createTitle(getTranslator().getTranslatedText("description")));
+		addCell(createTitle(getTranslator().getTranslatedText("description"), FadingSunsTheme.VERTICALTABLE_TITLE_FONT_SIZE));
 		addCell(createLine(characterPlayer, "birthdate"));
 		addCell(createLine(characterPlayer, "hair"));
 		addCell(createLine(characterPlayer, "eyes"));

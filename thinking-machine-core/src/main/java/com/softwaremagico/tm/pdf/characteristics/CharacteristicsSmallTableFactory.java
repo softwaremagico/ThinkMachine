@@ -24,7 +24,6 @@ package com.softwaremagico.tm.pdf.characteristics;
  * #L%
  */
 
-import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
@@ -34,29 +33,24 @@ import com.softwaremagico.tm.character.characteristics.CharacteristicType;
 import com.softwaremagico.tm.pdf.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.elements.BaseElement;
 
-public class CharacteristicsTableFactory extends BaseElement {
+public class CharacteristicsSmallTableFactory extends BaseElement {
 
 	public static PdfPTable getCharacteristicsBasicsTable(CharacterPlayer characterPlayer) {
-		float[] widths = { 1f, 1f, 1f, 1f };
+		float[] widths = { 1f, 1f };
 		PdfPTable table = new PdfPTable(widths);
 		setTablePropierties(table);
 
-		PdfPCell separator = createSeparator();
-		separator.setColspan(widths.length);
-		table.addCell(separator);
-
 		Phrase content = new Phrase(getTranslator().getTranslatedText("characteristics").toUpperCase(), new Font(FadingSunsTheme.getTitleFont(),
-				FadingSunsTheme.TITLE_FONT_SIZE));
+				FadingSunsTheme.CHARACTER_SMALL_TITLE_FONT_SIZE));
 		PdfPCell titleCell = new PdfPCell(content);
 		setCellProperties(titleCell);
 		titleCell.setColspan(widths.length);
-		titleCell.setHorizontalAlignment(Element.ALIGN_CENTER);
 		titleCell.setFixedHeight(30);
 		table.addCell(titleCell);
 		table.getDefaultCell().setPadding(0);
 
 		for (CharacteristicType type : CharacteristicType.values()) {
-			table.addCell(new CharacteristicColumn(characterPlayer, type, type.getCharacteristics()));
+			table.addCell(new CharacteristicSmallColumn(characterPlayer, type, type.getCharacteristics()));
 		}
 
 		return table;

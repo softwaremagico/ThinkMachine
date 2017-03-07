@@ -24,6 +24,7 @@ package com.softwaremagico.tm.pdf.info;
  * #L%
  */
 
+import com.softwaremagico.tm.pdf.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.elements.VerticalTable;
 
 public class PropertiesTable extends VerticalTable {
@@ -33,7 +34,7 @@ public class PropertiesTable extends VerticalTable {
 	public PropertiesTable() {
 		super(WIDTHS);
 
-		addCell(createTitle(getTranslator().getTranslatedText("properties")));
+		addCell(createTitle(getTranslator().getTranslatedText("properties"), FadingSunsTheme.VERTICALTABLE_TITLE_FONT_SIZE));
 		for (int i = 0; i < ROWS; i++) {
 			addCell(createEmptyElementLine("______________________________________________"));
 		}

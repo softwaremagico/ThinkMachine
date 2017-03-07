@@ -40,7 +40,7 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.pdf.FadingSunsTheme;
-import com.softwaremagico.tm.pdf.info.CharacterBasicsTableFactory;
+import com.softwaremagico.tm.pdf.info.CharacterBasicsCompleteTableFactory;
 
 public class BaseElement {
 	private static ITranslator translator = LanguagePool.getTranslator("character_sheet.xml");
@@ -88,7 +88,7 @@ public class BaseElement {
 	}
 
 	public static PdfPCell createLogoCell() throws DocumentException, IOException {
-		Image image = Image.getInstance(CharacterBasicsTableFactory.class.getResource("/" + FadingSunsTheme.LOGO_IMAGE));
+		Image image = Image.getInstance(CharacterBasicsCompleteTableFactory.class.getResource("/" + FadingSunsTheme.LOGO_IMAGE));
 		PdfPCell cell = new PdfPCell(image, true);
 		setCellProperties(cell);
 		cell.setHorizontalAlignment(Element.ALIGN_CENTER);

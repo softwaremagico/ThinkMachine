@@ -45,8 +45,8 @@ public abstract class CustomPdfTable extends PdfPTable {
 		setColumnWidths(widths);
 	}
 
-	protected PdfPCell createTitle(String title) {
-		Font font = new Font(FadingSunsTheme.getTitleFont(), FadingSunsTheme.VERTICALTABLE_TITLE_FONT_SIZE);
+	protected PdfPCell createTitle(String title, int fontSize) {
+		Font font = new Font(FadingSunsTheme.getTitleFont());
 		Phrase content = new Phrase(title, font);
 		PdfPCell titleCell = new PdfPCell(content);
 		titleCell.setRowspan(2);

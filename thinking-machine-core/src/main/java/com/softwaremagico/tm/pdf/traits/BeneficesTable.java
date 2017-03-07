@@ -26,6 +26,7 @@ package com.softwaremagico.tm.pdf.traits;
 
 import com.itextpdf.text.pdf.PdfPCell;
 import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.pdf.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.elements.VerticalTable;
 
 public class BeneficesTable extends VerticalTable {
@@ -36,7 +37,7 @@ public class BeneficesTable extends VerticalTable {
 
 	public BeneficesTable(CharacterPlayer characterPlayer) {
 		super(WIDTHS);
-		addCell(createTitle(getTranslator().getTranslatedText("beneficesTable")));
+		addCell(createTitle(getTranslator().getTranslatedText("beneficesTable"), FadingSunsTheme.VERTICALTABLE_TITLE_FONT_SIZE));
 
 		addCell(createSubtitleLine(getTranslator().getTranslatedText("beneficesTablePoints")));
 		addCell(createSubtitleLine(getTranslator().getTranslatedText("benefices")));

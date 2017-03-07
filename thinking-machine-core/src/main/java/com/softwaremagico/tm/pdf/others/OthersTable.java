@@ -24,6 +24,7 @@ package com.softwaremagico.tm.pdf.others;
  * #L%
  */
 
+import com.softwaremagico.tm.pdf.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.elements.VerticalTable;
 
 public class OthersTable extends VerticalTable {
@@ -33,7 +34,7 @@ public class OthersTable extends VerticalTable {
 	public OthersTable() {
 		super(WIDTHS);
 		getDefaultCell().setPaddingRight(20);
-		addCell(createTitle(getTranslator().getTranslatedText("othersTable")));
+		addCell(createTitle(getTranslator().getTranslatedText("othersTable"), FadingSunsTheme.VERTICALTABLE_TITLE_FONT_SIZE));
 
 		for (int i = 0; i < EMPTY_ROWS; i++) {
 			addCell(createEmptyElementLine("_______________________________________________"));

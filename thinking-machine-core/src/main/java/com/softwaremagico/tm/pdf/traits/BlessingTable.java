@@ -26,6 +26,7 @@ package com.softwaremagico.tm.pdf.traits;
 
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.traits.Blessing;
+import com.softwaremagico.tm.pdf.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.elements.VerticalTable;
 
 public class BlessingTable extends VerticalTable {
@@ -39,7 +40,7 @@ public class BlessingTable extends VerticalTable {
 
 	public BlessingTable(CharacterPlayer characterPlayer) {
 		super(WIDTHS);
-		addCell(createTitle(getTranslator().getTranslatedText("blessingTable")));
+		addCell(createTitle(getTranslator().getTranslatedText("blessingTable"), FadingSunsTheme.VERTICALTABLE_TITLE_FONT_SIZE));
 
 		addCell(createSubtitleLine(getTranslator().getTranslatedText("blessingTableName")));
 		addCell(createSubtitleLine("+/-"));

@@ -48,6 +48,7 @@ import com.softwaremagico.tm.character.traits.Benefit;
 import com.softwaremagico.tm.character.traits.Blessing;
 import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.pdf.CharacterSheet;
+import com.softwaremagico.tm.pdf.SmallCharacterSheet;
 
 @Test(groups = { "customCharacterGeneration" })
 public class CustomCharacters {
@@ -119,6 +120,10 @@ public class CustomCharacters {
 		LanguagePool.clearCache();
 		CharacterSheet sheet = new CharacterSheet(player);
 		sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Paola.pdf");
+		
+		LanguagePool.clearCache();
+		SmallCharacterSheet smallSheet = new SmallCharacterSheet(player);
+		smallSheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Paola_Small.pdf");
 
 		Assert.assertEquals(CostCalculator.getCost(player), FreeStyleCharacterCreation.FREE_AVAILABLE_POINTS);
 	}
