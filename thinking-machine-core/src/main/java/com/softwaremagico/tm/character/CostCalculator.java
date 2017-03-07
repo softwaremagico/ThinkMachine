@@ -26,8 +26,6 @@ package com.softwaremagico.tm.character;
 
 import com.softwaremagico.tm.character.cybernetics.Device;
 import com.softwaremagico.tm.character.occultism.OccultismPower;
-import com.softwaremagico.tm.character.skills.AvailableSkill;
-import com.softwaremagico.tm.character.skills.SkillFactory;
 import com.softwaremagico.tm.character.traits.Benefit;
 import com.softwaremagico.tm.character.traits.Blessing;
 import com.softwaremagico.tm.log.MachineLog;
@@ -60,19 +58,7 @@ public class CostCalculator {
 	}
 
 	private static int getSkillCosts(CharacterPlayer characterPlayer) {
-		int cost = 0;
-		for (AvailableSkill skill : SkillFactory.getNaturalSkills(characterPlayer.getLanguage())) {
-			cost += characterPlayer.getSkillValue(skill) - 3;
-		}
-		for (AvailableSkill skill : SkillFactory.getLearnedSkills(characterPlayer.getLanguage())) {
-			if (characterPlayer.isSkillSpecial(skill)) {
-				continue;
-			}
-			if (characterPlayer.getSkillValue(skill) != null) {
-				cost += characterPlayer.getSkillValue(skill);
-			}
-		}
-		return (cost - FreeStyleCharacterCreation.SKILLS_POINTS);
+		return (characterPlayer.getSkillsTotalPoints() - FreeStyleCharacterCreation.SKILLS_POINTS);
 	}
 
 	private static int getTraitsCosts(CharacterPlayer characterPlayer) {

@@ -53,6 +53,11 @@ public class RandomizeCharacter {
 	public void createCharacter() {
 		weightedCharacteristics = assignCharacteristicsWeight();
 		spendCharacteristicsPoints();
+		spendSkillsPoints();
+	}
+
+	private void spendSkillsPoints() {
+		
 	}
 
 	private void spendCharacteristicsPoints() {

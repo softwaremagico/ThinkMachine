@@ -135,6 +135,13 @@ public class CharacterPlayer {
 		return getRaceCharacteristicStartingValue(characteristicName);
 	}
 
+	public Integer getStartingValue(AvailableSkill skill) {
+		if (skill.isNatural()) {
+			return 3;
+		}
+		return 0;
+	}
+
 	public Integer getValue(CharacteristicName characteristicName) {
 		if (CharacteristicName.INITIATIVE.equals(characteristicName)) {
 			return getValue(CharacteristicName.DEXTERITY) + getValue(CharacteristicName.WITS);
@@ -366,11 +373,39 @@ public class CharacterPlayer {
 		return 0;
 	}
 
+	/**
+	 * Total points spent in characteristics.
+	 * 
+	 * @return
+	 */
 	public int getCharacteristicsTotalPoints() {
-		int characteristicCost = 0;
+		int characteristicPoints = 0;
 		for (CharacteristicName characteristicName : CharacteristicName.getBasicCharacteristics()) {
-			characteristicCost += getValue(characteristicName) - getStartingValue(characteristicName);
+			characteristicPoints += getValue(characteristicName) - getStartingValue(characteristicName);
 		}
-		return characteristicCost;
+		return characteristicPoints;
+	}
+
+	/**
+	 * Total points spent in skills.
+	 * 
+	 * @return
+	 */
+	public int getSkillsTotalPoints() {
+		int skillPoints = 0;
+		for (AvailableSkill skill : SkillFactory.getNaturalSkills(getLanguage())) {
+			skillPoints += getSkillValue(skill) - getStartingValue(skill);
+		}
+
+		for (AvailableSkill skill : SkillFactory.getLearnedSkills(getLanguage())) {
+			if (isSkillSpecial(skill)) {
+				continue;
+			}
+			if (getSkillValue(skill) != null) {
+				skillPoints += getSkillValue(skill);
+			}
+		}
+
+		return skillPoints;
 	}
 }
