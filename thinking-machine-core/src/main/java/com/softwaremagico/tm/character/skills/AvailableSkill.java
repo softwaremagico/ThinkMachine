@@ -1,6 +1,5 @@
 package com.softwaremagico.tm.character.skills;
 
-import javax.management.RuntimeErrorException;
 
 /*-
  * #%L

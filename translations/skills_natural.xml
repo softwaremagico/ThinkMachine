@@ -37,17 +37,19 @@
 	</phoenixEmpireLore>
 	<planetaryLore>
 		<translator>
-			<en>Lore []</en>
-			<es>Saber []</es>
+			<en>Lore</en>
+			<es>Saber</es>
 		</translator>
 		<group>lore</group>
+		<generalizable>true</generalizable>
 	</planetaryLore>
 	<factionLore>
 		<translator>
-			<en>Lore []</en>
-			<es>Saber []</es>
+			<en>Lore</en>
+			<es>Saber</es>
 		</translator>
 		<group>lore</group>
+		<generalizable>true</generalizable>
 	</factionLore>
 	<sneak>
 		<translator>

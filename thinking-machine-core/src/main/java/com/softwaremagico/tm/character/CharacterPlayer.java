@@ -311,6 +311,7 @@ public class CharacterPlayer {
 			if (skill.isGeneralizable()) {
 				if (!planet) {
 					skill.setGeneralization(getInfo().getPlanet());
+					System.out.println(getInfo().getPlanet());
 					planet = true;
 				} else {
 					skill.setGeneralization(getInfo().getAlliance());

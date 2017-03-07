@@ -31,23 +31,18 @@ import com.itextpdf.text.pdf.PdfPCellEvent;
 import com.itextpdf.text.pdf.PdfPTable;
 
 public class CellDottedBorderEvent implements PdfPCellEvent {
-	private int border = 1;
 
 	public CellDottedBorderEvent() {
 
 	}
 
-	public CellDottedBorderEvent(int border) {
-		this.border = border;
-	}
-
 	public void cellLayout(PdfPCell cell, Rectangle position, PdfContentByte[] canvases) {
 		PdfContentByte canvas = canvases[PdfPTable.LINECANVAS];
-        canvas.setLineDash(3f, 3f);
-        canvas.moveTo(position.getLeft(), position.getTop());
-        canvas.lineTo(position.getRight(), position.getTop());
-        canvas.moveTo(position.getLeft(), position.getBottom());
-        canvas.lineTo(position.getRight(), position.getBottom());
-        canvas.stroke();
+		canvas.setLineDash(3f, 3f);
+		canvas.moveTo(position.getLeft(), position.getTop());
+		canvas.lineTo(position.getRight(), position.getTop());
+		canvas.moveTo(position.getLeft(), position.getBottom());
+		canvas.lineTo(position.getRight(), position.getBottom());
+		canvas.stroke();
 	}
 }
