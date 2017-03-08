@@ -101,6 +101,8 @@ public abstract class PdfDocument {
 			PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(path));
 			// TableFooter event = new TableFooter();
 			// writer.setPageEvent(event);
+			//writer.setPageEvent(new SheetBackgroundEvent());
+			writer.setPageEvent(new FooterEvent());
 			generatePDF(document, writer);
 		} catch (NullPointerException e) {
 			MachineLog.errorMessage(this.getClass().getName(), e);

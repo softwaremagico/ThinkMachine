@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.character.equipment;
+package com.softwaremagico.tm.pdf.elements;
 
 /*-
  * #%L
@@ -24,6 +24,25 @@ package com.softwaremagico.tm.character.equipment;
  * #L%
  */
 
-public enum Size {
-	XS, S, M, L, XL;
+import com.itextpdf.text.Rectangle;
+import com.itextpdf.text.pdf.PdfContentByte;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPCellEvent;
+import com.itextpdf.text.pdf.PdfPTable;
+
+public class CellDottedBorderEvent implements PdfPCellEvent {
+
+	public CellDottedBorderEvent() {
+
+	}
+
+	public void cellLayout(PdfPCell cell, Rectangle position, PdfContentByte[] canvases) {
+		PdfContentByte canvas = canvases[PdfPTable.LINECANVAS];
+		canvas.setLineDash(3f, 3f);
+		canvas.moveTo(position.getLeft(), position.getTop());
+		canvas.lineTo(position.getRight(), position.getTop());
+		canvas.moveTo(position.getLeft(), position.getBottom());
+		canvas.lineTo(position.getRight(), position.getBottom());
+		canvas.stroke();
+	}
 }

@@ -91,7 +91,8 @@ public class BaseElement {
 		Image image = Image.getInstance(CharacterBasicsTableFactory.class.getResource("/" + FadingSunsTheme.LOGO_IMAGE));
 		PdfPCell cell = new PdfPCell(image, true);
 		setCellProperties(cell);
-		cell.setPaddingTop(20);
+		cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+		cell.setPaddingTop(10);
 		return cell;
 	}
 

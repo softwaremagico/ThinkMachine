@@ -1,5 +1,29 @@
 package com.softwaremagico.tm.character;
 
+/*-
+ * #%L
+ * The Thinking Machine (Core)
+ * %%
+ * Copyright (C) 2017 Softwaremagico
+ * %%
+ * This software is designed by Jorge Hortelano Otero. Jorge Hortelano Otero
+ * <softwaremagico@gmail.com> Valencia (Spain).
+ *  
+ * This program is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software
+ * Foundation; either version 2 of the License, or (at your option) any later
+ * version.
+ *  
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+ * details.
+ *  
+ * You should have received a copy of the GNU General Public License along with
+ * this program; If not, see <http://www.gnu.org/licenses/gpl-3.0.html>.
+ * #L%
+ */
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -111,6 +135,13 @@ public class CharacterPlayer {
 		return getRaceCharacteristicStartingValue(characteristicName);
 	}
 
+	public Integer getStartingValue(AvailableSkill skill) {
+		if (skill.isNatural()) {
+			return 3;
+		}
+		return 0;
+	}
+
 	public Integer getValue(CharacteristicName characteristicName) {
 		if (CharacteristicName.INITIATIVE.equals(characteristicName)) {
 			return getValue(CharacteristicName.DEXTERITY) + getValue(CharacteristicName.WITS);
@@ -133,8 +164,7 @@ public class CharacterPlayer {
 	}
 
 	public Integer getWyrdValue() {
-		return Math.max(getValue(CharacteristicName.WILL), getValue(CharacteristicName.FAITH))
-				+ occultism.getExtraWyrd();
+		return Math.max(getValue(CharacteristicName.WILL), getValue(CharacteristicName.FAITH)) + occultism.getExtraWyrd();
 	}
 
 	public void addSkill(String skillName, int value) {
@@ -312,6 +342,7 @@ public class CharacterPlayer {
 			if (skill.isGeneralizable()) {
 				if (!planet) {
 					skill.setGeneralization(getInfo().getPlanet());
+					System.out.println(getInfo().getPlanet());
 					planet = true;
 				} else {
 					skill.setGeneralization(getInfo().getAlliance());
@@ -340,5 +371,41 @@ public class CharacterPlayer {
 
 		}
 		return 0;
+	}
+
+	/**
+	 * Total points spent in characteristics.
+	 * 
+	 * @return
+	 */
+	public int getCharacteristicsTotalPoints() {
+		int characteristicPoints = 0;
+		for (CharacteristicName characteristicName : CharacteristicName.getBasicCharacteristics()) {
+			characteristicPoints += getValue(characteristicName) - getStartingValue(characteristicName);
+		}
+		return characteristicPoints;
+	}
+
+	/**
+	 * Total points spent in skills.
+	 * 
+	 * @return
+	 */
+	public int getSkillsTotalPoints() {
+		int skillPoints = 0;
+		for (AvailableSkill skill : SkillFactory.getNaturalSkills(getLanguage())) {
+			skillPoints += getSkillValue(skill) - getStartingValue(skill);
+		}
+
+		for (AvailableSkill skill : SkillFactory.getLearnedSkills(getLanguage())) {
+			if (isSkillSpecial(skill)) {
+				continue;
+			}
+			if (getSkillValue(skill) != null) {
+				skillPoints += getSkillValue(skill);
+			}
+		}
+
+		return skillPoints;
 	}
 }

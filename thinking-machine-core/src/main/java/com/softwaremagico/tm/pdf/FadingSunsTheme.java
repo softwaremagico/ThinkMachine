@@ -31,6 +31,8 @@ import com.itextpdf.text.pdf.BaseFont;
 
 public abstract class FadingSunsTheme {
 	public final static String LOGO_IMAGE = "fading-suns.png";
+	public final static String RIGHT_CORNER_IMAGE = "rightCorner.png";
+	public final static String LEFT_CORNER_IMAGE = "leftCorner.png";
 	public final static String LINE_FONT_NAME = "DejaVuSansCondensed.ttf";
 	public final static String LINE_FONT_ITALIC_NAME = "DejaVuSansCondensed-Oblique.ttf";
 	public final static String TABLE_SUBTITLE_FONT_NAME = "DejaVuSansCondensed-Oblique.ttf";
@@ -62,17 +64,27 @@ public abstract class FadingSunsTheme {
 	public final static int CYBERNETICS_CONTENT_FONT_SIZE = 6;
 	public final static int COMBAT_ACTIONS_CONTENT_FONT_SIZE = 6;
 	public final static int INFO_CONTENT_FONT_SIZE = 7;
+	public final static int FOOTER_FONT_SIZE = 8;
 	
 	public final static int HANDWRITTING_DEFAULT_FONT_SIZE = 10;
 
 	public final static int DEFAULT_MARGIN = 3;
 
+	private static BaseFont footerFont;
 	private static BaseFont lineFont;
 	private static BaseFont lineItalicFont;
 	private static BaseFont lineBoldFont;
 	private static BaseFont titleFont;
 	private static BaseFont tableSubtitleFont;
 	private static BaseFont handwrittingFont;
+	
+	public static BaseFont getFooterFont() {
+		if (footerFont == null) {
+			Font font = FontFactory.getFont("/" + TITLE_FONT_NAME, BaseFont.IDENTITY_H, BaseFont.EMBEDDED, 0.5f, Font.NORMAL, BaseColor.BLACK);
+			footerFont = font.getBaseFont();
+		}
+		return footerFont;
+	}
 
 	public static BaseFont getLineFont() {
 		if (lineFont == null) {

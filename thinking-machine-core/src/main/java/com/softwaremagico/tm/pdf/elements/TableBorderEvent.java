@@ -24,7 +24,6 @@ package com.softwaremagico.tm.pdf.elements;
  * #L%
  */
 
-import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfPRow;

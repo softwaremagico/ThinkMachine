@@ -1,5 +1,29 @@
 package com.softwaremagico.tm.export.pdf;
 
+/*-
+ * #%L
+ * The Thinking Machine (Core)
+ * %%
+ * Copyright (C) 2017 Softwaremagico
+ * %%
+ * This software is designed by Jorge Hortelano Otero. Jorge Hortelano Otero
+ * <softwaremagico@gmail.com> Valencia (Spain).
+ *  
+ * This program is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software
+ * Foundation; either version 2 of the License, or (at your option) any later
+ * version.
+ *  
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+ * details.
+ *  
+ * You should have received a copy of the GNU General Public License along with
+ * this program; If not, see <http://www.gnu.org/licenses/gpl-3.0.html>.
+ * #L%
+ */
+
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -10,6 +34,7 @@ import org.testng.annotations.Test;
 import com.itextpdf.text.DocumentException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.CostCalculator;
+import com.softwaremagico.tm.character.FreeStyleCharacterCreation;
 import com.softwaremagico.tm.character.Gender;
 import com.softwaremagico.tm.character.Race;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
@@ -97,7 +122,7 @@ public class CustomCharacters {
 		CharacterSheet sheet = new CharacterSheet(player);
 		sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Paola.pdf");
 
-		Assert.assertEquals(CostCalculator.getCost(player), 40);
+		Assert.assertEquals(CostCalculator.getCost(player), FreeStyleCharacterCreation.FREE_AVAILABLE_POINTS);
 	}
 
 	@Test
@@ -153,7 +178,7 @@ public class CustomCharacters {
 		CharacterSheet sheet = new CharacterSheet(player);
 		sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Ana.pdf");
 
-		Assert.assertEquals(CostCalculator.getCost(player), 40);
+		Assert.assertEquals(CostCalculator.getCost(player), FreeStyleCharacterCreation.FREE_AVAILABLE_POINTS);
 	}
 
 	@Test
@@ -217,7 +242,7 @@ public class CustomCharacters {
 		CharacterSheet sheet = new CharacterSheet(player);
 		sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Carlos.pdf");
 
-		Assert.assertEquals(CostCalculator.getCost(player), 40);
+		Assert.assertEquals(CostCalculator.getCost(player), FreeStyleCharacterCreation.FREE_AVAILABLE_POINTS);
 	}
 	
 	@Test
@@ -281,17 +306,19 @@ public class CustomCharacters {
 		CharacterSheet sheet = new CharacterSheet(player);
 		sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Noelia.pdf");
 
-		Assert.assertEquals(CostCalculator.getCost(player), 40);
+		Assert.assertEquals(CostCalculator.getCost(player), FreeStyleCharacterCreation.FREE_AVAILABLE_POINTS);
 	}
 	
 	@Test
 	public void createGolemCharacer() throws MalformedURLException, DocumentException, IOException {
 		CharacterPlayer player = new CharacterPlayer("es");
-		player.getInfo().setPlayer("");
+		player.getInfo().setPlayer("PNJ");
+		player.getInfo().setName("A (Prototipo A)");
 		player.getInfo().setGender(Gender.FEMALE);
 		player.setRace(new Race("Gólem", 5, 5, 5, 3, 3, 6, 0, 0, 0, 6, 0, 0, 0, 0, 0));
 		player.getInfo().setPlanet("Ligaheim");
 		player.getInfo().setAlliance("Gólem");
+		player.getInfo().setAge(1432);
 
 		player.getCharacteristics().getCharacteristic(CharacteristicName.STRENGTH).setValue(12);
 		player.getCharacteristics().getCharacteristic(CharacteristicName.DEXTERITY).setValue(7);

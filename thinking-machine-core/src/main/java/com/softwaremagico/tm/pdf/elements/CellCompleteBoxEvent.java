@@ -30,14 +30,14 @@ import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPCellEvent;
 import com.itextpdf.text.pdf.PdfPTable;
 
-public class CellPaddingEvent implements PdfPCellEvent {
+public class CellCompleteBoxEvent implements PdfPCellEvent {
 	private int border = 1;
 
-	public CellPaddingEvent() {
+	public CellCompleteBoxEvent() {
 
 	}
 
-	public CellPaddingEvent(int border) {
+	public CellCompleteBoxEvent(int border) {
 		this.border = border;
 	}
 

@@ -29,12 +29,14 @@
 				<include name="characterPdfGeneration" />
 				<include name="customCharacterGeneration" />
 				<include name="skillFactory" />
+				<include name="randomCharacter" />
 			</run>
 		</groups>
 		<classes>
 			<class name="com.softwaremagico.tm.export.pdf.CharacterSheetCreationTest" />
 			<class name="com.softwaremagico.tm.export.pdf.CustomCharacters" />
 			<class name="com.softwaremagico.tm.skills.SkillFactoryTests" />
+			<class name="com.softwaremagico.tm.random.RandomCharacterTest" />
 		</classes>
 	</test>
 </suite>

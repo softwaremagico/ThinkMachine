@@ -246,7 +246,6 @@ public class SkillsTable extends BaseElement {
 				FadingSunsTheme.SKILLS_LINE_FONT_SIZE);
 		paragraph.add(new Paragraph(skill.getName() + " [", new Font(font,
 				FadingSunsTheme.SKILLS_LINE_FONT_SIZE)));
-		// if (skill.getGeneralization() == null) {
 		if (characterPlayer != null && characterPlayer.getSelectedSkill(skill) == null) {
 			if (skill.getGeneralization() != null) {
 				paragraph.add(new Paragraph(CellUtils.getSubStringFitsIn(skill.getGeneralization(),

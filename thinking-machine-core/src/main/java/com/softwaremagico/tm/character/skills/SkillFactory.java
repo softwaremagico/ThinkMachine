@@ -24,8 +24,6 @@ package com.softwaremagico.tm.character.skills;
  * #L%
  */
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -33,30 +31,25 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-import com.softwaremagico.tm.file.FileManager;
-import com.softwaremagico.tm.file.Path;
-import com.softwaremagico.tm.log.MachineLog;
+import com.softwaremagico.tm.language.ITranslator;
+import com.softwaremagico.tm.language.LanguagePool;
 
 public class SkillFactory {
-	private final static String NATURAL_SKILLS_FILE = "skills-natural.txt";
-	private final static String LEARNED_SKILLS_FILE = "skills-learned.txt";
+	private final static String GUILD_SKILL_TAG = "guildSkill";
+	private final static String GENERALIZABLE_SKILL_TAG = "generalizable";
+	private final static String GROUP_SKILL_TAG = "group";
 	// Language and skills.
 	private static Map<String, List<AvailableSkill>> naturalSkills = new HashMap<>();
 	private static Map<String, List<AvailableSkill>> learnedSkills = new HashMap<>();
 
-	private final static String skillsPath = "../" + Path.getSkillsRootPath();
+	private static ITranslator translatorNaturalSkills = LanguagePool.getTranslator("skills_natural.xml");
+	private static ITranslator translatorLearnedSkills = LanguagePool.getTranslator("skills_learned.xml");
 
 	public static List<AvailableSkill> getNaturalSkills(String language) {
 		if (naturalSkills.get(language) == null) {
 			naturalSkills.put(language, new ArrayList<AvailableSkill>());
-			try {
-				for (String skillName : FileManager.inLines(skillsPath + language + File.separator
-						+ NATURAL_SKILLS_FILE)) {
-					naturalSkills.get(language).add(new AvailableSkill(skillName, true));
-				}
-			} catch (IOException e) {
-				e.printStackTrace();
-				MachineLog.errorMessage(SkillFactory.class.getName(), e);
+			for (String skillId : translatorNaturalSkills.getAllTranslatedElements()) {
+				naturalSkills.get(language).add(createSkill(translatorNaturalSkills, skillId, language, true));
 			}
 			Collections.sort(naturalSkills.get(language));
 		}
@@ -65,25 +58,19 @@ public class SkillFactory {
 
 	public static List<AvailableSkill> getLearnedSkills(String language) {
 		if (learnedSkills.get(language) == null) {
-			try {
-				learnedSkills.put(language, new ArrayList<AvailableSkill>());
-				String lastSkillName = null;
-				int added = 0;
-				for (String skillName : FileManager.inLines(skillsPath + language + File.separator
-						+ LEARNED_SKILLS_FILE)) {
-					AvailableSkill skill = new AvailableSkill(skillName, false);
-					if (Objects.equals(lastSkillName, skillName)) {
-						added++;
-					} else {
-						added = 0;
-					}
-					skill.setIndexOfGeneralization(added);
-					learnedSkills.get(language).add(skill);
-					lastSkillName = skillName;
+			learnedSkills.put(language, new ArrayList<AvailableSkill>());
+			String lastSkillName = null;
+			int added = 0;
+			for (String skillId : translatorLearnedSkills.getAllTranslatedElements()) {
+				AvailableSkill skill = createSkill(translatorLearnedSkills, skillId, language, false);
+				if (Objects.equals(lastSkillName, skill.getName())) {
+					added++;
+				} else {
+					added = 0;
 				}
-			} catch (IOException e) {
-				e.printStackTrace();
-				MachineLog.errorMessage(SkillFactory.class.getName(), e);
+				skill.setIndexOfGeneralization(added);
+				learnedSkills.get(language).add(skill);
+				lastSkillName = skill.getName();
 			}
 			Collections.sort(learnedSkills.get(language));
 		}
@@ -97,5 +84,17 @@ public class SkillFactory {
 			}
 		}
 		return false;
+	}
+
+	private static AvailableSkill createSkill(ITranslator translator, String skillId, String language, boolean isNatural) {
+		AvailableSkill skill = new AvailableSkill(skillId, translator.getTranslatedText(skillId, language), isNatural);
+		String generalizable = translator.getNodeValue(skillId, GENERALIZABLE_SKILL_TAG);
+		skill.setGeneralizable(Boolean.parseBoolean(generalizable));
+		String guildSkill = translator.getNodeValue(skillId, GUILD_SKILL_TAG);
+		skill.setFromGuild(Boolean.parseBoolean(guildSkill));
+		String group = translator.getNodeValue(skillId, GROUP_SKILL_TAG);
+		skill.setSkillGroup(SkillGroup.getSkillGroup(group));
+
+		return skill;
 	}
 }
