@@ -46,10 +46,15 @@ public abstract class CustomPdfTable extends PdfPTable {
 	}
 
 	protected PdfPCell createTitle(String title, int fontSize) {
+		PdfPCell titleCell = createCompactTitle(title, fontSize);
+		titleCell.setRowspan(2);
+		return titleCell;
+	}
+
+	protected PdfPCell createCompactTitle(String title, int fontSize) {
 		Font font = new Font(FadingSunsTheme.getTitleFont(), fontSize);
 		Phrase content = new Phrase(title, font);
 		PdfPCell titleCell = new PdfPCell(content);
-		titleCell.setRowspan(2);
 		titleCell.setColspan(getColumnWidths().length);
 		titleCell.setHorizontalAlignment(Element.ALIGN_CENTER);
 		titleCell.setBorder(0);
@@ -65,17 +70,13 @@ public abstract class CustomPdfTable extends PdfPTable {
 	}
 
 	protected static PdfPCell createEmptyElementLine(String text, int maxWidth) {
-		String remainingText = CellUtils.getSubStringFitsIn(text, FadingSunsTheme.getLineFont(), FadingSunsTheme.TABLE_LINE_FONT_SIZE,
-				maxWidth);
+		String remainingText = CellUtils.getSubStringFitsIn(text, FadingSunsTheme.getLineFont(), FadingSunsTheme.TABLE_LINE_FONT_SIZE, maxWidth);
 		return createEmptyElementLine(remainingText);
 	}
 
 	protected static PdfPCell createBasicElementLine(String text, int fontSize) {
-		PdfPCell cell = BaseElement.getCell(
-				CellUtils.getSubStringFitsIn(text, FadingSunsTheme.getHandwrittingFont(),
-						fontSize, 70), 0, 1, Element.ALIGN_CENTER,
-				BaseColor.WHITE, FadingSunsTheme.getHandwrittingFont(),
-				fontSize);
+		PdfPCell cell = BaseElement.getCell(CellUtils.getSubStringFitsIn(text, FadingSunsTheme.getHandwrittingFont(), fontSize, 70), 0, 1,
+				Element.ALIGN_CENTER, BaseColor.WHITE, FadingSunsTheme.getHandwrittingFont(), fontSize);
 		cell.setMinimumHeight(12);
 		cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		return cell;
@@ -128,8 +129,7 @@ public abstract class CustomPdfTable extends PdfPTable {
 		if (value == null) {
 			return createRectangle();
 		}
-		PdfPCell box = new PdfPCell(new Paragraph(value, new Font(FadingSunsTheme.getHandwrittingFont(),
-				FadingSunsTheme.HANDWRITTING_DEFAULT_FONT_SIZE)));
+		PdfPCell box = new PdfPCell(new Paragraph(value, new Font(FadingSunsTheme.getHandwrittingFont(), FadingSunsTheme.HANDWRITTING_DEFAULT_FONT_SIZE)));
 		box.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		box.setHorizontalAlignment(Element.ALIGN_CENTER);
 		box.setMinimumHeight(15);

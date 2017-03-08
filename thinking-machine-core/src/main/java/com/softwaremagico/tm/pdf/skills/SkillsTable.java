@@ -46,8 +46,13 @@ public class SkillsTable extends BaseElement {
 	public final static String SKILL_VALUE_GAP = "____";
 
 	protected static PdfPCell createTitle(String text, int fontSize) {
-		PdfPCell cell = getCell(text, 0, 2, Element.ALIGN_CENTER, BaseColor.WHITE, FadingSunsTheme.getTitleFont(), fontSize);
+		PdfPCell cell = createCompactTitle(text, fontSize);
 		cell.setMinimumHeight(MainSkillsTableFactory.HEIGHT / (ROWS / TITLE_ROWSPAN) + 1);
+		return cell;
+	}
+
+	protected static PdfPCell createCompactTitle(String text, int fontSize) {
+		PdfPCell cell = getCell(text, 0, 2, Element.ALIGN_CENTER, BaseColor.WHITE, FadingSunsTheme.getTitleFont(), fontSize);
 		cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		return cell;
 	}

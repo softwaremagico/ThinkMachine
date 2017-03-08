@@ -48,7 +48,7 @@ public class LearnedSkillsSmallTable extends SkillsTable {
 		setTablePropierties(table);
 		table.getDefaultCell().setBorder(0);
 
-		table.addCell(createTitle(getTranslator().getTranslatedText("learnedSkills"), FadingSunsTheme.CHARACTER_SMALL_SKILLS_TITLE_FONT_SIZE));
+		table.addCell(createCompactTitle(getTranslator().getTranslatedText("learnedSkills"), FadingSunsTheme.CHARACTER_SMALL_SKILLS_TITLE_FONT_SIZE));
 
 		if (characterPlayer != null) {
 			for (AvailableSkill skill : characterPlayer.getLearnedSkills()) {

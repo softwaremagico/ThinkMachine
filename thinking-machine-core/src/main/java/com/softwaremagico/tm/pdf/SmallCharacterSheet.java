@@ -97,14 +97,20 @@ public class SmallCharacterSheet extends PdfDocument {
 
 		mainTable.addCell(basicTable);
 
+		
+		PdfPTable composedTable = new PdfPTable(new float[] { 2f, 5f });
+		composedTable.addCell(new PdfPCell());
+		
 		PdfPTable blessingsTable = new SmallBlessingTable(getCharacterPlayer());
 		PdfPCell blessingsCell = new PdfPCell(blessingsTable);
-		blessingsCell.setRowspan(2);
-		mainTable.addCell(blessingsCell);
+		composedTable.addCell(blessingsCell);
+		
+		PdfPCell composedCell = new PdfPCell(composedTable);
+		composedCell.setRowspan(2);
+		mainTable.addCell(composedCell);
 
 		PdfPTable armourTable = new SmallArmourTable(getCharacterPlayer());
 		PdfPCell armourCell = new PdfPCell(armourTable);
-		//armourCell.setBorder(1);
 		mainTable.addCell(armourCell);
 
 		// PdfPCell victoryPointsCell = new PdfPCell(new VictoryPointsTable());

@@ -48,7 +48,7 @@ public class CharacteristicSmallColumn extends CustomPdfTable {
 
 	public CharacteristicSmallColumn(CharacterPlayer characterPlayer, CharacteristicType characteristicType, CharacteristicName[] content) {
 		super(widths);
-		PdfPCell title = createTitle(getTranslator().getTranslatedText(characteristicType.getTranslationTag()),
+		PdfPCell title = createCompactTitle(getTranslator().getTranslatedText(characteristicType.getTranslationTag()),
 				FadingSunsTheme.CHARACTER_SMALL_CHARACTERISTICS_TITLE_FONT_SIZE);
 		title.setColspan(widths.length);
 		addCell(title);
