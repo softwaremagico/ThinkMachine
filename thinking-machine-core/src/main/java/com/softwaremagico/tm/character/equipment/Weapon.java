@@ -37,8 +37,7 @@ public class Weapon extends Element<Weapon> {
 	private final int tech;
 	private String others;
 
-	public Weapon(String name, String roll, Integer goal, int damage, String strengthOrRange, Integer shots, String rate, int tech,
-			Size size) {
+	public Weapon(String name, String roll, Integer goal, int damage, String strengthOrRange, Integer shots, String rate, int tech, Size size) {
 		super(name);
 		this.roll = roll;
 		this.goal = goal;
@@ -50,8 +49,7 @@ public class Weapon extends Element<Weapon> {
 		this.tech = tech;
 	}
 
-	public Weapon(String name, String roll, Integer goal, int damage, String strengthOrRange, Integer shots, String rate, int tech,
-			Size size, String others) {
+	public Weapon(String name, String roll, Integer goal, int damage, String strengthOrRange, Integer shots, String rate, int tech, Size size, String others) {
 		this(name, roll, goal, damage, strengthOrRange, shots, rate, tech, size);
 		setOthers(others);
 	}
@@ -61,6 +59,9 @@ public class Weapon extends Element<Weapon> {
 	}
 
 	public Integer getGoal() {
+		if (goal == null) {
+			return 0;
+		}
 		return goal;
 	}
 

@@ -68,7 +68,7 @@ public class BaseElement {
 		return cell;
 	}
 
-	protected PdfPCell getCell(String text, int border, int colspan, int align, com.itextpdf.text.BaseColor color, String font,
+	protected PdfPCell getCell(String text, int border, int colspan, int align, BaseColor color, String font,
 			int fontSize, int fontType) {
 		Paragraph p = new Paragraph(text, FontFactory.getFont(font, fontSize, fontType));
 		PdfPCell cell = new PdfPCell(p);
