@@ -59,15 +59,26 @@ public class WeaponsTable extends LateralHeaderPdfPTable {
 		int addedWeapons = 0;
 		if (characterPlayer != null) {
 			for (Weapon weapon : characterPlayer.getWeapons().getElements()) {
-				addCell(createElementLine(weapon.getName(), NAME_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
-				addCell(createElementLine(weapon.getRoll(), ROLL_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
-				addCell(createElementLine(weapon.getGoal() + "", GOAL_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
-				addCell(createElementLine(weapon.getDamage() + "d", DAMAGE_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
-				addCell(createElementLine(weapon.getStrengthOrRange(), RANGE_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
-				addCell(createElementLine(weapon.getShots() + "", SHOTS_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
-				addCell(createElementLine(weapon.getRate(), RATE_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
-				addCell(createElementLine(weapon.getSize().toString(), SIZE_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
-				addCell(createElementLine(weapon.getOthers(), OTHERS_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
+				addCell(createElementLine(weapon.getName(), NAME_COLUMN_WIDTH,
+						FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
+				addCell(createElementLine(weapon.getRoll(), ROLL_COLUMN_WIDTH,
+						FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
+				addCell(createElementLine((weapon.getGoal() > 0 ? "+" : "") + weapon.getGoal(),
+						GOAL_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
+				addCell(createElementLine(weapon.getDamage() + "d", DAMAGE_COLUMN_WIDTH,
+						FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
+				addCell(createElementLine(
+						weapon.getShots() == null ? characterPlayer.getStrengthDamangeModification() + ""
+								: weapon.getStrengthOrRange(), RANGE_COLUMN_WIDTH,
+						FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
+				addCell(createElementLine(weapon.getShots() + "", SHOTS_COLUMN_WIDTH,
+						FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
+				addCell(createElementLine(weapon.getRate(), RATE_COLUMN_WIDTH,
+						FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
+				addCell(createElementLine(weapon.getSize().toString(), SIZE_COLUMN_WIDTH,
+						FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
+				addCell(createElementLine(weapon.getOthers(), OTHERS_COLUMN_WIDTH,
+						FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
 
 				addedWeapons++;
 			}

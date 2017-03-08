@@ -13,6 +13,8 @@ import com.softwaremagico.tm.character.CostCalculator;
 import com.softwaremagico.tm.character.Gender;
 import com.softwaremagico.tm.character.Race;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
+import com.softwaremagico.tm.character.combat.CombatAction;
+import com.softwaremagico.tm.character.combat.CombatStyle;
 import com.softwaremagico.tm.character.cybernetics.Device;
 import com.softwaremagico.tm.character.equipment.Armour;
 import com.softwaremagico.tm.character.equipment.Shield;
@@ -171,27 +173,29 @@ public class CustomCharacters {
 		player.getCharacteristics().getCharacteristic(CharacteristicName.ENDURANCE).setValue(6);
 		player.getCharacteristics().getCharacteristic(CharacteristicName.WITS).setValue(6);
 		player.getCharacteristics().getCharacteristic(CharacteristicName.PERCEPTION).setValue(6);
-		player.getCharacteristics().getCharacteristic(CharacteristicName.TECH).setValue(5);
+		player.getCharacteristics().getCharacteristic(CharacteristicName.TECH).setValue(6);
 		player.getCharacteristics().getCharacteristic(CharacteristicName.PRESENCE).setValue(4);
 		player.getCharacteristics().getCharacteristic(CharacteristicName.WILL).setValue(6);
 		player.getCharacteristics().getCharacteristic(CharacteristicName.FAITH).setValue(3);
 
 		player.addSkill("Influenciar", 5);
 		player.addSkill("Observar", 4);
-		player.addSkill("Vigor", 6);
+		player.addSkill("Vigor", 7);
 		player.addSkill("Armas de Fuego", 8);
 		player.addSkill("Artería", 4);
 		player.addSkill("Autocontrol", 2);
 		player.addSkill("Callejear", 3);
-		player.addSkill("Conocim. del Cuerpo", 1);
-		player.addSkill("Controlar Aeronave", 2);
-		player.addSkill("Cuerpo a Cuerpo", 5);
-		player.addSkill("Demoliciones", 1);
+		player.addSkill("Conocim. del Cuerpo", 2);
+		player.addSkill("Controlar Aeronave", 1);
+		player.addSkill("Pelear", 5);
+		player.addSkill("Demoliciones", 2);
 		player.addSkill("Juego", 1);
 		player.addSkill("Liderazgo", 1);
-		player.addSkill("Recuperación Tecnológic.", 2);
-		player.addSkill("Supervivencia", 2);
-		player.addSkill("Torturar", 1);
+		player.addSkill("Recuperación Tecnológic.", 3);
+		player.addSkill("Supervivencia", 3);
+		player.addSkill("Torturar", 3);
+		player.addSkill("Controlar Vehíc. Terrestre", 2);
+		player.addSkill("Investigar", 3);
 
 		player.addBlessing(new Blessing("El Hombre", 2, 2, "Influenciar", "Liderar subalternos"));
 		player.addBlessing(new Blessing("Posesivo", -2, -2, "Voluntad", "Excluir acción"));
@@ -200,6 +204,14 @@ public class CustomCharacters {
 		player.addBenefit(new Benefit("Genin", 8));
 		player.addBenefit(new Benefit("Contrato de Pasaje", 3));
 		player.addBenefit(new Benefit("1000 fénix", 4));
+		
+		CombatStyle fightStyle = new CombatStyle("Talón de Acero");
+		fightStyle.addElement(new CombatAction("Cadena de Destrucción", null, "3d", "Presa Especial"));
+		fightStyle.addElement(new CombatAction("Cabezado", 2, "4d", "Ignora armadura*"));
+		player.getMeleeCombatStyles().add(fightStyle);
+		
+		player.getWeapons().addElement(new Weapon("Escopeta", "Ds+Arma Fuego", 0, 7, "30/80", 7, "2", 3, Size.L, null));
+		player.getWeapons().addElement(new Weapon("Pistola Auto.", "Ds+Arma Fuego", 0, 5, "20/30", 10, "3", 4, Size.S, null));
 
 		LanguagePool.clearCache();
 		CharacterSheet sheet = new CharacterSheet(player);
@@ -227,19 +239,20 @@ public class CustomCharacters {
 		player.getCharacteristics().getCharacteristic(CharacteristicName.PERCEPTION).setValue(4);
 		player.getCharacteristics().getCharacteristic(CharacteristicName.TECH).setValue(3);
 		player.getCharacteristics().getCharacteristic(CharacteristicName.PRESENCE).setValue(7);
-		player.getCharacteristics().getCharacteristic(CharacteristicName.WILL).setValue(6);
+		player.getCharacteristics().getCharacteristic(CharacteristicName.WILL).setValue(8);
 		player.getCharacteristics().getCharacteristic(CharacteristicName.FAITH).setValue(8);
 
 		player.addSkill("Influenciar", 4);
 		player.addSkill("Observar", 6);
+		player.addSkill("Vigor", 5);
 		
 		player.addSkill("Artería", 2);
-		player.addSkill("Autocontrol", 5);
+		player.addSkill("Autocontrol", 6);
 		player.addSkill("Conocim. del Cuerpo", 3);
 		player.addSkill("Empatía", 4);
 		player.addSkill("Etiqueta", 2);
 		player.addSkill("Investigar", 3);
-		player.addSkill("Saber [Kelanti]", 0);
+		player.addSkill("Saber [Kelanti]", 3);
 
 		player.getOccultism().setPsiValue(6);
 
@@ -247,8 +260,10 @@ public class CustomCharacters {
 		player.getOccultism().addElement(new OccultismPower("Mano Lanzadora", "Vol+Autoc.", 2, "Sensorial", "Temporal", "", 1));
 		player.getOccultism().addElement(new OccultismPower("Mano Aplastante", "Vol+Autoc.", 3, "Sensorial", "Temporal", "", 1));
 		player.getOccultism().addElement(new OccultismPower("Mano Duelista", "Vol+Autoc.", 4, "Sensorial", "Temporal", "", 1));
+		player.getOccultism().addElement(new OccultismPower("Mano Nº5", "", 5, "", "", "", 1));
 		player.getOccultism().addElement(new OccultismPower("Intuir", "Vol+Empatía", 1, "Toque", "Instantáneo", "", 1));
 		player.getOccultism().addElement(new OccultismPower("Emocionar", "Presencia+Influenciar", 2, "Toque", "Instantáneo", "", 1));
+		player.getOccultism().addElement(new OccultismPower("Visión Mental", "Voluntad+Empatía", 3, "Toque", "Instantáneo", "", 1));
 		player.getOccultism().setExtraWyrd(3);
 		
 
@@ -256,9 +271,11 @@ public class CustomCharacters {
 		player.addBlessing(new Blessing("Condescendiente", -2, -2, "Presencia", "Entre incultos"));
 		player.addBlessing(new Blessing("Marca Horrible", -2, -2, "Influencia", "Si es visible"));
 
+		player.addBenefit(new Benefit("Rango Novicio", 4));
 		player.addBenefit(new Benefit("Idioma Terráqueo", 2));
 		player.addBenefit(new Benefit("Idioma Obun", 0));
-		player.addBenefit(new Benefit("Novicio", 4));
+		player.addBenefit(new Benefit("Estigma", -2));
+		player.addBenefit(new Benefit("Huérfano", -1));
 
 		LanguagePool.clearCache();
 		CharacterSheet sheet = new CharacterSheet(player);
@@ -318,7 +335,7 @@ public class CustomCharacters {
 		CharacterSheet sheet = new CharacterSheet(player);
 		sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Golem.pdf");
 
-		Assert.assertEquals(CostCalculator.getCost(player), 40);
+		Assert.assertEquals(CostCalculator.getCost(player), -5);
 	}
 
 }
