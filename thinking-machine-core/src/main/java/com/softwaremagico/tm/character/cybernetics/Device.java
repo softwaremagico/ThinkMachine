@@ -24,7 +24,14 @@ package com.softwaremagico.tm.character.cybernetics;
  * #L%
  */
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+
 import com.softwaremagico.tm.Element;
+import com.softwaremagico.tm.character.characteristics.CharacteristicImprovement;
+import com.softwaremagico.tm.character.characteristics.CharacteristicName;
+import com.softwaremagico.tm.character.skills.SelectedSkill;
 
 public class Device extends Element<Device> {
 	private final int points;
@@ -35,6 +42,9 @@ public class Device extends Element<Device> {
 	private final String appearence;
 	private final String others;
 
+	private Map<String, SelectedSkill> skillImprovements;
+	private Map<CharacteristicName, CharacteristicImprovement> characteristicImprovents;
+
 	public Device(String name, int points, int incompatibility, String usability, String quality, String activation, String appearence, String others) {
 		super(name);
 		this.points = points;
@@ -44,6 +54,8 @@ public class Device extends Element<Device> {
 		this.activation = activation;
 		this.appearence = appearence;
 		this.others = others;
+		skillImprovements = new HashMap<>();
+		characteristicImprovents = new HashMap<>();
 	}
 
 	public int getPoints() {
@@ -72,5 +84,25 @@ public class Device extends Element<Device> {
 
 	public String getOthers() {
 		return others;
+	}
+
+	public void addSkillImprovement(SelectedSkill skillImprovement) {
+		skillImprovements.put(skillImprovement.getName(), skillImprovement);
+	}
+
+	public SelectedSkill getSkillImprovement(String skillName) {
+		return skillImprovements.get(skillName);
+	}
+
+	public Set<String> getSkillImprovementsNames() {
+		return skillImprovements.keySet();
+	}
+
+	public void addCharacteristicImprovement(CharacteristicImprovement characteristicImprovement) {
+		characteristicImprovents.put(characteristicImprovement.getCharacteristicName(), characteristicImprovement);
+	}
+
+	public CharacteristicImprovement getCharacteristicImprovement(CharacteristicName characteristicName) {
+		return characteristicImprovents.get(characteristicName);
 	}
 }

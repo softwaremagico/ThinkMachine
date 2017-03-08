@@ -74,7 +74,7 @@ public class CharacteristicColumn extends LateralHeaderPdfPTable {
 			if (characterPlayer == null) {
 				table.addCell(createRectangle());
 			} else {
-				table.addCell(createRectangle(characterPlayer.getValue(characteristicName)));
+				table.addCell(createRectangle(getCharacteristicValueRepresentation(characterPlayer, characteristicName)));
 			}
 
 			// Margin
@@ -88,6 +88,14 @@ public class CharacteristicColumn extends LateralHeaderPdfPTable {
 		BaseElement.setCellProperties(cell);
 
 		return cell;
+	}
+
+	private String getCharacteristicValueRepresentation(CharacterPlayer characterPlayer, CharacteristicName characteristicName) {
+		if (characterPlayer.getOptionalValue(characteristicName) > 0) {
+			return characterPlayer.getValue(characteristicName) + "/"
+					+ (characterPlayer.getValue(characteristicName) + characterPlayer.getOptionalValue(characteristicName));
+		}
+		return characterPlayer.getValue(characteristicName) + "";
 	}
 
 	@Override

@@ -37,6 +37,7 @@ import com.softwaremagico.tm.character.CostCalculator;
 import com.softwaremagico.tm.character.FreeStyleCharacterCreation;
 import com.softwaremagico.tm.character.Gender;
 import com.softwaremagico.tm.character.Race;
+import com.softwaremagico.tm.character.characteristics.CharacteristicImprovement;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.combat.CombatAction;
 import com.softwaremagico.tm.character.combat.CombatStyle;
@@ -46,6 +47,7 @@ import com.softwaremagico.tm.character.equipment.Shield;
 import com.softwaremagico.tm.character.equipment.Size;
 import com.softwaremagico.tm.character.equipment.Weapon;
 import com.softwaremagico.tm.character.occultism.OccultismPower;
+import com.softwaremagico.tm.character.skills.SelectedSkill;
 import com.softwaremagico.tm.character.traits.Benefit;
 import com.softwaremagico.tm.character.traits.Blessing;
 import com.softwaremagico.tm.language.LanguagePool;
@@ -94,9 +96,6 @@ public class CustomCharacters {
 		player.addSkill("Mantenimiento de Naves", 2);
 		player.addSkill("Máquina Pensante", 4);
 		player.addSkill("Recuperación Tecnológic.", 7);
-		player.addSkill("Saber [Red de Salto]", 4, true);
-		player.addSkill("Saber [Pistol Energía]", 4, true);
-		player.addSkill("Saber [Máquina Pensante]", 4, true);
 
 		player.addBlessing(new Blessing("Innovador", 2, 2, "Tecnología", "Inventar"));
 		player.addBlessing(new Blessing("Enervado", -2, -2, "Presencia", "Entre sirvientes"));
@@ -110,19 +109,22 @@ public class CustomCharacters {
 		player.addBenefit(new Benefit("1000 fénix", 4));
 		player.addBenefit(new Benefit("Red de Información", 3));
 
-		player.getCybernetics().addElement(
-				new Device("Ojo de Ingeniero", 8, 6, "Normal", "Normal", "Automático", "Oculto",
-						"Autoalimentado"));
-		player.getCybernetics().addElement(
-				new Device("Segundo Cerebro", 11, 10, "Normal", "Normal", "Automático", "Oculto",
-						"Autoalimentado"));
+		Device ingeneerEye = new Device("Ojo de Ingeniero", 8, 6, "Normal", "Normal", "Automático", "Oculto", "Autoalimentado");
+		ingeneerEye.addCharacteristicImprovement(new CharacteristicImprovement(CharacteristicName.PERCEPTION, 1, false));
+		player.getCybernetics().addElement(ingeneerEye);
+		
+		Device secondBrain = new Device("Segundo Cerebro", 11, 10, "Normal", "Normal", "Automático", "Oculto", "Autoalimentado");
+		secondBrain.addSkillImprovement(new SelectedSkill("Saber [Red de Salto]", 4, true));
+		secondBrain.addSkillImprovement(new SelectedSkill("Saber [Pistol Energía]", 4, true));
+		secondBrain.addSkillImprovement(new SelectedSkill("Saber [Máquina Pensante]", 4, true));
+		player.getCybernetics().addElement(secondBrain);
 
 		player.setShield(new Shield("De Duelo", 5, 10, 15));
 
 		LanguagePool.clearCache();
 		CharacterSheet sheet = new CharacterSheet(player);
 		sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Paola.pdf");
-		
+
 		LanguagePool.clearCache();
 		SmallCharacterSheet smallSheet = new SmallCharacterSheet(player);
 		smallSheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Paola_Small.pdf");
@@ -176,7 +178,7 @@ public class CustomCharacters {
 		player.addBenefit(new Benefit("Decreto Imperial", 4));
 		player.addBenefit(new Benefit("Espada de Flujo", 11));
 		player.addBenefit(new Benefit("Vendetta", -2));
-		
+
 		player.getWeapons().addElement(new Weapon("Espada de Flujo", "Ds+Art.", 1, 7, "3", null, null, 8, Size.L, "Plasma"));
 
 		LanguagePool.clearCache();
@@ -234,12 +236,12 @@ public class CustomCharacters {
 		player.addBenefit(new Benefit("Genin", 8));
 		player.addBenefit(new Benefit("Contrato de Pasaje", 3));
 		player.addBenefit(new Benefit("1000 fénix", 4));
-		
+
 		CombatStyle fightStyle = new CombatStyle("Talón de Acero");
 		fightStyle.addElement(new CombatAction("Cadena de Destrucción", null, "3d", "Presa Especial"));
 		fightStyle.addElement(new CombatAction("Cabezado", 2, "4d", "Ignora armadura*"));
 		player.getMeleeCombatStyles().add(fightStyle);
-		
+
 		player.getWeapons().addElement(new Weapon("Escopeta", "Ds+Arma Fuego", 0, 7, "30/80", 7, "2", 3, Size.L, null));
 		player.getWeapons().addElement(new Weapon("Pistola Auto.", "Ds+Arma Fuego", 0, 5, "20/30", 10, "3", 4, Size.S, null));
 
@@ -249,14 +251,14 @@ public class CustomCharacters {
 
 		Assert.assertEquals(CostCalculator.getCost(player), FreeStyleCharacterCreation.FREE_AVAILABLE_POINTS);
 	}
-	
+
 	@Test
 	public void createNoeliaCharacer() throws MalformedURLException, DocumentException, IOException {
 		CharacterPlayer player = new CharacterPlayer("es");
 		player.getInfo().setName("");
 		player.getInfo().setPlayer("Noelia");
 		player.getInfo().setGender(Gender.FEMALE);
-		//player.getInfo().setAge(30);
+		// player.getInfo().setAge(30);
 		player.setRace(new Race("Ur-Obun", 3, 4, 3, 3, 3, 3, 3, 3, 3, 6, 1, 0, 0, 0, 2));
 		player.getInfo().setPlanet("Obun");
 		player.getInfo().setAlliance("Voavenlohjun");
@@ -275,7 +277,7 @@ public class CustomCharacters {
 		player.addSkill("Influenciar", 4);
 		player.addSkill("Observar", 6);
 		player.addSkill("Vigor", 5);
-		
+
 		player.addSkill("Artería", 2);
 		player.addSkill("Autocontrol", 6);
 		player.addSkill("Conocim. del Cuerpo", 3);
@@ -295,7 +297,6 @@ public class CustomCharacters {
 		player.getOccultism().addElement(new OccultismPower("Emocionar", "Presencia+Influenciar", 2, "Toque", "Instantáneo", "", 1));
 		player.getOccultism().addElement(new OccultismPower("Visión Mental", "Voluntad+Empatía", 3, "Toque", "Instantáneo", "", 1));
 		player.getOccultism().setExtraWyrd(3);
-		
 
 		player.addBlessing(new Blessing("Recto", 2, 2, "Fe", "Corregir al errado"));
 		player.addBlessing(new Blessing("Condescendiente", -2, -2, "Presencia", "Entre incultos"));
@@ -313,7 +314,7 @@ public class CustomCharacters {
 
 		Assert.assertEquals(CostCalculator.getCost(player), FreeStyleCharacterCreation.FREE_AVAILABLE_POINTS);
 	}
-	
+
 	@Test
 	public void createGolemCharacer() throws MalformedURLException, DocumentException, IOException {
 		CharacterPlayer player = new CharacterPlayer("es");
@@ -345,23 +346,15 @@ public class CustomCharacters {
 		player.addSkill("Saber [Cualquiera]", 3);
 		player.addSkill("Máquina Pensante", 3);
 		player.addSkill("Recuperación Tecnológic.", 3);
-	
 
 		player.addBlessing(new Blessing("Crédulo", -2, -2, "Voluntad", "Lo engatusan"));
 		player.addBlessing(new Blessing("Justificado", -2, -2, "Voluntad", "Se cuestion su juicio"));
-		
-		player.getCybernetics().addElement(
-				new Device("Omnienchufe", 1, 0, "Normal", "Normal", "Automático", "Oculto",
-						""));
-		player.getCybernetics().addElement(
-				new Device("Interfaz de Datos (Turing)", 1, 1, "Normal", "Normal", "Automático", "Oculto",
-						"Turing"));
-		player.getCybernetics().addElement(
-				new Device("Armadura", 1, 2, "Normal", "Normal", "Automático", "Oculto",
-						"2d"));
-		
-		player.setArmour(new Armour("Piel", 2, false, false, false, false, false, false, false, 5, 0, 0, 0, 0));
 
+		player.getCybernetics().addElement(new Device("Omnienchufe", 1, 0, "Normal", "Normal", "Automático", "Oculto", ""));
+		player.getCybernetics().addElement(new Device("Interfaz de Datos (Turing)", 1, 1, "Normal", "Normal", "Automático", "Oculto", "Turing"));
+		player.getCybernetics().addElement(new Device("Armadura", 1, 2, "Normal", "Normal", "Automático", "Oculto", "2d"));
+
+		player.setArmour(new Armour("Piel", 2, false, false, false, false, false, false, false, 5, 0, 0, 0, 0));
 
 		LanguagePool.clearCache();
 		CharacterSheet sheet = new CharacterSheet(player);

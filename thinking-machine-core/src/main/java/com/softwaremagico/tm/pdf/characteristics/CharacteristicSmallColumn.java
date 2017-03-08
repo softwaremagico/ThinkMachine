@@ -83,7 +83,7 @@ public class CharacteristicSmallColumn extends CustomPdfTable {
 			if (characterPlayer == null) {
 				table.addCell(createSkillLine(SKILL_VALUE_GAP));
 			} else {
-				table.addCell(getHandwrittingCell(characterPlayer.getValue(characteristicName) + "", Element.ALIGN_LEFT));
+				table.addCell(getHandwrittingCell(getCharacteristicValueRepresentation(characterPlayer, characteristicName), Element.ALIGN_LEFT));
 			}
 		}
 
@@ -92,6 +92,13 @@ public class CharacteristicSmallColumn extends CustomPdfTable {
 		BaseElement.setCellProperties(cell);
 
 		return cell;
+	}
+
+	private String getCharacteristicValueRepresentation(CharacterPlayer characterPlayer, CharacteristicName characteristicName) {
+		if (characterPlayer.getOptionalValue(characteristicName) > 0) {
+			return characterPlayer.getValue(characteristicName) + "*";
+		}
+		return characterPlayer.getValue(characteristicName) + "";
 	}
 
 	private static PdfPCell getHandwrittingCell(String text, int align) {

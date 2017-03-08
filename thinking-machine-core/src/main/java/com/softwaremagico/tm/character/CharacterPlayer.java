@@ -36,6 +36,7 @@ import com.softwaremagico.tm.character.characteristics.CharacteristicValue;
 import com.softwaremagico.tm.character.characteristics.Characteristics;
 import com.softwaremagico.tm.character.combat.CombatStyle;
 import com.softwaremagico.tm.character.cybernetics.Cybernetics;
+import com.softwaremagico.tm.character.cybernetics.Device;
 import com.softwaremagico.tm.character.equipment.Armour;
 import com.softwaremagico.tm.character.equipment.Shield;
 import com.softwaremagico.tm.character.equipment.Weapons;
@@ -153,10 +154,31 @@ public class CharacterPlayer {
 			return getStartingValue(characteristicName);
 		}
 		Integer value = getCharacteristics().getCharacteristic(characteristicName).getValue();
-		if (value != null) {
-			return value;
+
+		if (value == null) {
+			return 0;
 		}
-		return 0;
+		// Add cibernetics modifications
+		for (Device device : cybernetics.getElements()) {
+			if (device.getCharacteristicImprovement(characteristicName) != null && device.getCharacteristicImprovement(characteristicName).isAlways()
+					&& device.getCharacteristicImprovement(characteristicName).getBonus() != 0) {
+				value += device.getCharacteristicImprovement(characteristicName).getBonus();
+			}
+		}
+
+		return value;
+	}
+
+	public Integer getOptionalValue(CharacteristicName characteristicName) {
+		Integer value = 0;
+		// Add cibernetics modifications
+		for (Device device : cybernetics.getElements()) {
+			if (device.getCharacteristicImprovement(characteristicName) != null && !device.getCharacteristicImprovement(characteristicName).isAlways()
+					&& device.getCharacteristicImprovement(characteristicName).getBonus() != 0) {
+				value += device.getCharacteristicImprovement(characteristicName).getBonus();
+			}
+		}
+		return value;
 	}
 
 	public Integer getVitalityValue() {
@@ -178,13 +200,36 @@ public class CharacterPlayer {
 	}
 
 	private Integer getSkillValue(Skill skill) {
+		Integer cyberneticBonus = getCyberneticsValue(skill.getName());
 		if (skills.get(skill.getName()) == null) {
 			if (SkillFactory.isNaturalSkill(skill.getName(), language)) {
+				if (cyberneticBonus != null) {
+					return Math.max(3, cyberneticBonus);
+				}
 				return 3;
 			}
-			return null;
+			// No ranks. Maybe some cybernetic...
+			return cyberneticBonus;
+		}
+		if (cyberneticBonus != null) {
+			return Math.max(skills.get(skill.getName()).getValue(), cyberneticBonus);
 		}
 		return skills.get(skill.getName()).getValue();
+	}
+
+	private Integer getCyberneticsValue(String skillName) {
+		int maxValue = 0;
+		for (Device device : cybernetics.getElements()) {
+			if (device.getSkillImprovement(skillName) != null) {
+				if (maxValue < device.getSkillImprovement(skillName).getValue()) {
+					maxValue = device.getSkillImprovement(skillName).getValue();
+				}
+			}
+		}
+		if (maxValue == 0) {
+			return null;
+		}
+		return maxValue;
 	}
 
 	public Integer getSkillValue(AvailableSkill skill) {
@@ -230,6 +275,23 @@ public class CharacterPlayer {
 						}
 					} else {
 						order = 0;
+					}
+				}
+			}
+
+			for (Device device : cybernetics.getElements()) {
+				for (String skillName : device.getSkillImprovementsNames()) {
+					if (skillName.contains("[")) {
+						String skillPrefix = skillName.substring(0, skillName.indexOf("[")).trim();
+						if (Objects.equals(skillPrefix, skill.getName())) {
+							if (order == skill.getIndexOfGeneralization()) {
+								return device.getSkillImprovement(skillName);
+							} else {
+								order++;
+							}
+						} else {
+							order = 0;
+						}
 					}
 				}
 			}
