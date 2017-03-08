@@ -47,7 +47,7 @@ import com.softwaremagico.tm.character.equipment.Shield;
 import com.softwaremagico.tm.character.equipment.Size;
 import com.softwaremagico.tm.character.equipment.Weapon;
 import com.softwaremagico.tm.character.occultism.OccultismPower;
-import com.softwaremagico.tm.character.skills.SelectedSkill;
+import com.softwaremagico.tm.character.skills.CyberneticSkill;
 import com.softwaremagico.tm.character.traits.Benefit;
 import com.softwaremagico.tm.character.traits.Blessing;
 import com.softwaremagico.tm.language.LanguagePool;
@@ -114,9 +114,10 @@ public class CustomCharacters {
 		player.getCybernetics().addElement(ingeneerEye);
 		
 		Device secondBrain = new Device("Segundo Cerebro", 11, 10, "Normal", "Normal", "Automático", "Oculto", "Autoalimentado");
-		secondBrain.addSkillImprovement(new SelectedSkill("Saber [Red de Salto]", 4, true));
-		secondBrain.addSkillImprovement(new SelectedSkill("Saber [Pistol Energía]", 4, true));
-		secondBrain.addSkillImprovement(new SelectedSkill("Saber [Máquina Pensante]", 4, true));
+		secondBrain.addCharacteristicImprovement(new CharacteristicImprovement(CharacteristicName.WITS, 2, true));
+		secondBrain.addSkillImprovement(new CyberneticSkill("Saber [Red de Salto]", 4, true));
+		secondBrain.addSkillImprovement(new CyberneticSkill("Saber [Pistol Energía]", 4, true));
+		secondBrain.addSkillImprovement(new CyberneticSkill("Saber [Máquina Pensante]", 4, true));
 		player.getCybernetics().addElement(secondBrain);
 
 		player.setShield(new Shield("De Duelo", 5, 10, 15));

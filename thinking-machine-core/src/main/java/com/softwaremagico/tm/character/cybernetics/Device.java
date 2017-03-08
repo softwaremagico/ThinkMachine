@@ -31,7 +31,7 @@ import java.util.Set;
 import com.softwaremagico.tm.Element;
 import com.softwaremagico.tm.character.characteristics.CharacteristicImprovement;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
-import com.softwaremagico.tm.character.skills.SelectedSkill;
+import com.softwaremagico.tm.character.skills.CyberneticSkill;
 
 public class Device extends Element<Device> {
 	private final int points;
@@ -42,7 +42,7 @@ public class Device extends Element<Device> {
 	private final String appearence;
 	private final String others;
 
-	private Map<String, SelectedSkill> skillImprovements;
+	private Map<String, CyberneticSkill> skillImprovements;
 	private Map<CharacteristicName, CharacteristicImprovement> characteristicImprovents;
 
 	public Device(String name, int points, int incompatibility, String usability, String quality, String activation, String appearence, String others) {
@@ -86,11 +86,11 @@ public class Device extends Element<Device> {
 		return others;
 	}
 
-	public void addSkillImprovement(SelectedSkill skillImprovement) {
+	public void addSkillImprovement(CyberneticSkill skillImprovement) {
 		skillImprovements.put(skillImprovement.getName(), skillImprovement);
 	}
 
-	public SelectedSkill getSkillImprovement(String skillName) {
+	public CyberneticSkill getSkillImprovement(String skillName) {
 		return skillImprovements.get(skillName);
 	}
 
