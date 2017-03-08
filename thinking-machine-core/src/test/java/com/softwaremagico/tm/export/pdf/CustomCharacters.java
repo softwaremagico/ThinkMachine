@@ -101,7 +101,7 @@ public class CustomCharacters {
 		player.addBlessing(new Blessing("Enervado", -2, -2, "Presencia", "Entre sirvientes"));
 		player.addBlessing(new Blessing("Hacker", 2, 2, "Máquina Pensante", "--"));
 		player.addBlessing(new Blessing("Mecánico", 2, 2, "Recuperación Tecnológic", "Reparando"));
-		player.addBlessing(new Blessing("Enemigo Animales", -2, -2, "Todo", "Excepto combate"));
+		player.addBlessing(new Blessing("Enemigo Animales", -2, -2, "Con Animales", "Excepto combate"));
 		player.addBlessing(new Blessing("Marca Horrible", -2, -2, "Influencia", "Si es visible"));
 
 		player.addBenefit(new Benefit("Idioma Turing", 2));
