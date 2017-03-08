@@ -54,7 +54,7 @@ public class CostCalculator {
 	}
 
 	private static int getCharacteristicsCost(CharacterPlayer characterPlayer) {
-		return (characterPlayer.getCharacteristicsTotalPoints() - FreeStyleCharacterCreation.CHARACTERISTICS_POINTS) * 3;
+		return (characterPlayer.getCharacteristicsTotalPoints() - characterPlayer.getCyberneticCharacteristicsBonus() - FreeStyleCharacterCreation.CHARACTERISTICS_POINTS) * 3;
 	}
 
 	private static int getSkillCosts(CharacterPlayer characterPlayer) {

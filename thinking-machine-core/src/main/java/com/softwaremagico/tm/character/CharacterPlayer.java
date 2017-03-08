@@ -159,13 +159,28 @@ public class CharacterPlayer {
 			return 0;
 		}
 		// Add cibernetics modifications
+		value += getCyberneticBonus(characteristicName);
+
+		return value;
+	}
+
+	public Integer getCyberneticCharacteristicsBonus() {
+		Integer value = 0;
+		for (CharacteristicName characteristicName : CharacteristicName.getBasicCharacteristics()) {
+			value += getCyberneticBonus(characteristicName);
+		}
+		return value;
+	}
+
+	public Integer getCyberneticBonus(CharacteristicName characteristicName) {
+		Integer value = 0;
+		// Add cibernetics modifications
 		for (Device device : cybernetics.getElements()) {
 			if (device.getCharacteristicImprovement(characteristicName) != null && device.getCharacteristicImprovement(characteristicName).isAlways()
 					&& device.getCharacteristicImprovement(characteristicName).getBonus() != 0) {
 				value += device.getCharacteristicImprovement(characteristicName).getBonus();
 			}
 		}
-
 		return value;
 	}
 
