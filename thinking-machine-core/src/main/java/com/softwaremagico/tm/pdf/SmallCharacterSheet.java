@@ -29,6 +29,7 @@ import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.language.Translator;
 import com.softwaremagico.tm.pdf.characteristics.CharacteristicsSmallTableFactory;
@@ -97,14 +98,13 @@ public class SmallCharacterSheet extends PdfDocument {
 
 		mainTable.addCell(basicTable);
 
-		
 		PdfPTable composedTable = new PdfPTable(new float[] { 2f, 5f });
 		composedTable.addCell(new PdfPCell());
-		
+
 		PdfPTable blessingsTable = new SmallBlessingTable(getCharacterPlayer());
 		PdfPCell blessingsCell = new PdfPCell(blessingsTable);
 		composedTable.addCell(blessingsCell);
-		
+
 		PdfPCell composedCell = new PdfPCell(composedTable);
 		composedCell.setRowspan(2);
 		mainTable.addCell(composedCell);
@@ -119,5 +119,10 @@ public class SmallCharacterSheet extends PdfDocument {
 		// mainTable.addCell(victoryPointsCell);
 
 		document.add(mainTable);
+	}
+
+	@Override
+	protected void addDocumentWriterEvents(PdfWriter writer) {
+		writer.setPageEvent(new SheetBackgroundEvent());
 	}
 }

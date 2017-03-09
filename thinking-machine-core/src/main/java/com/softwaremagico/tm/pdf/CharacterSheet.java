@@ -29,6 +29,7 @@ import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.language.Translator;
 import com.softwaremagico.tm.pdf.characteristics.CharacteristicsTableFactory;
@@ -125,6 +126,11 @@ public class CharacterSheet extends PdfDocument {
 
 	public CharacterPlayer getCharacterPlayer() {
 		return characterPlayer;
+	}
+
+	@Override
+	protected void addDocumentWriterEvents(PdfWriter writer) {
+		// No background.
 	}
 
 }

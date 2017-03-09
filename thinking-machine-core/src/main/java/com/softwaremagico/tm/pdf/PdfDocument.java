@@ -60,6 +60,8 @@ public abstract class PdfDocument {
 		document.close();
 	}
 
+	protected abstract void addDocumentWriterEvents(PdfWriter writer);
+
 	public boolean createFile(String path) {
 		// DIN A6 105 x 148 mm
 		Document document = new Document(getPageSize(), rightMargin, leftMargin, topMargin, bottomMargin);
@@ -71,7 +73,7 @@ public abstract class PdfDocument {
 			PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(path));
 			// TableFooter event = new TableFooter();
 			// writer.setPageEvent(event);
-			// writer.setPageEvent(new SheetBackgroundEvent());
+			writer.setPageEvent(new SheetBackgroundEvent());
 			writer.setPageEvent(new FooterEvent());
 			generatePDF(document, writer);
 		} catch (NullPointerException e) {

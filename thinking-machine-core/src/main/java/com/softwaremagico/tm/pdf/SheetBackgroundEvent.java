@@ -32,12 +32,16 @@ import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.pdf.PdfPageEventHelper;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.softwaremagico.tm.log.MachineLog;
 
 public class SheetBackgroundEvent extends PdfPageEventHelper {
 	private final static int IMAGE_HEIGHT = 100;
 	private final static int IMAGE_WIDTH = 125;
 	private final static int IMAGE_BORDER = 10;
-	private Image rightCorner, leftCorner;
+
+	private final static int BAR_HEIGHT = 17;
+
+	private Image rightCorner, leftCorner, mainTitle;
 
 	@Override
 	public void onOpenDocument(PdfWriter writer, Document document) {
@@ -46,31 +50,42 @@ public class SheetBackgroundEvent extends PdfPageEventHelper {
 			rightCorner.setAbsolutePosition(document.getPageSize().getWidth() - IMAGE_WIDTH, document.getPageSize().getHeight() - IMAGE_HEIGHT - IMAGE_BORDER);
 			rightCorner.scaleToFit(IMAGE_WIDTH, IMAGE_HEIGHT);
 		} catch (BadElementException | IOException e) {
-			e.printStackTrace();
+			MachineLog.errorMessage(this.getClass().getName(), e);
 		}
 
 		try {
 			leftCorner = Image.getInstance(SheetBackgroundEvent.class.getResource("/" + FadingSunsTheme.LEFT_CORNER_IMAGE));
+			// leftCorner.setAbsolutePosition(IMAGE_BORDER,
+			// document.getPageSize().getHeight() - IMAGE_HEIGHT -
+			// IMAGE_BORDER);
 			leftCorner.setAbsolutePosition(IMAGE_BORDER, document.getPageSize().getHeight() - IMAGE_HEIGHT - IMAGE_BORDER);
 			leftCorner.scaleToFit(IMAGE_WIDTH, IMAGE_HEIGHT);
 		} catch (BadElementException | IOException e) {
-			e.printStackTrace();
+			MachineLog.errorMessage(this.getClass().getName(), e);
 		}
+
+		try {
+			mainTitle = Image.getInstance(SheetBackgroundEvent.class.getResource("/" + FadingSunsTheme.MAIN_TITLE_IMAGE));
+			// leftCorner.setAbsolutePosition(IMAGE_BORDER,
+			// document.getPageSize().getHeight() - IMAGE_HEIGHT -
+			// IMAGE_BORDER);
+			float barWeight = document.getPageSize().getWidth() - IMAGE_WIDTH * 2;
+			mainTitle.setAbsolutePosition(IMAGE_HEIGHT + IMAGE_BORDER * 2 + 3, document.getPageSize().getHeight() - BAR_HEIGHT - IMAGE_BORDER);
+			mainTitle.scaleToFit(barWeight, BAR_HEIGHT);
+		} catch (BadElementException | IOException e) {
+			MachineLog.errorMessage(this.getClass().getName(), e);
+		}
+
 	}
 
 	@Override
 	public void onEndPage(PdfWriter writer, Document document) {
 		try {
-			switch (writer.getPageNumber() % 2) {
-			case 0:
-				writer.getDirectContent().addImage(leftCorner);
-				break;
-			case 1:
-				writer.getDirectContent().addImage(rightCorner);
-				break;
-			}
+			writer.getDirectContent().addImage(leftCorner);
+			writer.getDirectContent().addImage(rightCorner);
+			writer.getDirectContent().addImage(mainTitle);
 		} catch (DocumentException e) {
-
+			MachineLog.errorMessage(this.getClass().getName(), e);
 		}
 	}
 }
