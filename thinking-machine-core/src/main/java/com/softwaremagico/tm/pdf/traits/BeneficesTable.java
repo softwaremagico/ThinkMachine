@@ -37,7 +37,8 @@ public class BeneficesTable extends VerticalTable {
 
 	public BeneficesTable(CharacterPlayer characterPlayer) {
 		super(WIDTHS);
-		addCell(createTitle(getTranslator().getTranslatedText("beneficesTable"), FadingSunsTheme.VERTICALTABLE_TITLE_FONT_SIZE));
+		addCell(createTitle(getTranslator().getTranslatedText("beneficesTable") + " / " + getTranslator().getTranslatedText("afflictionsTable"),
+				FadingSunsTheme.VERTICALTABLE_TITLE_FONT_SIZE));
 
 		addCell(createSubtitleLine(getTranslator().getTranslatedText("beneficesTablePoints"), FadingSunsTheme.TABLE_LINE_FONT_SIZE));
 		addCell(createSubtitleLine(getTranslator().getTranslatedText("benefices"), FadingSunsTheme.TABLE_LINE_FONT_SIZE));

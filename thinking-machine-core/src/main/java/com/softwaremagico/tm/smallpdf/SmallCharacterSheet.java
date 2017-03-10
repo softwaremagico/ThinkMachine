@@ -40,6 +40,7 @@ import com.softwaremagico.tm.smallpdf.fighting.ArmourTable;
 import com.softwaremagico.tm.smallpdf.info.CharacterBasicsReducedTableFactory;
 import com.softwaremagico.tm.smallpdf.skills.LearnedSkillsTable;
 import com.softwaremagico.tm.smallpdf.skills.NaturalSkillsTable;
+import com.softwaremagico.tm.smallpdf.traits.BeneficesTable;
 import com.softwaremagico.tm.smallpdf.traits.BlessingTable;
 
 public class SmallCharacterSheet extends PdfDocument {
@@ -100,12 +101,15 @@ public class SmallCharacterSheet extends PdfDocument {
 
 		mainTable.addCell(basicTable);
 
-		PdfPTable composedTable = new PdfPTable(new float[] { 2f, 5f });
-		composedTable.addCell(new PdfPCell());
+		PdfPTable composedTable = new PdfPTable(new float[] { 5f, 2f });
 
 		PdfPTable blessingsTable = new BlessingTable(getCharacterPlayer());
 		PdfPCell blessingsCell = new PdfPCell(blessingsTable);
 		composedTable.addCell(blessingsCell);
+		
+		PdfPTable beneficesTable = new BeneficesTable(getCharacterPlayer());
+		PdfPCell beneficesCell = new PdfPCell(beneficesTable);
+		composedTable.addCell(beneficesCell);
 
 		PdfPCell composedCell = new PdfPCell(composedTable);
 		composedCell.setRowspan(2);

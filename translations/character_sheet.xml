@@ -221,9 +221,13 @@
 		<es>La historia</es>
 	</historyAnnotations>
 	<blessingTable>
-		<en>Blessings / Curses</en>
-		<es>Bendiciones / Maldiciones</es>
+		<en>Blessings</en>
+		<es>Bendiciones</es>
 	</blessingTable>
+	<cursesTable>
+		<en>Curses</en>
+		<es>Maldiciones</es>
+	</cursesTable>
 	<blessingTableName>
 		<en>Name</en>
 		<es>Nombre</es>
@@ -237,9 +241,13 @@
 		<es>Situación</es>
 	</blessingTableSituation>
 	<beneficesTable>
-		<en>Benefices / Afflictions</en>
-		<es>Beneficios / Afliciones</es>
+		<en>Benefices</en>
+		<es>Beneficios</es>
 	</beneficesTable>
+	<afflictionsTable>
+		<en>Afflictions</en>
+		<es>Afliciones</es>
+	</afflictionsTable>
 	<beneficesTablePoints>
 		<en>Pts.</en>
 		<es>Pts.</es>

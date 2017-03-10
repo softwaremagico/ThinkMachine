@@ -25,6 +25,7 @@ package com.softwaremagico.tm.smallpdf.skills;
  */
 
 import com.itextpdf.text.Element;
+import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.softwaremagico.tm.character.CharacterPlayer;
@@ -33,6 +34,7 @@ import com.softwaremagico.tm.pdf.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.skills.SkillsTable;
 
 public class LearnedSkillsTable extends SkillsTable {
+	private final static int ROWS = 17;
 
 	public static PdfPTable getSkillsTable(CharacterPlayer characterPlayer, String language) {
 		float[] widths = { 1f };
@@ -51,11 +53,20 @@ public class LearnedSkillsTable extends SkillsTable {
 
 		table.addCell(createCompactTitle(getTranslator().getTranslatedText("learnedSkills"), FadingSunsTheme.CHARACTER_SMALL_SKILLS_TITLE_FONT_SIZE));
 
+		int added = 0;
 		if (characterPlayer != null) {
 			for (AvailableSkill skill : characterPlayer.getLearnedSkills()) {
 				table.addCell(createSkillElement(characterPlayer, skill, FadingSunsTheme.CHARACTER_SMALL_SKILLS_LINE_FONT_SIZE));
 				table.addCell(createSkillValue(characterPlayer.getSkillValue(skill), characterPlayer.isSkillSpecial(skill),
 						FadingSunsTheme.CHARACTER_SMALL_SKILLS_LINE_FONT_SIZE));
+				added++;
+			}
+
+			for (int i = added; i < ROWS; i++) {
+				// Skill name.
+				table.addCell(new Paragraph(" "));
+				// Skill value
+				table.addCell(new Paragraph(" "));
 			}
 		}
 
