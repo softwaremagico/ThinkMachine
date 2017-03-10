@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.pdf.characteristics;
+package com.softwaremagico.tm.smallpdf.characteristics;
 
 /*-
  * #%L
@@ -38,7 +38,7 @@ import com.softwaremagico.tm.pdf.elements.BaseElement;
 import com.softwaremagico.tm.pdf.elements.CustomPdfTable;
 import com.softwaremagico.tm.pdf.skills.MainSkillsTableFactory;
 
-public class CharacteristicSmallColumn extends CustomPdfTable {
+public class CharacteristicsColumn extends CustomPdfTable {
 	private final static String GAP = "   ";
 	private final static String SKILL_VALUE_GAP = "___";
 
@@ -46,7 +46,7 @@ public class CharacteristicSmallColumn extends CustomPdfTable {
 	private final static int ROW_HEIGHT = 36;
 	private final static float[] widths = { 1 };
 
-	public CharacteristicSmallColumn(CharacterPlayer characterPlayer, CharacteristicType characteristicType, CharacteristicName[] content) {
+	public CharacteristicsColumn(CharacterPlayer characterPlayer, CharacteristicType characteristicType, CharacteristicName[] content) {
 		super(widths);
 		PdfPCell title = createCompactTitle(getTranslator().getTranslatedText(characteristicType.getTranslationTag()),
 				FadingSunsTheme.CHARACTER_SMALL_CHARACTERISTICS_TITLE_FONT_SIZE);

@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.pdf.skills;
+package com.softwaremagico.tm.smallpdf.skills;
 
 /*-
  * #%L
@@ -31,8 +31,9 @@ import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.character.skills.SkillFactory;
 import com.softwaremagico.tm.pdf.FadingSunsTheme;
+import com.softwaremagico.tm.pdf.skills.SkillsTable;
 
-public class NaturalSkillsSmallTable extends SkillsTable {
+public class NaturalSkillsTable extends SkillsTable {
 
 	public static PdfPTable getSkillsTable(CharacterPlayer characterPlayer, String language) {
 		float[] widths = { 1f};

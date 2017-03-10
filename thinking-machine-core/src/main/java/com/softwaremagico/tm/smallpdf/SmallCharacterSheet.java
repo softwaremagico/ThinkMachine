@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.pdf;
+package com.softwaremagico.tm.smallpdf;
 
 /*-
  * #%L
@@ -32,13 +32,15 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.language.Translator;
-import com.softwaremagico.tm.pdf.characteristics.CharacteristicsSmallTableFactory;
+import com.softwaremagico.tm.pdf.PdfDocument;
+import com.softwaremagico.tm.pdf.SheetBackgroundEvent;
 import com.softwaremagico.tm.pdf.elements.BaseElement;
-import com.softwaremagico.tm.pdf.fighting.SmallArmourTable;
-import com.softwaremagico.tm.pdf.info.CharacterBasicsSmallTableFactory;
-import com.softwaremagico.tm.pdf.skills.LearnedSkillsSmallTable;
-import com.softwaremagico.tm.pdf.skills.NaturalSkillsSmallTable;
-import com.softwaremagico.tm.pdf.traits.SmallBlessingTable;
+import com.softwaremagico.tm.smallpdf.characteristics.CharacteristicsTableFactory;
+import com.softwaremagico.tm.smallpdf.fighting.ArmourTable;
+import com.softwaremagico.tm.smallpdf.info.CharacterBasicsReducedTableFactory;
+import com.softwaremagico.tm.smallpdf.skills.LearnedSkillsTable;
+import com.softwaremagico.tm.smallpdf.skills.NaturalSkillsTable;
+import com.softwaremagico.tm.smallpdf.traits.BlessingTable;
 
 public class SmallCharacterSheet extends PdfDocument {
 	private CharacterPlayer characterPlayer = null;
@@ -74,11 +76,11 @@ public class SmallCharacterSheet extends PdfDocument {
 		mainTable.getDefaultCell().setBorder(0);
 		mainTable.getDefaultCell().setPadding(0);
 
-		PdfPTable infoTable = CharacterBasicsSmallTableFactory.getCharacterBasicsTable(getCharacterPlayer());
+		PdfPTable infoTable = CharacterBasicsReducedTableFactory.getCharacterBasicsTable(getCharacterPlayer());
 		PdfPCell infoCell = new PdfPCell(infoTable);
 		mainTable.addCell(infoCell);
 
-		PdfPTable learnedSkillsTable = LearnedSkillsSmallTable.getSkillsTable(getCharacterPlayer(), getLanguage());
+		PdfPTable learnedSkillsTable = LearnedSkillsTable.getSkillsTable(getCharacterPlayer(), getLanguage());
 		PdfPCell learnedSkillsCell = new PdfPCell(learnedSkillsTable);
 		learnedSkillsCell.setColspan(2);
 		learnedSkillsCell.setRowspan(3);
@@ -88,11 +90,11 @@ public class SmallCharacterSheet extends PdfDocument {
 		BaseElement.setTablePropierties(basicTable);
 		basicTable.getDefaultCell().setBorder(0);
 
-		PdfPTable characteristicsTable = CharacteristicsSmallTableFactory.getCharacteristicsBasicsTable(getCharacterPlayer());
+		PdfPTable characteristicsTable = CharacteristicsTableFactory.getCharacteristicsBasicsTable(getCharacterPlayer());
 		PdfPCell characteristicCell = new PdfPCell(characteristicsTable);
 		basicTable.addCell(characteristicCell);
 
-		PdfPTable naturalSkillsTable = NaturalSkillsSmallTable.getSkillsTable(getCharacterPlayer(), getLanguage());
+		PdfPTable naturalSkillsTable = NaturalSkillsTable.getSkillsTable(getCharacterPlayer(), getLanguage());
 		PdfPCell naturalSkillsCell = new PdfPCell(naturalSkillsTable);
 		basicTable.addCell(naturalSkillsCell);
 
@@ -101,7 +103,7 @@ public class SmallCharacterSheet extends PdfDocument {
 		PdfPTable composedTable = new PdfPTable(new float[] { 2f, 5f });
 		composedTable.addCell(new PdfPCell());
 
-		PdfPTable blessingsTable = new SmallBlessingTable(getCharacterPlayer());
+		PdfPTable blessingsTable = new BlessingTable(getCharacterPlayer());
 		PdfPCell blessingsCell = new PdfPCell(blessingsTable);
 		composedTable.addCell(blessingsCell);
 
@@ -109,7 +111,7 @@ public class SmallCharacterSheet extends PdfDocument {
 		composedCell.setRowspan(2);
 		mainTable.addCell(composedCell);
 
-		PdfPTable armourTable = new SmallArmourTable(getCharacterPlayer());
+		PdfPTable armourTable = new ArmourTable(getCharacterPlayer());
 		PdfPCell armourCell = new PdfPCell(armourTable);
 		mainTable.addCell(armourCell);
 

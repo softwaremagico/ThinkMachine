@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.pdf.info;
+package com.softwaremagico.tm.smallpdf.info;
 
 /*-
  * #%L
@@ -28,8 +28,9 @@ import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.pdf.FadingSunsTheme;
+import com.softwaremagico.tm.pdf.info.CharacterBasicsTableFactory;
 
-public class CharacterBasicsSmallTableFactory extends CharacterBasicsTableFactory {
+public class CharacterBasicsReducedTableFactory extends CharacterBasicsTableFactory {
 
 	public static PdfPTable getCharacterBasicsTable(CharacterPlayer characterPlayer) {
 		float[] widths = { 1f, 1f };

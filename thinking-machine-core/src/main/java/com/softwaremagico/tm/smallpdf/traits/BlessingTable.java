@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.pdf.traits;
+package com.softwaremagico.tm.smallpdf.traits;
 
 /*-
  * #%L
@@ -29,14 +29,14 @@ import com.softwaremagico.tm.character.traits.Blessing;
 import com.softwaremagico.tm.pdf.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.elements.VerticalTable;
 
-public class SmallBlessingTable extends VerticalTable {
+public class BlessingTable extends VerticalTable {
 	private final static int BONIFICATION_COLUMN_WIDTH = 15;
 	private final static int TRAIT_COLUMN_WIDTH = 42;
 	private final static int SITUATION_COLUMN_WIDTH = 80;
 
 	private final static float[] WIDTHS = { 2f, 5f, 10f };
 
-	public SmallBlessingTable(CharacterPlayer characterPlayer) {
+	public BlessingTable(CharacterPlayer characterPlayer) {
 		super(WIDTHS);
 		addCell(createTitle(getTranslator().getTranslatedText("blessingTable"), FadingSunsTheme.CHARACTER_SMALL_BLESSING_TITLE_FONT_SIZE));
 

@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.pdf.characteristics;
+package com.softwaremagico.tm.smallpdf.characteristics;
 
 /*-
  * #%L
@@ -34,7 +34,7 @@ import com.softwaremagico.tm.character.characteristics.CharacteristicType;
 import com.softwaremagico.tm.pdf.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.elements.BaseElement;
 
-public class CharacteristicsSmallTableFactory extends BaseElement {
+public class CharacteristicsTableFactory extends BaseElement {
 
 	public static PdfPTable getCharacteristicsBasicsTable(CharacterPlayer characterPlayer) {
 		float[] widths = { 1f, 1f };
@@ -53,7 +53,7 @@ public class CharacteristicsSmallTableFactory extends BaseElement {
 		table.getDefaultCell().setPadding(0);
 
 		for (CharacteristicType type : CharacteristicType.values()) {
-			table.addCell(new CharacteristicSmallColumn(characterPlayer, type, type.getCharacteristics()));
+			table.addCell(new CharacteristicsColumn(characterPlayer, type, type.getCharacteristics()));
 		}
 
 		return table;

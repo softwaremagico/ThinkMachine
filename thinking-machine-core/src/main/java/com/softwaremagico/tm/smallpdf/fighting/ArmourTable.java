@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.pdf.fighting;
+package com.softwaremagico.tm.smallpdf.fighting;
 
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
@@ -11,10 +11,10 @@ import com.softwaremagico.tm.pdf.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.elements.BaseElement;
 import com.softwaremagico.tm.pdf.elements.CustomPdfTable;
 
-public class SmallArmourTable extends CustomPdfTable {
+public class ArmourTable extends CustomPdfTable {
 	private final static int NAME_COLUMN_WIDTH = 30;
 
-	public SmallArmourTable(CharacterPlayer characterPlayer) {
+	public ArmourTable(CharacterPlayer characterPlayer) {
 		super(new float[] { 2, 3 });
 		getDefaultCell().setBorder(0);
 
