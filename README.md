@@ -1,5 +1,7 @@
 <img src="./images/ThinkingMachine_logo.png" width="340" alt="The Thinking Machine" align="middle"> 
 # The Thinking Machine
+[![Build Status](https://travis-ci.org/jorgehortelano/TheThinkingMachine.svg?branch=master)](https://travis-ci.org/jorgehortelano/TheThinkingMachine)
+
 This software generated in Java allows the creation of a character sheet for the role play game called **Fading Suns** (Revised Edition). Personally, I do not like the provided character sheet in the Player's Guide book, and I have designed a new one, based on some old files I have found ten years ago for previous versions of this game.
 
 To get an idea of the final result, here you have a preview: 
