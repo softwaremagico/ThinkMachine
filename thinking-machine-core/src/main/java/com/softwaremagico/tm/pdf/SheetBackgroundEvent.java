@@ -71,7 +71,7 @@ public class SheetBackgroundEvent extends PdfPageEventHelper {
 			// IMAGE_BORDER);
 			float barWeight = document.getPageSize().getWidth() - IMAGE_WIDTH * 2;
 			mainTitle.setAbsolutePosition(IMAGE_HEIGHT + IMAGE_BORDER * 2 + 3, document.getPageSize().getHeight() - BAR_HEIGHT - IMAGE_BORDER);
-			mainTitle.scaleToFit(barWeight, BAR_HEIGHT);
+			mainTitle.scaleAbsolute(barWeight, BAR_HEIGHT);
 		} catch (BadElementException | IOException e) {
 			MachineLog.errorMessage(this.getClass().getName(), e);
 		}
