@@ -56,7 +56,7 @@ public class CellCompleteBoxEvent implements PdfPCellEvent {
 		int bottomMargin = isBorderEnabled(Border.BOTTOM) ? margin : 0;
 		int topMargin = isBorderEnabled(Border.TOP) ? margin : 0;
 		int leftMargin = isBorderEnabled(Border.LEFT) ? margin : 0;
-		int rightMargin = isBorderEnabled(Border.LEFT) ? margin : 0;
+		int rightMargin = isBorderEnabled(Border.RIGHT) ? margin : 0;
 
 		if (isBorderEnabled(Border.TOP)) {
 			canvas.moveTo(position.getLeft() + leftMargin, position.getTop() - topMargin);

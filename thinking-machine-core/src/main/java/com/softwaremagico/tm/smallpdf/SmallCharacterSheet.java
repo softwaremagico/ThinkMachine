@@ -36,6 +36,8 @@ import com.softwaremagico.tm.pdf.PdfDocument;
 import com.softwaremagico.tm.pdf.SheetBackgroundEvent;
 import com.softwaremagico.tm.pdf.elements.BaseElement;
 import com.softwaremagico.tm.smallpdf.characteristics.CharacteristicsTableFactory;
+import com.softwaremagico.tm.smallpdf.counters.VitalityTable;
+import com.softwaremagico.tm.smallpdf.counters.WyrdTable;
 import com.softwaremagico.tm.smallpdf.fighting.ArmourTable;
 import com.softwaremagico.tm.smallpdf.info.CharacterBasicsReducedTableFactory;
 import com.softwaremagico.tm.smallpdf.skills.LearnedSkillsTable;
@@ -106,7 +108,7 @@ public class SmallCharacterSheet extends PdfDocument {
 		PdfPTable blessingsTable = new BlessingTable(getCharacterPlayer());
 		PdfPCell blessingsCell = new PdfPCell(blessingsTable);
 		composedTable.addCell(blessingsCell);
-		
+
 		PdfPTable beneficesTable = new BeneficesTable(getCharacterPlayer());
 		PdfPCell beneficesCell = new PdfPCell(beneficesTable);
 		composedTable.addCell(beneficesCell);
@@ -118,6 +120,16 @@ public class SmallCharacterSheet extends PdfDocument {
 		PdfPTable armourTable = new ArmourTable(getCharacterPlayer());
 		PdfPCell armourCell = new PdfPCell(armourTable);
 		mainTable.addCell(armourCell);
+
+		PdfPTable vitalityTable = new VitalityTable(getCharacterPlayer());
+		PdfPCell vitalityCell = new PdfPCell(vitalityTable);
+		vitalityCell.setColspan(2);
+		mainTable.addCell(vitalityCell);
+
+		PdfPTable wyrdTable = new WyrdTable(getCharacterPlayer());
+		PdfPCell wyrdCell = new PdfPCell(wyrdTable);
+		wyrdCell.setColspan(2);
+		mainTable.addCell(wyrdCell);
 
 		// PdfPCell victoryPointsCell = new PdfPCell(new VictoryPointsTable());
 		// victoryPointsCell.setPadding(0);

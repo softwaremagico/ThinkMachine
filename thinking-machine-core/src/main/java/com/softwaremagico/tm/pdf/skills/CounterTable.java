@@ -53,26 +53,26 @@ public abstract class CounterTable extends LateralHeaderPdfPTable {
 
 	protected PdfPCell getCircle(CharacterPlayer characterPlayer) {
 		if (characterPlayer == null) {
-			return unselectedCircle();
+			return createCircle();
 		}
 		if (CIRCLES - addedCircle == getSelectedValue(characterPlayer)) {
-			PdfPCell cell = unselectedCircle();
+			PdfPCell cell = createCircle();
 			cell.setCellEvent(new CellCompleteBoxEvent(2, new Border[] { Border.TOP, Border.LEFT, Border.RIGHT }));
 			return cell;
 		} else if (CIRCLES - addedCircle == 1) {
-			PdfPCell cell = unselectedCircle();
+			PdfPCell cell = createCircle();
 			cell.setCellEvent(new CellCompleteBoxEvent(2, new Border[] { Border.BOTTOM, Border.LEFT, Border.RIGHT }));
 			return cell;
 		} else if (CIRCLES - addedCircle < getSelectedValue(characterPlayer)) {
-			PdfPCell cell = unselectedCircle();
+			PdfPCell cell = createCircle();
 			cell.setCellEvent(new CellCompleteBoxEvent(2, new Border[] { Border.LEFT, Border.RIGHT }));
 			return cell;
 		} else {
-			return unselectedCircle();
+			return createCircle();
 		}
 	}
 
-	private PdfPCell unselectedCircle() {
+	private PdfPCell createCircle() {
 		PdfPCell cell = createValue("O", new Font(FadingSunsTheme.getTitleFont(), FadingSunsTheme.CHARACTERISTICS_TITLE_FONT_SIZE), Element.ALIGN_MIDDLE);
 		return cell;
 	}
