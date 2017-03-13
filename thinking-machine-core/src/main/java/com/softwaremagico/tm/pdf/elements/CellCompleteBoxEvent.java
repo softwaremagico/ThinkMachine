@@ -31,28 +31,58 @@ import com.itextpdf.text.pdf.PdfPCellEvent;
 import com.itextpdf.text.pdf.PdfPTable;
 
 public class CellCompleteBoxEvent implements PdfPCellEvent {
-	private int border = 1;
 
-	public CellCompleteBoxEvent() {
-
+	public enum Border {
+		TOP, LEFT, RIGHT, BOTTOM;
 	}
 
-	public CellCompleteBoxEvent(int border) {
-		this.border = border;
+	private int borderThickness = 1;
+	private int margin = 3;
+	private Border[] borders;
+
+	public CellCompleteBoxEvent(Border[] borders) {
+		this.borders = borders;
+	}
+
+	public CellCompleteBoxEvent(int borderThickness, Border[] borders) {
+		this.borderThickness = borderThickness;
+		this.borders = borders;
 	}
 
 	public void cellLayout(PdfPCell cell, Rectangle position, PdfContentByte[] canvases) {
-		float x1 = position.getLeft() + 2;
-		float x2 = position.getRight() - 2;
-		float y1 = position.getTop() - 2;
-		float y2 = position.getBottom() + 2;
 		PdfContentByte canvas = canvases[PdfPTable.LINECANVAS];
+		canvas.setLineWidth(borderThickness);
 
-		Rectangle rect = new Rectangle(x1, y1, x2, y2);
-		rect.setBorder(Rectangle.BOX);
-		rect.setBorderWidth(border);
-		canvas.rectangle(rect);
+		int bottomMargin = isBorderEnabled(Border.BOTTOM) ? margin : 0;
+		int topMargin = isBorderEnabled(Border.TOP) ? margin : 0;
+		int leftMargin = isBorderEnabled(Border.LEFT) ? margin : 0;
+		int rightMargin = isBorderEnabled(Border.LEFT) ? margin : 0;
 
+		if (isBorderEnabled(Border.TOP)) {
+			canvas.moveTo(position.getLeft() + leftMargin, position.getTop() - topMargin);
+			canvas.lineTo(position.getRight() - rightMargin, position.getTop() - topMargin);
+		}
+		if (isBorderEnabled(Border.BOTTOM)) {
+			canvas.moveTo(position.getLeft() + leftMargin, position.getBottom() + bottomMargin);
+			canvas.lineTo(position.getRight() - rightMargin, position.getBottom() + bottomMargin);
+		}
+		if (isBorderEnabled(Border.RIGHT)) {
+			canvas.moveTo(position.getRight() - rightMargin, position.getBottom() + bottomMargin);
+			canvas.lineTo(position.getRight() - rightMargin, position.getTop() - topMargin);
+		}
+		if (isBorderEnabled(Border.LEFT)) {
+			canvas.moveTo(position.getLeft() + leftMargin, position.getBottom() + bottomMargin);
+			canvas.lineTo(position.getLeft() + leftMargin, position.getTop() - topMargin);
+		}
 		canvas.stroke();
+	}
+
+	private boolean isBorderEnabled(Border border) {
+		for (Border selectedBorder : borders) {
+			if (selectedBorder.equals(border)) {
+				return true;
+			}
+		}
+		return false;
 	}
 }

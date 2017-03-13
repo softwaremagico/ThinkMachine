@@ -30,9 +30,8 @@ import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.pdf.FadingSunsTheme;
-import com.softwaremagico.tm.pdf.elements.CellBottomBoxEvent;
-import com.softwaremagico.tm.pdf.elements.CellMiddleBoxEvent;
-import com.softwaremagico.tm.pdf.elements.CellUpperBoxEvent;
+import com.softwaremagico.tm.pdf.elements.CellCompleteBoxEvent;
+import com.softwaremagico.tm.pdf.elements.CellCompleteBoxEvent.Border;
 import com.softwaremagico.tm.pdf.elements.LateralHeaderPdfPTable;
 
 public abstract class CounterTable extends LateralHeaderPdfPTable {
@@ -58,15 +57,15 @@ public abstract class CounterTable extends LateralHeaderPdfPTable {
 		}
 		if (CIRCLES - addedCircle == getSelectedValue(characterPlayer)) {
 			PdfPCell cell = unselectedCircle();
-			cell.setCellEvent(new CellUpperBoxEvent(2));
+			cell.setCellEvent(new CellCompleteBoxEvent(2, new Border[] { Border.TOP, Border.LEFT, Border.RIGHT }));
 			return cell;
 		} else if (CIRCLES - addedCircle == 1) {
 			PdfPCell cell = unselectedCircle();
-			cell.setCellEvent(new CellBottomBoxEvent(2));
+			cell.setCellEvent(new CellCompleteBoxEvent(2, new Border[] { Border.BOTTOM, Border.LEFT, Border.RIGHT }));
 			return cell;
 		} else if (CIRCLES - addedCircle < getSelectedValue(characterPlayer)) {
 			PdfPCell cell = unselectedCircle();
-			cell.setCellEvent(new CellMiddleBoxEvent(2));
+			cell.setCellEvent(new CellCompleteBoxEvent(2, new Border[] { Border.LEFT, Border.RIGHT }));
 			return cell;
 		} else {
 			return unselectedCircle();

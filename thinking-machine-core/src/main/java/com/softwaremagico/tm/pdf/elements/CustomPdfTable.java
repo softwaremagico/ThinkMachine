@@ -34,6 +34,7 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.pdf.FadingSunsTheme;
+import com.softwaremagico.tm.pdf.elements.CellCompleteBoxEvent.Border;
 import com.softwaremagico.tm.pdf.utils.CellUtils;
 
 public abstract class CustomPdfTable extends PdfPTable {
@@ -117,7 +118,7 @@ public abstract class CustomPdfTable extends PdfPTable {
 		PdfPCell box = new PdfPCell();
 		box.setMinimumHeight(15);
 		box.setBorder(0);
-		box.setCellEvent(new CellCompleteBoxEvent());
+		box.setCellEvent(new CellCompleteBoxEvent(new Border[] { Border.TOP, Border.BOTTOM, Border.LEFT, Border.RIGHT }));
 		return box;
 	}
 
@@ -134,7 +135,7 @@ public abstract class CustomPdfTable extends PdfPTable {
 		box.setHorizontalAlignment(Element.ALIGN_CENTER);
 		box.setMinimumHeight(15);
 		box.setBorder(0);
-		box.setCellEvent(new CellCompleteBoxEvent());
+		box.setCellEvent(new CellCompleteBoxEvent(new Border[] { Border.TOP, Border.BOTTOM, Border.LEFT, Border.RIGHT }));
 		return box;
 	}
 
