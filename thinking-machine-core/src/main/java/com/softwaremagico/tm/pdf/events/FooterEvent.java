@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.pdf;
+package com.softwaremagico.tm.pdf.events;
 
 /*-
  * #%L
@@ -33,6 +33,7 @@ import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfPageEventHelper;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.softwaremagico.tm.file.Version;
+import com.softwaremagico.tm.pdf.FadingSunsTheme;
 
 public class FooterEvent extends PdfPageEventHelper {
 

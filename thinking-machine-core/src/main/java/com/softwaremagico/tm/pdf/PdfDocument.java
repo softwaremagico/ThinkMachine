@@ -31,6 +31,7 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.softwaremagico.tm.log.MachineLog;
+import com.softwaremagico.tm.pdf.events.FooterEvent;
 
 public abstract class PdfDocument {
 	private int rightMargin = 30;
@@ -60,6 +61,10 @@ public abstract class PdfDocument {
 		document.close();
 	}
 
+	protected void addEvent(PdfWriter writer) {
+		writer.setPageEvent(new FooterEvent());
+	}
+
 	protected abstract void addDocumentWriterEvents(PdfWriter writer);
 
 	public boolean createFile(String path) {
@@ -73,8 +78,7 @@ public abstract class PdfDocument {
 			PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(path));
 			// TableFooter event = new TableFooter();
 			// writer.setPageEvent(event);
-			writer.setPageEvent(new SheetBackgroundEvent());
-			writer.setPageEvent(new FooterEvent());
+			addEvent(writer);
 			generatePDF(document, writer);
 		} catch (NullPointerException e) {
 			MachineLog.errorMessage(this.getClass().getName(), e);

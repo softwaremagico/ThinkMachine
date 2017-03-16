@@ -35,6 +35,7 @@ import com.softwaremagico.tm.language.Translator;
 import com.softwaremagico.tm.pdf.characteristics.CharacteristicsTableFactory;
 import com.softwaremagico.tm.pdf.cybernetics.CyberneticsTable;
 import com.softwaremagico.tm.pdf.elements.BaseElement;
+import com.softwaremagico.tm.pdf.events.SheetAlternatedBackgroundEvent;
 import com.softwaremagico.tm.pdf.fighting.FightingManeuvers;
 import com.softwaremagico.tm.pdf.fighting.WeaponsAndArmours;
 import com.softwaremagico.tm.pdf.info.CharacterBasicsCompleteTableFactory;
@@ -67,6 +68,12 @@ public class CharacterSheet extends PdfDocument {
 	@Override
 	protected Rectangle getPageSize() {
 		return PageSize.A4;
+	}
+
+	@Override
+	protected void addEvent(PdfWriter writer) {
+		super.addEvent(writer);
+		writer.setPageEvent(new SheetAlternatedBackgroundEvent());
 	}
 
 	@Override

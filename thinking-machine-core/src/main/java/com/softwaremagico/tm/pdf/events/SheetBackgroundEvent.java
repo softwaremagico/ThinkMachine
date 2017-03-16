@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.pdf;
+package com.softwaremagico.tm.pdf.events;
 
 /*-
  * #%L
@@ -33,6 +33,7 @@ import com.itextpdf.text.Image;
 import com.itextpdf.text.pdf.PdfPageEventHelper;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.softwaremagico.tm.log.MachineLog;
+import com.softwaremagico.tm.pdf.FadingSunsTheme;
 
 public class SheetBackgroundEvent extends PdfPageEventHelper {
 	private final static int IMAGE_HEIGHT = 100;

@@ -33,8 +33,8 @@ import com.itextpdf.text.pdf.PdfWriter;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.language.Translator;
 import com.softwaremagico.tm.pdf.PdfDocument;
-import com.softwaremagico.tm.pdf.SheetBackgroundEvent;
 import com.softwaremagico.tm.pdf.elements.BaseElement;
+import com.softwaremagico.tm.pdf.events.SheetBackgroundEvent;
 import com.softwaremagico.tm.smallpdf.characteristics.CharacteristicsTableFactory;
 import com.softwaremagico.tm.smallpdf.counters.VitalityTable;
 import com.softwaremagico.tm.smallpdf.counters.WyrdTable;
@@ -69,6 +69,12 @@ public class SmallCharacterSheet extends PdfDocument {
 
 	public CharacterPlayer getCharacterPlayer() {
 		return characterPlayer;
+	}
+
+	@Override
+	protected void addEvent(PdfWriter writer) {
+		super.addEvent(writer);
+		writer.setPageEvent(new SheetBackgroundEvent());
 	}
 
 	@Override
