@@ -82,17 +82,21 @@ public class SmallCharacterSheet extends PdfDocument {
 		float[] widths = { 2f, 1f };
 		PdfPTable mainTable = new PdfPTable(widths);
 		BaseElement.setTablePropierties(mainTable);
-		mainTable.getDefaultCell().setBorder(0);
 		mainTable.getDefaultCell().setPadding(0);
 
 		PdfPTable infoTable = CharacterBasicsReducedTableFactory.getCharacterBasicsTable(getCharacterPlayer());
 		PdfPCell infoCell = new PdfPCell(infoTable);
+		infoCell.setBorderWidthTop(0);
+		infoCell.setBorderWidthLeft(0);
+		infoCell.setBorderWidthBottom(1);
 		mainTable.addCell(infoCell);
 
 		PdfPTable learnedSkillsTable = LearnedSkillsTable.getSkillsTable(getCharacterPlayer(), getLanguage());
 		PdfPCell learnedSkillsCell = new PdfPCell(learnedSkillsTable);
 		learnedSkillsCell.setColspan(2);
-		learnedSkillsCell.setRowspan(3);
+		learnedSkillsCell.setRowspan(3);		
+		learnedSkillsCell.setBorderWidthTop(0);
+		learnedSkillsCell.setBorderWidthRight(0);		
 		mainTable.addCell(learnedSkillsCell);
 
 		PdfPTable basicTable = new PdfPTable(new float[] { 5f, 4f });
@@ -101,39 +105,51 @@ public class SmallCharacterSheet extends PdfDocument {
 
 		PdfPTable characteristicsTable = CharacteristicsTableFactory.getCharacteristicsBasicsTable(getCharacterPlayer());
 		PdfPCell characteristicCell = new PdfPCell(characteristicsTable);
+		characteristicCell.setBorderWidthLeft(0);		
 		basicTable.addCell(characteristicCell);
 
 		PdfPTable naturalSkillsTable = NaturalSkillsTable.getSkillsTable(getCharacterPlayer(), getLanguage());
 		PdfPCell naturalSkillsCell = new PdfPCell(naturalSkillsTable);
+		naturalSkillsCell.setBorderWidthRight(0);	
 		basicTable.addCell(naturalSkillsCell);
 
-		mainTable.addCell(basicTable);
+		PdfPCell basicComposedCell = new PdfPCell(basicTable);
+		basicComposedCell.setBorder(0);
+		mainTable.addCell(basicComposedCell);
 
 		PdfPTable composedTable = new PdfPTable(new float[] { 5f, 2f });
 
 		PdfPTable blessingsTable = new BlessingTable(getCharacterPlayer());
 		PdfPCell blessingsCell = new PdfPCell(blessingsTable);
+		blessingsCell.setBorderWidthLeft(0);
+		blessingsCell.setBorderWidthBottom(1);
 		composedTable.addCell(blessingsCell);
 
 		PdfPTable beneficesTable = new BeneficesTable(getCharacterPlayer());
 		PdfPCell beneficesCell = new PdfPCell(beneficesTable);
+		beneficesCell.setBorderWidthBottom(1);
 		composedTable.addCell(beneficesCell);
 
 		PdfPCell composedCell = new PdfPCell(composedTable);
 		composedCell.setRowspan(2);
+		composedCell.setBorder(0);
 		mainTable.addCell(composedCell);
 
 		PdfPTable armourTable = new ArmourTable(getCharacterPlayer());
 		PdfPCell armourCell = new PdfPCell(armourTable);
+		armourCell.setBorderWidthRight(0);
+		armourCell.setBorderWidthBottom(1);
 		mainTable.addCell(armourCell);
 
 		PdfPTable vitalityTable = new VitalityTable(getCharacterPlayer());
 		PdfPCell vitalityCell = new PdfPCell(vitalityTable);
 		vitalityCell.setColspan(2);
+		vitalityCell.setBorderWidth(1);
 		mainTable.addCell(vitalityCell);
 
 		PdfPTable wyrdTable = new WyrdTable(getCharacterPlayer());
 		PdfPCell wyrdCell = new PdfPCell(wyrdTable);
+		wyrdCell.setBorderWidth(1);
 		wyrdCell.setColspan(2);
 		mainTable.addCell(wyrdCell);
 
