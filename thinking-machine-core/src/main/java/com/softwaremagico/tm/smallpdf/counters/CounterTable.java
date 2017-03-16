@@ -32,7 +32,7 @@ public abstract class CounterTable extends CustomPdfTable {
 		if (characterPlayer == null) {
 			return createCircle();
 		}
-		if (addedCircle == getSelectedValue()) {
+		if (addedCircle == getSelectedValue() - 1) {
 			PdfPCell cell = createCircle();
 			cell.setCellEvent(new CellCompleteBoxEvent(1, new Border[] { Border.TOP, Border.BOTTOM, Border.RIGHT }));
 			return cell;
@@ -40,7 +40,7 @@ public abstract class CounterTable extends CustomPdfTable {
 			PdfPCell cell = createCircle();
 			cell.setCellEvent(new CellCompleteBoxEvent(1, new Border[] { Border.TOP, Border.BOTTOM, Border.LEFT }));
 			return cell;
-		} else if (addedCircle < getSelectedValue()) {
+		} else if (addedCircle < getSelectedValue() - 1) {
 			PdfPCell cell = createCircle();
 			cell.setCellEvent(new CellCompleteBoxEvent(1, new Border[] { Border.TOP, Border.BOTTOM }));
 			return cell;

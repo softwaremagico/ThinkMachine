@@ -33,11 +33,11 @@ public class VitalityTable extends CounterTable {
 
 	@Override
 	protected PdfPCell createCircle() {
-		if (addedCircle > 5) {
+		if (addedCircle >= 5) {
 			return super.createCircle();
 		}
 
-		PdfPCell cell = createValue("-" + (10 - addedCircle * 2), new Font(FadingSunsTheme.getLineFont(),
+		PdfPCell cell = createValue("-" + (10 - addedCircle * 2), new Font(FadingSunsTheme.getLineFontBold(),
 				FadingSunsTheme.CHARACTER_VITALITY_PENALTIES_TITLE_FONT_SIZE), Element.ALIGN_MIDDLE);
 		cell.setPaddingTop(1f);
 		return cell;
