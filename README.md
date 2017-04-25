@@ -31,7 +31,7 @@ Click any of these links to get a complete updated copy of the sheet. Still, the
 * In general, I like the idea of free source, and I release this software under the GNU General Public License. 
 
 ## Adding a new language
-If you are interested in the translation of the sheet in a different language, at the (Wiki) [https://github.com/jorgehortelano/TheThinkingMachine/wiki/Adding-a-new-Language] of this project you can find some instructions. 
+If you are interested in the translation of the sheet in a different language, at the [Wiki](https://github.com/jorgehortelano/TheThinkingMachine/wiki/Adding-a-new-Language) of this project you can find some instructions. 
 
 ## Execution
 The application has been created using Maven with Java. Therefore, for excuting this application you need both Maven and Java installed on your machine. Then you must execute this command inside the `thinking-machine-core` folder: 
@@ -42,7 +42,7 @@ mvn exec:java -Dexec.args="en /path/to/file"
 Where `en` is the language to obtain the file (now can be `en`, `es`) and `/path/to/file` must be a valid path where the application has permissions to generate a file. If this execution is too complex for you, you can always do a pull request on this project and I will generate it for you. 
 
 ## Notes
-This software has been developed using the [iText library] (http://itextpdf.com/) for PDF generation. 
+This software has been developed using the [iText library](http://itextpdf.com/) for PDF generation. 
 Fading Suns is a TradeMark owned by Holistic Design. 
 Fonts used in this project: DejaVuSans, ArchitectsDaughter and Roman Antique. 
 
