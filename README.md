@@ -41,12 +41,12 @@ mvn exec:java -Dexec.args="en /path/to/file"
 ```
 Where `en` is the language to obtain the file (now can be `en`, `es`) and `/path/to/file` must be a valid path where the application has permissions to generate a file. If this execution is too complex for you, you can always do a pull request on this project and I will generate it for you. 
 
-You can also convert PDF to PNG automatically if you have [ImageMagick](https://www.imagemagick.org/script/index.php) installed and is at the path. Execute this Maven command:
+You can also convert PDF to PNG automatically if you have ImageMagick installed and is at the path. Execute this Maven command:
 
 ```
 mvn install -Prelease
 ```
-And the PDF will be generated and later converted to PNG. 
+And all the possible PDFs will be generated and later converted to PNG. Final result is located in the sheet folder. 
 
 ## Notes
 This software has been developed using the [iText library](http://itextpdf.com/) for PDF generation. 
