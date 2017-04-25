@@ -1,5 +1,7 @@
 <img src="./images/ThinkingMachine_logo.png" width="340" alt="The Thinking Machine" align="middle"> 
+
 # The Thinking Machine
+
 [![Build Status](https://travis-ci.org/jorgehortelano/TheThinkingMachine.svg?branch=master)](https://travis-ci.org/jorgehortelano/TheThinkingMachine)
 [![GNU GPL 3.0 License](https://img.shields.io/badge/license-GNU_GPL_3.0-brightgreen.svg)](https://github.com/jorgehortelano/TheThinkingMachine/blob/master/license/gnugpl/license.txt)
 [![Issues](https://img.shields.io/github/issues/jorgehortelano/TheThinkingMachine.svg)](https://github.com/jorgehortelano/TheThinkingMachine/issues)
