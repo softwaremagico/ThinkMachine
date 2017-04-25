@@ -147,7 +147,10 @@ public class SmallCharacterSheet extends PdfDocument {
 		PdfPTable fightTable = new PdfPTable(new float[] { 3f, 5f, 1f });
 
 		PdfPTable occultismTable = new OccultismTable(getCharacterPlayer());
-		fightTable.addCell(occultismTable);
+		PdfPCell occultismCell = new PdfPCell(occultismTable);
+		occultismCell.setBorderWidthLeft(0);
+		//occultismCell.setBorderWidthBottom(1);
+		fightTable.addCell(occultismCell);
 
 		PdfPTable weaponsTable = new WeaponsTable(getCharacterPlayer());
 		fightTable.addCell(weaponsTable);
@@ -170,6 +173,7 @@ public class SmallCharacterSheet extends PdfDocument {
 		fightTable.addCell(wyrdCell);
 
 		PdfPCell fightCell = new PdfPCell(fightTable);
+		fightCell.setBorder(0);
 		fightCell.setColspan(2);
 
 		mainTable.addCell(fightCell);

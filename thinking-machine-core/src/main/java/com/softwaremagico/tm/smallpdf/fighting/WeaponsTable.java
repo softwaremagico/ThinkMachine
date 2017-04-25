@@ -33,15 +33,14 @@ import com.softwaremagico.tm.pdf.elements.VerticalTable;
 public class WeaponsTable extends VerticalTable {
 	private final static int TRAIT_COLUMN_WIDTH = 100;
 	private final static float[] WIDTHS = { 3f, 1f, 1f, 1f, 1f };
-	private final static int ROWS = 10;
+	private final static int ROWS = 8;
 
 	public WeaponsTable(CharacterPlayer characterPlayer) {
 		super(WIDTHS);
 		getDefaultCell().setBorder(0);
 
 		addCell(createTitle(getTranslator().getTranslatedText("combat"), FadingSunsTheme.CHARACTER_SMALL_WEAPONS_TITLE_FONT_SIZE));
-		addCell(createSubtitleLine(getTranslator().getTranslatedText("weaponsAction"), FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE,
-				Element.ALIGN_LEFT));
+		addCell(createSubtitleLine(getTranslator().getTranslatedText("weaponsAction"), FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE, Element.ALIGN_LEFT));
 		addCell(createSubtitleLine(getTranslator().getTranslatedText("weaponGoal"), FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE));
 		addCell(createSubtitleLine(getTranslator().getTranslatedText("weaponDamage"), FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE));
 		addCell(createSubtitleLine(getTranslator().getTranslatedText("weaponRange"), FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE));
@@ -53,7 +52,9 @@ public class WeaponsTable extends VerticalTable {
 		}
 
 		for (int i = added; i < ROWS; i++) {
-			addCell(new Paragraph(""));
+			for (int j = 0; j < WIDTHS.length; j++) {
+				addCell(new Paragraph(""));
+			}
 		}
 	}
 }

@@ -32,15 +32,44 @@ import com.softwaremagico.tm.pdf.elements.VerticalTable;
 
 public class OccultismTable extends VerticalTable {
 	private final static int TRAIT_COLUMN_WIDTH = 55;
-	private final static float[] WIDTHS = { 5f, 1f };
-	private final static int ROWS = 10;
+	private final static float[] WIDTHS = { 2f, 1f, 1f, 1f, 2f };
+	private final static int ROWS = 6;
 
 	public OccultismTable(CharacterPlayer characterPlayer) {
 		super(WIDTHS);
 		getDefaultCell().setBorder(0);
 
 		addCell(createTitle(getTranslator().getTranslatedText("occultism"), FadingSunsTheme.CHARACTER_SMALL_OCCULTISM_TITLE_FONT_SIZE));
-		addCell(createSubtitleLine(getTranslator().getTranslatedText("occultismTablePower"), FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE,
+
+		addCell(createSubtitleLine(getTranslator().getTranslatedText("psi"), FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE, Element.ALIGN_LEFT));
+		if (characterPlayer != null) {
+			addCell(createValueLine("" + characterPlayer.getOccultism().getPsiValue(), FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE));
+		} else {
+			addCell(createValueLine(" ", FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE));
+		}
+		addCell(createSubtitleLine("/", FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE));
+		if (characterPlayer != null) {
+			addCell(createValueLine("" + characterPlayer.getOccultism().getUrge(), FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE));
+		} else {
+			addCell(createValueLine(" ", FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE));
+		}
+		addCell(createSubtitleLine(getTranslator().getTranslatedText("urge"), FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE, Element.ALIGN_RIGHT));
+
+		addCell(createSubtitleLine(getTranslator().getTranslatedText("theurgy"), FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE, Element.ALIGN_LEFT));
+		if (characterPlayer != null) {
+			addCell(createValueLine("" + characterPlayer.getOccultism().getTeurgyValue(), FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE));
+		} else {
+			addCell(createValueLine(" ", FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE));
+		}
+		addCell(createSubtitleLine("/", FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE, Element.ALIGN_LEFT));
+		if (characterPlayer != null) {
+			addCell(createValueLine("" + characterPlayer.getOccultism().getHubris(), FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE));
+		} else {
+			addCell(createValueLine(" ", FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE));
+		}
+		addCell(createSubtitleLine(getTranslator().getTranslatedText("hubris"), FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE, Element.ALIGN_RIGHT));
+
+		addCell(createSubtitleLine(getTranslator().getTranslatedText("occultismTablePower"), FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE, 4,
 				Element.ALIGN_LEFT));
 		addCell(createSubtitleLine(getTranslator().getTranslatedText("weaponGoal"), FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE));
 
@@ -50,7 +79,9 @@ public class OccultismTable extends VerticalTable {
 		}
 
 		for (int i = added; i < ROWS; i++) {
-			addCell(new Paragraph(" "));
+			for (int j = 0; j < WIDTHS.length; j++) {
+				addCell(new Paragraph(" "));
+			}
 		}
 	}
 }

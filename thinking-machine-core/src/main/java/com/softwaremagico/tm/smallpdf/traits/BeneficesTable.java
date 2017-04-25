@@ -33,7 +33,7 @@ import com.softwaremagico.tm.pdf.elements.VerticalTable;
 public class BeneficesTable extends VerticalTable {
 	private final static int TRAIT_COLUMN_WIDTH = 55;
 	private final static float[] WIDTHS = { 1f };
-	private final static int ROWS = 7;
+	private final static int ROWS = 8;
 
 	public BeneficesTable(CharacterPlayer characterPlayer) {
 		super(WIDTHS);

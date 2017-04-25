@@ -34,7 +34,7 @@ import com.softwaremagico.tm.pdf.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.skills.SkillsTable;
 
 public class LearnedSkillsTable extends SkillsTable {
-	private final static int ROWS = 17;
+	private final static int ROWS = 18;
 
 	public static PdfPTable getSkillsTable(CharacterPlayer characterPlayer, String language) {
 		float[] widths = { 1f };
@@ -63,10 +63,9 @@ public class LearnedSkillsTable extends SkillsTable {
 			}
 
 			for (int i = added; i < ROWS; i++) {
-				// Skill name.
-				table.addCell(new Paragraph(" "));
-				// Skill value
-				table.addCell(new Paragraph(" "));
+				for (int j = 0; j < widths.length; j++) {
+					table.addCell(new Paragraph(" "));
+				}
 			}
 		}
 

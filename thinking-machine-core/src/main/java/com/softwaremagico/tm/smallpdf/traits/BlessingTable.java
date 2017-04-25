@@ -36,14 +36,14 @@ public class BlessingTable extends VerticalTable {
 	private final static int BONIFICATION_COLUMN_WIDTH = 15;
 	private final static int TRAIT_COLUMN_WIDTH = 60;
 	private final static int SITUATION_COLUMN_WIDTH = 80;
-	private final static int ROWS = 6;
+	private final static int ROWS = 7;
 
 	private final static float[] WIDTHS = { 2f, 7f, 8f };
 
 	public BlessingTable(CharacterPlayer characterPlayer) {
 		super(WIDTHS);
 		getDefaultCell().setBorder(0);
-		
+
 		addCell(createTitle(getTranslator().getTranslatedText("blessingTable"), FadingSunsTheme.CHARACTER_SMALL_BLESSING_TITLE_FONT_SIZE));
 
 		addCell(createSubtitleLine("+/-", FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE));
@@ -66,7 +66,9 @@ public class BlessingTable extends VerticalTable {
 		}
 
 		for (int i = added; i < ROWS; i++) {
-			addCell(new Paragraph(""));
+			for (int j = 0; j < WIDTHS.length; j++) {
+				addCell(new Paragraph(""));
+			}
 		}
 	}
 }
