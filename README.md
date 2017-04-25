@@ -14,16 +14,16 @@ To get an idea of the final result, here you have a preview:
 
 
 If you like the design, and you want to use it, only the final PDF document is needed. To avoid the complexity of compilate this source code and using some programming languages, you can directly download the PDF from these links:
-- [Character Sheet (English)] (https://github.com/jorgehortelano/TheThinkingMachine/blob/master/sheets/FadingSuns_EN.pdf)
-- [Character Sheet (Spanish)] (https://github.com/jorgehortelano/TheThinkingMachine/blob/master/sheets/FadingSuns_ES.pdf)
+- [Character Sheet (English)](https://github.com/jorgehortelano/TheThinkingMachine/blob/master/sheets/FadingSuns_EN.pdf)
+- [Character Sheet (Spanish)](https://github.com/jorgehortelano/TheThinkingMachine/blob/master/sheets/FadingSuns_ES.pdf)
 
 The fonts needed for these PDFs are: ArchitectsDaughter, DejaVuSans and Roman Antique. You need to download and install them.
 
 If you want to skip the font installation, you can also donwload the sheet in PNG:
-- [Character Sheet (English)] (https://github.com/jorgehortelano/TheThinkingMachine/blob/master/sheets/FadingSuns_EN-0.png)
-- [Character Sheet Back (English)] (https://github.com/jorgehortelano/TheThinkingMachine/blob/master/sheets/FadingSuns_EN-1.png)
-- [Character Sheet (Spanish)] (https://github.com/jorgehortelano/TheThinkingMachine/blob/master/sheets/FadingSuns_ES-0.png)
-- [Character Sheet Back (Spanish)] (https://github.com/jorgehortelano/TheThinkingMachine/blob/master/sheets/FadingSuns_ES-1.png)
+- [Character Sheet (English)](https://github.com/jorgehortelano/TheThinkingMachine/blob/master/sheets/FadingSuns_EN-0.png)
+- [Character Sheet Reverse (English)](https://github.com/jorgehortelano/TheThinkingMachine/blob/master/sheets/FadingSuns_EN-1.png)
+- [Character Sheet (Spanish)](https://github.com/jorgehortelano/TheThinkingMachine/blob/master/sheets/FadingSuns_ES-0.png)
+- [Character Sheet Reverse (Spanish)](https://github.com/jorgehortelano/TheThinkingMachine/blob/master/sheets/FadingSuns_ES-1.png)
 
 Click any of these links to get a complete updated copy of the sheet. Still, the code of this application is provided in Github for some reasons:
 * Maybe somebody wants to change some texts of the character sheet.
