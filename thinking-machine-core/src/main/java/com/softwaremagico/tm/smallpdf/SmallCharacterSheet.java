@@ -39,7 +39,9 @@ import com.softwaremagico.tm.smallpdf.characteristics.CharacteristicsTableFactor
 import com.softwaremagico.tm.smallpdf.counters.VitalityTable;
 import com.softwaremagico.tm.smallpdf.counters.WyrdTable;
 import com.softwaremagico.tm.smallpdf.fighting.ArmourTable;
+import com.softwaremagico.tm.smallpdf.fighting.WeaponsTable;
 import com.softwaremagico.tm.smallpdf.info.CharacterBasicsReducedTableFactory;
+import com.softwaremagico.tm.smallpdf.occultism.OccultismTable;
 import com.softwaremagico.tm.smallpdf.skills.LearnedSkillsTable;
 import com.softwaremagico.tm.smallpdf.skills.NaturalSkillsTable;
 import com.softwaremagico.tm.smallpdf.traits.BeneficesTable;
@@ -144,10 +146,11 @@ public class SmallCharacterSheet extends PdfDocument {
 
 		PdfPTable fightTable = new PdfPTable(new float[] { 3f, 5f, 1f });
 
-		PdfPCell cell = new PdfPCell();
-		cell.setColspan(2);
-		cell.setMinimumHeight(110);
-		fightTable.addCell(cell);
+		PdfPTable occultismTable = new OccultismTable(getCharacterPlayer());
+		fightTable.addCell(occultismTable);
+
+		PdfPTable weaponsTable = new WeaponsTable(getCharacterPlayer());
+		fightTable.addCell(weaponsTable);
 
 		PdfPCell victoryPointsCell = new PdfPCell(new VerticalVictoryPointsTable());
 		victoryPointsCell.setPadding(0);

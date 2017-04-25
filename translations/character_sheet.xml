@@ -504,4 +504,8 @@
 		<en>Hits: </en>
 		<es>Impactos: </es>
 	</shieldHits>
+	<combat>
+		<en>Combat</en>
+		<es>Combate</es>
+	</combat>
 </translator>
