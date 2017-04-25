@@ -17,9 +17,15 @@ If you like the design, and you want to use it, only the final PDF document is n
 - [Character Sheet (English)] (https://github.com/jorgehortelano/TheThinkingMachine/blob/master/sheets/FadingSuns_EN.pdf)
 - [Character Sheet (Spanish)] (https://github.com/jorgehortelano/TheThinkingMachine/blob/master/sheets/FadingSuns_ES.pdf)
 
-The fonts needed for these PDFs are: ArchitectsDaughter, DejaVuSans and Roman Antique. 
+The fonts needed for these PDFs are: ArchitectsDaughter, DejaVuSans and Roman Antique. You need to download and install them.
 
-Click any of these links to get a complete copy of the file. Still, the code of this application is provided in Github for some reasons:
+If you want to skip the font installation, you can also donwload the sheet in PNG:
+- [Character Sheet (English)] (https://github.com/jorgehortelano/TheThinkingMachine/blob/master/sheets/FadingSuns_EN-0.png)
+- [Character Sheet Back (English)] (https://github.com/jorgehortelano/TheThinkingMachine/blob/master/sheets/FadingSuns_EN-1.png)
+- [Character Sheet (Spanish)] (https://github.com/jorgehortelano/TheThinkingMachine/blob/master/sheets/FadingSuns_ES-0.png)
+- [Character Sheet Back (Spanish)] (https://github.com/jorgehortelano/TheThinkingMachine/blob/master/sheets/FadingSuns_ES-1.png)
+
+Click any of these links to get a complete updated copy of the sheet. Still, the code of this application is provided in Github for some reasons:
 * Maybe somebody wants to change some texts of the character sheet.
 * Maybe somebody wants to translate it to a different language (see below for some instructions).
 * In general, I like the idea of free source, and I release this software under the GNU General Public License. 
