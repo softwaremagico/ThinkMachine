@@ -42,6 +42,7 @@ public class VitalityTable extends CounterTable {
 		Phrase content = new Phrase(getTranslator().getTranslatedText("vitality"), font);
 		PdfPCell titleCell = new PdfPCell(content);
 		titleCell.setBorder(0);
+		titleCell.setPaddingRight(0);
 		titleCell.setPaddingTop(paddingTop);
 		titleCell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		addCell(titleCell);
@@ -63,7 +64,7 @@ public class VitalityTable extends CounterTable {
 
 		PdfPCell cell = createValue("-" + (10 - addedCircle * 2), new Font(FadingSunsTheme.getLineFontBold(),
 				FadingSunsTheme.CHARACTER_VITALITY_PENALTIES_TITLE_FONT_SIZE), Element.ALIGN_MIDDLE);
-		cell.setPaddingTop(1f);
+		cell.setPaddingTop(0f);
 		cell.setPaddingRight(-2f);
 		return cell;
 	}

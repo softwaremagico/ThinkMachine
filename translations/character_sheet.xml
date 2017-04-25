@@ -264,6 +264,10 @@
 		<en>Victory Chart</en>
 		<es>Tabla de Victoria</es>
 	</victoryChart>
+	<victoryChartReduced>
+		<en>Victory Chart</en>
+		<es>Tabla Victoria</es>
+	</victoryChartReduced>
 	<dice>
 		<en>Dice</en>
 		<es>Dado</es>

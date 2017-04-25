@@ -44,6 +44,7 @@ import com.softwaremagico.tm.smallpdf.skills.LearnedSkillsTable;
 import com.softwaremagico.tm.smallpdf.skills.NaturalSkillsTable;
 import com.softwaremagico.tm.smallpdf.traits.BeneficesTable;
 import com.softwaremagico.tm.smallpdf.traits.BlessingTable;
+import com.softwaremagico.tm.smallpdf.victorytable.VerticalVictoryPointsTable;
 
 public class SmallCharacterSheet extends PdfDocument {
 	private CharacterPlayer characterPlayer = null;
@@ -94,9 +95,9 @@ public class SmallCharacterSheet extends PdfDocument {
 		PdfPTable learnedSkillsTable = LearnedSkillsTable.getSkillsTable(getCharacterPlayer(), getLanguage());
 		PdfPCell learnedSkillsCell = new PdfPCell(learnedSkillsTable);
 		learnedSkillsCell.setColspan(2);
-		learnedSkillsCell.setRowspan(3);		
+		learnedSkillsCell.setRowspan(3);
 		learnedSkillsCell.setBorderWidthTop(0);
-		learnedSkillsCell.setBorderWidthRight(0);		
+		learnedSkillsCell.setBorderWidthRight(0);
 		mainTable.addCell(learnedSkillsCell);
 
 		PdfPTable basicTable = new PdfPTable(new float[] { 5f, 4f });
@@ -105,12 +106,12 @@ public class SmallCharacterSheet extends PdfDocument {
 
 		PdfPTable characteristicsTable = CharacteristicsTableFactory.getCharacteristicsBasicsTable(getCharacterPlayer());
 		PdfPCell characteristicCell = new PdfPCell(characteristicsTable);
-		characteristicCell.setBorderWidthLeft(0);		
+		characteristicCell.setBorderWidthLeft(0);
 		basicTable.addCell(characteristicCell);
 
 		PdfPTable naturalSkillsTable = NaturalSkillsTable.getSkillsTable(getCharacterPlayer(), getLanguage());
 		PdfPCell naturalSkillsCell = new PdfPCell(naturalSkillsTable);
-		naturalSkillsCell.setBorderWidthRight(0);	
+		naturalSkillsCell.setBorderWidthRight(0);
 		basicTable.addCell(naturalSkillsCell);
 
 		PdfPCell basicComposedCell = new PdfPCell(basicTable);
@@ -141,23 +142,34 @@ public class SmallCharacterSheet extends PdfDocument {
 		armourCell.setBorderWidthBottom(1);
 		mainTable.addCell(armourCell);
 
+		PdfPTable fightTable = new PdfPTable(new float[] { 3f, 5f, 1f });
+
+		PdfPCell cell = new PdfPCell();
+		cell.setColspan(2);
+		cell.setMinimumHeight(110);
+		fightTable.addCell(cell);
+
+		PdfPCell victoryPointsCell = new PdfPCell(new VerticalVictoryPointsTable());
+		victoryPointsCell.setPadding(0);
+		victoryPointsCell.setRowspan(3);
+		fightTable.addCell(victoryPointsCell);
+
 		PdfPTable vitalityTable = new VitalityTable(getCharacterPlayer());
 		PdfPCell vitalityCell = new PdfPCell(vitalityTable);
 		vitalityCell.setColspan(2);
 		vitalityCell.setBorderWidth(1);
-		mainTable.addCell(vitalityCell);
+		fightTable.addCell(vitalityCell);
 
 		PdfPTable wyrdTable = new WyrdTable(getCharacterPlayer());
 		PdfPCell wyrdCell = new PdfPCell(wyrdTable);
 		wyrdCell.setBorderWidth(1);
 		wyrdCell.setColspan(2);
-		mainTable.addCell(wyrdCell);
+		fightTable.addCell(wyrdCell);
 
-		// PdfPCell victoryPointsCell = new PdfPCell(new VictoryPointsTable());
-		// victoryPointsCell.setPadding(0);
-		// victoryPointsCell.setRowspan(2);
-		// mainTable.addCell(victoryPointsCell);
+		PdfPCell fightCell = new PdfPCell(fightTable);
+		fightCell.setColspan(2);
 
+		mainTable.addCell(fightCell);
 		document.add(mainTable);
 	}
 

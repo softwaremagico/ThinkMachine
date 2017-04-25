@@ -35,7 +35,7 @@ import com.softwaremagico.tm.pdf.elements.CellCompleteBoxEvent.Border;
 import com.softwaremagico.tm.pdf.elements.CustomPdfTable;
 
 public abstract class CounterTable extends CustomPdfTable {
-	protected final static float[] WIDTHS = { 3f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f };
+	protected final static float[] WIDTHS = { 2.8f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f };
 	protected int addedCircle = 0;
 	// http://stackoverflow.com/questions/5554553/itext-pdftable-cell-vertical-alignment
 	protected float paddingTop = -3f;
@@ -74,7 +74,7 @@ public abstract class CounterTable extends CustomPdfTable {
 	}
 
 	protected PdfPCell createCircle() {
-		PdfPCell cell = createValue("O", new Font(FadingSunsTheme.getTitleFont(), FadingSunsTheme.CHARACTERISTICS_TITLE_FONT_SIZE), Element.ALIGN_MIDDLE);
+		PdfPCell cell = createValue("O", new Font(FadingSunsTheme.getTitleFont(), FadingSunsTheme.CHARACTER_COUNTER_POINT_SIZE), Element.ALIGN_MIDDLE);
 		return cell;
 	}
 
