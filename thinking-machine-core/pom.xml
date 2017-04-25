@@ -74,6 +74,68 @@
 		</plugins>
 	</build>
 
+	<profiles>
+		<profile>
+			<id>release</id>
+			<activation>
+				<property>
+					<name>release</name>
+				</property>
+			</activation>
+			<build>
+				<plugins>
+					<!-- Convert PDF to PNG -->
+					<plugin>
+						<artifactId>exec-maven-plugin</artifactId>
+						<groupId>org.codehaus.mojo</groupId>
+						<executions>
+							<execution>
+								<id>PdfToPng (ES)</id>
+								<phase>install</phase>
+								<goals>
+									<goal>exec</goal>
+								</goals>
+								<configuration>
+									<executable>convert</executable>
+									<arguments>
+										<argument>-background</argument>
+										<argument>white</argument>
+										<argument>-alpha</argument>
+										<argument>remove</argument>
+										<argument>-density</argument>
+										<argument>600</argument>
+										<argument>/data/workspace/TheThinkingMachine/sheets/FadingSuns_ES.pdf</argument>
+										<argument>/data/workspace/TheThinkingMachine/sheets/FadingSuns_ES-%01d.png</argument>
+									</arguments>
+								</configuration>
+							</execution>
+							<execution>
+								<id>PdfToPng (EN)</id>
+								<phase>install</phase>
+								<goals>
+									<goal>exec</goal>
+								</goals>
+								<configuration>
+									<executable>convert</executable>
+									<arguments>
+										<argument>-background</argument>
+										<argument>white</argument>
+										<argument>-alpha</argument>
+										<argument>remove</argument>
+										<argument>-density</argument>
+										<argument>600</argument>
+										<argument>/data/workspace/TheThinkingMachine/sheets/FadingSuns_EN.pdf</argument>
+										<argument>/data/workspace/TheThinkingMachine/sheets/FadingSuns_EN-%01d.png</argument>
+									</arguments>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
 	<dependencies>
 		<!-- JSON -->
 		<dependency>
