@@ -112,7 +112,7 @@ public class CustomCharacters {
 		Device ingeneerEye = new Device("Ojo de Ingeniero", 8, 6, "Normal", "Normal", "Automático", "Oculto", "Autoalimentado");
 		ingeneerEye.addCharacteristicImprovement(new CharacteristicImprovement(CharacteristicName.PERCEPTION, 1, false));
 		player.getCybernetics().addElement(ingeneerEye);
-		
+
 		Device secondBrain = new Device("Segundo Cerebro", 11, 10, "Normal", "Normal", "Automático", "Oculto", "Autoalimentado");
 		secondBrain.addCharacteristicImprovement(new CharacteristicImprovement(CharacteristicName.WITS, 2, true));
 		secondBrain.addSkillImprovement(new CyberneticSkill("Saber [Red de Salto]", 4, true));
@@ -186,6 +186,10 @@ public class CustomCharacters {
 		CharacterSheet sheet = new CharacterSheet(player);
 		sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Ana.pdf");
 
+		LanguagePool.clearCache();
+		SmallCharacterSheet smallSheet = new SmallCharacterSheet(player);
+		smallSheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Ana_Small.pdf");
+
 		Assert.assertEquals(CostCalculator.getCost(player), FreeStyleCharacterCreation.FREE_AVAILABLE_POINTS);
 	}
 
@@ -250,6 +254,10 @@ public class CustomCharacters {
 		CharacterSheet sheet = new CharacterSheet(player);
 		sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Carlos.pdf");
 
+		LanguagePool.clearCache();
+		SmallCharacterSheet smallSheet = new SmallCharacterSheet(player);
+		smallSheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Carlos_Small.pdf");
+
 		Assert.assertEquals(CostCalculator.getCost(player), FreeStyleCharacterCreation.FREE_AVAILABLE_POINTS);
 	}
 
@@ -293,10 +301,10 @@ public class CustomCharacters {
 		player.getOccultism().addElement(new OccultismPower("Mano Lanzadora", "Vol+Autoc.", 2, "Sensorial", "Temporal", "", 1));
 		player.getOccultism().addElement(new OccultismPower("Mano Aplastante", "Vol+Autoc.", 3, "Sensorial", "Temporal", "", 1));
 		player.getOccultism().addElement(new OccultismPower("Mano Duelista", "Vol+Autoc.", 4, "Sensorial", "Temporal", "", 1));
-		player.getOccultism().addElement(new OccultismPower("Mano Nº5", "", 5, "", "", "", 1));
+		player.getOccultism().addElement(new OccultismPower("Mano Nº5", "", 5, "", "", "", 1, false));
 		player.getOccultism().addElement(new OccultismPower("Intuir", "Vol+Empatía", 1, "Toque", "Instantáneo", "", 1));
-		player.getOccultism().addElement(new OccultismPower("Emocionar", "Presencia+Influenciar", 2, "Toque", "Instantáneo", "", 1));
-		player.getOccultism().addElement(new OccultismPower("Visión Mental", "Voluntad+Empatía", 3, "Toque", "Instantáneo", "", 1));
+		player.getOccultism().addElement(new OccultismPower("Emocionar", "Pre+Influenciar", 2, "Toque", "Instantáneo", "", 1));
+		player.getOccultism().addElement(new OccultismPower("Visión Mental", "Vol+Empatía", 3, "Toque", "Instantáneo", "", 1));
 		player.getOccultism().setExtraWyrd(3);
 
 		player.addBlessing(new Blessing("Recto", 2, 2, "Fe", "Corregir al errado"));
@@ -312,6 +320,10 @@ public class CustomCharacters {
 		LanguagePool.clearCache();
 		CharacterSheet sheet = new CharacterSheet(player);
 		sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Noelia.pdf");
+
+		LanguagePool.clearCache();
+		SmallCharacterSheet smallSheet = new SmallCharacterSheet(player);
+		smallSheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Noelia_Small.pdf");
 
 		Assert.assertEquals(CostCalculator.getCost(player), FreeStyleCharacterCreation.FREE_AVAILABLE_POINTS);
 	}

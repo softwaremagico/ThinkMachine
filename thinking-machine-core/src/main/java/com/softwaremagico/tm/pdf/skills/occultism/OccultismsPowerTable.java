@@ -55,14 +55,16 @@ public class OccultismsPowerTable extends LateralHeaderPdfPTable {
 		int addedPowers = 0;
 		if (characterPlayer != null) {
 			for (OccultismPower occultismPower : characterPlayer.getOccultism().getElements()) {
-				addCell(createElementLine(occultismPower.getName(), NAME_COLUMN_WIDTH, FadingSunsTheme.OCCULSTISM_POWERS_CONTENT_FONT_SIZE));
-				addCell(createElementLine(occultismPower.getLevel() + "", LEVEL_COLUMN_WIDTH, FadingSunsTheme.OCCULSTISM_POWERS_CONTENT_FONT_SIZE));
-				addCell(createElementLine(occultismPower.getRoll(), ROLL_COLUMN_WIDTH, FadingSunsTheme.OCCULSTISM_POWERS_CONTENT_FONT_SIZE));
-				addCell(createElementLine(occultismPower.getRange(), RANGE_COLUMN_WIDTH, FadingSunsTheme.OCCULSTISM_POWERS_CONTENT_FONT_SIZE));
-				addCell(createElementLine(occultismPower.getDuration(), DURATION_COLUMN_WIDTH, FadingSunsTheme.OCCULSTISM_POWERS_CONTENT_FONT_SIZE));
-				addCell(createElementLine(occultismPower.getRequirements(), REQUIREMENTS_COLUMN_WIDTH, FadingSunsTheme.OCCULSTISM_POWERS_CONTENT_FONT_SIZE));
-				addCell(createElementLine(occultismPower.getCost() + "", COST_COLUMN_WIDTH, FadingSunsTheme.OCCULSTISM_POWERS_CONTENT_FONT_SIZE));
-				addedPowers++;
+				if (occultismPower.isEnabled()) {
+					addCell(createElementLine(occultismPower.getName(), NAME_COLUMN_WIDTH, FadingSunsTheme.OCCULSTISM_POWERS_CONTENT_FONT_SIZE));
+					addCell(createElementLine(occultismPower.getLevel() + "", LEVEL_COLUMN_WIDTH, FadingSunsTheme.OCCULSTISM_POWERS_CONTENT_FONT_SIZE));
+					addCell(createElementLine(occultismPower.getRoll(), ROLL_COLUMN_WIDTH, FadingSunsTheme.OCCULSTISM_POWERS_CONTENT_FONT_SIZE));
+					addCell(createElementLine(occultismPower.getRange(), RANGE_COLUMN_WIDTH, FadingSunsTheme.OCCULSTISM_POWERS_CONTENT_FONT_SIZE));
+					addCell(createElementLine(occultismPower.getDuration(), DURATION_COLUMN_WIDTH, FadingSunsTheme.OCCULSTISM_POWERS_CONTENT_FONT_SIZE));
+					addCell(createElementLine(occultismPower.getRequirements(), REQUIREMENTS_COLUMN_WIDTH, FadingSunsTheme.OCCULSTISM_POWERS_CONTENT_FONT_SIZE));
+					addCell(createElementLine(occultismPower.getCost() + "", COST_COLUMN_WIDTH, FadingSunsTheme.OCCULSTISM_POWERS_CONTENT_FONT_SIZE));
+					addedPowers++;
+				}
 			}
 		}
 		for (int i = 0; i < ROWS - addedPowers; i++) {

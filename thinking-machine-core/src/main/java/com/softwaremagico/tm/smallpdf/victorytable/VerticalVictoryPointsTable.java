@@ -32,11 +32,11 @@ import com.softwaremagico.tm.pdf.elements.BaseElement;
 import com.softwaremagico.tm.pdf.elements.VerticalTable;
 
 public class VerticalVictoryPointsTable extends VerticalTable {
-	private final static float[] WIDTHS = { 4f, 4f };
+	private final static float[] WIDTHS = { 4f, 3f };
 
 	public VerticalVictoryPointsTable() {
 		super(WIDTHS);
-		addCell(createTitle(getTranslator().getTranslatedText("victoryChartReduced"), 10));
+		addCell(createTitle(getTranslator().getTranslatedText("victoryChartReduced"), 11));
 
 		addCell(createSubTitle(getTranslator().getTranslatedText("dice"), BaseColor.WHITE));
 		addCell(createSubTitle(getTranslator().getTranslatedText("victoryPoints"), BaseColor.WHITE));
@@ -77,7 +77,8 @@ public class VerticalVictoryPointsTable extends VerticalTable {
 	}
 
 	private static PdfPCell createLine(String text, BaseColor color) {
-		PdfPCell cell = BaseElement.getCell(text, 0, 1, Element.ALIGN_CENTER, color, FadingSunsTheme.getLineFont(), FadingSunsTheme.VICTORY_POINTS_FONT_SIZE);
+		PdfPCell cell = BaseElement.getCell(text, 0, 1, Element.ALIGN_CENTER, color, FadingSunsTheme.getLineFont(),
+				FadingSunsTheme.VICTORY_SMALL_POINTS_FONT_SIZE);
 		cell.setMinimumHeight(11);
 		cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		return cell;
@@ -85,8 +86,8 @@ public class VerticalVictoryPointsTable extends VerticalTable {
 
 	private static PdfPCell createSubTitle(String text, BaseColor color) {
 		PdfPCell cell = BaseElement.getCell(text, 0, 1, Element.ALIGN_CENTER, color, FadingSunsTheme.getLineFontBold(),
-				FadingSunsTheme.VICTORY_POINTS_FONT_SIZE);
-		cell.setMinimumHeight(13);
+				FadingSunsTheme.VICTORY_SMALL_POINTS_FONT_SIZE + 1);
+		cell.setMinimumHeight(18);
 		cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		return cell;
 	}

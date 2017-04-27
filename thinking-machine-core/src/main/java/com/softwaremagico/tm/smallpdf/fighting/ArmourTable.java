@@ -37,6 +37,7 @@ import com.softwaremagico.tm.pdf.elements.CustomPdfTable;
 
 public class ArmourTable extends CustomPdfTable {
 	private final static int NAME_COLUMN_WIDTH = 30;
+	private final static int ARMOUR_VALUE_COLUMN_WIDTH = 10;
 
 	public ArmourTable(CharacterPlayer characterPlayer) {
 		super(new float[] { 2, 3 });
@@ -86,13 +87,13 @@ public class ArmourTable extends CustomPdfTable {
 
 		table.addCell(createEmptyElementLine("("));
 		if (characterPlayer == null || characterPlayer.getShield() == null) {
-			table.addCell(createBasicElementLine("__", FadingSunsTheme.ARMOUR_CONTENT_FONT_SIZE - 1));
+			table.addCell(createEmptyElementLine(" ", ARMOUR_VALUE_COLUMN_WIDTH));
 		} else {
 			table.addCell(createBasicElementLine(characterPlayer.getShield().getImpact() + "", FadingSunsTheme.ARMOUR_CONTENT_FONT_SIZE - 1));
 		}
 		table.addCell(createEmptyElementLine("/"));
 		if (characterPlayer == null || characterPlayer.getShield() == null) {
-			table.addCell(createBasicElementLine("__", FadingSunsTheme.ARMOUR_CONTENT_FONT_SIZE - 1));
+			table.addCell(createEmptyElementLine(" ", ARMOUR_VALUE_COLUMN_WIDTH));
 		} else {
 			table.addCell(createBasicElementLine(characterPlayer.getShield().getForce() + "", FadingSunsTheme.ARMOUR_CONTENT_FONT_SIZE - 1));
 		}

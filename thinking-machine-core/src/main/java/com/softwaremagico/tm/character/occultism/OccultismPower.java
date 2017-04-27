@@ -33,6 +33,7 @@ public class OccultismPower extends Element<OccultismPower> {
 	private final String duration;
 	private final String requirements;
 	private final int cost;
+	private boolean enabled;
 
 	public OccultismPower(String name, String roll, int level, String range, String duration, String requirements, int cost) {
 		super(name);
@@ -42,6 +43,12 @@ public class OccultismPower extends Element<OccultismPower> {
 		this.duration = duration;
 		this.requirements = requirements;
 		this.cost = cost;
+		enabled = true;
+	}
+
+	public OccultismPower(String name, String roll, int level, String range, String duration, String requirements, int cost, boolean enabled) {
+		this(name, roll, level, range, duration, requirements, cost);
+		setEnabled(enabled);
 	}
 
 	public String getRoll() {
@@ -66,6 +73,14 @@ public class OccultismPower extends Element<OccultismPower> {
 
 	public int getCost() {
 		return cost;
+	}
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
 	}
 
 }
