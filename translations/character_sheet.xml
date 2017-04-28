@@ -312,6 +312,42 @@
 		<en>Others</en>
 		<es>Otros</es>
 	</cyberneticsOthers>
+	<stances>
+		<en>Stances</en>
+		<es>Posiciones</es>
+	</stances>
+	<stanceName>
+		<en>Stance</en>
+		<es>Posición</es>
+	</stanceName>
+	<stanceDescription>
+		<en>Description</en>
+		<es>Descripción</es>
+	</stanceDescription>
+	<agressiveStance>
+		<en>Aggressive Stance</en>
+		<es>Posición Agresiva</es>
+	</agressiveStance>
+	<agressiveStanceDescription>
+		<en>-2 Defense and +4 Goal / +2D Damage</en>
+		<es>-2 Defensa y +4RA / +2D al Daño</es>
+	</agressiveStanceDescription>
+	<defensiveStance>
+		<en>Defensive Stance</en>
+		<es>Posición Defensiva</es>
+	</defensiveStance>
+	<defensiveStanceDescription>
+		<en>+2 Defemse and -5 Goal</en>
+		<es>+2 Defensa y -4 RA</es>
+	</defensiveStanceDescription>
+	<fullDefensiveStance>
+		<en>Full Defensive Stance</en>
+		<es>Posición Defensiva Total</es>
+	</fullDefensiveStance>
+	<fullDefensiveStanceDescription>
+		<en>+4 Defense and only movement allowed</en>
+		<es>+4 Defensa y solo movimiento permitido</es>
+	</fullDefensiveStanceDescription>
 	<weapons>
 		<en>Weapons</en>
 		<es>Armas</es>

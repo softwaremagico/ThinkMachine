@@ -32,16 +32,25 @@ import com.softwaremagico.tm.pdf.elements.BaseElement;
 public class WeaponsAndArmours extends BaseElement {
 	public final static int PADDING = 2;
 
-	public static PdfPTable getWeaponsAndArmoursTable(CharacterPlayer characterPlayer) {
+	public static PdfPTable getWeaponsAndArmoursTable(
+			CharacterPlayer characterPlayer) {
 		float[] widths = { 4f, 1.1f };
 		PdfPTable table = new PdfPTable(widths);
 		setTablePropierties(table);
 		table.getDefaultCell().setPadding(PADDING);
 		table.getDefaultCell().setBorder(0);
 
+		PdfPTable leftTable = new PdfPTable(new float[] { 1f });
+
 		PdfPCell fireArmsCell = new PdfPCell(new WeaponsTable(characterPlayer));
-		fireArmsCell.setRowspan(2);
-		table.addCell(fireArmsCell);
+		leftTable.addCell(fireArmsCell);
+
+		PdfPCell stancesCell = new PdfPCell(new StancesTable(characterPlayer));
+		leftTable.addCell(stancesCell);
+
+		PdfPCell leftCell = new PdfPCell(leftTable);
+		leftCell.setRowspan(2);
+		table.addCell(leftCell);
 
 		PdfPCell armourCell = new PdfPCell(new ArmourTable(characterPlayer));
 		table.addCell(armourCell);

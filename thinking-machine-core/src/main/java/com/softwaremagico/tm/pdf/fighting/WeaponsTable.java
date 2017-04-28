@@ -31,7 +31,7 @@ import com.softwaremagico.tm.pdf.elements.LateralHeaderPdfPTable;
 
 public class WeaponsTable extends LateralHeaderPdfPTable {
 	private final static float[] WIDTHS = { 1.6f, 6f, 5f, 2f, 3f, 3f, 3f, 3f, 2f, 7f };
-	private final static int ROWS = 12;
+	private final static int ROWS = 6;
 	private final static String GAP = "__________________";
 	private final static int NAME_COLUMN_WIDTH = 60;
 	private final static int ROLL_COLUMN_WIDTH = 45;

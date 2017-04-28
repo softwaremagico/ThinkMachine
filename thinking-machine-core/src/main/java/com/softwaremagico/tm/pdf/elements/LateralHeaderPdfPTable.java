@@ -55,9 +55,14 @@ public abstract class LateralHeaderPdfPTable extends CustomPdfTable {
 	}
 
 	protected static PdfPCell createTableSubtitleElement(String text) {
-		PdfPCell cell = BaseElement.getCell(text, 0, 1, Element.ALIGN_CENTER, BaseColor.WHITE,
-				FadingSunsTheme.getSubtitleFont(), FadingSunsTheme.TABLE_LINE_FONT_SIZE);
-		cell.setMinimumHeight(10);
+		return createTableSubtitleElement(text, 10);
+	}
+
+	protected static PdfPCell createTableSubtitleElement(String text, int height) {
+		PdfPCell cell = BaseElement.getCell(text, 0, 1, Element.ALIGN_CENTER,
+				BaseColor.WHITE, FadingSunsTheme.getSubtitleFont(),
+				FadingSunsTheme.TABLE_LINE_FONT_SIZE);
+		cell.setMinimumHeight(height);
 		cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		return cell;
 	}
