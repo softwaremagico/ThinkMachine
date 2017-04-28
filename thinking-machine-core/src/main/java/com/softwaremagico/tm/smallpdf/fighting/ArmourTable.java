@@ -89,13 +89,13 @@ public class ArmourTable extends CustomPdfTable {
 		if (characterPlayer == null || characterPlayer.getShield() == null) {
 			table.addCell(createEmptyElementLine(" ", ARMOUR_VALUE_COLUMN_WIDTH));
 		} else {
-			table.addCell(createBasicElementLine(characterPlayer.getShield().getImpact() + "", FadingSunsTheme.ARMOUR_CONTENT_FONT_SIZE - 1));
+			table.addCell(createElementLine(characterPlayer.getShield().getImpact() + "", FadingSunsTheme.ARMOUR_CONTENT_FONT_SIZE - 1));
 		}
 		table.addCell(createEmptyElementLine("/"));
 		if (characterPlayer == null || characterPlayer.getShield() == null) {
 			table.addCell(createEmptyElementLine(" ", ARMOUR_VALUE_COLUMN_WIDTH));
 		} else {
-			table.addCell(createBasicElementLine(characterPlayer.getShield().getForce() + "", FadingSunsTheme.ARMOUR_CONTENT_FONT_SIZE - 1));
+			table.addCell(createElementLine(characterPlayer.getShield().getForce() + "", FadingSunsTheme.ARMOUR_CONTENT_FONT_SIZE - 1));
 		}
 		table.addCell(createEmptyElementLine(")"));
 

@@ -28,6 +28,7 @@ import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.combat.LearnedStance;
 import com.softwaremagico.tm.pdf.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.elements.LateralHeaderPdfPTable;
+import com.softwaremagico.tm.pdf.utils.CellUtils;
 
 public class StancesTable extends LateralHeaderPdfPTable {
 	private final static float[] WIDTHS = { 2f, 11f, 23f };
@@ -65,9 +66,18 @@ public class StancesTable extends LateralHeaderPdfPTable {
 
 		int added = 0;
 		if (characterPlayer != null) {
-			for(LearnedStance stance : characterPlayer.getLearnedStances()){
+			for (LearnedStance stance : characterPlayer.getLearnedStances()) {
+				System.out.println(" ################################");
+				System.out
+						.println(CellUtils.getSubStringFitsIn(
+								stance.getDescription(),
+								FadingSunsTheme.getHandwrittingFont(),
+								FadingSunsTheme
+										.getHandWrittingFontSize(FadingSunsTheme.TABLE_LINE_FONT_SIZE),
+										DESCRIPTION_COLUMN_WIDTH));
 				addCell(createElementLine(stance.getName(), NAME_COLUMN_WIDTH));
-				addCell(createElementLine(stance.getDescription(), DESCRIPTION_COLUMN_WIDTH));
+				addCell(createElementLine(stance.getDescription(),
+						DESCRIPTION_COLUMN_WIDTH));
 				added++;
 			}
 		}

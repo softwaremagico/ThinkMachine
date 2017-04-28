@@ -83,12 +83,10 @@ public abstract class CustomPdfTable extends PdfPTable {
 		return createEmptyElementLine(remainingText);
 	}
 
-	protected static PdfPCell createBasicElementLine(String text, int fontSize) {
-		PdfPCell cell = BaseElement.getCell(
-				CellUtils.getSubStringFitsIn(text,
-						FadingSunsTheme.getHandwrittingFont(), fontSize, 70),
-				0, 1, Element.ALIGN_CENTER, BaseColor.WHITE,
-				FadingSunsTheme.getHandwrittingFont(), fontSize);
+	private static PdfPCell createBasicElementLine(String text, int fontSize) {
+		PdfPCell cell = BaseElement.getCell(text, 0, 1, Element.ALIGN_CENTER,
+				BaseColor.WHITE, FadingSunsTheme.getHandwrittingFont(),
+				fontSize);
 		cell.setMinimumHeight(12);
 		cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		return cell;

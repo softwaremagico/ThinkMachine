@@ -143,7 +143,7 @@ public class CharacterSheetCreationTest {
 		CombatStyle shaidan = new CombatStyle("Shydan");
 		shaidan.addElement(new CombatAction("Palma Real", null, "-1", ""));
 		shaidan.addElement(new CombatAction("Con un Pie en el Trono", 4, null, "+4 a resistir derribos"));
-		shaidan.addElement(new CombatAction("Decreto Imperial", null, "+1/1W", null));
+		shaidan.addElement(new CombatAction("Decreto Imperial", null, "+1 / 1W", null));
 		player.getMeleeCombatStyles().add(shaidan);
 		
 		player.getLearnedStances().add(new LearnedStance("Posición Acrobática", "+1 a defensa por volteretas"));
