@@ -41,12 +41,25 @@ public class WeaponsAndArmours extends BaseElement {
 		table.getDefaultCell().setBorder(0);
 
 		PdfPTable leftTable = new PdfPTable(new float[] { 1f });
+		setTablePropierties(leftTable);
+		leftTable.getDefaultCell().setBorder(0);
+		leftTable.getDefaultCell().setPadding(0);
 
 		PdfPCell fireArmsCell = new PdfPCell(new WeaponsTable(characterPlayer));
 		leftTable.addCell(fireArmsCell);
 
+		PdfPTable stancesXpTable = new PdfPTable(new float[] { 4f, 1f });
+		setTablePropierties(stancesXpTable);
+		stancesXpTable.getDefaultCell().setBorder(0);
+		stancesXpTable.getDefaultCell().setPadding(0);
+		
 		PdfPCell stancesCell = new PdfPCell(new StancesTable(characterPlayer));
-		leftTable.addCell(stancesCell);
+		stancesXpTable.addCell(stancesCell);
+		
+		PdfPCell experienceCell = new PdfPCell(new ExperienceTable(characterPlayer));
+		stancesXpTable.addCell(experienceCell);
+		
+		leftTable.addCell(stancesXpTable);
 
 		PdfPCell leftCell = new PdfPCell(leftTable);
 		leftCell.setRowspan(2);

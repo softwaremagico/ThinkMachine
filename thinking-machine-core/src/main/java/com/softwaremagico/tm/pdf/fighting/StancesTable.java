@@ -5,12 +5,12 @@ import com.softwaremagico.tm.pdf.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.elements.LateralHeaderPdfPTable;
 
 public class StancesTable extends LateralHeaderPdfPTable {
-	private final static float[] WIDTHS = { 1.6f, 11f, 23f };
+	private final static float[] WIDTHS = { 2f, 11f, 23f };
 	private final static String GAP = "_____________________________________";
 	private final static int ROWS = 5;
 
 	private final static int NAME_COLUMN_WIDTH = 80;
-	private final static int DESCRIPTION_COLUMN_WIDTH = 250;
+	private final static int DESCRIPTION_COLUMN_WIDTH = 150;
 
 	protected StancesTable(CharacterPlayer characterPlayer) {
 		super(WIDTHS);
@@ -19,9 +19,9 @@ public class StancesTable extends LateralHeaderPdfPTable {
 				getTranslator().getTranslatedText("stances"), ROWS + 3));
 
 		addCell(createTableSubtitleElement(getTranslator().getTranslatedText(
-				"stanceName")));
+				"stanceName"), 13));
 		addCell(createTableSubtitleElement(getTranslator().getTranslatedText(
-				"stanceDescription")));
+				"stanceDescription"), 13));
 
 		addCell(createEmptyElementLine(getTranslator().getTranslatedText(
 				"agressiveStance")));

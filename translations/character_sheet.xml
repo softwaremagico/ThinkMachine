@@ -544,4 +544,8 @@
 		<en>Combat</en>
 		<es>Combate</es>
 	</combat>
+	<experience>
+		<en>XP</en>
+		<es>EXP</es>
+	</experience>
 </translator>
