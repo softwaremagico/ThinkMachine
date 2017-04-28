@@ -34,8 +34,14 @@ import com.softwaremagico.tm.pdf.FadingSunsTheme;
 public abstract class LateralHeaderPdfPTable extends CustomPdfTable {
 
 	protected LateralHeaderPdfPTable(float[] widths) {
+		this(widths, true);
+	}
+
+	protected LateralHeaderPdfPTable(float[] widths, boolean event) {
 		super(widths);
-		setTableEvent(new TableBorderEvent());
+		if (event) {
+			setTableEvent(new TableBorderEvent());
+		}
 	}
 
 	protected abstract int getTitleFontSize();

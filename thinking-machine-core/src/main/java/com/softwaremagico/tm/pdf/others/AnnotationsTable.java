@@ -36,11 +36,21 @@ public class AnnotationsTable extends LateralHeaderPdfPTable {
 	private final static int CELL_HEIGHT = 70;
 
 	public AnnotationsTable() {
-		super(WIDTHS);
-		addCell(createLateralVerticalTitle(getTranslator().getTranslatedText("annotationsTable"), 2));
+		super(WIDTHS, false);
 
-		addCell(createSubtitleLine(getTranslator().getTranslatedText("characterAnnotations")));
-		addCell(createSubtitleLine(getTranslator().getTranslatedText("historyAnnotations")));
+		PdfPCell cell = createLateralVerticalTitle(getTranslator()
+				.getTranslatedText("annotationsTable"), 2);
+		cell.setBorderWidth(2);
+		addCell(cell);
+
+		cell = createSubtitleLine(getTranslator().getTranslatedText(
+				"characterAnnotations"));
+		cell.setBorderWidth(0);
+		addCell(cell);
+		cell = createSubtitleLine(getTranslator().getTranslatedText(
+				"historyAnnotations"));
+		cell.setBorderWidth(2);
+		addCell(cell);
 	}
 
 	@Override
@@ -49,7 +59,8 @@ public class AnnotationsTable extends LateralHeaderPdfPTable {
 	}
 
 	protected static PdfPCell createSubtitleLine(String text) {
-		PdfPCell cell = BaseElement.getCell(text, 1, 1, Element.ALIGN_LEFT, BaseColor.WHITE, FadingSunsTheme.getTitleFont(),
+		PdfPCell cell = BaseElement.getCell(text, 1, 1, Element.ALIGN_LEFT,
+				BaseColor.WHITE, FadingSunsTheme.getTitleFont(),
 				FadingSunsTheme.ANNOTATIONS_SUBTITLE_FONT_SIZE);
 		cell.setMinimumHeight(CELL_HEIGHT);
 		cell.setVerticalAlignment(Element.ALIGN_TOP);
