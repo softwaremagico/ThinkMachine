@@ -42,6 +42,7 @@ import com.softwaremagico.tm.character.Race;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.combat.CombatAction;
 import com.softwaremagico.tm.character.combat.CombatStyle;
+import com.softwaremagico.tm.character.combat.LearnedStance;
 import com.softwaremagico.tm.character.cybernetics.Device;
 import com.softwaremagico.tm.character.equipment.Armour;
 import com.softwaremagico.tm.character.equipment.Shield;
@@ -144,6 +145,8 @@ public class CharacterSheetCreationTest {
 		shaidan.addElement(new CombatAction("Con un Pie en el Trono", 4, null, "+4 a resistir derribos"));
 		shaidan.addElement(new CombatAction("Decreto Imperial", null, "+1/1W", null));
 		player.getMeleeCombatStyles().add(shaidan);
+		
+		player.getLearnedStances().add(new LearnedStance("Posición Acrobática", "+1 a defensa por volteretas"));
 
 		player.getWeapons().addElement(new Weapon("Maza", "Ds+Lucha", null, 5, "4", null, null, 1, Size.L));
 		player.getWeapons().addElement(new Weapon("Martech Oro", "Ds+Ar. Energía", 1, 5, "10/20", 15, "2", 6, Size.S, "Láser"));

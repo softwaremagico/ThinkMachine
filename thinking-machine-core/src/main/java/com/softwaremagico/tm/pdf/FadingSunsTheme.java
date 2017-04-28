@@ -67,6 +67,7 @@ public abstract class FadingSunsTheme {
 	public final static int INFO_CONTENT_FONT_SIZE = 7;
 	public final static int FOOTER_FONT_SIZE = 8;
 	public final static int POSITIONS_CONTENT_FONT_SIZE = 6;
+	public final static int EXPERIENCE_VALUE_FONT_SIZE = 10;
 	
 	public final static int CHARACTER_SMALL_BASICS_FONT_SIZE = 9;
 	public final static int CHARACTER_SMALL_TITLE_FONT_SIZE = 12;
