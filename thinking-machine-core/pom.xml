@@ -84,6 +84,35 @@
 			</activation>
 			<build>
 				<plugins>
+				<!-- Copy geneerateed PDF -->
+					<plugin>
+						<artifactId>maven-antrun-plugin</artifactId>
+						<version>${maven-antrun-plugin.version}</version>
+						<executions>
+							<execution>
+								<phase>install</phase>
+								<configuration>
+									<target>
+										<!-- delete old folder -->
+										<delete dir="${main.basedir}/sheets" failonerror="false"
+											includeemptydirs="true" />
+										<!-- Copy sheets -->
+										<copy
+											file="/tmp/FadingSuns_EN.pdf"
+											tofile="${main.basedir}/sheets/FadingSuns_EN.pdf"
+											overwrite="true" />
+										<copy
+											file="/tmp/FadingSuns_ES.pdf"
+											tofile="${main.basedir}/sheets/FadingSuns_ES.pdf"
+											overwrite="true" />
+									</target>
+								</configuration>
+								<goals>
+									<goal>run</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
 					<!-- Convert PDF to PNG -->
 					<plugin>
 						<artifactId>exec-maven-plugin</artifactId>
@@ -104,8 +133,8 @@
 										<argument>remove</argument>
 										<argument>-density</argument>
 										<argument>600</argument>
-										<argument>/data/workspace/TheThinkingMachine/sheets/FadingSuns_ES.pdf</argument>
-										<argument>/data/workspace/TheThinkingMachine/sheets/FadingSuns_ES-%01d.png</argument>
+										<argument>${main.basedir}/sheets/FadingSuns_ES.pdf</argument>
+										<argument>${main.basedir}/sheets/FadingSuns_ES-%01d.png</argument>
 									</arguments>
 								</configuration>
 							</execution>
@@ -124,8 +153,8 @@
 										<argument>remove</argument>
 										<argument>-density</argument>
 										<argument>600</argument>
-										<argument>/data/workspace/TheThinkingMachine/sheets/FadingSuns_EN.pdf</argument>
-										<argument>/data/workspace/TheThinkingMachine/sheets/FadingSuns_EN-%01d.png</argument>
+										<argument>${main.basedir}/sheets/FadingSuns_EN.pdf</argument>
+										<argument>${main.basedir}/sheets/FadingSuns_EN-%01d.png</argument>
 									</arguments>
 								</configuration>
 							</execution>

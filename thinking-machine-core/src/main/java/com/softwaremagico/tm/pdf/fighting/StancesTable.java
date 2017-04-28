@@ -67,14 +67,6 @@ public class StancesTable extends LateralHeaderPdfPTable {
 		int added = 0;
 		if (characterPlayer != null) {
 			for (LearnedStance stance : characterPlayer.getLearnedStances()) {
-				System.out.println(" ################################");
-				System.out
-						.println(CellUtils.getSubStringFitsIn(
-								stance.getDescription(),
-								FadingSunsTheme.getHandwrittingFont(),
-								FadingSunsTheme
-										.getHandWrittingFontSize(FadingSunsTheme.TABLE_LINE_FONT_SIZE),
-										DESCRIPTION_COLUMN_WIDTH));
 				addCell(createElementLine(stance.getName(), NAME_COLUMN_WIDTH));
 				addCell(createElementLine(stance.getDescription(),
 						DESCRIPTION_COLUMN_WIDTH));
