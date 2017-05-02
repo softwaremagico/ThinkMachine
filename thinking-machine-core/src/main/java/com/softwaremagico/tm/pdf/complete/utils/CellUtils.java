@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.random;
+package com.softwaremagico.tm.pdf.complete.utils;
 
 /*-
  * #%L
@@ -24,26 +24,20 @@ package com.softwaremagico.tm.random;
  * #L%
  */
 
-import java.io.File;
+import com.itextpdf.text.pdf.BaseFont;
 
-import org.testng.annotations.Test;
+public class CellUtils {
 
-import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.language.LanguagePool;
-import com.softwaremagico.tm.pdf.complete.CharacterSheet;
+	public static String getSubStringFitsIn(String originalText, BaseFont font, int fontSize, float width) {
+		String text = originalText;
 
-@Test(groups = { "randomCharacter" })
-public class RandomCharacterTest {
+		while (!fitsIn(text, font, fontSize, width) && text.length() > 0) {
+			text = text.substring(0, text.length() - 1);
+		}
+		return text;
+	}
 
-	@Test
-	public void basicCharacterCreation() {
-		CharacterPlayer characterPlayer = new CharacterPlayer("es");
-		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 3, 1, 1, 0);
-		randomizeCharacter.createCharacter();
-		
-		LanguagePool.clearCache();
-		CharacterSheet sheet = new CharacterSheet(characterPlayer);
-		sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Random.pdf");
-
+	public static boolean fitsIn(String text, BaseFont font, int fontSize, float width) {
+		return font.getWidthPoint(text, fontSize) < width;
 	}
 }

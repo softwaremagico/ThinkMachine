@@ -51,8 +51,8 @@ import com.softwaremagico.tm.character.skills.CyberneticSkill;
 import com.softwaremagico.tm.character.traits.Benefit;
 import com.softwaremagico.tm.character.traits.Blessing;
 import com.softwaremagico.tm.language.LanguagePool;
-import com.softwaremagico.tm.pdf.CharacterSheet;
-import com.softwaremagico.tm.smallpdf.SmallCharacterSheet;
+import com.softwaremagico.tm.pdf.complete.CharacterSheet;
+import com.softwaremagico.tm.pdf.small.SmallCharacterSheet;
 
 @Test(groups = { "customCharacterGeneration" })
 public class CustomCharacters {

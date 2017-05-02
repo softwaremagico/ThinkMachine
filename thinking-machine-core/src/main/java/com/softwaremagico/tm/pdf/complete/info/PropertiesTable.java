@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.random;
+package com.softwaremagico.tm.pdf.complete.info;
 
 /*-
  * #%L
@@ -24,26 +24,19 @@ package com.softwaremagico.tm.random;
  * #L%
  */
 
-import java.io.File;
+import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
+import com.softwaremagico.tm.pdf.complete.elements.VerticalTable;
 
-import org.testng.annotations.Test;
+public class PropertiesTable extends VerticalTable {
+	private final static float[] WIDTHS = { 1f };
+	private final static int ROWS = 9;
 
-import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.language.LanguagePool;
-import com.softwaremagico.tm.pdf.complete.CharacterSheet;
+	public PropertiesTable() {
+		super(WIDTHS);
 
-@Test(groups = { "randomCharacter" })
-public class RandomCharacterTest {
-
-	@Test
-	public void basicCharacterCreation() {
-		CharacterPlayer characterPlayer = new CharacterPlayer("es");
-		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 3, 1, 1, 0);
-		randomizeCharacter.createCharacter();
-		
-		LanguagePool.clearCache();
-		CharacterSheet sheet = new CharacterSheet(characterPlayer);
-		sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Random.pdf");
-
+		addCell(createTitle(getTranslator().getTranslatedText("properties"), FadingSunsTheme.VERTICALTABLE_TITLE_FONT_SIZE));
+		for (int i = 0; i < ROWS; i++) {
+			addCell(createEmptyElementLine("______________________________________________"));
+		}
 	}
 }

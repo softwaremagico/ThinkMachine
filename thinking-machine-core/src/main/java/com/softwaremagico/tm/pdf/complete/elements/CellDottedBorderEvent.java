@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.random;
+package com.softwaremagico.tm.pdf.complete.elements;
 
 /*-
  * #%L
@@ -24,26 +24,25 @@ package com.softwaremagico.tm.random;
  * #L%
  */
 
-import java.io.File;
+import com.itextpdf.text.Rectangle;
+import com.itextpdf.text.pdf.PdfContentByte;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPCellEvent;
+import com.itextpdf.text.pdf.PdfPTable;
 
-import org.testng.annotations.Test;
+public class CellDottedBorderEvent implements PdfPCellEvent {
 
-import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.language.LanguagePool;
-import com.softwaremagico.tm.pdf.complete.CharacterSheet;
+	public CellDottedBorderEvent() {
 
-@Test(groups = { "randomCharacter" })
-public class RandomCharacterTest {
+	}
 
-	@Test
-	public void basicCharacterCreation() {
-		CharacterPlayer characterPlayer = new CharacterPlayer("es");
-		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 3, 1, 1, 0);
-		randomizeCharacter.createCharacter();
-		
-		LanguagePool.clearCache();
-		CharacterSheet sheet = new CharacterSheet(characterPlayer);
-		sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Random.pdf");
-
+	public void cellLayout(PdfPCell cell, Rectangle position, PdfContentByte[] canvases) {
+		PdfContentByte canvas = canvases[PdfPTable.LINECANVAS];
+		canvas.setLineDash(3f, 3f);
+		canvas.moveTo(position.getLeft(), position.getTop());
+		canvas.lineTo(position.getRight(), position.getTop());
+		canvas.moveTo(position.getLeft(), position.getBottom());
+		canvas.lineTo(position.getRight(), position.getBottom());
+		canvas.stroke();
 	}
 }

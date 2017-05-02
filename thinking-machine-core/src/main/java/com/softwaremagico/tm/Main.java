@@ -7,7 +7,7 @@ import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.json.CharacterJsonManager;
 import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.log.MachineLog;
-import com.softwaremagico.tm.pdf.CharacterSheet;
+import com.softwaremagico.tm.pdf.complete.CharacterSheet;
 
 /*-
  * #%L

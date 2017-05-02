@@ -53,7 +53,7 @@ import com.softwaremagico.tm.character.traits.Benefit;
 import com.softwaremagico.tm.character.traits.Blessing;
 import com.softwaremagico.tm.json.CharacterJsonManager;
 import com.softwaremagico.tm.language.LanguagePool;
-import com.softwaremagico.tm.pdf.CharacterSheet;
+import com.softwaremagico.tm.pdf.complete.CharacterSheet;
 
 @Test(groups = { "characterPdfGeneration" })
 public class CharacterSheetCreationTest {

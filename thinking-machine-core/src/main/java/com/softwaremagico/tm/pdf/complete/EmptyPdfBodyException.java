@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.random;
+package com.softwaremagico.tm.pdf.complete;
 
 /*-
  * #%L
@@ -24,26 +24,10 @@ package com.softwaremagico.tm.random;
  * #L%
  */
 
-import java.io.File;
+public class EmptyPdfBodyException extends Exception {
+	private static final long serialVersionUID = -8207546492378482320L;
 
-import org.testng.annotations.Test;
-
-import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.language.LanguagePool;
-import com.softwaremagico.tm.pdf.complete.CharacterSheet;
-
-@Test(groups = { "randomCharacter" })
-public class RandomCharacterTest {
-
-	@Test
-	public void basicCharacterCreation() {
-		CharacterPlayer characterPlayer = new CharacterPlayer("es");
-		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 3, 1, 1, 0);
-		randomizeCharacter.createCharacter();
-		
-		LanguagePool.clearCache();
-		CharacterSheet sheet = new CharacterSheet(characterPlayer);
-		sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Random.pdf");
-
+	public EmptyPdfBodyException(String text) {
+		super(text);
 	}
 }
