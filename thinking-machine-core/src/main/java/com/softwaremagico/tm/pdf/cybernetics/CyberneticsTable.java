@@ -58,7 +58,7 @@ public class CyberneticsTable extends LateralHeaderPdfPTable {
 		int addedDevices = 0;
 		if (characterPlayer != null) {
 			for (Device device : characterPlayer.getCybernetics().getElements()) {
-				addCell(createElementLine(device.getName(), NAME_COLUMN_WIDTH, FadingSunsTheme.CYBERNETICS_CONTENT_FONT_SIZE));
+				addCell(createFirstElementLine(device.getName(), NAME_COLUMN_WIDTH, FadingSunsTheme.CYBERNETICS_CONTENT_FONT_SIZE));
 				addCell(createElementLine(device.getPoints() + "", POINTS_COLUMN_WIDTH, FadingSunsTheme.CYBERNETICS_CONTENT_FONT_SIZE));
 				addCell(createElementLine(device.getIncompatibility() + "", INCOMPATIBILITY_COLUMN_WIDTH, FadingSunsTheme.CYBERNETICS_CONTENT_FONT_SIZE));
 				addCell(createElementLine(device.getUsability(), USABILITY_COLUMN_WIDTH, FadingSunsTheme.CYBERNETICS_CONTENT_FONT_SIZE));

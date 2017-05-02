@@ -38,6 +38,7 @@ import com.softwaremagico.tm.pdf.events.SheetBackgroundEvent;
 import com.softwaremagico.tm.smallpdf.characteristics.CharacteristicsTableFactory;
 import com.softwaremagico.tm.smallpdf.counters.VitalityTable;
 import com.softwaremagico.tm.smallpdf.counters.WyrdTable;
+import com.softwaremagico.tm.smallpdf.cybernetics.CyberneticsTable;
 import com.softwaremagico.tm.smallpdf.fighting.ArmourTable;
 import com.softwaremagico.tm.smallpdf.fighting.WeaponsTable;
 import com.softwaremagico.tm.smallpdf.info.CharacterBasicsReducedTableFactory;
@@ -146,11 +147,18 @@ public class SmallCharacterSheet extends PdfDocument {
 
 		PdfPTable fightTable = new PdfPTable(new float[] { 3f, 5f, 1f });
 
-		PdfPTable occultismTable = new OccultismTable(getCharacterPlayer());
-		PdfPCell occultismCell = new PdfPCell(occultismTable);
-		occultismCell.setBorderWidthLeft(0);
-		//occultismCell.setBorderWidthBottom(1);
-		fightTable.addCell(occultismCell);
+		if (characterPlayer.getOccultism().getElements().isEmpty() && !characterPlayer.getCybernetics().getElements().isEmpty()) {
+			PdfPTable cyberneticsTable = new CyberneticsTable(getCharacterPlayer());
+			PdfPCell cyberneticsCell = new PdfPCell(cyberneticsTable);
+			cyberneticsCell.setBorderWidthLeft(0);
+			fightTable.addCell(cyberneticsCell);
+
+		} else {
+			PdfPTable occultismTable = new OccultismTable(getCharacterPlayer());
+			PdfPCell occultismCell = new PdfPCell(occultismTable);
+			occultismCell.setBorderWidthLeft(0);
+			fightTable.addCell(occultismCell);
+		}
 
 		PdfPTable weaponsTable = new WeaponsTable(getCharacterPlayer());
 		fightTable.addCell(weaponsTable);
