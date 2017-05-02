@@ -80,7 +80,7 @@ public class OccultismTable extends VerticalTable {
 		if (characterPlayer != null) {
 			for (OccultismPower occultismPower : characterPlayer.getOccultism().getElements()) {
 				if (occultismPower.isEnabled()) {
-					PdfPCell cell = createElementLine(occultismPower.getName(), POWER_COLUMN_WIDTH, FadingSunsTheme.CHARACTER_SMALL_OCCULTISM_LINE_FONT_SIZE);
+					PdfPCell cell = createFirstElementLine(occultismPower.getName(), POWER_COLUMN_WIDTH, FadingSunsTheme.CHARACTER_SMALL_OCCULTISM_LINE_FONT_SIZE);
 					cell.setColspan(WIDTHS.length - 1);
 					cell.setHorizontalAlignment(Element.ALIGN_LEFT);
 					addCell(cell);

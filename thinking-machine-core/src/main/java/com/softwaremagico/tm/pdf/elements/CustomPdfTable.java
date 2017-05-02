@@ -39,8 +39,7 @@ import com.softwaremagico.tm.pdf.utils.CellUtils;
 
 public abstract class CustomPdfTable extends PdfPTable {
 	private float[] columnWidths;
-	private static ITranslator translator = LanguagePool
-			.getTranslator("character_sheet.xml");
+	private static ITranslator translator = LanguagePool.getTranslator("character_sheet.xml");
 
 	public CustomPdfTable(float[] widths) {
 		super(widths);
@@ -68,62 +67,50 @@ public abstract class CustomPdfTable extends PdfPTable {
 	}
 
 	protected static PdfPCell createEmptyElementLine(int alignment, String text) {
-		PdfPCell cell = BaseElement.getCell(text, 0, 1, alignment,
-				BaseColor.WHITE, FadingSunsTheme.getLineFont(),
-				FadingSunsTheme.TABLE_LINE_FONT_SIZE);
+		PdfPCell cell = BaseElement.getCell(text, 0, 1, alignment, BaseColor.WHITE, FadingSunsTheme.getLineFont(), FadingSunsTheme.TABLE_LINE_FONT_SIZE);
 		cell.setMinimumHeight(10);
 		cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		return cell;
 	}
 
 	protected static PdfPCell createEmptyElementLine(String text, int maxWidth) {
-		String remainingText = CellUtils.getSubStringFitsIn(text,
-				FadingSunsTheme.getLineFont(),
-				FadingSunsTheme.TABLE_LINE_FONT_SIZE, maxWidth);
+		String remainingText = CellUtils.getSubStringFitsIn(text, FadingSunsTheme.getLineFont(), FadingSunsTheme.TABLE_LINE_FONT_SIZE, maxWidth);
 		return createEmptyElementLine(remainingText);
 	}
 
 	private static PdfPCell createBasicElementLine(String text, int fontSize) {
-		PdfPCell cell = BaseElement.getCell(text, 0, 1, Element.ALIGN_CENTER,
-				BaseColor.WHITE, FadingSunsTheme.getHandwrittingFont(),
-				fontSize);
+		PdfPCell cell = BaseElement.getCell(text, 0, 1, Element.ALIGN_CENTER, BaseColor.WHITE, FadingSunsTheme.getHandwrittingFont(), fontSize);
 		cell.setMinimumHeight(12);
 		cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		return cell;
 	}
 
 	protected static PdfPCell createElementLine(String text, int maxWidth) {
-		return createElementLine(
-				text,
-				maxWidth,
-				FadingSunsTheme
-						.getHandWrittingFontSize(FadingSunsTheme.TABLE_LINE_FONT_SIZE));
+		return createElementLine(text, maxWidth, FadingSunsTheme.getHandWrittingFontSize(FadingSunsTheme.TABLE_LINE_FONT_SIZE));
 	}
 
 	protected static PdfPCell createElementLine(Integer value, int maxWidth) {
-		return createElementLine(
-				value,
-				maxWidth,
-				FadingSunsTheme
-						.getHandWrittingFontSize(FadingSunsTheme.TABLE_LINE_FONT_SIZE));
+		return createElementLine(value, maxWidth, FadingSunsTheme.getHandWrittingFontSize(FadingSunsTheme.TABLE_LINE_FONT_SIZE));
 	}
 
-	protected static PdfPCell createElementLine(Integer value, int maxWidth,
-			int fontSize) {
+	protected static PdfPCell createElementLine(Integer value, int maxWidth, int fontSize) {
 		if (value == null) {
 			return createElementLine("", maxWidth, fontSize);
 		}
-		return createElementLine((value > 0 ? "+" + value : value + ""),
-				maxWidth, fontSize);
+		return createElementLine((value > 0 ? "+" + value : value + ""), maxWidth, fontSize);
 	}
 
-	protected static PdfPCell createElementLine(String text, int maxWidth,
-			int fontSize) {
+	protected static PdfPCell createFirstElementLine(String text, int maxWidth, int fontSize) {
+		PdfPCell cell = createElementLine(text, maxWidth, fontSize);
+		cell.setHorizontalAlignment(Element.ALIGN_LEFT);
+		return cell;
+	}
+
+	protected static PdfPCell createElementLine(String text, int maxWidth, int fontSize) {
 		if (text == null || text.equals("null")) {
 			text = "";
 		}
-		String remainingText = CellUtils.getSubStringFitsIn(text,
-				FadingSunsTheme.getHandwrittingFont(), fontSize, maxWidth);
+		String remainingText = CellUtils.getSubStringFitsIn(text, FadingSunsTheme.getHandwrittingFont(), fontSize, maxWidth);
 		return createBasicElementLine(remainingText, fontSize);
 	}
 
@@ -139,8 +126,7 @@ public abstract class CustomPdfTable extends PdfPTable {
 		PdfPCell box = new PdfPCell();
 		box.setMinimumHeight(15);
 		box.setBorder(0);
-		box.setCellEvent(new CellCompleteBoxEvent(new Border[] { Border.TOP,
-				Border.BOTTOM, Border.LEFT, Border.RIGHT }));
+		box.setCellEvent(new CellCompleteBoxEvent(new Border[] { Border.TOP, Border.BOTTOM, Border.LEFT, Border.RIGHT }));
 		return box;
 	}
 
@@ -152,15 +138,12 @@ public abstract class CustomPdfTable extends PdfPTable {
 		if (value == null) {
 			return createRectangle();
 		}
-		PdfPCell box = new PdfPCell(new Paragraph(value, new Font(
-				FadingSunsTheme.getHandwrittingFont(),
-				FadingSunsTheme.HANDWRITTING_DEFAULT_FONT_SIZE)));
+		PdfPCell box = new PdfPCell(new Paragraph(value, new Font(FadingSunsTheme.getHandwrittingFont(), FadingSunsTheme.HANDWRITTING_DEFAULT_FONT_SIZE)));
 		box.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		box.setHorizontalAlignment(Element.ALIGN_CENTER);
 		box.setMinimumHeight(15);
 		box.setBorder(0);
-		box.setCellEvent(new CellCompleteBoxEvent(new Border[] { Border.TOP,
-				Border.BOTTOM, Border.LEFT, Border.RIGHT }));
+		box.setCellEvent(new CellCompleteBoxEvent(new Border[] { Border.TOP, Border.BOTTOM, Border.LEFT, Border.RIGHT }));
 		return box;
 	}
 

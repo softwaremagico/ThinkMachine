@@ -27,13 +27,19 @@ package com.softwaremagico.tm.smallpdf.fighting;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Paragraph;
 import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.character.equipment.Weapon;
 import com.softwaremagico.tm.pdf.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.elements.VerticalTable;
 
 public class WeaponsTable extends VerticalTable {
-	private final static int TRAIT_COLUMN_WIDTH = 100;
-	private final static float[] WIDTHS = { 3f, 1f, 1f, 1f, 1f };
+	private final static float[] WIDTHS = { 3f, 1f, 1f, 1.5f, 1f, 1f };
 	private final static int ROWS = 8;
+	private final static int NAME_COLUMN_WIDTH = 60;
+	private final static int GOAL_COLUMN_WIDTH = 15;
+	private final static int DAMAGE_COLUMN_WIDTH = 30;
+	private final static int RANGE_COLUMN_WIDTH = 30;
+	private final static int SHOTS_COLUMN_WIDTH = 30;
+	private final static int RATE_COLUMN_WIDTH = 30;
 
 	public WeaponsTable(CharacterPlayer characterPlayer) {
 		super(WIDTHS);
@@ -44,15 +50,31 @@ public class WeaponsTable extends VerticalTable {
 		addCell(createSubtitleLine(getTranslator().getTranslatedText("weaponGoal"), FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE));
 		addCell(createSubtitleLine(getTranslator().getTranslatedText("weaponDamage"), FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE));
 		addCell(createSubtitleLine(getTranslator().getTranslatedText("weaponRange"), FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE));
+		addCell(createSubtitleLine(getTranslator().getTranslatedText("weaponShots"), FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE));
 		addCell(createSubtitleLine(getTranslator().getTranslatedText("weaponRate"), FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE));
 
 		int added = 0;
 		if (characterPlayer != null) {
-
+			for (Weapon weapon : characterPlayer.getWeapons().getElements()) {
+				addCell(createFirstElementLine(weapon.getName(), NAME_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_SMALL_CONTENT_FONT_SIZE));
+				addCell(createElementLine((weapon.getGoal() > 0 ? "+" : "") + weapon.getGoal(), GOAL_COLUMN_WIDTH,
+						FadingSunsTheme.WEAPONS_SMALL_CONTENT_FONT_SIZE));
+				addCell(createElementLine(weapon.getDamage() + "d", DAMAGE_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_SMALL_CONTENT_FONT_SIZE));
+				addCell(createElementLine(weapon.getShots() == null ? characterPlayer.getStrengthDamangeModification() + "" : weapon.getStrengthOrRange(),
+						RANGE_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_SMALL_CONTENT_FONT_SIZE));
+				addCell(createElementLine(weapon.getShots() + "", SHOTS_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_SMALL_CONTENT_FONT_SIZE));
+				addCell(createElementLine(weapon.getRate(), RATE_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_SMALL_CONTENT_FONT_SIZE));
+				added++;
+			}
 		}
 
 		for (int i = added; i < ROWS; i++) {
 			for (int j = 0; j < WIDTHS.length; j++) {
+				addCell(new Paragraph(""));
+				addCell(new Paragraph(""));
+				addCell(new Paragraph(""));
+				addCell(new Paragraph(""));
+				addCell(new Paragraph(""));
 				addCell(new Paragraph(""));
 			}
 		}
