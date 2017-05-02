@@ -50,9 +50,13 @@ And all the possible PDFs will be generated and later converted to PNG. Final re
 
 ## Notes
 This software has been developed using the [iText library](http://itextpdf.com/) for PDF generation. 
+
 Fading Suns is a TradeMark owned by Holistic Design. 
+
 Fonts used in this project: DejaVuSans, ArchitectsDaughter and Roman Antique. 
+
 [ImageMagick](https://www.imagemagick.org/script/index.php) is a free image manipulation software.
+
 
 ## Versions
 
@@ -60,4 +64,6 @@ Fonts used in this project: DejaVuSans, ArchitectsDaughter and Roman Antique.
 
 0.2.0 Multilingual added (English and Spanish).
 
-*0.3.0 Filling up the sheet.*
+0.3.0 Small PDF chart generation added.
+
+*0.4.0 Filling up the sheet.*
