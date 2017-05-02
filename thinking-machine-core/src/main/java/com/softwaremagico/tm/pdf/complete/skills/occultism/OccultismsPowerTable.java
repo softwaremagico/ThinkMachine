@@ -33,7 +33,7 @@ public class OccultismsPowerTable extends LateralHeaderPdfPTable {
 	private final static float[] WIDTHS = { 1.25f, 5f, 2f, 5f, 4f, 4f, 4f, 3f };
 	private final static int ROWS = 10;
 	private final static String GAP = "__________________";
-	private final static int NAME_COLUMN_WIDTH = 50;
+	private final static int NAME_COLUMN_WIDTH = 55;
 	private final static int LEVEL_COLUMN_WIDTH = 20;
 	private final static int ROLL_COLUMN_WIDTH = 45;
 	private final static int RANGE_COLUMN_WIDTH = 40;
@@ -56,7 +56,7 @@ public class OccultismsPowerTable extends LateralHeaderPdfPTable {
 		if (characterPlayer != null) {
 			for (OccultismPower occultismPower : characterPlayer.getOccultism().getElements()) {
 				if (occultismPower.isEnabled()) {
-					addCell(createElementLine(occultismPower.getName(), NAME_COLUMN_WIDTH, FadingSunsTheme.OCCULSTISM_POWERS_CONTENT_FONT_SIZE));
+					addCell(createFirstElementLine(occultismPower.getName(), NAME_COLUMN_WIDTH, FadingSunsTheme.OCCULSTISM_POWERS_CONTENT_FONT_SIZE));
 					addCell(createElementLine(occultismPower.getLevel() + "", LEVEL_COLUMN_WIDTH, FadingSunsTheme.OCCULSTISM_POWERS_CONTENT_FONT_SIZE));
 					addCell(createElementLine(occultismPower.getRoll(), ROLL_COLUMN_WIDTH, FadingSunsTheme.OCCULSTISM_POWERS_CONTENT_FONT_SIZE));
 					addCell(createElementLine(occultismPower.getRange(), RANGE_COLUMN_WIDTH, FadingSunsTheme.OCCULSTISM_POWERS_CONTENT_FONT_SIZE));

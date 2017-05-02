@@ -244,11 +244,11 @@ public class CustomCharacters {
 
 		CombatStyle fightStyle = new CombatStyle("Talón de Acero");
 		fightStyle.addElement(new CombatAction("Cadena de Destrucción", null, "3d", "Presa Especial"));
-		fightStyle.addElement(new CombatAction("Cabezado", 2, "4d", "Ignora armadura*"));
+		fightStyle.addElement(new CombatAction("Cabezazo", 2, "4d", "Ignora armadura*"));
 		player.getMeleeCombatStyles().add(fightStyle);
 
 		player.getWeapons().addElement(new Weapon("Escopeta", "Ds+Arma Fuego", 0, 7, "30/80", 7, "2", 3, Size.L, null));
-		player.getWeapons().addElement(new Weapon("Pistola Auto.", "Ds+Arma Fuego", 0, 5, "20/30", 10, "3", 4, Size.S, null));
+		player.getWeapons().addElement(new Weapon("Pistola Automática", "Ds+Arma Fuego", 0, 5, "20/30", 10, "3", 4, Size.S, null));
 
 		LanguagePool.clearCache();
 		CharacterSheet sheet = new CharacterSheet(player);

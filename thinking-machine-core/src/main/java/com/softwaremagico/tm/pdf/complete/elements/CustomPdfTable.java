@@ -62,6 +62,10 @@ public abstract class CustomPdfTable extends PdfPTable {
 		return titleCell;
 	}
 
+	protected static PdfPCell createFirstEmptyElementLine(String text) {
+		return createEmptyElementLine(Element.ALIGN_LEFT, text);
+	}
+
 	protected static PdfPCell createEmptyElementLine(String text) {
 		return createEmptyElementLine(Element.ALIGN_CENTER, text);
 	}

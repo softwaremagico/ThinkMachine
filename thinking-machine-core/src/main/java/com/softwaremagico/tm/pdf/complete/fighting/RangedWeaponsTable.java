@@ -31,13 +31,13 @@ import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.complete.elements.LateralHeaderPdfPTable;
 
 public class RangedWeaponsTable extends LateralHeaderPdfPTable {
-	private final static float[] WIDTHS = { 1.2f, 4f, 3f, 3f, 5f };
+	private final static float[] WIDTHS = { 1.2f, 4f, 3f, 2.5f, 5f };
 	private final static int ROWS = 12;
-	private final static String GAP = "_________________";
-	private final static int NAME_COLUMN_WIDHT = 50;
+	private final static String GAP = "____________________";
+	private final static int NAME_COLUMN_WIDHT = 60;
 	private final static int GOAL_COLUMN_WIDHT = 40;
-	private final static int DAMAGE_COLUMN_WIDHT = 40;
-	private final static int OTHERS_COLUMN_WIDHT = 60;
+	private final static int DAMAGE_COLUMN_WIDHT = 30;
+	private final static int OTHERS_COLUMN_WIDHT = 65;
 
 	public RangedWeaponsTable(CharacterPlayer characterPlayer) {
 		super(WIDTHS);
@@ -47,33 +47,27 @@ public class RangedWeaponsTable extends LateralHeaderPdfPTable {
 		addCell(createTableSubtitleElement(getTranslator().getTranslatedText("weaponDamage")));
 		addCell(createTableSubtitleElement(getTranslator().getTranslatedText("weaponsOthers")));
 
-		addCell(createEmptyElementLine(getTranslator().getTranslatedText("aimAction")));
+		addCell(createFirstEmptyElementLine(getTranslator().getTranslatedText("aimAction")));
 		addCell(createEmptyElementLine("+1/" + getTranslator().getTranslatedText("roundAbbreviature")));
 		addCell(createEmptyElementLine(""));
 		addCell(createEmptyElementLine(getTranslator().getTranslatedText("aimEffect")));
 
-		// addCell(createElementLine("Barrido"));
-		// addCell(createElementLine("-1/" +
-		// getTranslator().getTranslatedText("meterAbbreviature")));
-		// addCell(createElementLine("+1"));
-		// addCell(createElementLine(""));
-
-		addCell(createEmptyElementLine(getTranslator().getTranslatedText("burstAction") + " (3)"));
+		addCell(createFirstEmptyElementLine(getTranslator().getTranslatedText("burstAction") + " (3)"));
 		addCell(createEmptyElementLine("+2"));
 		addCell(createEmptyElementLine("+3"));
 		addCell(createEmptyElementLine(""));
 
-		addCell(createEmptyElementLine(getTranslator().getTranslatedText("burstAction") + " (6)"));
+		addCell(createFirstEmptyElementLine(getTranslator().getTranslatedText("burstAction") + " (6)"));
 		addCell(createEmptyElementLine("-2"));
 		addCell(createEmptyElementLine("+5"));
 		addCell(createEmptyElementLine(getTranslator().getTranslatedText("burst6Effect")));
 
-		addCell(createEmptyElementLine(getTranslator().getTranslatedText("emptyClipAction")));
+		addCell(createFirstEmptyElementLine(getTranslator().getTranslatedText("emptyClipAction")));
 		addCell(createEmptyElementLine("-4"));
 		addCell(createEmptyElementLine("+7"));
 		addCell(createEmptyElementLine(getTranslator().getTranslatedText("emptyClipEffect")));
 
-		addCell(createEmptyElementLine(getTranslator().getTranslatedText("supressingFireAction")));
+		addCell(createFirstEmptyElementLine(getTranslator().getTranslatedText("supressingFireAction")));
 		addCell(createEmptyElementLine("-2"));
 		addCell(createEmptyElementLine("  "));
 		addCell(createEmptyElementLine(getTranslator().getTranslatedText("weaponSpecial")));
@@ -82,7 +76,7 @@ public class RangedWeaponsTable extends LateralHeaderPdfPTable {
 		if (characterPlayer != null) {
 			for (CombatStyle style : characterPlayer.getRangedCombatStyles()) {
 				for (CombatAction action : style.getElements()) {
-					addCell(createElementLine(action.getName(), NAME_COLUMN_WIDHT, FadingSunsTheme.COMBAT_ACTIONS_CONTENT_FONT_SIZE));
+					addCell(createFirstElementLine(action.getName(), NAME_COLUMN_WIDHT, FadingSunsTheme.COMBAT_ACTIONS_CONTENT_FONT_SIZE));
 					addCell(createElementLine(action.getGoal(), GOAL_COLUMN_WIDHT, FadingSunsTheme.COMBAT_ACTIONS_CONTENT_FONT_SIZE));
 					addCell(createElementLine(action.getDamage(), DAMAGE_COLUMN_WIDHT, FadingSunsTheme.COMBAT_ACTIONS_CONTENT_FONT_SIZE));
 					addCell(createElementLine(action.getOthers(), OTHERS_COLUMN_WIDHT, FadingSunsTheme.COMBAT_ACTIONS_CONTENT_FONT_SIZE));

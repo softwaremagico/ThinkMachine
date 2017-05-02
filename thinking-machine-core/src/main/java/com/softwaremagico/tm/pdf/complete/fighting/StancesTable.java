@@ -28,7 +28,6 @@ import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.combat.LearnedStance;
 import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.complete.elements.LateralHeaderPdfPTable;
-import com.softwaremagico.tm.pdf.complete.utils.CellUtils;
 
 public class StancesTable extends LateralHeaderPdfPTable {
 	private final static float[] WIDTHS = { 2f, 11f, 23f };
@@ -49,17 +48,17 @@ public class StancesTable extends LateralHeaderPdfPTable {
 		addCell(createTableSubtitleElement(
 				getTranslator().getTranslatedText("stanceDescription"), 13));
 
-		addCell(createEmptyElementLine(getTranslator().getTranslatedText(
+		addCell(createFirstEmptyElementLine(getTranslator().getTranslatedText(
 				"agressiveStance")));
 		addCell(createEmptyElementLine(getTranslator().getTranslatedText(
 				"agressiveStanceDescription")));
 
-		addCell(createEmptyElementLine(getTranslator().getTranslatedText(
+		addCell(createFirstEmptyElementLine(getTranslator().getTranslatedText(
 				"defensiveStance")));
 		addCell(createEmptyElementLine(getTranslator().getTranslatedText(
 				"defensiveStanceDescription")));
 
-		addCell(createEmptyElementLine(getTranslator().getTranslatedText(
+		addCell(createFirstEmptyElementLine(getTranslator().getTranslatedText(
 				"fullDefensiveStance")));
 		addCell(createEmptyElementLine(getTranslator().getTranslatedText(
 				"fullDefensiveStanceDescription")));
