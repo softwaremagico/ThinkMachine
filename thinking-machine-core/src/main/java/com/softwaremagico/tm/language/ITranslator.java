@@ -42,4 +42,6 @@ public interface ITranslator {
 
 	String getNodeValue(String tag, String node);
 
+	String getNodeValue(String parent, String tag, String node);
+
 }

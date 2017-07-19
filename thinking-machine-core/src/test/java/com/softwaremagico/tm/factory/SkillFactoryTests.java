@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.character.characteristics;
+package com.softwaremagico.tm.factory;
 
 /*-
  * #%L
@@ -24,30 +24,18 @@ package com.softwaremagico.tm.character.characteristics;
  * #L%
  */
 
-public class CharacteristicValue {
-	private CharacteristicName characteristic;
-	private int value;
+import junit.framework.Assert;
 
-	public CharacteristicValue(CharacteristicName characteristic, int value) {
-		super();
-		this.characteristic = characteristic;
-		this.value = value;
+import org.testng.annotations.Test;
+
+import com.softwaremagico.tm.character.skills.SkillFactory;
+
+@Test(groups = { "skillFactory" })
+public class SkillFactoryTests {
+
+	@Test
+	public void readSkills() {
+		Assert.assertEquals(9, SkillFactory.getNaturalSkills("es").size());
+		Assert.assertEquals(51, SkillFactory.getLearnedSkills("es").size());
 	}
-
-	public CharacteristicName getCharacteristic() {
-		return characteristic;
-	}
-
-	public void setCharacteristic(CharacteristicName characteristic) {
-		this.characteristic = characteristic;
-	}
-
-	public int getValue() {
-		return value;
-	}
-
-	public void setValue(int value) {
-		this.value = value;
-	}
-
 }

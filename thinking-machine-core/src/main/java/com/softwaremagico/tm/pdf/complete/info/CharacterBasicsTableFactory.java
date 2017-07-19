@@ -51,8 +51,10 @@ public abstract class CharacterBasicsTableFactory extends BaseElement {
 			table.addCell(getCell(LINE, Element.ALIGN_LEFT, fontSize));
 		} else {
 			if (tag.equals("race")) {
-				String raceValue = translator.getTranslatedText(translator.convertToXmlTag(characterPlayer.getRace().getName()));
-				table.addCell(getHandwrittingCell(raceValue != null ? raceValue : characterPlayer.getRace().getName(), Element.ALIGN_LEFT, fontSize - 1));
+				if (characterPlayer.getRace() != null) {
+					String raceValue = translator.getTranslatedText(translator.convertToXmlTag(characterPlayer.getRace().getName()));
+					table.addCell(getHandwrittingCell(raceValue != null ? raceValue : characterPlayer.getRace().getName(), Element.ALIGN_LEFT, fontSize - 1));
+				}
 			} else {
 				table.addCell(getHandwrittingCell(characterPlayer.getInfo().getTranslatedParameter(tag), Element.ALIGN_LEFT, fontSize - 1));
 			}

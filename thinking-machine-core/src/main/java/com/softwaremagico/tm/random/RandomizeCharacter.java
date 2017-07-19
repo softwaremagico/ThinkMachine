@@ -31,6 +31,7 @@ import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.FreeStyleCharacterCreation;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.characteristics.CharacteristicType;
+import com.softwaremagico.tm.character.race.Race;
 import com.softwaremagico.tm.log.MachineLog;
 
 public class RandomizeCharacter {
@@ -42,22 +43,34 @@ public class RandomizeCharacter {
 	private TreeMap<Integer, CharacteristicName> weightedCharacteristics;
 	private Random rand = new Random();
 
-	public RandomizeCharacter(CharacterPlayer characterPlayer, int bodyLevel, int mentalLevel, int spiritLevel, int experiencePoints) {
+	public RandomizeCharacter(CharacterPlayer characterPlayer, int experiencePoints) {
 		this.characterPlayer = characterPlayer;
-		this.bodyLevel = bodyLevel;
-		this.mentalLevel = mentalLevel;
-		this.spiritLevel = spiritLevel;
 		this.experiencePoints = experiencePoints;
 	}
 
 	public void createCharacter() {
 		weightedCharacteristics = assignCharacteristicsWeight();
+		initializeCharacter();
 		spendCharacteristicsPoints();
 		spendSkillsPoints();
+		spendExperiencePoints();
+	}
+
+	private void initializeCharacter() {
+		// Check if race is set.
+		if (characterPlayer.getRace() == null) {
+
+		}
 	}
 
 	private void spendSkillsPoints() {
-		
+		while (characterPlayer.getSkillsTotalPoints() < FreeStyleCharacterCreation.SKILLS_POINTS) {
+
+		}
+	}
+
+	private void spendExperiencePoints() {
+
 	}
 
 	private void spendCharacteristicsPoints() {

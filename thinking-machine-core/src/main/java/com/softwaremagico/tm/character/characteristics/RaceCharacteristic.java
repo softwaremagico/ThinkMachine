@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.skills;
+package com.softwaremagico.tm.character.characteristics;
 
 /*-
  * #%L
@@ -24,18 +24,47 @@ package com.softwaremagico.tm.skills;
  * #L%
  */
 
-import junit.framework.Assert;
+public class RaceCharacteristic {
+	private CharacteristicName characteristic;
+	private int value;
+	private int minimumValue;
+	private int maximumValue;
 
-import org.testng.annotations.Test;
-
-import com.softwaremagico.tm.character.skills.SkillFactory;
-
-@Test(groups = { "skillFactory" })
-public class SkillFactoryTests {
-
-	@Test
-	public void readSkills() {
-		Assert.assertEquals(9, SkillFactory.getNaturalSkills("es").size());
-		Assert.assertEquals(51, SkillFactory.getLearnedSkills("es").size());
+	public RaceCharacteristic(CharacteristicName characteristic) {
+		super();
+		this.characteristic = characteristic;
 	}
+
+	public CharacteristicName getCharacteristic() {
+		return characteristic;
+	}
+
+	public void setCharacteristic(CharacteristicName characteristic) {
+		this.characteristic = characteristic;
+	}
+
+	public int getValue() {
+		return value;
+	}
+
+	public void setValue(int value) {
+		this.value = value;
+	}
+
+	public int getMinimumValue() {
+		return minimumValue;
+	}
+
+	public void setMinimumValue(int min) {
+		this.minimumValue = min;
+	}
+
+	public int getMaximumValue() {
+		return maximumValue;
+	}
+
+	public void setMaximumValue(int max) {
+		this.maximumValue = max;
+	}
+
 }

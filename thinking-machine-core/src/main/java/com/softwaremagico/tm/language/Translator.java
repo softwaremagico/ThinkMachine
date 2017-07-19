@@ -166,6 +166,31 @@ public class Translator implements ITranslator {
 		return null;
 	}
 
+	@Override
+	public String getNodeValue(String parent, String tag, String node) {
+		NodeList nodeList = doc.getElementsByTagName(parent);
+		for (int child = 0; child < nodeList.getLength(); child++) {
+			Node parentNode = nodeList.item(child);
+			if (parentNode.getNodeType() == Node.ELEMENT_NODE) {
+				Element parentElement = (Element) parentNode;
+				try {
+					NodeList childrenElementList = parentElement.getElementsByTagName(tag);
+					Element childrenElement = (Element) childrenElementList.item(0);
+					try {
+						NodeList firstNodeElementList = childrenElement.getElementsByTagName(node);
+						Element firstNodeElement = (Element) firstNodeElementList.item(0);
+						return firstNodeElement.getChildNodes().item(0).getNodeValue().trim();
+					} catch (NullPointerException npe) {
+						return null;
+					}
+				} catch (NullPointerException npe) {
+					return null;
+				}
+			}
+		}
+		return null;
+	}
+
 	private String readTag(String tag, String language) {
 		try {
 			NodeList nodeList = doc.getElementsByTagName(tag);
