@@ -47,6 +47,7 @@ import com.softwaremagico.tm.character.equipment.Size;
 import com.softwaremagico.tm.character.equipment.Weapon;
 import com.softwaremagico.tm.character.occultism.OccultismPower;
 import com.softwaremagico.tm.character.race.Race;
+import com.softwaremagico.tm.character.race.RaceFactory;
 import com.softwaremagico.tm.character.skills.CyberneticSkill;
 import com.softwaremagico.tm.character.traits.Benefit;
 import com.softwaremagico.tm.character.traits.Blessing;
@@ -64,7 +65,7 @@ public class CustomCharacters {
 		player.getInfo().setPlayer("Paola");
 		player.getInfo().setGender(Gender.FEMALE);
 		player.getInfo().setAge(25);
-		player.setRace(new Race("Human", 3, 3, 3, 3, 3, 3, 3, 3, 3, 5, 0, 0, 0, 0, 0));
+		player.setRace(RaceFactory.getRace("Humano", "es"));
 		player.getInfo().setPlanet("Ligaheim");
 		player.getInfo().setAlliance("Ingeniero");
 		player.getInfo().setRank("Aprendiz");
@@ -140,7 +141,7 @@ public class CustomCharacters {
 		player.getInfo().setPlayer("Ana");
 		player.getInfo().setGender(Gender.FEMALE);
 		player.getInfo().setAge(22);
-		player.setRace(new Race("Human", 3, 3, 3, 3, 3, 3, 3, 3, 3, 5, 0, 0, 0, 0, 0));
+		player.setRace(RaceFactory.getRace("Humano", "es"));
 		player.getInfo().setPlanet("Leminkainen");
 		player.getInfo().setAlliance("Hawkwood");
 		player.getInfo().setRank("Caballero");
@@ -200,7 +201,7 @@ public class CustomCharacters {
 		player.getInfo().setPlayer("Carlos");
 		player.getInfo().setGender(Gender.MALE);
 		player.getInfo().setAge(28);
-		player.setRace(new Race("Human", 3, 3, 3, 3, 3, 3, 3, 3, 3, 5, 0, 0, 0, 0, 0));
+		player.setRace(RaceFactory.getRace("Humano", "es"));
 		player.getInfo().setPlanet("Byzantium Sec.");
 		player.getInfo().setAlliance("Carroñero");
 		player.getInfo().setRank("Genin");

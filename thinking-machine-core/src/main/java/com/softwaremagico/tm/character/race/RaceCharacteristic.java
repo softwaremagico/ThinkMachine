@@ -1,4 +1,6 @@
-package com.softwaremagico.tm.character.characteristics;
+package com.softwaremagico.tm.character.race;
+
+import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 
 /*-
  * #%L
@@ -27,7 +29,6 @@ package com.softwaremagico.tm.character.characteristics;
 public class RaceCharacteristic {
 	private CharacteristicName characteristic;
 	private int value;
-	private int minimumValue;
 	private int maximumValue;
 
 	public RaceCharacteristic(CharacteristicName characteristic) {
@@ -49,14 +50,6 @@ public class RaceCharacteristic {
 
 	public void setValue(int value) {
 		this.value = value;
-	}
-
-	public int getMinimumValue() {
-		return minimumValue;
-	}
-
-	public void setMinimumValue(int min) {
-		this.minimumValue = min;
 	}
 
 	public int getMaximumValue() {

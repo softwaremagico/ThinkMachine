@@ -25,15 +25,14 @@ package com.softwaremagico.tm.language;
  */
 
 public class Language implements Comparable<Language> {
-
 	private String name;
 	private String abbreviation;
 	private String flag;
 
-	public Language(String tmp_name, String tmp_abbrev, String pathFlag) {
-		name = tmp_name;
-		abbreviation = tmp_abbrev;
-		flag = pathFlag;
+	public Language(String name, String abbrev, String pathFlag) {
+		this.name = name;
+		this.abbreviation = abbrev;
+		this.flag = pathFlag;
 	}
 
 	public String getName() {

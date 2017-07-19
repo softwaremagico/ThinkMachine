@@ -31,7 +31,6 @@ import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.FreeStyleCharacterCreation;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.characteristics.CharacteristicType;
-import com.softwaremagico.tm.character.race.Race;
 import com.softwaremagico.tm.log.MachineLog;
 
 public class RandomizeCharacter {

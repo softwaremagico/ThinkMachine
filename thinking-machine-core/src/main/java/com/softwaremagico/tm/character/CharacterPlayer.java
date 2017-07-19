@@ -32,7 +32,6 @@ import java.util.Map;
 import java.util.Objects;
 
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
-import com.softwaremagico.tm.character.characteristics.RaceCharacteristic;
 import com.softwaremagico.tm.character.characteristics.Characteristics;
 import com.softwaremagico.tm.character.combat.CombatStyle;
 import com.softwaremagico.tm.character.combat.LearnedStance;
@@ -43,6 +42,7 @@ import com.softwaremagico.tm.character.equipment.Shield;
 import com.softwaremagico.tm.character.equipment.Weapons;
 import com.softwaremagico.tm.character.occultism.Occultism;
 import com.softwaremagico.tm.character.race.Race;
+import com.softwaremagico.tm.character.race.RaceCharacteristic;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.character.skills.SelectedSkill;
 import com.softwaremagico.tm.character.skills.Skill;

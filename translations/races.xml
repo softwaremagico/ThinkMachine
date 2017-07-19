@@ -4,40 +4,40 @@
 		<en>Human</en>
 		<es>Humano</es>
 		<strengthCharacteristic>
-			<min>3</min>
-			<max>10</max>
+			<value>3</value>
+			<maximumValue>10</maximumValue>
 		</strengthCharacteristic>
 		<dexterityCharacteristic>
-			<min>3</min>
-			<max>10</max>
+			<value>3</value>
+			<maximumValue>10</maximumValue>
 		</dexterityCharacteristic>
 		<enduranceCharacteristic>
-			<min>3</min>
-			<max>10</max>
+			<value>3</value>
+			<maximumValue>10</maximumValue>
 		</enduranceCharacteristic>
 		<witsCharacteristic>
-			<min>3</min>
-			<max>10</max>
+			<value>3</value>
+			<maximumValue>10</maximumValue>
 		</witsCharacteristic>
 		<perceptionCharacteristic>
-			<min>3</min>
-			<max>10</max>
+			<value>3</value>
+			<maximumValue>10</maximumValue>
 		</perceptionCharacteristic>
 		<techCharacteristic>
-			<min>3</min>
-			<max>10</max>
+			<value>3</value>
+			<maximumValue>10</maximumValue>
 		</techCharacteristic>
 		<presenceCharacteristic>
-			<min>3</min>
-			<max>10</max>
+			<value>3</value>
+			<maximumValue>10</maximumValue>
 		</presenceCharacteristic>
 		<willCharacteristic>
-			<min>3</min>
-			<max>10</max>
+			<value>3</value>
+			<maximumValue>10</maximumValue>
 		</willCharacteristic>
 		<faithCharacteristic>
-			<min>3</min>
-			<max>10</max>
+			<value>3</value>
+			<maximumValue>10</maximumValue>
 		</faithCharacteristic>
 		<movementCharacteristic>
 			<value>5</value>

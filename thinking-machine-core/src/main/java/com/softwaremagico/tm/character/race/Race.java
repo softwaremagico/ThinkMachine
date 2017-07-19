@@ -28,7 +28,6 @@ import java.lang.reflect.Field;
 
 import com.softwaremagico.tm.Element;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
-import com.softwaremagico.tm.character.characteristics.RaceCharacteristic;
 import com.softwaremagico.tm.log.MachineLog;
 
 @SuppressWarnings("unused")
@@ -97,19 +96,11 @@ public class Race extends Element<Race> {
 		return null;
 	}
 
-	public void setMaxValue(CharacteristicName characteristicName, int maxValue) {
+	public void setMaximumValue(CharacteristicName characteristicName, int maxValue) {
 		try {
-			getParameter(characteristicName).setMinimumValue(maxValue);
+			getParameter(characteristicName).setMaximumValue(maxValue);
 		} catch (NullPointerException npe) {
 			MachineLog.severe(this.getClass().getName(), "Invalid maximum parameter '" + characteristicName + "'.");
-		}
-	}
-
-	public void setMinValue(CharacteristicName characteristicName, int minValue) {
-		try {
-			getParameter(characteristicName).setMinimumValue(minValue);
-		} catch (NullPointerException npe) {
-			MachineLog.severe(this.getClass().getName(), "Invalid minimum parameter '" + characteristicName + "'.");
 		}
 	}
 
