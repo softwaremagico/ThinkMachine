@@ -33,6 +33,7 @@ import java.util.Objects;
 
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
+import com.softwaremagico.tm.log.MachineLog;
 
 public class SkillFactory {
 	private final static String GUILD_SKILL_TAG = "guildSkill";
@@ -88,12 +89,24 @@ public class SkillFactory {
 
 	private static AvailableSkill createSkill(ITranslator translator, String skillId, String language, boolean isNatural) {
 		AvailableSkill skill = new AvailableSkill(skillId, translator.getTranslatedText(skillId, language), isNatural);
-		String generalizable = translator.getNodeValue(skillId, GENERALIZABLE_SKILL_TAG);
-		skill.setGeneralizable(Boolean.parseBoolean(generalizable));
-		String guildSkill = translator.getNodeValue(skillId, GUILD_SKILL_TAG);
-		skill.setFromGuild(Boolean.parseBoolean(guildSkill));
-		String group = translator.getNodeValue(skillId, GROUP_SKILL_TAG);
-		skill.setSkillGroup(SkillGroup.getSkillGroup(group));
+		try {
+			String generalizable = translator.getNodeValue(skillId, GENERALIZABLE_SKILL_TAG);
+			skill.setGeneralizable(Boolean.parseBoolean(generalizable));
+		} catch (NumberFormatException nfe) {
+			MachineLog.severe(SkillFactory.class.getName(), "Invalid value for skill '" + skillId + "'.");
+		}
+		try {
+			String guildSkill = translator.getNodeValue(skillId, GUILD_SKILL_TAG);
+			skill.setFromGuild(Boolean.parseBoolean(guildSkill));
+		} catch (NumberFormatException nfe) {
+			MachineLog.severe(SkillFactory.class.getName(), "Invalid value for skill '" + skillId + "'.");
+		}
+		try {
+			String group = translator.getNodeValue(skillId, GROUP_SKILL_TAG);
+			skill.setSkillGroup(SkillGroup.getSkillGroup(group));
+		} catch (NumberFormatException nfe) {
+			MachineLog.severe(SkillFactory.class.getName(), "Invalid value for skill '" + skillId + "'.");
+		}
 
 		return skill;
 	}

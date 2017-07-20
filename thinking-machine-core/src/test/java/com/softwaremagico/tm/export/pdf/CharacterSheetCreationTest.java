@@ -38,6 +38,7 @@ import com.itextpdf.text.DocumentException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.CostCalculator;
 import com.softwaremagico.tm.character.Gender;
+import com.softwaremagico.tm.character.OccultismType;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.combat.CombatAction;
 import com.softwaremagico.tm.character.combat.CombatStyle;
@@ -48,6 +49,7 @@ import com.softwaremagico.tm.character.equipment.Shield;
 import com.softwaremagico.tm.character.equipment.Size;
 import com.softwaremagico.tm.character.equipment.Weapon;
 import com.softwaremagico.tm.character.occultism.OccultismPower;
+import com.softwaremagico.tm.character.race.InvalidRaceException;
 import com.softwaremagico.tm.character.race.Race;
 import com.softwaremagico.tm.character.traits.Benefit;
 import com.softwaremagico.tm.character.traits.Blessing;
@@ -75,7 +77,7 @@ public class CharacterSheetCreationTest {
 	}
 
 	@Test
-	public void characterPdfSpanish() throws MalformedURLException, DocumentException, IOException {
+	public void characterPdfSpanish() throws MalformedURLException, DocumentException, IOException, InvalidRaceException {
 		player = new CharacterPlayer("es");
 		player.getInfo().setName("John Sephard");
 		player.getInfo().setPlayer("Player 1");
@@ -115,13 +117,13 @@ public class CharacterSheetCreationTest {
 		player.getOccultism().setPsiValue(4);
 		player.getOccultism().setUrge(1);
 
-		player.getOccultism().addElement(new OccultismPower("Mano Levitante", "Vol+Autoc.", 1, "Sensorial", "Temporal", "", 1));
-		player.getOccultism().addElement(new OccultismPower("Mano Lanzadora", "Vol+Autoc.", 2, "Sensorial", "Temporal", "", 1));
-		player.getOccultism().addElement(new OccultismPower("Sensibilidad", "Vol+Observar", 1, "Sensorial", "Temporal", "", 1));
-		player.getOccultism().addElement(new OccultismPower("Fortalecer", "Vol+Vigor", 1, null, "Temporal", "", 1));
-		player.getOccultism().addElement(new OccultismPower("Vigorizar", "Vol+Vigor", 2, null, "Temporal", "", 1));
-		player.getOccultism().addElement(new OccultismPower("Agilizar", "Vol+Atletismo", 3, null, "Temporal", "", 1));
-		player.getOccultism().addElement(new OccultismPower("Endurecer", "Vol+Vigor", 4, null, "Temporal", "", 1));
+		player.getOccultism().addElement(new OccultismPower("Mano Levitante", OccultismType.PSI, "Vol+Autoc.", 1, "Sensorial", "Temporal", "", 1));
+		player.getOccultism().addElement(new OccultismPower("Mano Lanzadora", OccultismType.PSI, "Vol+Autoc.", 2, "Sensorial", "Temporal", "", 1));
+		player.getOccultism().addElement(new OccultismPower("Sensibilidad", OccultismType.PSI, "Vol+Observar", 1, "Sensorial", "Temporal", "", 1));
+		player.getOccultism().addElement(new OccultismPower("Fortalecer", OccultismType.PSI, "Vol+Vigor", 1, null, "Temporal", "", 1));
+		player.getOccultism().addElement(new OccultismPower("Vigorizar", OccultismType.PSI, "Vol+Vigor", 2, null, "Temporal", "", 1));
+		player.getOccultism().addElement(new OccultismPower("Agilizar", OccultismType.PSI, "Vol+Atletismo", 3, null, "Temporal", "", 1));
+		player.getOccultism().addElement(new OccultismPower("Endurecer", OccultismType.PSI, "Vol+Vigor", 4, null, "Temporal", "", 1));
 
 		player.addBlessing(new Blessing("Elegante", 1, 1, "Influenciar", "--"));
 		player.addBlessing(new Blessing("Curioso", 2, 2, "Presencia", "Ante algo nuevo"));
@@ -145,7 +147,7 @@ public class CharacterSheetCreationTest {
 		shaidan.addElement(new CombatAction("Con un Pie en el Trono", 4, null, "+4 a resistir derribos"));
 		shaidan.addElement(new CombatAction("Decreto Imperial", null, "+1 / 1W", null));
 		player.getMeleeCombatStyles().add(shaidan);
-		
+
 		player.getLearnedStances().add(new LearnedStance("Posición Acrobática", "+1 a defensa por volteretas"));
 
 		player.getWeapons().addElement(new Weapon("Maza", "Ds+Lucha", null, 5, "4", null, null, 1, Size.L));

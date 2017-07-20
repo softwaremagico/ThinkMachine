@@ -93,8 +93,8 @@ public class CostCalculator {
 			cost += occultismPower.getLevel();
 		}
 		cost += characterPlayer.getOccultism().getExtraWyrd() * 2;
-		cost += (characterPlayer.getOccultism().getPsiValue() - characterPlayer.getRace().getPsi()) * 3;
-		cost += (characterPlayer.getOccultism().getTeurgyValue() - characterPlayer.getRace().getTeurgy()) * 3;
+		cost += Math.max(0, (characterPlayer.getOccultism().getPsiValue() - characterPlayer.getRace().getPsi()) * 3);
+		cost += Math.max(0, (characterPlayer.getOccultism().getTeurgyValue() - characterPlayer.getRace().getTheurgy()) * 3);
 		return cost;
 	}
 

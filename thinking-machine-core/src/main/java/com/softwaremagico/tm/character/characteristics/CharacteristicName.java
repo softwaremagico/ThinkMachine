@@ -55,7 +55,7 @@ public enum CharacteristicName {
 	}
 
 	public String getTranslationTag() {
-		return name().toLowerCase() + "Characteristic";
+		return name().toLowerCase();
 	}
 
 	@Override

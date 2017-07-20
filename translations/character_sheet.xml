@@ -76,66 +76,66 @@
 		<en>Body</en>
 		<es>Cuerpo</es>
 	</bodyCharacteristics>
-	<strengthCharacteristic>
+	<strength>
 		<en>Strength</en>
 		<es>Fuerza</es>
-	</strengthCharacteristic>
-	<dexterityCharacteristic>
+	</strength>
+	<dexterity>
 		<en>Dexterity</en>
 		<es>Destreza</es>
-	</dexterityCharacteristic>
-	<enduranceCharacteristic>
+	</dexterity>
+	<endurance>
 		<en>Endurance</en>
 		<es>Fortaleza</es>
-	</enduranceCharacteristic>
+	</endurance>
 	<mindCharacteristics>
 		<en>Mind</en>
 		<es>Mente</es>
 	</mindCharacteristics>
-	<witsCharacteristic>
+	<wits>
 		<en>Wits</en>
 		<es>Astucia</es>
-	</witsCharacteristic>
-	<perceptionCharacteristic>
+	</wits>
+	<perception>
 		<en>Perception</en>
 		<es>Percepción</es>
-	</perceptionCharacteristic>
-	<techCharacteristic>
+	</perception>
+	<tech>
 		<en>Tech</en>
 		<es>Tecnología</es>
-	</techCharacteristic>
+	</tech>
 	<spiritCharacteristics>
 		<en>Spirit</en>
 		<es>Espíritu</es>
 	</spiritCharacteristics>
-	<presenceCharacteristic>
+	<presence>
 		<en>Presence</en>
 		<es>Presencia</es>
-	</presenceCharacteristic>
-	<willCharacteristic>
+	</presence>
+	<will>
 		<en>Will</en>
 		<es>Voluntad</es>
-	</willCharacteristic>
-	<faithCharacteristic>
+	</will>
+	<faith>
 		<en>Faith</en>
 		<es>Fe</es>
-	</faithCharacteristic>
+	</faith>
 	<othersCharacteristics>
 		<en>Others</en>
 		<es>Otras</es>
 	</othersCharacteristics>
-	<initiativeCharacteristic>
+	<initiative>
 		<en>Initiative</en>
 		<es>Iniciativa</es>
-	</initiativeCharacteristic>
-	<movementCharacteristic>
+	</initiative>
+	<movement>
 		<en>Movement</en>
 		<es>Movimiento</es>
-	</movementCharacteristic>
-	<defenseCharacteristic>
+	</movement>
+	<defense>
 		<en>Defense</en>
 		<es>Defensa</es>
-	</defenseCharacteristic>
+	</defense>
 	<vitality>
 		<en>Vitality</en>
 		<es>Vitalidad</es>

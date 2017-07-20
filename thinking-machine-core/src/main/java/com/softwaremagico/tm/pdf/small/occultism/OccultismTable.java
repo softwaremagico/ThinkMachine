@@ -28,6 +28,7 @@ import com.itextpdf.text.Element;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.character.OccultismType;
 import com.softwaremagico.tm.character.occultism.OccultismPower;
 import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.complete.elements.VerticalTable;
@@ -44,7 +45,8 @@ public class OccultismTable extends VerticalTable {
 
 		addCell(createTitle(getTranslator().getTranslatedText("occultism"), FadingSunsTheme.CHARACTER_SMALL_OCCULTISM_TITLE_FONT_SIZE));
 
-		addCell(createSubtitleLine(getTranslator().getTranslatedText("psi"), FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE, Element.ALIGN_LEFT));
+		addCell(createSubtitleLine(getTranslator().getTranslatedText(OccultismType.PSI.getTag()), FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE,
+				Element.ALIGN_LEFT));
 		if (characterPlayer != null) {
 			addCell(createValueLine("" + characterPlayer.getOccultism().getPsiValue(), FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE));
 		} else {
@@ -56,9 +58,11 @@ public class OccultismTable extends VerticalTable {
 		} else {
 			addCell(createValueLine(" ", FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE));
 		}
-		addCell(createSubtitleLine(getTranslator().getTranslatedText("urge"), FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE, Element.ALIGN_RIGHT));
+		addCell(createSubtitleLine(getTranslator().getTranslatedText(OccultismType.PSI.getDarkSideTag()), FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE,
+				Element.ALIGN_RIGHT));
 
-		addCell(createSubtitleLine(getTranslator().getTranslatedText("theurgy"), FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE, Element.ALIGN_LEFT));
+		addCell(createSubtitleLine(getTranslator().getTranslatedText(OccultismType.THEURGY.getTag()), FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE,
+				Element.ALIGN_LEFT));
 		if (characterPlayer != null) {
 			addCell(createValueLine("" + characterPlayer.getOccultism().getTeurgyValue(), FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE));
 		} else {
@@ -70,7 +74,8 @@ public class OccultismTable extends VerticalTable {
 		} else {
 			addCell(createValueLine(" ", FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE));
 		}
-		addCell(createSubtitleLine(getTranslator().getTranslatedText("hubris"), FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE, Element.ALIGN_RIGHT));
+		addCell(createSubtitleLine(getTranslator().getTranslatedText(OccultismType.THEURGY.getDarkSideTag()), FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE,
+				Element.ALIGN_RIGHT));
 
 		addCell(createSubtitleLine(getTranslator().getTranslatedText("occultismTablePower"), FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE, 4,
 				Element.ALIGN_LEFT));
@@ -80,7 +85,8 @@ public class OccultismTable extends VerticalTable {
 		if (characterPlayer != null) {
 			for (OccultismPower occultismPower : characterPlayer.getOccultism().getElements()) {
 				if (occultismPower.isEnabled()) {
-					PdfPCell cell = createFirstElementLine(occultismPower.getName(), POWER_COLUMN_WIDTH, FadingSunsTheme.CHARACTER_SMALL_OCCULTISM_LINE_FONT_SIZE);
+					PdfPCell cell = createFirstElementLine(occultismPower.getName(), POWER_COLUMN_WIDTH,
+							FadingSunsTheme.CHARACTER_SMALL_OCCULTISM_LINE_FONT_SIZE);
 					cell.setColspan(WIDTHS.length - 1);
 					addCell(cell);
 					addCell(createElementLine(occultismPower.getRoll(), ROLL_COLUMN_WIDTH, FadingSunsTheme.CHARACTER_SMALL_OCCULTISM_LINE_FONT_SIZE));

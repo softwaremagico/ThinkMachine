@@ -25,6 +25,7 @@ package com.softwaremagico.tm.character.occultism;
  */
 
 import com.softwaremagico.tm.Element;
+import com.softwaremagico.tm.character.OccultismType;
 
 public class OccultismPower extends Element<OccultismPower> {
 	private final String roll;
@@ -34,8 +35,9 @@ public class OccultismPower extends Element<OccultismPower> {
 	private final String requirements;
 	private final int cost;
 	private boolean enabled;
+	private OccultismType occultismType;
 
-	public OccultismPower(String name, String roll, int level, String range, String duration, String requirements, int cost) {
+	public OccultismPower(String name,  OccultismType occultismType, String roll, int level, String range, String duration, String requirements, int cost) {
 		super(name);
 		this.roll = roll;
 		this.level = level;
@@ -43,11 +45,13 @@ public class OccultismPower extends Element<OccultismPower> {
 		this.duration = duration;
 		this.requirements = requirements;
 		this.cost = cost;
+		this.occultismType = occultismType;
 		enabled = true;
 	}
 
-	public OccultismPower(String name, String roll, int level, String range, String duration, String requirements, int cost, boolean enabled) {
-		this(name, roll, level, range, duration, requirements, cost);
+	public OccultismPower(String name, OccultismType occultismType, String roll, int level, String range, String duration, String requirements, int cost,
+			boolean enabled) {
+		this(name, occultismType, roll, level, range, duration, requirements, cost);
 		setEnabled(enabled);
 	}
 
@@ -81,6 +85,10 @@ public class OccultismPower extends Element<OccultismPower> {
 
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
+	}
+
+	public OccultismType getOccultismType() {
+		return occultismType;
 	}
 
 }

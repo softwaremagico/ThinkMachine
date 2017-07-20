@@ -36,6 +36,7 @@ import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.CostCalculator;
 import com.softwaremagico.tm.character.FreeStyleCharacterCreation;
 import com.softwaremagico.tm.character.Gender;
+import com.softwaremagico.tm.character.OccultismType;
 import com.softwaremagico.tm.character.characteristics.CharacteristicImprovement;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.combat.CombatAction;
@@ -46,6 +47,7 @@ import com.softwaremagico.tm.character.equipment.Shield;
 import com.softwaremagico.tm.character.equipment.Size;
 import com.softwaremagico.tm.character.equipment.Weapon;
 import com.softwaremagico.tm.character.occultism.OccultismPower;
+import com.softwaremagico.tm.character.race.InvalidRaceException;
 import com.softwaremagico.tm.character.race.Race;
 import com.softwaremagico.tm.character.race.RaceFactory;
 import com.softwaremagico.tm.character.skills.CyberneticSkill;
@@ -59,7 +61,7 @@ import com.softwaremagico.tm.pdf.small.SmallCharacterSheet;
 public class CustomCharacters {
 
 	@Test
-	public void createPaolaCharacter() throws MalformedURLException, DocumentException, IOException {
+	public void createPaolaCharacter() throws MalformedURLException, DocumentException, IOException, InvalidRaceException {
 		CharacterPlayer player = new CharacterPlayer("es");
 		player.getInfo().setName("Cinco");
 		player.getInfo().setPlayer("Paola");
@@ -135,7 +137,7 @@ public class CustomCharacters {
 	}
 
 	@Test
-	public void characterAnaCharacter() throws MalformedURLException, DocumentException, IOException {
+	public void characterAnaCharacter() throws MalformedURLException, DocumentException, IOException, InvalidRaceException {
 		CharacterPlayer player = new CharacterPlayer("es");
 		player.getInfo().setName("");
 		player.getInfo().setPlayer("Ana");
@@ -195,7 +197,7 @@ public class CustomCharacters {
 	}
 
 	@Test
-	public void createCarlosCharacter() throws MalformedURLException, DocumentException, IOException {
+	public void createCarlosCharacter() throws MalformedURLException, DocumentException, IOException, InvalidRaceException {
 		CharacterPlayer player = new CharacterPlayer("es");
 		player.getInfo().setName("");
 		player.getInfo().setPlayer("Carlos");
@@ -263,13 +265,14 @@ public class CustomCharacters {
 	}
 
 	@Test
-	public void createNoeliaCharacer() throws MalformedURLException, DocumentException, IOException {
+	public void createNoeliaCharacer() throws MalformedURLException, DocumentException, IOException, InvalidRaceException {
 		CharacterPlayer player = new CharacterPlayer("es");
 		player.getInfo().setName("");
 		player.getInfo().setPlayer("Noelia");
 		player.getInfo().setGender(Gender.FEMALE);
 		// player.getInfo().setAge(30);
-		player.setRace(new Race("Ur-Obun", 3, 4, 3, 3, 3, 3, 3, 3, 3, 6, 1, 0, 0, 0, 2));
+		player.setRace(RaceFactory.getRace("Ur-Obun", "es"));
+		// player.setRace(new Race("Ur-Obun", 3, 4, 3, 3, 3, 3, 3, 3, 3, 6, 1, 0, 0, 0, 2));
 		player.getInfo().setPlanet("Obun");
 		player.getInfo().setAlliance("Voavenlohjun");
 		player.getInfo().setRank("Novicio");
@@ -298,14 +301,14 @@ public class CustomCharacters {
 
 		player.getOccultism().setPsiValue(6);
 
-		player.getOccultism().addElement(new OccultismPower("Mano Levitante", "Vol+Autoc.", 1, "Sensorial", "Temporal", "", 1));
-		player.getOccultism().addElement(new OccultismPower("Mano Lanzadora", "Vol+Autoc.", 2, "Sensorial", "Temporal", "", 1));
-		player.getOccultism().addElement(new OccultismPower("Mano Aplastante", "Vol+Autoc.", 3, "Sensorial", "Temporal", "", 1));
-		player.getOccultism().addElement(new OccultismPower("Mano Duelista", "Vol+Autoc.", 4, "Sensorial", "Temporal", "", 1));
-		player.getOccultism().addElement(new OccultismPower("Mano Nº5", "", 5, "", "", "", 1, false));
-		player.getOccultism().addElement(new OccultismPower("Intuir", "Vol+Empatía", 1, "Toque", "Instantáneo", "", 1));
-		player.getOccultism().addElement(new OccultismPower("Emocionar", "Pre+Influenciar", 2, "Toque", "Instantáneo", "", 1));
-		player.getOccultism().addElement(new OccultismPower("Visión Mental", "Vol+Empatía", 3, "Toque", "Instantáneo", "", 1));
+		player.getOccultism().addElement(new OccultismPower("Mano Levitante", OccultismType.PSI, "Vol+Autoc.", 1, "Sensorial", "Temporal", "", 1));
+		player.getOccultism().addElement(new OccultismPower("Mano Lanzadora", OccultismType.PSI, "Vol+Autoc.", 2, "Sensorial", "Temporal", "", 1));
+		player.getOccultism().addElement(new OccultismPower("Mano Aplastante", OccultismType.PSI, "Vol+Autoc.", 3, "Sensorial", "Temporal", "", 1));
+		player.getOccultism().addElement(new OccultismPower("Mano Duelista", OccultismType.PSI, "Vol+Autoc.", 4, "Sensorial", "Temporal", "", 1));
+		player.getOccultism().addElement(new OccultismPower("Mano Nº5", OccultismType.PSI, "", 5, "", "", "", 1, false));
+		player.getOccultism().addElement(new OccultismPower("Intuir", OccultismType.PSI, "Vol+Empatía", 1, "Toque", "Instantáneo", "", 1));
+		player.getOccultism().addElement(new OccultismPower("Emocionar", OccultismType.PSI, "Pre+Influenciar", 2, "Toque", "Instantáneo", "", 1));
+		player.getOccultism().addElement(new OccultismPower("Visión Mental", OccultismType.PSI, "Vol+Empatía", 3, "Toque", "Instantáneo", "", 1));
 		player.getOccultism().setExtraWyrd(3);
 
 		player.addBlessing(new Blessing("Recto", 2, 2, "Fe", "Corregir al errado"));
@@ -330,7 +333,7 @@ public class CustomCharacters {
 	}
 
 	@Test
-	public void createGolemCharacer() throws MalformedURLException, DocumentException, IOException {
+	public void createGolemCharacer() throws MalformedURLException, DocumentException, IOException, InvalidRaceException {
 		CharacterPlayer player = new CharacterPlayer("es");
 		player.getInfo().setPlayer("PNJ");
 		player.getInfo().setName("A (Prototipo A)");

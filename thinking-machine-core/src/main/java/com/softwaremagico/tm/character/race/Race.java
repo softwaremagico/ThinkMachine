@@ -47,7 +47,7 @@ public class Race extends Element<Race> {
 	private RaceCharacteristic defense = new RaceCharacteristic(CharacteristicName.DEFENSE);
 
 	private int psi;
-	private int teurgy;
+	private int theurgy;
 	private int urge;
 	private int hubris;
 
@@ -71,7 +71,7 @@ public class Race extends Element<Race> {
 		setValue(CharacteristicName.FAITH, faith);
 		setValue(CharacteristicName.MOVEMENT, movement);
 		this.psi = psi;
-		this.teurgy = teurgy;
+		this.theurgy = teurgy;
 		this.urge = urge;
 		this.hubris = hubris;
 		this.cost = cost;
@@ -120,8 +120,8 @@ public class Race extends Element<Race> {
 		return psi;
 	}
 
-	public int getTeurgy() {
-		return teurgy;
+	public int getTheurgy() {
+		return theurgy;
 	}
 
 	public int getUrge() {
@@ -140,8 +140,8 @@ public class Race extends Element<Race> {
 		this.psi = psi;
 	}
 
-	public void setTeurgy(int teurgy) {
-		this.teurgy = teurgy;
+	public void setTheurgy(int teurgy) {
+		this.theurgy = teurgy;
 	}
 
 	public void setUrge(int urge) {

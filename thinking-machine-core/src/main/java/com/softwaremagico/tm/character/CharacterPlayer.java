@@ -41,6 +41,7 @@ import com.softwaremagico.tm.character.equipment.Armour;
 import com.softwaremagico.tm.character.equipment.Shield;
 import com.softwaremagico.tm.character.equipment.Weapons;
 import com.softwaremagico.tm.character.occultism.Occultism;
+import com.softwaremagico.tm.character.race.InvalidRaceException;
 import com.softwaremagico.tm.character.race.Race;
 import com.softwaremagico.tm.character.race.RaceCharacteristic;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
@@ -138,8 +139,7 @@ public class CharacterPlayer {
 			return 1;
 		}
 		if (CharacteristicName.INITIATIVE.equals(characteristicName)) {
-			return getStartingValue(CharacteristicName.DEXTERITY)
-					+ getStartingValue(CharacteristicName.WITS);
+			return getStartingValue(CharacteristicName.DEXTERITY) + getStartingValue(CharacteristicName.WITS);
 		}
 		return getRaceCharacteristicStartingValue(characteristicName);
 	}
@@ -153,8 +153,7 @@ public class CharacterPlayer {
 
 	public Integer getValue(CharacteristicName characteristicName) {
 		if (CharacteristicName.INITIATIVE.equals(characteristicName)) {
-			return getValue(CharacteristicName.DEXTERITY)
-					+ getValue(CharacteristicName.WITS);
+			return getValue(CharacteristicName.DEXTERITY) + getValue(CharacteristicName.WITS);
 		}
 		if (CharacteristicName.DEFENSE.equals(characteristicName)) {
 			return getStartingValue(characteristicName);
@@ -162,8 +161,7 @@ public class CharacterPlayer {
 		if (CharacteristicName.MOVEMENT.equals(characteristicName)) {
 			return getStartingValue(characteristicName);
 		}
-		Integer value = getCharacteristics().getCharacteristic(
-				characteristicName).getValue();
+		Integer value = getCharacteristics().getCharacteristic(characteristicName).getValue();
 
 		if (value == null) {
 			return 0;
@@ -176,8 +174,7 @@ public class CharacterPlayer {
 
 	public Integer getCyberneticCharacteristicsBonus() {
 		Integer value = 0;
-		for (CharacteristicName characteristicName : CharacteristicName
-				.getBasicCharacteristics()) {
+		for (CharacteristicName characteristicName : CharacteristicName.getBasicCharacteristics()) {
 			value += getCyberneticBonus(characteristicName);
 		}
 		return value;
@@ -187,14 +184,9 @@ public class CharacterPlayer {
 		Integer value = 0;
 		// Add cibernetics modifications
 		for (Device device : cybernetics.getElements()) {
-			if (device.getCharacteristicImprovement(characteristicName) != null
-					&& device.getCharacteristicImprovement(characteristicName)
-							.isAlways()
-					&& device.getCharacteristicImprovement(characteristicName)
-							.getBonus() != 0) {
-				value += device
-						.getCharacteristicImprovement(characteristicName)
-						.getBonus();
+			if (device.getCharacteristicImprovement(characteristicName) != null && device.getCharacteristicImprovement(characteristicName).isAlways()
+					&& device.getCharacteristicImprovement(characteristicName).getBonus() != 0) {
+				value += device.getCharacteristicImprovement(characteristicName).getBonus();
 			}
 		}
 		return value;
@@ -204,14 +196,9 @@ public class CharacterPlayer {
 		Integer value = 0;
 		// Add cibernetics modifications
 		for (Device device : cybernetics.getElements()) {
-			if (device.getCharacteristicImprovement(characteristicName) != null
-					&& !device.getCharacteristicImprovement(characteristicName)
-							.isAlways()
-					&& device.getCharacteristicImprovement(characteristicName)
-							.getBonus() != 0) {
-				value += device
-						.getCharacteristicImprovement(characteristicName)
-						.getBonus();
+			if (device.getCharacteristicImprovement(characteristicName) != null && !device.getCharacteristicImprovement(characteristicName).isAlways()
+					&& device.getCharacteristicImprovement(characteristicName).getBonus() != 0) {
+				value += device.getCharacteristicImprovement(characteristicName).getBonus();
 			}
 		}
 		return value;
@@ -222,8 +209,7 @@ public class CharacterPlayer {
 	}
 
 	public Integer getWyrdValue() {
-		return Math.max(getValue(CharacteristicName.WILL),
-				getValue(CharacteristicName.FAITH)) + occultism.getExtraWyrd();
+		return Math.max(getValue(CharacteristicName.WILL), getValue(CharacteristicName.FAITH)) + occultism.getExtraWyrd();
 	}
 
 	public void addSkill(String skillName, int value) {
@@ -249,8 +235,7 @@ public class CharacterPlayer {
 			return cyberneticBonus;
 		}
 		if (cyberneticBonus != null) {
-			return Math.max(skills.get(skill.getName()).getValue(),
-					cyberneticBonus);
+			return Math.max(skills.get(skill.getName()).getValue(), cyberneticBonus);
 		}
 		return skills.get(skill.getName()).getValue();
 	}
@@ -286,8 +271,7 @@ public class CharacterPlayer {
 	}
 
 	public boolean isSkillSpecial(AvailableSkill skill) {
-		if (getSelectedSkill(skill) != null
-				&& getSelectedSkill(skill).isSpecial()) {
+		if (getSelectedSkill(skill) != null && getSelectedSkill(skill).isSpecial()) {
 			return true;
 		}
 		return false;
@@ -305,8 +289,7 @@ public class CharacterPlayer {
 			int order = 0;
 			for (String skillName : skillNameOrdered) {
 				if (skillName.contains("[")) {
-					String skillPrefix = skillName.substring(0,
-							skillName.indexOf("[")).trim();
+					String skillPrefix = skillName.substring(0, skillName.indexOf("[")).trim();
 					if (Objects.equals(skillPrefix, skill.getName())) {
 						if (order == skill.getIndexOfGeneralization()) {
 							return skills.get(skillName);
@@ -322,8 +305,7 @@ public class CharacterPlayer {
 			for (Device device : cybernetics.getElements()) {
 				for (String skillName : device.getSkillImprovementsNames()) {
 					if (skillName.contains("[")) {
-						String skillPrefix = skillName.substring(0,
-								skillName.indexOf("[")).trim();
+						String skillPrefix = skillName.substring(0, skillName.indexOf("[")).trim();
 						if (Objects.equals(skillPrefix, skill.getName())) {
 							if (order == skill.getIndexOfGeneralization()) {
 								return device.getSkillImprovement(skillName);
@@ -370,12 +352,10 @@ public class CharacterPlayer {
 			}
 		}
 		for (CombatStyle style : getMeleeCombatStyles()) {
-			positiveBenefits
-					.add(new Benefit(style.getName(), COMBAT_STYLE_COST));
+			positiveBenefits.add(new Benefit(style.getName(), COMBAT_STYLE_COST));
 		}
 		for (CombatStyle style : getRangedCombatStyles()) {
-			positiveBenefits
-					.add(new Benefit(style.getName(), COMBAT_STYLE_COST));
+			positiveBenefits.add(new Benefit(style.getName(), COMBAT_STYLE_COST));
 		}
 		return Collections.unmodifiableList(positiveBenefits);
 	}
@@ -426,12 +406,14 @@ public class CharacterPlayer {
 		return race;
 	}
 
-	public void setRace(Race race) {
+	public void setRace(Race race) throws InvalidRaceException {
+		if (race == null) {
+			throw new InvalidRaceException("Race '" + race + "' does not exists!");
+		}
 		this.race = race;
 	}
 
-	private int getRaceCharacteristicStartingValue(
-			CharacteristicName characteristicName) {
+	private int getRaceCharacteristicStartingValue(CharacteristicName characteristicName) {
 		if (getRace() != null) {
 			RaceCharacteristic value = getRace().getParameter(characteristicName);
 			if (value != null) {
@@ -478,8 +460,7 @@ public class CharacterPlayer {
 
 	public int getStrengthDamangeModification() {
 		try {
-			int strength = getCharacteristics().getCharacteristic(
-					CharacteristicName.STRENGTH).getValue();
+			int strength = getCharacteristics().getCharacteristic(CharacteristicName.STRENGTH).getValue();
 			if (strength > 5) {
 				return strength / 3 - 1;
 			}
@@ -496,10 +477,8 @@ public class CharacterPlayer {
 	 */
 	public int getCharacteristicsTotalPoints() {
 		int characteristicPoints = 0;
-		for (CharacteristicName characteristicName : CharacteristicName
-				.getBasicCharacteristics()) {
-			characteristicPoints += getValue(characteristicName)
-					- getStartingValue(characteristicName);
+		for (CharacteristicName characteristicName : CharacteristicName.getBasicCharacteristics()) {
+			characteristicPoints += getValue(characteristicName) - getStartingValue(characteristicName);
 		}
 		return characteristicPoints;
 	}
@@ -511,13 +490,11 @@ public class CharacterPlayer {
 	 */
 	public int getSkillsTotalPoints() {
 		int skillPoints = 0;
-		for (AvailableSkill skill : SkillFactory
-				.getNaturalSkills(getLanguage())) {
+		for (AvailableSkill skill : SkillFactory.getNaturalSkills(getLanguage())) {
 			skillPoints += getSkillValue(skill) - getStartingValue(skill);
 		}
 
-		for (AvailableSkill skill : SkillFactory
-				.getLearnedSkills(getLanguage())) {
+		for (AvailableSkill skill : SkillFactory.getLearnedSkills(getLanguage())) {
 			if (isSkillSpecial(skill)) {
 				continue;
 			}
