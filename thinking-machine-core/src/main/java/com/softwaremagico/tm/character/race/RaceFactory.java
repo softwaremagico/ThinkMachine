@@ -1,49 +1,69 @@
 package com.softwaremagico.tm.character.race;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+/*-
+ * #%L
+ * The Thinking Machine (Core)
+ * %%
+ * Copyright (C) 2017 Softwaremagico
+ * %%
+ * This software is designed by Jorge Hortelano Otero. Jorge Hortelano Otero
+ * <softwaremagico@gmail.com> Valencia (Spain).
+ *  
+ * This program is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software
+ * Foundation; either version 2 of the License, or (at your option) any later
+ * version.
+ *  
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+ * details.
+ *  
+ * You should have received a copy of the GNU General Public License along with
+ * this program; If not, see <http://www.gnu.org/licenses/gpl-3.0.html>.
+ * #L%
+ */
 
+import com.softwaremagico.tm.InvalidXmlElementException;
+import com.softwaremagico.tm.XmlFactory;
 import com.softwaremagico.tm.character.OccultismType;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
 
-public class RaceFactory {
+public class RaceFactory extends XmlFactory<Race> {
 	private final static String MAX_VALUE = "maximumValue";
 	private final static String VALUE = "value";
 	private final static String COST = "cost";
 
-	private static Map<String, List<Race>> races = new HashMap<>();
 	private static ITranslator translatorRaces = LanguagePool.getTranslator("races.xml");
+	
+	private static RaceFactory instance;
 
-	public static List<Race> getRaces(String language) throws InvalidRaceException {
-		if (races.get(language) == null) {
-			races.put(language, new ArrayList<Race>());
-			for (String skillId : translatorRaces.getAllTranslatedElements()) {
-				races.get(language).add(createRace(translatorRaces, skillId, language));
-			}
-			Collections.sort(races.get(language));
-		}
-		return races.get(language);
-	}
-
-	public static Race getRace(String raceName, String language) throws InvalidRaceException {
-		List<Race> races = getRaces(language);
-		for (Race race : races) {
-			if (race.getName() != null) {
-				if (Objects.equals(race.getName().toLowerCase(), raceName.toLowerCase())) {
-					return race;
+	private static void createInstance() {
+		if (instance == null) {
+			synchronized (RaceFactory.class) {
+				if (instance == null) {
+					instance = new RaceFactory();
 				}
 			}
 		}
-		return null;
 	}
 
-	private static Race createRace(ITranslator translator, String raceId, String language) throws InvalidRaceException {
+	public static RaceFactory getInstance() {
+		if (instance == null) {
+			createInstance();
+		}
+		return instance;
+	}
+
+	@Override
+	protected ITranslator getTranslator() {
+		return translatorRaces;
+	}
+
+	@Override
+	protected Race createElement(ITranslator translator, String raceId, String language) throws InvalidXmlElementException {
 		Race race = new Race(translator.getTranslatedText(raceId, language));
 		try {
 			String cost = translator.getNodeValue(raceId, COST);

@@ -59,7 +59,7 @@ public class Race extends Element<Race> {
 
 	public Race(String name, int strength, int dexterity, int endurance, int wits, int perception, int tech, int presence, int will, int faith, int movement,
 			int psi, int teurgy, int urge, int hubris, int cost) {
-		super(name);
+		this(name);
 		setValue(CharacteristicName.STRENGTH, strength);
 		setValue(CharacteristicName.DEXTERITY, dexterity);
 		setValue(CharacteristicName.ENDURANCE, endurance);

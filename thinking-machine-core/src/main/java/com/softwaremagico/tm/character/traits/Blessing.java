@@ -27,13 +27,17 @@ package com.softwaremagico.tm.character.traits;
 import com.softwaremagico.tm.Element;
 
 public class Blessing extends Element<Blessing> {
-	private final Integer cost;
-	private final Integer bonification;
-	private final String trait;
-	private final String situation;
+	private Integer cost;
+	private Integer bonification;
+	private String trait;
+	private String situation;
+
+	public Blessing(String name) {
+		super(name);
+	}
 
 	public Blessing(String name, Integer cost, Integer bonification, String trait, String situation) {
-		super(name);
+		this(name);
 		this.cost = cost;
 		this.bonification = bonification;
 		this.trait = trait;
@@ -54,6 +58,22 @@ public class Blessing extends Element<Blessing> {
 
 	public String getSituation() {
 		return situation;
+	}
+
+	public void setCost(Integer cost) {
+		this.cost = cost;
+	}
+
+	public void setBonification(Integer bonification) {
+		this.bonification = bonification;
+	}
+
+	public void setTrait(String trait) {
+		this.trait = trait;
+	}
+
+	public void setSituation(String situation) {
+		this.situation = situation;
 	}
 
 }

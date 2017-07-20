@@ -27,6 +27,7 @@ package com.softwaremagico.tm.random;
 import java.util.Random;
 import java.util.TreeMap;
 
+import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.FreeStyleCharacterCreation;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
@@ -47,7 +48,7 @@ public class RandomizeCharacter {
 		this.experiencePoints = experiencePoints;
 	}
 
-	public void createCharacter() {
+	public void createCharacter() throws InvalidXmlElementException {
 		weightedCharacteristics = assignCharacteristicsWeight();
 		initializeCharacter();
 		spendCharacteristicsPoints();
@@ -62,7 +63,7 @@ public class RandomizeCharacter {
 		}
 	}
 
-	private void spendSkillsPoints() {
+	private void spendSkillsPoints() throws InvalidXmlElementException {
 		while (characterPlayer.getSkillsTotalPoints() < FreeStyleCharacterCreation.SKILLS_POINTS) {
 
 		}

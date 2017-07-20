@@ -35,6 +35,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.itextpdf.text.DocumentException;
+import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.CostCalculator;
 import com.softwaremagico.tm.character.Gender;
@@ -49,7 +50,6 @@ import com.softwaremagico.tm.character.equipment.Shield;
 import com.softwaremagico.tm.character.equipment.Size;
 import com.softwaremagico.tm.character.equipment.Weapon;
 import com.softwaremagico.tm.character.occultism.OccultismPower;
-import com.softwaremagico.tm.character.race.InvalidRaceException;
 import com.softwaremagico.tm.character.race.Race;
 import com.softwaremagico.tm.character.traits.Benefit;
 import com.softwaremagico.tm.character.traits.Blessing;
@@ -77,7 +77,7 @@ public class CharacterSheetCreationTest {
 	}
 
 	@Test
-	public void characterPdfSpanish() throws MalformedURLException, DocumentException, IOException, InvalidRaceException {
+	public void characterPdfSpanish() throws MalformedURLException, DocumentException, IOException, InvalidXmlElementException {
 		player = new CharacterPlayer("es");
 		player.getInfo().setName("John Sephard");
 		player.getInfo().setPlayer("Player 1");

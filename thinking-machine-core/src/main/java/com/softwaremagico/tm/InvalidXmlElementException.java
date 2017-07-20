@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.factory;
+package com.softwaremagico.tm;
 
 /*-
  * #%L
@@ -24,18 +24,10 @@ package com.softwaremagico.tm.factory;
  * #L%
  */
 
-import junit.framework.Assert;
+public class InvalidXmlElementException extends Exception {
+	private static final long serialVersionUID = -6961127287958139460L;
 
-import org.testng.annotations.Test;
-
-import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.character.race.RaceFactory;
-
-@Test(groups = { "raceFactory" })
-public class RaceFactoryTests {
-
-	@Test
-	public void readRaces() throws InvalidXmlElementException {
-		Assert.assertEquals(2, RaceFactory.getInstance().getElements("es").size());
+	public InvalidXmlElementException(String message) {
+		super(message);
 	}
 }

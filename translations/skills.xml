@@ -1,5 +1,79 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <skills>
+	<influence>
+		<translator>
+			<en>Influence</en>
+			<es>Influenciar</es>
+		</translator>
+		<group>social</group>
+		<natural>true</natural>
+	</influence>
+	<throwing>
+		<translator>
+			<en>Throwing</en>
+			<es>Lanzar</es>
+		</translator>
+		<group>combat</group>
+		<natural>true</natural>
+	</throwing>
+	<observe>
+		<translator>
+			<en>Observe</en>
+			<es>Observar</es>
+		</translator>
+		<group>analytical</group>
+		<natural>true</natural>
+	</observe>
+	<melee>
+		<translator>
+			<en>Melee</en>
+			<es>Pelear</es>
+		</translator>
+		<group>combat</group>
+		<natural>true</natural>
+	</melee>
+	<phoenixEmpireLore>
+		<translator>
+			<en>Lore [Phoenix Empire]</en>
+			<es>Saber [Imperio Fénix]</es>
+		</translator>
+		<group>lore</group>
+		<natural>true</natural>
+	</phoenixEmpireLore>
+	<planetaryLore>
+		<translator>
+			<en>Lore</en>
+			<es>Saber</es>
+		</translator>
+		<group>lore</group>
+		<generalizable>true</generalizable>
+		<natural>true</natural>
+	</planetaryLore>
+	<factionLore>
+		<translator>
+			<en>Lore</en>
+			<es>Saber</es>
+		</translator>
+		<group>lore</group>
+		<generalizable>true</generalizable>
+		<natural>true</natural>
+	</factionLore>
+	<sneak>
+		<translator>
+			<en>Sneak</en>
+			<es>Sigilo</es>
+		</translator>
+		<group>malefaction</group>
+		<natural>true</natural>
+	</sneak>
+	<vigor>
+		<translator>
+			<en>Vigor</en>
+			<es>Vigor</es>
+		</translator>
+		<group>physical</group>
+		<natural>true</natural>
+	</vigor>
 	<bureaucracy>
 		<translator>
 			<en>Bureaucracy</en>

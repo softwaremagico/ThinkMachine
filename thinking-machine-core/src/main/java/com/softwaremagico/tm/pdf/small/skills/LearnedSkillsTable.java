@@ -28,6 +28,7 @@ import com.itextpdf.text.Element;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
+import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
@@ -36,7 +37,7 @@ import com.softwaremagico.tm.pdf.complete.skills.SkillsTable;
 public class LearnedSkillsTable extends SkillsTable {
 	private final static int ROWS = 18;
 
-	public static PdfPTable getSkillsTable(CharacterPlayer characterPlayer, String language) {
+	public static PdfPTable getSkillsTable(CharacterPlayer characterPlayer, String language) throws InvalidXmlElementException {
 		float[] widths = { 1f };
 		PdfPTable table = new PdfPTable(widths);
 		setTablePropierties(table);
@@ -45,7 +46,7 @@ public class LearnedSkillsTable extends SkillsTable {
 		return table;
 	}
 
-	private static PdfPCell getSkillsColumnTable(CharacterPlayer characterPlayer, String language) {
+	private static PdfPCell getSkillsColumnTable(CharacterPlayer characterPlayer, String language) throws InvalidXmlElementException {
 		float[] widths = { 4f, 1f };
 		PdfPTable table = new PdfPTable(widths);
 		setTablePropierties(table);

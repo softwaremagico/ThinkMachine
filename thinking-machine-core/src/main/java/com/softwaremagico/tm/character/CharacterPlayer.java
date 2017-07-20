@@ -31,6 +31,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.characteristics.Characteristics;
 import com.softwaremagico.tm.character.combat.CombatStyle;
@@ -47,7 +48,7 @@ import com.softwaremagico.tm.character.race.RaceCharacteristic;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.character.skills.SelectedSkill;
 import com.softwaremagico.tm.character.skills.Skill;
-import com.softwaremagico.tm.character.skills.SkillFactory;
+import com.softwaremagico.tm.character.skills.SkillsFactory;
 import com.softwaremagico.tm.character.traits.Benefit;
 import com.softwaremagico.tm.character.traits.Blessing;
 
@@ -222,10 +223,10 @@ public class CharacterPlayer {
 		Collections.sort(skillNameOrdered);
 	}
 
-	private Integer getSkillValue(Skill skill) {
+	private Integer getSkillValue(Skill<?> skill) {
 		Integer cyberneticBonus = getCyberneticsValue(skill.getName());
 		if (skills.get(skill.getName()) == null) {
-			if (SkillFactory.isNaturalSkill(skill.getName(), language)) {
+			if (SkillsFactory.getInstance().isNaturalSkill(skill.getName(), language)) {
 				if (cyberneticBonus != null) {
 					return Math.max(3, cyberneticBonus);
 				}
@@ -238,6 +239,21 @@ public class CharacterPlayer {
 			return Math.max(skills.get(skill.getName()).getValue(), cyberneticBonus);
 		}
 		return skills.get(skill.getName()).getValue();
+	}
+
+	public Integer getSkillValue(AvailableSkill skill) {
+		SelectedSkill selectedSkill = getSelectedSkill(skill);
+		// Use the skill with generalization.
+		if (selectedSkill != null) {
+			return getSkillValue(selectedSkill);
+		} else {
+			// Use a simple skill if not generalization.
+			if (!skill.isGeneralizable() || skill.isNatural()) {
+				return getSkillValue((Skill<AvailableSkill>) skill);
+			} else {
+				return null;
+			}
+		}
 	}
 
 	private Integer getCyberneticsValue(String skillName) {
@@ -253,21 +269,6 @@ public class CharacterPlayer {
 			return null;
 		}
 		return maxValue;
-	}
-
-	public Integer getSkillValue(AvailableSkill skill) {
-		SelectedSkill selectedSkill = getSelectedSkill(skill);
-		// Use the skill with generalization.
-		if (selectedSkill != null) {
-			return getSkillValue(selectedSkill);
-		} else {
-			// Use a simple skill if not generalization.
-			if (!skill.isGeneralizable() || skill.isNatural()) {
-				return getSkillValue((Skill) skill);
-			} else {
-				return null;
-			}
-		}
 	}
 
 	public boolean isSkillSpecial(AvailableSkill skill) {
@@ -423,10 +424,10 @@ public class CharacterPlayer {
 		return 0;
 	}
 
-	public List<AvailableSkill> getNaturalSkills() {
+	public List<AvailableSkill> getNaturalSkills() throws InvalidXmlElementException {
 		List<AvailableSkill> naturalSkills = new ArrayList<>();
 		boolean planet = false;
-		for (AvailableSkill skill : SkillFactory.getNaturalSkills(language)) {
+		for (AvailableSkill skill : SkillsFactory.getInstance().getNaturalSkills(language)) {
 			if (skill.isGeneralizable()) {
 				if (!planet) {
 					skill.setGeneralization(getInfo().getPlanet());
@@ -440,9 +441,9 @@ public class CharacterPlayer {
 		return naturalSkills;
 	}
 
-	public List<AvailableSkill> getLearnedSkills() {
+	public List<AvailableSkill> getLearnedSkills() throws InvalidXmlElementException {
 		List<AvailableSkill> learnedSkills = new ArrayList<>();
-		for (AvailableSkill skill : SkillFactory.getLearnedSkills(language)) {
+		for (AvailableSkill skill : SkillsFactory.getInstance().getLearnedSkills(language)) {
 			if (getSkillValue(skill) != null) {
 				learnedSkills.add(skill);
 			}
@@ -487,14 +488,15 @@ public class CharacterPlayer {
 	 * Total points spent in skills.
 	 * 
 	 * @return
+	 * @throws InvalidXmlElementException
 	 */
-	public int getSkillsTotalPoints() {
+	public int getSkillsTotalPoints() throws InvalidXmlElementException {
 		int skillPoints = 0;
-		for (AvailableSkill skill : SkillFactory.getNaturalSkills(getLanguage())) {
+		for (AvailableSkill skill : SkillsFactory.getInstance().getNaturalSkills(getLanguage())) {
 			skillPoints += getSkillValue(skill) - getStartingValue(skill);
 		}
 
-		for (AvailableSkill skill : SkillFactory.getLearnedSkills(getLanguage())) {
+		for (AvailableSkill skill : SkillsFactory.getInstance().getLearnedSkills((getLanguage()))) {
 			if (isSkillSpecial(skill)) {
 				continue;
 			}

@@ -24,7 +24,7 @@ package com.softwaremagico.tm.character.skills;
  * #L%
  */
 
-public class SelectedSkill extends Skill {
+public class SelectedSkill extends Skill<SelectedSkill> {
 	private final int value;
 	private final boolean special;
 

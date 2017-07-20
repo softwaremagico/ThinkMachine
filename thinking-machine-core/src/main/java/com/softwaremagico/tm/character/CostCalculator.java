@@ -24,6 +24,7 @@ package com.softwaremagico.tm.character;
  * #L%
  */
 
+import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.cybernetics.Device;
 import com.softwaremagico.tm.character.occultism.OccultismPower;
 import com.softwaremagico.tm.character.traits.Benefit;
@@ -32,9 +33,11 @@ import com.softwaremagico.tm.log.MachineLog;
 
 public class CostCalculator {
 
-	public static int getCost(CharacterPlayer characterPlayer) {
+	public static int getCost(CharacterPlayer characterPlayer) throws InvalidXmlElementException {
 		int cost = 0;
-		MachineLog.info(CostCalculator.class.getName(), "################## " + characterPlayer.getInfo().getName());
+		MachineLog.info(CostCalculator.class.getName(), "####################### ");
+		MachineLog.info(CostCalculator.class.getName(), "\t" + characterPlayer.getInfo().getName());
+		MachineLog.info(CostCalculator.class.getName(), "####################### ");
 		if (characterPlayer.getRace() != null) {
 			cost += characterPlayer.getRace().getCost();
 			MachineLog.info(CostCalculator.class.getName(), "Race cost: " + characterPlayer.getRace().getCost());
@@ -49,7 +52,7 @@ public class CostCalculator {
 		MachineLog.info(CostCalculator.class.getName(), "Psi powers cost: " + getPsiPowersCosts(characterPlayer));
 		cost += getCyberneticsCost(characterPlayer);
 		MachineLog.info(CostCalculator.class.getName(), "Cybernetics cost: " + getCyberneticsCost(characterPlayer));
-		MachineLog.info(CostCalculator.class.getName(), "Total cost: " + cost);
+		MachineLog.info(CostCalculator.class.getName(), "Total cost: " + cost + "\n");
 		return cost;
 	}
 
@@ -57,7 +60,7 @@ public class CostCalculator {
 		return (characterPlayer.getCharacteristicsTotalPoints() - characterPlayer.getCyberneticCharacteristicsBonus() - FreeStyleCharacterCreation.CHARACTERISTICS_POINTS) * 3;
 	}
 
-	private static int getSkillCosts(CharacterPlayer characterPlayer) {
+	private static int getSkillCosts(CharacterPlayer characterPlayer) throws InvalidXmlElementException {
 		return (characterPlayer.getSkillsTotalPoints() - FreeStyleCharacterCreation.SKILLS_POINTS);
 	}
 

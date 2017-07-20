@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<blessings>
+	<handsome>
+		<name>
+			<en>Handsome</en>
+			<es>Elegante</es>
+		</name>
+		<cost>1</cost>
+		<bonification>1</bonification>
+		<trait>influence</trait>
+		<situation>
+			<en>Special</en>
+			<es>Especial</es>
+		</situation>
+	</handsome>
+</blessings>

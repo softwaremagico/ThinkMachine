@@ -32,6 +32,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.itextpdf.text.DocumentException;
+import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.CostCalculator;
 import com.softwaremagico.tm.character.FreeStyleCharacterCreation;
@@ -47,7 +48,6 @@ import com.softwaremagico.tm.character.equipment.Shield;
 import com.softwaremagico.tm.character.equipment.Size;
 import com.softwaremagico.tm.character.equipment.Weapon;
 import com.softwaremagico.tm.character.occultism.OccultismPower;
-import com.softwaremagico.tm.character.race.InvalidRaceException;
 import com.softwaremagico.tm.character.race.Race;
 import com.softwaremagico.tm.character.race.RaceFactory;
 import com.softwaremagico.tm.character.skills.CyberneticSkill;
@@ -61,13 +61,13 @@ import com.softwaremagico.tm.pdf.small.SmallCharacterSheet;
 public class CustomCharacters {
 
 	@Test
-	public void createPaolaCharacter() throws MalformedURLException, DocumentException, IOException, InvalidRaceException {
+	public void createPaolaCharacter() throws MalformedURLException, DocumentException, IOException, InvalidXmlElementException {
 		CharacterPlayer player = new CharacterPlayer("es");
 		player.getInfo().setName("Cinco");
 		player.getInfo().setPlayer("Paola");
 		player.getInfo().setGender(Gender.FEMALE);
 		player.getInfo().setAge(25);
-		player.setRace(RaceFactory.getRace("Humano", "es"));
+		player.setRace(RaceFactory.getInstance().getElement("Humano", "es"));
 		player.getInfo().setPlanet("Ligaheim");
 		player.getInfo().setAlliance("Ingeniero");
 		player.getInfo().setRank("Aprendiz");
@@ -137,13 +137,13 @@ public class CustomCharacters {
 	}
 
 	@Test
-	public void characterAnaCharacter() throws MalformedURLException, DocumentException, IOException, InvalidRaceException {
+	public void characterAnaCharacter() throws MalformedURLException, DocumentException, IOException, InvalidXmlElementException {
 		CharacterPlayer player = new CharacterPlayer("es");
 		player.getInfo().setName("");
 		player.getInfo().setPlayer("Ana");
 		player.getInfo().setGender(Gender.FEMALE);
 		player.getInfo().setAge(22);
-		player.setRace(RaceFactory.getRace("Humano", "es"));
+		player.setRace(RaceFactory.getInstance().getElement("Humano", "es"));
 		player.getInfo().setPlanet("Leminkainen");
 		player.getInfo().setAlliance("Hawkwood");
 		player.getInfo().setRank("Caballero");
@@ -197,13 +197,13 @@ public class CustomCharacters {
 	}
 
 	@Test
-	public void createCarlosCharacter() throws MalformedURLException, DocumentException, IOException, InvalidRaceException {
+	public void createCarlosCharacter() throws MalformedURLException, DocumentException, IOException, InvalidXmlElementException {
 		CharacterPlayer player = new CharacterPlayer("es");
 		player.getInfo().setName("");
 		player.getInfo().setPlayer("Carlos");
 		player.getInfo().setGender(Gender.MALE);
 		player.getInfo().setAge(28);
-		player.setRace(RaceFactory.getRace("Humano", "es"));
+		player.setRace(RaceFactory.getInstance().getElement("Humano", "es"));
 		player.getInfo().setPlanet("Byzantium Sec.");
 		player.getInfo().setAlliance("Carroñero");
 		player.getInfo().setRank("Genin");
@@ -265,13 +265,13 @@ public class CustomCharacters {
 	}
 
 	@Test
-	public void createNoeliaCharacer() throws MalformedURLException, DocumentException, IOException, InvalidRaceException {
+	public void createNoeliaCharacer() throws MalformedURLException, DocumentException, IOException, InvalidXmlElementException {
 		CharacterPlayer player = new CharacterPlayer("es");
 		player.getInfo().setName("");
 		player.getInfo().setPlayer("Noelia");
 		player.getInfo().setGender(Gender.FEMALE);
 		// player.getInfo().setAge(30);
-		player.setRace(RaceFactory.getRace("Ur-Obun", "es"));
+		player.setRace(RaceFactory.getInstance().getElement("Ur-Obun", "es"));
 		// player.setRace(new Race("Ur-Obun", 3, 4, 3, 3, 3, 3, 3, 3, 3, 6, 1, 0, 0, 0, 2));
 		player.getInfo().setPlanet("Obun");
 		player.getInfo().setAlliance("Voavenlohjun");
@@ -333,7 +333,7 @@ public class CustomCharacters {
 	}
 
 	@Test
-	public void createGolemCharacer() throws MalformedURLException, DocumentException, IOException, InvalidRaceException {
+	public void createGolemCharacer() throws MalformedURLException, DocumentException, IOException, InvalidXmlElementException {
 		CharacterPlayer player = new CharacterPlayer("es");
 		player.getInfo().setPlayer("PNJ");
 		player.getInfo().setName("A (Prototipo A)");

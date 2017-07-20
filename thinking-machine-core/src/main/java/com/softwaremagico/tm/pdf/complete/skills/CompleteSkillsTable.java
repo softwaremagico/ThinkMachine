@@ -27,9 +27,10 @@ package com.softwaremagico.tm.pdf.complete.skills;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
+import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
-import com.softwaremagico.tm.character.skills.SkillFactory;
+import com.softwaremagico.tm.character.skills.SkillsFactory;
 import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.complete.skills.occultism.OccultismTable;
 
@@ -39,7 +40,7 @@ public class CompleteSkillsTable extends SkillsTable {
 	private final static String SKILL_VALUE_GAP = "____";
 	private final static int OCCULTISM_ROWS = 5;
 
-	public static PdfPTable getSkillsTable(CharacterPlayer characterPlayer, String language) {
+	public static PdfPTable getSkillsTable(CharacterPlayer characterPlayer, String language) throws InvalidXmlElementException {
 		float[] widths = { 1f, 1f, 1f };
 		PdfPTable table = new PdfPTable(widths);
 		setTablePropierties(table);
@@ -50,7 +51,7 @@ public class CompleteSkillsTable extends SkillsTable {
 		return table;
 	}
 
-	private static PdfPCell getFirstColumnTable(CharacterPlayer characterPlayer, String language) {
+	private static PdfPCell getFirstColumnTable(CharacterPlayer characterPlayer, String language) throws InvalidXmlElementException {
 		float[] widths = { 4f, 1f };
 		PdfPTable table = new PdfPTable(widths);
 		setTablePropierties(table);
@@ -58,7 +59,7 @@ public class CompleteSkillsTable extends SkillsTable {
 		table.addCell(createTitle(getTranslator().getTranslatedText("naturalSkills"), FadingSunsTheme.SKILLS_TITLE_FONT_SIZE));
 
 		if (characterPlayer == null) {
-			for (AvailableSkill skill : SkillFactory.getNaturalSkills(language)) {
+			for (AvailableSkill skill : SkillsFactory.getInstance().getNaturalSkills(language)) {
 				table.addCell(createSkillElement(characterPlayer, skill, FadingSunsTheme.SKILLS_LINE_FONT_SIZE));
 				table.addCell(createSkillLine(SKILL_VALUE_GAP, FadingSunsTheme.SKILLS_LINE_FONT_SIZE));
 			}
@@ -71,14 +72,15 @@ public class CompleteSkillsTable extends SkillsTable {
 		}
 
 		table.addCell(createTitle(getTranslator().getTranslatedText("learnedSkills"), FadingSunsTheme.SKILLS_TITLE_FONT_SIZE));
-		for (int i = 0; i < Math.min(SkillFactory.getLearnedSkills(language).size(), ROWS - (2 * TITLE_ROWSPAN)
-				- SkillFactory.getNaturalSkills(language).size()); i++) {
-			table.addCell(createSkillElement(characterPlayer, SkillFactory.getLearnedSkills(language).get(i), FadingSunsTheme.SKILLS_LINE_FONT_SIZE));
+		for (int i = 0; i < Math.min(SkillsFactory.getInstance().getLearnedSkills(language).size(), ROWS - (2 * TITLE_ROWSPAN)
+				- SkillsFactory.getInstance().getNaturalSkills(language).size()); i++) {
+			table.addCell(createSkillElement(characterPlayer, SkillsFactory.getInstance().getLearnedSkills(language).get(i),
+					FadingSunsTheme.SKILLS_LINE_FONT_SIZE));
 			if (characterPlayer == null) {
 				table.addCell(createSkillLine(SKILL_VALUE_GAP, FadingSunsTheme.SKILLS_LINE_FONT_SIZE));
 			} else {
-				table.addCell(createSkillValue(characterPlayer.getSkillValue(SkillFactory.getLearnedSkills(language).get(i)),
-						characterPlayer.isSkillSpecial(SkillFactory.getLearnedSkills(language).get(i)), FadingSunsTheme.SKILLS_LINE_FONT_SIZE));
+				table.addCell(createSkillValue(characterPlayer.getSkillValue(SkillsFactory.getInstance().getLearnedSkills(language).get(i)),
+						characterPlayer.isSkillSpecial(SkillsFactory.getInstance().getLearnedSkills(language).get(i)), FadingSunsTheme.SKILLS_LINE_FONT_SIZE));
 			}
 			learnedSkillsAdded++;
 		}
@@ -91,22 +93,23 @@ public class CompleteSkillsTable extends SkillsTable {
 		return cell;
 	}
 
-	private static PdfPCell getSecondColumnTable(CharacterPlayer characterPlayer, String language) {
+	private static PdfPCell getSecondColumnTable(CharacterPlayer characterPlayer, String language) throws InvalidXmlElementException {
 		float[] widths = { 4f, 1f };
 		PdfPTable table = new PdfPTable(widths);
 		setTablePropierties(table);
 		PdfPCell cell = new PdfPCell();
 		setCellProperties(cell);
 
-		int maxElements = Math.min(SkillFactory.getLearnedSkills(language).size(), ROWS + learnedSkillsAdded);
+		int maxElements = Math.min(SkillsFactory.getInstance().getLearnedSkills(language).size(), ROWS + learnedSkillsAdded);
 
 		for (int i = learnedSkillsAdded; i < maxElements; i++) {
-			table.addCell(createSkillElement(characterPlayer, SkillFactory.getLearnedSkills(language).get(i), FadingSunsTheme.SKILLS_LINE_FONT_SIZE));
+			table.addCell(createSkillElement(characterPlayer, SkillsFactory.getInstance().getLearnedSkills(language).get(i),
+					FadingSunsTheme.SKILLS_LINE_FONT_SIZE));
 			if (characterPlayer == null) {
 				table.addCell(createSkillLine(SKILL_VALUE_GAP, FadingSunsTheme.SKILLS_LINE_FONT_SIZE));
 			} else {
-				table.addCell(createSkillValue(characterPlayer.getSkillValue(SkillFactory.getLearnedSkills(language).get(i)),
-						characterPlayer.isSkillSpecial(SkillFactory.getLearnedSkills(language).get(i)), FadingSunsTheme.SKILLS_LINE_FONT_SIZE));
+				table.addCell(createSkillValue(characterPlayer.getSkillValue(SkillsFactory.getInstance().getLearnedSkills(language).get(i)),
+						characterPlayer.isSkillSpecial(SkillsFactory.getInstance().getLearnedSkills(language).get(i)), FadingSunsTheme.SKILLS_LINE_FONT_SIZE));
 			}
 			learnedSkillsAdded++;
 		}
@@ -116,7 +119,7 @@ public class CompleteSkillsTable extends SkillsTable {
 		return cell;
 	}
 
-	private static PdfPCell getThirdColumnTable(CharacterPlayer characterPlayer, String language) {
+	private static PdfPCell getThirdColumnTable(CharacterPlayer characterPlayer, String language) throws InvalidXmlElementException {
 		float[] widths = { 4f, 1f };
 		PdfPTable table = new PdfPTable(widths);
 		setTablePropierties(table);
@@ -124,15 +127,16 @@ public class CompleteSkillsTable extends SkillsTable {
 		setCellProperties(cell);
 
 		int addedElements = 0;
-		int maxElements = Math.min(SkillFactory.getLearnedSkills(language).size(), ROWS + learnedSkillsAdded);
+		int maxElements = Math.min(SkillsFactory.getInstance().getLearnedSkills(language).size(), ROWS + learnedSkillsAdded);
 
 		for (int i = learnedSkillsAdded; i < maxElements; i++) {
-			table.addCell(createSkillElement(characterPlayer, SkillFactory.getLearnedSkills(language).get(i), FadingSunsTheme.SKILLS_LINE_FONT_SIZE));
+			table.addCell(createSkillElement(characterPlayer, SkillsFactory.getInstance().getLearnedSkills(language).get(i),
+					FadingSunsTheme.SKILLS_LINE_FONT_SIZE));
 			if (characterPlayer == null) {
 				table.addCell(createSkillLine(SKILL_VALUE_GAP, FadingSunsTheme.SKILLS_LINE_FONT_SIZE));
 			} else {
-				table.addCell(createSkillValue(characterPlayer.getSkillValue(SkillFactory.getLearnedSkills(language).get(i)),
-						characterPlayer.isSkillSpecial(SkillFactory.getLearnedSkills(language).get(i)), FadingSunsTheme.SKILLS_LINE_FONT_SIZE));
+				table.addCell(createSkillValue(characterPlayer.getSkillValue(SkillsFactory.getInstance().getLearnedSkills(language).get(i)),
+						characterPlayer.isSkillSpecial(SkillsFactory.getInstance().getLearnedSkills(language).get(i)), FadingSunsTheme.SKILLS_LINE_FONT_SIZE));
 			}
 			learnedSkillsAdded++;
 			addedElements++;

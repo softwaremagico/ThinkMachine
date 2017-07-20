@@ -28,6 +28,7 @@ import java.io.File;
 
 import org.testng.annotations.Test;
 
+import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.pdf.small.SmallCharacterSheet;
@@ -36,7 +37,7 @@ import com.softwaremagico.tm.pdf.small.SmallCharacterSheet;
 public class RandomCharacterTest {
 
 	@Test
-	public void basicCharacterCreation() {
+	public void basicCharacterCreation() throws InvalidXmlElementException {
 		CharacterPlayer characterPlayer = new CharacterPlayer("es");
 		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0);
 		randomizeCharacter.createCharacter();

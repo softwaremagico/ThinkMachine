@@ -28,14 +28,15 @@ import junit.framework.Assert;
 
 import org.testng.annotations.Test;
 
-import com.softwaremagico.tm.character.skills.SkillFactory;
+import com.softwaremagico.tm.InvalidXmlElementException;
+import com.softwaremagico.tm.character.skills.SkillsFactory;
 
 @Test(groups = { "skillFactory" })
 public class SkillFactoryTests {
 
 	@Test
-	public void readSkills() {
-		Assert.assertEquals(9, SkillFactory.getNaturalSkills("es").size());
-		Assert.assertEquals(51, SkillFactory.getLearnedSkills("es").size());
+	public void readSkills() throws InvalidXmlElementException {
+		Assert.assertEquals(9, SkillsFactory.getInstance().getNaturalSkills("es").size());
+		Assert.assertEquals(51, SkillsFactory.getInstance().getLearnedSkills("es").size());
 	}
 }

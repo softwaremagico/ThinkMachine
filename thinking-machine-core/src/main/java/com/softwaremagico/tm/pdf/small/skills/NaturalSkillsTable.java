@@ -27,16 +27,17 @@ package com.softwaremagico.tm.pdf.small.skills;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
+import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
-import com.softwaremagico.tm.character.skills.SkillFactory;
+import com.softwaremagico.tm.character.skills.SkillsFactory;
 import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.complete.skills.SkillsTable;
 
 public class NaturalSkillsTable extends SkillsTable {
 
-	public static PdfPTable getSkillsTable(CharacterPlayer characterPlayer, String language) {
-		float[] widths = { 1f};
+	public static PdfPTable getSkillsTable(CharacterPlayer characterPlayer, String language) throws InvalidXmlElementException {
+		float[] widths = { 1f };
 		PdfPTable table = new PdfPTable(widths);
 		setTablePropierties(table);
 		table.getDefaultCell().setBorder(0);
@@ -44,7 +45,7 @@ public class NaturalSkillsTable extends SkillsTable {
 		return table;
 	}
 
-	private static PdfPCell getSkillsColumnTable(CharacterPlayer characterPlayer, String language) {
+	private static PdfPCell getSkillsColumnTable(CharacterPlayer characterPlayer, String language) throws InvalidXmlElementException {
 		float[] widths = { 4f, 1f };
 		PdfPTable table = new PdfPTable(widths);
 		setTablePropierties(table);
@@ -53,7 +54,7 @@ public class NaturalSkillsTable extends SkillsTable {
 		table.addCell(createCompactTitle(getTranslator().getTranslatedText("naturalSkills"), FadingSunsTheme.CHARACTER_SMALL_SKILLS_TITLE_FONT_SIZE));
 
 		if (characterPlayer == null) {
-			for (AvailableSkill skill : SkillFactory.getNaturalSkills(language)) {
+			for (AvailableSkill skill : SkillsFactory.getInstance().getNaturalSkills(language)) {
 				table.addCell(createSkillElement(characterPlayer, skill, FadingSunsTheme.CHARACTER_SMALL_SKILLS_LINE_FONT_SIZE));
 				table.addCell(createSkillLine(SKILL_VALUE_GAP, FadingSunsTheme.CHARACTER_SMALL_SKILLS_LINE_FONT_SIZE));
 			}

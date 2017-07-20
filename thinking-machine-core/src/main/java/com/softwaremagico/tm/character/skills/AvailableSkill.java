@@ -1,6 +1,5 @@
 package com.softwaremagico.tm.character.skills;
 
-
 /*-
  * #%L
  * The Thinking Machine (Core)
@@ -25,18 +24,21 @@ package com.softwaremagico.tm.character.skills;
  * #L%
  */
 
-public class AvailableSkill extends Skill {
+public class AvailableSkill extends Skill<AvailableSkill> {
 	private boolean fromGuild;
-	private boolean natural;
+	private boolean natural = false;
 	private boolean generalizable;
 	private String generalization = null;
 	private int indexOfGeneralization = 0;
 	private String skillId;
 	private SkillGroup skillGroup;
 
-	public AvailableSkill(String skillId, String name, boolean natural) {
-		setName(name.trim());
-		this.natural = natural;
+	public AvailableSkill(String name) {
+		super(name);
+	}
+
+	public AvailableSkill(String skillId, String name) {
+		this(name.trim());
 		this.skillId = skillId;
 	}
 
@@ -89,6 +91,10 @@ public class AvailableSkill extends Skill {
 			throw new RuntimeException("Skill group cannot be null");
 		}
 		this.skillGroup = skillGroup;
+	}
+
+	public void setNatural(boolean natural) {
+		this.natural = natural;
 	}
 
 }
