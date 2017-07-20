@@ -35,7 +35,7 @@ import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.complete.skills.SkillsTable;
 
 public class LearnedSkillsTable extends SkillsTable {
-	private final static int ROWS = 18;
+	private final static int ROWS = 20;
 
 	public static PdfPTable getSkillsTable(CharacterPlayer characterPlayer, String language) throws InvalidXmlElementException {
 		float[] widths = { 1f };
