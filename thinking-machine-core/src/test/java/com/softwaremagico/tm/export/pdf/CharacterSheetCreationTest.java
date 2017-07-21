@@ -51,6 +51,7 @@ import com.softwaremagico.tm.character.equipment.Size;
 import com.softwaremagico.tm.character.equipment.Weapon;
 import com.softwaremagico.tm.character.occultism.OccultismPower;
 import com.softwaremagico.tm.character.race.Race;
+import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.character.traits.Benefit;
 import com.softwaremagico.tm.character.traits.Blessing;
 import com.softwaremagico.tm.json.CharacterJsonManager;
@@ -85,7 +86,7 @@ public class CharacterSheetCreationTest {
 		player.getInfo().setAge(30);
 		player.setRace(new Race("Human", 3, 3, 3, 3, 3, 3, 3, 3, 3, 5, 0, 0, 0, 0, 0));
 		player.getInfo().setPlanet("Sutek");
-		player.getInfo().setAlliance("Hazat");
+		player.getInfo().setFaction("Hazat");
 		player.getInfo().setRank("Knight");
 
 		player.getInfo().setBirthdate("4996-09-16");
@@ -105,14 +106,14 @@ public class CharacterSheetCreationTest {
 		player.getCharacteristics().getCharacteristic(CharacteristicName.WILL).setValue(8);
 		player.getCharacteristics().getCharacteristic(CharacteristicName.FAITH).setValue(9);
 
-		player.addSkill("Influenciar", 5);
-		player.addSkill("Sigilo", 4);
-		player.addSkill("Juego", 4);
-		player.addSkill("Abrir Cerraduras", 6);
-		player.addSkill("Armas de Energía", 6);
-		player.addSkill("Guerra", 8);
-		player.addSkill("Saber [Red de Salto]", 4);
-		player.addSkill("Saber [Bestias]", 2);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Influenciar", "es"), 5);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Sigilo", "es"), 4);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Juego", "es"), 4);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Abrir Cerraduras", "es"), 6);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Armas de Energía", "es"), 6);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Guerra", "es"), 8);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Saber [Red de Salto]", "es"), 4);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Saber [Bestias]", "es"), 2);
 
 		player.getOccultism().setPsiValue(4);
 		player.getOccultism().setUrge(1);

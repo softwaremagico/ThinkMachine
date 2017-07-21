@@ -24,10 +24,10 @@
 		<en>Planet:</en>
 		<es>Planeta:</es>
 	</infoPlanet>
-	<infoAlliance>
-		<en>Alliance:</en>
+	<infoFaction>
+		<en>Faction:</en>
 		<es>Alianza:</es>
-	</infoAlliance>
+	</infoFaction>
 	<infoRank>
 		<en>Rank:</en>
 		<es>Rango:</es>

@@ -46,7 +46,6 @@
 			<es>Saber</es>
 		</translator>
 		<group>lore</group>
-		<generalizable>true</generalizable>
 		<natural>true</natural>
 	</planetaryLore>
 	<factionLore>
@@ -55,7 +54,6 @@
 			<es>Saber</es>
 		</translator>
 		<group>lore</group>
-		<generalizable>true</generalizable>
 		<natural>true</natural>
 	</factionLore>
 	<sneak>
@@ -246,16 +244,9 @@
 			<es>Arte</es>
 		</translator>
 		<group>creative</group>
-		<generalizable>true</generalizable>
+		<specializations>Música, Caligrafía, Dibujo, Bordado</specializations>
+		<numberToShow>2</numberToShow>
 	</arts>
-	<arts2>
-		<translator>
-			<en>Arts</en>
-			<es>Arte</es>
-		</translator>
-		<group>creative</group>
-		<generalizable>true</generalizable>
-	</arts2>
 	<disguise>
 		<translator>
 			<en>Disguise</en>
@@ -269,16 +260,9 @@
 			<es>Interpretar</es>
 		</translator>
 		<group>creative</group>
-		<generalizable>true</generalizable>
+		<specializations>true</specializations>
+		<numberToShow>2</numberToShow>
 	</performance>
-	<performance2>
-		<translator>
-			<en>Performance</en>
-			<es>Interpretar</es>
-		</translator>
-		<group>creative</group>
-		<generalizable>true</generalizable>
-	</performance2>
 	<gaming>
 		<translator>
 			<en>Gaming</en>
@@ -292,16 +276,9 @@
 			<es>Oficio</es>
 		</translator>
 		<group>creative</group>
-		<generalizable>true</generalizable>
+		<specializations>true</specializations>
+		<numberToShow>2</numberToShow>
 	</craft>
-	<craft2>
-		<translator>
-			<en>Craft</en>
-			<es>Oficio</es>
-		</translator>
-		<group>creative</group>
-		<generalizable>true</generalizable>
-	</craft2>
 	<lockpicking>
 		<translator>
 			<en>Lockpicking</en>
@@ -357,48 +334,18 @@
 			<es>Saber</es>
 		</translator>
 		<group>lore</group>
-		<generalizable>true</generalizable>
+		<specializations>Red de Salto, Bestias, Pistola Energía, Máquina Pensante, Kelanti</specializations>
+		<numberToShow>4</numberToShow>
 	</lore>
-	<lore2>
-		<translator>
-			<en>Lore</en>
-			<es>Saber</es>
-		</translator>
-		<group>lore</group>
-		<generalizable>true</generalizable>
-	</lore2>
-	<lore3>
-		<translator>
-			<en>Lore</en>
-			<es>Saber</es>
-		</translator>
-		<group>lore</group>
-		<generalizable>true</generalizable>
-	</lore3>
-	<lore4>
-		<translator>
-			<en>Lore</en>
-			<es>Saber</es>
-		</translator>
-		<group>lore</group>
-		<generalizable>true</generalizable>
-	</lore4>
 	<xenoLore>
 		<translator>
 			<en>Xeno Lore</en>
 			<es>Xenología</es>
 		</translator>
 		<group>lore</group>
-		<generalizable>true</generalizable>
+		<specializations>Ur-Obun, Ur-Ukar, Vorox, Anunnaki, Vau</specializations>
+		<numberToShow>2</numberToShow>
 	</xenoLore>
-	<xenoLore2>
-		<translator>
-			<en>Xeno Lore</en>
-			<es>Xenología</es>
-		</translator>
-		<group>lore</group>
-		<generalizable>true</generalizable>
-	</xenoLore2>
 	<empathy>
 		<translator>
 			<en>Empathy</en>

@@ -46,9 +46,12 @@ import com.softwaremagico.tm.character.race.InvalidRaceException;
 import com.softwaremagico.tm.character.race.Race;
 import com.softwaremagico.tm.character.race.RaceCharacteristic;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
+import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
+import com.softwaremagico.tm.character.skills.InvalidSkillException;
 import com.softwaremagico.tm.character.skills.SelectedSkill;
 import com.softwaremagico.tm.character.skills.Skill;
-import com.softwaremagico.tm.character.skills.SkillsFactory;
+import com.softwaremagico.tm.character.skills.SkillDefinition;
+import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
 import com.softwaremagico.tm.character.traits.Benefit;
 import com.softwaremagico.tm.character.traits.Blessing;
 
@@ -146,7 +149,7 @@ public class CharacterPlayer {
 	}
 
 	public Integer getStartingValue(AvailableSkill skill) {
-		if (skill.isNatural()) {
+		if (skill.getSkillDefinition().isNatural()) {
 			return 3;
 		}
 		return 0;
@@ -213,21 +216,21 @@ public class CharacterPlayer {
 		return Math.max(getValue(CharacteristicName.WILL), getValue(CharacteristicName.FAITH)) + occultism.getExtraWyrd();
 	}
 
-	public void addSkill(String skillName, int value) {
-		addSkill(skillName, value, false);
-	}
-
-	public void addSkill(String skillName, int value, boolean special) {
-		skills.put(skillName, new SelectedSkill(skillName, value, special));
-		skillNameOrdered.add(skillName);
+	public void setSkillRank(AvailableSkill availableSkill, int value) throws InvalidSkillException {
+		if (availableSkill == null) {
+			throw new InvalidSkillException("Null skill is not allowed here.");
+		}
+		SelectedSkill skillWithRank = new SelectedSkill(availableSkill, value, false);
+		skills.put(availableSkill.getCompleteName(), skillWithRank);
+		skillNameOrdered.add(availableSkill.getName());
 		Collections.sort(skillNameOrdered);
 	}
 
-	private Integer getSkillValue(Skill<?> skill) {
+	private Integer getSkillRanks(Skill<?> skill) {
 		Integer cyberneticBonus = getCyberneticsValue(skill.getName());
 		if (skills.get(skill.getName()) == null) {
-			if (SkillsFactory.getInstance().isNaturalSkill(skill.getName(), language)) {
-				if (cyberneticBonus != null) {
+			if (SkillsDefinitionsFactory.getInstance().isNaturalSkill(skill.getName(), language)) {
+				if (cyberneticBonus != 0) {
 					return Math.max(3, cyberneticBonus);
 				}
 				return 3;
@@ -241,17 +244,17 @@ public class CharacterPlayer {
 		return skills.get(skill.getName()).getValue();
 	}
 
-	public Integer getSkillValue(AvailableSkill skill) {
+	public Integer getSkillRanks(AvailableSkill skill) {
 		SelectedSkill selectedSkill = getSelectedSkill(skill);
 		// Use the skill with generalization.
 		if (selectedSkill != null) {
-			return getSkillValue(selectedSkill);
+			return getSkillRanks(selectedSkill);
 		} else {
 			// Use a simple skill if not generalization.
-			if (!skill.isGeneralizable() || skill.isNatural()) {
-				return getSkillValue((Skill<AvailableSkill>) skill);
+			if (!skill.getSkillDefinition().isSpecializable() || skill.getSkillDefinition().isNatural()) {
+				return getSkillRanks((Skill<AvailableSkill>) skill);
 			} else {
-				return null;
+				return 0;
 			}
 		}
 	}
@@ -265,14 +268,11 @@ public class CharacterPlayer {
 				}
 			}
 		}
-		if (maxValue == 0) {
-			return null;
-		}
 		return maxValue;
 	}
 
-	public boolean isSkillSpecial(AvailableSkill skill) {
-		if (getSelectedSkill(skill) != null && getSelectedSkill(skill).isSpecial()) {
+	public boolean isSkillSpecial(AvailableSkill availableSkill) {
+		if (getSelectedSkill(availableSkill) != null && getSelectedSkill(availableSkill).hasCost()) {
 			return true;
 		}
 		return false;
@@ -285,39 +285,9 @@ public class CharacterPlayer {
 	 * @return
 	 */
 	public SelectedSkill getSelectedSkill(AvailableSkill skill) {
-		if (skill.isGeneralizable() && skill.getGeneralization() == null) {
-			// Check for specializations.
-			int order = 0;
-			for (String skillName : skillNameOrdered) {
-				if (skillName.contains("[")) {
-					String skillPrefix = skillName.substring(0, skillName.indexOf("[")).trim();
-					if (Objects.equals(skillPrefix, skill.getName())) {
-						if (order == skill.getIndexOfGeneralization()) {
-							return skills.get(skillName);
-						} else {
-							order++;
-						}
-					} else {
-						order = 0;
-					}
-				}
-			}
-
-			for (Device device : cybernetics.getElements()) {
-				for (String skillName : device.getSkillImprovementsNames()) {
-					if (skillName.contains("[")) {
-						String skillPrefix = skillName.substring(0, skillName.indexOf("[")).trim();
-						if (Objects.equals(skillPrefix, skill.getName())) {
-							if (order == skill.getIndexOfGeneralization()) {
-								return device.getSkillImprovement(skillName);
-							} else {
-								order++;
-							}
-						} else {
-							order = 0;
-						}
-					}
-				}
+		for (SelectedSkill selectedSkill : skills.values()) {
+			if (Objects.equals(selectedSkill.getAvailableSkill(), skill)) {
+				return selectedSkill;
 			}
 		}
 		return null;
@@ -426,15 +396,12 @@ public class CharacterPlayer {
 
 	public List<AvailableSkill> getNaturalSkills() throws InvalidXmlElementException {
 		List<AvailableSkill> naturalSkills = new ArrayList<>();
-		boolean planet = false;
-		for (AvailableSkill skill : SkillsFactory.getInstance().getNaturalSkills(language)) {
-			if (skill.isGeneralizable()) {
-				if (!planet) {
-					skill.setGeneralization(getInfo().getPlanet());
-					planet = true;
-				} else {
-					skill.setGeneralization(getInfo().getAlliance());
-				}
+		// Adds default planet and alliance.
+		for (AvailableSkill skill : AvailableSkillsFactory.getInstance().getNaturalSkills(language)) {
+			if (skill.getSkillDefinition().getSkillId().equals(SkillDefinition.PLANETARY_LORE_ID)) {
+				skill.setSpecialization(getInfo().getPlanet());
+			} else if (skill.getSkillDefinition().getSkillId().equals(SkillDefinition.FACTORION_LORE_ID)) {
+				skill.setSpecialization(getInfo().getFaction());
 			}
 			naturalSkills.add(skill);
 		}
@@ -443,8 +410,8 @@ public class CharacterPlayer {
 
 	public List<AvailableSkill> getLearnedSkills() throws InvalidXmlElementException {
 		List<AvailableSkill> learnedSkills = new ArrayList<>();
-		for (AvailableSkill skill : SkillsFactory.getInstance().getLearnedSkills(language)) {
-			if (getSkillValue(skill) != null) {
+		for (AvailableSkill skill : AvailableSkillsFactory.getInstance().getLearnedSkills(language)) {
+			if (getSkillRanks(skill) != null) {
 				learnedSkills.add(skill);
 			}
 		}
@@ -492,16 +459,16 @@ public class CharacterPlayer {
 	 */
 	public int getSkillsTotalPoints() throws InvalidXmlElementException {
 		int skillPoints = 0;
-		for (AvailableSkill skill : SkillsFactory.getInstance().getNaturalSkills(getLanguage())) {
-			skillPoints += getSkillValue(skill) - getStartingValue(skill);
+		for (AvailableSkill skill : AvailableSkillsFactory.getInstance().getNaturalSkills(getLanguage())) {
+			skillPoints += getSkillRanks(skill) - getStartingValue(skill);
 		}
 
-		for (AvailableSkill skill : SkillsFactory.getInstance().getLearnedSkills((getLanguage()))) {
+		for (AvailableSkill skill : AvailableSkillsFactory.getInstance().getLearnedSkills((getLanguage()))) {
 			if (isSkillSpecial(skill)) {
 				continue;
 			}
-			if (getSkillValue(skill) != null) {
-				skillPoints += getSkillValue(skill);
+			if (getSkillRanks(skill) != null) {
+				skillPoints += getSkillRanks(skill);
 			}
 		}
 
@@ -519,4 +486,5 @@ public class CharacterPlayer {
 	public void setLearnedStances(List<LearnedStance> learnedStances) {
 		this.learnedStances = learnedStances;
 	}
+
 }

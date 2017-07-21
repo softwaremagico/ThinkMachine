@@ -34,7 +34,7 @@ import java.util.Objects;
 import com.softwaremagico.tm.language.ITranslator;
 
 public abstract class XmlFactory<T extends Element<T>> {
-	private Map<String, List<T>> elements = new HashMap<>();
+	protected Map<String, List<T>> elements = new HashMap<>();
 
 	protected abstract ITranslator getTranslator();
 
@@ -58,7 +58,7 @@ public abstract class XmlFactory<T extends Element<T>> {
 				}
 			}
 		}
-		return null;
+		throw new InvalidXmlElementException("Element '" + elementName + "' does not exists.");
 	}
 
 	protected abstract T createElement(ITranslator translator, String elementId, String language) throws InvalidXmlElementException;

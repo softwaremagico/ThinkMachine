@@ -23,22 +23,31 @@ package com.softwaremagico.tm.character.skills;
  * this program; If not, see <http://www.gnu.org/licenses/gpl-3.0.html>.
  * #L%
  */
-
+/**
+ * A Skill that has been chosen by a player. It has rank values and in some cases a specific generalization.
+ */
 public class SelectedSkill extends Skill<SelectedSkill> {
 	private final int value;
-	private final boolean special;
+	// Special are represented with a '*' in the character sheet. Does not count for cost calculation.
+	private final boolean cost;
+	private final AvailableSkill availableSkill;
 
-	public SelectedSkill(String name, int value, boolean special) {
-		super(name);
+	public SelectedSkill(AvailableSkill availableSkill, int value, boolean cost) {
+		super(availableSkill.getCompleteName());
+		this.availableSkill = availableSkill;
 		this.value = value;
-		this.special = special;
+		this.cost = cost;
 	}
 
 	public int getValue() {
 		return value;
 	}
 
-	public boolean isSpecial() {
-		return special;
+	public AvailableSkill getAvailableSkill() {
+		return availableSkill;
+	}
+
+	public boolean hasCost() {
+		return cost;
 	}
 }

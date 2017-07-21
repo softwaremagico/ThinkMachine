@@ -25,11 +25,10 @@ package com.softwaremagico.tm.character.skills;
  */
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
-import java.util.Objects;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
@@ -37,44 +36,44 @@ import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.log.MachineLog;
 
-public class SkillsFactory extends XmlFactory<AvailableSkill> {
+public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 	private final static String GUILD_SKILL_TAG = "guildSkill";
-	private final static String GENERALIZABLE_SKILL_TAG = "generalizable";
+	private final static String SPECIALIZABLE_SKILL_TAG = "specializations";
 	private final static String GROUP_SKILL_TAG = "group";
 	private final static String NATURAL_SKILL_TAG = "natural";
-	private static Map<String, List<AvailableSkill>> skills = new HashMap<>();
-	private static List<AvailableSkill> naturalSkills = new ArrayList<>();
-	private static List<AvailableSkill> learnedSkills = new ArrayList<>();
+	private final static String NUMBER_TO_SHOW_TAG = "numberToShow";
+	private static List<SkillDefinition> naturalSkills = new ArrayList<>();
+	private static List<SkillDefinition> learnedSkills = new ArrayList<>();
 
 	private static ITranslator translatorLearnedSkills = LanguagePool.getTranslator("skills.xml");
 
-	private static SkillsFactory instance;
+	private static SkillsDefinitionsFactory instance;
 
 	private static void createInstance() {
 		if (instance == null) {
-			synchronized (SkillsFactory.class) {
+			synchronized (SkillsDefinitionsFactory.class) {
 				if (instance == null) {
-					instance = new SkillsFactory();
+					instance = new SkillsDefinitionsFactory();
 				}
 			}
 		}
 	}
 
-	public static SkillsFactory getInstance() {
+	public static SkillsDefinitionsFactory getInstance() {
 		if (instance == null) {
 			createInstance();
 		}
 		return instance;
 	}
 
-	public List<AvailableSkill> getNaturalSkills(String language) throws InvalidXmlElementException {
+	public List<SkillDefinition> getNaturalSkills(String language) throws InvalidXmlElementException {
 		if (naturalSkills.isEmpty()) {
 			getElements(language);
 		}
 		return naturalSkills;
 	}
 
-	public List<AvailableSkill> getLearnedSkills(String language) throws InvalidXmlElementException {
+	public List<SkillDefinition> getLearnedSkills(String language) throws InvalidXmlElementException {
 		if (learnedSkills.isEmpty()) {
 			getElements(language);
 		}
@@ -83,7 +82,7 @@ public class SkillsFactory extends XmlFactory<AvailableSkill> {
 
 	public boolean isNaturalSkill(String skillName, String language) {
 		try {
-			for (AvailableSkill availableSkill : getNaturalSkills(language)) {
+			for (SkillDefinition availableSkill : getNaturalSkills(language)) {
 				if (availableSkill.getName().equals(skillName)) {
 					return true;
 				}
@@ -95,59 +94,53 @@ public class SkillsFactory extends XmlFactory<AvailableSkill> {
 	}
 
 	@Override
-	public List<AvailableSkill> getElements(String language) throws InvalidXmlElementException {
-		if (skills.get(language) == null) {
-			skills.put(language, new ArrayList<AvailableSkill>());
-			String lastSkillName = null;
-			int added = 0;
+	public List<SkillDefinition> getElements(String language) throws InvalidXmlElementException {
+		if (elements.get(language) == null) {
+			elements.put(language, new ArrayList<SkillDefinition>());
 			for (String skillId : translatorLearnedSkills.getAllTranslatedElements()) {
-				AvailableSkill skill = createElement(translatorLearnedSkills, skillId, language);
-				if (Objects.equals(lastSkillName, skill.getName())) {
-					added++;
-				} else {
-					added = 0;
-				}
-				skill.setIndexOfGeneralization(added);
-				skills.get(language).add(skill);
-				lastSkillName = skill.getName();
+				SkillDefinition skill = createElement(translatorLearnedSkills, skillId, language);
+				elements.get(language).add(skill);
 				if (skill.isNatural()) {
 					naturalSkills.add(skill);
+					Collections.sort(naturalSkills);
 				} else {
 					learnedSkills.add(skill);
+					Collections.sort(learnedSkills);
 				}
 			}
-			Collections.sort(skills.get(language));
+			Collections.sort(elements.get(language));
 		}
-		return skills.get(language);
+		return elements.get(language);
 	}
 
 	@Override
-	protected AvailableSkill createElement(ITranslator translator, String skillId, String language) throws InvalidXmlElementException {
-		AvailableSkill skill = new AvailableSkill(skillId, translator.getTranslatedText(skillId, language));
+	protected SkillDefinition createElement(ITranslator translator, String skillId, String language) throws InvalidXmlElementException {
+		SkillDefinition skill = new SkillDefinition(skillId, translator.getTranslatedText(skillId, language));
 		try {
-			String generalizable = translator.getNodeValue(skillId, GENERALIZABLE_SKILL_TAG);
-			skill.setGeneralizable(Boolean.parseBoolean(generalizable));
+			String generalizable = translator.getNodeValue(skillId, SPECIALIZABLE_SKILL_TAG);
+			if (generalizable != null) {
+				String[] generalizations = generalizable.replaceAll(", ", ",").split(",");
+				skill.setSpecializations(new HashSet<String>(Arrays.asList(generalizations)));
+			}
 		} catch (NumberFormatException nfe) {
 			throw new InvalidSkillException("Invalid generalizable value for skill '" + skillId + "'.");
 		}
 		try {
-			String guildSkill = translator.getNodeValue(skillId, GUILD_SKILL_TAG);
-			skill.setFromGuild(Boolean.parseBoolean(guildSkill));
+			String numberToShow = translator.getNodeValue(skillId, NUMBER_TO_SHOW_TAG);
+			if (numberToShow != null) {
+				skill.setNumberToShow(Integer.parseInt(numberToShow));
+			}
 		} catch (NumberFormatException nfe) {
-			throw new InvalidSkillException("Invalid guild value for skill '" + skillId + "'.");
+			throw new InvalidSkillException("Invalid number value for skill '" + skillId + "'.");
 		}
-		try {
-			String group = translator.getNodeValue(skillId, GROUP_SKILL_TAG);
-			skill.setSkillGroup(SkillGroup.getSkillGroup(group));
-		} catch (NumberFormatException nfe) {
-			throw new InvalidSkillException("Invalid group value for skill '" + skillId + "'.");
-		}
-		try {
-			String natural = translator.getNodeValue(skillId, NATURAL_SKILL_TAG);
-			skill.setNatural(Boolean.parseBoolean(natural));
-		} catch (NumberFormatException nfe) {
-			throw new InvalidSkillException("Invalid natural value for skill '" + skillId + "'.");
-		}
+		String guildSkill = translator.getNodeValue(skillId, GUILD_SKILL_TAG);
+		skill.setFromGuild(Boolean.parseBoolean(guildSkill));
+		String group = translator.getNodeValue(skillId, GROUP_SKILL_TAG);
+		skill.setSkillGroup(SkillGroup.getSkillGroup(group));
+
+		String natural = translator.getNodeValue(skillId, NATURAL_SKILL_TAG);
+		skill.setNatural(Boolean.parseBoolean(natural));
+
 		return skill;
 	}
 

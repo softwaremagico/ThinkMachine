@@ -70,7 +70,7 @@ public class CharacterBasicsCompleteTableFactory extends CharacterBasicsTableFac
 
 		table.addCell(createField(characterPlayer, "race", FadingSunsTheme.CHARACTER_BASICS_FONT_SIZE));
 		table.addCell(createField(characterPlayer, "planet", FadingSunsTheme.CHARACTER_BASICS_FONT_SIZE));
-		table.addCell(createField(characterPlayer, "alliance", FadingSunsTheme.CHARACTER_BASICS_FONT_SIZE));
+		table.addCell(createField(characterPlayer, "faction", FadingSunsTheme.CHARACTER_BASICS_FONT_SIZE));
 		table.addCell(createField(characterPlayer, "rank", FadingSunsTheme.CHARACTER_BASICS_FONT_SIZE));
 
 		PdfPCell cell = new PdfPCell();

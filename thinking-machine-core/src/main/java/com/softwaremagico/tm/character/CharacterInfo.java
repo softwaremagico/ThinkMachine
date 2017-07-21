@@ -42,7 +42,7 @@ public class CharacterInfo {
 
 	private String planet;
 
-	private String alliance;
+	private String faction;
 
 	private String rank;
 
@@ -130,12 +130,12 @@ public class CharacterInfo {
 		this.planet = planet;
 	}
 
-	public String getAlliance() {
-		return alliance;
+	public String getFaction() {
+		return faction;
 	}
 
-	public void setAlliance(String alliance) {
-		this.alliance = alliance;
+	public void setFaction(String faction) {
+		this.faction = faction;
 	}
 
 	public String getRank() {

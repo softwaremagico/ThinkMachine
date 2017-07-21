@@ -1,100 +1,47 @@
 package com.softwaremagico.tm.character.skills;
 
-/*-
- * #%L
- * The Thinking Machine (Core)
- * %%
- * Copyright (C) 2017 Softwaremagico
- * %%
- * This software is designed by Jorge Hortelano Otero. Jorge Hortelano Otero
- * <softwaremagico@gmail.com> Valencia (Spain).
- *  
- * This program is free software; you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by the Free Software
- * Foundation; either version 2 of the License, or (at your option) any later
- * version.
- *  
- * This program is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
- * details.
- *  
- * You should have received a copy of the GNU General Public License along with
- * this program; If not, see <http://www.gnu.org/licenses/gpl-3.0.html>.
- * #L%
+/**
+ * An skill that already has been split in different generalizations.
  */
-
 public class AvailableSkill extends Skill<AvailableSkill> {
-	private boolean fromGuild;
-	private boolean natural = false;
-	private boolean generalizable;
-	private String generalization = null;
-	private int indexOfGeneralization = 0;
-	private String skillId;
-	private SkillGroup skillGroup;
+	private String specialization = null;
+	private SkillDefinition skillDefinition;
 
-	public AvailableSkill(String name) {
-		super(name);
+	public AvailableSkill(SkillDefinition skillDefinition) {
+		super(skillDefinition.getName());
+		this.skillDefinition = skillDefinition;
 	}
 
-	public AvailableSkill(String skillId, String name) {
-		this(name.trim());
-		this.skillId = skillId;
+	public AvailableSkill(SkillDefinition skillDefinition, String specialization) {
+		this(skillDefinition);
+		this.specialization = specialization;
 	}
 
-	public boolean isFromGuild() {
-		return fromGuild;
+	public String getSpecialization() {
+		return specialization;
 	}
 
-	public boolean isNatural() {
-		return natural;
+	public void setSpecialization(String generalization) {
+		this.specialization = generalization;
 	}
 
-	public boolean isGeneralizable() {
-		return generalizable;
+	public SkillDefinition getSkillDefinition() {
+		return skillDefinition;
 	}
 
-	public String getGeneralization() {
-		return generalization;
+	public String getCompleteName() {
+		return getCompleteName(getName(), getSpecialization());
 	}
 
-	public void setGeneralization(String generalization) {
-		this.generalization = generalization;
-	}
-
-	public int getIndexOfGeneralization() {
-		return indexOfGeneralization;
-	}
-
-	public void setIndexOfGeneralization(int indexOfGeneralization) {
-		this.indexOfGeneralization = indexOfGeneralization;
-	}
-
-	public String getSkillId() {
-		return skillId;
-	}
-
-	public void setGeneralizable(boolean generalizable) {
-		this.generalizable = generalizable;
-	}
-
-	public void setFromGuild(boolean fromGuild) {
-		this.fromGuild = fromGuild;
-	}
-
-	public SkillGroup getSkillGroup() {
-		return skillGroup;
-	}
-
-	public void setSkillGroup(SkillGroup skillGroup) {
-		if (skillGroup == null) {
-			throw new RuntimeException("Skill group cannot be null");
+	public static String getCompleteName(String name, String specialization) {
+		if (specialization == null) {
+			return name;
 		}
-		this.skillGroup = skillGroup;
+		return name + " [" + specialization + "]";
 	}
 
-	public void setNatural(boolean natural) {
-		this.natural = natural;
+	@Override
+	public String toString() {
+		return getCompleteName();
 	}
-
 }
