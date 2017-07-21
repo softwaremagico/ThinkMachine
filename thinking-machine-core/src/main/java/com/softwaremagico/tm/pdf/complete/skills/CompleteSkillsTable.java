@@ -154,7 +154,7 @@ public class CompleteSkillsTable extends SkillsTable {
 				List<AvailableSkill> availableSkillsByDefinition = AvailableSkillsFactory.getInstance().getAvailableSkills(skillDefinition, language);
 				for (AvailableSkill availableSkill : availableSkillsByDefinition) {
 					// Only specializations if they have ranks.
-					if (!skillDefinition.isSpecializable() || characterPlayer == null || characterPlayer.getSkillRanks(availableSkill) > 0) {
+					if (!skillDefinition.isSpecializable() || (characterPlayer != null && characterPlayer.getSkillRanks(availableSkill) > 0)) {
 						table.addCell(createSkillElement(characterPlayer, availableSkill, FadingSunsTheme.SKILLS_LINE_FONT_SIZE));
 						if (characterPlayer == null) {
 							table.addCell(createSkillLine(SKILL_VALUE_GAP, FadingSunsTheme.SKILLS_LINE_FONT_SIZE));
@@ -166,8 +166,9 @@ public class CompleteSkillsTable extends SkillsTable {
 						rowsAdded++;
 					}
 				}
-				// We want empty specializations into the chart.
+				// We want some empty specializations into the chart.
 				for (int j = addedAvailableSkill; j < skillDefinition.getNumberToShow() && rowsAdded < totalRows; j++) {
+					System.out.println(rowsAdded + " < " + totalRows);
 					table.addCell(createSkillElement(skillDefinition, FadingSunsTheme.SKILLS_LINE_FONT_SIZE));
 					table.addCell(createSkillLine(SKILL_VALUE_GAP, FadingSunsTheme.SKILLS_LINE_FONT_SIZE));
 					rowsAdded++;

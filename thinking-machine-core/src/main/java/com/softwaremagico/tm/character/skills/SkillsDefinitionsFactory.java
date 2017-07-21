@@ -59,6 +59,13 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 		}
 	}
 
+	@Override
+	public void clearCache() {
+		super.clearCache();
+		naturalSkills = new ArrayList<>();
+		learnedSkills = new ArrayList<>();
+	}
+
 	public static SkillsDefinitionsFactory getInstance() {
 		if (instance == null) {
 			createInstance();

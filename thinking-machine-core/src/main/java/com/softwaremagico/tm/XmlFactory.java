@@ -38,6 +38,10 @@ public abstract class XmlFactory<T extends Element<T>> {
 
 	protected abstract ITranslator getTranslator();
 
+	public void clearCache() {
+		elements = new HashMap<>();
+	}
+
 	public List<T> getElements(String language) throws InvalidXmlElementException {
 		if (elements.get(language) == null) {
 			elements.put(language, new ArrayList<T>());

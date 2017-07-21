@@ -34,6 +34,12 @@ public class AvailableSkillsFactory {
 		}
 		return instance;
 	}
+	
+	public void clearCache() {
+		elements = new HashMap<>();
+		naturalSkills = new ArrayList<>();
+		learnedSkills = new ArrayList<>();
+	}
 
 	public List<AvailableSkill> getNaturalSkills(String language) throws InvalidXmlElementException {
 		if (naturalSkills.isEmpty()) {

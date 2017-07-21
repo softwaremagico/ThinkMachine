@@ -73,9 +73,11 @@ public class CharacterPlayer {
 
 	// Skills
 	private Map<String, SelectedSkill> skills;
+
 	private List<String> skillNameOrdered;
 
 	private List<Blessing> blessings;
+
 	private List<Benefit> benefits;
 
 	private Cybernetics cybernetics;

@@ -35,6 +35,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.itextpdf.text.DocumentException;
+import com.softwaremagico.tm.CacheHandler;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.CostCalculator;
@@ -65,20 +66,22 @@ public class CharacterSheetCreationTest {
 
 	@Test
 	public void emptyPdfSpanish() throws MalformedURLException, DocumentException, IOException {
-		LanguagePool.clearCache();
+		CacheHandler.clearCache();
 		CharacterSheet sheet = new CharacterSheet("es");
 		sheet.createFile(PDF_PATH_OUTPUT + "FadingSuns_ES.pdf");
 	}
 
 	@Test
 	public void emptyPdfEnglish() throws MalformedURLException, DocumentException, IOException {
-		LanguagePool.clearCache();
+		CacheHandler.clearCache();
 		CharacterSheet sheet = new CharacterSheet("en");
 		sheet.createFile(PDF_PATH_OUTPUT + "FadingSuns_EN.pdf");
 	}
 
 	@Test
 	public void characterPdfSpanish() throws MalformedURLException, DocumentException, IOException, InvalidXmlElementException {
+		CacheHandler.clearCache();
+		
 		player = new CharacterPlayer("es");
 		player.getInfo().setName("John Sephard");
 		player.getInfo().setPlayer("Player 1");
