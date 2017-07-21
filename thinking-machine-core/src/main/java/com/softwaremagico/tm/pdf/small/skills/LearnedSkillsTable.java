@@ -57,10 +57,12 @@ public class LearnedSkillsTable extends SkillsTable {
 		int added = 0;
 		if (characterPlayer != null) {
 			for (AvailableSkill skill : characterPlayer.getLearnedSkills()) {
-				table.addCell(createSkillElement(characterPlayer, skill, FadingSunsTheme.CHARACTER_SMALL_SKILLS_LINE_FONT_SIZE));
-				table.addCell(createSkillValue(characterPlayer.getSkillRanks(skill),
-						characterPlayer.isSkillSpecial(skill), FadingSunsTheme.CHARACTER_SMALL_SKILLS_LINE_FONT_SIZE));
-				added++;
+				if (characterPlayer.getSkillRanks(skill) > 0) {
+					table.addCell(createSkillElement(characterPlayer, skill, FadingSunsTheme.CHARACTER_SMALL_SKILLS_LINE_FONT_SIZE));
+					table.addCell(createSkillValue(characterPlayer.getSkillRanks(skill), characterPlayer.isSkillSpecial(skill),
+							FadingSunsTheme.CHARACTER_SMALL_SKILLS_LINE_FONT_SIZE));
+					added++;
+				}
 			}
 
 			for (int i = added; i < ROWS; i++) {

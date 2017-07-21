@@ -168,7 +168,6 @@ public class CompleteSkillsTable extends SkillsTable {
 				}
 				// We want some empty specializations into the chart.
 				for (int j = addedAvailableSkill; j < skillDefinition.getNumberToShow() && rowsAdded < totalRows; j++) {
-					System.out.println(rowsAdded + " < " + totalRows);
 					table.addCell(createSkillElement(skillDefinition, FadingSunsTheme.SKILLS_LINE_FONT_SIZE));
 					table.addCell(createSkillLine(SKILL_VALUE_GAP, FadingSunsTheme.SKILLS_LINE_FONT_SIZE));
 					rowsAdded++;

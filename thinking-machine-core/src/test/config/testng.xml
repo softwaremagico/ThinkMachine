@@ -27,9 +27,9 @@
 		<groups>
 			<run>				
 				<include name="characterPdfGeneration" />
-				<exclude name="customCharacterGeneration" />
-				<exclude name="skillFactory" />
-				<exclude name="raceFactory" />
+				<include name="customCharacterGeneration" />
+				<include name="skillFactory" />
+				<include name="raceFactory" />
 				<exclude name="randomCharacter" />
 			</run>
 		</groups>
