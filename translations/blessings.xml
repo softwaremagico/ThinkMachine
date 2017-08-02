@@ -13,4 +13,30 @@
 			<es>Especial</es>
 		</situation>
 	</handsome>
+	<innovative>
+		<name>
+			<en>Innovative</en>
+			<es>Innovador</es>
+		</name>
+		<cost>2</cost>
+		<bonification>2</bonification>
+		<trait>technology</trait>
+		<situation>
+			<en>To invent something new</en>
+			<es>Inventar algo nuevo</es>
+		</situation>
+	</innovative>
+	<haughty>
+		<name>
+			<en>Haughty</en>
+			<es>Enervado</es>
+		</name>
+		<cost>-2</cost>
+		<bonification>-2</bonification>
+		<trait>presence</trait>
+		<situation>
+			<en>Around serfs</en>
+			<es>Entre sirvientes</es>
+		</situation>
+	</haughty>
 </blessings>

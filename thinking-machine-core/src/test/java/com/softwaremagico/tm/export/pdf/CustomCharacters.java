@@ -64,7 +64,7 @@ public class CustomCharacters {
 	@Test
 	public void createPaolaCharacter() throws MalformedURLException, DocumentException, IOException, InvalidXmlElementException {
 		CharacterPlayer player = new CharacterPlayer("es");
-		player.getInfo().setName("Cinco");
+		player.getInfo().setName("#5");
 		player.getInfo().setPlayer("Paola");
 		player.getInfo().setGender(Gender.FEMALE);
 		player.getInfo().setAge(25);
@@ -101,6 +101,8 @@ public class CustomCharacters {
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Máquina Pensante", "es"), 4);
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Recuperación Tecnológic.", "es"), 7);
 
+		//player.addBlessing(BlessingFactory.getInstance().getElement("Innovador", "es"));
+		//player.addBlessing(BlessingFactory.getInstance().getElement("Enervado", "es"));
 		player.addBlessing(new Blessing("Innovador", 2, 2, "Tecnología", "Inventar"));
 		player.addBlessing(new Blessing("Enervado", -2, -2, "Presencia", "Entre sirvientes"));
 		player.addBlessing(new Blessing("Hacker", 2, 2, "Máquina Pensante", "--"));

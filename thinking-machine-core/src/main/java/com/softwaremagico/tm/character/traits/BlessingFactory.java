@@ -78,13 +78,13 @@ public class BlessingFactory extends XmlFactory<Blessing> {
 				String trait = translator.getNodeValue(blessingId, TRAIT);
 				blessing.setTrait(trait);
 			} catch (Exception e) {
-				throw new InvalidBlessingException("Invalid bonification in blessing '" + blessingId + "'.");
+				throw new InvalidBlessingException("Invalid trait name '" + blessingId + "'.");
 			}
 			try {
 				String situation = translator.getNodeValue(blessingId, SITUATION);
 				blessing.setTrait(situation);
 			} catch (Exception e) {
-				throw new InvalidBlessingException("Invalid bonification in blessing '" + blessingId + "'.");
+				throw new InvalidBlessingException("Invalid situation name '" + blessingId + "'.");
 			}
 			return blessing;
 		} catch (Exception e) {
