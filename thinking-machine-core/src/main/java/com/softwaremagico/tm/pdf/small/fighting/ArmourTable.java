@@ -78,7 +78,7 @@ public class ArmourTable extends CustomPdfTable {
 	}
 
 	private PdfPTable getShieldRange(CharacterPlayer characterPlayer) {
-		float[] widths = { 1f, 2f, 1f, 2f, 1f };
+		float[] widths = { 1f, 3f, 1f, 3f, 1f };
 		PdfPTable table = new PdfPTable(widths);
 		BaseElement.setTablePropierties(table);
 		table.getDefaultCell().setBorder(0);
@@ -89,13 +89,13 @@ public class ArmourTable extends CustomPdfTable {
 		if (characterPlayer == null || characterPlayer.getShield() == null) {
 			table.addCell(createEmptyElementLine(" ", ARMOUR_VALUE_COLUMN_WIDTH));
 		} else {
-			table.addCell(createElementLine(characterPlayer.getShield().getImpact() + "", FadingSunsTheme.ARMOUR_CONTENT_FONT_SIZE - 1));
+			table.addCell(createElementLine(characterPlayer.getShield().getImpact() + "", ARMOUR_VALUE_COLUMN_WIDTH));
 		}
 		table.addCell(createEmptyElementLine("/"));
 		if (characterPlayer == null || characterPlayer.getShield() == null) {
 			table.addCell(createEmptyElementLine(" ", ARMOUR_VALUE_COLUMN_WIDTH));
 		} else {
-			table.addCell(createElementLine(characterPlayer.getShield().getForce() + "", FadingSunsTheme.ARMOUR_CONTENT_FONT_SIZE - 1));
+			table.addCell(createElementLine(characterPlayer.getShield().getForce() + "", ARMOUR_VALUE_COLUMN_WIDTH));
 		}
 		table.addCell(createEmptyElementLine(")"));
 

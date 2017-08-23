@@ -32,7 +32,7 @@ import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.complete.elements.VerticalTable;
 
 public class WeaponsTable extends VerticalTable {
-	private final static float[] WIDTHS = { 3f, 1f, 1f, 1.5f, 1f, 1f };
+	private final static float[] WIDTHS = { 3f, 1f, 1f, 1.5f, 1.5f, 1f };
 	private final static int ROWS = 8;
 	private final static int NAME_COLUMN_WIDTH = 60;
 	private final static int GOAL_COLUMN_WIDTH = 15;
