@@ -1,24 +1,31 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.softwaremagico</groupId>
 	<artifactId>thinking-machine</artifactId>
-	<version>0.3.1</version>
+	<version>0.3.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>The Thinking Machine</name>
-	<url />
+	<url>https://github.com/jorgehortelano/TheThinkingMachine</url>
+	
 	<organization>
 		<name>Softwaremagico</name>
 		<url>https://github.com/jorgehortelano/TheThinkingMachine</url>
 	</organization>
+	
 	<modules>
 		<module>thinking-machine-core</module>
 	</modules>
+	
 	<scm>
 		<url>https://github.com/jorgehortelano/TheThinkingMachine</url>
-		<connection>scm:git:git://github.com/jorgehortelano/TheThinkingMachine.git</connection>
-		<developerConnection>scm:git:git://github.com/jorgehortelano/TheThinkingMachine.git</developerConnection>
-		<tag>thinking-machine-0.3.1</tag>
+		<connection>scm:git:https://github.com/jorgehortelano/TheThinkingMachine.git</connection>
+		<developerConnection>scm:git:https://github.com/jorgehortelano/TheThinkingMachine.git</developerConnection>
+		<tag>USMO</tag>
 	</scm>
+	
 	<properties>
 		<main.basedir>${project.basedir}</main.basedir>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -36,6 +43,7 @@
 		<maven-release-plugin.version>2.5.1</maven-release-plugin.version>
 		<maven-scm-provider-gitexe.version>1.9.2</maven-scm-provider-gitexe.version>
 	</properties>
+	
 	<build>
 		<plugins>
 			<plugin>
