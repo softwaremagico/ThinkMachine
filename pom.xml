@@ -102,6 +102,7 @@
 					<releaseProfiles>release</releaseProfiles>
 					<!-- This goal is used by release:perform -->
 					<goals>deploy</goals>
+					<localCheckout>true</localCheckout>
 				</configuration>
 			</plugin>
 		</plugins>
