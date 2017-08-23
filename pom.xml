@@ -17,8 +17,8 @@
 	</modules>
 	
 	<scm>
-		<developerConnection>scm:git:ssh://jorgehortelano@github.com/jorgehortelano/TheThinkingMachine.git</developerConnection>
-		<url>https://jorgehortelano@github.com/jorgehortelano/TheThinkingMachine.git</url>
+		<developerConnection>scm:git:ssh://github.com/jorgehortelano/TheThinkingMachine.git</developerConnection>
+		<url>https://github.com/jorgehortelano/TheThinkingMachine.git</url>
 		<tag>HEAD</tag>
 	</scm>
 	
