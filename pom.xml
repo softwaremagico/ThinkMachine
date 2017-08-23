@@ -21,8 +21,8 @@
 	
 	<scm>
 		<url>https://github.com/jorgehortelano/TheThinkingMachine</url>
-		<connection>scm:git:ssh://git@github.com/jorgehortelano/TheThinkingMachine.git</connection>
-		<developerConnection>scm:git:ssh://git@github.com/jorgehortelano/TheThinkingMachine.git</developerConnection>
+		<connection>scm:git:ssh:git@github.com/jorgehortelano/TheThinkingMachine.git</connection>
+		<developerConnection>scm:git:ssh:git@github.com/jorgehortelano/TheThinkingMachine.git</developerConnection>
 		<tag>USMO</tag>
 	</scm>
 	
