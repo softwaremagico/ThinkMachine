@@ -97,8 +97,7 @@
 					<!-- During release:perform, enable the "release" profile -->
 					<releaseProfiles>release</releaseProfiles>
 					<!-- This goal is used by release:perform -->
-					<goals>deploy</goals>
-					<localCheckout>true</localCheckout>
+					<goals>install</goals>
 				</configuration>
 			</plugin>
 		</plugins>
