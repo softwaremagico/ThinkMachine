@@ -1,22 +1,24 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.softwaremagico</groupId>
 	<artifactId>thinking-machine</artifactId>
-	<version>0.3.0</version>
+	<version>0.3.1</version>
 	<packaging>pom</packaging>
 	<name>The Thinking Machine</name>
-	<url></url>
-	
+	<url />
 	<organization>
 		<name>Softwaremagico</name>
 		<url>https://github.com/jorgehortelano/TheThinkingMachine</url>
 	</organization>
-	
 	<modules>
 		<module>thinking-machine-core</module>
-	</modules>	
-	
+	</modules>
+	<scm>
+		<url>https://github.com/jorgehortelano/TheThinkingMachine</url>
+		<connection>scm:git:git://github.com/jorgehortelano/TheThinkingMachine.git</connection>
+		<developerConnection>scm:git:git://github.com/jorgehortelano/TheThinkingMachine.git</developerConnection>
+		<tag>thinking-machine-0.3.1</tag>
+	</scm>
 	<properties>
 		<main.basedir>${project.basedir}</main.basedir>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -31,9 +33,9 @@
 		<org.testng.version>6.8.7</org.testng.version>
 		<gson.version>2.8.0</gson.version>
 		<license-maven-plugin.version>1.12</license-maven-plugin.version>
+		<maven-release-plugin.version>2.5.1</maven-release-plugin.version>
+		<maven-scm-provider-gitexe.version>1.9.2</maven-scm-provider-gitexe.version>
 	</properties>
-	
-	
 	<build>
 		<plugins>
 			<plugin>
@@ -50,29 +52,50 @@
 				<artifactId>maven-resources-plugin</artifactId>
 				<version>${maven-resources-plugin.version}</version>
 			</plugin>
-			 <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>license-maven-plugin</artifactId>
-                <version>${license-maven-plugin.version}</version>
-                <configuration>
-                    <inceptionYear>2017</inceptionYear>
-                    <licenseName>gnugpl</licenseName>
-        			<licenseResolver>file://${main.basedir}/license</licenseResolver>
-                    <excludes>
-                        <exclude>**/licenses.properties</exclude>
-                    </excludes>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>first</id>
-                        <goals>
-                            <goal>update-file-header</goal>
-                        </goals>
-                        <phase>package</phase>
-                    </execution>
-                </executions>
-            </plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>license-maven-plugin</artifactId>
+				<version>${license-maven-plugin.version}</version>
+				<configuration>
+					<inceptionYear>2017</inceptionYear>
+					<licenseName>gnugpl</licenseName>
+					<licenseResolver>file://${main.basedir}/license</licenseResolver>
+					<excludes>
+						<exclude>**/licenses.properties</exclude>
+					</excludes>
+				</configuration>
+				<executions>
+					<execution>
+						<id>first</id>
+						<goals>
+							<goal>update-file-header</goal>
+						</goals>
+						<phase>package</phase>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>${maven-release-plugin.version}</version>
+				<dependencies>
+					<dependency>
+						<groupId>org.apache.maven.scm</groupId>
+						<artifactId>maven-scm-provider-gitexe</artifactId>
+						<version>${maven-scm-provider-gitexe.version}</version>
+					</dependency>
+				</dependencies>
+				<configuration>
+					<checkModificationExcludes>
+						<checkModificationExclude>pom.xml</checkModificationExclude>
+					</checkModificationExcludes>
+					<!-- This action is used by release:perform -->
+					<!-- During release:perform, enable the "release" profile -->
+					<releaseProfiles>release</releaseProfiles>
+					<!-- This goal is used by release:perform -->
+					<goals>deploy</goals>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
-	
 </project>
