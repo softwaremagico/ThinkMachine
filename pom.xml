@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.softwaremagico</groupId>
 	<artifactId>thinking-machine</artifactId>
-	<version>0.3.2-SNAPSHOT</version>
+	<version>0.3.2</version>
 	<packaging>pom</packaging>
 	<name>The Thinking Machine</name>
 	<url>https://github.com/jorgehortelano/TheThinkingMachine</url>
@@ -17,10 +17,9 @@
 	</modules>
 	
 	<scm>
-		<url>https://github.com/jorgehortelano/TheThinkingMachine</url>
-		<connection>scm:git:file://.</connection>
-		<developerConnection>scm:git:file://.</developerConnection>
-		<tag>USMO</tag>
+		<developerConnection>scm:git:ssh://jorgehortelano@github.com/jorgehortelano/TheThinkingMachine.git</developerConnection>
+		<url>https://jorgehortelano@github.com/jorgehortelano/TheThinkingMachine.git</url>
+		<tag>thinking-machine-0.3.2</tag>
 	</scm>
 	
 	<properties>
