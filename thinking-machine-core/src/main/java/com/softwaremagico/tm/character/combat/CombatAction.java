@@ -32,7 +32,7 @@ public class CombatAction extends Element<CombatAction> {
 	private final String others;
 
 	public CombatAction(String name, Integer goal, String damage, String others) {
-		super(name);
+		super(null, name);
 		this.goal = goal;
 		this.damage = damage;
 		this.others = others;

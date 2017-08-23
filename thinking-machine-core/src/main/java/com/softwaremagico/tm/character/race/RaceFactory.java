@@ -37,7 +37,7 @@ public class RaceFactory extends XmlFactory<Race> {
 	private final static String COST = "cost";
 
 	private static ITranslator translatorRaces = LanguagePool.getTranslator("races.xml");
-	
+
 	private static RaceFactory instance;
 
 	private static void createInstance() {
@@ -64,7 +64,7 @@ public class RaceFactory extends XmlFactory<Race> {
 
 	@Override
 	protected Race createElement(ITranslator translator, String raceId, String language) throws InvalidXmlElementException {
-		Race race = new Race(translator.getTranslatedText(raceId, language));
+		Race race = new Race(raceId, translator.getTranslatedText(raceId, language));
 		try {
 			String cost = translator.getNodeValue(raceId, COST);
 			race.setCost(Integer.parseInt(cost));

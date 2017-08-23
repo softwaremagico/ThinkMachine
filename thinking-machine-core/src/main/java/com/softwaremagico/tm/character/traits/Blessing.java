@@ -32,12 +32,12 @@ public class Blessing extends Element<Blessing> {
 	private String trait;
 	private String situation;
 
-	public Blessing(String name) {
-		super(name);
+	public Blessing(String id, String name) {
+		super(id, name);
 	}
 
 	public Blessing(String name, Integer cost, Integer bonification, String trait, String situation) {
-		this(name);
+		this(null, name);
 		this.cost = cost;
 		this.bonification = bonification;
 		this.trait = trait;

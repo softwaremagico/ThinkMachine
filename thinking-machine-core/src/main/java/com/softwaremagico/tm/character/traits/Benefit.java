@@ -30,7 +30,12 @@ public class Benefit extends Element<Benefit> {
 	private final int cost;
 
 	public Benefit(String name, int cost) {
-		super(name);
+		super(null, name);
+		this.cost = cost;
+	}
+
+	public Benefit(String id, String name, int cost) {
+		super(id, name);
 		this.cost = cost;
 	}
 

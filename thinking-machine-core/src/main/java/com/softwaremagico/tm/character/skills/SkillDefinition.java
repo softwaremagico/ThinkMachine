@@ -34,18 +34,12 @@ public class SkillDefinition extends Skill<SkillDefinition> {
 	private boolean fromGuild;
 	private boolean natural = false;
 	private Set<String> specializations = new HashSet<>();
-	private String skillId;
 	private SkillGroup skillGroup;
 	// Number of times that a skill (generalizable) is shown in the PDF.
 	private int numberToShow = 1;
 
-	public SkillDefinition(String name) {
-		super(name);
-	}
-
-	public SkillDefinition(String skillId, String name) {
-		this(name.trim());
-		this.skillId = skillId;
+	public SkillDefinition(String id, String name) {
+		super(id, name.trim());
 	}
 
 	public boolean isFromGuild() {
@@ -58,10 +52,6 @@ public class SkillDefinition extends Skill<SkillDefinition> {
 
 	public boolean isSpecializable() {
 		return !specializations.isEmpty();
-	}
-
-	public String getSkillId() {
-		return skillId;
 	}
 
 	public void setFromGuild(boolean fromGuild) {

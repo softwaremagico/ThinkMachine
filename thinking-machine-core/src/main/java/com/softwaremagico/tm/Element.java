@@ -25,14 +25,20 @@ package com.softwaremagico.tm;
  */
 
 public class Element<T extends Element<?>> implements Comparable<T> {
+	private final String id;
 	private final String name;
 
-	public Element(String name) {
+	public Element(String id, String name) {
+		this.id = id;
 		this.name = name;
 	}
 
 	public String getName() {
 		return name;
+	}
+
+	public String getId() {
+		return id;
 	}
 
 	@Override

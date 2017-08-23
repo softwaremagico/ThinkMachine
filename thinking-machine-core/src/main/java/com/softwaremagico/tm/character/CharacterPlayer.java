@@ -325,10 +325,10 @@ public class CharacterPlayer {
 			}
 		}
 		for (CombatStyle style : getMeleeCombatStyles()) {
-			positiveBenefits.add(new Benefit(style.getName(), COMBAT_STYLE_COST));
+			positiveBenefits.add(new Benefit(style.getId(), style.getName(), COMBAT_STYLE_COST));
 		}
 		for (CombatStyle style : getRangedCombatStyles()) {
-			positiveBenefits.add(new Benefit(style.getName(), COMBAT_STYLE_COST));
+			positiveBenefits.add(new Benefit(style.getId(), style.getName(), COMBAT_STYLE_COST));
 		}
 		return Collections.unmodifiableList(positiveBenefits);
 	}
@@ -400,9 +400,9 @@ public class CharacterPlayer {
 		List<AvailableSkill> naturalSkills = new ArrayList<>();
 		// Adds default planet and alliance.
 		for (AvailableSkill skill : AvailableSkillsFactory.getInstance().getNaturalSkills(language)) {
-			if (skill.getSkillDefinition().getSkillId().equals(SkillDefinition.PLANETARY_LORE_ID)) {
+			if (skill.getSkillDefinition().getId().equals(SkillDefinition.PLANETARY_LORE_ID)) {
 				skill.setSpecialization(getInfo().getPlanet());
-			} else if (skill.getSkillDefinition().getSkillId().equals(SkillDefinition.FACTORION_LORE_ID)) {
+			} else if (skill.getSkillDefinition().getId().equals(SkillDefinition.FACTORION_LORE_ID)) {
 				skill.setSpecialization(getInfo().getFaction());
 			}
 			naturalSkills.add(skill);

@@ -44,7 +44,7 @@ public class Armour extends Element<Element<Armour>> {
 
 	public Armour(String name, int protection, boolean hard, boolean fire, boolean laser, boolean plasma, boolean impact, boolean shock, boolean electrical,
 			int techLevel, int dexterityBonus, int strengthBonus, int initiativeBonus, int enduranceBonus) {
-		super(name);
+		super(null, name);
 		this.protection = protection;
 		this.hard = hard;
 		this.fire = fire;

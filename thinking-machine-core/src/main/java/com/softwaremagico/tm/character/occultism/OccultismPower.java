@@ -38,7 +38,7 @@ public class OccultismPower extends Element<OccultismPower> {
 	private OccultismType occultismType;
 
 	public OccultismPower(String name,  OccultismType occultismType, String roll, int level, String range, String duration, String requirements, int cost) {
-		super(name);
+		super(null, name);
 		this.roll = roll;
 		this.level = level;
 		this.range = range;

@@ -61,7 +61,7 @@ public class BlessingFactory extends XmlFactory<Blessing> {
 	protected Blessing createElement(ITranslator translator, String blessingId, String language) throws InvalidXmlElementException {
 		try {
 			String name = translator.getNodeValue(blessingId, NAME, language);
-			Blessing blessing = new Blessing(name);
+			Blessing blessing = new Blessing(blessingId, name);
 			try {
 				String cost = translator.getNodeValue(blessingId, COST);
 				blessing.setCost(Integer.parseInt(cost));

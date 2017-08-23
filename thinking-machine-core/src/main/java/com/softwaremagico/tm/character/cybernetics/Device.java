@@ -46,7 +46,7 @@ public class Device extends Element<Device> {
 	private Map<CharacteristicName, CharacteristicImprovement> characteristicImprovents;
 
 	public Device(String name, int points, int incompatibility, String usability, String quality, String activation, String appearence, String others) {
-		super(name);
+		super(null, name);
 		this.points = points;
 		this.incompatibility = incompatibility;
 		this.usability = usability;

@@ -32,7 +32,7 @@ public class AvailableSkill extends Skill<AvailableSkill> {
 	private SkillDefinition skillDefinition;
 
 	public AvailableSkill(SkillDefinition skillDefinition) {
-		super(skillDefinition.getName());
+		super(skillDefinition.getId(), skillDefinition.getName());
 		this.skillDefinition = skillDefinition;
 	}
 

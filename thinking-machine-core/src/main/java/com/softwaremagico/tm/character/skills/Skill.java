@@ -28,7 +28,7 @@ import com.softwaremagico.tm.Element;
 
 public class Skill<T extends Skill<?>> extends Element<T> {
 
-	public Skill(String name) {
-		super(name);
+	public Skill(String id, String name) {
+		super(id, name);
 	}
 }

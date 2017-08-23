@@ -38,7 +38,7 @@ public class Weapon extends Element<Weapon> {
 	private String others;
 
 	public Weapon(String name, String roll, Integer goal, int damage, String strengthOrRange, Integer shots, String rate, int tech, Size size) {
-		super(name);
+		super(null, name);
 		this.roll = roll;
 		this.goal = goal;
 		this.damage = damage;

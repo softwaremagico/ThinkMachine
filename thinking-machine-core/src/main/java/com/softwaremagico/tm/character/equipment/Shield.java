@@ -32,7 +32,7 @@ public class Shield extends Element<Shield> {
 	private final int hits;
 
 	public Shield(String name, int impact, int force, int hits) {
-		super(name);
+		super(null, name);
 		this.impact = impact;
 		this.force = force;
 		this.hits = hits;
