@@ -24,14 +24,11 @@ package com.softwaremagico.tm.random;
  * #L%
  */
 
-import java.io.File;
-
 import org.testng.annotations.Test;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.language.LanguagePool;
-import com.softwaremagico.tm.pdf.small.SmallCharacterSheet;
 
 @Test(groups = { "randomCharacter" })
 public class RandomCharacterTest {
@@ -43,8 +40,5 @@ public class RandomCharacterTest {
 		randomizeCharacter.createCharacter();
 
 		LanguagePool.clearCache();
-		SmallCharacterSheet sheet = new SmallCharacterSheet(characterPlayer);
-		sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Random.pdf");
-
 	}
 }

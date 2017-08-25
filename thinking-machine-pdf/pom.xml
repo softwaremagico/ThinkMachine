@@ -1,8 +1,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId>thinking-machine-core</artifactId>
+	<artifactId>thinking-machine-pdf</artifactId>
 	<packaging>jar</packaging>
-	<name>The Thinking Machine (Core)</name>
+	<name>The Thinking Machine (PDF)</name>
 
 	<parent>
 		<groupId>com.softwaremagico</groupId>
@@ -12,9 +12,9 @@
 
 	<properties>
 		<main.basedir>${basedir}/..</main.basedir>
-		<maven-assembly-plugin.version>2.5.3</maven-assembly-plugin.version>
 		<mainClass>com.softwaremagico.tm.Main</mainClass>
 		<splashImage>images/ThinkingMachine_logo.png</splashImage>
+		<maven-jar-plugin.version>2.4</maven-jar-plugin.version>
 	</properties>
 
 	<build>
@@ -31,6 +31,25 @@
 					</suiteXmlFiles>
 				</configuration>
 			</plugin>
+			<plugin>
+				<!-- Add version number to core jar -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<classpathPrefix>lib/</classpathPrefix>
+							<mainClass>${mainClass}</mainClass>
+						</manifest>
+						<manifestEntries>
+							<Implementation-Version>${project.parent.version}</Implementation-Version>
+							<SplashScreen-Image>${splashImage}</SplashScreen-Image>
+						</manifestEntries>
+					</archive>
+				</configuration>
+				<version>${maven-jar-plugin.version}</version>
+			</plugin>
 		</plugins>
 	</build>
 
@@ -44,7 +63,7 @@
 			</activation>
 			<build>
 				<plugins>
-				<!-- Copy geneerateed PDF -->
+				<!-- Copy generated PDF -->
 					<plugin>
 						<artifactId>maven-antrun-plugin</artifactId>
 						<version>${maven-antrun-plugin.version}</version>
@@ -119,6 +138,12 @@
 	</profiles>
 
 	<dependencies>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>thinking-machine-core</artifactId>
+			<version>${project.version}</version>
+			<type>jar</type>
+		</dependency>
 		<!-- JSON -->
 		<dependency>
 			<groupId>com.google.code.gson</groupId>
