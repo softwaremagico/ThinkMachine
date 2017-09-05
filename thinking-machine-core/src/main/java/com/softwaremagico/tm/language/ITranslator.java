@@ -1,6 +1,7 @@
 package com.softwaremagico.tm.language;
 
 import java.util.List;
+import java.util.Set;
 
 /*-
  * #%L
@@ -43,5 +44,7 @@ public interface ITranslator {
 	String getNodeValue(String tag, String node);
 
 	String getNodeValue(String parent, String tag, String node);
+
+	Set<String> getAllChildrenTags(String parent, String tag);
 
 }

@@ -58,7 +58,7 @@ public class AvailableSkillsFactory {
 		}
 		return instance;
 	}
-	
+
 	public void clearCache() {
 		elements = new HashMap<>();
 		naturalSkills = new ArrayList<>();
@@ -100,8 +100,8 @@ public class AvailableSkillsFactory {
 	private Set<AvailableSkill> createElement(SkillDefinition skillDefinition) {
 		Set<AvailableSkill> availableSkills = new HashSet<>();
 		if (skillDefinition.isSpecializable()) {
-			for (String specialization : skillDefinition.getSpecializations()) {
-				availableSkills.add(new AvailableSkill(skillDefinition, specialization.trim()));
+			for (Specialization specialization : skillDefinition.getSpecializations()) {
+				availableSkills.add(new AvailableSkill(skillDefinition, specialization));
 			}
 		} else {
 			availableSkills.add(new AvailableSkill(skillDefinition));
@@ -109,22 +109,28 @@ public class AvailableSkillsFactory {
 		return availableSkills;
 	}
 
-	public AvailableSkill getElement(String elementName, String language) throws InvalidXmlElementException {
-		return getElement(elementName, null, language);
+	public AvailableSkill getElement(String elementId, String language) throws InvalidXmlElementException {
+		return getElement(elementId, null, language);
 	}
 
-	public AvailableSkill getElement(String elementName, String specialization, String language) throws InvalidXmlElementException {
+	public AvailableSkill getElement(String elementId, String specializationId, String language) throws InvalidXmlElementException {
 		for (AvailableSkill element : getElements(language)) {
-			if (element.getName() != null) {
-				if (Objects.equals(element.getCompleteName().toLowerCase(), AvailableSkill.getCompleteName(elementName, specialization).toLowerCase())) {
-					return element;
+			if (element.getId() != null) {
+				if (Objects.equals(element.getId().toLowerCase(), elementId.toLowerCase())) {
+					if (element.getSpecialization() == null) {
+						return element;
+					} else {
+						if (Objects.equals(element.getSpecialization().getId().toLowerCase(), specializationId.toLowerCase())) {
+							return element;
+						}
+					}
 				}
 			}
 		}
-		if (specialization == null) {
-			throw new InvalidXmlElementException("Element '" + elementName + "' does not exists.");
+		if (specializationId == null) {
+			throw new InvalidXmlElementException("Element '" + elementId + "' does not exists.");
 		} else {
-			throw new InvalidXmlElementException("Element '" + elementName + " [" + specialization + "]' does not exists.");
+			throw new InvalidXmlElementException("Element '" + elementId + " [" + specializationId + "]' does not exists.");
 		}
 	}
 

@@ -25,10 +25,10 @@ package com.softwaremagico.tm.character.skills;
  */
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
@@ -124,13 +124,14 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 	protected SkillDefinition createElement(ITranslator translator, String skillId, String language) throws InvalidXmlElementException {
 		SkillDefinition skill = new SkillDefinition(skillId, translator.getTranslatedText(skillId, language));
 		try {
-			String generalizable = translator.getNodeValue(skillId, SPECIALIZABLE_SKILL_TAG);
-			if (generalizable != null) {
-				String[] generalizations = generalizable.replaceAll(", ", ",").split(",");
-				skill.setSpecializations(new HashSet<String>(Arrays.asList(generalizations)));
+			Set<Specialization> specializations = new HashSet<>();
+			for (String specializationId : translator.getAllChildrenTags(skillId, SPECIALIZABLE_SKILL_TAG)) {
+				String specizalizationName = translator.getNodeValue(specializationId, language);
+				specializations.add(new Specialization(specializationId, specizalizationName));
 			}
+			skill.setSpecializations(specializations);
 		} catch (NumberFormatException nfe) {
-			throw new InvalidSkillException("Invalid generalizable value for skill '" + skillId + "'.");
+			throw new InvalidSkillException("Invalid specialization value for skill '" + skillId + "'.");
 		}
 		try {
 			String numberToShow = translator.getNodeValue(skillId, NUMBER_TO_SHOW_TAG);

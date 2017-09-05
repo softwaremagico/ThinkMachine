@@ -83,26 +83,28 @@ public class CustomCharacters {
 		player.getCharacteristics().getCharacteristic(CharacteristicName.WILL).setValue(5);
 		player.getCharacteristics().getCharacteristic(CharacteristicName.FAITH).setValue(3);
 
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Influenciar", "es"), 4);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Observar", "es"), 5);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Sigilo", "es"), 6);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Vigor", "es"), 5);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Abrir Cerraduras", "es"), 2);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Armas de Energía", "es"), 5);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Ciencia Aplicada", "es"), 4);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Ciencia de la Física", "es"), 1);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Controlar Nave Espacial", "es"), 2);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Controlar Vehíc. Terrestre", "es"), 3);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Cuerpo a Cuerpo", "es"), 1);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Empatía", "es"), 3);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Guerra", "es"), 1);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Investigar", "es"), 2);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Mantenimiento de Naves", "es"), 2);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Máquina Pensante", "es"), 4);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Recuperación Tecnológic.", "es"), 7);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("influence", "es"), 4);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("observe", "es"), 5);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("sneak", "es"), 6);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("vigor", "es"), 5);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("lockpicking", "es"), 2);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("energyGuns", "es"), 5);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("appliedScience", "es"), 4);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("physicalScience", "es"), 1);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("spacecraft", "es"), 2);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("landcarft", "es"), 3);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("fight", "es"), 1);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("empathy", "es"), 3);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("warfare", "es"), 1);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("investigation", "es"), 2);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("spacecraftOperations", "es"), 2);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("thinkMachine", "es"), 4);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("techRedemption", "es"), 7);
 
-		//player.addBlessing(BlessingFactory.getInstance().getElement("Innovador", "es"));
-		//player.addBlessing(BlessingFactory.getInstance().getElement("Enervado", "es"));
+		// player.addBlessing(BlessingFactory.getInstance().getElement("Innovador",
+		// "es"));
+		// player.addBlessing(BlessingFactory.getInstance().getElement("Enervado",
+		// "es"));
 		player.addBlessing(new Blessing("Innovador", 2, 2, "Tecnología", "Inventar"));
 		player.addBlessing(new Blessing("Enervado", -2, -2, "Presencia", "Entre sirvientes"));
 		player.addBlessing(new Blessing("Hacker", 2, 2, "Máquina Pensante", "--"));
@@ -121,9 +123,9 @@ public class CustomCharacters {
 
 		Device secondBrain = new Device("Segundo Cerebro", 11, 10, "Normal", "Normal", "Automático", "Oculto", "Autoalimentado");
 		secondBrain.addCharacteristicImprovement(new CharacteristicImprovement(CharacteristicName.WITS, 2, true));
-		secondBrain.addSkillImprovement(new CyberneticSkill(AvailableSkillsFactory.getInstance().getElement("Saber [Red de Salto]", "es"), 4, true));
-		secondBrain.addSkillImprovement(new CyberneticSkill(AvailableSkillsFactory.getInstance().getElement("Saber [Pistola Energía]", "es"), 4, true));
-		secondBrain.addSkillImprovement(new CyberneticSkill(AvailableSkillsFactory.getInstance().getElement("Saber [Máquina Pensante]", "es"), 4, true));
+		secondBrain.addSkillImprovement(new CyberneticSkill(AvailableSkillsFactory.getInstance().getElement("lore", "jumpwebLore", "es"), 4, true));
+		secondBrain.addSkillImprovement(new CyberneticSkill(AvailableSkillsFactory.getInstance().getElement("lore", "energyPistolsLore", "es"), 4, true));
+		secondBrain.addSkillImprovement(new CyberneticSkill(AvailableSkillsFactory.getInstance().getElement("lore", "thinkMachineLore", "es"), 4, true));
 		player.getCybernetics().addElement(secondBrain);
 
 		player.setShield(new Shield("De Duelo", 5, 10, 15));
@@ -161,20 +163,20 @@ public class CustomCharacters {
 		player.getCharacteristics().getCharacteristic(CharacteristicName.WILL).setValue(5);
 		player.getCharacteristics().getCharacteristic(CharacteristicName.FAITH).setValue(4);
 
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Influenciar", "es"), 7);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Observar", "es"), 8);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Sigilo", "es"), 8);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Vigor", "es"), 8);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Abrir Cerraduras", "es"), 4);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Arte", "Música",  "es"), 1);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Autocontrol", "es"), 2);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Callejear", "es"), 3);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Conocim. del Cuerpo", "es"), 1);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Controlar Embarcación", "es"), 1);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Artefacto Cuerpo a C.", "es"), 4);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Etiqueta", "es"), 4);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Investigar", "es"), 4);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Liderazgo", "es"), 2);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("influence", "es"), 7);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("observe", "es"), 8);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("sneak", "es"), 8);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("vigor", "es"), 8);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("lockpicking", "es"), 4);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("arts", "drawing", "es"), 1);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("selfControl", "es"), 2);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("streetWise", "es"), 3);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("physick", "es"), 1);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("watercraft", "es"), 1);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("artifactMelee", "es"), 4);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("etiquette", "es"), 4);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("investigation", "es"), 4);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("leadership", "es"), 2);
 
 		player.addBlessing(new Blessing("Inflexible", 2, 2, "Fortaleza", "Honor en juego"));
 		player.addBlessing(new Blessing("Orgulloso", -2, -2, "Voluntad", "Insulta"));
@@ -221,24 +223,24 @@ public class CustomCharacters {
 		player.getCharacteristics().getCharacteristic(CharacteristicName.WILL).setValue(6);
 		player.getCharacteristics().getCharacteristic(CharacteristicName.FAITH).setValue(3);
 
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Influenciar", "es"), 5);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Observar", "es"), 4);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Vigor", "es"), 7);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Armas de Fuego", "es"), 8);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Artería", "es"), 4);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Autocontrol", "es"), 2);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Callejear", "es"), 3);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Conocim. del Cuerpo", "es"), 2);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Controlar Aeronave", "es"), 1);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Pelear", "es"), 5);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Demoliciones", "es"), 2);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Juego", "es"), 1);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Liderazgo", "es"), 1);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Recuperación Tecnológic.", "es"), 3);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Supervivencia", "es"), 3);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Torturar", "es"), 3);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Controlar Vehíc. Terrestre", "es"), 2);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Investigar", "es"), 3);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("influence", "es"), 5);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("observe", "es"), 4);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("vigor", "es"), 7);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("slugGuns", "es"), 8);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("knavery", "es"), 4);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("selfControl", "es"), 2);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("streetWise", "es"), 3);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("physick", "es"), 2);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("aircraft", "es"), 1);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("melee", "es"), 5);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("demolitions", "es"), 2);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("gaming", "es"), 1);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("leadership", "es"), 1);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("techRedemption", "es"), 3);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("survival", "es"), 3);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("torture", "es"), 3);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("landcarft", "es"), 2);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("investigation", "es"), 3);
 
 		player.addBlessing(new Blessing("El Hombre", 2, 2, "Influenciar", "Liderar subalternos"));
 		player.addBlessing(new Blessing("Posesivo", -2, -2, "Voluntad", "Excluir acción"));
@@ -275,7 +277,8 @@ public class CustomCharacters {
 		player.getInfo().setGender(Gender.FEMALE);
 		// player.getInfo().setAge(30);
 		player.setRace(RaceFactory.getInstance().getElement("Ur-Obun", "es"));
-		// player.setRace(new Race("Ur-Obun", 3, 4, 3, 3, 3, 3, 3, 3, 3, 6, 1, 0, 0, 0, 2));
+		// player.setRace(new Race("Ur-Obun", 3, 4, 3, 3, 3, 3, 3, 3, 3, 6, 1,
+		// 0, 0, 0, 2));
 		player.getInfo().setPlanet("Obun");
 		player.getInfo().setFaction("Voavenlohjun");
 		player.getInfo().setRank("Novicio");
@@ -290,17 +293,17 @@ public class CustomCharacters {
 		player.getCharacteristics().getCharacteristic(CharacteristicName.WILL).setValue(8);
 		player.getCharacteristics().getCharacteristic(CharacteristicName.FAITH).setValue(8);
 
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Influenciar", "es"), 4);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Observar", "es"), 6);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Vigor", "es"), 5);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("influence", "es"), 4);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("observe", "es"), 6);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("vigor", "es"), 5);
 
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Artería", "es"), 2);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Autocontrol", "es"), 6);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Conocim. del Cuerpo", "es"), 3);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Empatía", "es"), 4);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Etiqueta", "es"), 2);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Investigar", "es"), 3);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Saber", "Kelanti",  "es"), 3);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("knavery", "es"), 2);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("selfControl", "es"), 6);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("physick", "es"), 3);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("empathy", "es"), 4);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("etiquette", "es"), 2);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("investigation", "es"), 3);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("lore", "kelantiLore", "es"), 3);
 
 		player.getOccultism().setPsiValue(6);
 
@@ -353,20 +356,20 @@ public class CustomCharacters {
 		player.getCharacteristics().getCharacteristic(CharacteristicName.PERCEPTION).setValue(7);
 		player.getCharacteristics().getCharacteristic(CharacteristicName.TECH).setValue(5);
 
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Observar", "es"), 6);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Pelear", "es"), 5);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Vigor", "es"), 7);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Lanzar", "es"), 5);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Atletismo", "es"), 4);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Autocontrol", "es"), 5);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Controlar Nave Espacial", "es"), 1);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Controlar Vehíc. Terrestre", "es"), 3);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Mantenimiento de Naves", "es"), 3);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Guerra", "es"), 3);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Saber [Red de Salto]", "es"), 3);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Saber [Máquina Pensante]", "es"), 3);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Máquina Pensante", "es"), 3);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Recuperación Tecnológic.", "es"), 3);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("observe", "es"), 6);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("melee", "es"), 5);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("vigor", "es"), 7);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("throwing", "es"), 5);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("atheltics", "es"), 4);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("selfControl", "es"), 5);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("spacecraft", "es"), 1);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("landcarft", "es"), 3);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("spacecraftOperations", "es"), 3);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("warfare", "es"), 3);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("lore", "jumpwebLore", "es"), 3);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("lore", "thinkMachineLore", "es"), 3);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("thinkMachine", "es"), 3);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("techRedemption", "es"), 3);
 
 		player.addBlessing(new Blessing("Crédulo", -2, -2, "Voluntad", "Lo engatusan"));
 		player.addBlessing(new Blessing("Justificado", -2, -2, "Voluntad", "Se cuestion su juicio"));

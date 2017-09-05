@@ -121,7 +121,7 @@ public class SkillsTable extends BaseElement {
 		paragraph.add(new Paragraph(availableSkill.getName() + " [", new Font(font, fontSize)));
 		if (characterPlayer != null && characterPlayer.getSelectedSkill(availableSkill) == null) {
 			if (availableSkill.getSpecialization() != null) {
-				paragraph.add(new Paragraph(CellUtils.getSubStringFitsIn(availableSkill.getSpecialization(), FadingSunsTheme.getHandwrittingFont(),
+				paragraph.add(new Paragraph(CellUtils.getSubStringFitsIn(availableSkill.getSpecialization().getName(), FadingSunsTheme.getHandwrittingFont(),
 						FadingSunsTheme.getHandWrittingFontSize(fontSize), MAX_SKILL_COLUMN_WIDTH - usedWidth), new Font(FadingSunsTheme.getHandwrittingFont(),
 						FadingSunsTheme.getHandWrittingFontSize(fontSize))));
 			} else {

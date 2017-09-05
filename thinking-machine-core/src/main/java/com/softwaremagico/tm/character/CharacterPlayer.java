@@ -52,6 +52,7 @@ import com.softwaremagico.tm.character.skills.SelectedSkill;
 import com.softwaremagico.tm.character.skills.Skill;
 import com.softwaremagico.tm.character.skills.SkillDefinition;
 import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
+import com.softwaremagico.tm.character.skills.Specialization;
 import com.softwaremagico.tm.character.traits.Benefit;
 import com.softwaremagico.tm.character.traits.Blessing;
 
@@ -401,9 +402,9 @@ public class CharacterPlayer {
 		// Adds default planet and alliance.
 		for (AvailableSkill skill : AvailableSkillsFactory.getInstance().getNaturalSkills(language)) {
 			if (skill.getSkillDefinition().getId().equals(SkillDefinition.PLANETARY_LORE_ID)) {
-				skill.setSpecialization(getInfo().getPlanet());
+				skill.setSpecialization(new Specialization(getInfo().getPlanet(), getInfo().getPlanet()));
 			} else if (skill.getSkillDefinition().getId().equals(SkillDefinition.FACTORION_LORE_ID)) {
-				skill.setSpecialization(getInfo().getFaction());
+				skill.setSpecialization(new Specialization(getInfo().getFaction(), getInfo().getFaction()));
 			}
 			naturalSkills.add(skill);
 		}

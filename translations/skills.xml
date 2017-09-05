@@ -244,7 +244,24 @@
 			<es>Arte</es>
 		</translator>
 		<group>creative</group>
-		<specializations>Música, Caligrafía, Dibujo, Bordado</specializations>
+		<specializations>
+			<music>
+				<en>Music</en>
+				<es>Música</es>
+			</music>
+			<caligraphy>
+				<en>Caligraphy</en>
+				<es>Caligraphy</es>
+			</caligraphy>
+			<drawing>
+				<en>Drawing</en>
+				<es>Dibujo</es>
+			</drawing>
+			<embroidery>
+				<en>Embroidery</en>
+				<es>Bordado</es>
+			</embroidery>
+		</specializations>
 		<numberToShow>2</numberToShow>
 	</arts>
 	<disguise>
@@ -334,7 +351,28 @@
 			<es>Saber</es>
 		</translator>
 		<group>lore</group>
-		<specializations>Red de Salto, Bestias, Pistola Energía, Máquina Pensante, Kelanti</specializations>
+		<specializations>
+			<jumpwebLore>
+				<en>Jumpweb</en>
+				<es>Red de Salto</es>
+			</jumpwebLore>
+			<beastsLore>
+				<en>Beasts</en>
+				<es>Bestias</es>
+			</beastsLore>
+			<energyPistolsLore>
+				<en>Energy Pistols</en>
+				<es>Pistola Energía</es>
+			</energyPistolsLore>
+			<thinkMachineLore>
+				<en>Think Machine</en>
+				<es>Máquina Pensante</es>
+			</thinkMachineLore>
+			<kelantiLore>
+				<en>Kelanti</en>
+				<es>Kelanti</es>
+			</kelantiLore>
+		</specializations>
 		<numberToShow>4</numberToShow>
 	</lore>
 	<xenoLore>
@@ -343,7 +381,28 @@
 			<es>Xenología</es>
 		</translator>
 		<group>lore</group>
-		<specializations>Ur-Obun, Ur-Ukar, Vorox, Anunnaki, Vau</specializations>
+		<specializations>
+			<urObun>
+				<en>Ur-Obun</en>
+				<es>Ur-Obun</es>
+			</urObun>
+			<urUkar>
+				<en> Ur-Ukar</en>
+				<es> Ur-Ukar</es>
+			</urUkar>
+			<vorox>
+				<en>Vorox</en>
+				<es>Vorox</es>
+			</vorox>
+			<annuaki>
+				<es>Anunnaki</es>
+				<en>Anunnaki</en>
+			</annuaki>
+			<vau>
+				<en>Vau</en>
+				<es>Vau</es>
+			</vau>
+		</specializations>
 		<numberToShow>2</numberToShow>
 	</xenoLore>
 	<empathy>

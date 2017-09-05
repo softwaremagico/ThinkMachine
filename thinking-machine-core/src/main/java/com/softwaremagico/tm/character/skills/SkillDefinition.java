@@ -33,7 +33,7 @@ public class SkillDefinition extends Skill<SkillDefinition> {
 
 	private boolean fromGuild;
 	private boolean natural = false;
-	private Set<String> specializations = new HashSet<>();
+	private Set<Specialization> specializations = new HashSet<>();
 	private SkillGroup skillGroup;
 	// Number of times that a skill (generalizable) is shown in the PDF.
 	private int numberToShow = 1;
@@ -64,7 +64,7 @@ public class SkillDefinition extends Skill<SkillDefinition> {
 
 	public void setSkillGroup(SkillGroup skillGroup) {
 		if (skillGroup == null) {
-			throw new RuntimeException("Skill group cannot be null");
+			throw new RuntimeException("Skill group cannot be null in skill '" + this + "'");
 		}
 		this.skillGroup = skillGroup;
 	}
@@ -73,11 +73,11 @@ public class SkillDefinition extends Skill<SkillDefinition> {
 		this.natural = natural;
 	}
 
-	public Set<String> getSpecializations() {
+	public Set<Specialization> getSpecializations() {
 		return specializations;
 	}
 
-	public void setSpecializations(Set<String> specializations) {
+	public void setSpecializations(Set<Specialization> specializations) {
 		this.specializations = specializations;
 	}
 
@@ -89,4 +89,8 @@ public class SkillDefinition extends Skill<SkillDefinition> {
 		this.numberToShow = numberToShow;
 	}
 
+	@Override
+	public String toString() {
+		return super.toString() + " (" + skillGroup + ") " + getSpecializations();
+	}
 }

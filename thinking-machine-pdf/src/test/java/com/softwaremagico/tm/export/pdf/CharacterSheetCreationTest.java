@@ -109,14 +109,14 @@ public class CharacterSheetCreationTest {
 		player.getCharacteristics().getCharacteristic(CharacteristicName.WILL).setValue(8);
 		player.getCharacteristics().getCharacteristic(CharacteristicName.FAITH).setValue(9);
 
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Influenciar", "es"), 5);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Sigilo", "es"), 4);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Juego", "es"), 4);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Abrir Cerraduras", "es"), 6);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Armas de Energía", "es"), 6);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Guerra", "es"), 8);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Saber [Red de Salto]", "es"), 4);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("Saber [Bestias]", "es"), 2);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("influence", "es"), 5);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("sneak", "es"), 4);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("gaming", "es"), 4);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("lockpicking", "es"), 6);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("energyGuns", "es"), 6);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("warfare", "es"), 8);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("lore", "jumpwebLore", "es"), 4);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("lore", "beastsLore", "es"), 2);
 
 		player.getOccultism().setPsiValue(4);
 		player.getOccultism().setUrge(1);

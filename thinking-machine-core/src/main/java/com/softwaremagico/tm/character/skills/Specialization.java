@@ -24,36 +24,12 @@ package com.softwaremagico.tm.character.skills;
  * #L%
  */
 
-public enum SkillGroup {
+import com.softwaremagico.tm.Element;
 
-	ANALYTICAL,
+public class Specialization extends Element<Specialization> {
 
-	COMBAT,
-
-	CONTROL,
-
-	CREATIVE,
-
-	LORE,
-
-	MALEFACTION,
-
-	PHYSICAL,
-
-	SCIENCE,
-
-	SOCIAL,
-
-	TECHNICAL;
-
-	public static SkillGroup getSkillGroup(String tag) {
-		if (tag != null) {
-			for (SkillGroup skillGroup : SkillGroup.values()) {
-				if (skillGroup.name().toLowerCase().equals(tag.toLowerCase())) {
-					return skillGroup;
-				}
-			}
-		}
-		return null;
+	public Specialization(String id, String name) {
+		super(id, name);
 	}
+
 }

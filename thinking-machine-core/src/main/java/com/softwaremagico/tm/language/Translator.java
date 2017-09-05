@@ -30,7 +30,9 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -140,6 +142,7 @@ public class Translator implements ITranslator {
 		Element element = (Element) (doc.getDocumentElement());
 		NodeList nodeList = element.getChildNodes();
 		for (int i = 0; i < nodeList.getLength(); i++) {
+			// Remove text values
 			if (nodeList.item(i).getNodeType() == Node.ELEMENT_NODE) {
 				nodes.add(nodeList.item(i).getNodeName());
 			}
@@ -152,6 +155,7 @@ public class Translator implements ITranslator {
 		NodeList nodeList = doc.getElementsByTagName(tag);
 		for (int child = 0; child < nodeList.getLength(); child++) {
 			Node firstNode = nodeList.item(child);
+			// Remove text values
 			if (firstNode.getNodeType() == Node.ELEMENT_NODE) {
 				Element firstElement = (Element) firstNode;
 				try {
@@ -171,6 +175,7 @@ public class Translator implements ITranslator {
 		NodeList nodeList = doc.getElementsByTagName(parent);
 		for (int child = 0; child < nodeList.getLength(); child++) {
 			Node parentNode = nodeList.item(child);
+			// Remove text values
 			if (parentNode.getNodeType() == Node.ELEMENT_NODE) {
 				Element parentElement = (Element) parentNode;
 				try {
@@ -191,11 +196,44 @@ public class Translator implements ITranslator {
 		return null;
 	}
 
+	@Override
+	public Set<String> getAllChildrenTags(String parent, String group) {
+		Set<String> childrenTags = new HashSet<>();
+		NodeList nodeList = doc.getElementsByTagName(parent);
+		for (int child = 0; child < nodeList.getLength(); child++) {
+			Node parentNode = nodeList.item(child);
+			// Remove text values
+			if (parentNode.getNodeType() == Node.ELEMENT_NODE) {
+				Element parentElement = (Element) parentNode;
+				try {
+					NodeList groupList = parentElement.getElementsByTagName(group);
+					Element groupElement = (Element) groupList.item(0);
+					try {
+						NodeList childrenList = groupElement.getChildNodes();
+						for (int childIndex = 0; childIndex < childrenList.getLength(); childIndex++) {
+							Node childNode = childrenList.item(childIndex);
+							// Remove text values
+							if (childNode.getNodeType() == Node.ELEMENT_NODE) {
+								childrenTags.add(childNode.getNodeName());
+							}
+						}
+					} catch (NullPointerException npe) {
+						return childrenTags;
+					}
+				} catch (NullPointerException npe) {
+					return childrenTags;
+				}
+			}
+		}
+		return childrenTags;
+	}
+
 	private String readTag(String tag, String language) {
 		try {
 			NodeList nodeList = doc.getElementsByTagName(tag);
 			for (int child = 0; child < nodeList.getLength(); child++) {
 				Node firstNode = nodeList.item(child);
+				// Remove text values
 				if (firstNode.getNodeType() == Node.ELEMENT_NODE) {
 					Element firstElement = (Element) firstNode;
 					NodeList firstNodeElementList = firstElement.getElementsByTagName(language);

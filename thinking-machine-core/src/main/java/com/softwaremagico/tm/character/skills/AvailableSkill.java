@@ -28,7 +28,7 @@ package com.softwaremagico.tm.character.skills;
  * An skill that already has been split in different generalizations.
  */
 public class AvailableSkill extends Skill<AvailableSkill> {
-	private String specialization = null;
+	private Specialization specialization = null;
 	private SkillDefinition skillDefinition;
 
 	public AvailableSkill(SkillDefinition skillDefinition) {
@@ -36,16 +36,16 @@ public class AvailableSkill extends Skill<AvailableSkill> {
 		this.skillDefinition = skillDefinition;
 	}
 
-	public AvailableSkill(SkillDefinition skillDefinition, String specialization) {
+	public AvailableSkill(SkillDefinition skillDefinition, Specialization specialization) {
 		this(skillDefinition);
 		this.specialization = specialization;
 	}
 
-	public String getSpecialization() {
+	public Specialization getSpecialization() {
 		return specialization;
 	}
 
-	public void setSpecialization(String generalization) {
+	public void setSpecialization(Specialization generalization) {
 		this.specialization = generalization;
 	}
 
@@ -57,11 +57,11 @@ public class AvailableSkill extends Skill<AvailableSkill> {
 		return getCompleteName(getName(), getSpecialization());
 	}
 
-	public static String getCompleteName(String name, String specialization) {
+	public static String getCompleteName(String name, Specialization specialization) {
 		if (specialization == null) {
 			return name;
 		}
-		return name + " [" + specialization + "]";
+		return name + " [" + specialization.getName() + "]";
 	}
 
 	@Override
