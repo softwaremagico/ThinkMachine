@@ -53,7 +53,9 @@ import com.softwaremagico.tm.character.race.RaceFactory;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.character.skills.CyberneticSkill;
 import com.softwaremagico.tm.character.traits.Benefit;
+import com.softwaremagico.tm.character.traits.BenefitFactory;
 import com.softwaremagico.tm.character.traits.Blessing;
+import com.softwaremagico.tm.character.traits.BlessingFactory;
 import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.pdf.complete.CharacterSheet;
 import com.softwaremagico.tm.pdf.small.SmallCharacterSheet;
@@ -68,7 +70,7 @@ public class CustomCharacters {
 		player.getInfo().setPlayer("Paola");
 		player.getInfo().setGender(Gender.FEMALE);
 		player.getInfo().setAge(25);
-		player.setRace(RaceFactory.getInstance().getElement("Humano", "es"));
+		player.setRace(RaceFactory.getInstance().getElement("human", "es"));
 		player.getInfo().setPlanet("Ligaheim");
 		player.getInfo().setFaction("Ingeniero");
 		player.getInfo().setRank("Aprendiz");
@@ -101,18 +103,15 @@ public class CustomCharacters {
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("thinkMachine", "es"), 4);
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("techRedemption", "es"), 7);
 
-		// player.addBlessing(BlessingFactory.getInstance().getElement("Innovador",
-		// "es"));
-		// player.addBlessing(BlessingFactory.getInstance().getElement("Enervado",
-		// "es"));
-		player.addBlessing(new Blessing("Innovador", 2, 2, "Tecnología", "Inventar"));
-		player.addBlessing(new Blessing("Enervado", -2, -2, "Presencia", "Entre sirvientes"));
+		player.addBlessing(BlessingFactory.getInstance().getElement("innovative", "es"));
+		player.addBlessing(BlessingFactory.getInstance().getElement("haughty", "es"));
 		player.addBlessing(new Blessing("Hacker", 2, 2, "Máquina Pensante", "--"));
 		player.addBlessing(new Blessing("Mecánico", 2, 2, "Recuperación Tecnológic", "Reparando"));
 		player.addBlessing(new Blessing("Enemigo Animales", -2, -2, "Con Animales", "Excepto combate"));
 		player.addBlessing(new Blessing("Marca Horrible", -2, -2, "Influencia", "Si es visible"));
 
-		player.addBenefit(new Benefit("Idioma Turing", 2));
+		player.addBenefit(BenefitFactory.getInstance().getElement("turingLanguage", "es"));
+		//player.addBenefit(new Benefit("Idioma Turing", 2));
 		player.addBenefit(new Benefit("Asociado", 4));
 		player.addBenefit(new Benefit("1000 fénix", 4));
 		player.addBenefit(new Benefit("Red de Información", 3));
@@ -148,7 +147,7 @@ public class CustomCharacters {
 		player.getInfo().setPlayer("Ana");
 		player.getInfo().setGender(Gender.FEMALE);
 		player.getInfo().setAge(22);
-		player.setRace(RaceFactory.getInstance().getElement("Humano", "es"));
+		player.setRace(RaceFactory.getInstance().getElement("human", "es"));
 		player.getInfo().setPlanet("Leminkainen");
 		player.getInfo().setFaction("Hawkwood");
 		player.getInfo().setRank("Caballero");
@@ -208,7 +207,7 @@ public class CustomCharacters {
 		player.getInfo().setPlayer("Carlos");
 		player.getInfo().setGender(Gender.MALE);
 		player.getInfo().setAge(28);
-		player.setRace(RaceFactory.getInstance().getElement("Humano", "es"));
+		player.setRace(RaceFactory.getInstance().getElement("human", "es"));
 		player.getInfo().setPlanet("Byzantium Sec.");
 		player.getInfo().setFaction("Carroñero");
 		player.getInfo().setRank("Genin");
@@ -276,9 +275,7 @@ public class CustomCharacters {
 		player.getInfo().setPlayer("Noelia");
 		player.getInfo().setGender(Gender.FEMALE);
 		// player.getInfo().setAge(30);
-		player.setRace(RaceFactory.getInstance().getElement("Ur-Obun", "es"));
-		// player.setRace(new Race("Ur-Obun", 3, 4, 3, 3, 3, 3, 3, 3, 3, 6, 1,
-		// 0, 0, 0, 2));
+		player.setRace(RaceFactory.getInstance().getElement("urObun", "es"));
 		player.getInfo().setPlanet("Obun");
 		player.getInfo().setFaction("Voavenlohjun");
 		player.getInfo().setRank("Novicio");

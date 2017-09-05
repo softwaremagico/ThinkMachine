@@ -37,6 +37,8 @@ import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.log.MachineLog;
 
 public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
+	private final static ITranslator TRANSLATOR_SKILLS = LanguagePool.getTranslator("skills.xml");
+	
 	private final static String GUILD_SKILL_TAG = "guildSkill";
 	private final static String SPECIALIZABLE_SKILL_TAG = "specializations";
 	private final static String GROUP_SKILL_TAG = "group";
@@ -44,8 +46,6 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 	private final static String NUMBER_TO_SHOW_TAG = "numberToShow";
 	private static List<SkillDefinition> naturalSkills = new ArrayList<>();
 	private static List<SkillDefinition> learnedSkills = new ArrayList<>();
-
-	private static ITranslator translatorLearnedSkills = LanguagePool.getTranslator("skills.xml");
 
 	private static SkillsDefinitionsFactory instance;
 
@@ -104,8 +104,8 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 	public List<SkillDefinition> getElements(String language) throws InvalidXmlElementException {
 		if (elements.get(language) == null) {
 			elements.put(language, new ArrayList<SkillDefinition>());
-			for (String skillId : translatorLearnedSkills.getAllTranslatedElements()) {
-				SkillDefinition skill = createElement(translatorLearnedSkills, skillId, language);
+			for (String skillId : TRANSLATOR_SKILLS.getAllTranslatedElements()) {
+				SkillDefinition skill = createElement(TRANSLATOR_SKILLS, skillId, language);
 				elements.get(language).add(skill);
 				if (skill.isNatural()) {
 					naturalSkills.add(skill);
@@ -154,6 +154,6 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 
 	@Override
 	protected ITranslator getTranslator() {
-		return translatorLearnedSkills;
+		return TRANSLATOR_SKILLS;
 	}
 }

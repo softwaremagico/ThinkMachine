@@ -30,13 +30,13 @@ import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
 
 public class BlessingFactory extends XmlFactory<Blessing> {
+	private final static ITranslator TRANSLATOR_BLESSINGS = LanguagePool.getTranslator("blessings.xml");
+
 	private final static String NAME = "name";
 	private final static String COST = "cost";
 	private final static String BONIFICATION = "bonification";
 	private final static String TRAIT = "trait";
 	private final static String SITUATION = "situation";
-
-	private static ITranslator translatorBlessings = LanguagePool.getTranslator("blessings.xml");
 
 	private static BlessingFactory instance;
 
@@ -94,6 +94,6 @@ public class BlessingFactory extends XmlFactory<Blessing> {
 
 	@Override
 	protected ITranslator getTranslator() {
-		return translatorBlessings;
+		return TRANSLATOR_BLESSINGS;
 	}
 }

@@ -51,7 +51,7 @@
 		<theurgy>0</theurgy>
 		<hubris>0</hubris>
 	</human>
-	<obun>
+	<urObun>
 		<en>Ur-Obun</en>
 		<es>Ur-Obun</es>
 		<cost>2</cost>
@@ -101,5 +101,5 @@
 		<urge>0</urge>
 		<theurgy>1</theurgy>
 		<hubris>0</hubris>
-	</obun>
+	</urObun>
 </races>

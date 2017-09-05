@@ -32,11 +32,11 @@ import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
 
 public class RaceFactory extends XmlFactory<Race> {
+	private final static ITranslator TRANSLATOR_RACE = LanguagePool.getTranslator("races.xml");
+
 	private final static String MAX_VALUE = "maximumValue";
 	private final static String VALUE = "value";
 	private final static String COST = "cost";
-
-	private static ITranslator translatorRaces = LanguagePool.getTranslator("races.xml");
 
 	private static RaceFactory instance;
 
@@ -59,7 +59,7 @@ public class RaceFactory extends XmlFactory<Race> {
 
 	@Override
 	protected ITranslator getTranslator() {
-		return translatorRaces;
+		return TRANSLATOR_RACE;
 	}
 
 	@Override

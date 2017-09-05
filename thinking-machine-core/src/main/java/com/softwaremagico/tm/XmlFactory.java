@@ -53,16 +53,16 @@ public abstract class XmlFactory<T extends Element<T>> {
 		return elements.get(language);
 	}
 
-	public T getElement(String elementName, String language) throws InvalidXmlElementException {
+	public T getElement(String elementId, String language) throws InvalidXmlElementException {
 		List<T> elements = getElements(language);
 		for (T element : elements) {
-			if (element.getName() != null) {
-				if (Objects.equals(element.getName().toLowerCase(), elementName.toLowerCase())) {
+			if (element.getId() != null) {
+				if (Objects.equals(element.getId().toLowerCase(), elementId.toLowerCase())) {
 					return element;
 				}
 			}
 		}
-		throw new InvalidXmlElementException("Element '" + elementName + "' does not exists.");
+		throw new InvalidXmlElementException("Element '" + elementId + "' does not exists.");
 	}
 
 	protected abstract T createElement(ITranslator translator, String elementId, String language) throws InvalidXmlElementException;
