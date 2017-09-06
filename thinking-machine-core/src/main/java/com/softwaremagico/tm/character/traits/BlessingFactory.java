@@ -85,8 +85,8 @@ public class BlessingFactory extends XmlFactory<Blessing> {
 			throw new InvalidBlessingException("Invalid trait name '" + blessingId + "'.");
 		}
 		try {
-			String situation = translator.getNodeValue(blessingId, SITUATION);
-			blessing.setTrait(situation);
+			String situation = translator.getNodeValue(blessingId, SITUATION, language);
+			blessing.setSituation(situation);
 		} catch (Exception e) {
 			throw new InvalidBlessingException("Invalid situation name '" + blessingId + "'.");
 		}
