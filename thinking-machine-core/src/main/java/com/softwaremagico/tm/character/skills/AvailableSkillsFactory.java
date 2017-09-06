@@ -37,8 +37,8 @@ import com.softwaremagico.tm.InvalidXmlElementException;
 
 public class AvailableSkillsFactory {
 	protected Map<String, List<AvailableSkill>> elements = new HashMap<>();
-	private static List<AvailableSkill> naturalSkills = new ArrayList<>();
-	private static List<AvailableSkill> learnedSkills = new ArrayList<>();
+	private static Map<String, List<AvailableSkill>> naturalSkills = new HashMap<>();
+	private static Map<String, List<AvailableSkill>> learnedSkills = new HashMap<>();
 
 	private static AvailableSkillsFactory instance;
 
@@ -61,40 +61,47 @@ public class AvailableSkillsFactory {
 
 	public void clearCache() {
 		elements = new HashMap<>();
-		naturalSkills = new ArrayList<>();
-		learnedSkills = new ArrayList<>();
+		naturalSkills = new HashMap<>();
+		learnedSkills = new HashMap<>();
 	}
 
 	public List<AvailableSkill> getNaturalSkills(String language) throws InvalidXmlElementException {
-		if (naturalSkills.isEmpty()) {
+		if (naturalSkills.get(language) == null) {
+			naturalSkills.put(language, new ArrayList<AvailableSkill>());
+		}
+		if (naturalSkills.get(language).isEmpty()) {
 			if (elements.get(language) == null) {
 				elements.put(language, new ArrayList<AvailableSkill>());
 			}
 			for (SkillDefinition skillDefinition : SkillsDefinitionsFactory.getInstance().getNaturalSkills(language)) {
 				Set<AvailableSkill> skills = createElement(skillDefinition);
-				naturalSkills.addAll(skills);
+
+				naturalSkills.get(language).addAll(skills);
 				elements.get(language).addAll(skills);
 			}
-			Collections.sort(naturalSkills);
+			Collections.sort(naturalSkills.get(language));
 			Collections.sort(elements.get(language));
 		}
-		return naturalSkills;
+		return naturalSkills.get(language);
 	}
 
 	public List<AvailableSkill> getLearnedSkills(String language) throws InvalidXmlElementException {
-		if (learnedSkills.isEmpty()) {
+		if (learnedSkills.get(language) == null) {
+			learnedSkills.put(language, new ArrayList<AvailableSkill>());
+		}
+		if (learnedSkills.get(language).isEmpty()) {
 			if (elements.get(language) == null) {
 				elements.put(language, new ArrayList<AvailableSkill>());
 			}
 			for (SkillDefinition skillDefinition : SkillsDefinitionsFactory.getInstance().getLearnedSkills(language)) {
 				Set<AvailableSkill> skills = createElement(skillDefinition);
-				learnedSkills.addAll(skills);
+				learnedSkills.get(language).addAll(skills);
 				elements.get(language).addAll(skills);
 			}
-			Collections.sort(learnedSkills);
+			Collections.sort(learnedSkills.get(language));
 			Collections.sort(elements.get(language));
 		}
-		return learnedSkills;
+		return learnedSkills.get(language);
 	}
 
 	private Set<AvailableSkill> createElement(SkillDefinition skillDefinition) {

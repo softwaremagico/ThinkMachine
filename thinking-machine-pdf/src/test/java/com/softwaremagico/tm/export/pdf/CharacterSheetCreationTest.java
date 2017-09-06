@@ -61,12 +61,14 @@ import com.softwaremagico.tm.pdf.complete.CharacterSheet;
 @Test(groups = { "characterPdfGeneration" })
 public class CharacterSheetCreationTest {
 	private final static String PDF_PATH_OUTPUT = System.getProperty("java.io.tmpdir") + File.separator;
+	private final static String LANGUAGE = "es";
+
 	private CharacterPlayer player;
 
 	@Test
 	public void emptyPdfSpanish() throws MalformedURLException, DocumentException, IOException {
 		CacheHandler.clearCache();
-		CharacterSheet sheet = new CharacterSheet("es");
+		CharacterSheet sheet = new CharacterSheet(LANGUAGE);
 		sheet.createFile(PDF_PATH_OUTPUT + "FadingSuns_ES.pdf");
 	}
 
@@ -81,7 +83,7 @@ public class CharacterSheetCreationTest {
 	public void characterPdfSpanish() throws MalformedURLException, DocumentException, IOException, InvalidXmlElementException {
 		CacheHandler.clearCache();
 
-		player = new CharacterPlayer("es");
+		player = new CharacterPlayer(LANGUAGE);
 		player.getInfo().setName("John Sephard");
 		player.getInfo().setPlayer("Player 1");
 		player.getInfo().setGender(Gender.MALE);
@@ -108,14 +110,14 @@ public class CharacterSheetCreationTest {
 		player.getCharacteristic(CharacteristicName.WILL).setValue(8);
 		player.getCharacteristic(CharacteristicName.FAITH).setValue(9);
 
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("influence", "es"), 5);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("sneak", "es"), 4);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("gaming", "es"), 4);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("lockpicking", "es"), 6);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("energyGuns", "es"), 6);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("warfare", "es"), 8);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("lore", "jumpwebLore", "es"), 4);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("lore", "beastsLore", "es"), 2);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("influence", LANGUAGE), 5);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("sneak", LANGUAGE), 4);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("gaming", LANGUAGE), 4);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("lockpicking", LANGUAGE), 6);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("energyGuns", LANGUAGE), 6);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("warfare", LANGUAGE), 8);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("lore", "jumpwebLore", LANGUAGE), 4);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("lore", "beastsLore", LANGUAGE), 2);
 
 		player.getOccultism().setPsiValue(4);
 		player.getOccultism().setUrge(1);
@@ -153,8 +155,8 @@ public class CharacterSheetCreationTest {
 
 		player.getLearnedStances().add(new LearnedStance("Posición Acrobática", "+1 a defensa por volteretas"));
 
-		player.getWeapons().addElement(WeaponFactory.getInstance().getElement("mace", "es"));
-		player.getWeapons().addElement(WeaponFactory.getInstance().getElement("martechGold", "es"));
+		player.getWeapons().addElement(WeaponFactory.getInstance().getElement("mace", LANGUAGE));
+		player.getWeapons().addElement(WeaponFactory.getInstance().getElement("martechGold", LANGUAGE));
 
 		player.setArmour(new Armour("Cuero Sintético", 7, true, false, false, false, false, false, true, 6, -1, 0, 0, 0));
 
