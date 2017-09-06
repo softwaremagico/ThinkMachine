@@ -1,1 +1,15 @@
 theme: jekyll-theme-hacker
+
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  
+logo: blob/master/images/ThinkingMachine_logo.svg
+title: The Thinking Machine
+description: Fading Suns character sheet generator based on Java. 
+author: 
+  name: Jorge Hortelano
+  email: softwaremagico@gmail.com
+
+image:
+  path: blob/master/images/ThinkingMachine_logo.png
