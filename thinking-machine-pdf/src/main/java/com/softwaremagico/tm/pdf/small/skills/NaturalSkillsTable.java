@@ -35,6 +35,7 @@ import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.complete.skills.SkillsTable;
 
 public class NaturalSkillsTable extends SkillsTable {
+	private final static int MAX_SKILL_COLUMN_WIDTH = 80;
 
 	public static PdfPTable getSkillsTable(CharacterPlayer characterPlayer, String language) throws InvalidXmlElementException {
 		float[] widths = { 1f };
@@ -55,14 +56,14 @@ public class NaturalSkillsTable extends SkillsTable {
 
 		if (characterPlayer == null) {
 			for (AvailableSkill skill : AvailableSkillsFactory.getInstance().getNaturalSkills(language)) {
-				table.addCell(createSkillElement(characterPlayer, skill, FadingSunsTheme.CHARACTER_SMALL_SKILLS_LINE_FONT_SIZE));
+				table.addCell(createSkillElement(null, skill, FadingSunsTheme.CHARACTER_SMALL_SKILLS_LINE_FONT_SIZE, MAX_SKILL_COLUMN_WIDTH));
 				table.addCell(createSkillLine(SKILL_VALUE_GAP, FadingSunsTheme.CHARACTER_SMALL_SKILLS_LINE_FONT_SIZE));
 			}
 		} else {
 			for (AvailableSkill skill : characterPlayer.getNaturalSkills()) {
-				table.addCell(createSkillElement(characterPlayer, skill, FadingSunsTheme.CHARACTER_SMALL_SKILLS_LINE_FONT_SIZE));
-				table.addCell(createSkillValue(characterPlayer.getSkillRanks(skill),
-						characterPlayer.isSkillSpecial(skill), FadingSunsTheme.CHARACTER_SMALL_SKILLS_LINE_FONT_SIZE));
+				table.addCell(createSkillElement(characterPlayer, skill, FadingSunsTheme.CHARACTER_SMALL_SKILLS_LINE_FONT_SIZE, MAX_SKILL_COLUMN_WIDTH));
+				table.addCell(createSkillValue(characterPlayer.getSkillRanks(skill), characterPlayer.isSkillSpecial(skill),
+						FadingSunsTheme.CHARACTER_SMALL_SKILLS_LINE_FONT_SIZE));
 			}
 		}
 

@@ -45,6 +45,7 @@ public class CompleteSkillsTable extends SkillsTable {
 	private static Integer totalSkillsToShow = null;
 	private final static String SKILL_VALUE_GAP = "____";
 	private final static int OCCULTISM_ROWS = 5;
+	private final static int MAX_SKILL_COLUMN_WIDTH = 115;
 
 	public static PdfPTable getSkillsTable(CharacterPlayer characterPlayer, String language) throws InvalidXmlElementException {
 		float[] widths = { 1f, 1f, 1f };
@@ -71,12 +72,12 @@ public class CompleteSkillsTable extends SkillsTable {
 
 		if (characterPlayer == null) {
 			for (AvailableSkill skill : AvailableSkillsFactory.getInstance().getNaturalSkills(language)) {
-				table.addCell(createSkillElement(characterPlayer, skill, FadingSunsTheme.SKILLS_LINE_FONT_SIZE));
+				table.addCell(createSkillElement(characterPlayer, skill, FadingSunsTheme.SKILLS_LINE_FONT_SIZE, MAX_SKILL_COLUMN_WIDTH));
 				table.addCell(createSkillLine(SKILL_VALUE_GAP, FadingSunsTheme.SKILLS_LINE_FONT_SIZE));
 			}
 		} else {
 			for (AvailableSkill skill : characterPlayer.getNaturalSkills()) {
-				table.addCell(createSkillElement(characterPlayer, skill, FadingSunsTheme.SKILLS_LINE_FONT_SIZE));
+				table.addCell(createSkillElement(characterPlayer, skill, FadingSunsTheme.SKILLS_LINE_FONT_SIZE, MAX_SKILL_COLUMN_WIDTH));
 				table.addCell(createSkillValue(characterPlayer.getSkillRanks(skill), characterPlayer.isSkillSpecial(skill),
 						FadingSunsTheme.SKILLS_LINE_FONT_SIZE));
 			}
@@ -189,7 +190,7 @@ public class CompleteSkillsTable extends SkillsTable {
 				for (AvailableSkill availableSkill : availableSkillsByDefinition) {
 					// Only specializations if they have ranks.
 					if (!skillDefinition.isSpecializable() || (characterPlayer != null && characterPlayer.getSkillRanks(availableSkill) > 0)) {
-						rows.add(createSkillElement(characterPlayer, availableSkill, FadingSunsTheme.SKILLS_LINE_FONT_SIZE));
+						rows.add(createSkillElement(characterPlayer, availableSkill, FadingSunsTheme.SKILLS_LINE_FONT_SIZE, MAX_SKILL_COLUMN_WIDTH));
 						if (characterPlayer == null) {
 							rows.add(createSkillLine(SKILL_VALUE_GAP, FadingSunsTheme.SKILLS_LINE_FONT_SIZE));
 						} else {
@@ -202,7 +203,7 @@ public class CompleteSkillsTable extends SkillsTable {
 				}
 				// We want some empty specializations into the chart.
 				for (int j = addedAvailableSkill; j < skillDefinition.getNumberToShow() && rowsAdded < totalRows; j++) {
-					rows.add(createSkillElement(skillDefinition, FadingSunsTheme.SKILLS_LINE_FONT_SIZE));
+					rows.add(createSkillElement(skillDefinition, FadingSunsTheme.SKILLS_LINE_FONT_SIZE, MAX_SKILL_COLUMN_WIDTH));
 					rows.add(createSkillLine(SKILL_VALUE_GAP, FadingSunsTheme.SKILLS_LINE_FONT_SIZE));
 					rowsAdded++;
 				}

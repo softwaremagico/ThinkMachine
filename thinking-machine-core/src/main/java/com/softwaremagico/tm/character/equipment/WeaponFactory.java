@@ -26,6 +26,8 @@ package com.softwaremagico.tm.character.equipment;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
+import com.softwaremagico.tm.character.characteristics.CharacteristicDefinition;
+import com.softwaremagico.tm.character.characteristics.CharacteristicsDefinitionFactory;
 import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
@@ -83,7 +85,8 @@ public class WeaponFactory extends XmlFactory<Weapon> {
 
 		try {
 			String characteristicName = translator.getNodeValue(weaponId, CHARACTERISTIC);
-
+			CharacteristicDefinition characteristicDefintion = CharacteristicsDefinitionFactory.getInstance().getElement(characteristicName, language);
+			weapon.setCharacteristic(characteristicDefintion);
 		} catch (Exception e) {
 			throw new InvalidWeaponException("Invalid characteristic name in weapon '" + weaponId + "'.");
 		}

@@ -36,6 +36,7 @@ import com.softwaremagico.tm.pdf.complete.skills.SkillsTable;
 
 public class LearnedSkillsTable extends SkillsTable {
 	private final static int ROWS = 20;
+	private final static int MAX_SKILL_COLUMN_WIDTH = 115;
 
 	public static PdfPTable getSkillsTable(CharacterPlayer characterPlayer, String language) throws InvalidXmlElementException {
 		float[] widths = { 1f };
@@ -58,7 +59,7 @@ public class LearnedSkillsTable extends SkillsTable {
 		if (characterPlayer != null) {
 			for (AvailableSkill skill : characterPlayer.getLearnedSkills()) {
 				if (characterPlayer.getSkillRanks(skill) > 0) {
-					table.addCell(createSkillElement(characterPlayer, skill, FadingSunsTheme.CHARACTER_SMALL_SKILLS_LINE_FONT_SIZE));
+					table.addCell(createSkillElement(characterPlayer, skill, FadingSunsTheme.CHARACTER_SMALL_SKILLS_LINE_FONT_SIZE, MAX_SKILL_COLUMN_WIDTH));
 					table.addCell(createSkillValue(characterPlayer.getSkillRanks(skill), characterPlayer.isSkillSpecial(skill),
 							FadingSunsTheme.CHARACTER_SMALL_SKILLS_LINE_FONT_SIZE));
 					added++;

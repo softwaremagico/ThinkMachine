@@ -41,7 +41,6 @@ public class SkillsTable extends BaseElement {
 	private final static int ROWS = 30;
 	protected final static int TITLE_ROWSPAN = 2;
 
-	private final static int MAX_SKILL_COLUMN_WIDTH = 115;
 	private final static String DEFAULT_NATURAL_SKILL_VALUE = " (3)";
 	private final static String DEFAULT_WHITE_SPACES = "                                ";
 	public final static String SKILL_VALUE_GAP = "____";
@@ -58,15 +57,15 @@ public class SkillsTable extends BaseElement {
 		return cell;
 	}
 
-	protected static PdfPCell createSkillElement(CharacterPlayer characterPlayer, AvailableSkill skill, int fontSize) {
-		PdfPCell cell = getCell(createSkillSufix(characterPlayer, skill, fontSize), 0, 1, Element.ALIGN_LEFT, BaseColor.WHITE);
+	protected static PdfPCell createSkillElement(CharacterPlayer characterPlayer, AvailableSkill skill, int fontSize, int maxColumnWidth) {
+		PdfPCell cell = getCell(createSkillSufix(characterPlayer, skill, fontSize, maxColumnWidth), 0, 1, Element.ALIGN_LEFT, BaseColor.WHITE);
 		cell.setMinimumHeight((MainSkillsTableFactory.HEIGHT / ROWS));
 		cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		return cell;
 	}
 
-	protected static PdfPCell createSkillElement(SkillDefinition skill, int fontSize) {
-		PdfPCell cell = getCell(createSkillSufix(skill, fontSize), 0, 1, Element.ALIGN_LEFT, BaseColor.WHITE);
+	protected static PdfPCell createSkillElement(SkillDefinition skill, int fontSize, int maxColumnWidth) {
+		PdfPCell cell = getCell(createSkillSufix(skill, fontSize, maxColumnWidth), 0, 1, Element.ALIGN_LEFT, BaseColor.WHITE);
 		cell.setMinimumHeight((MainSkillsTableFactory.HEIGHT / ROWS));
 		cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		return cell;
@@ -90,14 +89,14 @@ public class SkillsTable extends BaseElement {
 		return cell;
 	}
 
-	private static Paragraph createSkillSufix(CharacterPlayer characterPlayer, AvailableSkill availableSkill, int fontSize) {
+	private static Paragraph createSkillSufix(CharacterPlayer characterPlayer, AvailableSkill availableSkill, int fontSize, int maxColumnWidth) {
 		Paragraph paragraph = new Paragraph();
 		// Add number first to calculate length.
 		if (availableSkill.getSpecialization() != null) {
 			if (availableSkill.getSkillDefinition().isFromGuild()) {
-				paragraph.add(createSpecializedSkill(characterPlayer, availableSkill, FadingSunsTheme.getLineItalicFont(), fontSize));
+				paragraph.add(createSpecializedSkill(characterPlayer, availableSkill, FadingSunsTheme.getLineItalicFont(), fontSize, maxColumnWidth));
 			} else {
-				paragraph.add(createSpecializedSkill(characterPlayer, availableSkill, FadingSunsTheme.getLineFont(), fontSize));
+				paragraph.add(createSpecializedSkill(characterPlayer, availableSkill, FadingSunsTheme.getLineFont(), fontSize, maxColumnWidth));
 			}
 		} else {
 			if (availableSkill.getSkillDefinition().isFromGuild()) {
@@ -114,7 +113,8 @@ public class SkillsTable extends BaseElement {
 		return paragraph;
 	}
 
-	private static Paragraph createSpecializedSkill(CharacterPlayer characterPlayer, AvailableSkill availableSkill, BaseFont font, int fontSize) {
+	private static Paragraph createSpecializedSkill(CharacterPlayer characterPlayer, AvailableSkill availableSkill, BaseFont font, int fontSize,
+			int maxColumnWidth) {
 		Paragraph paragraph = new Paragraph();
 		float usedWidth = font.getWidthPoint(availableSkill.getName() + " []"
 				+ (availableSkill.getSkillDefinition().isNatural() ? DEFAULT_NATURAL_SKILL_VALUE : ""), fontSize);
@@ -122,30 +122,30 @@ public class SkillsTable extends BaseElement {
 		if (characterPlayer != null && characterPlayer.getSelectedSkill(availableSkill) == null) {
 			if (availableSkill.getSpecialization() != null) {
 				paragraph.add(new Paragraph(CellUtils.getSubStringFitsIn(availableSkill.getSpecialization().getName(), FadingSunsTheme.getHandwrittingFont(),
-						FadingSunsTheme.getHandWrittingFontSize(fontSize), MAX_SKILL_COLUMN_WIDTH - usedWidth), new Font(FadingSunsTheme.getHandwrittingFont(),
+						FadingSunsTheme.getHandWrittingFontSize(fontSize), maxColumnWidth - usedWidth), new Font(FadingSunsTheme.getHandwrittingFont(),
 						FadingSunsTheme.getHandWrittingFontSize(fontSize))));
 			} else {
-				paragraph.add(new Paragraph(CellUtils.getSubStringFitsIn(DEFAULT_WHITE_SPACES, font, fontSize, MAX_SKILL_COLUMN_WIDTH - usedWidth), new Font(
-						font, fontSize)));
+				paragraph.add(new Paragraph(CellUtils.getSubStringFitsIn(DEFAULT_WHITE_SPACES, font, fontSize, maxColumnWidth - usedWidth), new Font(font,
+						fontSize)));
 			}
 		} else {
 			paragraph.add(new Paragraph(CellUtils.getSubStringFitsIn(characterPlayer != null ? characterPlayer.getSelectedSkill(availableSkill).getName()
 					.replace(availableSkill.getName(), "").replace("[", "").replace("]", "").trim() : DEFAULT_WHITE_SPACES,
-					FadingSunsTheme.getHandwrittingFont(), FadingSunsTheme.getHandWrittingFontSize(fontSize), MAX_SKILL_COLUMN_WIDTH - usedWidth), new Font(
+					FadingSunsTheme.getHandwrittingFont(), FadingSunsTheme.getHandWrittingFontSize(fontSize), maxColumnWidth - usedWidth), new Font(
 					FadingSunsTheme.getHandwrittingFont(), FadingSunsTheme.getHandWrittingFontSize(fontSize))));
 		}
 		paragraph.add(new Paragraph("]", new Font(font, fontSize)));
 		return paragraph;
 	}
 
-	private static Paragraph createSkillSufix(SkillDefinition skillDefinition, int fontSize) {
+	private static Paragraph createSkillSufix(SkillDefinition skillDefinition, int fontSize, int maxColumnWidth) {
 		Paragraph paragraph = new Paragraph();
 		// Add number first to calculate length.
 		if (skillDefinition.isSpecializable()) {
 			if (skillDefinition.isFromGuild()) {
-				paragraph.add(createSpecializedSkill(skillDefinition, FadingSunsTheme.getLineItalicFont(), fontSize));
+				paragraph.add(createSpecializedSkill(skillDefinition, FadingSunsTheme.getLineItalicFont(), fontSize, maxColumnWidth));
 			} else {
-				paragraph.add(createSpecializedSkill(skillDefinition, FadingSunsTheme.getLineFont(), fontSize));
+				paragraph.add(createSpecializedSkill(skillDefinition, FadingSunsTheme.getLineFont(), fontSize, maxColumnWidth));
 			}
 		} else {
 			if (skillDefinition.isFromGuild()) {
@@ -162,12 +162,11 @@ public class SkillsTable extends BaseElement {
 		return paragraph;
 	}
 
-	private static Paragraph createSpecializedSkill(SkillDefinition skillDefinition, BaseFont font, int fontSize) {
+	private static Paragraph createSpecializedSkill(SkillDefinition skillDefinition, BaseFont font, int fontSize, int maxColumnWidth) {
 		Paragraph paragraph = new Paragraph();
 		float usedWidth = font.getWidthPoint(skillDefinition.getName() + " []" + (skillDefinition.isNatural() ? DEFAULT_NATURAL_SKILL_VALUE : ""), fontSize);
 		paragraph.add(new Paragraph(skillDefinition.getName() + " [", new Font(font, fontSize)));
-		paragraph.add(new Paragraph(CellUtils.getSubStringFitsIn(DEFAULT_WHITE_SPACES, font, fontSize, MAX_SKILL_COLUMN_WIDTH - usedWidth), new Font(font,
-				fontSize)));
+		paragraph.add(new Paragraph(CellUtils.getSubStringFitsIn(DEFAULT_WHITE_SPACES, font, fontSize, maxColumnWidth - usedWidth), new Font(font, fontSize)));
 		paragraph.add(new Paragraph("]", new Font(font, fontSize)));
 		return paragraph;
 	}

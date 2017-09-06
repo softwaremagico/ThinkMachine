@@ -59,7 +59,6 @@ import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
 import com.softwaremagico.tm.character.skills.Specialization;
 import com.softwaremagico.tm.character.traits.Benefit;
 import com.softwaremagico.tm.character.traits.Blessing;
-import com.softwaremagico.tm.language.LanguagePool;
 
 public class CharacterPlayer {
 	private final static int COMBAT_STYLE_COST = 5;
