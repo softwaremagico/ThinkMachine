@@ -25,22 +25,24 @@ package com.softwaremagico.tm.character.traits;
  */
 
 import com.softwaremagico.tm.Element;
+import com.softwaremagico.tm.character.characteristics.CharacteristicDefinition;
+import com.softwaremagico.tm.character.skills.SkillDefinition;
 
 public class Blessing extends Element<Blessing> {
 	private Integer cost;
 	private Integer bonification;
-	private String trait;
+	private SkillDefinition skill;
+	private CharacteristicDefinition characteristic;
 	private String situation;
 
 	public Blessing(String id, String name) {
 		super(id, name);
 	}
 
-	public Blessing(String name, Integer cost, Integer bonification, String trait, String situation) {
+	public Blessing(String name, Integer cost, Integer bonification, String situation) {
 		this(null, name);
 		this.cost = cost;
 		this.bonification = bonification;
-		this.trait = trait;
 		this.situation = situation;
 	}
 
@@ -53,14 +55,20 @@ public class Blessing extends Element<Blessing> {
 	}
 
 	public String getTrait() {
-		return trait;
+		if (skill != null) {
+			return skill.getName();
+		}
+		if (characteristic != null) {
+			return characteristic.getName();
+		}
+		return "";
 	}
 
 	public String getSituation() {
 		return situation;
 	}
 
-	public void setCost(Integer cost) {
+	protected void setCost(Integer cost) {
 		this.cost = cost;
 	}
 
@@ -68,12 +76,24 @@ public class Blessing extends Element<Blessing> {
 		this.bonification = bonification;
 	}
 
-	public void setTrait(String trait) {
-		this.trait = trait;
+	protected void setSituation(String situation) {
+		this.situation = situation;
 	}
 
-	public void setSituation(String situation) {
-		this.situation = situation;
+	public SkillDefinition getSkill() {
+		return skill;
+	}
+
+	public void setSkill(SkillDefinition skill) {
+		this.skill = skill;
+	}
+
+	public CharacteristicDefinition getCharacteristic() {
+		return characteristic;
+	}
+
+	public void setCharacteristic(CharacteristicDefinition characteristic) {
+		this.characteristic = characteristic;
 	}
 
 }

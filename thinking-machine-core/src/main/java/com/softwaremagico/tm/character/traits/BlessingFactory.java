@@ -26,6 +26,10 @@ package com.softwaremagico.tm.character.traits;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
+import com.softwaremagico.tm.character.characteristics.CharacteristicDefinition;
+import com.softwaremagico.tm.character.characteristics.CharacteristicsDefinitionFactory;
+import com.softwaremagico.tm.character.skills.SkillDefinition;
+import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
 
@@ -35,7 +39,8 @@ public class BlessingFactory extends XmlFactory<Blessing> {
 	private final static String NAME = "name";
 	private final static String COST = "cost";
 	private final static String BONIFICATION = "bonification";
-	private final static String TRAIT = "trait";
+	private final static String SKILL = "skill";
+	private final static String CHARACTERISTIC = "characteristic";
 	private final static String SITUATION = "situation";
 
 	private static BlessingFactory instance;
@@ -79,10 +84,25 @@ public class BlessingFactory extends XmlFactory<Blessing> {
 			throw new InvalidBlessingException("Invalid bonification in blessing '" + blessingId + "'.");
 		}
 		try {
-			String trait = translator.getNodeValue(blessingId, TRAIT);
-			blessing.setTrait(trait);
+			String skillName = translator.getNodeValue(blessingId, SKILL);
+			SkillDefinition skill = SkillsDefinitionsFactory.getInstance().getElement(skillName, language);
+			blessing.setSkill(skill);
 		} catch (Exception e) {
-			throw new InvalidBlessingException("Invalid trait name '" + blessingId + "'.");
+			// Not mandatory
+		}
+		try {
+			String skillName = translator.getNodeValue(blessingId, SKILL);
+			SkillDefinition skill = SkillsDefinitionsFactory.getInstance().getElement(skillName, language);
+			blessing.setSkill(skill);
+		} catch (Exception e) {
+			// Not mandatory
+		}
+		try {
+			String characteristicName = translator.getNodeValue(blessingId, CHARACTERISTIC);
+			CharacteristicDefinition characteristic = CharacteristicsDefinitionFactory.getInstance().getElement(characteristicName, language);
+			blessing.setCharacteristic(characteristic);
+		} catch (Exception e) {
+			// Not mandatory
 		}
 		try {
 			String situation = translator.getNodeValue(blessingId, SITUATION, language);

@@ -7,7 +7,7 @@
 		</name>
 		<cost>1</cost>
 		<bonification>1</bonification>
-		<trait>influence</trait>
+		<skill>influence</skill>
 		<situation>
 			<en>Special</en>
 			<es>Especial</es>
@@ -20,7 +20,7 @@
 		</name>
 		<cost>2</cost>
 		<bonification>2</bonification>
-		<trait>technology</trait>
+		<characteristic>tech</characteristic>
 		<situation>
 			<en>To invent something new</en>
 			<es>Inventar algo nuevo</es>
@@ -33,7 +33,7 @@
 		</name>
 		<cost>-2</cost>
 		<bonification>-2</bonification>
-		<trait>presence</trait>
+		<characteristic>presence</characteristic>
 		<situation>
 			<en>Around serfs</en>
 			<es>Entre sirvientes</es>

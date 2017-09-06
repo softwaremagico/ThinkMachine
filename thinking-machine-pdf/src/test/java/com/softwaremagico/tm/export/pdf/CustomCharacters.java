@@ -52,6 +52,7 @@ import com.softwaremagico.tm.character.race.Race;
 import com.softwaremagico.tm.character.race.RaceFactory;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.character.skills.CyberneticSkill;
+import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
 import com.softwaremagico.tm.character.traits.Benefit;
 import com.softwaremagico.tm.character.traits.BenefitFactory;
 import com.softwaremagico.tm.character.traits.Blessing;
@@ -106,10 +107,21 @@ public class CustomCharacters {
 
 		player.addBlessing(BlessingFactory.getInstance().getElement("innovative", LANGUAGE));
 		player.addBlessing(BlessingFactory.getInstance().getElement("haughty", LANGUAGE));
-		player.addBlessing(new Blessing("Hacker", 2, 2, "Máquina Pensante", "--"));
-		player.addBlessing(new Blessing("Mecánico", 2, 2, "Recuperación Tecnológic", "Reparando"));
-		player.addBlessing(new Blessing("Enemigo Animales", -2, -2, "Con Animales", "Excepto combate"));
-		player.addBlessing(new Blessing("Marca Horrible", -2, -2, "Influencia", "Si es visible"));
+
+		Blessing hacker = new Blessing("Hacker", 2, 2, "--");
+		hacker.setSkill(SkillsDefinitionsFactory.getInstance().getElement("thinkMachine", LANGUAGE));
+		player.addBlessing(hacker);
+
+		Blessing mechanical = new Blessing("Mecánico", 2, 2, "Reparando");
+		mechanical.setSkill(SkillsDefinitionsFactory.getInstance().getElement("techRedemption", LANGUAGE));
+		player.addBlessing(mechanical);
+
+		Blessing animalHater = new Blessing("Enemigo Animales", -2, -2, "Con Animales");
+		player.addBlessing(animalHater);
+
+		Blessing horribleMark = new Blessing("Marca Horrible", -2, -2, "Si es visible");
+		horribleMark.setSkill(SkillsDefinitionsFactory.getInstance().getElement("influence", LANGUAGE));
+		player.addBlessing(horribleMark);
 
 		player.addBenefit(BenefitFactory.getInstance().getElement("turingLanguage", LANGUAGE));
 		// player.addBenefit(new Benefit("Idioma Turing", 2));
@@ -180,9 +192,17 @@ public class CustomCharacters {
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("investigation", LANGUAGE), 4);
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("leadership", LANGUAGE), 2);
 
-		player.addBlessing(new Blessing("Inflexible", 2, 2, "Fortaleza", "Honor en juego"));
-		player.addBlessing(new Blessing("Orgulloso", -2, -2, "Voluntad", "Insulta"));
-		player.addBlessing(new Blessing("Marca Horrible", -2, -2, "Influencia", "Si es visible"));
+		Blessing inflexible = new Blessing("Inflexible", 2, 2, "Honor en juego");
+		inflexible.setCharacteristic(CharacteristicsDefinitionFactory.getInstance().getElement("endurance", LANGUAGE));
+		player.addBlessing(inflexible);
+
+		Blessing proud = new Blessing("Orgulloso", -2, -2, "Insulta");
+		proud.setCharacteristic(CharacteristicsDefinitionFactory.getInstance().getElement("will", LANGUAGE));
+		player.addBlessing(proud);
+
+		Blessing horribleMark = new Blessing("Marca Horrible", -2, -2, "Si es visible");
+		horribleMark.setSkill(SkillsDefinitionsFactory.getInstance().getElement("influence", LANGUAGE));
+		player.addBlessing(horribleMark);
 
 		player.addBenefit(new Benefit("Rango Caballero", 4));
 		player.addBenefit(new Benefit("Idioma Latín", 2));
@@ -244,9 +264,17 @@ public class CustomCharacters {
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("landcarft", LANGUAGE), 2);
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("investigation", LANGUAGE), 3);
 
-		player.addBlessing(new Blessing("El Hombre", 2, 2, "Influenciar", "Liderar subalternos"));
-		player.addBlessing(new Blessing("Posesivo", -2, -2, "Voluntad", "Excluir acción"));
-		player.addBlessing(new Blessing("Marca Horrible", -2, -2, "Influencia", "Si es visible"));
+		Blessing theMan = new Blessing("El Hombre", 2, 2, "Liderar subalternos");
+		theMan.setSkill(SkillsDefinitionsFactory.getInstance().getElement("influence", LANGUAGE));
+		player.addBlessing(theMan);
+
+		Blessing possessive = new Blessing("Posesivo", -2, -2, "Excluir acción");
+		possessive.setCharacteristic(CharacteristicsDefinitionFactory.getInstance().getElement("will", LANGUAGE));
+		player.addBlessing(possessive);
+
+		Blessing horribleMark = new Blessing("Marca Horrible", -2, -2, "Si es visible");
+		horribleMark.setSkill(SkillsDefinitionsFactory.getInstance().getElement("influence", LANGUAGE));
+		player.addBlessing(horribleMark);
 
 		player.addBenefit(new Benefit("Genin", 8));
 		player.addBenefit(new Benefit("Contrato de Pasaje", 3));
@@ -317,9 +345,17 @@ public class CustomCharacters {
 		player.getOccultism().addElement(new OccultismPower("Visión Mental", OccultismType.PSI, "Vol+Empatía", 3, "Toque", "Instantáneo", "", 1));
 		player.getOccultism().setExtraWyrd(3);
 
-		player.addBlessing(new Blessing("Recto", 2, 2, "Fe", "Corregir al errado"));
-		player.addBlessing(new Blessing("Condescendiente", -2, -2, "Presencia", "Entre incultos"));
-		player.addBlessing(new Blessing("Marca Horrible", -2, -2, "Influencia", "Si es visible"));
+		Blessing hounorable = new Blessing("Recto", 2, 2, "Corregir al errado");
+		hounorable.setCharacteristic(CharacteristicsDefinitionFactory.getInstance().getElement("faith", LANGUAGE));
+		player.addBlessing(hounorable);
+
+		Blessing acquiescent = new Blessing("Condescendiente", -2, -2, "Entre incultos");
+		acquiescent.setCharacteristic(CharacteristicsDefinitionFactory.getInstance().getElement("presence", LANGUAGE));
+		player.addBlessing(acquiescent);
+
+		Blessing horribleMark = new Blessing("Marca Horrible", -2, -2, "Si es visible");
+		horribleMark.setSkill(SkillsDefinitionsFactory.getInstance().getElement("influence", LANGUAGE));
+		player.addBlessing(horribleMark);
 
 		player.addBenefit(new Benefit("Rango Novicio", 4));
 		player.addBenefit(new Benefit("Idioma Terráqueo", 2));
@@ -371,8 +407,13 @@ public class CustomCharacters {
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("thinkMachine", LANGUAGE), 3);
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("techRedemption", LANGUAGE), 3);
 
-		player.addBlessing(new Blessing("Crédulo", -2, -2, "Voluntad", "Lo engatusan"));
-		player.addBlessing(new Blessing("Justificado", -2, -2, "Voluntad", "Se cuestion su juicio"));
+		Blessing credulous = new Blessing("Crédulo", -2, -2, "Si se le engatusa");
+		credulous.setCharacteristic(CharacteristicsDefinitionFactory.getInstance().getElement("will", LANGUAGE));
+		player.addBlessing(credulous);
+
+		Blessing justified = new Blessing("Justificado", -2, -2, "Se cuestion su juicio");
+		justified.setCharacteristic(CharacteristicsDefinitionFactory.getInstance().getElement("will", LANGUAGE));
+		player.addBlessing(justified);
 
 		player.getCybernetics().addElement(new Device("Omnienchufe", 1, 0, "Normal", "Normal", "Automático", "Oculto", ""));
 		player.getCybernetics().addElement(new Device("Interfaz de Datos (Turing)", 1, 1, "Normal", "Normal", "Automático", "Oculto", "Turing"));
