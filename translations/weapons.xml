@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<weapons>
+	<huntingRifle>
+		<name>
+			<en>Hunting Rifle</en>
+			<es>Rifle de Caza</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<techLevel>3</techLevel>
+		<damage>6</damage>
+		<strength>2</strength>
+		<range>40/110</range>
+		<shots>6</shots>
+		<rate>2</rate>
+		<size>XL</size>
+		<cost>150</cost>
+	</huntingRifle>
+	<mace>
+		<name>
+			<en>Mace</en>
+			<es>Maza</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>fight</skill>
+		<techLevel>1</techLevel>
+		<damage>5</damage>
+		<strength>3</strength>
+		<size>L</size>
+		<cost>10</cost>
+	</mace>
+	<martechGold>
+		<name>
+			<en>Martech Gold</en>
+			<es>Martech Oro</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>energyGuns</skill>
+		<techLevel>6</techLevel>
+		<goal>+1</goal>
+		<damage>5</damage>
+		<strength>0</strength>
+		<range>10/20</range>
+		<shots>15</shots>
+		<rate>2</rate>
+		<size>S</size>
+		<cost>300</cost>
+		<special>laser</special>
+	</martechGold>
+	<fluxSword>
+		<name>
+			<en>Flux Sword</en>
+			<es>Espada de Flujo</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>artifactMelee</skill>
+		<techLevel>8</techLevel>
+		<goal>+1</goal>
+		<damage>7</damage>
+		<strength>3</strength>
+		<size>L</size>
+		<cost>15000</cost>
+		<special>plasma, hard</special>
+	</fluxSword>
+	<shotgun>
+		<name>
+			<en>Shotgun</en>
+			<es>Escopeta</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<techLevel>3</techLevel>
+		<goal>+1/0/-1</goal>
+		<damage>8/4/1</damage>
+		<strength>4</strength>
+		<range>10/20/x</range>
+		<shots>7</shots>
+		<rate>2</rate>
+		<size>L</size>
+		<cost>300</cost>
+		<special>stock, pumpfeed</special>
+	</shotgun>
+	<shotgunSolid>
+		<name>
+			<en>Shotgun</en>
+			<es>Escopeta</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<techLevel>3</techLevel>
+		<damage>7</damage>
+		<strength>3</strength>
+		<range>30/80</range>
+		<shots>7</shots>
+		<rate>2</rate>
+		<size>L</size>
+		<cost>300</cost>
+	</shotgunSolid>
+	<mediumAutofeedHandgun>
+		<name>
+			<en>Medium Autofeed (0.40)</en>
+			<es>Pistola Automática (0.40)</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<techLevel>4</techLevel>
+		<damage>5</damage>
+		<strength>3</strength>
+		<range>20/30</range>
+		<shots>6</shots>
+		<rate>3</rate>
+		<size>S</size>
+		<cost>200</cost>
+	</mediumAutofeedHandgun>
+</weapons>

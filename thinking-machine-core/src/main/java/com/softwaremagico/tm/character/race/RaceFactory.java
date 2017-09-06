@@ -28,12 +28,14 @@ import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
 import com.softwaremagico.tm.character.OccultismType;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
+import com.softwaremagico.tm.character.traits.InvalidBlessingException;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
 
 public class RaceFactory extends XmlFactory<Race> {
 	private final static ITranslator TRANSLATOR_RACE = LanguagePool.getTranslator("races.xml");
 
+	private final static String NAME = "name";
 	private final static String MAX_VALUE = "maximumValue";
 	private final static String VALUE = "value";
 	private final static String COST = "cost";
@@ -64,7 +66,13 @@ public class RaceFactory extends XmlFactory<Race> {
 
 	@Override
 	protected Race createElement(ITranslator translator, String raceId, String language) throws InvalidXmlElementException {
-		Race race = new Race(raceId, translator.getTranslatedText(raceId, language));
+		Race race = null;
+		try {
+			String name = translator.getNodeValue(raceId, NAME, language);
+			race = new Race(raceId, name);
+		} catch (Exception e) {
+			throw new InvalidBlessingException("Invalid name in race '" + raceId + "'.");
+		}
 		try {
 			String cost = translator.getNodeValue(raceId, COST);
 			race.setCost(Integer.parseInt(cost));
@@ -110,5 +118,6 @@ public class RaceFactory extends XmlFactory<Race> {
 			throw new InvalidRaceException("Invalid hubris value in race '" + raceId + "'.");
 		}
 		return race;
+
 	}
 }

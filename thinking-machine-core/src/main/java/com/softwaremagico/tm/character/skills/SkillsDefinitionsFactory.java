@@ -32,13 +32,15 @@ import java.util.Set;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
+import com.softwaremagico.tm.character.traits.InvalidBlessingException;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.log.MachineLog;
 
 public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 	private final static ITranslator TRANSLATOR_SKILLS = LanguagePool.getTranslator("skills.xml");
-	
+
+	private final static String NAME = "name";
 	private final static String GUILD_SKILL_TAG = "guildSkill";
 	private final static String SPECIALIZABLE_SKILL_TAG = "specializations";
 	private final static String GROUP_SKILL_TAG = "group";
@@ -122,34 +124,39 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 
 	@Override
 	protected SkillDefinition createElement(ITranslator translator, String skillId, String language) throws InvalidXmlElementException {
-		SkillDefinition skill = new SkillDefinition(skillId, translator.getTranslatedText(skillId, language));
 		try {
-			Set<Specialization> specializations = new HashSet<>();
-			for (String specializationId : translator.getAllChildrenTags(skillId, SPECIALIZABLE_SKILL_TAG)) {
-				String specizalizationName = translator.getNodeValue(specializationId, language);
-				specializations.add(new Specialization(specializationId, specizalizationName));
+			String name = translator.getNodeValue(skillId, NAME, language);
+			SkillDefinition skill = new SkillDefinition(skillId, name);
+			try {
+				Set<Specialization> specializations = new HashSet<>();
+				for (String specializationId : translator.getAllChildrenTags(skillId, SPECIALIZABLE_SKILL_TAG)) {
+					String specizalizationName = translator.getNodeValue(specializationId, language);
+					specializations.add(new Specialization(specializationId, specizalizationName));
+				}
+				skill.setSpecializations(specializations);
+			} catch (NumberFormatException nfe) {
+				throw new InvalidSkillException("Invalid specialization value for skill '" + skillId + "'.");
 			}
-			skill.setSpecializations(specializations);
-		} catch (NumberFormatException nfe) {
-			throw new InvalidSkillException("Invalid specialization value for skill '" + skillId + "'.");
-		}
-		try {
-			String numberToShow = translator.getNodeValue(skillId, NUMBER_TO_SHOW_TAG);
-			if (numberToShow != null) {
-				skill.setNumberToShow(Integer.parseInt(numberToShow));
+			try {
+				String numberToShow = translator.getNodeValue(skillId, NUMBER_TO_SHOW_TAG);
+				if (numberToShow != null) {
+					skill.setNumberToShow(Integer.parseInt(numberToShow));
+				}
+			} catch (NumberFormatException nfe) {
+				throw new InvalidSkillException("Invalid number value for skill '" + skillId + "'.");
 			}
-		} catch (NumberFormatException nfe) {
-			throw new InvalidSkillException("Invalid number value for skill '" + skillId + "'.");
+			String guildSkill = translator.getNodeValue(skillId, GUILD_SKILL_TAG);
+			skill.setFromGuild(Boolean.parseBoolean(guildSkill));
+			String group = translator.getNodeValue(skillId, GROUP_SKILL_TAG);
+			skill.setSkillGroup(SkillGroup.getSkillGroup(group));
+
+			String natural = translator.getNodeValue(skillId, NATURAL_SKILL_TAG);
+			skill.setNatural(Boolean.parseBoolean(natural));
+
+			return skill;
+		} catch (Exception e) {
+			throw new InvalidBlessingException("Invalid name in skill '" + skillId + "'.");
 		}
-		String guildSkill = translator.getNodeValue(skillId, GUILD_SKILL_TAG);
-		skill.setFromGuild(Boolean.parseBoolean(guildSkill));
-		String group = translator.getNodeValue(skillId, GROUP_SKILL_TAG);
-		skill.setSkillGroup(SkillGroup.getSkillGroup(group));
-
-		String natural = translator.getNodeValue(skillId, NATURAL_SKILL_TAG);
-		skill.setNatural(Boolean.parseBoolean(natural));
-
-		return skill;
 	}
 
 	@Override

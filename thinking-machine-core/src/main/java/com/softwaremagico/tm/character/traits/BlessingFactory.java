@@ -59,37 +59,39 @@ public class BlessingFactory extends XmlFactory<Blessing> {
 
 	@Override
 	protected Blessing createElement(ITranslator translator, String blessingId, String language) throws InvalidXmlElementException {
+		Blessing blessing = null;
 		try {
 			String name = translator.getNodeValue(blessingId, NAME, language);
-			Blessing blessing = new Blessing(blessingId, name);
-			try {
-				String cost = translator.getNodeValue(blessingId, COST);
-				blessing.setCost(Integer.parseInt(cost));
-			} catch (Exception e) {
-				throw new InvalidBlessingException("Invalid cost in blessing '" + blessingId + "'.");
-			}
-			try {
-				String bonification = translator.getNodeValue(blessingId, BONIFICATION);
-				blessing.setBonification(Integer.parseInt(bonification));
-			} catch (Exception e) {
-				throw new InvalidBlessingException("Invalid bonification in blessing '" + blessingId + "'.");
-			}
-			try {
-				String trait = translator.getNodeValue(blessingId, TRAIT);
-				blessing.setTrait(trait);
-			} catch (Exception e) {
-				throw new InvalidBlessingException("Invalid trait name '" + blessingId + "'.");
-			}
-			try {
-				String situation = translator.getNodeValue(blessingId, SITUATION);
-				blessing.setTrait(situation);
-			} catch (Exception e) {
-				throw new InvalidBlessingException("Invalid situation name '" + blessingId + "'.");
-			}
-			return blessing;
+			blessing = new Blessing(blessingId, name);
 		} catch (Exception e) {
 			throw new InvalidBlessingException("Invalid name in blessing '" + blessingId + "'.");
 		}
+		try {
+			String cost = translator.getNodeValue(blessingId, COST);
+			blessing.setCost(Integer.parseInt(cost));
+		} catch (Exception e) {
+			throw new InvalidBlessingException("Invalid cost in blessing '" + blessingId + "'.");
+		}
+		try {
+			String bonification = translator.getNodeValue(blessingId, BONIFICATION);
+			blessing.setBonification(Integer.parseInt(bonification));
+		} catch (Exception e) {
+			throw new InvalidBlessingException("Invalid bonification in blessing '" + blessingId + "'.");
+		}
+		try {
+			String trait = translator.getNodeValue(blessingId, TRAIT);
+			blessing.setTrait(trait);
+		} catch (Exception e) {
+			throw new InvalidBlessingException("Invalid trait name '" + blessingId + "'.");
+		}
+		try {
+			String situation = translator.getNodeValue(blessingId, SITUATION);
+			blessing.setTrait(situation);
+		} catch (Exception e) {
+			throw new InvalidBlessingException("Invalid situation name '" + blessingId + "'.");
+		}
+		return blessing;
+
 	}
 
 	@Override

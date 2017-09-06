@@ -57,7 +57,7 @@ public class WeaponsTable extends VerticalTable {
 		if (characterPlayer != null) {
 			for (Weapon weapon : characterPlayer.getWeapons().getElements()) {
 				addCell(createFirstElementLine(weapon.getName(), NAME_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_SMALL_CONTENT_FONT_SIZE));
-				addCell(createElementLine((weapon.getGoal() > 0 ? "+" : "") + weapon.getGoal(), GOAL_COLUMN_WIDTH,
+				addCell(createElementLine((weapon.getGoal() !=null ? weapon.getGoal() : "") + weapon.getGoal(), GOAL_COLUMN_WIDTH,
 						FadingSunsTheme.WEAPONS_SMALL_CONTENT_FONT_SIZE));
 				addCell(createElementLine(weapon.getDamage() + "d", DAMAGE_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_SMALL_CONTENT_FONT_SIZE));
 				addCell(createElementLine(weapon.getShots() == null ? characterPlayer.getStrengthDamangeModification() + "" : weapon.getStrengthOrRange(),

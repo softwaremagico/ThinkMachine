@@ -1,248 +1,248 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <skills>
 	<influence>
-		<translator>
+		<name>
 			<en>Influence</en>
 			<es>Influenciar</es>
-		</translator>
+		</name>
 		<group>social</group>
 		<natural>true</natural>
 	</influence>
 	<throwing>
-		<translator>
+		<name>
 			<en>Throwing</en>
 			<es>Lanzar</es>
-		</translator>
+		</name>
 		<group>combat</group>
 		<natural>true</natural>
 	</throwing>
 	<observe>
-		<translator>
+		<name>
 			<en>Observe</en>
 			<es>Observar</es>
-		</translator>
+		</name>
 		<group>analytical</group>
 		<natural>true</natural>
 	</observe>
 	<melee>
-		<translator>
+		<name>
 			<en>Melee</en>
 			<es>Pelear</es>
-		</translator>
+		</name>
 		<group>combat</group>
 		<natural>true</natural>
 	</melee>
 	<phoenixEmpireLore>
-		<translator>
+		<name>
 			<en>Lore [Phoenix Empire]</en>
 			<es>Saber [Imperio Fénix]</es>
-		</translator>
+		</name>
 		<group>lore</group>
 		<natural>true</natural>
 	</phoenixEmpireLore>
 	<planetaryLore>
-		<translator>
+		<name>
 			<en>Lore</en>
 			<es>Saber</es>
-		</translator>
+		</name>
 		<group>lore</group>
 		<natural>true</natural>
 	</planetaryLore>
 	<factionLore>
-		<translator>
+		<name>
 			<en>Lore</en>
 			<es>Saber</es>
-		</translator>
+		</name>
 		<group>lore</group>
 		<natural>true</natural>
 	</factionLore>
 	<sneak>
-		<translator>
+		<name>
 			<en>Sneak</en>
 			<es>Sigilo</es>
-		</translator>
+		</name>
 		<group>malefaction</group>
 		<natural>true</natural>
 	</sneak>
 	<vigor>
-		<translator>
+		<name>
 			<en>Vigor</en>
 			<es>Vigor</es>
-		</translator>
+		</name>
 		<group>physical</group>
 		<natural>true</natural>
 	</vigor>
 	<bureaucracy>
-		<translator>
+		<name>
 			<en>Bureaucracy</en>
 			<es>Burocracia</es>
-		</translator>
+		</name>
 		<group>analytical</group>
 	</bureaucracy>
 	<physick>
-		<translator>
+		<name>
 			<en>Physick</en>
 			<es>Conocim. del Cuerpo</es>
-		</translator>
+		</name>
 		<group>analytical</group>
 	</physick>
 	<warfare>
-		<translator>
+		<name>
 			<en>Warfare</en>
 			<es>Guerra</es>
-		</translator>
+		</name>
 		<group>analytical</group>
 	</warfare>
 	<investigation>
-		<translator>
+		<name>
 			<en>Investigation</en>
 			<es>Investigar</es>
-		</translator>
+		</name>
 		<group>analytical</group>
 	</investigation>
 	<appliedScience>
-		<translator>
+		<name>
 			<en>Applied Science</en>
 			<es>Ciencia Aplicada</es>
-		</translator>
+		</name>
 		<group>science</group>
 		<guildSkill>true</guildSkill>
 	</appliedScience>
 	<socialScience>
-		<translator>
+		<name>
 			<en>Social Science</en>
 			<es>Ciencia Social</es>
-		</translator>
+		</name>
 		<group>science</group>
 	</socialScience>
 	<physicalScience>
-		<translator>
+		<name>
 			<en>Physical Science</en>
 			<es>Ciencia de la Física</es>
-		</translator>
+		</name>
 		<group>science</group>
 		<guildSkill>true</guildSkill>
 	</physicalScience>
 	<lifeScience>
-		<translator>
+		<name>
 			<en>Life Science</en>
 			<es>Ciencia de la Vida</es>
-		</translator>
+		</name>
 		<group>science</group>
 		<guildSkill>true</guildSkill>
 	</lifeScience>
 	<terraforming>
-		<translator>
+		<name>
 			<en>Terraforming</en>
 			<es>Terraformismo</es>
-		</translator>
+		</name>
 		<group>science</group>
 		<guildSkill>true</guildSkill>
 	</terraforming>
 	<energyGuns>
-		<translator>
+		<name>
 			<en>Energy Guns</en>
 			<es>Armas de Energía</es>
-		</translator>
+		</name>
 		<group>combat</group>
 	</energyGuns>
 	<slugGuns>
-		<translator>
+		<name>
 			<en>Slug Guns</en>
 			<es>Armas de Fuego</es>
-		</translator>
+		</name>
 		<group>combat</group>
 	</slugGuns>
 	<archery>
-		<translator>
+		<name>
 			<en>Archery</en>
 			<es>Arquería</es>
-		</translator>
+		</name>
 		<group>combat</group>
 	</archery>
 	<artifactMelee>
-		<translator>
+		<name>
 			<en>Artifact Melee</en>
 			<es>Artefacto Cuerpo a C.</es>
-		</translator>
+		</name>
 		<group>combat</group>
 	</artifactMelee>
 	<gunnery>
-		<translator>
+		<name>
 			<en>Gunnery</en>
 			<es>Artillería de Supresión</es>
-		</translator>
+		</name>
 		<group>combat</group>
 	</gunnery>
 	<artillery>
-		<translator>
+		<name>
 			<en>Artillery</en>
 			<es>Artillería Pesada</es>
-		</translator>
+		</name>
 		<group>combat</group>
 	</artillery>
 	<fight>
-		<translator>
+		<name>
 			<en>Fight</en>
 			<es>Cuerpo a Cuerpo</es>
-		</translator>
+		</name>
 		<group>combat</group>
 	</fight>
 	<demolitions>
-		<translator>
+		<name>
 			<en>Demolitions</en>
 			<es>Demoliciones</es>
-		</translator>
+		</name>
 		<group>combat</group>
 	</demolitions>
 	<beastcraft>
-		<translator>
+		<name>
 			<en>Beastcraft</en>
 			<es>Controlar Bestia de Tiro</es>
-		</translator>
+		</name>
 		<group>control</group>
 	</beastcraft>
 	<watercraft>
-		<translator>
+		<name>
 			<en>Watercraft</en>
 			<es>Controlar Embarcación</es>
-		</translator>
+		</name>
 		<group>control</group>
 	</watercraft>
 	<ride>
-		<translator>
+		<name>
 			<en>Ride</en>
 			<es>Montar</es>
-		</translator>
+		</name>
 		<group>control</group>
 	</ride>
 	<aircraft>
-		<translator>
+		<name>
 			<en>Aircraft</en>
 			<es>Controlar Aeronave</es>
-		</translator>
+		</name>
 		<group>control</group>
 	</aircraft>
 	<spacecraft>
-		<translator>
+		<name>
 			<en>Spacecraft</en>
 			<es>Controlar Nave Espacial</es>
-		</translator>
+		</name>
 		<group>control</group>
 		<guildSkill>true</guildSkill>
 	</spacecraft>
 	<landcarft>
-		<translator>
+		<name>
 			<en>Landcraft</en>
 			<es>Controlar Vehíc. Terrestre</es>
-		</translator>
+		</name>
 		<group>control</group>
 	</landcarft>
 	<arts>
-		<translator>
+		<name>
 			<en>Arts</en>
 			<es>Arte</es>
-		</translator>
+		</name>
 		<group>creative</group>
 		<specializations>
 			<music>
@@ -265,91 +265,91 @@
 		<numberToShow>2</numberToShow>
 	</arts>
 	<disguise>
-		<translator>
+		<name>
 			<en>Disguise</en>
 			<es>Disfrazarse</es>
-		</translator>
+		</name>
 		<group>creative</group>
 	</disguise>
 	<performance>
-		<translator>
+		<name>
 			<en>Performance</en>
 			<es>Interpretar</es>
-		</translator>
+		</name>
 		<group>creative</group>
 		<specializations>true</specializations>
 		<numberToShow>2</numberToShow>
 	</performance>
 	<gaming>
-		<translator>
+		<name>
 			<en>Gaming</en>
 			<es>Juego</es>
-		</translator>
+		</name>
 		<group>creative</group>
 	</gaming>
 	<craft>
-		<translator>
+		<name>
 			<en>Craft</en>
 			<es>Oficio</es>
-		</translator>
+		</name>
 		<group>creative</group>
 		<specializations>true</specializations>
 		<numberToShow>2</numberToShow>
 	</craft>
 	<lockpicking>
-		<translator>
+		<name>
 			<en>Lockpicking</en>
 			<es>Abrir Cerraduras</es>
-		</translator>
+		</name>
 		<group>malefaction</group>
 	</lockpicking>
 	<streetWise>
-		<translator>
+		<name>
 			<en>Streetwise</en>
 			<es>Callejear</es>
-		</translator>
+		</name>
 		<group>malefaction</group>
 	</streetWise>
 	<sleightOfHand>
-		<translator>
+		<name>
 			<en>Sleight of hand</en>
 			<es>Juego de Manos</es>
-		</translator>
+		</name>
 		<group>malefaction</group>
 	</sleightOfHand>
 	<torture>
-		<translator>
+		<name>
 			<en>Torture</en>
 			<es>Torturar</es>
-		</translator>
+		</name>
 		<group>malefaction</group>
 	</torture>
 	<atheltics>
-		<translator>
+		<name>
 			<en>Athletics</en>
 			<es>Atletismo</es>
-		</translator>
+		</name>
 		<group>physical</group>
 	</atheltics>
 	<selfControl>
-		<translator>
+		<name>
 			<en>Self Control</en>
 			<es>Autocontrol</es>
-		</translator>
+		</name>
 		<group>physical</group>
 	</selfControl>
 	<survival>
-		<translator>
+		<name>
 			<en>Survival</en>
 			<es>Supervivencia</es>
-		</translator>
+		</name>
 		<group>physical</group>
 	</survival>
 	<lore>
-		<translator>
+		<name>
 			<en>Lore</en>
 			<es>Saber</es>
-		</translator>
+		</name>
 		<group>lore</group>
 		<specializations>
 			<jumpwebLore>
@@ -376,10 +376,10 @@
 		<numberToShow>4</numberToShow>
 	</lore>
 	<xenoLore>
-		<translator>
+		<name>
 			<en>Xeno Lore</en>
 			<es>Xenología</es>
-		</translator>
+		</name>
 		<group>lore</group>
 		<specializations>
 			<urObun>
@@ -406,54 +406,54 @@
 		<numberToShow>2</numberToShow>
 	</xenoLore>
 	<empathy>
-		<translator>
+		<name>
 			<en>Empathy</en>
 			<es>Empatía</es>
-		</translator>
+		</name>
 		<group>social</group>
 	</empathy>
 	<etiquette>
-		<translator>
+		<name>
 			<en>Etiquette</en>
 			<es>Etiqueta</es>
-		</translator>
+		</name>
 		<group>social</group>
 	</etiquette>
 	<knavery>
-		<translator>
+		<name>
 			<en>Knavery</en>
 			<es>Artería</es>
-		</translator>
+		</name>
 		<group>social</group>
 	</knavery>
 	<leadership>
-		<translator>
+		<name>
 			<en>Leadership</en>
 			<es>Liderazgo</es>
-		</translator>
+		</name>
 		<group>social</group>
 	</leadership>
 	<spacecraftOperations>
-		<translator>
+		<name>
 			<en>Spacecraft Operations</en>
 			<es>Mantenimiento de Naves</es>
-		</translator>
+		</name>
 		<guildSkill>true</guildSkill>
 		<group>technical</group>
 	</spacecraftOperations>
 	<techRedemption>
-		<translator>
+		<name>
 			<en>Tech Redemption</en>
 			<es>Recuperación Tecnológic.</es>
-		</translator>
+		</name>
 		<guildSkill>true</guildSkill>
 		<group>technical</group>
 	</techRedemption>
 	<thinkMachine>
-		<translator>
+		<name>
 			<en>Think Machine</en>
 			<es>Máquina Pensante</es>
-		</translator>
+		</name>
 		<guildSkill>true</guildSkill>
 		<group>technical</group>
 	</thinkMachine>

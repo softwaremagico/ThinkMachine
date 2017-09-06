@@ -48,8 +48,7 @@ import com.softwaremagico.tm.character.combat.LearnedStance;
 import com.softwaremagico.tm.character.cybernetics.Device;
 import com.softwaremagico.tm.character.equipment.Armour;
 import com.softwaremagico.tm.character.equipment.Shield;
-import com.softwaremagico.tm.character.equipment.Size;
-import com.softwaremagico.tm.character.equipment.Weapon;
+import com.softwaremagico.tm.character.equipment.WeaponFactory;
 import com.softwaremagico.tm.character.occultism.OccultismPower;
 import com.softwaremagico.tm.character.race.Race;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
@@ -81,7 +80,7 @@ public class CharacterSheetCreationTest {
 	@Test
 	public void characterPdfSpanish() throws MalformedURLException, DocumentException, IOException, InvalidXmlElementException {
 		CacheHandler.clearCache();
-		
+
 		player = new CharacterPlayer("es");
 		player.getInfo().setName("John Sephard");
 		player.getInfo().setPlayer("Player 1");
@@ -154,8 +153,8 @@ public class CharacterSheetCreationTest {
 
 		player.getLearnedStances().add(new LearnedStance("Posición Acrobática", "+1 a defensa por volteretas"));
 
-		player.getWeapons().addElement(new Weapon("Maza", "Ds+Lucha", null, 5, "4", null, null, 1, Size.L));
-		player.getWeapons().addElement(new Weapon("Martech Oro", "Ds+Ar. Energía", 1, 5, "10/20", 15, "2", 6, Size.S, "Láser"));
+		player.getWeapons().addElement(WeaponFactory.getInstance().getElement("mace", "es"));
+		player.getWeapons().addElement(WeaponFactory.getInstance().getElement("martechGold", "es"));
 
 		player.setArmour(new Armour("Cuero Sintético", 7, true, false, false, false, false, false, true, 6, -1, 0, 0, 0));
 

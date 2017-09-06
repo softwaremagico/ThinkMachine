@@ -1,7 +1,5 @@
 package com.softwaremagico.tm.character.equipment;
 
-import java.util.Objects;
-
 /*-
  * #%L
  * The Thinking Machine (Core)
@@ -26,15 +24,12 @@ import java.util.Objects;
  * #L%
  */
 
-public enum Size {
-	XS, S, M, L, XL;
+import com.softwaremagico.tm.InvalidXmlElementException;
 
-	public static Size get(String sizeName) {
-		for (Size size : Size.values()) {
-			if (Objects.equals(size.name().toLowerCase(), sizeName.toLowerCase())) {
-				return size;
-			}
-		}
-		return null;
+public class InvalidWeaponException extends InvalidXmlElementException {
+	private static final long serialVersionUID = 1243337930745480002L;
+
+	public InvalidWeaponException(String message) {
+		super(message);
 	}
 }

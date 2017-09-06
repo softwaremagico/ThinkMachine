@@ -25,52 +25,57 @@ package com.softwaremagico.tm.character.equipment;
  */
 
 import com.softwaremagico.tm.Element;
+import com.softwaremagico.tm.character.characteristics.Characteristic;
+import com.softwaremagico.tm.character.skills.SkillDefinition;
 
 public class Weapon extends Element<Weapon> {
-	private final String roll;
-	private final Integer goal;
-	private final int damage;
-	private final String strengthOrRange;
-	private final Integer shots;
-	private final String rate;
-	private final Size size;
-	private final int tech;
+	private String goal;
+	private String damage;
+	private int strength;
+	private String range;
+	private Integer shots;
+	private String rate;
+	private Size size;
+	private int techLevel;
 	private String others;
+	private int cost;
+	private SkillDefinition skill;
+	private Characteristic characteristic;
 
-	public Weapon(String name, String roll, Integer goal, int damage, String strengthOrRange, Integer shots, String rate, int tech, Size size) {
-		super(null, name);
-		this.roll = roll;
+	public Weapon(String id, String name) {
+		super(id, name);
+	}
+
+	public Weapon(String id, String name, String goal, String damage, int strength, String range, Integer shots, String rate, int tech, Size size) {
+		this(id, name);
 		this.goal = goal;
 		this.damage = damage;
-		this.strengthOrRange = strengthOrRange;
+		this.strength = strength;
+		this.range = range;
 		this.shots = shots;
 		this.rate = rate;
 		this.size = size;
-		this.tech = tech;
+		this.techLevel = tech;
 	}
 
-	public Weapon(String name, String roll, Integer goal, int damage, String strengthOrRange, Integer shots, String rate, int tech, Size size, String others) {
-		this(name, roll, goal, damage, strengthOrRange, shots, rate, tech, size);
+	public Weapon(String id, String name, String goal, String damage, int strength, String range, Integer shots, String rate, int tech, Size size, String others) {
+		this(id, name, goal, damage, strength, range, shots, rate, tech, size);
 		setOthers(others);
 	}
 
 	public String getRoll() {
-		return roll;
+		return characteristic.getName() + "+" + skill.getName();
 	}
 
-	public Integer getGoal() {
+	public String getGoal() {
 		if (goal == null) {
-			return 0;
+			return "";
 		}
 		return goal;
 	}
 
-	public int getDamage() {
+	public String getDamage() {
 		return damage;
-	}
-
-	public String getStrengthOrRange() {
-		return strengthOrRange;
 	}
 
 	public Integer getShots() {
@@ -93,7 +98,78 @@ public class Weapon extends Element<Weapon> {
 		this.others = others;
 	}
 
-	public int getTech() {
-		return tech;
+	public int getTechLevel() {
+		return techLevel;
+	}
+
+	protected void setGoal(String goal) {
+		this.goal = goal;
+	}
+
+	protected void setDamage(String damage) {
+		this.damage = damage;
+	}
+
+	protected void setShots(Integer shots) {
+		this.shots = shots;
+	}
+
+	protected void setRate(String rate) {
+		this.rate = rate;
+	}
+
+	protected void setSize(Size size) {
+		this.size = size;
+	}
+
+	protected void setTechLevel(int techLevel) {
+		this.techLevel = techLevel;
+	}
+
+	public int getStrength() {
+		return strength;
+	}
+
+	protected void setStrength(int strength) {
+		this.strength = strength;
+	}
+
+	public String getRange() {
+		return range;
+	}
+
+	protected void setRange(String range) {
+		this.range = range;
+	}
+
+	public int getCost() {
+		return cost;
+	}
+
+	public void setCost(int cost) {
+		this.cost = cost;
+	}
+
+	public SkillDefinition getSkill() {
+		return skill;
+	}
+
+	public void setSkill(SkillDefinition skill) {
+		this.skill = skill;
+	}
+
+	public Characteristic getCharacteristic() {
+		return characteristic;
+	}
+
+	public void setCharacteristic(Characteristic characteristic) {
+		this.characteristic = characteristic;
+	}
+
+	public String getStrengthOrRange() {
+		if (range == null) {
+			return strength + "";
+		}
+		return range;
 	}
 }

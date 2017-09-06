@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <races>
 	<human>
-		<en>Human</en>
-		<es>Humano</es>
+		<name>
+			<en>Human</en>
+			<es>Humano</es>
+		</name>
 		<cost>0</cost>
 		<strength>
 			<value>3</value>
@@ -52,8 +54,10 @@
 		<hubris>0</hubris>
 	</human>
 	<urObun>
-		<en>Ur-Obun</en>
-		<es>Ur-Obun</es>
+		<name>
+			<en>Ur-Obun</en>
+			<es>Ur-Obun</es>
+		</name>
 		<cost>2</cost>
 		<strength>
 			<value>3</value>

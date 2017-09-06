@@ -45,8 +45,7 @@ import com.softwaremagico.tm.character.combat.CombatStyle;
 import com.softwaremagico.tm.character.cybernetics.Device;
 import com.softwaremagico.tm.character.equipment.Armour;
 import com.softwaremagico.tm.character.equipment.Shield;
-import com.softwaremagico.tm.character.equipment.Size;
-import com.softwaremagico.tm.character.equipment.Weapon;
+import com.softwaremagico.tm.character.equipment.WeaponFactory;
 import com.softwaremagico.tm.character.occultism.OccultismPower;
 import com.softwaremagico.tm.character.race.Race;
 import com.softwaremagico.tm.character.race.RaceFactory;
@@ -111,7 +110,7 @@ public class CustomCharacters {
 		player.addBlessing(new Blessing("Marca Horrible", -2, -2, "Influencia", "Si es visible"));
 
 		player.addBenefit(BenefitFactory.getInstance().getElement("turingLanguage", "es"));
-		//player.addBenefit(new Benefit("Idioma Turing", 2));
+		// player.addBenefit(new Benefit("Idioma Turing", 2));
 		player.addBenefit(new Benefit("Asociado", 4));
 		player.addBenefit(new Benefit("1000 fénix", 4));
 		player.addBenefit(new Benefit("Red de Información", 3));
@@ -187,7 +186,7 @@ public class CustomCharacters {
 		player.addBenefit(new Benefit("Espada de Flujo", 11));
 		player.addBenefit(new Benefit("Vendetta", -2));
 
-		player.getWeapons().addElement(new Weapon("Espada de Flujo", "Ds+Art.", 1, 7, "3", null, null, 8, Size.L, "Plasma"));
+		player.getWeapons().addElement(WeaponFactory.getInstance().getElement("fluxSword", "es"));
 
 		LanguagePool.clearCache();
 		CharacterSheet sheet = new CharacterSheet(player);
@@ -254,8 +253,8 @@ public class CustomCharacters {
 		fightStyle.addElement(new CombatAction("Cabezazo", 2, "4d", "Ignora armadura*"));
 		player.getMeleeCombatStyles().add(fightStyle);
 
-		player.getWeapons().addElement(new Weapon("Escopeta", "Ds+Arma Fuego", 0, 7, "30/80", 7, "2", 3, Size.L, null));
-		player.getWeapons().addElement(new Weapon("Pistola Automática", "Ds+Arma Fuego", 0, 5, "20/30", 10, "3", 4, Size.S, null));
+		player.getWeapons().addElement(WeaponFactory.getInstance().getElement("shotgunSolid", "es"));
+		player.getWeapons().addElement(WeaponFactory.getInstance().getElement("mediumAutofeedHandgun", "es"));
 
 		LanguagePool.clearCache();
 		CharacterSheet sheet = new CharacterSheet(player);
