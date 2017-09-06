@@ -1,7 +1,4 @@
-package com.softwaremagico.tm.language;
-
-import java.util.List;
-import java.util.Set;
+package com.softwaremagico.tm.character.characteristics;
 
 /*-
  * #%L
@@ -27,26 +24,12 @@ import java.util.Set;
  * #L%
  */
 
-public interface ITranslator {
+import com.softwaremagico.tm.InvalidXmlElementException;
 
-	String getTranslatedText(String tag);
+public class InvalidCharacteristicException extends InvalidXmlElementException {
+	private static final long serialVersionUID = 1243337930745480002L;
 
-	String getTranslatedText(String tag, String language);
-
-	String getTranslatedText(String tag, String[] args);
-
-	String getTranslatedText(String tag, String language, Object[] args);
-
-	String convertToXmlTag(String text);
-
-	List<String> getAllTranslatedElements();
-
-	String getNodeValue(String tag, String node);
-
-	String getNodeValue(String parent, String tag, String node);
-
-	Set<String> getAllChildrenTags(String parent, String tag);
-
-	List<Language> getAvailableLanguages();
-
+	public InvalidCharacteristicException(String message) {
+		super(message);
+	}
 }

@@ -1,5 +1,9 @@
 package com.softwaremagico.tm.character.characteristics;
 
+import java.util.Objects;
+
+import com.softwaremagico.tm.Element;
+
 /*-
  * #%L
  * The Thinking Machine (Core)
@@ -24,36 +28,39 @@ package com.softwaremagico.tm.character.characteristics;
  * #L%
  */
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+public class CharacteristicDefinition extends Element<CharacteristicDefinition> {
+	private String abbreviature;
+	private CharacteristicType type;
 
-public class Characteristics {
-	private Map<CharacteristicType, List<Characteristic>> characteristics;
-
-	public Characteristics() {
-		createCharacteristics();
+	public CharacteristicDefinition(String id, String name) {
+		super(id, name);
 	}
 
-	private void createCharacteristics() {
-		characteristics = new HashMap<>();
-		for (CharacteristicType type : CharacteristicType.values()) {
-			if (characteristics.get(type) == null) {
-				characteristics.put(type, new ArrayList<Characteristic>());
-			}
-			for (CharacteristicName characteristicName : type.getCharacteristics()) {
-				characteristics.get(type).add(new Characteristic(characteristicName));
-			}
-		}
+	@Override
+	public String toString() {
+		return getName().toString();
 	}
 
-	public Characteristic getCharacteristic(CharacteristicName characteristicName) {
-		for (CharacteristicType type : CharacteristicType.values()) {
-			for (Characteristic characteristic : characteristics.get(type)) {
-				if (characteristic.getName().equals(characteristicName)) {
-					return characteristic;
-				}
+	public String getAbbreviature() {
+		return abbreviature;
+	}
+
+	protected void setAbbreviature(String abbreviature) {
+		this.abbreviature = abbreviature;
+	}
+
+	public CharacteristicType getType() {
+		return type;
+	}
+
+	protected void setType(CharacteristicType type) {
+		this.type = type;
+	}
+
+	public CharacteristicName getCharacteristicName() {
+		for (CharacteristicName characteristicName : CharacteristicName.values()) {
+			if (Objects.equals(characteristicName.getId().toLowerCase(), getId().toLowerCase())) {
+				return characteristicName;
 			}
 		}
 		return null;

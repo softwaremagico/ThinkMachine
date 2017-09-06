@@ -30,7 +30,7 @@ import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
 
 public class BenefitFactory extends XmlFactory<Benefit> {
-	private final static ITranslator TRANSLATOR_BENEFITS = LanguagePool.getTranslator("benefits.xml");
+	private final static ITranslator translatorBenefit = LanguagePool.getTranslator("benefits.xml");
 
 	private final static String NAME = "name";
 	private final static String COST = "cost";
@@ -56,7 +56,7 @@ public class BenefitFactory extends XmlFactory<Benefit> {
 
 	@Override
 	protected ITranslator getTranslator() {
-		return TRANSLATOR_BENEFITS;
+		return translatorBenefit;
 	}
 
 	@Override

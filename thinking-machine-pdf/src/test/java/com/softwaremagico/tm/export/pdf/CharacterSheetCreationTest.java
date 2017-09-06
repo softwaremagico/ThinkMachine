@@ -98,15 +98,15 @@ public class CharacterSheetCreationTest {
 		player.getInfo().setHeight("1,76m");
 		player.getInfo().setWeight("78kg");
 
-		player.getCharacteristics().getCharacteristic(CharacteristicName.STRENGTH).setValue(1);
-		player.getCharacteristics().getCharacteristic(CharacteristicName.DEXTERITY).setValue(2);
-		player.getCharacteristics().getCharacteristic(CharacteristicName.ENDURANCE).setValue(3);
-		player.getCharacteristics().getCharacteristic(CharacteristicName.WITS).setValue(4);
-		player.getCharacteristics().getCharacteristic(CharacteristicName.PERCEPTION).setValue(5);
-		player.getCharacteristics().getCharacteristic(CharacteristicName.TECH).setValue(6);
-		player.getCharacteristics().getCharacteristic(CharacteristicName.PRESENCE).setValue(7);
-		player.getCharacteristics().getCharacteristic(CharacteristicName.WILL).setValue(8);
-		player.getCharacteristics().getCharacteristic(CharacteristicName.FAITH).setValue(9);
+		player.getCharacteristic(CharacteristicName.STRENGTH).setValue(1);
+		player.getCharacteristic(CharacteristicName.DEXTERITY).setValue(2);
+		player.getCharacteristic(CharacteristicName.ENDURANCE).setValue(3);
+		player.getCharacteristic(CharacteristicName.WITS).setValue(4);
+		player.getCharacteristic(CharacteristicName.PERCEPTION).setValue(5);
+		player.getCharacteristic(CharacteristicName.TECH).setValue(6);
+		player.getCharacteristic(CharacteristicName.PRESENCE).setValue(7);
+		player.getCharacteristic(CharacteristicName.WILL).setValue(8);
+		player.getCharacteristic(CharacteristicName.FAITH).setValue(9);
 
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("influence", "es"), 5);
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("sneak", "es"), 4);

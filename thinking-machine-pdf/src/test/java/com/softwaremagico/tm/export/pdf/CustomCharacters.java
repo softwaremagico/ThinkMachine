@@ -40,6 +40,7 @@ import com.softwaremagico.tm.character.Gender;
 import com.softwaremagico.tm.character.OccultismType;
 import com.softwaremagico.tm.character.characteristics.CharacteristicImprovement;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
+import com.softwaremagico.tm.character.characteristics.CharacteristicsDefinitionFactory;
 import com.softwaremagico.tm.character.combat.CombatAction;
 import com.softwaremagico.tm.character.combat.CombatStyle;
 import com.softwaremagico.tm.character.cybernetics.Device;
@@ -74,15 +75,15 @@ public class CustomCharacters {
 		player.getInfo().setFaction("Ingeniero");
 		player.getInfo().setRank("Aprendiz");
 
-		player.getCharacteristics().getCharacteristic(CharacteristicName.STRENGTH).setValue(3);
-		player.getCharacteristics().getCharacteristic(CharacteristicName.DEXTERITY).setValue(7);
-		player.getCharacteristics().getCharacteristic(CharacteristicName.ENDURANCE).setValue(5);
-		player.getCharacteristics().getCharacteristic(CharacteristicName.WITS).setValue(8);
-		player.getCharacteristics().getCharacteristic(CharacteristicName.PERCEPTION).setValue(6);
-		player.getCharacteristics().getCharacteristic(CharacteristicName.TECH).setValue(8);
-		player.getCharacteristics().getCharacteristic(CharacteristicName.PRESENCE).setValue(3);
-		player.getCharacteristics().getCharacteristic(CharacteristicName.WILL).setValue(5);
-		player.getCharacteristics().getCharacteristic(CharacteristicName.FAITH).setValue(3);
+		player.getCharacteristic(CharacteristicName.STRENGTH).setValue(3);
+		player.getCharacteristic(CharacteristicName.DEXTERITY).setValue(7);
+		player.getCharacteristic(CharacteristicName.ENDURANCE).setValue(5);
+		player.getCharacteristic(CharacteristicName.WITS).setValue(8);
+		player.getCharacteristic(CharacteristicName.PERCEPTION).setValue(6);
+		player.getCharacteristic(CharacteristicName.TECH).setValue(8);
+		player.getCharacteristic(CharacteristicName.PRESENCE).setValue(3);
+		player.getCharacteristic(CharacteristicName.WILL).setValue(5);
+		player.getCharacteristic(CharacteristicName.FAITH).setValue(3);
 
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("influence", "es"), 4);
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("observe", "es"), 5);
@@ -116,11 +117,13 @@ public class CustomCharacters {
 		player.addBenefit(new Benefit("Red de Información", 3));
 
 		Device ingeneerEye = new Device("Ojo de Ingeniero", 8, 6, "Normal", "Normal", "Automático", "Oculto", "Autoalimentado");
-		ingeneerEye.addCharacteristicImprovement(new CharacteristicImprovement(CharacteristicName.PERCEPTION, 1, false));
+		ingeneerEye.addCharacteristicImprovement(new CharacteristicImprovement(CharacteristicsDefinitionFactory.getInstance().getElement("perception", "es"),
+				1, false));
 		player.getCybernetics().addElement(ingeneerEye);
 
 		Device secondBrain = new Device("Segundo Cerebro", 11, 10, "Normal", "Normal", "Automático", "Oculto", "Autoalimentado");
-		secondBrain.addCharacteristicImprovement(new CharacteristicImprovement(CharacteristicName.WITS, 2, true));
+		secondBrain
+				.addCharacteristicImprovement(new CharacteristicImprovement(CharacteristicsDefinitionFactory.getInstance().getElement("wits", "es"), 2, true));
 		secondBrain.addSkillImprovement(new CyberneticSkill(AvailableSkillsFactory.getInstance().getElement("lore", "jumpwebLore", "es"), 4, true));
 		secondBrain.addSkillImprovement(new CyberneticSkill(AvailableSkillsFactory.getInstance().getElement("lore", "energyPistolsLore", "es"), 4, true));
 		secondBrain.addSkillImprovement(new CyberneticSkill(AvailableSkillsFactory.getInstance().getElement("lore", "thinkMachineLore", "es"), 4, true));
@@ -151,15 +154,15 @@ public class CustomCharacters {
 		player.getInfo().setFaction("Hawkwood");
 		player.getInfo().setRank("Caballero");
 
-		player.getCharacteristics().getCharacteristic(CharacteristicName.STRENGTH).setValue(5);
-		player.getCharacteristics().getCharacteristic(CharacteristicName.DEXTERITY).setValue(7);
-		player.getCharacteristics().getCharacteristic(CharacteristicName.ENDURANCE).setValue(5);
-		player.getCharacteristics().getCharacteristic(CharacteristicName.WITS).setValue(8);
-		player.getCharacteristics().getCharacteristic(CharacteristicName.PERCEPTION).setValue(7);
-		player.getCharacteristics().getCharacteristic(CharacteristicName.TECH).setValue(5);
-		player.getCharacteristics().getCharacteristic(CharacteristicName.PRESENCE).setValue(7);
-		player.getCharacteristics().getCharacteristic(CharacteristicName.WILL).setValue(5);
-		player.getCharacteristics().getCharacteristic(CharacteristicName.FAITH).setValue(4);
+		player.getCharacteristic(CharacteristicName.STRENGTH).setValue(5);
+		player.getCharacteristic(CharacteristicName.DEXTERITY).setValue(7);
+		player.getCharacteristic(CharacteristicName.ENDURANCE).setValue(5);
+		player.getCharacteristic(CharacteristicName.WITS).setValue(8);
+		player.getCharacteristic(CharacteristicName.PERCEPTION).setValue(7);
+		player.getCharacteristic(CharacteristicName.TECH).setValue(5);
+		player.getCharacteristic(CharacteristicName.PRESENCE).setValue(7);
+		player.getCharacteristic(CharacteristicName.WILL).setValue(5);
+		player.getCharacteristic(CharacteristicName.FAITH).setValue(4);
 
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("influence", "es"), 7);
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("observe", "es"), 8);
@@ -211,15 +214,15 @@ public class CustomCharacters {
 		player.getInfo().setFaction("Carroñero");
 		player.getInfo().setRank("Genin");
 
-		player.getCharacteristics().getCharacteristic(CharacteristicName.STRENGTH).setValue(7);
-		player.getCharacteristics().getCharacteristic(CharacteristicName.DEXTERITY).setValue(8);
-		player.getCharacteristics().getCharacteristic(CharacteristicName.ENDURANCE).setValue(6);
-		player.getCharacteristics().getCharacteristic(CharacteristicName.WITS).setValue(6);
-		player.getCharacteristics().getCharacteristic(CharacteristicName.PERCEPTION).setValue(6);
-		player.getCharacteristics().getCharacteristic(CharacteristicName.TECH).setValue(6);
-		player.getCharacteristics().getCharacteristic(CharacteristicName.PRESENCE).setValue(4);
-		player.getCharacteristics().getCharacteristic(CharacteristicName.WILL).setValue(6);
-		player.getCharacteristics().getCharacteristic(CharacteristicName.FAITH).setValue(3);
+		player.getCharacteristic(CharacteristicName.STRENGTH).setValue(7);
+		player.getCharacteristic(CharacteristicName.DEXTERITY).setValue(8);
+		player.getCharacteristic(CharacteristicName.ENDURANCE).setValue(6);
+		player.getCharacteristic(CharacteristicName.WITS).setValue(6);
+		player.getCharacteristic(CharacteristicName.PERCEPTION).setValue(6);
+		player.getCharacteristic(CharacteristicName.TECH).setValue(6);
+		player.getCharacteristic(CharacteristicName.PRESENCE).setValue(4);
+		player.getCharacteristic(CharacteristicName.WILL).setValue(6);
+		player.getCharacteristic(CharacteristicName.FAITH).setValue(3);
 
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("influence", "es"), 5);
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("observe", "es"), 4);
@@ -279,15 +282,15 @@ public class CustomCharacters {
 		player.getInfo().setFaction("Voavenlohjun");
 		player.getInfo().setRank("Novicio");
 
-		player.getCharacteristics().getCharacteristic(CharacteristicName.STRENGTH).setValue(3);
-		player.getCharacteristics().getCharacteristic(CharacteristicName.DEXTERITY).setValue(6);
-		player.getCharacteristics().getCharacteristic(CharacteristicName.ENDURANCE).setValue(3);
-		player.getCharacteristics().getCharacteristic(CharacteristicName.WITS).setValue(8);
-		player.getCharacteristics().getCharacteristic(CharacteristicName.PERCEPTION).setValue(4);
-		player.getCharacteristics().getCharacteristic(CharacteristicName.TECH).setValue(3);
-		player.getCharacteristics().getCharacteristic(CharacteristicName.PRESENCE).setValue(7);
-		player.getCharacteristics().getCharacteristic(CharacteristicName.WILL).setValue(8);
-		player.getCharacteristics().getCharacteristic(CharacteristicName.FAITH).setValue(8);
+		player.getCharacteristic(CharacteristicName.STRENGTH).setValue(3);
+		player.getCharacteristic(CharacteristicName.DEXTERITY).setValue(6);
+		player.getCharacteristic(CharacteristicName.ENDURANCE).setValue(3);
+		player.getCharacteristic(CharacteristicName.WITS).setValue(8);
+		player.getCharacteristic(CharacteristicName.PERCEPTION).setValue(4);
+		player.getCharacteristic(CharacteristicName.TECH).setValue(3);
+		player.getCharacteristic(CharacteristicName.PRESENCE).setValue(7);
+		player.getCharacteristic(CharacteristicName.WILL).setValue(8);
+		player.getCharacteristic(CharacteristicName.FAITH).setValue(8);
 
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("influence", "es"), 4);
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("observe", "es"), 6);
@@ -345,12 +348,12 @@ public class CustomCharacters {
 		player.getInfo().setFaction("Ingeniero");
 		player.getInfo().setAge(1432);
 
-		player.getCharacteristics().getCharacteristic(CharacteristicName.STRENGTH).setValue(12);
-		player.getCharacteristics().getCharacteristic(CharacteristicName.DEXTERITY).setValue(7);
-		player.getCharacteristics().getCharacteristic(CharacteristicName.ENDURANCE).setValue(10);
-		player.getCharacteristics().getCharacteristic(CharacteristicName.WITS).setValue(5);
-		player.getCharacteristics().getCharacteristic(CharacteristicName.PERCEPTION).setValue(7);
-		player.getCharacteristics().getCharacteristic(CharacteristicName.TECH).setValue(5);
+		player.getCharacteristic(CharacteristicName.STRENGTH).setValue(12);
+		player.getCharacteristic(CharacteristicName.DEXTERITY).setValue(7);
+		player.getCharacteristic(CharacteristicName.ENDURANCE).setValue(10);
+		player.getCharacteristic(CharacteristicName.WITS).setValue(5);
+		player.getCharacteristic(CharacteristicName.PERCEPTION).setValue(7);
+		player.getCharacteristic(CharacteristicName.TECH).setValue(5);
 
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("observe", "es"), 6);
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("melee", "es"), 5);
@@ -382,5 +385,4 @@ public class CustomCharacters {
 
 		Assert.assertEquals(CostCalculator.getCost(player), -2);
 	}
-
 }

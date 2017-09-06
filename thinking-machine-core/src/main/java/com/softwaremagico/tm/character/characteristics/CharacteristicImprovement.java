@@ -25,19 +25,19 @@ package com.softwaremagico.tm.character.characteristics;
  */
 
 public class CharacteristicImprovement {
-	private CharacteristicName characteristicName;
+	private CharacteristicDefinition characteristic;
 	private int bonus;
 	private boolean always;
 
-	public CharacteristicImprovement(CharacteristicName characteristicName, int bonus, boolean always) {
+	public CharacteristicImprovement(CharacteristicDefinition characteristic, int bonus, boolean always) {
 		super();
-		this.characteristicName = characteristicName;
+		this.characteristic = characteristic;
 		this.bonus = bonus;
 		this.always = always;
 	}
 
-	public CharacteristicName getCharacteristicName() {
-		return characteristicName;
+	public CharacteristicDefinition getCharacteristic() {
+		return characteristic;
 	}
 
 	public int getBonus() {

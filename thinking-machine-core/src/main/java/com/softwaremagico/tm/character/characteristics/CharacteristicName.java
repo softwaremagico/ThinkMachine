@@ -54,7 +54,7 @@ public enum CharacteristicName {
 
 	}
 
-	public String getTranslationTag() {
+	public String getId() {
 		return name().toLowerCase();
 	}
 

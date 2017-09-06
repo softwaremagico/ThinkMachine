@@ -30,7 +30,7 @@ import java.util.TreeMap;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.FreeStyleCharacterCreation;
-import com.softwaremagico.tm.character.characteristics.CharacteristicName;
+import com.softwaremagico.tm.character.characteristics.Characteristic;
 import com.softwaremagico.tm.character.characteristics.CharacteristicType;
 import com.softwaremagico.tm.log.MachineLog;
 
@@ -40,7 +40,7 @@ public class RandomizeCharacter {
 	private int spiritLevel;
 	private CharacterPlayer characterPlayer;
 	private int experiencePoints;
-	private TreeMap<Integer, CharacteristicName> weightedCharacteristics;
+	private TreeMap<Integer, String> weightedCharacteristics;
 	private Random rand = new Random();
 
 	public RandomizeCharacter(CharacterPlayer characterPlayer, int experiencePoints) {
@@ -75,23 +75,21 @@ public class RandomizeCharacter {
 
 	private void spendCharacteristicsPoints() {
 		while (characterPlayer.getCharacteristicsTotalPoints() < FreeStyleCharacterCreation.CHARACTERISTICS_POINTS) {
-			CharacteristicName selectedCharacteristic = selectCharacteristicByWeight();
-			MachineLog.debug(this.getClass().getName(),
-					"Selected characteristic is '" + characterPlayer.getCharacteristics().getCharacteristic(selectedCharacteristic) + "'.");
-			if (characterPlayer.getCharacteristics().getCharacteristic(selectedCharacteristic).getValue() < FreeStyleCharacterCreation.MAX_INITIAL_SKILL_VALUE)
-				characterPlayer.getCharacteristics().getCharacteristic(selectedCharacteristic)
-						.setValue(characterPlayer.getCharacteristics().getCharacteristic(selectedCharacteristic).getValue() + 1);
+			String selectedCharacteristic = selectCharacteristicByWeight();
+			MachineLog.debug(this.getClass().getName(), "Selected characteristic is '" + characterPlayer.getCharacteristic(selectedCharacteristic) + "'.");
+			if (characterPlayer.getCharacteristic(selectedCharacteristic).getValue() < FreeStyleCharacterCreation.MAX_INITIAL_SKILL_VALUE)
+				characterPlayer.getCharacteristic(selectedCharacteristic).setValue(characterPlayer.getCharacteristic(selectedCharacteristic).getValue() + 1);
 		}
 	}
 
-	private TreeMap<Integer, CharacteristicName> assignCharacteristicsWeight() {
-		TreeMap<Integer, CharacteristicName> weightedCharacteristics = new TreeMap<>();
+	private TreeMap<Integer, String> assignCharacteristicsWeight() {
+		TreeMap<Integer, String> weightedCharacteristics = new TreeMap<>();
 		Integer count = 0;
 		for (CharacteristicType characteristicType : CharacteristicType.values()) {
 			int weight = getWeight(characteristicType);
 			if (weight > 0) {
-				for (CharacteristicName characteristicName : characteristicType.getCharacteristics()) {
-					weightedCharacteristics.put(count, characteristicName);
+				for (Characteristic characteristic : characterPlayer.getAllCharacteristics()) {
+					weightedCharacteristics.put(count, characteristic.getId());
 					count += weight;
 				}
 			}
@@ -115,7 +113,7 @@ public class RandomizeCharacter {
 	/**
 	 * Selects a characteristic depending on its weight.
 	 */
-	private CharacteristicName selectCharacteristicByWeight() {
+	private String selectCharacteristicByWeight() {
 		Integer value = new Integer((int) (rand.nextDouble() * (bodyLevel * 3 + mentalLevel * 3 + spiritLevel * 3)));
 		return weightedCharacteristics.get(weightedCharacteristics.floorKey(value));
 	}

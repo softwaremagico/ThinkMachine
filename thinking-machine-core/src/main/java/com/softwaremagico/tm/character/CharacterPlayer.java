@@ -27,13 +27,17 @@ package com.softwaremagico.tm.character;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
+import com.softwaremagico.tm.character.characteristics.Characteristic;
+import com.softwaremagico.tm.character.characteristics.CharacteristicDefinition;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
-import com.softwaremagico.tm.character.characteristics.Characteristics;
+import com.softwaremagico.tm.character.characteristics.CharacteristicsDefinitionFactory;
 import com.softwaremagico.tm.character.combat.CombatStyle;
 import com.softwaremagico.tm.character.combat.LearnedStance;
 import com.softwaremagico.tm.character.cybernetics.Cybernetics;
@@ -55,6 +59,7 @@ import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
 import com.softwaremagico.tm.character.skills.Specialization;
 import com.softwaremagico.tm.character.traits.Benefit;
 import com.softwaremagico.tm.character.traits.Blessing;
+import com.softwaremagico.tm.language.LanguagePool;
 
 public class CharacterPlayer {
 	private final static int COMBAT_STYLE_COST = 5;
@@ -67,7 +72,7 @@ public class CharacterPlayer {
 	private Race race;
 
 	// Characteristics.
-	private Characteristics characteristics;
+	private Map<String, Characteristic> characteristics;
 
 	// All Psi/Teurgy powers
 	private Occultism occultism;
@@ -98,6 +103,7 @@ public class CharacterPlayer {
 	private int experience = 0;
 
 	public CharacterPlayer() {
+		language = "en";
 		reset();
 	}
 
@@ -108,7 +114,7 @@ public class CharacterPlayer {
 
 	private void reset() {
 		info = new CharacterInfo();
-		characteristics = new Characteristics();
+		initializeCharacteristics();
 		occultism = new Occultism();
 		skills = new HashMap<>();
 		skillNameOrdered = new ArrayList<>();
@@ -131,8 +137,11 @@ public class CharacterPlayer {
 		this.info = info;
 	}
 
-	public Characteristics getCharacteristics() {
-		return characteristics;
+	private void initializeCharacteristics() {
+		characteristics = new HashMap<String, Characteristic>();
+		for (CharacteristicDefinition characteristicDefinition : CharacteristicsDefinitionFactory.getInstance().getAll(language)) {
+			characteristics.put(characteristicDefinition.getId(), new Characteristic(characteristicDefinition));
+		}
 	}
 
 	/**
@@ -168,7 +177,7 @@ public class CharacterPlayer {
 		if (CharacteristicName.MOVEMENT.equals(characteristicName)) {
 			return getStartingValue(characteristicName);
 		}
-		Integer value = getCharacteristics().getCharacteristic(characteristicName).getValue();
+		Integer value = characteristics.get(characteristicName.getId()).getValue();
 
 		if (value == null) {
 			return 0;
@@ -431,7 +440,8 @@ public class CharacterPlayer {
 
 	public int getStrengthDamangeModification() {
 		try {
-			int strength = getCharacteristics().getCharacteristic(CharacteristicName.STRENGTH).getValue();
+			int strength = characteristics.get(CharacteristicName.STRENGTH.getId()).getValue();
+
 			if (strength > 5) {
 				return strength / 3 - 1;
 			}
@@ -488,6 +498,18 @@ public class CharacterPlayer {
 
 	public void setLearnedStances(List<LearnedStance> learnedStances) {
 		this.learnedStances = learnedStances;
+	}
+
+	public Characteristic getCharacteristic(String characteristicId) {
+		return characteristics.get(characteristicId);
+	}
+
+	public Characteristic getCharacteristic(CharacteristicName characteristicName) {
+		return getCharacteristic(characteristicName.getId());
+	}
+
+	public Set<Characteristic> getAllCharacteristics() {
+		return new HashSet<Characteristic>(characteristics.values());
 	}
 
 }

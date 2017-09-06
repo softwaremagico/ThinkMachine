@@ -180,7 +180,8 @@ public class CompleteSkillsTable extends SkillsTable {
 
 		int rowsAdded = 0;
 		for (SkillDefinition skillDefinition : SkillsDefinitionsFactory.getInstance().getLearnedSkills(language)) {
-			// We need to put empty specialized skills, but not all possible specializations.
+			// We need to put empty specialized skills, but not all possible
+			// specializations.
 			try {
 				int addedAvailableSkill = 0;
 				// But first the already defined in a character.

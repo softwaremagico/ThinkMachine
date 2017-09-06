@@ -32,21 +32,39 @@ import java.util.Map;
 import java.util.Objects;
 
 import com.softwaremagico.tm.language.ITranslator;
+import com.softwaremagico.tm.language.Language;
+import com.softwaremagico.tm.log.MachineLog;
 
 public abstract class XmlFactory<T extends Element<T>> {
 	protected Map<String, List<T>> elements = new HashMap<>();
+
+	protected XmlFactory() {
+		initialize();
+	}
+
+	protected void initialize() {
+		List<Language> languages = getTranslator().getAvailableLanguages();
+		for (Language language : languages) {
+			try {
+				getElements(language.getAbbreviature());
+			} catch (InvalidXmlElementException e) {
+				MachineLog.errorMessage(this.getClass().getName(), e);
+			}
+		}
+	}
 
 	protected abstract ITranslator getTranslator();
 
 	public void clearCache() {
 		elements = new HashMap<>();
+		initialize();
 	}
 
 	public List<T> getElements(String language) throws InvalidXmlElementException {
 		if (elements.get(language) == null) {
 			elements.put(language, new ArrayList<T>());
-			for (String skillId : getTranslator().getAllTranslatedElements()) {
-				elements.get(language).add(createElement(getTranslator(), skillId, language));
+			for (String elementId : getTranslator().getAllTranslatedElements()) {
+				elements.get(language).add(createElement(getTranslator(), elementId, language));
 			}
 			Collections.sort(elements.get(language));
 		}

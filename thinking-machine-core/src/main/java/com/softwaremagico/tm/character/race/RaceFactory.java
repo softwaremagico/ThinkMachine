@@ -33,7 +33,7 @@ import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
 
 public class RaceFactory extends XmlFactory<Race> {
-	private final static ITranslator TRANSLATOR_RACE = LanguagePool.getTranslator("races.xml");
+	private final static ITranslator translatorRace = LanguagePool.getTranslator("races.xml");
 
 	private final static String NAME = "name";
 	private final static String MAX_VALUE = "maximumValue";
@@ -61,7 +61,7 @@ public class RaceFactory extends XmlFactory<Race> {
 
 	@Override
 	protected ITranslator getTranslator() {
-		return TRANSLATOR_RACE;
+		return translatorRace;
 	}
 
 	@Override
@@ -81,16 +81,16 @@ public class RaceFactory extends XmlFactory<Race> {
 		}
 		for (CharacteristicName characteristic : CharacteristicName.values()) {
 			try {
-				String maxValue = translator.getNodeValue(raceId, characteristic.getTranslationTag(), MAX_VALUE);
+				String maxValue = translator.getNodeValue(raceId, characteristic.getId(), MAX_VALUE);
 				if (maxValue != null) {
 					race.setMaximumValue(characteristic, Integer.parseInt(maxValue));
 				}
-				String value = translator.getNodeValue(raceId, characteristic.getTranslationTag(), VALUE);
+				String value = translator.getNodeValue(raceId, characteristic.getId(), VALUE);
 				if (value != null) {
 					race.setValue(characteristic, Integer.parseInt(value));
 				}
 			} catch (NumberFormatException nfe) {
-				throw new InvalidRaceException("Invalid value for characteristic '" + characteristic.getTranslationTag() + "' in race '" + raceId + "'.");
+				throw new InvalidRaceException("Invalid value for characteristic '" + characteristic.getId() + "' in race '" + raceId + "'.");
 			}
 		}
 		try {

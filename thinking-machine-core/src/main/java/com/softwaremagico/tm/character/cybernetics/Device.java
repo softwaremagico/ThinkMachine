@@ -43,7 +43,7 @@ public class Device extends Element<Device> {
 	private final String others;
 
 	private Map<String, CyberneticSkill> skillImprovements;
-	private Map<CharacteristicName, CharacteristicImprovement> characteristicImprovents;
+	private Map<String, CharacteristicImprovement> characteristicImprovents;
 
 	public Device(String name, int points, int incompatibility, String usability, String quality, String activation, String appearence, String others) {
 		super(null, name);
@@ -99,7 +99,7 @@ public class Device extends Element<Device> {
 	}
 
 	public void addCharacteristicImprovement(CharacteristicImprovement characteristicImprovement) {
-		characteristicImprovents.put(characteristicImprovement.getCharacteristicName(), characteristicImprovement);
+		characteristicImprovents.put(characteristicImprovement.getCharacteristic().getId(), characteristicImprovement);
 	}
 
 	public CharacteristicImprovement getCharacteristicImprovement(CharacteristicName characteristicName) {

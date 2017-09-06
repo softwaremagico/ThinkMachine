@@ -276,7 +276,8 @@ public class Translator implements ITranslator {
 		}
 	}
 
-	public synchronized static List<Language> getAvailableLanguages() {
+	@Override
+	public synchronized List<Language> getAvailableLanguages() {
 		if (languagesList == null) {
 			languagesList = new ArrayList<>();
 			Document storedLanguages = null;

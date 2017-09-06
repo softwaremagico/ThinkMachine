@@ -31,6 +31,8 @@ import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.characteristics.CharacteristicType;
+import com.softwaremagico.tm.character.characteristics.CharacteristicsDefinitionFactory;
+import com.softwaremagico.tm.language.Translator;
 import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.complete.elements.BaseElement;
 
@@ -53,7 +55,8 @@ public class CharacteristicsTableFactory extends BaseElement {
 		table.getDefaultCell().setPadding(0);
 
 		for (CharacteristicType type : CharacteristicType.values()) {
-			table.addCell(new CharacteristicsColumn(characterPlayer, type, type.getCharacteristics()));
+			table.addCell(new CharacteristicsColumn(characterPlayer, type, CharacteristicsDefinitionFactory.getInstance()
+					.getAll(type, Translator.getLanguage())));
 		}
 
 		return table;

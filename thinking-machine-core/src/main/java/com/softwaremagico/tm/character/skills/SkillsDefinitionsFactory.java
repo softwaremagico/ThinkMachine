@@ -26,8 +26,10 @@ package com.softwaremagico.tm.character.skills;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
@@ -35,10 +37,9 @@ import com.softwaremagico.tm.XmlFactory;
 import com.softwaremagico.tm.character.traits.InvalidBlessingException;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
-import com.softwaremagico.tm.log.MachineLog;
 
 public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
-	private final static ITranslator TRANSLATOR_SKILLS = LanguagePool.getTranslator("skills.xml");
+	private final static ITranslator translatorSkill = LanguagePool.getTranslator("skills.xml");
 
 	private final static String NAME = "name";
 	private final static String GUILD_SKILL_TAG = "guildSkill";
@@ -46,8 +47,8 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 	private final static String GROUP_SKILL_TAG = "group";
 	private final static String NATURAL_SKILL_TAG = "natural";
 	private final static String NUMBER_TO_SHOW_TAG = "numberToShow";
-	private static List<SkillDefinition> naturalSkills = new ArrayList<>();
-	private static List<SkillDefinition> learnedSkills = new ArrayList<>();
+	private static Map<String, List<SkillDefinition>> naturalSkills = new HashMap<>();
+	private static Map<String, List<SkillDefinition>> learnedSkills = new HashMap<>();
 
 	private static SkillsDefinitionsFactory instance;
 
@@ -63,9 +64,9 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 
 	@Override
 	public void clearCache() {
+		naturalSkills = new HashMap<>();
+		learnedSkills = new HashMap<>();
 		super.clearCache();
-		naturalSkills = new ArrayList<>();
-		learnedSkills = new ArrayList<>();
 	}
 
 	public static SkillsDefinitionsFactory getInstance() {
@@ -75,29 +76,19 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 		return instance;
 	}
 
-	public List<SkillDefinition> getNaturalSkills(String language) throws InvalidXmlElementException {
-		if (naturalSkills.isEmpty()) {
-			getElements(language);
-		}
-		return naturalSkills;
+	public List<SkillDefinition> getNaturalSkills(String language) {
+		return naturalSkills.get(language);
 	}
 
-	public List<SkillDefinition> getLearnedSkills(String language) throws InvalidXmlElementException {
-		if (learnedSkills.isEmpty()) {
-			getElements(language);
-		}
-		return learnedSkills;
+	public List<SkillDefinition> getLearnedSkills(String language) {
+		return learnedSkills.get(language);
 	}
 
 	public boolean isNaturalSkill(String skillName, String language) {
-		try {
-			for (SkillDefinition availableSkill : getNaturalSkills(language)) {
-				if (availableSkill.getName().equals(skillName)) {
-					return true;
-				}
+		for (SkillDefinition availableSkill : getNaturalSkills(language)) {
+			if (availableSkill.getName().equals(skillName)) {
+				return true;
 			}
-		} catch (InvalidXmlElementException e) {
-			MachineLog.errorMessage(this.getClass().getName(), e);
 		}
 		return false;
 	}
@@ -106,15 +97,21 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 	public List<SkillDefinition> getElements(String language) throws InvalidXmlElementException {
 		if (elements.get(language) == null) {
 			elements.put(language, new ArrayList<SkillDefinition>());
-			for (String skillId : TRANSLATOR_SKILLS.getAllTranslatedElements()) {
-				SkillDefinition skill = createElement(TRANSLATOR_SKILLS, skillId, language);
+			for (String skillId : translatorSkill.getAllTranslatedElements()) {
+				SkillDefinition skill = createElement(translatorSkill, skillId, language);
 				elements.get(language).add(skill);
 				if (skill.isNatural()) {
-					naturalSkills.add(skill);
-					Collections.sort(naturalSkills);
+					if (naturalSkills.get(language) == null) {
+						naturalSkills.put(language, new ArrayList<SkillDefinition>());
+					}
+					naturalSkills.get(language).add(skill);
+					Collections.sort(naturalSkills.get(language));
 				} else {
-					learnedSkills.add(skill);
-					Collections.sort(learnedSkills);
+					if (learnedSkills.get(language) == null) {
+						learnedSkills.put(language, new ArrayList<SkillDefinition>());
+					}
+					learnedSkills.get(language).add(skill);
+					Collections.sort(learnedSkills.get(language));
 				}
 			}
 			Collections.sort(elements.get(language));
@@ -161,6 +158,6 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 
 	@Override
 	protected ITranslator getTranslator() {
-		return TRANSLATOR_SKILLS;
+		return translatorSkill;
 	}
 }

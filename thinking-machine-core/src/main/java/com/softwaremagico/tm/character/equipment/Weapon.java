@@ -25,7 +25,7 @@ package com.softwaremagico.tm.character.equipment;
  */
 
 import com.softwaremagico.tm.Element;
-import com.softwaremagico.tm.character.characteristics.Characteristic;
+import com.softwaremagico.tm.character.characteristics.CharacteristicDefinition;
 import com.softwaremagico.tm.character.skills.SkillDefinition;
 
 public class Weapon extends Element<Weapon> {
@@ -40,7 +40,7 @@ public class Weapon extends Element<Weapon> {
 	private String others;
 	private int cost;
 	private SkillDefinition skill;
-	private Characteristic characteristic;
+	private CharacteristicDefinition characteristic;
 
 	public Weapon(String id, String name) {
 		super(id, name);
@@ -64,7 +64,11 @@ public class Weapon extends Element<Weapon> {
 	}
 
 	public String getRoll() {
-		return characteristic.getName() + "+" + skill.getName();
+		try{
+		return characteristic.getAbbreviature() + "+" + skill.getName();
+		}catch(Exception e){
+			return "";
+		}
 	}
 
 	public String getGoal() {
@@ -158,11 +162,11 @@ public class Weapon extends Element<Weapon> {
 		this.skill = skill;
 	}
 
-	public Characteristic getCharacteristic() {
+	public CharacteristicDefinition getCharacteristic() {
 		return characteristic;
 	}
 
-	public void setCharacteristic(Characteristic characteristic) {
+	public void setCharacteristic(CharacteristicDefinition characteristic) {
 		this.characteristic = characteristic;
 	}
 

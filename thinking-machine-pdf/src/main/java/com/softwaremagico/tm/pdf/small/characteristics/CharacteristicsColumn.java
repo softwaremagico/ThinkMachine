@@ -24,6 +24,8 @@ package com.softwaremagico.tm.pdf.small.characteristics;
  * #L%
  */
 
+import java.util.List;
+
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
@@ -31,6 +33,7 @@ import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.character.characteristics.CharacteristicDefinition;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.characteristics.CharacteristicType;
 import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
@@ -46,7 +49,7 @@ public class CharacteristicsColumn extends CustomPdfTable {
 	private final static int ROW_HEIGHT = 36;
 	private final static float[] widths = { 1 };
 
-	public CharacteristicsColumn(CharacterPlayer characterPlayer, CharacteristicType characteristicType, CharacteristicName[] content) {
+	public CharacteristicsColumn(CharacterPlayer characterPlayer, CharacteristicType characteristicType, List<CharacteristicDefinition> content) {
 		super(widths);
 		PdfPCell title = createCompactTitle(getTranslator().getTranslatedText(characteristicType.getTranslationTag()),
 				FadingSunsTheme.CHARACTER_SMALL_CHARACTERISTICS_TITLE_FONT_SIZE);
@@ -55,35 +58,36 @@ public class CharacteristicsColumn extends CustomPdfTable {
 		addCell(createContent(characterPlayer, content));
 	}
 
-	private PdfPCell createContent(CharacterPlayer characterPlayer, CharacteristicName[] content) {
+	private PdfPCell createContent(CharacterPlayer characterPlayer, List<CharacteristicDefinition> content) {
 		float[] widths = { 4f, 1f };
 		PdfPTable table = new PdfPTable(widths);
 		BaseElement.setTablePropierties(table);
 		table.getDefaultCell().setBorder(0);
 
-		for (CharacteristicName characteristicName : content) {
+		for (CharacteristicDefinition characteristic : content) {
 			Paragraph paragraph = new Paragraph();
-			paragraph.add(new Paragraph(getTranslator().getTranslatedText(characteristicName.getTranslationTag()), new Font(FadingSunsTheme.getLineFont(),
+			paragraph.add(new Paragraph(getTranslator().getTranslatedText(characteristic.getId()), new Font(FadingSunsTheme.getLineFont(),
 					FadingSunsTheme.CHARACTER_SMALL_CHARACTERISTICS_LINE_FONT_SIZE)));
 			paragraph.add(new Paragraph(" (", new Font(FadingSunsTheme.getLineFont(), FadingSunsTheme.CHARACTER_SMALL_CHARACTERISTICS_LINE_FONT_SIZE)));
 			if (characterPlayer == null) {
 				paragraph.add(new Paragraph(GAP, new Font(FadingSunsTheme.getLineFont(), FadingSunsTheme.CHARACTER_SMALL_CHARACTERISTICS_LINE_FONT_SIZE)));
 			} else {
-				paragraph.add(new Paragraph(characterPlayer.getStartingValue(characteristicName) + "", new Font(FadingSunsTheme.getHandwrittingFont(),
-						FadingSunsTheme.getHandWrittingFontSize(FadingSunsTheme.CHARACTER_SMALL_CHARACTERISTICS_LINE_FONT_SIZE))));
+				paragraph.add(new Paragraph(characterPlayer.getStartingValue(characteristic.getCharacteristicName()) + "", new Font(FadingSunsTheme
+						.getHandwrittingFont(), FadingSunsTheme.getHandWrittingFontSize(FadingSunsTheme.CHARACTER_SMALL_CHARACTERISTICS_LINE_FONT_SIZE))));
 			}
 			paragraph.add(new Paragraph(")", new Font(FadingSunsTheme.getLineFont(), FadingSunsTheme.CHARACTER_SMALL_CHARACTERISTICS_LINE_FONT_SIZE)));
 
 			PdfPCell characteristicTitle = new PdfPCell(paragraph);
 			characteristicTitle.setBorder(0);
-			characteristicTitle.setMinimumHeight(ROW_HEIGHT / content.length);
+			characteristicTitle.setMinimumHeight(ROW_HEIGHT / content.size());
 			table.addCell(characteristicTitle);
 
 			// Rectangle
 			if (characterPlayer == null) {
 				table.addCell(createSkillLine(SKILL_VALUE_GAP));
 			} else {
-				table.addCell(getHandwrittingCell(getCharacteristicValueRepresentation(characterPlayer, characteristicName), Element.ALIGN_LEFT));
+				table.addCell(getHandwrittingCell(getCharacteristicValueRepresentation(characterPlayer, characteristic.getCharacteristicName()),
+						Element.ALIGN_LEFT));
 			}
 		}
 

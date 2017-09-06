@@ -24,31 +24,19 @@ package com.softwaremagico.tm.character.characteristics;
  * #L%
  */
 
-public class Characteristic {
-	private CharacteristicName name;
-	private Integer value;
+public class Characteristic extends CharacteristicDefinition {
+	int value;
 
-	public Characteristic(CharacteristicName name) {
-		this.name = name;
+	public Characteristic(CharacteristicDefinition characteristicDefinition) {
+		super(characteristicDefinition.getId(), characteristicDefinition.getName());
 	}
 
-	public Integer getValue() {
-		if (value != null) {
-			return value;
-		}
-		return 0;
+	public int getValue() {
+		return value;
 	}
 
-	public void setValue(Integer value) {
+	public void setValue(int value) {
 		this.value = value;
 	}
 
-	public CharacteristicName getName() {
-		return name;
-	}
-
-	@Override
-	public String toString() {
-		return getName().toString();
-	}
 }

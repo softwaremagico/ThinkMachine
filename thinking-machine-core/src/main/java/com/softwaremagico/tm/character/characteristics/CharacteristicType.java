@@ -1,5 +1,7 @@
 package com.softwaremagico.tm.character.characteristics;
 
+import java.util.Objects;
+
 /*-
  * #%L
  * The Thinking Machine (Core)
@@ -26,26 +28,28 @@ package com.softwaremagico.tm.character.characteristics;
 
 public enum CharacteristicType {
 
-	BODY(CharacteristicName.STRENGTH, CharacteristicName.DEXTERITY, CharacteristicName.ENDURANCE),
+	BODY,
 
-	MIND(CharacteristicName.WITS, CharacteristicName.PERCEPTION, CharacteristicName.TECH),
+	MIND,
 
-	SPIRIT(CharacteristicName.PRESENCE, CharacteristicName.WILL, CharacteristicName.FAITH),
+	SPIRIT,
 
-	OTHERS(CharacteristicName.INITIATIVE, CharacteristicName.MOVEMENT, CharacteristicName.DEFENSE);
+	OTHERS;
 
-	private final CharacteristicName[] characteristics;
-
-	private CharacteristicType(CharacteristicName... characteristcs) {
-		this.characteristics = characteristcs;
-	}
-
-	public CharacteristicName[] getCharacteristics() {
-		return characteristics;
+	private CharacteristicType() {
 	}
 
 	public String getTranslationTag() {
 		return name().toLowerCase() + "Characteristics";
+	}
+
+	public static CharacteristicType getType(String name) {
+		for (CharacteristicType type : CharacteristicType.values()) {
+			if (Objects.equals(type.name().toLowerCase(), name.toLowerCase())) {
+				return type;
+			}
+		}
+		return null;
 	}
 
 }
