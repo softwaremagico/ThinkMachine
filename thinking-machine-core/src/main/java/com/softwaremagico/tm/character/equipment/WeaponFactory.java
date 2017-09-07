@@ -24,6 +24,9 @@ package com.softwaremagico.tm.character.equipment;
  * #L%
  */
 
+import java.util.HashSet;
+import java.util.Set;
+
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
 import com.softwaremagico.tm.character.characteristics.CharacteristicDefinition;
@@ -48,6 +51,7 @@ public class WeaponFactory extends XmlFactory<Weapon> {
 	private final static String SIZE = "size";
 	private final static String COST = "cost";
 	private final static String SPECIAL = "special";
+	private final static String DAMAGE_TYPE = "damageType";
 
 	private static WeaponFactory instance;
 
@@ -174,7 +178,21 @@ public class WeaponFactory extends XmlFactory<Weapon> {
 
 		try {
 			String special = translator.getNodeValue(weaponId, SPECIAL);
-			weapon.setOthers(special);
+			weapon.setSpecial(special);
+		} catch (Exception e) {
+			// Not mandatory.
+		}
+
+		try {
+			String damageDefinition = translator.getNodeValue(weaponId, DAMAGE_TYPE);
+			if (damageDefinition != null) {
+				String[] damageTypes = damageDefinition.split(",");
+				Set<DamageType> damageOfWeapon = new HashSet<>();
+				for (String damageType : damageTypes) {
+					damageOfWeapon.add(DamageTypeFactory.getInstance().getElement(damageType, language));
+				}
+				weapon.setDamageTypes(damageOfWeapon);
+			}
 		} catch (Exception e) {
 			// Not mandatory.
 		}

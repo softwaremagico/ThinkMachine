@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<damage>
+	<soft>
+		<name>
+			<en>Soft</en>
+			<es>Blando</es>
+		</name>
+	</soft>
+	<hard>
+		<name>
+			<en>Hard</en>
+			<es>Duro</es>
+		</name>
+	</hard>
+	<fire>
+		<name>
+			<en>Fire</en>
+			<es>Fuego</es>
+		</name>
+	</fire>
+	<laser>
+		<name>
+			<en>Laser</en>
+			<es>Láser</es>
+		</name>
+	</laser>
+	<plasma>
+		<name>
+			<en>Plasma</en>
+			<es>Plasma</es>
+		</name>
+	</plasma>
+	<impact>
+		<name>
+			<en>Impact</en>
+			<es>Impacto</es>
+		</name>
+	</impact>
+	<shock>
+		<name>
+			<en>Shock</en>
+			<es>Eléctrica</es>
+		</name>
+	</shock>
+</damage>

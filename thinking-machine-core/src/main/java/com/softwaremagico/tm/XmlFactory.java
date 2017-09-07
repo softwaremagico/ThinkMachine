@@ -75,7 +75,7 @@ public abstract class XmlFactory<T extends Element<T>> {
 		List<T> elements = getElements(language);
 		for (T element : elements) {
 			if (element.getId() != null) {
-				if (Objects.equals(element.getId().toLowerCase(), elementId.toLowerCase())) {
+				if (Objects.equals(element.getId().toLowerCase(), elementId.trim().toLowerCase())) {
 					return element;
 				}
 			}

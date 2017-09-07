@@ -45,7 +45,7 @@
 		<rate>2</rate>
 		<size>S</size>
 		<cost>300</cost>
-		<special>laser</special>
+		<damageType>laser</damageType>
 	</martechGold>
 	<fluxSword>
 		<name>
@@ -60,7 +60,7 @@
 		<strength>3</strength>
 		<size>L</size>
 		<cost>15000</cost>
-		<special>plasma, hard</special>
+		<damageType>plasma, hard</damageType>
 	</fluxSword>
 	<shotgun>
 		<name>
@@ -78,7 +78,8 @@
 		<rate>2</rate>
 		<size>L</size>
 		<cost>300</cost>
-		<special>stock, pumpfeed</special>
+		<damageType>stock</damageType>
+		<special>pumpfeed</special>
 	</shotgun>
 	<shotgunSolid>
 		<name>

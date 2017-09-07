@@ -25,6 +25,7 @@ package com.softwaremagico.tm.pdf.complete.fighting;
  */
 
 import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.character.equipment.DamageType;
 import com.softwaremagico.tm.character.equipment.Weapon;
 import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.complete.elements.LateralHeaderPdfPTable;
@@ -68,7 +69,7 @@ public class WeaponsTable extends LateralHeaderPdfPTable {
 				addCell(createElementLine(weapon.getShots() + "", SHOTS_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
 				addCell(createElementLine(weapon.getRate(), RATE_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
 				addCell(createElementLine(weapon.getSize().toString(), SIZE_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
-				addCell(createElementLine(weapon.getOthers(), OTHERS_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
+				addCell(createElementLine(getWeaponOthers(weapon), OTHERS_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
 
 				addedWeapons++;
 			}
@@ -85,6 +86,28 @@ public class WeaponsTable extends LateralHeaderPdfPTable {
 			addCell(createEmptyElementLine(GAP, SIZE_COLUMN_WIDTH));
 			addCell(createEmptyElementLine(GAP, OTHERS_COLUMN_WIDTH));
 		}
+	}
+
+	private String getWeaponOthers(Weapon weapon) {
+		// Damage types
+		StringBuilder stringBuilder = new StringBuilder();
+		for (DamageType damageType : weapon.getDamageTypes()) {
+			if (stringBuilder.length() > 0) {
+				stringBuilder.append(", ");
+			}
+			stringBuilder.append(damageType.getName());
+		}
+
+		// Others
+		if (weapon.getSpecial() != null && !weapon.getSpecial().isEmpty()) {
+			if (stringBuilder.length() > 0) {
+				stringBuilder.append(" / ");
+			}
+			stringBuilder.append(weapon.getSpecial());
+		}
+
+		return stringBuilder.toString();
+
 	}
 
 	@Override

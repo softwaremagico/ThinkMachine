@@ -24,6 +24,9 @@ package com.softwaremagico.tm.character.equipment;
  * #L%
  */
 
+import java.util.HashSet;
+import java.util.Set;
+
 import com.softwaremagico.tm.Element;
 import com.softwaremagico.tm.character.characteristics.CharacteristicDefinition;
 import com.softwaremagico.tm.character.skills.SkillDefinition;
@@ -37,13 +40,15 @@ public class Weapon extends Element<Weapon> {
 	private String rate;
 	private Size size;
 	private int techLevel;
-	private String others;
+	private String special;
+	private Set<DamageType> damageTypes;
 	private int cost;
 	private SkillDefinition skill;
 	private CharacteristicDefinition characteristic;
 
 	public Weapon(String id, String name) {
 		super(id, name);
+		damageTypes = new HashSet<>();
 	}
 
 	public Weapon(String id, String name, String goal, String damage, int strength, String range, Integer shots, String rate, int tech, Size size) {
@@ -58,15 +63,15 @@ public class Weapon extends Element<Weapon> {
 		this.techLevel = tech;
 	}
 
-	public Weapon(String id, String name, String goal, String damage, int strength, String range, Integer shots, String rate, int tech, Size size, String others) {
+	public Weapon(String id, String name, String goal, String damage, int strength, String range, Integer shots, String rate, int tech, Size size, String special) {
 		this(id, name, goal, damage, strength, range, shots, rate, tech, size);
-		setOthers(others);
+		setSpecial(special);
 	}
 
 	public String getRoll() {
-		try{
-		return characteristic.getAbbreviature() + "+" + skill.getName();
-		}catch(Exception e){
+		try {
+			return characteristic.getAbbreviature() + "+" + skill.getName();
+		} catch (Exception e) {
 			return "";
 		}
 	}
@@ -94,12 +99,12 @@ public class Weapon extends Element<Weapon> {
 		return size;
 	}
 
-	public String getOthers() {
-		return others;
+	public String getSpecial() {
+		return special;
 	}
 
-	public void setOthers(String others) {
-		this.others = others;
+	public void setSpecial(String special) {
+		this.special = special;
 	}
 
 	public int getTechLevel() {
@@ -175,5 +180,13 @@ public class Weapon extends Element<Weapon> {
 			return strength + "";
 		}
 		return range;
+	}
+
+	public Set<DamageType> getDamageTypes() {
+		return damageTypes;
+	}
+
+	public void setDamageTypes(Set<DamageType> damageTypes) {
+		this.damageTypes = damageTypes;
 	}
 }
