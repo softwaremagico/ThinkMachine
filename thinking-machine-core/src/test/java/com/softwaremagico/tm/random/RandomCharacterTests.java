@@ -31,7 +31,7 @@ import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.language.LanguagePool;
 
 @Test(groups = { "randomCharacter" })
-public class RandomCharacterTest {
+public class RandomCharacterTests {
 
 	@Test
 	public void basicCharacterCreation() throws InvalidXmlElementException {
