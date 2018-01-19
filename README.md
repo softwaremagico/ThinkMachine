@@ -1,6 +1,6 @@
-<img src="./images/ThinkingMachine_logo.png" width="340" alt="The Thinking Machine" align="middle"> 
+<img src="./images/ThinkMachine_logo.png" width="340" alt="Think Machine" align="middle"> 
 
-# The Thinking Machine
+# Think Machine
 
 [![Build Status](https://travis-ci.org/jorgehortelano/TheThinkingMachine.svg?branch=master)](https://travis-ci.org/jorgehortelano/TheThinkingMachine)
 [![GNU GPL 3.0 License](https://img.shields.io/badge/license-GNU_GPL_3.0-brightgreen.svg)](https://github.com/jorgehortelano/TheThinkingMachine/blob/master/license/gnugpl/license.txt)

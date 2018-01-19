@@ -4,7 +4,7 @@
 	<artifactId>thinking-machine</artifactId>
 	<version>0.3.6-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	<name>The Thinking Machine</name>
+	<name>Think Machine</name>
 	<url>https://github.com/jorgehortelano/TheThinkingMachine</url>
 	
 	<organization>
@@ -13,8 +13,8 @@
 	</organization>
 	
 	<modules>
-		<module>thinking-machine-core</module>
-		<module>thinking-machine-pdf</module>
+		<module>think-machine-core</module>
+		<module>think-machine-pdf</module>
 	</modules>
 	
 	<scm>
