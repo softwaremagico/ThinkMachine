@@ -2,9 +2,9 @@
 
 # Think Machine
 
-[![Build Status](https://travis-ci.org/jorgehortelano/TheThinkingMachine.svg?branch=master)](https://travis-ci.org/jorgehortelano/TheThinkingMachine)
-[![GNU GPL 3.0 License](https://img.shields.io/badge/license-GNU_GPL_3.0-brightgreen.svg)](https://github.com/jorgehortelano/TheThinkingMachine/blob/master/license/gnugpl/license.txt)
-[![Issues](https://img.shields.io/github/issues/jorgehortelano/TheThinkingMachine.svg)](https://github.com/jorgehortelano/TheThinkingMachine/issues)
+[![Build Status](https://travis-ci.org/jorgehortelano/TheThinkingMachine.svg?branch=master)](https://travis-ci.org/jorgehortelano/ThinkMachine)
+[![GNU GPL 3.0 License](https://img.shields.io/badge/license-GNU_GPL_3.0-brightgreen.svg)](https://github.com/jorgehortelano/ThinkMachine/blob/master/license/gnugpl/license.txt)
+[![Issues](https://img.shields.io/github/issues/jorgehortelano/TheThinkingMachine.svg)](https://github.com/jorgehortelano/ThinkMachine/issues)
 
 This software generated in Java allows the creation of a character sheet for the role play game called **Fading Suns** (Revised Edition). Personally, I do not like the provided character sheet in the Player's Guide book, and I have designed a new one, based on some old files I have found ten years ago for previous versions of this game.
 
