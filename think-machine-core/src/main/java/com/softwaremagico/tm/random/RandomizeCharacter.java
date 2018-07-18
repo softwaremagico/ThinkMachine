@@ -24,7 +24,10 @@ package com.softwaremagico.tm.random;
  * #L%
  */
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Random;
+import java.util.Set;
 import java.util.TreeMap;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
@@ -33,23 +36,27 @@ import com.softwaremagico.tm.character.FreeStyleCharacterCreation;
 import com.softwaremagico.tm.character.characteristics.Characteristic;
 import com.softwaremagico.tm.character.characteristics.CharacteristicType;
 import com.softwaremagico.tm.log.MachineLog;
+import com.softwaremagico.tm.random.selectors.BodyPreferences;
+import com.softwaremagico.tm.random.selectors.IRandomPreferences;
 
 public class RandomizeCharacter {
-	private int bodyLevel;
-	private int mentalLevel;
-	private int spiritLevel;
 	private CharacterPlayer characterPlayer;
 	private int experiencePoints;
-	private TreeMap<Integer, String> weightedCharacteristics;
+	// Weight -> Characteristic.
+	private final TreeMap<Integer, String> weightedCharacteristics;
+	private final int totalWeight;
+	private final Set<IRandomPreferences> preferences;
 	private Random rand = new Random();
 
-	public RandomizeCharacter(CharacterPlayer characterPlayer, int experiencePoints) {
+	public RandomizeCharacter(CharacterPlayer characterPlayer, int experiencePoints, IRandomPreferences... preferences) {
 		this.characterPlayer = characterPlayer;
 		this.experiencePoints = experiencePoints;
+		this.preferences = new HashSet<>(Arrays.asList(preferences));
+		weightedCharacteristics = assignCharacteristicsWeight();
+		totalWeight = assignTotalWeight();
 	}
 
 	public void createCharacter() throws InvalidXmlElementException {
-		weightedCharacteristics = assignCharacteristicsWeight();
 		initializeCharacter();
 		spendCharacteristicsPoints();
 		spendSkillsPoints();
@@ -97,24 +104,46 @@ public class RandomizeCharacter {
 		return weightedCharacteristics;
 	}
 
+	private Integer assignTotalWeight() {
+		int totalWeight = 0;
+		for (Integer value : weightedCharacteristics.keySet()) {
+			totalWeight += value;
+		}
+		return totalWeight;
+	}
+
+	/**
+	 * Assign a weight to each characteristic depending on the preferences
+	 * selected.
+	 * 
+	 * @param characteristicType
+	 * @return
+	 */
 	private int getWeight(CharacteristicType characteristicType) {
+		int weight = 1;
 		if (CharacteristicType.BODY.equals(characteristicType)) {
-			return bodyLevel;
+			if (preferences.contains(BodyPreferences.BODY)) {
+				weight += 2;
+			}
 		}
 		if (CharacteristicType.MIND.equals(characteristicType)) {
-			return mentalLevel;
+			if (preferences.contains(BodyPreferences.MIND)) {
+				weight += 2;
+			}
 		}
 		if (CharacteristicType.SPIRIT.equals(characteristicType)) {
-			return spiritLevel;
+			if (preferences.contains(BodyPreferences.SPIRIT)) {
+				weight += 2;
+			}
 		}
-		return 0;
+		return weight;
 	}
 
 	/**
 	 * Selects a characteristic depending on its weight.
 	 */
 	private String selectCharacteristicByWeight() {
-		Integer value = new Integer((int) (rand.nextDouble() * (bodyLevel * 3 + mentalLevel * 3 + spiritLevel * 3)));
+		Integer value = new Integer((int) (rand.nextDouble() * totalWeight));
 		return weightedCharacteristics.get(weightedCharacteristics.floorKey(value));
 	}
 }
