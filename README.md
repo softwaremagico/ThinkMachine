@@ -17,7 +17,7 @@ If you like the design, and you want to use it, only the final PDF document is n
 - [Character Sheet (English)](https://github.com/jorgehortelano/TheThinkingMachine/blob/master/sheets/FadingSuns_EN.pdf)
 - [Character Sheet (Spanish)](https://github.com/jorgehortelano/TheThinkingMachine/blob/master/sheets/FadingSuns_ES.pdf)
 
-The fonts needed for these PDFs are: ArchitectsDaughter, DejaVuSans and Roman Antique. You need to download and install them.
+The fonts needed for these PDFs are: [ArchitectsDaughter](https://fonts.google.com/specimen/Architects+Daughter), DejaVuSans and Roman Antique. You need to download and install them.
 
 If you want to skip the font installation, you can also donwload the sheet in PNG:
 - [Character Sheet (English)](https://github.com/jorgehortelano/TheThinkingMachine/blob/master/sheets/FadingSuns_EN-0.png)
