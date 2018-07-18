@@ -37,6 +37,7 @@ import com.softwaremagico.tm.character.characteristics.Characteristic;
 import com.softwaremagico.tm.character.characteristics.CharacteristicType;
 import com.softwaremagico.tm.log.MachineLog;
 import com.softwaremagico.tm.random.selectors.BodyPreferences;
+import com.softwaremagico.tm.random.selectors.CombatPreferences;
 import com.softwaremagico.tm.random.selectors.IRandomPreferences;
 
 public class RandomizeCharacter {
@@ -124,6 +125,9 @@ public class RandomizeCharacter {
 		if (CharacteristicType.BODY.equals(characteristicType)) {
 			if (preferences.contains(BodyPreferences.BODY)) {
 				weight += 2;
+			}
+			if (preferences.contains(CombatPreferences.BELLIGERENT)) {
+				weight += 1;
 			}
 		}
 		if (CharacteristicType.MIND.equals(characteristicType)) {
