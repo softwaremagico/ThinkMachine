@@ -30,6 +30,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
@@ -37,6 +38,7 @@ import com.softwaremagico.tm.XmlFactory;
 import com.softwaremagico.tm.character.traits.InvalidBlessingException;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
+import com.softwaremagico.tm.log.MachineLog;
 
 public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 	private final static ITranslator translatorSkill = LanguagePool.getTranslator("skills.xml");
@@ -47,6 +49,9 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 	private final static String GROUP_SKILL_TAG = "group";
 	private final static String NATURAL_SKILL_TAG = "natural";
 	private final static String NUMBER_TO_SHOW_TAG = "numberToShow";
+
+	private final static String RANDOM = "random";
+	private final static String RANDOM_TECH_LEVEL = "techlevel";
 	private static Map<String, List<SkillDefinition>> naturalSkills = new HashMap<>();
 	private static Map<String, List<SkillDefinition>> learnedSkills = new HashMap<>();
 
@@ -86,11 +91,24 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 
 	public boolean isNaturalSkill(String skillName, String language) {
 		for (SkillDefinition availableSkill : getNaturalSkills(language)) {
-			if (availableSkill.getName().equals(skillName)) {
+			if (Objects.equals(availableSkill.getName(), skillName)) {
 				return true;
 			}
 		}
 		return false;
+	}
+
+	public SkillDefinition get(String skillName, String language) {
+		try {
+			for (SkillDefinition availableSkill : getElements(language)) {
+				if (Objects.equals(availableSkill.getId(), skillName)) {
+					return availableSkill;
+				}
+			}
+		} catch (InvalidXmlElementException ixee) {
+			MachineLog.errorMessage(this.getClass().getName(), ixee);
+		}
+		return null;
 	}
 
 	@Override
@@ -149,6 +167,15 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 
 			String natural = translator.getNodeValue(skillId, NATURAL_SKILL_TAG);
 			skill.setNatural(Boolean.parseBoolean(natural));
+
+			try {
+				String minTechLevel = translator.getNodeValue(skillId, RANDOM, RANDOM_TECH_LEVEL);
+				if (minTechLevel != null) {
+					skill.getRandomDefinition().setMinimumTechLevel(Integer.parseInt(minTechLevel));
+				}
+			} catch (NumberFormatException nfe) {
+				throw new InvalidSkillException("Invalid number value for techlevel in skill '" + skillId + "'.");
+			}
 
 			return skill;
 		} catch (Exception e) {

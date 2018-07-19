@@ -24,10 +24,13 @@ package com.softwaremagico.tm.random;
  * #L%
  */
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.character.skills.SkillDefinition;
+import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
 import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.random.exceptions.DuplicatedPreferenceException;
 import com.softwaremagico.tm.random.selectors.TechnologicalPreferences;
@@ -48,5 +51,11 @@ public class RandomCharacterTests {
 		randomizeCharacter.createCharacter();
 
 		LanguagePool.clearCache();
+	}
+
+	@Test
+	public void readRandomSkillConfiguration() throws InvalidXmlElementException, DuplicatedPreferenceException {
+		SkillDefinition skillDefinition = SkillsDefinitionsFactory.getInstance().get("Energy Guns", "en");
+		Assert.assertEquals(skillDefinition.getRandomDefinition().getMinimumTechLevel(), 5);
 	}
 }

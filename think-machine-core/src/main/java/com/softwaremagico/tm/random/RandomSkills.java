@@ -1,6 +1,5 @@
 package com.softwaremagico.tm.random;
 
-import java.util.Random;
 import java.util.Set;
 import java.util.TreeMap;
 
@@ -17,20 +16,10 @@ import com.softwaremagico.tm.log.MachineLog;
 import com.softwaremagico.tm.random.selectors.IRandomPreferences;
 import com.softwaremagico.tm.random.selectors.TechnologicalPreferences;
 
-public class RandomSkills {
-	private CharacterPlayer characterPlayer;
-	private final Set<IRandomPreferences> preferences;
-	private Random rand = new Random();
-
-	// Weight -> Characteristic.
-	private final TreeMap<Integer, AvailableSkill> weightedSkills;
-	private final int totalWeight;
+public class RandomSkills extends RandomSelector<AvailableSkill> {
 
 	public RandomSkills(CharacterPlayer characterPlayer, Set<IRandomPreferences> preferences) {
-		this.characterPlayer = characterPlayer;
-		this.preferences = preferences;
-		weightedSkills = assignSkillsWeight();
-		totalWeight = assignTotalWeight();
+		super(characterPlayer, preferences);
 		spendSkillsPoints();
 	}
 
@@ -40,16 +29,16 @@ public class RandomSkills {
 
 		// Assign random values by weight
 		try {
-			while (characterPlayer.getSkillsTotalPoints() < FreeStyleCharacterCreation.SKILLS_POINTS) {
-				AvailableSkill selectedSkill = selectByWeight();
-				MachineLog.debug(this.getClass().getName(), "Selected skill is '" + selectedSkill.getName() + "'.");
+			while (getCharacterPlayer().getSkillsTotalPoints() < FreeStyleCharacterCreation.SKILLS_POINTS) {
+				AvailableSkill selectedSkill = selectElementByWeight();
+
 				int value = 0;
-				if (characterPlayer.getSkillRanks(selectedSkill) != null) {
-					value = characterPlayer.getSkillRanks(selectedSkill);
+				if (getCharacterPlayer().getSkillRanks(selectedSkill) != null) {
+					value = getCharacterPlayer().getSkillRanks(selectedSkill);
 				}
 				if (value < FreeStyleCharacterCreation.MAX_INITIAL_SKILL_VALUE) {
 					try {
-						characterPlayer.setSkillRank(selectedSkill, value);
+						getCharacterPlayer().setSkillRank(selectedSkill, value);
 					} catch (InvalidSkillException e) {
 						MachineLog.errorMessage(this.getClass().getName(), e);
 					}
@@ -61,20 +50,21 @@ public class RandomSkills {
 	}
 
 	private void assignMinimumValuesOfSkills() {
-		for (IRandomPreferences preference : preferences) {
+		for (IRandomPreferences preference : getPreferences()) {
 			if (preference instanceof TechnologicalPreferences) {
-				characterPlayer.getCharacteristic(CharacteristicName.TECH).setValue(((TechnologicalPreferences) preference).minimumValue());
+				getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).setValue(((TechnologicalPreferences) preference).minimumValue());
 			}
 		}
 	}
 
-	private TreeMap<Integer, AvailableSkill> assignSkillsWeight() {
+	@Override
+	protected TreeMap<Integer, AvailableSkill> assignElementsWeight() {
 		TreeMap<Integer, AvailableSkill> weightedSkills = new TreeMap<>();
 		int count = 0;
 
-		for (SkillDefinition skillDefinition : SkillsDefinitionsFactory.getInstance().getLearnedSkills(characterPlayer.getLanguage())) {
+		for (SkillDefinition skillDefinition : SkillsDefinitionsFactory.getInstance().getLearnedSkills(getCharacterPlayer().getLanguage())) {
 			try {
-				for (AvailableSkill skill : AvailableSkillsFactory.getInstance().getAvailableSkills(skillDefinition, characterPlayer.getLanguage())) {
+				for (AvailableSkill skill : AvailableSkillsFactory.getInstance().getAvailableSkills(skillDefinition, getCharacterPlayer().getLanguage())) {
 					int weight = getWeight(skill);
 					if (weight > 0) {
 						weightedSkills.put(count, skill);
@@ -89,35 +79,18 @@ public class RandomSkills {
 		return weightedSkills;
 	}
 
-	private Integer assignTotalWeight() {
-		int totalWeight = 0;
-		for (Integer value : weightedSkills.keySet()) {
-			totalWeight += value;
-		}
-		return totalWeight;
-	}
-
-	/**
-	 * Assign a weight to each characteristic depending on the preferences
-	 * selected.
-	 * 
-	 * @param characteristicType
-	 * @return
-	 */
-	private int getWeight(AvailableSkill skill) {
+	@Override
+	protected int getWeight(AvailableSkill skill) {
 		if (skill == null) {
 			return 0;
 		}
+		// Weapons only if technology is enough.
+		if (getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).getValue() < skill.getSkillDefinition().getRandomDefinition().getMinimumTechLevel()) {
+			return 0;
+		}
+
 		int weight = 1;
 		return weight;
-	}
-
-	/**
-	 * Selects a characteristic depending on its weight.
-	 */
-	private AvailableSkill selectByWeight() {
-		Integer value = new Integer((int) (rand.nextDouble() * totalWeight));
-		return weightedSkills.get(weightedSkills.floorKey(value));
 	}
 
 }

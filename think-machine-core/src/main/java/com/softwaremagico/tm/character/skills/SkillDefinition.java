@@ -38,8 +38,11 @@ public class SkillDefinition extends Skill<SkillDefinition> {
 	// Number of times that a skill (generalizable) is shown in the PDF.
 	private int numberToShow = 1;
 
+	private final SkillDefinitionRandomDefinitions randomDefinition;
+
 	public SkillDefinition(String id, String name) {
 		super(id, name.trim());
+		randomDefinition = new SkillDefinitionRandomDefinitions();
 	}
 
 	public boolean isFromGuild() {
@@ -92,5 +95,9 @@ public class SkillDefinition extends Skill<SkillDefinition> {
 	@Override
 	public String toString() {
 		return super.toString() + " (" + skillGroup + ") " + getSpecializations();
+	}
+
+	public SkillDefinitionRandomDefinitions getRandomDefinition() {
+		return randomDefinition;
 	}
 }
