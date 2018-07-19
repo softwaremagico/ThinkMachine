@@ -55,7 +55,7 @@ public class RandomCharacterTests {
 
 	@Test
 	public void readRandomSkillConfiguration() throws InvalidXmlElementException, DuplicatedPreferenceException {
-		SkillDefinition skillDefinition = SkillsDefinitionsFactory.getInstance().get("Energy Guns", "en");
+		SkillDefinition skillDefinition = SkillsDefinitionsFactory.getInstance().get("energyGuns", "en");
 		Assert.assertEquals(skillDefinition.getRandomDefinition().getMinimumTechLevel(), 5);
 	}
 }
