@@ -25,39 +25,26 @@ package com.softwaremagico.tm.random;
  */
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
-import java.util.Random;
 import java.util.Set;
-import java.util.TreeMap;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.character.FreeStyleCharacterCreation;
-import com.softwaremagico.tm.character.characteristics.Characteristic;
-import com.softwaremagico.tm.character.characteristics.CharacteristicName;
-import com.softwaremagico.tm.character.characteristics.CharacteristicType;
-import com.softwaremagico.tm.log.MachineLog;
 import com.softwaremagico.tm.random.exceptions.DuplicatedPreferenceException;
-import com.softwaremagico.tm.random.selectors.BodyPreferences;
-import com.softwaremagico.tm.random.selectors.CombatPreferences;
 import com.softwaremagico.tm.random.selectors.IRandomPreferences;
-import com.softwaremagico.tm.random.selectors.TechnologicalPreferences;
 
 public class RandomizeCharacter {
 	private CharacterPlayer characterPlayer;
 	private int experiencePoints;
-	// Weight -> Characteristic.
-	private final TreeMap<Integer, Characteristic> weightedCharacteristics;
-	private final int totalWeight;
+
 	private final Set<IRandomPreferences> preferences;
-	private Random rand = new Random();
 
 	public RandomizeCharacter(CharacterPlayer characterPlayer, int experiencePoints, IRandomPreferences... preferences) throws DuplicatedPreferenceException {
 		this.characterPlayer = characterPlayer;
 		this.experiencePoints = experiencePoints;
-		this.preferences = new HashSet<>(Arrays.asList(preferences));
-		weightedCharacteristics = assignCharacteristicsWeight();
-		totalWeight = assignTotalWeight();
+		this.preferences = Collections.unmodifiableSet(new HashSet<>(Arrays.asList(preferences)));
+
 		checkValidPreferences();
 	}
 
@@ -74,8 +61,12 @@ public class RandomizeCharacter {
 
 	public void createCharacter() throws InvalidXmlElementException {
 		initializeCharacter();
-		spendCharacteristicsPoints();
-		spendSkillsPoints();
+		// Characteristics
+		RandomCharacteristics randomCharacteristics = new RandomCharacteristics(characterPlayer, preferences);
+		randomCharacteristics.spendCharacteristicsPoints();
+		// Skills
+		RandomSkills randomSkills = new RandomSkills(characterPlayer, preferences);
+		randomSkills.spendSkillsPoints();
 		spendExperiencePoints();
 	}
 
@@ -86,98 +77,8 @@ public class RandomizeCharacter {
 		}
 	}
 
-	private void spendSkillsPoints() throws InvalidXmlElementException {
-		while (characterPlayer.getSkillsTotalPoints() < FreeStyleCharacterCreation.SKILLS_POINTS) {
-
-		}
-	}
-
 	private void spendExperiencePoints() {
 
 	}
 
-	private void spendCharacteristicsPoints() {
-		// Set minimum values of characteristics.
-		assignMinimumValuesOfCharacteristics();
-
-		// Assign random values by weight
-		while (characterPlayer.getCharacteristicsTotalPoints() < FreeStyleCharacterCreation.CHARACTERISTICS_POINTS) {
-			Characteristic selectedCharacteristic = selectCharacteristicByWeight();
-			MachineLog.debug(this.getClass().getName(), "Selected characteristic is '" + selectedCharacteristic.getName() + "'.");
-			if (selectedCharacteristic.getValue() < FreeStyleCharacterCreation.MAX_INITIAL_SKILL_VALUE)
-				selectedCharacteristic.setValue(selectedCharacteristic.getValue() + 1);
-		}
-	}
-
-	private void assignMinimumValuesOfCharacteristics() {
-		for (IRandomPreferences preference : preferences) {
-			if (preference instanceof TechnologicalPreferences) {
-				characterPlayer.getCharacteristic(CharacteristicName.TECH).setValue(((TechnologicalPreferences) preference).minimumValue());
-			}
-		}
-	}
-
-	private TreeMap<Integer, Characteristic> assignCharacteristicsWeight() {
-		TreeMap<Integer, Characteristic> weightedCharacteristics = new TreeMap<>();
-		Integer count = 0;
-
-		for (Characteristic characteristic : characterPlayer.getCharacteristics()) {
-			int weight = getWeight(characteristic);
-			if (weight > 0) {
-				weightedCharacteristics.put(count, characteristic);
-				count += weight;
-			}
-		}
-
-		return weightedCharacteristics;
-	}
-
-	private Integer assignTotalWeight() {
-		int totalWeight = 0;
-		for (Integer value : weightedCharacteristics.keySet()) {
-			totalWeight += value;
-		}
-		return totalWeight;
-	}
-
-	/**
-	 * Assign a weight to each characteristic depending on the preferences
-	 * selected.
-	 * 
-	 * @param characteristicType
-	 * @return
-	 */
-	private int getWeight(Characteristic characteristic) {
-		if (characteristic == null) {
-			return 0;
-		}
-		int weight = 1;
-		if (CharacteristicType.BODY.equals(characteristic.getType())) {
-			if (preferences.contains(BodyPreferences.BODY)) {
-				weight += 2;
-			}
-			if (preferences.contains(CombatPreferences.BELLIGERENT)) {
-				weight += 1;
-			}
-		}
-		if (CharacteristicType.MIND.equals(characteristic.getType())) {
-			if (preferences.contains(BodyPreferences.MIND)) {
-				weight += 2;
-			}
-		}
-		if (CharacteristicType.SPIRIT.equals(characteristic.getType())) {
-			if (preferences.contains(BodyPreferences.SPIRIT)) {
-				weight += 2;
-			}
-		}
-		return weight;
-	}
-
-	/**
-	 * Selects a characteristic depending on its weight.
-	 */
-	private Characteristic selectCharacteristicByWeight() {
-		Integer value = new Integer((int) (rand.nextDouble() * totalWeight));
-		return weightedCharacteristics.get(weightedCharacteristics.floorKey(value));
-	}
 }
