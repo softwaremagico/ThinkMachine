@@ -37,6 +37,7 @@ import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.characteristics.Characteristic;
 import com.softwaremagico.tm.character.characteristics.CharacteristicDefinition;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
+import com.softwaremagico.tm.character.characteristics.CharacteristicType;
 import com.softwaremagico.tm.character.characteristics.CharacteristicsDefinitionFactory;
 import com.softwaremagico.tm.character.combat.CombatStyle;
 import com.softwaremagico.tm.character.combat.LearnedStance;
@@ -72,6 +73,8 @@ public class CharacterPlayer {
 
 	// Characteristics.
 	private Map<String, Characteristic> characteristics;
+
+	private transient Map<CharacteristicType, Set<Characteristic>> characteristicsByType;
 
 	// All Psi/Teurgy powers
 	private Occultism occultism;
@@ -507,8 +510,21 @@ public class CharacterPlayer {
 		return getCharacteristic(characteristicName.getId());
 	}
 
-	public Set<Characteristic> getAllCharacteristics() {
+	public Set<Characteristic> getCharacteristics() {
 		return new HashSet<Characteristic>(characteristics.values());
+	}
+
+	public Set<Characteristic> getCharacteristics(CharacteristicType characteristicType) {
+		if (characteristicsByType == null) {
+			characteristicsByType = new HashMap<>();
+		}
+		for (Characteristic characteristic : characteristics.values()) {
+			if (characteristicsByType.get(characteristic.getType()) == null) {
+				characteristicsByType.put(characteristic.getType(), new HashSet<Characteristic>());
+			}
+			characteristicsByType.get(characteristic.getType()).add(characteristic);
+		}
+		return characteristicsByType.get(characteristicType);
 	}
 
 }

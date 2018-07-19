@@ -29,12 +29,20 @@ import org.testng.annotations.Test;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.language.LanguagePool;
+import com.softwaremagico.tm.random.exceptions.DuplicatedPreferenceException;
+import com.softwaremagico.tm.random.selectors.TechnologicalPreferences;
 
 @Test(groups = { "randomCharacter" })
 public class RandomCharacterTests {
 
-	@Test
-	public void basicCharacterCreation() throws InvalidXmlElementException {
+	@Test(expectedExceptions = { DuplicatedPreferenceException.class })
+	public void preferencesCollision() throws InvalidXmlElementException, DuplicatedPreferenceException {
+		CharacterPlayer characterPlayer = new CharacterPlayer("es");
+		new RandomizeCharacter(characterPlayer, 0, TechnologicalPreferences.MEDIEVAL, TechnologicalPreferences.FUTURIST);
+	}
+
+	@Test(enabled = false)
+	public void basicCharacterCreation() throws InvalidXmlElementException, DuplicatedPreferenceException {
 		CharacterPlayer characterPlayer = new CharacterPlayer("es");
 		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0);
 		randomizeCharacter.createCharacter();

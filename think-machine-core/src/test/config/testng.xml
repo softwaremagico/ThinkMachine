@@ -21,7 +21,7 @@
 				<include name="weaponsFactory" />
 				<include name="benefitFactory" />
 				<include name="blessingFactory" />
-				<exclude name="randomCharacter" />
+				<include name="randomCharacter" />
 			</run>
 		</groups>
 		<classes>
