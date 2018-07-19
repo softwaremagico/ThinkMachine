@@ -47,6 +47,7 @@ import com.softwaremagico.tm.character.cybernetics.Device;
 import com.softwaremagico.tm.character.equipment.Armour;
 import com.softwaremagico.tm.character.equipment.Shield;
 import com.softwaremagico.tm.character.equipment.WeaponFactory;
+import com.softwaremagico.tm.character.factions.FactionsFactory;
 import com.softwaremagico.tm.character.occultism.OccultismPower;
 import com.softwaremagico.tm.character.race.Race;
 import com.softwaremagico.tm.character.race.RaceFactory;
@@ -74,7 +75,7 @@ public class CustomCharacters {
 		player.getInfo().setAge(25);
 		player.setRace(RaceFactory.getInstance().getElement("human", LANGUAGE));
 		player.getInfo().setPlanet("Ligaheim");
-		player.getInfo().setFaction("Ingeniero");
+		player.getInfo().setFaction(FactionsFactory.getInstance().getElement("engineers", LANGUAGE));
 		player.getInfo().setRank("Aprendiz");
 
 		player.getCharacteristic(CharacteristicName.STRENGTH).setValue(3);
@@ -164,7 +165,7 @@ public class CustomCharacters {
 		player.getInfo().setAge(22);
 		player.setRace(RaceFactory.getInstance().getElement("human", LANGUAGE));
 		player.getInfo().setPlanet("Leminkainen");
-		player.getInfo().setFaction("Hawkwood");
+		player.getInfo().setFaction(FactionsFactory.getInstance().getElement("hawkwood", LANGUAGE));
 		player.getInfo().setRank("Caballero");
 
 		player.getCharacteristic(CharacteristicName.STRENGTH).setValue(5);
@@ -232,7 +233,7 @@ public class CustomCharacters {
 		player.getInfo().setAge(28);
 		player.setRace(RaceFactory.getInstance().getElement("human", LANGUAGE));
 		player.getInfo().setPlanet("Byzantium Sec.");
-		player.getInfo().setFaction("Carroñero");
+		player.getInfo().setFaction(FactionsFactory.getInstance().getElement("scravers", LANGUAGE));
 		player.getInfo().setRank("Genin");
 
 		player.getCharacteristic(CharacteristicName.STRENGTH).setValue(7);
@@ -308,7 +309,7 @@ public class CustomCharacters {
 		// player.getInfo().setAge(30);
 		player.setRace(RaceFactory.getInstance().getElement("urObun", LANGUAGE));
 		player.getInfo().setPlanet("Obun");
-		player.getInfo().setFaction("Voavenlohjun");
+		player.getInfo().setFaction(FactionsFactory.getInstance().getElement("obun", LANGUAGE));
 		player.getInfo().setRank("Novicio");
 
 		player.getCharacteristic(CharacteristicName.STRENGTH).setValue(3);
@@ -382,7 +383,7 @@ public class CustomCharacters {
 		player.getInfo().setGender(Gender.FEMALE);
 		player.setRace(new Race("Gólem", 5, 5, 5, 3, 3, 6, 0, 0, 0, 6, 0, 0, 0, 0, 0));
 		player.getInfo().setPlanet("Ligaheim");
-		player.getInfo().setFaction("Ingeniero");
+		player.getInfo().setFaction(FactionsFactory.getInstance().getElement("engineers", LANGUAGE));
 		player.getInfo().setAge(1432);
 
 		player.getCharacteristic(CharacteristicName.STRENGTH).setValue(12);

@@ -21,6 +21,7 @@
 				<include name="weaponsFactory" />
 				<include name="benefitFactory" />
 				<include name="blessingFactory" />
+				<include name="factionsFactory" />
 				<include name="randomCharacter" />
 			</run>
 		</groups>

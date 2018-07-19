@@ -50,6 +50,7 @@ import com.softwaremagico.tm.character.cybernetics.Device;
 import com.softwaremagico.tm.character.equipment.Armour;
 import com.softwaremagico.tm.character.equipment.Shield;
 import com.softwaremagico.tm.character.equipment.WeaponFactory;
+import com.softwaremagico.tm.character.factions.FactionsFactory;
 import com.softwaremagico.tm.character.occultism.OccultismPower;
 import com.softwaremagico.tm.character.race.Race;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
@@ -92,7 +93,7 @@ public class CharacterSheetCreationTest {
 		player.getInfo().setAge(30);
 		player.setRace(new Race("Human", 3, 3, 3, 3, 3, 3, 3, 3, 3, 5, 0, 0, 0, 0, 0));
 		player.getInfo().setPlanet("Sutek");
-		player.getInfo().setFaction("Hazat");
+		player.getInfo().setFaction(FactionsFactory.getInstance().getElement("hazat", LANGUAGE));
 		player.getInfo().setRank("Knight");
 
 		player.getInfo().setBirthdate("4996-09-16");

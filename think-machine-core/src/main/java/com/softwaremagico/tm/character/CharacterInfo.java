@@ -26,6 +26,7 @@ package com.softwaremagico.tm.character;
 
 import java.lang.reflect.Field;
 
+import com.softwaremagico.tm.character.factions.Faction;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
 
@@ -42,7 +43,7 @@ public class CharacterInfo {
 
 	private String planet;
 
-	private String faction;
+	private Faction faction;
 
 	private String rank;
 
@@ -78,8 +79,7 @@ public class CharacterInfo {
 
 	private String getTranslation(Object parameterValue) {
 		try {
-			String xmlTag = parameterValue.toString().substring(0, 1).toLowerCase()
-					+ parameterValue.toString().substring(1);
+			String xmlTag = parameterValue.toString().substring(0, 1).toLowerCase() + parameterValue.toString().substring(1);
 			String translatedText = translator.getTranslatedText(xmlTag);
 			if (translatedText != null) {
 				return translatedText;
@@ -130,11 +130,11 @@ public class CharacterInfo {
 		this.planet = planet;
 	}
 
-	public String getFaction() {
+	public Faction getFaction() {
 		return faction;
 	}
 
-	public void setFaction(String faction) {
+	public void setFaction(Faction faction) {
 		this.faction = faction;
 	}
 
