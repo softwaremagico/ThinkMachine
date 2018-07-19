@@ -31,6 +31,7 @@ import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.FreeStyleCharacterCreation;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
+import com.softwaremagico.tm.character.factions.FactionGroup;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.character.skills.InvalidSkillException;
@@ -110,6 +111,10 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 		}
 		// Weapons only if technology is enough.
 		if (getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).getValue() < skill.getSkillDefinition().getRandomDefinition().getMinimumTechLevel()) {
+			return 0;
+		}
+
+		if (getCharacterPlayer().getInfo().getFaction().getFactionGroup() != FactionGroup.GUILD && skill.getSkillDefinition().isFromGuild()) {
 			return 0;
 		}
 
