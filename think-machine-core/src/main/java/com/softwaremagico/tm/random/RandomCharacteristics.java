@@ -35,9 +35,12 @@ import com.softwaremagico.tm.character.characteristics.CharacteristicType;
 import com.softwaremagico.tm.random.selectors.BodyPreferences;
 import com.softwaremagico.tm.random.selectors.CombatPreferences;
 import com.softwaremagico.tm.random.selectors.IRandomPreferences;
+import com.softwaremagico.tm.random.selectors.SpecializationPreferences;
 import com.softwaremagico.tm.random.selectors.TechnologicalPreferences;
 
 public class RandomCharacteristics extends RandomSelector<Characteristic> {
+	private final static int MAX_PROBABILITY = 100000;
+	private final static int GOOD_PROBABILITY = 10;
 
 	public RandomCharacteristics(CharacterPlayer characterPlayer, Set<IRandomPreferences> preferences) {
 		super(characterPlayer, preferences);
@@ -105,6 +108,26 @@ public class RandomCharacteristics extends RandomSelector<Characteristic> {
 				weight += 2;
 			}
 		}
+
+		// Specialization desired.
+		SpecializationPreferences selectedSpecialization = SpecializationPreferences.getSelected(getPreferences());
+		if (selectedSpecialization != null) {
+			int characteristicRanks = getCharacterPlayer().getCharacteristic(characteristic.getCharacteristicName()).getValue();
+			// No more that the maximum allowed.
+			if (characteristicRanks > selectedSpecialization.maximumValue()) {
+				return 0;
+			}
+			// If selected characteristic (has ranks), must have at least the
+			// minimum.
+			if (getCharacterPlayer().isCharacteristicTrained(characteristic) && characteristicRanks < selectedSpecialization.minimumValue()) {
+				return MAX_PROBABILITY;
+			}
+
+			// Good probability for values between the specialization.
+			if (characteristicRanks > selectedSpecialization.minimumValue())
+				return GOOD_PROBABILITY;
+		}
+
 		return weight;
 	}
 

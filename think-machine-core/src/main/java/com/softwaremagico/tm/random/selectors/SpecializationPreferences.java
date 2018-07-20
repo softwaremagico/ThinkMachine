@@ -1,5 +1,7 @@
 package com.softwaremagico.tm.random.selectors;
 
+import java.util.Set;
+
 /*-
  * #%L
  * Think Machine (Core)
@@ -52,6 +54,15 @@ public enum SpecializationPreferences implements IRandomPreferences {
 	@Override
 	public int minimumValue() {
 		return minimumValue;
+	}
+
+	public static SpecializationPreferences getSelected(Set<IRandomPreferences> preferences) {
+		for (IRandomPreferences preference : preferences) {
+			if (preference instanceof SpecializationPreferences) {
+				return (SpecializationPreferences) preference;
+			}
+		}
+		return null;
 	}
 
 }

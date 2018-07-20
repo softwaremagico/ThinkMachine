@@ -38,9 +38,12 @@ import com.softwaremagico.tm.character.skills.SkillDefinition;
 import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
 import com.softwaremagico.tm.log.MachineLog;
 import com.softwaremagico.tm.random.selectors.IRandomPreferences;
+import com.softwaremagico.tm.random.selectors.SpecializationPreferences;
 import com.softwaremagico.tm.random.selectors.TechnologicalPreferences;
 
 public class RandomSkills extends RandomSelector<AvailableSkill> {
+	private final static int MAX_PROBABILITY = 100000;
+	private final static int GOOD_PROBABILITY = 20;
 
 	public RandomSkills(CharacterPlayer characterPlayer, Set<IRandomPreferences> preferences) {
 		super(characterPlayer, preferences);
@@ -120,7 +123,24 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 			return 0;
 		}
 
+		// Specialization desired.
+		SpecializationPreferences selectedSpecialization = SpecializationPreferences.getSelected(getPreferences());
+		if (selectedSpecialization != null) {
+			int skillRanks = getCharacterPlayer().getSkillRanks(skill);
+			// No more that the maximum allowed.
+			if (skillRanks > selectedSpecialization.maximumValue()) {
+				return 0;
+			}
+			// If selected skill (has ranks), must have at least the minimum.
+			if (getCharacterPlayer().isSkillTrained(skill) && skillRanks < selectedSpecialization.minimumValue()) {
+				return MAX_PROBABILITY;
+			}
+
+			// Good probability for values between the specialization.
+			if (skillRanks > selectedSpecialization.minimumValue())
+				return GOOD_PROBABILITY;
+		}
+
 		return weight;
 	}
-
 }

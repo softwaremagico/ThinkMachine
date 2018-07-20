@@ -29,4 +29,5 @@ public interface IRandomPreferences {
 	public int maximumValue();
 
 	public int minimumValue();
+
 }

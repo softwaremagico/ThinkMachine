@@ -60,6 +60,7 @@ import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
 import com.softwaremagico.tm.character.skills.Specialization;
 import com.softwaremagico.tm.character.traits.Benefit;
 import com.softwaremagico.tm.character.traits.Blessing;
+import com.softwaremagico.tm.log.MachineLog;
 
 public class CharacterPlayer {
 	private final static int COMBAT_STYLE_COST = 5;
@@ -525,6 +526,21 @@ public class CharacterPlayer {
 			characteristicsByType.get(characteristic.getType()).add(characteristic);
 		}
 		return characteristicsByType.get(characteristicType);
+	}
+
+	public boolean isSkillTrained(AvailableSkill skill) {
+		int skillRanks = getSkillRanks(skill);
+		try {
+			boolean isNatural = getNaturalSkills().contains(skill);
+			return ((skillRanks > 3 && isNatural) || (skillRanks > 0 && isNatural));
+		} catch (InvalidXmlElementException e) {
+			MachineLog.errorMessage(this.getClass().getName(), e);
+		}
+		return false;
+	}
+
+	public boolean isCharacteristicTrained(Characteristic characteristic) {
+		return characteristic.getValue() > getStartingValue(characteristic.getCharacteristicName());
 	}
 
 }
