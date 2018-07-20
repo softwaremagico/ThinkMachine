@@ -56,7 +56,7 @@
 			<probability>100</probability>
 		</random>
 	</human>
-	<urObun>
+	<obun>
 		<name>
 			<en>Ur-Obun</en>
 			<es>Ur-Obun</es>
@@ -111,5 +111,5 @@
 		<random>
 			<probability>1</probability>
 		</random>
-	</urObun>
+	</obun>
 </races>

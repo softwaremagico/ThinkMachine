@@ -34,6 +34,7 @@ import com.softwaremagico.tm.character.race.Race;
 import com.softwaremagico.tm.character.race.RaceFactory;
 import com.softwaremagico.tm.log.MachineLog;
 import com.softwaremagico.tm.random.selectors.IRandomPreferences;
+import com.softwaremagico.tm.random.selectors.RacePreferences;
 
 public class RandomRace extends RandomSelector<Race> {
 
@@ -65,7 +66,14 @@ public class RandomRace extends RandomSelector<Race> {
 
 	@Override
 	protected int getWeight(Race race) {
+		// Weapons only if technology is enough.
+		// Specialization desired.
+		RacePreferences selectedSpecialization = RacePreferences.getSelected(getPreferences());
+		if (selectedSpecialization != null) {
+			if (!race.getId().equalsIgnoreCase(selectedSpecialization.name())) {
+				return 0;
+			}
+		}
 		return race.getRandomDefinition().getProbability();
 	}
-
 }

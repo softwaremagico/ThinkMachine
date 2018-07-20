@@ -307,7 +307,7 @@ public class CustomCharacters {
 		player.getInfo().setPlayer("Noelia");
 		player.getInfo().setGender(Gender.FEMALE);
 		// player.getInfo().setAge(30);
-		player.setRace(RaceFactory.getInstance().getElement("urObun", LANGUAGE));
+		player.setRace(RaceFactory.getInstance().getElement("obun", LANGUAGE));
 		player.getInfo().setPlanet("Obun");
 		player.getInfo().setFaction(FactionsFactory.getInstance().getElement("obun", LANGUAGE));
 		player.getInfo().setRank("Novicio");
