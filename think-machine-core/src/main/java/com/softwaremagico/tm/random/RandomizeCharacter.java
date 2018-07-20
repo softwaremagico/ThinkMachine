@@ -78,7 +78,7 @@ public class RandomizeCharacter {
 		preferences.add(SpecializationPreferences.FAIR);
 	}
 
-	private void initializeCharacter() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
+	protected void initializeCharacter() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
 		// Check if race is set.
 		if (characterPlayer.getRace() == null) {
 			RandomRace randomRace = new RandomRace(characterPlayer, preferences);
@@ -91,7 +91,7 @@ public class RandomizeCharacter {
 		}
 	}
 
-	private void setStartingValues() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
+	protected void setStartingValues() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
 		// Characteristics
 		RandomCharacteristics randomCharacteristics = new RandomCharacteristics(characterPlayer, preferences);
 		randomCharacteristics.spendCharacteristicsPoints();

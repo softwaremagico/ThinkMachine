@@ -56,14 +56,23 @@ public class RandomCharacterTests {
 	}
 
 	@Test
-	public void basicCharacterCreation() throws InvalidXmlElementException, DuplicatedPreferenceException, InvalidRandomElementSelectedException {
+	public void chooseRaceAndFactionTest() throws InvalidXmlElementException, DuplicatedPreferenceException, InvalidRandomElementSelectedException {
 		CharacterPlayer characterPlayer = new CharacterPlayer("es");
 		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0, RacePreferences.HUMAN, FactionPreferences.NOBILITY);
-		randomizeCharacter.createCharacter();
+		randomizeCharacter.initializeCharacter();
 
 		Assert.assertEquals(characterPlayer.getInfo().getFaction().getFactionGroup(), FactionGroup.NOBILITY);
 		Assert.assertEquals(characterPlayer.getRace(), RaceFactory.getInstance().getElement(RacePreferences.HUMAN.name(), "es"));
+	}
 
+	@Test
+	public void chooseRaceAndFactionTestXeno() throws InvalidXmlElementException, DuplicatedPreferenceException, InvalidRandomElementSelectedException {
+		CharacterPlayer characterPlayer = new CharacterPlayer("es");
+		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0, RacePreferences.OBUN, FactionPreferences.GUILD);
+		randomizeCharacter.initializeCharacter();
+
+		Assert.assertEquals(characterPlayer.getInfo().getFaction().getFactionGroup(), FactionGroup.GUILD);
+		Assert.assertEquals(characterPlayer.getRace(), RaceFactory.getInstance().getElement(RacePreferences.OBUN.name(), "es"));
 	}
 
 	@Test
