@@ -120,7 +120,7 @@ public class SkillsTable extends BaseElement {
 				+ (availableSkill.getSkillDefinition().isNatural() ? DEFAULT_NATURAL_SKILL_VALUE : ""), fontSize);
 		paragraph.add(new Paragraph(availableSkill.getName() + " [", new Font(font, fontSize)));
 		if (characterPlayer != null && characterPlayer.getSelectedSkill(availableSkill) == null) {
-			if (availableSkill.getSpecialization() != null) {
+			if (availableSkill.getSpecialization() != null && availableSkill.getSpecialization().getName() != null) {
 				paragraph.add(new Paragraph(CellUtils.getSubStringFitsIn(availableSkill.getSpecialization().getName(), FadingSunsTheme.getHandwrittingFont(),
 						FadingSunsTheme.getHandWrittingFontSize(fontSize), maxColumnWidth - usedWidth), new Font(FadingSunsTheme.getHandwrittingFont(),
 						FadingSunsTheme.getHandWrittingFontSize(fontSize))));

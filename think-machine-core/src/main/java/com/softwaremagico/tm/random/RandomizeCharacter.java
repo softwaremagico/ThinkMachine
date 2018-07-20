@@ -25,7 +25,6 @@ package com.softwaremagico.tm.random;
  */
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -63,7 +62,7 @@ public class RandomizeCharacter {
 
 	public void createCharacter() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
 		setDefaultPreferences();
-		initializeCharacter();
+		setCharacterDefinition();
 		setStartingValues();
 		// Expend XP if any.
 		spendExperiencePoints();
@@ -78,7 +77,7 @@ public class RandomizeCharacter {
 		preferences.add(SpecializationPreferences.FAIR);
 	}
 
-	protected void initializeCharacter() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
+	protected void setCharacterDefinition() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
 		// Check if race is set.
 		if (characterPlayer.getRace() == null) {
 			RandomRace randomRace = new RandomRace(characterPlayer, preferences);

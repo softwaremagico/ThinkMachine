@@ -59,7 +59,7 @@ public class RandomCharacterTests {
 	public void chooseRaceAndFactionTest() throws InvalidXmlElementException, DuplicatedPreferenceException, InvalidRandomElementSelectedException {
 		CharacterPlayer characterPlayer = new CharacterPlayer("es");
 		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0, RacePreferences.HUMAN, FactionPreferences.NOBILITY);
-		randomizeCharacter.initializeCharacter();
+		randomizeCharacter.setCharacterDefinition();
 
 		Assert.assertEquals(characterPlayer.getInfo().getFaction().getFactionGroup(), FactionGroup.NOBILITY);
 		Assert.assertEquals(characterPlayer.getRace(), RaceFactory.getInstance().getElement(RacePreferences.HUMAN.name(), "es"));
@@ -69,7 +69,7 @@ public class RandomCharacterTests {
 	public void chooseRaceAndFactionTestXeno() throws InvalidXmlElementException, DuplicatedPreferenceException, InvalidRandomElementSelectedException {
 		CharacterPlayer characterPlayer = new CharacterPlayer("es");
 		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0, RacePreferences.OBUN, FactionPreferences.GUILD);
-		randomizeCharacter.initializeCharacter();
+		randomizeCharacter.setCharacterDefinition();
 
 		Assert.assertEquals(characterPlayer.getInfo().getFaction().getFactionGroup(), FactionGroup.GUILD);
 		Assert.assertEquals(characterPlayer.getRace(), RaceFactory.getInstance().getElement(RacePreferences.OBUN.name(), "es"));
@@ -79,5 +79,14 @@ public class RandomCharacterTests {
 	public void readRandomSkillConfiguration() throws InvalidXmlElementException, DuplicatedPreferenceException {
 		SkillDefinition skillDefinition = SkillsDefinitionsFactory.getInstance().get("energyGuns", "en");
 		Assert.assertEquals(skillDefinition.getRandomDefinition().getMinimumTechLevel(), 5);
+	}
+
+	@Test
+	public void completeRandomCharacter() throws InvalidXmlElementException, DuplicatedPreferenceException, InvalidRandomElementSelectedException {
+		CharacterPlayer characterPlayer = new CharacterPlayer("es");
+		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0);
+		randomizeCharacter.createCharacter();
+		// Assert.assertEquals(CostCalculator.getCost(characterPlayer),
+		// FreeStyleCharacterCreation.FREE_AVAILABLE_POINTS);
 	}
 }
