@@ -115,7 +115,7 @@
 			<es>Ciencia Aplicada</es>
 		</name>
 		<group>science</group>
-		<guildSkill>true</guildSkill>
+		<factionSkill>engineers</factionSkill>
 		<random>
 			<techlevel>2</techlevel>
 		</random>
@@ -136,7 +136,7 @@
 			<es>Ciencia de la Física</es>
 		</name>
 		<group>science</group>
-		<guildSkill>true</guildSkill>
+		<factionSkill>engineers</factionSkill>
 		<random>
 			<techlevel>2</techlevel>
 		</random>
@@ -147,7 +147,7 @@
 			<es>Ciencia de la Vida</es>
 		</name>
 		<group>science</group>
-		<guildSkill>true</guildSkill>
+		<factionSkill>engineers</factionSkill>
 		<random>
 			<techlevel>2</techlevel>
 		</random>
@@ -158,7 +158,7 @@
 			<es>Terraformismo</es>
 		</name>
 		<group>science</group>
-		<guildSkill>true</guildSkill>
+		<factionSkill>engineers</factionSkill>
 		<random>
 			<techlevel>5</techlevel>
 		</random>
@@ -274,7 +274,7 @@
 			<es>Controlar Nave Espacial</es>
 		</name>
 		<group>control</group>
-		<guildSkill>true</guildSkill>
+		<factionSkill>charioteers</factionSkill>
 		<random>
 			<techlevel>5</techlevel>
 		</random>
@@ -492,7 +492,7 @@
 			<en>Spacecraft Operations</en>
 			<es>Mantenimiento de Naves</es>
 		</name>
-		<guildSkill>true</guildSkill>
+		<factionSkill>engineers</factionSkill>
 		<group>technical</group>
 		<random>
 			<techlevel>5</techlevel>
@@ -503,7 +503,7 @@
 			<en>Tech Redemption</en>
 			<es>Recuperación Tecnológic.</es>
 		</name>
-		<guildSkill>true</guildSkill>
+		<factionSkill>engineers</factionSkill>
 		<group>technical</group>
 		<random>
 			<techlevel>3</techlevel>
@@ -514,7 +514,7 @@
 			<en>Think Machine</en>
 			<es>Máquina Pensante</es>
 		</name>
-		<guildSkill>true</guildSkill>
+		<factionSkill>engineers</factionSkill>
 		<group>technical</group>
 		<random>
 			<techlevel>4</techlevel>

@@ -31,7 +31,6 @@ import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.FreeStyleCharacterCreation;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
-import com.softwaremagico.tm.character.factions.FactionGroup;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.character.skills.InvalidSkillException;
@@ -106,6 +105,8 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 
 	@Override
 	protected int getWeight(AvailableSkill skill) {
+		int weight = 1;
+
 		if (skill == null) {
 			return 0;
 		}
@@ -114,11 +115,11 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 			return 0;
 		}
 
-		if (getCharacterPlayer().getInfo().getFaction().getFactionGroup() != FactionGroup.GUILD && skill.getSkillDefinition().isFromGuild()) {
+		// No faction skills
+		if (skill.getSkillDefinition().isLimitedToFaction() && !skill.getSkillDefinition().getFactions().contains(getCharacterPlayer().getInfo().getFaction())) {
 			return 0;
 		}
 
-		int weight = 1;
 		return weight;
 	}
 

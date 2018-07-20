@@ -93,13 +93,13 @@ public class SkillsTable extends BaseElement {
 		Paragraph paragraph = new Paragraph();
 		// Add number first to calculate length.
 		if (availableSkill.getSpecialization() != null) {
-			if (availableSkill.getSkillDefinition().isFromGuild()) {
+			if (availableSkill.getSkillDefinition().isLimitedToFaction()) {
 				paragraph.add(createSpecializedSkill(characterPlayer, availableSkill, FadingSunsTheme.getLineItalicFont(), fontSize, maxColumnWidth));
 			} else {
 				paragraph.add(createSpecializedSkill(characterPlayer, availableSkill, FadingSunsTheme.getLineFont(), fontSize, maxColumnWidth));
 			}
 		} else {
-			if (availableSkill.getSkillDefinition().isFromGuild()) {
+			if (availableSkill.getSkillDefinition().isLimitedToFaction()) {
 				paragraph.add(new Paragraph(availableSkill.getName(), new Font(FadingSunsTheme.getLineItalicFont(), fontSize)));
 			} else {
 				paragraph.add(new Paragraph(availableSkill.getName(), new Font(FadingSunsTheme.getLineFont(), fontSize)));
@@ -142,13 +142,13 @@ public class SkillsTable extends BaseElement {
 		Paragraph paragraph = new Paragraph();
 		// Add number first to calculate length.
 		if (skillDefinition.isSpecializable()) {
-			if (skillDefinition.isFromGuild()) {
+			if (skillDefinition.isLimitedToFaction()) {
 				paragraph.add(createSpecializedSkill(skillDefinition, FadingSunsTheme.getLineItalicFont(), fontSize, maxColumnWidth));
 			} else {
 				paragraph.add(createSpecializedSkill(skillDefinition, FadingSunsTheme.getLineFont(), fontSize, maxColumnWidth));
 			}
 		} else {
-			if (skillDefinition.isFromGuild()) {
+			if (skillDefinition.isLimitedToFaction()) {
 				paragraph.add(new Paragraph(skillDefinition.getName(), new Font(FadingSunsTheme.getLineItalicFont(), fontSize)));
 			} else {
 				paragraph.add(new Paragraph(skillDefinition.getName(), new Font(FadingSunsTheme.getLineFont(), fontSize)));

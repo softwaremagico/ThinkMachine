@@ -32,9 +32,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
+import java.util.StringTokenizer;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
+import com.softwaremagico.tm.character.factions.FactionsFactory;
 import com.softwaremagico.tm.character.traits.InvalidBlessingException;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
@@ -44,7 +46,7 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 	private final static ITranslator translatorSkill = LanguagePool.getTranslator("skills.xml");
 
 	private final static String NAME = "name";
-	private final static String GUILD_SKILL_TAG = "guildSkill";
+	private final static String FACTION_SKILL_TAG = "factionSkill";
 	private final static String SPECIALIZABLE_SKILL_TAG = "specializations";
 	private final static String GROUP_SKILL_TAG = "group";
 	private final static String NATURAL_SKILL_TAG = "natural";
@@ -160,8 +162,13 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 			} catch (NumberFormatException nfe) {
 				throw new InvalidSkillException("Invalid number value for skill '" + skillId + "'.");
 			}
-			String guildSkill = translator.getNodeValue(skillId, GUILD_SKILL_TAG);
-			skill.setFromGuild(Boolean.parseBoolean(guildSkill));
+			String factionSkill = translator.getNodeValue(skillId, FACTION_SKILL_TAG);
+			if (factionSkill != null) {
+				StringTokenizer factionsOfSkill = new StringTokenizer(factionSkill, ",");
+				while (factionsOfSkill.hasMoreTokens())
+					skill.addFaction(FactionsFactory.getInstance().getElement(factionsOfSkill.nextToken(), language));
+			}
+
 			String group = translator.getNodeValue(skillId, GROUP_SKILL_TAG);
 			skill.setSkillGroup(SkillGroup.getSkillGroup(group));
 
