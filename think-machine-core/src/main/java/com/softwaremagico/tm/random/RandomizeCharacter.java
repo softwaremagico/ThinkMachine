@@ -31,9 +31,10 @@ import java.util.Set;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.character.race.InvalidRaceException;
 import com.softwaremagico.tm.random.exceptions.DuplicatedPreferenceException;
+import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.IRandomPreferences;
+import com.softwaremagico.tm.random.selectors.SpecializationPreferences;
 
 public class RandomizeCharacter {
 	private CharacterPlayer characterPlayer;
@@ -44,7 +45,7 @@ public class RandomizeCharacter {
 	public RandomizeCharacter(CharacterPlayer characterPlayer, int experiencePoints, IRandomPreferences... preferences) throws DuplicatedPreferenceException {
 		this.characterPlayer = characterPlayer;
 		this.experiencePoints = experiencePoints;
-		this.preferences = Collections.unmodifiableSet(new HashSet<>(Arrays.asList(preferences)));
+		this.preferences = new HashSet<>(Arrays.asList(preferences));
 
 		checkValidPreferences();
 	}
@@ -60,22 +61,37 @@ public class RandomizeCharacter {
 		}
 	}
 
-	public void createCharacter() throws InvalidXmlElementException {
+	public void createCharacter() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
+		setDefaultPreferences();
 		initializeCharacter();
 		setStartingValues();
 		// Expend XP if any.
 		spendExperiencePoints();
 	}
 
-	private void initializeCharacter() throws InvalidRaceException {
+	private void setDefaultPreferences() {
+		// Point distribution is "Fair" by default.
+		SpecializationPreferences selectedSpecialization = SpecializationPreferences.getSelected(preferences);
+		if (selectedSpecialization == null) {
+			selectedSpecialization = SpecializationPreferences.FAIR;
+		}
+		preferences.add(SpecializationPreferences.FAIR);
+	}
+
+	private void initializeCharacter() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
 		// Check if race is set.
 		if (characterPlayer.getRace() == null) {
 			RandomRace randomRace = new RandomRace(characterPlayer, preferences);
 			randomRace.assignRace();
 		}
+
+		if (characterPlayer.getInfo().getFaction() == null) {
+			RandomFaction randomFaction = new RandomFaction(characterPlayer, preferences);
+			randomFaction.assignFaction();
+		}
 	}
 
-	private void setStartingValues() {
+	private void setStartingValues() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
 		// Characteristics
 		RandomCharacteristics randomCharacteristics = new RandomCharacteristics(characterPlayer, preferences);
 		randomCharacteristics.spendCharacteristicsPoints();

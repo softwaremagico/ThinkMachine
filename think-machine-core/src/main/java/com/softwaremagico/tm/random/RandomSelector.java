@@ -28,8 +28,10 @@ import java.util.Random;
 import java.util.Set;
 import java.util.TreeMap;
 
+import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.log.MachineLog;
+import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.IRandomPreferences;
 
 public abstract class RandomSelector<Element extends com.softwaremagico.tm.Element<?>> {
@@ -41,7 +43,7 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
 	private final TreeMap<Integer, Element> weightedElements;
 	private final int totalWeight;
 
-	protected RandomSelector(CharacterPlayer characterPlayer, Set<IRandomPreferences> preferences) {
+	protected RandomSelector(CharacterPlayer characterPlayer, Set<IRandomPreferences> preferences) throws InvalidXmlElementException {
 		this.characterPlayer = characterPlayer;
 		this.preferences = preferences;
 		weightedElements = assignElementsWeight();
@@ -64,7 +66,7 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
 		return preferences;
 	}
 
-	protected abstract TreeMap<Integer, Element> assignElementsWeight();
+	protected abstract TreeMap<Integer, Element> assignElementsWeight() throws InvalidXmlElementException;
 
 	/**
 	 * Assign a weight to an element depending on the preferences selected.
@@ -77,12 +79,19 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
 
 	/**
 	 * Selects a characteristic depending on its weight.
+	 * 
+	 * @throws InvalidRandomElementSelectedException
 	 */
-	protected Element selectElementByWeight() {
+	protected Element selectElementByWeight() throws InvalidRandomElementSelectedException {
 		Integer value = new Integer((int) (rand.nextDouble() * totalWeight));
-		Element selectedElement = weightedElements.get(weightedElements.floorKey(value));
-		MachineLog.debug(this.getClass().getName(), "Selected element is '" + selectedElement.getName() + "'.");
-		return selectedElement;
+		for (Integer key : weightedElements.keySet()) {
+			value -= key;
+			if (value <= 0) {
+				MachineLog.debug(this.getClass().getName(), "Selected element is '" + weightedElements.get(key) + "'.");
+				return weightedElements.get(key);
+			}
+		}
+		throw new InvalidRandomElementSelectedException("Random value obtained is '" + value + "' and elements are '" + weightedElements + "'");
 	}
 
 }

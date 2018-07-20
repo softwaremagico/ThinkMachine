@@ -106,8 +106,7 @@ public class CharacterPlayer {
 	private int experience = 0;
 
 	public CharacterPlayer() {
-		language = "en";
-		reset();
+		this("en");
 	}
 
 	public CharacterPlayer(String language) {

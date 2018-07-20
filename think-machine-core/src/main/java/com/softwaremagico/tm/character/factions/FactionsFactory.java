@@ -77,8 +77,8 @@ public class FactionsFactory extends XmlFactory<Faction> {
 			Faction faction = new Faction(factionId, name, factionGroup);
 			return faction;
 		} catch (Exception e) {
+			e.printStackTrace();
 			throw new InvalidFactionException("Invalid name in faction '" + factionId + "'.");
 		}
 	}
-
 }

@@ -25,18 +25,29 @@ package com.softwaremagico.tm.random;
  */
 
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.character.factions.FactionGroup;
+import com.softwaremagico.tm.character.race.RaceFactory;
 import com.softwaremagico.tm.character.skills.SkillDefinition;
 import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
 import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.random.exceptions.DuplicatedPreferenceException;
+import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
+import com.softwaremagico.tm.random.selectors.FactionPreferences;
+import com.softwaremagico.tm.random.selectors.RacePreferences;
 import com.softwaremagico.tm.random.selectors.TechnologicalPreferences;
 
 @Test(groups = { "randomCharacter" })
 public class RandomCharacterTests {
+
+	@AfterMethod
+	public void clearCache() {
+		LanguagePool.clearCache();
+	}
 
 	@Test(expectedExceptions = { DuplicatedPreferenceException.class })
 	public void preferencesCollision() throws InvalidXmlElementException, DuplicatedPreferenceException {
@@ -44,13 +55,15 @@ public class RandomCharacterTests {
 		new RandomizeCharacter(characterPlayer, 0, TechnologicalPreferences.MEDIEVAL, TechnologicalPreferences.FUTURIST);
 	}
 
-	@Test(enabled = false)
-	public void basicCharacterCreation() throws InvalidXmlElementException, DuplicatedPreferenceException {
+	@Test
+	public void basicCharacterCreation() throws InvalidXmlElementException, DuplicatedPreferenceException, InvalidRandomElementSelectedException {
 		CharacterPlayer characterPlayer = new CharacterPlayer("es");
-		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0);
+		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0, RacePreferences.HUMAN, FactionPreferences.NOBILITY);
 		randomizeCharacter.createCharacter();
 
-		LanguagePool.clearCache();
+		Assert.assertEquals(characterPlayer.getInfo().getFaction().getFactionGroup(), FactionGroup.NOBILITY);
+		Assert.assertEquals(characterPlayer.getRace(), RaceFactory.getInstance().getElement(RacePreferences.HUMAN.name(), "es"));
+
 	}
 
 	@Test

@@ -33,10 +33,9 @@ import com.softwaremagico.tm.character.FreeStyleCharacterCreation;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
-import com.softwaremagico.tm.character.skills.InvalidSkillException;
 import com.softwaremagico.tm.character.skills.SkillDefinition;
 import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
-import com.softwaremagico.tm.log.MachineLog;
+import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.IRandomPreferences;
 import com.softwaremagico.tm.random.selectors.SpecializationPreferences;
 import com.softwaremagico.tm.random.selectors.TechnologicalPreferences;
@@ -45,33 +44,26 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 	private final static int MAX_PROBABILITY = 100000;
 	private final static int GOOD_PROBABILITY = 20;
 
-	public RandomSkills(CharacterPlayer characterPlayer, Set<IRandomPreferences> preferences) {
+	public RandomSkills(CharacterPlayer characterPlayer, Set<IRandomPreferences> preferences) throws InvalidXmlElementException {
 		super(characterPlayer, preferences);
 	}
 
-	public void spendSkillsPoints() {
+	public void spendSkillsPoints() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
 		// Set minimum values of characteristics.
 		assignMinimumValuesOfSkills();
 
 		// Assign random values by weight
-		try {
-			while (getCharacterPlayer().getSkillsTotalPoints() < FreeStyleCharacterCreation.SKILLS_POINTS) {
-				AvailableSkill selectedSkill = selectElementByWeight();
+		while (getCharacterPlayer().getSkillsTotalPoints() < FreeStyleCharacterCreation.SKILLS_POINTS) {
+			AvailableSkill selectedSkill = selectElementByWeight();
 
-				int value = 0;
-				if (getCharacterPlayer().getSkillRanks(selectedSkill) != null) {
-					value = getCharacterPlayer().getSkillRanks(selectedSkill);
-				}
-				if (value < FreeStyleCharacterCreation.MAX_INITIAL_SKILL_VALUE) {
-					try {
-						getCharacterPlayer().setSkillRank(selectedSkill, value);
-					} catch (InvalidSkillException e) {
-						MachineLog.errorMessage(this.getClass().getName(), e);
-					}
-				}
+			int value = 0;
+			if (getCharacterPlayer().getSkillRanks(selectedSkill) != null) {
+				value = getCharacterPlayer().getSkillRanks(selectedSkill);
 			}
-		} catch (InvalidXmlElementException e) {
-			MachineLog.errorMessage(this.getClass().getName(), e);
+			if (value < FreeStyleCharacterCreation.MAX_INITIAL_SKILL_VALUE) {
+				getCharacterPlayer().setSkillRank(selectedSkill, value + 1);
+				assignElementsWeight();
+			}
 		}
 	}
 
@@ -84,21 +76,17 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 	}
 
 	@Override
-	protected TreeMap<Integer, AvailableSkill> assignElementsWeight() {
+	protected TreeMap<Integer, AvailableSkill> assignElementsWeight() throws InvalidXmlElementException {
 		TreeMap<Integer, AvailableSkill> weightedSkills = new TreeMap<>();
 		int count = 0;
 
 		for (SkillDefinition skillDefinition : SkillsDefinitionsFactory.getInstance().getLearnedSkills(getCharacterPlayer().getLanguage())) {
-			try {
-				for (AvailableSkill skill : AvailableSkillsFactory.getInstance().getAvailableSkills(skillDefinition, getCharacterPlayer().getLanguage())) {
-					int weight = getWeight(skill);
-					if (weight > 0) {
-						weightedSkills.put(count, skill);
-						count += weight;
-					}
+			for (AvailableSkill skill : AvailableSkillsFactory.getInstance().getAvailableSkills(skillDefinition, getCharacterPlayer().getLanguage())) {
+				int weight = getWeight(skill);
+				if (weight > 0) {
+					weightedSkills.put(count, skill);
+					count += weight;
 				}
-			} catch (InvalidXmlElementException e) {
-				MachineLog.errorMessage(this.getClass().getName(), e);
 			}
 		}
 
@@ -136,10 +124,10 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 			}
 
 			// Good probability for values between the specialization.
-			if (skillRanks > selectedSpecialization.minimumValue())
+			if (skillRanks > selectedSpecialization.minimumValue()) {
 				return GOOD_PROBABILITY;
+			}
 		}
-
 		return weight;
 	}
 }

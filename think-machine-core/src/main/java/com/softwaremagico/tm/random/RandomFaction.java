@@ -29,47 +29,51 @@ import java.util.TreeMap;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.character.factions.Faction;
+import com.softwaremagico.tm.character.factions.FactionsFactory;
 import com.softwaremagico.tm.character.race.InvalidRaceException;
-import com.softwaremagico.tm.character.race.Race;
-import com.softwaremagico.tm.character.race.RaceFactory;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
+import com.softwaremagico.tm.random.selectors.FactionPreferences;
 import com.softwaremagico.tm.random.selectors.IRandomPreferences;
-import com.softwaremagico.tm.random.selectors.RacePreferences;
 
-public class RandomRace extends RandomSelector<Race> {
+public class RandomFaction extends RandomSelector<Faction> {
 
-	protected RandomRace(CharacterPlayer characterPlayer, Set<IRandomPreferences> preferences) throws InvalidXmlElementException {
+	protected RandomFaction(CharacterPlayer characterPlayer, Set<IRandomPreferences> preferences) throws InvalidXmlElementException {
 		super(characterPlayer, preferences);
 	}
 
-	public void assignRace() throws InvalidRaceException, InvalidRandomElementSelectedException {
-		getCharacterPlayer().setRace(selectElementByWeight());
+	public void assignFaction() throws InvalidRaceException, InvalidRandomElementSelectedException {
+		getCharacterPlayer().getInfo().setFaction(selectElementByWeight());
 	}
 
 	@Override
-	protected TreeMap<Integer, Race> assignElementsWeight() throws InvalidXmlElementException {
-		TreeMap<Integer, Race> weightedRaces = new TreeMap<>();
+	protected TreeMap<Integer, Faction> assignElementsWeight() throws InvalidXmlElementException {
+		TreeMap<Integer, Faction> weightedFactions = new TreeMap<>();
 		int count = 0;
-		for (Race race : RaceFactory.getInstance().getElements(getCharacterPlayer().getLanguage())) {
-			int weight = getWeight(race);
+		for (Faction faction : FactionsFactory.getInstance().getElements(getCharacterPlayer().getLanguage())) {
+			int weight = getWeight(faction);
 			if (weight > 0) {
-				weightedRaces.put(count, race);
+				weightedFactions.put(count, faction);
 				count += weight;
 			}
 		}
-		return weightedRaces;
+		return weightedFactions;
 	}
 
 	@Override
-	protected int getWeight(Race race) {
+	protected int getWeight(Faction faction) {
 		// Weapons only if technology is enough.
 		// Specialization desired.
-		RacePreferences selectedSpecialization = RacePreferences.getSelected(getPreferences());
-		if (selectedSpecialization != null) {
-			if (!race.getId().equalsIgnoreCase(selectedSpecialization.name())) {
-				return 0;
+		FactionPreferences selectedFactionGroup = FactionPreferences.getSelected(getPreferences());
+		if (selectedFactionGroup != null) {
+			if (faction.getFactionGroup() != null && faction.getFactionGroup().name().equalsIgnoreCase(selectedFactionGroup.name())) {
+				return 1;
 			}
+			// Different faction than selected.
+			return 0;
 		}
-		return race.getRandomDefinition().getProbability();
+		// No faction preference selected. All factions has the same
+		// probability.
+		return 1;
 	}
 }

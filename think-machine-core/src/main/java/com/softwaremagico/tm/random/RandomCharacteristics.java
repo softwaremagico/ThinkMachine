@@ -27,11 +27,13 @@ package com.softwaremagico.tm.random;
 import java.util.Set;
 import java.util.TreeMap;
 
+import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.FreeStyleCharacterCreation;
 import com.softwaremagico.tm.character.characteristics.Characteristic;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.characteristics.CharacteristicType;
+import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.BodyPreferences;
 import com.softwaremagico.tm.random.selectors.CombatPreferences;
 import com.softwaremagico.tm.random.selectors.IRandomPreferences;
@@ -42,11 +44,11 @@ public class RandomCharacteristics extends RandomSelector<Characteristic> {
 	private final static int MAX_PROBABILITY = 100000;
 	private final static int GOOD_PROBABILITY = 10;
 
-	public RandomCharacteristics(CharacterPlayer characterPlayer, Set<IRandomPreferences> preferences) {
+	public RandomCharacteristics(CharacterPlayer characterPlayer, Set<IRandomPreferences> preferences) throws InvalidXmlElementException {
 		super(characterPlayer, preferences);
 	}
 
-	public void spendCharacteristicsPoints() {
+	public void spendCharacteristicsPoints() throws InvalidRandomElementSelectedException {
 		// Set minimum values of characteristics.
 		assignMinimumValuesOfCharacteristics();
 
