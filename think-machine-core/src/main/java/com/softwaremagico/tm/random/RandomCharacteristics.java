@@ -44,7 +44,6 @@ public class RandomCharacteristics extends RandomSelector<Characteristic> {
 
 	public RandomCharacteristics(CharacterPlayer characterPlayer, Set<IRandomPreferences> preferences) {
 		super(characterPlayer, preferences);
-		spendCharacteristicsPoints();
 	}
 
 	public void spendCharacteristicsPoints() {

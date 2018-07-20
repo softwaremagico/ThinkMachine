@@ -31,6 +31,7 @@ import java.util.Set;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.character.race.InvalidRaceException;
 import com.softwaremagico.tm.random.exceptions.DuplicatedPreferenceException;
 import com.softwaremagico.tm.random.selectors.IRandomPreferences;
 
@@ -61,20 +62,26 @@ public class RandomizeCharacter {
 
 	public void createCharacter() throws InvalidXmlElementException {
 		initializeCharacter();
+		setStartingValues();
+		// Expend XP if any.
+		spendExperiencePoints();
+	}
+
+	private void initializeCharacter() throws InvalidRaceException {
+		// Check if race is set.
+		if (characterPlayer.getRace() == null) {
+			RandomRace randomRace = new RandomRace(characterPlayer, preferences);
+			randomRace.assignRace();
+		}
+	}
+
+	private void setStartingValues() {
 		// Characteristics
 		RandomCharacteristics randomCharacteristics = new RandomCharacteristics(characterPlayer, preferences);
 		randomCharacteristics.spendCharacteristicsPoints();
 		// Skills
 		RandomSkills randomSkills = new RandomSkills(characterPlayer, preferences);
 		randomSkills.spendSkillsPoints();
-		spendExperiencePoints();
-	}
-
-	private void initializeCharacter() {
-		// Check if race is set.
-		if (characterPlayer.getRace() == null) {
-
-		}
 	}
 
 	private void spendExperiencePoints() {

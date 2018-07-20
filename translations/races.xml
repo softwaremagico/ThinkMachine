@@ -52,6 +52,9 @@
 		<urge>0</urge>
 		<theurgy>0</theurgy>
 		<hubris>0</hubris>
+		<random>
+			<probability>100</probability>
+		</random>
 	</human>
 	<urObun>
 		<name>
@@ -105,5 +108,8 @@
 		<urge>0</urge>
 		<theurgy>1</theurgy>
 		<hubris>0</hubris>
+		<random>
+			<probability>1</probability>
+		</random>
 	</urObun>
 </races>

@@ -227,7 +227,7 @@ public class CustomCharacters {
 	@Test
 	public void createCarlosCharacter() throws MalformedURLException, DocumentException, IOException, InvalidXmlElementException {
 		CharacterPlayer player = new CharacterPlayer(LANGUAGE);
-		player.getInfo().setName("");
+		player.getInfo().setName("Carlos");
 		player.getInfo().setPlayer("Carlos");
 		player.getInfo().setGender(Gender.MALE);
 		player.getInfo().setAge(28);
@@ -303,7 +303,7 @@ public class CustomCharacters {
 	@Test
 	public void createNoeliaCharacer() throws MalformedURLException, DocumentException, IOException, InvalidXmlElementException {
 		CharacterPlayer player = new CharacterPlayer(LANGUAGE);
-		player.getInfo().setName("");
+		player.getInfo().setName("Noelia");
 		player.getInfo().setPlayer("Noelia");
 		player.getInfo().setGender(Gender.FEMALE);
 		// player.getInfo().setAge(30);

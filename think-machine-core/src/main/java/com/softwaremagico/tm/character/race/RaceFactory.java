@@ -34,6 +34,8 @@ import com.softwaremagico.tm.language.LanguagePool;
 
 public class RaceFactory extends XmlFactory<Race> {
 	private final static ITranslator translatorRace = LanguagePool.getTranslator("races.xml");
+	private final static String RANDOM = "random";
+	private final static String RACE_PROBABILITY = "probability";
 
 	private final static String NAME = "name";
 	private final static String MAX_VALUE = "maximumValue";
@@ -116,6 +118,16 @@ public class RaceFactory extends XmlFactory<Race> {
 			race.setHubris(Integer.parseInt(hubris));
 		} catch (Exception e) {
 			throw new InvalidRaceException("Invalid hubris value in race '" + raceId + "'.");
+		}
+		try {
+			String raceProbability = translator.getNodeValue(raceId, RANDOM, RACE_PROBABILITY);
+			if (raceProbability != null) {
+				race.getRandomDefinition().setProbability(Integer.parseInt(raceProbability));
+			} else {
+				race.getRandomDefinition().setProbability(1);
+			}
+		} catch (NumberFormatException nfe) {
+			throw new InvalidRaceException("Invalid number value for race probability in '" + raceId + "'.");
 		}
 		return race;
 

@@ -47,7 +47,6 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 
 	public RandomSkills(CharacterPlayer characterPlayer, Set<IRandomPreferences> preferences) {
 		super(characterPlayer, preferences);
-		spendSkillsPoints();
 	}
 
 	public void spendSkillsPoints() {
