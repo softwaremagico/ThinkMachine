@@ -27,11 +27,11 @@ package com.softwaremagico.tm.random;
 import java.util.Map.Entry;
 import java.util.Random;
 import java.util.Set;
+import java.util.SortedMap;
 import java.util.TreeMap;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.log.MachineLog;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.IRandomPreferences;
 
@@ -52,11 +52,7 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
 	}
 
 	private Integer assignTotalWeight() {
-		int totalWeight = 0;
-		for (Integer value : weightedElements.keySet()) {
-			totalWeight += value;
-		}
-		return totalWeight;
+		return weightedElements.lastKey();
 	}
 
 	protected CharacterPlayer getCharacterPlayer() {
@@ -84,19 +80,13 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
 	 * @throws InvalidRandomElementSelectedException
 	 */
 	protected Element selectElementByWeight() throws InvalidRandomElementSelectedException {
-		Integer value = new Integer((int) (rand.nextDouble() * (totalWeight + 1)));
+		int value = rand.nextInt(totalWeight) + 1;
 		if (weightedElements == null || weightedElements.isEmpty()) {
 			throw new InvalidRandomElementSelectedException("No elements to select");
 		}
 		Element selectedElement = weightedElements.values().iterator().next();
-		for (Integer key : weightedElements.keySet()) {
-			value -= key;
-			if (value < 0) {
-				MachineLog.debug(this.getClass().getName(), "Selected element is '" + selectedElement + "'.");
-				return selectedElement;
-			}
-			selectedElement = weightedElements.get(key);
-		}
+		SortedMap<Integer, Element> view = weightedElements.headMap(value, true);
+		selectedElement = view.get(view.lastKey());
 		return selectedElement;
 	}
 

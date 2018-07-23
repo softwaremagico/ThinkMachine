@@ -77,7 +77,7 @@ public class RandomCharacteristics extends RandomSelector<Characteristic> {
 	@Override
 	protected TreeMap<Integer, Characteristic> assignElementsWeight() {
 		TreeMap<Integer, Characteristic> weightedCharacteristics = new TreeMap<>();
-		int count = 0;
+		int count = 1;
 
 		for (Characteristic characteristic : getCharacterPlayer().getCharacteristics()) {
 			int weight = getWeight(characteristic);

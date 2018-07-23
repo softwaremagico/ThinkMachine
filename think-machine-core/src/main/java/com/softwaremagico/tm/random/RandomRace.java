@@ -49,7 +49,7 @@ public class RandomRace extends RandomSelector<Race> {
 	@Override
 	protected TreeMap<Integer, Race> assignElementsWeight() throws InvalidXmlElementException {
 		TreeMap<Integer, Race> weightedRaces = new TreeMap<>();
-		int count = 0;
+		int count = 1;
 		for (Race race : RaceFactory.getInstance().getElements(getCharacterPlayer().getLanguage())) {
 			int weight = getWeight(race);
 			if (weight > 0) {

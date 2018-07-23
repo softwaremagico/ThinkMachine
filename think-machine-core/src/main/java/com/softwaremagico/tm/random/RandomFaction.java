@@ -50,7 +50,7 @@ public class RandomFaction extends RandomSelector<Faction> {
 	@Override
 	protected TreeMap<Integer, Faction> assignElementsWeight() throws InvalidXmlElementException {
 		TreeMap<Integer, Faction> weightedFactions = new TreeMap<>();
-		int count = 0;
+		int count = 1;
 		for (Faction faction : FactionsFactory.getInstance().getElements(getCharacterPlayer().getLanguage())) {
 			int weight = getWeight(faction);
 			if (weight > 0) {

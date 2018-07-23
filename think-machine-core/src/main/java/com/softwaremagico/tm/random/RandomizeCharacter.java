@@ -38,7 +38,6 @@ import com.softwaremagico.tm.random.selectors.SpecializationPreferences;
 public class RandomizeCharacter {
 	private CharacterPlayer characterPlayer;
 	private int experiencePoints;
-
 	private final Set<IRandomPreferences> preferences;
 
 	public RandomizeCharacter(CharacterPlayer characterPlayer, int experiencePoints, IRandomPreferences... preferences) throws DuplicatedPreferenceException {

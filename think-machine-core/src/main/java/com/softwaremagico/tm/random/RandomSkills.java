@@ -78,7 +78,7 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 	@Override
 	protected TreeMap<Integer, AvailableSkill> assignElementsWeight() throws InvalidXmlElementException {
 		TreeMap<Integer, AvailableSkill> weightedSkills = new TreeMap<>();
-		int count = 0;
+		int count = 1;
 
 		for (SkillDefinition skillDefinition : SkillsDefinitionsFactory.getInstance().getLearnedSkills(getCharacterPlayer().getLanguage())) {
 			for (AvailableSkill skill : AvailableSkillsFactory.getInstance().getAvailableSkills(skillDefinition, getCharacterPlayer().getLanguage())) {
@@ -90,6 +90,7 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 			}
 		}
 
+		System.out.println(weightedSkills);
 		return weightedSkills;
 	}
 
