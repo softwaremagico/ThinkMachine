@@ -39,6 +39,7 @@ import com.softwaremagico.tm.random.exceptions.DuplicatedPreferenceException;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.FactionPreferences;
 import com.softwaremagico.tm.random.selectors.RacePreferences;
+import com.softwaremagico.tm.random.selectors.SkillGroupPreferences;
 import com.softwaremagico.tm.random.selectors.TechnologicalPreferences;
 
 @Test(groups = { "randomCharacter" })
@@ -84,8 +85,9 @@ public class RandomCharacterTests {
 	@Test
 	public void completeRandomCharacter() throws InvalidXmlElementException, DuplicatedPreferenceException, InvalidRandomElementSelectedException {
 		CharacterPlayer characterPlayer = new CharacterPlayer("es");
-		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0);
+		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0, SkillGroupPreferences.COMBAT);
 		randomizeCharacter.createCharacter();
+		System.out.println(randomizeCharacter);
 		// Assert.assertEquals(CostCalculator.getCost(characterPlayer),
 		// FreeStyleCharacterCreation.FREE_AVAILABLE_POINTS);
 	}

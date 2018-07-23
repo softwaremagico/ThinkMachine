@@ -37,11 +37,12 @@ import com.softwaremagico.tm.character.skills.SkillDefinition;
 import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.IRandomPreferences;
+import com.softwaremagico.tm.random.selectors.SkillGroupPreferences;
 import com.softwaremagico.tm.random.selectors.SpecializationPreferences;
 import com.softwaremagico.tm.random.selectors.TechnologicalPreferences;
 
 public class RandomSkills extends RandomSelector<AvailableSkill> {
-	private final static int MAX_PROBABILITY = 100000;
+	private final static int MAX_PROBABILITY = 100;
 	private final static int GOOD_PROBABILITY = 20;
 
 	public RandomSkills(CharacterPlayer characterPlayer, Set<IRandomPreferences> preferences) throws InvalidXmlElementException {
@@ -109,7 +110,17 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 			return 0;
 		}
 
-		// Specialization desired.
+		// Specialization by selection.
+		if (getPreferences().contains(SkillGroupPreferences.getSkillGroupPreference(skill.getSkillDefinition().getSkillGroup().name()))) {
+			int skillRanks = getCharacterPlayer().getSkillRanks(skill);
+
+			// Good probability for values between the specialization.
+			if (skillRanks < SkillGroupPreferences.getSkillGroupPreference(skill.getSkillDefinition().getSkillGroup().name()).minimum()) {
+				return MAX_PROBABILITY;
+			}
+		}
+
+		// Specialization by ranks.
 		SpecializationPreferences selectedSpecialization = SpecializationPreferences.getSelected(getPreferences());
 		if (selectedSpecialization != null) {
 			int skillRanks = getCharacterPlayer().getSkillRanks(skill);
