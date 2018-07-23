@@ -56,7 +56,6 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 		while (getCharacterPlayer().getSkillsTotalPoints() < FreeStyleCharacterCreation.SKILLS_POINTS) {
 			// Select a skill randomly.
 			AvailableSkill selectedSkill = selectElementByWeight();
-			System.out.println("Selected " + selectedSkill);
 
 			// Assign random ranks to the skill.
 			RandomSkillRanks randomSkillRanks = new RandomSkillRanks(getCharacterPlayer(), selectedSkill, getPreferences());
@@ -90,7 +89,6 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 			}
 		}
 
-		System.out.println(weightedSkills);
 		return weightedSkills;
 	}
 
