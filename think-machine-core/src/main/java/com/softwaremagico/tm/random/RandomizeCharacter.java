@@ -30,6 +30,7 @@ import java.util.Set;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.character.FreeStyleCharacterCreation;
 import com.softwaremagico.tm.random.exceptions.DuplicatedPreferenceException;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.IRandomPreferences;
@@ -89,7 +90,14 @@ public class RandomizeCharacter {
 		}
 	}
 
+	/**
+	 * Using free style character generation.
+	 * 
+	 * @throws InvalidXmlElementException
+	 * @throws InvalidRandomElementSelectedException
+	 */
 	protected void setStartingValues() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
+		characterPlayer.setFreeStyleCharacterCreation(new FreeStyleCharacterCreation());
 		// Characteristics
 		RandomCharacteristics randomCharacteristics = new RandomCharacteristics(characterPlayer, preferences);
 		randomCharacteristics.spendCharacteristicsPoints();
@@ -102,4 +110,12 @@ public class RandomizeCharacter {
 
 	}
 
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append(characterPlayer.getInfo().getName() + " (" + characterPlayer.getRace() + ") [" + characterPlayer.getInfo().getFaction() + "]");
+		sb.append(characterPlayer.getFreeStyleCharacterCreation().getSelectedCharacteristicsValues());
+		sb.append(characterPlayer.getFreeStyleCharacterCreation().getDesiredSkillRanks());
+		return sb.toString();
+	}
 }

@@ -105,6 +105,8 @@ public class CharacterPlayer {
 
 	private int experience = 0;
 
+	private FreeStyleCharacterCreation freeStyleCharacterCreation;
+
 	public CharacterPlayer() {
 		this("en");
 	}
@@ -129,6 +131,7 @@ public class CharacterPlayer {
 		learnedStances = new ArrayList<>();
 		setArmour(null);
 		setShield(null);
+		freeStyleCharacterCreation = null;
 	}
 
 	public CharacterInfo getInfo() {
@@ -238,6 +241,13 @@ public class CharacterPlayer {
 		skills.put(availableSkill.getCompleteName(), skillWithRank);
 		skillNameOrdered.add(availableSkill.getName());
 		Collections.sort(skillNameOrdered);
+	}
+
+	public void setDesiredSkillRanks(AvailableSkill availableSkill, int value) throws InvalidSkillException {
+		if (availableSkill == null) {
+			throw new InvalidSkillException("Null skill is not allowed here.");
+		}
+		getFreeStyleCharacterCreation().getDesiredSkillRanks().put(availableSkill, value);
 	}
 
 	private Integer getSkillRanks(Skill<?> skill) {
@@ -541,6 +551,14 @@ public class CharacterPlayer {
 
 	public boolean isCharacteristicTrained(Characteristic characteristic) {
 		return characteristic.getValue() > getStartingValue(characteristic.getCharacteristicName());
+	}
+
+	public FreeStyleCharacterCreation getFreeStyleCharacterCreation() {
+		return freeStyleCharacterCreation;
+	}
+
+	public void setFreeStyleCharacterCreation(FreeStyleCharacterCreation freeStyleCharacterCreation) {
+		this.freeStyleCharacterCreation = freeStyleCharacterCreation;
 	}
 
 }

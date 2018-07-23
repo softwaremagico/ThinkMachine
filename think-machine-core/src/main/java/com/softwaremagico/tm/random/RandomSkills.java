@@ -79,7 +79,7 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 		TreeMap<Integer, AvailableSkill> weightedSkills = new TreeMap<>();
 		int count = 1;
 
-		for (SkillDefinition skillDefinition : SkillsDefinitionsFactory.getInstance().getLearnedSkills(getCharacterPlayer().getLanguage())) {
+		for (SkillDefinition skillDefinition : SkillsDefinitionsFactory.getInstance().getElements(getCharacterPlayer().getLanguage())) {
 			for (AvailableSkill skill : AvailableSkillsFactory.getInstance().getAvailableSkills(skillDefinition, getCharacterPlayer().getLanguage())) {
 				int weight = getWeight(skill);
 				if (weight > 0) {

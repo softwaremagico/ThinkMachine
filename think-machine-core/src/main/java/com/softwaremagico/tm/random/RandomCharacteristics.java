@@ -57,6 +57,8 @@ public class RandomCharacteristics extends RandomSelector<Characteristic> {
 			Characteristic selectedCharacteristic = selectElementByWeight();
 			if (selectedCharacteristic.getValue() < FreeStyleCharacterCreation.MAX_INITIAL_SKILL_VALUE) {
 				selectedCharacteristic.setValue(selectedCharacteristic.getValue() + 1);
+				getCharacterPlayer().getFreeStyleCharacterCreation().getSelectedCharacteristicsValues()
+						.put(selectedCharacteristic.getCharacteristicName(), selectedCharacteristic.getValue());
 			}
 		}
 	}

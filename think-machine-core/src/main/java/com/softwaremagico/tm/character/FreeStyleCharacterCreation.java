@@ -24,14 +24,34 @@ package com.softwaremagico.tm.character;
  * #L%
  */
 
+import java.util.HashMap;
+
+import com.softwaremagico.tm.character.characteristics.CharacteristicName;
+import com.softwaremagico.tm.character.skills.AvailableSkill;
+
 public class FreeStyleCharacterCreation {
 	public static final int MAX_INITIAL_SKILL_VALUE = 8;
-	
+
 	public static final int CHARACTERISTICS_POINTS = 20;
 	public static final int SKILLS_POINTS = 30;
 	public static final int TRAITS_POINTS = 10;
 	public static final int FREE_AVAILABLE_POINTS = 40;
-	
-	
+
+	private final HashMap<CharacteristicName, Integer> selectedCharacteristicsValues;
+
+	private final HashMap<AvailableSkill, Integer> desiredSkillRanks;
+
+	public FreeStyleCharacterCreation() {
+		selectedCharacteristicsValues = new HashMap<>();
+		desiredSkillRanks = new HashMap<>();
+	}
+
+	public HashMap<AvailableSkill, Integer> getDesiredSkillRanks() {
+		return desiredSkillRanks;
+	}
+
+	public HashMap<CharacteristicName, Integer> getSelectedCharacteristicsValues() {
+		return selectedCharacteristicsValues;
+	}
 
 }

@@ -48,13 +48,15 @@ public class RandomSkillRanks {
 		this.availableSkill = selectedSkill;
 	}
 
-	public void assignRandomRanks() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
+	public int assignRandomRanks() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
 		int finalRanks = getRankValue();
 		// Final ranks cannot be greater that the total points remaining.
 		if (characterPlayer.getSkillsTotalPoints() + (finalRanks - characterPlayer.getStartingValue(availableSkill)) > FreeStyleCharacterCreation.SKILLS_POINTS) {
 			finalRanks = FreeStyleCharacterCreation.SKILLS_POINTS - characterPlayer.getSkillsTotalPoints() + characterPlayer.getStartingValue(availableSkill);
 		}
 		characterPlayer.setSkillRank(availableSkill, finalRanks);
+		characterPlayer.setDesiredSkillRanks(availableSkill, finalRanks);
+		return finalRanks;
 	}
 
 	private int getRankValue() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
