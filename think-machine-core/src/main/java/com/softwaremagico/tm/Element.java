@@ -42,8 +42,8 @@ public class Element<T extends Element<?>> implements Comparable<T> {
 	}
 
 	@Override
-	public int compareTo(T device) {
-		return getName().compareTo(device.getName());
+	public int compareTo(T element) {
+		return getName().compareTo(element.getName());
 	}
 
 	@Override

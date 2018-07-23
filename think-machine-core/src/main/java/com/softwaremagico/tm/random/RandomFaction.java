@@ -30,6 +30,7 @@ import java.util.TreeMap;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.factions.Faction;
+import com.softwaremagico.tm.character.factions.FactionGroup;
 import com.softwaremagico.tm.character.factions.FactionsFactory;
 import com.softwaremagico.tm.character.race.InvalidRaceException;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
@@ -70,6 +71,10 @@ public class RandomFaction extends RandomSelector<Faction> {
 				return 1;
 			}
 			// Different faction than selected.
+			return 0;
+		}
+		// Humans only humans factions.
+		if (faction.getFactionGroup().equals(FactionGroup.XENO) && getCharacterPlayer().getRace().getId().equalsIgnoreCase("human")) {
 			return 0;
 		}
 		// No faction preference selected. All factions has the same

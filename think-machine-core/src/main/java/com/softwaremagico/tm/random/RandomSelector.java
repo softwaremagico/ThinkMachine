@@ -90,8 +90,8 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
 		Element selectedElement = weightedElements.values().iterator().next();
 		for (Integer key : weightedElements.keySet()) {
 			value -= key;
-			if (value <= 0) {
-				MachineLog.info(this.getClass().getName(), "Selected element is '" + selectedElement + "'.");
+			if (value < 0) {
+				MachineLog.debug(this.getClass().getName(), "Selected element is '" + selectedElement + "'.");
 				return selectedElement;
 			}
 			selectedElement = weightedElements.get(key);

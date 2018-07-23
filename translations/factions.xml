@@ -52,8 +52,8 @@
 	</brotherBattle>
 	<eskatonic>
 		<name>
-			<en>Eskatonic Order</en>
-			<es>La Order Eskatónica</es>
+			<en>Eskatonics</en>
+			<es>Eskatónicos</es>
 		</name>
 		<group>church</group>
 	</eskatonic>
@@ -110,7 +110,7 @@
 	<reeves>
 		<name>
 			<en>Reeves</en>
-			<es>Majistrados</es>
+			<es>Magistrados</es>
 		</name>
 		<group>guild</group>
 	</reeves>

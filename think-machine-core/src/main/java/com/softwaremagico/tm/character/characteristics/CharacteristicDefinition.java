@@ -28,7 +28,7 @@ import com.softwaremagico.tm.Element;
  * #L%
  */
 
-public class CharacteristicDefinition extends Element<CharacteristicDefinition> {
+public class CharacteristicDefinition extends Element<CharacteristicDefinition> implements Comparable<CharacteristicDefinition> {
 	private String abbreviature;
 	private CharacteristicType type;
 
@@ -64,5 +64,10 @@ public class CharacteristicDefinition extends Element<CharacteristicDefinition> 
 			}
 		}
 		return null;
+	}
+
+	@Override
+	public int compareTo(CharacteristicDefinition characteristic) {
+		return getCharacteristicName().compareTo(characteristic.getCharacteristicName());
 	}
 }
