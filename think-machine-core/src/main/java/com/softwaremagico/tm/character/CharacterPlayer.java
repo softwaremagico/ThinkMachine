@@ -402,8 +402,9 @@ public class CharacterPlayer {
 		if (getRace() != null) {
 			RaceCharacteristic value = getRace().getParameter(characteristicName);
 			if (value != null) {
-				return value.getValue();
+				return value.getInitialValue();
 			}
+			return Characteristic.DEFAULT_INITIAL_VALUE;
 		}
 		return 0;
 	}

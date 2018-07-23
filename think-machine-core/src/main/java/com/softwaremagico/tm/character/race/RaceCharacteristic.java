@@ -28,7 +28,7 @@ import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 
 public class RaceCharacteristic {
 	private CharacteristicName characteristic;
-	private int value;
+	private int initialValue;
 	private int maximumValue;
 
 	public RaceCharacteristic(CharacteristicName characteristic) {
@@ -44,12 +44,12 @@ public class RaceCharacteristic {
 		this.characteristic = characteristic;
 	}
 
-	public int getValue() {
-		return value;
+	public int getInitialValue() {
+		return initialValue;
 	}
 
-	public void setValue(int value) {
-		this.value = value;
+	public void setInitialValue(int value) {
+		this.initialValue = value;
 	}
 
 	public int getMaximumValue() {

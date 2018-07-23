@@ -109,7 +109,7 @@ public class Race extends Element<Race> {
 
 	public void setValue(CharacteristicName characteristicName, int value) {
 		try {
-			getParameter(characteristicName).setValue(value);
+			getParameter(characteristicName).setInitialValue(value);
 		} catch (NullPointerException npe) {
 			MachineLog.severe(this.getClass().getName(), "Invalid value parameter '" + characteristicName + "'.");
 		}

@@ -62,6 +62,11 @@ public class RandomCharacteristics extends RandomSelector<Characteristic> {
 	}
 
 	private void assignMinimumValuesOfCharacteristics() {
+		// Default minimums.
+		for (CharacteristicName characteristicName : CharacteristicName.values()) {
+			getCharacterPlayer().getCharacteristic(characteristicName).setValue(getCharacterPlayer().getStartingValue(characteristicName));
+		}
+
 		for (IRandomPreferences preference : getPreferences()) {
 			if (preference instanceof TechnologicalPreferences) {
 				getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).setValue(((TechnologicalPreferences) preference).minimumValue());
@@ -90,6 +95,11 @@ public class RandomCharacteristics extends RandomSelector<Characteristic> {
 		if (characteristic == null) {
 			return 0;
 		}
+		// Others characteristics cannot be assigned ranks.
+		if (CharacteristicType.OTHERS.equals(characteristic.getType())) {
+			return 0;
+		}
+
 		int weight = 1;
 		if (CharacteristicType.BODY.equals(characteristic.getType())) {
 			if (getPreferences().contains(BodyPreferences.BODY)) {

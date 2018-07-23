@@ -74,7 +74,7 @@ public class RandomizeCharacter {
 		if (selectedSpecialization == null) {
 			selectedSpecialization = SpecializationPreferences.FAIR;
 		}
-		preferences.add(SpecializationPreferences.FAIR);
+		preferences.add(selectedSpecialization);
 	}
 
 	protected void setCharacterDefinition() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
