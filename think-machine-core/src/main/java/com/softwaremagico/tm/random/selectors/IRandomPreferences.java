@@ -26,8 +26,8 @@ package com.softwaremagico.tm.random.selectors;
 
 public interface IRandomPreferences {
 
-	public int maximumValue();
+	public int maximum();
 
-	public int minimumValue();
+	public int minimum();
 
 }

@@ -24,6 +24,7 @@ package com.softwaremagico.tm.random;
  * #L%
  */
 
+import java.util.Map.Entry;
 import java.util.Random;
 import java.util.Set;
 import java.util.TreeMap;
@@ -99,4 +100,15 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
 		return selectedElement;
 	}
 
+	protected void removeElementWeight(Element element) {
+		Integer keyToDelete = null;
+		for (Entry<Integer, Element> entry : weightedElements.entrySet()) {
+			if (entry.getValue().equals(element)) {
+				keyToDelete = entry.getKey();
+			}
+		}
+		if (keyToDelete != null) {
+			weightedElements.remove(keyToDelete);
+		}
+	}
 }

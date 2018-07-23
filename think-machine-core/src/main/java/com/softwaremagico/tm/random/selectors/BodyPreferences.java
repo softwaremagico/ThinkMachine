@@ -31,21 +31,21 @@ public enum BodyPreferences implements IRandomPreferences {
 
 	SPIRIT(3, 8);
 
-	private final int minimumValue;
-	private final int maximumValue;
+	private final int minimum;
+	private final int maximum;
 
-	private BodyPreferences(int minimumValue, int maximumValue) {
-		this.maximumValue = maximumValue;
-		this.minimumValue = minimumValue;
+	private BodyPreferences(int minimum, int maximum) {
+		this.maximum = maximum;
+		this.minimum = minimum;
 	}
 
 	@Override
-	public int maximumValue() {
-		return maximumValue;
+	public int maximum() {
+		return maximum;
 	}
 
 	@Override
-	public int minimumValue() {
-		return minimumValue;
+	public int minimum() {
+		return minimum;
 	}
 }

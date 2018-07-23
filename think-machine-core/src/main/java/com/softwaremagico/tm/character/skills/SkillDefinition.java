@@ -30,6 +30,7 @@ import com.softwaremagico.tm.character.factions.Faction;
  */
 
 public class SkillDefinition extends Skill<SkillDefinition> {
+	public final static int NATURAL_SKILLS_MINIMUM_VALUE = 3;
 	public final static String FACTORION_LORE_ID = "factionLore";
 	public final static String PLANETARY_LORE_ID = "planetaryLore";
 

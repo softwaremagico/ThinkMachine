@@ -36,22 +36,22 @@ public enum TechnologicalPreferences implements IRandomPreferences {
 
 	MAXIMAL(7, 10);
 
-	private final int minimumValue;
-	private final int maximumValue;
+	private final int minimum;
+	private final int maximum;
 
-	private TechnologicalPreferences(int minimumValue, int maximumValue) {
-		this.maximumValue = maximumValue;
-		this.minimumValue = minimumValue;
+	private TechnologicalPreferences(int minimum, int maximum) {
+		this.maximum = maximum;
+		this.minimum = minimum;
 	}
 
 	@Override
-	public int maximumValue() {
-		return maximumValue;
+	public int maximum() {
+		return maximum;
 	}
 
 	@Override
-	public int minimumValue() {
-		return minimumValue;
+	public int minimum() {
+		return minimum;
 	}
 
 	/**
@@ -62,7 +62,7 @@ public enum TechnologicalPreferences implements IRandomPreferences {
 	 * @return true if it is passed.
 	 */
 	public boolean isMoreThan(TechnologicalPreferences preference) {
-		return maximumValue >= preference.maximumValue;
+		return maximum >= preference.maximum;
 	}
 
 }

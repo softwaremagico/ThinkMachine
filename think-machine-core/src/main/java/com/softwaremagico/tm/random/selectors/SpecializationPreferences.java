@@ -1,5 +1,6 @@
 package com.softwaremagico.tm.random.selectors;
 
+import java.util.Random;
 import java.util.Set;
 
 /*-
@@ -28,32 +29,46 @@ import java.util.Set;
 
 public enum SpecializationPreferences implements IRandomPreferences {
 
-	VERY_GENERALIZED(1, 3),
+	// Gaussian distribution.
+	VERY_GENERALIZED(0, 4, 1, 4),
 
-	GENERALIZED(1, 5),
+	GENERALIZED(0, 6, 2, 4),
 
-	FAIR(2, 6),
+	FAIR(0, 6, 3, 3),
 
-	SPECIALIZED(4, 8),
+	SPECIALIZED(2, 8, 4, 3),
 
-	VERY_SPECIALIZED(5, 10);
+	VERY_SPECIALIZED(2, 10, 5, 5);
 
-	private final int minimumValue;
-	private final int maximumValue;
+	private final int minimum;
+	private final int maximum;
+	private final int mean;
+	private final int variance;
+	private final Random random = new Random();
 
-	private SpecializationPreferences(int minimumValue, int maximumValue) {
-		this.maximumValue = maximumValue;
-		this.minimumValue = minimumValue;
+	private SpecializationPreferences(int minimumValue, int maximumValue, int mean, int variance) {
+		this.maximum = maximumValue;
+		this.minimum = minimumValue;
+		this.variance = variance;
+		this.mean = mean;
 	}
 
 	@Override
-	public int maximumValue() {
-		return maximumValue;
+	public int maximum() {
+		return maximum;
 	}
 
 	@Override
-	public int minimumValue() {
-		return minimumValue;
+	public int minimum() {
+		return minimum;
+	}
+
+	public int variance() {
+		return variance;
+	}
+
+	public int mean() {
+		return mean;
 	}
 
 	public static SpecializationPreferences getSelected(Set<IRandomPreferences> preferences) {
@@ -63,6 +78,10 @@ public enum SpecializationPreferences implements IRandomPreferences {
 			}
 		}
 		return null;
+	}
+
+	public int randomGaussian() {
+		return (int) (random.nextGaussian() * Math.sqrt(variance) + mean);
 	}
 
 }

@@ -24,6 +24,8 @@ package com.softwaremagico.tm.random;
  * #L%
  */
 
+import java.util.Random;
+
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
@@ -43,6 +45,7 @@ import com.softwaremagico.tm.random.selectors.TechnologicalPreferences;
 
 @Test(groups = { "randomCharacter" })
 public class RandomCharacterTests {
+	private Random rand = new Random();
 
 	@AfterMethod
 	public void clearCache() {
@@ -88,5 +91,14 @@ public class RandomCharacterTests {
 		randomizeCharacter.createCharacter();
 		// Assert.assertEquals(CostCalculator.getCost(characterPlayer),
 		// FreeStyleCharacterCreation.FREE_AVAILABLE_POINTS);
+		
+		
+		for(int i=0; i<100;i++){
+			System.out.println(randomGaussian(4, 2));
+		}
+	}
+	
+	private double randomGaussian(int mean, double variance) {
+		return rand.nextGaussian() * Math.sqrt(variance) + mean;
 	}
 }

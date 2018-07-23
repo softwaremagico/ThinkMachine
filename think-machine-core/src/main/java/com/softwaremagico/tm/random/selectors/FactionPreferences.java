@@ -37,12 +37,12 @@ public enum FactionPreferences implements IRandomPreferences {
 	XENO;
 
 	@Override
-	public int maximumValue() {
+	public int maximum() {
 		return 0;
 	}
 
 	@Override
-	public int minimumValue() {
+	public int minimum() {
 		return 0;
 	}
 

@@ -36,12 +36,12 @@ public enum RacePreferences implements IRandomPreferences {
 	VOROX;
 
 	@Override
-	public int maximumValue() {
+	public int maximum() {
 		return 0;
 	}
 
 	@Override
-	public int minimumValue() {
+	public int minimum() {
 		return 0;
 	}
 

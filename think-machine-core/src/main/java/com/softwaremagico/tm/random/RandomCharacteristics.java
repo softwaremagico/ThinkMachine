@@ -69,7 +69,7 @@ public class RandomCharacteristics extends RandomSelector<Characteristic> {
 
 		for (IRandomPreferences preference : getPreferences()) {
 			if (preference instanceof TechnologicalPreferences) {
-				getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).setValue(((TechnologicalPreferences) preference).minimumValue());
+				getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).setValue(((TechnologicalPreferences) preference).minimum());
 			}
 		}
 	}
@@ -125,17 +125,17 @@ public class RandomCharacteristics extends RandomSelector<Characteristic> {
 		if (selectedSpecialization != null) {
 			int characteristicRanks = getCharacterPlayer().getCharacteristic(characteristic.getCharacteristicName()).getValue();
 			// No more that the maximum allowed.
-			if (characteristicRanks > selectedSpecialization.maximumValue()) {
+			if (characteristicRanks > selectedSpecialization.maximum()) {
 				return 0;
 			}
 			// If selected characteristic (has ranks), must have at least the
 			// minimum.
-			if (getCharacterPlayer().isCharacteristicTrained(characteristic) && characteristicRanks < selectedSpecialization.minimumValue()) {
+			if (getCharacterPlayer().isCharacteristicTrained(characteristic) && characteristicRanks < selectedSpecialization.minimum()) {
 				return MAX_PROBABILITY;
 			}
 
 			// Good probability for values between the specialization.
-			if (characteristicRanks > selectedSpecialization.minimumValue())
+			if (characteristicRanks > selectedSpecialization.minimum())
 				return GOOD_PROBABILITY;
 		}
 

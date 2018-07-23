@@ -49,28 +49,28 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 	}
 
 	public void spendSkillsPoints() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
-		// Set minimum values of characteristics.
+		// Set minimum values of skills by preferences.
 		assignMinimumValuesOfSkills();
 
-		// Assign random values by weight
+		// Meanwhile are ranks to expend.
 		while (getCharacterPlayer().getSkillsTotalPoints() < FreeStyleCharacterCreation.SKILLS_POINTS) {
+			// Select a skill randomly.
 			AvailableSkill selectedSkill = selectElementByWeight();
+			System.out.println("Selected " + selectedSkill);
 
-			int value = 0;
-			if (getCharacterPlayer().getSkillRanks(selectedSkill) != null) {
-				value = getCharacterPlayer().getSkillRanks(selectedSkill);
-			}
-			if (value < FreeStyleCharacterCreation.MAX_INITIAL_SKILL_VALUE) {
-				getCharacterPlayer().setSkillRank(selectedSkill, value + 1);
-				assignElementsWeight();
-			}
+			// Assign random ranks to the skill.
+			RandomSkillRanks randomSkillRanks = new RandomSkillRanks(getCharacterPlayer(), selectedSkill, getPreferences());
+			randomSkillRanks.assignRandomRanks();
+
+			// Remove skill from options to avoid adding more ranks.
+			removeElementWeight(selectedSkill);
 		}
 	}
 
 	private void assignMinimumValuesOfSkills() {
 		for (IRandomPreferences preference : getPreferences()) {
 			if (preference instanceof TechnologicalPreferences) {
-				getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).setValue(((TechnologicalPreferences) preference).minimumValue());
+				getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).setValue(((TechnologicalPreferences) preference).minimum());
 			}
 		}
 	}
@@ -115,16 +115,16 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 		if (selectedSpecialization != null) {
 			int skillRanks = getCharacterPlayer().getSkillRanks(skill);
 			// No more that the maximum allowed.
-			if (skillRanks > selectedSpecialization.maximumValue()) {
+			if (skillRanks > selectedSpecialization.maximum()) {
 				return 0;
 			}
 			// If selected skill (has ranks), must have at least the minimum.
-			if (getCharacterPlayer().isSkillTrained(skill) && skillRanks < selectedSpecialization.minimumValue()) {
+			if (getCharacterPlayer().isSkillTrained(skill) && skillRanks < selectedSpecialization.minimum()) {
 				return MAX_PROBABILITY;
 			}
 
 			// Good probability for values between the specialization.
-			if (skillRanks > selectedSpecialization.minimumValue()) {
+			if (skillRanks > selectedSpecialization.minimum()) {
 				return GOOD_PROBABILITY;
 			}
 		}
