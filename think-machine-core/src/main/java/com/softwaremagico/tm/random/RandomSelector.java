@@ -83,15 +83,20 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
 	 * @throws InvalidRandomElementSelectedException
 	 */
 	protected Element selectElementByWeight() throws InvalidRandomElementSelectedException {
-		Integer value = new Integer((int) (rand.nextDouble() * totalWeight));
+		Integer value = new Integer((int) (rand.nextDouble() * (totalWeight + 1)));
+		if (weightedElements == null || weightedElements.isEmpty()) {
+			throw new InvalidRandomElementSelectedException("No elements to select");
+		}
+		Element selectedElement = weightedElements.values().iterator().next();
 		for (Integer key : weightedElements.keySet()) {
 			value -= key;
 			if (value <= 0) {
-				MachineLog.debug(this.getClass().getName(), "Selected element is '" + weightedElements.get(key) + "'.");
-				return weightedElements.get(key);
+				MachineLog.info(this.getClass().getName(), "Selected element is '" + selectedElement + "'.");
+				return selectedElement;
 			}
+			selectedElement = weightedElements.get(key);
 		}
-		throw new InvalidRandomElementSelectedException("Random value obtained is '" + value + "' and elements are '" + weightedElements + "'");
+		return selectedElement;
 	}
 
 }
