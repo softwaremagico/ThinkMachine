@@ -56,6 +56,8 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 	private final static String RANDOM_TECH_LEVEL = "techlevel";
 	private final static String RECOMMENDED_FACTIONS = "recommendedFactions";
 	private final static String RECOMMENDED_FACTION_GROUPS = "recommendedFactionGroups";
+	private final static String GENERAL_PROBABILITY = "generalProbability";
+
 	private static Map<String, List<SkillDefinition>> naturalSkills = new HashMap<>();
 	private static Map<String, List<SkillDefinition>> learnedSkills = new HashMap<>();
 
@@ -205,6 +207,7 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 				element.getRandomDefinition().addRecommendedFactionGroup(FactionGroup.get(recommendedFactionGroupsOfSkill.nextToken().trim()));
 			}
 		}
+
 		String recommendedFactions = translator.getNodeValue(element.getId(), RANDOM, RECOMMENDED_FACTIONS);
 		if (recommendedFactions != null) {
 			StringTokenizer recommendedFactionsOfSkill = new StringTokenizer(recommendedFactions, ",");
@@ -212,6 +215,11 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 				element.getRandomDefinition().addRecommendedFaction(
 						FactionsFactory.getInstance().getElement(recommendedFactionsOfSkill.nextToken().trim(), language));
 			}
+		}
+
+		String generalProbability = translator.getNodeValue(element.getId(), RANDOM, GENERAL_PROBABILITY);
+		if (generalProbability != null) {
+			element.getRandomDefinition().setProbability(SkillRandomProbability.get(generalProbability));
 		}
 	}
 

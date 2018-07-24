@@ -41,11 +41,11 @@ public class SkillDefinition extends Skill<SkillDefinition> implements ISkillRan
 	// Number of times that a skill (generalizable) is shown in the PDF.
 	private int numberToShow = 1;
 
-	private final SkillDefinitionRandomDefinitions randomDefinition;
+	private final SkillRandomDefinitions randomDefinition;
 
 	public SkillDefinition(String id, String name) {
 		super(id, name.trim());
-		randomDefinition = new SkillDefinitionRandomDefinitions();
+		randomDefinition = new SkillRandomDefinitions();
 	}
 
 	public boolean isNatural() {
@@ -93,7 +93,7 @@ public class SkillDefinition extends Skill<SkillDefinition> implements ISkillRan
 	}
 
 	@Override
-	public SkillDefinitionRandomDefinitions getRandomDefinition() {
+	public SkillRandomDefinitions getRandomDefinition() {
 		return randomDefinition;
 	}
 

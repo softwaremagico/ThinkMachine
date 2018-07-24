@@ -2,7 +2,7 @@ package com.softwaremagico.tm.character.skills;
 
 public interface ISkillRandomDefintions {
 
-	SkillDefinitionRandomDefinitions getRandomDefinition();
+	SkillRandomDefinitions getRandomDefinition();
 	
 	String getId();
 

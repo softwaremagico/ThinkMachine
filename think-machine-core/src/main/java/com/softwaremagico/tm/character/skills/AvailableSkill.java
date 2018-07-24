@@ -94,7 +94,7 @@ public class AvailableSkill extends Skill<AvailableSkill> {
 		return true;
 	}
 
-	public SkillDefinitionRandomDefinitions getRandomDefinition() {
+	public SkillRandomDefinitions getRandomDefinition() {
 		if (getSpecialization() != null) {
 			return getSpecialization().getRandomDefinition();
 		}

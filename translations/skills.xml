@@ -464,10 +464,16 @@
 			<annuaki>
 				<es>Anunnaki</es>
 				<en>Anunnaki</en>
+				<random>
+					<generalProbability>low</generalProbability>
+				</random>
 			</annuaki>
 			<vau>
 				<en>Vau</en>
 				<es>Vau</es>
+				<random>
+					<generalProbability>low</generalProbability>
+				</random>
 			</vau>
 		</specializations>
 		<numberToShow>2</numberToShow>

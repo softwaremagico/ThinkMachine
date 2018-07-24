@@ -107,27 +107,44 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 			return NO_PROBABILITY;
 		}
 
+		int definitionWeight = weightForTSkillDefinition(skill);
+		MachineLog.debug(this.getClass().getName(), "Weight for '" + skill + "' by skill definition modification is '" + definitionWeight + "'.");
+		weight += definitionWeight;
+
 		int preferencesWeight = weightByPreferences(skill);
-		MachineLog.debug(this.getClass().getName(), "Weight by preferences modification is '" + preferencesWeight + "'.");
+		MachineLog.debug(this.getClass().getName(), "Weight for '" + skill + "' by preferences modification is '" + preferencesWeight + "'.");
 		weight += preferencesWeight;
 
 		int factionWeight = weightForFactions(skill);
-		MachineLog.debug(this.getClass().getName(), "Weight by faction modification is '" + factionWeight + "'.");
+		MachineLog.debug(this.getClass().getName(), "Weight for '" + skill + "' by faction modification is '" + factionWeight + "'.");
 		weight += factionWeight;
 
 		int nobilityWeight = weightForNobility(skill);
-		MachineLog.debug(this.getClass().getName(), "Weight by nobility modification is '" + nobilityWeight + "'.");
+		MachineLog.debug(this.getClass().getName(), "Weight for '" + skill + "' by nobility modification is '" + nobilityWeight + "'.");
 		weight += nobilityWeight;
 
 		int technologyWeight = weightForTechnologyLimitations(skill);
-		MachineLog.debug(this.getClass().getName(), "Weight by technology modification is '" + technologyWeight + "'.");
+		MachineLog.debug(this.getClass().getName(), "Weight for '" + skill + "' by technology modification is '" + technologyWeight + "'.");
 		weight += technologyWeight;
 
 		int specializationWeight = weightBySpecialization(skill);
-		MachineLog.debug(this.getClass().getName(), "Weight by specialization modification is '" + technologyWeight + "'.");
+		MachineLog.debug(this.getClass().getName(), "Weight for '" + skill + "' by specialization modification is '" + technologyWeight + "'.");
 		weight += specializationWeight;
 
 		return weight;
+	}
+
+	private int weightForTSkillDefinition(AvailableSkill skill) {
+		// Weapons only if technology is enough.
+		switch (skill.getRandomDefinition().getProbability()) {
+		case LOW:
+			return BAD_PROBABILITY;
+		case FAIR:
+			return 0;
+		case GOOD:
+			return LIMITED_PROBABILITY;
+		}
+		return 0;
 	}
 
 	private int weightForTechnologyLimitations(AvailableSkill skill) {

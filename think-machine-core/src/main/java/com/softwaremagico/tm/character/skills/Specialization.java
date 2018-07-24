@@ -28,15 +28,15 @@ import com.softwaremagico.tm.Element;
 
 public class Specialization extends Element<Specialization> implements ISkillRandomDefintions {
 
-	private final SkillDefinitionRandomDefinitions randomDefinition;
+	private final SkillRandomDefinitions randomDefinition;
 
 	public Specialization(String id, String name) {
 		super(id, name);
-		randomDefinition = new SkillDefinitionRandomDefinitions();
+		randomDefinition = new SkillRandomDefinitions();
 	}
 
 	@Override
-	public SkillDefinitionRandomDefinitions getRandomDefinition() {
+	public SkillRandomDefinitions getRandomDefinition() {
 		return randomDefinition;
 	}
 

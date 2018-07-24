@@ -30,11 +30,12 @@ import com.softwaremagico.tm.character.factions.FactionGroup;
  * #L%
  */
 
-public class SkillDefinitionRandomDefinitions {
+public class SkillRandomDefinitions {
 
 	private int minimumTechLevel;
 	private final Set<Faction> recommendedFactions = new HashSet<>();
 	private final Set<FactionGroup> recommendedFactionGroups = new HashSet<>();
+	private SkillRandomProbability probability = SkillRandomProbability.FAIR;
 
 	public int getMinimumTechLevel() {
 		return minimumTechLevel;
@@ -62,5 +63,13 @@ public class SkillDefinitionRandomDefinitions {
 		if (faction != null) {
 			recommendedFactions.add(faction);
 		}
+	}
+
+	public SkillRandomProbability getProbability() {
+		return probability;
+	}
+
+	public void setProbability(SkillRandomProbability probability) {
+		this.probability = probability;
 	}
 }
