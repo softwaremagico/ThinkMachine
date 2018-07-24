@@ -25,6 +25,7 @@ package com.softwaremagico.tm.random;
  */
 
 import java.util.Map.Entry;
+import java.util.NoSuchElementException;
 import java.util.Random;
 import java.util.Set;
 import java.util.SortedMap;
@@ -32,6 +33,7 @@ import java.util.TreeMap;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.log.MachineLog;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.IRandomPreferences;
 
@@ -86,7 +88,14 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
 		}
 		Element selectedElement = weightedElements.values().iterator().next();
 		SortedMap<Integer, Element> view = weightedElements.headMap(value, true);
-		selectedElement = view.get(view.lastKey());
+		try {
+			selectedElement = view.get(view.lastKey());
+		} catch (NoSuchElementException nse) {
+			// If weight of first element is greater than 1, it is possible that
+			// the value is less that the first element weight. That means that
+			// 'view' would be empty launching a NoSuchElementException. Select
+			// the first one by default.
+		}
 		return selectedElement;
 	}
 
