@@ -26,12 +26,16 @@ package com.softwaremagico.tm.character;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Objects;
 import java.util.Set;
+import java.util.TreeMap;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.characteristics.Characteristic;
@@ -526,14 +530,14 @@ public class CharacterPlayer {
 	}
 
 	public Set<Characteristic> getCharacteristics(CharacteristicType characteristicType) {
-		if (characteristicsByType == null) {
+		if (characteristicsByType == null || characteristicsByType.isEmpty()) {
 			characteristicsByType = new HashMap<>();
-		}
-		for (Characteristic characteristic : characteristics.values()) {
-			if (characteristicsByType.get(characteristic.getType()) == null) {
-				characteristicsByType.put(characteristic.getType(), new HashSet<Characteristic>());
+			for (Characteristic characteristic : characteristics.values()) {
+				if (characteristicsByType.get(characteristic.getType()) == null) {
+					characteristicsByType.put(characteristic.getType(), new HashSet<Characteristic>());
+				}
+				characteristicsByType.get(characteristic.getType()).add(characteristic);
 			}
-			characteristicsByType.get(characteristic.getType()).add(characteristic);
 		}
 		return characteristicsByType.get(characteristicType);
 	}
@@ -561,4 +565,36 @@ public class CharacterPlayer {
 		this.freeStyleCharacterCreation = freeStyleCharacterCreation;
 	}
 
+	/**
+	 * Return which characteristic type has higher values in its
+	 * characteristics.
+	 * 
+	 * @return CharacteristicType
+	 */
+	public List<Entry<CharacteristicType, Integer>> getPreferredCharacteristicsTypeSorted() {
+		Map<CharacteristicType, Integer> totalRanksByCharacteristicType = new TreeMap<>();
+		for (CharacteristicType characteristicType : CharacteristicType.values()) {
+			if (characteristicType != CharacteristicType.OTHERS && getCharacteristics(characteristicType) != null) {
+				for (Characteristic characteristic : getCharacteristics(characteristicType)) {
+					if (totalRanksByCharacteristicType.get(characteristicType) == null) {
+						totalRanksByCharacteristicType.put(characteristicType, 0);
+					}
+					totalRanksByCharacteristicType.put(characteristicType,
+							totalRanksByCharacteristicType.get(characteristicType) + getValue(characteristic.getCharacteristicName()));
+				}
+			}
+		}
+		if (totalRanksByCharacteristicType.isEmpty()) {
+			return null;
+		}
+		// Sort result.
+		List<Entry<CharacteristicType, Integer>> sortedList = new LinkedList<>(totalRanksByCharacteristicType.entrySet());
+		Collections.sort(sortedList, new Comparator<Entry<CharacteristicType, Integer>>() {
+			public int compare(Entry<CharacteristicType, Integer> o1, Entry<CharacteristicType, Integer> o2) {
+				return o2.getValue().compareTo(o1.getValue());
+			}
+		});
+
+		return sortedList;
+	}
 }

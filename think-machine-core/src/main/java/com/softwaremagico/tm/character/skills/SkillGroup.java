@@ -1,5 +1,7 @@
 package com.softwaremagico.tm.character.skills;
 
+import com.softwaremagico.tm.character.characteristics.CharacteristicType;
+
 /*-
  * #%L
  * Think Machine (Core)
@@ -26,25 +28,31 @@ package com.softwaremagico.tm.character.skills;
 
 public enum SkillGroup {
 
-	ANALYTICAL,
+	ANALYTICAL(CharacteristicType.MIND),
 
-	COMBAT,
+	COMBAT(CharacteristicType.BODY),
 
-	CONTROL,
+	CONTROL(null),
 
-	CREATIVE,
+	CREATIVE(null),
 
-	LORE,
+	LORE(CharacteristicType.MIND),
 
-	MALEFACTION,
+	MALEFACTION(null),
 
-	PHYSICAL,
+	PHYSICAL(CharacteristicType.BODY),
 
-	SCIENCE,
+	SCIENCE(CharacteristicType.MIND),
 
-	SOCIAL,
+	SOCIAL(CharacteristicType.SPIRIT),
 
-	TECHNICAL;
+	TECHNICAL(CharacteristicType.MIND);
+
+	private final CharacteristicType preferredCharacteristicsGroups;
+
+	private SkillGroup(CharacteristicType preferredCharacteristicsGroups) {
+		this.preferredCharacteristicsGroups = preferredCharacteristicsGroups;
+	}
 
 	public static SkillGroup getSkillGroup(String tag) {
 		if (tag != null) {
@@ -55,5 +63,9 @@ public enum SkillGroup {
 			}
 		}
 		return null;
+	}
+
+	public CharacteristicType getPreferredCharacteristicsGroups() {
+		return preferredCharacteristicsGroups;
 	}
 }

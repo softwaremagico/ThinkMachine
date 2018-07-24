@@ -24,6 +24,8 @@ package com.softwaremagico.tm.random;
  * #L%
  */
 
+import java.util.List;
+import java.util.Map.Entry;
 import java.util.Objects;
 import java.util.Set;
 import java.util.TreeMap;
@@ -32,6 +34,7 @@ import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.FreeStyleCharacterCreation;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
+import com.softwaremagico.tm.character.characteristics.CharacteristicType;
 import com.softwaremagico.tm.character.factions.FactionGroup;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
@@ -48,9 +51,12 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 	private final static int NO_PROBABILITY = -1000;
 	private final static int BAD_PROBABILITY = -20;
 	private final static int LOW_PROBABILITY = -10;
+	private final static int LITTLE_PROBABILITY = 6;
 	private final static int ACCEPTABLE_PROBABILITY = 11;
 	private final static int GOOD_PROBABILITY = 21;
 	private final static int MAX_PROBABILITY = 100;
+
+	private List<Entry<CharacteristicType, Integer>> preferredCharacteristicsTypeSorted;
 
 	public RandomSkills(CharacterPlayer characterPlayer, Set<IRandomPreferences> preferences) throws InvalidXmlElementException {
 		super(characterPlayer, preferences);
@@ -108,7 +114,11 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 			return NO_PROBABILITY;
 		}
 
-		int definitionWeight = weightForSkillDefinition(skill);
+		int characteristicsWeight = weightByCharacteristics(skill);
+		MachineLog.debug(this.getClass().getName(), "Weight for '" + skill + "' by characteristics modification is '" + characteristicsWeight + "'.");
+		weight += characteristicsWeight;
+
+		int definitionWeight = weightBySkillDefinition(skill);
 		MachineLog.debug(this.getClass().getName(), "Weight for '" + skill + "' by skill definition modification is '" + definitionWeight + "'.");
 		weight += definitionWeight;
 
@@ -116,19 +126,19 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 		MachineLog.debug(this.getClass().getName(), "Weight for '" + skill + "' by preferences modification is '" + preferencesWeight + "'.");
 		weight += preferencesWeight;
 
-		int raceWeight = weightForRace(skill);
+		int raceWeight = weightByRace(skill);
 		MachineLog.debug(this.getClass().getName(), "Weight for '" + skill + "' by race modification is '" + raceWeight + "'.");
 		weight += raceWeight;
 
-		int factionWeight = weightForFactions(skill);
+		int factionWeight = weightByFactions(skill);
 		MachineLog.debug(this.getClass().getName(), "Weight for '" + skill + "' by faction modification is '" + factionWeight + "'.");
 		weight += factionWeight;
 
-		int nobilityWeight = weightForNobility(skill);
+		int nobilityWeight = weightByNobility(skill);
 		MachineLog.debug(this.getClass().getName(), "Weight for '" + skill + "' by nobility modification is '" + nobilityWeight + "'.");
 		weight += nobilityWeight;
 
-		int technologyWeight = weightForTechnologyLimitations(skill);
+		int technologyWeight = weightByTechnologyLimitations(skill);
 		MachineLog.debug(this.getClass().getName(), "Weight for '" + skill + "' by technology modification is '" + technologyWeight + "'.");
 		weight += technologyWeight;
 
@@ -139,7 +149,7 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 		return weight;
 	}
 
-	private int weightForSkillDefinition(AvailableSkill skill) {
+	private int weightBySkillDefinition(AvailableSkill skill) {
 		// Weapons only if technology is enough.
 		switch (skill.getRandomDefinition().getProbability()) {
 		case MINIMUM:
@@ -154,7 +164,16 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 		return 0;
 	}
 
-	private int weightForTechnologyLimitations(AvailableSkill skill) {
+	private int weightByCharacteristics(AvailableSkill skill) {
+		if (skill.getSkillDefinition().getSkillGroup().getPreferredCharacteristicsGroups() != null && !getPreferredCharacteristicsTypeSorted().isEmpty()) {
+			if (Objects.equals(skill.getSkillDefinition().getSkillGroup().getPreferredCharacteristicsGroups(), getPreferredCharacteristicsTypeSorted().get(0))) {
+				return LITTLE_PROBABILITY;
+			}
+		}
+		return 0;
+	}
+
+	private int weightByTechnologyLimitations(AvailableSkill skill) {
 		// Weapons only if technology is enough.
 		if (getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).getValue() < skill.getRandomDefinition().getMinimumTechLevel()) {
 			return NO_PROBABILITY;
@@ -168,7 +187,7 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 		return 0;
 	}
 
-	private int weightForFactions(AvailableSkill skill) {
+	private int weightByFactions(AvailableSkill skill) {
 		// No faction skills
 		if (skill.getSkillDefinition().isLimitedToFaction()) {
 			if (!skill.getSkillDefinition().getFactions().contains(getCharacterPlayer().getInfo().getFaction())) {
@@ -192,7 +211,7 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 		return 0;
 	}
 
-	private int weightForRace(AvailableSkill skill) {
+	private int weightByRace(AvailableSkill skill) {
 		// Recommended to my faction group.
 		if (getCharacterPlayer().getRace() != null && skill.getRandomDefinition().getRecommendedRaces().contains(getCharacterPlayer().getRace())) {
 			return ACCEPTABLE_PROBABILITY;
@@ -200,7 +219,7 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 		return 0;
 	}
 
-	private int weightForNobility(AvailableSkill skill) {
+	private int weightByNobility(AvailableSkill skill) {
 		if (Objects.equals(getCharacterPlayer().getInfo().getFaction().getFactionGroup(), FactionGroup.NOBILITY)) {
 			// beastcraft for nobility is not common in my point of view.
 			if (skill.getId().equalsIgnoreCase("beastcraft")) {
@@ -246,5 +265,12 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 			}
 		}
 		return 0;
+	}
+
+	public List<Entry<CharacteristicType, Integer>> getPreferredCharacteristicsTypeSorted() {
+		if (preferredCharacteristicsTypeSorted == null) {
+			preferredCharacteristicsTypeSorted = getCharacterPlayer().getPreferredCharacteristicsTypeSorted();
+		}
+		return preferredCharacteristicsTypeSorted;
 	}
 }
