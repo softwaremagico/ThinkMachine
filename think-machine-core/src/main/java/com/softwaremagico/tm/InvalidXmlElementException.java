@@ -30,4 +30,8 @@ public class InvalidXmlElementException extends Exception {
 	public InvalidXmlElementException(String message) {
 		super(message);
 	}
+
+	public InvalidXmlElementException(String message, Exception e) {
+		super(message, e);
+	}
 }

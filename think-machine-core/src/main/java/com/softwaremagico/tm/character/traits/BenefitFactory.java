@@ -72,7 +72,7 @@ public class BenefitFactory extends XmlFactory<Benefit> {
 				throw new InvalidBlessingException("Invalid cost in benefit '" + benefitId + "'.");
 			}
 		} catch (Exception e) {
-			throw new InvalidBlessingException("Invalid name in benefit '" + benefitId + "'.");
+			throw new InvalidBlessingException("Invalid structure in benefit '" + benefitId + "'.", e);
 		}
 	}
 

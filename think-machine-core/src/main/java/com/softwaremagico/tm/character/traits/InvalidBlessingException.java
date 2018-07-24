@@ -32,4 +32,8 @@ public class InvalidBlessingException extends InvalidXmlElementException {
 	public InvalidBlessingException(String message) {
 		super(message);
 	}
+
+	public InvalidBlessingException(String message, Exception e) {
+		super(message, e);
+	}
 }

@@ -65,7 +65,7 @@ public class DamageTypeFactory extends XmlFactory<DamageType> {
 			String name = translator.getNodeValue(damageId, NAME, language);
 			damageType = new DamageType(damageId, name);
 		} catch (Exception e) {
-			throw new InvalidWeaponException("Invalid name in damage '" + damageId + "'.");
+			throw new InvalidWeaponException("Invalid name in damage '" + damageId + "'.", e);
 		}
 		return damageType;
 	}

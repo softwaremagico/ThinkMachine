@@ -28,7 +28,6 @@ import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
 import com.softwaremagico.tm.character.OccultismType;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
-import com.softwaremagico.tm.character.traits.InvalidBlessingException;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
 
@@ -73,7 +72,7 @@ public class RaceFactory extends XmlFactory<Race> {
 			String name = translator.getNodeValue(raceId, NAME, language);
 			race = new Race(raceId, name);
 		} catch (Exception e) {
-			throw new InvalidBlessingException("Invalid name in race '" + raceId + "'.");
+			throw new InvalidRaceException("Invalid structure in race '" + raceId + "'.", e);
 		}
 		try {
 			String cost = translator.getNodeValue(raceId, COST);

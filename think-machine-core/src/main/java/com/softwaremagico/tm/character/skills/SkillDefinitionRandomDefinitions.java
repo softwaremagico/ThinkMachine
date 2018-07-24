@@ -1,5 +1,11 @@
 package com.softwaremagico.tm.character.skills;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import com.softwaremagico.tm.character.factions.Faction;
+import com.softwaremagico.tm.character.factions.FactionGroup;
+
 /*-
  * #%L
  * Think Machine (Core)
@@ -27,6 +33,8 @@ package com.softwaremagico.tm.character.skills;
 public class SkillDefinitionRandomDefinitions {
 
 	private int minimumTechLevel;
+	private final Set<Faction> recommendedFactions = new HashSet<>();
+	private final Set<FactionGroup> recommendedFactionGroups = new HashSet<>();
 
 	public int getMinimumTechLevel() {
 		return minimumTechLevel;
@@ -34,5 +42,25 @@ public class SkillDefinitionRandomDefinitions {
 
 	public void setMinimumTechLevel(int minimumTechLevel) {
 		this.minimumTechLevel = minimumTechLevel;
+	}
+
+	public Set<Faction> getRecommendedFactions() {
+		return recommendedFactions;
+	}
+
+	public void addRecommendedFactionGroup(FactionGroup recommendedFactionGroup) {
+		if (recommendedFactionGroup != null) {
+			recommendedFactionGroups.add(recommendedFactionGroup);
+		}
+	}
+
+	public Set<FactionGroup> getRecommendedFactionGroups() {
+		return recommendedFactionGroups;
+	}
+
+	public void addRecommendedFaction(Faction faction) {
+		if (faction != null) {
+			recommendedFactions.add(faction);
+		}
 	}
 }

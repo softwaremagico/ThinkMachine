@@ -47,8 +47,9 @@ import com.softwaremagico.tm.random.selectors.TechnologicalPreferences;
 public class RandomSkills extends RandomSelector<AvailableSkill> {
 	private final static int NO_PROBABILITY = -1000;
 	private final static int BAD_PROBABILITY = -10;
-	private final static int MAX_PROBABILITY = 100;
+	private final static int LIMITED_PROBABILITY = 10;
 	private final static int GOOD_PROBABILITY = 20;
+	private final static int MAX_PROBABILITY = 100;
 
 	public RandomSkills(CharacterPlayer characterPlayer, Set<IRandomPreferences> preferences) throws InvalidXmlElementException {
 		super(characterPlayer, preferences);
@@ -145,8 +146,25 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 
 	private int weightForFactions(AvailableSkill skill) {
 		// No faction skills
-		if (skill.getSkillDefinition().isLimitedToFaction() && !skill.getSkillDefinition().getFactions().contains(getCharacterPlayer().getInfo().getFaction())) {
-			return NO_PROBABILITY;
+		if (skill.getSkillDefinition().isLimitedToFaction()) {
+			if (!skill.getSkillDefinition().getFactions().contains(getCharacterPlayer().getInfo().getFaction())) {
+				return NO_PROBABILITY;
+			} else if (getCharacterPlayer().getInfo().getFaction() != null
+			// Recommended to my faction and only this faction can do it.
+					&& skill.getSkillDefinition().getRandomDefinition().getRecommendedFactions().contains(getCharacterPlayer().getInfo().getFaction())) {
+				return MAX_PROBABILITY;
+			}
+		}
+		// Recommended to my faction group.
+		if (getCharacterPlayer().getInfo().getFaction() != null
+				&& skill.getSkillDefinition().getRandomDefinition().getRecommendedFactionGroups()
+						.contains(getCharacterPlayer().getInfo().getFaction().getFactionGroup())) {
+			return LIMITED_PROBABILITY;
+		}
+		// Recommended to my faction.
+		if (getCharacterPlayer().getInfo().getFaction() != null
+				&& skill.getSkillDefinition().getRandomDefinition().getRecommendedFactions().contains(getCharacterPlayer().getInfo().getFaction())) {
+			return GOOD_PROBABILITY;
 		}
 		return 0;
 	}
@@ -159,7 +177,7 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 			}
 			// Ride is very common for nobility.
 			if (skill.getId().equalsIgnoreCase("ride")) {
-				return GOOD_PROBABILITY;
+				return LIMITED_PROBABILITY;
 			}
 		}
 		return 0;

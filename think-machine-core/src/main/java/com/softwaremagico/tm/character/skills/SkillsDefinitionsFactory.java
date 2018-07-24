@@ -36,8 +36,8 @@ import java.util.StringTokenizer;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
+import com.softwaremagico.tm.character.factions.FactionGroup;
 import com.softwaremagico.tm.character.factions.FactionsFactory;
-import com.softwaremagico.tm.character.traits.InvalidBlessingException;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.log.MachineLog;
@@ -54,6 +54,8 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 
 	private final static String RANDOM = "random";
 	private final static String RANDOM_TECH_LEVEL = "techlevel";
+	private final static String RECOMMENDED_FACTIONS = "recommendedFactions";
+	private final static String RECOMMENDED_FACTION_GROUPS = "recommendedFactionGroups";
 	private static Map<String, List<SkillDefinition>> naturalSkills = new HashMap<>();
 	private static Map<String, List<SkillDefinition>> learnedSkills = new HashMap<>();
 
@@ -165,8 +167,9 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 			String factionSkill = translator.getNodeValue(skillId, FACTION_SKILL_TAG);
 			if (factionSkill != null) {
 				StringTokenizer factionsOfSkill = new StringTokenizer(factionSkill, ",");
-				while (factionsOfSkill.hasMoreTokens())
-					skill.addFaction(FactionsFactory.getInstance().getElement(factionsOfSkill.nextToken(), language));
+				while (factionsOfSkill.hasMoreTokens()) {
+					skill.addFaction(FactionsFactory.getInstance().getElement(factionsOfSkill.nextToken().trim(), language));
+				}
 			}
 
 			String group = translator.getNodeValue(skillId, GROUP_SKILL_TAG);
@@ -184,9 +187,25 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 				throw new InvalidSkillException("Invalid number value for techlevel in skill '" + skillId + "'.");
 			}
 
+			String recommendedFactionGroups = translator.getNodeValue(skillId, RANDOM, RECOMMENDED_FACTION_GROUPS);
+			if (recommendedFactionGroups != null) {
+				StringTokenizer recommendedFactionGroupsOfSkill = new StringTokenizer(recommendedFactionGroups, ",");
+				while (recommendedFactionGroupsOfSkill.hasMoreTokens()) {
+					skill.getRandomDefinition().addRecommendedFactionGroup(FactionGroup.get(recommendedFactionGroupsOfSkill.nextToken().trim()));
+				}
+			}
+			String recommendedFactions = translator.getNodeValue(skillId, RANDOM, RECOMMENDED_FACTIONS);
+			if (recommendedFactions != null) {
+				StringTokenizer recommendedFactionsOfSkill = new StringTokenizer(recommendedFactions, ",");
+				while (recommendedFactionsOfSkill.hasMoreTokens()) {
+					skill.getRandomDefinition().addRecommendedFaction(
+							FactionsFactory.getInstance().getElement(recommendedFactionsOfSkill.nextToken().trim(), language));
+				}
+			}
+
 			return skill;
 		} catch (Exception e) {
-			throw new InvalidBlessingException("Invalid name in skill '" + skillId + "'.");
+			throw new InvalidSkillException("Invalid structure in skill '" + skillId + "'.", e);
 		}
 	}
 

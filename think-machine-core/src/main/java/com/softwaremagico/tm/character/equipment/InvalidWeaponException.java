@@ -32,4 +32,8 @@ public class InvalidWeaponException extends InvalidXmlElementException {
 	public InvalidWeaponException(String message) {
 		super(message);
 	}
+
+	public InvalidWeaponException(String message, Exception e) {
+		super(message, e);
+	}
 }

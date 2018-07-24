@@ -32,4 +32,8 @@ public class InvalidFactionException extends InvalidXmlElementException {
 	public InvalidFactionException(String message) {
 		super(message);
 	}
+	
+	public InvalidFactionException(String message, Exception e) {
+		super(message, e);
+	}
 }

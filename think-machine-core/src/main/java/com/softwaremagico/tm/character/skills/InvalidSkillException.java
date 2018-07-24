@@ -32,4 +32,8 @@ public class InvalidSkillException extends InvalidXmlElementException {
 	public InvalidSkillException(String message) {
 		super(message);
 	}
+
+	public InvalidSkillException(String message, Exception e) {
+		super(message, e);
+	}
 }

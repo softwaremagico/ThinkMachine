@@ -69,7 +69,7 @@ public class BlessingFactory extends XmlFactory<Blessing> {
 			String name = translator.getNodeValue(blessingId, NAME, language);
 			blessing = new Blessing(blessingId, name);
 		} catch (Exception e) {
-			throw new InvalidBlessingException("Invalid name in blessing '" + blessingId + "'.");
+			throw new InvalidBlessingException("Invalid structure in blessing '" + blessingId + "'.", e);
 		}
 		try {
 			String cost = translator.getNodeValue(blessingId, COST);
