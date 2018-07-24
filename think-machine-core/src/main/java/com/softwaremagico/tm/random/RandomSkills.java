@@ -46,9 +46,10 @@ import com.softwaremagico.tm.random.selectors.TechnologicalPreferences;
 
 public class RandomSkills extends RandomSelector<AvailableSkill> {
 	private final static int NO_PROBABILITY = -1000;
-	private final static int BAD_PROBABILITY = -10;
-	private final static int LIMITED_PROBABILITY = 10;
-	private final static int GOOD_PROBABILITY = 20;
+	private final static int BAD_PROBABILITY = -20;
+	private final static int LOW_PROBABILITY = -10;
+	private final static int LIMITED_PROBABILITY = 11;
+	private final static int GOOD_PROBABILITY = 21;
 	private final static int MAX_PROBABILITY = 100;
 
 	public RandomSkills(CharacterPlayer characterPlayer, Set<IRandomPreferences> preferences) throws InvalidXmlElementException {
@@ -137,8 +138,10 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 	private int weightForTSkillDefinition(AvailableSkill skill) {
 		// Weapons only if technology is enough.
 		switch (skill.getRandomDefinition().getProbability()) {
-		case LOW:
+		case MINIMUM:
 			return BAD_PROBABILITY;
+		case LOW:
+			return LOW_PROBABILITY;
 		case FAIR:
 			return 0;
 		case GOOD:
@@ -155,7 +158,7 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 		// Ride is common in medieval age but not so common in modern age.
 		if (skill.getId().equalsIgnoreCase("ride")) {
 			if (getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).getValue() > 4) {
-				return BAD_PROBABILITY;
+				return LOW_PROBABILITY;
 			}
 		}
 		return 0;

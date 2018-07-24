@@ -1,7 +1,7 @@
 package com.softwaremagico.tm.character.skills;
 
 public enum SkillRandomProbability {
-	LOW, FAIR, GOOD;
+	MINIMUM, LOW, FAIR, GOOD;
 
 	public static SkillRandomProbability get(String probabilityName) {
 		for (SkillRandomProbability probability : SkillRandomProbability.values()) {
