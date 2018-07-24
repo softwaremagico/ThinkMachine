@@ -29,7 +29,7 @@ import com.softwaremagico.tm.character.factions.Faction;
  * #L%
  */
 
-public class SkillDefinition extends Skill<SkillDefinition> {
+public class SkillDefinition extends Skill<SkillDefinition> implements ISkillRandomDefintions {
 	public final static int NATURAL_SKILLS_MINIMUM_VALUE = 3;
 	public final static String FACTORION_LORE_ID = "factionLore";
 	public final static String PLANETARY_LORE_ID = "planetaryLore";
@@ -92,6 +92,7 @@ public class SkillDefinition extends Skill<SkillDefinition> {
 		return super.toString() + " (" + skillGroup + ") " + getSpecializations();
 	}
 
+	@Override
 	public SkillDefinitionRandomDefinitions getRandomDefinition() {
 		return randomDefinition;
 	}

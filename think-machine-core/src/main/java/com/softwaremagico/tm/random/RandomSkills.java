@@ -132,7 +132,7 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 
 	private int weightForTechnologyLimitations(AvailableSkill skill) {
 		// Weapons only if technology is enough.
-		if (getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).getValue() < skill.getSkillDefinition().getRandomDefinition().getMinimumTechLevel()) {
+		if (getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).getValue() < skill.getRandomDefinition().getMinimumTechLevel()) {
 			return NO_PROBABILITY;
 		}
 		// Ride is common in medieval age but not so common in modern age.
@@ -151,19 +151,18 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 				return NO_PROBABILITY;
 			} else if (getCharacterPlayer().getInfo().getFaction() != null
 			// Recommended to my faction and only this faction can do it.
-					&& skill.getSkillDefinition().getRandomDefinition().getRecommendedFactions().contains(getCharacterPlayer().getInfo().getFaction())) {
+					&& skill.getRandomDefinition().getRecommendedFactions().contains(getCharacterPlayer().getInfo().getFaction())) {
 				return MAX_PROBABILITY;
 			}
 		}
 		// Recommended to my faction group.
 		if (getCharacterPlayer().getInfo().getFaction() != null
-				&& skill.getSkillDefinition().getRandomDefinition().getRecommendedFactionGroups()
-						.contains(getCharacterPlayer().getInfo().getFaction().getFactionGroup())) {
+				&& skill.getRandomDefinition().getRecommendedFactionGroups().contains(getCharacterPlayer().getInfo().getFaction().getFactionGroup())) {
 			return LIMITED_PROBABILITY;
 		}
 		// Recommended to my faction.
 		if (getCharacterPlayer().getInfo().getFaction() != null
-				&& skill.getSkillDefinition().getRandomDefinition().getRecommendedFactions().contains(getCharacterPlayer().getInfo().getFaction())) {
+				&& skill.getRandomDefinition().getRecommendedFactions().contains(getCharacterPlayer().getInfo().getFaction())) {
 			return GOOD_PROBABILITY;
 		}
 		return 0;

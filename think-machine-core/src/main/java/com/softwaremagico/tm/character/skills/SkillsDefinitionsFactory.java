@@ -150,7 +150,9 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 				Set<Specialization> specializations = new HashSet<>();
 				for (String specializationId : translator.getAllChildrenTags(skillId, SPECIALIZABLE_SKILL_TAG)) {
 					String specizalizationName = translator.getNodeValue(specializationId, language);
-					specializations.add(new Specialization(specializationId, specizalizationName));
+					Specialization specialization = new Specialization(specializationId, specizalizationName);
+					setRandomDefinition(translator, specialization, language);
+					specializations.add(specialization);
 				}
 				skill.setSpecializations(specializations);
 			} catch (NumberFormatException nfe) {
@@ -178,34 +180,38 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 			String natural = translator.getNodeValue(skillId, NATURAL_SKILL_TAG);
 			skill.setNatural(Boolean.parseBoolean(natural));
 
-			try {
-				String minTechLevel = translator.getNodeValue(skillId, RANDOM, RANDOM_TECH_LEVEL);
-				if (minTechLevel != null) {
-					skill.getRandomDefinition().setMinimumTechLevel(Integer.parseInt(minTechLevel));
-				}
-			} catch (NumberFormatException nfe) {
-				throw new InvalidSkillException("Invalid number value for techlevel in skill '" + skillId + "'.");
-			}
-
-			String recommendedFactionGroups = translator.getNodeValue(skillId, RANDOM, RECOMMENDED_FACTION_GROUPS);
-			if (recommendedFactionGroups != null) {
-				StringTokenizer recommendedFactionGroupsOfSkill = new StringTokenizer(recommendedFactionGroups, ",");
-				while (recommendedFactionGroupsOfSkill.hasMoreTokens()) {
-					skill.getRandomDefinition().addRecommendedFactionGroup(FactionGroup.get(recommendedFactionGroupsOfSkill.nextToken().trim()));
-				}
-			}
-			String recommendedFactions = translator.getNodeValue(skillId, RANDOM, RECOMMENDED_FACTIONS);
-			if (recommendedFactions != null) {
-				StringTokenizer recommendedFactionsOfSkill = new StringTokenizer(recommendedFactions, ",");
-				while (recommendedFactionsOfSkill.hasMoreTokens()) {
-					skill.getRandomDefinition().addRecommendedFaction(
-							FactionsFactory.getInstance().getElement(recommendedFactionsOfSkill.nextToken().trim(), language));
-				}
-			}
+			setRandomDefinition(translator, skill, language);
 
 			return skill;
 		} catch (Exception e) {
 			throw new InvalidSkillException("Invalid structure in skill '" + skillId + "'.", e);
+		}
+	}
+
+	private void setRandomDefinition(ITranslator translator, ISkillRandomDefintions element, String language) throws InvalidXmlElementException {
+		try {
+			String minTechLevel = translator.getNodeValue(element.getId(), RANDOM, RANDOM_TECH_LEVEL);
+			if (minTechLevel != null) {
+				element.getRandomDefinition().setMinimumTechLevel(Integer.parseInt(minTechLevel));
+			}
+		} catch (NumberFormatException nfe) {
+			throw new InvalidSkillException("Invalid number value for techlevel in skill '" + element.getId() + "'.");
+		}
+
+		String recommendedFactionGroups = translator.getNodeValue(element.getId(), RANDOM, RECOMMENDED_FACTION_GROUPS);
+		if (recommendedFactionGroups != null) {
+			StringTokenizer recommendedFactionGroupsOfSkill = new StringTokenizer(recommendedFactionGroups, ",");
+			while (recommendedFactionGroupsOfSkill.hasMoreTokens()) {
+				element.getRandomDefinition().addRecommendedFactionGroup(FactionGroup.get(recommendedFactionGroupsOfSkill.nextToken().trim()));
+			}
+		}
+		String recommendedFactions = translator.getNodeValue(element.getId(), RANDOM, RECOMMENDED_FACTIONS);
+		if (recommendedFactions != null) {
+			StringTokenizer recommendedFactionsOfSkill = new StringTokenizer(recommendedFactions, ",");
+			while (recommendedFactionsOfSkill.hasMoreTokens()) {
+				element.getRandomDefinition().addRecommendedFaction(
+						FactionsFactory.getInstance().getElement(recommendedFactionsOfSkill.nextToken().trim(), language));
+			}
 		}
 	}
 
