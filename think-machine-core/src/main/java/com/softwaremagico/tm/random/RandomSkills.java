@@ -48,7 +48,7 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 	private final static int NO_PROBABILITY = -1000;
 	private final static int BAD_PROBABILITY = -20;
 	private final static int LOW_PROBABILITY = -10;
-	private final static int LIMITED_PROBABILITY = 11;
+	private final static int ACCEPTABLE_PROBABILITY = 11;
 	private final static int GOOD_PROBABILITY = 21;
 	private final static int MAX_PROBABILITY = 100;
 
@@ -108,13 +108,17 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 			return NO_PROBABILITY;
 		}
 
-		int definitionWeight = weightForTSkillDefinition(skill);
+		int definitionWeight = weightForSkillDefinition(skill);
 		MachineLog.debug(this.getClass().getName(), "Weight for '" + skill + "' by skill definition modification is '" + definitionWeight + "'.");
 		weight += definitionWeight;
 
 		int preferencesWeight = weightByPreferences(skill);
 		MachineLog.debug(this.getClass().getName(), "Weight for '" + skill + "' by preferences modification is '" + preferencesWeight + "'.");
 		weight += preferencesWeight;
+
+		int raceWeight = weightForRace(skill);
+		MachineLog.debug(this.getClass().getName(), "Weight for '" + skill + "' by race modification is '" + raceWeight + "'.");
+		weight += raceWeight;
 
 		int factionWeight = weightForFactions(skill);
 		MachineLog.debug(this.getClass().getName(), "Weight for '" + skill + "' by faction modification is '" + factionWeight + "'.");
@@ -135,7 +139,7 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 		return weight;
 	}
 
-	private int weightForTSkillDefinition(AvailableSkill skill) {
+	private int weightForSkillDefinition(AvailableSkill skill) {
 		// Weapons only if technology is enough.
 		switch (skill.getRandomDefinition().getProbability()) {
 		case MINIMUM:
@@ -145,7 +149,7 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 		case FAIR:
 			return 0;
 		case GOOD:
-			return LIMITED_PROBABILITY;
+			return ACCEPTABLE_PROBABILITY;
 		}
 		return 0;
 	}
@@ -178,12 +182,20 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 		// Recommended to my faction group.
 		if (getCharacterPlayer().getInfo().getFaction() != null
 				&& skill.getRandomDefinition().getRecommendedFactionGroups().contains(getCharacterPlayer().getInfo().getFaction().getFactionGroup())) {
-			return LIMITED_PROBABILITY;
+			return ACCEPTABLE_PROBABILITY;
 		}
 		// Recommended to my faction.
 		if (getCharacterPlayer().getInfo().getFaction() != null
 				&& skill.getRandomDefinition().getRecommendedFactions().contains(getCharacterPlayer().getInfo().getFaction())) {
 			return GOOD_PROBABILITY;
+		}
+		return 0;
+	}
+
+	private int weightForRace(AvailableSkill skill) {
+		// Recommended to my faction group.
+		if (getCharacterPlayer().getRace() != null && skill.getRandomDefinition().getRecommendedRaces().contains(getCharacterPlayer().getRace())) {
+			return ACCEPTABLE_PROBABILITY;
 		}
 		return 0;
 	}
@@ -196,7 +208,7 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 			}
 			// Ride is very common for nobility.
 			if (skill.getId().equalsIgnoreCase("ride")) {
-				return LIMITED_PROBABILITY;
+				return ACCEPTABLE_PROBABILITY;
 			}
 		}
 		return 0;

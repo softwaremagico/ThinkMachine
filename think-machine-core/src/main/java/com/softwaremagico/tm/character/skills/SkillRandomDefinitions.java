@@ -5,6 +5,7 @@ import java.util.Set;
 
 import com.softwaremagico.tm.character.factions.Faction;
 import com.softwaremagico.tm.character.factions.FactionGroup;
+import com.softwaremagico.tm.character.race.Race;
 
 /*-
  * #%L
@@ -34,6 +35,7 @@ public class SkillRandomDefinitions {
 
 	private int minimumTechLevel;
 	private final Set<Faction> recommendedFactions = new HashSet<>();
+	private final Set<Race> recommendedRaces = new HashSet<>();
 	private final Set<FactionGroup> recommendedFactionGroups = new HashSet<>();
 	private SkillRandomProbability probability = SkillRandomProbability.FAIR;
 
@@ -71,5 +73,15 @@ public class SkillRandomDefinitions {
 
 	public void setProbability(SkillRandomProbability probability) {
 		this.probability = probability;
+	}
+
+	public void addRecommendedRace(Race race) {
+		if (race != null) {
+			recommendedRaces.add(race);
+		}
+	}
+
+	public Set<Race> getRecommendedRaces() {
+		return recommendedRaces;
 	}
 }

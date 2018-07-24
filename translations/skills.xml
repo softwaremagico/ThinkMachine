@@ -413,6 +413,7 @@
 				<es>Red de Salto</es>
 				<random>
 					<techlevel>5</techlevel>
+					<generalProbability>low</generalProbability>
 					<recommendedFactions>charioteers, scravers</recommendedFactions>
 				</random>
 			</jumpwebLore>
@@ -435,6 +436,10 @@
 			<kelantiLore>
 				<en>Kelanti</en>
 				<es>Kelanti</es>
+				<random>
+					<recommendedRaces>obun</recommendedRaces>
+					<generalProbability>low</generalProbability>
+				</random>
 			</kelantiLore>
 		</specializations>
 		<numberToShow>4</numberToShow>

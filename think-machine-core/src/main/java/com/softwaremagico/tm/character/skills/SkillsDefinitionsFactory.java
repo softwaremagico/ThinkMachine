@@ -38,6 +38,7 @@ import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
 import com.softwaremagico.tm.character.factions.FactionGroup;
 import com.softwaremagico.tm.character.factions.FactionsFactory;
+import com.softwaremagico.tm.character.race.RaceFactory;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.log.MachineLog;
@@ -56,6 +57,7 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 	private final static String RANDOM_TECH_LEVEL = "techlevel";
 	private final static String RECOMMENDED_FACTIONS = "recommendedFactions";
 	private final static String RECOMMENDED_FACTION_GROUPS = "recommendedFactionGroups";
+	private final static String RECOMMENDED_RACES = "recommendedRaces";
 	private final static String GENERAL_PROBABILITY = "generalProbability";
 
 	private static Map<String, List<SkillDefinition>> naturalSkills = new HashMap<>();
@@ -214,6 +216,14 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 			while (recommendedFactionsOfSkill.hasMoreTokens()) {
 				element.getRandomDefinition().addRecommendedFaction(
 						FactionsFactory.getInstance().getElement(recommendedFactionsOfSkill.nextToken().trim(), language));
+			}
+		}
+
+		String recommendedRaces = translator.getNodeValue(element.getId(), RANDOM, RECOMMENDED_RACES);
+		if (recommendedRaces != null) {
+			StringTokenizer recommendedRacesOfSkill = new StringTokenizer(recommendedRaces, ",");
+			while (recommendedRacesOfSkill.hasMoreTokens()) {
+				element.getRandomDefinition().addRecommendedRace(RaceFactory.getInstance().getElement(recommendedRacesOfSkill.nextToken().trim(), language));
 			}
 		}
 
