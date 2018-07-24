@@ -50,7 +50,8 @@ import com.softwaremagico.tm.random.selectors.TechnologicalPreferences;
 public class RandomSkills extends RandomSelector<AvailableSkill> {
 	private final static int NO_PROBABILITY = -1000;
 	private final static int BAD_PROBABILITY = -20;
-	private final static int LOW_PROBABILITY = -10;
+	private final static int DIFFICULT_PROBABILITY = -10;
+	private final static int SUBTLE_PROBABILITY = 1;
 	private final static int LITTLE_PROBABILITY = 6;
 	private final static int ACCEPTABLE_PROBABILITY = 11;
 	private final static int GOOD_PROBABILITY = 21;
@@ -155,7 +156,7 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 		case MINIMUM:
 			return BAD_PROBABILITY;
 		case LOW:
-			return LOW_PROBABILITY;
+			return DIFFICULT_PROBABILITY;
 		case FAIR:
 			return 0;
 		case GOOD:
@@ -169,6 +170,9 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 			if (Objects.equals(skill.getSkillDefinition().getSkillGroup().getPreferredCharacteristicsGroups(), getPreferredCharacteristicsTypeSorted().get(0))) {
 				return LITTLE_PROBABILITY;
 			}
+			if (Objects.equals(skill.getSkillDefinition().getSkillGroup().getPreferredCharacteristicsGroups(), getPreferredCharacteristicsTypeSorted().get(1))) {
+				return SUBTLE_PROBABILITY;
+			}
 		}
 		return 0;
 	}
@@ -181,7 +185,7 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 		// Ride is common in medieval age but not so common in modern age.
 		if (skill.getId().equalsIgnoreCase("ride")) {
 			if (getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).getValue() > 4) {
-				return LOW_PROBABILITY;
+				return DIFFICULT_PROBABILITY;
 			}
 		}
 		return 0;
