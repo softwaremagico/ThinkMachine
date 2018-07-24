@@ -66,6 +66,6 @@ Fonts used in this project: DejaVuSans, ArchitectsDaughter and Roman Antique.
 
 0.3.0 Small PDF chart generation added.
 
-*0.4.0 Rangom character generator.*
+*0.4.0 Random character generator.*
 
-*0.5.0 Filling up the sheet using UI.*
+*0.5.0 Graphical User Interface.*
