@@ -29,7 +29,7 @@ import com.softwaremagico.tm.character.equipment.WeaponFactory;
 import com.softwaremagico.tm.character.race.RaceFactory;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
-import com.softwaremagico.tm.character.traits.BenefitFactory;
+import com.softwaremagico.tm.character.traits.BeneficeDefinitionFactory;
 import com.softwaremagico.tm.character.traits.BlessingFactory;
 import com.softwaremagico.tm.language.LanguagePool;
 
@@ -41,7 +41,7 @@ public class CacheHandler {
 		SkillsDefinitionsFactory.getInstance().clearCache();
 		BlessingFactory.getInstance().clearCache();
 		RaceFactory.getInstance().clearCache();
-		BenefitFactory.getInstance().clearCache();
+		BeneficeDefinitionFactory.getInstance().clearCache();
 		WeaponFactory.getInstance().clearCache();
 		CharacteristicsDefinitionFactory.getInstance().clearCache();
 	}

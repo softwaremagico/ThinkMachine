@@ -54,8 +54,7 @@ import com.softwaremagico.tm.character.race.RaceFactory;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.character.skills.CyberneticSkill;
 import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
-import com.softwaremagico.tm.character.traits.Benefit;
-import com.softwaremagico.tm.character.traits.BenefitFactory;
+import com.softwaremagico.tm.character.traits.AvailableBeneficeFactory;
 import com.softwaremagico.tm.character.traits.Blessing;
 import com.softwaremagico.tm.character.traits.BlessingFactory;
 import com.softwaremagico.tm.language.LanguagePool;
@@ -124,11 +123,10 @@ public class CustomCharacters {
 		horribleMark.setSkill(SkillsDefinitionsFactory.getInstance().getElement("influence", LANGUAGE));
 		player.addBlessing(horribleMark);
 
-		player.addBenefit(BenefitFactory.getInstance().getElement("turingLanguage", LANGUAGE));
-		// player.addBenefit(new Benefit("Idioma Turing", 2));
-		player.addBenefit(new Benefit("Asociado", 4));
-		player.addBenefit(new Benefit("1000 fénix", 4));
-		player.addBenefit(new Benefit("Red de Información", 3));
+		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("language [turing]", player.getLanguage()));
+		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("commission_4", player.getLanguage()));
+		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("cash_4", player.getLanguage()));
+		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("gossipNetwork_3", player.getLanguage()));
 
 		Device ingeneerEye = new Device("Ojo de Ingeniero", 8, 6, "Normal", "Normal", "Automático", "Oculto", "Autoalimentado");
 		ingeneerEye.addCharacteristicImprovement(new CharacteristicImprovement(CharacteristicsDefinitionFactory.getInstance()
@@ -205,11 +203,11 @@ public class CustomCharacters {
 		horribleMark.setSkill(SkillsDefinitionsFactory.getInstance().getElement("influence", LANGUAGE));
 		player.addBlessing(horribleMark);
 
-		player.addBenefit(new Benefit("Rango Caballero", 4));
-		player.addBenefit(new Benefit("Idioma Latín", 2));
-		player.addBenefit(new Benefit("Decreto Imperial", 4));
-		player.addBenefit(new Benefit("Espada de Flujo", 11));
-		player.addBenefit(new Benefit("Vendetta", -2));
+		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("nobility_4", player.getLanguage()));
+		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("language [latin]", player.getLanguage()));
+		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("imperialCharter", player.getLanguage()));
+		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("fluxSword", player.getLanguage()));
+		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("vendetta_2", player.getLanguage()));
 
 		player.getWeapons().addElement(WeaponFactory.getInstance().getElement("fluxSword", LANGUAGE));
 
@@ -277,11 +275,11 @@ public class CustomCharacters {
 		horribleMark.setSkill(SkillsDefinitionsFactory.getInstance().getElement("influence", LANGUAGE));
 		player.addBlessing(horribleMark);
 
-		player.addBenefit(new Benefit("Genin", 8));
-		player.addBenefit(new Benefit("Contrato de Pasaje", 3));
-		player.addBenefit(new Benefit("1000 fénix", 4));
+		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("commission_8", player.getLanguage()));
+		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("passageContracts_3", player.getLanguage()));
+		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("cash_4", player.getLanguage()));
 
-		CombatStyle fightStyle = new CombatStyle("Talón de Acero");
+		CombatStyle fightStyle = new CombatStyle("ironHeel");
 		fightStyle.addElement(new CombatAction("Cadena de Destrucción", null, "3d", "Presa Especial"));
 		fightStyle.addElement(new CombatAction("Cabezazo", 2, "4d", "Ignora armadura*"));
 		player.getMeleeCombatStyles().add(fightStyle);
@@ -358,11 +356,10 @@ public class CustomCharacters {
 		horribleMark.setSkill(SkillsDefinitionsFactory.getInstance().getElement("influence", LANGUAGE));
 		player.addBlessing(horribleMark);
 
-		player.addBenefit(new Benefit("Rango Novicio", 4));
-		player.addBenefit(new Benefit("Idioma Terráqueo", 2));
-		player.addBenefit(new Benefit("Idioma Obun", 0));
-		player.addBenefit(new Benefit("Estigma", -2));
-		player.addBenefit(new Benefit("Huérfano", -1));
+		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("ordained_4", player.getLanguage()));
+		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("language [urthish]", player.getLanguage()));
+		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("stigma_2", player.getLanguage()));
+		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("orphan", player.getLanguage()));
 
 		LanguagePool.clearCache();
 		CharacterSheet sheet = new CharacterSheet(player);

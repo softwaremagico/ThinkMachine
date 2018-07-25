@@ -55,7 +55,7 @@ import com.softwaremagico.tm.character.occultism.OccultismPower;
 import com.softwaremagico.tm.character.race.Race;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
-import com.softwaremagico.tm.character.traits.Benefit;
+import com.softwaremagico.tm.character.traits.AvailableBeneficeFactory;
 import com.softwaremagico.tm.character.traits.Blessing;
 import com.softwaremagico.tm.json.CharacterJsonManager;
 import com.softwaremagico.tm.language.LanguagePool;
@@ -145,20 +145,21 @@ public class CharacterSheetCreationTest {
 		credulous.setCharacteristic(CharacteristicsDefinitionFactory.getInstance().getElement("will", LANGUAGE));
 		player.addBlessing(credulous);
 
-		player.addBenefit(new Benefit("Estigma", -1));
-		player.addBenefit(new Benefit("Herencia", 3));
-		player.addBenefit(new Benefit("Filoespada", 12));
+		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("stigma_1", player.getLanguage()));
+
+		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("heir", player.getLanguage()));
+		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("wireblade", player.getLanguage()));
 
 		player.getCybernetics().addElement(new Device("Ojo de Ingeniero", 6, 5, "Normal", "Normal", "Automático", "Visible", ""));
 		player.getCybernetics().addElement(new Device("Jonás", 7, 4, "Normal", "Normal", "Ds+Arquería", "Incógnito", ""));
 
-		CombatStyle gun = new CombatStyle("Pistola");
+		CombatStyle gun = new CombatStyle("pistola");
 		gun.addElement(new CombatAction("Disparo Instantáneo", null, null, "-2 por 3 disparos"));
 		gun.addElement(new CombatAction("Rueda y Dispara", null, null, "Mover 3m"));
 		gun.addElement(new CombatAction("Corre y Dispara", null, null, "Especial"));
 		player.getRangedCombatStyles().add(gun);
 
-		CombatStyle shaidan = new CombatStyle("Shydan");
+		CombatStyle shaidan = new CombatStyle("shaidan");
 		shaidan.addElement(new CombatAction("Palma Real", null, "-1", ""));
 		shaidan.addElement(new CombatAction("Con un Pie en el Trono", 4, null, "+4 a resistir derribos"));
 		shaidan.addElement(new CombatAction("Decreto Imperial", null, "+1 / 1W", null));
@@ -177,7 +178,7 @@ public class CharacterSheetCreationTest {
 		CharacterSheet sheet = new CharacterSheet(player);
 		sheet.createFile(PDF_PATH_OUTPUT + "CharacterFS_ES.pdf");
 
-		Assert.assertEquals(CostCalculator.getCost(player), 51);
+		Assert.assertEquals(CostCalculator.getCost(player), 50);
 	}
 
 	@Test(dependsOnMethods = { "characterPdfSpanish" })

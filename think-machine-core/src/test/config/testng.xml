@@ -19,7 +19,7 @@
 				<include name="damageFactory" />
 				<include name="characteristicsFactory" />
 				<include name="weaponsFactory" />
-				<include name="benefitFactory" />
+				<include name="beneficeFactory" />
 				<include name="blessingFactory" />
 				<include name="factionsFactory" />
 				<include name="randomCharacter" />
@@ -31,7 +31,7 @@
 			<class name="com.softwaremagico.tm.factory.DamageTypeFactoryTests" />
 			<class name="com.softwaremagico.tm.factory.CharacteristicsDefinitionFactoryTests" />
 			<class name="com.softwaremagico.tm.factory.WeaponsFactoryTests" />
-			<class name="com.softwaremagico.tm.factory.BenefitFactoryTests" />
+			<class name="com.softwaremagico.tm.factory.BeneficeFactoryTests" />
 			<class name="com.softwaremagico.tm.factory.BlessingFactoryTests" />
 			<class name="com.softwaremagico.tm.random.RandomCharacterTests" />
 		</classes>

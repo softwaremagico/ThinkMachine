@@ -27,7 +27,7 @@ package com.softwaremagico.tm.character;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.cybernetics.Device;
 import com.softwaremagico.tm.character.occultism.OccultismPower;
-import com.softwaremagico.tm.character.traits.Benefit;
+import com.softwaremagico.tm.character.traits.AvailableBenefice;
 import com.softwaremagico.tm.character.traits.Blessing;
 import com.softwaremagico.tm.log.MachineLog;
 
@@ -64,7 +64,7 @@ public class CostCalculator {
 		return (characterPlayer.getSkillsTotalPoints() - FreeStyleCharacterCreation.SKILLS_POINTS);
 	}
 
-	private static int getTraitsCosts(CharacterPlayer characterPlayer) {
+	private static int getTraitsCosts(CharacterPlayer characterPlayer) throws InvalidXmlElementException {
 		int cost = 0;
 		cost += getBlessingCosts(characterPlayer);
 		cost += getBenefitsCosts(characterPlayer);
@@ -79,12 +79,12 @@ public class CostCalculator {
 		return cost;
 	}
 
-	private static int getBenefitsCosts(CharacterPlayer characterPlayer) {
+	private static int getBenefitsCosts(CharacterPlayer characterPlayer) throws InvalidXmlElementException {
 		int cost = 0;
-		for (Benefit benefit : characterPlayer.getBenefits()) {
+		for (AvailableBenefice benefit : characterPlayer.getBenefices()) {
 			cost += benefit.getCost();
 		}
-		for (Benefit affliction : characterPlayer.getAfflictions()) {
+		for (AvailableBenefice affliction : characterPlayer.getAfflictions()) {
 			cost += affliction.getCost();
 		}
 		return cost;

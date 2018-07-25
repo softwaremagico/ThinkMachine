@@ -104,6 +104,8 @@ public class RandomizeCharacter {
 		// Skills
 		RandomSkills randomSkills = new RandomSkills(characterPlayer, preferences);
 		randomSkills.spendSkillsPoints();
+		//Traits
+		
 	}
 
 	private void spendExperiencePoints() {

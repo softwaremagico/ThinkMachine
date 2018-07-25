@@ -62,13 +62,12 @@ import com.softwaremagico.tm.character.skills.Skill;
 import com.softwaremagico.tm.character.skills.SkillDefinition;
 import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
 import com.softwaremagico.tm.character.skills.Specialization;
-import com.softwaremagico.tm.character.traits.Benefit;
+import com.softwaremagico.tm.character.traits.AvailableBenefice;
+import com.softwaremagico.tm.character.traits.AvailableBeneficeFactory;
 import com.softwaremagico.tm.character.traits.Blessing;
 import com.softwaremagico.tm.log.MachineLog;
 
 public class CharacterPlayer {
-	private final static int COMBAT_STYLE_COST = 5;
-
 	private String language;
 
 	// Basic description of the character.
@@ -91,7 +90,7 @@ public class CharacterPlayer {
 
 	private List<Blessing> blessings;
 
-	private List<Benefit> benefits;
+	private List<AvailableBenefice> benefices;
 
 	private Cybernetics cybernetics;
 
@@ -127,7 +126,7 @@ public class CharacterPlayer {
 		skills = new HashMap<>();
 		skillNameOrdered = new ArrayList<>();
 		blessings = new ArrayList<>();
-		benefits = new ArrayList<>();
+		benefices = new ArrayList<>();
 		cybernetics = new Cybernetics();
 		weapons = new Weapons();
 		meleeCombatActions = new ArrayList<>();
@@ -338,32 +337,32 @@ public class CharacterPlayer {
 		return Collections.unmodifiableList(blessings);
 	}
 
-	public void addBenefit(Benefit benefit) {
-		benefits.add(benefit);
-		Collections.sort(benefits);
+	public void addBenefice(AvailableBenefice benefice) {
+		benefices.add(benefice);
+		Collections.sort(benefices);
 	}
 
-	public List<Benefit> getBenefits() {
-		List<Benefit> positiveBenefits = new ArrayList<>();
-		for (Benefit benefit : benefits) {
-			if (benefit.getCost() >= 0) {
-				positiveBenefits.add(benefit);
+	public List<AvailableBenefice> getBenefices() throws InvalidXmlElementException {
+		List<AvailableBenefice> positiveBenefices = new ArrayList<>();
+		for (AvailableBenefice benefice : benefices) {
+			if (benefice.getCost() >= 0) {
+				positiveBenefices.add(benefice);
 			}
 		}
 		for (CombatStyle style : getMeleeCombatStyles()) {
-			positiveBenefits.add(new Benefit(style.getId(), style.getName(), COMBAT_STYLE_COST));
+			positiveBenefices.add(AvailableBeneficeFactory.getInstance().getElement(style.getName(), getLanguage()));
 		}
 		for (CombatStyle style : getRangedCombatStyles()) {
-			positiveBenefits.add(new Benefit(style.getId(), style.getName(), COMBAT_STYLE_COST));
+			positiveBenefices.add(AvailableBeneficeFactory.getInstance().getElement(style.getName(), getLanguage()));
 		}
-		return Collections.unmodifiableList(positiveBenefits);
+		return Collections.unmodifiableList(positiveBenefices);
 	}
 
-	public List<Benefit> getAfflictions() {
-		List<Benefit> afflictions = new ArrayList<>();
-		for (Benefit benefit : benefits) {
-			if (benefit.getCost() < 0) {
-				afflictions.add(benefit);
+	public List<AvailableBenefice> getAfflictions() {
+		List<AvailableBenefice> afflictions = new ArrayList<>();
+		for (AvailableBenefice benefice : benefices) {
+			if (benefice.getCost() < 0) {
+				afflictions.add(benefice);
 			}
 		}
 		return Collections.unmodifiableList(afflictions);

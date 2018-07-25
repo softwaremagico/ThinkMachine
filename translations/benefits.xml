@@ -1,10 +1,623 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <benefits>
-	<turingLanguage>
+	<alienUpbringing>
 		<name>
-			<en>Turing Language</en>
-			<es>Idioma Turing</es>
+			<en>Alien Upbringing</en>
+			<es>Educación Alienígena</es>
 		</name>
 		<cost>2</cost>
-	</turingLanguage>
+		<group>background</group>
+	</alienUpbringing>
+	<heir>
+		<name>
+			<en>Heir</en>
+			<es>Herencia</es>
+		</name>
+		<cost>2</cost>
+		<group>background</group>
+	</heir>
+	<language>
+		<name>
+			<en>Language</en>
+			<es>Idioma</es>
+		</name>
+		<specializations>
+			<latin>
+				<en>Latin</en>
+				<es>Latin</es>
+			</latin>
+			<barbarian>
+				<en>Barbarian</en>
+				<es>Bárbaro</es>
+			</barbarian>
+			<gracefulTongue>
+				<en>Graceful Tongue</en>
+				<es>Lengua Elegante</es>
+			</gracefulTongue>
+			<scraver>
+				<en>Scraver Cant</en>
+				<es>Jerga de Carroñero</es>
+			</scraver>
+			<urthish>
+				<en>Urthish</en>
+				<es>Terráqueo</es>
+			</urthish>
+			<turing>
+				<en>Turing</en>
+				<es>Turing</es>
+			</turing>
+			<obun>
+				<en>Obun</en>
+				<es>Obun</es>
+			</obun>
+			<ukar>
+				<en>Ukar</en>
+				<es>Ukar</es>
+			</ukar>
+			<vorox>
+				<en>Vorox</en>
+				<es>Vorox</es>
+			</vorox>
+		</specializations>
+		<cost>2</cost>
+		<group>background</group>
+	</language>
+	<secrets>
+		<name>
+			<en>Secrets</en>
+			<es>Secretos</es>
+		</name>
+		<cost>1-5</cost>
+		<group>background</group>
+	</secrets>
+	<spacer>
+		<name>
+			<en>Spacer</en>
+			<es>Habitante del Espacio</es>
+		</name>
+		<cost>2</cost>
+		<group>background</group>
+	</spacer>
+	<wellTraveled>
+		<name>
+			<en>Well-Traveled</en>
+			<es>Trotamundos</es>
+		</name>
+		<cost>3,5</cost>
+		<group>background</group>
+	</wellTraveled>
+	<addiction>
+		<name>
+			<en>Addiction</en>
+			<es>Adicción</es>
+		</name>
+		<cost>2-4</cost>
+		<group>background</group>
+		<affliction>true</affliction>
+	</addiction>
+	<cloistered>
+		<name>
+			<en>Cloistered</en>
+			<es>Enclaustrado</es>
+		</name>
+		<cost>1</cost>
+		<group>background</group>
+		<affliction>true</affliction>
+	</cloistered>
+	<darkSecret>
+		<name>
+			<en>Dark Secret</en>
+			<es>Secreto Oscuro</es>
+		</name>
+		<cost>1-3</cost>
+		<group>background</group>
+		<affliction>true</affliction>
+	</darkSecret>
+	<infamousFamily>
+		<name>
+			<en>Infamous Family</en>
+			<es>Familia Infame</es>
+		</name>
+		<cost>1</cost>
+		<group>background</group>
+		<affliction>true</affliction>
+	</infamousFamily>
+	<lostWorlder>
+		<name>
+			<en>Lost Worlder</en>
+			<es>Habitante de un Mundo Perdido</es>
+		</name>
+		<cost>1</cost>
+		<group>background</group>
+		<affliction>true</affliction>
+	</lostWorlder>
+	<oathOfFealty>
+		<name>
+			<en>Oath of Fealty</en>
+			<es>Juramento de Lealtad</es>
+		</name>
+		<cost>1-3</cost>
+		<group>background</group>
+		<affliction>true</affliction>
+	</oathOfFealty>
+	<obligation>
+		<name>
+			<en>Obligation</en>
+			<es>Obligación</es>
+		</name>
+		<cost>1-3</cost>
+		<group>background</group>
+		<affliction>true</affliction>
+	</obligation>
+	<orphan>
+		<name>
+			<en>Orphan</en>
+			<es>Huérfano</es>
+		</name>
+		<cost>1</cost>
+		<group>background</group>
+		<affliction>true</affliction>
+	</orphan>
+	<stigma>
+		<name>
+			<en>Stigma</en>
+			<es>Estigma</es>
+		</name>
+		<cost>1-4</cost>
+		<group>background</group>
+		<affliction>true</affliction>
+	</stigma>
+	<vow>
+		<name>
+			<en>Vow</en>
+			<es>Voto</es>
+		</name>
+		<cost>1-3</cost>
+		<group>background</group>
+		<affliction>true</affliction>
+	</vow>
+	<ally>
+		<name>
+			<en>Ally</en>
+			<es>Aliado</es>
+		</name>
+		<cost>1-11</cost>
+		<group>community</group>
+	</ally>
+	<contact>
+		<name>
+			<en>Contact</en>
+			<es>Contacto</es>
+		</name>
+		<cost>1</cost>
+		<group>community</group>
+	</contact>
+	<familiyTies>
+		<name>
+			<en>Family Ties</en>
+			<es>Lazos Familiares</es>
+		</name>
+		<cost>3</cost>
+		<group>community</group>
+	</familiyTies>
+	<gossipNetwork>
+		<name>
+			<en>Gossip Network</en>
+			<es>Red de Información</es>
+		</name>
+		<cost>1-4</cost>
+		<group>community</group>
+	</gossipNetwork>
+	<protection>
+		<name>
+			<en>Protection</en>
+			<es>Protección</es>
+		</name>
+		<cost>3</cost>
+		<group>community</group>
+	</protection>
+	<retinue>
+		<name>
+			<en>Retinue</en>
+			<es>Séquito</es>
+		</name>
+		<cost>1-4</cost>
+		<group>community</group>
+	</retinue>
+	<dependent>
+		<name>
+			<en>Dependent</en>
+			<es>Dependiente</es>
+		</name>
+		<cost>1</cost>
+		<group>community</group>
+		<affliction>true</affliction>
+	</dependent>
+	<vendetta>
+		<name>
+			<en>Vendetta</en>
+			<es>Vendetta</es>
+		</name>
+		<cost>1-4</cost>
+		<group>community</group>
+		<affliction>true</affliction>
+	</vendetta>
+	
+	<advisor>
+		<name>
+			<en>Advisor</en>
+			<es>Asesor</es>
+		</name>
+		<cost>5</cost>
+		<group>technology</group>
+	</advisor>
+	<fluxSword>
+		<name>
+			<en>Flux Sword</en>
+			<es>Espada de Flujo</es>
+		</name>
+		<cost>11</cost>
+		<group>technology</group>
+	</fluxSword>
+	<mistSword>
+		<name>
+			<en>Mist Sword</en>
+			<es>Espada Mística</es>
+		</name>
+		<cost>13</cost>
+		<group>technology</group>
+	</mistSword>
+	<neuralDisruptor>
+		<name>
+			<en>Neural Disruptor</en>
+			<es>Disruptor Neural</es>
+		</name>
+		<cost>10</cost>
+		<group>technology</group>
+	</neuralDisruptor>
+	<wireblade>
+		<name>
+			<en>Wireblade</en>
+			<es>Filoespada</es>
+		</name>
+		<cost>12</cost>
+		<group>technology</group>
+	</wireblade>
+	<psiCloack>
+		<name>
+			<en>Psi Cloack</en>
+			<es>Manto de Psique</es>
+		</name>
+		<cost>10</cost>
+		<group>technology</group>
+	</psiCloack>
+	
+	<adeptRobes>
+		<name>
+			<en>Adept Robes</en>
+			<es>Túnica de Adepto</es>
+		</name>
+		<cost>20</cost>
+		<group>relics</group>
+	</adeptRobes>
+	<articleOfFaith>
+		<name>
+			<en>Article of Faith</en>
+			<es>Artículo de Fe</es>
+		</name>
+		<cost>1-4</cost>
+		<group>relics</group>
+	</articleOfFaith>
+	<saintLore>
+		<name>
+			<en>Saint's Lore</en>
+			<es>Sabiduría de Santo</es>
+		</name>
+		<cost>11</cost>
+		<group>relics</group>
+	</saintLore>
+	<vestments>
+		<name>
+			<en>Vestments</en>
+			<es>Vestiduras</es>
+		</name>
+		<cost>1</cost>
+		<group>relics</group>
+	</vestments>
+	<wyrdTabernacle>
+		<name>
+			<en>Wyrd Tabernacle</en>
+			<es>Tabernáculo de Wyrd</es>
+		</name>
+		<cost>2-10</cost>
+		<group>relics</group>
+	</wyrdTabernacle>
+	
+	<jumpkey>
+		<name>
+			<en>Jumpkey</en>
+			<es>Llave de Salto</es>
+		</name>
+		<cost>2</cost>
+		<group>possessions</group>
+	</jumpkey>
+	<passageContracts>
+		<name>
+			<en>Passage Contracts</en>
+			<es>Contratos de Pasaje</es>
+		</name>
+		<cost>2-10</cost>
+		<group>possessions</group>
+	</passageContracts>
+	<refuge>
+		<name>
+			<en>Refuge</en>
+			<es>Refugio</es>
+		</name>
+		<cost>2-10</cost>
+		<group>possessions</group>
+	</refuge>
+	
+	<cash_1>
+		<name>
+			<en>0 firebirds</en>
+			<es>0 fénix</es>
+		</name>
+		<cost>4</cost>
+		<group>riches</group>
+		<affliction>true</affliction>
+	</cash_1>
+	<cash_2>
+		<name>
+			<en>50 firebirds</en>
+			<es>50 fénix</es>
+		</name>
+		<cost>2</cost>
+		<group>riches</group>
+		<affliction>true</affliction>
+	</cash_2>
+	<cash_3>
+		<name>
+			<en>250 firebirds</en>
+			<es>250 fénix</es>
+		</name>
+		<cost>0</cost>
+		<group>riches</group>
+	</cash_3>
+	<cash_4>
+		<name>
+			<en>1000 firebirds</en>
+			<es>1000 fénix</es>
+		</name>
+		<cost>4</cost>
+		<group>riches</group>
+	</cash_4>
+	<cash_5>
+		<name>
+			<en>2000 firebirds</en>
+			<es>2000 fénix</es>
+		</name>
+		<cost>8</cost>
+		<group>riches</group>
+	</cash_5>
+	<cash_6>
+		<name>
+			<en>3000 firebirds</en>
+			<es>3000 fénix</es>
+		</name>
+		<cost>12</cost>
+		<group>riches</group>
+	</cash_6>
+	<cash_7>
+		<name>
+			<en>4000 firebirds</en>
+			<es>4000 fénix</es>
+		</name>
+		<cost>16</cost>
+		<group>riches</group>
+	</cash_7>
+	<cash_8>
+		<name>
+			<en>5000 firebirds</en>
+			<es>5000 fénix</es>
+		</name>
+		<cost>20</cost>
+		<group>riches</group>
+	</cash_8>
+	<cash_9>
+		<name>
+			<en>6000 firebirds</en>
+			<es>6000 fénix</es>
+		</name>
+		<cost>24</cost>
+		<group>riches</group>
+	</cash_9>
+	<assets>
+		<name>
+			<en>Assets</en>
+			<es>Activos</es>
+		</name>
+		<cost>4-20</cost>
+		<group>riches</group>
+	</assets>
+	<indebted>
+		<name>
+			<en>Indebted</en>
+			<es>Endeudado</es>
+		</name>
+		<cost>2-7</cost>
+		<group>riches</group>
+		<affliction>true</affliction>
+	</indebted>
+	
+	<cohortBadge>
+		<name>
+			<en>Cohort Badge</en>
+			<es>Insignia de Corte</es>
+		</name>
+		<cost>3</cost>
+		<group>status</group>
+	</cohortBadge>
+	<coven>
+		<name>
+			<en>Coven</en>
+			<es>Aquellare</es>
+		</name>
+		<cost>2</cost>
+		<group>status</group>
+	</coven>
+	<householder>
+		<name>
+			<en>Householder</en>
+			<es>Propietario</es>
+		</name>
+		<cost>1</cost>
+		<group>status</group>
+	</householder>
+	<imperialCharter>
+		<name>
+			<en>Imperial Charter</en>
+			<es>Decreto Imperial</es>
+		</name>
+		<cost>4</cost>
+		<group>status</group>
+	</imperialCharter>
+	<commission>
+		<name>
+			<en>Comission</en>
+			<es>Cargo</es>
+		</name>
+		<cost>4-24</cost>
+		<group>status</group>
+	</commission>
+	<nobility>
+		<name>
+			<en>Nobility</en>
+			<es>Nobleza</es>
+		</name>
+		<cost>4-24</cost>
+		<group>status</group>
+	</nobility>
+	<ordained>
+		<name>
+			<en>Ordained</en>
+			<es>Ordenador</es>
+		</name>
+		<cost>4-24</cost>
+		<group>status</group>
+	</ordained>
+	<professionalContract>
+		<name>
+			<en>Professional Contract</en>
+			<es>Contrato Profesional</es>
+		</name>
+		<cost>1-10</cost>
+		<group>status</group>
+	</professionalContract>
+	
+	<professionalContract>
+		<name>
+			<en>Professional Contract</en>
+			<es>Contrato Profesional</es>
+		</name>
+		<cost>1-10</cost>
+		<group>status</group>
+	</professionalContract>
+	
+	<graa>
+		<name>
+			<en>Graa</en>
+			<es>Graa</es>
+		</name>
+		<cost>5</cost>
+		<group>fighting</group>
+	</graa>
+	<joxKaiVon>
+		<name>
+			<en>Jox Kai Von</en>
+			<es>Jox Kai Von</es>
+		</name>
+		<cost>5</cost>
+		<group>fighting</group>
+	</joxKaiVon>
+	<koto>
+		<name>
+			<en>Koto</en>
+			<es>Koto</es>
+		</name>
+		<cost>5</cost>
+		<group>fighting</group>
+	</koto>
+	<mantok>
+		<name>
+			<en>Mantok</en>
+			<es>Mantok</es>
+		</name>
+		<cost>5</cost>
+		<group>fighting</group>
+	</mantok>
+	<ironHeel>
+		<name>
+			<en>Iron Heel</en>
+			<es>Talón de Acero</es>
+		</name>
+		<cost>5</cost>
+		<group>fighting</group>
+	</ironHeel>
+	<shaidan>
+		<name>
+			<en>Shaidan</en>
+			<es>Shaidan</es>
+		</name>
+		<cost>5</cost>
+		<group>fighting</group>
+	</shaidan>
+	<florentine>
+		<name>
+			<en>Florentine</en>
+			<es>Florentino</es>
+		</name>
+		<cost>5</cost>
+		<group>fighting</group>
+	</florentine>
+	<kraxiKnife>
+		<name>
+			<en>Kraxi Knife</en>
+			<es>Kraxi</es>
+		</name>
+		<cost>5</cost>
+		<group>fighting</group>
+	</kraxiKnife>
+	<serpentis>
+		<name>
+			<en>Serpentis</en>
+			<es>Serpentis</es>
+		</name>
+		<cost>5</cost>
+		<group>fighting</group>
+	</serpentis>
+	<torero>
+		<name>
+			<en>Torero</en>
+			<es>Torero</es>
+		</name>
+		<cost>5</cost>
+		<group>fighting</group>
+	</torero>
+	<phoenixRifleCorps>
+		<name>
+			<en>Phoenix Rifle Corps</en>
+			<es>Cuerpo de Fusileros del Fénix</es>
+		</name>
+		<cost>5</cost>
+		<group>fighting</group>
+	</phoenixRifleCorps>
+	<pistola>
+		<name>
+			<en>Pistola</en>
+			<es>Pistola</es>
+		</name>
+		<cost>5</cost>
+		<group>fighting</group>
+	</pistola>
 </benefits>

@@ -4,7 +4,7 @@ package com.softwaremagico.tm.character.traits;
  * #%L
  * Think Machine (Core)
  * %%
- * Copyright (C) 2017 Softwaremagico
+ * Copyright (C) 2017 - 2018 Softwaremagico
  * %%
  * This software is designed by Jorge Hortelano Otero. Jorge Hortelano Otero
  * <softwaremagico@gmail.com> Valencia (Spain).
@@ -26,21 +26,31 @@ package com.softwaremagico.tm.character.traits;
 
 import com.softwaremagico.tm.Element;
 
-public class Benefit extends Element<Benefit> {
+public class AvailableBenefice extends Element<AvailableBenefice> {
+	private final BeneficeDefinition benefitDefinition;
 	private final int cost;
 
-	public Benefit(String name, int cost) {
-		super(null, name);
+	public AvailableBenefice(String id, String name, BeneficeDefinition benefitDefinition, int cost) {
+		super(id, name);
+		this.benefitDefinition = benefitDefinition;
 		this.cost = cost;
 	}
 
-	public Benefit(String id, String name, int cost) {
-		super(id, name);
-		this.cost = cost;
+	public BeneficeDefinition getBenefitDefinition() {
+		return benefitDefinition;
 	}
 
 	public int getCost() {
+		if (getBenefitDefinition().getClassification().equals(BeneficeClassification.AFFLICTION)) {
+			return -cost;
+		}
 		return cost;
+	}
+
+	@Override
+	public String toString() {
+		return getName() + " (" + (benefitDefinition != null && benefitDefinition.getClassification() == BeneficeClassification.AFFLICTION ? "+" : "") + cost
+				+ ")";
 	}
 
 }
