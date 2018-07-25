@@ -190,6 +190,9 @@
 			<es>Arquería</es>
 		</name>
 		<group>combat</group>
+		<random>
+			<techlevel>0</techlevel>
+		</random>
 	</archery>
 	<artifactMelee>
 		<name>

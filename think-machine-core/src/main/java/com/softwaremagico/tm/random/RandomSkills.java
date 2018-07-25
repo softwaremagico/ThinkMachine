@@ -39,6 +39,7 @@ import com.softwaremagico.tm.character.factions.FactionGroup;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.character.skills.SkillDefinition;
+import com.softwaremagico.tm.character.skills.SkillGroup;
 import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
 import com.softwaremagico.tm.log.MachineLog;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
@@ -57,6 +58,8 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 	private final static int GOOD_PROBABILITY = 21;
 	private final static int MAX_PROBABILITY = 100;
 
+	private final static int SKILL_TECH_DIFFERENCE_TO_BE_PRIMITIVE = 3;
+
 	private List<Entry<CharacteristicType, Integer>> preferredCharacteristicsTypeSorted;
 
 	public RandomSkills(CharacterPlayer characterPlayer, Set<IRandomPreferences> preferences) throws InvalidXmlElementException {
@@ -66,6 +69,9 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 	public void spendSkillsPoints() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
 		// Set minimum values of skills by preferences.
 		assignMinimumValuesOfSkills();
+
+		// Merge some skills that are similar.
+		removeUndesiredSkills();
 
 		// Meanwhile are ranks to expend.
 		while (getCharacterPlayer().getSkillsTotalPoints() < FreeStyleCharacterCreation.SKILLS_POINTS) {
@@ -79,6 +85,29 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 			// Remove skill from options to avoid adding more ranks.
 			removeElementWeight(selectedSkill);
 		}
+	}
+
+	private void removeUndesiredSkills() throws InvalidXmlElementException {
+		// Remove combat skills too primitives.
+		for (AvailableSkill availableSkill : AvailableSkillsFactory.getInstance().getSkillsByGroup(SkillGroup.COMBAT, getCharacterPlayer().getLanguage())) {
+			if (availableSkill.getRandomDefinition().getMinimumTechLevel() <= getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).getValue()
+					- SKILL_TECH_DIFFERENCE_TO_BE_PRIMITIVE) {
+				removeElementWeight(availableSkill);
+			}
+		}
+	}
+
+	public void mergeSkills(AvailableSkill availableSkill, SkillGroup skillGroup) throws InvalidXmlElementException {
+		int weight = getWeight(availableSkill);
+		while (weight > 0) {
+			for (AvailableSkill selectedSkill : AvailableSkillsFactory.getInstance().getSkillsByGroup(skillGroup, getCharacterPlayer().getLanguage())) {
+				if (weight > 0 && !Objects.equals(availableSkill, selectedSkill)) {
+					updateWeight(selectedSkill, getWeight(selectedSkill) + 1);
+					weight--;
+				}
+			}
+		}
+		removeElementWeight(availableSkill);
 	}
 
 	private void assignMinimumValuesOfSkills() {

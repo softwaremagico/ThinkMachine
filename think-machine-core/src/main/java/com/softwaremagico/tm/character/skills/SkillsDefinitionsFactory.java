@@ -63,6 +63,8 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 	private static Map<String, List<SkillDefinition>> naturalSkills = new HashMap<>();
 	private static Map<String, List<SkillDefinition>> learnedSkills = new HashMap<>();
 
+	private static Map<String, Map<SkillGroup, Set<SkillDefinition>>> skillsByGroup = new HashMap<>();
+
 	private static SkillsDefinitionsFactory instance;
 
 	private static void createInstance() {
@@ -79,6 +81,7 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 	public void clearCache() {
 		naturalSkills = new HashMap<>();
 		learnedSkills = new HashMap<>();
+		skillsByGroup = new HashMap<>();
 		super.clearCache();
 	}
 
@@ -95,6 +98,10 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 
 	public List<SkillDefinition> getLearnedSkills(String language) {
 		return learnedSkills.get(language);
+	}
+
+	public Set<SkillDefinition> getSkills(SkillGroup skillGroup, String language) {
+		return skillsByGroup.get(language).get(skillGroup);
 	}
 
 	public boolean isNaturalSkill(String skillName, String language) {
@@ -186,6 +193,8 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 
 			setRandomDefinition(translator, skill, language);
 
+			classifySkillByGroup(skill, language);
+
 			return skill;
 		} catch (Exception e) {
 			throw new InvalidSkillException("Invalid structure in skill '" + skillId + "'.", e);
@@ -231,6 +240,16 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 		if (generalProbability != null) {
 			element.getRandomDefinition().setProbability(SkillRandomProbability.get(generalProbability));
 		}
+	}
+
+	private void classifySkillByGroup(SkillDefinition skillDefintion, String language) {
+		if (skillsByGroup.get(language) == null) {
+			skillsByGroup.put(language, new HashMap<SkillGroup, Set<SkillDefinition>>());
+		}
+		if (skillsByGroup.get(language).get(skillDefintion.getSkillGroup()) == null) {
+			skillsByGroup.get(language).put(skillDefintion.getSkillGroup(), new HashSet<SkillDefinition>());
+		}
+		skillsByGroup.get(language).get(skillDefintion.getSkillGroup()).add(skillDefintion);
 	}
 
 	@Override

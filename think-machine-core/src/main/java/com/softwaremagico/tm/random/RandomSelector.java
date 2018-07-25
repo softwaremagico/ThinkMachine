@@ -109,4 +109,9 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
 			weightedElements.remove(keyToDelete);
 		}
 	}
+
+	protected void updateWeight(Element element, int newWeight) {
+		removeElementWeight(element);
+		weightedElements.put(newWeight, element);
+	}
 }
