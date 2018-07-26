@@ -67,7 +67,7 @@ public class CostCalculator {
 	private static int getTraitsCosts(CharacterPlayer characterPlayer) throws InvalidXmlElementException {
 		int cost = 0;
 		cost += getBlessingCosts(characterPlayer);
-		cost += getBenefitsCosts(characterPlayer);
+		cost += getBeneficesCosts(characterPlayer);
 		return cost - FreeStyleCharacterCreation.TRAITS_POINTS;
 	}
 
@@ -79,7 +79,7 @@ public class CostCalculator {
 		return cost;
 	}
 
-	private static int getBenefitsCosts(CharacterPlayer characterPlayer) throws InvalidXmlElementException {
+	private static int getBeneficesCosts(CharacterPlayer characterPlayer) throws InvalidXmlElementException {
 		int cost = 0;
 		for (AvailableBenefice benefit : characterPlayer.getBenefices()) {
 			cost += benefit.getCost();

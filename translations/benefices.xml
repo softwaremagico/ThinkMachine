@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
-<benefits>
+<benefices>
 	<alienUpbringing>
 		<name>
 			<en>Alien Upbringing</en>
@@ -681,4 +681,4 @@
 		<cost>5</cost>
 		<group>fighting</group>
 	</pistola>
-</benefits>
+</benefices>

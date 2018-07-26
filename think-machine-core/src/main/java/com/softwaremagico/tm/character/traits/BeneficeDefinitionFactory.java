@@ -36,7 +36,7 @@ import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
 
 public class BeneficeDefinitionFactory extends XmlFactory<BeneficeDefinition> {
-	private final static ITranslator translatorBenefit = LanguagePool.getTranslator("benefits.xml");
+	private final static ITranslator translatorBenefit = LanguagePool.getTranslator("benefices.xml");
 
 	private final static String NAME = "name";
 	private final static String COST = "cost";
