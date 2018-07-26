@@ -72,10 +72,19 @@ public class AvailableBeneficeFactory {
 					}
 				} else {
 					for (Specialization specialization : benefitDefinition.getSpecializations()) {
-						for (Integer cost : benefitDefinition.getCosts()) {
-							String id = benefitDefinition.getId() + (benefitDefinition.getCosts().size() == 1 ? "" : "_" + cost) + " [" + specialization.getId() + "]";
-							AvailableBenefice availableBenefice = new AvailableBenefice(id, benefitDefinition.getName(), benefitDefinition, cost);
+						// Cost in specialization
+						if (specialization.getCost() != null) {
+							String id = benefitDefinition.getId() + " [" + specialization.getId() + "]";
+							AvailableBenefice availableBenefice = new AvailableBenefice(id, benefitDefinition.getName(), benefitDefinition,
+									specialization.getCost());
 							availableBenefices.get(language).put(id, availableBenefice);
+						} else {
+							for (Integer cost : benefitDefinition.getCosts()) {
+								String id = benefitDefinition.getId() + (benefitDefinition.getCosts().size() == 1 ? "" : "_" + cost) + " ["
+										+ specialization.getId() + "]";
+								AvailableBenefice availableBenefice = new AvailableBenefice(id, benefitDefinition.getName(), benefitDefinition, cost);
+								availableBenefices.get(language).put(id, availableBenefice);
+							}
 						}
 					}
 				}

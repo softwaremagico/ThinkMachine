@@ -90,9 +90,17 @@ public class BeneficeDefinitionFactory extends XmlFactory<BeneficeDefinition> {
 
 			Set<Specialization> specializations = new HashSet<>();
 			for (String specializationId : translator.getAllChildrenTags(benefitId, SPECIALIZABLE_BENEFICE_TAG)) {
-				String specizalizationName = translator.getNodeValue(specializationId, language);
+				String specizalizationName = translator.getNodeValue(specializationId, NAME, language);
 				Specialization specialization = new Specialization(specializationId, specizalizationName);
 				specializations.add(specialization);
+				String specizalizationCost = translator.getNodeValue(specializationId, COST);
+				if (specizalizationCost != null) {
+					try {
+						specialization.setCost(Integer.parseInt(specizalizationCost));
+					} catch (NumberFormatException e) {
+						throw new InvalidBlessingException("Invalid cost in benefit '" + benefitId + "' and specialization '" + specializationId + "'.", e);
+					}
+				}
 			}
 
 			List<Integer> costs = new ArrayList<>();

@@ -27,9 +27,18 @@ package com.softwaremagico.tm.character.traits;
 import com.softwaremagico.tm.Element;
 
 public class Specialization extends Element<Specialization> {
+	private Integer cost = null;
 
 	public Specialization(String id, String name) {
 		super(id, name);
+	}
+
+	public Integer getCost() {
+		return cost;
+	}
+
+	public void setCost(Integer cost) {
+		this.cost = cost;
 	}
 
 }

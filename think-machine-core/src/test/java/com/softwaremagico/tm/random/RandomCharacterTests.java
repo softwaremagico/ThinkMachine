@@ -87,7 +87,7 @@ public class RandomCharacterTests {
 		CharacterPlayer characterPlayer = new CharacterPlayer("es");
 		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0, SkillGroupPreferences.COMBAT);
 		randomizeCharacter.createCharacter();
-		System.out.println(randomizeCharacter);
+		// System.out.println(randomizeCharacter);
 		// Assert.assertEquals(CostCalculator.getCost(characterPlayer),
 		// FreeStyleCharacterCreation.FREE_AVAILABLE_POINTS);
 	}

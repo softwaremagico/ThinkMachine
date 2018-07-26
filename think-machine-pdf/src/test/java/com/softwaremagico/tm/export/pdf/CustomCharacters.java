@@ -203,7 +203,7 @@ public class CustomCharacters {
 		horribleMark.setSkill(SkillsDefinitionsFactory.getInstance().getElement("influence", LANGUAGE));
 		player.addBlessing(horribleMark);
 
-		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("nobility_4", player.getLanguage()));
+		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("nobility [knight]", player.getLanguage()));
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("language [latin]", player.getLanguage()));
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("imperialCharter", player.getLanguage()));
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("fluxSword", player.getLanguage()));

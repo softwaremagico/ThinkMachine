@@ -23,40 +23,58 @@
 		</name>
 		<specializations>
 			<latin>
-				<en>Latin</en>
-				<es>Latin</es>
+				<name>
+					<en>Latin</en>
+					<es>Latin</es>
+				</name>
 			</latin>
 			<barbarian>
-				<en>Barbarian</en>
-				<es>Bárbaro</es>
+				<name>
+					<en>Barbarian</en>
+					<es>Bárbaro</es>
+				</name>
 			</barbarian>
 			<gracefulTongue>
-				<en>Graceful Tongue</en>
-				<es>Lengua Elegante</es>
+				<name>
+					<en>Graceful Tongue</en>
+					<es>Lengua Elegante</es>
+				</name>
 			</gracefulTongue>
 			<scraver>
-				<en>Scraver Cant</en>
-				<es>Jerga de Carroñero</es>
+				<name>
+					<en>Scraver Cant</en>
+					<es>Jerga de Carroñero</es>
+				</name>
 			</scraver>
 			<urthish>
-				<en>Urthish</en>
-				<es>Terráqueo</es>
+				<name>
+					<en>Urthish</en>
+					<es>Terráqueo</es>
+				</name>
 			</urthish>
 			<turing>
-				<en>Turing</en>
-				<es>Turing</es>
+				<name>
+					<en>Turing</en>
+					<es>Turing</es>
+				</name>
 			</turing>
 			<obun>
-				<en>Obun</en>
-				<es>Obun</es>
+				<name>
+					<en>Obun</en>
+					<es>Obun</es>
+				</name>
 			</obun>
 			<ukar>
-				<en>Ukar</en>
-				<es>Ukar</es>
+				<name>
+					<en>Ukar</en>
+					<es>Ukar</es>
+				</name>
 			</ukar>
 			<vorox>
-				<en>Vorox</en>
-				<es>Vorox</es>
+				<name>
+					<en>Vorox</en>
+					<es>Vorox</es>
+				</name>
 			</vorox>
 		</specializations>
 		<cost>2</cost>
@@ -495,7 +513,50 @@
 			<en>Nobility</en>
 			<es>Nobleza</es>
 		</name>
-		<cost>4-24</cost>
+		<specializations>
+			<knight>
+				<name>
+					<en>Knight</en>
+					<es>Caballero</es>
+				</name>
+				<cost>4</cost>
+			</knight>
+			<baronet>
+				<name>
+					<en>Baronet</en>
+					<es>Baronet</es>
+				</name>
+				<cost>8</cost>
+			</baronet>
+			<baron>
+				<name>
+					<en>Baron</en>
+					<es>Barón</es>
+				</name>
+				<cost>12</cost>
+			</baron>
+			<earl>
+				<name>
+					<en>Earl</en>
+					<es>Señor</es>
+				</name>
+				<cost>16</cost>
+			</earl>
+			<count>
+				<name>
+					<en>Count</en>
+					<es>Conde</es>
+				</name>
+				<cost>20</cost>
+			</count>
+			<duke>
+				<name>
+					<en>Duke</en>
+					<es>Duque</es>
+				</name>
+				<cost>24</cost>
+			</duke>
+		</specializations>
 		<group>status</group>
 	</nobility>
 	<ordained>
