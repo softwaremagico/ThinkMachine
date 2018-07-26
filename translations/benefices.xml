@@ -550,6 +550,7 @@
 			</master>
 		</specializations>
 		<group>status</group>
+		<restricted>guild</restricted>
 	</commission>
 	<nobility>
 		<name>
@@ -601,6 +602,7 @@
 			</duke>
 		</specializations>
 		<group>status</group>
+		<restricted>nobility</restricted>
 	</nobility>
 	<ordained>
 		<name>
@@ -652,6 +654,7 @@
 			</archbishop>
 		</specializations>
 		<group>status</group>
+		<restricted>church</restricted>
 	</ordained>
 	<professionalContract>
 		<name>

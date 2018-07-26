@@ -32,6 +32,7 @@ import java.util.StringTokenizer;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
+import com.softwaremagico.tm.character.factions.FactionGroup;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
 
@@ -43,6 +44,7 @@ public class BeneficeDefinitionFactory extends XmlFactory<BeneficeDefinition> {
 	private final static String GROUP = "group";
 	private final static String AFFLICTION = "affliction";
 	private final static String SPECIALIZABLE_BENEFICE_TAG = "specializations";
+	private final static String RESTRICTED_TAG = "restricted";
 
 	private static BeneficeDefinitionFactory instance;
 
@@ -118,7 +120,14 @@ public class BeneficeDefinitionFactory extends XmlFactory<BeneficeDefinition> {
 			} else {
 				costs.add(Integer.parseInt(costRange));
 			}
-			BeneficeDefinition benefit = new BeneficeDefinition(benefitId, name, costs, benefitGroup, classification);
+
+			String restriction = translator.getNodeValue(benefitId, RESTRICTED_TAG);
+			FactionGroup restrictedToGroup = null;
+			if (restriction != null) {
+				restrictedToGroup = FactionGroup.get(restriction);
+			}
+
+			BeneficeDefinition benefit = new BeneficeDefinition(benefitId, name, costs, benefitGroup, classification, restrictedToGroup);
 			benefit.addSpecializations(specializations);
 			return benefit;
 

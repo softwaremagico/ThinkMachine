@@ -29,22 +29,25 @@ import java.util.List;
 import java.util.Set;
 
 import com.softwaremagico.tm.Element;
+import com.softwaremagico.tm.character.factions.FactionGroup;
 
 public class BeneficeDefinition extends Element<BeneficeDefinition> {
 	private final List<Integer> costs;
 	private final Set<RankSpecialization> specializations = new HashSet<>();
 	private final BeneficeGroup group;
 	private final BeneficeClassification classification;
+	private final FactionGroup restricted;
 
-	public BeneficeDefinition(String name, List<Integer> costs, BeneficeGroup group, BeneficeClassification classification) {
-		this(null, name, costs, group, classification);
+	public BeneficeDefinition(String name, List<Integer> costs, BeneficeGroup group, BeneficeClassification classification, FactionGroup restricted) {
+		this(null, name, costs, group, classification, restricted);
 	}
 
-	public BeneficeDefinition(String id, String name, List<Integer> costs, BeneficeGroup group, BeneficeClassification classification) {
+	public BeneficeDefinition(String id, String name, List<Integer> costs, BeneficeGroup group, BeneficeClassification classification, FactionGroup restricted) {
 		super(id, name);
 		this.costs = costs;
 		this.group = group;
 		this.classification = classification;
+		this.restricted = restricted;
 	}
 
 	public List<Integer> getCosts() {
@@ -65,6 +68,10 @@ public class BeneficeDefinition extends Element<BeneficeDefinition> {
 
 	public BeneficeClassification getClassification() {
 		return classification;
+	}
+
+	public FactionGroup getRestricted() {
+		return restricted;
 	}
 
 }
