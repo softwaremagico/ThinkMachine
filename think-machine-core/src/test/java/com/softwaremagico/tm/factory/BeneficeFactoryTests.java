@@ -24,17 +24,20 @@ package com.softwaremagico.tm.factory;
  * #L%
  */
 
+import java.util.Set;
+
 import junit.framework.Assert;
 
 import org.testng.annotations.Test;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
+import com.softwaremagico.tm.character.traits.AvailableBenefice;
 import com.softwaremagico.tm.character.traits.AvailableBeneficeFactory;
 import com.softwaremagico.tm.character.traits.BeneficeDefinitionFactory;
 
 @Test(groups = { "beneficeFactory" })
 public class BeneficeFactoryTests {
-	private final static int DEFINED_BENEFICES = 70;
+	private final static int DEFINED_BENEFICES = 69;
 	private final static int AVAILABLE_BENEFICES = 186;
 
 	@Test
@@ -47,4 +50,13 @@ public class BeneficeFactoryTests {
 		Assert.assertEquals(AVAILABLE_BENEFICES, AvailableBeneficeFactory.getInstance().getElements("es").size());
 	}
 
+	@Test
+	public void getBeneficesClassification() throws InvalidXmlElementException {
+		Assert.assertEquals(DEFINED_BENEFICES, AvailableBeneficeFactory.getInstance().getAvailableBeneficesByDefinition("es").keySet().size());
+		int count = 0;
+		for (Set<AvailableBenefice> benefices : AvailableBeneficeFactory.getInstance().getAvailableBeneficesByDefinition("es").values()) {
+			count += benefices.size();
+		}
+		Assert.assertEquals(AVAILABLE_BENEFICES, count);
+	}
 }

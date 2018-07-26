@@ -26,12 +26,15 @@ package com.softwaremagico.tm.character.traits;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 
 public class AvailableBeneficeFactory {
 	private Map<String, Map<String, AvailableBenefice>> availableBenefices;
+	private Map<String, Map<BeneficeDefinition, Set<AvailableBenefice>>> availableBeneficesByDefinition;
 
 	private static AvailableBeneficeFactory instance;
 
@@ -58,17 +61,17 @@ public class AvailableBeneficeFactory {
 
 	public void clearCache() {
 		availableBenefices = new HashMap<>();
+		availableBeneficesByDefinition = new HashMap<>();
 	}
 
 	public Collection<AvailableBenefice> getElements(String language) throws InvalidXmlElementException {
 		if (availableBenefices.get(language) == null) {
-			availableBenefices.put(language, new HashMap<String, AvailableBenefice>());
 			for (BeneficeDefinition benefitDefinition : BeneficeDefinitionFactory.getInstance().getElements(language)) {
 				if (benefitDefinition.getSpecializations().isEmpty()) {
 					for (Integer cost : benefitDefinition.getCosts()) {
 						String id = benefitDefinition.getId() + (benefitDefinition.getCosts().size() == 1 ? "" : "_" + cost);
 						AvailableBenefice availableBenefice = new AvailableBenefice(id, benefitDefinition.getName(), benefitDefinition, cost);
-						availableBenefices.get(language).put(id, availableBenefice);
+						addAvailableBenefice(language, id, benefitDefinition, availableBenefice);
 					}
 				} else {
 					for (RankSpecialization specialization : benefitDefinition.getSpecializations()) {
@@ -78,14 +81,14 @@ public class AvailableBeneficeFactory {
 							AvailableBenefice availableBenefice = new AvailableBenefice(id, benefitDefinition.getName(), benefitDefinition,
 									specialization.getCost());
 							availableBenefice.setSpecialization(specialization);
-							availableBenefices.get(language).put(id, availableBenefice);
+							addAvailableBenefice(language, id, benefitDefinition, availableBenefice);
 						} else {
 							for (Integer cost : benefitDefinition.getCosts()) {
 								String id = benefitDefinition.getId() + (benefitDefinition.getCosts().size() == 1 ? "" : "_" + cost) + " ["
 										+ specialization.getId() + "]";
 								AvailableBenefice availableBenefice = new AvailableBenefice(id, benefitDefinition.getName(), benefitDefinition, cost);
 								availableBenefice.setSpecialization(specialization);
-								availableBenefices.get(language).put(id, availableBenefice);
+								addAvailableBenefice(language, id, benefitDefinition, availableBenefice);
 							}
 						}
 					}
@@ -93,6 +96,21 @@ public class AvailableBeneficeFactory {
 			}
 		}
 		return availableBenefices.get(language).values();
+	}
+
+	private void addAvailableBenefice(String language, String id, BeneficeDefinition beneficeDefinition, AvailableBenefice availableBenefice) {
+		if (availableBenefices.get(language) == null) {
+			availableBenefices.put(language, new HashMap<String, AvailableBenefice>());
+		}
+		availableBenefices.get(language).put(id, availableBenefice);
+
+		if (availableBeneficesByDefinition.get(language) == null) {
+			availableBeneficesByDefinition.put(language, new HashMap<BeneficeDefinition, Set<AvailableBenefice>>());
+		}
+		if (availableBeneficesByDefinition.get(language).get(beneficeDefinition) == null) {
+			availableBeneficesByDefinition.get(language).put(beneficeDefinition, new HashSet<AvailableBenefice>());
+		}
+		availableBeneficesByDefinition.get(language).get(beneficeDefinition).add(availableBenefice);
 	}
 
 	public AvailableBenefice getElement(String beneficeId, String language) throws InvalidXmlElementException {
@@ -104,5 +122,19 @@ public class AvailableBeneficeFactory {
 			throw new InvalidBlessingException("The benefice '" + beneficeId + "' does not exists.");
 		}
 		return avilableBenefice;
+	}
+
+	public Set<AvailableBenefice> getAvailableBeneficesByDefinition(String language, BeneficeDefinition beneficeDefinition) {
+		if (language == null || availableBeneficesByDefinition.get(language) == null) {
+			return null;
+		}
+		return availableBeneficesByDefinition.get(language).get(beneficeDefinition);
+	}
+
+	public Map<BeneficeDefinition, Set<AvailableBenefice>> getAvailableBeneficesByDefinition(String language) throws InvalidXmlElementException {
+		if (availableBeneficesByDefinition == null || availableBeneficesByDefinition.get(language) == null) {
+			getElements(language);
+		}
+		return availableBeneficesByDefinition.get(language);
 	}
 }

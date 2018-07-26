@@ -35,6 +35,7 @@ import com.softwaremagico.tm.random.exceptions.DuplicatedPreferenceException;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.IRandomPreferences;
 import com.softwaremagico.tm.random.selectors.SpecializationPreferences;
+import com.softwaremagico.tm.random.selectors.TraitCostPreferences;
 
 public class RandomizeCharacter {
 	private CharacterPlayer characterPlayer;
@@ -73,8 +74,15 @@ public class RandomizeCharacter {
 		SpecializationPreferences selectedSpecialization = SpecializationPreferences.getSelected(preferences);
 		if (selectedSpecialization == null) {
 			selectedSpecialization = SpecializationPreferences.FAIR;
+			preferences.add(selectedSpecialization);
 		}
-		preferences.add(selectedSpecialization);
+
+		// Low traits by default.
+		TraitCostPreferences traitCostPreferences = TraitCostPreferences.getSelected(preferences);
+		if (traitCostPreferences == null) {
+			traitCostPreferences = TraitCostPreferences.LOW;
+			preferences.add(traitCostPreferences);
+		}
 	}
 
 	protected void setCharacterDefinition() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
@@ -105,6 +113,8 @@ public class RandomizeCharacter {
 		RandomSkills randomSkills = new RandomSkills(characterPlayer, preferences);
 		randomSkills.spendSkillsPoints();
 		// Traits
+		RandomBeneficeDefinition randomBenefice = new RandomBeneficeDefinition(characterPlayer, preferences);
+		randomBenefice.assignAvailableBenefices();
 
 	}
 

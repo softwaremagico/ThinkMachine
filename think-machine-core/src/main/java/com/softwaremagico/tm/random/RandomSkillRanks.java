@@ -69,7 +69,7 @@ public class RandomSkillRanks {
 		// Gaussian distribution.
 		do {
 			skillValue = selectedSpecialization.randomGaussian();
-		} while (skillValue < minimumValue || skillValue > selectedSpecialization.maximum());
+		} while (skillValue < minimumValue);
 		return skillValue;
 	}
 

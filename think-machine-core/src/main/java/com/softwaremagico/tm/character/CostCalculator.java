@@ -79,7 +79,7 @@ public class CostCalculator {
 		return cost;
 	}
 
-	private static int getBeneficesCosts(CharacterPlayer characterPlayer) throws InvalidXmlElementException {
+	public static int getBeneficesCosts(CharacterPlayer characterPlayer) throws InvalidXmlElementException {
 		int cost = 0;
 		for (AvailableBenefice benefit : characterPlayer.getBenefices()) {
 			cost += benefit.getCost();

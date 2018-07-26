@@ -1,8 +1,5 @@
 package com.softwaremagico.tm.random.selectors;
 
-import java.util.Random;
-import java.util.Set;
-
 /*-
  * #%L
  * Think Machine (Core)
@@ -27,18 +24,17 @@ import java.util.Set;
  * #L%
  */
 
-public enum SpecializationPreferences implements IRandomPreferences, IGaussianDistribution {
+import java.util.Random;
+import java.util.Set;
+
+public enum TraitCostPreferences implements IRandomPreferences, IGaussianDistribution {
 
 	// Gaussian distribution.
-	VERY_GENERALIZED(0, 4, 1, 4),
+	LOW(1, 4, 1, 1),
 
-	GENERALIZED(0, 6, 2, 4),
+	GOOD(1, 6, 1, 3),
 
-	FAIR(0, 6, 3, 3),
-
-	SPECIALIZED(2, 8, 4, 3),
-
-	VERY_SPECIALIZED(2, 10, 5, 5);
+	HIGH(1, 24, 4, 12);
 
 	private final int minimum;
 	private final int maximum;
@@ -46,7 +42,7 @@ public enum SpecializationPreferences implements IRandomPreferences, IGaussianDi
 	private final int variance;
 	private final Random random = new Random();
 
-	private SpecializationPreferences(int minimumValue, int maximumValue, int mean, int variance) {
+	private TraitCostPreferences(int minimumValue, int maximumValue, int mean, int variance) {
 		this.maximum = maximumValue;
 		this.minimum = minimumValue;
 		this.variance = variance;
@@ -73,10 +69,10 @@ public enum SpecializationPreferences implements IRandomPreferences, IGaussianDi
 		return mean;
 	}
 
-	public static SpecializationPreferences getSelected(Set<IRandomPreferences> preferences) {
+	public static TraitCostPreferences getSelected(Set<IRandomPreferences> preferences) {
 		for (IRandomPreferences preference : preferences) {
-			if (preference instanceof SpecializationPreferences) {
-				return (SpecializationPreferences) preference;
+			if (preference instanceof TraitCostPreferences) {
+				return (TraitCostPreferences) preference;
 			}
 		}
 		return null;
@@ -90,5 +86,4 @@ public enum SpecializationPreferences implements IRandomPreferences, IGaussianDi
 		} while (selectedValue < minimum() || selectedValue > maximum());
 		return selectedValue;
 	}
-
 }

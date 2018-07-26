@@ -317,6 +317,7 @@
 		</name>
 		<cost>20</cost>
 		<group>relics</group>
+		<restricted>church</restricted>
 	</adeptRobes>
 	<articleOfFaith>
 		<name>
@@ -325,6 +326,7 @@
 		</name>
 		<cost>1-4</cost>
 		<group>relics</group>
+		<restricted>church</restricted>
 	</articleOfFaith>
 	<saintLore>
 		<name>
@@ -333,6 +335,7 @@
 		</name>
 		<cost>11</cost>
 		<group>relics</group>
+		<restricted>church</restricted>
 	</saintLore>
 	<vestments>
 		<name>
@@ -341,6 +344,7 @@
 		</name>
 		<cost>1</cost>
 		<group>relics</group>
+		<restricted>church</restricted>
 	</vestments>
 	<wyrdTabernacle>
 		<name>
@@ -349,6 +353,7 @@
 		</name>
 		<cost>2-10</cost>
 		<group>relics</group>
+		<restricted>church</restricted>
 	</wyrdTabernacle>
 	
 	<jumpkey>
@@ -656,15 +661,6 @@
 		<group>status</group>
 		<restricted>church</restricted>
 	</ordained>
-	<professionalContract>
-		<name>
-			<en>Professional Contract</en>
-			<es>Contrato Profesional</es>
-		</name>
-		<cost>1-10</cost>
-		<group>status</group>
-	</professionalContract>
-	
 	<professionalContract>
 		<name>
 			<en>Professional Contract</en>
