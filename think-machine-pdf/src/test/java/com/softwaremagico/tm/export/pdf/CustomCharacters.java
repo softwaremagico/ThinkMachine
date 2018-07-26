@@ -124,7 +124,7 @@ public class CustomCharacters {
 		player.addBlessing(horribleMark);
 
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("language [turing]", player.getLanguage()));
-		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("commission_4", player.getLanguage()));
+		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("commission [apprentice]", player.getLanguage()));
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("cash_4", player.getLanguage()));
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("gossipNetwork_3", player.getLanguage()));
 
@@ -275,7 +275,7 @@ public class CustomCharacters {
 		horribleMark.setSkill(SkillsDefinitionsFactory.getInstance().getElement("influence", LANGUAGE));
 		player.addBlessing(horribleMark);
 
-		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("commission_8", player.getLanguage()));
+		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("commission [entered]", player.getLanguage()));
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("passageContracts_3", player.getLanguage()));
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("cash_4", player.getLanguage()));
 
@@ -356,7 +356,7 @@ public class CustomCharacters {
 		horribleMark.setSkill(SkillsDefinitionsFactory.getInstance().getElement("influence", LANGUAGE));
 		player.addBlessing(horribleMark);
 
-		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("ordained_4", player.getLanguage()));
+		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("ordained [novitiate]", player.getLanguage()));
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("language [urthish]", player.getLanguage()));
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("stigma_2", player.getLanguage()));
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("orphan", player.getLanguage()));

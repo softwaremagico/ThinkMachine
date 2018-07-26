@@ -505,7 +505,50 @@
 			<en>Comission</en>
 			<es>Cargo</es>
 		</name>
-		<cost>4-24</cost>
+		<specializations>
+			<apprentice>
+				<name>
+					<en>Apprentice</en>
+					<es>Aprendiz</es>
+				</name>
+				<cost>4</cost>
+			</apprentice>
+			<entered>
+				<name>
+					<en>Entered</en>
+					<es>Iniciado</es>
+				</name>
+				<cost>8</cost>
+			</entered>
+			<fellow>
+				<name>
+					<en>Fellow</en>
+					<es>Miembro</es>
+				</name>
+				<cost>12</cost>
+			</fellow>
+			<crafter>
+				<name>
+					<en>Crafter</en>
+					<es>Artesano</es>
+				</name>
+				<cost>16</cost>
+			</crafter>
+			<engineer>
+				<name>
+					<en>Engineer</en>
+					<es>Ingeniero</es>
+				</name>
+				<cost>20</cost>
+			</engineer>
+			<master>
+				<name>
+					<en>Master</en>
+					<es>Maestro</es>
+				</name>
+				<cost>24</cost>
+			</master>
+		</specializations>
 		<group>status</group>
 	</commission>
 	<nobility>
@@ -564,7 +607,50 @@
 			<en>Ordained</en>
 			<es>Ordenador</es>
 		</name>
-		<cost>4-24</cost>
+		<specializations>
+			<novitiate>
+				<name>
+					<en>Novitiate</en>
+					<es>Novicio</es>
+				</name>
+				<cost>4</cost>
+			</novitiate>
+			<canon>
+				<name>
+					<en>Canon</en>
+					<es>Canónigo</es>
+				</name>
+				<cost>8</cost>
+			</canon>
+			<deacon>
+				<name>
+					<en>Deacon</en>
+					<es>Diácono</es>
+				</name>
+				<cost>12</cost>
+			</deacon>
+			<priest>
+				<name>
+					<en>Priest</en>
+					<es>Sacerdote</es>
+				</name>
+				<cost>16</cost>
+			</priest>
+			<bishop>
+				<name>
+					<en>Bishop</en>
+					<es>Obispo</es>
+				</name>
+				<cost>20</cost>
+			</bishop>
+			<archbishop>
+				<name>
+					<en>Archbishop</en>
+					<es>Arzobispo</es>
+				</name>
+				<cost>24</cost>
+			</archbishop>
+		</specializations>
 		<group>status</group>
 	</ordained>
 	<professionalContract>

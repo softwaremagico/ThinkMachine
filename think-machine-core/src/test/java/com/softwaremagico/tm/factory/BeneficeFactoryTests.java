@@ -35,7 +35,7 @@ import com.softwaremagico.tm.character.traits.BeneficeDefinitionFactory;
 @Test(groups = { "beneficeFactory" })
 public class BeneficeFactoryTests {
 	private final static int DEFINED_BENEFICES = 70;
-	private final static int AVAILABLE_BENEFICES = 216;
+	private final static int AVAILABLE_BENEFICES = 186;
 
 	@Test
 	public void readBenefices() throws InvalidXmlElementException {
