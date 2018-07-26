@@ -62,7 +62,7 @@ public class RandomCharacterTests {
 		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0, RacePreferences.HUMAN, FactionPreferences.NOBILITY);
 		randomizeCharacter.setCharacterDefinition();
 
-		Assert.assertEquals(characterPlayer.getInfo().getFaction().getFactionGroup(), FactionGroup.NOBILITY);
+		Assert.assertEquals(characterPlayer.getFaction().getFactionGroup(), FactionGroup.NOBILITY);
 		Assert.assertEquals(characterPlayer.getRace(), RaceFactory.getInstance().getElement(RacePreferences.HUMAN.name(), "es"));
 	}
 
@@ -72,7 +72,7 @@ public class RandomCharacterTests {
 		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0, RacePreferences.OBUN, FactionPreferences.GUILD);
 		randomizeCharacter.setCharacterDefinition();
 
-		Assert.assertEquals(characterPlayer.getInfo().getFaction().getFactionGroup(), FactionGroup.GUILD);
+		Assert.assertEquals(characterPlayer.getFaction().getFactionGroup(), FactionGroup.GUILD);
 		Assert.assertEquals(characterPlayer.getRace(), RaceFactory.getInstance().getElement(RacePreferences.OBUN.name(), "es"));
 	}
 

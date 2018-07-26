@@ -93,8 +93,7 @@ public class CharacterSheetCreationTest {
 		player.getInfo().setAge(30);
 		player.setRace(new Race("Human", 3, 3, 3, 3, 3, 3, 3, 3, 3, 5, 0, 0, 0, 0, 0));
 		player.getInfo().setPlanet("Sutek");
-		player.getInfo().setFaction(FactionsFactory.getInstance().getElement("hazat", LANGUAGE));
-		player.getInfo().setRank("Knight");
+		player.setFaction(FactionsFactory.getInstance().getElement("hazat", LANGUAGE));
 
 		player.getInfo().setBirthdate("4996-09-16");
 		player.getInfo().setHair("Moreno");

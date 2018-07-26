@@ -84,7 +84,7 @@ public class RandomizeCharacter {
 			randomRace.assignRace();
 		}
 
-		if (characterPlayer.getInfo().getFaction() == null) {
+		if (characterPlayer.getFaction() == null) {
 			RandomFaction randomFaction = new RandomFaction(characterPlayer, preferences);
 			randomFaction.assignFaction();
 		}
@@ -104,8 +104,8 @@ public class RandomizeCharacter {
 		// Skills
 		RandomSkills randomSkills = new RandomSkills(characterPlayer, preferences);
 		randomSkills.spendSkillsPoints();
-		//Traits
-		
+		// Traits
+
 	}
 
 	private void spendExperiencePoints() {
@@ -115,7 +115,7 @@ public class RandomizeCharacter {
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append(characterPlayer.getInfo().getName() + " (" + characterPlayer.getRace() + ") [" + characterPlayer.getInfo().getFaction() + "]");
+		sb.append(characterPlayer.getInfo().getName() + " (" + characterPlayer.getRace() + ") [" + characterPlayer.getFaction() + "]");
 		sb.append(characterPlayer.getFreeStyleCharacterCreation().getSelectedCharacteristicsValues());
 		sb.append(characterPlayer.getFreeStyleCharacterCreation().getDesiredSkillRanks());
 		return sb.toString();

@@ -50,6 +50,7 @@ import com.softwaremagico.tm.character.cybernetics.Device;
 import com.softwaremagico.tm.character.equipment.Armour;
 import com.softwaremagico.tm.character.equipment.Shield;
 import com.softwaremagico.tm.character.equipment.Weapons;
+import com.softwaremagico.tm.character.factions.Faction;
 import com.softwaremagico.tm.character.occultism.Occultism;
 import com.softwaremagico.tm.character.race.InvalidRaceException;
 import com.softwaremagico.tm.character.race.Race;
@@ -64,6 +65,8 @@ import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
 import com.softwaremagico.tm.character.skills.Specialization;
 import com.softwaremagico.tm.character.traits.AvailableBenefice;
 import com.softwaremagico.tm.character.traits.AvailableBeneficeFactory;
+import com.softwaremagico.tm.character.traits.BeneficeClassification;
+import com.softwaremagico.tm.character.traits.BeneficeGroup;
 import com.softwaremagico.tm.character.traits.Blessing;
 import com.softwaremagico.tm.log.MachineLog;
 
@@ -74,6 +77,8 @@ public class CharacterPlayer {
 	private CharacterInfo info;
 
 	private Race race;
+
+	private Faction faction;
 
 	// Characteristics.
 	private Map<String, Characteristic> characteristics;
@@ -345,7 +350,7 @@ public class CharacterPlayer {
 	public List<AvailableBenefice> getBenefices() throws InvalidXmlElementException {
 		List<AvailableBenefice> positiveBenefices = new ArrayList<>();
 		for (AvailableBenefice benefice : benefices) {
-			if (benefice.getCost() >= 0) {
+			if (benefice.getBenefitDefinition().getClassification() == BeneficeClassification.BENEFICE) {
 				positiveBenefices.add(benefice);
 			}
 		}
@@ -361,7 +366,7 @@ public class CharacterPlayer {
 	public List<AvailableBenefice> getAfflictions() {
 		List<AvailableBenefice> afflictions = new ArrayList<>();
 		for (AvailableBenefice benefice : benefices) {
-			if (benefice.getCost() < 0) {
+			if (benefice.getBenefitDefinition().getClassification() == BeneficeClassification.AFFLICTION) {
 				afflictions.add(benefice);
 			}
 		}
@@ -429,7 +434,7 @@ public class CharacterPlayer {
 			if (skill.getSkillDefinition().getId().equals(SkillDefinition.PLANETARY_LORE_ID)) {
 				skill.setSpecialization(new Specialization(getInfo().getPlanet(), getInfo().getPlanet()));
 			} else if (skill.getSkillDefinition().getId().equals(SkillDefinition.FACTORION_LORE_ID)) {
-				skill.setSpecialization(new Specialization(getInfo().getFaction().getName(), getInfo().getFaction().getName()));
+				skill.setSpecialization(new Specialization(getFaction().getName(), getFaction().getName()));
 			}
 			naturalSkills.add(skill);
 		}
@@ -595,5 +600,25 @@ public class CharacterPlayer {
 		});
 
 		return sortedList;
+	}
+
+	public String getRank() throws InvalidXmlElementException {
+		for (AvailableBenefice benefice : getBenefices()) {
+			if (benefice.getBenefitDefinition().getGroup() == BeneficeGroup.STATUS) {
+				// Must have an specialization.
+				if (benefice.getSpecialization() != null) {
+					return benefice.getSpecialization().getName();
+				}
+			}
+		}
+		return null;
+	}
+
+	public Faction getFaction() {
+		return faction;
+	}
+
+	public void setFaction(Faction faction) {
+		this.faction = faction;
 	}
 }

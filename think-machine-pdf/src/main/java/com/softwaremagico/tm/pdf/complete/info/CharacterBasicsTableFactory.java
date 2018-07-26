@@ -28,9 +28,11 @@ import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
+import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
+import com.softwaremagico.tm.log.MachineLog;
 import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.complete.elements.BaseElement;
 
@@ -56,8 +58,16 @@ public abstract class CharacterBasicsTableFactory extends BaseElement {
 					table.addCell(getHandwrittingCell(raceValue != null ? raceValue : characterPlayer.getRace().getName(), Element.ALIGN_LEFT, fontSize - 1));
 				}
 			} else if (tag.equals("faction")) {
-				if (characterPlayer.getInfo().getFaction() != null) {
-					table.addCell(getHandwrittingCell(characterPlayer.getInfo().getFaction().getName(), Element.ALIGN_LEFT, fontSize - 1));
+				if (characterPlayer.getFaction() != null) {
+					table.addCell(getHandwrittingCell(characterPlayer.getFaction().getName(), Element.ALIGN_LEFT, fontSize - 1));
+				}
+			} else if (tag.equals("rank")) {
+				try {
+					if (characterPlayer.getRank() != null) {
+						table.addCell(getHandwrittingCell(characterPlayer.getRank(), Element.ALIGN_LEFT, fontSize - 1));
+					}
+				} catch (InvalidXmlElementException e) {
+					MachineLog.errorMessage(CharacterBasicsTableFactory.class.getName(), e);
 				}
 			} else {
 				table.addCell(getHandwrittingCell(characterPlayer.getInfo().getTranslatedParameter(tag), Element.ALIGN_LEFT, fontSize - 1));

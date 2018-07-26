@@ -223,22 +223,21 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 	private int weightByFactions(AvailableSkill skill) {
 		// No faction skills
 		if (skill.getSkillDefinition().isLimitedToFaction()) {
-			if (!skill.getSkillDefinition().getFactions().contains(getCharacterPlayer().getInfo().getFaction())) {
+			if (!skill.getSkillDefinition().getFactions().contains(getCharacterPlayer().getFaction())) {
 				return NO_PROBABILITY;
-			} else if (getCharacterPlayer().getInfo().getFaction() != null
+			} else if (getCharacterPlayer().getFaction() != null
 			// Recommended to my faction and only this faction can do it.
-					&& skill.getRandomDefinition().getRecommendedFactions().contains(getCharacterPlayer().getInfo().getFaction())) {
+					&& skill.getRandomDefinition().getRecommendedFactions().contains(getCharacterPlayer().getFaction())) {
 				return MAX_PROBABILITY;
 			}
 		}
 		// Recommended to my faction group.
-		if (getCharacterPlayer().getInfo().getFaction() != null
-				&& skill.getRandomDefinition().getRecommendedFactionGroups().contains(getCharacterPlayer().getInfo().getFaction().getFactionGroup())) {
+		if (getCharacterPlayer().getFaction() != null
+				&& skill.getRandomDefinition().getRecommendedFactionGroups().contains(getCharacterPlayer().getFaction().getFactionGroup())) {
 			return ACCEPTABLE_PROBABILITY;
 		}
 		// Recommended to my faction.
-		if (getCharacterPlayer().getInfo().getFaction() != null
-				&& skill.getRandomDefinition().getRecommendedFactions().contains(getCharacterPlayer().getInfo().getFaction())) {
+		if (getCharacterPlayer().getFaction() != null && skill.getRandomDefinition().getRecommendedFactions().contains(getCharacterPlayer().getFaction())) {
 			return GOOD_PROBABILITY;
 		}
 		return 0;
@@ -253,7 +252,7 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 	}
 
 	private int weightByNobility(AvailableSkill skill) {
-		if (Objects.equals(getCharacterPlayer().getInfo().getFaction().getFactionGroup(), FactionGroup.NOBILITY)) {
+		if (Objects.equals(getCharacterPlayer().getFaction().getFactionGroup(), FactionGroup.NOBILITY)) {
 			// beastcraft for nobility is not common in my point of view.
 			if (skill.getId().equalsIgnoreCase("beastcraft")) {
 				return NO_PROBABILITY;

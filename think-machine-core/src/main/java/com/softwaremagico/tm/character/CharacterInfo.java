@@ -43,10 +43,6 @@ public class CharacterInfo {
 
 	private String planet;
 
-	private Faction faction;
-
-	private String rank;
-
 	private String birthdate;
 
 	private String hair;
@@ -128,22 +124,6 @@ public class CharacterInfo {
 
 	public void setPlanet(String planet) {
 		this.planet = planet;
-	}
-
-	public Faction getFaction() {
-		return faction;
-	}
-
-	public void setFaction(Faction faction) {
-		this.faction = faction;
-	}
-
-	public String getRank() {
-		return rank;
-	}
-
-	public void setRank(String rank) {
-		this.rank = rank;
 	}
 
 	public String getBirthdate() {

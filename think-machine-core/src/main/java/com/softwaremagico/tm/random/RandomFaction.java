@@ -44,7 +44,7 @@ public class RandomFaction extends RandomSelector<Faction> {
 	}
 
 	public void assignFaction() throws InvalidRaceException, InvalidRandomElementSelectedException {
-		getCharacterPlayer().getInfo().setFaction(selectElementByWeight());
+		getCharacterPlayer().setFaction(selectElementByWeight());
 	}
 
 	@Override

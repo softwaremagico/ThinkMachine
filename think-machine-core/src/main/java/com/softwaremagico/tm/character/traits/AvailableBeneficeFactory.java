@@ -77,12 +77,14 @@ public class AvailableBeneficeFactory {
 							String id = benefitDefinition.getId() + " [" + specialization.getId() + "]";
 							AvailableBenefice availableBenefice = new AvailableBenefice(id, benefitDefinition.getName(), benefitDefinition,
 									specialization.getCost());
+							availableBenefice.setSpecialization(specialization);
 							availableBenefices.get(language).put(id, availableBenefice);
 						} else {
 							for (Integer cost : benefitDefinition.getCosts()) {
 								String id = benefitDefinition.getId() + (benefitDefinition.getCosts().size() == 1 ? "" : "_" + cost) + " ["
 										+ specialization.getId() + "]";
 								AvailableBenefice availableBenefice = new AvailableBenefice(id, benefitDefinition.getName(), benefitDefinition, cost);
+								availableBenefice.setSpecialization(specialization);
 								availableBenefices.get(language).put(id, availableBenefice);
 							}
 						}
