@@ -293,6 +293,7 @@ public class CustomCharacters {
 		smallSheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Carlos_Small.pdf");
 
 		Assert.assertEquals(CostCalculator.getCost(player), FreeStyleCharacterCreation.FREE_AVAILABLE_POINTS);
+		Assert.assertEquals(player.getRank(), "Genin");
 	}
 
 	@Test
