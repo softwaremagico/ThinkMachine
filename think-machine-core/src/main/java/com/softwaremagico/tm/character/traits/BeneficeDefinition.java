@@ -32,7 +32,7 @@ import com.softwaremagico.tm.Element;
 
 public class BeneficeDefinition extends Element<BeneficeDefinition> {
 	private final List<Integer> costs;
-	private final Set<Specialization> specializations = new HashSet<>();
+	private final Set<RankSpecialization> specializations = new HashSet<>();
 	private final BeneficeGroup group;
 	private final BeneficeClassification classification;
 
@@ -51,7 +51,7 @@ public class BeneficeDefinition extends Element<BeneficeDefinition> {
 		return costs;
 	}
 
-	public Set<Specialization> getSpecializations() {
+	public Set<RankSpecialization> getSpecializations() {
 		return specializations;
 	}
 
@@ -59,7 +59,7 @@ public class BeneficeDefinition extends Element<BeneficeDefinition> {
 		return group;
 	}
 
-	public void addSpecializations(Set<Specialization> specializations) {
+	public void addSpecializations(Set<RankSpecialization> specializations) {
 		this.specializations.addAll(specializations);
 	}
 

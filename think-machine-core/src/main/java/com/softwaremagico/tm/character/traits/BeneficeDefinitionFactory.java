@@ -88,10 +88,10 @@ public class BeneficeDefinitionFactory extends XmlFactory<BeneficeDefinition> {
 				}
 			}
 
-			Set<Specialization> specializations = new HashSet<>();
+			Set<RankSpecialization> specializations = new HashSet<>();
 			for (String specializationId : translator.getAllChildrenTags(benefitId, SPECIALIZABLE_BENEFICE_TAG)) {
 				String specizalizationName = translator.getNodeValue(specializationId, NAME, language);
-				Specialization specialization = new Specialization(specializationId, specizalizationName);
+				RankSpecialization specialization = new RankSpecialization(specializationId, specizalizationName);
 				specializations.add(specialization);
 				String specizalizationCost = translator.getNodeValue(specializationId, COST);
 				if (specizalizationCost != null) {

@@ -197,6 +197,38 @@ public class Translator implements ITranslator {
 	}
 
 	@Override
+	public String getNodeValue(String grandparent, String parent, String tag, String node) {
+		NodeList nodeList = doc.getElementsByTagName(grandparent);
+		for (int child = 0; child < nodeList.getLength(); child++) {
+			Node grandParentNode = nodeList.item(child);
+			// Remove text values
+			if (grandParentNode.getNodeType() == Node.ELEMENT_NODE) {
+				Element grandParentElement = (Element) grandParentNode;
+				try {
+					NodeList parentElementList = grandParentElement.getElementsByTagName(parent);
+					Element parentElement = (Element) parentElementList.item(0);
+					try {
+						NodeList childrenElementList = parentElement.getElementsByTagName(tag);
+						Element childrenElement = (Element) childrenElementList.item(0);
+						try {
+							NodeList firstNodeElementList = childrenElement.getElementsByTagName(node);
+							Element firstNodeElement = (Element) firstNodeElementList.item(0);
+							return firstNodeElement.getChildNodes().item(0).getNodeValue().trim();
+						} catch (NullPointerException npe) {
+							return null;
+						}
+					} catch (NullPointerException npe) {
+						return null;
+					}
+				} catch (NullPointerException npe) {
+					return null;
+				}
+			}
+		}
+		return null;
+	}
+
+	@Override
 	public Set<String> getAllChildrenTags(String parent, String group) {
 		Set<String> childrenTags = new HashSet<>();
 		NodeList nodeList = doc.getElementsByTagName(parent);

@@ -68,6 +68,7 @@ import com.softwaremagico.tm.character.traits.AvailableBeneficeFactory;
 import com.softwaremagico.tm.character.traits.BeneficeClassification;
 import com.softwaremagico.tm.character.traits.BeneficeGroup;
 import com.softwaremagico.tm.character.traits.Blessing;
+import com.softwaremagico.tm.character.traits.RankSpecialization;
 import com.softwaremagico.tm.log.MachineLog;
 
 public class CharacterPlayer {
@@ -607,7 +608,13 @@ public class CharacterPlayer {
 			if (benefice.getBenefitDefinition().getGroup() == BeneficeGroup.STATUS) {
 				// Must have an specialization.
 				if (benefice.getSpecialization() != null) {
-					return benefice.getSpecialization().getName();
+					RankSpecialization rankSpecialization = benefice.getSpecialization();
+					// Some factions have different names.
+					if (getFaction() != null && getFaction().getRankTranslation(rankSpecialization.getId()) != null) {
+						return getFaction().getRankTranslation(rankSpecialization.getId()).getName();
+					} else {
+						return rankSpecialization.getName();
+					}
 				}
 			}
 		}

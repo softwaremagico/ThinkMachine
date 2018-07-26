@@ -71,7 +71,7 @@ public class AvailableBeneficeFactory {
 						availableBenefices.get(language).put(id, availableBenefice);
 					}
 				} else {
-					for (Specialization specialization : benefitDefinition.getSpecializations()) {
+					for (RankSpecialization specialization : benefitDefinition.getSpecializations()) {
 						// Cost in specialization
 						if (specialization.getCost() != null) {
 							String id = benefitDefinition.getId() + " [" + specialization.getId() + "]";

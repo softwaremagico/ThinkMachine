@@ -1,13 +1,10 @@
-package com.softwaremagico.tm.language;
-
-import java.util.List;
-import java.util.Set;
+package com.softwaremagico.tm.character.traits;
 
 /*-
  * #%L
  * Think Machine (Core)
  * %%
- * Copyright (C) 2017 Softwaremagico
+ * Copyright (C) 2017 - 2018 Softwaremagico
  * %%
  * This software is designed by Jorge Hortelano Otero. Jorge Hortelano Otero
  * <softwaremagico@gmail.com> Valencia (Spain).
@@ -27,28 +24,21 @@ import java.util.Set;
  * #L%
  */
 
-public interface ITranslator {
+import com.softwaremagico.tm.Element;
 
-	String getTranslatedText(String tag);
+public class RankSpecialization extends Element<RankSpecialization> {
+	private Integer cost = null;
 
-	String getTranslatedText(String tag, String language);
+	public RankSpecialization(String id, String name) {
+		super(id, name);
+	}
 
-	String getTranslatedText(String tag, String[] args);
+	public Integer getCost() {
+		return cost;
+	}
 
-	String getTranslatedText(String tag, String language, Object[] args);
-
-	String convertToXmlTag(String text);
-
-	List<String> getAllTranslatedElements();
-
-	String getNodeValue(String tag, String node);
-
-	String getNodeValue(String parent, String tag, String node);
-
-	Set<String> getAllChildrenTags(String parent, String tag);
-
-	List<Language> getAvailableLanguages();
-
-	String getNodeValue(String grandparent, String parent, String tag, String node);
+	public void setCost(Integer cost) {
+		this.cost = cost;
+	}
 
 }

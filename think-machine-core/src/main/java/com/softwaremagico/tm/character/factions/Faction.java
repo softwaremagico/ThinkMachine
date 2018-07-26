@@ -24,10 +24,15 @@ package com.softwaremagico.tm.character.factions;
  * #L%
  */
 
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
+
 import com.softwaremagico.tm.Element;
 
 public class Faction extends Element<Faction> {
 	private final FactionGroup factionGroup;
+	private final Set<FactionRankTranslation> ranksTranslations = new HashSet<>();
 
 	public Faction(String id, String name, FactionGroup factionGroup) {
 		super(id, name);
@@ -38,4 +43,20 @@ public class Faction extends Element<Faction> {
 		return factionGroup;
 	}
 
+	public void addRankTranslation(FactionRankTranslation factionRank) {
+		ranksTranslations.add(factionRank);
+	}
+
+	public Set<FactionRankTranslation> getRanksTranslations() {
+		return ranksTranslations;
+	}
+
+	public FactionRankTranslation getRankTranslation(String rankId) {
+		for (FactionRankTranslation factionRankTranslation : getRanksTranslations()) {
+			if (Objects.equals(factionRankTranslation.getId(), rankId)) {
+				return factionRankTranslation;
+			}
+		}
+		return null;
+	}
 }

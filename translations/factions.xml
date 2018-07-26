@@ -49,6 +49,44 @@
 			<es>Hermanos de Batalla</es>
 		</name>
 		<group>church</group>
+		<ranks>
+			<novitiate>
+				<translation>
+					<en>Apprentice</en>
+					<es>Aprendiz</es>
+				</translation>
+			</novitiate>
+			<canon>
+				<translation>
+					<en>Oblate</en>
+					<es>Oblato</es>
+				</translation>
+			</canon>
+			<deacon>
+				<translation>
+					<en>Acolyte</en>
+					<es>Acólito</es>
+				</translation>
+			</deacon>
+			<priest>
+				<translation>
+					<en>Adept</en>
+					<es>Adepto</es>
+				</translation>
+			</priest>
+			<bishop>
+				<translation>
+					<en>Master</en>
+					<es>Maestro</es>
+				</translation>
+			</bishop>
+			<archbishop>
+				<translation>
+					<en>Grand Master</en>
+					<es>Gran Maestre</es>
+				</translation>
+			</archbishop>
+		</ranks>
 	</brotherBattle>
 	<eskatonic>
 		<name>
@@ -56,6 +94,44 @@
 			<es>Eskatónicos</es>
 		</name>
 		<group>church</group>
+		<ranks>
+			<novitiate>
+				<translation>
+					<en>Novitiate</en>
+					<es>Novicio</es>
+				</translation>
+			</novitiate>
+			<canon>
+				<translation>
+					<en>Provost</en>
+					<es>Rector</es>
+				</translation>
+			</canon>
+			<deacon>
+				<translation>
+					<en>Illuminatus</en>
+					<es>Iluminati</es>
+				</translation>
+			</deacon>
+			<priest>
+				<translation>
+					<en>Phylosophus</en>
+					<es>Filósofo</es>
+				</translation>
+			</priest>
+			<bishop>
+				<translation>
+					<en>Magister</en>
+					<es>Magister</es>
+				</translation>
+			</bishop>
+			<archbishop>
+				<translation>
+					<en>Presbuteros</en>
+					<es>Presbítero</es>
+				</translation>
+			</archbishop>
+		</ranks>
 	</eskatonic>
 	<avestites>
 		<name>
@@ -85,6 +161,44 @@
 			<es>Aurigas</es>
 		</name>
 		<group>guild</group>
+		<ranks>
+			<apprentice>
+				<translation>
+					<en>Ensign</en>
+					<es>Alférez</es>
+				</translation>
+			</apprentice>
+			<entered>
+				<translation>
+					<en>Lieutenant</en>
+					<es>Teniente</es>
+				</translation>
+			</entered>
+			<fellow>
+				<translation>
+					<en>Commander</en>
+					<es>Comandante</es>
+				</translation>
+			</fellow>
+			<crafter>
+				<translation>
+					<en>Captain</en>
+					<es>Capitán</es>
+				</translation>
+			</crafter>
+			<engineer>
+				<translation>
+					<en>Consul</en>
+					<es>Cónsul</es>
+				</translation>
+			</engineer>
+			<master>
+				<translation>
+					<en>Dean</en>
+					<es>Decano</es>
+				</translation>
+			</master>
+		</ranks>
 	</charioteers>
 	<engineers>
 		<name>
@@ -99,20 +213,134 @@
 			<es>Carroñeros</es>
 		</name>
 		<group>guild</group>
+		<ranks>
+			<apprentice>
+				<translation>
+					<en>Associate</en>
+					<es>Asociado</es>
+				</translation>
+			</apprentice>
+			<entered>
+				<translation>
+					<en>Genin</en>
+					<es>Genin</es>
+				</translation>
+			</entered>
+			<fellow>
+				<translation>
+					<en>Boss</en>
+					<es>Jefe</es>
+				</translation>
+			</fellow>
+			<crafter>
+				<translation>
+					<en>Jonin</en>
+					<es>Jonin</es>
+				</translation>
+			</crafter>
+			<engineer>
+				<translation>
+					<en>Consul</en>
+					<es>Cónsul</es>
+				</translation>
+			</engineer>
+			<master>
+				<translation>
+					<en>Dean</en>
+					<es>Decano</es>
+				</translation>
+			</master>
+		</ranks>
 	</scravers>
-	<chainers>
+	<muster>
 		<name>
-			<en>Chainers</en>
+			<en>Musters</en>
 			<es>Esclavistas</es>
 		</name>
 		<group>guild</group>
-	</chainers>
+		<ranks>
+			<apprentice>
+				<translation>
+					<en>Private</en>
+					<es>Raso</es>
+				</translation>
+			</apprentice>
+			<entered>
+				<translation>
+					<en>Sergeant</en>
+					<es>Sargento</es>
+				</translation>
+			</entered>
+			<fellow>
+				<translation>
+					<en>Liutenant</en>
+					<es>Teniente</es>
+				</translation>
+			</fellow>
+			<crafter>
+				<translation>
+					<en>Captain</en>
+					<es>Capitán</es>
+				</translation>
+			</crafter>
+			<engineer>
+				<translation>
+					<en>Major</en>
+					<es>Mayor</es>
+				</translation>
+			</engineer>
+			<master>
+				<translation>
+					<en>Colonel</en>
+					<es>Coronel</es>
+				</translation>
+			</master>
+		</ranks>
+	</muster>
 	<reeves>
 		<name>
 			<en>Reeves</en>
 			<es>Magistrados</es>
 		</name>
 		<group>guild</group>
+				<ranks>
+			<apprentice>
+				<translation>
+					<en>Associate</en>
+					<es>Asociado</es>
+				</translation>
+			</apprentice>
+			<entered>
+				<translation>
+					<en>Chief</en>
+					<es>Líder</es>
+				</translation>
+			</entered>
+			<fellow>
+				<translation>
+					<en>Manager</en>
+					<es>Agente</es>
+				</translation>
+			</fellow>
+			<crafter>
+				<translation>
+					<en>Director</en>
+					<es>Director</es>
+				</translation>
+			</crafter>
+			<engineer>
+				<translation>
+					<en>Consul</en>
+					<es>Cónsul</es>
+				</translation>
+			</engineer>
+			<master>
+				<translation>
+					<en>Dean</en>
+					<es>Decano</es>
+				</translation>
+			</master>
+		</ranks>
 	</reeves>
 	
 	<obun>

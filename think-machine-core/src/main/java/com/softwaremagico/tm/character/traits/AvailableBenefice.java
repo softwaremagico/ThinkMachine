@@ -27,7 +27,7 @@ package com.softwaremagico.tm.character.traits;
 import com.softwaremagico.tm.Element;
 
 public class AvailableBenefice extends Element<AvailableBenefice> {
-	private Specialization specialization = null;
+	private RankSpecialization specialization = null;
 	private final BeneficeDefinition benefitDefinition;
 	private final int cost;
 
@@ -54,11 +54,11 @@ public class AvailableBenefice extends Element<AvailableBenefice> {
 				+ ")";
 	}
 
-	public Specialization getSpecialization() {
+	public RankSpecialization getSpecialization() {
 		return specialization;
 	}
 
-	public void setSpecialization(Specialization specialization) {
+	public void setSpecialization(RankSpecialization specialization) {
 		this.specialization = specialization;
 	}
 

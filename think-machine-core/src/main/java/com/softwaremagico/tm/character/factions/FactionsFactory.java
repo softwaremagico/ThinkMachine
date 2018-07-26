@@ -35,6 +35,8 @@ public class FactionsFactory extends XmlFactory<Faction> {
 
 	private final static String NAME = "name";
 	private final static String GROUP = "group";
+	private final static String RANKS_TAG = "ranks";
+	private final static String RANKS_TRANSLATION_TAG = "translation";
 
 	private static FactionsFactory instance;
 
@@ -75,6 +77,13 @@ public class FactionsFactory extends XmlFactory<Faction> {
 			}
 
 			Faction faction = new Faction(factionId, name, factionGroup);
+
+			for (String rankId : translator.getAllChildrenTags(factionId, RANKS_TAG)) {
+				String rankName = translator.getNodeValue(factionId, rankId, RANKS_TRANSLATION_TAG, language);
+				FactionRankTranslation factionRank = new FactionRankTranslation(rankId, rankName);
+				faction.addRankTranslation(factionRank);
+			}
+
 			return faction;
 		} catch (Exception e) {
 			throw new InvalidFactionException("Invalid structure in faction '" + factionId + "'.", e);
