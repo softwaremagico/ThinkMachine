@@ -35,18 +35,18 @@ public class BeneficeDefinition extends Element<BeneficeDefinition> {
 	private final List<Integer> costs;
 	private final Set<BeneficeSpecialization> specializations = new HashSet<>();
 	private final BeneficeGroup group;
-	private final BeneficeClassification classification;
+	private final BeneficeClassification beneficeClassification;
 	private final FactionGroup restricted;
 
-	public BeneficeDefinition(String name, List<Integer> costs, BeneficeGroup group, BeneficeClassification classification, FactionGroup restricted) {
-		this(null, name, costs, group, classification, restricted);
+	public BeneficeDefinition(String name, List<Integer> costs, BeneficeGroup group, BeneficeClassification beneficeClassification, FactionGroup restricted) {
+		this(null, name, costs, group, beneficeClassification, restricted);
 	}
 
-	public BeneficeDefinition(String id, String name, List<Integer> costs, BeneficeGroup group, BeneficeClassification classification, FactionGroup restricted) {
+	public BeneficeDefinition(String id, String name, List<Integer> costs, BeneficeGroup group, BeneficeClassification beneficeClassification, FactionGroup restricted) {
 		super(id, name);
 		this.costs = costs;
 		this.group = group;
-		this.classification = classification;
+		this.beneficeClassification = beneficeClassification;
 		this.restricted = restricted;
 	}
 
@@ -67,7 +67,7 @@ public class BeneficeDefinition extends Element<BeneficeDefinition> {
 	}
 
 	protected BeneficeClassification getBeneficeClassification() {
-		return classification;
+		return beneficeClassification;
 	}
 
 	public FactionGroup getRestricted() {

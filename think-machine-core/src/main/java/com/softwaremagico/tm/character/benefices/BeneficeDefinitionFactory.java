@@ -90,7 +90,7 @@ public class BeneficeDefinitionFactory extends XmlFactory<BeneficeDefinition> {
 			BeneficeGroup benefitGroup = null;
 			String groupName = translator.getNodeValue(benefitId, GROUP);
 			if (groupName != null) {
-				benefitGroup = BeneficeGroup.getBenefitGroup(groupName);
+				benefitGroup = BeneficeGroup.get(groupName);
 			}
 
 			String afflictionTag = translator.getNodeValue(benefitId, AFFLICTION);

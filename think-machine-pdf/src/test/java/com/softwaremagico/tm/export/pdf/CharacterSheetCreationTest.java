@@ -41,9 +41,8 @@ import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.Gender;
 import com.softwaremagico.tm.character.OccultismType;
 import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
-import com.softwaremagico.tm.character.blessings.Blessing;
+import com.softwaremagico.tm.character.blessings.BlessingFactory;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
-import com.softwaremagico.tm.character.characteristics.CharacteristicsDefinitionFactory;
 import com.softwaremagico.tm.character.combat.CombatAction;
 import com.softwaremagico.tm.character.combat.CombatStyle;
 import com.softwaremagico.tm.character.combat.LearnedStance;
@@ -56,7 +55,6 @@ import com.softwaremagico.tm.character.factions.FactionsFactory;
 import com.softwaremagico.tm.character.occultism.OccultismPower;
 import com.softwaremagico.tm.character.race.Race;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
-import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
 import com.softwaremagico.tm.json.CharacterJsonManager;
 import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.pdf.complete.CharacterSheet;
@@ -132,20 +130,11 @@ public class CharacterSheetCreationTest {
 		player.getOccultism().addElement(new OccultismPower("Agilizar", OccultismType.PSI, "Vol+Atletismo", 3, null, "Temporal", "", 1));
 		player.getOccultism().addElement(new OccultismPower("Endurecer", OccultismType.PSI, "Vol+Vigor", 4, null, "Temporal", "", 1));
 
-		Blessing handsome = new Blessing("Elegante", 1, 1, "--");
-		handsome.setSkill(SkillsDefinitionsFactory.getInstance().getElement("influence", LANGUAGE));
-		player.addBlessing(handsome);
-
-		Blessing inquisitive = new Blessing("Curioso", 2, 2, "Ante algo nuevo");
-		inquisitive.setCharacteristic(CharacteristicsDefinitionFactory.getInstance().getElement("presence", LANGUAGE));
-		player.addBlessing(inquisitive);
-
-		Blessing credulous = new Blessing("Crédulo", -2, -2, "Si se le engatusa");
-		credulous.setCharacteristic(CharacteristicsDefinitionFactory.getInstance().getElement("will", LANGUAGE));
-		player.addBlessing(credulous);
+		player.addBlessing(BlessingFactory.getInstance().getElement("handsome", player.getLanguage()));
+		player.addBlessing(BlessingFactory.getInstance().getElement("curious", player.getLanguage()));
+		player.addBlessing(BlessingFactory.getInstance().getElement("gullible", player.getLanguage()));
 
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("stigma_1", player.getLanguage()));
-
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("heir", player.getLanguage()));
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("wireblade", player.getLanguage()));
 

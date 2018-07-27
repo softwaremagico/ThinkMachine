@@ -12,7 +12,215 @@
 			<en>Special</en>
 			<es>Especial</es>
 		</situation>
+		<group>appearance</group>
 	</handsome>
+	<beautiful>
+		<name>
+			<en>Beautiful</en>
+			<es>Bello</es>
+		</name>
+		<cost>2</cost>
+		<bonification>2</bonification>
+		<skill>influence</skill>
+		<situation>
+			<en>Special</en>
+			<es>Especial</es>
+		</situation>
+		<group>appearance</group>
+	</beautiful>
+	<angelic>
+		<name>
+			<en>Angelic</en>
+			<es>Angelical</es>
+		</name>
+		<cost>3</cost>
+		<bonification>3</bonification>
+		<skill>influence</skill>
+		<situation>
+			<en>Special</en>
+			<es>Especial</es>
+		</situation>
+		<group>appearance</group>
+	</angelic>
+	<homely>
+		<name>
+			<en>Homely</en>
+			<es>Sencillo</es>
+		</name>
+		<cost>1</cost>
+		<bonification>-1</bonification>
+		<skill>influence</skill>
+		<situation>
+			<en>Special</en>
+			<es>Especial</es>
+		</situation>
+		<group>appearance</group>
+		<curse>true</curse>
+	</homely>
+	<ugly>
+		<name>
+			<en>Ugly</en>
+			<es>Feo</es>
+		</name>
+		<cost>2</cost>
+		<bonification>-2</bonification>
+		<skill>influence</skill>
+		<situation>
+			<en>Special</en>
+			<es>Especial</es>
+		</situation>
+		<group>appearance</group>
+		<curse>true</curse>
+	</ugly>
+	<monstrous>
+		<name>
+			<en>Monstrous</en>
+			<es>Monstruoso</es>
+		</name>
+		<cost>3</cost>
+		<bonification>-3</bonification>
+		<skill>influence</skill>
+		<situation>
+			<en>Special</en>
+			<es>Especial</es>
+		</situation>
+		<group>appearance</group>
+		<curse>true</curse>
+	</monstrous>
+	
+	<curious>
+		<name>
+			<en>Curious</en>
+			<es>Curioso</es>
+		</name>
+		<cost>2</cost>
+		<bonification>2</bonification>
+		<characteristic>presence</characteristic>
+		<situation>
+			<en>When seeing something new</en>
+			<es>Ante algo nuevo</es>
+		</situation>
+		<group>behaviour</group>
+	</curious>
+	<just>
+		<name>
+			<en>Just</en>
+			<es>Recto</es>
+		</name>
+		<cost>2</cost>
+		<bonification>2</bonification>
+		<characteristic>faith</characteristic>
+		<situation>
+			<en>Righting a wrong</en>
+			<es>Corrigiendo al errado</es>
+		</situation>
+		<group>behaviour</group>
+	</just>
+	<unyielding>
+		<name>
+			<en>Unyielding</en>
+			<es>Inflexible</es>
+		</name>
+		<cost>2</cost>
+		<bonification>2</bonification>
+		<characteristic>endurance</characteristic>
+		<situation>
+			<en>When honor is at stake</en>
+			<es>Honor está en juego</es>
+		</situation>
+		<group>behaviour</group>
+	</unyielding>
+	<theMan>
+		<name>
+			<en>The Man</en>
+			<es>El Hombre</es>
+		</name>
+		<cost>2</cost>
+		<bonification>2</bonification>
+		<skill>influence</skill>
+		<situation>
+			<en>Leading underlings</en>
+			<es>Liderando subalternos</es>
+		</situation>
+		<group>behaviour</group>
+	</theMan>
+	<prideful>
+		<name>
+			<en>Prideful</en>
+			<es>Orgulloso</es>
+		</name>
+		<cost>2</cost>
+		<bonification>-2</bonification>
+		<characteristic>will</characteristic>
+		<situation>
+			<en>When insulted</en>
+			<es>Cuando es insultado</es>
+		</situation>
+		<group>behaviour</group>
+		<curse>true</curse>
+	</prideful>
+	<condescending>
+		<name>
+			<en>Condescending</en>
+			<es>Condescendiente</es>
+		</name>
+		<cost>2</cost>
+		<bonification>-2</bonification>
+		<characteristic>presence</characteristic>
+		<situation>
+			<en>Among the unenlightened</en>
+			<es>Entre los incultos</es>
+		</situation>
+		<group>behaviour</group>
+		<curse>true</curse>
+	</condescending>
+	<righteous>
+		<name>
+			<en>Righteous</en>
+			<es>Condescendiente</es>
+		</name>
+		<cost>2</cost>
+		<bonification>-2</bonification>
+		<characteristic>will</characteristic>
+		<situation>
+			<en>Judgment questioned</en>
+			<es>Cuestiona su juicio</es>
+		</situation>
+		<group>behaviour</group>
+		<curse>true</curse>
+	</righteous>
+	<possessive>
+		<name>
+			<en>Possessive</en>
+			<es>Posesivo</es>
+		</name>
+		<cost>2</cost>
+		<bonification>-2</bonification>
+		<characteristic>will</characteristic>
+		<situation>
+			<en>Cut out of action</en>
+			<es>Se le excluyde de la acción</es>
+		</situation>
+		<group>behaviour</group>
+		<curse>true</curse>
+	</possessive>
+	<gullible>
+		<name>
+			<en>Gullible</en>
+			<es>Crédulo</es>
+		</name>
+		<cost>2</cost>
+		<bonification>-2</bonification>
+		<characteristic>wits</characteristic>
+		<situation>
+			<en>Against attempts to fast-talk</en>
+			<es>Contra intentos de engatusar</es>
+		</situation>
+		<group>behaviour</group>
+		<curse>true</curse>
+	</gullible>
+	
+
 	<innovative>
 		<name>
 			<en>Innovative</en>
@@ -39,4 +247,64 @@
 			<es>Entre sirvientes</es>
 		</situation>
 	</haughty>
+	
+	
+	<greaseMonkey>
+		<name>
+			<en>Grease Monkey</en>
+			<es>Mecánico</es>
+		</name>
+		<cost>2</cost>
+		<bonification>2</bonification>
+		<skill>techRedemption</skill>
+		<situation>
+			<en>Repairing</en>
+			<es>Reparando</es>
+		</situation>
+		<group>knacks</group>
+	</greaseMonkey>
+	<beastFoe>
+		<name>
+			<en>Beast Foe</en>
+			<es>Enemigo de los Animales</es>
+		</name>
+		<cost>2</cost>
+		<bonification>-2</bonification>
+		<situation>
+			<en>Non combat actions with animals</en>
+			<es>Con animales en situaciones que no sean de combate</es>
+		</situation>
+		<group>knacks</group>
+		<curse>true</curse>
+	</beastFoe>
+	<hacker>
+		<name>
+			<en>Hacker</en>
+			<es>Hacker</es>
+		</name>
+		<cost>2</cost>
+		<bonification>2</bonification>
+		<skill>thinkMachine</skill>
+		<situation>
+			<en></en>
+			<es></es>
+		</situation>
+		<group>knacks</group>
+	</hacker>
+	
+	<horribleScar>
+		<name>
+			<en>Horrible Scar</en>
+			<es>Marca Horrible</es>
+		</name>
+		<cost>2</cost>
+		<bonification>-2</bonification>
+		<skill>influence</skill>
+		<situation>
+			<en>If visible</en>
+			<es>Si es visible</es>
+		</situation>
+		<group>injures</group>
+		<curse>true</curse>
+	</horribleScar>
 </blessings>

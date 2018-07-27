@@ -27,10 +27,10 @@ package com.softwaremagico.tm.character.benefices;
 public enum BeneficeGroup {
 	BACKGROUND, COMMUNITY, TECHNOLOGY, RELICS, POSSESSIONS, RICHES, STATUS, FIGHTING;
 
-	public static BeneficeGroup getBenefitGroup(String tag) {
+	public static BeneficeGroup get(String tag) {
 		if (tag != null) {
 			for (BeneficeGroup benefitGroup : BeneficeGroup.values()) {
-				if (benefitGroup.name().toLowerCase().equals(tag.toLowerCase())) {
+				if (benefitGroup.name().equalsIgnoreCase(tag)) {
 					return benefitGroup;
 				}
 			}

@@ -42,6 +42,8 @@ public class BlessingFactory extends XmlFactory<Blessing> {
 	private final static String SKILL = "skill";
 	private final static String CHARACTERISTIC = "characteristic";
 	private final static String SITUATION = "situation";
+	private final static String CURSE = "curse";
+	private final static String GROUP = "group";
 
 	private static BlessingFactory instance;
 
@@ -64,53 +66,49 @@ public class BlessingFactory extends XmlFactory<Blessing> {
 
 	@Override
 	protected Blessing createElement(ITranslator translator, String blessingId, String language) throws InvalidXmlElementException {
-		Blessing blessing = null;
+
 		try {
 			String name = translator.getNodeValue(blessingId, NAME, language);
-			blessing = new Blessing(blessingId, name);
+
+			String cost = translator.getNodeValue(blessingId, COST);
+
+			String bonification = translator.getNodeValue(blessingId, BONIFICATION);
+
+			BlessingGroup blessingGroup = null;
+			String groupName = translator.getNodeValue(blessingId, GROUP);
+			if (groupName != null) {
+				blessingGroup = BlessingGroup.get(groupName);
+			}
+
+			String skillName = translator.getNodeValue(blessingId, SKILL);
+			SkillDefinition skill = null;
+			if (skillName != null) {
+				skill = SkillsDefinitionsFactory.getInstance().getElement(skillName, language);
+			}
+
+			String characteristicName = translator.getNodeValue(blessingId, CHARACTERISTIC);
+			CharacteristicDefinition characteristic = null;
+			if (characteristicName != null) {
+				characteristic = CharacteristicsDefinitionFactory.getInstance().getElement(characteristicName, language);
+			}
+
+			String situation = translator.getNodeValue(blessingId, SITUATION, language);
+
+			String curseTag = translator.getNodeValue(blessingId, CURSE);
+			BlessingClassification blessingClassification = BlessingClassification.BLESSING;
+
+			if (blessingClassification != null) {
+				if (Boolean.parseBoolean(curseTag)) {
+					blessingClassification = BlessingClassification.CURSE;
+				}
+			}
+
+			Blessing blessing = new Blessing(blessingId, name, Integer.parseInt(cost), Integer.parseInt(bonification), skill, characteristic, situation,
+					blessingClassification, blessingGroup);
+			return blessing;
 		} catch (Exception e) {
 			throw new InvalidBlessingException("Invalid structure in blessing '" + blessingId + "'.", e);
 		}
-		try {
-			String cost = translator.getNodeValue(blessingId, COST);
-			blessing.setCost(Integer.parseInt(cost));
-		} catch (Exception e) {
-			throw new InvalidBlessingException("Invalid cost in blessing '" + blessingId + "'.");
-		}
-		try {
-			String bonification = translator.getNodeValue(blessingId, BONIFICATION);
-			blessing.setBonification(Integer.parseInt(bonification));
-		} catch (Exception e) {
-			throw new InvalidBlessingException("Invalid bonification in blessing '" + blessingId + "'.");
-		}
-		try {
-			String skillName = translator.getNodeValue(blessingId, SKILL);
-			SkillDefinition skill = SkillsDefinitionsFactory.getInstance().getElement(skillName, language);
-			blessing.setSkill(skill);
-		} catch (Exception e) {
-			// Not mandatory
-		}
-		try {
-			String skillName = translator.getNodeValue(blessingId, SKILL);
-			SkillDefinition skill = SkillsDefinitionsFactory.getInstance().getElement(skillName, language);
-			blessing.setSkill(skill);
-		} catch (Exception e) {
-			// Not mandatory
-		}
-		try {
-			String characteristicName = translator.getNodeValue(blessingId, CHARACTERISTIC);
-			CharacteristicDefinition characteristic = CharacteristicsDefinitionFactory.getInstance().getElement(characteristicName, language);
-			blessing.setCharacteristic(characteristic);
-		} catch (Exception e) {
-			// Not mandatory
-		}
-		try {
-			String situation = translator.getNodeValue(blessingId, SITUATION, language);
-			blessing.setSituation(situation);
-		} catch (Exception e) {
-			throw new InvalidBlessingException("Invalid situation name '" + blessingId + "'.");
-		}
-		return blessing;
 
 	}
 

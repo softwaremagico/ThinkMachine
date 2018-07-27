@@ -33,9 +33,10 @@ import com.softwaremagico.tm.character.blessings.BlessingFactory;
 
 @Test(groups = { "blessingFactory" })
 public class BlessingFactoryTests {
+	private final static int DEFINED_BLESSINGS = 21;
 
 	@Test
 	public void readBlessings() throws InvalidXmlElementException {
-		Assert.assertEquals(3, BlessingFactory.getInstance().getElements("es").size());
+		Assert.assertEquals(DEFINED_BLESSINGS, BlessingFactory.getInstance().getElements("es").size());
 	}
 }

@@ -37,7 +37,6 @@ import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.Gender;
 import com.softwaremagico.tm.character.OccultismType;
 import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
-import com.softwaremagico.tm.character.blessings.Blessing;
 import com.softwaremagico.tm.character.blessings.BlessingFactory;
 import com.softwaremagico.tm.character.characteristics.CharacteristicImprovement;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
@@ -56,7 +55,6 @@ import com.softwaremagico.tm.character.race.Race;
 import com.softwaremagico.tm.character.race.RaceFactory;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.character.skills.CyberneticSkill;
-import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
 import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.pdf.complete.CharacterSheet;
 import com.softwaremagico.tm.pdf.small.SmallCharacterSheet;
@@ -107,20 +105,11 @@ public class CustomCharacters {
 		player.addBlessing(BlessingFactory.getInstance().getElement("innovative", LANGUAGE));
 		player.addBlessing(BlessingFactory.getInstance().getElement("haughty", LANGUAGE));
 
-		Blessing hacker = new Blessing("Hacker", 2, 2, "--");
-		hacker.setSkill(SkillsDefinitionsFactory.getInstance().getElement("thinkMachine", LANGUAGE));
-		player.addBlessing(hacker);
+		player.addBlessing(BlessingFactory.getInstance().getElement("hacker", player.getLanguage()));
+		player.addBlessing(BlessingFactory.getInstance().getElement("greaseMonkey", player.getLanguage()));
+		player.addBlessing(BlessingFactory.getInstance().getElement("beastFoe", player.getLanguage()));
 
-		Blessing mechanical = new Blessing("Mecánico", 2, 2, "Reparando");
-		mechanical.setSkill(SkillsDefinitionsFactory.getInstance().getElement("techRedemption", LANGUAGE));
-		player.addBlessing(mechanical);
-
-		Blessing animalHater = new Blessing("Enemigo Animales", -2, -2, "Con Animales");
-		player.addBlessing(animalHater);
-
-		Blessing horribleMark = new Blessing("Marca Horrible", -2, -2, "Si es visible");
-		horribleMark.setSkill(SkillsDefinitionsFactory.getInstance().getElement("influence", LANGUAGE));
-		player.addBlessing(horribleMark);
+		player.addBlessing(BlessingFactory.getInstance().getElement("horribleScar", player.getLanguage()));
 
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("language [turingLanguage]", player.getLanguage()));
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("commission [apprentice]", player.getLanguage()));
@@ -189,17 +178,9 @@ public class CustomCharacters {
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("investigation", LANGUAGE), 4);
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("leadership", LANGUAGE), 2);
 
-		Blessing inflexible = new Blessing("Inflexible", 2, 2, "Honor en juego");
-		inflexible.setCharacteristic(CharacteristicsDefinitionFactory.getInstance().getElement("endurance", LANGUAGE));
-		player.addBlessing(inflexible);
-
-		Blessing proud = new Blessing("Orgulloso", -2, -2, "Insulta");
-		proud.setCharacteristic(CharacteristicsDefinitionFactory.getInstance().getElement("will", LANGUAGE));
-		player.addBlessing(proud);
-
-		Blessing horribleMark = new Blessing("Marca Horrible", -2, -2, "Si es visible");
-		horribleMark.setSkill(SkillsDefinitionsFactory.getInstance().getElement("influence", LANGUAGE));
-		player.addBlessing(horribleMark);
+		player.addBlessing(BlessingFactory.getInstance().getElement("unyielding", player.getLanguage()));
+		player.addBlessing(BlessingFactory.getInstance().getElement("prideful", player.getLanguage()));
+		player.addBlessing(BlessingFactory.getInstance().getElement("horribleScar", player.getLanguage()));
 
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("nobility [knight]", player.getLanguage()));
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("language [latinLanguage]", player.getLanguage()));
@@ -260,17 +241,9 @@ public class CustomCharacters {
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("landcarft", LANGUAGE), 2);
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("investigation", LANGUAGE), 3);
 
-		Blessing theMan = new Blessing("El Hombre", 2, 2, "Liderar subalternos");
-		theMan.setSkill(SkillsDefinitionsFactory.getInstance().getElement("influence", LANGUAGE));
-		player.addBlessing(theMan);
-
-		Blessing possessive = new Blessing("Posesivo", -2, -2, "Excluir acción");
-		possessive.setCharacteristic(CharacteristicsDefinitionFactory.getInstance().getElement("will", LANGUAGE));
-		player.addBlessing(possessive);
-
-		Blessing horribleMark = new Blessing("Marca Horrible", -2, -2, "Si es visible");
-		horribleMark.setSkill(SkillsDefinitionsFactory.getInstance().getElement("influence", LANGUAGE));
-		player.addBlessing(horribleMark);
+		player.addBlessing(BlessingFactory.getInstance().getElement("theMan", player.getLanguage()));
+		player.addBlessing(BlessingFactory.getInstance().getElement("possessive", player.getLanguage()));
+		player.addBlessing(BlessingFactory.getInstance().getElement("horribleScar", player.getLanguage()));
 
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("commission [entered]", player.getLanguage()));
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("passageContracts_3", player.getLanguage()));
@@ -341,17 +314,9 @@ public class CustomCharacters {
 		player.getOccultism().addElement(new OccultismPower("Visión Mental", OccultismType.PSI, "Vol+Empatía", 3, "Toque", "Instantáneo", "", 1));
 		player.getOccultism().setExtraWyrd(3);
 
-		Blessing hounorable = new Blessing("Recto", 2, 2, "Corregir al errado");
-		hounorable.setCharacteristic(CharacteristicsDefinitionFactory.getInstance().getElement("faith", LANGUAGE));
-		player.addBlessing(hounorable);
-
-		Blessing acquiescent = new Blessing("Condescendiente", -2, -2, "Entre incultos");
-		acquiescent.setCharacteristic(CharacteristicsDefinitionFactory.getInstance().getElement("presence", LANGUAGE));
-		player.addBlessing(acquiescent);
-
-		Blessing horribleMark = new Blessing("Marca Horrible", -2, -2, "Si es visible");
-		horribleMark.setSkill(SkillsDefinitionsFactory.getInstance().getElement("influence", LANGUAGE));
-		player.addBlessing(horribleMark);
+		player.addBlessing(BlessingFactory.getInstance().getElement("just", player.getLanguage()));
+		player.addBlessing(BlessingFactory.getInstance().getElement("condescending", player.getLanguage()));
+		player.addBlessing(BlessingFactory.getInstance().getElement("horribleScar", player.getLanguage()));
 
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("ordained [novitiate]", player.getLanguage()));
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("language [urthish]", player.getLanguage()));
@@ -402,13 +367,8 @@ public class CustomCharacters {
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("thinkMachine", LANGUAGE), 3);
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("techRedemption", LANGUAGE), 3);
 
-		Blessing credulous = new Blessing("Crédulo", -2, -2, "Si se le engatusa");
-		credulous.setCharacteristic(CharacteristicsDefinitionFactory.getInstance().getElement("will", LANGUAGE));
-		player.addBlessing(credulous);
-
-		Blessing justified = new Blessing("Justificado", -2, -2, "Se cuestion su juicio");
-		justified.setCharacteristic(CharacteristicsDefinitionFactory.getInstance().getElement("will", LANGUAGE));
-		player.addBlessing(justified);
+		player.addBlessing(BlessingFactory.getInstance().getElement("gullible", player.getLanguage()));
+		player.addBlessing(BlessingFactory.getInstance().getElement("righteous", player.getLanguage()));
 
 		player.getCybernetics().addElement(new Device("Omnienchufe", 1, 0, "Normal", "Normal", "Automático", "Oculto", ""));
 		player.getCybernetics().addElement(new Device("Interfaz de Datos (Turing)", 1, 1, "Normal", "Normal", "Automático", "Oculto", "Turing"));

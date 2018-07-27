@@ -29,24 +29,30 @@ import com.softwaremagico.tm.character.characteristics.CharacteristicDefinition;
 import com.softwaremagico.tm.character.skills.SkillDefinition;
 
 public class Blessing extends Element<Blessing> {
-	private Integer cost;
-	private Integer bonification;
-	private SkillDefinition skill;
-	private CharacteristicDefinition characteristic;
-	private String situation;
+	private final Integer cost;
+	private final Integer bonification;
+	private final SkillDefinition skill;
+	private final CharacteristicDefinition characteristic;
+	private final String situation;
+	private final BlessingClassification blessingClassification;
+	private final BlessingGroup blessingGroup;
 
-	public Blessing(String id, String name) {
+	public Blessing(String id, String name, Integer cost, Integer bonification, SkillDefinition skill, CharacteristicDefinition characteristic,
+			String situation, BlessingClassification blessingClassification, BlessingGroup blessingGroup) {
 		super(id, name);
-	}
-
-	public Blessing(String name, Integer cost, Integer bonification, String situation) {
-		this(null, name);
 		this.cost = cost;
 		this.bonification = bonification;
 		this.situation = situation;
+		this.skill = skill;
+		this.characteristic = characteristic;
+		this.blessingClassification = blessingClassification;
+		this.blessingGroup = blessingGroup;
 	}
 
 	public Integer getCost() {
+		if (getBlessingClassification().equals(BlessingClassification.CURSE)) {
+			return -cost;
+		}
 		return cost;
 	}
 
@@ -68,32 +74,20 @@ public class Blessing extends Element<Blessing> {
 		return situation;
 	}
 
-	protected void setCost(Integer cost) {
-		this.cost = cost;
-	}
-
-	public void setBonification(Integer bonification) {
-		this.bonification = bonification;
-	}
-
-	protected void setSituation(String situation) {
-		this.situation = situation;
-	}
-
 	public SkillDefinition getSkill() {
 		return skill;
-	}
-
-	public void setSkill(SkillDefinition skill) {
-		this.skill = skill;
 	}
 
 	public CharacteristicDefinition getCharacteristic() {
 		return characteristic;
 	}
 
-	public void setCharacteristic(CharacteristicDefinition characteristic) {
-		this.characteristic = characteristic;
+	public BlessingClassification getBlessingClassification() {
+		return blessingClassification;
+	}
+
+	public BlessingGroup getBlessingGroup() {
+		return blessingGroup;
 	}
 
 }
