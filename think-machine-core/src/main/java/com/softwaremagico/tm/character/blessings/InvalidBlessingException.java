@@ -1,10 +1,10 @@
-package com.softwaremagico.tm.character.traits;
+package com.softwaremagico.tm.character.blessings;
 
 /*-
  * #%L
  * Think Machine (Core)
  * %%
- * Copyright (C) 2017 - 2018 Softwaremagico
+ * Copyright (C) 2017 Softwaremagico
  * %%
  * This software is designed by Jorge Hortelano Otero. Jorge Hortelano Otero
  * <softwaremagico@gmail.com> Valencia (Spain).
@@ -24,6 +24,16 @@ package com.softwaremagico.tm.character.traits;
  * #L%
  */
 
-public enum BeneficeClassification {
-	BENEFICE, AFFLICTION;
+import com.softwaremagico.tm.InvalidXmlElementException;
+
+public class InvalidBlessingException extends InvalidXmlElementException {
+	private static final long serialVersionUID = 3558660253411869827L;
+
+	public InvalidBlessingException(String message) {
+		super(message);
+	}
+
+	public InvalidBlessingException(String message, Exception e) {
+		super(message, e);
+	}
 }

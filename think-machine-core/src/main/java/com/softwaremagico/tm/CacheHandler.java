@@ -24,15 +24,15 @@ package com.softwaremagico.tm;
  * #L%
  */
 
+import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
+import com.softwaremagico.tm.character.benefices.BeneficeDefinitionFactory;
+import com.softwaremagico.tm.character.blessings.BlessingFactory;
 import com.softwaremagico.tm.character.characteristics.CharacteristicsDefinitionFactory;
 import com.softwaremagico.tm.character.equipment.WeaponFactory;
 import com.softwaremagico.tm.character.factions.FactionsFactory;
 import com.softwaremagico.tm.character.race.RaceFactory;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
-import com.softwaremagico.tm.character.traits.AvailableBeneficeFactory;
-import com.softwaremagico.tm.character.traits.BeneficeDefinitionFactory;
-import com.softwaremagico.tm.character.traits.BlessingFactory;
 import com.softwaremagico.tm.language.LanguagePool;
 
 public class CacheHandler {

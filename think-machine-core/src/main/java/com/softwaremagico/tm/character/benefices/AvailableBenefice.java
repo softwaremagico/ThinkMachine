@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.character.traits;
+package com.softwaremagico.tm.character.benefices;
 
 /*-
  * #%L

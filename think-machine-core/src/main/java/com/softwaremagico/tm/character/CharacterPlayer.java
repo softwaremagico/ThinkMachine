@@ -38,6 +38,12 @@ import java.util.Set;
 import java.util.TreeMap;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
+import com.softwaremagico.tm.character.benefices.AvailableBenefice;
+import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
+import com.softwaremagico.tm.character.benefices.BeneficeClassification;
+import com.softwaremagico.tm.character.benefices.BeneficeGroup;
+import com.softwaremagico.tm.character.benefices.RankSpecialization;
+import com.softwaremagico.tm.character.blessings.Blessing;
 import com.softwaremagico.tm.character.characteristics.Characteristic;
 import com.softwaremagico.tm.character.characteristics.CharacteristicDefinition;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
@@ -64,12 +70,6 @@ import com.softwaremagico.tm.character.skills.Skill;
 import com.softwaremagico.tm.character.skills.SkillDefinition;
 import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
 import com.softwaremagico.tm.character.skills.Specialization;
-import com.softwaremagico.tm.character.traits.AvailableBenefice;
-import com.softwaremagico.tm.character.traits.AvailableBeneficeFactory;
-import com.softwaremagico.tm.character.traits.BeneficeClassification;
-import com.softwaremagico.tm.character.traits.BeneficeGroup;
-import com.softwaremagico.tm.character.traits.Blessing;
-import com.softwaremagico.tm.character.traits.RankSpecialization;
 import com.softwaremagico.tm.log.MachineLog;
 
 public class CharacterPlayer {

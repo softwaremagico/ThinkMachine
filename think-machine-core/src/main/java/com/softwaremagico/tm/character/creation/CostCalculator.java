@@ -26,10 +26,10 @@ package com.softwaremagico.tm.character.creation;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.character.benefices.AvailableBenefice;
+import com.softwaremagico.tm.character.blessings.Blessing;
 import com.softwaremagico.tm.character.cybernetics.Device;
 import com.softwaremagico.tm.character.occultism.OccultismPower;
-import com.softwaremagico.tm.character.traits.AvailableBenefice;
-import com.softwaremagico.tm.character.traits.Blessing;
 import com.softwaremagico.tm.log.MachineLog;
 
 public class CostCalculator {

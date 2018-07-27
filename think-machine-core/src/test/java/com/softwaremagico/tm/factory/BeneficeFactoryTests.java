@@ -31,9 +31,9 @@ import junit.framework.Assert;
 import org.testng.annotations.Test;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.character.traits.AvailableBenefice;
-import com.softwaremagico.tm.character.traits.AvailableBeneficeFactory;
-import com.softwaremagico.tm.character.traits.BeneficeDefinitionFactory;
+import com.softwaremagico.tm.character.benefices.AvailableBenefice;
+import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
+import com.softwaremagico.tm.character.benefices.BeneficeDefinitionFactory;
 
 @Test(groups = { "beneficeFactory" })
 public class BeneficeFactoryTests {

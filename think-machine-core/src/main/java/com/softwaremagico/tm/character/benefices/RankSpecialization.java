@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.character.traits;
+package com.softwaremagico.tm.character.benefices;
 
 /*-
  * #%L
@@ -24,17 +24,21 @@ package com.softwaremagico.tm.character.traits;
  * #L%
  */
 
-public enum BeneficeGroup {
-	BACKGROUND, COMMUNITY, TECHNOLOGY, RELICS, POSSESSIONS, RICHES, STATUS, FIGHTING;
+import com.softwaremagico.tm.Element;
 
-	public static BeneficeGroup getBenefitGroup(String tag) {
-		if (tag != null) {
-			for (BeneficeGroup benefitGroup : BeneficeGroup.values()) {
-				if (benefitGroup.name().toLowerCase().equals(tag.toLowerCase())) {
-					return benefitGroup;
-				}
-			}
-		}
-		return null;
+public class RankSpecialization extends Element<RankSpecialization> {
+	private Integer cost = null;
+
+	public RankSpecialization(String id, String name) {
+		super(id, name);
 	}
+
+	public Integer getCost() {
+		return cost;
+	}
+
+	public void setCost(Integer cost) {
+		this.cost = cost;
+	}
+
 }

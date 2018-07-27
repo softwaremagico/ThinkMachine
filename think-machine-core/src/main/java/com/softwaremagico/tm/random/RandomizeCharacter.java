@@ -39,12 +39,10 @@ import com.softwaremagico.tm.random.selectors.TraitCostPreferences;
 
 public class RandomizeCharacter {
 	private CharacterPlayer characterPlayer;
-	private int experiencePoints;
 	private final Set<IRandomPreferences> preferences;
 
 	public RandomizeCharacter(CharacterPlayer characterPlayer, int experiencePoints, IRandomPreferences... preferences) throws DuplicatedPreferenceException {
 		this.characterPlayer = characterPlayer;
-		this.experiencePoints = experiencePoints;
 		this.preferences = new HashSet<>(Arrays.asList(preferences));
 
 		checkValidPreferences();
@@ -115,7 +113,6 @@ public class RandomizeCharacter {
 		// Traits
 		RandomBeneficeDefinition randomBenefice = new RandomBeneficeDefinition(characterPlayer, preferences);
 		randomBenefice.assignAvailableBenefices();
-
 	}
 
 	private void spendExperiencePoints() {

@@ -27,7 +27,7 @@ package com.softwaremagico.tm.pdf.small.traits;
 import com.itextpdf.text.Paragraph;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.character.traits.AvailableBenefice;
+import com.softwaremagico.tm.character.benefices.AvailableBenefice;
 import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.complete.elements.VerticalTable;
 

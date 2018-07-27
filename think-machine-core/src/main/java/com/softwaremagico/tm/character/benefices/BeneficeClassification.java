@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.character.traits;
+package com.softwaremagico.tm.character.benefices;
 
 /*-
  * #%L
@@ -24,21 +24,6 @@ package com.softwaremagico.tm.character.traits;
  * #L%
  */
 
-import com.softwaremagico.tm.Element;
-
-public class RankSpecialization extends Element<RankSpecialization> {
-	private Integer cost = null;
-
-	public RankSpecialization(String id, String name) {
-		super(id, name);
-	}
-
-	public Integer getCost() {
-		return cost;
-	}
-
-	public void setCost(Integer cost) {
-		this.cost = cost;
-	}
-
+public enum BeneficeClassification {
+	BENEFICE, AFFLICTION;
 }

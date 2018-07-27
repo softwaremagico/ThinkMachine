@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.factory;
+package com.softwaremagico.tm.character.benefices;
 
 /*-
  * #%L
@@ -24,18 +24,17 @@ package com.softwaremagico.tm.factory;
  * #L%
  */
 
-import junit.framework.Assert;
+public enum BeneficeGroup {
+	BACKGROUND, COMMUNITY, TECHNOLOGY, RELICS, POSSESSIONS, RICHES, STATUS, FIGHTING;
 
-import org.testng.annotations.Test;
-
-import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.character.blessings.BlessingFactory;
-
-@Test(groups = { "blessingFactory" })
-public class BlessingFactoryTests {
-
-	@Test
-	public void readBlessings() throws InvalidXmlElementException {
-		Assert.assertEquals(3, BlessingFactory.getInstance().getElements("es").size());
+	public static BeneficeGroup getBenefitGroup(String tag) {
+		if (tag != null) {
+			for (BeneficeGroup benefitGroup : BeneficeGroup.values()) {
+				if (benefitGroup.name().toLowerCase().equals(tag.toLowerCase())) {
+					return benefitGroup;
+				}
+			}
+		}
+		return null;
 	}
 }

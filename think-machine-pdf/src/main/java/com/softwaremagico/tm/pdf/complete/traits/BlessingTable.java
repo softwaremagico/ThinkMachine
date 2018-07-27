@@ -25,7 +25,7 @@ package com.softwaremagico.tm.pdf.complete.traits;
  */
 
 import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.character.traits.Blessing;
+import com.softwaremagico.tm.character.blessings.Blessing;
 import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.complete.elements.VerticalTable;
 
