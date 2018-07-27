@@ -68,4 +68,6 @@ Fonts used in this project: DejaVuSans, ArchitectsDaughter and Roman Antique.
 
 *0.4.0 Random character generator.*
 
-*0.5.0 Graphical User Interface.*
+*0.5.0 Lifepath system.*
+
+*0.6.0 Graphical User Interface.*
