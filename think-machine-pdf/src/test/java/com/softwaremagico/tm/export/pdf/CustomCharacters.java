@@ -122,7 +122,7 @@ public class CustomCharacters {
 		horribleMark.setSkill(SkillsDefinitionsFactory.getInstance().getElement("influence", LANGUAGE));
 		player.addBlessing(horribleMark);
 
-		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("language [turing]", player.getLanguage()));
+		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("language [turingLanguage]", player.getLanguage()));
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("commission [apprentice]", player.getLanguage()));
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("cash [firebirds1000]", player.getLanguage()));
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("gossipNetwork_3", player.getLanguage()));
@@ -202,7 +202,7 @@ public class CustomCharacters {
 		player.addBlessing(horribleMark);
 
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("nobility [knight]", player.getLanguage()));
-		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("language [latin]", player.getLanguage()));
+		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("language [latinLanguage]", player.getLanguage()));
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("imperialCharter", player.getLanguage()));
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("fluxSword", player.getLanguage()));
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("vendetta_2", player.getLanguage()));

@@ -31,7 +31,6 @@ import java.util.Map;
 import java.util.Set;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.random.selectors.SpecializationPreferences;
 
 public class AvailableBeneficeFactory {
 	private Map<String, Map<String, AvailableBenefice>> availableBenefices;
