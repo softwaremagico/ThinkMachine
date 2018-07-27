@@ -31,6 +31,7 @@ import java.util.Map;
 import java.util.Set;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
+import com.softwaremagico.tm.random.selectors.SpecializationPreferences;
 
 public class AvailableBeneficeFactory {
 	private Map<String, Map<String, AvailableBenefice>> availableBenefices;
@@ -70,23 +71,25 @@ public class AvailableBeneficeFactory {
 				if (benefitDefinition.getSpecializations().isEmpty()) {
 					for (Integer cost : benefitDefinition.getCosts()) {
 						String id = benefitDefinition.getId() + (benefitDefinition.getCosts().size() == 1 ? "" : "_" + cost);
-						AvailableBenefice availableBenefice = new AvailableBenefice(id, benefitDefinition.getName(), benefitDefinition, cost);
+						AvailableBenefice availableBenefice = new AvailableBenefice(id, benefitDefinition.getName(), benefitDefinition,
+								benefitDefinition.getBeneficeClassification(), cost);
 						addAvailableBenefice(language, id, benefitDefinition, availableBenefice);
 					}
 				} else {
-					for (RankSpecialization specialization : benefitDefinition.getSpecializations()) {
+					for (BeneficeSpecialization specialization : benefitDefinition.getSpecializations()) {
 						// Cost in specialization
 						if (specialization.getCost() != null) {
 							String id = benefitDefinition.getId() + " [" + specialization.getId() + "]";
 							AvailableBenefice availableBenefice = new AvailableBenefice(id, benefitDefinition.getName(), benefitDefinition,
-									specialization.getCost());
+									specialization.getClassification(), specialization.getCost());
 							availableBenefice.setSpecialization(specialization);
 							addAvailableBenefice(language, id, benefitDefinition, availableBenefice);
 						} else {
 							for (Integer cost : benefitDefinition.getCosts()) {
 								String id = benefitDefinition.getId() + (benefitDefinition.getCosts().size() == 1 ? "" : "_" + cost) + " ["
 										+ specialization.getId() + "]";
-								AvailableBenefice availableBenefice = new AvailableBenefice(id, benefitDefinition.getName(), benefitDefinition, cost);
+								AvailableBenefice availableBenefice = new AvailableBenefice(id, benefitDefinition.getName(), benefitDefinition,
+										specialization.getClassification(), cost);
 								availableBenefice.setSpecialization(specialization);
 								addAvailableBenefice(language, id, benefitDefinition, availableBenefice);
 							}
@@ -119,7 +122,7 @@ public class AvailableBeneficeFactory {
 		}
 		AvailableBenefice avilableBenefice = availableBenefices.get(language).get(beneficeId);
 		if (avilableBenefice == null) {
-			throw new InvalidBlessingException("The benefice '" + beneficeId + "' does not exists.");
+			throw new InvalidBeneficeException("The benefice '" + beneficeId + "' does not exists.");
 		}
 		return avilableBenefice;
 	}

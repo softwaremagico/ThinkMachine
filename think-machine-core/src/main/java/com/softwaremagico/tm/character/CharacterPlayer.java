@@ -42,7 +42,7 @@ import com.softwaremagico.tm.character.benefices.AvailableBenefice;
 import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
 import com.softwaremagico.tm.character.benefices.BeneficeClassification;
 import com.softwaremagico.tm.character.benefices.BeneficeGroup;
-import com.softwaremagico.tm.character.benefices.RankSpecialization;
+import com.softwaremagico.tm.character.benefices.BeneficeSpecialization;
 import com.softwaremagico.tm.character.blessings.Blessing;
 import com.softwaremagico.tm.character.characteristics.Characteristic;
 import com.softwaremagico.tm.character.characteristics.CharacteristicDefinition;
@@ -352,7 +352,7 @@ public class CharacterPlayer {
 	public List<AvailableBenefice> getBenefices() throws InvalidXmlElementException {
 		List<AvailableBenefice> positiveBenefices = new ArrayList<>();
 		for (AvailableBenefice benefice : benefices) {
-			if (benefice.getBenefitDefinition().getClassification() == BeneficeClassification.BENEFICE) {
+			if (benefice.getBeneficeClassification() == BeneficeClassification.BENEFICE) {
 				positiveBenefices.add(benefice);
 			}
 		}
@@ -368,7 +368,7 @@ public class CharacterPlayer {
 	public List<AvailableBenefice> getAfflictions() {
 		List<AvailableBenefice> afflictions = new ArrayList<>();
 		for (AvailableBenefice benefice : benefices) {
-			if (benefice.getBenefitDefinition().getClassification() == BeneficeClassification.AFFLICTION) {
+			if (benefice.getBeneficeClassification() == BeneficeClassification.AFFLICTION) {
 				afflictions.add(benefice);
 			}
 		}
@@ -609,7 +609,7 @@ public class CharacterPlayer {
 			if (benefice.getBenefitDefinition().getGroup() == BeneficeGroup.STATUS) {
 				// Must have an specialization.
 				if (benefice.getSpecialization() != null) {
-					RankSpecialization rankSpecialization = benefice.getSpecialization();
+					BeneficeSpecialization rankSpecialization = benefice.getSpecialization();
 					// Some factions have different names.
 					if (getFaction() != null && getFaction().getRankTranslation(rankSpecialization.getId()) != null) {
 						return getFaction().getRankTranslation(rankSpecialization.getId()).getName();

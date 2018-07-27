@@ -383,72 +383,72 @@
 	
 	<cash>
 		<specializations>
-			<0firebirds>
+			<firebirds0>
 				<name>
 					<en>0 firebirds</en>
 					<es>0 fénix</es>
 				</name>
 				<cost>4</cost>
-				<affliction>true</affliction>
-			</0firebirds>
-			<50firebirds>
+				<specializationIsAffliction>true</specializationIsAffliction>
+			</firebirds0>
+			<firebirds50>
 				<name>
 					<en>50 firebirds</en>
 					<es>50 fénix</es>
 				</name>
 				<cost>2</cost>
-				<affliction>true</affliction>
-			</50firebirds>
-			<250firebirds>
+				<specializationIsAffliction>true</specializationIsAffliction>
+			</firebirds50>
+			<firebirds250>
 				<name>
 					<en>250 firebirds</en>
 					<es>250 fénix</es>
 				</name>
 				<cost></cost>
-			</250firebirds>
-			<1000firebirds>
+			</firebirds250>
+			<firebirds1000>
 				<name>
 					<en>1000 firebirds</en>
 					<es>1000 fénix</es>
 				</name>
 				<cost>4</cost>
-			</1000firebirds>
-			<2000firebirds>
+			</firebirds1000>
+			<firebirds2000>
 				<name>
 					<en>2000 firebirds</en>
 					<es>2000 fénix</es>
 				</name>
 				<cost>8</cost>
-			</2000firebirds>
-			<3000firebirds>
+			</firebirds2000>
+			<firebirds3000>
 				<name>
 					<en>3000 firebirds</en>
 					<es>3000 fénix</es>
 				</name>
 				<cost>12</cost>
-			</3000firebirds>
-			<4000firebirds>
+			</firebirds3000>
+			<firebirds4000>
 				<name>
 					<en>4000 firebirds</en>
 					<es>4000 fénix</es>
 				</name>
 				<cost>16</cost>
-			</4000firebirds>
-			<5000firebirds>
+			</firebirds4000>
+			<firebirds5000>
 				<name>
 					<en>5000 firebirds</en>
 					<es>5000 fénix</es>
 				</name>
 				<cost>20</cost>
-			</5000firebirds>
-			<6000firebirds>
+			</firebirds5000>
+			<firebirds6000>
 				<name>
 					<en>6000 firebirds</en>
 					<es>6000 fénix</es>
 				</name>
 				<cost>24</cost>
-			</6000firebirds>
-		</specialization>
+			</firebirds6000>
+		</specializations>
 		<group>riches</group>	
 	</cash>
 	<assets>

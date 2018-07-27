@@ -37,7 +37,7 @@ import com.softwaremagico.tm.character.benefices.BeneficeDefinitionFactory;
 
 @Test(groups = { "beneficeFactory" })
 public class BeneficeFactoryTests {
-	private final static int DEFINED_BENEFICES = 69;
+	private final static int DEFINED_BENEFICES = 61;
 	private final static int AVAILABLE_BENEFICES = 186;
 
 	@Test

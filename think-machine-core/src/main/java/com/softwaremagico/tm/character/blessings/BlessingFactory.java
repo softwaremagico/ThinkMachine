@@ -26,7 +26,6 @@ package com.softwaremagico.tm.character.blessings;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
-import com.softwaremagico.tm.character.benefices.InvalidBlessingException;
 import com.softwaremagico.tm.character.characteristics.CharacteristicDefinition;
 import com.softwaremagico.tm.character.characteristics.CharacteristicsDefinitionFactory;
 import com.softwaremagico.tm.character.skills.SkillDefinition;

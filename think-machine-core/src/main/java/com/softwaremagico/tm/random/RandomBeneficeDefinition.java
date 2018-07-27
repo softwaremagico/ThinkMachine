@@ -79,7 +79,7 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
 		AvailableBenefice selectedBeneficeWithLevel = assignLevelOfBenefice(selectedBenefice, maxPoints);
 		if (selectedBeneficeWithLevel != null) {
 			// Only a few afflictions.
-			if (selectedBeneficeWithLevel.getBenefitDefinition().getClassification() == BeneficeClassification.AFFLICTION) {
+			if (selectedBeneficeWithLevel.getBeneficeClassification() == BeneficeClassification.AFFLICTION) {
 				if (getCharacterPlayer().getAfflictions().size() < MAX_AFFLICTIONS) {
 					getCharacterPlayer().addBenefice(selectedBeneficeWithLevel);
 				}

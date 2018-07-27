@@ -124,7 +124,7 @@ public class CustomCharacters {
 
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("language [turing]", player.getLanguage()));
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("commission [apprentice]", player.getLanguage()));
-		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("cash_4", player.getLanguage()));
+		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("cash [firebirds1000]", player.getLanguage()));
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("gossipNetwork_3", player.getLanguage()));
 
 		Device ingeneerEye = new Device("Ojo de Ingeniero", 8, 6, "Normal", "Normal", "Automático", "Oculto", "Autoalimentado");
@@ -274,7 +274,7 @@ public class CustomCharacters {
 
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("commission [entered]", player.getLanguage()));
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("passageContracts_3", player.getLanguage()));
-		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("cash_4", player.getLanguage()));
+		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("cash [firebirds1000]", player.getLanguage()));
 
 		CombatStyle fightStyle = new CombatStyle("ironHeel");
 		fightStyle.addElement(new CombatAction("Cadena de Destrucción", null, "3d", "Presa Especial"));

@@ -33,7 +33,7 @@ import com.softwaremagico.tm.character.factions.FactionGroup;
 
 public class BeneficeDefinition extends Element<BeneficeDefinition> {
 	private final List<Integer> costs;
-	private final Set<RankSpecialization> specializations = new HashSet<>();
+	private final Set<BeneficeSpecialization> specializations = new HashSet<>();
 	private final BeneficeGroup group;
 	private final BeneficeClassification classification;
 	private final FactionGroup restricted;
@@ -54,7 +54,7 @@ public class BeneficeDefinition extends Element<BeneficeDefinition> {
 		return costs;
 	}
 
-	public Set<RankSpecialization> getSpecializations() {
+	public Set<BeneficeSpecialization> getSpecializations() {
 		return specializations;
 	}
 
@@ -62,11 +62,11 @@ public class BeneficeDefinition extends Element<BeneficeDefinition> {
 		return group;
 	}
 
-	public void addSpecializations(Set<RankSpecialization> specializations) {
+	public void addSpecializations(Set<BeneficeSpecialization> specializations) {
 		this.specializations.addAll(specializations);
 	}
 
-	public BeneficeClassification getClassification() {
+	protected BeneficeClassification getBeneficeClassification() {
 		return classification;
 	}
 

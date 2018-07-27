@@ -45,6 +45,7 @@ public class BeneficeDefinitionFactory extends XmlFactory<BeneficeDefinition> {
 	private final static String COST = "cost";
 	private final static String GROUP = "group";
 	private final static String AFFLICTION = "affliction";
+	private final static String SPECIALIZATION_AFFLICTION = "specializationIsAffliction";
 	private final static String SPECIALIZABLE_BENEFICE_TAG = "specializations";
 	private final static String RESTRICTED_TAG = "restricted";
 
@@ -100,19 +101,30 @@ public class BeneficeDefinitionFactory extends XmlFactory<BeneficeDefinition> {
 				}
 			}
 
-			Set<RankSpecialization> specializations = new HashSet<>();
+			Set<BeneficeSpecialization> specializations = new HashSet<>();
 			for (String specializationId : translator.getAllChildrenTags(benefitId, SPECIALIZABLE_BENEFICE_TAG)) {
 				String specizalizationName = translator.getNodeValue(specializationId, NAME, language);
-				RankSpecialization specialization = new RankSpecialization(specializationId, specizalizationName);
+				BeneficeSpecialization specialization = new BeneficeSpecialization(specializationId, specizalizationName);
 				specializations.add(specialization);
+				// Set specific cost.
 				String specizalizationCost = translator.getNodeValue(specializationId, COST);
 				if (specizalizationCost != null) {
 					try {
 						specialization.setCost(Integer.parseInt(specizalizationCost));
 					} catch (NumberFormatException e) {
-						throw new InvalidBlessingException("Invalid cost in benefit '" + benefitId + "' and specialization '" + specializationId + "'.", e);
+						throw new InvalidBeneficeException("Invalid cost in benefit '" + benefitId + "' and specialization '" + specializationId + "'.", e);
 					}
 				}
+				// Set specific classification.
+				String specizalizationClassification = translator.getNodeValue(specializationId, SPECIALIZATION_AFFLICTION);
+				BeneficeClassification specializationClassification;
+				if (specizalizationClassification != null) {
+					specializationClassification = BeneficeClassification.get(specizalizationClassification);
+				} else {
+					// Copy classfication from main benefice
+					specializationClassification = classification;
+				}
+				specialization.setClassification(specializationClassification);
 			}
 
 			List<Integer> costs = new ArrayList<>();
@@ -142,7 +154,7 @@ public class BeneficeDefinitionFactory extends XmlFactory<BeneficeDefinition> {
 			return benefit;
 
 		} catch (Exception e) {
-			throw new InvalidBlessingException("Invalid structure in benefit '" + benefitId + "'.", e);
+			throw new InvalidBeneficeException("Invalid structure in benefit '" + benefitId + "'.", e);
 		}
 	}
 

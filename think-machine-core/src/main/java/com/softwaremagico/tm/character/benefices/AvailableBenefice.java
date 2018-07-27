@@ -27,13 +27,15 @@ package com.softwaremagico.tm.character.benefices;
 import com.softwaremagico.tm.Element;
 
 public class AvailableBenefice extends Element<AvailableBenefice> {
-	private RankSpecialization specialization = null;
+	private BeneficeSpecialization specialization = null;
 	private final BeneficeDefinition benefitDefinition;
 	private final int cost;
+	private final BeneficeClassification beneficeClassification;
 
-	public AvailableBenefice(String id, String name, BeneficeDefinition benefitDefinition, int cost) {
+	public AvailableBenefice(String id, String name, BeneficeDefinition benefitDefinition, BeneficeClassification beneficeClassification, int cost) {
 		super(id, name);
 		this.benefitDefinition = benefitDefinition;
+		this.beneficeClassification = beneficeClassification;
 		this.cost = cost;
 	}
 
@@ -42,7 +44,7 @@ public class AvailableBenefice extends Element<AvailableBenefice> {
 	}
 
 	public int getCost() {
-		if (getBenefitDefinition().getClassification().equals(BeneficeClassification.AFFLICTION)) {
+		if (getBeneficeClassification().equals(BeneficeClassification.AFFLICTION)) {
 			return -cost;
 		}
 		return cost;
@@ -50,16 +52,20 @@ public class AvailableBenefice extends Element<AvailableBenefice> {
 
 	@Override
 	public String toString() {
-		return getName() + " (" + (benefitDefinition != null && benefitDefinition.getClassification() == BeneficeClassification.AFFLICTION ? "+" : "") + cost
+		return getName() + " (" + (benefitDefinition != null && benefitDefinition.getBeneficeClassification() == BeneficeClassification.AFFLICTION ? "+" : "") + cost
 				+ ")";
 	}
 
-	public RankSpecialization getSpecialization() {
+	public BeneficeSpecialization getSpecialization() {
 		return specialization;
 	}
 
-	public void setSpecialization(RankSpecialization specialization) {
+	public void setSpecialization(BeneficeSpecialization specialization) {
 		this.specialization = specialization;
+	}
+
+	public BeneficeClassification getBeneficeClassification() {
+		return beneficeClassification;
 	}
 
 }

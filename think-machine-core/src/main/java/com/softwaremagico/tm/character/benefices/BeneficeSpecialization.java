@@ -26,10 +26,11 @@ package com.softwaremagico.tm.character.benefices;
 
 import com.softwaremagico.tm.Element;
 
-public class RankSpecialization extends Element<RankSpecialization> {
+public class BeneficeSpecialization extends Element<BeneficeSpecialization> {
 	private Integer cost = null;
+	private BeneficeClassification classification = BeneficeClassification.BENEFICE;
 
-	public RankSpecialization(String id, String name) {
+	public BeneficeSpecialization(String id, String name) {
 		super(id, name);
 	}
 
@@ -39,6 +40,16 @@ public class RankSpecialization extends Element<RankSpecialization> {
 
 	public void setCost(Integer cost) {
 		this.cost = cost;
+	}
+
+	public BeneficeClassification getClassification() {
+		return classification;
+	}
+
+	public void setClassification(BeneficeClassification classification) {
+		if (classification != null) {
+			this.classification = classification;
+		}
 	}
 
 }

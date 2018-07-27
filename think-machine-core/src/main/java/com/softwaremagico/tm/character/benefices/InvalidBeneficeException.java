@@ -26,14 +26,14 @@ package com.softwaremagico.tm.character.benefices;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 
-public class InvalidBlessingException extends InvalidXmlElementException {
+public class InvalidBeneficeException extends InvalidXmlElementException {
 	private static final long serialVersionUID = 3558660253411869827L;
 
-	public InvalidBlessingException(String message) {
+	public InvalidBeneficeException(String message) {
 		super(message);
 	}
 
-	public InvalidBlessingException(String message, Exception e) {
+	public InvalidBeneficeException(String message, Exception e) {
 		super(message, e);
 	}
 }
