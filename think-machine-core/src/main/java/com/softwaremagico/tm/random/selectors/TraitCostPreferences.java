@@ -30,9 +30,9 @@ import java.util.Set;
 public enum TraitCostPreferences implements IRandomPreferences, IGaussianDistribution {
 
 	// Gaussian distribution.
-	LOW(1, 4, 1, 1),
+	LOW(1, 4, 2, 1),
 
-	GOOD(1, 6, 1, 3),
+	GOOD(1, 6, 2, 3),
 
 	HIGH(1, 24, 4, 12);
 

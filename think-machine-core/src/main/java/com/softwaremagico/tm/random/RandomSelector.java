@@ -114,4 +114,8 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
 		removeElementWeight(element);
 		weightedElements.put(newWeight, element);
 	}
+
+	public TreeMap<Integer, Element> getWeightedElements() {
+		return weightedElements;
+	}
 }

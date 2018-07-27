@@ -25,8 +25,10 @@ package com.softwaremagico.tm.character.traits;
  */
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.StringTokenizer;
 
@@ -48,6 +50,8 @@ public class BeneficeDefinitionFactory extends XmlFactory<BeneficeDefinition> {
 
 	private static BeneficeDefinitionFactory instance;
 
+	private Map<BeneficeGroup, Set<BeneficeDefinition>> beneficesByGroup = new HashMap<>();
+
 	private static void createInstance() {
 		if (instance == null) {
 			synchronized (BeneficeDefinitionFactory.class) {
@@ -56,6 +60,12 @@ public class BeneficeDefinitionFactory extends XmlFactory<BeneficeDefinition> {
 				}
 			}
 		}
+	}
+
+	@Override
+	public void clearCache() {
+		super.clearCache();
+		beneficesByGroup = new HashMap<>();
 	}
 
 	public static BeneficeDefinitionFactory getInstance() {
@@ -134,5 +144,24 @@ public class BeneficeDefinitionFactory extends XmlFactory<BeneficeDefinition> {
 		} catch (Exception e) {
 			throw new InvalidBlessingException("Invalid structure in benefit '" + benefitId + "'.", e);
 		}
+	}
+
+	public Map<BeneficeGroup, Set<BeneficeDefinition>> getBeneficesByGroup(String language) throws InvalidXmlElementException {
+		if (beneficesByGroup.isEmpty()) {
+			for (BeneficeDefinition benefice : getElements(language)) {
+				if (beneficesByGroup.get(benefice.getGroup()) == null) {
+					beneficesByGroup.put(benefice.getGroup(), new HashSet<BeneficeDefinition>());
+				}
+				beneficesByGroup.get(benefice.getGroup()).add(benefice);
+			}
+		}
+		return beneficesByGroup;
+	}
+
+	public Set<BeneficeDefinition> getBenefices(BeneficeGroup group, String language) throws InvalidXmlElementException {
+		if (group == null) {
+			return null;
+		}
+		return getBeneficesByGroup(language).get(group);
 	}
 }

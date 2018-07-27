@@ -484,7 +484,7 @@
 	<coven>
 		<name>
 			<en>Coven</en>
-			<es>Aquellare</es>
+			<es>Aquelarre</es>
 		</name>
 		<cost>2</cost>
 		<group>status</group>
@@ -612,7 +612,7 @@
 	<ordained>
 		<name>
 			<en>Ordained</en>
-			<es>Ordenador</es>
+			<es>Ordenado</es>
 		</name>
 		<specializations>
 			<novitiate>

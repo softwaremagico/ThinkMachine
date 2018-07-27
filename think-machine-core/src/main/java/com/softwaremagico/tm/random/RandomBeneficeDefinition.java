@@ -28,6 +28,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import java.util.TreeMap;
 
@@ -37,30 +38,56 @@ import com.softwaremagico.tm.character.CostCalculator;
 import com.softwaremagico.tm.character.FreeStyleCharacterCreation;
 import com.softwaremagico.tm.character.traits.AvailableBenefice;
 import com.softwaremagico.tm.character.traits.AvailableBeneficeFactory;
+import com.softwaremagico.tm.character.traits.BeneficeClassification;
 import com.softwaremagico.tm.character.traits.BeneficeDefinition;
 import com.softwaremagico.tm.character.traits.BeneficeDefinitionFactory;
+import com.softwaremagico.tm.character.traits.BeneficeGroup;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
+import com.softwaremagico.tm.random.selectors.IGaussianDistribution;
 import com.softwaremagico.tm.random.selectors.IRandomPreferences;
+import com.softwaremagico.tm.random.selectors.StatusPreferences;
 import com.softwaremagico.tm.random.selectors.TraitCostPreferences;
 
 public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition> {
+	private static final int MAX_AFFLICTIONS = 2;
 
 	protected RandomBeneficeDefinition(CharacterPlayer characterPlayer, Set<IRandomPreferences> preferences) throws InvalidXmlElementException {
 		super(characterPlayer, preferences);
 	}
 
 	public void assignAvailableBenefices() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
-		while (CostCalculator.getBeneficesCosts(getCharacterPlayer()) < FreeStyleCharacterCreation.TRAITS_POINTS) {
+		// First, try status.
+		for (BeneficeDefinition benefice : BeneficeDefinitionFactory.getInstance().getBenefices(BeneficeGroup.STATUS, getCharacterPlayer().getLanguage())) {
+			if (getWeight(benefice) > 0 && Objects.equals(benefice.getRestricted(), getCharacterPlayer().getFaction().getFactionGroup())) {
+				IGaussianDistribution selectedStatus = StatusPreferences.getSelected(getPreferences());
+				if (selectedStatus != null) {
+					assignBenefice(benefice, selectedStatus.maximum());
+				}
+			}
+		}
+
+		// Later, the others.
+		while (CostCalculator.getBeneficesCosts(getCharacterPlayer()) < FreeStyleCharacterCreation.TRAITS_POINTS && !getWeightedElements().isEmpty()) {
 			// Select a benefice
 			BeneficeDefinition selectedBenefice = selectElementByWeight();
-			// Select the range of the benefice.
-			AvailableBenefice selectedBeneficeWithLevel = assignLevelOfBenefice(selectedBenefice,
-					FreeStyleCharacterCreation.TRAITS_POINTS - CostCalculator.getBeneficesCosts(getCharacterPlayer()));
-			if (selectedBeneficeWithLevel != null) {
+			assignBenefice(selectedBenefice, FreeStyleCharacterCreation.TRAITS_POINTS - CostCalculator.getBeneficesCosts(getCharacterPlayer()));
+		}
+	}
+
+	private void assignBenefice(BeneficeDefinition selectedBenefice, int maxPoints) throws InvalidXmlElementException {
+		// Select the range of the benefice.
+		AvailableBenefice selectedBeneficeWithLevel = assignLevelOfBenefice(selectedBenefice, maxPoints);
+		if (selectedBeneficeWithLevel != null) {
+			// Only a few afflictions.
+			if (selectedBeneficeWithLevel.getBenefitDefinition().getClassification() == BeneficeClassification.AFFLICTION) {
+				if (getCharacterPlayer().getAfflictions().size() < MAX_AFFLICTIONS) {
+					getCharacterPlayer().addBenefice(selectedBeneficeWithLevel);
+				}
+			} else {
 				getCharacterPlayer().addBenefice(selectedBeneficeWithLevel);
 			}
-			removeElementWeight(selectedBenefice);
 		}
+		removeElementWeight(selectedBenefice);
 	}
 
 	@Override
@@ -74,7 +101,6 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
 				count += weight;
 			}
 		}
-		System.out.println(weightedBenefices);
 		return weightedBenefices;
 	}
 
@@ -86,6 +112,9 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
 		}
 
 		// Status must almost selected.
+		if (benefice.getGroup().equals(BeneficeGroup.STATUS)) {
+			return 10;
+		}
 
 		// No faction preference selected. All benefices has the same
 		// probability.
@@ -96,18 +125,25 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
 	 * Returns a cost for a benefice depending on the preferences of the
 	 * character.
 	 * 
-	 * @param beneficeDefinition
+	 * @param benefice
 	 * @param maxPoints
 	 * @return
 	 */
-	private AvailableBenefice assignLevelOfBenefice(BeneficeDefinition beneficeDefinition, int maxPoints) {
-		TraitCostPreferences selectedTraitCost = TraitCostPreferences.getSelected(getPreferences());
+	private AvailableBenefice assignLevelOfBenefice(BeneficeDefinition benefice, int maxPoints) {
+		IGaussianDistribution selectedTraitCost = TraitCostPreferences.getSelected(getPreferences());
+		if (benefice.getGroup().equals(BeneficeGroup.STATUS)) {
+			// Status has also an special preference.
+			IGaussianDistribution selectedStatus = StatusPreferences.getSelected(getPreferences());
+			if (selectedStatus != null) {
+				selectedTraitCost = selectedStatus;
+			}
+		}
 		int maxRangeSelected = selectedTraitCost.randomGaussian();
 		if (maxRangeSelected > maxPoints) {
 			maxRangeSelected = maxPoints;
 		}
 		Set<AvailableBenefice> beneficeLevels = AvailableBeneficeFactory.getInstance().getAvailableBeneficesByDefinition(getCharacterPlayer().getLanguage(),
-				beneficeDefinition);
+				benefice);
 		List<AvailableBenefice> sortedBenefices = new ArrayList<>(beneficeLevels);
 		Collections.sort(sortedBenefices, new Comparator<AvailableBenefice>() {
 
@@ -118,7 +154,7 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
 			}
 		});
 		for (AvailableBenefice availableBenefice : sortedBenefices) {
-			if (availableBenefice.getCost() < maxRangeSelected) {
+			if (Math.abs(availableBenefice.getCost()) <= maxRangeSelected) {
 				return availableBenefice;
 			}
 		}

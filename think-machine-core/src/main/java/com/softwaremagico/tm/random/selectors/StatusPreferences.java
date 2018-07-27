@@ -24,24 +24,48 @@ package com.softwaremagico.tm.random.selectors;
  * #L%
  */
 
+import java.util.Random;
 import java.util.Set;
 
-public enum StatusPreferences implements IRandomPreferences {
+public enum StatusPreferences implements IRandomPreferences, IGaussianDistribution {
 
-	LOW,
+	LOW(0, 0, 0, 0),
 
-	GOOD,
+	GOOD(4, 8, 4, 2),
 
-	HIGHT;
+	HIGHT(12, 24, 16, 8);
+
+	private final int minimum;
+	private final int maximum;
+	private final int mean;
+	private final int variance;
+	private final Random random = new Random();
+
+	private StatusPreferences(int minimumValue, int maximumValue, int mean, int variance) {
+		this.maximum = maximumValue;
+		this.minimum = minimumValue;
+		this.variance = variance;
+		this.mean = mean;
+	}
 
 	@Override
 	public int maximum() {
-		return 0;
+		return maximum;
 	}
 
 	@Override
 	public int minimum() {
-		return 0;
+		return minimum;
+	}
+
+	@Override
+	public int variance() {
+		return variance;
+	}
+
+	@Override
+	public int mean() {
+		return mean;
 	}
 
 	public static StatusPreferences getSelected(Set<IRandomPreferences> preferences) {
@@ -51,5 +75,14 @@ public enum StatusPreferences implements IRandomPreferences {
 			}
 		}
 		return null;
+	}
+
+	@Override
+	public int randomGaussian() {
+		int selectedValue;
+		do {
+			selectedValue = (int) (random.nextGaussian() * Math.sqrt(variance) + mean);
+		} while (selectedValue < minimum() || selectedValue > maximum());
+		return selectedValue;
 	}
 }
