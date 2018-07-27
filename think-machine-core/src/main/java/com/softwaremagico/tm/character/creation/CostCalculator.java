@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.character;
+package com.softwaremagico.tm.character.creation;
 
 /*-
  * #%L
@@ -25,6 +25,7 @@ package com.softwaremagico.tm.character;
  */
 
 import com.softwaremagico.tm.InvalidXmlElementException;
+import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.cybernetics.Device;
 import com.softwaremagico.tm.character.occultism.OccultismPower;
 import com.softwaremagico.tm.character.traits.AvailableBenefice;

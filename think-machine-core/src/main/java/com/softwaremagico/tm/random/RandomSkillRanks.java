@@ -28,7 +28,7 @@ import java.util.Set;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.character.FreeStyleCharacterCreation;
+import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.character.skills.SkillDefinition;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;

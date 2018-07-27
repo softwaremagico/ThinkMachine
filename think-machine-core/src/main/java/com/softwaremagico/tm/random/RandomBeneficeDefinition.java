@@ -34,8 +34,8 @@ import java.util.TreeMap;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.character.CostCalculator;
-import com.softwaremagico.tm.character.FreeStyleCharacterCreation;
+import com.softwaremagico.tm.character.creation.CostCalculator;
+import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
 import com.softwaremagico.tm.character.traits.AvailableBenefice;
 import com.softwaremagico.tm.character.traits.AvailableBeneficeFactory;
 import com.softwaremagico.tm.character.traits.BeneficeClassification;

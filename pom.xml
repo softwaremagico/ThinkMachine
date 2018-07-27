@@ -39,6 +39,7 @@
 		<license-maven-plugin.version>1.12</license-maven-plugin.version>
 		<maven-release-plugin.version>2.5.1</maven-release-plugin.version>
 		<maven-scm-provider-gitexe.version>1.9.2</maven-scm-provider-gitexe.version>
+		<reflections.version>0.9.11</reflections.version>
 	</properties>
 	
 	<build>

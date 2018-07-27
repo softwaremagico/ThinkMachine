@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.character;
+package com.softwaremagico.tm.character.creation;
 
 /*-
  * #%L
