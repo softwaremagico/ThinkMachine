@@ -29,6 +29,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import com.softwaremagico.tm.Element;
+import com.softwaremagico.tm.character.blessings.Blessing;
 import com.softwaremagico.tm.character.race.Race;
 
 public class Faction extends Element<Faction> {
@@ -36,11 +37,13 @@ public class Faction extends Element<Faction> {
 	private final Set<FactionRankTranslation> ranksTranslations = new HashSet<>();
 
 	private final Race restrictedRace;
+	private final Set<Blessing> blessings;
 
-	public Faction(String id, String name, FactionGroup factionGroup, Race restrictedRace) {
+	public Faction(String id, String name, FactionGroup factionGroup, Race restrictedRace, Set<Blessing> mandatoryBlessings) {
 		super(id, name);
 		this.factionGroup = factionGroup;
 		this.restrictedRace = restrictedRace;
+		this.blessings = mandatoryBlessings;
 	}
 
 	public FactionGroup getFactionGroup() {
@@ -66,5 +69,12 @@ public class Faction extends Element<Faction> {
 
 	public Race getRestrictedRace() {
 		return restrictedRace;
+	}
+
+	public Set<Blessing> getBlessings() {
+		if (blessings == null) {
+			return new HashSet<Blessing>();
+		}
+		return blessings;
 	}
 }

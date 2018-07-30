@@ -24,8 +24,14 @@ package com.softwaremagico.tm.character.factions;
  * #L%
  */
 
+import java.util.HashSet;
+import java.util.Set;
+import java.util.StringTokenizer;
+
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
+import com.softwaremagico.tm.character.blessings.Blessing;
+import com.softwaremagico.tm.character.blessings.BlessingFactory;
 import com.softwaremagico.tm.character.race.Race;
 import com.softwaremagico.tm.character.race.RaceFactory;
 import com.softwaremagico.tm.language.ITranslator;
@@ -40,6 +46,7 @@ public class FactionsFactory extends XmlFactory<Faction> {
 	private final static String RANKS_TAG = "ranks";
 	private final static String RANKS_TRANSLATION_TAG = "translation";
 	private final static String RACE = "race";
+	private final static String BLESSINGS = "blessings";
 
 	private static FactionsFactory instance;
 
@@ -85,7 +92,20 @@ public class FactionsFactory extends XmlFactory<Faction> {
 				raceRestriction = RaceFactory.getInstance().getElement(raceRestrictionName, language);
 			}
 
-			Faction faction = new Faction(factionId, name, factionGroup, raceRestriction);
+			String mandatoryBlessingsList = translator.getNodeValue(factionId, BLESSINGS);
+			Set<Blessing> mandatoryBlessings = new HashSet<>();
+			if (mandatoryBlessingsList != null) {
+				StringTokenizer mandatoyBlessingTokenizer = new StringTokenizer(mandatoryBlessingsList, ",");
+				while (mandatoyBlessingTokenizer.hasMoreTokens()) {
+					try {
+						mandatoryBlessings.add(BlessingFactory.getInstance().getElement(mandatoyBlessingTokenizer.nextToken().trim(), language));
+					} catch (InvalidXmlElementException ixe) {
+						new InvalidFactionException("Error in faction '" + factionId + "' structure. Invalid blessing defintion. ", ixe);
+					}
+				}
+			}
+
+			Faction faction = new Faction(factionId, name, factionGroup, raceRestriction, mandatoryBlessings);
 
 			for (String rankId : translator.getAllChildrenTags(factionId, RANKS_TAG)) {
 				String rankName = translator.getNodeValue(factionId, rankId, RANKS_TRANSLATION_TAG, language);

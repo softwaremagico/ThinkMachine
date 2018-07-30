@@ -38,6 +38,7 @@ import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
 import com.softwaremagico.tm.character.factions.FactionGroup;
 import com.softwaremagico.tm.character.factions.FactionsFactory;
+import com.softwaremagico.tm.character.factions.InvalidFactionException;
 import com.softwaremagico.tm.character.race.RaceFactory;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
@@ -181,7 +182,11 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 			if (factionSkill != null) {
 				StringTokenizer factionsOfSkill = new StringTokenizer(factionSkill, ",");
 				while (factionsOfSkill.hasMoreTokens()) {
-					skill.addFaction(FactionsFactory.getInstance().getElement(factionsOfSkill.nextToken().trim(), language));
+					try {
+						skill.addFaction(FactionsFactory.getInstance().getElement(factionsOfSkill.nextToken().trim(), language));
+					} catch (InvalidXmlElementException ixe) {
+						new InvalidSkillException("Error in skill '" + skillId + "' structure. Invalid faction defintion. ", ixe);
+					}
 				}
 			}
 
@@ -223,8 +228,12 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 		if (recommendedFactions != null) {
 			StringTokenizer recommendedFactionsOfSkill = new StringTokenizer(recommendedFactions, ",");
 			while (recommendedFactionsOfSkill.hasMoreTokens()) {
-				element.getRandomDefinition().addRecommendedFaction(
-						FactionsFactory.getInstance().getElement(recommendedFactionsOfSkill.nextToken().trim(), language));
+				try {
+					element.getRandomDefinition().addRecommendedFaction(
+							FactionsFactory.getInstance().getElement(recommendedFactionsOfSkill.nextToken().trim(), language));
+				} catch (InvalidXmlElementException ixe) {
+					new InvalidFactionException("Error in skill '" + element + "' structure. Invalid recommended faction. ", ixe);
+				}
 			}
 		}
 
@@ -232,7 +241,12 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 		if (recommendedRaces != null) {
 			StringTokenizer recommendedRacesOfSkill = new StringTokenizer(recommendedRaces, ",");
 			while (recommendedRacesOfSkill.hasMoreTokens()) {
-				element.getRandomDefinition().addRecommendedRace(RaceFactory.getInstance().getElement(recommendedRacesOfSkill.nextToken().trim(), language));
+				try {
+					element.getRandomDefinition()
+							.addRecommendedRace(RaceFactory.getInstance().getElement(recommendedRacesOfSkill.nextToken().trim(), language));
+				} catch (InvalidXmlElementException ixe) {
+					new InvalidFactionException("Error in skill '" + element + "' structure. Invalid recommended race. ", ixe);
+				}
 			}
 		}
 
