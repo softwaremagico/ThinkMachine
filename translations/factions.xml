@@ -6,6 +6,7 @@
 			<es>Hawkwood</es>
 		</name>
 		<group>nobility</group>
+		<race>human</race>
 	</hawkwood>
 	<decados>
 		<name>
@@ -13,6 +14,7 @@
 			<es>Los Decados</es>
 		</name>
 		<group>nobility</group>
+		<race>human</race>
 	</decados>
 	<hazat>
 		<name>
@@ -20,6 +22,7 @@
 			<es>Los Hazat</es>
 		</name>
 		<group>nobility</group>
+		<race>human</race>
 	</hazat>
 	<liHalan>
 		<name>
@@ -27,6 +30,7 @@
 			<es>Li Halan</es>
 		</name>
 		<group>nobility</group>
+		<race>human</race>
 	</liHalan>
 	<alMalik>
 		<name>
@@ -34,6 +38,7 @@
 			<es>Al-Malik</es>
 		</name>
 		<group>nobility</group>
+		<race>human</race>
 	</alMalik>
 	
 	<orthodox>
@@ -42,6 +47,7 @@
 			<es>Ortodoxos</es>
 		</name>
 		<group>church</group>
+		<race>human</race>
 	</orthodox>
 	<brotherBattle>
 		<name>
@@ -87,6 +93,7 @@
 				</translation>
 			</archbishop>
 		</ranks>
+		<race>human</race>
 	</brotherBattle>
 	<eskatonic>
 		<name>
@@ -132,6 +139,7 @@
 				</translation>
 			</archbishop>
 		</ranks>
+		<race>human</race>
 	</eskatonic>
 	<avestites>
 		<name>
@@ -139,6 +147,7 @@
 			<es>Avestitas</es>
 		</name>
 		<group>church</group>
+		<race>human</race>
 	</avestites>
 	<amaltheans>
 		<name>
@@ -146,6 +155,7 @@
 			<es>Amalteanos</es>
 		</name>
 		<group>church</group>
+		<race>human</race>
 	</amaltheans>
 	<mendicantMonks>
 		<name>
@@ -153,6 +163,7 @@
 			<es>Monjes Mendicantes</es>
 		</name>
 		<group>church</group>
+		<race>human</race>
 	</mendicantMonks>
 
 	<charioteers>
@@ -199,6 +210,7 @@
 				</translation>
 			</master>
 		</ranks>
+		<race>human</race>
 	</charioteers>
 	<engineers>
 		<name>
@@ -206,6 +218,7 @@
 			<es>Ingenieros</es>
 		</name>
 		<group>guild</group>
+		<race>human</race>
 	</engineers>
 	<scravers>
 		<name>
@@ -251,6 +264,7 @@
 				</translation>
 			</master>
 		</ranks>
+		<race>human</race>
 	</scravers>
 	<muster>
 		<name>
@@ -296,6 +310,7 @@
 				</translation>
 			</master>
 		</ranks>
+		<race>human</race>
 	</muster>
 	<reeves>
 		<name>
@@ -341,6 +356,7 @@
 				</translation>
 			</master>
 		</ranks>
+		<race>human</race>
 	</reeves>
 	
 	<obun>
@@ -349,6 +365,7 @@
 			<es>Ur-Obun</es>
 		</name>
 		<group>xeno</group>
+		<race>obun</race>
 	</obun>
 	<ukar>
 		<name>
@@ -356,6 +373,7 @@
 			<es>Ur-Ukar</es>
 		</name>
 		<group>xeno</group>
+		<race>ukar</race>
 	</ukar>
 	<vorox>
 		<name>
@@ -363,5 +381,6 @@
 			<es>Vorox</es>
 		</name>
 		<group>xeno</group>
+		<race>vorox</race>
 	</vorox>
 </factions>

@@ -29,14 +29,18 @@ import java.util.Objects;
 import java.util.Set;
 
 import com.softwaremagico.tm.Element;
+import com.softwaremagico.tm.character.race.Race;
 
 public class Faction extends Element<Faction> {
 	private final FactionGroup factionGroup;
 	private final Set<FactionRankTranslation> ranksTranslations = new HashSet<>();
 
-	public Faction(String id, String name, FactionGroup factionGroup) {
+	private final Race restrictedRace;
+
+	public Faction(String id, String name, FactionGroup factionGroup, Race restrictedRace) {
 		super(id, name);
 		this.factionGroup = factionGroup;
+		this.restrictedRace = restrictedRace;
 	}
 
 	public FactionGroup getFactionGroup() {
@@ -58,5 +62,9 @@ public class Faction extends Element<Faction> {
 			}
 		}
 		return null;
+	}
+
+	public Race getRestrictedRace() {
+		return restrictedRace;
 	}
 }

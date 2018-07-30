@@ -26,6 +26,8 @@ package com.softwaremagico.tm.character.factions;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
+import com.softwaremagico.tm.character.race.Race;
+import com.softwaremagico.tm.character.race.RaceFactory;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.log.MachineLog;
@@ -37,6 +39,7 @@ public class FactionsFactory extends XmlFactory<Faction> {
 	private final static String GROUP = "group";
 	private final static String RANKS_TAG = "ranks";
 	private final static String RANKS_TRANSLATION_TAG = "translation";
+	private final static String RACE = "race";
 
 	private static FactionsFactory instance;
 
@@ -76,7 +79,13 @@ public class FactionsFactory extends XmlFactory<Faction> {
 				factionGroup = FactionGroup.NONE;
 			}
 
-			Faction faction = new Faction(factionId, name, factionGroup);
+			String raceRestrictionName = translator.getNodeValue(factionId, RACE);
+			Race raceRestriction = null;
+			if (raceRestrictionName != null) {
+				raceRestriction = RaceFactory.getInstance().getElement(raceRestrictionName, language);
+			}
+
+			Faction faction = new Faction(factionId, name, factionGroup, raceRestriction);
 
 			for (String rankId : translator.getAllChildrenTags(factionId, RANKS_TAG)) {
 				String rankName = translator.getNodeValue(factionId, rankId, RANKS_TRANSLATION_TAG, language);
