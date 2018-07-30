@@ -185,7 +185,7 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 					try {
 						skill.addFaction(FactionsFactory.getInstance().getElement(factionsOfSkill.nextToken().trim(), language));
 					} catch (InvalidXmlElementException ixe) {
-						new InvalidSkillException("Error in skill '" + skillId + "' structure. Invalid faction defintion. ", ixe);
+						throw new InvalidSkillException("Error in skill '" + skillId + "' structure. Invalid faction defintion. ", ixe);
 					}
 				}
 			}
@@ -232,7 +232,7 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 					element.getRandomDefinition().addRecommendedFaction(
 							FactionsFactory.getInstance().getElement(recommendedFactionsOfSkill.nextToken().trim(), language));
 				} catch (InvalidXmlElementException ixe) {
-					new InvalidFactionException("Error in skill '" + element + "' structure. Invalid recommended faction. ", ixe);
+					throw new InvalidFactionException("Error in skill '" + element + "' structure. Invalid recommended faction. ", ixe);
 				}
 			}
 		}
@@ -245,7 +245,7 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 					element.getRandomDefinition()
 							.addRecommendedRace(RaceFactory.getInstance().getElement(recommendedRacesOfSkill.nextToken().trim(), language));
 				} catch (InvalidXmlElementException ixe) {
-					new InvalidFactionException("Error in skill '" + element + "' structure. Invalid recommended race. ", ixe);
+					throw new InvalidFactionException("Error in skill '" + element + "' structure. Invalid recommended race. ", ixe);
 				}
 			}
 		}

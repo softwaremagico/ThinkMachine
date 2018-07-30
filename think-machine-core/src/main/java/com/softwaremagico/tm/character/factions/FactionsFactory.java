@@ -89,7 +89,11 @@ public class FactionsFactory extends XmlFactory<Faction> {
 			String raceRestrictionName = translator.getNodeValue(factionId, RACE);
 			Race raceRestriction = null;
 			if (raceRestrictionName != null) {
-				raceRestriction = RaceFactory.getInstance().getElement(raceRestrictionName, language);
+				try {
+					raceRestriction = RaceFactory.getInstance().getElement(raceRestrictionName, language);
+				} catch (InvalidXmlElementException ixe) {
+					throw new InvalidFactionException("Error in faction '" + factionId + "' structure. Invalid race. ", ixe);
+				}
 			}
 
 			String mandatoryBlessingsList = translator.getNodeValue(factionId, BLESSINGS);
@@ -100,7 +104,7 @@ public class FactionsFactory extends XmlFactory<Faction> {
 					try {
 						mandatoryBlessings.add(BlessingFactory.getInstance().getElement(mandatoyBlessingTokenizer.nextToken().trim(), language));
 					} catch (InvalidXmlElementException ixe) {
-						new InvalidFactionException("Error in faction '" + factionId + "' structure. Invalid blessing defintion. ", ixe);
+						throw new InvalidFactionException("Error in faction '" + factionId + "' structure. Invalid blessing defintion. ", ixe);
 					}
 				}
 			}
