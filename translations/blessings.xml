@@ -87,7 +87,34 @@
 		<group>appearance</group>
 		<curse>true</curse>
 	</monstrous>
-	
+	<bold>
+		<name>
+			<en>Bold</en>
+			<es>Audaz</es>
+		</name>
+		<cost>2</cost>
+		<bonification>2</bonification>
+		<characteristic>will, faith</characteristic>
+		<situation>
+			<en>Acting when other hesicates</en>
+			<es>Actúa cuanto otro duda</es>
+		</situation>
+		<group>behaviour</group>
+	</bold>
+	<compassionate>
+		<name>
+			<en>Compassionate</en>
+			<es>Compasivo</es>
+		</name>
+		<cost>2</cost>
+		<bonification>2</bonification>
+		<characteristic>faith</characteristic>
+		<situation>
+			<en>Helping others</en>
+			<es>Ayudando a otros</es>
+		</situation>
+		<group>behaviour</group>
+	</compassionate>
 	<curious>
 		<name>
 			<en>Curious</en>
@@ -102,6 +129,34 @@
 		</situation>
 		<group>behaviour</group>
 	</curious>
+	<disciplined>
+		<name>
+			<en>Disciplined</en>
+			<es>Disciplinado</es>
+		</name>
+		<cost>2</cost>
+		<bonification>2</bonification>
+		<characteristic>will</characteristic>
+		<situation>
+			<en>Combat situations</en>
+			<es>Situación de combate</es>
+		</situation>
+		<group>behaviour</group>
+	</disciplined>
+	<gracious>
+		<name>
+			<en>Gracious</en>
+			<es>Cortés</es>
+		</name>
+		<cost>2</cost>
+		<bonification>2</bonification>
+		<characteristic>presence</characteristic>
+		<situation>
+			<en>To guests</en>
+			<es>Con huéspedes</es>
+		</situation>
+		<group>behaviour</group>
+	</gracious>
 	<just>
 		<name>
 			<en>Just</en>
@@ -116,6 +171,62 @@
 		</situation>
 		<group>behaviour</group>
 	</just>
+	<loyal>
+		<name>
+			<en>Loyal</en>
+			<es>Leal</es>
+		</name>
+		<cost>2</cost>
+		<bonification>2</bonification>
+		<characteristic>faith</characteristic>
+		<situation>
+			<en>Following liege</en>
+			<es>Ayude a un aliado</es>
+		</situation>
+		<group>behaviour</group>
+	</loyal>
+	<pious>
+		<name>
+			<en>Pious</en>
+			<es>Piadoso</es>
+		</name>
+		<cost>2</cost>
+		<bonification>2</bonification>
+		<characteristic>presence</characteristic>
+		<situation>
+			<en>Among the sinful</en>
+			<es>Entre los pecadores</es>
+		</situation>
+		<group>behaviour</group>
+	</pious>
+	<shrewd>
+		<name>
+			<en>Shrewd</en>
+			<es>Perspicaz</es>
+		</name>
+		<cost>2</cost>
+		<bonification>2</bonification>
+		<characteristic>wits</characteristic>
+		<situation>
+			<en>Attemts to fast-talk</en>
+			<es>Atentos de engatusar</es>
+		</situation>
+		<group>behaviour</group>
+	</shrewd>
+	<suspicious>
+		<name>
+			<en>Suspicious</en>
+			<es>Desconfiado</es>
+		</name>
+		<cost>2</cost>
+		<bonification>2</bonification>
+		<characteristic>perception</characteristic>
+		<situation>
+			<en>Rivals about</en>
+			<es>Se trata de rivales</es>
+		</situation>
+		<group>behaviour</group>
+	</suspicious>
 	<unyielding>
 		<name>
 			<en>Unyielding</en>
@@ -144,21 +255,81 @@
 		</situation>
 		<group>behaviour</group>
 	</theMan>
-	<prideful>
+	<argumentative>
 		<name>
-			<en>Prideful</en>
-			<es>Orgulloso</es>
+			<en>Argumentative</en>
+			<es>Argumentativo</es>
 		</name>
 		<cost>2</cost>
 		<bonification>-2</bonification>
-		<characteristic>will</characteristic>
+		<characteristic>presence</characteristic>
 		<situation>
-			<en>When insulted</en>
-			<es>Cuando es insultado</es>
+			<en>In a conversation</en>
+			<es>En conversaciones</es>
 		</situation>
 		<group>behaviour</group>
 		<curse>true</curse>
-	</prideful>
+	</argumentative>
+	<bluster>
+		<name>
+			<en>Bluster</en>
+			<es>Fanfarrón</es>
+		</name>
+		<cost>2</cost>
+		<bonification>-2</bonification>
+		<characteristic>presence</characteristic>
+		<situation>
+			<en>Recounting deeds</en>
+			<es>Relatar los hechos</es>
+		</situation>
+		<group>behaviour</group>
+		<curse>true</curse>
+	</bluster>
+	<brainwashed>
+		<name>
+			<en>Brainwashed</en>
+			<es>Manipulado</es>
+		</name>
+		<cost>2</cost>
+		<bonification>-2</bonification>
+		<characteristic>wits</characteristic>
+		<situation>
+			<en>Confronted its belief</en>
+			<es>Discrepa con sus creencias</es>
+		</situation>
+		<group>behaviour</group>
+		<curse>true</curse>
+	</brainwashed>
+	<callous>
+		<name>
+			<en>Callous</en>
+			<es>Insensible</es>
+		</name>
+		<cost>2</cost>
+		<bonification>-2</bonification>
+		<characteristic>presence</characteristic>
+		<situation>
+			<en>Asked for aid</en>
+			<es>Se le pide ayuda</es>
+		</situation>
+		<group>behaviour</group>
+		<curse>true</curse>
+	</callous>
+	<clueless>
+		<name>
+			<en>Clueless</en>
+			<es>Despistado</es>
+		</name>
+		<cost>2</cost>
+		<bonification>-2</bonification>
+		<characteristic>perception</characteristic>
+		<situation>
+			<en>Notice social cues</en>
+			<es>Con las normas sociales</es>
+		</situation>
+		<group>behaviour</group>
+		<curse>true</curse>
+	</clueless>
 	<condescending>
 		<name>
 			<en>Condescending</en>
@@ -174,36 +345,66 @@
 		<group>behaviour</group>
 		<curse>true</curse>
 	</condescending>
-	<righteous>
+	<delusional>
 		<name>
-			<en>Righteous</en>
-			<es>Condescendiente</es>
+			<en>Delusional</en>
+			<es>Iluso</es>
+		</name>
+		<cost>2</cost>
+		<bonification>-2</bonification>
+		<characteristic>perception</characteristic>
+		<situation>
+			<en>Disagrees with character belief</en>
+			<es>Discrepe con las creencias ilusas</es>
+		</situation>
+		<group>behaviour</group>
+		<curse>true</curse>
+	</delusional>
+	<disrespecful>
+		<name>
+			<en>Disrespecful</en>
+			<es>Irrespetuoso</es>
+		</name>
+		<cost>2</cost>
+		<bonification>-2</bonification>
+		<characteristic>presence</characteristic>
+		<situation>
+			<en>Around authority figures</en>
+			<es>Entre figuras de autoridad</es>
+		</situation>
+		<group>behaviour</group>
+		<curse>true</curse>
+	</disrespecful>
+	<greedy>
+		<name>
+			<en>Greedy</en>
+			<es>Avaro</es>
 		</name>
 		<cost>2</cost>
 		<bonification>-2</bonification>
 		<characteristic>will</characteristic>
 		<situation>
-			<en>Judgment questioned</en>
-			<es>Cuestiona su juicio</es>
+			<en>Money is involved</en>
+			<es>Dinero de por medio</es>
 		</situation>
 		<group>behaviour</group>
 		<curse>true</curse>
-	</righteous>
-	<possessive>
+	</greedy>
+	<guilty>
 		<name>
-			<en>Possessive</en>
-			<es>Posesivo</es>
+			<en>Guilty</en>
+			<es>Culpabilidad</es>
 		</name>
 		<cost>2</cost>
 		<bonification>-2</bonification>
-		<characteristic>will</characteristic>
+		<characteristic>rolls</characteristic>
 		<situation>
-			<en>Cut out of action</en>
-			<es>Se le excluyde de la acción</es>
+			<en>Opposing church officials</en>
+			<es>Opongan a oficiales de la iglesia</es>
 		</situation>
 		<group>behaviour</group>
 		<curse>true</curse>
-	</possessive>
+	</guilty>
 	<gullible>
 		<name>
 			<en>Gullible</en>
@@ -219,6 +420,246 @@
 		<group>behaviour</group>
 		<curse>true</curse>
 	</gullible>
+	<haughty>
+		<name>
+			<en>Haughty</en>
+			<es>Altivo</es>
+		</name>
+		<cost>2</cost>
+		<bonification>-2</bonification>
+		<characteristic>presence</characteristic>
+		<situation>
+			<en>Around serfs</en>
+			<es>Entre siervos</es>
+		</situation>
+		<group>behaviour</group>
+		<curse>true</curse>
+	</haughty>
+	<impetuous>
+		<name>
+			<en>Impetuous</en>
+			<es>Impetuoso</es>
+		</name>
+		<cost>2</cost>
+		<bonification>-2</bonification>
+		<characteristic>wits</characteristic>
+		<situation>
+			<en>When trading</en>
+			<es>Se negocia</es>
+		</situation>
+		<group>behaviour</group>
+		<curse>true</curse>
+	</impetuous>
+	<righteous>
+		<name>
+			<en>Righteous</en>
+			<es>Justificado</es>
+		</name>
+		<cost>2</cost>
+		<bonification>-2</bonification>
+		<characteristic>presence</characteristic>
+		<situation>
+			<en>Judgement questioned</en>
+			<es>Cuestiona su juicio</es>
+		</situation>
+		<group>behaviour</group>
+		<curse>true</curse>
+	</righteous>
+	<mammon>
+		<name>
+			<en>Mammon</en>
+			<es>Codicioso</es>
+		</name>
+		<cost>2</cost>
+		<bonification>-2</bonification>
+		<characteristic>faith</characteristic>
+		<situation>
+			<en>Money is involved</en>
+			<es>Dinero de por medio</es>
+		</situation>
+		<group>behaviour</group>
+		<curse>true</curse>
+	</mammon>
+	<nosy>
+		<name>
+			<en>Nosy</en>
+			<es>Entrometido</es>
+		</name>
+		<cost>2</cost>
+		<bonification>-2</bonification>
+		<characteristic>presence</characteristic>
+		<situation>
+			<en>Seeing something new</en>
+			<es>Se ve algo nuevo</es>
+		</situation>
+		<group>behaviour</group>
+		<curse>true</curse>
+	</nosy>
+	<phobic>
+		<name>
+			<en>Phobic</en>
+			<es>Fobia</es>
+		</name>
+		<cost>2</cost>
+		<bonification>-2</bonification>
+		<characteristic>will</characteristic>
+		<situation>
+			<en>Source of phobia</en>
+			<es>Fuente de la fobia</es>
+		</situation>
+		<group>behaviour</group>
+		<curse>true</curse>
+	</phobic>
+	<possessive>
+		<name>
+			<en>Possessive</en>
+			<es>Posesivo</es>
+		</name>
+		<cost>2</cost>
+		<bonification>-2</bonification>
+		<characteristic>will</characteristic>
+		<situation>
+			<en>Cut out of action</en>
+			<es>Se le excluyde de la acción</es>
+		</situation>
+		<group>behaviour</group>
+		<curse>true</curse>
+	</possessive>
+	<prideful>
+		<name>
+			<en>Prideful</en>
+			<es>Orgulloso</es>
+		</name>
+		<cost>2</cost>
+		<bonification>-2</bonification>
+		<characteristic>will</characteristic>
+		<situation>
+			<en>When insulted</en>
+			<es>Cuando es insultado</es>
+		</situation>
+		<group>behaviour</group>
+		<curse>true</curse>
+	</prideful>
+	<righteous>
+		<name>
+			<en>Righteous</en>
+			<es>Condescendiente</es>
+		</name>
+		<cost>2</cost>
+		<bonification>-2</bonification>
+		<characteristic>will</characteristic>
+		<situation>
+			<en>Judgment questioned</en>
+			<es>Cuestiona su juicio</es>
+		</situation>
+		<group>behaviour</group>
+		<curse>true</curse>
+	</righteous>
+	<secretive>
+		<name>
+			<en>Secretive</en>
+			<es>Reservado</es>
+		</name>
+		<cost>2</cost>
+		<bonification>-2</bonification>
+		<characteristic></characteristic>
+		<situation>
+			<en>Around strangers</en>
+			<es>Entre extraños</es>
+		</situation>
+		<group>behaviour</group>
+		<curse>true</curse>
+	</secretive>
+	<subtle>
+		<name>
+			<en>Subtle</en>
+			<es>Sutil</es>
+		</name>
+		<cost>2</cost>
+		<bonification>-2</bonification>
+		<characteristic>presence</characteristic>
+		<situation>
+			<en>Explaining something</en>
+			<es>Explica algo</es>
+		</situation>
+		<group>behaviour</group>
+		<curse>true</curse>
+	</subtle>
+	<surly>
+		<name>
+			<en>Surly</en>
+			<es>Gruñón</es>
+		</name>
+		<cost>2</cost>
+		<bonification>-2</bonification>
+		<characteristic>presence</characteristic>
+		<situation>
+			<en>When upset</en>
+			<es>Se le incomoda</es>
+		</situation>
+		<group>behaviour</group>
+		<curse>true</curse>
+	</surly>
+	<uncouth>
+		<name>
+			<en>Uncouth</en>
+			<es>Tosco</es>
+		</name>
+		<cost>2</cost>
+		<bonification>-2</bonification>
+		<characteristic>Presence</characteristic>
+		<situation>
+			<en>Society functions</en>
+			<es>Otras casas nobles</es>
+		</situation>
+		<group>behaviour</group>
+		<curse>true</curse>
+	</uncouth>
+	<unnerving>
+		<name>
+			<en>Unnerving</en>
+			<es>Enervado</es>
+		</name>
+		<cost>2</cost>
+		<bonification>-2</bonification>
+		<characteristic>presence</characteristic>
+		<situation>
+			<en>Around superstitious</en>
+			<es>Entre supersticiosos</es>
+		</situation>
+		<group>behaviour</group>
+		<curse>true</curse>
+	</unnerving>
+	<vain>
+		<name>
+			<en>Vain</en>
+			<es>Vanidoso</es>
+		</name>
+		<cost>2</cost>
+		<bonification>-1</bonification>
+		<characteristic>perception</characteristic>
+		<situation>
+			<en>Being flattered</en>
+			<es>Se es halagado</es>
+		</situation>
+		<group>behaviour</group>
+		<curse>true</curse>
+	</vain>
+	<vengeful>
+		<name>
+			<en>Vengeful</en>
+			<es>Vegativo</es>
+		</name>
+		<cost>2</cost>
+		<bonification>-3</bonification>
+		<characteristic>will</characteristic>
+		<situation>
+			<en>Honor impinged</en>
+			<es>Impugna su honor</es>
+		</situation>
+		<group>behaviour</group>
+		<curse>true</curse>
+	</vengeful>
 	
 
 	<innovative>
