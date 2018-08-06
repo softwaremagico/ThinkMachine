@@ -24,6 +24,9 @@ package com.softwaremagico.tm.character.blessings;
  * #L%
  */
 
+import java.util.Iterator;
+import java.util.Set;
+
 import com.softwaremagico.tm.Element;
 import com.softwaremagico.tm.character.characteristics.CharacteristicDefinition;
 import com.softwaremagico.tm.character.skills.SkillDefinition;
@@ -32,19 +35,22 @@ public class Blessing extends Element<Blessing> {
 	private final Integer cost;
 	private final Integer bonification;
 	private final SkillDefinition skill;
-	private final CharacteristicDefinition characteristic;
+	private final Set<CharacteristicDefinition> characteristics;
 	private final String situation;
 	private final BlessingClassification blessingClassification;
 	private final BlessingGroup blessingGroup;
 
-	public Blessing(String id, String name, Integer cost, Integer bonification, SkillDefinition skill, CharacteristicDefinition characteristic,
-			String situation, BlessingClassification blessingClassification, BlessingGroup blessingGroup) {
+	public Blessing(String id, String name, Integer cost, Integer bonification,
+			SkillDefinition skill,
+			Set<CharacteristicDefinition> characteristics, String situation,
+			BlessingClassification blessingClassification,
+			BlessingGroup blessingGroup) {
 		super(id, name);
 		this.cost = cost;
 		this.bonification = bonification;
 		this.situation = situation;
 		this.skill = skill;
-		this.characteristic = characteristic;
+		this.characteristics = characteristics;
 		this.blessingClassification = blessingClassification;
 		this.blessingGroup = blessingGroup;
 	}
@@ -64,8 +70,16 @@ public class Blessing extends Element<Blessing> {
 		if (skill != null) {
 			return skill.getName();
 		}
-		if (characteristic != null) {
-			return characteristic.getName();
+		if (characteristics != null && !characteristics.isEmpty()) {
+			Iterator<CharacteristicDefinition> it = characteristics.iterator();
+			String text = "";
+			while (it.hasNext()) {
+				if (text.length() > 0) {
+					text += ", ";
+				}
+				text += characteristics.iterator().next().getName();
+			}
+			return text;
 		}
 		return "";
 	}
@@ -78,8 +92,8 @@ public class Blessing extends Element<Blessing> {
 		return skill;
 	}
 
-	public CharacteristicDefinition getCharacteristic() {
-		return characteristic;
+	public Set<CharacteristicDefinition> getCharacteristic() {
+		return characteristics;
 	}
 
 	public BlessingClassification getBlessingClassification() {

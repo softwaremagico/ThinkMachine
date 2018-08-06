@@ -24,6 +24,10 @@ package com.softwaremagico.tm.character.blessings;
  * #L%
  */
 
+import java.util.HashSet;
+import java.util.Set;
+import java.util.StringTokenizer;
+
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
 import com.softwaremagico.tm.character.characteristics.CharacteristicDefinition;
@@ -87,9 +91,16 @@ public class BlessingFactory extends XmlFactory<Blessing> {
 			}
 
 			String characteristicName = translator.getNodeValue(blessingId, CHARACTERISTIC);
-			CharacteristicDefinition characteristic = null;
-			if (characteristicName != null) {
-				characteristic = CharacteristicsDefinitionFactory.getInstance().getElement(characteristicName, language);
+			Set<CharacteristicDefinition> characteristics = new HashSet<>();	
+			if(characteristicName!=null && characteristicName.contains(",")){
+				StringTokenizer characteristicTokenizer = new StringTokenizer(characteristicName, ",");
+				while (characteristicTokenizer.hasMoreTokens()) {
+					characteristics.add(CharacteristicsDefinitionFactory.getInstance().getElement(characteristicTokenizer.nextToken().trim(), language));
+				}
+			}else{
+				if (characteristicName != null) {
+					characteristics.add(CharacteristicsDefinitionFactory.getInstance().getElement(characteristicName, language));
+				}
 			}
 
 			String situation = translator.getNodeValue(blessingId, SITUATION, language);
@@ -103,7 +114,7 @@ public class BlessingFactory extends XmlFactory<Blessing> {
 				}
 			}
 
-			Blessing blessing = new Blessing(blessingId, name, Integer.parseInt(cost), Integer.parseInt(bonification), skill, characteristic, situation,
+			Blessing blessing = new Blessing(blessingId, name, Integer.parseInt(cost), Integer.parseInt(bonification), skill, characteristics, situation,
 					blessingClassification, blessingGroup);
 			return blessing;
 		} catch (Exception e) {
