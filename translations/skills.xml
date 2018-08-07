@@ -78,6 +78,9 @@
 			<es>Burocracia</es>
 		</name>
 		<group>analytical</group>
+		<random>
+			<techlevel>2</techlevel>
+		</random>
 	</bureaucracy>
 	<physick>
 		<name>
@@ -85,6 +88,9 @@
 			<es>Conocim. del Cuerpo</es>
 		</name>
 		<group>analytical</group>
+		<random>
+			<techlevel>2</techlevel>
+		</random>
 	</physick>
 	<warfare>
 		<name>
@@ -99,6 +105,9 @@
 			<es>Investigar</es>
 		</name>
 		<group>analytical</group>
+		<random>
+			<techlevel>2</techlevel>
+		</random>
 	</investigation>
 	<appliedScience>
 		<name>
@@ -106,7 +115,10 @@
 			<es>Ciencia Aplicada</es>
 		</name>
 		<group>science</group>
-		<guildSkill>true</guildSkill>
+		<factionSkill>engineers</factionSkill>
+		<random>
+			<techlevel>2</techlevel>
+		</random>
 	</appliedScience>
 	<socialScience>
 		<name>
@@ -114,6 +126,9 @@
 			<es>Ciencia Social</es>
 		</name>
 		<group>science</group>
+		<random>
+			<techlevel>3</techlevel>
+		</random>
 	</socialScience>
 	<physicalScience>
 		<name>
@@ -121,7 +136,10 @@
 			<es>Ciencia de la Física</es>
 		</name>
 		<group>science</group>
-		<guildSkill>true</guildSkill>
+		<factionSkill>engineers</factionSkill>
+		<random>
+			<techlevel>2</techlevel>
+		</random>
 	</physicalScience>
 	<lifeScience>
 		<name>
@@ -129,7 +147,10 @@
 			<es>Ciencia de la Vida</es>
 		</name>
 		<group>science</group>
-		<guildSkill>true</guildSkill>
+		<factionSkill>engineers</factionSkill>
+		<random>
+			<techlevel>2</techlevel>
+		</random>
 	</lifeScience>
 	<terraforming>
 		<name>
@@ -137,7 +158,10 @@
 			<es>Terraformismo</es>
 		</name>
 		<group>science</group>
-		<guildSkill>true</guildSkill>
+		<factionSkill>engineers</factionSkill>
+		<random>
+			<techlevel>5</techlevel>
+		</random>
 	</terraforming>
 	<energyGuns>
 		<name>
@@ -145,6 +169,9 @@
 			<es>Armas de Energía</es>
 		</name>
 		<group>combat</group>
+		<random>
+			<techlevel>5</techlevel>
+		</random>
 	</energyGuns>
 	<slugGuns>
 		<name>
@@ -152,6 +179,9 @@
 			<es>Armas de Fuego</es>
 		</name>
 		<group>combat</group>
+		<random>
+			<techlevel>3</techlevel>
+		</random>
 	</slugGuns>
 	<archery>
 		<name>
@@ -166,6 +196,9 @@
 			<es>Artefacto Cuerpo a C.</es>
 		</name>
 		<group>combat</group>
+		<random>
+			<techlevel>7</techlevel>
+		</random>
 	</artifactMelee>
 	<gunnery>
 		<name>
@@ -173,6 +206,9 @@
 			<es>Artillería de Supresión</es>
 		</name>
 		<group>combat</group>
+		<random>
+			<techlevel>3</techlevel>
+		</random>
 	</gunnery>
 	<artillery>
 		<name>
@@ -180,6 +216,9 @@
 			<es>Artillería Pesada</es>
 		</name>
 		<group>combat</group>
+		<random>
+			<techlevel>3</techlevel>
+		</random>
 	</artillery>
 	<fight>
 		<name>
@@ -194,6 +233,9 @@
 			<es>Demoliciones</es>
 		</name>
 		<group>combat</group>
+		<random>
+			<techlevel>3</techlevel>
+		</random>
 	</demolitions>
 	<beastcraft>
 		<name>
@@ -222,6 +264,9 @@
 			<es>Controlar Aeronave</es>
 		</name>
 		<group>control</group>
+		<random>
+			<techlevel>3</techlevel>
+		</random>
 	</aircraft>
 	<spacecraft>
 		<name>
@@ -229,7 +274,10 @@
 			<es>Controlar Nave Espacial</es>
 		</name>
 		<group>control</group>
-		<guildSkill>true</guildSkill>
+		<factionSkill>charioteers</factionSkill>
+		<random>
+			<techlevel>5</techlevel>
+		</random>
 	</spacecraft>
 	<landcarft>
 		<name>
@@ -237,6 +285,9 @@
 			<es>Controlar Vehíc. Terrestre</es>
 		</name>
 		<group>control</group>
+		<random>
+			<techlevel>3</techlevel>
+		</random>
 	</landcarft>
 	<arts>
 		<name>
@@ -374,6 +425,9 @@
 			</kelantiLore>
 		</specializations>
 		<numberToShow>4</numberToShow>
+		<random>
+			<techlevel>4</techlevel>
+		</random>
 	</lore>
 	<xenoLore>
 		<name>
@@ -438,23 +492,32 @@
 			<en>Spacecraft Operations</en>
 			<es>Mantenimiento de Naves</es>
 		</name>
-		<guildSkill>true</guildSkill>
+		<factionSkill>engineers</factionSkill>
 		<group>technical</group>
+		<random>
+			<techlevel>5</techlevel>
+		</random>
 	</spacecraftOperations>
 	<techRedemption>
 		<name>
 			<en>Tech Redemption</en>
 			<es>Recuperación Tecnológic.</es>
 		</name>
-		<guildSkill>true</guildSkill>
+		<factionSkill>engineers</factionSkill>
 		<group>technical</group>
+		<random>
+			<techlevel>3</techlevel>
+		</random>
 	</techRedemption>
 	<thinkMachine>
 		<name>
 			<en>Think Machine</en>
 			<es>Máquina Pensante</es>
 		</name>
-		<guildSkill>true</guildSkill>
+		<factionSkill>engineers</factionSkill>
 		<group>technical</group>
+		<random>
+			<techlevel>4</techlevel>
+		</random>
 	</thinkMachine>
 </skills>

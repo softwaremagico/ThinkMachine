@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<factions>
+	<hawkwood>
+		<name>
+			<en>Hawkwood</en>
+			<es>Hawkwood</es>
+		</name>
+		<group>nobility</group>
+	</hawkwood>
+	<decados>
+		<name>
+			<en>The Decados</en>
+			<es>Los Decados</es>
+		</name>
+		<group>nobility</group>
+	</decados>
+	<hazat>
+		<name>
+			<en>The Hazat</en>
+			<es>Los Hazat</es>
+		</name>
+		<group>nobility</group>
+	</hazat>
+	<liHalan>
+		<name>
+			<en>Li Halan</en>
+			<es>Li Halan</es>
+		</name>
+		<group>nobility</group>
+	</liHalan>
+	<alMalik>
+		<name>
+			<en>Al-Malik</en>
+			<es>Al-Malik</es>
+		</name>
+		<group>nobility</group>
+	</alMalik>
+	
+	<orthodox>
+		<name>
+			<en>Orthodox</en>
+			<es>Ortodoxos</es>
+		</name>
+		<group>church</group>
+	</orthodox>
+	<brotherBattle>
+		<name>
+			<en>Brother Battle</en>
+			<es>Hermanos de Batalla</es>
+		</name>
+		<group>church</group>
+	</brotherBattle>
+	<eskatonic>
+		<name>
+			<en>Eskatonic Order</en>
+			<es>La Order Eskatónica</es>
+		</name>
+		<group>church</group>
+	</eskatonic>
+	<avestites>
+		<name>
+			<en>Avestites</en>
+			<es>Avestitas</es>
+		</name>
+		<group>church</group>
+	</avestites>
+	<amaltheans>
+		<name>
+			<en>Amaltheans</en>
+			<es>Amalteanos</es>
+		</name>
+		<group>church</group>
+	</amaltheans>
+	<mendicantMonks>
+		<name>
+			<en>Mendicant Monks</en>
+			<es>Monjes Mendicantes</es>
+		</name>
+		<group>church</group>
+	</mendicantMonks>
+
+	<charioteers>
+		<name>
+			<en>Charioteers</en>
+			<es>Aurigas</es>
+		</name>
+		<group>guild</group>
+	</charioteers>
+	<engineers>
+		<name>
+			<en>Engineers</en>
+			<es>Ingenieros</es>
+		</name>
+		<group>guild</group>
+	</engineers>
+	<scravers>
+		<name>
+			<en>Scravers</en>
+			<es>Carroñeros</es>
+		</name>
+		<group>guild</group>
+	</scravers>
+	<chainers>
+		<name>
+			<en>Chainers</en>
+			<es>Esclavistas</es>
+		</name>
+		<group>guild</group>
+	</chainers>
+	<reeves>
+		<name>
+			<en>Reeves</en>
+			<es>Majistrados</es>
+		</name>
+		<group>guild</group>
+	</reeves>
+	
+	<obun>
+		<name>
+			<en>Ur-Obun</en>
+			<es>Ur-Obun</es>
+		</name>
+		<group>xeno</group>
+	</obun>
+	<ukar>
+		<name>
+			<en>Ur-Ukar</en>
+			<es>Ur-Ukar</es>
+		</name>
+		<group>xeno</group>
+	</ukar>
+	<vorox>
+		<name>
+			<en>Vorox</en>
+			<es>Vorox</es>
+		</name>
+		<group>xeno</group>
+	</vorox>
+</factions>

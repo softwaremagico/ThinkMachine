@@ -57,7 +57,7 @@ public abstract class CharacterBasicsTableFactory extends BaseElement {
 				}
 			} else if (tag.equals("faction")) {
 				if (characterPlayer.getInfo().getFaction() != null) {
-					table.addCell(getHandwrittingCell(characterPlayer.getInfo().getFaction(), Element.ALIGN_LEFT, fontSize - 1));
+					table.addCell(getHandwrittingCell(characterPlayer.getInfo().getFaction().getName(), Element.ALIGN_LEFT, fontSize - 1));
 				}
 			} else {
 				table.addCell(getHandwrittingCell(characterPlayer.getInfo().getTranslatedParameter(tag), Element.ALIGN_LEFT, fontSize - 1));

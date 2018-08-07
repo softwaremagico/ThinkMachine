@@ -412,7 +412,7 @@ public class CharacterPlayer {
 			if (skill.getSkillDefinition().getId().equals(SkillDefinition.PLANETARY_LORE_ID)) {
 				skill.setSpecialization(new Specialization(getInfo().getPlanet(), getInfo().getPlanet()));
 			} else if (skill.getSkillDefinition().getId().equals(SkillDefinition.FACTORION_LORE_ID)) {
-				skill.setSpecialization(new Specialization(getInfo().getFaction(), getInfo().getFaction()));
+				skill.setSpecialization(new Specialization(getInfo().getFaction().getName(), getInfo().getFaction().getName()));
 			}
 			naturalSkills.add(skill);
 		}

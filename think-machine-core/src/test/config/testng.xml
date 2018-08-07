@@ -21,6 +21,7 @@
 				<include name="weaponsFactory" />
 				<include name="benefitFactory" />
 				<include name="blessingFactory" />
+				<include name="factionsFactory" />
 				<exclude name="randomCharacter" />
 			</run>
 		</groups>
@@ -32,6 +33,7 @@
 			<class name="com.softwaremagico.tm.factory.WeaponsFactoryTests" />
 			<class name="com.softwaremagico.tm.factory.BenefitFactoryTests" />
 			<class name="com.softwaremagico.tm.factory.BlessingFactoryTests" />
+			<class name="com.softwaremagico.tm.factory.FactionFactoryTests" />
 			<class name="com.softwaremagico.tm.random.RandomCharacterTests" />
 		</classes>
 	</test>

@@ -3,6 +3,8 @@ package com.softwaremagico.tm.character.skills;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.softwaremagico.tm.character.factions.Faction;
+
 /*-
  * #%L
  * Think Machine (Core)
@@ -31,7 +33,7 @@ public class SkillDefinition extends Skill<SkillDefinition> {
 	public final static String FACTORION_LORE_ID = "factionLore";
 	public final static String PLANETARY_LORE_ID = "planetaryLore";
 
-	private boolean fromGuild;
+	private final Set<Faction> factions = new HashSet<>();
 	private boolean natural = false;
 	private Set<Specialization> specializations = new HashSet<>();
 	private SkillGroup skillGroup;
@@ -42,20 +44,12 @@ public class SkillDefinition extends Skill<SkillDefinition> {
 		super(id, name.trim());
 	}
 
-	public boolean isFromGuild() {
-		return fromGuild;
-	}
-
 	public boolean isNatural() {
 		return natural;
 	}
 
 	public boolean isSpecializable() {
 		return !specializations.isEmpty();
-	}
-
-	public void setFromGuild(boolean fromGuild) {
-		this.fromGuild = fromGuild;
 	}
 
 	public SkillGroup getSkillGroup() {
@@ -92,5 +86,17 @@ public class SkillDefinition extends Skill<SkillDefinition> {
 	@Override
 	public String toString() {
 		return super.toString() + " (" + skillGroup + ") " + getSpecializations();
+	}
+
+	public Set<Faction> getFactions() {
+		return factions;
+	}
+
+	public void addFaction(Faction faction) {
+		factions.add(faction);
+	}
+
+	public boolean isLimitedToFaction() {
+		return !factions.isEmpty();
 	}
 }
