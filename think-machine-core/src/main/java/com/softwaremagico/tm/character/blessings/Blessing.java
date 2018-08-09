@@ -72,24 +72,24 @@ public class Blessing extends Element<Blessing> {
 			return skill.getName();
 		}
 		if (characteristics != null && !characteristics.isEmpty()) {
-			Iterator<CharacteristicDefinition> it = characteristics.iterator();
+			Iterator<CharacteristicDefinition> characteristicsIterator = characteristics.iterator();
 			String text = "";
-			while (it.hasNext()) {
+			while (characteristicsIterator.hasNext()) {
 				if (text.length() > 0) {
 					text += ", ";
 				}
-				text += characteristics.iterator().next().getName();
+				text += characteristicsIterator.next().getName();
 			}
 			return text;
 		}
 		if(specialValues!=null && !specialValues.isEmpty()){
-			Iterator<SpecialValue> it = specialValues.iterator();
+			Iterator<SpecialValue> specialValuesIterator = specialValues.iterator();
 			String text = "";
-			while (it.hasNext()) {
+			while (specialValuesIterator.hasNext()) {
 				if (text.length() > 0) {
 					text += ", ";
 				}
-				text += specialValues.iterator().next().getName();
+				text += specialValuesIterator.next().getName();
 			}
 			return text;
 		}
