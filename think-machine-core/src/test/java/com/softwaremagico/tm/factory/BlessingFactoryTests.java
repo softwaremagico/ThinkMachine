@@ -33,7 +33,7 @@ import com.softwaremagico.tm.character.blessings.BlessingFactory;
 
 @Test(groups = { "blessingFactory" })
 public class BlessingFactoryTests {
-	private final static int DEFINED_BLESSINGS = 21;
+	private final static int DEFINED_BLESSINGS = 51;
 
 	@Test
 	public void readBlessings() throws InvalidXmlElementException {

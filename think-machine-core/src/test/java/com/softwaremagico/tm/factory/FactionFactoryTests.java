@@ -33,9 +33,10 @@ import com.softwaremagico.tm.character.factions.FactionsFactory;
 
 @Test(groups = { "factionsFactory" })
 public class FactionFactoryTests {
+	private final static int DEFINED_FACTIONS = 19;
 
 	@Test
 	public void readFactions() throws InvalidXmlElementException {
-		Assert.assertEquals(19, FactionsFactory.getInstance().getElements("es").size());
+		Assert.assertEquals(DEFINED_FACTIONS, FactionsFactory.getInstance().getElements("es").size());
 	}
 }

@@ -34,6 +34,8 @@ import com.softwaremagico.tm.character.characteristics.CharacteristicDefinition;
 import com.softwaremagico.tm.character.characteristics.CharacteristicsDefinitionFactory;
 import com.softwaremagico.tm.character.skills.SkillDefinition;
 import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
+import com.softwaremagico.tm.character.values.SpecialValue;
+import com.softwaremagico.tm.character.values.SpecialValuesFactory;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
 
@@ -69,7 +71,8 @@ public class BlessingFactory extends XmlFactory<Blessing> {
 	}
 
 	@Override
-	protected Blessing createElement(ITranslator translator, String blessingId, String language) throws InvalidXmlElementException {
+	protected Blessing createElement(ITranslator translator, String blessingId, String language)
+			throws InvalidXmlElementException {
 
 		try {
 			String name = translator.getNodeValue(blessingId, NAME, language);
@@ -90,17 +93,24 @@ public class BlessingFactory extends XmlFactory<Blessing> {
 				skill = SkillsDefinitionsFactory.getInstance().getElement(skillName, language);
 			}
 
-			String characteristicName = translator.getNodeValue(blessingId, CHARACTERISTIC);
-			Set<CharacteristicDefinition> characteristics = new HashSet<>();	
-			if(characteristicName!=null && characteristicName.contains(",")){
-				StringTokenizer characteristicTokenizer = new StringTokenizer(characteristicName, ",");
-				while (characteristicTokenizer.hasMoreTokens()) {
-					characteristics.add(CharacteristicsDefinitionFactory.getInstance().getElement(characteristicTokenizer.nextToken().trim(), language));
+			String valueName = translator.getNodeValue(blessingId, CHARACTERISTIC);
+			Set<CharacteristicDefinition> characeristics = new HashSet<>();
+			Set<SpecialValue> specialValues = new HashSet<>();
+			try {
+				if (valueName != null && valueName.contains(",")) {
+					StringTokenizer characteristicTokenizer = new StringTokenizer(valueName, ",");
+					while (characteristicTokenizer.hasMoreTokens()) {
+						characeristics.add(CharacteristicsDefinitionFactory.getInstance().getElement(
+								characteristicTokenizer.nextToken().trim(), language));
+					}
+				} else {
+					if (valueName != null) {
+						characeristics.add(CharacteristicsDefinitionFactory.getInstance().getElement(valueName, language));
+					}
 				}
-			}else{
-				if (characteristicName != null) {
-					characteristics.add(CharacteristicsDefinitionFactory.getInstance().getElement(characteristicName, language));
-				}
+			} catch (InvalidXmlElementException iee) {
+				// Check if it is an special value.
+				specialValues.add(SpecialValuesFactory.getInstance().getElement(valueName, language));
 			}
 
 			String situation = translator.getNodeValue(blessingId, SITUATION, language);
@@ -114,8 +124,8 @@ public class BlessingFactory extends XmlFactory<Blessing> {
 				}
 			}
 
-			Blessing blessing = new Blessing(blessingId, name, Integer.parseInt(cost), Integer.parseInt(bonification), skill, characteristics, situation,
-					blessingClassification, blessingGroup);
+			Blessing blessing = new Blessing(blessingId, name, Integer.parseInt(cost), Integer.parseInt(bonification),
+					skill, characeristics, specialValues, situation, blessingClassification, blessingGroup);
 			return blessing;
 		} catch (Exception e) {
 			throw new InvalidBlessingException("Invalid structure in blessing '" + blessingId + "'.", e);

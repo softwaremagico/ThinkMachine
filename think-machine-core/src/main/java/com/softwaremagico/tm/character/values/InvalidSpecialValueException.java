@@ -1,10 +1,10 @@
-package com.softwaremagico.tm.factory;
+package com.softwaremagico.tm.character.values;
 
 /*-
  * #%L
  * Think Machine (Core)
  * %%
- * Copyright (C) 2017 - 2018 Softwaremagico
+ * Copyright (C) 2017 Softwaremagico
  * %%
  * This software is designed by Jorge Hortelano Otero. Jorge Hortelano Otero
  * <softwaremagico@gmail.com> Valencia (Spain).
@@ -24,20 +24,16 @@ package com.softwaremagico.tm.factory;
  * #L%
  */
 
-import junit.framework.Assert;
-
-import org.testng.annotations.Test;
-
 import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.character.equipment.DamageTypeFactory;
 
-@Test(groups = { "damageFactory" })
-public class DamageTypeFactoryTests {
+public class InvalidSpecialValueException extends InvalidXmlElementException {
+	private static final long serialVersionUID = 1243337930745480002L;
 
-	private final static int DEFINED_DAMAGES = 7;
-	
-	@Test
-	public void readDamages() throws InvalidXmlElementException {
-		Assert.assertEquals(DEFINED_DAMAGES, DamageTypeFactory.getInstance().getElements("es").size());
+	public InvalidSpecialValueException(String message) {
+		super(message);
+	}
+
+	public InvalidSpecialValueException(String message, Exception e) {
+		super(message, e);
 	}
 }

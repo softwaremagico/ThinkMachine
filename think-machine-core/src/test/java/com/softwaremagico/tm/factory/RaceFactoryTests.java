@@ -33,9 +33,10 @@ import com.softwaremagico.tm.character.race.RaceFactory;
 
 @Test(groups = { "raceFactory" })
 public class RaceFactoryTests {
+	private final static int DEFINED_RACES = 4;
 
 	@Test
 	public void readRaces() throws InvalidXmlElementException {
-		Assert.assertEquals(2, RaceFactory.getInstance().getElements("es").size());
+		Assert.assertEquals(DEFINED_RACES, RaceFactory.getInstance().getElements("es").size());
 	}
 }
