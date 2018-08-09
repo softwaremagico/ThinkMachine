@@ -15,8 +15,8 @@
 		<groups>
 			<run>
 				<include name="characterPdfGeneration" />
-				<exclude name="customCharacterGeneration" />
-				<exclude name="randomCharacterSheetCreation" />
+				<include name="customCharacterGeneration" />
+				<include name="randomCharacterSheetCreation" />
 			</run>
 		</groups>
 		<classes>
