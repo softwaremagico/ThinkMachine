@@ -30,11 +30,9 @@ import java.util.StringTokenizer;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
-import com.softwaremagico.tm.character.characteristics.CharacteristicDefinition;
 import com.softwaremagico.tm.character.characteristics.CharacteristicsDefinitionFactory;
-import com.softwaremagico.tm.character.skills.SkillDefinition;
 import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
-import com.softwaremagico.tm.character.values.SpecialValue;
+import com.softwaremagico.tm.character.values.IValue;
 import com.softwaremagico.tm.character.values.SpecialValuesFactory;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
@@ -45,8 +43,7 @@ public class BlessingFactory extends XmlFactory<Blessing> {
 	private final static String NAME = "name";
 	private final static String COST = "cost";
 	private final static String BONIFICATION = "bonification";
-	private final static String SKILL = "skill";
-	private final static String CHARACTERISTIC = "characteristic";
+	private final static String AFFECTS = "affects";
 	private final static String SITUATION = "situation";
 	private final static String CURSE = "curse";
 	private final static String GROUP = "group";
@@ -87,30 +84,17 @@ public class BlessingFactory extends XmlFactory<Blessing> {
 				blessingGroup = BlessingGroup.get(groupName);
 			}
 
-			String skillName = translator.getNodeValue(blessingId, SKILL);
-			SkillDefinition skill = null;
-			if (skillName != null) {
-				skill = SkillsDefinitionsFactory.getInstance().getElement(skillName, language);
-			}
-
-			String valueName = translator.getNodeValue(blessingId, CHARACTERISTIC);
-			Set<CharacteristicDefinition> characeristics = new HashSet<>();
-			Set<SpecialValue> specialValues = new HashSet<>();
-			try {
-				if (valueName != null && valueName.contains(",")) {
-					StringTokenizer characteristicTokenizer = new StringTokenizer(valueName, ",");
-					while (characteristicTokenizer.hasMoreTokens()) {
-						characeristics.add(CharacteristicsDefinitionFactory.getInstance().getElement(
-								characteristicTokenizer.nextToken().trim(), language));
-					}
-				} else {
-					if (valueName != null) {
-						characeristics.add(CharacteristicsDefinitionFactory.getInstance().getElement(valueName, language));
-					}
+			String valueName = translator.getNodeValue(blessingId, AFFECTS);
+			Set<IValue> affects = new HashSet<>();
+			if (valueName != null && valueName.contains(",")) {
+				StringTokenizer characteristicTokenizer = new StringTokenizer(valueName, ",");
+				while (characteristicTokenizer.hasMoreTokens()) {
+					affects.add(getValue(characteristicTokenizer.nextToken().trim(), language));
 				}
-			} catch (InvalidXmlElementException iee) {
-				// Check if it is an special value.
-				specialValues.add(SpecialValuesFactory.getInstance().getElement(valueName, language));
+			} else {
+				if (valueName != null) {
+					affects.add(getValue(valueName, language));
+				}
 			}
 
 			String situation = translator.getNodeValue(blessingId, SITUATION, language);
@@ -125,12 +109,31 @@ public class BlessingFactory extends XmlFactory<Blessing> {
 			}
 
 			Blessing blessing = new Blessing(blessingId, name, Integer.parseInt(cost), Integer.parseInt(bonification),
-					skill, characeristics, specialValues, situation, blessingClassification, blessingGroup);
+					affects, situation, blessingClassification, blessingGroup);
 			return blessing;
 		} catch (Exception e) {
 			throw new InvalidBlessingException("Invalid structure in blessing '" + blessingId + "'.", e);
 		}
 
+	}
+
+	private IValue getValue(String valueName, String language) throws InvalidXmlElementException {
+		try {
+			// Is a characteristic?
+			return CharacteristicsDefinitionFactory.getInstance().getElement(valueName, language);
+		} catch (InvalidXmlElementException e) {
+			// Is a skill??
+			try {
+				return SkillsDefinitionsFactory.getInstance().getElement(valueName, language);
+			} catch (InvalidXmlElementException e2) {
+				// Is something else?
+				try {
+					return SpecialValuesFactory.getInstance().getElement(valueName, language);
+				} catch (InvalidXmlElementException e3) {
+					throw new InvalidXmlElementException("Invalid value '" + valueName + "' for " + AFFECTS + ". ", e3);
+				}
+			}
+		}
 	}
 
 	@Override

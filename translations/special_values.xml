@@ -6,4 +6,10 @@
 			<es>Tiradas</es>
 		</name>
 	</rolls>
+	<vitality>
+		<name>
+			<en>Vitality</en>
+			<es>Vitalidad</es>
+		</name>
+	</vitality>
 </specialValues>

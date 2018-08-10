@@ -7,7 +7,7 @@
 		</name>
 		<cost>1</cost>
 		<bonification>1</bonification>
-		<skill>influence</skill>
+		<affects>influence</affects>
 		<situation>
 			<en>Special</en>
 			<es>Especial</es>
@@ -21,7 +21,7 @@
 		</name>
 		<cost>2</cost>
 		<bonification>2</bonification>
-		<skill>influence</skill>
+		<affects>influence</affects>
 		<situation>
 			<en>Special</en>
 			<es>Especial</es>
@@ -35,7 +35,7 @@
 		</name>
 		<cost>3</cost>
 		<bonification>3</bonification>
-		<skill>influence</skill>
+		<affects>influence</affects>
 		<situation>
 			<en>Special</en>
 			<es>Especial</es>
@@ -49,7 +49,7 @@
 		</name>
 		<cost>1</cost>
 		<bonification>-1</bonification>
-		<skill>influence</skill>
+		<affects>influence</affects>
 		<situation>
 			<en>Special</en>
 			<es>Especial</es>
@@ -64,7 +64,7 @@
 		</name>
 		<cost>2</cost>
 		<bonification>-2</bonification>
-		<skill>influence</skill>
+		<affects>influence</affects>
 		<situation>
 			<en>Special</en>
 			<es>Especial</es>
@@ -79,7 +79,7 @@
 		</name>
 		<cost>3</cost>
 		<bonification>-3</bonification>
-		<skill>influence</skill>
+		<affects>influence</affects>
 		<situation>
 			<en>Special</en>
 			<es>Especial</es>
@@ -94,7 +94,7 @@
 		</name>
 		<cost>2</cost>
 		<bonification>2</bonification>
-		<characteristic>will, faith</characteristic>
+		<affects>will, faith</affects>
 		<situation>
 			<en>Acting when other hesicates</en>
 			<es>Actúa cuanto otro duda</es>
@@ -108,7 +108,7 @@
 		</name>
 		<cost>2</cost>
 		<bonification>2</bonification>
-		<characteristic>faith</characteristic>
+		<affects>faith</affects>
 		<situation>
 			<en>Helping others</en>
 			<es>Ayudando a otros</es>
@@ -122,7 +122,7 @@
 		</name>
 		<cost>2</cost>
 		<bonification>2</bonification>
-		<characteristic>presence</characteristic>
+		<affects>presence</affects>
 		<situation>
 			<en>When seeing something new</en>
 			<es>Ante algo nuevo</es>
@@ -136,7 +136,7 @@
 		</name>
 		<cost>2</cost>
 		<bonification>2</bonification>
-		<characteristic>will</characteristic>
+		<affects>will</affects>
 		<situation>
 			<en>Combat situations</en>
 			<es>Situación de combate</es>
@@ -150,7 +150,7 @@
 		</name>
 		<cost>2</cost>
 		<bonification>2</bonification>
-		<characteristic>presence</characteristic>
+		<affects>presence</affects>
 		<situation>
 			<en>To guests</en>
 			<es>Con huéspedes</es>
@@ -164,7 +164,7 @@
 		</name>
 		<cost>2</cost>
 		<bonification>2</bonification>
-		<characteristic>faith</characteristic>
+		<affects>faith</affects>
 		<situation>
 			<en>Righting a wrong</en>
 			<es>Corrigiendo al errado</es>
@@ -178,7 +178,7 @@
 		</name>
 		<cost>2</cost>
 		<bonification>2</bonification>
-		<characteristic>faith</characteristic>
+		<affects>faith</affects>
 		<situation>
 			<en>Following liege</en>
 			<es>Ayude a un aliado</es>
@@ -192,7 +192,7 @@
 		</name>
 		<cost>2</cost>
 		<bonification>2</bonification>
-		<characteristic>presence</characteristic>
+		<affects>presence</affects>
 		<situation>
 			<en>Among the sinful</en>
 			<es>Entre los pecadores</es>
@@ -206,7 +206,7 @@
 		</name>
 		<cost>2</cost>
 		<bonification>2</bonification>
-		<characteristic>wits</characteristic>
+		<affects>wits</affects>
 		<situation>
 			<en>Attemts to fast-talk</en>
 			<es>Atentos de engatusar</es>
@@ -220,7 +220,7 @@
 		</name>
 		<cost>2</cost>
 		<bonification>2</bonification>
-		<characteristic>perception</characteristic>
+		<affects>perception</affects>
 		<situation>
 			<en>Rivals about</en>
 			<es>Se trata de rivales</es>
@@ -234,7 +234,7 @@
 		</name>
 		<cost>2</cost>
 		<bonification>2</bonification>
-		<characteristic>endurance</characteristic>
+		<affects>endurance</affects>
 		<situation>
 			<en>When honor is at stake</en>
 			<es>Honor está en juego</es>
@@ -248,7 +248,7 @@
 		</name>
 		<cost>2</cost>
 		<bonification>2</bonification>
-		<skill>influence</skill>
+		<affects>influence</affects>
 		<situation>
 			<en>Leading underlings</en>
 			<es>Liderando subalternos</es>
@@ -262,7 +262,7 @@
 		</name>
 		<cost>2</cost>
 		<bonification>-2</bonification>
-		<characteristic>presence</characteristic>
+		<affects>presence</affects>
 		<situation>
 			<en>In a conversation</en>
 			<es>En conversaciones</es>
@@ -277,7 +277,7 @@
 		</name>
 		<cost>2</cost>
 		<bonification>-2</bonification>
-		<characteristic>presence</characteristic>
+		<affects>presence</affects>
 		<situation>
 			<en>Recounting deeds</en>
 			<es>Relatar los hechos</es>
@@ -292,7 +292,7 @@
 		</name>
 		<cost>2</cost>
 		<bonification>-2</bonification>
-		<characteristic>wits</characteristic>
+		<affects>wits</affects>
 		<situation>
 			<en>Confronted its belief</en>
 			<es>Discrepa con sus creencias</es>
@@ -307,7 +307,7 @@
 		</name>
 		<cost>2</cost>
 		<bonification>-2</bonification>
-		<characteristic>presence</characteristic>
+		<affects>presence</affects>
 		<situation>
 			<en>Asked for aid</en>
 			<es>Se le pide ayuda</es>
@@ -322,7 +322,7 @@
 		</name>
 		<cost>2</cost>
 		<bonification>-2</bonification>
-		<characteristic>perception</characteristic>
+		<affects>perception</affects>
 		<situation>
 			<en>Notice social cues</en>
 			<es>Con las normas sociales</es>
@@ -337,7 +337,7 @@
 		</name>
 		<cost>2</cost>
 		<bonification>-2</bonification>
-		<characteristic>presence</characteristic>
+		<affects>presence</affects>
 		<situation>
 			<en>Among the unenlightened</en>
 			<es>Entre los incultos</es>
@@ -352,7 +352,7 @@
 		</name>
 		<cost>2</cost>
 		<bonification>-2</bonification>
-		<characteristic>perception</characteristic>
+		<affects>perception</affects>
 		<situation>
 			<en>Disagrees with character belief</en>
 			<es>Discrepe con las creencias ilusas</es>
@@ -367,7 +367,7 @@
 		</name>
 		<cost>2</cost>
 		<bonification>-2</bonification>
-		<characteristic>presence</characteristic>
+		<affects>presence</affects>
 		<situation>
 			<en>Around authority figures</en>
 			<es>Entre figuras de autoridad</es>
@@ -382,7 +382,7 @@
 		</name>
 		<cost>2</cost>
 		<bonification>-2</bonification>
-		<characteristic>will</characteristic>
+		<affects>will</affects>
 		<situation>
 			<en>Money is involved</en>
 			<es>Dinero de por medio</es>
@@ -397,7 +397,7 @@
 		</name>
 		<cost>2</cost>
 		<bonification>-2</bonification>
-		<characteristic>rolls</characteristic>
+		<affects>rolls</affects>
 		<situation>
 			<en>Opposing church officials</en>
 			<es>Opongan a oficiales de la iglesia</es>
@@ -412,7 +412,7 @@
 		</name>
 		<cost>2</cost>
 		<bonification>-2</bonification>
-		<characteristic>wits</characteristic>
+		<affects>wits</affects>
 		<situation>
 			<en>Against attempts to fast-talk</en>
 			<es>Contra intentos de engatusar</es>
@@ -427,7 +427,7 @@
 		</name>
 		<cost>2</cost>
 		<bonification>-2</bonification>
-		<characteristic>presence</characteristic>
+		<affects>presence</affects>
 		<situation>
 			<en>Around serfs</en>
 			<es>Entre siervos</es>
@@ -442,7 +442,7 @@
 		</name>
 		<cost>2</cost>
 		<bonification>-2</bonification>
-		<characteristic>wits</characteristic>
+		<affects>wits</affects>
 		<situation>
 			<en>When trading</en>
 			<es>Se negocia</es>
@@ -457,7 +457,7 @@
 		</name>
 		<cost>2</cost>
 		<bonification>-2</bonification>
-		<characteristic>presence</characteristic>
+		<affects>presence</affects>
 		<situation>
 			<en>Judgement questioned</en>
 			<es>Cuestiona su juicio</es>
@@ -472,7 +472,7 @@
 		</name>
 		<cost>2</cost>
 		<bonification>-2</bonification>
-		<characteristic>faith</characteristic>
+		<affects>faith</affects>
 		<situation>
 			<en>Money is involved</en>
 			<es>Dinero de por medio</es>
@@ -487,7 +487,7 @@
 		</name>
 		<cost>2</cost>
 		<bonification>-2</bonification>
-		<characteristic>presence</characteristic>
+		<affects>presence</affects>
 		<situation>
 			<en>Seeing something new</en>
 			<es>Se ve algo nuevo</es>
@@ -502,7 +502,7 @@
 		</name>
 		<cost>2</cost>
 		<bonification>-2</bonification>
-		<characteristic>will</characteristic>
+		<affects>will</affects>
 		<situation>
 			<en>Source of phobia</en>
 			<es>Fuente de la fobia</es>
@@ -517,7 +517,7 @@
 		</name>
 		<cost>2</cost>
 		<bonification>-2</bonification>
-		<characteristic>will</characteristic>
+		<affects>will</affects>
 		<situation>
 			<en>Cut out of action</en>
 			<es>Se le excluyde de la acción</es>
@@ -532,7 +532,7 @@
 		</name>
 		<cost>2</cost>
 		<bonification>-2</bonification>
-		<characteristic>will</characteristic>
+		<affects>will</affects>
 		<situation>
 			<en>When insulted</en>
 			<es>Cuando es insultado</es>
@@ -547,7 +547,7 @@
 		</name>
 		<cost>2</cost>
 		<bonification>-2</bonification>
-		<characteristic>will</characteristic>
+		<affects>will</affects>
 		<situation>
 			<en>Judgment questioned</en>
 			<es>Cuestiona su juicio</es>
@@ -562,7 +562,7 @@
 		</name>
 		<cost>2</cost>
 		<bonification>-2</bonification>
-		<characteristic></characteristic>
+		<affects></affects>
 		<situation>
 			<en>Around strangers</en>
 			<es>Entre extraños</es>
@@ -577,7 +577,7 @@
 		</name>
 		<cost>2</cost>
 		<bonification>-2</bonification>
-		<characteristic>presence</characteristic>
+		<affects>presence</affects>
 		<situation>
 			<en>Explaining something</en>
 			<es>Explica algo</es>
@@ -592,7 +592,7 @@
 		</name>
 		<cost>2</cost>
 		<bonification>-2</bonification>
-		<characteristic>presence</characteristic>
+		<affects>presence</affects>
 		<situation>
 			<en>When upset</en>
 			<es>Se le incomoda</es>
@@ -607,7 +607,7 @@
 		</name>
 		<cost>2</cost>
 		<bonification>-2</bonification>
-		<characteristic>Presence</characteristic>
+		<affects>Presence</affects>
 		<situation>
 			<en>Society functions</en>
 			<es>Otras casas nobles</es>
@@ -622,7 +622,7 @@
 		</name>
 		<cost>2</cost>
 		<bonification>-2</bonification>
-		<characteristic>presence</characteristic>
+		<affects>presence</affects>
 		<situation>
 			<en>Around superstitious</en>
 			<es>Entre supersticiosos</es>
@@ -637,7 +637,7 @@
 		</name>
 		<cost>2</cost>
 		<bonification>-1</bonification>
-		<characteristic>perception</characteristic>
+		<affects>perception</affects>
 		<situation>
 			<en>Being flattered</en>
 			<es>Se es halagado</es>
@@ -652,7 +652,7 @@
 		</name>
 		<cost>2</cost>
 		<bonification>-3</bonification>
-		<characteristic>will</characteristic>
+		<affects>will</affects>
 		<situation>
 			<en>Honor impinged</en>
 			<es>Impugna su honor</es>
@@ -660,6 +660,172 @@
 		<group>behaviour</group>
 		<curse>true</curse>
 	</vengeful>
+	
+	<badHeart>
+		<name>
+			<en>Bad Heart</en>
+			<es></es>
+		</name>
+		<cost>2</cost>
+		<bonification>-2</bonification>
+		<affects>Endurance</affects>
+		<situation>
+			<en>Atheltic tasks</en>
+			<es></es>
+		</situation>
+		<group>injuries</group>
+		<curse>true</curse>
+	</badHeart>
+	<badLiver>
+		<name>
+			<en>Bad Liver</en>
+			<es></es>
+		</name>
+		<cost>2</cost>
+		<bonification>-2</bonification>
+		<affects>Endurance</affects>
+		<situation>
+			<en>Against toxines</en>
+			<es></es>
+		</situation>
+		<group>injuries</group>
+		<curse>true</curse>
+	</badLiver>
+	<badLungs>
+		<name>
+			<en>Bad Lungs</en>
+			<es></es>
+		</name>
+		<cost>1</cost>
+		<bonification>-1</bonification>
+		<affects>Endurance</affects>
+		<situation>
+			<en>Athletic Tasks</en>
+			<es></es>
+		</situation>
+		<group>injuries</group>
+		<curse>true</curse>
+	</badLungs>
+	<horribleScar>
+		<name>
+			<en>Horrible Scar</en>
+			<es>Marca Horrible</es>
+		</name>
+		<cost>2</cost>
+		<bonification>-2</bonification>
+		<affects>influence</affects>
+		<situation>
+			<en>If visible</en>
+			<es>Si es visible</es>
+		</situation>
+		<group>injures</group>
+		<curse>true</curse>
+	</horribleScar>
+	<incurableDisease>
+		<name>
+			<en>Incurable Disease</en>
+			<es></es>
+		</name>
+		<cost>3</cost>
+		<bonification>-1</bonification>
+		<affects>Vitality</affects>
+		<situation>
+			<en>Base value</en>
+			<es></es>
+		</situation>
+		<group>injuries</group>
+		<curse>true</curse>
+	</incurableDisease>
+	<limp>
+		<name>
+			<en>Limp</en>
+			<es></es>
+		</name>
+		<cost>1</cost>
+		<bonification>-1</bonification>
+		<affects>Movement</affects>
+		<situation>
+			<en></en>
+			<es></es>
+		</situation>
+		<group>injuries</group>
+		<curse>true</curse>
+	</limp>
+	<>
+		<name>
+			<en></en>
+			<es></es>
+		</name>
+		<cost></cost>
+		<bonification></bonification>
+		<affects></affects>
+		<situation>
+			<en></en>
+			<es></es>
+		</situation>
+		<group>injuries</group>
+		<curse>true</curse>
+	</>
+	<>
+		<name>
+			<en></en>
+			<es></es>
+		</name>
+		<cost></cost>
+		<bonification></bonification>
+		<affects></affects>
+		<situation>
+			<en></en>
+			<es></es>
+		</situation>
+		<group>injuries</group>
+		<curse>true</curse>
+	</>
+	<>
+		<name>
+			<en></en>
+			<es></es>
+		</name>
+		<cost></cost>
+		<bonification></bonification>
+		<affects></affects>
+		<situation>
+			<en></en>
+			<es></es>
+		</situation>
+		<group>injuries</group>
+		<curse>true</curse>
+	</>
+	<>
+		<name>
+			<en></en>
+			<es></es>
+		</name>
+		<cost></cost>
+		<bonification></bonification>
+		<affects></affects>
+		<situation>
+			<en></en>
+			<es></es>
+		</situation>
+		<group>injuries</group>
+		<curse>true</curse>
+	</>
+	<>
+		<name>
+			<en></en>
+			<es></es>
+		</name>
+		<cost></cost>
+		<bonification></bonification>
+		<affects></affects>
+		<situation>
+			<en></en>
+			<es></es>
+		</situation>
+		<group>injuries</group>
+		<curse>true</curse>
+	</>
 	
 
 	<innovative>
@@ -669,7 +835,7 @@
 		</name>
 		<cost>2</cost>
 		<bonification>2</bonification>
-		<characteristic>tech</characteristic>
+		<affects>tech</affects>
 		<situation>
 			<en>To invent something new</en>
 			<es>Inventar algo nuevo</es>
@@ -682,7 +848,7 @@
 		</name>
 		<cost>-2</cost>
 		<bonification>-2</bonification>
-		<characteristic>presence</characteristic>
+		<affects>presence</affects>
 		<situation>
 			<en>Around serfs</en>
 			<es>Entre sirvientes</es>
@@ -697,7 +863,7 @@
 		</name>
 		<cost>2</cost>
 		<bonification>2</bonification>
-		<skill>techRedemption</skill>
+		<affects>techRedemption</affects>
 		<situation>
 			<en>Repairing</en>
 			<es>Reparando</es>
@@ -725,27 +891,11 @@
 		</name>
 		<cost>2</cost>
 		<bonification>2</bonification>
-		<skill>thinkMachine</skill>
+		<affects>thinkMachine</affects>
 		<situation>
 			<en></en>
 			<es></es>
 		</situation>
 		<group>knacks</group>
 	</hacker>
-	
-	<horribleScar>
-		<name>
-			<en>Horrible Scar</en>
-			<es>Marca Horrible</es>
-		</name>
-		<cost>2</cost>
-		<bonification>-2</bonification>
-		<skill>influence</skill>
-		<situation>
-			<en>If visible</en>
-			<es>Si es visible</es>
-		</situation>
-		<group>injures</group>
-		<curse>true</curse>
-	</horribleScar>
 </blessings>

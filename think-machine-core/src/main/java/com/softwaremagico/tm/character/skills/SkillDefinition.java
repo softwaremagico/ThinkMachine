@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.softwaremagico.tm.character.factions.Faction;
+import com.softwaremagico.tm.character.values.IValue;
 
 /*-
  * #%L
@@ -29,7 +30,7 @@ import com.softwaremagico.tm.character.factions.Faction;
  * #L%
  */
 
-public class SkillDefinition extends Skill<SkillDefinition> implements ISkillRandomDefintions {
+public class SkillDefinition extends Skill<SkillDefinition> implements ISkillRandomDefintions, IValue {
 	public final static int NATURAL_SKILLS_MINIMUM_VALUE = 3;
 	public final static String FACTORION_LORE_ID = "factionLore";
 	public final static String PLANETARY_LORE_ID = "planetaryLore";

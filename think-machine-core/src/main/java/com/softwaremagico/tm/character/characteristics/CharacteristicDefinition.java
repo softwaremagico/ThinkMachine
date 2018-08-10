@@ -3,6 +3,7 @@ package com.softwaremagico.tm.character.characteristics;
 import java.util.Objects;
 
 import com.softwaremagico.tm.Element;
+import com.softwaremagico.tm.character.values.IValue;
 
 /*-
  * #%L
@@ -28,7 +29,7 @@ import com.softwaremagico.tm.Element;
  * #L%
  */
 
-public class CharacteristicDefinition extends Element<CharacteristicDefinition> implements Comparable<CharacteristicDefinition> {
+public class CharacteristicDefinition extends Element<CharacteristicDefinition> implements Comparable<CharacteristicDefinition>, IValue {
 	private String abbreviature;
 	private CharacteristicType type;
 

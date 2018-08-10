@@ -28,30 +28,23 @@ import java.util.Iterator;
 import java.util.Set;
 
 import com.softwaremagico.tm.Element;
-import com.softwaremagico.tm.character.characteristics.CharacteristicDefinition;
-import com.softwaremagico.tm.character.skills.SkillDefinition;
-import com.softwaremagico.tm.character.values.SpecialValue;
+import com.softwaremagico.tm.character.values.IValue;
 
 public class Blessing extends Element<Blessing> {
 	private final Integer cost;
 	private final Integer bonification;
-	private final SkillDefinition skill;
-	private final Set<CharacteristicDefinition> characteristics;
-	private final Set<SpecialValue> specialValues;
+	private final Set<IValue> affects;
 	private final String situation;
 	private final BlessingClassification blessingClassification;
 	private final BlessingGroup blessingGroup;
 
-	public Blessing(String id, String name, Integer cost, Integer bonification, SkillDefinition skill,
-			Set<CharacteristicDefinition> characteristics, Set<SpecialValue> specialValues, String situation,
+	public Blessing(String id, String name, Integer cost, Integer bonification, Set<IValue> affects, String situation,
 			BlessingClassification blessingClassification, BlessingGroup blessingGroup) {
 		super(id, name);
 		this.cost = cost;
 		this.bonification = bonification;
 		this.situation = situation;
-		this.skill = skill;
-		this.characteristics = characteristics;
-		this.specialValues = specialValues;
+		this.affects = affects;
 		this.blessingClassification = blessingClassification;
 		this.blessingGroup = blessingGroup;
 	}
@@ -68,28 +61,14 @@ public class Blessing extends Element<Blessing> {
 	}
 
 	public String getTrait() {
-		if (skill != null) {
-			return skill.getName();
-		}
-		if (characteristics != null && !characteristics.isEmpty()) {
-			Iterator<CharacteristicDefinition> characteristicsIterator = characteristics.iterator();
+		if (affects != null && !affects.isEmpty()) {
+			Iterator<IValue> iterator = affects.iterator();
 			String text = "";
-			while (characteristicsIterator.hasNext()) {
+			while (iterator.hasNext()) {
 				if (text.length() > 0) {
 					text += ", ";
 				}
-				text += characteristicsIterator.next().getName();
-			}
-			return text;
-		}
-		if(specialValues!=null && !specialValues.isEmpty()){
-			Iterator<SpecialValue> specialValuesIterator = specialValues.iterator();
-			String text = "";
-			while (specialValuesIterator.hasNext()) {
-				if (text.length() > 0) {
-					text += ", ";
-				}
-				text += specialValuesIterator.next().getName();
+				text += iterator.next().getName();
 			}
 			return text;
 		}
@@ -98,14 +77,6 @@ public class Blessing extends Element<Blessing> {
 
 	public String getSituation() {
 		return situation;
-	}
-
-	public SkillDefinition getSkill() {
-		return skill;
-	}
-
-	public Set<CharacteristicDefinition> getCharacteristic() {
-		return characteristics;
 	}
 
 	public BlessingClassification getBlessingClassification() {
