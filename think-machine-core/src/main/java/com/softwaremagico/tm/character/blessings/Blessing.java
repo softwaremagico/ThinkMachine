@@ -32,19 +32,15 @@ import com.softwaremagico.tm.character.values.IValue;
 
 public class Blessing extends Element<Blessing> {
 	private final Integer cost;
-	private final Integer bonification;
-	private final Set<IValue> affects;
-	private final String situation;
+	private final Set<Bonification> bonifications;
 	private final BlessingClassification blessingClassification;
 	private final BlessingGroup blessingGroup;
 
-	public Blessing(String id, String name, Integer cost, Integer bonification, Set<IValue> affects, String situation,
+	public Blessing(String id, String name, Integer cost, Set<Bonification> bonifications,
 			BlessingClassification blessingClassification, BlessingGroup blessingGroup) {
 		super(id, name);
 		this.cost = cost;
-		this.bonification = bonification;
-		this.situation = situation;
-		this.affects = affects;
+		this.bonifications = bonifications;
 		this.blessingClassification = blessingClassification;
 		this.blessingGroup = blessingGroup;
 	}
@@ -56,35 +52,34 @@ public class Blessing extends Element<Blessing> {
 		return cost;
 	}
 
-	public Integer getBonification() {
-		return bonification;
-	}
-
-	public String getTrait() {
-		if (affects != null && !affects.isEmpty()) {
-			Iterator<IValue> iterator = affects.iterator();
-			String text = "";
-			while (iterator.hasNext()) {
-				if (text.length() > 0) {
-					text += ", ";
-				}
-				text += iterator.next().getName();
-			}
-			return text;
-		}
-		return "";
-	}
-
-	public String getSituation() {
-		return situation;
-	}
-
 	public BlessingClassification getBlessingClassification() {
 		return blessingClassification;
 	}
 
 	public BlessingGroup getBlessingGroup() {
 		return blessingGroup;
+	}
+
+	public Set<Bonification> getBonifications() {
+		return bonifications;
+	}
+
+	public String getTrait() {
+		if (bonifications != null && !bonifications.isEmpty()) {
+			Iterator<Bonification> iterator = bonifications.iterator();
+			String text = "";
+			while (iterator.hasNext()) {
+				IValue affects = iterator.next().getAffects();
+				if (affects != null && affects.getName() != null) {
+					if (text.length() > 0) {
+						text += ", ";
+					}
+					text += affects.getName();
+				}
+			}
+			return text;
+		}
+		return "";
 	}
 
 }

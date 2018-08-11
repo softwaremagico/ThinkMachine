@@ -43,6 +43,15 @@ public class Element<T extends Element<?>> implements Comparable<T> {
 
 	@Override
 	public int compareTo(T element) {
+		if (getName() == null) {
+			if (element.getName() == null) {
+				return 0;
+			}
+			return -1;
+		}
+		if (element.getName() == null) {
+			return 1;
+		}
 		return getName().compareTo(element.getName());
 	}
 

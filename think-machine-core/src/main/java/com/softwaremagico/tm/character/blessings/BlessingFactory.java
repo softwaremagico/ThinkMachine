@@ -26,7 +26,6 @@ package com.softwaremagico.tm.character.blessings;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.StringTokenizer;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
@@ -43,6 +42,7 @@ public class BlessingFactory extends XmlFactory<Blessing> {
 	private final static String NAME = "name";
 	private final static String COST = "cost";
 	private final static String BONIFICATION = "bonification";
+	private final static String VALUE = "value";
 	private final static String AFFECTS = "affects";
 	private final static String SITUATION = "situation";
 	private final static String CURSE = "curse";
@@ -76,40 +76,36 @@ public class BlessingFactory extends XmlFactory<Blessing> {
 
 			String cost = translator.getNodeValue(blessingId, COST);
 
-			String bonification = translator.getNodeValue(blessingId, BONIFICATION);
-
 			BlessingGroup blessingGroup = null;
 			String groupName = translator.getNodeValue(blessingId, GROUP);
 			if (groupName != null) {
 				blessingGroup = BlessingGroup.get(groupName);
 			}
 
-			String valueName = translator.getNodeValue(blessingId, AFFECTS);
-			Set<IValue> affects = new HashSet<>();
-			if (valueName != null && valueName.contains(",")) {
-				StringTokenizer characteristicTokenizer = new StringTokenizer(valueName, ",");
-				while (characteristicTokenizer.hasMoreTokens()) {
-					affects.add(getValue(characteristicTokenizer.nextToken().trim(), language));
-				}
-			} else {
-				if (valueName != null) {
-					affects.add(getValue(valueName, language));
-				}
-			}
+			Set<Bonification> bonifications = new HashSet<>();
 
+			String bonificationValue = translator.getNodeValue(blessingId, BONIFICATION, VALUE);
+			String valueName = translator.getNodeValue(blessingId, AFFECTS);
+			IValue affects = null;
+			if (valueName != null) {
+				affects = getValue(valueName, language);
+			}
 			String situation = translator.getNodeValue(blessingId, SITUATION, language);
+
+			Bonification bonification = new Bonification(Integer.parseInt(bonificationValue), affects, situation);
+			bonifications.add(bonification);
 
 			String curseTag = translator.getNodeValue(blessingId, CURSE);
 			BlessingClassification blessingClassification = BlessingClassification.BLESSING;
 
-			if (blessingClassification != null) {
+			if (curseTag != null) {
 				if (Boolean.parseBoolean(curseTag)) {
 					blessingClassification = BlessingClassification.CURSE;
 				}
 			}
 
-			Blessing blessing = new Blessing(blessingId, name, Integer.parseInt(cost), Integer.parseInt(bonification),
-					affects, situation, blessingClassification, blessingGroup);
+			Blessing blessing = new Blessing(blessingId, name, Integer.parseInt(cost), bonifications,
+					blessingClassification, blessingGroup);
 			return blessing;
 		} catch (Exception e) {
 			throw new InvalidBlessingException("Invalid structure in blessing '" + blessingId + "'.", e);
