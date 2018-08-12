@@ -24,8 +24,11 @@ package com.softwaremagico.tm.pdf.complete.traits;
  * #L%
  */
 
+import java.util.Iterator;
+
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.blessings.Blessing;
+import com.softwaremagico.tm.character.blessings.Bonification;
 import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.complete.elements.VerticalTable;
 
@@ -40,21 +43,36 @@ public class BlessingTable extends VerticalTable {
 
 	public BlessingTable(CharacterPlayer characterPlayer) {
 		super(WIDTHS);
-		addCell(createTitle(getTranslator().getTranslatedText("blessingTable") + " / " + getTranslator().getTranslatedText("cursesTable"), FadingSunsTheme.VERTICALTABLE_TITLE_FONT_SIZE));
+		addCell(createTitle(getTranslator().getTranslatedText("blessingTable") + " / "
+				+ getTranslator().getTranslatedText("cursesTable"), FadingSunsTheme.VERTICALTABLE_TITLE_FONT_SIZE));
 
-		addCell(createSubtitleLine(getTranslator().getTranslatedText("blessingTableName"), FadingSunsTheme.TABLE_LINE_FONT_SIZE));
+		addCell(createSubtitleLine(getTranslator().getTranslatedText("blessingTableName"),
+				FadingSunsTheme.TABLE_LINE_FONT_SIZE));
 		addCell(createSubtitleLine("+/-", FadingSunsTheme.TABLE_LINE_FONT_SIZE));
-		addCell(createSubtitleLine(getTranslator().getTranslatedText("blessingTableTrait"), FadingSunsTheme.TABLE_LINE_FONT_SIZE));
-		addCell(createSubtitleLine(getTranslator().getTranslatedText("blessingTableSituation"), FadingSunsTheme.TABLE_LINE_FONT_SIZE));
+		addCell(createSubtitleLine(getTranslator().getTranslatedText("blessingTableTrait"),
+				FadingSunsTheme.TABLE_LINE_FONT_SIZE));
+		addCell(createSubtitleLine(getTranslator().getTranslatedText("blessingTableSituation"),
+				FadingSunsTheme.TABLE_LINE_FONT_SIZE));
 
 		int addedBlessings = 0;
 		if (characterPlayer != null) {
 			for (Blessing blessing : characterPlayer.getBlessings()) {
-				addCell(createElementLine(blessing.getName(), NAME_COLUMN_WIDTH));
-				addCell(createElementLine(blessing.getBonification(), BONIFICATION_COLUMN_WIDTH));
-				addCell(createElementLine(blessing.getTrait(), TRAIT_COLUMN_WIDTH));
-				addCell(createElementLine(blessing.getSituation(), SITUATION_COLUMN_WIDTH));
-				addedBlessings++;
+				Iterator<Bonification> it = blessing.getBonifications().iterator();
+				int i = 0;
+				while (it.hasNext()) {
+					Bonification bonification = it.next();
+					if (i == 0) {
+						addCell(createElementLine(blessing.getName(), NAME_COLUMN_WIDTH));
+					} else {
+						addCell(createElementLine("      ", NAME_COLUMN_WIDTH));
+					}
+					addCell(createElementLine(bonification.getBonification(), BONIFICATION_COLUMN_WIDTH));
+					addCell(createElementLine(bonification.getAffects() != null ? bonification.getAffects().getName()
+							: "", TRAIT_COLUMN_WIDTH));
+					addCell(createElementLine(bonification.getSituation(), SITUATION_COLUMN_WIDTH));
+					addedBlessings++;
+					i++;
+				}
 			}
 		}
 

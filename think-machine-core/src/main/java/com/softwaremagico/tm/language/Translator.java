@@ -82,7 +82,8 @@ public class Translator implements ITranslator {
 			usedDoc = db.parse(file);
 			usedDoc.getDocumentElement().normalize();
 		} catch (SAXParseException ex) {
-			String text = "Parsing error" + ".\n Line: " + ex.getLineNumber() + "\nUri: " + ex.getSystemId() + "\nMessage: " + ex.getMessage();
+			String text = "Parsing error" + ".\n Line: " + ex.getLineNumber() + "\nUri: " + ex.getSystemId()
+					+ "\nMessage: " + ex.getMessage();
 			MachineLog.severe(Translator.class.getName(), text);
 			MachineLog.errorMessage(Translator.class.getName(), ex);
 		} catch (SAXException ex) {
@@ -152,6 +153,11 @@ public class Translator implements ITranslator {
 
 	@Override
 	public String getNodeValue(String tag, String node) {
+		return getNodeValue(tag, node, 0);
+	}
+
+	@Override
+	public String getNodeValue(String tag, String node, int nodeNumber) {
 		NodeList nodeList = doc.getElementsByTagName(tag);
 		for (int child = 0; child < nodeList.getLength(); child++) {
 			Node firstNode = nodeList.item(child);
@@ -161,7 +167,7 @@ public class Translator implements ITranslator {
 				try {
 					NodeList firstNodeElementList = firstElement.getElementsByTagName(node);
 					Element firstNodeElement = (Element) firstNodeElementList.item(0);
-					return firstNodeElement.getChildNodes().item(0).getNodeValue().trim();
+					return firstNodeElement.getChildNodes().item(nodeNumber).getNodeValue().trim();
 				} catch (NullPointerException npe) {
 					return null;
 				}
@@ -172,6 +178,11 @@ public class Translator implements ITranslator {
 
 	@Override
 	public String getNodeValue(String parent, String tag, String node) {
+		return getNodeValue(parent, tag, node, 0);
+	}
+
+	@Override
+	public String getNodeValue(String parent, String tag, String node, int nodeNumber) {
 		NodeList nodeList = doc.getElementsByTagName(parent);
 		for (int child = 0; child < nodeList.getLength(); child++) {
 			Node parentNode = nodeList.item(child);
@@ -180,7 +191,7 @@ public class Translator implements ITranslator {
 				Element parentElement = (Element) parentNode;
 				try {
 					NodeList childrenElementList = parentElement.getElementsByTagName(tag);
-					Element childrenElement = (Element) childrenElementList.item(0);
+					Element childrenElement = (Element) childrenElementList.item(nodeNumber);
 					try {
 						NodeList firstNodeElementList = childrenElement.getElementsByTagName(node);
 						Element firstNodeElement = (Element) firstNodeElementList.item(0);
@@ -277,7 +288,8 @@ public class Translator implements ITranslator {
 					} catch (NullPointerException npe) {
 						if (!retried) {
 							if (!showedMessage) {
-								MachineLog.warning(Translator.class.getName(), "There is a problem with tag: " + tag + " in  language: \"" + language
+								MachineLog.warning(Translator.class.getName(), "There is a problem with tag: " + tag
+										+ " in  language: \"" + language
 										+ "\". We tray to use english language instead.");
 								showedMessage = true;
 							}
@@ -292,7 +304,8 @@ public class Translator implements ITranslator {
 							return readTag(tag, DEFAULT_LANGUAGE);
 						} else {
 							if (!errorShowed) {
-								MachineLog.severe(this.getClass().getName(), "Language selection failed: " + language + " on " + tag + ".");
+								MachineLog.severe(this.getClass().getName(), "Language selection failed: " + language
+										+ " on " + tag + ".");
 								errorShowed = true;
 							}
 							return null;
@@ -318,11 +331,13 @@ public class Translator implements ITranslator {
 			for (int s = 0; s < nodeLst.getLength(); s++) {
 				Node fstNode = nodeLst.item(s);
 				try {
-					Language lang = new Language(fstNode.getTextContent(), fstNode.getAttributes().getNamedItem("abbrev").getNodeValue(), fstNode
-							.getAttributes().getNamedItem("flag").getNodeValue());
+					Language lang = new Language(fstNode.getTextContent(), fstNode.getAttributes()
+							.getNamedItem("abbrev").getNodeValue(), fstNode.getAttributes().getNamedItem("flag")
+							.getNodeValue());
 					languagesList.add(lang);
 				} catch (NullPointerException npe) {
-					MachineLog.severe(Translator.class.getName(), "Error retrieving the available languages. Check your installation.");
+					MachineLog.severe(Translator.class.getName(),
+							"Error retrieving the available languages. Check your installation.");
 				}
 			}
 		}
@@ -343,7 +358,8 @@ public class Translator implements ITranslator {
 
 		try {
 			if (Translator.class.getClassLoader().getResource(Path.TRANSLATIONS_FOLDER + File.separator + xmlFile) != null) {
-				file = new File(Translator.class.getClassLoader().getResource(Path.TRANSLATIONS_FOLDER + File.separator + xmlFile).toURI());
+				file = new File(Translator.class.getClassLoader()
+						.getResource(Path.TRANSLATIONS_FOLDER + File.separator + xmlFile).toURI());
 				if (file.exists()) {
 					return file;
 				}

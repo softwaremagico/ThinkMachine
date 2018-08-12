@@ -47,7 +47,7 @@ public class Blessing extends Element<Blessing> {
 
 	public Integer getCost() {
 		if (getBlessingClassification().equals(BlessingClassification.CURSE)) {
-			return -cost;
+			return -Math.abs(cost);
 		}
 		return cost;
 	}

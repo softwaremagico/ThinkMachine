@@ -83,17 +83,25 @@ public class BlessingFactory extends XmlFactory<Blessing> {
 			}
 
 			Set<Bonification> bonifications = new HashSet<>();
+			int node = 0;
+			while (true) {
+				try {
+					String bonificationValue = translator.getNodeValue(blessingId, BONIFICATION, VALUE, node);
+					String valueName = translator.getNodeValue(blessingId,  BONIFICATION, AFFECTS, node);
+					IValue affects = null;
+					if (valueName != null) {
+						affects = getValue(valueName, language);
+					}
+					String situation = translator.getNodeValue(blessingId, SITUATION, language, node);
 
-			String bonificationValue = translator.getNodeValue(blessingId, BONIFICATION, VALUE);
-			String valueName = translator.getNodeValue(blessingId, AFFECTS);
-			IValue affects = null;
-			if (valueName != null) {
-				affects = getValue(valueName, language);
+					Bonification bonification = new Bonification(Integer.parseInt(bonificationValue), affects,
+							situation);
+					bonifications.add(bonification);
+					node++;
+				} catch (Exception e) {
+					break;
+				}
 			}
-			String situation = translator.getNodeValue(blessingId, SITUATION, language);
-
-			Bonification bonification = new Bonification(Integer.parseInt(bonificationValue), affects, situation);
-			bonifications.add(bonification);
 
 			String curseTag = translator.getNodeValue(blessingId, CURSE);
 			BlessingClassification blessingClassification = BlessingClassification.BLESSING;

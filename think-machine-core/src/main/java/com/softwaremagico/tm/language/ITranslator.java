@@ -51,4 +51,8 @@ public interface ITranslator {
 
 	String getNodeValue(String grandparent, String parent, String tag, String node);
 
+	String getNodeValue(String parent, String tag, String node, int nodeNumber);
+
+	String getNodeValue(String tag, String node, int nodeNumber);
+
 }
