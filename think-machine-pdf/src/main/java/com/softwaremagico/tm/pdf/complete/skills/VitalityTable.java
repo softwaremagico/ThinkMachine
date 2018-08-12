@@ -26,7 +26,9 @@ package com.softwaremagico.tm.pdf.complete.skills;
 
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
+import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.log.MachineLog;
 import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 
 public class VitalityTable extends CounterTable {
@@ -50,8 +52,8 @@ public class VitalityTable extends CounterTable {
 		}
 
 		for (int i = 1; i <= MODIFICATORS_SPAN; i++) {
-			addCell(createValue("-" + (i * 2), new Font(FadingSunsTheme.getLineFont(), FadingSunsTheme.CHARACTERISTICS_TITLE_FONT_SIZE - 6),
-					Element.ALIGN_MIDDLE));
+			addCell(createValue("-" + (i * 2), new Font(FadingSunsTheme.getLineFont(),
+					FadingSunsTheme.CHARACTERISTICS_TITLE_FONT_SIZE - 6), Element.ALIGN_MIDDLE));
 			addCell(getCircle(characterPlayer));
 			addedCircle++;
 		}
@@ -60,7 +62,11 @@ public class VitalityTable extends CounterTable {
 	@Override
 	protected int getSelectedValue(CharacterPlayer characterPlayer) {
 		if (characterPlayer != null) {
-			return characterPlayer.getVitalityValue().intValue();
+			try {
+				return characterPlayer.getVitalityValue().intValue();
+			} catch (InvalidXmlElementException e) {
+				MachineLog.errorMessage(this.getClass().getName(), e);
+			}
 		}
 		return -1;
 	}

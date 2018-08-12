@@ -26,7 +26,6 @@ package com.softwaremagico.tm.character;
 
 import java.lang.reflect.Field;
 
-import com.softwaremagico.tm.character.factions.Faction;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
 

@@ -47,14 +47,15 @@ public class CompleteSkillsTable extends SkillsTable {
 	private final static int OCCULTISM_ROWS = 5;
 	private final static int MAX_SKILL_COLUMN_WIDTH = 115;
 
-	public static PdfPTable getSkillsTable(CharacterPlayer characterPlayer, String language) throws InvalidXmlElementException {
+	public static PdfPTable getSkillsTable(CharacterPlayer characterPlayer, String language)
+			throws InvalidXmlElementException {
 		float[] widths = { 1f, 1f, 1f };
 		PdfPTable table = new PdfPTable(widths);
 		setTablePropierties(table);
 
-		Stack<PdfPCell> learnedSkillsRows = createLearnedSkillsRows(
-				ROWS - (2 * TITLE_ROWSPAN) - SkillsDefinitionsFactory.getInstance().getNaturalSkills(language).size() + ROWS + ROWS - OCCULTISM_ROWS,
-				characterPlayer, language);
+		Stack<PdfPCell> learnedSkillsRows = createLearnedSkillsRows(ROWS - (2 * TITLE_ROWSPAN)
+				- SkillsDefinitionsFactory.getInstance().getNaturalSkills(language).size() + ROWS + ROWS
+				- OCCULTISM_ROWS, characterPlayer, language);
 
 		table.addCell(getFirstColumnTable(characterPlayer, language, learnedSkillsRows));
 		table.addCell(getSecondColumnTable(characterPlayer, language, learnedSkillsRows));
@@ -62,30 +63,35 @@ public class CompleteSkillsTable extends SkillsTable {
 		return table;
 	}
 
-	private static PdfPCell getFirstColumnTable(CharacterPlayer characterPlayer, String language, Stack<PdfPCell> learnedSkillsRows)
-			throws InvalidXmlElementException {
+	private static PdfPCell getFirstColumnTable(CharacterPlayer characterPlayer, String language,
+			Stack<PdfPCell> learnedSkillsRows) throws InvalidXmlElementException {
 		float[] widths = { 4f, 1f };
 		PdfPTable table = new PdfPTable(widths);
 		setTablePropierties(table);
 
-		table.addCell(createTitle(getTranslator().getTranslatedText("naturalSkills"), FadingSunsTheme.SKILLS_TITLE_FONT_SIZE));
+		table.addCell(createTitle(getTranslator().getTranslatedText("naturalSkills"),
+				FadingSunsTheme.SKILLS_TITLE_FONT_SIZE));
 
 		if (characterPlayer == null) {
 			for (AvailableSkill skill : AvailableSkillsFactory.getInstance().getNaturalSkills(language)) {
-				table.addCell(createSkillElement(characterPlayer, skill, FadingSunsTheme.SKILLS_LINE_FONT_SIZE, MAX_SKILL_COLUMN_WIDTH));
+				table.addCell(createSkillElement(characterPlayer, skill, FadingSunsTheme.SKILLS_LINE_FONT_SIZE,
+						MAX_SKILL_COLUMN_WIDTH));
 				table.addCell(createSkillLine(SKILL_VALUE_GAP, FadingSunsTheme.SKILLS_LINE_FONT_SIZE));
 			}
 		} else {
 			for (AvailableSkill skill : characterPlayer.getNaturalSkills()) {
-				table.addCell(createSkillElement(characterPlayer, skill, FadingSunsTheme.SKILLS_LINE_FONT_SIZE, MAX_SKILL_COLUMN_WIDTH));
-				table.addCell(createSkillValue(characterPlayer.getSkillRanks(skill), characterPlayer.isSkillSpecial(skill),
+				table.addCell(createSkillElement(characterPlayer, skill, FadingSunsTheme.SKILLS_LINE_FONT_SIZE,
+						MAX_SKILL_COLUMN_WIDTH));
+				table.addCell(createSkillValue(characterPlayer.getSkillRanks(skill),
+						characterPlayer.isSkillSpecial(skill) || characterPlayer.isSkillModified(skill),
 						FadingSunsTheme.SKILLS_LINE_FONT_SIZE));
 			}
 		}
 
-		table.addCell(createTitle(getTranslator().getTranslatedText("learnedSkills"), FadingSunsTheme.SKILLS_TITLE_FONT_SIZE));
-		int totalRows = Math.min(getTotalLearnedSkillsToShow(language),
-				ROWS - (2 * TITLE_ROWSPAN) - SkillsDefinitionsFactory.getInstance().getNaturalSkills(language).size());
+		table.addCell(createTitle(getTranslator().getTranslatedText("learnedSkills"),
+				FadingSunsTheme.SKILLS_TITLE_FONT_SIZE));
+		int totalRows = Math.min(getTotalLearnedSkillsToShow(language), ROWS - (2 * TITLE_ROWSPAN)
+				- SkillsDefinitionsFactory.getInstance().getNaturalSkills(language).size());
 
 		for (int i = 0; i < totalRows; i++) {
 			// Two columns: skill and value.
@@ -101,8 +107,8 @@ public class CompleteSkillsTable extends SkillsTable {
 		return cell;
 	}
 
-	private static PdfPCell getSecondColumnTable(CharacterPlayer characterPlayer, String language, Stack<PdfPCell> learnedSkillsRows)
-			throws InvalidXmlElementException {
+	private static PdfPCell getSecondColumnTable(CharacterPlayer characterPlayer, String language,
+			Stack<PdfPCell> learnedSkillsRows) throws InvalidXmlElementException {
 		float[] widths = { 4f, 1f };
 		PdfPTable table = new PdfPTable(widths);
 		setTablePropierties(table);
@@ -120,8 +126,8 @@ public class CompleteSkillsTable extends SkillsTable {
 		return cell;
 	}
 
-	private static PdfPCell getThirdColumnTable(CharacterPlayer characterPlayer, String language, Stack<PdfPCell> learnedSkillsRows)
-			throws InvalidXmlElementException {
+	private static PdfPCell getThirdColumnTable(CharacterPlayer characterPlayer, String language,
+			Stack<PdfPCell> learnedSkillsRows) throws InvalidXmlElementException {
 		float[] widths = { 4f, 1f };
 		PdfPTable table = new PdfPTable(widths);
 		setTablePropierties(table);
@@ -176,7 +182,8 @@ public class CompleteSkillsTable extends SkillsTable {
 	 * @throws InvalidXmlElementException
 	 *             If content files cannot be read.
 	 */
-	private static Stack<PdfPCell> createLearnedSkillsRows(int totalRows, CharacterPlayer characterPlayer, String language) throws InvalidXmlElementException {
+	private static Stack<PdfPCell> createLearnedSkillsRows(int totalRows, CharacterPlayer characterPlayer,
+			String language) throws InvalidXmlElementException {
 		Stack<PdfPCell> rows = new Stack<>();
 
 		int rowsAdded = 0;
@@ -186,15 +193,21 @@ public class CompleteSkillsTable extends SkillsTable {
 			try {
 				int addedAvailableSkill = 0;
 				// But first the already defined in a character.
-				List<AvailableSkill> availableSkillsByDefinition = AvailableSkillsFactory.getInstance().getAvailableSkills(skillDefinition, language);
+				List<AvailableSkill> availableSkillsByDefinition = AvailableSkillsFactory.getInstance()
+						.getAvailableSkills(skillDefinition, language);
 				for (AvailableSkill availableSkill : availableSkillsByDefinition) {
 					// Only specializations if they have ranks.
-					if (!skillDefinition.isSpecializable() || (characterPlayer != null && characterPlayer.getSkillRanks(availableSkill) > 0)) {
-						rows.add(createSkillElement(characterPlayer, availableSkill, FadingSunsTheme.SKILLS_LINE_FONT_SIZE, MAX_SKILL_COLUMN_WIDTH));
+					if (!skillDefinition.isSpecializable()
+							|| (characterPlayer != null && characterPlayer.getSkillRanks(availableSkill) > 0)) {
+						rows.add(createSkillElement(characterPlayer, availableSkill,
+								FadingSunsTheme.SKILLS_LINE_FONT_SIZE, MAX_SKILL_COLUMN_WIDTH));
 						if (characterPlayer == null) {
 							rows.add(createSkillLine(SKILL_VALUE_GAP, FadingSunsTheme.SKILLS_LINE_FONT_SIZE));
 						} else {
-							rows.add(createSkillValue(characterPlayer.getSkillRanks(availableSkill), characterPlayer.isSkillSpecial(availableSkill),
+							rows.add(createSkillValue(
+									characterPlayer.getSkillRanks(availableSkill),
+									characterPlayer.isSkillSpecial(availableSkill)
+											|| characterPlayer.isSkillModified(availableSkill),
 									FadingSunsTheme.SKILLS_LINE_FONT_SIZE));
 						}
 						addedAvailableSkill++;
@@ -203,7 +216,8 @@ public class CompleteSkillsTable extends SkillsTable {
 				}
 				// We want some empty specializations into the chart.
 				for (int j = addedAvailableSkill; j < skillDefinition.getNumberToShow() && rowsAdded < totalRows; j++) {
-					rows.add(createSkillElement(skillDefinition, FadingSunsTheme.SKILLS_LINE_FONT_SIZE, MAX_SKILL_COLUMN_WIDTH));
+					rows.add(createSkillElement(skillDefinition, FadingSunsTheme.SKILLS_LINE_FONT_SIZE,
+							MAX_SKILL_COLUMN_WIDTH));
 					rows.add(createSkillLine(SKILL_VALUE_GAP, FadingSunsTheme.SKILLS_LINE_FONT_SIZE));
 					rowsAdded++;
 				}

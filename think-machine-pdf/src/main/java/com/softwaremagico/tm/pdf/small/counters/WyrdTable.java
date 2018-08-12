@@ -28,7 +28,9 @@ import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
+import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.log.MachineLog;
 import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 
 public class WyrdTable extends CounterTable {
@@ -58,7 +60,11 @@ public class WyrdTable extends CounterTable {
 	@Override
 	protected int getSelectedValue() {
 		if (getCharacterPlayer() != null) {
-			return getCharacterPlayer().getWyrdValue().intValue();
+			try {
+				return getCharacterPlayer().getWyrdValue().intValue();
+			} catch (InvalidXmlElementException e) {
+				MachineLog.errorMessage(this.getClass().getName(), e);
+			}
 		}
 		return -1;
 	}

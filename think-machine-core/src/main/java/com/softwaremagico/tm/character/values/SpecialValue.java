@@ -27,6 +27,8 @@ package com.softwaremagico.tm.character.values;
 import com.softwaremagico.tm.Element;
 
 public class SpecialValue extends Element<SpecialValue> implements IValue {
+	public static String VITALITY = "vitality";
+	public static String WYRD = "wyrd";
 
 	public SpecialValue(String id, String name) {
 		super(id, name);

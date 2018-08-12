@@ -44,6 +44,7 @@ import com.softwaremagico.tm.character.benefices.BeneficeClassification;
 import com.softwaremagico.tm.character.benefices.BeneficeGroup;
 import com.softwaremagico.tm.character.benefices.BeneficeSpecialization;
 import com.softwaremagico.tm.character.blessings.Blessing;
+import com.softwaremagico.tm.character.blessings.Bonification;
 import com.softwaremagico.tm.character.characteristics.Characteristic;
 import com.softwaremagico.tm.character.characteristics.CharacteristicDefinition;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
@@ -70,6 +71,9 @@ import com.softwaremagico.tm.character.skills.Skill;
 import com.softwaremagico.tm.character.skills.SkillDefinition;
 import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
 import com.softwaremagico.tm.character.skills.Specialization;
+import com.softwaremagico.tm.character.values.IValue;
+import com.softwaremagico.tm.character.values.SpecialValue;
+import com.softwaremagico.tm.character.values.SpecialValuesFactory;
 import com.softwaremagico.tm.log.MachineLog;
 
 public class CharacterPlayer {
@@ -154,7 +158,8 @@ public class CharacterPlayer {
 
 	private void initializeCharacteristics() {
 		characteristics = new HashMap<String, Characteristic>();
-		for (CharacteristicDefinition characteristicDefinition : CharacteristicsDefinitionFactory.getInstance().getAll(language)) {
+		for (CharacteristicDefinition characteristicDefinition : CharacteristicsDefinitionFactory.getInstance().getAll(
+				language)) {
 			characteristics.put(characteristicDefinition.getId(), new Characteristic(characteristicDefinition));
 		}
 	}
@@ -215,7 +220,8 @@ public class CharacterPlayer {
 		Integer value = 0;
 		// Add cibernetics modifications
 		for (Device device : cybernetics.getElements()) {
-			if (device.getCharacteristicImprovement(characteristicName) != null && device.getCharacteristicImprovement(characteristicName).isAlways()
+			if (device.getCharacteristicImprovement(characteristicName) != null
+					&& device.getCharacteristicImprovement(characteristicName).isAlways()
 					&& device.getCharacteristicImprovement(characteristicName).getBonus() != 0) {
 				value += device.getCharacteristicImprovement(characteristicName).getBonus();
 			}
@@ -227,7 +233,8 @@ public class CharacterPlayer {
 		Integer value = 0;
 		// Add cibernetics modifications
 		for (Device device : cybernetics.getElements()) {
-			if (device.getCharacteristicImprovement(characteristicName) != null && !device.getCharacteristicImprovement(characteristicName).isAlways()
+			if (device.getCharacteristicImprovement(characteristicName) != null
+					&& !device.getCharacteristicImprovement(characteristicName).isAlways()
 					&& device.getCharacteristicImprovement(characteristicName).getBonus() != 0) {
 				value += device.getCharacteristicImprovement(characteristicName).getBonus();
 			}
@@ -235,12 +242,18 @@ public class CharacterPlayer {
 		return value;
 	}
 
-	public Integer getVitalityValue() {
-		return getValue(CharacteristicName.ENDURANCE) + 5;
+	public Integer getVitalityValue() throws InvalidXmlElementException {
+		return getValue(CharacteristicName.ENDURANCE)
+				+ 5
+				+ getBlessingModification(SpecialValuesFactory.getInstance().getElement(SpecialValue.VITALITY,
+						getLanguage()));
 	}
 
-	public Integer getWyrdValue() {
-		return Math.max(getValue(CharacteristicName.WILL), getValue(CharacteristicName.FAITH)) + occultism.getExtraWyrd();
+	public Integer getWyrdValue() throws InvalidXmlElementException {
+		return Math.max(getValue(CharacteristicName.WILL), getValue(CharacteristicName.FAITH))
+				+ occultism.getExtraWyrd()
+				+ getBlessingModification(SpecialValuesFactory.getInstance().getElement(SpecialValue.WYRD,
+						getLanguage()));
 	}
 
 	public void setSkillRank(AvailableSkill availableSkill, int value) throws InvalidSkillException {
@@ -307,6 +320,25 @@ public class CharacterPlayer {
 
 	public boolean isSkillSpecial(AvailableSkill availableSkill) {
 		if (getSelectedSkill(availableSkill) != null && getSelectedSkill(availableSkill).hasCost()) {
+			return true;
+		}
+
+		return false;
+	}
+
+	public boolean isSkillModified(AvailableSkill availableSkill) {
+		if (getBlessingModification(availableSkill.getSkillDefinition()) != 0) {
+			return true;
+		}
+		return false;
+	}
+
+	public boolean isCharacteristicModified(CharacteristicName characteristicName) {
+		return isCharacteristicSpecial(getCharacteristic(characteristicName));
+	}
+
+	public boolean isCharacteristicSpecial(Characteristic characteristic) {
+		if (getBlessingModification(characteristic) != 0) {
 			return true;
 		}
 		return false;
@@ -572,8 +604,7 @@ public class CharacterPlayer {
 	}
 
 	/**
-	 * Return which characteristic type has higher values in its
-	 * characteristics.
+	 * Return which characteristic type has higher values in its characteristics.
 	 * 
 	 * @return CharacteristicType
 	 */
@@ -585,8 +616,10 @@ public class CharacterPlayer {
 					if (totalRanksByCharacteristicType.get(characteristicType) == null) {
 						totalRanksByCharacteristicType.put(characteristicType, 0);
 					}
-					totalRanksByCharacteristicType.put(characteristicType,
-							totalRanksByCharacteristicType.get(characteristicType) + getValue(characteristic.getCharacteristicName()));
+					totalRanksByCharacteristicType.put(
+							characteristicType,
+							totalRanksByCharacteristicType.get(characteristicType)
+									+ getValue(characteristic.getCharacteristicName()));
 				}
 			}
 		}
@@ -594,7 +627,8 @@ public class CharacterPlayer {
 			return null;
 		}
 		// Sort result.
-		List<Entry<CharacteristicType, Integer>> sortedList = new LinkedList<>(totalRanksByCharacteristicType.entrySet());
+		List<Entry<CharacteristicType, Integer>> sortedList = new LinkedList<>(
+				totalRanksByCharacteristicType.entrySet());
 		Collections.sort(sortedList, new Comparator<Entry<CharacteristicType, Integer>>() {
 			public int compare(Entry<CharacteristicType, Integer> o1, Entry<CharacteristicType, Integer> o2) {
 				return o2.getValue().compareTo(o1.getValue());
@@ -628,5 +662,17 @@ public class CharacterPlayer {
 
 	public void setFaction(Faction faction) {
 		this.faction = faction;
+	}
+
+	public int getBlessingModification(IValue value) {
+		int modification = 0;
+		for (Blessing blessing : getBlessings()) {
+			for (Bonification bonification : blessing.getBonifications()) {
+				if (Objects.equals(bonification.getAffects(), value)) {
+					modification += bonification.getBonification();
+				}
+			}
+		}
+		return modification;
 	}
 }

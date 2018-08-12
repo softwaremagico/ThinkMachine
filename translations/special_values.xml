@@ -12,4 +12,10 @@
 			<es>Vitalidad</es>
 		</name>
 	</vitality>
+	<wyrd>
+		<name>
+			<en>Wyrd</en>
+			<es>Wyrd</es>
+		</name>
+	</wyrd>
 </specialValues>
