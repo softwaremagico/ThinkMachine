@@ -71,4 +71,29 @@ public class CharacteristicDefinition extends Element<CharacteristicDefinition> 
 	public int compareTo(CharacteristicDefinition characteristic) {
 		return getCharacteristicName().compareTo(characteristic.getCharacteristicName());
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + ((abbreviature == null) ? 0 : abbreviature.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		CharacteristicDefinition other = (CharacteristicDefinition) obj;
+		if (abbreviature == null) {
+			if (other.abbreviature != null)
+				return false;
+		} else if (!abbreviature.equals(other.abbreviature))
+			return false;
+		return true;
+	}
 }

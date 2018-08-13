@@ -189,21 +189,32 @@ public class CharacterPlayer {
 
 	public Integer getValue(CharacteristicName characteristicName) {
 		if (CharacteristicName.INITIATIVE.equals(characteristicName)) {
-			return getValue(CharacteristicName.DEXTERITY) + getValue(CharacteristicName.WITS);
+			return getValue(CharacteristicName.DEXTERITY)
+					+ getValue(CharacteristicName.WITS)
+					+ getBlessingModificationAlways(CharacteristicsDefinitionFactory.getInstance().get(
+							characteristicName, language));
 		}
 		if (CharacteristicName.DEFENSE.equals(characteristicName)) {
-			return getStartingValue(characteristicName);
+			return getStartingValue(characteristicName)
+					+ getBlessingModificationAlways(CharacteristicsDefinitionFactory.getInstance().get(
+							characteristicName, language));
 		}
 		if (CharacteristicName.MOVEMENT.equals(characteristicName)) {
-			return getStartingValue(characteristicName);
+			return getStartingValue(characteristicName)
+					+ getBlessingModificationAlways(CharacteristicsDefinitionFactory.getInstance().get(
+							characteristicName, language));
 		}
 		Integer value = characteristics.get(characteristicName.getId()).getValue();
 
 		if (value == null) {
 			return 0;
 		}
-		// Add cibernetics modifications
+		// Add cybernetics modifications
 		value += getCyberneticBonus(characteristicName);
+
+		// Add modifications always applied.
+		value += getBlessingModificationAlways(CharacteristicsDefinitionFactory.getInstance().get(characteristicName,
+				language));
 
 		return value;
 	}
@@ -670,6 +681,20 @@ public class CharacterPlayer {
 			for (Bonification bonification : blessing.getBonifications()) {
 				if (Objects.equals(bonification.getAffects(), value)) {
 					modification += bonification.getBonification();
+				}
+			}
+		}
+		return modification;
+	}
+
+	public int getBlessingModificationAlways(IValue value) {
+		int modification = 0;
+		for (Blessing blessing : getBlessings()) {
+			for (Bonification bonification : blessing.getBonifications()) {
+				if (Objects.equals(bonification.getAffects(), value)) {
+					if (bonification.getSituation() == null || bonification.getSituation().isEmpty()) {
+						modification += bonification.getBonification();
+					}
 				}
 			}
 		}
