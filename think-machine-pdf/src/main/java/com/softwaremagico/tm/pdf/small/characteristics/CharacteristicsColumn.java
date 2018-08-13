@@ -106,11 +106,15 @@ public class CharacteristicsColumn extends CustomPdfTable {
 
 	private String getCharacteristicValueRepresentation(CharacterPlayer characterPlayer,
 			CharacteristicName characteristicName) {
-		if (characterPlayer.getOptionalValue(characteristicName) > 0
-				|| characterPlayer.isCharacteristicModified(characteristicName)) {
-			return characterPlayer.getValue(characteristicName) + "*";
+		StringBuilder representation = new StringBuilder(characterPlayer.getValue(characteristicName));
+		if (characterPlayer.getCyberneticsImprovement(characteristicName) > 0
+				|| characterPlayer.hasCharacteristicTemporalModificator(characteristicName)) {
+			representation.append("*");
 		}
-		return characterPlayer.getValue(characteristicName) + "";
+		if (characterPlayer.hasCharacteristicModificator(characteristicName)) {
+			representation.append("!");
+		}
+		return representation.toString();
 	}
 
 	private static PdfPCell getHandwrittingCell(String text, int align) {

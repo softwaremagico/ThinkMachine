@@ -83,8 +83,8 @@ public class CompleteSkillsTable extends SkillsTable {
 				table.addCell(createSkillElement(characterPlayer, skill, FadingSunsTheme.SKILLS_LINE_FONT_SIZE,
 						MAX_SKILL_COLUMN_WIDTH));
 				table.addCell(createSkillValue(characterPlayer.getSkillRanks(skill),
-						characterPlayer.isSkillSpecial(skill) || characterPlayer.isSkillModified(skill),
-						FadingSunsTheme.SKILLS_LINE_FONT_SIZE));
+						characterPlayer.isSkillSpecial(skill) || characterPlayer.hasSkillTemporalModificator(skill),
+						characterPlayer.hasSkillModificator(skill), FadingSunsTheme.SKILLS_LINE_FONT_SIZE));
 			}
 		}
 
@@ -207,8 +207,8 @@ public class CompleteSkillsTable extends SkillsTable {
 							rows.add(createSkillValue(
 									characterPlayer.getSkillRanks(availableSkill),
 									characterPlayer.isSkillSpecial(availableSkill)
-											|| characterPlayer.isSkillModified(availableSkill),
-									FadingSunsTheme.SKILLS_LINE_FONT_SIZE));
+											|| characterPlayer.hasSkillTemporalModificator(availableSkill),
+									characterPlayer.hasSkillModificator(availableSkill), FadingSunsTheme.SKILLS_LINE_FONT_SIZE));
 						}
 						addedAvailableSkill++;
 						rowsAdded++;

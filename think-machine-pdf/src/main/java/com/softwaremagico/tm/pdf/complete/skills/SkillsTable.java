@@ -78,11 +78,11 @@ public class SkillsTable extends BaseElement {
 		return cell;
 	}
 
-	protected static PdfPCell createSkillValue(Integer value, boolean special, int fontSize) {
+	protected static PdfPCell createSkillValue(Integer value, boolean special, boolean modified, int fontSize) {
 		if (value == null) {
 			return createSkillLine(SKILL_VALUE_GAP, fontSize);
 		}
-		PdfPCell cell = getCell(value + (special ? "*" : ""), 0, 1, Element.ALIGN_CENTER, BaseColor.WHITE, FadingSunsTheme.getHandwrittingFont(),
+		PdfPCell cell = getCell(value + (special ? "*" : "") + (modified ? "!" : ""), 0, 1, Element.ALIGN_CENTER, BaseColor.WHITE, FadingSunsTheme.getHandwrittingFont(),
 				FadingSunsTheme.getHandWrittingFontSize(fontSize));
 		cell.setMinimumHeight((MainSkillsTableFactory.HEIGHT / ROWS));
 		cell.setVerticalAlignment(Element.ALIGN_MIDDLE);

@@ -39,7 +39,6 @@ import com.softwaremagico.tm.CacheHandler;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.Gender;
-import com.softwaremagico.tm.character.OccultismType;
 import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
 import com.softwaremagico.tm.character.blessings.BlessingFactory;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
@@ -53,6 +52,7 @@ import com.softwaremagico.tm.character.equipment.Shield;
 import com.softwaremagico.tm.character.equipment.WeaponFactory;
 import com.softwaremagico.tm.character.factions.FactionsFactory;
 import com.softwaremagico.tm.character.occultism.OccultismPower;
+import com.softwaremagico.tm.character.occultism.OccultismType;
 import com.softwaremagico.tm.character.race.Race;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.json.CharacterJsonManager;
@@ -100,7 +100,7 @@ public class CharacterSheetCreationTest {
 		player.getInfo().setHeight("1,76m");
 		player.getInfo().setWeight("78kg");
 
-		player.getCharacteristic(CharacteristicName.STRENGTH).setValue(1);
+		player.getCharacteristic(CharacteristicName.STRENGTH).setValue(2);
 		player.getCharacteristic(CharacteristicName.DEXTERITY).setValue(2);
 		player.getCharacteristic(CharacteristicName.ENDURANCE).setValue(3);
 		player.getCharacteristic(CharacteristicName.WITS).setValue(4);
@@ -130,9 +130,11 @@ public class CharacterSheetCreationTest {
 		player.getOccultism().addElement(new OccultismPower("Agilizar", OccultismType.PSI, "Vol+Atletismo", 3, null, "Temporal", "", 1));
 		player.getOccultism().addElement(new OccultismPower("Endurecer", OccultismType.PSI, "Vol+Vigor", 4, null, "Temporal", "", 1));
 
-		player.addBlessing(BlessingFactory.getInstance().getElement("handsome", player.getLanguage()));
+		player.addBlessing(BlessingFactory.getInstance().getElement("beautiful", player.getLanguage()));
 		player.addBlessing(BlessingFactory.getInstance().getElement("curious", player.getLanguage()));
 		player.addBlessing(BlessingFactory.getInstance().getElement("gullible", player.getLanguage()));
+		player.addBlessing(BlessingFactory.getInstance().getElement("limp", player.getLanguage()));
+		player.addBlessing(BlessingFactory.getInstance().getElement("missingEye", player.getLanguage()));
 
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("stigma_1", player.getLanguage()));
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("heir", player.getLanguage()));

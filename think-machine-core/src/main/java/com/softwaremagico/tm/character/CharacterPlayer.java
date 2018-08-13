@@ -187,6 +187,25 @@ public class CharacterPlayer {
 		return 0;
 	}
 
+	private Integer getRawValue(CharacteristicName characteristicName) {
+		if (CharacteristicName.INITIATIVE.equals(characteristicName)) {
+			return getValue(CharacteristicName.DEXTERITY) + getValue(CharacteristicName.WITS);
+		}
+		if (CharacteristicName.DEFENSE.equals(characteristicName)) {
+			return getStartingValue(characteristicName);
+		}
+		if (CharacteristicName.MOVEMENT.equals(characteristicName)) {
+			return getStartingValue(characteristicName);
+		}
+		Integer value = characteristics.get(characteristicName.getId()).getValue();
+
+		if (value == null) {
+			return 0;
+		}
+
+		return value;
+	}
+
 	public Integer getValue(CharacteristicName characteristicName) {
 		if (CharacteristicName.INITIATIVE.equals(characteristicName)) {
 			return getValue(CharacteristicName.DEXTERITY)
@@ -240,7 +259,7 @@ public class CharacterPlayer {
 		return value;
 	}
 
-	public Integer getOptionalValue(CharacteristicName characteristicName) {
+	public Integer getCyberneticsImprovement(CharacteristicName characteristicName) {
 		Integer value = 0;
 		// Add cibernetics modifications
 		for (Device device : cybernetics.getElements()) {
@@ -256,14 +275,14 @@ public class CharacterPlayer {
 	public Integer getVitalityValue() throws InvalidXmlElementException {
 		return getValue(CharacteristicName.ENDURANCE)
 				+ 5
-				+ getBlessingModification(SpecialValuesFactory.getInstance().getElement(SpecialValue.VITALITY,
+				+ getBlessingModificationAlways(SpecialValuesFactory.getInstance().getElement(SpecialValue.VITALITY,
 						getLanguage()));
 	}
 
 	public Integer getWyrdValue() throws InvalidXmlElementException {
 		return Math.max(getValue(CharacteristicName.WILL), getValue(CharacteristicName.FAITH))
 				+ occultism.getExtraWyrd()
-				+ getBlessingModification(SpecialValuesFactory.getInstance().getElement(SpecialValue.WYRD,
+				+ getBlessingModificationAlways(SpecialValuesFactory.getInstance().getElement(SpecialValue.WYRD,
 						getLanguage()));
 	}
 
@@ -334,24 +353,6 @@ public class CharacterPlayer {
 			return true;
 		}
 
-		return false;
-	}
-
-	public boolean isSkillModified(AvailableSkill availableSkill) {
-		if (getBlessingModification(availableSkill.getSkillDefinition()) != 0) {
-			return true;
-		}
-		return false;
-	}
-
-	public boolean isCharacteristicModified(CharacteristicName characteristicName) {
-		return isCharacteristicSpecial(getCharacteristic(characteristicName));
-	}
-
-	public boolean isCharacteristicSpecial(Characteristic characteristic) {
-		if (getBlessingModification(characteristic) != 0) {
-			return true;
-		}
 		return false;
 	}
 
@@ -525,7 +526,7 @@ public class CharacterPlayer {
 	public int getCharacteristicsTotalPoints() {
 		int characteristicPoints = 0;
 		for (CharacteristicName characteristicName : CharacteristicName.getBasicCharacteristics()) {
-			characteristicPoints += getValue(characteristicName) - getStartingValue(characteristicName);
+			characteristicPoints += getRawValue(characteristicName) - getStartingValue(characteristicName);
 		}
 		return characteristicPoints;
 	}
@@ -680,7 +681,9 @@ public class CharacterPlayer {
 		for (Blessing blessing : getBlessings()) {
 			for (Bonification bonification : blessing.getBonifications()) {
 				if (Objects.equals(bonification.getAffects(), value)) {
-					modification += bonification.getBonification();
+					if (bonification.getSituation() != null && !bonification.getSituation().isEmpty()) {
+						modification += bonification.getBonification();
+					}
 				}
 			}
 		}
@@ -700,4 +703,35 @@ public class CharacterPlayer {
 		}
 		return modification;
 	}
+
+	public boolean hasSkillTemporalModificator(AvailableSkill availableSkill) {
+		if (getBlessingModification(availableSkill.getSkillDefinition()) != 0) {
+			return true;
+		}
+		return false;
+	}
+
+	public boolean hasSkillModificator(AvailableSkill availableSkill) {
+		if (getBlessingModificationAlways(availableSkill.getSkillDefinition()) != 0) {
+			return true;
+		}
+		return false;
+	}
+
+	public boolean hasCharacteristicTemporalModificator(CharacteristicName characteristicName) {
+		if (getBlessingModification(CharacteristicsDefinitionFactory.getInstance().get(characteristicName,
+				getLanguage())) != 0) {
+			return true;
+		}
+		return false;
+	}
+
+	public boolean hasCharacteristicModificator(CharacteristicName characteristicName) {
+		if (getBlessingModificationAlways(CharacteristicsDefinitionFactory.getInstance().get(characteristicName,
+				getLanguage())) != 0) {
+			return true;
+		}
+		return false;
+	}
+
 }

@@ -25,7 +25,6 @@ package com.softwaremagico.tm.character.occultism;
  */
 
 import com.softwaremagico.tm.Element;
-import com.softwaremagico.tm.character.OccultismType;
 
 public class OccultismPower extends Element<OccultismPower> {
 	private final String roll;

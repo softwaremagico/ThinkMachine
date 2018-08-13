@@ -65,7 +65,7 @@ public class LearnedSkillsTable extends SkillsTable {
 					table.addCell(createSkillElement(characterPlayer, skill,
 							FadingSunsTheme.CHARACTER_SMALL_SKILLS_LINE_FONT_SIZE, MAX_SKILL_COLUMN_WIDTH));
 					table.addCell(createSkillValue(characterPlayer.getSkillRanks(skill),
-							characterPlayer.isSkillSpecial(skill) || characterPlayer.isSkillModified(skill),
+							characterPlayer.isSkillSpecial(skill) || characterPlayer.hasSkillTemporalModificator(skill),characterPlayer.hasSkillModificator(skill),
 							FadingSunsTheme.CHARACTER_SMALL_SKILLS_LINE_FONT_SIZE));
 					added++;
 				}
@@ -85,5 +85,4 @@ public class LearnedSkillsTable extends SkillsTable {
 		cell.setVerticalAlignment(Element.ALIGN_TOP);
 		return cell;
 	}
-
 }

@@ -140,7 +140,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>${project.groupId}</groupId>
-			<artifactId>thinking-machine-core</artifactId>
+			<artifactId>think-machine-core</artifactId>
 			<version>${project.version}</version>
 			<type>jar</type>
 		</dependency>
