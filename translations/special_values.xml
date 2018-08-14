@@ -25,4 +25,11 @@
 		</name>
 		<affects>archery, slugGuns, gunnery, artillery, energyGuns</affects>
 	</rangedAttacks>
+	<controlSkills>
+		<name>
+			<en>Control Skills</en>
+			<es>Habilidades de Control</es>
+		</name>
+		<affects>beastcraft, watercraft, ride, aircraft, spacecraft, landcarft</affects>
+	</controlSkills>
 </specialValues>

@@ -1082,6 +1082,445 @@
 		<group>injuries</group>
 		<curse>true</curse>
 	</shakeyHands>
+	
+	<ambidextrous>
+		<name>
+			<en>Ambidextrous</en>
+			<es>Ambidiestro</es>
+		</name>
+		<cost>4</cost>
+		<bonifications>
+			<bonification>
+				<value>4</value>
+				<affects>rolls</affects>
+				<situation>
+					<en>Offset the penalty using off-hand</en>
+					<es>Penalizador uso mano izquierda</es>
+				</situation>
+			</bonification>
+		</bonifications>
+		<group>knacks</group>
+	</ambidextrous>
+	<beastmaster>
+		<name>
+			<en>Beastmaster</en>
+			<es>Trato con Animales</es>
+		</name>
+		<cost>2</cost>
+		<bonifications>
+			<bonification>
+				<value>2</value>
+				<affects>rolls</affects>
+				<situation>
+					<en>Non-combat interaction with animals</en>
+					<es>Interacción con animales que no sean de combate</es>
+				</situation>
+			</bonification>
+		</bonifications>
+		<group>knacks</group>
+	</beastmaster>
+	<bornSalesman>
+		<name>
+			<en>Born Salesman</en>
+			<es>Vendedor Nato</es>
+		</name>
+		<cost>2</cost>
+		<bonifications>
+			<bonification>
+				<value>2</value>
+				<affects>presence</affects>
+				<situation>
+					<en>When selling</en>
+					<es>Cuando se vende</es>
+				</situation>
+			</bonification>
+		</bonifications>
+		<group>knacks</group>
+	</bornSalesman>
+	<casanova>
+		<name>
+			<en>Casanova</en>
+			<es>Casanova</es>
+		</name>
+		<cost>2</cost>
+		<bonifications>
+			<bonification>
+				<value>2</value>
+				<affects>influence</affects>
+				<situation>
+					<en>Seducing others</en>
+					<es>Se seduce a otros</es>
+				</situation>
+			</bonification>
+		</bonifications>
+		<group>knacks</group>
+	</casanova>
+	<compass>
+		<name>
+			<en>Compass</en>
+			<es>Orientable</es>
+		</name>
+		<cost>2</cost>
+		<bonifications>
+			<bonification>
+				<value>2</value>
+				<affects>wits</affects>
+				<situation>
+					<en>Figuring out directions or locations</en>
+					<es>Encontrar dirección o lugares</es>
+				</situation>
+			</bonification>
+		</bonifications>
+		<group>knacks</group>
+	</compass>
+	<crackPilot>
+		<name>
+			<en>Crack Pilot</en>
+			<es>Piloto Nato</es>
+		</name>
+		<cost>4</cost>
+		<bonifications>
+			<bonification>
+				<value>2</value>
+				<affects>controlSkills</affects>
+				<situation>
+					<en></en>
+					<es></es>
+				</situation>
+			</bonification>
+		</bonifications>
+		<group>knacks</group>
+	</crackPilot>
+	<eloquent>
+		<name>
+			<en>Eloquent</en>
+			<es>Elocuente</es>
+		</name>
+		<cost>2</cost>
+		<bonifications>
+			<bonification>
+				<value>2</value>
+				<affects>presence</affects>
+				<situation>
+					<en>Swaying others through speech</en>
+					<es>Persuadir a otros con el habla</es>
+				</situation>
+			</bonification>
+		</bonifications>
+		<group>knacks</group>
+	</eloquent>
+	<fastDraw>
+		<name>
+			<en>Fast Draw</en>
+			<es>Desenfundado Rápido</es>
+		</name>
+		<cost>2</cost>
+		<bonifications>
+			<bonification>
+				<value>+2</value>
+				<affects>rangedAttacks</affects>
+				<situation>
+					<en>To negate the penalty for drawing a weapon</en>
+					<es>Para negar penalización por desenfundar</es>
+				</situation>
+			</bonification>
+		</bonifications>
+		<group>knacks</group>
+	</fastDraw>
+	<greaseMonkey>
+		<name>
+			<en>Grease Monkey</en>
+			<es>Mecánico</es>
+		</name>
+		<cost>2</cost>
+		<bonifications>
+			<bonification>
+				<value>2</value>
+				<affects>techRedemption</affects>
+				<situation>
+					<en>Repairing</en>
+					<es>Reparando</es>
+				</situation>
+			</bonification>
+		</bonifications>
+		<group>knacks</group>
+	</greaseMonkey>
+	<hacker>
+		<name>
+			<en>Hacker</en>
+			<es>Hacker</es>
+		</name>
+		<cost>2</cost>
+		<bonifications>
+			<bonification>
+				<value>2</value>
+				<affects>thinkMachine</affects>
+				<situation>
+					<en></en>
+					<es></es>
+				</situation>
+			</bonification>
+		</bonifications>
+		<group>knacks</group>
+	</hacker>
+	<keenEars>
+		<name>
+			<en>Keen Ears</en>
+			<es>Oído Agudo</es>
+		</name>
+		<cost>2</cost>
+		<bonifications>
+			<bonification>
+				<value>2</value>
+				<affects>perception</affects>
+				<situation>
+					<en>Hearing only</en>
+					<es>Al escuchar</es>
+				</situation>
+			</bonification>
+		</bonifications>
+		<group>knacks</group>
+	</keenEars>
+	<keenEyes>
+		<name>
+			<en>Keen Eyes</en>
+			<es>Ojo Avizor</es>
+		</name>
+		<cost>2</cost>
+		<bonifications>
+			<bonification>
+				<value>2</value>
+				<affects>perception</affects>
+				<situation>
+					<en>Sight only</en>
+					<es>Con la vista</es>
+				</situation>
+			</bonification>
+		</bonifications>
+		<group>knacks</group>
+	</keenEyes>
+	<luckyAtCards>
+		<name>
+			<en>Lucky at Cards</en>
+			<es>Suerte en las cartas</es>
+		</name>
+		<cost>2</cost>
+		<bonifications>
+			<bonification>
+				<value>2</value>
+				<affects>gambling</affects>
+				<situation>
+					<en>At cards</en>
+					<es>Con cartas</es>
+				</situation>
+			</bonification>
+		</bonifications>
+		<group>knacks</group>
+	</luckyAtCards>
+	<sensitiveSmell>
+		<name>
+			<en>Sensitive Smell</en>
+			<es>Olfato Sensible</es>
+		</name>
+		<cost>2</cost>
+		<bonifications>
+			<bonification>
+				<value>2</value>
+				<affects>perception</affects>
+				<situation>
+					<en>Smell only</en>
+					<es>Con el olfato</es>
+				</situation>
+			</bonification>
+		</bonifications>
+		<group>knacks</group>
+	</sensitiveSmell>
+	<sensitiveTouch>
+		<name>
+			<en>Sensitive Touch</en>
+			<es>Tacto Sensible</es>
+		</name>
+		<cost>2</cost>
+		<bonifications>
+			<bonification>
+				<value>2</value>
+				<affects>perception</affects>
+				<situation>
+					<en>Discern touched objects</en>
+					<es>Discernir objetos tocados</es>
+				</situation>
+			</bonification>
+		</bonifications>
+		<group>knacks</group>
+	</sensitiveTouch>
+	<sonorous>
+		<name>
+			<en>Sonorous</en>
+			<es>Sonoro</es>
+		</name>
+		<cost>2</cost>
+		<bonifications>
+			<bonification>
+				<value>2</value>
+				<affects>presence</affects>
+				<situation>
+					<en>Impressing others through speech</en>
+					<es>Impresionar a otros con el habla</es>
+				</situation>
+			</bonification>
+		</bonifications>
+		<group>knacks</group>
+	</sonorous>
+	<thrifty>
+		<name>
+			<en>Thrifty</en>
+			<es>Ahorrador</es>
+		</name>
+		<cost>2</cost>
+		<bonifications>
+			<bonification>
+				<value>2</value>
+				<affects>wits</affects>
+				<situation>
+					<en>If money matters</en>
+					<es>En temas de dinero</es>
+				</situation>
+			</bonification>
+		</bonifications>
+		<group>knacks</group>
+	</thrifty>
+	<badHearing>
+		<name>
+			<en>Bad Hearing</en>
+			<es>Problemas de Oído</es>
+		</name>
+		<cost>2</cost>
+		<bonifications>
+			<bonification>
+				<value>-2</value>
+				<affects>perception</affects>
+				<situation>
+					<en>Hearing only</en>
+					<es>Al escuchar</es>
+				</situation>
+			</bonification>
+		</bonifications>
+		<group>knacks</group>
+		<curse>true</curse>
+	</badHearing>
+	<badVision>
+		<name>
+			<en>Bad Vision</en>
+			<es>Problemas de Visión</es>
+		</name>
+		<cost>2</cost>
+		<bonifications>
+			<bonification>
+				<value>-2</value>
+				<affects>Perception</affects>
+				<situation>
+					<en>Sight only</en>
+					<es>Con la visión</es>
+				</situation>
+			</bonification>
+		</bonifications>
+		<group>knacks</group>
+		<curse>true</curse>
+	</badVision>
+	<beastFoe>
+		<name>
+			<en>Beast Foe</en>
+			<es>Enemigo de los Animales</es>
+		</name>
+		<cost>2</cost>
+		<bonifications>
+			<bonification>
+				<value>-2</value>
+				<situation>
+					<en>Non combat actions with animals</en>
+					<es>Con animales en situaciones que no sean de combate</es>
+				</situation>
+			</bonification>
+		</bonifications>
+		<group>knacks</group>
+		<curse>true</curse>
+	</beastFoe>
+	<clumsy>
+		<name>
+			<en>Clumsy</en>
+			<es>Patoso</es>
+		</name>
+		<cost>2</cost>
+		<bonifications>
+			<bonification>
+				<value>-2</value>
+				<affects>dexterity</affects>
+				<situation>
+					<en>Athletics tasks</en>
+					<es>Tareas atléticas</es>
+				</situation>
+			</bonification>
+		</bonifications>
+		<group>knacks</group>
+		<curse>true</curse>
+	</clumsy>
+	<mechanicallyDisinclined>
+		<name>
+			<en>Mechanically Disinclined</en>
+			<es>Reacio a la Mecánica</es>
+		</name>
+		<cost>2</cost>
+		<bonifications>
+			<bonification>
+				<value>-2</value>
+				<affects>techRedemption</affects>
+				<situation>
+					<en></en>
+					<es></es>
+				</situation>
+			</bonification>
+		</bonifications>
+		<group>knacks</group>
+		<curse>true</curse>
+	</mechanicallyDisinclined>
+	<poorLiar>
+		<name>
+			<en>Poor Liar</en>
+			<es>Mal Mentiroso</es>
+		</name>
+		<cost>2</cost>
+		<bonifications>
+			<bonification>
+				<value>-2</value>
+				<affects>presence</affects>
+				<situation>
+					<en>When lying</en>
+					<es>Cuando se miente</es>
+				</situation>
+			</bonification>
+		</bonifications>
+		<group>knacks</group>
+		<curse>true</curse>
+	</poorLiar>
+	<quasimodo>
+		<name>
+			<en>Quasimodo</en>
+			<es>Quasimodo</es>
+		</name>
+		<cost>2</cost>
+		<bonifications>
+			<bonification>
+				<value>-2</value>
+				<affects>influence</affects>
+				<situation>
+					<en>Seducing others</en>
+					<es>Seduce a otros</es>
+				</situation>
+			</bonification>
+		</bonifications>
+		<group>knacks</group>
+		<curse>true</curse>
+	</quasimodo>
 
 	<innovative>
 		<name>
@@ -1119,58 +1558,7 @@
 	</haughty>
 
 
-	<greaseMonkey>
-		<name>
-			<en>Grease Monkey</en>
-			<es>Mecánico</es>
-		</name>
-		<cost>2</cost>
-		<bonifications>
-			<bonification>
-				<value>2</value>
-				<affects>techRedemption</affects>
-				<situation>
-					<en>Repairing</en>
-					<es>Reparando</es>
-				</situation>
-			</bonification>
-		</bonifications>
-		<group>knacks</group>
-	</greaseMonkey>
-	<beastFoe>
-		<name>
-			<en>Beast Foe</en>
-			<es>Enemigo de los Animales</es>
-		</name>
-		<cost>2</cost>
-		<bonifications>
-			<bonification>
-				<value>-2</value>
-				<situation>
-					<en>Non combat actions with animals</en>
-					<es>Con animales en situaciones que no sean de combate</es>
-				</situation>
-			</bonification>
-		</bonifications>
-		<group>knacks</group>
-		<curse>true</curse>
-	</beastFoe>
-	<hacker>
-		<name>
-			<en>Hacker</en>
-			<es>Hacker</es>
-		</name>
-		<cost>2</cost>
-		<bonifications>
-			<bonification>
-				<value>2</value>
-				<affects>thinkMachine</affects>
-				<situation>
-					<en></en>
-					<es></es>
-				</situation>
-			</bonification>
-		</bonifications>
-		<group>knacks</group>
-	</hacker>
+
+
+	
 </blessings>
