@@ -50,11 +50,11 @@ public class BlessingTable extends VerticalTable {
 		addCell(createTitle(getTranslator().getTranslatedText("blessingTable"),
 				FadingSunsTheme.CHARACTER_SMALL_BLESSING_TITLE_FONT_SIZE));
 
-		addCell(createSubtitleLine("+/-", FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE));
+		addCell(createSubtitleLine("+/-", FadingSunsTheme.CHARACTER_SMALL_TRAITS_FONT_SIZE));
 		addCell(createSubtitleLine(getTranslator().getTranslatedText("blessingTableTrait"),
-				FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE));
+				FadingSunsTheme.CHARACTER_SMALL_TRAITS_FONT_SIZE));
 		addCell(createSubtitleLine(getTranslator().getTranslatedText("blessingTableSituation"),
-				FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE));
+				FadingSunsTheme.CHARACTER_SMALL_TRAITS_FONT_SIZE));
 
 		int added = 0;
 		if (characterPlayer != null) {
@@ -63,13 +63,13 @@ public class BlessingTable extends VerticalTable {
 				while (it.hasNext()) {
 					Bonification bonification = it.next();
 					addCell(createElementLine(bonification.getBonification(), BONIFICATION_COLUMN_WIDTH,
-							FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE));
+							FadingSunsTheme.CHARACTER_SMALL_TRAITS_FONT_SIZE));
 					PdfPCell nameCell = createElementLine(bonification.getAffects() != null ? bonification.getAffects()
-							.getName() : "", TRAIT_COLUMN_WIDTH, FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE);
+							.getName() : "", TRAIT_COLUMN_WIDTH, FadingSunsTheme.CHARACTER_SMALL_TRAITS_FONT_SIZE);
 					nameCell.setHorizontalAlignment(Element.ALIGN_LEFT);
 					addCell(nameCell);
 					PdfPCell descriptionCell = createElementLine(bonification.getSituation(), SITUATION_COLUMN_WIDTH,
-							FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE);
+							FadingSunsTheme.CHARACTER_SMALL_TRAITS_FONT_SIZE);
 					descriptionCell.setHorizontalAlignment(Element.ALIGN_LEFT);
 					addCell(descriptionCell);
 					added++;

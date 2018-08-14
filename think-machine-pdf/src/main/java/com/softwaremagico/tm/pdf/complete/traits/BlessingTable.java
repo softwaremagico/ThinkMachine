@@ -62,14 +62,14 @@ public class BlessingTable extends VerticalTable {
 				while (it.hasNext()) {
 					Bonification bonification = it.next();
 					if (i == 0) {
-						addCell(createElementLine(blessing.getName(), NAME_COLUMN_WIDTH));
+						addCell(createElementLine(blessing.getName(), NAME_COLUMN_WIDTH, FadingSunsTheme.TRAITS_FONT_SIZE));
 					} else {
-						addCell(createElementLine("      ", NAME_COLUMN_WIDTH));
+						addCell(createElementLine("      ", NAME_COLUMN_WIDTH, FadingSunsTheme.TRAITS_FONT_SIZE));
 					}
-					addCell(createElementLine(bonification.getBonification(), BONIFICATION_COLUMN_WIDTH));
+					addCell(createElementLine(bonification.getBonification(), BONIFICATION_COLUMN_WIDTH, FadingSunsTheme.TRAITS_FONT_SIZE));
 					addCell(createElementLine(bonification.getAffects() != null ? bonification.getAffects().getName()
-							: "", TRAIT_COLUMN_WIDTH));
-					addCell(createElementLine(bonification.getSituation(), SITUATION_COLUMN_WIDTH));
+							: "", TRAIT_COLUMN_WIDTH, FadingSunsTheme.TRAITS_FONT_SIZE));
+					addCell(createElementLine(bonification.getSituation(), SITUATION_COLUMN_WIDTH, FadingSunsTheme.TRAITS_FONT_SIZE));
 					addedBlessings++;
 					i++;
 				}

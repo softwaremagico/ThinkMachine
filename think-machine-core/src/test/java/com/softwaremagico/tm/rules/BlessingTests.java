@@ -59,6 +59,6 @@ public class BlessingTests {
 		CharacterPlayer player = CustomCharacter.create(LANGUAGE);
 		Assert.assertEquals(
 				(int) player.getSkillTotalRanks(AvailableSkillsFactory.getInstance().getElement("energyGuns", LANGUAGE)),
-				5);
+				6);
 	}
 }

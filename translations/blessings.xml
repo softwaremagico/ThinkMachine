@@ -852,7 +852,7 @@
 	<badHeart>
 		<name>
 			<en>Bad Heart</en>
-			<es></es>
+			<es>Problemas de Corazón</es>
 		</name>
 		<cost>2</cost>
 		<bonifications>
@@ -861,7 +861,7 @@
 				<affects>endurance</affects>
 				<situation>
 					<en>Atheltic tasks</en>
-					<es></es>
+					<es>Tareas atléticas</es>
 				</situation>
 			</bonification>
 		</bonifications>
@@ -871,7 +871,7 @@
 	<badLiver>
 		<name>
 			<en>Bad Liver</en>
-			<es></es>
+			<es>Problemas de Hígado</es>
 		</name>
 		<cost>2</cost>
 		<bonifications>
@@ -880,7 +880,7 @@
 				<affects>endurance</affects>
 				<situation>
 					<en>Against toxines</en>
-					<es></es>
+					<es>Contra toxinas</es>
 				</situation>
 			</bonification>
 		</bonifications>
@@ -890,7 +890,7 @@
 	<badLungs>
 		<name>
 			<en>Bad Lungs</en>
-			<es></es>
+			<es>Problemas de Pulmones</es>
 		</name>
 		<cost>1</cost>
 		<bonifications>
@@ -899,7 +899,7 @@
 				<affects>endurance</affects>
 				<situation>
 					<en>Athletic Tasks</en>
-					<es></es>
+					<es>Tareas Atléticas</es>
 				</situation>
 			</bonification>
 		</bonifications>
@@ -928,7 +928,7 @@
 	<incurableDisease>
 		<name>
 			<en>Incurable Disease</en>
-			<es></es>
+			<es>Enfermedad Incurable</es>
 		</name>
 		<cost>3</cost>
 		<bonifications>
@@ -936,7 +936,7 @@
 				<value>-1</value>
 				<affects>vitality</affects>
 				<situation>
-					<en>Base value</en>
+					<en></en>
 					<es></es>
 				</situation>
 			</bonification>
@@ -947,7 +947,7 @@
 	<limp>
 		<name>
 			<en>Limp</en>
-			<es></es>
+			<es>Cojera</es>
 		</name>
 		<cost>1</cost>
 		<bonifications>
@@ -966,7 +966,7 @@
 	<missingArm>
 		<name>
 			<en>Missing Arm</en>
-			<es></es>
+			<es>Manco</es>
 		</name>
 		<cost>4</cost>
 		<bonifications>
@@ -975,7 +975,7 @@
 				<affects>dexterity</affects>
 				<situation>
 					<en>If requiring two arms</en>
-					<es></es>
+					<es>Si requiere los dos brazos</es>
 				</situation>
 			</bonification>
 		</bonifications>
@@ -985,7 +985,7 @@
 	<missingEye>
 		<name>
 			<en>Missing Eye</en>
-			<es></es>
+			<es>Tuerto</es>
 		</name>
 		<cost>3</cost>
 		<bonifications>
@@ -993,8 +993,8 @@
 				<value>-2</value>
 				<affects>perception</affects>
 				<situation>
-					<en>limited field of vision</en>
-					<es></es>
+					<en>Limited field of vision</en>
+					<es>Campo de visión limitado</es>
 				</situation>
 			</bonification>
 			<bonification>
@@ -1002,7 +1002,7 @@
 				<affects>rangedAttacks</affects>
 				<situation>
 					<en>Poor depth perception</en>
-					<es></es>
+					<es>Poca percepción de profundidad</es>
 				</situation>
 			</bonification>
 		</bonifications>
@@ -1012,7 +1012,7 @@
 	<missingLeg>
 		<name>
 			<en>Missing Leg</en>
-			<es></es>
+			<es>Lisiado</es>
 		</name>
 		<cost>4</cost>
 		<bonifications>
@@ -1044,7 +1044,44 @@
 		<group>injuries</group>
 		<curse>true</curse>
 	</missingLeg>
-
+	<painSensitive>
+		<name>
+			<en>Pain Sensitive</en>
+			<es>Sensible al Dolor</es>
+		</name>
+		<cost>4</cost>
+		<bonifications>
+			<bonification>
+				<value>-2</value>
+				<affects>rolls</affects>
+				<situation>
+					<en>Two turns after wounded</en>
+					<es>Dos turnos tras ser herido</es>
+				</situation>
+			</bonification>
+		</bonifications>
+		<group>injuries</group>
+		<curse>true</curse>
+	</painSensitive>
+	<shakeyHands>
+		<name>
+			<en>Shakey Hands</en>
+			<es>Manos Temblorosas</es>
+		</name>
+		<cost>2</cost>
+		<bonifications>
+			<bonification>
+				<value>-2</value>
+				<affects>desxterity</affects>
+				<situation>
+					<en>Fine manipulation</en>
+					<es>Manipular cosas con precisión</es>
+				</situation>
+			</bonification>
+		</bonifications>
+		<group>injuries</group>
+		<curse>true</curse>
+	</shakeyHands>
 
 	<innovative>
 		<name>

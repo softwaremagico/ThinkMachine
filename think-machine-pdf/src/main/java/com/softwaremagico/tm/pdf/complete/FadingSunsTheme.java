@@ -54,6 +54,7 @@ public abstract class FadingSunsTheme {
 	public final static int ANNOTATIONS_SUBTITLE_FONT_SIZE = 9;
 	public final static int VERTICALTABLE_TITLE_FONT_SIZE = 12;
 	public final static int TABLE_LINE_FONT_SIZE = 8;
+	public final static int TRAITS_FONT_SIZE = 7;
 	public final static int VICTORY_POINTS_FONT_SIZE = 6;
 	public final static int VICTORY_POINTS_TITLE_FONT_SIZE = 12;
 	public final static int FIGHTING_TITLE_FONT_SIZE = 12;
@@ -81,6 +82,7 @@ public abstract class FadingSunsTheme {
 	public final static int CHARACTER_VITALITY_PENALTIES_TITLE_FONT_SIZE = 9;
 	public final static int CHARACTER_SMALL_SKILLS_LINE_FONT_SIZE = 7;
 	public final static int CHARACTER_SMALL_TABLE_LINE_FONT_SIZE = 6;
+	public final static int CHARACTER_SMALL_TRAITS_FONT_SIZE = 6;
 	public final static int CHARACTER_COUNTER_POINT_SIZE = 11;
 	public final static int CHARACTER_SMALL_WEAPONS_TITLE_FONT_SIZE = CHARACTER_SMALL_BLESSING_TITLE_FONT_SIZE;
 	public final static int CHARACTER_SMALL_OCCULTISM_TITLE_FONT_SIZE = CHARACTER_SMALL_BLESSING_TITLE_FONT_SIZE;
