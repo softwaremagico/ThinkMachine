@@ -67,7 +67,7 @@ public class NaturalSkillsTable extends SkillsTable {
 			for (AvailableSkill skill : characterPlayer.getNaturalSkills()) {
 				table.addCell(createSkillElement(characterPlayer, skill,
 						FadingSunsTheme.CHARACTER_SMALL_SKILLS_LINE_FONT_SIZE, MAX_SKILL_COLUMN_WIDTH));
-				table.addCell(createSkillValue(characterPlayer.getSkillRanks(skill),
+				table.addCell(createSkillValue(characterPlayer.getSkillTotalRanks(skill),
 						characterPlayer.isSkillSpecial(skill) || characterPlayer.hasSkillTemporalModificator(skill),
 						characterPlayer.hasSkillModificator(skill),
 						FadingSunsTheme.CHARACTER_SMALL_SKILLS_LINE_FONT_SIZE));

@@ -82,7 +82,7 @@ public class CompleteSkillsTable extends SkillsTable {
 			for (AvailableSkill skill : characterPlayer.getNaturalSkills()) {
 				table.addCell(createSkillElement(characterPlayer, skill, FadingSunsTheme.SKILLS_LINE_FONT_SIZE,
 						MAX_SKILL_COLUMN_WIDTH));
-				table.addCell(createSkillValue(characterPlayer.getSkillRanks(skill),
+				table.addCell(createSkillValue(characterPlayer.getSkillTotalRanks(skill),
 						characterPlayer.isSkillSpecial(skill) || characterPlayer.hasSkillTemporalModificator(skill),
 						characterPlayer.hasSkillModificator(skill), FadingSunsTheme.SKILLS_LINE_FONT_SIZE));
 			}
@@ -198,14 +198,14 @@ public class CompleteSkillsTable extends SkillsTable {
 				for (AvailableSkill availableSkill : availableSkillsByDefinition) {
 					// Only specializations if they have ranks.
 					if (!skillDefinition.isSpecializable()
-							|| (characterPlayer != null && characterPlayer.getSkillRanks(availableSkill) > 0)) {
+							|| (characterPlayer != null && characterPlayer.getSkillTotalRanks(availableSkill) > 0)) {
 						rows.add(createSkillElement(characterPlayer, availableSkill,
 								FadingSunsTheme.SKILLS_LINE_FONT_SIZE, MAX_SKILL_COLUMN_WIDTH));
 						if (characterPlayer == null) {
 							rows.add(createSkillLine(SKILL_VALUE_GAP, FadingSunsTheme.SKILLS_LINE_FONT_SIZE));
 						} else {
 							rows.add(createSkillValue(
-									characterPlayer.getSkillRanks(availableSkill),
+									characterPlayer.getSkillTotalRanks(availableSkill),
 									characterPlayer.isSkillSpecial(availableSkill)
 											|| characterPlayer.hasSkillTemporalModificator(availableSkill),
 									characterPlayer.hasSkillModificator(availableSkill), FadingSunsTheme.SKILLS_LINE_FONT_SIZE));

@@ -100,7 +100,7 @@ public class CharacterSheetCreationTest {
 		player.getInfo().setHeight("1,76m");
 		player.getInfo().setWeight("78kg");
 
-		player.getCharacteristic(CharacteristicName.STRENGTH).setValue(2);
+		player.getCharacteristic(CharacteristicName.STRENGTH).setValue(3);
 		player.getCharacteristic(CharacteristicName.DEXTERITY).setValue(2);
 		player.getCharacteristic(CharacteristicName.ENDURANCE).setValue(3);
 		player.getCharacteristic(CharacteristicName.WITS).setValue(4);
@@ -135,6 +135,7 @@ public class CharacterSheetCreationTest {
 		player.addBlessing(BlessingFactory.getInstance().getElement("gullible", player.getLanguage()));
 		player.addBlessing(BlessingFactory.getInstance().getElement("limp", player.getLanguage()));
 		player.addBlessing(BlessingFactory.getInstance().getElement("missingEye", player.getLanguage()));
+		player.addBlessing(BlessingFactory.getInstance().getElement("incurableDisease", player.getLanguage()));
 
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("stigma_1", player.getLanguage()));
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("heir", player.getLanguage()));

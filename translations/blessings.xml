@@ -999,39 +999,7 @@
 			</bonification>
 			<bonification>
 				<value>-1</value>
-				<affects>archery</affects>
-				<situation>
-					<en>Poor depth perception</en>
-					<es></es>
-				</situation>
-			</bonification>
-			<bonification>
-				<value>-1</value>
-				<affects>slugGuns</affects>
-				<situation>
-					<en>Poor depth perception</en>
-					<es></es>
-				</situation>
-			</bonification>
-			<bonification>
-				<value>-1</value>
-				<affects>gunnery</affects>
-				<situation>
-					<en>Poor depth perception</en>
-					<es></es>
-				</situation>
-			</bonification>
-			<bonification>
-				<value>-1</value>
-				<affects>artillery</affects>
-				<situation>
-					<en>Poor depth perception</en>
-					<es></es>
-				</situation>
-			</bonification>
-			<bonification>
-				<value>-1</value>
-				<affects>energyGuns</affects>
+				<affects>rangedAttacks</affects>
 				<situation>
 					<en>Poor depth perception</en>
 					<es></es>

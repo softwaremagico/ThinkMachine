@@ -34,7 +34,7 @@ import com.softwaremagico.tm.character.blessings.BlessingFactory;
 @Test(groups = { "blessingFactory" })
 public class BlessingFactoryTests {
 	private final static int DEFINED_BLESSINGS = 59;
-	private final static int DEFINED_BONIFICATIONS_MISSING_EYE = 6;
+	private final static int DEFINED_BONIFICATIONS_MISSING_EYE = 2;
 
 	@Test
 	public void readBlessings() throws InvalidXmlElementException {

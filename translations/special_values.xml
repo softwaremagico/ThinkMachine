@@ -18,4 +18,11 @@
 			<es>Wyrd</es>
 		</name>
 	</wyrd>
+	<rangedAttacks>
+		<name>
+			<en>Ranged Attacks</en>
+			<es>Disparo</es>
+		</name>
+		<affects>archery, slugGuns, gunnery, artillery, energyGuns</affects>
+	</rangedAttacks>
 </specialValues>

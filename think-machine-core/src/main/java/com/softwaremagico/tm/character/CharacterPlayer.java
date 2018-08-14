@@ -296,6 +296,16 @@ public class CharacterPlayer {
 		Collections.sort(skillNameOrdered);
 	}
 
+	/**
+	 * For random characers, set the desired values.
+	 * 
+	 * @param availableSkill
+	 *            skill selected
+	 * @param value
+	 *            desired ranks
+	 * @throws InvalidSkillException
+	 *             if skill does not exists.
+	 */
 	public void setDesiredSkillRanks(AvailableSkill availableSkill, int value) throws InvalidSkillException {
 		if (availableSkill == null) {
 			throw new InvalidSkillException("Null skill is not allowed here.");
@@ -303,33 +313,55 @@ public class CharacterPlayer {
 		getFreeStyleCharacterCreation().getDesiredSkillRanks().put(availableSkill, value);
 	}
 
-	private Integer getSkillRanks(Skill<?> skill) {
-		Integer cyberneticBonus = getCyberneticsValue(skill.getName());
+	private Integer getSkillAssignedRanks(Skill<?> skill) {
 		if (skills.get(skill.getName()) == null) {
 			if (SkillsDefinitionsFactory.getInstance().isNaturalSkill(skill.getName(), language)) {
-				if (cyberneticBonus != 0) {
-					return Math.max(3, cyberneticBonus);
-				}
 				return 3;
 			}
-			// No ranks. Maybe some cybernetic...
-			return cyberneticBonus;
-		}
-		if (cyberneticBonus != null) {
-			return Math.max(skills.get(skill.getName()).getValue(), cyberneticBonus);
+			return 0;
 		}
 		return skills.get(skill.getName()).getValue();
 	}
 
-	public Integer getSkillRanks(AvailableSkill skill) {
+	public Integer getSkillAssignedRanks(AvailableSkill skill) {
 		SelectedSkill selectedSkill = getSelectedSkill(skill);
 		// Use the skill with generalization.
 		if (selectedSkill != null) {
-			return getSkillRanks(selectedSkill);
+			return getSkillAssignedRanks(selectedSkill);
 		} else {
 			// Use a simple skill if not generalization.
 			if (!skill.getSkillDefinition().isSpecializable() || skill.getSkillDefinition().isNatural()) {
-				return getSkillRanks((Skill<AvailableSkill>) skill);
+				return getSkillAssignedRanks((Skill<AvailableSkill>) skill);
+			} else {
+				return 0;
+			}
+		}
+	}
+
+	private Integer getSkillTotalRanks(Skill<?> skill) {
+		Integer cyberneticBonus = getCyberneticsValue(skill.getName());
+		Integer skillValue = getSkillAssignedRanks(skill);
+		// Set the modifications of blessings.
+		if (skills.get(skill.getName()) != null) {
+			skillValue += getBlessingModificationAlways(skills.get(skill.getName()).getAvailableSkill()
+					.getSkillDefinition());
+		}
+		// Cybernetics only if better.
+		if (cyberneticBonus != null) {
+			return Math.max(skillValue, cyberneticBonus);
+		}
+		return skillValue;
+	}
+
+	public Integer getSkillTotalRanks(AvailableSkill skill) {
+		SelectedSkill selectedSkill = getSelectedSkill(skill);
+		// Use the skill with generalization.
+		if (selectedSkill != null) {
+			return getSkillTotalRanks(selectedSkill);
+		} else {
+			// Use a simple skill if not generalization.
+			if (!skill.getSkillDefinition().isSpecializable() || skill.getSkillDefinition().isNatural()) {
+				return getSkillTotalRanks((Skill<AvailableSkill>) skill);
 			} else {
 				return 0;
 			}
@@ -490,7 +522,7 @@ public class CharacterPlayer {
 	public List<AvailableSkill> getLearnedSkills() throws InvalidXmlElementException {
 		List<AvailableSkill> learnedSkills = new ArrayList<>();
 		for (AvailableSkill skill : AvailableSkillsFactory.getInstance().getLearnedSkills(language)) {
-			if (getSkillRanks(skill) != null) {
+			if (getSkillTotalRanks(skill) != null) {
 				learnedSkills.add(skill);
 			}
 		}
@@ -540,15 +572,15 @@ public class CharacterPlayer {
 	public int getSkillsTotalPoints() throws InvalidXmlElementException {
 		int skillPoints = 0;
 		for (AvailableSkill skill : AvailableSkillsFactory.getInstance().getNaturalSkills(getLanguage())) {
-			skillPoints += getSkillRanks(skill) - getStartingValue(skill);
+			skillPoints += getSkillAssignedRanks(skill) - getStartingValue(skill);
 		}
 
 		for (AvailableSkill skill : AvailableSkillsFactory.getInstance().getLearnedSkills((getLanguage()))) {
 			if (isSkillSpecial(skill)) {
 				continue;
 			}
-			if (getSkillRanks(skill) != null) {
-				skillPoints += getSkillRanks(skill);
+			if (getSkillTotalRanks(skill) != null) {
+				skillPoints += getSkillAssignedRanks(skill);
 			}
 		}
 
@@ -593,7 +625,7 @@ public class CharacterPlayer {
 	}
 
 	public boolean isSkillTrained(AvailableSkill skill) {
-		int skillRanks = getSkillRanks(skill);
+		int skillRanks = getSkillTotalRanks(skill);
 		try {
 			boolean isNatural = getNaturalSkills().contains(skill);
 			return ((skillRanks > 3 && isNatural) || (skillRanks > 0 && isNatural));
@@ -680,8 +712,18 @@ public class CharacterPlayer {
 		int modification = 0;
 		for (Blessing blessing : getBlessings()) {
 			for (Bonification bonification : blessing.getBonifications()) {
-				if (Objects.equals(bonification.getAffects(), value)) {
-					if (bonification.getSituation() != null && !bonification.getSituation().isEmpty()) {
+				if (bonification.getSituation() != null && !bonification.getSituation().isEmpty()) {
+					if (bonification.getAffects() instanceof SpecialValue) {
+						SpecialValue specialValue = (SpecialValue) bonification.getAffects();
+						// Has a list of values defined.
+						for (IValue specialValueSkill : specialValue.getAffects()) {
+							if (Objects.equals(specialValueSkill, value)) {
+								modification += bonification.getBonification();
+								break;
+							}
+						}
+					}
+					if (Objects.equals(bonification.getAffects(), value)) {
 						modification += bonification.getBonification();
 					}
 				}
@@ -694,11 +736,22 @@ public class CharacterPlayer {
 		int modification = 0;
 		for (Blessing blessing : getBlessings()) {
 			for (Bonification bonification : blessing.getBonifications()) {
-				if (Objects.equals(bonification.getAffects(), value)) {
-					if (bonification.getSituation() == null || bonification.getSituation().isEmpty()) {
+				if (bonification.getSituation() == null || bonification.getSituation().isEmpty()) {
+					if (bonification.getAffects() instanceof SpecialValue) {
+						SpecialValue specialValue = (SpecialValue) bonification.getAffects();
+						// Has a list of values defined.
+						for (IValue specialValueSkill : specialValue.getAffects()) {
+							if (Objects.equals(specialValueSkill, value)) {
+								modification += bonification.getBonification();
+								break;
+							}
+						}
+					}
+					if (Objects.equals(bonification.getAffects(), value)) {
 						modification += bonification.getBonification();
 					}
 				}
+
 			}
 		}
 		return modification;

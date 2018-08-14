@@ -268,7 +268,7 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 	private int weightByPreferences(AvailableSkill skill) {
 		// Specialization by selection.
 		if (getPreferences().contains(SkillGroupPreferences.getSkillGroupPreference(skill.getSkillDefinition().getSkillGroup().name()))) {
-			int skillRanks = getCharacterPlayer().getSkillRanks(skill);
+			int skillRanks = getCharacterPlayer().getSkillTotalRanks(skill);
 
 			// Good probability for values between the specialization.
 			if (skillRanks < SkillGroupPreferences.getSkillGroupPreference(skill.getSkillDefinition().getSkillGroup().name()).minimum()) {
@@ -281,7 +281,7 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 	private int weightBySpecialization(AvailableSkill skill) {
 		SpecializationPreferences selectedSpecialization = SpecializationPreferences.getSelected(getPreferences());
 		if (selectedSpecialization != null) {
-			int skillRanks = getCharacterPlayer().getSkillRanks(skill);
+			int skillRanks = getCharacterPlayer().getSkillTotalRanks(skill);
 			// No more that the maximum allowed.
 			if (skillRanks > selectedSpecialization.maximum()) {
 				return NO_PROBABILITY;

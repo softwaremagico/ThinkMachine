@@ -24,6 +24,10 @@ package com.softwaremagico.tm.character.values;
  * #L%
  */
 
+import java.util.HashSet;
+import java.util.Set;
+import java.util.StringTokenizer;
+
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
 import com.softwaremagico.tm.language.ITranslator;
@@ -33,6 +37,7 @@ public class SpecialValuesFactory extends XmlFactory<SpecialValue> {
 	private final static ITranslator translatorSpecials = LanguagePool.getTranslator("special_values.xml");
 
 	private final static String NAME = "name";
+	private final static String AFFECTS = "affects";
 
 	private static SpecialValuesFactory instance;
 
@@ -63,8 +68,18 @@ public class SpecialValuesFactory extends XmlFactory<SpecialValue> {
 			throws InvalidXmlElementException {
 		try {
 			String name = translator.getNodeValue(specialId, NAME, language);
+			String affects = translator.getNodeValue(specialId, AFFECTS);
 
-			SpecialValue specialValue = new SpecialValue(specialId, name);
+			Set<IValue> affectsGroup = new HashSet<>();
+
+			if (affects != null && !affects.isEmpty()) {
+				StringTokenizer affectsValue = new StringTokenizer(affects, ",");
+				while (affectsValue.hasMoreTokens()) {
+					affectsGroup.add(SpecialValue.getValue(affectsValue.nextToken().trim(), language));
+				}
+			}
+
+			SpecialValue specialValue = new SpecialValue(specialId, name, affectsGroup);
 			return specialValue;
 		} catch (Exception e) {
 			throw new InvalidSpecialValueException("Invalid structure in special '" + specialId + "'.", e);

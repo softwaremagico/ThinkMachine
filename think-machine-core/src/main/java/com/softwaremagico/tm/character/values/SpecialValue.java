@@ -24,14 +24,45 @@ package com.softwaremagico.tm.character.values;
  * #L%
  */
 
+import java.util.Set;
+
 import com.softwaremagico.tm.Element;
+import com.softwaremagico.tm.InvalidXmlElementException;
+import com.softwaremagico.tm.character.characteristics.CharacteristicsDefinitionFactory;
+import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
 
 public class SpecialValue extends Element<SpecialValue> implements IValue {
 	public static String VITALITY = "vitality";
 	public static String WYRD = "wyrd";
 
-	public SpecialValue(String id, String name) {
+	private final Set<IValue> affects;
+
+	public SpecialValue(String id, String name, Set<IValue> affects) {
 		super(id, name);
+		this.affects = affects;
+	}
+
+	public Set<IValue> getAffects() {
+		return affects;
+	}
+
+	public static IValue getValue(String valueName, String language) throws InvalidXmlElementException {
+		try {
+			// Is a characteristic?
+			return CharacteristicsDefinitionFactory.getInstance().getElement(valueName, language);
+		} catch (InvalidXmlElementException e) {
+			// Is a skill??
+			try {
+				return SkillsDefinitionsFactory.getInstance().getElement(valueName, language);
+			} catch (InvalidXmlElementException e2) {
+				// Is something else?
+				try {
+					return SpecialValuesFactory.getInstance().getElement(valueName, language);
+				} catch (InvalidXmlElementException e3) {
+					throw new InvalidXmlElementException("Invalid value '" + valueName + "'.", e3);
+				}
+			}
+		}
 	}
 
 }

@@ -61,10 +61,10 @@ public class LearnedSkillsTable extends SkillsTable {
 		int added = 0;
 		if (characterPlayer != null) {
 			for (AvailableSkill skill : characterPlayer.getLearnedSkills()) {
-				if (characterPlayer.getSkillRanks(skill) > 0) {
+				if (characterPlayer.getSkillTotalRanks(skill) > 0) {
 					table.addCell(createSkillElement(characterPlayer, skill,
 							FadingSunsTheme.CHARACTER_SMALL_SKILLS_LINE_FONT_SIZE, MAX_SKILL_COLUMN_WIDTH));
-					table.addCell(createSkillValue(characterPlayer.getSkillRanks(skill),
+					table.addCell(createSkillValue(characterPlayer.getSkillTotalRanks(skill),
 							characterPlayer.isSkillSpecial(skill) || characterPlayer.hasSkillTemporalModificator(skill),characterPlayer.hasSkillModificator(skill),
 							FadingSunsTheme.CHARACTER_SMALL_SKILLS_LINE_FONT_SIZE));
 					added++;

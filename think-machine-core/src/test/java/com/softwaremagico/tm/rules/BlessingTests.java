@@ -31,6 +31,7 @@ import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.blessings.BlessingFactory;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
+import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.characters.CustomCharacter;
 
 @Test(groups = { "blessings" })
@@ -51,5 +52,13 @@ public class BlessingTests {
 		int movement = player.getValue(CharacteristicName.MOVEMENT);
 		player.addBlessing(BlessingFactory.getInstance().getElement("limp", LANGUAGE));
 		Assert.assertEquals((int) player.getValue(CharacteristicName.MOVEMENT), movement - 1);
+	}
+
+	@Test
+	public void checkRangedAttacksModifications() throws InvalidXmlElementException {
+		CharacterPlayer player = CustomCharacter.create(LANGUAGE);
+		Assert.assertEquals(
+				(int) player.getSkillTotalRanks(AvailableSkillsFactory.getInstance().getElement("energyGuns", LANGUAGE)),
+				5);
 	}
 }

@@ -29,10 +29,8 @@ import java.util.Set;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
-import com.softwaremagico.tm.character.characteristics.CharacteristicsDefinitionFactory;
-import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
 import com.softwaremagico.tm.character.values.IValue;
-import com.softwaremagico.tm.character.values.SpecialValuesFactory;
+import com.softwaremagico.tm.character.values.SpecialValue;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
 
@@ -90,7 +88,7 @@ public class BlessingFactory extends XmlFactory<Blessing> {
 					String valueName = translator.getNodeValue(blessingId,  BONIFICATION, AFFECTS, node);
 					IValue affects = null;
 					if (valueName != null) {
-						affects = getValue(valueName, language);
+						affects = SpecialValue.getValue(valueName, language);
 					}
 					String situation = translator.getNodeValue(blessingId, SITUATION, language, node);
 
@@ -117,26 +115,6 @@ public class BlessingFactory extends XmlFactory<Blessing> {
 			return blessing;
 		} catch (Exception e) {
 			throw new InvalidBlessingException("Invalid structure in blessing '" + blessingId + "'.", e);
-		}
-
-	}
-
-	private IValue getValue(String valueName, String language) throws InvalidXmlElementException {
-		try {
-			// Is a characteristic?
-			return CharacteristicsDefinitionFactory.getInstance().getElement(valueName, language);
-		} catch (InvalidXmlElementException e) {
-			// Is a skill??
-			try {
-				return SkillsDefinitionsFactory.getInstance().getElement(valueName, language);
-			} catch (InvalidXmlElementException e2) {
-				// Is something else?
-				try {
-					return SpecialValuesFactory.getInstance().getElement(valueName, language);
-				} catch (InvalidXmlElementException e3) {
-					throw new InvalidXmlElementException("Invalid value '" + valueName + "' for " + AFFECTS + ". ", e3);
-				}
-			}
 		}
 	}
 

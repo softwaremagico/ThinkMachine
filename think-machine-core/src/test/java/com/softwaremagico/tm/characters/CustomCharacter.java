@@ -49,7 +49,7 @@ public class CustomCharacter {
 	public static CharacterPlayer create(String language) throws InvalidXmlElementException {
 		CacheHandler.clearCache();
 		CharacterPlayer player = new CharacterPlayer(language);
-		player.getInfo().setName("John Sephard");
+		player.getInfo().setName("Oliver Queen");
 		player.getInfo().setPlayer("Player 1");
 		player.getInfo().setGender(Gender.MALE);
 		player.getInfo().setAge(30);
@@ -64,7 +64,7 @@ public class CustomCharacter {
 		player.getInfo().setHeight("1,76m");
 		player.getInfo().setWeight("78kg");
 
-		player.getCharacteristic(CharacteristicName.STRENGTH).setValue(1);
+		player.getCharacteristic(CharacteristicName.STRENGTH).setValue(2);
 		player.getCharacteristic(CharacteristicName.DEXTERITY).setValue(2);
 		player.getCharacteristic(CharacteristicName.ENDURANCE).setValue(3);
 		player.getCharacteristic(CharacteristicName.WITS).setValue(4);
@@ -110,6 +110,7 @@ public class CustomCharacter {
 		player.addBlessing(BlessingFactory.getInstance().getElement("handsome", player.getLanguage()));
 		player.addBlessing(BlessingFactory.getInstance().getElement("curious", player.getLanguage()));
 		player.addBlessing(BlessingFactory.getInstance().getElement("gullible", player.getLanguage()));
+		player.addBlessing(BlessingFactory.getInstance().getElement("missingEye", player.getLanguage()));
 
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("stigma_1", player.getLanguage()));
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("heir", player.getLanguage()));
