@@ -209,6 +209,23 @@
 		</bonifications>
 		<group>behaviour</group>
 	</gracious>
+	<innovative>
+		<name>
+			<en>Innovative</en>
+			<es>Innovador</es>
+		</name>
+		<cost>2</cost>
+		<bonifications>
+			<bonification>
+				<value>2</value>
+				<affects>tech</affects>
+				<situation>
+					<en>To invent something new</en>
+					<es>Inventar algo nuevo</es>
+				</situation>
+			</bonification>
+		</bonifications>
+	</innovative>
 	<just>
 		<name>
 			<en>Just</en>
@@ -1522,40 +1539,175 @@
 		<curse>true</curse>
 	</quasimodo>
 
-	<innovative>
+	<wellLiked>
 		<name>
-			<en>Innovative</en>
-			<es>Innovador</es>
+			<en>Well-liked</en>
+			<es>Querido</es>
+		</name>
+		<cost>1</cost>
+		<bonifications>
+			<bonification>
+				<value>1</value>
+				<affects>Influence</affects>
+				<situation>
+					<en>When recognized</en>
+					<es>Cuando es reconocido</es>
+				</situation>
+			</bonification>
+		</bonifications>
+		<group>reputation</group>
+	</wellLiked>
+	<charitable>
+		<name>
+			<en>Charitable</en>
+			<es>Caritativo</es>
 		</name>
 		<cost>2</cost>
 		<bonifications>
 			<bonification>
 				<value>2</value>
-				<affects>tech</affects>
+				<affects>influence</affects>
 				<situation>
-					<en>To invent something new</en>
-					<es>Inventar algo nuevo</es>
+					<en>When recognized</en>
+					<es>Cuando es reconocido</es>
 				</situation>
 			</bonification>
 		</bonifications>
-	</innovative>
-	<haughty>
+		<group>reputation</group>
+	</charitable>
+	<honest>
 		<name>
-			<en>Haughty</en>
-			<es>Enervado</es>
+			<en>Honest</en>
+			<es>Honesto</es>
 		</name>
-		<cost>-2</cost>
+		<cost>2</cost>
+		<bonifications>
+			<bonification>
+				<value>2</value>
+				<affects>presence</affects>
+				<situation>
+					<en>When recognized</en>
+					<es>Cuando es reconocido</es>
+				</situation>
+			</bonification>
+		</bonifications>
+		<group>reputation</group>
+	</honest>
+	<hero>
+		<name>
+			<en>Hero</en>
+			<es>Héroe</es>
+		</name>
+		<cost>2</cost>
+		<bonifications>
+			<bonification>
+				<value>2</value>
+				<affects>influence</affects>
+				<situation>
+					<en>When recognized</en>
+					<es>Cuando es reconocido</es>
+				</situation>
+			</bonification>
+		</bonifications>
+		<group>reputation</group>
+	</hero>
+	<cad>
+		<name>
+			<en>Cad</en>
+			<es>Sinvergüenza</es>
+		</name>
+		<cost>2</cost>
+		<bonifications>
+			<bonification>
+				<value>-2</value>
+				<affects>influence</affects>
+				<situation>
+					<en>When recognized</en>
+					<es>Cuando es reconocido</es>
+				</situation>
+			</bonification>
+		</bonifications>
+		<group>reputation</group>
+		<curse>true</curse>
+	</cad>
+	<scary>
+		<name>
+			<en>Scary</en>
+			<es>Terrorífico</es>
+		</name>
+		<cost>2</cost>
 		<bonifications>
 			<bonification>
 				<value>-2</value>
 				<affects>presence</affects>
 				<situation>
-					<en>Around serfs</en>
-					<es>Entre sirvientes</es>
+					<en>When recognized</en>
+					<es>Cuando es reconocido</es>
 				</situation>
 			</bonification>
 		</bonifications>
-	</haughty>
+		<curse>true</curse>
+		<group>reputation</group>
+	</scary>
+	<knownCriminal>
+		<name>
+			<en>Known Criminal</en>
+			<es>Criminal Conocio</es>
+		</name>
+		<cost>2</cost>
+		<bonifications>
+			<bonification>
+				<value>-2</value>
+				<affects>knavery</affects>
+				<situation>
+					<en>When recognized</en>
+					<es>Cuando es reconocido</es>
+				</situation>
+			</bonification>
+		</bonifications>
+		<curse>true</curse>
+		<group>reputation</group>
+	</knownCriminal>
+	<liar>
+		<name>
+			<en>Liar</en>
+			<es>Mentiroso</es>
+		</name>
+		<cost>2</cost>
+		<bonifications>
+			<bonification>
+				<value>-2</value>
+				<affects>knavery</affects>
+				<situation>
+					<en>When recognized</en>
+					<es>Cuando es reconocido</es>
+				</situation>
+			</bonification>
+		</bonifications>
+		<curse>true</curse>
+		<group>reputation</group>
+	</liar>
+	<tyrant>
+		<name>
+			<en>Tyrant</en>
+			<es>Tirano</es>
+		</name>
+		<cost>2</cost>
+		<bonifications>
+			<bonification>
+				<value>2</value>
+				<affects>Influence</affects>
+				<situation>
+					<en>Among peasants</en>
+					<es>Entre campesinos</es>
+				</situation>
+			</bonification>
+		</bonifications>
+		<curse>true</curse>
+		<group>reputation</group>
+	</tyrant>
+
+	
 
 
 
