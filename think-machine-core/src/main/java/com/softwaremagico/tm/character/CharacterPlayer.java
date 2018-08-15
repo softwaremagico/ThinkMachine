@@ -44,7 +44,9 @@ import com.softwaremagico.tm.character.benefices.BeneficeClassification;
 import com.softwaremagico.tm.character.benefices.BeneficeGroup;
 import com.softwaremagico.tm.character.benefices.BeneficeSpecialization;
 import com.softwaremagico.tm.character.blessings.Blessing;
+import com.softwaremagico.tm.character.blessings.BlessingClassification;
 import com.softwaremagico.tm.character.blessings.Bonification;
+import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
 import com.softwaremagico.tm.character.characteristics.Characteristic;
 import com.softwaremagico.tm.character.characteristics.CharacteristicDefinition;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
@@ -52,6 +54,7 @@ import com.softwaremagico.tm.character.characteristics.CharacteristicType;
 import com.softwaremagico.tm.character.characteristics.CharacteristicsDefinitionFactory;
 import com.softwaremagico.tm.character.combat.CombatStyle;
 import com.softwaremagico.tm.character.combat.LearnedStance;
+import com.softwaremagico.tm.character.creation.CostCalculator;
 import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
 import com.softwaremagico.tm.character.cybernetics.Cybernetics;
 import com.softwaremagico.tm.character.cybernetics.Device;
@@ -411,9 +414,40 @@ public class CharacterPlayer {
 		return occultism;
 	}
 
-	public void addBlessing(Blessing blessing) {
+	public void addBlessing(Blessing blessing) throws TooManyBlessingsException {
+		if (blessing.getBlessingClassification() == BlessingClassification.CURSE) {
+			if (CostCalculator.getBlessingCosts(getCurses()) + blessing.getCost() >= FreeStyleCharacterCreation.MAX_CURSE_POINTS) {
+				throw new TooManyBlessingsException("Only a total of '" + FreeStyleCharacterCreation.MAX_CURSE_POINTS
+						+ "' points are allowed for curses.");
+			}
+		}
+		if (getBlessingModificationsNumber() + blessing.getBonifications().size() > FreeStyleCharacterCreation.MAX_BLESSING_MODIFICATIONS) {
+			throw new TooManyBlessingsException("Only a total of '"
+					+ FreeStyleCharacterCreation.MAX_BLESSING_MODIFICATIONS
+					+ "' modifications are allowed for blessings.");
+		}
 		blessings.add(blessing);
 		Collections.sort(blessings);
+	}
+
+	private int getBlessingModificationsNumber() {
+		int counter = 0;
+		for (Blessing blessing : getBlessings()) {
+			counter += blessing.getBonifications().size();
+		}
+		return counter;
+	}
+
+	public List<Blessing> getCurses() {
+		List<Blessing> curses = new ArrayList<>();
+
+		for (Blessing blessing : blessings) {
+			if (blessing.getBlessingClassification() == BlessingClassification.CURSE) {
+				curses.add(blessing);
+			}
+		}
+
+		return Collections.unmodifiableList(curses);
 	}
 
 	public List<Blessing> getBlessings() {

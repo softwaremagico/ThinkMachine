@@ -36,6 +36,8 @@ public class FreeStyleCharacterCreation {
 	public static final int SKILLS_POINTS = 30;
 	public static final int TRAITS_POINTS = 10;
 	public static final int FREE_AVAILABLE_POINTS = 40;
+	public static final int MAX_CURSE_POINTS = 7;
+	public static final int MAX_BLESSING_MODIFICATIONS = 7;
 
 	private final HashMap<CharacteristicName, Integer> selectedCharacteristicsValues;
 

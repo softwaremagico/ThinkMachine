@@ -30,6 +30,7 @@ import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.Gender;
 import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
 import com.softwaremagico.tm.character.blessings.BlessingFactory;
+import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.combat.CombatAction;
 import com.softwaremagico.tm.character.combat.CombatStyle;
@@ -46,7 +47,7 @@ import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 
 public class CustomCharacter {
 
-	public static CharacterPlayer create(String language) throws InvalidXmlElementException {
+	public static CharacterPlayer create(String language) throws InvalidXmlElementException, TooManyBlessingsException {
 		CacheHandler.clearCache();
 		CharacterPlayer player = new CharacterPlayer(language);
 		player.getInfo().setName("Oliver Queen");

@@ -24,6 +24,8 @@ package com.softwaremagico.tm.character.creation;
  * #L%
  */
 
+import java.util.List;
+
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.benefices.AvailableBenefice;
@@ -44,7 +46,8 @@ public class CostCalculator {
 			MachineLog.info(CostCalculator.class.getName(), "Race cost: " + characterPlayer.getRace().getCost());
 		}
 		cost += getCharacteristicsCost(characterPlayer);
-		MachineLog.info(CostCalculator.class.getName(), "Characteristics cost: " + getCharacteristicsCost(characterPlayer));
+		MachineLog.info(CostCalculator.class.getName(), "Characteristics cost: "
+				+ getCharacteristicsCost(characterPlayer));
 		cost += getSkillCosts(characterPlayer);
 		MachineLog.info(CostCalculator.class.getName(), "Skills cost: " + getSkillCosts(characterPlayer));
 		cost += getTraitsCosts(characterPlayer);
@@ -80,6 +83,14 @@ public class CostCalculator {
 		return cost;
 	}
 
+	public static int getBlessingCosts(List<Blessing> blessings) {
+		int cost = 0;
+		for (Blessing blessing : blessings) {
+			cost += blessing.getCost();
+		}
+		return cost;
+	}
+
 	public static int getBeneficesCosts(CharacterPlayer characterPlayer) throws InvalidXmlElementException {
 		int cost = 0;
 		for (AvailableBenefice benefit : characterPlayer.getBenefices()) {
@@ -98,7 +109,8 @@ public class CostCalculator {
 		}
 		cost += characterPlayer.getOccultism().getExtraWyrd() * 2;
 		cost += Math.max(0, (characterPlayer.getOccultism().getPsiValue() - characterPlayer.getRace().getPsi()) * 3);
-		cost += Math.max(0, (characterPlayer.getOccultism().getTeurgyValue() - characterPlayer.getRace().getTheurgy()) * 3);
+		cost += Math.max(0,
+				(characterPlayer.getOccultism().getTeurgyValue() - characterPlayer.getRace().getTheurgy()) * 3);
 		return cost;
 	}
 

@@ -36,6 +36,7 @@ import org.testng.annotations.Test;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
 import com.softwaremagico.tm.character.creation.CostCalculator;
 import com.softwaremagico.tm.characters.CustomCharacter;
 import com.softwaremagico.tm.language.LanguagePool;
@@ -49,7 +50,7 @@ public class JsonTests {
 	private CharacterPlayer player;
 
 	@BeforeClass
-	public void clearCache() throws InvalidXmlElementException {
+	public void clearCache() throws InvalidXmlElementException, TooManyBlessingsException {
 		LanguagePool.clearCache();
 		player = CustomCharacter.create(LANGUAGE);
 		Assert.assertEquals(CostCalculator.getCost(player), 50);
