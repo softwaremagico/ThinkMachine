@@ -112,7 +112,7 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
 		}
 
 		// Status must almost selected.
-		if (benefice.getGroup().equals(BeneficeGroup.STATUS)) {
+		if (benefice.getGroup()!=null && benefice.getGroup().equals(BeneficeGroup.STATUS)) {
 			return 10;
 		}
 
@@ -131,7 +131,7 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
 	 */
 	private AvailableBenefice assignLevelOfBenefice(BeneficeDefinition benefice, int maxPoints) {
 		IGaussianDistribution selectedTraitCost = TraitCostPreferences.getSelected(getPreferences());
-		if (benefice.getGroup().equals(BeneficeGroup.STATUS)) {
+		if (benefice.getGroup()!=null && benefice.getGroup().equals(BeneficeGroup.STATUS)) {
 			// Status has also an special preference.
 			IGaussianDistribution selectedStatus = StatusPreferences.getSelected(getPreferences());
 			if (selectedStatus != null) {

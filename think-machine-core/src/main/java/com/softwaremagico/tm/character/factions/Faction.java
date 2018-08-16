@@ -29,21 +29,24 @@ import java.util.Objects;
 import java.util.Set;
 
 import com.softwaremagico.tm.Element;
+import com.softwaremagico.tm.character.benefices.AvailableBenefice;
 import com.softwaremagico.tm.character.blessings.Blessing;
 import com.softwaremagico.tm.character.race.Race;
+import com.softwaremagico.tm.log.MachineLog;
 
 public class Faction extends Element<Faction> {
 	private final FactionGroup factionGroup;
 	private final Set<FactionRankTranslation> ranksTranslations = new HashSet<>();
-
 	private final Race restrictedRace;
-	private final Set<Blessing> blessings;
+	private Set<Blessing> blessings = null;
+	private Set<AvailableBenefice> benefices = null;
+	private final String language;
 
-	public Faction(String id, String name, FactionGroup factionGroup, Race restrictedRace, Set<Blessing> mandatoryBlessings) {
+	public Faction(String id, String name, FactionGroup factionGroup, Race restrictedRace, String language) {
 		super(id, name);
 		this.factionGroup = factionGroup;
 		this.restrictedRace = restrictedRace;
-		this.blessings = mandatoryBlessings;
+		this.language = language;
 	}
 
 	public FactionGroup getFactionGroup() {
@@ -73,8 +76,31 @@ public class Faction extends Element<Faction> {
 
 	public Set<Blessing> getBlessings() {
 		if (blessings == null) {
-			return new HashSet<Blessing>();
+			try {
+				FactionsFactory.getInstance().setBlessings(this, language);
+			} catch (InvalidFactionException e) {
+				MachineLog.errorMessage(this.getClass().getName(), e);
+			}
 		}
 		return blessings;
+	}
+
+	public Set<AvailableBenefice> getBenefices() {
+		if (benefices == null) {
+			try {
+				FactionsFactory.getInstance().setBenefices(this, language);
+			} catch (InvalidFactionException e) {
+				MachineLog.errorMessage(this.getClass().getName(), e);
+			}
+		}
+		return benefices;
+	}
+
+	public void setBlessings(Set<Blessing> blessings) {
+		this.blessings = blessings;
+	}
+
+	public void setBenefices(Set<AvailableBenefice> benefices) {
+		this.benefices = benefices;
 	}
 }

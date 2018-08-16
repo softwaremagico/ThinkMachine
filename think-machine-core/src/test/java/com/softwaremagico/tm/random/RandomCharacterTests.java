@@ -122,7 +122,7 @@ public class RandomCharacterTests {
 		Assert.assertTrue(characterPlayer.getCurses().size() >= CurseNumberPreferences.FAIR.minimum());
 		Assert.assertTrue(characterPlayer.getCurses().size() <= CurseNumberPreferences.FAIR.maximum());
 		
-		Assert.assertTrue(characterPlayer.getBlessings().size() >= BlessingNumberPreferences.HIGH.minimum());
-		Assert.assertTrue(characterPlayer.getBlessings().size() <= BlessingNumberPreferences.HIGH.maximum());
+		Assert.assertTrue(characterPlayer.getAllBlessings().size() >= BlessingNumberPreferences.HIGH.minimum());
+		Assert.assertTrue(characterPlayer.getAllBlessings().size() <= BlessingNumberPreferences.HIGH.maximum());
 	}
 }

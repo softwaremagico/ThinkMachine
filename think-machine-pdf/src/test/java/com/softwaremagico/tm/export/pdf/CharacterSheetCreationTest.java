@@ -131,9 +131,7 @@ public class CharacterSheetCreationTest {
 		player.getOccultism().addElement(new OccultismPower("Agilizar", OccultismType.PSI, "Vol+Atletismo", 3, null, "Temporal", "", 1));
 		player.getOccultism().addElement(new OccultismPower("Endurecer", OccultismType.PSI, "Vol+Vigor", 4, null, "Temporal", "", 1));
 
-		player.addBlessing(BlessingFactory.getInstance().getElement("beautiful", player.getLanguage()));
 		player.addBlessing(BlessingFactory.getInstance().getElement("curious", player.getLanguage()));
-		player.addBlessing(BlessingFactory.getInstance().getElement("gullible", player.getLanguage()));
 		player.addBlessing(BlessingFactory.getInstance().getElement("limp", player.getLanguage()));
 		player.addBlessing(BlessingFactory.getInstance().getElement("missingEye", player.getLanguage()));
 		player.addBlessing(BlessingFactory.getInstance().getElement("incurableDisease", player.getLanguage()));

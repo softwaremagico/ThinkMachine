@@ -421,10 +421,19 @@ public class CharacterPlayer {
 						+ "' points are allowed for curses.");
 			}
 		}
+		//Only 7 values can be modified by blessings. 
 		if (getBlessingModificationsNumber() + blessing.getBonifications().size() > FreeStyleCharacterCreation.MAX_BLESSING_MODIFICATIONS) {
 			throw new TooManyBlessingsException("Only a total of '"
 					+ FreeStyleCharacterCreation.MAX_BLESSING_MODIFICATIONS
-					+ "' modifications are allowed for blessings.");
+					+ "' modifications are allowed for blessings. Now exists '" + getAllBlessings() + "' and adding '"
+					+ blessing + "'.");
+		}
+		//Only 7 blessings as max. 
+		if (getAllBlessings().size() > FreeStyleCharacterCreation.MAX_BLESSING_MODIFICATIONS) {
+			throw new TooManyBlessingsException("Only a total of '"
+					+ FreeStyleCharacterCreation.MAX_BLESSING_MODIFICATIONS
+					+ "' modifications are allowed for blessings. Now exists '" + getAllBlessings() + "' and adding '"
+					+ blessing + "'.");
 		}
 		blessings.add(blessing);
 		Collections.sort(blessings);
@@ -432,7 +441,7 @@ public class CharacterPlayer {
 
 	private int getBlessingModificationsNumber() {
 		int counter = 0;
-		for (Blessing blessing : getBlessings()) {
+		for (Blessing blessing : getAllBlessings()) {
 			counter += blessing.getBonifications().size();
 		}
 		return counter;
@@ -446,12 +455,32 @@ public class CharacterPlayer {
 				curses.add(blessing);
 			}
 		}
+		// Faction curses
+		if (getFaction() != null) {
+			for (Blessing blessing : getFaction().getBlessings()) {
+				if (blessing.getBlessingClassification() == BlessingClassification.CURSE) {
+					curses.add(blessing);
+				}
+			}
+		}
 
 		return Collections.unmodifiableList(curses);
 	}
 
-	public List<Blessing> getBlessings() {
-		return Collections.unmodifiableList(blessings);
+	/**
+	 * Return all blessings include the factions blessings.
+	 * 
+	 * @return
+	 */
+	public List<Blessing> getAllBlessings() {
+		List<Blessing> allBlessings = new ArrayList<>(blessings);
+		// Add faction blessings
+		if (getFaction() != null) {
+			for (Blessing blessing : getFaction().getBlessings()) {
+				allBlessings.add(blessing);
+			}
+		}
+		return Collections.unmodifiableList(allBlessings);
 	}
 
 	public void addBenefice(AvailableBenefice benefice) {
@@ -459,11 +488,24 @@ public class CharacterPlayer {
 		Collections.sort(benefices);
 	}
 
-	public List<AvailableBenefice> getBenefices() throws InvalidXmlElementException {
+	/**
+	 * Return all benefices include the factions benfices.
+	 * 
+	 * @return
+	 */
+	public List<AvailableBenefice> getAllBenefices() throws InvalidXmlElementException {
 		List<AvailableBenefice> positiveBenefices = new ArrayList<>();
 		for (AvailableBenefice benefice : benefices) {
 			if (benefice.getBeneficeClassification() == BeneficeClassification.BENEFICE) {
 				positiveBenefices.add(benefice);
+			}
+		}
+		// Add faction benefices
+		if (getFaction() != null && getFaction().getBenefices() != null) {
+			for (AvailableBenefice benefice : getFaction().getBenefices()) {
+				if (benefice.getBeneficeClassification() == BeneficeClassification.BENEFICE) {
+					positiveBenefices.add(benefice);
+				}
 			}
 		}
 		for (CombatStyle style : getMeleeCombatStyles()) {
@@ -480,6 +522,14 @@ public class CharacterPlayer {
 		for (AvailableBenefice benefice : benefices) {
 			if (benefice.getBeneficeClassification() == BeneficeClassification.AFFLICTION) {
 				afflictions.add(benefice);
+			}
+		}
+		// Add faction afflictions
+		if (getFaction() != null && getFaction().getBenefices() != null) {
+			for (AvailableBenefice benefice : getFaction().getBenefices()) {
+				if (benefice.getBeneficeClassification() == BeneficeClassification.AFFLICTION) {
+					afflictions.add(benefice);
+				}
 			}
 		}
 		return Collections.unmodifiableList(afflictions);
@@ -717,7 +767,7 @@ public class CharacterPlayer {
 	}
 
 	public String getRank() throws InvalidXmlElementException {
-		for (AvailableBenefice benefice : getBenefices()) {
+		for (AvailableBenefice benefice : getAllBenefices()) {
 			if (benefice.getBenefitDefinition().getGroup() == BeneficeGroup.STATUS) {
 				// Must have an specialization.
 				if (benefice.getSpecialization() != null) {
@@ -744,7 +794,7 @@ public class CharacterPlayer {
 
 	public int getBlessingModification(IValue value) {
 		int modification = 0;
-		for (Blessing blessing : getBlessings()) {
+		for (Blessing blessing : getAllBlessings()) {
 			for (Bonification bonification : blessing.getBonifications()) {
 				if (bonification.getSituation() != null && !bonification.getSituation().isEmpty()) {
 					if (bonification.getAffects() instanceof SpecialValue) {
@@ -768,7 +818,7 @@ public class CharacterPlayer {
 
 	public int getBlessingModificationAlways(IValue value) {
 		int modification = 0;
-		for (Blessing blessing : getBlessings()) {
+		for (Blessing blessing : getAllBlessings()) {
 			for (Bonification bonification : blessing.getBonifications()) {
 				if (bonification.getSituation() == null || bonification.getSituation().isEmpty()) {
 					if (bonification.getAffects() instanceof SpecialValue) {

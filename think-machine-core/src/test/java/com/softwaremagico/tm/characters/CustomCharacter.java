@@ -80,7 +80,7 @@ public class CustomCharacter {
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("gaming", language), 4);
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("lockpicking", language), 5);
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("energyGuns", language), 6);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("warfare", language), 7);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("warfare", language), 5);
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("lore", "jumpwebLore", language), 4);
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("lore", "beastsLore", language), 2);
 
@@ -110,7 +110,6 @@ public class CustomCharacter {
 
 		player.addBlessing(BlessingFactory.getInstance().getElement("handsome", player.getLanguage()));
 		player.addBlessing(BlessingFactory.getInstance().getElement("curious", player.getLanguage()));
-		player.addBlessing(BlessingFactory.getInstance().getElement("gullible", player.getLanguage()));
 		player.addBlessing(BlessingFactory.getInstance().getElement("missingEye", player.getLanguage()));
 		player.addBlessing(BlessingFactory.getInstance().getElement("luckyAtCards", player.getLanguage()));
 

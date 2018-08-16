@@ -56,7 +56,7 @@ public class BlessingTable extends VerticalTable {
 
 		int addedBlessings = 0;
 		if (characterPlayer != null) {
-			for (Blessing blessing : characterPlayer.getBlessings()) {
+			for (Blessing blessing : characterPlayer.getAllBlessings()) {
 				Iterator<Bonification> it = blessing.getBonifications().iterator();
 				int i = 0;
 				while (it.hasNext()) {

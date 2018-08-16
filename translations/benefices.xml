@@ -844,4 +844,21 @@
 		<cost>5</cost>
 		<group>fighting</group>
 	</pistola>
+	
+	<bite>
+		<name>
+			<en>Bite</en>
+			<es>Mordisco</es>
+		</name>
+		<cost>3</cost>
+		<group>others</group>
+	</bite>
+	<extraLimbs>
+		<name>
+			<en>Extra Libs</en>
+			<es>Miembros Extra</es>
+		</name>
+		<cost>6</cost>
+		<group>others</group>
+	</extraLimbs>
 </benefices>

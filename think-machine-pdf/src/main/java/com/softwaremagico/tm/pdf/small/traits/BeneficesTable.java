@@ -44,7 +44,7 @@ public class BeneficesTable extends VerticalTable {
 
 		int added = 0;
 		if (characterPlayer != null) {
-			for (AvailableBenefice benefit : characterPlayer.getBenefices()) {
+			for (AvailableBenefice benefit : characterPlayer.getAllBenefices()) {
 				addCell(createElementLine(benefit.getName(), TRAIT_COLUMN_WIDTH, FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE));
 				added++;
 			}

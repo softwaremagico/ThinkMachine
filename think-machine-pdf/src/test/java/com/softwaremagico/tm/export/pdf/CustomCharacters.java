@@ -103,13 +103,9 @@ public class CustomCharacters {
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("thinkMachine", LANGUAGE), 4);
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("techRedemption", LANGUAGE), 7);
 
-		player.addBlessing(BlessingFactory.getInstance().getElement("innovative", LANGUAGE));
 		player.addBlessing(BlessingFactory.getInstance().getElement("haughty", LANGUAGE));
-
 		player.addBlessing(BlessingFactory.getInstance().getElement("hacker", player.getLanguage()));
 		player.addBlessing(BlessingFactory.getInstance().getElement("greaseMonkey", player.getLanguage()));
-		player.addBlessing(BlessingFactory.getInstance().getElement("beastFoe", player.getLanguage()));
-
 		player.addBlessing(BlessingFactory.getInstance().getElement("horribleScar", player.getLanguage()));
 
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("language [turingLanguage]", player.getLanguage()));
@@ -179,8 +175,6 @@ public class CustomCharacters {
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("investigation", LANGUAGE), 4);
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("leadership", LANGUAGE), 2);
 
-		player.addBlessing(BlessingFactory.getInstance().getElement("unyielding", player.getLanguage()));
-		player.addBlessing(BlessingFactory.getInstance().getElement("prideful", player.getLanguage()));
 		player.addBlessing(BlessingFactory.getInstance().getElement("horribleScar", player.getLanguage()));
 
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("nobility [knight]", player.getLanguage()));
@@ -242,8 +236,6 @@ public class CustomCharacters {
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("landcarft", LANGUAGE), 2);
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("investigation", LANGUAGE), 3);
 
-		player.addBlessing(BlessingFactory.getInstance().getElement("theMan", player.getLanguage()));
-		player.addBlessing(BlessingFactory.getInstance().getElement("possessive", player.getLanguage()));
 		player.addBlessing(BlessingFactory.getInstance().getElement("horribleScar", player.getLanguage()));
 
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("commission [entered]", player.getLanguage()));
@@ -315,8 +307,6 @@ public class CustomCharacters {
 		player.getOccultism().addElement(new OccultismPower("Visión Mental", OccultismType.PSI, "Vol+Empatía", 3, "Toque", "Instantáneo", "", 1));
 		player.getOccultism().setExtraWyrd(3);
 
-		player.addBlessing(BlessingFactory.getInstance().getElement("just", player.getLanguage()));
-		player.addBlessing(BlessingFactory.getInstance().getElement("condescending", player.getLanguage()));
 		player.addBlessing(BlessingFactory.getInstance().getElement("horribleScar", player.getLanguage()));
 
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("ordained [novitiate]", player.getLanguage()));

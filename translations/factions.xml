@@ -7,6 +7,7 @@
 		</name>
 		<group>nobility</group>
 		<race>human</race>
+		<blessings>unyielding, prideful</blessings>
 	</hawkwood>
 	<decados>
 		<name>
@@ -15,6 +16,7 @@
 		</name>
 		<group>nobility</group>
 		<race>human</race>
+		<blessings>suspicious, vain</blessings>
 	</decados>
 	<hazat>
 		<name>
@@ -23,6 +25,7 @@
 		</name>
 		<group>nobility</group>
 		<race>human</race>
+		<blessings>disciplined, vengeful</blessings>
 	</hazat>
 	<liHalan>
 		<name>
@@ -31,6 +34,7 @@
 		</name>
 		<group>nobility</group>
 		<race>human</race>
+		<blessings>pious, guilty</blessings>
 	</liHalan>
 	<alMalik>
 		<name>
@@ -39,6 +43,7 @@
 		</name>
 		<group>nobility</group>
 		<race>human</race>
+		<blessings>gracious, impetuous</blessings>
 	</alMalik>
 	
 	<orthodox>
@@ -48,6 +53,7 @@
 		</name>
 		<group>church</group>
 		<race>human</race>
+		<blessings>pious, austere</blessings>
 	</orthodox>
 	<brotherBattle>
 		<name>
@@ -94,6 +100,7 @@
 			</archbishop>
 		</ranks>
 		<race>human</race>
+		<blessings>disciplined, clueless</blessings>
 	</brotherBattle>
 	<eskatonic>
 		<name>
@@ -140,6 +147,7 @@
 			</archbishop>
 		</ranks>
 		<race>human</race>
+		<blessings>curious, subtle</blessings>
 	</eskatonic>
 	<avestites>
 		<name>
@@ -148,6 +156,7 @@
 		</name>
 		<group>church</group>
 		<race>human</race>
+		<blessings>pious, righteous</blessings>
 	</avestites>
 	<amaltheans>
 		<name>
@@ -156,6 +165,7 @@
 		</name>
 		<group>church</group>
 		<race>human</race>
+		<blessings>compassionate, gullible</blessings>
 	</amaltheans>
 	<mendicantMonks>
 		<name>
@@ -211,6 +221,7 @@
 			</master>
 		</ranks>
 		<race>human</race>
+		<blessings>curious, nosy</blessings>
 	</charioteers>
 	<engineers>
 		<name>
@@ -219,6 +230,7 @@
 		</name>
 		<group>guild</group>
 		<race>human</race>
+		<blessings>innovative, unnerving</blessings>
 	</engineers>
 	<scravers>
 		<name>
@@ -265,6 +277,7 @@
 			</master>
 		</ranks>
 		<race>human</race>
+		<blessings>theman, possessive</blessings>
 	</scravers>
 	<muster>
 		<name>
@@ -311,6 +324,7 @@
 			</master>
 		</ranks>
 		<race>human</race>
+		<blessings>bold, callous</blessings>
 	</muster>
 	<reeves>
 		<name>
@@ -357,6 +371,7 @@
 			</master>
 		</ranks>
 		<race>human</race>
+		<blessings>shrewd, mammon</blessings>
 	</reeves>
 	
 	<obun>
@@ -366,6 +381,7 @@
 		</name>
 		<group>xeno</group>
 		<race>obun</race>
+		<blessings>just, condescending</blessings>
 	</obun>
 	<ukar>
 		<name>
@@ -374,6 +390,8 @@
 		</name>
 		<group>xeno</group>
 		<race>ukar</race>
+		<blessings>sensitiveTouch, bitter</blessings>
+		<benefices>ostracized</benefices>
 	</ukar>
 	<vorox>
 		<name>
@@ -382,5 +400,7 @@
 		</name>
 		<group>xeno</group>
 		<race>vorox</race>
+		<blessings>predatory, giant, sensitiveSmell, uncouth</blessings>
+		<benefices>bite, extraLimbs, noOccult</benefices>
 	</vorox>
 </factions>

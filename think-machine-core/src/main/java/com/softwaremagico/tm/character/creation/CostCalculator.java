@@ -77,7 +77,7 @@ public class CostCalculator {
 
 	private static int getBlessingCosts(CharacterPlayer characterPlayer) {
 		int cost = 0;
-		for (Blessing blessing : characterPlayer.getBlessings()) {
+		for (Blessing blessing : characterPlayer.getAllBlessings()) {
 			cost += blessing.getCost();
 		}
 		return cost;
@@ -93,7 +93,7 @@ public class CostCalculator {
 
 	public static int getBeneficesCosts(CharacterPlayer characterPlayer) throws InvalidXmlElementException {
 		int cost = 0;
-		for (AvailableBenefice benefit : characterPlayer.getBenefices()) {
+		for (AvailableBenefice benefit : characterPlayer.getAllBenefices()) {
 			cost += benefit.getCost();
 		}
 		for (AvailableBenefice affliction : characterPlayer.getAfflictions()) {

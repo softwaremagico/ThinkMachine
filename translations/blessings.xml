@@ -1814,7 +1814,77 @@
 		<curse>true</curse>
 	</dwarf>
 
-	
+	<predatory>
+		<name>
+			<en>Predatory</en>
+			<es>Depredador</es>
+		</name>
+		<cost>0</cost>
+		<bonifications>
+			<bonification>
+				<value>2</value>
+				<affects>perception</affects>
+				<situation>
+					<en>When hungry</en>
+					<es>Cuando se está hambriento</es>
+				</situation>
+			</bonification>
+		</bonifications>
+		<group>others</group>
+	</predatory>
+	<bitter>
+		<name>
+			<en>Bitter</en>
+			<es>Resentido</es>
+		</name>
+		<cost>2</cost>
+		<bonifications>
+			<bonification>
+				<value>-2</value>
+				<affects>will</affects>
+				<situation>
+					<en>Dealing with humans</en>
+					<es>Lidiando con humanos</es>
+				</situation>
+			</bonification>
+		</bonifications>
+		<group>others</group>
+		<curse>true</curse>
+	</bitter>
+	<poisonClaw>
+		<name>
+			<en>Poison Claw</en>
+			<es>Garra Venenosa</es>
+		</name>
+		<cost>6</cost>
+		<group>others</group>
+	</poisonClaw>
+	<noOccult>
+		<name>
+			<en>No Occult</en>
+			<es>Garra Venenosa</es>
+		</name>
+		<cost>6</cost>
+		<group>others</group>
+	</noOccult>
+	<austere>
+		<name>
+			<en>Austere</en>
+			<es>Austero</es>
+		</name>
+		<cost>2</cost>
+		<bonifications>
+			<bonification>
+				<value>-2</value>
+				<affects>tech</affects>
+				<situation>
+					<en>Before members of the flock</en>
+					<es>Frente a miembros del rebaño</es>
+				</situation>
+			</bonification>
+		</bonifications>
+		<group>others</group>
+	</austere>
 
 
 
