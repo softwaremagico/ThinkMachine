@@ -83,29 +83,29 @@ public class RandomCursesDefinition extends RandomSelector<Blessing> {
 	}
 
 	@Override
-	protected int getWeight(Blessing blessing) {
-		if (blessing == null) {
+	protected int getWeight(Blessing curse) {
+		if (curse == null) {
 			return 0;
 		}
 		// Only curses.
-		if (blessing.getBlessingClassification() == BlessingClassification.BLESSING) {
+		if (curse.getBlessingClassification() == BlessingClassification.BLESSING) {
 			return 0;
 		}
 		BlessingPreferences blessingPreferences = BlessingPreferences.getSelected(getPreferences());
-		if (blessingPreferences != null && blessing.getBlessingGroup() == BlessingGroup.get(blessingPreferences.name())) {
+		if (blessingPreferences != null && curse.getBlessingGroup() == BlessingGroup.get(blessingPreferences.name())) {
 			return MAX_PROBABILITY;
 		}
 		// No injuries for a combat character.
 		CombatPreferences selectedCombat = CombatPreferences.getSelected(getPreferences());
 		if (selectedCombat != null && selectedCombat.minimum() >= CombatPreferences.FAIR.minimum()) {
-			if (blessing.getBlessingGroup() == BlessingGroup.INJURIES) {
+			if (curse.getBlessingGroup() == BlessingGroup.INJURIES) {
 				return 0;
 			}
 		}
 		// If specialization is set, not curses that affects the skills with ranks.
 		SpecializationPreferences specializationPreferences = SpecializationPreferences.getSelected(getPreferences());
 		if (specializationPreferences != null) {
-			for (AvailableSkill skill : blessing.getAffectedSkill(getCharacterPlayer().getLanguage())) {
+			for (AvailableSkill skill : curse.getAffectedSkill(getCharacterPlayer().getLanguage())) {
 				// More specialized, less ranks required to skip the curse.
 				if (getCharacterPlayer().getSkillAssignedRanks(skill) >= (10 - specializationPreferences.maximum())) {
 					return 0;

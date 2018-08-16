@@ -37,6 +37,7 @@ import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
 import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.random.exceptions.DuplicatedPreferenceException;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
+import com.softwaremagico.tm.random.selectors.BlessingNumberPreferences;
 import com.softwaremagico.tm.random.selectors.CurseNumberPreferences;
 import com.softwaremagico.tm.random.selectors.FactionPreferences;
 import com.softwaremagico.tm.random.selectors.RacePreferences;
@@ -113,13 +114,15 @@ public class RandomCharacterTests {
 	}
 
 	@Test
-	public void checkCursesPreferences() throws DuplicatedPreferenceException, InvalidXmlElementException,
+	public void checkBlessingPreferences() throws DuplicatedPreferenceException, InvalidXmlElementException,
 			InvalidRandomElementSelectedException {
 		CharacterPlayer characterPlayer = new CharacterPlayer("es");
-		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0, CurseNumberPreferences.FAIR);
+		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0, CurseNumberPreferences.FAIR, BlessingNumberPreferences.HIGH);
 		randomizeCharacter.createCharacter();
 		Assert.assertTrue(characterPlayer.getCurses().size() >= CurseNumberPreferences.FAIR.minimum());
 		Assert.assertTrue(characterPlayer.getCurses().size() <= CurseNumberPreferences.FAIR.maximum());
-
+		
+		Assert.assertTrue(characterPlayer.getBlessings().size() >= CurseNumberPreferences.HIGH.minimum());
+		Assert.assertTrue(characterPlayer.getBlessings().size() <= CurseNumberPreferences.HIGH.maximum());
 	}
 }

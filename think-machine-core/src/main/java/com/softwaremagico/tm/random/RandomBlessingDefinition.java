@@ -30,14 +30,23 @@ import java.util.TreeMap;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.blessings.Blessing;
+import com.softwaremagico.tm.character.blessings.BlessingClassification;
 import com.softwaremagico.tm.character.blessings.BlessingFactory;
+import com.softwaremagico.tm.character.blessings.BlessingGroup;
 import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
-import com.softwaremagico.tm.character.creation.CostCalculator;
-import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
+import com.softwaremagico.tm.character.skills.AvailableSkill;
+import com.softwaremagico.tm.log.MachineLog;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
+import com.softwaremagico.tm.random.selectors.BlessingNumberPreferences;
+import com.softwaremagico.tm.random.selectors.BlessingPreferences;
+import com.softwaremagico.tm.random.selectors.IGaussianDistribution;
 import com.softwaremagico.tm.random.selectors.IRandomPreferences;
+import com.softwaremagico.tm.random.selectors.SpecializationPreferences;
 
 public class RandomBlessingDefinition extends RandomSelector<Blessing> {
+	private final static int MAX_PROBABILITY = 100000;
+	private final static int GOOD_PROBABILITY = 20;
+	private final static int FAIR_PROBABILITY = 10;
 
 	protected RandomBlessingDefinition(CharacterPlayer characterPlayer, Set<IRandomPreferences> preferences)
 			throws InvalidXmlElementException {
@@ -45,13 +54,13 @@ public class RandomBlessingDefinition extends RandomSelector<Blessing> {
 	}
 
 	public void assignAvailableBlessings() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
-		// Later, the others.
-		while (CostCalculator.getBeneficesCosts(getCharacterPlayer()) < FreeStyleCharacterCreation.TRAITS_POINTS
-				&& !getWeightedElements().isEmpty()) {
-			// Select a blessing
+		IGaussianDistribution blessingDistribution = BlessingNumberPreferences.getSelected(getPreferences());
+		// Select a blessing
+		for (int i = 0; i < blessingDistribution.randomGaussian(); i++) {
 			Blessing selectedBlessing = selectElementByWeight();
 			try {
 				getCharacterPlayer().addBlessing(selectedBlessing);
+				MachineLog.debug(this.getClass().getName(), "Added blessing '" + selectedBlessing + "'.");
 			} catch (TooManyBlessingsException e) {
 				// No more possible.
 				break;
@@ -76,6 +85,34 @@ public class RandomBlessingDefinition extends RandomSelector<Blessing> {
 
 	@Override
 	protected int getWeight(Blessing blessing) {
+		if (blessing == null) {
+			return 0;
+		}
+		// Only curses.
+		if (blessing.getBlessingClassification() == BlessingClassification.CURSE) {
+			return 0;
+		}
+		BlessingPreferences blessingPreferences = BlessingPreferences.getSelected(getPreferences());
+		if (blessingPreferences != null && blessing.getBlessingGroup() == BlessingGroup.get(blessingPreferences.name())) {
+			return MAX_PROBABILITY;
+		}
+		// If specialization is set, add blessings that affects the skills with ranks.
+		SpecializationPreferences specializationPreferences = SpecializationPreferences.getSelected(getPreferences());
+		if (specializationPreferences != null) {
+			for (AvailableSkill skill : blessing.getAffectedSkill(getCharacterPlayer().getLanguage())) {
+				// More specialized, less ranks required to skip the curse.
+				if (specializationPreferences.mean() >= SpecializationPreferences.FAIR.mean())
+					if (getCharacterPlayer().getSkillAssignedRanks(skill) >= specializationPreferences.mean()) {
+						return GOOD_PROBABILITY;
+					}
+			}
+			for (AvailableSkill skill : blessing.getAffectedSkill(getCharacterPlayer().getLanguage())) {
+				// More specialized, less ranks required to skip the curse.
+				if (getCharacterPlayer().getSkillAssignedRanks(skill) >= (10 - specializationPreferences.maximum())) {
+					return FAIR_PROBABILITY;
+				}
+			}
+		}
 		return 1;
 	}
 }

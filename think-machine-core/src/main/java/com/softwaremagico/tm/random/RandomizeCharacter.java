@@ -123,6 +123,10 @@ public class RandomizeCharacter {
 		// First, assign curses.
 		RandomCursesDefinition randomCurses = new RandomCursesDefinition(characterPlayer, preferences);
 		randomCurses.assignAvailableCurse();
+		// Set blessings.
+		RandomBlessingDefinition randomBlessing = new RandomBlessingDefinition(characterPlayer, preferences);
+		randomBlessing.assignAvailableBlessings();
+		// Spend remaining points in skills.
 	}
 
 	private void setExperiencePoints() {
