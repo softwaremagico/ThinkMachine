@@ -37,6 +37,7 @@ import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
 import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.random.exceptions.DuplicatedPreferenceException;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
+import com.softwaremagico.tm.random.selectors.CurseNumberPreferences;
 import com.softwaremagico.tm.random.selectors.FactionPreferences;
 import com.softwaremagico.tm.random.selectors.RacePreferences;
 import com.softwaremagico.tm.random.selectors.SkillGroupPreferences;
@@ -58,23 +59,29 @@ public class RandomCharacterTests {
 	}
 
 	@Test
-	public void chooseRaceAndFactionTest() throws InvalidXmlElementException, DuplicatedPreferenceException, InvalidRandomElementSelectedException {
+	public void chooseRaceAndFactionTest() throws InvalidXmlElementException, DuplicatedPreferenceException,
+			InvalidRandomElementSelectedException {
 		CharacterPlayer characterPlayer = new CharacterPlayer("es");
-		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0, RacePreferences.HUMAN, FactionPreferences.NOBILITY);
+		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0, RacePreferences.HUMAN,
+				FactionPreferences.NOBILITY);
 		randomizeCharacter.setCharacterDefinition();
 
 		Assert.assertEquals(characterPlayer.getFaction().getFactionGroup(), FactionGroup.NOBILITY);
-		Assert.assertEquals(characterPlayer.getRace(), RaceFactory.getInstance().getElement(RacePreferences.HUMAN.name(), "es"));
+		Assert.assertEquals(characterPlayer.getRace(),
+				RaceFactory.getInstance().getElement(RacePreferences.HUMAN.name(), "es"));
 	}
 
 	@Test
-	public void chooseRaceAndFactionTestXeno() throws InvalidXmlElementException, DuplicatedPreferenceException, InvalidRandomElementSelectedException {
+	public void chooseRaceAndFactionTestXeno() throws InvalidXmlElementException, DuplicatedPreferenceException,
+			InvalidRandomElementSelectedException {
 		CharacterPlayer characterPlayer = new CharacterPlayer("es");
-		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0, RacePreferences.OBUN, FactionPreferences.GUILD);
+		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0, RacePreferences.OBUN,
+				FactionPreferences.GUILD);
 		randomizeCharacter.setCharacterDefinition();
 
 		Assert.assertEquals(characterPlayer.getFaction().getFactionGroup(), FactionGroup.GUILD);
-		Assert.assertEquals(characterPlayer.getRace(), RaceFactory.getInstance().getElement(RacePreferences.OBUN.name(), "es"));
+		Assert.assertEquals(characterPlayer.getRace(),
+				RaceFactory.getInstance().getElement(RacePreferences.OBUN.name(), "es"));
 	}
 
 	@Test
@@ -84,7 +91,8 @@ public class RandomCharacterTests {
 	}
 
 	@Test
-	public void completeRandomCharacter() throws InvalidXmlElementException, DuplicatedPreferenceException, InvalidRandomElementSelectedException {
+	public void completeRandomCharacter() throws InvalidXmlElementException, DuplicatedPreferenceException,
+			InvalidRandomElementSelectedException {
 		CharacterPlayer characterPlayer = new CharacterPlayer("es");
 		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0, SkillGroupPreferences.COMBAT);
 		randomizeCharacter.createCharacter();
@@ -94,11 +102,24 @@ public class RandomCharacterTests {
 	}
 
 	@Test
-	public void mustHaveStatus() throws DuplicatedPreferenceException, InvalidXmlElementException, InvalidRandomElementSelectedException {
+	public void mustHaveStatus() throws DuplicatedPreferenceException, InvalidXmlElementException,
+			InvalidRandomElementSelectedException {
 		CharacterPlayer characterPlayer = new CharacterPlayer("es");
 		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0, StatusPreferences.HIGHT);
 		randomizeCharacter.createCharacter();
 		Assert.assertNotNull(characterPlayer.getRank());
-		//Assert.assertEquals(CostCalculator.getCost(characterPlayer), FreeStyleCharacterCreation.FREE_AVAILABLE_POINTS);
+		// Assert.assertEquals(CostCalculator.getCost(characterPlayer),
+		// FreeStyleCharacterCreation.FREE_AVAILABLE_POINTS);
+	}
+
+	@Test
+	public void checkCursesPreferences() throws DuplicatedPreferenceException, InvalidXmlElementException,
+			InvalidRandomElementSelectedException {
+		CharacterPlayer characterPlayer = new CharacterPlayer("es");
+		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0, CurseNumberPreferences.FAIR);
+		randomizeCharacter.createCharacter();
+		Assert.assertTrue(characterPlayer.getCurses().size() >= CurseNumberPreferences.FAIR.minimum());
+		Assert.assertTrue(characterPlayer.getCurses().size() <= CurseNumberPreferences.FAIR.maximum());
+
 	}
 }

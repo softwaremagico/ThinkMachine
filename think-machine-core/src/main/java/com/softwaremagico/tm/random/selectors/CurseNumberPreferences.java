@@ -1,7 +1,5 @@
 package com.softwaremagico.tm.random.selectors;
 
-import java.util.Set;
-
 /*-
  * #%L
  * Think Machine (Core)
@@ -26,19 +24,30 @@ import java.util.Set;
  * #L%
  */
 
-public enum CombatPreferences implements IRandomPreferences {
-	PEACEFUL(0, 1),
+import java.util.Random;
+import java.util.Set;
 
-	FAIR(2, 5),
+public enum CurseNumberPreferences implements IRandomPreferences, IGaussianDistribution {
 
-	BELLIGERENT(4, 10);
+	NONE(0, 0, 0, 0),
+	
+	LOW(0, 2, 0, 1),
+
+	FAIR(2, 4, 2, 1),
+
+	HIGH(3, 7, 4, 3);
 
 	private final int minimum;
 	private final int maximum;
+	private final int mean;
+	private final int variance;
+	private final Random random = new Random();
 
-	private CombatPreferences(int minimum, int maximum) {
-		this.maximum = maximum;
-		this.minimum = minimum;
+	private CurseNumberPreferences(int minimumValue, int maximumValue, int mean, int variance) {
+		this.maximum = maximumValue;
+		this.minimum = minimumValue;
+		this.variance = variance;
+		this.mean = mean;
 	}
 
 	@Override
@@ -50,13 +59,32 @@ public enum CombatPreferences implements IRandomPreferences {
 	public int minimum() {
 		return minimum;
 	}
-	
-	public static CombatPreferences getSelected(Set<IRandomPreferences> preferences) {
+
+	@Override
+	public int variance() {
+		return variance;
+	}
+
+	@Override
+	public int mean() {
+		return mean;
+	}
+
+	public static CurseNumberPreferences getSelected(Set<IRandomPreferences> preferences) {
 		for (IRandomPreferences preference : preferences) {
-			if (preference instanceof CombatPreferences) {
-				return (CombatPreferences) preference;
+			if (preference instanceof CurseNumberPreferences) {
+				return (CurseNumberPreferences) preference;
 			}
 		}
-		return null;
+		return CurseNumberPreferences.NONE;
+	}
+
+	@Override
+	public int randomGaussian() {
+		int selectedValue;
+		do {
+			selectedValue = (int) (random.nextGaussian() * Math.sqrt(variance) + mean);
+		} while (selectedValue < minimum() || selectedValue > maximum());
+		return selectedValue;
 	}
 }

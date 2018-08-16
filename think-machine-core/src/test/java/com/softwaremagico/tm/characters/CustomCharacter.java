@@ -42,7 +42,7 @@ import com.softwaremagico.tm.character.equipment.WeaponFactory;
 import com.softwaremagico.tm.character.factions.FactionsFactory;
 import com.softwaremagico.tm.character.occultism.OccultismPower;
 import com.softwaremagico.tm.character.occultism.OccultismType;
-import com.softwaremagico.tm.character.race.Race;
+import com.softwaremagico.tm.character.race.RaceFactory;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 
 public class CustomCharacter {
@@ -54,7 +54,7 @@ public class CustomCharacter {
 		player.getInfo().setPlayer("Player 1");
 		player.getInfo().setGender(Gender.MALE);
 		player.getInfo().setAge(30);
-		player.setRace(new Race("Human", 3, 3, 3, 3, 3, 3, 3, 3, 3, 5, 0, 0, 0, 0, 0));
+		player.setRace(RaceFactory.getInstance().getElement("human", language));
 		player.getInfo().setPlanet("Sutek");
 		player.setFaction(FactionsFactory.getInstance().getElement("hazat", language));
 
@@ -78,9 +78,9 @@ public class CustomCharacter {
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("influence", language), 5);
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("sneak", language), 4);
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("gaming", language), 4);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("lockpicking", language), 6);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("lockpicking", language), 5);
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("energyGuns", language), 6);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("warfare", language), 8);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("warfare", language), 7);
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("lore", "jumpwebLore", language), 4);
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("lore", "beastsLore", language), 2);
 
@@ -112,6 +112,7 @@ public class CustomCharacter {
 		player.addBlessing(BlessingFactory.getInstance().getElement("curious", player.getLanguage()));
 		player.addBlessing(BlessingFactory.getInstance().getElement("gullible", player.getLanguage()));
 		player.addBlessing(BlessingFactory.getInstance().getElement("missingEye", player.getLanguage()));
+		player.addBlessing(BlessingFactory.getInstance().getElement("luckyAtCards", player.getLanguage()));
 
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("stigma_1", player.getLanguage()));
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("heir", player.getLanguage()));

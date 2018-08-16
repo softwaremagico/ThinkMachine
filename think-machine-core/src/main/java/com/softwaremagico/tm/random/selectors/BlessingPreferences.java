@@ -1,4 +1,6 @@
-package com.softwaremagico.tm.character.values;
+package com.softwaremagico.tm.random.selectors;
+
+import java.util.Set;
 
 /*-
  * #%L
@@ -24,9 +26,36 @@ package com.softwaremagico.tm.character.values;
  * #L%
  */
 
-public interface IValue {
-	
-	String getId();
+public enum BlessingPreferences implements IRandomPreferences {
+	APPEARANCE,
 
-	String getName();
+	BEHAVIOUR,
+
+	INJURIES,
+
+	KNACKS,
+
+	REPUTATION,
+
+	SIZE;
+
+	@Override
+	public int maximum() {
+		return 0;
+	}
+
+	@Override
+	public int minimum() {
+		return 0;
+	}
+
+	public static BlessingPreferences getSelected(Set<IRandomPreferences> preferences) {
+		for (IRandomPreferences preference : preferences) {
+			if (preference instanceof BlessingPreferences) {
+				return (BlessingPreferences) preference;
+			}
+		}
+		return null;
+	}
+
 }

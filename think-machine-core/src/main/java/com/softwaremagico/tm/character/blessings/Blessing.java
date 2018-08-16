@@ -24,11 +24,16 @@ package com.softwaremagico.tm.character.blessings;
  * #L%
  */
 
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
 import com.softwaremagico.tm.Element;
+import com.softwaremagico.tm.InvalidXmlElementException;
+import com.softwaremagico.tm.character.skills.AvailableSkill;
+import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.character.values.IValue;
+import com.softwaremagico.tm.character.values.SpecialValue;
 
 public class Blessing extends Element<Blessing> {
 	private final Integer cost;
@@ -82,4 +87,30 @@ public class Blessing extends Element<Blessing> {
 		return "";
 	}
 
+	public Set<AvailableSkill> getAffectedSkill(String language) {
+		Set<AvailableSkill> affectedSkills = new HashSet<>();
+		for (Bonification bonification : getBonifications()) {
+			if (bonification.getAffects() != null) {
+				if (bonification.getAffects() instanceof SpecialValue) {
+					SpecialValue specialValue = (SpecialValue) bonification.getAffects();
+					// Has a list of values defined.
+					for (IValue specialValueSkill : specialValue.getAffects()) {
+						try {
+							affectedSkills.add(AvailableSkillsFactory.getInstance().getElement(
+									specialValueSkill.getId(), language));
+						} catch (InvalidXmlElementException e) {
+							// Not a skill
+						}
+					}
+				}
+				try {
+					affectedSkills.add(AvailableSkillsFactory.getInstance().getElement(
+							bonification.getAffects().getId(), language));
+				} catch (InvalidXmlElementException e) {
+					// Not a skill
+				}
+			}
+		}
+		return affectedSkills;
+	}
 }

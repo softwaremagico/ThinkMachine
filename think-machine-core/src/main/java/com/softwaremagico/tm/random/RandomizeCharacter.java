@@ -41,7 +41,8 @@ public class RandomizeCharacter {
 	private CharacterPlayer characterPlayer;
 	private final Set<IRandomPreferences> preferences;
 
-	public RandomizeCharacter(CharacterPlayer characterPlayer, int experiencePoints, IRandomPreferences... preferences) throws DuplicatedPreferenceException {
+	public RandomizeCharacter(CharacterPlayer characterPlayer, int experiencePoints, IRandomPreferences... preferences)
+			throws DuplicatedPreferenceException {
 		this.characterPlayer = characterPlayer;
 		this.preferences = new HashSet<>(Arrays.asList(preferences));
 
@@ -53,7 +54,8 @@ public class RandomizeCharacter {
 		// Only one of each class allowed.
 		for (IRandomPreferences preference : preferences) {
 			if (existingPreferences.contains(preference.getClass())) {
-				throw new DuplicatedPreferenceException("Preference '" + preference + "' collides with another preference. Only one of each type is allowed.");
+				throw new DuplicatedPreferenceException("Preference '" + preference
+						+ "' collides with another preference. Only one of each type is allowed.");
 			}
 			existingPreferences.add(preference.getClass());
 		}
@@ -63,8 +65,9 @@ public class RandomizeCharacter {
 		setDefaultPreferences();
 		setCharacterDefinition();
 		setStartingValues();
+		setExtraPoints();
 		// Expend XP if any.
-		spendExperiencePoints();
+		setExperiencePoints();
 	}
 
 	private void setDefaultPreferences() {
@@ -97,12 +100,12 @@ public class RandomizeCharacter {
 	}
 
 	/**
-	 * Using free style character generation.
+	 * Using free style character generation. Only the first points to expend in a character.
 	 * 
 	 * @throws InvalidXmlElementException
 	 * @throws InvalidRandomElementSelectedException
 	 */
-	protected void setStartingValues() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
+	private void setStartingValues() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
 		characterPlayer.setFreeStyleCharacterCreation(new FreeStyleCharacterCreation());
 		// Characteristics
 		RandomCharacteristics randomCharacteristics = new RandomCharacteristics(characterPlayer, preferences);
@@ -115,14 +118,22 @@ public class RandomizeCharacter {
 		randomBenefice.assignAvailableBenefices();
 	}
 
-	private void spendExperiencePoints() {
+	private void setExtraPoints() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
+		// Traits.
+		// First, assign curses.
+		RandomCursesDefinition randomCurses = new RandomCursesDefinition(characterPlayer, preferences);
+		randomCurses.assignAvailableCurse();
+	}
+
+	private void setExperiencePoints() {
 
 	}
 
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append(characterPlayer.getInfo().getName() + " (" + characterPlayer.getRace() + ") [" + characterPlayer.getFaction() + "]");
+		sb.append(characterPlayer.getInfo().getName() + " (" + characterPlayer.getRace() + ") ["
+				+ characterPlayer.getFaction() + "]");
 		sb.append(characterPlayer.getFreeStyleCharacterCreation().getSelectedCharacteristicsValues());
 		sb.append(characterPlayer.getFreeStyleCharacterCreation().getDesiredSkillRanks());
 		return sb.toString();
