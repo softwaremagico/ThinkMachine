@@ -1,5 +1,6 @@
 package com.softwaremagico.tm.character.characteristics;
 
+
 /*-
  * #%L
  * Think Machine (Core)
@@ -64,8 +65,17 @@ public enum CharacteristicName {
 	}
 
 	public static CharacteristicName[] getBasicCharacteristics() {
-		return new CharacteristicName[] { CharacteristicName.STRENGTH, CharacteristicName.DEXTERITY, CharacteristicName.ENDURANCE,
-				CharacteristicName.WITS, CharacteristicName.PERCEPTION, CharacteristicName.TECH, CharacteristicName.PRESENCE,
-				CharacteristicName.WILL, CharacteristicName.FAITH };
+		return new CharacteristicName[] { CharacteristicName.STRENGTH, CharacteristicName.DEXTERITY,
+				CharacteristicName.ENDURANCE, CharacteristicName.WITS, CharacteristicName.PERCEPTION,
+				CharacteristicName.TECH, CharacteristicName.PRESENCE, CharacteristicName.WILL, CharacteristicName.FAITH };
+	}
+
+	public static CharacteristicName get(String tag) {
+		for (CharacteristicName characteristicName : CharacteristicName.values()) {
+			if (characteristicName.name().equalsIgnoreCase(tag)) {
+				return characteristicName;
+			}
+		}
+		return null;
 	}
 }

@@ -76,6 +76,7 @@ public class Faction extends Element<Faction> {
 
 	public Set<Blessing> getBlessings() {
 		if (blessings == null) {
+			//Blessings are not read with factions due to a loop factions->blessings->skills->factions
 			try {
 				FactionsFactory.getInstance().setBlessings(this, language);
 			} catch (InvalidFactionException e) {
@@ -87,6 +88,7 @@ public class Faction extends Element<Faction> {
 
 	public Set<AvailableBenefice> getBenefices() {
 		if (benefices == null) {
+			//Benefices are not read with factions due to a loop factions->benefices->skills->factions
 			try {
 				FactionsFactory.getInstance().setBenefices(this, language);
 			} catch (InvalidFactionException e) {

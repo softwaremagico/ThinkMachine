@@ -24,40 +24,35 @@ package com.softwaremagico.tm.factory;
  * #L%
  */
 
-import java.util.Set;
-
 import junit.framework.Assert;
 
 import org.testng.annotations.Test;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.character.benefices.AvailableBenefice;
-import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
-import com.softwaremagico.tm.character.benefices.BeneficeDefinitionFactory;
+import com.softwaremagico.tm.character.occultism.OccultismDurationFactory;
+import com.softwaremagico.tm.character.occultism.OccultismPathFactory;
+import com.softwaremagico.tm.character.occultism.OccultismRangeFactory;
 
-@Test(groups = { "beneficeFactory" })
-public class BeneficeFactoryTests {
-	private final static String LANGUAGE = "es";	
-	private final static int DEFINED_BENEFICES = 72;
-	private final static int AVAILABLE_BENEFICES = 204;
+@Test(groups = { "occultismFactory" })
+public class OccultismFactoryTests {
+	private final static String LANGUAGE = "es";
+
+	private final static int DEFINED_PATHS = 1;
+	private final static int DEFINED_RANGES = 4;
+	private final static int DEFINED_DURATIONS = 5;
 
 	@Test
 	public void readBenefices() throws InvalidXmlElementException {
-		Assert.assertEquals(DEFINED_BENEFICES, BeneficeDefinitionFactory.getInstance().getElements(LANGUAGE).size());
+		Assert.assertEquals(DEFINED_PATHS, OccultismPathFactory.getInstance().getElements(LANGUAGE).size());
 	}
 
 	@Test
 	public void getCalculatedBenefices() throws InvalidXmlElementException {
-		Assert.assertEquals(AVAILABLE_BENEFICES, AvailableBeneficeFactory.getInstance().getElements(LANGUAGE).size());
+		Assert.assertEquals(DEFINED_RANGES, OccultismRangeFactory.getInstance().getElements(LANGUAGE).size());
 	}
 
 	@Test
 	public void getBeneficesClassification() throws InvalidXmlElementException {
-		Assert.assertEquals(DEFINED_BENEFICES, AvailableBeneficeFactory.getInstance().getAvailableBeneficesByDefinition(LANGUAGE).keySet().size());
-		int count = 0;
-		for (Set<AvailableBenefice> benefices : AvailableBeneficeFactory.getInstance().getAvailableBeneficesByDefinition(LANGUAGE).values()) {
-			count += benefices.size();
-		}
-		Assert.assertEquals(AVAILABLE_BENEFICES, count);
+		Assert.assertEquals(DEFINED_DURATIONS, OccultismDurationFactory.getInstance().getElements(LANGUAGE).size());
 	}
 }

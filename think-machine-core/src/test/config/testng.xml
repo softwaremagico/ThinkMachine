@@ -22,6 +22,7 @@
 				<include name="beneficeFactory" />
 				<include name="blessingFactory" />
 				<include name="factionsFactory" />
+				<include name="occultismFactory" />
 				<include name="randomCharacter" />
 				<include name="jsonExporter" />
 				<include name="blessings" />
@@ -38,6 +39,7 @@
 			<class name="com.softwaremagico.tm.factory.WeaponsFactoryTests" />
 			<class name="com.softwaremagico.tm.factory.BeneficeFactoryTests" />
 			<class name="com.softwaremagico.tm.factory.BlessingFactoryTests" />
+			<class name="com.softwaremagico.tm.factory.OccultismFactoryTests" />
 			<class name="com.softwaremagico.tm.rules.BlessingTests" />
 			<class name="com.softwaremagico.tm.random.RandomCharacterTests" />
 			<class name="com.softwaremagico.tm.random.GaussianDistributionTests" />

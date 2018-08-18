@@ -1,5 +1,7 @@
 package com.softwaremagico.tm.character.occultism;
 
+import com.google.common.base.Objects;
+
 /*-
  * #%L
  * Think Machine (Core)
@@ -43,6 +45,15 @@ public enum OccultismType {
 
 	public String getDarkSideTag() {
 		return darkSideTag;
+	}
+
+	public static OccultismType get(String tag) {
+		for (OccultismType type : OccultismType.values()) {
+			if (Objects.equal(type.getTag(), tag)) {
+				return type;
+			}
+		}
+		return null;
 	}
 
 }

@@ -1,10 +1,10 @@
-package com.softwaremagico.tm.factory;
+package com.softwaremagico.tm.character.occultism;
 
 /*-
  * #%L
  * Think Machine (Core)
  * %%
- * Copyright (C) 2017 - 2018 Softwaremagico
+ * Copyright (C) 2017 Softwaremagico
  * %%
  * This software is designed by Jorge Hortelano Otero. Jorge Hortelano Otero
  * <softwaremagico@gmail.com> Valencia (Spain).
@@ -24,27 +24,16 @@ package com.softwaremagico.tm.factory;
  * #L%
  */
 
-import junit.framework.Assert;
-
-import org.testng.annotations.Test;
-
 import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.character.blessings.BlessingFactory;
 
-@Test(groups = { "blessingFactory" })
-public class BlessingFactoryTests {
-	private final static String LANGUAGE = "es";
-	private final static int DEFINED_BLESSINGS = 99;
-	private final static int DEFINED_BONIFICATIONS_MISSING_EYE = 2;
+public class InvalidOccultismPowerException extends InvalidXmlElementException {
+	private static final long serialVersionUID = 3558660253411869827L;
 
-	@Test
-	public void readBlessings() throws InvalidXmlElementException {
-		Assert.assertEquals(DEFINED_BLESSINGS, BlessingFactory.getInstance().getElements(LANGUAGE).size());
+	public InvalidOccultismPowerException(String message) {
+		super(message);
 	}
 
-	@Test
-	public void multiplesBonifications() throws InvalidXmlElementException {
-		Assert.assertEquals(DEFINED_BONIFICATIONS_MISSING_EYE,
-				BlessingFactory.getInstance().getElement("missingEye", LANGUAGE).getBonifications().size());
+	public InvalidOccultismPowerException(String message, Exception e) {
+		super(message, e);
 	}
 }

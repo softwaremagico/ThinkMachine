@@ -25,48 +25,47 @@ package com.softwaremagico.tm.character.occultism;
  */
 
 import com.softwaremagico.tm.Element;
+import com.softwaremagico.tm.character.characteristics.CharacteristicDefinition;
+import com.softwaremagico.tm.character.skills.AvailableSkill;
 
 public class OccultismPower extends Element<OccultismPower> {
-	private final String roll;
+	private final CharacteristicDefinition characteristic;
+	private final AvailableSkill skill;
 	private final int level;
-	private final String range;
-	private final String duration;
+	private final OccultismRange range;
+	private final OccultismDuration duration;
 	private final String requirements;
 	private final int cost;
 	private boolean enabled;
-	private OccultismType occultismType;
 
-	public OccultismPower(String name,  OccultismType occultismType, String roll, int level, String range, String duration, String requirements, int cost) {
+	public OccultismPower(String name, CharacteristicDefinition characteristic, AvailableSkill skill, int level,
+			OccultismRange range, OccultismDuration duration, String requirements, int cost) {
 		super(null, name);
-		this.roll = roll;
+		this.characteristic = characteristic;
+		this.skill = skill;
 		this.level = level;
 		this.range = range;
 		this.duration = duration;
 		this.requirements = requirements;
 		this.cost = cost;
-		this.occultismType = occultismType;
 		enabled = true;
 	}
 
-	public OccultismPower(String name, OccultismType occultismType, String roll, int level, String range, String duration, String requirements, int cost,
-			boolean enabled) {
-		this(name, occultismType, roll, level, range, duration, requirements, cost);
+	public OccultismPower(String name, CharacteristicDefinition characteristic, AvailableSkill skill, int level,
+			OccultismRange range, OccultismDuration duration, String requirements, int cost, boolean enabled) {
+		this(name, characteristic, skill, level, range, duration, requirements, cost);
 		setEnabled(enabled);
-	}
-
-	public String getRoll() {
-		return roll;
 	}
 
 	public int getLevel() {
 		return level;
 	}
 
-	public String getRange() {
+	public OccultismRange getRange() {
 		return range;
 	}
 
-	public String getDuration() {
+	public OccultismDuration getDuration() {
 		return duration;
 	}
 
@@ -86,8 +85,12 @@ public class OccultismPower extends Element<OccultismPower> {
 		this.enabled = enabled;
 	}
 
-	public OccultismType getOccultismType() {
-		return occultismType;
+	public CharacteristicDefinition getCharacteristic() {
+		return characteristic;
+	}
+
+	public AvailableSkill getSkill() {
+		return skill;
 	}
 
 }

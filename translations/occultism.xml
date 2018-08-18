@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<occultism>
+	<farHand>		
+		<name>
+			<en>Far Hand</en>
+			<es>Mano Lejana</es>
+		</name>
+		<type>psi</type>
+		<power>
+			<name>
+				<en>Lifting Hand</en>
+				<es>Mano Levitante</es>
+			</name>
+			<level>1</level>
+			<characteristic>will</characteristic>
+			<skill>selfControl</skill>
+			<range>sensory</range>
+			<duration>temporary</duration>
+			<requirements></requirements>
+			<wyrd>1</wyrd>
+		</power>
+		
+	</farHand>
+</occultism>
