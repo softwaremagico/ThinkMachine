@@ -24,7 +24,11 @@ package com.softwaremagico.tm.pdf.complete.skills.occultism;
  * #L%
  */
 
+import java.util.Set;
+import java.util.Map.Entry;
+
 import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.character.occultism.OccultismPath;
 import com.softwaremagico.tm.character.occultism.OccultismPower;
 import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.complete.elements.LateralHeaderPdfPTable;
@@ -54,16 +58,26 @@ public class OccultismsPowerTable extends LateralHeaderPdfPTable {
 
 		int addedPowers = 0;
 		if (characterPlayer != null) {
-			for (OccultismPower occultismPower : characterPlayer.getOccultism().getElements()) {
-				if (occultismPower.isEnabled()) {
-					addCell(createFirstElementLine(occultismPower.getName(), NAME_COLUMN_WIDTH, FadingSunsTheme.OCCULSTISM_POWERS_CONTENT_FONT_SIZE));
-					addCell(createElementLine(occultismPower.getLevel() + "", LEVEL_COLUMN_WIDTH, FadingSunsTheme.OCCULSTISM_POWERS_CONTENT_FONT_SIZE));
-					addCell(createElementLine(occultismPower.getRoll(), ROLL_COLUMN_WIDTH, FadingSunsTheme.OCCULSTISM_POWERS_CONTENT_FONT_SIZE));
-					addCell(createElementLine(occultismPower.getRange(), RANGE_COLUMN_WIDTH, FadingSunsTheme.OCCULSTISM_POWERS_CONTENT_FONT_SIZE));
-					addCell(createElementLine(occultismPower.getDuration(), DURATION_COLUMN_WIDTH, FadingSunsTheme.OCCULSTISM_POWERS_CONTENT_FONT_SIZE));
-					addCell(createElementLine(occultismPower.getRequirements(), REQUIREMENTS_COLUMN_WIDTH, FadingSunsTheme.OCCULSTISM_POWERS_CONTENT_FONT_SIZE));
-					addCell(createElementLine(occultismPower.getCost() + "", COST_COLUMN_WIDTH, FadingSunsTheme.OCCULSTISM_POWERS_CONTENT_FONT_SIZE));
-					addedPowers++;
+			for (Entry<OccultismPath, Set<OccultismPower>> occultismPath : characterPlayer.getOccultism()
+					.getSelectedPowers().entrySet()) {
+				for (OccultismPower occultismPower : occultismPath.getValue()) {
+					if (occultismPower.isEnabled()) {
+						addCell(createFirstElementLine(occultismPower.getName(), NAME_COLUMN_WIDTH,
+								FadingSunsTheme.OCCULSTISM_POWERS_CONTENT_FONT_SIZE));
+						addCell(createElementLine(occultismPower.getLevel() + "", LEVEL_COLUMN_WIDTH,
+								FadingSunsTheme.OCCULSTISM_POWERS_CONTENT_FONT_SIZE));
+						addCell(createElementLine(occultismPower.getRoll(), ROLL_COLUMN_WIDTH,
+								FadingSunsTheme.OCCULSTISM_POWERS_CONTENT_FONT_SIZE));
+						addCell(createElementLine(occultismPower.getRange().getName(), RANGE_COLUMN_WIDTH,
+								FadingSunsTheme.OCCULSTISM_POWERS_CONTENT_FONT_SIZE));
+						addCell(createElementLine(occultismPower.getDuration().getName(), DURATION_COLUMN_WIDTH,
+								FadingSunsTheme.OCCULSTISM_POWERS_CONTENT_FONT_SIZE));
+						addCell(createElementLine(occultismPower.getRequirements(), REQUIREMENTS_COLUMN_WIDTH,
+								FadingSunsTheme.OCCULSTISM_POWERS_CONTENT_FONT_SIZE));
+						addCell(createElementLine(occultismPower.getCost() != null ? occultismPower.getCost() + ""
+								: "*", COST_COLUMN_WIDTH, FadingSunsTheme.OCCULSTISM_POWERS_CONTENT_FONT_SIZE));
+						addedPowers++;
+					}
 				}
 			}
 		}

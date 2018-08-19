@@ -62,7 +62,6 @@ public class CharacterJsonManager {
 		if (jsonText != null && jsonText.length() > 0) {
 			GsonBuilder gsonBuilder = new GsonBuilder();
 			gsonBuilder.setPrettyPrinting();
-			// gsonBuilder.registerTypeAdapter(IValue.class, new IValueSerializer<IValue>());
 			gsonBuilder.registerTypeAdapter(IValue.class, new InterfaceAdapter<IValue>());
 			Gson gson = gsonBuilder.create();
 

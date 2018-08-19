@@ -30,6 +30,9 @@ import com.softwaremagico.tm.character.blessings.BlessingFactory;
 import com.softwaremagico.tm.character.characteristics.CharacteristicsDefinitionFactory;
 import com.softwaremagico.tm.character.equipment.WeaponFactory;
 import com.softwaremagico.tm.character.factions.FactionsFactory;
+import com.softwaremagico.tm.character.occultism.OccultismDurationFactory;
+import com.softwaremagico.tm.character.occultism.OccultismPathFactory;
+import com.softwaremagico.tm.character.occultism.OccultismRangeFactory;
 import com.softwaremagico.tm.character.race.RaceFactory;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
@@ -49,6 +52,10 @@ public class CacheHandler {
 		WeaponFactory.getInstance().clearCache();
 		CharacteristicsDefinitionFactory.getInstance().clearCache();
 		FactionsFactory.getInstance().clearCache();
+		BlessingFactory.getInstance().clearCache();
+		OccultismPathFactory.getInstance().clearCache();
+		OccultismDurationFactory.getInstance().clearCache();
+		OccultismRangeFactory.getInstance().clearCache();
 
 	}
 }

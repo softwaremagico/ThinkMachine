@@ -24,14 +24,23 @@ package com.softwaremagico.tm.character.occultism;
  * #L%
  */
 
-import com.softwaremagico.tm.ElementList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
-public class Occultism extends ElementList<OccultismPower> {
+public class Occultism {
 	private int psiValue = 0;
 	private int teurgyValue = 0;
 	private int extraWyrd = 0;
 	private int urge = 0;
 	private int hubris = 0;
+
+	private final Map<OccultismPath, Set<OccultismPower>> selectedPowers;
+
+	public Occultism() {
+		selectedPowers = new HashMap<>();
+	}
 
 	public int getExtraWyrd() {
 		return extraWyrd;
@@ -71,6 +80,21 @@ public class Occultism extends ElementList<OccultismPower> {
 
 	public void setHubris(int hubris) {
 		this.hubris = hubris;
+	}
+
+	public Map<OccultismPath, Set<OccultismPower>> getSelectedPowers() {
+		return selectedPowers;
+	}
+
+	public void addPower(OccultismPower power, String language) throws InvalidOccultismPowerException {
+		if (power == null) {
+			throw new InvalidOccultismPowerException("Power cannot be null.");
+		}
+		OccultismPath path = OccultismPathFactory.getInstance().getOccultismPath(power, language);
+		if (selectedPowers.get(path) == null) {
+			selectedPowers.put(path, new HashSet<OccultismPower>());
+		}
+		selectedPowers.get(path).add(power);
 	}
 
 }

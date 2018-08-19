@@ -147,7 +147,7 @@ public class SmallCharacterSheet extends PdfDocument {
 
 		PdfPTable fightTable = new PdfPTable(new float[] { 3f, 5f, 1f });
 
-		if (characterPlayer.getOccultism().getElements().isEmpty() && !characterPlayer.getCybernetics().getElements().isEmpty()) {
+		if (characterPlayer.getOccultism().getSelectedPowers().isEmpty() && !characterPlayer.getCybernetics().getElements().isEmpty()) {
 			PdfPTable cyberneticsTable = new CyberneticsTable(getCharacterPlayer());
 			PdfPCell cyberneticsCell = new PdfPCell(cyberneticsTable);
 			cyberneticsCell.setBorderWidthLeft(0);

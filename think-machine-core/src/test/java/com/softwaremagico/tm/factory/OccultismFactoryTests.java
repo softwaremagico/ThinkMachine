@@ -37,22 +37,22 @@ import com.softwaremagico.tm.character.occultism.OccultismRangeFactory;
 public class OccultismFactoryTests {
 	private final static String LANGUAGE = "es";
 
-	private final static int DEFINED_PATHS = 1;
+	private final static int DEFINED_PATHS = 7;
 	private final static int DEFINED_RANGES = 4;
-	private final static int DEFINED_DURATIONS = 5;
+	private final static int DEFINED_DURATIONS = 6;
 
 	@Test
-	public void readBenefices() throws InvalidXmlElementException {
+	public void readPaths() throws InvalidXmlElementException {
 		Assert.assertEquals(DEFINED_PATHS, OccultismPathFactory.getInstance().getElements(LANGUAGE).size());
 	}
 
 	@Test
-	public void getCalculatedBenefices() throws InvalidXmlElementException {
+	public void readRanges() throws InvalidXmlElementException {
 		Assert.assertEquals(DEFINED_RANGES, OccultismRangeFactory.getInstance().getElements(LANGUAGE).size());
 	}
 
 	@Test
-	public void getBeneficesClassification() throws InvalidXmlElementException {
+	public void readDurations() throws InvalidXmlElementException {
 		Assert.assertEquals(DEFINED_DURATIONS, OccultismDurationFactory.getInstance().getElements(LANGUAGE).size());
 	}
 }

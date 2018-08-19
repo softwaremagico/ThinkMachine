@@ -24,25 +24,27 @@ package com.softwaremagico.tm.character.occultism;
  * #L%
  */
 
+import java.util.List;
+
 import com.softwaremagico.tm.Element;
 import com.softwaremagico.tm.character.characteristics.CharacteristicDefinition;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 
 public class OccultismPower extends Element<OccultismPower> {
 	private final CharacteristicDefinition characteristic;
-	private final AvailableSkill skill;
+	private final List<AvailableSkill> skills;
 	private final int level;
 	private final OccultismRange range;
 	private final OccultismDuration duration;
 	private final String requirements;
-	private final int cost;
+	private final Integer cost;
 	private boolean enabled;
 
-	public OccultismPower(String name, CharacteristicDefinition characteristic, AvailableSkill skill, int level,
-			OccultismRange range, OccultismDuration duration, String requirements, int cost) {
-		super(null, name);
+	public OccultismPower(String id, String name, CharacteristicDefinition characteristic, List<AvailableSkill> skills,
+			int level, OccultismRange range, OccultismDuration duration, String requirements, Integer cost) {
+		super(id, name);
 		this.characteristic = characteristic;
-		this.skill = skill;
+		this.skills = skills;
 		this.level = level;
 		this.range = range;
 		this.duration = duration;
@@ -51,9 +53,9 @@ public class OccultismPower extends Element<OccultismPower> {
 		enabled = true;
 	}
 
-	public OccultismPower(String name, CharacteristicDefinition characteristic, AvailableSkill skill, int level,
-			OccultismRange range, OccultismDuration duration, String requirements, int cost, boolean enabled) {
-		this(name, characteristic, skill, level, range, duration, requirements, cost);
+	public OccultismPower(String id, String name, CharacteristicDefinition characteristic, List<AvailableSkill> skills,
+			int level, OccultismRange range, OccultismDuration duration, String requirements, int cost, boolean enabled) {
+		this(id, name, characteristic, skills, level, range, duration, requirements, cost);
 		setEnabled(enabled);
 	}
 
@@ -73,7 +75,7 @@ public class OccultismPower extends Element<OccultismPower> {
 		return requirements;
 	}
 
-	public int getCost() {
+	public Integer getCost() {
 		return cost;
 	}
 
@@ -89,8 +91,21 @@ public class OccultismPower extends Element<OccultismPower> {
 		return characteristic;
 	}
 
-	public AvailableSkill getSkill() {
-		return skill;
+	public List<AvailableSkill> getSkills() {
+		return skills;
+	}
+
+	public String getRoll() {
+		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append(getCharacteristic().getAbbreviature());
+		stringBuilder.append("+");
+		for (int i = 0; i < skills.size(); i++) {
+			if (i > 0) {
+				stringBuilder.append("/");
+			}
+			stringBuilder.append(skills.get(i).getName());
+		}
+		return stringBuilder.toString();
 	}
 
 }

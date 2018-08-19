@@ -24,13 +24,19 @@ package com.softwaremagico.tm.character.occultism;
  * #L%
  */
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.StringTokenizer;
+
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.characteristics.CharacteristicsDefinitionFactory;
+import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
+import com.softwaremagico.tm.log.MachineLog;
 
 public class OccultismPathFactory extends XmlFactory<OccultismPath> {
 	private final static ITranslator translatorBlessing = LanguagePool.getTranslator("occultism.xml");
@@ -38,7 +44,7 @@ public class OccultismPathFactory extends XmlFactory<OccultismPath> {
 	private final static String NAME = "name";
 	private final static String TYPE = "type";
 
-	private final static String OCCULTISM_POWER = "power";
+	private final static String OCCULTISM_POWER = "powers";
 	private final static String POWER_NAME = "name";
 	private final static String POWER_LEVEL = "level";
 	private final static String POWER_CHARACTERISTIC = "characteristic";
@@ -47,6 +53,8 @@ public class OccultismPathFactory extends XmlFactory<OccultismPath> {
 	private final static String POWER_DURATION = "duration";
 	private final static String POWER_REQUIREMENTS = "requirements";
 	private final static String POWER_WYRD = "wyrd";
+
+	private final static String VARIABLE_WYRD = "variable";
 
 	private static OccultismPathFactory instance;
 
@@ -80,21 +88,46 @@ public class OccultismPathFactory extends XmlFactory<OccultismPath> {
 
 			for (String powerId : translator.getAllChildrenTags(occulstimId, OCCULTISM_POWER)) {
 				String powerName = translator.getNodeValue(powerId, POWER_NAME, language);
-				String level = translator.getNodeValue(powerId, POWER_LEVEL, language);
-				String characteristicName = translator.getNodeValue(powerId, POWER_CHARACTERISTIC, language);
-				String skillName = translator.getNodeValue(powerId, POWER_SKILL, language);
-				String range = translator.getNodeValue(powerId, POWER_RANGE, language);
-				String duration = translator.getNodeValue(powerId, POWER_DURATION, language);
-				String requirements = translator.getNodeValue(powerId, POWER_REQUIREMENTS, language);
-				String wyrd = translator.getNodeValue(powerId, POWER_WYRD, language);
+				String level = translator.getNodeValue(powerId, POWER_LEVEL);
+				String characteristicName = translator.getNodeValue(powerId, POWER_CHARACTERISTIC);
+				String skillNames = translator.getNodeValue(powerId, POWER_SKILL);
+				String range = translator.getNodeValue(powerId, POWER_RANGE);
+				String duration = translator.getNodeValue(powerId, POWER_DURATION);
+				String requirements = translator.getNodeValue(powerId, POWER_REQUIREMENTS);
+				Integer wyrd = null;
+				try {
+					wyrd = Integer.parseInt(translator.getNodeValue(powerId, POWER_WYRD));
+				} catch (NumberFormatException nfe) {
+					// Wyrd is not variable, is an error.
+					if (!translator.getNodeValue(powerId, POWER_WYRD).equalsIgnoreCase(VARIABLE_WYRD)) {
+						throw new InvalidOccultismPowerException("Invalid wyrd value for '"
+								+ translator.getNodeValue(powerId, POWER_WYRD, language) + "' in power '" + powerId
+								+ "'.");
+					}
+				}
 
-				OccultismPower occultismPower = new OccultismPower(powerName, CharacteristicsDefinitionFactory
-						.getInstance().get(CharacteristicName.get(characteristicName), language),
-						AvailableSkillsFactory.getInstance().getElement(skillName, language), Integer.parseInt(level),
-						OccultismRangeFactory.getInstance().getElement(range, language), OccultismDurationFactory
-								.getInstance().getElement(duration, language), requirements, Integer.parseInt(wyrd));
+				List<AvailableSkill> skills = new ArrayList<>();
+				StringTokenizer skillTokenizer = new StringTokenizer(skillNames, ",");
+				while (skillTokenizer.hasMoreTokens()) {
+					skills.add(AvailableSkillsFactory.getInstance().getElement(skillTokenizer.nextToken().trim(),
+							language));
+				}
 
-				occultismPath.getOccultismPowers().put(Integer.parseInt(level), occultismPower);
+				OccultismRange occultismRange = null;
+				if (range != null) {
+					occultismRange = OccultismRangeFactory.getInstance().getElement(range, language);
+				}
+
+				OccultismDuration occultismDuration = null;
+				if (duration != null) {
+					occultismDuration = OccultismDurationFactory.getInstance().getElement(duration, language);
+				}
+
+				OccultismPower occultismPower = new OccultismPower(powerId, powerName, CharacteristicsDefinitionFactory
+						.getInstance().get(CharacteristicName.get(characteristicName), language), skills,
+						Integer.parseInt(level), occultismRange, occultismDuration, requirements, wyrd);
+
+				occultismPath.getOccultismPowers().put(powerId, occultismPower);
 			}
 
 			return occultismPath;
@@ -106,5 +139,18 @@ public class OccultismPathFactory extends XmlFactory<OccultismPath> {
 	@Override
 	protected ITranslator getTranslator() {
 		return translatorBlessing;
+	}
+
+	public OccultismPath getOccultismPath(OccultismPower power, String language) {
+		try {
+			for (OccultismPath occultismPath : getElements(language)) {
+				if (occultismPath.getOccultismPowers().containsKey(power.getId())) {
+					return occultismPath;
+				}
+			}
+		} catch (InvalidXmlElementException e) {
+			MachineLog.errorMessage(this.getClass().getName(), e);
+		}
+		return null;
 	}
 }

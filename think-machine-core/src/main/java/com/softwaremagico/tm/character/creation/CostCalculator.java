@@ -25,12 +25,15 @@ package com.softwaremagico.tm.character.creation;
  */
 
 import java.util.List;
+import java.util.Map.Entry;
+import java.util.Set;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.benefices.AvailableBenefice;
 import com.softwaremagico.tm.character.blessings.Blessing;
 import com.softwaremagico.tm.character.cybernetics.Device;
+import com.softwaremagico.tm.character.occultism.OccultismPath;
 import com.softwaremagico.tm.character.occultism.OccultismPower;
 import com.softwaremagico.tm.log.MachineLog;
 
@@ -104,8 +107,11 @@ public class CostCalculator {
 
 	private static int getPsiPowersCosts(CharacterPlayer characterPlayer) {
 		int cost = 0;
-		for (OccultismPower occultismPower : characterPlayer.getOccultism().getElements()) {
-			cost += occultismPower.getLevel();
+		for (Entry<OccultismPath, Set<OccultismPower>> occulstismPath : characterPlayer.getOccultism()
+				.getSelectedPowers().entrySet()) {
+			for (OccultismPower occultismPower : occulstismPath.getValue()) {
+				cost += occultismPower.getLevel();
+			}
 		}
 		cost += characterPlayer.getOccultism().getExtraWyrd() * 2;
 		cost += Math.max(0, (characterPlayer.getOccultism().getPsiValue() - characterPlayer.getRace().getPsi()) * 3);

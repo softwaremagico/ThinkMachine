@@ -12,6 +12,12 @@
 			<es>Temporal</es>
 		</name>
 	</temporary>
+	<oneSpan>
+		<name>
+			<en>One Span</en>
+			<es>Una Escena</es>
+		</name>
+	</oneSpan>
 	<extended>
 		<name>
 			<en>Extended</en>

@@ -50,8 +50,7 @@ import com.softwaremagico.tm.character.equipment.Armour;
 import com.softwaremagico.tm.character.equipment.Shield;
 import com.softwaremagico.tm.character.equipment.WeaponFactory;
 import com.softwaremagico.tm.character.factions.FactionsFactory;
-import com.softwaremagico.tm.character.occultism.OccultismPower;
-import com.softwaremagico.tm.character.occultism.OccultismType;
+import com.softwaremagico.tm.character.occultism.OccultismPathFactory;
 import com.softwaremagico.tm.character.race.Race;
 import com.softwaremagico.tm.character.race.RaceFactory;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
@@ -296,15 +295,15 @@ public class CustomCharacters {
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("lore", "kelantiLore", LANGUAGE), 3);
 
 		player.getOccultism().setPsiValue(6);
-
-		player.getOccultism().addElement(new OccultismPower("Mano Levitante", OccultismType.PSI, "Vol+Autoc.", 1, "Sensorial", "Temporal", "", 1));
-		player.getOccultism().addElement(new OccultismPower("Mano Lanzadora", OccultismType.PSI, "Vol+Autoc.", 2, "Sensorial", "Temporal", "", 1));
-		player.getOccultism().addElement(new OccultismPower("Mano Aplastante", OccultismType.PSI, "Vol+Autoc.", 3, "Sensorial", "Temporal", "", 1));
-		player.getOccultism().addElement(new OccultismPower("Mano Duelista", OccultismType.PSI, "Vol+Autoc.", 4, "Sensorial", "Temporal", "", 1));
-		player.getOccultism().addElement(new OccultismPower("Mano Nº5", OccultismType.PSI, "", 5, "", "", "", 1, false));
-		player.getOccultism().addElement(new OccultismPower("Intuir", OccultismType.PSI, "Vol+Empatía", 1, "Toque", "Instantáneo", "", 1));
-		player.getOccultism().addElement(new OccultismPower("Emocionar", OccultismType.PSI, "Pre+Influenciar", 2, "Toque", "Instantáneo", "", 1));
-		player.getOccultism().addElement(new OccultismPower("Visión Mental", OccultismType.PSI, "Vol+Empatía", 3, "Toque", "Instantáneo", "", 1));
+		
+		player.getOccultism().addPower(OccultismPathFactory.getInstance().getElement("farHand", LANGUAGE).getOccultismPowers().get("liftingHand"), player.getLanguage());
+		player.getOccultism().addPower(OccultismPathFactory.getInstance().getElement("farHand", LANGUAGE).getOccultismPowers().get("throwingHand"), player.getLanguage());
+		player.getOccultism().addPower(OccultismPathFactory.getInstance().getElement("farHand", LANGUAGE).getOccultismPowers().get("crushingHand"), player.getLanguage());
+		player.getOccultism().addPower(OccultismPathFactory.getInstance().getElement("farHand", LANGUAGE).getOccultismPowers().get("duelingHand"), player.getLanguage());
+		player.getOccultism().addPower(OccultismPathFactory.getInstance().getElement("farHand", LANGUAGE).getOccultismPowers().get("Nº5"), player.getLanguage());
+		player.getOccultism().addPower(OccultismPathFactory.getInstance().getElement("psyche", LANGUAGE).getOccultismPowers().get("intuit"), player.getLanguage());
+		player.getOccultism().addPower(OccultismPathFactory.getInstance().getElement("psyche", LANGUAGE).getOccultismPowers().get("emote"), player.getLanguage());
+		player.getOccultism().addPower(OccultismPathFactory.getInstance().getElement("psyche", LANGUAGE).getOccultismPowers().get("mindSight"), player.getLanguage());
 		player.getOccultism().setExtraWyrd(3);
 
 		player.addBlessing(BlessingFactory.getInstance().getElement("horribleScar", player.getLanguage()));

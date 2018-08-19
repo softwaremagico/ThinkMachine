@@ -380,13 +380,13 @@
 		</name>
 		<group>malefaction</group>
 	</torture>
-	<atheltics>
+	<athletics>
 		<name>
 			<en>Athletics</en>
 			<es>Atletismo</es>
 		</name>
 		<group>physical</group>
-	</atheltics>
+	</athletics>
 	<selfControl>
 		<name>
 			<en>Self Control</en>

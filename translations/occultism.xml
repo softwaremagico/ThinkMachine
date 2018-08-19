@@ -6,19 +6,828 @@
 			<es>Mano Lejana</es>
 		</name>
 		<type>psi</type>
-		<power>
-			<name>
-				<en>Lifting Hand</en>
-				<es>Mano Levitante</es>
-			</name>
-			<level>1</level>
-			<characteristic>will</characteristic>
-			<skill>selfControl</skill>
-			<range>sensory</range>
-			<duration>temporary</duration>
-			<requirements></requirements>
-			<wyrd>1</wyrd>
-		</power>
-		
+		<powers>
+			<liftingHand>
+				<name>
+					<en>Lifting Hand</en>
+					<es>Mano Levitante</es>
+				</name>
+				<level>1</level>
+				<characteristic>will</characteristic>
+				<skill>selfControl</skill>
+				<range>sensory</range>
+				<duration>temporary</duration>
+				<requirements></requirements>
+				<wyrd>1</wyrd>
+			</liftingHand>
+			<throwingHand>
+				<name>
+					<en>Throwing Hand</en>
+					<es>Mano Lanzadora</es>
+				</name>
+				<level>2</level>
+				<characteristic>will</characteristic>
+				<skill>selfControl</skill>
+				<range>sensory</range>
+				<duration>temporary</duration>
+				<requirements></requirements>
+				<wyrd>1</wyrd>
+			</throwingHand>
+			<crushingHand>
+				<name>
+					<en>Crushing Hand</en>
+					<es>Mano Aplastante</es>
+				</name>
+				<level>3</level>
+				<characteristic>will</characteristic>
+				<skill>selfControl</skill>
+				<range>sensory</range>
+				<duration>temporary</duration>
+				<requirements></requirements>
+				<wyrd>1</wyrd>
+			</crushingHand>
+			<duelingHand>
+				<name>
+					<en>Dueling Hand</en>
+					<es>Mano Duelista</es>
+				</name>
+				<level>4</level>
+				<characteristic>will</characteristic>
+				<skill>selfControl</skill>
+				<range>sensory</range>
+				<duration>temporary</duration>
+				<requirements></requirements>
+				<wyrd>1</wyrd>
+			</duelingHand>
+			<farWall>
+				<name>
+					<en>Far Wall</en>
+					<es>Muro Invisible</es>
+				</name>
+				<level>6</level>
+				<characteristic>will</characteristic>
+				<skill>selfControl</skill>
+				<range>sensory</range>
+				<duration>temporary</duration>
+				<requirements></requirements>
+				<wyrd>1</wyrd>
+			</farWall>
+			<airStride>
+				<name>
+					<en>Air Stride</en>
+					<es>Levitación</es>
+				</name>
+				<level>7</level>
+				<characteristic>will</characteristic>
+				<skill>selfControl</skill>
+				<range>self</range>
+				<duration>temporary</duration>
+				<requirements></requirements>
+				<wyrd>1</wyrd>
+			</airStride>
+			<demolishingHand>
+				<name>
+					<en>Demolishing Hand</en>
+					<es>Mano Demoledora</es>
+				</name>
+				<level>8</level>
+				<characteristic>will</characteristic>
+				<skill>selfControl</skill>
+				<range>sensory</range>
+				<duration>instant</duration>
+				<requirements></requirements>
+				<wyrd>1</wyrd>
+			</demolishingHand>
+			<airDance>
+				<name>
+					<en>Air Dance</en>
+					<es>Levitación Mayor</es>
+				</name>
+				<level>9</level>
+				<characteristic>will</characteristic>
+				<skill>selfControl</skill>
+				<range>sensory</range>
+				<duration>instant</duration>
+				<requirements></requirements>
+				<wyrd>1</wyrd>
+			</airDance>
+		</powers>		
 	</farHand>
+	<omen>
+		<name>
+			<en>Omen</en>
+			<es>Augurio</es>
+		</name>
+		<type>psi</type>
+		<powers>
+			<shadowsGoneBy>
+				<name>
+					<en>Shadows Gone By</en>
+					<es>Sombras del Pasado</es>
+				</name>
+				<level>6</level>
+				<characteristic>will</characteristic>
+				<skill>observe</skill>
+				<range>touch</range>
+				<duration>extended</duration>
+				<requirements></requirements>
+				<wyrd>1</wyrd>
+			</shadowsGoneBy>
+			<shadowsToCome>
+				<name>
+					<en>Shadows to Come</en>
+					<es>Sombras del Porvenir</es>
+				</name>
+				<level>7</level>
+				<characteristic>Faith</characteristic>
+				<skill>observe</skill>
+				<range>touch</range>
+				<duration>extended</duration>
+				<requirements></requirements>
+				<wyrd>1</wyrd>
+			</shadowsToCome>
+			<voiceFromThePast>
+				<name>
+					<en>Voice from the Past</en>
+					<es>Voz del Pasado</es>
+				</name>
+				<level>8</level>
+				<characteristic>will</characteristic>
+				<skill>investigation</skill>
+				<range></range>
+				<duration>prolonged</duration>
+				<requirements></requirements>
+				<wyrd>1</wyrd>
+			</voiceFromThePast>
+			<oracle>
+				<name>
+					<en>Oracle</en>
+					<es>Oráculo</es>
+				</name>
+				<level>9</level>
+				<characteristic>wits</characteristic>
+				<skill>observe</skill>
+				<range></range>
+				<duration>Instant</duration>
+				<requirements></requirements>
+				<wyrd>1</wyrd>
+			</oracle>
+		</powers>
+	</omen>
+	<psyche>
+		<name>
+			<en>Psyche</en>
+			<es>Mentalismo</es>
+		</name>
+		<type>psi</type>
+		<powers>
+			<intuit>
+				<name>
+					<en>Intuit</en>
+					<es>Intuir</es>
+				</name>
+				<level>1</level>
+				<characteristic>will</characteristic>
+				<skill>empathy</skill>
+				<range>touch</range>
+				<duration>instant</duration>
+				<requirements></requirements>
+				<wyrd>1</wyrd>
+			</intuit>
+			<emote>
+				<name>
+					<en>Emote</en>
+					<es>Emocionar</es>
+				</name>
+				<level>2</level>
+				<characteristic>presence</characteristic>
+				<skill>influence</skill>
+				<range>touch</range>
+				<duration>instant</duration>
+				<requirements></requirements>
+				<wyrd>1</wyrd>
+			</emote>
+			<mindSight>
+				<name>
+					<en>MindSight</en>
+					<es>Visión Mental</es>
+				</name>
+				<level>3</level>
+				<characteristic>will</characteristic>
+				<skill>empathy</skill>
+				<range>touch</range>
+				<duration>instant</duration>
+				<requirements></requirements>
+				<wyrd>1</wyrd>
+			</mindSight>
+			<mindSpeech>
+				<name>
+					<en>MindSpeech</en>
+					<es>Diálogo Mental</es>
+				</name>
+				<level>4</level>
+				<characteristic>will</characteristic>
+				<skill>empathy</skill>
+				<range>touch</range>
+				<duration>instant</duration>
+				<requirements></requirements>
+				<wyrd>1</wyrd>
+			</mindSpeech>
+			<heartsCommand>
+				<name>
+					<en>Heart's Command</en>
+					<es>Dictamen del Corazón</es>
+				</name>
+				<level>5</level>
+				<characteristic>presence</characteristic>
+				<skill>influence</skill>
+				<range>sensory</range>
+				<duration>instant</duration>
+				<requirements></requirements>
+				<wyrd>1</wyrd>
+			</heartsCommand>
+			<mindSearch>
+				<name>
+					<en>MindSearch</en>
+					<es>Escrutinio Mental</es>
+				</name>
+				<level>5</level>
+				<characteristic>will</characteristic>
+				<skill>selfControl</skill>
+				<range>sensory</range>
+				<duration>temporary</duration>
+				<requirements></requirements>
+				<wyrd>1</wyrd>
+			</mindSearch>
+			<headShackle>
+				<name>
+					<en>HeadShackle</en>
+					<es>Dominar Persona</es>
+				</name>
+				<level>6</level>
+				<characteristic>will</characteristic>
+				<skill>selfControl</skill>
+				<range>sensory</range>
+				<duration>Temporary</duration>
+				<requirements></requirements>
+				<wyrd>1</wyrd>
+			</headShackle>
+			<brainBlast>
+				<name>
+					<en>Brain Blast</en>
+					<es>Explosión Cerebral</es>
+				</name>
+				<level>7</level>
+				<characteristic>will</characteristic>
+				<skill>selfControl</skill>
+				<range>sensory</range>
+				<duration>instant</duration>
+				<requirements></requirements>
+				<wyrd>1</wyrd>
+			</brainBlast>
+			<sympaticus>
+				<name>
+					<en>Sympaticus</en>
+					<es>Red Telepática</es>
+				</name>
+				<level>8</level>
+				<characteristic>presence</characteristic>
+				<skill>empathy</skill>
+				<range>sensory</range>
+				<duration>extended</duration>
+				<requirements></requirements>
+				<wyrd>1</wyrd>
+			</sympaticus>
+			<puppetry>
+				<name>
+					<en>Puppetry</en>
+					<es>Posesión</es>
+				</name>
+				<level>9</level>
+				<characteristic>will</characteristic>
+				<skill>selfControl</skill>
+				<range>touch</range>
+				<duration>temporary</duration>
+				<requirements></requirements>
+				<wyrd>1</wyrd>
+			</puppetry>
+		</powers>
+	</psyche>
+	<sixthSense>
+		<name>
+			<en>Sixth Sense</en>
+			<es>Sexto Sentido</es>
+		</name>
+		<type>psi</type>
+		<powers>
+			<sensitivity>
+				<name>
+					<en>Sensitivity</en>
+					<es>Sensibilidad</es>
+				</name>
+				<level>1</level>
+				<characteristic>will</characteristic>
+				<skill>observe</skill>
+				<range>sensory</range>
+				<duration>temporary</duration>
+				<requirements></requirements>
+				<wyrd>1</wyrd>
+			</sensitivity>
+			<darkSense>
+				<name>
+					<en>Dark Sense</en>
+					<es>Visión en la Oscuridad</es>
+				</name>
+				<level>2</level>
+				<characteristic>will</characteristic>
+				<skill>observe</skill>
+				<range>sensory</range>
+				<duration>temporary</duration>
+				<requirements></requirements>
+				<wyrd>1</wyrd>
+			</darkSense>
+			<subtleSight>
+				<name>
+					<en>Subtle Sight</en>
+					<es>Visión Sutil</es>
+				</name>
+				<level>3</level>
+				<characteristic>will</characteristic>
+				<skill>observe</skill>
+				<range>sensory</range>
+				<duration>temporary</duration>
+				<requirements></requirements>
+				<wyrd>1</wyrd>
+			</subtleSight>
+			<premonition>
+				<name>
+					<en>Premonition</en>
+					<es>Premonición</es>
+				</name>
+				<level>4</level>
+				<characteristic>faith</characteristic>
+				<skill>observe</skill>
+				<range>sensory</range>
+				<duration>temporary</duration>
+				<requirements></requirements>
+				<wyrd>1</wyrd>
+			</premonition>
+			<farSight>
+				<name>
+					<en>Far Sight</en>
+					<es>Visión Lejana</es>
+				</name>
+				<level>5</level>
+				<characteristic>will</characteristic>
+				<skill>selfControl</skill>
+				<range>distant</range>
+				<duration>temporary</duration>
+				<requirements></requirements>
+				<wyrd>1</wyrd>
+			</farSight>
+			<farSound>
+				<name>
+					<en>Far Sound</en>
+					<es>Sonido Lejano</es>
+				</name>
+				<level>6</level>
+				<characteristic>will</characteristic>
+				<skill>selfControl</skill>
+				<range>distant</range>
+				<duration>temporary</duration>
+				<requirements></requirements>
+				<wyrd>1</wyrd>
+			</farSound>
+			<sharedSense>
+				<name>
+					<en>Shared Sense</en>
+					<es>Sentido Compartido</es>
+				</name>
+				<level>7</level>
+				<characteristic>will</characteristic>
+				<skill>empathy</skill>
+				<range>distant</range>
+				<duration>temporary</duration>
+				<requirements></requirements>
+				<wyrd>1</wyrd>
+			</sharedSense>
+			<wyrdSight>
+				<name>
+					<en>Wyrd Sense</en>
+					<es>Visión Wyrd</es>
+				</name>
+				<level>8</level>
+				<characteristic>faith</characteristic>
+				<skill>observe</skill>
+				<range>sensory</range>
+				<duration>temporary</duration>
+				<requirements></requirements>
+				<wyrd>1</wyrd>
+			</wyrdSight>
+			<sensesShock>
+				<name>
+					<en>Senses Shock</en>
+					<es>Descarga </es>
+				</name>
+				<level>9</level>
+				<characteristic>will</characteristic>
+				<skill>selfControl</skill>
+				<range>sensory</range>
+				<duration>instant</duration>
+				<requirements></requirements>
+				<wyrd>1</wyrd>
+			</sensesShock>
+		</powers>
+	</sixthSense>
+	<soma>
+		<name>
+			<en>Soma</en>
+			<es>Soma</es>
+		</name>
+		<type>psi</type>
+		<powers>
+			<toughening>
+				<name>
+					<en>Toughening</en>
+					<es>Fortalecer</es>
+				</name>
+				<level>1</level>
+				<characteristic>will</characteristic>
+				<skill>vigor</skill>
+				<range></range>
+				<duration>temporary</duration>
+				<requirements></requirements>
+				<wyrd>1</wyrd>
+			</toughening>
+			<strengthening>
+				<name>
+					<en>Strengthening</en>
+					<es>Vigorizar</es>
+				</name>
+				<level>2</level>
+				<characteristic>will</characteristic>
+				<skill>vigor</skill>
+				<range></range>
+				<duration>temporary</duration>
+				<requirements></requirements>
+				<wyrd>1</wyrd>
+			</strengthening>
+			<quickening>
+				<name>
+					<en>Quickening</en>
+					<es>Agilizar</es>
+				</name>
+				<level>3</level>
+				<characteristic>will</characteristic>
+				<skill>athletics</skill>
+				<range></range>
+				<duration>temporary</duration>
+				<requirements></requirements>
+				<wyrd>1</wyrd>
+			</quickening>
+			<hardening>
+				<name>
+					<en>Hardening</en>
+					<es>Endurecer</es>
+				</name>
+				<level>4</level>
+				<characteristic>will</characteristic>
+				<skill>vigor</skill>
+				<range></range>
+				<duration>temporary</duration>
+				<requirements></requirements>
+				<wyrd>1</wyrd>
+			</hardening>
+			<sizing>
+				<name>
+					<en>Sizing</en>
+					<es>Dimensionamiento</es>
+				</name>
+				<level>5</level>
+				<characteristic>will</characteristic>
+				<skill>selfControl</skill>
+				<range></range>
+				<duration>temporary</duration>
+				<requirements></requirements>
+				<wyrd>1</wyrd>
+			</sizing>
+			<masking>
+				<name>
+					<en>Masking</en>
+					<es>Enmascarar</es>
+				</name>
+				<level>6</level>
+				<characteristic>perception</characteristic>
+				<skill>selfControl</skill>
+				<range></range>
+				<duration>temporary</duration>
+				<requirements></requirements>
+				<wyrd>1</wyrd>
+			</masking>
+			<recovering>
+				<name>
+					<en>Recovering</en>
+					<es>Recuperarse</es>
+				</name>
+				<level>7</level>
+				<characteristic>will</characteristic>
+				<skill>vigor</skill>
+				<range></range>
+				<duration>instant</duration>
+				<requirements></requirements>
+				<wyrd>1</wyrd>
+			</recovering>
+			<slowing>
+				<name>
+					<en>Slowing</en>
+					<es>Ralentizar</es>
+				</name>
+				<level>8</level>
+				<characteristic>faith</characteristic>
+				<skill>vigor</skill>
+				<range></range>
+				<duration>oneSpan</duration>
+				<requirements></requirements>
+				<wyrd>1</wyrd>
+			</slowing>
+			<closing>
+				<name>
+					<en>Closing</en>
+					<es>Inmunizar</es>
+				</name>
+				<level>9</level>
+				<characteristic>will</characteristic>
+				<skill>selfControl</skill>
+				<range></range>
+				<duration>extended</duration>
+				<requirements></requirements>
+				<wyrd>1</wyrd>
+			</closing>
+		</powers>
+	</soma>
+	<sympathy>
+		<name>
+			<en>Sympathy</en>
+			<es>Afinidad</es>
+		</name>
+		<type>psi</type>
+		<powers>
+			<bond>
+				<name>
+					<en>Bond</en>
+					<es>Vínculo</es>
+				</name>
+				<level>3</level>
+				<characteristic>will</characteristic>
+				<skill>empathy</skill>
+				<range>touch</range>
+				<duration>perpetual</duration>
+				<requirements></requirements>
+				<wyrd>variable</wyrd>
+			</bond>
+			<sanctum>
+				<name>
+					<en>Sanctum</en>
+					<es>Santuario</es>
+				</name>
+				<level>4</level>
+				<characteristic>presence</characteristic>
+				<skill>selfControl</skill>
+				<range>sensory</range>
+				<duration>perpetual</duration>
+				<requirements></requirements>
+				<wyrd>1</wyrd>
+			</sanctum>
+			<totem>
+				<name>
+					<en>Totem</en>
+					<es>Tótem</es>
+				</name>
+				<level>5</level>
+				<characteristic>presence</characteristic>
+				<skill>selfControl</skill>
+				<range>touch</range>
+				<duration>perpetual</duration>
+				<requirements></requirements>
+				<wyrd>variable</wyrd>
+			</totem>
+			<coverBrand>
+				<name>
+					<en>Cover Brand</en>
+					<es>Marca de Aquelarre</es>
+				</name>
+				<level>6</level>
+				<characteristic>will</characteristic>
+				<skill>influence</skill>
+				<range>touch</range>
+				<duration>perpetual</duration>
+				<requirements></requirements>
+				<wyrd>variable</wyrd>
+			</coverBrand>
+			<mojoBond>
+				<name>
+					<en>Mojo Bond</en>
+					<es>Vínculo Mágico</es>
+				</name>
+				<level>7</level>
+				<characteristic>will</characteristic>
+				<skill>empathy</skill>
+				<range>sensory</range>
+				<duration>extended</duration>
+				<requirements></requirements>
+				<wyrd>1</wyrd>
+			</mojoBond>
+			<severBond>
+				<name>
+					<en>Sever Bond</en>
+					<es>Cortar Vínculo</es>
+				</name>
+				<level>8</level>
+				<characteristic>will</characteristic>
+				<skill>selfControl</skill>
+				<range>touch</range>
+				<duration>instant</duration>
+				<requirements></requirements>
+				<wyrd>2</wyrd>
+			</severBond>
+			<coverBond>
+				<name>
+					<en>Cover Bond</en>
+					<es>Vínculo de Aquelarre</es>
+				</name>
+				<level>9</level>
+				<characteristic>presence</characteristic>
+				<skill>selfControl</skill>
+				<range>sensory</range>
+				<duration>oneSpan</duration>
+				<requirements></requirements>
+				<wyrd>variable</wyrd>
+			</coverBond>
+		</powers>
+	</sympathy>
+	<visCraft>
+		<name>
+			<en>Vis Craft</en>
+			<es>Manipular Vis</es>
+		</name>
+		<type>psi</type>
+		<powers>
+			<visEye>
+				<name>
+					<en>Vis Eye</en>
+					<es>Ver Vis</es>
+				</name>
+				<level>1</level>
+				<characteristic>will</characteristic>
+				<skill>observe</skill>
+				<range>sensory</range>
+				<duration>extended</duration>
+				<requirements></requirements>
+				<wyrd>1</wyrd>
+			</visEye>
+			<visDrain>
+				<name>
+					<en>Vis Drain</en>
+					<es>Drenar Vis</es>
+				</name>
+				<level>2</level>
+				<characteristic>will</characteristic>
+				<skill>techRedemption</skill>
+				<range>touch</range>
+				<duration>instant</duration>
+				<requirements></requirements>
+				<wyrd>variable</wyrd>
+			</visDrain>
+			<visChakra>
+				<name>
+					<en>Vis Chakra</en>
+					<es>Chakra de Vis</es>
+				</name>
+				<level>3</level>
+				<characteristic>will</characteristic>
+				<skill>observe</skill>
+				<range>sensory</range>
+				<duration>temporary</duration>
+				<requirements></requirements>
+				<wyrd>1</wyrd>
+			</visChakra>
+			<visFlow>
+				<name>
+					<en>Vis Flow</en>
+					<es>Flujo de Vis</es>
+				</name>
+				<level>3</level>
+				<characteristic>will</characteristic>
+				<skill>techRedemption</skill>
+				<range>touch</range>
+				<duration>instant</duration>
+				<requirements></requirements>
+				<wyrd>1</wyrd>
+			</visFlow>
+			<visSiphon>
+				<name>
+					<en>Vis Siphon</en>
+					<es>Sifón de Vis</es>
+				</name>
+				<level>4</level>
+				<characteristic>will</characteristic>
+				<skill>techRedemption</skill>
+				<range>sensory</range>
+				<duration>temporary</duration>
+				<requirements></requirements>
+				<wyrd>1</wyrd>
+			</visSiphon>
+			<visShock>
+				<name>
+					<en>Vis Shock</en>
+					<es>Estallido de Vis</es>
+				</name>
+				<level>4</level>
+				<characteristic>will</characteristic>
+				<skill>fight,melee</skill>
+				<range>touch</range>
+				<duration>instant</duration>
+				<requirements></requirements>
+				<wyrd>1</wyrd>
+			</visShock>
+			<visFlux>
+				<name>
+					<en>Vis Flux</en>
+					<es>Flujo mayor de Vis</es>
+				</name>
+				<level>5</level>
+				<characteristic>will</characteristic>
+				<skill>techRedemption</skill>
+				<range>sensory</range>
+				<duration>instant</duration>
+				<requirements></requirements>
+				<wyrd>1</wyrd>
+			</visFlux>
+			<visShield>
+				<name>
+					<en>Vis Shield</en>
+					<es>Escudo de Vis</es>
+				</name>
+				<level>5</level>
+				<characteristic>will</characteristic>
+				<skill>selfControl</skill>
+				<range>self</range>
+				<duration>temporary</duration>
+				<requirements></requirements>
+				<wyrd>1</wyrd>
+			</visShield>
+			<visBolt>
+				<name>
+					<en>Vis Bolt</en>
+					<es>Descarga de Vis</es>
+				</name>
+				<level>6</level>
+				<characteristic>will</characteristic>
+				<skill>energyGuns</skill>
+				<range>sensory</range>
+				<duration>instant</duration>
+				<requirements></requirements>
+				<wyrd>1</wyrd>
+			</visBolt>
+			<visVortex>
+				<name>
+					<en>Vis Vortex</en>
+					<es>Vórtice de Vis</es>
+				</name>
+				<level>7</level>
+				<characteristic>will</characteristic>
+				<skill>selfControl</skill>
+				<range>touch</range>
+				<duration>instant</duration>
+				<requirements></requirements>
+				<wyrd>variable</wyrd>
+			</visVortex>
+			<visStorm>
+				<name>
+					<en>Vis Storm</en>
+					<es>Tormenta de Vis</es>
+				</name>
+				<level>8</level>
+				<characteristic>will</characteristic>
+				<skill>selfControl</skill>
+				<range>sensory</range>
+				<duration>instant</duration>
+				<requirements></requirements>
+				<wyrd>1</wyrd>
+			</visStorm>
+			<primalVis>
+				<name>
+					<en>Primal Vis</en>
+					<es>Vis Primigenio</es>
+				</name>
+				<level>9</level>
+				<characteristic>faith</characteristic>
+				<skill>selfControl</skill>
+				<range>sensory</range>
+				<duration>instant</duration>
+				<requirements></requirements>
+				<wyrd>0</wyrd>
+			</primalVis>
+		</powers>
+	</visCraft>
 </occultism>

@@ -30,7 +30,7 @@ import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
 
 public class OccultismRangeFactory extends XmlFactory<OccultismRange> {
-	private final static ITranslator translatorBlessing = LanguagePool.getTranslator("occultismRange.xml");
+	private final static ITranslator translatorBlessing = LanguagePool.getTranslator("occultismRanges.xml");
 
 	private final static String NAME = "name";
 

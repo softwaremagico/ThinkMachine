@@ -57,7 +57,7 @@ public class Element<T extends Element<?>> implements Comparable<T> {
 
 	@Override
 	public String toString() {
-		return getName();
+		return getId();
 	}
 
 	@Override
