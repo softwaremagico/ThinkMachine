@@ -26,6 +26,7 @@
 				<include name="randomCharacter" />
 				<include name="jsonExporter" />
 				<include name="blessings" />
+				<include name="occultism" />
 				<exclude name="gaussianDistribution" />
 			</run>
 		</groups>
@@ -41,6 +42,7 @@
 			<class name="com.softwaremagico.tm.factory.BlessingFactoryTests" />
 			<class name="com.softwaremagico.tm.factory.OccultismFactoryTests" />
 			<class name="com.softwaremagico.tm.rules.BlessingTests" />
+			<class name="com.softwaremagico.tm.rules.OccultismTests" />
 			<class name="com.softwaremagico.tm.random.RandomCharacterTests" />
 			<class name="com.softwaremagico.tm.random.GaussianDistributionTests" />
 			<class name="com.softwaremagico.tm.json.JsonTests" />

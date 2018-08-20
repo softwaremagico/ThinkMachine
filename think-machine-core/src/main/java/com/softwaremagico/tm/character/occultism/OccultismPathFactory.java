@@ -76,17 +76,21 @@ public class OccultismPathFactory extends XmlFactory<OccultismPath> {
 	}
 
 	@Override
-	protected OccultismPath createElement(ITranslator translator, String occulstimId, String language)
+	protected OccultismPath createElement(ITranslator translator, String occultismId, String language)
 			throws InvalidXmlElementException {
 
 		try {
-			String name = translator.getNodeValue(occulstimId, NAME, language);
+			String name = translator.getNodeValue(occultismId, NAME, language);
 
-			String typeName = translator.getNodeValue(occulstimId, TYPE, language);
+			String typeName = translator.getNodeValue(occultismId, TYPE);
 			OccultismType occultismType = OccultismType.get(typeName);
-			OccultismPath occultismPath = new OccultismPath(occulstimId, name, occultismType);
+			if (occultismType == null) {
+				throw new InvalidOccultismPowerException("No type defined for '" + occultismId + "'.");
+			}
 
-			for (String powerId : translator.getAllChildrenTags(occulstimId, OCCULTISM_POWER)) {
+			OccultismPath occultismPath = new OccultismPath(occultismId, name, occultismType);
+
+			for (String powerId : translator.getAllChildrenTags(occultismId, OCCULTISM_POWER)) {
 				String powerName = translator.getNodeValue(powerId, POWER_NAME, language);
 				String level = translator.getNodeValue(powerId, POWER_LEVEL);
 				String characteristicName = translator.getNodeValue(powerId, POWER_CHARACTERISTIC);
@@ -101,7 +105,7 @@ public class OccultismPathFactory extends XmlFactory<OccultismPath> {
 					// Wyrd is not variable, is an error.
 					if (!translator.getNodeValue(powerId, POWER_WYRD).equalsIgnoreCase(VARIABLE_WYRD)) {
 						throw new InvalidOccultismPowerException("Invalid wyrd value for '"
-								+ translator.getNodeValue(powerId, POWER_WYRD, language) + "' in power '" + powerId
+								+ translator.getNodeValue(powerId, POWER_WYRD) + "' in power '" + powerId
 								+ "'.");
 					}
 				}
@@ -132,7 +136,7 @@ public class OccultismPathFactory extends XmlFactory<OccultismPath> {
 
 			return occultismPath;
 		} catch (Exception e) {
-			throw new InvalidOccultismPowerException("Invalid structure in occultism path '" + occulstimId + "'.", e);
+			throw new InvalidOccultismPowerException("Invalid structure in occultism path '" + occultismId + "'.", e);
 		}
 	}
 

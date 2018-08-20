@@ -24,8 +24,15 @@ package com.softwaremagico.tm.character.occultism;
  * #L%
  */
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import com.softwaremagico.tm.Element;
 
@@ -48,4 +55,58 @@ public class OccultismPath extends Element<OccultismPath> {
 		return occultismPowers;
 	}
 
+	/**
+	 * Gets the previous level powers form a power. At least one of them must be aquired to purchase this power if is a
+	 * psi path.
+	 * 
+	 * @param path
+	 *            the path of the power.
+	 * @param power
+	 *            the power that has one level more than the previous one
+	 * @return A set with one or more powers.
+	 */
+	public Set<OccultismPower> getPreviousLevelPowers(OccultismPower power) {
+		Integer previousLevel = getPreviousLevelWithPowers(power);
+		if (previousLevel != null) {
+			return getPowersOfLevel(previousLevel);
+		}
+		return new HashSet<OccultismPower>();
+	}
+
+	private Integer getPreviousLevelWithPowers(OccultismPower power) {
+		List<OccultismPower> powersOfPath = new ArrayList<>(occultismPowers.values());
+
+		// Sort by level inverse.
+		Collections.sort(powersOfPath, new Comparator<OccultismPower>() {
+
+			@Override
+			public int compare(OccultismPower power0, OccultismPower power1) {
+				if (power1.getLevel() != power1.getLevel()) {
+					return power1.getLevel() - power0.getLevel();
+				}
+				return power1.compareTo(power0);
+			}
+
+		});
+
+		// From up to down.
+		Iterator<OccultismPower> powerIterator = powersOfPath.iterator();
+		while (powerIterator.hasNext()) {
+			OccultismPower next = powerIterator.next();
+			if (next.getLevel() < power.getLevel()) {
+				return next.getLevel();
+			}
+		}
+		return null;
+	}
+
+	private Set<OccultismPower> getPowersOfLevel(int level) {
+		Set<OccultismPower> powersOfLevel = new HashSet<>();
+		for (OccultismPower power : getOccultismPowers().values()) {
+			if (power.getLevel() == level) {
+				powersOfLevel.add(power);
+			}
+		}
+		return powersOfLevel;
+	}
 }

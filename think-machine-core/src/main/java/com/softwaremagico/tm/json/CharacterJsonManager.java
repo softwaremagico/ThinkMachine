@@ -31,12 +31,7 @@ import java.nio.file.Paths;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.JsonPrimitive;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 import com.softwaremagico.tm.character.CharacterPlayer;
@@ -80,41 +75,6 @@ public class CharacterJsonManager {
 		@Override
 		public JsonElement serialize(T link, Type type, JsonSerializationContext context) {
 			return context.serialize(link, link.getClass());
-		}
-	}
-
-	private static class InterfaceAdapter<T> implements JsonSerializer<T>, JsonDeserializer<T> {
-
-		private static final String JSON_CLASSNAME = "classname";
-		private static final String JSON_DATA = "data";
-
-		@Override
-		public T deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext)
-				throws JsonParseException {
-
-			JsonObject jsonObject = jsonElement.getAsJsonObject();
-			JsonPrimitive prim = (JsonPrimitive) jsonObject.get(JSON_CLASSNAME);
-			if (prim == null) {
-				return null;
-			}
-			String className = prim.getAsString();
-			return jsonDeserializationContext.deserialize(jsonObject.get(JSON_DATA), getObjectClass(className));
-		}
-
-		@Override
-		public JsonElement serialize(T jsonElement, Type type, JsonSerializationContext jsonSerializationContext) {
-			JsonObject jsonObject = new JsonObject();
-			jsonObject.addProperty(JSON_CLASSNAME, jsonElement.getClass().getName());
-			jsonObject.add(JSON_DATA, jsonSerializationContext.serialize(jsonElement));
-			return jsonObject;
-		}
-
-		public Class<?> getObjectClass(String className) {
-			try {
-				return Class.forName(className);
-			} catch (ClassNotFoundException e) {
-				throw new JsonParseException(e.getMessage());
-			}
 		}
 	}
 }

@@ -31,12 +31,13 @@ import java.util.Set;
 
 public class Occultism {
 	private int psiValue = 0;
-	private int teurgyValue = 0;
+	private int theurgyValue = 0;
 	private int extraWyrd = 0;
 	private int urge = 0;
 	private int hubris = 0;
 
-	private final Map<OccultismPath, Set<OccultismPower>> selectedPowers;
+	// Path --> Set<Power>
+	private final Map<String, Set<String>> selectedPowers;
 
 	public Occultism() {
 		selectedPowers = new HashMap<>();
@@ -58,12 +59,12 @@ public class Occultism {
 		this.psiValue = psyValue;
 	}
 
-	public int getTeurgyValue() {
-		return teurgyValue;
+	public int getTheurgyValue() {
+		return theurgyValue;
 	}
 
 	public void setTeurgyValue(int teurgyValue) {
-		this.teurgyValue = teurgyValue;
+		this.theurgyValue = teurgyValue;
 	}
 
 	public int getUrge() {
@@ -82,7 +83,7 @@ public class Occultism {
 		this.hubris = hubris;
 	}
 
-	public Map<OccultismPath, Set<OccultismPower>> getSelectedPowers() {
+	public Map<String, Set<String>> getSelectedPowers() {
 		return selectedPowers;
 	}
 
@@ -91,10 +92,31 @@ public class Occultism {
 			throw new InvalidOccultismPowerException("Power cannot be null.");
 		}
 		OccultismPath path = OccultismPathFactory.getInstance().getOccultismPath(power, language);
-		if (selectedPowers.get(path) == null) {
-			selectedPowers.put(path, new HashSet<OccultismPower>());
+		// Correct level of psi or teurgy
+		if (path.getOccultismType().equals(OccultismType.PSI) && power.getLevel() > getPsiValue()) {
+			throw new InvalidPsiqueLevelException("Insuficient psi level to acquire '" + power + "'..");
 		}
-		selectedPowers.get(path).add(power);
+		if (path.getOccultismType().equals(OccultismType.THEURGY) && power.getLevel() > getTheurgyValue()) {
+			throw new InvalidPsiqueLevelException("Insuficient theurgy level to acquire '" + power + "'..");
+		}
+		// Psi must have previous level.
+		if (path.getOccultismType() == OccultismType.PSI) {
+			boolean acquiredLevel = false;
+			for (OccultismPower previousLevelPower : path.getPreviousLevelPowers(power)) {
+				if (selectedPowers.get(path.getId()) != null
+						&& selectedPowers.get(path.getId()).contains(previousLevelPower.getId())) {
+					acquiredLevel = true;
+					break;
+				}
+			}
+			if (!acquiredLevel && !path.getPreviousLevelPowers(power).isEmpty()) {
+				throw new InvalidPowerLevelException("At least one power of '" + path.getPreviousLevelPowers(power)
+						+ "' must be selected.");
+			}
+		}
+		if (selectedPowers.get(path.getId()) == null) {
+			selectedPowers.put(path.getId(), new HashSet<String>());
+		}
+		selectedPowers.get(path.getId()).add(power.getId());
 	}
-
 }

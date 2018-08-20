@@ -96,7 +96,7 @@ public class OccultismTable extends LateralHeaderPdfPTable {
 			table.addCell(createRectangle());
 			table.addCell(createRectangle());
 		} else {
-			table.addCell(createRectangle(characterPlayer.getOccultism().getTeurgyValue()));
+			table.addCell(createRectangle(characterPlayer.getOccultism().getTheurgyValue()));
 			table.addCell(createRectangle(characterPlayer.getOccultism().getHubris()));
 		}
 

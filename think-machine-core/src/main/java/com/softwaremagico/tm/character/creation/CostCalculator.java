@@ -34,7 +34,7 @@ import com.softwaremagico.tm.character.benefices.AvailableBenefice;
 import com.softwaremagico.tm.character.blessings.Blessing;
 import com.softwaremagico.tm.character.cybernetics.Device;
 import com.softwaremagico.tm.character.occultism.OccultismPath;
-import com.softwaremagico.tm.character.occultism.OccultismPower;
+import com.softwaremagico.tm.character.occultism.OccultismPathFactory;
 import com.softwaremagico.tm.log.MachineLog;
 
 public class CostCalculator {
@@ -105,18 +105,20 @@ public class CostCalculator {
 		return cost;
 	}
 
-	private static int getPsiPowersCosts(CharacterPlayer characterPlayer) {
+	private static int getPsiPowersCosts(CharacterPlayer characterPlayer) throws InvalidXmlElementException {
 		int cost = 0;
-		for (Entry<OccultismPath, Set<OccultismPower>> occulstismPath : characterPlayer.getOccultism()
-				.getSelectedPowers().entrySet()) {
-			for (OccultismPower occultismPower : occulstismPath.getValue()) {
-				cost += occultismPower.getLevel();
+		for (Entry<String, Set<String>> occulstismPathEntry : characterPlayer.getOccultism().getSelectedPowers()
+				.entrySet()) {
+			OccultismPath occultismPath = OccultismPathFactory.getInstance().getElement(occulstismPathEntry.getKey(),
+					characterPlayer.getLanguage());
+			for (String occultismPowerName : occulstismPathEntry.getValue()) {
+				cost += occultismPath.getOccultismPowers().get(occultismPowerName).getLevel();
 			}
 		}
 		cost += characterPlayer.getOccultism().getExtraWyrd() * 2;
 		cost += Math.max(0, (characterPlayer.getOccultism().getPsiValue() - characterPlayer.getRace().getPsi()) * 3);
 		cost += Math.max(0,
-				(characterPlayer.getOccultism().getTeurgyValue() - characterPlayer.getRace().getTheurgy()) * 3);
+				(characterPlayer.getOccultism().getTheurgyValue() - characterPlayer.getRace().getTheurgy()) * 3);
 		return cost;
 	}
 
