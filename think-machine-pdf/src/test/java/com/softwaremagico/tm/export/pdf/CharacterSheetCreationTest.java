@@ -81,7 +81,8 @@ public class CharacterSheetCreationTest {
 	}
 
 	@Test
-	public void characterPdfSpanish() throws MalformedURLException, DocumentException, IOException, InvalidXmlElementException, TooManyBlessingsException {
+	public void characterPdfSpanish() throws MalformedURLException, DocumentException, IOException,
+			InvalidXmlElementException, TooManyBlessingsException {
 		CacheHandler.clearCache();
 
 		player = new CharacterPlayer(LANGUAGE);
@@ -122,13 +123,27 @@ public class CharacterSheetCreationTest {
 		player.getOccultism().setPsiValue(4);
 		player.getOccultism().setUrge(1);
 
-		player.getOccultism().addPower(OccultismPathFactory.getInstance().getElement("farHand", LANGUAGE).getOccultismPowers().get("liftingHand"), player.getLanguage());
-		player.getOccultism().addPower(OccultismPathFactory.getInstance().getElement("farHand", LANGUAGE).getOccultismPowers().get("throwingHand"), player.getLanguage());
-		player.getOccultism().addPower(OccultismPathFactory.getInstance().getElement("sixthSense", LANGUAGE).getOccultismPowers().get("sensitivity"), player.getLanguage());
-		player.getOccultism().addPower(OccultismPathFactory.getInstance().getElement("soma", LANGUAGE).getOccultismPowers().get("toughening"), player.getLanguage());
-		player.getOccultism().addPower(OccultismPathFactory.getInstance().getElement("soma", LANGUAGE).getOccultismPowers().get("strengthening"), player.getLanguage());
-		player.getOccultism().addPower(OccultismPathFactory.getInstance().getElement("soma", LANGUAGE).getOccultismPowers().get("quickening"), player.getLanguage());
-		player.getOccultism().addPower(OccultismPathFactory.getInstance().getElement("soma", LANGUAGE).getOccultismPowers().get("hardening"), player.getLanguage());
+		player.getOccultism().addPower(
+				OccultismPathFactory.getInstance().getElement("farHand", LANGUAGE).getOccultismPowers()
+						.get("liftingHand"), player.getLanguage(), player.getFaction());
+		player.getOccultism().addPower(
+				OccultismPathFactory.getInstance().getElement("farHand", LANGUAGE).getOccultismPowers()
+						.get("throwingHand"), player.getLanguage(), player.getFaction());
+		player.getOccultism().addPower(
+				OccultismPathFactory.getInstance().getElement("sixthSense", LANGUAGE).getOccultismPowers()
+						.get("sensitivity"), player.getLanguage(), player.getFaction());
+		player.getOccultism().addPower(
+				OccultismPathFactory.getInstance().getElement("soma", LANGUAGE).getOccultismPowers().get("toughening"),
+				player.getLanguage(), player.getFaction());
+		player.getOccultism().addPower(
+				OccultismPathFactory.getInstance().getElement("soma", LANGUAGE).getOccultismPowers()
+						.get("strengthening"), player.getLanguage(), player.getFaction());
+		player.getOccultism().addPower(
+				OccultismPathFactory.getInstance().getElement("soma", LANGUAGE).getOccultismPowers().get("quickening"),
+				player.getLanguage(), player.getFaction());
+		player.getOccultism().addPower(
+				OccultismPathFactory.getInstance().getElement("soma", LANGUAGE).getOccultismPowers().get("hardening"),
+				player.getLanguage(), player.getFaction());
 
 		player.addBlessing(BlessingFactory.getInstance().getElement("curious", player.getLanguage()));
 		player.addBlessing(BlessingFactory.getInstance().getElement("limp", player.getLanguage()));
@@ -139,8 +154,10 @@ public class CharacterSheetCreationTest {
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("heir", player.getLanguage()));
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("wireblade", player.getLanguage()));
 
-		player.getCybernetics().addElement(new Device("Ojo de Ingeniero", 6, 5, "Normal", "Normal", "Automático", "Visible", ""));
-		player.getCybernetics().addElement(new Device("Jonás", 7, 4, "Normal", "Normal", "Ds+Arquería", "Incógnito", ""));
+		player.getCybernetics().addElement(
+				new Device("Ojo de Ingeniero", 6, 5, "Normal", "Normal", "Automático", "Visible", ""));
+		player.getCybernetics().addElement(
+				new Device("Jonás", 7, 4, "Normal", "Normal", "Ds+Arquería", "Incógnito", ""));
 
 		CombatStyle gun = new CombatStyle("pistola");
 		gun.addElement(new CombatAction("Disparo Instantáneo", null, null, "-2 por 3 disparos"));
@@ -174,7 +191,8 @@ public class CharacterSheetCreationTest {
 	public void exportToJson() throws MalformedURLException, DocumentException, IOException {
 		String jsonText = CharacterJsonManager.toJson(player);
 
-		try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(PDF_PATH_OUTPUT + "CharacterFS_ES.json")), true)) {
+		try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(PDF_PATH_OUTPUT
+				+ "CharacterFS_ES.json")), true)) {
 			out.println(jsonText);
 		}
 

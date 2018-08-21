@@ -421,14 +421,14 @@ public class CharacterPlayer {
 						+ "' points are allowed for curses.");
 			}
 		}
-		//Only 7 values can be modified by blessings. 
+		// Only 7 values can be modified by blessings.
 		if (getBlessingModificationsNumber() + blessing.getBonifications().size() > FreeStyleCharacterCreation.MAX_BLESSING_MODIFICATIONS) {
 			throw new TooManyBlessingsException("Only a total of '"
 					+ FreeStyleCharacterCreation.MAX_BLESSING_MODIFICATIONS
 					+ "' modifications are allowed for blessings. Now exists '" + getAllBlessings() + "' and adding '"
 					+ blessing + "'.");
 		}
-		//Only 7 blessings as max. 
+		// Only 7 blessings as max.
 		if (getAllBlessings().size() > FreeStyleCharacterCreation.MAX_BLESSING_MODIFICATIONS) {
 			throw new TooManyBlessingsException("Only a total of '"
 					+ FreeStyleCharacterCreation.MAX_BLESSING_MODIFICATIONS
@@ -870,5 +870,4 @@ public class CharacterPlayer {
 		}
 		return false;
 	}
-
 }

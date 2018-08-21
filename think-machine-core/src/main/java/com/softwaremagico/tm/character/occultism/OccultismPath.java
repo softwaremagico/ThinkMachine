@@ -35,16 +35,19 @@ import java.util.Map;
 import java.util.Set;
 
 import com.softwaremagico.tm.Element;
+import com.softwaremagico.tm.character.factions.Faction;
 
 public class OccultismPath extends Element<OccultismPath> {
 
 	private final OccultismType occultismType;
 	private final Map<String, OccultismPower> occultismPowers;
+	private final Set<Faction> factionsAllowed;
 
-	public OccultismPath(String id, String name, OccultismType occultismType) {
+	public OccultismPath(String id, String name, OccultismType occultismType, Set<Faction> allowedFactions) {
 		super(id, name);
 		this.occultismType = occultismType;
 		occultismPowers = new HashMap<>();
+		this.factionsAllowed = allowedFactions;
 	}
 
 	public OccultismType getOccultismType() {
@@ -108,5 +111,9 @@ public class OccultismPath extends Element<OccultismPath> {
 			}
 		}
 		return powersOfLevel;
+	}
+
+	public Set<Faction> getFactionsAllowed() {
+		return factionsAllowed;
 	}
 }

@@ -37,13 +37,25 @@ import com.softwaremagico.tm.character.occultism.OccultismRangeFactory;
 public class OccultismFactoryTests {
 	private final static String LANGUAGE = "es";
 
-	private final static int DEFINED_PATHS = 7;
-	private final static int DEFINED_RANGES = 4;
-	private final static int DEFINED_DURATIONS = 6;
+	private final static int DEFINED_PSI_PATHS = 7;
+	private final static int DEFINED_THEURGY_PATHS = 2;
+	private final static int DEFINED_RANGES = 5;
+	private final static int DEFINED_DURATIONS = 7;
 
 	@Test
 	public void readPaths() throws InvalidXmlElementException {
-		Assert.assertEquals(DEFINED_PATHS, OccultismPathFactory.getInstance().getElements(LANGUAGE).size());
+		Assert.assertEquals(DEFINED_PSI_PATHS + DEFINED_THEURGY_PATHS,
+				OccultismPathFactory.getInstance().getElements(LANGUAGE).size());
+	}
+
+	@Test
+	public void readPsiPaths() throws InvalidXmlElementException {
+		Assert.assertEquals(DEFINED_PSI_PATHS, OccultismPathFactory.getInstance().getPsiPaths(LANGUAGE).size());
+	}
+
+	@Test
+	public void readTheurgyPaths() throws InvalidXmlElementException {
+		Assert.assertEquals(DEFINED_THEURGY_PATHS, OccultismPathFactory.getInstance().getTheurgyPaths(LANGUAGE).size());
 	}
 
 	@Test

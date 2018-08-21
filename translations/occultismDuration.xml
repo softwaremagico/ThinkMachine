@@ -18,6 +18,12 @@
 			<es>Una Escena</es>
 		</name>
 	</oneSpan>
+	<oneAct>
+		<name>
+			<en>One Act</en>
+			<es>Un Acto</es>
+		</name>
+	</oneAct>
 	<extended>
 		<name>
 			<en>Extended</en>

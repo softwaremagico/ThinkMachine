@@ -18,6 +18,12 @@
 			<es>Sensorial</es>
 		</name>
 	</sensory>
+	<sight>
+		<name>
+			<en>Sight</en>
+			<es>Vista</es>
+		</name>
+	</sight>
 	<distant>
 		<name>
 			<en>Distant</en>

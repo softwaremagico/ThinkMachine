@@ -17,7 +17,7 @@
 				<skill>selfControl</skill>
 				<range>sensory</range>
 				<duration>temporary</duration>
-				<requirements></requirements>
+				
 				<wyrd>1</wyrd>
 			</liftingHand>
 			<throwingHand>
@@ -30,7 +30,7 @@
 				<skill>selfControl</skill>
 				<range>sensory</range>
 				<duration>temporary</duration>
-				<requirements></requirements>
+				
 				<wyrd>1</wyrd>
 			</throwingHand>
 			<crushingHand>
@@ -43,7 +43,7 @@
 				<skill>selfControl</skill>
 				<range>sensory</range>
 				<duration>temporary</duration>
-				<requirements></requirements>
+				
 				<wyrd>1</wyrd>
 			</crushingHand>
 			<duelingHand>
@@ -56,7 +56,7 @@
 				<skill>selfControl</skill>
 				<range>sensory</range>
 				<duration>temporary</duration>
-				<requirements></requirements>
+				
 				<wyrd>1</wyrd>
 			</duelingHand>
 			<farWall>
@@ -69,7 +69,7 @@
 				<skill>selfControl</skill>
 				<range>sensory</range>
 				<duration>temporary</duration>
-				<requirements></requirements>
+				
 				<wyrd>1</wyrd>
 			</farWall>
 			<airStride>
@@ -82,7 +82,7 @@
 				<skill>selfControl</skill>
 				<range>self</range>
 				<duration>temporary</duration>
-				<requirements></requirements>
+				
 				<wyrd>1</wyrd>
 			</airStride>
 			<demolishingHand>
@@ -95,7 +95,7 @@
 				<skill>selfControl</skill>
 				<range>sensory</range>
 				<duration>instant</duration>
-				<requirements></requirements>
+				
 				<wyrd>1</wyrd>
 			</demolishingHand>
 			<airDance>
@@ -108,7 +108,7 @@
 				<skill>selfControl</skill>
 				<range>sensory</range>
 				<duration>instant</duration>
-				<requirements></requirements>
+				
 				<wyrd>1</wyrd>
 			</airDance>
 		</powers>		
@@ -130,7 +130,7 @@
 				<skill>observe</skill>
 				<range>touch</range>
 				<duration>extended</duration>
-				<requirements></requirements>
+				
 				<wyrd>1</wyrd>
 			</shadowsGoneBy>
 			<shadowsToCome>
@@ -143,7 +143,7 @@
 				<skill>observe</skill>
 				<range>touch</range>
 				<duration>extended</duration>
-				<requirements></requirements>
+				
 				<wyrd>1</wyrd>
 			</shadowsToCome>
 			<voiceFromThePast>
@@ -156,7 +156,7 @@
 				<skill>investigation</skill>
 				<range></range>
 				<duration>prolonged</duration>
-				<requirements></requirements>
+				
 				<wyrd>1</wyrd>
 			</voiceFromThePast>
 			<oracle>
@@ -169,7 +169,7 @@
 				<skill>observe</skill>
 				<range></range>
 				<duration>Instant</duration>
-				<requirements></requirements>
+				
 				<wyrd>1</wyrd>
 			</oracle>
 		</powers>
@@ -191,7 +191,7 @@
 				<skill>empathy</skill>
 				<range>touch</range>
 				<duration>instant</duration>
-				<requirements></requirements>
+				
 				<wyrd>1</wyrd>
 			</intuit>
 			<emote>
@@ -204,7 +204,7 @@
 				<skill>influence</skill>
 				<range>touch</range>
 				<duration>instant</duration>
-				<requirements></requirements>
+				
 				<wyrd>1</wyrd>
 			</emote>
 			<mindSight>
@@ -217,7 +217,7 @@
 				<skill>empathy</skill>
 				<range>touch</range>
 				<duration>instant</duration>
-				<requirements></requirements>
+				
 				<wyrd>1</wyrd>
 			</mindSight>
 			<mindSpeech>
@@ -230,7 +230,7 @@
 				<skill>empathy</skill>
 				<range>touch</range>
 				<duration>instant</duration>
-				<requirements></requirements>
+				
 				<wyrd>1</wyrd>
 			</mindSpeech>
 			<heartsCommand>
@@ -243,7 +243,7 @@
 				<skill>influence</skill>
 				<range>sensory</range>
 				<duration>instant</duration>
-				<requirements></requirements>
+				
 				<wyrd>1</wyrd>
 			</heartsCommand>
 			<mindSearch>
@@ -256,7 +256,7 @@
 				<skill>selfControl</skill>
 				<range>sensory</range>
 				<duration>temporary</duration>
-				<requirements></requirements>
+				
 				<wyrd>1</wyrd>
 			</mindSearch>
 			<headShackle>
@@ -269,7 +269,7 @@
 				<skill>selfControl</skill>
 				<range>sensory</range>
 				<duration>Temporary</duration>
-				<requirements></requirements>
+				
 				<wyrd>1</wyrd>
 			</headShackle>
 			<brainBlast>
@@ -282,7 +282,7 @@
 				<skill>selfControl</skill>
 				<range>sensory</range>
 				<duration>instant</duration>
-				<requirements></requirements>
+				
 				<wyrd>1</wyrd>
 			</brainBlast>
 			<sympaticus>
@@ -295,7 +295,7 @@
 				<skill>empathy</skill>
 				<range>sensory</range>
 				<duration>extended</duration>
-				<requirements></requirements>
+				
 				<wyrd>1</wyrd>
 			</sympaticus>
 			<puppetry>
@@ -308,7 +308,7 @@
 				<skill>selfControl</skill>
 				<range>touch</range>
 				<duration>temporary</duration>
-				<requirements></requirements>
+				
 				<wyrd>1</wyrd>
 			</puppetry>
 		</powers>
@@ -330,7 +330,7 @@
 				<skill>observe</skill>
 				<range>sensory</range>
 				<duration>temporary</duration>
-				<requirements></requirements>
+				
 				<wyrd>1</wyrd>
 			</sensitivity>
 			<darkSense>
@@ -343,7 +343,7 @@
 				<skill>observe</skill>
 				<range>sensory</range>
 				<duration>temporary</duration>
-				<requirements></requirements>
+				
 				<wyrd>1</wyrd>
 			</darkSense>
 			<subtleSight>
@@ -356,7 +356,7 @@
 				<skill>observe</skill>
 				<range>sensory</range>
 				<duration>temporary</duration>
-				<requirements></requirements>
+				
 				<wyrd>1</wyrd>
 			</subtleSight>
 			<premonition>
@@ -369,7 +369,7 @@
 				<skill>observe</skill>
 				<range>sensory</range>
 				<duration>temporary</duration>
-				<requirements></requirements>
+				
 				<wyrd>1</wyrd>
 			</premonition>
 			<farSight>
@@ -382,7 +382,7 @@
 				<skill>selfControl</skill>
 				<range>distant</range>
 				<duration>temporary</duration>
-				<requirements></requirements>
+				
 				<wyrd>1</wyrd>
 			</farSight>
 			<farSound>
@@ -395,7 +395,7 @@
 				<skill>selfControl</skill>
 				<range>distant</range>
 				<duration>temporary</duration>
-				<requirements></requirements>
+				
 				<wyrd>1</wyrd>
 			</farSound>
 			<sharedSense>
@@ -408,7 +408,7 @@
 				<skill>empathy</skill>
 				<range>distant</range>
 				<duration>temporary</duration>
-				<requirements></requirements>
+				
 				<wyrd>1</wyrd>
 			</sharedSense>
 			<wyrdSight>
@@ -421,7 +421,7 @@
 				<skill>observe</skill>
 				<range>sensory</range>
 				<duration>temporary</duration>
-				<requirements></requirements>
+				
 				<wyrd>1</wyrd>
 			</wyrdSight>
 			<sensesShock>
@@ -434,7 +434,7 @@
 				<skill>selfControl</skill>
 				<range>sensory</range>
 				<duration>instant</duration>
-				<requirements></requirements>
+				
 				<wyrd>1</wyrd>
 			</sensesShock>
 		</powers>
@@ -456,7 +456,7 @@
 				<skill>vigor</skill>
 				<range></range>
 				<duration>temporary</duration>
-				<requirements></requirements>
+				
 				<wyrd>1</wyrd>
 			</toughening>
 			<strengthening>
@@ -469,7 +469,7 @@
 				<skill>vigor</skill>
 				<range></range>
 				<duration>temporary</duration>
-				<requirements></requirements>
+				
 				<wyrd>1</wyrd>
 			</strengthening>
 			<quickening>
@@ -482,7 +482,7 @@
 				<skill>athletics</skill>
 				<range></range>
 				<duration>temporary</duration>
-				<requirements></requirements>
+				
 				<wyrd>1</wyrd>
 			</quickening>
 			<hardening>
@@ -495,7 +495,7 @@
 				<skill>vigor</skill>
 				<range></range>
 				<duration>temporary</duration>
-				<requirements></requirements>
+				
 				<wyrd>1</wyrd>
 			</hardening>
 			<sizing>
@@ -508,7 +508,7 @@
 				<skill>selfControl</skill>
 				<range></range>
 				<duration>temporary</duration>
-				<requirements></requirements>
+				
 				<wyrd>1</wyrd>
 			</sizing>
 			<masking>
@@ -521,7 +521,7 @@
 				<skill>selfControl</skill>
 				<range></range>
 				<duration>temporary</duration>
-				<requirements></requirements>
+				
 				<wyrd>1</wyrd>
 			</masking>
 			<recovering>
@@ -534,7 +534,7 @@
 				<skill>vigor</skill>
 				<range></range>
 				<duration>instant</duration>
-				<requirements></requirements>
+				
 				<wyrd>1</wyrd>
 			</recovering>
 			<slowing>
@@ -547,7 +547,7 @@
 				<skill>vigor</skill>
 				<range></range>
 				<duration>oneSpan</duration>
-				<requirements></requirements>
+				
 				<wyrd>1</wyrd>
 			</slowing>
 			<closing>
@@ -560,7 +560,7 @@
 				<skill>selfControl</skill>
 				<range></range>
 				<duration>extended</duration>
-				<requirements></requirements>
+				
 				<wyrd>1</wyrd>
 			</closing>
 		</powers>
@@ -582,7 +582,7 @@
 				<skill>empathy</skill>
 				<range>touch</range>
 				<duration>perpetual</duration>
-				<requirements></requirements>
+				
 				<wyrd>variable</wyrd>
 			</bond>
 			<sanctum>
@@ -595,7 +595,7 @@
 				<skill>selfControl</skill>
 				<range>sensory</range>
 				<duration>perpetual</duration>
-				<requirements></requirements>
+				
 				<wyrd>1</wyrd>
 			</sanctum>
 			<totem>
@@ -608,7 +608,7 @@
 				<skill>selfControl</skill>
 				<range>touch</range>
 				<duration>perpetual</duration>
-				<requirements></requirements>
+				
 				<wyrd>variable</wyrd>
 			</totem>
 			<coverBrand>
@@ -621,7 +621,7 @@
 				<skill>influence</skill>
 				<range>touch</range>
 				<duration>perpetual</duration>
-				<requirements></requirements>
+				
 				<wyrd>variable</wyrd>
 			</coverBrand>
 			<mojoBond>
@@ -634,7 +634,7 @@
 				<skill>empathy</skill>
 				<range>sensory</range>
 				<duration>extended</duration>
-				<requirements></requirements>
+				
 				<wyrd>1</wyrd>
 			</mojoBond>
 			<severBond>
@@ -647,7 +647,7 @@
 				<skill>selfControl</skill>
 				<range>touch</range>
 				<duration>instant</duration>
-				<requirements></requirements>
+				
 				<wyrd>2</wyrd>
 			</severBond>
 			<coverBond>
@@ -660,7 +660,7 @@
 				<skill>selfControl</skill>
 				<range>sensory</range>
 				<duration>oneSpan</duration>
-				<requirements></requirements>
+				
 				<wyrd>variable</wyrd>
 			</coverBond>
 		</powers>
@@ -682,7 +682,7 @@
 				<skill>observe</skill>
 				<range>sensory</range>
 				<duration>extended</duration>
-				<requirements></requirements>
+				
 				<wyrd>1</wyrd>
 			</visEye>
 			<visDrain>
@@ -695,7 +695,7 @@
 				<skill>techRedemption</skill>
 				<range>touch</range>
 				<duration>instant</duration>
-				<requirements></requirements>
+				
 				<wyrd>variable</wyrd>
 			</visDrain>
 			<visChakra>
@@ -708,7 +708,7 @@
 				<skill>observe</skill>
 				<range>sensory</range>
 				<duration>temporary</duration>
-				<requirements></requirements>
+				
 				<wyrd>1</wyrd>
 			</visChakra>
 			<visFlow>
@@ -721,7 +721,7 @@
 				<skill>techRedemption</skill>
 				<range>touch</range>
 				<duration>instant</duration>
-				<requirements></requirements>
+				
 				<wyrd>1</wyrd>
 			</visFlow>
 			<visSiphon>
@@ -734,7 +734,7 @@
 				<skill>techRedemption</skill>
 				<range>sensory</range>
 				<duration>temporary</duration>
-				<requirements></requirements>
+				
 				<wyrd>1</wyrd>
 			</visSiphon>
 			<visShock>
@@ -747,7 +747,7 @@
 				<skill>fight,melee</skill>
 				<range>touch</range>
 				<duration>instant</duration>
-				<requirements></requirements>
+				
 				<wyrd>1</wyrd>
 			</visShock>
 			<visFlux>
@@ -760,7 +760,7 @@
 				<skill>techRedemption</skill>
 				<range>sensory</range>
 				<duration>instant</duration>
-				<requirements></requirements>
+				
 				<wyrd>1</wyrd>
 			</visFlux>
 			<visShield>
@@ -773,7 +773,7 @@
 				<skill>selfControl</skill>
 				<range>self</range>
 				<duration>temporary</duration>
-				<requirements></requirements>
+				
 				<wyrd>1</wyrd>
 			</visShield>
 			<visBolt>
@@ -786,7 +786,7 @@
 				<skill>energyGuns</skill>
 				<range>sensory</range>
 				<duration>instant</duration>
-				<requirements></requirements>
+				
 				<wyrd>1</wyrd>
 			</visBolt>
 			<visVortex>
@@ -799,7 +799,7 @@
 				<skill>selfControl</skill>
 				<range>touch</range>
 				<duration>instant</duration>
-				<requirements></requirements>
+				
 				<wyrd>variable</wyrd>
 			</visVortex>
 			<visStorm>
@@ -812,7 +812,7 @@
 				<skill>selfControl</skill>
 				<range>sensory</range>
 				<duration>instant</duration>
-				<requirements></requirements>
+				
 				<wyrd>1</wyrd>
 			</visStorm>
 			<primalVis>
@@ -825,9 +825,875 @@
 				<skill>selfControl</skill>
 				<range>sensory</range>
 				<duration>instant</duration>
-				<requirements></requirements>
+				
 				<wyrd>0</wyrd>
 			</primalVis>
 		</powers>
 	</visCraft>
+	<churchRituals>
+		<name>
+			<en>Church Rituals</en>
+			<es></es>
+		</name>
+		<type>theurgy</type>
+		<factions></factions>
+		<powers>
+			<prophetsHolyBlessing>
+				<name>
+					<en>The Prophet's Holy Blessing</en>
+					<es>Bendición Sagrada del Profeta</es>
+				</name>
+				<level>1</level>
+				<characteristic>faith</characteristic>
+				<skill>influence</skill>
+				<range>touch</range>
+				<duration></duration>
+				
+				<components>G</components>
+				<wyrd>1</wyrd>
+			</prophetsHolyBlessing>
+			<devotionalLiturgy>
+				<name>
+					<en>The Devotional Liturgy</en>
+					<es>Liturgia Devocional</es>
+				</name>
+				<level>2</level>
+				<characteristic>faith</characteristic>
+				<skill>leadership</skill>
+				<range>sensory</range>
+				<duration>oneSpan</duration>
+				
+				<components>L</components>
+				<wyrd>1</wyrd>
+			</devotionalLiturgy>
+			<layingOnOfHands>
+				<name>
+					<en>The Laying On of Hands</en>
+					<es>Imposición de Manos</es>
+				</name>
+				<level>3</level>
+				<characteristic>faith</characteristic>
+				<skill>empathy</skill>
+				<range>touch</range>
+				<duration>instant</duration>
+				
+				<components>P</components>
+				<wyrd>1</wyrd>
+			</layingOnOfHands>
+			<prophetsCensure>
+				<name>
+					<en>The Prophet's Censure</en>
+					<es>Censura del Profeta</es>
+				</name>
+				<level>4</level>
+				<characteristic>will</characteristic>
+				<skill>influence</skill>
+				<range>sensory</range>
+				<duration></duration>
+				
+				<components>LG</components>
+				<wyrd>1</wyrd>
+			</prophetsCensure>
+			<oathToTheSaints>
+				<name>
+					<en>Oath to the Saints</en>
+					<es>Juramento a los Santos</es>
+				</name>
+				<level>5</level>
+				<characteristic>faith</characteristic>
+				<skill>selfControl</skill>
+				<range>sensory</range>
+				<duration>perpetual</duration>
+				
+				<components>LGP</components>
+				<wyrd>1</wyrd>
+			</oathToTheSaints>
+			<pulpitsGift>
+				<name>
+					<en>The Pulpit's Gift</en>
+					<es>Don de la Vida Religiosa</es>
+				</name>
+				<level>5</level>
+				<characteristic>faith</characteristic>
+				<skill>leadership</skill>
+				<range>sensory</range>
+				<duration>oneAct</duration>
+				
+				<components>LG</components>
+				<wyrd>1</wyrd>
+			</pulpitsGift>
+			<tonguesOfBabel>
+				<name>
+					<en>The Tongues of Babel</en>
+					<es>Lenguas de Babel</es>
+				</name>
+				<level>6</level>
+				<characteristic>faith</characteristic>
+				<skill>observe</skill>
+				<range>self</range>
+				<duration>prolonged</duration>
+				
+				<components>GP</components>
+				<wyrd>1</wyrd>
+			</tonguesOfBabel>
+			<sanctification>
+				<name>
+					<en>Sanctification</en>
+					<es>Santifiación</es>
+				</name>
+				<level>7</level>
+				<characteristic>faith</characteristic>
+				<skill>selfControl</skill>
+				<range>touch</range>
+				<duration>perpetual</duration>
+				
+				<components>GP</components>
+				<wyrd>2</wyrd>
+			</sanctification>
+			<shieldOfFaith>
+				<name>
+					<en>Shield of Faith</en>
+					<es>Escudo de la Fe</es>
+				</name>
+				<level>8</level>
+				<characteristic>will</characteristic>
+				<skill>selfControl</skill>
+				<range>self</range>
+				<duration>oneSpan</duration>
+				
+				<components>GP</components>
+				<wyrd>1</wyrd>
+			</shieldOfFaith>
+			<providentialDeliverance>
+				<name>
+					<en>Providential Deliverance</en>
+					<es>Salvación Providencial</es>
+				</name>
+				<level>9</level>
+				<characteristic>faith</characteristic>
+				<skill>selfControl</skill>
+				<range>self</range>
+				<duration>instant</duration>
+				
+				<components>LGP</components>
+				<wyrd>1</wyrd>
+			</providentialDeliverance>
+		</powers>
+	</churchRituals>
+	<orthodoxRituals>
+		<name>
+			<en>Orthodox Rituals</en>
+			<es>Rituales Ortodoxos</es>
+		</name>
+		<type>theurgy</type>
+		<factions>orthodox</factions>
+		<powers>
+			<consecration>
+				<name>
+					<en>Consecration</en>
+					<es>Consagración</es>
+				</name>
+				<level>1</level>
+				<characteristic>faith</characteristic>
+				<skill>selfControl</skill>
+				<range>touch</range>
+				<duration>oneAct</duration>				
+				<components>GP</components>
+				<wyrd>1</wyrd>
+			</consecration>
+			<light>
+				<name>
+					<en>Light</en>
+					<es>Luz</es>
+				</name>
+				<level>2</level>
+				<characteristic>presence</characteristic>
+				<skill>selfControl</skill>
+				<range>self</range>
+				<duration>prolonged</duration>
+				
+				<components>G</components>
+				<wyrd>1</wyrd>
+			</light>
+			<armorOfThePancreator>
+				<name>
+					<en>Armor of the Pancreator</en>
+					<es>Armadura del Pancreator</es>
+				</name>
+				<level>3</level>
+				<characteristic>faith</characteristic>
+				<skill>selfControl</skill>
+				<range>sensory</range>
+				<duration>oneSpan</duration>
+				
+				<components>LG</components>
+				<wyrd>1</wyrd>
+			</armorOfThePancreator>
+			<tighteningTheLeash>
+				<name>
+					<en>Tightening the Leash</en>
+					<es>Ajustar el Yugo</es>
+				</name>
+				<level>4</level>
+				<characteristic>faith</characteristic>
+				<skill>influence</skill>
+				<range>sight</range>
+				<duration>temporary</duration>
+				
+				<components>LG</components>
+				<wyrd>1</wyrd>
+			</tighteningTheLeash>
+			<faithfulHeart>
+				<name>
+					<en>Faithful Heart</en>
+					<es>Corazón Fiel</es>
+				</name>
+				<level>5</level>
+				<characteristic>faith</characteristic>
+				<skill>selfControl</skill>
+				<range>touch</range>
+				<duration>prolonged</duration>
+				
+				<components>LP</components>
+				<wyrd>1</wyrd>
+			</faithfulHeart>
+			<dispersalOfDarkness>
+				<name>
+					<en>Dispersal of Darkness</en>
+					<es>Dispersión de las Tinieblas</es>
+				</name>
+				<level>6</level>
+				<characteristic>faith</characteristic>
+				<skill>selfControl</skill>
+				<range>self</range>
+				<duration>extended</duration>
+				
+				<components>LG</components>
+				<wyrd>1</wyrd>
+			</dispersalOfDarkness>
+			<consecrationOfLand>
+				<name>
+					<en>Consecration of Land</en>
+					<es>Consagración de la Tierra</es>
+				</name>
+				<level>7</level>
+				<characteristic>faith</characteristic>
+				<skill>selfControl</skill>
+				<range>self</range>
+				<duration>oneAct</duration>
+				
+				<components>GP</components>
+				<wyrd>1</wyrd>
+			</consecrationOfLand>
+			<blessingTheCrops>
+				<name>
+					<en>Blessing the Crops</en>
+					<es>Bendición de los Cultivos</es>
+				</name>
+				<level>8</level>
+				<characteristic>faith</characteristic>
+				<skill>selfControl</skill>
+				<range>sensory</range>
+				<duration>instant</duration>
+				
+				<components>LGP</components>
+				<wyrd>1</wyrd>
+			</blessingTheCrops>
+			<sealingTheTemple>
+				<name>
+					<en>Sealing the Temple</en>
+					<es>Sellar el Templo</es>
+				</name>
+				<level>9</level>
+				<characteristic>will</characteristic>
+				<skill>selfControl</skill>
+				<range>touch</range>
+				<duration>prolonged</duration>
+				
+				<components>LGP</components>
+				<wyrd>1</wyrd>
+			</sealingTheTemple>
+		</powers>
+	</orthodoxRituals>
+	<brotherBattleRituals>
+		<name>
+			<en>Brother Battle Ritual</en>
+			<es></es>
+		</name>
+		<type>theurgy</type>
+		<factions>brotherBattle</factions>
+		<powers>
+			<soulsVessel>
+				<name>
+					<en>Soul's Vessel</en>
+					<es>Recipiente del Alma</es>
+				</name>
+				<level>1</level>
+				<characteristic>faith</characteristic>
+				<skill>vigor</skill>
+				<range>self</range>
+				<duration>prolonged</duration>
+				
+				<components>P</components>
+				<wyrd>1</wyrd>
+			</soulsVessel>
+			<rightfullyGuidedHand>
+				<name>
+					<en>Rightfully Guided Hand</en>
+					<es>Mano de Justicia</es>
+				</name>
+				<level>2</level>
+				<characteristic>faith</characteristic>
+				<skill>fight,melee,slugGuns,energyGuns,artifactMelee</skill>
+				<range>self</range>
+				<duration>temporary</duration>
+				
+				<components>LG</components>
+				<wyrd>1</wyrd>
+			</rightfullyGuidedHand>
+			<armorOfThePancreator>
+				<name>
+					<en>Armor of the Pancreator</en>
+					<es>Armadura de Pancreator</es>
+				</name>
+				<level>3</level>
+				<characteristic>presence</characteristic>
+				<skill>selfControl</skill>
+				<range>self</range>
+				<duration>prolonged</duration>
+				
+				<components>LG</components>
+				<wyrd>1</wyrd>
+			</armorOfThePancreator>
+			<righteousFervor>
+				<name>
+					<en>Righteous Fervor</en>
+					<es>Fervor de los Justos</es>
+				</name>
+				<level>4</level>
+				<characteristic>faith</characteristic>
+				<skill>selfControl</skill>
+				<range>sensory</range>
+				<duration>oneAct</duration>
+				
+				<components>L</components>
+				<wyrd>1</wyrd>
+			</righteousFervor>
+			<liturgyOfTheWrathfulHost>
+				<name>
+					<en>Liturgy of the Wrathful Host</en>
+					<es>Liturgia de Furia Divina</es>
+				</name>
+				<level>5</level>
+				<characteristic>presence</characteristic>
+				<skill>selfControl</skill>
+				<range>sensory</range>
+				<duration>prolonged</duration>
+				
+				<components>LP</components>
+				<wyrd>1</wyrd>
+			</liturgyOfTheWrathfulHost>
+			<smitingHand>
+				<name>
+					<en>Smiting Hand</en>
+					<es>Mano Destructora</es>
+				</name>
+				<level>6</level>
+				<characteristic>faith</characteristic>
+				<skill>selfControl</skill>
+				<range>self</range>
+				<duration>instant</duration>
+				
+				<components>LG</components>
+				<wyrd>1</wyrd>
+			</smitingHand>
+			<fearsomeMajesty>
+				<name>
+					<en>Fearsome Majesty</en>
+					<es>Majestuosidad Aterradora</es>
+				</name>
+				<level>7</level>
+				<characteristic>presence</characteristic>
+				<skill>selfControl</skill>
+				<range>sensory</range>
+				<duration>prolonged</duration>
+				
+				<components>LG</components>
+				<wyrd>1</wyrd>
+			</fearsomeMajesty>
+			<oathOfTheShieldmates>
+				<name>
+					<en>Oath of the Shieldmates</en>
+					<es>Juramento de los Camaradas de Escudo</es>
+				</name>
+				<level>8</level>
+				<characteristic>faith</characteristic>
+				<skill>selfControl</skill>
+				<range>sensory</range>
+				<duration>prolonged</duration>				
+				<components>LGP</components>
+				<wyrd>1</wyrd>
+			</oathOfTheShieldmates>
+			<salutationsToZakhayelos>
+				<name>
+					<en>Salutations to Zakhayelos, Lord of Hosts</en>
+					<es>Saludos a Zakhayelos, Señor de lo Divino</es>
+				</name>
+				<level>9</level>
+				<characteristic>faith</characteristic>
+				<skill>theurgy</skill>
+				<range></range>
+				<duration></duration>				
+				<components>LGP</components>
+				<wyrd>1</wyrd>
+			</>
+		</powers>
+	</brotherBattleRituals>
+	<eskatonicOrderRituals>
+		<name>
+			<en>Eskatonic Order Rituals</en>
+			<es></es>
+		</name>
+		<type>theurgy</type>
+		<factions>eskatonic</factions>
+		<powers>
+			<celestialAlignment>
+				<name>
+					<en>Celestial Alignment</en>
+					<es>Alineación Celestial</es>
+				</name>
+				<level>1</level>
+				<characteristic>faith</characteristic>
+				<skill>observation</skill>
+				<range>self</range>
+				<duration>perpetual</duration>				
+				<components>P</components>
+				<wyrd>1</wyrd>
+			</celestialAlignment>
+			<divineRevelation>
+				<name>
+					<en>Divine Revelation</en>
+					<es>Revelación Divina</es>
+				</name>
+				<level>2</level>
+				<characteristic>faith</characteristic>
+				<skill>observation</skill>
+				<range>self</range>
+				<duration></duration>
+				
+				<components>P</components>
+				<wyrd>1</wyrd>
+			</divineRevelation>
+			<rendingTheVeilOfUnreason>
+				<name>
+					<en>Rending the Veil of Unreason</en>
+					<es>Desgarrar el Velo de la Sinrazón</es>
+				</name>
+				<level>3</level>
+				<characteristic>faith</characteristic>
+				<skill>observation</skill>
+				<range>sensory</range>
+				<duration>prolonged</duration>
+				
+				<components>P</components>
+				<wyrd>1</wyrd>
+			</rendingTheVeilOfUnreason>
+			<secondSight>
+				<name>
+					<en>Second Sight</en>
+					<es>Segunda Visión</es>
+				</name>
+				<level>4</level>
+				<characteristic>will</characteristic>
+				<skill>observation</skill>
+				<range>sensory</range>
+				<duration>prolonged</duration>
+				
+				<components>P</components>
+				<wyrd>1</wyrd>
+			</secondSight>
+			<silenceTheBeast>
+				<name>
+					<en>Silence the Beast</en>
+					<es>Silenciar a la Bestia</es>
+				</name>
+				<level>4</level>
+				<characteristic>will</characteristic>
+				<skill>selfControl</skill>
+				<range>sensory</range>
+				<duration>prolonged</duration>
+				
+				<components>P</components>
+				<wyrd>1</wyrd>
+			</silenceTheBeast>
+			<osseusTransmutation>
+				<name>
+					<en>Osseus Transmutation</en>
+					<es>Transmutación Ósea</es>
+				</name>
+				<level>5</level>
+				<characteristic>will</characteristic>
+				<skill>selfControl</skill>
+				<range>touch</range>
+				<duration>permanent</duration>
+				
+				<components>LG</components>
+				<wyrd>1</wyrd>
+			</osseusTransmutation>
+			<allSeingEye>
+				<name>
+					<en>All-Seeing Eye</en>
+					<es>El Ojo que Todo lo Ve</es>
+				</name>
+				<level>6</level>
+				<characteristic>will</characteristic>
+				<skill>observe</skill>
+				<range></range>
+				<duration>prolonged</duration>
+				
+				<components>LP</components>
+				<wyrd>1</wyrd>
+			</allSeingEye>
+			<refinementOfEssence>
+				<name>
+					<en>Refinement of Essence</en>
+					<es>Perfeccionamiento de la Esencia</es>
+				</name>
+				<level>7</level>
+				<characteristic>will</characteristic>
+				<skill>selfControl</skill>
+				<range>touch</range>
+				<duration>perpetual</duration>
+				
+				<components>LG</components>
+				<wyrd>1</wyrd>
+			</refinementOfEssence>
+			<investiture>
+				<name>
+					<en>Investiture</en>
+					<es>Investidura</es>
+				</name>
+				<level>8</level>
+				<characteristic>faith</characteristic>
+				<skill>selfControl</skill>
+				<range>touch</range>
+				<duration>perpetural</duration>
+				
+				<components>LGP</components>
+				<wyrd>1</wyrd>
+			</investiture>
+			<knowledgeAndConversationOfTholumiyelos>
+				<name>
+					<en>Knowledge and Conversation of Tholumiyelos, Lord of Wisdom</en>
+					<es>Conocimiento y Conversación de Tholumiyelos, Señor de la Sabiduría</es>
+				</name>
+				<level>9</level>
+				<characteristic>will</characteristic>
+				<skill>theurgy</skill>
+				<range></range>
+				<duration></duration>				
+				<components>LGP</components>
+				<wyrd>1</wyrd>
+			</knowledgeAndConversationOfTholumiyelos>
+		</powers>
+	</eskatonicOrderRituals>
+	<templeAvestiRituals>
+		<name>
+			<en>Temple Avesti Rituals</en>
+			<es></es>
+		</name>
+		<type>theurgy</type>
+		<factions>avestites</factions>
+		<powers>
+			<knowingTheFalseHeart>
+				<name>
+					<en>Knowing the False Heart</en>
+					<es>Conocer la Falsedad del Corazón</es>
+				</name>
+				<level>1</level>
+				<characteristic>faith</characteristic>
+				<skill>observation</skill>
+				<range>sensory</range>
+				<duration>prolonged</duration>
+				
+				<components>G</components>
+				<wyrd>1</wyrd>
+			</knowingTheFalseHeart>
+			<scentOfEvil>
+				<name>
+					<en>Scent of Evil</en>
+					<es>Rastro del Mal</es>
+				</name>
+				<level>2</level>
+				<characteristic>faith</characteristic>
+				<skill>observation</skill>
+				<range>sensory</range>
+				<duration>prolonged</duration>
+				
+				<components>GP</components>
+				<wyrd>1</wyrd>
+			</scentOfEvil>
+			<stingOfConscience>
+				<name>
+					<en>Sting of Conscience</en>
+					<es>Aguijón de Conciencia</es>
+				</name>
+				<level>3</level>
+				<characteristic>faith</characteristic>
+				<skill>influence</skill>
+				<range>sensory</range>
+				<duration>prolonged</duration>
+				
+				<components>LG</components>
+				<wyrd>1</wyrd>
+			</stingOfConscience>
+			<torchbearing>
+				<name>
+					<en>Torchbearing</en>
+					<es>Portar la Antorcha</es>
+				</name>
+				<level>4</level>
+				<characteristic>faith</characteristic>
+				<skill>selfControl</skill>
+				<range>touch</range>
+				<duration>extended</duration>
+				
+				<components>G</components>
+				<wyrd>1</wyrd>
+			</torchbearing>
+			<faultOfTheSoulless>
+				<name>
+					<en>Fault of the Soulless</en>
+					<es>La Culpa del Sin Alma</es>
+				</name>
+				<level>5</level>
+				<characteristic>faith</characteristic>
+				<skill>selfControl</skill>
+				<range>sensory</range>
+				<duration></duration>
+				
+				<components></components>
+				<wyrd>1</wyrd>
+			</faultOfTheSoulless>
+			<fearsomeMajesty>
+				<name>
+					<en>Fearsome Majesty</en>
+					<es>Majestuosidad Aterradora</es>
+				</name>
+				<level>6</level>
+				<characteristic>presence</characteristic>
+				<skill>selfControl</skill>
+				<range>sensory</range>
+				<duration>prolonged</duration>
+				
+				<components>LG</components>
+				<wyrd>1</wyrd>
+			</fearsomeMajesty>
+			<prophetsProjectedFlame>
+				<name>
+					<en>Prophet's Projected Flame</en>
+					<es>Llama Proyectada del Profeta</es>
+				</name>
+				<level>6</level>
+				<characteristic>faith</characteristic>
+				<skill>selfControl</skill>
+				<range>sensory</range>
+				<duration>extended</duration>
+				
+				<components>LG</components>
+				<wyrd>1</wyrd>
+			</prophetsProjectedFlame>
+			<inquisitoryCommandment>
+				<name>
+					<en>Inquisitory Commandment</en>
+					<es>Mandamiento Inquisorial</es>
+				</name>
+				<level>7</level>
+				<characteristic>faith</characteristic>
+				<skill>selfControl</skill>
+				<range>sensory</range>
+				<duration>extended</duration>
+				
+				<components>L</components>
+				<wyrd>1</wyrd>
+			</inquisitoryCommandment>
+			<torturesOfTheDamned>
+				<name>
+					<en>Tortures of the Damned</en>
+					<es>Tortura de los Condenados</es>
+				</name>
+				<level>8</level>
+				<characteristic>faith</characteristic>
+				<skill>torture</skill>
+				<range>sensory</range>
+				<duration>prolonged</duration>
+				
+				<components>LG</components>
+				<wyrd>1</wyrd>
+			</torturesOfTheDamned>
+			<petitionToJachemuyelos>
+				<name>
+					<en>Petition to Jachemuyelos, Lord of Judgment</en>
+					<es>Petición a Jachemuyelos, Señor del Juicio</es>
+				</name>
+				<level>9</level>
+				<characteristic>faith</characteristic>
+				<skill>theurgy</skill>
+				<range></range>
+				<duration></duration>
+				
+				<components>LGP</components>
+				<wyrd>1</wyrd>
+			</petitionToJachemuyelos>
+		</powers>
+	</templeAvestiRituals>
+	<aeonSancturayRituals>
+		<name>
+			<en>Sanctuary Aeon Rituals</en>
+			<es></es>
+		</name>
+		<type>theurgy</type>
+		<factions>amaltheans</factions>
+		<powers>
+			<cleansing>
+				<name>
+					<en>Cleansing</en>
+					<es>Purificación</es>
+				</name>
+				<level>1</level>
+				<characteristic>faith</characteristic>
+				<skill>selfControl</skill>
+				<range>touch</range>
+				<duration>prolonged</duration>
+				
+				<components>LGP</components>
+				<wyrd>1</wyrd>
+			</cleansing>
+			<hearth>
+				<name>
+					<en>Hearth</en>
+					<es>Hoguera</es>
+				</name>
+				<level>2</level>
+				<characteristic>faith</characteristic>
+				<skill>selfControl</skill>
+				<range>touch</range>
+				<duration>prolonged</duration>
+				
+				<components>LG</components>
+				<wyrd>1</wyrd>
+			</hearth>
+			<calming>
+				<name>
+					<en>Calming</en>
+					<es>Calmar</es>
+				</name>
+				<level>3</level>
+				<characteristic>faith</characteristic>
+				<skill>empathy</skill>
+				<range>sensory</range>
+				<duration>prolonged</duration>
+				
+				<components>G</components>
+				<wyrd>1</wyrd>
+			</calming>
+			<knowingHeart>
+				<name>
+					<en>Knowing Heart</en>
+					<es>Conocer el Corazón</es>
+				</name>
+				<level>4</level>
+				<characteristic>faith</characteristic>
+				<skill>observation</skill>
+				<range>sensory</range>
+				<duration>extended</duration>
+				
+				<components>P</components>
+				<wyrd>1</wyrd>
+			</knowingHeart>
+			<fruitfulMultiplication>
+				<name>
+					<en>Fruitful Multiplication</en>
+					<es>Multiplicació Fructífera</es>
+				</name>
+				<level>5</level>
+				<characteristic>faith</characteristic>
+				<skill>selfControl</skill>
+				<range>touch</range>
+				<duration>perpetual</duration>
+				
+				<components>LP</components>
+				<wyrd>1</wyrd>
+			</fruitfulMultiplication>
+			<restoration>
+				<name>
+					<en>Restoration</en>
+					<es>Restauración</es>
+				</name>
+				<level>5</level>
+				<characteristic>faith</characteristic>
+				<skill>physick</skill>
+				<range>touch</range>
+				<duration>instant</duration>
+				
+				<components>LGP</components>
+				<wyrd>1</wyrd>
+			</restoration>
+			<mannaFromHeaven>
+				<name>
+					<en>Manna from Heaven</en>
+					<es>Maná Caído del Cielo</es>
+				</name>
+				<level>6</level>
+				<characteristic>faith</characteristic>
+				<skill>selfControl</skill>
+				<range>touch</range>
+				<duration>instant</duration>
+				
+				<components>LP</components>
+				<wyrd>1</wyrd>
+			</mannaFromHeaven>
+			<healingHandOfSaintAmalthea>
+				<name>
+					<en>Healing Hand of Saint Amalthea</en>
+					<es>Mano Sanadora de Santa Amaltea</es>
+				</name>
+				<level>7</level>
+				<characteristic>faith</characteristic>
+				<skill>selfControl</skill>
+				<range>touch</range>
+				<duration>instant</duration>
+				
+				<components>LGP</components>
+				<wyrd>1</wyrd>
+			</healingHandOfSaintAmalthea>
+			<sanctuary>
+				<name>
+					<en>Sanctuary</en>
+					<es>Santuario</es>
+				</name>
+				<level>8</level>
+				<characteristic>faith</characteristic>
+				<skill>selfControl</skill>
+				<range>sensory</range>
+				<duration>prolonged</duration>
+				
+				<components>LGP</components>
+				<wyrd>1</wyrd>
+			</sanctuary>
+			<invitationToHamomeyelos>
+				<name>
+					<en>Invitation to Hamomeyelos, Lord of Mercy</en>
+					<es>Invitación a Hamomeyelos, Señor de la Misericordia</es>
+				</name>
+				<level>9</level>
+				<characteristic>faith</characteristic>
+				<skill>theurgy</skill>
+				<range></range>
+				<duration></duration>				
+				<components>LGP</components>
+				<wyrd>1</wyrd>
+			</invitationToHamomeyelos>
+		</powers>
+	</aeonSancturayRituals>
 </occultism>

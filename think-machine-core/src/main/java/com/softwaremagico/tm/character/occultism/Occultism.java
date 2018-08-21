@@ -29,6 +29,8 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import com.softwaremagico.tm.character.factions.Faction;
+
 public class Occultism {
 	private int psiValue = 0;
 	private int theurgyValue = 0;
@@ -87,18 +89,23 @@ public class Occultism {
 		return selectedPowers;
 	}
 
-	public void addPower(OccultismPower power, String language) throws InvalidOccultismPowerException {
+	public void addPower(OccultismPower power, String language, Faction faction) throws InvalidOccultismPowerException {
 		if (power == null) {
 			throw new InvalidOccultismPowerException("Power cannot be null.");
 		}
 		OccultismPath path = OccultismPathFactory.getInstance().getOccultismPath(power, language);
 		// Correct level of psi or teurgy
 		if (path.getOccultismType().equals(OccultismType.PSI) && power.getLevel() > getPsiValue()) {
-			throw new InvalidPsiqueLevelException("Insuficient psi level to acquire '" + power + "'..");
+			throw new InvalidPsiqueLevelException("Insuficient psi level to acquire '" + power + "'.");
 		}
 		if (path.getOccultismType().equals(OccultismType.THEURGY) && power.getLevel() > getTheurgyValue()) {
-			throw new InvalidPsiqueLevelException("Insuficient theurgy level to acquire '" + power + "'..");
+			throw new InvalidPsiqueLevelException("Insuficient theurgy level to acquire '" + power + "'.");
 		}
+		// Limited to some factions
+		if (!path.getFactionsAllowed().isEmpty() && !path.getFactionsAllowed().contains(faction)) {
+			throw new InvalidFactionOfPowerException("Power can only be acquired by  '" + path.getFactionsAllowed() + "'.");
+		}
+
 		// Psi must have previous level.
 		if (path.getOccultismType() == OccultismType.PSI) {
 			boolean acquiredLevel = false;

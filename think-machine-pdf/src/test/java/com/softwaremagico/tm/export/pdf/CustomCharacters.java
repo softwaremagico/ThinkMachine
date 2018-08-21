@@ -64,7 +64,8 @@ public class CustomCharacters {
 	private final static String LANGUAGE = "en";
 
 	@Test
-	public void createPaolaCharacter() throws MalformedURLException, DocumentException, IOException, InvalidXmlElementException, TooManyBlessingsException {
+	public void createPaolaCharacter() throws MalformedURLException, DocumentException, IOException,
+			InvalidXmlElementException, TooManyBlessingsException {
 		CharacterPlayer player = new CharacterPlayer(LANGUAGE);
 		player.getInfo().setName("#5");
 		player.getInfo().setPlayer("Paola");
@@ -107,22 +108,30 @@ public class CustomCharacters {
 		player.addBlessing(BlessingFactory.getInstance().getElement("greaseMonkey", player.getLanguage()));
 		player.addBlessing(BlessingFactory.getInstance().getElement("horribleScar", player.getLanguage()));
 
-		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("language [turingLanguage]", player.getLanguage()));
-		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("commission [apprentice]", player.getLanguage()));
-		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("cash [firebirds1000]", player.getLanguage()));
+		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("language [turingLanguage]",
+				player.getLanguage()));
+		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("commission [apprentice]",
+				player.getLanguage()));
+		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("cash [firebirds1000]",
+				player.getLanguage()));
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("gossipNetwork_3", player.getLanguage()));
 
-		Device ingeneerEye = new Device("Ojo de Ingeniero", 8, 6, "Normal", "Normal", "Automático", "Oculto", "Autoalimentado");
-		ingeneerEye.addCharacteristicImprovement(new CharacteristicImprovement(CharacteristicsDefinitionFactory.getInstance()
-				.getElement("perception", LANGUAGE), 1, false));
+		Device ingeneerEye = new Device("Ojo de Ingeniero", 8, 6, "Normal", "Normal", "Automático", "Oculto",
+				"Autoalimentado");
+		ingeneerEye.addCharacteristicImprovement(new CharacteristicImprovement(CharacteristicsDefinitionFactory
+				.getInstance().getElement("perception", LANGUAGE), 1, false));
 		player.getCybernetics().addElement(ingeneerEye);
 
-		Device secondBrain = new Device("Segundo Cerebro", 11, 10, "Normal", "Normal", "Automático", "Oculto", "Autoalimentado");
-		secondBrain.addCharacteristicImprovement(new CharacteristicImprovement(CharacteristicsDefinitionFactory.getInstance().getElement("wits", LANGUAGE), 2,
-				true));
-		secondBrain.addSkillImprovement(new CyberneticSkill(AvailableSkillsFactory.getInstance().getElement("lore", "jumpwebLore", LANGUAGE), 4, true));
-		secondBrain.addSkillImprovement(new CyberneticSkill(AvailableSkillsFactory.getInstance().getElement("lore", "energyPistolsLore", LANGUAGE), 4, true));
-		secondBrain.addSkillImprovement(new CyberneticSkill(AvailableSkillsFactory.getInstance().getElement("lore", "thinkMachineLore", LANGUAGE), 4, true));
+		Device secondBrain = new Device("Segundo Cerebro", 11, 10, "Normal", "Normal", "Automático", "Oculto",
+				"Autoalimentado");
+		secondBrain.addCharacteristicImprovement(new CharacteristicImprovement(CharacteristicsDefinitionFactory
+				.getInstance().getElement("wits", LANGUAGE), 2, true));
+		secondBrain.addSkillImprovement(new CyberneticSkill(AvailableSkillsFactory.getInstance().getElement("lore",
+				"jumpwebLore", LANGUAGE), 4, true));
+		secondBrain.addSkillImprovement(new CyberneticSkill(AvailableSkillsFactory.getInstance().getElement("lore",
+				"energyPistolsLore", LANGUAGE), 4, true));
+		secondBrain.addSkillImprovement(new CyberneticSkill(AvailableSkillsFactory.getInstance().getElement("lore",
+				"thinkMachineLore", LANGUAGE), 4, true));
 		player.getCybernetics().addElement(secondBrain);
 
 		player.setShield(new Shield("De Duelo", 5, 10, 15));
@@ -139,7 +148,8 @@ public class CustomCharacters {
 	}
 
 	@Test
-	public void characterAnaCharacter() throws MalformedURLException, DocumentException, IOException, InvalidXmlElementException, TooManyBlessingsException {
+	public void characterAnaCharacter() throws MalformedURLException, DocumentException, IOException,
+			InvalidXmlElementException, TooManyBlessingsException {
 		CharacterPlayer player = new CharacterPlayer(LANGUAGE);
 		player.getInfo().setName("Ana");
 		player.getInfo().setPlayer("Ana");
@@ -177,7 +187,8 @@ public class CustomCharacters {
 		player.addBlessing(BlessingFactory.getInstance().getElement("horribleScar", player.getLanguage()));
 
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("nobility [knight]", player.getLanguage()));
-		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("language [latinLanguage]", player.getLanguage()));
+		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("language [latinLanguage]",
+				player.getLanguage()));
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("imperialCharter", player.getLanguage()));
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("fluxSword", player.getLanguage()));
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("vendetta_2", player.getLanguage()));
@@ -196,7 +207,8 @@ public class CustomCharacters {
 	}
 
 	@Test
-	public void createCarlosCharacter() throws MalformedURLException, DocumentException, IOException, InvalidXmlElementException, TooManyBlessingsException {
+	public void createCarlosCharacter() throws MalformedURLException, DocumentException, IOException,
+			InvalidXmlElementException, TooManyBlessingsException {
 		CharacterPlayer player = new CharacterPlayer(LANGUAGE);
 		player.getInfo().setName("Carlos");
 		player.getInfo().setPlayer("Carlos");
@@ -237,9 +249,12 @@ public class CustomCharacters {
 
 		player.addBlessing(BlessingFactory.getInstance().getElement("horribleScar", player.getLanguage()));
 
-		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("commission [entered]", player.getLanguage()));
-		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("passageContracts_3", player.getLanguage()));
-		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("cash [firebirds1000]", player.getLanguage()));
+		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("commission [entered]",
+				player.getLanguage()));
+		player.addBenefice(AvailableBeneficeFactory.getInstance()
+				.getElement("passageContracts_3", player.getLanguage()));
+		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("cash [firebirds1000]",
+				player.getLanguage()));
 
 		CombatStyle fightStyle = new CombatStyle("ironHeel");
 		fightStyle.addElement(new CombatAction("Cadena de Destrucción", null, "3d", "Presa Especial"));
@@ -262,7 +277,8 @@ public class CustomCharacters {
 	}
 
 	@Test
-	public void createNoeliaCharacer() throws MalformedURLException, DocumentException, IOException, InvalidXmlElementException, TooManyBlessingsException {
+	public void createNoeliaCharacer() throws MalformedURLException, DocumentException, IOException,
+			InvalidXmlElementException, TooManyBlessingsException {
 		CharacterPlayer player = new CharacterPlayer(LANGUAGE);
 		player.getInfo().setName("Noelia");
 		player.getInfo().setPlayer("Noelia");
@@ -295,21 +311,40 @@ public class CustomCharacters {
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("lore", "kelantiLore", LANGUAGE), 3);
 
 		player.getOccultism().setPsiValue(6);
-		
-		player.getOccultism().addPower(OccultismPathFactory.getInstance().getElement("farHand", LANGUAGE).getOccultismPowers().get("liftingHand"), player.getLanguage());
-		player.getOccultism().addPower(OccultismPathFactory.getInstance().getElement("farHand", LANGUAGE).getOccultismPowers().get("throwingHand"), player.getLanguage());
-		player.getOccultism().addPower(OccultismPathFactory.getInstance().getElement("farHand", LANGUAGE).getOccultismPowers().get("crushingHand"), player.getLanguage());
-		player.getOccultism().addPower(OccultismPathFactory.getInstance().getElement("farHand", LANGUAGE).getOccultismPowers().get("duelingHand"), player.getLanguage());
-		player.getOccultism().addPower(OccultismPathFactory.getInstance().getElement("farHand", LANGUAGE).getOccultismPowers().get("farWall"), player.getLanguage());
-		player.getOccultism().addPower(OccultismPathFactory.getInstance().getElement("psyche", LANGUAGE).getOccultismPowers().get("intuit"), player.getLanguage());
-		player.getOccultism().addPower(OccultismPathFactory.getInstance().getElement("psyche", LANGUAGE).getOccultismPowers().get("emote"), player.getLanguage());
-		player.getOccultism().addPower(OccultismPathFactory.getInstance().getElement("psyche", LANGUAGE).getOccultismPowers().get("mindSight"), player.getLanguage());
+
+		player.getOccultism().addPower(
+				OccultismPathFactory.getInstance().getElement("farHand", LANGUAGE).getOccultismPowers()
+						.get("liftingHand"), player.getLanguage(), player.getFaction());
+		player.getOccultism().addPower(
+				OccultismPathFactory.getInstance().getElement("farHand", LANGUAGE).getOccultismPowers()
+						.get("throwingHand"), player.getLanguage(), player.getFaction());
+		player.getOccultism().addPower(
+				OccultismPathFactory.getInstance().getElement("farHand", LANGUAGE).getOccultismPowers()
+						.get("crushingHand"), player.getLanguage(), player.getFaction());
+		player.getOccultism().addPower(
+				OccultismPathFactory.getInstance().getElement("farHand", LANGUAGE).getOccultismPowers()
+						.get("duelingHand"), player.getLanguage(), player.getFaction());
+		player.getOccultism().addPower(
+				OccultismPathFactory.getInstance().getElement("farHand", LANGUAGE).getOccultismPowers().get("farWall"),
+				player.getLanguage(), player.getFaction());
+		player.getOccultism().addPower(
+				OccultismPathFactory.getInstance().getElement("psyche", LANGUAGE).getOccultismPowers().get("intuit"),
+				player.getLanguage(), player.getFaction());
+		player.getOccultism().addPower(
+				OccultismPathFactory.getInstance().getElement("psyche", LANGUAGE).getOccultismPowers().get("emote"),
+				player.getLanguage(), player.getFaction());
+		player.getOccultism()
+				.addPower(
+						OccultismPathFactory.getInstance().getElement("psyche", LANGUAGE).getOccultismPowers()
+								.get("mindSight"), player.getLanguage(), player.getFaction());
 		player.getOccultism().setExtraWyrd(3);
 
 		player.addBlessing(BlessingFactory.getInstance().getElement("horribleScar", player.getLanguage()));
 
-		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("ordained [novitiate]", player.getLanguage()));
-		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("language [urthish]", player.getLanguage()));
+		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("ordained [novitiate]",
+				player.getLanguage()));
+		player.addBenefice(AvailableBeneficeFactory.getInstance()
+				.getElement("language [urthish]", player.getLanguage()));
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("stigma_3", player.getLanguage()));
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("orphan", player.getLanguage()));
 
@@ -325,7 +360,8 @@ public class CustomCharacters {
 	}
 
 	@Test
-	public void createGolemCharacer() throws MalformedURLException, DocumentException, IOException, InvalidXmlElementException, TooManyBlessingsException {
+	public void createGolemCharacer() throws MalformedURLException, DocumentException, IOException,
+			InvalidXmlElementException, TooManyBlessingsException {
 		CharacterPlayer player = new CharacterPlayer(LANGUAGE);
 		player.getInfo().setPlayer("PNJ");
 		player.getInfo().setName("A (Prototipo A)");
@@ -360,9 +396,12 @@ public class CustomCharacters {
 		player.addBlessing(BlessingFactory.getInstance().getElement("gullible", player.getLanguage()));
 		player.addBlessing(BlessingFactory.getInstance().getElement("righteous", player.getLanguage()));
 
-		player.getCybernetics().addElement(new Device("Omnienchufe", 1, 0, "Normal", "Normal", "Automático", "Oculto", ""));
-		player.getCybernetics().addElement(new Device("Interfaz de Datos (Turing)", 1, 1, "Normal", "Normal", "Automático", "Oculto", "Turing"));
-		player.getCybernetics().addElement(new Device("Armadura", 1, 2, "Normal", "Normal", "Automático", "Oculto", "2d"));
+		player.getCybernetics().addElement(
+				new Device("Omnienchufe", 1, 0, "Normal", "Normal", "Automático", "Oculto", ""));
+		player.getCybernetics().addElement(
+				new Device("Interfaz de Datos (Turing)", 1, 1, "Normal", "Normal", "Automático", "Oculto", "Turing"));
+		player.getCybernetics().addElement(
+				new Device("Armadura", 1, 2, "Normal", "Normal", "Automático", "Oculto", "2d"));
 
 		player.setArmour(new Armour("Piel", 2, false, false, false, false, false, false, false, 5, 0, 0, 0, 0));
 
