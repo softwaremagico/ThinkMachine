@@ -24,10 +24,11 @@ package com.softwaremagico.tm.character.occultism;
  * #L%
  */
 
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
-import java.util.Set;
+import java.util.Objects;
 
 import com.softwaremagico.tm.character.factions.Faction;
 
@@ -39,7 +40,7 @@ public class Occultism {
 	private int hubris = 0;
 
 	// Path --> Set<Power>
-	private final Map<String, Set<String>> selectedPowers;
+	private final Map<String, List<String>> selectedPowers;
 
 	public Occultism() {
 		selectedPowers = new HashMap<>();
@@ -85,7 +86,7 @@ public class Occultism {
 		this.hubris = hubris;
 	}
 
-	public Map<String, Set<String>> getSelectedPowers() {
+	public Map<String, List<String>> getSelectedPowers() {
 		return selectedPowers;
 	}
 
@@ -95,19 +96,22 @@ public class Occultism {
 		}
 		OccultismPath path = OccultismPathFactory.getInstance().getOccultismPath(power, language);
 		// Correct level of psi or teurgy
-		if (path.getOccultismType().equals(OccultismType.PSI) && power.getLevel() > getPsiValue()) {
+		if (Objects.equals(path.getOccultismType(), OccultismTypeFactory.getPsi(language))
+				&& power.getLevel() > getPsiValue()) {
 			throw new InvalidPsiqueLevelException("Insuficient psi level to acquire '" + power + "'.");
 		}
-		if (path.getOccultismType().equals(OccultismType.THEURGY) && power.getLevel() > getTheurgyValue()) {
+		if (Objects.equals(path.getOccultismType(), OccultismTypeFactory.getTheurgy(language))
+				&& power.getLevel() > getTheurgyValue()) {
 			throw new InvalidPsiqueLevelException("Insuficient theurgy level to acquire '" + power + "'.");
 		}
 		// Limited to some factions
 		if (!path.getFactionsAllowed().isEmpty() && !path.getFactionsAllowed().contains(faction)) {
-			throw new InvalidFactionOfPowerException("Power can only be acquired by  '" + path.getFactionsAllowed() + "'.");
+			throw new InvalidFactionOfPowerException("Power can only be acquired by  '" + path.getFactionsAllowed()
+					+ "'.");
 		}
 
 		// Psi must have previous level.
-		if (path.getOccultismType() == OccultismType.PSI) {
+		if (Objects.equals(path.getOccultismType(), OccultismTypeFactory.getPsi(language))) {
 			boolean acquiredLevel = false;
 			for (OccultismPower previousLevelPower : path.getPreviousLevelPowers(power)) {
 				if (selectedPowers.get(path.getId()) != null
@@ -122,7 +126,7 @@ public class Occultism {
 			}
 		}
 		if (selectedPowers.get(path.getId()) == null) {
-			selectedPowers.put(path.getId(), new HashSet<String>());
+			selectedPowers.put(path.getId(), new ArrayList<String>());
 		}
 		selectedPowers.get(path.getId()).add(power.getId());
 	}

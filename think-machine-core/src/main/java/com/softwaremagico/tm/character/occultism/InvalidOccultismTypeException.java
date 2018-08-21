@@ -1,8 +1,5 @@
 package com.softwaremagico.tm.character.occultism;
 
-import com.softwaremagico.tm.Element;
-import com.softwaremagico.tm.character.values.IValue;
-
 /*-
  * #%L
  * Think Machine (Core)
@@ -27,16 +24,16 @@ import com.softwaremagico.tm.character.values.IValue;
  * #L%
  */
 
-public class OccultismType extends Element<OccultismType> implements IValue {
-	private final String darksideName;
+import com.softwaremagico.tm.InvalidXmlElementException;
 
-	public OccultismType(String id, String name, String darksideName) {
-		super(id, name);
-		this.darksideName = darksideName;
+public class InvalidOccultismTypeException extends InvalidXmlElementException {
+	private static final long serialVersionUID = -3441804641445713841L;
+
+	public InvalidOccultismTypeException(String message) {
+		super(message);
 	}
 
-	public String getDarksideName() {
-		return darksideName;
+	public InvalidOccultismTypeException(String message, Exception e) {
+		super(message, e);
 	}
-
 }

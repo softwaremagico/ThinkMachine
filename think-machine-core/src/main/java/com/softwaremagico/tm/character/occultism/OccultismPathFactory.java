@@ -28,6 +28,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import java.util.StringTokenizer;
 
@@ -37,14 +38,14 @@ import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.characteristics.CharacteristicsDefinitionFactory;
 import com.softwaremagico.tm.character.factions.Faction;
 import com.softwaremagico.tm.character.factions.FactionsFactory;
-import com.softwaremagico.tm.character.skills.AvailableSkill;
-import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
+import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
+import com.softwaremagico.tm.character.values.IValue;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.log.MachineLog;
 
 public class OccultismPathFactory extends XmlFactory<OccultismPath> {
-	private final static ITranslator translatorBlessing = LanguagePool.getTranslator("occultism.xml");
+	private final static ITranslator translatorBlessing = LanguagePool.getTranslator("occultismPowers.xml");
 
 	private final static String NAME = "name";
 	private final static String TYPE = "type";
@@ -57,8 +58,8 @@ public class OccultismPathFactory extends XmlFactory<OccultismPath> {
 	private final static String POWER_SKILL = "skill";
 	private final static String POWER_RANGE = "range";
 	private final static String POWER_DURATION = "duration";
-	private final static String POWER_REQUIREMENTS = "requirements";
 	private final static String POWER_WYRD = "wyrd";
+	private final static String POWER_COMPONENTS = "components";
 
 	private final static String VARIABLE_WYRD = "variable";
 
@@ -104,7 +105,7 @@ public class OccultismPathFactory extends XmlFactory<OccultismPath> {
 			String name = translator.getNodeValue(occultismId, NAME, language);
 
 			String typeName = translator.getNodeValue(occultismId, TYPE);
-			OccultismType occultismType = OccultismType.get(typeName);
+			OccultismType occultismType = OccultismTypeFactory.getInstance().getElement(typeName, language);
 			if (occultismType == null) {
 				throw new InvalidOccultismPowerException("No type defined for '" + occultismId + "'.");
 			}
@@ -129,8 +130,8 @@ public class OccultismPathFactory extends XmlFactory<OccultismPath> {
 				String skillNames = translator.getNodeValue(powerId, POWER_SKILL);
 				String range = translator.getNodeValue(powerId, POWER_RANGE);
 				String duration = translator.getNodeValue(powerId, POWER_DURATION);
-				String requirements = translator.getNodeValue(powerId, POWER_REQUIREMENTS);
 				Integer wyrd = null;
+				String components = translator.getNodeValue(powerId, POWER_COMPONENTS);
 				try {
 					wyrd = Integer.parseInt(translator.getNodeValue(powerId, POWER_WYRD));
 				} catch (NumberFormatException nfe) {
@@ -141,11 +142,15 @@ public class OccultismPathFactory extends XmlFactory<OccultismPath> {
 					}
 				}
 
-				List<AvailableSkill> skills = new ArrayList<>();
+				List<IValue> values = new ArrayList<>();
 				StringTokenizer skillTokenizer = new StringTokenizer(skillNames, ",");
 				while (skillTokenizer.hasMoreTokens()) {
-					skills.add(AvailableSkillsFactory.getInstance().getElement(skillTokenizer.nextToken().trim(),
-							language));
+					String value = skillTokenizer.nextToken().trim();
+					try {
+						values.add(SkillsDefinitionsFactory.getInstance().getElement(value, language));
+					} catch (InvalidXmlElementException iee) {
+						values.add(OccultismTypeFactory.getInstance().getElement(value, language));
+					}
 				}
 
 				OccultismRange occultismRange = null;
@@ -158,9 +163,22 @@ public class OccultismPathFactory extends XmlFactory<OccultismPath> {
 					occultismDuration = OccultismDurationFactory.getInstance().getElement(duration, language);
 				}
 
+				Set<TheurgyComponent> theurgyComponents = new HashSet<>();
+				if (components != null) {
+					for (int i = 0; i < components.length(); i++) {
+						TheurgyComponent theurgyComponent = TheurgyComponentFactory.getInstance().getTheurgyComponent(
+								components.charAt(i), language);
+						if (theurgyComponent == null) {
+							throw new InvalidTheurgyComponentException("Invalid theurgy component code '"
+									+ components.charAt(i) + "'.");
+						}
+						theurgyComponents.add(theurgyComponent);
+					}
+				}
+
 				OccultismPower occultismPower = new OccultismPower(powerId, powerName, CharacteristicsDefinitionFactory
-						.getInstance().get(CharacteristicName.get(characteristicName), language), skills,
-						Integer.parseInt(level), occultismRange, occultismDuration, requirements, wyrd);
+						.getInstance().get(CharacteristicName.get(characteristicName), language), values,
+						Integer.parseInt(level), occultismRange, occultismDuration, wyrd, theurgyComponents);
 
 				occultismPath.getOccultismPowers().put(powerId, occultismPower);
 			}
@@ -193,7 +211,7 @@ public class OccultismPathFactory extends XmlFactory<OccultismPath> {
 		if (psiPaths.isEmpty()) {
 			try {
 				for (OccultismPath path : getElements(language)) {
-					if (path.getOccultismType() == OccultismType.PSI) {
+					if (Objects.equals(path.getOccultismType(), OccultismTypeFactory.getPsi(language))) {
 						psiPaths.add(path);
 					}
 				}
@@ -208,7 +226,7 @@ public class OccultismPathFactory extends XmlFactory<OccultismPath> {
 		if (theurgyPaths.isEmpty()) {
 			try {
 				for (OccultismPath path : getElements(language)) {
-					if (path.getOccultismType() == OccultismType.THEURGY) {
+					if (Objects.equals(path.getOccultismType(), OccultismTypeFactory.getTheurgy(language))) {
 						theurgyPaths.add(path);
 					}
 				}

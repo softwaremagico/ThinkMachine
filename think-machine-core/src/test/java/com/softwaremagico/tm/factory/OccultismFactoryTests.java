@@ -32,15 +32,19 @@ import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.occultism.OccultismDurationFactory;
 import com.softwaremagico.tm.character.occultism.OccultismPathFactory;
 import com.softwaremagico.tm.character.occultism.OccultismRangeFactory;
+import com.softwaremagico.tm.character.occultism.OccultismTypeFactory;
+import com.softwaremagico.tm.character.occultism.TheurgyComponentFactory;
 
 @Test(groups = { "occultismFactory" })
 public class OccultismFactoryTests {
 	private final static String LANGUAGE = "es";
 
 	private final static int DEFINED_PSI_PATHS = 7;
-	private final static int DEFINED_THEURGY_PATHS = 2;
+	private final static int DEFINED_THEURGY_PATHS = 6;
 	private final static int DEFINED_RANGES = 5;
 	private final static int DEFINED_DURATIONS = 7;
+	private final static int DEFINED_THEURGY_COMPONENTS = 3;
+	private final static int OCCULTISM_TYPES = 2;
 
 	@Test
 	public void readPaths() throws InvalidXmlElementException {
@@ -66,5 +70,16 @@ public class OccultismFactoryTests {
 	@Test
 	public void readDurations() throws InvalidXmlElementException {
 		Assert.assertEquals(DEFINED_DURATIONS, OccultismDurationFactory.getInstance().getElements(LANGUAGE).size());
+	}
+
+	@Test
+	public void readTheurgyComponents() throws InvalidXmlElementException {
+		Assert.assertEquals(DEFINED_THEURGY_COMPONENTS, TheurgyComponentFactory.getInstance().getElements(LANGUAGE)
+				.size());
+	}
+
+	@Test
+	public void getOcculstimTypes() throws InvalidXmlElementException {
+		Assert.assertEquals(OCCULTISM_TYPES, OccultismTypeFactory.getInstance().getElements(LANGUAGE).size());
 	}
 }

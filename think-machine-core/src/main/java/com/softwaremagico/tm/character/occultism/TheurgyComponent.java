@@ -1,13 +1,10 @@
 package com.softwaremagico.tm.character.occultism;
 
-import com.softwaremagico.tm.Element;
-import com.softwaremagico.tm.character.values.IValue;
-
 /*-
  * #%L
  * Think Machine (Core)
  * %%
- * Copyright (C) 2017 Softwaremagico
+ * Copyright (C) 2017 - 2018 Softwaremagico
  * %%
  * This software is designed by Jorge Hortelano Otero. Jorge Hortelano Otero
  * <softwaremagico@gmail.com> Valencia (Spain).
@@ -27,16 +24,24 @@ import com.softwaremagico.tm.character.values.IValue;
  * #L%
  */
 
-public class OccultismType extends Element<OccultismType> implements IValue {
-	private final String darksideName;
+import com.softwaremagico.tm.Element;
 
-	public OccultismType(String id, String name, String darksideName) {
+public class TheurgyComponent extends Element<TheurgyComponent> {
+	private final String abbreviature;
+	private final char code;
+
+	public TheurgyComponent(String id, String name, String abbreviature, char code) {
 		super(id, name);
-		this.darksideName = darksideName;
+		this.abbreviature = abbreviature;
+		this.code = code;
 	}
 
-	public String getDarksideName() {
-		return darksideName;
+	public String getAbbreviature() {
+		return abbreviature;
+	}
+
+	public char getCode() {
+		return code;
 	}
 
 }

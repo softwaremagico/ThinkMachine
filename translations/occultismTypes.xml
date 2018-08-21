@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<occultismType>
+	<psi>
+		<name>
+			<en>Psi</en>
+			<es>Psi</es>
+		</name>
+		<darkSide>
+			<en>Urge</en>
+			<es>Ansia</es>
+		</darkSide>
+	</psi>
+	<theurgy>
+		<name>
+			<en>Theurgy</en>
+			<es>Teúrgia</es>
+		</name>
+		<darkSide>
+			<en>Hubris</en>
+			<es>Orgullo</es>
+		</darkSide>
+	</theurgy>
+</occultismType>

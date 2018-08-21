@@ -1246,7 +1246,7 @@
 				<duration></duration>				
 				<components>LGP</components>
 				<wyrd>1</wyrd>
-			</>
+			</salutationsToZakhayelos>
 		</powers>
 	</brotherBattleRituals>
 	<eskatonicOrderRituals>
@@ -1264,7 +1264,7 @@
 				</name>
 				<level>1</level>
 				<characteristic>faith</characteristic>
-				<skill>observation</skill>
+				<skill>observe</skill>
 				<range>self</range>
 				<duration>perpetual</duration>				
 				<components>P</components>
@@ -1277,7 +1277,7 @@
 				</name>
 				<level>2</level>
 				<characteristic>faith</characteristic>
-				<skill>observation</skill>
+				<skill>observe</skill>
 				<range>self</range>
 				<duration></duration>
 				
@@ -1291,7 +1291,7 @@
 				</name>
 				<level>3</level>
 				<characteristic>faith</characteristic>
-				<skill>observation</skill>
+				<skill>observe</skill>
 				<range>sensory</range>
 				<duration>prolonged</duration>
 				
@@ -1305,7 +1305,7 @@
 				</name>
 				<level>4</level>
 				<characteristic>will</characteristic>
-				<skill>observation</skill>
+				<skill>observe</skill>
 				<range>sensory</range>
 				<duration>prolonged</duration>
 				
@@ -1335,7 +1335,7 @@
 				<characteristic>will</characteristic>
 				<skill>selfControl</skill>
 				<range>touch</range>
-				<duration>permanent</duration>
+				<duration>perpetual</duration>
 				
 				<components>LG</components>
 				<wyrd>1</wyrd>
@@ -1377,7 +1377,7 @@
 				<characteristic>faith</characteristic>
 				<skill>selfControl</skill>
 				<range>touch</range>
-				<duration>perpetural</duration>
+				<duration>perpetual</duration>
 				
 				<components>LGP</components>
 				<wyrd>1</wyrd>
@@ -1412,7 +1412,7 @@
 				</name>
 				<level>1</level>
 				<characteristic>faith</characteristic>
-				<skill>observation</skill>
+				<skill>observe</skill>
 				<range>sensory</range>
 				<duration>prolonged</duration>
 				
@@ -1426,7 +1426,7 @@
 				</name>
 				<level>2</level>
 				<characteristic>faith</characteristic>
-				<skill>observation</skill>
+				<skill>observe</skill>
 				<range>sensory</range>
 				<duration>prolonged</duration>
 				
@@ -1604,7 +1604,7 @@
 				</name>
 				<level>4</level>
 				<characteristic>faith</characteristic>
-				<skill>observation</skill>
+				<skill>observe</skill>
 				<range>sensory</range>
 				<duration>extended</duration>
 				

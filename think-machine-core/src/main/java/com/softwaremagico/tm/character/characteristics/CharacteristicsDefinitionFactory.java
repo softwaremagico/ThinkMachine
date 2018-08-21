@@ -34,7 +34,6 @@ import java.util.Set;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
-import com.softwaremagico.tm.character.equipment.InvalidWeaponException;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.Language;
 import com.softwaremagico.tm.language.LanguagePool;
@@ -113,21 +112,21 @@ public class CharacteristicsDefinitionFactory extends XmlFactory<CharacteristicD
 			String name = translator.getNodeValue(characteristicId, NAME, language);
 			characteristic = new CharacteristicDefinition(characteristicId, name);
 		} catch (Exception e) {
-			throw new InvalidWeaponException("Invalid name in characteristic '" + characteristicId + "'.");
+			throw new InvalidCharacteristicException("Invalid name in characteristic '" + characteristicId + "'.");
 		}
 
 		try {
 			String abbreviature = translator.getNodeValue(characteristicId, ABBREVIATURE, language);
 			characteristic.setAbbreviature(abbreviature);
 		} catch (Exception e) {
-			throw new InvalidWeaponException("Invalid abbreviature in characteristic '" + characteristicId + "'.");
+			throw new InvalidCharacteristicException("Invalid abbreviature in characteristic '" + characteristicId + "'.");
 		}
 
 		try {
 			String type = translator.getNodeValue(characteristicId, TYPE);
 			characteristic.setType(CharacteristicType.getType(type));
 		} catch (Exception e) {
-			throw new InvalidWeaponException("Invalid type in characteristic '" + characteristicId + "'.");
+			throw new InvalidCharacteristicException("Invalid type in characteristic '" + characteristicId + "'.");
 		}
 
 		return characteristic;

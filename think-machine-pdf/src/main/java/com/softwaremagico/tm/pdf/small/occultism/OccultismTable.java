@@ -24,8 +24,8 @@ package com.softwaremagico.tm.pdf.small.occultism;
  * #L%
  */
 
+import java.util.List;
 import java.util.Map.Entry;
-import java.util.Set;
 
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Paragraph;
@@ -35,7 +35,7 @@ import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.occultism.OccultismPath;
 import com.softwaremagico.tm.character.occultism.OccultismPathFactory;
 import com.softwaremagico.tm.character.occultism.OccultismPower;
-import com.softwaremagico.tm.character.occultism.OccultismType;
+import com.softwaremagico.tm.character.occultism.OccultismTypeFactory;
 import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.complete.elements.VerticalTable;
 
@@ -45,14 +45,14 @@ public class OccultismTable extends VerticalTable {
 	private final static float[] WIDTHS = { 2f, 1f, 1f, 1f, 2f };
 	private final static int ROWS = 6;
 
-	public OccultismTable(CharacterPlayer characterPlayer) throws InvalidXmlElementException {
+	public OccultismTable(CharacterPlayer characterPlayer, String language) throws InvalidXmlElementException {
 		super(WIDTHS);
 		getDefaultCell().setBorder(0);
 
 		addCell(createTitle(getTranslator().getTranslatedText("occultism"),
 				FadingSunsTheme.CHARACTER_SMALL_OCCULTISM_TITLE_FONT_SIZE));
 
-		addCell(createSubtitleLine(getTranslator().getTranslatedText(OccultismType.PSI.getTag()),
+		addCell(createSubtitleLine(getTranslator().getTranslatedText(OccultismTypeFactory.getPsi(language).getName()),
 				FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE, Element.ALIGN_LEFT));
 		if (characterPlayer != null) {
 			addCell(createValueLine("" + characterPlayer.getOccultism().getPsiValue(),
@@ -67,10 +67,12 @@ public class OccultismTable extends VerticalTable {
 		} else {
 			addCell(createValueLine(" ", FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE));
 		}
-		addCell(createSubtitleLine(getTranslator().getTranslatedText(OccultismType.PSI.getDarkSideTag()),
+		addCell(createSubtitleLine(
+				getTranslator().getTranslatedText(OccultismTypeFactory.getPsi(language).getDarksideName()),
 				FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE, Element.ALIGN_RIGHT));
 
-		addCell(createSubtitleLine(getTranslator().getTranslatedText(OccultismType.THEURGY.getTag()),
+		addCell(createSubtitleLine(
+				getTranslator().getTranslatedText(OccultismTypeFactory.getTheurgy(language).getName()),
 				FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE, Element.ALIGN_LEFT));
 		if (characterPlayer != null) {
 			addCell(createValueLine("" + characterPlayer.getOccultism().getTheurgyValue(),
@@ -85,7 +87,8 @@ public class OccultismTable extends VerticalTable {
 		} else {
 			addCell(createValueLine(" ", FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE));
 		}
-		addCell(createSubtitleLine(getTranslator().getTranslatedText(OccultismType.THEURGY.getDarkSideTag()),
+		addCell(createSubtitleLine(
+				getTranslator().getTranslatedText(OccultismTypeFactory.getTheurgy(language).getDarksideName()),
 				FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE, Element.ALIGN_RIGHT));
 
 		addCell(createSubtitleLine(getTranslator().getTranslatedText("occultismTablePower"),
@@ -95,7 +98,7 @@ public class OccultismTable extends VerticalTable {
 
 		int added = 0;
 		if (characterPlayer != null) {
-			for (Entry<String, Set<String>> occultismPathEntry : characterPlayer.getOccultism().getSelectedPowers()
+			for (Entry<String, List<String>> occultismPathEntry : characterPlayer.getOccultism().getSelectedPowers()
 					.entrySet()) {
 				OccultismPath occultismPath = OccultismPathFactory.getInstance().getElement(
 						occultismPathEntry.getKey(), characterPlayer.getLanguage());

@@ -26,7 +26,6 @@ package com.softwaremagico.tm.character.creation;
 
 import java.util.List;
 import java.util.Map.Entry;
-import java.util.Set;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
@@ -107,7 +106,7 @@ public class CostCalculator {
 
 	private static int getPsiPowersCosts(CharacterPlayer characterPlayer) throws InvalidXmlElementException {
 		int cost = 0;
-		for (Entry<String, Set<String>> occulstismPathEntry : characterPlayer.getOccultism().getSelectedPowers()
+		for (Entry<String, List<String>> occulstismPathEntry : characterPlayer.getOccultism().getSelectedPowers()
 				.entrySet()) {
 			OccultismPath occultismPath = OccultismPathFactory.getInstance().getElement(occulstismPathEntry.getKey(),
 					characterPlayer.getLanguage());

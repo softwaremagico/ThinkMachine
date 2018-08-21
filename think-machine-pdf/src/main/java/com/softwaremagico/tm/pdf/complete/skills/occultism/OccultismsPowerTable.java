@@ -24,7 +24,7 @@ package com.softwaremagico.tm.pdf.complete.skills.occultism;
  * #L%
  */
 
-import java.util.Set;
+import java.util.List;
 import java.util.Map.Entry;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
@@ -60,7 +60,7 @@ public class OccultismsPowerTable extends LateralHeaderPdfPTable {
 
 		int addedPowers = 0;
 		if (characterPlayer != null) {
-			for (Entry<String, Set<String>> occultismPathEntry : characterPlayer.getOccultism().getSelectedPowers()
+			for (Entry<String, List<String>> occultismPathEntry : characterPlayer.getOccultism().getSelectedPowers()
 					.entrySet()) {
 				OccultismPath occultismPath = OccultismPathFactory.getInstance().getElement(
 						occultismPathEntry.getKey(), characterPlayer.getLanguage());
@@ -79,7 +79,9 @@ public class OccultismsPowerTable extends LateralHeaderPdfPTable {
 						addCell(createElementLine(occultismPower.getDuration() != null ? occultismPower.getDuration()
 								.getName() : "", DURATION_COLUMN_WIDTH,
 								FadingSunsTheme.OCCULSTISM_POWERS_CONTENT_FONT_SIZE));
-						addCell(createElementLine(occultismPower.getRequirements(), REQUIREMENTS_COLUMN_WIDTH,
+						addCell(createElementLine(
+								occultismPower.getComponentsRepresentation().length() > 0 ? occultismPower.getComponentsRepresentation()
+										: "--", REQUIREMENTS_COLUMN_WIDTH,
 								FadingSunsTheme.OCCULSTISM_POWERS_CONTENT_FONT_SIZE));
 						addCell(createElementLine(occultismPower.getCost() != null ? occultismPower.getCost() + ""
 								: "*", COST_COLUMN_WIDTH, FadingSunsTheme.OCCULSTISM_POWERS_CONTENT_FONT_SIZE));
