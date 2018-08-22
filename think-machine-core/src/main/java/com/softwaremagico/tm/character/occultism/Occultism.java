@@ -51,7 +51,11 @@ public class Occultism {
 	}
 
 	public void setExtraWyrd(int extraWyrd) {
-		this.extraWyrd = extraWyrd;
+		if (extraWyrd > 0) {
+			this.extraWyrd = extraWyrd;
+		} else {
+			this.extraWyrd = 0;
+		}
 	}
 
 	public int getPsiqueLevel(OccultismType occultismType) {

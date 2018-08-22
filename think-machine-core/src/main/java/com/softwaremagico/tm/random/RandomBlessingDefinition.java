@@ -35,7 +35,7 @@ import com.softwaremagico.tm.character.blessings.BlessingFactory;
 import com.softwaremagico.tm.character.blessings.BlessingGroup;
 import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
-import com.softwaremagico.tm.log.MachineLog;
+import com.softwaremagico.tm.log.RandomGenerationLog;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.BlessingNumberPreferences;
 import com.softwaremagico.tm.random.selectors.BlessingPreferences;
@@ -60,7 +60,7 @@ public class RandomBlessingDefinition extends RandomSelector<Blessing> {
 			Blessing selectedBlessing = selectElementByWeight();
 			try {
 				getCharacterPlayer().addBlessing(selectedBlessing);
-				MachineLog.debug(this.getClass().getName(), "Added blessing '" + selectedBlessing + "'.");
+				RandomGenerationLog.debug(this.getClass().getName(), "Added blessing '" + selectedBlessing + "'.");
 			} catch (TooManyBlessingsException e) {
 				// No more possible.
 				break;
@@ -98,19 +98,17 @@ public class RandomBlessingDefinition extends RandomSelector<Blessing> {
 		}
 		// If specialization is set, add blessings that affects the skills with ranks.
 		SpecializationPreferences specializationPreferences = SpecializationPreferences.getSelected(getPreferences());
-		if (specializationPreferences != null) {
-			for (AvailableSkill skill : blessing.getAffectedSkill(getCharacterPlayer().getLanguage())) {
-				// More specialized, less ranks required to skip the curse.
-				if (specializationPreferences.mean() >= SpecializationPreferences.FAIR.mean())
-					if (getCharacterPlayer().getSkillAssignedRanks(skill) >= specializationPreferences.mean()) {
-						return GOOD_PROBABILITY;
-					}
-			}
-			for (AvailableSkill skill : blessing.getAffectedSkill(getCharacterPlayer().getLanguage())) {
-				// More specialized, less ranks required to skip the curse.
-				if (getCharacterPlayer().getSkillAssignedRanks(skill) >= (10 - specializationPreferences.maximum())) {
-					return FAIR_PROBABILITY;
+		for (AvailableSkill skill : blessing.getAffectedSkill(getCharacterPlayer().getLanguage())) {
+			// More specialized, less ranks required to skip the curse.
+			if (specializationPreferences.mean() >= SpecializationPreferences.FAIR.mean())
+				if (getCharacterPlayer().getSkillAssignedRanks(skill) >= specializationPreferences.mean()) {
+					return GOOD_PROBABILITY;
 				}
+		}
+		for (AvailableSkill skill : blessing.getAffectedSkill(getCharacterPlayer().getLanguage())) {
+			// More specialized, less ranks required to skip the curse.
+			if (getCharacterPlayer().getSkillAssignedRanks(skill) >= (10 - specializationPreferences.maximum())) {
+				return FAIR_PROBABILITY;
 			}
 		}
 		return 1;

@@ -27,16 +27,16 @@ package com.softwaremagico.tm.random.selectors;
 import java.util.Random;
 import java.util.Set;
 
-public enum PsiqueLevelPreferences implements IRandomPreferences, IGaussianDistribution {
+public enum PsiquePathLevelPreferences implements IRandomPreferences, IGaussianDistribution {
 
 	// Gaussian distribution.
 	NONE(0, 0, 0, 0),
 
-	FEW(1, 2, 1, 1),
+	LOW(1, 3, 2, 1),
 
-	FAIR(1, 3, 2, 1),
+	GOOD(1, 6, 3, 3),
 
-	HIGH(3, 5, 4, 2);
+	HIGH(1, 9, 6, 3);
 
 	private final int minimum;
 	private final int maximum;
@@ -44,7 +44,7 @@ public enum PsiqueLevelPreferences implements IRandomPreferences, IGaussianDistr
 	private final int variance;
 	private final Random random = new Random();
 
-	private PsiqueLevelPreferences(int minimumValue, int maximumValue, int mean, int variance) {
+	private PsiquePathLevelPreferences(int minimumValue, int maximumValue, int mean, int variance) {
 		this.maximum = maximumValue;
 		this.minimum = minimumValue;
 		this.variance = variance;
@@ -71,10 +71,10 @@ public enum PsiqueLevelPreferences implements IRandomPreferences, IGaussianDistr
 		return mean;
 	}
 
-	public static PsiqueLevelPreferences getSelected(Set<IRandomPreferences> preferences) {
+	public static PsiquePathLevelPreferences getSelected(Set<IRandomPreferences> preferences) {
 		for (IRandomPreferences preference : preferences) {
-			if (preference instanceof PsiqueLevelPreferences) {
-				return (PsiqueLevelPreferences) preference;
+			if (preference instanceof PsiquePathLevelPreferences) {
+				return (PsiquePathLevelPreferences) preference;
 			}
 		}
 		return NONE;

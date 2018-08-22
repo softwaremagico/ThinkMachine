@@ -28,7 +28,7 @@ import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.log.MachineLog;
+import com.softwaremagico.tm.log.PdfExporterLog;
 import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 
 public class VitalityTable extends CounterTable {
@@ -65,7 +65,7 @@ public class VitalityTable extends CounterTable {
 			try {
 				return characterPlayer.getVitalityValue().intValue();
 			} catch (InvalidXmlElementException e) {
-				MachineLog.errorMessage(this.getClass().getName(), e);
+				PdfExporterLog.errorMessage(this.getClass().getName(), e);
 			}
 		}
 		return -1;

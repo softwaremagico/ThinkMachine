@@ -79,7 +79,7 @@ public enum SpecializationPreferences implements IRandomPreferences, IGaussianDi
 				return (SpecializationPreferences) preference;
 			}
 		}
-		return null;
+		return FAIR;
 	}
 
 	@Override

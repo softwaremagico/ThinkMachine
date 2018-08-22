@@ -282,8 +282,12 @@ public class CharacterPlayer {
 						getLanguage()));
 	}
 
+	public Integer getBasicWyrdValue() {
+		return Math.max(getValue(CharacteristicName.WILL), getValue(CharacteristicName.FAITH));
+	}
+
 	public Integer getWyrdValue() throws InvalidXmlElementException {
-		return Math.max(getValue(CharacteristicName.WILL), getValue(CharacteristicName.FAITH))
+		return getBasicWyrdValue()
 				+ occultism.getExtraWyrd()
 				+ getBlessingModificationAlways(SpecialValuesFactory.getInstance().getElement(SpecialValue.WYRD,
 						getLanguage()));
@@ -591,7 +595,7 @@ public class CharacterPlayer {
 
 	public List<AvailableSkill> getNaturalSkills() throws InvalidXmlElementException {
 		List<AvailableSkill> naturalSkills = new ArrayList<>();
-		// Adds default planet and alliance.
+		// Adds default planet and faction.
 		for (AvailableSkill skill : AvailableSkillsFactory.getInstance().getNaturalSkills(language)) {
 			if (skill.getSkillDefinition().getId().equals(SkillDefinition.PLANETARY_LORE_ID)) {
 				skill.setSpecialization(new Specialization(getInfo().getPlanet(), getInfo().getPlanet()));

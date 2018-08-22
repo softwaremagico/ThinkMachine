@@ -64,7 +64,7 @@ public class CharacterBasicsReducedTableFactory extends CharacterBasicsTableFact
 		setTablePropierties(table);
 
 		table.addCell(createField(characterPlayer, "race", FadingSunsTheme.CHARACTER_SMALL_BASICS_FONT_SIZE));
-		table.addCell(createField(characterPlayer, "alliance", FadingSunsTheme.CHARACTER_SMALL_BASICS_FONT_SIZE));
+		table.addCell(createField(characterPlayer, "faction", FadingSunsTheme.CHARACTER_SMALL_BASICS_FONT_SIZE));
 		table.addCell(createField(characterPlayer, "rank", FadingSunsTheme.CHARACTER_SMALL_BASICS_FONT_SIZE));
 
 		PdfPCell cell = new PdfPCell();

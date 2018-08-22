@@ -17,6 +17,7 @@
 				<include name="characterPdfGeneration" />
 				<include name="customCharacterGeneration" />
 				<include name="randomCharacterSheetCreation" />
+				<include name="randomPsiCharacterTest" />
 			</run>
 		</groups>
 		<classes>
@@ -24,6 +25,7 @@
 			<class name="com.softwaremagico.tm.export.pdf.CustomCharacters" />
 			<class
 				name="com.softwaremagico.tm.export.pdf.RandomCharacterSheetCreationTest" />
+				<class name="com.softwaremagico.tm.export.pdf.RandomPsiCharacterCreationTest" />
 		</classes>
 	</test>
 </suite>

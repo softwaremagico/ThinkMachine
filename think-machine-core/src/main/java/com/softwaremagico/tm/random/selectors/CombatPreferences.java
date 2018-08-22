@@ -50,13 +50,13 @@ public enum CombatPreferences implements IRandomPreferences {
 	public int minimum() {
 		return minimum;
 	}
-	
+
 	public static CombatPreferences getSelected(Set<IRandomPreferences> preferences) {
 		for (IRandomPreferences preference : preferences) {
 			if (preference instanceof CombatPreferences) {
 				return (CombatPreferences) preference;
 			}
 		}
-		return null;
+		return FAIR;
 	}
 }

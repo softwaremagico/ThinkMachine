@@ -861,4 +861,20 @@
 		<cost>6</cost>
 		<group>others</group>
 	</extraLimbs>
+	<noOccult>
+		<name>
+			<en>Cannot awaken Psi or Theurgy</en>
+			<es>No puede despertar Psi o Teúrgia</es>
+		</name>
+		<cost>6</cost>
+		<group>others</group>
+	</noOccult>
+	<ostraziced>
+		<name>
+			<en>Ostraziced</en>
+			<es>Ostracismo</es>
+		</name>
+		<cost>2</cost>
+		<group>others</group>
+	</ostraziced>
 </benefices>

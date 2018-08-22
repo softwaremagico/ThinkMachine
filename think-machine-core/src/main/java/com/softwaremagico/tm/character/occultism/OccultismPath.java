@@ -103,7 +103,7 @@ public class OccultismPath extends Element<OccultismPath> {
 		return null;
 	}
 
-	private Set<OccultismPower> getPowersOfLevel(int level) {
+	public Set<OccultismPower> getPowersOfLevel(int level) {
 		Set<OccultismPower> powersOfLevel = new HashSet<>();
 		for (OccultismPower power : getOccultismPowers().values()) {
 			if (power.getLevel() == level) {

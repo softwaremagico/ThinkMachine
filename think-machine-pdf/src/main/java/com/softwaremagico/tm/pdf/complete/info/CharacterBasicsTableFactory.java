@@ -30,14 +30,11 @@ import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.language.ITranslator;
-import com.softwaremagico.tm.language.LanguagePool;
-import com.softwaremagico.tm.log.MachineLog;
+import com.softwaremagico.tm.log.PdfExporterLog;
 import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.complete.elements.BaseElement;
 
 public abstract class CharacterBasicsTableFactory extends BaseElement {
-	private static ITranslator translator = LanguagePool.getTranslator("character_values.xml");
 
 	protected final static String LINE = "_______________";
 	protected final static String LANGUAGE_PREFIX = "info";
@@ -54,12 +51,13 @@ public abstract class CharacterBasicsTableFactory extends BaseElement {
 		} else {
 			if (tag.equals("race")) {
 				if (characterPlayer.getRace() != null) {
-					String raceValue = translator.getTranslatedText(translator.convertToXmlTag(characterPlayer.getRace().getName()));
-					table.addCell(getHandwrittingCell(raceValue != null ? raceValue : characterPlayer.getRace().getName(), Element.ALIGN_LEFT, fontSize - 1));
+					table.addCell(getHandwrittingCell(characterPlayer.getRace().getName(), Element.ALIGN_LEFT,
+							fontSize - 1));
 				}
 			} else if (tag.equals("faction")) {
 				if (characterPlayer.getFaction() != null) {
-					table.addCell(getHandwrittingCell(characterPlayer.getFaction().getName(), Element.ALIGN_LEFT, fontSize - 1));
+					table.addCell(getHandwrittingCell(characterPlayer.getFaction().getName(), Element.ALIGN_LEFT,
+							fontSize - 1));
 				}
 			} else if (tag.equals("rank")) {
 				try {
@@ -67,10 +65,11 @@ public abstract class CharacterBasicsTableFactory extends BaseElement {
 						table.addCell(getHandwrittingCell(characterPlayer.getRank(), Element.ALIGN_LEFT, fontSize - 1));
 					}
 				} catch (InvalidXmlElementException e) {
-					MachineLog.errorMessage(CharacterBasicsTableFactory.class.getName(), e);
+					PdfExporterLog.errorMessage(CharacterBasicsTableFactory.class.getName(), e);
 				}
 			} else {
-				table.addCell(getHandwrittingCell(characterPlayer.getInfo().getTranslatedParameter(tag), Element.ALIGN_LEFT, fontSize - 1));
+				table.addCell(getHandwrittingCell(characterPlayer.getInfo().getTranslatedParameter(tag),
+						Element.ALIGN_LEFT, fontSize - 1));
 			}
 		}
 
@@ -87,13 +86,15 @@ public abstract class CharacterBasicsTableFactory extends BaseElement {
 	}
 
 	protected static PdfPCell getHandwrittingCell(String text, int align, int fontSize) {
-		PdfPCell cell = getCell(text, 0, 1, align, BaseColor.WHITE, FadingSunsTheme.getHandwrittingFont(), FadingSunsTheme.getHandWrittingFontSize(fontSize));
+		PdfPCell cell = getCell(text, 0, 1, align, BaseColor.WHITE, FadingSunsTheme.getHandwrittingFont(),
+				FadingSunsTheme.getHandWrittingFontSize(fontSize));
 		cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		return cell;
 	}
 
 	protected static String getTranslatedTag(String tag) {
-		String value = getTranslator().getTranslatedText(LANGUAGE_PREFIX + tag.substring(0, 1).toUpperCase() + tag.substring(1));
+		String value = getTranslator().getTranslatedText(
+				LANGUAGE_PREFIX + tag.substring(0, 1).toUpperCase() + tag.substring(1));
 		if (value != null) {
 			if (value.length() > MAX_VALUE_LENGTH) {
 				return value.substring(0, MAX_VALUE_LENGTH + 1);

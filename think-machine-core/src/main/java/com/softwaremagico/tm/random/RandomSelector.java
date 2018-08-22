@@ -45,7 +45,8 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
 	private final TreeMap<Integer, Element> weightedElements;
 	private final int totalWeight;
 
-	protected RandomSelector(CharacterPlayer characterPlayer, Set<IRandomPreferences> preferences) throws InvalidXmlElementException {
+	protected RandomSelector(CharacterPlayer characterPlayer, Set<IRandomPreferences> preferences)
+			throws InvalidXmlElementException {
 		this.characterPlayer = characterPlayer;
 		this.preferences = preferences;
 		weightedElements = assignElementsWeight();
@@ -53,7 +54,11 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
 	}
 
 	private Integer assignTotalWeight() {
-		return weightedElements.lastKey();
+		try {
+			return weightedElements.lastKey();
+		} catch (NoSuchElementException nse) {
+			return 0;
+		}
 	}
 
 	protected CharacterPlayer getCharacterPlayer() {

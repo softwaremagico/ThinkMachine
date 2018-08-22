@@ -31,9 +31,12 @@ import java.util.Set;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
+import com.softwaremagico.tm.log.RandomGenerationLog;
 import com.softwaremagico.tm.random.exceptions.DuplicatedPreferenceException;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
+import com.softwaremagico.tm.random.selectors.IGaussianDistribution;
 import com.softwaremagico.tm.random.selectors.IRandomPreferences;
+import com.softwaremagico.tm.random.selectors.PsiqueLevelPreferences;
 import com.softwaremagico.tm.random.selectors.SpecializationPreferences;
 import com.softwaremagico.tm.random.selectors.TraitCostPreferences;
 
@@ -126,7 +129,18 @@ public class RandomizeCharacter {
 		// Set blessings.
 		RandomBlessingDefinition randomBlessing = new RandomBlessingDefinition(characterPlayer, preferences);
 		randomBlessing.assignAvailableBlessings();
-		// Set occultism powers
+		// Set psique level
+		RandomPsique randomPsique = new RandomPsique(characterPlayer, preferences);
+		randomPsique.assignPsiqueLevel();
+		// Set Wyrd
+		IGaussianDistribution wyrdDistrubution = PsiqueLevelPreferences.getSelected(preferences);
+		int extraWyrd = wyrdDistrubution.randomGaussian();
+		characterPlayer.getOccultism().setExtraWyrd(extraWyrd - characterPlayer.getBasicWyrdValue());
+		RandomGenerationLog.info(this.getClass().getName(), "Added extra wyrd '" + extraWyrd + "'.");
+		// Set psi paths.
+		RandomPsiquePath randomPsiquePath = new RandomPsiquePath(characterPlayer, preferences);
+		randomPsiquePath.assignPsiquePaths();
+
 		// Spend remaining points in skills.
 	}
 

@@ -106,7 +106,8 @@ public class CharacteristicsColumn extends CustomPdfTable {
 
 	private String getCharacteristicValueRepresentation(CharacterPlayer characterPlayer,
 			CharacteristicName characteristicName) {
-		StringBuilder representation = new StringBuilder(characterPlayer.getValue(characteristicName));
+		StringBuilder representation = new StringBuilder();
+		representation.append(characterPlayer.getValue(characteristicName));
 		if (characterPlayer.getCyberneticsImprovement(characteristicName) > 0
 				|| characterPlayer.hasCharacteristicTemporalModificator(characteristicName)) {
 			representation.append("*");

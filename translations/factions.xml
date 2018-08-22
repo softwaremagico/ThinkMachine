@@ -391,7 +391,7 @@
 		<group>xeno</group>
 		<race>ukar</race>
 		<blessings>sensitiveTouch, bitter</blessings>
-		<benefices>ostracized</benefices>
+		<benefices>ostraziced</benefices>
 	</ukar>
 	<vorox>
 		<name>
@@ -401,6 +401,6 @@
 		<group>xeno</group>
 		<race>vorox</race>
 		<blessings>predatory, giant, sensitiveSmell, uncouth</blessings>
-		<benefices>bite, extraLimbs, noOccult</benefices>
+		<benefices>bite, extraLimbs, noOccult, ostraziced</benefices>
 	</vorox>
 </factions>

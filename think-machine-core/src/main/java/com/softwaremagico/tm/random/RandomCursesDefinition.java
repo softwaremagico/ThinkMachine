@@ -35,7 +35,7 @@ import com.softwaremagico.tm.character.blessings.BlessingFactory;
 import com.softwaremagico.tm.character.blessings.BlessingGroup;
 import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
-import com.softwaremagico.tm.log.MachineLog;
+import com.softwaremagico.tm.log.RandomGenerationLog;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.BlessingPreferences;
 import com.softwaremagico.tm.random.selectors.CombatPreferences;
@@ -59,7 +59,7 @@ public class RandomCursesDefinition extends RandomSelector<Blessing> {
 			Blessing selectedCurse = selectElementByWeight();
 			try {
 				getCharacterPlayer().addBlessing(selectedCurse);
-				MachineLog.debug(this.getClass().getName(), "Added curse '" + selectedCurse + "'.");
+				RandomGenerationLog.debug(this.getClass().getName(), "Added curse '" + selectedCurse + "'.");
 			} catch (TooManyBlessingsException e) {
 				// No more possible.
 				break;
@@ -104,7 +104,7 @@ public class RandomCursesDefinition extends RandomSelector<Blessing> {
 		}
 		// If specialization is set, not curses that affects the skills with ranks.
 		SpecializationPreferences specializationPreferences = SpecializationPreferences.getSelected(getPreferences());
-		if (specializationPreferences != null) {
+		if (specializationPreferences.mean() >= SpecializationPreferences.FAIR.mean()) {
 			for (AvailableSkill skill : curse.getAffectedSkill(getCharacterPlayer().getLanguage())) {
 				// More specialized, less ranks required to skip the curse.
 				if (getCharacterPlayer().getSkillAssignedRanks(skill) >= (10 - specializationPreferences.maximum())) {

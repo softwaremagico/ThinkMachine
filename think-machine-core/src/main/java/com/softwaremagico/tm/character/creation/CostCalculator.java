@@ -35,36 +35,37 @@ import com.softwaremagico.tm.character.cybernetics.Device;
 import com.softwaremagico.tm.character.occultism.OccultismPath;
 import com.softwaremagico.tm.character.occultism.OccultismPathFactory;
 import com.softwaremagico.tm.character.occultism.OccultismTypeFactory;
-import com.softwaremagico.tm.log.MachineLog;
+import com.softwaremagico.tm.log.CostCalculatorLog;
 
 public class CostCalculator {
 	public final static int CHARACTERISTICS_COST = 3;
 
 	public final static int PSIQUE_LEVEL_COST = 3;
+	public final static int PATH_LEVEL_COST = 1;
 	public final static int EXTRA_WYRD_COST = 2;
 	public final static int OCCULSTIM_POWER_LEVEL_COST = 1;
 
 	public static int getCost(CharacterPlayer characterPlayer) throws InvalidXmlElementException {
 		int cost = 0;
-		MachineLog.info(CostCalculator.class.getName(), "####################### ");
-		MachineLog.info(CostCalculator.class.getName(), "\t" + characterPlayer.getInfo().getName());
-		MachineLog.info(CostCalculator.class.getName(), "####################### ");
+		CostCalculatorLog.info(CostCalculator.class.getName(), "####################### ");
+		CostCalculatorLog.info(CostCalculator.class.getName(), "\t" + characterPlayer.getInfo().getName());
+		CostCalculatorLog.info(CostCalculator.class.getName(), "####################### ");
 		if (characterPlayer.getRace() != null) {
 			cost += characterPlayer.getRace().getCost();
-			MachineLog.info(CostCalculator.class.getName(), "Race cost: " + characterPlayer.getRace().getCost());
+			CostCalculatorLog.info(CostCalculator.class.getName(), "Race cost: " + characterPlayer.getRace().getCost());
 		}
 		cost += getCharacteristicsCost(characterPlayer);
-		MachineLog.info(CostCalculator.class.getName(), "Characteristics cost: "
+		CostCalculatorLog.info(CostCalculator.class.getName(), "Characteristics cost: "
 				+ getCharacteristicsCost(characterPlayer));
 		cost += getSkillCosts(characterPlayer);
-		MachineLog.info(CostCalculator.class.getName(), "Skills cost: " + getSkillCosts(characterPlayer));
+		CostCalculatorLog.info(CostCalculator.class.getName(), "Skills cost: " + getSkillCosts(characterPlayer));
 		cost += getTraitsCosts(characterPlayer);
-		MachineLog.info(CostCalculator.class.getName(), "Traits cost: " + getTraitsCosts(characterPlayer));
+		CostCalculatorLog.info(CostCalculator.class.getName(), "Traits cost: " + getTraitsCosts(characterPlayer));
 		cost += getPsiPowersCosts(characterPlayer);
-		MachineLog.info(CostCalculator.class.getName(), "Psi powers cost: " + getPsiPowersCosts(characterPlayer));
+		CostCalculatorLog.info(CostCalculator.class.getName(), "Psi powers cost: " + getPsiPowersCosts(characterPlayer));
 		cost += getCyberneticsCost(characterPlayer);
-		MachineLog.info(CostCalculator.class.getName(), "Cybernetics cost: " + getCyberneticsCost(characterPlayer));
-		MachineLog.info(CostCalculator.class.getName(), "Total cost: " + cost + "\n");
+		CostCalculatorLog.info(CostCalculator.class.getName(), "Cybernetics cost: " + getCyberneticsCost(characterPlayer));
+		CostCalculatorLog.info(CostCalculator.class.getName(), "Total cost: " + cost + "\n");
 		return cost;
 	}
 
