@@ -33,10 +33,12 @@ import com.softwaremagico.tm.character.characteristics.Characteristic;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.characteristics.CharacteristicType;
 import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
+import com.softwaremagico.tm.character.factions.FactionGroup;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.BodyPreferences;
 import com.softwaremagico.tm.random.selectors.CombatPreferences;
 import com.softwaremagico.tm.random.selectors.IRandomPreferences;
+import com.softwaremagico.tm.random.selectors.PsiqueLevelPreferences;
 import com.softwaremagico.tm.random.selectors.SpecializationPreferences;
 import com.softwaremagico.tm.random.selectors.TechnologicalPreferences;
 
@@ -44,7 +46,8 @@ public class RandomCharacteristics extends RandomSelector<Characteristic> {
 	private final static int MAX_PROBABILITY = 100000;
 	private final static int GOOD_PROBABILITY = 10;
 
-	public RandomCharacteristics(CharacterPlayer characterPlayer, Set<IRandomPreferences> preferences) throws InvalidXmlElementException {
+	public RandomCharacteristics(CharacterPlayer characterPlayer, Set<IRandomPreferences> preferences)
+			throws InvalidXmlElementException {
 		super(characterPlayer, preferences);
 	}
 
@@ -66,12 +69,14 @@ public class RandomCharacteristics extends RandomSelector<Characteristic> {
 	private void assignMinimumValuesOfCharacteristics() {
 		// Default minimums.
 		for (CharacteristicName characteristicName : CharacteristicName.values()) {
-			getCharacterPlayer().getCharacteristic(characteristicName).setValue(getCharacterPlayer().getStartingValue(characteristicName));
+			getCharacterPlayer().getCharacteristic(characteristicName).setValue(
+					getCharacterPlayer().getStartingValue(characteristicName));
 		}
 
 		for (IRandomPreferences preference : getPreferences()) {
 			if (preference instanceof TechnologicalPreferences) {
-				getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).setValue(((TechnologicalPreferences) preference).minimum());
+				getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).setValue(
+						((TechnologicalPreferences) preference).minimum());
 			}
 		}
 	}
@@ -125,20 +130,52 @@ public class RandomCharacteristics extends RandomSelector<Characteristic> {
 		// Specialization desired.
 		SpecializationPreferences selectedSpecialization = SpecializationPreferences.getSelected(getPreferences());
 		if (selectedSpecialization != null) {
-			int characteristicRanks = getCharacterPlayer().getCharacteristic(characteristic.getCharacteristicName()).getValue();
+			int characteristicRanks = getCharacterPlayer().getCharacteristic(characteristic.getCharacteristicName())
+					.getValue();
 			// No more that the maximum allowed.
 			if (characteristicRanks > selectedSpecialization.maximum()) {
 				return 0;
 			}
 			// If selected characteristic (has ranks), must have at least the
 			// minimum.
-			if (getCharacterPlayer().isCharacteristicTrained(characteristic) && characteristicRanks < selectedSpecialization.minimum()) {
+			if (getCharacterPlayer().isCharacteristicTrained(characteristic)
+					&& characteristicRanks < selectedSpecialization.minimum()) {
 				return MAX_PROBABILITY;
 			}
 
 			// Good probability for values between the specialization.
-			if (characteristicRanks > selectedSpecialization.minimum())
+			if (characteristicRanks > selectedSpecialization.minimum()) {
 				return GOOD_PROBABILITY;
+			}
+		}
+
+		// Theurgy
+		if (getCharacterPlayer().getFaction() != null
+				&& getCharacterPlayer().getFaction().getFactionGroup() == FactionGroup.CHURCH) {
+			if (characteristic.getId().equals("faith")) {
+				return MAX_PROBABILITY;
+			}
+		}
+
+		// Psique
+		if (characteristic.getId().equals("will")) {
+			PsiqueLevelPreferences psique = PsiqueLevelPreferences.getSelected(getPreferences());
+			switch (psique) {
+			case FAIR:
+				return GOOD_PROBABILITY;
+			case HIGH:
+				return MAX_PROBABILITY;
+			default:
+				break;
+			}
+		}
+
+		// Nobility
+		if (getCharacterPlayer().getFaction() != null
+				&& getCharacterPlayer().getFaction().getFactionGroup() == FactionGroup.NOBILITY) {
+			if (characteristic.getId().equals("presence")) {
+				return GOOD_PROBABILITY;
+			}
 		}
 
 		return weight;

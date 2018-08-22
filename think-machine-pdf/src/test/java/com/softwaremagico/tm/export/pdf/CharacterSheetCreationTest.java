@@ -32,6 +32,7 @@ import java.io.PrintWriter;
 import java.net.MalformedURLException;
 
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
 import com.itextpdf.text.DocumentException;
@@ -66,6 +67,11 @@ public class CharacterSheetCreationTest {
 	private final static String LANGUAGE = "es";
 
 	private CharacterPlayer player;
+
+	@AfterMethod
+	public void clearCache() {
+		LanguagePool.clearCache();
+	}
 
 	@Test
 	public void emptyPdfSpanish() throws MalformedURLException, DocumentException, IOException {

@@ -53,16 +53,22 @@ public abstract class CharacterBasicsTableFactory extends BaseElement {
 				if (characterPlayer.getRace() != null) {
 					table.addCell(getHandwrittingCell(characterPlayer.getRace().getName(), Element.ALIGN_LEFT,
 							fontSize - 1));
+				} else {
+					table.addCell(getHandwrittingCell("", Element.ALIGN_LEFT, fontSize - 1));
 				}
 			} else if (tag.equals("faction")) {
 				if (characterPlayer.getFaction() != null) {
 					table.addCell(getHandwrittingCell(characterPlayer.getFaction().getName(), Element.ALIGN_LEFT,
 							fontSize - 1));
+				} else {
+					table.addCell(getHandwrittingCell("", Element.ALIGN_LEFT, fontSize - 1));
 				}
 			} else if (tag.equals("rank")) {
 				try {
 					if (characterPlayer.getRank() != null) {
 						table.addCell(getHandwrittingCell(characterPlayer.getRank(), Element.ALIGN_LEFT, fontSize - 1));
+					} else {
+						table.addCell(getHandwrittingCell("", Element.ALIGN_LEFT, fontSize - 1));
 					}
 				} catch (InvalidXmlElementException e) {
 					PdfExporterLog.errorMessage(CharacterBasicsTableFactory.class.getName(), e);

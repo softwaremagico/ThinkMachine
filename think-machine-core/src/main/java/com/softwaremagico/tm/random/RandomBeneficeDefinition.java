@@ -50,7 +50,7 @@ import com.softwaremagico.tm.random.selectors.TraitCostPreferences;
 
 public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition> {
 	private static final int MAX_AFFLICTIONS = 2;
-	private static final int GOOD_PROBABILITY = 10;
+	private static final int VERY_GOOD_PROBABILITY = 10000;
 
 	protected RandomBeneficeDefinition(CharacterPlayer characterPlayer, Set<IRandomPreferences> preferences)
 			throws InvalidXmlElementException {
@@ -124,9 +124,12 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
 			return 0;
 		}
 
-		// Status must almost selected.
-		if (benefice.getGroup() != null && benefice.getGroup().equals(BeneficeGroup.STATUS)) {
-			return GOOD_PROBABILITY;
+		// Status must almost selected. Specially for groups.
+		if (benefice.getRestricted() != null
+				&& Objects.equals(benefice.getRestricted(), getCharacterPlayer().getFaction().getFactionGroup())) {
+			if (Objects.equals(benefice.getGroup(), (BeneficeGroup.STATUS))) {
+				return VERY_GOOD_PROBABILITY;
+			}
 		}
 
 		// No faction preference selected. All benefices has the same

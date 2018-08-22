@@ -53,9 +53,9 @@ public class RandomPsiquePath extends RandomSelector<OccultismPath> {
 	private final static int MAX_PROBABILITY = 100000;
 	private final static int GOOD_PROBABILITY = 10;
 
-	private final static int TOTAL_PDF_PSI_ROWS = 8;
+	private final static int TOTAL_PDF_PSI_ROWS = 7;
 
-	private int totalPowers = 0;
+	private int totalPowers;
 
 	protected RandomPsiquePath(CharacterPlayer characterPlayer, Set<IRandomPreferences> preferences)
 			throws InvalidXmlElementException {
@@ -66,6 +66,7 @@ public class RandomPsiquePath extends RandomSelector<OccultismPath> {
 		// Random number of paths.
 		IGaussianDistribution pathNumber = PsiquePathLevelPreferences.getSelected(getPreferences());
 		int totalPaths = pathNumber.randomGaussian();
+		totalPowers = 0;
 		for (int i = 0; i < totalPaths; i++) {
 			try {
 				OccultismPath selectedOccultismPath = selectElementByWeight();
@@ -98,6 +99,15 @@ public class RandomPsiquePath extends RandomSelector<OccultismPath> {
 
 	@Override
 	protected int getWeight(OccultismPath element) {
+		// Other factions path are forbiden
+		if (!element.getFactionsAllowed().isEmpty()
+				&& !element.getFactionsAllowed().contains(getCharacterPlayer().getFaction())) {
+			return 0;
+		}
+		// Own factions paths are a must.
+		if (element.getFactionsAllowed().contains(getCharacterPlayer().getFaction())) {
+			return MAX_PROBABILITY;
+		}
 		// Only paths with psique level.
 		try {
 			for (OccultismType occultismType : OccultismTypeFactory.getInstance().getElements(
@@ -110,15 +120,6 @@ public class RandomPsiquePath extends RandomSelector<OccultismPath> {
 			}
 		} catch (InvalidXmlElementException e) {
 			RandomGenerationLog.errorMessage(this.getClass().getName(), e);
-		}
-		// Own factions paths are a must.
-		if (element.getFactionsAllowed().contains(getCharacterPlayer().getFaction())) {
-			return MAX_PROBABILITY;
-		}
-		// And no other factions
-		if (!element.getFactionsAllowed().isEmpty()
-				&& !element.getFactionsAllowed().contains(getCharacterPlayer().getFaction())) {
-			return 0;
 		}
 
 		// Combat psi characters prefer specific paths.
@@ -183,7 +184,7 @@ public class RandomPsiquePath extends RandomSelector<OccultismPath> {
 			// Enough points
 			if (totalPowers >= TOTAL_PDF_PSI_ROWS) {
 				RandomGenerationLog.info(this.getClass().getName(), "No more psi power room is left.");
-				return;
+				break;
 			}
 			if (remainingPoints - power.getLevel() * CostCalculator.PATH_LEVEL_COST >= 0) {
 				getCharacterPlayer().getOccultism().addPower(power, getCharacterPlayer().getLanguage(),

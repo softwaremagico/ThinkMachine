@@ -36,6 +36,7 @@ import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.characteristics.CharacteristicType;
 import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
 import com.softwaremagico.tm.character.factions.FactionGroup;
+import com.softwaremagico.tm.character.occultism.OccultismTypeFactory;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.character.skills.SkillDefinition;
@@ -153,23 +154,23 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 		}
 
 		int characteristicsWeight = weightByCharacteristics(skill);
-		RandomGenerationLog.debug(this.getClass().getName(), "Weight for '" + skill + "' by characteristics modification is '"
-				+ characteristicsWeight + "'.");
+		RandomGenerationLog.debug(this.getClass().getName(), "Weight for '" + skill
+				+ "' by characteristics modification is '" + characteristicsWeight + "'.");
 		weight += characteristicsWeight;
 
 		int definitionWeight = weightBySkillDefinition(skill);
-		RandomGenerationLog.debug(this.getClass().getName(), "Weight for '" + skill + "' by skill definition modification is '"
-				+ definitionWeight + "'.");
+		RandomGenerationLog.debug(this.getClass().getName(), "Weight for '" + skill
+				+ "' by skill definition modification is '" + definitionWeight + "'.");
 		weight += definitionWeight;
 
 		int preferencesWeight = weightByPreferences(skill);
-		RandomGenerationLog.debug(this.getClass().getName(), "Weight for '" + skill + "' by preferences modification is '"
-				+ preferencesWeight + "'.");
+		RandomGenerationLog.debug(this.getClass().getName(), "Weight for '" + skill
+				+ "' by preferences modification is '" + preferencesWeight + "'.");
 		weight += preferencesWeight;
 
 		int raceWeight = weightByRace(skill);
-		RandomGenerationLog.debug(this.getClass().getName(), "Weight for '" + skill + "' by race modification is '" + raceWeight
-				+ "'.");
+		RandomGenerationLog.debug(this.getClass().getName(), "Weight for '" + skill + "' by race modification is '"
+				+ raceWeight + "'.");
 		weight += raceWeight;
 
 		int factionWeight = weightByFactions(skill);
@@ -183,14 +184,19 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 		weight += nobilityWeight;
 
 		int technologyWeight = weightByTechnologyLimitations(skill);
-		RandomGenerationLog.debug(this.getClass().getName(), "Weight for '" + skill + "' by technology modification is '"
-				+ technologyWeight + "'.");
+		RandomGenerationLog.debug(this.getClass().getName(), "Weight for '" + skill
+				+ "' by technology modification is '" + technologyWeight + "'.");
 		weight += technologyWeight;
 
 		int specializationWeight = weightBySpecialization(skill);
-		RandomGenerationLog.debug(this.getClass().getName(), "Weight for '" + skill + "' by specialization modification is '"
-				+ technologyWeight + "'.");
+		RandomGenerationLog.debug(this.getClass().getName(), "Weight for '" + skill
+				+ "' by specialization modification is '" + technologyWeight + "'.");
 		weight += specializationWeight;
+
+		int psiqueWeight = weightByPsique(skill);
+		RandomGenerationLog.debug(this.getClass().getName(), "Weight for '" + skill + "' by psique modification is '"
+				+ psiqueWeight + "'.");
+		weight += psiqueWeight;
 
 		return weight;
 	}
@@ -318,6 +324,23 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 		// Good probability for values between the specialization.
 		if (skillRanks > selectedSpecialization.minimum()) {
 			return GOOD_PROBABILITY;
+		}
+		return 0;
+	}
+
+	private int weightByPsique(AvailableSkill skill) {
+		if (getCharacterPlayer().getOccultism().getPsiqueLevel(
+				OccultismTypeFactory.getPsi(getCharacterPlayer().getLanguage())) > 0) {
+			// Self control useful for psique.
+			if (skill.getId().equalsIgnoreCase("selfControl")) {
+				return GOOD_PROBABILITY;
+			}
+		}
+		if (getCharacterPlayer().getOccultism().getPsiqueLevel(
+				OccultismTypeFactory.getTheurgy(getCharacterPlayer().getLanguage())) > 0) {
+			if (skill.getId().equalsIgnoreCase("influence")) {
+				return GOOD_PROBABILITY;
+			}
 		}
 		return 0;
 	}

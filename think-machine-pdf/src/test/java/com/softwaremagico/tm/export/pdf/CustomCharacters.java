@@ -29,6 +29,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
 import com.itextpdf.text.DocumentException;
@@ -63,6 +64,11 @@ import com.softwaremagico.tm.pdf.small.SmallCharacterSheet;
 @Test(groups = { "customCharacterGeneration" })
 public class CustomCharacters {
 	private final static String LANGUAGE = "en";
+
+	@AfterMethod
+	public void clearCache() {
+		LanguagePool.clearCache();
+	}
 
 	@Test
 	public void createPaolaCharacter() throws MalformedURLException, DocumentException, IOException,

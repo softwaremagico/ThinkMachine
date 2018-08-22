@@ -28,6 +28,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
 import com.itextpdf.text.DocumentException;
@@ -46,12 +47,18 @@ import com.softwaremagico.tm.random.selectors.SpecializationPreferences;
 @Test(groups = { "randomPsiCharacterTest" })
 public class RandomPsiCharacterCreationTest {
 	private final static String LANGUAGE = "es";
+	
+	@AfterMethod
+	public void clearCache() {
+		LanguagePool.clearCache();
+	}
 
 	@Test
-	public void createPaolaCharacter() throws MalformedURLException, DocumentException, IOException,
+	public void createRandomPsiCharacter() throws MalformedURLException, DocumentException, IOException,
 			InvalidXmlElementException, TooManyBlessingsException, DuplicatedPreferenceException,
 			InvalidRandomElementSelectedException {
 		CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
+		characterPlayer.getInfo().setName("Psi Random");
 		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0,
 				SpecializationPreferences.SPECIALIZED, PsiquePathLevelPreferences.HIGH, PsiqueLevelPreferences.HIGH);
 		randomizeCharacter.createCharacter();

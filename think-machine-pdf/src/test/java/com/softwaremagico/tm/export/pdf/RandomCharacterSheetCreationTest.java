@@ -26,6 +26,7 @@ package com.softwaremagico.tm.export.pdf;
 
 import java.io.File;
 
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
@@ -39,8 +40,14 @@ import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedExcep
 @Test(groups = { "randomCharacterSheetCreation" })
 public class RandomCharacterSheetCreationTest {
 
+	@AfterMethod
+	public void clearCache() {
+		LanguagePool.clearCache();
+	}
+
 	@Test
-	public void completeRandomCharacter() throws InvalidXmlElementException, DuplicatedPreferenceException, InvalidRandomElementSelectedException {
+	public void completeRandomCharacter() throws InvalidXmlElementException, DuplicatedPreferenceException,
+			InvalidRandomElementSelectedException {
 		CharacterPlayer characterPlayer = new CharacterPlayer("es");
 		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0);
 		randomizeCharacter.createCharacter();

@@ -31,6 +31,8 @@ public enum StatusPreferences implements IRandomPreferences, IGaussianDistributi
 
 	LOW(0, 0, 0, 0),
 
+	FAIR(2, 4, 2, 2),
+
 	GOOD(4, 8, 4, 2),
 
 	HIGHT(12, 24, 16, 8);
@@ -74,7 +76,7 @@ public enum StatusPreferences implements IRandomPreferences, IGaussianDistributi
 				return (StatusPreferences) preference;
 			}
 		}
-		return null;
+		return FAIR;
 	}
 
 	@Override

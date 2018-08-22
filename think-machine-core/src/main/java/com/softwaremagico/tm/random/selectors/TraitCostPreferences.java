@@ -75,7 +75,7 @@ public enum TraitCostPreferences implements IRandomPreferences, IGaussianDistrib
 				return (TraitCostPreferences) preference;
 			}
 		}
-		return null;
+		return LOW;
 	}
 
 	@Override
