@@ -35,6 +35,7 @@ import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.occultism.OccultismPath;
 import com.softwaremagico.tm.character.occultism.OccultismPathFactory;
 import com.softwaremagico.tm.character.occultism.OccultismPower;
+import com.softwaremagico.tm.character.occultism.OccultismType;
 import com.softwaremagico.tm.character.occultism.OccultismTypeFactory;
 import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.complete.elements.VerticalTable;
@@ -52,44 +53,29 @@ public class OccultismTable extends VerticalTable {
 		addCell(createTitle(getTranslator().getTranslatedText("occultism"),
 				FadingSunsTheme.CHARACTER_SMALL_OCCULTISM_TITLE_FONT_SIZE));
 
-		addCell(createSubtitleLine(getTranslator().getTranslatedText(OccultismTypeFactory.getPsi(language).getName()),
-				FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE, Element.ALIGN_LEFT));
-		if (characterPlayer != null) {
-			addCell(createValueLine("" + characterPlayer.getOccultism().getPsiValue(),
-					FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE));
-		} else {
-			addCell(createValueLine(" ", FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE));
-		}
-		addCell(createSubtitleLine("/", FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE));
-		if (characterPlayer != null) {
-			addCell(createValueLine("" + characterPlayer.getOccultism().getUrge(),
-					FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE));
-		} else {
-			addCell(createValueLine(" ", FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE));
-		}
-		addCell(createSubtitleLine(
-				getTranslator().getTranslatedText(OccultismTypeFactory.getPsi(language).getDarksideName()),
-				FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE, Element.ALIGN_RIGHT));
+		for (OccultismType occultismType : OccultismTypeFactory.getInstance().getElements(language)) {
+			addCell(createSubtitleLine(occultismType.getName(), FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE,
+					Element.ALIGN_LEFT));
 
-		addCell(createSubtitleLine(
-				getTranslator().getTranslatedText(OccultismTypeFactory.getTheurgy(language).getName()),
-				FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE, Element.ALIGN_LEFT));
-		if (characterPlayer != null) {
-			addCell(createValueLine("" + characterPlayer.getOccultism().getTheurgyValue(),
-					FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE));
-		} else {
-			addCell(createValueLine(" ", FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE));
+			if (characterPlayer != null) {
+				addCell(createValueLine("" + characterPlayer.getOccultism().getPsiqueLevel(occultismType),
+						FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE));
+			} else {
+				addCell(createValueLine(" ", FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE));
+			}
+
+			addCell(createSubtitleLine("/", FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE));
+			if (characterPlayer != null) {
+				addCell(createValueLine("" + characterPlayer.getOccultism().getDarkSideLevel(occultismType),
+						FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE));
+			} else {
+				addCell(createValueLine(" ", FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE));
+			}
+
+			addCell(createSubtitleLine(occultismType.getDarkSideName(),
+					FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE, Element.ALIGN_RIGHT));
+
 		}
-		addCell(createSubtitleLine("/", FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE, Element.ALIGN_LEFT));
-		if (characterPlayer != null) {
-			addCell(createValueLine("" + characterPlayer.getOccultism().getHubris(),
-					FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE));
-		} else {
-			addCell(createValueLine(" ", FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE));
-		}
-		addCell(createSubtitleLine(
-				getTranslator().getTranslatedText(OccultismTypeFactory.getTheurgy(language).getDarksideName()),
-				FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE, Element.ALIGN_RIGHT));
 
 		addCell(createSubtitleLine(getTranslator().getTranslatedText("occultismTablePower"),
 				FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE, 4, Element.ALIGN_LEFT));

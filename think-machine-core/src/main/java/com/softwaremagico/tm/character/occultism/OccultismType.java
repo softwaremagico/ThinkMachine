@@ -35,7 +35,7 @@ public class OccultismType extends Element<OccultismType> implements IValue {
 		this.darksideName = darksideName;
 	}
 
-	public String getDarksideName() {
+	public String getDarkSideName() {
 		return darksideName;
 	}
 

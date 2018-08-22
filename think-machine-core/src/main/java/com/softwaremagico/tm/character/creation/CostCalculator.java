@@ -34,9 +34,15 @@ import com.softwaremagico.tm.character.blessings.Blessing;
 import com.softwaremagico.tm.character.cybernetics.Device;
 import com.softwaremagico.tm.character.occultism.OccultismPath;
 import com.softwaremagico.tm.character.occultism.OccultismPathFactory;
+import com.softwaremagico.tm.character.occultism.OccultismTypeFactory;
 import com.softwaremagico.tm.log.MachineLog;
 
 public class CostCalculator {
+	public final static int CHARACTERISTICS_COST = 3;
+
+	public final static int PSIQUE_LEVEL_COST = 3;
+	public final static int EXTRA_WYRD_COST = 2;
+	public final static int OCCULSTIM_POWER_LEVEL_COST = 1;
 
 	public static int getCost(CharacterPlayer characterPlayer) throws InvalidXmlElementException {
 		int cost = 0;
@@ -63,7 +69,8 @@ public class CostCalculator {
 	}
 
 	private static int getCharacteristicsCost(CharacterPlayer characterPlayer) {
-		return (characterPlayer.getCharacteristicsTotalPoints() - FreeStyleCharacterCreation.CHARACTERISTICS_POINTS) * 3;
+		return (characterPlayer.getCharacteristicsTotalPoints() - FreeStyleCharacterCreation.CHARACTERISTICS_POINTS)
+				* CHARACTERISTICS_COST;
 	}
 
 	private static int getSkillCosts(CharacterPlayer characterPlayer) throws InvalidXmlElementException {
@@ -111,13 +118,21 @@ public class CostCalculator {
 			OccultismPath occultismPath = OccultismPathFactory.getInstance().getElement(occulstismPathEntry.getKey(),
 					characterPlayer.getLanguage());
 			for (String occultismPowerName : occulstismPathEntry.getValue()) {
-				cost += occultismPath.getOccultismPowers().get(occultismPowerName).getLevel();
+				cost += occultismPath.getOccultismPowers().get(occultismPowerName).getLevel()
+						* OCCULSTIM_POWER_LEVEL_COST;
 			}
 		}
-		cost += characterPlayer.getOccultism().getExtraWyrd() * 2;
-		cost += Math.max(0, (characterPlayer.getOccultism().getPsiValue() - characterPlayer.getRace().getPsi()) * 3);
-		cost += Math.max(0,
-				(characterPlayer.getOccultism().getTheurgyValue() - characterPlayer.getRace().getTheurgy()) * 3);
+		cost += characterPlayer.getOccultism().getExtraWyrd() * EXTRA_WYRD_COST;
+		cost += Math.max(
+				0,
+				(characterPlayer.getOccultism().getPsiqueLevel(
+						OccultismTypeFactory.getPsi(characterPlayer.getLanguage())) - characterPlayer.getRace()
+						.getPsi()) * PSIQUE_LEVEL_COST);
+		cost += Math.max(
+				0,
+				(characterPlayer.getOccultism().getPsiqueLevel(
+						OccultismTypeFactory.getTheurgy(characterPlayer.getLanguage())) - characterPlayer.getRace()
+						.getTheurgy()) * PSIQUE_LEVEL_COST);
 		return cost;
 	}
 

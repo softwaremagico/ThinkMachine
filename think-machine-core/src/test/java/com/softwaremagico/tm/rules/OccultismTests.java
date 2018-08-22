@@ -33,6 +33,7 @@ import com.softwaremagico.tm.character.occultism.InvalidFactionOfPowerException;
 import com.softwaremagico.tm.character.occultism.InvalidPowerLevelException;
 import com.softwaremagico.tm.character.occultism.InvalidPsiqueLevelException;
 import com.softwaremagico.tm.character.occultism.OccultismPathFactory;
+import com.softwaremagico.tm.character.occultism.OccultismTypeFactory;
 import com.softwaremagico.tm.characters.CustomCharacter;
 
 @Test(groups = { "occultism" })
@@ -58,7 +59,7 @@ public class OccultismTests {
 	@Test
 	public void canAddPowersWithMissingLevels() throws InvalidXmlElementException, TooManyBlessingsException {
 		CharacterPlayer player = CustomCharacter.create(LANGUAGE);
-		player.getOccultism().setPsiValue(6);
+		player.getOccultism().setPsiqueLevel(OccultismTypeFactory.getPsi(player.getLanguage()), 6);
 		player.getOccultism().addPower(
 				OccultismPathFactory.getInstance().getElement("farHand", player.getLanguage()).getOccultismPowers()
 						.get("farWall"), player.getLanguage(), player.getFaction());
@@ -67,7 +68,7 @@ public class OccultismTests {
 	@Test(expectedExceptions = { InvalidFactionOfPowerException.class })
 	public void cannotAddPowerOfDifferentFaction() throws TooManyBlessingsException, InvalidXmlElementException {
 		CharacterPlayer player = CustomCharacter.create(LANGUAGE);
-		player.getOccultism().setTeurgyValue(5);
+		player.getOccultism().setPsiqueLevel(OccultismTypeFactory.getTheurgy(player.getLanguage()), 5);
 		player.getOccultism().addPower(
 				OccultismPathFactory.getInstance().getElement("orthodoxRituals", player.getLanguage())
 						.getOccultismPowers().get("consecration"), player.getLanguage(), player.getFaction());

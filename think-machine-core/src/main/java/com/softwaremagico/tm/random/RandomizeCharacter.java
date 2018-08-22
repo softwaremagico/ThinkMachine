@@ -126,6 +126,7 @@ public class RandomizeCharacter {
 		// Set blessings.
 		RandomBlessingDefinition randomBlessing = new RandomBlessingDefinition(characterPlayer, preferences);
 		randomBlessing.assignAvailableBlessings();
+		// Set occultism powers
 		// Spend remaining points in skills.
 	}
 

@@ -53,6 +53,7 @@ import com.softwaremagico.tm.character.equipment.Shield;
 import com.softwaremagico.tm.character.equipment.WeaponFactory;
 import com.softwaremagico.tm.character.factions.FactionsFactory;
 import com.softwaremagico.tm.character.occultism.OccultismPathFactory;
+import com.softwaremagico.tm.character.occultism.OccultismTypeFactory;
 import com.softwaremagico.tm.character.race.Race;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.json.CharacterJsonManager;
@@ -120,8 +121,8 @@ public class CharacterSheetCreationTest {
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("lore", "jumpwebLore", LANGUAGE), 4);
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("lore", "beastsLore", LANGUAGE), 2);
 
-		player.getOccultism().setPsiValue(4);
-		player.getOccultism().setUrge(1);
+		player.getOccultism().setPsiqueLevel(OccultismTypeFactory.getPsi(player.getLanguage()), 4);
+		player.getOccultism().setDarkSideLevel(OccultismTypeFactory.getPsi(player.getLanguage()), 1);
 
 		player.getOccultism().addPower(
 				OccultismPathFactory.getInstance().getElement("farHand", LANGUAGE).getOccultismPowers()

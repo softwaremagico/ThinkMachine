@@ -33,17 +33,17 @@ import java.util.Objects;
 import com.softwaremagico.tm.character.factions.Faction;
 
 public class Occultism {
-	private int psiValue = 0;
-	private int theurgyValue = 0;
+	private Map<String, Integer> psiqueValue;
+	private Map<String, Integer> darkSideValue;
 	private int extraWyrd = 0;
-	private int urge = 0;
-	private int hubris = 0;
 
 	// Path --> Set<Power>
 	private final Map<String, List<String>> selectedPowers;
 
 	public Occultism() {
 		selectedPowers = new HashMap<>();
+		psiqueValue = new HashMap<>();
+		darkSideValue = new HashMap<>();
 	}
 
 	public int getExtraWyrd() {
@@ -54,36 +54,26 @@ public class Occultism {
 		this.extraWyrd = extraWyrd;
 	}
 
-	public int getPsiValue() {
-		return psiValue;
+	public int getPsiqueLevel(OccultismType occultismType) {
+		if (psiqueValue.get(occultismType.getId()) != null) {
+			return psiqueValue.get(occultismType.getId());
+		}
+		return 0;
 	}
 
-	public void setPsiValue(int psyValue) {
-		this.psiValue = psyValue;
+	public void setPsiqueLevel(OccultismType occultismType, int psyValue) {
+		psiqueValue.put(occultismType.getId(), new Integer(psyValue));
 	}
 
-	public int getTheurgyValue() {
-		return theurgyValue;
+	public int getDarkSideLevel(OccultismType occultismType) {
+		if (darkSideValue.get(occultismType.getId()) != null) {
+			return darkSideValue.get(occultismType.getId());
+		}
+		return 0;
 	}
 
-	public void setTeurgyValue(int teurgyValue) {
-		this.theurgyValue = teurgyValue;
-	}
-
-	public int getUrge() {
-		return urge;
-	}
-
-	public void setUrge(int urge) {
-		this.urge = urge;
-	}
-
-	public int getHubris() {
-		return hubris;
-	}
-
-	public void setHubris(int hubris) {
-		this.hubris = hubris;
+	public void setDarkSideLevel(OccultismType occultismType, int darkSideValue) {
+		this.darkSideValue.put(occultismType.getId(), new Integer(darkSideValue));
 	}
 
 	public Map<String, List<String>> getSelectedPowers() {
@@ -97,11 +87,11 @@ public class Occultism {
 		OccultismPath path = OccultismPathFactory.getInstance().getOccultismPath(power, language);
 		// Correct level of psi or teurgy
 		if (Objects.equals(path.getOccultismType(), OccultismTypeFactory.getPsi(language))
-				&& power.getLevel() > getPsiValue()) {
+				&& power.getLevel() > getPsiqueLevel(OccultismTypeFactory.getPsi(language))) {
 			throw new InvalidPsiqueLevelException("Insuficient psi level to acquire '" + power + "'.");
 		}
 		if (Objects.equals(path.getOccultismType(), OccultismTypeFactory.getTheurgy(language))
-				&& power.getLevel() > getTheurgyValue()) {
+				&& power.getLevel() > getPsiqueLevel(OccultismTypeFactory.getTheurgy(language))) {
 			throw new InvalidPsiqueLevelException("Insuficient theurgy level to acquire '" + power + "'.");
 		}
 		// Limited to some factions
