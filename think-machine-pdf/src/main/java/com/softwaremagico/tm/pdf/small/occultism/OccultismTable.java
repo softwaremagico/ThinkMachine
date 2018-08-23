@@ -41,7 +41,7 @@ import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.complete.elements.VerticalTable;
 
 public class OccultismTable extends VerticalTable {
-	private final static int POWER_COLUMN_WIDTH = 55;
+	private final static int POWER_COLUMN_WIDTH = 85;
 	private final static int ROLL_COLUMN_WIDTH = 25;
 	private final static float[] WIDTHS = { 2f, 1f, 1f, 1f, 2f };
 	private final static int ROWS = 6;

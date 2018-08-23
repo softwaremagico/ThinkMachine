@@ -38,7 +38,7 @@ import com.softwaremagico.tm.pdf.complete.elements.VerticalTable;
 public class BlessingTable extends VerticalTable {
 	private final static int BONIFICATION_COLUMN_WIDTH = 15;
 	private final static int TRAIT_COLUMN_WIDTH = 60;
-	private final static int SITUATION_COLUMN_WIDTH = 80;
+	private final static int SITUATION_COLUMN_WIDTH = 78;
 	private final static int ROWS = 9;
 
 	private final static float[] WIDTHS = { 2f, 7f, 8f };
