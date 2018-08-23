@@ -69,9 +69,10 @@ public class AvailableBeneficeFactory {
 			for (BeneficeDefinition benefitDefinition : BeneficeDefinitionFactory.getInstance().getElements(language)) {
 				if (benefitDefinition.getSpecializations().isEmpty()) {
 					for (Integer cost : benefitDefinition.getCosts()) {
-						String id = benefitDefinition.getId() + (benefitDefinition.getCosts().size() == 1 ? "" : "_" + cost);
-						AvailableBenefice availableBenefice = new AvailableBenefice(id, benefitDefinition.getName(), benefitDefinition,
-								benefitDefinition.getBeneficeClassification(), cost);
+						String id = benefitDefinition.getId()
+								+ (benefitDefinition.getCosts().size() == 1 ? "" : "_" + cost);
+						AvailableBenefice availableBenefice = new AvailableBenefice(id, benefitDefinition.getName(),
+								benefitDefinition, benefitDefinition.getBeneficeClassification(), cost);
 						addAvailableBenefice(language, id, benefitDefinition, availableBenefice);
 					}
 				} else {
@@ -79,15 +80,18 @@ public class AvailableBeneficeFactory {
 						// Cost in specialization
 						if (specialization.getCost() != null) {
 							String id = benefitDefinition.getId() + " [" + specialization.getId() + "]";
-							AvailableBenefice availableBenefice = new AvailableBenefice(id, benefitDefinition.getName(), benefitDefinition,
-									specialization.getClassification(), specialization.getCost());
+							AvailableBenefice availableBenefice = new AvailableBenefice(id,
+									benefitDefinition.getName(), benefitDefinition, specialization.getClassification(),
+									specialization.getCost());
 							availableBenefice.setSpecialization(specialization);
 							addAvailableBenefice(language, id, benefitDefinition, availableBenefice);
 						} else {
 							for (Integer cost : benefitDefinition.getCosts()) {
-								String id = benefitDefinition.getId() + (benefitDefinition.getCosts().size() == 1 ? "" : "_" + cost) + " ["
+								String id = benefitDefinition.getId()
+										+ (benefitDefinition.getCosts().size() == 1 ? "" : "_" + cost) + " ["
 										+ specialization.getId() + "]";
-								AvailableBenefice availableBenefice = new AvailableBenefice(id, benefitDefinition.getName(), benefitDefinition,
+								AvailableBenefice availableBenefice = new AvailableBenefice(id,
+										benefitDefinition.getName(), benefitDefinition,
 										specialization.getClassification(), cost);
 								availableBenefice.setSpecialization(specialization);
 								addAvailableBenefice(language, id, benefitDefinition, availableBenefice);
@@ -100,7 +104,8 @@ public class AvailableBeneficeFactory {
 		return availableBenefices.get(language).values();
 	}
 
-	private void addAvailableBenefice(String language, String id, BeneficeDefinition beneficeDefinition, AvailableBenefice availableBenefice) {
+	private void addAvailableBenefice(String language, String id, BeneficeDefinition beneficeDefinition,
+			AvailableBenefice availableBenefice) {
 		if (availableBenefices.get(language) == null) {
 			availableBenefices.put(language, new HashMap<String, AvailableBenefice>());
 		}
@@ -126,14 +131,20 @@ public class AvailableBeneficeFactory {
 		return avilableBenefice;
 	}
 
-	public Set<AvailableBenefice> getAvailableBeneficesByDefinition(String language, BeneficeDefinition beneficeDefinition) {
-		if (language == null || availableBeneficesByDefinition.get(language) == null) {
+	public Set<AvailableBenefice> getAvailableBeneficesByDefinition(String language,
+			BeneficeDefinition beneficeDefinition) throws InvalidXmlElementException {
+		if (language == null) {
 			return null;
+		}
+		// Force the load.
+		if (availableBeneficesByDefinition.get(language) == null) {
+			getElements(language);
 		}
 		return availableBeneficesByDefinition.get(language).get(beneficeDefinition);
 	}
 
-	public Map<BeneficeDefinition, Set<AvailableBenefice>> getAvailableBeneficesByDefinition(String language) throws InvalidXmlElementException {
+	public Map<BeneficeDefinition, Set<AvailableBenefice>> getAvailableBeneficesByDefinition(String language)
+			throws InvalidXmlElementException {
 		if (availableBeneficesByDefinition == null || availableBeneficesByDefinition.get(language) == null) {
 			getElements(language);
 		}

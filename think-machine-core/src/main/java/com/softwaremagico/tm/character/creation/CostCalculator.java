@@ -47,6 +47,21 @@ public class CostCalculator {
 
 	public static int getCost(CharacterPlayer characterPlayer) throws InvalidXmlElementException {
 		int cost = 0;
+		if (characterPlayer.getRace() != null) {
+			cost += characterPlayer.getRace().getCost();
+		}
+		cost += getCharacteristicsCost(characterPlayer);
+		cost += getSkillCosts(characterPlayer);
+		cost += getTraitsCosts(characterPlayer);
+		cost += getPsiPowersCosts(characterPlayer);
+		cost += getCyberneticsCost(characterPlayer);
+		CostCalculatorLog.debug(CostCalculator.class.getName(), "Character '" + characterPlayer.getInfo().getName()
+				+ "' total cost: " + cost + "\n");
+		return cost;
+	}
+
+	public static int logCost(CharacterPlayer characterPlayer) throws InvalidXmlElementException {
+		int cost = 0;
 		CostCalculatorLog.info(CostCalculator.class.getName(), "####################### ");
 		CostCalculatorLog.info(CostCalculator.class.getName(), "\t" + characterPlayer.getInfo().getName());
 		CostCalculatorLog.info(CostCalculator.class.getName(), "####################### ");
@@ -62,9 +77,11 @@ public class CostCalculator {
 		cost += getTraitsCosts(characterPlayer);
 		CostCalculatorLog.info(CostCalculator.class.getName(), "Traits cost: " + getTraitsCosts(characterPlayer));
 		cost += getPsiPowersCosts(characterPlayer);
-		CostCalculatorLog.info(CostCalculator.class.getName(), "Psi powers cost: " + getPsiPowersCosts(characterPlayer));
+		CostCalculatorLog
+				.info(CostCalculator.class.getName(), "Psi powers cost: " + getPsiPowersCosts(characterPlayer));
 		cost += getCyberneticsCost(characterPlayer);
-		CostCalculatorLog.info(CostCalculator.class.getName(), "Cybernetics cost: " + getCyberneticsCost(characterPlayer));
+		CostCalculatorLog.info(CostCalculator.class.getName(), "Cybernetics cost: "
+				+ getCyberneticsCost(characterPlayer));
 		CostCalculatorLog.info(CostCalculator.class.getName(), "Total cost: " + cost + "\n");
 		return cost;
 	}
