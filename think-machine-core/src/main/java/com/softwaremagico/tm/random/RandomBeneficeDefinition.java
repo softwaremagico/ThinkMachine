@@ -63,7 +63,7 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
 		// First, try status.
 		for (BeneficeDefinition benefice : BeneficeDefinitionFactory.getInstance().getBenefices(BeneficeGroup.STATUS,
 				getCharacterPlayer().getLanguage())) {
-			RandomGenerationLog.debug(this.getClass().getName(), "Selected status benefice '" + benefice + "'.");
+			RandomGenerationLog.info(this.getClass().getName(), "Selected status benefice '" + benefice + "'.");
 			if (getWeight(benefice) > 0
 					&& Objects.equals(benefice.getRestricted(), getCharacterPlayer().getFaction().getFactionGroup())) {
 				IGaussianDistribution selectedStatus = StatusPreferences.getSelected(getPreferences());
@@ -136,6 +136,8 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
 		if (benefice.getRestricted() != null
 				&& Objects.equals(benefice.getRestricted(), getCharacterPlayer().getFaction().getFactionGroup())) {
 			if (Objects.equals(benefice.getGroup(), (BeneficeGroup.STATUS))) {
+				RandomGenerationLog.info(this.getClass().getName(), "Character faction '"
+						+ getCharacterPlayer().getFaction() + "' must have a status.");
 				return VERY_GOOD_PROBABILITY;
 			}
 		}
@@ -153,7 +155,8 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
 	 * @return
 	 * @throws InvalidXmlElementException
 	 */
-	private AvailableBenefice assignLevelOfBenefice(BeneficeDefinition benefice, int maxPoints) throws InvalidXmlElementException {
+	private AvailableBenefice assignLevelOfBenefice(BeneficeDefinition benefice, int maxPoints)
+			throws InvalidXmlElementException {
 		IGaussianDistribution selectedTraitCost = TraitCostPreferences.getSelected(getPreferences());
 		if (benefice.getGroup() != null && benefice.getGroup().equals(BeneficeGroup.STATUS)) {
 			// Status has also an special preference.
@@ -166,7 +169,7 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
 		if (maxRangeSelected > maxPoints) {
 			maxRangeSelected = maxPoints;
 		}
-		RandomGenerationLog.debug(this.getClass().getName(), "MaxPoints of '" + benefice + "' are '" + maxRangeSelected
+		RandomGenerationLog.info(this.getClass().getName(), "MaxPoints of '" + benefice + "' are '" + maxRangeSelected
 				+ "'.");
 		Set<AvailableBenefice> beneficeLevels = AvailableBeneficeFactory.getInstance()
 				.getAvailableBeneficesByDefinition(getCharacterPlayer().getLanguage(), benefice);
@@ -182,7 +185,7 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
 				return new Integer(o2.getCost()).compareTo(new Integer(o1.getCost()));
 			}
 		});
-		RandomGenerationLog.debug(this.getClass().getName(), "Available benefice levels of '" + benefice + "' are '"
+		RandomGenerationLog.info(this.getClass().getName(), "Available benefice levels of '" + benefice + "' are '"
 				+ sortedBenefices + "'.");
 		for (AvailableBenefice availableBenefice : sortedBenefices) {
 			if (Math.abs(availableBenefice.getCost()) <= maxRangeSelected) {

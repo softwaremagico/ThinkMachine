@@ -86,10 +86,10 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
 	 * @throws InvalidRandomElementSelectedException
 	 */
 	protected Element selectElementByWeight() throws InvalidRandomElementSelectedException {
-		int value = rand.nextInt(totalWeight) + 1;
-		if (weightedElements == null || weightedElements.isEmpty()) {
+		if (weightedElements == null || weightedElements.isEmpty() || totalWeight == 0) {
 			throw new InvalidRandomElementSelectedException("No elements to select");
 		}
+		int value = rand.nextInt(totalWeight) + 1;
 		Element selectedElement = weightedElements.values().iterator().next();
 		SortedMap<Integer, Element> view = weightedElements.headMap(value, true);
 		try {

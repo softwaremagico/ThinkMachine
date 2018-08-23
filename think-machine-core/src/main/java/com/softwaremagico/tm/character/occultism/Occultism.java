@@ -101,7 +101,7 @@ public class Occultism {
 		// Limited to some factions
 		if (!path.getFactionsAllowed().isEmpty() && !path.getFactionsAllowed().contains(faction)) {
 			throw new InvalidFactionOfPowerException("Power can only be acquired by  '" + path.getFactionsAllowed()
-					+ "'.");
+					+ "' character faction is '" + faction + "'.");
 		}
 
 		// Psi must have previous level.

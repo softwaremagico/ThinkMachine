@@ -189,7 +189,7 @@ public class RandomPsiquePath extends RandomSelector<OccultismPath> {
 			if (remainingPoints - power.getLevel() * CostCalculator.PATH_LEVEL_COST >= 0) {
 				getCharacterPlayer().getOccultism().addPower(power, getCharacterPlayer().getLanguage(),
 						getCharacterPlayer().getFaction());
-				RandomGenerationLog.debug(this.getClass().getName(), "Assinged power '" + power + "' to path '" + path
+				RandomGenerationLog.info(this.getClass().getName(), "Assinged power '" + power + "' to path '" + path
 						+ "'.");
 				remainingPoints -= power.getLevel() * CostCalculator.PATH_LEVEL_COST;
 				totalPowers++;

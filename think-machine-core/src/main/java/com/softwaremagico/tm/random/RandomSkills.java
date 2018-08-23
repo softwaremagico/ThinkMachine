@@ -81,9 +81,7 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 			AvailableSkill selectedSkill = selectElementByWeight();
 
 			// Assign random ranks to the skill.
-			RandomSkillRanks randomSkillRanks = new RandomSkillRanks(getCharacterPlayer(), selectedSkill,
-					getPreferences());
-			randomSkillRanks.assignRandomRanks();
+			assignRandomRanks(selectedSkill);
 
 			// Remove skill from options to avoid adding more ranks.
 			removeElementWeight(selectedSkill);
@@ -151,6 +149,11 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 
 		if (skill == null) {
 			return NO_PROBABILITY;
+		}
+		if (skill.getSkillDefinition().isNatural()) {
+			RandomGenerationLog.debug(this.getClass().getName(), "Weight for '" + skill
+					+ "' as natural skill is increased.");
+			weight += 3;
 		}
 
 		int characteristicsWeight = weightByCharacteristics(skill);
@@ -350,5 +353,34 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 			preferredCharacteristicsTypeSorted = getCharacterPlayer().getPreferredCharacteristicsTypeSorted();
 		}
 		return preferredCharacteristicsTypeSorted;
+	}
+
+	protected int assignRandomRanks(AvailableSkill availableSkill) throws InvalidXmlElementException,
+			InvalidRandomElementSelectedException {
+		int finalRanks = getRankValue(availableSkill);
+		// Final ranks cannot be greater that the total points remaining.
+		if (getCharacterPlayer().getSkillsTotalPoints()
+				+ (finalRanks - getCharacterPlayer().getStartingValue(availableSkill)) > FreeStyleCharacterCreation.SKILLS_POINTS) {
+			finalRanks = FreeStyleCharacterCreation.SKILLS_POINTS - getCharacterPlayer().getSkillsTotalPoints()
+					+ getCharacterPlayer().getStartingValue(availableSkill);
+		}
+		getCharacterPlayer().setSkillRank(availableSkill, finalRanks);
+		getCharacterPlayer().setDesiredSkillRanks(availableSkill, finalRanks);
+		return finalRanks;
+	}
+
+	protected int getRankValue(AvailableSkill availableSkill) throws InvalidXmlElementException,
+			InvalidRandomElementSelectedException {
+		int skillValue = 0;
+		SpecializationPreferences selectedSpecialization = SpecializationPreferences.getSelected(getPreferences());
+		int minimumValue = selectedSpecialization.minimum();
+		if (availableSkill.getSkillDefinition().isNatural()) {
+			minimumValue = SkillDefinition.NATURAL_SKILLS_MINIMUM_VALUE;
+		}
+		// Gaussian distribution.
+		do {
+			skillValue = selectedSpecialization.randomGaussian();
+		} while (skillValue < minimumValue);
+		return skillValue;
 	}
 }

@@ -14,9 +14,9 @@
 	<test name="CharacterPdf" enabled="true" preserve-order="true">
 		<groups>
 			<run>
-				<include name="characterPdfGeneration" />
-				<include name="customCharacterGeneration" />
-				<include name="randomCharacterSheetCreation" />
+				<exclude name="characterPdfGeneration" />
+				<exclude name="customCharacterGeneration" />
+				<exclude name="randomCharacterSheetCreation" />
 				<include name="randomPsiCharacterTest" />
 			</run>
 		</groups>

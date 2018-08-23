@@ -59,7 +59,7 @@ public class RandomCursesDefinition extends RandomSelector<Blessing> {
 			Blessing selectedCurse = selectElementByWeight();
 			try {
 				getCharacterPlayer().addBlessing(selectedCurse);
-				RandomGenerationLog.debug(this.getClass().getName(), "Added curse '" + selectedCurse + "'.");
+				RandomGenerationLog.info(this.getClass().getName(), "Added curse '" + selectedCurse + "'.");
 			} catch (TooManyBlessingsException e) {
 				// No more possible.
 				break;

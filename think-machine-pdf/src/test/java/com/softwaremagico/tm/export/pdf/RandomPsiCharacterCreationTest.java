@@ -28,6 +28,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -35,6 +36,8 @@ import com.itextpdf.text.DocumentException;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
+import com.softwaremagico.tm.character.creation.CostCalculator;
+import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
 import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.pdf.small.SmallCharacterSheet;
 import com.softwaremagico.tm.random.RandomizeCharacter;
@@ -67,5 +70,6 @@ public class RandomPsiCharacterCreationTest {
 		SmallCharacterSheet sheet = new SmallCharacterSheet(characterPlayer);
 		sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "RandomPsiCharacter.pdf");
 
+		Assert.assertEquals(CostCalculator.logCost(characterPlayer), FreeStyleCharacterCreation.FREE_AVAILABLE_POINTS);
 	}
 }

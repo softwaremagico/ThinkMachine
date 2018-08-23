@@ -38,7 +38,8 @@ import com.softwaremagico.tm.character.occultism.OccultismTypeFactory;
 import com.softwaremagico.tm.log.CostCalculatorLog;
 
 public class CostCalculator {
-	public final static int CHARACTERISTICS_COST = 3;
+	public final static int CHARACTERISTIC_EXTRA_POINTS_COST = 3;
+	public static final int SKILL_EXTRA_POINTS_COST = 1;
 
 	public final static int PSIQUE_LEVEL_COST = 3;
 	public final static int PATH_LEVEL_COST = 1;
@@ -88,11 +89,12 @@ public class CostCalculator {
 
 	private static int getCharacteristicsCost(CharacterPlayer characterPlayer) {
 		return (characterPlayer.getCharacteristicsTotalPoints() - FreeStyleCharacterCreation.CHARACTERISTICS_POINTS)
-				* CHARACTERISTICS_COST;
+				* CHARACTERISTIC_EXTRA_POINTS_COST;
 	}
 
 	private static int getSkillCosts(CharacterPlayer characterPlayer) throws InvalidXmlElementException {
-		return (characterPlayer.getSkillsTotalPoints() - FreeStyleCharacterCreation.SKILLS_POINTS);
+		return (characterPlayer.getSkillsTotalPoints() - FreeStyleCharacterCreation.SKILLS_POINTS)
+				* SKILL_EXTRA_POINTS_COST;
 	}
 
 	private static int getTraitsCosts(CharacterPlayer characterPlayer) throws InvalidXmlElementException {

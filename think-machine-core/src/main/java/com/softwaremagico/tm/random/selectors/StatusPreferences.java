@@ -31,9 +31,9 @@ public enum StatusPreferences implements IRandomPreferences, IGaussianDistributi
 
 	LOW(0, 0, 0, 0),
 
-	FAIR(2, 5, 3, 2),
+	FAIR(2, 5, 4, 2),
 
-	GOOD(4, 8, 4, 2),
+	GOOD(4, 12, 8, 4),
 
 	HIGHT(12, 24, 16, 8);
 

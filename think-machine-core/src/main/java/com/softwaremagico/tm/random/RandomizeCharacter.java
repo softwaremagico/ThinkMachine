@@ -30,6 +30,7 @@ import java.util.Set;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.character.creation.CostCalculator;
 import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
 import com.softwaremagico.tm.log.RandomGenerationLog;
 import com.softwaremagico.tm.random.exceptions.DuplicatedPreferenceException;
@@ -141,7 +142,25 @@ public class RandomizeCharacter {
 		RandomPsiquePath randomPsiquePath = new RandomPsiquePath(characterPlayer, preferences);
 		randomPsiquePath.assignPsiquePaths();
 
-		// Spend remaining points in skills.
+		// Spend remaining points in skills and characteristics.
+		int remainingPoints = FreeStyleCharacterCreation.FREE_AVAILABLE_POINTS
+				- CostCalculator.getCost(characterPlayer);
+
+		RandomGenerationLog.info(this.getClass().getName(), "Remaining points '" + remainingPoints + "'.");
+		IGaussianDistribution specialization = SpecializationPreferences.getSelected(preferences);
+		while (remainingPoints > 0) {
+			// Characteristics only if is a little specialized.
+			if (specialization.randomGaussian() > 4) {
+				RandomCharacteristicsExtraPoints randomCharacteristicsExtraPoints = new RandomCharacteristicsExtraPoints(
+						characterPlayer, preferences);
+				remainingPoints -= randomCharacteristicsExtraPoints.spendCharacteristicsPoints(remainingPoints);
+			}
+
+			if (remainingPoints > 0) {
+				RandomSkillExtraPoints randomSkillExtraPoints = new RandomSkillExtraPoints(characterPlayer, preferences);
+				remainingPoints -= randomSkillExtraPoints.spendSkillsPoints(remainingPoints);
+			}
+		}
 	}
 
 	private void setExperiencePoints() {

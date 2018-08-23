@@ -330,6 +330,13 @@ public class CharacterPlayer {
 		return skills.get(skill.getName()).getValue();
 	}
 
+	/**
+	 * All ranks assigned to an skill, avoiding any blessing modification.
+	 * 
+	 * @param skill
+	 *            Skill to check.
+	 * @return ranks of the skill.
+	 */
 	public Integer getSkillAssignedRanks(AvailableSkill skill) {
 		SelectedSkill selectedSkill = getSelectedSkill(skill);
 		// Use the skill with generalization.
@@ -345,6 +352,13 @@ public class CharacterPlayer {
 		}
 	}
 
+	/**
+	 * All ranks assigned to an skill plus blessing modification.
+	 * 
+	 * @param skill
+	 *            Skill to check.
+	 * @return ranks of the skill.
+	 */
 	private Integer getSkillTotalRanks(Skill<?> skill) {
 		Integer cyberneticBonus = getCyberneticsValue(skill.getName());
 		Integer skillValue = getSkillAssignedRanks(skill);
