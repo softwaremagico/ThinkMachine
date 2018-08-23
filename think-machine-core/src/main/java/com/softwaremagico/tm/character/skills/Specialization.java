@@ -26,10 +26,18 @@ package com.softwaremagico.tm.character.skills;
 
 import com.softwaremagico.tm.Element;
 
-public class Specialization extends Element<Specialization> {
+public class Specialization extends Element<Specialization> implements ISkillRandomDefintions {
+
+	private final SkillRandomDefinitions randomDefinition;
 
 	public Specialization(String id, String name) {
 		super(id, name);
+		randomDefinition = new SkillRandomDefinitions();
+	}
+
+	@Override
+	public SkillRandomDefinitions getRandomDefinition() {
+		return randomDefinition;
 	}
 
 }

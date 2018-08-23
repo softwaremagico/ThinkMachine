@@ -26,19 +26,24 @@ package com.softwaremagico.tm.character.race;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
-import com.softwaremagico.tm.character.OccultismType;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
-import com.softwaremagico.tm.character.traits.InvalidBlessingException;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
 
 public class RaceFactory extends XmlFactory<Race> {
 	private final static ITranslator translatorRace = LanguagePool.getTranslator("races.xml");
+	private final static String RANDOM = "random";
+	private final static String RACE_PROBABILITY = "probability";
 
 	private final static String NAME = "name";
 	private final static String MAX_VALUE = "maximumValue";
 	private final static String VALUE = "value";
 	private final static String COST = "cost";
+
+	private final static String PSI = "psi";
+	private final static String URGE = "urge";
+	private final static String THEURGY = "theurgy";
+	private final static String HUBRIS = "hubris";
 
 	private static RaceFactory instance;
 
@@ -65,13 +70,14 @@ public class RaceFactory extends XmlFactory<Race> {
 	}
 
 	@Override
-	protected Race createElement(ITranslator translator, String raceId, String language) throws InvalidXmlElementException {
+	protected Race createElement(ITranslator translator, String raceId, String language)
+			throws InvalidXmlElementException {
 		Race race = null;
 		try {
 			String name = translator.getNodeValue(raceId, NAME, language);
 			race = new Race(raceId, name);
 		} catch (Exception e) {
-			throw new InvalidBlessingException("Invalid name in race '" + raceId + "'.");
+			throw new InvalidRaceException("Invalid structure in race '" + raceId + "'.", e);
 		}
 		try {
 			String cost = translator.getNodeValue(raceId, COST);
@@ -90,32 +96,43 @@ public class RaceFactory extends XmlFactory<Race> {
 					race.setValue(characteristic, Integer.parseInt(value));
 				}
 			} catch (NumberFormatException nfe) {
-				throw new InvalidRaceException("Invalid value for characteristic '" + characteristic.getId() + "' in race '" + raceId + "'.");
+				throw new InvalidRaceException("Invalid value for characteristic '" + characteristic.getId()
+						+ "' in race '" + raceId + "'.");
 			}
 		}
 		try {
-			String psi = translator.getNodeValue(raceId, OccultismType.PSI.getTag());
+			String psi = translator.getNodeValue(raceId, PSI);
 			race.setPsi(Integer.parseInt(psi));
 		} catch (Exception e) {
 			throw new InvalidRaceException("Invalid psi value in race '" + raceId + "'.");
 		}
 		try {
-			String urge = translator.getNodeValue(raceId, OccultismType.PSI.getDarkSideTag());
+			String urge = translator.getNodeValue(raceId, URGE);
 			race.setUrge(Integer.parseInt(urge));
 		} catch (Exception e) {
 			throw new InvalidRaceException("Invalid urge value in race '" + raceId + "'.");
 		}
 		try {
-			String theurgy = translator.getNodeValue(raceId, OccultismType.THEURGY.getTag());
+			String theurgy = translator.getNodeValue(raceId, THEURGY);
 			race.setTheurgy(Integer.parseInt(theurgy));
 		} catch (Exception e) {
 			throw new InvalidRaceException("Invalid theurgy value in race '" + raceId + "'.");
 		}
 		try {
-			String hubris = translator.getNodeValue(raceId, OccultismType.THEURGY.getDarkSideTag());
+			String hubris = translator.getNodeValue(raceId, HUBRIS);
 			race.setHubris(Integer.parseInt(hubris));
 		} catch (Exception e) {
 			throw new InvalidRaceException("Invalid hubris value in race '" + raceId + "'.");
+		}
+		try {
+			String raceProbability = translator.getNodeValue(raceId, RANDOM, RACE_PROBABILITY);
+			if (raceProbability != null) {
+				race.getRandomDefinition().setProbability(Integer.parseInt(raceProbability));
+			} else {
+				race.getRandomDefinition().setProbability(1);
+			}
+		} catch (NumberFormatException nfe) {
+			throw new InvalidRaceException("Invalid number value for race probability in '" + raceId + "'.");
 		}
 		return race;
 

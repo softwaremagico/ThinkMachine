@@ -1,8 +1,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.softwaremagico</groupId>
-	<artifactId>thinking-machine</artifactId>
-	<version>0.3.6-SNAPSHOT</version>
+	<artifactId>think-machine</artifactId>
+	<version>0.3.10-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>Think Machine</name>
 	<url>https://github.com/jorgehortelano/TheThinkingMachine</url>
@@ -39,6 +39,7 @@
 		<license-maven-plugin.version>1.12</license-maven-plugin.version>
 		<maven-release-plugin.version>2.5.1</maven-release-plugin.version>
 		<maven-scm-provider-gitexe.version>1.9.2</maven-scm-provider-gitexe.version>
+		<reflections.version>0.9.11</reflections.version>
 	</properties>
 	
 	<build>

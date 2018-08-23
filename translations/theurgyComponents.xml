@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<theurgyComponents>
+	<liturgy>
+		<name>
+			<en>Liturgy</en>
+			<es>Liturgia</es>
+		</name>
+		<abbreviature>
+			<en>L</en>
+			<es>L</es>
+		</abbreviature>
+		<code>L</code>
+	</liturgy>
+	<gestures>
+		<name>
+			<en>Gestures</en>
+			<es>Gestos</es>
+		</name>
+		<abbreviature>
+			<en>G</en>
+			<es>G</es>
+		</abbreviature>
+		<code>G</code>
+	</gestures>
+	<prayer>
+		<name>
+			<en>Prayer</en>
+			<es>Oración</es>
+		</name>
+		<abbreviature>
+			<en>P</en>
+			<es>O</es>
+		</abbreviature>
+		<code>P</code>
+	</prayer>
+</theurgyComponents>

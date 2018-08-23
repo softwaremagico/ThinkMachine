@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.softwaremagico.tm.character.factions.Faction;
+import com.softwaremagico.tm.character.values.IValue;
 
 /*-
  * #%L
@@ -29,7 +30,8 @@ import com.softwaremagico.tm.character.factions.Faction;
  * #L%
  */
 
-public class SkillDefinition extends Skill<SkillDefinition> {
+public class SkillDefinition extends Skill<SkillDefinition> implements ISkillRandomDefintions, IValue {
+	public final static int NATURAL_SKILLS_MINIMUM_VALUE = 3;
 	public final static String FACTORION_LORE_ID = "factionLore";
 	public final static String PLANETARY_LORE_ID = "planetaryLore";
 
@@ -40,8 +42,11 @@ public class SkillDefinition extends Skill<SkillDefinition> {
 	// Number of times that a skill (generalizable) is shown in the PDF.
 	private int numberToShow = 1;
 
+	private final SkillRandomDefinitions randomDefinition;
+
 	public SkillDefinition(String id, String name) {
 		super(id, name.trim());
+		randomDefinition = new SkillRandomDefinitions();
 	}
 
 	public boolean isNatural() {
@@ -86,6 +91,11 @@ public class SkillDefinition extends Skill<SkillDefinition> {
 	@Override
 	public String toString() {
 		return super.toString() + " (" + skillGroup + ") " + getSpecializations();
+	}
+
+	@Override
+	public SkillRandomDefinitions getRandomDefinition() {
+		return randomDefinition;
 	}
 
 	public Set<Faction> getFactions() {

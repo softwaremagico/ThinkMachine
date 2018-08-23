@@ -33,9 +33,11 @@ import com.softwaremagico.tm.character.equipment.DamageTypeFactory;
 
 @Test(groups = { "damageFactory" })
 public class DamageTypeFactoryTests {
+
+	private final static int DEFINED_DAMAGES = 7;
 	
 	@Test
 	public void readDamages() throws InvalidXmlElementException {
-		Assert.assertEquals(7, DamageTypeFactory.getInstance().getElements("es").size());
+		Assert.assertEquals(DEFINED_DAMAGES, DamageTypeFactory.getInstance().getElements("es").size());
 	}
 }

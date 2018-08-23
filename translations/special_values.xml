@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<specialValues>
+	<rolls>
+		<name>
+			<en>Rolls</en>
+			<es>Tiradas</es>
+		</name>
+	</rolls>
+	<vitality>
+		<name>
+			<en>Vitality</en>
+			<es>Vitalidad</es>
+		</name>
+	</vitality>
+	<wyrd>
+		<name>
+			<en>Wyrd</en>
+			<es>Wyrd</es>
+		</name>
+	</wyrd>
+	<rangedAttacks>
+		<name>
+			<en>Ranged Attacks</en>
+			<es>Disparo</es>
+		</name>
+		<affects>archery, slugGuns, gunnery, artillery, energyGuns</affects>
+	</rangedAttacks>
+	<controlSkills>
+		<name>
+			<en>Control Skills</en>
+			<es>Habilidades de Control</es>
+		</name>
+		<affects>beastcraft, watercraft, ride, aircraft, spacecraft, landcarft</affects>
+	</controlSkills>
+</specialValues>

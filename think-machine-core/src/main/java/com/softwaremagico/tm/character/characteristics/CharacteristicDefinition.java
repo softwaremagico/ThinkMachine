@@ -3,6 +3,7 @@ package com.softwaremagico.tm.character.characteristics;
 import java.util.Objects;
 
 import com.softwaremagico.tm.Element;
+import com.softwaremagico.tm.character.values.IValue;
 
 /*-
  * #%L
@@ -28,7 +29,7 @@ import com.softwaremagico.tm.Element;
  * #L%
  */
 
-public class CharacteristicDefinition extends Element<CharacteristicDefinition> {
+public class CharacteristicDefinition extends Element<CharacteristicDefinition> implements Comparable<CharacteristicDefinition>, IValue {
 	private String abbreviature;
 	private CharacteristicType type;
 
@@ -64,5 +65,35 @@ public class CharacteristicDefinition extends Element<CharacteristicDefinition> 
 			}
 		}
 		return null;
+	}
+
+	@Override
+	public int compareTo(CharacteristicDefinition characteristic) {
+		return getCharacteristicName().compareTo(characteristic.getCharacteristicName());
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + ((abbreviature == null) ? 0 : abbreviature.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		CharacteristicDefinition other = (CharacteristicDefinition) obj;
+		if (abbreviature == null) {
+			if (other.abbreviature != null)
+				return false;
+		} else if (!abbreviature.equals(other.abbreviature))
+			return false;
+		return true;
 	}
 }

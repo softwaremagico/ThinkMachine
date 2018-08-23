@@ -24,58 +24,58 @@ package com.softwaremagico.tm.character.occultism;
  * #L%
  */
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Set;
+
 import com.softwaremagico.tm.Element;
-import com.softwaremagico.tm.character.OccultismType;
+import com.softwaremagico.tm.character.characteristics.CharacteristicDefinition;
+import com.softwaremagico.tm.character.values.IValue;
 
 public class OccultismPower extends Element<OccultismPower> {
-	private final String roll;
+	private final CharacteristicDefinition characteristic;
+	private final List<IValue> values;
 	private final int level;
-	private final String range;
-	private final String duration;
-	private final String requirements;
-	private final int cost;
+	private final OccultismRange range;
+	private final OccultismDuration duration;
+	private final Integer cost;
+	private final Set<TheurgyComponent> components;
 	private boolean enabled;
-	private OccultismType occultismType;
 
-	public OccultismPower(String name,  OccultismType occultismType, String roll, int level, String range, String duration, String requirements, int cost) {
-		super(null, name);
-		this.roll = roll;
+	public OccultismPower(String id, String name, CharacteristicDefinition characteristic, List<IValue> values,
+			int level, OccultismRange range, OccultismDuration duration, Integer cost, Set<TheurgyComponent> components) {
+		super(id, name);
+		this.characteristic = characteristic;
+		this.values = values;
 		this.level = level;
 		this.range = range;
 		this.duration = duration;
-		this.requirements = requirements;
 		this.cost = cost;
-		this.occultismType = occultismType;
+		this.components = components;
 		enabled = true;
 	}
 
-	public OccultismPower(String name, OccultismType occultismType, String roll, int level, String range, String duration, String requirements, int cost,
+	public OccultismPower(String id, String name, CharacteristicDefinition characteristic, List<IValue> values,
+			int level, OccultismRange range, OccultismDuration duration, int cost, Set<TheurgyComponent> components,
 			boolean enabled) {
-		this(name, occultismType, roll, level, range, duration, requirements, cost);
+		this(id, name, characteristic, values, level, range, duration, cost, components);
 		setEnabled(enabled);
-	}
-
-	public String getRoll() {
-		return roll;
 	}
 
 	public int getLevel() {
 		return level;
 	}
 
-	public String getRange() {
+	public OccultismRange getRange() {
 		return range;
 	}
 
-	public String getDuration() {
+	public OccultismDuration getDuration() {
 		return duration;
 	}
 
-	public String getRequirements() {
-		return requirements;
-	}
-
-	public int getCost() {
+	public Integer getCost() {
 		return cost;
 	}
 
@@ -87,8 +87,39 @@ public class OccultismPower extends Element<OccultismPower> {
 		this.enabled = enabled;
 	}
 
-	public OccultismType getOccultismType() {
-		return occultismType;
+	public CharacteristicDefinition getCharacteristic() {
+		return characteristic;
+	}
+
+	public List<IValue> getValues() {
+		return values;
+	}
+
+	public String getRoll() {
+		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append(getCharacteristic().getAbbreviature());
+		stringBuilder.append("+");
+		for (int i = 0; i < values.size(); i++) {
+			if (i > 0) {
+				stringBuilder.append("/");
+			}
+			stringBuilder.append(values.get(i).getName());
+		}
+		return stringBuilder.toString();
+	}
+
+	public Set<TheurgyComponent> getComponents() {
+		return components;
+	}
+
+	public String getComponentsRepresentation() {
+		List<TheurgyComponent> sortedComponents = new ArrayList<>(getComponents());
+		Collections.sort(sortedComponents);
+		StringBuilder representation = new StringBuilder();
+		for (TheurgyComponent theurgyComponent : sortedComponents) {
+			representation.append(theurgyComponent.getAbbreviature());
+		}
+		return representation.toString();
 	}
 
 }

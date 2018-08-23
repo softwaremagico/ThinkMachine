@@ -33,7 +33,7 @@ import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.characteristics.CharacteristicType;
 import com.softwaremagico.tm.character.characteristics.CharacteristicsDefinitionFactory;
 import com.softwaremagico.tm.language.Translator;
-import com.softwaremagico.tm.log.MachineLog;
+import com.softwaremagico.tm.log.PdfExporterLog;
 import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.complete.elements.BaseElement;
 
@@ -63,11 +63,10 @@ public class CharacteristicsTableFactory extends BaseElement {
 				table.addCell(new CharacteristicColumn(characterPlayer, type, CharacteristicsDefinitionFactory.getInstance().getAll(type,
 						Translator.getLanguage())));
 			} catch (NullPointerException npe) {
-				MachineLog.errorMessage(CharacteristicsTableFactory.class.getName(), npe);
+				PdfExporterLog.errorMessage(CharacteristicsTableFactory.class.getName(), npe);
 			}
 		}
 
 		return table;
 	}
-
 }

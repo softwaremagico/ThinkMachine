@@ -24,97 +24,156 @@ package com.softwaremagico.tm.random;
  * #L%
  */
 
-import java.util.Random;
-import java.util.TreeMap;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.character.FreeStyleCharacterCreation;
-import com.softwaremagico.tm.character.characteristics.Characteristic;
-import com.softwaremagico.tm.character.characteristics.CharacteristicType;
-import com.softwaremagico.tm.log.MachineLog;
+import com.softwaremagico.tm.character.creation.CostCalculator;
+import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
+import com.softwaremagico.tm.log.RandomGenerationLog;
+import com.softwaremagico.tm.random.exceptions.DuplicatedPreferenceException;
+import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
+import com.softwaremagico.tm.random.selectors.IGaussianDistribution;
+import com.softwaremagico.tm.random.selectors.IRandomPreferences;
+import com.softwaremagico.tm.random.selectors.PsiqueLevelPreferences;
+import com.softwaremagico.tm.random.selectors.SpecializationPreferences;
+import com.softwaremagico.tm.random.selectors.TraitCostPreferences;
 
 public class RandomizeCharacter {
-	private int bodyLevel;
-	private int mentalLevel;
-	private int spiritLevel;
 	private CharacterPlayer characterPlayer;
-	private int experiencePoints;
-	private TreeMap<Integer, String> weightedCharacteristics;
-	private Random rand = new Random();
+	private final Set<IRandomPreferences> preferences;
 
-	public RandomizeCharacter(CharacterPlayer characterPlayer, int experiencePoints) {
+	public RandomizeCharacter(CharacterPlayer characterPlayer, int experiencePoints, IRandomPreferences... preferences)
+			throws DuplicatedPreferenceException {
 		this.characterPlayer = characterPlayer;
-		this.experiencePoints = experiencePoints;
+		this.preferences = new HashSet<>(Arrays.asList(preferences));
+
+		checkValidPreferences();
 	}
 
-	public void createCharacter() throws InvalidXmlElementException {
-		weightedCharacteristics = assignCharacteristicsWeight();
-		initializeCharacter();
-		spendCharacteristicsPoints();
-		spendSkillsPoints();
-		spendExperiencePoints();
+	private void checkValidPreferences() throws DuplicatedPreferenceException {
+		Set<Class<? extends IRandomPreferences>> existingPreferences = new HashSet<>();
+		// Only one of each class allowed.
+		for (IRandomPreferences preference : preferences) {
+			if (existingPreferences.contains(preference.getClass())) {
+				throw new DuplicatedPreferenceException("Preference '" + preference
+						+ "' collides with another preference. Only one of each type is allowed.");
+			}
+			existingPreferences.add(preference.getClass());
+		}
 	}
 
-	private void initializeCharacter() {
+	public void createCharacter() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
+		setDefaultPreferences();
+		setCharacterDefinition();
+		setStartingValues();
+		setExtraPoints();
+		// Expend XP if any.
+		setExperiencePoints();
+	}
+
+	private void setDefaultPreferences() {
+		// Point distribution is "Fair" by default.
+		SpecializationPreferences selectedSpecialization = SpecializationPreferences.getSelected(preferences);
+		if (selectedSpecialization == null) {
+			selectedSpecialization = SpecializationPreferences.FAIR;
+			preferences.add(selectedSpecialization);
+		}
+
+		// Low traits by default.
+		TraitCostPreferences traitCostPreferences = TraitCostPreferences.getSelected(preferences);
+		if (traitCostPreferences == null) {
+			traitCostPreferences = TraitCostPreferences.LOW;
+			preferences.add(traitCostPreferences);
+		}
+	}
+
+	protected void setCharacterDefinition() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
 		// Check if race is set.
 		if (characterPlayer.getRace() == null) {
-
+			RandomRace randomRace = new RandomRace(characterPlayer, preferences);
+			randomRace.assignRace();
 		}
-	}
 
-	private void spendSkillsPoints() throws InvalidXmlElementException {
-		while (characterPlayer.getSkillsTotalPoints() < FreeStyleCharacterCreation.SKILLS_POINTS) {
-
+		if (characterPlayer.getFaction() == null) {
+			RandomFaction randomFaction = new RandomFaction(characterPlayer, preferences);
+			randomFaction.assignFaction();
 		}
-	}
-
-	private void spendExperiencePoints() {
-
-	}
-
-	private void spendCharacteristicsPoints() {
-		while (characterPlayer.getCharacteristicsTotalPoints() < FreeStyleCharacterCreation.CHARACTERISTICS_POINTS) {
-			String selectedCharacteristic = selectCharacteristicByWeight();
-			MachineLog.debug(this.getClass().getName(), "Selected characteristic is '" + characterPlayer.getCharacteristic(selectedCharacteristic) + "'.");
-			if (characterPlayer.getCharacteristic(selectedCharacteristic).getValue() < FreeStyleCharacterCreation.MAX_INITIAL_SKILL_VALUE)
-				characterPlayer.getCharacteristic(selectedCharacteristic).setValue(characterPlayer.getCharacteristic(selectedCharacteristic).getValue() + 1);
-		}
-	}
-
-	private TreeMap<Integer, String> assignCharacteristicsWeight() {
-		TreeMap<Integer, String> weightedCharacteristics = new TreeMap<>();
-		Integer count = 0;
-		for (CharacteristicType characteristicType : CharacteristicType.values()) {
-			int weight = getWeight(characteristicType);
-			if (weight > 0) {
-				for (Characteristic characteristic : characterPlayer.getAllCharacteristics()) {
-					weightedCharacteristics.put(count, characteristic.getId());
-					count += weight;
-				}
-			}
-		}
-		return weightedCharacteristics;
-	}
-
-	private int getWeight(CharacteristicType characteristicType) {
-		if (CharacteristicType.BODY.equals(characteristicType)) {
-			return bodyLevel;
-		}
-		if (CharacteristicType.MIND.equals(characteristicType)) {
-			return mentalLevel;
-		}
-		if (CharacteristicType.SPIRIT.equals(characteristicType)) {
-			return spiritLevel;
-		}
-		return 0;
 	}
 
 	/**
-	 * Selects a characteristic depending on its weight.
+	 * Using free style character generation. Only the first points to expend in a character.
+	 * 
+	 * @throws InvalidXmlElementException
+	 * @throws InvalidRandomElementSelectedException
 	 */
-	private String selectCharacteristicByWeight() {
-		Integer value = new Integer((int) (rand.nextDouble() * (bodyLevel * 3 + mentalLevel * 3 + spiritLevel * 3)));
-		return weightedCharacteristics.get(weightedCharacteristics.floorKey(value));
+	private void setStartingValues() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
+		characterPlayer.setFreeStyleCharacterCreation(new FreeStyleCharacterCreation());
+		// Characteristics
+		RandomCharacteristics randomCharacteristics = new RandomCharacteristics(characterPlayer, preferences);
+		randomCharacteristics.spendCharacteristicsPoints();
+		// Skills
+		RandomSkills randomSkills = new RandomSkills(characterPlayer, preferences);
+		randomSkills.spendSkillsPoints();
+		// Traits
+		RandomBeneficeDefinition randomBenefice = new RandomBeneficeDefinition(characterPlayer, preferences);
+		randomBenefice.assignAvailableBenefices();
+	}
+
+	private void setExtraPoints() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
+		// Traits.
+		// First, assign curses.
+		RandomCursesDefinition randomCurses = new RandomCursesDefinition(characterPlayer, preferences);
+		randomCurses.assignAvailableCurse();
+		// Set blessings.
+		RandomBlessingDefinition randomBlessing = new RandomBlessingDefinition(characterPlayer, preferences);
+		randomBlessing.assignAvailableBlessings();
+		// Set psique level
+		RandomPsique randomPsique = new RandomPsique(characterPlayer, preferences);
+		randomPsique.assignPsiqueLevel();
+		// Set Wyrd
+		IGaussianDistribution wyrdDistrubution = PsiqueLevelPreferences.getSelected(preferences);
+		int extraWyrd = wyrdDistrubution.randomGaussian();
+		characterPlayer.getOccultism().setExtraWyrd(extraWyrd - characterPlayer.getBasicWyrdValue());
+		RandomGenerationLog.info(this.getClass().getName(), "Added extra wyrd '" + extraWyrd + "'.");
+		// Set psi paths.
+		RandomPsiquePath randomPsiquePath = new RandomPsiquePath(characterPlayer, preferences);
+		randomPsiquePath.assignPsiquePaths();
+
+		// Spend remaining points in skills and characteristics.
+		int remainingPoints = FreeStyleCharacterCreation.FREE_AVAILABLE_POINTS
+				- CostCalculator.getCost(characterPlayer);
+
+		RandomGenerationLog.info(this.getClass().getName(), "Remaining points '" + remainingPoints + "'.");
+		IGaussianDistribution specialization = SpecializationPreferences.getSelected(preferences);
+		while (remainingPoints > 0) {
+			// Characteristics only if is a little specialized.
+			if (specialization.randomGaussian() > 4) {
+				RandomCharacteristicsExtraPoints randomCharacteristicsExtraPoints = new RandomCharacteristicsExtraPoints(
+						characterPlayer, preferences);
+				remainingPoints -= randomCharacteristicsExtraPoints.spendCharacteristicsPoints(remainingPoints);
+			}
+
+			if (remainingPoints > 0) {
+				RandomSkillExtraPoints randomSkillExtraPoints = new RandomSkillExtraPoints(characterPlayer, preferences);
+				remainingPoints -= randomSkillExtraPoints.spendSkillsPoints(remainingPoints);
+			}
+		}
+	}
+
+	private void setExperiencePoints() {
+
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append(characterPlayer.getInfo().getName() + " (" + characterPlayer.getRace() + ") ["
+				+ characterPlayer.getFaction() + "]");
+		sb.append(characterPlayer.getFreeStyleCharacterCreation().getSelectedCharacteristicsValues());
+		sb.append(characterPlayer.getFreeStyleCharacterCreation().getDesiredSkillRanks());
+		return sb.toString();
 	}
 }

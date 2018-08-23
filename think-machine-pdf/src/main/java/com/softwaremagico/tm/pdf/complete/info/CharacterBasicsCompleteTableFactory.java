@@ -30,7 +30,7 @@ import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.log.MachineLog;
+import com.softwaremagico.tm.log.PdfExporterLog;
 import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 
 public class CharacterBasicsCompleteTableFactory extends CharacterBasicsTableFactory {
@@ -85,7 +85,7 @@ public class CharacterBasicsCompleteTableFactory extends CharacterBasicsTableFac
 		try {
 			return createLogoCell();
 		} catch (DocumentException | IOException e) {
-			MachineLog.errorMessage(CharacterBasicsCompleteTableFactory.class.getName(), e);
+			PdfExporterLog.errorMessage(CharacterBasicsCompleteTableFactory.class.getName(), e);
 		}
 		return null;
 	}

@@ -25,10 +25,12 @@ package com.softwaremagico.tm.character.characteristics;
  */
 
 public class Characteristic extends CharacteristicDefinition {
-	int value;
+	public final static int DEFAULT_INITIAL_VALUE = 3;
+	private int value;
 
 	public Characteristic(CharacteristicDefinition characteristicDefinition) {
 		super(characteristicDefinition.getId(), characteristicDefinition.getName());
+		setType(characteristicDefinition.getType());
 	}
 
 	public int getValue() {

@@ -68,4 +68,36 @@ public class AvailableSkill extends Skill<AvailableSkill> {
 	public String toString() {
 		return getCompleteName();
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + ((specialization == null) ? 0 : specialization.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		AvailableSkill other = (AvailableSkill) obj;
+		if (specialization == null) {
+			if (other.specialization != null)
+				return false;
+		} else if (!specialization.equals(other.specialization))
+			return false;
+		return true;
+	}
+
+	public SkillRandomDefinitions getRandomDefinition() {
+		if (getSpecialization() != null) {
+			return getSpecialization().getRandomDefinition();
+		}
+		return getSkillDefinition().getRandomDefinition();
+	}
 }

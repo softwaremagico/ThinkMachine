@@ -32,4 +32,8 @@ public class InvalidRaceException extends InvalidXmlElementException {
 	public InvalidRaceException(String message) {
 		super(message);
 	}
+	
+	public InvalidRaceException(String message, Exception e) {
+		super(message, e);
+	}
 }

@@ -30,7 +30,7 @@ import java.io.IOException;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.PdfWriter;
-import com.softwaremagico.tm.log.MachineLog;
+import com.softwaremagico.tm.log.PdfExporterLog;
 import com.softwaremagico.tm.pdf.complete.events.FooterEvent;
 
 public abstract class PdfDocument {
@@ -81,13 +81,13 @@ public abstract class PdfDocument {
 			addEvent(writer);
 			generatePDF(document, writer);
 		} catch (NullPointerException e) {
-			MachineLog.errorMessage(this.getClass().getName(), e);
+			PdfExporterLog.errorMessage(this.getClass().getName(), e);
 			return false;
 		} catch (EmptyPdfBodyException | IOException e) {
-			MachineLog.errorMessage(this.getClass().getName(), e);
+			PdfExporterLog.errorMessage(this.getClass().getName(), e);
 			return false;
 		} catch (Exception e) {
-			MachineLog.errorMessage(this.getClass().getName(), e);
+			PdfExporterLog.errorMessage(this.getClass().getName(), e);
 			return false;
 		}
 		// }

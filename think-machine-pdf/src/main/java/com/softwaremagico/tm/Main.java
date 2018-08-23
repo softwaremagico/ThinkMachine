@@ -6,7 +6,7 @@ import java.io.IOException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.json.CharacterJsonManager;
 import com.softwaremagico.tm.language.LanguagePool;
-import com.softwaremagico.tm.log.MachineLog;
+import com.softwaremagico.tm.log.PdfExporterLog;
 import com.softwaremagico.tm.pdf.complete.CharacterSheet;
 
 /*-
@@ -65,7 +65,7 @@ public class Main {
 
 				player = CharacterJsonManager.fromFile(jsonFile);
 			} catch (IOException e) {
-				MachineLog.errorMessage(Main.class.getName(), e);
+				PdfExporterLog.errorMessage(Main.class.getName(), e);
 			}
 		}
 	}

@@ -25,8 +25,9 @@ package com.softwaremagico.tm.pdf.small.traits;
  */
 
 import com.itextpdf.text.Paragraph;
+import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.character.traits.Benefit;
+import com.softwaremagico.tm.character.benefices.AvailableBenefice;
 import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.complete.elements.VerticalTable;
 
@@ -35,7 +36,7 @@ public class BeneficesTable extends VerticalTable {
 	private final static float[] WIDTHS = { 1f };
 	private final static int ROWS = 10;
 
-	public BeneficesTable(CharacterPlayer characterPlayer) {
+	public BeneficesTable(CharacterPlayer characterPlayer) throws InvalidXmlElementException {
 		super(WIDTHS);
 		getDefaultCell().setBorder(0);
 
@@ -43,7 +44,7 @@ public class BeneficesTable extends VerticalTable {
 
 		int added = 0;
 		if (characterPlayer != null) {
-			for (Benefit benefit : characterPlayer.getBenefits()) {
+			for (AvailableBenefice benefit : characterPlayer.getAllBenefices()) {
 				addCell(createElementLine(benefit.getName(), TRAIT_COLUMN_WIDTH, FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE));
 				added++;
 			}

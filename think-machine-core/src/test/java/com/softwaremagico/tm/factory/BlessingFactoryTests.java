@@ -29,13 +29,22 @@ import junit.framework.Assert;
 import org.testng.annotations.Test;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.character.traits.BlessingFactory;
+import com.softwaremagico.tm.character.blessings.BlessingFactory;
 
 @Test(groups = { "blessingFactory" })
 public class BlessingFactoryTests {
+	private final static String LANGUAGE = "es";
+	private final static int DEFINED_BLESSINGS = 99;
+	private final static int DEFINED_BONIFICATIONS_MISSING_EYE = 2;
 
 	@Test
 	public void readBlessings() throws InvalidXmlElementException {
-		Assert.assertEquals(3, BlessingFactory.getInstance().getElements("es").size());
+		Assert.assertEquals(DEFINED_BLESSINGS, BlessingFactory.getInstance().getElements(LANGUAGE).size());
+	}
+
+	@Test
+	public void multiplesBonifications() throws InvalidXmlElementException {
+		Assert.assertEquals(DEFINED_BONIFICATIONS_MISSING_EYE,
+				BlessingFactory.getInstance().getElement("missingEye", LANGUAGE).getBonifications().size());
 	}
 }

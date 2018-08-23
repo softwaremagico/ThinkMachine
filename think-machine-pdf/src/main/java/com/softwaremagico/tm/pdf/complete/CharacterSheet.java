@@ -30,6 +30,7 @@ import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.language.Translator;
 import com.softwaremagico.tm.pdf.complete.characteristics.CharacteristicsTableFactory;
@@ -99,7 +100,7 @@ public class CharacterSheet extends PdfDocument {
 		document.newPage();
 	}
 
-	private PdfPTable createRearTable() {
+	private PdfPTable createRearTable() throws InvalidXmlElementException {
 		PdfPTable mainTable = new PdfPTable(REAR_TABLE_WIDTHS);
 		mainTable.getDefaultCell().setBorder(0);
 		mainTable.setWidthPercentage(100);

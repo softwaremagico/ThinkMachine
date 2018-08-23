@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<occultismDuration>
+	<instant>
+		<name>
+			<en>Instant</en>
+			<es>Instantáneo</es>
+		</name>
+	</instant>
+	<temporary>
+		<name>
+			<en>Temporary</en>
+			<es>Temporal</es>
+		</name>
+	</temporary>
+	<oneSpan>
+		<name>
+			<en>One Span</en>
+			<es>Una Escena</es>
+		</name>
+	</oneSpan>
+	<oneAct>
+		<name>
+			<en>One Act</en>
+			<es>Un Acto</es>
+		</name>
+	</oneAct>
+	<extended>
+		<name>
+			<en>Extended</en>
+			<es>Extendido</es>
+		</name>
+	</extended>
+	<prolonged>
+		<name>
+			<en>Prolonged</en>
+			<es>Prolongado</es>
+		</name>
+	</prolonged>
+	<perpetual>
+		<name>
+			<en>Perpetual</en>
+			<es>Perpetuo</es>
+		</name>
+	</perpetual>
+	
+</occultismDuration>

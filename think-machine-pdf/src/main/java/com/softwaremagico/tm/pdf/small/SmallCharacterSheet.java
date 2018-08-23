@@ -107,7 +107,8 @@ public class SmallCharacterSheet extends PdfDocument {
 		BaseElement.setTablePropierties(basicTable);
 		basicTable.getDefaultCell().setBorder(0);
 
-		PdfPTable characteristicsTable = CharacteristicsTableFactory.getCharacteristicsBasicsTable(getCharacterPlayer());
+		PdfPTable characteristicsTable = CharacteristicsTableFactory
+				.getCharacteristicsBasicsTable(getCharacterPlayer());
 		PdfPCell characteristicCell = new PdfPCell(characteristicsTable);
 		characteristicCell.setBorderWidthLeft(0);
 		basicTable.addCell(characteristicCell);
@@ -147,14 +148,15 @@ public class SmallCharacterSheet extends PdfDocument {
 
 		PdfPTable fightTable = new PdfPTable(new float[] { 3f, 5f, 1f });
 
-		if (characterPlayer.getOccultism().getElements().isEmpty() && !characterPlayer.getCybernetics().getElements().isEmpty()) {
+		if (characterPlayer.getOccultism().getSelectedPowers().isEmpty()
+				&& !characterPlayer.getCybernetics().getElements().isEmpty()) {
 			PdfPTable cyberneticsTable = new CyberneticsTable(getCharacterPlayer());
 			PdfPCell cyberneticsCell = new PdfPCell(cyberneticsTable);
 			cyberneticsCell.setBorderWidthLeft(0);
 			fightTable.addCell(cyberneticsCell);
 
 		} else {
-			PdfPTable occultismTable = new OccultismTable(getCharacterPlayer());
+			PdfPTable occultismTable = new OccultismTable(getCharacterPlayer(), getLanguage());
 			PdfPCell occultismCell = new PdfPCell(occultismTable);
 			occultismCell.setBorderWidthLeft(0);
 			fightTable.addCell(occultismCell);

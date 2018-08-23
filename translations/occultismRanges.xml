@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<occultismRange>
+	<self>
+		<name>
+			<en>Self</en>
+			<es>Personal</es>
+		</name>
+	</self>
+	<touch>
+		<name>
+			<en>Touch</en>
+			<es>Toque</es>
+		</name>
+	</touch>
+	<sensory>
+		<name>
+			<en>Sensory</en>
+			<es>Sensorial</es>
+		</name>
+	</sensory>
+	<sight>
+		<name>
+			<en>Sight</en>
+			<es>Vista</es>
+		</name>
+	</sight>
+	<distant>
+		<name>
+			<en>Distant</en>
+			<es>Distante</es>
+		</name>
+	</distant>
+</occultismRange>

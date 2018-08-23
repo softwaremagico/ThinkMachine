@@ -1,13 +1,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId>thinking-machine-core</artifactId>
+	<artifactId>think-machine-core</artifactId>
 	<packaging>jar</packaging>
 	<name>Think Machine (Core)</name>
 
 	<parent>
 		<groupId>com.softwaremagico</groupId>
-		<artifactId>thinking-machine</artifactId>
-		<version>0.3.6-SNAPSHOT</version>
+		<artifactId>think-machine</artifactId>
+		<version>0.3.10-SNAPSHOT</version>
 	</parent>
 
 	<properties>
@@ -34,90 +34,6 @@
 		</plugins>
 	</build>
 
-	<profiles>
-		<profile>
-			<id>release</id>
-			<activation>
-				<property>
-					<name>release</name>
-				</property>
-			</activation>
-			<build>
-				<plugins>
-				<!-- Copy geneerateed PDF -->
-					<plugin>
-						<artifactId>maven-antrun-plugin</artifactId>
-						<version>${maven-antrun-plugin.version}</version>
-						<executions>
-							<execution>
-								<phase>install</phase>
-								<configuration>
-									<target>
-										<!-- delete old folder -->
-										<delete dir="${main.basedir}/sheets" failonerror="false" includeemptydirs="true" />
-										<!-- Copy sheets -->
-										<copy file="/tmp/FadingSuns_EN.pdf" tofile="${main.basedir}/sheets/FadingSuns_EN.pdf" overwrite="true" />
-										<copy file="/tmp/FadingSuns_ES.pdf" tofile="${main.basedir}/sheets/FadingSuns_ES.pdf" overwrite="true" />
-									</target>
-								</configuration>
-								<goals>
-									<goal>run</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-					<!-- Convert PDF to PNG -->
-					<plugin>
-						<artifactId>exec-maven-plugin</artifactId>
-						<groupId>org.codehaus.mojo</groupId>
-						<executions>
-							<execution>
-								<id>PdfToPng (ES)</id>
-								<phase>install</phase>
-								<goals>
-									<goal>exec</goal>
-								</goals>
-								<configuration>
-									<executable>convert</executable>
-									<arguments>
-										<argument>-background</argument>
-										<argument>white</argument>
-										<argument>-alpha</argument>
-										<argument>remove</argument>
-										<argument>-density</argument>
-										<argument>600</argument>
-										<argument>${main.basedir}/sheets/FadingSuns_ES.pdf</argument>
-										<argument>${main.basedir}/sheets/FadingSuns_ES-%01d.png</argument>
-									</arguments>
-								</configuration>
-							</execution>
-							<execution>
-								<id>PdfToPng (EN)</id>
-								<phase>install</phase>
-								<goals>
-									<goal>exec</goal>
-								</goals>
-								<configuration>
-									<executable>convert</executable>
-									<arguments>
-										<argument>-background</argument>
-										<argument>white</argument>
-										<argument>-alpha</argument>
-										<argument>remove</argument>
-										<argument>-density</argument>
-										<argument>600</argument>
-										<argument>${main.basedir}/sheets/FadingSuns_EN.pdf</argument>
-										<argument>${main.basedir}/sheets/FadingSuns_EN-%01d.png</argument>
-									</arguments>
-								</configuration>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
-
 	<dependencies>
 		<!-- JSON -->
 		<dependency>
@@ -141,6 +57,11 @@
 			<artifactId>testng</artifactId>
 			<version>${org.testng.version}</version>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.reflections</groupId>
+			<artifactId>reflections</artifactId>
+			<version>${reflections.version}</version>
 		</dependency>
 	</dependencies>
 </project>

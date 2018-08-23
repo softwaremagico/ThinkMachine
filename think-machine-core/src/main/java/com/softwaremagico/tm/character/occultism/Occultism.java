@@ -24,53 +24,104 @@ package com.softwaremagico.tm.character.occultism;
  * #L%
  */
 
-import com.softwaremagico.tm.ElementList;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
-public class Occultism extends ElementList<OccultismPower> {
-	private int psiValue = 0;
-	private int teurgyValue = 0;
+import com.softwaremagico.tm.character.factions.Faction;
+
+public class Occultism {
+	private Map<String, Integer> psiqueValue;
+	private Map<String, Integer> darkSideValue;
 	private int extraWyrd = 0;
-	private int urge = 0;
-	private int hubris = 0;
+
+	// Path --> Set<Power>
+	private final Map<String, List<String>> selectedPowers;
+
+	public Occultism() {
+		selectedPowers = new HashMap<>();
+		psiqueValue = new HashMap<>();
+		darkSideValue = new HashMap<>();
+	}
 
 	public int getExtraWyrd() {
 		return extraWyrd;
 	}
 
 	public void setExtraWyrd(int extraWyrd) {
-		this.extraWyrd = extraWyrd;
+		if (extraWyrd > 0) {
+			this.extraWyrd = extraWyrd;
+		} else {
+			this.extraWyrd = 0;
+		}
 	}
 
-	public int getPsiValue() {
-		return psiValue;
+	public int getPsiqueLevel(OccultismType occultismType) {
+		if (psiqueValue.get(occultismType.getId()) != null) {
+			return psiqueValue.get(occultismType.getId());
+		}
+		return 0;
 	}
 
-	public void setPsiValue(int psyValue) {
-		this.psiValue = psyValue;
+	public void setPsiqueLevel(OccultismType occultismType, int psyValue) {
+		psiqueValue.put(occultismType.getId(), new Integer(psyValue));
 	}
 
-	public int getTeurgyValue() {
-		return teurgyValue;
+	public int getDarkSideLevel(OccultismType occultismType) {
+		if (darkSideValue.get(occultismType.getId()) != null) {
+			return darkSideValue.get(occultismType.getId());
+		}
+		return 0;
 	}
 
-	public void setTeurgyValue(int teurgyValue) {
-		this.teurgyValue = teurgyValue;
+	public void setDarkSideLevel(OccultismType occultismType, int darkSideValue) {
+		this.darkSideValue.put(occultismType.getId(), new Integer(darkSideValue));
 	}
 
-	public int getUrge() {
-		return urge;
+	public Map<String, List<String>> getSelectedPowers() {
+		return selectedPowers;
 	}
 
-	public void setUrge(int urge) {
-		this.urge = urge;
-	}
+	public void addPower(OccultismPower power, String language, Faction faction) throws InvalidOccultismPowerException {
+		if (power == null) {
+			throw new InvalidOccultismPowerException("Power cannot be null.");
+		}
+		OccultismPath path = OccultismPathFactory.getInstance().getOccultismPath(power, language);
+		// Correct level of psi or teurgy
+		if (Objects.equals(path.getOccultismType(), OccultismTypeFactory.getPsi(language))
+				&& power.getLevel() > getPsiqueLevel(OccultismTypeFactory.getPsi(language))) {
+			throw new InvalidPsiqueLevelException("Insuficient psi level to acquire '" + power + "'.");
+		}
+		if (Objects.equals(path.getOccultismType(), OccultismTypeFactory.getTheurgy(language))
+				&& power.getLevel() > getPsiqueLevel(OccultismTypeFactory.getTheurgy(language))) {
+			throw new InvalidPsiqueLevelException("Insuficient theurgy level to acquire '" + power + "'.");
+		}
+		// Limited to some factions
+		if (!path.getFactionsAllowed().isEmpty() && !path.getFactionsAllowed().contains(faction)) {
+			throw new InvalidFactionOfPowerException("Power can only be acquired by  '" + path.getFactionsAllowed()
+					+ "' character faction is '" + faction + "'.");
+		}
 
-	public int getHubris() {
-		return hubris;
+		// Psi must have previous level.
+		if (Objects.equals(path.getOccultismType(), OccultismTypeFactory.getPsi(language))) {
+			boolean acquiredLevel = false;
+			for (OccultismPower previousLevelPower : path.getPreviousLevelPowers(power)) {
+				if (selectedPowers.get(path.getId()) != null
+						&& selectedPowers.get(path.getId()).contains(previousLevelPower.getId())) {
+					acquiredLevel = true;
+					break;
+				}
+			}
+			if (!acquiredLevel && !path.getPreviousLevelPowers(power).isEmpty()) {
+				throw new InvalidPowerLevelException("At least one power of '" + path.getPreviousLevelPowers(power)
+						+ "' must be selected.");
+			}
+		}
+		if (selectedPowers.get(path.getId()) == null) {
+			selectedPowers.put(path.getId(), new ArrayList<String>());
+		}
+		selectedPowers.get(path.getId()).add(power.getId());
 	}
-
-	public void setHubris(int hubris) {
-		this.hubris = hubris;
-	}
-
 }

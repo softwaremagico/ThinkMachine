@@ -40,6 +40,8 @@ public class AvailableSkillsFactory {
 	private static Map<String, List<AvailableSkill>> naturalSkills = new HashMap<>();
 	private static Map<String, List<AvailableSkill>> learnedSkills = new HashMap<>();
 
+	private static Map<String, Map<SkillGroup, Set<AvailableSkill>>> skillsByGroup = new HashMap<>();
+
 	private static AvailableSkillsFactory instance;
 
 	private static void createInstance() {
@@ -63,6 +65,19 @@ public class AvailableSkillsFactory {
 		elements = new HashMap<>();
 		naturalSkills = new HashMap<>();
 		learnedSkills = new HashMap<>();
+		skillsByGroup = new HashMap<>();
+	}
+
+	public Set<AvailableSkill> getSkillsByGroup(SkillGroup skillGroup, String language) throws InvalidXmlElementException {
+		if (skillsByGroup == null || skillsByGroup.isEmpty() || skillsByGroup.get(language).isEmpty()) {
+			for (AvailableSkill availableNaturalSkill : getNaturalSkills(language)) {
+				classifySkillByGroup(availableNaturalSkill, language);
+			}
+			for (AvailableSkill availableLearnedSkill : getLearnedSkills(language)) {
+				classifySkillByGroup(availableLearnedSkill, language);
+			}
+		}
+		return skillsByGroup.get(language).get(skillGroup);
 	}
 
 	public List<AvailableSkill> getNaturalSkills(String language) throws InvalidXmlElementException {
@@ -164,6 +179,16 @@ public class AvailableSkillsFactory {
 			}
 		}
 		return availableSkills;
+	}
+
+	private void classifySkillByGroup(AvailableSkill availableSkill, String language) {
+		if (skillsByGroup.get(language) == null) {
+			skillsByGroup.put(language, new HashMap<SkillGroup, Set<AvailableSkill>>());
+		}
+		if (skillsByGroup.get(language).get(availableSkill.getSkillDefinition().getSkillGroup()) == null) {
+			skillsByGroup.get(language).put(availableSkill.getSkillDefinition().getSkillGroup(), new HashSet<AvailableSkill>());
+		}
+		skillsByGroup.get(language).get(availableSkill.getSkillDefinition().getSkillGroup()).add(availableSkill);
 	}
 
 }

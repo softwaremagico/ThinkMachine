@@ -80,6 +80,7 @@
 		<group>analytical</group>
 		<random>
 			<techlevel>2</techlevel>
+			<recommendedFactionGroups>nobility, church, guild</recommendedFactionGroups>
 		</random>
 	</bureaucracy>
 	<physick>
@@ -160,7 +161,7 @@
 		<group>science</group>
 		<factionSkill>engineers</factionSkill>
 		<random>
-			<techlevel>5</techlevel>
+			<techlevel>6</techlevel>
 		</random>
 	</terraforming>
 	<energyGuns>
@@ -180,7 +181,7 @@
 		</name>
 		<group>combat</group>
 		<random>
-			<techlevel>3</techlevel>
+			<techlevel>2</techlevel>
 		</random>
 	</slugGuns>
 	<archery>
@@ -189,6 +190,9 @@
 			<es>Arquería</es>
 		</name>
 		<group>combat</group>
+		<random>
+			<techlevel>0</techlevel>
+		</random>
 	</archery>
 	<artifactMelee>
 		<name>
@@ -277,6 +281,7 @@
 		<factionSkill>charioteers</factionSkill>
 		<random>
 			<techlevel>5</techlevel>
+			<recommendedFactions>charioteers</recommendedFactions>
 		</random>
 	</spacecraft>
 	<landcarft>
@@ -302,7 +307,7 @@
 			</music>
 			<caligraphy>
 				<en>Caligraphy</en>
-				<es>Caligraphy</es>
+				<es>Caligrafía</es>
 			</caligraphy>
 			<drawing>
 				<en>Drawing</en>
@@ -375,19 +380,22 @@
 		</name>
 		<group>malefaction</group>
 	</torture>
-	<atheltics>
+	<athletics>
 		<name>
 			<en>Athletics</en>
 			<es>Atletismo</es>
 		</name>
 		<group>physical</group>
-	</atheltics>
+	</athletics>
 	<selfControl>
 		<name>
 			<en>Self Control</en>
 			<es>Autocontrol</es>
 		</name>
 		<group>physical</group>
+		<random>
+			<recommendedFactionGroups>church</recommendedFactionGroups>
+		</random>
 	</selfControl>
 	<survival>
 		<name>
@@ -406,6 +414,11 @@
 			<jumpwebLore>
 				<en>Jumpweb</en>
 				<es>Red de Salto</es>
+				<random>
+					<techlevel>5</techlevel>
+					<generalProbability>low</generalProbability>
+					<recommendedFactions>charioteers, scravers</recommendedFactions>
+				</random>
 			</jumpwebLore>
 			<beastsLore>
 				<en>Beasts</en>
@@ -418,10 +431,18 @@
 			<thinkMachineLore>
 				<en>Think Machine</en>
 				<es>Máquina Pensante</es>
+				<random>
+					<techlevel>5</techlevel>
+					<recommendedFactions>engineers</recommendedFactions>
+				</random>
 			</thinkMachineLore>
 			<kelantiLore>
 				<en>Kelanti</en>
 				<es>Kelanti</es>
+				<random>
+					<recommendedRaces>obun</recommendedRaces>
+					<generalProbability>low</generalProbability>
+				</random>
 			</kelantiLore>
 		</specializations>
 		<numberToShow>4</numberToShow>
@@ -451,10 +472,16 @@
 			<annuaki>
 				<es>Anunnaki</es>
 				<en>Anunnaki</en>
+				<random>
+					<generalProbability>minimum</generalProbability>
+				</random>
 			</annuaki>
 			<vau>
 				<en>Vau</en>
 				<es>Vau</es>
+				<random>
+					<generalProbability>minimum</generalProbability>
+				</random>
 			</vau>
 		</specializations>
 		<numberToShow>2</numberToShow>
@@ -472,6 +499,9 @@
 			<es>Etiqueta</es>
 		</name>
 		<group>social</group>
+		<random>
+			<recommendedFactionGroups>nobility</recommendedFactionGroups>
+		</random>
 	</etiquette>
 	<knavery>
 		<name>
@@ -486,16 +516,20 @@
 			<es>Liderazgo</es>
 		</name>
 		<group>social</group>
+		<random>
+			<recommendedFactionGroups>nobility, church</recommendedFactionGroups>
+		</random>
 	</leadership>
 	<spacecraftOperations>
 		<name>
 			<en>Spacecraft Operations</en>
 			<es>Mantenimiento de Naves</es>
 		</name>
-		<factionSkill>engineers</factionSkill>
+		<factionSkill>engineers, charioteers</factionSkill>
 		<group>technical</group>
 		<random>
 			<techlevel>5</techlevel>
+			<recommendedFactions>engineers, charioteers</recommendedFactions>
 		</random>
 	</spacecraftOperations>
 	<techRedemption>
@@ -507,6 +541,8 @@
 		<group>technical</group>
 		<random>
 			<techlevel>3</techlevel>
+			<recommendedFactionGroups>guild</recommendedFactionGroups>
+			<recommendedFactions>engineers</recommendedFactions>
 		</random>
 	</techRedemption>
 	<thinkMachine>
@@ -514,10 +550,11 @@
 			<en>Think Machine</en>
 			<es>Máquina Pensante</es>
 		</name>
-		<factionSkill>engineers</factionSkill>
+		<factionSkill>engineers, charioteers</factionSkill>
 		<group>technical</group>
 		<random>
 			<techlevel>4</techlevel>
+			<recommendedFactions>engineers, charioteers</recommendedFactions>
 		</random>
 	</thinkMachine>
 </skills>

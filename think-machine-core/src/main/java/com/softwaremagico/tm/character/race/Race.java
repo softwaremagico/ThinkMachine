@@ -32,19 +32,19 @@ import com.softwaremagico.tm.log.MachineLog;
 
 @SuppressWarnings("unused")
 public class Race extends Element<Race> {
-	private RaceCharacteristic strength = new RaceCharacteristic(CharacteristicName.STRENGTH);
-	private RaceCharacteristic dexterity = new RaceCharacteristic(CharacteristicName.DEXTERITY);
-	private RaceCharacteristic endurance = new RaceCharacteristic(CharacteristicName.ENDURANCE);
-	private RaceCharacteristic wits = new RaceCharacteristic(CharacteristicName.WITS);
-	private RaceCharacteristic perception = new RaceCharacteristic(CharacteristicName.PERCEPTION);
-	private RaceCharacteristic tech = new RaceCharacteristic(CharacteristicName.TECH);
-	private RaceCharacteristic presence = new RaceCharacteristic(CharacteristicName.PRESENCE);
-	private RaceCharacteristic will = new RaceCharacteristic(CharacteristicName.WILL);
-	private RaceCharacteristic faith = new RaceCharacteristic(CharacteristicName.FAITH);
+	private final RaceCharacteristic strength = new RaceCharacteristic(CharacteristicName.STRENGTH);
+	private final RaceCharacteristic dexterity = new RaceCharacteristic(CharacteristicName.DEXTERITY);
+	private final RaceCharacteristic endurance = new RaceCharacteristic(CharacteristicName.ENDURANCE);
+	private final RaceCharacteristic wits = new RaceCharacteristic(CharacteristicName.WITS);
+	private final RaceCharacteristic perception = new RaceCharacteristic(CharacteristicName.PERCEPTION);
+	private final RaceCharacteristic tech = new RaceCharacteristic(CharacteristicName.TECH);
+	private final RaceCharacteristic presence = new RaceCharacteristic(CharacteristicName.PRESENCE);
+	private final RaceCharacteristic will = new RaceCharacteristic(CharacteristicName.WILL);
+	private final RaceCharacteristic faith = new RaceCharacteristic(CharacteristicName.FAITH);
 
-	private RaceCharacteristic movement = new RaceCharacteristic(CharacteristicName.MOVEMENT);
-	private RaceCharacteristic initiative = new RaceCharacteristic(CharacteristicName.INITIATIVE);
-	private RaceCharacteristic defense = new RaceCharacteristic(CharacteristicName.DEFENSE);
+	private final RaceCharacteristic movement = new RaceCharacteristic(CharacteristicName.MOVEMENT);
+	private final RaceCharacteristic initiative = new RaceCharacteristic(CharacteristicName.INITIATIVE);
+	private final RaceCharacteristic defense = new RaceCharacteristic(CharacteristicName.DEFENSE);
 
 	private int psi;
 	private int theurgy;
@@ -53,8 +53,11 @@ public class Race extends Element<Race> {
 
 	private int cost;
 
+	private final RaceRandomDefinitions randomDefinition;
+
 	public Race(String id, String name) {
 		super(id, name);
+		randomDefinition = new RaceRandomDefinitions();
 	}
 
 	public Race(String name, int strength, int dexterity, int endurance, int wits, int perception, int tech, int presence, int will, int faith, int movement,
@@ -106,7 +109,7 @@ public class Race extends Element<Race> {
 
 	public void setValue(CharacteristicName characteristicName, int value) {
 		try {
-			getParameter(characteristicName).setValue(value);
+			getParameter(characteristicName).setInitialValue(value);
 		} catch (NullPointerException npe) {
 			MachineLog.severe(this.getClass().getName(), "Invalid value parameter '" + characteristicName + "'.");
 		}
@@ -154,5 +157,9 @@ public class Race extends Element<Race> {
 
 	public void setCost(int cost) {
 		this.cost = cost;
+	}
+
+	public RaceRandomDefinitions getRandomDefinition() {
+		return randomDefinition;
 	}
 }

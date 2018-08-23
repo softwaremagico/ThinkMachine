@@ -25,21 +25,29 @@ package com.softwaremagico.tm.json;
  */
 
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonSerializationContext;
+import com.google.gson.JsonSerializer;
 import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.character.values.IValue;
 
 public class CharacterJsonManager {
 
 	public static String toJson(CharacterPlayer characterPlayer) {
 		if (characterPlayer != null) {
+			GsonBuilder gsonBuilder = new GsonBuilder();
+			gsonBuilder.setPrettyPrinting();
+			gsonBuilder.registerTypeAdapter(IValue.class, new IValueSerializer<IValue>());
 			// final Gson gson = new
 			// GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
-			final Gson gson = new GsonBuilder().setPrettyPrinting().create();
-			final String jsonText = gson.toJson(characterPlayer);
+			Gson gson = gsonBuilder.create();
+			String jsonText = gson.toJson(characterPlayer);
 			return jsonText;
 		}
 		return null;
@@ -47,7 +55,11 @@ public class CharacterJsonManager {
 
 	public static CharacterPlayer fromJson(String jsonText) {
 		if (jsonText != null && jsonText.length() > 0) {
-			final Gson gson = new GsonBuilder().create();
+			GsonBuilder gsonBuilder = new GsonBuilder();
+			gsonBuilder.setPrettyPrinting();
+			gsonBuilder.registerTypeAdapter(IValue.class, new InterfaceAdapter<IValue>());
+			Gson gson = gsonBuilder.create();
+
 			CharacterPlayer characterPlayer = gson.fromJson(jsonText, CharacterPlayer.class);
 			return characterPlayer;
 		}
@@ -57,5 +69,12 @@ public class CharacterJsonManager {
 	public static CharacterPlayer fromFile(String path) throws IOException {
 		String jsonText = new String(Files.readAllBytes(Paths.get(path)));
 		return fromJson(jsonText);
+	}
+
+	private static class IValueSerializer<T> implements JsonSerializer<T> {
+		@Override
+		public JsonElement serialize(T link, Type type, JsonSerializationContext context) {
+			return context.serialize(link, link.getClass());
+		}
 	}
 }
