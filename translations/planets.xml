@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<planets>
+	<sutek>
+		<name>
+			<en>Sutek</en>
+			<es>Sutec</es>
+		</name>
+		<faction>hazat</faction>
+	</sutek>
+	<aragon>
+		<name>
+			<en>Aragon</en>
+			<es>Aragon</es>
+		</name>
+		<faction>hazat</faction>
+	</aragon>
+	<veraCruz>
+		<name>
+			<en>Vera Cruz</en>
+			<es>Vera Cruz</es>
+		</name>
+		<faction>hazat</faction>
+	</veraCruz>
+	<hira>
+		<name>
+			<en>Hira</en>
+			<es>Hira</es>
+		</name>
+		<faction>hazat</faction>
+	</hira>
+</planets>
