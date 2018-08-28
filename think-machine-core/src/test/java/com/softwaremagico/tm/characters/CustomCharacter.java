@@ -84,7 +84,7 @@ public class CustomCharacter {
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("lore", "jumpwebLore", language), 4);
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("lore", "beastsLore", language), 2);
 
-		player.getOccultism().setPsiqueLevel(OccultismTypeFactory.getPsi(language), 4);
+		player.getOccultism().setPsiqueLevel(OccultismTypeFactory.getPsi(language), 4, player.getLanguage(), player.getFaction());
 		player.getOccultism().setDarkSideLevel(OccultismTypeFactory.getPsi(language), 1);
 
 		player.getOccultism().addPower(

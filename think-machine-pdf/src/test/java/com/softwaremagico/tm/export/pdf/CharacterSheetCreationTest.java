@@ -127,7 +127,7 @@ public class CharacterSheetCreationTest {
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("lore", "jumpwebLore", LANGUAGE), 4);
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("lore", "beastsLore", LANGUAGE), 2);
 
-		player.getOccultism().setPsiqueLevel(OccultismTypeFactory.getPsi(player.getLanguage()), 4);
+		player.getOccultism().setPsiqueLevel(OccultismTypeFactory.getPsi(player.getLanguage()), 4, player.getLanguage(), player.getFaction());
 		player.getOccultism().setDarkSideLevel(OccultismTypeFactory.getPsi(player.getLanguage()), 1);
 
 		player.getOccultism().addPower(

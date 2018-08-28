@@ -29,11 +29,14 @@ import org.testng.annotations.Test;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
+import com.softwaremagico.tm.character.factions.FactionsFactory;
 import com.softwaremagico.tm.character.occultism.InvalidFactionOfPowerException;
 import com.softwaremagico.tm.character.occultism.InvalidPowerLevelException;
 import com.softwaremagico.tm.character.occultism.InvalidPsiqueLevelException;
 import com.softwaremagico.tm.character.occultism.OccultismPathFactory;
 import com.softwaremagico.tm.character.occultism.OccultismTypeFactory;
+import com.softwaremagico.tm.character.race.InvalidRaceException;
+import com.softwaremagico.tm.character.race.RaceFactory;
 import com.softwaremagico.tm.characters.CustomCharacter;
 
 @Test(groups = { "occultism" })
@@ -59,7 +62,7 @@ public class OccultismTests {
 	@Test
 	public void canAddPowersWithMissingLevels() throws InvalidXmlElementException, TooManyBlessingsException {
 		CharacterPlayer player = CustomCharacter.create(LANGUAGE);
-		player.getOccultism().setPsiqueLevel(OccultismTypeFactory.getPsi(player.getLanguage()), 6);
+		player.getOccultism().setPsiqueLevel(OccultismTypeFactory.getPsi(player.getLanguage()), 6, player.getLanguage(), player.getFaction());
 		player.getOccultism().addPower(
 				OccultismPathFactory.getInstance().getElement("farHand", player.getLanguage()).getOccultismPowers()
 						.get("farWall"), player.getLanguage(), player.getFaction());
@@ -68,10 +71,18 @@ public class OccultismTests {
 	@Test(expectedExceptions = { InvalidFactionOfPowerException.class })
 	public void cannotAddPowerOfDifferentFaction() throws TooManyBlessingsException, InvalidXmlElementException {
 		CharacterPlayer player = CustomCharacter.create(LANGUAGE);
-		player.getOccultism().setPsiqueLevel(OccultismTypeFactory.getTheurgy(player.getLanguage()), 5);
+		player.getOccultism().setPsiqueLevel(OccultismTypeFactory.getTheurgy(player.getLanguage()), 5, player.getLanguage(), player.getFaction());
 		player.getOccultism().addPower(
 				OccultismPathFactory.getInstance().getElement("orthodoxRituals", player.getLanguage())
 						.getOccultismPowers().get("consecration"), player.getLanguage(), player.getFaction());
+	}
+	
+	@Test(expectedExceptions = { InvalidPsiqueLevelException.class })
+	public void voroxCannotHavePsiqueLevel() throws InvalidRaceException, InvalidXmlElementException {
+		CharacterPlayer player = new CharacterPlayer(LANGUAGE);
+		player.setRace(RaceFactory.getInstance().getElement("vorox", LANGUAGE));
+		player.setFaction(FactionsFactory.getInstance().getElement("vorox", LANGUAGE));
+		player.getOccultism().setPsiqueLevel(OccultismTypeFactory.getPsi(LANGUAGE), 1, LANGUAGE, player.getFaction());
 	}
 
 }

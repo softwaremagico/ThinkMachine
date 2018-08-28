@@ -30,7 +30,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+import com.softwaremagico.tm.InvalidXmlElementException;
+import com.softwaremagico.tm.character.benefices.AvailableBenefice;
+import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
 import com.softwaremagico.tm.character.factions.Faction;
+import com.softwaremagico.tm.log.MachineLog;
 
 public class Occultism {
 	private Map<String, Integer> psiqueValue;
@@ -65,7 +69,24 @@ public class Occultism {
 		return 0;
 	}
 
-	public void setPsiqueLevel(OccultismType occultismType, int psyValue) {
+	public void setPsiqueLevel(OccultismType occultismType, int psyValue,
+			String language, Faction faction) throws InvalidPsiqueLevelException {
+		if (psyValue < 0) {
+			throw new InvalidPsiqueLevelException(
+					"Psique level cannot be less than zero.");
+		}
+		AvailableBenefice noOccult = null;
+		try {
+			noOccult = AvailableBeneficeFactory.getInstance().getElement(
+					"noOccult", language);
+		} catch (InvalidXmlElementException e) {
+			MachineLog.errorMessage(this.getClass().getName(), e);
+		}
+		if (psyValue != 0
+				&& (faction.getBenefices().contains(noOccult) || faction == null)) {
+			throw new InvalidPsiqueLevelException("Faction '" + faction
+					+ "' cannot have psique levels.");
+		}
 		psiqueValue.put(occultismType.getId(), new Integer(psyValue));
 	}
 
@@ -77,44 +98,62 @@ public class Occultism {
 	}
 
 	public void setDarkSideLevel(OccultismType occultismType, int darkSideValue) {
-		this.darkSideValue.put(occultismType.getId(), new Integer(darkSideValue));
+		this.darkSideValue.put(occultismType.getId(),
+				new Integer(darkSideValue));
 	}
 
 	public Map<String, List<String>> getSelectedPowers() {
 		return selectedPowers;
 	}
 
-	public void addPower(OccultismPower power, String language, Faction faction) throws InvalidOccultismPowerException {
+	public void addPower(OccultismPower power, String language, Faction faction)
+			throws InvalidOccultismPowerException {
 		if (power == null) {
 			throw new InvalidOccultismPowerException("Power cannot be null.");
 		}
-		OccultismPath path = OccultismPathFactory.getInstance().getOccultismPath(power, language);
+		OccultismPath path = OccultismPathFactory.getInstance()
+				.getOccultismPath(power, language);
 		// Correct level of psi or teurgy
-		if (Objects.equals(path.getOccultismType(), OccultismTypeFactory.getPsi(language))
-				&& power.getLevel() > getPsiqueLevel(OccultismTypeFactory.getPsi(language))) {
-			throw new InvalidPsiqueLevelException("Insuficient psi level to acquire '" + power + "'.");
+		if (Objects.equals(path.getOccultismType(),
+				OccultismTypeFactory.getPsi(language))
+				&& power.getLevel() > getPsiqueLevel(OccultismTypeFactory
+						.getPsi(language))) {
+			throw new InvalidPsiqueLevelException(
+					"Insuficient psi level to acquire '" + power + "'.");
 		}
-		if (Objects.equals(path.getOccultismType(), OccultismTypeFactory.getTheurgy(language))
-				&& power.getLevel() > getPsiqueLevel(OccultismTypeFactory.getTheurgy(language))) {
-			throw new InvalidPsiqueLevelException("Insuficient theurgy level to acquire '" + power + "'.");
+		if (Objects.equals(path.getOccultismType(),
+				OccultismTypeFactory.getTheurgy(language))
+				&& power.getLevel() > getPsiqueLevel(OccultismTypeFactory
+						.getTheurgy(language))) {
+			throw new InvalidPsiqueLevelException(
+					"Insuficient theurgy level to acquire '" + power + "'.");
 		}
 		// Limited to some factions
-		if (!path.getFactionsAllowed().isEmpty() && !path.getFactionsAllowed().contains(faction)) {
-			throw new InvalidFactionOfPowerException("Power '" + power + "' can only be acquired by  '" + path.getFactionsAllowed()
-					+ "' character faction is '" + faction + "'.");
+		if (!path.getFactionsAllowed().isEmpty()
+				&& !path.getFactionsAllowed().contains(faction)) {
+			throw new InvalidFactionOfPowerException("Power '" + power
+					+ "' can only be acquired by  '"
+					+ path.getFactionsAllowed() + "' character faction is '"
+					+ faction + "'.");
 		}
 
 		// Psi must have previous level.
-		if (Objects.equals(path.getOccultismType(), OccultismTypeFactory.getPsi(language))) {
+		if (Objects.equals(path.getOccultismType(),
+				OccultismTypeFactory.getPsi(language))) {
 			boolean acquiredLevel = false;
-			for (OccultismPower previousLevelPower : path.getPreviousLevelPowers(power)) {
-				if (selectedPowers.get(path.getId()) != null && selectedPowers.get(path.getId()).contains(previousLevelPower.getId())) {
+			for (OccultismPower previousLevelPower : path
+					.getPreviousLevelPowers(power)) {
+				if (selectedPowers.get(path.getId()) != null
+						&& selectedPowers.get(path.getId()).contains(
+								previousLevelPower.getId())) {
 					acquiredLevel = true;
 					break;
 				}
 			}
 			if (!acquiredLevel && !path.getPreviousLevelPowers(power).isEmpty()) {
-				throw new InvalidPowerLevelException("At least one power of '" + path.getPreviousLevelPowers(power) + "' must be selected.");
+				throw new InvalidPowerLevelException("At least one power of '"
+						+ path.getPreviousLevelPowers(power)
+						+ "' must be selected.");
 			}
 		}
 		if (selectedPowers.get(path.getId()) == null) {
