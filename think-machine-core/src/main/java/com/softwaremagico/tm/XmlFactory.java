@@ -64,7 +64,11 @@ public abstract class XmlFactory<T extends Element<T>> {
 		if (elements.get(language) == null) {
 			elements.put(language, new ArrayList<T>());
 			for (String elementId : getTranslator().getAllTranslatedElements()) {
-				elements.get(language).add(createElement(getTranslator(), elementId, language));
+				T element = createElement(getTranslator(), elementId, language);
+				if (elements.get(language).contains(element)) {
+					throw new ElementAlreadyExistsException("Element '" + element + "' already is inserted. Probably the ID is duplicated.");
+				}
+				elements.get(language).add(element);
 			}
 			Collections.sort(elements.get(language));
 		}

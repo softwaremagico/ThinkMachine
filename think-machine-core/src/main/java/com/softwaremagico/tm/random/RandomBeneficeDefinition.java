@@ -128,7 +128,7 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
 		}
 
 		// No special benefices
-		if (benefice.getGroup() == BeneficeGroup.OTHERS) {
+		if (benefice.getGroup() == BeneficeGroup.RESTRICTED) {
 			return 0;
 		}
 

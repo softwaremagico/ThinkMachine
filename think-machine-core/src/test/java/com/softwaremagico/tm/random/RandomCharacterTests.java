@@ -30,7 +30,9 @@ import org.testng.annotations.Test;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
 import com.softwaremagico.tm.character.factions.FactionGroup;
+import com.softwaremagico.tm.character.factions.FactionsFactory;
 import com.softwaremagico.tm.character.race.RaceFactory;
 import com.softwaremagico.tm.character.skills.SkillDefinition;
 import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
@@ -64,29 +66,23 @@ public class RandomCharacterTests {
 	}
 
 	@Test
-	public void chooseRaceAndFactionTest() throws InvalidXmlElementException, DuplicatedPreferenceException,
-			InvalidRandomElementSelectedException {
+	public void chooseRaceAndFactionTest() throws InvalidXmlElementException, DuplicatedPreferenceException, InvalidRandomElementSelectedException {
 		CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
-		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0, RacePreferences.HUMAN,
-				FactionPreferences.NOBILITY);
+		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0, RacePreferences.HUMAN, FactionPreferences.NOBILITY);
 		randomizeCharacter.setCharacterDefinition();
 
 		Assert.assertEquals(characterPlayer.getFaction().getFactionGroup(), FactionGroup.NOBILITY);
-		Assert.assertEquals(characterPlayer.getRace(),
-				RaceFactory.getInstance().getElement(RacePreferences.HUMAN.name(), LANGUAGE));
+		Assert.assertEquals(characterPlayer.getRace(), RaceFactory.getInstance().getElement(RacePreferences.HUMAN.name(), LANGUAGE));
 	}
 
 	@Test
-	public void chooseRaceAndFactionTestXeno() throws InvalidXmlElementException, DuplicatedPreferenceException,
-			InvalidRandomElementSelectedException {
+	public void chooseRaceAndFactionTestXeno() throws InvalidXmlElementException, DuplicatedPreferenceException, InvalidRandomElementSelectedException {
 		CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
-		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0, RacePreferences.OBUN,
-				FactionPreferences.GUILD);
+		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0, RacePreferences.OBUN, FactionPreferences.GUILD);
 		randomizeCharacter.setCharacterDefinition();
 
 		Assert.assertEquals(characterPlayer.getFaction().getFactionGroup(), FactionGroup.GUILD);
-		Assert.assertEquals(characterPlayer.getRace(),
-				RaceFactory.getInstance().getElement(RacePreferences.OBUN.name(), LANGUAGE));
+		Assert.assertEquals(characterPlayer.getRace(), RaceFactory.getInstance().getElement(RacePreferences.OBUN.name(), LANGUAGE));
 	}
 
 	@Test
@@ -96,8 +92,7 @@ public class RandomCharacterTests {
 	}
 
 	@Test
-	public void completeRandomCharacter() throws InvalidXmlElementException, DuplicatedPreferenceException,
-			InvalidRandomElementSelectedException {
+	public void completeRandomCharacter() throws InvalidXmlElementException, DuplicatedPreferenceException, InvalidRandomElementSelectedException {
 		CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
 		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0, SkillGroupPreferences.COMBAT);
 		randomizeCharacter.createCharacter();
@@ -107,9 +102,10 @@ public class RandomCharacterTests {
 	}
 
 	@Test
-	public void mustHaveStatus() throws DuplicatedPreferenceException, InvalidXmlElementException,
-			InvalidRandomElementSelectedException {
+	public void mustHaveStatus() throws DuplicatedPreferenceException, InvalidXmlElementException, InvalidRandomElementSelectedException {
 		CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
+		characterPlayer.setRace(RaceFactory.getInstance().getElement("human", LANGUAGE));
+		characterPlayer.setFaction(FactionsFactory.getInstance().getElement("hazat", LANGUAGE));
 		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0, StatusPreferences.HIGHT);
 		randomizeCharacter.createCharacter();
 		Assert.assertNotNull(characterPlayer.getRank());
@@ -118,29 +114,54 @@ public class RandomCharacterTests {
 	}
 
 	@Test
-	public void checkBlessingPreferences() throws DuplicatedPreferenceException, InvalidXmlElementException,
-			InvalidRandomElementSelectedException {
+	public void checkBlessingPreferences() throws DuplicatedPreferenceException, InvalidXmlElementException, InvalidRandomElementSelectedException {
 		CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
-		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0, CurseNumberPreferences.FAIR,
-				BlessingNumberPreferences.HIGH);
+		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0, CurseNumberPreferences.FAIR, BlessingNumberPreferences.HIGH);
+		characterPlayer.setRace(RaceFactory.getInstance().getElement("human", LANGUAGE));
 		randomizeCharacter.createCharacter();
-		Assert.assertTrue(characterPlayer.getCurses().size() >= CurseNumberPreferences.FAIR.minimum());
-		Assert.assertTrue(characterPlayer.getCurses().size() <= CurseNumberPreferences.FAIR.maximum());
+		try {
+			Assert.assertTrue(characterPlayer.getCurses().size() >= CurseNumberPreferences.FAIR.minimum());
+			Assert.assertTrue(characterPlayer.getCurses().size() <= CurseNumberPreferences.FAIR.maximum());
 
-		Assert.assertTrue(characterPlayer.getAllBlessings().size() >= BlessingNumberPreferences.HIGH.minimum()
-				+ characterPlayer.getFaction().getBlessings().size());
-		Assert.assertTrue(characterPlayer.getAllBlessings().size() <= BlessingNumberPreferences.HIGH.maximum()
-				+ characterPlayer.getFaction().getBlessings().size());
+			Assert.assertTrue(characterPlayer.getAllBlessings().size() >= BlessingNumberPreferences.HIGH.minimum()
+					+ characterPlayer.getFaction().getBlessings().size());
+			Assert.assertTrue(characterPlayer.getAllBlessings().size() <= BlessingNumberPreferences.HIGH.maximum()
+					+ characterPlayer.getFaction().getBlessings().size());
+		} catch (Error ae) {
+			System.out.println(characterPlayer.getAllBlessings());
+			throw ae;
+		}
 	}
 
 	@Test
-	public void createPsiqueCharacter() throws DuplicatedPreferenceException, InvalidXmlElementException,
-			InvalidRandomElementSelectedException {
+	public void createPsiqueCharacter() throws DuplicatedPreferenceException, InvalidXmlElementException, InvalidRandomElementSelectedException {
 		CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
 		characterPlayer.setRace(RaceFactory.getInstance().getElement("human", LANGUAGE));
-		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0,
-				SpecializationPreferences.SPECIALIZED, PsiquePathLevelPreferences.HIGH, PsiqueLevelPreferences.HIGH, StatusPreferences.FAIR);
+		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0, SpecializationPreferences.SPECIALIZED,
+				PsiquePathLevelPreferences.HIGH, PsiqueLevelPreferences.HIGH, StatusPreferences.FAIR);
 		randomizeCharacter.createCharacter();
 		Assert.assertTrue(characterPlayer.getOccultism().getSelectedPowers().values().size() > 0);
+	}
+
+	@Test
+	public void createChurchCharacter() throws DuplicatedPreferenceException, InvalidXmlElementException, InvalidRandomElementSelectedException {
+		CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
+		characterPlayer.setRace(RaceFactory.getInstance().getElement("human", LANGUAGE));
+		characterPlayer.setFaction(FactionsFactory.getInstance().getElement("orthodox", LANGUAGE));
+		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0, SpecializationPreferences.SPECIALIZED,
+				PsiquePathLevelPreferences.HIGH, PsiqueLevelPreferences.HIGH, StatusPreferences.FAIR);
+		randomizeCharacter.createCharacter();
+		Assert.assertTrue(characterPlayer.getOccultism().getSelectedPowers().values().size() > 0);
+	}
+
+	@Test
+	public void voroxCannotHavePsique() throws DuplicatedPreferenceException, InvalidXmlElementException, InvalidRandomElementSelectedException {
+		CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
+		characterPlayer.setRace(RaceFactory.getInstance().getElement("vorox", LANGUAGE));
+		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0, SpecializationPreferences.SPECIALIZED,
+				PsiquePathLevelPreferences.HIGH, PsiqueLevelPreferences.HIGH);
+		randomizeCharacter.createCharacter();
+		Assert.assertTrue(characterPlayer.getAfflictions().contains(AvailableBeneficeFactory.getInstance().getElement("noOccult", LANGUAGE)));
+		Assert.assertEquals(characterPlayer.getOccultism().getSelectedPowers().values().size(), 0);
 	}
 }

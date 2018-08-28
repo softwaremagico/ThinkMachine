@@ -34,7 +34,7 @@ import com.softwaremagico.tm.character.blessings.BlessingFactory;
 @Test(groups = { "blessingFactory" })
 public class BlessingFactoryTests {
 	private final static String LANGUAGE = "es";
-	private final static int DEFINED_BLESSINGS = 99;
+	private final static int DEFINED_BLESSINGS = 97;
 	private final static int DEFINED_BONIFICATIONS_MISSING_EYE = 2;
 
 	@Test

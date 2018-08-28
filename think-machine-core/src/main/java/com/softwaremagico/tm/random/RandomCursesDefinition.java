@@ -87,6 +87,9 @@ public class RandomCursesDefinition extends RandomSelector<Blessing> {
 		if (curse == null) {
 			return 0;
 		}
+		if (curse.getBlessingGroup() == BlessingGroup.RESTRICTED) {
+			return 0;
+		}
 		// Only curses.
 		if (curse.getBlessingClassification() == BlessingClassification.BLESSING) {
 			return 0;

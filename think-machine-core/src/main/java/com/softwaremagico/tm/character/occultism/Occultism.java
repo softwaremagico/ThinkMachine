@@ -100,7 +100,7 @@ public class Occultism {
 		}
 		// Limited to some factions
 		if (!path.getFactionsAllowed().isEmpty() && !path.getFactionsAllowed().contains(faction)) {
-			throw new InvalidFactionOfPowerException("Power can only be acquired by  '" + path.getFactionsAllowed()
+			throw new InvalidFactionOfPowerException("Power '" + power + "' can only be acquired by  '" + path.getFactionsAllowed()
 					+ "' character faction is '" + faction + "'.");
 		}
 
@@ -108,15 +108,13 @@ public class Occultism {
 		if (Objects.equals(path.getOccultismType(), OccultismTypeFactory.getPsi(language))) {
 			boolean acquiredLevel = false;
 			for (OccultismPower previousLevelPower : path.getPreviousLevelPowers(power)) {
-				if (selectedPowers.get(path.getId()) != null
-						&& selectedPowers.get(path.getId()).contains(previousLevelPower.getId())) {
+				if (selectedPowers.get(path.getId()) != null && selectedPowers.get(path.getId()).contains(previousLevelPower.getId())) {
 					acquiredLevel = true;
 					break;
 				}
 			}
 			if (!acquiredLevel && !path.getPreviousLevelPowers(power).isEmpty()) {
-				throw new InvalidPowerLevelException("At least one power of '" + path.getPreviousLevelPowers(power)
-						+ "' must be selected.");
+				throw new InvalidPowerLevelException("At least one power of '" + path.getPreviousLevelPowers(power) + "' must be selected.");
 			}
 		}
 		if (selectedPowers.get(path.getId()) == null) {

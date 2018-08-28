@@ -99,7 +99,7 @@ public class RandomPsiquePath extends RandomSelector<OccultismPath> {
 
 	@Override
 	protected int getWeight(OccultismPath element) {
-		// Other factions path are forbiden
+		// Other factions path are forbidden
 		if (!element.getFactionsAllowed().isEmpty()
 				&& !element.getFactionsAllowed().contains(getCharacterPlayer().getFaction())) {
 			return 0;
