@@ -58,7 +58,7 @@ public class OccultismTable extends VerticalTable {
 					Element.ALIGN_LEFT));
 
 			if (characterPlayer != null) {
-				addCell(createValueLine("" + characterPlayer.getOccultism().getPsiqueLevel(occultismType),
+				addCell(createValueLine("" + characterPlayer.getPsiqueLevel(occultismType),
 						FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE));
 			} else {
 				addCell(createValueLine(" ", FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE));
@@ -66,7 +66,7 @@ public class OccultismTable extends VerticalTable {
 
 			addCell(createSubtitleLine("/", FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE));
 			if (characterPlayer != null) {
-				addCell(createValueLine("" + characterPlayer.getOccultism().getDarkSideLevel(occultismType),
+				addCell(createValueLine("" + characterPlayer.getDarkSideLevel(occultismType),
 						FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE));
 			} else {
 				addCell(createValueLine(" ", FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE));
@@ -84,7 +84,7 @@ public class OccultismTable extends VerticalTable {
 
 		int added = 0;
 		if (characterPlayer != null) {
-			for (Entry<String, List<String>> occultismPathEntry : characterPlayer.getOccultism().getSelectedPowers()
+			for (Entry<String, List<String>> occultismPathEntry : characterPlayer.getSelectedPowers()
 					.entrySet()) {
 				OccultismPath occultismPath = OccultismPathFactory.getInstance().getElement(
 						occultismPathEntry.getKey(), characterPlayer.getLanguage());

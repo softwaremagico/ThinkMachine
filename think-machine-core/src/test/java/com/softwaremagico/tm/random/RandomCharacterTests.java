@@ -140,7 +140,7 @@ public class RandomCharacterTests {
 		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0, SpecializationPreferences.SPECIALIZED,
 				PsiquePathLevelPreferences.HIGH, PsiqueLevelPreferences.HIGH, StatusPreferences.FAIR);
 		randomizeCharacter.createCharacter();
-		Assert.assertTrue(characterPlayer.getOccultism().getSelectedPowers().values().size() > 0);
+		Assert.assertTrue(characterPlayer.getSelectedPowers().values().size() > 0);
 	}
 
 	@Test
@@ -151,7 +151,7 @@ public class RandomCharacterTests {
 		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0, SpecializationPreferences.SPECIALIZED,
 				PsiquePathLevelPreferences.HIGH, PsiqueLevelPreferences.HIGH, StatusPreferences.FAIR);
 		randomizeCharacter.createCharacter();
-		Assert.assertTrue(characterPlayer.getOccultism().getSelectedPowers().values().size() > 0);
+		Assert.assertTrue(characterPlayer.getSelectedPowers().values().size() > 0);
 	}
 
 	@Test
@@ -162,6 +162,6 @@ public class RandomCharacterTests {
 				PsiquePathLevelPreferences.HIGH, PsiqueLevelPreferences.HIGH);
 		randomizeCharacter.createCharacter();
 		Assert.assertTrue(characterPlayer.getAfflictions().contains(AvailableBeneficeFactory.getInstance().getElement("noOccult", LANGUAGE)));
-		Assert.assertEquals(characterPlayer.getOccultism().getSelectedPowers().values().size(), 0);
+		Assert.assertEquals(characterPlayer.getSelectedPowers().values().size(), 0);
 	}
 }

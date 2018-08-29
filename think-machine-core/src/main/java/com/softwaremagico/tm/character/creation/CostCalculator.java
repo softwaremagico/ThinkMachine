@@ -133,7 +133,7 @@ public class CostCalculator {
 
 	private static int getPsiPowersCosts(CharacterPlayer characterPlayer) throws InvalidXmlElementException {
 		int cost = 0;
-		for (Entry<String, List<String>> occulstismPathEntry : characterPlayer.getOccultism().getSelectedPowers()
+		for (Entry<String, List<String>> occulstismPathEntry : characterPlayer.getSelectedPowers()
 				.entrySet()) {
 			OccultismPath occultismPath = OccultismPathFactory.getInstance().getElement(occulstismPathEntry.getKey(),
 					characterPlayer.getLanguage());
@@ -142,15 +142,15 @@ public class CostCalculator {
 						* OCCULSTIM_POWER_LEVEL_COST;
 			}
 		}
-		cost += characterPlayer.getOccultism().getExtraWyrd() * EXTRA_WYRD_COST;
+		cost += characterPlayer.getExtraWyrd() * EXTRA_WYRD_COST;
 		cost += Math.max(
 				0,
-				(characterPlayer.getOccultism().getPsiqueLevel(
+				(characterPlayer.getPsiqueLevel(
 						OccultismTypeFactory.getPsi(characterPlayer.getLanguage())) - characterPlayer.getRace()
 						.getPsi()) * PSIQUE_LEVEL_COST);
 		cost += Math.max(
 				0,
-				(characterPlayer.getOccultism().getPsiqueLevel(
+				(characterPlayer.getPsiqueLevel(
 						OccultismTypeFactory.getTheurgy(characterPlayer.getLanguage())) - characterPlayer.getRace()
 						.getTheurgy()) * PSIQUE_LEVEL_COST);
 		return cost;

@@ -71,8 +71,9 @@ public class CustomCharacters {
 	}
 
 	@Test
-	public void createPaolaCharacter() throws MalformedURLException, DocumentException, IOException,
-			InvalidXmlElementException, TooManyBlessingsException {
+	public void createPaolaCharacter() throws MalformedURLException,
+			DocumentException, IOException, InvalidXmlElementException,
+			TooManyBlessingsException {
 		CharacterPlayer player = new CharacterPlayer(LANGUAGE);
 		player.getInfo().setName("#5");
 		player.getInfo().setPlayer("Paola");
@@ -80,7 +81,8 @@ public class CustomCharacters {
 		player.getInfo().setAge(25);
 		player.setRace(RaceFactory.getInstance().getElement("human", LANGUAGE));
 		player.getInfo().setPlanet("Ligaheim");
-		player.setFaction(FactionsFactory.getInstance().getElement("engineers", LANGUAGE));
+		player.setFaction(FactionsFactory.getInstance().getElement("engineers",
+				LANGUAGE));
 
 		player.getCharacteristic(CharacteristicName.STRENGTH).setValue(3);
 		player.getCharacteristic(CharacteristicName.DEXTERITY).setValue(7);
@@ -92,71 +94,119 @@ public class CustomCharacters {
 		player.getCharacteristic(CharacteristicName.WILL).setValue(5);
 		player.getCharacteristic(CharacteristicName.FAITH).setValue(3);
 
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("influence", LANGUAGE), 4);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("observe", LANGUAGE), 5);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("sneak", LANGUAGE), 6);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("vigor", LANGUAGE), 5);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("lockpicking", LANGUAGE), 2);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("energyGuns", LANGUAGE), 5);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("appliedScience", LANGUAGE), 4);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("physicalScience", LANGUAGE), 1);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("spacecraft", LANGUAGE), 2);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("landcarft", LANGUAGE), 3);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("fight", LANGUAGE), 1);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("empathy", LANGUAGE), 3);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("warfare", LANGUAGE), 1);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("investigation", LANGUAGE), 2);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("spacecraftOperations", LANGUAGE), 2);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("thinkMachine", LANGUAGE), 4);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("techRedemption", LANGUAGE), 7);
+		player.setSkillRank(
+				AvailableSkillsFactory.getInstance().getElement("influence",
+						LANGUAGE), 4);
+		player.setSkillRank(
+				AvailableSkillsFactory.getInstance().getElement("observe",
+						LANGUAGE), 5);
+		player.setSkillRank(
+				AvailableSkillsFactory.getInstance().getElement("sneak",
+						LANGUAGE), 6);
+		player.setSkillRank(
+				AvailableSkillsFactory.getInstance().getElement("vigor",
+						LANGUAGE), 5);
+		player.setSkillRank(
+				AvailableSkillsFactory.getInstance().getElement("lockpicking",
+						LANGUAGE), 2);
+		player.setSkillRank(
+				AvailableSkillsFactory.getInstance().getElement("energyGuns",
+						LANGUAGE), 5);
+		player.setSkillRank(
+				AvailableSkillsFactory.getInstance().getElement(
+						"appliedScience", LANGUAGE), 4);
+		player.setSkillRank(
+				AvailableSkillsFactory.getInstance().getElement(
+						"physicalScience", LANGUAGE), 1);
+		player.setSkillRank(
+				AvailableSkillsFactory.getInstance().getElement("spacecraft",
+						LANGUAGE), 2);
+		player.setSkillRank(
+				AvailableSkillsFactory.getInstance().getElement("landcarft",
+						LANGUAGE), 3);
+		player.setSkillRank(
+				AvailableSkillsFactory.getInstance().getElement("fight",
+						LANGUAGE), 1);
+		player.setSkillRank(
+				AvailableSkillsFactory.getInstance().getElement("empathy",
+						LANGUAGE), 3);
+		player.setSkillRank(
+				AvailableSkillsFactory.getInstance().getElement("warfare",
+						LANGUAGE), 1);
+		player.setSkillRank(
+				AvailableSkillsFactory.getInstance().getElement(
+						"investigation", LANGUAGE), 2);
+		player.setSkillRank(
+				AvailableSkillsFactory.getInstance().getElement(
+						"spacecraftOperations", LANGUAGE), 2);
+		player.setSkillRank(
+				AvailableSkillsFactory.getInstance().getElement("thinkMachine",
+						LANGUAGE), 4);
+		player.setSkillRank(
+				AvailableSkillsFactory.getInstance().getElement(
+						"techRedemption", LANGUAGE), 7);
 
-		player.addBlessing(BlessingFactory.getInstance().getElement("haughty", LANGUAGE));
-		player.addBlessing(BlessingFactory.getInstance().getElement("hacker", player.getLanguage()));
-		player.addBlessing(BlessingFactory.getInstance().getElement("greaseMonkey", player.getLanguage()));
-		player.addBlessing(BlessingFactory.getInstance().getElement("horribleScar", player.getLanguage()));
+		player.addBlessing(BlessingFactory.getInstance().getElement("haughty",
+				LANGUAGE));
+		player.addBlessing(BlessingFactory.getInstance().getElement("hacker",
+				player.getLanguage()));
+		player.addBlessing(BlessingFactory.getInstance().getElement(
+				"greaseMonkey", player.getLanguage()));
+		player.addBlessing(BlessingFactory.getInstance().getElement(
+				"horribleScar", player.getLanguage()));
 
-		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("language [turingLanguage]",
-				player.getLanguage()));
-		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("commission [apprentice]",
-				player.getLanguage()));
-		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("cash [firebirds1000]",
-				player.getLanguage()));
-		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("gossipNetwork_3", player.getLanguage()));
+		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement(
+				"language [turingLanguage]", player.getLanguage()));
+		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement(
+				"commission [apprentice]", player.getLanguage()));
+		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement(
+				"cash [firebirds1000]", player.getLanguage()));
+		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement(
+				"gossipNetwork_3", player.getLanguage()));
 
-		Device ingeneerEye = new Device("Ojo de Ingeniero", 8, 6, "Normal", "Normal", "Automático", "Oculto",
-				"Autoalimentado");
-		ingeneerEye.addCharacteristicImprovement(new CharacteristicImprovement(CharacteristicsDefinitionFactory
-				.getInstance().getElement("perception", LANGUAGE), 1, false));
+		Device ingeneerEye = new Device("Ojo de Ingeniero", 8, 6, "Normal",
+				"Normal", "Automático", "Oculto", "Autoalimentado");
+		ingeneerEye.addCharacteristicImprovement(new CharacteristicImprovement(
+				CharacteristicsDefinitionFactory.getInstance().getElement(
+						"perception", LANGUAGE), 1, false));
 		player.getCybernetics().addElement(ingeneerEye);
 
-		Device secondBrain = new Device("Segundo Cerebro", 11, 10, "Normal", "Normal", "Automático", "Oculto",
-				"Autoalimentado");
-		secondBrain.addCharacteristicImprovement(new CharacteristicImprovement(CharacteristicsDefinitionFactory
-				.getInstance().getElement("wits", LANGUAGE), 2, true));
-		secondBrain.addSkillImprovement(new CyberneticSkill(AvailableSkillsFactory.getInstance().getElement("lore",
-				"jumpwebLore", LANGUAGE), 4, true));
-		secondBrain.addSkillImprovement(new CyberneticSkill(AvailableSkillsFactory.getInstance().getElement("lore",
-				"energyPistolsLore", LANGUAGE), 4, true));
-		secondBrain.addSkillImprovement(new CyberneticSkill(AvailableSkillsFactory.getInstance().getElement("lore",
-				"thinkMachineLore", LANGUAGE), 4, true));
+		Device secondBrain = new Device("Segundo Cerebro", 11, 10, "Normal",
+				"Normal", "Automático", "Oculto", "Autoalimentado");
+		secondBrain.addCharacteristicImprovement(new CharacteristicImprovement(
+				CharacteristicsDefinitionFactory.getInstance().getElement(
+						"wits", LANGUAGE), 2, true));
+		secondBrain.addSkillImprovement(new CyberneticSkill(
+				AvailableSkillsFactory.getInstance().getElement("lore",
+						"jumpwebLore", LANGUAGE), 4, true));
+		secondBrain.addSkillImprovement(new CyberneticSkill(
+				AvailableSkillsFactory.getInstance().getElement("lore",
+						"energyPistolsLore", LANGUAGE), 4, true));
+		secondBrain.addSkillImprovement(new CyberneticSkill(
+				AvailableSkillsFactory.getInstance().getElement("lore",
+						"thinkMachineLore", LANGUAGE), 4, true));
 		player.getCybernetics().addElement(secondBrain);
 
 		player.setShield(new Shield("De Duelo", 5, 10, 15));
 
 		LanguagePool.clearCache();
 		CharacterSheet sheet = new CharacterSheet(player);
-		sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Paola.pdf");
+		sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator
+				+ "Paola.pdf");
 
 		LanguagePool.clearCache();
 		SmallCharacterSheet smallSheet = new SmallCharacterSheet(player);
-		smallSheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Paola_Small.pdf");
+		smallSheet.createFile(System.getProperty("java.io.tmpdir")
+				+ File.separator + "Paola_Small.pdf");
 
-		Assert.assertEquals(CostCalculator.getCost(player), FreeStyleCharacterCreation.FREE_AVAILABLE_POINTS);
+		Assert.assertEquals(CostCalculator.getCost(player),
+				FreeStyleCharacterCreation.FREE_AVAILABLE_POINTS);
 	}
 
 	@Test
-	public void characterAnaCharacter() throws MalformedURLException, DocumentException, IOException,
-			InvalidXmlElementException, TooManyBlessingsException {
+	public void characterAnaCharacter() throws MalformedURLException,
+			DocumentException, IOException, InvalidXmlElementException,
+			TooManyBlessingsException {
 		CharacterPlayer player = new CharacterPlayer(LANGUAGE);
 		player.getInfo().setName("Ana");
 		player.getInfo().setPlayer("Ana");
@@ -164,7 +214,8 @@ public class CustomCharacters {
 		player.getInfo().setAge(22);
 		player.setRace(RaceFactory.getInstance().getElement("human", LANGUAGE));
 		player.getInfo().setPlanet("Leminkainen");
-		player.setFaction(FactionsFactory.getInstance().getElement("hawkwood", LANGUAGE));
+		player.setFaction(FactionsFactory.getInstance().getElement("hawkwood",
+				LANGUAGE));
 
 		player.getCharacteristic(CharacteristicName.STRENGTH).setValue(5);
 		player.getCharacteristic(CharacteristicName.DEXTERITY).setValue(7);
@@ -176,46 +227,84 @@ public class CustomCharacters {
 		player.getCharacteristic(CharacteristicName.WILL).setValue(5);
 		player.getCharacteristic(CharacteristicName.FAITH).setValue(4);
 
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("influence", LANGUAGE), 7);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("observe", LANGUAGE), 8);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("sneak", LANGUAGE), 8);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("vigor", LANGUAGE), 8);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("lockpicking", LANGUAGE), 4);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("arts", "drawing", LANGUAGE), 1);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("selfControl", LANGUAGE), 2);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("streetWise", LANGUAGE), 3);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("physick", LANGUAGE), 1);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("watercraft", LANGUAGE), 1);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("artifactMelee", LANGUAGE), 4);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("etiquette", LANGUAGE), 4);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("investigation", LANGUAGE), 4);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("leadership", LANGUAGE), 2);
+		player.setSkillRank(
+				AvailableSkillsFactory.getInstance().getElement("influence",
+						LANGUAGE), 7);
+		player.setSkillRank(
+				AvailableSkillsFactory.getInstance().getElement("observe",
+						LANGUAGE), 8);
+		player.setSkillRank(
+				AvailableSkillsFactory.getInstance().getElement("sneak",
+						LANGUAGE), 8);
+		player.setSkillRank(
+				AvailableSkillsFactory.getInstance().getElement("vigor",
+						LANGUAGE), 8);
+		player.setSkillRank(
+				AvailableSkillsFactory.getInstance().getElement("lockpicking",
+						LANGUAGE), 4);
+		player.setSkillRank(
+				AvailableSkillsFactory.getInstance().getElement("arts",
+						"drawing", LANGUAGE), 1);
+		player.setSkillRank(
+				AvailableSkillsFactory.getInstance().getElement("selfControl",
+						LANGUAGE), 2);
+		player.setSkillRank(
+				AvailableSkillsFactory.getInstance().getElement("streetWise",
+						LANGUAGE), 3);
+		player.setSkillRank(
+				AvailableSkillsFactory.getInstance().getElement("physick",
+						LANGUAGE), 1);
+		player.setSkillRank(
+				AvailableSkillsFactory.getInstance().getElement("watercraft",
+						LANGUAGE), 1);
+		player.setSkillRank(
+				AvailableSkillsFactory.getInstance().getElement(
+						"artifactMelee", LANGUAGE), 4);
+		player.setSkillRank(
+				AvailableSkillsFactory.getInstance().getElement("etiquette",
+						LANGUAGE), 4);
+		player.setSkillRank(
+				AvailableSkillsFactory.getInstance().getElement(
+						"investigation", LANGUAGE), 4);
+		player.setSkillRank(
+				AvailableSkillsFactory.getInstance().getElement("leadership",
+						LANGUAGE), 2);
 
-		player.addBlessing(BlessingFactory.getInstance().getElement("horribleScar", player.getLanguage()));
+		player.addBlessing(BlessingFactory.getInstance().getElement(
+				"horribleScar", player.getLanguage()));
 
-		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("nobility [knight]", player.getLanguage()));
-		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("language [latinLanguage]",
-				player.getLanguage()));
-		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("imperialCharter", player.getLanguage()));
-		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("fluxSword", player.getLanguage()));
-		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("vendetta_2", player.getLanguage()));
+		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement(
+				"nobility [knight]", player.getLanguage()));
+		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement(
+				"language [latinLanguage]", player.getLanguage()));
+		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement(
+				"imperialCharter", player.getLanguage()));
+		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement(
+				"fluxSword", player.getLanguage()));
+		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement(
+				"vendetta_2", player.getLanguage()));
 
-		player.getWeapons().addElement(WeaponFactory.getInstance().getElement("fluxSword", LANGUAGE));
+		player.getWeapons().addElement(
+				WeaponFactory.getInstance().getElement("fluxSword", LANGUAGE));
 
 		LanguagePool.clearCache();
 		CharacterSheet sheet = new CharacterSheet(player);
-		sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Ana.pdf");
+		sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator
+				+ "Ana.pdf");
 
 		LanguagePool.clearCache();
 		SmallCharacterSheet smallSheet = new SmallCharacterSheet(player);
-		smallSheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Ana_Small.pdf");
+		smallSheet.createFile(System.getProperty("java.io.tmpdir")
+				+ File.separator + "Ana_Small.pdf");
 
-		Assert.assertEquals(CostCalculator.getCost(player), FreeStyleCharacterCreation.FREE_AVAILABLE_POINTS);
+		Assert.assertEquals(CostCalculator.getCost(player),
+				FreeStyleCharacterCreation.FREE_AVAILABLE_POINTS);
 	}
 
 	@Test
-	public void createCarlosCharacter() throws MalformedURLException, DocumentException, IOException,
-			InvalidXmlElementException, TooManyBlessingsException {
+	public void createCarlosCharacter() throws MalformedURLException,
+			DocumentException, IOException, InvalidXmlElementException,
+			TooManyBlessingsException {
 		CharacterPlayer player = new CharacterPlayer(LANGUAGE);
 		player.getInfo().setName("Carlos");
 		player.getInfo().setPlayer("Carlos");
@@ -223,7 +312,8 @@ public class CustomCharacters {
 		player.getInfo().setAge(28);
 		player.setRace(RaceFactory.getInstance().getElement("human", LANGUAGE));
 		player.getInfo().setPlanet("Byzantium Sec.");
-		player.setFaction(FactionsFactory.getInstance().getElement("scravers", LANGUAGE));
+		player.setFaction(FactionsFactory.getInstance().getElement("scravers",
+				LANGUAGE));
 
 		player.getCharacteristic(CharacteristicName.STRENGTH).setValue(7);
 		player.getCharacteristic(CharacteristicName.DEXTERITY).setValue(8);
@@ -235,51 +325,97 @@ public class CustomCharacters {
 		player.getCharacteristic(CharacteristicName.WILL).setValue(6);
 		player.getCharacteristic(CharacteristicName.FAITH).setValue(3);
 
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("influence", LANGUAGE), 5);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("observe", LANGUAGE), 4);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("vigor", LANGUAGE), 7);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("slugGuns", LANGUAGE), 8);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("knavery", LANGUAGE), 4);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("selfControl", LANGUAGE), 2);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("streetWise", LANGUAGE), 3);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("physick", LANGUAGE), 2);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("aircraft", LANGUAGE), 1);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("melee", LANGUAGE), 5);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("demolitions", LANGUAGE), 2);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("gaming", LANGUAGE), 1);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("leadership", LANGUAGE), 1);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("techRedemption", LANGUAGE), 3);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("survival", LANGUAGE), 3);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("torture", LANGUAGE), 3);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("landcarft", LANGUAGE), 2);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("investigation", LANGUAGE), 3);
+		player.setSkillRank(
+				AvailableSkillsFactory.getInstance().getElement("influence",
+						LANGUAGE), 5);
+		player.setSkillRank(
+				AvailableSkillsFactory.getInstance().getElement("observe",
+						LANGUAGE), 4);
+		player.setSkillRank(
+				AvailableSkillsFactory.getInstance().getElement("vigor",
+						LANGUAGE), 7);
+		player.setSkillRank(
+				AvailableSkillsFactory.getInstance().getElement("slugGuns",
+						LANGUAGE), 8);
+		player.setSkillRank(
+				AvailableSkillsFactory.getInstance().getElement("knavery",
+						LANGUAGE), 4);
+		player.setSkillRank(
+				AvailableSkillsFactory.getInstance().getElement("selfControl",
+						LANGUAGE), 2);
+		player.setSkillRank(
+				AvailableSkillsFactory.getInstance().getElement("streetWise",
+						LANGUAGE), 3);
+		player.setSkillRank(
+				AvailableSkillsFactory.getInstance().getElement("physick",
+						LANGUAGE), 2);
+		player.setSkillRank(
+				AvailableSkillsFactory.getInstance().getElement("aircraft",
+						LANGUAGE), 1);
+		player.setSkillRank(
+				AvailableSkillsFactory.getInstance().getElement("melee",
+						LANGUAGE), 5);
+		player.setSkillRank(
+				AvailableSkillsFactory.getInstance().getElement("demolitions",
+						LANGUAGE), 2);
+		player.setSkillRank(
+				AvailableSkillsFactory.getInstance().getElement("gaming",
+						LANGUAGE), 1);
+		player.setSkillRank(
+				AvailableSkillsFactory.getInstance().getElement("leadership",
+						LANGUAGE), 1);
+		player.setSkillRank(
+				AvailableSkillsFactory.getInstance().getElement(
+						"techRedemption", LANGUAGE), 3);
+		player.setSkillRank(
+				AvailableSkillsFactory.getInstance().getElement("survival",
+						LANGUAGE), 3);
+		player.setSkillRank(
+				AvailableSkillsFactory.getInstance().getElement("torture",
+						LANGUAGE), 3);
+		player.setSkillRank(
+				AvailableSkillsFactory.getInstance().getElement("landcarft",
+						LANGUAGE), 2);
+		player.setSkillRank(
+				AvailableSkillsFactory.getInstance().getElement(
+						"investigation", LANGUAGE), 3);
 
-		player.addBlessing(BlessingFactory.getInstance().getElement("horribleScar", player.getLanguage()));
+		player.addBlessing(BlessingFactory.getInstance().getElement(
+				"horribleScar", player.getLanguage()));
 
-		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("commission [entered]",
-				player.getLanguage()));
-		player.addBenefice(AvailableBeneficeFactory.getInstance()
-				.getElement("passageContracts_3", player.getLanguage()));
-		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("cash [firebirds1000]",
-				player.getLanguage()));
+		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement(
+				"commission [entered]", player.getLanguage()));
+		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement(
+				"passageContracts_3", player.getLanguage()));
+		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement(
+				"cash [firebirds1000]", player.getLanguage()));
 
 		CombatStyle fightStyle = new CombatStyle("ironHeel");
-		fightStyle.addElement(new CombatAction("Cadena de Destrucción", null, "3d", "Presa Especial"));
-		fightStyle.addElement(new CombatAction("Cabezazo", 2, "4d", "Ignora armadura*"));
+		fightStyle.addElement(new CombatAction("Cadena de Destrucción", null,
+				"3d", "Presa Especial"));
+		fightStyle.addElement(new CombatAction("Cabezazo", 2, "4d",
+				"Ignora armadura*"));
 		player.getMeleeCombatStyles().add(fightStyle);
 
-		player.getWeapons().addElement(WeaponFactory.getInstance().getElement("shotgunSolid", LANGUAGE));
-		player.getWeapons().addElement(WeaponFactory.getInstance().getElement("mediumAutofeedHandgun", LANGUAGE));
+		player.getWeapons().addElement(
+				WeaponFactory.getInstance()
+						.getElement("shotgunSolid", LANGUAGE));
+		player.getWeapons().addElement(
+				WeaponFactory.getInstance().getElement("mediumAutofeedHandgun",
+						LANGUAGE));
 
 		LanguagePool.clearCache();
 		CharacterSheet sheet = new CharacterSheet(player);
-		sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Carlos.pdf");
+		sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator
+				+ "Carlos.pdf");
 
 		LanguagePool.clearCache();
 		SmallCharacterSheet smallSheet = new SmallCharacterSheet(player);
-		smallSheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Carlos_Small.pdf");
+		smallSheet.createFile(System.getProperty("java.io.tmpdir")
+				+ File.separator + "Carlos_Small.pdf");
 
-		Assert.assertEquals(CostCalculator.getCost(player), FreeStyleCharacterCreation.FREE_AVAILABLE_POINTS);
+		Assert.assertEquals(CostCalculator.getCost(player),
+				FreeStyleCharacterCreation.FREE_AVAILABLE_POINTS);
 		Assert.assertEquals(player.getRank(), "Genin");
 	}
 
@@ -317,34 +453,30 @@ public class CustomCharacters {
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("investigation", LANGUAGE), 3);
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("lore", "kelantiLore", LANGUAGE), 3);
 
-		player.getOccultism().setPsiqueLevel(OccultismTypeFactory.getPsi(player.getLanguage()), 6, player.getLanguage(), player.getFaction());
+		player.setPsiqueLevel(OccultismTypeFactory.getPsi(player.getLanguage()), 6);
 
-		player.getOccultism().addPower(
+		player.addOccultismPower(
 				OccultismPathFactory.getInstance().getElement("farHand", LANGUAGE).getOccultismPowers()
-						.get("liftingHand"), player.getLanguage(), player.getFaction());
-		player.getOccultism().addPower(
+						.get("liftingHand"));
+		player.addOccultismPower(
 				OccultismPathFactory.getInstance().getElement("farHand", LANGUAGE).getOccultismPowers()
-						.get("throwingHand"), player.getLanguage(), player.getFaction());
-		player.getOccultism().addPower(
+						.get("throwingHand"));
+		player.addOccultismPower(
 				OccultismPathFactory.getInstance().getElement("farHand", LANGUAGE).getOccultismPowers()
-						.get("crushingHand"), player.getLanguage(), player.getFaction());
-		player.getOccultism().addPower(
+						.get("crushingHand"));
+		player.addOccultismPower(
 				OccultismPathFactory.getInstance().getElement("farHand", LANGUAGE).getOccultismPowers()
-						.get("duelingHand"), player.getLanguage(), player.getFaction());
-		player.getOccultism().addPower(
-				OccultismPathFactory.getInstance().getElement("farHand", LANGUAGE).getOccultismPowers().get("farWall"),
-				player.getLanguage(), player.getFaction());
-		player.getOccultism().addPower(
-				OccultismPathFactory.getInstance().getElement("psyche", LANGUAGE).getOccultismPowers().get("intuit"),
-				player.getLanguage(), player.getFaction());
-		player.getOccultism().addPower(
-				OccultismPathFactory.getInstance().getElement("psyche", LANGUAGE).getOccultismPowers().get("emote"),
-				player.getLanguage(), player.getFaction());
-		player.getOccultism()
-				.addPower(
+						.get("duelingHand"));
+		player.addOccultismPower(
+				OccultismPathFactory.getInstance().getElement("farHand", LANGUAGE).getOccultismPowers().get("farWall"));
+		player.addOccultismPower(
+				OccultismPathFactory.getInstance().getElement("psyche", LANGUAGE).getOccultismPowers().get("intuit"));
+		player.addOccultismPower(
+				OccultismPathFactory.getInstance().getElement("psyche", LANGUAGE).getOccultismPowers().get("emote"));
+		player.addOccultismPower(
 						OccultismPathFactory.getInstance().getElement("psyche", LANGUAGE).getOccultismPowers()
-								.get("mindSight"), player.getLanguage(), player.getFaction());
-		player.getOccultism().setExtraWyrd(3);
+								.get("mindSight"));
+		player.setExtraWyrd(3);
 
 		player.addBlessing(BlessingFactory.getInstance().getElement("horribleScar", player.getLanguage()));
 
@@ -367,15 +499,18 @@ public class CustomCharacters {
 	}
 
 	@Test
-	public void createGolemCharacer() throws MalformedURLException, DocumentException, IOException,
-			InvalidXmlElementException, TooManyBlessingsException {
+	public void createGolemCharacer() throws MalformedURLException,
+			DocumentException, IOException, InvalidXmlElementException,
+			TooManyBlessingsException {
 		CharacterPlayer player = new CharacterPlayer(LANGUAGE);
 		player.getInfo().setPlayer("PNJ");
 		player.getInfo().setName("A (Prototipo A)");
 		player.getInfo().setGender(Gender.FEMALE);
-		player.setRace(new Race("Gólem", 5, 5, 5, 3, 3, 6, 0, 0, 0, 6, 0, 0, 0, 0, 0));
+		player.setRace(new Race("Gólem", 5, 5, 5, 3, 3, 6, 0, 0, 0, 6, 0, 0, 0,
+				0, 0));
 		player.getInfo().setPlanet("Ligaheim");
-		player.setFaction(FactionsFactory.getInstance().getElement("engineers", LANGUAGE));
+		player.setFaction(FactionsFactory.getInstance().getElement("engineers",
+				LANGUAGE));
 		player.getInfo().setAge(1432);
 
 		player.getCharacteristic(CharacteristicName.STRENGTH).setValue(12);
@@ -385,36 +520,71 @@ public class CustomCharacters {
 		player.getCharacteristic(CharacteristicName.PERCEPTION).setValue(7);
 		player.getCharacteristic(CharacteristicName.TECH).setValue(5);
 
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("observe", LANGUAGE), 6);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("melee", LANGUAGE), 5);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("vigor", LANGUAGE), 7);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("throwing", LANGUAGE), 5);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("athletics", LANGUAGE), 4);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("selfControl", LANGUAGE), 5);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("spacecraft", LANGUAGE), 1);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("landcarft", LANGUAGE), 3);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("spacecraftOperations", LANGUAGE), 3);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("warfare", LANGUAGE), 3);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("lore", "jumpwebLore", LANGUAGE), 3);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("lore", "thinkMachineLore", LANGUAGE), 3);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("thinkMachine", LANGUAGE), 3);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("techRedemption", LANGUAGE), 3);
+		player.setSkillRank(
+				AvailableSkillsFactory.getInstance().getElement("observe",
+						LANGUAGE), 6);
+		player.setSkillRank(
+				AvailableSkillsFactory.getInstance().getElement("melee",
+						LANGUAGE), 5);
+		player.setSkillRank(
+				AvailableSkillsFactory.getInstance().getElement("vigor",
+						LANGUAGE), 7);
+		player.setSkillRank(
+				AvailableSkillsFactory.getInstance().getElement("throwing",
+						LANGUAGE), 5);
+		player.setSkillRank(
+				AvailableSkillsFactory.getInstance().getElement("athletics",
+						LANGUAGE), 4);
+		player.setSkillRank(
+				AvailableSkillsFactory.getInstance().getElement("selfControl",
+						LANGUAGE), 5);
+		player.setSkillRank(
+				AvailableSkillsFactory.getInstance().getElement("spacecraft",
+						LANGUAGE), 1);
+		player.setSkillRank(
+				AvailableSkillsFactory.getInstance().getElement("landcarft",
+						LANGUAGE), 3);
+		player.setSkillRank(
+				AvailableSkillsFactory.getInstance().getElement(
+						"spacecraftOperations", LANGUAGE), 3);
+		player.setSkillRank(
+				AvailableSkillsFactory.getInstance().getElement("warfare",
+						LANGUAGE), 3);
+		player.setSkillRank(
+				AvailableSkillsFactory.getInstance().getElement("lore",
+						"jumpwebLore", LANGUAGE), 3);
+		player.setSkillRank(
+				AvailableSkillsFactory.getInstance().getElement("lore",
+						"thinkMachineLore", LANGUAGE), 3);
+		player.setSkillRank(
+				AvailableSkillsFactory.getInstance().getElement("thinkMachine",
+						LANGUAGE), 3);
+		player.setSkillRank(
+				AvailableSkillsFactory.getInstance().getElement(
+						"techRedemption", LANGUAGE), 3);
 
-		player.addBlessing(BlessingFactory.getInstance().getElement("gullible", player.getLanguage()));
-		player.addBlessing(BlessingFactory.getInstance().getElement("righteous", player.getLanguage()));
+		player.addBlessing(BlessingFactory.getInstance().getElement("gullible",
+				player.getLanguage()));
+		player.addBlessing(BlessingFactory.getInstance().getElement(
+				"righteous", player.getLanguage()));
 
 		player.getCybernetics().addElement(
-				new Device("Omnienchufe", 1, 0, "Normal", "Normal", "Automático", "Oculto", ""));
+				new Device("Omnienchufe", 1, 0, "Normal", "Normal",
+						"Automático", "Oculto", ""));
 		player.getCybernetics().addElement(
-				new Device("Interfaz de Datos (Turing)", 1, 1, "Normal", "Normal", "Automático", "Oculto", "Turing"));
+				new Device("Interfaz de Datos (Turing)", 1, 1, "Normal",
+						"Normal", "Automático", "Oculto", "Turing"));
 		player.getCybernetics().addElement(
-				new Device("Armadura", 1, 2, "Normal", "Normal", "Automático", "Oculto", "2d"));
+				new Device("Armadura", 1, 2, "Normal", "Normal", "Automático",
+						"Oculto", "2d"));
 
-		player.setArmour(new Armour("Piel", 2, false, false, false, false, false, false, false, 5, 0, 0, 0, 0));
+		player.setArmour(new Armour("Piel", 2, false, false, false, false,
+				false, false, false, 5, 0, 0, 0, 0));
 
 		LanguagePool.clearCache();
 		CharacterSheet sheet = new CharacterSheet(player);
-		sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Golem.pdf");
+		sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator
+				+ "Golem.pdf");
 
 		Assert.assertEquals(CostCalculator.getCost(player), -2);
 	}

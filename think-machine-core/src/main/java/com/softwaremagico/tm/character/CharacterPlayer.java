@@ -43,6 +43,7 @@ import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
 import com.softwaremagico.tm.character.benefices.BeneficeClassification;
 import com.softwaremagico.tm.character.benefices.BeneficeGroup;
 import com.softwaremagico.tm.character.benefices.BeneficeSpecialization;
+import com.softwaremagico.tm.character.benefices.InvalidBeneficeException;
 import com.softwaremagico.tm.character.blessings.Blessing;
 import com.softwaremagico.tm.character.blessings.BlessingClassification;
 import com.softwaremagico.tm.character.blessings.Bonification;
@@ -62,7 +63,11 @@ import com.softwaremagico.tm.character.equipment.Armour;
 import com.softwaremagico.tm.character.equipment.Shield;
 import com.softwaremagico.tm.character.equipment.Weapons;
 import com.softwaremagico.tm.character.factions.Faction;
+import com.softwaremagico.tm.character.occultism.InvalidOccultismPowerException;
+import com.softwaremagico.tm.character.occultism.InvalidPsiqueLevelException;
 import com.softwaremagico.tm.character.occultism.Occultism;
+import com.softwaremagico.tm.character.occultism.OccultismPower;
+import com.softwaremagico.tm.character.occultism.OccultismType;
 import com.softwaremagico.tm.character.race.InvalidRaceException;
 import com.softwaremagico.tm.character.race.Race;
 import com.softwaremagico.tm.character.race.RaceCharacteristic;
@@ -161,9 +166,10 @@ public class CharacterPlayer {
 
 	private void initializeCharacteristics() {
 		characteristics = new HashMap<String, Characteristic>();
-		for (CharacteristicDefinition characteristicDefinition : CharacteristicsDefinitionFactory.getInstance().getAll(
-				language)) {
-			characteristics.put(characteristicDefinition.getId(), new Characteristic(characteristicDefinition));
+		for (CharacteristicDefinition characteristicDefinition : CharacteristicsDefinitionFactory
+				.getInstance().getAll(language)) {
+			characteristics.put(characteristicDefinition.getId(),
+					new Characteristic(characteristicDefinition));
 		}
 	}
 
@@ -178,7 +184,8 @@ public class CharacterPlayer {
 			return 1;
 		}
 		if (CharacteristicName.INITIATIVE.equals(characteristicName)) {
-			return getStartingValue(CharacteristicName.DEXTERITY) + getStartingValue(CharacteristicName.WITS);
+			return getStartingValue(CharacteristicName.DEXTERITY)
+					+ getStartingValue(CharacteristicName.WITS);
 		}
 		return getRaceCharacteristicStartingValue(characteristicName);
 	}
@@ -192,7 +199,8 @@ public class CharacterPlayer {
 
 	private Integer getRawValue(CharacteristicName characteristicName) {
 		if (CharacteristicName.INITIATIVE.equals(characteristicName)) {
-			return getValue(CharacteristicName.DEXTERITY) + getValue(CharacteristicName.WITS);
+			return getValue(CharacteristicName.DEXTERITY)
+					+ getValue(CharacteristicName.WITS);
 		}
 		if (CharacteristicName.DEFENSE.equals(characteristicName)) {
 			return getStartingValue(characteristicName);
@@ -200,7 +208,8 @@ public class CharacterPlayer {
 		if (CharacteristicName.MOVEMENT.equals(characteristicName)) {
 			return getStartingValue(characteristicName);
 		}
-		Integer value = characteristics.get(characteristicName.getId()).getValue();
+		Integer value = characteristics.get(characteristicName.getId())
+				.getValue();
 
 		if (value == null) {
 			return 0;
@@ -213,20 +222,21 @@ public class CharacterPlayer {
 		if (CharacteristicName.INITIATIVE.equals(characteristicName)) {
 			return getValue(CharacteristicName.DEXTERITY)
 					+ getValue(CharacteristicName.WITS)
-					+ getBlessingModificationAlways(CharacteristicsDefinitionFactory.getInstance().get(
-							characteristicName, language));
+					+ getBlessingModificationAlways(CharacteristicsDefinitionFactory
+							.getInstance().get(characteristicName, language));
 		}
 		if (CharacteristicName.DEFENSE.equals(characteristicName)) {
 			return getStartingValue(characteristicName)
-					+ getBlessingModificationAlways(CharacteristicsDefinitionFactory.getInstance().get(
-							characteristicName, language));
+					+ getBlessingModificationAlways(CharacteristicsDefinitionFactory
+							.getInstance().get(characteristicName, language));
 		}
 		if (CharacteristicName.MOVEMENT.equals(characteristicName)) {
 			return getStartingValue(characteristicName)
-					+ getBlessingModificationAlways(CharacteristicsDefinitionFactory.getInstance().get(
-							characteristicName, language));
+					+ getBlessingModificationAlways(CharacteristicsDefinitionFactory
+							.getInstance().get(characteristicName, language));
 		}
-		Integer value = characteristics.get(characteristicName.getId()).getValue();
+		Integer value = characteristics.get(characteristicName.getId())
+				.getValue();
 
 		if (value == null) {
 			return 0;
@@ -235,15 +245,16 @@ public class CharacterPlayer {
 		value += getCyberneticBonus(characteristicName);
 
 		// Add modifications always applied.
-		value += getBlessingModificationAlways(CharacteristicsDefinitionFactory.getInstance().get(characteristicName,
-				language));
+		value += getBlessingModificationAlways(CharacteristicsDefinitionFactory
+				.getInstance().get(characteristicName, language));
 
 		return value;
 	}
 
 	public Integer getCyberneticCharacteristicsBonus() {
 		Integer value = 0;
-		for (CharacteristicName characteristicName : CharacteristicName.getBasicCharacteristics()) {
+		for (CharacteristicName characteristicName : CharacteristicName
+				.getBasicCharacteristics()) {
 			value += getCyberneticBonus(characteristicName);
 		}
 		return value;
@@ -254,22 +265,31 @@ public class CharacterPlayer {
 		// Add cibernetics modifications
 		for (Device device : cybernetics.getElements()) {
 			if (device.getCharacteristicImprovement(characteristicName) != null
-					&& device.getCharacteristicImprovement(characteristicName).isAlways()
-					&& device.getCharacteristicImprovement(characteristicName).getBonus() != 0) {
-				value += device.getCharacteristicImprovement(characteristicName).getBonus();
+					&& device.getCharacteristicImprovement(characteristicName)
+							.isAlways()
+					&& device.getCharacteristicImprovement(characteristicName)
+							.getBonus() != 0) {
+				value += device
+						.getCharacteristicImprovement(characteristicName)
+						.getBonus();
 			}
 		}
 		return value;
 	}
 
-	public Integer getCyberneticsImprovement(CharacteristicName characteristicName) {
+	public Integer getCyberneticsImprovement(
+			CharacteristicName characteristicName) {
 		Integer value = 0;
 		// Add cibernetics modifications
 		for (Device device : cybernetics.getElements()) {
 			if (device.getCharacteristicImprovement(characteristicName) != null
-					&& !device.getCharacteristicImprovement(characteristicName).isAlways()
-					&& device.getCharacteristicImprovement(characteristicName).getBonus() != 0) {
-				value += device.getCharacteristicImprovement(characteristicName).getBonus();
+					&& !device.getCharacteristicImprovement(characteristicName)
+							.isAlways()
+					&& device.getCharacteristicImprovement(characteristicName)
+							.getBonus() != 0) {
+				value += device
+						.getCharacteristicImprovement(characteristicName)
+						.getBonus();
 			}
 		}
 		return value;
@@ -278,26 +298,31 @@ public class CharacterPlayer {
 	public Integer getVitalityValue() throws InvalidXmlElementException {
 		return getValue(CharacteristicName.ENDURANCE)
 				+ 5
-				+ getBlessingModificationAlways(SpecialValuesFactory.getInstance().getElement(SpecialValue.VITALITY,
-						getLanguage()));
+				+ getBlessingModificationAlways(SpecialValuesFactory
+						.getInstance().getElement(SpecialValue.VITALITY,
+								getLanguage()));
 	}
 
 	public Integer getBasicWyrdValue() {
-		return Math.max(getValue(CharacteristicName.WILL), getValue(CharacteristicName.FAITH));
+		return Math.max(getValue(CharacteristicName.WILL),
+				getValue(CharacteristicName.FAITH));
 	}
 
 	public Integer getWyrdValue() throws InvalidXmlElementException {
 		return getBasicWyrdValue()
 				+ occultism.getExtraWyrd()
-				+ getBlessingModificationAlways(SpecialValuesFactory.getInstance().getElement(SpecialValue.WYRD,
-						getLanguage()));
+				+ getBlessingModificationAlways(SpecialValuesFactory
+						.getInstance().getElement(SpecialValue.WYRD,
+								getLanguage()));
 	}
 
-	public void setSkillRank(AvailableSkill availableSkill, int value) throws InvalidSkillException {
+	public void setSkillRank(AvailableSkill availableSkill, int value)
+			throws InvalidSkillException {
 		if (availableSkill == null) {
 			throw new InvalidSkillException("Null skill is not allowed here.");
 		}
-		SelectedSkill skillWithRank = new SelectedSkill(availableSkill, value, false);
+		SelectedSkill skillWithRank = new SelectedSkill(availableSkill, value,
+				false);
 		skills.put(availableSkill.getCompleteName(), skillWithRank);
 		skillNameOrdered.add(availableSkill.getName());
 		Collections.sort(skillNameOrdered);
@@ -313,16 +338,19 @@ public class CharacterPlayer {
 	 * @throws InvalidSkillException
 	 *             if skill does not exists.
 	 */
-	public void setDesiredSkillRanks(AvailableSkill availableSkill, int value) throws InvalidSkillException {
+	public void setDesiredSkillRanks(AvailableSkill availableSkill, int value)
+			throws InvalidSkillException {
 		if (availableSkill == null) {
 			throw new InvalidSkillException("Null skill is not allowed here.");
 		}
-		getFreeStyleCharacterCreation().getDesiredSkillRanks().put(availableSkill, value);
+		getFreeStyleCharacterCreation().getDesiredSkillRanks().put(
+				availableSkill, value);
 	}
 
 	private Integer getSkillAssignedRanks(Skill<?> skill) {
 		if (skills.get(skill.getName()) == null) {
-			if (SkillsDefinitionsFactory.getInstance().isNaturalSkill(skill.getName(), language)) {
+			if (SkillsDefinitionsFactory.getInstance().isNaturalSkill(
+					skill.getName(), language)) {
 				return 3;
 			}
 			return 0;
@@ -344,7 +372,8 @@ public class CharacterPlayer {
 			return getSkillAssignedRanks(selectedSkill);
 		} else {
 			// Use a simple skill if not generalization.
-			if (!skill.getSkillDefinition().isSpecializable() || skill.getSkillDefinition().isNatural()) {
+			if (!skill.getSkillDefinition().isSpecializable()
+					|| skill.getSkillDefinition().isNatural()) {
 				return getSkillAssignedRanks((Skill<AvailableSkill>) skill);
 			} else {
 				return 0;
@@ -364,7 +393,8 @@ public class CharacterPlayer {
 		Integer skillValue = getSkillAssignedRanks(skill);
 		// Set the modifications of blessings.
 		if (skills.get(skill.getName()) != null) {
-			skillValue += getBlessingModificationAlways(skills.get(skill.getName()).getAvailableSkill()
+			skillValue += getBlessingModificationAlways(skills
+					.get(skill.getName()).getAvailableSkill()
 					.getSkillDefinition());
 		}
 		// Cybernetics only if better.
@@ -381,7 +411,8 @@ public class CharacterPlayer {
 			return getSkillTotalRanks(selectedSkill);
 		} else {
 			// Use a simple skill if not generalization.
-			if (!skill.getSkillDefinition().isSpecializable() || skill.getSkillDefinition().isNatural()) {
+			if (!skill.getSkillDefinition().isSpecializable()
+					|| skill.getSkillDefinition().isNatural()) {
 				return getSkillTotalRanks((Skill<AvailableSkill>) skill);
 			} else {
 				return 0;
@@ -402,7 +433,8 @@ public class CharacterPlayer {
 	}
 
 	public boolean isSkillSpecial(AvailableSkill availableSkill) {
-		if (getSelectedSkill(availableSkill) != null && getSelectedSkill(availableSkill).hasCost()) {
+		if (getSelectedSkill(availableSkill) != null
+				&& getSelectedSkill(availableSkill).hasCost()) {
 			return true;
 		}
 
@@ -428,30 +460,33 @@ public class CharacterPlayer {
 		return language;
 	}
 
-	public Occultism getOccultism() {
+	private Occultism getOccultism() {
 		return occultism;
 	}
 
 	public void addBlessing(Blessing blessing) throws TooManyBlessingsException {
 		if (blessing.getBlessingClassification() == BlessingClassification.CURSE) {
-			if (CostCalculator.getBlessingCosts(getCurses()) + blessing.getCost() >= FreeStyleCharacterCreation.MAX_CURSE_POINTS) {
-				throw new TooManyBlessingsException("Only a total of '" + FreeStyleCharacterCreation.MAX_CURSE_POINTS
+			if (CostCalculator.getBlessingCosts(getCurses())
+					+ blessing.getCost() >= FreeStyleCharacterCreation.MAX_CURSE_POINTS) {
+				throw new TooManyBlessingsException("Only a total of '"
+						+ FreeStyleCharacterCreation.MAX_CURSE_POINTS
 						+ "' points are allowed for curses.");
 			}
 		}
 		// Only 7 values can be modified by blessings.
-		if (getBlessingModificationsNumber() + blessing.getBonifications().size() > FreeStyleCharacterCreation.MAX_BLESSING_MODIFICATIONS) {
+		if (getBlessingModificationsNumber()
+				+ blessing.getBonifications().size() > FreeStyleCharacterCreation.MAX_BLESSING_MODIFICATIONS) {
 			throw new TooManyBlessingsException("Only a total of '"
 					+ FreeStyleCharacterCreation.MAX_BLESSING_MODIFICATIONS
-					+ "' modifications are allowed for blessings. Now exists '" + getAllBlessings() + "' and adding '"
-					+ blessing + "'.");
+					+ "' modifications are allowed for blessings. Now exists '"
+					+ getAllBlessings() + "' and adding '" + blessing + "'.");
 		}
 		// Only 7 blessings as max.
 		if (getAllBlessings().size() > FreeStyleCharacterCreation.MAX_BLESSING_MODIFICATIONS) {
 			throw new TooManyBlessingsException("Only a total of '"
 					+ FreeStyleCharacterCreation.MAX_BLESSING_MODIFICATIONS
-					+ "' modifications are allowed for blessings. Now exists '" + getAllBlessings() + "' and adding '"
-					+ blessing + "'.");
+					+ "' modifications are allowed for blessings. Now exists '"
+					+ getAllBlessings() + "' and adding '" + blessing + "'.");
 		}
 		blessings.add(blessing);
 		Collections.sort(blessings);
@@ -501,7 +536,12 @@ public class CharacterPlayer {
 		return Collections.unmodifiableList(allBlessings);
 	}
 
-	public void addBenefice(AvailableBenefice benefice) {
+	public void addBenefice(AvailableBenefice benefice)
+			throws InvalidBeneficeException {
+		if (benefice.getBenefitDefinition().getGroup() == BeneficeGroup.RESTRICTED) {
+			throw new InvalidBeneficeException("Benefice '" + benefice
+					+ "' is restricted and cannot be added.");
+		}
 		benefices.add(benefice);
 		Collections.sort(benefices);
 	}
@@ -511,7 +551,8 @@ public class CharacterPlayer {
 	 * 
 	 * @return
 	 */
-	public List<AvailableBenefice> getAllBenefices() throws InvalidXmlElementException {
+	public List<AvailableBenefice> getAllBenefices()
+			throws InvalidXmlElementException {
 		List<AvailableBenefice> positiveBenefices = new ArrayList<>();
 		for (AvailableBenefice benefice : benefices) {
 			if (benefice.getBeneficeClassification() == BeneficeClassification.BENEFICE) {
@@ -527,10 +568,12 @@ public class CharacterPlayer {
 			}
 		}
 		for (CombatStyle style : getMeleeCombatStyles()) {
-			positiveBenefices.add(AvailableBeneficeFactory.getInstance().getElement(style.getName(), getLanguage()));
+			positiveBenefices.add(AvailableBeneficeFactory.getInstance()
+					.getElement(style.getName(), getLanguage()));
 		}
 		for (CombatStyle style : getRangedCombatStyles()) {
-			positiveBenefices.add(AvailableBeneficeFactory.getInstance().getElement(style.getName(), getLanguage()));
+			positiveBenefices.add(AvailableBeneficeFactory.getInstance()
+					.getElement(style.getName(), getLanguage()));
 		}
 		return Collections.unmodifiableList(positiveBenefices);
 	}
@@ -591,14 +634,17 @@ public class CharacterPlayer {
 
 	public void setRace(Race race) throws InvalidRaceException {
 		if (race == null) {
-			throw new InvalidRaceException("Race '" + race + "' does not exists!");
+			throw new InvalidRaceException("Race '" + race
+					+ "' does not exists!");
 		}
 		this.race = race;
 	}
 
-	private int getRaceCharacteristicStartingValue(CharacteristicName characteristicName) {
+	private int getRaceCharacteristicStartingValue(
+			CharacteristicName characteristicName) {
 		if (getRace() != null) {
-			RaceCharacteristic value = getRace().getParameter(characteristicName);
+			RaceCharacteristic value = getRace().getParameter(
+					characteristicName);
 			if (value != null) {
 				return value.getInitialValue();
 			}
@@ -607,23 +653,31 @@ public class CharacterPlayer {
 		return 0;
 	}
 
-	public List<AvailableSkill> getNaturalSkills() throws InvalidXmlElementException {
+	public List<AvailableSkill> getNaturalSkills()
+			throws InvalidXmlElementException {
 		List<AvailableSkill> naturalSkills = new ArrayList<>();
 		// Adds default planet and faction.
-		for (AvailableSkill skill : AvailableSkillsFactory.getInstance().getNaturalSkills(language)) {
-			if (skill.getSkillDefinition().getId().equals(SkillDefinition.PLANETARY_LORE_ID)) {
-				skill.setSpecialization(new Specialization(getInfo().getPlanet(), getInfo().getPlanet()));
-			} else if (skill.getSkillDefinition().getId().equals(SkillDefinition.FACTORION_LORE_ID)) {
-				skill.setSpecialization(new Specialization(getFaction().getName(), getFaction().getName()));
+		for (AvailableSkill skill : AvailableSkillsFactory.getInstance()
+				.getNaturalSkills(language)) {
+			if (skill.getSkillDefinition().getId()
+					.equals(SkillDefinition.PLANETARY_LORE_ID)) {
+				skill.setSpecialization(new Specialization(getInfo()
+						.getPlanet(), getInfo().getPlanet()));
+			} else if (skill.getSkillDefinition().getId()
+					.equals(SkillDefinition.FACTORION_LORE_ID)) {
+				skill.setSpecialization(new Specialization(getFaction()
+						.getName(), getFaction().getName()));
 			}
 			naturalSkills.add(skill);
 		}
 		return naturalSkills;
 	}
 
-	public List<AvailableSkill> getLearnedSkills() throws InvalidXmlElementException {
+	public List<AvailableSkill> getLearnedSkills()
+			throws InvalidXmlElementException {
 		List<AvailableSkill> learnedSkills = new ArrayList<>();
-		for (AvailableSkill skill : AvailableSkillsFactory.getInstance().getLearnedSkills(language)) {
+		for (AvailableSkill skill : AvailableSkillsFactory.getInstance()
+				.getLearnedSkills(language)) {
 			if (getSkillTotalRanks(skill) != null) {
 				learnedSkills.add(skill);
 			}
@@ -641,7 +695,8 @@ public class CharacterPlayer {
 
 	public int getStrengthDamangeModification() {
 		try {
-			int strength = characteristics.get(CharacteristicName.STRENGTH.getId()).getValue();
+			int strength = characteristics.get(
+					CharacteristicName.STRENGTH.getId()).getValue();
 
 			if (strength > 5) {
 				return strength / 3 - 1;
@@ -659,8 +714,10 @@ public class CharacterPlayer {
 	 */
 	public int getCharacteristicsTotalPoints() {
 		int characteristicPoints = 0;
-		for (CharacteristicName characteristicName : CharacteristicName.getBasicCharacteristics()) {
-			characteristicPoints += getRawValue(characteristicName) - getStartingValue(characteristicName);
+		for (CharacteristicName characteristicName : CharacteristicName
+				.getBasicCharacteristics()) {
+			characteristicPoints += getRawValue(characteristicName)
+					- getStartingValue(characteristicName);
 		}
 		return characteristicPoints;
 	}
@@ -673,11 +730,14 @@ public class CharacterPlayer {
 	 */
 	public int getSkillsTotalPoints() throws InvalidXmlElementException {
 		int skillPoints = 0;
-		for (AvailableSkill skill : AvailableSkillsFactory.getInstance().getNaturalSkills(getLanguage())) {
-			skillPoints += getSkillAssignedRanks(skill) - getStartingValue(skill);
+		for (AvailableSkill skill : AvailableSkillsFactory.getInstance()
+				.getNaturalSkills(getLanguage())) {
+			skillPoints += getSkillAssignedRanks(skill)
+					- getStartingValue(skill);
 		}
 
-		for (AvailableSkill skill : AvailableSkillsFactory.getInstance().getLearnedSkills((getLanguage()))) {
+		for (AvailableSkill skill : AvailableSkillsFactory.getInstance()
+				.getLearnedSkills((getLanguage()))) {
 			if (isSkillSpecial(skill)) {
 				continue;
 			}
@@ -705,7 +765,8 @@ public class CharacterPlayer {
 		return characteristics.get(characteristicId);
 	}
 
-	public Characteristic getCharacteristic(CharacteristicName characteristicName) {
+	public Characteristic getCharacteristic(
+			CharacteristicName characteristicName) {
 		return getCharacteristic(characteristicName.getId());
 	}
 
@@ -713,14 +774,17 @@ public class CharacterPlayer {
 		return new HashSet<Characteristic>(characteristics.values());
 	}
 
-	public Set<Characteristic> getCharacteristics(CharacteristicType characteristicType) {
+	public Set<Characteristic> getCharacteristics(
+			CharacteristicType characteristicType) {
 		if (characteristicsByType == null || characteristicsByType.isEmpty()) {
 			characteristicsByType = new HashMap<>();
 			for (Characteristic characteristic : characteristics.values()) {
 				if (characteristicsByType.get(characteristic.getType()) == null) {
-					characteristicsByType.put(characteristic.getType(), new HashSet<Characteristic>());
+					characteristicsByType.put(characteristic.getType(),
+							new HashSet<Characteristic>());
 				}
-				characteristicsByType.get(characteristic.getType()).add(characteristic);
+				characteristicsByType.get(characteristic.getType()).add(
+						characteristic);
 			}
 		}
 		return characteristicsByType.get(characteristicType);
@@ -738,34 +802,42 @@ public class CharacterPlayer {
 	}
 
 	public boolean isCharacteristicTrained(Characteristic characteristic) {
-		return characteristic.getValue() > getStartingValue(characteristic.getCharacteristicName());
+		return characteristic.getValue() > getStartingValue(characteristic
+				.getCharacteristicName());
 	}
 
 	public FreeStyleCharacterCreation getFreeStyleCharacterCreation() {
 		return freeStyleCharacterCreation;
 	}
 
-	public void setFreeStyleCharacterCreation(FreeStyleCharacterCreation freeStyleCharacterCreation) {
+	public void setFreeStyleCharacterCreation(
+			FreeStyleCharacterCreation freeStyleCharacterCreation) {
 		this.freeStyleCharacterCreation = freeStyleCharacterCreation;
 	}
 
 	/**
-	 * Return which characteristic type has higher values in its characteristics.
+	 * Return which characteristic type has higher values in its
+	 * characteristics.
 	 * 
 	 * @return CharacteristicType
 	 */
 	public List<Entry<CharacteristicType, Integer>> getPreferredCharacteristicsTypeSorted() {
 		Map<CharacteristicType, Integer> totalRanksByCharacteristicType = new TreeMap<>();
-		for (CharacteristicType characteristicType : CharacteristicType.values()) {
-			if (characteristicType != CharacteristicType.OTHERS && getCharacteristics(characteristicType) != null) {
+		for (CharacteristicType characteristicType : CharacteristicType
+				.values()) {
+			if (characteristicType != CharacteristicType.OTHERS
+					&& getCharacteristics(characteristicType) != null) {
 				for (Characteristic characteristic : getCharacteristics(characteristicType)) {
 					if (totalRanksByCharacteristicType.get(characteristicType) == null) {
-						totalRanksByCharacteristicType.put(characteristicType, 0);
+						totalRanksByCharacteristicType.put(characteristicType,
+								0);
 					}
 					totalRanksByCharacteristicType.put(
 							characteristicType,
-							totalRanksByCharacteristicType.get(characteristicType)
-									+ getValue(characteristic.getCharacteristicName()));
+							totalRanksByCharacteristicType
+									.get(characteristicType)
+									+ getValue(characteristic
+											.getCharacteristicName()));
 				}
 			}
 		}
@@ -775,11 +847,13 @@ public class CharacterPlayer {
 		// Sort result.
 		List<Entry<CharacteristicType, Integer>> sortedList = new LinkedList<>(
 				totalRanksByCharacteristicType.entrySet());
-		Collections.sort(sortedList, new Comparator<Entry<CharacteristicType, Integer>>() {
-			public int compare(Entry<CharacteristicType, Integer> o1, Entry<CharacteristicType, Integer> o2) {
-				return o2.getValue().compareTo(o1.getValue());
-			}
-		});
+		Collections.sort(sortedList,
+				new Comparator<Entry<CharacteristicType, Integer>>() {
+					public int compare(Entry<CharacteristicType, Integer> o1,
+							Entry<CharacteristicType, Integer> o2) {
+						return o2.getValue().compareTo(o1.getValue());
+					}
+				});
 
 		return sortedList;
 	}
@@ -789,10 +863,14 @@ public class CharacterPlayer {
 			if (benefice.getBenefitDefinition().getGroup() == BeneficeGroup.STATUS) {
 				// Must have an specialization.
 				if (benefice.getSpecialization() != null) {
-					BeneficeSpecialization rankSpecialization = benefice.getSpecialization();
+					BeneficeSpecialization rankSpecialization = benefice
+							.getSpecialization();
 					// Some factions have different names.
-					if (getFaction() != null && getFaction().getRankTranslation(rankSpecialization.getId()) != null) {
-						return getFaction().getRankTranslation(rankSpecialization.getId()).getName();
+					if (getFaction() != null
+							&& getFaction().getRankTranslation(
+									rankSpecialization.getId()) != null) {
+						return getFaction().getRankTranslation(
+								rankSpecialization.getId()).getName();
 					} else {
 						return rankSpecialization.getName();
 					}
@@ -814,11 +892,14 @@ public class CharacterPlayer {
 		int modification = 0;
 		for (Blessing blessing : getAllBlessings()) {
 			for (Bonification bonification : blessing.getBonifications()) {
-				if (bonification.getSituation() != null && !bonification.getSituation().isEmpty()) {
+				if (bonification.getSituation() != null
+						&& !bonification.getSituation().isEmpty()) {
 					if (bonification.getAffects() instanceof SpecialValue) {
-						SpecialValue specialValue = (SpecialValue) bonification.getAffects();
+						SpecialValue specialValue = (SpecialValue) bonification
+								.getAffects();
 						// Has a list of values defined.
-						for (IValue specialValueSkill : specialValue.getAffects()) {
+						for (IValue specialValueSkill : specialValue
+								.getAffects()) {
 							if (Objects.equals(specialValueSkill, value)) {
 								modification += bonification.getBonification();
 								break;
@@ -838,11 +919,14 @@ public class CharacterPlayer {
 		int modification = 0;
 		for (Blessing blessing : getAllBlessings()) {
 			for (Bonification bonification : blessing.getBonifications()) {
-				if (bonification.getSituation() == null || bonification.getSituation().isEmpty()) {
+				if (bonification.getSituation() == null
+						|| bonification.getSituation().isEmpty()) {
 					if (bonification.getAffects() instanceof SpecialValue) {
-						SpecialValue specialValue = (SpecialValue) bonification.getAffects();
+						SpecialValue specialValue = (SpecialValue) bonification
+								.getAffects();
 						// Has a list of values defined.
-						for (IValue specialValueSkill : specialValue.getAffects()) {
+						for (IValue specialValueSkill : specialValue
+								.getAffects()) {
 							if (Objects.equals(specialValueSkill, value)) {
 								modification += bonification.getBonification();
 								break;
@@ -873,19 +957,56 @@ public class CharacterPlayer {
 		return false;
 	}
 
-	public boolean hasCharacteristicTemporalModificator(CharacteristicName characteristicName) {
-		if (getBlessingModification(CharacteristicsDefinitionFactory.getInstance().get(characteristicName,
-				getLanguage())) != 0) {
+	public boolean hasCharacteristicTemporalModificator(
+			CharacteristicName characteristicName) {
+		if (getBlessingModification(CharacteristicsDefinitionFactory
+				.getInstance().get(characteristicName, getLanguage())) != 0) {
 			return true;
 		}
 		return false;
 	}
 
-	public boolean hasCharacteristicModificator(CharacteristicName characteristicName) {
-		if (getBlessingModificationAlways(CharacteristicsDefinitionFactory.getInstance().get(characteristicName,
-				getLanguage())) != 0) {
+	public boolean hasCharacteristicModificator(
+			CharacteristicName characteristicName) {
+		if (getBlessingModificationAlways(CharacteristicsDefinitionFactory
+				.getInstance().get(characteristicName, getLanguage())) != 0) {
 			return true;
 		}
 		return false;
+	}
+
+	public int getExtraWyrd() {
+		return getOccultism().getExtraWyrd();
+	}
+
+	public void setExtraWyrd(int extraWyrd) {
+		getOccultism().setExtraWyrd(extraWyrd);
+	}
+
+	public int getPsiqueLevel(OccultismType occultismType) {
+		return getOccultism().getPsiqueLevel(occultismType);
+	}
+
+	public void setPsiqueLevel(OccultismType occultismType, int psyValue)
+			throws InvalidPsiqueLevelException {
+		getOccultism().setPsiqueLevel(occultismType, psyValue, getLanguage(),
+				getFaction());
+	}
+
+	public int getDarkSideLevel(OccultismType occultismType) {
+		return getOccultism().getDarkSideLevel(occultismType);
+	}
+
+	public void setDarkSideLevel(OccultismType occultismType, int darkSideValue) {
+		getOccultism().setDarkSideLevel(occultismType, darkSideValue);
+	}
+
+	public Map<String, List<String>> getSelectedPowers() {
+		return getOccultism().getSelectedPowers();
+	}
+
+	public void addOccultismPower(OccultismPower power)
+			throws InvalidOccultismPowerException {
+		getOccultism().addPower(power, getLanguage(), getFaction());
 	}
 }
