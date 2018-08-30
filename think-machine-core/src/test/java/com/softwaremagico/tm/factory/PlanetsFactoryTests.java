@@ -34,7 +34,7 @@ import com.softwaremagico.tm.character.planet.PlanetFactory;
 @Test(groups = { "planetsFactory" })
 public class PlanetsFactoryTests {
 
-	private final static int DEFINED_PLANETS = 4;
+	private final static int DEFINED_PLANETS = 37;
 
 	@Test
 	public void readPlanets() throws InvalidXmlElementException {

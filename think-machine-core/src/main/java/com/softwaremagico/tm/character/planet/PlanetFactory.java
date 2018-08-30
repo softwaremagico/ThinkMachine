@@ -24,8 +24,13 @@ package com.softwaremagico.tm.character.planet;
  * #L%
  */
 
+import java.util.HashSet;
+import java.util.Set;
+import java.util.StringTokenizer;
+
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
+import com.softwaremagico.tm.character.factions.Faction;
 import com.softwaremagico.tm.character.factions.FactionsFactory;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
@@ -59,8 +64,23 @@ public class PlanetFactory extends XmlFactory<Planet> {
 	protected Planet createElement(ITranslator translator, String planetId, String language) throws InvalidXmlElementException {
 		try {
 			String name = translator.getNodeValue(planetId, NAME, language);
-			String factionName = translator.getNodeValue(planetId, FACTION);
-			return new Planet(planetId, name, FactionsFactory.getInstance().getElement(factionName, language));
+			String factionsName = translator.getNodeValue(planetId, FACTION);
+			
+			Set<Faction> factions = new HashSet<>();
+			if (factionsName != null) {
+				StringTokenizer factionsNameTokenizer = new StringTokenizer(factionsName, ",");
+				while (factionsNameTokenizer.hasMoreTokens()) {
+					try {
+						factions.add( FactionsFactory.getInstance().getElement(
+								factionsNameTokenizer.nextToken().trim(), language));
+					} catch (InvalidXmlElementException ixe) {
+						throw new InvalidPlanetException("Error in planet '" + planetId
+								+ "' structure. Invalid faction defintion.", ixe);
+					}
+				}
+			}
+			
+			return new Planet(planetId, name, factions);
 		} catch (Exception e) {
 			throw new InvalidPlanetException("Invalid structure in planet '" + planetId + "'.", e);
 		}

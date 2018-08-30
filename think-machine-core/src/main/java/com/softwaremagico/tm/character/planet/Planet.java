@@ -24,18 +24,21 @@ package com.softwaremagico.tm.character.planet;
  * #L%
  */
 
+import java.util.Set;
+
 import com.softwaremagico.tm.Element;
 import com.softwaremagico.tm.character.factions.Faction;
 
 public class Planet extends Element<Planet> {
-	private final Faction faction;
+	private final Set<Faction> factions;
 
-	public Planet(String id, String name, Faction faction) {
+	public Planet(String id, String name, Set<Faction> factions) {
 		super(id, name);
-		this.faction = faction;
+		this.factions = factions;
 	}
 
-	public Faction getFaction() {
-		return faction;
+	public Set<Faction> getFactions() {
+		return factions;
 	}
+
 }
