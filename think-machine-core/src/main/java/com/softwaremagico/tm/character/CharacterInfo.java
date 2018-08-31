@@ -26,6 +26,7 @@ package com.softwaremagico.tm.character;
 
 import java.lang.reflect.Field;
 
+import com.softwaremagico.tm.character.planet.Planet;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
 
@@ -40,7 +41,7 @@ public class CharacterInfo {
 
 	private Integer age;
 
-	private String planet;
+	private Planet planet;
 
 	private String birthdate;
 
@@ -117,11 +118,11 @@ public class CharacterInfo {
 		this.age = age;
 	}
 
-	public String getPlanet() {
+	public Planet getPlanet() {
 		return planet;
 	}
 
-	public void setPlanet(String planet) {
+	public void setPlanet(Planet planet) {
 		this.planet = planet;
 	}
 

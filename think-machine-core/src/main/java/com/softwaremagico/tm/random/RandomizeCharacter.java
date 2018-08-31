@@ -101,6 +101,10 @@ public class RandomizeCharacter {
 			RandomFaction randomFaction = new RandomFaction(characterPlayer, preferences);
 			randomFaction.assignFaction();
 		}
+		
+		if(characterPlayer.getInfo().getPlanet()==null){
+			
+		}
 	}
 
 	/**

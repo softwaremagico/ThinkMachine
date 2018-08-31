@@ -47,6 +47,9 @@ public class BaseElement {
 
 	public static PdfPCell getCell(String text, int border, int colspan, int align, BaseColor color, BaseFont font, float fontSize) {
 		// Paragraph p = new Paragraph(text, new Font(font, fontSize));
+		if (text == null) {
+			text = "";
+		}
 		Phrase content = new Phrase(text, new Font(font, fontSize));
 		PdfPCell cell = new PdfPCell(content);
 		cell.setColspan(colspan);
@@ -58,7 +61,6 @@ public class BaseElement {
 	}
 
 	public static PdfPCell getCell(Paragraph paragraph, int border, int colspan, int align, BaseColor color) {
-		// Paragraph p = new Paragraph(text, new Font(font, fontSize));
 		PdfPCell cell = new PdfPCell(paragraph);
 		cell.setColspan(colspan);
 		cell.setBorderWidth(border);
@@ -68,8 +70,10 @@ public class BaseElement {
 		return cell;
 	}
 
-	protected PdfPCell getCell(String text, int border, int colspan, int align, BaseColor color, String font,
-			int fontSize, int fontType) {
+	protected PdfPCell getCell(String text, int border, int colspan, int align, BaseColor color, String font, int fontSize, int fontType) {
+		if (text == null) {
+			text = "";
+		}
 		Paragraph p = new Paragraph(text, FontFactory.getFont(font, fontSize, fontType));
 		PdfPCell cell = new PdfPCell(p);
 		cell.setColspan(colspan);

@@ -42,6 +42,7 @@ import com.softwaremagico.tm.character.equipment.WeaponFactory;
 import com.softwaremagico.tm.character.factions.FactionsFactory;
 import com.softwaremagico.tm.character.occultism.OccultismPathFactory;
 import com.softwaremagico.tm.character.occultism.OccultismTypeFactory;
+import com.softwaremagico.tm.character.planet.PlanetFactory;
 import com.softwaremagico.tm.character.race.RaceFactory;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 
@@ -55,7 +56,7 @@ public class CustomCharacter {
 		player.getInfo().setGender(Gender.MALE);
 		player.getInfo().setAge(30);
 		player.setRace(RaceFactory.getInstance().getElement("human", language));
-		player.getInfo().setPlanet("Sutek");
+		player.getInfo().setPlanet(PlanetFactory.getInstance().getElement("sutek", language));
 		player.setFaction(FactionsFactory.getInstance().getElement("hazat", language));
 
 		player.getInfo().setBirthdate("4996-09-16");
