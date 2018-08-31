@@ -37,7 +37,7 @@ import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedExcep
 import com.softwaremagico.tm.random.selectors.IRandomPreferences;
 
 public class RandomPlanet extends RandomSelector<Planet> {
-	private final static int FACTION_PLANET = 20;
+	private final static int FACTION_PLANET = 50;
 	private final static int NEUTRAL_PLANET = 5;
 	private final static int ENEMY_PLANET = 1;
 
