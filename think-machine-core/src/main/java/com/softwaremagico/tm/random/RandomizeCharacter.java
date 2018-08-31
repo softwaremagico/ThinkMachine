@@ -45,8 +45,7 @@ public class RandomizeCharacter {
 	private CharacterPlayer characterPlayer;
 	private final Set<IRandomPreferences> preferences;
 
-	public RandomizeCharacter(CharacterPlayer characterPlayer, int experiencePoints, IRandomPreferences... preferences)
-			throws DuplicatedPreferenceException {
+	public RandomizeCharacter(CharacterPlayer characterPlayer, int experiencePoints, IRandomPreferences... preferences) throws DuplicatedPreferenceException {
 		this.characterPlayer = characterPlayer;
 		this.preferences = new HashSet<>(Arrays.asList(preferences));
 
@@ -58,8 +57,7 @@ public class RandomizeCharacter {
 		// Only one of each class allowed.
 		for (IRandomPreferences preference : preferences) {
 			if (existingPreferences.contains(preference.getClass())) {
-				throw new DuplicatedPreferenceException("Preference '" + preference
-						+ "' collides with another preference. Only one of each type is allowed.");
+				throw new DuplicatedPreferenceException("Preference '" + preference + "' collides with another preference. Only one of each type is allowed.");
 			}
 			existingPreferences.add(preference.getClass());
 		}
@@ -101,14 +99,16 @@ public class RandomizeCharacter {
 			RandomFaction randomFaction = new RandomFaction(characterPlayer, preferences);
 			randomFaction.assignFaction();
 		}
-		
-		if(characterPlayer.getInfo().getPlanet()==null){
-			
+
+		if (characterPlayer.getInfo().getPlanet() == null) {
+			RandomPlanet randomPlanet = new RandomPlanet(characterPlayer, preferences);
+			randomPlanet.assignPlanet();
 		}
 	}
 
 	/**
-	 * Using free style character generation. Only the first points to expend in a character.
+	 * Using free style character generation. Only the first points to expend in
+	 * a character.
 	 * 
 	 * @throws InvalidXmlElementException
 	 * @throws InvalidRandomElementSelectedException
@@ -147,16 +147,14 @@ public class RandomizeCharacter {
 		randomPsiquePath.assignPsiquePaths();
 
 		// Spend remaining points in skills and characteristics.
-		int remainingPoints = FreeStyleCharacterCreation.FREE_AVAILABLE_POINTS
-				- CostCalculator.getCost(characterPlayer);
+		int remainingPoints = FreeStyleCharacterCreation.FREE_AVAILABLE_POINTS - CostCalculator.getCost(characterPlayer);
 
 		RandomGenerationLog.info(this.getClass().getName(), "Remaining points '" + remainingPoints + "'.");
 		IGaussianDistribution specialization = SpecializationPreferences.getSelected(preferences);
 		while (remainingPoints > 0) {
 			// Characteristics only if is a little specialized.
 			if (specialization.randomGaussian() > 4) {
-				RandomCharacteristicsExtraPoints randomCharacteristicsExtraPoints = new RandomCharacteristicsExtraPoints(
-						characterPlayer, preferences);
+				RandomCharacteristicsExtraPoints randomCharacteristicsExtraPoints = new RandomCharacteristicsExtraPoints(characterPlayer, preferences);
 				remainingPoints -= randomCharacteristicsExtraPoints.spendCharacteristicsPoints(remainingPoints);
 			}
 
@@ -174,8 +172,7 @@ public class RandomizeCharacter {
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append(characterPlayer.getInfo().getName() + " (" + characterPlayer.getRace() + ") ["
-				+ characterPlayer.getFaction() + "]");
+		sb.append(characterPlayer.getInfo().getName() + " (" + characterPlayer.getRace() + ") [" + characterPlayer.getFaction() + "]");
 		sb.append(characterPlayer.getFreeStyleCharacterCreation().getSelectedCharacteristicsValues());
 		sb.append(characterPlayer.getFreeStyleCharacterCreation().getDesiredSkillRanks());
 		return sb.toString();
