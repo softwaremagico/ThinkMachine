@@ -30,11 +30,13 @@ import java.util.Set;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.character.Gender;
 import com.softwaremagico.tm.character.creation.CostCalculator;
 import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
 import com.softwaremagico.tm.log.RandomGenerationLog;
 import com.softwaremagico.tm.random.exceptions.DuplicatedPreferenceException;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
+import com.softwaremagico.tm.random.selectors.AgePreferences;
 import com.softwaremagico.tm.random.selectors.IGaussianDistribution;
 import com.softwaremagico.tm.random.selectors.IRandomPreferences;
 import com.softwaremagico.tm.random.selectors.PsiqueLevelPreferences;
@@ -93,6 +95,15 @@ public class RandomizeCharacter {
 		if (characterPlayer.getRace() == null) {
 			RandomRace randomRace = new RandomRace(characterPlayer, preferences);
 			randomRace.assignRace();
+		}
+
+		if (characterPlayer.getInfo().getGender() == null) {
+			characterPlayer.getInfo().setGender(Gender.randomGender());
+		}
+
+		if (characterPlayer.getInfo().getAge() == null) {
+			IGaussianDistribution ageDistribution = AgePreferences.getSelected(preferences);
+			characterPlayer.getInfo().setAge(ageDistribution.randomGaussian());
 		}
 
 		if (characterPlayer.getFaction() == null) {

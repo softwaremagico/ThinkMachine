@@ -1,5 +1,7 @@
 package com.softwaremagico.tm.character;
 
+import java.util.Random;
+
 /*-
  * #%L
  * Think Machine (Core)
@@ -30,8 +32,15 @@ public enum Gender {
 
 	FEMALE;
 
+	private static final Random RANDOM = new Random();
+	private static final Gender[] VALUES = values();
+
 	@Override
 	public String toString() {
 		return name().toLowerCase();
+	}
+
+	public static Gender randomGender() {
+		return VALUES[RANDOM.nextInt(Gender.values().length)];
 	}
 }
