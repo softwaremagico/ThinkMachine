@@ -36,6 +36,9 @@ import com.softwaremagico.tm.character.factions.FactionsFactory;
 @Test(groups = { "factionsFactory" })
 public class FactionFactoryTests {
 	private final static int DEFINED_FACTIONS = 19;
+	private final static int DEFINED_MALE_NAMES = 102;
+	private final static int DEFINED_FEMALE_NAMES = 100;
+	private final static int DEFINED_SURNAMES = 119;
 	private final static String LANGUAGE = "es";
 
 	@Test
@@ -47,5 +50,13 @@ public class FactionFactoryTests {
 	public void readAfflictions() throws InvalidXmlElementException {
 		Faction vorox = FactionsFactory.getInstance().getElement("vorox", LANGUAGE);
 		Assert.assertTrue(vorox.getBenefices().contains(AvailableBeneficeFactory.getInstance().getElement("noOccult", LANGUAGE)));
+	}
+
+	@Test
+	public void readNames() throws InvalidXmlElementException {
+		Faction hazat = FactionsFactory.getInstance().getElement("hazat", LANGUAGE);
+		Assert.assertEquals(DEFINED_MALE_NAMES, hazat.getRandomDefinition().getMaleNames().size());
+		Assert.assertEquals(DEFINED_FEMALE_NAMES, hazat.getRandomDefinition().getFemaleNames().size());
+		Assert.assertEquals(DEFINED_SURNAMES, hazat.getRandomDefinition().getSurnames().size());
 	}
 }
