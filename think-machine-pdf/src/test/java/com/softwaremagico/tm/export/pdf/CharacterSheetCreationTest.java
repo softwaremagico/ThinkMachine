@@ -40,6 +40,8 @@ import com.softwaremagico.tm.CacheHandler;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.Gender;
+import com.softwaremagico.tm.character.Name;
+import com.softwaremagico.tm.character.Surname;
 import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
 import com.softwaremagico.tm.character.blessings.BlessingFactory;
 import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
@@ -94,7 +96,8 @@ public class CharacterSheetCreationTest {
 		CacheHandler.clearCache();
 
 		player = new CharacterPlayer(LANGUAGE);
-		player.getInfo().setName("John Sephard");
+		player.getInfo().setName(new Name("John", Gender.MALE, null));
+		player.getInfo().setSurname(new Surname("Sephard", null));
 		player.getInfo().setPlayer("Player 1");
 		player.getInfo().setGender(Gender.MALE);
 		player.getInfo().setAge(30);

@@ -28,6 +28,8 @@ import com.softwaremagico.tm.CacheHandler;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.Gender;
+import com.softwaremagico.tm.character.Name;
+import com.softwaremagico.tm.character.Surname;
 import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
 import com.softwaremagico.tm.character.blessings.BlessingFactory;
 import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
@@ -51,7 +53,8 @@ public class CustomCharacter {
 	public static CharacterPlayer create(String language) throws InvalidXmlElementException, TooManyBlessingsException {
 		CacheHandler.clearCache();
 		CharacterPlayer player = new CharacterPlayer(language);
-		player.getInfo().setName("Oliver Queen");
+		player.getInfo().setName(new Name("Oliver", Gender.MALE, null));
+		player.getInfo().setSurname(new Surname("Queen", null));
 		player.getInfo().setPlayer("Player 1");
 		player.getInfo().setGender(Gender.MALE);
 		player.getInfo().setAge(30);
@@ -88,27 +91,13 @@ public class CustomCharacter {
 		player.setPsiqueLevel(OccultismTypeFactory.getPsi(language), 4);
 		player.setDarkSideLevel(OccultismTypeFactory.getPsi(language), 1);
 
-		player.addOccultismPower(
-				OccultismPathFactory.getInstance().getElement("farHand", player.getLanguage()).getOccultismPowers()
-						.get("liftingHand"));
-		player.addOccultismPower(
-				OccultismPathFactory.getInstance().getElement("farHand", player.getLanguage()).getOccultismPowers()
-						.get("throwingHand"));
-		player.addOccultismPower(
-				OccultismPathFactory.getInstance().getElement("sixthSense", player.getLanguage()).getOccultismPowers()
-						.get("sensitivity"));
-		player.addOccultismPower(
-				OccultismPathFactory.getInstance().getElement("soma", player.getLanguage()).getOccultismPowers()
-						.get("toughening"));
-		player.addOccultismPower(
-				OccultismPathFactory.getInstance().getElement("soma", player.getLanguage()).getOccultismPowers()
-						.get("strengthening"));
-		player.addOccultismPower(
-				OccultismPathFactory.getInstance().getElement("soma", player.getLanguage()).getOccultismPowers()
-						.get("quickening"));
-		player.addOccultismPower(
-				OccultismPathFactory.getInstance().getElement("soma", player.getLanguage()).getOccultismPowers()
-						.get("hardening"));
+		player.addOccultismPower(OccultismPathFactory.getInstance().getElement("farHand", player.getLanguage()).getOccultismPowers().get("liftingHand"));
+		player.addOccultismPower(OccultismPathFactory.getInstance().getElement("farHand", player.getLanguage()).getOccultismPowers().get("throwingHand"));
+		player.addOccultismPower(OccultismPathFactory.getInstance().getElement("sixthSense", player.getLanguage()).getOccultismPowers().get("sensitivity"));
+		player.addOccultismPower(OccultismPathFactory.getInstance().getElement("soma", player.getLanguage()).getOccultismPowers().get("toughening"));
+		player.addOccultismPower(OccultismPathFactory.getInstance().getElement("soma", player.getLanguage()).getOccultismPowers().get("strengthening"));
+		player.addOccultismPower(OccultismPathFactory.getInstance().getElement("soma", player.getLanguage()).getOccultismPowers().get("quickening"));
+		player.addOccultismPower(OccultismPathFactory.getInstance().getElement("soma", player.getLanguage()).getOccultismPowers().get("hardening"));
 
 		player.addBlessing(BlessingFactory.getInstance().getElement("handsome", player.getLanguage()));
 		player.addBlessing(BlessingFactory.getInstance().getElement("curious", player.getLanguage()));
@@ -119,10 +108,8 @@ public class CustomCharacter {
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("heir", player.getLanguage()));
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("wireblade", player.getLanguage()));
 
-		player.getCybernetics().addElement(
-				new Device("Ojo de Ingeniero", 6, 5, "Normal", "Normal", "Automático", "Visible", ""));
-		player.getCybernetics().addElement(
-				new Device("Jonás", 7, 4, "Normal", "Normal", "Ds+Arquería", "Incógnito", ""));
+		player.getCybernetics().addElement(new Device("Ojo de Ingeniero", 6, 5, "Normal", "Normal", "Automático", "Visible", ""));
+		player.getCybernetics().addElement(new Device("Jonás", 7, 4, "Normal", "Normal", "Ds+Arquería", "Incógnito", ""));
 
 		CombatStyle gun = new CombatStyle("pistola");
 		gun.addElement(new CombatAction("Disparo Instantáneo", null, null, "-2 por 3 disparos"));

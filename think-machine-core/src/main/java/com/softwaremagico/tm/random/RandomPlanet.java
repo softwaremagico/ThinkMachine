@@ -51,16 +51,16 @@ public class RandomPlanet extends RandomSelector<Planet> {
 
 	@Override
 	protected TreeMap<Integer, Planet> assignElementsWeight() throws InvalidXmlElementException {
-		TreeMap<Integer, Planet> weightedRaces = new TreeMap<>();
+		TreeMap<Integer, Planet> weightedPlanets = new TreeMap<>();
 		int count = 1;
 		for (Planet planet : PlanetFactory.getInstance().getElements(getCharacterPlayer().getLanguage())) {
 			int weight = getWeight(planet);
 			if (weight > 0) {
-				weightedRaces.put(count, planet);
+				weightedPlanets.put(count, planet);
 				count += weight;
 			}
 		}
-		return weightedRaces;
+		return weightedPlanets;
 	}
 
 	@Override

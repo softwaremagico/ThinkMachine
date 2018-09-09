@@ -24,12 +24,18 @@ package com.softwaremagico.tm.character.factions;
  * #L%
  */
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.StringTokenizer;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
+import com.softwaremagico.tm.character.Gender;
+import com.softwaremagico.tm.character.Name;
+import com.softwaremagico.tm.character.Surname;
 import com.softwaremagico.tm.character.benefices.AvailableBenefice;
 import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
 import com.softwaremagico.tm.character.blessings.Blessing;
@@ -58,6 +64,9 @@ public class FactionsFactory extends XmlFactory<Faction> {
 
 	private static FactionsFactory instance;
 
+	private Map<Faction, Map<Gender, Set<Name>>> namesByFaction;
+	private Map<Faction, Set<Surname>> surnamesByFaction;
+
 	private static void createInstance() {
 		if (instance == null) {
 			synchronized (FactionsFactory.class) {
@@ -76,16 +85,15 @@ public class FactionsFactory extends XmlFactory<Faction> {
 	}
 
 	@Override
-	protected ITranslator getTranslator() {
-		return translatorBenefit;
+	public void clearCache() {
+		namesByFaction.clear();
+		surnamesByFaction.clear();
+		super.clearCache();
 	}
 
 	@Override
-	public Faction getElement(String elementId, String language) throws InvalidXmlElementException {
-		Faction faction = super.getElement(elementId, language);
-		// setBlessings(getTranslator(), faction.getId(), language);
-		// setBenefices(getTranslator(), faction.getId(), language);
-		return faction;
+	protected ITranslator getTranslator() {
+		return translatorBenefit;
 	}
 
 	public void setBlessings(Faction faction, String language) throws InvalidFactionException {
@@ -157,7 +165,7 @@ public class FactionsFactory extends XmlFactory<Faction> {
 			if (maleNames != null) {
 				StringTokenizer maleNamesTokenizer = new StringTokenizer(maleNames, ",");
 				while (maleNamesTokenizer.hasMoreTokens()) {
-					faction.getRandomDefinition().getMaleNames().add(maleNamesTokenizer.nextToken().trim());
+					addName(faction, new Name(maleNamesTokenizer.nextToken().trim(), Gender.MALE, faction), Gender.MALE);
 				}
 			}
 
@@ -165,7 +173,7 @@ public class FactionsFactory extends XmlFactory<Faction> {
 			if (femaleNames != null) {
 				StringTokenizer femaleNamesTokenizer = new StringTokenizer(femaleNames, ",");
 				while (femaleNamesTokenizer.hasMoreTokens()) {
-					faction.getRandomDefinition().getFemaleNames().add(femaleNamesTokenizer.nextToken().trim());
+					addName(faction, new Name(femaleNamesTokenizer.nextToken().trim(), Gender.FEMALE, faction), Gender.FEMALE);
 				}
 			}
 
@@ -173,7 +181,7 @@ public class FactionsFactory extends XmlFactory<Faction> {
 			if (surnames != null) {
 				StringTokenizer surnamesTokenizer = new StringTokenizer(surnames, ",");
 				while (surnamesTokenizer.hasMoreTokens()) {
-					faction.getRandomDefinition().getSurnames().add(surnamesTokenizer.nextToken().trim());
+					addSurname(faction, new Surname(surnamesTokenizer.nextToken().trim(), faction));
 				}
 			}
 
@@ -182,4 +190,67 @@ public class FactionsFactory extends XmlFactory<Faction> {
 			throw new InvalidFactionException("Invalid structure in faction '" + factionId + "'.", e);
 		}
 	}
+
+	private void addName(Faction faction, Name name, Gender gender) {
+		if (namesByFaction == null) {
+			namesByFaction = new HashMap<>();
+		}
+		if (namesByFaction.get(faction) == null) {
+			namesByFaction.put(faction, new HashMap<Gender, Set<Name>>());
+		}
+		if (namesByFaction.get(faction).get(gender) == null) {
+			namesByFaction.get(faction).put(gender, new HashSet<Name>());
+		}
+		namesByFaction.get(faction).get(gender).add(name);
+	}
+
+	private void addSurname(Faction faction, Surname surname) {
+		if (surnamesByFaction == null) {
+			surnamesByFaction = new HashMap<>();
+		}
+		if (surnamesByFaction.get(faction) == null) {
+			surnamesByFaction.put(faction, new HashSet<Surname>());
+		}
+		surnamesByFaction.get(faction).add(surname);
+	}
+
+	public Set<Name> getAllNames(Faction faction, Gender gender) {
+		if (faction == null || gender == null || namesByFaction.get(faction) == null) {
+			return new HashSet<>();
+		}
+		return namesByFaction.get(faction).get(gender);
+	}
+
+	public Set<Name> getAllNames(Faction faction) {
+		Set<Name> names = new HashSet<>();
+		for (Gender gender : Gender.values()) {
+			names.addAll(getAllNames(faction, gender));
+		}
+		return names;
+	}
+
+	public Set<Name> getAllNames() {
+		Set<Name> names = new HashSet<>();
+		for (Faction faction : namesByFaction.keySet()) {
+			names.addAll(getAllNames(faction));
+		}
+		return names;
+	}
+
+	public Set<Surname> getAllSurnames(Faction faction) {
+		Set<Surname> surnames = new HashSet<>();
+		if (surnamesByFaction.get(faction) != null) {
+			surnames.addAll(surnamesByFaction.get(faction));
+		}
+		return surnames;
+	}
+
+	public Set<Surname> getAllSurnames() {
+		Set<Surname> surnames = new HashSet<>();
+		for (Entry<Faction, Set<Surname>> faction : surnamesByFaction.entrySet()) {
+			surnames.addAll(faction.getValue());
+		}
+		return surnames;
+	}
+
 }

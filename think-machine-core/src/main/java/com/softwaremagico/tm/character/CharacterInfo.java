@@ -33,7 +33,17 @@ import com.softwaremagico.tm.language.LanguagePool;
 public class CharacterInfo {
 	private static ITranslator translator = LanguagePool.getTranslator("character_values.xml");
 
-	private String name;
+	private Name name;
+	
+	private Surname surname;
+
+	public Surname getSurname() {
+		return surname;
+	}
+
+	public void setSurname(Surname surname) {
+		this.surname = surname;
+	}
 
 	private String player;
 
@@ -86,11 +96,11 @@ public class CharacterInfo {
 		return parameterValue.toString();
 	}
 
-	public String getName() {
+	public Name getName() {
 		return name;
 	}
 
-	public void setName(String name) {
+	public void setName(Name name) {
 		this.name = name;
 	}
 

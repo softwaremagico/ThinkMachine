@@ -36,6 +36,8 @@ import com.itextpdf.text.DocumentException;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.Gender;
+import com.softwaremagico.tm.character.Name;
+import com.softwaremagico.tm.character.Surname;
 import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
 import com.softwaremagico.tm.character.blessings.BlessingFactory;
 import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
@@ -74,7 +76,7 @@ public class CustomCharacters {
 	@Test
 	public void createPaolaCharacter() throws MalformedURLException, DocumentException, IOException, InvalidXmlElementException, TooManyBlessingsException {
 		CharacterPlayer player = new CharacterPlayer(LANGUAGE);
-		player.getInfo().setName("#5");
+		player.getInfo().setName(new Name("#5"));
 		player.getInfo().setPlayer("Paola");
 		player.getInfo().setGender(Gender.FEMALE);
 		player.getInfo().setAge(25);
@@ -149,7 +151,8 @@ public class CustomCharacters {
 	@Test
 	public void characterAnaCharacter() throws MalformedURLException, DocumentException, IOException, InvalidXmlElementException, TooManyBlessingsException {
 		CharacterPlayer player = new CharacterPlayer(LANGUAGE);
-		player.getInfo().setName("Ana");
+		player.getInfo().setName(new Name("Arya"));
+		player.getInfo().setSurname(new Surname("Hawkwood"));
 		player.getInfo().setPlayer("Ana");
 		player.getInfo().setGender(Gender.FEMALE);
 		player.getInfo().setAge(22);
@@ -206,7 +209,7 @@ public class CustomCharacters {
 	@Test
 	public void createCarlosCharacter() throws MalformedURLException, DocumentException, IOException, InvalidXmlElementException, TooManyBlessingsException {
 		CharacterPlayer player = new CharacterPlayer(LANGUAGE);
-		player.getInfo().setName("Carlos");
+		player.getInfo().setName(new Name("Carlos"));
 		player.getInfo().setPlayer("Carlos");
 		player.getInfo().setGender(Gender.MALE);
 		player.getInfo().setAge(28);
@@ -272,7 +275,7 @@ public class CustomCharacters {
 	@Test
 	public void createNoeliaCharacer() throws MalformedURLException, DocumentException, IOException, InvalidXmlElementException, TooManyBlessingsException {
 		CharacterPlayer player = new CharacterPlayer(LANGUAGE);
-		player.getInfo().setName("Noelia");
+		player.getInfo().setName(new Name("Noelia"));
 		player.getInfo().setPlayer("Noelia");
 		player.getInfo().setGender(Gender.FEMALE);
 		// player.getInfo().setAge(30);
@@ -336,7 +339,8 @@ public class CustomCharacters {
 	public void createGolemCharacer() throws MalformedURLException, DocumentException, IOException, InvalidXmlElementException, TooManyBlessingsException {
 		CharacterPlayer player = new CharacterPlayer(LANGUAGE);
 		player.getInfo().setPlayer("PNJ");
-		player.getInfo().setName("A (Prototipo A)");
+		player.getInfo().setName(new Name("A"));
+		player.getInfo().setSurname(new Surname("(Prototipo A)"));
 		player.getInfo().setGender(Gender.FEMALE);
 		player.setRace(new Race("Gólem", 5, 5, 5, 3, 3, 6, 0, 0, 0, 6, 0, 0, 0, 0, 0));
 		player.getInfo().setPlanet(PlanetFactory.getInstance().getElement("leagueheim", LANGUAGE));

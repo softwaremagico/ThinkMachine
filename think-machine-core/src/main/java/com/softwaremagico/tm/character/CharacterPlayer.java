@@ -625,8 +625,9 @@ public class CharacterPlayer {
 
 	@Override
 	public String toString() {
-		if (getInfo() != null && getInfo().getName() != null) {
-			return getInfo().getName();
+		String name = getNameRepresentation();
+		if (name.length() > 0) {
+			return name;
 		}
 		return super.toString();
 	}
@@ -907,5 +908,16 @@ public class CharacterPlayer {
 
 	public void addOccultismPower(OccultismPower power) throws InvalidOccultismPowerException {
 		getOccultism().addPower(power, getLanguage(), getFaction());
+	}
+
+	public String getNameRepresentation() {
+		StringBuilder stringBuilder = new StringBuilder("");
+		if (getInfo() != null && getInfo().getName() != null) {
+			stringBuilder.append(getInfo().getName().getName());
+		}
+		if (getInfo() != null && getInfo().getSurname() != null) {
+			stringBuilder.append(" " + getInfo().getSurname().getName());
+		}
+		return stringBuilder.toString();
 	}
 }

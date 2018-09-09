@@ -24,29 +24,6 @@ package com.softwaremagico.tm.character.factions;
  * #L%
  */
 
-import java.util.HashSet;
-import java.util.Set;
 
 public class FactionRandomDefinitions {
-	private final Set<String> maleNames;
-	private final Set<String> femaleNames;
-	private final Set<String> surnames;
-
-	protected FactionRandomDefinitions() {
-		maleNames = new HashSet<>();
-		femaleNames = new HashSet<>();
-		surnames = new HashSet<>();
-	}
-
-	public Set<String> getMaleNames() {
-		return maleNames;
-	}
-
-	public Set<String> getFemaleNames() {
-		return femaleNames;
-	}
-
-	public Set<String> getSurnames() {
-		return surnames;
-	}
 }

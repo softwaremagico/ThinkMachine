@@ -26,9 +26,12 @@ package com.softwaremagico.tm.factory;
 
 import junit.framework.Assert;
 
+import org.junit.BeforeClass;
 import org.testng.annotations.Test;
 
+import com.softwaremagico.tm.CacheHandler;
 import com.softwaremagico.tm.InvalidXmlElementException;
+import com.softwaremagico.tm.character.Gender;
 import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
 import com.softwaremagico.tm.character.factions.Faction;
 import com.softwaremagico.tm.character.factions.FactionsFactory;
@@ -38,8 +41,13 @@ public class FactionFactoryTests {
 	private final static int DEFINED_FACTIONS = 19;
 	private final static int DEFINED_MALE_NAMES = 102;
 	private final static int DEFINED_FEMALE_NAMES = 100;
-	private final static int DEFINED_SURNAMES = 119;
+	private final static int DEFINED_SURNAMES = 121;
 	private final static String LANGUAGE = "es";
+
+	@BeforeClass
+	public void clearCache() {
+		CacheHandler.clearCache();
+	}
 
 	@Test
 	public void readFactions() throws InvalidXmlElementException {
@@ -55,8 +63,9 @@ public class FactionFactoryTests {
 	@Test
 	public void readNames() throws InvalidXmlElementException {
 		Faction hazat = FactionsFactory.getInstance().getElement("hazat", LANGUAGE);
-		Assert.assertEquals(DEFINED_MALE_NAMES, hazat.getRandomDefinition().getMaleNames().size());
-		Assert.assertEquals(DEFINED_FEMALE_NAMES, hazat.getRandomDefinition().getFemaleNames().size());
-		Assert.assertEquals(DEFINED_SURNAMES, hazat.getRandomDefinition().getSurnames().size());
+		Assert.assertNotNull(hazat);
+		Assert.assertEquals(DEFINED_MALE_NAMES, FactionsFactory.getInstance().getAllNames(hazat, Gender.MALE).size());
+		Assert.assertEquals(DEFINED_FEMALE_NAMES, FactionsFactory.getInstance().getAllNames(hazat, Gender.FEMALE).size());
+		Assert.assertEquals(DEFINED_SURNAMES, FactionsFactory.getInstance().getAllSurnames(hazat).size());
 	}
 }

@@ -49,7 +49,9 @@ public abstract class CharacterBasicsTableFactory extends BaseElement {
 		if (characterPlayer == null) {
 			table.addCell(getCell(LINE, Element.ALIGN_LEFT, fontSize));
 		} else {
-			if (tag.equals("race")) {
+			if (tag.equals("name")) {
+				table.addCell(getHandwrittingCell(characterPlayer.getNameRepresentation(), Element.ALIGN_LEFT, fontSize - 1));
+			} else if (tag.equals("race")) {
 				if (characterPlayer.getRace() != null) {
 					table.addCell(getHandwrittingCell(characterPlayer.getRace().getName(), Element.ALIGN_LEFT, fontSize - 1));
 				} else {
@@ -77,6 +79,8 @@ public abstract class CharacterBasicsTableFactory extends BaseElement {
 				} else {
 					table.addCell(getHandwrittingCell("", Element.ALIGN_LEFT, fontSize - 1));
 				}
+			} else if (tag.equals("gender")) {
+				table.addCell(getHandwrittingCell(characterPlayer.getInfo().getTranslatedParameter(tag), Element.ALIGN_LEFT, fontSize - 1));
 			} else {
 				table.addCell(getHandwrittingCell(characterPlayer.getInfo().getTranslatedParameter(tag), Element.ALIGN_LEFT, fontSize - 1));
 			}

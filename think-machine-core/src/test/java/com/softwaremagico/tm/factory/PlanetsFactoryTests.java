@@ -33,11 +33,16 @@ import com.softwaremagico.tm.character.planet.PlanetFactory;
 
 @Test(groups = { "planetsFactory" })
 public class PlanetsFactoryTests {
-
+	private final static String LANGUAGE = "en";
 	private final static int DEFINED_PLANETS = 37;
 
 	@Test
 	public void readPlanets() throws InvalidXmlElementException {
 		Assert.assertEquals(DEFINED_PLANETS, PlanetFactory.getInstance().getElements("es").size());
+	}
+
+	@Test
+	public void readPlanetsFactions() throws InvalidXmlElementException {
+		Assert.assertEquals(3, PlanetFactory.getInstance().getElement("stigmata", LANGUAGE).getFactions().size());
 	}
 }

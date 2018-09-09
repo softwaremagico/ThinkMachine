@@ -24,10 +24,14 @@ package com.softwaremagico.tm.character.planet;
  * #L%
  */
 
+import java.util.HashSet;
 import java.util.Set;
 
 import com.softwaremagico.tm.Element;
+import com.softwaremagico.tm.character.Name;
+import com.softwaremagico.tm.character.Surname;
 import com.softwaremagico.tm.character.factions.Faction;
+import com.softwaremagico.tm.character.factions.FactionsFactory;
 
 public class Planet extends Element<Planet> {
 	private final Set<Faction> factions;
@@ -39,6 +43,22 @@ public class Planet extends Element<Planet> {
 
 	public Set<Faction> getFactions() {
 		return factions;
+	}
+
+	public Set<Name> getNames() {
+		Set<Name> names = new HashSet<>();
+		for (Faction faction : factions) {
+			names.addAll(FactionsFactory.getInstance().getAllNames(faction));
+		}
+		return names;
+	}
+
+	public Set<Surname> getSurnames() {
+		Set<Surname> names = new HashSet<>();
+		for (Faction faction : factions) {
+			names.addAll(FactionsFactory.getInstance().getAllSurnames(faction));
+		}
+		return names;
 	}
 
 }

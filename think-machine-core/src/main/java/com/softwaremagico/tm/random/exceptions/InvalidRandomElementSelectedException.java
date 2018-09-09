@@ -30,4 +30,8 @@ public class InvalidRandomElementSelectedException extends Exception {
 	public InvalidRandomElementSelectedException(String message) {
 		super(message);
 	}
+	
+	public InvalidRandomElementSelectedException(String message, Throwable e) {
+		super(message, e);
+	}
 }

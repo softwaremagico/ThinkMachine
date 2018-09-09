@@ -115,6 +115,16 @@ public class RandomizeCharacter {
 			RandomPlanet randomPlanet = new RandomPlanet(characterPlayer, preferences);
 			randomPlanet.assignPlanet();
 		}
+
+		if (characterPlayer.getInfo().getName() == null) {
+			RandomName randomName = new RandomName(characterPlayer, preferences);
+			randomName.assignName();
+		}
+
+		if (characterPlayer.getInfo().getSurname() == null) {
+			RandomSurname randomSurname = new RandomSurname(characterPlayer, preferences);
+			randomSurname.assignSurname();
+		}
 	}
 
 	/**

@@ -92,9 +92,9 @@ public class OccultismPathFactory extends XmlFactory<OccultismPath> {
 
 	@Override
 	public void clearCache() {
-		super.clearCache();
 		psiPaths.clear();
 		theurgyPaths.clear();
+		super.clearCache();
 	}
 
 	@Override
