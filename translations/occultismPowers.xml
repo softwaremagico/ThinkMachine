@@ -1015,7 +1015,7 @@
 				<components>G</components>
 				<wyrd>1</wyrd>
 			</light>
-			<armorOfThePancreator>
+			<armorOfThePancreatorOrhodox>
 				<name>
 					<en>Armor of the Pancreator</en>
 					<es>Armadura del Pancreator</es>
@@ -1024,11 +1024,10 @@
 				<characteristic>faith</characteristic>
 				<skill>selfControl</skill>
 				<range>sensory</range>
-				<duration>oneSpan</duration>
-				
+				<duration>oneSpan</duration>				
 				<components>LG</components>
 				<wyrd>1</wyrd>
-			</armorOfThePancreator>
+			</armorOfThePancreatorOrhodox>
 			<tighteningTheLeash>
 				<name>
 					<en>Tightening the Leash</en>
@@ -1118,7 +1117,7 @@
 	<brotherBattleRituals>
 		<name>
 			<en>Brother Battle Ritual</en>
-			<es></es>
+			<es>Rituales de los Hermanos de Batalla</es>
 		</name>
 		<type>theurgy</type>
 		<factions>brotherBattle</factions>
@@ -1252,7 +1251,7 @@
 	<eskatonicOrderRituals>
 		<name>
 			<en>Eskatonic Order Rituals</en>
-			<es></es>
+			<es>Rituales de la Orden Eskatónica</es>
 		</name>
 		<type>theurgy</type>
 		<factions>eskatonic</factions>
@@ -1400,7 +1399,7 @@
 	<templeAvestiRituals>
 		<name>
 			<en>Temple Avesti Rituals</en>
-			<es></es>
+			<es>Ritaules del Templo Avesti</es>
 		</name>
 		<type>theurgy</type>
 		<factions>avestites</factions>

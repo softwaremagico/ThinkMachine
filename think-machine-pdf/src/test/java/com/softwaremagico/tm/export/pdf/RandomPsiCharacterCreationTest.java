@@ -35,6 +35,8 @@ import org.testng.annotations.Test;
 import com.itextpdf.text.DocumentException;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.character.Name;
+import com.softwaremagico.tm.character.Surname;
 import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
 import com.softwaremagico.tm.character.creation.CostCalculator;
 import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
@@ -57,13 +59,13 @@ public class RandomPsiCharacterCreationTest {
 	}
 
 	@Test
-	public void createRandomPsiCharacter() throws MalformedURLException, DocumentException, IOException,
-			InvalidXmlElementException, TooManyBlessingsException, DuplicatedPreferenceException,
-			InvalidRandomElementSelectedException {
+	public void createRandomPsiCharacter() throws MalformedURLException, DocumentException, IOException, InvalidXmlElementException, TooManyBlessingsException,
+			DuplicatedPreferenceException, InvalidRandomElementSelectedException {
 		CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
-		characterPlayer.getInfo().setName("Psi Random");
-		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0,
-				SpecializationPreferences.SPECIALIZED, PsiquePathLevelPreferences.HIGH, PsiqueLevelPreferences.HIGH);
+		characterPlayer.getInfo().setName(new Name("Psi"));
+		characterPlayer.getInfo().setSurname(new Surname("Random"));
+		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0, SpecializationPreferences.SPECIALIZED,
+				PsiquePathLevelPreferences.HIGH, PsiqueLevelPreferences.HIGH);
 		randomizeCharacter.createCharacter();
 
 		LanguagePool.clearCache();

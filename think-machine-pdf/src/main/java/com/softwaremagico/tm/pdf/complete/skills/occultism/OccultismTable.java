@@ -78,8 +78,8 @@ public class OccultismTable extends LateralHeaderPdfPTable {
 				table.addCell(createRectangle());
 				table.addCell(createRectangle());
 			} else {
-				table.addCell(createRectangle(characterPlayer.getOccultism().getPsiqueLevel(occulstimType)));
-				table.addCell(createRectangle(characterPlayer.getOccultism().getDarkSideLevel(occulstimType)));
+				table.addCell(createRectangle(characterPlayer.getPsiqueLevel(occulstimType)));
+				table.addCell(createRectangle(characterPlayer.getDarkSideLevel(occulstimType)));
 			}
 
 			PdfPCell darkSideTitleCell = new PdfPCell(new Phrase(occulstimType.getDarkSideName(), new Font(

@@ -1,10 +1,10 @@
-package com.softwaremagico.tm.character.benefices;
+package com.softwaremagico.tm;
 
 /*-
  * #%L
  * Think Machine (Core)
  * %%
- * Copyright (C) 2017 - 2018 Softwaremagico
+ * Copyright (C) 2017 Softwaremagico
  * %%
  * This software is designed by Jorge Hortelano Otero. Jorge Hortelano Otero
  * <softwaremagico@gmail.com> Valencia (Spain).
@@ -24,17 +24,16 @@ package com.softwaremagico.tm.character.benefices;
  * #L%
  */
 
-public enum BeneficeGroup {
-	BACKGROUND, COMMUNITY, TECHNOLOGY, RELICS, POSSESSIONS, RICHES, STATUS, FIGHTING, RESTRICTED;
+import com.softwaremagico.tm.InvalidXmlElementException;
 
-	public static BeneficeGroup get(String tag) {
-		if (tag != null) {
-			for (BeneficeGroup benefitGroup : BeneficeGroup.values()) {
-				if (benefitGroup.name().equalsIgnoreCase(tag)) {
-					return benefitGroup;
-				}
-			}
-		}
-		return null;
+public class ElementAlreadyExistsException extends InvalidXmlElementException {
+	private static final long serialVersionUID = 3558660253411869827L;
+
+	public ElementAlreadyExistsException(String message) {
+		super(message);
+	}
+
+	public ElementAlreadyExistsException(String message, Exception e) {
+		super(message, e);
 	}
 }

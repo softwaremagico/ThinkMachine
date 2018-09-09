@@ -713,25 +713,6 @@
 		<group>behaviour</group>
 		<curse>true</curse>
 	</prideful>
-	<righteous>
-		<name>
-			<en>Righteous</en>
-			<es>Condescendiente</es>
-		</name>
-		<cost>2</cost>
-		<bonifications>
-			<bonification>
-				<value>-2</value>
-				<affects>will</affects>
-				<situation>
-					<en>Judgment questioned</en>
-					<es>Cuestiona su juicio</es>
-				</situation>
-			</bonification>
-		</bonifications>
-		<group>behaviour</group>
-		<curse>true</curse>
-	</righteous>
 	<secretive>
 		<name>
 			<en>Secretive</en>
@@ -1830,7 +1811,7 @@
 				</situation>
 			</bonification>
 		</bonifications>
-		<group>others</group>
+		<group>restricted</group>
 	</predatory>
 	<bitter>
 		<name>
@@ -1848,7 +1829,7 @@
 				</situation>
 			</bonification>
 		</bonifications>
-		<group>others</group>
+		<group>restricted</group>
 		<curse>true</curse>
 	</bitter>
 	<poisonClaw>
@@ -1857,16 +1838,8 @@
 			<es>Garra Venenosa</es>
 		</name>
 		<cost>6</cost>
-		<group>others</group>
+		<group>restricted</group>
 	</poisonClaw>
-	<noOccult>
-		<name>
-			<en>No Occult</en>
-			<es>Garra Venenosa</es>
-		</name>
-		<cost>6</cost>
-		<group>others</group>
-	</noOccult>
 	<austere>
 		<name>
 			<en>Austere</en>
@@ -1883,7 +1856,7 @@
 				</situation>
 			</bonification>
 		</bonifications>
-		<group>others</group>
+		<group>restricted</group>
 	</austere>
 
 

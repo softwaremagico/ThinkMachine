@@ -26,13 +26,24 @@ package com.softwaremagico.tm.character;
 
 import java.lang.reflect.Field;
 
+import com.softwaremagico.tm.character.planet.Planet;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
 
 public class CharacterInfo {
 	private static ITranslator translator = LanguagePool.getTranslator("character_values.xml");
 
-	private String name;
+	private Name name;
+	
+	private Surname surname;
+
+	public Surname getSurname() {
+		return surname;
+	}
+
+	public void setSurname(Surname surname) {
+		this.surname = surname;
+	}
 
 	private String player;
 
@@ -40,7 +51,7 @@ public class CharacterInfo {
 
 	private Integer age;
 
-	private String planet;
+	private Planet planet;
 
 	private String birthdate;
 
@@ -85,11 +96,11 @@ public class CharacterInfo {
 		return parameterValue.toString();
 	}
 
-	public String getName() {
+	public Name getName() {
 		return name;
 	}
 
-	public void setName(String name) {
+	public void setName(Name name) {
 		this.name = name;
 	}
 
@@ -117,11 +128,11 @@ public class CharacterInfo {
 		this.age = age;
 	}
 
-	public String getPlanet() {
+	public Planet getPlanet() {
 		return planet;
 	}
 
-	public void setPlanet(String planet) {
+	public void setPlanet(Planet planet) {
 		this.planet = planet;
 	}
 

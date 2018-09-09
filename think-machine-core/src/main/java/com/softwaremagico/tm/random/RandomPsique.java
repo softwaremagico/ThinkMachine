@@ -30,6 +30,7 @@ import java.util.TreeMap;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
 import com.softwaremagico.tm.character.factions.FactionGroup;
 import com.softwaremagico.tm.character.occultism.OccultismType;
 import com.softwaremagico.tm.character.occultism.OccultismTypeFactory;
@@ -41,8 +42,7 @@ import com.softwaremagico.tm.random.selectors.PsiqueLevelPreferences;
 
 public class RandomPsique extends RandomSelector<OccultismType> {
 
-	protected RandomPsique(CharacterPlayer characterPlayer, Set<IRandomPreferences> preferences)
-			throws InvalidXmlElementException {
+	protected RandomPsique(CharacterPlayer characterPlayer, Set<IRandomPreferences> preferences) throws InvalidXmlElementException {
 		super(characterPlayer, preferences);
 	}
 
@@ -54,16 +54,14 @@ public class RandomPsique extends RandomSelector<OccultismType> {
 		int level = assignLevelOfPsique(selectedOccultismType);
 		RandomGenerationLog.info(this.getClass().getName(), "Assinged psique level of '" + level + "'.");
 		// Assign to the character.
-		getCharacterPlayer().getOccultism().setPsiqueLevel(selectedOccultismType, level);
-
+		getCharacterPlayer().setPsiqueLevel(selectedOccultismType, level);
 	}
 
 	@Override
 	protected TreeMap<Integer, OccultismType> assignElementsWeight() throws InvalidXmlElementException {
 		TreeMap<Integer, OccultismType> weightedPsiques = new TreeMap<>();
 		int count = 1;
-		for (OccultismType occultismType : OccultismTypeFactory.getInstance().getElements(
-				getCharacterPlayer().getLanguage())) {
+		for (OccultismType occultismType : OccultismTypeFactory.getInstance().getElements(getCharacterPlayer().getLanguage())) {
 			int weight = getWeight(occultismType);
 			if (weight > 0) {
 				weightedPsiques.put(count, occultismType);
@@ -90,6 +88,15 @@ public class RandomPsique extends RandomSelector<OccultismType> {
 	}
 
 	private int assignLevelOfPsique(OccultismType psique) throws InvalidXmlElementException {
+		// A curse does not allow occultism.
+		try {
+			if (getCharacterPlayer().getAfflictions().contains(
+					AvailableBeneficeFactory.getInstance().getElement("noOccult", getCharacterPlayer().getLanguage()))) {
+				return 0;
+			}
+		} catch (InvalidXmlElementException e) {
+			RandomGenerationLog.errorMessage(this.getClass().getName(), e);
+		}
 		IGaussianDistribution psiqueLevelSelector = PsiqueLevelPreferences.getSelected(getPreferences());
 		int maxLevelSelected = psiqueLevelSelector.randomGaussian();
 		if (maxLevelSelected > psiqueLevelSelector.maximum()) {

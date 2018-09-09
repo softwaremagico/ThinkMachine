@@ -851,7 +851,7 @@
 			<es>Mordisco</es>
 		</name>
 		<cost>3</cost>
-		<group>others</group>
+		<group>restricted</group>
 	</bite>
 	<extraLimbs>
 		<name>
@@ -859,7 +859,7 @@
 			<es>Miembros Extra</es>
 		</name>
 		<cost>6</cost>
-		<group>others</group>
+		<group>restricted</group>
 	</extraLimbs>
 	<noOccult>
 		<name>
@@ -867,7 +867,8 @@
 			<es>No puede despertar Psi o Teúrgia</es>
 		</name>
 		<cost>6</cost>
-		<group>others</group>
+		<affliction>true</affliction>
+		<group>restricted</group>
 	</noOccult>
 	<ostraziced>
 		<name>
@@ -875,6 +876,7 @@
 			<es>Ostracismo</es>
 		</name>
 		<cost>2</cost>
-		<group>others</group>
+		<affliction>true</affliction>
+		<group>restricted</group>
 	</ostraziced>
 </benefices>

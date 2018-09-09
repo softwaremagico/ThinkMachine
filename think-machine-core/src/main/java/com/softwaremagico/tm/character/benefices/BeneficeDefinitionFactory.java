@@ -65,8 +65,8 @@ public class BeneficeDefinitionFactory extends XmlFactory<BeneficeDefinition> {
 
 	@Override
 	public void clearCache() {
-		super.clearCache();
 		beneficesByGroup = new HashMap<>();
+		super.clearCache();
 	}
 
 	public static BeneficeDefinitionFactory getInstance() {

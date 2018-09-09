@@ -43,6 +43,7 @@ import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
 import com.softwaremagico.tm.character.benefices.BeneficeClassification;
 import com.softwaremagico.tm.character.benefices.BeneficeGroup;
 import com.softwaremagico.tm.character.benefices.BeneficeSpecialization;
+import com.softwaremagico.tm.character.benefices.InvalidBeneficeException;
 import com.softwaremagico.tm.character.blessings.Blessing;
 import com.softwaremagico.tm.character.blessings.BlessingClassification;
 import com.softwaremagico.tm.character.blessings.Bonification;
@@ -62,7 +63,11 @@ import com.softwaremagico.tm.character.equipment.Armour;
 import com.softwaremagico.tm.character.equipment.Shield;
 import com.softwaremagico.tm.character.equipment.Weapons;
 import com.softwaremagico.tm.character.factions.Faction;
+import com.softwaremagico.tm.character.occultism.InvalidOccultismPowerException;
+import com.softwaremagico.tm.character.occultism.InvalidPsiqueLevelException;
 import com.softwaremagico.tm.character.occultism.Occultism;
+import com.softwaremagico.tm.character.occultism.OccultismPower;
+import com.softwaremagico.tm.character.occultism.OccultismType;
 import com.softwaremagico.tm.character.race.InvalidRaceException;
 import com.softwaremagico.tm.character.race.Race;
 import com.softwaremagico.tm.character.race.RaceCharacteristic;
@@ -161,8 +166,7 @@ public class CharacterPlayer {
 
 	private void initializeCharacteristics() {
 		characteristics = new HashMap<String, Characteristic>();
-		for (CharacteristicDefinition characteristicDefinition : CharacteristicsDefinitionFactory.getInstance().getAll(
-				language)) {
+		for (CharacteristicDefinition characteristicDefinition : CharacteristicsDefinitionFactory.getInstance().getAll(language)) {
 			characteristics.put(characteristicDefinition.getId(), new Characteristic(characteristicDefinition));
 		}
 	}
@@ -211,20 +215,16 @@ public class CharacterPlayer {
 
 	public Integer getValue(CharacteristicName characteristicName) {
 		if (CharacteristicName.INITIATIVE.equals(characteristicName)) {
-			return getValue(CharacteristicName.DEXTERITY)
-					+ getValue(CharacteristicName.WITS)
-					+ getBlessingModificationAlways(CharacteristicsDefinitionFactory.getInstance().get(
-							characteristicName, language));
+			return getValue(CharacteristicName.DEXTERITY) + getValue(CharacteristicName.WITS)
+					+ getBlessingModificationAlways(CharacteristicsDefinitionFactory.getInstance().get(characteristicName, language));
 		}
 		if (CharacteristicName.DEFENSE.equals(characteristicName)) {
 			return getStartingValue(characteristicName)
-					+ getBlessingModificationAlways(CharacteristicsDefinitionFactory.getInstance().get(
-							characteristicName, language));
+					+ getBlessingModificationAlways(CharacteristicsDefinitionFactory.getInstance().get(characteristicName, language));
 		}
 		if (CharacteristicName.MOVEMENT.equals(characteristicName)) {
 			return getStartingValue(characteristicName)
-					+ getBlessingModificationAlways(CharacteristicsDefinitionFactory.getInstance().get(
-							characteristicName, language));
+					+ getBlessingModificationAlways(CharacteristicsDefinitionFactory.getInstance().get(characteristicName, language));
 		}
 		Integer value = characteristics.get(characteristicName.getId()).getValue();
 
@@ -235,8 +235,7 @@ public class CharacterPlayer {
 		value += getCyberneticBonus(characteristicName);
 
 		// Add modifications always applied.
-		value += getBlessingModificationAlways(CharacteristicsDefinitionFactory.getInstance().get(characteristicName,
-				language));
+		value += getBlessingModificationAlways(CharacteristicsDefinitionFactory.getInstance().get(characteristicName, language));
 
 		return value;
 	}
@@ -253,8 +252,7 @@ public class CharacterPlayer {
 		Integer value = 0;
 		// Add cibernetics modifications
 		for (Device device : cybernetics.getElements()) {
-			if (device.getCharacteristicImprovement(characteristicName) != null
-					&& device.getCharacteristicImprovement(characteristicName).isAlways()
+			if (device.getCharacteristicImprovement(characteristicName) != null && device.getCharacteristicImprovement(characteristicName).isAlways()
 					&& device.getCharacteristicImprovement(characteristicName).getBonus() != 0) {
 				value += device.getCharacteristicImprovement(characteristicName).getBonus();
 			}
@@ -266,8 +264,7 @@ public class CharacterPlayer {
 		Integer value = 0;
 		// Add cibernetics modifications
 		for (Device device : cybernetics.getElements()) {
-			if (device.getCharacteristicImprovement(characteristicName) != null
-					&& !device.getCharacteristicImprovement(characteristicName).isAlways()
+			if (device.getCharacteristicImprovement(characteristicName) != null && !device.getCharacteristicImprovement(characteristicName).isAlways()
 					&& device.getCharacteristicImprovement(characteristicName).getBonus() != 0) {
 				value += device.getCharacteristicImprovement(characteristicName).getBonus();
 			}
@@ -276,10 +273,8 @@ public class CharacterPlayer {
 	}
 
 	public Integer getVitalityValue() throws InvalidXmlElementException {
-		return getValue(CharacteristicName.ENDURANCE)
-				+ 5
-				+ getBlessingModificationAlways(SpecialValuesFactory.getInstance().getElement(SpecialValue.VITALITY,
-						getLanguage()));
+		return getValue(CharacteristicName.ENDURANCE) + 5
+				+ getBlessingModificationAlways(SpecialValuesFactory.getInstance().getElement(SpecialValue.VITALITY, getLanguage()));
 	}
 
 	public Integer getBasicWyrdValue() {
@@ -287,10 +282,8 @@ public class CharacterPlayer {
 	}
 
 	public Integer getWyrdValue() throws InvalidXmlElementException {
-		return getBasicWyrdValue()
-				+ occultism.getExtraWyrd()
-				+ getBlessingModificationAlways(SpecialValuesFactory.getInstance().getElement(SpecialValue.WYRD,
-						getLanguage()));
+		return getBasicWyrdValue() + occultism.getExtraWyrd()
+				+ getBlessingModificationAlways(SpecialValuesFactory.getInstance().getElement(SpecialValue.WYRD, getLanguage()));
 	}
 
 	public void setSkillRank(AvailableSkill availableSkill, int value) throws InvalidSkillException {
@@ -364,8 +357,7 @@ public class CharacterPlayer {
 		Integer skillValue = getSkillAssignedRanks(skill);
 		// Set the modifications of blessings.
 		if (skills.get(skill.getName()) != null) {
-			skillValue += getBlessingModificationAlways(skills.get(skill.getName()).getAvailableSkill()
-					.getSkillDefinition());
+			skillValue += getBlessingModificationAlways(skills.get(skill.getName()).getAvailableSkill().getSkillDefinition());
 		}
 		// Cybernetics only if better.
 		if (cyberneticBonus != null) {
@@ -428,30 +420,25 @@ public class CharacterPlayer {
 		return language;
 	}
 
-	public Occultism getOccultism() {
+	private Occultism getOccultism() {
 		return occultism;
 	}
 
 	public void addBlessing(Blessing blessing) throws TooManyBlessingsException {
 		if (blessing.getBlessingClassification() == BlessingClassification.CURSE) {
 			if (CostCalculator.getBlessingCosts(getCurses()) + blessing.getCost() >= FreeStyleCharacterCreation.MAX_CURSE_POINTS) {
-				throw new TooManyBlessingsException("Only a total of '" + FreeStyleCharacterCreation.MAX_CURSE_POINTS
-						+ "' points are allowed for curses.");
+				throw new TooManyBlessingsException("Only a total of '" + FreeStyleCharacterCreation.MAX_CURSE_POINTS + "' points are allowed for curses.");
 			}
 		}
 		// Only 7 values can be modified by blessings.
 		if (getBlessingModificationsNumber() + blessing.getBonifications().size() > FreeStyleCharacterCreation.MAX_BLESSING_MODIFICATIONS) {
-			throw new TooManyBlessingsException("Only a total of '"
-					+ FreeStyleCharacterCreation.MAX_BLESSING_MODIFICATIONS
-					+ "' modifications are allowed for blessings. Now exists '" + getAllBlessings() + "' and adding '"
-					+ blessing + "'.");
+			throw new TooManyBlessingsException("Only a total of '" + FreeStyleCharacterCreation.MAX_BLESSING_MODIFICATIONS
+					+ "' modifications are allowed for blessings. Now exists '" + getAllBlessings() + "' and adding '" + blessing + "'.");
 		}
 		// Only 7 blessings as max.
 		if (getAllBlessings().size() > FreeStyleCharacterCreation.MAX_BLESSING_MODIFICATIONS) {
-			throw new TooManyBlessingsException("Only a total of '"
-					+ FreeStyleCharacterCreation.MAX_BLESSING_MODIFICATIONS
-					+ "' modifications are allowed for blessings. Now exists '" + getAllBlessings() + "' and adding '"
-					+ blessing + "'.");
+			throw new TooManyBlessingsException("Only a total of '" + FreeStyleCharacterCreation.MAX_BLESSING_MODIFICATIONS
+					+ "' modifications are allowed for blessings. Now exists '" + getAllBlessings() + "' and adding '" + blessing + "'.");
 		}
 		blessings.add(blessing);
 		Collections.sort(blessings);
@@ -501,7 +488,10 @@ public class CharacterPlayer {
 		return Collections.unmodifiableList(allBlessings);
 	}
 
-	public void addBenefice(AvailableBenefice benefice) {
+	public void addBenefice(AvailableBenefice benefice) throws InvalidBeneficeException {
+		if (benefice.getBenefitDefinition().getGroup() == BeneficeGroup.RESTRICTED) {
+			throw new InvalidBeneficeException("Benefice '" + benefice + "' is restricted and cannot be added.");
+		}
 		benefices.add(benefice);
 		Collections.sort(benefices);
 	}
@@ -612,7 +602,9 @@ public class CharacterPlayer {
 		// Adds default planet and faction.
 		for (AvailableSkill skill : AvailableSkillsFactory.getInstance().getNaturalSkills(language)) {
 			if (skill.getSkillDefinition().getId().equals(SkillDefinition.PLANETARY_LORE_ID)) {
-				skill.setSpecialization(new Specialization(getInfo().getPlanet(), getInfo().getPlanet()));
+				if (getInfo().getPlanet() != null) {
+					skill.setSpecialization(new Specialization(getInfo().getPlanet().getName(), getInfo().getPlanet().getName()));
+				}
 			} else if (skill.getSkillDefinition().getId().equals(SkillDefinition.FACTORION_LORE_ID)) {
 				skill.setSpecialization(new Specialization(getFaction().getName(), getFaction().getName()));
 			}
@@ -633,8 +625,9 @@ public class CharacterPlayer {
 
 	@Override
 	public String toString() {
-		if (getInfo() != null && getInfo().getName() != null) {
-			return getInfo().getName();
+		String name = getNameRepresentation();
+		if (name.length() > 0) {
+			return name;
 		}
 		return super.toString();
 	}
@@ -750,7 +743,8 @@ public class CharacterPlayer {
 	}
 
 	/**
-	 * Return which characteristic type has higher values in its characteristics.
+	 * Return which characteristic type has higher values in its
+	 * characteristics.
 	 * 
 	 * @return CharacteristicType
 	 */
@@ -762,10 +756,8 @@ public class CharacterPlayer {
 					if (totalRanksByCharacteristicType.get(characteristicType) == null) {
 						totalRanksByCharacteristicType.put(characteristicType, 0);
 					}
-					totalRanksByCharacteristicType.put(
-							characteristicType,
-							totalRanksByCharacteristicType.get(characteristicType)
-									+ getValue(characteristic.getCharacteristicName()));
+					totalRanksByCharacteristicType.put(characteristicType,
+							totalRanksByCharacteristicType.get(characteristicType) + getValue(characteristic.getCharacteristicName()));
 				}
 			}
 		}
@@ -773,8 +765,7 @@ public class CharacterPlayer {
 			return null;
 		}
 		// Sort result.
-		List<Entry<CharacteristicType, Integer>> sortedList = new LinkedList<>(
-				totalRanksByCharacteristicType.entrySet());
+		List<Entry<CharacteristicType, Integer>> sortedList = new LinkedList<>(totalRanksByCharacteristicType.entrySet());
 		Collections.sort(sortedList, new Comparator<Entry<CharacteristicType, Integer>>() {
 			public int compare(Entry<CharacteristicType, Integer> o1, Entry<CharacteristicType, Integer> o2) {
 				return o2.getValue().compareTo(o1.getValue());
@@ -874,18 +865,59 @@ public class CharacterPlayer {
 	}
 
 	public boolean hasCharacteristicTemporalModificator(CharacteristicName characteristicName) {
-		if (getBlessingModification(CharacteristicsDefinitionFactory.getInstance().get(characteristicName,
-				getLanguage())) != 0) {
+		if (getBlessingModification(CharacteristicsDefinitionFactory.getInstance().get(characteristicName, getLanguage())) != 0) {
 			return true;
 		}
 		return false;
 	}
 
 	public boolean hasCharacteristicModificator(CharacteristicName characteristicName) {
-		if (getBlessingModificationAlways(CharacteristicsDefinitionFactory.getInstance().get(characteristicName,
-				getLanguage())) != 0) {
+		if (getBlessingModificationAlways(CharacteristicsDefinitionFactory.getInstance().get(characteristicName, getLanguage())) != 0) {
 			return true;
 		}
 		return false;
+	}
+
+	public int getExtraWyrd() {
+		return getOccultism().getExtraWyrd();
+	}
+
+	public void setExtraWyrd(int extraWyrd) {
+		getOccultism().setExtraWyrd(extraWyrd);
+	}
+
+	public int getPsiqueLevel(OccultismType occultismType) {
+		return getOccultism().getPsiqueLevel(occultismType);
+	}
+
+	public void setPsiqueLevel(OccultismType occultismType, int psyValue) throws InvalidPsiqueLevelException {
+		getOccultism().setPsiqueLevel(occultismType, psyValue, getLanguage(), getFaction());
+	}
+
+	public int getDarkSideLevel(OccultismType occultismType) {
+		return getOccultism().getDarkSideLevel(occultismType);
+	}
+
+	public void setDarkSideLevel(OccultismType occultismType, int darkSideValue) {
+		getOccultism().setDarkSideLevel(occultismType, darkSideValue);
+	}
+
+	public Map<String, List<String>> getSelectedPowers() {
+		return getOccultism().getSelectedPowers();
+	}
+
+	public void addOccultismPower(OccultismPower power) throws InvalidOccultismPowerException {
+		getOccultism().addPower(power, getLanguage(), getFaction());
+	}
+
+	public String getNameRepresentation() {
+		StringBuilder stringBuilder = new StringBuilder("");
+		if (getInfo() != null && getInfo().getName() != null) {
+			stringBuilder.append(getInfo().getName().getName());
+		}
+		if (getInfo() != null && getInfo().getSurname() != null) {
+			stringBuilder.append(" " + getInfo().getSurname().getName());
+		}
+		return stringBuilder.toString();
 	}
 }

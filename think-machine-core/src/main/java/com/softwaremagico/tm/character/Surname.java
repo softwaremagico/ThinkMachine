@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.character.benefices;
+package com.softwaremagico.tm.character;
 
 /*-
  * #%L
@@ -24,17 +24,23 @@ package com.softwaremagico.tm.character.benefices;
  * #L%
  */
 
-public enum BeneficeGroup {
-	BACKGROUND, COMMUNITY, TECHNOLOGY, RELICS, POSSESSIONS, RICHES, STATUS, FIGHTING, RESTRICTED;
+import com.softwaremagico.tm.Element;
+import com.softwaremagico.tm.character.factions.Faction;
 
-	public static BeneficeGroup get(String tag) {
-		if (tag != null) {
-			for (BeneficeGroup benefitGroup : BeneficeGroup.values()) {
-				if (benefitGroup.name().equalsIgnoreCase(tag)) {
-					return benefitGroup;
-				}
-			}
-		}
-		return null;
+public class Surname extends Element<Surname> {
+	private final Faction faction;
+
+	public Faction getFaction() {
+		return faction;
 	}
+
+	public Surname(String surname) {
+		this(surname, null);
+	}
+
+	public Surname(String surname, Faction faction) {
+		super(surname.toLowerCase(), surname);
+		this.faction = faction;
+	}
+
 }

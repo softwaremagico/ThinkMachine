@@ -40,6 +40,8 @@ import com.softwaremagico.tm.CacheHandler;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.Gender;
+import com.softwaremagico.tm.character.Name;
+import com.softwaremagico.tm.character.Surname;
 import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
 import com.softwaremagico.tm.character.blessings.BlessingFactory;
 import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
@@ -55,6 +57,7 @@ import com.softwaremagico.tm.character.equipment.WeaponFactory;
 import com.softwaremagico.tm.character.factions.FactionsFactory;
 import com.softwaremagico.tm.character.occultism.OccultismPathFactory;
 import com.softwaremagico.tm.character.occultism.OccultismTypeFactory;
+import com.softwaremagico.tm.character.planet.PlanetFactory;
 import com.softwaremagico.tm.character.race.Race;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.json.CharacterJsonManager;
@@ -93,12 +96,13 @@ public class CharacterSheetCreationTest {
 		CacheHandler.clearCache();
 
 		player = new CharacterPlayer(LANGUAGE);
-		player.getInfo().setName("John Sephard");
+		player.getInfo().setName(new Name("John", Gender.MALE, null));
+		player.getInfo().setSurname(new Surname("Sephard", null));
 		player.getInfo().setPlayer("Player 1");
 		player.getInfo().setGender(Gender.MALE);
 		player.getInfo().setAge(30);
 		player.setRace(new Race("Human", 3, 3, 3, 3, 3, 3, 3, 3, 3, 5, 0, 0, 0, 0, 0));
-		player.getInfo().setPlanet("Sutek");
+		player.getInfo().setPlanet(PlanetFactory.getInstance().getElement("sutek", LANGUAGE));
 		player.setFaction(FactionsFactory.getInstance().getElement("hazat", LANGUAGE));
 
 		player.getInfo().setBirthdate("4996-09-16");
@@ -127,30 +131,28 @@ public class CharacterSheetCreationTest {
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("lore", "jumpwebLore", LANGUAGE), 4);
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("lore", "beastsLore", LANGUAGE), 2);
 
-		player.getOccultism().setPsiqueLevel(OccultismTypeFactory.getPsi(player.getLanguage()), 4);
-		player.getOccultism().setDarkSideLevel(OccultismTypeFactory.getPsi(player.getLanguage()), 1);
+		player.setPsiqueLevel(OccultismTypeFactory.getPsi(player.getLanguage()), 4);
+		player.setDarkSideLevel(OccultismTypeFactory.getPsi(player.getLanguage()), 1);
 
-		player.getOccultism().addPower(
+		player.addOccultismPower(
 				OccultismPathFactory.getInstance().getElement("farHand", LANGUAGE).getOccultismPowers()
-						.get("liftingHand"), player.getLanguage(), player.getFaction());
-		player.getOccultism().addPower(
+						.get("liftingHand"));
+		player.addOccultismPower(
 				OccultismPathFactory.getInstance().getElement("farHand", LANGUAGE).getOccultismPowers()
-						.get("throwingHand"), player.getLanguage(), player.getFaction());
-		player.getOccultism().addPower(
+						.get("throwingHand"));
+		player.addOccultismPower(
 				OccultismPathFactory.getInstance().getElement("sixthSense", LANGUAGE).getOccultismPowers()
-						.get("sensitivity"), player.getLanguage(), player.getFaction());
-		player.getOccultism().addPower(
-				OccultismPathFactory.getInstance().getElement("soma", LANGUAGE).getOccultismPowers().get("toughening"),
-				player.getLanguage(), player.getFaction());
-		player.getOccultism().addPower(
+						.get("sensitivity"));
+		player.addOccultismPower(
+				OccultismPathFactory.getInstance().getElement("soma", LANGUAGE).getOccultismPowers().get("toughening")
+				);
+		player.addOccultismPower(
 				OccultismPathFactory.getInstance().getElement("soma", LANGUAGE).getOccultismPowers()
-						.get("strengthening"), player.getLanguage(), player.getFaction());
-		player.getOccultism().addPower(
-				OccultismPathFactory.getInstance().getElement("soma", LANGUAGE).getOccultismPowers().get("quickening"),
-				player.getLanguage(), player.getFaction());
-		player.getOccultism().addPower(
-				OccultismPathFactory.getInstance().getElement("soma", LANGUAGE).getOccultismPowers().get("hardening"),
-				player.getLanguage(), player.getFaction());
+						.get("strengthening"));
+		player.addOccultismPower(
+				OccultismPathFactory.getInstance().getElement("soma", LANGUAGE).getOccultismPowers().get("quickening"));
+		player.addOccultismPower(
+				OccultismPathFactory.getInstance().getElement("soma", LANGUAGE).getOccultismPowers().get("hardening"));
 
 		player.addBlessing(BlessingFactory.getInstance().getElement("curious", player.getLanguage()));
 		player.addBlessing(BlessingFactory.getInstance().getElement("limp", player.getLanguage()));

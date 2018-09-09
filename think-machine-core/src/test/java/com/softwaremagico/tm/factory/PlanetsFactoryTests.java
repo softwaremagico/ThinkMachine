@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.character.benefices;
+package com.softwaremagico.tm.factory;
 
 /*-
  * #%L
@@ -24,17 +24,25 @@ package com.softwaremagico.tm.character.benefices;
  * #L%
  */
 
-public enum BeneficeGroup {
-	BACKGROUND, COMMUNITY, TECHNOLOGY, RELICS, POSSESSIONS, RICHES, STATUS, FIGHTING, RESTRICTED;
+import junit.framework.Assert;
 
-	public static BeneficeGroup get(String tag) {
-		if (tag != null) {
-			for (BeneficeGroup benefitGroup : BeneficeGroup.values()) {
-				if (benefitGroup.name().equalsIgnoreCase(tag)) {
-					return benefitGroup;
-				}
-			}
-		}
-		return null;
+import org.testng.annotations.Test;
+
+import com.softwaremagico.tm.InvalidXmlElementException;
+import com.softwaremagico.tm.character.planet.PlanetFactory;
+
+@Test(groups = { "planetsFactory" })
+public class PlanetsFactoryTests {
+	private final static String LANGUAGE = "en";
+	private final static int DEFINED_PLANETS = 37;
+
+	@Test
+	public void readPlanets() throws InvalidXmlElementException {
+		Assert.assertEquals(DEFINED_PLANETS, PlanetFactory.getInstance().getElements("es").size());
+	}
+
+	@Test
+	public void readPlanetsFactions() throws InvalidXmlElementException {
+		Assert.assertEquals(3, PlanetFactory.getInstance().getElement("stigmata", LANGUAGE).getFactions().size());
 	}
 }

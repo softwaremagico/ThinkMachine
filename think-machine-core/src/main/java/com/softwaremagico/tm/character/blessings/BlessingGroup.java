@@ -25,7 +25,7 @@ package com.softwaremagico.tm.character.blessings;
  */
 
 public enum BlessingGroup {
-	APPEARANCE, BEHAVIOUR, INJURIES, KNACKS, REPUTATION, SIZE;
+	APPEARANCE, BEHAVIOUR, INJURIES, KNACKS, REPUTATION, SIZE, RESTRICTED;
 
 	public static BlessingGroup get(String tag) {
 		if (tag != null) {

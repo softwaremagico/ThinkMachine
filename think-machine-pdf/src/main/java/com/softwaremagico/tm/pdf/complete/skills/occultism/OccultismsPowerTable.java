@@ -60,7 +60,7 @@ public class OccultismsPowerTable extends LateralHeaderPdfPTable {
 
 		int addedPowers = 0;
 		if (characterPlayer != null) {
-			for (Entry<String, List<String>> occultismPathEntry : characterPlayer.getOccultism().getSelectedPowers()
+			for (Entry<String, List<String>> occultismPathEntry : characterPlayer.getSelectedPowers()
 					.entrySet()) {
 				OccultismPath occultismPath = OccultismPathFactory.getInstance().getElement(
 						occultismPathEntry.getKey(), characterPlayer.getLanguage());

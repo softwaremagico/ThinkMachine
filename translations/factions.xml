@@ -8,6 +8,13 @@
 		<group>nobility</group>
 		<race>human</race>
 		<blessings>unyielding, prideful</blessings>
+		<random>
+			<names>
+				<male>Henry, John, Thomas, James, Alfred, Edward, Vincent, Richard, Christopher, Geoffrey, Robert, William</male>
+				<female>Elizabeth, Catherine, Anne, Mary, Victoria, Fiona</female>
+			</names>
+			<surnames>Hawkwood, Norfolk, Walsingham, Leicester, Burghley, Tudor, Derby, Ballard, Harewood, Lancasters, Koln, Hapsburg, Adamse, Plantagenet, Fenris, Gesar, Gaelgran</surnames>		
+		</random>
 	</hawkwood>
 	<decados>
 		<name>
@@ -17,6 +24,13 @@
 		<group>nobility</group>
 		<race>human</race>
 		<blessings>suspicious, vain</blessings>
+		<random>
+			<names>
+				<male>Anatoly, Gregory, Evgeny, Vladimir, Nikitin, Nikoli, Alun, Zaretsky, Guillot, Triquet, Gregor, Alun, Igor</male>
+				<female>Tatyana, Lena, Natalia, Olga, Alina, Katiusha, Catriona, Anisia, Nanya, Lucretia</female>
+			</names>
+			<surnames>Decados, Negin, Lensky, Larina, Petrovitch, Volkonsky, Malevik, Romanov, Vladislav, Ivanoviche, Aleksandrov, Sfilli, Slava, Sharm, Bogakov, Czerny, Gurov, Innokenti, Valushnya, Krusczek, Knyazev, </surnames>		
+		</random>
 	</decados>
 	<hazat>
 		<name>
@@ -26,6 +40,13 @@
 		<group>nobility</group>
 		<race>human</race>
 		<blessings>disciplined, vengeful</blessings>
+		<random>
+			<names>
+				<male>Alonso, Rodrigo, Íñigo, Florentino, Simon, Mauricio, Guillermo, Quintino, Federico, Edgardo, Beremundo, Quinciano, Gustavo, Fausto, Constantin, Alain, Armando, Alfred, Antón, Max, León, Acoidan, Atugio, Beyanor, Bentago, Himar, Adolfo, Abelardo, Ademar, Agapito, Ambrosio, Arcadio, Artemio, Aurelio, Baldomero, Balvino, Berenguer, Braulio, Blas, Cancio, Casio, Cecilio, Clelio, Cenobio, Clodomiro, Conrado, Crescencio, Dalmiro, Delfo, Diaco, Donato, Eladio, Eleodoro, Eliodoro, Elvio, Ercilio, Eusebio, Eustaquio, Evaristo, Florencio, Froilán, Genaro, Gregorio, Gumersindo, Higinio, Honorato, Ireneo, Lauro, Leoncio, Lisandro, Longino, Lidovico, Mamerto, Marcindo, Melitón, Modestino, Nemesio, Nicanor, Nolasco, Normando, Pascasio, Pilaro, Pomposo, Prudencio, Raimundo, Rufino, Ruperto, Sandalio, Segismundo, Serapio, Severo, Seveso, Sisebuto, Toribicio, Trifón, Tristán, Tubal, Ubaldo, Valeriano, Werino, Zacarías, Zenón</male>
+				<female>Rosario, Daniela, Helena, Aldagracia, Zoe, Pandora, Dara, Daza, Naira, Alba, Aniseta, Arcadia, Arminda, Artemia, Aurea, Brigida, Bartola, Cándida, Ciriaca, Casilda, Cleotilde, Cleofe, Delfa, Diega, Domitilia, Dorila, Elegia, Emilse, Enriqueta, Emelinda, Esperanza, Eufamia, Eutilia, Eufrocina, Feliciana, Fortunata, Florinda, Flora, Fructuosa, Genoveva, Gerturdes, Gregoria, Gumersinda, Hercilia, Higinia, Honorata, Indalecia, Irina, Idinea, Isaura, Isidora, Italia, Jacinta, Jovita, Leonarda, Leopoldina, Livia, Liboria, Librada, Ludovica, Lugarda, Macaria, Marcelina, Matiana, Mauricia, Melitona, Molinaria, Mucia, Minervina, Nefer, Nemesia, Nicanora, Nigia, Octaviana, Ogaria, Oliva, Olivia, Pánfila, Peregrina, Petrona, Policarpa, Polonia, Primitiva, Prudencia, Refugia, Restituta, Romidia, Serafina, Sinesia, Sinforosa, Sesebuta, Tecla, Teodolina, Tiburcia, Trinidad, Uberlinda, Ulpiana, Vitalia, Zenobia, Zoila</female>
+			</names>
+			<surnames>Hazat, Lafayette, Bursandra, Mariana, Justus, Castenda, Leon, Rolan, Escovedo, Serra, Dulcinea, Azatlan, Abarca, Alfaro, Azagra, Badia, Borja, Bravo, Colombo, Durán, Fragoso, Fuertes, Gobea, Hidalgo, Lázaro, Maese, Mendo, Moreno, Ortega, Pacheco, Pardo, Perianes, Periañez, Rivas, Rosellón, Sandoval, Sousa, Vadillo, Viera, Villalobos, Ballesteros, Baudelaire, Dalton, Defoe, Alquezar, Albiac, Balda, Bolado, Bortia, Berna, Bastida, Capella, Cota, Duat, Guijarro, Iñigo, Ivorra, Lacorte, Luna, Lloria, Monzos, Marsa, Marc, Millán, Noguera, Olmos, Palmer, Palafox, Rubio, Saborido, Solaz, Sans, Timor, Toro, Urrea, Beldevere, Lampiño, Audaz, Delfino, González, Del Toro, Rosales, De la Vega, Salazar, Camacho, Varela, Vargas, Velez, Quintero, Rodríguez, Saucedo, Rivera, Castro, Cervantes, Ciarfalio, Jovellanos, Miranda, Navia, Riego, Vega, Ayamonte, Cenete, Comares, Medina, Quesada, Torres, Alba, Lara, Castro, Cifuentes, Calderón, Villegas, Medinaceli, Miranda, Osuna, Valverde, Pizarro, Feijóo, Silvela, Robles, Santalla, Trénor, Balboa</surnames>
+			</random>
 	</hazat>
 	<liHalan>
 		<name>
@@ -35,6 +56,13 @@
 		<group>nobility</group>
 		<race>human</race>
 		<blessings>pious, guilty</blessings>
+		<random>
+			<names>
+				<male>Kiri, Naomasa, Akira, Batu, Kazuo, Kei, Shinsuke, Hideaki, Shirô, Yôko, Yutaka, Shintarou, Takashi, Hikaru, Makoto, Goru, Goro, Shinjitsu, Isamu, Kenshin, Yoshi</male>
+				<female>Yumiko, Yuki, Akira, Amaya, Midori, Keiko, Motoko, Yoko, Aya, Kiki</female>
+			</names>
+			<surnames>Li Halan, Tsukamoto, Ito, Shaku, Numata, Shimada, Maki, Musaka, Sonooka, Chôsokabe, Kaimura, Koike, Kunii, Sato, Yeuw, Lextius, Misamoto, Han, Wei-To, Naganaka, Kung-Zhau, Okemo, Teng, Hidejiri, Jong</surnames>		
+		</random>
 	</liHalan>
 	<alMalik>
 		<name>
@@ -44,6 +72,13 @@
 		<group>nobility</group>
 		<race>human</race>
 		<blessings>gracious, impetuous</blessings>
+		<random>
+			<names>
+				<male>Shekhar, Azar, Ali, Rahid, Abdul, Firuz, Nasir, Almaric, Velibor, Afil, Nasser, Ghassan, Mullah, Khaled, Khaled, Karim</male>
+				<female>Fahtima, Lofti, Yahya, Samira, Zoraida</female>
+			</names>
+			<surnames>Al-Malik, Kapur, Jedidi, Draa, Massoud, Topic, Nabawy, TarikMemarzia</surnames>		
+		</random>
 	</alMalik>
 	
 	<orthodox>

@@ -99,7 +99,7 @@ public class RandomPsiquePath extends RandomSelector<OccultismPath> {
 
 	@Override
 	protected int getWeight(OccultismPath element) {
-		// Other factions path are forbiden
+		// Other factions path are forbidden
 		if (!element.getFactionsAllowed().isEmpty()
 				&& !element.getFactionsAllowed().contains(getCharacterPlayer().getFaction())) {
 			return 0;
@@ -112,7 +112,7 @@ public class RandomPsiquePath extends RandomSelector<OccultismPath> {
 		try {
 			for (OccultismType occultismType : OccultismTypeFactory.getInstance().getElements(
 					getCharacterPlayer().getLanguage())) {
-				if (getCharacterPlayer().getOccultism().getPsiqueLevel(occultismType) == 0) {
+				if (getCharacterPlayer().getPsiqueLevel(occultismType) == 0) {
 					if (Objects.equals(element.getOccultismType(), occultismType)) {
 						return 0;
 					}
@@ -138,8 +138,8 @@ public class RandomPsiquePath extends RandomSelector<OccultismPath> {
 		if (maxLevelSelected > psiqueLevelSelector.maximum()) {
 			maxLevelSelected = psiqueLevelSelector.maximum();
 		}
-		if (maxLevelSelected > getCharacterPlayer().getOccultism().getPsiqueLevel(path.getOccultismType())) {
-			maxLevelSelected = getCharacterPlayer().getOccultism().getPsiqueLevel(path.getOccultismType());
+		if (maxLevelSelected > getCharacterPlayer().getPsiqueLevel(path.getOccultismType())) {
+			maxLevelSelected = getCharacterPlayer().getPsiqueLevel(path.getOccultismType());
 		}
 		return maxLevelSelected;
 	}
@@ -187,8 +187,7 @@ public class RandomPsiquePath extends RandomSelector<OccultismPath> {
 				break;
 			}
 			if (remainingPoints - power.getLevel() * CostCalculator.PATH_LEVEL_COST >= 0) {
-				getCharacterPlayer().getOccultism().addPower(power, getCharacterPlayer().getLanguage(),
-						getCharacterPlayer().getFaction());
+				getCharacterPlayer().addOccultismPower(power);
 				RandomGenerationLog.info(this.getClass().getName(), "Assinged power '" + power + "' to path '" + path
 						+ "'.");
 				remainingPoints -= power.getLevel() * CostCalculator.PATH_LEVEL_COST;

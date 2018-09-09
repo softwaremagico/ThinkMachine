@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.character.benefices;
+package com.softwaremagico.tm.character.factions;
 
 /*-
  * #%L
@@ -24,17 +24,6 @@ package com.softwaremagico.tm.character.benefices;
  * #L%
  */
 
-public enum BeneficeGroup {
-	BACKGROUND, COMMUNITY, TECHNOLOGY, RELICS, POSSESSIONS, RICHES, STATUS, FIGHTING, RESTRICTED;
 
-	public static BeneficeGroup get(String tag) {
-		if (tag != null) {
-			for (BeneficeGroup benefitGroup : BeneficeGroup.values()) {
-				if (benefitGroup.name().equalsIgnoreCase(tag)) {
-					return benefitGroup;
-				}
-			}
-		}
-		return null;
-	}
+public class FactionRandomDefinitions {
 }

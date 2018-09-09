@@ -26,7 +26,7 @@ package com.softwaremagico.tm.export.pdf;
 
 import java.io.File;
 
-import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
@@ -40,7 +40,7 @@ import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedExcep
 @Test(groups = { "randomCharacterSheetCreation" })
 public class RandomCharacterSheetCreationTest {
 
-	@AfterMethod
+	@BeforeMethod
 	public void clearCache() {
 		LanguagePool.clearCache();
 	}

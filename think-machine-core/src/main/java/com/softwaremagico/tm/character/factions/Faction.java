@@ -41,12 +41,14 @@ public class Faction extends Element<Faction> {
 	private Set<Blessing> blessings = null;
 	private Set<AvailableBenefice> benefices = null;
 	private final String language;
+	private final FactionRandomDefinitions randomDefinition;
 
 	public Faction(String id, String name, FactionGroup factionGroup, Race restrictedRace, String language) {
 		super(id, name);
 		this.factionGroup = factionGroup;
 		this.restrictedRace = restrictedRace;
 		this.language = language;
+		this.randomDefinition = new FactionRandomDefinitions();
 	}
 
 	public FactionGroup getFactionGroup() {
@@ -76,7 +78,8 @@ public class Faction extends Element<Faction> {
 
 	public Set<Blessing> getBlessings() {
 		if (blessings == null) {
-			//Blessings are not read with factions due to a loop factions->blessings->skills->factions
+			// Blessings are not read with factions due to a loop
+			// factions->blessings->skills->factions
 			try {
 				FactionsFactory.getInstance().setBlessings(this, language);
 			} catch (InvalidFactionException e) {
@@ -88,7 +91,8 @@ public class Faction extends Element<Faction> {
 
 	public Set<AvailableBenefice> getBenefices() {
 		if (benefices == null) {
-			//Benefices are not read with factions due to a loop factions->benefices->skills->factions
+			// Benefices are not read with factions due to a loop
+			// factions->benefices->skills->factions
 			try {
 				FactionsFactory.getInstance().setBenefices(this, language);
 			} catch (InvalidFactionException e) {
@@ -104,5 +108,9 @@ public class Faction extends Element<Faction> {
 
 	public void setBenefices(Set<AvailableBenefice> benefices) {
 		this.benefices = benefices;
+	}
+
+	public FactionRandomDefinitions getRandomDefinition() {
+		return randomDefinition;
 	}
 }
