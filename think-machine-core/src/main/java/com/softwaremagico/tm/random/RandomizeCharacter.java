@@ -116,7 +116,7 @@ public class RandomizeCharacter {
 			randomPlanet.assignPlanet();
 		}
 
-		if (characterPlayer.getInfo().getName() == null) {
+		if (characterPlayer.getInfo().getNames() == null || characterPlayer.getInfo().getNames().isEmpty()) {
 			RandomName randomName = new RandomName(characterPlayer, preferences);
 			randomName.assignName();
 		}
@@ -193,7 +193,7 @@ public class RandomizeCharacter {
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append(characterPlayer.getInfo().getName() + " (" + characterPlayer.getRace() + ") [" + characterPlayer.getFaction() + "]");
+		sb.append(characterPlayer.getNameRepresentation() + " (" + characterPlayer.getRace() + ") [" + characterPlayer.getFaction() + "]");
 		sb.append(characterPlayer.getFreeStyleCharacterCreation().getSelectedCharacteristicsValues());
 		sb.append(characterPlayer.getFreeStyleCharacterCreation().getDesiredSkillRanks());
 		return sb.toString();

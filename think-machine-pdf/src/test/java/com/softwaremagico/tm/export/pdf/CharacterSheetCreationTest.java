@@ -96,7 +96,7 @@ public class CharacterSheetCreationTest {
 		CacheHandler.clearCache();
 
 		player = new CharacterPlayer(LANGUAGE);
-		player.getInfo().setName(new Name("John", Gender.MALE, null));
+		player.getInfo().addName(new Name("John", Gender.MALE, null));
 		player.getInfo().setSurname(new Surname("Sephard", null));
 		player.getInfo().setPlayer("Player 1");
 		player.getInfo().setGender(Gender.MALE);

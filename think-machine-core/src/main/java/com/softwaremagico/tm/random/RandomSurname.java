@@ -24,11 +24,13 @@ package com.softwaremagico.tm.random;
  * #L%
  */
 
+import java.util.Objects;
 import java.util.Set;
 import java.util.TreeMap;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.character.Name;
 import com.softwaremagico.tm.character.Surname;
 import com.softwaremagico.tm.character.factions.Faction;
 import com.softwaremagico.tm.character.factions.FactionGroup;
@@ -83,7 +85,17 @@ public class RandomSurname extends RandomSelector<Surname> {
 		} catch (InvalidXmlElementException e) {
 			RandomGenerationLog.errorMessage(this.getClass().getName(), e);
 		}
-		// Not nobility, use surnames of the planet.
+		// Name already set, use same faction to avoid weird mix.
+		if (!getCharacterPlayer().getInfo().getNames().isEmpty()) {
+			Name firstName = getCharacterPlayer().getInfo().getNames().get(0);
+			if (!Objects.equals(firstName.getFaction(), surname.getFaction())) {
+				return 0;
+			} else {
+				return GOOD_PROBABILITY;
+			}
+		}
+
+		// Not nobility and not name set, use surnames of the planet.
 		if (getCharacterPlayer().getInfo().getPlanet() != null && !getCharacterPlayer().getInfo().getPlanet().getSurnames().isEmpty()) {
 			if (getCharacterPlayer().getInfo().getPlanet().getFactions().contains(surname.getFaction())) {
 				return GOOD_PROBABILITY;

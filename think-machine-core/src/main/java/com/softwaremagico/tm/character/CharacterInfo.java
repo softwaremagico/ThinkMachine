@@ -25,6 +25,8 @@ package com.softwaremagico.tm.character;
  */
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.softwaremagico.tm.character.planet.Planet;
 import com.softwaremagico.tm.language.ITranslator;
@@ -33,8 +35,8 @@ import com.softwaremagico.tm.language.LanguagePool;
 public class CharacterInfo {
 	private static ITranslator translator = LanguagePool.getTranslator("character_values.xml");
 
-	private Name name;
-	
+	private List<Name> names;
+
 	private Surname surname;
 
 	public Surname getSurname() {
@@ -96,12 +98,19 @@ public class CharacterInfo {
 		return parameterValue.toString();
 	}
 
-	public Name getName() {
-		return name;
+	public List<Name> getNames() {
+		return names;
 	}
 
-	public void setName(Name name) {
-		this.name = name;
+	public void setNames(List<Name> names) {
+		this.names = names;
+	}
+
+	public void addName(Name name) {
+		if (names == null) {
+			names = new ArrayList<>();
+		}
+		names.add(name);
 	}
 
 	public String getPlayer() {
