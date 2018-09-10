@@ -76,7 +76,7 @@ public class CustomCharacters {
 	@Test
 	public void createPaolaCharacter() throws MalformedURLException, DocumentException, IOException, InvalidXmlElementException, TooManyBlessingsException {
 		CharacterPlayer player = new CharacterPlayer(LANGUAGE);
-		player.getInfo().setName(new Name("#5"));
+		player.getInfo().addName(new Name("#5"));
 		player.getInfo().setPlayer("Paola");
 		player.getInfo().setGender(Gender.FEMALE);
 		player.getInfo().setAge(25);
@@ -151,7 +151,7 @@ public class CustomCharacters {
 	@Test
 	public void characterAnaCharacter() throws MalformedURLException, DocumentException, IOException, InvalidXmlElementException, TooManyBlessingsException {
 		CharacterPlayer player = new CharacterPlayer(LANGUAGE);
-		player.getInfo().setName(new Name("Arya"));
+		player.getInfo().addName(new Name("Arya"));
 		player.getInfo().setSurname(new Surname("Hawkwood"));
 		player.getInfo().setPlayer("Ana");
 		player.getInfo().setGender(Gender.FEMALE);
@@ -209,7 +209,7 @@ public class CustomCharacters {
 	@Test
 	public void createCarlosCharacter() throws MalformedURLException, DocumentException, IOException, InvalidXmlElementException, TooManyBlessingsException {
 		CharacterPlayer player = new CharacterPlayer(LANGUAGE);
-		player.getInfo().setName(new Name("Carlos"));
+		player.getInfo().addName(new Name("Carlos"));
 		player.getInfo().setPlayer("Carlos");
 		player.getInfo().setGender(Gender.MALE);
 		player.getInfo().setAge(28);
@@ -275,7 +275,7 @@ public class CustomCharacters {
 	@Test
 	public void createNoeliaCharacer() throws MalformedURLException, DocumentException, IOException, InvalidXmlElementException, TooManyBlessingsException {
 		CharacterPlayer player = new CharacterPlayer(LANGUAGE);
-		player.getInfo().setName(new Name("Noelia"));
+		player.getInfo().addName(new Name("Noelia"));
 		player.getInfo().setPlayer("Noelia");
 		player.getInfo().setGender(Gender.FEMALE);
 		// player.getInfo().setAge(30);
@@ -339,7 +339,7 @@ public class CustomCharacters {
 	public void createGolemCharacer() throws MalformedURLException, DocumentException, IOException, InvalidXmlElementException, TooManyBlessingsException {
 		CharacterPlayer player = new CharacterPlayer(LANGUAGE);
 		player.getInfo().setPlayer("PNJ");
-		player.getInfo().setName(new Name("A"));
+		player.getInfo().addName(new Name("A"));
 		player.getInfo().setSurname(new Surname("(Prototipo A)"));
 		player.getInfo().setGender(Gender.FEMALE);
 		player.setRace(new Race("Gólem", 5, 5, 5, 3, 3, 6, 0, 0, 0, 6, 0, 0, 0, 0, 0));

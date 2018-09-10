@@ -775,22 +775,29 @@ public class CharacterPlayer {
 		return sortedList;
 	}
 
-	public String getRank() throws InvalidXmlElementException {
+	public BeneficeSpecialization getStatus() throws InvalidXmlElementException {
 		for (AvailableBenefice benefice : getAllBenefices()) {
 			if (benefice.getBenefitDefinition().getGroup() == BeneficeGroup.STATUS) {
 				// Must have an specialization.
 				if (benefice.getSpecialization() != null) {
-					BeneficeSpecialization rankSpecialization = benefice.getSpecialization();
-					// Some factions have different names.
-					if (getFaction() != null && getFaction().getRankTranslation(rankSpecialization.getId()) != null) {
-						return getFaction().getRankTranslation(rankSpecialization.getId()).getName();
-					} else {
-						return rankSpecialization.getName();
-					}
+					return benefice.getSpecialization();
 				}
 			}
 		}
 		return null;
+	}
+
+	public String getRank() throws InvalidXmlElementException {
+		BeneficeSpecialization status = getStatus();
+		if (status == null) {
+			return null;
+		}
+		// Some factions have different names.
+		if (getFaction() != null && getFaction().getRankTranslation(status.getId()) != null) {
+			return getFaction().getRankTranslation(status.getId()).getName();
+		} else {
+			return status.getName();
+		}
 	}
 
 	public Faction getFaction() {
@@ -912,12 +919,15 @@ public class CharacterPlayer {
 
 	public String getNameRepresentation() {
 		StringBuilder stringBuilder = new StringBuilder("");
-		if (getInfo() != null && getInfo().getName() != null) {
-			stringBuilder.append(getInfo().getName().getName());
+		if (getInfo() != null && getInfo().getNames() != null && !getInfo().getNames().isEmpty()) {
+			for (Name name : getInfo().getNames()) {
+				stringBuilder.append(name.getName());
+				stringBuilder.append(" ");
+			}
 		}
 		if (getInfo() != null && getInfo().getSurname() != null) {
-			stringBuilder.append(" " + getInfo().getSurname().getName());
+			stringBuilder.append(getInfo().getSurname().getName());
 		}
-		return stringBuilder.toString();
+		return stringBuilder.toString().trim();
 	}
 }

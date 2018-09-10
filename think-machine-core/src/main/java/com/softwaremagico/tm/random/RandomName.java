@@ -24,17 +24,21 @@ package com.softwaremagico.tm.random;
  * #L%
  */
 
+import java.util.Objects;
 import java.util.Set;
 import java.util.TreeMap;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.Name;
+import com.softwaremagico.tm.character.benefices.BeneficeSpecialization;
 import com.softwaremagico.tm.character.factions.FactionGroup;
 import com.softwaremagico.tm.character.factions.FactionsFactory;
 import com.softwaremagico.tm.character.race.InvalidRaceException;
+import com.softwaremagico.tm.log.RandomGenerationLog;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.IRandomPreferences;
+import com.softwaremagico.tm.random.selectors.NamesPreferences;
 
 public class RandomName extends RandomSelector<Name> {
 	private final static int GOOD_PROBABILITY = 1;
@@ -44,11 +48,34 @@ public class RandomName extends RandomSelector<Name> {
 	}
 
 	public void assignName() throws InvalidRaceException, InvalidRandomElementSelectedException {
+		NamesPreferences namesPreference = NamesPreferences.getSelected(getPreferences());
 		try {
-			getCharacterPlayer().getInfo().setName(selectElementByWeight());
-		} catch (InvalidRandomElementSelectedException e) {
-			throw new InvalidRandomElementSelectedException("No possible name for faction '" + getCharacterPlayer().getFaction() + "' at '"
-					+ getCharacterPlayer().getInfo().getPlanet() + "'.", e);
+			BeneficeSpecialization status = getCharacterPlayer().getStatus();
+			// Nobility with more names. Unless set by the user.
+			if (status != null && namesPreference == NamesPreferences.LOW && !getPreferences().contains(NamesPreferences.LOW)) {
+				namesPreference = NamesPreferences.getByStatus(status.getCost());
+			}
+		} catch (InvalidXmlElementException e) {
+			// Status error.
+			RandomGenerationLog.errorMessage(this.getClass().getName(), e);
+		}
+
+		for (int i = 0; i < namesPreference.randomGaussian(); i++) {
+			try {
+				Name selectedName = selectElementByWeight();
+				getCharacterPlayer().getInfo().addName(selectedName);
+				removeElementWeight(selectedName);
+				// Remove names from different factions. All names must be from
+				// same faction
+				for (Name name : FactionsFactory.getInstance().getAllNames()) {
+					if (!Objects.equals(name.getFaction(), selectedName.getFaction())) {
+						removeElementWeight(name);
+					}
+				}
+			} catch (InvalidRandomElementSelectedException e) {
+				throw new InvalidRandomElementSelectedException("No possible name for faction '" + getCharacterPlayer().getFaction() + "' at '"
+						+ getCharacterPlayer().getInfo().getPlanet() + "'.", e);
+			}
 		}
 	}
 

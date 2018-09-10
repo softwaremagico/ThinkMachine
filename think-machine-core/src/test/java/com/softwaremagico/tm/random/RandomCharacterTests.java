@@ -42,6 +42,7 @@ import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedExcep
 import com.softwaremagico.tm.random.selectors.BlessingNumberPreferences;
 import com.softwaremagico.tm.random.selectors.CurseNumberPreferences;
 import com.softwaremagico.tm.random.selectors.FactionPreferences;
+import com.softwaremagico.tm.random.selectors.NamesPreferences;
 import com.softwaremagico.tm.random.selectors.PsiqueLevelPreferences;
 import com.softwaremagico.tm.random.selectors.PsiquePathLevelPreferences;
 import com.softwaremagico.tm.random.selectors.RacePreferences;
@@ -163,5 +164,15 @@ public class RandomCharacterTests {
 		randomizeCharacter.createCharacter();
 		Assert.assertTrue(characterPlayer.getAfflictions().contains(AvailableBeneficeFactory.getInstance().getElement("noOccult", LANGUAGE)));
 		Assert.assertEquals(characterPlayer.getSelectedPowers().values().size(), 0);
+	}
+
+	@Test
+	public void namesByStatus() throws InvalidXmlElementException, InvalidRandomElementSelectedException, DuplicatedPreferenceException {
+		CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
+		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0, NamesPreferences.VERY_HIGHT);
+		randomizeCharacter.createCharacter();
+		Assert.assertTrue(characterPlayer.getInfo().getNames().size() >= 2);
+		Assert.assertTrue(characterPlayer.getInfo().getSurname() != null);
+		System.out.println(characterPlayer.getNameRepresentation());
 	}
 }

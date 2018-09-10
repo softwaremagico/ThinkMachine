@@ -39,9 +39,9 @@ import com.softwaremagico.tm.character.factions.FactionsFactory;
 @Test(groups = { "factionsFactory" })
 public class FactionFactoryTests {
 	private final static int DEFINED_FACTIONS = 19;
-	private final static int DEFINED_MALE_NAMES = 102;
+	private final static int DEFINED_MALE_NAMES = 103;
 	private final static int DEFINED_FEMALE_NAMES = 100;
-	private final static int DEFINED_SURNAMES = 121;
+	private final static int DEFINED_SURNAMES = 125;
 	private final static String LANGUAGE = "es";
 
 	@BeforeClass
@@ -64,8 +64,8 @@ public class FactionFactoryTests {
 	public void readNames() throws InvalidXmlElementException {
 		Faction hazat = FactionsFactory.getInstance().getElement("hazat", LANGUAGE);
 		Assert.assertNotNull(hazat);
-		Assert.assertEquals(DEFINED_MALE_NAMES, FactionsFactory.getInstance().getAllNames(hazat, Gender.MALE).size());
-		Assert.assertEquals(DEFINED_FEMALE_NAMES, FactionsFactory.getInstance().getAllNames(hazat, Gender.FEMALE).size());
-		Assert.assertEquals(DEFINED_SURNAMES, FactionsFactory.getInstance().getAllSurnames(hazat).size());
+		Assert.assertTrue(FactionsFactory.getInstance().getAllNames(hazat, Gender.MALE).size() >= DEFINED_MALE_NAMES);
+		Assert.assertTrue(FactionsFactory.getInstance().getAllNames(hazat, Gender.FEMALE).size() >= DEFINED_FEMALE_NAMES);
+		Assert.assertTrue(FactionsFactory.getInstance().getAllSurnames(hazat).size() >= DEFINED_SURNAMES);
 	}
 }

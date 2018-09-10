@@ -53,7 +53,7 @@ public class CustomCharacter {
 	public static CharacterPlayer create(String language) throws InvalidXmlElementException, TooManyBlessingsException {
 		CacheHandler.clearCache();
 		CharacterPlayer player = new CharacterPlayer(language);
-		player.getInfo().setName(new Name("Oliver", Gender.MALE, null));
+		player.getInfo().addName(new Name("Oliver", Gender.MALE, null));
 		player.getInfo().setSurname(new Surname("Queen", null));
 		player.getInfo().setPlayer("Player 1");
 		player.getInfo().setGender(Gender.MALE);
