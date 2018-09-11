@@ -44,6 +44,8 @@ public class AvailableSkillsFactory {
 
 	private static AvailableSkillsFactory instance;
 
+	private int maximumNumberOfSpecializations = 0;
+
 	private static void createInstance() {
 		if (instance == null) {
 			synchronized (AvailableSkillsFactory.class) {
@@ -125,6 +127,9 @@ public class AvailableSkillsFactory {
 			for (Specialization specialization : skillDefinition.getSpecializations()) {
 				availableSkills.add(new AvailableSkill(skillDefinition, specialization));
 			}
+			if (maximumNumberOfSpecializations < skillDefinition.getSpecializations().size()) {
+				maximumNumberOfSpecializations = skillDefinition.getSpecializations().size();
+			}
 		} else {
 			availableSkills.add(new AvailableSkill(skillDefinition));
 		}
@@ -189,6 +194,10 @@ public class AvailableSkillsFactory {
 			skillsByGroup.get(language).put(availableSkill.getSkillDefinition().getSkillGroup(), new HashSet<AvailableSkill>());
 		}
 		skillsByGroup.get(language).get(availableSkill.getSkillDefinition().getSkillGroup()).add(availableSkill);
+	}
+
+	public int getMaximumNumberOfSpecializations() {
+		return maximumNumberOfSpecializations;
 	}
 
 }
