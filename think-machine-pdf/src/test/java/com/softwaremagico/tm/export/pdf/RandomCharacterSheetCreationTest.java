@@ -26,11 +26,15 @@ package com.softwaremagico.tm.export.pdf;
 
 import java.io.File;
 
+import junit.framework.Assert;
+
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.character.creation.CostCalculator;
+import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
 import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.pdf.complete.CharacterSheet;
 import com.softwaremagico.tm.random.RandomizeCharacter;
@@ -51,6 +55,8 @@ public class RandomCharacterSheetCreationTest {
 		CharacterPlayer characterPlayer = new CharacterPlayer("es");
 		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0);
 		randomizeCharacter.createCharacter();
+		
+		Assert.assertEquals(FreeStyleCharacterCreation.FREE_AVAILABLE_POINTS, CostCalculator.getCost(characterPlayer));
 
 		LanguagePool.clearCache();
 		CharacterSheet sheet = new CharacterSheet(characterPlayer);
