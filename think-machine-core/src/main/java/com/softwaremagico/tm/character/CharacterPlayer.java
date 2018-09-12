@@ -77,6 +77,7 @@ import com.softwaremagico.tm.character.skills.InvalidSkillException;
 import com.softwaremagico.tm.character.skills.SelectedSkill;
 import com.softwaremagico.tm.character.skills.Skill;
 import com.softwaremagico.tm.character.skills.SkillDefinition;
+import com.softwaremagico.tm.character.skills.SkillGroup;
 import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
 import com.softwaremagico.tm.character.skills.Specialization;
 import com.softwaremagico.tm.character.values.IValue;
@@ -929,5 +930,25 @@ public class CharacterPlayer {
 			stringBuilder.append(getInfo().getSurname().getName());
 		}
 		return stringBuilder.toString().trim();
+	}
+
+	/**
+	 * Gets the total ranks spent in a group of characteristics.
+	 * 
+	 * @param skillGroup
+	 *            group to check.
+	 * @return the number of ranks
+	 * @throws InvalidXmlElementException
+	 *             if malformed file in translations.
+	 */
+	public int getRanksAssigned(SkillGroup skillGroup) throws InvalidXmlElementException {
+		int ranks = 0;
+		for (AvailableSkill skill : AvailableSkillsFactory.getInstance().getSkillsByGroup(skillGroup, getLanguage())) {
+			ranks += getSkillAssignedRanks(skill);
+			if (skill.getSkillDefinition().isNatural()) {
+				ranks -= 3;
+			}
+		}
+		return ranks;
 	}
 }
