@@ -63,6 +63,9 @@ import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.json.CharacterJsonManager;
 import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.pdf.complete.CharacterSheet;
+import com.softwaremagico.tm.pdf.small.SmallCharacterSheet;
+import com.softwaremagico.tm.random.exceptions.DuplicatedPreferenceException;
+import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 
 @Test(groups = { "characterPdfGeneration" })
 public class CharacterSheetCreationTest {
@@ -88,6 +91,21 @@ public class CharacterSheetCreationTest {
 		CacheHandler.clearCache();
 		CharacterSheet sheet = new CharacterSheet("en");
 		sheet.createFile(PDF_PATH_OUTPUT + "FadingSuns_EN.pdf");
+	}
+	
+	
+	@Test
+	public void emptyPdfSmallEn() throws InvalidXmlElementException, DuplicatedPreferenceException,
+			InvalidRandomElementSelectedException {
+		SmallCharacterSheet sheet = new SmallCharacterSheet("en");
+		sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "RandomCharacterSmallEmpty_EN.pdf");
+	}
+	
+	@Test
+	public void emptyPdfSmallEs() throws InvalidXmlElementException, DuplicatedPreferenceException,
+			InvalidRandomElementSelectedException {
+		SmallCharacterSheet sheet = new SmallCharacterSheet("es");
+		sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "RandomCharacterSmallEmpty_ES.pdf");
 	}
 
 	@Test
