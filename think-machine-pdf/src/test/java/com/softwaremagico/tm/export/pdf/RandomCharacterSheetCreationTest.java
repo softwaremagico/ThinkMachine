@@ -37,6 +37,7 @@ import com.softwaremagico.tm.character.creation.CostCalculator;
 import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
 import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.pdf.complete.CharacterSheet;
+import com.softwaremagico.tm.pdf.small.SmallCharacterSheet;
 import com.softwaremagico.tm.random.RandomizeCharacter;
 import com.softwaremagico.tm.random.exceptions.DuplicatedPreferenceException;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
@@ -61,5 +62,33 @@ public class RandomCharacterSheetCreationTest {
 		LanguagePool.clearCache();
 		CharacterSheet sheet = new CharacterSheet(characterPlayer);
 		sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "RandomCharacter.pdf");
+	}
+	
+	@Test
+	public void completeRandomCharacterSmallEs() throws InvalidXmlElementException, DuplicatedPreferenceException,
+			InvalidRandomElementSelectedException {
+		CharacterPlayer characterPlayer = new CharacterPlayer("es");
+		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0);
+		randomizeCharacter.createCharacter();
+		
+		Assert.assertEquals(FreeStyleCharacterCreation.FREE_AVAILABLE_POINTS, CostCalculator.getCost(characterPlayer));
+
+		LanguagePool.clearCache();
+		SmallCharacterSheet sheet = new SmallCharacterSheet(characterPlayer);
+		sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "RandomCharacterSmall_ES.pdf");
+	}
+	
+	@Test
+	public void completeRandomCharacterSmallEn() throws InvalidXmlElementException, DuplicatedPreferenceException,
+			InvalidRandomElementSelectedException {
+		CharacterPlayer characterPlayer = new CharacterPlayer("en");
+		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0);
+		randomizeCharacter.createCharacter();
+		
+		Assert.assertEquals(FreeStyleCharacterCreation.FREE_AVAILABLE_POINTS, CostCalculator.getCost(characterPlayer));
+
+		LanguagePool.clearCache();
+		SmallCharacterSheet sheet = new SmallCharacterSheet(characterPlayer);
+		sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "RandomCharacterSmall_EN.pdf");
 	}
 }

@@ -349,14 +349,14 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 		if (getCharacterPlayer().getPsiqueLevel(
 				OccultismTypeFactory.getPsi(getCharacterPlayer().getLanguage())) > 0) {
 			// Self control useful for psique.
-			if (skill.getId().equalsIgnoreCase("selfControl")) {
-				return GOOD_PROBABILITY;
+			if (skill.getId().equals("selfControl")) {
+				return MAX_PROBABILITY;
 			}
 		}
 		if (getCharacterPlayer().getPsiqueLevel(
 				OccultismTypeFactory.getTheurgy(getCharacterPlayer().getLanguage())) > 0) {
-			if (skill.getId().equalsIgnoreCase("influence")) {
-				return GOOD_PROBABILITY;
+			if (skill.getId().equals("influence")) {
+				return MAX_PROBABILITY;
 			}
 		}
 		return 0;

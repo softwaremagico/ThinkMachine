@@ -130,6 +130,46 @@
 									</arguments>
 								</configuration>
 							</execution>
+							<execution>
+								<id>PdfToPng (NPC EN)</id>
+								<phase>install</phase>
+								<goals>
+									<goal>exec</goal>
+								</goals>
+								<configuration>
+									<executable>convert</executable>
+									<arguments>
+										<argument>-background</argument>
+										<argument>white</argument>
+										<argument>-alpha</argument>
+										<argument>remove</argument>
+										<argument>-density</argument>
+										<argument>600</argument>
+										<argument>${main.basedir}/NPC/Catherine Hawkwood.pdf</argument>
+										<argument>${main.basedir}/NPC/Catherine Hawkwood.png</argument>
+									</arguments>
+								</configuration>
+							</execution>
+							<execution>	
+								<id>PdfToPng (NPC ES)</id>
+								<phase>install</phase>
+								<goals>
+									<goal>exec</goal>
+								</goals>
+								<configuration>
+									<executable>convert</executable>
+									<arguments>
+										<argument>-background</argument>
+										<argument>white</argument>
+										<argument>-alpha</argument>
+										<argument>remove</argument>
+										<argument>-density</argument>
+										<argument>600</argument>
+										<argument>${main.basedir}/NPC/Shinsuke Li Halan.pdf</argument>
+										<argument>${main.basedir}/NPC/Shinsuke Li Halan.png</argument>
+									</arguments>
+								</configuration>
+							</execution>
 						</executions>
 					</plugin>
 				</plugins>
