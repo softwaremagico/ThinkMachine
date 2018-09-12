@@ -1,5 +1,7 @@
 package com.softwaremagico.tm.random.selectors;
 
+import com.softwaremagico.tm.character.skills.SkillGroup;
+
 /*-
  * #%L
  * Think Machine (Core)
@@ -26,25 +28,31 @@ package com.softwaremagico.tm.random.selectors;
 
 public enum SkillGroupPreferences implements IRandomPreferences {
 
-	ANALYTICAL,
+	ANALYTICAL(SkillGroup.ANALYTICAL),
 
-	COMBAT,
+	COMBAT(SkillGroup.COMBAT),
 
-	CONTROL,
+	CONTROL(SkillGroup.CONTROL),
 
-	CREATIVE,
+	CREATIVE(SkillGroup.CREATIVE),
 
-	LORE,
+	LORE(SkillGroup.LORE),
 
-	MALEFACTION,
+	MALEFACTION(SkillGroup.MALEFACTION),
 
-	PHYSICAL,
+	PHYSICAL(SkillGroup.PHYSICAL),
 
-	SCIENCE,
+	SCIENCE(SkillGroup.SCIENCE),
 
-	SOCIAL,
+	SOCIAL(SkillGroup.SOCIAL),
 
-	TECHNICAL;
+	TECHNICAL(SkillGroup.TECHNICAL);
+
+	private final SkillGroup skillGroup;
+
+	private SkillGroupPreferences(SkillGroup skillGroup) {
+		this.skillGroup = skillGroup;
+	}
 
 	public static SkillGroupPreferences getSkillGroupPreference(String tag) {
 		if (tag != null) {
@@ -65,6 +73,10 @@ public enum SkillGroupPreferences implements IRandomPreferences {
 	@Override
 	public int minimum() {
 		return SpecializationPreferences.SPECIALIZED.minimum();
+	}
+
+	public SkillGroup getSkillGroup() {
+		return skillGroup;
 	}
 
 }
