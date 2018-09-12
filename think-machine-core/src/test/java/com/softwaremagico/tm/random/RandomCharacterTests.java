@@ -173,6 +173,5 @@ public class RandomCharacterTests {
 		randomizeCharacter.createCharacter();
 		Assert.assertTrue(characterPlayer.getInfo().getNames().size() >= 2);
 		Assert.assertTrue(characterPlayer.getInfo().getSurname() != null);
-		System.out.println(characterPlayer.getNameRepresentation());
 	}
 }

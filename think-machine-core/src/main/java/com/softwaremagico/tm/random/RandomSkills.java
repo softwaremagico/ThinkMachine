@@ -160,6 +160,12 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 		RandomGenerationLog.debug(this.getClass().getName(), "Weight for '" + skill
 				+ "' by characteristics modification is '" + characteristicsWeight + "'.");
 		weight += characteristicsWeight;
+		
+		
+		int specializationSizeWeight = weightBySpecializationSize(skill);
+		RandomGenerationLog.debug(this.getClass().getName(), "Weight for '" + skill
+				+ "' by specialization size is '" + specializationSizeWeight + "'.");
+		weight += specializationSizeWeight;
 
 		int definitionWeight = weightBySkillDefinition(skill);
 		RandomGenerationLog.debug(this.getClass().getName(), "Weight for '" + skill
@@ -232,6 +238,14 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 			}
 		}
 		return 0;
+	}
+	
+	private int weightBySpecializationSize(AvailableSkill skill){
+		//Skills with lots of specializations has more probability to get one of them that other skills. Reduce this probability. 
+		if(skill.getSkillDefinition().getSpecializations()==null || skill.getSkillDefinition().getSpecializations().isEmpty()){
+			return AvailableSkillsFactory.getInstance().getMaximumNumberOfSpecializations();
+		}
+		return AvailableSkillsFactory.getInstance().getMaximumNumberOfSpecializations() / skill.getSkillDefinition().getSpecializations().size();
 	}
 
 	private int weightByTechnologyLimitations(AvailableSkill skill) {
