@@ -48,6 +48,15 @@ mvn install -Prelease
 ```
 And all the possible PDFs will be generated and later converted to PNG. Final result is located in the sheet folder. 
 
+## Random character generation
+From version 0.4.0 exists the option to generate randomly characters sheets. This feature is very usfeul for the creation of random NPC (non-player characters). You can define some basic options for the character such us nobility, psi, combat and more;  and the software will generate the complete character for you in a few seconds. Each character generated is following the rules of the Fading Suns core rule book and therefore, also can be use a playable character. I hope this feature will add extra color in your campaigns.
+
+Some examples already generated are:
+- [Catherine Hawkwood (English)](https://github.com/jorgehortelano/TheThinkingMachine/blob/master/NPC/Catherine%20Hawkwood.png)
+- [Shinsuke Li Halan (Spanish)](https://github.com/jorgehortelano/TheThinkingMachine/blob/master/NPC/Shinsuke%20Li%20Halan.png)
+
+Still we need to wait until next releases until we have a valid UI to helping the Character creation. 
+
 ## Notes
 This software has been developed using the [iText library](http://itextpdf.com/) for PDF generation. 
 
@@ -66,7 +75,7 @@ Fonts used in this project: DejaVuSans, ArchitectsDaughter and Roman Antique.
 
 0.3.0 Small PDF chart generation added.
 
-*0.4.0 Random character generator.*
+0.4.0 Random character generator.
 
 *0.5.0 Lifepath system.*
 
