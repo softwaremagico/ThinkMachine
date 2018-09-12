@@ -57,7 +57,7 @@ public class RandomCharacterSheetCreationTest {
 		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0);
 		randomizeCharacter.createCharacter();
 		
-		Assert.assertEquals(FreeStyleCharacterCreation.FREE_AVAILABLE_POINTS, CostCalculator.getCost(characterPlayer));
+		Assert.assertEquals(FreeStyleCharacterCreation.FREE_AVAILABLE_POINTS, CostCalculator.logCost(characterPlayer));
 
 		LanguagePool.clearCache();
 		CharacterSheet sheet = new CharacterSheet(characterPlayer);
@@ -71,7 +71,7 @@ public class RandomCharacterSheetCreationTest {
 		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0);
 		randomizeCharacter.createCharacter();
 		
-		Assert.assertEquals(FreeStyleCharacterCreation.FREE_AVAILABLE_POINTS, CostCalculator.getCost(characterPlayer));
+		Assert.assertEquals(FreeStyleCharacterCreation.FREE_AVAILABLE_POINTS, CostCalculator.logCost(characterPlayer));
 
 		LanguagePool.clearCache();
 		SmallCharacterSheet sheet = new SmallCharacterSheet(characterPlayer);
@@ -85,7 +85,7 @@ public class RandomCharacterSheetCreationTest {
 		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0);
 		randomizeCharacter.createCharacter();
 		
-		Assert.assertEquals(FreeStyleCharacterCreation.FREE_AVAILABLE_POINTS, CostCalculator.getCost(characterPlayer));
+		Assert.assertEquals(FreeStyleCharacterCreation.FREE_AVAILABLE_POINTS, CostCalculator.logCost(characterPlayer));
 
 		LanguagePool.clearCache();
 		SmallCharacterSheet sheet = new SmallCharacterSheet(characterPlayer);
