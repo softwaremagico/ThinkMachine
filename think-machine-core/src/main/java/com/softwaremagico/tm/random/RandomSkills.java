@@ -53,7 +53,6 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 	private final static int NO_PROBABILITY = -1000;
 	private final static int BAD_PROBABILITY = -20;
 	private final static int DIFFICULT_PROBABILITY = -10;
-	private final static int SUBTLE_PROBABILITY = 1;
 	private final static int LITTLE_PROBABILITY = 6;
 	private final static int ACCEPTABLE_PROBABILITY = 11;
 	private final static int GOOD_PROBABILITY = 21;
@@ -152,10 +151,6 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 		RandomGenerationLog.debug(this.getClass().getName(), "Weight for '" + skill + "' by characteristics modification is '" + characteristicsWeight + "'.");
 		weight += characteristicsWeight;
 
-		int specializationSizeWeight = weightBySpecializationSize(skill);
-		RandomGenerationLog.debug(this.getClass().getName(), "Weight for '" + skill + "' by specialization size is '" + specializationSizeWeight + "'.");
-		weight += specializationSizeWeight;
-
 		int definitionWeight = weightBySkillDefinition(skill);
 		RandomGenerationLog.debug(this.getClass().getName(), "Weight for '" + skill + "' by skill definition modification is '" + definitionWeight + "'.");
 		weight += definitionWeight;
@@ -180,7 +175,7 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 		RandomGenerationLog.debug(this.getClass().getName(), "Weight for '" + skill + "' by technology modification is '" + technologyWeight + "'.");
 		weight += technologyWeight;
 
-		int specializationWeight = weightBySpecialization(skill);
+		int specializationWeight = weightBySpecializationPreferences(skill);
 		RandomGenerationLog.debug(this.getClass().getName(), "Weight for '" + skill + "' by specialization modification is '" + technologyWeight + "'.");
 		weight += specializationWeight;
 
@@ -188,7 +183,9 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 		RandomGenerationLog.debug(this.getClass().getName(), "Weight for '" + skill + "' by psique modification is '" + psiqueWeight + "'.");
 		weight += psiqueWeight;
 
-		return weight;
+		int specializationMultiplier = weightBySpecializationSize(skill);
+		RandomGenerationLog.debug(this.getClass().getName(), "Specialization multiplier for '" + skill + "' is '" + specializationMultiplier + "'.");
+		return weight * specializationMultiplier;
 	}
 
 	private int weightBySkillDefinition(AvailableSkill skill) {
@@ -209,15 +206,23 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 	private int weightByCharacteristics(AvailableSkill skill) {
 		if (skill.getSkillDefinition().getSkillGroup().getPreferredCharacteristicsGroups() != null && !getPreferredCharacteristicsTypeSorted().isEmpty()) {
 			if (Objects.equals(skill.getSkillDefinition().getSkillGroup().getPreferredCharacteristicsGroups(), getPreferredCharacteristicsTypeSorted().get(0))) {
-				return LITTLE_PROBABILITY;
+				return ACCEPTABLE_PROBABILITY;
 			}
 			if (Objects.equals(skill.getSkillDefinition().getSkillGroup().getPreferredCharacteristicsGroups(), getPreferredCharacteristicsTypeSorted().get(1))) {
-				return SUBTLE_PROBABILITY;
+				return LITTLE_PROBABILITY;
 			}
 		}
 		return 0;
 	}
 
+	/**
+	 * Skills with lots of specializations has more chance to have at least one
+	 * of the specializations selected. This methods reduces its probability.
+	 * 
+	 * @param skill
+	 *            skill to check.
+	 * @return multiplier for the other bonus.
+	 */
 	private int weightBySpecializationSize(AvailableSkill skill) {
 		// Skills with lots of specializations has more probability to get one
 		// of them that other skills. Reduce this probability.
@@ -299,7 +304,7 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 		return 0;
 	}
 
-	private int weightBySpecialization(AvailableSkill skill) {
+	private int weightBySpecializationPreferences(AvailableSkill skill) {
 		SpecializationPreferences selectedSpecialization = SpecializationPreferences.getSelected(getPreferences());
 		int skillRanks = getCharacterPlayer().getSkillTotalRanks(skill);
 		// No more that the maximum allowed.
