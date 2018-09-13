@@ -26,6 +26,7 @@ package com.softwaremagico.tm.character.equipment;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.StringTokenizer;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
@@ -110,13 +111,6 @@ public class WeaponFactory extends XmlFactory<Weapon> {
 		}
 
 		try {
-			String techLevel = translator.getNodeValue(weaponId, TECH_LEVEL);
-			weapon.setTechLevel(Integer.parseInt(techLevel));
-		} catch (Exception e) {
-			throw new InvalidWeaponException("Invalid tech level in weapon '" + weaponId + "'.");
-		}
-
-		try {
 			String goal = translator.getNodeValue(weaponId, GOAL);
 			weapon.setGoal(goal);
 		} catch (Exception e) {
@@ -186,10 +180,10 @@ public class WeaponFactory extends XmlFactory<Weapon> {
 		try {
 			String damageDefinition = translator.getNodeValue(weaponId, DAMAGE_TYPE);
 			if (damageDefinition != null) {
-				String[] damageTypes = damageDefinition.split(",");
+				StringTokenizer damageTypesTokenizer = new StringTokenizer(damageDefinition, ",");
 				Set<DamageType> damageOfWeapon = new HashSet<>();
-				for (String damageType : damageTypes) {
-					damageOfWeapon.add(DamageTypeFactory.getInstance().getElement(damageType, language));
+				while (damageTypesTokenizer.hasMoreTokens()) {
+					damageOfWeapon.add(DamageTypeFactory.getInstance().getElement(damageTypesTokenizer.nextToken().trim(), language));
 				}
 				weapon.setDamageTypes(damageOfWeapon);
 			}
