@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.character.equipment;
+package com.softwaremagico.tm.character.equipment.weapons;
 
 /*-
  * #%L
@@ -24,35 +24,42 @@ package com.softwaremagico.tm.character.equipment;
  * #L%
  */
 
-import java.util.HashSet;
 import java.util.Set;
 
 import com.softwaremagico.tm.Element;
 import com.softwaremagico.tm.character.characteristics.CharacteristicDefinition;
+import com.softwaremagico.tm.character.equipment.DamageType;
+import com.softwaremagico.tm.character.equipment.Size;
 import com.softwaremagico.tm.character.skills.SkillDefinition;
 
 public class Weapon extends Element<Weapon> {
-	private String goal;
-	private String damage;
-	private int strength;
-	private String range;
-	private Integer shots;
-	private String rate;
-	private Size size;
-	private int techLevel;
-	private String special;
-	private Set<DamageType> damageTypes;
-	private int cost;
-	private SkillDefinition skill;
-	private CharacteristicDefinition characteristic;
+	private final String goal;
+	private final String damage;
+	private final int strength;
+	private final String range;
+	private final Integer shots;
+	private final String rate;
+	private final Size size;
+	private final int techLevel;
+	private final boolean techLevelSpecial;
 
-	public Weapon(String id, String name) {
-		super(id, name);
-		damageTypes = new HashSet<>();
+	private final String special;
+	private final Set<DamageType> damageTypes;
+	private final int cost;
+	private final SkillDefinition skill;
+	private final CharacteristicDefinition characteristic;
+	private final WeaponType type;
+
+	public WeaponType getType() {
+		return type;
 	}
 
-	public Weapon(String id, String name, String goal, String damage, int strength, String range, Integer shots, String rate, int tech, Size size) {
-		this(id, name);
+	public Weapon(String id, String name, WeaponType type, String goal, CharacteristicDefinition characteristic, SkillDefinition skill, String damage,
+			int strength, String range, Integer shots, String rate, int tech, boolean techLevelSpecial, Size size, String special, Set<DamageType> damageTypes,
+			int cost) {
+		super(id, name);
+		this.characteristic = characteristic;
+		this.skill = skill;
 		this.goal = goal;
 		this.damage = damage;
 		this.strength = strength;
@@ -61,11 +68,11 @@ public class Weapon extends Element<Weapon> {
 		this.rate = rate;
 		this.size = size;
 		this.techLevel = tech;
-	}
-
-	public Weapon(String id, String name, String goal, String damage, int strength, String range, Integer shots, String rate, int tech, Size size, String special) {
-		this(id, name, goal, damage, strength, range, shots, rate, tech, size);
-		setSpecial(special);
+		this.techLevelSpecial = techLevelSpecial;
+		this.type = type;
+		this.special = special;
+		this.damageTypes = damageTypes;
+		this.cost = cost;
 	}
 
 	public String getRoll() {
@@ -103,76 +110,28 @@ public class Weapon extends Element<Weapon> {
 		return special;
 	}
 
-	public void setSpecial(String special) {
-		this.special = special;
-	}
-
 	public int getTechLevel() {
 		return techLevel;
-	}
-
-	protected void setGoal(String goal) {
-		this.goal = goal;
-	}
-
-	protected void setDamage(String damage) {
-		this.damage = damage;
-	}
-
-	protected void setShots(Integer shots) {
-		this.shots = shots;
-	}
-
-	protected void setRate(String rate) {
-		this.rate = rate;
-	}
-
-	protected void setSize(Size size) {
-		this.size = size;
-	}
-
-	protected void setTechLevel(int techLevel) {
-		this.techLevel = techLevel;
 	}
 
 	public int getStrength() {
 		return strength;
 	}
 
-	protected void setStrength(int strength) {
-		this.strength = strength;
-	}
-
 	public String getRange() {
 		return range;
-	}
-
-	protected void setRange(String range) {
-		this.range = range;
 	}
 
 	public int getCost() {
 		return cost;
 	}
 
-	public void setCost(int cost) {
-		this.cost = cost;
-	}
-
 	public SkillDefinition getSkill() {
 		return skill;
 	}
 
-	public void setSkill(SkillDefinition skill) {
-		this.skill = skill;
-	}
-
 	public CharacteristicDefinition getCharacteristic() {
 		return characteristic;
-	}
-
-	public void setCharacteristic(CharacteristicDefinition characteristic) {
-		this.characteristic = characteristic;
 	}
 
 	public String getStrengthOrRange() {
@@ -186,7 +145,8 @@ public class Weapon extends Element<Weapon> {
 		return damageTypes;
 	}
 
-	public void setDamageTypes(Set<DamageType> damageTypes) {
-		this.damageTypes = damageTypes;
+	public boolean isTechLevelSpecial() {
+		return techLevelSpecial;
 	}
+
 }

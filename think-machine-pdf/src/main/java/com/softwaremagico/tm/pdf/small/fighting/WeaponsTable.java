@@ -27,7 +27,7 @@ package com.softwaremagico.tm.pdf.small.fighting;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Paragraph;
 import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.character.equipment.Weapon;
+import com.softwaremagico.tm.character.equipment.weapons.Weapon;
 import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.complete.elements.VerticalTable;
 

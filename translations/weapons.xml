@@ -1,13 +1,1004 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <weapons>
-	<huntingRifle>
+	<dartfletched>
 		<name>
-			<en>Hunting Rifle</en>
-			<es>Rifle de Caza</es>
+			<en>Dart fletched</en>
+			<es>Dardo (Disparado)</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>throwing</skill>
+		<type>THROWING</type>
+		<techLevel>1</techLevel>
+		<goal>+1</goal>
+		<damage>1</damage>
+		<strength>1</strength>
+		<range>5/10</range>
+		<shots>Handful</shots>
+		<rate>2</rate>
+		<size>XS</size>
+		<cost>2</cost>
+	</dartfletched>
+	<javelin>
+		<name>
+			<en>Javelin</en>
+			<es>Jabalina</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>throwing</skill>
+		<type>THROWING</type>
+		<techLevel>0</techLevel>
+		<goal>0</goal>
+		<damage>3</damage>
+		<strength>3</strength>
+		<range>10/20</range>
+		<shots>Handful</shots>
+		<rate>2</rate>
+		<size>L</size>
+		<cost>2</cost>
+	</javelin>
+	<advancedJavelin>
+		<name>
+			<en>Javelin</en>
+			<es>Jabalina</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>throwing</skill>
+		<type>THROWING</type>
+		<techLevel>1</techLevel>
+		<goal>0</goal>
+		<damage>4</damage>
+		<strength>3</strength>
+		<range>10/20</range>
+		<shots>Handful</shots>
+		<rate>2</rate>
+		<size>L</size>
+		<cost>2</cost>
+	</advancedJavelin>
+	<lightRock>
+		<name>
+			<en>Light Rock</en>
+			<es>Piedra Ligera</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>throwing</skill>
+		<type>THROWING</type>
+		<techLevel>0</techLevel>
+		<goal>0</goal>
+		<damage>1</damage>
+		<strength>1</strength>
+		<range>5/10</range>
+		<shots>Handful</shots>
+		<rate>2</rate>
+		<size>XS</size>
+		<cost>0</cost>
+	</lightRock>
+	<mediumRock>
+		<name>
+			<en>Medium Rock</en>
+			<es>Piedra Media</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>throwing</skill>
+		<type>THROWING</type>
+		<techLevel>0</techLevel>
+		<goal>0</goal>
+		<damage>2</damage>
+		<strength>2</strength>
+		<range>5/10</range>
+		<shots>Handful</shots>
+		<rate>2</rate>
+		<size>S</size>
+		<cost>0</cost>
+	</mediumRock>
+	<heavyRock>
+		<name>
+			<en>Heavy Rock</en>
+			<es>Piedra Pesada</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>throwing</skill>
+		<type>THROWING</type>
+		<techLevel>0</techLevel>
+		<goal>0</goal>
+		<damage>4</damage>
+		<strength>3</strength>
+		<range>5/10</range>
+		<shots>Handful</shots>
+		<rate>2</rate>
+		<size>M</size>
+		<cost>0</cost>
+	</heavyRock>
+	<largeRock>
+		<name>
+			<en>Large Rock</en>
+			<es>Piedra Grande</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>throwing</skill>
+		<type>THROWING</type>
+		<techLevel>0</techLevel>
+		<goal>-1</goal>
+		<damage>6</damage>
+		<strength>5</strength>
+		<range>3/5</range>
+		<shots>1</shots>
+		<rate>1</rate>
+		<size>L</size>
+		<cost>0</cost>
+	</largeRock>
+	<veryLargeRock>
+		<name>
+			<en>Very Large Rock</en>
+			<es>Piedra Enorme</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>throwing</skill>
+		<type>THROWING</type>
+		<techLevel>0</techLevel>
+		<goal>-1</goal>
+		<damage>8</damage>
+		<strength>5</strength>
+		<range>5</range>
+		<shots>1</shots>
+		<rate>1</rate>
+		<size>XL</size>
+		<cost>0</cost>
+	</veryLargeRock>
+	<star>
+		<name>
+			<en>Star</en>
+			<es>Estrella</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>throwing</skill>
+		<type>THROWING</type>
+		<techLevel>1</techLevel>
+		<goal>-1</goal>
+		<damage>1</damage>
+		<strength>1</strength>
+		<range>5/10</range>
+		<shots>Handful</shots>
+		<rate>2</rate>
+		<size>XS</size>
+		<cost>2</cost>
+	</star>
+	<throwingAxe>
+		<name>
+			<en>Throwing Axe</en>
+			<es>Hacha Arrojadiza</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>throwing</skill>
+		<type>THROWING</type>
+		<techLevel>1</techLevel>
+		<goal>0</goal>
+		<damage>4</damage>
+		<strength>3</strength>
+		<range>5/10</range>
+		<shots>Handful</shots>
+		<rate>2</rate>
+		<size>M</size>
+		<cost>5</cost>
+	</throwingAxe>
+	<throwingKnife>
+		<name>
+			<en>Throwing Knife</en>
+			<es>Cuchillo Arrojadizo</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>throwing</skill>
+		<type>THROWING</type>
+		<techLevel>1</techLevel>
+		<goal>0</goal>
+		<damage>3</damage>
+		<strength>2</strength>
+		<range>5/10</range>
+		<shots>Handful</shots>
+		<rate>2</rate>
+		<size>S</size>
+		<cost>3</cost>
+	</throwingKnife>
+	<heavyFuthangaBow>
+		<name>
+			<en>Heavy Futhanga Bow</en>
+			<es>Arco Pesado Futhanga</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>archery</skill>
+		<type>BOW</type>
+		<techLevel>0</techLevel>
+		<goal>0</goal>
+		<damage>10</damage>
+		<strength>7</strength>
+		<range>40/65</range>
+		<shots>Quiver</shots>
+		<rate>1/2</rate>
+		<size>L</size>
+		<cost>30</cost>
+	</heavyFuthangaBow>
+	<huntingBow>
+		<name>
+			<en>Hunting Bow</en>
+			<es>Arco de Caza</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>archery</skill>
+		<type>BOW</type>
+		<techLevel>1</techLevel>
+		<goal>0</goal>
+		<damage>4</damage>
+		<strength>4</strength>
+		<range>20/30</range>
+		<shots>Quiver</shots>
+		<rate>3</rate>
+		<size>M</size>
+		<cost>5</cost>
+	</huntingBow>
+	<lightFuthangaBow>
+		<name>
+			<en>Light Futhanga Bow</en>
+			<es>Arco Ligero Futhanga</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>archery</skill>
+		<type>BOW</type>
+		<techLevel>0</techLevel>
+		<goal>0</goal>
+		<damage>8</damage>
+		<strength>5</strength>
+		<range>40/60</range>
+		<shots>Quiver</shots>
+		<rate>1/2</rate>
+		<size>L</size>
+		<cost>20</cost>
+	</lightFuthangaBow>
+	<selfBow>
+		<name>
+			<en>Self Bow</en>
+			<es>Arco Sencillo</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>archery</skill>
+		<type>BOW</type>
+		<techLevel>0</techLevel>
+		<goal>0</goal>
+		<damage>2</damage>
+		<strength>2</strength>
+		<range>15/25</range>
+		<shots>Quiver</shots>
+		<rate>3</rate>
+		<size>M</size>
+		<cost>3</cost>
+	</selfBow>
+	<targetBow>
+		<name>
+			<en>Target Bow</en>
+			<es>Arco de Feria</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>archery</skill>
+		<type>BOW</type>
+		<techLevel>2</techLevel>
+		<goal>0</goal>
+		<damage>3</damage>
+		<strength>3</strength>
+		<range>30/40</range>
+		<shots>Quiver</shots>
+		<rate>2</rate>
+		<size>M</size>
+		<cost>7</cost>
+	</targetBow>
+	<warBow>
+		<name>
+			<en>War Bow</en>
+			<es>Arco de Guerra</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>archery</skill>
+		<type>BOW</type>
+		<techLevel>1</techLevel>
+		<goal>0</goal>
+		<damage>6</damage>
+		<strength>6</strength>
+		<range>40/60</range>
+		<shots>Quiver</shots>
+		<rate>2</rate>
+		<size>L</size>
+		<cost>10</cost>
+	</warBow>
+	<handCrossbow>
+		<name>
+			<en>Hand Crossbow</en>
+			<es>Ballesta de Mano</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>archery</skill>
+		<type>CROSSBOW</type>
+		<techLevel>2</techLevel>
+		<goal>0</goal>
+		<damage>2</damage>
+		<strength>2</strength>
+		<range>5/10</range>
+		<shots>Quiver</shots>
+		<rate>1</rate>
+		<size>S</size>
+		<cost>7</cost>
+	</handCrossbow>
+	<lightCrossbow>
+		<name>
+			<en>Light Crossbow</en>
+			<es>Ballesta Ligera</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>archery</skill>
+		<type>CROSSBOW</type>
+		<techLevel>2</techLevel>
+		<goal>0</goal>
+		<damage>4</damage>
+		<strength>4</strength>
+		<range>10/20</range>
+		<shots>Quiver</shots>
+		<rate>1</rate>
+		<size>S</size>
+		<cost>6</cost>
+	</lightCrossbow>
+	<heavyCrossbow>
+		<name>
+			<en>Heavy Crossbow</en>
+			<es>Ballesta Pesada</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>archery</skill>
+		<type>CROSSBOW</type>
+		<techLevel>2</techLevel>
+		<goal>0</goal>
+		<damage>8</damage>
+		<strength>8</strength>
+		<range>30/40</range>
+		<shots>Quiver</shots>
+		<rate>1</rate>
+		<size>L</size>
+		<cost>15</cost>
+	</heavyCrossbow>
+	<mediumCrossbow>
+		<name>
+			<en>Medium Crossbow</en>
+			<es>Ballesta Mediana</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>archery</skill>
+		<type>CROSSBOW</type>
+		<techLevel>2</techLevel>
+		<goal>0</goal>
+		<damage>6</damage>
+		<strength>6</strength>
+		<range>20/30</range>
+		<shots>Quiver</shots>
+		<rate>1</rate>
+		<size>M</size>
+		<cost>10</cost>
+	</mediumCrossbow>
+	<wristCrossbow>
+		<name>
+			<en>Wrist Crossbow</en>
+			<es>Ballesta de Muñeca</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>archery</skill>
+		<type>CROSSBOW</type>
+		<techLevel>2</techLevel>
+		<goal>0</goal>
+		<damage>1</damage>
+		<strength>1</strength>
+		<range>2/5</range>
+		<shots>Quiver</shots>
+		<rate>1</rate>
+		<size>XS</size>
+		<cost>15</cost>
+	</wristCrossbow>
+	<typicalDerringer>
+		<name>
+			<en>Typical Derringer (.32)</en>
+			<es>Típico Derringer (.32)</es>
 		</name>
 		<characteristic>dexterity</characteristic>
 		<skill>slugGuns</skill>
+		<type>SLUG</type>
 		<techLevel>3</techLevel>
+		<goal>-1</goal>
+		<damage>3</damage>
+		<strength>1</strength>
+		<range>5/10</range>
+		<shots>4</shots>
+		<rate>2</rate>
+		<size>XS</size>
+		<cost>50</cost>
+	</typicalDerringer>
+	<lankDerringer>
+		<name>
+			<en>Lank Derringer (.32)</en>
+			<es>Derringer Lank (.32)</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>SLUG</type>
+		<techLevel>4</techLevel>
+		<goal>-1</goal>
+		<damage>3</damage>
+		<strength>1</strength>
+		<range>5/10</range>
+		<shots>5</shots>
+		<rate>2</rate>
+		<size>XS</size>
+		<cost>70</cost>
+	</lankDerringer>
+	<mitchauMaverick>
+		<name>
+			<en>Mitchau Maverick (.32)</en>
+			<es>Mitchau Maverick (.32)</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>SLUG</type>
+		<techLevel>3</techLevel>
+		<goal>-1</goal>
+		<damage>3</damage>
+		<strength>1</strength>
+		<range>5/10</range>
+		<shots>5</shots>
+		<rate>2</rate>
+		<size>XS</size>
+		<cost>50</cost>
+	</mitchauMaverick>
+	<varstenSnake-eyes>
+		<name>
+			<en>Varsten Snake-eyes (.32)</en>
+			<es>Varsten Ojos de Serpiente (.32)</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>SLUG</type>
+		<techLevel>3</techLevel>
+		<goal>-1</goal>
+		<damage>3</damage>
+		<strength>1</strength>
+		<range>5/10</range>
+		<shots>2</shots>
+		<rate>2</rate>
+		<size>XS</size>
+		<cost>45</cost>
+	</varstenSnake-eyes>
+	<typicalLightRevolver>
+		<name>
+			<en>Typical Light Revolver (.32)</en>
+			<es>Revolver Ligero Típico (.32)</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>SLUG</type>
+		<techLevel>3</techLevel>
+		<goal>0</goal>
+		<damage>4</damage>
+		<strength>2</strength>
+		<range>10/20</range>
+		<shots>6</shots>
+		<rate>3</rate>
+		<size>S</size>
+		<cost>100</cost>
+	</typicalLightRevolver>
+	<fenirShortstop>
+		<name>
+			<en>Fenir Shortstop (.32)</en>
+			<es>Shortstop Fenir (.32)</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>SLUG</type>
+		<techLevel>3</techLevel>
+		<goal>0</goal>
+		<damage>4</damage>
+		<strength>2</strength>
+		<range>10/20</range>
+		<shots>6</shots>
+		<rate>3</rate>
+		<size>S</size>
+		<cost>100</cost>
+	</fenirShortstop>
+	<macCaulyLearmat>
+		<name>
+			<en>MacCauly Learmat (.32)</en>
+			<es>MacCauly Learmat (.32)</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>SLUG</type>
+		<techLevel>3</techLevel>
+		<goal>0</goal>
+		<damage>4</damage>
+		<strength>2</strength>
+		<range>10/20</range>
+		<shots>7</shots>
+		<rate>3</rate>
+		<size>S</size>
+		<cost>125</cost>
+	</macCaulyLearmat>
+	<mitchauProtector>
+		<name>
+			<en>Mitchau Protector (.32)</en>
+			<es>Mitchau Protector (.32)</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>SLUG</type>
+		<techLevel>3</techLevel>
+		<goal>0</goal>
+		<damage>4</damage>
+		<strength>2</strength>
+		<range>10/20</range>
+		<shots>6</shots>
+		<rate>3</rate>
+		<size>S</size>
+		<cost>110</cost>
+	</mitchauProtector>
+	<typicalLightAutofeed>
+		<name>
+			<en>Typical Light Autofeed</en>
+			<es>Autorrecarga Ligera Típica</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>SLUG</type>
+		<techLevel>4</techLevel>
+		<goal>0</goal>
+		<damage>4</damage>
+		<strength>2</strength>
+		<range>10/20</range>
+		<shots>13</shots>
+		<rate>3</rate>
+		<size>S</size>
+		<cost>150</cost>
+	</typicalLightAutofeed>
+	<mediumAutofeedHandgun>
+		<name>
+			<en>Medium Autofeed (0.40)</en>
+			<es>Pistola Automática (0.40)</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>SLUG</type>
+		<techLevel>4</techLevel>
+		<damage>5</damage>
+		<strength>3</strength>
+		<range>20/30</range>
+		<shots>6</shots>
+		<rate>3</rate>
+		<size>S</size>
+		<cost>200</cost>
+	</mediumAutofeedHandgun>
+	<fenirMonbow>
+		<name>
+			<en>Fenir Monbow (.32)</en>
+			<es>Monbow Fenir (.32)</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>SLUG</type>
+		<techLevel>4</techLevel>
+		<goal>0</goal>
+		<damage>4</damage>
+		<strength>2</strength>
+		<range>10/20</range>
+		<shots>13</shots>
+		<rate>3</rate>
+		<size>S</size>
+		<cost>150</cost>
+	</fenirMonbow>
+	<mitchauRumber>
+		<name>
+			<en>Mitchau Rumber (.32)</en>
+			<es>Mitchau Rumber (.32)</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>SLUG</type>
+		<techLevel>4</techLevel>
+		<goal>0</goal>
+		<damage>4</damage>
+		<strength>2</strength>
+		<range>10/20</range>
+		<shots>13</shots>
+		<rate>3</rate>
+		<size>S</size>
+		<cost>160</cost>
+	</mitchauRumber>
+	<phoenixHandgun>
+		<name>
+			<en>Phoenix Handgun (.32)</en>
+			<es>Revólver del Fénix (.32)</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>SLUG</type>
+		<techLevel>4</techLevel>
+		<goal>0</goal>
+		<damage>4</damage>
+		<strength>2</strength>
+		<range>10/20</range>
+		<shots>12</shots>
+		<rate>2</rate>
+		<size>S</size>
+		<cost>120</cost>
+	</phoenixHandgun>
+	<sumperKrant>
+		<name>
+			<en>Sumper Krant (.32)</en>
+			<es>Sumper Krant (.32)</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>SLUG</type>
+		<techLevel>4</techLevel>
+		<goal>0</goal>
+		<damage>4</damage>
+		<strength>2</strength>
+		<range>10/20</range>
+		<shots>15</shots>
+		<rate>3</rate>
+		<size>S</size>
+		<cost>200</cost>
+	</sumperKrant>
+	<typicalMedRevolver>
+		<name>
+			<en>Typical Med. Revolver (.40)</en>
+			<es>Revólver Mediano Típico (.40)</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>SLUG</type>
+		<techLevel>3</techLevel>
+		<goal>0</goal>
+		<damage>5</damage>
+		<strength>3</strength>
+		<range>20/30</range>
+		<shots>6</shots>
+		<rate>3</rate>
+		<size>S</size>
+		<cost>200</cost>
+	</typicalMedRevolver>
+	<drexelFirehunter>
+		<name>
+			<en>Drexel Firehunter (.38)</en>
+			<es>Drexel Firehunter (.38)</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>SLUG</type>
+		<techLevel>3</techLevel>
+		<goal>0</goal>
+		<damage>5</damage>
+		<strength>3</strength>
+		<range>20/30</range>
+		<shots>6</shots>
+		<rate>3</rate>
+		<size>S</size>
+		<cost>200</cost>
+	</drexelFirehunter>
+	<macCulyLoadrite>
+		<name>
+			<en>MacCuly Loadrite (.38)</en>
+			<es>MacCuly Loadrite (.38)</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>SLUG</type>
+		<techLevel>3</techLevel>
+		<goal>0</goal>
+		<damage>5</damage>
+		<strength>3</strength>
+		<range>20/30</range>
+		<shots>7</shots>
+		<rate>3</rate>
+		<size>S</size>
+		<cost>250</cost>
+	</macCulyLoadrite>
+	<mitchauQuarryGun>
+		<name>
+			<en>Mitchau Quarry Gun (.40)</en>
+			<es>Mitchau Quarry Gun (.40)</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>SLUG</type>
+		<techLevel>5</techLevel>
+		<goal>0</goal>
+		<damage>5</damage>
+		<strength>3</strength>
+		<range>30/40</range>
+		<shots>6</shots>
+		<rate>2</rate>
+		<size>M</size>
+		<cost>350</cost>
+	</mitchauQuarryGun>
+	<mitchauThunderer>
+		<name>
+			<en>Mitchau Thunderer (.40)</en>
+			<es>Mitchau Thunderer (.40)</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>SLUG</type>
+		<techLevel>3</techLevel>
+		<goal>0</goal>
+		<damage>5</damage>
+		<strength>3</strength>
+		<range>20/30</range>
+		<shots>6</shots>
+		<rate>3</rate>
+		<size>S</size>
+		<cost>200</cost>
+	</mitchauThunderer>
+	<nerewPeacetrunk>
+		<name>
+			<en>Nerew Peacetrunk (.40)</en>
+			<es>Nerew Peacetrunk (.40)</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>SLUG</type>
+		<techLevel>3</techLevel>
+		<goal>0</goal>
+		<damage>5</damage>
+		<strength>3</strength>
+		<range>20/35</range>
+		<shots>6</shots>
+		<rate>3</rate>
+		<size>S</size>
+		<cost>200</cost>
+	</nerewPeacetrunk>
+	<typicalMed.Autofeed>
+		<name>
+			<en>Typical Med. Autofeed (.40)</en>
+			<es>Autorecarga Mediana Típica</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>SLUG</type>
+		<techLevel>4</techLevel>
+		<goal>0</goal>
+		<damage>5</damage>
+		<strength>3</strength>
+		<range>20/30</range>
+		<shots>10</shots>
+		<rate>3</rate>
+		<size>S</size>
+		<cost>250</cost>
+	</typicalMed.Autofeed>
+	<immanVorton>
+		<name>
+			<en>Imman Vorton (.40)</en>
+			<es>Imman Vorton (.40)</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>SLUG</type>
+		<techLevel>4</techLevel>
+		<goal>0</goal>
+		<damage>5</damage>
+		<strength>2</strength>
+		<range>20/30</range>
+		<shots>10</shots>
+		<rate>3</rate>
+		<size>S</size>
+		<cost>300</cost>
+	</immanVorton>
+	<kroslerDunehound>
+		<name>
+			<en>Krosler Dunehound (.40)</en>
+			<es>Krosler Dunehound (.40)</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>SLUG</type>
+		<techLevel>4</techLevel>
+		<goal>0</goal>
+		<damage>5</damage>
+		<strength>3</strength>
+		<range>20/30</range>
+		<shots>10</shots>
+		<rate>3</rate>
+		<size>S</size>
+		<cost>200</cost>
+	</kroslerDunehound>
+	<mitchauRipper>
+		<name>
+			<en>Mitchau Ripper (.40)</en>
+			<es>Mitchau Ripper (.40)</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>SLUG</type>
+		<techLevel>4</techLevel>
+		<goal>0</goal>
+		<damage>5</damage>
+		<strength>3</strength>
+		<range>20/30</range>
+		<shots>11</shots>
+		<rate>3</rate>
+		<size>S</size>
+		<cost>220</cost>
+	</mitchauRipper>
+	<typicalHvyRevolver>
+		<name>
+			<en>Typical Hvy Revolver (.47)</en>
+			<es>Revólver Pesado Típico (.47)</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>SLUG</type>
+		<techLevel>3</techLevel>
+		<goal>0</goal>
+		<damage>6</damage>
+		<strength>4</strength>
+		<range>30/40</range>
+		<shots>6</shots>
+		<rate>2</rate>
+		<size>M</size>
+		<cost>250</cost>
+	</typicalHvyRevolver>
+	<macCaulyBuster>
+		<name>
+			<en>MacCauly Buster (.50)</en>
+			<es>MacCauly Buster (.50)</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>SLUG</type>
+		<techLevel>3</techLevel>
+		<goal>0</goal>
+		<damage>6</damage>
+		<strength>5</strength>
+		<range>40/60</range>
+		<shots>7</shots>
+		<rate>2</rate>
+		<size>M</size>
+		<cost>300</cost>
+	</macCaulyBuster>
+	<tensonMauler>
+		<name>
+			<en>Tenson Mauler (.47)</en>
+			<es>Tenson Mauler (.47)</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>SLUG</type>
+		<techLevel>3</techLevel>
+		<goal>0</goal>
+		<damage>6</damage>
+		<strength>4</strength>
+		<range>25/35</range>
+		<shots>6</shots>
+		<rate>2</rate>
+		<size>M</size>
+		<cost>230</cost>
+	</tensonMauler>
+	<sumpterUlik>
+		<name>
+			<en>Sumpter Ulik (.47)</en>
+			<es>Sumpter Ulik (.47)</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>SLUG</type>
+		<techLevel>3</techLevel>
+		<goal>0</goal>
+		<damage>6</damage>
+		<strength>4</strength>
+		<range>30/40</range>
+		<shots>6</shots>
+		<rate>2</rate>
+		<size>M</size>
+		<cost>250</cost>
+	</sumpterUlik>
+	<typicalHvyAutofeed>
+		<name>
+			<en>Typical Heavy Autofeed (.47)</en>
+			<es>Autorrecarga Pesada Típica (.47)</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>SLUG</type>
+		<techLevel>4</techLevel>
+		<goal>0</goal>
+		<damage>6</damage>
+		<strength>4</strength>
+		<range>30/40</range>
+		<shots>8</shots>
+		<rate>2</rate>
+		<size>M</size>
+		<cost>300</cost>
+	</typicalHvyAutofeed>
+	<kroslerSampson>
+		<name>
+			<en>Krosler Sampson (.47)</en>
+			<es>Krosler Sampson (.47)</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>SLUG</type>
+		<techLevel>4</techLevel>
+		<goal>0</goal>
+		<damage>6</damage>
+		<strength>4</strength>
+		<range>30/40</range>
+		<shots>8</shots>
+		<rate>2</rate>
+		<size>M</size>
+		<cost>300</cost>
+	</kroslerSampson>
+	<tensonBlitzer>
+		<name>
+			<en>Tenson Blitzer (.47)</en>
+			<es>Tenson Blitzer (.47)</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>SLUG</type>
+		<techLevel>4</techLevel>
+		<goal>0</goal>
+		<damage>6</damage>
+		<strength>4</strength>
+		<range>25/35</range>
+		<shots>8</shots>
+		<rate>2</rate>
+		<size>M</size>
+		<cost>280</cost>
+	</tensonBlitzer>
+	<sumpterUrthquake>
+		<name>
+			<en>Sumpter Urthquake (.47)</en>
+			<es>Sumpter Urthquake (.47)</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>SLUG</type>
+		<techLevel>4</techLevel>
+		<goal>0</goal>
+		<damage>6</damage>
+		<strength>4</strength>
+		<range>30/40</range>
+		<shots>8</shots>
+		<rate>2</rate>
+		<size>M</size>
+		<cost>300</cost>
+	</sumpterUrthquake>
+	<typicalManfeedRifle>
+		<name>
+			<en>Typical Manfeed Rifle (.40)</en>
+			<es>Rifle de Recarga Manual Típico (.40)</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>SLUG</type>
+		<techLevel>3</techLevel>
+		<goal>0</goal>
+		<damage>6</damage>
+		<strength>2</strength>
+		<range>40/120</range>
+		<shots>8</shots>
+		<rate>2</rate>
+		<size>XL</size>
+		<cost>200</cost>
+	</typicalManfeedRifle>
+	<basicHuntingRifle>
+		<name>
+			<en>Basic Hunting Rifle (.40)</en>
+			<es>Rifle de Caza Básico</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>SLUG</type>
+		<techLevel>3</techLevel>
+		<goal>0</goal>
 		<damage>6</damage>
 		<strength>2</strength>
 		<range>40/110</range>
@@ -15,20 +1006,683 @@
 		<rate>2</rate>
 		<size>XL</size>
 		<cost>150</cost>
-	</huntingRifle>
-	<mace>
+	</basicHuntingRifle>
+	<dragonfly>
 		<name>
-			<en>Mace</en>
-			<es>Maza</es>
+			<en>Dragonfly 7 (.40)</en>
+			<es>Dragonfly 7 (.40)</es>
 		</name>
 		<characteristic>dexterity</characteristic>
-		<skill>fight</skill>
-		<techLevel>1</techLevel>
-		<damage>5</damage>
+		<skill>slugGuns</skill>
+		<type>SLUG</type>
+		<techLevel>3</techLevel>
+		<goal>0</goal>
+		<damage>6</damage>
+		<strength>2</strength>
+		<range>45/140</range>
+		<shots>5</shots>
+		<rate>1</rate>
+		<size>XL</size>
+		<cost>200</cost>
+	</dragonfly>
+	<imperialRifle>
+		<name>
+			<en>Imperial Rifle (.40)</en>
+			<es>Rifle Imperial (.40)</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>SLUG</type>
+		<techLevel>4</techLevel>
+		<goal>0</goal>
+		<damage>6</damage>
+		<strength>2</strength>
+		<range>40/120</range>
+		<shots>10</shots>
+		<rate>2</rate>
+		<size>XL</size>
+		<cost>200</cost>
+	</imperialRifle>
+	<typicalSniperRifle>
+		<name>
+			<en>Typical Sniper Rifle (13mm)</en>
+			<es>Rifle de Francotirador Típico (13mm)</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>SLUG</type>
+		<techLevel>3</techLevel>
+		<goal>0</goal>
+		<damage>8</damage>
+		<strength>4</strength>
+		<range>50/150</range>
+		<shots>5</shots>
+		<rate>2</rate>
+		<size>XL</size>
+		<cost>700</cost>
+	</typicalSniperRifle>
+	<hyramGlory>
+		<name>
+			<en>Hyram Glory (13mm)</en>
+			<es>Hyram Glory (13mm)</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>SLUG</type>
+		<techLevel>3</techLevel>
+		<goal>0</goal>
+		<damage>8</damage>
+		<strength>4</strength>
+		<range>50/150</range>
+		<shots>15</shots>
+		<rate>2(A)</rate>
+		<size>XL</size>
+		<cost>1000</cost>
+	</hyramGlory>
+	<radirLongshot>
+		<name>
+			<en>Radir Longshot (13mm)</en>
+			<es>Radir Longshot (13mm)</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>SLUG</type>
+		<techLevel>4</techLevel>
+		<goal>+1</goal>
+		<damage>8</damage>
+		<strength>4</strength>
+		<range>55/175</range>
+		<shots>5</shots>
+		<rate>1</rate>
+		<size>XL</size>
+		<cost>1500</cost>
+	</radirLongshot>
+	<typicalAutoRifle>
+		<name>
+			<en>Typical Auto. Rifle (10mm)</en>
+			<es>Rifle de Autorecarga Típico (10mm)</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>SLUG</type>
+		<techLevel>4</techLevel>
+		<goal>0</goal>
+		<damage>7</damage>
 		<strength>3</strength>
+		<range>40/125</range>
+		<shots>30</shots>
+		<rate>3(A)</rate>
+		<size>XL</size>
+		<cost>500</cost>
+	</typicalAutoRifle>
+	<blueLionM3>
+		<name>
+			<en>Blue Lion M3 (.40)</en>
+			<es>León Azul M3 (.40)</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>SLUG</type>
+		<techLevel>4</techLevel>
+		<goal>0</goal>
+		<damage>6</damage>
+		<strength>2</strength>
+		<range>40/120</range>
+		<shots>25</shots>
+		<rate>3(A**)</rate>
+		<size>XL</size>
+		<cost>400</cost>
+	</blueLionM3>
+	<hyramSplendor>
+		<name>
+			<en>Hyram Splendor (13mm)</en>
+			<es>Hyram Splendor (13mm)</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>SLUG</type>
+		<techLevel>4</techLevel>
+		<goal>-2</goal>
+		<damage>8</damage>
+		<strength>4</strength>
+		<range>50/150</range>
+		<shots>25</shots>
+		<rate>3(A)</rate>
+		<size>XL</size>
+		<cost>600</cost>
+	</hyramSplendor>
+	<massariStomper>
+		<name>
+			<en>Massari Stomper (.47)</en>
+			<es>Masseri Stomper (.47)</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>SLUG</type>
+		<techLevel>4</techLevel>
+		<goal>0</goal>
+		<damage>7</damage>
+		<strength>3</strength>
+		<range>45/125</range>
+		<shots>30</shots>
+		<rate>3(A)</rate>
+		<size>XL</size>
+		<cost>500</cost>
+	</massariStomper>
+	<hazatModel68>
+		<name>
+			<en>Hazat Model 68 (.40)</en>
+			<es>Modelo Hazat 68 (.40)</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>SLUG</type>
+		<techLevel>4</techLevel>
+		<goal>0</goal>
+		<damage>6</damage>
+		<strength>2</strength>
+		<range>40/120</range>
+		<shots>32</shots>
+		<rate>3(A)</rate>
+		<size>XL</size>
+		<cost>500</cost>
+	</hazatModel68>
+	<typicalSMG>
+		<name>
+			<en>Typical SMG (.40)</en>
+			<es>Subfusil Típico (.40)</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>SLUG</type>
+		<techLevel>4</techLevel>
+		<goal>0</goal>
+		<damage>5</damage>
+		<strength>1</strength>
+		<range>30/40</range>
+		<shots>20</shots>
+		<rate>3(A)</rate>
 		<size>L</size>
-		<cost>10</cost>
-	</mace>
+		<cost>350</cost>
+	</typicalSMG>
+	<typicalShotgun>
+		<name>
+			<en>Typical Shotgun (10 g.)</en>
+			<es>Escopeta Típica (10 g.)</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>SLUG</type>
+		<techLevel>3</techLevel>
+		<goal>+1/0/-1</goal>
+		<damage>8/4/1</damage>
+		<strength>4</strength>
+		<range>10/20/x</range>
+		<shots>7</shots>
+		<rate>2</rate>
+		<size>L</size>
+		<cost>300</cost>
+		<damageType>stock</damageType>
+		<special>pumpfeed</special>
+	</typicalShotgun>
+	<typicalTwin-barrel>
+		<name>
+			<en>Typical Twin-barrel (10 g.)</en>
+			<es>Doble Cañón Típico (10 g.)</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>SLUG</type>
+		<techLevel>3</techLevel>
+		<goal>+1/0/-1</goal>
+		<damage>8/4/1</damage>
+		<strength>4</strength>
+		<range>10/20/×</range>
+		<shots>2</shots>
+		<rate>2</rate>
+		<size>L</size>
+		<cost>200</cost>
+	</typicalTwin-barrel>
+	<dreskelBoomer>
+		<name>
+			<en>Dreskel Boomer</en>
+			<es>Dreskel Boomer</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>SLUG</type>
+		<techLevel>3</techLevel>
+		<goal>+1/0/-1</goal>
+		<damage>8/4/1</damage>
+		<strength>4</strength>
+		<range>10/20/×</range>
+		<shots>7</shots>
+		<rate>2</rate>
+		<size>L</size>
+		<cost>325</cost>
+	</dreskelBoomer>
+	<dreskelGatling>
+		<name>
+			<en>Dreskel Gatling (8 g.)</en>
+			<es>Dreskel Gatling (8 g.)</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>SLUG</type>
+		<techLevel>4</techLevel>
+		<goal>+1/0/-1</goal>
+		<damage>9/5/1</damage>
+		<strength>4</strength>
+		<range>12/25/×</range>
+		<shots>12</shots>
+		<rate>2(A**)</rate>
+		<size>L</size>
+		<cost>450</cost>
+	</dreskelGatling>
+	<mHazatRiot>
+		<name>
+			<en>M. Hazat Riot.-01 (10 g.)</en>
+			<es>M. Hazat Riot.-01 (10 g.)</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>SLUG</type>
+		<techLevel>4</techLevel>
+		<goal>+1/0/-1</goal>
+		<damage>8/4/1</damage>
+		<strength>4</strength>
+		<range>10/20/×</range>
+		<shots>20</shots>
+		<rate>2(A**)</rate>
+		<size>L</size>
+		<cost>400</cost>
+	</mHazatRiot>
+	<xienShortBarrel>
+		<name>
+			<en>Xien Short Barrel (10 g.)</en>
+			<es>Xien Cañón Corto (10 g.)</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>SLUG</type>
+		<techLevel>3</techLevel>
+		<goal>+1/0/-1</goal>
+		<damage>8/4/1</damage>
+		<strength>4</strength>
+		<range>5/10/×</range>
+		<shots>6</shots>
+		<rate>2</rate>
+		<size>L</size>
+		<cost>275</cost>
+	</xienShortBarrel>
+	<cancanaghDartgunPistol>
+		<name>
+			<en>Cancanagh Dartgun Pistol</en>
+			<es>Pistolas de Dardos Cancanagh</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>SLUG</type>
+		<techLevel>3</techLevel>
+		<goal>0</goal>
+		<damage>2</damage>
+		<strength>1</strength>
+		<range>10/20</range>
+		<shots>1</shots>
+		<rate>1</rate>
+		<size>S</size>
+		<cost>100</cost>
+	</cancanaghDartgunPistol>
+	<decadosGroinGun>
+		<name>
+			<en>Decados Groin Gun (.32)</en>
+			<es>Pistola Decados Groin (.32)</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>SLUG</type>
+		<techLevel>5</techLevel>
+		<techLevelSpecial>true</techLevelSpecial>
+		<goal>-1</goal>
+		<damage>4</damage>
+		<strength>0</strength>
+		<range>10/20</range>
+		<shots>6</shots>
+		<rate>2</rate>
+		<size>M</size>
+		<cost>150</cost>
+	</decadosGroinGun>
+	<hailstormSplinterPistol>
+		<name>
+			<en>Hailstorm Splinter Pistol</en>
+			<es>Pistola de Dardos Hailstorm</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>SLUG</type>
+		<techLevel>6</techLevel>
+		<goal>+2/+1/0</goal>
+		<damage>4/3/2</damage>
+		<strength>0</strength>
+		<range>10/20/×</range>
+		<shots>12</shots>
+		<rate>3</rate>
+		<size>M</size>
+		<cost>200</cost>
+	</hailstormSplinterPistol>
+	<reznorNailGun>
+		<name>
+			<en>Reznor Nail Gun</en>
+			<es>Arma de Clavos Reznor</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>SLUG</type>
+		<techLevel>6</techLevel>
+		<goal>+1/+1/0</goal>
+		<damage>4/3/2</damage>
+		<strength>0</strength>
+		<range>10/20/×</range>
+		<shots>7</shots>
+		<rate>3(A)</rate>
+		<size>M</size>
+		<cost>300</cost>
+	</reznorNailGun>
+	<nailgunPowerTool>
+		<name>
+			<en>Nailgun Power Tool</en>
+			<es>Pistola de Clavos Eléctrica</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>SLUG</type>
+		<techLevel>4</techLevel>
+		<goal>1</goal>
+		<damage>0/1/2/3</damage>
+		<strength>2</strength>
+		<range>0/1</range>
+		<shots>10</shots>
+		<rate>1</rate>
+		<size>M</size>
+		<cost>20</cost>
+	</nailgunPowerTool>
+	<capekAquaRifle>
+		<name>
+			<en>Capek Aqua Rifle (.47)</en>
+			<es>Rifle Acuático Capek</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>SLUG</type>
+		<techLevel>5</techLevel>
+		<techLevelSpecial>true</techLevelSpecial>
+		<goal>0</goal>
+		<damage>7</damage>
+		<strength>3</strength>
+		<range>45/140</range>
+		<shots>5</shots>
+		<rate>2</rate>
+		<size>XL</size>
+		<cost>800</cost>
+	</capekAquaRifle>
+	<cupidLongarm>
+		<name>
+			<en>Cupid Longarm</en>
+			<es>Cupid Longarm</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>SLUG</type>
+		<techLevel>3</techLevel>
+		<goal>0</goal>
+		<damage>3</damage>
+		<strength>1</strength>
+		<range>20/60</range>
+		<shots>1</shots>
+		<rate>1</rate>
+		<size>XL</size>
+		<cost>200</cost>
+	</cupidLongarm>
+	<blastPellet>
+		<name>
+			<en>Blast Pellet</en>
+			<es>Perdigón Explosivo</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>throwing</skill>
+		<type>GRANADE</type>
+		<techLevel>6</techLevel>
+		<goal>0</goal>
+		<damage>3</damage>
+		<strength>1</strength>
+		<range>10</range>
+		<shots>handful</shots>
+		<rate>2</rate>
+		<size>S</size>
+		<cost>20</cost>
+	</blastPellet>
+	<blastPelletHeavy>
+		<name>
+			<en>Blast Pellet</en>
+			<es>Perdigón Explosivo Pesado</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>throwing</skill>
+		<type>GRANADE</type>
+		<techLevel>6</techLevel>
+		<goal>0</goal>
+		<damage>6 (3 m)</damage>
+		<strength>1</strength>
+		<range>10/20</range>
+		<shots>handful</shots>
+		<rate>2</rate>
+		<size>S</size>
+		<cost>30</cost>
+	</blastPelletHeavy>
+	<concussionGrenade>
+		<name>
+			<en>Concussion Grenade</en>
+			<es>Granada de Confusión</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>throwing</skill>
+		<type>GRANADE</type>
+		<techLevel>4</techLevel>
+		<goal>0</goal>
+		<damage>KO</damage>
+		<strength>1</strength>
+		<range>10/20</range>
+		<shots>handful</shots>
+		<rate>2</rate>
+		<size>S</size>
+		<cost>50</cost>
+	</concussionGrenade>
+	<fragGrenades>
+		<name>
+			<en>Frag Grenades</en>
+			<es>Granada de Fragmentación</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>throwing</skill>
+		<type>GRANADE</type>
+		<techLevel>4</techLevel>
+		<goal>0</goal>
+		<damage>12 (5 m)</damage>
+		<strength>1</strength>
+		<range>10/20</range>
+		<shots>handful</shots>
+		<rate>2</rate>
+		<size>S</size>
+		<cost>50</cost>
+	</fragGrenades>
+	<pipeBomb3>
+		<name>
+			<en>Pipe Bomb</en>
+			<es>Bomba Casera</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>throwing</skill>
+		<type>GRANADE</type>
+		<techLevel>3</techLevel>
+		<techLevelSpecial>true</techLevelSpecial>
+		<goal>0</goal>
+		<damage>4 (1 m)</damage>
+		<strength>1</strength>
+		<range>10/20</range>
+		<shots>handful</shots>
+		<rate>2</rate>
+		<size>S</size>
+		<cost>30</cost>
+	</pipeBomb3>
+	<pipeBomb4>
+		<name>
+			<en>Pipe Bomb</en>
+			<es>Bomba Casera</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>throwing</skill>
+		<type>GRANADE</type>
+		<techLevel>4</techLevel>
+		<techLevelSpecial>true</techLevelSpecial>
+		<goal>0</goal>
+		<damage>5 (1 m)</damage>
+		<strength>1</strength>
+		<range>10/20</range>
+		<shots>handful</shots>
+		<rate>2</rate>
+		<size>S</size>
+		<cost>40</cost>
+	</pipeBomb4>
+	<pipeBomb5>
+		<name>
+			<en>Pipe Bomb</en>
+			<es>Bomba Casera</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>throwing</skill>
+		<type>GRANADE</type>
+		<techLevel>5</techLevel>
+		<techLevelSpecial>true</techLevelSpecial>
+		<goal>0</goal>
+		<damage>6 (1 m)</damage>
+		<strength>1</strength>
+		<range>10/20</range>
+		<shots>handful</shots>
+		<rate>2</rate>
+		<size>S</size>
+		<cost>50</cost>
+	</pipeBomb5>
+	<pipeBomb6>
+		<name>
+			<en>Pipe Bomb</en>
+			<es>Bomba Casera</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>throwing</skill>
+		<type>GRANADE</type>
+		<techLevel>6</techLevel>
+		<techLevelSpecial>true</techLevelSpecial>
+		<goal>0</goal>
+		<damage>7 (1 m)</damage>
+		<strength>1</strength>
+		<range>10/20</range>
+		<shots>handful</shots>
+		<rate>2</rate>
+		<size>S</size>
+		<cost>60</cost>
+	</pipeBomb6>
+	<pipeBomb7>
+		<name>
+			<en>Pipe Bomb</en>
+			<es>Bomba Casera</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>throwing</skill>
+		<type>GRANADE</type>
+		<techLevel>7</techLevel>
+		<techLevelSpecial>true</techLevelSpecial>
+		<goal>0</goal>
+		<damage>8 (1 m)</damage>
+		<strength>1</strength>
+		<range>10/20</range>
+		<shots>handful</shots>
+		<rate>2</rate>
+		<size>S</size>
+		<cost>70</cost>
+	</pipeBomb7>
+	<pipeBomb8>
+		<name>
+			<en>Pipe Bomb</en>
+			<es>Bomba Casera</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>throwing</skill>
+		<type>GRANADE</type>
+		<techLevel>8</techLevel>
+		<techLevelSpecial>true</techLevelSpecial>
+		<goal>0</goal>
+		<damage>9 (1 m)</damage>
+		<strength>1</strength>
+		<range>10/20</range>
+		<shots>handful</shots>
+		<rate>2</rate>
+		<size>S</size>
+		<cost>80</cost>
+	</pipeBomb8>	
+	<plasmaGrenade>
+		<name>
+			<en>Plasma Grenade</en>
+			<es>Granada de Plasma</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>throwing</skill>
+		<type>GRANADE</type>
+		<techLevel>6</techLevel>
+		<goal>0</goal>
+		<damage>18 (6 m)</damage>
+		<strength>1</strength>
+		<range>10/20</range>
+		<shots>handful</shots>
+		<rate>2</rate>
+		<size>S</size>
+		<cost>100</cost>
+	</plasmaGrenade>
+	<flash-BangGrenade>
+		<name>
+			<en>Flash-Bang Grenade</en>
+			<es>Granada Aturdidora</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>throwing</skill>
+		<type>GRANADE</type>
+		<techLevel>4</techLevel>
+		<goal>0</goal>
+		<damage>*(4m)</damage>
+		<strength>1</strength>
+		<range>10/20</range>
+		<shots>handful</shots>
+		<rate>2</rate>
+		<size>S</size>
+		<cost>50</cost>
+	</flash-BangGrenade>
+	<wireGrenade>
+		<name>
+			<en>Wire Grenade</en>
+			<es>Granada Eléctrica</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>throwing</skill>
+		<type>GRANADE</type>
+		<techLevel>5</techLevel>
+		<goal>0</goal>
+		<damage>12 (3 m)</damage>
+		<strength>1</strength>
+		<range>10/20</range>
+		<shots>handful</shots>
+		<rate>2</rate>
+		<size>S</size>
+		<cost>80</cost>
+	</wireGrenade>
 	<martechGold>
 		<name>
 			<en>Martech Gold</en>
@@ -36,6 +1690,7 @@
 		</name>
 		<characteristic>dexterity</characteristic>
 		<skill>energyGuns</skill>
+		<type>LASER</type>
 		<techLevel>6</techLevel>
 		<goal>+1</goal>
 		<damage>5</damage>
@@ -47,6 +1702,21 @@
 		<cost>300</cost>
 		<damageType>laser</damageType>
 	</martechGold>
+	<mace>
+		<name>
+			<en>Mace</en>
+			<es>Maza</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>fight</skill>
+		<type>MELEE</type>
+		<techLevel>1</techLevel>
+		<goal>0</goal>
+		<damage>5</damage>
+		<strength>3</strength>
+		<size>L</size>
+		<cost>10</cost>
+	</mace>
 	<fluxSword>
 		<name>
 			<en>Flux Sword</en>
@@ -62,55 +1732,5 @@
 		<cost>15000</cost>
 		<damageType>plasma, hard</damageType>
 	</fluxSword>
-	<shotgun>
-		<name>
-			<en>Shotgun</en>
-			<es>Escopeta</es>
-		</name>
-		<characteristic>dexterity</characteristic>
-		<skill>slugGuns</skill>
-		<techLevel>3</techLevel>
-		<goal>+1/0/-1</goal>
-		<damage>8/4/1</damage>
-		<strength>4</strength>
-		<range>10/20/x</range>
-		<shots>7</shots>
-		<rate>2</rate>
-		<size>L</size>
-		<cost>300</cost>
-		<damageType>stock</damageType>
-		<special>pumpfeed</special>
-	</shotgun>
-	<shotgunSolid>
-		<name>
-			<en>Shotgun</en>
-			<es>Escopeta</es>
-		</name>
-		<characteristic>dexterity</characteristic>
-		<skill>slugGuns</skill>
-		<techLevel>3</techLevel>
-		<damage>7</damage>
-		<strength>3</strength>
-		<range>30/80</range>
-		<shots>7</shots>
-		<rate>2</rate>
-		<size>L</size>
-		<cost>300</cost>
-	</shotgunSolid>
-	<mediumAutofeedHandgun>
-		<name>
-			<en>Medium Autofeed (0.40)</en>
-			<es>Pistola Automática (0.40)</es>
-		</name>
-		<characteristic>dexterity</characteristic>
-		<skill>slugGuns</skill>
-		<techLevel>4</techLevel>
-		<damage>5</damage>
-		<strength>3</strength>
-		<range>20/30</range>
-		<shots>6</shots>
-		<rate>3</rate>
-		<size>S</size>
-		<cost>200</cost>
-	</mediumAutofeedHandgun>
 </weapons>
+

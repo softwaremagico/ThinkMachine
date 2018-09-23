@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.character.equipment;
+package com.softwaremagico.tm.character.equipment.weapons;
 
 /*-
  * #%L
@@ -31,6 +31,11 @@ import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
 import com.softwaremagico.tm.character.characteristics.CharacteristicDefinition;
 import com.softwaremagico.tm.character.characteristics.CharacteristicsDefinitionFactory;
+import com.softwaremagico.tm.character.equipment.DamageType;
+import com.softwaremagico.tm.character.equipment.DamageTypeFactory;
+import com.softwaremagico.tm.character.equipment.InvalidWeaponException;
+import com.softwaremagico.tm.character.equipment.Size;
+import com.softwaremagico.tm.character.skills.SkillDefinition;
 import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
@@ -42,6 +47,7 @@ public class WeaponFactory extends XmlFactory<Weapon> {
 	private final static String CHARACTERISTIC = "characteristic";
 	private final static String SKILL = "skill";
 	private final static String TECH_LEVEL = "techLevel";
+	private final static String TECH_LEVEL_SPECIAL = "techLevelSpecial";
 	private final static String GOAL = "goal";
 	private final static String DAMAGE = "damage";
 	private final static String STRENGTH = "strength";
@@ -50,6 +56,8 @@ public class WeaponFactory extends XmlFactory<Weapon> {
 	private final static String RATE = "rate";
 	private final static String SIZE = "size";
 	private final static String COST = "cost";
+
+	private final static String TYPE = "type";
 	private final static String SPECIAL = "special";
 	private final static String DAMAGE_TYPE = "damageType";
 
@@ -80,122 +88,134 @@ public class WeaponFactory extends XmlFactory<Weapon> {
 	@Override
 	protected Weapon createElement(ITranslator translator, String weaponId, String language) throws InvalidXmlElementException {
 		Weapon weapon = null;
+		String name = null;
 		try {
-			String name = translator.getNodeValue(weaponId, NAME, language);
-			weapon = new Weapon(weaponId, name);
+			name = translator.getNodeValue(weaponId, NAME, language);
 		} catch (Exception e) {
 			throw new InvalidWeaponException("Invalid name in weapon '" + weaponId + "'.");
 		}
 
+		CharacteristicDefinition characteristicDefintion = null;
 		try {
 			String characteristicName = translator.getNodeValue(weaponId, CHARACTERISTIC);
-			CharacteristicDefinition characteristicDefintion = CharacteristicsDefinitionFactory.getInstance().getElement(characteristicName, language);
-			weapon.setCharacteristic(characteristicDefintion);
+			characteristicDefintion = CharacteristicsDefinitionFactory.getInstance().getElement(characteristicName, language);
+
 		} catch (Exception e) {
 			throw new InvalidWeaponException("Invalid characteristic name in weapon '" + weaponId + "'.");
 		}
 
+		SkillDefinition skill = null;
 		try {
 			String skillName = translator.getNodeValue(weaponId, SKILL);
-			weapon.setSkill(SkillsDefinitionsFactory.getInstance().getElement(skillName, language));
+			skill = SkillsDefinitionsFactory.getInstance().getElement(skillName, language);
 		} catch (Exception e) {
 			throw new InvalidWeaponException("Invalid skill name in weapon '" + weaponId + "'.");
 		}
 
+		int techLevel = 0;
 		try {
-			String techLevel = translator.getNodeValue(weaponId, TECH_LEVEL);
-			weapon.setTechLevel(Integer.parseInt(techLevel));
+			String techLevelName = translator.getNodeValue(weaponId, TECH_LEVEL);
+			techLevel = Integer.parseInt(techLevelName);
 		} catch (Exception e) {
 			throw new InvalidWeaponException("Invalid tech level in weapon '" + weaponId + "'.");
 		}
 
+		boolean techLevelSpecial = false;
 		try {
-			String techLevel = translator.getNodeValue(weaponId, TECH_LEVEL);
-			weapon.setTechLevel(Integer.parseInt(techLevel));
+			String techLevelSpecialValue = translator.getNodeValue(weaponId, TECH_LEVEL_SPECIAL);
+			techLevelSpecial = Boolean.parseBoolean(techLevelSpecialValue);
 		} catch (Exception e) {
-			throw new InvalidWeaponException("Invalid tech level in weapon '" + weaponId + "'.");
+			throw new InvalidWeaponException("Invalid tech level special in weapon '" + weaponId + "'.");
 		}
 
+		String goal = "";
 		try {
-			String goal = translator.getNodeValue(weaponId, GOAL);
-			weapon.setGoal(goal);
+			goal = translator.getNodeValue(weaponId, GOAL);
 		} catch (Exception e) {
 			// Not mandatory
 		}
 
+		String damage = "";
 		try {
-			String damage = translator.getNodeValue(weaponId, DAMAGE);
-			weapon.setDamage(damage);
+			damage = translator.getNodeValue(weaponId, DAMAGE);
 		} catch (Exception e) {
 			throw new InvalidWeaponException("Invalid damage value in weapon '" + weaponId + "'.");
 		}
 
+		int strength = 0;
 		try {
-			String strength = translator.getNodeValue(weaponId, STRENGTH);
-			weapon.setStrength(Integer.parseInt(strength));
+			String strengthValue = translator.getNodeValue(weaponId, STRENGTH);
+			strength = Integer.parseInt(strengthValue);
 		} catch (Exception e) {
 			throw new InvalidWeaponException("Invalid strength value in weapon '" + weaponId + "'.");
 		}
 
+		String range = null;
 		try {
-			String range = translator.getNodeValue(weaponId, RANGE);
-			if (range != null) {
-				weapon.setRange(range);
-			}
+			range = translator.getNodeValue(weaponId, RANGE);
 		} catch (Exception e) {
 			// Not mandatory.
 		}
 
+		Integer shots = null;
 		try {
-			String shots = translator.getNodeValue(weaponId, SHOTS);
-			weapon.setShots(Integer.parseInt(shots));
+			String shotsValue = translator.getNodeValue(weaponId, SHOTS);
+			shots = Integer.parseInt(shotsValue);
 		} catch (Exception e) {
 			// Not mandatory.
 		}
 
+		String rate = "";
 		try {
-			String rate = translator.getNodeValue(weaponId, RATE);
-			weapon.setRate(rate);
+			rate = translator.getNodeValue(weaponId, RATE);
 		} catch (Exception e) {
 			// Not mandatory.
 		}
 
+		Size size = Size.M;
 		try {
-			Size size = Size.get(translator.getNodeValue(weaponId, SIZE));
-			if (size != null) {
-				weapon.setSize(size);
-			}
+			size = Size.get(translator.getNodeValue(weaponId, SIZE));
 		} catch (Exception e) {
 			throw new InvalidWeaponException("Invalid size value in weapon '" + weaponId + "'.");
 		}
 
+		int cost = 0;
 		try {
-			String cost = translator.getNodeValue(weaponId, COST);
-			weapon.setCost(Integer.parseInt(cost));
+			String costValue = translator.getNodeValue(weaponId, COST);
+			cost = Integer.parseInt(costValue);
 		} catch (Exception e) {
 			throw new InvalidWeaponException("Invalid cost value in weapon '" + weaponId + "'.");
 		}
 
+		String special = "";
 		try {
-			String special = translator.getNodeValue(weaponId, SPECIAL);
-			weapon.setSpecial(special);
+			special = translator.getNodeValue(weaponId, SPECIAL);
 		} catch (Exception e) {
 			// Not mandatory.
 		}
 
+		String typeName = "";
+		try {
+			typeName = translator.getNodeValue(weaponId, TYPE);
+		} catch (Exception e) {
+			throw new InvalidWeaponException("Invalid type value in weapon '" + weaponId + "'.");
+		}
+
+		Set<DamageType> damageOfWeapon = new HashSet<>();
 		try {
 			String damageDefinition = translator.getNodeValue(weaponId, DAMAGE_TYPE);
 			if (damageDefinition != null) {
 				String[] damageTypes = damageDefinition.split(",");
-				Set<DamageType> damageOfWeapon = new HashSet<>();
 				for (String damageType : damageTypes) {
 					damageOfWeapon.add(DamageTypeFactory.getInstance().getElement(damageType, language));
 				}
-				weapon.setDamageTypes(damageOfWeapon);
 			}
 		} catch (Exception e) {
 			// Not mandatory.
 		}
+
+		weapon = new Weapon(weaponId, name, WeaponType.get(typeName), goal, characteristicDefintion, skill, damage, strength, range, shots, rate, techLevel,
+				techLevelSpecial, size, special, damageOfWeapon, cost);
 
 		return weapon;
 	}

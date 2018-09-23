@@ -61,7 +61,7 @@ import com.softwaremagico.tm.character.cybernetics.Cybernetics;
 import com.softwaremagico.tm.character.cybernetics.Device;
 import com.softwaremagico.tm.character.equipment.Armour;
 import com.softwaremagico.tm.character.equipment.Shield;
-import com.softwaremagico.tm.character.equipment.Weapons;
+import com.softwaremagico.tm.character.equipment.weapons.Weapons;
 import com.softwaremagico.tm.character.factions.Faction;
 import com.softwaremagico.tm.character.occultism.InvalidOccultismPowerException;
 import com.softwaremagico.tm.character.occultism.InvalidPsiqueLevelException;
