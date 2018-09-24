@@ -29,14 +29,26 @@ import junit.framework.Assert;
 import org.testng.annotations.Test;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
+import com.softwaremagico.tm.character.equipment.weapons.AmmunitionFactory;
 import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
 
 @Test(groups = { "weaponsFactory" })
 public class WeaponsFactoryTests {
+	private final static String LANGUAGE = "es";
 
 	@Test
 	public void readWeapons() throws InvalidXmlElementException {
-		Assert.assertTrue(WeaponFactory.getInstance().getElements("es").size() > 90);
+		Assert.assertTrue(WeaponFactory.getInstance().getElements(LANGUAGE).size() > 90);
+	}
+
+	@Test
+	public void readAmmunition() throws InvalidXmlElementException {
+		Assert.assertTrue(AmmunitionFactory.getInstance().getElements(LANGUAGE).size() > 0);
+	}
+
+	@Test
+	public void checkShotgun() throws InvalidXmlElementException {
+		Assert.assertTrue(WeaponFactory.getInstance().getElement("typicalShotgun", LANGUAGE).getAmmunitions().size() > 0);
 	}
 
 }

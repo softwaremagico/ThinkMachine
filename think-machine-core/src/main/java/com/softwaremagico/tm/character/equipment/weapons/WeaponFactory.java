@@ -26,6 +26,7 @@ package com.softwaremagico.tm.character.equipment.weapons;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.StringTokenizer;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
@@ -60,6 +61,8 @@ public class WeaponFactory extends XmlFactory<Weapon> {
 	private final static String TYPE = "type";
 	private final static String SPECIAL = "special";
 	private final static String DAMAGE_TYPE = "damageType";
+
+	private final static String AMMUNITION = "ammunition";
 
 	private static WeaponFactory instance;
 
@@ -214,8 +217,21 @@ public class WeaponFactory extends XmlFactory<Weapon> {
 			// Not mandatory.
 		}
 
+		Set<Ammunition> ammunitions = new HashSet<>();
+		String ammunitionsNames = translator.getNodeValue(weaponId, AMMUNITION);
+		if (ammunitionsNames != null) {
+			StringTokenizer ammunitionTokenizer = new StringTokenizer(ammunitionsNames, ",");
+			while (ammunitionTokenizer.hasMoreTokens()) {
+				try {
+					ammunitions.add(AmmunitionFactory.getInstance().getElement(ammunitionTokenizer.nextToken().trim(), language));
+				} catch (InvalidXmlElementException ixe) {
+					throw new InvalidWeaponException("Error in ammunitions '" + ammunitionsNames + "' structure. Invalid ammunition definition. ", ixe);
+				}
+			}
+		}
+
 		weapon = new Weapon(weaponId, name, WeaponType.get(typeName), goal, characteristicDefintion, skill, damage, strength, range, shots, rate, techLevel,
-				techLevelSpecial, size, special, damageOfWeapon, cost);
+				techLevelSpecial, size, special, damageOfWeapon, cost, ammunitions);
 
 		return weapon;
 	}

@@ -1224,6 +1224,7 @@
 		<cost>300</cost>
 		<damageType>stock</damageType>
 		<special>pumpfeed</special>
+		<ammunition>solidSlug</ammunition>
 	</typicalShotgun>
 	<typicalTwin-barrel>
 		<name>

@@ -257,7 +257,7 @@ public class CustomCharacters {
 		fightStyle.addElement(new CombatAction("Cabezazo", 2, "4d", "Ignora armadura*"));
 		player.getMeleeCombatStyles().add(fightStyle);
 
-		//player.getWeapons().addElement(WeaponFactory.getInstance().getElement("shotgunSolid", LANGUAGE));
+		player.getWeapons().addElement(WeaponFactory.getInstance().getElement("typicalShotgun", LANGUAGE));
 		player.getWeapons().addElement(WeaponFactory.getInstance().getElement("mediumAutofeedHandgun", LANGUAGE));
 
 		LanguagePool.clearCache();

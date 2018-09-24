@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ammunition>
+	<solidSlug>
+		<name>
+			<en>Solid Slug (.47)</en>
+			<es>Proyectil Sólido (.47)</es>
+		</name>
+		<goal>0</goal>
+		<damage>7</damage>
+		<strength>3</strength>
+		<range>30/80</range>
+	</solidSlug>
+</ammunition>

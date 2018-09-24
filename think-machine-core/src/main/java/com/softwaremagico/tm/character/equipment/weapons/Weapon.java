@@ -50,13 +50,15 @@ public class Weapon extends Element<Weapon> {
 	private final CharacteristicDefinition characteristic;
 	private final WeaponType type;
 
+	private final Set<Ammunition> ammunitions;
+
 	public WeaponType getType() {
 		return type;
 	}
 
 	public Weapon(String id, String name, WeaponType type, String goal, CharacteristicDefinition characteristic, SkillDefinition skill, String damage,
 			int strength, String range, Integer shots, String rate, int tech, boolean techLevelSpecial, Size size, String special, Set<DamageType> damageTypes,
-			int cost) {
+			int cost, Set<Ammunition> ammunitions) {
 		super(id, name);
 		this.characteristic = characteristic;
 		this.skill = skill;
@@ -73,6 +75,7 @@ public class Weapon extends Element<Weapon> {
 		this.special = special;
 		this.damageTypes = damageTypes;
 		this.cost = cost;
+		this.ammunitions = ammunitions;
 	}
 
 	public String getRoll() {
@@ -147,6 +150,10 @@ public class Weapon extends Element<Weapon> {
 
 	public boolean isTechLevelSpecial() {
 		return techLevelSpecial;
+	}
+
+	public Set<Ammunition> getAmmunitions() {
+		return ammunitions;
 	}
 
 }

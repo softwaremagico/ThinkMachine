@@ -27,6 +27,7 @@ package com.softwaremagico.tm.pdf.small.fighting;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Paragraph;
 import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.character.equipment.weapons.Ammunition;
 import com.softwaremagico.tm.character.equipment.weapons.Weapon;
 import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.complete.elements.VerticalTable;
@@ -36,7 +37,7 @@ public class WeaponsTable extends VerticalTable {
 	private final static int ROWS = 8;
 	private final static int NAME_COLUMN_WIDTH = 60;
 	private final static int GOAL_COLUMN_WIDTH = 15;
-	private final static int DAMAGE_COLUMN_WIDTH = 30;
+	private final static int DAMAGE_COLUMN_WIDTH = 18;
 	private final static int RANGE_COLUMN_WIDTH = 30;
 	private final static int SHOTS_COLUMN_WIDTH = 30;
 	private final static int RATE_COLUMN_WIDTH = 30;
@@ -65,6 +66,17 @@ public class WeaponsTable extends VerticalTable {
 				addCell(createElementLine(weapon.getShots() + "", SHOTS_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_SMALL_CONTENT_FONT_SIZE));
 				addCell(createElementLine(weapon.getRate(), RATE_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_SMALL_CONTENT_FONT_SIZE));
 				added++;
+
+				for (Ammunition ammunition : weapon.getAmmunitions()) {
+					addCell(createFirstElementLine(" - " + ammunition.getName(), NAME_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
+					addCell(createElementLine((ammunition.getGoal() != null ? weapon.getGoal() : ""), GOAL_COLUMN_WIDTH,
+							FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
+					addCell(createElementLine(ammunition.getDamage() + "d", DAMAGE_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
+					addCell(createElementLine(ammunition.getStrengthOrRange(), RANGE_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
+					addCell(createElementLine("", SHOTS_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
+					addCell(createElementLine("", RATE_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
+					added++;
+				}
 			}
 		}
 
