@@ -1687,29 +1687,20 @@
 	<martechMidgetPalmLaser>
 		<name>
 			<en>Martech Midget Palm Laser</en>
-			<es></es>
+			<es />
 		</name>
 		<type>LASER</type>
-		<techLevel>6
-		</techLevel>
+		<techLevel>6</techLevel>
 		<characteristic>dexterity</characteristic>
 		<skill>energyGuns</skill>
-		<goal>0
-		</goal>
-		<damage>3*
-		</damage>
-		<strength>0
-		</strength>
-		<range>5/10
-		</range>
-		<shots>7
-		</shots>
-		<rate>2
-		</rate>
-		<size>XS
-		</size>
-		<cost>200
-		</cost>
+		<goal>0</goal>
+		<damage>3*</damage>
+		<strength>0</strength>
+		<range>5/10</range>
+		<shots>7</shots>
+		<rate>2</rate>
+		<size>XS</size>
+		<cost>200</cost>
 		<damageType>laser</damageType>
 	</martechMidgetPalmLaser>
 	<martechGold>
@@ -1734,201 +1725,140 @@
 	<martechAmber>
 		<name>
 			<en>Martech Amber</en>
-			<es></es>
+			<es />
 		</name>
 		<characteristic>dexterity</characteristic>
 		<skill>energyGuns</skill>
 		<type>LASER</type>
-		<techLevel>6
-		</techLevel>
-		<goal>1
-		</goal>
-		<damage>4*
-		</damage>
-		<strength>0
-		</strength>
-		<range>10/20
-		</range>
-		<shots>21
-		</shots>
-		<rate>2
-		</rate>
-		<size>S
-		</size>
-		<cost>300
-		</cost>
+		<techLevel>6</techLevel>
+		<goal>1</goal>
+		<damage>4*</damage>
+		<strength>0</strength>
+		<range>10/20</range>
+		<shots>21</shots>
+		<rate>2</rate>
+		<size>S</size>
+		<cost>300</cost>
 		<damageType>laser</damageType>
 	</martechAmber>
 	<bannerCabalXaserPistol>
 		<name>
 			<en>Banner Cabal Xaser Pistol</en>
-			<es></es>
+			<es />
 		</name>
 		<characteristic>dexterity</characteristic>
 		<skill>energyGuns</skill>
 		<type>LASER</type>
-		<techLevel>7
-		</techLevel>
-		<goal>1
-		</goal>
-		<damage>4
-		</damage>
-		<strength>0
-		</strength>
-		<range>10/20
-		</range>
-		<shots>10
-		</shots>
-		<rate>2
-		</rate>
-		<size>S
-		</size>
-		<cost>500
-		</cost>
+		<techLevel>7</techLevel>
+		<goal>1</goal>
+		<damage>4</damage>
+		<strength>0</strength>
+		<range>10/20</range>
+		<shots>10</shots>
+		<rate>2</rate>
+		<size>S</size>
+		<cost>500</cost>
 		<damageType>laser</damageType>
 	</bannerCabalXaserPistol>
 	<bannerCabalGraserPistol>
 		<name>
 			<en>Banner Cabal Graser Pistol</en>
-			<es></es>
+			<es />
 		</name>
 		<characteristic>dexterity</characteristic>
 		<skill>energyGuns</skill>
 		<type>LASER</type>
-		<techLevel>7
-		</techLevel>
-		<goal>1
-		</goal>
-		<damage>5
-		</damage>
-		<strength>0
-		</strength>
-		<range>15/25
-		</range>
-		<shots>5
-		</shots>
-		<rate>3
-		</rate>
-		<size>S
-		</size>
-		<cost>900
-		</cost>
+		<techLevel>7</techLevel>
+		<goal>1</goal>
+		<damage>5</damage>
+		<strength>0</strength>
+		<range>15/25</range>
+		<shots>5</shots>
+		<rate>3</rate>
+		<size>S</size>
+		<cost>900</cost>
 		<damageType>laser</damageType>
 	</bannerCabalGraserPistol>
 	<martechIndigo>
 		<name>
 			<en>Martech Indigo</en>
-			<es></es>
+			<es />
 		</name>
 		<characteristic>dexterity</characteristic>
 		<skill>energyGuns</skill>
 		<type>LASER</type>
-		<techLevel>6
-		</techLevel>
-		<goal>1
-		</goal>
-		<damage>7*
-		</damage>
-		<strength>0
-		</strength>
-		<range>30/80
-		</range>
-		<shots>23
-		</shots>
-		<rate>2
-		</rate>
-		<size>XL
-		</size>
-		<cost>500
-		</cost>
+		<techLevel>6</techLevel>
+		<goal>1</goal>
+		<damage>7*</damage>
+		<strength>0</strength>
+		<range>30/80</range>
+		<shots>23</shots>
+		<rate>2</rate>
+		<size>XL</size>
+		<cost>500</cost>
 		<damageType>laser</damageType>
 	</martechIndigo>
 	<martechSafireSniper>
 		<name>
 			<en>Martech Safire (Sniper)</en>
-			<es></es>
+			<es />
 		</name>
 		<characteristic>dexterity</characteristic>
 		<skill>energyGuns</skill>
 		<type>LASER</type>
-		<techLevel>6
-		</techLevel>
-		<goal>1
-		</goal>
-		<damage>7*
-		</damage>
-		<strength>0
-		</strength>
-		<range>60/160
-		</range>
-		<shots>10
-		</shots>
-		<rate>1
-		</rate>
-		<size>XL
-		</size>
-		<cost>600
-		</cost>
+		<techLevel>6</techLevel>
+		<goal>1</goal>
+		<damage>7*</damage>
+		<strength>0</strength>
+		<range>60/160</range>
+		<shots>10</shots>
+		<rate>1</rate>
+		<size>XL</size>
+		<cost>600</cost>
 		<damageType>laser</damageType>
 	</martechSafireSniper>
 	<bannerCabalXaserRifle>
 		<name>
 			<en>Banner Cabal Xaser Rifle</en>
-			<es></es>
+			<es />
 		</name>
 		<characteristic>dexterity</characteristic>
 		<skill>energyGuns</skill>
 		<type>LASER</type>
-		<techLevel>7
-		</techLevel>
-		<goal>1
-		</goal>
-		<damage>5
-		</damage>
-		<strength>0
-		</strength>
-		<range>30/40
-		</range>
-		<shots>15
-		</shots>
-		<rate>2
-		</rate>
-		<size>XL
-		</size>
+		<techLevel>7</techLevel>
+		<goal>1</goal>
+		<damage>5</damage>
+		<strength>0</strength>
+		<range>30/40</range>
+		<shots>15</shots>
+		<rate>2</rate>
+		<size>XL</size>
 		<cost>1000</cost>
 		<damageType>laser</damageType>
 	</bannerCabalXaserRifle>
 	<bannerCabalGraserRifle>
 		<name>
 			<en>Banner Cabal Graser Rifle</en>
-			<es></es>
+			<es />
 		</name>
 		<characteristic>dexterity</characteristic>
 		<skill>energyGuns</skill>
 		<type>LASER</type>
-		<techLevel>7
-		</techLevel>
-		<goal>1
-		</goal>
-		<damage>6
-		</damage>
-		<strength>0
-		</strength>
-		<range>35/45
-		</range>
-		<shots>8
-		</shots>
-		<rate>2
-		</rate>
-		<size>XL
-		</size>
+		<techLevel>7</techLevel>
+		<goal>1</goal>
+		<damage>6</damage>
+		<strength>0</strength>
+		<range>35/45</range>
+		<shots>8</shots>
+		<rate>2</rate>
+		<size>XL</size>
 		<cost>2000</cost>
 		<damageType>laser</damageType>
 	</bannerCabalGraserRifle>
 	<martechRed>
 		<name>
 			<en>Martech Red</en>
-			<es></es>
+			<es />
 		</name>
 		<characteristic>dexterity</characteristic>
 		<skill>energyGuns</skill>
@@ -1947,29 +1877,136 @@
 	<varstenBlacklight>
 		<name>
 			<en>Varsten Blacklight</en>
-			<es></es>
+			<es />
 		</name>
 		<characteristic>dexterity</characteristic>
 		<skill>energyGuns</skill>
 		<type>LASER</type>
 		<techLevel>6</techLevel>
-		<goal>0
-		</goal>
-		<damage>8*
-		</damage>
-		<strength>0
-		</strength>
-		<range>20/60
-		</range>
-		<shots>20
-		</shots>
-		<rate>2
-		</rate>
-		<size>XL
-		</size>
+		<goal>0</goal>
+		<damage>8*</damage>
+		<strength>0</strength>
+		<range>20/60</range>
+		<shots>20</shots>
+		<rate>2</rate>
+		<size>XL</size>
 		<cost>700</cost>
 		<damageType>laser</damageType>
 	</varstenBlacklight>
+	<soeAlembic>
+		<name>
+			<en>SOE Alembic</en>
+			<es />
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>energyGuns</skill>
+		<type>BLASTER</type>
+		<techLevel>7</techLevel>
+		<goal>0</goal>
+		<damage>7</damage>
+		<strength>3</strength>
+		<range>10/20</range>
+		<shots>10</shots>
+		<rate>1</rate>
+		<size>S</size>
+		<cost>700</cost>
+		<damageType>plasma</damageType>
+	</soeAlembic>
+	<lankEruptor>
+		<name>
+			<en>Lank Eruptor</en>
+			<es />
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>energyGuns</skill>
+		<type>BLASTER</type>
+		<techLevel>7</techLevel>
+		<goal>0</goal>
+		<damage>7</damage>
+		<strength>3</strength>
+		<range>10/20</range>
+		<shots>9</shots>
+		<rate>1(A*)</rate>
+		<size>M</size>
+		<cost>900</cost>
+		<damageType>plasma</damageType>
+	</lankEruptor>
+	<soeCrucible>
+		<name>
+			<en>SOE Crucible</en>
+			<es />
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>energyGuns</skill>
+		<type>BLASTER</type>
+		<techLevel>7</techLevel>
+		<goal>0</goal>
+		<damage>9</damage>
+		<strength>3</strength>
+		<range>20/30</range>
+		<shots>15</shots>
+		<rate>1</rate>
+		<size>XL</size>
+		<cost>1000</cost>
+		<damageType>plasma</damageType>
+	</soeCrucible>
+	<nitobiBlasterAxe>
+		<name>
+			<en>Nitobi Blaster Axe</en>
+			<es />
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>energyGuns</skill>
+		<type>BLASTER</type>
+		<techLevel>7</techLevel>
+		<goal>–1</goal>
+		<damage>9*</damage>
+		<strength>3</strength>
+		<range>20/30</range>
+		<shots>15</shots>
+		<rate>1</rate>
+		<size>XL</size>
+		<cost>3000</cost>
+		<damageType>plasma</damageType>
+	</nitobiBlasterAxe>
+	<soeVolcano>
+		<name>
+			<en>SOE Volcano</en>
+			<es />
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>energyGuns</skill>
+		<type>BLASTER</type>
+		<techLevel>7</techLevel>
+		<goal>+2/0/–1</goal>
+		<damage>9/7/5</damage>
+		<strength>4</strength>
+		<range>10/20/×</range>
+		<shots>8</shots>
+		<rate>1</rate>
+		<size>L</size>
+		<cost>1200</cost>
+		<damageType>plasma</damageType>
+	</soeVolcano>
+	<lankIncinerator>
+		<name>
+			<en>Lank Incinerator</en>
+			<es />
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>energyGuns</skill>
+		<type>BLASTER</type>
+		<techLevel>7</techLevel>
+		<goal>+2/0/–1</goal>
+		<damage>9/7/5</damage>
+		<strength>4</strength>
+		<range>10/20/×</range>
+		<shots>8</shots>
+		<rate>1(A*)</rate>
+		<size>L</size>
+		<cost>1400</cost>
+		<damageType>plasma</damageType>
+	</lankIncinerator>
 	<mace>
 		<name>
 			<en>Mace</en>
