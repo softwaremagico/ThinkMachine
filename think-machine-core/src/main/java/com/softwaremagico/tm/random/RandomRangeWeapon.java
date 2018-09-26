@@ -32,11 +32,13 @@ import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.equipment.weapons.Weapon;
 import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
+import com.softwaremagico.tm.character.equipment.weapons.WeaponType;
 import com.softwaremagico.tm.character.race.InvalidRaceException;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.IRandomPreferences;
 
 public class RandomRangeWeapon extends RandomSelector<Weapon> {
+	private final static int TECH_LEVEL_BONUS = 10000000;
 
 	protected RandomRangeWeapon(CharacterPlayer characterPlayer, Set<IRandomPreferences> preferences) throws InvalidXmlElementException {
 		super(characterPlayer, preferences);
@@ -66,9 +68,24 @@ public class RandomRangeWeapon extends RandomSelector<Weapon> {
 		if (weapon.getTechLevel() > getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).getValue()) {
 			return 0;
 		}
-		
-		//It is possible
 
-		return 1;
+		// Only ranged weapons.
+		if (!WeaponType.getRangedTypes().contains(weapon.getType())) {
+			return 0;
+		}
+
+		// I can afford it.
+		if (weapon.getCost() > getCharacterPlayer().getMoney()) {
+			return 0;
+		}
+
+		int weight = 0;
+		// Similar tech level preferred.
+		weight += TECH_LEVEL_BONUS - Math.pow(10, getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).getValue() - weapon.getTechLevel());
+
+		if (weight <= 0) {
+			return 1;
+		}
+		return weight;
 	}
 }

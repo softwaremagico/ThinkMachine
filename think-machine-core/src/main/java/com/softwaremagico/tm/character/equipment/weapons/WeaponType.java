@@ -1,5 +1,10 @@
 package com.softwaremagico.tm.character.equipment.weapons;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
+
 /*-
  * #%L
  * Think Machine (Core)
@@ -26,15 +31,9 @@ package com.softwaremagico.tm.character.equipment.weapons;
 
 public enum WeaponType {
 
-	THROWING,
-	BOW,
-	CROSSBOW,
-	SLUG,
-	MINE,
-	MELEE,
-	MELEE_ARTIFACT,
-	LASER,
-	PLASMA;
+	THROWING, BOW, CROSSBOW, SLUG, MINE, MELEE, MELEE_ARTIFACT, LASER, PLASMA;
+
+	private static final Set<WeaponType> MELEE_TYPES = new HashSet<>(Arrays.asList(WeaponType.MELEE, WeaponType.MELEE_ARTIFACT));
 
 	public static WeaponType get(String typeName) {
 		for (WeaponType type : WeaponType.values()) {
@@ -43,5 +42,15 @@ public enum WeaponType {
 			}
 		}
 		return null;
+	}
+
+	public static Set<WeaponType> getMeleeTypes() {
+		return MELEE_TYPES;
+	}
+
+	public static Set<WeaponType> getRangedTypes() {
+		Set<WeaponType> rangedWeapons = new HashSet<>(Arrays.asList(WeaponType.values()));
+		rangedWeapons.removeAll(MELEE_TYPES);
+		return Collections.unmodifiableSet(rangedWeapons);
 	}
 }
