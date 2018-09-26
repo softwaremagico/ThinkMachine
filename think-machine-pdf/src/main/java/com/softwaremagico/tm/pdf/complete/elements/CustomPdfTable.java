@@ -151,6 +151,15 @@ public abstract class CustomPdfTable extends PdfPTable {
 		return box;
 	}
 
+	protected PdfPCell getCell(Paragraph paragraph, int border, int colspan, int align) {
+		PdfPCell cell = new PdfPCell(paragraph);
+		cell.setColspan(colspan);
+		cell.setBorderWidth(border);
+		cell.setHorizontalAlignment(align);
+
+		return cell;
+	}
+
 	public static ITranslator getTranslator() {
 		return translator;
 	}

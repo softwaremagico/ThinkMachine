@@ -548,4 +548,8 @@
 		<en>XP</en>
 		<es>EXP</es>
 	</experience>
+	<firebirds>
+		<en>Firebirds:</en>
+		<es>Fénix:</es>
+	</firebirds>
 </translator>

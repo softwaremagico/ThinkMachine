@@ -382,6 +382,10 @@
 	</refuge>
 	
 	<cash>
+		<name>
+			<en>Cash</en>
+			<es>Dinero</es>
+		</name>
 		<specializations>
 			<firebirds0>
 				<name>
@@ -404,7 +408,7 @@
 					<en>250 firebirds</en>
 					<es>250 fénix</es>
 				</name>
-				<cost></cost>
+				<cost>0</cost>
 			</firebirds250>
 			<firebirds1000>
 				<name>

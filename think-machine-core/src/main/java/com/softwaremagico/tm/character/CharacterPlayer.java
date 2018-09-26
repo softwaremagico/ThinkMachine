@@ -61,6 +61,8 @@ import com.softwaremagico.tm.character.cybernetics.Cybernetics;
 import com.softwaremagico.tm.character.cybernetics.Device;
 import com.softwaremagico.tm.character.equipment.Armour;
 import com.softwaremagico.tm.character.equipment.Shield;
+import com.softwaremagico.tm.character.equipment.weapons.Weapon;
+import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
 import com.softwaremagico.tm.character.equipment.weapons.Weapons;
 import com.softwaremagico.tm.character.factions.Faction;
 import com.softwaremagico.tm.character.occultism.InvalidOccultismPowerException;
@@ -552,6 +554,24 @@ public class CharacterPlayer {
 		return weapons;
 	}
 
+	public List<Weapon> getAllWeapons() {
+		List<Weapon> allWeapons = new ArrayList<>();
+		allWeapons.addAll(weapons.getElements());
+		try {
+			for (AvailableBenefice benefice : getAllBenefices()) {
+				try {
+					allWeapons.add(WeaponFactory.getInstance().getElement(benefice.getId(), getLanguage()));
+				} catch (InvalidXmlElementException ixmle) {
+					// Benefice is not a weapon.
+				}
+			}
+		} catch (InvalidXmlElementException e) {
+			MachineLog.errorMessage(this.getClass().getName(), e);
+		}
+		Collections.sort(allWeapons);
+		return Collections.unmodifiableList(allWeapons);
+	}
+
 	public Armour getArmour() {
 		return armour;
 	}
@@ -786,6 +806,48 @@ public class CharacterPlayer {
 			}
 		}
 		return null;
+	}
+
+	public int getInitialMoney() {
+		try {
+			for (AvailableBenefice benefice : getAllBenefices()) {
+				if ((benefice.getId().startsWith("cash"))) {
+					// Must have an specialization.
+					if (benefice.getSpecialization() != null) {
+						return Integer.parseInt(benefice.getId().replaceAll("[^\\d.]", ""));
+					}
+				}
+			}
+			return Integer.parseInt(AvailableBeneficeFactory.getInstance().getElement("cash [firebirds250]", getLanguage()).getId().replaceAll("[^\\d.]", ""));
+		} catch (InvalidXmlElementException e) {
+			return 0;
+		}
+	}
+
+	public int getSpentMoney() {
+		int total = 0;
+		for (Weapon weapon : weapons.getElements()) {
+			// Skip weapons payed by benefices.
+			try {
+				if (!getAllBenefices().contains(AvailableBeneficeFactory.getInstance().getElement(weapon.getId(), getLanguage()))) {
+					total += weapon.getCost();
+				}
+			} catch (InvalidXmlElementException ibe) {
+				total += weapon.getCost();
+			}
+		}
+		if (shield != null) {
+			total += shield.getCost();
+		}
+		if (armour != null) {
+			total += armour.getCost();
+		}
+
+		return total;
+	}
+
+	public int getMoney() {
+		return getInitialMoney() - getSpentMoney();
 	}
 
 	public String getRank() throws InvalidXmlElementException {

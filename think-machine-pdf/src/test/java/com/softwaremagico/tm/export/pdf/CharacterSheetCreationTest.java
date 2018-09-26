@@ -185,9 +185,9 @@ public class CharacterSheetCreationTest {
 		player.getWeapons().addElement(WeaponFactory.getInstance().getElement("mace", LANGUAGE));
 		player.getWeapons().addElement(WeaponFactory.getInstance().getElement("martechGold", LANGUAGE));
 
-		player.setArmour(new Armour("Cuero Sintético", 7, true, false, false, false, false, false, true, 6, -1, 0, 0, 0));
+		player.setArmour(new Armour("Cuero Sintético", 7, true, false, false, false, false, false, true, 6, -1, 0, 0, 0, 500));
 
-		player.setShield(new Shield("Escudo de Asalto", 5, 15, 20));
+		player.setShield(new Shield("Escudo de Asalto", 5, 15, 20, 3000));
 
 		LanguagePool.clearCache();
 		CharacterSheet sheet = new CharacterSheet(player);

@@ -119,7 +119,7 @@ public class CharacterSheet extends PdfDocument {
 		separatorCell.setColspan(2);
 		mainTable.addCell(separatorCell);
 
-		mainTable.addCell(new PropertiesTable());
+		mainTable.addCell(new PropertiesTable(getCharacterPlayer()));
 
 		PdfPCell psiCell = new PdfPCell(new OccultismsPowerTable(
 				getCharacterPlayer()));

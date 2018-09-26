@@ -60,7 +60,7 @@ public class WeaponsTable extends LateralHeaderPdfPTable {
 
 		int addedWeapons = 0;
 		if (characterPlayer != null) {
-			for (Weapon weapon : characterPlayer.getWeapons().getElements()) {
+			for (Weapon weapon : characterPlayer.getAllWeapons()) {
 				addCell(createFirstElementLine(weapon.getName(), NAME_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
 				addCell(createElementLine(weapon.getRoll(), ROLL_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
 				addCell(createElementLine((weapon.getGoal() != null ? weapon.getGoal() : ""), GOAL_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));

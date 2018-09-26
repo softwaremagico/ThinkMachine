@@ -24,19 +24,43 @@ package com.softwaremagico.tm.pdf.complete.info;
  * #L%
  */
 
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Paragraph;
+import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.complete.elements.VerticalTable;
+import com.softwaremagico.tm.pdf.complete.utils.CellUtils;
 
 public class PropertiesTable extends VerticalTable {
 	private final static float[] WIDTHS = { 1f };
-	private final static int ROWS = 9;
+	private final static int ROWS = 8;
 
-	public PropertiesTable() {
+	public PropertiesTable(CharacterPlayer characterPlayer) {
 		super(WIDTHS);
 
 		addCell(createTitle(getTranslator().getTranslatedText("properties"), FadingSunsTheme.VERTICALTABLE_TITLE_FONT_SIZE));
+		addCell(getCell(getMoney(characterPlayer), 0, 1, Element.ALIGN_LEFT));
 		for (int i = 0; i < ROWS; i++) {
 			addCell(createEmptyElementLine("______________________________________________"));
 		}
+	}
+
+	private Paragraph getMoney(CharacterPlayer characterPlayer) {
+		Paragraph paragraph = new Paragraph();
+		paragraph.add(new Paragraph(getTranslator().getTranslatedText("firebirds"), new Font(FadingSunsTheme.getLineFont(),
+				FadingSunsTheme.TABLE_LINE_FONT_SIZE)));
+		String moneyText = "";
+		float usedWidth = 0;
+		if (characterPlayer != null) {
+			moneyText = "  " + characterPlayer.getMoney() + "- ";
+			usedWidth = FadingSunsTheme.getHandwrittingFont().getWidthPoint(moneyText, FadingSunsTheme.TABLE_LINE_FONT_SIZE - 1);
+			paragraph.add(new Paragraph(moneyText, new Font(FadingSunsTheme.getHandwrittingFont(), FadingSunsTheme
+					.getHandWrittingFontSize(FadingSunsTheme.TABLE_LINE_FONT_SIZE - 1))));
+		}
+		moneyText = CellUtils.getSubStringFitsIn("____________________________________________", FadingSunsTheme.getLineFont(),
+				FadingSunsTheme.TABLE_LINE_FONT_SIZE, 138 - usedWidth);
+		paragraph.add(new Paragraph(moneyText, new Font(FadingSunsTheme.getLineFont(), FadingSunsTheme.TABLE_LINE_FONT_SIZE)));
+		return paragraph;
 	}
 }

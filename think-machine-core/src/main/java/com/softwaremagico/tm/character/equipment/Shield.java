@@ -30,12 +30,14 @@ public class Shield extends Element<Shield> {
 	private final int impact;
 	private final int force;
 	private final int hits;
+	private final int cost;
 
-	public Shield(String name, int impact, int force, int hits) {
+	public Shield(String name, int impact, int force, int hits, int cost) {
 		super(null, name);
 		this.impact = impact;
 		this.force = force;
 		this.hits = hits;
+		this.cost = cost;
 	}
 
 	public int getImpact() {
@@ -48,6 +50,10 @@ public class Shield extends Element<Shield> {
 
 	public int getHits() {
 		return hits;
+	}
+
+	public int getCost() {
+		return cost;
 	}
 
 }

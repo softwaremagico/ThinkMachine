@@ -135,7 +135,7 @@ public class CustomCharacters {
 		secondBrain.addSkillImprovement(new CyberneticSkill(AvailableSkillsFactory.getInstance().getElement("lore", "thinkMachineLore", LANGUAGE), 4, true));
 		player.getCybernetics().addElement(secondBrain);
 
-		player.setShield(new Shield("De Duelo", 5, 10, 15));
+		player.setShield(new Shield("De Duelo", 5, 10, 15, 700));
 
 		LanguagePool.clearCache();
 		CharacterSheet sheet = new CharacterSheet(player);
@@ -146,6 +146,7 @@ public class CustomCharacters {
 		smallSheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Paola_Small.pdf");
 
 		Assert.assertEquals(CostCalculator.getCost(player), FreeStyleCharacterCreation.FREE_AVAILABLE_POINTS);
+		Assert.assertEquals(player.getMoney(), 300);
 	}
 
 	@Test
@@ -204,6 +205,7 @@ public class CustomCharacters {
 		smallSheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Ana_Small.pdf");
 
 		Assert.assertEquals(CostCalculator.getCost(player), FreeStyleCharacterCreation.FREE_AVAILABLE_POINTS);
+		Assert.assertEquals(player.getMoney(), 250);
 	}
 
 	@Test
@@ -270,6 +272,7 @@ public class CustomCharacters {
 
 		Assert.assertEquals(CostCalculator.getCost(player), FreeStyleCharacterCreation.FREE_AVAILABLE_POINTS);
 		Assert.assertEquals(player.getRank(), "Genin");
+		Assert.assertEquals(500, player.getMoney());
 	}
 
 	@Test
@@ -376,12 +379,13 @@ public class CustomCharacters {
 		player.getCybernetics().addElement(new Device("Interfaz de Datos (Turing)", 1, 1, "Normal", "Normal", "Automático", "Oculto", "Turing"));
 		player.getCybernetics().addElement(new Device("Armadura", 1, 2, "Normal", "Normal", "Automático", "Oculto", "2d"));
 
-		player.setArmour(new Armour("Piel", 2, false, false, false, false, false, false, false, 5, 0, 0, 0, 0));
+		player.setArmour(new Armour("Piel", 2, false, false, false, false, false, false, false, 5, 0, 0, 0, 0, 0));
 
 		LanguagePool.clearCache();
 		CharacterSheet sheet = new CharacterSheet(player);
 		sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Golem.pdf");
 
 		Assert.assertEquals(CostCalculator.getCost(player), -2);
+		Assert.assertEquals(player.getMoney(), 250);
 	}
 }

@@ -42,8 +42,10 @@ public class Armour extends Element<Element<Armour>> {
 	private final int initiativeBonus;
 	private final int enduranceBonus;
 
+	private final int cost;
+
 	public Armour(String name, int protection, boolean hard, boolean fire, boolean laser, boolean plasma, boolean impact, boolean shock, boolean electrical,
-			int techLevel, int dexterityBonus, int strengthBonus, int initiativeBonus, int enduranceBonus) {
+			int techLevel, int dexterityBonus, int strengthBonus, int initiativeBonus, int enduranceBonus, int cost) {
 		super(null, name);
 		this.protection = protection;
 		this.hard = hard;
@@ -58,6 +60,7 @@ public class Armour extends Element<Element<Armour>> {
 		this.strengthBonus = strengthBonus;
 		this.initiativeBonus = initiativeBonus;
 		this.enduranceBonus = enduranceBonus;
+		this.cost = cost;
 	}
 
 	public int getProtection() {
@@ -110,6 +113,10 @@ public class Armour extends Element<Element<Armour>> {
 
 	public boolean isLaser() {
 		return laser;
+	}
+
+	public int getCost() {
+		return cost;
 	}
 
 }

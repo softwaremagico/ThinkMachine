@@ -31,13 +31,15 @@ import junit.framework.Assert;
 import org.testng.annotations.Test;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
+import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.benefices.AvailableBenefice;
 import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
 import com.softwaremagico.tm.character.benefices.BeneficeDefinitionFactory;
+import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
 
 @Test(groups = { "beneficeFactory" })
 public class BeneficeFactoryTests {
-	private final static String LANGUAGE = "es";	
+	private final static String LANGUAGE = "es";
 	private final static int DEFINED_BENEFICES = 74;
 	private final static int AVAILABLE_BENEFICES = 206;
 
@@ -60,4 +62,35 @@ public class BeneficeFactoryTests {
 		}
 		Assert.assertEquals(AVAILABLE_BENEFICES, count);
 	}
+
+	@Test
+	public void getBeneficeSpecialization() throws InvalidXmlElementException {
+		Assert.assertNotNull(AvailableBeneficeFactory.getInstance().getElement("cash [firebirds250]", LANGUAGE));
+	}
+
+	@Test
+	public void getMoneyStandard() throws InvalidXmlElementException {
+		CharacterPlayer player = new CharacterPlayer(LANGUAGE);
+		Assert.assertEquals(250, player.getInitialMoney());
+	}
+
+	@Test
+	public void getMoneyBenefice() throws InvalidXmlElementException {
+		CharacterPlayer player = new CharacterPlayer(LANGUAGE);
+		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("cash [firebirds1000]", LANGUAGE));
+		Assert.assertEquals(1000, player.getInitialMoney());
+	}
+
+	@Test
+	public void getMoneyRemaining() throws InvalidXmlElementException {
+		CharacterPlayer player = new CharacterPlayer(LANGUAGE);
+		// Weapon without cost.
+		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("fluxSword", LANGUAGE));
+		// Weapon with cost.
+		player.getWeapons().addElement(WeaponFactory.getInstance().getElement("typicalShotgun", LANGUAGE));
+		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("cash [firebirds1000]", LANGUAGE));
+		Assert.assertEquals(2, player.getAllWeapons().size());
+		Assert.assertEquals(700, player.getMoney());
+	}
+
 }
