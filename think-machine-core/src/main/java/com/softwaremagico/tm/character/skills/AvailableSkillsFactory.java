@@ -71,7 +71,7 @@ public class AvailableSkillsFactory {
 	}
 
 	public Set<AvailableSkill> getSkillsByGroup(SkillGroup skillGroup, String language) throws InvalidXmlElementException {
-		if (skillsByGroup == null || skillsByGroup.isEmpty() || skillsByGroup.get(language).isEmpty()) {
+		if (skillsByGroup == null || skillsByGroup.isEmpty() || skillsByGroup.get(language) == null || skillsByGroup.get(language).isEmpty()) {
 			for (AvailableSkill availableNaturalSkill : getNaturalSkills(language)) {
 				classifySkillByGroup(availableNaturalSkill, language);
 			}

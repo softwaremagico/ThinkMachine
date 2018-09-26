@@ -36,39 +36,32 @@ import com.softwaremagico.tm.random.selectors.IRandomPreferences;
 
 public class RandomSkillExtraPoints extends RandomSkills {
 
-	public RandomSkillExtraPoints(CharacterPlayer characterPlayer, Set<IRandomPreferences> preferences)
-			throws InvalidXmlElementException {
+	public RandomSkillExtraPoints(CharacterPlayer characterPlayer, Set<IRandomPreferences> preferences) throws InvalidXmlElementException {
 		super(characterPlayer, preferences);
 	}
 
-	public int spendSkillsPoints(int remainingPoints) throws InvalidRandomElementSelectedException,
-			InvalidXmlElementException {
+	public int spendSkillsPoints(int remainingPoints) throws InvalidRandomElementSelectedException, InvalidXmlElementException {
 		AvailableSkill selectedSkill = selectElementByWeight();
 		int addedRanks = ranksToAdd(selectedSkill);
 		if (addedRanks * CostCalculator.SKILL_EXTRA_POINTS_COST > remainingPoints) {
 			addedRanks = remainingPoints / CostCalculator.SKILL_EXTRA_POINTS_COST;
 		}
 		if (addedRanks > 0) {
-			RandomGenerationLog.info(this.getClass().getName(), "Added '" + addedRanks + "' ranks to skill '"
-					+ selectedSkill + "'.");
+			RandomGenerationLog.info(this.getClass().getName(), "Added '" + addedRanks + "' ranks to skill '" + selectedSkill + "'.");
 		}
-		getCharacterPlayer().setSkillRank(selectedSkill,
-				getCharacterPlayer().getSkillAssignedRanks(selectedSkill) + addedRanks);
-		getCharacterPlayer().setDesiredSkillRanks(selectedSkill,
-				getCharacterPlayer().getSkillAssignedRanks(selectedSkill) + addedRanks);
+		// Only if adding more ranks.
+		if (getCharacterPlayer().getSkillAssignedRanks(selectedSkill) + addedRanks < getCharacterPlayer().getSkillAssignedRanks(selectedSkill)) {
+			return 0;
+		}
+		getCharacterPlayer().setSkillRank(selectedSkill, getCharacterPlayer().getSkillAssignedRanks(selectedSkill) + addedRanks);
+		getCharacterPlayer().setDesiredSkillRanks(selectedSkill, getCharacterPlayer().getSkillAssignedRanks(selectedSkill) + addedRanks);
 		return addedRanks;
 	}
 
-	private int ranksToAdd(AvailableSkill availableSkill) throws InvalidXmlElementException,
-			InvalidRandomElementSelectedException {
+	private int ranksToAdd(AvailableSkill availableSkill) throws InvalidXmlElementException, InvalidRandomElementSelectedException {
 		int finalRanks = getRankValue(availableSkill);
 		int currentRanks = getCharacterPlayer().getSkillAssignedRanks(availableSkill);
 		if (finalRanks > currentRanks) {
-			// Final ranks cannot be greater that the total points remaining.
-			if (CostCalculator.getCost(getCharacterPlayer()) < (finalRanks - currentRanks)
-					* CostCalculator.SKILL_EXTRA_POINTS_COST) {
-				finalRanks = CostCalculator.getCost(getCharacterPlayer()) / CostCalculator.SKILL_EXTRA_POINTS_COST;
-			}
 			return finalRanks - currentRanks;
 		}
 		return 0;

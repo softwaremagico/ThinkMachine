@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.softwaremagico</groupId>
 	<artifactId>think-machine</artifactId>
-	<version>0.3.11-SNAPSHOT</version>
+	<version>0.4.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>Think Machine</name>
 	<url>https://github.com/jorgehortelano/TheThinkingMachine</url>
@@ -18,8 +18,8 @@
 	</modules>
 	
 	<scm>
-		<developerConnection>scm:git:ssh://git@github.com/jorgehortelano/TheThinkingMachine.git</developerConnection>
-		<url>https://github.com/jorgehortelano/TheThinkingMachine.git</url>
+		<developerConnection>scm:git:ssh://git@github.com/jorgehortelano/ThinkMachine.git</developerConnection>
+		<url>https://github.com/jorgehortelano/ThinkMachine.git</url>
 		<tag>HEAD</tag>
 	</scm>
 	
@@ -39,6 +39,7 @@
 		<license-maven-plugin.version>1.12</license-maven-plugin.version>
 		<maven-release-plugin.version>2.5.1</maven-release-plugin.version>
 		<maven-scm-provider-gitexe.version>1.9.2</maven-scm-provider-gitexe.version>
+		<project.scm.id>git</project.scm.id>
 		<reflections.version>0.9.11</reflections.version>
 	</properties>
 	

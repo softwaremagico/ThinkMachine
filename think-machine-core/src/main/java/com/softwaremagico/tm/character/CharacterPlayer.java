@@ -85,6 +85,7 @@ import com.softwaremagico.tm.character.skills.Specialization;
 import com.softwaremagico.tm.character.values.IValue;
 import com.softwaremagico.tm.character.values.SpecialValue;
 import com.softwaremagico.tm.character.values.SpecialValuesFactory;
+import com.softwaremagico.tm.log.CostCalculatorLog;
 import com.softwaremagico.tm.log.MachineLog;
 
 public class CharacterPlayer {
@@ -700,6 +701,7 @@ public class CharacterPlayer {
 			}
 		}
 
+		CostCalculatorLog.debug(this.getClass().getName(), skills.toString());
 		return skillPoints;
 	}
 

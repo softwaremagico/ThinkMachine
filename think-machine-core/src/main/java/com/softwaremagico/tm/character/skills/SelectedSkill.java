@@ -52,4 +52,9 @@ public class SelectedSkill extends Skill<SelectedSkill> {
 	public boolean hasCost() {
 		return cost;
 	}
+
+	@Override
+	public String toString() {
+		return super.toString() + " (" + value + ")";
+	}
 }

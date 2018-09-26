@@ -38,8 +38,7 @@ public class LearnedSkillsTable extends SkillsTable {
 	private final static int ROWS = 20;
 	private final static int MAX_SKILL_COLUMN_WIDTH = 115;
 
-	public static PdfPTable getSkillsTable(CharacterPlayer characterPlayer, String language)
-			throws InvalidXmlElementException {
+	public static PdfPTable getSkillsTable(CharacterPlayer characterPlayer, String language) throws InvalidXmlElementException {
 		float[] widths = { 1f };
 		PdfPTable table = new PdfPTable(widths);
 		setTablePropierties(table);
@@ -48,33 +47,30 @@ public class LearnedSkillsTable extends SkillsTable {
 		return table;
 	}
 
-	private static PdfPCell getSkillsColumnTable(CharacterPlayer characterPlayer, String language)
-			throws InvalidXmlElementException {
+	private static PdfPCell getSkillsColumnTable(CharacterPlayer characterPlayer, String language) throws InvalidXmlElementException {
 		float[] widths = { 4f, 1f };
 		PdfPTable table = new PdfPTable(widths);
 		setTablePropierties(table);
 		table.getDefaultCell().setBorder(0);
 
-		table.addCell(createCompactTitle(getTranslator().getTranslatedText("learnedSkills"),
-				FadingSunsTheme.CHARACTER_SMALL_SKILLS_TITLE_FONT_SIZE));
+		table.addCell(createCompactTitle(getTranslator().getTranslatedText("learnedSkills"), FadingSunsTheme.CHARACTER_SMALL_SKILLS_TITLE_FONT_SIZE));
 
 		int added = 0;
 		if (characterPlayer != null) {
 			for (AvailableSkill skill : characterPlayer.getLearnedSkills()) {
 				if (characterPlayer.getSkillTotalRanks(skill) > 0) {
-					table.addCell(createSkillElement(characterPlayer, skill,
-							FadingSunsTheme.CHARACTER_SMALL_SKILLS_LINE_FONT_SIZE, MAX_SKILL_COLUMN_WIDTH));
+					table.addCell(createSkillElement(characterPlayer, skill, FadingSunsTheme.CHARACTER_SMALL_SKILLS_LINE_FONT_SIZE, MAX_SKILL_COLUMN_WIDTH));
 					table.addCell(createSkillValue(characterPlayer.getSkillTotalRanks(skill),
-							characterPlayer.isSkillSpecial(skill) || characterPlayer.hasSkillTemporalModificator(skill),characterPlayer.hasSkillModificator(skill),
-							FadingSunsTheme.CHARACTER_SMALL_SKILLS_LINE_FONT_SIZE));
+							characterPlayer.isSkillSpecial(skill) || characterPlayer.hasSkillTemporalModificator(skill),
+							characterPlayer.hasSkillModificator(skill), FadingSunsTheme.CHARACTER_SMALL_SKILLS_LINE_FONT_SIZE));
 					added++;
 				}
 			}
+		}
 
-			for (int i = added; i < ROWS; i++) {
-				for (int j = 0; j < widths.length; j++) {
-					table.addCell(new Paragraph(" "));
-				}
+		for (int i = added; i < ROWS; i++) {
+			for (int j = 0; j < widths.length; j++) {
+				table.addCell(new Paragraph(" "));
 			}
 		}
 

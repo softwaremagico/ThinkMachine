@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.character.equipment.weapons;
+package com.softwaremagico.tm.character.equipment;
 
 /*-
  * #%L
@@ -208,10 +208,12 @@ public class WeaponFactory extends XmlFactory<Weapon> {
 		try {
 			String damageDefinition = translator.getNodeValue(weaponId, DAMAGE_TYPE);
 			if (damageDefinition != null) {
-				String[] damageTypes = damageDefinition.split(",");
-				for (String damageType : damageTypes) {
-					damageOfWeapon.add(DamageTypeFactory.getInstance().getElement(damageType, language));
+				StringTokenizer damageTypesTokenizer = new StringTokenizer(damageDefinition, ",");
+				Set<DamageType> damageOfWeapon = new HashSet<>();
+				while (damageTypesTokenizer.hasMoreTokens()) {
+					damageOfWeapon.add(DamageTypeFactory.getInstance().getElement(damageTypesTokenizer.nextToken().trim(), language));
 				}
+				weapon.setDamageTypes(damageOfWeapon);
 			}
 		} catch (Exception e) {
 			// Not mandatory.
