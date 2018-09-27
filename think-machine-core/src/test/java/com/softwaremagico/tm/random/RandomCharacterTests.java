@@ -31,17 +31,20 @@ import org.testng.annotations.Test;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
+import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.creation.CostCalculator;
 import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
 import com.softwaremagico.tm.character.factions.FactionGroup;
 import com.softwaremagico.tm.character.factions.FactionsFactory;
 import com.softwaremagico.tm.character.race.RaceFactory;
+import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.character.skills.SkillDefinition;
 import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
 import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.random.exceptions.DuplicatedPreferenceException;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.BlessingNumberPreferences;
+import com.softwaremagico.tm.random.selectors.CombatPreferences;
 import com.softwaremagico.tm.random.selectors.CurseNumberPreferences;
 import com.softwaremagico.tm.random.selectors.FactionPreferences;
 import com.softwaremagico.tm.random.selectors.NamesPreferences;
@@ -173,5 +176,18 @@ public class RandomCharacterTests {
 		randomizeCharacter.createCharacter();
 		Assert.assertTrue(characterPlayer.getInfo().getNames().size() >= 2);
 		Assert.assertTrue(characterPlayer.getInfo().getSurname() != null);
+	}
+
+	@Test
+	public void weapons() throws InvalidXmlElementException, DuplicatedPreferenceException, InvalidRandomElementSelectedException {
+		CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
+		characterPlayer.setSkillRank(AvailableSkillsFactory.getInstance().getElement("slugGuns", LANGUAGE), 5);
+		characterPlayer.setSkillRank(AvailableSkillsFactory.getInstance().getElement("energyGuns", LANGUAGE), 5);
+		characterPlayer.setSkillRank(AvailableSkillsFactory.getInstance().getElement("melee", LANGUAGE), 5);
+		characterPlayer.getCharacteristic(CharacteristicName.TECH).setValue(7);
+		characterPlayer.addBenefice(AvailableBeneficeFactory.getInstance().getElement("cash [firebirds1000]", LANGUAGE));
+		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0, CombatPreferences.BELLIGERENT);
+		randomizeCharacter.createCharacter();
+		Assert.assertTrue(characterPlayer.getWeapons().getElements().size() >= 2);
 	}
 }

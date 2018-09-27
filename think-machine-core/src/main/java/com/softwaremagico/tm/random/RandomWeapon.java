@@ -48,7 +48,11 @@ public abstract class RandomWeapon extends RandomSelector<Weapon> {
 	}
 
 	public void assignWeapon() throws InvalidRaceException, InvalidRandomElementSelectedException {
-		getCharacterPlayer().getWeapons().addElement(selectElementByWeight());
+		Weapon selectedWeapon = selectElementByWeight();
+		if (!getCharacterPlayer().getWeapons().getElements().contains(selectedWeapon)) {
+			getCharacterPlayer().getWeapons().addElement(selectedWeapon);
+			RandomGenerationLog.info(this.getClass().getName(), "Selected weapon: " + selectedWeapon);
+		}
 	}
 
 	@Override

@@ -31,7 +31,7 @@ public enum CombatPreferences implements IRandomPreferences {
 
 	FAIR(2, 5, 0.4f, 0.6f),
 
-	BELLIGERENT(4, 10, 0.8f, 1f);
+	BELLIGERENT(4, 10, 1f, 1f);
 
 	private final int minimum;
 	private final int maximum;
