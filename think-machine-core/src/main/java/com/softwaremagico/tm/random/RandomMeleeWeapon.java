@@ -31,14 +31,14 @@ import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.equipment.weapons.WeaponType;
 import com.softwaremagico.tm.random.selectors.IRandomPreferences;
 
-public class RandomRangeWeapon extends RandomWeapon {
+public class RandomMeleeWeapon extends RandomWeapon {
 
-	protected RandomRangeWeapon(CharacterPlayer characterPlayer, Set<IRandomPreferences> preferences) throws InvalidXmlElementException {
+	protected RandomMeleeWeapon(CharacterPlayer characterPlayer, Set<IRandomPreferences> preferences) throws InvalidXmlElementException {
 		super(characterPlayer, preferences);
 	}
 
 	@Override
 	protected Set<WeaponType> weaponTypesFilter() {
-		return WeaponType.getRangedTypes();
+		return WeaponType.getMeleeTypes();
 	}
 }

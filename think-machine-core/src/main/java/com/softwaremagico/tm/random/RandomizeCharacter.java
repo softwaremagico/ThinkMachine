@@ -26,6 +26,7 @@ package com.softwaremagico.tm.random;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Random;
 import java.util.Set;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
@@ -37,6 +38,7 @@ import com.softwaremagico.tm.log.RandomGenerationLog;
 import com.softwaremagico.tm.random.exceptions.DuplicatedPreferenceException;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.AgePreferences;
+import com.softwaremagico.tm.random.selectors.CombatPreferences;
 import com.softwaremagico.tm.random.selectors.IGaussianDistribution;
 import com.softwaremagico.tm.random.selectors.IRandomPreferences;
 import com.softwaremagico.tm.random.selectors.PsiqueLevelPreferences;
@@ -46,6 +48,7 @@ import com.softwaremagico.tm.random.selectors.TraitCostPreferences;
 public class RandomizeCharacter {
 	private CharacterPlayer characterPlayer;
 	private final Set<IRandomPreferences> preferences;
+	private final Random random = new Random();
 
 	public RandomizeCharacter(CharacterPlayer characterPlayer, int experiencePoints, IRandomPreferences... preferences) throws DuplicatedPreferenceException {
 		this.characterPlayer = characterPlayer;
@@ -70,6 +73,7 @@ public class RandomizeCharacter {
 		setCharacterDefinition();
 		setStartingValues();
 		setExtraPoints();
+		setInitialEquipment();
 		// Expend XP if any.
 		setExperiencePoints();
 	}
@@ -183,6 +187,50 @@ public class RandomizeCharacter {
 				RandomSkillExtraPoints randomSkillExtraPoints = new RandomSkillExtraPoints(characterPlayer, preferences);
 				remainingPoints -= randomSkillExtraPoints.spendSkillsPoints(remainingPoints);
 			}
+		}
+	}
+
+	private void setInitialEquipment() throws InvalidXmlElementException {
+		CombatPreferences combatPreferences = CombatPreferences.getSelected(preferences);
+		float probabilityOfRangedWeapon = 0f;
+		float probabilityOfMeleeWeapon = 0f;
+		switch (combatPreferences) {
+		case PEACEFUL:
+			probabilityOfRangedWeapon = 0.1f;
+			probabilityOfMeleeWeapon = 0.2f;
+			break;
+		case FAIR:
+			probabilityOfRangedWeapon = 0.6f;
+			probabilityOfMeleeWeapon = 0.4f;
+			break;
+		case BELLIGERENT:
+			probabilityOfRangedWeapon = 1f;
+			probabilityOfMeleeWeapon = 0.8f;
+			break;
+		}
+		while (probabilityOfRangedWeapon > 0) {
+			if (random.nextFloat() < probabilityOfRangedWeapon) {
+				RandomWeapon randomRangedWeapon = new RandomRangeWeapon(characterPlayer, preferences);
+				try {
+					randomRangedWeapon.assignWeapon();
+				} catch (InvalidRandomElementSelectedException ires) {
+					RandomGenerationLog.warning(this.getClass().getName(), "No ranged weapons available for '" + characterPlayer + "'.");
+					break;
+				}
+			}
+			probabilityOfRangedWeapon -= 0.3f;
+		}
+		while (probabilityOfMeleeWeapon > 0) {
+			if (random.nextFloat() < probabilityOfMeleeWeapon) {
+				RandomWeapon randomMeleeWeapon = new RandomMeleeWeapon(characterPlayer, preferences);
+				try {
+					randomMeleeWeapon.assignWeapon();
+				} catch (InvalidRandomElementSelectedException ires) {
+					RandomGenerationLog.warning(this.getClass().getName(), "No melee weapons available for '" + characterPlayer + "'.");
+					break;
+				}
+			}
+			probabilityOfMeleeWeapon -= 0.4f;
 		}
 	}
 
