@@ -27,18 +27,23 @@ import java.util.Set;
  */
 
 public enum CombatPreferences implements IRandomPreferences {
-	PEACEFUL(0, 1),
+	PEACEFUL(0, 1, 0.2f, 0.1f),
 
-	FAIR(2, 5),
+	FAIR(2, 5, 0.4f, 0.6f),
 
-	BELLIGERENT(4, 10);
+	BELLIGERENT(4, 10, 0.8f, 1f);
 
 	private final int minimum;
 	private final int maximum;
 
-	private CombatPreferences(int minimum, int maximum) {
+	private final float meleeWeaponProbability;
+	private final float rangeWeaponProbability;
+
+	private CombatPreferences(int minimum, int maximum, float meleeWeaponProbability, float rangeWeaponProbability) {
 		this.maximum = maximum;
 		this.minimum = minimum;
+		this.meleeWeaponProbability = meleeWeaponProbability;
+		this.rangeWeaponProbability = rangeWeaponProbability;
 	}
 
 	@Override
@@ -58,5 +63,13 @@ public enum CombatPreferences implements IRandomPreferences {
 			}
 		}
 		return FAIR;
+	}
+
+	public float getMeleeWeaponProbability() {
+		return meleeWeaponProbability;
+	}
+
+	public float getRangeWeaponProbability() {
+		return rangeWeaponProbability;
 	}
 }

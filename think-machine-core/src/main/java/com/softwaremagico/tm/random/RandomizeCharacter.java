@@ -192,22 +192,8 @@ public class RandomizeCharacter {
 
 	private void setInitialEquipment() throws InvalidXmlElementException {
 		CombatPreferences combatPreferences = CombatPreferences.getSelected(preferences);
-		float probabilityOfRangedWeapon = 0f;
-		float probabilityOfMeleeWeapon = 0f;
-		switch (combatPreferences) {
-		case PEACEFUL:
-			probabilityOfRangedWeapon = 0.1f;
-			probabilityOfMeleeWeapon = 0.2f;
-			break;
-		case FAIR:
-			probabilityOfRangedWeapon = 0.6f;
-			probabilityOfMeleeWeapon = 0.4f;
-			break;
-		case BELLIGERENT:
-			probabilityOfRangedWeapon = 1f;
-			probabilityOfMeleeWeapon = 0.8f;
-			break;
-		}
+		float probabilityOfRangedWeapon = combatPreferences.getRangeWeaponProbability();
+		float probabilityOfMeleeWeapon = combatPreferences.getMeleeWeaponProbability();
 		while (probabilityOfRangedWeapon > 0) {
 			if (random.nextFloat() < probabilityOfRangedWeapon) {
 				RandomWeapon randomRangedWeapon = new RandomRangeWeapon(characterPlayer, preferences);
