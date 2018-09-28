@@ -44,6 +44,7 @@ import com.softwaremagico.tm.character.skills.SkillGroup;
 import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
 import com.softwaremagico.tm.log.RandomGenerationLog;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
+import com.softwaremagico.tm.random.selectors.CombatPreferences;
 import com.softwaremagico.tm.random.selectors.IRandomPreferences;
 import com.softwaremagico.tm.random.selectors.SkillGroupPreferences;
 import com.softwaremagico.tm.random.selectors.SpecializationPreferences;
@@ -182,6 +183,10 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 		int psiqueWeight = weightByPsique(skill);
 		RandomGenerationLog.debug(this.getClass().getName(), "Weight for '" + skill + "' by psique modification is '" + psiqueWeight + "'.");
 		weight += psiqueWeight;
+
+		int combatWeight = weightByCombat(skill);
+		RandomGenerationLog.debug(this.getClass().getName(), "Weight for '" + skill + "' by combat definitions is '" + combatWeight + "'.");
+		weight += combatWeight;
 
 		int specializationMultiplier = weightBySpecializationSize(skill);
 		RandomGenerationLog.debug(this.getClass().getName(), "Specialization multiplier for '" + skill + "' is '" + specializationMultiplier + "'.");
@@ -378,5 +383,39 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 			skillValue = minimumValue;
 		}
 		return skillValue;
+	}
+
+	/**
+	 * Combat skills must be interesting for fighters.
+	 * 
+	 * @param availableSkill
+	 * @return
+	 */
+	private int weightByCombat(AvailableSkill availableSkill) {
+		CombatPreferences combatPreferences = CombatPreferences.getSelected(getPreferences());
+		// Set some attack skills
+		if (combatPreferences.minimum() >= CombatPreferences.FAIR.minimum()) {
+			if (getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).getValue() >= 5) {
+				if (Objects.equals(availableSkill.getId(), "energyGuns")) {
+					return GOOD_PROBABILITY * combatPreferences.maximum();
+				}
+			} else if (getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).getValue() >= 3) {
+				if (Objects.equals(availableSkill.getId(), "slugGuns")) {
+					return GOOD_PROBABILITY * combatPreferences.maximum();
+				}
+			} else {
+				if (Objects.equals(availableSkill.getId(), "archery")) {
+					return ACCEPTABLE_PROBABILITY * combatPreferences.maximum();
+				}
+			}
+			if (Objects.equals(availableSkill.getId(), "fight")) {
+				if (getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).getValue() >= 3) {
+					return ACCEPTABLE_PROBABILITY * combatPreferences.maximum();
+				} else {
+					return GOOD_PROBABILITY * combatPreferences.maximum();
+				}
+			}
+		}
+		return 0;
 	}
 }

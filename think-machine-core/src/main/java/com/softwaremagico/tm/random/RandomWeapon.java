@@ -33,7 +33,6 @@ import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.equipment.weapons.Weapon;
 import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
 import com.softwaremagico.tm.character.equipment.weapons.WeaponType;
-import com.softwaremagico.tm.character.race.InvalidRaceException;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.log.RandomGenerationLog;
@@ -48,7 +47,7 @@ public abstract class RandomWeapon extends RandomSelector<Weapon> {
 		super(characterPlayer, preferences);
 	}
 
-	public void assignWeapon() throws InvalidRaceException, InvalidRandomElementSelectedException {
+	public void assignWeapon() throws InvalidRandomElementSelectedException {
 		Weapon selectedWeapon = selectElementByWeight();
 		if (!getCharacterPlayer().getWeapons().getElements().contains(selectedWeapon)) {
 			getCharacterPlayer().getWeapons().addElement(selectedWeapon);
@@ -114,7 +113,9 @@ public abstract class RandomWeapon extends RandomSelector<Weapon> {
 
 		int weight = 0;
 		// Similar tech level preferred.
-		weight += getWeightTechModificator(weapon);
+		int weightTech = getWeightTechModificator(weapon);
+		RandomGenerationLog.debug(this.getClass().getName(), "Weight value by tech level for '" + weapon + "' is '" + weightTech + "'.");
+		weight += weightTech;
 
 		// Weapons depending on the purchasing power of the character.
 

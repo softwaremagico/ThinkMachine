@@ -44,6 +44,7 @@ import com.softwaremagico.tm.random.selectors.IRandomPreferences;
 import com.softwaremagico.tm.random.selectors.PsiqueLevelPreferences;
 import com.softwaremagico.tm.random.selectors.SpecializationPreferences;
 import com.softwaremagico.tm.random.selectors.TraitCostPreferences;
+import com.softwaremagico.tm.random.selectors.WeaponsPreferences;
 
 public class RandomizeCharacter {
 	private CharacterPlayer characterPlayer;
@@ -82,15 +83,20 @@ public class RandomizeCharacter {
 		// Point distribution is "Fair" by default.
 		SpecializationPreferences selectedSpecialization = SpecializationPreferences.getSelected(preferences);
 		if (selectedSpecialization == null) {
-			selectedSpecialization = SpecializationPreferences.FAIR;
-			preferences.add(selectedSpecialization);
+			preferences.add(SpecializationPreferences.FAIR);
 		}
 
 		// Low traits by default.
 		TraitCostPreferences traitCostPreferences = TraitCostPreferences.getSelected(preferences);
 		if (traitCostPreferences == null) {
-			traitCostPreferences = TraitCostPreferences.LOW;
-			preferences.add(traitCostPreferences);
+			preferences.add(TraitCostPreferences.LOW);
+		}
+
+		// Weapons depending on combatPreferences if not defined.
+		WeaponsPreferences weaponPreferences = WeaponsPreferences.getSelected(preferences);
+		if (weaponPreferences == null) {
+			CombatPreferences combatePreferences = CombatPreferences.getSelected(preferences);
+			preferences.add(combatePreferences.getDefaultWeaponPreferences());
 		}
 	}
 
@@ -191,29 +197,27 @@ public class RandomizeCharacter {
 	}
 
 	private void setInitialEquipment() throws InvalidXmlElementException {
-		CombatPreferences combatPreferences = CombatPreferences.getSelected(preferences);
-		float probabilityOfRangedWeapon = combatPreferences.getRangeWeaponProbability();
-		float probabilityOfMeleeWeapon = combatPreferences.getMeleeWeaponProbability();
-		while (probabilityOfRangedWeapon > 0) {
-			if (random.nextFloat() < probabilityOfRangedWeapon) {
+		WeaponsPreferences weaponPreferences = WeaponsPreferences.getSelected(preferences);
+		float probabilityOfRangedWeapon = weaponPreferences.getRangeWeaponProbability();
+		float probabilityOfMeleeWeapon = weaponPreferences.getMeleeWeaponProbability();
+
+		while (probabilityOfRangedWeapon > 0 || probabilityOfMeleeWeapon > 0) {
+			if (probabilityOfRangedWeapon > 0 && random.nextFloat() < probabilityOfRangedWeapon) {
 				RandomWeapon randomRangedWeapon = new RandomRangeWeapon(characterPlayer, preferences);
 				try {
 					randomRangedWeapon.assignWeapon();
 				} catch (InvalidRandomElementSelectedException ires) {
 					RandomGenerationLog.warning(this.getClass().getName(), "No ranged weapons available for '" + characterPlayer + "'.");
-					break;
 				}
 			}
 			probabilityOfRangedWeapon -= 0.3f;
-		}
-		while (probabilityOfMeleeWeapon > 0) {
-			if (random.nextFloat() < probabilityOfMeleeWeapon) {
+
+			if (probabilityOfMeleeWeapon > 0 && random.nextFloat() < probabilityOfMeleeWeapon) {
 				RandomWeapon randomMeleeWeapon = new RandomMeleeWeapon(characterPlayer, preferences);
 				try {
 					randomMeleeWeapon.assignWeapon();
 				} catch (InvalidRandomElementSelectedException ires) {
 					RandomGenerationLog.warning(this.getClass().getName(), "No melee weapons available for '" + characterPlayer + "'.");
-					break;
 				}
 			}
 			probabilityOfMeleeWeapon -= 0.4f;

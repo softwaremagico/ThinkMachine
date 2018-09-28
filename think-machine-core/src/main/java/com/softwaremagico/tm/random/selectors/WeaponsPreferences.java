@@ -1,7 +1,5 @@
 package com.softwaremagico.tm.random.selectors;
 
-import java.util.Set;
-
 /*-
  * #%L
  * Think Machine (Core)
@@ -26,44 +24,52 @@ import java.util.Set;
  * #L%
  */
 
-public enum CombatPreferences implements IRandomPreferences {
-	PEACEFUL(0, 1, WeaponsPreferences.LOW),
+import java.util.Set;
 
-	FAIR(2, 5, WeaponsPreferences.MEDIUM),
+public enum WeaponsPreferences implements IRandomPreferences {
 
-	BELLIGERENT(4, 10, WeaponsPreferences.HIGH);
+	NONE(0f, 0f),
 
-	private final int minimum;
-	private final int maximum;
+	LOW(0.2f, 0.1f),
 
-	private final WeaponsPreferences defaultWeaponPreferences;
+	MEDIUM(0.4f, 0.6f),
 
-	private CombatPreferences(int minimum, int maximum, WeaponsPreferences defaultWeaponPreferences) {
-		this.maximum = maximum;
-		this.minimum = minimum;
-		this.defaultWeaponPreferences = defaultWeaponPreferences;
+	HIGH(1f, 1f),
+
+	WARLORD(2f, 2f);
+
+	private final float meleeWeaponProbability;
+	private final float rangeWeaponProbability;
+
+	private WeaponsPreferences(float meleeWeaponProbability, float rangeWeaponProbability) {
+		this.meleeWeaponProbability = meleeWeaponProbability;
+		this.rangeWeaponProbability = rangeWeaponProbability;
+	}
+
+	public static WeaponsPreferences getSelected(Set<IRandomPreferences> preferences) {
+		for (IRandomPreferences preference : preferences) {
+			if (preference instanceof WeaponsPreferences) {
+				return (WeaponsPreferences) preference;
+			}
+		}
+		return null;
+	}
+
+	public float getMeleeWeaponProbability() {
+		return meleeWeaponProbability;
+	}
+
+	public float getRangeWeaponProbability() {
+		return rangeWeaponProbability;
 	}
 
 	@Override
 	public int maximum() {
-		return maximum;
+		return 0;
 	}
 
 	@Override
 	public int minimum() {
-		return minimum;
-	}
-
-	public static CombatPreferences getSelected(Set<IRandomPreferences> preferences) {
-		for (IRandomPreferences preference : preferences) {
-			if (preference instanceof CombatPreferences) {
-				return (CombatPreferences) preference;
-			}
-		}
-		return FAIR;
-	}
-
-	public WeaponsPreferences getDefaultWeaponPreferences() {
-		return defaultWeaponPreferences;
+		return 0;
 	}
 }
