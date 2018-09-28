@@ -183,7 +183,7 @@ public class RandomCharacterTests {
 		CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
 		characterPlayer.setSkillRank(AvailableSkillsFactory.getInstance().getElement("slugGuns", LANGUAGE), 5);
 		characterPlayer.setSkillRank(AvailableSkillsFactory.getInstance().getElement("energyGuns", LANGUAGE), 5);
-		characterPlayer.setSkillRank(AvailableSkillsFactory.getInstance().getElement("melee", LANGUAGE), 5);
+		characterPlayer.setSkillRank(AvailableSkillsFactory.getInstance().getElement("fight", LANGUAGE), 5);
 		characterPlayer.getCharacteristic(CharacteristicName.TECH).setValue(7);
 		characterPlayer.addBenefice(AvailableBeneficeFactory.getInstance().getElement("cash [firebirds1000]", LANGUAGE));
 		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0, CombatPreferences.BELLIGERENT);

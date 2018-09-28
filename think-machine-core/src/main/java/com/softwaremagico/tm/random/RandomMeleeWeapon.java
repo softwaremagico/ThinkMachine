@@ -28,7 +28,10 @@ import java.util.Set;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.character.characteristics.CharacteristicName;
+import com.softwaremagico.tm.character.equipment.weapons.Weapon;
 import com.softwaremagico.tm.character.equipment.weapons.WeaponType;
+import com.softwaremagico.tm.log.RandomGenerationLog;
 import com.softwaremagico.tm.random.selectors.IRandomPreferences;
 
 public class RandomMeleeWeapon extends RandomWeapon {
@@ -40,5 +43,41 @@ public class RandomMeleeWeapon extends RandomWeapon {
 	@Override
 	protected Set<WeaponType> weaponTypesFilter() {
 		return WeaponType.getMeleeTypes();
+	}
+
+	@Override
+	protected int getWeightCostModificator(Weapon weapon) {
+		if (weapon.getCost() > getCurrentMoney() / 1.1) {
+			return 10;
+		} else if (weapon.getCost() > getCurrentMoney() / 2) {
+			return 7;
+		} else if (weapon.getCost() > getCurrentMoney() / 3) {
+			return 5;
+		} else if (weapon.getCost() > getCurrentMoney() / 4) {
+			return 4;
+		} else if (weapon.getCost() > getCurrentMoney() / 5) {
+			return 3;
+		} else if (weapon.getCost() > getCurrentMoney() / 10) {
+			return 2;
+		} else {
+			// Melee weapons are usually cheap.
+			return 1;
+		}
+	}
+
+	@Override
+	protected int getWeightTechModificator(Weapon weapon) {
+		int weight = 0;
+		// Similar tech level preferred.
+		weight += TECH_LEVEL_BONUS / Math.pow(10, 2 * (getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).getValue() - weapon.getTechLevel()));
+		RandomGenerationLog.debug(
+				this.getClass().getName(),
+				"Weight tech bonus for '" + weapon + "' is '" + TECH_LEVEL_BONUS
+						/ Math.pow(10, 2 * (getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).getValue() - weapon.getTechLevel())) + "'.");
+		if (weight <= 0) {
+			// Melee weapons usually has very low tech level.
+			weight = 1;
+		}
+		return weight;
 	}
 }
