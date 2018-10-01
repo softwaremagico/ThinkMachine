@@ -24,6 +24,7 @@ package com.softwaremagico.tm.random;
  * #L%
  */
 
+import java.util.Objects;
 import java.util.Set;
 import java.util.TreeMap;
 
@@ -108,6 +109,11 @@ public abstract class RandomWeapon extends RandomSelector<Weapon> {
 
 		// I can afford it.
 		if (weapon.getCost() > getCurrentMoney()) {
+			return 0;
+		}
+
+		// Faction restriction.
+		if (weapon.getFaction() != null && Objects.equals(weapon.getFaction(), getCharacterPlayer().getFaction())) {
 			return 0;
 		}
 

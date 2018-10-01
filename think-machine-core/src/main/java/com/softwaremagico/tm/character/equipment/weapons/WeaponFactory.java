@@ -36,6 +36,8 @@ import com.softwaremagico.tm.character.equipment.DamageType;
 import com.softwaremagico.tm.character.equipment.DamageTypeFactory;
 import com.softwaremagico.tm.character.equipment.InvalidWeaponException;
 import com.softwaremagico.tm.character.equipment.Size;
+import com.softwaremagico.tm.character.factions.Faction;
+import com.softwaremagico.tm.character.factions.FactionsFactory;
 import com.softwaremagico.tm.character.skills.SkillDefinition;
 import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
 import com.softwaremagico.tm.language.ITranslator;
@@ -57,12 +59,14 @@ public class WeaponFactory extends XmlFactory<Weapon> {
 	private final static String RATE = "rate";
 	private final static String SIZE = "size";
 	private final static String COST = "cost";
+	private final static String FACTION = "faction";
 
 	private final static String TYPE = "type";
 	private final static String SPECIAL = "special";
 	private final static String DAMAGE_TYPE = "damageType";
 
 	private final static String AMMUNITION = "ammunition";
+	private final static String ACCESSORIES = "others";
 
 	private static WeaponFactory instance;
 
@@ -229,9 +233,30 @@ public class WeaponFactory extends XmlFactory<Weapon> {
 				}
 			}
 		}
+		
+		Set<Accessory> accessories = new HashSet<>();
+		String accesoriesNames = translator.getNodeValue(weaponId, ACCESSORIES);
+		if (accesoriesNames != null) {
+			StringTokenizer accessoryTokenizer = new StringTokenizer(accesoriesNames, ",");
+			while (accessoryTokenizer.hasMoreTokens()) {
+				try {
+					accessories.add(AccessoryFactory.getInstance().getElement(accessoryTokenizer.nextToken().trim(), language));
+				} catch (InvalidXmlElementException ixe) {
+					throw new InvalidWeaponException("Error in accessories '" + accesoriesNames + "' structure. Invalid accessory definition. ", ixe);
+				}
+			}
+		}
+
+		// Is a weapon of a faction?
+		Faction faction = null;
+		String factionId = translator.getNodeValue(weaponId, FACTION);
+		if (factionId != null) {
+			Faction restrictedFaction = FactionsFactory.getInstance().getElement(factionId, language);
+			faction = restrictedFaction;
+		}
 
 		weapon = new Weapon(weaponId, name, WeaponType.get(typeName), goal, characteristicDefintion, skill, damage, strength, range, shots, rate, techLevel,
-				techLevelSpecial, size, special, damageOfWeapon, cost, ammunitions);
+				techLevelSpecial, size, special, damageOfWeapon, cost, ammunitions, accessories, faction);
 
 		return weapon;
 	}

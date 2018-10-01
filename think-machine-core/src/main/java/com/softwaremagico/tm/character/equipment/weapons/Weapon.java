@@ -30,6 +30,7 @@ import com.softwaremagico.tm.Element;
 import com.softwaremagico.tm.character.characteristics.CharacteristicDefinition;
 import com.softwaremagico.tm.character.equipment.DamageType;
 import com.softwaremagico.tm.character.equipment.Size;
+import com.softwaremagico.tm.character.factions.Faction;
 import com.softwaremagico.tm.character.skills.SkillDefinition;
 
 public class Weapon extends Element<Weapon> {
@@ -51,6 +52,9 @@ public class Weapon extends Element<Weapon> {
 	private final WeaponType type;
 
 	private final Set<Ammunition> ammunitions;
+	private final Set<Accessory> accesories;
+
+	private final Faction faction;
 
 	public WeaponType getType() {
 		return type;
@@ -58,7 +62,7 @@ public class Weapon extends Element<Weapon> {
 
 	public Weapon(String id, String name, WeaponType type, String goal, CharacteristicDefinition characteristic, SkillDefinition skill, String damage,
 			int strength, String range, Integer shots, String rate, int tech, boolean techLevelSpecial, Size size, String special, Set<DamageType> damageTypes,
-			int cost, Set<Ammunition> ammunitions) {
+			int cost, Set<Ammunition> ammunitions, Set<Accessory> accesories, Faction faction) {
 		super(id, name);
 		this.characteristic = characteristic;
 		this.skill = skill;
@@ -76,6 +80,8 @@ public class Weapon extends Element<Weapon> {
 		this.damageTypes = damageTypes;
 		this.cost = cost;
 		this.ammunitions = ammunitions;
+		this.faction = faction;
+		this.accesories = accesories;
 	}
 
 	public String getRoll() {
@@ -154,6 +160,14 @@ public class Weapon extends Element<Weapon> {
 
 	public Set<Ammunition> getAmmunitions() {
 		return ammunitions;
+	}
+
+	public Faction getFaction() {
+		return faction;
+	}
+
+	public Set<Accessory> getAccesories() {
+		return accesories;
 	}
 
 }

@@ -24,6 +24,18 @@
 			<es>Láser</es>
 		</name>
 	</laser>
+	<xaser>
+		<name>
+			<en>Xaser</en>
+			<es>Xáser</es>
+		</name>
+	</xaser>
+	<graser>
+		<name>
+			<en>Graser</en>
+			<es>Gráser</es>
+		</name>
+	</graser>
 	<plasma>
 		<name>
 			<en>Plasma</en>

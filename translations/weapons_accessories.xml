@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<accessories>
+	<stock>
+		<en>Stock</en>
+		<es>Culata</es>
+	</stock>
+	<retractableStock>
+		<en>Stock (retractable)</en>
+		<es>Culata (retráctil)</es>
+	</retractableStock>
+	<sight>
+		<en>Sight</en>
+		<es>Escaso</es>
+	</sight>
+	<boltfeed>
+		<en>Boltfeed</en>
+		<es>Cinta</es>
+	</boltfeed>
+	<leverfeed>
+		<en>Leverfeed</en>
+		<es>Palanca</es>
+	</leverfeed>
+	<pumpfeed>
+		<en>Pumpfeed</en>
+		<es>Cinta Corredora</es>
+	</pumpfeed>
+	<sight2>
+		<en>Sight (2)</en>
+		<es>Mira (2)</es>
+	</sight2>
+	<sight3>
+		<en>Sight (3)</en>
+		<es>Mira (3)</es>
+	</sight3>
+	<sight4>
+		<en>Sight (4)</en>
+		<es>Mira (4)</es>
+	</sight4>
+	<autofeed>
+		<en>Autofeed</en>
+		<es>Autorecarga</es>
+	</autofeed>
+	<breakfeed>
+		<en>Breakfeed</en>
+		<es>Cañón partido</es>
+	</breakfeed>
+	<sawed>
+		<en>Sawed</en>
+		<es>Sierra</es>
+	</sawed>
+</accessories>

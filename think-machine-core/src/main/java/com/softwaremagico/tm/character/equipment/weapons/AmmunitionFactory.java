@@ -39,6 +39,7 @@ public class AmmunitionFactory extends XmlFactory<Ammunition> {
 	private final static String DAMAGE = "damage";
 	private final static String STRENGTH = "strength";
 	private final static String RANGE = "range";
+	private final static String COST = "cost";
 
 	private static AmmunitionFactory instance;
 
@@ -103,7 +104,14 @@ public class AmmunitionFactory extends XmlFactory<Ammunition> {
 			// Not mandatory.
 		}
 
-		ammunition = new Ammunition(ammunitionId, name, goal, damage, strength, range);
+		Integer cost = null;
+		try {
+			cost = Integer.parseInt(translator.getNodeValue(ammunitionId, COST));
+		} catch (Exception e) {
+			// Not mandatory.
+		}
+
+		ammunition = new Ammunition(ammunitionId, name, goal, damage, strength, range, cost);
 
 		return ammunition;
 	}

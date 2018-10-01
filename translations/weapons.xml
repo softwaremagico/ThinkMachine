@@ -215,6 +215,7 @@
       <rate>1/2</rate>
       <size>L</size>
       <cost>30</cost>
+      <faction>vorox</faction>
    </heavyFuthangaBow>
    <huntingBow>
       <name>
@@ -251,6 +252,7 @@
       <rate>1/2</rate>
       <size>L</size>
       <cost>20</cost>
+      <faction>vorox</faction>
    </lightFuthangaBow>
    <selfBow>
       <name>
@@ -341,6 +343,7 @@
       <rate>1</rate>
       <size>S</size>
       <cost>6</cost>
+      <others>stock</others>
    </lightCrossbow>
    <heavyCrossbow>
       <name>
@@ -359,6 +362,7 @@
       <rate>1</rate>
       <size>L</size>
       <cost>15</cost>
+      <others>stock</others>
    </heavyCrossbow>
    <mediumCrossbow>
       <name>
@@ -377,6 +381,7 @@
       <rate>1</rate>
       <size>M</size>
       <cost>10</cost>
+      <others>stock</others>
    </mediumCrossbow>
    <wristCrossbow>
       <name>
@@ -718,6 +723,7 @@
       <rate>2</rate>
       <size>M</size>
       <cost>350</cost>
+      <others>sight</others>
    </mitchauQuarryGun>
    <mitchauThunderer>
       <name>
@@ -898,6 +904,7 @@
       <rate>2</rate>
       <size>M</size>
       <cost>250</cost>
+      <others>retractableStock</others>
    </sumpterUlik>
    <typicalHvyAutofeed>
       <name>
@@ -970,6 +977,8 @@
       <rate>2</rate>
       <size>M</size>
       <cost>300</cost>
+      <others>retractableStock</others>
+      <ammunition>sumpterSword</ammunition>
    </sumpterUrthquake>
    <typicalManfeedRifle>
       <name>
@@ -988,6 +997,7 @@
       <rate>2</rate>
       <size>XL</size>
       <cost>200</cost>
+      <others>stock, boltfeed, leverfeed</others>
    </typicalManfeedRifle>
    <basicHuntingRifle>
       <name>
@@ -1006,6 +1016,7 @@
       <rate>2</rate>
       <size>XL</size>
       <cost>150</cost>
+	<others>stock, boltfeed, leverfeed</others>
    </basicHuntingRifle>
    <dragonfly>
       <name>
@@ -1024,6 +1035,7 @@
       <rate>1</rate>
       <size>XL</size>
       <cost>200</cost>
+       <others>stock, boltfeed</others>
    </dragonfly>
    <imperialRifle>
       <name>
@@ -1042,6 +1054,7 @@
       <rate>2</rate>
       <size>XL</size>
       <cost>200</cost>
+      <others>stock, boltfeed</others>
    </imperialRifle>
    <typicalSniperRifle>
       <name>
@@ -1060,6 +1073,7 @@
       <rate>2</rate>
       <size>XL</size>
       <cost>700</cost>
+      <others>stock, boltfeed, sight3</others>
    </typicalSniperRifle>
    <hyramGlory>
       <name>
@@ -1078,6 +1092,7 @@
       <rate>2(A)</rate>
       <size>XL</size>
       <cost>1000</cost>
+      <others>stock, boltfeed, sight2</others>
    </hyramGlory>
    <radirLongshot>
       <name>
@@ -1096,6 +1111,7 @@
       <rate>1</rate>
       <size>XL</size>
       <cost>1500</cost>
+      <others>stock, boltfeed, sight4</others>
    </radirLongshot>
    <typicalAutoRifle>
       <name>
@@ -1114,6 +1130,7 @@
       <rate>3(A)</rate>
       <size>XL</size>
       <cost>500</cost>
+       <others>stock, autofeed</others>
    </typicalAutoRifle>
    <blueLionM3>
       <name>
@@ -1132,6 +1149,7 @@
       <rate>3(A**)</rate>
       <size>XL</size>
       <cost>400</cost>
+       <others>stock, autofeed</others>
    </blueLionM3>
    <hyramSplendor>
       <name>
@@ -1150,6 +1168,7 @@
       <rate>3(A)</rate>
       <size>XL</size>
       <cost>600</cost>
+       <others>stock, autofeed</others>
    </hyramSplendor>
    <massariStomper>
       <name>
@@ -1168,6 +1187,7 @@
       <rate>3(A)</rate>
       <size>XL</size>
       <cost>500</cost>
+       <others>stock, autofeed</others>
    </massariStomper>
    <hazatModel68>
       <name>
@@ -1186,6 +1206,8 @@
       <rate>3(A)</rate>
       <size>XL</size>
       <cost>500</cost>
+      <faction>hazat</faction>
+       <others>stock, autofeed</others>
    </hazatModel68>
    <typicalSMG>
       <name>
@@ -1225,6 +1247,7 @@
       <damageType>stock</damageType>
       <special>pumpfeed</special>
       <ammunition>solidSlug</ammunition>
+       <others>stock, pumpfeed</others>
    </typicalShotgun>
    <typicalTwin-barrel>
       <name>
@@ -1243,6 +1266,7 @@
       <rate>2</rate>
       <size>L</size>
       <cost>200</cost>
+      <others>stock, breakfeed</others>
    </typicalTwin-barrel>
    <dreskelBoomer>
       <name>
@@ -1261,6 +1285,7 @@
       <rate>2</rate>
       <size>L</size>
       <cost>325</cost>
+      <others>stock, pumpfeed</others>
    </dreskelBoomer>
    <dreskelGatling>
       <name>
@@ -1279,6 +1304,7 @@
       <rate>2(A**)</rate>
       <size>L</size>
       <cost>450</cost>
+      <others>stock, autofeed</others>
    </dreskelGatling>
    <mHazatRiot>
       <name>
@@ -1297,6 +1323,9 @@
       <rate>2(A**)</rate>
       <size>L</size>
       <cost>400</cost>
+      <faction>hazat</faction>
+      <others>stock, autofeed</others>
+      <ammunition>riotSolidSlug</ammunition>
    </mHazatRiot>
    <xienShortBarrel>
       <name>
@@ -1315,6 +1344,8 @@
       <rate>2</rate>
       <size>L</size>
       <cost>275</cost>
+      <others>stock, leverfeed, sawed</others>
+      <ammunition>xienSolidSlug</ammunition>
    </xienShortBarrel>
    <cancanaghDartgunPistol>
       <name>
@@ -1352,6 +1383,7 @@
       <rate>2</rate>
       <size>M</size>
       <cost>150</cost>
+      <faction>decados</faction>
    </decadosGroinGun>
    <hailstormSplinterPistol>
       <name>
@@ -1687,7 +1719,7 @@
    <martechMidgetPalmLaser>
       <name>
          <en>Martech Midget Palm Laser</en>
-         <es />
+         <es>Láser de Mano Martech Midget</es>
       </name>
       <type>LASER</type>
       <techLevel>6</techLevel>
@@ -1725,7 +1757,7 @@
    <martechAmber>
       <name>
          <en>Martech Amber</en>
-         <es />
+         <es>Martech Ámbar</es>
       </name>
       <characteristic>dexterity</characteristic>
       <skill>energyGuns</skill>
@@ -1744,7 +1776,7 @@
    <bannerCabalXaserPistol>
       <name>
          <en>Banner Cabal Xaser Pistol</en>
-         <es />
+         <es>Pistola Camarilla del Estandarte Xáser</es>
       </name>
       <characteristic>dexterity</characteristic>
       <skill>energyGuns</skill>
@@ -1758,12 +1790,12 @@
       <rate>2</rate>
       <size>S</size>
       <cost>500</cost>
-      <damageType>laser</damageType>
+      <damageType>xaser</damageType>
    </bannerCabalXaserPistol>
    <bannerCabalGraserPistol>
       <name>
          <en>Banner Cabal Graser Pistol</en>
-         <es />
+         <es>Pistola Camarilla del Estandarte Xáser</es>
       </name>
       <characteristic>dexterity</characteristic>
       <skill>energyGuns</skill>
@@ -1777,12 +1809,12 @@
       <rate>3</rate>
       <size>S</size>
       <cost>900</cost>
-      <damageType>laser</damageType>
+      <damageType>graser</damageType>
    </bannerCabalGraserPistol>
    <martechIndigo>
       <name>
          <en>Martech Indigo</en>
-         <es />
+         <es>Martech Índigo</es>
       </name>
       <characteristic>dexterity</characteristic>
       <skill>energyGuns</skill>
@@ -1797,11 +1829,12 @@
       <size>XL</size>
       <cost>500</cost>
       <damageType>laser</damageType>
+      <others>stock</others>
    </martechIndigo>
    <martechSafireSniper>
       <name>
          <en>Martech Safire (Sniper)</en>
-         <es />
+         <es>Martech Zafiro (Francotirador)</es>
       </name>
       <characteristic>dexterity</characteristic>
       <skill>energyGuns</skill>
@@ -1816,11 +1849,12 @@
       <size>XL</size>
       <cost>600</cost>
       <damageType>laser</damageType>
+      <others>stock</others>
    </martechSafireSniper>
    <bannerCabalXaserRifle>
       <name>
          <en>Banner Cabal Xaser Rifle</en>
-         <es />
+         <es>Rifle Camarilla del Estandarte Xáser</es>
       </name>
       <characteristic>dexterity</characteristic>
       <skill>energyGuns</skill>
@@ -1834,12 +1868,13 @@
       <rate>2</rate>
       <size>XL</size>
       <cost>1000</cost>
-      <damageType>laser</damageType>
+      <damageType>xaser</damageType>
+      <others>stock</others>
    </bannerCabalXaserRifle>
    <bannerCabalGraserRifle>
       <name>
          <en>Banner Cabal Graser Rifle</en>
-         <es />
+         <es>Rifle Camarilla del Estandarte Gráser</es>
       </name>
       <characteristic>dexterity</characteristic>
       <skill>energyGuns</skill>
@@ -1853,12 +1888,13 @@
       <rate>2</rate>
       <size>XL</size>
       <cost>2000</cost>
-      <damageType>laser</damageType>
+      <damageType>graser</damageType>
+      <others>stock</others>
    </bannerCabalGraserRifle>
    <martechRed>
       <name>
          <en>Martech Red</en>
-         <es />
+         <es>Martech Rojo</es>
       </name>
       <characteristic>dexterity</characteristic>
       <skill>energyGuns</skill>
@@ -1873,11 +1909,12 @@
       <size>XL</size>
       <cost>700</cost>
       <damageType>laser</damageType>
+      <others>stock</others>
    </martechRed>
    <varstenBlacklight>
       <name>
          <en>Varsten Blacklight</en>
-         <es />
+         <es>Varsten Blacklight</es>
       </name>
       <characteristic>dexterity</characteristic>
       <skill>energyGuns</skill>
@@ -1892,11 +1929,12 @@
       <size>XL</size>
       <cost>700</cost>
       <damageType>laser</damageType>
+      <others>stock</others>
    </varstenBlacklight>
    <soeAlembic>
       <name>
          <en>SOE Alembic</en>
-         <es />
+         <es>SOE Alembic</es>
       </name>
       <characteristic>dexterity</characteristic>
       <skill>energyGuns</skill>
@@ -1915,7 +1953,7 @@
    <lankEruptor>
       <name>
          <en>Lank Eruptor</en>
-         <es />
+         <es>Eruptor Lank</es>
       </name>
       <characteristic>dexterity</characteristic>
       <skill>energyGuns</skill>
@@ -1934,7 +1972,7 @@
    <soeCrucible>
       <name>
          <en>SOE Crucible</en>
-         <es />
+         <es>SOE Crucible</es>
       </name>
       <characteristic>dexterity</characteristic>
       <skill>energyGuns</skill>
@@ -1949,11 +1987,12 @@
       <size>XL</size>
       <cost>1000</cost>
       <damageType>plasma</damageType>
+      <others>stock</others>
    </soeCrucible>
    <nitobiBlasterAxe>
       <name>
          <en>Nitobi Blaster Axe</en>
-         <es />
+         <es>Hoja Bláster Nitobi</es>
       </name>
       <characteristic>dexterity</characteristic>
       <skill>energyGuns</skill>
@@ -1968,11 +2007,13 @@
       <size>XL</size>
       <cost>3000</cost>
       <damageType>plasma</damageType>
+      <others>stock</others>
+       <ammunition>nitobiAxe</ammunition>
    </nitobiBlasterAxe>
    <soeVolcano>
       <name>
          <en>SOE Volcano</en>
-         <es />
+         <es>SOE Volcano</es>
       </name>
       <characteristic>dexterity</characteristic>
       <skill>energyGuns</skill>
@@ -1987,11 +2028,12 @@
       <size>L</size>
       <cost>1200</cost>
       <damageType>plasma</damageType>
+      <others>stock</others>
    </soeVolcano>
    <lankIncinerator>
       <name>
          <en>Lank Incinerator</en>
-         <es />
+         <es>Incinerador Lank</es>
       </name>
       <characteristic>dexterity</characteristic>
       <skill>energyGuns</skill>
@@ -2006,26 +2048,12 @@
       <size>L</size>
       <cost>1400</cost>
       <damageType>plasma</damageType>
+      <others>stock</others>
    </lankIncinerator>
-   <mace>
-      <name>
-         <en>Mace</en>
-         <es>Maza</es>
-      </name>
-      <characteristic>dexterity</characteristic>
-      <skill>fight</skill>
-      <type>MELEE</type>
-      <techLevel>1</techLevel>
-      <goal>0</goal>
-      <damage>5</damage>
-      <strength>3</strength>
-      <size>L</size>
-      <cost>10</cost>
-   </mace>
    <wireblade>
       <name>
          <en>Wireblade</en>
-         <es />
+         <es>Filoespada</es>
       </name>
       <characteristic>dexterity</characteristic>
       <skill>artifactMelee</skill>
@@ -2059,7 +2087,7 @@
    <mistSword>
       <name>
          <en>Mist Sword</en>
-         <es />
+         <es>Espada Mística</es>
       </name>
       <characteristic>dexterity</characteristic>
       <skill>artifactMelee</skill>
@@ -2075,5 +2103,20 @@
       <cost>30000</cost>
       <damageType>plasma, hard, psi</damageType>
    </mistSword>
+      <mace>
+      <name>
+         <en>Mace</en>
+         <es>Maza</es>
+      </name>
+      <characteristic>dexterity</characteristic>
+      <skill>fight</skill>
+      <type>MELEE</type>
+      <techLevel>1</techLevel>
+      <goal>0</goal>
+      <damage>5</damage>
+      <strength>3</strength>
+      <size>L</size>
+      <cost>10</cost>
+   </mace>
 </weapons>
 

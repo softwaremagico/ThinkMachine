@@ -10,4 +10,45 @@
 		<strength>3</strength>
 		<range>30/80</range>
 	</solidSlug>
+	<nitobiAxe>
+		<name>
+			<en>Axe</en>
+			<es>Hacha</es>
+		</name>
+		<goal>0</goal>
+		<damage>5</damage>
+		<strength>5</strength>
+		<range>--</range>
+	</nitobiAxe>
+	<sumpterSword>
+		<name>
+			<en>Longsword</en>
+			<es>Espada larga</es>
+		</name>
+		<goal>+1</goal>
+		<damage>5</damage>
+		<strength>5</strength>
+		<range>30/50</range>
+		<cost>350</cost>
+	</sumpterSword>
+	<riotSolidSlug>
+		<name>
+			<en>Solid Slug (.47)</en>
+			<es>Proyectil Sólido (.47)</es>
+		</name>
+		<goal>0</goal>
+		<damage>7</damage>
+		<strength>3</strength>
+		<range>30/80</range>
+	</riotSolidSlug>
+	<xienSolidSlug>
+		<name>
+			<en>Solid Slug (.47)</en>
+			<es>Proyectil Sólido (.47)</es>
+		</name>
+		<goal>-1</goal>
+		<damage>7</damage>
+		<strength>3</strength>
+		<range>20/60</range>
+	</xienSolidSlug>
 </ammunition>

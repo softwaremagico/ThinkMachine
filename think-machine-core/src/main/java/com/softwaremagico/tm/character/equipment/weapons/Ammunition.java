@@ -31,13 +31,15 @@ public class Ammunition extends Element<Ammunition> {
 	private final String damage;
 	private final int strength;
 	private final String range;
+	private final Integer cost;
 
-	public Ammunition(String id, String name, String goal, String damage, int strength, String range) {
+	public Ammunition(String id, String name, String goal, String damage, int strength, String range, Integer cost) {
 		super(id, name);
 		this.goal = goal;
 		this.damage = damage;
 		this.strength = strength;
 		this.range = range;
+		this.cost = cost;
 	}
 
 	public String getGoal() {
@@ -61,6 +63,10 @@ public class Ammunition extends Element<Ammunition> {
 			return strength + "";
 		}
 		return range;
+	}
+
+	public Integer getCost() {
+		return cost;
 	}
 
 }

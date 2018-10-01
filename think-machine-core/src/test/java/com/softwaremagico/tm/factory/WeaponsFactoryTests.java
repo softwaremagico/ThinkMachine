@@ -29,6 +29,7 @@ import junit.framework.Assert;
 import org.testng.annotations.Test;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
+import com.softwaremagico.tm.character.equipment.weapons.AccessoryFactory;
 import com.softwaremagico.tm.character.equipment.weapons.AmmunitionFactory;
 import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
 
@@ -47,8 +48,18 @@ public class WeaponsFactoryTests {
 	}
 
 	@Test
+	public void readAccessory() throws InvalidXmlElementException {
+		Assert.assertTrue(AccessoryFactory.getInstance().getElements(LANGUAGE).size() > 0);
+	}
+
+	@Test
 	public void checkShotgun() throws InvalidXmlElementException {
-		Assert.assertTrue(WeaponFactory.getInstance().getElement("typicalShotgun", LANGUAGE).getAmmunitions().size() > 0);
+		Assert.assertEquals(1, WeaponFactory.getInstance().getElement("typicalShotgun", LANGUAGE).getAmmunitions().size());
+	}
+
+	@Test
+	public void checkBasicHuntingRifle() throws InvalidXmlElementException {
+		Assert.assertEquals(3, WeaponFactory.getInstance().getElement("basicHuntingRifle", LANGUAGE).getAccesories().size());
 	}
 
 }

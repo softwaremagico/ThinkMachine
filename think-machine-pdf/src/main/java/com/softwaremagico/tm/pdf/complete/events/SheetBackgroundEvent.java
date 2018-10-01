@@ -56,9 +56,6 @@ public class SheetBackgroundEvent extends PdfPageEventHelper {
 
 		try {
 			leftCorner = Image.getInstance(SheetBackgroundEvent.class.getResource("/" + FadingSunsTheme.LEFT_CORNER_IMAGE));
-			// leftCorner.setAbsolutePosition(IMAGE_BORDER,
-			// document.getPageSize().getHeight() - IMAGE_HEIGHT -
-			// IMAGE_BORDER);
 			leftCorner.setAbsolutePosition(IMAGE_BORDER, document.getPageSize().getHeight() - IMAGE_HEIGHT - IMAGE_BORDER);
 			leftCorner.scaleToFit(IMAGE_WIDTH, IMAGE_HEIGHT);
 		} catch (BadElementException | IOException e) {
@@ -67,9 +64,6 @@ public class SheetBackgroundEvent extends PdfPageEventHelper {
 
 		try {
 			mainTitle = Image.getInstance(SheetBackgroundEvent.class.getResource("/" + FadingSunsTheme.MAIN_TITLE_IMAGE));
-			// leftCorner.setAbsolutePosition(IMAGE_BORDER,
-			// document.getPageSize().getHeight() - IMAGE_HEIGHT -
-			// IMAGE_BORDER);
 			float barWeight = document.getPageSize().getWidth() - IMAGE_WIDTH * 2;
 			mainTitle.setAbsolutePosition(IMAGE_HEIGHT + IMAGE_BORDER * 2 + 3, document.getPageSize().getHeight() - BAR_HEIGHT - IMAGE_BORDER);
 			mainTitle.scaleAbsolute(barWeight, BAR_HEIGHT);
