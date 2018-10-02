@@ -51,4 +51,40 @@
 		<strength>3</strength>
 		<range>20/60</range>
 	</xienSolidSlug>
+	<capekUnderWater>
+		<name>
+			<en>Underwater use</en>
+			<es>Bajo el Agua</es>
+		</name>
+		<goal>-</goal>
+		<damage>7/6/5</damage>
+		<range>30/90/X</range>
+	</capekUnderWater>
+	<sabotHiron>
+		<name>
+			<en>Stone/Airon</en>
+			<es>Piedra/Hierro</es>
+		</name>
+		<goal>-</goal>
+		<damage>5/4/3</damage>
+		<range>-</range>
+	</sabotHiron>
+	<sabotPlastic>
+		<name>
+			<en>Plastic/Glass</en>
+			<es>Plástico/Cristal</es>
+		</name>
+		<goal>-</goal>
+		<damage>4/3/2</damage>
+		<range>-</range>
+	</sabotPlastic>
+	<sabotWood>
+		<name>
+			<en>Wood/Ice</en>
+			<es>Madera/Hielo</es>
+		</name>
+		<goal>-</goal>
+		<damage>3/2/1</damage>
+		<range>-</range>
+	</sabotWood>
 </ammunition>

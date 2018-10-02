@@ -48,4 +48,24 @@
 		<en>Sawed</en>
 		<es>Sierra</es>
 	</sawed>
+	<hidden>
+		<en>Hidden</en>
+		<es>Oculta</es>
+	</hidden>
+	<flechette>
+		<en>Flechette</en>
+		<es>Flechette</es>
+	</flechette>
+	<syringe>
+		<en>Syringe</en>
+		<es>Jeringa</es>
+	</syringe>
+	<muzzlefeed>
+		<en>Muzzlefeed</en>
+		<es>Avancarga</es>
+	</muzzlefeed>
+	<compressedAir>
+		<en>Compressed air</en>
+		<es>Aire comprimido</es>
+	</compressedAir>
 </accessories>

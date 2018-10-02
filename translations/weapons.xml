@@ -1364,6 +1364,7 @@
       <rate>1</rate>
       <size>S</size>
       <cost>100</cost>
+      <others>syringe, muzzlefeed</others>
    </cancanaghDartgunPistol>
    <decadosGroinGun>
       <name>
@@ -1384,6 +1385,7 @@
       <size>M</size>
       <cost>150</cost>
       <faction>decados</faction>
+      <others>hidden</others>
    </decadosGroinGun>
    <hailstormSplinterPistol>
       <name>
@@ -1402,6 +1404,7 @@
       <rate>3</rate>
       <size>M</size>
       <cost>200</cost>
+      <others>flechette</others>
    </hailstormSplinterPistol>
    <reznorNailGun>
       <name>
@@ -1420,6 +1423,7 @@
       <rate>3(A)</rate>
       <size>M</size>
       <cost>300</cost>
+      <others>autofeed, flechette</others>
    </reznorNailGun>
    <nailgunPowerTool>
       <name>
@@ -1457,6 +1461,8 @@
       <rate>2</rate>
       <size>XL</size>
       <cost>800</cost>
+      <others>stock, boltfeed</others>
+      <ammunition>capekUnderWater</ammunition>
    </capekAquaRifle>
    <cupidLongarm>
       <name>
@@ -1475,7 +1481,28 @@
       <rate>1</rate>
       <size>XL</size>
       <cost>200</cost>
+      <others>muzzlefeed, syringe</others>
    </cupidLongarm>
+   <sabotGun>
+      <name>
+         <en>Sabot Gun</en>
+         <es>Arma de Zanco</es>
+      </name>
+      <characteristic>dexterity</characteristic>
+      <skill>slugGuns</skill>
+      <type>SLUG</type>
+      <techLevel>7</techLevel>
+      <goal>+1/0/-1</goal>
+      <damage>6/5/4</damage>
+      <strength>0</strength>
+      <range>15/60/X</range>
+      <shots>20</shots>
+      <rate>2(A)</rate>
+      <size>XL</size>
+      <cost>2000</cost>
+      <others>stock, autofeed, compressedAir</others>
+      <ammunition>sabotHiron, sabotPlastic, sabotWood</ammunition>
+   </sabotGun>
    <blastPellet>
       <name>
          <en>Blast Pellet</en>
