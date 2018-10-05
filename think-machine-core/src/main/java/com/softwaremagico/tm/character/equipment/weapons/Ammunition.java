@@ -29,11 +29,11 @@ import com.softwaremagico.tm.Element;
 public class Ammunition extends Element<Ammunition> {
 	private final String goal;
 	private final String damage;
-	private final int strength;
+	private final Integer strength;
 	private final String range;
 	private final Integer cost;
 
-	public Ammunition(String id, String name, String goal, String damage, int strength, String range, Integer cost) {
+	public Ammunition(String id, String name, String goal, String damage, Integer strength, String range, Integer cost) {
 		super(id, name);
 		this.goal = goal;
 		this.damage = damage;
@@ -50,7 +50,7 @@ public class Ammunition extends Element<Ammunition> {
 		return damage;
 	}
 
-	public int getStrength() {
+	public Integer getStrength() {
 		return strength;
 	}
 
@@ -60,7 +60,10 @@ public class Ammunition extends Element<Ammunition> {
 
 	public String getStrengthOrRange() {
 		if (range == null) {
-			return strength + "";
+			if (strength != null) {
+				return strength + "";
+			}
+			return "";
 		}
 		return range;
 	}

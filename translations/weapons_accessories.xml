@@ -68,4 +68,12 @@
 		<en>Compressed air</en>
 		<es>Aire comprimido</es>
 	</compressedAir>
+	<bipod>
+		<en>Bipod</en>
+		<es>Bípode</es>
+	</bipod>
+	<gunTechKit4>
+		<en>Gun Tech Kit (TL4)</en>
+		<es>Kit de tecnología para el arma (NT4)</es>
+	</gunTechKit4>
 </accessories>

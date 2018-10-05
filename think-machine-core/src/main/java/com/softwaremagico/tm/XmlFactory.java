@@ -46,7 +46,8 @@ public abstract class XmlFactory<T extends Element<T>> {
 		List<Language> languages = getTranslator().getAvailableLanguages();
 		for (Language language : languages) {
 			try {
-				getElements(language.getAbbreviature());
+				List<T> elements = getElements(language.getAbbreviature());
+				MachineLog.debug(this.getClass().getName(), "Loaded "+elements.size()+" elements at '"+this.getClass().getSimpleName()+"'.");
 			} catch (InvalidXmlElementException e) {
 				MachineLog.errorMessage(this.getClass().getName(), e);
 			}

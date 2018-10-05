@@ -89,10 +89,12 @@ public class AmmunitionFactory extends XmlFactory<Ammunition> {
 			throw new InvalidWeaponException("Invalid damage value in ammunition '" + ammunitionId + "'.");
 		}
 
-		int strength = 0;
+		Integer strength = null;
 		try {
 			String strengthValue = translator.getNodeValue(ammunitionId, STRENGTH);
-			strength = Integer.parseInt(strengthValue);
+			if (strengthValue != null) {
+				strength = Integer.parseInt(strengthValue);
+			}
 		} catch (Exception e) {
 			throw new InvalidWeaponException("Invalid strength value in ammunition '" + ammunitionId + "'.");
 		}
