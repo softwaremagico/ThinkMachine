@@ -46,7 +46,7 @@ public class Weapon extends Element<Weapon> {
 
 	private final String special;
 	private final Set<DamageType> damageTypes;
-	private final int cost;
+	private final float cost;
 	private final SkillDefinition skill;
 	private final CharacteristicDefinition characteristic;
 	private final WeaponType type;
@@ -62,7 +62,7 @@ public class Weapon extends Element<Weapon> {
 
 	public Weapon(String id, String name, WeaponType type, String goal, CharacteristicDefinition characteristic, SkillDefinition skill, String damage,
 			int strength, String range, Integer shots, String rate, int tech, boolean techLevelSpecial, Size size, String special, Set<DamageType> damageTypes,
-			int cost, Set<Ammunition> ammunitions, Set<Accessory> accesories, Faction faction) {
+			float cost, Set<Ammunition> ammunitions, Set<Accessory> accesories, Faction faction) {
 		super(id, name);
 		this.characteristic = characteristic;
 		this.skill = skill;
@@ -131,7 +131,7 @@ public class Weapon extends Element<Weapon> {
 		return range;
 	}
 
-	public int getCost() {
+	public float getCost() {
 		return cost;
 	}
 

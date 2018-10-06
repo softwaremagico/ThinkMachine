@@ -44,14 +44,15 @@ public abstract class XmlFactory<T extends Element<T>> {
 
 	protected void initialize() {
 		List<Language> languages = getTranslator().getAvailableLanguages();
+		List<T> elements = new ArrayList<>();
 		for (Language language : languages) {
 			try {
-				List<T> elements = getElements(language.getAbbreviature());
-				MachineLog.debug(this.getClass().getName(), "Loaded "+elements.size()+" elements at '"+this.getClass().getSimpleName()+"'.");
+				elements = getElements(language.getAbbreviature());
 			} catch (InvalidXmlElementException e) {
 				MachineLog.errorMessage(this.getClass().getName(), e);
 			}
 		}
+		MachineLog.debug(this.getClass().getName(), "Loaded " + elements.size() + " elements at '" + this.getClass().getSimpleName() + "'.");
 	}
 
 	protected abstract ITranslator getTranslator();

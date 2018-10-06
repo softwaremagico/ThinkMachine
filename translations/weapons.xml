@@ -1,5 +1,503 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <weapons>
+	<arbata>
+		<name>
+			<en>Arbat’a (Crystal Sword)</en>
+			<es>Arbat'a (Espada de Cristal)</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>fight</skill>
+		<type>MELEE</type>
+		<techLevel>2</techLevel>
+		<goal>0</goal>
+		<damage>6</damage>
+		<strength>3</strength>
+		<size>L</size>
+		<cost>1000</cost>
+	</arbata>
+	<axe>
+		<name>
+			<en>Axe</en>
+			<es>Hacha</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>fight</skill>
+		<type>MELEE</type>
+		<techLevel>1</techLevel>
+		<goal>0</goal>
+		<damage>7</damage>
+		<strength>5</strength>
+		<size>L</size>
+		<cost>5</cost>
+	</axe>
+	<bodyShield>
+		<name>
+			<en>Body Shield</en>
+			<es>Escudo de Cuerpo</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>fight</skill>
+		<type>MELEE</type>
+		<techLevel>0</techLevel>
+		<goal>0</goal>
+		<damage>3</damage>
+		<strength>4</strength>
+		<size>L</size>
+		<cost>15</cost>
+	</bodyShield>
+	<buckler>
+		<name>
+			<en>Buckler</en>
+			<es>Rodela</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>fight</skill>
+		<type>MELEE</type>
+		<techLevel>1</techLevel>
+		<goal>0</goal>
+		<damage>1</damage>
+		<strength>2</strength>
+		<size>M</size>
+		<cost>7</cost>
+	</buckler>
+	<cestus>
+		<name>
+			<en>Cestus</en>
+			<es>Cestus</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>fight</skill>
+		<type>MELEE</type>
+		<techLevel>1</techLevel>
+		<goal>0</goal>
+		<damage>2</damage>
+		<strength>1</strength>
+		<size>XS</size>
+		<cost>1</cost>
+	</cestus>
+	<club>
+		<name>
+			<en>Club</en>
+			<es>Porra</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>fight</skill>
+		<type>MELEE</type>
+		<techLevel>0</techLevel>
+		<goal>0</goal>
+		<damage>4</damage>
+		<strength>2</strength>
+		<size>L</size>
+		<cost>0.5</cost>
+	</club>
+	<curvedSword>
+		<name>
+			<en>Curved Sword</en>
+			<es>Espada Curva</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>fight</skill>
+		<type>MELEE</type>
+		<techLevel>2</techLevel>
+		<goal>0</goal>
+		<damage>6</damage>
+		<strength>3</strength>
+		<size>L</size>
+		<cost>20</cost>
+	</curvedSword>
+	<dagger>
+		<name>
+			<en>Dagger</en>
+			<es>Daga</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>fight</skill>
+		<type>MELEE</type>
+		<techLevel>1</techLevel>
+		<goal>0</goal>
+		<damage>4</damage>
+		<strength>2</strength>
+		<size>M</size>
+		<cost>4</cost>
+	</dagger>
+	<flail>
+		<name>
+			<en>Flail</en>
+			<es>Mayal</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>fight</skill>
+		<type>MELEE</type>
+		<techLevel>1</techLevel>
+		<goal>0</goal>
+		<damage>4</damage>
+		<strength>4</strength>
+		<size>L</size>
+		<cost>4</cost>
+	</flail>
+	<frapStick>
+		<name>
+			<en>Frap Stick</en>
+			<es>Palo de Amarre</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>fight</skill>
+		<type>MELEE</type>
+		<techLevel>4</techLevel>
+		<goal>0</goal>
+		<damage>2/6</damage>
+		<strength>5</strength>
+		<size>L</size>
+		<cost>15</cost>
+	</frapStick>
+	<garrote>
+		<name>
+			<en>Garrote</en>
+			<es>Garrote</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>fight</skill>
+		<type>MELEE</type>
+		<techLevel>0</techLevel>
+		<goal>–1</goal>
+		<damage>Strangle</damage>
+		<strength>1</strength>
+		<size>XS</size>
+		<cost>5</cost>
+	</garrote>
+	<glankesh>
+		<name>
+			<en>Glankesh (Vorox Sword)</en>
+			<es>Glankesh (Espada Vorox)</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>fight</skill>
+		<type>MELEE</type>
+		<techLevel>2</techLevel>
+		<goal>0</goal>
+		<damage>6</damage>
+		<strength>4</strength>
+		<size>L</size>
+		<cost>15</cost>
+	</glankesh>
+	<hollowKnife>
+		<name>
+			<en>Hollow Knife</en>
+			<es>Cuchillo Hueco</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>fight</skill>
+		<type>MELEE</type>
+		<techLevel>4</techLevel>
+		<goal>0</goal>
+		<damage>3</damage>
+		<strength>1</strength>
+		<size>M</size>
+		<cost>50</cost>
+	</hollowKnife>
+	<knife>
+		<name>
+			<en>Knife</en>
+			<es>Cuchillo</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>fight</skill>
+		<type>MELEE</type>
+		<techLevel>0</techLevel>
+		<goal>0</goal>
+		<damage>3</damage>
+		<strength>1</strength>
+		<size>S</size>
+		<cost>2</cost>
+	</knife>
+	<kurganSideSword>
+		<name>
+			<en>Kurgan Side Sword</en>
+			<es>Espada Ropera Kurgan</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>fight</skill>
+		<type>MELEE</type>
+		<techLevel>4</techLevel>
+		<goal>0</goal>
+		<damage>6</damage>
+		<strength>2</strength>
+		<size>L</size>
+		<cost>45</cost>
+	</kurganSideSword>
+	<kossackChainsword>
+		<name>
+			<en>Kossack Chainsword</en>
+			<es>Espada de Esclavista Cosaco</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>fight</skill>
+		<type>MELEE</type>
+		<techLevel>5</techLevel>
+		<goal>–1</goal>
+		<damage>7</damage>
+		<strength>5</strength>
+		<size>L</size>
+		<cost>150</cost>
+	</kossackChainsword>
+	<mace>
+		<name>
+			<en>Mace</en>
+			<es>Maza</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>fight</skill>
+		<type>MELEE</type>
+		<techLevel>1</techLevel>
+		<goal>0</goal>
+		<damage>5</damage>
+		<strength>3</strength>
+		<size>L</size>
+		<cost>10</cost>
+	</mace>
+	<mainGauche>
+		<name>
+			<en>Main Gauche</en>
+			<es>Daga de Mirsericordia</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>fight</skill>
+		<type>MELEE</type>
+		<techLevel>2</techLevel>
+		<goal>0</goal>
+		<damage>3</damage>
+		<strength>2</strength>
+		<size>M</size>
+		<cost>5</cost>
+	</mainGauche>
+	<pick>
+		<name>
+			<en>Pick</en>
+			<es>Pico</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>fight</skill>
+		<type>MELEE</type>
+		<techLevel>1</techLevel>
+		<goal>1</goal>
+		<damage>7</damage>
+		<strength>6</strength>
+		<size>L</size>
+		<cost>5</cost>
+	</pick>
+	<rapier>
+		<name>
+			<en>Rapier</en>
+			<es>Estoque</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>fight</skill>
+		<type>MELEE</type>
+		<techLevel>2</techLevel>
+		<goal>0</goal>
+		<damage>5</damage>
+		<strength>3</strength>
+		<size>L</size>
+		<cost>20</cost>
+	</rapier>
+	<saber>
+		<name>
+			<en>Saber</en>
+			<es>Sable</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>fight</skill>
+		<type>MELEE</type>
+		<techLevel>3</techLevel>
+		<goal>0</goal>
+		<damage>6</damage>
+		<strength>6</strength>
+		<size>L</size>
+		<cost>20</cost>
+	</saber>
+	<spear>
+		<name>
+			<en>Spear</en>
+			<es>Lanza</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>fight</skill>
+		<type>MELEE</type>
+		<techLevel>0</techLevel>
+		<goal>0</goal>
+		<damage>5</damage>
+		<strength>3</strength>
+		<size>XL</size>
+		<cost>2</cost>
+	</spear>
+	<splinterSword>
+		<name>
+			<en>Splinter Sword</en>
+			<es>Espada de Esquirlas</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>fight</skill>
+		<type>MELEE</type>
+		<techLevel>5</techLevel>
+		<goal>0</goal>
+		<damage>5</damage>
+		<strength>3</strength>
+		<size>L</size>
+		<cost>50</cost>
+	</splinterSword>
+	<staff>
+		<name>
+			<en>Staff</en>
+			<es>Báculo</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>fight</skill>
+		<type>MELEE</type>
+		<techLevel>0</techLevel>
+		<goal>0</goal>
+		<damage>4</damage>
+		<strength>3</strength>
+		<size>XL</size>
+		<cost>0.5</cost>
+	</staff>
+	<suresnakeWhip>
+		<name>
+			<en>Suresnake Whip</en>
+			<es>Látigo Serpiente</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>fight</skill>
+		<type>MELEE</type>
+		<techLevel>7</techLevel>
+		<goal>0/+3</goal>
+		<damage>3</damage>
+		<strength>4</strength>
+		<size>XL</size>
+		<cost>100</cost>
+	</suresnakeWhip>
+	<trenchKnife>
+		<name>
+			<en>Trench Knife</en>
+			<es>Cuchillo de Trinchera</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>fight</skill>
+		<type>MELEE</type>
+		<techLevel>3</techLevel>
+		<goal>0</goal>
+		<damage>3/+1</damage>
+		<strength>1</strength>
+		<size>M</size>
+		<cost>6</cost>
+	</trenchKnife>
+	<two-HandedAxe>
+		<name>
+			<en>Two-Handed Axe</en>
+			<es>Hacha a Dos Manos</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>fight</skill>
+		<type>MELEE</type>
+		<techLevel>1</techLevel>
+		<goal>0</goal>
+		<damage>8</damage>
+		<strength>6</strength>
+		<size>XL</size>
+		<cost>30</cost>
+	</two-HandedAxe>
+	<two-HandedSword>
+		<name>
+			<en>Two-Handed Sword</en>
+			<es>Espada a Dos Manos</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>fight</skill>
+		<type>MELEE</type>
+		<techLevel>1</techLevel>
+		<goal>0</goal>
+		<damage>8</damage>
+		<strength>6</strength>
+		<size>XL</size>
+		<cost>40</cost>
+	</two-HandedSword>
+	<warSword>
+		<name>
+			<en>War Sword</en>
+			<es>Espada de Guerra</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>fight</skill>
+		<type>MELEE</type>
+		<techLevel>1</techLevel>
+		<goal>0</goal>
+		<damage>6</damage>
+		<strength>4</strength>
+		<size>L</size>
+		<cost>20</cost>
+	</warSword>
+	<whip>
+		<name>
+			<en>Whip</en>
+			<es>Látigo</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>fight</skill>
+		<type>MELEE</type>
+		<techLevel>1</techLevel>
+		<goal>–1</goal>
+		<damage>3</damage>
+		<strength>4</strength>
+		<size>XL</size>
+		<cost>5</cost>
+	</whip>
+	<wireblade>
+		<name>
+			<en>Wireblade</en>
+			<es>Filoespada</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>artifactMelee</skill>
+		<type>MELEE_ARTIFACT</type>
+		<techLevel>8</techLevel>
+		<goal>0</goal>
+		<damage>8</damage>
+		<strength>2</strength>
+		<size>L</size>
+		<cost>10000</cost>
+		<damageType>ignore armour</damageType>
+	</wireblade>
+	<fluxSword>
+		<name>
+			<en>Flux Sword</en>
+			<es>Espada de Flujo</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>artifactMelee</skill>
+		<techLevel>8</techLevel>
+		<goal>+1</goal>
+		<damage>7</damage>
+		<strength>3</strength>
+		<size>L</size>
+		<cost>15000</cost>
+		<damageType>plasma, hard</damageType>
+	</fluxSword>
+	<mistSword>
+		<name>
+			<en>Mist Sword</en>
+			<es>Espada Mística</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>artifactMelee</skill>
+		<type>MELEE_ARTIFACT</type>
+		<techLevel>8</techLevel>
+		<goal>1</goal>
+		<damage>7</damage>
+		<strength>3</strength>
+		<rate>–</rate>
+		<size>L</size>
+		<cost>30000</cost>
+		<damageType>plasma, hard, psi</damageType>
+	</mistSword>
 	<dartfletched>
 		<name>
 			<en>Dart fletched</en>
@@ -1251,7 +1749,7 @@
 	<typicalCaselessRifle>
 		<name>
 			<en>Typical Caseless Rifle</en>
-			<es />
+			<es>Rifle sin Casquillos Típico</es>
 		</name>
 		<characteristic>dexterity</characteristic>
 		<skill>slugGuns</skill>
@@ -1265,11 +1763,13 @@
 		<rate>3(A)</rate>
 		<size>L</size>
 		<cost>800</cost>
+		<damageType>hard</damageType>
+		<others>stock, autofeed</others>
 	</typicalCaselessRifle>
 	<gleelanMRC>
 		<name>
 			<en>Gleelan MR-C (4.3mm)</en>
-			<es />
+			<es>Gleelan MR-C (4.3mm)</es>
 		</name>
 		<characteristic>dexterity</characteristic>
 		<skill>slugGuns</skill>
@@ -1283,11 +1783,13 @@
 		<rate>3(A)</rate>
 		<size>L</size>
 		<cost>1000</cost>
+		<damageType>hard</damageType>
+		<others>stock, autofeed</others>
 	</gleelanMRC>
 	<laylandCaseless>
 		<name>
 			<en>Layland Caseless (5mm)</en>
-			<es />
+			<es>Layland Caseless (5mm)</es>
 		</name>
 		<characteristic>dexterity</characteristic>
 		<skill>slugGuns</skill>
@@ -1301,11 +1803,13 @@
 		<rate>3(A)</rate>
 		<size>L</size>
 		<cost>800</cost>
+		<damageType>hard</damageType>
+		<others>stock, autofeed</others>
 	</laylandCaseless>
 	<kMMR12>
 		<name>
 			<en>K&amp;M MR12 (5mm)</en>
-			<es />
+			<es>K&amp;M MR12 (5mm)</es>
 		</name>
 		<characteristic>dexterity</characteristic>
 		<skill>slugGuns</skill>
@@ -1319,11 +1823,13 @@
 		<rate>3(A)</rate>
 		<size>L</size>
 		<cost>800</cost>
+		<damageType>hard</damageType>
+		<others>stock, autofeed</others>
 	</kMMR12>
 	<kMMR12v3>
 		<name>
 			<en>K&amp;M MR12v3 (5mm)</en>
-			<es />
+			<es>K&amp;M MR12v3 (5mm)</es>
 		</name>
 		<characteristic>dexterity</characteristic>
 		<skill>slugGuns</skill>
@@ -1337,6 +1843,8 @@
 		<rate>3(A)</rate>
 		<size>L</size>
 		<cost>900</cost>
+		<damageType>hard</damageType>
+		<others>stock, autofeed</others>
 	</kMMR12v3>
 	<typicalSMG>
 		<name>
@@ -1355,6 +1863,7 @@
 		<rate>3(A)</rate>
 		<size>L</size>
 		<cost>350</cost>
+		<others>stock, autofeed</others>
 	</typicalSMG>
 	<typicalShotgun>
 		<name>
@@ -2206,73 +2715,5 @@
 		<damageType>plasma</damageType>
 		<others>stock</others>
 	</lankIncinerator>
-	<wireblade>
-		<name>
-			<en>Wireblade</en>
-			<es>Filoespada</es>
-		</name>
-		<characteristic>dexterity</characteristic>
-		<skill>artifactMelee</skill>
-		<type>MELEE_ARTIFACT</type>
-		<techLevel>8</techLevel>
-		<goal>0</goal>
-		<damage>8</damage>
-		<strength>2</strength>
-		<range>Melee</range>
-		<shots>–</shots>
-		<rate>–</rate>
-		<size>L</size>
-		<cost>10000</cost>
-		<damageType>ignore armour</damageType>
-	</wireblade>
-	<fluxSword>
-		<name>
-			<en>Flux Sword</en>
-			<es>Espada de Flujo</es>
-		</name>
-		<characteristic>dexterity</characteristic>
-		<skill>artifactMelee</skill>
-		<techLevel>8</techLevel>
-		<goal>+1</goal>
-		<damage>7</damage>
-		<strength>3</strength>
-		<size>L</size>
-		<cost>15000</cost>
-		<damageType>plasma, hard</damageType>
-	</fluxSword>
-	<mistSword>
-		<name>
-			<en>Mist Sword</en>
-			<es>Espada Mística</es>
-		</name>
-		<characteristic>dexterity</characteristic>
-		<skill>artifactMelee</skill>
-		<type>MELEE_ARTIFACT</type>
-		<techLevel>8</techLevel>
-		<goal>1</goal>
-		<damage>7</damage>
-		<strength>3</strength>
-		<range>Melee</range>
-		<shots>–</shots>
-		<rate>–</rate>
-		<size>L</size>
-		<cost>30000</cost>
-		<damageType>plasma, hard, psi</damageType>
-	</mistSword>
-	<mace>
-		<name>
-			<en>Mace</en>
-			<es>Maza</es>
-		</name>
-		<characteristic>dexterity</characteristic>
-		<skill>fight</skill>
-		<type>MELEE</type>
-		<techLevel>1</techLevel>
-		<goal>0</goal>
-		<damage>5</damage>
-		<strength>3</strength>
-		<size>L</size>
-		<cost>10</cost>
-	</mace>
 </weapons>
 

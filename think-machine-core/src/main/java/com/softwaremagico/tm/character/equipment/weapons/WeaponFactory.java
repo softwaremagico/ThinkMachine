@@ -186,10 +186,10 @@ public class WeaponFactory extends XmlFactory<Weapon> {
 			throw new InvalidWeaponException("Invalid size value in weapon '" + weaponId + "'.");
 		}
 
-		int cost = 0;
+		float cost = 0;
 		try {
 			String costValue = translator.getNodeValue(weaponId, COST);
-			cost = Integer.parseInt(costValue);
+			cost = Float.parseFloat(costValue);
 		} catch (Exception e) {
 			throw new InvalidWeaponException("Invalid cost value in weapon '" + weaponId + "'.");
 		}
