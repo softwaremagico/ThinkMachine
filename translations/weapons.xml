@@ -30,7 +30,7 @@
 		<size>L</size>
 		<cost>5</cost>
 	</axe>
-	<bodyShield>
+	<bodyShield0>
 		<name>
 			<en>Body Shield</en>
 			<es>Escudo de Cuerpo</es>
@@ -44,7 +44,43 @@
 		<strength>4</strength>
 		<size>L</size>
 		<cost>15</cost>
-	</bodyShield>
+		<others>armour1</others>
+		<ammunition>plasticBodyShield, bodyShieldRazorEdged</ammunition>
+	</bodyShield0>
+	<bodyShield1>
+		<name>
+			<en>Body Shield</en>
+			<es>Escudo de Cuerpo</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>fight</skill>
+		<type>MELEE</type>
+		<techLevel>1</techLevel>
+		<goal>0</goal>
+		<damage>3</damage>
+		<strength>4</strength>
+		<size>L</size>
+		<cost>15</cost>
+		<others>armour2</others>
+		<ammunition>plasticBodyShield, bodyShieldRazorEdged</ammunition>
+	</bodyShield1>
+	<bodyShield2>
+		<name>
+			<en>Body Shield</en>
+			<es>Escudo de Cuerpo</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>fight</skill>
+		<type>MELEE</type>
+		<techLevel>2</techLevel>
+		<goal>0</goal>
+		<damage>4</damage>
+		<strength>4</strength>
+		<size>L</size>
+		<cost>15</cost>
+		<others>armour3</others>
+		<ammunition>plasticBodyShield, bodyShieldRazorEdged</ammunition>
+	</bodyShield2>
 	<buckler>
 		<name>
 			<en>Buckler</en>
@@ -59,6 +95,7 @@
 		<strength>2</strength>
 		<size>M</size>
 		<cost>7</cost>
+		<ammunition>plasticBodyShield, bodyShieldRazorEdged</ammunition>
 	</buckler>
 	<cestus>
 		<name>
@@ -149,6 +186,7 @@
 		<strength>5</strength>
 		<size>L</size>
 		<cost>15</cost>
+		<damage>shock</damage>
 	</frapStick>
 	<garrote>
 		<name>
@@ -160,7 +198,7 @@
 		<type>MELEE</type>
 		<techLevel>0</techLevel>
 		<goal>–1</goal>
-		<damage>Strangle</damage>
+		<damage>0</damage>
 		<strength>1</strength>
 		<size>XS</size>
 		<cost>5</cost>
@@ -194,6 +232,7 @@
 		<strength>1</strength>
 		<size>M</size>
 		<cost>50</cost>
+		<others>poison5</others>
 	</hollowKnife>
 	<knife>
 		<name>
@@ -224,6 +263,7 @@
 		<strength>2</strength>
 		<size>L</size>
 		<cost>45</cost>
+		<ammunition>legSheath</ammunition>
 	</kurganSideSword>
 	<kossackChainsword>
 		<name>
@@ -239,6 +279,8 @@
 		<strength>5</strength>
 		<size>L</size>
 		<cost>150</cost>
+		<damage>hard, vibro</damage>
+		<ammunition>innactiveKossack</ammunition>
 	</kossackChainsword>
 	<mace>
 		<name>
@@ -284,6 +326,7 @@
 		<strength>6</strength>
 		<size>L</size>
 		<cost>5</cost>
+		<damage>hard</damage>
 	</pick>
 	<rapier>
 		<name>
@@ -344,6 +387,7 @@
 		<strength>3</strength>
 		<size>L</size>
 		<cost>50</cost>
+		<damage>bleed</damage>
 	</splinterSword>
 	<staff>
 		<name>
@@ -390,7 +434,7 @@
 		<size>M</size>
 		<cost>6</cost>
 	</trenchKnife>
-	<two-HandedAxe>
+	<twoHandedAxe>
 		<name>
 			<en>Two-Handed Axe</en>
 			<es>Hacha a Dos Manos</es>
@@ -404,8 +448,8 @@
 		<strength>6</strength>
 		<size>XL</size>
 		<cost>30</cost>
-	</two-HandedAxe>
-	<two-HandedSword>
+	</twoHandedAxe>
+	<twoHandedSword>
 		<name>
 			<en>Two-Handed Sword</en>
 			<es>Espada a Dos Manos</es>
@@ -419,7 +463,7 @@
 		<strength>6</strength>
 		<size>XL</size>
 		<cost>40</cost>
-	</two-HandedSword>
+	</twoHandedSword>
 	<warSword>
 		<name>
 			<en>War Sword</en>
@@ -1221,7 +1265,7 @@
 		<rate>2</rate>
 		<size>M</size>
 		<cost>350</cost>
-		<others>sight</others>
+		<others>sight2</others>
 	</mitchauQuarryGun>
 	<mitchauThunderer>
 		<name>
@@ -1476,8 +1520,26 @@
 		<size>M</size>
 		<cost>300</cost>
 		<others>retractableStock</others>
-		<ammunition>sumpterSword</ammunition>
 	</sumpterUrthquake>
+	<sumpterUrthquakeLong>
+		<name>
+			<en>Sumpter Urthquake (.47) Longsword</en>
+			<es>Sumpter Urthquake (.47) Espada Larga</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>SLUG</type>
+		<techLevel>4</techLevel>
+		<goal>+1</goal>
+		<damage>6</damage>
+		<strength>4</strength>
+		<range>30/50</range>
+		<shots>8</shots>
+		<rate>2</rate>
+		<size>M</size>
+		<cost>350</cost>
+		<others>retractableStock</others>
+	</sumpterUrthquakeLong>
 	<typicalManfeedRifle>
 		<name>
 			<en>Typical Manfeed Rifle (.40)</en>
@@ -1865,6 +1927,101 @@
 		<cost>350</cost>
 		<others>stock, autofeed</others>
 	</typicalSMG>
+	<herstalProject98>
+		<name>
+			<en>Herstal Project 98 (.32)</en>
+			<es>Herstal Project 98 (.32)</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>SLUG</type>
+		<techLevel>4</techLevel>
+		<goal>0</goal>
+		<damage>4</damage>
+		<strength>0</strength>
+		<range>15/25</range>
+		<shots>56</shots>
+		<rate>3(A)</rate>
+		<size>L</size>
+		<cost>500</cost>
+		<others>stock, autofeed</others>
+	</herstalProject98>
+	<jahnisakMuffler>
+		<name>
+			<en>Jahnisak Muffler (.40)</en>
+			<es>Jahnisak con Silenciador (.40)</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>SLUG</type>
+		<techLevel>4</techLevel>
+		<goal>0</goal>
+		<damage>5</damage>
+		<strength>1</strength>
+		<range>30/40</range>
+		<shots>20</shots>
+		<rate>3(A)</rate>
+		<size>L</size>
+		<cost>350</cost>
+		<others>stock, autofeed</others>
+	</jahnisakMuffler>
+	<kmsm7>
+		<name>
+			<en>K&amp;M S M7 (.40)</en>
+			<es>K&amp;M S-M7 (.40)</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>SLUG</type>
+		<techLevel>4</techLevel>
+		<goal>+1</goal>
+		<damage>5</damage>
+		<strength>1</strength>
+		<range>30/40</range>
+		<shots>30</shots>
+		<rate>3(A)</rate>
+		<size>L</size>
+		<cost>500</cost>
+		<others>stock, autofeed</others>
+	</kmsm7>
+	<lankStinger>
+		<name>
+			<en>Lank Stinger (.40)</en>
+			<es>Lank Stinger (.40)</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>SLUG</type>
+		<techLevel>4</techLevel>
+		<goal>0</goal>
+		<damage>5</damage>
+		<strength>1</strength>
+		<range>30/40</range>
+		<shots>20</shots>
+		<rate>3(A)</rate>
+		<size>L</size>
+		<cost>400</cost>
+		<others>stock, autofeed</others>
+	</lankStinger>
+	<martechCobraZ81>
+		<name>
+			<en>Martech Cobra vz.81 (.40)</en>
+			<es>Martech Cobra vz.81 (.40)</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>SLUG</type>
+		<techLevel>4</techLevel>
+		<goal>0</goal>
+		<damage>5</damage>
+		<strength>1</strength>
+		<range>30/40</range>
+		<shots>30</shots>
+		<rate>3(A)</rate>
+		<size>L</size>
+		<cost>400</cost>
+		<others>retractableStock, autofeed</others>
+	</martechCobraZ81>
 	<typicalShotgun>
 		<name>
 			<en>Typical Shotgun (10 g.)</en>
@@ -1887,7 +2044,7 @@
 		<ammunition>solidSlug</ammunition>
 		<others>stock, pumpfeed</others>
 	</typicalShotgun>
-	<typicalTwin-barrel>
+	<typicalTwinBarrel>
 		<name>
 			<en>Typical Twin-barrel (10 g.)</en>
 			<es>Doble Cañón Típico (10 g.)</es>
@@ -1905,7 +2062,7 @@
 		<size>L</size>
 		<cost>200</cost>
 		<others>stock, breakfeed</others>
-	</typicalTwin-barrel>
+	</typicalTwinBarrel>
 	<dreskelBoomer>
 		<name>
 			<en>Dreskel Boomer</en>
@@ -1985,6 +2142,44 @@
 		<others>stock, leverfeed, sawed</others>
 		<ammunition>xienSolidSlug</ammunition>
 	</xienShortBarrel>
+	<typicalFirelockPistol>
+		<name>
+			<en>Typical Firelock Pistol</en>
+			<es>Pistola de Avancarga Típica</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>SLUG</type>
+		<techLevel>2</techLevel>
+		<goal>-1</goal>
+		<damage>3</damage>
+		<strength>2</strength>
+		<range>5/10</range>
+		<shots>1</shots>
+		<rate>1</rate>
+		<size>M</size>
+		<cost>40</cost>
+		<others>muzzlefeed</others>
+	</typicalFirelockPistol>
+	<typicalFirelockRifle>
+		<name>
+			<en>Typical Firelock Rifle</en>
+			<es>Pistola de Avancarga Típica</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>SLUG</type>
+		<techLevel>2</techLevel>
+		<goal>0</goal>
+		<damage>3</damage>
+		<strength>1</strength>
+		<range>20/60</range>
+		<shots>1</shots>
+		<rate>1</rate>
+		<size>L</size>
+		<cost>100</cost>
+		<others>muzzlefeed, stock</others>
+	</typicalFirelockRifle>
 	<cancanaghDartgunPistol>
 		<name>
 			<en>Cancanagh Dartgun Pistol</en>
@@ -2121,6 +2316,25 @@
 		<cost>200</cost>
 		<others>muzzlefeed, syringe</others>
 	</cupidLongarm>
+	<reznorModelXI>
+		<name>
+			<en>Reznor Model IX</en>
+			<es>Reznor Modelo IX</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>SLUG</type>
+		<techLevel>6</techLevel>
+		<goal>+2</goal>
+		<damage>5/4/3</damage>
+		<strength>0</strength>
+		<range>20/60/x</range>
+		<shots>13</shots>
+		<rate>2(A)</rate>
+		<size>L</size>
+		<cost>500</cost>
+		<others>muzzlefeed, syringe</others>
+	</reznorModelXI>
 	<sabotGun>
 		<name>
 			<en>Sabot Gun</en>

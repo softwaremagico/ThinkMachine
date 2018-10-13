@@ -81,10 +81,11 @@ public class WeaponsTable extends LateralHeaderPdfPTable {
 							FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
 					addCell(createElementLine(ammunition.getDamage() + "d", DAMAGE_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
 					addCell(createElementLine(ammunition.getStrengthOrRange(), RANGE_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
-					addCell(createElementLine("",  RANGE_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
-					addCell(createElementLine("",  RATE_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
-					addCell(createElementLine("",  SIZE_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
-					addCell(createElementLine("",  OTHERS_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
+					addCell(createElementLine("", RANGE_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
+					addCell(createElementLine("", RATE_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
+					addCell(createElementLine(ammunition.getSize() != null ? ammunition.getSize().toString() : "", SIZE_COLUMN_WIDTH,
+							FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
+					addCell(createElementLine("", OTHERS_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
 					addedWeapons++;
 				}
 			}

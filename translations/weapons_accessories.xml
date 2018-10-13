@@ -8,10 +8,6 @@
 		<en>Stock (retractable)</en>
 		<es>Culata (retráctil)</es>
 	</retractableStock>
-	<sight>
-		<en>Sight</en>
-		<es>Escaso</es>
-	</sight>
 	<boltfeed>
 		<en>Boltfeed</en>
 		<es>Cinta</es>
@@ -76,4 +72,24 @@
 		<en>Gun Tech Kit (TL4)</en>
 		<es>Kit de tecnología para el arma (NT4)</es>
 	</gunTechKit4>
+	<armour1>
+		<en>+1d Armour</en>
+		<es>+1d Armadura</es>
+	</armour1>
+	<armour2>
+		<en>+2d Armour</en>
+		<es>+2d Armadura</es>
+	</armour2>
+	<armour3>
+		<en>+3d Armour</en>
+		<es>+3d Armadura</es>
+	</armour3>
+	<poison5>
+		<en>Holds poison (5 doses)</en>
+		<es>Contiene veneno (5 dosis)</es>
+	</poison5>
+	<resistDisarm3>
+		<en>+3 resisting disarm</en>
+		<es>+3 resistir desarme</es>
+	</resistDisarm3>
 </accessories>

@@ -27,6 +27,7 @@ package com.softwaremagico.tm.character.equipment.weapons;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
 import com.softwaremagico.tm.character.equipment.InvalidWeaponException;
+import com.softwaremagico.tm.character.equipment.Size;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
 
@@ -40,6 +41,7 @@ public class AmmunitionFactory extends XmlFactory<Ammunition> {
 	private final static String STRENGTH = "strength";
 	private final static String RANGE = "range";
 	private final static String COST = "cost";
+	private final static String SIZE = "size";
 
 	private static AmmunitionFactory instance;
 
@@ -86,7 +88,7 @@ public class AmmunitionFactory extends XmlFactory<Ammunition> {
 		try {
 			damage = translator.getNodeValue(ammunitionId, DAMAGE);
 		} catch (Exception e) {
-			throw new InvalidWeaponException("Invalid damage value in ammunition '" + ammunitionId + "'.");
+			// Not mandatory.
 		}
 
 		Integer strength = null;
@@ -96,7 +98,14 @@ public class AmmunitionFactory extends XmlFactory<Ammunition> {
 				strength = Integer.parseInt(strengthValue);
 			}
 		} catch (Exception e) {
-			throw new InvalidWeaponException("Invalid strength value in ammunition '" + ammunitionId + "'.");
+			// Not mandatory.
+		}
+		
+		Size size = null;
+		try {
+			size = Size.get(translator.getNodeValue(ammunitionId, SIZE));
+		} catch (Exception e) {
+			// Not mandatory.
 		}
 
 		String range = null;
@@ -113,7 +122,7 @@ public class AmmunitionFactory extends XmlFactory<Ammunition> {
 			// Not mandatory.
 		}
 
-		ammunition = new Ammunition(ammunitionId, name, goal, damage, strength, range, cost);
+		ammunition = new Ammunition(ammunitionId, name, goal, damage, strength, range, size, cost);
 
 		return ammunition;
 	}

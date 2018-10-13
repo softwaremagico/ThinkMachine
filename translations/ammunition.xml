@@ -20,17 +20,6 @@
 		<strength>5</strength>
 		<range>--</range>
 	</nitobiAxe>
-	<sumpterSword>
-		<name>
-			<en>Longsword</en>
-			<es>Espada larga</es>
-		</name>
-		<goal>+1</goal>
-		<damage>5</damage>
-		<strength>5</strength>
-		<range>30/50</range>
-		<cost>350</cost>
-	</sumpterSword>
 	<riotSolidSlug>
 		<name>
 			<en>Solid Slug (.47)</en>
@@ -87,4 +76,41 @@
 		<damage>3/2/1</damage>
 		<range>-</range>
 	</sabotWood>
+	<plasticBodyShield>
+		<name>
+			<en>Plastic</en>
+			<es>Plástico</es>
+		</name>
+		<goal>1</goal>
+		<cost>2</cost>
+	</plasticBodyShield>
+	<bodyShieldRazorEdged>
+		<name>
+			<en>Razor-edged</en>
+			<es>Borders Afilados</es>
+		</name>
+		<goal>1</goal>
+		<damage>+2</damage>
+		<cost>15</cost>
+	</bodyShieldRazorEdged>
+	<legSheath>
+		<name>
+			<en>Leg Sheath</en>
+			<es>Funda de Pierna</es>
+		</name>
+		<goal>1</goal>
+		<damage>+3</damage>
+		<strength>1</strength>
+		<cost>15</cost>
+		<size>S</size>
+	</legSheath>
+	<innactiveKossack>
+		<name>
+			<en>Inactive Mode</en>
+			<es>Modo Inactivo</es>
+		</name>
+		<goal>0</goal>
+		<damage>4</damage>
+		<strength>4</strength>
+	</innactiveKossack>
 </ammunition>

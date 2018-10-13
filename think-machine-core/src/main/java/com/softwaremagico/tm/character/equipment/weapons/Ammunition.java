@@ -25,6 +25,7 @@ package com.softwaremagico.tm.character.equipment.weapons;
  */
 
 import com.softwaremagico.tm.Element;
+import com.softwaremagico.tm.character.equipment.Size;
 
 public class Ammunition extends Element<Ammunition> {
 	private final String goal;
@@ -32,14 +33,20 @@ public class Ammunition extends Element<Ammunition> {
 	private final Integer strength;
 	private final String range;
 	private final Integer cost;
+	private final Size size;
 
-	public Ammunition(String id, String name, String goal, String damage, Integer strength, String range, Integer cost) {
+	public Size getSize() {
+		return size;
+	}
+
+	public Ammunition(String id, String name, String goal, String damage, Integer strength, String range, Size size, Integer cost) {
 		super(id, name);
 		this.goal = goal;
 		this.damage = damage;
 		this.strength = strength;
 		this.range = range;
 		this.cost = cost;
+		this.size = size;
 	}
 
 	public String getGoal() {
@@ -63,7 +70,7 @@ public class Ammunition extends Element<Ammunition> {
 			if (strength != null) {
 				return strength + "";
 			}
-			return "";
+			return "--";
 		}
 		return range;
 	}

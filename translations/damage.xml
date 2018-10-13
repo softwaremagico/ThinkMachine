@@ -54,4 +54,22 @@
 			<es>Eléctrica</es>
 		</name>
 	</shock>
+	<strangle>
+		<name>
+			<en>Strangle</en>
+			<es>Agarrar</es>
+		</name>
+	</strangle>
+	<vibro>
+		<name>
+			<en>Vibro</en>
+			<es>Vibro</es>
+		</name>
+	</vibro>
+	<bleed>
+		<name>
+			<en>Victim bleeds</en>
+			<es>La Víctima Sangra</es>
+		</name>
+	</bleed>
 </damage>
