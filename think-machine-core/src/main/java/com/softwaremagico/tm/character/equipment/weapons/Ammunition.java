@@ -27,7 +27,6 @@ package com.softwaremagico.tm.character.equipment.weapons;
 import java.util.Set;
 
 import com.softwaremagico.tm.Element;
-import com.softwaremagico.tm.character.equipment.DamageType;
 import com.softwaremagico.tm.character.equipment.Size;
 
 public class Ammunition extends Element<Ammunition> {

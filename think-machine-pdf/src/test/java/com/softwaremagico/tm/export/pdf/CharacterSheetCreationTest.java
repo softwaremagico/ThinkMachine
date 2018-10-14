@@ -52,7 +52,7 @@ import com.softwaremagico.tm.character.combat.LearnedStance;
 import com.softwaremagico.tm.character.creation.CostCalculator;
 import com.softwaremagico.tm.character.cybernetics.Device;
 import com.softwaremagico.tm.character.equipment.Armour;
-import com.softwaremagico.tm.character.equipment.Shield;
+import com.softwaremagico.tm.character.equipment.shield.ShieldFactory;
 import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
 import com.softwaremagico.tm.character.factions.FactionsFactory;
 import com.softwaremagico.tm.character.occultism.OccultismPathFactory;
@@ -92,25 +92,21 @@ public class CharacterSheetCreationTest {
 		CharacterSheet sheet = new CharacterSheet("en");
 		sheet.createFile(PDF_PATH_OUTPUT + "FadingSuns_EN.pdf");
 	}
-	
-	
+
 	@Test
-	public void emptyPdfSmallEn() throws InvalidXmlElementException, DuplicatedPreferenceException,
-			InvalidRandomElementSelectedException {
+	public void emptyPdfSmallEn() throws InvalidXmlElementException, DuplicatedPreferenceException, InvalidRandomElementSelectedException {
 		SmallCharacterSheet sheet = new SmallCharacterSheet("en");
 		sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "RandomCharacterSmallEmpty_EN.pdf");
 	}
-	
+
 	@Test
-	public void emptyPdfSmallEs() throws InvalidXmlElementException, DuplicatedPreferenceException,
-			InvalidRandomElementSelectedException {
+	public void emptyPdfSmallEs() throws InvalidXmlElementException, DuplicatedPreferenceException, InvalidRandomElementSelectedException {
 		SmallCharacterSheet sheet = new SmallCharacterSheet("es");
 		sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "RandomCharacterSmallEmpty_ES.pdf");
 	}
 
 	@Test
-	public void characterPdfSpanish() throws MalformedURLException, DocumentException, IOException,
-			InvalidXmlElementException, TooManyBlessingsException {
+	public void characterPdfSpanish() throws MalformedURLException, DocumentException, IOException, InvalidXmlElementException, TooManyBlessingsException {
 		CacheHandler.clearCache();
 
 		player = new CharacterPlayer(LANGUAGE);
@@ -152,25 +148,13 @@ public class CharacterSheetCreationTest {
 		player.setPsiqueLevel(OccultismTypeFactory.getPsi(player.getLanguage()), 4);
 		player.setDarkSideLevel(OccultismTypeFactory.getPsi(player.getLanguage()), 1);
 
-		player.addOccultismPower(
-				OccultismPathFactory.getInstance().getElement("farHand", LANGUAGE).getOccultismPowers()
-						.get("liftingHand"));
-		player.addOccultismPower(
-				OccultismPathFactory.getInstance().getElement("farHand", LANGUAGE).getOccultismPowers()
-						.get("throwingHand"));
-		player.addOccultismPower(
-				OccultismPathFactory.getInstance().getElement("sixthSense", LANGUAGE).getOccultismPowers()
-						.get("sensitivity"));
-		player.addOccultismPower(
-				OccultismPathFactory.getInstance().getElement("soma", LANGUAGE).getOccultismPowers().get("toughening")
-				);
-		player.addOccultismPower(
-				OccultismPathFactory.getInstance().getElement("soma", LANGUAGE).getOccultismPowers()
-						.get("strengthening"));
-		player.addOccultismPower(
-				OccultismPathFactory.getInstance().getElement("soma", LANGUAGE).getOccultismPowers().get("quickening"));
-		player.addOccultismPower(
-				OccultismPathFactory.getInstance().getElement("soma", LANGUAGE).getOccultismPowers().get("hardening"));
+		player.addOccultismPower(OccultismPathFactory.getInstance().getElement("farHand", LANGUAGE).getOccultismPowers().get("liftingHand"));
+		player.addOccultismPower(OccultismPathFactory.getInstance().getElement("farHand", LANGUAGE).getOccultismPowers().get("throwingHand"));
+		player.addOccultismPower(OccultismPathFactory.getInstance().getElement("sixthSense", LANGUAGE).getOccultismPowers().get("sensitivity"));
+		player.addOccultismPower(OccultismPathFactory.getInstance().getElement("soma", LANGUAGE).getOccultismPowers().get("toughening"));
+		player.addOccultismPower(OccultismPathFactory.getInstance().getElement("soma", LANGUAGE).getOccultismPowers().get("strengthening"));
+		player.addOccultismPower(OccultismPathFactory.getInstance().getElement("soma", LANGUAGE).getOccultismPowers().get("quickening"));
+		player.addOccultismPower(OccultismPathFactory.getInstance().getElement("soma", LANGUAGE).getOccultismPowers().get("hardening"));
 
 		player.addBlessing(BlessingFactory.getInstance().getElement("curious", player.getLanguage()));
 		player.addBlessing(BlessingFactory.getInstance().getElement("limp", player.getLanguage()));
@@ -181,10 +165,8 @@ public class CharacterSheetCreationTest {
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("heir", player.getLanguage()));
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("wireblade", player.getLanguage()));
 
-		player.getCybernetics().addElement(
-				new Device("Ojo de Ingeniero", 6, 5, "Normal", "Normal", "Automático", "Visible", ""));
-		player.getCybernetics().addElement(
-				new Device("Jonás", 7, 4, "Normal", "Normal", "Ds+Arquería", "Incógnito", ""));
+		player.getCybernetics().addElement(new Device("Ojo de Ingeniero", 6, 5, "Normal", "Normal", "Automático", "Visible", ""));
+		player.getCybernetics().addElement(new Device("Jonás", 7, 4, "Normal", "Normal", "Ds+Arquería", "Incógnito", ""));
 
 		CombatStyle gun = new CombatStyle("pistola");
 		gun.addElement(new CombatAction("Disparo Instantáneo", null, null, "-2 por 3 disparos"));
@@ -205,7 +187,7 @@ public class CharacterSheetCreationTest {
 
 		player.setArmour(new Armour("Cuero Sintético", 7, true, false, false, false, false, false, true, 6, -1, 0, 0, 0, 500));
 
-		player.setShield(new Shield("Escudo de Asalto", 5, 15, 20, 3000));
+		player.setShield(ShieldFactory.getInstance().getElement("assaultShield", LANGUAGE));
 
 		LanguagePool.clearCache();
 		CharacterSheet sheet = new CharacterSheet(player);
@@ -218,8 +200,7 @@ public class CharacterSheetCreationTest {
 	public void exportToJson() throws MalformedURLException, DocumentException, IOException {
 		String jsonText = CharacterJsonManager.toJson(player);
 
-		try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(PDF_PATH_OUTPUT
-				+ "CharacterFS_ES.json")), true)) {
+		try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(PDF_PATH_OUTPUT + "CharacterFS_ES.json")), true)) {
 			out.println(jsonText);
 		}
 

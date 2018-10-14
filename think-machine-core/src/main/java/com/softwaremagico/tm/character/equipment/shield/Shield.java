@@ -1,10 +1,10 @@
-package com.softwaremagico.tm.character.equipment;
+package com.softwaremagico.tm.character.equipment.shield;
 
 /*-
  * #%L
  * Think Machine (Core)
  * %%
- * Copyright (C) 2017 - 2018 Softwaremagico
+ * Copyright (C) 2017 Softwaremagico
  * %%
  * This software is designed by Jorge Hortelano Otero. Jorge Hortelano Otero
  * <softwaremagico@gmail.com> Valencia (Spain).
@@ -26,10 +26,41 @@ package com.softwaremagico.tm.character.equipment;
 
 import com.softwaremagico.tm.Element;
 
-public class DamageType extends Element<DamageType> {
+public class Shield extends Element<Shield> {
+	private final int impact;
+	private final int techLevel;
 
-	public DamageType(String id, String name) {
-		super(id, name);
+	public int getTechLevel() {
+		return techLevel;
+	}
+
+	private final int force;
+	private final int hits;
+	private final float cost;
+
+	public Shield(String shieldId, String name, int techLevel, int impact, int force, int hits, float cost) {
+		super(shieldId, name);
+		this.impact = impact;
+		this.techLevel = techLevel;
+		this.force = force;
+		this.hits = hits;
+		this.cost = cost;
+	}
+
+	public int getImpact() {
+		return impact;
+	}
+
+	public int getForce() {
+		return force;
+	}
+
+	public int getHits() {
+		return hits;
+	}
+
+	public float getCost() {
+		return cost;
 	}
 
 }

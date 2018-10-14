@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<shields>
+	<standardShield>
+		<name>
+			<en>Standard Shield</en>
+			<es>Escudo Estándar</es>
+		</name>
+		<techLevel>7</techLevel>
+		<impact>5</impact>
+		<force>10</force>
+		<hits>10</hits>
+		<cost>500</cost>
+	</standardShield>
+	<duelingShield>
+		<name>
+			<en>Dueling Shield</en>
+			<es>Escudo de Duelo</es>
+		</name>
+		<techLevel>7</techLevel>
+		<impact>5</impact>
+		<force>10</force>
+		<hits>15</hits>
+		<cost>700</cost>
+	</duelingShield>
+	<assaultShield>
+		<name>
+			<en>Assault Shield</en>
+			<es>Escudo de Asalto</es>
+		</name>
+		<techLevel>7</techLevel>
+		<impact>5</impact>
+		<force>15</force>
+		<hits>20</hits>
+		<cost>3000</cost>
+	</assaultShield>
+	<battleShield>
+		<name>
+			<en>Battle Shield</en>
+			<es>Escudo de Batalla</es>
+		</name>
+		<techLevel>7</techLevel>
+		<impact>5</impact>
+		<force>15</force>
+		<hits>20</hits>
+		<cost>3000</cost>
+	</battleShield>
+</shields>

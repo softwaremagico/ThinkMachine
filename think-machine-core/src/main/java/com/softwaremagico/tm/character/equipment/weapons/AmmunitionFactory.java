@@ -30,9 +30,6 @@ import java.util.StringTokenizer;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
-import com.softwaremagico.tm.character.equipment.DamageType;
-import com.softwaremagico.tm.character.equipment.DamageTypeFactory;
-import com.softwaremagico.tm.character.equipment.InvalidWeaponException;
 import com.softwaremagico.tm.character.equipment.Size;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;

@@ -29,16 +29,16 @@ import junit.framework.Assert;
 import org.testng.annotations.Test;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.character.equipment.weapons.DamageTypeFactory;
+import com.softwaremagico.tm.character.equipment.shield.ShieldFactory;
 
-@Test(groups = { "damageFactory" })
-public class DamageTypeFactoryTests {
+@Test(groups = { "shieldFactory" })
+public class ShieldFactoryTests {
 
-	private final static int DEFINED_DAMAGES = 15;
+	private final static int DEFINED_SHIELDS = 4;
 	private final static String LANGUAGE = "es";
-	
+
 	@Test
 	public void readDamages() throws InvalidXmlElementException {
-		Assert.assertEquals(DEFINED_DAMAGES, DamageTypeFactory.getInstance().getElements(LANGUAGE).size());
+		Assert.assertEquals(DEFINED_SHIELDS, ShieldFactory.getInstance().getElements(LANGUAGE).size());
 	}
 }
