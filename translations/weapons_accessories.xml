@@ -20,6 +20,10 @@
 		<en>Pumpfeed</en>
 		<es>Cinta Corredora</es>
 	</pumpfeed>
+	<beltfeed>
+		<en>Beltfeed</en>
+		<es>Cargador de Cinta</es>
+	</beltfeed>
 	<sight2>
 		<en>Sight (2)</en>
 		<es>Mira (2)</es>
@@ -68,6 +72,10 @@
 		<en>Bipod</en>
 		<es>Bípode</es>
 	</bipod>
+	<tripod>
+		<en>Tripod</en>
+		<es>Trípode</es>
+	</tripod>
 	<gunTechKit4>
 		<en>Gun Tech Kit (TL4)</en>
 		<es>Kit de tecnología para el arma (NT4)</es>
@@ -92,4 +100,8 @@
 		<en>+3 resisting disarm</en>
 		<es>+3 resistir desarme</es>
 	</resistDisarm3>
+	<revolver>
+		<en>Revolver</en>
+		<es>Revolver</es>
+	</revolver>
 </accessories>

@@ -3036,7 +3036,7 @@
 		<skill>energyGuns</skill>
 		<type>NEURAL</type>
 		<techLevel>8</techLevel>
-		<goal>–2</goal>
+		<goal>-2</goal>
 		<damage>4</damage>
 		<strength>1</strength>
 		<range>10/40</range>
@@ -3049,6 +3049,342 @@
 			<probabilityMultiplier>0.0001</probabilityMultiplier>
 		</random>
 	</cunninghamDemeantor>
+
+
+	<typicalLtMg>
+		<name>
+			<en>Typical Lt. Mg (10mm)</en>
+			<es>Ametralladora Ligera Típica (10mm)</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>HEAVY</type>
+		<techLevel>4</techLevel>
+		<goal>0</goal>
+		<damage>7</damage>
+		<strength>2</strength>
+		<range>50/150</range>
+		<shots>∞</shots>
+		<rate>3(A)</rate>
+		<size>XL</size>
+		<cost>750</cost>
+		<others>stock, bipod, beltfeed</others>
+	</typicalLtMg>
+	<jahnisak040MG>
+		<name>
+			<en>Jahnisak 0.40 MG</en>
+			<es>Jahnisak 0.40 MG</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>HEAVY</type>
+		<techLevel>4</techLevel>
+		<goal>0</goal>
+		<damage>6</damage>
+		<strength>2</strength>
+		<range>40/120</range>
+		<shots>50/∞</shots>
+		<rate>3(A)</rate>
+		<size>XL</size>
+		<cost>700</cost>
+		<others>stock, bipod, beltfeed</others>
+	</jahnisak040MG>
+	<jahnisak051MG>
+		<name>
+			<en>Jahnisak 0.51 MG</en>
+			<es>Jahnisak 0.51 MG</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>HEAVY</type>
+		<techLevel>4</techLevel>
+		<goal>0</goal>
+		<damage>7</damage>
+		<strength>3</strength>
+		<range>50/150</range>
+		<shots>∞</shots>
+		<rate>3(A)</rate>
+		<size>XL</size>
+		<cost>900</cost>
+		<others>tripod, beltfeed</others>
+	</jahnisak051MG>
+	<jahniAutocannon>
+		<name>
+			<en>Jahnisak Autocannon (16mm)</en>
+			<es>Auto cañón Jahnisak (16mm)</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>HEAVY</type>
+		<techLevel>4</techLevel>
+		<goal>0</goal>
+		<damage>9</damage>
+		<strength>5</strength>
+		<range>60/175</range>
+		<shots>∞</shots>
+		<rate>3(A)</rate>
+		<size>XL</size>
+		<cost>1200</cost>
+		<others>tripod, beltfeed</others>
+	</jahniAutocannon>
+	<furystormChaingun>
+		<name>
+			<en>Furystorm Chaingun (20mm)</en>
+			<es>Furystorm Chaingun (20mm)</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>HEAVY</type>
+		<techLevel>4</techLevel>
+		<goal>0</goal>
+		<damage>11</damage>
+		<strength>8</strength>
+		<range>75/200</range>
+		<shots>∞</shots>
+		<rate>(A)</rate>
+		<size>XXL</size>
+		<cost>1500</cost>
+		<others>beltfeed</others>
+	</furystormChaingun>
+	<deamasineTerrakin>
+		<name>
+			<en>Deamasine Terrakin (Borer)</en>
+			<es>Deamasine Terrakin (Perforante)</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>HEAVY</type>
+		<techLevel>5</techLevel>
+		<goal>0</goal>
+		<damage>10</damage>
+		<strength>7</strength>
+		<range>60/175</range>
+		<shots>1</shots>
+		<rate>1</rate>
+		<size>XL</size>
+		<cost>1000</cost>
+		<damageType>hard</damageType>
+		<others>stock, bipod, sight2</others>
+	</deamasineTerrakin>
+	<bosarkCannoneer>
+		<name>
+			<en>Bosark Cannoneer (Borer)</en>
+			<es>Cañonero Bosark ()Perforante)</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>HEAVY</type>
+		<techLevel>5</techLevel>
+		<goal>+1</goal>
+		<damage>10</damage>
+		<strength>7</strength>
+		<range>75/200</range>
+		<shots>1</shots>
+		<rate>1</rate>
+		<size>XL</size>
+		<cost>2000</cost>
+		<others>stock, bipod, sight4</others>
+	</bosarkCannoneer>
+	<goboLobberJetPistol>
+		<name>
+			<en>Gobo Lobber Jet Pistol</en>
+			<es>Pistola a Chorro Gobo Lobber</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>ROCKETEER</type>
+		<techLevel>4</techLevel>
+		<goal>-2</goal>
+		<damage>6 (1m)</damage>
+		<strength>2</strength>
+		<range>10/20</range>
+		<shots>2</shots>
+		<rate>1</rate>
+		<size>M</size>
+		<cost>300</cost>
+		<damageType>plasma</damageType>
+	</goboLobberJetPistol>
+	<goboGarbageChucker>
+		<name>
+			<en>Gobo Garbage Chucker</en>
+			<es>Gobo Garbage Chucker</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>ROCKETEER</type>
+		<techLevel>4</techLevel>
+		<goal>-2</goal>
+		<damage>6 (2m)</damage>
+		<strength>2</strength>
+		<range>10/20</range>
+		<shots>5</shots>
+		<rate>1</rate>
+		<size>XL</size>
+		<cost>500</cost>
+		<damageType>plasma</damageType>
+		<others>stock</others>
+	</goboGarbageChucker>
+	<musterNightstorm>
+		<name>
+			<en>Muster Nightstorm</en>
+			<es>Nightstorm de la Asamblea</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>ROCKETEER</type>
+		<techLevel>4</techLevel>
+		<goal>-2</goal>
+		<damage>9 (3m)</damage>
+		<strength>2</strength>
+		<range>20/30</range>
+		<shots>5</shots>
+		<rate>1</rate>
+		<size>XL</size>
+		<cost>500</cost>
+		<faction>muster</faction>
+		<others>stock</others>
+	</musterNightstorm>
+	<modelHazatR25>
+		<name>
+			<en>Model Hazat R-25 (HEAT)</en>
+			<es>Modelo Hazat R-25 (CALOR)</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>ROCKETEER</type>
+		<techLevel>4</techLevel>
+		<goal>0</goal>
+		<damage>18(3)</damage>
+		<strength>4</strength>
+		<range>75/200</range>
+		<shots>1</shots>
+		<rate>1</rate>
+		<size>XL</size>
+		<cost>800</cost>
+		<faction>hazat</faction>
+		<damageType>hard</damageType>
+		<ammunition>panzerBreakerShell</ammunition>
+	</modelHazatR25>
+	<dreskelBazooka>
+		<name>
+			<en>Dreskel Bazooka</en>
+			<es>Bazooka Dreskel</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>ROCKETEER</type>
+		<techLevel>4</techLevel>
+		<goal>0</goal>
+		<damage>18 (3)</damage>
+		<strength>5</strength>
+		<range>65/175</range>
+		<shots>1</shots>
+		<rate>1</rate>
+		<size>XL</size>
+		<cost>750</cost>
+		<damageType>hard</damageType>
+		<ammunition>panzerBreakerShell</ammunition>
+	</dreskelBazooka>
+	<dreskelBombardier>
+		<name>
+			<en>Dreskel Bombardier</en>
+			<es>Dreskel Bombardier</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>GRENADE_LAUNCHER</type>
+		<techLevel>4</techLevel>
+		<goal>-2</goal>
+		<damage>Grenade</damage>
+		<strength>2</strength>
+		<range>15/25</range>
+		<shots>7</shots>
+		<rate>1</rate>
+		<size>XL</size>
+		<cost>500</cost>
+		<others>stock, revolver</others>
+	</dreskelBombardier>
+	<hawkwoodLionRoar>
+		<name>
+			<en>Hawkwood Lion Roar</en>
+			<es>Hawkwood “Rugido de León”</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>GRENADE_LAUNCHER</type>
+		<techLevel>4</techLevel>
+		<goal>–1</goal>
+		<damage>Grenade</damage>
+		<strength>2</strength>
+		<range>15/25</range>
+		<shots>4</shots>
+		<rate>1</rate>
+		<size>M</size>
+		<cost>500</cost>
+		<others>stock, pumpfeed</others>
+	</hawkwoodLionRoar>
+	<masseriDevastator>
+		<name>
+			<en>Masseri Devastator</en>
+			<es>Masseri Devastator</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>slugGuns</skill>
+		<type>GRENADE_LAUNCHER</type>
+		<techLevel>4</techLevel>
+		<goal>-2</goal>
+		<damage>Grenade</damage>
+		<strength>2</strength>
+		<range>15/25</range>
+		<shots>4</shots>
+		<rate>1</rate>
+		<size>M</size>
+		<cost>450</cost>
+		<others>stock, pumpfeed</others>
+	</masseriDevastator>
+	
+	
+	<gatlingLaser>
+		<name>
+			<en>Gatling Laser</en>
+			<es>Láser Gatling</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>energyGuns</skill>
+		<type>HEAVY</type>
+		<techLevel>6</techLevel>
+		<goal>+1</goal>
+		<damage>7</damage>
+		<strength>0</strength>
+		<range>30/80</range>
+		<shots>115</shots>
+		<rate>2*</rate>
+		<size>XL</size>
+		<cost>2500</cost>
+		<damageType>laser</damageType>
+		<others>stock</others>
+	</gatlingLaser>
+	<blasterCannon>
+		<name>
+			<en>Blaster Cannon</en>
+			<es>Cañón Blaster</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>energyGuns</skill>
+		<type>HEAVY</type>
+		<techLevel>7</techLevel>
+		<goal>0</goal>
+		<damage>15</damage>
+		<strength>7</strength>
+		<range>30/100</range>
+		<shots>20</shots>
+		<rate>1</rate>
+		<size>XXL</size>
+		<cost>5000</cost>
+		<damageType>blaster, hard</damageType>
+		<others>stock</others>
+	</blasterCannon>
+
 
 
 	<blastPellet>
@@ -3068,6 +3404,7 @@
 		<rate>2</rate>
 		<size>S</size>
 		<cost>20</cost>
+		<damageType>plasma</damageType>
 	</blastPellet>
 	<blastPelletHeavy>
 		<name>
@@ -3086,6 +3423,7 @@
 		<rate>2</rate>
 		<size>S</size>
 		<cost>30</cost>
+		<damageType>plasma</damageType>
 	</blastPelletHeavy>
 	<concussionGrenade>
 		<name>
@@ -3254,8 +3592,9 @@
 		<rate>2</rate>
 		<size>S</size>
 		<cost>100</cost>
+		<damageType>plasma</damageType>
 	</plasmaGrenade>
-	<flash-BangGrenade>
+	<flashBangGrenade>
 		<name>
 			<en>Flash-Bang Grenade</en>
 			<es>Granada Aturdidora</es>
@@ -3272,7 +3611,7 @@
 		<rate>2</rate>
 		<size>S</size>
 		<cost>50</cost>
-	</flash-BangGrenade>
+	</flashBangGrenade>
 	<wireGrenade>
 		<name>
 			<en>Wire Grenade</en>
@@ -3290,6 +3629,7 @@
 		<rate>2</rate>
 		<size>S</size>
 		<cost>80</cost>
+		<damageType>halveArmour</damageType>
 	</wireGrenade>
 </weapons>
 

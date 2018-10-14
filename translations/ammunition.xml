@@ -113,4 +113,15 @@
 		<damage>4</damage>
 		<strength>4</strength>
 	</innactiveKossack>
+	<panzerBreakerShell>
+		<name>
+			<en>Panzer Breaker Shell</en>
+			<es>Munición Anti Tanque</es>
+		</name>
+		<damage>13</damage>
+		<damageType>halveArmour</damageType>
+	</panzerBreakerShell>
+	
+	
+
 </ammunition>

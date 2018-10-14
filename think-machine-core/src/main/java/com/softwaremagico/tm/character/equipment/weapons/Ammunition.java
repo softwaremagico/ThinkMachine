@@ -24,7 +24,10 @@ package com.softwaremagico.tm.character.equipment.weapons;
  * #L%
  */
 
+import java.util.Set;
+
 import com.softwaremagico.tm.Element;
+import com.softwaremagico.tm.character.equipment.DamageType;
 import com.softwaremagico.tm.character.equipment.Size;
 
 public class Ammunition extends Element<Ammunition> {
@@ -35,11 +38,11 @@ public class Ammunition extends Element<Ammunition> {
 	private final Integer cost;
 	private final Size size;
 
-	public Size getSize() {
-		return size;
-	}
+	private final Set<DamageType> damageTypes;
+	private final Set<Accessory> accesories;
 
-	public Ammunition(String id, String name, String goal, String damage, Integer strength, String range, Size size, Integer cost) {
+	public Ammunition(String id, String name, String goal, String damage, Integer strength, String range, Size size, Integer cost, Set<DamageType> damageTypes,
+			Set<Accessory> accesories) {
 		super(id, name);
 		this.goal = goal;
 		this.damage = damage;
@@ -47,6 +50,8 @@ public class Ammunition extends Element<Ammunition> {
 		this.range = range;
 		this.cost = cost;
 		this.size = size;
+		this.damageTypes = damageTypes;
+		this.accesories = accesories;
 	}
 
 	public String getGoal() {
@@ -77,6 +82,18 @@ public class Ammunition extends Element<Ammunition> {
 
 	public Integer getCost() {
 		return cost;
+	}
+
+	public Set<Accessory> getAccesories() {
+		return accesories;
+	}
+
+	public Set<DamageType> getDamageTypes() {
+		return damageTypes;
+	}
+
+	public Size getSize() {
+		return size;
 	}
 
 }

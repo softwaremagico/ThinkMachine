@@ -84,4 +84,10 @@
 			<es>Neuronal</es>
 		</name>
 	</neural>
+	<halveArmour>
+		<name>
+			<en>Halve Armor</en>
+			<es>Armadura a la Mitad</es>
+		</name>
+	</halveArmour>
 </damage>
