@@ -57,7 +57,7 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 	private final static int LITTLE_PROBABILITY = 6;
 	private final static int ACCEPTABLE_PROBABILITY = 11;
 	private final static int GOOD_PROBABILITY = 21;
-	private final static int MAX_PROBABILITY = 100;
+	private final static int MAX_PROBABILITY = 1000;
 
 	private final static int SKILL_TECH_DIFFERENCE_TO_BE_PRIMITIVE = 3;
 
@@ -143,6 +143,13 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 		if (skill == null) {
 			return NO_PROBABILITY;
 		}
+
+		// Weapons weight
+		if (getCharacterPlayer().hasWeaponWithSkill(skill)) {
+			RandomGenerationLog.debug(this.getClass().getName(), "Weight for '" + skill + "' needed for a selected weapon is increased.");
+			return MAX_PROBABILITY;
+		}
+
 		if (skill.getSkillDefinition().isNatural()) {
 			RandomGenerationLog.debug(this.getClass().getName(), "Weight for '" + skill + "' as natural skill is increased.");
 			weight += 3;

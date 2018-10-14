@@ -1015,4 +1015,20 @@ public class CharacterPlayer {
 		}
 		return ranks;
 	}
+
+	/**
+	 * Check if exists a weapon that needs that skill.
+	 * 
+	 * @param skill
+	 *            skill to check.
+	 * @return
+	 */
+	public boolean hasWeaponWithSkill(AvailableSkill skill) {
+		for (Weapon weapon : getWeapons().getElements()) {
+			if (Objects.equals(weapon.getSkill(), skill.getSkillDefinition())) {
+				return true;
+			}
+		}
+		return false;
+	}
 }
