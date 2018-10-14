@@ -61,6 +61,9 @@ public class WeaponFactory extends XmlFactory<Weapon> {
 	private final static String COST = "cost";
 	private final static String FACTION = "faction";
 
+	private final static String RANDOM = "random";
+	private final static String WEAPON_PROBABILITY = "probabilityMultiplier";
+
 	private final static String TYPE = "type";
 	private final static String SPECIAL = "special";
 	private final static String DAMAGE_TYPE = "damageType";
@@ -233,7 +236,7 @@ public class WeaponFactory extends XmlFactory<Weapon> {
 				}
 			}
 		}
-		
+
 		Set<Accessory> accessories = new HashSet<>();
 		String accesoriesNames = translator.getNodeValue(weaponId, ACCESSORIES);
 		if (accesoriesNames != null) {
@@ -257,6 +260,17 @@ public class WeaponFactory extends XmlFactory<Weapon> {
 
 		weapon = new Weapon(weaponId, name, WeaponType.get(typeName), goal, characteristicDefintion, skill, damage, strength, range, shots, rate, techLevel,
 				techLevelSpecial, size, special, damageOfWeapon, cost, ammunitions, accessories, faction);
+
+		try {
+			String weaponProbability = translator.getNodeValue(weaponId, RANDOM, WEAPON_PROBABILITY);
+			if (weaponProbability != null) {
+				weapon.getRandomDefinition().setProbabilityMultiplier(Double.parseDouble(weaponProbability));
+			} else {
+				weapon.getRandomDefinition().setProbabilityMultiplier(1d);
+			}
+		} catch (NumberFormatException nfe) {
+			throw new InvalidWeaponException("Invalid number value for weapon probability in '" + weaponId + "'.");
+		}
 
 		return weapon;
 	}

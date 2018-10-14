@@ -124,7 +124,6 @@ public abstract class RandomWeapon extends RandomSelector<Weapon> {
 		weight += weightTech;
 
 		// Weapons depending on the purchasing power of the character.
-
 		int costModificator = getWeightCostModificator(weapon);
 		RandomGenerationLog.debug(this.getClass().getName(), "Cost multiplication for weight for '" + weapon + "' is '" + costModificator + "'.");
 		weight = weight / costModificator;
@@ -145,6 +144,11 @@ public abstract class RandomWeapon extends RandomSelector<Weapon> {
 		} catch (InvalidXmlElementException e) {
 			RandomGenerationLog.errorMessage(this.getClass().getName(), e);
 		}
+
+		// Some weapons are common, others no.
+		RandomGenerationLog.debug(this.getClass().getName(), "Skill multiplication for weight for '" + weapon + "' is '"
+				+ weapon.getRandomDefinition().getProbabilityMultiplier() + "'.");
+		weight = weight * (int) weapon.getRandomDefinition().getProbabilityMultiplier();
 
 		RandomGenerationLog.debug(this.getClass().getName(), "Total weight for '" + weapon + "' is '" + weight + "'.");
 		return weight;

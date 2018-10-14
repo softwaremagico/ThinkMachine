@@ -72,4 +72,16 @@
 			<es>La Víctima Sangra</es>
 		</name>
 	</bleed>
+	<sonic>
+		<name>
+			<en>Sonic</en>
+			<es>Sónico</es>
+		</name>
+	</sonic>
+	<neural>
+		<name>
+			<en>Neural</en>
+			<es>Neuronal</es>
+		</name>
+	</neural>
 </damage>

@@ -14,6 +14,9 @@
 		<strength>3</strength>
 		<size>L</size>
 		<cost>1000</cost>
+		<random>
+			<probabilityMultiplier>0.01</probabilityMultiplier>
+		</random>
 	</arbata>
 	<axe>
 		<name>
@@ -187,6 +190,9 @@
 		<size>L</size>
 		<cost>15</cost>
 		<damage>shock</damage>
+		<random>
+			<probabilityMultiplier>0.1</probabilityMultiplier>
+		</random>
 	</frapStick>
 	<garrote>
 		<name>
@@ -217,6 +223,7 @@
 		<strength>4</strength>
 		<size>L</size>
 		<cost>15</cost>
+		<faction>vorox</faction>
 	</glankesh>
 	<hollowKnife>
 		<name>
@@ -233,6 +240,7 @@
 		<size>M</size>
 		<cost>50</cost>
 		<others>poison5</others>
+
 	</hollowKnife>
 	<knife>
 		<name>
@@ -248,6 +256,9 @@
 		<strength>1</strength>
 		<size>S</size>
 		<cost>2</cost>
+		<random>
+			<probabilityMultiplier>10</probabilityMultiplier>
+		</random>
 	</knife>
 	<kurganSideSword>
 		<name>
@@ -281,6 +292,9 @@
 		<cost>150</cost>
 		<damage>hard, vibro</damage>
 		<ammunition>innactiveKossack</ammunition>
+		<random>
+			<probabilityMultiplier>0.1</probabilityMultiplier>
+		</random>
 	</kossackChainsword>
 	<mace>
 		<name>
@@ -327,6 +341,9 @@
 		<size>L</size>
 		<cost>5</cost>
 		<damage>hard</damage>
+		<random>
+			<probabilityMultiplier>0.1</probabilityMultiplier>
+		</random>
 	</pick>
 	<rapier>
 		<name>
@@ -342,6 +359,9 @@
 		<strength>3</strength>
 		<size>L</size>
 		<cost>20</cost>
+		<random>
+			<probabilityMultiplier>10</probabilityMultiplier>
+		</random>
 	</rapier>
 	<saber>
 		<name>
@@ -388,6 +408,9 @@
 		<size>L</size>
 		<cost>50</cost>
 		<damage>bleed</damage>
+		<random>
+			<probabilityMultiplier>0.01</probabilityMultiplier>
+		</random>
 	</splinterSword>
 	<staff>
 		<name>
@@ -541,6 +564,9 @@
 		<size>L</size>
 		<cost>30000</cost>
 		<damageType>plasma, hard, psi</damageType>
+		<random>
+			<probabilityMultiplier>0.01</probabilityMultiplier>
+		</random>
 	</mistSword>
 	<dartfletched>
 		<name>
@@ -739,6 +765,9 @@
 		<rate>2</rate>
 		<size>S</size>
 		<cost>3</cost>
+		<random>
+			<probabilityMultiplier>10</probabilityMultiplier>
+		</random>
 	</throwingKnife>
 	<heavyFuthangaBow>
 		<name>
@@ -960,6 +989,9 @@
 		<rate>2</rate>
 		<size>XS</size>
 		<cost>50</cost>
+		<random>
+			<probabilityMultiplier>10</probabilityMultiplier>
+		</random>
 	</typicalDerringer>
 	<lankDerringer>
 		<name>
@@ -1032,6 +1064,9 @@
 		<rate>3</rate>
 		<size>S</size>
 		<cost>100</cost>
+		<random>
+			<probabilityMultiplier>10</probabilityMultiplier>
+		</random>
 	</typicalLightRevolver>
 	<fenirShortstop>
 		<name>
@@ -1104,6 +1139,9 @@
 		<rate>3</rate>
 		<size>S</size>
 		<cost>150</cost>
+		<random>
+			<probabilityMultiplier>10</probabilityMultiplier>
+		</random>
 	</typicalLightAutofeed>
 	<mediumAutofeedHandgun>
 		<name>
@@ -1121,6 +1159,9 @@
 		<rate>3</rate>
 		<size>S</size>
 		<cost>200</cost>
+		<random>
+			<probabilityMultiplier>10</probabilityMultiplier>
+		</random>
 	</mediumAutofeedHandgun>
 	<fenirMonbow>
 		<name>
@@ -1211,6 +1252,9 @@
 		<rate>3</rate>
 		<size>S</size>
 		<cost>200</cost>
+		<random>
+			<probabilityMultiplier>10</probabilityMultiplier>
+		</random>
 	</typicalMedRevolver>
 	<drexelFirehunter>
 		<name>
@@ -1320,6 +1364,9 @@
 		<rate>3</rate>
 		<size>S</size>
 		<cost>250</cost>
+		<random>
+			<probabilityMultiplier>10</probabilityMultiplier>
+		</random>
 	</typicalMed.Autofeed>
 	<immanVorton>
 		<name>
@@ -1392,6 +1439,9 @@
 		<rate>2</rate>
 		<size>M</size>
 		<cost>250</cost>
+		<random>
+			<probabilityMultiplier>10</probabilityMultiplier>
+		</random>
 	</typicalHvyRevolver>
 	<macCaulyBuster>
 		<name>
@@ -1465,6 +1515,9 @@
 		<rate>2</rate>
 		<size>M</size>
 		<cost>300</cost>
+		<random>
+			<probabilityMultiplier>10</probabilityMultiplier>
+		</random>
 	</typicalHvyAutofeed>
 	<kroslerSampson>
 		<name>
@@ -1539,6 +1592,9 @@
 		<size>M</size>
 		<cost>350</cost>
 		<others>retractableStock</others>
+		<random>
+			<probabilityMultiplier>0.1</probabilityMultiplier>
+		</random>
 	</sumpterUrthquakeLong>
 	<typicalManfeedRifle>
 		<name>
@@ -1558,6 +1614,9 @@
 		<size>XL</size>
 		<cost>200</cost>
 		<others>stock, boltfeed, leverfeed</others>
+		<random>
+			<probabilityMultiplier>10</probabilityMultiplier>
+		</random>
 	</typicalManfeedRifle>
 	<basicHuntingRifle>
 		<name>
@@ -1577,6 +1636,9 @@
 		<size>XL</size>
 		<cost>150</cost>
 		<others>stock, boltfeed, leverfeed</others>
+		<random>
+			<probabilityMultiplier>10</probabilityMultiplier>
+		</random>
 	</basicHuntingRifle>
 	<dragonfly>
 		<name>
@@ -1691,6 +1753,9 @@
 		<size>XL</size>
 		<cost>500</cost>
 		<others>stock, autofeed</others>
+		<random>
+			<probabilityMultiplier>10</probabilityMultiplier>
+		</random>
 	</typicalAutoRifle>
 	<blueLionM3>
 		<name>
@@ -1827,6 +1892,9 @@
 		<cost>800</cost>
 		<damageType>hard</damageType>
 		<others>stock, autofeed</others>
+		<random>
+			<probabilityMultiplier>10</probabilityMultiplier>
+		</random>
 	</typicalCaselessRifle>
 	<gleelanMRC>
 		<name>
@@ -1926,6 +1994,9 @@
 		<size>L</size>
 		<cost>350</cost>
 		<others>stock, autofeed</others>
+		<random>
+			<probabilityMultiplier>10</probabilityMultiplier>
+		</random>
 	</typicalSMG>
 	<herstalProject98>
 		<name>
@@ -2043,6 +2114,9 @@
 		<special>pumpfeed</special>
 		<ammunition>solidSlug</ammunition>
 		<others>stock, pumpfeed</others>
+		<random>
+			<probabilityMultiplier>10</probabilityMultiplier>
+		</random>
 	</typicalShotgun>
 	<typicalTwinBarrel>
 		<name>
@@ -2062,6 +2136,9 @@
 		<size>L</size>
 		<cost>200</cost>
 		<others>stock, breakfeed</others>
+		<random>
+			<probabilityMultiplier>10</probabilityMultiplier>
+		</random>
 	</typicalTwinBarrel>
 	<dreskelBoomer>
 		<name>
@@ -2121,6 +2198,9 @@
 		<faction>hazat</faction>
 		<others>stock, autofeed</others>
 		<ammunition>riotSolidSlug</ammunition>
+		<random>
+			<probabilityMultiplier>0.1</probabilityMultiplier>
+		</random>
 	</mHazatRiot>
 	<xienShortBarrel>
 		<name>
@@ -2198,6 +2278,9 @@
 		<size>S</size>
 		<cost>100</cost>
 		<others>syringe, muzzlefeed</others>
+		<random>
+			<probabilityMultiplier>0.01</probabilityMultiplier>
+		</random>
 	</cancanaghDartgunPistol>
 	<decadosGroinGun>
 		<name>
@@ -2219,6 +2302,9 @@
 		<cost>150</cost>
 		<faction>decados</faction>
 		<others>hidden</others>
+		<random>
+			<probabilityMultiplier>0.01</probabilityMultiplier>
+		</random>
 	</decadosGroinGun>
 	<hailstormSplinterPistol>
 		<name>
@@ -2238,6 +2324,9 @@
 		<size>M</size>
 		<cost>200</cost>
 		<others>flechette</others>
+		<random>
+			<probabilityMultiplier>0.01</probabilityMultiplier>
+		</random>
 	</hailstormSplinterPistol>
 	<reznorNailGun>
 		<name>
@@ -2257,6 +2346,9 @@
 		<size>M</size>
 		<cost>300</cost>
 		<others>autofeed, flechette</others>
+		<random>
+			<probabilityMultiplier>0.01</probabilityMultiplier>
+		</random>
 	</reznorNailGun>
 	<nailgunPowerTool>
 		<name>
@@ -2275,6 +2367,9 @@
 		<rate>1</rate>
 		<size>M</size>
 		<cost>20</cost>
+		<random>
+			<probabilityMultiplier>0.01</probabilityMultiplier>
+		</random>
 	</nailgunPowerTool>
 	<capekAquaRifle>
 		<name>
@@ -2296,6 +2391,9 @@
 		<cost>800</cost>
 		<others>stock, boltfeed</others>
 		<ammunition>capekUnderWater</ammunition>
+		<random>
+			<probabilityMultiplier>0.01</probabilityMultiplier>
+		</random>
 	</capekAquaRifle>
 	<cupidLongarm>
 		<name>
@@ -2315,6 +2413,9 @@
 		<size>XL</size>
 		<cost>200</cost>
 		<others>muzzlefeed, syringe</others>
+		<random>
+			<probabilityMultiplier>0.01</probabilityMultiplier>
+		</random>
 	</cupidLongarm>
 	<reznorModelXI>
 		<name>
@@ -2334,6 +2435,9 @@
 		<size>L</size>
 		<cost>500</cost>
 		<others>muzzlefeed, syringe</others>
+		<random>
+			<probabilityMultiplier>0.01</probabilityMultiplier>
+		</random>
 	</reznorModelXI>
 	<sabotGun>
 		<name>
@@ -2354,7 +2458,599 @@
 		<cost>2000</cost>
 		<others>stock, autofeed, compressedAir</others>
 		<ammunition>sabotHiron, sabotPlastic, sabotWood</ammunition>
+		<random>
+			<probabilityMultiplier>0.01</probabilityMultiplier>
+		</random>
 	</sabotGun>
+	<martechMidgetPalmLaser>
+		<name>
+			<en>Martech Midget Palm Laser</en>
+			<es>Láser de Mano Martech Midget</es>
+		</name>
+		<type>LASER</type>
+		<techLevel>6</techLevel>
+		<characteristic>dexterity</characteristic>
+		<skill>energyGuns</skill>
+		<goal>0</goal>
+		<damage>3*</damage>
+		<strength>0</strength>
+		<range>5/10</range>
+		<shots>7</shots>
+		<rate>2</rate>
+		<size>XS</size>
+		<cost>200</cost>
+		<damageType>laser</damageType>
+	</martechMidgetPalmLaser>
+	<martechMidgetPalmLaserRing>
+		<name>
+			<en>Martech Midget Ring Laser</en>
+			<es>Láser Anillo Martech Midget</es>
+		</name>
+		<type>LASER</type>
+		<techLevel>6</techLevel>
+		<characteristic>dexterity</characteristic>
+		<skill>energyGuns</skill>
+		<goal>0</goal>
+		<damage>3*</damage>
+		<strength>0</strength>
+		<range>5/10</range>
+		<shots>1</shots>
+		<rate>1</rate>
+		<size>XS</size>
+		<cost>400</cost>
+		<damageType>laser</damageType>
+		<random>
+			<probabilityMultiplier>0.01</probabilityMultiplier>
+		</random>
+	</martechMidgetPalmLaserRing>
+	<martechGold>
+		<name>
+			<en>Martech Gold</en>
+			<es>Martech Oro</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>energyGuns</skill>
+		<type>LASER</type>
+		<techLevel>6</techLevel>
+		<goal>+1</goal>
+		<damage>5</damage>
+		<strength>0</strength>
+		<range>10/20</range>
+		<shots>15</shots>
+		<rate>2</rate>
+		<size>S</size>
+		<cost>300</cost>
+		<damageType>laser</damageType>
+	</martechGold>
+	<martechAmber>
+		<name>
+			<en>Martech Amber</en>
+			<es>Martech Ámbar</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>energyGuns</skill>
+		<type>LASER</type>
+		<techLevel>6</techLevel>
+		<goal>1</goal>
+		<damage>4*</damage>
+		<strength>0</strength>
+		<range>10/20</range>
+		<shots>21</shots>
+		<rate>2</rate>
+		<size>S</size>
+		<cost>300</cost>
+		<damageType>laser</damageType>
+	</martechAmber>
+	<bannerCabalXaserPistol>
+		<name>
+			<en>Banner Cabal Xaser Pistol</en>
+			<es>Pistola Camarilla del Estandarte Xáser</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>energyGuns</skill>
+		<type>LASER</type>
+		<techLevel>7</techLevel>
+		<goal>1</goal>
+		<damage>4</damage>
+		<strength>0</strength>
+		<range>10/20</range>
+		<shots>10</shots>
+		<rate>2</rate>
+		<size>S</size>
+		<cost>500</cost>
+		<damageType>xaser</damageType>
+		<random>
+			<probabilityMultiplier>0.01</probabilityMultiplier>
+		</random>
+	</bannerCabalXaserPistol>
+	<bannerCabalGraserPistol>
+		<name>
+			<en>Banner Cabal Graser Pistol</en>
+			<es>Pistola Camarilla del Estandarte Xáser</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>energyGuns</skill>
+		<type>LASER</type>
+		<techLevel>7</techLevel>
+		<goal>1</goal>
+		<damage>5</damage>
+		<strength>0</strength>
+		<range>15/25</range>
+		<shots>5</shots>
+		<rate>3</rate>
+		<size>S</size>
+		<cost>900</cost>
+		<damageType>graser</damageType>
+		<random>
+			<probabilityMultiplier>0.001</probabilityMultiplier>
+		</random>
+	</bannerCabalGraserPistol>
+	<martechIndigo>
+		<name>
+			<en>Martech Indigo</en>
+			<es>Martech Índigo</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>energyGuns</skill>
+		<type>LASER</type>
+		<techLevel>6</techLevel>
+		<goal>1</goal>
+		<damage>7*</damage>
+		<strength>0</strength>
+		<range>30/80</range>
+		<shots>23</shots>
+		<rate>2</rate>
+		<size>XL</size>
+		<cost>500</cost>
+		<damageType>laser</damageType>
+		<others>stock</others>
+	</martechIndigo>
+	<martechSafireSniper>
+		<name>
+			<en>Martech Safire (Sniper)</en>
+			<es>Martech Zafiro (Francotirador)</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>energyGuns</skill>
+		<type>LASER</type>
+		<techLevel>6</techLevel>
+		<goal>1</goal>
+		<damage>7*</damage>
+		<strength>0</strength>
+		<range>60/160</range>
+		<shots>10</shots>
+		<rate>1</rate>
+		<size>XL</size>
+		<cost>600</cost>
+		<damageType>laser</damageType>
+		<others>stock</others>
+		<random>
+			<probabilityMultiplier>0.1</probabilityMultiplier>
+		</random>
+	</martechSafireSniper>
+	<bannerCabalXaserRifle>
+		<name>
+			<en>Banner Cabal Xaser Rifle</en>
+			<es>Rifle Camarilla del Estandarte Xáser</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>energyGuns</skill>
+		<type>LASER</type>
+		<techLevel>7</techLevel>
+		<goal>1</goal>
+		<damage>5</damage>
+		<strength>0</strength>
+		<range>30/40</range>
+		<shots>15</shots>
+		<rate>2</rate>
+		<size>XL</size>
+		<cost>1000</cost>
+		<damageType>xaser</damageType>
+		<others>stock</others>
+		<random>
+			<probabilityMultiplier>0.01</probabilityMultiplier>
+		</random>
+	</bannerCabalXaserRifle>
+	<bannerCabalGraserRifle>
+		<name>
+			<en>Banner Cabal Graser Rifle</en>
+			<es>Rifle Camarilla del Estandarte Gráser</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>energyGuns</skill>
+		<type>LASER</type>
+		<techLevel>7</techLevel>
+		<goal>1</goal>
+		<damage>6</damage>
+		<strength>0</strength>
+		<range>35/45</range>
+		<shots>8</shots>
+		<rate>2</rate>
+		<size>XL</size>
+		<cost>2000</cost>
+		<damageType>graser</damageType>
+		<others>stock</others>
+		<random>
+			<probabilityMultiplier>0.001</probabilityMultiplier>
+		</random>
+	</bannerCabalGraserRifle>
+	<martechRed>
+		<name>
+			<en>Martech Red</en>
+			<es>Martech Rojo</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>energyGuns</skill>
+		<type>LASER</type>
+		<techLevel>6</techLevel>
+		<goal>1</goal>
+		<damage>8*</damage>
+		<strength>0</strength>
+		<range>20/60</range>
+		<shots>20</shots>
+		<rate>2</rate>
+		<size>XL</size>
+		<cost>700</cost>
+		<damageType>laser</damageType>
+		<others>stock</others>
+	</martechRed>
+	<varstenBlacklight>
+		<name>
+			<en>Varsten Blacklight</en>
+			<es>Varsten Blacklight</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>energyGuns</skill>
+		<type>LASER</type>
+		<techLevel>6</techLevel>
+		<goal>0</goal>
+		<damage>8*</damage>
+		<strength>0</strength>
+		<range>20/60</range>
+		<shots>20</shots>
+		<rate>2</rate>
+		<size>XL</size>
+		<cost>700</cost>
+		<damageType>laser</damageType>
+		<others>stock</others>
+		<random>
+			<probabilityMultiplier>0.01</probabilityMultiplier>
+		</random>
+	</varstenBlacklight>
+	<soeAlembic>
+		<name>
+			<en>SOE Alembic</en>
+			<es>SOE Alembic</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>energyGuns</skill>
+		<type>BLASTER</type>
+		<techLevel>7</techLevel>
+		<goal>0</goal>
+		<damage>7</damage>
+		<strength>3</strength>
+		<range>10/20</range>
+		<shots>10</shots>
+		<rate>1</rate>
+		<size>S</size>
+		<cost>700</cost>
+		<damageType>plasma</damageType>
+		<random>
+			<probabilityMultiplier>10</probabilityMultiplier>
+		</random>
+	</soeAlembic>
+	<lankEruptor>
+		<name>
+			<en>Lank Eruptor</en>
+			<es>Eruptor Lank</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>energyGuns</skill>
+		<type>BLASTER</type>
+		<techLevel>7</techLevel>
+		<goal>0</goal>
+		<damage>7</damage>
+		<strength>3</strength>
+		<range>10/20</range>
+		<shots>9</shots>
+		<rate>1(A*)</rate>
+		<size>M</size>
+		<cost>900</cost>
+		<damageType>plasma</damageType>
+		<random>
+			<probabilityMultiplier>0.1</probabilityMultiplier>
+		</random>
+	</lankEruptor>
+	<soeCrucible>
+		<name>
+			<en>SOE Crucible</en>
+			<es>SOE Crucible</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>energyGuns</skill>
+		<type>BLASTER</type>
+		<techLevel>7</techLevel>
+		<goal>0</goal>
+		<damage>9</damage>
+		<strength>3</strength>
+		<range>20/30</range>
+		<shots>15</shots>
+		<rate>1</rate>
+		<size>XL</size>
+		<cost>1000</cost>
+		<damageType>plasma</damageType>
+		<others>stock</others>
+	</soeCrucible>
+	<nitobiBlasterAxe>
+		<name>
+			<en>Nitobi Blaster Axe</en>
+			<es>Hoja Bláster Nitobi</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>energyGuns</skill>
+		<type>BLASTER</type>
+		<techLevel>7</techLevel>
+		<goal>–1</goal>
+		<damage>9*</damage>
+		<strength>3</strength>
+		<range>20/30</range>
+		<shots>15</shots>
+		<rate>1</rate>
+		<size>XL</size>
+		<cost>3000</cost>
+		<damageType>plasma</damageType>
+		<others>stock</others>
+		<ammunition>nitobiAxe</ammunition>
+		<random>
+			<probabilityMultiplier>0.1</probabilityMultiplier>
+		</random>
+	</nitobiBlasterAxe>
+	<soeVolcano>
+		<name>
+			<en>SOE Volcano</en>
+			<es>SOE Volcano</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>energyGuns</skill>
+		<type>BLASTER</type>
+		<techLevel>7</techLevel>
+		<goal>+2/0/–1</goal>
+		<damage>9/7/5</damage>
+		<strength>4</strength>
+		<range>10/20/×</range>
+		<shots>8</shots>
+		<rate>1</rate>
+		<size>L</size>
+		<cost>1200</cost>
+		<damageType>plasma</damageType>
+		<others>stock</others>
+		<random>
+			<probabilityMultiplier>0.1</probabilityMultiplier>
+		</random>
+	</soeVolcano>
+	<lankIncinerator>
+		<name>
+			<en>Lank Incinerator</en>
+			<es>Incinerador Lank</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>energyGuns</skill>
+		<type>BLASTER</type>
+		<techLevel>7</techLevel>
+		<goal>+2/0/–1</goal>
+		<damage>9/7/5</damage>
+		<strength>4</strength>
+		<range>10/20/×</range>
+		<shots>8</shots>
+		<rate>1(A*)</rate>
+		<size>L</size>
+		<cost>1400</cost>
+		<damageType>plasma</damageType>
+		<others>stock</others>
+		<random>
+			<probabilityMultiplier>0.1</probabilityMultiplier>
+		</random>
+	</lankIncinerator>
+
+
+	<kalomiteFlamegun>
+		<name>
+			<en>Kalomite Flamegun</en>
+			<es>Lanzallamas Kalomite</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>energyGuns</skill>
+		<type>FLAMMER</type>
+		<techLevel>4</techLevel>
+		<goal>2</goal>
+		<damage>5(3)</damage>
+		<strength>2</strength>
+		<range>10/20</range>
+		<shots>10</shots>
+		<rate>1</rate>
+		<size>L</size>
+		<cost>150</cost>
+		<damageType>fire</damageType>
+		<random>
+			<probabilityMultiplier>0.001</probabilityMultiplier>
+		</random>
+	</kalomiteFlamegun>
+	<kendraDragon>
+		<name>
+			<en>Kendra Dragon</en>
+			<es>Kendra Dragon</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>energyGuns</skill>
+		<type>FLAMMER</type>
+		<techLevel>3</techLevel>
+		<goal>2</goal>
+		<damage>4(4)</damage>
+		<strength>3</strength>
+		<range>10/20</range>
+		<shots>6</shots>
+		<rate>1</rate>
+		<size>XL</size>
+		<cost>150</cost>
+		<damageType>fire</damageType>
+		<random>
+			<probabilityMultiplier>0.001</probabilityMultiplier>
+		</random>
+	</kendraDragon>
+	<sOEHowler>
+		<name>
+			<en>SOE Howler</en>
+			<es>SOE Howler</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>energyGuns</skill>
+		<type>SCREECHER</type>
+		<techLevel>5</techLevel>
+		<goal>1</goal>
+		<damage>5</damage>
+		<strength>0</strength>
+		<range>10/20</range>
+		<shots>15</shots>
+		<rate>1</rate>
+		<size>S</size>
+		<cost>300</cost>
+		<damageType>sonic</damageType>
+		<random>
+			<probabilityMultiplier>0.001</probabilityMultiplier>
+		</random>
+	</sOEHowler>
+	<zenicPacifier>
+		<name>
+			<en>Zenic Pacifier</en>
+			<es>Pacificador Zenic</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>energyGuns</skill>
+		<type>ENERGY</type>
+		<techLevel>5</techLevel>
+		<goal>1</goal>
+		<damage>4</damage>
+		<strength>0</strength>
+		<range>8/15</range>
+		<shots>12</shots>
+		<rate>1</rate>
+		<size>XS</size>
+		<cost>300</cost>
+		<damageType>sonic</damageType>
+		<random>
+			<probabilityMultiplier>0.001</probabilityMultiplier>
+		</random>
+	</zenicPacifier>
+	<arbogastSleeper>
+		<name>
+			<en>Arbogast Sleeper</en>
+			<es>Arbogast Sleeper</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>energyGuns</skill>
+		<type>STUNNER</type>
+		<techLevel>6</techLevel>
+		<goal>1</goal>
+		<damage>4 (KO)</damage>
+		<strength>2</strength>
+		<range>10/20</range>
+		<shots>15</shots>
+		<rate>2</rate>
+		<size>S</size>
+		<cost>300</cost>
+		<random>
+			<probabilityMultiplier>0.001</probabilityMultiplier>
+		</random>
+	</arbogastSleeper>
+	<sOETesla16B50002>
+		<name>
+			<en>SOE Tesla 16B50002</en>
+			<es>SOE Tesla 16B50002</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>energyGuns</skill>
+		<type>STUNNER</type>
+		<techLevel>6</techLevel>
+		<goal>1</goal>
+		<damage>6 (KO)</damage>
+		<strength>2</strength>
+		<range>8/15</range>
+		<shots>6</shots>
+		<rate>2</rate>
+		<size>S</size>
+		<cost>600</cost>
+		<random>
+			<probabilityMultiplier>0.001</probabilityMultiplier>
+		</random>
+	</sOETesla16B50002>
+	<republicArms3000>
+		<name>
+			<en>Republic Arms 3000</en>
+			<es>Republican Arms 3000</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>energyGuns</skill>
+		<type>ENERGY</type>
+		<techLevel>8</techLevel>
+		<goal>1</goal>
+		<damage>15</damage>
+		<strength>4</strength>
+		<range>30/80</range>
+		<shots>20</shots>
+		<rate>1</rate>
+		<size>XL</size>
+		<cost>5000</cost>
+		<others>stock</others>
+		<random>
+			<probabilityMultiplier>0.001</probabilityMultiplier>
+		</random>
+	</republicArms3000>
+	<varsotechModel331>
+		<name>
+			<en>Varsotech Model 331</en>
+			<es>Varsotech Model 331</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>energyGuns</skill>
+		<type>NEURAL</type>
+		<techLevel>8</techLevel>
+		<goal>–3</goal>
+		<damage>5</damage>
+		<strength>1</strength>
+		<range>10/20</range>
+		<shots>6</shots>
+		<rate>1</rate>
+		<size>M</size>
+		<cost>3000</cost>
+		<damageType>neural</damageType>
+		<random>
+			<probabilityMultiplier>0.0001</probabilityMultiplier>
+		</random>
+	</varsotechModel331>
+	<cunninghamDemeantor>
+		<name>
+			<en>Cunningham Demeantor</en>
+			<es>Dementor Cunningham</es>
+		</name>
+		<characteristic>dexterity</characteristic>
+		<skill>energyGuns</skill>
+		<type>NEURAL</type>
+		<techLevel>8</techLevel>
+		<goal>–2</goal>
+		<damage>4</damage>
+		<strength>1</strength>
+		<range>10/40</range>
+		<shots>10</shots>
+		<rate>1</rate>
+		<size>L</size>
+		<cost>3700</cost>
+		<damageType>neural</damageType>
+		<random>
+			<probabilityMultiplier>0.0001</probabilityMultiplier>
+		</random>
+	</cunninghamDemeantor>
+
+
 	<blastPellet>
 		<name>
 			<en>Blast Pellet</en>
@@ -2595,339 +3291,5 @@
 		<size>S</size>
 		<cost>80</cost>
 	</wireGrenade>
-	<martechMidgetPalmLaser>
-		<name>
-			<en>Martech Midget Palm Laser</en>
-			<es>Láser de Mano Martech Midget</es>
-		</name>
-		<type>LASER</type>
-		<techLevel>6</techLevel>
-		<characteristic>dexterity</characteristic>
-		<skill>energyGuns</skill>
-		<goal>0</goal>
-		<damage>3*</damage>
-		<strength>0</strength>
-		<range>5/10</range>
-		<shots>7</shots>
-		<rate>2</rate>
-		<size>XS</size>
-		<cost>200</cost>
-		<damageType>laser</damageType>
-	</martechMidgetPalmLaser>
-	<martechGold>
-		<name>
-			<en>Martech Gold</en>
-			<es>Martech Oro</es>
-		</name>
-		<characteristic>dexterity</characteristic>
-		<skill>energyGuns</skill>
-		<type>LASER</type>
-		<techLevel>6</techLevel>
-		<goal>+1</goal>
-		<damage>5</damage>
-		<strength>0</strength>
-		<range>10/20</range>
-		<shots>15</shots>
-		<rate>2</rate>
-		<size>S</size>
-		<cost>300</cost>
-		<damageType>laser</damageType>
-	</martechGold>
-	<martechAmber>
-		<name>
-			<en>Martech Amber</en>
-			<es>Martech Ámbar</es>
-		</name>
-		<characteristic>dexterity</characteristic>
-		<skill>energyGuns</skill>
-		<type>LASER</type>
-		<techLevel>6</techLevel>
-		<goal>1</goal>
-		<damage>4*</damage>
-		<strength>0</strength>
-		<range>10/20</range>
-		<shots>21</shots>
-		<rate>2</rate>
-		<size>S</size>
-		<cost>300</cost>
-		<damageType>laser</damageType>
-	</martechAmber>
-	<bannerCabalXaserPistol>
-		<name>
-			<en>Banner Cabal Xaser Pistol</en>
-			<es>Pistola Camarilla del Estandarte Xáser</es>
-		</name>
-		<characteristic>dexterity</characteristic>
-		<skill>energyGuns</skill>
-		<type>LASER</type>
-		<techLevel>7</techLevel>
-		<goal>1</goal>
-		<damage>4</damage>
-		<strength>0</strength>
-		<range>10/20</range>
-		<shots>10</shots>
-		<rate>2</rate>
-		<size>S</size>
-		<cost>500</cost>
-		<damageType>xaser</damageType>
-	</bannerCabalXaserPistol>
-	<bannerCabalGraserPistol>
-		<name>
-			<en>Banner Cabal Graser Pistol</en>
-			<es>Pistola Camarilla del Estandarte Xáser</es>
-		</name>
-		<characteristic>dexterity</characteristic>
-		<skill>energyGuns</skill>
-		<type>LASER</type>
-		<techLevel>7</techLevel>
-		<goal>1</goal>
-		<damage>5</damage>
-		<strength>0</strength>
-		<range>15/25</range>
-		<shots>5</shots>
-		<rate>3</rate>
-		<size>S</size>
-		<cost>900</cost>
-		<damageType>graser</damageType>
-	</bannerCabalGraserPistol>
-	<martechIndigo>
-		<name>
-			<en>Martech Indigo</en>
-			<es>Martech Índigo</es>
-		</name>
-		<characteristic>dexterity</characteristic>
-		<skill>energyGuns</skill>
-		<type>LASER</type>
-		<techLevel>6</techLevel>
-		<goal>1</goal>
-		<damage>7*</damage>
-		<strength>0</strength>
-		<range>30/80</range>
-		<shots>23</shots>
-		<rate>2</rate>
-		<size>XL</size>
-		<cost>500</cost>
-		<damageType>laser</damageType>
-		<others>stock</others>
-	</martechIndigo>
-	<martechSafireSniper>
-		<name>
-			<en>Martech Safire (Sniper)</en>
-			<es>Martech Zafiro (Francotirador)</es>
-		</name>
-		<characteristic>dexterity</characteristic>
-		<skill>energyGuns</skill>
-		<type>LASER</type>
-		<techLevel>6</techLevel>
-		<goal>1</goal>
-		<damage>7*</damage>
-		<strength>0</strength>
-		<range>60/160</range>
-		<shots>10</shots>
-		<rate>1</rate>
-		<size>XL</size>
-		<cost>600</cost>
-		<damageType>laser</damageType>
-		<others>stock</others>
-	</martechSafireSniper>
-	<bannerCabalXaserRifle>
-		<name>
-			<en>Banner Cabal Xaser Rifle</en>
-			<es>Rifle Camarilla del Estandarte Xáser</es>
-		</name>
-		<characteristic>dexterity</characteristic>
-		<skill>energyGuns</skill>
-		<type>LASER</type>
-		<techLevel>7</techLevel>
-		<goal>1</goal>
-		<damage>5</damage>
-		<strength>0</strength>
-		<range>30/40</range>
-		<shots>15</shots>
-		<rate>2</rate>
-		<size>XL</size>
-		<cost>1000</cost>
-		<damageType>xaser</damageType>
-		<others>stock</others>
-	</bannerCabalXaserRifle>
-	<bannerCabalGraserRifle>
-		<name>
-			<en>Banner Cabal Graser Rifle</en>
-			<es>Rifle Camarilla del Estandarte Gráser</es>
-		</name>
-		<characteristic>dexterity</characteristic>
-		<skill>energyGuns</skill>
-		<type>LASER</type>
-		<techLevel>7</techLevel>
-		<goal>1</goal>
-		<damage>6</damage>
-		<strength>0</strength>
-		<range>35/45</range>
-		<shots>8</shots>
-		<rate>2</rate>
-		<size>XL</size>
-		<cost>2000</cost>
-		<damageType>graser</damageType>
-		<others>stock</others>
-	</bannerCabalGraserRifle>
-	<martechRed>
-		<name>
-			<en>Martech Red</en>
-			<es>Martech Rojo</es>
-		</name>
-		<characteristic>dexterity</characteristic>
-		<skill>energyGuns</skill>
-		<type>LASER</type>
-		<techLevel>6</techLevel>
-		<goal>1</goal>
-		<damage>8*</damage>
-		<strength>0</strength>
-		<range>20/60</range>
-		<shots>20</shots>
-		<rate>2</rate>
-		<size>XL</size>
-		<cost>700</cost>
-		<damageType>laser</damageType>
-		<others>stock</others>
-	</martechRed>
-	<varstenBlacklight>
-		<name>
-			<en>Varsten Blacklight</en>
-			<es>Varsten Blacklight</es>
-		</name>
-		<characteristic>dexterity</characteristic>
-		<skill>energyGuns</skill>
-		<type>LASER</type>
-		<techLevel>6</techLevel>
-		<goal>0</goal>
-		<damage>8*</damage>
-		<strength>0</strength>
-		<range>20/60</range>
-		<shots>20</shots>
-		<rate>2</rate>
-		<size>XL</size>
-		<cost>700</cost>
-		<damageType>laser</damageType>
-		<others>stock</others>
-	</varstenBlacklight>
-	<soeAlembic>
-		<name>
-			<en>SOE Alembic</en>
-			<es>SOE Alembic</es>
-		</name>
-		<characteristic>dexterity</characteristic>
-		<skill>energyGuns</skill>
-		<type>BLASTER</type>
-		<techLevel>7</techLevel>
-		<goal>0</goal>
-		<damage>7</damage>
-		<strength>3</strength>
-		<range>10/20</range>
-		<shots>10</shots>
-		<rate>1</rate>
-		<size>S</size>
-		<cost>700</cost>
-		<damageType>plasma</damageType>
-	</soeAlembic>
-	<lankEruptor>
-		<name>
-			<en>Lank Eruptor</en>
-			<es>Eruptor Lank</es>
-		</name>
-		<characteristic>dexterity</characteristic>
-		<skill>energyGuns</skill>
-		<type>BLASTER</type>
-		<techLevel>7</techLevel>
-		<goal>0</goal>
-		<damage>7</damage>
-		<strength>3</strength>
-		<range>10/20</range>
-		<shots>9</shots>
-		<rate>1(A*)</rate>
-		<size>M</size>
-		<cost>900</cost>
-		<damageType>plasma</damageType>
-	</lankEruptor>
-	<soeCrucible>
-		<name>
-			<en>SOE Crucible</en>
-			<es>SOE Crucible</es>
-		</name>
-		<characteristic>dexterity</characteristic>
-		<skill>energyGuns</skill>
-		<type>BLASTER</type>
-		<techLevel>7</techLevel>
-		<goal>0</goal>
-		<damage>9</damage>
-		<strength>3</strength>
-		<range>20/30</range>
-		<shots>15</shots>
-		<rate>1</rate>
-		<size>XL</size>
-		<cost>1000</cost>
-		<damageType>plasma</damageType>
-		<others>stock</others>
-	</soeCrucible>
-	<nitobiBlasterAxe>
-		<name>
-			<en>Nitobi Blaster Axe</en>
-			<es>Hoja Bláster Nitobi</es>
-		</name>
-		<characteristic>dexterity</characteristic>
-		<skill>energyGuns</skill>
-		<type>BLASTER</type>
-		<techLevel>7</techLevel>
-		<goal>–1</goal>
-		<damage>9*</damage>
-		<strength>3</strength>
-		<range>20/30</range>
-		<shots>15</shots>
-		<rate>1</rate>
-		<size>XL</size>
-		<cost>3000</cost>
-		<damageType>plasma</damageType>
-		<others>stock</others>
-		<ammunition>nitobiAxe</ammunition>
-	</nitobiBlasterAxe>
-	<soeVolcano>
-		<name>
-			<en>SOE Volcano</en>
-			<es>SOE Volcano</es>
-		</name>
-		<characteristic>dexterity</characteristic>
-		<skill>energyGuns</skill>
-		<type>BLASTER</type>
-		<techLevel>7</techLevel>
-		<goal>+2/0/–1</goal>
-		<damage>9/7/5</damage>
-		<strength>4</strength>
-		<range>10/20/×</range>
-		<shots>8</shots>
-		<rate>1</rate>
-		<size>L</size>
-		<cost>1200</cost>
-		<damageType>plasma</damageType>
-		<others>stock</others>
-	</soeVolcano>
-	<lankIncinerator>
-		<name>
-			<en>Lank Incinerator</en>
-			<es>Incinerador Lank</es>
-		</name>
-		<characteristic>dexterity</characteristic>
-		<skill>energyGuns</skill>
-		<type>BLASTER</type>
-		<techLevel>7</techLevel>
-		<goal>+2/0/–1</goal>
-		<damage>9/7/5</damage>
-		<strength>4</strength>
-		<range>10/20/×</range>
-		<shots>8</shots>
-		<rate>1(A*)</rate>
-		<size>L</size>
-		<cost>1400</cost>
-		<damageType>plasma</damageType>
-		<others>stock</others>
-	</lankIncinerator>
 </weapons>
 

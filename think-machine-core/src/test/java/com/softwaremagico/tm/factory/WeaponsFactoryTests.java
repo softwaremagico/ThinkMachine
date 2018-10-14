@@ -62,4 +62,9 @@ public class WeaponsFactoryTests {
 		Assert.assertEquals(3, WeaponFactory.getInstance().getElement("basicHuntingRifle", LANGUAGE).getAccesories().size());
 	}
 
+	@Test
+	public void checkRandomModifications() throws InvalidXmlElementException {
+		Assert.assertEquals(0.01d, WeaponFactory.getInstance().getElement("arbata", LANGUAGE).getRandomDefinition().getProbabilityMultiplier());
+	}
+
 }

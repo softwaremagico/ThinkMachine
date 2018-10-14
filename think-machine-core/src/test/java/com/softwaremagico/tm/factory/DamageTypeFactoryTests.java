@@ -34,7 +34,7 @@ import com.softwaremagico.tm.character.equipment.DamageTypeFactory;
 @Test(groups = { "damageFactory" })
 public class DamageTypeFactoryTests {
 
-	private final static int DEFINED_DAMAGES = 12;
+	private final static int DEFINED_DAMAGES = 14;
 	private final static String LANGUAGE = "es";
 	
 	@Test
