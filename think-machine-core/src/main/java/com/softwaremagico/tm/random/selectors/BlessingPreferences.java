@@ -26,7 +26,7 @@ import java.util.Set;
  * #L%
  */
 
-public enum BlessingPreferences implements IRandomPreferences {
+public enum BlessingPreferences implements IRandomPreference {
 	APPEARANCE,
 
 	BEHAVIOUR,
@@ -49,8 +49,8 @@ public enum BlessingPreferences implements IRandomPreferences {
 		return 0;
 	}
 
-	public static BlessingPreferences getSelected(Set<IRandomPreferences> preferences) {
-		for (IRandomPreferences preference : preferences) {
+	public static BlessingPreferences getSelected(Set<IRandomPreference> preferences) {
+		for (IRandomPreference preference : preferences) {
 			if (preference instanceof BlessingPreferences) {
 				return (BlessingPreferences) preference;
 			}

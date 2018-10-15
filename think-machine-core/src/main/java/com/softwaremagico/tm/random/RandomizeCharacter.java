@@ -40,7 +40,7 @@ import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedExcep
 import com.softwaremagico.tm.random.selectors.AgePreferences;
 import com.softwaremagico.tm.random.selectors.CombatPreferences;
 import com.softwaremagico.tm.random.selectors.IGaussianDistribution;
-import com.softwaremagico.tm.random.selectors.IRandomPreferences;
+import com.softwaremagico.tm.random.selectors.IRandomPreference;
 import com.softwaremagico.tm.random.selectors.PsiqueLevelPreferences;
 import com.softwaremagico.tm.random.selectors.SpecializationPreferences;
 import com.softwaremagico.tm.random.selectors.TraitCostPreferences;
@@ -48,10 +48,10 @@ import com.softwaremagico.tm.random.selectors.WeaponsPreferences;
 
 public class RandomizeCharacter {
 	private CharacterPlayer characterPlayer;
-	private final Set<IRandomPreferences> preferences;
+	private final Set<IRandomPreference> preferences;
 	private final Random random = new Random();
 
-	public RandomizeCharacter(CharacterPlayer characterPlayer, int experiencePoints, IRandomPreferences... preferences) throws DuplicatedPreferenceException {
+	public RandomizeCharacter(CharacterPlayer characterPlayer, int experiencePoints, IRandomPreference... preferences) throws DuplicatedPreferenceException {
 		this.characterPlayer = characterPlayer;
 		this.preferences = new HashSet<>(Arrays.asList(preferences));
 
@@ -59,9 +59,9 @@ public class RandomizeCharacter {
 	}
 
 	private void checkValidPreferences() throws DuplicatedPreferenceException {
-		Set<Class<? extends IRandomPreferences>> existingPreferences = new HashSet<>();
+		Set<Class<? extends IRandomPreference>> existingPreferences = new HashSet<>();
 		// Only one of each class allowed.
-		for (IRandomPreferences preference : preferences) {
+		for (IRandomPreference preference : preferences) {
 			if (existingPreferences.contains(preference.getClass())) {
 				throw new DuplicatedPreferenceException("Preference '" + preference + "' collides with another preference. Only one of each type is allowed.");
 			}

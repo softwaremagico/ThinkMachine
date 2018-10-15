@@ -45,7 +45,7 @@ import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
 import com.softwaremagico.tm.log.RandomGenerationLog;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.CombatPreferences;
-import com.softwaremagico.tm.random.selectors.IRandomPreferences;
+import com.softwaremagico.tm.random.selectors.IRandomPreference;
 import com.softwaremagico.tm.random.selectors.SkillGroupPreferences;
 import com.softwaremagico.tm.random.selectors.SpecializationPreferences;
 import com.softwaremagico.tm.random.selectors.TechnologicalPreferences;
@@ -63,7 +63,7 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 
 	private List<Entry<CharacteristicType, Integer>> preferredCharacteristicsTypeSorted;
 
-	public RandomSkills(CharacterPlayer characterPlayer, Set<IRandomPreferences> preferences) throws InvalidXmlElementException {
+	public RandomSkills(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences) throws InvalidXmlElementException {
 		super(characterPlayer, preferences);
 	}
 
@@ -111,7 +111,7 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 	}
 
 	private void assignMinimumValuesOfSkills() {
-		for (IRandomPreferences preference : getPreferences()) {
+		for (IRandomPreference preference : getPreferences()) {
 			if (preference instanceof TechnologicalPreferences) {
 				getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).setValue(((TechnologicalPreferences) preference).minimum());
 			}

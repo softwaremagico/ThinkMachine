@@ -26,7 +26,7 @@ import com.softwaremagico.tm.character.skills.SkillGroup;
  * #L%
  */
 
-public enum SkillGroupPreferences implements IRandomPreferences {
+public enum SkillGroupPreferences implements IRandomPreference {
 
 	ANALYTICAL(SkillGroup.ANALYTICAL),
 

@@ -24,28 +24,10 @@ package com.softwaremagico.tm.random.selectors;
  * #L%
  */
 
-public enum BodyPreferences implements IRandomPreferences {
-	MIND(3, 8),
+public interface IRandomPreference {
 
-	BODY(3, 8),
+	public int maximum();
 
-	SPIRIT(3, 8);
+	public int minimum();
 
-	private final int minimum;
-	private final int maximum;
-
-	private BodyPreferences(int minimum, int maximum) {
-		this.maximum = maximum;
-		this.minimum = minimum;
-	}
-
-	@Override
-	public int maximum() {
-		return maximum;
-	}
-
-	@Override
-	public int minimum() {
-		return minimum;
-	}
 }

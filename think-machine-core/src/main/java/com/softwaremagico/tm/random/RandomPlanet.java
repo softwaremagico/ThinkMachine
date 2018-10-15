@@ -34,14 +34,14 @@ import com.softwaremagico.tm.character.planet.Planet;
 import com.softwaremagico.tm.character.planet.PlanetFactory;
 import com.softwaremagico.tm.character.race.InvalidRaceException;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
-import com.softwaremagico.tm.random.selectors.IRandomPreferences;
+import com.softwaremagico.tm.random.selectors.IRandomPreference;
 
 public class RandomPlanet extends RandomSelector<Planet> {
 	private final static int FACTION_PLANET = 50;
 	private final static int NEUTRAL_PLANET = 5;
 	private final static int ENEMY_PLANET = 1;
 
-	protected RandomPlanet(CharacterPlayer characterPlayer, Set<IRandomPreferences> preferences) throws InvalidXmlElementException {
+	protected RandomPlanet(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences) throws InvalidXmlElementException {
 		super(characterPlayer, preferences);
 	}
 

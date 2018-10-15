@@ -34,18 +34,18 @@ import java.util.TreeMap;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
-import com.softwaremagico.tm.random.selectors.IRandomPreferences;
+import com.softwaremagico.tm.random.selectors.IRandomPreference;
 
 public abstract class RandomSelector<Element extends com.softwaremagico.tm.Element<?>> {
 	private CharacterPlayer characterPlayer;
-	private final Set<IRandomPreferences> preferences;
+	private final Set<IRandomPreference> preferences;
 	private Random rand = new Random();
 
 	// Weight -> Characteristic.
 	private final TreeMap<Integer, Element> weightedElements;
 	private final int totalWeight;
 
-	protected RandomSelector(CharacterPlayer characterPlayer, Set<IRandomPreferences> preferences)
+	protected RandomSelector(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences)
 			throws InvalidXmlElementException {
 		this.characterPlayer = characterPlayer;
 		this.preferences = preferences;
@@ -65,7 +65,7 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
 		return characterPlayer;
 	}
 
-	protected Set<IRandomPreferences> getPreferences() {
+	protected Set<IRandomPreference> getPreferences() {
 		return preferences;
 	}
 

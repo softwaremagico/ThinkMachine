@@ -27,7 +27,7 @@ import java.util.Set;
  * #L%
  */
 
-public enum SpecializationPreferences implements IRandomPreferences, IGaussianDistribution {
+public enum SpecializationPreferences implements IRandomPreference, IGaussianDistribution {
 
 	// Gaussian distribution.
 	VERY_GENERALIZED(0, 4, 1, 4),
@@ -73,8 +73,8 @@ public enum SpecializationPreferences implements IRandomPreferences, IGaussianDi
 		return mean;
 	}
 
-	public static SpecializationPreferences getSelected(Set<IRandomPreferences> preferences) {
-		for (IRandomPreferences preference : preferences) {
+	public static SpecializationPreferences getSelected(Set<IRandomPreference> preferences) {
+		for (IRandomPreference preference : preferences) {
 			if (preference instanceof SpecializationPreferences) {
 				return (SpecializationPreferences) preference;
 			}

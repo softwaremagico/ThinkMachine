@@ -44,7 +44,7 @@ import com.softwaremagico.tm.log.RandomGenerationLog;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.CombatPreferences;
 import com.softwaremagico.tm.random.selectors.IGaussianDistribution;
-import com.softwaremagico.tm.random.selectors.IRandomPreferences;
+import com.softwaremagico.tm.random.selectors.IRandomPreference;
 import com.softwaremagico.tm.random.selectors.PsiqueLevelPreferences;
 import com.softwaremagico.tm.random.selectors.PsiquePathLevelPreferences;
 import com.softwaremagico.tm.random.selectors.SpecializationPreferences;
@@ -57,7 +57,7 @@ public class RandomPsiquePath extends RandomSelector<OccultismPath> {
 
 	private int totalPowers;
 
-	protected RandomPsiquePath(CharacterPlayer characterPlayer, Set<IRandomPreferences> preferences)
+	protected RandomPsiquePath(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences)
 			throws InvalidXmlElementException {
 		super(characterPlayer, preferences);
 	}

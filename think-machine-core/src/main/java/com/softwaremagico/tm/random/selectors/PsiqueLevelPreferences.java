@@ -27,7 +27,7 @@ package com.softwaremagico.tm.random.selectors;
 import java.util.Random;
 import java.util.Set;
 
-public enum PsiqueLevelPreferences implements IRandomPreferences, IGaussianDistribution {
+public enum PsiqueLevelPreferences implements IRandomPreference, IGaussianDistribution {
 
 	// Gaussian distribution.
 	NONE(0, 0, 0, 0),
@@ -71,8 +71,8 @@ public enum PsiqueLevelPreferences implements IRandomPreferences, IGaussianDistr
 		return mean;
 	}
 
-	public static PsiqueLevelPreferences getSelected(Set<IRandomPreferences> preferences) {
-		for (IRandomPreferences preference : preferences) {
+	public static PsiqueLevelPreferences getSelected(Set<IRandomPreference> preferences) {
+		for (IRandomPreference preference : preferences) {
 			if (preference instanceof PsiqueLevelPreferences) {
 				return (PsiqueLevelPreferences) preference;
 			}

@@ -26,7 +26,7 @@ import java.util.Set;
  * #L%
  */
 
-public enum CombatPreferences implements IRandomPreferences {
+public enum CombatPreferences implements IRandomPreference {
 	PEACEFUL(0, 1, WeaponsPreferences.LOW),
 
 	FAIR(2, 5, WeaponsPreferences.MEDIUM),
@@ -54,8 +54,8 @@ public enum CombatPreferences implements IRandomPreferences {
 		return minimum;
 	}
 
-	public static CombatPreferences getSelected(Set<IRandomPreferences> preferences) {
-		for (IRandomPreferences preference : preferences) {
+	public static CombatPreferences getSelected(Set<IRandomPreference> preferences) {
+		for (IRandomPreference preference : preferences) {
 			if (preference instanceof CombatPreferences) {
 				return (CombatPreferences) preference;
 			}

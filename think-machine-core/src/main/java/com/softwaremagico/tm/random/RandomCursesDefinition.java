@@ -41,13 +41,13 @@ import com.softwaremagico.tm.random.selectors.BlessingPreferences;
 import com.softwaremagico.tm.random.selectors.CombatPreferences;
 import com.softwaremagico.tm.random.selectors.CurseNumberPreferences;
 import com.softwaremagico.tm.random.selectors.IGaussianDistribution;
-import com.softwaremagico.tm.random.selectors.IRandomPreferences;
+import com.softwaremagico.tm.random.selectors.IRandomPreference;
 import com.softwaremagico.tm.random.selectors.SpecializationPreferences;
 
 public class RandomCursesDefinition extends RandomSelector<Blessing> {
 	private final static int MAX_PROBABILITY = 100000;
 
-	protected RandomCursesDefinition(CharacterPlayer characterPlayer, Set<IRandomPreferences> preferences)
+	protected RandomCursesDefinition(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences)
 			throws InvalidXmlElementException {
 		super(characterPlayer, preferences);
 	}

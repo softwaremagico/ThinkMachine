@@ -26,7 +26,7 @@ package com.softwaremagico.tm.random.selectors;
 
 import java.util.Set;
 
-public enum RacePreferences implements IRandomPreferences {
+public enum RacePreferences implements IRandomPreference {
 	HUMAN,
 
 	OBUN,
@@ -45,8 +45,8 @@ public enum RacePreferences implements IRandomPreferences {
 		return 0;
 	}
 
-	public static RacePreferences getSelected(Set<IRandomPreferences> preferences) {
-		for (IRandomPreferences preference : preferences) {
+	public static RacePreferences getSelected(Set<IRandomPreference> preferences) {
+		for (IRandomPreference preference : preferences) {
 			if (preference instanceof RacePreferences) {
 				return (RacePreferences) preference;
 			}

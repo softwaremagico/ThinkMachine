@@ -27,7 +27,7 @@ package com.softwaremagico.tm.random.selectors;
 import java.util.Random;
 import java.util.Set;
 
-public enum StatusPreferences implements IRandomPreferences, IGaussianDistribution {
+public enum StatusPreferences implements IRandomPreference, IGaussianDistribution {
 
 	LOW(0, 0, 0, 0),
 
@@ -70,8 +70,8 @@ public enum StatusPreferences implements IRandomPreferences, IGaussianDistributi
 		return mean;
 	}
 
-	public static StatusPreferences getSelected(Set<IRandomPreferences> preferences) {
-		for (IRandomPreferences preference : preferences) {
+	public static StatusPreferences getSelected(Set<IRandomPreference> preferences) {
+		for (IRandomPreference preference : preferences) {
 			if (preference instanceof StatusPreferences) {
 				return (StatusPreferences) preference;
 			}

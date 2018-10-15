@@ -46,7 +46,7 @@ import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
 import com.softwaremagico.tm.log.RandomGenerationLog;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.IGaussianDistribution;
-import com.softwaremagico.tm.random.selectors.IRandomPreferences;
+import com.softwaremagico.tm.random.selectors.IRandomPreference;
 import com.softwaremagico.tm.random.selectors.StatusPreferences;
 import com.softwaremagico.tm.random.selectors.TraitCostPreferences;
 
@@ -54,7 +54,7 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
 	private static final int MAX_AFFLICTIONS = 2;
 	private static final int VERY_GOOD_PROBABILITY = 10000;
 
-	protected RandomBeneficeDefinition(CharacterPlayer characterPlayer, Set<IRandomPreferences> preferences)
+	protected RandomBeneficeDefinition(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences)
 			throws InvalidXmlElementException {
 		super(characterPlayer, preferences);
 	}

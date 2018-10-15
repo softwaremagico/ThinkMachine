@@ -35,9 +35,9 @@ import com.softwaremagico.tm.character.characteristics.CharacteristicType;
 import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
 import com.softwaremagico.tm.character.factions.FactionGroup;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
-import com.softwaremagico.tm.random.selectors.BodyPreferences;
+import com.softwaremagico.tm.random.selectors.CharacteristicsPreferences;
 import com.softwaremagico.tm.random.selectors.CombatPreferences;
-import com.softwaremagico.tm.random.selectors.IRandomPreferences;
+import com.softwaremagico.tm.random.selectors.IRandomPreference;
 import com.softwaremagico.tm.random.selectors.PsiqueLevelPreferences;
 import com.softwaremagico.tm.random.selectors.SpecializationPreferences;
 import com.softwaremagico.tm.random.selectors.TechnologicalPreferences;
@@ -46,7 +46,7 @@ public class RandomCharacteristics extends RandomSelector<Characteristic> {
 	private final static int MAX_PROBABILITY = 100000;
 	private final static int GOOD_PROBABILITY = 10;
 
-	public RandomCharacteristics(CharacterPlayer characterPlayer, Set<IRandomPreferences> preferences)
+	public RandomCharacteristics(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences)
 			throws InvalidXmlElementException {
 		super(characterPlayer, preferences);
 	}
@@ -73,7 +73,7 @@ public class RandomCharacteristics extends RandomSelector<Characteristic> {
 					getCharacterPlayer().getStartingValue(characteristicName));
 		}
 
-		for (IRandomPreferences preference : getPreferences()) {
+		for (IRandomPreference preference : getPreferences()) {
 			if (preference instanceof TechnologicalPreferences) {
 				getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).setValue(
 						((TechnologicalPreferences) preference).minimum());
@@ -109,7 +109,7 @@ public class RandomCharacteristics extends RandomSelector<Characteristic> {
 
 		int weight = 1;
 		if (CharacteristicType.BODY.equals(characteristic.getType())) {
-			if (getPreferences().contains(BodyPreferences.BODY)) {
+			if (getPreferences().contains(CharacteristicsPreferences.BODY)) {
 				weight += 2;
 			}
 			if (getPreferences().contains(CombatPreferences.BELLIGERENT)) {
@@ -117,12 +117,12 @@ public class RandomCharacteristics extends RandomSelector<Characteristic> {
 			}
 		}
 		if (CharacteristicType.MIND.equals(characteristic.getType())) {
-			if (getPreferences().contains(BodyPreferences.MIND)) {
+			if (getPreferences().contains(CharacteristicsPreferences.MIND)) {
 				weight += 2;
 			}
 		}
 		if (CharacteristicType.SPIRIT.equals(characteristic.getType())) {
-			if (getPreferences().contains(BodyPreferences.SPIRIT)) {
+			if (getPreferences().contains(CharacteristicsPreferences.SPIRIT)) {
 				weight += 2;
 			}
 		}
