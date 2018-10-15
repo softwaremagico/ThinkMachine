@@ -26,17 +26,24 @@ package com.softwaremagico.tm.random;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Map.Entry;
 import java.util.Random;
 import java.util.Set;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.Gender;
+import com.softwaremagico.tm.character.blessings.Blessing;
+import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
+import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.creation.CostCalculator;
 import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
+import com.softwaremagico.tm.character.skills.AvailableSkill;
+import com.softwaremagico.tm.character.skills.InvalidSkillException;
 import com.softwaremagico.tm.log.RandomGenerationLog;
 import com.softwaremagico.tm.random.exceptions.DuplicatedPreferenceException;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
+import com.softwaremagico.tm.random.profile.IRandomProfile;
 import com.softwaremagico.tm.random.selectors.AgePreferences;
 import com.softwaremagico.tm.random.selectors.CombatPreferences;
 import com.softwaremagico.tm.random.selectors.IGaussianDistribution;
@@ -56,6 +63,32 @@ public class RandomizeCharacter {
 		this.preferences = new HashSet<>(Arrays.asList(preferences));
 
 		checkValidPreferences();
+	}
+
+	public RandomizeCharacter(CharacterPlayer characterPlayer, IRandomProfile profile) throws DuplicatedPreferenceException, InvalidSkillException,
+			TooManyBlessingsException {
+		// Assign preferences
+		this(characterPlayer, profile.getExperiencePoints(), profile.getPreferences().toArray(
+				new IRandomPreference[profile.getPreferences().size()]));
+
+		// Assign default values.
+		if (profile.getCharacteristicsMinimumValues() != null) {
+			for (Entry<CharacteristicName, Integer> characteristicValue : profile.getCharacteristicsMinimumValues().entrySet()) {
+				characterPlayer.getCharacteristic(characteristicValue.getKey()).setValue(characteristicValue.getValue());
+			}
+		}
+
+		if (profile.getSkillsMinimumValues() != null) {
+			for (Entry<AvailableSkill, Integer> skillValue : profile.getSkillsMinimumValues().entrySet()) {
+				characterPlayer.setSkillRank(skillValue.getKey(), skillValue.getValue());
+			}
+		}
+
+		if (profile.getBlessings() != null) {
+			for (Blessing blessing : profile.getBlessings()) {
+				characterPlayer.addBlessing(blessing);
+			}
+		}
 	}
 
 	private void checkValidPreferences() throws DuplicatedPreferenceException {
