@@ -2,6 +2,8 @@ package com.softwaremagico.tm.txt;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.character.benefices.AvailableBenefice;
+import com.softwaremagico.tm.character.blessings.Blessing;
 import com.softwaremagico.tm.character.characteristics.Characteristic;
 import com.softwaremagico.tm.character.characteristics.CharacteristicType;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
@@ -82,7 +84,7 @@ public class CharacterSheet {
 
 	private void setVitalityRepresentation(StringBuilder stringBuilder) throws InvalidXmlElementException {
 		stringBuilder.append(getTranslator().getTranslatedText("vitality"));
-		stringBuilder.append("-10/-8/-6/-4/-2");
+		stringBuilder.append(": -10/-8/-6/-4/-2");
 		for (int i = 0; i < getCharacterPlayer().getVitalityValue() - 5; i++) {
 			stringBuilder.append("/O");
 		}
@@ -90,17 +92,59 @@ public class CharacterSheet {
 	}
 
 	private void setWyrdRepresentation(StringBuilder stringBuilder) throws InvalidXmlElementException {
-		stringBuilder.append(getTranslator().getTranslatedText("wyrd"));
-		for (int i = 0; i < getCharacterPlayer().getWyrdValue(); i++) {
-			if (i > 0) {
-				stringBuilder.append("/");
+		if (getCharacterPlayer().getWyrdValue() > 0) {
+			stringBuilder.append(getTranslator().getTranslatedText("wyrd"));
+			stringBuilder.append(": ");
+			stringBuilder.append(getCharacterPlayer().getWyrdValue());
+			stringBuilder.append("\n");
+		}
+	}
+
+	private void setBlessings(StringBuilder stringBuilder) throws InvalidXmlElementException {
+		if (getCharacterPlayer().getAllBlessings().size() > 0) {
+			stringBuilder.append(getTranslator().getTranslatedText("blessingTable"));
+			stringBuilder.append(": ");
+			String separator = "";
+			for (Blessing blessing : getCharacterPlayer().getAllBlessings()) {
+				stringBuilder.append(separator);
+				stringBuilder.append(blessing.getName());
+				separator = ", ";
 			}
-			stringBuilder.append("O");
 		}
 		stringBuilder.append("\n");
 	}
 
-	public String createContent() {
+	private void setBenefices(StringBuilder stringBuilder) throws InvalidXmlElementException {
+		if (getCharacterPlayer().getAllBenefices().size() + getCharacterPlayer().getAfflictions().size() > 0) {
+			stringBuilder.append(getTranslator().getTranslatedText("beneficesTable"));
+			stringBuilder.append(": ");
+			String separator = "";
+			for (AvailableBenefice benefice : getCharacterPlayer().getAllBenefices()) {
+				stringBuilder.append(separator);
+				stringBuilder.append(benefice.getName());
+				if (benefice.getBenefitDefinition().getSpecializations().size() > 1) {
+					stringBuilder.append(" (" + benefice.getCost() + ")");
+				}
+				separator = ", ";
+			}
+			stringBuilder.append("\n");
+			stringBuilder.append(getTranslator().getTranslatedText("afflictionsTable"));
+			stringBuilder.append(": ");
+			separator = "";
+			for (AvailableBenefice affliction : getCharacterPlayer().getAfflictions()) {
+				stringBuilder.append(separator);
+				stringBuilder.append(affliction.getName());
+				if (affliction.getBenefitDefinition().getSpecializations().size() > 1) {
+					stringBuilder.append(" (" + affliction.getCost() + ")");
+				}
+				separator = ", ";
+			}
+			stringBuilder.append("\n");
+		}
+		stringBuilder.append("\n");
+	}
+
+	private String createContent() {
 		StringBuilder stringBuilder = new StringBuilder();
 		try {
 			setCharacterInfoText(stringBuilder);
@@ -109,9 +153,13 @@ public class CharacterSheet {
 			stringBuilder.append("\n");
 			setSkillsText(stringBuilder);
 			stringBuilder.append("\n");
-			setVitalityRepresentation(stringBuilder);
+			setBlessings(stringBuilder);
+			stringBuilder.append("\n");
+			setBenefices(stringBuilder);
 			stringBuilder.append("\n");
 			setWyrdRepresentation(stringBuilder);
+			stringBuilder.append("\n");
+			setVitalityRepresentation(stringBuilder);
 			stringBuilder.append("\n");
 		} catch (InvalidXmlElementException e) {
 			MachineLog.errorMessage(this.getClass().getName(), e);

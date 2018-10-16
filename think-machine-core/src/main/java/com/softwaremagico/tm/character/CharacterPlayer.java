@@ -473,6 +473,7 @@ public class CharacterPlayer {
 			}
 		}
 
+		Collections.sort(curses);
 		return Collections.unmodifiableList(curses);
 	}
 
@@ -489,6 +490,7 @@ public class CharacterPlayer {
 				allBlessings.add(blessing);
 			}
 		}
+		Collections.sort(allBlessings);
 		return Collections.unmodifiableList(allBlessings);
 	}
 
@@ -501,7 +503,7 @@ public class CharacterPlayer {
 	}
 
 	/**
-	 * Return all benefices include the factions benfices.
+	 * Return all benefices include the factions benefices.
 	 * 
 	 * @return
 	 */
@@ -526,6 +528,7 @@ public class CharacterPlayer {
 		for (CombatStyle style : getRangedCombatStyles()) {
 			positiveBenefices.add(AvailableBeneficeFactory.getInstance().getElement(style.getName(), getLanguage()));
 		}
+		Collections.sort(positiveBenefices);
 		return Collections.unmodifiableList(positiveBenefices);
 	}
 
