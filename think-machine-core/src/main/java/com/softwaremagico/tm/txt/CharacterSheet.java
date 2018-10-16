@@ -67,16 +67,22 @@ public class CharacterSheet {
 
 	private void setSkillsText(StringBuilder stringBuilder) throws InvalidXmlElementException {
 		stringBuilder.append(getTranslator().getTranslatedText(getTranslator().getTranslatedText("naturalSkills")) + ": ");
+		String separator = "";
 		for (AvailableSkill skill : characterPlayer.getNaturalSkills()) {
 			if (characterPlayer.getSkillTotalRanks(skill) > 0) {
+				stringBuilder.append(separator);
 				representSkill(stringBuilder, skill);
+				separator = ", ";
 			}
 		}
 		stringBuilder.append("\n");
 		stringBuilder.append(getTranslator().getTranslatedText(getTranslator().getTranslatedText("learnedSkills")) + ": ");
+		separator = "";
 		for (AvailableSkill skill : characterPlayer.getLearnedSkills()) {
 			if (characterPlayer.getSkillTotalRanks(skill) > 0) {
+				stringBuilder.append(separator);
 				representSkill(stringBuilder, skill);
+				separator = ", ";
 			}
 		}
 		stringBuilder.append("\n");
