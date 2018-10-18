@@ -4,7 +4,7 @@ package com.softwaremagico.tm.character.combat;
  * #%L
  * Think Machine (Core)
  * %%
- * Copyright (C) 2017 Softwaremagico
+ * Copyright (C) 2017 - 2018 Softwaremagico
  * %%
  * This software is designed by Jorge Hortelano Otero. Jorge Hortelano Otero
  * <softwaremagico@gmail.com> Valencia (Spain).
@@ -24,38 +24,6 @@ package com.softwaremagico.tm.character.combat;
  * #L%
  */
 
-import com.softwaremagico.tm.ElementList;
-
-public class CombatStyle extends ElementList<CombatAction> {
-	private final static int COMBAT_SYTLE_COST = 5;
-	private final String id;
-	private final String name;
-	private final CombatStyleGroup group;
-
-	public CombatStyle(String name, CombatStyleGroup group) {
-		this(null, name, group);
-	}
-
-	public CombatStyle(String id, String name, CombatStyleGroup group) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.group = group;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public String getId() {
-		return id;
-	}
-
-	public int getCost() {
-		return COMBAT_SYTLE_COST;
-	}
-
-	public CombatStyleGroup getGroup() {
-		return group;
-	}
+public enum CombatStyleGroup {
+	MELEE, RANGED;
 }

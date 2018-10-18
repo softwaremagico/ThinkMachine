@@ -36,6 +36,7 @@ import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.combat.CombatAction;
 import com.softwaremagico.tm.character.combat.CombatStyle;
+import com.softwaremagico.tm.character.combat.CombatStyleGroup;
 import com.softwaremagico.tm.character.combat.LearnedStance;
 import com.softwaremagico.tm.character.cybernetics.Device;
 import com.softwaremagico.tm.character.equipment.Armour;
@@ -47,6 +48,7 @@ import com.softwaremagico.tm.character.occultism.OccultismTypeFactory;
 import com.softwaremagico.tm.character.planet.PlanetFactory;
 import com.softwaremagico.tm.character.race.RaceFactory;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
+import com.softwaremagico.tm.txt.CharacterSheet;
 
 public class CustomCharacter {
 
@@ -111,13 +113,13 @@ public class CustomCharacter {
 		player.getCybernetics().addElement(new Device("Ojo de Ingeniero", 6, 5, "Normal", "Normal", "Automático", "Visible", ""));
 		player.getCybernetics().addElement(new Device("Jonás", 7, 4, "Normal", "Normal", "Ds+Arquería", "Incógnito", ""));
 
-		CombatStyle gun = new CombatStyle("pistola");
+		CombatStyle gun = new CombatStyle("pistola", CombatStyleGroup.RANGED);
 		gun.addElement(new CombatAction("Disparo Instantáneo", null, null, "-2 por 3 disparos"));
 		gun.addElement(new CombatAction("Rueda y Dispara", null, null, "Mover 3m"));
 		gun.addElement(new CombatAction("Corre y Dispara", null, null, "Especial"));
 		player.getRangedCombatStyles().add(gun);
 
-		CombatStyle shaidan = new CombatStyle("shaidan");
+		CombatStyle shaidan = new CombatStyle("shaidan", CombatStyleGroup.MELEE);
 		shaidan.addElement(new CombatAction("Palma Real", null, "-1", ""));
 		shaidan.addElement(new CombatAction("Con un Pie en el Trono", 4, null, "+4 a resistir derribos"));
 		shaidan.addElement(new CombatAction("Decreto Imperial", null, "+1 / 1W", null));
@@ -131,6 +133,9 @@ public class CustomCharacter {
 		player.setArmour(new Armour("Cuero Sintético", 7, true, false, false, false, false, false, true, 6, -1, 0, 0, 0, 500));
 
 		player.setShield(ShieldFactory.getInstance().getElement("assaultShield", language));
+
+		CharacterSheet characterSheet = new CharacterSheet(player);
+		System.out.println(characterSheet.toString());
 
 		return player;
 	}

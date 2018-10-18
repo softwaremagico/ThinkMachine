@@ -48,6 +48,7 @@ import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.combat.CombatAction;
 import com.softwaremagico.tm.character.combat.CombatStyle;
+import com.softwaremagico.tm.character.combat.CombatStyleGroup;
 import com.softwaremagico.tm.character.combat.LearnedStance;
 import com.softwaremagico.tm.character.creation.CostCalculator;
 import com.softwaremagico.tm.character.cybernetics.Device;
@@ -168,13 +169,13 @@ public class CharacterSheetCreationTest {
 		player.getCybernetics().addElement(new Device("Ojo de Ingeniero", 6, 5, "Normal", "Normal", "Automático", "Visible", ""));
 		player.getCybernetics().addElement(new Device("Jonás", 7, 4, "Normal", "Normal", "Ds+Arquería", "Incógnito", ""));
 
-		CombatStyle gun = new CombatStyle("pistola");
+		CombatStyle gun = new CombatStyle("pistola", CombatStyleGroup.RANGED);
 		gun.addElement(new CombatAction("Disparo Instantáneo", null, null, "-2 por 3 disparos"));
 		gun.addElement(new CombatAction("Rueda y Dispara", null, null, "Mover 3m"));
 		gun.addElement(new CombatAction("Corre y Dispara", null, null, "Especial"));
 		player.getRangedCombatStyles().add(gun);
 
-		CombatStyle shaidan = new CombatStyle("shaidan");
+		CombatStyle shaidan = new CombatStyle("shaidan", CombatStyleGroup.MELEE);
 		shaidan.addElement(new CombatAction("Palma Real", null, "-1", ""));
 		shaidan.addElement(new CombatAction("Con un Pie en el Trono", 4, null, "+4 a resistir derribos"));
 		shaidan.addElement(new CombatAction("Decreto Imperial", null, "+1 / 1W", null));

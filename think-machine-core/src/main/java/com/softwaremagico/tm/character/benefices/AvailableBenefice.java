@@ -39,7 +39,7 @@ public class AvailableBenefice extends Element<AvailableBenefice> {
 		this.cost = cost;
 	}
 
-	public BeneficeDefinition getBenefitDefinition() {
+	public BeneficeDefinition getBeneficeDefinition() {
 		return benefitDefinition;
 	}
 

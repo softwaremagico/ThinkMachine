@@ -1,11 +1,45 @@
 package com.softwaremagico.tm.txt;
 
+/*-
+ * #%L
+ * Think Machine (Core)
+ * %%
+ * Copyright (C) 2017 - 2018 Softwaremagico
+ * %%
+ * This software is designed by Jorge Hortelano Otero. Jorge Hortelano Otero
+ * <softwaremagico@gmail.com> Valencia (Spain).
+ *  
+ * This program is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software
+ * Foundation; either version 2 of the License, or (at your option) any later
+ * version.
+ *  
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+ * details.
+ *  
+ * You should have received a copy of the GNU General Public License along with
+ * this program; If not, see <http://www.gnu.org/licenses/gpl-3.0.html>.
+ * #L%
+ */
+
+import java.util.List;
+import java.util.Map.Entry;
+
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.benefices.AvailableBenefice;
 import com.softwaremagico.tm.character.blessings.Blessing;
 import com.softwaremagico.tm.character.characteristics.Characteristic;
 import com.softwaremagico.tm.character.characteristics.CharacteristicType;
+import com.softwaremagico.tm.character.cybernetics.Device;
+import com.softwaremagico.tm.character.equipment.weapons.DamageType;
+import com.softwaremagico.tm.character.equipment.weapons.Weapon;
+import com.softwaremagico.tm.character.occultism.OccultismPath;
+import com.softwaremagico.tm.character.occultism.OccultismPathFactory;
+import com.softwaremagico.tm.character.occultism.OccultismPower;
+import com.softwaremagico.tm.character.occultism.OccultismTypeFactory;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
@@ -13,19 +47,20 @@ import com.softwaremagico.tm.language.Translator;
 import com.softwaremagico.tm.log.MachineLog;
 
 public class CharacterSheet {
-	private final CharacterPlayer characterPlayer;
+	private final static String ELEMENT_SEPARATOR = ", ";
 	private static ITranslator translator = LanguagePool.getTranslator("character_sheet.xml");
+	private final CharacterPlayer characterPlayer;
 
 	public CharacterSheet(CharacterPlayer characterPlayer) {
 		this.characterPlayer = characterPlayer;
 		Translator.setLanguage(characterPlayer.getLanguage());
 	}
 
-	public CharacterPlayer getCharacterPlayer() {
+	private CharacterPlayer getCharacterPlayer() {
 		return characterPlayer;
 	}
 
-	public static ITranslator getTranslator() {
+	private static ITranslator getTranslator() {
 		return translator;
 	}
 
@@ -36,7 +71,7 @@ public class CharacterSheet {
 		stringBuilder.append(" " + getCharacterPlayer().getInfo().getTranslatedParameter("gender"));
 		stringBuilder.append(" (" + getCharacterPlayer().getInfo().getPlanet().getName() + ")");
 		stringBuilder.append("\n");
-		stringBuilder.append(getCharacterPlayer().getFaction());
+		stringBuilder.append(getCharacterPlayer().getFaction().getName());
 		if (getCharacterPlayer().getRank() != null) {
 			stringBuilder.append(" (" + getCharacterPlayer().getRank() + ")");
 		}
@@ -50,11 +85,12 @@ public class CharacterSheet {
 			for (Characteristic characteristic : getCharacterPlayer().getCharacteristics(characteristicType)) {
 				stringBuilder.append(separator);
 				stringBuilder.append(getTranslator().getTranslatedText(characteristic.getId()));
-				separator = ", ";
+				stringBuilder.append(" ");
+				stringBuilder.append(getCharacterPlayer().getValue(characteristic.getCharacteristicName()));
+				separator = ELEMENT_SEPARATOR;
 			}
-			stringBuilder.append(".");
+			stringBuilder.append(".\n");
 		}
-		stringBuilder.append("\n");
 	}
 
 	private void representSkill(StringBuilder stringBuilder, AvailableSkill skill) {
@@ -62,30 +98,32 @@ public class CharacterSheet {
 		stringBuilder.append(characterPlayer.getSkillTotalRanks(skill));
 		stringBuilder.append(characterPlayer.isSkillSpecial(skill) ? "*" : "");
 		stringBuilder.append(characterPlayer.hasSkillTemporalModificator(skill) && characterPlayer.getSkillTotalRanks(skill) > 0 ? "!" : "");
-		stringBuilder.append(skill.getName() + ")");
+		stringBuilder.append(")");
 	}
 
 	private void setSkillsText(StringBuilder stringBuilder) throws InvalidXmlElementException {
-		stringBuilder.append(getTranslator().getTranslatedText(getTranslator().getTranslatedText("naturalSkills")) + ": ");
+		stringBuilder.append(getTranslator().getTranslatedText("naturalSkills") + ": ");
 		String separator = "";
 		for (AvailableSkill skill : characterPlayer.getNaturalSkills()) {
 			if (characterPlayer.getSkillTotalRanks(skill) > 0) {
 				stringBuilder.append(separator);
 				representSkill(stringBuilder, skill);
-				separator = ", ";
+				separator = ELEMENT_SEPARATOR;
 			}
 		}
-		stringBuilder.append("\n");
-		stringBuilder.append(getTranslator().getTranslatedText(getTranslator().getTranslatedText("learnedSkills")) + ": ");
+		stringBuilder.append(".\n");
+		stringBuilder.append(getTranslator().getTranslatedText("learnedSkills") + ": ");
 		separator = "";
-		for (AvailableSkill skill : characterPlayer.getLearnedSkills()) {
-			if (characterPlayer.getSkillTotalRanks(skill) > 0) {
-				stringBuilder.append(separator);
-				representSkill(stringBuilder, skill);
-				separator = ", ";
+		if (characterPlayer.getLearnedSkills().size() > 0) {
+			for (AvailableSkill skill : characterPlayer.getLearnedSkills()) {
+				if (characterPlayer.getSkillTotalRanks(skill) > 0) {
+					stringBuilder.append(separator);
+					representSkill(stringBuilder, skill);
+					separator = ELEMENT_SEPARATOR;
+				}
 			}
+			stringBuilder.append(".\n");
 		}
-		stringBuilder.append("\n");
 	}
 
 	private void setVitalityRepresentation(StringBuilder stringBuilder) throws InvalidXmlElementException {
@@ -107,47 +145,184 @@ public class CharacterSheet {
 	}
 
 	private void setBlessings(StringBuilder stringBuilder) throws InvalidXmlElementException {
-		if (getCharacterPlayer().getAllBlessings().size() > 0) {
+		if (!getCharacterPlayer().getBlessings().isEmpty()) {
 			stringBuilder.append(getTranslator().getTranslatedText("blessingTable"));
 			stringBuilder.append(": ");
 			String separator = "";
-			for (Blessing blessing : getCharacterPlayer().getAllBlessings()) {
+			for (Blessing blessing : getCharacterPlayer().getBlessings()) {
 				stringBuilder.append(separator);
 				stringBuilder.append(blessing.getName());
-				separator = ", ";
+				separator = ELEMENT_SEPARATOR;
 			}
+			stringBuilder.append(".\n");
 		}
-		stringBuilder.append("\n");
+		if (!getCharacterPlayer().getCurses().isEmpty()) {
+			stringBuilder.append(getTranslator().getTranslatedText("cursesTable"));
+			stringBuilder.append(": ");
+			String separator = "";
+			for (Blessing curse : getCharacterPlayer().getCurses()) {
+				stringBuilder.append(separator);
+				stringBuilder.append(curse.getName());
+				separator = ELEMENT_SEPARATOR;
+			}
+			stringBuilder.append(".\n");
+		}
 	}
 
 	private void setBenefices(StringBuilder stringBuilder) throws InvalidXmlElementException {
-		if (getCharacterPlayer().getAllBenefices().size() + getCharacterPlayer().getAfflictions().size() > 0) {
+		if (!getCharacterPlayer().getAllBenefices().isEmpty()) {
 			stringBuilder.append(getTranslator().getTranslatedText("beneficesTable"));
 			stringBuilder.append(": ");
 			String separator = "";
 			for (AvailableBenefice benefice : getCharacterPlayer().getAllBenefices()) {
 				stringBuilder.append(separator);
 				stringBuilder.append(benefice.getName());
-				if (benefice.getBenefitDefinition().getSpecializations().size() > 1) {
+				if (benefice.getBeneficeDefinition().getSpecializations().size() > 1) {
 					stringBuilder.append(" (" + benefice.getCost() + ")");
 				}
-				separator = ", ";
+				separator = ELEMENT_SEPARATOR;
 			}
-			stringBuilder.append("\n");
+			stringBuilder.append(".\n");
+		}
+		if (!getCharacterPlayer().getAfflictions().isEmpty()) {
 			stringBuilder.append(getTranslator().getTranslatedText("afflictionsTable"));
 			stringBuilder.append(": ");
-			separator = "";
+			String separator = "";
 			for (AvailableBenefice affliction : getCharacterPlayer().getAfflictions()) {
 				stringBuilder.append(separator);
 				stringBuilder.append(affliction.getName());
-				if (affliction.getBenefitDefinition().getSpecializations().size() > 1) {
+				if (affliction.getBeneficeDefinition().getSpecializations().size() > 1) {
 					stringBuilder.append(" (" + affliction.getCost() + ")");
 				}
-				separator = ", ";
+				separator = ELEMENT_SEPARATOR;
 			}
-			stringBuilder.append("\n");
+			stringBuilder.append(".\n");
 		}
-		stringBuilder.append("\n");
+	}
+
+	private void setOccultism(StringBuilder stringBuilder) {
+		if (getCharacterPlayer().getPsiqueLevel(OccultismTypeFactory.getTheurgy(getCharacterPlayer().getLanguage())) > 0
+				|| getCharacterPlayer().getPsiqueLevel(OccultismTypeFactory.getPsi(getCharacterPlayer().getLanguage())) > 0) {
+			stringBuilder.append(getTranslator().getTranslatedText("occultism") + ": ");
+			String separator = "";
+			OccultismTypeFactory.getInstance();
+			if (getCharacterPlayer().getPsiqueLevel(OccultismTypeFactory.getPsi(getCharacterPlayer().getLanguage())) > 0) {
+				stringBuilder.append(getTranslator().getTranslatedText("psi") + " ");
+				stringBuilder.append(getCharacterPlayer().getPsiqueLevel(OccultismTypeFactory.getPsi(getCharacterPlayer().getLanguage())));
+				stringBuilder.append(ELEMENT_SEPARATOR);
+				stringBuilder.append(getTranslator().getTranslatedText("urge") + " ");
+				stringBuilder.append(getCharacterPlayer().getDarkSideLevel(OccultismTypeFactory.getPsi(getCharacterPlayer().getLanguage())));
+				separator = ELEMENT_SEPARATOR;
+			}
+			OccultismTypeFactory.getInstance();
+			if (getCharacterPlayer().getPsiqueLevel(OccultismTypeFactory.getTheurgy(getCharacterPlayer().getLanguage())) > 0) {
+				stringBuilder.append(separator);
+				stringBuilder.append(getTranslator().getTranslatedText("theurgy") + " ");
+				stringBuilder.append(getCharacterPlayer().getPsiqueLevel(OccultismTypeFactory.getTheurgy(getCharacterPlayer().getLanguage())));
+				stringBuilder.append(ELEMENT_SEPARATOR);
+				stringBuilder.append(getTranslator().getTranslatedText("hubris") + " ");
+				stringBuilder.append(getCharacterPlayer().getDarkSideLevel(OccultismTypeFactory.getTheurgy(getCharacterPlayer().getLanguage())));
+			}
+			stringBuilder.append(".\n");
+		}
+	}
+
+	private void setOccultismPowers(StringBuilder stringBuilder) throws InvalidXmlElementException {
+		String separator = "";
+		if (!getCharacterPlayer().getSelectedPowers().isEmpty()) {
+			stringBuilder.append(getTranslator().getTranslatedText("occultismPowers") + ": ");
+			for (Entry<String, List<String>> powersByPath : getCharacterPlayer().getSelectedPowers().entrySet()) {
+				stringBuilder.append(separator);
+				OccultismPath occultismPath = OccultismPathFactory.getInstance().getElement(powersByPath.getKey(), getCharacterPlayer().getLanguage());
+				stringBuilder.append(occultismPath.getName());
+				stringBuilder.append(" (");
+				String powerSeparator = "";
+				for (String occultismPowerName : powersByPath.getValue()) {
+					OccultismPower occultismPower = occultismPath.getOccultismPowers().get(occultismPowerName);
+					stringBuilder.append(powerSeparator);
+					stringBuilder.append(occultismPower.getName());
+					powerSeparator = ELEMENT_SEPARATOR;
+				}
+				stringBuilder.append(")");
+				separator = ELEMENT_SEPARATOR;
+			}
+			stringBuilder.append(".\n");
+		}
+	}
+
+	private void setWeapons(StringBuilder stringBuilder) {
+		for (Weapon weapon : getCharacterPlayer().getWeapons().getElements()) {
+			stringBuilder.append(weapon.getName());
+			stringBuilder.append(" (");
+			if (weapon.getGoal() != null && weapon.getGoal().length() > 0 && !weapon.getGoal().equals("0")) {
+				stringBuilder.append(weapon.getGoal());
+				stringBuilder.append(getTranslator().getTranslatedText("weaponGoal"));
+				stringBuilder.append(ELEMENT_SEPARATOR);
+			}
+			stringBuilder.append(weapon.getDamage());
+			if (!weapon.getDamage().endsWith("d")) {
+				stringBuilder.append("d");
+			}
+			stringBuilder.append(ELEMENT_SEPARATOR);
+			if (weapon.getRange() != null && weapon.getRange().length() > 0) {
+				stringBuilder.append(weapon.getRange());
+				stringBuilder.append(ELEMENT_SEPARATOR);
+			}
+			if (weapon.getRate() != null && weapon.getRate().length() > 0) {
+				stringBuilder.append(getTranslator().getTranslatedText("weaponRate"));
+				stringBuilder.append(" ");
+				stringBuilder.append(weapon.getRate());
+				stringBuilder.append(ELEMENT_SEPARATOR);
+			}
+			for (DamageType damageType : weapon.getDamageTypes()) {
+				stringBuilder.append(damageType.getName());
+				stringBuilder.append(ELEMENT_SEPARATOR);
+			}
+			// Remove last separator
+			stringBuilder.setLength(stringBuilder.length() - ELEMENT_SEPARATOR.length());
+			stringBuilder.append(")" + ELEMENT_SEPARATOR);
+		}
+	}
+
+	private void setShields(StringBuilder stringBuilder) {
+		if (getCharacterPlayer().getShield() != null) {
+			stringBuilder.append(getCharacterPlayer().getShield().getName());
+			stringBuilder.append(" (");
+			stringBuilder.append(getCharacterPlayer().getShield().getImpact());
+			stringBuilder.append("/");
+			stringBuilder.append(getCharacterPlayer().getShield().getForce());
+			stringBuilder.append(" ");
+			stringBuilder.append(getCharacterPlayer().getShield().getHits());
+			stringBuilder.append(" ");
+			stringBuilder.append(getTranslator().getTranslatedText("shieldHits"));
+			stringBuilder.append(")" + ELEMENT_SEPARATOR);
+		}
+	}
+
+	private void setEquipment(StringBuilder stringBuilder) {
+		if (!getCharacterPlayer().getWeapons().getElements().isEmpty() || getCharacterPlayer().getShield() != null) {
+			stringBuilder.append(getTranslator().getTranslatedText("equipment") + ": ");
+			setWeapons(stringBuilder);
+			setShields(stringBuilder);
+
+			// Remove last separator
+			stringBuilder.setLength(stringBuilder.length() - ELEMENT_SEPARATOR.length());
+			stringBuilder.append(".\n");
+		}
+	}
+
+	private void setCybernetics(StringBuilder stringBuilder) {
+		if (!getCharacterPlayer().getCybernetics().getElements().isEmpty()) {
+			stringBuilder.append(getTranslator().getTranslatedText("cybernetics") + ": ");
+
+			for (Device device : getCharacterPlayer().getCybernetics().getElements()) {
+				stringBuilder.append(device.getName());
+				stringBuilder.append(ELEMENT_SEPARATOR);
+			}
+			// Remove last separator
+			stringBuilder.setLength(stringBuilder.length() - ELEMENT_SEPARATOR.length());
+			stringBuilder.append(".\n");
+		}
 	}
 
 	private String createContent() {
@@ -163,10 +338,14 @@ public class CharacterSheet {
 			stringBuilder.append("\n");
 			setBenefices(stringBuilder);
 			stringBuilder.append("\n");
-			setWyrdRepresentation(stringBuilder);
+			setOccultism(stringBuilder);
+			setOccultismPowers(stringBuilder);
 			stringBuilder.append("\n");
+			setWyrdRepresentation(stringBuilder);
 			setVitalityRepresentation(stringBuilder);
 			stringBuilder.append("\n");
+			setEquipment(stringBuilder);
+			setCybernetics(stringBuilder);
 		} catch (InvalidXmlElementException e) {
 			MachineLog.errorMessage(this.getClass().getName(), e);
 		}

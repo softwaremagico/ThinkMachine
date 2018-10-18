@@ -65,7 +65,7 @@ public class ArmourTable extends CustomPdfTable {
 		addCell(getShieldRange(characterPlayer));
 
 		Paragraph paragraph = new Paragraph();
-		paragraph.add(new Paragraph(getTranslator().getTranslatedText("shieldHits") + " ", new Font(FadingSunsTheme.getLineFont(),
+		paragraph.add(new Paragraph(getTranslator().getTranslatedText("shieldHits") + ": ", new Font(FadingSunsTheme.getLineFont(),
 				FadingSunsTheme.ARMOUR_CONTENT_FONT_SIZE)));
 		if (characterPlayer != null && characterPlayer.getShield() != null) {
 			paragraph.add(new Paragraph(characterPlayer.getShield().getHits() + "-", new Font(FadingSunsTheme.getHandwrittingFont(), FadingSunsTheme

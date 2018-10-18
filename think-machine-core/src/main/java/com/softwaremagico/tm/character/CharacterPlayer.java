@@ -477,8 +477,29 @@ public class CharacterPlayer {
 		return Collections.unmodifiableList(curses);
 	}
 
+	public List<Blessing> getBlessings() {
+		List<Blessing> blessings = new ArrayList<>();
+
+		for (Blessing blessing : blessings) {
+			if (blessing.getBlessingClassification() == BlessingClassification.BLESSING) {
+				blessings.add(blessing);
+			}
+		}
+		// Faction curses
+		if (getFaction() != null) {
+			for (Blessing blessing : getFaction().getBlessings()) {
+				if (blessing.getBlessingClassification() == BlessingClassification.BLESSING) {
+					blessings.add(blessing);
+				}
+			}
+		}
+
+		Collections.sort(blessings);
+		return Collections.unmodifiableList(blessings);
+	}
+
 	/**
-	 * Return all blessings include the factions blessings.
+	 * Return all blessings include the factions blessings and curses.
 	 * 
 	 * @return
 	 */
@@ -495,7 +516,7 @@ public class CharacterPlayer {
 	}
 
 	public void addBenefice(AvailableBenefice benefice) throws InvalidBeneficeException {
-		if (benefice.getBenefitDefinition().getGroup() == BeneficeGroup.RESTRICTED) {
+		if (benefice.getBeneficeDefinition().getGroup() == BeneficeGroup.RESTRICTED) {
 			throw new InvalidBeneficeException("Benefice '" + benefice + "' is restricted and cannot be added.");
 		}
 		benefices.add(benefice);
@@ -803,7 +824,7 @@ public class CharacterPlayer {
 
 	public BeneficeSpecialization getStatus() throws InvalidXmlElementException {
 		for (AvailableBenefice benefice : getAllBenefices()) {
-			if (benefice.getBenefitDefinition().getGroup() == BeneficeGroup.STATUS) {
+			if (benefice.getBeneficeDefinition().getGroup() == BeneficeGroup.STATUS) {
 				// Must have an specialization.
 				if (benefice.getSpecialization() != null) {
 					return benefice.getSpecialization();
