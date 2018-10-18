@@ -14,7 +14,7 @@ Bendiciones: Disciplinado.
 Maldiciones: Tuerto, Vegativo.
 
 Beneficios: Filoespada, Herencia, Pistola, Shaidan.
-Aflicciones: Estigma.
+Aflicciones: Estigma (+1).
 
 Ocultismo: Psi 4, Ansia 1.
 Poderes Ocultos: Sexto Sentido (Sensibilidad), Soma (Fortalecer, Vigorizar, Agilizar, Endurecer), Mano Lejana (Mano Levitante, Mano Lanzadora).

@@ -33,17 +33,18 @@ import com.softwaremagico.tm.character.race.Race;
 
 public class SkillRandomDefinitions {
 
-	private int minimumTechLevel;
+	private Integer minimumTechLevel;
+	private Integer maximumTechLevel;
 	private final Set<Faction> recommendedFactions = new HashSet<>();
 	private final Set<Race> recommendedRaces = new HashSet<>();
 	private final Set<FactionGroup> recommendedFactionGroups = new HashSet<>();
 	private SkillRandomProbability probability = SkillRandomProbability.FAIR;
 
-	public int getMinimumTechLevel() {
+	public Integer getMinimumTechLevel() {
 		return minimumTechLevel;
 	}
 
-	public void setMinimumTechLevel(int minimumTechLevel) {
+	public void setMinimumTechLevel(Integer minimumTechLevel) {
 		this.minimumTechLevel = minimumTechLevel;
 	}
 
@@ -83,5 +84,13 @@ public class SkillRandomDefinitions {
 
 	public Set<Race> getRecommendedRaces() {
 		return recommendedRaces;
+	}
+
+	public Integer getMaximumTechLevel() {
+		return maximumTechLevel;
+	}
+
+	public void setMaximumTechLevel(Integer maximumTechLevel) {
+		this.maximumTechLevel = maximumTechLevel;
 	}
 }

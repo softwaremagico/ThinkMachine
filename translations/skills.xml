@@ -182,6 +182,7 @@
 		<group>combat</group>
 		<random>
 			<techlevel>2</techlevel>
+			<maxTechLevel>6</maxTechLevel>
 		</random>
 	</slugGuns>
 	<archery>
@@ -192,6 +193,7 @@
 		<group>combat</group>
 		<random>
 			<techlevel>0</techlevel>
+			<maxTechLevel>2</maxTechLevel>
 		</random>
 	</archery>
 	<artifactMelee>
@@ -230,6 +232,9 @@
 			<es>Cuerpo a Cuerpo</es>
 		</name>
 		<group>combat</group>
+		<random>
+			<maxTechLevel>9</maxTechLevel>
+		</random>
 	</fight>
 	<demolitions>
 		<name>
@@ -261,6 +266,10 @@
 			<es>Montar</es>
 		</name>
 		<group>control</group>
+		<random>
+			<techlevel>0</techlevel>
+			<maxTechLevel>2</maxTechLevel>
+		</random>
 	</ride>
 	<aircraft>
 		<name>

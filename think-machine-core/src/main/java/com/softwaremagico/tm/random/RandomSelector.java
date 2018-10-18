@@ -24,6 +24,7 @@ package com.softwaremagico.tm.random;
  * #L%
  */
 
+import java.util.HashSet;
 import java.util.Map.Entry;
 import java.util.NoSuchElementException;
 import java.util.Random;
@@ -45,8 +46,7 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
 	private final TreeMap<Integer, Element> weightedElements;
 	private final int totalWeight;
 
-	protected RandomSelector(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences)
-			throws InvalidXmlElementException {
+	protected RandomSelector(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences) throws InvalidXmlElementException {
 		this.characterPlayer = characterPlayer;
 		this.preferences = preferences;
 		weightedElements = assignElementsWeight();
@@ -66,6 +66,9 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
 	}
 
 	protected Set<IRandomPreference> getPreferences() {
+		if (preferences == null) {
+			return new HashSet<IRandomPreference>();
+		}
 		return preferences;
 	}
 

@@ -59,8 +59,6 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 	private final static int GOOD_PROBABILITY = 21;
 	private final static int MAX_PROBABILITY = 1000;
 
-	private final static int SKILL_TECH_DIFFERENCE_TO_BE_PRIMITIVE = 3;
-
 	private List<Entry<CharacteristicType, Integer>> preferredCharacteristicsTypeSorted;
 
 	public RandomSkills(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences) throws InvalidXmlElementException {
@@ -70,9 +68,6 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 	public void spendSkillsPoints() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
 		// Set minimum values of skills by preferences.
 		assignMinimumValuesOfSkills();
-
-		// Merge some skills that are similar.
-		removeUndesiredSkills();
 
 		// Meanwhile are ranks to expend.
 		while (getCharacterPlayer().getSkillsTotalPoints() < FreeStyleCharacterCreation.SKILLS_POINTS) {
@@ -84,16 +79,6 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 
 			// Remove skill from options to avoid adding more ranks.
 			removeElementWeight(selectedSkill);
-		}
-	}
-
-	private void removeUndesiredSkills() throws InvalidXmlElementException {
-		// Remove combat skills too primitives.
-		for (AvailableSkill availableSkill : AvailableSkillsFactory.getInstance().getSkillsByGroup(SkillGroup.COMBAT, getCharacterPlayer().getLanguage())) {
-			if (availableSkill.getRandomDefinition().getMinimumTechLevel() <= getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).getValue()
-					- SKILL_TECH_DIFFERENCE_TO_BE_PRIMITIVE) {
-				removeElementWeight(availableSkill);
-			}
 		}
 	}
 
@@ -150,6 +135,17 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 			return MAX_PROBABILITY;
 		}
 
+		// Check technology limitations.
+		if (skill.getRandomDefinition().getMinimumTechLevel() != null
+				&& skill.getRandomDefinition().getMinimumTechLevel() > getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).getValue()) {
+			return NO_PROBABILITY;
+		}
+
+		if (skill.getRandomDefinition().getMaximumTechLevel() != null
+				&& skill.getRandomDefinition().getMaximumTechLevel() < getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).getValue()) {
+			return NO_PROBABILITY;
+		}
+
 		if (skill.getSkillDefinition().isNatural()) {
 			RandomGenerationLog.debug(this.getClass().getName(), "Weight for '" + skill + "' as natural skill is increased.");
 			weight += 3;
@@ -179,12 +175,8 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 		RandomGenerationLog.debug(this.getClass().getName(), "Weight for '" + skill + "' by nobility modification is '" + nobilityWeight + "'.");
 		weight += nobilityWeight;
 
-		int technologyWeight = weightByTechnologyLimitations(skill);
-		RandomGenerationLog.debug(this.getClass().getName(), "Weight for '" + skill + "' by technology modification is '" + technologyWeight + "'.");
-		weight += technologyWeight;
-
 		int specializationWeight = weightBySpecializationPreferences(skill);
-		RandomGenerationLog.debug(this.getClass().getName(), "Weight for '" + skill + "' by specialization modification is '" + technologyWeight + "'.");
+		RandomGenerationLog.debug(this.getClass().getName(), "Weight for '" + skill + "' by specialization modification is '" + specializationWeight + "'.");
 		weight += specializationWeight;
 
 		int psiqueWeight = weightByPsique(skill);
@@ -244,20 +236,6 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 		return AvailableSkillsFactory.getInstance().getMaximumNumberOfSpecializations() / skill.getSkillDefinition().getSpecializations().size();
 	}
 
-	private int weightByTechnologyLimitations(AvailableSkill skill) {
-		// Weapons only if technology is enough.
-		if (getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).getValue() < skill.getRandomDefinition().getMinimumTechLevel()) {
-			return NO_PROBABILITY;
-		}
-		// Ride is common in medieval age but not so common in modern age.
-		if (skill.getId().equalsIgnoreCase("ride")) {
-			if (getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).getValue() > 4) {
-				return DIFFICULT_PROBABILITY;
-			}
-		}
-		return 0;
-	}
-
 	private int weightByFactions(AvailableSkill skill) {
 		// No faction skills
 		if (skill.getSkillDefinition().isLimitedToFaction()) {
@@ -290,7 +268,7 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 	}
 
 	private int weightByNobility(AvailableSkill skill) {
-		if (Objects.equals(getCharacterPlayer().getFaction().getFactionGroup(), FactionGroup.NOBILITY)) {
+		if (getCharacterPlayer().getFaction() != null && Objects.equals(getCharacterPlayer().getFaction().getFactionGroup(), FactionGroup.NOBILITY)) {
 			// beastcraft for nobility is not common in my point of view.
 			if (skill.getId().equalsIgnoreCase("beastcraft")) {
 				return NO_PROBABILITY;

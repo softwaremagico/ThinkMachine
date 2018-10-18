@@ -240,7 +240,6 @@
 		<size>M</size>
 		<cost>50</cost>
 		<others>poison5</others>
-
 	</hollowKnife>
 	<knife>
 		<name>
@@ -275,6 +274,9 @@
 		<size>L</size>
 		<cost>45</cost>
 		<ammunition>legSheath</ammunition>
+		<random>
+			<probabilityMultiplier>0.01</probabilityMultiplier>
+		</random>
 	</kurganSideSword>
 	<kossackChainsword>
 		<name>

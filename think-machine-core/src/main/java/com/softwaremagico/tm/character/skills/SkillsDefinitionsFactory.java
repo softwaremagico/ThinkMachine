@@ -56,6 +56,7 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 
 	private final static String RANDOM = "random";
 	private final static String RANDOM_TECH_LEVEL = "techlevel";
+	private final static String MAX_TECH_LEVEL = "maxTechLevel";
 	private final static String RECOMMENDED_FACTIONS = "recommendedFactions";
 	private final static String RECOMMENDED_FACTION_GROUPS = "recommendedFactionGroups";
 	private final static String RECOMMENDED_RACES = "recommendedRaces";
@@ -214,6 +215,15 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 			}
 		} catch (NumberFormatException nfe) {
 			throw new InvalidSkillException("Invalid number value for techlevel in skill '" + element.getId() + "'.");
+		}
+
+		try {
+			String maxTechLevel = translator.getNodeValue(element.getId(), RANDOM, MAX_TECH_LEVEL);
+			if (maxTechLevel != null) {
+				element.getRandomDefinition().setMaximumTechLevel(Integer.parseInt(maxTechLevel));
+			}
+		} catch (NumberFormatException nfe) {
+			throw new InvalidSkillException("Invalid number value for max techlevel in skill '" + element.getId() + "'.");
 		}
 
 		String recommendedFactionGroups = translator.getNodeValue(element.getId(), RANDOM, RECOMMENDED_FACTION_GROUPS);

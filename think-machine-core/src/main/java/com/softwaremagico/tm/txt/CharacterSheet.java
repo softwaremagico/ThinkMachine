@@ -30,6 +30,8 @@ import java.util.Map.Entry;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.benefices.AvailableBenefice;
+import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
+import com.softwaremagico.tm.character.benefices.BeneficeClassification;
 import com.softwaremagico.tm.character.blessings.Blessing;
 import com.softwaremagico.tm.character.characteristics.Characteristic;
 import com.softwaremagico.tm.character.characteristics.CharacteristicType;
@@ -169,6 +171,18 @@ public class CharacterSheet {
 		}
 	}
 
+	private void representBenefice(StringBuilder stringBuilder, AvailableBenefice benefice) throws InvalidXmlElementException {
+		stringBuilder.append(benefice.getName());
+		if (benefice.getBeneficeDefinition().getSpecializations().size() > 1) {
+			stringBuilder.append(" (" + (benefice.getBeneficeClassification() == BeneficeClassification.AFFLICTION ? "+" : "") + Math.abs(benefice.getCost())
+					+ ")");
+		} else if (AvailableBeneficeFactory.getInstance()
+				.getAvailableBeneficesByDefinition(getCharacterPlayer().getLanguage(), benefice.getBeneficeDefinition()).size() > 1) {
+			stringBuilder.append(" (" + (benefice.getBeneficeClassification() == BeneficeClassification.AFFLICTION ? "+" : "") + Math.abs(benefice.getCost())
+					+ ")");
+		}
+	}
+
 	private void setBenefices(StringBuilder stringBuilder) throws InvalidXmlElementException {
 		if (!getCharacterPlayer().getAllBenefices().isEmpty()) {
 			stringBuilder.append(getTranslator().getTranslatedText("beneficesTable"));
@@ -176,10 +190,7 @@ public class CharacterSheet {
 			String separator = "";
 			for (AvailableBenefice benefice : getCharacterPlayer().getAllBenefices()) {
 				stringBuilder.append(separator);
-				stringBuilder.append(benefice.getName());
-				if (benefice.getBeneficeDefinition().getSpecializations().size() > 1) {
-					stringBuilder.append(" (" + benefice.getCost() + ")");
-				}
+				representBenefice(stringBuilder, benefice);
 				separator = ELEMENT_SEPARATOR;
 			}
 			stringBuilder.append(".\n");
@@ -190,10 +201,7 @@ public class CharacterSheet {
 			String separator = "";
 			for (AvailableBenefice affliction : getCharacterPlayer().getAfflictions()) {
 				stringBuilder.append(separator);
-				stringBuilder.append(affliction.getName());
-				if (affliction.getBeneficeDefinition().getSpecializations().size() > 1) {
-					stringBuilder.append(" (" + affliction.getCost() + ")");
-				}
+				representBenefice(stringBuilder, affliction);
 				separator = ELEMENT_SEPARATOR;
 			}
 			stringBuilder.append(".\n");
