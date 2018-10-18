@@ -1,0 +1,26 @@
+Oliver Queen
+Humano Varón (Sutek)
+Los Hazat
+
+Cuerpo: Fuerza 2, Fortaleza 3, Destreza 2.
+Mente: Percepción 5, Tecnología 6, Astucia 4.
+Espíritu: Voluntad 8, Fe 9, Presencia 7.
+Otras: Iniciativa 6, Movimiento 5, Defensa 1.
+
+Habilidades Naturales: Influenciar (5!), Lanzar (3), Observar (3), Pelear (3), Saber (3), Saber (3), Saber [Imperio Fénix] (3), Sigilo (4), Vigor (3).
+Habilidades Adquiridas: Abrir Cerraduras (5), Armas de Energía (6!), Guerra (5), Juego (4), Saber (4), Saber (2).
+
+Bendiciones: Disciplinado.
+Maldiciones: Tuerto, Vegativo.
+
+Beneficios: Filoespada, Herencia, Pistola, Shaidan.
+Aflicciones: Estigma.
+
+Ocultismo: Psi 4, Ansia 1.
+Poderes Ocultos: Sexto Sentido (Sensibilidad), Soma (Fortalecer, Vigorizar, Agilizar, Endurecer), Mano Lejana (Mano Levitante, Mano Lanzadora).
+
+Wyrd: 9
+Vitalidad: -10/-8/-6/-4/-2/O/O/O
+
+Equipo: Martech Oro (+1RA, 5d, 10/20, Ratio 2, Láser), Maza (5d), Escudo de Asalto (5/15 20 Cargas).
+Cibernética: Jonás, Ojo de Ingeniero.

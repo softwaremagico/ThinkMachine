@@ -48,7 +48,6 @@ import com.softwaremagico.tm.character.occultism.OccultismTypeFactory;
 import com.softwaremagico.tm.character.planet.PlanetFactory;
 import com.softwaremagico.tm.character.race.RaceFactory;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
-import com.softwaremagico.tm.txt.CharacterSheet;
 
 public class CustomCharacter {
 
@@ -133,9 +132,6 @@ public class CustomCharacter {
 		player.setArmour(new Armour("Cuero Sintético", 7, true, false, false, false, false, false, true, 6, -1, 0, 0, 0, 500));
 
 		player.setShield(ShieldFactory.getInstance().getElement("assaultShield", language));
-
-		CharacterSheet characterSheet = new CharacterSheet(player);
-		System.out.println(characterSheet.toString());
 
 		return player;
 	}

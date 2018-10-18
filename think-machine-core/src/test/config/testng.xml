@@ -24,11 +24,12 @@
 				<include name="factionsFactory" />
 				<include name="occultismFactory" />
 				<include name="planetsFactory" />
-				<include name="shieldFactory" />				
+				<include name="shieldFactory" />
 				<include name="randomCharacter" />
 				<include name="jsonExporter" />
 				<include name="blessings" />
 				<include name="occultism" />
+				<include name="exportTxt" />
 				<exclude name="gaussianDistribution" />
 			</run>
 		</groups>
@@ -49,6 +50,7 @@
 			<class name="com.softwaremagico.tm.rules.OccultismTests" />
 			<class name="com.softwaremagico.tm.random.RandomCharacterTests" />
 			<class name="com.softwaremagico.tm.random.GaussianDistributionTests" />
+			<class name="com.softwaremagico.tm.txt.ExportTxtTests" />
 			<class name="com.softwaremagico.tm.json.JsonTests" />
 		</classes>
 	</test>
