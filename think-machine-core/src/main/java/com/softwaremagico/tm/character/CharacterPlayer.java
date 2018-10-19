@@ -59,7 +59,9 @@ import com.softwaremagico.tm.character.creation.CostCalculator;
 import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
 import com.softwaremagico.tm.character.cybernetics.Cybernetics;
 import com.softwaremagico.tm.character.cybernetics.Device;
-import com.softwaremagico.tm.character.equipment.Armour;
+import com.softwaremagico.tm.character.equipment.armour.Armour;
+import com.softwaremagico.tm.character.equipment.armour.InvalidArmourException;
+import com.softwaremagico.tm.character.equipment.shield.InvalidShieldException;
 import com.softwaremagico.tm.character.equipment.shield.Shield;
 import com.softwaremagico.tm.character.equipment.weapons.Weapon;
 import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
@@ -155,8 +157,16 @@ public class CharacterPlayer {
 		meleeCombatActions = new ArrayList<>();
 		rangedCombatActions = new ArrayList<>();
 		learnedStances = new ArrayList<>();
-		setArmour(null);
-		setShield(null);
+		try {
+			setArmour(null);
+		} catch (InvalidArmourException e) {
+			MachineLog.errorMessage(this.getClass().getName(), e);
+		}
+		try {
+			setShield(null);
+		} catch (InvalidShieldException e) {
+			MachineLog.errorMessage(this.getClass().getName(), e);
+		}
 		freeStyleCharacterCreation = null;
 	}
 
@@ -601,7 +611,10 @@ public class CharacterPlayer {
 		return armour;
 	}
 
-	public void setArmour(Armour armour) {
+	public void setArmour(Armour armour) throws InvalidArmourException {
+		if (getShield() != null && armour != null && !armour.getAllowedShields().contains(getShield())) {
+			throw new InvalidArmourException("Armour '" + armour + "' is not compatible with shield '" + getShield() + "'.");
+		}
 		this.armour = armour;
 	}
 
@@ -609,7 +622,10 @@ public class CharacterPlayer {
 		return shield;
 	}
 
-	public void setShield(Shield shield) {
+	public void setShield(Shield shield) throws InvalidShieldException {
+		if (getArmour() != null && shield != null && !getArmour().getAllowedShields().contains(shield)) {
+			throw new InvalidShieldException("Shield '" + shield + "' is not compatible with armour '" + getArmour() + "'.");
+		}
 		this.shield = shield;
 	}
 

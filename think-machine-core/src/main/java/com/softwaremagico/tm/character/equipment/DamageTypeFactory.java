@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.character.equipment.weapons;
+package com.softwaremagico.tm.character.equipment;
 
 /*-
  * #%L
@@ -26,6 +26,7 @@ package com.softwaremagico.tm.character.equipment.weapons;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
+import com.softwaremagico.tm.character.equipment.weapons.InvalidWeaponException;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
 

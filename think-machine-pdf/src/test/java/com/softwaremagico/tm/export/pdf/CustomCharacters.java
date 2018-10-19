@@ -27,6 +27,7 @@ package com.softwaremagico.tm.export.pdf;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.util.HashSet;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -50,7 +51,8 @@ import com.softwaremagico.tm.character.combat.CombatStyleGroup;
 import com.softwaremagico.tm.character.creation.CostCalculator;
 import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
 import com.softwaremagico.tm.character.cybernetics.Device;
-import com.softwaremagico.tm.character.equipment.Armour;
+import com.softwaremagico.tm.character.equipment.DamageType;
+import com.softwaremagico.tm.character.equipment.armour.Armour;
 import com.softwaremagico.tm.character.equipment.shield.ShieldFactory;
 import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
 import com.softwaremagico.tm.character.factions.FactionsFactory;
@@ -380,7 +382,7 @@ public class CustomCharacters {
 		player.getCybernetics().addElement(new Device("Interfaz de Datos (Turing)", 1, 1, "Normal", "Normal", "Automático", "Oculto", "Turing"));
 		player.getCybernetics().addElement(new Device("Armadura", 1, 2, "Normal", "Normal", "Automático", "Oculto", "2d"));
 
-		player.setArmour(new Armour("Piel", 2, false, false, false, false, false, false, false, 5, 0, 0, 0, 0, 0));
+		player.setArmour(new Armour("skin", "Piel", 5, 2, new HashSet<DamageType>(), 0));
 
 		LanguagePool.clearCache();
 		CharacterSheet sheet = new CharacterSheet(player);

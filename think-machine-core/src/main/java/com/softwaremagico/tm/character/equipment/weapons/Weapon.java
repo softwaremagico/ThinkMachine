@@ -28,6 +28,7 @@ import java.util.Set;
 
 import com.softwaremagico.tm.Element;
 import com.softwaremagico.tm.character.characteristics.CharacteristicDefinition;
+import com.softwaremagico.tm.character.equipment.DamageType;
 import com.softwaremagico.tm.character.equipment.Size;
 import com.softwaremagico.tm.character.factions.Faction;
 import com.softwaremagico.tm.character.skills.SkillDefinition;

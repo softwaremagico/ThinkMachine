@@ -29,8 +29,8 @@ public class Element<T extends Element<?>> implements Comparable<T> {
 	private final String name;
 
 	public Element(String id, String name) {
-		this.id = id;
-		this.name = name;
+		this.id = id != null ? id.trim() : null;
+		this.name = name != null ? name.trim() : null;
 	}
 
 	public String getName() {

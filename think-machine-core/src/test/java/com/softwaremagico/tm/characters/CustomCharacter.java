@@ -39,7 +39,7 @@ import com.softwaremagico.tm.character.combat.CombatStyle;
 import com.softwaremagico.tm.character.combat.CombatStyleGroup;
 import com.softwaremagico.tm.character.combat.LearnedStance;
 import com.softwaremagico.tm.character.cybernetics.Device;
-import com.softwaremagico.tm.character.equipment.Armour;
+import com.softwaremagico.tm.character.equipment.armour.ArmourFactory;
 import com.softwaremagico.tm.character.equipment.shield.ShieldFactory;
 import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
 import com.softwaremagico.tm.character.factions.FactionsFactory;
@@ -129,7 +129,7 @@ public class CustomCharacter {
 		player.getWeapons().addElement(WeaponFactory.getInstance().getElement("mace", language));
 		player.getWeapons().addElement(WeaponFactory.getInstance().getElement("martechGold", language));
 
-		player.setArmour(new Armour("Cuero Sintético", 7, true, false, false, false, false, false, true, 6, -1, 0, 0, 0, 500));
+		player.setArmour(ArmourFactory.getInstance().getElement("synthsilk", language));
 
 		player.setShield(ShieldFactory.getInstance().getElement("assaultShield", language));
 

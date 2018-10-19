@@ -28,16 +28,28 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.character.equipment.DamageTypeFactory;
+import com.softwaremagico.tm.character.equipment.armour.ArmourFactory;
 
-@Test(groups = { "damageFactory" })
-public class DamageTypeFactoryTests {
+@Test(groups = { "armourFactory" })
+public class ArmourFactoryTests {
 
-	private final static int DEFINED_DAMAGES = 17;
+	private final static int DEFINED_ARMOURS = 30;
 	private final static String LANGUAGE = "es";
 
 	@Test
-	public void readDamages() throws InvalidXmlElementException {
-		Assert.assertEquals(DamageTypeFactory.getInstance().getElements(LANGUAGE).size(), DEFINED_DAMAGES);
+	public void readArmours() throws InvalidXmlElementException {
+		Assert.assertEquals(ArmourFactory.getInstance().getElements(LANGUAGE).size(), DEFINED_ARMOURS);
+	}
+
+	@Test
+	public void readShieldsOfArmour() throws InvalidXmlElementException {
+		Assert.assertEquals(ArmourFactory.getInstance().getElement("synthsilk", LANGUAGE).getAllowedShields().size(), 4);
+		Assert.assertEquals(ArmourFactory.getInstance().getElement("adeptRobes", LANGUAGE).getAllowedShields().size(), 1);
+	}
+
+	@Test
+	public void readDamagesOfArmour() throws InvalidXmlElementException {
+		Assert.assertEquals(ArmourFactory.getInstance().getElement("ceramsteelExoframe", LANGUAGE).getDamageTypes().size(), 4);
+		Assert.assertEquals(ArmourFactory.getInstance().getElement("spacesuit", LANGUAGE).getDamageTypes().size(), 4);
 	}
 }

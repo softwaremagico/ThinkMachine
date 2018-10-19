@@ -533,7 +533,7 @@
 		<strength>2</strength>
 		<size>L</size>
 		<cost>10000</cost>
-		<damageType>ignore armour</damageType>
+		<damageType>ignoreArmour</damageType>
 	</wireblade>
 	<fluxSword>
 		<name>
@@ -2112,7 +2112,6 @@
 		<rate>2</rate>
 		<size>L</size>
 		<cost>300</cost>
-		<damageType>stock</damageType>
 		<special>pumpfeed</special>
 		<ammunition>solidSlug</ammunition>
 		<others>stock, pumpfeed</others>
@@ -3383,7 +3382,7 @@
 		<rate>1</rate>
 		<size>XXL</size>
 		<cost>5000</cost>
-		<damageType>blaster, hard</damageType>
+		<damageType>plasma, hard</damageType>
 		<others>stock</others>
 	</blasterCannon>
 

@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.factory;
+package com.softwaremagico.tm.character.equipment;
 
 /*-
  * #%L
@@ -24,20 +24,12 @@ package com.softwaremagico.tm.factory;
  * #L%
  */
 
-import org.testng.Assert;
-import org.testng.annotations.Test;
+import com.softwaremagico.tm.Element;
 
-import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.character.equipment.DamageTypeFactory;
+public class DamageType extends Element<DamageType> {
 
-@Test(groups = { "damageFactory" })
-public class DamageTypeFactoryTests {
-
-	private final static int DEFINED_DAMAGES = 17;
-	private final static String LANGUAGE = "es";
-
-	@Test
-	public void readDamages() throws InvalidXmlElementException {
-		Assert.assertEquals(DamageTypeFactory.getInstance().getElements(LANGUAGE).size(), DEFINED_DAMAGES);
+	public DamageType(String id, String name) {
+		super(id, name);
 	}
+
 }

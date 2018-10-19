@@ -51,7 +51,7 @@
 	<shock>
 		<name>
 			<en>Shock</en>
-			<es>Eléctrica</es>
+			<es>Eléctrico</es>
 		</name>
 	</shock>
 	<strangle>
@@ -90,4 +90,16 @@
 			<es>Armadura a la Mitad</es>
 		</name>
 	</halveArmour>
+	<ignoreArmour>
+		<name>
+			<en>Ignore Armor</en>
+			<es>Ignora la Armadura</es>
+		</name>
+	</ignoreArmour>
+	<psi>
+		<name>
+			<en>Psi</en>
+			<es>Psi</es>
+		</name>
+	</psi>
 </damage>

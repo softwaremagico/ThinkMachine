@@ -526,12 +526,12 @@
 	</armorPlasmAbbreviature>
 	<armorShockAbbreviature>
 		<en>S</en>
-		<es>I</es>
-	</armorShockAbbreviature>
-	<armorElectricAbbreviature>
-		<en>E</en>
 		<es>E</es>
-	</armorElectricAbbreviature>
+	</armorShockAbbreviature>
+	<armorImpactAbbreviature>
+		<en>I</en>
+		<es>I</es>
+	</armorImpactAbbreviature>
 	<shield>
 		<en>Energy Shield</en>
 		<es>Escudos</es>

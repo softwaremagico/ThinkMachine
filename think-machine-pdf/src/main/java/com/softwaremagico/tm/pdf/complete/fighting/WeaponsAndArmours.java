@@ -26,14 +26,14 @@ package com.softwaremagico.tm.pdf.complete.fighting;
 
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
+import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.pdf.complete.elements.BaseElement;
 
 public class WeaponsAndArmours extends BaseElement {
 	public final static int PADDING = 2;
 
-	public static PdfPTable getWeaponsAndArmoursTable(
-			CharacterPlayer characterPlayer) {
+	public static PdfPTable getWeaponsAndArmoursTable(CharacterPlayer characterPlayer) throws InvalidXmlElementException {
 		float[] widths = { 4f, 1.1f };
 		PdfPTable table = new PdfPTable(widths);
 		setTablePropierties(table);
@@ -52,13 +52,13 @@ public class WeaponsAndArmours extends BaseElement {
 		setTablePropierties(stancesXpTable);
 		stancesXpTable.getDefaultCell().setBorder(0);
 		stancesXpTable.getDefaultCell().setPadding(0);
-		
+
 		PdfPCell stancesCell = new PdfPCell(new StancesTable(characterPlayer));
 		stancesXpTable.addCell(stancesCell);
-		
+
 		PdfPCell experienceCell = new PdfPCell(new ExperienceTable(characterPlayer));
 		stancesXpTable.addCell(experienceCell);
-		
+
 		leftTable.addCell(stancesXpTable);
 
 		PdfPCell leftCell = new PdfPCell(leftTable);

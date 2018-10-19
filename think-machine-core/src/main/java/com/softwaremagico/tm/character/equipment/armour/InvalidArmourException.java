@@ -1,10 +1,10 @@
-package com.softwaremagico.tm.character.equipment.weapons;
+package com.softwaremagico.tm.character.equipment.armour;
 
 /*-
  * #%L
  * Think Machine (Core)
  * %%
- * Copyright (C) 2017 - 2018 Softwaremagico
+ * Copyright (C) 2017 Softwaremagico
  * %%
  * This software is designed by Jorge Hortelano Otero. Jorge Hortelano Otero
  * <softwaremagico@gmail.com> Valencia (Spain).
@@ -24,12 +24,16 @@ package com.softwaremagico.tm.character.equipment.weapons;
  * #L%
  */
 
-import com.softwaremagico.tm.Element;
+import com.softwaremagico.tm.InvalidXmlElementException;
 
-public class DamageType extends Element<DamageType> {
+public class InvalidArmourException extends InvalidXmlElementException {
+	private static final long serialVersionUID = 1243337930745480002L;
 
-	public DamageType(String id, String name) {
-		super(id, name);
+	public InvalidArmourException(String message) {
+		super(message);
 	}
 
+	public InvalidArmourException(String message, Exception e) {
+		super(message, e);
+	}
 }
