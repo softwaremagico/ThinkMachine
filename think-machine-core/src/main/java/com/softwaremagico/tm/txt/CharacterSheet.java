@@ -24,8 +24,9 @@ package com.softwaremagico.tm.txt;
  * #L%
  */
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.Map.Entry;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
@@ -84,7 +85,9 @@ public class CharacterSheet {
 		for (CharacteristicType characteristicType : CharacteristicType.values()) {
 			stringBuilder.append(getTranslator().getTranslatedText(characteristicType.getTranslationTag()) + ": ");
 			String separator = "";
-			for (Characteristic characteristic : getCharacterPlayer().getCharacteristics(characteristicType)) {
+			List<Characteristic> characteristics = new ArrayList<>(getCharacterPlayer().getCharacteristics(characteristicType));
+			Collections.sort(characteristics);
+			for (Characteristic characteristic : characteristics) {
 				stringBuilder.append(separator);
 				stringBuilder.append(getTranslator().getTranslatedText(characteristic.getId()));
 				stringBuilder.append(" ");
@@ -96,7 +99,7 @@ public class CharacterSheet {
 	}
 
 	private void representSkill(StringBuilder stringBuilder, AvailableSkill skill) {
-		stringBuilder.append(skill.getName() + " (");
+		stringBuilder.append(skill.getCompleteName() + " (");
 		stringBuilder.append(characterPlayer.getSkillTotalRanks(skill));
 		stringBuilder.append(characterPlayer.isSkillSpecial(skill) ? "*" : "");
 		stringBuilder.append(characterPlayer.hasSkillTemporalModificator(skill) && characterPlayer.getSkillTotalRanks(skill) > 0 ? "!" : "");
@@ -239,13 +242,17 @@ public class CharacterSheet {
 		String separator = "";
 		if (!getCharacterPlayer().getSelectedPowers().isEmpty()) {
 			stringBuilder.append(getTranslator().getTranslatedText("occultismPowers") + ": ");
-			for (Entry<String, List<String>> powersByPath : getCharacterPlayer().getSelectedPowers().entrySet()) {
+			List<String> paths = new ArrayList<>(getCharacterPlayer().getSelectedPowers().keySet());
+			Collections.sort(paths);
+			for (String powersPath : paths) {
 				stringBuilder.append(separator);
-				OccultismPath occultismPath = OccultismPathFactory.getInstance().getElement(powersByPath.getKey(), getCharacterPlayer().getLanguage());
+				OccultismPath occultismPath = OccultismPathFactory.getInstance().getElement(powersPath, getCharacterPlayer().getLanguage());
 				stringBuilder.append(occultismPath.getName());
 				stringBuilder.append(" (");
 				String powerSeparator = "";
-				for (String occultismPowerName : powersByPath.getValue()) {
+				List<String> powers = new ArrayList<>(getCharacterPlayer().getSelectedPowers().get(powersPath));
+				Collections.sort(powers);
+				for (String occultismPowerName : powers) {
 					OccultismPower occultismPower = occultismPath.getOccultismPowers().get(occultismPowerName);
 					stringBuilder.append(powerSeparator);
 					stringBuilder.append(occultismPower.getName());
