@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.character.race;
+package com.softwaremagico.tm.random.definition;
 
 /*-
  * #%L
@@ -24,14 +24,15 @@ package com.softwaremagico.tm.character.race;
  * #L%
  */
 
-public class RaceRandomDefinitions {
-	private int probability;
+public enum RandomProbabilityDefinition {
+	MINIMUM, LOW, FAIR, GOOD;
 
-	public int getProbability() {
-		return probability;
-	}
-
-	public void setProbability(int probability) {
-		this.probability = probability;
+	public static RandomProbabilityDefinition get(String probabilityName) {
+		for (RandomProbabilityDefinition probability : RandomProbabilityDefinition.values()) {
+			if (probability.name().equalsIgnoreCase(probabilityName)) {
+				return probability;
+			}
+		}
+		return null;
 	}
 }

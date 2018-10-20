@@ -43,6 +43,7 @@ import com.softwaremagico.tm.character.race.RaceFactory;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.log.MachineLog;
+import com.softwaremagico.tm.random.definition.RandomProbabilityDefinition;
 
 public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 	private final static ITranslator translatorSkill = LanguagePool.getTranslator("skills.xml");
@@ -262,7 +263,7 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 
 		String generalProbability = translator.getNodeValue(element.getId(), RANDOM, GENERAL_PROBABILITY);
 		if (generalProbability != null) {
-			element.getRandomDefinition().setProbability(SkillRandomProbability.get(generalProbability));
+			element.getRandomDefinition().setProbability(RandomProbabilityDefinition.get(generalProbability));
 		}
 	}
 

@@ -1,11 +1,4 @@
-package com.softwaremagico.tm.character.skills;
-
-import java.util.HashSet;
-import java.util.Set;
-
-import com.softwaremagico.tm.character.factions.Faction;
-import com.softwaremagico.tm.character.factions.FactionGroup;
-import com.softwaremagico.tm.character.race.Race;
+package com.softwaremagico.tm.random.definition;
 
 /*-
  * #%L
@@ -31,14 +24,22 @@ import com.softwaremagico.tm.character.race.Race;
  * #L%
  */
 
-public class SkillRandomDefinitions {
+import java.util.HashSet;
+import java.util.Set;
 
+import com.softwaremagico.tm.character.factions.Faction;
+import com.softwaremagico.tm.character.factions.FactionGroup;
+import com.softwaremagico.tm.character.race.Race;
+
+public class RandomElementDefinition {
+	private Integer staticProbability;
 	private Integer minimumTechLevel;
 	private Integer maximumTechLevel;
+	private Double probabilityMultiplier;
 	private final Set<Faction> recommendedFactions = new HashSet<>();
 	private final Set<Race> recommendedRaces = new HashSet<>();
 	private final Set<FactionGroup> recommendedFactionGroups = new HashSet<>();
-	private SkillRandomProbability probability = SkillRandomProbability.FAIR;
+	private RandomProbabilityDefinition probability = RandomProbabilityDefinition.FAIR;
 
 	public Integer getMinimumTechLevel() {
 		return minimumTechLevel;
@@ -68,11 +69,11 @@ public class SkillRandomDefinitions {
 		}
 	}
 
-	public SkillRandomProbability getProbability() {
+	public RandomProbabilityDefinition getProbability() {
 		return probability;
 	}
 
-	public void setProbability(SkillRandomProbability probability) {
+	public void setProbability(RandomProbabilityDefinition probability) {
 		this.probability = probability;
 	}
 
@@ -92,5 +93,24 @@ public class SkillRandomDefinitions {
 
 	public void setMaximumTechLevel(Integer maximumTechLevel) {
 		this.maximumTechLevel = maximumTechLevel;
+	}
+
+	public Integer getStaticProbability() {
+		return staticProbability;
+	}
+
+	public void setStaticProbability(Integer staticProbability) {
+		this.staticProbability = staticProbability;
+	}
+
+	public Double getProbabilityMultiplier() {
+		if (probabilityMultiplier == null) {
+			return 1d;
+		}
+		return probabilityMultiplier;
+	}
+
+	public void setProbabilityMultiplier(Double probabilityMultiplier) {
+		this.probabilityMultiplier = probabilityMultiplier;
 	}
 }

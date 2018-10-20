@@ -62,7 +62,6 @@ public class RandomRace extends RandomSelector<Race> {
 
 	@Override
 	protected int getWeight(Race race) {
-		// Weapons only if technology is enough.
 		// Specialization desired.
 		RacePreferences selectedSpecialization = RacePreferences.getSelected(getPreferences());
 		if (selectedSpecialization != null) {
@@ -70,6 +69,9 @@ public class RandomRace extends RandomSelector<Race> {
 				return 0;
 			}
 		}
-		return race.getRandomDefinition().getProbability();
+		if (race.getRandomDefinition().getStaticProbability() != null) {
+			return race.getRandomDefinition().getStaticProbability();
+		}
+		return 1;
 	}
 }

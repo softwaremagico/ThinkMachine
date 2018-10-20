@@ -1,5 +1,7 @@
 package com.softwaremagico.tm.character.skills;
 
+import com.softwaremagico.tm.random.definition.RandomElementDefinition;
+
 /*-
  * #%L
  * Think Machine (Core)
@@ -94,7 +96,7 @@ public class AvailableSkill extends Skill<AvailableSkill> {
 		return true;
 	}
 
-	public SkillRandomDefinitions getRandomDefinition() {
+	public RandomElementDefinition getRandomDefinition() {
 		if (getSpecialization() != null) {
 			return getSpecialization().getRandomDefinition();
 		}

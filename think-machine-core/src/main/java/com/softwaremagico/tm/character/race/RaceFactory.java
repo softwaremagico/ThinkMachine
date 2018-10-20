@@ -127,9 +127,9 @@ public class RaceFactory extends XmlFactory<Race> {
 		try {
 			String raceProbability = translator.getNodeValue(raceId, RANDOM, RACE_PROBABILITY);
 			if (raceProbability != null) {
-				race.getRandomDefinition().setProbability(Integer.parseInt(raceProbability));
+				race.getRandomDefinition().setStaticProbability(Integer.parseInt(raceProbability));
 			} else {
-				race.getRandomDefinition().setProbability(1);
+				race.getRandomDefinition().setStaticProbability(1);
 			}
 		} catch (NumberFormatException nfe) {
 			throw new InvalidRaceException("Invalid number value for race probability in '" + raceId + "'.");

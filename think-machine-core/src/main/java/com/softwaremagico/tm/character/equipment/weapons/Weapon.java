@@ -56,13 +56,10 @@ public class Weapon extends Element<Weapon> {
 
 	private final Faction faction;
 
-	private WeaponRandomDefinition randomDefinition;
-
 	public Weapon(String id, String name, WeaponType type, String goal, CharacteristicDefinition characteristic, SkillDefinition skill, String damage,
 			int strength, String range, Integer shots, String rate, int tech, boolean techLevelSpecial, Size size, String special, Set<DamageType> damageTypes,
 			float cost, Set<Ammunition> ammunitions, Set<Accessory> accesories, Faction faction) {
 		super(id, name);
-		randomDefinition = new WeaponRandomDefinition();
 		this.characteristic = characteristic;
 		this.skill = skill;
 		this.goal = goal;
@@ -171,13 +168,5 @@ public class Weapon extends Element<Weapon> {
 
 	public Set<Accessory> getAccesories() {
 		return accesories;
-	}
-
-	public WeaponRandomDefinition getRandomDefinition() {
-		return randomDefinition;
-	}
-
-	public void setRandomDefinition(WeaponRandomDefinition randomDefinition) {
-		this.randomDefinition = randomDefinition;
 	}
 }

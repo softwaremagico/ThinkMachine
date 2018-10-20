@@ -41,14 +41,12 @@ public class Faction extends Element<Faction> {
 	private Set<Blessing> blessings = null;
 	private Set<AvailableBenefice> benefices = null;
 	private final String language;
-	private final FactionRandomDefinitions randomDefinition;
 
 	public Faction(String id, String name, FactionGroup factionGroup, Race restrictedRace, String language) {
 		super(id, name);
 		this.factionGroup = factionGroup;
 		this.restrictedRace = restrictedRace;
 		this.language = language;
-		this.randomDefinition = new FactionRandomDefinitions();
 	}
 
 	public FactionGroup getFactionGroup() {
@@ -108,9 +106,5 @@ public class Faction extends Element<Faction> {
 
 	public void setBenefices(Set<AvailableBenefice> benefices) {
 		this.benefices = benefices;
-	}
-
-	public FactionRandomDefinitions getRandomDefinition() {
-		return randomDefinition;
 	}
 }

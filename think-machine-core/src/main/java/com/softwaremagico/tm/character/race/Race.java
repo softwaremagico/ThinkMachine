@@ -53,11 +53,8 @@ public class Race extends Element<Race> {
 
 	private int cost;
 
-	private final RaceRandomDefinitions randomDefinition;
-
 	public Race(String id, String name) {
 		super(id, name);
-		randomDefinition = new RaceRandomDefinitions();
 	}
 
 	public Race(String name, int strength, int dexterity, int endurance, int wits, int perception, int tech, int presence, int will, int faith, int movement,
@@ -157,9 +154,5 @@ public class Race extends Element<Race> {
 
 	public void setCost(int cost) {
 		this.cost = cost;
-	}
-
-	public RaceRandomDefinitions getRandomDefinition() {
-		return randomDefinition;
 	}
 }
