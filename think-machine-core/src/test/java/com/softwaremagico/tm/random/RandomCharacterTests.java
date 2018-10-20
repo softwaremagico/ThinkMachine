@@ -226,9 +226,6 @@ public class RandomCharacterTests {
 		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0);
 		randomizeCharacter.createCharacter();
 
-		CharacterSheet characterSheet = new CharacterSheet(characterPlayer);
-		System.out.println(characterSheet.toString());
-
 		Assert.assertTrue(characterPlayer.getSkillTotalRanks(AvailableSkillsFactory.getInstance().getElement("fight", LANGUAGE)) > 0);
 		Assert.assertTrue(characterPlayer.getSkillTotalRanks(AvailableSkillsFactory.getInstance().getElement("slugGuns", LANGUAGE)) > 0);
 		Assert.assertTrue(characterPlayer.getSkillTotalRanks(AvailableSkillsFactory.getInstance().getElement("energyGuns", LANGUAGE)) > 0);

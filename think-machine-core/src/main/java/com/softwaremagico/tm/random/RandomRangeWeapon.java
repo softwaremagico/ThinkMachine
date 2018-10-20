@@ -77,7 +77,7 @@ public class RandomRangeWeapon extends RandomWeapon {
 				"Weight tech bonus for '" + weapon + "' is '" + MAX_PROBABILITY
 						/ Math.pow(10, 2 * (getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).getValue() - weapon.getTechLevel())) + "'.");
 		if (weight <= 0) {
-			weight = 1;
+			weight = 0;
 		}
 		return weight;
 	}

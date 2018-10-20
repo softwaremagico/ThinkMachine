@@ -139,7 +139,7 @@ public abstract class RandomWeapon extends RandomSelector<Weapon> {
 				}
 			}
 			RandomGenerationLog.debug(this.getClass().getName(), "Skill multiplication for weight for '" + weapon + "' is '" + skillMultiplier + "'.");
-			weight = weight * skillMultiplier;
+			weight = (weight + skillMultiplier) * skillMultiplier;
 		} catch (InvalidXmlElementException e) {
 			RandomGenerationLog.errorMessage(this.getClass().getName(), e);
 		}
