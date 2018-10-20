@@ -41,7 +41,6 @@ import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedExcep
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
 
 public class RandomSurname extends RandomSelector<Surname> {
-	private final static int GOOD_PROBABILITY = 1;
 
 	protected RandomSurname(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences) throws InvalidXmlElementException {
 		super(characterPlayer, preferences);
@@ -70,7 +69,7 @@ public class RandomSurname extends RandomSelector<Surname> {
 		// Nobility has faction as surname
 		if (getCharacterPlayer().getFaction() != null && getCharacterPlayer().getFaction().getFactionGroup() == FactionGroup.NOBILITY) {
 			if (getCharacterPlayer().getFaction().getName().contains(surname.getName())) {
-				return GOOD_PROBABILITY;
+				return BASIC_PROBABILITY;
 			} else {
 				return 0;
 			}
@@ -91,14 +90,14 @@ public class RandomSurname extends RandomSelector<Surname> {
 			if (!Objects.equals(firstName.getFaction(), surname.getFaction())) {
 				return 0;
 			} else {
-				return GOOD_PROBABILITY;
+				return BASIC_PROBABILITY;
 			}
 		}
 
 		// Not nobility and not name set, use surnames of the planet.
 		if (getCharacterPlayer().getInfo().getPlanet() != null && !getCharacterPlayer().getInfo().getPlanet().getSurnames().isEmpty()) {
 			if (getCharacterPlayer().getInfo().getPlanet().getFactions().contains(surname.getFaction())) {
-				return GOOD_PROBABILITY;
+				return BASIC_PROBABILITY;
 			} else {
 				return 0;
 			}

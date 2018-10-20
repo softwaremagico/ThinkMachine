@@ -27,6 +27,7 @@ package com.softwaremagico.tm.random.definition;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.softwaremagico.tm.character.characteristics.Characteristic;
 import com.softwaremagico.tm.character.factions.Faction;
 import com.softwaremagico.tm.character.factions.FactionGroup;
 import com.softwaremagico.tm.character.race.Race;
@@ -36,12 +37,16 @@ public class RandomElementDefinition {
 	private Integer minimumTechLevel;
 	private Integer maximumTechLevel;
 	private Double probabilityMultiplier;
+	private final Set<Faction> restrictedFactions = new HashSet<>();
 	private final Set<Faction> recommendedFactions = new HashSet<>();
 	private final Set<Race> recommendedRaces = new HashSet<>();
 	private final Set<FactionGroup> recommendedFactionGroups = new HashSet<>();
 	private RandomProbabilityDefinition probability = RandomProbabilityDefinition.FAIR;
 
 	public Integer getMinimumTechLevel() {
+		if (minimumTechLevel == null) {
+			return 0;
+		}
 		return minimumTechLevel;
 	}
 
@@ -88,6 +93,9 @@ public class RandomElementDefinition {
 	}
 
 	public Integer getMaximumTechLevel() {
+		if (maximumTechLevel == null) {
+			return Characteristic.MAX_VALUE;
+		}
 		return maximumTechLevel;
 	}
 
@@ -112,5 +120,9 @@ public class RandomElementDefinition {
 
 	public void setProbabilityMultiplier(Double probabilityMultiplier) {
 		this.probabilityMultiplier = probabilityMultiplier;
+	}
+
+	public Set<Faction> getRestrictedFactions() {
+		return restrictedFactions;
 	}
 }

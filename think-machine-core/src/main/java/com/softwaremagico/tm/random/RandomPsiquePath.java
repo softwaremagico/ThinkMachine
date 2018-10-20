@@ -50,15 +50,11 @@ import com.softwaremagico.tm.random.selectors.PsiquePathLevelPreferences;
 import com.softwaremagico.tm.random.selectors.SpecializationPreferences;
 
 public class RandomPsiquePath extends RandomSelector<OccultismPath> {
-	private final static int MAX_PROBABILITY = 100000;
-	private final static int GOOD_PROBABILITY = 10;
-
 	private final static int TOTAL_PDF_PSI_ROWS = 7;
 
 	private int totalPowers;
 
-	protected RandomPsiquePath(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences)
-			throws InvalidXmlElementException {
+	protected RandomPsiquePath(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences) throws InvalidXmlElementException {
 		super(characterPlayer, preferences);
 	}
 
@@ -86,8 +82,7 @@ public class RandomPsiquePath extends RandomSelector<OccultismPath> {
 	protected TreeMap<Integer, OccultismPath> assignElementsWeight() throws InvalidXmlElementException {
 		TreeMap<Integer, OccultismPath> weightedPaths = new TreeMap<>();
 		int count = 1;
-		for (OccultismPath occultismPath : OccultismPathFactory.getInstance().getElements(
-				getCharacterPlayer().getLanguage())) {
+		for (OccultismPath occultismPath : OccultismPathFactory.getInstance().getElements(getCharacterPlayer().getLanguage())) {
 			int weight = getWeight(occultismPath);
 			if (weight > 0) {
 				weightedPaths.put(count, occultismPath);
@@ -100,8 +95,7 @@ public class RandomPsiquePath extends RandomSelector<OccultismPath> {
 	@Override
 	protected int getWeight(OccultismPath element) {
 		// Other factions path are forbidden
-		if (!element.getFactionsAllowed().isEmpty()
-				&& !element.getFactionsAllowed().contains(getCharacterPlayer().getFaction())) {
+		if (!element.getFactionsAllowed().isEmpty() && !element.getFactionsAllowed().contains(getCharacterPlayer().getFaction())) {
 			return 0;
 		}
 		// Own factions paths are a must.
@@ -110,8 +104,7 @@ public class RandomPsiquePath extends RandomSelector<OccultismPath> {
 		}
 		// Only paths with psique level.
 		try {
-			for (OccultismType occultismType : OccultismTypeFactory.getInstance().getElements(
-					getCharacterPlayer().getLanguage())) {
+			for (OccultismType occultismType : OccultismTypeFactory.getInstance().getElements(getCharacterPlayer().getLanguage())) {
 				if (getCharacterPlayer().getPsiqueLevel(occultismType) == 0) {
 					if (Objects.equals(element.getOccultismType(), occultismType)) {
 						return 0;
@@ -124,9 +117,8 @@ public class RandomPsiquePath extends RandomSelector<OccultismPath> {
 
 		// Combat psi characters prefer specific paths.
 		CombatPreferences combatPreferences = CombatPreferences.getSelected(getPreferences());
-		if (combatPreferences == CombatPreferences.BELLIGERENT
-				&& (element.getId().equals("farHand") || element.getId().equals("soma"))) {
-			return GOOD_PROBABILITY;
+		if (combatPreferences == CombatPreferences.BELLIGERENT && (element.getId().equals("farHand") || element.getId().equals("soma"))) {
+			return FAIR_PROBABILITY;
 		}
 		return 1;
 	}
@@ -145,8 +137,7 @@ public class RandomPsiquePath extends RandomSelector<OccultismPath> {
 	}
 
 	private void assignPowersOfPath(OccultismPath path, int maxLevelSelected) throws InvalidXmlElementException {
-		int remainingPoints = FreeStyleCharacterCreation.FREE_AVAILABLE_POINTS
-				- CostCalculator.getCost(getCharacterPlayer());
+		int remainingPoints = FreeStyleCharacterCreation.FREE_AVAILABLE_POINTS - CostCalculator.getCost(getCharacterPlayer());
 		// Select powers to set.
 		List<OccultismPower> powersToAdd = new ArrayList<>();
 
@@ -155,7 +146,8 @@ public class RandomPsiquePath extends RandomSelector<OccultismPath> {
 		if (Objects.equals(path.getOccultismType(), OccultismTypeFactory.getPsi(getCharacterPlayer().getLanguage()))) {
 			for (int i = 1; i <= maxLevelSelected; i++) {
 				List<OccultismPower> powers = new ArrayList<>(path.getPowersOfLevel(i));
-				// If has more than one power at one level, choose one of them at least.
+				// If has more than one power at one level, choose one of them
+				// at least.
 				if (!powers.isEmpty()) {
 					Collections.shuffle(powers);
 					powersToAdd.add(powers.get(0));
@@ -164,8 +156,7 @@ public class RandomPsiquePath extends RandomSelector<OccultismPath> {
 			}
 		}
 		// Theurgy does not need to have all levels.
-		if (Objects
-				.equals(path.getOccultismType(), OccultismTypeFactory.getTheurgy(getCharacterPlayer().getLanguage()))) {
+		if (Objects.equals(path.getOccultismType(), OccultismTypeFactory.getTheurgy(getCharacterPlayer().getLanguage()))) {
 			// Levels to add.
 			int numberOfPowers = specializationPreferences.randomGaussian();
 			List<OccultismPower> powers = new ArrayList<>(path.getOccultismPowers().values());
@@ -188,8 +179,7 @@ public class RandomPsiquePath extends RandomSelector<OccultismPath> {
 			}
 			if (remainingPoints - power.getLevel() * CostCalculator.PATH_LEVEL_COST >= 0) {
 				getCharacterPlayer().addOccultismPower(power);
-				RandomGenerationLog.info(this.getClass().getName(), "Assinged power '" + power + "' to path '" + path
-						+ "'.");
+				RandomGenerationLog.info(this.getClass().getName(), "Assinged power '" + power + "' to path '" + path + "'.");
 				remainingPoints -= power.getLevel() * CostCalculator.PATH_LEVEL_COST;
 				totalPowers++;
 			}

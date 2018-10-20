@@ -34,10 +34,21 @@ import java.util.TreeMap;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
 
 public abstract class RandomSelector<Element extends com.softwaremagico.tm.Element<?>> {
+	protected final static int MAX_PROBABILITY = 1000000;
+	protected final static int NO_PROBABILITY = -10 * MAX_PROBABILITY;
+
+	protected final static int BAD_PROBABILITY = -20;
+	protected final static int DIFFICULT_PROBABILITY = -10;
+	protected final static int BASIC_PROBABILITY = 1;
+	protected final static int LITTLE_PROBABILITY = 6;
+	protected final static int FAIR_PROBABILITY = 11;
+	protected final static int GOOD_PROBABILITY = 21;
+
 	private CharacterPlayer characterPlayer;
 	private final Set<IRandomPreference> preferences;
 	private Random rand = new Random();
@@ -73,6 +84,32 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
 	}
 
 	protected abstract TreeMap<Integer, Element> assignElementsWeight() throws InvalidXmlElementException;
+
+	protected void validateElement(Element element) throws InvalidRandomElementSelectedException {
+		if (element == null) {
+			throw new InvalidRandomElementSelectedException("Null elements not allowed.");
+		}
+
+		if (element.getRandomDefinition() == null) {
+			return;
+		}
+		// Check technology limitations.
+		if (element.getRandomDefinition().getMinimumTechLevel() != null
+				&& element.getRandomDefinition().getMinimumTechLevel() > getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).getValue()) {
+			throw new InvalidRandomElementSelectedException("The tech level of the character is insufficient for element '" + element.getId() + "'.");
+		}
+
+		if (element.getRandomDefinition().getMaximumTechLevel() != null
+				&& element.getRandomDefinition().getMaximumTechLevel() < getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).getValue()) {
+			throw new InvalidRandomElementSelectedException("The tech level of the character is too high for element '" + element.getId() + "'.");
+		}
+
+		// Faction restriction.
+		if (!element.getRandomDefinition().getRestrictedFactions().isEmpty()
+				&& !element.getRandomDefinition().getRestrictedFactions().contains(getCharacterPlayer().getFaction())) {
+			throw new InvalidRandomElementSelectedException("Element restricted to factions '" + element.getRandomDefinition().getRestrictedFactions() + "'.");
+		}
+	}
 
 	/**
 	 * Assign a weight to an element depending on the preferences selected.

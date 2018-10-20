@@ -53,7 +53,7 @@
 		<theurgy>0</theurgy>
 		<hubris>0</hubris>
 		<random>
-			<probability>100</probability>
+			<staticProbability>100</staticProbability>
 		</random>
 	</human>
 	<obun>
@@ -109,7 +109,7 @@
 		<theurgy>1</theurgy>
 		<hubris>0</hubris>
 		<random>
-			<probability>1</probability>
+			<staticProbability>1</staticProbability>
 		</random>
 	</obun>
 	<ukar>
@@ -165,7 +165,7 @@
 		<theurgy>0</theurgy>
 		<hubris>0</hubris>
 		<random>
-			<probability>1</probability>
+			<staticProbability>1</staticProbability>
 		</random>
 	</ukar>
 	<vorox>
@@ -221,7 +221,7 @@
 		<theurgy>0</theurgy>
 		<hubris>0</hubris>
 		<random>
-			<probability>1</probability>
+			<staticProbability>1</staticProbability>
 		</random>
 	</vorox>
 </races>

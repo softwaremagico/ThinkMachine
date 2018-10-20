@@ -44,9 +44,6 @@ import com.softwaremagico.tm.random.selectors.IRandomPreference;
 import com.softwaremagico.tm.random.selectors.SpecializationPreferences;
 
 public class RandomBlessingDefinition extends RandomSelector<Blessing> {
-	private final static int MAX_PROBABILITY = 100000;
-	private final static int GOOD_PROBABILITY = 20;
-	private final static int FAIR_PROBABILITY = 10;
 
 	protected RandomBlessingDefinition(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences) throws InvalidXmlElementException {
 		super(characterPlayer, preferences);

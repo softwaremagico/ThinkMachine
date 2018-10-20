@@ -89,6 +89,7 @@ import com.softwaremagico.tm.character.values.SpecialValue;
 import com.softwaremagico.tm.character.values.SpecialValuesFactory;
 import com.softwaremagico.tm.log.CostCalculatorLog;
 import com.softwaremagico.tm.log.MachineLog;
+import com.softwaremagico.tm.txt.CharacterSheet;
 
 public class CharacterPlayer {
 	private String language;
@@ -694,6 +695,11 @@ public class CharacterPlayer {
 			return name;
 		}
 		return super.toString();
+	}
+
+	public String getRepresentation() {
+		CharacterSheet characterSheet = new CharacterSheet(this);
+		return characterSheet.toString();
 	}
 
 	public int getStrengthDamangeModification() {

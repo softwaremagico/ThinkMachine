@@ -223,7 +223,9 @@
 		<strength>4</strength>
 		<size>L</size>
 		<cost>15</cost>
-		<faction>vorox</faction>
+		<random>
+			<restrictedFactions>vorox</restrictedFactions>
+		</random>
 	</glankesh>
 	<hollowKnife>
 		<name>
@@ -788,7 +790,9 @@
 		<rate>1/2</rate>
 		<size>L</size>
 		<cost>30</cost>
-		<faction>vorox</faction>
+		<random>
+			<restrictedFactions>vorox</restrictedFactions>
+		</random>
 	</heavyFuthangaBow>
 	<huntingBow>
 		<name>
@@ -825,7 +829,9 @@
 		<rate>1/2</rate>
 		<size>L</size>
 		<cost>20</cost>
-		<faction>vorox</faction>
+		<random>
+			<restrictedFactions>vorox</restrictedFactions>
+		</random>
 	</lightFuthangaBow>
 	<selfBow>
 		<name>
@@ -1833,8 +1839,10 @@
 		<rate>3(A)</rate>
 		<size>XL</size>
 		<cost>500</cost>
-		<faction>hazat</faction>
 		<others>stock, autofeed</others>
+		<random>
+			<restrictedFactions>hazat</restrictedFactions>
+		</random>
 	</hazatModel68>
 	<musterRover10>
 		<name>
@@ -1853,8 +1861,10 @@
 		<rate>3(A)</rate>
 		<size>XL</size>
 		<cost>850</cost>
-		<faction>muster</faction>
 		<others>stock, autofeed, bipod, gunTechKit4</others>
+		<random>
+			<restrictedFactions>muster</restrictedFactions>
+		</random>
 	</musterRover10>
 	<vamGelderThracker>
 		<name>
@@ -2196,11 +2206,11 @@
 		<rate>2(A**)</rate>
 		<size>L</size>
 		<cost>400</cost>
-		<faction>hazat</faction>
 		<others>stock, autofeed</others>
 		<ammunition>riotSolidSlug</ammunition>
 		<random>
 			<probabilityMultiplier>0.1</probabilityMultiplier>
+			<restrictedFactions>hazat</restrictedFactions>
 		</random>
 	</mHazatRiot>
 	<xienShortBarrel>
@@ -2301,10 +2311,10 @@
 		<rate>2</rate>
 		<size>M</size>
 		<cost>150</cost>
-		<faction>decados</faction>
 		<others>hidden</others>
 		<random>
 			<probabilityMultiplier>0.01</probabilityMultiplier>
+			<restrictedFactions>decados</restrictedFactions>
 		</random>
 	</decadosGroinGun>
 	<hailstormSplinterPistol>
@@ -3242,8 +3252,10 @@
 		<rate>1</rate>
 		<size>XL</size>
 		<cost>500</cost>
-		<faction>muster</faction>
 		<others>stock</others>
+		<random>
+			<restrictedFactions>muster</restrictedFactions>
+		</random>
 	</musterNightstorm>
 	<modelHazatR25>
 		<name>
@@ -3262,9 +3274,11 @@
 		<rate>1</rate>
 		<size>XL</size>
 		<cost>800</cost>
-		<faction>hazat</faction>
 		<damageType>hard</damageType>
 		<ammunition>panzerBreakerShell</ammunition>
+		<random>
+			<restrictedFactions>hazat</restrictedFactions>
+		</random>
 	</modelHazatR25>
 	<dreskelBazooka>
 		<name>

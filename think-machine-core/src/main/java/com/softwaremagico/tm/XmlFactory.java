@@ -30,13 +30,29 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.StringTokenizer;
 
+import com.softwaremagico.tm.character.factions.FactionGroup;
+import com.softwaremagico.tm.character.factions.FactionsFactory;
+import com.softwaremagico.tm.character.race.RaceFactory;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.Language;
 import com.softwaremagico.tm.log.MachineLog;
+import com.softwaremagico.tm.random.definition.RandomProbabilityDefinition;
 
 public abstract class XmlFactory<T extends Element<T>> {
 	protected Map<String, List<T>> elements = new HashMap<>();
+
+	private final static String RANDOM = "random";
+	private final static String ELEMENT_PROBABILITY_MULTIPLIER = "probabilityMultiplier";
+	private final static String RESTRICTED_FACTIONS = "restrictedFactions";
+	private final static String MIN_TECH_LEVEL = "minTechLevel";
+	private final static String MAX_TECH_LEVEL = "maxTechLevel";
+	private final static String RECOMMENDED_FACTIONS = "recommendedFactions";
+	private final static String RECOMMENDED_FACTION_GROUPS = "recommendedFactionGroups";
+	private final static String RECOMMENDED_RACES = "recommendedRaces";
+	private final static String GENERAL_PROBABILITY = "generalProbability";
+	private final static String STATIC_PROBABILITY = "staticProbability";
 
 	protected XmlFactory() {
 		initialize();
@@ -62,11 +78,94 @@ public abstract class XmlFactory<T extends Element<T>> {
 		initialize();
 	}
 
+	protected void setRandomConfiguration(Element<?> element, ITranslator translator, String language) throws InvalidXmlElementException {
+		// Is an element restricted to a faction?
+		String restrictedFactionsId = translator.getNodeValue(element.getId(), RANDOM, RESTRICTED_FACTIONS);
+		if (restrictedFactionsId != null) {
+			StringTokenizer factionTokenizer = new StringTokenizer(restrictedFactionsId, ",");
+			while (factionTokenizer.hasMoreTokens()) {
+				element.getRandomDefinition().getRestrictedFactions()
+						.add(FactionsFactory.getInstance().getElement(factionTokenizer.nextToken().trim(), language));
+			}
+		}
+
+		try {
+			String elementProbability = getTranslator().getNodeValue(element.getId(), RANDOM, ELEMENT_PROBABILITY_MULTIPLIER);
+			if (elementProbability != null) {
+				element.getRandomDefinition().setProbabilityMultiplier(Double.parseDouble(elementProbability));
+			} else {
+				element.getRandomDefinition().setProbabilityMultiplier(1d);
+			}
+		} catch (NumberFormatException nfe) {
+			throw new InvalidXmlElementException("Invalid number value for element probability in '" + element.getId() + "'.");
+		}
+
+		try {
+			String minTechLevel = translator.getNodeValue(element.getId(), RANDOM, MIN_TECH_LEVEL);
+			if (minTechLevel != null) {
+				element.getRandomDefinition().setMinimumTechLevel(Integer.parseInt(minTechLevel));
+			}
+		} catch (NumberFormatException nfe) {
+			throw new InvalidXmlElementException("Invalid number value for techlevel in element '" + element.getId() + "'.");
+		}
+
+		try {
+			String maxTechLevel = translator.getNodeValue(element.getId(), RANDOM, MAX_TECH_LEVEL);
+			if (maxTechLevel != null) {
+				element.getRandomDefinition().setMaximumTechLevel(Integer.parseInt(maxTechLevel));
+			}
+		} catch (NumberFormatException nfe) {
+			throw new InvalidXmlElementException("Invalid number value for max techlevel in element '" + element.getId() + "'.");
+		}
+
+		String recommendedFactionGroups = translator.getNodeValue(element.getId(), RANDOM, RECOMMENDED_FACTION_GROUPS);
+		if (recommendedFactionGroups != null) {
+			StringTokenizer recommendedFactionGroupsOfSkill = new StringTokenizer(recommendedFactionGroups, ",");
+			while (recommendedFactionGroupsOfSkill.hasMoreTokens()) {
+				element.getRandomDefinition().addRecommendedFactionGroup(FactionGroup.get(recommendedFactionGroupsOfSkill.nextToken().trim()));
+			}
+		}
+
+		String recommendedFactions = translator.getNodeValue(element.getId(), RANDOM, RECOMMENDED_FACTIONS);
+		if (recommendedFactions != null) {
+			StringTokenizer recommendedFactionsOfSkill = new StringTokenizer(recommendedFactions, ",");
+			while (recommendedFactionsOfSkill.hasMoreTokens()) {
+				element.getRandomDefinition().addRecommendedFaction(
+						FactionsFactory.getInstance().getElement(recommendedFactionsOfSkill.nextToken().trim(), language));
+			}
+		}
+
+		String recommendedRaces = translator.getNodeValue(element.getId(), RANDOM, RECOMMENDED_RACES);
+		if (recommendedRaces != null) {
+			StringTokenizer recommendedRacesOfSkill = new StringTokenizer(recommendedRaces, ",");
+			while (recommendedRacesOfSkill.hasMoreTokens()) {
+				element.getRandomDefinition().addRecommendedRace(RaceFactory.getInstance().getElement(recommendedRacesOfSkill.nextToken().trim(), language));
+			}
+		}
+
+		String generalProbability = translator.getNodeValue(element.getId(), RANDOM, GENERAL_PROBABILITY);
+		if (generalProbability != null) {
+			element.getRandomDefinition().setProbability(RandomProbabilityDefinition.get(generalProbability));
+		}
+
+		try {
+			String staticProbability = translator.getNodeValue(element.getId(), RANDOM, STATIC_PROBABILITY);
+			if (staticProbability != null) {
+				element.getRandomDefinition().setStaticProbability(Integer.parseInt(staticProbability));
+			} else {
+				element.getRandomDefinition().setStaticProbability(1);
+			}
+		} catch (NumberFormatException nfe) {
+			throw new InvalidXmlElementException("Invalid number value for element probability in '" + element.getId() + "'.");
+		}
+	}
+
 	public List<T> getElements(String language) throws InvalidXmlElementException {
 		if (elements.get(language) == null) {
 			elements.put(language, new ArrayList<T>());
 			for (String elementId : getTranslator().getAllTranslatedElements()) {
 				T element = createElement(getTranslator(), elementId, language);
+				setRandomConfiguration(element, getTranslator(), language);
 				if (elements.get(language).contains(element)) {
 					throw new ElementAlreadyExistsException("Element '" + element + "' already is inserted. Probably the ID is duplicated.");
 				}

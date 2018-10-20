@@ -79,7 +79,7 @@
 		</name>
 		<group>analytical</group>
 		<random>
-			<techlevel>2</techlevel>
+			<minTechLevel>2</minTechLevel>
 			<recommendedFactionGroups>nobility, church, guild</recommendedFactionGroups>
 		</random>
 	</bureaucracy>
@@ -90,7 +90,7 @@
 		</name>
 		<group>analytical</group>
 		<random>
-			<techlevel>2</techlevel>
+			<minTechLevel>2</minTechLevel>
 		</random>
 	</physick>
 	<warfare>
@@ -107,7 +107,7 @@
 		</name>
 		<group>analytical</group>
 		<random>
-			<techlevel>2</techlevel>
+			<minTechLevel>2</minTechLevel>
 		</random>
 	</investigation>
 	<appliedScience>
@@ -118,7 +118,7 @@
 		<group>science</group>
 		<factionSkill>engineers</factionSkill>
 		<random>
-			<techlevel>2</techlevel>
+			<minTechLevel>2</minTechLevel>
 		</random>
 	</appliedScience>
 	<socialScience>
@@ -128,7 +128,7 @@
 		</name>
 		<group>science</group>
 		<random>
-			<techlevel>3</techlevel>
+			<minTechLevel>3</minTechLevel>
 		</random>
 	</socialScience>
 	<physicalScience>
@@ -139,7 +139,7 @@
 		<group>science</group>
 		<factionSkill>engineers</factionSkill>
 		<random>
-			<techlevel>2</techlevel>
+			<minTechLevel>2</minTechLevel>
 		</random>
 	</physicalScience>
 	<lifeScience>
@@ -150,7 +150,7 @@
 		<group>science</group>
 		<factionSkill>engineers</factionSkill>
 		<random>
-			<techlevel>2</techlevel>
+			<minTechLevel>2</minTechLevel>
 		</random>
 	</lifeScience>
 	<terraforming>
@@ -161,7 +161,7 @@
 		<group>science</group>
 		<factionSkill>engineers</factionSkill>
 		<random>
-			<techlevel>6</techlevel>
+			<minTechLevel>6</minTechLevel>
 		</random>
 	</terraforming>
 	<energyGuns>
@@ -171,7 +171,7 @@
 		</name>
 		<group>combat</group>
 		<random>
-			<techlevel>5</techlevel>
+			<minTechLevel>5</minTechLevel>
 		</random>
 	</energyGuns>
 	<slugGuns>
@@ -181,7 +181,7 @@
 		</name>
 		<group>combat</group>
 		<random>
-			<techlevel>2</techlevel>
+			<minTechLevel>2</minTechLevel>
 			<maxTechLevel>6</maxTechLevel>
 		</random>
 	</slugGuns>
@@ -192,7 +192,7 @@
 		</name>
 		<group>combat</group>
 		<random>
-			<techlevel>0</techlevel>
+			<minTechLevel>0</minTechLevel>
 			<maxTechLevel>2</maxTechLevel>
 		</random>
 	</archery>
@@ -203,7 +203,7 @@
 		</name>
 		<group>combat</group>
 		<random>
-			<techlevel>7</techlevel>
+			<minTechLevel>7</minTechLevel>
 		</random>
 	</artifactMelee>
 	<gunnery>
@@ -213,7 +213,7 @@
 		</name>
 		<group>combat</group>
 		<random>
-			<techlevel>3</techlevel>
+			<minTechLevel>3</minTechLevel>
 		</random>
 	</gunnery>
 	<artillery>
@@ -223,7 +223,7 @@
 		</name>
 		<group>combat</group>
 		<random>
-			<techlevel>3</techlevel>
+			<minTechLevel>3</minTechLevel>
 		</random>
 	</artillery>
 	<fight>
@@ -243,7 +243,7 @@
 		</name>
 		<group>combat</group>
 		<random>
-			<techlevel>3</techlevel>
+			<minTechLevel>3</minTechLevel>
 		</random>
 	</demolitions>
 	<beastcraft>
@@ -267,7 +267,7 @@
 		</name>
 		<group>control</group>
 		<random>
-			<techlevel>0</techlevel>
+			<minTechLevel>0</minTechLevel>
 			<maxTechLevel>2</maxTechLevel>
 		</random>
 	</ride>
@@ -278,7 +278,7 @@
 		</name>
 		<group>control</group>
 		<random>
-			<techlevel>3</techlevel>
+			<minTechLevel>3</minTechLevel>
 		</random>
 	</aircraft>
 	<spacecraft>
@@ -289,7 +289,7 @@
 		<group>control</group>
 		<factionSkill>charioteers</factionSkill>
 		<random>
-			<techlevel>5</techlevel>
+			<minTechLevel>5</minTechLevel>
 			<recommendedFactions>charioteers</recommendedFactions>
 		</random>
 	</spacecraft>
@@ -300,7 +300,7 @@
 		</name>
 		<group>control</group>
 		<random>
-			<techlevel>3</techlevel>
+			<minTechLevel>3</minTechLevel>
 		</random>
 	</landcarft>
 	<arts>
@@ -424,7 +424,7 @@
 				<en>Jumpweb</en>
 				<es>Red de Salto</es>
 				<random>
-					<techlevel>5</techlevel>
+					<minTechLevel>5</minTechLevel>
 					<generalProbability>low</generalProbability>
 					<recommendedFactions>charioteers, scravers</recommendedFactions>
 				</random>
@@ -441,7 +441,7 @@
 				<en>Think Machine</en>
 				<es>Máquina Pensante</es>
 				<random>
-					<techlevel>5</techlevel>
+					<minTechLevel>5</minTechLevel>
 					<recommendedFactions>engineers</recommendedFactions>
 				</random>
 			</thinkMachineLore>
@@ -456,7 +456,7 @@
 		</specializations>
 		<numberToShow>4</numberToShow>
 		<random>
-			<techlevel>4</techlevel>
+			<minTechLevel>4</minTechLevel>
 		</random>
 	</lore>
 	<xenoLore>
@@ -537,7 +537,7 @@
 		<factionSkill>engineers, charioteers</factionSkill>
 		<group>technical</group>
 		<random>
-			<techlevel>5</techlevel>
+			<minTechLevel>5</minTechLevel>
 			<recommendedFactions>engineers, charioteers</recommendedFactions>
 		</random>
 	</spacecraftOperations>
@@ -549,7 +549,7 @@
 		<factionSkill>engineers</factionSkill>
 		<group>technical</group>
 		<random>
-			<techlevel>3</techlevel>
+			<minTechLevel>3</minTechLevel>
 			<recommendedFactionGroups>guild</recommendedFactionGroups>
 			<recommendedFactions>engineers</recommendedFactions>
 		</random>
@@ -562,7 +562,7 @@
 		<factionSkill>engineers, charioteers</factionSkill>
 		<group>technical</group>
 		<random>
-			<techlevel>4</techlevel>
+			<minTechLevel>4</minTechLevel>
 			<recommendedFactions>engineers, charioteers</recommendedFactions>
 		</random>
 	</thinkMachine>

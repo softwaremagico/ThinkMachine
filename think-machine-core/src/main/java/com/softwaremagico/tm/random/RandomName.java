@@ -41,7 +41,6 @@ import com.softwaremagico.tm.random.selectors.IRandomPreference;
 import com.softwaremagico.tm.random.selectors.NamesPreferences;
 
 public class RandomName extends RandomSelector<Name> {
-	private final static int GOOD_PROBABILITY = 1;
 
 	protected RandomName(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences) throws InvalidXmlElementException {
 		super(characterPlayer, preferences);
@@ -102,7 +101,7 @@ public class RandomName extends RandomSelector<Name> {
 		// Nobility almost always names of her planet.
 		if (getCharacterPlayer().getFaction() != null && getCharacterPlayer().getFaction().getFactionGroup() == FactionGroup.NOBILITY) {
 			if (getCharacterPlayer().getFaction().equals(name.getFaction())) {
-				return GOOD_PROBABILITY;
+				return BASIC_PROBABILITY;
 			} else {
 				return 0;
 			}
@@ -110,7 +109,7 @@ public class RandomName extends RandomSelector<Name> {
 		// Not nobility, use names available on the planet.
 		if (getCharacterPlayer().getInfo().getPlanet() != null && !getCharacterPlayer().getInfo().getPlanet().getNames().isEmpty()) {
 			if (getCharacterPlayer().getInfo().getPlanet().getFactions().contains(name.getFaction())) {
-				return GOOD_PROBABILITY;
+				return BASIC_PROBABILITY;
 			} else {
 				return 0;
 			}

@@ -24,7 +24,6 @@ package com.softwaremagico.tm.random;
  * #L%
  */
 
-import java.util.Objects;
 import java.util.Set;
 import java.util.TreeMap;
 
@@ -41,7 +40,6 @@ import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedExcep
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
 
 public abstract class RandomWeapon extends RandomSelector<Weapon> {
-	protected final static int TECH_LEVEL_BONUS = 1000000;
 	private Integer currentMoney = null;
 
 	protected RandomWeapon(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences) throws InvalidXmlElementException {
@@ -99,22 +97,23 @@ public abstract class RandomWeapon extends RandomSelector<Weapon> {
 	protected int getWeight(Weapon weapon) {
 		// Weapons only if technology is enough.
 		if (weapon.getTechLevel() > getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).getValue()) {
-			return 0;
+			return NO_PROBABILITY;
+		}
+
+		try {
+			validateElement(weapon);
+		} catch (InvalidRandomElementSelectedException e) {
+			return NO_PROBABILITY;
 		}
 
 		// Only ranged weapons.
 		if (!weaponTypesFilter().contains(weapon.getType())) {
-			return 0;
+			return NO_PROBABILITY;
 		}
 
 		// I can afford it.
 		if (weapon.getCost() > getCurrentMoney()) {
-			return 0;
-		}
-
-		// Faction restriction.
-		if (weapon.getFaction() != null && Objects.equals(weapon.getFaction(), getCharacterPlayer().getFaction())) {
-			return 0;
+			return NO_PROBABILITY;
 		}
 
 		int weight = 0;

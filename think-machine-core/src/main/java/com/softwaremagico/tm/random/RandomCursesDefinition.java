@@ -45,10 +45,8 @@ import com.softwaremagico.tm.random.selectors.IRandomPreference;
 import com.softwaremagico.tm.random.selectors.SpecializationPreferences;
 
 public class RandomCursesDefinition extends RandomSelector<Blessing> {
-	private final static int MAX_PROBABILITY = 100000;
 
-	protected RandomCursesDefinition(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences)
-			throws InvalidXmlElementException {
+	protected RandomCursesDefinition(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences) throws InvalidXmlElementException {
 		super(characterPlayer, preferences);
 	}
 
@@ -105,7 +103,8 @@ public class RandomCursesDefinition extends RandomSelector<Blessing> {
 				return 0;
 			}
 		}
-		// If specialization is set, not curses that affects the skills with ranks.
+		// If specialization is set, not curses that affects the skills with
+		// ranks.
 		SpecializationPreferences specializationPreferences = SpecializationPreferences.getSelected(getPreferences());
 		if (specializationPreferences.mean() >= SpecializationPreferences.FAIR.mean()) {
 			for (AvailableSkill skill : curse.getAffectedSkill(getCharacterPlayer().getLanguage())) {

@@ -51,14 +51,6 @@ import com.softwaremagico.tm.random.selectors.SpecializationPreferences;
 import com.softwaremagico.tm.random.selectors.TechnologicalPreferences;
 
 public class RandomSkills extends RandomSelector<AvailableSkill> {
-	private final static int NO_PROBABILITY = -1000;
-	private final static int BAD_PROBABILITY = -20;
-	private final static int DIFFICULT_PROBABILITY = -10;
-	private final static int LITTLE_PROBABILITY = 6;
-	private final static int ACCEPTABLE_PROBABILITY = 11;
-	private final static int GOOD_PROBABILITY = 21;
-	private final static int MAX_PROBABILITY = 1000;
-
 	private List<Entry<CharacteristicType, Integer>> preferredCharacteristicsTypeSorted;
 
 	public RandomSkills(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences) throws InvalidXmlElementException {
@@ -125,7 +117,9 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 	protected int getWeight(AvailableSkill skill) {
 		int weight = 1;
 
-		if (skill == null) {
+		try {
+			validateElement(skill);
+		} catch (InvalidRandomElementSelectedException e) {
 			return NO_PROBABILITY;
 		}
 
@@ -133,17 +127,6 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 		if (getCharacterPlayer().hasWeaponWithSkill(skill)) {
 			RandomGenerationLog.debug(this.getClass().getName(), "Weight for '" + skill + "' needed for a selected weapon is increased.");
 			return MAX_PROBABILITY;
-		}
-
-		// Check technology limitations.
-		if (skill.getRandomDefinition().getMinimumTechLevel() != null
-				&& skill.getRandomDefinition().getMinimumTechLevel() > getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).getValue()) {
-			return NO_PROBABILITY;
-		}
-
-		if (skill.getRandomDefinition().getMaximumTechLevel() != null
-				&& skill.getRandomDefinition().getMaximumTechLevel() < getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).getValue()) {
-			return NO_PROBABILITY;
 		}
 
 		if (skill.getSkillDefinition().isNatural()) {
@@ -202,7 +185,7 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 		case FAIR:
 			return 0;
 		case GOOD:
-			return ACCEPTABLE_PROBABILITY;
+			return FAIR_PROBABILITY;
 		}
 		return 0;
 	}
@@ -210,7 +193,7 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 	private int weightByCharacteristics(AvailableSkill skill) {
 		if (skill.getSkillDefinition().getSkillGroup().getPreferredCharacteristicsGroups() != null && !getPreferredCharacteristicsTypeSorted().isEmpty()) {
 			if (Objects.equals(skill.getSkillDefinition().getSkillGroup().getPreferredCharacteristicsGroups(), getPreferredCharacteristicsTypeSorted().get(0))) {
-				return ACCEPTABLE_PROBABILITY;
+				return FAIR_PROBABILITY;
 			}
 			if (Objects.equals(skill.getSkillDefinition().getSkillGroup().getPreferredCharacteristicsGroups(), getPreferredCharacteristicsTypeSorted().get(1))) {
 				return LITTLE_PROBABILITY;
@@ -250,7 +233,7 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 		// Recommended to my faction group.
 		if (getCharacterPlayer().getFaction() != null
 				&& skill.getRandomDefinition().getRecommendedFactionGroups().contains(getCharacterPlayer().getFaction().getFactionGroup())) {
-			return ACCEPTABLE_PROBABILITY;
+			return FAIR_PROBABILITY;
 		}
 		// Recommended to my faction.
 		if (getCharacterPlayer().getFaction() != null && skill.getRandomDefinition().getRecommendedFactions().contains(getCharacterPlayer().getFaction())) {
@@ -262,7 +245,7 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 	private int weightByRace(AvailableSkill skill) {
 		// Recommended to my faction group.
 		if (getCharacterPlayer().getRace() != null && skill.getRandomDefinition().getRecommendedRaces().contains(getCharacterPlayer().getRace())) {
-			return ACCEPTABLE_PROBABILITY;
+			return FAIR_PROBABILITY;
 		}
 		return 0;
 	}
@@ -275,7 +258,7 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 			}
 			// Ride is very common for nobility.
 			if (skill.getId().equalsIgnoreCase("ride")) {
-				return ACCEPTABLE_PROBABILITY;
+				return FAIR_PROBABILITY;
 			}
 		}
 		return 0;
@@ -390,12 +373,12 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 				}
 			} else {
 				if (Objects.equals(availableSkill.getId(), "archery")) {
-					return ACCEPTABLE_PROBABILITY * combatPreferences.maximum();
+					return FAIR_PROBABILITY * combatPreferences.maximum();
 				}
 			}
 			if (Objects.equals(availableSkill.getId(), "fight")) {
 				if (getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).getValue() >= 3) {
-					return ACCEPTABLE_PROBABILITY * combatPreferences.maximum();
+					return FAIR_PROBABILITY * combatPreferences.maximum();
 				} else {
 					return GOOD_PROBABILITY * combatPreferences.maximum();
 				}
