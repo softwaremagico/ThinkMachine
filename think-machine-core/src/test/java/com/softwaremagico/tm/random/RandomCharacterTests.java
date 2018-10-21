@@ -57,7 +57,6 @@ import com.softwaremagico.tm.random.selectors.SkillGroupPreferences;
 import com.softwaremagico.tm.random.selectors.SpecializationPreferences;
 import com.softwaremagico.tm.random.selectors.StatusPreferences;
 import com.softwaremagico.tm.random.selectors.TechnologicalPreferences;
-import com.softwaremagico.tm.txt.CharacterSheet;
 
 @Test(groups = { "randomCharacter" })
 public class RandomCharacterTests {
@@ -216,18 +215,17 @@ public class RandomCharacterTests {
 	public void weaponsSkills() throws DuplicatedPreferenceException, InvalidXmlElementException, InvalidRandomElementSelectedException {
 		CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
 		characterPlayer.getWeapons().addElement(WeaponFactory.getInstance().getElement("axe", LANGUAGE));
-		characterPlayer.getWeapons().addElement(WeaponFactory.getInstance().getElement("typicalHvyAutofeed", LANGUAGE));
 		characterPlayer.getWeapons().addElement(WeaponFactory.getInstance().getElement("martechGold", LANGUAGE));
 
 		Assert.assertTrue(characterPlayer.hasWeaponWithSkill(AvailableSkillsFactory.getInstance().getElement("fight", LANGUAGE)));
-		Assert.assertTrue(characterPlayer.hasWeaponWithSkill(AvailableSkillsFactory.getInstance().getElement("slugGuns", LANGUAGE)));
 		Assert.assertTrue(characterPlayer.hasWeaponWithSkill(AvailableSkillsFactory.getInstance().getElement("energyGuns", LANGUAGE)));
+
+		characterPlayer.getCharacteristic(CharacteristicName.TECH).setValue(6);
 
 		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0);
 		randomizeCharacter.createCharacter();
 
 		Assert.assertTrue(characterPlayer.getSkillTotalRanks(AvailableSkillsFactory.getInstance().getElement("fight", LANGUAGE)) > 0);
-		Assert.assertTrue(characterPlayer.getSkillTotalRanks(AvailableSkillsFactory.getInstance().getElement("slugGuns", LANGUAGE)) > 0);
 		Assert.assertTrue(characterPlayer.getSkillTotalRanks(AvailableSkillsFactory.getInstance().getElement("energyGuns", LANGUAGE)) > 0);
 	}
 }
