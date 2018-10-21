@@ -96,10 +96,25 @@ public class AvailableSkill extends Skill<AvailableSkill> {
 		return true;
 	}
 
+	@Override
 	public RandomElementDefinition getRandomDefinition() {
 		if (getSpecialization() != null) {
 			return getSpecialization().getRandomDefinition();
 		}
 		return getSkillDefinition().getRandomDefinition();
+	}
+
+	@Override
+	public int compareTo(AvailableSkill element) {
+		if (getCompleteName() == null) {
+			if (element.getCompleteName() == null) {
+				return 0;
+			}
+			return -1;
+		}
+		if (element.getCompleteName() == null) {
+			return 1;
+		}
+		return getCompleteName().compareTo(element.getCompleteName());
 	}
 }
