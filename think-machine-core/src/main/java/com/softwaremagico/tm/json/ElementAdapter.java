@@ -54,11 +54,11 @@ public abstract class ElementAdapter<E extends Element<E>> implements JsonSerial
 
 	protected String getLanguage(JsonElement jsonElement) {
 		JsonObject jsonObject = jsonElement.getAsJsonObject();
-		JsonPrimitive langauge = (JsonPrimitive) jsonObject.get(LANGUAGE);
-		if (langauge == null) {
+		JsonPrimitive language = (JsonPrimitive) jsonObject.get(LANGUAGE);
+		if (language == null) {
 			return null;
 		}
-		return langauge.getAsString();
+		return language.getAsString();
 	}
 
 	@Override
