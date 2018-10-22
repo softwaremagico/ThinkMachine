@@ -59,11 +59,9 @@ public class Main {
 			sheet.createFile(destinationPath + "FadingSuns_" + language.toUpperCase() + ".pdf");
 		} else {
 			try {
-				CharacterPlayer player = CharacterJsonManager.fromFile(jsonFile);
+				CharacterPlayer player = CharacterJsonManager.fromFile(jsonFile, language);
 				sheet = new CharacterSheet(player);
 				sheet.createFile(destinationPath + "FadingSuns_" + language.toUpperCase() + ".pdf");
-
-				player = CharacterJsonManager.fromFile(jsonFile);
 			} catch (IOException e) {
 				PdfExporterLog.errorMessage(Main.class.getName(), e);
 			}

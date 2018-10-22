@@ -67,7 +67,7 @@ public class JsonTests {
 
 	@Test(dependsOnMethods = { "exportToJson" })
 	public void importFromJson() throws IOException, InvalidXmlElementException {
-		CharacterPlayer player = CharacterJsonManager.fromFile(OUTPUT_PATH);
+		CharacterPlayer player = CharacterJsonManager.fromFile(OUTPUT_PATH, LANGUAGE);
 		Assert.assertEquals(CostCalculator.getCost(player), 50);
 	}
 }

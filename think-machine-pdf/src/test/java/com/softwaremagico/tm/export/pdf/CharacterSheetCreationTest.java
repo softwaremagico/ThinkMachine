@@ -24,11 +24,8 @@ package com.softwaremagico.tm.export.pdf;
  * #L%
  */
 
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.net.MalformedURLException;
 
 import org.testng.Assert;
@@ -61,7 +58,6 @@ import com.softwaremagico.tm.character.occultism.OccultismTypeFactory;
 import com.softwaremagico.tm.character.planet.PlanetFactory;
 import com.softwaremagico.tm.character.race.Race;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
-import com.softwaremagico.tm.json.CharacterJsonManager;
 import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.pdf.complete.CharacterSheet;
 import com.softwaremagico.tm.pdf.small.SmallCharacterSheet;
@@ -195,25 +191,5 @@ public class CharacterSheetCreationTest {
 		sheet.createFile(PDF_PATH_OUTPUT + "CharacterFS_ES.pdf");
 
 		Assert.assertEquals(CostCalculator.getCost(player), 50);
-	}
-
-	@Test(dependsOnMethods = { "characterPdfSpanish" })
-	public void exportToJson() throws MalformedURLException, DocumentException, IOException {
-		String jsonText = CharacterJsonManager.toJson(player);
-
-		try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(PDF_PATH_OUTPUT + "CharacterFS_ES.json")), true)) {
-			out.println(jsonText);
-		}
-
-		// get json to object.
-		CharacterPlayer importedCharacter = CharacterJsonManager.fromJson(jsonText);
-		CharacterSheet sheet = new CharacterSheet(importedCharacter);
-		sheet.createFile(PDF_PATH_OUTPUT + "CharacterFS_ES_2.pdf");
-
-		// byte[] f1 = Files.readAllBytes(Paths.get(PDF_PATH_OUTPUT,
-		// "CharacterFS_ES.pdf"));
-		// byte[] f2 = Files.readAllBytes(Paths.get(PDF_PATH_OUTPUT,
-		// "CharacterFS_ES_2.pdf"));
-		// Assert.assertEquals(f1, f2);
 	}
 }

@@ -35,6 +35,12 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.character.benefices.AvailableBenefice;
+import com.softwaremagico.tm.character.blessings.Blessing;
+import com.softwaremagico.tm.character.characteristics.CharacteristicDefinition;
+import com.softwaremagico.tm.character.factions.Faction;
+import com.softwaremagico.tm.character.race.Race;
+import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.character.values.IValue;
 
 public class CharacterJsonManager {
@@ -44,6 +50,12 @@ public class CharacterJsonManager {
 			GsonBuilder gsonBuilder = new GsonBuilder();
 			gsonBuilder.setPrettyPrinting();
 			gsonBuilder.registerTypeAdapter(IValue.class, new IValueSerializer<IValue>());
+			gsonBuilder.registerTypeAdapter(Faction.class, new FactionAdapter(characterPlayer.getLanguage()));
+			gsonBuilder.registerTypeAdapter(Blessing.class, new BlessingAdapter(characterPlayer.getLanguage()));
+			gsonBuilder.registerTypeAdapter(AvailableBenefice.class, new AvailableBeneficeAdapter(characterPlayer.getLanguage()));
+			gsonBuilder.registerTypeAdapter(AvailableSkill.class, new AvailableSkillAdapter(characterPlayer.getLanguage()));
+			gsonBuilder.registerTypeAdapter(CharacteristicDefinition.class, new CharacteristicDefinitionAdapter(characterPlayer.getLanguage()));
+			gsonBuilder.registerTypeAdapter(Race.class, new RaceAdapter(characterPlayer.getLanguage()));
 			// final Gson gson = new
 			// GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
 			Gson gson = gsonBuilder.create();
@@ -53,11 +65,17 @@ public class CharacterJsonManager {
 		return null;
 	}
 
-	public static CharacterPlayer fromJson(String jsonText) {
+	public static CharacterPlayer fromJson(String jsonText, String language) {
 		if (jsonText != null && jsonText.length() > 0) {
 			GsonBuilder gsonBuilder = new GsonBuilder();
 			gsonBuilder.setPrettyPrinting();
 			gsonBuilder.registerTypeAdapter(IValue.class, new InterfaceAdapter<IValue>());
+			gsonBuilder.registerTypeAdapter(Faction.class, new FactionAdapter(language));
+			gsonBuilder.registerTypeAdapter(Blessing.class, new BlessingAdapter(language));
+			gsonBuilder.registerTypeAdapter(AvailableBenefice.class, new AvailableBeneficeAdapter(language));
+			gsonBuilder.registerTypeAdapter(AvailableSkill.class, new AvailableSkillAdapter(language));
+			gsonBuilder.registerTypeAdapter(CharacteristicDefinition.class, new CharacteristicDefinitionAdapter(language));
+			gsonBuilder.registerTypeAdapter(Race.class, new RaceAdapter(language));
 			Gson gson = gsonBuilder.create();
 
 			CharacterPlayer characterPlayer = gson.fromJson(jsonText, CharacterPlayer.class);
@@ -66,9 +84,9 @@ public class CharacterJsonManager {
 		return null;
 	}
 
-	public static CharacterPlayer fromFile(String path) throws IOException {
+	public static CharacterPlayer fromFile(String path, String language) throws IOException {
 		String jsonText = new String(Files.readAllBytes(Paths.get(path)));
-		return fromJson(jsonText);
+		return fromJson(jsonText, language);
 	}
 
 	private static class IValueSerializer<T> implements JsonSerializer<T> {

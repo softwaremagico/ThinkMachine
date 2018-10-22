@@ -56,6 +56,7 @@
 			<class name="com.softwaremagico.tm.txt.ExportTxtTests" />
 			<class name="com.softwaremagico.tm.txt.ExportTxtTests" />
 			<class name="com.softwaremagico.tm.random.profile.ProfileTests" />
+			<class name="com.softwaremagico.tm.json.JsonTests" />
 		</classes>
 	</test>
 </suite>
