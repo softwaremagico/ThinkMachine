@@ -68,7 +68,7 @@ public class AccessoryFactory extends XmlFactory<Accessory> {
 			throw new InvalidWeaponException("Invalid name in accessory '" + accessoryId + "'.");
 		}
 
-		accessory = new Accessory(accessoryId, name);
+		accessory = new Accessory(accessoryId, name, language);
 
 		return accessory;
 	}

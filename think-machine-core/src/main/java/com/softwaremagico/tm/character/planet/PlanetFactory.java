@@ -78,7 +78,7 @@ public class PlanetFactory extends XmlFactory<Planet> {
 				}
 			}
 
-			return new Planet(planetId, name, factions);
+			return new Planet(planetId, name, language, factions);
 		} catch (Exception e) {
 			throw new InvalidPlanetException("Invalid structure in planet '" + planetId + "'.", e);
 		}

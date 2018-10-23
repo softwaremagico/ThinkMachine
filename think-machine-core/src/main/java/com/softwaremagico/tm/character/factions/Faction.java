@@ -40,13 +40,11 @@ public class Faction extends Element<Faction> {
 	private final Race restrictedRace;
 	private Set<Blessing> blessings = null;
 	private Set<AvailableBenefice> benefices = null;
-	private final String language;
 
 	public Faction(String id, String name, FactionGroup factionGroup, Race restrictedRace, String language) {
-		super(id, name);
+		super(id, name, language);
 		this.factionGroup = factionGroup;
 		this.restrictedRace = restrictedRace;
-		this.language = language;
 	}
 
 	public FactionGroup getFactionGroup() {
@@ -79,7 +77,7 @@ public class Faction extends Element<Faction> {
 			// Blessings are not read with factions due to a loop
 			// factions->blessings->skills->factions
 			try {
-				FactionsFactory.getInstance().setBlessings(this, language);
+				FactionsFactory.getInstance().setBlessings(this, getLanguage());
 			} catch (InvalidFactionException e) {
 				MachineLog.errorMessage(this.getClass().getName(), e);
 			}
@@ -92,7 +90,7 @@ public class Faction extends Element<Faction> {
 			// Benefices are not read with factions due to a loop
 			// factions->benefices->skills->factions
 			try {
-				FactionsFactory.getInstance().setBenefices(this, language);
+				FactionsFactory.getInstance().setBenefices(this, getLanguage());
 			} catch (InvalidFactionException e) {
 				MachineLog.errorMessage(this.getClass().getName(), e);
 			}

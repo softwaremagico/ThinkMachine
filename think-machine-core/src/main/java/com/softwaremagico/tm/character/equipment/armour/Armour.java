@@ -40,8 +40,8 @@ public class Armour extends Element<Armour> {
 	private final float cost;
 	private final Set<Shield> allowedShields;
 
-	public Armour(String id, String name, int techLevel, int protection, Set<DamageType> damageTypes, float cost) {
-		super(id, name);
+	public Armour(String id, String name, String language, int techLevel, int protection, Set<DamageType> damageTypes, float cost) {
+		super(id, name, language);
 		this.protection = protection;
 		this.damageTypes = damageTypes;
 		this.techLevel = techLevel;
@@ -51,9 +51,9 @@ public class Armour extends Element<Armour> {
 		this.cost = cost;
 	}
 
-	public Armour(String id, String name, int techLevel, int protection, Set<DamageType> damageTypes, ArmourPenalization specialPenalizations,
+	public Armour(String id, String name, String language, int techLevel, int protection, Set<DamageType> damageTypes, ArmourPenalization specialPenalizations,
 			ArmourPenalization otherPenalizations, Set<Shield> allowedShields, float cost) {
-		super(id, name);
+		super(id, name, language);
 		this.protection = protection;
 		this.damageTypes = damageTypes;
 		this.techLevel = techLevel;

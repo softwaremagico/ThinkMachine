@@ -156,7 +156,7 @@ public class FactionsFactory extends XmlFactory<Faction> {
 
 			for (String rankId : translator.getAllChildrenTags(factionId, RANKS_TAG)) {
 				String rankName = translator.getNodeValue(factionId, rankId, RANKS_TRANSLATION_TAG, language);
-				FactionRankTranslation factionRank = new FactionRankTranslation(rankId, rankName);
+				FactionRankTranslation factionRank = new FactionRankTranslation(rankId, rankName, language);
 				faction.addRankTranslation(factionRank);
 			}
 
@@ -165,7 +165,7 @@ public class FactionsFactory extends XmlFactory<Faction> {
 			if (maleNames != null) {
 				StringTokenizer maleNamesTokenizer = new StringTokenizer(maleNames, ",");
 				while (maleNamesTokenizer.hasMoreTokens()) {
-					addName(faction, new Name(maleNamesTokenizer.nextToken().trim(), Gender.MALE, faction), Gender.MALE);
+					addName(new Name(maleNamesTokenizer.nextToken().trim(), language, Gender.MALE, faction));
 				}
 			}
 
@@ -173,7 +173,7 @@ public class FactionsFactory extends XmlFactory<Faction> {
 			if (femaleNames != null) {
 				StringTokenizer femaleNamesTokenizer = new StringTokenizer(femaleNames, ",");
 				while (femaleNamesTokenizer.hasMoreTokens()) {
-					addName(faction, new Name(femaleNamesTokenizer.nextToken().trim(), Gender.FEMALE, faction), Gender.FEMALE);
+					addName(new Name(femaleNamesTokenizer.nextToken().trim(), language, Gender.FEMALE, faction));
 				}
 			}
 
@@ -181,7 +181,7 @@ public class FactionsFactory extends XmlFactory<Faction> {
 			if (surnames != null) {
 				StringTokenizer surnamesTokenizer = new StringTokenizer(surnames, ",");
 				while (surnamesTokenizer.hasMoreTokens()) {
-					addSurname(faction, new Surname(surnamesTokenizer.nextToken().trim(), faction));
+					addSurname(new Surname(surnamesTokenizer.nextToken().trim(), language, faction));
 				}
 			}
 
@@ -191,32 +191,35 @@ public class FactionsFactory extends XmlFactory<Faction> {
 		}
 	}
 
-	private void addName(Faction faction, Name name, Gender gender) {
+	private void addName(Name name) {
 		if (namesByFaction == null) {
 			namesByFaction = new HashMap<>();
 		}
-		if (namesByFaction.get(faction) == null) {
-			namesByFaction.put(faction, new HashMap<Gender, Set<Name>>());
+		if (namesByFaction.get(name.getFaction()) == null) {
+			namesByFaction.put(name.getFaction(), new HashMap<Gender, Set<Name>>());
 		}
-		if (namesByFaction.get(faction).get(gender) == null) {
-			namesByFaction.get(faction).put(gender, new HashSet<Name>());
+		if (namesByFaction.get(name.getFaction()).get(name.getGender()) == null) {
+			namesByFaction.get(name.getFaction()).put(name.getGender(), new HashSet<Name>());
 		}
-		namesByFaction.get(faction).get(gender).add(name);
+		namesByFaction.get(name.getFaction()).get(name.getGender()).add(name);
 	}
 
-	private void addSurname(Faction faction, Surname surname) {
+	private void addSurname(Surname surname) {
 		if (surnamesByFaction == null) {
 			surnamesByFaction = new HashMap<>();
 		}
-		if (surnamesByFaction.get(faction) == null) {
-			surnamesByFaction.put(faction, new HashSet<Surname>());
+		if (surnamesByFaction.get(surname.getFaction()) == null) {
+			surnamesByFaction.put(surname.getFaction(), new HashSet<Surname>());
 		}
-		surnamesByFaction.get(faction).add(surname);
+		surnamesByFaction.get(surname.getFaction()).add(surname);
 	}
 
 	public Set<Name> getAllNames(Faction faction, Gender gender) {
 		if (faction == null || gender == null || namesByFaction.get(faction) == null) {
 			return new HashSet<>();
+		}
+		if (namesByFaction.get(faction).get(gender) == null) {
+			return null;
 		}
 		return namesByFaction.get(faction).get(gender);
 	}

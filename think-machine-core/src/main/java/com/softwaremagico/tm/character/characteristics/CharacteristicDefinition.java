@@ -33,8 +33,8 @@ public class CharacteristicDefinition extends Element<CharacteristicDefinition> 
 	private String abbreviature;
 	private CharacteristicType type;
 
-	public CharacteristicDefinition(String id, String name) {
-		super(id, name);
+	public CharacteristicDefinition(String id, String name, String language) {
+		super(id, name, language);
 	}
 
 	@Override

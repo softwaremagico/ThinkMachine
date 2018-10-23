@@ -104,7 +104,7 @@ public class BeneficeDefinitionFactory extends XmlFactory<BeneficeDefinition> {
 			Set<BeneficeSpecialization> specializations = new HashSet<>();
 			for (String specializationId : translator.getAllChildrenTags(benefitId, SPECIALIZABLE_BENEFICE_TAG)) {
 				String specizalizationName = translator.getNodeValue(specializationId, NAME, language);
-				BeneficeSpecialization specialization = new BeneficeSpecialization(specializationId, specizalizationName);
+				BeneficeSpecialization specialization = new BeneficeSpecialization(specializationId, specizalizationName, language);
 				specializations.add(specialization);
 				// Set specific cost.
 				String specizalizationCost = translator.getNodeValue(specializationId, COST);
@@ -149,7 +149,7 @@ public class BeneficeDefinitionFactory extends XmlFactory<BeneficeDefinition> {
 				restrictedToGroup = FactionGroup.get(restriction);
 			}
 
-			BeneficeDefinition benefit = new BeneficeDefinition(benefitId, name, costs, benefitGroup, classification, restrictedToGroup);
+			BeneficeDefinition benefit = new BeneficeDefinition(benefitId, name, language, costs, benefitGroup, classification, restrictedToGroup);
 			benefit.addSpecializations(specializations);
 			return benefit;
 

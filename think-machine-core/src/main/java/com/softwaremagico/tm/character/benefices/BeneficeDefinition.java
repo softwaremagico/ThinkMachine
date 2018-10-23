@@ -38,12 +38,9 @@ public class BeneficeDefinition extends Element<BeneficeDefinition> {
 	private final BeneficeClassification beneficeClassification;
 	private final FactionGroup restricted;
 
-	public BeneficeDefinition(String name, List<Integer> costs, BeneficeGroup group, BeneficeClassification beneficeClassification, FactionGroup restricted) {
-		this(null, name, costs, group, beneficeClassification, restricted);
-	}
-
-	public BeneficeDefinition(String id, String name, List<Integer> costs, BeneficeGroup group, BeneficeClassification beneficeClassification, FactionGroup restricted) {
-		super(id, name);
+	public BeneficeDefinition(String id, String name, String language, List<Integer> costs, BeneficeGroup group, BeneficeClassification beneficeClassification,
+			FactionGroup restricted) {
+		super(id, name, language);
 		this.costs = costs;
 		this.group = group;
 		this.beneficeClassification = beneficeClassification;

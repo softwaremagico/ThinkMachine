@@ -30,7 +30,7 @@ public class Characteristic extends CharacteristicDefinition {
 	private int value;
 
 	public Characteristic(CharacteristicDefinition characteristicDefinition) {
-		super(characteristicDefinition.getId(), characteristicDefinition.getName());
+		super(characteristicDefinition.getId(), characteristicDefinition.getName(), characteristicDefinition.getLanguage());
 		setType(characteristicDefinition.getType());
 	}
 

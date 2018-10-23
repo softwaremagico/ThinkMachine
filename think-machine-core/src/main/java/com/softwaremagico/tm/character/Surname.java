@@ -34,12 +34,8 @@ public class Surname extends Element<Surname> {
 		return faction;
 	}
 
-	public Surname(String surname) {
-		this(surname, null);
-	}
-
-	public Surname(String surname, Faction faction) {
-		super(surname.toLowerCase(), surname);
+	public Surname(String surname, String language, Faction faction) {
+		super(surname.toLowerCase(), surname, language);
 		this.faction = faction;
 	}
 

@@ -61,8 +61,7 @@ public class TheurgyComponentFactory extends XmlFactory<TheurgyComponent> {
 	}
 
 	@Override
-	protected TheurgyComponent createElement(ITranslator translator, String theurgyComponentId, String language)
-			throws InvalidXmlElementException {
+	protected TheurgyComponent createElement(ITranslator translator, String theurgyComponentId, String language) throws InvalidXmlElementException {
 		try {
 			String name = translator.getNodeValue(theurgyComponentId, NAME, language);
 
@@ -70,24 +69,20 @@ public class TheurgyComponentFactory extends XmlFactory<TheurgyComponent> {
 			try {
 				abbreviature = translator.getNodeValue(theurgyComponentId, ABBREVIATURE, language);
 			} catch (Exception e) {
-				throw new InvalidTheurgyComponentException("Invalid abbreviature in theurgyComponent '"
-						+ theurgyComponentId + "'.");
+				throw new InvalidTheurgyComponentException("Invalid abbreviature in theurgyComponent '" + theurgyComponentId + "'.");
 			}
 
 			String code;
 			try {
 				code = translator.getNodeValue(theurgyComponentId, CODE);
 			} catch (Exception e) {
-				throw new InvalidTheurgyComponentException("Invalid code in theurgyComponent '" + theurgyComponentId
-						+ "'.");
+				throw new InvalidTheurgyComponentException("Invalid code in theurgyComponent '" + theurgyComponentId + "'.");
 			}
 
-			TheurgyComponent theurgyComponent = new TheurgyComponent(theurgyComponentId, name, abbreviature,
-					code.charAt(0));
+			TheurgyComponent theurgyComponent = new TheurgyComponent(theurgyComponentId, name, language, abbreviature, code.charAt(0));
 			return theurgyComponent;
 		} catch (Exception e) {
-			throw new InvalidTheurgyComponentException("Invalid structure in theurgyComponent '" + theurgyComponentId
-					+ "'.");
+			throw new InvalidTheurgyComponentException("Invalid structure in theurgyComponent '" + theurgyComponentId + "'.");
 		}
 	}
 

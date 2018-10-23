@@ -70,7 +70,7 @@ public class AvailableBeneficeFactory {
 				if (benefitDefinition.getSpecializations().isEmpty()) {
 					for (Integer cost : benefitDefinition.getCosts()) {
 						String id = benefitDefinition.getId() + (benefitDefinition.getCosts().size() == 1 ? "" : "_" + cost);
-						AvailableBenefice availableBenefice = new AvailableBenefice(id, benefitDefinition.getName(), benefitDefinition,
+						AvailableBenefice availableBenefice = new AvailableBenefice(id, benefitDefinition.getName(), language, benefitDefinition,
 								benefitDefinition.getBeneficeClassification(), cost);
 						addAvailableBenefice(language, id, benefitDefinition, availableBenefice);
 					}
@@ -79,7 +79,7 @@ public class AvailableBeneficeFactory {
 						// Cost in specialization
 						if (specialization.getCost() != null) {
 							String id = benefitDefinition.getId() + " [" + specialization.getId() + "]";
-							AvailableBenefice availableBenefice = new AvailableBenefice(id, specialization.getName(), benefitDefinition,
+							AvailableBenefice availableBenefice = new AvailableBenefice(id, specialization.getName(), language, benefitDefinition,
 									specialization.getClassification(), specialization.getCost());
 							availableBenefice.setSpecialization(specialization);
 							addAvailableBenefice(language, id, benefitDefinition, availableBenefice);
@@ -87,7 +87,7 @@ public class AvailableBeneficeFactory {
 							for (Integer cost : benefitDefinition.getCosts()) {
 								String id = benefitDefinition.getId() + (benefitDefinition.getCosts().size() == 1 ? "" : "_" + cost) + " ["
 										+ specialization.getId() + "]";
-								AvailableBenefice availableBenefice = new AvailableBenefice(id, specialization.getName(), benefitDefinition,
+								AvailableBenefice availableBenefice = new AvailableBenefice(id, specialization.getName(), language, benefitDefinition,
 										specialization.getClassification(), cost);
 								availableBenefice.setSpecialization(specialization);
 								addAvailableBenefice(language, id, benefitDefinition, availableBenefice);

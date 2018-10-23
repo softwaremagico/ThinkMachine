@@ -72,7 +72,7 @@ public class RaceFactory extends XmlFactory<Race> {
 		Race race = null;
 		try {
 			String name = translator.getNodeValue(raceId, NAME, language);
-			race = new Race(raceId, name);
+			race = new Race(raceId, name, language);
 		} catch (Exception e) {
 			throw new InvalidRaceException("Invalid structure in race '" + raceId + "'.", e);
 		}

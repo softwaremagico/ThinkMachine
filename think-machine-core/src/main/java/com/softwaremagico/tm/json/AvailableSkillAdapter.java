@@ -25,7 +25,6 @@ package com.softwaremagico.tm.json;
  */
 
 import java.lang.reflect.Type;
-import java.util.Objects;
 
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonElement;
@@ -36,15 +35,10 @@ import com.google.gson.JsonSerializationContext;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
-import com.softwaremagico.tm.character.skills.Specialization;
 import com.softwaremagico.tm.log.MachineLog;
 
 public class AvailableSkillAdapter extends ElementAdapter<AvailableSkill> {
 	private final static String SPECIALIZATION = "specialization";
-
-	protected AvailableSkillAdapter(String language) {
-		super(language);
-	}
 
 	@Override
 	public JsonElement serialize(AvailableSkill element, Type elementType, JsonSerializationContext jsonSerializationContext) {
@@ -58,17 +52,9 @@ public class AvailableSkillAdapter extends ElementAdapter<AvailableSkill> {
 	@Override
 	public AvailableSkill deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
 		try {
-			AvailableSkill availableSkill = AvailableSkillsFactory.getInstance().getElement(super.getElementId(jsonElement), super.getLanguage(jsonElement));
 			String specializationId = getSpecialization(jsonElement);
-			if (specializationId != null) {
-				for (Specialization specialization : availableSkill.getSkillDefinition().getSpecializations()) {
-					if (Objects.equals(specialization.getId(), specializationId)) {
-						System.out.println(specialization);
-						availableSkill.setSpecialization(specialization);
-						break;
-					}
-				}
-			}
+			AvailableSkill availableSkill = AvailableSkillsFactory.getInstance().getElement(super.getElementId(jsonElement), specializationId,
+					super.getLanguage(jsonElement));
 			return availableSkill;
 		} catch (InvalidXmlElementException e) {
 			MachineLog.errorMessage(this.getClass().getName(), e);

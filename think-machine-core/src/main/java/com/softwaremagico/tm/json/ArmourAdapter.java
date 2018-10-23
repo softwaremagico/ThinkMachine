@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.character.equipment;
+package com.softwaremagico.tm.json;
 
 /*-
  * #%L
@@ -24,12 +24,25 @@ package com.softwaremagico.tm.character.equipment;
  * #L%
  */
 
-import com.softwaremagico.tm.Element;
+import java.lang.reflect.Type;
 
-public class DamageType extends Element<DamageType> {
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParseException;
+import com.softwaremagico.tm.InvalidXmlElementException;
+import com.softwaremagico.tm.character.equipment.armour.Armour;
+import com.softwaremagico.tm.character.equipment.armour.ArmourFactory;
+import com.softwaremagico.tm.log.MachineLog;
 
-	public DamageType(String id, String name, String language) {
-		super(id, name, language);
+public class ArmourAdapter extends ElementAdapter<Armour> {
+
+	@Override
+	public Armour deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
+		try {
+			return ArmourFactory.getInstance().getElement(super.getElementId(jsonElement), super.getLanguage(jsonElement));
+		} catch (InvalidXmlElementException e) {
+			MachineLog.errorMessage(this.getClass().getName(), e);
+			return null;
+		}
 	}
-
 }

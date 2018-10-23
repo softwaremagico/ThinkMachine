@@ -36,7 +36,7 @@ import com.softwaremagico.tm.character.benefices.BeneficeClassification;
 import com.softwaremagico.tm.character.blessings.Blessing;
 import com.softwaremagico.tm.character.characteristics.Characteristic;
 import com.softwaremagico.tm.character.characteristics.CharacteristicType;
-import com.softwaremagico.tm.character.cybernetics.Device;
+import com.softwaremagico.tm.character.cybernetics.CyberneticDevice;
 import com.softwaremagico.tm.character.equipment.DamageType;
 import com.softwaremagico.tm.character.equipment.weapons.Weapon;
 import com.softwaremagico.tm.character.occultism.OccultismPath;
@@ -330,7 +330,7 @@ public class CharacterSheet {
 		if (!getCharacterPlayer().getCybernetics().getElements().isEmpty()) {
 			stringBuilder.append(getTranslator().getTranslatedText("cybernetics") + ": ");
 
-			for (Device device : getCharacterPlayer().getCybernetics().getElements()) {
+			for (CyberneticDevice device : getCharacterPlayer().getCybernetics().getElements()) {
 				stringBuilder.append(device.getName());
 				stringBuilder.append(ELEMENT_SEPARATOR);
 			}

@@ -80,13 +80,17 @@ public abstract class XmlFactory<T extends Element<T>> {
 
 	protected void setRandomConfiguration(Element<?> element, ITranslator translator, String language) throws InvalidXmlElementException {
 		// Is an element restricted to a faction?
-		String restrictedFactionsId = translator.getNodeValue(element.getId(), RANDOM, RESTRICTED_FACTIONS);
-		if (restrictedFactionsId != null) {
-			StringTokenizer factionTokenizer = new StringTokenizer(restrictedFactionsId, ",");
-			while (factionTokenizer.hasMoreTokens()) {
-				element.getRandomDefinition().getRestrictedFactions()
-						.add(FactionsFactory.getInstance().getElement(factionTokenizer.nextToken().trim(), language));
+		try {
+			String restrictedFactionsId = translator.getNodeValue(element.getId(), RANDOM, RESTRICTED_FACTIONS);
+			if (restrictedFactionsId != null) {
+				StringTokenizer factionTokenizer = new StringTokenizer(restrictedFactionsId, ",");
+				while (factionTokenizer.hasMoreTokens()) {
+					element.getRandomDefinition().getRestrictedFactions()
+							.add(FactionsFactory.getInstance().getElement(factionTokenizer.nextToken().trim(), language));
+				}
 			}
+		} catch (NullPointerException npe) {
+			// Optional
 		}
 
 		try {
@@ -98,6 +102,8 @@ public abstract class XmlFactory<T extends Element<T>> {
 			}
 		} catch (NumberFormatException nfe) {
 			throw new InvalidXmlElementException("Invalid number value for element probability in '" + element.getId() + "'.");
+		} catch (NullPointerException npe) {
+			// Optional
 		}
 
 		try {
@@ -107,6 +113,8 @@ public abstract class XmlFactory<T extends Element<T>> {
 			}
 		} catch (NumberFormatException nfe) {
 			throw new InvalidXmlElementException("Invalid number value for techlevel in element '" + element.getId() + "'.");
+		} catch (NullPointerException npe) {
+			// Optional
 		}
 
 		try {
@@ -116,36 +124,55 @@ public abstract class XmlFactory<T extends Element<T>> {
 			}
 		} catch (NumberFormatException nfe) {
 			throw new InvalidXmlElementException("Invalid number value for max techlevel in element '" + element.getId() + "'.");
+		} catch (NullPointerException npe) {
+			// Optional
 		}
 
-		String recommendedFactionGroups = translator.getNodeValue(element.getId(), RANDOM, RECOMMENDED_FACTION_GROUPS);
-		if (recommendedFactionGroups != null) {
-			StringTokenizer recommendedFactionGroupsOfSkill = new StringTokenizer(recommendedFactionGroups, ",");
-			while (recommendedFactionGroupsOfSkill.hasMoreTokens()) {
-				element.getRandomDefinition().addRecommendedFactionGroup(FactionGroup.get(recommendedFactionGroupsOfSkill.nextToken().trim()));
+		try {
+			String recommendedFactionGroups = translator.getNodeValue(element.getId(), RANDOM, RECOMMENDED_FACTION_GROUPS);
+			if (recommendedFactionGroups != null) {
+				StringTokenizer recommendedFactionGroupsOfSkill = new StringTokenizer(recommendedFactionGroups, ",");
+				while (recommendedFactionGroupsOfSkill.hasMoreTokens()) {
+					element.getRandomDefinition().addRecommendedFactionGroup(FactionGroup.get(recommendedFactionGroupsOfSkill.nextToken().trim()));
+				}
 			}
+		} catch (NullPointerException npe) {
+			// Optional
 		}
 
-		String recommendedFactions = translator.getNodeValue(element.getId(), RANDOM, RECOMMENDED_FACTIONS);
-		if (recommendedFactions != null) {
-			StringTokenizer recommendedFactionsOfSkill = new StringTokenizer(recommendedFactions, ",");
-			while (recommendedFactionsOfSkill.hasMoreTokens()) {
-				element.getRandomDefinition().addRecommendedFaction(
-						FactionsFactory.getInstance().getElement(recommendedFactionsOfSkill.nextToken().trim(), language));
+		try {
+			String recommendedFactions = translator.getNodeValue(element.getId(), RANDOM, RECOMMENDED_FACTIONS);
+			if (recommendedFactions != null) {
+				StringTokenizer recommendedFactionsOfSkill = new StringTokenizer(recommendedFactions, ",");
+				while (recommendedFactionsOfSkill.hasMoreTokens()) {
+					element.getRandomDefinition().addRecommendedFaction(
+							FactionsFactory.getInstance().getElement(recommendedFactionsOfSkill.nextToken().trim(), language));
+				}
 			}
+		} catch (NullPointerException npe) {
+			// Optional
 		}
 
-		String recommendedRaces = translator.getNodeValue(element.getId(), RANDOM, RECOMMENDED_RACES);
-		if (recommendedRaces != null) {
-			StringTokenizer recommendedRacesOfSkill = new StringTokenizer(recommendedRaces, ",");
-			while (recommendedRacesOfSkill.hasMoreTokens()) {
-				element.getRandomDefinition().addRecommendedRace(RaceFactory.getInstance().getElement(recommendedRacesOfSkill.nextToken().trim(), language));
+		try {
+			String recommendedRaces = translator.getNodeValue(element.getId(), RANDOM, RECOMMENDED_RACES);
+			if (recommendedRaces != null) {
+				StringTokenizer recommendedRacesOfSkill = new StringTokenizer(recommendedRaces, ",");
+				while (recommendedRacesOfSkill.hasMoreTokens()) {
+					element.getRandomDefinition()
+							.addRecommendedRace(RaceFactory.getInstance().getElement(recommendedRacesOfSkill.nextToken().trim(), language));
+				}
 			}
+		} catch (NullPointerException npe) {
+			// Optional
 		}
 
-		String generalProbability = translator.getNodeValue(element.getId(), RANDOM, GENERAL_PROBABILITY);
-		if (generalProbability != null) {
-			element.getRandomDefinition().setProbability(RandomProbabilityDefinition.get(generalProbability));
+		try {
+			String generalProbability = translator.getNodeValue(element.getId(), RANDOM, GENERAL_PROBABILITY);
+			if (generalProbability != null) {
+				element.getRandomDefinition().setProbability(RandomProbabilityDefinition.get(generalProbability));
+			}
+		} catch (NullPointerException npe) {
+			// Optional
 		}
 
 		try {
@@ -157,6 +184,8 @@ public abstract class XmlFactory<T extends Element<T>> {
 			}
 		} catch (NumberFormatException nfe) {
 			throw new InvalidXmlElementException("Invalid number value for element probability in '" + element.getId() + "'.");
+		} catch (NullPointerException npe) {
+			// Optional
 		}
 	}
 

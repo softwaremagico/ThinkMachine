@@ -248,8 +248,8 @@ public class WeaponFactory extends XmlFactory<Weapon> {
 			}
 		}
 
-		weapon = new Weapon(weaponId, name, WeaponType.get(typeName), goal, characteristicDefintion, skill, damage, strength, range, shots, rate, techLevel,
-				techLevelSpecial, size, special, damageOfWeapon, cost, ammunitions, accessories);
+		weapon = new Weapon(weaponId, name, language, WeaponType.get(typeName), goal, characteristicDefintion, skill, damage, strength, range, shots, rate,
+				techLevel, techLevelSpecial, size, special, damageOfWeapon, cost, ammunitions, accessories);
 
 		return weapon;
 	}

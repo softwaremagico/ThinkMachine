@@ -156,7 +156,7 @@ public class AmmunitionFactory extends XmlFactory<Ammunition> {
 			}
 		}
 
-		ammunition = new Ammunition(ammunitionId, name, goal, damage, strength, range, size, cost, damageOfAmmunition, accessories);
+		ammunition = new Ammunition(ammunitionId, name, language, goal, damage, strength, range, size, cost, damageOfAmmunition, accessories);
 
 		return ammunition;
 	}

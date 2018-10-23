@@ -35,7 +35,7 @@ public class SelectedSkill extends Skill<SelectedSkill> {
 	private final AvailableSkill availableSkill;
 
 	public SelectedSkill(AvailableSkill availableSkill, int value, boolean cost) {
-		super(availableSkill.getId(), availableSkill.getCompleteName());
+		super(availableSkill.getId(), availableSkill.getCompleteName(), availableSkill.getLanguage());
 		this.availableSkill = availableSkill;
 		this.value = value;
 		this.cost = cost;

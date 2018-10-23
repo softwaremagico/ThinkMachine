@@ -36,10 +36,6 @@ import com.softwaremagico.tm.log.MachineLog;
 
 public class RaceAdapter extends ElementAdapter<Race> {
 
-	protected RaceAdapter(String language) {
-		super(language);
-	}
-
 	@Override
 	public Race deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
 		try {

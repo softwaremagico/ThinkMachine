@@ -53,10 +53,10 @@ public class Weapon extends Element<Weapon> {
 	private final Set<Ammunition> ammunitions;
 	private final Set<Accessory> accesories;
 
-	public Weapon(String id, String name, WeaponType type, String goal, CharacteristicDefinition characteristic, SkillDefinition skill, String damage,
-			int strength, String range, Integer shots, String rate, int tech, boolean techLevelSpecial, Size size, String special, Set<DamageType> damageTypes,
-			float cost, Set<Ammunition> ammunitions, Set<Accessory> accesories) {
-		super(id, name);
+	public Weapon(String id, String name, String language, WeaponType type, String goal, CharacteristicDefinition characteristic, SkillDefinition skill,
+			String damage, int strength, String range, Integer shots, String rate, int tech, boolean techLevelSpecial, Size size, String special,
+			Set<DamageType> damageTypes, float cost, Set<Ammunition> ammunitions, Set<Accessory> accesories) {
+		super(id, name, language);
 		this.characteristic = characteristic;
 		this.skill = skill;
 		this.goal = goal;

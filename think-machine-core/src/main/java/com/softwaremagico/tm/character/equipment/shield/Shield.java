@@ -38,8 +38,8 @@ public class Shield extends Element<Shield> {
 	private final int hits;
 	private final float cost;
 
-	public Shield(String shieldId, String name, int techLevel, int impact, int force, int hits, float cost) {
-		super(shieldId, name);
+	public Shield(String shieldId, String name, String language, int techLevel, int impact, int force, int hits, float cost) {
+		super(shieldId, name, language);
 		this.impact = impact;
 		this.techLevel = techLevel;
 		this.force = force;

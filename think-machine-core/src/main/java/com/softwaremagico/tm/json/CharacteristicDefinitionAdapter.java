@@ -36,12 +36,9 @@ import com.softwaremagico.tm.log.MachineLog;
 
 public class CharacteristicDefinitionAdapter extends ElementAdapter<CharacteristicDefinition> {
 
-	protected CharacteristicDefinitionAdapter(String language) {
-		super(language);
-	}
-
 	@Override
-	public CharacteristicDefinition deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
+	public CharacteristicDefinition deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext)
+			throws JsonParseException {
 		try {
 			return CharacteristicsDefinitionFactory.getInstance().getElement(super.getElementId(jsonElement), super.getLanguage(jsonElement));
 		} catch (InvalidXmlElementException e) {

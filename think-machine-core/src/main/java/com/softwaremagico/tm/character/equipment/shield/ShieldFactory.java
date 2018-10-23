@@ -114,7 +114,7 @@ public class ShieldFactory extends XmlFactory<Shield> {
 			throw new InvalidShieldException("Invalid cost value in shield '" + shieldId + "'.");
 		}
 
-		shield = new Shield(shieldId, name, techLevel, impact, force, hits, cost);
+		shield = new Shield(shieldId, name, language, techLevel, impact, force, hits, cost);
 
 		return shield;
 	}

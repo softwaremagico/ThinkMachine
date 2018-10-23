@@ -36,10 +36,6 @@ import com.softwaremagico.tm.log.MachineLog;
 
 public class AvailableBeneficeAdapter extends ElementAdapter<AvailableBenefice> {
 
-	protected AvailableBeneficeAdapter(String language) {
-		super(language);
-	}
-
 	@Override
 	public AvailableBenefice deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
 		try {

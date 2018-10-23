@@ -30,8 +30,8 @@ import com.softwaremagico.tm.character.values.IValue;
 public class OccultismType extends Element<OccultismType> implements IValue {
 	private final String darksideName;
 
-	public OccultismType(String id, String name, String darksideName) {
-		super(id, name);
+	public OccultismType(String id, String name, String language, String darksideName) {
+		super(id, name, language);
 		this.darksideName = darksideName;
 	}
 

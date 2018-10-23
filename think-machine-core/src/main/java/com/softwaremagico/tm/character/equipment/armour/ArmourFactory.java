@@ -228,7 +228,8 @@ public class ArmourFactory extends XmlFactory<Armour> {
 			specialPenalizations = new ArmourPenalization(specialDexterityModification, specialStrengthModification, specialInitiativeModification,
 					specialEnduranceModification);
 		}
-		Armour armour = new Armour(armourId, name, techLevel, protection, damageOfArmour, standardPenalizations, specialPenalizations, allowedShields, cost);
+		Armour armour = new Armour(armourId, name, language, techLevel, protection, damageOfArmour, standardPenalizations, specialPenalizations,
+				allowedShields, cost);
 
 		return armour;
 	}

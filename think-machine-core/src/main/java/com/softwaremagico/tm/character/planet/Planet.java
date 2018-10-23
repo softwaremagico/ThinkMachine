@@ -32,12 +32,14 @@ import com.softwaremagico.tm.character.Name;
 import com.softwaremagico.tm.character.Surname;
 import com.softwaremagico.tm.character.factions.Faction;
 import com.softwaremagico.tm.character.factions.FactionsFactory;
+import com.softwaremagico.tm.json.ExcludeFromJson;
 
 public class Planet extends Element<Planet> {
+	@ExcludeFromJson
 	private final Set<Faction> factions;
 
-	public Planet(String id, String name, Set<Faction> factions) {
-		super(id, name);
+	public Planet(String id, String name, String language, Set<Faction> factions) {
+		super(id, name, language);
 		this.factions = factions;
 	}
 

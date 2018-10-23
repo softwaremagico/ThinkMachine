@@ -37,8 +37,8 @@ public class SpecialValue extends Element<SpecialValue> implements IValue {
 
 	private final Set<IValue> affects;
 
-	public SpecialValue(String id, String name, Set<IValue> affects) {
-		super(id, name);
+	public SpecialValue(String id, String name, String language, Set<IValue> affects) {
+		super(id, name, language);
 		this.affects = affects;
 	}
 

@@ -148,12 +148,12 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 	protected SkillDefinition createElement(ITranslator translator, String skillId, String language) throws InvalidXmlElementException {
 		try {
 			String name = translator.getNodeValue(skillId, NAME, language);
-			SkillDefinition skill = new SkillDefinition(skillId, name);
+			SkillDefinition skill = new SkillDefinition(skillId, name, language);
 			try {
 				Set<Specialization> specializations = new HashSet<>();
 				for (String specializationId : translator.getAllChildrenTags(skillId, SPECIALIZABLE_SKILL_TAG)) {
 					String specizalizationName = translator.getNodeValue(specializationId, language);
-					Specialization specialization = new Specialization(specializationId, specizalizationName);
+					Specialization specialization = new Specialization(specializationId, specizalizationName, language);
 					setRandomConfiguration(specialization, translator, language);
 					specializations.add(specialization);
 				}

@@ -58,7 +58,7 @@ import com.softwaremagico.tm.character.combat.LearnedStance;
 import com.softwaremagico.tm.character.creation.CostCalculator;
 import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
 import com.softwaremagico.tm.character.cybernetics.Cybernetics;
-import com.softwaremagico.tm.character.cybernetics.Device;
+import com.softwaremagico.tm.character.cybernetics.CyberneticDevice;
 import com.softwaremagico.tm.character.equipment.armour.Armour;
 import com.softwaremagico.tm.character.equipment.armour.InvalidArmourException;
 import com.softwaremagico.tm.character.equipment.shield.InvalidShieldException;
@@ -112,7 +112,7 @@ public class CharacterPlayer {
 	// Skills
 	private Map<String, SelectedSkill> skills;
 
-	private List<String> skillNameOrdered;
+	private transient List<String> skillNameOrdered;
 
 	private List<Blessing> blessings;
 
@@ -134,7 +134,7 @@ public class CharacterPlayer {
 
 	private int experience = 0;
 
-	private FreeStyleCharacterCreation freeStyleCharacterCreation;
+	private transient FreeStyleCharacterCreation freeStyleCharacterCreation;
 
 	public CharacterPlayer() {
 		this("en");
@@ -266,7 +266,7 @@ public class CharacterPlayer {
 	public Integer getCyberneticBonus(CharacteristicName characteristicName) {
 		Integer value = 0;
 		// Add cibernetics modifications
-		for (Device device : cybernetics.getElements()) {
+		for (CyberneticDevice device : cybernetics.getElements()) {
 			if (device.getCharacteristicImprovement(characteristicName) != null && device.getCharacteristicImprovement(characteristicName).isAlways()
 					&& device.getCharacteristicImprovement(characteristicName).getBonus() != 0) {
 				value += device.getCharacteristicImprovement(characteristicName).getBonus();
@@ -278,7 +278,7 @@ public class CharacterPlayer {
 	public Integer getCyberneticsImprovement(CharacteristicName characteristicName) {
 		Integer value = 0;
 		// Add cibernetics modifications
-		for (Device device : cybernetics.getElements()) {
+		for (CyberneticDevice device : cybernetics.getElements()) {
 			if (device.getCharacteristicImprovement(characteristicName) != null && !device.getCharacteristicImprovement(characteristicName).isAlways()
 					&& device.getCharacteristicImprovement(characteristicName).getBonus() != 0) {
 				value += device.getCharacteristicImprovement(characteristicName).getBonus();
@@ -398,7 +398,7 @@ public class CharacterPlayer {
 
 	private Integer getCyberneticsValue(String skillName) {
 		int maxValue = 0;
-		for (Device device : cybernetics.getElements()) {
+		for (CyberneticDevice device : cybernetics.getElements()) {
 			if (device.getSkillImprovement(skillName) != null) {
 				if (maxValue < device.getSkillImprovement(skillName).getValue()) {
 					maxValue = device.getSkillImprovement(skillName).getValue();
@@ -666,11 +666,11 @@ public class CharacterPlayer {
 		for (AvailableSkill skill : AvailableSkillsFactory.getInstance().getNaturalSkills(language)) {
 			if (skill.getSkillDefinition().getId().equals(SkillDefinition.PLANETARY_LORE_ID)) {
 				if (getInfo().getPlanet() != null) {
-					skill.setSpecialization(new Specialization(getInfo().getPlanet().getName(), getInfo().getPlanet().getName()));
+					skill.setSpecialization(new Specialization(getInfo().getPlanet().getName(), getInfo().getPlanet().getName(), language));
 				}
 			} else if (skill.getSkillDefinition().getId().equals(SkillDefinition.FACTORION_LORE_ID)) {
 				if (getFaction() != null) {
-					skill.setSpecialization(new Specialization(getFaction().getName(), getFaction().getName()));
+					skill.setSpecialization(new Specialization(getFaction().getName(), getFaction().getName(), language));
 				}
 			}
 			naturalSkills.add(skill);

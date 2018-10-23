@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.character.occultism;
+package com.softwaremagico.tm.json;
 
 /*-
  * #%L
@@ -24,11 +24,25 @@ package com.softwaremagico.tm.character.occultism;
  * #L%
  */
 
-import com.softwaremagico.tm.Element;
+import java.lang.reflect.Type;
 
-public class OccultismDuration extends Element<OccultismDuration> {
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParseException;
+import com.softwaremagico.tm.InvalidXmlElementException;
+import com.softwaremagico.tm.character.equipment.weapons.Weapon;
+import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
+import com.softwaremagico.tm.log.MachineLog;
 
-	public OccultismDuration(String id, String name, String language) {
-		super(id, name, language);
+public class WeaponAdapter extends ElementAdapter<Weapon> {
+
+	@Override
+	public Weapon deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
+		try {
+			return WeaponFactory.getInstance().getElement(super.getElementId(jsonElement), super.getLanguage(jsonElement));
+		} catch (InvalidXmlElementException e) {
+			MachineLog.errorMessage(this.getClass().getName(), e);
+			return null;
+		}
 	}
 }

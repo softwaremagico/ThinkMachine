@@ -98,8 +98,7 @@ public class OccultismPathFactory extends XmlFactory<OccultismPath> {
 	}
 
 	@Override
-	protected OccultismPath createElement(ITranslator translator, String occultismId, String language)
-			throws InvalidXmlElementException {
+	protected OccultismPath createElement(ITranslator translator, String occultismId, String language) throws InvalidXmlElementException {
 
 		try {
 			String name = translator.getNodeValue(occultismId, NAME, language);
@@ -116,12 +115,11 @@ public class OccultismPathFactory extends XmlFactory<OccultismPath> {
 			if (factionsList != null) {
 				StringTokenizer factionTokenizer = new StringTokenizer(factionsList, ",");
 				while (factionTokenizer.hasMoreTokens()) {
-					factions.add(FactionsFactory.getInstance()
-							.getElement(factionTokenizer.nextToken().trim(), language));
+					factions.add(FactionsFactory.getInstance().getElement(factionTokenizer.nextToken().trim(), language));
 				}
 			}
 
-			OccultismPath occultismPath = new OccultismPath(occultismId, name, occultismType, factions);
+			OccultismPath occultismPath = new OccultismPath(occultismId, name, language, occultismType, factions);
 
 			for (String powerId : translator.getAllChildrenTags(occultismId, OCCULTISM_POWER)) {
 				String powerName = translator.getNodeValue(powerId, POWER_NAME, language);
@@ -137,8 +135,8 @@ public class OccultismPathFactory extends XmlFactory<OccultismPath> {
 				} catch (NumberFormatException nfe) {
 					// Wyrd is not variable, is an error.
 					if (!translator.getNodeValue(powerId, POWER_WYRD).equalsIgnoreCase(VARIABLE_WYRD)) {
-						throw new InvalidOccultismPowerException("Invalid wyrd value for '"
-								+ translator.getNodeValue(powerId, POWER_WYRD) + "' in power '" + powerId + "'.");
+						throw new InvalidOccultismPowerException("Invalid wyrd value for '" + translator.getNodeValue(powerId, POWER_WYRD) + "' in power '"
+								+ powerId + "'.");
 					}
 				}
 
@@ -166,19 +164,17 @@ public class OccultismPathFactory extends XmlFactory<OccultismPath> {
 				Set<TheurgyComponent> theurgyComponents = new HashSet<>();
 				if (components != null) {
 					for (int i = 0; i < components.length(); i++) {
-						TheurgyComponent theurgyComponent = TheurgyComponentFactory.getInstance().getTheurgyComponent(
-								components.charAt(i), language);
+						TheurgyComponent theurgyComponent = TheurgyComponentFactory.getInstance().getTheurgyComponent(components.charAt(i), language);
 						if (theurgyComponent == null) {
-							throw new InvalidTheurgyComponentException("Invalid theurgy component code '"
-									+ components.charAt(i) + "'.");
+							throw new InvalidTheurgyComponentException("Invalid theurgy component code '" + components.charAt(i) + "'.");
 						}
 						theurgyComponents.add(theurgyComponent);
 					}
 				}
 
-				OccultismPower occultismPower = new OccultismPower(powerId, powerName, CharacteristicsDefinitionFactory
-						.getInstance().get(CharacteristicName.get(characteristicName), language), values,
-						Integer.parseInt(level), occultismRange, occultismDuration, wyrd, theurgyComponents);
+				OccultismPower occultismPower = new OccultismPower(powerId, powerName, language, CharacteristicsDefinitionFactory.getInstance().get(
+						CharacteristicName.get(characteristicName), language), values, Integer.parseInt(level), occultismRange, occultismDuration, wyrd,
+						theurgyComponents);
 
 				occultismPath.getOccultismPowers().put(powerId, occultismPower);
 			}

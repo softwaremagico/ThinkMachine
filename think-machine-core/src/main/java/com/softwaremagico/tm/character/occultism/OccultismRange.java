@@ -28,7 +28,7 @@ import com.softwaremagico.tm.Element;
 
 public class OccultismRange extends Element<OccultismRange> {
 
-	public OccultismRange(String id, String name) {
-		super(id, name);
+	public OccultismRange(String id, String name, String language) {
+		super(id, name, language);
 	}
 }

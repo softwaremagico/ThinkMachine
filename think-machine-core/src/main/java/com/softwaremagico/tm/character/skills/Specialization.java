@@ -28,8 +28,8 @@ import com.softwaremagico.tm.Element;
 
 public class Specialization extends Element<Specialization> implements ISkillRandomDefintions {
 
-	public Specialization(String id, String name) {
-		super(id, name);
+	public Specialization(String id, String name, String language) {
+		super(id, name, language);
 	}
 
 }

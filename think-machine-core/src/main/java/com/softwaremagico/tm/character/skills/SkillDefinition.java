@@ -42,9 +42,8 @@ public class SkillDefinition extends Skill<SkillDefinition> implements ISkillRan
 	// Number of times that a skill (generalizable) is shown in the PDF.
 	private int numberToShow = 1;
 
-	public SkillDefinition(String id, String name) {
-		super(id, name.trim());
-
+	public SkillDefinition(String id, String name, String language) {
+		super(id, name, language);
 	}
 
 	public boolean isNatural() {

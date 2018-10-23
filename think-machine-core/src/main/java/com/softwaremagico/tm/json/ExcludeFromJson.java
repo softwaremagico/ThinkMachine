@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.character.equipment;
+package com.softwaremagico.tm.json;
 
 /*-
  * #%L
@@ -24,12 +24,12 @@ package com.softwaremagico.tm.character.equipment;
  * #L%
  */
 
-import com.softwaremagico.tm.Element;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
-public class DamageType extends Element<DamageType> {
-
-	public DamageType(String id, String name, String language) {
-		super(id, name, language);
-	}
-
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.FIELD)
+public @interface ExcludeFromJson {
 }

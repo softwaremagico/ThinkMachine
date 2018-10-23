@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.character.equipment;
+package com.softwaremagico.tm.json;
 
 /*-
  * #%L
@@ -24,12 +24,18 @@ package com.softwaremagico.tm.character.equipment;
  * #L%
  */
 
-import com.softwaremagico.tm.Element;
+import com.google.gson.ExclusionStrategy;
+import com.google.gson.FieldAttributes;
 
-public class DamageType extends Element<DamageType> {
+public class AnnotationExclusionStrategy implements ExclusionStrategy {
 
-	public DamageType(String id, String name, String language) {
-		super(id, name, language);
+	@Override
+	public boolean shouldSkipField(FieldAttributes f) {
+		return f.getAnnotation(ExcludeFromJson.class) != null;
 	}
 
+	@Override
+	public boolean shouldSkipClass(Class<?> clazz) {
+		return false;
+	}
 }

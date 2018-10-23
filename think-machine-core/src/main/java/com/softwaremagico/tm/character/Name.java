@@ -26,21 +26,21 @@ package com.softwaremagico.tm.character;
 
 import com.softwaremagico.tm.Element;
 import com.softwaremagico.tm.character.factions.Faction;
+import com.softwaremagico.tm.json.ExcludeFromJson;
 
 public class Name extends Element<Name> {
+
+	@ExcludeFromJson
 	private final Gender gender;
+
 	private final Faction faction;
 
 	public Faction getFaction() {
 		return faction;
 	}
 
-	public Name(String name) {
-		this(name, null, null);
-	}
-
-	public Name(String name, Gender gender, Faction faction) {
-		super(name.toLowerCase(), name);
+	public Name(String name, String language, Gender gender, Faction faction) {
+		super(name.toLowerCase(), name, language);
 		this.gender = gender;
 		this.faction = faction;
 	}

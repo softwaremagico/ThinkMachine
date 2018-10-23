@@ -36,10 +36,6 @@ import com.softwaremagico.tm.log.MachineLog;
 
 public class BlessingAdapter extends ElementAdapter<Blessing> {
 
-	protected BlessingAdapter(String language) {
-		super(language);
-	}
-
 	@Override
 	public Blessing deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
 		try {

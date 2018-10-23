@@ -48,7 +48,7 @@ import com.softwaremagico.tm.character.combat.CombatStyle;
 import com.softwaremagico.tm.character.combat.CombatStyleGroup;
 import com.softwaremagico.tm.character.combat.LearnedStance;
 import com.softwaremagico.tm.character.creation.CostCalculator;
-import com.softwaremagico.tm.character.cybernetics.Device;
+import com.softwaremagico.tm.character.cybernetics.CyberneticDevice;
 import com.softwaremagico.tm.character.equipment.armour.ArmourFactory;
 import com.softwaremagico.tm.character.equipment.shield.ShieldFactory;
 import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
@@ -56,7 +56,7 @@ import com.softwaremagico.tm.character.factions.FactionsFactory;
 import com.softwaremagico.tm.character.occultism.OccultismPathFactory;
 import com.softwaremagico.tm.character.occultism.OccultismTypeFactory;
 import com.softwaremagico.tm.character.planet.PlanetFactory;
-import com.softwaremagico.tm.character.race.Race;
+import com.softwaremagico.tm.character.race.RaceFactory;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.pdf.complete.CharacterSheet;
@@ -107,12 +107,12 @@ public class CharacterSheetCreationTest {
 		CacheHandler.clearCache();
 
 		player = new CharacterPlayer(LANGUAGE);
-		player.getInfo().addName(new Name("John", Gender.MALE, null));
-		player.getInfo().setSurname(new Surname("Sephard", null));
+		player.getInfo().addName(new Name("John", LANGUAGE, Gender.MALE, null));
+		player.getInfo().setSurname(new Surname("Sephard", LANGUAGE, null));
 		player.getInfo().setPlayer("Player 1");
 		player.getInfo().setGender(Gender.MALE);
 		player.getInfo().setAge(30);
-		player.setRace(new Race("Human", 3, 3, 3, 3, 3, 3, 3, 3, 3, 5, 0, 0, 0, 0, 0));
+		player.setRace(RaceFactory.getInstance().getElement("human", LANGUAGE));
 		player.getInfo().setPlanet(PlanetFactory.getInstance().getElement("sutek", LANGUAGE));
 		player.setFaction(FactionsFactory.getInstance().getElement("hazat", LANGUAGE));
 
@@ -162,19 +162,19 @@ public class CharacterSheetCreationTest {
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("heir", player.getLanguage()));
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("wireblade", player.getLanguage()));
 
-		player.getCybernetics().addElement(new Device("Ojo de Ingeniero", 6, 5, "Normal", "Normal", "Automático", "Visible", ""));
-		player.getCybernetics().addElement(new Device("Jonás", 7, 4, "Normal", "Normal", "Ds+Arquería", "Incógnito", ""));
+		player.getCybernetics().addElement(new CyberneticDevice("Ojo de Ingeniero", LANGUAGE, 6, 5, "Normal", "Normal", "Automático", "Visible", ""));
+		player.getCybernetics().addElement(new CyberneticDevice("Jonás", LANGUAGE, 7, 4, "Normal", "Normal", "Ds+Arquería", "Incógnito", ""));
 
 		CombatStyle gun = new CombatStyle("pistola", CombatStyleGroup.RANGED);
-		gun.addElement(new CombatAction("Disparo Instantáneo", null, null, "-2 por 3 disparos"));
-		gun.addElement(new CombatAction("Rueda y Dispara", null, null, "Mover 3m"));
-		gun.addElement(new CombatAction("Corre y Dispara", null, null, "Especial"));
+		gun.addElement(new CombatAction("Disparo Instantáneo", LANGUAGE, null, null, "-2 por 3 disparos"));
+		gun.addElement(new CombatAction("Rueda y Dispara", LANGUAGE, null, null, "Mover 3m"));
+		gun.addElement(new CombatAction("Corre y Dispara", LANGUAGE, null, null, "Especial"));
 		player.getRangedCombatStyles().add(gun);
 
 		CombatStyle shaidan = new CombatStyle("shaidan", CombatStyleGroup.MELEE);
-		shaidan.addElement(new CombatAction("Palma Real", null, "-1", ""));
-		shaidan.addElement(new CombatAction("Con un Pie en el Trono", 4, null, "+4 a resistir derribos"));
-		shaidan.addElement(new CombatAction("Decreto Imperial", null, "+1 / 1W", null));
+		shaidan.addElement(new CombatAction("Palma Real", LANGUAGE, null, "-1", ""));
+		shaidan.addElement(new CombatAction("Con un Pie en el Trono", LANGUAGE, 4, null, "+4 a resistir derribos"));
+		shaidan.addElement(new CombatAction("Decreto Imperial", LANGUAGE, null, "+1 / 1W", null));
 		player.getMeleeCombatStyles().add(shaidan);
 
 		player.getLearnedStances().add(new LearnedStance("Posición Acrobática", "+1 a defensa por volteretas"));

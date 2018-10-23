@@ -36,10 +36,6 @@ import com.softwaremagico.tm.log.MachineLog;
 
 public class FactionAdapter extends ElementAdapter<Faction> {
 
-	protected FactionAdapter(String language) {
-		super(language);
-	}
-
 	@Override
 	public Faction deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
 		try {

@@ -53,13 +53,13 @@ public class Race extends Element<Race> {
 
 	private int cost;
 
-	public Race(String id, String name) {
-		super(id, name);
+	public Race(String id, String name, String language) {
+		super(id, name, language);
 	}
 
-	public Race(String name, int strength, int dexterity, int endurance, int wits, int perception, int tech, int presence, int will, int faith, int movement,
-			int psi, int teurgy, int urge, int hubris, int cost) {
-		this(null, name);
+	public Race(String name, String language, int strength, int dexterity, int endurance, int wits, int perception, int tech, int presence, int will,
+			int faith, int movement, int psi, int teurgy, int urge, int hubris, int cost) {
+		this(null, name, language);
 		setValue(CharacteristicName.STRENGTH, strength);
 		setValue(CharacteristicName.DEXTERITY, dexterity);
 		setValue(CharacteristicName.ENDURANCE, endurance);
