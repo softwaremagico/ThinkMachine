@@ -91,4 +91,8 @@ public class Armour extends Element<Armour> {
 		return allowedShields;
 	}
 
+	public boolean isHeavy() {
+		return standardPenalizations.getDexterityModification() > 0 || standardPenalizations.getStrengthModification() > 0
+				|| standardPenalizations.getEnduranceModification() > 0;
+	}
 }
