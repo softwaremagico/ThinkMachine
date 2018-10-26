@@ -24,9 +24,9 @@ package com.softwaremagico.tm.random;
  * #L%
  */
 
+import java.util.Collection;
 import java.util.Objects;
 import java.util.Set;
-import java.util.TreeMap;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
@@ -79,17 +79,8 @@ public class RandomName extends RandomSelector<Name> {
 	}
 
 	@Override
-	protected TreeMap<Integer, Name> assignElementsWeight() throws InvalidXmlElementException {
-		TreeMap<Integer, Name> weightedNames = new TreeMap<>();
-		int count = 1;
-		for (Name name : FactionsFactory.getInstance().getAllNames()) {
-			int weight = getWeight(name);
-			if (weight > 0) {
-				weightedNames.put(count, name);
-				count += weight;
-			}
-		}
-		return weightedNames;
+	protected Collection<Name> getAllElements() throws InvalidXmlElementException {
+		return FactionsFactory.getInstance().getAllNames();
 	}
 
 	@Override

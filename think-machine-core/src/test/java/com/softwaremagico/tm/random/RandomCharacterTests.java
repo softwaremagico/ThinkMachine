@@ -100,14 +100,14 @@ public class RandomCharacterTests {
 		Assert.assertEquals(skillDefinition.getRandomDefinition().getMaximumTechLevel().intValue(), 2);
 	}
 
-	@Test
-	public void checkSkillLimitationByTechnology() throws InvalidXmlElementException, DuplicatedPreferenceException {
+	@Test(expectedExceptions = { InvalidRandomElementSelectedException.class })
+	public void checkSkillLimitationByTechnology() throws InvalidXmlElementException, DuplicatedPreferenceException, InvalidRandomElementSelectedException {
 		CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
 		characterPlayer.getCharacteristic(CharacteristicName.TECH).setValue(7);
 
 		RandomSkills randomSkills = new RandomSkills(characterPlayer, null);
 		AvailableSkill availableSkill = AvailableSkillsFactory.getInstance().getElement("archery", LANGUAGE);
-		Assert.assertEquals(randomSkills.getWeight(availableSkill), -10000000);
+		randomSkills.validateElement(availableSkill);
 	}
 
 	@Test

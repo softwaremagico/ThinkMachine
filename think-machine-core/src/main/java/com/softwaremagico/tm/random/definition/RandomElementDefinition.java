@@ -40,6 +40,7 @@ public class RandomElementDefinition {
 	private final Set<Faction> restrictedFactions = new HashSet<>();
 	private final Set<Faction> recommendedFactions = new HashSet<>();
 	private final Set<Race> recommendedRaces = new HashSet<>();
+	private final Set<FactionGroup> restrictedFactionGroups = new HashSet<>();
 	private final Set<FactionGroup> recommendedFactionGroups = new HashSet<>();
 	private RandomProbabilityDefinition probability = RandomProbabilityDefinition.FAIR;
 
@@ -64,7 +65,7 @@ public class RandomElementDefinition {
 		}
 	}
 
-	public Set<FactionGroup> getRecommendedFactionGroups() {
+	public Set<FactionGroup> getRecommendedFactionsGroups() {
 		return recommendedFactionGroups;
 	}
 
@@ -124,5 +125,11 @@ public class RandomElementDefinition {
 
 	public Set<Faction> getRestrictedFactions() {
 		return restrictedFactions;
+	}
+
+	public void addRestrictedFactionGroup(FactionGroup restrictedFactionGroup) {
+		if (restrictedFactionGroup != null) {
+			restrictedFactionGroups.add(restrictedFactionGroup);
+		}
 	}
 }

@@ -35,6 +35,7 @@ import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
 import com.softwaremagico.tm.character.benefices.BeneficeClassification;
 import com.softwaremagico.tm.character.blessings.Blessing;
 import com.softwaremagico.tm.character.characteristics.Characteristic;
+import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.characteristics.CharacteristicType;
 import com.softwaremagico.tm.character.cybernetics.CyberneticDevice;
 import com.softwaremagico.tm.character.equipment.DamageType;
@@ -299,6 +300,41 @@ public class CharacterSheet {
 		}
 	}
 
+	private void setArmours(StringBuilder stringBuilder) {
+		if (getCharacterPlayer().getArmour() != null) {
+			stringBuilder.append(getCharacterPlayer().getArmour().getName());
+			stringBuilder.append(" (");
+			stringBuilder.append(getCharacterPlayer().getArmour().getProtection() + "d");
+			stringBuilder.append(ELEMENT_SEPARATOR);
+			if (getCharacterPlayer().getArmour().getStandardPenalizations().getDexterityModification() != 0) {
+				stringBuilder.append(getTranslator().getTranslatedText(getCharacterPlayer().getCharacteristic(CharacteristicName.DEXTERITY).getId()) + " ");
+				stringBuilder.append(getCharacterPlayer().getArmour().getStandardPenalizations().getDexterityModification());
+				stringBuilder.append(ELEMENT_SEPARATOR);
+			}
+			if (getCharacterPlayer().getArmour().getStandardPenalizations().getStrengthModification() != 0) {
+				stringBuilder.append(getTranslator().getTranslatedText(getCharacterPlayer().getCharacteristic(CharacteristicName.STRENGTH).getId()) + " ");
+				stringBuilder.append(getCharacterPlayer().getArmour().getStandardPenalizations().getStrengthModification());
+				stringBuilder.append(ELEMENT_SEPARATOR);
+			}
+			if (getCharacterPlayer().getArmour().getStandardPenalizations().getEnduranceModification() != 0) {
+				stringBuilder.append(getTranslator().getTranslatedText(getCharacterPlayer().getCharacteristic(CharacteristicName.ENDURANCE).getId()) + " ");
+				stringBuilder.append(getCharacterPlayer().getArmour().getStandardPenalizations().getEnduranceModification());
+				stringBuilder.append(ELEMENT_SEPARATOR);
+			}
+			if (getCharacterPlayer().getArmour().getStandardPenalizations().getInitiativeModification() != 0) {
+				stringBuilder.append(getTranslator().getTranslatedText(getCharacterPlayer().getCharacteristic(CharacteristicName.INITIATIVE).getId()) + " ");
+				stringBuilder.append(getCharacterPlayer().getArmour().getStandardPenalizations().getInitiativeModification());
+				stringBuilder.append(ELEMENT_SEPARATOR);
+			}
+			for (DamageType damageType : getCharacterPlayer().getArmour().getDamageTypes()) {
+				stringBuilder.append(damageType.getName());
+				stringBuilder.append(ELEMENT_SEPARATOR);
+			}
+			stringBuilder.setLength(stringBuilder.length() - ELEMENT_SEPARATOR.length());
+			stringBuilder.append(")" + ELEMENT_SEPARATOR);
+		}
+	}
+
 	private void setShields(StringBuilder stringBuilder) {
 		if (getCharacterPlayer().getShield() != null) {
 			stringBuilder.append(getCharacterPlayer().getShield().getName());
@@ -318,6 +354,7 @@ public class CharacterSheet {
 		if (!getCharacterPlayer().getWeapons().getElements().isEmpty() || getCharacterPlayer().getShield() != null) {
 			stringBuilder.append(getTranslator().getTranslatedText("equipment") + ": ");
 			setWeapons(stringBuilder);
+			setArmours(stringBuilder);
 			setShields(stringBuilder);
 
 			// Remove last separator

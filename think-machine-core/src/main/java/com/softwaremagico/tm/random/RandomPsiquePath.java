@@ -25,11 +25,11 @@ package com.softwaremagico.tm.random;
  */
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
-import java.util.TreeMap;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
@@ -79,17 +79,8 @@ public class RandomPsiquePath extends RandomSelector<OccultismPath> {
 	}
 
 	@Override
-	protected TreeMap<Integer, OccultismPath> assignElementsWeight() throws InvalidXmlElementException {
-		TreeMap<Integer, OccultismPath> weightedPaths = new TreeMap<>();
-		int count = 1;
-		for (OccultismPath occultismPath : OccultismPathFactory.getInstance().getElements(getCharacterPlayer().getLanguage())) {
-			int weight = getWeight(occultismPath);
-			if (weight > 0) {
-				weightedPaths.put(count, occultismPath);
-				count += weight;
-			}
-		}
-		return weightedPaths;
+	protected Collection<OccultismPath> getAllElements() throws InvalidXmlElementException {
+		return OccultismPathFactory.getInstance().getElements(getCharacterPlayer().getLanguage());
 	}
 
 	@Override

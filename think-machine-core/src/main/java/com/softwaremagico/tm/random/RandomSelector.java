@@ -24,6 +24,7 @@ package com.softwaremagico.tm.random;
  * #L%
  */
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Map.Entry;
 import java.util.NoSuchElementException;
@@ -83,7 +84,26 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
 		return preferences;
 	}
 
-	protected abstract TreeMap<Integer, Element> assignElementsWeight() throws InvalidXmlElementException;
+	protected abstract Collection<Element> getAllElements() throws InvalidXmlElementException;
+
+	protected TreeMap<Integer, Element> assignElementsWeight() throws InvalidXmlElementException {
+		TreeMap<Integer, Element> weightedElements = new TreeMap<>();
+		int count = 1;
+		for (Element element : getAllElements()) {
+			try {
+				validateElement(element);
+			} catch (InvalidRandomElementSelectedException e) {
+				// Element not valid. Ignore it.
+				continue;
+			}
+			int weight = getWeight(element);
+			if (weight > 0) {
+				weightedElements.put(count, element);
+				count += weight;
+			}
+		}
+		return weightedElements;
+	}
 
 	protected void validateElement(Element element) throws InvalidRandomElementSelectedException {
 		if (element == null) {
@@ -105,9 +125,18 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
 		}
 
 		// Faction restriction.
-		if (!element.getRandomDefinition().getRestrictedFactions().isEmpty()
+		if (getCharacterPlayer().getFaction() != null && !element.getRandomDefinition().getRestrictedFactions().isEmpty()
 				&& !element.getRandomDefinition().getRestrictedFactions().contains(getCharacterPlayer().getFaction())) {
 			throw new InvalidRandomElementSelectedException("Element restricted to factions '" + element.getRandomDefinition().getRestrictedFactions() + "'.");
+		}
+
+		// Faction groups restriction.
+		if (getCharacterPlayer().getFaction() != null
+				&& !element.getRandomDefinition().getRecommendedFactionsGroups().isEmpty()
+				&& (getCharacterPlayer().getFaction().getFactionGroup() == null || !element.getRandomDefinition().getRecommendedFactionsGroups()
+						.contains(getCharacterPlayer().getFaction().getFactionGroup()))) {
+			throw new InvalidRandomElementSelectedException("Element restricted to factions '" + element.getRandomDefinition().getRecommendedFactionsGroups()
+					+ "'.");
 		}
 	}
 

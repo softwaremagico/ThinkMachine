@@ -24,11 +24,12 @@ package com.softwaremagico.tm.random;
  * #L%
  */
 
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.Objects;
 import java.util.Set;
-import java.util.TreeMap;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
@@ -96,32 +97,19 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 	}
 
 	@Override
-	protected TreeMap<Integer, AvailableSkill> assignElementsWeight() throws InvalidXmlElementException {
-		TreeMap<Integer, AvailableSkill> weightedSkills = new TreeMap<>();
-		int count = 1;
-
+	protected Collection<AvailableSkill> getAllElements() throws InvalidXmlElementException {
+		Set<AvailableSkill> availableSkills = new HashSet<AvailableSkill>();
 		for (SkillDefinition skillDefinition : SkillsDefinitionsFactory.getInstance().getElements(getCharacterPlayer().getLanguage())) {
 			for (AvailableSkill skill : AvailableSkillsFactory.getInstance().getAvailableSkills(skillDefinition, getCharacterPlayer().getLanguage())) {
-				int weight = getWeight(skill);
-				if (weight > 0) {
-					weightedSkills.put(count, skill);
-					count += weight;
-				}
+				availableSkills.add(skill);
 			}
 		}
-
-		return weightedSkills;
+		return availableSkills;
 	}
 
 	@Override
 	protected int getWeight(AvailableSkill skill) {
 		int weight = 1;
-
-		try {
-			validateElement(skill);
-		} catch (InvalidRandomElementSelectedException e) {
-			return NO_PROBABILITY;
-		}
 
 		// Weapons weight
 		if (getCharacterPlayer().hasWeaponWithSkill(skill)) {
@@ -232,7 +220,7 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 		}
 		// Recommended to my faction group.
 		if (getCharacterPlayer().getFaction() != null
-				&& skill.getRandomDefinition().getRecommendedFactionGroups().contains(getCharacterPlayer().getFaction().getFactionGroup())) {
+				&& skill.getRandomDefinition().getRecommendedFactionsGroups().contains(getCharacterPlayer().getFaction().getFactionGroup())) {
 			return FAIR_PROBABILITY;
 		}
 		// Recommended to my faction.

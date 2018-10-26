@@ -24,8 +24,8 @@ package com.softwaremagico.tm.random;
  * #L%
  */
 
+import java.util.Collection;
 import java.util.Set;
-import java.util.TreeMap;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
@@ -45,7 +45,7 @@ public class RandomArmour extends RandomSelector<Armour> {
 		super(characterPlayer, preferences);
 	}
 
-	public void assignarmour() throws InvalidRandomElementSelectedException, InvalidArmourException {
+	public void assignArmour() throws InvalidRandomElementSelectedException, InvalidArmourException {
 		Armour selectedArmour = selectElementByWeight();
 		if (getCharacterPlayer().getArmour() == null) {
 			getCharacterPlayer().setArmour(selectedArmour);
@@ -54,17 +54,8 @@ public class RandomArmour extends RandomSelector<Armour> {
 	}
 
 	@Override
-	protected TreeMap<Integer, Armour> assignElementsWeight() throws InvalidXmlElementException {
-		TreeMap<Integer, Armour> weightedArmours = new TreeMap<>();
-		int count = 1;
-		for (Armour armour : ArmourFactory.getInstance().getElements(getCharacterPlayer().getLanguage())) {
-			int weight = getWeight(armour);
-			if (weight > 0) {
-				weightedArmours.put(count, armour);
-				count += weight;
-			}
-		}
-		return weightedArmours;
+	protected Collection<Armour> getAllElements() throws InvalidXmlElementException {
+		return ArmourFactory.getInstance().getElements(getCharacterPlayer().getLanguage());
 	}
 
 	protected int getCurrentMoney() {
@@ -91,11 +82,8 @@ public class RandomArmour extends RandomSelector<Armour> {
 			return 5;
 		} else if (armour.getCost() > getCurrentMoney() / 10) {
 			return 2;
-		} else if (armour.getCost() > getCurrentMoney() / 20) {
-			return 1;
 		} else {
-			// No so cheap armours.
-			return MAX_PROBABILITY;
+			return 1;
 		}
 	}
 
@@ -127,12 +115,6 @@ public class RandomArmour extends RandomSelector<Armour> {
 	protected int getWeight(Armour armour) {
 		// armours only if technology is enough.
 		if (armour.getTechLevel() > getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).getValue()) {
-			return NO_PROBABILITY;
-		}
-
-		try {
-			validateElement(armour);
-		} catch (InvalidRandomElementSelectedException e) {
 			return NO_PROBABILITY;
 		}
 

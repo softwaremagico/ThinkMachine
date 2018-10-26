@@ -25,13 +25,13 @@ package com.softwaremagico.tm.random;
  */
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
-import java.util.TreeMap;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
@@ -97,17 +97,8 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
 	}
 
 	@Override
-	protected TreeMap<Integer, BeneficeDefinition> assignElementsWeight() throws InvalidXmlElementException {
-		TreeMap<Integer, BeneficeDefinition> weightedBenefices = new TreeMap<>();
-		int count = 1;
-		for (BeneficeDefinition benefice : BeneficeDefinitionFactory.getInstance().getElements(getCharacterPlayer().getLanguage())) {
-			int weight = getWeight(benefice);
-			if (weight > 0) {
-				weightedBenefices.put(count, benefice);
-				count += weight;
-			}
-		}
-		return weightedBenefices;
+	protected Collection<BeneficeDefinition> getAllElements() throws InvalidXmlElementException {
+		return BeneficeDefinitionFactory.getInstance().getElements(getCharacterPlayer().getLanguage());
 	}
 
 	@Override

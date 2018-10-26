@@ -68,6 +68,22 @@ public class RandomMeleeWeapon extends RandomWeapon {
 	@Override
 	protected int getWeightTechModificator(Weapon weapon) {
 		int weight = 0;
+
+		// Shields only if already has a weapon.
+		if (weapon.getType().equals(WeaponType.MELEE_SHIELD)) {
+			boolean alreadyWeapon = false;
+			for (Weapon weaponEquiped : getCharacterPlayer().getAllWeapons()) {
+				// Already a different weapon
+				if (weaponEquiped.getType() != WeaponType.MELEE_SHIELD && weaponTypesFilter().contains(weaponEquiped.getType())) {
+					alreadyWeapon = true;
+					break;
+				}
+			}
+			if (!alreadyWeapon) {
+				return 0;
+			}
+		}
+
 		// Similar tech level preferred.
 		weight += MAX_PROBABILITY / Math.pow(10, 2 * (getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).getValue() - weapon.getTechLevel()));
 		RandomGenerationLog.debug(
@@ -78,6 +94,7 @@ public class RandomMeleeWeapon extends RandomWeapon {
 			// Melee weapons usually has very low tech level.
 			weight = 1;
 		}
+
 		return weight;
 	}
 }

@@ -24,8 +24,8 @@ package com.softwaremagico.tm.random;
  * #L%
  */
 
+import java.util.Collection;
 import java.util.Set;
-import java.util.TreeMap;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
@@ -55,17 +55,8 @@ public abstract class RandomWeapon extends RandomSelector<Weapon> {
 	}
 
 	@Override
-	protected TreeMap<Integer, Weapon> assignElementsWeight() throws InvalidXmlElementException {
-		TreeMap<Integer, Weapon> weightedWeapons = new TreeMap<>();
-		int count = 1;
-		for (Weapon weapon : WeaponFactory.getInstance().getElements(getCharacterPlayer().getLanguage())) {
-			int weight = getWeight(weapon);
-			if (weight > 0) {
-				weightedWeapons.put(count, weapon);
-				count += weight;
-			}
-		}
-		return weightedWeapons;
+	protected Collection<Weapon> getAllElements() throws InvalidXmlElementException {
+		return WeaponFactory.getInstance().getElements(getCharacterPlayer().getLanguage());
 	}
 
 	protected int getCurrentMoney() {
@@ -97,12 +88,6 @@ public abstract class RandomWeapon extends RandomSelector<Weapon> {
 	protected int getWeight(Weapon weapon) {
 		// Weapons only if technology is enough.
 		if (weapon.getTechLevel() > getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).getValue()) {
-			return NO_PROBABILITY;
-		}
-
-		try {
-			validateElement(weapon);
-		} catch (InvalidRandomElementSelectedException e) {
 			return NO_PROBABILITY;
 		}
 

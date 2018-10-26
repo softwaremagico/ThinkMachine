@@ -40,7 +40,7 @@
 		</name>
 		<characteristic>dexterity</characteristic>
 		<skill>fight</skill>
-		<type>MELEE</type>
+		<type>MELEE_SHIELD</type>
 		<techLevel>0</techLevel>
 		<goal>0</goal>
 		<damage>3</damage>
@@ -57,7 +57,7 @@
 		</name>
 		<characteristic>dexterity</characteristic>
 		<skill>fight</skill>
-		<type>MELEE</type>
+		<type>MELEE_SHIELD</type>
 		<techLevel>1</techLevel>
 		<goal>0</goal>
 		<damage>3</damage>
@@ -74,7 +74,7 @@
 		</name>
 		<characteristic>dexterity</characteristic>
 		<skill>fight</skill>
-		<type>MELEE</type>
+		<type>MELEE_SHIELD</type>
 		<techLevel>2</techLevel>
 		<goal>0</goal>
 		<damage>4</damage>
@@ -91,7 +91,7 @@
 		</name>
 		<characteristic>dexterity</characteristic>
 		<skill>fight</skill>
-		<type>MELEE</type>
+		<type>MELEE_SHIELD</type>
 		<techLevel>1</techLevel>
 		<goal>0</goal>
 		<damage>1</damage>
@@ -365,6 +365,7 @@
 		<cost>20</cost>
 		<random>
 			<probabilityMultiplier>10</probabilityMultiplier>
+			<recommendedFactionGroups>nobility</recommendedFactionGroups>
 		</random>
 	</rapier>
 	<saber>
@@ -2899,6 +2900,7 @@
 		<damageType>fire</damageType>
 		<random>
 			<probabilityMultiplier>0.001</probabilityMultiplier>
+			<recommendedFactions>avestites</recommendedFactions>
 		</random>
 	</kalomiteFlamegun>
 	<kendraDragon>

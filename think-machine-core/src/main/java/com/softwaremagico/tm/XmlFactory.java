@@ -50,6 +50,7 @@ public abstract class XmlFactory<T extends Element<T>> {
 	private final static String MAX_TECH_LEVEL = "maxTechLevel";
 	private final static String RECOMMENDED_FACTIONS = "recommendedFactions";
 	private final static String RECOMMENDED_FACTION_GROUPS = "recommendedFactionGroups";
+	private final static String RESTRICTED_FACTION_GROUPS = "restrictedFactionGroups";
 	private final static String RECOMMENDED_RACES = "recommendedRaces";
 	private final static String GENERAL_PROBABILITY = "generalProbability";
 	private final static String STATIC_PROBABILITY = "staticProbability";
@@ -131,9 +132,21 @@ public abstract class XmlFactory<T extends Element<T>> {
 		try {
 			String recommendedFactionGroups = translator.getNodeValue(element.getId(), RANDOM, RECOMMENDED_FACTION_GROUPS);
 			if (recommendedFactionGroups != null) {
-				StringTokenizer recommendedFactionGroupsOfSkill = new StringTokenizer(recommendedFactionGroups, ",");
-				while (recommendedFactionGroupsOfSkill.hasMoreTokens()) {
-					element.getRandomDefinition().addRecommendedFactionGroup(FactionGroup.get(recommendedFactionGroupsOfSkill.nextToken().trim()));
+				StringTokenizer recommendedFactionGroupsTokenizer = new StringTokenizer(recommendedFactionGroups, ",");
+				while (recommendedFactionGroupsTokenizer.hasMoreTokens()) {
+					element.getRandomDefinition().addRecommendedFactionGroup(FactionGroup.get(recommendedFactionGroupsTokenizer.nextToken().trim()));
+				}
+			}
+		} catch (NullPointerException npe) {
+			// Optional
+		}
+
+		try {
+			String restrictedFactionGroups = translator.getNodeValue(element.getId(), RANDOM, RESTRICTED_FACTION_GROUPS);
+			if (restrictedFactionGroups != null) {
+				StringTokenizer restrictedFactionGroupsTokenizer = new StringTokenizer(restrictedFactionGroups, ",");
+				while (restrictedFactionGroupsTokenizer.hasMoreTokens()) {
+					element.getRandomDefinition().addRestrictedFactionGroup(FactionGroup.get(restrictedFactionGroupsTokenizer.nextToken().trim()));
 				}
 			}
 		} catch (NullPointerException npe) {

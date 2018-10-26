@@ -24,8 +24,8 @@ package com.softwaremagico.tm.random;
  * #L%
  */
 
+import java.util.Collection;
 import java.util.Set;
-import java.util.TreeMap;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
@@ -77,19 +77,8 @@ public class RandomCharacteristics extends RandomSelector<Characteristic> {
 	}
 
 	@Override
-	protected TreeMap<Integer, Characteristic> assignElementsWeight() {
-		TreeMap<Integer, Characteristic> weightedCharacteristics = new TreeMap<>();
-		int count = 1;
-
-		for (Characteristic characteristic : getCharacterPlayer().getCharacteristics()) {
-			int weight = getWeight(characteristic);
-			if (weight > 0) {
-				weightedCharacteristics.put(count, characteristic);
-				count += weight;
-			}
-		}
-
-		return weightedCharacteristics;
+	protected Collection<Characteristic> getAllElements() throws InvalidXmlElementException {
+		return getCharacterPlayer().getCharacteristics();
 	}
 
 	@Override
