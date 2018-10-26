@@ -112,8 +112,6 @@ public class CharacterPlayer {
 	// Skills
 	private Map<String, SelectedSkill> skills;
 
-	private transient List<String> skillNameOrdered;
-
 	private List<Blessing> blessings;
 
 	private List<AvailableBenefice> benefices;
@@ -150,7 +148,6 @@ public class CharacterPlayer {
 		initializeCharacteristics();
 		occultism = new Occultism();
 		skills = new HashMap<>();
-		skillNameOrdered = new ArrayList<>();
 		blessings = new ArrayList<>();
 		benefices = new ArrayList<>();
 		cybernetics = new Cybernetics();
@@ -306,13 +303,11 @@ public class CharacterPlayer {
 			throw new InvalidSkillException("Null skill is not allowed here.");
 		}
 		SelectedSkill skillWithRank = new SelectedSkill(availableSkill, value, false);
-		skills.put(availableSkill.getCompleteName(), skillWithRank);
-		skillNameOrdered.add(availableSkill.getName());
-		Collections.sort(skillNameOrdered);
+		skills.put(availableSkill.getUniqueId(), skillWithRank);
 	}
 
 	/**
-	 * For random characers, set the desired values.
+	 * For random characters, set the desired values.
 	 * 
 	 * @param availableSkill
 	 *            skill selected
@@ -329,13 +324,13 @@ public class CharacterPlayer {
 	}
 
 	private Integer getSkillAssignedRanks(Skill<?> skill) {
-		if (skills.get(skill.getName()) == null) {
+		if (skills.get(skill.getUniqueId()) == null) {
 			if (SkillsDefinitionsFactory.getInstance().isNaturalSkill(skill.getName(), language)) {
 				return 3;
 			}
 			return 0;
 		}
-		return skills.get(skill.getName()).getValue();
+		return skills.get(skill.getUniqueId()).getValue();
 	}
 
 	/**
@@ -371,8 +366,8 @@ public class CharacterPlayer {
 		Integer cyberneticBonus = getCyberneticsValue(skill.getName());
 		Integer skillValue = getSkillAssignedRanks(skill);
 		// Set the modifications of blessings.
-		if (skills.get(skill.getName()) != null) {
-			skillValue += getBlessingModificationAlways(skills.get(skill.getName()).getAvailableSkill().getSkillDefinition());
+		if (skills.get(skill.getUniqueId()) != null) {
+			skillValue += getBlessingModificationAlways(skills.get(skill.getUniqueId()).getAvailableSkill().getSkillDefinition());
 		}
 		// Cybernetics only if better.
 		if (cyberneticBonus != null) {
@@ -666,11 +661,11 @@ public class CharacterPlayer {
 		for (AvailableSkill skill : AvailableSkillsFactory.getInstance().getNaturalSkills(language)) {
 			if (skill.getSkillDefinition().getId().equals(SkillDefinition.PLANETARY_LORE_ID)) {
 				if (getInfo().getPlanet() != null) {
-					skill.setSpecialization(new Specialization(getInfo().getPlanet().getName(), getInfo().getPlanet().getName(), language));
+					skill.setSpecialization(new Specialization(getInfo().getPlanet().getName().toLowerCase(), getInfo().getPlanet().getName(), language));
 				}
 			} else if (skill.getSkillDefinition().getId().equals(SkillDefinition.FACTORION_LORE_ID)) {
 				if (getFaction() != null) {
-					skill.setSpecialization(new Specialization(getFaction().getName(), getFaction().getName(), language));
+					skill.setSpecialization(new Specialization(getFaction().getName().toLowerCase(), getFaction().getName(), language));
 				}
 			}
 			naturalSkills.add(skill);

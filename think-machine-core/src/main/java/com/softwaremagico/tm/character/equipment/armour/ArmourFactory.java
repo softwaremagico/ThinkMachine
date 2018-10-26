@@ -34,8 +34,6 @@ import com.softwaremagico.tm.character.equipment.DamageType;
 import com.softwaremagico.tm.character.equipment.DamageTypeFactory;
 import com.softwaremagico.tm.character.equipment.shield.Shield;
 import com.softwaremagico.tm.character.equipment.shield.ShieldFactory;
-import com.softwaremagico.tm.character.equipment.weapons.Accessory;
-import com.softwaremagico.tm.character.equipment.weapons.AccessoryFactory;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
 
@@ -206,19 +204,6 @@ public class ArmourFactory extends XmlFactory<Armour> {
 			// Not mandatory.
 		}
 
-		Set<Accessory> others = new HashSet<>();
-		String othersName = translator.getNodeValue(armourId, OTHER);
-		if (othersName != null) {
-			StringTokenizer accessoryTokenizer = new StringTokenizer(othersName, ",");
-			while (accessoryTokenizer.hasMoreTokens()) {
-				try {
-					others.add(AccessoryFactory.getInstance().getElement(accessoryTokenizer.nextToken().trim(), language));
-				} catch (InvalidXmlElementException ixe) {
-					throw new InvalidArmourException("Error in others '" + othersName + "' structure of '" + armourId + "'. Invalid others definition. ", ixe);
-				}
-			}
-		}
-
 		ArmourPenalization standardPenalizations = new ArmourPenalization(standardDexterityModification, standardStrengthModification,
 				standardInitiativeModification, standardEnduranceModification);
 
@@ -228,8 +213,23 @@ public class ArmourFactory extends XmlFactory<Armour> {
 			specialPenalizations = new ArmourPenalization(specialDexterityModification, specialStrengthModification, specialInitiativeModification,
 					specialEnduranceModification);
 		}
+
+		Set<ArmourSpecification> specifications = new HashSet<>();
+		String specificationsNames = translator.getNodeValue(armourId, OTHER);
+		if (specificationsNames != null) {
+			StringTokenizer specificationTokenizer = new StringTokenizer(specificationsNames, ",");
+			while (specificationTokenizer.hasMoreTokens()) {
+				try {
+					specifications.add(ArmourSpecificationFactory.getInstance().getElement(specificationTokenizer.nextToken().trim(), language));
+				} catch (InvalidXmlElementException ixe) {
+					throw new InvalidArmourException("Error in specifications '" + specificationsNames + "' in armour '" + armourId
+							+ "'. Invalid spceification definition. ", ixe);
+				}
+			}
+		}
+
 		Armour armour = new Armour(armourId, name, language, techLevel, protection, damageOfArmour, standardPenalizations, specialPenalizations,
-				allowedShields, cost);
+				allowedShields, specifications, cost);
 
 		return armour;
 	}

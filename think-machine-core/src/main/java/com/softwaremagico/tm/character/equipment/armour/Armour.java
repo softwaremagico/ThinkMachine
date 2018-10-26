@@ -39,6 +39,7 @@ public class Armour extends Element<Armour> {
 	private final ArmourPenalization specialPenalizations;
 	private final float cost;
 	private final Set<Shield> allowedShields;
+	private final Set<ArmourSpecification> specifications;
 
 	public Armour(String id, String name, String language, int techLevel, int protection, Set<DamageType> damageTypes, float cost) {
 		super(id, name, language);
@@ -48,11 +49,12 @@ public class Armour extends Element<Armour> {
 		this.standardPenalizations = new ArmourPenalization(0, 0, 0, 0);
 		this.specialPenalizations = new ArmourPenalization(0, 0, 0, 0);
 		this.allowedShields = new HashSet<>();
+		this.specifications = new HashSet<>();
 		this.cost = cost;
 	}
 
 	public Armour(String id, String name, String language, int techLevel, int protection, Set<DamageType> damageTypes, ArmourPenalization specialPenalizations,
-			ArmourPenalization otherPenalizations, Set<Shield> allowedShields, float cost) {
+			ArmourPenalization otherPenalizations, Set<Shield> allowedShields, Set<ArmourSpecification> specifications, float cost) {
 		super(id, name, language);
 		this.protection = protection;
 		this.damageTypes = damageTypes;
@@ -60,6 +62,7 @@ public class Armour extends Element<Armour> {
 		this.standardPenalizations = specialPenalizations;
 		this.specialPenalizations = otherPenalizations;
 		this.allowedShields = allowedShields;
+		this.specifications = specifications;
 		this.cost = cost;
 	}
 
@@ -94,5 +97,9 @@ public class Armour extends Element<Armour> {
 	public boolean isHeavy() {
 		return standardPenalizations.getDexterityModification() > 0 || standardPenalizations.getStrengthModification() > 0
 				|| standardPenalizations.getEnduranceModification() > 0;
+	}
+
+	public Set<ArmourSpecification> getSpecifications() {
+		return specifications;
 	}
 }

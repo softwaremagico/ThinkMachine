@@ -67,6 +67,18 @@ public class AvailableSkill extends Skill<AvailableSkill> {
 	}
 
 	@Override
+	public String getUniqueId() {
+		return getUniqueId(getId(), getSpecialization());
+	}
+
+	public static String getUniqueId(String id, Specialization specialization) {
+		if (specialization == null) {
+			return id;
+		}
+		return id + "_" + specialization.getId();
+	}
+
+	@Override
 	public String toString() {
 		return getCompleteName();
 	}

@@ -31,4 +31,8 @@ public class Skill<T extends Skill<?>> extends Element<T> {
 	public Skill(String id, String name, String language) {
 		super(id, name, language);
 	}
+
+	public String getUniqueId() {
+		return getId();
+	}
 }
