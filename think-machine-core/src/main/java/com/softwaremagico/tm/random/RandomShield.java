@@ -104,11 +104,6 @@ public class RandomShield extends RandomSelector<Shield> {
 		RandomGenerationLog.debug(this.getClass().getName(), "Cost multiplication for weight for '" + shield + "' is '" + costModificator + "'.");
 		weight = weight / costModificator;
 
-		// Some shields are common, others no.
-		RandomGenerationLog.debug(this.getClass().getName(), "Random definition multiplicator for '" + shield + "' is '"
-				+ shield.getRandomDefinition().getProbabilityMultiplier() + "'.");
-		weight = weight * shield.getRandomDefinition().getProbabilityMultiplier().intValue();
-
 		RandomGenerationLog.debug(this.getClass().getName(), "Total weight for '" + shield + "' is '" + weight + "'.");
 		return weight;
 	}

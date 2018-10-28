@@ -36,6 +36,8 @@ import java.util.TreeMap;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
+import com.softwaremagico.tm.log.RandomGenerationLog;
+import com.softwaremagico.tm.random.definition.RandomElementDefinition;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
 
@@ -49,6 +51,9 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
 	protected final static int LITTLE_PROBABILITY = 6;
 	protected final static int FAIR_PROBABILITY = 11;
 	protected final static int GOOD_PROBABILITY = 21;
+
+	private final static int BASIC_MULTIPLICATOR = 5;
+	private final static int HIGH_MULTIPLICATOR = 10;
 
 	private CharacterPlayer characterPlayer;
 	private final Set<IRandomPreference> preferences;
@@ -96,8 +101,14 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
 				// Element not valid. Ignore it.
 				continue;
 			}
+
 			int weight = getWeight(element);
 			if (weight > 0) {
+				weight = (int) ((weight) * getRandomDefinitionBonus(element));
+				// Some probabilities are defined directly.
+				if (element.getRandomDefinition().getStaticProbability() != null) {
+					weight = element.getRandomDefinition().getStaticProbability();
+				}
 				weightedElements.put(count, element);
 				count += weight;
 			}
@@ -105,38 +116,103 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
 		return weightedElements;
 	}
 
+	private double getRandomDefinitionBonus(Element element) {
+		return getRandomDefinitionBonus(element.getRandomDefinition());
+	}
+
+	protected double getRandomDefinitionBonus(RandomElementDefinition randomDefinition) {
+		double multiplier = 1d;
+
+		if (randomDefinition == null) {
+			return multiplier;
+		}
+
+		if (randomDefinition.getProbabilityMultiplier() != null) {
+			RandomGenerationLog.debug(this.getClass().getName(), "Random definition multiplicator is '" + randomDefinition.getProbabilityMultiplier() + "'.");
+			multiplier *= randomDefinition.getProbabilityMultiplier();
+		}
+
+		// Recommended to race.
+		if (getCharacterPlayer().getRace() != null && randomDefinition.getRecommendedRaces().contains(getCharacterPlayer().getRace())) {
+			RandomGenerationLog.debug(this.getClass().getName(), "Random definition as recommended for '" + getCharacterPlayer().getRace() + "'.");
+			multiplier *= BASIC_MULTIPLICATOR;
+		}
+
+		// Recommended to my faction group.
+		if (getCharacterPlayer().getFaction() != null
+				&& randomDefinition.getRecommendedFactionsGroups().contains(getCharacterPlayer().getFaction().getFactionGroup())) {
+			RandomGenerationLog.debug(this.getClass().getName(), "Random definition as recommended for '" + getCharacterPlayer().getFaction().getFactionGroup()
+					+ "'.");
+			multiplier *= BASIC_MULTIPLICATOR;
+		}
+
+		// Recommended to my faction.
+		if (getCharacterPlayer().getFaction() != null && randomDefinition.getRecommendedFactions().contains(getCharacterPlayer().getFaction())) {
+			RandomGenerationLog.debug(this.getClass().getName(), "Random definition as recommended for '" + getCharacterPlayer().getFaction() + "'.");
+			multiplier *= HIGH_MULTIPLICATOR;
+		}
+
+		// Probability definition by preference.
+		if (randomDefinition.getProbability() != null) {
+			multiplier *= randomDefinition.getProbability().getProbabilityMultiplicator();
+			RandomGenerationLog.debug(this.getClass().getName(), "Random definition defines with bonus probability of '"
+					+ randomDefinition.getProbability().getProbabilityMultiplicator() + "'.");
+		}
+
+		RandomGenerationLog.debug(this.getClass().getName(), "Random definitions bonus multiplier is '" + multiplier + "'.");
+		return multiplier;
+	}
+
 	protected void validateElement(Element element) throws InvalidRandomElementSelectedException {
 		if (element == null) {
 			throw new InvalidRandomElementSelectedException("Null elements not allowed.");
 		}
 
-		if (element.getRandomDefinition() == null) {
+		try {
+			validateElement(element.getRandomDefinition());
+		} catch (InvalidRandomElementSelectedException e) {
+			throw new InvalidRandomElementSelectedException("Invalid element  '" + element + "'.", e);
+		}
+	}
+
+	protected void validateElement(RandomElementDefinition randomDefinition) throws InvalidRandomElementSelectedException {
+		if (randomDefinition == null) {
 			return;
 		}
+
 		// Check technology limitations.
-		if (element.getRandomDefinition().getMinimumTechLevel() != null
-				&& element.getRandomDefinition().getMinimumTechLevel() > getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).getValue()) {
-			throw new InvalidRandomElementSelectedException("The tech level of the character is insufficient for element '" + element.getId() + "'.");
+		if (randomDefinition.getMinimumTechLevel() != null
+				&& randomDefinition.getMinimumTechLevel() > getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).getValue()) {
+			throw new InvalidRandomElementSelectedException("The tech level of the character is insufficient.");
 		}
 
-		if (element.getRandomDefinition().getMaximumTechLevel() != null
-				&& element.getRandomDefinition().getMaximumTechLevel() < getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).getValue()) {
-			throw new InvalidRandomElementSelectedException("The tech level of the character is too high for element '" + element.getId() + "'.");
+		if (randomDefinition.getMaximumTechLevel() != null
+				&& randomDefinition.getMaximumTechLevel() < getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).getValue()) {
+			throw new InvalidRandomElementSelectedException("The tech level of the character is too high.");
+		}
+
+		// Race limitation
+		if (randomDefinition.getRestrictedRaces() != null && !randomDefinition.getRestrictedRaces().isEmpty()
+				&& !randomDefinition.getRestrictedRaces().contains(getCharacterPlayer().getRace())) {
+			throw new InvalidRandomElementSelectedException("Element restricted to races '" + randomDefinition.getRestrictedRaces() + "'.");
+		}
+
+		if (randomDefinition.getForbiddenRaces() != null && randomDefinition.getForbiddenRaces().contains(getCharacterPlayer().getRace())) {
+			throw new InvalidRandomElementSelectedException("Element forbidden to races '" + randomDefinition.getForbiddenRaces() + "'.");
 		}
 
 		// Faction restriction.
-		if (getCharacterPlayer().getFaction() != null && !element.getRandomDefinition().getRestrictedFactions().isEmpty()
-				&& !element.getRandomDefinition().getRestrictedFactions().contains(getCharacterPlayer().getFaction())) {
-			throw new InvalidRandomElementSelectedException("Element restricted to factions '" + element.getRandomDefinition().getRestrictedFactions() + "'.");
+		if (getCharacterPlayer().getFaction() != null && !randomDefinition.getRestrictedFactions().isEmpty()
+				&& !randomDefinition.getRestrictedFactions().contains(getCharacterPlayer().getFaction())) {
+			throw new InvalidRandomElementSelectedException("Element restricted to factions '" + randomDefinition.getRestrictedFactions() + "'.");
 		}
 
 		// Faction groups restriction.
 		if (getCharacterPlayer().getFaction() != null
-				&& !element.getRandomDefinition().getRecommendedFactionsGroups().isEmpty()
-				&& (getCharacterPlayer().getFaction().getFactionGroup() == null || !element.getRandomDefinition().getRecommendedFactionsGroups()
-						.contains(getCharacterPlayer().getFaction().getFactionGroup()))) {
-			throw new InvalidRandomElementSelectedException("Element restricted to factions '" + element.getRandomDefinition().getRecommendedFactionsGroups()
-					+ "'.");
+				&& !randomDefinition.getRestrictedFactions().isEmpty()
+				&& (getCharacterPlayer().getFaction().getFactionGroup() == null || !randomDefinition.getRestrictedFactions().contains(
+						getCharacterPlayer().getFaction().getFactionGroup()))) {
+			throw new InvalidRandomElementSelectedException("Element restricted to factions '" + randomDefinition.getRestrictedFactions() + "'.");
 		}
 	}
 

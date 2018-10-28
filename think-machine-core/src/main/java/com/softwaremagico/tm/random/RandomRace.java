@@ -60,9 +60,7 @@ public class RandomRace extends RandomSelector<Race> {
 				return 0;
 			}
 		}
-		if (race.getRandomDefinition().getStaticProbability() != null) {
-			return race.getRandomDefinition().getStaticProbability();
-		}
+
 		return 1;
 	}
 }

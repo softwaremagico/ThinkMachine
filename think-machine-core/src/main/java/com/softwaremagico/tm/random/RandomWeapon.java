@@ -129,11 +129,6 @@ public abstract class RandomWeapon extends RandomSelector<Weapon> {
 			RandomGenerationLog.errorMessage(this.getClass().getName(), e);
 		}
 
-		// Some weapons are common, others no.
-		RandomGenerationLog.debug(this.getClass().getName(), "Random definition multiplicator for '" + weapon + "' is '"
-				+ weapon.getRandomDefinition().getProbabilityMultiplier() + "'.");
-		weight = weight * weapon.getRandomDefinition().getProbabilityMultiplier().intValue();
-
 		RandomGenerationLog.debug(this.getClass().getName(), "Total weight for '" + weapon + "' is '" + weight + "'.");
 		return weight;
 	}

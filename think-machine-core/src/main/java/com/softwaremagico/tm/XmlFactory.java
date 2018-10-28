@@ -51,6 +51,8 @@ public abstract class XmlFactory<T extends Element<T>> {
 	private final static String RECOMMENDED_FACTIONS = "recommendedFactions";
 	private final static String RECOMMENDED_FACTION_GROUPS = "recommendedFactionGroups";
 	private final static String RESTRICTED_FACTION_GROUPS = "restrictedFactionGroups";
+	private final static String RESTRICTED_RACES = "restrictedRaces";
+	private final static String FORBIDDEN_RACES = "forbiddenRaces";
 	private final static String RECOMMENDED_RACES = "recommendedRaces";
 	private final static String GENERAL_PROBABILITY = "generalProbability";
 	private final static String STATIC_PROBABILITY = "staticProbability";
@@ -167,12 +169,36 @@ public abstract class XmlFactory<T extends Element<T>> {
 		}
 
 		try {
+			String restrictedRaces = translator.getNodeValue(element.getId(), RANDOM, RESTRICTED_RACES);
+			if (restrictedRaces != null) {
+				StringTokenizer restrictedRacesOfSkill = new StringTokenizer(restrictedRaces, ",");
+				while (restrictedRacesOfSkill.hasMoreTokens()) {
+					element.getRandomDefinition().addRestrictedRace(RaceFactory.getInstance().getElement(restrictedRacesOfSkill.nextToken().trim(), language));
+				}
+			}
+		} catch (NullPointerException npe) {
+			// Optional
+		}
+
+		try {
 			String recommendedRaces = translator.getNodeValue(element.getId(), RANDOM, RECOMMENDED_RACES);
 			if (recommendedRaces != null) {
-				StringTokenizer recommendedRacesOfSkill = new StringTokenizer(recommendedRaces, ",");
-				while (recommendedRacesOfSkill.hasMoreTokens()) {
-					element.getRandomDefinition()
-							.addRecommendedRace(RaceFactory.getInstance().getElement(recommendedRacesOfSkill.nextToken().trim(), language));
+				StringTokenizer recommendedRacesTokenizer = new StringTokenizer(recommendedRaces, ",");
+				while (recommendedRacesTokenizer.hasMoreTokens()) {
+					element.getRandomDefinition().addRecommendedRace(
+							RaceFactory.getInstance().getElement(recommendedRacesTokenizer.nextToken().trim(), language));
+				}
+			}
+		} catch (NullPointerException npe) {
+			// Optional
+		}
+
+		try {
+			String forbiddenRaces = translator.getNodeValue(element.getId(), RANDOM, FORBIDDEN_RACES);
+			if (forbiddenRaces != null) {
+				StringTokenizer forbiddenRacesTokenizer = new StringTokenizer(forbiddenRaces, ",");
+				while (forbiddenRacesTokenizer.hasMoreTokens()) {
+					element.getRandomDefinition().addForbiddenRace(RaceFactory.getInstance().getElement(forbiddenRacesTokenizer.nextToken().trim(), language));
 				}
 			}
 		} catch (NullPointerException npe) {

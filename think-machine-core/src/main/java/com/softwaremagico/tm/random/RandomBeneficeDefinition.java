@@ -61,7 +61,7 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
 		// First, try status.
 		for (BeneficeDefinition benefice : BeneficeDefinitionFactory.getInstance().getBenefices(BeneficeGroup.STATUS, getCharacterPlayer().getLanguage())) {
 			RandomGenerationLog.info(this.getClass().getName(), "Selected status benefice '" + benefice + "'.");
-			if (getWeight(benefice) > 0 && Objects.equals(benefice.getRestricted(), getCharacterPlayer().getFaction().getFactionGroup())) {
+			if (getWeight(benefice) > 0 && Objects.equals(benefice.getRestrictedFactionGroup(), getCharacterPlayer().getFaction().getFactionGroup())) {
 				IGaussianDistribution selectedStatus = StatusPreferences.getSelected(getPreferences());
 				if (selectedStatus != null) {
 					RandomGenerationLog.debug(this.getClass().getName(), "Searching grade '" + selectedStatus.maximum() + "' of benefice '" + benefice + "'.");
@@ -104,7 +104,8 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
 	@Override
 	protected int getWeight(BeneficeDefinition benefice) {
 		// No restricted benefices.
-		if (benefice.getRestricted() != null && benefice.getRestricted() != getCharacterPlayer().getFaction().getFactionGroup()) {
+		if (benefice.getRestrictedFactionGroup() != null && getCharacterPlayer().getFaction() != null
+				&& benefice.getRestrictedFactionGroup() != getCharacterPlayer().getFaction().getFactionGroup()) {
 			return 0;
 		}
 
@@ -114,7 +115,8 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
 		}
 
 		// Status must almost selected. Specially for groups.
-		if (benefice.getRestricted() != null && Objects.equals(benefice.getRestricted(), getCharacterPlayer().getFaction().getFactionGroup())) {
+		if (benefice.getRestrictedFactionGroup() != null && getCharacterPlayer().getFaction() != null
+				&& Objects.equals(benefice.getRestrictedFactionGroup(), getCharacterPlayer().getFaction().getFactionGroup())) {
 			if (Objects.equals(benefice.getGroup(), (BeneficeGroup.STATUS))) {
 				RandomGenerationLog.info(this.getClass().getName(), "Character faction '" + getCharacterPlayer().getFaction() + "' must have a status.");
 				return MAX_PROBABILITY;
@@ -155,16 +157,28 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
 			beneficeLevels = new HashSet<>();
 		}
 		List<AvailableBenefice> sortedBenefices = new ArrayList<>(beneficeLevels);
+		// Sort by cost (descending). Adding if a benefice has preferences
+		// (ascending).
 		Collections.sort(sortedBenefices, new Comparator<AvailableBenefice>() {
 
 			@Override
 			public int compare(AvailableBenefice o1, AvailableBenefice o2) {
-				// Sort by cost (descending).
+				double o1Preferred = getRandomDefinitionBonus(o1.getRandomDefinition());
+				double o2Preferred = getRandomDefinitionBonus(o2.getRandomDefinition());
+
+				if ((int) (o1Preferred - o2Preferred) != 0) {
+					return (int) (o1Preferred - o2Preferred);
+				}
 				return new Integer(o2.getCost()).compareTo(new Integer(o1.getCost()));
 			}
 		});
 		RandomGenerationLog.info(this.getClass().getName(), "Available benefice levels of '" + benefice + "' are '" + sortedBenefices + "'.");
 		for (AvailableBenefice availableBenefice : sortedBenefices) {
+			try {
+				validateElement(availableBenefice.getRandomDefinition());
+			} catch (InvalidRandomElementSelectedException e) {
+				continue;
+			}
 			if (Math.abs(availableBenefice.getCost()) <= maxRangeSelected) {
 				return availableBenefice;
 			}

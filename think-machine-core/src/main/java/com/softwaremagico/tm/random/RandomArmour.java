@@ -141,11 +141,6 @@ public class RandomArmour extends RandomSelector<Armour> {
 		RandomGenerationLog.debug(this.getClass().getName(), "Cost multiplication for weight for '" + armour + "' is '" + costModificator + "'.");
 		weight = weight / costModificator;
 
-		// Some armours are common, others no.
-		RandomGenerationLog.debug(this.getClass().getName(), "Random definition multiplicator for '" + armour + "' is '"
-				+ armour.getRandomDefinition().getProbabilityMultiplier() + "'.");
-		weight = weight * armour.getRandomDefinition().getProbabilityMultiplier().intValue();
-
 		// More protection is better.
 		weight = weight * armour.getProtection();
 		RandomGenerationLog.debug(this.getClass().getName(), "Protection multiplicator for '" + armour + "' is '" + armour.getProtection() + "'.");

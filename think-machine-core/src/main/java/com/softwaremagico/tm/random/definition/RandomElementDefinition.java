@@ -39,10 +39,12 @@ public class RandomElementDefinition {
 	private Double probabilityMultiplier;
 	private final Set<Faction> restrictedFactions = new HashSet<>();
 	private final Set<Faction> recommendedFactions = new HashSet<>();
+	private final Set<Race> restrictedRaces = new HashSet<>();
+	private final Set<Race> forbiddenRaces = new HashSet<>();
 	private final Set<Race> recommendedRaces = new HashSet<>();
 	private final Set<FactionGroup> restrictedFactionGroups = new HashSet<>();
 	private final Set<FactionGroup> recommendedFactionGroups = new HashSet<>();
-	private RandomProbabilityDefinition probability = RandomProbabilityDefinition.FAIR;
+	private RandomProbabilityDefinition probability;
 
 	public Integer getMinimumTechLevel() {
 		if (minimumTechLevel == null) {
@@ -72,6 +74,12 @@ public class RandomElementDefinition {
 	public void addRecommendedFaction(Faction faction) {
 		if (faction != null) {
 			recommendedFactions.add(faction);
+		}
+	}
+
+	public void addRecommendedRaces(Race race) {
+		if (race != null) {
+			restrictedRaces.add(race);
 		}
 	}
 
@@ -131,5 +139,25 @@ public class RandomElementDefinition {
 		if (restrictedFactionGroup != null) {
 			restrictedFactionGroups.add(restrictedFactionGroup);
 		}
+	}
+
+	public void addRestrictedRace(Race restrictedRace) {
+		if (restrictedRace != null) {
+			restrictedRaces.add(restrictedRace);
+		}
+	}
+
+	public Set<Race> getRestrictedRaces() {
+		return restrictedRaces;
+	}
+	
+	public void addForbiddenRace(Race forbiddenRace) {
+		if (forbiddenRace != null) {
+			forbiddenRaces.add(forbiddenRace);
+		}
+	}
+
+	public Set<Race> getForbiddenRaces() {
+		return forbiddenRaces;
 	}
 }

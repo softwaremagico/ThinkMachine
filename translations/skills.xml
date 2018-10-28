@@ -232,9 +232,6 @@
 			<es>Cuerpo a Cuerpo</es>
 		</name>
 		<group>combat</group>
-		<random>
-			<maxTechLevel>9</maxTechLevel>
-		</random>
 	</fight>
 	<demolitions>
 		<name>
@@ -252,6 +249,11 @@
 			<es>Controlar Bestia de Tiro</es>
 		</name>
 		<group>control</group>
+		<random>
+			<minTechLevel>0</minTechLevel>
+			<maxTechLevel>3</maxTechLevel>
+			<restrictedFactionGroups>nobility</restrictedFactionGroups>
+		</random>		
 	</beastcraft>
 	<watercraft>
 		<name>
@@ -269,6 +271,7 @@
 		<random>
 			<minTechLevel>0</minTechLevel>
 			<maxTechLevel>2</maxTechLevel>
+			<recommendedFactionGroups>nobility</recommendedFactionGroups>
 		</random>
 	</ride>
 	<aircraft>

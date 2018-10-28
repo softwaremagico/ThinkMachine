@@ -27,6 +27,9 @@
 					<en>Latin</en>
 					<es>Latin</es>
 				</name>
+				<random>
+					<recommendedFactionGroups>church</recommendedFactionGroups>
+				</random>
 			</latinLanguage>
 			<barbarianLanguage>
 				<name>
@@ -39,6 +42,9 @@
 					<en>Graceful Tongue</en>
 					<es>Lengua Elegante</es>
 				</name>
+				<random>
+					<recommendedFactionGroups>nobility</recommendedFactionGroups>
+				</random>
 			</gracefulTongue>
 			<scraverCant>
 				<name>
@@ -51,6 +57,9 @@
 					<en>Urthish</en>
 					<es>Terráqueo</es>
 				</name>
+				<random>
+					<forbiddenRaces>human</forbiddenRaces>
+				</random>
 			</urthish>
 			<turingLanguage>
 				<name>
@@ -63,18 +72,27 @@
 					<en>Obun</en>
 					<es>Obun</es>
 				</name>
+				<random>
+					<forbiddenRaces>obun</forbiddenRaces>
+				</random>
 			</obunLanguage>
 			<ukarLanguage>
 				<name>
 					<en>Ukar</en>
 					<es>Ukar</es>
 				</name>
+				<random>
+					<forbiddenRaces>ukar</forbiddenRaces>
+				</random>
 			</ukarLanguage>
 			<voroxLanguage>
 				<name>
 					<en>Vorox</en>
 					<es>Vorox</es>
 				</name>
+				<random>
+					<forbiddenRaces>vorox</forbiddenRaces>
+				</random>
 			</voroxLanguage>
 		</specializations>
 		<cost>2</cost>

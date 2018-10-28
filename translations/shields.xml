@@ -21,6 +21,9 @@
 		<force>10</force>
 		<hits>15</hits>
 		<cost>700</cost>
+		<random>
+			<recommendedFactionGroups>nobility</recommendedFactionGroups>
+		</random>
 	</duelingShield>
 	<assaultShield>
 		<name>

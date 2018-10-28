@@ -25,7 +25,13 @@ package com.softwaremagico.tm.random.definition;
  */
 
 public enum RandomProbabilityDefinition {
-	MINIMUM, LOW, FAIR, GOOD;
+	MINIMUM(0.01d), LOW(0.1d), FAIR(1d), GOOD(5d);
+
+	private final double probabilityMultiplicator;
+
+	private RandomProbabilityDefinition(double probabilityMultiplicator) {
+		this.probabilityMultiplicator = probabilityMultiplicator;
+	}
 
 	public static RandomProbabilityDefinition get(String probabilityName) {
 		for (RandomProbabilityDefinition probability : RandomProbabilityDefinition.values()) {
@@ -34,5 +40,9 @@ public enum RandomProbabilityDefinition {
 			}
 		}
 		return null;
+	}
+
+	public double getProbabilityMultiplicator() {
+		return probabilityMultiplicator;
 	}
 }
