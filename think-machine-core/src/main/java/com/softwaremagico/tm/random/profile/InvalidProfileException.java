@@ -4,7 +4,7 @@ package com.softwaremagico.tm.random.profile;
  * #%L
  * Think Machine (Core)
  * %%
- * Copyright (C) 2017 - 2018 Softwaremagico
+ * Copyright (C) 2017 Softwaremagico
  * %%
  * This software is designed by Jorge Hortelano Otero. Jorge Hortelano Otero
  * <softwaremagico@gmail.com> Valencia (Spain).
@@ -24,29 +24,16 @@ package com.softwaremagico.tm.random.profile;
  * #L%
  */
 
-import java.util.Map;
-import java.util.Set;
+import com.softwaremagico.tm.InvalidXmlElementException;
 
-import com.softwaremagico.tm.character.benefices.AvailableBenefice;
-import com.softwaremagico.tm.character.blessings.Blessing;
-import com.softwaremagico.tm.character.characteristics.CharacteristicName;
-import com.softwaremagico.tm.character.skills.AvailableSkill;
-import com.softwaremagico.tm.random.selectors.IRandomPreference;
+public class InvalidProfileException extends InvalidXmlElementException {
+	private static final long serialVersionUID = 1243337930745480002L;
 
-public interface IRandomProfile {
+	public InvalidProfileException(String message) {
+		super(message);
+	}
 
-	int getExperiencePoints();
-
-	Set<IRandomPreference> getPreferences();
-
-	Map<CharacteristicName, Integer> getCharacteristicsMinimumValues();
-
-	Map<AvailableSkill, Integer> getSkillsMinimumValues();
-
-	Set<Blessing> getBlessings();
-
-	Set<AvailableBenefice> getBenefices();
-
-	void setParent(IRandomProfile randomProfile);
-
+	public InvalidProfileException(String message, Exception e) {
+		super(message, e);
+	}
 }

@@ -22,7 +22,7 @@
 		<cost>2000</cost>
 		<damageType>hard, laser, impact, shock</damageType>
 		<shield>battleShield</shield>
-		<others></others>
+		<others>abcProtection, powerPack</others>
 	</ceramsteelExoframe>
 	<adeptRobes>
 		<name>
@@ -46,7 +46,7 @@
 		<cost>10000</cost>
 		<damageType>hard, laser, impact, shock</damageType>
 		<shield>battleShield</shield>
-		<others></others>
+		<others>abcProtection, powerPack, lifeSupport30m, rangeFinder, radio, binoculars, radiationProtection</others>
 	</adeptRobes>
 	<chainMailMetal>
 		<name>
@@ -64,7 +64,7 @@
 		<cost>50</cost>
 		<damageType>hard</damageType>
 		<shield>assaultShield, battleShield</shield>
-		<others></others>
+		<others>metal</others>
 	</chainMailMetal>
 	<chainMailPlastic>
 		<name>
@@ -136,7 +136,7 @@
 		<cost>30</cost>
 		<damageType>hard</damageType>
 		<shield>battleShield</shield>
-		<others></others>
+		<others>metal</others>
 	</halfPlateMetal>
 	<halfPlatePlastic>
 		<name>
@@ -227,7 +227,7 @@
 		<cost>8</cost>
 		<damageType>soft</damageType>
 		<shield>assaultShield, battleShield</shield>
-		<others></others>
+		<others>metal</others>
 	</leatherJerkinStuddedMetal>
 	<leatherJerkinStuddedPlastic>
 		<name>
@@ -319,7 +319,7 @@
 		<cost>70</cost>
 		<damageType>hard</damageType>
 		<shield>battleShield</shield>
-		<others></others>
+		<others>metal</others>
 	</plateMailSuitMetal>
 	<plateMailSuitPlastic>
 		<name>
@@ -337,7 +337,7 @@
 		<cost>100</cost>
 		<damageType>soft, shock</damageType>
 		<shield>battleShield</shield>
-		<others></others>
+		<others>abcProtection</others>
 	</plateMailSuitPlastic>
 	<plateMailSuitPlasteel>
 		<name>
@@ -355,7 +355,7 @@
 		<cost>150</cost>
 		<damageType>hard, shock</damageType>
 		<shield>battleShield</shield>
-		<others></others>
+		<others>abcProtection</others>
 	</plateMailSuitPlasteel>
 	<psiCloak>
 		<name>
@@ -373,7 +373,7 @@
 		<cost>3000</cost>
 		<damageType></damageType>
 		<shield></shield>
-		<others></others>
+		<others>occult, neural</others>
 	</psiCloak>
 	<scaleMailMetal>
 		<name>
@@ -391,7 +391,7 @@
 		<cost>20</cost>
 		<damageType>hard</damageType>
 		<shield>battleShield</shield>
-		<others></others>
+		<others>metal</others>
 	</scaleMailMetal>
 	<scaleMailPlastic>
 		<name>
@@ -451,7 +451,7 @@
 		<cost>100</cost>
 		<damageType>hard, fire, impact, shock</damageType>
 		<shield>battleShield</shield>
-		<others></others>
+		<others>lifeSupport24h, abcProtection, radiationProtection</others>
 	</spacesuit>
 	<antiquarianSpacesuit>
 		<name>
@@ -475,7 +475,7 @@
 		<cost>50</cost>
 		<damageType>impact, shock</damageType>
 		<shield>battleShield</shield>
-		<others></others>
+		<others>lifeSupport12h, abcProtection, radiationProtection</others>
 	</antiquarianSpacesuit>
 	<armoredSpacesuit>
 		<name>
@@ -499,7 +499,7 @@
 		<cost>400</cost>
 		<damageType>plasma, hard, fire, impact, laser, shock</damageType>
 		<shield>battleShield</shield>
-		<others></others>
+		<others>lifeSupport24h, abcProtection, radiationProtection</others>
 	</armoredSpacesuit>
 	<marauderSpacesuit>
 		<name>
@@ -523,7 +523,7 @@
 		<cost>1000</cost>
 		<damageType>plasma, hard, fire, impact, laser, shock</damageType>
 		<shield>battleShield</shield>
-		<others></others>
+		<others>lifeSupport24h, abcProtection, radiationProtection</others>
 	</marauderSpacesuit>
 	<synthsilk>
 		<name>

@@ -38,7 +38,7 @@ import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
 
 public class ArmourFactory extends XmlFactory<Armour> {
-	private final static ITranslator translatorWeapon = LanguagePool.getTranslator("armours.xml");
+	private final static ITranslator translator = LanguagePool.getTranslator("armours.xml");
 
 	private final static String NAME = "name";
 
@@ -78,7 +78,7 @@ public class ArmourFactory extends XmlFactory<Armour> {
 
 	@Override
 	protected ITranslator getTranslator() {
-		return translatorWeapon;
+		return translator;
 	}
 
 	@Override

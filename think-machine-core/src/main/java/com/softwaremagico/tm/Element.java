@@ -39,10 +39,14 @@ public class Element<T extends Element<?>> implements Comparable<T> {
 	private final RandomElementDefinition randomDefinition;
 
 	public Element(String id, String name, String language) {
+		this(id, name, language, new RandomElementDefinition());
+	}
+
+	public Element(String id, String name, String language, RandomElementDefinition ranDefinition) {
 		this.id = id != null ? id.trim() : null;
 		this.name = name != null ? name.trim() : null;
 		this.language = language;
-		randomDefinition = new RandomElementDefinition();
+		this.randomDefinition = ranDefinition;
 	}
 
 	public String getName() {

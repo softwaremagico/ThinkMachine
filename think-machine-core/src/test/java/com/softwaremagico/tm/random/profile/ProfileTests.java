@@ -24,14 +24,17 @@ package com.softwaremagico.tm.random.profile;
  * #L%
  */
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
+import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.random.RandomizeCharacter;
 import com.softwaremagico.tm.random.exceptions.DuplicatedPreferenceException;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
+import com.softwaremagico.tm.random.selectors.CombatPreferences;
 import com.softwaremagico.tm.txt.CharacterSheet;
 
 @Test(groups = "profile")
@@ -39,9 +42,32 @@ public class ProfileTests {
 	private final static String LANGUAGE = "en";
 
 	@Test
-	public void Soldier() throws DuplicatedPreferenceException, InvalidXmlElementException, InvalidRandomElementSelectedException, TooManyBlessingsException {
+	public void checkPreferencesReader() throws DuplicatedPreferenceException, InvalidXmlElementException, InvalidRandomElementSelectedException,
+			TooManyBlessingsException {
+		Assert.assertEquals(RandomProfileFactory.getInstance().getElement("soldier", LANGUAGE).getPreferences().size(), 7);
+		Assert.assertTrue(RandomProfileFactory.getInstance().getElement("soldier", LANGUAGE).getPreferences().contains(CombatPreferences.BELLIGERENT));
+		Assert.assertEquals(
+				RandomProfileFactory.getInstance().getElement("soldier", LANGUAGE).getCharacteristicsMinimumValues().get(CharacteristicName.DEXTERITY),
+				new Integer(6));
+	}
+
+	@Test
+	public void checkParent() throws DuplicatedPreferenceException, InvalidXmlElementException, InvalidRandomElementSelectedException,
+			TooManyBlessingsException {
+		Assert.assertEquals(RandomProfileFactory.getInstance().getElement("soldierLiHalan", LANGUAGE).getPreferences().size(), 7);
+		Assert.assertTrue(RandomProfileFactory.getInstance().getElement("soldierLiHalan", LANGUAGE).getPreferences().contains(CombatPreferences.BELLIGERENT));
+		Assert.assertEquals(
+				RandomProfileFactory.getInstance().getElement("soldierLiHalan", LANGUAGE).getCharacteristicsMinimumValues().get(CharacteristicName.DEXTERITY),
+				new Integer(6));
+		Assert.assertEquals(
+				RandomProfileFactory.getInstance().getElement("soldierLiHalan", LANGUAGE).getCharacteristicsMinimumValues().get(CharacteristicName.TECH),
+				new Integer(7));
+	}
+
+	@Test
+	public void soldier() throws DuplicatedPreferenceException, InvalidXmlElementException, InvalidRandomElementSelectedException, TooManyBlessingsException {
 		CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
-		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, new Soldier());
+		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, RandomProfileFactory.getInstance().getElement("soldier", LANGUAGE));
 		randomizeCharacter.createCharacter();
 		CharacterSheet characterSheet = new CharacterSheet(characterPlayer);
 		System.out.println(characterSheet.toString());

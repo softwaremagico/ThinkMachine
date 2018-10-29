@@ -118,7 +118,6 @@ public class RandomCharacterTests {
 
 		RandomBeneficeDefinition randomBenefice = new RandomBeneficeDefinition(characterPlayer, null);
 		AvailableBenefice benefice = AvailableBeneficeFactory.getInstance().getElement("language [urthish]", LANGUAGE);
-		System.out.println(benefice.getRandomDefinition().getForbiddenRaces() + " -> " + characterPlayer.getRace());
 		randomBenefice.validateElement(benefice.getRandomDefinition());
 	}
 
@@ -134,13 +133,9 @@ public class RandomCharacterTests {
 		CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
 		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0, SkillGroupPreferences.COMBAT);
 		randomizeCharacter.createCharacter();
-		System.out.println("&&&&&& " + characterPlayer.getCharacteristic(CharacteristicName.TECH).getValue());
-		System.out.println("###### " + characterPlayer.getSkillTotalRanks(AvailableSkillsFactory.getInstance().getElement("slugGuns", LANGUAGE)));
-		System.out.println("###### " + characterPlayer.getSkillTotalRanks(AvailableSkillsFactory.getInstance().getElement("fight", LANGUAGE)));
-		System.out.println("###### " + characterPlayer.getSkillTotalRanks(AvailableSkillsFactory.getInstance().getElement("melee", LANGUAGE)));
-		System.out.println("###### " + characterPlayer.getSkillTotalRanks(AvailableSkillsFactory.getInstance().getElement("archery", LANGUAGE)));
+
 		Assert.assertEquals(CostCalculator.getCost(characterPlayer), FreeStyleCharacterCreation.FREE_AVAILABLE_POINTS);
-		Assert.assertTrue(characterPlayer.getRanksAssigned(SkillGroupPreferences.COMBAT.getSkillGroup()) > 3);
+		Assert.assertTrue(characterPlayer.getRanksAssigned(SkillGroupPreferences.COMBAT.getSkillGroup()) > 10);
 	}
 
 	@Test
@@ -241,6 +236,12 @@ public class RandomCharacterTests {
 
 		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0);
 		randomizeCharacter.createCharacter();
+
+		RandomSkills randomBenefice = new RandomSkills(characterPlayer, null);
+		AvailableSkill energyGuns = AvailableSkillsFactory.getInstance().getElement("energyGuns", LANGUAGE);
+		randomBenefice.validateElement(energyGuns.getRandomDefinition());
+		AvailableSkill fight = AvailableSkillsFactory.getInstance().getElement("fight", LANGUAGE);
+		randomBenefice.validateElement(fight.getRandomDefinition());
 
 		Assert.assertTrue(characterPlayer.getSkillTotalRanks(AvailableSkillsFactory.getInstance().getElement("fight", LANGUAGE)) > 0);
 		Assert.assertTrue(characterPlayer.getSkillTotalRanks(AvailableSkillsFactory.getInstance().getElement("energyGuns", LANGUAGE)) > 0);

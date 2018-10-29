@@ -27,19 +27,48 @@ package com.softwaremagico.tm.random.profile;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
+import com.softwaremagico.tm.Element;
 import com.softwaremagico.tm.character.benefices.AvailableBenefice;
 import com.softwaremagico.tm.character.blessings.Blessing;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
+import com.softwaremagico.tm.json.ExcludeFromJson;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
 
-public abstract class RandomProfile implements IRandomProfile {
-	private Set<IRandomPreference> randomPreferences = new HashSet<>();
+public class RandomProfile extends Element<RandomProfile> implements IRandomProfile {
+	private final Set<IRandomPreference> randomPreferences;
+	private final Map<CharacteristicName, Integer> characteristicsMinimumValues;
+	@ExcludeFromJson
+	public boolean parentMerged = false;
 
-	protected RandomProfile(Set<IRandomPreference> newPreferences) {
-		addPreferences(newPreferences);
+	public RandomProfile(String id, String name, String language, Set<IRandomPreference> randomPreferences,
+			Map<CharacteristicName, Integer> characteristicsMinimumValues) {
+		super(id, name, language);
+		this.randomPreferences = randomPreferences;
+		this.characteristicsMinimumValues = characteristicsMinimumValues;
+	}
+
+	@Override
+	public void setParent(IRandomProfile randomProfile) {
+		if (!parentMerged) {
+			// Merge preferences.
+			Set<IRandomPreference> combinedPreferences = mergePreferences(randomProfile.getPreferences(), randomPreferences);
+			randomPreferences.clear();
+			randomPreferences.addAll(combinedPreferences);
+
+			// Merge Characteristics
+			Map<CharacteristicName, Integer> characteristicsMinimumValues = randomProfile.getCharacteristicsMinimumValues();
+			for (Entry<CharacteristicName, Integer> entry : getCharacteristicsMinimumValues().entrySet()) {
+				characteristicsMinimumValues.put(entry.getKey(), entry.getValue());
+			}
+			this.characteristicsMinimumValues.clear();
+			this.characteristicsMinimumValues.putAll(characteristicsMinimumValues);
+
+			parentMerged = true;
+		}
 	}
 
 	protected static Set<IRandomPreference> removeAny(Set<IRandomPreference> originalPreferences, IRandomPreference preferenceToRemove) {
@@ -59,13 +88,9 @@ public abstract class RandomProfile implements IRandomProfile {
 		return originalPreferences;
 	}
 
-	protected void addPreferences(Set<IRandomPreference> newPreferences) {
-		randomPreferences = mergePreferences(randomPreferences, newPreferences);
-	}
-
 	@Override
 	public Map<CharacteristicName, Integer> getCharacteristicsMinimumValues() {
-		return new HashMap<>();
+		return characteristicsMinimumValues;
 	}
 
 	@Override
@@ -91,5 +116,13 @@ public abstract class RandomProfile implements IRandomProfile {
 	@Override
 	public Set<IRandomPreference> getPreferences() {
 		return randomPreferences;
+	}
+
+	public boolean isParentMerged() {
+		return parentMerged;
+	}
+
+	public void setParentMerged(boolean parentMerged) {
+		this.parentMerged = parentMerged;
 	}
 }

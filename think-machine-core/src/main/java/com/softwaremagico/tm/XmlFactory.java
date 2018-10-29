@@ -218,8 +218,6 @@ public abstract class XmlFactory<T extends Element<T>> {
 			String staticProbability = translator.getNodeValue(element.getId(), RANDOM, STATIC_PROBABILITY);
 			if (staticProbability != null) {
 				element.getRandomDefinition().setStaticProbability(Integer.parseInt(staticProbability));
-			} else {
-				element.getRandomDefinition().setStaticProbability(1);
 			}
 		} catch (NumberFormatException nfe) {
 			throw new InvalidXmlElementException("Invalid number value for element probability in '" + element.getId() + "'.");

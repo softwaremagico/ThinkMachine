@@ -57,8 +57,8 @@ import com.softwaremagico.tm.character.combat.CombatStyle;
 import com.softwaremagico.tm.character.combat.LearnedStance;
 import com.softwaremagico.tm.character.creation.CostCalculator;
 import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
-import com.softwaremagico.tm.character.cybernetics.Cybernetics;
 import com.softwaremagico.tm.character.cybernetics.CyberneticDevice;
+import com.softwaremagico.tm.character.cybernetics.Cybernetics;
 import com.softwaremagico.tm.character.equipment.armour.Armour;
 import com.softwaremagico.tm.character.equipment.armour.InvalidArmourException;
 import com.softwaremagico.tm.character.equipment.shield.InvalidShieldException;
@@ -1019,6 +1019,10 @@ public class CharacterPlayer {
 
 	public Map<String, List<String>> getSelectedPowers() {
 		return getOccultism().getSelectedPowers();
+	}
+
+	public int getTotalSelectedPowers() {
+		return getOccultism().getTotalSelectedPowers();
 	}
 
 	public void addOccultismPower(OccultismPower power) throws InvalidOccultismPowerException {

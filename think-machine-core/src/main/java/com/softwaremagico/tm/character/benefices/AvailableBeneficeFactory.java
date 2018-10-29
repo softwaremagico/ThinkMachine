@@ -31,6 +31,7 @@ import java.util.Map;
 import java.util.Set;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
+import com.softwaremagico.tm.random.definition.RandomElementDefinition;
 
 public class AvailableBeneficeFactory {
 	private Map<String, Map<String, AvailableBenefice>> availableBenefices;
@@ -71,7 +72,7 @@ public class AvailableBeneficeFactory {
 					for (Integer cost : benefitDefinition.getCosts()) {
 						String id = benefitDefinition.getId() + (benefitDefinition.getCosts().size() == 1 ? "" : "_" + cost);
 						AvailableBenefice availableBenefice = new AvailableBenefice(id, benefitDefinition.getName(), language, benefitDefinition,
-								benefitDefinition.getBeneficeClassification(), cost);
+								benefitDefinition.getBeneficeClassification(), cost, benefitDefinition.getRandomDefinition());
 						addAvailableBenefice(language, id, benefitDefinition, availableBenefice);
 					}
 				} else {
@@ -80,7 +81,8 @@ public class AvailableBeneficeFactory {
 						if (specialization.getCost() != null) {
 							String id = benefitDefinition.getId() + " [" + specialization.getId() + "]";
 							AvailableBenefice availableBenefice = new AvailableBenefice(id, specialization.getName(), language, benefitDefinition,
-									specialization.getClassification(), specialization.getCost());
+									specialization.getClassification(), specialization.getCost(), new RandomElementDefinition(
+											benefitDefinition.getRandomDefinition(), specialization.getRandomDefinition()));
 							availableBenefice.setSpecialization(specialization);
 							addAvailableBenefice(language, id, benefitDefinition, availableBenefice);
 						} else {
@@ -88,7 +90,8 @@ public class AvailableBeneficeFactory {
 								String id = benefitDefinition.getId() + (benefitDefinition.getCosts().size() == 1 ? "" : "_" + cost) + " ["
 										+ specialization.getId() + "]";
 								AvailableBenefice availableBenefice = new AvailableBenefice(id, specialization.getName(), language, benefitDefinition,
-										specialization.getClassification(), cost);
+										specialization.getClassification(), cost, new RandomElementDefinition(benefitDefinition.getRandomDefinition(),
+												specialization.getRandomDefinition()));
 								availableBenefice.setSpecialization(specialization);
 								addAvailableBenefice(language, id, benefitDefinition, availableBenefice);
 							}

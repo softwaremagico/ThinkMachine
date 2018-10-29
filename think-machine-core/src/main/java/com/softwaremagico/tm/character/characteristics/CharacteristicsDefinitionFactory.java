@@ -66,6 +66,7 @@ public class CharacteristicsDefinitionFactory extends XmlFactory<CharacteristicD
 		super.clearCache();
 	}
 
+	@Override
 	protected void initialize() {
 		super.initialize();
 

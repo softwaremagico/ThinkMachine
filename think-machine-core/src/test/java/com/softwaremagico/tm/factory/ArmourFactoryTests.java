@@ -42,6 +42,11 @@ public class ArmourFactoryTests {
 	}
 
 	@Test
+	public void readArmoursSpecifications() throws InvalidXmlElementException {
+		Assert.assertEquals(ArmourFactory.getInstance().getElement("adeptRobes", LANGUAGE).getSpecifications().size(), 7);
+	}
+
+	@Test
 	public void readShieldsOfArmour() throws InvalidXmlElementException {
 		Assert.assertEquals(ArmourFactory.getInstance().getElement("synthsilk", LANGUAGE).getAllowedShields().size(), 4);
 		Assert.assertEquals(ArmourFactory.getInstance().getElement("adeptRobes", LANGUAGE).getAllowedShields().size(), 1);

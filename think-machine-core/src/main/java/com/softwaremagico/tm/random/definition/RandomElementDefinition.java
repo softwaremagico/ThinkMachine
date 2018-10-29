@@ -39,12 +39,69 @@ public class RandomElementDefinition {
 	private Double probabilityMultiplier;
 	private final Set<Faction> restrictedFactions = new HashSet<>();
 	private final Set<Faction> recommendedFactions = new HashSet<>();
-	private final Set<Race> restrictedRaces = new HashSet<>();
 	private final Set<Race> forbiddenRaces = new HashSet<>();
+	private final Set<Race> restrictedRaces = new HashSet<>();
 	private final Set<Race> recommendedRaces = new HashSet<>();
 	private final Set<FactionGroup> restrictedFactionGroups = new HashSet<>();
 	private final Set<FactionGroup> recommendedFactionGroups = new HashSet<>();
 	private RandomProbabilityDefinition probability;
+
+	public RandomElementDefinition() {
+
+	}
+
+	public RandomElementDefinition(RandomElementDefinition... randomDefinitions) {
+		this();
+		for (RandomElementDefinition randomDefinition : randomDefinitions) {
+			update(randomDefinition);
+		}
+	}
+
+	private void update(RandomElementDefinition randomDefinition) {
+		if (randomDefinition.getStaticProbability() != null) {
+			setStaticProbability(randomDefinition.getStaticProbability());
+		}
+		if (randomDefinition.getMinimumTechLevel() != null) {
+			setMinimumTechLevel(randomDefinition.getMinimumTechLevel());
+		}
+		if (randomDefinition.getMaximumTechLevel() != null) {
+			setMaximumTechLevel(randomDefinition.getMaximumTechLevel());
+		}
+		if (randomDefinition.getProbabilityMultiplier() != null) {
+			setProbabilityMultiplier(randomDefinition.getProbabilityMultiplier());
+		}
+		if (randomDefinition.getRestrictedFactions() != null && !randomDefinition.getRestrictedFactions().isEmpty()) {
+			restrictedFactions.clear();
+			restrictedFactions.addAll(randomDefinition.getRestrictedFactions());
+		}
+		if (randomDefinition.getRecommendedFactions() != null && !randomDefinition.getRecommendedFactions().isEmpty()) {
+			recommendedFactions.clear();
+			recommendedFactions.addAll(randomDefinition.getRecommendedFactions());
+		}
+		if (randomDefinition.getRecommendedRaces() != null && !randomDefinition.getRecommendedRaces().isEmpty()) {
+			recommendedRaces.clear();
+			recommendedRaces.addAll(randomDefinition.getRecommendedRaces());
+		}
+		if (randomDefinition.getForbiddenRaces() != null && !randomDefinition.getForbiddenRaces().isEmpty()) {
+			forbiddenRaces.clear();
+			forbiddenRaces.addAll(randomDefinition.getForbiddenRaces());
+		}
+		if (randomDefinition.getRestrictedRaces() != null && !randomDefinition.getRestrictedRaces().isEmpty()) {
+			restrictedRaces.clear();
+			restrictedRaces.addAll(randomDefinition.getRestrictedRaces());
+		}
+		if (randomDefinition.getRestrictedFactionGroups() != null && !randomDefinition.getRestrictedFactionGroups().isEmpty()) {
+			restrictedFactionGroups.clear();
+			restrictedFactionGroups.addAll(randomDefinition.getRestrictedFactionGroups());
+		}
+		if (randomDefinition.getRecommendedFactionsGroups() != null && !randomDefinition.getRecommendedFactionsGroups().isEmpty()) {
+			recommendedFactionGroups.clear();
+			recommendedFactionGroups.addAll(randomDefinition.getRecommendedFactionsGroups());
+		}
+		if (randomDefinition.getProbability() != null) {
+			setProbability(randomDefinition.getProbability());
+		}
+	}
 
 	public Integer getMinimumTechLevel() {
 		if (minimumTechLevel == null) {
@@ -150,7 +207,7 @@ public class RandomElementDefinition {
 	public Set<Race> getRestrictedRaces() {
 		return restrictedRaces;
 	}
-	
+
 	public void addForbiddenRace(Race forbiddenRace) {
 		if (forbiddenRace != null) {
 			forbiddenRaces.add(forbiddenRace);
@@ -159,5 +216,9 @@ public class RandomElementDefinition {
 
 	public Set<Race> getForbiddenRaces() {
 		return forbiddenRaces;
+	}
+
+	public Set<FactionGroup> getRestrictedFactionGroups() {
+		return restrictedFactionGroups;
 	}
 }

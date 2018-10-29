@@ -54,10 +54,10 @@ public enum SkillGroupPreferences implements IRandomPreference {
 		this.skillGroup = skillGroup;
 	}
 
-	public static SkillGroupPreferences getSkillGroupPreference(String tag) {
-		if (tag != null) {
+	public static SkillGroupPreferences getSkillGroupPreference(SkillGroup skillGroup) {
+		if (skillGroup != null) {
 			for (SkillGroupPreferences skillGroupPreference : SkillGroupPreferences.values()) {
-				if (skillGroupPreference.name().equalsIgnoreCase(tag.toLowerCase())) {
+				if (skillGroupPreference.getSkillGroup() == skillGroup) {
 					return skillGroupPreference;
 				}
 			}
