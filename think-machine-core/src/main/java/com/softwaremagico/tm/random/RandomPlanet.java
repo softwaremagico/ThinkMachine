@@ -24,8 +24,8 @@ package com.softwaremagico.tm.random;
  * #L%
  */
 
+import java.util.Collection;
 import java.util.Set;
-import java.util.TreeMap;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
@@ -34,14 +34,14 @@ import com.softwaremagico.tm.character.planet.Planet;
 import com.softwaremagico.tm.character.planet.PlanetFactory;
 import com.softwaremagico.tm.character.race.InvalidRaceException;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
-import com.softwaremagico.tm.random.selectors.IRandomPreferences;
+import com.softwaremagico.tm.random.selectors.IRandomPreference;
 
 public class RandomPlanet extends RandomSelector<Planet> {
 	private final static int FACTION_PLANET = 50;
 	private final static int NEUTRAL_PLANET = 5;
 	private final static int ENEMY_PLANET = 1;
 
-	protected RandomPlanet(CharacterPlayer characterPlayer, Set<IRandomPreferences> preferences) throws InvalidXmlElementException {
+	protected RandomPlanet(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences) throws InvalidXmlElementException {
 		super(characterPlayer, preferences);
 	}
 
@@ -50,17 +50,8 @@ public class RandomPlanet extends RandomSelector<Planet> {
 	}
 
 	@Override
-	protected TreeMap<Integer, Planet> assignElementsWeight() throws InvalidXmlElementException {
-		TreeMap<Integer, Planet> weightedPlanets = new TreeMap<>();
-		int count = 1;
-		for (Planet planet : PlanetFactory.getInstance().getElements(getCharacterPlayer().getLanguage())) {
-			int weight = getWeight(planet);
-			if (weight > 0) {
-				weightedPlanets.put(count, planet);
-				count += weight;
-			}
-		}
-		return weightedPlanets;
+	protected Collection<Planet> getAllElements() throws InvalidXmlElementException {
+		return PlanetFactory.getInstance().getElements(getCharacterPlayer().getLanguage());
 	}
 
 	@Override

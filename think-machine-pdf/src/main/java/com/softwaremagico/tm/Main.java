@@ -62,8 +62,6 @@ public class Main {
 				CharacterPlayer player = CharacterJsonManager.fromFile(jsonFile);
 				sheet = new CharacterSheet(player);
 				sheet.createFile(destinationPath + "FadingSuns_" + language.toUpperCase() + ".pdf");
-
-				player = CharacterJsonManager.fromFile(jsonFile);
 			} catch (IOException e) {
 				PdfExporterLog.errorMessage(Main.class.getName(), e);
 			}

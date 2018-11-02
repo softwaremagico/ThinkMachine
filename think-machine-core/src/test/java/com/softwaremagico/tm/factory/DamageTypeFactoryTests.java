@@ -24,8 +24,7 @@ package com.softwaremagico.tm.factory;
  * #L%
  */
 
-import junit.framework.Assert;
-
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
@@ -34,11 +33,11 @@ import com.softwaremagico.tm.character.equipment.DamageTypeFactory;
 @Test(groups = { "damageFactory" })
 public class DamageTypeFactoryTests {
 
-	private final static int DEFINED_DAMAGES = 15;
+	private final static int DEFINED_DAMAGES = 17;
 	private final static String LANGUAGE = "es";
-	
+
 	@Test
 	public void readDamages() throws InvalidXmlElementException {
-		Assert.assertEquals(DEFINED_DAMAGES, DamageTypeFactory.getInstance().getElements(LANGUAGE).size());
+		Assert.assertEquals(DamageTypeFactory.getInstance().getElements(LANGUAGE).size(), DEFINED_DAMAGES);
 	}
 }

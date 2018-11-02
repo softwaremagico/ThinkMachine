@@ -32,11 +32,11 @@ import com.softwaremagico.tm.character.creation.CostCalculator;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.log.RandomGenerationLog;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
-import com.softwaremagico.tm.random.selectors.IRandomPreferences;
+import com.softwaremagico.tm.random.selectors.IRandomPreference;
 
 public class RandomSkillExtraPoints extends RandomSkills {
 
-	public RandomSkillExtraPoints(CharacterPlayer characterPlayer, Set<IRandomPreferences> preferences) throws InvalidXmlElementException {
+	public RandomSkillExtraPoints(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences) throws InvalidXmlElementException {
 		super(characterPlayer, preferences);
 	}
 

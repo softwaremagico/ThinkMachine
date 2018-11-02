@@ -36,10 +36,11 @@ import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.combat.CombatAction;
 import com.softwaremagico.tm.character.combat.CombatStyle;
+import com.softwaremagico.tm.character.combat.CombatStyleGroup;
 import com.softwaremagico.tm.character.combat.LearnedStance;
-import com.softwaremagico.tm.character.cybernetics.Device;
-import com.softwaremagico.tm.character.equipment.Armour;
-import com.softwaremagico.tm.character.equipment.Shield;
+import com.softwaremagico.tm.character.cybernetics.CyberneticDevice;
+import com.softwaremagico.tm.character.equipment.armour.ArmourFactory;
+import com.softwaremagico.tm.character.equipment.shield.ShieldFactory;
 import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
 import com.softwaremagico.tm.character.factions.FactionsFactory;
 import com.softwaremagico.tm.character.occultism.OccultismPathFactory;
@@ -53,8 +54,8 @@ public class CustomCharacter {
 	public static CharacterPlayer create(String language) throws InvalidXmlElementException, TooManyBlessingsException {
 		CacheHandler.clearCache();
 		CharacterPlayer player = new CharacterPlayer(language);
-		player.getInfo().addName(new Name("Oliver", Gender.MALE, null));
-		player.getInfo().setSurname(new Surname("Queen", null));
+		player.getInfo().addName(new Name("Oliver", language, Gender.MALE, null));
+		player.getInfo().setSurname(new Surname("Queen", language, null));
 		player.getInfo().setPlayer("Player 1");
 		player.getInfo().setGender(Gender.MALE);
 		player.getInfo().setAge(30);
@@ -108,19 +109,19 @@ public class CustomCharacter {
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("heir", player.getLanguage()));
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("wireblade", player.getLanguage()));
 
-		player.getCybernetics().addElement(new Device("Ojo de Ingeniero", 6, 5, "Normal", "Normal", "Automático", "Visible", ""));
-		player.getCybernetics().addElement(new Device("Jonás", 7, 4, "Normal", "Normal", "Ds+Arquería", "Incógnito", ""));
+		player.getCybernetics().addElement(new CyberneticDevice("Ojo de Ingeniero", language, 6, 5, "Normal", "Normal", "Automático", "Visible", ""));
+		player.getCybernetics().addElement(new CyberneticDevice("Jonás", language, 7, 4, "Normal", "Normal", "Ds+Arquería", "Incógnito", ""));
 
-		CombatStyle gun = new CombatStyle("pistola");
-		gun.addElement(new CombatAction("Disparo Instantáneo", null, null, "-2 por 3 disparos"));
-		gun.addElement(new CombatAction("Rueda y Dispara", null, null, "Mover 3m"));
-		gun.addElement(new CombatAction("Corre y Dispara", null, null, "Especial"));
+		CombatStyle gun = new CombatStyle("pistola", CombatStyleGroup.RANGED);
+		gun.addElement(new CombatAction("Disparo Instantáneo", language, null, null, "-2 por 3 disparos"));
+		gun.addElement(new CombatAction("Rueda y Dispara", language, null, null, "Mover 3m"));
+		gun.addElement(new CombatAction("Corre y Dispara", language, null, null, "Especial"));
 		player.getRangedCombatStyles().add(gun);
 
-		CombatStyle shaidan = new CombatStyle("shaidan");
-		shaidan.addElement(new CombatAction("Palma Real", null, "-1", ""));
-		shaidan.addElement(new CombatAction("Con un Pie en el Trono", 4, null, "+4 a resistir derribos"));
-		shaidan.addElement(new CombatAction("Decreto Imperial", null, "+1 / 1W", null));
+		CombatStyle shaidan = new CombatStyle("shaidan", CombatStyleGroup.MELEE);
+		shaidan.addElement(new CombatAction("Palma Real", language, null, "-1", ""));
+		shaidan.addElement(new CombatAction("Con un Pie en el Trono", language, 4, null, "+4 a resistir derribos"));
+		shaidan.addElement(new CombatAction("Decreto Imperial", language, null, "+1 / 1W", null));
 		player.getMeleeCombatStyles().add(shaidan);
 
 		player.getLearnedStances().add(new LearnedStance("Posición Acrobática", "+1 a defensa por volteretas"));
@@ -128,9 +129,9 @@ public class CustomCharacter {
 		player.getWeapons().addElement(WeaponFactory.getInstance().getElement("mace", language));
 		player.getWeapons().addElement(WeaponFactory.getInstance().getElement("martechGold", language));
 
-		player.setArmour(new Armour("Cuero Sintético", 7, true, false, false, false, false, false, true, 6, -1, 0, 0, 0, 500));
+		player.setArmour(ArmourFactory.getInstance().getElement("synthsilk", language));
 
-		player.setShield(new Shield("Escudo de Asalto", 5, 15, 20, 3000));
+		player.setShield(ShieldFactory.getInstance().getElement("assaultShield", language));
 
 		return player;
 	}

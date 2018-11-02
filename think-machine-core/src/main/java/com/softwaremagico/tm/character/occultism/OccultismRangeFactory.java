@@ -54,11 +54,10 @@ public class OccultismRangeFactory extends XmlFactory<OccultismRange> {
 	}
 
 	@Override
-	protected OccultismRange createElement(ITranslator translator, String rangeId, String language)
-			throws InvalidXmlElementException {
+	protected OccultismRange createElement(ITranslator translator, String rangeId, String language) throws InvalidXmlElementException {
 		try {
 			String name = translator.getNodeValue(rangeId, NAME, language);
-			return new OccultismRange(rangeId, name);
+			return new OccultismRange(rangeId, name, language);
 		} catch (Exception e) {
 			throw new InvalidOccultismRangeException("Invalid structure in range '" + rangeId + "'.", e);
 		}

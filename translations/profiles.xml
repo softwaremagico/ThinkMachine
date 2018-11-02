@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<profiles>
+	<soldier>
+		<name>
+			<en>Soldier</en>
+			<es>Soldado</es>
+		</name>
+		<preferences>CombatPreferences.BELLIGERENT, CharacteristicsPreferences.BODY, SkillGroupPreferences.COMBAT, SpecializationPreferences.SPECIALIZED, StatusPreferences.LOW, TechnologicalPreferences.MODERN, WeaponsPreferences.HIGH</preferences>
+		<parent></parent>
+		<characteristicsMinimumValues>
+			<dexterity>6</dexterity>
+		</characteristicsMinimumValues>
+	</soldier>
+	<soldierLiHalan>
+		<name>
+			<en>Li Halan Soldier</en>
+			<es>Soldado Li Halan</es>
+		</name>
+		<parent>soldier</parent>
+		<characteristicsMinimumValues>
+			<tech>7</tech>
+		</characteristicsMinimumValues>
+	</soldierLiHalan>
+</profiles>

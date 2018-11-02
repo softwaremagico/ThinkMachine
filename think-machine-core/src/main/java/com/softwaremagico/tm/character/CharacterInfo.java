@@ -39,14 +39,6 @@ public class CharacterInfo {
 
 	private Surname surname;
 
-	public Surname getSurname() {
-		return surname;
-	}
-
-	public void setSurname(Surname surname) {
-		this.surname = surname;
-	}
-
 	private String player;
 
 	private Gender gender;
@@ -191,6 +183,14 @@ public class CharacterInfo {
 
 	public void setComplexion(String complexion) {
 		this.complexion = complexion;
+	}
+
+	public Surname getSurname() {
+		return surname;
+	}
+
+	public void setSurname(Surname surname) {
+		this.surname = surname;
 	}
 
 }

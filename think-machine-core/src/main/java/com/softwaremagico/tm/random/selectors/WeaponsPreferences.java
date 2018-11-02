@@ -26,7 +26,7 @@ package com.softwaremagico.tm.random.selectors;
 
 import java.util.Set;
 
-public enum WeaponsPreferences implements IRandomPreferences {
+public enum WeaponsPreferences implements IRandomPreference {
 
 	NONE(0f, 0f),
 
@@ -46,8 +46,8 @@ public enum WeaponsPreferences implements IRandomPreferences {
 		this.rangeWeaponProbability = rangeWeaponProbability;
 	}
 
-	public static WeaponsPreferences getSelected(Set<IRandomPreferences> preferences) {
-		for (IRandomPreferences preference : preferences) {
+	public static WeaponsPreferences getSelected(Set<IRandomPreference> preferences) {
+		for (IRandomPreference preference : preferences) {
 			if (preference instanceof WeaponsPreferences) {
 				return (WeaponsPreferences) preference;
 			}

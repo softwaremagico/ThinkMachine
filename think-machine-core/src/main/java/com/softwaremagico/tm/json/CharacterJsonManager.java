@@ -35,6 +35,15 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.character.benefices.AvailableBenefice;
+import com.softwaremagico.tm.character.blessings.Blessing;
+import com.softwaremagico.tm.character.characteristics.CharacteristicDefinition;
+import com.softwaremagico.tm.character.equipment.armour.Armour;
+import com.softwaremagico.tm.character.equipment.shield.Shield;
+import com.softwaremagico.tm.character.equipment.weapons.Weapon;
+import com.softwaremagico.tm.character.factions.Faction;
+import com.softwaremagico.tm.character.race.Race;
+import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.character.values.IValue;
 
 public class CharacterJsonManager {
@@ -43,7 +52,17 @@ public class CharacterJsonManager {
 		if (characterPlayer != null) {
 			GsonBuilder gsonBuilder = new GsonBuilder();
 			gsonBuilder.setPrettyPrinting();
+			gsonBuilder.setExclusionStrategies(new AnnotationExclusionStrategy()).create();
 			gsonBuilder.registerTypeAdapter(IValue.class, new IValueSerializer<IValue>());
+			gsonBuilder.registerTypeAdapter(Faction.class, new FactionAdapter());
+			gsonBuilder.registerTypeAdapter(Blessing.class, new BlessingAdapter());
+			gsonBuilder.registerTypeAdapter(AvailableBenefice.class, new AvailableBeneficeAdapter());
+			gsonBuilder.registerTypeAdapter(AvailableSkill.class, new AvailableSkillAdapter());
+			gsonBuilder.registerTypeAdapter(CharacteristicDefinition.class, new CharacteristicDefinitionAdapter());
+			gsonBuilder.registerTypeAdapter(Race.class, new RaceAdapter());
+			gsonBuilder.registerTypeAdapter(Weapon.class, new WeaponAdapter());
+			gsonBuilder.registerTypeAdapter(Armour.class, new ArmourAdapter());
+			gsonBuilder.registerTypeAdapter(Shield.class, new ShieldAdapter());
 			// final Gson gson = new
 			// GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
 			Gson gson = gsonBuilder.create();
@@ -58,6 +77,15 @@ public class CharacterJsonManager {
 			GsonBuilder gsonBuilder = new GsonBuilder();
 			gsonBuilder.setPrettyPrinting();
 			gsonBuilder.registerTypeAdapter(IValue.class, new InterfaceAdapter<IValue>());
+			gsonBuilder.registerTypeAdapter(Faction.class, new FactionAdapter());
+			gsonBuilder.registerTypeAdapter(Blessing.class, new BlessingAdapter());
+			gsonBuilder.registerTypeAdapter(AvailableBenefice.class, new AvailableBeneficeAdapter());
+			gsonBuilder.registerTypeAdapter(AvailableSkill.class, new AvailableSkillAdapter());
+			gsonBuilder.registerTypeAdapter(CharacteristicDefinition.class, new CharacteristicDefinitionAdapter());
+			gsonBuilder.registerTypeAdapter(Race.class, new RaceAdapter());
+			gsonBuilder.registerTypeAdapter(Weapon.class, new WeaponAdapter());
+			gsonBuilder.registerTypeAdapter(Armour.class, new ArmourAdapter());
+			gsonBuilder.registerTypeAdapter(Shield.class, new ShieldAdapter());
 			Gson gson = gsonBuilder.create();
 
 			CharacterPlayer characterPlayer = gson.fromJson(jsonText, CharacterPlayer.class);

@@ -48,6 +48,7 @@ public class JsonTests {
 	private final static String LANGUAGE = "es";
 
 	private CharacterPlayer player;
+	private String originalJson;
 
 	@BeforeClass
 	public void clearCache() throws InvalidXmlElementException, TooManyBlessingsException {
@@ -59,9 +60,9 @@ public class JsonTests {
 	@Test
 	public void exportToJson() throws InvalidXmlElementException, DuplicatedPreferenceException, IOException {
 		Assert.assertNotNull(player);
-		String jsonText = CharacterJsonManager.toJson(player);
+		originalJson = CharacterJsonManager.toJson(player);
 		try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(OUTPUT_PATH)), true)) {
-			out.println(jsonText);
+			out.println(originalJson);
 		}
 	}
 
@@ -69,5 +70,6 @@ public class JsonTests {
 	public void importFromJson() throws IOException, InvalidXmlElementException {
 		CharacterPlayer player = CharacterJsonManager.fromFile(OUTPUT_PATH);
 		Assert.assertEquals(CostCalculator.getCost(player), 50);
+		Assert.assertEquals(CharacterJsonManager.toJson(player), originalJson);
 	}
 }

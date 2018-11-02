@@ -54,11 +54,10 @@ public class OccultismDurationFactory extends XmlFactory<OccultismDuration> {
 	}
 
 	@Override
-	protected OccultismDuration createElement(ITranslator translator, String rangeId, String language)
-			throws InvalidXmlElementException {
+	protected OccultismDuration createElement(ITranslator translator, String rangeId, String language) throws InvalidXmlElementException {
 		try {
 			String name = translator.getNodeValue(rangeId, NAME, language);
-			return new OccultismDuration(rangeId, name);
+			return new OccultismDuration(rangeId, name, language);
 		} catch (Exception e) {
 			throw new InvalidOccultismDurationException("Invalid structure in duration '" + rangeId + "'.", e);
 		}

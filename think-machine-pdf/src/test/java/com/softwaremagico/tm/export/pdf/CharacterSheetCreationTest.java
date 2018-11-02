@@ -24,11 +24,8 @@ package com.softwaremagico.tm.export.pdf;
  * #L%
  */
 
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.net.MalformedURLException;
 
 import org.testng.Assert;
@@ -48,19 +45,19 @@ import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.combat.CombatAction;
 import com.softwaremagico.tm.character.combat.CombatStyle;
+import com.softwaremagico.tm.character.combat.CombatStyleGroup;
 import com.softwaremagico.tm.character.combat.LearnedStance;
 import com.softwaremagico.tm.character.creation.CostCalculator;
-import com.softwaremagico.tm.character.cybernetics.Device;
-import com.softwaremagico.tm.character.equipment.Armour;
-import com.softwaremagico.tm.character.equipment.Shield;
+import com.softwaremagico.tm.character.cybernetics.CyberneticDevice;
+import com.softwaremagico.tm.character.equipment.armour.ArmourFactory;
+import com.softwaremagico.tm.character.equipment.shield.ShieldFactory;
 import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
 import com.softwaremagico.tm.character.factions.FactionsFactory;
 import com.softwaremagico.tm.character.occultism.OccultismPathFactory;
 import com.softwaremagico.tm.character.occultism.OccultismTypeFactory;
 import com.softwaremagico.tm.character.planet.PlanetFactory;
-import com.softwaremagico.tm.character.race.Race;
+import com.softwaremagico.tm.character.race.RaceFactory;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
-import com.softwaremagico.tm.json.CharacterJsonManager;
 import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.pdf.complete.CharacterSheet;
 import com.softwaremagico.tm.pdf.small.SmallCharacterSheet;
@@ -92,34 +89,30 @@ public class CharacterSheetCreationTest {
 		CharacterSheet sheet = new CharacterSheet("en");
 		sheet.createFile(PDF_PATH_OUTPUT + "FadingSuns_EN.pdf");
 	}
-	
-	
+
 	@Test
-	public void emptyPdfSmallEn() throws InvalidXmlElementException, DuplicatedPreferenceException,
-			InvalidRandomElementSelectedException {
+	public void emptyPdfSmallEn() throws InvalidXmlElementException, DuplicatedPreferenceException, InvalidRandomElementSelectedException {
 		SmallCharacterSheet sheet = new SmallCharacterSheet("en");
 		sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "RandomCharacterSmallEmpty_EN.pdf");
 	}
-	
+
 	@Test
-	public void emptyPdfSmallEs() throws InvalidXmlElementException, DuplicatedPreferenceException,
-			InvalidRandomElementSelectedException {
+	public void emptyPdfSmallEs() throws InvalidXmlElementException, DuplicatedPreferenceException, InvalidRandomElementSelectedException {
 		SmallCharacterSheet sheet = new SmallCharacterSheet("es");
 		sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "RandomCharacterSmallEmpty_ES.pdf");
 	}
 
 	@Test
-	public void characterPdfSpanish() throws MalformedURLException, DocumentException, IOException,
-			InvalidXmlElementException, TooManyBlessingsException {
+	public void characterPdfSpanish() throws MalformedURLException, DocumentException, IOException, InvalidXmlElementException, TooManyBlessingsException {
 		CacheHandler.clearCache();
 
 		player = new CharacterPlayer(LANGUAGE);
-		player.getInfo().addName(new Name("John", Gender.MALE, null));
-		player.getInfo().setSurname(new Surname("Sephard", null));
+		player.getInfo().addName(new Name("John", LANGUAGE, Gender.MALE, null));
+		player.getInfo().setSurname(new Surname("Sephard", LANGUAGE, null));
 		player.getInfo().setPlayer("Player 1");
 		player.getInfo().setGender(Gender.MALE);
 		player.getInfo().setAge(30);
-		player.setRace(new Race("Human", 3, 3, 3, 3, 3, 3, 3, 3, 3, 5, 0, 0, 0, 0, 0));
+		player.setRace(RaceFactory.getInstance().getElement("human", LANGUAGE));
 		player.getInfo().setPlanet(PlanetFactory.getInstance().getElement("sutek", LANGUAGE));
 		player.setFaction(FactionsFactory.getInstance().getElement("hazat", LANGUAGE));
 
@@ -152,25 +145,13 @@ public class CharacterSheetCreationTest {
 		player.setPsiqueLevel(OccultismTypeFactory.getPsi(player.getLanguage()), 4);
 		player.setDarkSideLevel(OccultismTypeFactory.getPsi(player.getLanguage()), 1);
 
-		player.addOccultismPower(
-				OccultismPathFactory.getInstance().getElement("farHand", LANGUAGE).getOccultismPowers()
-						.get("liftingHand"));
-		player.addOccultismPower(
-				OccultismPathFactory.getInstance().getElement("farHand", LANGUAGE).getOccultismPowers()
-						.get("throwingHand"));
-		player.addOccultismPower(
-				OccultismPathFactory.getInstance().getElement("sixthSense", LANGUAGE).getOccultismPowers()
-						.get("sensitivity"));
-		player.addOccultismPower(
-				OccultismPathFactory.getInstance().getElement("soma", LANGUAGE).getOccultismPowers().get("toughening")
-				);
-		player.addOccultismPower(
-				OccultismPathFactory.getInstance().getElement("soma", LANGUAGE).getOccultismPowers()
-						.get("strengthening"));
-		player.addOccultismPower(
-				OccultismPathFactory.getInstance().getElement("soma", LANGUAGE).getOccultismPowers().get("quickening"));
-		player.addOccultismPower(
-				OccultismPathFactory.getInstance().getElement("soma", LANGUAGE).getOccultismPowers().get("hardening"));
+		player.addOccultismPower(OccultismPathFactory.getInstance().getElement("farHand", LANGUAGE).getOccultismPowers().get("liftingHand"));
+		player.addOccultismPower(OccultismPathFactory.getInstance().getElement("farHand", LANGUAGE).getOccultismPowers().get("throwingHand"));
+		player.addOccultismPower(OccultismPathFactory.getInstance().getElement("sixthSense", LANGUAGE).getOccultismPowers().get("sensitivity"));
+		player.addOccultismPower(OccultismPathFactory.getInstance().getElement("soma", LANGUAGE).getOccultismPowers().get("toughening"));
+		player.addOccultismPower(OccultismPathFactory.getInstance().getElement("soma", LANGUAGE).getOccultismPowers().get("strengthening"));
+		player.addOccultismPower(OccultismPathFactory.getInstance().getElement("soma", LANGUAGE).getOccultismPowers().get("quickening"));
+		player.addOccultismPower(OccultismPathFactory.getInstance().getElement("soma", LANGUAGE).getOccultismPowers().get("hardening"));
 
 		player.addBlessing(BlessingFactory.getInstance().getElement("curious", player.getLanguage()));
 		player.addBlessing(BlessingFactory.getInstance().getElement("limp", player.getLanguage()));
@@ -181,21 +162,19 @@ public class CharacterSheetCreationTest {
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("heir", player.getLanguage()));
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("wireblade", player.getLanguage()));
 
-		player.getCybernetics().addElement(
-				new Device("Ojo de Ingeniero", 6, 5, "Normal", "Normal", "Automático", "Visible", ""));
-		player.getCybernetics().addElement(
-				new Device("Jonás", 7, 4, "Normal", "Normal", "Ds+Arquería", "Incógnito", ""));
+		player.getCybernetics().addElement(new CyberneticDevice("Ojo de Ingeniero", LANGUAGE, 6, 5, "Normal", "Normal", "Automático", "Visible", ""));
+		player.getCybernetics().addElement(new CyberneticDevice("Jonás", LANGUAGE, 7, 4, "Normal", "Normal", "Ds+Arquería", "Incógnito", ""));
 
-		CombatStyle gun = new CombatStyle("pistola");
-		gun.addElement(new CombatAction("Disparo Instantáneo", null, null, "-2 por 3 disparos"));
-		gun.addElement(new CombatAction("Rueda y Dispara", null, null, "Mover 3m"));
-		gun.addElement(new CombatAction("Corre y Dispara", null, null, "Especial"));
+		CombatStyle gun = new CombatStyle("pistola", CombatStyleGroup.RANGED);
+		gun.addElement(new CombatAction("Disparo Instantáneo", LANGUAGE, null, null, "-2 por 3 disparos"));
+		gun.addElement(new CombatAction("Rueda y Dispara", LANGUAGE, null, null, "Mover 3m"));
+		gun.addElement(new CombatAction("Corre y Dispara", LANGUAGE, null, null, "Especial"));
 		player.getRangedCombatStyles().add(gun);
 
-		CombatStyle shaidan = new CombatStyle("shaidan");
-		shaidan.addElement(new CombatAction("Palma Real", null, "-1", ""));
-		shaidan.addElement(new CombatAction("Con un Pie en el Trono", 4, null, "+4 a resistir derribos"));
-		shaidan.addElement(new CombatAction("Decreto Imperial", null, "+1 / 1W", null));
+		CombatStyle shaidan = new CombatStyle("shaidan", CombatStyleGroup.MELEE);
+		shaidan.addElement(new CombatAction("Palma Real", LANGUAGE, null, "-1", ""));
+		shaidan.addElement(new CombatAction("Con un Pie en el Trono", LANGUAGE, 4, null, "+4 a resistir derribos"));
+		shaidan.addElement(new CombatAction("Decreto Imperial", LANGUAGE, null, "+1 / 1W", null));
 		player.getMeleeCombatStyles().add(shaidan);
 
 		player.getLearnedStances().add(new LearnedStance("Posición Acrobática", "+1 a defensa por volteretas"));
@@ -203,35 +182,14 @@ public class CharacterSheetCreationTest {
 		player.getWeapons().addElement(WeaponFactory.getInstance().getElement("mace", LANGUAGE));
 		player.getWeapons().addElement(WeaponFactory.getInstance().getElement("martechGold", LANGUAGE));
 
-		player.setArmour(new Armour("Cuero Sintético", 7, true, false, false, false, false, false, true, 6, -1, 0, 0, 0, 500));
+		player.setArmour(ArmourFactory.getInstance().getElement("synthsilk", LANGUAGE));
 
-		player.setShield(new Shield("Escudo de Asalto", 5, 15, 20, 3000));
+		player.setShield(ShieldFactory.getInstance().getElement("assaultShield", LANGUAGE));
 
 		LanguagePool.clearCache();
 		CharacterSheet sheet = new CharacterSheet(player);
 		sheet.createFile(PDF_PATH_OUTPUT + "CharacterFS_ES.pdf");
 
 		Assert.assertEquals(CostCalculator.getCost(player), 50);
-	}
-
-	@Test(dependsOnMethods = { "characterPdfSpanish" })
-	public void exportToJson() throws MalformedURLException, DocumentException, IOException {
-		String jsonText = CharacterJsonManager.toJson(player);
-
-		try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(PDF_PATH_OUTPUT
-				+ "CharacterFS_ES.json")), true)) {
-			out.println(jsonText);
-		}
-
-		// get json to object.
-		CharacterPlayer importedCharacter = CharacterJsonManager.fromJson(jsonText);
-		CharacterSheet sheet = new CharacterSheet(importedCharacter);
-		sheet.createFile(PDF_PATH_OUTPUT + "CharacterFS_ES_2.pdf");
-
-		// byte[] f1 = Files.readAllBytes(Paths.get(PDF_PATH_OUTPUT,
-		// "CharacterFS_ES.pdf"));
-		// byte[] f2 = Files.readAllBytes(Paths.get(PDF_PATH_OUTPUT,
-		// "CharacterFS_ES_2.pdf"));
-		// Assert.assertEquals(f1, f2);
 	}
 }

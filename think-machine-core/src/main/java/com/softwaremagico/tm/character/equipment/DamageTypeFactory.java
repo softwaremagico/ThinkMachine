@@ -26,6 +26,7 @@ package com.softwaremagico.tm.character.equipment;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
+import com.softwaremagico.tm.character.equipment.weapons.InvalidWeaponException;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
 
@@ -63,7 +64,7 @@ public class DamageTypeFactory extends XmlFactory<DamageType> {
 		DamageType damageType = null;
 		try {
 			String name = translator.getNodeValue(damageId, NAME, language);
-			damageType = new DamageType(damageId, name);
+			damageType = new DamageType(damageId, name, language);
 		} catch (Exception e) {
 			throw new InvalidWeaponException("Invalid name in damage '" + damageId + "'.", e);
 		}

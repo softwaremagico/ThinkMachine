@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.character.factions;
+package com.softwaremagico.tm.character.equipment.armour;
 
 /*-
  * #%L
@@ -24,6 +24,12 @@ package com.softwaremagico.tm.character.factions;
  * #L%
  */
 
+import com.softwaremagico.tm.Element;
 
-public class FactionRandomDefinitions {
+public class ArmourSpecification extends Element<ArmourSpecification> {
+
+	public ArmourSpecification(String id, String name, String language) {
+		super(id, name, language);
+	}
+
 }

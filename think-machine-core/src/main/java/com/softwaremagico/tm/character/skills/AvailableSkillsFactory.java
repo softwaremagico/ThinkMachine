@@ -147,7 +147,7 @@ public class AvailableSkillsFactory {
 					if (element.getSpecialization() == null) {
 						return element;
 					} else {
-						if (Objects.equals(element.getSpecialization().getId().toLowerCase(), specializationId.toLowerCase())) {
+						if (specializationId != null && Objects.equals(element.getSpecialization().getId().toLowerCase(), specializationId.toLowerCase())) {
 							return element;
 						}
 					}

@@ -1,5 +1,8 @@
 package com.softwaremagico.tm;
 
+import com.softwaremagico.tm.json.ExcludeFromJson;
+import com.softwaremagico.tm.random.definition.RandomElementDefinition;
+
 /*-
  * #%L
  * Think Machine (Core)
@@ -26,11 +29,24 @@ package com.softwaremagico.tm;
 
 public class Element<T extends Element<?>> implements Comparable<T> {
 	private final String id;
+
 	private final String name;
 
-	public Element(String id, String name) {
-		this.id = id;
-		this.name = name;
+	@ExcludeFromJson
+	private final String language;
+
+	@ExcludeFromJson
+	private final RandomElementDefinition randomDefinition;
+
+	public Element(String id, String name, String language) {
+		this(id, name, language, new RandomElementDefinition());
+	}
+
+	public Element(String id, String name, String language, RandomElementDefinition ranDefinition) {
+		this.id = id != null ? id.trim() : null;
+		this.name = name != null ? name.trim() : null;
+		this.language = language;
+		this.randomDefinition = ranDefinition;
 	}
 
 	public String getName() {
@@ -84,5 +100,13 @@ public class Element<T extends Element<?>> implements Comparable<T> {
 		} else if (!id.equals(other.getId()))
 			return false;
 		return true;
+	}
+
+	public RandomElementDefinition getRandomDefinition() {
+		return randomDefinition;
+	}
+
+	public String getLanguage() {
+		return language;
 	}
 }

@@ -1,5 +1,7 @@
 package com.softwaremagico.tm.character.skills;
 
+import com.softwaremagico.tm.random.definition.RandomElementDefinition;
+
 /*-
  * #%L
  * Think Machine (Core)
@@ -32,7 +34,7 @@ public class AvailableSkill extends Skill<AvailableSkill> {
 	private SkillDefinition skillDefinition;
 
 	public AvailableSkill(SkillDefinition skillDefinition) {
-		super(skillDefinition.getId(), skillDefinition.getName());
+		super(skillDefinition.getId(), skillDefinition.getName(), skillDefinition.getLanguage());
 		this.skillDefinition = skillDefinition;
 	}
 
@@ -65,6 +67,18 @@ public class AvailableSkill extends Skill<AvailableSkill> {
 	}
 
 	@Override
+	public String getUniqueId() {
+		return getUniqueId(getId(), getSpecialization());
+	}
+
+	public static String getUniqueId(String id, Specialization specialization) {
+		if (specialization == null) {
+			return id;
+		}
+		return id + "_" + specialization.getId();
+	}
+
+	@Override
 	public String toString() {
 		return getCompleteName();
 	}
@@ -94,10 +108,25 @@ public class AvailableSkill extends Skill<AvailableSkill> {
 		return true;
 	}
 
-	public SkillRandomDefinitions getRandomDefinition() {
+	@Override
+	public RandomElementDefinition getRandomDefinition() {
 		if (getSpecialization() != null) {
 			return getSpecialization().getRandomDefinition();
 		}
 		return getSkillDefinition().getRandomDefinition();
+	}
+
+	@Override
+	public int compareTo(AvailableSkill element) {
+		if (getCompleteName() == null) {
+			if (element.getCompleteName() == null) {
+				return 0;
+			}
+			return -1;
+		}
+		if (element.getCompleteName() == null) {
+			return 1;
+		}
+		return getCompleteName().compareTo(element.getCompleteName());
 	}
 }

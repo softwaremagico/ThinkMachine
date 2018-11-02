@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.character.skills;
+package com.softwaremagico.tm.random.definition;
 
 /*-
  * #%L
@@ -24,15 +24,25 @@ package com.softwaremagico.tm.character.skills;
  * #L%
  */
 
-public enum SkillRandomProbability {
-	MINIMUM, LOW, FAIR, GOOD;
+public enum RandomProbabilityDefinition {
+	MINIMUM(0.01d), LOW(0.1d), FAIR(1d), GOOD(5d);
 
-	public static SkillRandomProbability get(String probabilityName) {
-		for (SkillRandomProbability probability : SkillRandomProbability.values()) {
+	private final double probabilityMultiplicator;
+
+	private RandomProbabilityDefinition(double probabilityMultiplicator) {
+		this.probabilityMultiplicator = probabilityMultiplicator;
+	}
+
+	public static RandomProbabilityDefinition get(String probabilityName) {
+		for (RandomProbabilityDefinition probability : RandomProbabilityDefinition.values()) {
 			if (probability.name().equalsIgnoreCase(probabilityName)) {
 				return probability;
 			}
 		}
 		return null;
+	}
+
+	public double getProbabilityMultiplicator() {
+		return probabilityMultiplicator;
 	}
 }

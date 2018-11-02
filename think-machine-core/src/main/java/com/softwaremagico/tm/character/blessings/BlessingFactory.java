@@ -66,8 +66,7 @@ public class BlessingFactory extends XmlFactory<Blessing> {
 	}
 
 	@Override
-	protected Blessing createElement(ITranslator translator, String blessingId, String language)
-			throws InvalidXmlElementException {
+	protected Blessing createElement(ITranslator translator, String blessingId, String language) throws InvalidXmlElementException {
 
 		try {
 			String name = translator.getNodeValue(blessingId, NAME, language);
@@ -85,15 +84,14 @@ public class BlessingFactory extends XmlFactory<Blessing> {
 			while (true) {
 				try {
 					String bonificationValue = translator.getNodeValue(blessingId, BONIFICATION, VALUE, node);
-					String valueName = translator.getNodeValue(blessingId,  BONIFICATION, AFFECTS, node);
+					String valueName = translator.getNodeValue(blessingId, BONIFICATION, AFFECTS, node);
 					IValue affects = null;
 					if (valueName != null) {
 						affects = SpecialValue.getValue(valueName, language);
 					}
 					String situation = translator.getNodeValue(blessingId, SITUATION, language, node);
 
-					Bonification bonification = new Bonification(Integer.parseInt(bonificationValue), affects,
-							situation);
+					Bonification bonification = new Bonification(Integer.parseInt(bonificationValue), affects, situation);
 					bonifications.add(bonification);
 					node++;
 				} catch (Exception e) {
@@ -110,8 +108,7 @@ public class BlessingFactory extends XmlFactory<Blessing> {
 				}
 			}
 
-			Blessing blessing = new Blessing(blessingId, name, Integer.parseInt(cost), bonifications,
-					blessingClassification, blessingGroup);
+			Blessing blessing = new Blessing(blessingId, name, language, Integer.parseInt(cost), bonifications, blessingClassification, blessingGroup);
 			return blessing;
 		} catch (Exception e) {
 			throw new InvalidBlessingException("Invalid structure in blessing '" + blessingId + "'.", e);

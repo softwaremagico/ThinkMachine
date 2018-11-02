@@ -26,22 +26,27 @@ import java.util.Set;
  * #L%
  */
 
-public enum CombatPreferences implements IRandomPreferences {
-	PEACEFUL(0, 1, WeaponsPreferences.LOW),
+public enum CombatPreferences implements IRandomPreference {
+	PEACEFUL(0, 1, WeaponsPreferences.LOW, ArmourPreferences.NONE, ShieldPreferences.NONE),
 
-	FAIR(2, 5, WeaponsPreferences.MEDIUM),
+	FAIR(2, 5, WeaponsPreferences.MEDIUM, ArmourPreferences.MEDIUM, ShieldPreferences.LOW),
 
-	BELLIGERENT(4, 10, WeaponsPreferences.HIGH);
+	BELLIGERENT(4, 10, WeaponsPreferences.HIGH, ArmourPreferences.HIGH, ShieldPreferences.MEDIUM);
 
 	private final int minimum;
 	private final int maximum;
 
 	private final WeaponsPreferences defaultWeaponPreferences;
+	private final ArmourPreferences defaultArmourPreferences;
+	private final ShieldPreferences defaultShieldPreferences;
 
-	private CombatPreferences(int minimum, int maximum, WeaponsPreferences defaultWeaponPreferences) {
+	private CombatPreferences(int minimum, int maximum, WeaponsPreferences defaultWeaponPreferences, ArmourPreferences defaultArmourPreferences,
+			ShieldPreferences defaultShieldPreferences) {
 		this.maximum = maximum;
 		this.minimum = minimum;
 		this.defaultWeaponPreferences = defaultWeaponPreferences;
+		this.defaultArmourPreferences = defaultArmourPreferences;
+		this.defaultShieldPreferences = defaultShieldPreferences;
 	}
 
 	@Override
@@ -54,8 +59,8 @@ public enum CombatPreferences implements IRandomPreferences {
 		return minimum;
 	}
 
-	public static CombatPreferences getSelected(Set<IRandomPreferences> preferences) {
-		for (IRandomPreferences preference : preferences) {
+	public static CombatPreferences getSelected(Set<IRandomPreference> preferences) {
+		for (IRandomPreference preference : preferences) {
 			if (preference instanceof CombatPreferences) {
 				return (CombatPreferences) preference;
 			}
@@ -65,5 +70,13 @@ public enum CombatPreferences implements IRandomPreferences {
 
 	public WeaponsPreferences getDefaultWeaponPreferences() {
 		return defaultWeaponPreferences;
+	}
+
+	public ArmourPreferences getDefaultArmourPreferences() {
+		return defaultArmourPreferences;
+	}
+
+	public ShieldPreferences getDefaultShieldPreferences() {
+		return defaultShieldPreferences;
 	}
 }

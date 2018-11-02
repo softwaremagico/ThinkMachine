@@ -1,10 +1,10 @@
-package com.softwaremagico.tm.random.selectors;
+package com.softwaremagico.tm.character.equipment.shield;
 
 /*-
  * #%L
  * Think Machine (Core)
  * %%
- * Copyright (C) 2017 - 2018 Softwaremagico
+ * Copyright (C) 2017 Softwaremagico
  * %%
  * This software is designed by Jorge Hortelano Otero. Jorge Hortelano Otero
  * <softwaremagico@gmail.com> Valencia (Spain).
@@ -24,28 +24,16 @@ package com.softwaremagico.tm.random.selectors;
  * #L%
  */
 
-public enum BodyPreferences implements IRandomPreferences {
-	MIND(3, 8),
+import com.softwaremagico.tm.InvalidXmlElementException;
 
-	BODY(3, 8),
+public class InvalidShieldException extends InvalidXmlElementException {
+	private static final long serialVersionUID = 1243337930745480002L;
 
-	SPIRIT(3, 8);
-
-	private final int minimum;
-	private final int maximum;
-
-	private BodyPreferences(int minimum, int maximum) {
-		this.maximum = maximum;
-		this.minimum = minimum;
+	public InvalidShieldException(String message) {
+		super(message);
 	}
 
-	@Override
-	public int maximum() {
-		return maximum;
-	}
-
-	@Override
-	public int minimum() {
-		return minimum;
+	public InvalidShieldException(String message, Exception e) {
+		super(message, e);
 	}
 }

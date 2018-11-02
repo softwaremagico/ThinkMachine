@@ -27,7 +27,7 @@ package com.softwaremagico.tm.character.factions;
 import com.softwaremagico.tm.Element;
 
 public class FactionRankTranslation extends Element<FactionRankTranslation> {
-	public FactionRankTranslation(String id, String name) {
-		super(id, name);
+	public FactionRankTranslation(String id, String name, String language) {
+		super(id, name, language);
 	}
 }

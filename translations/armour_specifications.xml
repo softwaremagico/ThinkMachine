@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<specifications>
+	<abcProtection>
+		<en>Closed Suit (ABC protection)</en>
+		<es>Traje Cerrado (Protección ABC)</es>
+	</abcProtection>
+	<powerPack>
+		<en>Power Pack (200, 24h)</en>
+		<es>Pack de Energía (200, 24h)</es>
+	</powerPack>
+	<lifeSupport30m>
+		<en>Life Support (30 min)</en>
+		<es>Soporte Vital (30min)</es>
+	</lifeSupport30m>
+	<lifeSupport24h>
+		<en>Life Support (24h)</en>
+		<es>Soporte Vital (24h)</es>
+	</lifeSupport24h>
+	<lifeSupport12h>
+		<en>Life Support (12hn)</en>
+		<es>Soporte Vital (12h)</es>
+	</lifeSupport12h>
+	<rangeFinder>
+		<en>Range-finder</en>
+		<es>Telémetro</es>
+	</rangeFinder>
+	<radio>
+		<en>Radio</en>
+		<es>Radio</es>
+	</radio>
+	<binoculars>
+		<en>10x Binoculars</en>
+		<es>Binoculares 10x</es>
+	</binoculars>
+	<radiationProtection>
+		<en>Radiation Protection</en>
+		<es>Protección contra Radiación</es>
+	</radiationProtection>
+	<metal>
+		<en>Metal (-1d energy weapons)</en>
+		<es>Metal (-1d armas de energía)</es>
+	</metal>
+	<occult>
+		<en>Occult</en>
+		<es>Ocultista</es>
+	</occult>
+	<neural>
+		<en>Neural</en>
+		<es>Neuronal</es>
+	</neural>
+</specifications>

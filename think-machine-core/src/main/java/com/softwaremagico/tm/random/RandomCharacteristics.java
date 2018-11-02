@@ -24,8 +24,8 @@ package com.softwaremagico.tm.random;
  * #L%
  */
 
+import java.util.Collection;
 import java.util.Set;
-import java.util.TreeMap;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
@@ -35,19 +35,16 @@ import com.softwaremagico.tm.character.characteristics.CharacteristicType;
 import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
 import com.softwaremagico.tm.character.factions.FactionGroup;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
-import com.softwaremagico.tm.random.selectors.BodyPreferences;
+import com.softwaremagico.tm.random.selectors.CharacteristicsPreferences;
 import com.softwaremagico.tm.random.selectors.CombatPreferences;
-import com.softwaremagico.tm.random.selectors.IRandomPreferences;
+import com.softwaremagico.tm.random.selectors.IRandomPreference;
 import com.softwaremagico.tm.random.selectors.PsiqueLevelPreferences;
 import com.softwaremagico.tm.random.selectors.SpecializationPreferences;
 import com.softwaremagico.tm.random.selectors.TechnologicalPreferences;
 
 public class RandomCharacteristics extends RandomSelector<Characteristic> {
-	private final static int MAX_PROBABILITY = 100000;
-	private final static int GOOD_PROBABILITY = 10;
 
-	public RandomCharacteristics(CharacterPlayer characterPlayer, Set<IRandomPreferences> preferences)
-			throws InvalidXmlElementException {
+	public RandomCharacteristics(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences) throws InvalidXmlElementException {
 		super(characterPlayer, preferences);
 	}
 
@@ -69,32 +66,19 @@ public class RandomCharacteristics extends RandomSelector<Characteristic> {
 	private void assignMinimumValuesOfCharacteristics() {
 		// Default minimums.
 		for (CharacteristicName characteristicName : CharacteristicName.values()) {
-			getCharacterPlayer().getCharacteristic(characteristicName).setValue(
-					getCharacterPlayer().getStartingValue(characteristicName));
+			getCharacterPlayer().getCharacteristic(characteristicName).setValue(getCharacterPlayer().getStartingValue(characteristicName));
 		}
 
-		for (IRandomPreferences preference : getPreferences()) {
+		for (IRandomPreference preference : getPreferences()) {
 			if (preference instanceof TechnologicalPreferences) {
-				getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).setValue(
-						((TechnologicalPreferences) preference).minimum());
+				getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).setValue(((TechnologicalPreferences) preference).minimum());
 			}
 		}
 	}
 
 	@Override
-	protected TreeMap<Integer, Characteristic> assignElementsWeight() {
-		TreeMap<Integer, Characteristic> weightedCharacteristics = new TreeMap<>();
-		int count = 1;
-
-		for (Characteristic characteristic : getCharacterPlayer().getCharacteristics()) {
-			int weight = getWeight(characteristic);
-			if (weight > 0) {
-				weightedCharacteristics.put(count, characteristic);
-				count += weight;
-			}
-		}
-
-		return weightedCharacteristics;
+	protected Collection<Characteristic> getAllElements() throws InvalidXmlElementException {
+		return getCharacterPlayer().getCharacteristics();
 	}
 
 	@Override
@@ -109,49 +93,46 @@ public class RandomCharacteristics extends RandomSelector<Characteristic> {
 
 		int weight = 1;
 		if (CharacteristicType.BODY.equals(characteristic.getType())) {
-			if (getPreferences().contains(BodyPreferences.BODY)) {
-				weight += 2;
+			if (getPreferences().contains(CharacteristicsPreferences.BODY)) {
+				weight += 3;
 			}
 			if (getPreferences().contains(CombatPreferences.BELLIGERENT)) {
-				weight += 1;
+				weight += 2;
 			}
 		}
 		if (CharacteristicType.MIND.equals(characteristic.getType())) {
-			if (getPreferences().contains(BodyPreferences.MIND)) {
-				weight += 2;
+			if (getPreferences().contains(CharacteristicsPreferences.MIND)) {
+				weight += 3;
 			}
 		}
 		if (CharacteristicType.SPIRIT.equals(characteristic.getType())) {
-			if (getPreferences().contains(BodyPreferences.SPIRIT)) {
-				weight += 2;
+			if (getPreferences().contains(CharacteristicsPreferences.SPIRIT)) {
+				weight += 3;
 			}
 		}
 
 		// Specialization desired.
 		SpecializationPreferences selectedSpecialization = SpecializationPreferences.getSelected(getPreferences());
 		if (selectedSpecialization != null) {
-			int characteristicRanks = getCharacterPlayer().getCharacteristic(characteristic.getCharacteristicName())
-					.getValue();
+			int characteristicRanks = getCharacterPlayer().getCharacteristic(characteristic.getCharacteristicName()).getValue();
 			// No more that the maximum allowed.
 			if (characteristicRanks > selectedSpecialization.maximum()) {
 				return 0;
 			}
 			// If selected characteristic (has ranks), must have at least the
 			// minimum.
-			if (getCharacterPlayer().isCharacteristicTrained(characteristic)
-					&& characteristicRanks < selectedSpecialization.minimum()) {
+			if (getCharacterPlayer().isCharacteristicTrained(characteristic) && characteristicRanks < selectedSpecialization.minimum()) {
 				return MAX_PROBABILITY;
 			}
 
 			// Good probability for values between the specialization.
 			if (characteristicRanks > selectedSpecialization.minimum()) {
-				return GOOD_PROBABILITY;
+				return FAIR_PROBABILITY;
 			}
 		}
 
 		// Theurgy
-		if (getCharacterPlayer().getFaction() != null
-				&& getCharacterPlayer().getFaction().getFactionGroup() == FactionGroup.CHURCH) {
+		if (getCharacterPlayer().getFaction() != null && getCharacterPlayer().getFaction().getFactionGroup() == FactionGroup.CHURCH) {
 			if (characteristic.getId().equals("faith")) {
 				return MAX_PROBABILITY;
 			}
@@ -162,7 +143,7 @@ public class RandomCharacteristics extends RandomSelector<Characteristic> {
 			PsiqueLevelPreferences psique = PsiqueLevelPreferences.getSelected(getPreferences());
 			switch (psique) {
 			case FAIR:
-				return GOOD_PROBABILITY;
+				return FAIR_PROBABILITY;
 			case HIGH:
 				return MAX_PROBABILITY;
 			default:
@@ -171,10 +152,9 @@ public class RandomCharacteristics extends RandomSelector<Characteristic> {
 		}
 
 		// Nobility
-		if (getCharacterPlayer().getFaction() != null
-				&& getCharacterPlayer().getFaction().getFactionGroup() == FactionGroup.NOBILITY) {
+		if (getCharacterPlayer().getFaction() != null && getCharacterPlayer().getFaction().getFactionGroup() == FactionGroup.NOBILITY) {
 			if (characteristic.getId().equals("presence")) {
-				return GOOD_PROBABILITY;
+				return FAIR_PROBABILITY;
 			}
 		}
 

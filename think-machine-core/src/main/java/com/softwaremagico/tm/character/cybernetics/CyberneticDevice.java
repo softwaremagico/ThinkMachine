@@ -33,7 +33,7 @@ import com.softwaremagico.tm.character.characteristics.CharacteristicImprovement
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.skills.CyberneticSkill;
 
-public class Device extends Element<Device> {
+public class CyberneticDevice extends Element<CyberneticDevice> {
 	private final int points;
 	private final int incompatibility;
 	private final String usability;
@@ -45,8 +45,9 @@ public class Device extends Element<Device> {
 	private Map<String, CyberneticSkill> skillImprovements;
 	private Map<String, CharacteristicImprovement> characteristicImprovents;
 
-	public Device(String name, int points, int incompatibility, String usability, String quality, String activation, String appearence, String others) {
-		super(null, name);
+	public CyberneticDevice(String name, String language, int points, int incompatibility, String usability, String quality, String activation, String appearence,
+			String others) {
+		super(null, name, language);
 		this.points = points;
 		this.incompatibility = incompatibility;
 		this.usability = usability;

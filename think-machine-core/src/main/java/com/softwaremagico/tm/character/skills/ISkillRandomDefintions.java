@@ -1,5 +1,7 @@
 package com.softwaremagico.tm.character.skills;
 
+import com.softwaremagico.tm.random.definition.RandomElementDefinition;
+
 /*-
  * #%L
  * Think Machine (Core)
@@ -26,8 +28,8 @@ package com.softwaremagico.tm.character.skills;
 
 public interface ISkillRandomDefintions {
 
-	SkillRandomDefinitions getRandomDefinition();
-	
+	RandomElementDefinition getRandomDefinition();
+
 	String getId();
 
 }

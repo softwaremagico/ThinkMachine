@@ -24,8 +24,8 @@ package com.softwaremagico.tm.random;
  * #L%
  */
 
+import java.util.Collection;
 import java.util.Set;
-import java.util.TreeMap;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
@@ -41,14 +41,12 @@ import com.softwaremagico.tm.random.selectors.BlessingPreferences;
 import com.softwaremagico.tm.random.selectors.CombatPreferences;
 import com.softwaremagico.tm.random.selectors.CurseNumberPreferences;
 import com.softwaremagico.tm.random.selectors.IGaussianDistribution;
-import com.softwaremagico.tm.random.selectors.IRandomPreferences;
+import com.softwaremagico.tm.random.selectors.IRandomPreference;
 import com.softwaremagico.tm.random.selectors.SpecializationPreferences;
 
 public class RandomCursesDefinition extends RandomSelector<Blessing> {
-	private final static int MAX_PROBABILITY = 100000;
 
-	protected RandomCursesDefinition(CharacterPlayer characterPlayer, Set<IRandomPreferences> preferences)
-			throws InvalidXmlElementException {
+	protected RandomCursesDefinition(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences) throws InvalidXmlElementException {
 		super(characterPlayer, preferences);
 	}
 
@@ -69,17 +67,8 @@ public class RandomCursesDefinition extends RandomSelector<Blessing> {
 	}
 
 	@Override
-	protected TreeMap<Integer, Blessing> assignElementsWeight() throws InvalidXmlElementException {
-		TreeMap<Integer, Blessing> weightedBlessings = new TreeMap<>();
-		int count = 1;
-		for (Blessing blessing : BlessingFactory.getInstance().getElements(getCharacterPlayer().getLanguage())) {
-			int weight = getWeight(blessing);
-			if (weight > 0) {
-				weightedBlessings.put(count, blessing);
-				count += weight;
-			}
-		}
-		return weightedBlessings;
+	protected Collection<Blessing> getAllElements() throws InvalidXmlElementException {
+		return BlessingFactory.getInstance().getElements(getCharacterPlayer().getLanguage());
 	}
 
 	@Override
@@ -105,7 +94,8 @@ public class RandomCursesDefinition extends RandomSelector<Blessing> {
 				return 0;
 			}
 		}
-		// If specialization is set, not curses that affects the skills with ranks.
+		// If specialization is set, not curses that affects the skills with
+		// ranks.
 		SpecializationPreferences specializationPreferences = SpecializationPreferences.getSelected(getPreferences());
 		if (specializationPreferences.mean() >= SpecializationPreferences.FAIR.mean()) {
 			for (AvailableSkill skill : curse.getAffectedSkill(getCharacterPlayer().getLanguage())) {

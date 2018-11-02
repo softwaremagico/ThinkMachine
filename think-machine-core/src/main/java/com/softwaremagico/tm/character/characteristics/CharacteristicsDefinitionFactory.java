@@ -66,6 +66,7 @@ public class CharacteristicsDefinitionFactory extends XmlFactory<CharacteristicD
 		super.clearCache();
 	}
 
+	@Override
 	protected void initialize() {
 		super.initialize();
 
@@ -110,7 +111,7 @@ public class CharacteristicsDefinitionFactory extends XmlFactory<CharacteristicD
 		CharacteristicDefinition characteristic = null;
 		try {
 			String name = translator.getNodeValue(characteristicId, NAME, language);
-			characteristic = new CharacteristicDefinition(characteristicId, name);
+			characteristic = new CharacteristicDefinition(characteristicId, name, language);
 		} catch (Exception e) {
 			throw new InvalidCharacteristicException("Invalid name in characteristic '" + characteristicId + "'.");
 		}

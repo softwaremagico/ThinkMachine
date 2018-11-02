@@ -246,7 +246,7 @@
 	</beneficesTable>
 	<afflictionsTable>
 		<en>Afflictions</en>
-		<es>Afliciones</es>
+		<es>Aflicciones</es>
 	</afflictionsTable>
 	<beneficesTablePoints>
 		<en>Pts.</en>
@@ -526,19 +526,19 @@
 	</armorPlasmAbbreviature>
 	<armorShockAbbreviature>
 		<en>S</en>
-		<es>I</es>
-	</armorShockAbbreviature>
-	<armorElectricAbbreviature>
-		<en>E</en>
 		<es>E</es>
-	</armorElectricAbbreviature>
+	</armorShockAbbreviature>
+	<armorImpactAbbreviature>
+		<en>I</en>
+		<es>I</es>
+	</armorImpactAbbreviature>
 	<shield>
 		<en>Energy Shield</en>
 		<es>Escudos</es>
 	</shield>
 	<shieldHits>
-		<en>Hits: </en>
-		<es>Cargas: </es>
+		<en>Hits</en>
+		<es>Cargas</es>
 	</shieldHits>
 	<combat>
 		<en>Combat</en>
@@ -552,4 +552,8 @@
 		<en>Firebirds:</en>
 		<es>Fénix:</es>
 	</firebirds>
+	<equipment>
+		<en>Equipment</en>
+		<es>Equipo</es>
+	</equipment>
 </translator>

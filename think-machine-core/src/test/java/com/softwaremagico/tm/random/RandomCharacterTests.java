@@ -30,6 +30,7 @@ import org.testng.annotations.Test;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.character.benefices.AvailableBenefice;
 import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.creation.CostCalculator;
@@ -38,6 +39,7 @@ import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
 import com.softwaremagico.tm.character.factions.FactionGroup;
 import com.softwaremagico.tm.character.factions.FactionsFactory;
 import com.softwaremagico.tm.character.race.RaceFactory;
+import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.character.skills.SkillDefinition;
 import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
@@ -93,9 +95,37 @@ public class RandomCharacterTests {
 	}
 
 	@Test
-	public void readRandomSkillConfiguration() throws InvalidXmlElementException, DuplicatedPreferenceException {
-		SkillDefinition skillDefinition = SkillsDefinitionsFactory.getInstance().get("energyGuns", "en");
-		Assert.assertEquals(skillDefinition.getRandomDefinition().getMinimumTechLevel(), 5);
+	public void readRandomSkillConfigurationarchery() throws InvalidXmlElementException, DuplicatedPreferenceException {
+		SkillDefinition skillDefinition = SkillsDefinitionsFactory.getInstance().get("archery", "en");
+		Assert.assertEquals(skillDefinition.getRandomDefinition().getMinimumTechLevel().intValue(), 0);
+		Assert.assertEquals(skillDefinition.getRandomDefinition().getMaximumTechLevel().intValue(), 2);
+	}
+
+	@Test(expectedExceptions = { InvalidRandomElementSelectedException.class })
+	public void checkSkillLimitationByTechnology() throws InvalidXmlElementException, DuplicatedPreferenceException, InvalidRandomElementSelectedException {
+		CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
+		characterPlayer.getCharacteristic(CharacteristicName.TECH).setValue(7);
+
+		RandomSkills randomSkills = new RandomSkills(characterPlayer, null);
+		AvailableSkill availableSkill = AvailableSkillsFactory.getInstance().getElement("archery", LANGUAGE);
+		randomSkills.validateElement(availableSkill);
+	}
+
+	@Test(expectedExceptions = { InvalidRandomElementSelectedException.class })
+	public void checkBeneficeLimitationByRace() throws InvalidXmlElementException, DuplicatedPreferenceException, InvalidRandomElementSelectedException {
+		CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
+		characterPlayer.setRace(RaceFactory.getInstance().getElement("human", LANGUAGE));
+
+		RandomBeneficeDefinition randomBenefice = new RandomBeneficeDefinition(characterPlayer, null);
+		AvailableBenefice benefice = AvailableBeneficeFactory.getInstance().getElement("language [urthish]", LANGUAGE);
+		randomBenefice.validateElement(benefice.getRandomDefinition());
+	}
+
+	@Test
+	public void readRandomSkillConfigurationSlugs() throws InvalidXmlElementException, DuplicatedPreferenceException {
+		SkillDefinition skillDefinition = SkillsDefinitionsFactory.getInstance().get("slugGuns", "en");
+		Assert.assertEquals(skillDefinition.getRandomDefinition().getMinimumTechLevel().intValue(), 2);
+		Assert.assertEquals(skillDefinition.getRandomDefinition().getMaximumTechLevel().intValue(), 6);
 	}
 
 	@Test
@@ -103,6 +133,7 @@ public class RandomCharacterTests {
 		CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
 		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0, SkillGroupPreferences.COMBAT);
 		randomizeCharacter.createCharacter();
+
 		Assert.assertEquals(CostCalculator.getCost(characterPlayer), FreeStyleCharacterCreation.FREE_AVAILABLE_POINTS);
 		Assert.assertTrue(characterPlayer.getRanksAssigned(SkillGroupPreferences.COMBAT.getSkillGroup()) > 10);
 	}
@@ -196,18 +227,23 @@ public class RandomCharacterTests {
 	public void weaponsSkills() throws DuplicatedPreferenceException, InvalidXmlElementException, InvalidRandomElementSelectedException {
 		CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
 		characterPlayer.getWeapons().addElement(WeaponFactory.getInstance().getElement("axe", LANGUAGE));
-		characterPlayer.getWeapons().addElement(WeaponFactory.getInstance().getElement("typicalHvyAutofeed", LANGUAGE));
 		characterPlayer.getWeapons().addElement(WeaponFactory.getInstance().getElement("martechGold", LANGUAGE));
-		
+
 		Assert.assertTrue(characterPlayer.hasWeaponWithSkill(AvailableSkillsFactory.getInstance().getElement("fight", LANGUAGE)));
-		Assert.assertTrue(characterPlayer.hasWeaponWithSkill(AvailableSkillsFactory.getInstance().getElement("slugGuns", LANGUAGE)));
 		Assert.assertTrue(characterPlayer.hasWeaponWithSkill(AvailableSkillsFactory.getInstance().getElement("energyGuns", LANGUAGE)));
-		
+
+		characterPlayer.getCharacteristic(CharacteristicName.TECH).setValue(6);
+
 		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0);
 		randomizeCharacter.createCharacter();
-		
+
+		RandomSkills randomBenefice = new RandomSkills(characterPlayer, null);
+		AvailableSkill energyGuns = AvailableSkillsFactory.getInstance().getElement("energyGuns", LANGUAGE);
+		randomBenefice.validateElement(energyGuns.getRandomDefinition());
+		AvailableSkill fight = AvailableSkillsFactory.getInstance().getElement("fight", LANGUAGE);
+		randomBenefice.validateElement(fight.getRandomDefinition());
+
 		Assert.assertTrue(characterPlayer.getSkillTotalRanks(AvailableSkillsFactory.getInstance().getElement("fight", LANGUAGE)) > 0);
-		Assert.assertTrue(characterPlayer.getSkillTotalRanks(AvailableSkillsFactory.getInstance().getElement("slugGuns", LANGUAGE)) > 0);
 		Assert.assertTrue(characterPlayer.getSkillTotalRanks(AvailableSkillsFactory.getInstance().getElement("energyGuns", LANGUAGE)) > 0);
 	}
 }

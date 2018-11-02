@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.character.equipment;
+package com.softwaremagico.tm.character.equipment.armour;
 
 /*-
  * #%L
@@ -26,14 +26,14 @@ package com.softwaremagico.tm.character.equipment;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 
-public class InvalidWeaponException extends InvalidXmlElementException {
+public class InvalidArmourException extends InvalidXmlElementException {
 	private static final long serialVersionUID = 1243337930745480002L;
 
-	public InvalidWeaponException(String message) {
+	public InvalidArmourException(String message) {
 		super(message);
 	}
 
-	public InvalidWeaponException(String message, Exception e) {
+	public InvalidArmourException(String message, Exception e) {
 		super(message, e);
 	}
 }

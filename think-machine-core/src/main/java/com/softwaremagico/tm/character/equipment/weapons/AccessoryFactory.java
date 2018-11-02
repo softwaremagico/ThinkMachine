@@ -26,7 +26,6 @@ package com.softwaremagico.tm.character.equipment.weapons;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
-import com.softwaremagico.tm.character.equipment.InvalidWeaponException;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
 
@@ -69,7 +68,7 @@ public class AccessoryFactory extends XmlFactory<Accessory> {
 			throw new InvalidWeaponException("Invalid name in accessory '" + accessoryId + "'.");
 		}
 
-		accessory = new Accessory(accessoryId, name);
+		accessory = new Accessory(accessoryId, name, language);
 
 		return accessory;
 	}

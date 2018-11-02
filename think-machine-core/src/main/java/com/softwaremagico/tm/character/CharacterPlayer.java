@@ -57,10 +57,12 @@ import com.softwaremagico.tm.character.combat.CombatStyle;
 import com.softwaremagico.tm.character.combat.LearnedStance;
 import com.softwaremagico.tm.character.creation.CostCalculator;
 import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
+import com.softwaremagico.tm.character.cybernetics.CyberneticDevice;
 import com.softwaremagico.tm.character.cybernetics.Cybernetics;
-import com.softwaremagico.tm.character.cybernetics.Device;
-import com.softwaremagico.tm.character.equipment.Armour;
-import com.softwaremagico.tm.character.equipment.Shield;
+import com.softwaremagico.tm.character.equipment.armour.Armour;
+import com.softwaremagico.tm.character.equipment.armour.InvalidArmourException;
+import com.softwaremagico.tm.character.equipment.shield.InvalidShieldException;
+import com.softwaremagico.tm.character.equipment.shield.Shield;
 import com.softwaremagico.tm.character.equipment.weapons.Weapon;
 import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
 import com.softwaremagico.tm.character.equipment.weapons.Weapons;
@@ -87,6 +89,7 @@ import com.softwaremagico.tm.character.values.SpecialValue;
 import com.softwaremagico.tm.character.values.SpecialValuesFactory;
 import com.softwaremagico.tm.log.CostCalculatorLog;
 import com.softwaremagico.tm.log.MachineLog;
+import com.softwaremagico.tm.txt.CharacterSheet;
 
 public class CharacterPlayer {
 	private String language;
@@ -109,8 +112,6 @@ public class CharacterPlayer {
 	// Skills
 	private Map<String, SelectedSkill> skills;
 
-	private List<String> skillNameOrdered;
-
 	private List<Blessing> blessings;
 
 	private List<AvailableBenefice> benefices;
@@ -131,7 +132,7 @@ public class CharacterPlayer {
 
 	private int experience = 0;
 
-	private FreeStyleCharacterCreation freeStyleCharacterCreation;
+	private transient FreeStyleCharacterCreation freeStyleCharacterCreation;
 
 	public CharacterPlayer() {
 		this("en");
@@ -147,7 +148,6 @@ public class CharacterPlayer {
 		initializeCharacteristics();
 		occultism = new Occultism();
 		skills = new HashMap<>();
-		skillNameOrdered = new ArrayList<>();
 		blessings = new ArrayList<>();
 		benefices = new ArrayList<>();
 		cybernetics = new Cybernetics();
@@ -155,8 +155,16 @@ public class CharacterPlayer {
 		meleeCombatActions = new ArrayList<>();
 		rangedCombatActions = new ArrayList<>();
 		learnedStances = new ArrayList<>();
-		setArmour(null);
-		setShield(null);
+		try {
+			setArmour(null);
+		} catch (InvalidArmourException e) {
+			MachineLog.errorMessage(this.getClass().getName(), e);
+		}
+		try {
+			setShield(null);
+		} catch (InvalidShieldException e) {
+			MachineLog.errorMessage(this.getClass().getName(), e);
+		}
 		freeStyleCharacterCreation = null;
 	}
 
@@ -255,7 +263,7 @@ public class CharacterPlayer {
 	public Integer getCyberneticBonus(CharacteristicName characteristicName) {
 		Integer value = 0;
 		// Add cibernetics modifications
-		for (Device device : cybernetics.getElements()) {
+		for (CyberneticDevice device : cybernetics.getElements()) {
 			if (device.getCharacteristicImprovement(characteristicName) != null && device.getCharacteristicImprovement(characteristicName).isAlways()
 					&& device.getCharacteristicImprovement(characteristicName).getBonus() != 0) {
 				value += device.getCharacteristicImprovement(characteristicName).getBonus();
@@ -267,7 +275,7 @@ public class CharacterPlayer {
 	public Integer getCyberneticsImprovement(CharacteristicName characteristicName) {
 		Integer value = 0;
 		// Add cibernetics modifications
-		for (Device device : cybernetics.getElements()) {
+		for (CyberneticDevice device : cybernetics.getElements()) {
 			if (device.getCharacteristicImprovement(characteristicName) != null && !device.getCharacteristicImprovement(characteristicName).isAlways()
 					&& device.getCharacteristicImprovement(characteristicName).getBonus() != 0) {
 				value += device.getCharacteristicImprovement(characteristicName).getBonus();
@@ -295,13 +303,11 @@ public class CharacterPlayer {
 			throw new InvalidSkillException("Null skill is not allowed here.");
 		}
 		SelectedSkill skillWithRank = new SelectedSkill(availableSkill, value, false);
-		skills.put(availableSkill.getCompleteName(), skillWithRank);
-		skillNameOrdered.add(availableSkill.getName());
-		Collections.sort(skillNameOrdered);
+		skills.put(availableSkill.getUniqueId(), skillWithRank);
 	}
 
 	/**
-	 * For random characers, set the desired values.
+	 * For random characters, set the desired values.
 	 * 
 	 * @param availableSkill
 	 *            skill selected
@@ -318,13 +324,13 @@ public class CharacterPlayer {
 	}
 
 	private Integer getSkillAssignedRanks(Skill<?> skill) {
-		if (skills.get(skill.getName()) == null) {
+		if (skills.get(skill.getUniqueId()) == null) {
 			if (SkillsDefinitionsFactory.getInstance().isNaturalSkill(skill.getName(), language)) {
 				return 3;
 			}
 			return 0;
 		}
-		return skills.get(skill.getName()).getValue();
+		return skills.get(skill.getUniqueId()).getValue();
 	}
 
 	/**
@@ -360,8 +366,8 @@ public class CharacterPlayer {
 		Integer cyberneticBonus = getCyberneticsValue(skill.getName());
 		Integer skillValue = getSkillAssignedRanks(skill);
 		// Set the modifications of blessings.
-		if (skills.get(skill.getName()) != null) {
-			skillValue += getBlessingModificationAlways(skills.get(skill.getName()).getAvailableSkill().getSkillDefinition());
+		if (skills.get(skill.getUniqueId()) != null) {
+			skillValue += getBlessingModificationAlways(skills.get(skill.getUniqueId()).getAvailableSkill().getSkillDefinition());
 		}
 		// Cybernetics only if better.
 		if (cyberneticBonus != null) {
@@ -387,7 +393,7 @@ public class CharacterPlayer {
 
 	private Integer getCyberneticsValue(String skillName) {
 		int maxValue = 0;
-		for (Device device : cybernetics.getElements()) {
+		for (CyberneticDevice device : cybernetics.getElements()) {
 			if (device.getSkillImprovement(skillName) != null) {
 				if (maxValue < device.getSkillImprovement(skillName).getValue()) {
 					maxValue = device.getSkillImprovement(skillName).getValue();
@@ -473,11 +479,33 @@ public class CharacterPlayer {
 			}
 		}
 
+		Collections.sort(curses);
 		return Collections.unmodifiableList(curses);
 	}
 
+	public List<Blessing> getBlessings() {
+		List<Blessing> blessings = new ArrayList<>();
+
+		for (Blessing blessing : blessings) {
+			if (blessing.getBlessingClassification() == BlessingClassification.BLESSING) {
+				blessings.add(blessing);
+			}
+		}
+		// Faction curses
+		if (getFaction() != null) {
+			for (Blessing blessing : getFaction().getBlessings()) {
+				if (blessing.getBlessingClassification() == BlessingClassification.BLESSING) {
+					blessings.add(blessing);
+				}
+			}
+		}
+
+		Collections.sort(blessings);
+		return Collections.unmodifiableList(blessings);
+	}
+
 	/**
-	 * Return all blessings include the factions blessings.
+	 * Return all blessings include the factions blessings and curses.
 	 * 
 	 * @return
 	 */
@@ -489,11 +517,12 @@ public class CharacterPlayer {
 				allBlessings.add(blessing);
 			}
 		}
+		Collections.sort(allBlessings);
 		return Collections.unmodifiableList(allBlessings);
 	}
 
 	public void addBenefice(AvailableBenefice benefice) throws InvalidBeneficeException {
-		if (benefice.getBenefitDefinition().getGroup() == BeneficeGroup.RESTRICTED) {
+		if (benefice.getBeneficeDefinition().getGroup() == BeneficeGroup.RESTRICTED) {
 			throw new InvalidBeneficeException("Benefice '" + benefice + "' is restricted and cannot be added.");
 		}
 		benefices.add(benefice);
@@ -501,7 +530,7 @@ public class CharacterPlayer {
 	}
 
 	/**
-	 * Return all benefices include the factions benfices.
+	 * Return all benefices include the factions benefices.
 	 * 
 	 * @return
 	 */
@@ -526,6 +555,7 @@ public class CharacterPlayer {
 		for (CombatStyle style : getRangedCombatStyles()) {
 			positiveBenefices.add(AvailableBeneficeFactory.getInstance().getElement(style.getName(), getLanguage()));
 		}
+		Collections.sort(positiveBenefices);
 		return Collections.unmodifiableList(positiveBenefices);
 	}
 
@@ -577,7 +607,10 @@ public class CharacterPlayer {
 		return armour;
 	}
 
-	public void setArmour(Armour armour) {
+	public void setArmour(Armour armour) throws InvalidArmourException {
+		if (getShield() != null && armour != null && !armour.getAllowedShields().contains(getShield())) {
+			throw new InvalidArmourException("Armour '" + armour + "' is not compatible with shield '" + getShield() + "'.");
+		}
 		this.armour = armour;
 	}
 
@@ -585,7 +618,10 @@ public class CharacterPlayer {
 		return shield;
 	}
 
-	public void setShield(Shield shield) {
+	public void setShield(Shield shield) throws InvalidShieldException {
+		if (getArmour() != null && shield != null && !getArmour().getAllowedShields().contains(shield)) {
+			throw new InvalidShieldException("Shield '" + shield + "' is not compatible with armour '" + getArmour() + "'.");
+		}
 		this.shield = shield;
 	}
 
@@ -625,10 +661,12 @@ public class CharacterPlayer {
 		for (AvailableSkill skill : AvailableSkillsFactory.getInstance().getNaturalSkills(language)) {
 			if (skill.getSkillDefinition().getId().equals(SkillDefinition.PLANETARY_LORE_ID)) {
 				if (getInfo().getPlanet() != null) {
-					skill.setSpecialization(new Specialization(getInfo().getPlanet().getName(), getInfo().getPlanet().getName()));
+					skill.setSpecialization(new Specialization(getInfo().getPlanet().getName().toLowerCase(), getInfo().getPlanet().getName(), language));
 				}
 			} else if (skill.getSkillDefinition().getId().equals(SkillDefinition.FACTORION_LORE_ID)) {
-				skill.setSpecialization(new Specialization(getFaction().getName(), getFaction().getName()));
+				if (getFaction() != null) {
+					skill.setSpecialization(new Specialization(getFaction().getName().toLowerCase(), getFaction().getName(), language));
+				}
 			}
 			naturalSkills.add(skill);
 		}
@@ -652,6 +690,11 @@ public class CharacterPlayer {
 			return name;
 		}
 		return super.toString();
+	}
+
+	public String getRepresentation() {
+		CharacterSheet characterSheet = new CharacterSheet(this);
+		return characterSheet.toString();
 	}
 
 	public int getStrengthDamangeModification() {
@@ -800,7 +843,7 @@ public class CharacterPlayer {
 
 	public BeneficeSpecialization getStatus() throws InvalidXmlElementException {
 		for (AvailableBenefice benefice : getAllBenefices()) {
-			if (benefice.getBenefitDefinition().getGroup() == BeneficeGroup.STATUS) {
+			if (benefice.getBeneficeDefinition().getGroup() == BeneficeGroup.STATUS) {
 				// Must have an specialization.
 				if (benefice.getSpecialization() != null) {
 					return benefice.getSpecialization();
@@ -976,6 +1019,10 @@ public class CharacterPlayer {
 
 	public Map<String, List<String>> getSelectedPowers() {
 		return getOccultism().getSelectedPowers();
+	}
+
+	public int getTotalSelectedPowers() {
+		return getOccultism().getTotalSelectedPowers();
 	}
 
 	public void addOccultismPower(OccultismPower power) throws InvalidOccultismPowerException {

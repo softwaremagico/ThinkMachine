@@ -43,8 +43,8 @@ public class OccultismPath extends Element<OccultismPath> {
 	private final Map<String, OccultismPower> occultismPowers;
 	private final Set<Faction> factionsAllowed;
 
-	public OccultismPath(String id, String name, OccultismType occultismType, Set<Faction> allowedFactions) {
-		super(id, name);
+	public OccultismPath(String id, String name, String language, OccultismType occultismType, Set<Faction> allowedFactions) {
+		super(id, name, language);
 		this.occultismType = occultismType;
 		occultismPowers = new HashMap<>();
 		this.factionsAllowed = allowedFactions;
@@ -59,8 +59,8 @@ public class OccultismPath extends Element<OccultismPath> {
 	}
 
 	/**
-	 * Gets the previous level powers form a power. At least one of them must be aquired to purchase this power if is a
-	 * psi path.
+	 * Gets the previous level powers form a power. At least one of them must be
+	 * aquired to purchase this power if is a psi path.
 	 * 
 	 * @param path
 	 *            the path of the power.

@@ -64,8 +64,7 @@ public class SpecialValuesFactory extends XmlFactory<SpecialValue> {
 	}
 
 	@Override
-	protected SpecialValue createElement(ITranslator translator, String specialId, String language)
-			throws InvalidXmlElementException {
+	protected SpecialValue createElement(ITranslator translator, String specialId, String language) throws InvalidXmlElementException {
 		try {
 			String name = translator.getNodeValue(specialId, NAME, language);
 			String affects = translator.getNodeValue(specialId, AFFECTS);
@@ -79,7 +78,7 @@ public class SpecialValuesFactory extends XmlFactory<SpecialValue> {
 				}
 			}
 
-			SpecialValue specialValue = new SpecialValue(specialId, name, affectsGroup);
+			SpecialValue specialValue = new SpecialValue(specialId, name, language, affectsGroup);
 			return specialValue;
 		} catch (Exception e) {
 			throw new InvalidSpecialValueException("Invalid structure in special '" + specialId + "'.", e);

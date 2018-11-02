@@ -24,9 +24,9 @@ package com.softwaremagico.tm.random;
  * #L%
  */
 
+import java.util.Collection;
 import java.util.Objects;
 import java.util.Set;
-import java.util.TreeMap;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
@@ -38,12 +38,11 @@ import com.softwaremagico.tm.character.factions.FactionsFactory;
 import com.softwaremagico.tm.character.race.InvalidRaceException;
 import com.softwaremagico.tm.log.RandomGenerationLog;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
-import com.softwaremagico.tm.random.selectors.IRandomPreferences;
+import com.softwaremagico.tm.random.selectors.IRandomPreference;
 
 public class RandomSurname extends RandomSelector<Surname> {
-	private final static int GOOD_PROBABILITY = 1;
 
-	protected RandomSurname(CharacterPlayer characterPlayer, Set<IRandomPreferences> preferences) throws InvalidXmlElementException {
+	protected RandomSurname(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences) throws InvalidXmlElementException {
 		super(characterPlayer, preferences);
 	}
 
@@ -52,17 +51,8 @@ public class RandomSurname extends RandomSelector<Surname> {
 	}
 
 	@Override
-	protected TreeMap<Integer, Surname> assignElementsWeight() throws InvalidXmlElementException {
-		TreeMap<Integer, Surname> weightedSurnames = new TreeMap<>();
-		int count = 1;
-		for (Surname surname : FactionsFactory.getInstance().getAllSurnames()) {
-			int weight = getWeight(surname);
-			if (weight > 0) {
-				weightedSurnames.put(count, surname);
-				count += weight;
-			}
-		}
-		return weightedSurnames;
+	protected Collection<Surname> getAllElements() {
+		return FactionsFactory.getInstance().getAllSurnames();
 	}
 
 	@Override
@@ -70,7 +60,7 @@ public class RandomSurname extends RandomSelector<Surname> {
 		// Nobility has faction as surname
 		if (getCharacterPlayer().getFaction() != null && getCharacterPlayer().getFaction().getFactionGroup() == FactionGroup.NOBILITY) {
 			if (getCharacterPlayer().getFaction().getName().contains(surname.getName())) {
-				return GOOD_PROBABILITY;
+				return BASIC_PROBABILITY;
 			} else {
 				return 0;
 			}
@@ -91,18 +81,19 @@ public class RandomSurname extends RandomSelector<Surname> {
 			if (!Objects.equals(firstName.getFaction(), surname.getFaction())) {
 				return 0;
 			} else {
-				return GOOD_PROBABILITY;
+				return BASIC_PROBABILITY;
 			}
 		}
 
 		// Not nobility and not name set, use surnames of the planet.
 		if (getCharacterPlayer().getInfo().getPlanet() != null && !getCharacterPlayer().getInfo().getPlanet().getSurnames().isEmpty()) {
 			if (getCharacterPlayer().getInfo().getPlanet().getFactions().contains(surname.getFaction())) {
-				return GOOD_PROBABILITY;
+				return BASIC_PROBABILITY;
 			} else {
 				return 0;
 			}
 		}
 		return 1;
 	}
+
 }

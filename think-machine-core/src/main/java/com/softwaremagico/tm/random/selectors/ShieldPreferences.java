@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.character.race;
+package com.softwaremagico.tm.random.selectors;
 
 /*-
  * #%L
@@ -24,14 +24,45 @@ package com.softwaremagico.tm.character.race;
  * #L%
  */
 
-public class RaceRandomDefinitions {
-	private int probability;
+import java.util.Set;
 
-	public int getProbability() {
-		return probability;
+public enum ShieldPreferences implements IRandomPreference {
+
+	NONE(0f),
+
+	LOW(0.2f),
+
+	MEDIUM(0.4f),
+
+	HIGH(1f);
+
+	private final float shieldProbability;
+
+	private ShieldPreferences(float shieldProbability) {
+		this.shieldProbability = shieldProbability;
 	}
 
-	public void setProbability(int probability) {
-		this.probability = probability;
+	public static ShieldPreferences getSelected(Set<IRandomPreference> preferences) {
+		for (IRandomPreference preference : preferences) {
+			if (preference instanceof ShieldPreferences) {
+				return (ShieldPreferences) preference;
+			}
+		}
+		return null;
 	}
+
+	@Override
+	public int maximum() {
+		return 0;
+	}
+
+	@Override
+	public int minimum() {
+		return 0;
+	}
+
+	public float getShieldProbability() {
+		return shieldProbability;
+	}
+
 }

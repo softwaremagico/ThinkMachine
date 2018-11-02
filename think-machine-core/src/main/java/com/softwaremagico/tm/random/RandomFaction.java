@@ -24,8 +24,8 @@ package com.softwaremagico.tm.random;
  * #L%
  */
 
+import java.util.Collection;
 import java.util.Set;
-import java.util.TreeMap;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
@@ -34,11 +34,11 @@ import com.softwaremagico.tm.character.factions.FactionsFactory;
 import com.softwaremagico.tm.character.race.InvalidRaceException;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.FactionPreferences;
-import com.softwaremagico.tm.random.selectors.IRandomPreferences;
+import com.softwaremagico.tm.random.selectors.IRandomPreference;
 
 public class RandomFaction extends RandomSelector<Faction> {
 
-	protected RandomFaction(CharacterPlayer characterPlayer, Set<IRandomPreferences> preferences) throws InvalidXmlElementException {
+	protected RandomFaction(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences) throws InvalidXmlElementException {
 		super(characterPlayer, preferences);
 	}
 
@@ -47,17 +47,8 @@ public class RandomFaction extends RandomSelector<Faction> {
 	}
 
 	@Override
-	protected TreeMap<Integer, Faction> assignElementsWeight() throws InvalidXmlElementException {
-		TreeMap<Integer, Faction> weightedFactions = new TreeMap<>();
-		int count = 1;
-		for (Faction faction : FactionsFactory.getInstance().getElements(getCharacterPlayer().getLanguage())) {
-			int weight = getWeight(faction);
-			if (weight > 0) {
-				weightedFactions.put(count, faction);
-				count += weight;
-			}
-		}
-		return weightedFactions;
+	protected Collection<Faction> getAllElements() throws InvalidXmlElementException {
+		return FactionsFactory.getInstance().getElements(getCharacterPlayer().getLanguage());
 	}
 
 	@Override

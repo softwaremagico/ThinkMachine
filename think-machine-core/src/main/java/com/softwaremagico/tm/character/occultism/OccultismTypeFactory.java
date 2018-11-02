@@ -59,12 +59,11 @@ public class OccultismTypeFactory extends XmlFactory<OccultismType> {
 	}
 
 	@Override
-	protected OccultismType createElement(ITranslator translator, String occulstimTypeId, String language)
-			throws InvalidXmlElementException {
+	protected OccultismType createElement(ITranslator translator, String occulstimTypeId, String language) throws InvalidXmlElementException {
 		try {
 			String name = translator.getNodeValue(occulstimTypeId, NAME, language);
 			String darkSide = translator.getNodeValue(occulstimTypeId, DARK_SIDE, language);
-			return new OccultismType(occulstimTypeId, name, darkSide);
+			return new OccultismType(occulstimTypeId, name, language, darkSide);
 		} catch (Exception e) {
 			throw new InvalidOccultismTypeException("Invalid structure in occultism type '" + occulstimTypeId + "'.", e);
 		}

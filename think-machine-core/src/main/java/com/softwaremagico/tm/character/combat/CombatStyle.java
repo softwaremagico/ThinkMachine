@@ -27,17 +27,20 @@ package com.softwaremagico.tm.character.combat;
 import com.softwaremagico.tm.ElementList;
 
 public class CombatStyle extends ElementList<CombatAction> {
+	private final static int COMBAT_SYTLE_COST = 5;
 	private final String id;
 	private final String name;
+	private final CombatStyleGroup group;
 
-	public CombatStyle(String name) {
-		this(null, name);
+	public CombatStyle(String name, CombatStyleGroup group) {
+		this(null, name, group);
 	}
 
-	public CombatStyle(String id, String name) {
+	public CombatStyle(String id, String name, CombatStyleGroup group) {
 		super();
 		this.id = id;
 		this.name = name;
+		this.group = group;
 	}
 
 	public String getName() {
@@ -49,6 +52,10 @@ public class CombatStyle extends ElementList<CombatAction> {
 	}
 
 	public int getCost() {
-		return 5;
+		return COMBAT_SYTLE_COST;
+	}
+
+	public CombatStyleGroup getGroup() {
+		return group;
 	}
 }

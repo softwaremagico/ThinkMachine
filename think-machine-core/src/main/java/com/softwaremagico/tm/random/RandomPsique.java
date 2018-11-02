@@ -24,9 +24,9 @@ package com.softwaremagico.tm.random;
  * #L%
  */
 
+import java.util.Collection;
 import java.util.Objects;
 import java.util.Set;
-import java.util.TreeMap;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
@@ -37,12 +37,12 @@ import com.softwaremagico.tm.character.occultism.OccultismTypeFactory;
 import com.softwaremagico.tm.log.RandomGenerationLog;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.IGaussianDistribution;
-import com.softwaremagico.tm.random.selectors.IRandomPreferences;
+import com.softwaremagico.tm.random.selectors.IRandomPreference;
 import com.softwaremagico.tm.random.selectors.PsiqueLevelPreferences;
 
 public class RandomPsique extends RandomSelector<OccultismType> {
 
-	protected RandomPsique(CharacterPlayer characterPlayer, Set<IRandomPreferences> preferences) throws InvalidXmlElementException {
+	protected RandomPsique(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences) throws InvalidXmlElementException {
 		super(characterPlayer, preferences);
 	}
 
@@ -58,17 +58,8 @@ public class RandomPsique extends RandomSelector<OccultismType> {
 	}
 
 	@Override
-	protected TreeMap<Integer, OccultismType> assignElementsWeight() throws InvalidXmlElementException {
-		TreeMap<Integer, OccultismType> weightedPsiques = new TreeMap<>();
-		int count = 1;
-		for (OccultismType occultismType : OccultismTypeFactory.getInstance().getElements(getCharacterPlayer().getLanguage())) {
-			int weight = getWeight(occultismType);
-			if (weight > 0) {
-				weightedPsiques.put(count, occultismType);
-				count += weight;
-			}
-		}
-		return weightedPsiques;
+	protected Collection<OccultismType> getAllElements() throws InvalidXmlElementException {
+		return OccultismTypeFactory.getInstance().getElements(getCharacterPlayer().getLanguage());
 	}
 
 	@Override

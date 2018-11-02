@@ -36,10 +36,7 @@ import java.util.StringTokenizer;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
-import com.softwaremagico.tm.character.factions.FactionGroup;
 import com.softwaremagico.tm.character.factions.FactionsFactory;
-import com.softwaremagico.tm.character.factions.InvalidFactionException;
-import com.softwaremagico.tm.character.race.RaceFactory;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.log.MachineLog;
@@ -53,13 +50,6 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 	private final static String GROUP_SKILL_TAG = "group";
 	private final static String NATURAL_SKILL_TAG = "natural";
 	private final static String NUMBER_TO_SHOW_TAG = "numberToShow";
-
-	private final static String RANDOM = "random";
-	private final static String RANDOM_TECH_LEVEL = "techlevel";
-	private final static String RECOMMENDED_FACTIONS = "recommendedFactions";
-	private final static String RECOMMENDED_FACTION_GROUPS = "recommendedFactionGroups";
-	private final static String RECOMMENDED_RACES = "recommendedRaces";
-	private final static String GENERAL_PROBABILITY = "generalProbability";
 
 	private static Map<String, List<SkillDefinition>> naturalSkills = new HashMap<>();
 	private static Map<String, List<SkillDefinition>> learnedSkills = new HashMap<>();
@@ -134,6 +124,7 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 			for (String skillId : translatorSkill.getAllTranslatedElements()) {
 				SkillDefinition skill = createElement(translatorSkill, skillId, language);
 				elements.get(language).add(skill);
+				setRandomConfiguration(skill, getTranslator(), language);
 				if (skill.isNatural()) {
 					if (naturalSkills.get(language) == null) {
 						naturalSkills.put(language, new ArrayList<SkillDefinition>());
@@ -157,13 +148,13 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 	protected SkillDefinition createElement(ITranslator translator, String skillId, String language) throws InvalidXmlElementException {
 		try {
 			String name = translator.getNodeValue(skillId, NAME, language);
-			SkillDefinition skill = new SkillDefinition(skillId, name);
+			SkillDefinition skill = new SkillDefinition(skillId, name, language);
 			try {
 				Set<Specialization> specializations = new HashSet<>();
 				for (String specializationId : translator.getAllChildrenTags(skillId, SPECIALIZABLE_SKILL_TAG)) {
 					String specizalizationName = translator.getNodeValue(specializationId, language);
-					Specialization specialization = new Specialization(specializationId, specizalizationName);
-					setRandomDefinition(translator, specialization, language);
+					Specialization specialization = new Specialization(specializationId, specizalizationName, language);
+					setRandomConfiguration(specialization, translator, language);
 					specializations.add(specialization);
 				}
 				skill.setSpecializations(specializations);
@@ -196,63 +187,11 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 			String natural = translator.getNodeValue(skillId, NATURAL_SKILL_TAG);
 			skill.setNatural(Boolean.parseBoolean(natural));
 
-			setRandomDefinition(translator, skill, language);
-
 			classifySkillByGroup(skill, language);
 
 			return skill;
 		} catch (Exception e) {
 			throw new InvalidSkillException("Invalid structure in skill '" + skillId + "'.", e);
-		}
-	}
-
-	private void setRandomDefinition(ITranslator translator, ISkillRandomDefintions element, String language) throws InvalidXmlElementException {
-		try {
-			String minTechLevel = translator.getNodeValue(element.getId(), RANDOM, RANDOM_TECH_LEVEL);
-			if (minTechLevel != null) {
-				element.getRandomDefinition().setMinimumTechLevel(Integer.parseInt(minTechLevel));
-			}
-		} catch (NumberFormatException nfe) {
-			throw new InvalidSkillException("Invalid number value for techlevel in skill '" + element.getId() + "'.");
-		}
-
-		String recommendedFactionGroups = translator.getNodeValue(element.getId(), RANDOM, RECOMMENDED_FACTION_GROUPS);
-		if (recommendedFactionGroups != null) {
-			StringTokenizer recommendedFactionGroupsOfSkill = new StringTokenizer(recommendedFactionGroups, ",");
-			while (recommendedFactionGroupsOfSkill.hasMoreTokens()) {
-				element.getRandomDefinition().addRecommendedFactionGroup(FactionGroup.get(recommendedFactionGroupsOfSkill.nextToken().trim()));
-			}
-		}
-
-		String recommendedFactions = translator.getNodeValue(element.getId(), RANDOM, RECOMMENDED_FACTIONS);
-		if (recommendedFactions != null) {
-			StringTokenizer recommendedFactionsOfSkill = new StringTokenizer(recommendedFactions, ",");
-			while (recommendedFactionsOfSkill.hasMoreTokens()) {
-				try {
-					element.getRandomDefinition().addRecommendedFaction(
-							FactionsFactory.getInstance().getElement(recommendedFactionsOfSkill.nextToken().trim(), language));
-				} catch (InvalidXmlElementException ixe) {
-					throw new InvalidFactionException("Error in skill '" + element + "' structure. Invalid recommended faction. ", ixe);
-				}
-			}
-		}
-
-		String recommendedRaces = translator.getNodeValue(element.getId(), RANDOM, RECOMMENDED_RACES);
-		if (recommendedRaces != null) {
-			StringTokenizer recommendedRacesOfSkill = new StringTokenizer(recommendedRaces, ",");
-			while (recommendedRacesOfSkill.hasMoreTokens()) {
-				try {
-					element.getRandomDefinition()
-							.addRecommendedRace(RaceFactory.getInstance().getElement(recommendedRacesOfSkill.nextToken().trim(), language));
-				} catch (InvalidXmlElementException ixe) {
-					throw new InvalidFactionException("Error in skill '" + element + "' structure. Invalid recommended race. ", ixe);
-				}
-			}
-		}
-
-		String generalProbability = translator.getNodeValue(element.getId(), RANDOM, GENERAL_PROBABILITY);
-		if (generalProbability != null) {
-			element.getRandomDefinition().setProbability(SkillRandomProbability.get(generalProbability));
 		}
 	}
 

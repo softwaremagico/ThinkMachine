@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.character.equipment;
+package com.softwaremagico.tm.character.equipment.weapons;
 
 /*-
  * #%L
@@ -24,36 +24,16 @@ package com.softwaremagico.tm.character.equipment;
  * #L%
  */
 
-import com.softwaremagico.tm.Element;
+import com.softwaremagico.tm.InvalidXmlElementException;
 
-public class Shield extends Element<Shield> {
-	private final int impact;
-	private final int force;
-	private final int hits;
-	private final int cost;
+public class InvalidWeaponException extends InvalidXmlElementException {
+	private static final long serialVersionUID = 1243337930745480002L;
 
-	public Shield(String name, int impact, int force, int hits, int cost) {
-		super(null, name);
-		this.impact = impact;
-		this.force = force;
-		this.hits = hits;
-		this.cost = cost;
+	public InvalidWeaponException(String message) {
+		super(message);
 	}
 
-	public int getImpact() {
-		return impact;
+	public InvalidWeaponException(String message, Exception e) {
+		super(message, e);
 	}
-
-	public int getForce() {
-		return force;
-	}
-
-	public int getHits() {
-		return hits;
-	}
-
-	public int getCost() {
-		return cost;
-	}
-
 }

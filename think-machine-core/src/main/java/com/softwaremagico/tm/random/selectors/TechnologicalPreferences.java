@@ -24,7 +24,7 @@ package com.softwaremagico.tm.random.selectors;
  * #L%
  */
 
-public enum TechnologicalPreferences implements IRandomPreferences {
+public enum TechnologicalPreferences implements IRandomPreference {
 
 	PREHISTORIC(0, 1),
 

@@ -32,7 +32,6 @@ import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
 import com.softwaremagico.tm.character.equipment.DamageType;
 import com.softwaremagico.tm.character.equipment.DamageTypeFactory;
-import com.softwaremagico.tm.character.equipment.InvalidWeaponException;
 import com.softwaremagico.tm.character.equipment.Size;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
@@ -157,7 +156,7 @@ public class AmmunitionFactory extends XmlFactory<Ammunition> {
 			}
 		}
 
-		ammunition = new Ammunition(ammunitionId, name, goal, damage, strength, range, size, cost, damageOfAmmunition, accessories);
+		ammunition = new Ammunition(ammunitionId, name, language, goal, damage, strength, range, size, cost, damageOfAmmunition, accessories);
 
 		return ammunition;
 	}

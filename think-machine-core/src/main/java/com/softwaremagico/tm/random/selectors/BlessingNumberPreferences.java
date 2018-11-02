@@ -27,7 +27,7 @@ package com.softwaremagico.tm.random.selectors;
 import java.util.Random;
 import java.util.Set;
 
-public enum BlessingNumberPreferences implements IRandomPreferences, IGaussianDistribution {
+public enum BlessingNumberPreferences implements IRandomPreference, IGaussianDistribution {
 
 	NONE(0, 0, 0, 0),
 	
@@ -70,8 +70,8 @@ public enum BlessingNumberPreferences implements IRandomPreferences, IGaussianDi
 		return mean;
 	}
 
-	public static BlessingNumberPreferences getSelected(Set<IRandomPreferences> preferences) {
-		for (IRandomPreferences preference : preferences) {
+	public static BlessingNumberPreferences getSelected(Set<IRandomPreference> preferences) {
+		for (IRandomPreference preference : preferences) {
 			if (preference instanceof BlessingNumberPreferences) {
 				return (BlessingNumberPreferences) preference;
 			}

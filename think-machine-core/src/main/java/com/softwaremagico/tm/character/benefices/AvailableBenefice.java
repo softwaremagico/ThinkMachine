@@ -25,6 +25,7 @@ package com.softwaremagico.tm.character.benefices;
  */
 
 import com.softwaremagico.tm.Element;
+import com.softwaremagico.tm.random.definition.RandomElementDefinition;
 
 public class AvailableBenefice extends Element<AvailableBenefice> {
 	private BeneficeSpecialization specialization = null;
@@ -32,14 +33,16 @@ public class AvailableBenefice extends Element<AvailableBenefice> {
 	private final int cost;
 	private final BeneficeClassification beneficeClassification;
 
-	public AvailableBenefice(String id, String name, BeneficeDefinition benefitDefinition, BeneficeClassification beneficeClassification, int cost) {
-		super(id, name);
+	public AvailableBenefice(String id, String name, String language, BeneficeDefinition benefitDefinition, BeneficeClassification beneficeClassification,
+			int cost, RandomElementDefinition randomDefinition) {
+		super(id, name, language, randomDefinition);
 		this.benefitDefinition = benefitDefinition;
 		this.beneficeClassification = beneficeClassification;
 		this.cost = cost;
+
 	}
 
-	public BeneficeDefinition getBenefitDefinition() {
+	public BeneficeDefinition getBeneficeDefinition() {
 		return benefitDefinition;
 	}
 
@@ -52,8 +55,8 @@ public class AvailableBenefice extends Element<AvailableBenefice> {
 
 	@Override
 	public String toString() {
-		return getName() + " (" + (benefitDefinition != null && benefitDefinition.getBeneficeClassification() == BeneficeClassification.AFFLICTION ? "+" : "") + cost
-				+ ")";
+		return getName() + " (" + (benefitDefinition != null && benefitDefinition.getBeneficeClassification() == BeneficeClassification.AFFLICTION ? "+" : "")
+				+ cost + ")";
 	}
 
 	public BeneficeSpecialization getSpecialization() {

@@ -34,10 +34,7 @@ import com.softwaremagico.tm.character.characteristics.CharacteristicDefinition;
 import com.softwaremagico.tm.character.characteristics.CharacteristicsDefinitionFactory;
 import com.softwaremagico.tm.character.equipment.DamageType;
 import com.softwaremagico.tm.character.equipment.DamageTypeFactory;
-import com.softwaremagico.tm.character.equipment.InvalidWeaponException;
 import com.softwaremagico.tm.character.equipment.Size;
-import com.softwaremagico.tm.character.factions.Faction;
-import com.softwaremagico.tm.character.factions.FactionsFactory;
 import com.softwaremagico.tm.character.skills.SkillDefinition;
 import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
 import com.softwaremagico.tm.language.ITranslator;
@@ -59,10 +56,6 @@ public class WeaponFactory extends XmlFactory<Weapon> {
 	private final static String RATE = "rate";
 	private final static String SIZE = "size";
 	private final static String COST = "cost";
-	private final static String FACTION = "faction";
-
-	private final static String RANDOM = "random";
-	private final static String WEAPON_PROBABILITY = "probabilityMultiplier";
 
 	private final static String TYPE = "type";
 	private final static String SPECIAL = "special";
@@ -217,10 +210,14 @@ public class WeaponFactory extends XmlFactory<Weapon> {
 			if (damageDefinition != null) {
 				StringTokenizer damageTypesTokenizer = new StringTokenizer(damageDefinition, ",");
 				while (damageTypesTokenizer.hasMoreTokens()) {
-					damageOfWeapon.add(DamageTypeFactory.getInstance().getElement(damageTypesTokenizer.nextToken().trim(), language));
+					try {
+						damageOfWeapon.add(DamageTypeFactory.getInstance().getElement(damageTypesTokenizer.nextToken().trim(), language));
+					} catch (InvalidXmlElementException e) {
+						throw new InvalidWeaponException("Invalid damage type in weapon '" + weaponId + "'.", e);
+					}
 				}
 			}
-		} catch (Exception e) {
+		} catch (NullPointerException e) {
 			// Not mandatory.
 		}
 
@@ -245,32 +242,14 @@ public class WeaponFactory extends XmlFactory<Weapon> {
 				try {
 					accessories.add(AccessoryFactory.getInstance().getElement(accessoryTokenizer.nextToken().trim(), language));
 				} catch (InvalidXmlElementException ixe) {
-					throw new InvalidWeaponException("Error in accessories '" + accesoriesNames + "' structure. Invalid accessory definition. ", ixe);
+					throw new InvalidWeaponException("Error in accessories '" + accesoriesNames + "' structure in weapon '" + weaponId
+							+ "'. Invalid accessory definition. ", ixe);
 				}
 			}
 		}
 
-		// Is a weapon of a faction?
-		Faction faction = null;
-		String factionId = translator.getNodeValue(weaponId, FACTION);
-		if (factionId != null) {
-			Faction restrictedFaction = FactionsFactory.getInstance().getElement(factionId, language);
-			faction = restrictedFaction;
-		}
-
-		weapon = new Weapon(weaponId, name, WeaponType.get(typeName), goal, characteristicDefintion, skill, damage, strength, range, shots, rate, techLevel,
-				techLevelSpecial, size, special, damageOfWeapon, cost, ammunitions, accessories, faction);
-
-		try {
-			String weaponProbability = translator.getNodeValue(weaponId, RANDOM, WEAPON_PROBABILITY);
-			if (weaponProbability != null) {
-				weapon.getRandomDefinition().setProbabilityMultiplier(Double.parseDouble(weaponProbability));
-			} else {
-				weapon.getRandomDefinition().setProbabilityMultiplier(1d);
-			}
-		} catch (NumberFormatException nfe) {
-			throw new InvalidWeaponException("Invalid number value for weapon probability in '" + weaponId + "'.");
-		}
+		weapon = new Weapon(weaponId, name, language, WeaponType.get(typeName), goal, characteristicDefintion, skill, damage, strength, range, shots, rate,
+				techLevel, techLevelSpecial, size, special, damageOfWeapon, cost, ammunitions, accessories);
 
 		return weapon;
 	}

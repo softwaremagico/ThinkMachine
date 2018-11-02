@@ -24,8 +24,8 @@ package com.softwaremagico.tm.random;
  * #L%
  */
 
+import java.util.Collection;
 import java.util.Set;
-import java.util.TreeMap;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
@@ -40,15 +40,12 @@ import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedExcep
 import com.softwaremagico.tm.random.selectors.BlessingNumberPreferences;
 import com.softwaremagico.tm.random.selectors.BlessingPreferences;
 import com.softwaremagico.tm.random.selectors.IGaussianDistribution;
-import com.softwaremagico.tm.random.selectors.IRandomPreferences;
+import com.softwaremagico.tm.random.selectors.IRandomPreference;
 import com.softwaremagico.tm.random.selectors.SpecializationPreferences;
 
 public class RandomBlessingDefinition extends RandomSelector<Blessing> {
-	private final static int MAX_PROBABILITY = 100000;
-	private final static int GOOD_PROBABILITY = 20;
-	private final static int FAIR_PROBABILITY = 10;
 
-	protected RandomBlessingDefinition(CharacterPlayer characterPlayer, Set<IRandomPreferences> preferences) throws InvalidXmlElementException {
+	protected RandomBlessingDefinition(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences) throws InvalidXmlElementException {
 		super(characterPlayer, preferences);
 	}
 
@@ -70,17 +67,8 @@ public class RandomBlessingDefinition extends RandomSelector<Blessing> {
 	}
 
 	@Override
-	protected TreeMap<Integer, Blessing> assignElementsWeight() throws InvalidXmlElementException {
-		TreeMap<Integer, Blessing> weightedBlessings = new TreeMap<>();
-		int count = 1;
-		for (Blessing blessing : BlessingFactory.getInstance().getElements(getCharacterPlayer().getLanguage())) {
-			int weight = getWeight(blessing);
-			if (weight > 0) {
-				weightedBlessings.put(count, blessing);
-				count += weight;
-			}
-		}
-		return weightedBlessings;
+	protected Collection<Blessing> getAllElements() throws InvalidXmlElementException {
+		return BlessingFactory.getInstance().getElements(getCharacterPlayer().getLanguage());
 	}
 
 	@Override

@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.random.selectors;
+package com.softwaremagico.tm.json;
 
 /*-
  * #%L
@@ -24,10 +24,25 @@ package com.softwaremagico.tm.random.selectors;
  * #L%
  */
 
-public interface IRandomPreferences {
+import java.lang.reflect.Type;
 
-	public int maximum();
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParseException;
+import com.softwaremagico.tm.InvalidXmlElementException;
+import com.softwaremagico.tm.character.race.Race;
+import com.softwaremagico.tm.character.race.RaceFactory;
+import com.softwaremagico.tm.log.MachineLog;
 
-	public int minimum();
+public class RaceAdapter extends ElementAdapter<Race> {
 
+	@Override
+	public Race deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
+		try {
+			return RaceFactory.getInstance().getElement(super.getElementId(jsonElement), super.getLanguage(jsonElement));
+		} catch (InvalidXmlElementException e) {
+			MachineLog.errorMessage(this.getClass().getName(), e);
+			return null;
+		}
+	}
 }
