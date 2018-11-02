@@ -22,5 +22,5 @@ Poderes Ocultos: Mano Lejana (Mano Levitante, Mano Lanzadora), Sexto Sentido (Se
 Wyrd: 9
 Vitalidad: -10/-8/-6/-4/-2/O/O/O
 
-Equipo: Martech Oro (+1RA, 5d, 10/20, Ratio 2, Láser), Maza (5d), Seda Sintética (4d, Eléctrico, Blando), Escudo de Asalto (5/15 20 Cargas).
+Equipo: Martech Oro (+1RA, 5d, 10/20, Ratio 2, Láser), Maza (5d), Seda Sintética (4d, Blando, Eléctrico), Escudo de Asalto (5/15 20 Cargas).
 Cibernética: Jonás, Ojo de Ingeniero.
