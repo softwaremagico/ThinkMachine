@@ -326,7 +326,9 @@ public class CharacterSheet {
 				stringBuilder.append(getCharacterPlayer().getArmour().getStandardPenalizations().getInitiativeModification());
 				stringBuilder.append(ELEMENT_SEPARATOR);
 			}
-			for (DamageType damageType : getCharacterPlayer().getArmour().getDamageTypes()) {
+			List<DamageType> damages = new ArrayList<>(getCharacterPlayer().getArmour().getDamageTypes());
+			Collections.sort(damages);
+			for (DamageType damageType : damages) {
 				stringBuilder.append(damageType.getName());
 				stringBuilder.append(ELEMENT_SEPARATOR);
 			}
