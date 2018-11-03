@@ -5,6 +5,37 @@
 			<en>Graa</en>
 			<es>Graa</es>
 		</name>
+		<combatActions>
+			<banga>
+				<name>
+					<en>Banga</en>
+					<es>Banga</es>
+				</name>
+				<requirements>
+					<melee>3</melee>
+				</requirements>
+			</banga>
+			<drox>
+				<name>
+					<en>Drox</en>
+					<es>Drox</es>
+				</name>
+				<requirements>
+					<melee>5</melee>
+					<athletics>7</athletics>
+				</requirements>
+			</drox>
+			<Throx>
+				<name>
+					<en>Throx</en>
+					<es>Throx</es>
+				</name>
+				<requirements>
+					<melee>9</melee>
+					<athletics>9</athletics>
+				</requirements>
+			</Throx>
+		</combatActions>
 	</graa>
 	<joxKaiVon>
 		<name>
