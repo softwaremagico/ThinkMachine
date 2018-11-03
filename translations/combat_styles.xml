@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<combat_styles>
+	<graa>
+		<name>
+			<en>Graa</en>
+			<es>Graa</es>
+		</name>
+	</graa>
+	<joxKaiVon>
+		<name>
+			<en>Jox Kai Von</en>
+			<es>Jox Kai Von</es>
+		</name>
+	</joxKaiVon>
+	<koto>
+		<name>
+			<en>Koto</en>
+			<es>Koto</es>
+		</name>
+	</koto>
+	<mantok>
+		<name>
+			<en>Mantok</en>
+			<es>Mantok</es>
+		</name>
+	</mantok>
+	<ironHeel>
+		<name>
+			<en>Iron Heel</en>
+			<es>Talón de Acero</es>
+		</name>
+	</ironHeel>
+	<shaidan>
+		<name>
+			<en>Shaidan</en>
+			<es>Shaidan</es>
+		</name>
+	</shaidan>
+	<florentine>
+		<name>
+			<en>Florentine</en>
+			<es>Florentino</es>
+		</name>
+	</florentine>
+	<kraxiKnife>
+		<name>
+			<en>Kraxi Knife</en>
+			<es>Kraxi</es>
+		</name>
+	</kraxiKnife>
+	<serpentis>
+		<name>
+			<en>Serpentis</en>
+			<es>Serpentis</es>
+		</name>
+	</serpentis>
+	<torero>
+		<name>
+			<en>Torero</en>
+			<es>Torero</es>
+		</name>
+	</torero>
+	<phoenixRifleCorps>
+		<name>
+			<en>Phoenix Rifle Corps</en>
+			<es>Cuerpo de Fusileros del Fénix</es>
+		</name>
+	</phoenixRifleCorps>
+</combat_styles>
