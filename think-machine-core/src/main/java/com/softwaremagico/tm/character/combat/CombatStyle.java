@@ -24,6 +24,9 @@ package com.softwaremagico.tm.character.combat;
  * #L%
  */
 
+import java.util.HashSet;
+import java.util.Set;
+
 import com.softwaremagico.tm.ElementList;
 
 public class CombatStyle extends ElementList<CombatAction> {
@@ -31,6 +34,7 @@ public class CombatStyle extends ElementList<CombatAction> {
 	private final String id;
 	private final String name;
 	private final CombatStyleGroup group;
+	private final Set<LearnedStance> learnedStances;
 
 	public CombatStyle(String name, CombatStyleGroup group) {
 		this(null, name, group);
@@ -41,6 +45,7 @@ public class CombatStyle extends ElementList<CombatAction> {
 		this.id = id;
 		this.name = name;
 		this.group = group;
+		learnedStances = new HashSet<>();
 	}
 
 	public String getName() {
@@ -57,5 +62,13 @@ public class CombatStyle extends ElementList<CombatAction> {
 
 	public CombatStyleGroup getGroup() {
 		return group;
+	}
+
+	public void addLearnedStance(LearnedStance stance) {
+		learnedStances.add(stance);
+	}
+
+	public Set<LearnedStance> getLearnedStances() {
+		return learnedStances;
 	}
 }

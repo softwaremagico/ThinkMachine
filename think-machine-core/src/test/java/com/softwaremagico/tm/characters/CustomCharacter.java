@@ -122,9 +122,8 @@ public class CustomCharacter {
 		shaidan.addElement(new CombatAction("Palma Real", language, null, "-1", ""));
 		shaidan.addElement(new CombatAction("Con un Pie en el Trono", language, 4, null, "+4 a resistir derribos"));
 		shaidan.addElement(new CombatAction("Decreto Imperial", language, null, "+1 / 1W", null));
+		shaidan.addLearnedStance(new LearnedStance("Posición Acrobática", "+1 a defensa por volteretas"));
 		player.getMeleeCombatStyles().add(shaidan);
-
-		player.getLearnedStances().add(new LearnedStance("Posición Acrobática", "+1 a defensa por volteretas"));
 
 		player.getWeapons().addElement(WeaponFactory.getInstance().getElement("mace", language));
 		player.getWeapons().addElement(WeaponFactory.getInstance().getElement("martechGold", language));

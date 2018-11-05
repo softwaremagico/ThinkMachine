@@ -24,10 +24,15 @@ package com.softwaremagico.tm.character.combat;
  * #L%
  */
 
-
 public class LearnedStance {
 	private String name;
 	private String description;
+
+	public LearnedStance(String name, String description) {
+		super();
+		this.name = name;
+		this.description = description;
+	}
 
 	public String getName() {
 		return name;
@@ -42,12 +47,6 @@ public class LearnedStance {
 	}
 
 	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public LearnedStance(String name, String description) {
-		super();
-		this.name = name;
 		this.description = description;
 	}
 

@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>think-machine-pdf</artifactId>
 	<packaging>jar</packaging>
@@ -29,6 +30,7 @@
 					<suiteXmlFiles>
 						<suiteXmlFile>src/test/config/testng.xml</suiteXmlFile>
 					</suiteXmlFiles>
+					<useSystemClassLoader>false</useSystemClassLoader>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -63,7 +65,7 @@
 			</activation>
 			<build>
 				<plugins>
-				<!-- Copy generated PDF -->
+					<!-- Copy generated PDF -->
 					<plugin>
 						<artifactId>maven-antrun-plugin</artifactId>
 						<version>${maven-antrun-plugin.version}</version>
@@ -73,10 +75,13 @@
 								<configuration>
 									<target>
 										<!-- delete old folder -->
-										<delete dir="${main.basedir}/sheets" failonerror="false" includeemptydirs="true" />
+										<delete dir="${main.basedir}/sheets" failonerror="false"
+											includeemptydirs="true" />
 										<!-- Copy sheets -->
-										<copy file="/tmp/FadingSuns_EN.pdf" tofile="${main.basedir}/sheets/FadingSuns_EN.pdf" overwrite="true" />
-										<copy file="/tmp/FadingSuns_ES.pdf" tofile="${main.basedir}/sheets/FadingSuns_ES.pdf" overwrite="true" />
+										<copy file="/tmp/FadingSuns_EN.pdf" tofile="${main.basedir}/sheets/FadingSuns_EN.pdf"
+											overwrite="true" />
+										<copy file="/tmp/FadingSuns_ES.pdf" tofile="${main.basedir}/sheets/FadingSuns_ES.pdf"
+											overwrite="true" />
 									</target>
 								</configuration>
 								<goals>

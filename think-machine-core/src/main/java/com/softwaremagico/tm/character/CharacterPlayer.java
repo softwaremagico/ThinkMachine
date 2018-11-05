@@ -54,7 +54,6 @@ import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.characteristics.CharacteristicType;
 import com.softwaremagico.tm.character.characteristics.CharacteristicsDefinitionFactory;
 import com.softwaremagico.tm.character.combat.CombatStyle;
-import com.softwaremagico.tm.character.combat.LearnedStance;
 import com.softwaremagico.tm.character.creation.CostCalculator;
 import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
 import com.softwaremagico.tm.character.cybernetics.CyberneticDevice;
@@ -128,8 +127,6 @@ public class CharacterPlayer {
 
 	private List<CombatStyle> rangedCombatActions;
 
-	private List<LearnedStance> learnedStances;
-
 	private int experience = 0;
 
 	private transient FreeStyleCharacterCreation freeStyleCharacterCreation;
@@ -154,7 +151,6 @@ public class CharacterPlayer {
 		weapons = new Weapons();
 		meleeCombatActions = new ArrayList<>();
 		rangedCombatActions = new ArrayList<>();
-		learnedStances = new ArrayList<>();
 		try {
 			setArmour(null);
 		} catch (InvalidArmourException e) {
@@ -750,14 +746,6 @@ public class CharacterPlayer {
 
 	public int getRemainginExperience() {
 		return experience;
-	}
-
-	public List<LearnedStance> getLearnedStances() {
-		return learnedStances;
-	}
-
-	public void setLearnedStances(List<LearnedStance> learnedStances) {
-		this.learnedStances = learnedStances;
 	}
 
 	public Characteristic getCharacteristic(String characteristicId) {

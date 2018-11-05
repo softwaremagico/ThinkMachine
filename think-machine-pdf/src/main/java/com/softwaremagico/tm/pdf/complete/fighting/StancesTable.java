@@ -25,6 +25,7 @@ package com.softwaremagico.tm.pdf.complete.fighting;
  */
 
 import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.character.combat.CombatStyle;
 import com.softwaremagico.tm.character.combat.LearnedStance;
 import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.complete.elements.LateralHeaderPdfPTable;
@@ -40,36 +41,35 @@ public class StancesTable extends LateralHeaderPdfPTable {
 	protected StancesTable(CharacterPlayer characterPlayer) {
 		super(WIDTHS);
 
-		addCell(createLateralVerticalTitle(
-				getTranslator().getTranslatedText("stances"), ROWS + 3));
+		addCell(createLateralVerticalTitle(getTranslator().getTranslatedText("stances"), ROWS + 3));
 
-		addCell(createTableSubtitleElement(
-				getTranslator().getTranslatedText("stanceName"), 13));
-		addCell(createTableSubtitleElement(
-				getTranslator().getTranslatedText("stanceDescription"), 13));
+		addCell(createTableSubtitleElement(getTranslator().getTranslatedText("stanceName"), 13));
+		addCell(createTableSubtitleElement(getTranslator().getTranslatedText("stanceDescription"), 13));
 
-		addCell(createFirstEmptyElementLine(getTranslator().getTranslatedText(
-				"agressiveStance")));
-		addCell(createEmptyElementLine(getTranslator().getTranslatedText(
-				"agressiveStanceDescription")));
+		addCell(createFirstEmptyElementLine(getTranslator().getTranslatedText("agressiveStance")));
+		addCell(createEmptyElementLine(getTranslator().getTranslatedText("agressiveStanceDescription")));
 
-		addCell(createFirstEmptyElementLine(getTranslator().getTranslatedText(
-				"defensiveStance")));
-		addCell(createEmptyElementLine(getTranslator().getTranslatedText(
-				"defensiveStanceDescription")));
+		addCell(createFirstEmptyElementLine(getTranslator().getTranslatedText("defensiveStance")));
+		addCell(createEmptyElementLine(getTranslator().getTranslatedText("defensiveStanceDescription")));
 
-		addCell(createFirstEmptyElementLine(getTranslator().getTranslatedText(
-				"fullDefensiveStance")));
-		addCell(createEmptyElementLine(getTranslator().getTranslatedText(
-				"fullDefensiveStanceDescription")));
+		addCell(createFirstEmptyElementLine(getTranslator().getTranslatedText("fullDefensiveStance")));
+		addCell(createEmptyElementLine(getTranslator().getTranslatedText("fullDefensiveStanceDescription")));
 
 		int added = 0;
 		if (characterPlayer != null) {
-			for (LearnedStance stance : characterPlayer.getLearnedStances()) {
-				addCell(createElementLine(stance.getName(), NAME_COLUMN_WIDTH));
-				addCell(createElementLine(stance.getDescription(),
-						DESCRIPTION_COLUMN_WIDTH));
-				added++;
+			for (CombatStyle combatStyle : characterPlayer.getMeleeCombatStyles()) {
+				for (LearnedStance stance : combatStyle.getLearnedStances()) {
+					addCell(createElementLine(stance.getName(), NAME_COLUMN_WIDTH));
+					addCell(createElementLine(stance.getDescription(), DESCRIPTION_COLUMN_WIDTH));
+					added++;
+				}
+			}
+			for (CombatStyle combatStyle : characterPlayer.getRangedCombatStyles()) {
+				for (LearnedStance stance : combatStyle.getLearnedStances()) {
+					addCell(createElementLine(stance.getName(), NAME_COLUMN_WIDTH));
+					addCell(createElementLine(stance.getDescription(), DESCRIPTION_COLUMN_WIDTH));
+					added++;
+				}
 			}
 		}
 
