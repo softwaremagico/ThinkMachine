@@ -1,10 +1,10 @@
-package com.softwaremagico.tm.character.combat;
+package com.softwaremagico.tm.factory;
 
 /*-
  * #%L
  * Think Machine (Core)
  * %%
- * Copyright (C) 2017 Softwaremagico
+ * Copyright (C) 2017 - 2018 Softwaremagico
  * %%
  * This software is designed by Jorge Hortelano Otero. Jorge Hortelano Otero
  * <softwaremagico@gmail.com> Valencia (Spain).
@@ -24,30 +24,25 @@ package com.softwaremagico.tm.character.combat;
  * #L%
  */
 
-public class LearnedStance {
-	private String name;
-	private String description;
+import junit.framework.Assert;
 
-	public LearnedStance(String name, String description) {
-		super();
-		this.name = name;
-		this.description = description;
+import org.testng.annotations.Test;
+
+import com.softwaremagico.tm.InvalidXmlElementException;
+import com.softwaremagico.tm.character.combat.CombatStyleFactory;
+
+@Test(groups = { "combatStyleFactory" })
+public class CombatStylesFactoryTests {
+	private final static String LANGUAGE = "en";
+	private final static int DEFINED_STYLES = 11;
+
+	@Test
+	public void readCombatStyles() throws InvalidXmlElementException {
+		Assert.assertEquals(DEFINED_STYLES, CombatStyleFactory.getInstance().getElements(LANGUAGE).size());
 	}
 
-	public String getName() {
-		return name;
+	@Test
+	public void readCombatActions() throws InvalidXmlElementException {
+		Assert.assertEquals(3, CombatStyleFactory.getInstance().getElement("graa", LANGUAGE).getCombatActions().size());
 	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
 }

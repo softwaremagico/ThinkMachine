@@ -24,36 +24,23 @@ package com.softwaremagico.tm.character.combat;
  * #L%
  */
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
-import com.softwaremagico.tm.ElementList;
+import com.softwaremagico.tm.Element;
 
-public class CombatStyle extends ElementList<CombatAction> {
+public class CombatStyle extends Element<CombatStyle> {
 	private final static int COMBAT_SYTLE_COST = 5;
-	private final String id;
-	private final String name;
 	private final CombatStyleGroup group;
-	private final Set<LearnedStance> learnedStances;
+	private final List<CombatStance> combatStances;
+	private List<CombatAction> combatActions;
 
-	public CombatStyle(String name, CombatStyleGroup group) {
-		this(null, name, group);
-	}
-
-	public CombatStyle(String id, String name, CombatStyleGroup group) {
-		super();
-		this.id = id;
-		this.name = name;
+	public CombatStyle(String id, String name, String language, CombatStyleGroup group) {
+		super(id, name, language);
+		combatActions = new ArrayList<CombatAction>();
 		this.group = group;
-		learnedStances = new HashSet<>();
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public String getId() {
-		return id;
+		combatStances = new ArrayList<>();
 	}
 
 	public int getCost() {
@@ -64,11 +51,21 @@ public class CombatStyle extends ElementList<CombatAction> {
 		return group;
 	}
 
-	public void addLearnedStance(LearnedStance stance) {
-		learnedStances.add(stance);
+	public void addCombatStance(CombatStance stance) {
+		combatStances.add(stance);
+		Collections.sort(combatStances);
 	}
 
-	public Set<LearnedStance> getLearnedStances() {
-		return learnedStances;
+	public List<CombatStance> getCombatStances() {
+		return Collections.unmodifiableList(combatStances);
+	}
+
+	public void addCombatAction(CombatAction combatAction) {
+		combatActions.add(combatAction);
+		Collections.sort(combatActions);
+	}
+
+	public List<CombatAction> getCombatActions() {
+		return Collections.unmodifiableList(combatActions);
 	}
 }

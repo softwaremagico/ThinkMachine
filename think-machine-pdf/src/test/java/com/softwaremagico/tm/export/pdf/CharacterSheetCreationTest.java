@@ -27,6 +27,7 @@ package com.softwaremagico.tm.export.pdf;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.util.HashSet;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -44,9 +45,10 @@ import com.softwaremagico.tm.character.blessings.BlessingFactory;
 import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.combat.CombatAction;
+import com.softwaremagico.tm.character.combat.CombatActionRequirement;
 import com.softwaremagico.tm.character.combat.CombatStyle;
 import com.softwaremagico.tm.character.combat.CombatStyleGroup;
-import com.softwaremagico.tm.character.combat.LearnedStance;
+import com.softwaremagico.tm.character.combat.CombatStance;
 import com.softwaremagico.tm.character.creation.CostCalculator;
 import com.softwaremagico.tm.character.cybernetics.CyberneticDevice;
 import com.softwaremagico.tm.character.equipment.armour.ArmourFactory;
@@ -165,17 +167,18 @@ public class CharacterSheetCreationTest {
 		player.getCybernetics().addElement(new CyberneticDevice("Ojo de Ingeniero", LANGUAGE, 6, 5, "Normal", "Normal", "Automático", "Visible", ""));
 		player.getCybernetics().addElement(new CyberneticDevice("Jonás", LANGUAGE, 7, 4, "Normal", "Normal", "Ds+Arquería", "Incógnito", ""));
 
-		CombatStyle gun = new CombatStyle("pistola", CombatStyleGroup.RANGED);
-		gun.addElement(new CombatAction("Disparo Instantáneo", LANGUAGE, null, null, "-2 por 3 disparos"));
-		gun.addElement(new CombatAction("Rueda y Dispara", LANGUAGE, null, null, "Mover 3m"));
-		gun.addElement(new CombatAction("Corre y Dispara", LANGUAGE, null, null, "Especial"));
+		CombatStyle gun = new CombatStyle("pistola", "pistola", LANGUAGE, CombatStyleGroup.RANGED);
+		gun.addCombatAction(new CombatAction("Disparo Instantáneo", LANGUAGE, null, null, "-2 por 3 disparos", new HashSet<CombatActionRequirement>()));
+		gun.addCombatAction(new CombatAction("Rueda y Dispara", LANGUAGE, null, null, "Mover 3m", new HashSet<CombatActionRequirement>()));
+		gun.addCombatAction(new CombatAction("Corre y Dispara", LANGUAGE, null, null, "Especial", new HashSet<CombatActionRequirement>()));
 		player.getRangedCombatStyles().add(gun);
 
-		CombatStyle shaidan = new CombatStyle("shaidan", CombatStyleGroup.MELEE);
-		shaidan.addElement(new CombatAction("Palma Real", LANGUAGE, null, "-1", ""));
-		shaidan.addElement(new CombatAction("Con un Pie en el Trono", LANGUAGE, 4, null, "+4 a resistir derribos"));
-		shaidan.addElement(new CombatAction("Decreto Imperial", LANGUAGE, null, "+1 / 1W", null));
-		shaidan.addLearnedStance(new LearnedStance("Posición Acrobática", "+1 a defensa por volteretas"));
+		CombatStyle shaidan = new CombatStyle("shaidan", "shaidan", LANGUAGE, CombatStyleGroup.MELEE);
+		shaidan.addCombatAction(new CombatAction("Palma Real", LANGUAGE, null, "-1", "", new HashSet<CombatActionRequirement>()));
+		shaidan.addCombatAction(new CombatAction("Con un Pie en el Trono", LANGUAGE, "4", null, "+4 a resistir derribos",
+				new HashSet<CombatActionRequirement>()));
+		shaidan.addCombatAction(new CombatAction("Decreto Imperial", LANGUAGE, null, "+1 / 1W", null, new HashSet<CombatActionRequirement>()));
+		shaidan.addCombatStance(new CombatStance("Posición Acrobática", "Posición Acrobática", LANGUAGE, "+1 a defensa por volteretas"));
 		player.getMeleeCombatStyles().add(shaidan);
 
 		player.getWeapons().addElement(WeaponFactory.getInstance().getElement("mace", LANGUAGE));

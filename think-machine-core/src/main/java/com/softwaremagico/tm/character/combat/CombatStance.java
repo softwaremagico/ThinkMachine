@@ -4,7 +4,7 @@ package com.softwaremagico.tm.character.combat;
  * #%L
  * Think Machine (Core)
  * %%
- * Copyright (C) 2017 Softwaremagico
+ * Copyright (C) 2017 - 2018 Softwaremagico
  * %%
  * This software is designed by Jorge Hortelano Otero. Jorge Hortelano Otero
  * <softwaremagico@gmail.com> Valencia (Spain).
@@ -24,8 +24,17 @@ package com.softwaremagico.tm.character.combat;
  * #L%
  */
 
-import com.softwaremagico.tm.ElementList;
+import com.softwaremagico.tm.Element;
 
-public class CombatActions extends ElementList<CombatAction> {
+public class CombatStance extends Element<CombatStance> {
+	private final String description;
 
+	public CombatStance(String id, String name, String language, String description) {
+		super(id, name, language);
+		this.description = description;
+	}
+
+	public String getDescription() {
+		return description;
+	}
 }

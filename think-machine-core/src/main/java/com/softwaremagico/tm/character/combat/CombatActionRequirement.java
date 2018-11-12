@@ -24,15 +24,24 @@ package com.softwaremagico.tm.character.combat;
  * #L%
  */
 
-public enum CombatStyleGroup {
-	MELEE, FIGHT, RANGED;
+import java.util.Set;
 
-	public static CombatStyleGroup get(String groupName) {
-		for (CombatStyleGroup combatStyleGroup : CombatStyleGroup.values()) {
-			if (combatStyleGroup.name().equalsIgnoreCase(groupName)) {
-				return combatStyleGroup;
-			}
-		}
-		return null;
+import com.softwaremagico.tm.character.skills.AvailableSkill;
+
+public class CombatActionRequirement {
+	private final Set<AvailableSkill> skills;
+	private final int value;
+
+	protected CombatActionRequirement(Set<AvailableSkill> skills, int value) {
+		this.skills = skills;
+		this.value = value;
+	}
+
+	public Set<AvailableSkill> getSkills() {
+		return skills;
+	}
+
+	public int getValue() {
+		return value;
 	}
 }

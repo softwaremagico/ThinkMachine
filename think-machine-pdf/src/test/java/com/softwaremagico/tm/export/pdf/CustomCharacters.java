@@ -46,6 +46,7 @@ import com.softwaremagico.tm.character.characteristics.CharacteristicImprovement
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.characteristics.CharacteristicsDefinitionFactory;
 import com.softwaremagico.tm.character.combat.CombatAction;
+import com.softwaremagico.tm.character.combat.CombatActionRequirement;
 import com.softwaremagico.tm.character.combat.CombatStyle;
 import com.softwaremagico.tm.character.combat.CombatStyleGroup;
 import com.softwaremagico.tm.character.creation.CostCalculator;
@@ -257,9 +258,9 @@ public class CustomCharacters {
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("passageContracts_3", player.getLanguage()));
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("cash [firebirds1000]", player.getLanguage()));
 
-		CombatStyle fightStyle = new CombatStyle("ironHeel", CombatStyleGroup.MELEE);
-		fightStyle.addElement(new CombatAction("Cadena de Destrucción", LANGUAGE, null, "3d", "Presa Especial"));
-		fightStyle.addElement(new CombatAction("Cabezazo", LANGUAGE, 2, "4d", "Ignora armadura*"));
+		CombatStyle fightStyle = new CombatStyle("ironHeel", "ironHeel", LANGUAGE, CombatStyleGroup.MELEE);
+		fightStyle.addCombatAction(new CombatAction("Cadena de Destrucción", LANGUAGE, null, "3d", "Presa Especial", new HashSet<CombatActionRequirement>()));
+		fightStyle.addCombatAction(new CombatAction("Cabezazo", LANGUAGE, "2", "4d", "Ignora armadura*", new HashSet<CombatActionRequirement>()));
 		player.getMeleeCombatStyles().add(fightStyle);
 
 		player.getWeapons().addElement(WeaponFactory.getInstance().getElement("typicalShotgun", LANGUAGE));

@@ -24,21 +24,25 @@ package com.softwaremagico.tm.character.combat;
  * #L%
  */
 
+import java.util.Set;
+
 import com.softwaremagico.tm.Element;
 
 public class CombatAction extends Element<CombatAction> {
-	private final Integer goal;
+	private final String goal;
 	private final String damage;
 	private final String others;
+	private final Set<CombatActionRequirement> requirements;
 
-	public CombatAction(String name, String language, Integer goal, String damage, String others) {
+	public CombatAction(String name, String language, String goal, String damage, String others, Set<CombatActionRequirement> requirements) {
 		super(null, name, language);
 		this.goal = goal;
 		this.damage = damage;
 		this.others = others;
+		this.requirements = requirements;
 	}
 
-	public Integer getGoal() {
+	public String getGoal() {
 		return goal;
 	}
 
@@ -48,6 +52,10 @@ public class CombatAction extends Element<CombatAction> {
 
 	public String getOthers() {
 		return others;
+	}
+
+	public Set<CombatActionRequirement> getRequirements() {
+		return requirements;
 	}
 
 }

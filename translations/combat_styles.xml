@@ -5,6 +5,7 @@
 			<en>Graa</en>
 			<es>Graa</es>
 		</name>
+		<combatStyleGroup>melee</combatStyleGroup>
 		<combatActions>
 			<banga>
 				<name>
@@ -42,59 +43,69 @@
 			<en>Jox Kai Von</en>
 			<es>Jox Kai Von</es>
 		</name>
+		<combatStyleGroup>melee</combatStyleGroup>
 	</joxKaiVon>
 	<koto>
 		<name>
 			<en>Koto</en>
 			<es>Koto</es>
 		</name>
+		<combatStyleGroup>melee</combatStyleGroup>
 	</koto>
 	<mantok>
 		<name>
 			<en>Mantok</en>
 			<es>Mantok</es>
 		</name>
+		<combatStyleGroup>melee</combatStyleGroup>
 	</mantok>
 	<ironHeel>
 		<name>
 			<en>Iron Heel</en>
 			<es>Talón de Acero</es>
 		</name>
+		<combatStyleGroup>melee</combatStyleGroup>
 	</ironHeel>
 	<shaidan>
 		<name>
 			<en>Shaidan</en>
 			<es>Shaidan</es>
 		</name>
+		<combatStyleGroup>melee</combatStyleGroup>
 	</shaidan>
 	<florentine>
 		<name>
 			<en>Florentine</en>
 			<es>Florentino</es>
 		</name>
+		<combatStyleGroup>fight</combatStyleGroup>
 	</florentine>
 	<kraxiKnife>
 		<name>
 			<en>Kraxi Knife</en>
 			<es>Kraxi</es>
 		</name>
+		<combatStyleGroup>fight</combatStyleGroup>
 	</kraxiKnife>
 	<serpentis>
 		<name>
 			<en>Serpentis</en>
 			<es>Serpentis</es>
 		</name>
+		<combatStyleGroup>fight</combatStyleGroup>
 	</serpentis>
 	<torero>
 		<name>
 			<en>Torero</en>
 			<es>Torero</es>
 		</name>
+		<combatStyleGroup>fight</combatStyleGroup>
 	</torero>
 	<phoenixRifleCorps>
 		<name>
 			<en>Phoenix Rifle Corps</en>
 			<es>Cuerpo de Fusileros del Fénix</es>
 		</name>
+		<combatStyleGroup>ranged</combatStyleGroup>
 	</phoenixRifleCorps>
 </combat_styles>

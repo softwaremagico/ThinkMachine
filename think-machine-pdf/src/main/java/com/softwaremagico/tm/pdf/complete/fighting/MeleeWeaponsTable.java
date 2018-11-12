@@ -113,7 +113,7 @@ public class MeleeWeaponsTable extends LateralHeaderPdfPTable {
 		int addedActions = 0;
 		if (characterPlayer != null) {
 			for (CombatStyle style : characterPlayer.getMeleeCombatStyles()) {
-				for (CombatAction action : style.getElements()) {
+				for (CombatAction action : style.getCombatActions()) {
 					addCell(createFirstElementLine(action.getName(), NAME_COLUMN_WIDHT, FadingSunsTheme.COMBAT_ACTIONS_CONTENT_FONT_SIZE));
 					addCell(createElementLine(action.getGoal(), GOAL_COLUMN_WIDHT, FadingSunsTheme.COMBAT_ACTIONS_CONTENT_FONT_SIZE));
 					addCell(createElementLine(action.getDamage(), DAMAGE_COLUMN_WIDHT, FadingSunsTheme.COMBAT_ACTIONS_CONTENT_FONT_SIZE));

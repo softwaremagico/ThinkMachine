@@ -24,15 +24,16 @@ package com.softwaremagico.tm.character.combat;
  * #L%
  */
 
-public enum CombatStyleGroup {
-	MELEE, FIGHT, RANGED;
+import com.softwaremagico.tm.InvalidXmlElementException;
 
-	public static CombatStyleGroup get(String groupName) {
-		for (CombatStyleGroup combatStyleGroup : CombatStyleGroup.values()) {
-			if (combatStyleGroup.name().equalsIgnoreCase(groupName)) {
-				return combatStyleGroup;
-			}
-		}
-		return null;
+public class InvalidCombatStyleException extends InvalidXmlElementException {
+	private static final long serialVersionUID = 3558660253411869827L;
+
+	public InvalidCombatStyleException(String message) {
+		super(message);
+	}
+	
+	public InvalidCombatStyleException(String message, Exception e) {
+		super(message, e);
 	}
 }

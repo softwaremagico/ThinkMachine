@@ -26,7 +26,7 @@ package com.softwaremagico.tm.pdf.complete.fighting;
 
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.combat.CombatStyle;
-import com.softwaremagico.tm.character.combat.LearnedStance;
+import com.softwaremagico.tm.character.combat.CombatStance;
 import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.complete.elements.LateralHeaderPdfPTable;
 
@@ -58,14 +58,14 @@ public class StancesTable extends LateralHeaderPdfPTable {
 		int added = 0;
 		if (characterPlayer != null) {
 			for (CombatStyle combatStyle : characterPlayer.getMeleeCombatStyles()) {
-				for (LearnedStance stance : combatStyle.getLearnedStances()) {
+				for (CombatStance stance : combatStyle.getCombatStances()) {
 					addCell(createElementLine(stance.getName(), NAME_COLUMN_WIDTH));
 					addCell(createElementLine(stance.getDescription(), DESCRIPTION_COLUMN_WIDTH));
 					added++;
 				}
 			}
 			for (CombatStyle combatStyle : characterPlayer.getRangedCombatStyles()) {
-				for (LearnedStance stance : combatStyle.getLearnedStances()) {
+				for (CombatStance stance : combatStyle.getCombatStances()) {
 					addCell(createElementLine(stance.getName(), NAME_COLUMN_WIDTH));
 					addCell(createElementLine(stance.getDescription(), DESCRIPTION_COLUMN_WIDTH));
 					added++;
