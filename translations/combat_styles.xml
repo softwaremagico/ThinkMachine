@@ -13,7 +13,10 @@
 					<es>Banga</es>
 				</name>
 				<requirements>
-					<melee>3</melee>
+					<requirement>
+						<skill>melee></skill>
+						<value>3</value>
+					</requirement>
 				</requirements>
 			</banga>
 			<drox>
@@ -22,8 +25,14 @@
 					<es>Drox</es>
 				</name>
 				<requirements>
-					<melee>5</melee>
-					<athletics>7</athletics>
+					<requirement>
+						<skill>melee></skill>
+						<value>5</value>
+					</requirement>
+					<requirement>
+						<skill>athletics></skill>
+						<value>7</value>
+					</requirement>
 				</requirements>
 			</drox>
 			<Throx>
@@ -32,11 +41,30 @@
 					<es>Throx</es>
 				</name>
 				<requirements>
-					<melee>9</melee>
-					<athletics>9</athletics>
+					<requirement>
+						<skill>melee></skill>
+						<value>9</value>
+					</requirement>
+					<requirement>
+						<skill>athletics></skill>
+						<value>9</value>
+					</requirement>
 				</requirements>
 			</Throx>
 		</combatActions>
+		<stances>
+			<gripppingHand>
+				<name>
+					<en>Gripping Hand</en>
+					<es>Mano de Presa</es>
+				</name>
+				<description>
+					<en>+2 Goal for Grapple actions.</en>
+					<es>+2 RA para acción de sujección.</es>
+				</description>
+			</gripppingHand>
+		</stances>
+		<restrictedRaces>vorox</restrictedRaces>
 	</graa>
 	<joxKaiVon>
 		<name>
@@ -44,6 +72,21 @@
 			<es>Jox Kai Von</es>
 		</name>
 		<combatStyleGroup>melee</combatStyleGroup>
+		<stances>
+			<joxStance>
+				<name>
+					<en>Jox Stance</en>
+					<es>Posición Jox</es>
+				</name>
+				<description>
+					<en>+1 wound point if successful strike.</en>
+					<es>+1 Herida si golpea con éxito.</es>
+				</description>
+			</joxStance>
+		</stances>
+		<random>
+			<recommendedFactions>ukar, decados</recommendedFactions>
+		</random>
 	</joxKaiVon>
 	<koto>
 		<name>
@@ -51,6 +94,21 @@
 			<es>Koto</es>
 		</name>
 		<combatStyleGroup>melee</combatStyleGroup>
+		<stance>
+			<kotoStance>
+				<name>
+					<en>Koto Stance</en>
+					<es>Posición Koto</es>
+				</name>
+				<description>
+					<en>-1 to enemy defence</en>
+					<es>-1 a la defensa del enemigo.</es>
+				</description>
+			</kotoStance>
+		</stance>
+		<random>
+			<recommendedFactions>alMalik</recommendedFactions>
+		</random>
 	</koto>
 	<mantok>
 		<name>
@@ -58,6 +116,19 @@
 			<es>Mantok</es>
 		</name>
 		<combatStyleGroup>melee</combatStyleGroup>
+		<stance>
+			<soldierStance>
+				<name>
+					<en>Soldier's Stance</en>
+					<es>Posición de Soldado</es>
+				</name>
+				<description>
+					<en>+4 to goal agains grapple or knock out.</en>
+					<es>+4 RA contra Presa o Derribo.</es>
+				</description>
+			</soldierStances>
+		</stance>
+		<restrictedFactions>brotherBattle</restrictedFactions>
 	</mantok>
 	<ironHeel>
 		<name>
@@ -65,6 +136,21 @@
 			<es>Talón de Acero</es>
 		</name>
 		<combatStyleGroup>melee</combatStyleGroup>
+		<stance>
+			<beatdownStance>
+				<name>
+					<en>Beatdown Stance</en>
+					<es>Posición de Paliza</es>
+				</name>
+				<description>
+					<en>+2 damage to Grapple. +2 Goal to Grapple or Knock-down.</en>
+					<es>+2 al daño de Presa. +2 RA a Presa o Derribo.</es>
+				</description>
+			</beatdownStance>
+		</stance>
+		<random>
+			<recommendedFactions>muster</recommendedFactions>
+		</random>
 	</ironHeel>
 	<shaidan>
 		<name>
@@ -72,6 +158,21 @@
 			<es>Shaidan</es>
 		</name>
 		<combatStyleGroup>melee</combatStyleGroup>
+		<stance>
+			<balancedStance>
+				<name>
+					<en>Balanced Stance</en>
+					<es>Posición Equilibrada</es>
+				</name>
+				<description>
+					<en>+1 to Defense against melee or fight attacks.</en>
+					<es>+1 a Defensa contra ataques cuerpo a cuerpo.</es>
+				</description>
+			</balancedStance>
+		</stance>
+		<random>
+			<recommendedFactions>hazat</recommendedFactions>
+		</random>
 	</shaidan>
 	<florentine>
 		<name>
@@ -79,6 +180,21 @@
 			<es>Florentino</es>
 		</name>
 		<combatStyleGroup>fight</combatStyleGroup>
+		<stance>
+			<wovenSteel>
+				<name>
+					<en>Woven Steel</en>
+					<es>Floritura de Acero</es>
+				</name>
+				<description>
+					<en>+1 a defense agains melee or fight attackas if wielding two weapons.</en>
+					<es>+1 a Defensa contra ataques cuerpo a cuerpo si porta dos armas.</es>
+				</description>
+			</wovenSteel>
+		</stance>
+		<random>
+			<recommendedFactions>liHalan</recommendedFactions>
+		</random>
 	</florentine>
 	<kraxiKnife>
 		<name>
@@ -86,6 +202,18 @@
 			<es>Kraxi</es>
 		</name>
 		<combatStyleGroup>fight</combatStyleGroup>
+		<stance>
+			<focusedRage>
+				<name>
+					<en></en>
+					<es></es>
+				</name>
+				<description>
+					<en></en>
+					<es></es>
+				</description>
+			</focusedRage>
+		</stance>
 	</kraxiKnife>
 	<serpentis>
 		<name>
@@ -93,6 +221,18 @@
 			<es>Serpentis</es>
 		</name>
 		<combatStyleGroup>fight</combatStyleGroup>
+		<stance>
+			<weavingFangs>
+				<name>
+					<en>Weaving Fangs</en>
+					<es>Floritura Letal</es>
+				</name>
+				<description>
+					<en></en>
+					<es></es>
+				</description>
+			</weavingFangs>
+		</stance>
 	</serpentis>
 	<torero>
 		<name>
@@ -100,6 +240,18 @@
 			<es>Torero</es>
 		</name>
 		<combatStyleGroup>fight</combatStyleGroup>
+		<stance>
+			<>
+				<name>
+					<en></en>
+					<es></es>
+				</name>
+				<description>
+					<en></en>
+					<es></es>
+				</description>
+			</>
+		</stance>
 	</torero>
 	<phoenixRifleCorps>
 		<name>
@@ -107,5 +259,17 @@
 			<es>Cuerpo de Fusileros del Fénix</es>
 		</name>
 		<combatStyleGroup>ranged</combatStyleGroup>
+		<stance>
+			<>
+				<name>
+					<en></en>
+					<es></es>
+				</name>
+				<description>
+					<en></en>
+					<es></es>
+				</description>
+			</>
+		</stance>
 	</phoenixRifleCorps>
 </combat_styles>

@@ -91,7 +91,7 @@ public class CombatStyleFactory extends XmlFactory<CombatStyle> {
 			// Adding combat actions
 			Set<String> combatActionsIds = translator.getAllChildrenTags(combatStyleId, COMBAT_ACTIONS);
 			for (String combatActionId : combatActionsIds) {
-				String combatActionName = translator.getNodeValue(combatActionId, NAME, language);
+				String combatActionName = translator.getNodeValue(comb atActionId, NAME, language);
 
 				Set<CombatActionRequirement> requirements = new HashSet<>();
 				Set<String> combatActionRequirements = translator.getAllChildrenTags(combatActionId, COMBAT_ACTION_REQUIREMENTS);
