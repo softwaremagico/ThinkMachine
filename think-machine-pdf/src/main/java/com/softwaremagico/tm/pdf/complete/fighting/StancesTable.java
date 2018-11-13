@@ -24,6 +24,7 @@ package com.softwaremagico.tm.pdf.complete.fighting;
  * #L%
  */
 
+import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.combat.CombatStyle;
 import com.softwaremagico.tm.character.combat.CombatStance;
@@ -38,7 +39,7 @@ public class StancesTable extends LateralHeaderPdfPTable {
 	private final static int NAME_COLUMN_WIDTH = 100;
 	private final static int DESCRIPTION_COLUMN_WIDTH = 200;
 
-	protected StancesTable(CharacterPlayer characterPlayer) {
+	protected StancesTable(CharacterPlayer characterPlayer) throws InvalidXmlElementException {
 		super(WIDTHS);
 
 		addCell(createLateralVerticalTitle(getTranslator().getTranslatedText("stances"), ROWS + 3));

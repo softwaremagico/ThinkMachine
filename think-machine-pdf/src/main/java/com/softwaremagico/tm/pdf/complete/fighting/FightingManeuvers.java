@@ -26,13 +26,14 @@ package com.softwaremagico.tm.pdf.complete.fighting;
 
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
+import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.pdf.complete.elements.BaseElement;
 
 public class FightingManeuvers extends BaseElement {
 	public final static int PADDING = 2;
 
-	public static PdfPTable getFightingManoeuvresTable(CharacterPlayer characterPlayer) {
+	public static PdfPTable getFightingManoeuvresTable(CharacterPlayer characterPlayer) throws InvalidXmlElementException {
 		float[] widths = { 1f, 1f };
 		PdfPTable table = new PdfPTable(widths);
 		setTablePropierties(table);

@@ -4,7 +4,7 @@ package com.softwaremagico.tm.character.combat;
  * #%L
  * Think Machine (Core)
  * %%
- * Copyright (C) 2017 Softwaremagico
+ * Copyright (C) 2018 Softwaremagico
  * %%
  * This software is designed by Jorge Hortelano Otero. Jorge Hortelano Otero
  * <softwaremagico@gmail.com> Valencia (Spain).
@@ -26,9 +26,12 @@ package com.softwaremagico.tm.character.combat;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.StringTokenizer;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
+import com.softwaremagico.tm.character.skills.AvailableSkill;
+import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
 
@@ -40,6 +43,8 @@ public class CombatStyleFactory extends XmlFactory<CombatStyle> {
 
 	private final static String COMBAT_ACTIONS = "combatActions";
 	private final static String COMBAT_ACTION_REQUIREMENTS = "requirements";
+	private final static String COMBAT_ACTION_REQUIREMENTS_SKILL = "skill";
+	private final static String COMBAT_ACTION_REQUIREMENTS_VALUE = "value";
 	private final static String COMBAT_ACTION_GOAL = "goal";
 	private final static String COMBAT_ACTION_DAMAGE = "damage";
 	private final static String COMBAT_ACTION_OTHERS = "others";
@@ -91,12 +96,35 @@ public class CombatStyleFactory extends XmlFactory<CombatStyle> {
 			// Adding combat actions
 			Set<String> combatActionsIds = translator.getAllChildrenTags(combatStyleId, COMBAT_ACTIONS);
 			for (String combatActionId : combatActionsIds) {
-				String combatActionName = translator.getNodeValue(comb atActionId, NAME, language);
+				String combatActionName = translator.getNodeValue(combatActionId, NAME, language);
 
+				// Set requirements
 				Set<CombatActionRequirement> requirements = new HashSet<>();
 				Set<String> combatActionRequirements = translator.getAllChildrenTags(combatActionId, COMBAT_ACTION_REQUIREMENTS);
-				for (String combatActionRequirement : combatActionRequirements) {
+				for (String combatActionRequirementId : combatActionRequirements) {
+					String skillNames = translator.getNodeValue(combatActionId, COMBAT_ACTION_REQUIREMENTS, combatActionRequirementId,
+							COMBAT_ACTION_REQUIREMENTS_SKILL);
 
+					Set<AvailableSkill> skillsRestriction = new HashSet<>();
+					StringTokenizer skillTokenizer = new StringTokenizer(skillNames, ",");
+					while (skillTokenizer.hasMoreTokens()) {
+						String skillName = skillTokenizer.nextToken().trim();
+						try {
+							skillsRestriction.add(AvailableSkillsFactory.getInstance().getElement(skillName, language));
+						} catch (InvalidXmlElementException e) {
+							throw new InvalidCombatStyleException("Invalid requirement '" + skillName + "' in combat style '" + combatStyleId + "'.", e);
+						}
+					}
+
+					try {
+						String skillValue = translator.getNodeValue(combatActionId, COMBAT_ACTION_REQUIREMENTS, combatActionRequirementId,
+								COMBAT_ACTION_REQUIREMENTS_VALUE);
+						CombatActionRequirement combatActionRequirement = new CombatActionRequirement(skillsRestriction, Integer.parseInt(skillValue));
+						requirements.add(combatActionRequirement);
+					} catch (NumberFormatException e) {
+						throw new InvalidCombatStyleException("Invalid requirement value in '" + combatActionId + "' at combat style '" + combatStyleId + "'.",
+								e);
+					}
 				}
 
 				String combatActionGoal = "";
@@ -120,7 +148,8 @@ public class CombatStyleFactory extends XmlFactory<CombatStyle> {
 					// Not mandatory
 				}
 
-				CombatAction combatAction = new CombatAction(combatActionName, language, combatActionGoal, combatActionDamage, combatActionOthers, requirements);
+				CombatAction combatAction = new CombatAction(combatActionId, combatActionName, language, combatActionGoal, combatActionDamage,
+						combatActionOthers, requirements);
 				combatStyle.addCombatAction(combatAction);
 			}
 

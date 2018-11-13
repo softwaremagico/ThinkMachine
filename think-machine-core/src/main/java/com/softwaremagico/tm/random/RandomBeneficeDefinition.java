@@ -76,6 +76,13 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
 			// Select a benefice
 			BeneficeDefinition selectedBenefice = selectElementByWeight();
 			assignBenefice(selectedBenefice, FreeStyleCharacterCreation.TRAITS_POINTS - CostCalculator.getBeneficesCosts(getCharacterPlayer()));
+			// Only one fighting style by character.
+			if (selectedBenefice.getGroup().equals(BeneficeGroup.FIGHTING)) {
+				for (BeneficeDefinition beneficeDefinition : BeneficeDefinitionFactory.getInstance().getBenefices(BeneficeGroup.FIGHTING,
+						getCharacterPlayer().getLanguage())) {
+					removeElementWeight(beneficeDefinition);
+				}
+			}
 		}
 	}
 

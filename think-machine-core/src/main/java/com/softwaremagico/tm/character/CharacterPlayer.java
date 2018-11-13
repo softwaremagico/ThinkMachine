@@ -41,6 +41,8 @@ import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.benefices.AvailableBenefice;
 import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
 import com.softwaremagico.tm.character.benefices.BeneficeClassification;
+import com.softwaremagico.tm.character.benefices.BeneficeDefinition;
+import com.softwaremagico.tm.character.benefices.BeneficeDefinitionFactory;
 import com.softwaremagico.tm.character.benefices.BeneficeGroup;
 import com.softwaremagico.tm.character.benefices.BeneficeSpecialization;
 import com.softwaremagico.tm.character.benefices.InvalidBeneficeException;
@@ -54,6 +56,8 @@ import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.characteristics.CharacteristicType;
 import com.softwaremagico.tm.character.characteristics.CharacteristicsDefinitionFactory;
 import com.softwaremagico.tm.character.combat.CombatStyle;
+import com.softwaremagico.tm.character.combat.CombatStyleFactory;
+import com.softwaremagico.tm.character.combat.CombatStyleGroup;
 import com.softwaremagico.tm.character.creation.CostCalculator;
 import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
 import com.softwaremagico.tm.character.cybernetics.CyberneticDevice;
@@ -123,8 +127,6 @@ public class CharacterPlayer {
 
 	private Shield shield;
 
-	private List<CombatStyle> meleeCombatActions;
-
 	private List<CombatStyle> rangedCombatActions;
 
 	private int experience = 0;
@@ -149,7 +151,6 @@ public class CharacterPlayer {
 		benefices = new ArrayList<>();
 		cybernetics = new Cybernetics();
 		weapons = new Weapons();
-		meleeCombatActions = new ArrayList<>();
 		rangedCombatActions = new ArrayList<>();
 		try {
 			setArmour(null);
@@ -621,12 +622,28 @@ public class CharacterPlayer {
 		this.shield = shield;
 	}
 
-	public List<CombatStyle> getMeleeCombatStyles() {
-		return meleeCombatActions;
+	public List<CombatStyle> getMeleeCombatStyles() throws InvalidXmlElementException {
+		List<CombatStyle> meleeCombatActions = new ArrayList<>();
+		for (BeneficeDefinition beneficeDefinition : BeneficeDefinitionFactory.getInstance().getBenefices(BeneficeGroup.FIGHTING, getLanguage())) {
+			CombatStyle combatStyle = CombatStyleFactory.getInstance().getElement(beneficeDefinition.getId(), getLanguage());
+			if (combatStyle.getGroup() == CombatStyleGroup.MELEE || combatStyle.getGroup() == CombatStyleGroup.FIGHT) {
+				meleeCombatActions.add(combatStyle);
+			}
+		}
+		Collections.sort(meleeCombatActions);
+		return Collections.unmodifiableList(meleeCombatActions);
 	}
 
-	public List<CombatStyle> getRangedCombatStyles() {
-		return rangedCombatActions;
+	public List<CombatStyle> getRangedCombatStyles() throws InvalidXmlElementException {
+		List<CombatStyle> rangedCombatActions = new ArrayList<>();
+		for (BeneficeDefinition beneficeDefinition : BeneficeDefinitionFactory.getInstance().getBenefices(BeneficeGroup.FIGHTING, getLanguage())) {
+			CombatStyle combatStyle = CombatStyleFactory.getInstance().getElement(beneficeDefinition.getId(), getLanguage());
+			if (combatStyle.getGroup() == CombatStyleGroup.RANGED) {
+				rangedCombatActions.add(combatStyle);
+			}
+		}
+		Collections.sort(rangedCombatActions);
+		return Collections.unmodifiableList(rangedCombatActions);
 	}
 
 	public Race getRace() {

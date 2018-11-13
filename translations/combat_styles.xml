@@ -13,10 +13,10 @@
 					<es>Banga</es>
 				</name>
 				<requirements>
-					<requirement>
+					<requirement1>
 						<skill>melee></skill>
 						<value>3</value>
-					</requirement>
+					</requirement1>
 				</requirements>
 			</banga>
 			<drox>
@@ -25,14 +25,14 @@
 					<es>Drox</es>
 				</name>
 				<requirements>
-					<requirement>
+					<requirement1>
 						<skill>melee></skill>
 						<value>5</value>
-					</requirement>
-					<requirement>
+					</requirement1>
+					<requirement2>
 						<skill>athletics></skill>
 						<value>7</value>
-					</requirement>
+					</requirement2>
 				</requirements>
 			</drox>
 			<Throx>
@@ -41,14 +41,14 @@
 					<es>Throx</es>
 				</name>
 				<requirements>
-					<requirement>
+					<requirement1>
 						<skill>melee></skill>
 						<value>9</value>
-					</requirement>
-					<requirement>
+					</requirement1>
+					<requirement2>
 						<skill>athletics></skill>
 						<value>9</value>
-					</requirement>
+					</requirement2>
 				</requirements>
 			</Throx>
 		</combatActions>
@@ -126,7 +126,7 @@
 					<en>+4 to goal agains grapple or knock out.</en>
 					<es>+4 RA contra Presa o Derribo.</es>
 				</description>
-			</soldierStances>
+			</soldierStance>
 		</stance>
 		<restrictedFactions>brotherBattle</restrictedFactions>
 	</mantok>

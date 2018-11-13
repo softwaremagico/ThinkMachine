@@ -24,6 +24,7 @@ package com.softwaremagico.tm.pdf.complete.fighting;
  * #L%
  */
 
+import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.combat.CombatAction;
 import com.softwaremagico.tm.character.combat.CombatStyle;
@@ -39,7 +40,7 @@ public class RangedWeaponsTable extends LateralHeaderPdfPTable {
 	private final static int DAMAGE_COLUMN_WIDHT = 30;
 	private final static int OTHERS_COLUMN_WIDHT = 65;
 
-	public RangedWeaponsTable(CharacterPlayer characterPlayer) {
+	public RangedWeaponsTable(CharacterPlayer characterPlayer) throws InvalidXmlElementException {
 		super(WIDTHS);
 		addCell(createLateralVerticalTitle(getTranslator().getTranslatedText("rangedWeapons"), ROWS + 1));
 		addCell(createTableSubtitleElement(getTranslator().getTranslatedText("weaponsAction")));
@@ -76,11 +77,13 @@ public class RangedWeaponsTable extends LateralHeaderPdfPTable {
 		if (characterPlayer != null) {
 			for (CombatStyle style : characterPlayer.getRangedCombatStyles()) {
 				for (CombatAction action : style.getCombatActions()) {
-					addCell(createFirstElementLine(action.getName(), NAME_COLUMN_WIDHT, FadingSunsTheme.COMBAT_ACTIONS_CONTENT_FONT_SIZE));
-					addCell(createElementLine(action.getGoal(), GOAL_COLUMN_WIDHT, FadingSunsTheme.COMBAT_ACTIONS_CONTENT_FONT_SIZE));
-					addCell(createElementLine(action.getDamage(), DAMAGE_COLUMN_WIDHT, FadingSunsTheme.COMBAT_ACTIONS_CONTENT_FONT_SIZE));
-					addCell(createElementLine(action.getOthers(), OTHERS_COLUMN_WIDHT, FadingSunsTheme.COMBAT_ACTIONS_CONTENT_FONT_SIZE));
-					addedActions++;
+					if (action.isAvailable(characterPlayer)) {
+						addCell(createFirstElementLine(action.getName(), NAME_COLUMN_WIDHT, FadingSunsTheme.COMBAT_ACTIONS_CONTENT_FONT_SIZE));
+						addCell(createElementLine(action.getGoal(), GOAL_COLUMN_WIDHT, FadingSunsTheme.COMBAT_ACTIONS_CONTENT_FONT_SIZE));
+						addCell(createElementLine(action.getDamage(), DAMAGE_COLUMN_WIDHT, FadingSunsTheme.COMBAT_ACTIONS_CONTENT_FONT_SIZE));
+						addCell(createElementLine(action.getOthers(), OTHERS_COLUMN_WIDHT, FadingSunsTheme.COMBAT_ACTIONS_CONTENT_FONT_SIZE));
+						addedActions++;
+					}
 				}
 			}
 		}

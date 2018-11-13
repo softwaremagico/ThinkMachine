@@ -24,8 +24,6 @@ package com.softwaremagico.tm.characters;
  * #L%
  */
 
-import java.util.HashSet;
-
 import com.softwaremagico.tm.CacheHandler;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
@@ -36,11 +34,6 @@ import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
 import com.softwaremagico.tm.character.blessings.BlessingFactory;
 import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
-import com.softwaremagico.tm.character.combat.CombatAction;
-import com.softwaremagico.tm.character.combat.CombatActionRequirement;
-import com.softwaremagico.tm.character.combat.CombatStyle;
-import com.softwaremagico.tm.character.combat.CombatStyleGroup;
-import com.softwaremagico.tm.character.combat.CombatStance;
 import com.softwaremagico.tm.character.cybernetics.CyberneticDevice;
 import com.softwaremagico.tm.character.equipment.armour.ArmourFactory;
 import com.softwaremagico.tm.character.equipment.shield.ShieldFactory;
@@ -111,23 +104,11 @@ public class CustomCharacter {
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("stigma_1", player.getLanguage()));
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("heir", player.getLanguage()));
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("wireblade", player.getLanguage()));
+		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("pistola", player.getLanguage()));
+		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("shaidan", player.getLanguage()));
 
 		player.getCybernetics().addElement(new CyberneticDevice("Ojo de Ingeniero", language, 6, 5, "Normal", "Normal", "Automático", "Visible", ""));
 		player.getCybernetics().addElement(new CyberneticDevice("Jonás", language, 7, 4, "Normal", "Normal", "Ds+Arquería", "Incógnito", ""));
-
-		CombatStyle gun = new CombatStyle("pistola", "pistola", language, CombatStyleGroup.RANGED);
-		gun.addCombatAction(new CombatAction("Disparo Instantáneo", language, null, null, "-2 por 3 disparos", new HashSet<CombatActionRequirement>()));
-		gun.addCombatAction(new CombatAction("Rueda y Dispara", language, null, null, "Mover 3m", new HashSet<CombatActionRequirement>()));
-		gun.addCombatAction(new CombatAction("Corre y Dispara", language, null, null, "Especial", new HashSet<CombatActionRequirement>()));
-		player.getRangedCombatStyles().add(gun);
-
-		CombatStyle shaidan = new CombatStyle("shaidan", "shaidan", language, CombatStyleGroup.MELEE);
-		shaidan.addCombatAction(new CombatAction("Palma Real", language, null, "-1", "", new HashSet<CombatActionRequirement>()));
-		shaidan.addCombatAction(new CombatAction("Con un Pie en el Trono", language, "4", null, "+4 a resistir derribos",
-				new HashSet<CombatActionRequirement>()));
-		shaidan.addCombatAction(new CombatAction("Decreto Imperial", language, null, "+1 / 1W", null, new HashSet<CombatActionRequirement>()));
-		shaidan.addCombatStance(new CombatStance("Posición Acrobática", "Posición Acrobática", language, "+1 a defensa por volteretas"));
-		player.getMeleeCombatStyles().add(shaidan);
 
 		player.getWeapons().addElement(WeaponFactory.getInstance().getElement("mace", language));
 		player.getWeapons().addElement(WeaponFactory.getInstance().getElement("martechGold", language));

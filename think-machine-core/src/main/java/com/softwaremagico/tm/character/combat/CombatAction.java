@@ -27,6 +27,8 @@ package com.softwaremagico.tm.character.combat;
 import java.util.Set;
 
 import com.softwaremagico.tm.Element;
+import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.character.skills.AvailableSkill;
 
 public class CombatAction extends Element<CombatAction> {
 	private final String goal;
@@ -34,8 +36,8 @@ public class CombatAction extends Element<CombatAction> {
 	private final String others;
 	private final Set<CombatActionRequirement> requirements;
 
-	public CombatAction(String name, String language, String goal, String damage, String others, Set<CombatActionRequirement> requirements) {
-		super(null, name, language);
+	public CombatAction(String id, String name, String language, String goal, String damage, String others, Set<CombatActionRequirement> requirements) {
+		super(id, name, language);
 		this.goal = goal;
 		this.damage = damage;
 		this.others = others;
@@ -58,4 +60,14 @@ public class CombatAction extends Element<CombatAction> {
 		return requirements;
 	}
 
+	public boolean isAvailable(CharacterPlayer characterPlayer) {
+		for (CombatActionRequirement requirement : requirements) {
+			for (AvailableSkill skill : requirement.getSkills()) {
+				if (characterPlayer.getSkillTotalRanks(skill) >= requirement.getValue()) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
 }
