@@ -14,7 +14,7 @@
 				</name>
 				<requirements>
 					<requirement1>
-						<skill>melee></skill>
+						<skill>melee</skill>
 						<value>3</value>
 					</requirement1>
 				</requirements>
@@ -26,11 +26,11 @@
 				</name>
 				<requirements>
 					<requirement1>
-						<skill>melee></skill>
+						<skill>melee</skill>
 						<value>5</value>
 					</requirement1>
 					<requirement2>
-						<skill>athletics></skill>
+						<skill>athletics</skill>
 						<value>7</value>
 					</requirement2>
 				</requirements>
@@ -42,11 +42,11 @@
 				</name>
 				<requirements>
 					<requirement1>
-						<skill>melee></skill>
+						<skill>melee</skill>
 						<value>9</value>
 					</requirement1>
 					<requirement2>
-						<skill>athletics></skill>
+						<skill>athletics</skill>
 						<value>9</value>
 					</requirement2>
 				</requirements>
@@ -205,15 +205,18 @@
 		<stance>
 			<focusedRage>
 				<name>
-					<en></en>
-					<es></es>
+					<en>Focused Rage</en>
+					<es>Rabia Encauzada</es>
 				</name>
 				<description>
-					<en></en>
-					<es></es>
+					<en>2D extra damage with a melee weapon of size 3 or smaller</en>
+					<es>2D de daño extra con arma de tamaño 3 o menor.</es>
 				</description>
 			</focusedRage>
 		</stance>
+		<random>
+			<recommendedFactions>ukar, scravers</recommendedFactions>
+		</random>
 	</kraxiKnife>
 	<serpentis>
 		<name>
@@ -228,8 +231,8 @@
 					<es>Floritura Letal</es>
 				</name>
 				<description>
-					<en></en>
-					<es></es>
+					<en>+3 to initiative. Ignores -2 movement penalty</en>
+					<es>+3 a iniciativa. Ignora penalizador de -2 a movimiento</es>
 				</description>
 			</weavingFangs>
 		</stance>
@@ -241,35 +244,59 @@
 		</name>
 		<combatStyleGroup>fight</combatStyleGroup>
 		<stance>
-			<>
+			<faena>
 				<name>
-					<en></en>
-					<es></es>
+					<en>Faena</en>
+					<es>Faena</es>
 				</name>
 				<description>
-					<en></en>
-					<es></es>
+					<en>Ds + Athletics to reduce the Victory Points of one attack</en>
+					<es>Ds + Atletismo para reducir los Puntos de Victoria de un ataque.</es>
 				</description>
-			</>
+			</faena>
 		</stance>
+		<restrictedFactionGroups>nobility</restrictedFactionGroups>
 	</torero>
 	<phoenixRifleCorps>
 		<name>
 			<en>Phoenix Rifle Corps</en>
-			<es>Cuerpo de Fusileros del Fénix</es>
+			<es>Entrenamiento de Cuerpo de Fusileros del Fénix</es>
 		</name>
 		<combatStyleGroup>ranged</combatStyleGroup>
 		<stance>
-			<>
+			<headsDownStance>
 				<name>
-					<en></en>
-					<es></es>
+					<en>Heads Down Stance</en>
+					<es>Posición "A cubierto"</es>
 				</name>
 				<description>
-					<en></en>
-					<es></es>
+					<en>+1 Defense from cover and half penalty for firing from cover. Cannot move</en>
+					<es>+1 Defensa en cobertura y mitad de penalización por covertura. No puede mover.</es>
 				</description>
-			</>
+			</headsDownStance>
 		</stance>
 	</phoenixRifleCorps>
+	<pistola>
+		<name>
+			<en>Pistola</en>
+			<es>Pistola</es>
+		</name>
+		<combatStyleGroup>ranged</combatStyleGroup>
+		<stance>
+			<criticorumReload>
+				<name>
+					<en>Criticorum Reload</en>
+					<es>Recarga Criticorum</es>
+				</name>
+				<description>
+					<en>No penalty for drawing a gun and shoot. +3 to initiative</en>
+					<es>Sin penalización por desenfundar y disparar un arma. +3 a iniciativa</es>
+				</description>
+			</criticorumReload>
+		</stance>
+		<random>
+			<recommendedFactionGroups>guild</recommendedFactionGroups>
+			<recommendedFactions>muster, scravers</recommendedFactions>
+		</random>
+	</pistola>
 </combat_styles>

@@ -127,8 +127,6 @@ public class CharacterPlayer {
 
 	private Shield shield;
 
-	private List<CombatStyle> rangedCombatActions;
-
 	private int experience = 0;
 
 	private transient FreeStyleCharacterCreation freeStyleCharacterCreation;
@@ -151,7 +149,6 @@ public class CharacterPlayer {
 		benefices = new ArrayList<>();
 		cybernetics = new Cybernetics();
 		weapons = new Weapons();
-		rangedCombatActions = new ArrayList<>();
 		try {
 			setArmour(null);
 		} catch (InvalidArmourException e) {
@@ -545,12 +542,6 @@ public class CharacterPlayer {
 					positiveBenefices.add(benefice);
 				}
 			}
-		}
-		for (CombatStyle style : getMeleeCombatStyles()) {
-			positiveBenefices.add(AvailableBeneficeFactory.getInstance().getElement(style.getName(), getLanguage()));
-		}
-		for (CombatStyle style : getRangedCombatStyles()) {
-			positiveBenefices.add(AvailableBeneficeFactory.getInstance().getElement(style.getName(), getLanguage()));
 		}
 		Collections.sort(positiveBenefices);
 		return Collections.unmodifiableList(positiveBenefices);

@@ -257,12 +257,7 @@ public class CustomCharacters {
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("commission [entered]", player.getLanguage()));
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("passageContracts_3", player.getLanguage()));
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("cash [firebirds1000]", player.getLanguage()));
-
-		CombatStyle fightStyle = new CombatStyle("ironHeel", "ironHeel", LANGUAGE, CombatStyleGroup.MELEE);
-		fightStyle.addCombatAction(new CombatAction("Cadena de Destrucción", "Cadena de Destrucción", LANGUAGE, null, "3d", "Presa Especial",
-				new HashSet<CombatActionRequirement>()));
-		fightStyle.addCombatAction(new CombatAction("Cabezazo", "Cabezazo", LANGUAGE, "2", "4d", "Ignora armadura*", new HashSet<CombatActionRequirement>()));
-		player.getMeleeCombatStyles().add(fightStyle);
+		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("ironHeel", player.getLanguage()));
 
 		player.getWeapons().addElement(WeaponFactory.getInstance().getElement("typicalShotgun", LANGUAGE));
 		player.getWeapons().addElement(WeaponFactory.getInstance().getElement("mediumAutofeedHandgun", LANGUAGE));

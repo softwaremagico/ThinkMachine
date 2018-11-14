@@ -34,7 +34,7 @@ import com.softwaremagico.tm.character.combat.CombatStyleFactory;
 @Test(groups = { "combatStyleFactory" })
 public class CombatStylesFactoryTests {
 	private final static String LANGUAGE = "en";
-	private final static int DEFINED_STYLES = 11;
+	private final static int DEFINED_STYLES = 12;
 
 	@Test
 	public void readCombatStyles() throws InvalidXmlElementException {
