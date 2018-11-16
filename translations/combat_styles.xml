@@ -5,7 +5,7 @@
 			<en>Graa</en>
 			<es>Graa</es>
 		</name>
-		<combatStyleGroup>melee</combatStyleGroup>
+		<combatStyleGroup>fight</combatStyleGroup>
 		<combatActions>
 			<banga>
 				<name>
@@ -71,7 +71,53 @@
 			<en>Jox Kai Von</en>
 			<es>Jox Kai Von</es>
 		</name>
-		<combatStyleGroup>melee</combatStyleGroup>
+		<combatStyleGroup>fight</combatStyleGroup>
+		<combatActions>
+			<jab>
+				<name>
+					<en>Jab</en>
+					<es>Directo</es>
+				</name>
+				<requirements>
+					<requirement1>
+						<skill>fight</skill>
+						<value>3</value>
+					</requirement1>
+				</requirements>
+			</jab>
+			<pound>
+				<name>
+					<en>Pound</en>
+					<es>Machacar</es>
+				</name>
+				<requirements>
+					<requirement1>
+						<skill>fight</skill>
+						<value>5</value>
+					</requirement1>
+					<requirement2>
+						<skill>athletics</skill>
+						<value>6</value>
+					</requirement2>
+				</requirements>
+			</pound>
+			<mantisStrike>
+				<name>
+					<en>Mantis Strike</en>
+					<es>Golpe de Mantis</es>
+				</name>
+				<requirements>
+					<requirement1>
+						<skill>fight</skill>
+						<value>9</value>
+					</requirement1>
+					<requirement2>
+						<skill>physick</skill>
+						<value>7</value>
+					</requirement2>
+				</requirements>
+			</mantisStrike>
+		</combatActions>	
 		<stances>
 			<joxStance>
 				<name>
@@ -93,7 +139,57 @@
 			<en>Koto</en>
 			<es>Koto</es>
 		</name>
-		<combatStyleGroup>melee</combatStyleGroup>
+		<combatStyleGroup>fight</combatStyleGroup>
+		<combatActions>
+			<stepToSky>
+				<name>
+					<en>Step to Sky</en>
+					<es>Zancada Voladora</es>
+				</name>
+				<requirements>
+					<requirement1>
+						<skill>fight</skill>
+						<value>4</value>
+					</requirement1>
+					<requirement2>
+						<skill>athletics</skill>
+						<value>4</value>
+					</requirement2>
+				</requirements>
+			</stepToSky>
+			<joloBirdSquawks>
+				<name>
+					<en>Jolo Bird Squawks</en>
+					<es>Graznido de Pájaro Jolo</es>
+				</name>
+				<requirements>
+					<requirement1>
+						<skill>fight</skill>
+						<value>6</value>
+					</requirement1>
+					<requirement2>
+						<skill>knavery</skill>
+						<value>6</value>
+					</requirement2>
+				</requirements>
+			</joloBirdSquawks>
+			<oldLadyFañssAndGetsUp>
+				<name>
+					<en>Old Lady Falls and Gets Up</en>
+					<es>Vieja Mujer Cae y Se levanta</es>
+				</name>
+				<requirements>
+					<requirement1>
+						<skill>fight</skill>
+						<value>9</value>
+					</requirement1>
+					<requirement2>
+						<skill>ahtletics</skill>
+						<value>7</value>
+					</requirement2>
+				</requirements>
+			</oldLadyFañssAndGetsUp>
+		</combatActions>	
 		<stance>
 			<kotoStance>
 				<name>
@@ -115,7 +211,53 @@
 			<en>Mantok</en>
 			<es>Mantok</es>
 		</name>
-		<combatStyleGroup>melee</combatStyleGroup>
+		<combatStyleGroup>fight</combatStyleGroup>
+		<combatActions>
+			<closePalmReachHeart>
+				<name>
+					<en>Close Palm, Reach the Hearth</en>
+					<es>Cerrar la Mano, Alcanzar el Corazón</es>
+				</name>
+				<requirements>
+					<requirement1>
+						<skill>fight</skill>
+						<value>4</value>
+					</requirement1>
+				</requirements>
+			</closePalmReachHeart>
+			<crossArmsDonTheRobe>
+				<name>
+					<en>Cross Arms, Don the Robe</en>
+					<es>Cruzarse de brazos, Vestir Ropajes</es>
+				</name>
+				<requirements>
+					<requirement1>
+						<skill>fight</skill>
+						<value>5</value>
+					</requirement1>
+					<requirement2>
+						<skill>faith</skill>
+						<value>6</value>
+					</requirement2>
+				</requirements>
+			</crossArmsDonTheRobe>
+			<strechSpineSpeakTheWord>
+				<name>
+					<en>Strech Spine, Speak the Word</en>
+					<es>Estirar la Columna, Hablar la Palabra</es>
+				</name>
+				<requirements>
+					<requirement1>
+						<skill>fight</skill>
+						<value>9</value>
+					</requirement1>
+					<requirement2>
+						<skill>faith</skill>
+						<value>8</value>
+					</requirement2>
+				</requirements>
+			</strechSpineSpeakTheWord>
+		</combatActions>	
 		<stance>
 			<soldierStance>
 				<name>
@@ -135,7 +277,53 @@
 			<en>Iron Heel</en>
 			<es>Talón de Acero</es>
 		</name>
-		<combatStyleGroup>melee</combatStyleGroup>
+		<combatStyleGroup>fight</combatStyleGroup>
+		<combatActions>
+			<chainOfDestruction>
+				<name>
+					<en>Chain of Destruction</en>
+					<es>Cadena de Destrucción</es>
+				</name>
+				<requirements>
+					<requirement1>
+						<skill>fight</skill>
+						<value>4</value>
+					</requirement1>
+				</requirements>
+			</chainOfDestruction>
+			<headButt>
+				<name>
+					<en>Head Butt</en>
+					<es>Cabezazo</es>
+				</name>
+				<requirements>
+					<requirement1>
+						<skill>fight</skill>
+						<value>5</value>
+					</requirement1>
+					<requirement2>
+						<skill>vigor</skill>
+						<value>6</value>
+					</requirement2>
+				</requirements>
+			</headButt>
+			<chokeHold>
+				<name>
+					<en>Choke Hold</en>
+					<es>Abrazo del Oso</es>
+				</name>
+				<requirements>
+					<requirement1>
+						<skill>fight</skill>
+						<value>9</value>
+					</requirement1>
+					<requirement2>
+						<skill>vigor</skill>
+						<value>7</value>
+					</requirement2>
+				</requirements>
+			</chokeHold>
+		</combatActions>	
 		<stance>
 			<beatdownStance>
 				<name>
@@ -157,7 +345,53 @@
 			<en>Shaidan</en>
 			<es>Shaidan</es>
 		</name>
-		<combatStyleGroup>melee</combatStyleGroup>
+		<combatStyleGroup>fight</combatStyleGroup>
+		<combatActions>
+			<royalPalm>
+				<name>
+					<en>Royal Palm</en>
+					<es>Palma Real</es>
+				</name>
+				<requirements>
+					<requirement1>
+						<skill>fight</skill>
+						<value>3</value>
+					</requirement1>
+				</requirements>
+			</royalPalm>
+			<astrideTheThrone>
+				<name>
+					<en>Astride The Throne</en>
+					<es>Con un Pie en el Trono</es>
+				</name>
+				<requirements>
+					<requirement1>
+						<skill>fight</skill>
+						<value>6</value>
+					</requirement1>
+					<requirement2>
+						<skill>athletics</skill>
+						<value>5</value>
+					</requirement2>
+				</requirements>
+			</astrideTheThrone>
+			<imperialDecree>
+				<name>
+					<en>Imperial Decree</en>
+					<es>Decretp Imperial</es>
+				</name>
+				<requirements>
+					<requirement1>
+						<skill>fight</skill>
+						<value>9</value>
+					</requirement1>
+					<requirement2>
+						<skill>vigor</skill>
+						<value>7</value>
+					</requirement2>
+				</requirements>
+			</imperialDecree>
+		</combatActions>	
 		<stance>
 			<balancedStance>
 				<name>
@@ -179,7 +413,53 @@
 			<en>Florentine</en>
 			<es>Florentino</es>
 		</name>
-		<combatStyleGroup>fight</combatStyleGroup>
+		<combatStyleGroup>melee</combatStyleGroup>
+		<combatActions>
+			<offHandStrike>
+				<name>
+					<en>Off-Hand Strike</en>
+					<es>Golpear con la Mano Torpe</es>
+				</name>
+				<requirements>
+					<requirement1>
+						<skill>melee</skill>
+						<value>4</value>
+					</requirement1>
+				</requirements>
+			</offHandStrike>
+			<doubleStrike>
+				<name>
+					<en>Double Strike</en>
+					<es>Golpe Doble</es>
+				</name>
+				<requirements>
+					<requirement1>
+						<skill>melee</skill>
+						<value>6</value>
+					</requirement1>
+					<requirement2>
+						<skill>athletics</skill>
+						<value>6</value>
+					</requirement2>
+				</requirements>
+			</doubleStrike>
+			<wallOfSteel>
+				<name>
+					<en>Wall of Steel</en>
+					<es>Muro de Acero</es>
+				</name>
+				<requirements>
+					<requirement1>
+						<skill>melee</skill>
+						<value>9</value>
+					</requirement1>
+					<requirement2>
+						<skill>vigor</skill>
+						<value>7</value>
+					</requirement2>
+				</requirements>
+			</wallOfSteel>
+		</combatActions>	
 		<stance>
 			<wovenSteel>
 				<name>
@@ -201,7 +481,53 @@
 			<en>Kraxi Knife</en>
 			<es>Kraxi</es>
 		</name>
-		<combatStyleGroup>fight</combatStyleGroup>
+		<combatStyleGroup>melee</combatStyleGroup>
+		<combatActions>
+			<thrust>
+				<name>
+					<en>Thrust</en>
+					<es>Empujar</es>
+				</name>
+				<requirements>
+					<requirement1>
+						<skill>melee</skill>
+						<value>3</value>
+					</requirement1>
+				</requirements>
+			</thrust>
+			<rapidStrike>
+				<name>
+					<en>Rapid Strike</en>
+					<es>Golpe Rápido</es>
+				</name>
+				<requirements>
+					<requirement1>
+						<skill>melee</skill>
+						<value>6</value>
+					</requirement1>
+					<requirement2>
+						<skill>athletics</skill>
+						<value>5</value>
+					</requirement2>
+				</requirements>
+			</rapidStrike>
+			<slipOfTheKnife>
+				<name>
+					<en>Slip of the Knife</en>
+					<es>Colar el Cuchillo</es>
+				</name>
+				<requirements>
+					<requirement1>
+						<skill>melee</skill>
+						<value>9</value>
+					</requirement1>
+					<requirement2>
+						<skill>observation</skill>
+						<value>7</value>
+					</requirement2>
+				</requirements>
+			</slipOfTheKnife>
+		</combatActions>	
 		<stance>
 			<focusedRage>
 				<name>
@@ -223,7 +549,57 @@
 			<en>Serpentis</en>
 			<es>Serpentis</es>
 		</name>
-		<combatStyleGroup>fight</combatStyleGroup>
+		<combatStyleGroup>melee</combatStyleGroup>
+		<combatActions>
+			<drawAndStrike>
+				<name>
+					<en>Draw and Strike</en>
+					<es>Desenfundar y Atacar</es>
+				</name>
+				<requirements>
+					<requirement1>
+						<skill>melee</skill>
+						<value>4</value>
+					</requirement1>
+					<requirement2>
+						<skill>selfControl</skill>
+						<value>4</value>
+					</requirement2>
+				</requirements>
+			</drawAndStrike>
+			<setup>
+				<name>
+					<en>Setup</en>
+					<es>Fintar</es>
+				</name>
+				<requirements>
+					<requirement1>
+						<skill>melee</skill>
+						<value>7</value>
+					</requirement1>
+					<requirement2>
+						<skill>athletics</skill>
+						<value>6</value>
+					</requirement2>
+				</requirements>
+			</setup>
+			<stopThrust>
+				<name>
+					<en>Stop Thurst</en>
+					<es>Detener Empuje</es>
+				</name>
+				<requirements>
+					<requirement1>
+						<skill>melee</skill>
+						<value>9</value>
+					</requirement1>
+					<requirement2>
+						<skill>athletics</skill>
+						<value>8</value>
+					</requirement2>
+				</requirements>
+			</stopThrust>
+		</combatActions>	
 		<stance>
 			<weavingFangs>
 				<name>
@@ -242,7 +618,53 @@
 			<en>Torero</en>
 			<es>Torero</es>
 		</name>
-		<combatStyleGroup>fight</combatStyleGroup>
+		<combatStyleGroup>melee</combatStyleGroup>
+		<combatActions>
+			<maskingStrike>
+				<name>
+					<en>Masking Strike</en>
+					<es>Ocultar Golpe</es>
+				</name>
+				<requirements>
+					<requirement1>
+						<skill>melee</skill>
+						<value>4</value>
+					</requirement1>
+				</requirements>
+			</maskingStrike>
+			<disarmingCloak>
+				<name>
+					<en>Disarming Cloak</en>
+					<es>Capote de Desarme</es>
+				</name>
+				<requirements>
+					<requirement1>
+						<skill>melee</skill>
+						<value>6</value>
+					</requirement1>
+					<requirement2>
+						<skill>athletics</skill>
+						<value>5</value>
+					</requirement2>
+				</requirements>
+			</disarmingCloak>
+			<entaglingStrike>
+				<name>
+					<en>Entagling Strike</en>
+					<es>Golpe Enredante</es>
+				</name>
+				<requirements>
+					<requirement1>
+						<skill>melee</skill>
+						<value>9</value>
+					</requirement1>
+					<requirement2>
+						<skill>athletics</skill>
+						<value>8</value>
+					</requirement2>
+				</requirements>
+			</entaglingStrike>
+		</combatActions>	
 		<stance>
 			<faena>
 				<name>
@@ -263,6 +685,52 @@
 			<es>Entrenamiento de Cuerpo de Fusileros del Fénix</es>
 		</name>
 		<combatStyleGroup>ranged</combatStyleGroup>
+		<combatActions>
+			<practicedShooting>
+				<name>
+					<en>Practiced Shooting</en>
+					<es>Entrenamiento de Tiro</es>
+				</name>
+				<requirements>
+					<requirement1>
+						<skill>slugGuns, energyWeapons</skill>
+						<value>3</value>
+					</requirement1>
+				</requirements>
+			</practicedShooting>
+			<stockSlam>
+				<name>
+					<en>Stock Slam</en>
+					<es>Culatazo</es>
+				</name>
+				<requirements>
+					<requirement1>
+						<skill>fight</skill>
+						<value>5</value>
+					</requirement1>
+					<requirement2>
+						<skill>vigor</skill>
+						<value>4</value>
+					</requirement2>
+				</requirements>
+			</stockSlam>
+			<instictShot>
+				<name>
+					<en>Instinct Shot</en>
+					<es>Disparo Instintivo</es>
+				</name>
+				<requirements>
+					<requirement1>
+						<skill>slugGuns, energyWeapons</skill>
+						<value>9</value>
+					</requirement1>
+					<requirement2>
+						<skill>observe</skill>
+						<value>7</value>
+					</requirement2>
+				</requirements>
+			</instictShot>
+		</combatActions>	
 		<stance>
 			<headsDownStance>
 				<name>
@@ -282,6 +750,52 @@
 			<es>Pistola</es>
 		</name>
 		<combatStyleGroup>ranged</combatStyleGroup>
+		<combatActions>
+			<snapShot>
+				<name>
+					<en>Snap Shot</en>
+					<es>Disparo Instantáneo</es>
+				</name>
+				<requirements>
+					<requirement1>
+						<skill>slugGuns, energyWeapons</skill>
+						<value>4</value>
+					</requirement1>
+				</requirements>
+			</snapShot>
+			<rollAndShoot>
+				<name>
+					<en>Roll and Shoot</en>
+					<es>Rueda y Dispara</es>
+				</name>
+				<requirements>
+					<requirement1>
+						<skill>slugGuns, energyWeapons</skill>
+						<value>6</value>
+					</requirement1>
+					<requirement2>
+						<skill>athletics</skill>
+						<value>5</value>
+					</requirement2>
+				</requirements>
+			</rollAndShoot>
+			<runAndGun>
+				<name>
+					<en>Run and Gun</en>
+					<es>Corre y Dispara</es>
+				</name>
+				<requirements>
+					<requirement1>
+						<skill>slugGuns, energyWeapons</skill>
+						<value>9</value>
+					</requirement1>
+					<requirement2>
+						<skill>athletics</skill>
+						<value>7</value>
+					</requirement2>
+				</requirements>
+			</runAndGun>
+		</combatActions>	
 		<stance>
 			<criticorumReload>
 				<name>
