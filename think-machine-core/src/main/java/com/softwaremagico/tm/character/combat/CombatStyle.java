@@ -60,6 +60,15 @@ public class CombatStyle extends Element<CombatStyle> {
 		return Collections.unmodifiableList(combatStances);
 	}
 
+	public CombatStance getCombatStance(String stanceId) {
+		for (CombatStance stance : combatStances) {
+			if (stance.getId().equalsIgnoreCase(stanceId)) {
+				return stance;
+			}
+		}
+		return null;
+	}
+
 	public void addCombatAction(CombatAction combatAction) {
 		combatActions.add(combatAction);
 		Collections.sort(combatActions);
@@ -67,5 +76,14 @@ public class CombatStyle extends Element<CombatStyle> {
 
 	public List<CombatAction> getCombatActions() {
 		return Collections.unmodifiableList(combatActions);
+	}
+
+	public CombatAction getCombatAction(String actionId) {
+		for (CombatAction action : combatActions) {
+			if (action.getId().equalsIgnoreCase(actionId)) {
+				return action;
+			}
+		}
+		return null;
 	}
 }

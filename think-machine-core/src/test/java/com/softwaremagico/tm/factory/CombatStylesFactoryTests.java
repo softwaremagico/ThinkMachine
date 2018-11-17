@@ -29,12 +29,18 @@ import junit.framework.Assert;
 import org.testng.annotations.Test;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
+import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.character.characteristics.CharacteristicName;
+import com.softwaremagico.tm.character.combat.CombatStyle;
 import com.softwaremagico.tm.character.combat.CombatStyleFactory;
+import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
+import com.softwaremagico.tm.character.skills.InvalidSkillException;
 
 @Test(groups = { "combatStyleFactory" })
 public class CombatStylesFactoryTests {
 	private final static String LANGUAGE = "en";
 	private final static int DEFINED_STYLES = 12;
+	private final static int DEFINED_ACTIONS = DEFINED_STYLES * 3;
 
 	@Test
 	public void readCombatStyles() throws InvalidXmlElementException {
@@ -44,5 +50,48 @@ public class CombatStylesFactoryTests {
 	@Test
 	public void readCombatActions() throws InvalidXmlElementException {
 		Assert.assertEquals(3, CombatStyleFactory.getInstance().getElement("graa", LANGUAGE).getCombatActions().size());
+	}
+
+	@Test
+	public void readAllCombatActions() throws InvalidXmlElementException {
+		int combatActions = 0;
+		for (CombatStyle combatStyle : CombatStyleFactory.getInstance().getElements(LANGUAGE)) {
+			combatActions += combatStyle.getCombatActions().size();
+		}
+		Assert.assertEquals(DEFINED_ACTIONS, combatActions);
+	}
+
+	@Test
+	public void readStances() throws InvalidXmlElementException {
+		int combatStances = 0;
+		for (CombatStyle combatStyle : CombatStyleFactory.getInstance().getElements(LANGUAGE)) {
+			combatStances += combatStyle.getCombatStances().size();
+		}
+		// One stance by style.
+		Assert.assertEquals(DEFINED_STYLES, combatStances);
+	}
+
+	@Test
+	public void checkSkillRestrictions() throws InvalidSkillException, InvalidXmlElementException {
+		CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
+		characterPlayer.setSkillRank(AvailableSkillsFactory.getInstance().getElement("melee", LANGUAGE), 6);
+		characterPlayer.setSkillRank(AvailableSkillsFactory.getInstance().getElement("athletics", LANGUAGE), 5);
+
+		CombatStyle torero = CombatStyleFactory.getInstance().getElement("torero", LANGUAGE);
+		Assert.assertTrue(torero.getCombatAction("maskingStrike").isAvailable(characterPlayer));
+		Assert.assertTrue(torero.getCombatAction("disarmingCloak").isAvailable(characterPlayer));
+		Assert.assertFalse(torero.getCombatAction("entaglingStrike").isAvailable(characterPlayer));
+	}
+
+	@Test
+	public void checkCharacteristicsRestrictions() throws InvalidSkillException, InvalidXmlElementException {
+		CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
+		characterPlayer.setSkillRank(AvailableSkillsFactory.getInstance().getElement("fight", LANGUAGE), 6);
+		characterPlayer.getCharacteristic(CharacteristicName.FAITH).setValue(6);
+
+		CombatStyle mantok = CombatStyleFactory.getInstance().getElement("mantok", LANGUAGE);
+		Assert.assertTrue(mantok.getCombatAction("closePalmReachHeart").isAvailable(characterPlayer));
+		Assert.assertTrue(mantok.getCombatAction("crossArmsDonTheRobe").isAvailable(characterPlayer));
+		Assert.assertFalse(mantok.getCombatAction("strechSpineSpeakTheWord").isAvailable(characterPlayer));
 	}
 }

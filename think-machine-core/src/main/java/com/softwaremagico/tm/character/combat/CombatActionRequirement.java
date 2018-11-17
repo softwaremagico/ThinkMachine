@@ -26,19 +26,19 @@ package com.softwaremagico.tm.character.combat;
 
 import java.util.Set;
 
-import com.softwaremagico.tm.character.skills.AvailableSkill;
+import com.softwaremagico.tm.character.values.IValue;
 
 public class CombatActionRequirement {
-	private final Set<AvailableSkill> skills;
+	private final Set<IValue> requirement;
 	private final int value;
 
-	protected CombatActionRequirement(Set<AvailableSkill> skills, int value) {
-		this.skills = skills;
+	protected CombatActionRequirement(Set<IValue> requirement, int value) {
+		this.requirement = requirement;
 		this.value = value;
 	}
 
-	public Set<AvailableSkill> getSkills() {
-		return skills;
+	public Set<IValue> getRequirements() {
+		return requirement;
 	}
 
 	public int getValue() {

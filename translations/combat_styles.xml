@@ -184,13 +184,13 @@
 						<value>9</value>
 					</requirement1>
 					<requirement2>
-						<skill>ahtletics</skill>
+						<skill>athletics</skill>
 						<value>7</value>
 					</requirement2>
 				</requirements>
 			</oldLadyFañssAndGetsUp>
 		</combatActions>	
-		<stance>
+		<stances>
 			<kotoStance>
 				<name>
 					<en>Koto Stance</en>
@@ -201,7 +201,7 @@
 					<es>-1 a la defensa del enemigo.</es>
 				</description>
 			</kotoStance>
-		</stance>
+		</stances>
 		<random>
 			<recommendedFactions>alMalik</recommendedFactions>
 		</random>
@@ -258,7 +258,7 @@
 				</requirements>
 			</strechSpineSpeakTheWord>
 		</combatActions>	
-		<stance>
+		<stances>
 			<soldierStance>
 				<name>
 					<en>Soldier's Stance</en>
@@ -269,7 +269,7 @@
 					<es>+4 RA contra Presa o Derribo.</es>
 				</description>
 			</soldierStance>
-		</stance>
+		</stances>
 		<restrictedFactions>brotherBattle</restrictedFactions>
 	</mantok>
 	<ironHeel>
@@ -324,7 +324,7 @@
 				</requirements>
 			</chokeHold>
 		</combatActions>	
-		<stance>
+		<stances>
 			<beatdownStance>
 				<name>
 					<en>Beatdown Stance</en>
@@ -335,7 +335,7 @@
 					<es>+2 al daño de Presa. +2 RA a Presa o Derribo.</es>
 				</description>
 			</beatdownStance>
-		</stance>
+		</stances>
 		<random>
 			<recommendedFactions>muster</recommendedFactions>
 		</random>
@@ -392,7 +392,7 @@
 				</requirements>
 			</imperialDecree>
 		</combatActions>	
-		<stance>
+		<stances>
 			<balancedStance>
 				<name>
 					<en>Balanced Stance</en>
@@ -403,7 +403,7 @@
 					<es>+1 a Defensa contra ataques cuerpo a cuerpo.</es>
 				</description>
 			</balancedStance>
-		</stance>
+		</stances>
 		<random>
 			<recommendedFactions>hazat</recommendedFactions>
 		</random>
@@ -460,7 +460,7 @@
 				</requirements>
 			</wallOfSteel>
 		</combatActions>	
-		<stance>
+		<stances>
 			<wovenSteel>
 				<name>
 					<en>Woven Steel</en>
@@ -471,7 +471,7 @@
 					<es>+1 a Defensa contra ataques cuerpo a cuerpo si porta dos armas.</es>
 				</description>
 			</wovenSteel>
-		</stance>
+		</stances>
 		<random>
 			<recommendedFactions>liHalan</recommendedFactions>
 		</random>
@@ -522,13 +522,13 @@
 						<value>9</value>
 					</requirement1>
 					<requirement2>
-						<skill>observation</skill>
+						<skill>observe</skill>
 						<value>7</value>
 					</requirement2>
 				</requirements>
 			</slipOfTheKnife>
 		</combatActions>	
-		<stance>
+		<stances>
 			<focusedRage>
 				<name>
 					<en>Focused Rage</en>
@@ -539,7 +539,7 @@
 					<es>2D de daño extra con arma de tamaño 3 o menor.</es>
 				</description>
 			</focusedRage>
-		</stance>
+		</stances>
 		<random>
 			<recommendedFactions>ukar, scravers</recommendedFactions>
 		</random>
@@ -600,7 +600,7 @@
 				</requirements>
 			</stopThrust>
 		</combatActions>	
-		<stance>
+		<stances>
 			<weavingFangs>
 				<name>
 					<en>Weaving Fangs</en>
@@ -611,7 +611,7 @@
 					<es>+3 a iniciativa. Ignora penalizador de -2 a movimiento</es>
 				</description>
 			</weavingFangs>
-		</stance>
+		</stances>
 	</serpentis>
 	<torero>
 		<name>
@@ -665,7 +665,7 @@
 				</requirements>
 			</entaglingStrike>
 		</combatActions>	
-		<stance>
+		<stances>
 			<faena>
 				<name>
 					<en>Faena</en>
@@ -676,7 +676,7 @@
 					<es>Ds + Atletismo para reducir los Puntos de Victoria de un ataque.</es>
 				</description>
 			</faena>
-		</stance>
+		</stances>
 		<restrictedFactionGroups>nobility</restrictedFactionGroups>
 	</torero>
 	<phoenixRifleCorps>
@@ -693,7 +693,7 @@
 				</name>
 				<requirements>
 					<requirement1>
-						<skill>slugGuns, energyWeapons</skill>
+						<skill>slugGuns, energyGuns</skill>
 						<value>3</value>
 					</requirement1>
 				</requirements>
@@ -721,7 +721,7 @@
 				</name>
 				<requirements>
 					<requirement1>
-						<skill>slugGuns, energyWeapons</skill>
+						<skill>slugGuns, energyGuns</skill>
 						<value>9</value>
 					</requirement1>
 					<requirement2>
@@ -731,7 +731,7 @@
 				</requirements>
 			</instictShot>
 		</combatActions>	
-		<stance>
+		<stances>
 			<headsDownStance>
 				<name>
 					<en>Heads Down Stance</en>
@@ -742,7 +742,7 @@
 					<es>+1 Defensa en cobertura y mitad de penalización por covertura. No puede mover.</es>
 				</description>
 			</headsDownStance>
-		</stance>
+		</stances>
 	</phoenixRifleCorps>
 	<pistola>
 		<name>
@@ -758,7 +758,7 @@
 				</name>
 				<requirements>
 					<requirement1>
-						<skill>slugGuns, energyWeapons</skill>
+						<skill>slugGuns, energyGuns</skill>
 						<value>4</value>
 					</requirement1>
 				</requirements>
@@ -770,7 +770,7 @@
 				</name>
 				<requirements>
 					<requirement1>
-						<skill>slugGuns, energyWeapons</skill>
+						<skill>slugGuns, energyGuns</skill>
 						<value>6</value>
 					</requirement1>
 					<requirement2>
@@ -786,7 +786,7 @@
 				</name>
 				<requirements>
 					<requirement1>
-						<skill>slugGuns, energyWeapons</skill>
+						<skill>slugGuns, energyGuns</skill>
 						<value>9</value>
 					</requirement1>
 					<requirement2>
@@ -796,7 +796,7 @@
 				</requirements>
 			</runAndGun>
 		</combatActions>	
-		<stance>
+		<stances>
 			<criticorumReload>
 				<name>
 					<en>Criticorum Reload</en>
@@ -807,7 +807,7 @@
 					<es>Sin penalización por desenfundar y disparar un arma. +3 a iniciativa</es>
 				</description>
 			</criticorumReload>
-		</stance>
+		</stances>
 		<random>
 			<recommendedFactionGroups>guild</recommendedFactionGroups>
 			<recommendedFactions>muster, scravers</recommendedFactions>

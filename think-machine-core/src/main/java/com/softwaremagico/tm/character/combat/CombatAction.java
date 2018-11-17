@@ -28,7 +28,9 @@ import java.util.Set;
 
 import com.softwaremagico.tm.Element;
 import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.character.characteristics.CharacteristicDefinition;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
+import com.softwaremagico.tm.character.values.IValue;
 
 public class CombatAction extends Element<CombatAction> {
 	private final String goal;
@@ -61,10 +63,16 @@ public class CombatAction extends Element<CombatAction> {
 	}
 
 	public boolean isAvailable(CharacterPlayer characterPlayer) {
-		for (CombatActionRequirement requirement : requirements) {
-			for (AvailableSkill skill : requirement.getSkills()) {
-				if (characterPlayer.getSkillTotalRanks(skill) >= requirement.getValue()) {
-					return true;
+		for (CombatActionRequirement requirement : getRequirements()) {
+			for (IValue restriction : requirement.getRequirements()) {
+				if (restriction instanceof AvailableSkill) {
+					if (characterPlayer.getSkillTotalRanks((AvailableSkill) restriction) >= requirement.getValue()) {
+						return true;
+					}
+				} else if (restriction instanceof CharacteristicDefinition) {
+					if (characterPlayer.getCharacteristic(restriction.getId()).getValue() >= requirement.getValue()) {
+						return true;
+					}
 				}
 			}
 		}

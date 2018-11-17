@@ -1,5 +1,6 @@
 package com.softwaremagico.tm.character.skills;
 
+import com.softwaremagico.tm.character.values.IValue;
 import com.softwaremagico.tm.random.definition.RandomElementDefinition;
 
 /*-
@@ -29,7 +30,7 @@ import com.softwaremagico.tm.random.definition.RandomElementDefinition;
 /**
  * An skill that already has been split in different generalizations.
  */
-public class AvailableSkill extends Skill<AvailableSkill> {
+public class AvailableSkill extends Skill<AvailableSkill> implements IValue {
 	private Specialization specialization = null;
 	private SkillDefinition skillDefinition;
 

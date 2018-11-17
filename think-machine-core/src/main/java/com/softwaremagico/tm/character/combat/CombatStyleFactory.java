@@ -30,8 +30,9 @@ import java.util.StringTokenizer;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
-import com.softwaremagico.tm.character.skills.AvailableSkill;
+import com.softwaremagico.tm.character.characteristics.CharacteristicsDefinitionFactory;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
+import com.softwaremagico.tm.character.values.IValue;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
 
@@ -105,21 +106,26 @@ public class CombatStyleFactory extends XmlFactory<CombatStyle> {
 					String skillNames = translator.getNodeValue(combatActionId, COMBAT_ACTION_REQUIREMENTS, combatActionRequirementId,
 							COMBAT_ACTION_REQUIREMENTS_SKILL);
 
-					Set<AvailableSkill> skillsRestriction = new HashSet<>();
+					Set<IValue> restrictions = new HashSet<>();
 					StringTokenizer skillTokenizer = new StringTokenizer(skillNames, ",");
 					while (skillTokenizer.hasMoreTokens()) {
 						String skillName = skillTokenizer.nextToken().trim();
 						try {
-							skillsRestriction.add(AvailableSkillsFactory.getInstance().getElement(skillName, language));
+							restrictions.add(AvailableSkillsFactory.getInstance().getElement(skillName, language));
 						} catch (InvalidXmlElementException e) {
-							throw new InvalidCombatStyleException("Invalid requirement '" + skillName + "' in combat style '" + combatStyleId + "'.", e);
+							// Maybe is a characteristic.
+							try {
+								restrictions.add(CharacteristicsDefinitionFactory.getInstance().getElement(skillName, language));
+							} catch (InvalidXmlElementException e2) {
+								throw new InvalidCombatStyleException("Invalid requirement '" + skillName + "' in combat style '" + combatStyleId + "'.", e2);
+							}
 						}
 					}
 
 					try {
 						String skillValue = translator.getNodeValue(combatActionId, COMBAT_ACTION_REQUIREMENTS, combatActionRequirementId,
 								COMBAT_ACTION_REQUIREMENTS_VALUE);
-						CombatActionRequirement combatActionRequirement = new CombatActionRequirement(skillsRestriction, Integer.parseInt(skillValue));
+						CombatActionRequirement combatActionRequirement = new CombatActionRequirement(restrictions, Integer.parseInt(skillValue));
 						requirements.add(combatActionRequirement);
 					} catch (NumberFormatException e) {
 						throw new InvalidCombatStyleException("Invalid requirement value in '" + combatActionId + "' at combat style '" + combatStyleId + "'.",
