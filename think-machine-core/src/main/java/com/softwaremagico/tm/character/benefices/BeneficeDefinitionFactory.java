@@ -106,9 +106,9 @@ public class BeneficeDefinitionFactory extends XmlFactory<BeneficeDefinition> {
 				String specizalizationName = translator.getNodeValue(specializationId, NAME, language);
 				BeneficeSpecialization specialization = new BeneficeSpecialization(specializationId, specizalizationName, language);
 				specializations.add(specialization);
-				//Set random option.
+				// Set random option.
 				setRandomConfiguration(specialization, translator, language);
-				
+
 				// Set specific cost.
 				String specizalizationCost = translator.getNodeValue(specializationId, COST);
 				if (specizalizationCost != null) {
@@ -119,12 +119,14 @@ public class BeneficeDefinitionFactory extends XmlFactory<BeneficeDefinition> {
 					}
 				}
 				// Set specific classification.
-				String specizalizationClassification = translator.getNodeValue(specializationId, SPECIALIZATION_AFFLICTION);
-				BeneficeClassification specializationClassification;
-				if (specizalizationClassification != null) {
-					specializationClassification = BeneficeClassification.get(specizalizationClassification);
+				String specializationClassificationValue = translator.getNodeValue(specializationId, SPECIALIZATION_AFFLICTION);
+				BeneficeClassification specializationClassification = BeneficeClassification.BENEFICE;
+				if (specializationClassificationValue != null) {
+					if (Boolean.parseBoolean(specializationClassificationValue)) {
+						specializationClassification = BeneficeClassification.AFFLICTION;
+					}
 				} else {
-					// Copy classfication from main benefice
+					// Copy classification from main benefice
 					specializationClassification = classification;
 				}
 				specialization.setClassification(specializationClassification);

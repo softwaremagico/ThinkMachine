@@ -84,6 +84,30 @@ public class CombatStylesFactoryTests {
 	}
 
 	@Test
+	public void checkOptionalSkillRestrictions() throws InvalidSkillException, InvalidXmlElementException {
+		CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
+		characterPlayer.setSkillRank(AvailableSkillsFactory.getInstance().getElement("slugGuns", LANGUAGE), 6);
+		characterPlayer.setSkillRank(AvailableSkillsFactory.getInstance().getElement("athletics", LANGUAGE), 5);
+
+		CombatStyle pistola = CombatStyleFactory.getInstance().getElement("pistola", LANGUAGE);
+		Assert.assertTrue(pistola.getCombatAction("snapShot").isAvailable(characterPlayer));
+		Assert.assertTrue(pistola.getCombatAction("rollAndShoot").isAvailable(characterPlayer));
+		Assert.assertFalse(pistola.getCombatAction("runAndGun").isAvailable(characterPlayer));
+	}
+
+	@Test
+	public void checkOptionalSkillRestrictionsAgain() throws InvalidSkillException, InvalidXmlElementException {
+		CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
+		characterPlayer.setSkillRank(AvailableSkillsFactory.getInstance().getElement("energyGuns", LANGUAGE), 6);
+		characterPlayer.setSkillRank(AvailableSkillsFactory.getInstance().getElement("athletics", LANGUAGE), 5);
+
+		CombatStyle pistola = CombatStyleFactory.getInstance().getElement("pistola", LANGUAGE);
+		Assert.assertTrue(pistola.getCombatAction("snapShot").isAvailable(characterPlayer));
+		Assert.assertTrue(pistola.getCombatAction("rollAndShoot").isAvailable(characterPlayer));
+		Assert.assertFalse(pistola.getCombatAction("runAndGun").isAvailable(characterPlayer));
+	}
+
+	@Test
 	public void checkCharacteristicsRestrictions() throws InvalidSkillException, InvalidXmlElementException {
 		CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
 		characterPlayer.setSkillRank(AvailableSkillsFactory.getInstance().getElement("fight", LANGUAGE), 6);
