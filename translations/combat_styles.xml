@@ -26,7 +26,7 @@
 				</name>
 				<requirements>
 					<requirement1>
-						<skill>melee</skill>
+						<skill>melee, fight, slugGuns, energyGuns</skill>
 						<value>5</value>
 					</requirement1>
 					<requirement2>
@@ -42,7 +42,7 @@
 				</name>
 				<requirements>
 					<requirement1>
-						<skill>melee</skill>
+						<skill>melee, fight, slugGuns, energyGuns</skill>
 						<value>9</value>
 					</requirement1>
 					<requirement2>
