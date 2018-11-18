@@ -56,8 +56,7 @@ public class CostCalculator {
 		cost += getTraitsCosts(characterPlayer);
 		cost += getPsiPowersCosts(characterPlayer);
 		cost += getCyberneticsCost(characterPlayer);
-		CostCalculatorLog.debug(CostCalculator.class.getName(), "Character '" + characterPlayer.getNameRepresentation()
-				+ "' total cost: " + cost + "\n");
+		CostCalculatorLog.debug(CostCalculator.class.getName(), "Character '" + characterPlayer.getNameRepresentation() + "' total cost: " + cost + "\n");
 		return cost;
 	}
 
@@ -71,30 +70,25 @@ public class CostCalculator {
 			CostCalculatorLog.info(CostCalculator.class.getName(), "Race cost: " + characterPlayer.getRace().getCost());
 		}
 		cost += getCharacteristicsCost(characterPlayer);
-		CostCalculatorLog.info(CostCalculator.class.getName(), "Characteristics cost: "
-				+ getCharacteristicsCost(characterPlayer));
+		CostCalculatorLog.info(CostCalculator.class.getName(), "Characteristics cost: " + getCharacteristicsCost(characterPlayer));
 		cost += getSkillCosts(characterPlayer);
 		CostCalculatorLog.info(CostCalculator.class.getName(), "Skills cost: " + getSkillCosts(characterPlayer));
 		cost += getTraitsCosts(characterPlayer);
 		CostCalculatorLog.info(CostCalculator.class.getName(), "Traits cost: " + getTraitsCosts(characterPlayer));
 		cost += getPsiPowersCosts(characterPlayer);
-		CostCalculatorLog
-				.info(CostCalculator.class.getName(), "Psi powers cost: " + getPsiPowersCosts(characterPlayer));
+		CostCalculatorLog.info(CostCalculator.class.getName(), "Psi powers cost: " + getPsiPowersCosts(characterPlayer));
 		cost += getCyberneticsCost(characterPlayer);
-		CostCalculatorLog.info(CostCalculator.class.getName(), "Cybernetics cost: "
-				+ getCyberneticsCost(characterPlayer));
+		CostCalculatorLog.info(CostCalculator.class.getName(), "Cybernetics cost: " + getCyberneticsCost(characterPlayer));
 		CostCalculatorLog.info(CostCalculator.class.getName(), "Total cost: " + cost + "\n");
 		return cost;
 	}
 
 	private static int getCharacteristicsCost(CharacterPlayer characterPlayer) {
-		return (characterPlayer.getCharacteristicsTotalPoints() - FreeStyleCharacterCreation.CHARACTERISTICS_POINTS)
-				* CHARACTERISTIC_EXTRA_POINTS_COST;
+		return (characterPlayer.getCharacteristicsTotalPoints() - FreeStyleCharacterCreation.CHARACTERISTICS_POINTS) * CHARACTERISTIC_EXTRA_POINTS_COST;
 	}
 
 	private static int getSkillCosts(CharacterPlayer characterPlayer) throws InvalidXmlElementException {
-		return (characterPlayer.getSkillsTotalPoints() - FreeStyleCharacterCreation.SKILLS_POINTS)
-				* SKILL_EXTRA_POINTS_COST;
+		return (characterPlayer.getSkillsTotalPoints() - FreeStyleCharacterCreation.SKILLS_POINTS) * SKILL_EXTRA_POINTS_COST;
 	}
 
 	private static int getTraitsCosts(CharacterPlayer characterPlayer) throws InvalidXmlElementException {
@@ -133,26 +127,23 @@ public class CostCalculator {
 
 	private static int getPsiPowersCosts(CharacterPlayer characterPlayer) throws InvalidXmlElementException {
 		int cost = 0;
-		for (Entry<String, List<String>> occulstismPathEntry : characterPlayer.getSelectedPowers()
-				.entrySet()) {
-			OccultismPath occultismPath = OccultismPathFactory.getInstance().getElement(occulstismPathEntry.getKey(),
-					characterPlayer.getLanguage());
+		for (Entry<String, List<String>> occulstismPathEntry : characterPlayer.getSelectedPowers().entrySet()) {
+			OccultismPath occultismPath = OccultismPathFactory.getInstance().getElement(occulstismPathEntry.getKey(), characterPlayer.getLanguage());
 			for (String occultismPowerName : occulstismPathEntry.getValue()) {
-				cost += occultismPath.getOccultismPowers().get(occultismPowerName).getLevel()
-						* OCCULSTIM_POWER_LEVEL_COST;
+				cost += occultismPath.getOccultismPowers().get(occultismPowerName).getLevel() * OCCULSTIM_POWER_LEVEL_COST;
 			}
 		}
 		cost += characterPlayer.getExtraWyrd() * EXTRA_WYRD_COST;
-		cost += Math.max(
-				0,
-				(characterPlayer.getPsiqueLevel(
-						OccultismTypeFactory.getPsi(characterPlayer.getLanguage())) - characterPlayer.getRace()
-						.getPsi()) * PSIQUE_LEVEL_COST);
-		cost += Math.max(
-				0,
-				(characterPlayer.getPsiqueLevel(
-						OccultismTypeFactory.getTheurgy(characterPlayer.getLanguage())) - characterPlayer.getRace()
-						.getTheurgy()) * PSIQUE_LEVEL_COST);
+		cost += Math
+				.max(0,
+						(characterPlayer.getPsiqueLevel(OccultismTypeFactory.getPsi(characterPlayer.getLanguage())) - (characterPlayer.getRace() != null ? characterPlayer
+								.getRace().getPsi() : 0))
+								* PSIQUE_LEVEL_COST);
+		cost += Math
+				.max(0,
+						(characterPlayer.getPsiqueLevel(OccultismTypeFactory.getTheurgy(characterPlayer.getLanguage())) - (characterPlayer.getRace() != null ? characterPlayer
+								.getRace().getTheurgy() : 0))
+								* PSIQUE_LEVEL_COST);
 		return cost;
 	}
 

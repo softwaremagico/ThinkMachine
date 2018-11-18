@@ -41,8 +41,6 @@ import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.benefices.AvailableBenefice;
 import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
 import com.softwaremagico.tm.character.benefices.BeneficeClassification;
-import com.softwaremagico.tm.character.benefices.BeneficeDefinition;
-import com.softwaremagico.tm.character.benefices.BeneficeDefinitionFactory;
 import com.softwaremagico.tm.character.benefices.BeneficeGroup;
 import com.softwaremagico.tm.character.benefices.BeneficeSpecialization;
 import com.softwaremagico.tm.character.benefices.InvalidBeneficeException;
@@ -615,10 +613,12 @@ public class CharacterPlayer {
 
 	public List<CombatStyle> getMeleeCombatStyles() throws InvalidXmlElementException {
 		List<CombatStyle> meleeCombatActions = new ArrayList<>();
-		for (BeneficeDefinition beneficeDefinition : BeneficeDefinitionFactory.getInstance().getBenefices(BeneficeGroup.FIGHTING, getLanguage())) {
-			CombatStyle combatStyle = CombatStyleFactory.getInstance().getElement(beneficeDefinition.getId(), getLanguage());
-			if (combatStyle.getGroup() == CombatStyleGroup.MELEE || combatStyle.getGroup() == CombatStyleGroup.FIGHT) {
-				meleeCombatActions.add(combatStyle);
+		for (AvailableBenefice beneficeDefinition : getAllBenefices()) {
+			if (beneficeDefinition.getBeneficeDefinition().getGroup() == BeneficeGroup.FIGHTING) {
+				CombatStyle combatStyle = CombatStyleFactory.getInstance().getElement(beneficeDefinition.getId(), getLanguage());
+				if (combatStyle.getGroup() == CombatStyleGroup.MELEE || combatStyle.getGroup() == CombatStyleGroup.FIGHT) {
+					meleeCombatActions.add(combatStyle);
+				}
 			}
 		}
 		Collections.sort(meleeCombatActions);
@@ -627,10 +627,12 @@ public class CharacterPlayer {
 
 	public List<CombatStyle> getRangedCombatStyles() throws InvalidXmlElementException {
 		List<CombatStyle> rangedCombatActions = new ArrayList<>();
-		for (BeneficeDefinition beneficeDefinition : BeneficeDefinitionFactory.getInstance().getBenefices(BeneficeGroup.FIGHTING, getLanguage())) {
-			CombatStyle combatStyle = CombatStyleFactory.getInstance().getElement(beneficeDefinition.getId(), getLanguage());
-			if (combatStyle.getGroup() == CombatStyleGroup.RANGED) {
-				rangedCombatActions.add(combatStyle);
+		for (AvailableBenefice beneficeDefinition : getAllBenefices()) {
+			if (beneficeDefinition.getBeneficeDefinition().getGroup() == BeneficeGroup.FIGHTING) {
+				CombatStyle combatStyle = CombatStyleFactory.getInstance().getElement(beneficeDefinition.getId(), getLanguage());
+				if (combatStyle.getGroup() == CombatStyleGroup.RANGED) {
+					rangedCombatActions.add(combatStyle);
+				}
 			}
 		}
 		Collections.sort(rangedCombatActions);

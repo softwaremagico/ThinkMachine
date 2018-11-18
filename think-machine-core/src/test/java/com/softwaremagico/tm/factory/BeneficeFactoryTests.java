@@ -34,7 +34,9 @@ import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.benefices.AvailableBenefice;
 import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
+import com.softwaremagico.tm.character.benefices.BeneficeClassification;
 import com.softwaremagico.tm.character.benefices.BeneficeDefinitionFactory;
+import com.softwaremagico.tm.character.creation.CostCalculator;
 import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
 
 @Test(groups = { "beneficeFactory" })
@@ -91,6 +93,17 @@ public class BeneficeFactoryTests {
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("cash [firebirds1000]", LANGUAGE));
 		Assert.assertEquals(2, player.getAllWeapons().size());
 		Assert.assertEquals(700, player.getMoney());
+	}
+
+	@Test
+	public void getMoneyAsAfflictionCost() throws InvalidXmlElementException {
+		CharacterPlayer player = new CharacterPlayer(LANGUAGE);
+		int remainingCost = CostCalculator.getCost(player);
+		AvailableBenefice cash50 = AvailableBeneficeFactory.getInstance().getElement("cash [firebirds50]", LANGUAGE);
+		Assert.assertEquals(BeneficeClassification.AFFLICTION, cash50.getBeneficeClassification());
+		Assert.assertEquals(-2, cash50.getCost());
+		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("cash [firebirds50]", LANGUAGE));
+		Assert.assertEquals(remainingCost - 2, CostCalculator.getCost(player));
 	}
 
 }

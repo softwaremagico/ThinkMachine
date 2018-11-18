@@ -645,7 +645,7 @@
 		<size>XS</size>
 		<cost>0</cost>
 		<random>
-			<probabilityMultiplier>0.01</probabilityMultiplier>
+			<probabilityMultiplier>0</probabilityMultiplier>
 		</random>
 	</lightRock>
 	<mediumRock>
@@ -666,7 +666,7 @@
 		<size>S</size>
 		<cost>0</cost>
 		<random>
-			<probabilityMultiplier>0.01</probabilityMultiplier>
+			<probabilityMultiplier>0</probabilityMultiplier>
 		</random>
 	</mediumRock>
 	<heavyRock>
@@ -687,7 +687,7 @@
 		<size>M</size>
 		<cost>0</cost>
 		<random>
-			<probabilityMultiplier>0.01</probabilityMultiplier>
+			<probabilityMultiplier>0</probabilityMultiplier>
 		</random>
 	</heavyRock>
 	<largeRock>
@@ -708,7 +708,7 @@
 		<size>L</size>
 		<cost>0</cost>
 		<random>
-			<probabilityMultiplier>0.01</probabilityMultiplier>
+			<probabilityMultiplier>0</probabilityMultiplier>
 		</random>
 	</largeRock>
 	<veryLargeRock>
@@ -729,7 +729,7 @@
 		<size>XL</size>
 		<cost>0</cost>
 		<random>
-			<probabilityMultiplier>0.01</probabilityMultiplier>
+			<probabilityMultiplier>0</probabilityMultiplier>
 		</random>
 	</veryLargeRock>
 	<star>
