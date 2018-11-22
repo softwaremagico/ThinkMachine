@@ -104,7 +104,7 @@ public class CustomCharacters {
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("physicalScience", LANGUAGE), 1);
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("spacecraft", LANGUAGE), 2);
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("landcarft", LANGUAGE), 3);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("fight", LANGUAGE), 1);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("melee", LANGUAGE), 1);
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("empathy", LANGUAGE), 3);
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("warfare", LANGUAGE), 1);
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("investigation", LANGUAGE), 2);
@@ -238,7 +238,7 @@ public class CustomCharacters {
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("streetWise", LANGUAGE), 3);
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("physick", LANGUAGE), 2);
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("aircraft", LANGUAGE), 1);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("melee", LANGUAGE), 5);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("fight", LANGUAGE), 5);
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("demolitions", LANGUAGE), 2);
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("gaming", LANGUAGE), 1);
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("leadership", LANGUAGE), 1);
@@ -354,7 +354,7 @@ public class CustomCharacters {
 		player.getCharacteristic(CharacteristicName.TECH).setValue(5);
 
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("observe", LANGUAGE), 6);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("melee", LANGUAGE), 5);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("fight", LANGUAGE), 5);
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("vigor", LANGUAGE), 7);
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("throwing", LANGUAGE), 5);
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("athletics", LANGUAGE), 4);

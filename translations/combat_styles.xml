@@ -306,6 +306,12 @@
 						<value>6</value>
 					</requirement2>
 				</requirements>
+				<goal>+2</goal>
+				<damage>4</damage>
+				<others>
+					<en>Ignores armour*</en>
+					<es>Ignora armadura*</es>
+				</others>
 			</headButt>
 			<chokeHold>
 				<name>

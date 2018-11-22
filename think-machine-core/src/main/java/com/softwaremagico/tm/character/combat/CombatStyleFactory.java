@@ -135,14 +135,14 @@ public class CombatStyleFactory extends XmlFactory<CombatStyle> {
 
 				String combatActionGoal = "";
 				try {
-					combatActionGoal = translator.getNodeValue(combatActionId, COMBAT_ACTION_GOAL, language);
+					combatActionGoal = translator.getNodeValue(combatActionId, COMBAT_ACTION_GOAL);
 				} catch (Exception e) {
 					// Not mandatory
 				}
 
 				String combatActionDamage = "";
 				try {
-					combatActionDamage = translator.getNodeValue(combatActionId, COMBAT_ACTION_DAMAGE, language);
+					combatActionDamage = translator.getNodeValue(combatActionId, COMBAT_ACTION_DAMAGE);
 				} catch (Exception e) {
 					// Not mandatory
 				}

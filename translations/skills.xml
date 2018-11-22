@@ -24,14 +24,14 @@
 		<group>analytical</group>
 		<natural>true</natural>
 	</observe>
-	<melee>
+	<fight>
 		<name>
-			<en>Melee</en>
+			<en>Fight</en>
 			<es>Pelear</es>
 		</name>
 		<group>combat</group>
 		<natural>true</natural>
-	</melee>
+	</fight>
 	<phoenixEmpireLore>
 		<name>
 			<en>Lore [Phoenix Empire]</en>
@@ -226,13 +226,13 @@
 			<minTechLevel>3</minTechLevel>
 		</random>
 	</artillery>
-	<fight>
+	<melee>
 		<name>
-			<en>Fight</en>
+			<en>Melee</en>
 			<es>Cuerpo a Cuerpo</es>
 		</name>
 		<group>combat</group>
-	</fight>
+	</melee>
 	<demolitions>
 		<name>
 			<en>Demolitions</en>

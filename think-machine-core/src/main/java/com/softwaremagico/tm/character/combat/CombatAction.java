@@ -64,16 +64,20 @@ public class CombatAction extends Element<CombatAction> {
 
 	public boolean isAvailable(CharacterPlayer characterPlayer) {
 		for (CombatActionRequirement requirement : getRequirements()) {
+			boolean allowed = false;
 			for (IValue restriction : requirement.getRequirements()) {
 				if (restriction instanceof AvailableSkill) {
 					if (characterPlayer.getSkillTotalRanks((AvailableSkill) restriction) >= requirement.getValue()) {
-						return true;
+						allowed = true;
 					}
 				} else if (restriction instanceof CharacteristicDefinition) {
 					if (characterPlayer.getCharacteristic(restriction.getId()).getValue() >= requirement.getValue()) {
-						return true;
+						allowed = true;
 					}
 				}
+			}
+			if (!allowed) {
+				return false;
 			}
 		}
 		return false;
