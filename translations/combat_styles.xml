@@ -18,6 +18,10 @@
 						<value>3</value>
 					</requirement1>
 				</requirements>
+				<others>
+					<en>No penalization by charging.</en>
+					<es>Sin penalización por carga.</es>
+				</others>
 			</banga>
 			<drox>
 				<name>
@@ -33,6 +37,10 @@
 						<skill>athletics</skill>
 						<value>7</value>
 					</requirement2>
+					<others>
+						<en>Extra action.</en>
+						<es>Acción extra.</es>
+					</others>
 				</requirements>
 			</drox>
 			<Throx>
@@ -49,6 +57,10 @@
 						<skill>athletics</skill>
 						<value>9</value>
 					</requirement2>
+					<others>
+						<en>Two extra actions.</en>
+						<es>Dos acciones extra.</es>
+					</others>
 				</requirements>
 			</Throx>
 		</combatActions>
@@ -84,6 +96,10 @@
 						<value>3</value>
 					</requirement1>
 				</requirements>
+				<others>
+					<en>-1 a Defense.</en>
+					<es>-1 a Defensa.</es>
+				</others>
 			</jab>
 			<pound>
 				<name>
@@ -100,6 +116,10 @@
 						<value>6</value>
 					</requirement2>
 				</requirements>
+				<others>
+					<en>Extra attack agains knocked down opponents.</en>
+					<es>Ataque extra contra enemigos derribados.</es>
+				</others>
 			</pound>
 			<mantisStrike>
 				<name>
@@ -116,6 +136,10 @@
 						<value>7</value>
 					</requirement2>
 				</requirements>
+				<others>
+					<en>Perception + Physick goals as extra damage</en>
+					<es>Percepción + Conoc. del Cuerpo como daño extra.</es>
+				</others>
 			</mantisStrike>
 		</combatActions>	
 		<stances>
@@ -156,6 +180,11 @@
 						<value>4</value>
 					</requirement2>
 				</requirements>
+				<damage>+2</damage>
+				<others>
+					<en>-1 to Defense.</en>
+					<es>-1 a Defensa.</es>
+				</others>
 			</stepToSky>
 			<joloBirdSquawks>
 				<name>
@@ -172,6 +201,10 @@
 						<value>6</value>
 					</requirement2>
 				</requirements>
+				<others>
+					<en>Wt + Knavery vs Wt + Observe to reduce Defense.</en>
+					<es>As + Artería contra As + Observar para reducir la Defensa.</es>
+				</others>
 			</joloBirdSquawks>
 			<oldLadyFañssAndGetsUp>
 				<name>
@@ -187,6 +220,10 @@
 						<skill>athletics</skill>
 						<value>7</value>
 					</requirement2>
+					<others>
+						<en>-3 a Defense and both can be knocked down.</en>
+						<es>-3 a Defensa y ambos pueden ser derribados.</es>
+					</others>
 				</requirements>
 			</oldLadyFañssAndGetsUp>
 		</combatActions>	
@@ -224,6 +261,8 @@
 						<value>4</value>
 					</requirement1>
 				</requirements>
+				<goal>-2</goal>
+				<damage>+3</damage>
 			</closePalmReachHeart>
 			<crossArmsDonTheRobe>
 				<name>
@@ -240,6 +279,10 @@
 						<value>6</value>
 					</requirement2>
 				</requirements>
+				<others>
+					<en>1W to cause damage to missing hits.</en>
+					<es>1W para causar daño a los ataques fallidos.</es>
+				</others>
 			</crossArmsDonTheRobe>
 			<strechSpineSpeakTheWord>
 				<name>
@@ -256,6 +299,10 @@
 						<value>8</value>
 					</requirement2>
 				</requirements>
+				<others>
+					<en>1W to -1d of armour.</en>
+					<es>1W para -1d de armadura.</es>
+				</others>
 			</strechSpineSpeakTheWord>
 		</combatActions>	
 		<stances>
@@ -265,7 +312,7 @@
 					<es>Posición de Soldado</es>
 				</name>
 				<description>
-					<en>+4 to goal agains grapple or knock out.</en>
+					<en>+4 to Goal agains grapple or knock out.</en>
 					<es>+4 RA contra Presa o Derribo.</es>
 				</description>
 			</soldierStance>
@@ -290,6 +337,10 @@
 						<value>4</value>
 					</requirement1>
 				</requirements>
+				<others>
+					<en>Sustained damage to grappled foe.</en>
+					<es>Daño continuado a enemigos apresados.</es>
+				</others>
 			</chainOfDestruction>
 			<headButt>
 				<name>
@@ -328,6 +379,10 @@
 						<value>7</value>
 					</requirement2>
 				</requirements>
+				<others>
+					<en>St + Vigor vs En + Vigor or knoked down.</en>
+					<es>Fu + Vigor vs Fr + Vigor o aturdido.</es>
+				</others>
 			</chokeHold>
 		</combatActions>	
 		<stances>
@@ -364,6 +419,10 @@
 						<value>3</value>
 					</requirement1>
 				</requirements>
+				<others>
+					<en>+1 wound</en>
+					<es>+1 heridas</es>
+				</others>
 			</royalPalm>
 			<astrideTheThrone>
 				<name>
@@ -380,6 +439,10 @@
 						<value>5</value>
 					</requirement2>
 				</requirements>
+				<others>
+					<en>+4 Goal agains grapple or knock down.</en>
+					<es>+4 RA contra presa o derribo.</es>
+				</others>
 			</astrideTheThrone>
 			<imperialDecree>
 				<name>
@@ -396,6 +459,10 @@
 						<value>7</value>
 					</requirement2>
 				</requirements>
+				<others>
+					<en>1W x extra wound</en>
+					<es>1W por herida extra</es>
+				</others>
 			</imperialDecree>
 		</combatActions>	
 		<stances>
@@ -432,6 +499,11 @@
 						<value>4</value>
 					</requirement1>
 				</requirements>
+				<goal>-2</goal>
+				<others>
+					<en>-2 Defense.</en>
+					<es>-2 a la Defensa.</es>
+				</others>
 			</offHandStrike>
 			<doubleStrike>
 				<name>
@@ -448,6 +520,10 @@
 						<value>6</value>
 					</requirement2>
 				</requirements>
+				<others>
+					<en>Two different attacks</en>
+					<es>Dos ataques diferentes</es>
+				</others>
 			</doubleStrike>
 			<wallOfSteel>
 				<name>
@@ -464,6 +540,11 @@
 						<value>7</value>
 					</requirement2>
 				</requirements>
+				<damage>-2d</damage>
+				<others>
+					<en>+2 Defense</en>
+					<es>+2 Defense</es>
+				</others>
 			</wallOfSteel>
 		</combatActions>	
 		<stances>
@@ -500,6 +581,11 @@
 						<value>3</value>
 					</requirement1>
 				</requirements>
+				<damage>+1d</damage>
+				<others>
+					<en>No penalizations for moving 1m.</en>
+					<es>Sin penalización por mover 1m.</es>
+				</others>
 			</thrust>
 			<rapidStrike>
 				<name>
@@ -516,6 +602,10 @@
 						<value>5</value>
 					</requirement2>
 				</requirements>
+				<others>
+					<en>3 attacks.</en>
+					<es>3 ataques.</es>
+				</others>
 			</rapidStrike>
 			<slipOfTheKnife>
 				<name>
@@ -531,6 +621,10 @@
 						<skill>observe</skill>
 						<value>7</value>
 					</requirement2>
+				<others>
+					<en>-1d Armour by VP.</en>
+					<es>-1d Armadura por PV.</es>
+				</others>
 				</requirements>
 			</slipOfTheKnife>
 		</combatActions>	
@@ -572,6 +666,10 @@
 						<value>4</value>
 					</requirement2>
 				</requirements>
+				<others>
+					<en>When drawing -2 foe's Defense if intiative higher.</en>
+					<es>Al desenfundar -2 a Defensa del enemigo si la iniciativa es mayor.</es>
+				</others>
 			</drawAndStrike>
 			<setup>
 				<name>
@@ -588,6 +686,12 @@
 						<value>6</value>
 					</requirement2>
 				</requirements>
+				<goal>-2</goal>
+				<damage>+3</damage>
+				<others>
+					<en>-2 Defense to next attack.</en>
+					<es>-2 Defensa para el siguiente ataque.</es>
+				</others>
 			</setup>
 			<stopThrust>
 				<name>
@@ -604,6 +708,10 @@
 						<value>8</value>
 					</requirement2>
 				</requirements>
+				<others>
+					<en>Special</en>
+					<es>Especial</es>
+				</others>
 			</stopThrust>
 		</combatActions>	
 		<stances>
@@ -637,6 +745,8 @@
 						<value>4</value>
 					</requirement1>
 				</requirements>
+				<goal>-2</goal>
+				<damage>+2d</damage>
 			</maskingStrike>
 			<disarmingCloak>
 				<name>
@@ -653,6 +763,10 @@
 						<value>5</value>
 					</requirement2>
 				</requirements>
+				<others>
+					<en>-4 to avoid being disarming.</en>
+					<es>-4 a evitar ser desarmado.</es>
+				</others>
 			</disarmingCloak>
 			<entaglingStrike>
 				<name>
@@ -669,6 +783,10 @@
 						<value>8</value>
 					</requirement2>
 				</requirements>
+				<others>
+					<en>If knocked down, extra attack.</en>
+					<es>Ataque extra a enemigo derribado.</es>
+				</others>
 			</entaglingStrike>
 		</combatActions>	
 		<stances>
@@ -703,6 +821,11 @@
 						<value>3</value>
 					</requirement1>
 				</requirements>
+				<goal>+2</goal>
+				<others>
+					<en>With rifle or shotgun.</en>
+					<es>Con rifle o escopeta.</es>
+				</others>
 			</practicedShooting>
 			<stockSlam>
 				<name>
@@ -719,6 +842,11 @@
 						<value>4</value>
 					</requirement2>
 				</requirements>
+				<damage>3d</damage>
+				<others>
+					<en>Knock down</en>
+					<es>Derriba</es>
+				</others>
 			</stockSlam>
 			<instictShot>
 				<name>
@@ -735,6 +863,10 @@
 						<value>7</value>
 					</requirement2>
 				</requirements>
+				<others>
+					<en>1W to ignore a -1 Goal.</en>
+					<es>1W para ignorar -1 RA.</es>
+				</others>
 			</instictShot>
 		</combatActions>	
 		<stances>
@@ -768,6 +900,10 @@
 						<value>4</value>
 					</requirement1>
 				</requirements>
+				<others>
+					<en>No penalization for two shots, -2 for three shots.</en>
+					<es>Sin penalizador a dos disparos, -2 para tres disparos.</es>
+				</others>
 			</snapShot>
 			<rollAndShoot>
 				<name>
@@ -784,6 +920,10 @@
 						<value>5</value>
 					</requirement2>
 				</requirements>
+				<others>
+					<en>Rolls 3 meters Standing or on its knees</en>
+					<es>Rueda 3 metros. Arrodillado o de pié.</es>
+				</others>
 			</rollAndShoot>
 			<runAndGun>
 				<name>
@@ -800,6 +940,10 @@
 						<value>7</value>
 					</requirement2>
 				</requirements>
+				<others>
+					<en>Run and shot. -2 to Defense</en>
+					<es>Dispara y corre. -2 a Defensa</es>
+				</others>
 			</runAndGun>
 		</combatActions>	
 		<stances>
