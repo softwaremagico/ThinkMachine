@@ -58,6 +58,7 @@ import com.softwaremagico.tm.random.selectors.SkillGroupPreferences;
 import com.softwaremagico.tm.random.selectors.SpecializationPreferences;
 import com.softwaremagico.tm.random.selectors.StatusPreferences;
 import com.softwaremagico.tm.random.selectors.TechnologicalPreferences;
+import com.softwaremagico.tm.txt.CharacterSheet;
 
 @Test(groups = { "randomCharacter" })
 public class RandomCharacterTests {
@@ -251,7 +252,14 @@ public class RandomCharacterTests {
 		AvailableSkill fight = AvailableSkillsFactory.getInstance().getElement("fight", LANGUAGE);
 		randomBenefice.validateElement(fight.getRandomDefinition());
 
-		Assert.assertTrue(characterPlayer.getSkillTotalRanks(AvailableSkillsFactory.getInstance().getElement("fight", LANGUAGE)) > 0);
-		Assert.assertTrue(characterPlayer.getSkillTotalRanks(AvailableSkillsFactory.getInstance().getElement("energyGuns", LANGUAGE)) > 0);
+		try {
+			Assert.assertTrue(characterPlayer.getSkillTotalRanks(AvailableSkillsFactory.getInstance().getElement("fight", LANGUAGE)) > 0);
+			Assert.assertTrue(characterPlayer.getSkillTotalRanks(AvailableSkillsFactory.getInstance().getElement("energyGuns", LANGUAGE)) > 0);
+		} catch (AssertionError e) {
+			CharacterSheet characterSheet = new CharacterSheet(characterPlayer);
+			System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+			System.out.println(characterSheet.toString());
+			throw e;
+		}
 	}
 }
