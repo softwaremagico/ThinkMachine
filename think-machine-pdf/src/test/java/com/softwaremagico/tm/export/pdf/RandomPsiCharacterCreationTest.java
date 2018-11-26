@@ -37,7 +37,6 @@ import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
 import com.softwaremagico.tm.character.creation.CostCalculator;
-import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
 import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.pdf.small.SmallCharacterSheet;
 import com.softwaremagico.tm.random.RandomizeCharacter;
@@ -68,6 +67,6 @@ public class RandomPsiCharacterCreationTest {
 		SmallCharacterSheet sheet = new SmallCharacterSheet(characterPlayer);
 		sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "RandomPsiCharacter.pdf");
 
-		Assert.assertEquals(CostCalculator.logCost(characterPlayer), FreeStyleCharacterCreation.FREE_AVAILABLE_POINTS);
+		Assert.assertEquals(CostCalculator.logCost(characterPlayer), characterPlayer.getFreeStyleCharacterCreation().getFreeAvailablePoints());
 	}
 }

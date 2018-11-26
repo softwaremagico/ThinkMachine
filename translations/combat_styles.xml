@@ -37,13 +37,13 @@
 						<skill>athletics</skill>
 						<value>7</value>
 					</requirement2>
-					<others>
+				</requirements>
+				<others>
 						<en>Extra action.</en>
 						<es>Acción extra.</es>
-					</others>
-				</requirements>
+				</others>
 			</drox>
-			<Throx>
+			<throx>
 				<name>
 					<en>Throx</en>
 					<es>Throx</es>
@@ -57,12 +57,12 @@
 						<skill>athletics</skill>
 						<value>9</value>
 					</requirement2>
-					<others>
-						<en>Two extra actions.</en>
-						<es>Dos acciones extra.</es>
-					</others>
 				</requirements>
-			</Throx>
+				<others>
+					<en>Two extra actions.</en>
+					<es>Dos acciones extra.</es>
+				</others>
+			</throx>
 		</combatActions>
 		<stances>
 			<gripppingHand>
@@ -206,7 +206,7 @@
 					<es>As + Artería contra As + Observar para reducir la Defensa.</es>
 				</others>
 			</joloBirdSquawks>
-			<oldLadyFañssAndGetsUp>
+			<oldLadyFallsAndGetsUp>
 				<name>
 					<en>Old Lady Falls and Gets Up</en>
 					<es>Vieja Mujer Cae y Se levanta</es>
@@ -220,12 +220,12 @@
 						<skill>athletics</skill>
 						<value>7</value>
 					</requirement2>
-					<others>
-						<en>-3 a Defense and both can be knocked down.</en>
-						<es>-3 a Defensa y ambos pueden ser derribados.</es>
-					</others>
 				</requirements>
-			</oldLadyFañssAndGetsUp>
+				<others>
+					<en>-3 a Defense and both can be knocked down.</en>
+					<es>-3 a Defensa y ambos pueden ser derribados.</es>
+				</others>
+			</oldLadyFallsAndGetsUp>
 		</combatActions>	
 		<stances>
 			<kotoStance>
@@ -621,11 +621,11 @@
 						<skill>observe</skill>
 						<value>7</value>
 					</requirement2>
+				</requirements>
 				<others>
 					<en>-1d Armour by VP.</en>
 					<es>-1d Armadura por PV.</es>
 				</others>
-				</requirements>
 			</slipOfTheKnife>
 		</combatActions>	
 		<stances>

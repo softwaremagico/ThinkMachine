@@ -84,18 +84,19 @@ public class CostCalculator {
 	}
 
 	private static int getCharacteristicsCost(CharacterPlayer characterPlayer) {
-		return (characterPlayer.getCharacteristicsTotalPoints() - FreeStyleCharacterCreation.CHARACTERISTICS_POINTS) * CHARACTERISTIC_EXTRA_POINTS_COST;
+		return (characterPlayer.getCharacteristicsTotalPoints() - characterPlayer.getFreeStyleCharacterCreation().getCharacteristicsPoints())
+				* CHARACTERISTIC_EXTRA_POINTS_COST;
 	}
 
 	private static int getSkillCosts(CharacterPlayer characterPlayer) throws InvalidXmlElementException {
-		return (characterPlayer.getSkillsTotalPoints() - FreeStyleCharacterCreation.SKILLS_POINTS) * SKILL_EXTRA_POINTS_COST;
+		return (characterPlayer.getSkillsTotalPoints() - characterPlayer.getFreeStyleCharacterCreation().getSkillsPoints()) * SKILL_EXTRA_POINTS_COST;
 	}
 
 	private static int getTraitsCosts(CharacterPlayer characterPlayer) throws InvalidXmlElementException {
 		int cost = 0;
 		cost += getBlessingCosts(characterPlayer);
 		cost += getBeneficesCosts(characterPlayer);
-		return cost - FreeStyleCharacterCreation.TRAITS_POINTS;
+		return cost - characterPlayer.getFreeStyleCharacterCreation().getTraitsPoints();
 	}
 
 	private static int getBlessingCosts(CharacterPlayer characterPlayer) {

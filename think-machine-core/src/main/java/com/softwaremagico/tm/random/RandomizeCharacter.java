@@ -192,7 +192,6 @@ public class RandomizeCharacter {
 	 * @throws InvalidRandomElementSelectedException
 	 */
 	private void setStartingValues() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
-		characterPlayer.setFreeStyleCharacterCreation(new FreeStyleCharacterCreation());
 		// Characteristics
 		RandomCharacteristics randomCharacteristics = new RandomCharacteristics(characterPlayer, preferences);
 		randomCharacteristics.spendCharacteristicsPoints();
@@ -225,7 +224,7 @@ public class RandomizeCharacter {
 		randomPsiquePath.assignPsiquePaths();
 
 		// Spend remaining points in skills and characteristics.
-		int remainingPoints = FreeStyleCharacterCreation.FREE_AVAILABLE_POINTS - CostCalculator.getCost(characterPlayer);
+		int remainingPoints = characterPlayer.getFreeStyleCharacterCreation().getFreeAvailablePoints() - CostCalculator.getCost(characterPlayer);
 
 		RandomGenerationLog.info(this.getClass().getName(), "Remaining points '" + remainingPoints + "'.");
 		IGaussianDistribution specialization = SpecializationPreferences.getSelected(preferences);
@@ -309,8 +308,8 @@ public class RandomizeCharacter {
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		sb.append(characterPlayer.getNameRepresentation() + " (" + characterPlayer.getRace() + ") [" + characterPlayer.getFaction() + "]");
-		sb.append(characterPlayer.getFreeStyleCharacterCreation().getSelectedCharacteristicsValues());
-		sb.append(characterPlayer.getFreeStyleCharacterCreation().getDesiredSkillRanks());
+		sb.append(characterPlayer.getRandomDefinition().getSelectedCharacteristicsValues());
+		sb.append(characterPlayer.getRandomDefinition().getDesiredSkillRanks());
 		return sb.toString();
 	}
 }

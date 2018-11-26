@@ -35,7 +35,6 @@ import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.characteristics.CharacteristicType;
-import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
 import com.softwaremagico.tm.character.factions.FactionGroup;
 import com.softwaremagico.tm.character.occultism.OccultismTypeFactory;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
@@ -63,7 +62,7 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 		assignMinimumValuesOfSkills();
 
 		// Meanwhile are ranks to expend.
-		while (getCharacterPlayer().getSkillsTotalPoints() < FreeStyleCharacterCreation.SKILLS_POINTS) {
+		while (getCharacterPlayer().getSkillsTotalPoints() < getCharacterPlayer().getFreeStyleCharacterCreation().getSkillsPoints()) {
 			// Select a skill randomly.
 			AvailableSkill selectedSkill = selectElementByWeight();
 
@@ -266,8 +265,9 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 	private int assignRandomRanks(AvailableSkill availableSkill) throws InvalidXmlElementException, InvalidRandomElementSelectedException {
 		int finalRanks = getRankValue(availableSkill);
 		// Final ranks cannot be greater that the total points remaining.
-		if (getCharacterPlayer().getSkillsTotalPoints() + (finalRanks - getCharacterPlayer().getSkillAssignedRanks(availableSkill)) > FreeStyleCharacterCreation.SKILLS_POINTS) {
-			finalRanks = FreeStyleCharacterCreation.SKILLS_POINTS - getCharacterPlayer().getSkillsTotalPoints()
+		if (getCharacterPlayer().getSkillsTotalPoints() + (finalRanks - getCharacterPlayer().getSkillAssignedRanks(availableSkill)) > getCharacterPlayer()
+				.getFreeStyleCharacterCreation().getSkillsPoints()) {
+			finalRanks = getCharacterPlayer().getFreeStyleCharacterCreation().getSkillsPoints() - getCharacterPlayer().getSkillsTotalPoints()
 					+ getCharacterPlayer().getSkillAssignedRanks(availableSkill);
 		}
 		if (finalRanks < 0) {

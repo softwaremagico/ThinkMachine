@@ -24,36 +24,44 @@ package com.softwaremagico.tm.character.creation;
  * #L%
  */
 
-import java.util.HashMap;
-
-import com.softwaremagico.tm.character.characteristics.CharacteristicName;
-import com.softwaremagico.tm.character.skills.AvailableSkill;
-
 public class FreeStyleCharacterCreation {
-	public static final int MAX_INITIAL_SKILL_VALUE = 8;
-
-	public static final int CHARACTERISTICS_POINTS = 20;
-	public static final int SKILLS_POINTS = 30;
-	public static final int TRAITS_POINTS = 10;
-	public static final int FREE_AVAILABLE_POINTS = 40;
-	public static final int MAX_CURSE_POINTS = 7;
-	public static final int MAX_BLESSING_MODIFICATIONS = 7;
-
-	private final HashMap<CharacteristicName, Integer> selectedCharacteristicsValues;
-
-	private final HashMap<AvailableSkill, Integer> desiredSkillRanks;
+	private static final int MAX_INITIAL_SKILL_VALUE = 8;
+	private static final int CHARACTERISTICS_POINTS = 20;
+	private static final int SKILLS_POINTS = 30;
+	private static final int TRAITS_POINTS = 10;
+	private static final int FREE_AVAILABLE_POINTS = 40;
+	private static final int MAX_CURSE_POINTS = 7;
+	private static final int MAX_BLESSING_MODIFICATIONS = 7;
 
 	public FreeStyleCharacterCreation() {
-		selectedCharacteristicsValues = new HashMap<>();
-		desiredSkillRanks = new HashMap<>();
 	}
 
-	public HashMap<AvailableSkill, Integer> getDesiredSkillRanks() {
-		return desiredSkillRanks;
+	public int getMaxInitialSkillsValues() {
+		return MAX_INITIAL_SKILL_VALUE;
 	}
 
-	public HashMap<CharacteristicName, Integer> getSelectedCharacteristicsValues() {
-		return selectedCharacteristicsValues;
+	public int getCharacteristicsPoints() {
+		return CHARACTERISTICS_POINTS;
+	}
+
+	public int getSkillsPoints() {
+		return SKILLS_POINTS;
+	}
+
+	public int getTraitsPoints() {
+		return TRAITS_POINTS;
+	}
+
+	public int getFreeAvailablePoints() {
+		return FREE_AVAILABLE_POINTS;
+	}
+
+	public int getMaxCursePoints() {
+		return MAX_CURSE_POINTS;
+	}
+
+	public int getMaxBlessingModifications() {
+		return MAX_BLESSING_MODIFICATIONS;
 	}
 
 }

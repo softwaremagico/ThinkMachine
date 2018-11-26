@@ -34,7 +34,6 @@ import com.softwaremagico.tm.character.benefices.AvailableBenefice;
 import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.creation.CostCalculator;
-import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
 import com.softwaremagico.tm.character.equipment.weapons.Weapon;
 import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
 import com.softwaremagico.tm.character.factions.FactionGroup;
@@ -143,7 +142,7 @@ public class RandomCharacterTests {
 		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0, SkillGroupPreferences.COMBAT);
 		randomizeCharacter.createCharacter();
 
-		Assert.assertEquals(CostCalculator.getCost(characterPlayer), FreeStyleCharacterCreation.FREE_AVAILABLE_POINTS);
+		Assert.assertEquals(CostCalculator.getCost(characterPlayer), characterPlayer.getFreeStyleCharacterCreation().getFreeAvailablePoints());
 		Assert.assertTrue(characterPlayer.getRanksAssigned(SkillGroupPreferences.COMBAT.getSkillGroup()) > 10);
 	}
 
@@ -155,7 +154,7 @@ public class RandomCharacterTests {
 		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0, StatusPreferences.HIGHT);
 		randomizeCharacter.createCharacter();
 		Assert.assertNotNull(characterPlayer.getRank());
-		Assert.assertEquals(CostCalculator.getCost(characterPlayer), FreeStyleCharacterCreation.FREE_AVAILABLE_POINTS);
+		Assert.assertEquals(CostCalculator.getCost(characterPlayer), characterPlayer.getFreeStyleCharacterCreation().getFreeAvailablePoints());
 	}
 
 	@Test

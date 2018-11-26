@@ -46,7 +46,6 @@ import com.softwaremagico.tm.character.characteristics.CharacteristicImprovement
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.characteristics.CharacteristicsDefinitionFactory;
 import com.softwaremagico.tm.character.creation.CostCalculator;
-import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
 import com.softwaremagico.tm.character.cybernetics.CyberneticDevice;
 import com.softwaremagico.tm.character.equipment.DamageType;
 import com.softwaremagico.tm.character.equipment.armour.Armour;
@@ -145,7 +144,7 @@ public class CustomCharacters {
 		SmallCharacterSheet smallSheet = new SmallCharacterSheet(player);
 		smallSheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Paola_Small.pdf");
 
-		Assert.assertEquals(CostCalculator.getCost(player), FreeStyleCharacterCreation.FREE_AVAILABLE_POINTS);
+		Assert.assertEquals(CostCalculator.getCost(player), player.getFreeStyleCharacterCreation().getFreeAvailablePoints());
 		Assert.assertEquals(player.getMoney(), 300);
 	}
 
@@ -204,7 +203,7 @@ public class CustomCharacters {
 		SmallCharacterSheet smallSheet = new SmallCharacterSheet(player);
 		smallSheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Ana_Small.pdf");
 
-		Assert.assertEquals(CostCalculator.getCost(player), FreeStyleCharacterCreation.FREE_AVAILABLE_POINTS);
+		Assert.assertEquals(CostCalculator.getCost(player), player.getFreeStyleCharacterCreation().getFreeAvailablePoints());
 		Assert.assertEquals(player.getMoney(), 250);
 	}
 
@@ -266,7 +265,7 @@ public class CustomCharacters {
 		SmallCharacterSheet smallSheet = new SmallCharacterSheet(player);
 		smallSheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Carlos_Small.pdf");
 
-		Assert.assertEquals(CostCalculator.getCost(player), FreeStyleCharacterCreation.FREE_AVAILABLE_POINTS);
+		Assert.assertEquals(CostCalculator.getCost(player), player.getFreeStyleCharacterCreation().getFreeAvailablePoints());
 		Assert.assertEquals(player.getRank(), "Genin");
 		Assert.assertEquals(500, player.getMoney());
 	}
@@ -331,7 +330,7 @@ public class CustomCharacters {
 		SmallCharacterSheet smallSheet = new SmallCharacterSheet(player);
 		smallSheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Noelia_Small.pdf");
 
-		Assert.assertEquals(CostCalculator.getCost(player), FreeStyleCharacterCreation.FREE_AVAILABLE_POINTS);
+		Assert.assertEquals(CostCalculator.getCost(player), player.getFreeStyleCharacterCreation().getFreeAvailablePoints());
 	}
 
 	@Test

@@ -42,7 +42,6 @@ import com.softwaremagico.tm.character.benefices.BeneficeDefinition;
 import com.softwaremagico.tm.character.benefices.BeneficeDefinitionFactory;
 import com.softwaremagico.tm.character.benefices.BeneficeGroup;
 import com.softwaremagico.tm.character.creation.CostCalculator;
-import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
 import com.softwaremagico.tm.log.RandomGenerationLog;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.IGaussianDistribution;
@@ -72,10 +71,12 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
 		}
 
 		// Later, the others.
-		while (CostCalculator.getBeneficesCosts(getCharacterPlayer()) < FreeStyleCharacterCreation.TRAITS_POINTS && !getWeightedElements().isEmpty()) {
+		while (CostCalculator.getBeneficesCosts(getCharacterPlayer()) < getCharacterPlayer().getFreeStyleCharacterCreation().getTraitsPoints()
+				&& !getWeightedElements().isEmpty()) {
 			// Select a benefice
 			BeneficeDefinition selectedBenefice = selectElementByWeight();
-			assignBenefice(selectedBenefice, FreeStyleCharacterCreation.TRAITS_POINTS - CostCalculator.getBeneficesCosts(getCharacterPlayer()));
+			assignBenefice(selectedBenefice,
+					getCharacterPlayer().getFreeStyleCharacterCreation().getTraitsPoints() - CostCalculator.getBeneficesCosts(getCharacterPlayer()));
 			// Only one fighting style by character.
 			if (selectedBenefice.getGroup().equals(BeneficeGroup.FIGHTING)) {
 				for (BeneficeDefinition beneficeDefinition : BeneficeDefinitionFactory.getInstance().getBenefices(BeneficeGroup.FIGHTING,

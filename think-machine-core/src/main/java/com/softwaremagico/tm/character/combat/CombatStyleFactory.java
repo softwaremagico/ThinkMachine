@@ -107,19 +107,25 @@ public class CombatStyleFactory extends XmlFactory<CombatStyle> {
 							COMBAT_ACTION_REQUIREMENTS_SKILL);
 
 					Set<IValue> restrictions = new HashSet<>();
-					StringTokenizer skillTokenizer = new StringTokenizer(skillNames, ",");
-					while (skillTokenizer.hasMoreTokens()) {
-						String skillName = skillTokenizer.nextToken().trim();
-						try {
-							restrictions.add(AvailableSkillsFactory.getInstance().getElement(skillName, language));
-						} catch (InvalidXmlElementException e) {
-							// Maybe is a characteristic.
+					try {
+						StringTokenizer skillTokenizer = new StringTokenizer(skillNames, ",");
+						while (skillTokenizer.hasMoreTokens()) {
+							String skillName = skillTokenizer.nextToken().trim();
 							try {
-								restrictions.add(CharacteristicsDefinitionFactory.getInstance().getElement(skillName, language));
-							} catch (InvalidXmlElementException e2) {
-								throw new InvalidCombatStyleException("Invalid requirement '" + skillName + "' in combat style '" + combatStyleId + "'.", e2);
+								restrictions.add(AvailableSkillsFactory.getInstance().getElement(skillName, language));
+							} catch (InvalidXmlElementException e) {
+								// Maybe is a characteristic.
+								try {
+									restrictions.add(CharacteristicsDefinitionFactory.getInstance().getElement(skillName, language));
+								} catch (InvalidXmlElementException e2) {
+									throw new InvalidCombatStyleException("Invalid requirement '" + skillName + "' in combat style '" + combatStyleId + "'.",
+											e2);
+								}
 							}
 						}
+					} catch (NullPointerException e) {
+						throw new InvalidCombatStyleException("Invalid requirement '" + combatActionRequirementId + "' for skills '" + skillNames + "' in '"
+								+ combatActionId + "' at combat style '" + combatStyleId + "'.", e);
 					}
 
 					try {

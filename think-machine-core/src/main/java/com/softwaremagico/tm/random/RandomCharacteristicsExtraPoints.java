@@ -30,27 +30,24 @@ import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.characteristics.Characteristic;
 import com.softwaremagico.tm.character.creation.CostCalculator;
-import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
 import com.softwaremagico.tm.log.RandomGenerationLog;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
 
 public class RandomCharacteristicsExtraPoints extends RandomCharacteristics {
 
-	public RandomCharacteristicsExtraPoints(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences)
-			throws InvalidXmlElementException {
+	public RandomCharacteristicsExtraPoints(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences) throws InvalidXmlElementException {
 		super(characterPlayer, preferences);
 	}
 
 	public int spendCharacteristicsPoints(int remainingPoints) throws InvalidRandomElementSelectedException {
 		if (remainingPoints >= CostCalculator.CHARACTERISTIC_EXTRA_POINTS_COST) {
 			Characteristic selectedCharacteristic = selectElementByWeight();
-			if (selectedCharacteristic.getValue() < FreeStyleCharacterCreation.MAX_INITIAL_SKILL_VALUE) {
+			if (selectedCharacteristic.getValue() < getCharacterPlayer().getFreeStyleCharacterCreation().getMaxInitialSkillsValues()) {
 				selectedCharacteristic.setValue(selectedCharacteristic.getValue() + 1);
-				getCharacterPlayer().getFreeStyleCharacterCreation().getSelectedCharacteristicsValues()
+				getCharacterPlayer().getRandomDefinition().getSelectedCharacteristicsValues()
 						.put(selectedCharacteristic.getCharacteristicName(), selectedCharacteristic.getValue());
-				RandomGenerationLog.info(this.getClass().getName(), "Increased value of '" + selectedCharacteristic
-						+ "'.");
+				RandomGenerationLog.info(this.getClass().getName(), "Increased value of '" + selectedCharacteristic + "'.");
 				return CostCalculator.CHARACTERISTIC_EXTRA_POINTS_COST;
 			}
 		}

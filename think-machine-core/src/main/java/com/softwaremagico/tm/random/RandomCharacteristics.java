@@ -32,7 +32,6 @@ import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.characteristics.Characteristic;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.characteristics.CharacteristicType;
-import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
 import com.softwaremagico.tm.character.factions.FactionGroup;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.CharacteristicsPreferences;
@@ -53,11 +52,11 @@ public class RandomCharacteristics extends RandomSelector<Characteristic> {
 		assignMinimumValuesOfCharacteristics();
 
 		// Assign random values by weight
-		while (getCharacterPlayer().getCharacteristicsTotalPoints() < FreeStyleCharacterCreation.CHARACTERISTICS_POINTS) {
+		while (getCharacterPlayer().getCharacteristicsTotalPoints() < getCharacterPlayer().getFreeStyleCharacterCreation().getCharacteristicsPoints()) {
 			Characteristic selectedCharacteristic = selectElementByWeight();
-			if (selectedCharacteristic.getValue() < FreeStyleCharacterCreation.MAX_INITIAL_SKILL_VALUE) {
+			if (selectedCharacteristic.getValue() < getCharacterPlayer().getFreeStyleCharacterCreation().getMaxInitialSkillsValues()) {
 				selectedCharacteristic.setValue(selectedCharacteristic.getValue() + 1);
-				getCharacterPlayer().getFreeStyleCharacterCreation().getSelectedCharacteristicsValues()
+				getCharacterPlayer().getRandomDefinition().getSelectedCharacteristicsValues()
 						.put(selectedCharacteristic.getCharacteristicName(), selectedCharacteristic.getValue());
 			}
 		}
