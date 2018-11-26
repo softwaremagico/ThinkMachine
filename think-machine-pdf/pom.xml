@@ -1,5 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>think-machine-pdf</artifactId>
 	<packaging>jar</packaging>
@@ -8,7 +7,7 @@
 	<parent>
 		<groupId>com.softwaremagico</groupId>
 		<artifactId>think-machine</artifactId>
-		<version>0.4.3-SNAPSHOT</version>
+		<version>0.4.3</version>
 	</parent>
 
 	<properties>
@@ -75,13 +74,10 @@
 								<configuration>
 									<target>
 										<!-- delete old folder -->
-										<delete dir="${main.basedir}/sheets" failonerror="false"
-											includeemptydirs="true" />
+										<delete dir="${main.basedir}/sheets" failonerror="false" includeemptydirs="true" />
 										<!-- Copy sheets -->
-										<copy file="/tmp/FadingSuns_EN.pdf" tofile="${main.basedir}/sheets/FadingSuns_EN.pdf"
-											overwrite="true" />
-										<copy file="/tmp/FadingSuns_ES.pdf" tofile="${main.basedir}/sheets/FadingSuns_ES.pdf"
-											overwrite="true" />
+										<copy file="/tmp/FadingSuns_EN.pdf" tofile="${main.basedir}/sheets/FadingSuns_EN.pdf" overwrite="true" />
+										<copy file="/tmp/FadingSuns_ES.pdf" tofile="${main.basedir}/sheets/FadingSuns_ES.pdf" overwrite="true" />
 									</target>
 								</configuration>
 								<goals>
