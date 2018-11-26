@@ -35,6 +35,7 @@ import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.creation.CostCalculator;
 import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
+import com.softwaremagico.tm.character.equipment.weapons.Weapon;
 import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
 import com.softwaremagico.tm.character.factions.FactionGroup;
 import com.softwaremagico.tm.character.factions.FactionsFactory;
@@ -99,6 +100,14 @@ public class RandomCharacterTests {
 		SkillDefinition skillDefinition = SkillsDefinitionsFactory.getInstance().get("archery", "en");
 		Assert.assertEquals(skillDefinition.getRandomDefinition().getMinimumTechLevel().intValue(), 0);
 		Assert.assertEquals(skillDefinition.getRandomDefinition().getMaximumTechLevel().intValue(), 2);
+	}
+
+	@Test
+	public void checkWeightLimitedByDefinition() throws InvalidXmlElementException, DuplicatedPreferenceException, InvalidRandomElementSelectedException {
+		CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
+		RandomWeapon randomWeapons = new RandomRangeWeapon(characterPlayer, null);
+		Weapon largeRock = WeaponFactory.getInstance().getElement("veryLargeRock", LANGUAGE);
+		Assert.assertEquals(randomWeapons.getTotalWeight(largeRock), 0);
 	}
 
 	@Test(expectedExceptions = { InvalidRandomElementSelectedException.class })

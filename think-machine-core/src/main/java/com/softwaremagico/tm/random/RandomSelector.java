@@ -102,18 +102,25 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
 				continue;
 			}
 
-			int weight = getWeight(element);
+			int weight = getTotalWeight(element);
 			if (weight > 0) {
-				weight = (int) ((weight) * getRandomDefinitionBonus(element));
-				// Some probabilities are defined directly.
-				if (element.getRandomDefinition().getStaticProbability() != null) {
-					weight = element.getRandomDefinition().getStaticProbability();
-				}
 				weightedElements.put(count, element);
 				count += weight;
 			}
 		}
 		return weightedElements;
+	}
+
+	public int getTotalWeight(Element element) {
+		int weight = getWeight(element);
+		weight = (int) ((weight) * getRandomDefinitionBonus(element));
+		if (weight > 0) {
+			// Some probabilities are defined directly.
+			if (element.getRandomDefinition().getStaticProbability() != null) {
+				weight = element.getRandomDefinition().getStaticProbability();
+			}
+		}
+		return weight;
 	}
 
 	private double getRandomDefinitionBonus(Element element) {

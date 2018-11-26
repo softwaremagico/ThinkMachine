@@ -80,6 +80,6 @@ public class CombatAction extends Element<CombatAction> {
 				return false;
 			}
 		}
-		return false;
+		return true;
 	}
 }

@@ -242,6 +242,9 @@
 		<size>M</size>
 		<cost>50</cost>
 		<others>poison5</others>
+		<random>
+			<probabilityMultiplier>0.01</probabilityMultiplier>
+		</random>
 	</hollowKnife>
 	<knife>
 		<name>

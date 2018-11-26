@@ -381,6 +381,9 @@
 		</name>
 		<cost>2</cost>
 		<group>possessions</group>
+		<random>
+			<probabilityMultiplier>0.1</probabilityMultiplier>
+		</random>
 	</jumpkey>
 	<passageContracts>
 		<name>
