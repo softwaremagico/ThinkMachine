@@ -224,7 +224,7 @@ public class RandomizeCharacter {
 		randomPsiquePath.assignPsiquePaths();
 
 		// Spend remaining points in skills and characteristics.
-		int remainingPoints = characterPlayer.getFreeStyleCharacterCreation().getFreeAvailablePoints() - CostCalculator.getCost(characterPlayer);
+		int remainingPoints = FreeStyleCharacterCreation.getFreeAvailablePoints(characterPlayer.getInfo().getAge()) - CostCalculator.getCost(characterPlayer);
 
 		RandomGenerationLog.info(this.getClass().getName(), "Remaining points '" + remainingPoints + "'.");
 		IGaussianDistribution specialization = SpecializationPreferences.getSelected(preferences);

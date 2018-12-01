@@ -30,6 +30,7 @@ import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.characteristics.Characteristic;
 import com.softwaremagico.tm.character.creation.CostCalculator;
+import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
 import com.softwaremagico.tm.log.RandomGenerationLog;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
@@ -43,7 +44,7 @@ public class RandomCharacteristicsExtraPoints extends RandomCharacteristics {
 	public int spendCharacteristicsPoints(int remainingPoints) throws InvalidRandomElementSelectedException {
 		if (remainingPoints >= CostCalculator.CHARACTERISTIC_EXTRA_POINTS_COST) {
 			Characteristic selectedCharacteristic = selectElementByWeight();
-			if (selectedCharacteristic.getValue() < getCharacterPlayer().getFreeStyleCharacterCreation().getMaxInitialSkillsValues()) {
+			if (selectedCharacteristic.getValue() < FreeStyleCharacterCreation.getMaxInitialSkillsValues(getCharacterPlayer().getInfo().getAge())) {
 				selectedCharacteristic.setValue(selectedCharacteristic.getValue() + 1);
 				getCharacterPlayer().getRandomDefinition().getSelectedCharacteristicsValues()
 						.put(selectedCharacteristic.getCharacteristicName(), selectedCharacteristic.getValue());

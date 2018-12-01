@@ -34,6 +34,7 @@ import java.util.Set;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.creation.CostCalculator;
+import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
 import com.softwaremagico.tm.character.occultism.OccultismPath;
 import com.softwaremagico.tm.character.occultism.OccultismPathFactory;
 import com.softwaremagico.tm.character.occultism.OccultismPower;
@@ -127,7 +128,8 @@ public class RandomPsiquePath extends RandomSelector<OccultismPath> {
 	}
 
 	private void assignPowersOfPath(OccultismPath path, int maxLevelSelected) throws InvalidXmlElementException {
-		int remainingPoints = getCharacterPlayer().getFreeStyleCharacterCreation().getFreeAvailablePoints() - CostCalculator.getCost(getCharacterPlayer());
+		int remainingPoints = FreeStyleCharacterCreation.getFreeAvailablePoints(getCharacterPlayer().getInfo().getAge())
+				- CostCalculator.getCost(getCharacterPlayer());
 		// Select powers to set.
 		List<OccultismPower> powersToAdd = new ArrayList<>();
 

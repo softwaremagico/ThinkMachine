@@ -33,6 +33,7 @@ import org.testng.annotations.Test;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.creation.CostCalculator;
+import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
 import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.pdf.complete.CharacterSheet;
 import com.softwaremagico.tm.pdf.small.SmallCharacterSheet;
@@ -54,7 +55,7 @@ public class RandomCharacterSheetCreationTest {
 		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0);
 		randomizeCharacter.createCharacter();
 
-		Assert.assertEquals(CostCalculator.logCost(characterPlayer), characterPlayer.getFreeStyleCharacterCreation().getFreeAvailablePoints());
+		Assert.assertEquals(CostCalculator.logCost(characterPlayer), FreeStyleCharacterCreation.getFreeAvailablePoints(characterPlayer.getInfo().getAge()));
 
 		LanguagePool.clearCache();
 		CharacterSheet sheet = new CharacterSheet(characterPlayer);
@@ -67,7 +68,7 @@ public class RandomCharacterSheetCreationTest {
 		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0);
 		randomizeCharacter.createCharacter();
 
-		Assert.assertEquals(CostCalculator.logCost(characterPlayer), characterPlayer.getFreeStyleCharacterCreation().getFreeAvailablePoints());
+		Assert.assertEquals(CostCalculator.logCost(characterPlayer), FreeStyleCharacterCreation.getFreeAvailablePoints(characterPlayer.getInfo().getAge()));
 
 		LanguagePool.clearCache();
 		SmallCharacterSheet sheet = new SmallCharacterSheet(characterPlayer);
@@ -80,7 +81,7 @@ public class RandomCharacterSheetCreationTest {
 		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0);
 		randomizeCharacter.createCharacter();
 
-		Assert.assertEquals(CostCalculator.logCost(characterPlayer), characterPlayer.getFreeStyleCharacterCreation().getFreeAvailablePoints());
+		Assert.assertEquals(CostCalculator.logCost(characterPlayer), FreeStyleCharacterCreation.getFreeAvailablePoints(characterPlayer.getInfo().getAge()));
 
 		LanguagePool.clearCache();
 		SmallCharacterSheet sheet = new SmallCharacterSheet(characterPlayer);

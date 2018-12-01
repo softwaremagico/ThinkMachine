@@ -33,34 +33,31 @@ public class FreeStyleCharacterCreation {
 	private static final int MAX_CURSE_POINTS = 7;
 	private static final int MAX_BLESSING_MODIFICATIONS = 7;
 
-	public FreeStyleCharacterCreation() {
-	}
-
-	public int getMaxInitialSkillsValues() {
+	public static int getMaxInitialSkillsValues(Integer age) {
 		return MAX_INITIAL_SKILL_VALUE;
 	}
 
-	public int getCharacteristicsPoints() {
+	public static int getCharacteristicsPoints(Integer age) {
 		return CHARACTERISTICS_POINTS;
 	}
 
-	public int getSkillsPoints() {
+	public static int getSkillsPoints(Integer age) {
 		return SKILLS_POINTS;
 	}
 
-	public int getTraitsPoints() {
+	public static int getTraitsPoints(Integer age) {
 		return TRAITS_POINTS;
 	}
 
-	public int getFreeAvailablePoints() {
+	public static int getFreeAvailablePoints(Integer age) {
 		return FREE_AVAILABLE_POINTS;
 	}
 
-	public int getMaxCursePoints() {
+	public static int getMaxCursePoints(Integer age) {
 		return MAX_CURSE_POINTS;
 	}
 
-	public int getMaxBlessingModifications() {
+	public static int getMaxBlessingModifications(Integer age) {
 		return MAX_BLESSING_MODIFICATIONS;
 	}
 

@@ -127,8 +127,6 @@ public class CharacterPlayer {
 
 	private int experience = 0;
 
-	private transient FreeStyleCharacterCreation freeStyleCharacterCreation;
-
 	private transient CharacterRandomDefintion randomDefinition;
 
 	public CharacterPlayer() {
@@ -159,7 +157,6 @@ public class CharacterPlayer {
 		} catch (InvalidShieldException e) {
 			MachineLog.errorMessage(this.getClass().getName(), e);
 		}
-		freeStyleCharacterCreation = new FreeStyleCharacterCreation();
 		randomDefinition = new CharacterRandomDefintion();
 	}
 
@@ -431,19 +428,19 @@ public class CharacterPlayer {
 
 	public void addBlessing(Blessing blessing) throws TooManyBlessingsException {
 		if (blessing.getBlessingClassification() == BlessingClassification.CURSE) {
-			if (CostCalculator.getBlessingCosts(getCurses()) + blessing.getCost() >= getFreeStyleCharacterCreation().getMaxCursePoints()) {
-				throw new TooManyBlessingsException("Only a total of '" + getFreeStyleCharacterCreation().getMaxCursePoints()
+			if (CostCalculator.getBlessingCosts(getCurses()) + blessing.getCost() >= FreeStyleCharacterCreation.getMaxCursePoints(getInfo().getAge())) {
+				throw new TooManyBlessingsException("Only a total of '" + FreeStyleCharacterCreation.getMaxCursePoints(getInfo().getAge())
 						+ "' points are allowed for curses.");
 			}
 		}
 		// Only 7 values can be modified by blessings.
-		if (getBlessingModificationsNumber() + blessing.getBonifications().size() > getFreeStyleCharacterCreation().getMaxBlessingModifications()) {
-			throw new TooManyBlessingsException("Only a total of '" + getFreeStyleCharacterCreation().getMaxBlessingModifications()
+		if (getBlessingModificationsNumber() + blessing.getBonifications().size() > FreeStyleCharacterCreation.getMaxBlessingModifications(getInfo().getAge())) {
+			throw new TooManyBlessingsException("Only a total of '" + FreeStyleCharacterCreation.getMaxBlessingModifications(getInfo().getAge())
 					+ "' modifications are allowed for blessings. Now exists '" + getAllBlessings() + "' and adding '" + blessing + "'.");
 		}
 		// Only 7 blessings as max.
-		if (getAllBlessings().size() > getFreeStyleCharacterCreation().getMaxBlessingModifications()) {
-			throw new TooManyBlessingsException("Only a total of '" + getFreeStyleCharacterCreation().getMaxBlessingModifications()
+		if (getAllBlessings().size() > FreeStyleCharacterCreation.getMaxBlessingModifications(getInfo().getAge())) {
+			throw new TooManyBlessingsException("Only a total of '" + FreeStyleCharacterCreation.getMaxBlessingModifications(getInfo().getAge())
 					+ "' modifications are allowed for blessings. Now exists '" + getAllBlessings() + "' and adding '" + blessing + "'.");
 		}
 		blessings.add(blessing);
@@ -800,10 +797,6 @@ public class CharacterPlayer {
 
 	public boolean isCharacteristicTrained(Characteristic characteristic) {
 		return characteristic.getValue() > getStartingValue(characteristic.getCharacteristicName());
-	}
-
-	public FreeStyleCharacterCreation getFreeStyleCharacterCreation() {
-		return freeStyleCharacterCreation;
 	}
 
 	/**
