@@ -6,7 +6,7 @@
 			<es>Arbat'a (Espada de Cristal)</es>
 		</name>
 		<characteristic>dexterity</characteristic>
-		<skill>fight</skill>
+		<skill>melee</skill>
 		<type>MELEE</type>
 		<techLevel>2</techLevel>
 		<goal>0</goal>
@@ -24,7 +24,7 @@
 			<es>Hacha</es>
 		</name>
 		<characteristic>dexterity</characteristic>
-		<skill>fight</skill>
+		<skill>melee</skill>
 		<type>MELEE</type>
 		<techLevel>1</techLevel>
 		<goal>0</goal>
@@ -39,7 +39,7 @@
 			<es>Escudo de Cuerpo</es>
 		</name>
 		<characteristic>dexterity</characteristic>
-		<skill>fight</skill>
+		<skill>melee</skill>
 		<type>MELEE_SHIELD</type>
 		<techLevel>0</techLevel>
 		<goal>0</goal>
@@ -56,7 +56,7 @@
 			<es>Escudo de Cuerpo</es>
 		</name>
 		<characteristic>dexterity</characteristic>
-		<skill>fight</skill>
+		<skill>melee</skill>
 		<type>MELEE_SHIELD</type>
 		<techLevel>1</techLevel>
 		<goal>0</goal>
@@ -73,7 +73,7 @@
 			<es>Escudo de Cuerpo</es>
 		</name>
 		<characteristic>dexterity</characteristic>
-		<skill>fight</skill>
+		<skill>melee</skill>
 		<type>MELEE_SHIELD</type>
 		<techLevel>2</techLevel>
 		<goal>0</goal>
@@ -90,7 +90,7 @@
 			<es>Rodela</es>
 		</name>
 		<characteristic>dexterity</characteristic>
-		<skill>fight</skill>
+		<skill>melee</skill>
 		<type>MELEE_SHIELD</type>
 		<techLevel>1</techLevel>
 		<goal>0</goal>
@@ -106,7 +106,7 @@
 			<es>Cestus</es>
 		</name>
 		<characteristic>dexterity</characteristic>
-		<skill>fight</skill>
+		<skill>melee</skill>
 		<type>MELEE</type>
 		<techLevel>1</techLevel>
 		<goal>0</goal>
@@ -121,7 +121,7 @@
 			<es>Porra</es>
 		</name>
 		<characteristic>dexterity</characteristic>
-		<skill>fight</skill>
+		<skill>melee</skill>
 		<type>MELEE</type>
 		<techLevel>0</techLevel>
 		<goal>0</goal>
@@ -136,7 +136,7 @@
 			<es>Espada Curva</es>
 		</name>
 		<characteristic>dexterity</characteristic>
-		<skill>fight</skill>
+		<skill>melee</skill>
 		<type>MELEE</type>
 		<techLevel>2</techLevel>
 		<goal>0</goal>
@@ -151,7 +151,7 @@
 			<es>Daga</es>
 		</name>
 		<characteristic>dexterity</characteristic>
-		<skill>fight</skill>
+		<skill>melee</skill>
 		<type>MELEE</type>
 		<techLevel>1</techLevel>
 		<goal>0</goal>
@@ -166,7 +166,7 @@
 			<es>Mayal</es>
 		</name>
 		<characteristic>dexterity</characteristic>
-		<skill>fight</skill>
+		<skill>melee</skill>
 		<type>MELEE</type>
 		<techLevel>1</techLevel>
 		<goal>0</goal>
@@ -181,7 +181,7 @@
 			<es>Palo de Amarre</es>
 		</name>
 		<characteristic>dexterity</characteristic>
-		<skill>fight</skill>
+		<skill>melee</skill>
 		<type>MELEE</type>
 		<techLevel>4</techLevel>
 		<goal>0</goal>
@@ -191,7 +191,7 @@
 		<cost>15</cost>
 		<damage>shock</damage>
 		<random>
-			<probabilityMultiplier>0.1</probabilityMultiplier>
+			<probabilityMultiplier>0.01</probabilityMultiplier>
 		</random>
 	</frapStick>
 	<garrote>
@@ -200,7 +200,7 @@
 			<es>Garrote</es>
 		</name>
 		<characteristic>dexterity</characteristic>
-		<skill>fight</skill>
+		<skill>melee</skill>
 		<type>MELEE</type>
 		<techLevel>0</techLevel>
 		<goal>–1</goal>
@@ -215,7 +215,7 @@
 			<es>Glankesh (Espada Vorox)</es>
 		</name>
 		<characteristic>dexterity</characteristic>
-		<skill>fight</skill>
+		<skill>melee</skill>
 		<type>MELEE</type>
 		<techLevel>2</techLevel>
 		<goal>0</goal>
@@ -233,7 +233,7 @@
 			<es>Cuchillo Hueco</es>
 		</name>
 		<characteristic>dexterity</characteristic>
-		<skill>fight</skill>
+		<skill>melee</skill>
 		<type>MELEE</type>
 		<techLevel>4</techLevel>
 		<goal>0</goal>
@@ -252,7 +252,7 @@
 			<es>Cuchillo</es>
 		</name>
 		<characteristic>dexterity</characteristic>
-		<skill>fight</skill>
+		<skill>melee</skill>
 		<type>MELEE</type>
 		<techLevel>0</techLevel>
 		<goal>0</goal>
@@ -270,7 +270,7 @@
 			<es>Espada Ropera Kurgan</es>
 		</name>
 		<characteristic>dexterity</characteristic>
-		<skill>fight</skill>
+		<skill>melee</skill>
 		<type>MELEE</type>
 		<techLevel>4</techLevel>
 		<goal>0</goal>
@@ -289,7 +289,7 @@
 			<es>Espada de Esclavista Cosaco</es>
 		</name>
 		<characteristic>dexterity</characteristic>
-		<skill>fight</skill>
+		<skill>melee</skill>
 		<type>MELEE</type>
 		<techLevel>5</techLevel>
 		<goal>–1</goal>
@@ -309,7 +309,7 @@
 			<es>Maza</es>
 		</name>
 		<characteristic>dexterity</characteristic>
-		<skill>fight</skill>
+		<skill>melee</skill>
 		<type>MELEE</type>
 		<techLevel>1</techLevel>
 		<goal>0</goal>
@@ -324,7 +324,7 @@
 			<es>Daga de Mirsericordia</es>
 		</name>
 		<characteristic>dexterity</characteristic>
-		<skill>fight</skill>
+		<skill>melee</skill>
 		<type>MELEE</type>
 		<techLevel>2</techLevel>
 		<goal>0</goal>
@@ -339,7 +339,7 @@
 			<es>Pico</es>
 		</name>
 		<characteristic>dexterity</characteristic>
-		<skill>fight</skill>
+		<skill>melee</skill>
 		<type>MELEE</type>
 		<techLevel>1</techLevel>
 		<goal>1</goal>
@@ -358,7 +358,7 @@
 			<es>Estoque</es>
 		</name>
 		<characteristic>dexterity</characteristic>
-		<skill>fight</skill>
+		<skill>melee</skill>
 		<type>MELEE</type>
 		<techLevel>2</techLevel>
 		<goal>0</goal>
@@ -377,7 +377,7 @@
 			<es>Sable</es>
 		</name>
 		<characteristic>dexterity</characteristic>
-		<skill>fight</skill>
+		<skill>melee</skill>
 		<type>MELEE</type>
 		<techLevel>3</techLevel>
 		<goal>0</goal>
@@ -392,7 +392,7 @@
 			<es>Lanza</es>
 		</name>
 		<characteristic>dexterity</characteristic>
-		<skill>fight</skill>
+		<skill>melee</skill>
 		<type>MELEE</type>
 		<techLevel>0</techLevel>
 		<goal>0</goal>
@@ -407,7 +407,7 @@
 			<es>Espada de Esquirlas</es>
 		</name>
 		<characteristic>dexterity</characteristic>
-		<skill>fight</skill>
+		<skill>melee</skill>
 		<type>MELEE</type>
 		<techLevel>5</techLevel>
 		<goal>0</goal>
@@ -426,7 +426,7 @@
 			<es>Báculo</es>
 		</name>
 		<characteristic>dexterity</characteristic>
-		<skill>fight</skill>
+		<skill>melee</skill>
 		<type>MELEE</type>
 		<techLevel>0</techLevel>
 		<goal>0</goal>
@@ -441,7 +441,7 @@
 			<es>Látigo Serpiente</es>
 		</name>
 		<characteristic>dexterity</characteristic>
-		<skill>fight</skill>
+		<skill>melee</skill>
 		<type>MELEE</type>
 		<techLevel>7</techLevel>
 		<goal>0/+3</goal>
@@ -456,7 +456,7 @@
 			<es>Cuchillo de Trinchera</es>
 		</name>
 		<characteristic>dexterity</characteristic>
-		<skill>fight</skill>
+		<skill>melee</skill>
 		<type>MELEE</type>
 		<techLevel>3</techLevel>
 		<goal>0</goal>
@@ -471,7 +471,7 @@
 			<es>Hacha a Dos Manos</es>
 		</name>
 		<characteristic>dexterity</characteristic>
-		<skill>fight</skill>
+		<skill>melee</skill>
 		<type>MELEE</type>
 		<techLevel>1</techLevel>
 		<goal>0</goal>
@@ -486,7 +486,7 @@
 			<es>Espada a Dos Manos</es>
 		</name>
 		<characteristic>dexterity</characteristic>
-		<skill>fight</skill>
+		<skill>melee</skill>
 		<type>MELEE</type>
 		<techLevel>1</techLevel>
 		<goal>0</goal>
@@ -501,7 +501,7 @@
 			<es>Espada de Guerra</es>
 		</name>
 		<characteristic>dexterity</characteristic>
-		<skill>fight</skill>
+		<skill>melee</skill>
 		<type>MELEE</type>
 		<techLevel>1</techLevel>
 		<goal>0</goal>
@@ -516,7 +516,7 @@
 			<es>Látigo</es>
 		</name>
 		<characteristic>dexterity</characteristic>
-		<skill>fight</skill>
+		<skill>melee</skill>
 		<type>MELEE</type>
 		<techLevel>1</techLevel>
 		<goal>–1</goal>

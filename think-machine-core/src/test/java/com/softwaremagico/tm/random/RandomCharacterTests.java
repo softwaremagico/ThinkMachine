@@ -34,6 +34,7 @@ import com.softwaremagico.tm.character.benefices.AvailableBenefice;
 import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
 import com.softwaremagico.tm.character.characteristics.Characteristic;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
+import com.softwaremagico.tm.character.characteristics.CharacteristicType;
 import com.softwaremagico.tm.character.creation.CostCalculator;
 import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
 import com.softwaremagico.tm.character.equipment.weapons.Weapon;
@@ -199,7 +200,14 @@ public class RandomCharacterTests {
 		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0, SpecializationPreferences.SPECIALIZED,
 				PsiquePathLevelPreferences.HIGH, PsiqueLevelPreferences.HIGH, StatusPreferences.FAIR);
 		randomizeCharacter.createCharacter();
-		Assert.assertTrue(characterPlayer.getSelectedPowers().values().size() > 0);
+		try {
+			Assert.assertTrue(characterPlayer.getSelectedPowers().values().size() > 0);
+		} catch (AssertionError e) {
+			CharacterSheet characterSheet = new CharacterSheet(characterPlayer);
+			System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+			System.out.println(characterSheet.toString());
+			throw e;
+		}
 	}
 
 	@Test
@@ -241,9 +249,30 @@ public class RandomCharacterTests {
 		characterPlayer.setRace(RaceFactory.getInstance().getElement("human", LANGUAGE));
 		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0, AgePreferences.PREADOLESCENT);
 		randomizeCharacter.createCharacter();
-		for (Characteristic characteristic : characterPlayer.getCharacteristics()) {
-			Assert.assertTrue(characteristic.getValue() <= FreeStyleCharacterCreation.getMinInitialCharacteristicsValues(
+		Assert.assertEquals(
+				FreeStyleCharacterCreation.getMaxInitialCharacteristicsValues(CharacteristicName.DEXTERITY, characterPlayer.getInfo().getAge(),
+						characterPlayer.getRace()), 4);
+		Assert.assertEquals(FreeStyleCharacterCreation.getMaxInitialSkillsValues(characterPlayer.getInfo().getAge()), 4);
+		for (Characteristic characteristic : characterPlayer.getCharacteristics(CharacteristicType.BODY)) {
+			Assert.assertTrue(characteristic.getValue() <= FreeStyleCharacterCreation.getMaxInitialCharacteristicsValues(
 					characteristic.getCharacteristicName(), characterPlayer.getInfo().getAge(), characterPlayer.getRace()));
+		}
+		for (Characteristic characteristic : characterPlayer.getCharacteristics(CharacteristicType.MIND)) {
+			Assert.assertTrue(characteristic.getValue() <= FreeStyleCharacterCreation.getMaxInitialCharacteristicsValues(
+					characteristic.getCharacteristicName(), characterPlayer.getInfo().getAge(), characterPlayer.getRace()));
+		}
+		for (Characteristic characteristic : characterPlayer.getCharacteristics(CharacteristicType.SPIRIT)) {
+			Assert.assertTrue(characteristic.getValue() <= FreeStyleCharacterCreation.getMaxInitialCharacteristicsValues(
+					characteristic.getCharacteristicName(), characterPlayer.getInfo().getAge(), characterPlayer.getRace()));
+		}
+
+		for (AvailableSkill skill : AvailableSkillsFactory.getInstance().getNaturalSkills(LANGUAGE)) {
+			Assert.assertTrue(characterPlayer.getSkillAssignedRanks(skill) <= FreeStyleCharacterCreation.getMaxInitialSkillsValues(characterPlayer.getInfo()
+					.getAge()));
+		}
+		for (AvailableSkill skill : AvailableSkillsFactory.getInstance().getLearnedSkills(LANGUAGE)) {
+			Assert.assertTrue(characterPlayer.getSkillAssignedRanks(skill) <= FreeStyleCharacterCreation.getMaxInitialSkillsValues(characterPlayer.getInfo()
+					.getAge()));
 		}
 	}
 
@@ -253,7 +282,7 @@ public class RandomCharacterTests {
 		characterPlayer.getWeapons().addElement(WeaponFactory.getInstance().getElement("axe", LANGUAGE));
 		characterPlayer.getWeapons().addElement(WeaponFactory.getInstance().getElement("martechGold", LANGUAGE));
 
-		Assert.assertTrue(characterPlayer.hasWeaponWithSkill(AvailableSkillsFactory.getInstance().getElement("fight", LANGUAGE)));
+		Assert.assertTrue(characterPlayer.hasWeaponWithSkill(AvailableSkillsFactory.getInstance().getElement("melee", LANGUAGE)));
 		Assert.assertTrue(characterPlayer.hasWeaponWithSkill(AvailableSkillsFactory.getInstance().getElement("energyGuns", LANGUAGE)));
 
 		characterPlayer.getCharacteristic(CharacteristicName.TECH).setValue(6);
@@ -264,11 +293,11 @@ public class RandomCharacterTests {
 		RandomSkills randomBenefice = new RandomSkills(characterPlayer, null);
 		AvailableSkill energyGuns = AvailableSkillsFactory.getInstance().getElement("energyGuns", LANGUAGE);
 		randomBenefice.validateElement(energyGuns.getRandomDefinition());
-		AvailableSkill fight = AvailableSkillsFactory.getInstance().getElement("fight", LANGUAGE);
+		AvailableSkill fight = AvailableSkillsFactory.getInstance().getElement("melee", LANGUAGE);
 		randomBenefice.validateElement(fight.getRandomDefinition());
 
 		try {
-			Assert.assertTrue(characterPlayer.getSkillTotalRanks(AvailableSkillsFactory.getInstance().getElement("fight", LANGUAGE)) > 0);
+			Assert.assertTrue(characterPlayer.getSkillTotalRanks(AvailableSkillsFactory.getInstance().getElement("melee", LANGUAGE)) > 0);
 			Assert.assertTrue(characterPlayer.getSkillTotalRanks(AvailableSkillsFactory.getInstance().getElement("energyGuns", LANGUAGE)) > 0);
 		} catch (AssertionError e) {
 			CharacterSheet characterSheet = new CharacterSheet(characterPlayer);

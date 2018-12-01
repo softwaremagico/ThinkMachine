@@ -30,7 +30,7 @@ import java.util.Set;
 public enum AgePreferences implements IRandomPreference, IGaussianDistribution {
 
 	// Gaussian distribution.
-	PREADOLESCENT(6, 12, 10, 1),
+	PREADOLESCENT(6, 12, 9, 2),
 
 	TEENAGER(13, 16, 15, 1),
 
