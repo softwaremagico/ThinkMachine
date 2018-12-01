@@ -54,7 +54,7 @@ public class CustomCharacter {
 		player.getInfo().setSurname(new Surname("Queen", language, null));
 		player.getInfo().setPlayer("Player 1");
 		player.getInfo().setGender(Gender.MALE);
-		player.getInfo().setAge(30);
+		player.getInfo().setAge(31);
 		player.setRace(RaceFactory.getInstance().getElement("human", language));
 		player.getInfo().setPlanet(PlanetFactory.getInstance().getElement("sutek", language));
 		player.setFaction(FactionsFactory.getInstance().getElement("hazat", language));

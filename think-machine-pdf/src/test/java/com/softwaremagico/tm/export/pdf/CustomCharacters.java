@@ -79,7 +79,7 @@ public class CustomCharacters {
 		player.getInfo().addName(new Name("#5", LANGUAGE, Gender.FEMALE, null));
 		player.getInfo().setPlayer("Paola");
 		player.getInfo().setGender(Gender.FEMALE);
-		player.getInfo().setAge(25);
+		player.getInfo().setAge(35);
 		player.setRace(RaceFactory.getInstance().getElement("human", LANGUAGE));
 		player.getInfo().setPlanet(PlanetFactory.getInstance().getElement("leagueheim", LANGUAGE));
 		player.setFaction(FactionsFactory.getInstance().getElement("engineers", LANGUAGE));
@@ -156,7 +156,7 @@ public class CustomCharacters {
 		player.getInfo().setSurname(new Surname("Hawkwood", LANGUAGE, null));
 		player.getInfo().setPlayer("Ana");
 		player.getInfo().setGender(Gender.FEMALE);
-		player.getInfo().setAge(22);
+		player.getInfo().setAge(32);
 		player.setRace(RaceFactory.getInstance().getElement("human", LANGUAGE));
 		player.getInfo().setPlanet(PlanetFactory.getInstance().getElement("leminkainen", LANGUAGE));
 		player.setFaction(FactionsFactory.getInstance().getElement("hawkwood", LANGUAGE));
@@ -214,7 +214,7 @@ public class CustomCharacters {
 		player.getInfo().addName(new Name("Carlos", LANGUAGE, Gender.MALE, null));
 		player.getInfo().setPlayer("Carlos");
 		player.getInfo().setGender(Gender.MALE);
-		player.getInfo().setAge(28);
+		player.getInfo().setAge(38);
 		player.setRace(RaceFactory.getInstance().getElement("human", LANGUAGE));
 		player.getInfo().setPlanet(PlanetFactory.getInstance().getElement("byzantiumSecundus", LANGUAGE));
 		player.setFaction(FactionsFactory.getInstance().getElement("scravers", LANGUAGE));
@@ -277,7 +277,7 @@ public class CustomCharacters {
 		player.getInfo().addName(new Name("Noelia", LANGUAGE, Gender.FEMALE, null));
 		player.getInfo().setPlayer("Noelia");
 		player.getInfo().setGender(Gender.FEMALE);
-		// player.getInfo().setAge(30);
+		player.getInfo().setAge(31);
 		player.setRace(RaceFactory.getInstance().getElement("obun", LANGUAGE));
 		player.getInfo().setPlanet(PlanetFactory.getInstance().getElement("velsimil", LANGUAGE));
 		player.setFaction(FactionsFactory.getInstance().getElement("obun", LANGUAGE));
@@ -344,7 +344,7 @@ public class CustomCharacters {
 		player.setRace(new Race("Gólem", LANGUAGE, 5, 5, 5, 3, 3, 6, 0, 0, 0, 6, 0, 0, 0, 0, 0));
 		player.getInfo().setPlanet(PlanetFactory.getInstance().getElement("leagueheim", LANGUAGE));
 		player.setFaction(FactionsFactory.getInstance().getElement("engineers", LANGUAGE));
-		player.getInfo().setAge(1432);
+		player.getInfo().setAge(32);
 
 		player.getCharacteristic(CharacteristicName.STRENGTH).setValue(12);
 		player.getCharacteristic(CharacteristicName.DEXTERITY).setValue(7);

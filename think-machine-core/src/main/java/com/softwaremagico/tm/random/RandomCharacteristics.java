@@ -53,9 +53,11 @@ public class RandomCharacteristics extends RandomSelector<Characteristic> {
 		assignMinimumValuesOfCharacteristics();
 
 		// Assign random values by weight
-		while (getCharacterPlayer().getCharacteristicsTotalPoints() < FreeStyleCharacterCreation.getCharacteristicsPoints(getCharacterPlayer().getInfo().getAge())) {
+		while (getCharacterPlayer().getCharacteristicsTotalPoints() < FreeStyleCharacterCreation.getCharacteristicsPoints(getCharacterPlayer().getInfo()
+				.getAge())) {
 			Characteristic selectedCharacteristic = selectElementByWeight();
-			if (selectedCharacteristic.getValue() < FreeStyleCharacterCreation.getMaxInitialSkillsValues(getCharacterPlayer().getInfo().getAge())) {
+			if (selectedCharacteristic.getValue() < FreeStyleCharacterCreation.getMaxInitialCharacteristicsValues(
+					selectedCharacteristic.getCharacteristicName(), getCharacterPlayer().getInfo().getAge(), getCharacterPlayer().getRace())) {
 				selectedCharacteristic.setValue(selectedCharacteristic.getValue() + 1);
 				getCharacterPlayer().getRandomDefinition().getSelectedCharacteristicsValues()
 						.put(selectedCharacteristic.getCharacteristicName(), selectedCharacteristic.getValue());

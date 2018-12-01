@@ -33,7 +33,8 @@ import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
 
 public class CharacterInfo {
-	private static ITranslator translator = LanguagePool.getTranslator("character_values.xml");
+	private static final int DEFAULT_AGE = 21;
+	private static final ITranslator translator = LanguagePool.getTranslator("character_values.xml");
 
 	private List<Name> names;
 
@@ -122,6 +123,9 @@ public class CharacterInfo {
 	}
 
 	public Integer getAge() {
+		if (age == null) {
+			return DEFAULT_AGE;
+		}
 		return age;
 	}
 

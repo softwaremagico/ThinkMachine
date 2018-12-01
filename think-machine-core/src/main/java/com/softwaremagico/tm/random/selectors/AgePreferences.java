@@ -83,7 +83,7 @@ public enum AgePreferences implements IRandomPreference, IGaussianDistribution {
 				return (AgePreferences) preference;
 			}
 		}
-		return ADULT;
+		return EXPERIENCED_ADULT;
 	}
 
 	@Override
