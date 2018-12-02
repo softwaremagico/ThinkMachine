@@ -294,7 +294,6 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 		// If specializations allows it.
 		SpecializationPreferences selectedSpecialization = SpecializationPreferences.getSelected(getPreferences());
 		if (getCharacterPlayer().getSkillAssignedRanks(availableSkill) >= selectedSpecialization.maximum()) {
-			removeElementWeight(availableSkill);
 			return 0;
 		}
 		getCharacterPlayer().setSkillRank(availableSkill, finalRanks);
