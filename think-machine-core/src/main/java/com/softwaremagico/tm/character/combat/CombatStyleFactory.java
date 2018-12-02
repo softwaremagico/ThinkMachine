@@ -30,6 +30,8 @@ import java.util.StringTokenizer;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
+import com.softwaremagico.tm.character.benefices.AvailableBenefice;
+import com.softwaremagico.tm.character.benefices.BeneficeGroup;
 import com.softwaremagico.tm.character.characteristics.CharacteristicsDefinitionFactory;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.character.values.IValue;
@@ -190,5 +192,12 @@ public class CombatStyleFactory extends XmlFactory<CombatStyle> {
 		} catch (Exception e) {
 			throw new InvalidCombatStyleException("Invalid structure in combat style '" + combatStyleId + "'.", e);
 		}
+	}
+
+	public CombatStyle getCombatStyle(AvailableBenefice beneficeDefinition, String language) throws InvalidXmlElementException {
+		if (beneficeDefinition.getBeneficeDefinition().getGroup() == BeneficeGroup.FIGHTING) {
+			return getElement(beneficeDefinition.getId(), language);
+		}
+		return null;
 	}
 }

@@ -33,10 +33,14 @@ import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.benefices.AvailableBenefice;
 import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
 import com.softwaremagico.tm.character.benefices.BeneficeClassification;
+import com.softwaremagico.tm.character.benefices.BeneficeGroup;
 import com.softwaremagico.tm.character.blessings.Blessing;
 import com.softwaremagico.tm.character.characteristics.Characteristic;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.characteristics.CharacteristicType;
+import com.softwaremagico.tm.character.combat.CombatAction;
+import com.softwaremagico.tm.character.combat.CombatStyle;
+import com.softwaremagico.tm.character.combat.CombatStyleFactory;
 import com.softwaremagico.tm.character.cybernetics.CyberneticDevice;
 import com.softwaremagico.tm.character.equipment.DamageType;
 import com.softwaremagico.tm.character.equipment.weapons.Weapon;
@@ -184,6 +188,33 @@ public class CharacterSheet {
 				.getAvailableBeneficesByDefinition(getCharacterPlayer().getLanguage(), benefice.getBeneficeDefinition()).size() > 1) {
 			stringBuilder.append(" (" + (benefice.getBeneficeClassification() == BeneficeClassification.AFFLICTION ? "+" : "") + Math.abs(benefice.getCost())
 					+ ")");
+		}
+		if (benefice.getBeneficeDefinition().getGroup() == BeneficeGroup.FIGHTING) {
+			CombatStyle combatStyle = CombatStyleFactory.getInstance().getCombatStyle(benefice, getCharacterPlayer().getLanguage());
+			for (CombatAction action : combatStyle.getCombatActions()) {
+				if (action.isAvailable(getCharacterPlayer())) {
+					stringBuilder.append(" (");
+					if (action.getGoal() != null && action.getGoal().length() > 0 && !action.getGoal().equals("0")) {
+						stringBuilder.append(action.getGoal());
+						stringBuilder.append(getTranslator().getTranslatedText("weaponGoal"));
+						stringBuilder.append(ELEMENT_SEPARATOR);
+					}
+					if (action.getDamage() != null && action.getDamage().length() > 0 && !action.getDamage().equals("0")) {
+						stringBuilder.append(action.getDamage());
+						if (!action.getDamage().endsWith("d")) {
+							stringBuilder.append("d");
+						}
+						stringBuilder.append(ELEMENT_SEPARATOR);
+					}
+					if (action.getOthers() != null && action.getOthers().length() > 0) {
+						stringBuilder.append(action.getOthers());
+						stringBuilder.append(ELEMENT_SEPARATOR);
+					}
+					// Remove last separator
+					stringBuilder.setLength(stringBuilder.length() - ELEMENT_SEPARATOR.length());
+					stringBuilder.append(")");
+				}
+			}
 		}
 	}
 

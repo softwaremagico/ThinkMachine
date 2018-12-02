@@ -13,7 +13,7 @@ Habilidades Adquiridas: Abrir Cerraduras (5), Armas de Energía (6!), Guerra (5)
 Bendiciones: Disciplinado.
 Maldiciones: Tuerto, Vegativo.
 
-Beneficios: Filoespada, Herencia, Pistola, Shaidan.
+Beneficios: Filoespada, Herencia, Pistola (Sin penalizador a dos disparos, -2 para tres disparos.), Shaidan (+1 heridas).
 Aflicciones: Estigma (+1).
 
 Ocultismo: Psi 4, Ansia 1.
