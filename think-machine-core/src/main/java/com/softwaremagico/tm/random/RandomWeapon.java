@@ -46,7 +46,8 @@ public abstract class RandomWeapon extends RandomSelector<Weapon> {
 		super(characterPlayer, preferences);
 	}
 
-	public void assignWeapon() throws InvalidRandomElementSelectedException {
+	@Override
+	protected void assign() throws InvalidRandomElementSelectedException {
 		Weapon selectedWeapon = selectElementByWeight();
 		if (!getCharacterPlayer().getWeapons().getElements().contains(selectedWeapon)) {
 			getCharacterPlayer().getWeapons().addElement(selectedWeapon);
@@ -131,5 +132,10 @@ public abstract class RandomWeapon extends RandomSelector<Weapon> {
 
 		RandomGenerationLog.debug(this.getClass().getName(), "Total weight for '" + weapon + "' is '" + weight + "'.");
 		return weight;
+	}
+
+	@Override
+	protected void assignIfMandatory(Weapon weapon) throws InvalidXmlElementException {
+		return;
 	}
 }

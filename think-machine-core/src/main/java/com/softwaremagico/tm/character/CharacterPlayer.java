@@ -1070,6 +1070,22 @@ public class CharacterPlayer {
 		return false;
 	}
 
+	public int getEquipmentMaxTechnologicalLevel() {
+		int techLevel = 1;
+		for (Weapon weapon : getWeapons().getElements()) {
+			if (weapon.getTechLevel() > techLevel) {
+				techLevel = weapon.getTechLevel();
+			}
+		}
+		if (getArmour() != null && getArmour().getTechLevel() > techLevel) {
+			techLevel = getArmour().getTechLevel();
+		}
+		if (getShield() != null && getShield().getTechLevel() > techLevel) {
+			techLevel = getShield().getTechLevel();
+		}
+		return techLevel;
+	}
+
 	public CharacterRandomDefintion getRandomDefinition() {
 		return randomDefinition;
 	}

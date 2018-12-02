@@ -35,6 +35,7 @@ import com.softwaremagico.tm.character.factions.FactionGroup;
 import com.softwaremagico.tm.character.occultism.OccultismType;
 import com.softwaremagico.tm.character.occultism.OccultismTypeFactory;
 import com.softwaremagico.tm.log.RandomGenerationLog;
+import com.softwaremagico.tm.random.exceptions.ImpossibleToAssignMandatoryElementException;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.IGaussianDistribution;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
@@ -46,7 +47,8 @@ public class RandomPsique extends RandomSelector<OccultismType> {
 		super(characterPlayer, preferences);
 	}
 
-	public void assignPsiqueLevel() throws InvalidRandomElementSelectedException, InvalidXmlElementException {
+	@Override
+	protected void assign() throws InvalidRandomElementSelectedException, InvalidXmlElementException {
 		// Select which type of psique.
 		OccultismType selectedOccultismType = selectElementByWeight();
 		RandomGenerationLog.info(this.getClass().getName(), "Assinged psique '" + selectedOccultismType + "'.");
@@ -94,5 +96,10 @@ public class RandomPsique extends RandomSelector<OccultismType> {
 			maxLevelSelected = psiqueLevelSelector.maximum();
 		}
 		return maxLevelSelected;
+	}
+
+	@Override
+	protected void assignIfMandatory(OccultismType element) throws InvalidXmlElementException, ImpossibleToAssignMandatoryElementException {
+
 	}
 }

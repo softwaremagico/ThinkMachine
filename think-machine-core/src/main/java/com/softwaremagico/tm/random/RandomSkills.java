@@ -58,7 +58,8 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 		super(characterPlayer, preferences);
 	}
 
-	public void spendSkillsPoints() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
+	@Override
+	protected void assign() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
 		// Set minimum values of skills by preferences.
 		assignMinimumValuesOfSkills();
 
@@ -72,6 +73,28 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 
 			// Remove skill from options to avoid adding more ranks.
 			removeElementWeight(selectedSkill);
+		}
+	}
+
+	@Override
+	protected void assignIfMandatory(AvailableSkill skill) throws InvalidXmlElementException {
+		// Set skills to use equipment.
+		if (getCharacterPlayer().hasWeaponWithSkill(skill)) {
+			RandomGenerationLog.debug(this.getClass().getName(), "Assigning ranks for '" + skill + "' needed for a selected weapon.");
+			// Assign random ranks to the skill.
+			assignRandomRanks(skill);
+			// Remove skill from options to avoid adding more ranks.
+			removeElementWeight(skill);
+		}
+		// If selected skill has some ranks added by preferences, must have at
+		// least the minimum.
+		if (getCharacterPlayer().isSkillTrained(skill)) {
+			SpecializationPreferences selectedSpecialization = SpecializationPreferences.getSelected(getPreferences());
+			int skillRanks = getCharacterPlayer().getSkillTotalRanks(skill);
+			if (skillRanks < selectedSpecialization.minimum()) {
+				// Assign random ranks to the skill.
+				assignRandomRanks(skill);
+			}
 		}
 	}
 
@@ -110,12 +133,6 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 	@Override
 	protected int getWeight(AvailableSkill skill) {
 		int weight = 1;
-
-		// Weapons weight
-		if (getCharacterPlayer().hasWeaponWithSkill(skill)) {
-			RandomGenerationLog.debug(this.getClass().getName(), "Weight for '" + skill + "' needed for a selected weapon is increased.");
-			return MAX_PROBABILITY;
-		}
 
 		if (skill.getSkillDefinition().isNatural()) {
 			RandomGenerationLog.debug(this.getClass().getName(), "Weight for '" + skill + "' as natural skill is increased.");
@@ -229,10 +246,6 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 		if (skillRanks > selectedSpecialization.maximum()) {
 			return NO_PROBABILITY;
 		}
-		// If selected skill (has ranks), must have at least the minimum.
-		if (getCharacterPlayer().isSkillTrained(skill) && skillRanks < selectedSpecialization.minimum()) {
-			return MAX_PROBABILITY;
-		}
 
 		// Good probability for values between the specialization.
 		if (skillRanks > selectedSpecialization.minimum()) {
@@ -263,7 +276,7 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 		return preferredCharacteristicsTypeSorted;
 	}
 
-	private int assignRandomRanks(AvailableSkill availableSkill) throws InvalidXmlElementException, InvalidRandomElementSelectedException {
+	private int assignRandomRanks(AvailableSkill availableSkill) throws InvalidXmlElementException {
 		int finalRanks = getRankValue(availableSkill);
 		// Final ranks cannot be greater that the total points remaining.
 		if (getCharacterPlayer().getSkillsTotalPoints() + (finalRanks - getCharacterPlayer().getSkillAssignedRanks(availableSkill)) > FreeStyleCharacterCreation
@@ -278,12 +291,18 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 		if (finalRanks < getCharacterPlayer().getSkillAssignedRanks(availableSkill)) {
 			return 0;
 		}
+		// If specializations allows it.
+		SpecializationPreferences selectedSpecialization = SpecializationPreferences.getSelected(getPreferences());
+		if (getCharacterPlayer().getSkillAssignedRanks(availableSkill) >= selectedSpecialization.maximum()) {
+			removeElementWeight(availableSkill);
+			return 0;
+		}
 		getCharacterPlayer().setSkillRank(availableSkill, finalRanks);
 		getCharacterPlayer().setDesiredSkillRanks(availableSkill, finalRanks);
 		return finalRanks;
 	}
 
-	protected int getRankValue(AvailableSkill availableSkill) throws InvalidXmlElementException, InvalidRandomElementSelectedException {
+	protected int getRankValue(AvailableSkill availableSkill) throws InvalidXmlElementException {
 		int skillValue = 0;
 		SpecializationPreferences selectedSpecialization = SpecializationPreferences.getSelected(getPreferences());
 		int minimumValue = selectedSpecialization.minimum();

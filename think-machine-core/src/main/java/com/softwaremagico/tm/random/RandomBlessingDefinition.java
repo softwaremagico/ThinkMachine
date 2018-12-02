@@ -36,6 +36,7 @@ import com.softwaremagico.tm.character.blessings.BlessingGroup;
 import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.log.RandomGenerationLog;
+import com.softwaremagico.tm.random.exceptions.ImpossibleToAssignMandatoryElementException;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.BlessingNumberPreferences;
 import com.softwaremagico.tm.random.selectors.BlessingPreferences;
@@ -49,7 +50,8 @@ public class RandomBlessingDefinition extends RandomSelector<Blessing> {
 		super(characterPlayer, preferences);
 	}
 
-	public void assignAvailableBlessings() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
+	@Override
+	protected void assign() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
 		IGaussianDistribution blessingDistribution = BlessingNumberPreferences.getSelected(getPreferences());
 		// Select a blessing
 		for (int i = 0; i < blessingDistribution.randomGaussian(); i++) {
@@ -83,10 +85,6 @@ public class RandomBlessingDefinition extends RandomSelector<Blessing> {
 		if (blessing.getBlessingClassification() == BlessingClassification.CURSE) {
 			return 0;
 		}
-		BlessingPreferences blessingPreferences = BlessingPreferences.getSelected(getPreferences());
-		if (blessingPreferences != null && blessing.getBlessingGroup() == BlessingGroup.get(blessingPreferences.name())) {
-			return MAX_PROBABILITY;
-		}
 		// If specialization is set, add blessings that affects the skills with
 		// ranks.
 		SpecializationPreferences specializationPreferences = SpecializationPreferences.getSelected(getPreferences());
@@ -104,5 +102,18 @@ public class RandomBlessingDefinition extends RandomSelector<Blessing> {
 			}
 		}
 		return 1;
+	}
+
+	@Override
+	protected void assignIfMandatory(Blessing blessing) throws InvalidXmlElementException, ImpossibleToAssignMandatoryElementException {
+		BlessingPreferences blessingPreferences = BlessingPreferences.getSelected(getPreferences());
+		if (blessingPreferences != null && blessing.getBlessingGroup() == BlessingGroup.get(blessingPreferences.name())) {
+			try {
+				getCharacterPlayer().addBlessing(blessing);
+				RandomGenerationLog.info(this.getClass().getName(), "Added blessing '" + blessing + "'.");
+			} catch (TooManyBlessingsException e) {
+				throw new ImpossibleToAssignMandatoryElementException("Impossible to assign mandatory blessing '" + blessing + "'.", e);
+			}
+		}
 	}
 }

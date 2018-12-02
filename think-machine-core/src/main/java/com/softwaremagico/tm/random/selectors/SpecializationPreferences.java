@@ -30,13 +30,13 @@ import java.util.Set;
 public enum SpecializationPreferences implements IRandomPreference, IGaussianDistribution {
 
 	// Gaussian distribution.
-	VERY_GENERALIZED(0, 4, 1, 4),
+	VERY_GENERALIZED(0, 6, 1, 4),
 
-	GENERALIZED(0, 6, 2, 4),
+	GENERALIZED(0, 7, 2, 4),
 
-	FAIR(0, 6, 3, 3),
+	FAIR(0, 8, 3, 3),
 
-	SPECIALIZED(2, 8, 4, 3),
+	SPECIALIZED(2, 9, 4, 3),
 
 	VERY_SPECIALIZED(2, 10, 5, 5);
 

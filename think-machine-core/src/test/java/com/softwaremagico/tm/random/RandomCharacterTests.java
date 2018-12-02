@@ -201,7 +201,7 @@ public class RandomCharacterTests {
 				PsiquePathLevelPreferences.HIGH, PsiqueLevelPreferences.HIGH, StatusPreferences.FAIR);
 		randomizeCharacter.createCharacter();
 		try {
-			Assert.assertTrue(characterPlayer.getSelectedPowers().values().size() > 0);
+			Assert.assertTrue(characterPlayer.getTotalSelectedPowers() > 0);
 		} catch (AssertionError e) {
 			CharacterSheet characterSheet = new CharacterSheet(characterPlayer);
 			System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");

@@ -46,7 +46,8 @@ public class RandomName extends RandomSelector<Name> {
 		super(characterPlayer, preferences);
 	}
 
-	public void assignName() throws InvalidRaceException, InvalidRandomElementSelectedException {
+	@Override
+	protected void assign() throws InvalidRaceException, InvalidRandomElementSelectedException {
 		NamesPreferences namesPreference = NamesPreferences.getSelected(getPreferences());
 		try {
 			BeneficeSpecialization status = getCharacterPlayer().getStatus();
@@ -55,7 +56,7 @@ public class RandomName extends RandomSelector<Name> {
 				namesPreference = NamesPreferences.getByStatus(status.getCost());
 			}
 		} catch (InvalidXmlElementException e) {
-			// Status error.
+			// Status
 			RandomGenerationLog.errorMessage(this.getClass().getName(), e);
 		}
 
@@ -106,5 +107,10 @@ public class RandomName extends RandomSelector<Name> {
 			}
 		}
 		return 1;
+	}
+
+	@Override
+	protected void assignIfMandatory(Name element) throws InvalidXmlElementException {
+		return;
 	}
 }

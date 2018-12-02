@@ -42,7 +42,8 @@ public class RandomRace extends RandomSelector<Race> {
 		super(characterPlayer, preferences);
 	}
 
-	public void assignRace() throws InvalidRaceException, InvalidRandomElementSelectedException {
+	@Override
+	protected void assign() throws InvalidRaceException, InvalidRandomElementSelectedException {
 		getCharacterPlayer().setRace(selectElementByWeight());
 	}
 
@@ -62,5 +63,10 @@ public class RandomRace extends RandomSelector<Race> {
 		}
 
 		return 1;
+	}
+
+	@Override
+	protected void assignIfMandatory(Race element) throws InvalidXmlElementException {
+		return;
 	}
 }

@@ -34,6 +34,7 @@ import com.softwaremagico.tm.character.equipment.armour.Armour;
 import com.softwaremagico.tm.character.equipment.armour.ArmourFactory;
 import com.softwaremagico.tm.character.equipment.armour.InvalidArmourException;
 import com.softwaremagico.tm.log.RandomGenerationLog;
+import com.softwaremagico.tm.random.exceptions.ImpossibleToAssignMandatoryElementException;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.CombatPreferences;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
@@ -45,7 +46,8 @@ public class RandomArmour extends RandomSelector<Armour> {
 		super(characterPlayer, preferences);
 	}
 
-	public void assignArmour() throws InvalidRandomElementSelectedException, InvalidArmourException {
+	@Override
+	protected void assign() throws InvalidRandomElementSelectedException, InvalidArmourException {
 		Armour selectedArmour = selectElementByWeight();
 		if (getCharacterPlayer().getArmour() == null) {
 			getCharacterPlayer().setArmour(selectedArmour);
@@ -147,5 +149,10 @@ public class RandomArmour extends RandomSelector<Armour> {
 
 		RandomGenerationLog.debug(this.getClass().getName(), "Total weight for '" + armour + "' is '" + weight + "'.");
 		return weight;
+	}
+
+	@Override
+	protected void assignIfMandatory(Armour element) throws InvalidXmlElementException, ImpossibleToAssignMandatoryElementException {
+		return;
 	}
 }

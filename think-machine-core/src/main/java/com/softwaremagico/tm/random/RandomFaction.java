@@ -42,7 +42,8 @@ public class RandomFaction extends RandomSelector<Faction> {
 		super(characterPlayer, preferences);
 	}
 
-	public void assignFaction() throws InvalidRaceException, InvalidRandomElementSelectedException {
+	@Override
+	protected void assign() throws InvalidRaceException, InvalidRandomElementSelectedException {
 		getCharacterPlayer().setFaction(selectElementByWeight());
 	}
 
@@ -69,5 +70,10 @@ public class RandomFaction extends RandomSelector<Faction> {
 		// No faction preference selected. All factions has the same
 		// probability.
 		return 1;
+	}
+
+	@Override
+	protected void assignIfMandatory(Faction element) throws InvalidXmlElementException {
+		return;
 	}
 }

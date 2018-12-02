@@ -151,7 +151,7 @@ public class RandomizeCharacter {
 		// Check if race is set.
 		if (characterPlayer.getRace() == null) {
 			RandomRace randomRace = new RandomRace(characterPlayer, preferences);
-			randomRace.assignRace();
+			randomRace.assign();
 		}
 
 		if (characterPlayer.getInfo().getGender() == null) {
@@ -165,22 +165,22 @@ public class RandomizeCharacter {
 
 		if (characterPlayer.getFaction() == null) {
 			RandomFaction randomFaction = new RandomFaction(characterPlayer, preferences);
-			randomFaction.assignFaction();
+			randomFaction.assign();
 		}
 
 		if (characterPlayer.getInfo().getPlanet() == null) {
 			RandomPlanet randomPlanet = new RandomPlanet(characterPlayer, preferences);
-			randomPlanet.assignPlanet();
+			randomPlanet.assign();
 		}
 
 		if (characterPlayer.getInfo().getNames() == null || characterPlayer.getInfo().getNames().isEmpty()) {
 			RandomName randomName = new RandomName(characterPlayer, preferences);
-			randomName.assignName();
+			randomName.assign();
 		}
 
 		if (characterPlayer.getInfo().getSurname() == null) {
 			RandomSurname randomSurname = new RandomSurname(characterPlayer, preferences);
-			randomSurname.assignSurname();
+			randomSurname.assign();
 		}
 	}
 
@@ -194,26 +194,26 @@ public class RandomizeCharacter {
 	private void setStartingValues() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
 		// Characteristics
 		RandomCharacteristics randomCharacteristics = new RandomCharacteristics(characterPlayer, preferences);
-		randomCharacteristics.spendCharacteristicsPoints();
+		randomCharacteristics.assign();
 		// Skills
 		RandomSkills randomSkills = new RandomSkills(characterPlayer, preferences);
-		randomSkills.spendSkillsPoints();
+		randomSkills.assign();
 		// Traits
 		RandomBeneficeDefinition randomBenefice = new RandomBeneficeDefinition(characterPlayer, preferences);
-		randomBenefice.assignAvailableBenefices();
+		randomBenefice.assign();
 	}
 
 	private void setExtraPoints() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
 		// Traits.
 		// First, assign curses.
 		RandomCursesDefinition randomCurses = new RandomCursesDefinition(characterPlayer, preferences);
-		randomCurses.assignAvailableCurse();
+		randomCurses.assign();
 		// Set blessings.
 		RandomBlessingDefinition randomBlessing = new RandomBlessingDefinition(characterPlayer, preferences);
-		randomBlessing.assignAvailableBlessings();
+		randomBlessing.assign();
 		// Set psique level
 		RandomPsique randomPsique = new RandomPsique(characterPlayer, preferences);
-		randomPsique.assignPsiqueLevel();
+		randomPsique.assign();
 		// Set Wyrd
 		IGaussianDistribution wyrdDistrubution = PsiqueLevelPreferences.getSelected(preferences);
 		int extraWyrd = wyrdDistrubution.randomGaussian();
@@ -221,7 +221,7 @@ public class RandomizeCharacter {
 		RandomGenerationLog.info(this.getClass().getName(), "Added extra wyrd '" + extraWyrd + "'.");
 		// Set psi paths.
 		RandomPsiquePath randomPsiquePath = new RandomPsiquePath(characterPlayer, preferences);
-		randomPsiquePath.assignPsiquePaths();
+		randomPsiquePath.assign();
 
 		// Spend remaining points in skills and characteristics.
 		int remainingPoints = FreeStyleCharacterCreation.getFreeAvailablePoints(characterPlayer.getInfo().getAge()) - CostCalculator.getCost(characterPlayer);
@@ -252,7 +252,7 @@ public class RandomizeCharacter {
 			if (probabilityOfRangedWeapon > 0 && random.nextFloat() < probabilityOfRangedWeapon) {
 				RandomWeapon randomRangedWeapon = new RandomRangeWeapon(characterPlayer, preferences);
 				try {
-					randomRangedWeapon.assignWeapon();
+					randomRangedWeapon.assign();
 				} catch (InvalidRandomElementSelectedException ires) {
 					RandomGenerationLog.warning(this.getClass().getName(), "No ranged weapons available for '" + characterPlayer + "'.");
 				}
@@ -262,7 +262,7 @@ public class RandomizeCharacter {
 			if (probabilityOfMeleeWeapon > 0 && random.nextFloat() < probabilityOfMeleeWeapon) {
 				RandomWeapon randomMeleeWeapon = new RandomMeleeWeapon(characterPlayer, preferences);
 				try {
-					randomMeleeWeapon.assignWeapon();
+					randomMeleeWeapon.assign();
 				} catch (InvalidRandomElementSelectedException ires) {
 					RandomGenerationLog.warning(this.getClass().getName(), "No melee weapons available for '" + characterPlayer + "'.");
 				}
@@ -275,7 +275,7 @@ public class RandomizeCharacter {
 		if (random.nextFloat() < armourPreferences.getArmourProbability()) {
 			RandomArmour randomArmour = new RandomArmour(characterPlayer, preferences);
 			try {
-				randomArmour.assignArmour();
+				randomArmour.assign();
 			} catch (InvalidArmourException e) {
 				// Probably already has a shield.
 				RandomGenerationLog.warning(this.getClass().getName(), e.getMessage());
@@ -290,7 +290,7 @@ public class RandomizeCharacter {
 		if (random.nextFloat() < shieldPreferences.getShieldProbability()) {
 			RandomShield randomArmour = new RandomShield(characterPlayer, preferences);
 			try {
-				randomArmour.assignaShield();
+				randomArmour.assign();
 			} catch (InvalidShieldException e) {
 				// Probably already has an armour.
 				RandomGenerationLog.warning(this.getClass().getName(), e.getMessage());

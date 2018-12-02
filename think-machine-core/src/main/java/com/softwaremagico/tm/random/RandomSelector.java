@@ -38,6 +38,7 @@ import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.log.RandomGenerationLog;
 import com.softwaremagico.tm.random.definition.RandomElementDefinition;
+import com.softwaremagico.tm.random.exceptions.ImpossibleToAssignMandatoryElementException;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
 
@@ -68,6 +69,7 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
 		this.preferences = preferences;
 		weightedElements = assignElementsWeight();
 		totalWeight = assignTotalWeight();
+		assignMandatories();
 	}
 
 	private Integer assignTotalWeight() {
@@ -90,6 +92,20 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
 	}
 
 	protected abstract Collection<Element> getAllElements() throws InvalidXmlElementException;
+
+	protected abstract void assign() throws InvalidXmlElementException, InvalidRandomElementSelectedException;
+
+	protected abstract void assignIfMandatory(Element element) throws InvalidXmlElementException, ImpossibleToAssignMandatoryElementException;
+
+	private void assignMandatories() throws InvalidXmlElementException {
+		for (Element element : getAllElements()) {
+			try {
+				assignIfMandatory(element);
+			} catch (ImpossibleToAssignMandatoryElementException e) {
+				throw new InvalidXmlElementException("Mandatory element cannot be assigned.", e);
+			}
+		}
+	}
 
 	protected TreeMap<Integer, Element> assignElementsWeight() throws InvalidXmlElementException {
 		TreeMap<Integer, Element> weightedElements = new TreeMap<>();

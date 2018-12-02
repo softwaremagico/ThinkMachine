@@ -41,6 +41,7 @@ import com.softwaremagico.tm.character.occultism.OccultismPower;
 import com.softwaremagico.tm.character.occultism.OccultismType;
 import com.softwaremagico.tm.character.occultism.OccultismTypeFactory;
 import com.softwaremagico.tm.log.RandomGenerationLog;
+import com.softwaremagico.tm.random.exceptions.ImpossibleToAssignMandatoryElementException;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.CombatPreferences;
 import com.softwaremagico.tm.random.selectors.IGaussianDistribution;
@@ -58,12 +59,13 @@ public class RandomPsiquePath extends RandomSelector<OccultismPath> {
 		super(characterPlayer, preferences);
 	}
 
-	public void assignPsiquePaths() throws InvalidRandomElementSelectedException, InvalidXmlElementException {
+	@Override
+	protected void assign() throws InvalidRandomElementSelectedException, InvalidXmlElementException {
 		// Random number of paths.
 		IGaussianDistribution pathNumber = PsiquePathLevelPreferences.getSelected(getPreferences());
 		int totalPaths = pathNumber.randomGaussian();
-		totalPowers = 0;
-		for (int i = 0; i < totalPaths; i++) {
+		totalPowers = getCharacterPlayer().getTotalSelectedPowers();
+		for (int i = totalPowers; i < totalPaths; i++) {
 			try {
 				OccultismPath selectedOccultismPath = selectElementByWeight();
 				// Select a level of psique.
@@ -89,10 +91,7 @@ public class RandomPsiquePath extends RandomSelector<OccultismPath> {
 		if (!element.getFactionsAllowed().isEmpty() && !element.getFactionsAllowed().contains(getCharacterPlayer().getFaction())) {
 			return 0;
 		}
-		// Own factions paths are a must.
-		if (element.getFactionsAllowed().contains(getCharacterPlayer().getFaction())) {
-			return MAX_PROBABILITY;
-		}
+
 		// Only paths with psique level.
 		try {
 			for (OccultismType occultismType : OccultismTypeFactory.getInstance().getElements(getCharacterPlayer().getLanguage())) {
@@ -176,6 +175,18 @@ public class RandomPsiquePath extends RandomSelector<OccultismPath> {
 				totalPowers++;
 			}
 
+		}
+	}
+
+	@Override
+	protected void assignIfMandatory(OccultismPath path) throws InvalidXmlElementException, ImpossibleToAssignMandatoryElementException {
+		// Own factions paths are a must.
+		if (path.getFactionsAllowed().contains(getCharacterPlayer().getFaction())) {
+			// Select a level of psique.
+			int pathLevel = assignMaxLevelOfPath(path);
+			// Assign path to the character.
+			assignPowersOfPath(path, pathLevel);
+			removeElementWeight(path);
 		}
 	}
 }

@@ -46,7 +46,8 @@ public class RandomSurname extends RandomSelector<Surname> {
 		super(characterPlayer, preferences);
 	}
 
-	public void assignSurname() throws InvalidRaceException, InvalidRandomElementSelectedException {
+	@Override
+	protected void assign() throws InvalidRaceException, InvalidRandomElementSelectedException {
 		getCharacterPlayer().getInfo().setSurname(selectElementByWeight());
 	}
 
@@ -94,6 +95,11 @@ public class RandomSurname extends RandomSelector<Surname> {
 			}
 		}
 		return 1;
+	}
+
+	@Override
+	protected void assignIfMandatory(Surname element) throws InvalidXmlElementException {
+		return;
 	}
 
 }

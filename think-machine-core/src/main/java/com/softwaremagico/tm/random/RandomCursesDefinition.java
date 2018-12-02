@@ -50,7 +50,8 @@ public class RandomCursesDefinition extends RandomSelector<Blessing> {
 		super(characterPlayer, preferences);
 	}
 
-	public void assignAvailableCurse() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
+	@Override
+	protected void assign() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
 		IGaussianDistribution cursesDistribution = CurseNumberPreferences.getSelected(getPreferences());
 		// Select a blessing
 		for (int i = 0; i < cursesDistribution.randomGaussian(); i++) {
@@ -106,5 +107,19 @@ public class RandomCursesDefinition extends RandomSelector<Blessing> {
 			}
 		}
 		return 1;
+	}
+
+	@Override
+	protected void assignIfMandatory(Blessing element) throws InvalidXmlElementException {
+		BlessingPreferences blessingPreferences = BlessingPreferences.getSelected(getPreferences());
+		if (blessingPreferences != null && element.getBlessingGroup() == BlessingGroup.get(blessingPreferences.name())) {
+			try {
+				getCharacterPlayer().addBlessing(element);
+			} catch (TooManyBlessingsException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			RandomGenerationLog.info(this.getClass().getName(), "Added blessing '" + element + "'.");
+		}
 	}
 }

@@ -45,7 +45,8 @@ public class RandomShield extends RandomSelector<Shield> {
 		super(characterPlayer, preferences);
 	}
 
-	public void assignaShield() throws InvalidRandomElementSelectedException, InvalidShieldException {
+	@Override
+	protected void assign() throws InvalidRandomElementSelectedException, InvalidShieldException {
 		Shield selectedShield = selectElementByWeight();
 		if (getCharacterPlayer().getShield() == null) {
 			getCharacterPlayer().setShield(selectedShield);
@@ -106,5 +107,10 @@ public class RandomShield extends RandomSelector<Shield> {
 
 		RandomGenerationLog.debug(this.getClass().getName(), "Total weight for '" + shield + "' is '" + weight + "'.");
 		return weight;
+	}
+
+	@Override
+	protected void assignIfMandatory(Shield element) throws InvalidXmlElementException {
+		return;
 	}
 }
