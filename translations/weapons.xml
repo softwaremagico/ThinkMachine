@@ -611,6 +611,9 @@
 		<rate>2</rate>
 		<size>L</size>
 		<cost>2</cost>
+		<random>
+			<probabilityMultiplier>0.01</probabilityMultiplier>
+		</random>
 	</javelin>
 	<advancedJavelin>
 		<name>
@@ -629,6 +632,9 @@
 		<rate>2</rate>
 		<size>L</size>
 		<cost>2</cost>
+		<random>
+			<probabilityMultiplier>0.01</probabilityMultiplier>
+		</random>
 	</advancedJavelin>
 	<lightRock>
 		<name>
