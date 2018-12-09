@@ -29,6 +29,7 @@ import java.util.Set;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.creation.CostCalculator;
+import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.log.RandomGenerationLog;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
@@ -61,6 +62,9 @@ public class RandomSkillExtraPoints extends RandomSkills {
 	private int ranksToAdd(AvailableSkill availableSkill) throws InvalidXmlElementException, InvalidRandomElementSelectedException {
 		int finalRanks = getRankValue(availableSkill);
 		int currentRanks = getCharacterPlayer().getSkillAssignedRanks(availableSkill);
+		if (getCharacterPlayer().getSkillsTotalPoints() + finalRanks > FreeStyleCharacterCreation.getMaxInitialSkillsValues(getCharacterPlayer().getInfo().getAge())) {
+			finalRanks = FreeStyleCharacterCreation.getMaxInitialSkillsValues(getCharacterPlayer().getInfo().getAge());
+		}
 		if (finalRanks > currentRanks) {
 			return finalRanks - currentRanks;
 		}

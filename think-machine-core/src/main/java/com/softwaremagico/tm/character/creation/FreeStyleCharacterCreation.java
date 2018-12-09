@@ -31,6 +31,7 @@ import com.softwaremagico.tm.log.MachineLog;
  */
 
 public class FreeStyleCharacterCreation {
+	// Human is used as a base in rules.
 	private static Race human;
 	private static final int MIN_INITIAL_NATURAL_SKILL_VALUE = 3;
 	private static final int MIN_INITIAL_CHARACTERISTICS_VALUE = 3;
