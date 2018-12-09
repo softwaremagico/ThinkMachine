@@ -181,7 +181,8 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
 	@Override
 	protected void assignIfMandatory(BeneficeDefinition benefice) throws InvalidXmlElementException, ImpossibleToAssignMandatoryElementException {
 		// Set status of the character.
-		if (getWeight(benefice) > 0 && getCharacterPlayer().getFaction() != null
+		if ((benefice.getGroup() != null && benefice.getGroup().equals(BeneficeGroup.STATUS)) && getWeight(benefice) > 0
+				&& getCharacterPlayer().getFaction() != null
 				&& Objects.equals(benefice.getRestrictedFactionGroup(), getCharacterPlayer().getFaction().getFactionGroup())) {
 			IGaussianDistribution selectedStatus = StatusPreferences.getSelected(getPreferences());
 			if (selectedStatus != null) {
