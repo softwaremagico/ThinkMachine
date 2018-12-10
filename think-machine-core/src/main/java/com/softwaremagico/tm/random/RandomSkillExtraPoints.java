@@ -43,7 +43,7 @@ public class RandomSkillExtraPoints extends RandomSkills {
 
 	public int spendSkillsPoints(int remainingPoints) throws InvalidRandomElementSelectedException, InvalidXmlElementException {
 		AvailableSkill selectedSkill = selectElementByWeight();
-		int addedRanks = ranksToAdd(selectedSkill);
+		int addedRanks = ranksToAdd(selectedSkill) - getCharacterPlayer().getSkillAssignedRanks(selectedSkill);
 		if (addedRanks * CostCalculator.SKILL_EXTRA_POINTS_COST > remainingPoints) {
 			addedRanks = remainingPoints / CostCalculator.SKILL_EXTRA_POINTS_COST;
 		}
@@ -62,7 +62,8 @@ public class RandomSkillExtraPoints extends RandomSkills {
 	private int ranksToAdd(AvailableSkill availableSkill) throws InvalidXmlElementException, InvalidRandomElementSelectedException {
 		int finalRanks = getRankValue(availableSkill);
 		int currentRanks = getCharacterPlayer().getSkillAssignedRanks(availableSkill);
-		if (getCharacterPlayer().getSkillsTotalPoints() + finalRanks > FreeStyleCharacterCreation.getMaxInitialSkillsValues(getCharacterPlayer().getInfo().getAge())) {
+		if (getCharacterPlayer().getSkillAssignedRanks(availableSkill) + finalRanks > FreeStyleCharacterCreation.getMaxInitialSkillsValues(getCharacterPlayer()
+				.getInfo().getAge())) {
 			finalRanks = FreeStyleCharacterCreation.getMaxInitialSkillsValues(getCharacterPlayer().getInfo().getAge());
 		}
 		if (finalRanks > currentRanks) {

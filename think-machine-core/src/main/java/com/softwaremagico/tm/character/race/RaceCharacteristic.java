@@ -30,6 +30,7 @@ public class RaceCharacteristic {
 	private CharacteristicName characteristic;
 	private int initialValue;
 	private int maximumValue;
+	private int maximumInitialValue;
 
 	public RaceCharacteristic(CharacteristicName characteristic) {
 		super();
@@ -58,6 +59,14 @@ public class RaceCharacteristic {
 
 	public void setMaximumValue(int max) {
 		this.maximumValue = max;
+	}
+
+	public int getMaximumInitialValue() {
+		return maximumInitialValue;
+	}
+
+	public void setMaximumInitialValue(int maximumInitialValue) {
+		this.maximumInitialValue = maximumInitialValue;
 	}
 
 }

@@ -61,13 +61,13 @@ public class RandomCharacteristics extends RandomSelector<Characteristic> {
 		while (getCharacterPlayer().getCharacteristicsTotalPoints() < FreeStyleCharacterCreation.getCharacteristicsPoints(getCharacterPlayer().getInfo()
 				.getAge())) {
 			Characteristic selectedCharacteristic = selectElementByWeight();
+			if (selectedCharacteristic.getValue() >= selectedSpecialization.maximum()) {
+				removeElementWeight(selectedCharacteristic);
+				continue;
+			}
+			
 			if (selectedCharacteristic.getValue() < FreeStyleCharacterCreation.getMaxInitialCharacteristicsValues(
 					selectedCharacteristic.getCharacteristicName(), getCharacterPlayer().getInfo().getAge(), getCharacterPlayer().getRace())) {
-				if (selectedCharacteristic.getValue() >= selectedSpecialization.maximum()) {
-					removeElementWeight(selectedCharacteristic);
-					continue;
-				}
-
 				selectedCharacteristic.setValue(selectedCharacteristic.getValue() + 1);
 				getCharacterPlayer().getRandomDefinition().getSelectedCharacteristicsValues()
 						.put(selectedCharacteristic.getCharacteristicName(), selectedCharacteristic.getValue());

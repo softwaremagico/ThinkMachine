@@ -35,6 +35,7 @@ public class RaceFactory extends XmlFactory<Race> {
 
 	private final static String NAME = "name";
 	private final static String MAX_VALUE = "maximumValue";
+	private final static String MAX_INITIAL_VALUE = "maximumInitialValue";
 	private final static String VALUE = "value";
 	private final static String COST = "cost";
 
@@ -87,6 +88,10 @@ public class RaceFactory extends XmlFactory<Race> {
 				String maxValue = translator.getNodeValue(raceId, characteristic.getId(), MAX_VALUE);
 				if (maxValue != null) {
 					race.setMaximumValue(characteristic, Integer.parseInt(maxValue));
+				}
+				String maxInitialValue = translator.getNodeValue(raceId, characteristic.getId(), MAX_INITIAL_VALUE);
+				if (maxInitialValue != null) {
+					race.setMaximumInitialValue(characteristic, Integer.parseInt(maxInitialValue));
 				}
 				String value = translator.getNodeValue(raceId, characteristic.getId(), VALUE);
 				if (value != null) {

@@ -104,6 +104,14 @@ public class Race extends Element<Race> {
 		}
 	}
 
+	public void setMaximumInitialValue(CharacteristicName characteristicName, int maxValue) {
+		try {
+			getParameter(characteristicName).setMaximumInitialValue(maxValue);
+		} catch (NullPointerException npe) {
+			MachineLog.severe(this.getClass().getName(), "Invalid maximum initial parameter '" + characteristicName + "'.");
+		}
+	}
+
 	public void setValue(CharacteristicName characteristicName, int value) {
 		try {
 			getParameter(characteristicName).setInitialValue(value);

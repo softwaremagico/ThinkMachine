@@ -106,15 +106,15 @@ public class FreeStyleCharacterCreation {
 	public static int getMaxInitialCharacteristicsValues(CharacteristicName characteristicName, Integer age, Race race) {
 		if (age != null && characteristicName != null && race != null) {
 			if (age <= 12) {
-				return race.get(characteristicName).getMaximumValue() - (human.get(characteristicName).getMaximumValue() - 4);
+				return race.get(characteristicName).getMaximumInitialValue() - (human.get(characteristicName).getMaximumInitialValue() - 4);
 			} else if (age <= 16) {
-				return race.get(characteristicName).getMaximumValue() - (human.get(characteristicName).getMaximumValue() - 5);
+				return race.get(characteristicName).getMaximumInitialValue() - (human.get(characteristicName).getMaximumInitialValue() - 5);
 			} else if (age <= 20) {
-				return race.get(characteristicName).getMaximumValue() - (human.get(characteristicName).getMaximumValue() - 6);
+				return race.get(characteristicName).getMaximumInitialValue() - (human.get(characteristicName).getMaximumInitialValue() - 6);
 			} else if (age <= 30) {
-				return race.get(characteristicName).getMaximumValue() - (human.get(characteristicName).getMaximumValue() - 7);
+				return race.get(characteristicName).getMaximumInitialValue() - (human.get(characteristicName).getMaximumInitialValue() - 7);
 			} else if (age <= 40) {
-				return race.get(characteristicName).getMaximumValue();
+				return race.get(characteristicName).getMaximumInitialValue();
 			}
 		}
 		return MAX_INITIAL_CHARACTERISTIC_VALUE;

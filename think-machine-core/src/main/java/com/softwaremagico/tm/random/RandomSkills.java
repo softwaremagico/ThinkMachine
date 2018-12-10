@@ -290,13 +290,19 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 		if (getCharacterPlayer().getSkillAssignedRanks(availableSkill) >= selectedSpecialization.maximum()) {
 			return 0;
 		}
+		// Final ranks cannot be greater that the total points remaining.
+		if (getCharacterPlayer().getSkillsTotalPoints() + (finalRanks - getCharacterPlayer().getSkillAssignedRanks(availableSkill)) > FreeStyleCharacterCreation
+				.getSkillsPoints(getCharacterPlayer().getInfo().getAge())) {
+			finalRanks = FreeStyleCharacterCreation.getSkillsPoints(getCharacterPlayer().getInfo().getAge()) - getCharacterPlayer().getSkillsTotalPoints();
+		}
+
 		getCharacterPlayer().setSkillRank(availableSkill, finalRanks);
 		getCharacterPlayer().setDesiredSkillRanks(availableSkill, finalRanks);
 		return finalRanks;
 	}
 
 	protected int getRankValue(AvailableSkill availableSkill) throws InvalidXmlElementException {
-		int skillValue = 0;
+		int finalSkillValue = 0;
 		SpecializationPreferences selectedSpecialization = SpecializationPreferences.getSelected(getPreferences());
 		int minimumValue = selectedSpecialization.minimum();
 		// Natural skills always a minimum value of 3.
@@ -305,22 +311,20 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 			minimumValue = FreeStyleCharacterCreation.getMinInitialNaturalSkillsValues(getCharacterPlayer().getInfo().getAge());
 		}
 		// Gaussian distribution.
-		skillValue = selectedSpecialization.randomGaussian();
-		if (skillValue < minimumValue) {
-			skillValue = minimumValue;
+		finalSkillValue = selectedSpecialization.randomGaussian();
+		if (finalSkillValue < minimumValue) {
+			finalSkillValue = minimumValue;
 		}
-		// Final ranks cannot be greater that the total points remaining.
-		if (getCharacterPlayer().getSkillsTotalPoints() + (skillValue - getCharacterPlayer().getSkillAssignedRanks(availableSkill)) > FreeStyleCharacterCreation
-				.getSkillsPoints(getCharacterPlayer().getInfo().getAge())) {
-			skillValue = FreeStyleCharacterCreation.getSkillsPoints(getCharacterPlayer().getInfo().getAge()) - getCharacterPlayer().getSkillsTotalPoints()
-					+ getCharacterPlayer().getSkillAssignedRanks(availableSkill);
+		// Cannot be less that the actual value.
+		if (finalSkillValue < getCharacterPlayer().getSkillAssignedRanks(availableSkill)) {
+			return getCharacterPlayer().getSkillAssignedRanks(availableSkill);
 		}
+
 		// Not more than the max allowed.
-		if (getCharacterPlayer().getSkillsTotalPoints() + skillValue > FreeStyleCharacterCreation.getMaxInitialSkillsValues(getCharacterPlayer().getInfo()
-				.getAge())) {
-			skillValue = FreeStyleCharacterCreation.getMaxInitialSkillsValues(getCharacterPlayer().getInfo().getAge());
+		if (finalSkillValue > FreeStyleCharacterCreation.getMaxInitialSkillsValues(getCharacterPlayer().getInfo().getAge())) {
+			finalSkillValue = FreeStyleCharacterCreation.getMaxInitialSkillsValues(getCharacterPlayer().getInfo().getAge());
 		}
-		return skillValue;
+		return finalSkillValue;
 	}
 
 	/**

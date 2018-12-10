@@ -230,7 +230,7 @@ public class RandomizeCharacter {
 		IGaussianDistribution specialization = SpecializationPreferences.getSelected(preferences);
 		while (remainingPoints > 0) {
 			// Characteristics only if is a little specialized.
-			if (specialization.randomGaussian() > 4) {
+			if (remainingPoints >= CostCalculator.CHARACTERISTIC_EXTRA_POINTS_COST && specialization.randomGaussian() > 5) {
 				RandomCharacteristicsExtraPoints randomCharacteristicsExtraPoints = new RandomCharacteristicsExtraPoints(characterPlayer, preferences);
 				remainingPoints -= randomCharacteristicsExtraPoints.spendCharacteristicsPoints(remainingPoints);
 			}
