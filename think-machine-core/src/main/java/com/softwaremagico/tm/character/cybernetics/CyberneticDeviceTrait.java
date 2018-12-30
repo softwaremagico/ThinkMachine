@@ -1,10 +1,10 @@
-package com.softwaremagico.tm.factory;
+package com.softwaremagico.tm.character.cybernetics;
 
 /*-
  * #%L
  * Think Machine (Core)
  * %%
- * Copyright (C) 2017 Softwaremagico
+ * Copyright (C) 2017 - 2018 Softwaremagico
  * %%
  * This software is designed by Jorge Hortelano Otero. Jorge Hortelano Otero
  * <softwaremagico@gmail.com> Valencia (Spain).
@@ -24,21 +24,18 @@ package com.softwaremagico.tm.factory;
  * #L%
  */
 
-import junit.framework.Assert;
+import com.softwaremagico.tm.Element;
 
-import org.testng.annotations.Test;
+public class CyberneticDeviceTrait extends Element<CyberneticDeviceTrait> {
+	private final CyberneticDeviceTraitCategory category;
 
-import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
-
-@Test(groups = { "skillFactory" })
-public class SkillFactoryTests {
-	private final static int NATURAL_SKILLS = 9;
-	private final static int LEARNED_SKILLS = 45;
-
-	@Test
-	public void readSkills() throws InvalidXmlElementException {
-		Assert.assertEquals(NATURAL_SKILLS, SkillsDefinitionsFactory.getInstance().getNaturalSkills("es").size());
-		Assert.assertEquals(LEARNED_SKILLS, SkillsDefinitionsFactory.getInstance().getLearnedSkills("es").size());
+	public CyberneticDeviceTrait(String id, String name, String language, CyberneticDeviceTraitCategory category) {
+		super(id, name, language);
+		this.category = category;
 	}
+
+	public CyberneticDeviceTraitCategory getCategory() {
+		return category;
+	}
+
 }

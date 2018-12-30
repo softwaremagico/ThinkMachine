@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <cyberneticsTraits>
+	<attached>
+		<name>
+			<en>Attached</en>
+			<es>Unido</es>
+		</name>
+		<category>attached</category>
+	</attached>
 	<removable>
 		<name>
 			<en>Removable</en>

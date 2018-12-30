@@ -31,6 +31,7 @@ import java.util.Set;
 import com.softwaremagico.tm.Element;
 import com.softwaremagico.tm.character.characteristics.CharacteristicImprovement;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
+import com.softwaremagico.tm.character.equipment.weapons.Weapon;
 import com.softwaremagico.tm.character.skills.CyberneticSkill;
 
 public class CyberneticDevice extends Element<CyberneticDevice> {
@@ -41,12 +42,14 @@ public class CyberneticDevice extends Element<CyberneticDevice> {
 	private final String activation;
 	private final String appearence;
 	private final String others;
+	private final CyberneticDevice requirement;
+	private final Weapon weapon;
 
 	private Map<String, CyberneticSkill> skillImprovements;
 	private Map<String, CharacteristicImprovement> characteristicImprovents;
 
-	public CyberneticDevice(String name, String language, int points, int incompatibility, String usability, String quality, String activation, String appearence,
-			String others) {
+	public CyberneticDevice(String name, String language, int points, int incompatibility, String usability, String quality, String activation,
+			String appearence, String others, CyberneticDevice requirement, Weapon weapon) {
 		super(null, name, language);
 		this.points = points;
 		this.incompatibility = incompatibility;
@@ -55,8 +58,15 @@ public class CyberneticDevice extends Element<CyberneticDevice> {
 		this.activation = activation;
 		this.appearence = appearence;
 		this.others = others;
+		this.requirement = requirement;
+		this.weapon = weapon;
 		skillImprovements = new HashMap<>();
 		characteristicImprovents = new HashMap<>();
+	}
+
+	public CyberneticDevice(String name, String language, int points, int incompatibility, String usability, String quality, String activation,
+			String appearence, String others) {
+		this(name, language, points, incompatibility, usability, quality, activation, appearence, others, null, null);
 	}
 
 	public int getPoints() {
@@ -105,5 +115,13 @@ public class CyberneticDevice extends Element<CyberneticDevice> {
 
 	public CharacteristicImprovement getCharacteristicImprovement(CharacteristicName characteristicName) {
 		return characteristicImprovents.get(characteristicName);
+	}
+
+	public CyberneticDevice getRequirement() {
+		return requirement;
+	}
+
+	public Weapon getWeapon() {
+		return weapon;
 	}
 }

@@ -1,5 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <cybernetics>
+	<jonah>
+		<name>
+			<en>Jonah</en>
+			<es>Jonás</es>
+		</name>
+		<techLevel>5</techLevel>
+		<points>7</points>
+		<incompatibility>4</incompatibility>
+		<attached>attached</attached>
+		<material>metal</material>
+		<visibility>incognito</visibility>
+		<usability>archery</usability>
+		<quality></quality>
+		<power>selfPowered</power>
+		<cost>2440</cost>
+		<proscribed>no</proscribed>
+		<weapon>
+			<characteristic>dexterity</characteristic>
+			<skill>archery</skill>
+			<goal>0</goal>
+			<damage>4</damage>
+			<range>10/20</range>
+			<shots>5</shots>
+		</weapon>
+	</jonah>
 	<engineersEye>
 		<name>
 			<en>Engineer's Eye</en>
@@ -8,14 +33,110 @@
 		<techLevel>6</techLevel>
 		<points>6</points>
 		<incompatibility>5</incompatibility>
-		<attached></attached>
+		<attached>attached</attached>
 		<material>metal</material>
 		<visibility>obvious</visibility>
 		<usability>automatic</usability>
 		<quality></quality>
-		<activation>automatic</activation>
 		<power>selfPowered</power>
 		<cost>2440</cost>
 		<proscribed>no</proscribed>
+		<bonifications>
+			<bonification>
+				<value>1</value>
+				<affects>perception</affects>
+				<situation>
+					<en>Sight</en>
+					<es>Vista</es>
+				</situation>
+			</bonification>
+		</bonifications>
 	</engineersEye>
+	<secondBrain>
+		<name>
+			<en>Second Brain</en>
+			<es>Segundo Cerebro</es>
+		</name>
+		<techLevel>6</techLevel>
+		<points>11</points>
+		<incompatibility>10</incompatibility>
+		<attached>attached</attached>
+		<material>synthflesh</material>
+		<visibility>hidden</visibility>
+		<usability>automatic</usability>
+		<quality></quality>
+		<power>selfPowered</power>
+		<cost>5915</cost>
+		<proscribed>no</proscribed>
+		<bonifications>
+			<bonification>
+				<value>2</value>
+				<affects>wits</affects>
+			</bonification>
+			<bonification>
+				<value>4</value>
+				<affects>thinkMachine</affects>
+			</bonification>
+		</bonifications>
+	</secondBrain>
+	<secondBrainJumpLoreSoftware>
+		<name>
+			<en>Program [Jumpweb]</en>
+			<es>Programa [Red de Salto]</es>
+		</name>
+		<techLevel>6</techLevel>
+		<points>0</points>
+		<incompatibility>0</incompatibility>
+		<attached>removable</attached>
+		<visibility>hidden</visibility>
+		<usability>automatic</usability>
+		<cost>1200</cost>
+		<bonifications>
+			<bonification>
+				<value>4</value>
+				<affects>jumpwebLore</affects>
+			</bonification>
+		</bonifications>
+		<requires>secondBrain</requires>
+	</secondBrainJumpLoreSoftware>
+	<secondBrainEnergyPistolsLore>
+		<name>
+			<en>Program [Jumpweb]</en>
+			<es>Programa [Red de Salto]</es>
+		</name>
+		<techLevel>6</techLevel>
+		<points>0</points>
+		<incompatibility>0</incompatibility>
+		<attached>removable</attached>
+		<visibility>hidden</visibility>
+		<usability>automatic</usability>
+		<cost>1200</cost>
+		<bonifications>
+			<bonification>
+				<value>4</value>
+				<affects>energyPistolsLore</affects>
+			</bonification>
+		</bonifications>
+		<requires>secondBrain</requires>
+	</secondBrainEnergyPistolsLore>
+	<secondBrainThinkMachineLore>
+		<name>
+			<en>Program [Jumpweb]</en>
+			<es>Programa [Red de Salto]</es>
+		</name>
+		<techLevel>6</techLevel>
+		<points>0</points>
+		<incompatibility>0</incompatibility>
+		<attached>removable</attached>
+		<visibility>hidden</visibility>
+		<usability>automatic</usability>
+		<cost>1200</cost>
+		<bonifications>
+			<bonification>
+				<value>4</value>
+				<affects>thinkMachineLore</affects>
+			</bonification>
+		</bonifications>
+		<requires>secondBrain</requires> 
+	</secondBrainThinkMachineLore>
 </cybernetics>
