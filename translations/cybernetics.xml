@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cybernetics>
+	<engineersEye>
+		<name>
+			<en>Engineer's Eye</en>
+			<es>Ojo de Ingeniero</es>
+		</name>
+		<techLevel>6</techLevel>
+		<points>6</points>
+		<incompatibility>5</incompatibility>
+		<attached></attached>
+		<material>metal</material>
+		<visibility>obvious</visibility>
+		<usability>automatic</usability>
+		<quality></quality>
+		<activation>automatic</activation>
+		<power>selfPowered</power>
+		<cost>2440</cost>
+		<proscribed>no</proscribed>
+	</engineersEye>
+</cybernetics>

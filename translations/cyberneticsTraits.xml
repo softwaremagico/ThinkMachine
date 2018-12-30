@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cyberneticsTraits>
+	<removable>
+		<name>
+			<en>Removable</en>
+			<es>Extraíble</es>
+		</name>
+		<category>attached</category>
+	</removable>
+	<omnisocket>
+		<name>
+			<en>Omnisocket</en>
+			<es>Omnienchufe</es>
+		</name>
+		<category>attached</category>
+	</omnisocket>
+	<organic>
+		<name>
+			<en>Organic</en>
+			<es>Orgánico</es>
+		</name>
+		<category>attached</category>
+	</organic>
+	<burnsFlesh>
+		<name>
+			<en>Burns Flesh</en>
+			<es>Quemaduras en la Carne</es>
+		</name>
+		<category>attached</category>
+	</burnsFlesh>
+
+
+	<batteryPowered>
+		<name>
+			<en>Battery Powered</en>
+			<es>Pilas de Fusión</es>
+		</name>
+		<category>power</category>
+	</batteryPowered>
+	<selfPowered>
+		<name>
+			<en>Self-Powered</en>
+			<es>Autoalimentado</es>
+		</name>
+		<category>power</category>
+	</selfPowered>
+	<powerGenerator>
+		<name>
+			<en>Power Generator</en>
+			<es>Generador de Energía</es>
+		</name>
+		<category>power</category>
+	</powerGenerator>
+	
+
+	<obvious>
+		<name>
+			<en>Obvious</en>
+			<es>Evidente</es>
+		</name>
+		<category>visibility</category>
+	</obvious>
+	<unsightly>
+		<name>
+			<en>Unsightly</en>
+			<es>Antiestético</es>
+		</name>
+		<category>visibility</category>
+	</unsightly>
+	<messy>
+		<name>
+			<en>Messy</en>
+			<es>Desastroso</es>
+		</name>
+		<category>visibility</category>
+	</messy>
+	<incognito>
+		<name>
+			<en>Incognito</en>
+			<es>Incógnito</es>
+		</name>
+		<category>visibility</category>
+	</incognito>
+	<hidden>
+		<name>
+			<en>Hidden</en>
+			<es>Oculto</es>
+		</name>
+		<category>visibility</category>
+	</hidden>
+	<simulacra>
+		<name>
+			<en>Simulacra</en>
+			<es>Imitación</es>
+		</name>
+		<category>visibility</category>
+	</simulacra>
+
+
+	<metal>
+		<name>
+			<en>Metal</en>
+			<es>Metal</es>
+		</name>
+		<category>material</category>
+	</metal>
+	<plastic>
+		<name>
+			<en>Plastic</en>
+			<es>Plástico</es>
+		</name>
+		<category>material</category>
+	</plastic>
+	<ceramsteel>
+		<name>
+			<en>Ceramsteel</en>
+			<es>Acerámica</es>
+		</name>
+		<category>material</category>
+	</ceramsteel>
+	<synthflesh>
+		<name>
+			<en>Synthflesh</en>
+			<es>Carne Sintética</es>
+		</name>
+		<category>material</category>
+	</synthflesh>
+	<synthlife>
+		<name>
+			<en>Synthlife</en>
+			<es>Vida Sintética</es>
+		</name>
+		<category>material</category>
+	</synthlife>
+	<nanotech>
+		<name>
+			<en>Nanotech</en>
+			<es>Nanotecnología</es>
+		</name>
+		<category>material</category>
+	</nanotech>
+	
+	<automaintenance>
+		<name>
+			<en>Automaintenance</en>
+			<es>Automantenimiento</es>
+		</name>
+		<category>quality</category>
+	</automaintenance>
+	<superior>
+		<name>
+			<en>Superior</en>
+			<es>Superior</es>
+		</name>
+		<category>quality</category>
+	</superior>
+	<masterGuildwork>
+		<name>
+			<en>Master Guildwork</en>
+			<es>Maestro de Gremio</es>
+		</name>
+		<category>quality</category>
+	</masterGuildwork>
+	<premium>
+		<name>
+			<en>Premium</en>
+			<es>Premium</es>
+		</name>
+		<category>quality</category>
+	</premium>
+	<poor>
+		<name>
+			<en>Poor</en>
+			<es>Pobre</es>
+		</name>
+		<category>quality</category>
+	</poor>
+	<shoddy>
+		<name>
+			<en>Shoddy</en>
+			<es>Chapucero</es>
+		</name>
+		<category>quality</category>
+	</shoddy>
+	<primitive>
+		<name>
+			<en>Primitive</en>
+			<es>Primitivo</es>
+		</name>
+		<category>quality</category>
+	</primitive>
+	<delicate>
+		<name>
+			<en>Delicate</en>
+			<es>Delicado</es>
+		</name>
+		<category>quality</category>
+	</delicate>
+	<expertTech>
+		<name>
+			<en>Expert Tech</en>
+			<es>Tecnología Experta</es>
+		</name>
+		<category>quality</category>
+	</expertTech>
+	
+	<automatic>
+		<name>
+			<en>Autormatic</en>
+			<es>Automático</es>
+		</name>
+		<category>usability</category>
+	</automatic>
+	
+	<skillUse>
+		<name>
+			<en>Skill Use</en>
+			<es>Use de Habilidad</es>
+		</name>
+		<category>usability</category>
+	</skillUse>
+	<easy>
+		<name>
+			<en>Easy</en>
+			<es>Fácil</es>
+		</name>
+		<category>usability</category>
+	</easy>
+	<unwieldy>
+		<name>
+			<en>Unwieldy</en>
+			<es>Difícil de Manejar</es>
+		</name>
+		<category>usability</category>
+	</unwieldy>
+	<unpredictable>
+		<name>
+			<en>Unpredictable</en>
+			<es>Impredecible</es>
+		</name>
+		<category>usability</category>
+	</unpredictable>
+</cyberneticsTraits>
