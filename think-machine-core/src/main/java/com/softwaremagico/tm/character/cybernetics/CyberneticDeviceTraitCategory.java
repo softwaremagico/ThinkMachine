@@ -25,7 +25,7 @@ package com.softwaremagico.tm.character.cybernetics;
  */
 
 public enum CyberneticDeviceTraitCategory {
-	ATTACHED, POWER, VISIBILITY, MATERIAL, QUALITY, USABILITY;
+	ATTACHED, POWER, VISIBILITY, MATERIAL, QUALITY, USABILITY, TRAIT;
 
 	public static CyberneticDeviceTraitCategory get(String tag) {
 		for (CyberneticDeviceTraitCategory category : CyberneticDeviceTraitCategory.values()) {

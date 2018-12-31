@@ -36,6 +36,7 @@ public class CyberneticDeviceFactory extends XmlFactory<CyberneticDevice> {
 	private final static String NAME = "name";
 	private final static String TECH_LEVEL = "techLevel";
 	private final static String POINTS = "points";
+	
 	private final static String INCOMPATIBILITY = "incompatibility";
 	private final static String ATTACHED = "attached";
 	private final static String MATERIAL = "material";
@@ -44,6 +45,7 @@ public class CyberneticDeviceFactory extends XmlFactory<CyberneticDevice> {
 	private final static String QUALITY = "quality";
 	private final static String ACTIVATION = "activation";
 	private final static String POWER = "power";
+	
 	private final static String COST = "cost";
 	private final static String PROSCRIBED = "proscribed";
 	private final static String BONIFICATION = "bonification";

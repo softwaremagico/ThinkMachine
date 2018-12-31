@@ -222,7 +222,7 @@
 	<skillUse>
 		<name>
 			<en>Skill Use</en>
-			<es>Use de Habilidad</es>
+			<es>Uso de Habilidad</es>
 		</name>
 		<category>usability</category>
 	</skillUse>
@@ -247,4 +247,34 @@
 		</name>
 		<category>usability</category>
 	</unpredictable>
+	
+	
+	<ciberLungWater>
+		<name>
+			<en>CyberLung (Water)</en>
+			<es>Cibersentido (Radio)</es>
+		</name>
+		<category>trait</category>
+	</ciberLungWater>
+	<cybersenseMagnifier>
+		<name>
+			<en>Cybersense (Magnifier/Telescope)</en>
+			<es>Cibersentido (Aumento/Telescopio)</es>
+		</name>
+		<category>trait</category>
+	</cybersenseMagnifier>
+	<cybersenseIr>
+		<name>
+			<en>Cybersense (IR Vision)</en>
+			<es>Cibersentido (Visión IR)</es>
+		</name>
+		<category>trait</category>
+	</cybersenseIr>
+	<cybersenseRadio>
+		<name>
+			<en>Cybersense (Radio)</en>
+			<es>Ciberpulmón (Agua)</es>
+		</name>
+		<category>trait</category>
+	</cybersenseRadio>
 </cyberneticsTraits>

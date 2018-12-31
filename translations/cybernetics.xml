@@ -1,5 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <cybernetics>
+	<centurionKnife>
+		<name>
+			<en>Centurion Knife</en>
+			<es>Cuchillo Centurión</es>
+		</name>
+		<techLevel>5</techLevel>
+		<points>2</points>
+		<incompatibility>2</incompatibility>
+		<attached>removable</attached>
+		<material>metal</material>
+		<visibility>incognito</visibility>
+		<cost>365</cost>
+		<proscribed>no</proscribed>
+		<weapon>
+			<characteristic>dexterity</characteristic>
+			<skill>melee</skill>
+			<goal>0</goal>
+			<damage>4</damage>
+		</weapon>
+	</centurionKnife>
+	<viperSword>
+		<name>
+			<en>Viper Sword Arm</en>
+			<es>Espada Víbora de Brazo</es>
+		</name>
+		<techLevel>5</techLevel>
+		<points>6</points>
+		<incompatibility>3</incompatibility>
+		<attached>attached</attached>
+		<material>metal</material>
+		<visibility>incognito</visibility>
+		<cost>740</cost>
+		<proscribed>no</proscribed>
+		<weapon>
+			<characteristic>dexterity</characteristic>
+			<skill>melee</skill>
+			<goal>0</goal>
+			<damage>5</damage>
+		</weapon>
+	</viperSword>
+	<armHarpoon>
+		<name>
+			<en>Arm Harpoon</en>
+			<es>Arpón de Brazo</es>
+		</name>
+		<techLevel>5</techLevel>
+		<points>4</points>
+		<incompatibility>3</incompatibility>
+		<attached>attached</attached>
+		<material>metal</material>
+		<visibility>incognito</visibility>
+		<cost>725</cost>
+		<proscribed>no</proscribed>
+		<weapon>
+			<characteristic>dexterity</characteristic>
+			<skill>archery</skill>
+			<goal>0</goal>
+			<damage>3</damage>
+			<range>10/20</range>
+			<shots>5</shots>
+		</weapon>
+	</armHarpoon>
 	<jonah>
 		<name>
 			<en>Jonah</en>
@@ -11,9 +73,6 @@
 		<attached>attached</attached>
 		<material>metal</material>
 		<visibility>incognito</visibility>
-		<usability>archery</usability>
-		<quality></quality>
-		<power>selfPowered</power>
 		<cost>2440</cost>
 		<proscribed>no</proscribed>
 		<weapon>
@@ -25,6 +84,40 @@
 			<shots>5</shots>
 		</weapon>
 	</jonah>
+	<aquaLung>
+		<name>
+			<en>Aqua-Lung</en>
+			<es>Pulmón de Agua</es>
+		</name>
+		<techLevel>6</techLevel>
+		<points>3</points>
+		<incompatibility>3</incompatibility>
+		<attached>organic</attached>
+		<material>metal</material>
+		<visibility>obvious</visibility>
+		<usability>automatic</usability>
+		<power>selfPowered</power>
+		<cost>1655</cost>
+		<proscribed>no</proscribed>
+		<others>ciberLungWater</others>
+	</aquaLung>
+	<advancedAquaLung>
+		<name>
+			<en>Aqua-Lung (Advanced)</en>
+			<es>Pulmón de Agua (Avanzado)</es>
+		</name>
+		<techLevel>6</techLevel>
+		<points>5</points>
+		<incompatibility>4</incompatibility>
+		<attached>organic</attached>
+		<material>metal</material>
+		<visibility>hidden</visibility>
+		<usability>automatic</usability>
+		<power>selfPowered</power>
+		<cost>1805</cost>
+		<proscribed>no</proscribed>
+		<others>ciberLungWater</others>
+	</advancedAquaLung>
 	<engineersEye>
 		<name>
 			<en>Engineer's Eye</en>
@@ -41,6 +134,7 @@
 		<power>selfPowered</power>
 		<cost>2440</cost>
 		<proscribed>no</proscribed>
+		<others>cybersenseMagnifier, cybersenseIr</others>
 		<bonifications>
 			<bonification>
 				<value>1</value>
@@ -52,6 +146,91 @@
 			</bonification>
 		</bonifications>
 	</engineersEye>
+	<etherEar>
+		<name>
+			<en>Ether Ear</en>
+			<es>Oído Inalámbrico</es>
+		</name>
+		<techLevel>6</techLevel>
+		<points>6</points>
+		<incompatibility>5</incompatibility>
+		<attached>attached</attached>
+		<material>metal</material>
+		<visibility>hidden</visibility>
+		<usability>skillUse</usability>
+		<power>selfPowered</power>
+		<cost>1245</cost>
+		<proscribed>no</proscribed>
+		<others>ciberLungWater</others>
+	</etherEar>
+	<goliathSkin>
+		<name>
+			<en>Goliath Skin</en>
+			<es>Piel de Goliath</es>
+		</name>
+		<techLevel>6</techLevel>
+		<points>10</points>
+		<incompatibility>6</incompatibility>
+		<attached>organic</attached>
+		<material>metal</material>
+		<visibility>obvious</visibility>
+		<usability>automatic</usability>
+		<quality></quality>
+		<power>selfPowered</power>
+		<cost>3715</cost>
+		<proscribed>no</proscribed>
+		<bonifications>
+			<bonification>
+				<value>3</value>
+				<affects>strength</affects>
+			</bonification>
+			<bonification>
+				<value>2</value>
+				<affects>endurance</affects>
+			</bonification>
+		</bonifications>
+	</goliathSkin>
+	<litheWire>
+		<name>
+			<en>Lithe Wire</en>
+			<es>Cable Flexible</es>
+		</name>
+		<techLevel>6</techLevel>
+		<points>5</points>
+		<incompatibility>4</incompatibility>
+		<attached>organic</attached>
+		<material>metal</material>
+		<visibility>obvious</visibility>
+		<usability>automatic</usability>
+		<quality></quality>
+		<power>selfPowered</power>
+		<cost>3025</cost>
+		<proscribed>no</proscribed>
+		<bonifications>
+			<bonification>
+				<value>3</value>
+				<affects>dexterity</affects>
+			</bonification>
+		</bonifications>
+	</litheWire>
+	<oxyLung>
+		<name>
+			<en>Oxy-Lung</en>
+			<es>Oxi-Pulmón</es>
+		</name>
+		<techLevel>7</techLevel>
+		<points>9</points>
+		<incompatibility>7</incompatibility>
+		<attached>organic</attached>
+		<material>synthflesh</material>
+		<visibility>hidden</visibility>
+		<usability>automatic</usability>
+		<quality></quality>
+		<power>selfPowered</power>
+		<cost>5250</cost>
+		<proscribed>yes</proscribed>
+		<others>ciberLungVoid</others>
+	</oxyLung>
 	<secondBrain>
 		<name>
 			<en>Second Brain</en>
