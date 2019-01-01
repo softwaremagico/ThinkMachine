@@ -1,8 +1,9 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>think-machine-pdf</artifactId>
 	<packaging>jar</packaging>
-	<name>Think Machine (PDF)</name>
+	<name>Think Machine (PDF Sheets)</name>
 
 	<parent>
 		<groupId>com.softwaremagico</groupId>
@@ -27,7 +28,7 @@
 					<useFile>false</useFile>
 					<trimStackTrace>false</trimStackTrace>
 					<suiteXmlFiles>
-						<suiteXmlFile>src/test/config/testng.xml</suiteXmlFile>
+						<suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
 					</suiteXmlFiles>
 					<useSystemClassLoader>false</useSystemClassLoader>
 				</configuration>
@@ -74,10 +75,13 @@
 								<configuration>
 									<target>
 										<!-- delete old folder -->
-										<delete dir="${main.basedir}/sheets" failonerror="false" includeemptydirs="true" />
+										<delete dir="${main.basedir}/sheets" failonerror="false"
+											includeemptydirs="true" />
 										<!-- Copy sheets -->
-										<copy file="/tmp/FadingSuns_EN.pdf" tofile="${main.basedir}/sheets/FadingSuns_EN.pdf" overwrite="true" />
-										<copy file="/tmp/FadingSuns_ES.pdf" tofile="${main.basedir}/sheets/FadingSuns_ES.pdf" overwrite="true" />
+										<copy file="/tmp/FadingSuns_EN.pdf" tofile="${main.basedir}/sheets/FadingSuns_EN.pdf"
+											overwrite="true" />
+										<copy file="/tmp/FadingSuns_ES.pdf" tofile="${main.basedir}/sheets/FadingSuns_ES.pdf"
+											overwrite="true" />
 									</target>
 								</configuration>
 								<goals>
@@ -141,15 +145,15 @@
 	<dependencies>
 		<dependency>
 			<groupId>${project.groupId}</groupId>
-			<artifactId>think-machine-core</artifactId>
+			<artifactId>think-machine-rules</artifactId>
 			<version>${project.version}</version>
 			<type>jar</type>
 		</dependency>
-		<!-- JSON -->
 		<dependency>
-			<groupId>com.google.code.gson</groupId>
-			<artifactId>gson</artifactId>
-			<version>${gson.version}</version>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>think-machine-random</artifactId>
+			<version>${project.version}</version>
+			<scope>tests</scope>
 		</dependency>
 		<!-- PDF -->
 		<dependency>

@@ -45,20 +45,18 @@ import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.creation.CostCalculator;
 import com.softwaremagico.tm.character.cybernetics.CyberneticDevice;
-import com.softwaremagico.tm.character.equipment.armour.ArmourFactory;
-import com.softwaremagico.tm.character.equipment.shield.ShieldFactory;
+import com.softwaremagico.tm.character.equipment.armours.ArmourFactory;
+import com.softwaremagico.tm.character.equipment.shields.ShieldFactory;
 import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
 import com.softwaremagico.tm.character.factions.FactionsFactory;
 import com.softwaremagico.tm.character.occultism.OccultismPathFactory;
 import com.softwaremagico.tm.character.occultism.OccultismTypeFactory;
-import com.softwaremagico.tm.character.planet.PlanetFactory;
-import com.softwaremagico.tm.character.race.RaceFactory;
+import com.softwaremagico.tm.character.planets.PlanetFactory;
+import com.softwaremagico.tm.character.races.RaceFactory;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.pdf.complete.CharacterSheet;
 import com.softwaremagico.tm.pdf.small.SmallCharacterSheet;
-import com.softwaremagico.tm.random.exceptions.DuplicatedPreferenceException;
-import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 
 @Test(groups = { "characterPdfGeneration" })
 public class CharacterSheetCreationTest {
@@ -87,13 +85,13 @@ public class CharacterSheetCreationTest {
 	}
 
 	@Test
-	public void emptyPdfSmallEn() throws InvalidXmlElementException, DuplicatedPreferenceException, InvalidRandomElementSelectedException {
+	public void emptyPdfSmallEn() throws InvalidXmlElementException {
 		SmallCharacterSheet sheet = new SmallCharacterSheet("en");
 		sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "RandomCharacterSmallEmpty_EN.pdf");
 	}
 
 	@Test
-	public void emptyPdfSmallEs() throws InvalidXmlElementException, DuplicatedPreferenceException, InvalidRandomElementSelectedException {
+	public void emptyPdfSmallEs() {
 		SmallCharacterSheet sheet = new SmallCharacterSheet("es");
 		sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "RandomCharacterSmallEmpty_ES.pdf");
 	}
