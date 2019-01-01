@@ -33,7 +33,7 @@ import com.softwaremagico.tm.character.cybernetics.CyberneticDeviceFactory;
 @Test(groups = { "cyberneticFactory" })
 public class CyberneticDeviceFactoryTests {
 
-	private final static int DEFINED_DEVICES = 15;
+	private final static int DEFINED_DEVICES = 17;
 	private final static String LANGUAGE = "es";
 
 	@Test

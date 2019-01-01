@@ -119,7 +119,7 @@ public class CustomCharacters {
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("cash [firebirds1000]", player.getLanguage()));
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("gossipNetwork_3", player.getLanguage()));
 
-		player.getCybernetics().addElement(CyberneticDeviceFactory.getInstance().getElement("engineersEye", LANGUAGE));
+		player.getCybernetics().addElement(CyberneticDeviceFactory.getInstance().getElement("advancedEngineersEye", LANGUAGE));
 		player.getCybernetics().addElement(CyberneticDeviceFactory.getInstance().getElement("secondBrain", LANGUAGE));
 		player.getCybernetics().addElement(CyberneticDeviceFactory.getInstance().getElement("secondBrainJumpLoreSoftware", LANGUAGE));
 		player.getCybernetics().addElement(CyberneticDeviceFactory.getInstance().getElement("secondBrainEnergyPistolsLore", LANGUAGE));
@@ -367,7 +367,7 @@ public class CustomCharacters {
 		CharacterSheet sheet = new CharacterSheet(player);
 		sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Golem.pdf");
 
-		Assert.assertEquals(CostCalculator.getCost(player), -2);
+		Assert.assertEquals(CostCalculator.getCost(player), -5);
 		Assert.assertEquals(player.getMoney(), 250);
 	}
 }

@@ -34,7 +34,7 @@ import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
 @Test(groups = { "skillFactory" })
 public class SkillFactoryTests {
 	private final static int NATURAL_SKILLS = 9;
-	private final static int LEARNED_SKILLS = 45;
+	private final static int LEARNED_SKILLS = 46;
 
 	@Test
 	public void readSkills() throws InvalidXmlElementException {

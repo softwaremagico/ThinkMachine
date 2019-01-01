@@ -582,5 +582,15 @@
 			<probabilityMultiplier>0</probabilityMultiplier>
 		</random>
 	</etherEar>
+	<spyEye>
+		<name>
+			<en>Spy Eye</en>
+			<es>Ojo Espía</es>
+		</name>
+		<group>technical</group>
+		<random>
+			<probabilityMultiplier>0</probabilityMultiplier>
+		</random>
+	</spyEye>
 	
 </skills>

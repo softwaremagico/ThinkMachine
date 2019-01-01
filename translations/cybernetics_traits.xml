@@ -277,6 +277,13 @@
 		</name>
 		<category>trait</category>
 	</cybersenseIr>
+	<cybersenseVideo>
+		<name>
+			<en>Cybersense (Video)</en>
+			<es>Cibersentido (Vídeo)</es>
+		</name>
+		<category>trait</category>
+	</cybersenseVideo>
 	<cybersenseRadio>
 		<name>
 			<en>Cybersense (Radio)</en>
