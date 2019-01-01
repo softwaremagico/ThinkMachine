@@ -256,6 +256,13 @@
 		</name>
 		<category>trait</category>
 	</ciberLungWater>
+	<ciberLungVoid>
+		<name>
+			<en>CyberLung (Vacuum)</en>
+			<es>Cibersentido (Vacío)</es>
+		</name>
+		<category>trait</category>
+	</ciberLungVoid>
 	<cybersenseMagnifier>
 		<name>
 			<en>Cybersense (Magnifier/Telescope)</en>
