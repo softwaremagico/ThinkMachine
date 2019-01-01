@@ -45,7 +45,7 @@ import com.softwaremagico.tm.character.equipment.weapons.Weapon;
 import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
 import com.softwaremagico.tm.character.factions.FactionGroup;
 import com.softwaremagico.tm.character.factions.FactionsFactory;
-import com.softwaremagico.tm.character.race.RaceFactory;
+import com.softwaremagico.tm.character.races.RaceFactory;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.character.skills.RandomSkills;
@@ -300,19 +300,19 @@ public class RandomCharacterTests {
 		characterPlayer.getWeapons().addElement(WeaponFactory.getInstance().getElement("axe", LANGUAGE));
 		characterPlayer.getWeapons().addElement(WeaponFactory.getInstance().getElement("martechGold", LANGUAGE));
 
-		Assert.assertTrue(characterPlayer.hasWeaponWithSkill(AvailableSkillsFactory.getInstance().getElement("melee", LANGUAGE)));
-		Assert.assertTrue(characterPlayer.hasWeaponWithSkill(AvailableSkillsFactory.getInstance().getElement("energyGuns", LANGUAGE)));
+		Assert.assertNotNull(characterPlayer.hasWeaponWithSkill(AvailableSkillsFactory.getInstance().getElement("melee", LANGUAGE)));
+		Assert.assertNotNull(characterPlayer.hasWeaponWithSkill(AvailableSkillsFactory.getInstance().getElement("energyGuns", LANGUAGE)));
 
 		characterPlayer.getCharacteristic(CharacteristicName.TECH).setValue(6);
+		
+		RandomSkills randomSkills = new RandomSkills(characterPlayer, null);
+		AvailableSkill energyGuns = AvailableSkillsFactory.getInstance().getElement("energyGuns", LANGUAGE);
+		randomSkills.validateElement(energyGuns.getRandomDefinition());
+		AvailableSkill fight = AvailableSkillsFactory.getInstance().getElement("melee", LANGUAGE);
+		randomSkills.validateElement(fight.getRandomDefinition());
 
 		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0);
 		randomizeCharacter.createCharacter();
-
-		RandomSkills randomBenefice = new RandomSkills(characterPlayer, null);
-		AvailableSkill energyGuns = AvailableSkillsFactory.getInstance().getElement("energyGuns", LANGUAGE);
-		randomBenefice.validateElement(energyGuns.getRandomDefinition());
-		AvailableSkill fight = AvailableSkillsFactory.getInstance().getElement("melee", LANGUAGE);
-		randomBenefice.validateElement(fight.getRandomDefinition());
 
 		try {
 			Assert.assertTrue(characterPlayer.getSkillTotalRanks(AvailableSkillsFactory.getInstance().getElement("melee", LANGUAGE)) > 0);

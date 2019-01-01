@@ -28,7 +28,7 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.softwaremagico.tm.character.planet.Planet;
+import com.softwaremagico.tm.character.planets.Planet;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
 

@@ -30,7 +30,7 @@ import java.util.Set;
 import com.softwaremagico.tm.character.characteristics.Characteristic;
 import com.softwaremagico.tm.character.factions.Faction;
 import com.softwaremagico.tm.character.factions.FactionGroup;
-import com.softwaremagico.tm.character.race.Race;
+import com.softwaremagico.tm.character.races.Race;
 
 public class RandomElementDefinition {
 	private Integer staticProbability;

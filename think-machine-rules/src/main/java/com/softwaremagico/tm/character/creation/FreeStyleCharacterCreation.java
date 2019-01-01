@@ -2,8 +2,8 @@ package com.softwaremagico.tm.character.creation;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
-import com.softwaremagico.tm.character.race.Race;
-import com.softwaremagico.tm.character.race.RaceFactory;
+import com.softwaremagico.tm.character.races.Race;
+import com.softwaremagico.tm.character.races.RaceFactory;
 import com.softwaremagico.tm.log.MachineLog;
 
 /*-

@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.random.profile;
+package com.softwaremagico.tm.random.profiles;
 
 /*-
  * #%L

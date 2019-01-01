@@ -30,8 +30,8 @@ import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
 import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.character.race.Race;
-import com.softwaremagico.tm.character.race.RaceFactory;
+import com.softwaremagico.tm.character.races.Race;
+import com.softwaremagico.tm.character.races.RaceFactory;
 import com.softwaremagico.tm.log.MachineLog;
 
 public class RaceAdapter extends ElementAdapter<Race> {

@@ -29,7 +29,7 @@ import junit.framework.Assert;
 import org.testng.annotations.Test;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.character.planet.PlanetFactory;
+import com.softwaremagico.tm.character.planets.PlanetFactory;
 
 @Test(groups = { "planetsFactory" })
 public class PlanetsFactoryTests {

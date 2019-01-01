@@ -43,17 +43,17 @@ import com.softwaremagico.tm.character.characteristics.RandomCharacteristics;
 import com.softwaremagico.tm.character.characteristics.RandomCharacteristicsExtraPoints;
 import com.softwaremagico.tm.character.creation.CostCalculator;
 import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
-import com.softwaremagico.tm.character.equipment.armour.InvalidArmourException;
-import com.softwaremagico.tm.character.equipment.armour.RandomArmour;
-import com.softwaremagico.tm.character.equipment.shield.InvalidShieldException;
-import com.softwaremagico.tm.character.equipment.shield.RandomShield;
+import com.softwaremagico.tm.character.equipment.armours.InvalidArmourException;
+import com.softwaremagico.tm.character.equipment.armours.RandomArmour;
+import com.softwaremagico.tm.character.equipment.shields.InvalidShieldException;
+import com.softwaremagico.tm.character.equipment.shields.RandomShield;
 import com.softwaremagico.tm.character.equipment.weapons.RandomMeleeWeapon;
 import com.softwaremagico.tm.character.equipment.weapons.RandomRangeWeapon;
 import com.softwaremagico.tm.character.equipment.weapons.RandomWeapon;
 import com.softwaremagico.tm.character.factions.RandomFaction;
 import com.softwaremagico.tm.character.occultism.RandomPsique;
 import com.softwaremagico.tm.character.occultism.RandomPsiquePath;
-import com.softwaremagico.tm.character.race.RandomRace;
+import com.softwaremagico.tm.character.races.RandomRace;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.character.skills.InvalidSkillException;
 import com.softwaremagico.tm.character.skills.RandomSkillExtraPoints;
@@ -61,7 +61,7 @@ import com.softwaremagico.tm.character.skills.RandomSkills;
 import com.softwaremagico.tm.log.RandomGenerationLog;
 import com.softwaremagico.tm.random.exceptions.DuplicatedPreferenceException;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
-import com.softwaremagico.tm.random.profile.IRandomProfile;
+import com.softwaremagico.tm.random.profiles.IRandomProfile;
 import com.softwaremagico.tm.random.selectors.AgePreferences;
 import com.softwaremagico.tm.random.selectors.ArmourPreferences;
 import com.softwaremagico.tm.random.selectors.CombatPreferences;
@@ -244,16 +244,19 @@ public class RandomizeCharacter {
 
 		RandomGenerationLog.info(this.getClass().getName(), "Remaining points '" + remainingPoints + "'.");
 		IGaussianDistribution specialization = SpecializationPreferences.getSelected(preferences);
-		while (remainingPoints > 0) {
-			// Characteristics only if is a little specialized.
-			if (remainingPoints >= CostCalculator.CHARACTERISTIC_EXTRA_POINTS_COST && specialization.randomGaussian() > 5) {
-				RandomCharacteristicsExtraPoints randomCharacteristicsExtraPoints = new RandomCharacteristicsExtraPoints(characterPlayer, preferences);
-				remainingPoints -= randomCharacteristicsExtraPoints.spendCharacteristicsPoints(remainingPoints);
-			}
 
-			if (remainingPoints > 0) {
-				RandomSkillExtraPoints randomSkillExtraPoints = new RandomSkillExtraPoints(characterPlayer, preferences);
-				remainingPoints -= randomSkillExtraPoints.spendSkillsPoints(remainingPoints);
+		if (remainingPoints > 0) {
+			RandomCharacteristicsExtraPoints randomCharacteristicsExtraPoints = new RandomCharacteristicsExtraPoints(characterPlayer, preferences);
+			RandomSkillExtraPoints randomSkillExtraPoints = new RandomSkillExtraPoints(characterPlayer, preferences);
+			while (remainingPoints > 0) {
+				// Characteristics only if is a little specialized.
+				if (remainingPoints >= CostCalculator.CHARACTERISTIC_EXTRA_POINTS_COST && specialization.randomGaussian() > 5) {
+					remainingPoints -= randomCharacteristicsExtraPoints.spendCharacteristicsPoints(remainingPoints);
+				}
+
+				if (remainingPoints > 0) {
+					remainingPoints -= randomSkillExtraPoints.spendSkillsPoints(remainingPoints);
+				}
 			}
 		}
 	}

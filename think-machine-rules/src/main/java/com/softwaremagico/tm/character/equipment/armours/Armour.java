@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.character.equipment.armour;
+package com.softwaremagico.tm.character.equipment.armours;
 
 /*-
  * #%L
@@ -29,7 +29,7 @@ import java.util.Set;
 
 import com.softwaremagico.tm.Element;
 import com.softwaremagico.tm.character.equipment.DamageType;
-import com.softwaremagico.tm.character.equipment.shield.Shield;
+import com.softwaremagico.tm.character.equipment.shields.Shield;
 
 public class Armour extends Element<Armour> {
 	private final int protection;

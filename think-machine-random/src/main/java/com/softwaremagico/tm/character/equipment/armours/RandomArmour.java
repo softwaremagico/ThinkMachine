@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.character.equipment.armour;
+package com.softwaremagico.tm.character.equipment.armours;
 
 /*-
  * #%L
@@ -30,9 +30,9 @@ import java.util.Set;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
-import com.softwaremagico.tm.character.equipment.armour.Armour;
-import com.softwaremagico.tm.character.equipment.armour.ArmourFactory;
-import com.softwaremagico.tm.character.equipment.armour.InvalidArmourException;
+import com.softwaremagico.tm.character.equipment.armours.Armour;
+import com.softwaremagico.tm.character.equipment.armours.ArmourFactory;
+import com.softwaremagico.tm.character.equipment.armours.InvalidArmourException;
 import com.softwaremagico.tm.log.RandomGenerationLog;
 import com.softwaremagico.tm.random.RandomSelector;
 import com.softwaremagico.tm.random.exceptions.ImpossibleToAssignMandatoryElementException;

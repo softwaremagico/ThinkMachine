@@ -60,10 +60,10 @@ import com.softwaremagico.tm.character.creation.CostCalculator;
 import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
 import com.softwaremagico.tm.character.cybernetics.CyberneticDevice;
 import com.softwaremagico.tm.character.cybernetics.Cybernetics;
-import com.softwaremagico.tm.character.equipment.armour.Armour;
-import com.softwaremagico.tm.character.equipment.armour.InvalidArmourException;
-import com.softwaremagico.tm.character.equipment.shield.InvalidShieldException;
-import com.softwaremagico.tm.character.equipment.shield.Shield;
+import com.softwaremagico.tm.character.equipment.armours.Armour;
+import com.softwaremagico.tm.character.equipment.armours.InvalidArmourException;
+import com.softwaremagico.tm.character.equipment.shields.InvalidShieldException;
+import com.softwaremagico.tm.character.equipment.shields.Shield;
 import com.softwaremagico.tm.character.equipment.weapons.Weapon;
 import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
 import com.softwaremagico.tm.character.equipment.weapons.Weapons;
@@ -73,9 +73,9 @@ import com.softwaremagico.tm.character.occultism.InvalidPsiqueLevelException;
 import com.softwaremagico.tm.character.occultism.Occultism;
 import com.softwaremagico.tm.character.occultism.OccultismPower;
 import com.softwaremagico.tm.character.occultism.OccultismType;
-import com.softwaremagico.tm.character.race.InvalidRaceException;
-import com.softwaremagico.tm.character.race.Race;
-import com.softwaremagico.tm.character.race.RaceCharacteristic;
+import com.softwaremagico.tm.character.races.InvalidRaceException;
+import com.softwaremagico.tm.character.races.Race;
+import com.softwaremagico.tm.character.races.RaceCharacteristic;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.character.skills.InvalidSkillException;
@@ -1061,13 +1061,13 @@ public class CharacterPlayer {
 	 *            skill to check.
 	 * @return
 	 */
-	public boolean hasWeaponWithSkill(AvailableSkill skill) {
+	public Weapon hasWeaponWithSkill(AvailableSkill skill) {
 		for (Weapon weapon : getWeapons().getElements()) {
 			if (Objects.equals(weapon.getSkill(), skill.getSkillDefinition())) {
-				return true;
+				return weapon;
 			}
 		}
-		return false;
+		return null;
 	}
 
 	public int getEquipmentMaxTechnologicalLevel() {

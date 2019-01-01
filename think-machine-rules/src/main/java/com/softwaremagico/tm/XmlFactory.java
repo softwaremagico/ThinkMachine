@@ -34,7 +34,7 @@ import java.util.StringTokenizer;
 
 import com.softwaremagico.tm.character.factions.FactionGroup;
 import com.softwaremagico.tm.character.factions.FactionsFactory;
-import com.softwaremagico.tm.character.race.RaceFactory;
+import com.softwaremagico.tm.character.races.RaceFactory;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.Language;
 import com.softwaremagico.tm.log.MachineLog;

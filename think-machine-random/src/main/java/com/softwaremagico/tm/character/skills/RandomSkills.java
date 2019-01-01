@@ -36,13 +36,9 @@ import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.characteristics.CharacteristicType;
 import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
+import com.softwaremagico.tm.character.equipment.weapons.Weapon;
 import com.softwaremagico.tm.character.factions.FactionGroup;
 import com.softwaremagico.tm.character.occultism.OccultismTypeFactory;
-import com.softwaremagico.tm.character.skills.AvailableSkill;
-import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
-import com.softwaremagico.tm.character.skills.SkillDefinition;
-import com.softwaremagico.tm.character.skills.SkillGroup;
-import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
 import com.softwaremagico.tm.log.RandomGenerationLog;
 import com.softwaremagico.tm.random.RandomSelector;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
@@ -80,10 +76,12 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 	@Override
 	protected void assignIfMandatory(AvailableSkill skill) throws InvalidXmlElementException {
 		// Set skills to use equipment.
-		if (getCharacterPlayer().hasWeaponWithSkill(skill)) {
-			RandomGenerationLog.debug(this.getClass().getName(), "Assigning ranks for '" + skill + "' needed for a selected weapon.");
+		Weapon weapon = getCharacterPlayer().hasWeaponWithSkill(skill);
+		if (weapon != null) {
 			// Assign random ranks to the skill.
-			assignRandomRanks(skill);
+			int ranksAssigned = assignRandomRanks(skill);
+			RandomGenerationLog.debug(this.getClass().getName(), "Assigning '" + ranksAssigned + "' ranks for '" + skill + "' needed for a selected weapon '"
+					+ weapon + "'.");
 			// Remove skill from options to avoid adding more ranks.
 			removeElementWeight(skill);
 		}
@@ -277,7 +275,7 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 		return preferredCharacteristicsTypeSorted;
 	}
 
-	private int assignRandomRanks(AvailableSkill availableSkill) throws InvalidXmlElementException {
+	protected int assignRandomRanks(AvailableSkill availableSkill) throws InvalidXmlElementException {
 		int finalRanks = getRankValue(availableSkill);
 		if (finalRanks < 0) {
 			finalRanks = 0;
@@ -290,6 +288,10 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 		SpecializationPreferences selectedSpecialization = SpecializationPreferences.getSelected(getPreferences());
 		if (getCharacterPlayer().getSkillAssignedRanks(availableSkill) >= selectedSpecialization.maximum()) {
 			return 0;
+		}
+		// If respects age maximum.
+		if (finalRanks > FreeStyleCharacterCreation.getMaxInitialSkillsValues(getCharacterPlayer().getInfo().getAge())) {
+			finalRanks = FreeStyleCharacterCreation.getMaxInitialSkillsValues(getCharacterPlayer().getInfo().getAge());
 		}
 		// Final ranks cannot be greater that the total points remaining.
 		if (getCharacterPlayer().getSkillsTotalPoints() + (finalRanks - getCharacterPlayer().getSkillAssignedRanks(availableSkill)) > FreeStyleCharacterCreation

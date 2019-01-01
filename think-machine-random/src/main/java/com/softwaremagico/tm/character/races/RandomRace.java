@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.character.race;
+package com.softwaremagico.tm.character.races;
 
 /*-
  * #%L
@@ -29,9 +29,9 @@ import java.util.Set;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.character.race.InvalidRaceException;
-import com.softwaremagico.tm.character.race.Race;
-import com.softwaremagico.tm.character.race.RaceFactory;
+import com.softwaremagico.tm.character.races.InvalidRaceException;
+import com.softwaremagico.tm.character.races.Race;
+import com.softwaremagico.tm.character.races.RaceFactory;
 import com.softwaremagico.tm.random.RandomSelector;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;

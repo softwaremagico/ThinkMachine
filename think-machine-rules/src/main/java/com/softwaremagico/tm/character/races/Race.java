@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.character.race;
+package com.softwaremagico.tm.character.races;
 
 /*-
  * #%L

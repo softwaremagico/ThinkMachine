@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.character.planet;
+package com.softwaremagico.tm.character.planets;
 
 /*-
  * #%L

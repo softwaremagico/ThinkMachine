@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.character.equipment.armour;
+package com.softwaremagico.tm.character.equipment.armours;
 
 /*-
  * #%L

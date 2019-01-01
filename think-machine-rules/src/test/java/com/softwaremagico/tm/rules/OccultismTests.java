@@ -35,8 +35,8 @@ import com.softwaremagico.tm.character.occultism.InvalidPowerLevelException;
 import com.softwaremagico.tm.character.occultism.InvalidPsiqueLevelException;
 import com.softwaremagico.tm.character.occultism.OccultismPathFactory;
 import com.softwaremagico.tm.character.occultism.OccultismTypeFactory;
-import com.softwaremagico.tm.character.race.InvalidRaceException;
-import com.softwaremagico.tm.character.race.RaceFactory;
+import com.softwaremagico.tm.character.races.InvalidRaceException;
+import com.softwaremagico.tm.character.races.RaceFactory;
 import com.softwaremagico.tm.characters.CustomCharacter;
 
 @Test(groups = { "occultism" })

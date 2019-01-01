@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.character.equipment.shield;
+package com.softwaremagico.tm.character.equipment.shields;
 
 /*-
  * #%L

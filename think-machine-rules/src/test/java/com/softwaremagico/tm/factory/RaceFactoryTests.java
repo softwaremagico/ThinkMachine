@@ -29,7 +29,7 @@ import junit.framework.Assert;
 import org.testng.annotations.Test;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.character.race.RaceFactory;
+import com.softwaremagico.tm.character.races.RaceFactory;
 
 @Test(groups = { "raceFactory" })
 public class RaceFactoryTests {

@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.character.equipment.shield;
+package com.softwaremagico.tm.character.equipment.shields;
 
 /*-
  * #%L
@@ -30,9 +30,9 @@ import java.util.Set;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
-import com.softwaremagico.tm.character.equipment.shield.InvalidShieldException;
-import com.softwaremagico.tm.character.equipment.shield.Shield;
-import com.softwaremagico.tm.character.equipment.shield.ShieldFactory;
+import com.softwaremagico.tm.character.equipment.shields.InvalidShieldException;
+import com.softwaremagico.tm.character.equipment.shields.Shield;
+import com.softwaremagico.tm.character.equipment.shields.ShieldFactory;
 import com.softwaremagico.tm.log.RandomGenerationLog;
 import com.softwaremagico.tm.random.RandomSelector;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;

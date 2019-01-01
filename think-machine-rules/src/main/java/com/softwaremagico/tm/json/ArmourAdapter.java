@@ -30,8 +30,8 @@ import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
 import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.character.equipment.armour.Armour;
-import com.softwaremagico.tm.character.equipment.armour.ArmourFactory;
+import com.softwaremagico.tm.character.equipment.armours.Armour;
+import com.softwaremagico.tm.character.equipment.armours.ArmourFactory;
 import com.softwaremagico.tm.log.MachineLog;
 
 public class ArmourAdapter extends ElementAdapter<Armour> {

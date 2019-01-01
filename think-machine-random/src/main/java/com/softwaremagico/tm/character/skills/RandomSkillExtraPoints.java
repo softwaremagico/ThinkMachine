@@ -34,6 +34,7 @@ import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.log.RandomGenerationLog;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
+import com.softwaremagico.tm.random.selectors.SpecializationPreferences;
 
 public class RandomSkillExtraPoints extends RandomSkills {
 
@@ -70,5 +71,30 @@ public class RandomSkillExtraPoints extends RandomSkills {
 			return finalRanks - currentRanks;
 		}
 		return 0;
+	}
+
+	@Override
+	protected int assignRandomRanks(AvailableSkill availableSkill) throws InvalidXmlElementException {
+		int finalRanks = getRankValue(availableSkill);
+		if (finalRanks < 0) {
+			finalRanks = 0;
+		}
+		// Only if adding more ranks.
+		if (finalRanks < getCharacterPlayer().getSkillAssignedRanks(availableSkill)) {
+			return 0;
+		}
+		// If specializations allows it.
+		SpecializationPreferences selectedSpecialization = SpecializationPreferences.getSelected(getPreferences());
+		if (getCharacterPlayer().getSkillAssignedRanks(availableSkill) >= selectedSpecialization.maximum()) {
+			return 0;
+		}
+		// If respects age maximum.
+		if (finalRanks > FreeStyleCharacterCreation.getMaxInitialSkillsValues(getCharacterPlayer().getInfo().getAge())) {
+			finalRanks = FreeStyleCharacterCreation.getMaxInitialSkillsValues(getCharacterPlayer().getInfo().getAge());
+		}
+
+		getCharacterPlayer().setSkillRank(availableSkill, finalRanks);
+		getCharacterPlayer().setDesiredSkillRanks(availableSkill, finalRanks);
+		return finalRanks;
 	}
 }

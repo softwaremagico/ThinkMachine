@@ -28,7 +28,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.character.equipment.armour.ArmourFactory;
+import com.softwaremagico.tm.character.equipment.armours.ArmourFactory;
 
 @Test(groups = { "armourFactory" })
 public class ArmourFactoryTests {

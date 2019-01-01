@@ -30,8 +30,8 @@ import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
 import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.character.equipment.shield.Shield;
-import com.softwaremagico.tm.character.equipment.shield.ShieldFactory;
+import com.softwaremagico.tm.character.equipment.shields.Shield;
+import com.softwaremagico.tm.character.equipment.shields.ShieldFactory;
 import com.softwaremagico.tm.log.MachineLog;
 
 public class ShieldAdapter extends ElementAdapter<Shield> {

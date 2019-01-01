@@ -31,7 +31,7 @@ import java.util.Set;
 import com.softwaremagico.tm.Element;
 import com.softwaremagico.tm.character.benefices.AvailableBenefice;
 import com.softwaremagico.tm.character.blessings.Blessing;
-import com.softwaremagico.tm.character.race.Race;
+import com.softwaremagico.tm.character.races.Race;
 import com.softwaremagico.tm.log.MachineLog;
 
 public class Faction extends Element<Faction> {
