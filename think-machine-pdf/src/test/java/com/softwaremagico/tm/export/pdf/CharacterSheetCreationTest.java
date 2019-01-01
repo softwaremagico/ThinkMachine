@@ -57,8 +57,6 @@ import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.pdf.complete.CharacterSheet;
 import com.softwaremagico.tm.pdf.small.SmallCharacterSheet;
-import com.softwaremagico.tm.random.exceptions.DuplicatedPreferenceException;
-import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 
 @Test(groups = { "characterPdfGeneration" })
 public class CharacterSheetCreationTest {
@@ -87,13 +85,13 @@ public class CharacterSheetCreationTest {
 	}
 
 	@Test
-	public void emptyPdfSmallEn() throws InvalidXmlElementException, DuplicatedPreferenceException, InvalidRandomElementSelectedException {
+	public void emptyPdfSmallEn() throws InvalidXmlElementException {
 		SmallCharacterSheet sheet = new SmallCharacterSheet("en");
 		sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "RandomCharacterSmallEmpty_EN.pdf");
 	}
 
 	@Test
-	public void emptyPdfSmallEs() throws InvalidXmlElementException, DuplicatedPreferenceException, InvalidRandomElementSelectedException {
+	public void emptyPdfSmallEs() {
 		SmallCharacterSheet sheet = new SmallCharacterSheet("es");
 		sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "RandomCharacterSmallEmpty_ES.pdf");
 	}

@@ -40,7 +40,6 @@ import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
 import com.softwaremagico.tm.character.creation.CostCalculator;
 import com.softwaremagico.tm.characters.CustomCharacter;
 import com.softwaremagico.tm.language.LanguagePool;
-import com.softwaremagico.tm.random.exceptions.DuplicatedPreferenceException;
 
 @Test(groups = { "jsonExporter" })
 public class JsonTests {
@@ -58,7 +57,7 @@ public class JsonTests {
 	}
 
 	@Test
-	public void exportToJson() throws InvalidXmlElementException, DuplicatedPreferenceException, IOException {
+	public void exportToJson() throws InvalidXmlElementException, IOException {
 		Assert.assertNotNull(player);
 		originalJson = CharacterJsonManager.toJson(player);
 		try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(OUTPUT_PATH)), true)) {
