@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>think-machine-rules</artifactId>
 	<packaging>jar</packaging>
-	<name>Think Machine (Core)</name>
+	<name>Think Machine (Rules)</name>
 
 	<parent>
 		<groupId>com.softwaremagico</groupId>

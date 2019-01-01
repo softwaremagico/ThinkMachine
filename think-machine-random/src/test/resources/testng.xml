@@ -26,9 +26,9 @@
 	<test name="CharacterGenerator" enabled="true" preserve-order="true">
 		<groups>
 			<run>
-				<exclude name="randomDefinition" />
+				<include name="randomDefinition" />
 				<include name="randomCharacter" />
-				<exclude name="profile" />
+				<include name="profile" />
 				<exclude name="gaussianDistribution" />
 			</run>
 		</groups>
