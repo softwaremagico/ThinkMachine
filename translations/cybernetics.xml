@@ -280,8 +280,8 @@
 	</secondBrainJumpLoreSoftware>
 	<secondBrainEnergyPistolsLore>
 		<name>
-			<en>Program [Jumpweb]</en>
-			<es>Programa [Red de Salto]</es>
+			<en>Program [Energy Pistols]</en>
+			<es>Programa [Pistola Energía]</es>
 		</name>
 		<techLevel>6</techLevel>
 		<points>0</points>
@@ -300,8 +300,8 @@
 	</secondBrainEnergyPistolsLore>
 	<secondBrainThinkMachineLore>
 		<name>
-			<en>Program [Jumpweb]</en>
-			<es>Programa [Red de Salto]</es>
+			<en>Program [Think Machine]</en>
+			<es>Programa [Máquina Pensante]</es>
 		</name>
 		<techLevel>6</techLevel>
 		<points>0</points>

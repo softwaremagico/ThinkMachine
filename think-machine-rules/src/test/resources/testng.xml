@@ -27,6 +27,7 @@
 				<include name="shieldFactory" />
 				<include name="armourFactory" />
 				<include name="combatStyleFactory" />
+				<include name="cyberneticFactory" />
 				<include name="randomDefinition" />
 				<include name="randomCharacter" />
 				<include name="jsonExporter" />
@@ -50,6 +51,7 @@
 			<class name="com.softwaremagico.tm.factory.ShieldFactoryTests" />
 			<class name="com.softwaremagico.tm.factory.ArmourFactoryTests" />
 			<class name="com.softwaremagico.tm.factory.CombatStylesFactoryTests" />
+			<class name="com.softwaremagico.tm.factory.CyberneticDeviceFactoryTests" />
 			<class name="com.softwaremagico.tm.rules.BlessingTests" />
 			<class name="com.softwaremagico.tm.rules.OccultismTests" />
 			<class name="com.softwaremagico.tm.txt.ExportTxtTests" />

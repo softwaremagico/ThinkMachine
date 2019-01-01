@@ -36,16 +36,15 @@ public class CyberneticDeviceFactory extends XmlFactory<CyberneticDevice> {
 	private final static String NAME = "name";
 	private final static String TECH_LEVEL = "techLevel";
 	private final static String POINTS = "points";
-	
+
 	private final static String INCOMPATIBILITY = "incompatibility";
 	private final static String ATTACHED = "attached";
 	private final static String MATERIAL = "material";
 	private final static String VISIBILITY = "visibility";
 	private final static String USABILITY = "usability";
 	private final static String QUALITY = "quality";
-	private final static String ACTIVATION = "activation";
 	private final static String POWER = "power";
-	
+
 	private final static String COST = "cost";
 	private final static String PROSCRIBED = "proscribed";
 	private final static String BONIFICATION = "bonification";
@@ -101,26 +100,93 @@ public class CyberneticDeviceFactory extends XmlFactory<CyberneticDevice> {
 				String techLevelName = translator.getNodeValue(cyberneticDeviceId, TECH_LEVEL);
 				techLevel = Integer.parseInt(techLevelName);
 			} catch (Exception e) {
-				throw new InvalidWeaponException("Invalid tech level in weapon '" + cyberneticDeviceId + "'.");
+				throw new InvalidWeaponException("Invalid tech level in cybernetic device '" + cyberneticDeviceId + "'.");
 			}
-			
+
 			int points = 0;
 			try {
 				String pointsName = translator.getNodeValue(cyberneticDeviceId, POINTS);
 				points = Integer.parseInt(pointsName);
 			} catch (Exception e) {
-				throw new InvalidWeaponException("Invalid points value in weapon '" + cyberneticDeviceId + "'.");
+				throw new InvalidWeaponException("Invalid points value in cybernetic device '" + cyberneticDeviceId + "'.");
 			}
-			
+
+			int cost = 0;
+			try {
+				String costName = translator.getNodeValue(cyberneticDeviceId, COST);
+				cost = Integer.parseInt(costName);
+			} catch (Exception e) {
+				throw new InvalidWeaponException("Invalid cost in cybernetic device '" + cyberneticDeviceId + "'.");
+			}
+
 			int incompatibility = 0;
 			try {
 				String incompatibilityName = translator.getNodeValue(cyberneticDeviceId, INCOMPATIBILITY);
 				incompatibility = Integer.parseInt(incompatibilityName);
 			} catch (Exception e) {
-				throw new InvalidWeaponException("Invalid incompatibility value in weapon '" + cyberneticDeviceId + "'.");
+				throw new InvalidWeaponException("Invalid incompatibility value in cybernetic device '" + cyberneticDeviceId + "'.");
 			}
 
-			return null;
+			CyberneticDeviceTrait attached = null;
+			try {
+				attached = CyberneticDeviceTraitFactory.getInstance().getElement(translator.getNodeValue(cyberneticDeviceId, ATTACHED), language);
+			} catch (NullPointerException npoe) {
+				// Not mandatory
+			}
+
+			CyberneticDeviceTrait material = null;
+			try {
+				material = CyberneticDeviceTraitFactory.getInstance().getElement(translator.getNodeValue(cyberneticDeviceId, MATERIAL), language);
+			} catch (NullPointerException npoe) {
+				// Not mandatory
+			}
+
+			CyberneticDeviceTrait visibility = null;
+			try {
+				visibility = CyberneticDeviceTraitFactory.getInstance().getElement(translator.getNodeValue(cyberneticDeviceId, VISIBILITY), language);
+			} catch (NullPointerException npoe) {
+				// Not mandatory
+			}
+
+			CyberneticDeviceTrait usability = null;
+			try {
+				usability = CyberneticDeviceTraitFactory.getInstance().getElement(translator.getNodeValue(cyberneticDeviceId, USABILITY), language);
+			} catch (NullPointerException npoe) {
+				// Not mandatory
+			}
+
+			CyberneticDeviceTrait quality = null;
+			try {
+				quality = CyberneticDeviceTraitFactory.getInstance().getElement(translator.getNodeValue(cyberneticDeviceId, QUALITY), language);
+			} catch (NullPointerException npoe) {
+				// Not mandatory
+			}
+
+			CyberneticDeviceTrait power = null;
+			try {
+				power = CyberneticDeviceTraitFactory.getInstance().getElement(translator.getNodeValue(cyberneticDeviceId, POWER), language);
+			} catch (NullPointerException npoe) {
+				// Not mandatory
+			}
+
+			boolean proscribed = false;
+			try {
+				proscribed = Boolean.parseBoolean(translator.getNodeValue(cyberneticDeviceId, PROSCRIBED));
+			} catch (NullPointerException npoe) {
+				// Not mandatory
+			}
+
+			CyberneticDevice requires = null;
+//			try {
+//				requires = CyberneticDeviceFactory.getInstance().getElement(translator.getNodeValue(cyberneticDeviceId, REQUIRES), language);
+//			} catch (NullPointerException npoe) {
+//				// Not mandatory
+//			}
+
+			CyberneticDevice cyberneticDevice = new CyberneticDevice(cyberneticDeviceId, name, language, points, incompatibility, cost, techLevel, usability,
+					quality, visibility, material, attached, power, proscribed, null, requires);
+
+			return cyberneticDevice;
 		} catch (Exception e) {
 			throw new InvalidCyberneticDeviceException("Invalid cybernetic device definition for '" + cyberneticDeviceId + "'.", e);
 		}

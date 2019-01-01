@@ -34,6 +34,7 @@ import com.softwaremagico.tm.character.RandomizeCharacter;
 import com.softwaremagico.tm.character.benefices.AvailableBenefice;
 import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
 import com.softwaremagico.tm.character.benefices.RandomBeneficeDefinition;
+import com.softwaremagico.tm.character.blessings.BlessingClassification;
 import com.softwaremagico.tm.character.characteristics.Characteristic;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.characteristics.CharacteristicType;
@@ -175,8 +176,10 @@ public class RandomCharacterTests {
 		characterPlayer.setRace(RaceFactory.getInstance().getElement("human", LANGUAGE));
 		randomizeCharacter.createCharacter();
 		try {
-			Assert.assertTrue(characterPlayer.getCurses().size() >= CurseNumberPreferences.FAIR.minimum());
-			Assert.assertTrue(characterPlayer.getCurses().size() <= CurseNumberPreferences.FAIR.maximum());
+			Assert.assertTrue(characterPlayer.getCurses().size() >= CurseNumberPreferences.FAIR.minimum()
+					+ characterPlayer.getFaction().getBlessings(BlessingClassification.BLESSING).size());
+			Assert.assertTrue(characterPlayer.getCurses().size() <= CurseNumberPreferences.FAIR.maximum()
+					+ characterPlayer.getFaction().getBlessings(BlessingClassification.CURSE).size());
 
 			Assert.assertTrue(characterPlayer.getAllBlessings().size() >= BlessingNumberPreferences.HIGH.minimum()
 					+ characterPlayer.getFaction().getBlessings().size());
@@ -304,7 +307,7 @@ public class RandomCharacterTests {
 		Assert.assertNotNull(characterPlayer.hasWeaponWithSkill(AvailableSkillsFactory.getInstance().getElement("energyGuns", LANGUAGE)));
 
 		characterPlayer.getCharacteristic(CharacteristicName.TECH).setValue(6);
-		
+
 		RandomSkills randomSkills = new RandomSkills(characterPlayer, null);
 		AvailableSkill energyGuns = AvailableSkillsFactory.getInstance().getElement("energyGuns", LANGUAGE);
 		randomSkills.validateElement(energyGuns.getRandomDefinition());

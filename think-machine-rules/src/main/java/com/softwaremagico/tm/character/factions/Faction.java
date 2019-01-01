@@ -31,6 +31,7 @@ import java.util.Set;
 import com.softwaremagico.tm.Element;
 import com.softwaremagico.tm.character.benefices.AvailableBenefice;
 import com.softwaremagico.tm.character.blessings.Blessing;
+import com.softwaremagico.tm.character.blessings.BlessingClassification;
 import com.softwaremagico.tm.character.races.Race;
 import com.softwaremagico.tm.log.MachineLog;
 
@@ -83,6 +84,16 @@ public class Faction extends Element<Faction> {
 			}
 		}
 		return blessings;
+	}
+
+	public Set<Blessing> getBlessings(BlessingClassification classification) {
+		Set<Blessing> curses = new HashSet<>();
+		for (Blessing blessing : getBlessings()) {
+			if (blessing.getBlessingClassification() == classification) {
+				curses.add(blessing);
+			}
+		}
+		return curses;
 	}
 
 	public Set<AvailableBenefice> getBenefices() {

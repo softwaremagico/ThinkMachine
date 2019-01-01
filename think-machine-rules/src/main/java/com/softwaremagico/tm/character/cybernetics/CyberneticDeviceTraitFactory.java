@@ -69,7 +69,7 @@ public class CyberneticDeviceTraitFactory extends XmlFactory<CyberneticDeviceTra
 		try {
 			String name = translator.getNodeValue(cyberneticDeviceTraitId, NAME, language);
 
-			String categoryName = translator.getNodeValue(cyberneticDeviceTraitId, CATEGORY, language);
+			String categoryName = translator.getNodeValue(cyberneticDeviceTraitId, CATEGORY);
 			CyberneticDeviceTraitCategory cyberneticDeviceTraitCategory = CyberneticDeviceTraitCategory.get(categoryName);
 			if (cyberneticDeviceTraitCategory == null) {
 				throw new InvalidCyberneticDeviceTraitException("Invalid category definition for '" + cyberneticDeviceTraitId + "'.");

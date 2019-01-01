@@ -44,7 +44,7 @@ import com.softwaremagico.tm.character.blessings.BlessingFactory;
 import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.creation.CostCalculator;
-import com.softwaremagico.tm.character.cybernetics.CyberneticDevice;
+import com.softwaremagico.tm.character.cybernetics.CyberneticDeviceFactory;
 import com.softwaremagico.tm.character.equipment.armours.ArmourFactory;
 import com.softwaremagico.tm.character.equipment.shields.ShieldFactory;
 import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
@@ -158,8 +158,8 @@ public class CharacterSheetCreationTest {
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("pistola", player.getLanguage()));
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("shaidan", player.getLanguage()));
 
-		player.getCybernetics().addElement(new CyberneticDevice("Ojo de Ingeniero", LANGUAGE, 6, 5, "Normal", "Normal", "Automático", "Visible", ""));
-		player.getCybernetics().addElement(new CyberneticDevice("Jonás", LANGUAGE, 7, 4, "Normal", "Normal", "Ds+Arquería", "Incógnito", ""));
+		player.getCybernetics().addElement(CyberneticDeviceFactory.getInstance().getElement("engineersEye", LANGUAGE));
+		player.getCybernetics().addElement(CyberneticDeviceFactory.getInstance().getElement("jonah", LANGUAGE));
 
 		player.getWeapons().addElement(WeaponFactory.getInstance().getElement("mace", LANGUAGE));
 		player.getWeapons().addElement(WeaponFactory.getInstance().getElement("martechGold", LANGUAGE));

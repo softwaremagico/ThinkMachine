@@ -37,36 +37,49 @@ import com.softwaremagico.tm.character.skills.CyberneticSkill;
 public class CyberneticDevice extends Element<CyberneticDevice> {
 	private final int points;
 	private final int incompatibility;
-	private final String usability;
-	private final String quality;
-	private final String activation;
-	private final String appearence;
+	private final int cost;
+	private final int techLevel;
+	private final CyberneticDeviceTrait usability;
+	private final CyberneticDeviceTrait quality;
+	private final CyberneticDeviceTrait visibility;
+	private final CyberneticDeviceTrait material;
+	private final CyberneticDeviceTrait attached;
+	private final CyberneticDeviceTrait power;
 	private final String others;
 	private final CyberneticDevice requirement;
 	private final Weapon weapon;
+	private final boolean proscribed;
 
 	private Map<String, CyberneticSkill> skillImprovements;
 	private Map<String, CharacteristicImprovement> characteristicImprovents;
 
-	public CyberneticDevice(String name, String language, int points, int incompatibility, String usability, String quality, String activation,
-			String appearence, String others, CyberneticDevice requirement, Weapon weapon) {
-		super(null, name, language);
+	public CyberneticDevice(String id, String name, String language, int points, int incompatibility, int cost, int techLevel, CyberneticDeviceTrait usability,
+			CyberneticDeviceTrait quality, CyberneticDeviceTrait visibility, CyberneticDeviceTrait material, CyberneticDeviceTrait attached,
+			CyberneticDeviceTrait power, boolean proscribed, String others, CyberneticDevice requirement, Weapon weapon) {
+		super(id, name, language);
 		this.points = points;
 		this.incompatibility = incompatibility;
+		this.cost = cost;
+		this.techLevel = techLevel;
 		this.usability = usability;
 		this.quality = quality;
-		this.activation = activation;
-		this.appearence = appearence;
+		this.visibility = visibility;
+		this.material = material;
+		this.attached = attached;
+		this.power = power;
 		this.others = others;
 		this.requirement = requirement;
+		this.proscribed = proscribed;
 		this.weapon = weapon;
 		skillImprovements = new HashMap<>();
 		characteristicImprovents = new HashMap<>();
 	}
 
-	public CyberneticDevice(String name, String language, int points, int incompatibility, String usability, String quality, String activation,
-			String appearence, String others) {
-		this(name, language, points, incompatibility, usability, quality, activation, appearence, others, null, null);
+	public CyberneticDevice(String id, String name, String language, int points, int incompatibility, int cost, int techLevel, CyberneticDeviceTrait usability,
+			CyberneticDeviceTrait quality, CyberneticDeviceTrait visibility, CyberneticDeviceTrait material, CyberneticDeviceTrait attached,
+			CyberneticDeviceTrait power, boolean proscribed, String others, CyberneticDevice requirement) {
+		this(id, name, language, points, incompatibility, cost, techLevel, usability, quality, visibility, material, attached, power, proscribed, others,
+				requirement, null);
 	}
 
 	public int getPoints() {
@@ -77,20 +90,16 @@ public class CyberneticDevice extends Element<CyberneticDevice> {
 		return incompatibility;
 	}
 
-	public String getUsability() {
+	public CyberneticDeviceTrait getUsability() {
 		return usability;
 	}
 
-	public String getQuality() {
+	public CyberneticDeviceTrait getQuality() {
 		return quality;
 	}
 
-	public String getActivation() {
-		return activation;
-	}
-
-	public String getAppearence() {
-		return appearence;
+	public CyberneticDeviceTrait getVisibility() {
+		return visibility;
 	}
 
 	public String getOthers() {
@@ -123,5 +132,29 @@ public class CyberneticDevice extends Element<CyberneticDevice> {
 
 	public Weapon getWeapon() {
 		return weapon;
+	}
+
+	public CyberneticDeviceTrait getMaterial() {
+		return material;
+	}
+
+	public CyberneticDeviceTrait getAttached() {
+		return attached;
+	}
+
+	public CyberneticDeviceTrait getPower() {
+		return power;
+	}
+
+	public boolean isProscribed() {
+		return proscribed;
+	}
+
+	public int getCost() {
+		return cost;
+	}
+
+	public int getTechLevel() {
+		return techLevel;
 	}
 }

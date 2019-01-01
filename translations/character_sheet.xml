@@ -300,10 +300,10 @@
 		<en>Quality</en>
 		<es>Calidad</es>
 	</cyberneticsQuality>
-	<cyberneticsActivtation>
-		<en>Activation</en>
-		<es>Activación</es>
-	</cyberneticsActivtation>
+	<cyberneticsPower>
+		<en>Power</en>
+		<es>Energía</es>
+	</cyberneticsPower>
 	<cyberneticsAppearence>
 		<en>Appearen.</en>
 		<es>Apariencia</es>

@@ -38,7 +38,7 @@ public class CyberneticsTable extends LateralHeaderPdfPTable {
 	private final static int INCOMPATIBILITY_COLUMN_WIDTH = 15;
 	private final static int USABILITY_COLUMN_WIDTH = 32;
 	private final static int QUALITY_COLUMN_WIDTH = 32;
-	private final static int ACTIVATION_COLUMN_WIDTH = 32;
+	private final static int POWER_COLUMN_WIDTH = 32;
 	private final static int APPEARENCE_COLUMN_WIDTH = 32;
 	private final static int OTHERS_COLUMN_WIDTH = 40;
 
@@ -51,7 +51,7 @@ public class CyberneticsTable extends LateralHeaderPdfPTable {
 		addCell(createTableSubtitleElement(getTranslator().getTranslatedText("cyberneticsIncompatibility")));
 		addCell(createTableSubtitleElement(getTranslator().getTranslatedText("cyberneticsUsability")));
 		addCell(createTableSubtitleElement(getTranslator().getTranslatedText("cyberneticsQuality")));
-		addCell(createTableSubtitleElement(getTranslator().getTranslatedText("cyberneticsActivtation")));
+		addCell(createTableSubtitleElement(getTranslator().getTranslatedText("cyberneticsPower")));
 		addCell(createTableSubtitleElement(getTranslator().getTranslatedText("cyberneticsAppearence")));
 		addCell(createTableSubtitleElement(getTranslator().getTranslatedText("cyberneticsOthers")));
 
@@ -61,11 +61,16 @@ public class CyberneticsTable extends LateralHeaderPdfPTable {
 				addCell(createFirstElementLine(device.getName(), NAME_COLUMN_WIDTH, FadingSunsTheme.CYBERNETICS_CONTENT_FONT_SIZE));
 				addCell(createElementLine(device.getPoints() + "", POINTS_COLUMN_WIDTH, FadingSunsTheme.CYBERNETICS_CONTENT_FONT_SIZE));
 				addCell(createElementLine(device.getIncompatibility() + "", INCOMPATIBILITY_COLUMN_WIDTH, FadingSunsTheme.CYBERNETICS_CONTENT_FONT_SIZE));
-				addCell(createElementLine(device.getUsability(), USABILITY_COLUMN_WIDTH, FadingSunsTheme.CYBERNETICS_CONTENT_FONT_SIZE));
-				addCell(createElementLine(device.getQuality(), QUALITY_COLUMN_WIDTH, FadingSunsTheme.CYBERNETICS_CONTENT_FONT_SIZE));
-				addCell(createElementLine(device.getActivation(), ACTIVATION_COLUMN_WIDTH, FadingSunsTheme.CYBERNETICS_CONTENT_FONT_SIZE));
-				addCell(createElementLine(device.getAppearence(), APPEARENCE_COLUMN_WIDTH, FadingSunsTheme.CYBERNETICS_CONTENT_FONT_SIZE));
-				addCell(createElementLine(device.getOthers(), OTHERS_COLUMN_WIDTH, FadingSunsTheme.CYBERNETICS_CONTENT_FONT_SIZE));
+				addCell(createElementLine(device.getUsability() != null ? device.getUsability().getName() : "", USABILITY_COLUMN_WIDTH,
+						FadingSunsTheme.CYBERNETICS_CONTENT_FONT_SIZE));
+				addCell(createElementLine(device.getQuality() != null ? device.getQuality().getName() : "", QUALITY_COLUMN_WIDTH,
+						FadingSunsTheme.CYBERNETICS_CONTENT_FONT_SIZE));
+				addCell(createElementLine(device.getPower() != null ? device.getPower().getName() : "", POWER_COLUMN_WIDTH,
+						FadingSunsTheme.CYBERNETICS_CONTENT_FONT_SIZE));
+				addCell(createElementLine(device.getVisibility() != null ? device.getVisibility().getName() : "", APPEARENCE_COLUMN_WIDTH,
+						FadingSunsTheme.CYBERNETICS_CONTENT_FONT_SIZE));
+				addCell(createElementLine(device.getOthers() != null ? device.getOthers() : "", OTHERS_COLUMN_WIDTH,
+						FadingSunsTheme.CYBERNETICS_CONTENT_FONT_SIZE));
 				addedDevices++;
 			}
 		}
@@ -76,7 +81,7 @@ public class CyberneticsTable extends LateralHeaderPdfPTable {
 			addCell(createEmptyElementLine(GAP, INCOMPATIBILITY_COLUMN_WIDTH));
 			addCell(createEmptyElementLine(GAP, USABILITY_COLUMN_WIDTH));
 			addCell(createEmptyElementLine(GAP, QUALITY_COLUMN_WIDTH));
-			addCell(createEmptyElementLine(GAP, ACTIVATION_COLUMN_WIDTH));
+			addCell(createEmptyElementLine(GAP, POWER_COLUMN_WIDTH));
 			addCell(createEmptyElementLine(GAP, APPEARENCE_COLUMN_WIDTH));
 			addCell(createEmptyElementLine(GAP, OTHERS_COLUMN_WIDTH));
 		}
