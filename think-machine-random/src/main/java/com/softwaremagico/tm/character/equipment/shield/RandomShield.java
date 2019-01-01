@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.random;
+package com.softwaremagico.tm.character.equipment.shield;
 
 /*-
  * #%L
@@ -34,6 +34,7 @@ import com.softwaremagico.tm.character.equipment.shield.InvalidShieldException;
 import com.softwaremagico.tm.character.equipment.shield.Shield;
 import com.softwaremagico.tm.character.equipment.shield.ShieldFactory;
 import com.softwaremagico.tm.log.RandomGenerationLog;
+import com.softwaremagico.tm.random.RandomSelector;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.CombatPreferences;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
@@ -41,12 +42,12 @@ import com.softwaremagico.tm.random.selectors.IRandomPreference;
 public class RandomShield extends RandomSelector<Shield> {
 	private Integer currentMoney = null;
 
-	protected RandomShield(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences) throws InvalidXmlElementException {
+	public RandomShield(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences) throws InvalidXmlElementException {
 		super(characterPlayer, preferences);
 	}
 
 	@Override
-	protected void assign() throws InvalidRandomElementSelectedException, InvalidShieldException {
+	public void assign() throws InvalidRandomElementSelectedException, InvalidShieldException {
 		Shield selectedShield = selectElementByWeight();
 		if (getCharacterPlayer().getShield() == null) {
 			getCharacterPlayer().setShield(selectedShield);

@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.random;
+package com.softwaremagico.tm.character;
 
 /*-
  * #%L
@@ -37,17 +37,18 @@ import com.softwaremagico.tm.character.factions.FactionGroup;
 import com.softwaremagico.tm.character.factions.FactionsFactory;
 import com.softwaremagico.tm.character.race.InvalidRaceException;
 import com.softwaremagico.tm.log.RandomGenerationLog;
+import com.softwaremagico.tm.random.RandomSelector;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
 
 public class RandomSurname extends RandomSelector<Surname> {
 
-	protected RandomSurname(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences) throws InvalidXmlElementException {
+	public RandomSurname(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences) throws InvalidXmlElementException {
 		super(characterPlayer, preferences);
 	}
 
 	@Override
-	protected void assign() throws InvalidRaceException, InvalidRandomElementSelectedException {
+	public void assign() throws InvalidRaceException, InvalidRandomElementSelectedException {
 		getCharacterPlayer().getInfo().setSurname(selectElementByWeight());
 	}
 

@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.random;
+package com.softwaremagico.tm.character.characteristics;
 
 /*-
  * #%L
@@ -34,6 +34,7 @@ import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.characteristics.CharacteristicType;
 import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
 import com.softwaremagico.tm.character.factions.FactionGroup;
+import com.softwaremagico.tm.random.RandomSelector;
 import com.softwaremagico.tm.random.exceptions.ImpossibleToAssignMandatoryElementException;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.CharacteristicsPreferences;
@@ -52,7 +53,7 @@ public class RandomCharacteristics extends RandomSelector<Characteristic> {
 	}
 
 	@Override
-	protected void assign() throws InvalidRandomElementSelectedException {
+	public void assign() throws InvalidRandomElementSelectedException {
 		// Set minimum values of characteristics.
 		assignMinimumValuesOfCharacteristics();
 		SpecializationPreferences selectedSpecialization = SpecializationPreferences.getSelected(getPreferences());

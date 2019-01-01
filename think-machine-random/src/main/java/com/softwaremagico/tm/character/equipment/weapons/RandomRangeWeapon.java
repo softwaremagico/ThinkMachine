@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.random;
+package com.softwaremagico.tm.character.equipment.weapons;
 
 /*-
  * #%L
@@ -34,21 +34,21 @@ import com.softwaremagico.tm.character.equipment.weapons.WeaponType;
 import com.softwaremagico.tm.log.RandomGenerationLog;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
 
-public class RandomMeleeWeapon extends RandomWeapon {
+public class RandomRangeWeapon extends RandomWeapon {
 
-	protected RandomMeleeWeapon(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences) throws InvalidXmlElementException {
+	public RandomRangeWeapon(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences) throws InvalidXmlElementException {
 		super(characterPlayer, preferences);
 	}
 
 	@Override
 	protected Set<WeaponType> weaponTypesFilter() {
-		return WeaponType.getMeleeTypes();
+		return WeaponType.getRangedTypes();
 	}
 
 	@Override
 	protected int getWeightCostModificator(Weapon weapon) {
 		if (weapon.getCost() > getCurrentMoney() / 1.1) {
-			return 10;
+			return 100;
 		} else if (weapon.getCost() > getCurrentMoney() / 2) {
 			return 7;
 		} else if (weapon.getCost() > getCurrentMoney() / 3) {
@@ -59,31 +59,17 @@ public class RandomMeleeWeapon extends RandomWeapon {
 			return 3;
 		} else if (weapon.getCost() > getCurrentMoney() / 10) {
 			return 2;
-		} else {
-			// Melee weapons are usually cheap.
+		} else if (weapon.getCost() > getCurrentMoney() / 20) {
 			return 1;
+		} else {
+			// No so cheap weapons.
+			return MAX_PROBABILITY;
 		}
 	}
 
 	@Override
 	protected int getWeightTechModificator(Weapon weapon) {
 		int weight = 0;
-
-		// Shields only if already has a weapon.
-		if (weapon.getType().equals(WeaponType.MELEE_SHIELD)) {
-			boolean alreadyWeapon = false;
-			for (Weapon weaponEquiped : getCharacterPlayer().getAllWeapons()) {
-				// Already a different weapon
-				if (weaponEquiped.getType() != WeaponType.MELEE_SHIELD && weaponTypesFilter().contains(weaponEquiped.getType())) {
-					alreadyWeapon = true;
-					break;
-				}
-			}
-			if (!alreadyWeapon) {
-				return 0;
-			}
-		}
-
 		// Similar tech level preferred.
 		weight += MAX_PROBABILITY / Math.pow(10, 2 * (getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).getValue() - weapon.getTechLevel()));
 		RandomGenerationLog.debug(
@@ -91,10 +77,8 @@ public class RandomMeleeWeapon extends RandomWeapon {
 				"Weight tech bonus for '" + weapon + "' is '" + MAX_PROBABILITY
 						/ Math.pow(10, 2 * (getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).getValue() - weapon.getTechLevel())) + "'.");
 		if (weight <= 0) {
-			// Melee weapons usually has very low tech level.
-			weight = 1;
+			weight = 0;
 		}
-
 		return weight;
 	}
 }

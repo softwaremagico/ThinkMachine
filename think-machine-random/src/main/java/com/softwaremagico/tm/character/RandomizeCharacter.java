@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.random;
+package com.softwaremagico.tm.character;
 
 /*-
  * #%L
@@ -33,15 +33,31 @@ import java.util.Set;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.Gender;
+import com.softwaremagico.tm.character.benefices.RandomBeneficeDefinition;
 import com.softwaremagico.tm.character.blessings.Blessing;
+import com.softwaremagico.tm.character.blessings.RandomBlessingDefinition;
+import com.softwaremagico.tm.character.blessings.RandomCursesDefinition;
 import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
+import com.softwaremagico.tm.character.characteristics.RandomCharacteristics;
+import com.softwaremagico.tm.character.characteristics.RandomCharacteristicsExtraPoints;
 import com.softwaremagico.tm.character.creation.CostCalculator;
 import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
 import com.softwaremagico.tm.character.equipment.armour.InvalidArmourException;
+import com.softwaremagico.tm.character.equipment.armour.RandomArmour;
 import com.softwaremagico.tm.character.equipment.shield.InvalidShieldException;
+import com.softwaremagico.tm.character.equipment.shield.RandomShield;
+import com.softwaremagico.tm.character.equipment.weapons.RandomMeleeWeapon;
+import com.softwaremagico.tm.character.equipment.weapons.RandomRangeWeapon;
+import com.softwaremagico.tm.character.equipment.weapons.RandomWeapon;
+import com.softwaremagico.tm.character.factions.RandomFaction;
+import com.softwaremagico.tm.character.occultism.RandomPsique;
+import com.softwaremagico.tm.character.occultism.RandomPsiquePath;
+import com.softwaremagico.tm.character.race.RandomRace;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.character.skills.InvalidSkillException;
+import com.softwaremagico.tm.character.skills.RandomSkillExtraPoints;
+import com.softwaremagico.tm.character.skills.RandomSkills;
 import com.softwaremagico.tm.log.RandomGenerationLog;
 import com.softwaremagico.tm.random.exceptions.DuplicatedPreferenceException;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;

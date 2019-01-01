@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.random;
+package com.softwaremagico.tm.character.equipment.weapons;
 
 /*-
  * #%L
@@ -36,6 +36,7 @@ import com.softwaremagico.tm.character.equipment.weapons.WeaponType;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.log.RandomGenerationLog;
+import com.softwaremagico.tm.random.RandomSelector;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
 
@@ -47,7 +48,7 @@ public abstract class RandomWeapon extends RandomSelector<Weapon> {
 	}
 
 	@Override
-	protected void assign() throws InvalidRandomElementSelectedException {
+	public void assign() throws InvalidRandomElementSelectedException {
 		Weapon selectedWeapon = selectElementByWeight();
 		if (!getCharacterPlayer().getWeapons().getElements().contains(selectedWeapon)) {
 			getCharacterPlayer().getWeapons().addElement(selectedWeapon);

@@ -93,7 +93,7 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
 
 	protected abstract Collection<Element> getAllElements() throws InvalidXmlElementException;
 
-	protected abstract void assign() throws InvalidXmlElementException, InvalidRandomElementSelectedException;
+	public abstract void assign() throws InvalidXmlElementException, InvalidRandomElementSelectedException;
 
 	protected abstract void assignIfMandatory(Element element) throws InvalidXmlElementException, ImpossibleToAssignMandatoryElementException;
 
@@ -186,7 +186,7 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
 		return multiplier;
 	}
 
-	protected void validateElement(Element element) throws InvalidRandomElementSelectedException {
+	public void validateElement(Element element) throws InvalidRandomElementSelectedException {
 		if (element == null) {
 			throw new InvalidRandomElementSelectedException("Null elements not allowed.");
 		}
@@ -198,7 +198,7 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
 		}
 	}
 
-	protected void validateElement(RandomElementDefinition randomDefinition) throws InvalidRandomElementSelectedException {
+	public void validateElement(RandomElementDefinition randomDefinition) throws InvalidRandomElementSelectedException {
 		if (randomDefinition == null) {
 			return;
 		}

@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.random;
+package com.softwaremagico.tm.character;
 
 /*-
  * #%L
@@ -30,50 +30,47 @@ import java.util.Set;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.factions.Faction;
-import com.softwaremagico.tm.character.factions.FactionsFactory;
+import com.softwaremagico.tm.character.planet.Planet;
+import com.softwaremagico.tm.character.planet.PlanetFactory;
 import com.softwaremagico.tm.character.race.InvalidRaceException;
+import com.softwaremagico.tm.random.RandomSelector;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
-import com.softwaremagico.tm.random.selectors.FactionPreferences;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
 
-public class RandomFaction extends RandomSelector<Faction> {
+public class RandomPlanet extends RandomSelector<Planet> {
+	private final static int FACTION_PLANET = 50;
+	private final static int NEUTRAL_PLANET = 5;
+	private final static int ENEMY_PLANET = 1;
 
-	protected RandomFaction(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences) throws InvalidXmlElementException {
+	public RandomPlanet(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences) throws InvalidXmlElementException {
 		super(characterPlayer, preferences);
 	}
 
 	@Override
-	protected void assign() throws InvalidRaceException, InvalidRandomElementSelectedException {
-		getCharacterPlayer().setFaction(selectElementByWeight());
+	public void assign() throws InvalidRaceException, InvalidRandomElementSelectedException {
+		getCharacterPlayer().getInfo().setPlanet(selectElementByWeight());
 	}
 
 	@Override
-	protected Collection<Faction> getAllElements() throws InvalidXmlElementException {
-		return FactionsFactory.getInstance().getElements(getCharacterPlayer().getLanguage());
+	protected Collection<Planet> getAllElements() throws InvalidXmlElementException {
+		return PlanetFactory.getInstance().getElements(getCharacterPlayer().getLanguage());
 	}
 
 	@Override
-	protected int getWeight(Faction faction) {
-		// Specialization desired.
-		FactionPreferences selectedFactionGroup = FactionPreferences.getSelected(getPreferences());
-		if (selectedFactionGroup != null) {
-			if (faction.getFactionGroup() != null && faction.getFactionGroup().name().equalsIgnoreCase(selectedFactionGroup.name())) {
-				return 1;
+	protected int getWeight(Planet planet) {
+		if (planet.getFactions().contains(getCharacterPlayer().getFaction())) {
+			return FACTION_PLANET;
+		}
+		for (Faction factionsOfPlanet : planet.getFactions()) {
+			if (factionsOfPlanet.getFactionGroup() == getCharacterPlayer().getFaction().getFactionGroup()) {
+				return ENEMY_PLANET;
 			}
-			// Different faction than selected.
-			return 0;
 		}
-		// Humans only humans factions.
-		if (faction.getRestrictedRace() != null && !faction.getRestrictedRace().equals(getCharacterPlayer().getRace())) {
-			return 0;
-		}
-		// No faction preference selected. All factions has the same
-		// probability.
-		return 1;
+		return NEUTRAL_PLANET;
 	}
 
 	@Override
-	protected void assignIfMandatory(Faction element) throws InvalidXmlElementException {
+	protected void assignIfMandatory(Planet element) throws InvalidXmlElementException {
 		return;
 	}
 }

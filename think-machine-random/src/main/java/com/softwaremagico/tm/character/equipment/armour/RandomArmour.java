@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.random;
+package com.softwaremagico.tm.character.equipment.armour;
 
 /*-
  * #%L
@@ -34,6 +34,7 @@ import com.softwaremagico.tm.character.equipment.armour.Armour;
 import com.softwaremagico.tm.character.equipment.armour.ArmourFactory;
 import com.softwaremagico.tm.character.equipment.armour.InvalidArmourException;
 import com.softwaremagico.tm.log.RandomGenerationLog;
+import com.softwaremagico.tm.random.RandomSelector;
 import com.softwaremagico.tm.random.exceptions.ImpossibleToAssignMandatoryElementException;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.CombatPreferences;
@@ -42,12 +43,12 @@ import com.softwaremagico.tm.random.selectors.IRandomPreference;
 public class RandomArmour extends RandomSelector<Armour> {
 	private Integer currentMoney = null;
 
-	protected RandomArmour(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences) throws InvalidXmlElementException {
+	public RandomArmour(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences) throws InvalidXmlElementException {
 		super(characterPlayer, preferences);
 	}
 
 	@Override
-	protected void assign() throws InvalidRandomElementSelectedException, InvalidArmourException {
+	public void assign() throws InvalidRandomElementSelectedException, InvalidArmourException {
 		Armour selectedArmour = selectElementByWeight();
 		if (getCharacterPlayer().getArmour() == null) {
 			getCharacterPlayer().setArmour(selectedArmour);

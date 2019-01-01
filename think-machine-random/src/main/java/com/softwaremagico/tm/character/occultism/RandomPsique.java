@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.random;
+package com.softwaremagico.tm.character.occultism;
 
 /*-
  * #%L
@@ -35,6 +35,7 @@ import com.softwaremagico.tm.character.factions.FactionGroup;
 import com.softwaremagico.tm.character.occultism.OccultismType;
 import com.softwaremagico.tm.character.occultism.OccultismTypeFactory;
 import com.softwaremagico.tm.log.RandomGenerationLog;
+import com.softwaremagico.tm.random.RandomSelector;
 import com.softwaremagico.tm.random.exceptions.ImpossibleToAssignMandatoryElementException;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.IGaussianDistribution;
@@ -43,12 +44,12 @@ import com.softwaremagico.tm.random.selectors.PsiqueLevelPreferences;
 
 public class RandomPsique extends RandomSelector<OccultismType> {
 
-	protected RandomPsique(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences) throws InvalidXmlElementException {
+	public RandomPsique(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences) throws InvalidXmlElementException {
 		super(characterPlayer, preferences);
 	}
 
 	@Override
-	protected void assign() throws InvalidRandomElementSelectedException, InvalidXmlElementException {
+	public void assign() throws InvalidRandomElementSelectedException, InvalidXmlElementException {
 		// Select which type of psique.
 		OccultismType selectedOccultismType = selectElementByWeight();
 		RandomGenerationLog.info(this.getClass().getName(), "Assinged psique '" + selectedOccultismType + "'.");

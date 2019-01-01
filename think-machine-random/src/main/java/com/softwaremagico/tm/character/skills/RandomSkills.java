@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.random;
+package com.softwaremagico.tm.character.skills;
 
 /*-
  * #%L
@@ -44,6 +44,7 @@ import com.softwaremagico.tm.character.skills.SkillDefinition;
 import com.softwaremagico.tm.character.skills.SkillGroup;
 import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
 import com.softwaremagico.tm.log.RandomGenerationLog;
+import com.softwaremagico.tm.random.RandomSelector;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.CombatPreferences;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
@@ -59,7 +60,7 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 	}
 
 	@Override
-	protected void assign() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
+	public void assign() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
 		// Set minimum values of skills by preferences.
 		assignMinimumValuesOfSkills();
 
