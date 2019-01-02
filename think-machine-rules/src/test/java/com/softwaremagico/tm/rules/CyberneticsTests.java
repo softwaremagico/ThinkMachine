@@ -71,7 +71,7 @@ public class CyberneticsTests {
 		player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("jonah", LANGUAGE));
 	}
 
-	@Test(expectedExceptions = { TooManyCyberneticDevicesException.class })
+	@Test
 	public void cyberneticAsAWeapon() throws TooManyCyberneticDevicesException, InvalidXmlElementException {
 		CharacterPlayer player = new CharacterPlayer(LANGUAGE);
 		player.getCharacteristic(CharacteristicName.WILL).setValue(7);
