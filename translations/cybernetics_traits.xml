@@ -252,14 +252,14 @@
 	<ciberLungWater>
 		<name>
 			<en>CyberLung (Water)</en>
-			<es>Cibersentido (Radio)</es>
+			<es>Ciberpulmón (Radio)</es>
 		</name>
 		<category>trait</category>
 	</ciberLungWater>
 	<ciberLungVoid>
 		<name>
 			<en>CyberLung (Vacuum)</en>
-			<es>Cibersentido (Vacío)</es>
+			<es>Ciberpulmón (Vacío)</es>
 		</name>
 		<category>trait</category>
 	</ciberLungVoid>
@@ -291,4 +291,18 @@
 		</name>
 		<category>trait</category>
 	</cybersenseRadio>
+	<cybersenseHypertouch>
+		<name>
+			<en>Cybersense (Hypertouch)</en>
+			<es>Cibersentido (Hipertacto)</es>
+		</name>
+		<category>trait</category>
+	</cybersenseHypertouch>
+	<cybersenseXVision>
+		<name>
+			<en>Cybersense (X-Ray Vision)</en>
+			<es>Cibersentido (Visión de Rayos X)</es>
+		</name>
+		<category>trait</category>
+	</cybersenseXVision>
 </cyberneticsTraits>

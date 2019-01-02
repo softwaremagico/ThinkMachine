@@ -363,4 +363,44 @@
 		<proscribed>no</proscribed>
 		<others>cybersenseMagnifier, cybersenseVideo</others>
 	</spyEye>
+	<stimusim>
+		<name>
+			<en>Stimusim</en>
+			<es>Consolador</es>
+		</name>
+		<techLevel>6</techLevel>
+		<points>3</points>
+		<incompatibility>5</incompatibility>
+		<attached>organic</attached>
+		<material>synthflesh</material>
+		<visibility>incognito</visibility>
+		<usability>automatic</usability>
+		<power>selfPowered</power>
+		<cost>3115</cost>
+		<proscribed>yes</proscribed>
+		<bonifications>
+			<bonification>
+				<value>2</value>
+				<affects>perception</affects>
+			</bonification>
+		</bonifications>
+		<others>cybersenseHypertouch</others>
+	</stimusim>
+	<xEyes>
+		<name>
+			<en>X-Eyes</en>
+			<es>Ojos con Rayos X</es>
+		</name>
+		<techLevel>7</techLevel>
+		<points>4</points>
+		<incompatibility>7</incompatibility>
+		<attached>organic</attached>
+		<material>synthflesh</material>
+		<visibility>incognito</visibility>
+		<usability>skillUse</usability>
+		<power>selfPowered</power>
+		<cost>2150</cost>
+		<proscribed>no</proscribed>
+		<others>cybersenseHypertouch</others>
+	</xEyes>
 </cybernetics>
