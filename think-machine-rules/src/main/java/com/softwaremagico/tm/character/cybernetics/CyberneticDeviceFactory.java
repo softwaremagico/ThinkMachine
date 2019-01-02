@@ -24,9 +24,24 @@ package com.softwaremagico.tm.character.cybernetics;
  * #L%
  */
 
+import java.util.HashSet;
+import java.util.Set;
+
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
+import com.softwaremagico.tm.character.characteristics.CharacteristicDefinition;
+import com.softwaremagico.tm.character.characteristics.CharacteristicsDefinitionFactory;
+import com.softwaremagico.tm.character.equipment.DamageType;
+import com.softwaremagico.tm.character.equipment.weapons.Accessory;
+import com.softwaremagico.tm.character.equipment.weapons.Ammunition;
 import com.softwaremagico.tm.character.equipment.weapons.InvalidWeaponException;
+import com.softwaremagico.tm.character.equipment.weapons.Weapon;
+import com.softwaremagico.tm.character.skills.SkillDefinition;
+import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
+import com.softwaremagico.tm.character.values.Bonification;
+import com.softwaremagico.tm.character.values.IValue;
+import com.softwaremagico.tm.character.values.SpecialValue;
+import com.softwaremagico.tm.character.values.StaticValue;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
 
@@ -44,12 +59,16 @@ public class CyberneticDeviceFactory extends XmlFactory<CyberneticDevice> {
 	private final static String USABILITY = "usability";
 	private final static String QUALITY = "quality";
 	private final static String POWER = "power";
-
 	private final static String COST = "cost";
 	private final static String PROSCRIBED = "proscribed";
+
 	private final static String BONIFICATION = "bonification";
 	private final static String VALUE = "value";
 	private final static String AFFECTS = "affects";
+	private final static String SITUATION = "situation";
+
+	private final static String SKILL_VALUE = "skillValue";
+
 	private final static String REQUIRES = "requires";
 
 	private final static String WEAPON = "weapon";
@@ -60,7 +79,7 @@ public class CyberneticDeviceFactory extends XmlFactory<CyberneticDevice> {
 	private final static String RANGE = "range";
 	private final static String SHOTS = "shots";
 	private final static String RATE = "rate";
-
+ 
 	private static CyberneticDeviceFactory instance;
 
 	private static void createInstance() {
@@ -176,19 +195,122 @@ public class CyberneticDeviceFactory extends XmlFactory<CyberneticDevice> {
 				// Not mandatory
 			}
 
-			CyberneticDevice requires = null;
-//			try {
-//				requires = CyberneticDeviceFactory.getInstance().getElement(translator.getNodeValue(cyberneticDeviceId, REQUIRES), language);
-//			} catch (NullPointerException npoe) {
-//				// Not mandatory
-//			}
+			String requires = null;
+			try {
+				requires = translator.getNodeValue(cyberneticDeviceId, REQUIRES);
+			} catch (NullPointerException npoe) {
+				// Not mandatory
+			}
+
+			Set<Bonification> bonifications = new HashSet<>();
+			int node = 0;
+			while (true) {
+				try {
+					String bonificationValue = translator.getNodeValue(cyberneticDeviceId, BONIFICATION, VALUE, node);
+					String valueName = translator.getNodeValue(cyberneticDeviceId, BONIFICATION, AFFECTS, node);
+					IValue affects = null;
+					if (valueName != null) {
+						affects = SpecialValue.getValue(valueName, language);
+					}
+					String situation = translator.getNodeValue(cyberneticDeviceId, SITUATION, language, node);
+
+					Bonification bonification = new Bonification(Integer.parseInt(bonificationValue), affects, situation);
+					bonifications.add(bonification);
+					node++;
+				} catch (Exception e) {
+					break;
+				}
+			}
+
+			Set<StaticValue> staticValues = new HashSet<>();
+			node = 0;
+			while (true) {
+				try {
+					String bonificationValue = translator.getNodeValue(cyberneticDeviceId, SKILL_VALUE, VALUE, node);
+					String skillName = translator.getNodeValue(cyberneticDeviceId, SKILL_VALUE, AFFECTS, node);
+					IValue affects = null;
+					if (skillName != null) {
+						affects = SpecialValue.getValue(skillName, language);
+					}
+
+					StaticValue skillValue = new StaticValue(Integer.parseInt(bonificationValue), affects);
+					staticValues.add(skillValue);
+					node++;
+				} catch (Exception e) {
+					break;
+				}
+			}
+
+			Weapon weapon = null;
+			if (translator.existsNode(cyberneticDeviceId, WEAPON)) {
+				weapon = getWeapon(translator, cyberneticDeviceId, name, techLevel, language);
+			}
 
 			CyberneticDevice cyberneticDevice = new CyberneticDevice(cyberneticDeviceId, name, language, points, incompatibility, cost, techLevel, usability,
-					quality, visibility, material, attached, power, proscribed, null, requires);
+					quality, visibility, material, attached, power, proscribed, null, requires, weapon, bonifications, staticValues);
 
 			return cyberneticDevice;
 		} catch (Exception e) {
 			throw new InvalidCyberneticDeviceException("Invalid cybernetic device definition for '" + cyberneticDeviceId + "'.", e);
 		}
+	}
+
+	private Weapon getWeapon(ITranslator translator, String cyberneticDeviceId, String name, int techLevel, String language)
+			throws InvalidCyberneticDeviceException {
+		CharacteristicDefinition characteristicDefintion = null;
+		try {
+			String characteristicName = translator.getNodeValue(cyberneticDeviceId, WEAPON, CHARACTERISTIC);
+			characteristicDefintion = CharacteristicsDefinitionFactory.getInstance().getElement(characteristicName, language);
+		} catch (Exception e) {
+			throw new InvalidCyberneticDeviceException("Invalid characteristic name in weapon of cybernetic '" + cyberneticDeviceId + "'.");
+		}
+
+		SkillDefinition skill = null;
+		try {
+			String skillName = translator.getNodeValue(cyberneticDeviceId, WEAPON, SKILL);
+			skill = SkillsDefinitionsFactory.getInstance().getElement(skillName, language);
+		} catch (Exception e) {
+			throw new InvalidCyberneticDeviceException("Invalid skill name in weapon of cybernetic '" + cyberneticDeviceId + "'.");
+		}
+
+		String goal = "";
+		try {
+			goal = translator.getNodeValue(cyberneticDeviceId, WEAPON, GOAL);
+		} catch (Exception e) {
+			// Not mandatory
+		}
+
+		String damage = "";
+		try {
+			damage = translator.getNodeValue(cyberneticDeviceId, WEAPON, DAMAGE);
+		} catch (Exception e) {
+			throw new InvalidCyberneticDeviceException("Invalid weapon damage value in cybernetic '" + cyberneticDeviceId + "'.");
+		}
+
+		String range = null;
+		try {
+			range = translator.getNodeValue(cyberneticDeviceId, WEAPON, RANGE);
+		} catch (Exception e) {
+			// Not mandatory.
+		}
+
+		Integer shots = null;
+		try {
+			String shotsValue = translator.getNodeValue(cyberneticDeviceId, WEAPON, SHOTS);
+			shots = Integer.parseInt(shotsValue);
+		} catch (Exception e) {
+			// Not mandatory.
+		}
+
+		String rate = "";
+		try {
+			rate = translator.getNodeValue(cyberneticDeviceId, WEAPON, RATE);
+		} catch (Exception e) {
+			// Not mandatory.
+		}
+
+		return new Weapon(cyberneticDeviceId, name, language, null, goal, characteristicDefintion, skill, damage, 0, range, shots, rate, techLevel, false,
+				null, "", new HashSet<DamageType>(), 0, new HashSet<Ammunition>(), new HashSet<Accessory>());
+
 	}
 }

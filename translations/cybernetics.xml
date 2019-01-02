@@ -60,6 +60,7 @@
 			<damage>3</damage>
 			<range>10/20</range>
 			<shots>5</shots>
+			<rate>1</rate>
 		</weapon>
 	</armHarpoon>
 	<jonah>
@@ -82,6 +83,7 @@
 			<damage>4</damage>
 			<range>10/20</range>
 			<shots>5</shots>
+			<rate>1</rate>
 		</weapon>
 	</jonah>
 	<aquaLung>
@@ -298,12 +300,12 @@
 		<visibility>hidden</visibility>
 		<usability>automatic</usability>
 		<cost>1200</cost>
-		<bonifications>
-			<bonification>
+		<skillsStaticValues>
+			<skillValue>
 				<value>4</value>
 				<affects>jumpwebLore</affects>
-			</bonification>
-		</bonifications>
+			</skillValue>
+		</skillsStaticValues>
 		<requires>secondBrain</requires>
 	</secondBrainJumpLoreSoftware>
 	<secondBrainEnergyPistolsLore>
@@ -318,12 +320,12 @@
 		<visibility>hidden</visibility>
 		<usability>automatic</usability>
 		<cost>1200</cost>
-		<bonifications>
-			<bonification>
+		<skillsStaticValues>
+			<skillValue>
 				<value>4</value>
 				<affects>energyPistolsLore</affects>
-			</bonification>
-		</bonifications>
+			</skillValue>
+		</skillsStaticValues>
 		<requires>secondBrain</requires>
 	</secondBrainEnergyPistolsLore>
 	<secondBrainThinkMachineLore>
@@ -338,12 +340,12 @@
 		<visibility>hidden</visibility>
 		<usability>automatic</usability>
 		<cost>1200</cost>
-		<bonifications>
-			<bonification>
+		<skillsStaticValues>
+			<skillValue>
 				<value>4</value>
 				<affects>thinkMachineLore</affects>
-			</bonification>
-		</bonifications>
+			</skillValue>
+		</skillsStaticValues>
 		<requires>secondBrain</requires> 
 	</secondBrainThinkMachineLore>
 	<spyEye>

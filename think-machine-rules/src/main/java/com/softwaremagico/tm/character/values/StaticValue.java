@@ -1,10 +1,10 @@
-package com.softwaremagico.tm.character.blessings;
+package com.softwaremagico.tm.character.values;
 
 /*-
  * #%L
- * Think Machine (Core)
+ * Think Machine (Rules)
  * %%
- * Copyright (C) 2017 - 2018 Softwaremagico
+ * Copyright (C) 2017 - 2019 Softwaremagico
  * %%
  * This software is designed by Jorge Hortelano Otero. Jorge Hortelano Otero
  * <softwaremagico@gmail.com> Valencia (Spain).
@@ -24,25 +24,17 @@ package com.softwaremagico.tm.character.blessings;
  * #L%
  */
 
-import com.softwaremagico.tm.character.values.IValue;
-
-public class Bonification {
-	private final Integer bonification;
+public class StaticValue {
+	private final Integer value;
 	private final IValue affects;
-	private final String situation;
 
-	public Bonification(Integer bonification, IValue affects, String situation) {
-		this.bonification = bonification;
+	public StaticValue(Integer value, IValue affects) {
+		this.value = value;
 		this.affects = affects;
-		this.situation = situation;
 	}
 
-	public Integer getBonification() {
-		return bonification;
-	}
-
-	public String getSituation() {
-		return situation;
+	public Integer getValue() {
+		return value;
 	}
 
 	public IValue getAffects() {
@@ -51,6 +43,6 @@ public class Bonification {
 
 	@Override
 	public String toString() {
-		return bonification + " " + affects + ": " + situation;
+		return value + " " + affects;
 	}
 }

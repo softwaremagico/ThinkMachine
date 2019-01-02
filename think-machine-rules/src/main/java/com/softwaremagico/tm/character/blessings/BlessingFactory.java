@@ -29,6 +29,7 @@ import java.util.Set;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
+import com.softwaremagico.tm.character.values.Bonification;
 import com.softwaremagico.tm.character.values.IValue;
 import com.softwaremagico.tm.character.values.SpecialValue;
 import com.softwaremagico.tm.language.ITranslator;

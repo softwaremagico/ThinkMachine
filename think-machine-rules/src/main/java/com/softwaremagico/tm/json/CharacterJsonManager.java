@@ -38,6 +38,7 @@ import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.benefices.AvailableBenefice;
 import com.softwaremagico.tm.character.blessings.Blessing;
 import com.softwaremagico.tm.character.characteristics.CharacteristicDefinition;
+import com.softwaremagico.tm.character.cybernetics.CyberneticDevice;
 import com.softwaremagico.tm.character.equipment.armours.Armour;
 import com.softwaremagico.tm.character.equipment.shields.Shield;
 import com.softwaremagico.tm.character.equipment.weapons.Weapon;
@@ -63,6 +64,7 @@ public class CharacterJsonManager {
 			gsonBuilder.registerTypeAdapter(Weapon.class, new WeaponAdapter());
 			gsonBuilder.registerTypeAdapter(Armour.class, new ArmourAdapter());
 			gsonBuilder.registerTypeAdapter(Shield.class, new ShieldAdapter());
+			gsonBuilder.registerTypeAdapter(CyberneticDevice.class, new CyberneticDeviceAdapter());
 			// final Gson gson = new
 			// GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
 			Gson gson = gsonBuilder.create();
@@ -86,6 +88,7 @@ public class CharacterJsonManager {
 			gsonBuilder.registerTypeAdapter(Weapon.class, new WeaponAdapter());
 			gsonBuilder.registerTypeAdapter(Armour.class, new ArmourAdapter());
 			gsonBuilder.registerTypeAdapter(Shield.class, new ShieldAdapter());
+			gsonBuilder.registerTypeAdapter(CyberneticDevice.class, new CyberneticDeviceAdapter());
 			Gson gson = gsonBuilder.create();
 
 			CharacterPlayer characterPlayer = gson.fromJson(jsonText, CharacterPlayer.class);

@@ -43,11 +43,9 @@ public class CharacteristicColumn extends LateralHeaderPdfPTable {
 	private final static int ROW_WIDTH = 60;
 	private final static float[] widths = { 1f, 5f };
 
-	public CharacteristicColumn(CharacterPlayer characterPlayer, CharacteristicType characteristicType,
-			List<CharacteristicDefinition> content) {
+	public CharacteristicColumn(CharacterPlayer characterPlayer, CharacteristicType characteristicType, List<CharacteristicDefinition> content) {
 		super(widths);
-		addCell(createLateralVerticalTitle(getTranslator().getTranslatedText(characteristicType.getTranslationTag()),
-				content.size()));
+		addCell(createLateralVerticalTitle(getTranslator().getTranslatedText(characteristicType.getTranslationTag()), content.size()));
 		addCell(createContent(characterPlayer, content));
 	}
 
@@ -59,20 +57,16 @@ public class CharacteristicColumn extends LateralHeaderPdfPTable {
 
 		for (CharacteristicDefinition characteristic : content) {
 			Paragraph paragraph = new Paragraph();
-			paragraph.add(new Paragraph(getTranslator().getTranslatedText(characteristic.getId()), new Font(
-					FadingSunsTheme.getLineFont(), FadingSunsTheme.CHARACTERISTICS_LINE_FONT_SIZE)));
-			paragraph.add(new Paragraph(" (", new Font(FadingSunsTheme.getLineFont(),
+			paragraph.add(new Paragraph(getTranslator().getTranslatedText(characteristic.getId()), new Font(FadingSunsTheme.getLineFont(),
 					FadingSunsTheme.CHARACTERISTICS_LINE_FONT_SIZE)));
+			paragraph.add(new Paragraph(" (", new Font(FadingSunsTheme.getLineFont(), FadingSunsTheme.CHARACTERISTICS_LINE_FONT_SIZE)));
 			if (characterPlayer == null) {
-				paragraph.add(new Paragraph(GAP, new Font(FadingSunsTheme.getLineFont(),
-						FadingSunsTheme.CHARACTERISTICS_LINE_FONT_SIZE)));
+				paragraph.add(new Paragraph(GAP, new Font(FadingSunsTheme.getLineFont(), FadingSunsTheme.CHARACTERISTICS_LINE_FONT_SIZE)));
 			} else {
-				paragraph.add(new Paragraph(characterPlayer.getStartingValue(characteristic.getCharacteristicName())
-						+ "", new Font(FadingSunsTheme.getHandwrittingFont(), FadingSunsTheme
-						.getHandWrittingFontSize(FadingSunsTheme.CHARACTERISTICS_LINE_FONT_SIZE))));
+				paragraph.add(new Paragraph(characterPlayer.getStartingValue(characteristic.getCharacteristicName()) + "", new Font(FadingSunsTheme
+						.getHandwrittingFont(), FadingSunsTheme.getHandWrittingFontSize(FadingSunsTheme.CHARACTERISTICS_LINE_FONT_SIZE))));
 			}
-			paragraph.add(new Paragraph(")", new Font(FadingSunsTheme.getLineFont(),
-					FadingSunsTheme.CHARACTERISTICS_LINE_FONT_SIZE)));
+			paragraph.add(new Paragraph(")", new Font(FadingSunsTheme.getLineFont(), FadingSunsTheme.CHARACTERISTICS_LINE_FONT_SIZE)));
 
 			PdfPCell characteristicTitle = new PdfPCell(paragraph);
 			characteristicTitle.setBorder(0);
@@ -83,10 +77,8 @@ public class CharacteristicColumn extends LateralHeaderPdfPTable {
 			if (characterPlayer == null) {
 				table.addCell(createRectangle());
 			} else {
-				table.addCell(createRectangle(getCharacteristicValueRepresentation(characterPlayer,
-						characteristic.getCharacteristicName())
-						+ getCharacteristicSpecialRepresentation(characterPlayer,
-								characteristic.getCharacteristicName())));
+				table.addCell(createRectangle(characterPlayer.getValue(characteristic.getCharacteristicName())
+						+ getCharacteristicSpecialRepresentation(characterPlayer, characteristic.getCharacteristicName())));
 			}
 
 			// Margin
@@ -102,8 +94,7 @@ public class CharacteristicColumn extends LateralHeaderPdfPTable {
 		return cell;
 	}
 
-	private String getCharacteristicSpecialRepresentation(CharacterPlayer characterPlayer,
-			CharacteristicName characteristicName) {
+	private String getCharacteristicSpecialRepresentation(CharacterPlayer characterPlayer, CharacteristicName characteristicName) {
 		StringBuilder representation = new StringBuilder("");
 		if (characterPlayer.hasCharacteristicTemporalModificator(characteristicName)) {
 			representation.append("*");
@@ -112,17 +103,6 @@ public class CharacteristicColumn extends LateralHeaderPdfPTable {
 			representation.append("!");
 		}
 		return representation.toString();
-	}
-
-	private String getCharacteristicValueRepresentation(CharacterPlayer characterPlayer,
-			CharacteristicName characteristicName) {
-		if (characterPlayer.getCyberneticsImprovement(characteristicName) > 0) {
-			return characterPlayer.getValue(characteristicName)
-					+ "/"
-					+ (characterPlayer.getValue(characteristicName) + characterPlayer
-							.getCyberneticsImprovement(characteristicName));
-		}
-		return characterPlayer.getValue(characteristicName) + "";
 	}
 
 	@Override

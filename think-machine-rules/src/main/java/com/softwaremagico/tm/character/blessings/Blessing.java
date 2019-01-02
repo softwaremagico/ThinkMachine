@@ -32,6 +32,7 @@ import com.softwaremagico.tm.Element;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
+import com.softwaremagico.tm.character.values.Bonification;
 import com.softwaremagico.tm.character.values.IValue;
 import com.softwaremagico.tm.character.values.SpecialValue;
 

@@ -24,15 +24,13 @@ package com.softwaremagico.tm.character.cybernetics;
  * #L%
  */
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Set;
 
 import com.softwaremagico.tm.Element;
-import com.softwaremagico.tm.character.characteristics.CharacteristicImprovement;
-import com.softwaremagico.tm.character.characteristics.CharacteristicName;
+import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.equipment.weapons.Weapon;
-import com.softwaremagico.tm.character.skills.CyberneticSkill;
+import com.softwaremagico.tm.character.values.Bonification;
+import com.softwaremagico.tm.character.values.StaticValue;
 
 public class CyberneticDevice extends Element<CyberneticDevice> {
 	private final int points;
@@ -46,16 +44,16 @@ public class CyberneticDevice extends Element<CyberneticDevice> {
 	private final CyberneticDeviceTrait attached;
 	private final CyberneticDeviceTrait power;
 	private final String others;
-	private final CyberneticDevice requirement;
+	private final String requirement;
 	private final Weapon weapon;
 	private final boolean proscribed;
-
-	private Map<String, CyberneticSkill> skillImprovements;
-	private Map<String, CharacteristicImprovement> characteristicImprovents;
+	private final Set<Bonification> bonifications;
+	private final Set<StaticValue> staticValues;
 
 	public CyberneticDevice(String id, String name, String language, int points, int incompatibility, int cost, int techLevel, CyberneticDeviceTrait usability,
 			CyberneticDeviceTrait quality, CyberneticDeviceTrait visibility, CyberneticDeviceTrait material, CyberneticDeviceTrait attached,
-			CyberneticDeviceTrait power, boolean proscribed, String others, CyberneticDevice requirement, Weapon weapon) {
+			CyberneticDeviceTrait power, boolean proscribed, String others, String requirement, Weapon weapon, Set<Bonification> bonifications,
+			Set<StaticValue> staticValues) {
 		super(id, name, language);
 		this.points = points;
 		this.incompatibility = incompatibility;
@@ -71,15 +69,8 @@ public class CyberneticDevice extends Element<CyberneticDevice> {
 		this.requirement = requirement;
 		this.proscribed = proscribed;
 		this.weapon = weapon;
-		skillImprovements = new HashMap<>();
-		characteristicImprovents = new HashMap<>();
-	}
-
-	public CyberneticDevice(String id, String name, String language, int points, int incompatibility, int cost, int techLevel, CyberneticDeviceTrait usability,
-			CyberneticDeviceTrait quality, CyberneticDeviceTrait visibility, CyberneticDeviceTrait material, CyberneticDeviceTrait attached,
-			CyberneticDeviceTrait power, boolean proscribed, String others, CyberneticDevice requirement) {
-		this(id, name, language, points, incompatibility, cost, techLevel, usability, quality, visibility, material, attached, power, proscribed, others,
-				requirement, null);
+		this.bonifications = bonifications;
+		this.staticValues = staticValues;
 	}
 
 	public int getPoints() {
@@ -106,28 +97,11 @@ public class CyberneticDevice extends Element<CyberneticDevice> {
 		return others;
 	}
 
-	public void addSkillImprovement(CyberneticSkill skillImprovement) {
-		skillImprovements.put(skillImprovement.getName(), skillImprovement);
-	}
-
-	public CyberneticSkill getSkillImprovement(String skillName) {
-		return skillImprovements.get(skillName);
-	}
-
-	public Set<String> getSkillImprovementsNames() {
-		return skillImprovements.keySet();
-	}
-
-	public void addCharacteristicImprovement(CharacteristicImprovement characteristicImprovement) {
-		characteristicImprovents.put(characteristicImprovement.getCharacteristic().getId(), characteristicImprovement);
-	}
-
-	public CharacteristicImprovement getCharacteristicImprovement(CharacteristicName characteristicName) {
-		return characteristicImprovents.get(characteristicName);
-	}
-
-	public CyberneticDevice getRequirement() {
-		return requirement;
+	public CyberneticDevice getRequirement() throws InvalidXmlElementException {
+		if (requirement != null) {
+			return CyberneticDeviceFactory.getInstance().getElement(requirement, getLanguage());
+		}
+		return null;
 	}
 
 	public Weapon getWeapon() {
@@ -156,5 +130,13 @@ public class CyberneticDevice extends Element<CyberneticDevice> {
 
 	public int getTechLevel() {
 		return techLevel;
+	}
+
+	public Set<Bonification> getBonifications() {
+		return bonifications;
+	}
+
+	public Set<StaticValue> getStaticValues() {
+		return staticValues;
 	}
 }
