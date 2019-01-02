@@ -30,6 +30,7 @@
 				<include name="cyberneticFactory" />
 				<include name="randomDefinition" />
 				<include name="randomCharacter" />
+				<include name="cybernetics" />
 				<include name="jsonExporter" />
 				<include name="blessings" />
 				<include name="occultism" />
@@ -54,6 +55,7 @@
 			<class name="com.softwaremagico.tm.factory.CyberneticDeviceFactoryTests" />
 			<class name="com.softwaremagico.tm.rules.BlessingTests" />
 			<class name="com.softwaremagico.tm.rules.OccultismTests" />
+			<class name="com.softwaremagico.tm.rules.CyberneticsTests" />
 			<class name="com.softwaremagico.tm.txt.ExportTxtTests" />
 			<class name="com.softwaremagico.tm.txt.ExportTxtTests" />
 			<class name="com.softwaremagico.tm.json.JsonTests" />

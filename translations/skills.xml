@@ -592,5 +592,15 @@
 			<probabilityMultiplier>0</probabilityMultiplier>
 		</random>
 	</spyEye>
+	<xEyes>
+		<name>
+			<en>X-Eyes</en>
+			<es>Ojos con Rayos X</es>
+		</name>
+		<group>technical</group>
+		<random>
+			<probabilityMultiplier>0</probabilityMultiplier>
+		</random>
+	</xEyes>
 	
 </skills>
