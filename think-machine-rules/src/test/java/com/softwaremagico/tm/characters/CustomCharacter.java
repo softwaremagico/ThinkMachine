@@ -35,6 +35,7 @@ import com.softwaremagico.tm.character.blessings.BlessingFactory;
 import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.cybernetics.CyberneticDeviceFactory;
+import com.softwaremagico.tm.character.cybernetics.TooManyCyberneticDevicesException;
 import com.softwaremagico.tm.character.equipment.armours.ArmourFactory;
 import com.softwaremagico.tm.character.equipment.shields.ShieldFactory;
 import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
@@ -47,7 +48,7 @@ import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 
 public class CustomCharacter {
 
-	public static CharacterPlayer create(String language) throws InvalidXmlElementException, TooManyBlessingsException {
+	public static CharacterPlayer create(String language) throws InvalidXmlElementException, TooManyBlessingsException, TooManyCyberneticDevicesException {
 		CacheHandler.clearCache();
 		CharacterPlayer player = new CharacterPlayer(language);
 		player.getInfo().addName(new Name("Oliver", language, Gender.MALE, null));
@@ -107,8 +108,8 @@ public class CustomCharacter {
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("pistola", player.getLanguage()));
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("shaidan", player.getLanguage()));
 
-		player.getCybernetics().addElement(CyberneticDeviceFactory.getInstance().getElement("engineersEye", language));
-		player.getCybernetics().addElement(CyberneticDeviceFactory.getInstance().getElement("jonah", language));
+		player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("engineersEye", language));
+		player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("jonah", language));
 
 		player.getWeapons().addElement(WeaponFactory.getInstance().getElement("mace", language));
 		player.getWeapons().addElement(WeaponFactory.getInstance().getElement("martechGold", language));

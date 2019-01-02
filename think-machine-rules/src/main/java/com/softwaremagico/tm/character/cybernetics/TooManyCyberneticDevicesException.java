@@ -2,9 +2,9 @@ package com.softwaremagico.tm.character.cybernetics;
 
 /*-
  * #%L
- * Think Machine (Core)
+ * Think Machine (Rules)
  * %%
- * Copyright (C) 2017 Softwaremagico
+ * Copyright (C) 2017 - 2019 Softwaremagico
  * %%
  * This software is designed by Jorge Hortelano Otero. Jorge Hortelano Otero
  * <softwaremagico@gmail.com> Valencia (Spain).
@@ -24,13 +24,14 @@ package com.softwaremagico.tm.character.cybernetics;
  * #L%
  */
 
-import com.softwaremagico.tm.ElementList;
-import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.character.characteristics.CharacteristicName;
+public class TooManyCyberneticDevicesException extends Exception {
+	private static final long serialVersionUID = -1351656362615002505L;
 
-public class Cybernetics extends ElementList<CyberneticDevice> {
+	public TooManyCyberneticDevicesException(String message) {
+		super(message);
+	}
 
-	public static int getMaxCyberneticIncompatibility(CharacterPlayer characterPlayer) {
-		return (characterPlayer.getCharacteristic(CharacteristicName.WILL).getValue() * 3) + 2;
+	public TooManyCyberneticDevicesException(String message, Exception e) {
+		super(message, e);
 	}
 }

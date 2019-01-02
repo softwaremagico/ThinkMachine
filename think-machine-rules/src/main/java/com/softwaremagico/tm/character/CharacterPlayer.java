@@ -59,6 +59,7 @@ import com.softwaremagico.tm.character.creation.CostCalculator;
 import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
 import com.softwaremagico.tm.character.cybernetics.CyberneticDevice;
 import com.softwaremagico.tm.character.cybernetics.Cybernetics;
+import com.softwaremagico.tm.character.cybernetics.TooManyCyberneticDevicesException;
 import com.softwaremagico.tm.character.equipment.armours.Armour;
 import com.softwaremagico.tm.character.equipment.armours.InvalidArmourException;
 import com.softwaremagico.tm.character.equipment.shields.InvalidShieldException;
@@ -535,8 +536,29 @@ public class CharacterPlayer {
 		return Collections.unmodifiableList(afflictions);
 	}
 
-	public Cybernetics getCybernetics() {
+	private Cybernetics getCybernetics() {
 		return cybernetics;
+	}
+
+	public List<CyberneticDevice> getAllCybernetics() {
+		return cybernetics.getElements();
+	}
+
+	public void addCybernetics(CyberneticDevice cyberneticDevice) throws TooManyCyberneticDevicesException {
+		if (getCyberneticsIncompatibility() + cyberneticDevice.getIncompatibility() > Cybernetics.getMaxCyberneticIncompatibility(this)) {
+			throw new TooManyCyberneticDevicesException("Cybernatic device cannot be added due to incompatibility requirements. Current incompatibility '"
+					+ getCyberneticsIncompatibility() + "', device incompatibility '" + cyberneticDevice.getIncompatibility()
+					+ "', maximum incompatibility for this character is '" + Cybernetics.getMaxCyberneticIncompatibility(this) + "'.");
+		}
+		getCybernetics().addElement(cyberneticDevice);
+	}
+
+	public int getCyberneticsIncompatibility() {
+		int incompatibility = 0;
+		for (CyberneticDevice device : getAllCybernetics()) {
+			incompatibility += device.getIncompatibility();
+		}
+		return incompatibility;
 	}
 
 	public Weapons getWeapons() {
@@ -547,11 +569,18 @@ public class CharacterPlayer {
 		List<Weapon> allWeapons = new ArrayList<>();
 		allWeapons.addAll(weapons.getElements());
 		try {
+			// Weapons from benefices.
 			for (AvailableBenefice benefice : getAllBenefices()) {
 				try {
 					allWeapons.add(WeaponFactory.getInstance().getElement(benefice.getId(), getLanguage()));
 				} catch (InvalidXmlElementException ixmle) {
 					// Benefice is not a weapon.
+				}
+			}
+			// Weapons from cybernetics.
+			for (CyberneticDevice cyberneticDevice : getCybernetics().getElements()) {
+				if (cyberneticDevice.getWeapon() != null) {
+					allWeapons.add(cyberneticDevice.getWeapon());
 				}
 			}
 		} catch (InvalidXmlElementException e) {

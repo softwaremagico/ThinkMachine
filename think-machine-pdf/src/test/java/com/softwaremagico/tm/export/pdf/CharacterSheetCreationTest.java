@@ -45,6 +45,7 @@ import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.creation.CostCalculator;
 import com.softwaremagico.tm.character.cybernetics.CyberneticDeviceFactory;
+import com.softwaremagico.tm.character.cybernetics.TooManyCyberneticDevicesException;
 import com.softwaremagico.tm.character.equipment.armours.ArmourFactory;
 import com.softwaremagico.tm.character.equipment.shields.ShieldFactory;
 import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
@@ -97,7 +98,8 @@ public class CharacterSheetCreationTest {
 	}
 
 	@Test
-	public void characterPdfSpanish() throws MalformedURLException, DocumentException, IOException, InvalidXmlElementException, TooManyBlessingsException {
+	public void characterPdfSpanish() throws MalformedURLException, DocumentException, IOException, InvalidXmlElementException, TooManyBlessingsException,
+			TooManyCyberneticDevicesException {
 		CacheHandler.clearCache();
 
 		player = new CharacterPlayer(LANGUAGE);
@@ -158,8 +160,8 @@ public class CharacterSheetCreationTest {
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("pistola", player.getLanguage()));
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("shaidan", player.getLanguage()));
 
-		player.getCybernetics().addElement(CyberneticDeviceFactory.getInstance().getElement("engineersEye", LANGUAGE));
-		player.getCybernetics().addElement(CyberneticDeviceFactory.getInstance().getElement("jonah", LANGUAGE));
+		player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("engineersEye", LANGUAGE));
+		player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("jonah", LANGUAGE));
 
 		player.getWeapons().addElement(WeaponFactory.getInstance().getElement("mace", LANGUAGE));
 		player.getWeapons().addElement(WeaponFactory.getInstance().getElement("martechGold", LANGUAGE));

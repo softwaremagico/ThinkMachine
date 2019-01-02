@@ -46,6 +46,7 @@ import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.creation.CostCalculator;
 import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
 import com.softwaremagico.tm.character.cybernetics.CyberneticDeviceFactory;
+import com.softwaremagico.tm.character.cybernetics.TooManyCyberneticDevicesException;
 import com.softwaremagico.tm.character.equipment.DamageType;
 import com.softwaremagico.tm.character.equipment.armours.Armour;
 import com.softwaremagico.tm.character.equipment.shields.ShieldFactory;
@@ -71,7 +72,8 @@ public class CustomCharacters {
 	}
 
 	@Test
-	public void createPaolaCharacter() throws MalformedURLException, DocumentException, IOException, InvalidXmlElementException, TooManyBlessingsException {
+	public void createPaolaCharacter() throws MalformedURLException, DocumentException, IOException, InvalidXmlElementException, TooManyBlessingsException,
+			TooManyCyberneticDevicesException {
 		CharacterPlayer player = new CharacterPlayer(LANGUAGE);
 		player.getInfo().addName(new Name("#5", LANGUAGE, Gender.FEMALE, null));
 		player.getInfo().setPlayer("Paola");
@@ -119,11 +121,11 @@ public class CustomCharacters {
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("cash [firebirds1000]", player.getLanguage()));
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("gossipNetwork_3", player.getLanguage()));
 
-		player.getCybernetics().addElement(CyberneticDeviceFactory.getInstance().getElement("advancedEngineersEye", LANGUAGE));
-		player.getCybernetics().addElement(CyberneticDeviceFactory.getInstance().getElement("secondBrain", LANGUAGE));
-		player.getCybernetics().addElement(CyberneticDeviceFactory.getInstance().getElement("secondBrainJumpLoreSoftware", LANGUAGE));
-		player.getCybernetics().addElement(CyberneticDeviceFactory.getInstance().getElement("secondBrainEnergyPistolsLore", LANGUAGE));
-		player.getCybernetics().addElement(CyberneticDeviceFactory.getInstance().getElement("secondBrainThinkMachineLore", LANGUAGE));
+		player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("advancedEngineersEye", LANGUAGE));
+		player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("secondBrain", LANGUAGE));
+		player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("secondBrainJumpLoreSoftware", LANGUAGE));
+		player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("secondBrainEnergyPistolsLore", LANGUAGE));
+		player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("secondBrainThinkMachineLore", LANGUAGE));
 
 		player.setShield(ShieldFactory.getInstance().getElement("duelingShield", LANGUAGE));
 

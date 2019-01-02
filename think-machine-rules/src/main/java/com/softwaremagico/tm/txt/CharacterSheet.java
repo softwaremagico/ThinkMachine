@@ -298,7 +298,7 @@ public class CharacterSheet {
 	}
 
 	private void setWeapons(StringBuilder stringBuilder) {
-		for (Weapon weapon : getCharacterPlayer().getWeapons().getElements()) {
+		for (Weapon weapon : getCharacterPlayer().getAllWeapons()) {
 			stringBuilder.append(weapon.getName());
 			stringBuilder.append(" (");
 			if (weapon.getGoal() != null && weapon.getGoal().length() > 0 && !weapon.getGoal().equals("0")) {
@@ -397,10 +397,10 @@ public class CharacterSheet {
 	}
 
 	private void setCybernetics(StringBuilder stringBuilder) {
-		if (!getCharacterPlayer().getCybernetics().getElements().isEmpty()) {
+		if (!getCharacterPlayer().getAllCybernetics().isEmpty()) {
 			stringBuilder.append(getTranslator().getTranslatedText("cybernetics") + ": ");
 
-			for (CyberneticDevice device : getCharacterPlayer().getCybernetics().getElements()) {
+			for (CyberneticDevice device : getCharacterPlayer().getAllCybernetics()) {
 				stringBuilder.append(device.getName());
 				stringBuilder.append(ELEMENT_SEPARATOR);
 			}

@@ -151,7 +151,7 @@ public class CostCalculator {
 
 	private static int getCyberneticsCost(CharacterPlayer characterPlayer) {
 		int cost = 0;
-		for (CyberneticDevice device : characterPlayer.getCybernetics().getElements()) {
+		for (CyberneticDevice device : characterPlayer.getAllCybernetics()) {
 			cost += device.getPoints();
 		}
 		return cost;
