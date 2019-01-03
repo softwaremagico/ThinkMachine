@@ -89,7 +89,7 @@ public class BeneficeFactoryTests {
 		// Weapon without cost.
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("fluxSword", LANGUAGE));
 		// Weapon with cost.
-		player.getWeapons().addElement(WeaponFactory.getInstance().getElement("typicalShotgun", LANGUAGE));
+		player.addWeapon(WeaponFactory.getInstance().getElement("typicalShotgun", LANGUAGE));
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("cash [firebirds1000]", LANGUAGE));
 		Assert.assertEquals(2, player.getAllWeapons().size());
 		Assert.assertEquals(700, player.getMoney());

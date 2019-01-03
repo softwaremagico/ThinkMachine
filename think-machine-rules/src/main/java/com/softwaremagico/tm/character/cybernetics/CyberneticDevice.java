@@ -28,12 +28,13 @@ import java.util.Set;
 
 import com.softwaremagico.tm.Element;
 import com.softwaremagico.tm.InvalidXmlElementException;
+import com.softwaremagico.tm.character.IElementWithBonification;
 import com.softwaremagico.tm.character.equipment.weapons.Weapon;
 import com.softwaremagico.tm.character.values.Bonification;
 import com.softwaremagico.tm.character.values.StaticValue;
 import com.softwaremagico.tm.log.MachineLog;
 
-public class CyberneticDevice extends Element<CyberneticDevice> {
+public class CyberneticDevice extends Element<CyberneticDevice> implements IElementWithBonification {
 	private final int points;
 	private final int incompatibility;
 	private final int cost;
@@ -137,6 +138,7 @@ public class CyberneticDevice extends Element<CyberneticDevice> {
 		return techLevel;
 	}
 
+	@Override
 	public Set<Bonification> getBonifications() {
 		return bonifications;
 	}

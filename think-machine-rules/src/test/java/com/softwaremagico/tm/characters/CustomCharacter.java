@@ -113,8 +113,8 @@ public class CustomCharacter {
 		player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("engineersEye", language));
 		player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("jonah", language));
 
-		player.getWeapons().addElement(WeaponFactory.getInstance().getElement("mace", language));
-		player.getWeapons().addElement(WeaponFactory.getInstance().getElement("martechGold", language));
+		player.addWeapon(WeaponFactory.getInstance().getElement("mace", language));
+		player.addWeapon(WeaponFactory.getInstance().getElement("martechGold", language));
 
 		player.setArmour(ArmourFactory.getInstance().getElement("synthsilk", language));
 

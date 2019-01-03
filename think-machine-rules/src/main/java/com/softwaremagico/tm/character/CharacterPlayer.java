@@ -577,8 +577,8 @@ public class CharacterPlayer {
 		return incompatibility;
 	}
 
-	public Weapons getWeapons() {
-		return weapons;
+	public void addWeapon(Weapon weapon) {
+		weapons.addElement(weapon);
 	}
 
 	public List<Weapon> getAllWeapons() {
@@ -923,50 +923,18 @@ public class CharacterPlayer {
 		this.faction = faction;
 	}
 
-	public int getBlessingModification(IValue value) {
+	public int getBlessingModificationSituation(IValue value) {
 		int modification = 0;
 		for (Blessing blessing : getAllBlessings()) {
-			for (Bonification bonification : blessing.getBonifications()) {
-				if (bonification.getSituation() != null && !bonification.getSituation().isEmpty()) {
-					if (bonification.getAffects() instanceof SpecialValue) {
-						SpecialValue specialValue = (SpecialValue) bonification.getAffects();
-						// Has a list of values defined.
-						for (IValue specialValueSkill : specialValue.getAffects()) {
-							if (Objects.equals(specialValueSkill, value)) {
-								modification += bonification.getBonification();
-								break;
-							}
-						}
-					}
-					if (Objects.equals(bonification.getAffects(), value)) {
-						modification += bonification.getBonification();
-					}
-				}
-			}
+			modification += getModification(blessing, value, false);
 		}
 		return modification;
 	}
 
-	public int getCyberneticsModification(IValue value) {
+	public int getCyberneticsModificationSituation(IValue value) {
 		int modification = 0;
 		for (CyberneticDevice cyberneticDevice : getAllCybernetics()) {
-			for (Bonification bonification : cyberneticDevice.getBonifications()) {
-				if (bonification.getSituation() != null && !bonification.getSituation().isEmpty()) {
-					if (bonification.getAffects() instanceof SpecialValue) {
-						SpecialValue specialValue = (SpecialValue) bonification.getAffects();
-						// Has a list of values defined.
-						for (IValue specialValueSkill : specialValue.getAffects()) {
-							if (Objects.equals(specialValueSkill, value)) {
-								modification += bonification.getBonification();
-								break;
-							}
-						}
-					}
-					if (Objects.equals(bonification.getAffects(), value)) {
-						modification += bonification.getBonification();
-					}
-				}
-			}
+			modification += getModification(cyberneticDevice, value, false);
 		}
 		return modification;
 	}
@@ -974,24 +942,7 @@ public class CharacterPlayer {
 	public int getBlessingModificationAlways(IValue value) {
 		int modification = 0;
 		for (Blessing blessing : getAllBlessings()) {
-			for (Bonification bonification : blessing.getBonifications()) {
-				if (bonification.getSituation() == null || bonification.getSituation().isEmpty()) {
-					if (bonification.getAffects() instanceof SpecialValue) {
-						SpecialValue specialValue = (SpecialValue) bonification.getAffects();
-						// Has a list of values defined.
-						for (IValue specialValueSkill : specialValue.getAffects()) {
-							if (Objects.equals(specialValueSkill, value)) {
-								modification += bonification.getBonification();
-								break;
-							}
-						}
-					}
-					if (Objects.equals(bonification.getAffects(), value)) {
-						modification += bonification.getBonification();
-					}
-				}
-
-			}
+			modification += getModification(blessing, value, true);
 		}
 		return modification;
 	}
@@ -999,33 +950,46 @@ public class CharacterPlayer {
 	public int getCyberneticsModificationAlways(IValue value) {
 		int modification = 0;
 		for (CyberneticDevice cyberneticDevice : getCybernetics().getElements()) {
-			for (Bonification bonification : cyberneticDevice.getBonifications()) {
-				if (bonification.getSituation() == null || bonification.getSituation().isEmpty()) {
-					if (bonification.getAffects() instanceof SpecialValue) {
-						SpecialValue specialValue = (SpecialValue) bonification.getAffects();
-						// Has a list of values defined.
-						for (IValue specialValueSkill : specialValue.getAffects()) {
-							if (Objects.equals(specialValueSkill, value)) {
-								modification += bonification.getBonification();
-								break;
-							}
+			modification += getModification(cyberneticDevice, value, true);
+		}
+		return modification;
+	}
+
+	private int getModification(IElementWithBonification element, IValue value, boolean always) {
+		int bonus = 0;
+		for (Bonification bonification : element.getBonifications()) {
+			if (bonification.getSituation() == null || (always && bonification.getSituation().isEmpty()) || (!always && !bonification.getSituation().isEmpty())) {
+				if (bonification.getAffects() instanceof SpecialValue) {
+					SpecialValue specialValue = (SpecialValue) bonification.getAffects();
+					// Has a list of values defined.
+					for (IValue specialValueSkill : specialValue.getAffects()) {
+						if (Objects.equals(specialValueSkill, value)) {
+							bonus += bonification.getBonification();
+							break;
 						}
 					}
+				}
+				if (value instanceof Characteristic) {
+					if (Objects.equals(bonification.getAffects(), ((Characteristic) value).getCharacteristicDefinition())) {
+						bonus += bonification.getBonification();
+					}
+				}
+				if (Objects.equals(bonification.getAffects(), value)) {
 					if (Objects.equals(bonification.getAffects(), value)) {
-						modification += bonification.getBonification();
+						bonus += bonification.getBonification();
 					}
 				}
 
 			}
 		}
-		return modification;
+		return bonus;
 	}
 
 	public boolean hasSkillTemporalModificator(AvailableSkill availableSkill) {
-		if (getBlessingModification(availableSkill.getSkillDefinition()) != 0) {
+		if (getBlessingModificationSituation(availableSkill.getSkillDefinition()) != 0) {
 			return true;
 		}
-		if (getCyberneticsModification(availableSkill.getSkillDefinition()) != 0) {
+		if (getCyberneticsModificationSituation(availableSkill.getSkillDefinition()) != 0) {
 			return true;
 		}
 		return false;
@@ -1042,10 +1006,10 @@ public class CharacterPlayer {
 	}
 
 	public boolean hasCharacteristicTemporalModificator(CharacteristicName characteristicName) {
-		if (getBlessingModification(CharacteristicsDefinitionFactory.getInstance().get(characteristicName, getLanguage())) != 0) {
+		if (getBlessingModificationSituation(CharacteristicsDefinitionFactory.getInstance().get(characteristicName, getLanguage())) != 0) {
 			return true;
 		}
-		if (getCyberneticsModification(CharacteristicsDefinitionFactory.getInstance().get(characteristicName, getLanguage())) != 0) {
+		if (getCyberneticsModificationSituation(CharacteristicsDefinitionFactory.getInstance().get(characteristicName, getLanguage())) != 0) {
 			return true;
 		}
 		return false;
@@ -1139,7 +1103,7 @@ public class CharacterPlayer {
 	 * @return
 	 */
 	public Weapon hasWeaponWithSkill(AvailableSkill skill) {
-		for (Weapon weapon : getWeapons().getElements()) {
+		for (Weapon weapon : getAllWeapons()) {
 			if (Objects.equals(weapon.getSkill(), skill.getSkillDefinition())) {
 				return weapon;
 			}
@@ -1149,7 +1113,7 @@ public class CharacterPlayer {
 
 	public int getEquipmentMaxTechnologicalLevel() {
 		int techLevel = 1;
-		for (Weapon weapon : getWeapons().getElements()) {
+		for (Weapon weapon : getAllWeapons()) {
 			if (weapon.getTechLevel() > techLevel) {
 				techLevel = weapon.getTechLevel();
 			}

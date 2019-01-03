@@ -384,7 +384,7 @@ public class CharacterSheet {
 	}
 
 	private void setEquipment(StringBuilder stringBuilder) {
-		if (!getCharacterPlayer().getWeapons().getElements().isEmpty() || getCharacterPlayer().getShield() != null) {
+		if (!getCharacterPlayer().getAllWeapons().isEmpty() || getCharacterPlayer().getShield() != null) {
 			stringBuilder.append(getTranslator().getTranslatedText("equipment") + ": ");
 			setWeapons(stringBuilder);
 			setArmours(stringBuilder);

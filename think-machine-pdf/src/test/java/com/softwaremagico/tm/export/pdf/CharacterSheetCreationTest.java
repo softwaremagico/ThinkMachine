@@ -164,8 +164,8 @@ public class CharacterSheetCreationTest {
 		player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("engineersEye", LANGUAGE));
 		player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("jonah", LANGUAGE));
 
-		player.getWeapons().addElement(WeaponFactory.getInstance().getElement("mace", LANGUAGE));
-		player.getWeapons().addElement(WeaponFactory.getInstance().getElement("martechGold", LANGUAGE));
+		player.addWeapon(WeaponFactory.getInstance().getElement("mace", LANGUAGE));
+		player.addWeapon(WeaponFactory.getInstance().getElement("martechGold", LANGUAGE));
 
 		player.setArmour(ArmourFactory.getInstance().getElement("synthsilk", LANGUAGE));
 

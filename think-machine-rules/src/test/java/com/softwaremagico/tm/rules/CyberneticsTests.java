@@ -96,7 +96,7 @@ public class CyberneticsTests {
 		player.getCharacteristic(CharacteristicName.WILL).setValue(7);
 
 		player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("centurionKnife", LANGUAGE));
-		Assert.assertEquals(player.getWeapons().getElements().size(), 1);
+		Assert.assertEquals(player.getAllWeapons().size(), 1);
 	}
 
 	@Test
