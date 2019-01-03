@@ -31,6 +31,7 @@ public class Characteristic extends CharacteristicDefinition {
 
 	public Characteristic(CharacteristicDefinition characteristicDefinition) {
 		super(characteristicDefinition.getId(), characteristicDefinition.getName(), characteristicDefinition.getLanguage());
+		setAbbreviature(characteristicDefinition.getAbbreviature());
 		setType(characteristicDefinition.getType());
 	}
 
@@ -41,5 +42,4 @@ public class Characteristic extends CharacteristicDefinition {
 	public void setValue(int value) {
 		this.value = value;
 	}
-
 }

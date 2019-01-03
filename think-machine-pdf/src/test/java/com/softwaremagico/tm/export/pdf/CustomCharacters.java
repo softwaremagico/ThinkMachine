@@ -46,6 +46,7 @@ import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.creation.CostCalculator;
 import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
 import com.softwaremagico.tm.character.cybernetics.CyberneticDeviceFactory;
+import com.softwaremagico.tm.character.cybernetics.RequiredCyberneticDevicesException;
 import com.softwaremagico.tm.character.cybernetics.TooManyCyberneticDevicesException;
 import com.softwaremagico.tm.character.equipment.DamageType;
 import com.softwaremagico.tm.character.equipment.armours.Armour;
@@ -73,7 +74,7 @@ public class CustomCharacters {
 
 	@Test
 	public void createPaolaCharacter() throws MalformedURLException, DocumentException, IOException, InvalidXmlElementException, TooManyBlessingsException,
-			TooManyCyberneticDevicesException {
+			TooManyCyberneticDevicesException, RequiredCyberneticDevicesException {
 		CharacterPlayer player = new CharacterPlayer(LANGUAGE);
 		player.getInfo().addName(new Name("#5", LANGUAGE, Gender.FEMALE, null));
 		player.getInfo().setPlayer("Paola");

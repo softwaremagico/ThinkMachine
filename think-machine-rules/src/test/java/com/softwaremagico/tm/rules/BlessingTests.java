@@ -33,6 +33,7 @@ import com.softwaremagico.tm.character.blessings.Blessing;
 import com.softwaremagico.tm.character.blessings.BlessingFactory;
 import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
+import com.softwaremagico.tm.character.cybernetics.RequiredCyberneticDevicesException;
 import com.softwaremagico.tm.character.cybernetics.TooManyCyberneticDevicesException;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.characters.CustomCharacter;
@@ -42,7 +43,7 @@ public class BlessingTests {
 	private final static String LANGUAGE = "es";
 
 	@Test
-	public void checkVitalityModifications() throws InvalidXmlElementException, TooManyBlessingsException, TooManyCyberneticDevicesException {
+	public void checkVitalityModifications() throws InvalidXmlElementException, TooManyBlessingsException, TooManyCyberneticDevicesException, RequiredCyberneticDevicesException {
 		CharacterPlayer player = CustomCharacter.create(LANGUAGE);
 		int vitality = player.getVitalityValue();
 		player.addBlessing(BlessingFactory.getInstance().getElement("incurableDisease", LANGUAGE));
@@ -50,7 +51,7 @@ public class BlessingTests {
 	}
 
 	@Test
-	public void checkMovementModifications() throws InvalidXmlElementException, TooManyBlessingsException, TooManyCyberneticDevicesException {
+	public void checkMovementModifications() throws InvalidXmlElementException, TooManyBlessingsException, TooManyCyberneticDevicesException, RequiredCyberneticDevicesException {
 		CharacterPlayer player = CustomCharacter.create(LANGUAGE);
 		int movement = player.getValue(CharacteristicName.MOVEMENT);
 		player.addBlessing(BlessingFactory.getInstance().getElement("limp", LANGUAGE));
@@ -58,7 +59,8 @@ public class BlessingTests {
 	}
 
 	@Test
-	public void checkRangedAttacksModifications() throws InvalidXmlElementException, TooManyBlessingsException, TooManyCyberneticDevicesException {
+	public void checkRangedAttacksModifications() throws InvalidXmlElementException, TooManyBlessingsException, TooManyCyberneticDevicesException,
+			RequiredCyberneticDevicesException {
 		CharacterPlayer player = CustomCharacter.create(LANGUAGE);
 		Assert.assertEquals((int) player.getSkillTotalRanks(AvailableSkillsFactory.getInstance().getElement(
 				"energyGuns", LANGUAGE)), 6);

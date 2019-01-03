@@ -59,6 +59,7 @@ import com.softwaremagico.tm.character.creation.CostCalculator;
 import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
 import com.softwaremagico.tm.character.cybernetics.CyberneticDevice;
 import com.softwaremagico.tm.character.cybernetics.Cybernetics;
+import com.softwaremagico.tm.character.cybernetics.RequiredCyberneticDevicesException;
 import com.softwaremagico.tm.character.cybernetics.TooManyCyberneticDevicesException;
 import com.softwaremagico.tm.character.equipment.armours.Armour;
 import com.softwaremagico.tm.character.equipment.armours.InvalidArmourException;
@@ -238,7 +239,7 @@ public class CharacterPlayer {
 			return 0;
 		}
 		// Add cybernetics modifications
-		value += getCyberneticsModification(getCharacteristic(characteristicName));
+		value += getCyberneticsModificationAlways(getCharacteristic(characteristicName));
 
 		// Add modifications always applied.
 		value += getBlessingModificationAlways(CharacteristicsDefinitionFactory.getInstance().get(characteristicName, language));
@@ -544,11 +545,26 @@ public class CharacterPlayer {
 		return cybernetics.getElements();
 	}
 
-	public void addCybernetics(CyberneticDevice cyberneticDevice) throws TooManyCyberneticDevicesException {
+	public boolean hasCyberneticDevice(CyberneticDevice cyberneticDevice) {
+		for (CyberneticDevice device : getAllCybernetics()) {
+			if (Objects.equals(device, cyberneticDevice)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public void addCybernetics(CyberneticDevice cyberneticDevice) throws TooManyCyberneticDevicesException, RequiredCyberneticDevicesException {
 		if (getCyberneticsIncompatibility() + cyberneticDevice.getIncompatibility() > Cybernetics.getMaxCyberneticIncompatibility(this)) {
 			throw new TooManyCyberneticDevicesException("Cybernatic device cannot be added due to incompatibility requirements. Current incompatibility '"
 					+ getCyberneticsIncompatibility() + "', device incompatibility '" + cyberneticDevice.getIncompatibility()
 					+ "', maximum incompatibility for this character is '" + Cybernetics.getMaxCyberneticIncompatibility(this) + "'.");
+		}
+		if (cyberneticDevice.getRequirement() != null) {
+			if (!hasCyberneticDevice(cyberneticDevice.getRequirement())) {
+				throw new RequiredCyberneticDevicesException("Cybernetic device '" + cyberneticDevice + "' requires '" + cyberneticDevice.getRequirement()
+						+ "' to be added to the character.");
+			}
 		}
 		getCybernetics().addElement(cyberneticDevice);
 	}
@@ -933,7 +949,7 @@ public class CharacterPlayer {
 
 	public int getCyberneticsModification(IValue value) {
 		int modification = 0;
-		for (CyberneticDevice cyberneticDevice : getCybernetics().getElements()) {
+		for (CyberneticDevice cyberneticDevice : getAllCybernetics()) {
 			for (Bonification bonification : cyberneticDevice.getBonifications()) {
 				if (bonification.getSituation() != null && !bonification.getSituation().isEmpty()) {
 					if (bonification.getAffects() instanceof SpecialValue) {

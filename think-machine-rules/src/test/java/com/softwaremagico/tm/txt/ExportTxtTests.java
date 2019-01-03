@@ -35,6 +35,7 @@ import org.testng.annotations.Test;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
+import com.softwaremagico.tm.character.cybernetics.RequiredCyberneticDevicesException;
 import com.softwaremagico.tm.character.cybernetics.TooManyCyberneticDevicesException;
 import com.softwaremagico.tm.characters.CustomCharacter;
 
@@ -44,7 +45,7 @@ public class ExportTxtTests {
 
 	@Test
 	private void checkCustomCharacter() throws TooManyBlessingsException, InvalidXmlElementException, IOException, URISyntaxException,
-			TooManyCyberneticDevicesException {
+			TooManyCyberneticDevicesException, RequiredCyberneticDevicesException {
 		CharacterPlayer player = CustomCharacter.create(LANGUAGE);
 		CharacterSheet characterSheet = new CharacterSheet(player);
 

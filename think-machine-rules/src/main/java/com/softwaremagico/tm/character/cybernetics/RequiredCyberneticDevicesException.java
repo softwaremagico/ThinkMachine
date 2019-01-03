@@ -1,10 +1,10 @@
-package com.softwaremagico.tm.factory;
+package com.softwaremagico.tm.character.cybernetics;
 
 /*-
  * #%L
- * Think Machine (Core)
+ * Think Machine (Rules)
  * %%
- * Copyright (C) 2017 Softwaremagico
+ * Copyright (C) 2017 - 2019 Softwaremagico
  * %%
  * This software is designed by Jorge Hortelano Otero. Jorge Hortelano Otero
  * <softwaremagico@gmail.com> Valencia (Spain).
@@ -24,21 +24,14 @@ package com.softwaremagico.tm.factory;
  * #L%
  */
 
-import junit.framework.Assert;
+public class RequiredCyberneticDevicesException extends Exception {
+	private static final long serialVersionUID = -1351656362615002505L;
 
-import org.testng.annotations.Test;
+	public RequiredCyberneticDevicesException(String message) {
+		super(message);
+	}
 
-import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
-
-@Test(groups = { "skillFactory" })
-public class SkillFactoryTests {
-	private final static int NATURAL_SKILLS = 9;
-	private final static int LEARNED_SKILLS = 47;
-
-	@Test
-	public void readSkills() throws InvalidXmlElementException {
-		Assert.assertEquals(NATURAL_SKILLS, SkillsDefinitionsFactory.getInstance().getNaturalSkills("es").size());
-		Assert.assertEquals(LEARNED_SKILLS, SkillsDefinitionsFactory.getInstance().getLearnedSkills("es").size());
+	public RequiredCyberneticDevicesException(String message, Exception e) {
+		super(message, e);
 	}
 }

@@ -31,6 +31,7 @@ import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.equipment.weapons.Weapon;
 import com.softwaremagico.tm.character.values.Bonification;
 import com.softwaremagico.tm.character.values.StaticValue;
+import com.softwaremagico.tm.log.MachineLog;
 
 public class CyberneticDevice extends Element<CyberneticDevice> {
 	private final int points;
@@ -97,9 +98,13 @@ public class CyberneticDevice extends Element<CyberneticDevice> {
 		return others;
 	}
 
-	public CyberneticDevice getRequirement() throws InvalidXmlElementException {
+	public CyberneticDevice getRequirement() {
 		if (requirement != null) {
-			return CyberneticDeviceFactory.getInstance().getElement(requirement, getLanguage());
+			try {
+				return CyberneticDeviceFactory.getInstance().getElement(requirement, getLanguage());
+			} catch (InvalidXmlElementException e) {
+				MachineLog.errorMessage(this.getClass().getName(), e);
+			}
 		}
 		return null;
 	}

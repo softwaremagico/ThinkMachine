@@ -45,6 +45,7 @@ import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.creation.CostCalculator;
 import com.softwaremagico.tm.character.cybernetics.CyberneticDeviceFactory;
+import com.softwaremagico.tm.character.cybernetics.RequiredCyberneticDevicesException;
 import com.softwaremagico.tm.character.cybernetics.TooManyCyberneticDevicesException;
 import com.softwaremagico.tm.character.equipment.armours.ArmourFactory;
 import com.softwaremagico.tm.character.equipment.shields.ShieldFactory;
@@ -99,7 +100,7 @@ public class CharacterSheetCreationTest {
 
 	@Test
 	public void characterPdfSpanish() throws MalformedURLException, DocumentException, IOException, InvalidXmlElementException, TooManyBlessingsException,
-			TooManyCyberneticDevicesException {
+			TooManyCyberneticDevicesException, RequiredCyberneticDevicesException {
 		CacheHandler.clearCache();
 
 		player = new CharacterPlayer(LANGUAGE);

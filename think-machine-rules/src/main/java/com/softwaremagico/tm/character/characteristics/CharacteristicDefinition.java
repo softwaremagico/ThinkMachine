@@ -84,10 +84,6 @@ public class CharacteristicDefinition extends Element<CharacteristicDefinition> 
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (!super.equals(obj))
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
 		CharacteristicDefinition other = (CharacteristicDefinition) obj;
 		if (abbreviature == null) {
 			if (other.abbreviature != null)

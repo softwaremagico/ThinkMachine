@@ -35,6 +35,7 @@ import com.softwaremagico.tm.character.blessings.BlessingFactory;
 import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.cybernetics.CyberneticDeviceFactory;
+import com.softwaremagico.tm.character.cybernetics.RequiredCyberneticDevicesException;
 import com.softwaremagico.tm.character.cybernetics.TooManyCyberneticDevicesException;
 import com.softwaremagico.tm.character.equipment.armours.ArmourFactory;
 import com.softwaremagico.tm.character.equipment.shields.ShieldFactory;
@@ -48,7 +49,8 @@ import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 
 public class CustomCharacter {
 
-	public static CharacterPlayer create(String language) throws InvalidXmlElementException, TooManyBlessingsException, TooManyCyberneticDevicesException {
+	public static CharacterPlayer create(String language) throws InvalidXmlElementException, TooManyBlessingsException, TooManyCyberneticDevicesException,
+			RequiredCyberneticDevicesException {
 		CacheHandler.clearCache();
 		CharacterPlayer player = new CharacterPlayer(language);
 		player.getInfo().addName(new Name("Oliver", language, Gender.MALE, null));
