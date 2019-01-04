@@ -65,4 +65,6 @@ public interface ITranslator {
 
 	boolean existsNode(String parent, String tag, String node);
 
+	String getNodeValue(String grandParent, String parent, String tag, String node, int nodeNumber);
+
 }

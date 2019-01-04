@@ -36,6 +36,7 @@ import com.softwaremagico.tm.character.equipment.weapons.Accessory;
 import com.softwaremagico.tm.character.equipment.weapons.Ammunition;
 import com.softwaremagico.tm.character.equipment.weapons.InvalidWeaponException;
 import com.softwaremagico.tm.character.equipment.weapons.Weapon;
+import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.character.skills.SkillDefinition;
 import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
 import com.softwaremagico.tm.character.values.Bonification;
@@ -67,7 +68,9 @@ public class CyberneticDeviceFactory extends XmlFactory<CyberneticDevice> {
 	private final static String AFFECTS = "affects";
 	private final static String SITUATION = "situation";
 
+	private final static String SKILL_STATIC_VALUE = "skillsStaticValues";
 	private final static String SKILL_VALUE = "skillValue";
+	private final static String SKILL_SPECIALITY = "speciality";
 
 	private final static String REQUIRES = "requires";
 
@@ -79,7 +82,7 @@ public class CyberneticDeviceFactory extends XmlFactory<CyberneticDevice> {
 	private final static String RANGE = "range";
 	private final static String SHOTS = "shots";
 	private final static String RATE = "rate";
- 
+
 	private static CyberneticDeviceFactory instance;
 
 	private static void createInstance() {
@@ -226,17 +229,30 @@ public class CyberneticDeviceFactory extends XmlFactory<CyberneticDevice> {
 			node = 0;
 			while (true) {
 				try {
-					String bonificationValue = translator.getNodeValue(cyberneticDeviceId, SKILL_VALUE, VALUE, node);
-					String skillName = translator.getNodeValue(cyberneticDeviceId, SKILL_VALUE, AFFECTS, node);
+					String bonificationValue = translator.getNodeValue(cyberneticDeviceId, SKILL_STATIC_VALUE, SKILL_VALUE, VALUE, node);
+					String skillName = translator.getNodeValue(cyberneticDeviceId, SKILL_STATIC_VALUE, SKILL_VALUE, AFFECTS, node);
+					String skillSpeciality = null;
+					try {
+						skillSpeciality = translator.getNodeValue(cyberneticDeviceId, SKILL_STATIC_VALUE, SKILL_VALUE, SKILL_SPECIALITY, node);
+					} catch (NullPointerException e) {
+						// Not mandatory
+					}
 					IValue affects = null;
 					if (skillName != null) {
-						affects = SpecialValue.getValue(skillName, language);
+						try {
+							if (skillSpeciality == null) {
+								affects = AvailableSkillsFactory.getInstance().getElement(skillName, language);
+							} else {
+								affects = AvailableSkillsFactory.getInstance().getElement(skillName, skillSpeciality, language);
+							}
+						} catch (InvalidXmlElementException e) {
+							throw new InvalidCyberneticDeviceException("Skill value number '" + node + "' invalid for cybernetic device '" + cyberneticDeviceId
+									+ "'.");
+						}
 					}
-
-					StaticValue skillValue = new StaticValue(Integer.parseInt(bonificationValue), affects);
-					staticValues.add(skillValue);
+					staticValues.add(new StaticValue(Integer.parseInt(bonificationValue), affects));
 					node++;
-				} catch (Exception e) {
+				} catch (NumberFormatException e) {
 					break;
 				}
 			}

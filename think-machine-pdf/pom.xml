@@ -153,7 +153,7 @@
 			<groupId>${project.groupId}</groupId>
 			<artifactId>think-machine-random</artifactId>
 			<version>${project.version}</version>
-			<scope>tests</scope>
+			<scope>test</scope>
 		</dependency>
 		<!-- PDF -->
 		<dependency>

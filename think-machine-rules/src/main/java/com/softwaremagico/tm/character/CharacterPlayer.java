@@ -319,14 +319,15 @@ public class CharacterPlayer {
 	}
 
 	/**
-	 * All ranks assigned to an skill plus blessing modification.
+	 * All ranks assigned to an skill plus blessing and cybernetics
+	 * modification.
 	 * 
 	 * @param skill
 	 *            Skill to check.
 	 * @return ranks of the skill.
 	 */
-	private Integer getSkillTotalRanks(Skill<?> skill) {
-		Integer cyberneticBonus = getCyberneticsValue(skill.getName());
+	public Integer getSkillTotalRanks(AvailableSkill skill) {
+		Integer cyberneticBonus = getCyberneticsValue(skill);
 		Integer skillValue = getSkillAssignedRanks(skill);
 		// Set the modifications of blessings.
 		if (skills.get(skill.getUniqueId()) != null) {
@@ -339,26 +340,11 @@ public class CharacterPlayer {
 		return skillValue;
 	}
 
-	public Integer getSkillTotalRanks(AvailableSkill skill) {
-		SelectedSkill selectedSkill = getSelectedSkill(skill);
-		// Use the skill with generalization.
-		if (selectedSkill != null) {
-			return getSkillTotalRanks(selectedSkill);
-		} else {
-			// Use a simple skill if not generalization.
-			if (!skill.getSkillDefinition().isSpecializable() || skill.getSkillDefinition().isNatural()) {
-				return getSkillTotalRanks((Skill<AvailableSkill>) skill);
-			} else {
-				return 0;
-			}
-		}
-	}
-
-	private Integer getCyberneticsValue(String skillName) {
+	private Integer getCyberneticsValue(Skill<?> skill) {
 		int maxValue = 0;
 		for (CyberneticDevice device : cybernetics.getElements()) {
 			for (StaticValue staticValue : device.getStaticValues()) {
-				if (Objects.equals(staticValue.getAffects().getName(), skillName)) {
+				if (Objects.equals(staticValue.getAffects().getId(), skill.getId())) {
 					if (maxValue < staticValue.getValue()) {
 						maxValue = staticValue.getValue();
 					}
