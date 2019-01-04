@@ -1,10 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <cyberneticsTraits>
+	<proscribed>
+		<name>
+			<en>Proscribed</en>
+			<es>Proscrito</es>
+		</name>
+		<category>proscribed</category>
+	</proscribed>
 	<attached>
 		<name>
 			<en>Attached</en>
 			<es>Unido</es>
 		</name>
+		<minTechLevel></minTechLevel>
+		<extraPoints></extraPoints>
+		<extraCost></extraCost>
+		<extraIncompatibility></extraIncompatibility>
 		<category>attached</category>
 	</attached>
 	<removable>
@@ -252,7 +263,7 @@
 	<ciberLungWater>
 		<name>
 			<en>CyberLung (Water)</en>
-			<es>Ciberpulmón (Radio)</es>
+			<es>Ciberpulmón (Water)</es>
 		</name>
 		<category>trait</category>
 	</ciberLungWater>
@@ -265,43 +276,43 @@
 	</ciberLungVoid>
 	<cybersenseMagnifier>
 		<name>
-			<en>Cybersense (Magnifier/Telescope)</en>
-			<es>Cibersentido (Aumento/Telescopio)</es>
+			<en>Magnifier/Telescope</en>
+			<es>Aumento/Telescopio</es>
 		</name>
 		<category>trait</category>
 	</cybersenseMagnifier>
 	<cybersenseIr>
 		<name>
-			<en>Cybersense (IR Vision)</en>
-			<es>Cibersentido (Visión IR)</es>
+			<en>IR Vision</en>
+			<es>Visión IR</es>
 		</name>
 		<category>trait</category>
 	</cybersenseIr>
 	<cybersenseVideo>
 		<name>
-			<en>Cybersense (Video)</en>
-			<es>Cibersentido (Vídeo)</es>
+			<en>Video</en>
+			<es>Vídeo</es>
 		</name>
 		<category>trait</category>
 	</cybersenseVideo>
 	<cybersenseRadio>
 		<name>
-			<en>Cybersense (Radio)</en>
-			<es>Ciberpulmón (Agua)</es>
+			<en>Radio</en>
+			<es>Radio</es>
 		</name>
 		<category>trait</category>
 	</cybersenseRadio>
 	<cybersenseHypertouch>
 		<name>
-			<en>Cybersense (Hypertouch)</en>
-			<es>Cibersentido (Hipertacto)</es>
+			<en>Hypertouch</en>
+			<es>Hipertacto</es>
 		</name>
 		<category>trait</category>
 	</cybersenseHypertouch>
 	<cybersenseXVision>
 		<name>
-			<en>Cybersense (X-Ray Vision)</en>
-			<es>Cibersentido (Visión de Rayos X)</es>
+			<en>X-Ray Vision</en>
+			<es>Visión de Rayos X</es>
 		</name>
 		<category>trait</category>
 	</cybersenseXVision>

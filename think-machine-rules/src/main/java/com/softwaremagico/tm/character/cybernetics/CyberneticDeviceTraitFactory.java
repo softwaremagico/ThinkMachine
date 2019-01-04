@@ -34,6 +34,11 @@ public class CyberneticDeviceTraitFactory extends XmlFactory<CyberneticDeviceTra
 
 	private final static String NAME = "name";
 	private final static String CATEGORY = "category";
+	
+	private final static String MIN_TECH_LEVEL = "minTechLevel";
+	private final static String EXTRA_POINTS = "extraPoints";
+	private final static String EXTRA_COST = "extraCost";
+	private final static String EXTRA_INCOMPATIBILITY = "extraIncompatibility";
 
 	private static CyberneticDeviceTraitFactory instance;
 

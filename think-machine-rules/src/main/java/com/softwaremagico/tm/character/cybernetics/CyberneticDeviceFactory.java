@@ -24,8 +24,11 @@ package com.softwaremagico.tm.character.cybernetics;
  * #L%
  */
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.StringTokenizer;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
@@ -53,15 +56,9 @@ public class CyberneticDeviceFactory extends XmlFactory<CyberneticDevice> {
 	private final static String TECH_LEVEL = "techLevel";
 	private final static String POINTS = "points";
 
-	private final static String INCOMPATIBILITY = "incompatibility";
-	private final static String ATTACHED = "attached";
-	private final static String MATERIAL = "material";
-	private final static String VISIBILITY = "visibility";
-	private final static String USABILITY = "usability";
-	private final static String QUALITY = "quality";
-	private final static String POWER = "power";
 	private final static String COST = "cost";
-	private final static String PROSCRIBED = "proscribed";
+	private final static String INCOMPATIBILITY = "incompatibility";
+	private final static String TRAITS = "traits";
 
 	private final static String BONIFICATION = "bonification";
 	private final static String VALUE = "value";
@@ -149,53 +146,21 @@ public class CyberneticDeviceFactory extends XmlFactory<CyberneticDevice> {
 				throw new InvalidWeaponException("Invalid incompatibility value in cybernetic device '" + cyberneticDeviceId + "'.");
 			}
 
-			CyberneticDeviceTrait attached = null;
+			List<CyberneticDeviceTrait> traits = new ArrayList<>();
+			String traitsNames = translator.getNodeValue(cyberneticDeviceId, TRAITS);
 			try {
-				attached = CyberneticDeviceTraitFactory.getInstance().getElement(translator.getNodeValue(cyberneticDeviceId, ATTACHED), language);
-			} catch (NullPointerException npoe) {
-				// Not mandatory
-			}
-
-			CyberneticDeviceTrait material = null;
-			try {
-				material = CyberneticDeviceTraitFactory.getInstance().getElement(translator.getNodeValue(cyberneticDeviceId, MATERIAL), language);
-			} catch (NullPointerException npoe) {
-				// Not mandatory
-			}
-
-			CyberneticDeviceTrait visibility = null;
-			try {
-				visibility = CyberneticDeviceTraitFactory.getInstance().getElement(translator.getNodeValue(cyberneticDeviceId, VISIBILITY), language);
-			} catch (NullPointerException npoe) {
-				// Not mandatory
-			}
-
-			CyberneticDeviceTrait usability = null;
-			try {
-				usability = CyberneticDeviceTraitFactory.getInstance().getElement(translator.getNodeValue(cyberneticDeviceId, USABILITY), language);
-			} catch (NullPointerException npoe) {
-				// Not mandatory
-			}
-
-			CyberneticDeviceTrait quality = null;
-			try {
-				quality = CyberneticDeviceTraitFactory.getInstance().getElement(translator.getNodeValue(cyberneticDeviceId, QUALITY), language);
-			} catch (NullPointerException npoe) {
-				// Not mandatory
-			}
-
-			CyberneticDeviceTrait power = null;
-			try {
-				power = CyberneticDeviceTraitFactory.getInstance().getElement(translator.getNodeValue(cyberneticDeviceId, POWER), language);
-			} catch (NullPointerException npoe) {
-				// Not mandatory
-			}
-
-			boolean proscribed = false;
-			try {
-				proscribed = Boolean.parseBoolean(translator.getNodeValue(cyberneticDeviceId, PROSCRIBED));
-			} catch (NullPointerException npoe) {
-				// Not mandatory
+				StringTokenizer traitTokenizer = new StringTokenizer(traitsNames, ",");
+				while (traitTokenizer.hasMoreTokens()) {
+					String traitName = traitTokenizer.nextToken().trim();
+					try {
+						traits.add(CyberneticDeviceTraitFactory.getInstance().getElement(traitName, language));
+					} catch (InvalidXmlElementException e) {
+						throw new InvalidCyberneticDeviceException("Invalid trait '" + traitName + "' for traits '" + traitsNames + "' in cybernetic device '"
+								+ cyberneticDeviceId + "'.", e);
+					}
+				}
+			} catch (NullPointerException e) {
+				throw new InvalidCyberneticDeviceException("Invalid traits '" + traitsNames + "' in cybernetic device '" + cyberneticDeviceId + "'.", e);
 			}
 
 			String requires = null;
@@ -262,8 +227,8 @@ public class CyberneticDeviceFactory extends XmlFactory<CyberneticDevice> {
 				weapon = getWeapon(translator, cyberneticDeviceId, name, techLevel, language);
 			}
 
-			CyberneticDevice cyberneticDevice = new CyberneticDevice(cyberneticDeviceId, name, language, points, incompatibility, cost, techLevel, usability,
-					quality, visibility, material, attached, power, proscribed, null, requires, weapon, bonifications, staticValues);
+			CyberneticDevice cyberneticDevice = new CyberneticDevice(cyberneticDeviceId, name, language, points, incompatibility, cost, techLevel, requires,
+					weapon, traits, bonifications, staticValues);
 
 			return cyberneticDevice;
 		} catch (Exception e) {

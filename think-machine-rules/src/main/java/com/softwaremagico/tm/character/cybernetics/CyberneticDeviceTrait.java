@@ -38,4 +38,23 @@ public class CyberneticDeviceTrait extends Element<CyberneticDeviceTrait> {
 		return category;
 	}
 
+	@Override
+	public int compareTo(CyberneticDeviceTrait element) {
+		// Categories with higher preferences first.
+		if (getCategory() == null) {
+			if (element.getCategory() != null) {
+				return -1;
+			}
+		}
+		if (getCategory() != null) {
+			if (element.getCategory() == null) {
+				return 1;
+			}
+		}
+		if (getCategory() != element.getCategory()) {
+			return element.getCategory().getPreference() - getCategory().getPreference();
+		}
+		return super.compareTo(element);
+	}
+
 }

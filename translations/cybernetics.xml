@@ -8,11 +8,8 @@
 		<techLevel>5</techLevel>
 		<points>2</points>
 		<incompatibility>2</incompatibility>
-		<attached>removable</attached>
-		<material>metal</material>
-		<visibility>incognito</visibility>
+		<traits>removable, metal, incognito</traits>
 		<cost>365</cost>
-		<proscribed>no</proscribed>
 		<weapon>
 			<characteristic>dexterity</characteristic>
 			<skill>melee</skill>
@@ -28,11 +25,8 @@
 		<techLevel>5</techLevel>
 		<points>6</points>
 		<incompatibility>3</incompatibility>
-		<attached>attached</attached>
-		<material>metal</material>
-		<visibility>incognito</visibility>
+		<traits>attached, metal, incognito</traits>
 		<cost>740</cost>
-		<proscribed>no</proscribed>
 		<weapon>
 			<characteristic>dexterity</characteristic>
 			<skill>melee</skill>
@@ -48,11 +42,8 @@
 		<techLevel>5</techLevel>
 		<points>4</points>
 		<incompatibility>3</incompatibility>
-		<attached>attached</attached>
-		<material>metal</material>
-		<visibility>incognito</visibility>
+		<traits>attached, metal, incognito</traits>
 		<cost>725</cost>
-		<proscribed>no</proscribed>
 		<weapon>
 			<characteristic>dexterity</characteristic>
 			<skill>archery</skill>
@@ -71,11 +62,8 @@
 		<techLevel>5</techLevel>
 		<points>7</points>
 		<incompatibility>4</incompatibility>
-		<attached>attached</attached>
-		<material>metal</material>
-		<visibility>incognito</visibility>
+		<traits>attached, metal, incognito</traits>
 		<cost>2440</cost>
-		<proscribed>no</proscribed>
 		<weapon>
 			<characteristic>dexterity</characteristic>
 			<skill>archery</skill>
@@ -94,13 +82,8 @@
 		<techLevel>6</techLevel>
 		<points>3</points>
 		<incompatibility>3</incompatibility>
-		<attached>organic</attached>
-		<material>metal</material>
-		<visibility>obvious</visibility>
-		<usability>automatic</usability>
-		<power>selfPowered</power>
+		<traits>organic, obvious, automatic, selfPowered</traits>
 		<cost>1655</cost>
-		<proscribed>no</proscribed>
 		<others>ciberLungWater</others>
 	</aquaLung>
 	<advancedAquaLung>
@@ -111,13 +94,8 @@
 		<techLevel>6</techLevel>
 		<points>5</points>
 		<incompatibility>4</incompatibility>
-		<attached>organic</attached>
-		<material>metal</material>
-		<visibility>hidden</visibility>
-		<usability>automatic</usability>
-		<power>selfPowered</power>
+		<traits>organic, hidden, automatic, selfPowered</traits>
 		<cost>1805</cost>
-		<proscribed>no</proscribed>
 		<others>ciberLungWater</others>
 	</advancedAquaLung>
 	<engineersEye>
@@ -128,15 +106,8 @@
 		<techLevel>6</techLevel>
 		<points>6</points>
 		<incompatibility>5</incompatibility>
-		<attached>attached</attached>
-		<material>metal</material>
-		<visibility>obvious</visibility>
-		<usability>automatic</usability>
-		<quality></quality>
-		<power>selfPowered</power>
 		<cost>2440</cost>
-		<proscribed>no</proscribed>
-		<others>cybersenseMagnifier, cybersenseIr</others>
+		<traits>attached, obvious, automatic, selfPowered, cybersenseMagnifier, cybersenseIr</traits>
 		<bonifications>
 			<bonification>
 				<value>1</value>
@@ -156,15 +127,8 @@
 		<techLevel>6</techLevel>
 		<points>8</points>
 		<incompatibility>6</incompatibility>
-		<attached>attached</attached>
-		<material>metal</material>
-		<visibility>hidden</visibility>
-		<usability>automatic</usability>
-		<quality></quality>
-		<power>selfPowered</power>
+		<traits>attached, hidden, automatic, selfPowered, cybersenseMagnifier, cybersenseIr</traits>
 		<cost>2440</cost>
-		<proscribed>no</proscribed>
-		<others>cybersenseMagnifier, cybersenseIr</others>
 		<bonifications>
 			<bonification>
 				<value>1</value>
@@ -184,14 +148,8 @@
 		<techLevel>6</techLevel>
 		<points>6</points>
 		<incompatibility>5</incompatibility>
-		<attached>attached</attached>
-		<material>metal</material>
-		<visibility>hidden</visibility>
-		<usability>skillUse</usability>
-		<power>selfPowered</power>
+		<traits>attached, hidden, skillUse, selfPowered, cybersenseRadio</traits>
 		<cost>1245</cost>
-		<proscribed>no</proscribed>
-		<others>ciberLungWater</others>
 	</etherEar>
 	<goliathSkin>
 		<name>
@@ -201,14 +159,8 @@
 		<techLevel>6</techLevel>
 		<points>10</points>
 		<incompatibility>6</incompatibility>
-		<attached>organic</attached>
-		<material>metal</material>
-		<visibility>obvious</visibility>
-		<usability>automatic</usability>
-		<quality></quality>
-		<power>selfPowered</power>
+		<traits>organic, metal, obvious, automatic, selfPowered</traits>
 		<cost>3715</cost>
-		<proscribed>no</proscribed>
 		<bonifications>
 			<bonification>
 				<value>3</value>
@@ -228,14 +180,8 @@
 		<techLevel>6</techLevel>
 		<points>5</points>
 		<incompatibility>4</incompatibility>
-		<attached>organic</attached>
-		<material>metal</material>
-		<visibility>obvious</visibility>
-		<usability>automatic</usability>
-		<quality></quality>
-		<power>selfPowered</power>
 		<cost>3025</cost>
-		<proscribed>no</proscribed>
+		<traits>organic, metal, obvious, automatic, selfPowered</traits>
 		<bonifications>
 			<bonification>
 				<value>3</value>
@@ -251,15 +197,8 @@
 		<techLevel>7</techLevel>
 		<points>9</points>
 		<incompatibility>7</incompatibility>
-		<attached>organic</attached>
-		<material>synthflesh</material>
-		<visibility>hidden</visibility>
-		<usability>automatic</usability>
-		<quality></quality>
-		<power>selfPowered</power>
 		<cost>5250</cost>
-		<proscribed>yes</proscribed>
-		<others>ciberLungVoid</others>
+		<traits>organic, synthflesh, hidden, automatic, selfPowered, proscribed, ciberLungVoid</traits>
 	</oxyLung>
 	<secondBrain>
 		<name>
@@ -269,14 +208,8 @@
 		<techLevel>6</techLevel>
 		<points>11</points>
 		<incompatibility>10</incompatibility>
-		<attached>attached</attached>
-		<material>synthflesh</material>
-		<visibility>hidden</visibility>
-		<usability>automatic</usability>
-		<quality></quality>
-		<power>selfPowered</power>
+		<traits>attached, synthflesh, hidden, automatic, selfPowered</traits>
 		<cost>5915</cost>
-		<proscribed>no</proscribed>
 		<bonifications>
 			<bonification>
 				<value>2</value>
@@ -290,15 +223,13 @@
 	</secondBrain>
 	<secondBrainJumpLoreSoftware>
 		<name>
-			<en>Program [Jumpweb]</en>
-			<es>Programa [Red de Salto]</es>
+			<en>Prg. Jumpweb</en>
+			<es>Prg. Red de Salto</es>
 		</name>
 		<techLevel>6</techLevel>
 		<points>0</points>
 		<incompatibility>0</incompatibility>
-		<attached>removable</attached>
-		<visibility>hidden</visibility>
-		<usability>automatic</usability>
+		<traits>removable, hidden, automatic</traits>
 		<cost>1200</cost>
 		<skillsStaticValues>
 			<skillValue>
@@ -311,15 +242,13 @@
 	</secondBrainJumpLoreSoftware>
 	<secondBrainEnergyPistolsLore>
 		<name>
-			<en>Program [Energy Pistols]</en>
-			<es>Programa [Pistola Energía]</es>
+			<en>Prg. Energy Pistols</en>
+			<es>Prg. Pistola Energía</es>
 		</name>
 		<techLevel>6</techLevel>
 		<points>0</points>
 		<incompatibility>0</incompatibility>
-		<attached>removable</attached>
-		<visibility>hidden</visibility>
-		<usability>automatic</usability>
+		<traits>removable, hidden, automatic</traits>
 		<cost>1200</cost>
 		<skillsStaticValues>
 			<skillValue>
@@ -332,16 +261,14 @@
 	</secondBrainEnergyPistolsLore>
 	<secondBrainThinkMachineLore>
 		<name>
-			<en>Program [Think Machine]</en>
-			<es>Programa [Máquina Pensante]</es>
+			<en>Prg. Think Machine</en>
+			<es>Prg. Máquina Pensante</es>
 		</name>
 		<techLevel>6</techLevel>
 		<points>0</points>
 		<incompatibility>0</incompatibility>
-		<attached>removable</attached>
-		<visibility>hidden</visibility>
-		<usability>automatic</usability>
 		<cost>1200</cost>
+		<traits>removable, hidden, automatic</traits>
 		<skillsStaticValues>
 			<skillValue>
 				<value>4</value>
@@ -359,14 +286,8 @@
 		<techLevel>6</techLevel>
 		<points>6</points>
 		<incompatibility>5</incompatibility>
-		<attached>organic</attached>
-		<material>synthflesh</material>
-		<visibility>hidden</visibility>
-		<usability>skillUse</usability>
-		<power>selfPowered</power>
 		<cost>2655</cost>
-		<proscribed>no</proscribed>
-		<others>cybersenseMagnifier, cybersenseVideo</others>
+		<traits>organic, synthflesh, hidden, skillUse, selfPowered, cybersenseMagnifier, cybersenseVideo</traits>
 	</spyEye>
 	<stimusim>
 		<name>
@@ -376,13 +297,8 @@
 		<techLevel>6</techLevel>
 		<points>3</points>
 		<incompatibility>5</incompatibility>
-		<attached>organic</attached>
-		<material>synthflesh</material>
-		<visibility>incognito</visibility>
-		<usability>automatic</usability>
-		<power>selfPowered</power>
+		<traits>organic, synthflesh, incognito, automatic, selfPowered, proscribed</traits>
 		<cost>3115</cost>
-		<proscribed>yes</proscribed>
 		<bonifications>
 			<bonification>
 				<value>2</value>
@@ -399,13 +315,7 @@
 		<techLevel>7</techLevel>
 		<points>4</points>
 		<incompatibility>7</incompatibility>
-		<attached>organic</attached>
-		<material>synthflesh</material>
-		<visibility>incognito</visibility>
-		<usability>skillUse</usability>
-		<power>selfPowered</power>
+		<traits>organic, synthflesh, incognito, skillUse, selfPowered, cybersenseHypertouch</traits>
 		<cost>2150</cost>
-		<proscribed>no</proscribed>
-		<others>cybersenseHypertouch</others>
 	</xEyes>
 </cybernetics>

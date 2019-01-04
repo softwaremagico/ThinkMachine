@@ -24,6 +24,8 @@ package com.softwaremagico.tm.character.cybernetics;
  * #L%
  */
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Set;
 
 import com.softwaremagico.tm.Element;
@@ -39,37 +41,22 @@ public class CyberneticDevice extends Element<CyberneticDevice> implements IElem
 	private final int incompatibility;
 	private final int cost;
 	private final int techLevel;
-	private final CyberneticDeviceTrait usability;
-	private final CyberneticDeviceTrait quality;
-	private final CyberneticDeviceTrait visibility;
-	private final CyberneticDeviceTrait material;
-	private final CyberneticDeviceTrait attached;
-	private final CyberneticDeviceTrait power;
-	private final String others;
 	private final String requirement;
 	private final Weapon weapon;
-	private final boolean proscribed;
+	private final List<CyberneticDeviceTrait> traits;
 	private final Set<Bonification> bonifications;
 	private final Set<StaticValue> staticValues;
 
-	public CyberneticDevice(String id, String name, String language, int points, int incompatibility, int cost, int techLevel, CyberneticDeviceTrait usability,
-			CyberneticDeviceTrait quality, CyberneticDeviceTrait visibility, CyberneticDeviceTrait material, CyberneticDeviceTrait attached,
-			CyberneticDeviceTrait power, boolean proscribed, String others, String requirement, Weapon weapon, Set<Bonification> bonifications,
-			Set<StaticValue> staticValues) {
+	public CyberneticDevice(String id, String name, String language, int points, int incompatibility, int cost, int techLevel, String requirement,
+			Weapon weapon, List<CyberneticDeviceTrait> traits, Set<Bonification> bonifications, Set<StaticValue> staticValues) {
 		super(id, name, language);
 		this.points = points;
 		this.incompatibility = incompatibility;
 		this.cost = cost;
 		this.techLevel = techLevel;
-		this.usability = usability;
-		this.quality = quality;
-		this.visibility = visibility;
-		this.material = material;
-		this.attached = attached;
-		this.power = power;
-		this.others = others;
+		this.traits = traits;
+		Collections.sort(this.traits);
 		this.requirement = requirement;
-		this.proscribed = proscribed;
 		this.weapon = weapon;
 		this.bonifications = bonifications;
 		this.staticValues = staticValues;
@@ -83,20 +70,13 @@ public class CyberneticDevice extends Element<CyberneticDevice> implements IElem
 		return incompatibility;
 	}
 
-	public CyberneticDeviceTrait getUsability() {
-		return usability;
-	}
-
-	public CyberneticDeviceTrait getQuality() {
-		return quality;
-	}
-
-	public CyberneticDeviceTrait getVisibility() {
-		return visibility;
-	}
-
-	public String getOthers() {
-		return others;
+	public CyberneticDeviceTrait getTrait(CyberneticDeviceTraitCategory category) {
+		for (CyberneticDeviceTrait trait : traits) {
+			if (trait.getCategory().equals(category)) {
+				return trait;
+			}
+		}
+		return null;
 	}
 
 	public CyberneticDevice getRequirement() {
@@ -114,22 +94,6 @@ public class CyberneticDevice extends Element<CyberneticDevice> implements IElem
 		return weapon;
 	}
 
-	public CyberneticDeviceTrait getMaterial() {
-		return material;
-	}
-
-	public CyberneticDeviceTrait getAttached() {
-		return attached;
-	}
-
-	public CyberneticDeviceTrait getPower() {
-		return power;
-	}
-
-	public boolean isProscribed() {
-		return proscribed;
-	}
-
 	public int getCost() {
 		return cost;
 	}
@@ -145,5 +109,9 @@ public class CyberneticDevice extends Element<CyberneticDevice> implements IElem
 
 	public Set<StaticValue> getStaticValues() {
 		return staticValues;
+	}
+
+	public List<CyberneticDeviceTrait> getTraits() {
+		return traits;
 	}
 }
