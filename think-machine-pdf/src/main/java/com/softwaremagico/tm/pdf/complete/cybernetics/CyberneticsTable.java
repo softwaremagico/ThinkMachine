@@ -31,8 +31,8 @@ import java.util.List;
 
 import com.itextpdf.text.Element;
 import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.character.cybernetics.CyberneticDevice;
 import com.softwaremagico.tm.character.cybernetics.CyberneticDeviceTrait;
+import com.softwaremagico.tm.character.cybernetics.SelectedCyberneticDevice;
 import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.complete.elements.LateralHeaderPdfPTable;
 
@@ -57,9 +57,9 @@ public class CyberneticsTable extends LateralHeaderPdfPTable {
 
 		int addedDevices = 0;
 		if (characterPlayer != null) {
-			List<CyberneticDevice> devices = new ArrayList<>(characterPlayer.getAllCybernetics());
+			List<SelectedCyberneticDevice> devices = new ArrayList<>(characterPlayer.getAllCybernetics());
 			Collections.sort(devices, new CyberneticComparatorByRequirements());
-			for (CyberneticDevice device : devices) {
+			for (SelectedCyberneticDevice device : devices) {
 				addCell(createFirstElementLine(device.getRequirement() != null ? " - " + device.getName() : device.getName(), NAME_COLUMN_WIDTH,
 						FadingSunsTheme.CYBERNETICS_CONTENT_FONT_SIZE));
 				addCell(createElementLine(device.getPoints() + "", POINTS_COLUMN_WIDTH, FadingSunsTheme.CYBERNETICS_CONTENT_FONT_SIZE));
@@ -94,10 +94,10 @@ public class CyberneticsTable extends LateralHeaderPdfPTable {
 		return FadingSunsTheme.CYBERNETICS_TITLE_FONT_SIZE;
 	}
 
-	class CyberneticComparatorByRequirements implements Comparator<CyberneticDevice> {
+	class CyberneticComparatorByRequirements implements Comparator<SelectedCyberneticDevice> {
 
 		@Override
-		public int compare(CyberneticDevice a, CyberneticDevice element) {
+		public int compare(SelectedCyberneticDevice a, SelectedCyberneticDevice element) {
 			if (a.getName() == null) {
 				if (element.getName() == null) {
 					return 0;

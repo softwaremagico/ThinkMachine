@@ -28,10 +28,21 @@ import com.softwaremagico.tm.Element;
 
 public class CyberneticDeviceTrait extends Element<CyberneticDeviceTrait> {
 	private final CyberneticDeviceTraitCategory category;
+	private final int minimumTechLevel;
+	private final int extraPoints;
+	private final int extraCost;
+	private final float extraCostMultiplier;
+	private final int extraIncompatibility;
 
-	public CyberneticDeviceTrait(String id, String name, String language, CyberneticDeviceTraitCategory category) {
+	public CyberneticDeviceTrait(String id, String name, String language, CyberneticDeviceTraitCategory category, int minimumTechLevel, int extraPoints,
+			int extraCost, float extraCostMultiplier, int extraIncompatibility) {
 		super(id, name, language);
 		this.category = category;
+		this.minimumTechLevel = minimumTechLevel;
+		this.extraCost = extraCost;
+		this.extraCostMultiplier = extraCostMultiplier;
+		this.extraPoints = extraPoints;
+		this.extraIncompatibility = extraIncompatibility;
 	}
 
 	public CyberneticDeviceTraitCategory getCategory() {
@@ -55,6 +66,26 @@ public class CyberneticDeviceTrait extends Element<CyberneticDeviceTrait> {
 			return element.getCategory().getPreference() - getCategory().getPreference();
 		}
 		return super.compareTo(element);
+	}
+
+	public int getMinimumTechLevel() {
+		return minimumTechLevel;
+	}
+
+	public int getExtraPoints() {
+		return extraPoints;
+	}
+
+	public float getExtraCostMultiplier() {
+		return extraCostMultiplier;
+	}
+
+	public int getExtraIncompatibility() {
+		return extraIncompatibility;
+	}
+
+	public int getExtraCost() {
+		return extraCost;
 	}
 
 }

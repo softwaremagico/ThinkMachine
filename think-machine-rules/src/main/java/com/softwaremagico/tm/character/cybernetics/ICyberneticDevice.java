@@ -2,9 +2,9 @@ package com.softwaremagico.tm.character.cybernetics;
 
 /*-
  * #%L
- * Think Machine (Core)
+ * Think Machine (Rules)
  * %%
- * Copyright (C) 2017 Softwaremagico
+ * Copyright (C) 2017 - 2019 Softwaremagico
  * %%
  * This software is designed by Jorge Hortelano Otero. Jorge Hortelano Otero
  * <softwaremagico@gmail.com> Valencia (Spain).
@@ -24,13 +24,33 @@ package com.softwaremagico.tm.character.cybernetics;
  * #L%
  */
 
-import com.softwaremagico.tm.ElementList;
-import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.character.characteristics.CharacteristicName;
+import java.util.List;
+import java.util.Set;
 
-public class Cybernetics extends ElementList<SelectedCyberneticDevice> {
+import com.softwaremagico.tm.character.IElementWithBonification;
+import com.softwaremagico.tm.character.equipment.weapons.Weapon;
+import com.softwaremagico.tm.character.values.StaticValue;
 
-	public static int getMaxCyberneticIncompatibility(CharacterPlayer characterPlayer) {
-		return (characterPlayer.getCharacteristic(CharacteristicName.WILL).getValue() * 3) + 2;
-	}
+public interface ICyberneticDevice extends IElementWithBonification {
+
+	String getName();
+
+	Weapon getWeapon();
+
+	int getCost();
+
+	Set<StaticValue> getStaticValues();
+
+	List<CyberneticDeviceTrait> getTraits();
+
+	int getTechLevel();
+
+	CyberneticDevice getRequirement();
+
+	CyberneticDeviceTrait getTrait(CyberneticDeviceTraitCategory category);
+
+	int getIncompatibility();
+
+	int getPoints();
+
 }

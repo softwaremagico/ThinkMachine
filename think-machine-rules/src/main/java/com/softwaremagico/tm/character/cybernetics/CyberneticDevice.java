@@ -36,7 +36,7 @@ import com.softwaremagico.tm.character.values.Bonification;
 import com.softwaremagico.tm.character.values.StaticValue;
 import com.softwaremagico.tm.log.MachineLog;
 
-public class CyberneticDevice extends Element<CyberneticDevice> implements IElementWithBonification {
+public class CyberneticDevice extends Element<CyberneticDevice> implements IElementWithBonification, ICyberneticDevice {
 	private final int points;
 	private final int incompatibility;
 	private final int cost;
@@ -62,14 +62,17 @@ public class CyberneticDevice extends Element<CyberneticDevice> implements IElem
 		this.staticValues = staticValues;
 	}
 
+	@Override
 	public int getPoints() {
 		return points;
 	}
 
+	@Override
 	public int getIncompatibility() {
 		return incompatibility;
 	}
 
+	@Override
 	public CyberneticDeviceTrait getTrait(CyberneticDeviceTraitCategory category) {
 		for (CyberneticDeviceTrait trait : traits) {
 			if (trait.getCategory().equals(category)) {
@@ -79,6 +82,7 @@ public class CyberneticDevice extends Element<CyberneticDevice> implements IElem
 		return null;
 	}
 
+	@Override
 	public CyberneticDevice getRequirement() {
 		if (requirement != null) {
 			try {
@@ -90,14 +94,17 @@ public class CyberneticDevice extends Element<CyberneticDevice> implements IElem
 		return null;
 	}
 
+	@Override
 	public Weapon getWeapon() {
 		return weapon;
 	}
 
+	@Override
 	public int getCost() {
 		return cost;
 	}
 
+	@Override
 	public int getTechLevel() {
 		return techLevel;
 	}
@@ -107,10 +114,12 @@ public class CyberneticDevice extends Element<CyberneticDevice> implements IElem
 		return bonifications;
 	}
 
+	@Override
 	public Set<StaticValue> getStaticValues() {
 		return staticValues;
 	}
 
+	@Override
 	public List<CyberneticDeviceTrait> getTraits() {
 		return traits;
 	}

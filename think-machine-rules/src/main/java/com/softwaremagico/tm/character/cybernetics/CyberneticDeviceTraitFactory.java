@@ -34,10 +34,10 @@ public class CyberneticDeviceTraitFactory extends XmlFactory<CyberneticDeviceTra
 
 	private final static String NAME = "name";
 	private final static String CATEGORY = "category";
-	
+
 	private final static String MIN_TECH_LEVEL = "minTechLevel";
 	private final static String EXTRA_POINTS = "extraPoints";
-	private final static String EXTRA_COST = "extraCost";
+	private final static String EXTRA_COST = "extraCostMultiplier";
 	private final static String EXTRA_INCOMPATIBILITY = "extraIncompatibility";
 
 	private static CyberneticDeviceTraitFactory instance;
@@ -80,9 +80,54 @@ public class CyberneticDeviceTraitFactory extends XmlFactory<CyberneticDeviceTra
 				throw new InvalidCyberneticDeviceTraitException("Invalid category definition for '" + cyberneticDeviceTraitId + "'.");
 			}
 
-			return new CyberneticDeviceTrait(cyberneticDeviceTraitId, name, language, cyberneticDeviceTraitCategory);
+			int extraPoints = 0;
+			try {
+				String pointsName = translator.getNodeValue(cyberneticDeviceTraitId, EXTRA_POINTS);
+				extraPoints = Integer.parseInt(pointsName);
+			} catch (Exception e) {
+				throw new InvalidCyberneticDeviceTraitException("Invalid cost in cybernetic trait '" + cyberneticDeviceTraitId + "'.");
+			}
+
+			int minimumTechLevel = 0;
+			try {
+				String techLevelName = translator.getNodeValue(cyberneticDeviceTraitId, MIN_TECH_LEVEL);
+				minimumTechLevel = Integer.parseInt(techLevelName);
+			} catch (Exception e) {
+				throw new InvalidCyberneticDeviceTraitException("Invalid minimum tech level in cybernetic trait '" + cyberneticDeviceTraitId + "'.");
+			}
+
+			int extraIncompatibility = 0;
+			try {
+				String incompatibilityName = translator.getNodeValue(cyberneticDeviceTraitId, EXTRA_INCOMPATIBILITY);
+				extraIncompatibility = Integer.parseInt(incompatibilityName);
+			} catch (Exception e) {
+				throw new InvalidCyberneticDeviceTraitException("Invalid extra incomptability in cybernetic trait '" + cyberneticDeviceTraitId + "'.");
+			}
+
+			int extraCost = 0;
+			try {
+				String extraCostName = translator.getNodeValue(cyberneticDeviceTraitId, EXTRA_INCOMPATIBILITY);
+				extraCost = Integer.parseInt(extraCostName);
+			} catch (NullPointerException npe) {
+				// Not mandatory
+			} catch (NumberFormatException e) {
+				throw new InvalidCyberneticDeviceTraitException("Invalid extra cost in cybernetic trait '" + cyberneticDeviceTraitId + "'.");
+			}
+
+			float extraCostMultiplier = 1;
+			try {
+				String costName = translator.getNodeValue(cyberneticDeviceTraitId, EXTRA_COST);
+				extraCostMultiplier = Float.parseFloat(costName);
+			} catch (NullPointerException npe) {
+				// Not mandatory
+			} catch (NumberFormatException e) {
+				throw new InvalidCyberneticDeviceTraitException("Invalid cost in cybernetic trait '" + cyberneticDeviceTraitId + "'.");
+			}
+
+			return new CyberneticDeviceTrait(cyberneticDeviceTraitId, name, language, cyberneticDeviceTraitCategory, minimumTechLevel, extraPoints, extraCost,
+					extraCostMultiplier, extraIncompatibility);
 		} catch (Exception e) {
-			throw new InvalidCyberneticDeviceException("Invalid cybernetic trait definition for '" + cyberneticDeviceTraitId + "'.", e);
+			throw new InvalidCyberneticDeviceTraitException("Invalid cybernetic trait definition for '" + cyberneticDeviceTraitId + "'.", e);
 		}
 	}
 }

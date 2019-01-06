@@ -59,7 +59,9 @@ import com.softwaremagico.tm.character.creation.CostCalculator;
 import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
 import com.softwaremagico.tm.character.cybernetics.CyberneticDevice;
 import com.softwaremagico.tm.character.cybernetics.Cybernetics;
+import com.softwaremagico.tm.character.cybernetics.ICyberneticDevice;
 import com.softwaremagico.tm.character.cybernetics.RequiredCyberneticDevicesException;
+import com.softwaremagico.tm.character.cybernetics.SelectedCyberneticDevice;
 import com.softwaremagico.tm.character.cybernetics.TooManyCyberneticDevicesException;
 import com.softwaremagico.tm.character.equipment.armours.Armour;
 import com.softwaremagico.tm.character.equipment.armours.InvalidArmourException;
@@ -342,7 +344,7 @@ public class CharacterPlayer {
 
 	private Integer getCyberneticsValue(Skill<?> skill) {
 		int maxValue = 0;
-		for (CyberneticDevice device : cybernetics.getElements()) {
+		for (ICyberneticDevice device : cybernetics.getElements()) {
 			for (StaticValue staticValue : device.getStaticValues()) {
 				if (Objects.equals(staticValue.getAffects().getId(), skill.getId())) {
 					if (maxValue < staticValue.getValue()) {
@@ -527,20 +529,21 @@ public class CharacterPlayer {
 		return cybernetics;
 	}
 
-	public List<CyberneticDevice> getAllCybernetics() {
+	public List<SelectedCyberneticDevice> getAllCybernetics() {
 		return cybernetics.getElements();
 	}
 
 	public boolean hasCyberneticDevice(CyberneticDevice cyberneticDevice) {
-		for (CyberneticDevice device : getAllCybernetics()) {
-			if (Objects.equals(device, cyberneticDevice)) {
+		for (SelectedCyberneticDevice device : getAllCybernetics()) {
+			if (Objects.equals(device.getCyberneticDevice(), cyberneticDevice)) {
 				return true;
 			}
 		}
 		return false;
 	}
 
-	public void addCybernetics(CyberneticDevice cyberneticDevice) throws TooManyCyberneticDevicesException, RequiredCyberneticDevicesException {
+	public SelectedCyberneticDevice addCybernetics(CyberneticDevice cyberneticDevice) throws TooManyCyberneticDevicesException,
+			RequiredCyberneticDevicesException {
 		if (getCyberneticsIncompatibility() + cyberneticDevice.getIncompatibility() > Cybernetics.getMaxCyberneticIncompatibility(this)) {
 			throw new TooManyCyberneticDevicesException("Cybernatic device cannot be added due to incompatibility requirements. Current incompatibility '"
 					+ getCyberneticsIncompatibility() + "', device incompatibility '" + cyberneticDevice.getIncompatibility()
@@ -552,12 +555,14 @@ public class CharacterPlayer {
 						+ "' to be added to the character.");
 			}
 		}
-		getCybernetics().addElement(cyberneticDevice);
+		SelectedCyberneticDevice selectedCiberneticDevice = new SelectedCyberneticDevice(cyberneticDevice);
+		getCybernetics().addElement(selectedCiberneticDevice);
+		return selectedCiberneticDevice;
 	}
 
 	public int getCyberneticsIncompatibility() {
 		int incompatibility = 0;
-		for (CyberneticDevice device : getAllCybernetics()) {
+		for (SelectedCyberneticDevice device : getAllCybernetics()) {
 			incompatibility += device.getIncompatibility();
 		}
 		return incompatibility;
@@ -580,7 +585,7 @@ public class CharacterPlayer {
 				}
 			}
 			// Weapons from cybernetics.
-			for (CyberneticDevice cyberneticDevice : getCybernetics().getElements()) {
+			for (ICyberneticDevice cyberneticDevice : getCybernetics().getElements()) {
 				if (cyberneticDevice.getWeapon() != null) {
 					allWeapons.add(cyberneticDevice.getWeapon());
 				}
@@ -919,7 +924,7 @@ public class CharacterPlayer {
 
 	public int getCyberneticsModificationSituation(IValue value) {
 		int modification = 0;
-		for (CyberneticDevice cyberneticDevice : getAllCybernetics()) {
+		for (ICyberneticDevice cyberneticDevice : getAllCybernetics()) {
 			modification += getModification(cyberneticDevice, value, false);
 		}
 		return modification;
@@ -935,7 +940,7 @@ public class CharacterPlayer {
 
 	public int getCyberneticsModificationAlways(IValue value) {
 		int modification = 0;
-		for (CyberneticDevice cyberneticDevice : getCybernetics().getElements()) {
+		for (ICyberneticDevice cyberneticDevice : getCybernetics().getElements()) {
 			modification += getModification(cyberneticDevice, value, true);
 		}
 		return modification;
