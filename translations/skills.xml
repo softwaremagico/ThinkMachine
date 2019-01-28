@@ -243,6 +243,7 @@
 		<group>combat</group>
 		<random>
 			<minTechLevel>3</minTechLevel>
+			<probabilityMultiplier>0.01</probabilityMultiplier>
 		</random>
 	</demolitions>
 	<beastcraft>
