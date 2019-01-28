@@ -419,17 +419,9 @@ public class CharacterPlayer {
 	public List<Blessing> getCurses() {
 		List<Blessing> curses = new ArrayList<>();
 
-		for (Blessing blessing : blessings) {
+		for (Blessing blessing : getAllBlessings()) {
 			if (blessing.getBlessingClassification() == BlessingClassification.CURSE) {
 				curses.add(blessing);
-			}
-		}
-		// Faction curses
-		if (getFaction() != null) {
-			for (Blessing blessing : getFaction().getBlessings()) {
-				if (blessing.getBlessingClassification() == BlessingClassification.CURSE) {
-					curses.add(blessing);
-				}
 			}
 		}
 
@@ -440,17 +432,9 @@ public class CharacterPlayer {
 	public List<Blessing> getBlessings() {
 		List<Blessing> blessings = new ArrayList<>();
 
-		for (Blessing blessing : blessings) {
+		for (Blessing blessing : getAllBlessings()) {
 			if (blessing.getBlessingClassification() == BlessingClassification.BLESSING) {
 				blessings.add(blessing);
-			}
-		}
-		// Faction curses
-		if (getFaction() != null) {
-			for (Blessing blessing : getFaction().getBlessings()) {
-				if (blessing.getBlessingClassification() == BlessingClassification.BLESSING) {
-					blessings.add(blessing);
-				}
 			}
 		}
 
@@ -467,9 +451,7 @@ public class CharacterPlayer {
 		List<Blessing> allBlessings = new ArrayList<>(blessings);
 		// Add faction blessings
 		if (getFaction() != null) {
-			for (Blessing blessing : getFaction().getBlessings()) {
-				allBlessings.add(blessing);
-			}
+			allBlessings.addAll(getFaction().getBlessings());
 		}
 		Collections.sort(allBlessings);
 		return Collections.unmodifiableList(allBlessings);
