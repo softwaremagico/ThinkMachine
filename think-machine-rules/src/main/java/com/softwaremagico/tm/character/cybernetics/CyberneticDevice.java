@@ -24,86 +24,103 @@ package com.softwaremagico.tm.character.cybernetics;
  * #L%
  */
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Collections;
+import java.util.List;
 import java.util.Set;
 
 import com.softwaremagico.tm.Element;
-import com.softwaremagico.tm.character.characteristics.CharacteristicImprovement;
-import com.softwaremagico.tm.character.characteristics.CharacteristicName;
-import com.softwaremagico.tm.character.skills.CyberneticSkill;
+import com.softwaremagico.tm.InvalidXmlElementException;
+import com.softwaremagico.tm.character.IElementWithBonification;
+import com.softwaremagico.tm.character.equipment.weapons.Weapon;
+import com.softwaremagico.tm.character.values.Bonification;
+import com.softwaremagico.tm.character.values.StaticValue;
+import com.softwaremagico.tm.log.MachineLog;
 
-public class CyberneticDevice extends Element<CyberneticDevice> {
+public class CyberneticDevice extends Element<CyberneticDevice> implements IElementWithBonification, ICyberneticDevice {
 	private final int points;
 	private final int incompatibility;
-	private final String usability;
-	private final String quality;
-	private final String activation;
-	private final String appearence;
-	private final String others;
+	private final int cost;
+	private final int techLevel;
+	private final String requirement;
+	private final Weapon weapon;
+	private final List<CyberneticDeviceTrait> traits;
+	private final Set<Bonification> bonifications;
+	private final Set<StaticValue> staticValues;
 
-	private Map<String, CyberneticSkill> skillImprovements;
-	private Map<String, CharacteristicImprovement> characteristicImprovents;
-
-	public CyberneticDevice(String name, String language, int points, int incompatibility, String usability, String quality, String activation, String appearence,
-			String others) {
-		super(null, name, language);
+	public CyberneticDevice(String id, String name, String language, int points, int incompatibility, int cost, int techLevel, String requirement,
+			Weapon weapon, List<CyberneticDeviceTrait> traits, Set<Bonification> bonifications, Set<StaticValue> staticValues) {
+		super(id, name, language);
 		this.points = points;
 		this.incompatibility = incompatibility;
-		this.usability = usability;
-		this.quality = quality;
-		this.activation = activation;
-		this.appearence = appearence;
-		this.others = others;
-		skillImprovements = new HashMap<>();
-		characteristicImprovents = new HashMap<>();
+		this.cost = cost;
+		this.techLevel = techLevel;
+		this.traits = traits;
+		Collections.sort(this.traits);
+		this.requirement = requirement;
+		this.weapon = weapon;
+		this.bonifications = bonifications;
+		this.staticValues = staticValues;
 	}
 
+	@Override
 	public int getPoints() {
 		return points;
 	}
 
+	@Override
 	public int getIncompatibility() {
 		return incompatibility;
 	}
 
-	public String getUsability() {
-		return usability;
+	@Override
+	public CyberneticDeviceTrait getTrait(CyberneticDeviceTraitCategory category) {
+		for (CyberneticDeviceTrait trait : traits) {
+			if (trait.getCategory().equals(category)) {
+				return trait;
+			}
+		}
+		return null;
 	}
 
-	public String getQuality() {
-		return quality;
+	@Override
+	public CyberneticDevice getRequirement() {
+		if (requirement != null) {
+			try {
+				return CyberneticDeviceFactory.getInstance().getElement(requirement, getLanguage());
+			} catch (InvalidXmlElementException e) {
+				MachineLog.errorMessage(this.getClass().getName(), e);
+			}
+		}
+		return null;
 	}
 
-	public String getActivation() {
-		return activation;
+	@Override
+	public Weapon getWeapon() {
+		return weapon;
 	}
 
-	public String getAppearence() {
-		return appearence;
+	@Override
+	public int getCost() {
+		return cost;
 	}
 
-	public String getOthers() {
-		return others;
+	@Override
+	public int getTechLevel() {
+		return techLevel;
 	}
 
-	public void addSkillImprovement(CyberneticSkill skillImprovement) {
-		skillImprovements.put(skillImprovement.getName(), skillImprovement);
+	@Override
+	public Set<Bonification> getBonifications() {
+		return bonifications;
 	}
 
-	public CyberneticSkill getSkillImprovement(String skillName) {
-		return skillImprovements.get(skillName);
+	@Override
+	public Set<StaticValue> getStaticValues() {
+		return staticValues;
 	}
 
-	public Set<String> getSkillImprovementsNames() {
-		return skillImprovements.keySet();
-	}
-
-	public void addCharacteristicImprovement(CharacteristicImprovement characteristicImprovement) {
-		characteristicImprovents.put(characteristicImprovement.getCharacteristic().getId(), characteristicImprovement);
-	}
-
-	public CharacteristicImprovement getCharacteristicImprovement(CharacteristicName characteristicName) {
-		return characteristicImprovents.get(characteristicName);
+	@Override
+	public List<CyberneticDeviceTrait> getTraits() {
+		return traits;
 	}
 }

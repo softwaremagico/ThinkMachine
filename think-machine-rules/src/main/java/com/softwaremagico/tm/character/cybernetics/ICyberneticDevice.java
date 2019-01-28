@@ -1,10 +1,10 @@
-package com.softwaremagico.tm.character.blessings;
+package com.softwaremagico.tm.character.cybernetics;
 
 /*-
  * #%L
- * Think Machine (Core)
+ * Think Machine (Rules)
  * %%
- * Copyright (C) 2017 - 2018 Softwaremagico
+ * Copyright (C) 2017 - 2019 Softwaremagico
  * %%
  * This software is designed by Jorge Hortelano Otero. Jorge Hortelano Otero
  * <softwaremagico@gmail.com> Valencia (Spain).
@@ -24,33 +24,33 @@ package com.softwaremagico.tm.character.blessings;
  * #L%
  */
 
-import com.softwaremagico.tm.character.values.IValue;
+import java.util.List;
+import java.util.Set;
 
-public class Bonification {
-	private final Integer bonification;
-	private final IValue affects;
-	private final String situation;
+import com.softwaremagico.tm.character.IElementWithBonification;
+import com.softwaremagico.tm.character.equipment.weapons.Weapon;
+import com.softwaremagico.tm.character.values.StaticValue;
 
-	public Bonification(Integer bonification, IValue affects, String situation) {
-		this.bonification = bonification;
-		this.affects = affects;
-		this.situation = situation;
-	}
+public interface ICyberneticDevice extends IElementWithBonification {
 
-	public Integer getBonification() {
-		return bonification;
-	}
+	String getName();
 
-	public String getSituation() {
-		return situation;
-	}
+	Weapon getWeapon();
 
-	public IValue getAffects() {
-		return affects;
-	}
+	int getCost();
 
-	@Override
-	public String toString() {
-		return bonification + " " + affects + ": " + situation;
-	}
+	Set<StaticValue> getStaticValues();
+
+	List<CyberneticDeviceTrait> getTraits();
+
+	int getTechLevel();
+
+	CyberneticDevice getRequirement();
+
+	CyberneticDeviceTrait getTrait(CyberneticDeviceTraitCategory category);
+
+	int getIncompatibility();
+
+	int getPoints();
+
 }

@@ -83,7 +83,11 @@ public abstract class CustomPdfTable extends PdfPTable {
 	}
 
 	private static PdfPCell createBasicElementLine(String text, int fontSize) {
-		PdfPCell cell = BaseElement.getCell(text, 0, 1, Element.ALIGN_CENTER, BaseColor.WHITE, FadingSunsTheme.getHandwrittingFont(), fontSize);
+		return createBasicElementLine(text, fontSize, Element.ALIGN_CENTER);
+	}
+
+	private static PdfPCell createBasicElementLine(String text, int fontSize, int horizontalAlignment) {
+		PdfPCell cell = BaseElement.getCell(text, 0, 1, horizontalAlignment, BaseColor.WHITE, FadingSunsTheme.getHandwrittingFont(), fontSize);
 		cell.setMinimumHeight(12);
 		cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		return cell;
@@ -116,6 +120,14 @@ public abstract class CustomPdfTable extends PdfPTable {
 		}
 		String remainingText = CellUtils.getSubStringFitsIn(text, FadingSunsTheme.getHandwrittingFont(), fontSize, maxWidth);
 		return createBasicElementLine(remainingText, fontSize);
+	}
+	
+	protected static PdfPCell createElementLine(String text, int maxWidth, int fontSize, int alignment) {
+		if (text == null || text.equals("null")) {
+			text = "";
+		}
+		String remainingText = CellUtils.getSubStringFitsIn(text, FadingSunsTheme.getHandwrittingFont(), fontSize, maxWidth);
+		return createBasicElementLine(remainingText, fontSize, alignment);
 	}
 
 	public float[] getColumnWidths() {

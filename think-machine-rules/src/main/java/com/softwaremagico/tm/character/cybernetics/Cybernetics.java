@@ -25,7 +25,12 @@ package com.softwaremagico.tm.character.cybernetics;
  */
 
 import com.softwaremagico.tm.ElementList;
+import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 
-public class Cybernetics extends ElementList<CyberneticDevice> {
+public class Cybernetics extends ElementList<SelectedCyberneticDevice> {
 
+	public static int getMaxCyberneticIncompatibility(CharacterPlayer characterPlayer) {
+		return (characterPlayer.getCharacteristic(CharacteristicName.WILL).getValue() * 3) + 2;
+	}
 }

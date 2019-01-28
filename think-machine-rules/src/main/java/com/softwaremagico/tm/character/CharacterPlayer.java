@@ -46,7 +46,6 @@ import com.softwaremagico.tm.character.benefices.BeneficeSpecialization;
 import com.softwaremagico.tm.character.benefices.InvalidBeneficeException;
 import com.softwaremagico.tm.character.blessings.Blessing;
 import com.softwaremagico.tm.character.blessings.BlessingClassification;
-import com.softwaremagico.tm.character.blessings.Bonification;
 import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
 import com.softwaremagico.tm.character.characteristics.Characteristic;
 import com.softwaremagico.tm.character.characteristics.CharacteristicDefinition;
@@ -60,6 +59,10 @@ import com.softwaremagico.tm.character.creation.CostCalculator;
 import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
 import com.softwaremagico.tm.character.cybernetics.CyberneticDevice;
 import com.softwaremagico.tm.character.cybernetics.Cybernetics;
+import com.softwaremagico.tm.character.cybernetics.ICyberneticDevice;
+import com.softwaremagico.tm.character.cybernetics.RequiredCyberneticDevicesException;
+import com.softwaremagico.tm.character.cybernetics.SelectedCyberneticDevice;
+import com.softwaremagico.tm.character.cybernetics.TooManyCyberneticDevicesException;
 import com.softwaremagico.tm.character.equipment.armours.Armour;
 import com.softwaremagico.tm.character.equipment.armours.InvalidArmourException;
 import com.softwaremagico.tm.character.equipment.shields.InvalidShieldException;
@@ -85,9 +88,11 @@ import com.softwaremagico.tm.character.skills.SkillDefinition;
 import com.softwaremagico.tm.character.skills.SkillGroup;
 import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
 import com.softwaremagico.tm.character.skills.Specialization;
+import com.softwaremagico.tm.character.values.Bonification;
 import com.softwaremagico.tm.character.values.IValue;
 import com.softwaremagico.tm.character.values.SpecialValue;
 import com.softwaremagico.tm.character.values.SpecialValuesFactory;
+import com.softwaremagico.tm.character.values.StaticValue;
 import com.softwaremagico.tm.log.CostCalculatorLog;
 import com.softwaremagico.tm.log.MachineLog;
 import com.softwaremagico.tm.txt.CharacterSheet;
@@ -236,43 +241,11 @@ public class CharacterPlayer {
 			return 0;
 		}
 		// Add cybernetics modifications
-		value += getCyberneticBonus(characteristicName);
+		value += getCyberneticsModificationAlways(getCharacteristic(characteristicName));
 
 		// Add modifications always applied.
 		value += getBlessingModificationAlways(CharacteristicsDefinitionFactory.getInstance().get(characteristicName, language));
 
-		return value;
-	}
-
-	public Integer getCyberneticCharacteristicsBonus() {
-		Integer value = 0;
-		for (CharacteristicName characteristicName : CharacteristicName.getBasicCharacteristics()) {
-			value += getCyberneticBonus(characteristicName);
-		}
-		return value;
-	}
-
-	public Integer getCyberneticBonus(CharacteristicName characteristicName) {
-		Integer value = 0;
-		// Add cibernetics modifications
-		for (CyberneticDevice device : cybernetics.getElements()) {
-			if (device.getCharacteristicImprovement(characteristicName) != null && device.getCharacteristicImprovement(characteristicName).isAlways()
-					&& device.getCharacteristicImprovement(characteristicName).getBonus() != 0) {
-				value += device.getCharacteristicImprovement(characteristicName).getBonus();
-			}
-		}
-		return value;
-	}
-
-	public Integer getCyberneticsImprovement(CharacteristicName characteristicName) {
-		Integer value = 0;
-		// Add cibernetics modifications
-		for (CyberneticDevice device : cybernetics.getElements()) {
-			if (device.getCharacteristicImprovement(characteristicName) != null && !device.getCharacteristicImprovement(characteristicName).isAlways()
-					&& device.getCharacteristicImprovement(characteristicName).getBonus() != 0) {
-				value += device.getCharacteristicImprovement(characteristicName).getBonus();
-			}
-		}
 		return value;
 	}
 
@@ -348,14 +321,15 @@ public class CharacterPlayer {
 	}
 
 	/**
-	 * All ranks assigned to an skill plus blessing modification.
+	 * All ranks assigned to an skill plus blessing and cybernetics
+	 * modification.
 	 * 
 	 * @param skill
 	 *            Skill to check.
 	 * @return ranks of the skill.
 	 */
-	private Integer getSkillTotalRanks(Skill<?> skill) {
-		Integer cyberneticBonus = getCyberneticsValue(skill.getName());
+	public Integer getSkillTotalRanks(AvailableSkill skill) {
+		Integer cyberneticBonus = getCyberneticsValue(skill);
 		Integer skillValue = getSkillAssignedRanks(skill);
 		// Set the modifications of blessings.
 		if (skills.get(skill.getUniqueId()) != null) {
@@ -368,27 +342,14 @@ public class CharacterPlayer {
 		return skillValue;
 	}
 
-	public Integer getSkillTotalRanks(AvailableSkill skill) {
-		SelectedSkill selectedSkill = getSelectedSkill(skill);
-		// Use the skill with generalization.
-		if (selectedSkill != null) {
-			return getSkillTotalRanks(selectedSkill);
-		} else {
-			// Use a simple skill if not generalization.
-			if (!skill.getSkillDefinition().isSpecializable() || skill.getSkillDefinition().isNatural()) {
-				return getSkillTotalRanks((Skill<AvailableSkill>) skill);
-			} else {
-				return 0;
-			}
-		}
-	}
-
-	private Integer getCyberneticsValue(String skillName) {
+	private Integer getCyberneticsValue(Skill<?> skill) {
 		int maxValue = 0;
-		for (CyberneticDevice device : cybernetics.getElements()) {
-			if (device.getSkillImprovement(skillName) != null) {
-				if (maxValue < device.getSkillImprovement(skillName).getValue()) {
-					maxValue = device.getSkillImprovement(skillName).getValue();
+		for (ICyberneticDevice device : cybernetics.getElements()) {
+			for (StaticValue staticValue : device.getStaticValues()) {
+				if (Objects.equals(staticValue.getAffects().getId(), skill.getId())) {
+					if (maxValue < staticValue.getValue()) {
+						maxValue = staticValue.getValue();
+					}
 				}
 			}
 		}
@@ -564,23 +525,69 @@ public class CharacterPlayer {
 		return Collections.unmodifiableList(afflictions);
 	}
 
-	public Cybernetics getCybernetics() {
+	private Cybernetics getCybernetics() {
 		return cybernetics;
 	}
 
-	public Weapons getWeapons() {
-		return weapons;
+	public List<SelectedCyberneticDevice> getAllCybernetics() {
+		return cybernetics.getElements();
+	}
+
+	public boolean hasCyberneticDevice(CyberneticDevice cyberneticDevice) {
+		for (SelectedCyberneticDevice device : getAllCybernetics()) {
+			if (Objects.equals(device.getCyberneticDevice(), cyberneticDevice)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public SelectedCyberneticDevice addCybernetics(CyberneticDevice cyberneticDevice) throws TooManyCyberneticDevicesException,
+			RequiredCyberneticDevicesException {
+		if (getCyberneticsIncompatibility() + cyberneticDevice.getIncompatibility() > Cybernetics.getMaxCyberneticIncompatibility(this)) {
+			throw new TooManyCyberneticDevicesException("Cybernatic device cannot be added due to incompatibility requirements. Current incompatibility '"
+					+ getCyberneticsIncompatibility() + "', device incompatibility '" + cyberneticDevice.getIncompatibility()
+					+ "', maximum incompatibility for this character is '" + Cybernetics.getMaxCyberneticIncompatibility(this) + "'.");
+		}
+		if (cyberneticDevice.getRequirement() != null) {
+			if (!hasCyberneticDevice(cyberneticDevice.getRequirement())) {
+				throw new RequiredCyberneticDevicesException("Cybernetic device '" + cyberneticDevice + "' requires '" + cyberneticDevice.getRequirement()
+						+ "' to be added to the character.");
+			}
+		}
+		SelectedCyberneticDevice selectedCiberneticDevice = new SelectedCyberneticDevice(cyberneticDevice);
+		getCybernetics().addElement(selectedCiberneticDevice);
+		return selectedCiberneticDevice;
+	}
+
+	public int getCyberneticsIncompatibility() {
+		int incompatibility = 0;
+		for (SelectedCyberneticDevice device : getAllCybernetics()) {
+			incompatibility += device.getIncompatibility();
+		}
+		return incompatibility;
+	}
+
+	public void addWeapon(Weapon weapon) {
+		weapons.addElement(weapon);
 	}
 
 	public List<Weapon> getAllWeapons() {
 		List<Weapon> allWeapons = new ArrayList<>();
 		allWeapons.addAll(weapons.getElements());
 		try {
+			// Weapons from benefices.
 			for (AvailableBenefice benefice : getAllBenefices()) {
 				try {
 					allWeapons.add(WeaponFactory.getInstance().getElement(benefice.getId(), getLanguage()));
 				} catch (InvalidXmlElementException ixmle) {
 					// Benefice is not a weapon.
+				}
+			}
+			// Weapons from cybernetics.
+			for (ICyberneticDevice cyberneticDevice : getCybernetics().getElements()) {
+				if (cyberneticDevice.getWeapon() != null) {
+					allWeapons.add(cyberneticDevice.getWeapon());
 				}
 			}
 		} catch (InvalidXmlElementException e) {
@@ -907,26 +914,18 @@ public class CharacterPlayer {
 		this.faction = faction;
 	}
 
-	public int getBlessingModification(IValue value) {
+	public int getBlessingModificationSituation(IValue value) {
 		int modification = 0;
 		for (Blessing blessing : getAllBlessings()) {
-			for (Bonification bonification : blessing.getBonifications()) {
-				if (bonification.getSituation() != null && !bonification.getSituation().isEmpty()) {
-					if (bonification.getAffects() instanceof SpecialValue) {
-						SpecialValue specialValue = (SpecialValue) bonification.getAffects();
-						// Has a list of values defined.
-						for (IValue specialValueSkill : specialValue.getAffects()) {
-							if (Objects.equals(specialValueSkill, value)) {
-								modification += bonification.getBonification();
-								break;
-							}
-						}
-					}
-					if (Objects.equals(bonification.getAffects(), value)) {
-						modification += bonification.getBonification();
-					}
-				}
-			}
+			modification += getModification(blessing, value, false);
+		}
+		return modification;
+	}
+
+	public int getCyberneticsModificationSituation(IValue value) {
+		int modification = 0;
+		for (ICyberneticDevice cyberneticDevice : getAllCybernetics()) {
+			modification += getModification(cyberneticDevice, value, false);
 		}
 		return modification;
 	}
@@ -934,30 +933,54 @@ public class CharacterPlayer {
 	public int getBlessingModificationAlways(IValue value) {
 		int modification = 0;
 		for (Blessing blessing : getAllBlessings()) {
-			for (Bonification bonification : blessing.getBonifications()) {
-				if (bonification.getSituation() == null || bonification.getSituation().isEmpty()) {
-					if (bonification.getAffects() instanceof SpecialValue) {
-						SpecialValue specialValue = (SpecialValue) bonification.getAffects();
-						// Has a list of values defined.
-						for (IValue specialValueSkill : specialValue.getAffects()) {
-							if (Objects.equals(specialValueSkill, value)) {
-								modification += bonification.getBonification();
-								break;
-							}
+			modification += getModification(blessing, value, true);
+		}
+		return modification;
+	}
+
+	public int getCyberneticsModificationAlways(IValue value) {
+		int modification = 0;
+		for (ICyberneticDevice cyberneticDevice : getCybernetics().getElements()) {
+			modification += getModification(cyberneticDevice, value, true);
+		}
+		return modification;
+	}
+
+	private int getModification(IElementWithBonification element, IValue value, boolean always) {
+		int bonus = 0;
+		for (Bonification bonification : element.getBonifications()) {
+			if (bonification.getSituation() == null || (always && bonification.getSituation().isEmpty()) || (!always && !bonification.getSituation().isEmpty())) {
+				if (bonification.getAffects() instanceof SpecialValue) {
+					SpecialValue specialValue = (SpecialValue) bonification.getAffects();
+					// Has a list of values defined.
+					for (IValue specialValueSkill : specialValue.getAffects()) {
+						if (Objects.equals(specialValueSkill, value)) {
+							bonus += bonification.getBonification();
+							break;
 						}
 					}
+				}
+				if (value instanceof Characteristic) {
+					if (Objects.equals(bonification.getAffects(), ((Characteristic) value).getCharacteristicDefinition())) {
+						bonus += bonification.getBonification();
+					}
+				}
+				if (Objects.equals(bonification.getAffects(), value)) {
 					if (Objects.equals(bonification.getAffects(), value)) {
-						modification += bonification.getBonification();
+						bonus += bonification.getBonification();
 					}
 				}
 
 			}
 		}
-		return modification;
+		return bonus;
 	}
 
 	public boolean hasSkillTemporalModificator(AvailableSkill availableSkill) {
-		if (getBlessingModification(availableSkill.getSkillDefinition()) != 0) {
+		if (getBlessingModificationSituation(availableSkill.getSkillDefinition()) != 0) {
+			return true;
+		}
+		if (getCyberneticsModificationSituation(availableSkill.getSkillDefinition()) != 0) {
 			return true;
 		}
 		return false;
@@ -967,11 +990,17 @@ public class CharacterPlayer {
 		if (getBlessingModificationAlways(availableSkill.getSkillDefinition()) != 0) {
 			return true;
 		}
+		if (getCyberneticsModificationAlways(availableSkill.getSkillDefinition()) != 0) {
+			return true;
+		}
 		return false;
 	}
 
 	public boolean hasCharacteristicTemporalModificator(CharacteristicName characteristicName) {
-		if (getBlessingModification(CharacteristicsDefinitionFactory.getInstance().get(characteristicName, getLanguage())) != 0) {
+		if (getBlessingModificationSituation(CharacteristicsDefinitionFactory.getInstance().get(characteristicName, getLanguage())) != 0) {
+			return true;
+		}
+		if (getCyberneticsModificationSituation(CharacteristicsDefinitionFactory.getInstance().get(characteristicName, getLanguage())) != 0) {
 			return true;
 		}
 		return false;
@@ -979,6 +1008,9 @@ public class CharacterPlayer {
 
 	public boolean hasCharacteristicModificator(CharacteristicName characteristicName) {
 		if (getBlessingModificationAlways(CharacteristicsDefinitionFactory.getInstance().get(characteristicName, getLanguage())) != 0) {
+			return true;
+		}
+		if (getCyberneticsModificationAlways(CharacteristicsDefinitionFactory.getInstance().get(characteristicName, getLanguage())) != 0) {
 			return true;
 		}
 		return false;
@@ -1062,7 +1094,7 @@ public class CharacterPlayer {
 	 * @return
 	 */
 	public Weapon hasWeaponWithSkill(AvailableSkill skill) {
-		for (Weapon weapon : getWeapons().getElements()) {
+		for (Weapon weapon : getAllWeapons()) {
 			if (Objects.equals(weapon.getSkill(), skill.getSkillDefinition())) {
 				return weapon;
 			}
@@ -1072,7 +1104,7 @@ public class CharacterPlayer {
 
 	public int getEquipmentMaxTechnologicalLevel() {
 		int techLevel = 1;
-		for (Weapon weapon : getWeapons().getElements()) {
+		for (Weapon weapon : getAllWeapons()) {
 			if (weapon.getTechLevel() > techLevel) {
 				techLevel = weapon.getTechLevel();
 			}

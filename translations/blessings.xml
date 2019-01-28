@@ -1290,8 +1290,8 @@
 				<value>2</value>
 				<affects>perception</affects>
 				<situation>
-					<en>Sight only</en>
-					<es>Con la vista</es>
+					<en>Sight</en>
+					<es>Vista</es>
 				</situation>
 			</bonification>
 		</bonifications>

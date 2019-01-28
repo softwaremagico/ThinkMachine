@@ -50,8 +50,8 @@ public abstract class RandomWeapon extends RandomSelector<Weapon> {
 	@Override
 	public void assign() throws InvalidRandomElementSelectedException {
 		Weapon selectedWeapon = selectElementByWeight();
-		if (!getCharacterPlayer().getWeapons().getElements().contains(selectedWeapon)) {
-			getCharacterPlayer().getWeapons().addElement(selectedWeapon);
+		if (!getCharacterPlayer().getAllWeapons().contains(selectedWeapon)) {
+			getCharacterPlayer().addWeapon(selectedWeapon);
 			RandomGenerationLog.info(this.getClass().getName(), "Selected weapon: " + selectedWeapon);
 		}
 	}

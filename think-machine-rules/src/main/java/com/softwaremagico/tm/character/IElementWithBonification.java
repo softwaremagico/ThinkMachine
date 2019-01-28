@@ -1,10 +1,10 @@
-package com.softwaremagico.tm.factory;
+package com.softwaremagico.tm.character;
 
 /*-
  * #%L
- * Think Machine (Core)
+ * Think Machine (Rules)
  * %%
- * Copyright (C) 2017 Softwaremagico
+ * Copyright (C) 2017 - 2019 Softwaremagico
  * %%
  * This software is designed by Jorge Hortelano Otero. Jorge Hortelano Otero
  * <softwaremagico@gmail.com> Valencia (Spain).
@@ -24,21 +24,12 @@ package com.softwaremagico.tm.factory;
  * #L%
  */
 
-import junit.framework.Assert;
+import java.util.Set;
 
-import org.testng.annotations.Test;
+import com.softwaremagico.tm.character.values.Bonification;
 
-import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
+public interface IElementWithBonification {
 
-@Test(groups = { "skillFactory" })
-public class SkillFactoryTests {
-	private final static int NATURAL_SKILLS = 9;
-	private final static int LEARNED_SKILLS = 47;
+	Set<Bonification> getBonifications();
 
-	@Test
-	public void readSkills() throws InvalidXmlElementException {
-		Assert.assertEquals(NATURAL_SKILLS, SkillsDefinitionsFactory.getInstance().getNaturalSkills("es").size());
-		Assert.assertEquals(LEARNED_SKILLS, SkillsDefinitionsFactory.getInstance().getLearnedSkills("es").size());
-	}
 }

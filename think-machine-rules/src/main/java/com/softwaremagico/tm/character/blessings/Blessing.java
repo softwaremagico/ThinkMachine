@@ -30,12 +30,14 @@ import java.util.Set;
 
 import com.softwaremagico.tm.Element;
 import com.softwaremagico.tm.InvalidXmlElementException;
+import com.softwaremagico.tm.character.IElementWithBonification;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
+import com.softwaremagico.tm.character.values.Bonification;
 import com.softwaremagico.tm.character.values.IValue;
 import com.softwaremagico.tm.character.values.SpecialValue;
 
-public class Blessing extends Element<Blessing> {
+public class Blessing extends Element<Blessing> implements IElementWithBonification {
 	private final Integer cost;
 	private final Set<Bonification> bonifications;
 	private final BlessingClassification blessingClassification;
@@ -65,6 +67,7 @@ public class Blessing extends Element<Blessing> {
 		return blessingGroup;
 	}
 
+	@Override
 	public Set<Bonification> getBonifications() {
 		return bonifications;
 	}

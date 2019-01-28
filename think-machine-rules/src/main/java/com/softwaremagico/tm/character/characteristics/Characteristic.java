@@ -28,10 +28,13 @@ public class Characteristic extends CharacteristicDefinition {
 	public final static int DEFAULT_INITIAL_VALUE = 3;
 	public final static int MAX_VALUE = 12;
 	private int value;
+	private final CharacteristicDefinition characteristicDefinition;
 
 	public Characteristic(CharacteristicDefinition characteristicDefinition) {
 		super(characteristicDefinition.getId(), characteristicDefinition.getName(), characteristicDefinition.getLanguage());
+		setAbbreviature(characteristicDefinition.getAbbreviature());
 		setType(characteristicDefinition.getType());
+		this.characteristicDefinition = characteristicDefinition;
 	}
 
 	public int getValue() {
@@ -42,4 +45,7 @@ public class Characteristic extends CharacteristicDefinition {
 		this.value = value;
 	}
 
+	public CharacteristicDefinition getCharacteristicDefinition() {
+		return characteristicDefinition;
+	}
 }

@@ -31,7 +31,7 @@ import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.benefices.AvailableBenefice;
 import com.softwaremagico.tm.character.blessings.Blessing;
-import com.softwaremagico.tm.character.cybernetics.CyberneticDevice;
+import com.softwaremagico.tm.character.cybernetics.ICyberneticDevice;
 import com.softwaremagico.tm.character.occultism.OccultismPath;
 import com.softwaremagico.tm.character.occultism.OccultismPathFactory;
 import com.softwaremagico.tm.character.occultism.OccultismTypeFactory;
@@ -151,7 +151,7 @@ public class CostCalculator {
 
 	private static int getCyberneticsCost(CharacterPlayer characterPlayer) {
 		int cost = 0;
-		for (CyberneticDevice device : characterPlayer.getCybernetics().getElements()) {
+		for (ICyberneticDevice device : characterPlayer.getAllCybernetics()) {
 			cost += device.getPoints();
 		}
 		return cost;

@@ -4,7 +4,7 @@ package com.softwaremagico.tm.factory;
  * #%L
  * Think Machine (Core)
  * %%
- * Copyright (C) 2017 Softwaremagico
+ * Copyright (C) 2017 - 2018 Softwaremagico
  * %%
  * This software is designed by Jorge Hortelano Otero. Jorge Hortelano Otero
  * <softwaremagico@gmail.com> Valencia (Spain).
@@ -24,21 +24,20 @@ package com.softwaremagico.tm.factory;
  * #L%
  */
 
-import junit.framework.Assert;
-
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
+import com.softwaremagico.tm.character.cybernetics.CyberneticDeviceFactory;
 
-@Test(groups = { "skillFactory" })
-public class SkillFactoryTests {
-	private final static int NATURAL_SKILLS = 9;
-	private final static int LEARNED_SKILLS = 47;
+@Test(groups = { "cyberneticFactory" })
+public class CyberneticDeviceFactoryTests {
+
+	private final static int DEFINED_DEVICES = 19;
+	private final static String LANGUAGE = "es";
 
 	@Test
-	public void readSkills() throws InvalidXmlElementException {
-		Assert.assertEquals(NATURAL_SKILLS, SkillsDefinitionsFactory.getInstance().getNaturalSkills("es").size());
-		Assert.assertEquals(LEARNED_SKILLS, SkillsDefinitionsFactory.getInstance().getLearnedSkills("es").size());
+	public void readDevices() throws InvalidXmlElementException {
+		Assert.assertEquals(CyberneticDeviceFactory.getInstance().getElements(LANGUAGE).size(), DEFINED_DEVICES);
 	}
 }

@@ -28,6 +28,12 @@ import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
 import com.softwaremagico.tm.character.benefices.BeneficeDefinitionFactory;
 import com.softwaremagico.tm.character.blessings.BlessingFactory;
 import com.softwaremagico.tm.character.characteristics.CharacteristicsDefinitionFactory;
+import com.softwaremagico.tm.character.combat.CombatStyleFactory;
+import com.softwaremagico.tm.character.cybernetics.CyberneticDeviceFactory;
+import com.softwaremagico.tm.character.cybernetics.CyberneticDeviceTraitFactory;
+import com.softwaremagico.tm.character.equipment.armours.ArmourFactory;
+import com.softwaremagico.tm.character.equipment.shields.ShieldFactory;
+import com.softwaremagico.tm.character.equipment.weapons.AmmunitionFactory;
 import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
 import com.softwaremagico.tm.character.factions.FactionsFactory;
 import com.softwaremagico.tm.character.occultism.OccultismDurationFactory;
@@ -50,12 +56,17 @@ public class CacheHandler {
 		BeneficeDefinitionFactory.getInstance().clearCache();
 		AvailableBeneficeFactory.getInstance().clearCache();
 		WeaponFactory.getInstance().clearCache();
+		AmmunitionFactory.getInstance().clearCache();
+		ShieldFactory.getInstance().clearCache();
+		ArmourFactory.getInstance().clearCache();
+		CombatStyleFactory.getInstance().clearCache();
 		CharacteristicsDefinitionFactory.getInstance().clearCache();
 		FactionsFactory.getInstance().clearCache();
 		BlessingFactory.getInstance().clearCache();
 		OccultismPathFactory.getInstance().clearCache();
 		OccultismDurationFactory.getInstance().clearCache();
 		OccultismRangeFactory.getInstance().clearCache();
-
+		CyberneticDeviceFactory.getInstance().clearCache();
+		CyberneticDeviceTraitFactory.getInstance().clearCache();
 	}
 }

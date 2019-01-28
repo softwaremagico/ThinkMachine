@@ -275,7 +275,7 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 		return preferredCharacteristicsTypeSorted;
 	}
 
-	protected int assignRandomRanks(AvailableSkill availableSkill) throws InvalidXmlElementException {
+	private int assignRandomRanks(AvailableSkill availableSkill) throws InvalidXmlElementException {
 		int finalRanks = getRankValue(availableSkill);
 		if (finalRanks < 0) {
 			finalRanks = 0;
@@ -289,18 +289,25 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 		if (getCharacterPlayer().getSkillAssignedRanks(availableSkill) >= selectedSpecialization.maximum()) {
 			return 0;
 		}
+
+		finalRanks = checkMaxSkillRanksValues(availableSkill, finalRanks);
+
+		getCharacterPlayer().setSkillRank(availableSkill, finalRanks);
+		getCharacterPlayer().setDesiredSkillRanks(availableSkill, finalRanks);
+		return finalRanks;
+	}
+
+	protected int checkMaxSkillRanksValues(AvailableSkill availableSkill, int finalRanks) throws InvalidXmlElementException {
 		// If respects age maximum.
 		if (finalRanks > FreeStyleCharacterCreation.getMaxInitialSkillsValues(getCharacterPlayer().getInfo().getAge())) {
 			finalRanks = FreeStyleCharacterCreation.getMaxInitialSkillsValues(getCharacterPlayer().getInfo().getAge());
 		}
+
 		// Final ranks cannot be greater that the total points remaining.
 		if (getCharacterPlayer().getSkillsTotalPoints() + (finalRanks - getCharacterPlayer().getSkillAssignedRanks(availableSkill)) > FreeStyleCharacterCreation
 				.getSkillsPoints(getCharacterPlayer().getInfo().getAge())) {
 			finalRanks = FreeStyleCharacterCreation.getSkillsPoints(getCharacterPlayer().getInfo().getAge()) - getCharacterPlayer().getSkillsTotalPoints();
 		}
-
-		getCharacterPlayer().setSkillRank(availableSkill, finalRanks);
-		getCharacterPlayer().setDesiredSkillRanks(availableSkill, finalRanks);
 		return finalRanks;
 	}
 

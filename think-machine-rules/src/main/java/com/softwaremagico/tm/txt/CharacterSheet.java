@@ -41,7 +41,7 @@ import com.softwaremagico.tm.character.characteristics.CharacteristicType;
 import com.softwaremagico.tm.character.combat.CombatAction;
 import com.softwaremagico.tm.character.combat.CombatStyle;
 import com.softwaremagico.tm.character.combat.CombatStyleFactory;
-import com.softwaremagico.tm.character.cybernetics.CyberneticDevice;
+import com.softwaremagico.tm.character.cybernetics.ICyberneticDevice;
 import com.softwaremagico.tm.character.equipment.DamageType;
 import com.softwaremagico.tm.character.equipment.weapons.Weapon;
 import com.softwaremagico.tm.character.occultism.OccultismPath;
@@ -298,7 +298,7 @@ public class CharacterSheet {
 	}
 
 	private void setWeapons(StringBuilder stringBuilder) {
-		for (Weapon weapon : getCharacterPlayer().getWeapons().getElements()) {
+		for (Weapon weapon : getCharacterPlayer().getAllWeapons()) {
 			stringBuilder.append(weapon.getName());
 			stringBuilder.append(" (");
 			if (weapon.getGoal() != null && weapon.getGoal().length() > 0 && !weapon.getGoal().equals("0")) {
@@ -384,7 +384,7 @@ public class CharacterSheet {
 	}
 
 	private void setEquipment(StringBuilder stringBuilder) {
-		if (!getCharacterPlayer().getWeapons().getElements().isEmpty() || getCharacterPlayer().getShield() != null) {
+		if (!getCharacterPlayer().getAllWeapons().isEmpty() || getCharacterPlayer().getShield() != null) {
 			stringBuilder.append(getTranslator().getTranslatedText("equipment") + ": ");
 			setWeapons(stringBuilder);
 			setArmours(stringBuilder);
@@ -397,10 +397,10 @@ public class CharacterSheet {
 	}
 
 	private void setCybernetics(StringBuilder stringBuilder) {
-		if (!getCharacterPlayer().getCybernetics().getElements().isEmpty()) {
+		if (!getCharacterPlayer().getAllCybernetics().isEmpty()) {
 			stringBuilder.append(getTranslator().getTranslatedText("cybernetics") + ": ");
 
-			for (CyberneticDevice device : getCharacterPlayer().getCybernetics().getElements()) {
+			for (ICyberneticDevice device : getCharacterPlayer().getAllCybernetics()) {
 				stringBuilder.append(device.getName());
 				stringBuilder.append(ELEMENT_SEPARATOR);
 			}
