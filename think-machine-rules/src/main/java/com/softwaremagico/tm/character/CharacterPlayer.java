@@ -735,7 +735,7 @@ public class CharacterPlayer {
 			if (isSkillSpecial(skill)) {
 				continue;
 			}
-			if (getSkillTotalRanks(skill) != null) {
+			if (getSkillAssignedRanks(skill) != null) {
 				skillPoints += getSkillAssignedRanks(skill);
 			}
 		}

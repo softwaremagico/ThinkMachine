@@ -64,10 +64,15 @@ public class RandomPsiCharacterCreationTest {
 				PsiquePathLevelPreferences.HIGH, PsiqueLevelPreferences.HIGH);
 		randomizeCharacter.createCharacter();
 
+		try {
+			Assert.assertEquals(CostCalculator.getCost(characterPlayer), FreeStyleCharacterCreation.getFreeAvailablePoints(characterPlayer.getInfo().getAge()));
+		} catch (AssertionError e) {
+			CostCalculator.logCost(characterPlayer);
+			throw e;
+		}
+
 		LanguagePool.clearCache();
 		SmallCharacterSheet sheet = new SmallCharacterSheet(characterPlayer);
 		sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "RandomPsiCharacter.pdf");
-
-		Assert.assertEquals(CostCalculator.logCost(characterPlayer), FreeStyleCharacterCreation.getFreeAvailablePoints(characterPlayer.getInfo().getAge()));
 	}
 }

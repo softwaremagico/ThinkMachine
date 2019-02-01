@@ -55,7 +55,7 @@ public class RandomSkillExtraPoints extends RandomSkills {
 		}
 		getCharacterPlayer().setSkillRank(selectedSkill, getCharacterPlayer().getSkillAssignedRanks(selectedSkill) + addedRanks);
 		getCharacterPlayer().setDesiredSkillRanks(selectedSkill, getCharacterPlayer().getSkillAssignedRanks(selectedSkill) + addedRanks);
-		return addedRanks;
+		return addedRanks * CostCalculator.SKILL_EXTRA_POINTS_COST;
 	}
 
 	private int ranksToAdd(AvailableSkill availableSkill) throws InvalidXmlElementException, InvalidRandomElementSelectedException {
@@ -78,5 +78,10 @@ public class RandomSkillExtraPoints extends RandomSkills {
 			finalRanks = FreeStyleCharacterCreation.getMaxInitialSkillsValues(getCharacterPlayer().getInfo().getAge());
 		}
 		return finalRanks;
+	}
+	
+	@Override
+	protected void assignIfMandatory(AvailableSkill skill) throws InvalidXmlElementException {
+		// Nothing
 	}
 }

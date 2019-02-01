@@ -32,6 +32,7 @@ import com.softwaremagico.tm.character.characteristics.Characteristic;
 import com.softwaremagico.tm.character.creation.CostCalculator;
 import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
 import com.softwaremagico.tm.log.RandomGenerationLog;
+import com.softwaremagico.tm.random.exceptions.ImpossibleToAssignMandatoryElementException;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.IGaussianDistribution;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
@@ -60,5 +61,10 @@ public class RandomCharacteristicsExtraPoints extends RandomCharacteristics {
 			}
 		}
 		return 0;
+	}
+
+	@Override
+	protected void assignIfMandatory(Characteristic characteristic) throws InvalidXmlElementException, ImpossibleToAssignMandatoryElementException {
+		// Nothing
 	}
 }
