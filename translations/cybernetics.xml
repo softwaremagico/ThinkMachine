@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cybernetics>
+	<centurionKnife>
+		<name>
+			<en>Centurion Knife</en>
+			<es>Cuchillo Centurión</es>
+		</name>
+		<techLevel>5</techLevel>
+		<points>2</points>
+		<incompatibility>2</incompatibility>
+		<traits>removable, metal, incognito</traits>
+		<cost>365</cost>
+		<weapon>
+			<characteristic>dexterity</characteristic>
+			<skill>melee</skill>
+			<goal>0</goal>
+			<damage>4</damage>
+		</weapon>
+	</centurionKnife>
+	<viperSword>
+		<name>
+			<en>Viper Sword Arm</en>
+			<es>Espada Víbora de Brazo</es>
+		</name>
+		<techLevel>5</techLevel>
+		<points>6</points>
+		<incompatibility>3</incompatibility>
+		<traits>attached, metal, incognito</traits>
+		<cost>740</cost>
+		<weapon>
+			<characteristic>dexterity</characteristic>
+			<skill>melee</skill>
+			<goal>0</goal>
+			<damage>5</damage>
+		</weapon>
+	</viperSword>
+	<armHarpoon>
+		<name>
+			<en>Arm Harpoon</en>
+			<es>Arpón de Brazo</es>
+		</name>
+		<techLevel>5</techLevel>
+		<points>4</points>
+		<incompatibility>3</incompatibility>
+		<traits>attached, metal, incognito</traits>
+		<cost>725</cost>
+		<weapon>
+			<characteristic>dexterity</characteristic>
+			<skill>archery</skill>
+			<goal>0</goal>
+			<damage>3</damage>
+			<range>10/20</range>
+			<shots>5</shots>
+			<rate>1</rate>
+		</weapon>
+	</armHarpoon>
+	<jonah>
+		<name>
+			<en>Jonah</en>
+			<es>Jonás</es>
+		</name>
+		<techLevel>5</techLevel>
+		<points>7</points>
+		<incompatibility>4</incompatibility>
+		<traits>attached, metal, incognito</traits>
+		<cost>2440</cost>
+		<weapon>
+			<characteristic>dexterity</characteristic>
+			<skill>archery</skill>
+			<goal>0</goal>
+			<damage>4</damage>
+			<range>10/20</range>
+			<shots>5</shots>
+			<rate>1</rate>
+		</weapon>
+	</jonah>
+	<aquaLung>
+		<name>
+			<en>Aqua-Lung</en>
+			<es>Pulmón de Agua</es>
+		</name>
+		<techLevel>6</techLevel>
+		<points>3</points>
+		<incompatibility>3</incompatibility>
+		<traits>organic, obvious, automatic, selfPowered</traits>
+		<cost>1655</cost>
+		<others>ciberLungWater</others>
+	</aquaLung>
+	<advancedAquaLung>
+		<name>
+			<en>Aqua-Lung (Advanced)</en>
+			<es>Pulmón de Agua (Avanzado)</es>
+		</name>
+		<techLevel>6</techLevel>
+		<points>5</points>
+		<incompatibility>4</incompatibility>
+		<traits>organic, hidden, automatic, selfPowered</traits>
+		<cost>1805</cost>
+		<others>ciberLungWater</others>
+	</advancedAquaLung>
+	<engineersEye>
+		<name>
+			<en>Engineer's Eye</en>
+			<es>Ojo de Ingeniero</es>
+		</name>
+		<techLevel>6</techLevel>
+		<points>6</points>
+		<incompatibility>5</incompatibility>
+		<cost>2440</cost>
+		<traits>attached, obvious, automatic, selfPowered, cybersenseMagnifier, cybersenseIr</traits>
+		<bonifications>
+			<bonification>
+				<value>1</value>
+				<affects>perception</affects>
+				<situation>
+					<en>Sight</en>
+					<es>Vista</es>
+				</situation>
+			</bonification>
+		</bonifications>
+	</engineersEye>
+	<advancedEngineersEye>
+		<name>
+			<en>Engineer's Eye</en>
+			<es>Ojo de Ingeniero</es>
+		</name>
+		<techLevel>6</techLevel>
+		<points>8</points>
+		<incompatibility>6</incompatibility>
+		<traits>attached, hidden, automatic, selfPowered, cybersenseMagnifier, cybersenseIr</traits>
+		<cost>2440</cost>
+		<bonifications>
+			<bonification>
+				<value>1</value>
+				<affects>perception</affects>
+				<situation>
+					<en>Sight</en>
+					<es>Vista</es>
+				</situation>
+			</bonification>
+		</bonifications>
+	</advancedEngineersEye>
+	<etherEar>
+		<name>
+			<en>Ether Ear</en>
+			<es>Oído Inalámbrico</es>
+		</name>
+		<techLevel>6</techLevel>
+		<points>6</points>
+		<incompatibility>5</incompatibility>
+		<traits>attached, hidden, skillUse, selfPowered, cybersenseRadio</traits>
+		<cost>1245</cost>
+	</etherEar>
+	<goliathSkin>
+		<name>
+			<en>Goliath Skin</en>
+			<es>Piel de Goliath</es>
+		</name>
+		<techLevel>6</techLevel>
+		<points>10</points>
+		<incompatibility>6</incompatibility>
+		<traits>organic, metal, obvious, automatic, selfPowered</traits>
+		<cost>3715</cost>
+		<bonifications>
+			<bonification>
+				<value>3</value>
+				<affects>strength</affects>
+			</bonification>
+			<bonification>
+				<value>2</value>
+				<affects>endurance</affects>
+			</bonification>
+		</bonifications>
+	</goliathSkin>
+	<litheWire>
+		<name>
+			<en>Lithe Wire</en>
+			<es>Cable Flexible</es>
+		</name>
+		<techLevel>6</techLevel>
+		<points>5</points>
+		<incompatibility>4</incompatibility>
+		<cost>3025</cost>
+		<traits>organic, metal, obvious, automatic, selfPowered</traits>
+		<bonifications>
+			<bonification>
+				<value>3</value>
+				<affects>dexterity</affects>
+			</bonification>
+		</bonifications>
+	</litheWire>
+	<oxyLung>
+		<name>
+			<en>Oxy-Lung</en>
+			<es>Oxi-Pulmón</es>
+		</name>
+		<techLevel>7</techLevel>
+		<points>9</points>
+		<incompatibility>7</incompatibility>
+		<cost>5250</cost>
+		<traits>organic, synthflesh, hidden, automatic, selfPowered, proscribed, ciberLungVoid</traits>
+	</oxyLung>
+	<secondBrain>
+		<name>
+			<en>Second Brain</en>
+			<es>Segundo Cerebro</es>
+		</name>
+		<techLevel>6</techLevel>
+		<points>11</points>
+		<incompatibility>10</incompatibility>
+		<traits>attached, synthflesh, hidden, automatic, selfPowered</traits>
+		<cost>5915</cost>
+		<bonifications>
+			<bonification>
+				<value>2</value>
+				<affects>wits</affects>
+			</bonification>
+			<bonification>
+				<value>4</value>
+				<affects>thinkMachine</affects>
+			</bonification>
+		</bonifications>
+	</secondBrain>
+	<secondBrainJumpLoreSoftware>
+		<name>
+			<en>Prg. Jumpweb</en>
+			<es>Prg. Red de Salto</es>
+		</name>
+		<techLevel>6</techLevel>
+		<points>0</points>
+		<incompatibility>0</incompatibility>
+		<traits>removable, hidden, automatic</traits>
+		<cost>1200</cost>
+		<skillsStaticValues>
+			<skillValue>
+				<value>4</value>
+				<affects>lore</affects>
+				<speciality>jumpwebLore</speciality>
+			</skillValue>
+		</skillsStaticValues>
+		<requires>secondBrain</requires>
+	</secondBrainJumpLoreSoftware>
+	<secondBrainEnergyPistolsLore>
+		<name>
+			<en>Prg. Energy Pistols</en>
+			<es>Prg. Pistola Energía</es>
+		</name>
+		<techLevel>6</techLevel>
+		<points>0</points>
+		<incompatibility>0</incompatibility>
+		<traits>removable, hidden, automatic</traits>
+		<cost>1200</cost>
+		<skillsStaticValues>
+			<skillValue>
+				<value>4</value>
+				<affects>lore</affects>
+				<speciality>energyPistolsLore</speciality>
+			</skillValue>
+		</skillsStaticValues>
+		<requires>secondBrain</requires>
+	</secondBrainEnergyPistolsLore>
+	<secondBrainThinkMachineLore>
+		<name>
+			<en>Prg. Think Machine</en>
+			<es>Prg. Máquina Pensante</es>
+		</name>
+		<techLevel>6</techLevel>
+		<points>0</points>
+		<incompatibility>0</incompatibility>
+		<cost>1200</cost>
+		<traits>removable, hidden, automatic</traits>
+		<skillsStaticValues>
+			<skillValue>
+				<value>4</value>
+				<affects>lore</affects>
+				<speciality>thinkMachineLore</speciality>
+			</skillValue>
+		</skillsStaticValues>
+		<requires>secondBrain</requires> 
+	</secondBrainThinkMachineLore>
+	<spyEye>
+		<name>
+			<en>Spy Eye</en>
+			<es>Ojo Espía</es>
+		</name>
+		<techLevel>6</techLevel>
+		<points>6</points>
+		<incompatibility>5</incompatibility>
+		<cost>2655</cost>
+		<traits>organic, synthflesh, hidden, skillUse, selfPowered, cybersenseMagnifier, cybersenseVideo</traits>
+	</spyEye>
+	<stimusim>
+		<name>
+			<en>Stimusim</en>
+			<es>Consolador</es>
+		</name>
+		<techLevel>6</techLevel>
+		<points>3</points>
+		<incompatibility>5</incompatibility>
+		<traits>organic, synthflesh, incognito, automatic, selfPowered, proscribed</traits>
+		<cost>3115</cost>
+		<bonifications>
+			<bonification>
+				<value>2</value>
+				<affects>perception</affects>
+			</bonification>
+		</bonifications>
+		<others>cybersenseHypertouch</others>
+	</stimusim>
+	<xEyes>
+		<name>
+			<en>X-Eyes</en>
+			<es>Ojos con Rayos X</es>
+		</name>
+		<techLevel>7</techLevel>
+		<points>4</points>
+		<incompatibility>7</incompatibility>
+		<traits>organic, synthflesh, incognito, skillUse, selfPowered, cybersenseHypertouch</traits>
+		<cost>2150</cost>
+	</xEyes>
+</cybernetics>

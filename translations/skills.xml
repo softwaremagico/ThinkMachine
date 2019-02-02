@@ -214,6 +214,7 @@
 		<group>combat</group>
 		<random>
 			<minTechLevel>3</minTechLevel>
+			<probabilityMultiplier>0.01</probabilityMultiplier>
 		</random>
 	</gunnery>
 	<artillery>
@@ -224,6 +225,7 @@
 		<group>combat</group>
 		<random>
 			<minTechLevel>3</minTechLevel>
+			<probabilityMultiplier>0.01</probabilityMultiplier>
 		</random>
 	</artillery>
 	<melee>
@@ -241,6 +243,7 @@
 		<group>combat</group>
 		<random>
 			<minTechLevel>3</minTechLevel>
+			<probabilityMultiplier>0.01</probabilityMultiplier>
 		</random>
 	</demolitions>
 	<beastcraft>
@@ -569,4 +572,36 @@
 			<recommendedFactions>engineers, charioteers</recommendedFactions>
 		</random>
 	</thinkMachine>
+	
+	<etherEar>
+		<name>
+			<en>Ether Ear</en>
+			<es>Oído Inalámbrico</es>
+		</name>
+		<group>technical</group>
+		<random>
+			<probabilityMultiplier>0</probabilityMultiplier>
+		</random>
+	</etherEar>
+	<spyEye>
+		<name>
+			<en>Spy Eye</en>
+			<es>Ojo Espía</es>
+		</name>
+		<group>technical</group>
+		<random>
+			<probabilityMultiplier>0</probabilityMultiplier>
+		</random>
+	</spyEye>
+	<xEyes>
+		<name>
+			<en>X-Eyes</en>
+			<es>Ojos con Rayos X</es>
+		</name>
+		<group>technical</group>
+		<random>
+			<probabilityMultiplier>0</probabilityMultiplier>
+		</random>
+	</xEyes>
+	
 </skills>

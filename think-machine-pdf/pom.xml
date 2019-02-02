@@ -2,12 +2,12 @@
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>think-machine-pdf</artifactId>
 	<packaging>jar</packaging>
-	<name>Think Machine (PDF)</name>
+	<name>Think Machine (PDF Sheets)</name>
 
 	<parent>
 		<groupId>com.softwaremagico</groupId>
 		<artifactId>think-machine</artifactId>
-		<version>0.4.5-SNAPSHOT</version>
+		<version>0.4.6-SNAPSHOT</version>
 	</parent>
 
 	<properties>
@@ -27,7 +27,7 @@
 					<useFile>false</useFile>
 					<trimStackTrace>false</trimStackTrace>
 					<suiteXmlFiles>
-						<suiteXmlFile>src/test/config/testng.xml</suiteXmlFile>
+						<suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
 					</suiteXmlFiles>
 					<useSystemClassLoader>false</useSystemClassLoader>
 				</configuration>
@@ -141,15 +141,15 @@
 	<dependencies>
 		<dependency>
 			<groupId>${project.groupId}</groupId>
-			<artifactId>think-machine-core</artifactId>
+			<artifactId>think-machine-rules</artifactId>
 			<version>${project.version}</version>
 			<type>jar</type>
 		</dependency>
-		<!-- JSON -->
 		<dependency>
-			<groupId>com.google.code.gson</groupId>
-			<artifactId>gson</artifactId>
-			<version>${gson.version}</version>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>think-machine-random</artifactId>
+			<version>${project.version}</version>
+			<scope>test</scope>
 		</dependency>
 		<!-- PDF -->
 		<dependency>

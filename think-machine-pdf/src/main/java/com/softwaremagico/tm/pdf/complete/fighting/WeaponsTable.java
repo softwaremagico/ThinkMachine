@@ -69,7 +69,8 @@ public class WeaponsTable extends LateralHeaderPdfPTable {
 						RANGE_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
 				addCell(createElementLine(weapon.getShots() + "", SHOTS_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
 				addCell(createElementLine(weapon.getRate(), RATE_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
-				addCell(createElementLine(weapon.getSize().toString(), SIZE_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
+				addCell(createElementLine(weapon.getSize() != null ? weapon.getSize().toString() : "", SIZE_COLUMN_WIDTH,
+						FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
 				addCell(createElementLine(getWeaponOthers(weapon), OTHERS_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
 
 				addedWeapons++;

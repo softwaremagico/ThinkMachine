@@ -35,12 +35,12 @@ import org.testng.annotations.Test;
 import com.itextpdf.text.DocumentException;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.character.RandomizeCharacter;
 import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
 import com.softwaremagico.tm.character.creation.CostCalculator;
 import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
 import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.pdf.small.SmallCharacterSheet;
-import com.softwaremagico.tm.random.RandomizeCharacter;
 import com.softwaremagico.tm.random.exceptions.DuplicatedPreferenceException;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.PsiqueLevelPreferences;
@@ -64,10 +64,15 @@ public class RandomPsiCharacterCreationTest {
 				PsiquePathLevelPreferences.HIGH, PsiqueLevelPreferences.HIGH);
 		randomizeCharacter.createCharacter();
 
+		try {
+			Assert.assertEquals(CostCalculator.getCost(characterPlayer), FreeStyleCharacterCreation.getFreeAvailablePoints(characterPlayer.getInfo().getAge()));
+		} catch (AssertionError e) {
+			CostCalculator.logCost(characterPlayer);
+			throw e;
+		}
+
 		LanguagePool.clearCache();
 		SmallCharacterSheet sheet = new SmallCharacterSheet(characterPlayer);
 		sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "RandomPsiCharacter.pdf");
-
-		Assert.assertEquals(CostCalculator.logCost(characterPlayer), FreeStyleCharacterCreation.getFreeAvailablePoints(characterPlayer.getInfo().getAge()));
 	}
 }

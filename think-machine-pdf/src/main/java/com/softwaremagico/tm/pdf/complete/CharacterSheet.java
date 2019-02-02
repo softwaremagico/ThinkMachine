@@ -92,7 +92,7 @@ public class CharacterSheet extends PdfDocument {
 		document.newPage();
 		if (characterPlayer == null || characterPlayer.getTotalSelectedPowers() < PSI_ROWS) {
 			document.add(createRearTable());
-		} else if (characterPlayer.getCybernetics().getElements().isEmpty()) {
+		} else if (characterPlayer.getAllCybernetics().isEmpty()) {
 			document.add(createRearTablePsiExtended());
 		} else {
 			document.add(createRearTable());

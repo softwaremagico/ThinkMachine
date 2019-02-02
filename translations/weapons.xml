@@ -417,7 +417,7 @@
 		<cost>50</cost>
 		<damage>bleed</damage>
 		<random>
-			<probabilityMultiplier>0.01</probabilityMultiplier>
+			<probabilityMultiplier>0.0001</probabilityMultiplier>
 		</random>
 	</splinterSword>
 	<staff>

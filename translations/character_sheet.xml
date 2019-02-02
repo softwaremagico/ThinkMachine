@@ -288,30 +288,14 @@
 		<en>Pts.</en>
 		<es>Pts.</es>
 	</cyberneticsPoints>
-	<cyberneticsUsability>
-		<en>Usability</en>
-		<es>Usabilidad</es>
-	</cyberneticsUsability>
 	<cyberneticsIncompatibility>
 		<en>Inc.</en>
 		<es>Inc.</es>
 	</cyberneticsIncompatibility>
-	<cyberneticsQuality>
-		<en>Quality</en>
-		<es>Calidad</es>
-	</cyberneticsQuality>
-	<cyberneticsActivtation>
-		<en>Activation</en>
-		<es>Activación</es>
-	</cyberneticsActivtation>
-	<cyberneticsAppearence>
-		<en>Appearen.</en>
-		<es>Apariencia</es>
-	</cyberneticsAppearence>
-	<cyberneticsOthers>
-		<en>Others</en>
-		<es>Otros</es>
-	</cyberneticsOthers>
+	<cyberneticsTraits>
+		<en>Traits</en>
+		<es>Rasgos</es>
+	</cyberneticsTraits>
 	<stances>
 		<en>Stances</en>
 		<es>Posiciones</es>

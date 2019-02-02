@@ -1,0 +1,673 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cyberneticsTraits>
+	<proscribed>
+		<name>
+			<en>Proscribed</en>
+			<es>Proscrito</es>
+		</name>
+		<minTechLevel>5</minTechLevel>
+		<extraPoints>-2</extraPoints>
+		<extraCostMultiplier>0.90</extraCostMultiplier>
+		<extraIncompatibility>0</extraIncompatibility>
+		<category>proscribed</category>
+	</proscribed>
+	<attached>
+		<name>
+			<en>Attached</en>
+			<es>Unido</es>
+		</name>
+		<minTechLevel>5</minTechLevel>
+		<extraPoints>0</extraPoints>
+		<extraCostMultiplier>1</extraCostMultiplier>
+		<extraIncompatibility>0</extraIncompatibility>
+		<category>attached</category>
+	</attached>
+	<removable>
+		<name>
+			<en>Removable</en>
+			<es>Extraíble</es>
+		</name>
+		<minTechLevel>5</minTechLevel>
+		<extraPoints>3</extraPoints>
+		<extraCost>500</extraCost>
+		<extraIncompatibility>0</extraIncompatibility>
+		<category>attached</category>
+	</removable>
+	<omnisocket>
+		<name>
+			<en>Omnisocket</en>
+			<es>Omnienchufe</es>
+		</name>
+		<minTechLevel>5</minTechLevel>
+		<extraPoints>3</extraPoints>
+		<extraCost>550</extraCost>
+		<extraIncompatibility>1</extraIncompatibility>
+		<category>attached</category>
+	</omnisocket>
+	<organic>
+		<name>
+			<en>Organic</en>
+			<es>Orgánico</es>
+		</name>
+		<minTechLevel>5</minTechLevel>
+		<extraPoints>-2</extraPoints>
+		<extraCostMultiplier>1</extraCostMultiplier>
+		<extraIncompatibility>0</extraIncompatibility>
+		<category>attached</category>
+	</organic>
+	<burnsFlesh>
+		<name>
+			<en>Burns Flesh</en>
+			<es>Quemaduras en la Carne</es>
+		</name>
+		<minTechLevel>5</minTechLevel>
+		<extraPoints>-5</extraPoints>
+		<extraCostMultiplier>1</extraCostMultiplier>
+		<extraIncompatibility>0</extraIncompatibility>
+		<category>attached</category>
+	</burnsFlesh>
+
+
+	<batteryPowered10>
+		<name>
+			<en>Battery Powered (10 uses)</en>
+			<es>Pilas de Fusión (10 usos)</es>
+		</name>
+		<minTechLevel>5</minTechLevel>
+		<extraPoints>-2</extraPoints>
+		<extraCostMultiplier>1</extraCostMultiplier>
+		<extraIncompatibility>0</extraIncompatibility>
+		<category>power</category>
+	</batteryPowered10>
+	<batteryPowered15>
+		<name>
+			<en>Battery Powered (15 uses)</en>
+			<es>Pilas de Fusión (15 usos)</es>
+		</name>
+		<minTechLevel>5</minTechLevel>
+		<extraPoints>-1</extraPoints>
+		<extraCostMultiplier>1</extraCostMultiplier>
+		<extraIncompatibility>0</extraIncompatibility>
+		<category>power</category>
+	</batteryPowered15>
+	<batteryPowered>
+		<name>
+			<en>Battery Powered (20 uses)</en>
+			<es>Pilas de Fusión (20 usos)</es>
+		</name>
+		<minTechLevel>5</minTechLevel>
+		<extraPoints>0</extraPoints>
+		<extraCostMultiplier>1</extraCostMultiplier>
+		<extraIncompatibility>0</extraIncompatibility>
+		<category>power</category>
+	</batteryPowered>
+	<selfPowered>
+		<name>
+			<en>Self-Powered</en>
+			<es>Autoalimentado</es>
+		</name>
+		<minTechLevel>6</minTechLevel>
+		<extraPoints>1</extraPoints>
+		<extraCostMultiplier>1.25</extraCostMultiplier>
+		<extraIncompatibility>1</extraIncompatibility>
+		<category>power</category>
+	</selfPowered>
+	<powerGenerator>
+		<name>
+			<en>Power Generator 10</en>
+			<es>Generador de Energía 10</es>
+		</name>
+		<minTechLevel>7</minTechLevel>
+		<extraPoints>2</extraPoints>
+		<extraCost>3000</extraCost>
+		<extraIncompatibility>2</extraIncompatibility>
+		<category>power</category>
+	</powerGenerator>
+	<powerGenerator20>
+		<name>
+			<en>Power Generator 20</en>
+			<es>Generador de Energía 20</es>
+		</name>
+		<minTechLevel>7</minTechLevel>
+		<extraPoints>3</extraPoints>
+		<extraCost>4000</extraCost>
+		<extraIncompatibility>2</extraIncompatibility>
+		<category>power</category>
+	</powerGenerator20>
+	
+
+	<obvious>
+		<name>
+			<en>Obvious</en>
+			<es>Evidente</es>
+		</name>
+		<minTechLevel>5</minTechLevel>
+		<extraPoints>0</extraPoints>
+		<extraCost>0</extraCost>
+		<extraIncompatibility>0</extraIncompatibility>
+		<category>visibility</category>
+	</obvious>
+	<unsightly>
+		<name>
+			<en>Unsightly</en>
+			<es>Antiestético</es>
+		</name>
+		<minTechLevel>5</minTechLevel>
+		<extraPoints>-1</extraPoints>
+		<extraCost>0</extraCost>
+		<extraIncompatibility>1</extraIncompatibility>
+		<category>visibility</category>
+	</unsightly>
+	<messy>
+		<name>
+			<en>Messy</en>
+			<es>Desastroso</es>
+		</name>
+		<minTechLevel>5</minTechLevel>
+		<extraPoints>-1</extraPoints>
+		<extraCost>0</extraCost>
+		<extraIncompatibility>1</extraIncompatibility>
+		<category>visibility</category>
+	</messy>
+	<incognito>
+		<name>
+			<en>Incognito</en>
+			<es>Incógnito</es>
+		</name>
+		<minTechLevel>5</minTechLevel>
+		<extraPoints>1</extraPoints>
+		<extraCostMultiplier>1.05</extraCostMultiplier>
+		<extraIncompatibility>1</extraIncompatibility>
+		<category>visibility</category>
+	</incognito>
+	<hidden>
+		<name>
+			<en>Hidden</en>
+			<es>Oculto</es>
+		</name>
+		<minTechLevel>6</minTechLevel>
+		<extraPoints>2</extraPoints>
+		<extraCostMultiplier>1.10</extraCostMultiplier>
+		<extraIncompatibility>1</extraIncompatibility>
+		<category>visibility</category>
+	</hidden>
+	<simulacra>
+		<name>
+			<en>Simulacra</en>
+			<es>Imitación</es>
+		</name>
+		<minTechLevel>8</minTechLevel>
+		<extraPoints>3</extraPoints>
+		<extraCostMultiplier>1.20</extraCostMultiplier>
+		<extraIncompatibility>1</extraIncompatibility>
+		<category>visibility</category>
+	</simulacra>
+
+
+	<metal>
+		<name>
+			<en>Metal</en>
+			<es>Metal</es>
+		</name>
+		<minTechLevel>5</minTechLevel>
+		<extraPoints>0</extraPoints>
+		<extraCost>0</extraCost>
+		<extraIncompatibility>0</extraIncompatibility>
+		<category>material</category>
+	</metal>
+	<plastic>
+		<name>
+			<en>Plastic</en>
+			<es>Plástico</es>
+		</name>
+		<minTechLevel>6</minTechLevel>
+		<extraPoints>0</extraPoints>
+		<extraCostMultiplier>1.10</extraCostMultiplier>
+		<extraIncompatibility>0</extraIncompatibility>
+		<category>material</category>
+	</plastic>
+	<ceramsteel>
+		<name>
+			<en>Ceramsteel</en>
+			<es>Acerámica</es>
+		</name>
+		<minTechLevel>6</minTechLevel>
+		<extraPoints>1</extraPoints>
+		<extraCostMultiplier>1.50</extraCostMultiplier>
+		<extraIncompatibility>1</extraIncompatibility>
+		<category>material</category>
+	</ceramsteel>
+	<synthflesh>
+		<name>
+			<en>Synthflesh</en>
+			<es>Carne Sintética</es>
+		</name>
+		<minTechLevel>6</minTechLevel>
+		<extraPoints>0</extraPoints>
+		<extraCostMultiplier>1.05</extraCostMultiplier>
+		<extraIncompatibility>0</extraIncompatibility>
+		<category>material</category>
+	</synthflesh>
+	<synthlife>
+		<name>
+			<en>Synthlife</en>
+			<es>Vida Sintética</es>
+		</name>
+		<minTechLevel>8</minTechLevel>
+		<extraPoints>4</extraPoints>
+		<extraCostMultiplier>1.30</extraCostMultiplier>
+		<extraIncompatibility>2</extraIncompatibility>
+		<category>material</category>
+	</synthlife>
+	<nanotech>
+		<name>
+			<en>Nanotech</en>
+			<es>Nanotecnología</es>
+		</name>
+		<minTechLevel>8</minTechLevel>
+		<extraPoints>3</extraPoints>
+		<extraCostMultiplier>2</extraCostMultiplier>
+		<extraIncompatibility>2</extraIncompatibility>
+		<category>material</category>
+	</nanotech>
+	
+	<automaintenance>
+		<name>
+			<en>Automaintenance</en>
+			<es>Automantenimiento</es>
+		</name>
+		<minTechLevel>6</minTechLevel>
+		<extraPoints>3</extraPoints>
+		<extraCostMultiplier>1.50</extraCostMultiplier>
+		<extraIncompatibility>2</extraIncompatibility>
+		<category>quality</category>
+	</automaintenance>
+	<superior>
+		<name>
+			<en>Superior</en>
+			<es>Superior</es>
+		</name>
+		<minTechLevel>5</minTechLevel>
+		<extraPoints>1</extraPoints>
+		<extraCostMultiplier>1.10</extraCostMultiplier>
+		<extraIncompatibility>0</extraIncompatibility>
+		<category>quality</category>
+	</superior>
+	<masterGuildwork>
+		<name>
+			<en>Master Guildwork</en>
+			<es>Maestro de Gremio</es>
+		</name>
+		<minTechLevel>5</minTechLevel>
+		<extraPoints>2</extraPoints>
+		<extraCostMultiplier>1.20</extraCostMultiplier>
+		<extraIncompatibility>0</extraIncompatibility>
+		<category>quality</category>
+	</masterGuildwork>
+	<premium>
+		<name>
+			<en>Premium</en>
+			<es>Premium</es>
+		</name>
+		<minTechLevel>6</minTechLevel>
+		<extraPoints>3</extraPoints>
+		<extraCostMultiplier>1.30</extraCostMultiplier>
+		<extraIncompatibility>0</extraIncompatibility>
+		<category>quality</category>
+	</premium>
+	<poor>
+		<name>
+			<en>Poor</en>
+			<es>Pobre</es>
+		</name>
+		<minTechLevel>5</minTechLevel>
+		<extraPoints>-1</extraPoints>
+		<extraCostMultiplier>0.90</extraCostMultiplier>
+		<extraIncompatibility>0</extraIncompatibility>
+		<category>quality</category>
+	</poor>
+	<shoddy>
+		<name>
+			<en>Shoddy</en>
+			<es>Chapucero</es>
+		</name>
+		<minTechLevel>5</minTechLevel>
+		<extraPoints>-2</extraPoints>
+		<extraCostMultiplier>0.80</extraCostMultiplier>
+		<extraIncompatibility>0</extraIncompatibility>
+		<category>quality</category>
+	</shoddy>
+	<primitive>
+		<name>
+			<en>Primitive</en>
+			<es>Primitivo</es>
+		</name>
+		<minTechLevel>5</minTechLevel>
+		<extraPoints>-3</extraPoints>
+		<extraCostMultiplier>0.70</extraCostMultiplier>
+		<extraIncompatibility>0</extraIncompatibility>
+		<category>quality</category>
+	</primitive>
+	<delicate>
+		<name>
+			<en>Delicate</en>
+			<es>Delicado</es>
+		</name>
+		<minTechLevel>5</minTechLevel>
+		<extraPoints>-3</extraPoints>
+		<extraCostMultiplier>0.70</extraCostMultiplier>
+		<extraIncompatibility>0</extraIncompatibility>
+		<category>quality</category>
+	</delicate>
+	<expertTech>
+		<name>
+			<en>Expert Tech</en>
+			<es>Tecnología Experta</es>
+		</name>
+		<minTechLevel>5</minTechLevel>
+		<extraPoints>-2</extraPoints>
+		<extraCost>0</extraCost>
+		<extraIncompatibility>0</extraIncompatibility>
+		<category>quality</category>
+	</expertTech>
+	
+	<automatic>
+		<name>
+			<en>Autormatic</en>
+			<es>Automático</es>
+		</name>
+		<minTechLevel>5</minTechLevel>
+		<extraPoints>2</extraPoints>
+		<extraCost>300</extraCost>
+		<extraIncompatibility>1</extraIncompatibility>
+		<category>usability</category>
+	</automatic>	
+	<skillUse>
+		<name>
+			<en>Skill Use</en>
+			<es>Uso de Habilidad</es>
+		</name>
+		<minTechLevel>5</minTechLevel>
+		<extraPoints>-2</extraPoints>
+		<extraCost>0</extraCost>
+		<extraIncompatibility>0</extraIncompatibility>
+		<category>usability</category>
+	</skillUse>
+	<easy>
+		<name>
+			<en>Easy (+1 Goal)</en>
+			<es>Fácil (+1 Rango)</es>
+		</name>
+		<minTechLevel>5</minTechLevel>
+		<extraPoints>1</extraPoints>
+		<extraCostMultiplier>1.10</extraCostMultiplier>
+		<extraIncompatibility>0</extraIncompatibility>
+		<category>usability</category>
+	</easy>
+	<easy2>
+		<name>
+			<en>Easy (+2 Goal)</en>
+			<es>Fácil (+2 Rango)</es>
+		</name>
+		<minTechLevel>5</minTechLevel>
+		<extraPoints>2</extraPoints>
+		<extraCostMultiplier>1.20</extraCostMultiplier>
+		<extraIncompatibility>0</extraIncompatibility>
+		<category>usability</category>
+	</easy2>
+	<easy3>
+		<name>
+			<en>Easy (+3 Goal)</en>
+			<es>Fácil (+3 Rango)</es>
+		</name>
+		<minTechLevel>5</minTechLevel>
+		<extraPoints>3</extraPoints>
+		<extraCostMultiplier>1.30</extraCostMultiplier>
+		<extraIncompatibility>0</extraIncompatibility>
+		<category>usability</category>
+	</easy3>
+	<unwieldy>
+		<name>
+			<en>Unwieldy (-1 Goal)</en>
+			<es>Difícil de Manejar (-1 Rango)</es>
+		</name>
+		<minTechLevel>5</minTechLevel>
+		<extraPoints>-1</extraPoints>
+		<extraCostMultiplier>0.90</extraCostMultiplier>
+		<extraIncompatibility>0</extraIncompatibility>
+		<category>usability</category>
+	</unwieldy>
+	<unwieldy2>
+		<name>
+			<en>Unwieldy (-2 Goal)</en>
+			<es>Difícil de Manejar (-2 Rango)</es>
+		</name>
+		<minTechLevel>5</minTechLevel>
+		<extraPoints>-2</extraPoints>
+		<extraCostMultiplier>0.80</extraCostMultiplier>
+		<extraIncompatibility>0</extraIncompatibility>
+		<category>usability</category>
+	</unwieldy2>
+	<unwieldy3>
+		<name>
+			<en>Unwieldy (-3 Goal)</en>
+			<es>Difícil de Manejar (-3 Rango)</es>
+		</name>
+		<minTechLevel>5</minTechLevel>
+		<extraPoints>-3</extraPoints>
+		<extraCostMultiplier>0.70</extraCostMultiplier>
+		<extraIncompatibility>0</extraIncompatibility>
+		<category>usability</category>
+	</unwieldy3>
+	<unpredictable>
+		<name>
+			<en>Unpredictable</en>
+			<es>Impredecible</es>
+		</name>
+		<minTechLevel>5</minTechLevel>
+		<extraPoints>-1</extraPoints>
+		<extraCostMultiplier>1.10</extraCostMultiplier>
+		<extraIncompatibility>0</extraIncompatibility>
+		<category>usability</category>
+	</unpredictable>
+	
+	
+	<ciberLungWater>
+		<name>
+			<en>CyberLung (Water)</en>
+			<es>Ciberpulmón (Water)</es>
+		</name>
+		<minTechLevel>5</minTechLevel>
+		<extraPoints>4</extraPoints>
+		<extraCost>700</extraCost>
+		<extraIncompatibility>2</extraIncompatibility>
+		<category>trait</category>
+	</ciberLungWater>
+	<ciberLungGaseous>
+		<name>
+			<en>CyberLung (Gaseous)</en>
+			<es>Ciberpulmón (Gases)</es>
+		</name>
+		<minTechLevel>6</minTechLevel>
+		<extraPoints>7</extraPoints>
+		<extraCost>1500</extraCost>
+		<extraIncompatibility>3</extraIncompatibility>
+		<category>trait</category>
+	</ciberLungGaseous>
+	<ciberLungVoid>
+		<name>
+			<en>CyberLung (Vacuum)</en>
+			<es>Ciberpulmón (Vacío)</es>
+		</name>
+		<minTechLevel>7</minTechLevel>
+		<extraPoints>10</extraPoints>
+		<extraCost>3000</extraCost>
+		<extraIncompatibility>5</extraIncompatibility>
+		<category>trait</category>
+	</ciberLungVoid>
+	<cybersenseMagnifier>
+		<name>
+			<en>Magnifier/Telescope</en>
+			<es>Aumento/Telescopio</es>
+		</name>
+		<minTechLevel>5</minTechLevel>
+		<extraPoints>1</extraPoints>
+		<extraCost>300</extraCost>
+		<extraIncompatibility>1</extraIncompatibility>
+		<category>trait</category>
+	</cybersenseMagnifier>
+	<cybersenseMagnifierAdvanced>
+		<name>
+			<en>Magnifier/Telescope (x20)</en>
+			<es>Aumento/Telescopio (x20)</es>
+		</name>
+		<minTechLevel>5</minTechLevel>
+		<extraPoints>2</extraPoints>
+		<extraCost>600</extraCost>
+		<extraIncompatibility>1</extraIncompatibility>
+		<category>trait</category>
+	</cybersenseMagnifierAdvanced>
+	<cybersenseUv>
+		<name>
+			<en>UV Vision</en>
+			<es>Visión UV</es>
+		</name>
+		<minTechLevel>5</minTechLevel>
+		<extraPoints>1</extraPoints>
+		<extraCost>300</extraCost>
+		<extraIncompatibility>1</extraIncompatibility>
+		<category>trait</category>
+	</cybersenseUv>
+	<cybersenseIr>
+		<name>
+			<en>IR Vision</en>
+			<es>Visión IR</es>
+		</name>
+		<minTechLevel>5</minTechLevel>
+		<extraPoints>3</extraPoints>
+		<extraCost>700</extraCost>
+		<extraIncompatibility>2</extraIncompatibility>
+		<category>trait</category>
+	</cybersenseIr>
+	<cybersenseXVision>
+		<name>
+			<en>X-Ray Vision</en>
+			<es>Visión de Rayos X</es>
+		</name>
+		<minTechLevel>6</minTechLevel>
+		<extraPoints>6</extraPoints>
+		<extraCost>1000</extraCost>
+		<extraIncompatibility>5</extraIncompatibility>
+		<category>trait</category>
+	</cybersenseXVision>
+	<cybersenseCamera>
+		<name>
+			<en>X-Ray Vision</en>
+			<es>Visión de Rayos X</es>
+		</name>
+		<minTechLevel>5</minTechLevel>
+		<extraPoints>3</extraPoints>
+		<extraCost>500</extraCost>
+		<extraIncompatibility>1</extraIncompatibility>
+		<category>trait</category>
+	</cybersenseCamera>
+	<cybersenseVideo>
+		<name>
+			<en>Video</en>
+			<es>Vídeo</es>
+		</name>
+		<minTechLevel>5</minTechLevel>
+		<extraPoints>4</extraPoints>
+		<extraCost>1000</extraCost>
+		<extraIncompatibility>2</extraIncompatibility>
+		<category>trait</category>
+	</cybersenseVideo>
+	<cybersenseHighPitch>
+		<name>
+			<en>High Pitch</en>
+			<es>Alta Frecuencia</es>
+		</name>
+		<minTechLevel>5</minTechLevel>
+		<extraPoints>1</extraPoints>
+		<extraCost>300</extraCost>
+		<extraIncompatibility>1</extraIncompatibility>
+		<category>trait</category>
+	</cybersenseHighPitch>
+	<cybersenseLowPitch>
+		<name>
+			<en>Low Pitch</en>
+			<es>Baja Frecuencia</es>
+		</name>
+		<minTechLevel>5</minTechLevel>
+		<extraPoints>1</extraPoints>
+		<extraCost>300</extraCost>
+		<extraIncompatibility>1</extraIncompatibility>
+		<category>trait</category>
+	</cybersenseLowPitch>
+	<cybersenseRadio>
+		<name>
+			<en>Radio</en>
+			<es>Radio</es>
+		</name>
+		<minTechLevel>5</minTechLevel>
+		<extraPoints>2</extraPoints>
+		<extraCost>300</extraCost>
+		<extraIncompatibility>2</extraIncompatibility>
+		<category>trait</category>
+	</cybersenseRadio>
+	<cybersenseSpyRadio>
+		<name>
+			<en>Spy Radio</en>
+			<es>Radio Espía</es>
+		</name>
+		<minTechLevel>5</minTechLevel>
+		<extraPoints>3</extraPoints>
+		<extraCost>500</extraCost>
+		<extraIncompatibility>2</extraIncompatibility>
+		<category>trait</category>
+	</cybersenseSpyRadio>
+	<cybersenseTapeRecorder>
+		<name>
+			<en>Tape Recorder</en>
+			<es>Grabadora</es>
+		</name>
+		<minTechLevel>5</minTechLevel>
+		<extraPoints>3</extraPoints>
+		<extraCost>700</extraCost>
+		<extraIncompatibility>2</extraIncompatibility>
+		<category>trait</category>
+	</cybersenseTapeRecorder>
+	<cybersenseHypersmell>
+		<name>
+			<en>Hypersmell</en>
+			<es>Hiperolfato</es>
+		</name>
+		<minTechLevel>5</minTechLevel>
+		<extraPoints>1</extraPoints>
+		<extraCost>300</extraCost>
+		<extraIncompatibility>1</extraIncompatibility>
+		<category>trait</category>
+	</cybersenseHypersmell>
+	<cybersenseHypertouch>
+		<name>
+			<en>Hypertouch</en>
+			<es>Hipertacto</es>
+		</name>
+		<minTechLevel>5</minTechLevel>
+		<extraPoints>1</extraPoints>
+		<extraCost>300</extraCost>
+		<extraIncompatibility>1</extraIncompatibility>
+		<category>trait</category>
+	</cybersenseHypertouch>
+	<cybersenseHypertaste>
+		<name>
+			<en>Hypertaste</en>
+			<es>Hipergusto</es>
+		</name>
+		<minTechLevel>5</minTechLevel>
+		<extraPoints>1</extraPoints>
+		<extraCost>300</extraCost>
+		<extraIncompatibility>1</extraIncompatibility>
+		<category>trait</category>
+	</cybersenseHypertaste>
+</cyberneticsTraits>
