@@ -82,7 +82,7 @@ public class CyberneticDeviceFactory extends XmlFactory<CyberneticDevice> {
 	private final static String SHOTS = "shots";
 	private final static String RATE = "rate";
 
-	private Map<String, Set<String>> requirements;
+	private Map<CyberneticDevice, Set<CyberneticDevice>> requiredBy;
 
 	private static CyberneticDeviceFactory instance;
 
@@ -105,7 +105,7 @@ public class CyberneticDeviceFactory extends XmlFactory<CyberneticDevice> {
 
 	@Override
 	public void clearCache() {
-		requirements = new HashMap<>();
+		requiredBy = null;
 		super.clearCache();
 	}
 
@@ -114,28 +114,36 @@ public class CyberneticDeviceFactory extends XmlFactory<CyberneticDevice> {
 		return translatorCybernetics;
 	}
 
-	private void addRequirement(String requirement, String device) {
+	private void addRequirement(CyberneticDevice device) {
 		if (device == null) {
 			return;
 		}
-		if (requirements == null) {
-			requirements = new HashMap<>();
+		if (requiredBy.get(device.getRequirement()) == null) {
+			requiredBy.put(device.getRequirement(), new HashSet<CyberneticDevice>());
 		}
-		if (requirements.get(device) == null) {
-			requirements.put(device, new HashSet<String>());
+		requiredBy.get(device.getRequirement()).add(device);
+	}
+
+	private void initializeRequirements(String language) {
+		requiredBy = new HashMap<>();
+		try {
+			for (CyberneticDevice device : getElements(language)) {
+				addRequirement(device);
+			}
+		} catch (InvalidXmlElementException e) {
+			MachineLog.errorMessage(this.getClass().getName(), e);
 		}
-		requirements.get(device).add(requirement);
 	}
 
 	public Set<CyberneticDevice> getDevicesThatRequires(CyberneticDevice device, String language) {
+		if (requiredBy == null) {
+			initializeRequirements(language);
+		}
+
 		Set<CyberneticDevice> requiredDevice = new HashSet<>();
-		if (requirements.get(device.getId()) != null) {
-			for (String elementId : requirements.get(device.getId())) {
-				try {
-					requiredDevice.add(getElement(elementId, language));
-				} catch (InvalidXmlElementException e) {
-					MachineLog.errorMessage(this.getClass().getName(), e);
-				}
+		if (requiredBy.get(device) != null) {
+			for (CyberneticDevice requirement : requiredBy.get(device)) {
+				requiredDevice.add(requirement);
 			}
 		}
 		return requiredDevice;
@@ -261,10 +269,6 @@ public class CyberneticDeviceFactory extends XmlFactory<CyberneticDevice> {
 
 			CyberneticDevice cyberneticDevice = new CyberneticDevice(cyberneticDeviceId, name, language, points, incompatibility, cost, techLevel, requires,
 					weapon, traits, bonifications, staticValues);
-
-			if (requires != null) {
-				addRequirement(cyberneticDeviceId, requires);
-			}
 			return cyberneticDevice;
 		} catch (Exception e) {
 			throw new InvalidCyberneticDeviceException("Invalid cybernetic device definition for '" + cyberneticDeviceId + "'.", e);
