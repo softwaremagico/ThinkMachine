@@ -31,8 +31,6 @@ import java.util.Random;
 import java.util.Set;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.character.Gender;
 import com.softwaremagico.tm.character.benefices.RandomBeneficeDefinition;
 import com.softwaremagico.tm.character.blessings.Blessing;
 import com.softwaremagico.tm.character.blessings.RandomBlessingDefinition;

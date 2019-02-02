@@ -55,7 +55,9 @@ public class RandomBlessingDefinition extends RandomSelector<Blessing> {
 	public void assign() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
 		IGaussianDistribution blessingDistribution = BlessingNumberPreferences.getSelected(getPreferences());
 		// Select a blessing
-		for (int i = 0; i < blessingDistribution.randomGaussian(); i++) {
+		int totalSelectedBlessings = blessingDistribution.randomGaussian();
+		while (getCharacterPlayer().getBlessings().size() < totalSelectedBlessings
+				+ getCharacterPlayer().getFaction().getBlessings(BlessingClassification.BLESSING).size()) {
 			Blessing selectedBlessing = selectElementByWeight();
 			try {
 				getCharacterPlayer().addBlessing(selectedBlessing);

@@ -388,6 +388,9 @@ public class CharacterPlayer {
 	}
 
 	public void addBlessing(Blessing blessing) throws TooManyBlessingsException {
+		if (getAllBlessings().contains(blessing)) {
+			return;
+		}
 		if (blessing.getBlessingClassification() == BlessingClassification.CURSE) {
 			if (CostCalculator.getBlessingCosts(getCurses()) + blessing.getCost() >= FreeStyleCharacterCreation.getMaxCursePoints(getInfo().getAge())) {
 				throw new TooManyBlessingsException("Only a total of '" + FreeStyleCharacterCreation.getMaxCursePoints(getInfo().getAge())

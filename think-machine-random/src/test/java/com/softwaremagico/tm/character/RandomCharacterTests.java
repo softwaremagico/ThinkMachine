@@ -177,17 +177,27 @@ public class RandomCharacterTests {
 		randomizeCharacter.createCharacter();
 		try {
 			Assert.assertTrue(characterPlayer.getCurses().size() >= CurseNumberPreferences.FAIR.minimum()
-					+ characterPlayer.getFaction().getBlessings(BlessingClassification.BLESSING).size());
+					+ characterPlayer.getFaction().getBlessings(BlessingClassification.CURSE).size());
 			Assert.assertTrue(characterPlayer.getCurses().size() <= CurseNumberPreferences.FAIR.maximum()
 					+ characterPlayer.getFaction().getBlessings(BlessingClassification.CURSE).size());
+		} catch (Error ae) {
+			throw ae;
+		}
 
+		try{
 			Assert.assertTrue(characterPlayer.getAllBlessings().size() >= BlessingNumberPreferences.HIGH.minimum()
 					+ characterPlayer.getFaction().getBlessings().size());
 			Assert.assertTrue(characterPlayer.getAllBlessings().size() <= BlessingNumberPreferences.HIGH.maximum()
 					+ characterPlayer.getFaction().getBlessings().size());
 		} catch (Error ae) {
-			System.out.println(characterPlayer.getAllBlessings());
 			throw ae;
+		}
+	}
+	
+	@Test
+	public void test() throws DuplicatedPreferenceException, InvalidXmlElementException, InvalidRandomElementSelectedException{
+		for(int i=0; i<100;i++){
+			checkBlessingPreferences();
 		}
 	}
 
