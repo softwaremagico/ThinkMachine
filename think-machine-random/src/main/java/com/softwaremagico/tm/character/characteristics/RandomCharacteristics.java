@@ -39,6 +39,7 @@ import com.softwaremagico.tm.random.exceptions.ImpossibleToAssignMandatoryElemen
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.CharacteristicsPreferences;
 import com.softwaremagico.tm.random.selectors.CombatPreferences;
+import com.softwaremagico.tm.random.selectors.CyberneticPointsPreferences;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
 import com.softwaremagico.tm.random.selectors.PsiqueLevelPreferences;
 import com.softwaremagico.tm.random.selectors.SpecializationPreferences;
@@ -66,7 +67,7 @@ public class RandomCharacteristics extends RandomSelector<Characteristic> {
 				removeElementWeight(selectedCharacteristic);
 				continue;
 			}
-			
+
 			if (selectedCharacteristic.getValue() < FreeStyleCharacterCreation.getMaxInitialCharacteristicsValues(
 					selectedCharacteristic.getCharacteristicName(), getCharacterPlayer().getInfo().getAge(), getCharacterPlayer().getRace())) {
 				selectedCharacteristic.setValue(selectedCharacteristic.getValue() + 1);
@@ -152,6 +153,18 @@ public class RandomCharacteristics extends RandomSelector<Characteristic> {
 			case FAIR:
 			case HIGH:
 				return FAIR_PROBABILITY;
+			default:
+				break;
+			}
+
+			CyberneticPointsPreferences cyberneticPoints = CyberneticPointsPreferences.getSelected(getPreferences());
+			switch (cyberneticPoints) {
+			case HIGH:
+				return LITTLE_PROBABILITY;
+			case CYBORG:
+				return FAIR_PROBABILITY;
+			case SOUL_LESS:
+				return GOOD_PROBABILITY;
 			default:
 				break;
 			}

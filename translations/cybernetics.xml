@@ -118,28 +118,10 @@
 				</situation>
 			</bonification>
 		</bonifications>
+		<random>
+			<recommendedFactionGroups>engineer</recommendedFactionGroups>
+		</random>
 	</engineersEye>
-	<advancedEngineersEye>
-		<name>
-			<en>Engineer's Eye</en>
-			<es>Ojo de Ingeniero</es>
-		</name>
-		<techLevel>6</techLevel>
-		<points>8</points>
-		<incompatibility>6</incompatibility>
-		<traits>attached, hidden, automatic, selfPowered, cybersenseMagnifier, cybersenseIr</traits>
-		<cost>2440</cost>
-		<bonifications>
-			<bonification>
-				<value>1</value>
-				<affects>perception</affects>
-				<situation>
-					<en>Sight</en>
-					<es>Vista</es>
-				</situation>
-			</bonification>
-		</bonifications>
-	</advancedEngineersEye>
 	<etherEar>
 		<name>
 			<en>Ether Ear</en>

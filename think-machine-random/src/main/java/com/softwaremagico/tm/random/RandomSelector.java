@@ -53,8 +53,8 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
 	protected final static int FAIR_PROBABILITY = 11;
 	protected final static int GOOD_PROBABILITY = 21;
 
-	private final static int BASIC_MULTIPLICATOR = 5;
-	private final static int HIGH_MULTIPLICATOR = 10;
+	protected final static int BASIC_MULTIPLICATOR = 5;
+	protected final static int HIGH_MULTIPLICATOR = 10;
 
 	private CharacterPlayer characterPlayer;
 	private final Set<IRandomPreference> preferences;

@@ -66,7 +66,7 @@ public class CacheHandler {
 		OccultismPathFactory.getInstance().clearCache();
 		OccultismDurationFactory.getInstance().clearCache();
 		OccultismRangeFactory.getInstance().clearCache();
-		CyberneticDeviceFactory.getInstance().clearCache();
 		CyberneticDeviceTraitFactory.getInstance().clearCache();
+		CyberneticDeviceFactory.getInstance().clearCache();
 	}
 }
