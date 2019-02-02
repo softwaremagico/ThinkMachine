@@ -397,10 +397,10 @@ public class CharacterSheet {
 	}
 
 	private void setCybernetics(StringBuilder stringBuilder) {
-		if (!getCharacterPlayer().getAllCybernetics().isEmpty()) {
+		if (!getCharacterPlayer().getCybernetics().isEmpty()) {
 			stringBuilder.append(getTranslator().getTranslatedText("cybernetics") + ": ");
 
-			for (ICyberneticDevice device : getCharacterPlayer().getAllCybernetics()) {
+			for (ICyberneticDevice device : getCharacterPlayer().getCybernetics()) {
 				stringBuilder.append(device.getName());
 				stringBuilder.append(ELEMENT_SEPARATOR);
 			}

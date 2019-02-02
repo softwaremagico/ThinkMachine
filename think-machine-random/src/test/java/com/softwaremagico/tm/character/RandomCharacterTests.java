@@ -29,8 +29,6 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.character.RandomizeCharacter;
 import com.softwaremagico.tm.character.benefices.AvailableBenefice;
 import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
 import com.softwaremagico.tm.character.benefices.RandomBeneficeDefinition;
@@ -40,6 +38,9 @@ import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.characteristics.CharacteristicType;
 import com.softwaremagico.tm.character.creation.CostCalculator;
 import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
+import com.softwaremagico.tm.character.cybernetics.CyberneticDeviceFactory;
+import com.softwaremagico.tm.character.cybernetics.RequiredCyberneticDevicesException;
+import com.softwaremagico.tm.character.cybernetics.TooManyCyberneticDevicesException;
 import com.softwaremagico.tm.character.equipment.weapons.RandomRangeWeapon;
 import com.softwaremagico.tm.character.equipment.weapons.RandomWeapon;
 import com.softwaremagico.tm.character.equipment.weapons.Weapon;
@@ -60,6 +61,8 @@ import com.softwaremagico.tm.random.selectors.AgePreferences;
 import com.softwaremagico.tm.random.selectors.BlessingNumberPreferences;
 import com.softwaremagico.tm.random.selectors.CombatPreferences;
 import com.softwaremagico.tm.random.selectors.CurseNumberPreferences;
+import com.softwaremagico.tm.random.selectors.CyberneticPointsPreferences;
+import com.softwaremagico.tm.random.selectors.CyberneticTotalDevicesPreferences;
 import com.softwaremagico.tm.random.selectors.FactionPreferences;
 import com.softwaremagico.tm.random.selectors.NamesPreferences;
 import com.softwaremagico.tm.random.selectors.PsiqueLevelPreferences;
@@ -69,7 +72,6 @@ import com.softwaremagico.tm.random.selectors.SkillGroupPreferences;
 import com.softwaremagico.tm.random.selectors.SpecializationPreferences;
 import com.softwaremagico.tm.random.selectors.StatusPreferences;
 import com.softwaremagico.tm.random.selectors.TechnologicalPreferences;
-import com.softwaremagico.tm.txt.CharacterSheet;
 
 @Test(groups = { "randomCharacter" })
 public class RandomCharacterTests {
@@ -184,7 +186,7 @@ public class RandomCharacterTests {
 			throw ae;
 		}
 
-		try{
+		try {
 			Assert.assertTrue(characterPlayer.getAllBlessings().size() >= BlessingNumberPreferences.HIGH.minimum()
 					+ characterPlayer.getFaction().getBlessings().size());
 			Assert.assertTrue(characterPlayer.getAllBlessings().size() <= BlessingNumberPreferences.HIGH.maximum()
@@ -193,10 +195,10 @@ public class RandomCharacterTests {
 			throw ae;
 		}
 	}
-	
+
 	@Test
-	public void test() throws DuplicatedPreferenceException, InvalidXmlElementException, InvalidRandomElementSelectedException{
-		for(int i=0; i<100;i++){
+	public void test() throws DuplicatedPreferenceException, InvalidXmlElementException, InvalidRandomElementSelectedException {
+		for (int i = 0; i < 100; i++) {
 			checkBlessingPreferences();
 		}
 	}
@@ -219,14 +221,7 @@ public class RandomCharacterTests {
 		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0, SpecializationPreferences.SPECIALIZED,
 				PsiquePathLevelPreferences.HIGH, PsiqueLevelPreferences.HIGH, StatusPreferences.FAIR);
 		randomizeCharacter.createCharacter();
-		try {
-			Assert.assertTrue(characterPlayer.getTotalSelectedPowers() > 0);
-		} catch (AssertionError e) {
-			CharacterSheet characterSheet = new CharacterSheet(characterPlayer);
-			System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
-			System.out.println(characterSheet.toString());
-			throw e;
-		}
+		Assert.assertTrue(characterPlayer.getTotalSelectedPowers() > 0);
 	}
 
 	@Test
@@ -327,14 +322,31 @@ public class RandomCharacterTests {
 		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0);
 		randomizeCharacter.createCharacter();
 
-		try {
-			Assert.assertTrue(characterPlayer.getSkillTotalRanks(AvailableSkillsFactory.getInstance().getElement("melee", LANGUAGE)) > 0);
-			Assert.assertTrue(characterPlayer.getSkillTotalRanks(AvailableSkillsFactory.getInstance().getElement("energyGuns", LANGUAGE)) > 0);
-		} catch (AssertionError e) {
-			CharacterSheet characterSheet = new CharacterSheet(characterPlayer);
-			System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
-			System.out.println(characterSheet.toString());
-			throw e;
-		}
+		Assert.assertTrue(characterPlayer.getSkillTotalRanks(AvailableSkillsFactory.getInstance().getElement("melee", LANGUAGE)) > 0);
+		Assert.assertTrue(characterPlayer.getSkillTotalRanks(AvailableSkillsFactory.getInstance().getElement("energyGuns", LANGUAGE)) > 0);
+	}
+
+	@Test
+	public void cybernetics() throws InvalidXmlElementException, DuplicatedPreferenceException, InvalidRandomElementSelectedException {
+		CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
+		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0, CyberneticTotalDevicesPreferences.CYBORG,
+				CyberneticPointsPreferences.SOUL_LESS);
+		randomizeCharacter.createCharacter();
+
+		Assert.assertTrue(characterPlayer.getCybernetics().size() >= CyberneticTotalDevicesPreferences.CYBORG.minimum());
+	}
+
+	@Test
+	public void cyberneticsSkills() throws InvalidXmlElementException, DuplicatedPreferenceException, InvalidRandomElementSelectedException,
+			TooManyCyberneticDevicesException, RequiredCyberneticDevicesException {
+		CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
+		characterPlayer.getCharacteristic(CharacteristicName.WILL).setValue(6);
+		characterPlayer.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("spyEye", LANGUAGE));
+		characterPlayer.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("etherEar", LANGUAGE));
+		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0);
+		randomizeCharacter.createCharacter();
+
+		Assert.assertTrue(characterPlayer.getSkillTotalRanks(AvailableSkillsFactory.getInstance().getElement("spyEye", LANGUAGE)) > 0);
+		Assert.assertTrue(characterPlayer.getSkillTotalRanks(AvailableSkillsFactory.getInstance().getElement("etherEar", LANGUAGE)) > 0);
 	}
 }

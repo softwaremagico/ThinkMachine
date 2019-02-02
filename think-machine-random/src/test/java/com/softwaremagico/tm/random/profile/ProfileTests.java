@@ -42,28 +42,28 @@ import com.softwaremagico.tm.txt.CharacterSheet;
 public class ProfileTests {
 	private final static String LANGUAGE = "en";
 
-//	@Test
-//	public void checkPreferencesReader() throws DuplicatedPreferenceException, InvalidXmlElementException, InvalidRandomElementSelectedException,
-//			TooManyBlessingsException {
-//		Assert.assertEquals(RandomProfileFactory.getInstance().getElement("soldier", LANGUAGE).getPreferences().size(), 7);
-//		Assert.assertTrue(RandomProfileFactory.getInstance().getElement("soldier", LANGUAGE).getPreferences().contains(CombatPreferences.BELLIGERENT));
-//		Assert.assertEquals(
-//				RandomProfileFactory.getInstance().getElement("soldier", LANGUAGE).getCharacteristicsMinimumValues().get(CharacteristicName.DEXTERITY),
-//				new Integer(6));
-//	}
-//
-//	@Test
-//	public void checkParent() throws DuplicatedPreferenceException, InvalidXmlElementException, InvalidRandomElementSelectedException,
-//			TooManyBlessingsException {
-//		Assert.assertEquals(RandomProfileFactory.getInstance().getElement("soldierLiHalan", LANGUAGE).getPreferences().size(), 7);
-//		Assert.assertTrue(RandomProfileFactory.getInstance().getElement("soldierLiHalan", LANGUAGE).getPreferences().contains(CombatPreferences.BELLIGERENT));
-//		Assert.assertEquals(
-//				RandomProfileFactory.getInstance().getElement("soldierLiHalan", LANGUAGE).getCharacteristicsMinimumValues().get(CharacteristicName.DEXTERITY),
-//				new Integer(6));
-//		Assert.assertEquals(
-//				RandomProfileFactory.getInstance().getElement("soldierLiHalan", LANGUAGE).getCharacteristicsMinimumValues().get(CharacteristicName.TECH),
-//				new Integer(7));
-//	}
+	@Test
+	public void checkPreferencesReader() throws DuplicatedPreferenceException, InvalidXmlElementException, InvalidRandomElementSelectedException,
+			TooManyBlessingsException {
+		Assert.assertEquals(RandomProfileFactory.getInstance().getElement("soldier", LANGUAGE).getPreferences().size(), 7);
+		Assert.assertTrue(RandomProfileFactory.getInstance().getElement("soldier", LANGUAGE).getPreferences().contains(CombatPreferences.BELLIGERENT));
+		Assert.assertEquals(
+				RandomProfileFactory.getInstance().getElement("soldier", LANGUAGE).getCharacteristicsMinimumValues().get(CharacteristicName.DEXTERITY),
+				new Integer(6));
+	}
+
+	@Test
+	public void checkParent() throws DuplicatedPreferenceException, InvalidXmlElementException, InvalidRandomElementSelectedException,
+			TooManyBlessingsException {
+		Assert.assertEquals(RandomProfileFactory.getInstance().getElement("soldierLiHalan", LANGUAGE).getPreferences().size(), 7);
+		Assert.assertTrue(RandomProfileFactory.getInstance().getElement("soldierLiHalan", LANGUAGE).getPreferences().contains(CombatPreferences.BELLIGERENT));
+		Assert.assertEquals(
+				RandomProfileFactory.getInstance().getElement("soldierLiHalan", LANGUAGE).getCharacteristicsMinimumValues().get(CharacteristicName.DEXTERITY),
+				new Integer(6));
+		Assert.assertEquals(
+				RandomProfileFactory.getInstance().getElement("soldierLiHalan", LANGUAGE).getCharacteristicsMinimumValues().get(CharacteristicName.TECH),
+				new Integer(7));
+	}
 
 	@Test
 	public void soldier() throws DuplicatedPreferenceException, InvalidXmlElementException, InvalidRandomElementSelectedException, TooManyBlessingsException {

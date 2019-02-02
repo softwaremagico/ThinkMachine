@@ -36,6 +36,9 @@ import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.characteristics.CharacteristicType;
 import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
+import com.softwaremagico.tm.character.cybernetics.CyberneticDeviceTrait;
+import com.softwaremagico.tm.character.cybernetics.CyberneticDeviceTraitCategory;
+import com.softwaremagico.tm.character.cybernetics.SelectedCyberneticDevice;
 import com.softwaremagico.tm.character.equipment.weapons.Weapon;
 import com.softwaremagico.tm.character.factions.FactionGroup;
 import com.softwaremagico.tm.character.occultism.OccultismTypeFactory;
@@ -93,6 +96,17 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 			if (skillRanks < selectedSpecialization.minimum()) {
 				// Assign random ranks to the skill.
 				assignRandomRanks(skill);
+			}
+		}
+		// Some Cybernetics needs skills
+		for (SelectedCyberneticDevice cyberneticDevice : getCharacterPlayer().getCybernetics()) {
+			CyberneticDeviceTrait usability = cyberneticDevice.getTrait(CyberneticDeviceTraitCategory.USABILITY);
+			System.out.println(cyberneticDevice + "->" +usability.getId());
+			if (usability != null && usability.getId().equalsIgnoreCase("skillUse")) {
+				if (skill.getId().equalsIgnoreCase(cyberneticDevice.getCyberneticDevice().getId())) {
+					// Assign random ranks to the skill.
+					assignRandomRanks(skill);
+				}
 			}
 		}
 	}

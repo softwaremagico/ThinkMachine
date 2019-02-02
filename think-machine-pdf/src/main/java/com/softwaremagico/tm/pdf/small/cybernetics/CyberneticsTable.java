@@ -49,7 +49,7 @@ public class CyberneticsTable extends VerticalTable {
 
 		int added = 0;
 		if (characterPlayer != null) {
-			for (SelectedCyberneticDevice device : characterPlayer.getAllCybernetics()) {
+			for (SelectedCyberneticDevice device : characterPlayer.getCybernetics()) {
 				addCell(createFirstElementLine(device.getName(), NAME_COLUMN_WIDTH, FadingSunsTheme.CYBERNETICS_CONTENT_FONT_SIZE));
 				addCell(createElementLine(device.getPoints() + "", POINTS_COLUMN_WIDTH, FadingSunsTheme.CYBERNETICS_CONTENT_FONT_SIZE));
 				added++;

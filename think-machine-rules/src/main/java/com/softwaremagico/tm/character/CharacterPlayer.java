@@ -510,16 +510,16 @@ public class CharacterPlayer {
 		return Collections.unmodifiableList(afflictions);
 	}
 
-	private Cybernetics getCybernetics() {
+	private Cybernetics getCyberneticList() {
 		return cybernetics;
 	}
 
-	public List<SelectedCyberneticDevice> getAllCybernetics() {
+	public List<SelectedCyberneticDevice> getCybernetics() {
 		return cybernetics.getElements();
 	}
 
 	public boolean hasCyberneticDevice(CyberneticDevice cyberneticDevice) {
-		for (SelectedCyberneticDevice device : getAllCybernetics()) {
+		for (SelectedCyberneticDevice device : getCybernetics()) {
 			if (Objects.equals(device.getCyberneticDevice(), cyberneticDevice)) {
 				return true;
 			}
@@ -541,13 +541,13 @@ public class CharacterPlayer {
 			}
 		}
 		SelectedCyberneticDevice selectedCiberneticDevice = new SelectedCyberneticDevice(cyberneticDevice);
-		getCybernetics().addElement(selectedCiberneticDevice);
+		getCyberneticList().addElement(selectedCiberneticDevice);
 		return selectedCiberneticDevice;
 	}
 
 	public int getCyberneticsIncompatibility() {
 		int incompatibility = 0;
-		for (SelectedCyberneticDevice device : getAllCybernetics()) {
+		for (SelectedCyberneticDevice device : getCybernetics()) {
 			incompatibility += device.getIncompatibility();
 		}
 		return incompatibility;
@@ -570,7 +570,7 @@ public class CharacterPlayer {
 				}
 			}
 			// Weapons from cybernetics.
-			for (ICyberneticDevice cyberneticDevice : getCybernetics().getElements()) {
+			for (ICyberneticDevice cyberneticDevice : getCyberneticList().getElements()) {
 				if (cyberneticDevice.getWeapon() != null) {
 					allWeapons.add(cyberneticDevice.getWeapon());
 				}
@@ -909,7 +909,7 @@ public class CharacterPlayer {
 
 	public int getCyberneticsModificationSituation(IValue value) {
 		int modification = 0;
-		for (ICyberneticDevice cyberneticDevice : getAllCybernetics()) {
+		for (ICyberneticDevice cyberneticDevice : getCybernetics()) {
 			modification += getModification(cyberneticDevice, value, false);
 		}
 		return modification;
@@ -925,7 +925,7 @@ public class CharacterPlayer {
 
 	public int getCyberneticsModificationAlways(IValue value) {
 		int modification = 0;
-		for (ICyberneticDevice cyberneticDevice : getCybernetics().getElements()) {
+		for (ICyberneticDevice cyberneticDevice : getCyberneticList().getElements()) {
 			modification += getModification(cyberneticDevice, value, true);
 		}
 		return modification;

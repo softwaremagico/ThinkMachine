@@ -33,6 +33,9 @@ import com.softwaremagico.tm.character.characteristics.CharacteristicDefinition;
 import com.softwaremagico.tm.character.characteristics.CharacteristicType;
 import com.softwaremagico.tm.character.creation.CostCalculator;
 import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
+import com.softwaremagico.tm.character.skills.AvailableSkill;
+import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
+import com.softwaremagico.tm.character.skills.RandomSkillExtraPoints;
 import com.softwaremagico.tm.character.values.Bonification;
 import com.softwaremagico.tm.log.RandomGenerationLog;
 import com.softwaremagico.tm.random.RandomSelector;
@@ -58,18 +61,30 @@ public class RandomCybernetics extends RandomSelector<CyberneticDevice> {
 		int remainingPoints = FreeStyleCharacterCreation.getFreeAvailablePoints(getCharacterPlayer().getInfo().getAge())
 				- CostCalculator.getCost(getCharacterPlayer());
 		// Select a cybernetic device.
-		while (getCharacterPlayer().getAllCybernetics().size() < totalDevices
+		int guard = 0;
+		while (guard < 20 && getCharacterPlayer().getCybernetics().size() < totalDevices
 				&& getCharacterPlayer().getCyberneticsIncompatibility() < desiredCyberneticsPoints) {
 			CyberneticDevice selectedDevice = selectElementByWeight();
-			if (selectedDevice.getCost() > remainingPoints) {
+			if (selectedDevice.getPoints() > remainingPoints) {
 				continue;
 			}
 			try {
 				getCharacterPlayer().addCybernetics(selectedDevice);
-				remainingPoints -= selectedDevice.getCost();
+				remainingPoints -= selectedDevice.getPoints();
 				// Update requirements.
 				for (CyberneticDevice device : CyberneticDeviceFactory.getInstance().getDevicesThatRequires(selectedDevice, getCharacterPlayer().getLanguage())) {
 					updateWeight(device, getWeight(device) * 20);
+				}
+				// Assign skills if needed.
+				// Some Cybernetics needs skills
+				CyberneticDeviceTrait usability = selectedDevice.getTrait(CyberneticDeviceTraitCategory.USABILITY);
+				if (usability != null && usability.getId().equalsIgnoreCase("skillUse")) {
+					AvailableSkill skill = AvailableSkillsFactory.getInstance().getElement(selectedDevice.getId(), getCharacterPlayer().getLanguage());
+					if (skill != null) {
+						RandomSkillExtraPoints randomSkillExtraPoints = new RandomSkillExtraPoints(getCharacterPlayer(), getPreferences());
+						// Assign random ranks to the skill.
+						remainingPoints -= randomSkillExtraPoints.spendSkillsPoints(skill, remainingPoints);
+					}
 				}
 			} catch (TooManyCyberneticDevicesException e) {
 				// No more cybernetics is possible.
@@ -80,6 +95,7 @@ public class RandomCybernetics extends RandomSelector<CyberneticDevice> {
 				// Cannot be added due to a requirement.
 			}
 			removeElementWeight(selectedDevice);
+			guard++;
 		}
 	}
 

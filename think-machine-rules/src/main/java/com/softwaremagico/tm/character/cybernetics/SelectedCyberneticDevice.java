@@ -140,4 +140,9 @@ public class SelectedCyberneticDevice extends Element<SelectedCyberneticDevice> 
 		customizations.add(trait);
 	}
 
+	@Override
+	public String toString() {
+		return getCyberneticDevice().getId();
+	}
+
 }

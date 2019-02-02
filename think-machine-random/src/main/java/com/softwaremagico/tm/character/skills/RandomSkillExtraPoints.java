@@ -41,7 +41,10 @@ public class RandomSkillExtraPoints extends RandomSkills {
 	}
 
 	public int spendSkillsPoints(int remainingPoints) throws InvalidRandomElementSelectedException, InvalidXmlElementException {
-		AvailableSkill selectedSkill = selectElementByWeight();
+		return spendSkillsPoints(selectElementByWeight(), remainingPoints);
+	}
+
+	public int spendSkillsPoints(AvailableSkill selectedSkill, int remainingPoints) throws InvalidRandomElementSelectedException, InvalidXmlElementException {
 		int addedRanks = ranksToAdd(selectedSkill) - getCharacterPlayer().getSkillAssignedRanks(selectedSkill);
 		if (addedRanks * CostCalculator.SKILL_EXTRA_POINTS_COST > remainingPoints) {
 			addedRanks = remainingPoints / CostCalculator.SKILL_EXTRA_POINTS_COST;
@@ -79,7 +82,7 @@ public class RandomSkillExtraPoints extends RandomSkills {
 		}
 		return finalRanks;
 	}
-	
+
 	@Override
 	protected void assignIfMandatory(AvailableSkill skill) throws InvalidXmlElementException {
 		// Nothing

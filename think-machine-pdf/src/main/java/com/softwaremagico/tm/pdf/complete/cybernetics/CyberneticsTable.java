@@ -57,7 +57,7 @@ public class CyberneticsTable extends LateralHeaderPdfPTable {
 
 		int addedDevices = 0;
 		if (characterPlayer != null) {
-			List<SelectedCyberneticDevice> devices = new ArrayList<>(characterPlayer.getAllCybernetics());
+			List<SelectedCyberneticDevice> devices = new ArrayList<>(characterPlayer.getCybernetics());
 			Collections.sort(devices, new CyberneticComparatorByRequirements());
 			for (SelectedCyberneticDevice device : devices) {
 				addCell(createFirstElementLine(device.getRequirement() != null ? " - " + device.getName() : device.getName(), NAME_COLUMN_WIDTH,
