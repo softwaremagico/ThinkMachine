@@ -25,8 +25,10 @@ package com.softwaremagico.tm.character.cybernetics;
  */
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.StringTokenizer;
 
@@ -47,6 +49,7 @@ import com.softwaremagico.tm.character.values.SpecialValue;
 import com.softwaremagico.tm.character.values.StaticValue;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
+import com.softwaremagico.tm.log.MachineLog;
 
 public class CyberneticDeviceFactory extends XmlFactory<CyberneticDevice> {
 	private final static ITranslator translatorCybernetics = LanguagePool.getTranslator("cybernetics.xml");
@@ -79,6 +82,8 @@ public class CyberneticDeviceFactory extends XmlFactory<CyberneticDevice> {
 	private final static String SHOTS = "shots";
 	private final static String RATE = "rate";
 
+	private Map<CyberneticDevice, Set<CyberneticDevice>> requiredBy;
+
 	private static CyberneticDeviceFactory instance;
 
 	private static void createInstance() {
@@ -100,12 +105,48 @@ public class CyberneticDeviceFactory extends XmlFactory<CyberneticDevice> {
 
 	@Override
 	public void clearCache() {
+		requiredBy = null;
 		super.clearCache();
 	}
 
 	@Override
 	protected ITranslator getTranslator() {
 		return translatorCybernetics;
+	}
+
+	private void addRequirement(CyberneticDevice device) {
+		if (device == null) {
+			return;
+		}
+		if (requiredBy.get(device.getRequirement()) == null) {
+			requiredBy.put(device.getRequirement(), new HashSet<CyberneticDevice>());
+		}
+		requiredBy.get(device.getRequirement()).add(device);
+	}
+
+	private void initializeRequirements(String language) {
+		requiredBy = new HashMap<>();
+		try {
+			for (CyberneticDevice device : getElements(language)) {
+				addRequirement(device);
+			}
+		} catch (InvalidXmlElementException e) {
+			MachineLog.errorMessage(this.getClass().getName(), e);
+		}
+	}
+
+	public Set<CyberneticDevice> getDevicesThatRequires(CyberneticDevice device, String language) {
+		if (requiredBy == null) {
+			initializeRequirements(language);
+		}
+
+		Set<CyberneticDevice> requiredDevice = new HashSet<>();
+		if (requiredBy.get(device) != null) {
+			for (CyberneticDevice requirement : requiredBy.get(device)) {
+				requiredDevice.add(requirement);
+			}
+		}
+		return requiredDevice;
 	}
 
 	@Override
@@ -228,7 +269,6 @@ public class CyberneticDeviceFactory extends XmlFactory<CyberneticDevice> {
 
 			CyberneticDevice cyberneticDevice = new CyberneticDevice(cyberneticDeviceId, name, language, points, incompatibility, cost, techLevel, requires,
 					weapon, traits, bonifications, staticValues);
-
 			return cyberneticDevice;
 		} catch (Exception e) {
 			throw new InvalidCyberneticDeviceException("Invalid cybernetic device definition for '" + cyberneticDeviceId + "'.", e);

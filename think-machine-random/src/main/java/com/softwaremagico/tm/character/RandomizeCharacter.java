@@ -41,6 +41,7 @@ import com.softwaremagico.tm.character.characteristics.RandomCharacteristics;
 import com.softwaremagico.tm.character.characteristics.RandomCharacteristicsExtraPoints;
 import com.softwaremagico.tm.character.creation.CostCalculator;
 import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
+import com.softwaremagico.tm.character.cybernetics.RandomCybernetics;
 import com.softwaremagico.tm.character.equipment.armours.InvalidArmourException;
 import com.softwaremagico.tm.character.equipment.armours.RandomArmour;
 import com.softwaremagico.tm.character.equipment.shields.InvalidShieldException;
@@ -228,6 +229,9 @@ public class RandomizeCharacter {
 		// Set psique level
 		RandomPsique randomPsique = new RandomPsique(characterPlayer, preferences);
 		randomPsique.assign();
+		// Set cybernetics
+		RandomCybernetics randomCybernetics = new RandomCybernetics(characterPlayer, preferences);
+		randomCybernetics.assign();
 		// Set Wyrd
 		IGaussianDistribution wyrdDistrubution = PsiqueLevelPreferences.getSelected(preferences);
 		int extraWyrd = wyrdDistrubution.randomGaussian();

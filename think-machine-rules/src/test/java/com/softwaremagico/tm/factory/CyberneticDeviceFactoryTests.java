@@ -24,20 +24,36 @@ package com.softwaremagico.tm.factory;
  * #L%
  */
 
+import org.junit.BeforeClass;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import com.softwaremagico.tm.CacheHandler;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.cybernetics.CyberneticDeviceFactory;
 
 @Test(groups = { "cyberneticFactory" })
 public class CyberneticDeviceFactoryTests {
 
-	private final static int DEFINED_DEVICES = 19;
+	private final static int DEFINED_DEVICES = 18;
+	private final static int SECOND_BRAIN_SOFTWARE = 3;
 	private final static String LANGUAGE = "es";
+
+	@BeforeClass
+	public void clearCache() {
+		CacheHandler.clearCache();
+	}
 
 	@Test
 	public void readDevices() throws InvalidXmlElementException {
 		Assert.assertEquals(CyberneticDeviceFactory.getInstance().getElements(LANGUAGE).size(), DEFINED_DEVICES);
+	}
+
+	@Test
+	public void getRequirements() throws InvalidXmlElementException {
+		Assert.assertEquals(
+				CyberneticDeviceFactory.getInstance()
+						.getDevicesThatRequires(CyberneticDeviceFactory.getInstance().getElement("secondBrain", LANGUAGE), LANGUAGE).size(),
+				SECOND_BRAIN_SOFTWARE);
 	}
 }
