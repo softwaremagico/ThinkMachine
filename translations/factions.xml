@@ -417,6 +417,13 @@
 		<group>xeno</group>
 		<race>obun</race>
 		<blessings>just, condescending</blessings>
+		<random>
+			<names>
+				<male>Soleel, Virta, Akamai, Akoni, Koi, Keanu, Kale, Kaleo, Kekoa, Makani, Akamu, Hilo, Pekelo, Tangi</male>
+				<female>Loaana, Alana, Leilani, Kalani, Lea, Kaila, Noelani, Kailani, Ailani, Kahikina, Nohealani</female>
+			</names>
+			<surnames>HanSeer, HanLoaaj, Harn, Haleigha, Haulani, Kahiau, Maylee, Pazhani, Pualani</surnames>		
+		</random>
 	</obun>
 	<ukar>
 		<name>
@@ -427,6 +434,13 @@
 		<race>ukar</race>
 		<blessings>sensitiveTouch, bitter</blessings>
 		<benefices>ostraziced</benefices>
+		<random>
+			<names>
+				<male>Thollo, Anikrunta, Shelkoro, Teddeth, Ronga, Rajan, Zotos, Aedwir, Dyn'dran, Torquil, Shavik, Varkellin, Taudwon, Mipar</male>
+				<female>Gisdrom, Sadra-Syn, Abril, Amena, Aischa, Rasha, Aseel, Nooda, Ranim, Reem</female>
+			</names>
+			<surnames>Nadakira, Wahind, Malak, Nolents, Oed Nata, Borduk, Nont, Veldiryn, Nilite, Tushan</surnames>		
+		</random>
 	</ukar>
 	<vorox>
 		<name>
