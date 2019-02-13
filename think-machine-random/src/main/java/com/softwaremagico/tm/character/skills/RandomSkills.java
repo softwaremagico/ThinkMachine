@@ -101,7 +101,6 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 		// Some Cybernetics needs skills
 		for (SelectedCyberneticDevice cyberneticDevice : getCharacterPlayer().getCybernetics()) {
 			CyberneticDeviceTrait usability = cyberneticDevice.getTrait(CyberneticDeviceTraitCategory.USABILITY);
-			System.out.println(cyberneticDevice + "->" +usability.getId());
 			if (usability != null && usability.getId().equalsIgnoreCase("skillUse")) {
 				if (skill.getId().equalsIgnoreCase(cyberneticDevice.getCyberneticDevice().getId())) {
 					// Assign random ranks to the skill.

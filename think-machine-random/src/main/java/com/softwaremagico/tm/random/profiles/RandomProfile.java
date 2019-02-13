@@ -27,7 +27,6 @@ package com.softwaremagico.tm.random.profiles;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import com.softwaremagico.tm.Element;
@@ -51,41 +50,26 @@ public class RandomProfile extends Element<RandomProfile> implements IRandomProf
 		this.characteristicsMinimumValues = characteristicsMinimumValues;
 	}
 
-	@Override
-	public void setParent(IRandomProfile randomProfile) {
-		if (!parentMerged) {
-			// Merge preferences.
-			Set<IRandomPreference> combinedPreferences = mergePreferences(randomProfile.getPreferences(), randomPreferences);
-			randomPreferences.clear();
-			randomPreferences.addAll(combinedPreferences);
+	public RandomProfile(String id, String name, String language) {
+		super(id, name, language);
+		randomPreferences = new HashSet<>();
+		characteristicsMinimumValues = new HashMap<>();
+	}
 
-			// Merge Characteristics
-			Map<CharacteristicName, Integer> characteristicsMinimumValues = randomProfile.getCharacteristicsMinimumValues();
-			for (Entry<CharacteristicName, Integer> entry : getCharacteristicsMinimumValues().entrySet()) {
-				characteristicsMinimumValues.put(entry.getKey(), entry.getValue());
-			}
-			this.characteristicsMinimumValues.clear();
-			this.characteristicsMinimumValues.putAll(characteristicsMinimumValues);
+	@Override
+	public void setParent(IRandomProfile parentProfile) {
+		if (!parentMerged) {
+			// Merge preferences. This has preference over parent profile.
+			RandomProfile mergedProfile = ProfileMerger.merge(parentProfile, this);
+
+			randomPreferences.clear();
+			randomPreferences.addAll(mergedProfile.getPreferences());
+
+			characteristicsMinimumValues.clear();
+			characteristicsMinimumValues.putAll(mergedProfile.getCharacteristicsMinimumValues());
 
 			parentMerged = true;
 		}
-	}
-
-	protected static Set<IRandomPreference> removeAny(Set<IRandomPreference> originalPreferences, IRandomPreference preferenceToRemove) {
-		for (IRandomPreference randomPreference : new HashSet<>(originalPreferences)) {
-			if (randomPreference.getClass().equals(preferenceToRemove.getClass())) {
-				originalPreferences.remove(randomPreference);
-			}
-		}
-		return originalPreferences;
-	}
-
-	protected static Set<IRandomPreference> mergePreferences(Set<IRandomPreference> originalPreferences, Set<IRandomPreference> preferredPreferences) {
-		for (IRandomPreference preferredPreference : preferredPreferences) {
-			originalPreferences = removeAny(originalPreferences, preferredPreference);
-		}
-		originalPreferences.addAll(preferredPreferences);
-		return originalPreferences;
 	}
 
 	@Override

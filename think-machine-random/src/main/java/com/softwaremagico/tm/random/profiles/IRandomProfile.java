@@ -48,5 +48,7 @@ public interface IRandomProfile {
 	Set<AvailableBenefice> getBenefices();
 
 	void setParent(IRandomProfile randomProfile);
+	
+	public String getLanguage();
 
 }
