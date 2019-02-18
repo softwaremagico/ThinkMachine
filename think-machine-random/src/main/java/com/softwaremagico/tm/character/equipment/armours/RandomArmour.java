@@ -156,4 +156,9 @@ public class RandomArmour extends RandomSelector<Armour> {
 	protected void assignIfMandatory(Armour element) throws InvalidXmlElementException, ImpossibleToAssignMandatoryElementException {
 		return;
 	}
+
+	@Override
+	protected void assignMandatoryValues(Set<Armour> mandatoryValues) throws InvalidXmlElementException {
+		return;
+	}
 }

@@ -27,6 +27,7 @@ package com.softwaremagico.tm.random.profiles;
 import java.util.Map;
 import java.util.Set;
 
+import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.benefices.AvailableBenefice;
 import com.softwaremagico.tm.character.blessings.Blessing;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
@@ -47,8 +48,10 @@ public interface IRandomProfile {
 
 	Set<AvailableBenefice> getBenefices();
 
-	void setParent(IRandomProfile randomProfile);
-	
+	void setParent(IRandomProfile randomProfile) throws InvalidXmlElementException;
+
 	public String getLanguage();
+
+	Set<AvailableSkill> getRequiredSkills();
 
 }

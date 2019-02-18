@@ -24,6 +24,7 @@ package com.softwaremagico.tm.character.skills;
  * #L%
  */
 
+import java.util.HashSet;
 import java.util.Set;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
@@ -37,7 +38,7 @@ import com.softwaremagico.tm.random.selectors.IRandomPreference;
 public class RandomSkillExtraPoints extends RandomSkills {
 
 	public RandomSkillExtraPoints(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences) throws InvalidXmlElementException {
-		super(characterPlayer, preferences);
+		super(characterPlayer, preferences, new HashSet<AvailableSkill>());
 	}
 
 	public int spendSkillsPoints(int remainingPoints) throws InvalidRandomElementSelectedException, InvalidXmlElementException {

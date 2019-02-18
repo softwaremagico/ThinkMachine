@@ -70,4 +70,9 @@ public class RandomRace extends RandomSelector<Race> {
 	protected void assignIfMandatory(Race element) throws InvalidXmlElementException {
 		return;
 	}
+
+	@Override
+	protected void assignMandatoryValues(Set<Race> mandatoryValues) throws InvalidXmlElementException {
+		return;
+	}
 }

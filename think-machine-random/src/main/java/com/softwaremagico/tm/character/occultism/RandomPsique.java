@@ -101,6 +101,11 @@ public class RandomPsique extends RandomSelector<OccultismType> {
 
 	@Override
 	protected void assignIfMandatory(OccultismType element) throws InvalidXmlElementException, ImpossibleToAssignMandatoryElementException {
+		return;
+	}
 
+	@Override
+	protected void assignMandatoryValues(Set<OccultismType> mandatoryValues) throws InvalidXmlElementException {
+		return;
 	}
 }

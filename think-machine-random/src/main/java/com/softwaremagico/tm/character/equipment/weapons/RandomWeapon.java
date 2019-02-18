@@ -30,9 +30,6 @@ import java.util.Set;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
-import com.softwaremagico.tm.character.equipment.weapons.Weapon;
-import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
-import com.softwaremagico.tm.character.equipment.weapons.WeaponType;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.log.RandomGenerationLog;
@@ -137,6 +134,11 @@ public abstract class RandomWeapon extends RandomSelector<Weapon> {
 
 	@Override
 	protected void assignIfMandatory(Weapon weapon) throws InvalidXmlElementException {
+		return;
+	}
+
+	@Override
+	protected void assignMandatoryValues(Set<Weapon> mandatoryValues) throws InvalidXmlElementException {
 		return;
 	}
 }

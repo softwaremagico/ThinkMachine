@@ -190,4 +190,9 @@ public class RandomPsiquePath extends RandomSelector<OccultismPath> {
 			removeElementWeight(path);
 		}
 	}
+
+	@Override
+	protected void assignMandatoryValues(Set<OccultismPath> mandatoryValues) throws InvalidXmlElementException {
+		return;
+	}
 }

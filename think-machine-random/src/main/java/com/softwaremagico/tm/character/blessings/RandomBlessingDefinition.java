@@ -119,4 +119,9 @@ public class RandomBlessingDefinition extends RandomSelector<Blessing> {
 			}
 		}
 	}
+
+	@Override
+	protected void assignMandatoryValues(Set<Blessing> mandatoryValues) throws InvalidXmlElementException {
+		return;
+	}
 }

@@ -54,7 +54,6 @@ import com.softwaremagico.tm.character.occultism.RandomPsique;
 import com.softwaremagico.tm.character.occultism.RandomPsiquePath;
 import com.softwaremagico.tm.character.races.RandomRace;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
-import com.softwaremagico.tm.character.skills.InvalidSkillException;
 import com.softwaremagico.tm.character.skills.RandomSkillExtraPoints;
 import com.softwaremagico.tm.character.skills.RandomSkills;
 import com.softwaremagico.tm.log.RandomGenerationLog;
@@ -76,23 +75,25 @@ import com.softwaremagico.tm.random.selectors.WeaponsPreferences;
 public class RandomizeCharacter {
 	private CharacterPlayer characterPlayer;
 	private final Set<IRandomPreference> preferences;
+	private final Set<AvailableSkill> requiredSkills;
 	private final Random random = new Random();
 
 	public RandomizeCharacter(CharacterPlayer characterPlayer, int experiencePoints, IRandomPreference... preferences) throws DuplicatedPreferenceException {
 		this.characterPlayer = characterPlayer;
 		this.preferences = new HashSet<>(Arrays.asList(preferences));
-
+		requiredSkills = new HashSet<>();
 		checkValidPreferences();
 	}
 
-	public RandomizeCharacter(CharacterPlayer characterPlayer, IRandomProfile... profiles) throws DuplicatedPreferenceException, InvalidSkillException,
-			TooManyBlessingsException {
+	public RandomizeCharacter(CharacterPlayer characterPlayer, IRandomProfile... profiles) throws DuplicatedPreferenceException, TooManyBlessingsException,
+			InvalidXmlElementException {
 
 		IRandomProfile finalProfile = ProfileMerger.merge(profiles);
 
 		// Assign preferences
 		this.characterPlayer = characterPlayer;
 		this.preferences = finalProfile.getPreferences();
+		requiredSkills = finalProfile.getRequiredSkills();
 		checkValidPreferences();
 
 		// Assign default values.
@@ -217,7 +218,7 @@ public class RandomizeCharacter {
 		RandomCharacteristics randomCharacteristics = new RandomCharacteristics(characterPlayer, preferences);
 		randomCharacteristics.assign();
 		// Skills
-		RandomSkills randomSkills = new RandomSkills(characterPlayer, preferences);
+		RandomSkills randomSkills = new RandomSkills(characterPlayer, preferences, requiredSkills);
 		randomSkills.assign();
 		// Traits
 		RandomBeneficeDefinition randomBenefice = new RandomBeneficeDefinition(characterPlayer, preferences);

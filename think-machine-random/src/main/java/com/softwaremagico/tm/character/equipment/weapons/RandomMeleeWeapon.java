@@ -97,4 +97,5 @@ public class RandomMeleeWeapon extends RandomWeapon {
 
 		return weight;
 	}
+
 }

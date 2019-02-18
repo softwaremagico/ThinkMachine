@@ -215,4 +215,9 @@ public class RandomCharacteristics extends RandomSelector<Characteristic> {
 			}
 		}
 	}
+
+	@Override
+	protected void assignMandatoryValues(Set<Characteristic> mandatoryValues) throws InvalidXmlElementException {
+		return;
+	}
 }

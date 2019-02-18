@@ -77,4 +77,9 @@ public class RandomFaction extends RandomSelector<Faction> {
 	protected void assignIfMandatory(Faction element) throws InvalidXmlElementException {
 		return;
 	}
+
+	@Override
+	protected void assignMandatoryValues(Set<Faction> mandatoryValues) throws InvalidXmlElementException {
+		return;
+	}
 }

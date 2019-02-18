@@ -114,4 +114,9 @@ public class RandomShield extends RandomSelector<Shield> {
 	protected void assignIfMandatory(Shield element) throws InvalidXmlElementException {
 		return;
 	}
+
+	@Override
+	protected void assignMandatoryValues(Set<Shield> mandatoryValues) throws InvalidXmlElementException {
+		return;
+	}
 }

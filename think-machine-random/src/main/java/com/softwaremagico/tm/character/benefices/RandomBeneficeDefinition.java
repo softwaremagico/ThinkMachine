@@ -192,4 +192,9 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
 			}
 		}
 	}
+
+	@Override
+	protected void assignMandatoryValues(Set<BeneficeDefinition> mandatoryValues) throws InvalidXmlElementException {
+		return;
+	}
 }

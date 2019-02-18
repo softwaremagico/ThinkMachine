@@ -30,35 +30,40 @@ import java.util.Map;
 import java.util.Set;
 
 import com.softwaremagico.tm.Element;
+import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.benefices.AvailableBenefice;
 import com.softwaremagico.tm.character.blessings.Blessing;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
+import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.json.ExcludeFromJson;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
 
 public class RandomProfile extends Element<RandomProfile> implements IRandomProfile {
 	private final Set<IRandomPreference> randomPreferences;
 	private final Map<CharacteristicName, Integer> characteristicsMinimumValues;
+	private final Set<AvailableSkill> requiredSkills;
 
 	@ExcludeFromJson
 	public boolean parentMerged = false;
 
 	public RandomProfile(String id, String name, String language, Set<IRandomPreference> randomPreferences,
-			Map<CharacteristicName, Integer> characteristicsMinimumValues) {
+			Map<CharacteristicName, Integer> characteristicsMinimumValues, String... preferredSkillIds) throws InvalidXmlElementException {
 		super(id, name, language);
 		this.randomPreferences = randomPreferences;
 		this.characteristicsMinimumValues = characteristicsMinimumValues;
+		requiredSkills = new HashSet<>();
+		for (String preferredSkillId : preferredSkillIds) {
+			requiredSkills.add(AvailableSkillsFactory.getInstance().getElement(preferredSkillId, language));
+		}
 	}
 
-	public RandomProfile(String id, String name, String language) {
-		super(id, name, language);
-		randomPreferences = new HashSet<>();
-		characteristicsMinimumValues = new HashMap<>();
+	public RandomProfile(String id, String name, String language) throws InvalidXmlElementException {
+		this(id, name, language, new HashSet<IRandomPreference>(), new HashMap<CharacteristicName, Integer>());
 	}
 
 	@Override
-	public void setParent(IRandomProfile parentProfile) {
+	public void setParent(IRandomProfile parentProfile) throws InvalidXmlElementException {
 		if (!parentMerged) {
 			// Merge preferences. This has preference over parent profile.
 			RandomProfile mergedProfile = ProfileMerger.merge(parentProfile, this);
@@ -109,5 +114,10 @@ public class RandomProfile extends Element<RandomProfile> implements IRandomProf
 
 	public void setParentMerged(boolean parentMerged) {
 		this.parentMerged = parentMerged;
+	}
+
+	@Override
+	public Set<AvailableSkill> getRequiredSkills() {
+		return requiredSkills;
 	}
 }

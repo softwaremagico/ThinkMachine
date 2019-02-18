@@ -29,13 +29,15 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
+import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
 
 public class ProfileMerger {
 	private final static String DEFAULT_ID = "merged_profile";
 
-	public static RandomProfile merge(IRandomProfile... profiles) {
+	public static RandomProfile merge(IRandomProfile... profiles) throws InvalidXmlElementException {
 		if (profiles == null || profiles.length == 0) {
 			return null;
 		}
@@ -48,6 +50,9 @@ public class ProfileMerger {
 			// Merge characteristics.
 			mergeCharacteristics(finalProfile.getCharacteristicsMinimumValues(), profile.getCharacteristicsMinimumValues());
 
+			// Merge skills.
+			mergePreferredSkills(finalProfile.getRequiredSkills(), profile.getRequiredSkills());
+
 		}
 		return finalProfile;
 	}
@@ -58,6 +63,11 @@ public class ProfileMerger {
 		for (Entry<CharacteristicName, Integer> entry : preferredCharacteristicsMinimumValues.entrySet()) {
 			originalCharacteristicsMinimumValues.put(entry.getKey(), entry.getValue());
 		}
+	}
+
+	private static void mergePreferredSkills(Set<AvailableSkill> originalRequiredSkills, Set<AvailableSkill> requiredSkills) {
+		// Merge Characteristics
+		originalRequiredSkills.addAll(requiredSkills);
 	}
 
 	private static void mergePreferences(Set<IRandomPreference> originalPreferences, Set<IRandomPreference> preferredPreferences) {

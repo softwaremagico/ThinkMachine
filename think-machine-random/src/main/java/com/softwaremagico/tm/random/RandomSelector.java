@@ -65,10 +65,16 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
 	private final int totalWeight;
 
 	protected RandomSelector(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences) throws InvalidXmlElementException {
+		this(characterPlayer, preferences, new HashSet<Element>());
+	}
+
+	protected RandomSelector(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences, Set<Element> mandatoryValues)
+			throws InvalidXmlElementException {
 		this.characterPlayer = characterPlayer;
 		this.preferences = preferences;
 		weightedElements = assignElementsWeight();
 		totalWeight = assignTotalWeight();
+		assignMandatoryValues(mandatoryValues);
 		assignMandatories();
 	}
 
@@ -94,6 +100,8 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
 	protected abstract Collection<Element> getAllElements() throws InvalidXmlElementException;
 
 	public abstract void assign() throws InvalidXmlElementException, InvalidRandomElementSelectedException;
+
+	protected abstract void assignMandatoryValues(Set<Element> mandatoryValues) throws InvalidXmlElementException;
 
 	protected abstract void assignIfMandatory(Element element) throws InvalidXmlElementException, ImpossibleToAssignMandatoryElementException;
 

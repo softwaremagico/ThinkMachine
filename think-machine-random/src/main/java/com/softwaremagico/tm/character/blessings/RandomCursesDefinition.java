@@ -29,11 +29,6 @@ import java.util.Set;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.character.blessings.Blessing;
-import com.softwaremagico.tm.character.blessings.BlessingClassification;
-import com.softwaremagico.tm.character.blessings.BlessingFactory;
-import com.softwaremagico.tm.character.blessings.BlessingGroup;
-import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.log.RandomGenerationLog;
 import com.softwaremagico.tm.random.RandomSelector;
@@ -124,5 +119,10 @@ public class RandomCursesDefinition extends RandomSelector<Blessing> {
 			}
 			RandomGenerationLog.info(this.getClass().getName(), "Added blessing '" + element + "'.");
 		}
+	}
+
+	@Override
+	protected void assignMandatoryValues(Set<Blessing> mandatoryValues) throws InvalidXmlElementException {
+		return;
 	}
 }

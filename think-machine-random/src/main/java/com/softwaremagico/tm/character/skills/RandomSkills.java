@@ -55,6 +55,11 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 	private List<Entry<CharacteristicType, Integer>> preferredCharacteristicsTypeSorted;
 
 	public RandomSkills(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences) throws InvalidXmlElementException {
+		this(characterPlayer, preferences, new HashSet<AvailableSkill>());
+	}
+
+	public RandomSkills(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences, Set<AvailableSkill> requiredSkills)
+			throws InvalidXmlElementException {
 		super(characterPlayer, preferences);
 	}
 
@@ -73,6 +78,15 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 
 			// Remove skill from options to avoid adding more ranks.
 			removeElementWeight(selectedSkill);
+		}
+	}
+
+	@Override
+	protected void assignMandatoryValues(Set<AvailableSkill> mandatoryValues) throws InvalidXmlElementException {
+		for (AvailableSkill requiredSkill : mandatoryValues) {
+			if (getCharacterPlayer().getSkillsTotalPoints() < FreeStyleCharacterCreation.getSkillsPoints(getCharacterPlayer().getInfo().getAge())) {
+				assignRandomRanks(requiredSkill);
+			}
 		}
 	}
 
@@ -382,4 +396,5 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 		}
 		return 0;
 	}
+
 }

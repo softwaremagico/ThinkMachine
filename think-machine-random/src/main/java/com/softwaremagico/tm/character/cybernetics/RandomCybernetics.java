@@ -174,4 +174,9 @@ public class RandomCybernetics extends RandomSelector<CyberneticDevice> {
 	protected void assignIfMandatory(CyberneticDevice element) throws InvalidXmlElementException {
 		return;
 	}
+
+	@Override
+	protected void assignMandatoryValues(Set<CyberneticDevice> mandatoryValues) throws InvalidXmlElementException {
+		return;
+	}
 }
