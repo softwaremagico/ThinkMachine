@@ -306,7 +306,6 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 		finalRanks = checkMaxSkillRanksValues(availableSkill, finalRanks);
 
 		getCharacterPlayer().setSkillRank(availableSkill, finalRanks);
-		getCharacterPlayer().setDesiredSkillRanks(availableSkill, finalRanks);
 		return finalRanks;
 	}
 

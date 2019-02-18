@@ -53,8 +53,6 @@ public class RandomCharacteristicsExtraPoints extends RandomCharacteristics {
 				if (selectedCharacteristic.getValue() < FreeStyleCharacterCreation.getMaxInitialCharacteristicsValues(
 						selectedCharacteristic.getCharacteristicName(), getCharacterPlayer().getInfo().getAge(), getCharacterPlayer().getRace())) {
 					selectedCharacteristic.setValue(selectedCharacteristic.getValue() + 1);
-					getCharacterPlayer().getRandomDefinition().getSelectedCharacteristicsValues()
-							.put(selectedCharacteristic.getCharacteristicName(), selectedCharacteristic.getValue());
 					RandomGenerationLog.info(this.getClass().getName(), "Increased value of '" + selectedCharacteristic + "'.");
 					return CostCalculator.CHARACTERISTIC_EXTRA_POINTS_COST;
 				}

@@ -132,8 +132,6 @@ public class CharacterPlayer {
 
 	private int experience = 0;
 
-	private transient CharacterRandomDefintion randomDefinition;
-
 	public CharacterPlayer() {
 		this("en");
 	}
@@ -162,7 +160,6 @@ public class CharacterPlayer {
 		} catch (InvalidShieldException e) {
 			MachineLog.errorMessage(this.getClass().getName(), e);
 		}
-		randomDefinition = new CharacterRandomDefintion();
 	}
 
 	public CharacterInfo getInfo() {
@@ -269,23 +266,6 @@ public class CharacterPlayer {
 		}
 		SelectedSkill skillWithRank = new SelectedSkill(availableSkill, value, false);
 		skills.put(availableSkill.getUniqueId(), skillWithRank);
-	}
-
-	/**
-	 * For random characters, set the desired values.
-	 * 
-	 * @param availableSkill
-	 *            skill selected
-	 * @param value
-	 *            desired ranks
-	 * @throws InvalidSkillException
-	 *             if skill does not exists.
-	 */
-	public void setDesiredSkillRanks(AvailableSkill availableSkill, int value) throws InvalidSkillException {
-		if (availableSkill == null) {
-			throw new InvalidSkillException("Null skill is not allowed here.");
-		}
-		randomDefinition.getDesiredSkillRanks().put(availableSkill, value);
 	}
 
 	private Integer getSkillAssignedRanks(Skill<?> skill) {
@@ -1101,9 +1081,5 @@ public class CharacterPlayer {
 			techLevel = getShield().getTechLevel();
 		}
 		return techLevel;
-	}
-
-	public CharacterRandomDefintion getRandomDefinition() {
-		return randomDefinition;
 	}
 }

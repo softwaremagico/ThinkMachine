@@ -40,6 +40,7 @@ import com.softwaremagico.tm.random.selectors.IRandomPreference;
 public class RandomProfile extends Element<RandomProfile> implements IRandomProfile {
 	private final Set<IRandomPreference> randomPreferences;
 	private final Map<CharacteristicName, Integer> characteristicsMinimumValues;
+
 	@ExcludeFromJson
 	public boolean parentMerged = false;
 

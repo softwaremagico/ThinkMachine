@@ -57,7 +57,6 @@ public class RandomSkillExtraPoints extends RandomSkills {
 			return 0;
 		}
 		getCharacterPlayer().setSkillRank(selectedSkill, getCharacterPlayer().getSkillAssignedRanks(selectedSkill) + addedRanks);
-		getCharacterPlayer().setDesiredSkillRanks(selectedSkill, getCharacterPlayer().getSkillAssignedRanks(selectedSkill) + addedRanks);
 		return addedRanks * CostCalculator.SKILL_EXTRA_POINTS_COST;
 	}
 

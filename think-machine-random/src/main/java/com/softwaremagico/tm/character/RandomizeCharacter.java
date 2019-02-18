@@ -335,8 +335,6 @@ public class RandomizeCharacter {
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		sb.append(characterPlayer.getNameRepresentation() + " (" + characterPlayer.getRace() + ") [" + characterPlayer.getFaction() + "]");
-		sb.append(characterPlayer.getRandomDefinition().getSelectedCharacteristicsValues());
-		sb.append(characterPlayer.getRandomDefinition().getDesiredSkillRanks());
 		return sb.toString();
 	}
 }

@@ -71,8 +71,6 @@ public class RandomCharacteristics extends RandomSelector<Characteristic> {
 			if (selectedCharacteristic.getValue() < FreeStyleCharacterCreation.getMaxInitialCharacteristicsValues(
 					selectedCharacteristic.getCharacteristicName(), getCharacterPlayer().getInfo().getAge(), getCharacterPlayer().getRace())) {
 				selectedCharacteristic.setValue(selectedCharacteristic.getValue() + 1);
-				getCharacterPlayer().getRandomDefinition().getSelectedCharacteristicsValues()
-						.put(selectedCharacteristic.getCharacteristicName(), selectedCharacteristic.getValue());
 			}
 		}
 	}
