@@ -55,12 +55,12 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 	private List<Entry<CharacteristicType, Integer>> preferredCharacteristicsTypeSorted;
 
 	public RandomSkills(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences) throws InvalidXmlElementException {
-		this(characterPlayer, preferences, new HashSet<AvailableSkill>());
+		this(characterPlayer, preferences, new HashSet<AvailableSkill>(), new HashSet<AvailableSkill>());
 	}
 
-	public RandomSkills(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences, Set<AvailableSkill> requiredSkills)
-			throws InvalidXmlElementException {
-		super(characterPlayer, preferences, requiredSkills);
+	public RandomSkills(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences, Set<AvailableSkill> requiredSkills,
+			Set<AvailableSkill> suggestedSkills) throws InvalidXmlElementException {
+		super(characterPlayer, preferences, requiredSkills, suggestedSkills);
 	}
 
 	@Override

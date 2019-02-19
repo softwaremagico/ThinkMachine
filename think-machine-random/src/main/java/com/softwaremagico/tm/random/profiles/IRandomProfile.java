@@ -54,4 +54,6 @@ public interface IRandomProfile {
 
 	Set<AvailableSkill> getRequiredSkills();
 
+	Set<AvailableSkill> getSuggestedSkills();
+
 }

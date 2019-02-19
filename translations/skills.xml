@@ -491,6 +491,10 @@
 			<energyPistolsLore>
 				<en>Energy Pistols</en>
 				<es>Pistola Energía</es>
+				<random>
+					<minTechLevel>5</minTechLevel>
+					<generalProbability>low</generalProbability>
+				</random>
 			</energyPistolsLore>
 			<thinkMachineLore>
 				<en>Think Machine</en>
@@ -524,14 +528,23 @@
 			<urObun>
 				<en>Ur-Obun</en>
 				<es>Ur-Obun</es>
+				<random>
+					<generalProbability>low</generalProbability>
+				</random>
 			</urObun>
 			<urUkar>
 				<en> Ur-Ukar</en>
 				<es> Ur-Ukar</es>
+				<random>
+					<generalProbability>low</generalProbability>
+				</random>
 			</urUkar>
 			<vorox>
 				<en>Vorox</en>
 				<es>Vorox</es>
+				<random>
+					<generalProbability>low</generalProbability>
+				</random>
 			</vorox>
 			<annuaki>
 				<es>Anunnaki</es>

@@ -33,5 +33,14 @@
 				<speciality>household</speciality>
 			</skill>
 		</requiredSkills>
+		<suggestedSkills>
+			<skill>
+				<id>beastcraft</id>
+			</skill>
+			<skill>
+				<id>lore</id>
+				<speciality>beastsLore</speciality>
+			</skill>
+		</suggestedSkills>
 	</serf>	
 </profiles>

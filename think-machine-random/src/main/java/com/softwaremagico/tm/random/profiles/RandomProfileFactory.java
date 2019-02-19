@@ -51,6 +51,7 @@ public class RandomProfileFactory extends XmlFactory<RandomProfile> {
 	private final static String PREFERENCES = "preferences";
 	private final static String CHARACTERISTICS_MINIMUM_VALUES = "characteristicsMinimumValues";
 	private final static String REQUIRED_SKILLS = "requiredSkills";
+	private final static String SUGGESTED_SKILLS = "suggestedSkills";
 	private final static String REQUIRED_SKILL = "skill";
 	private final static String REQUIRED_SKILLS_ID = "id";
 	private final static String REQUIRED_SKILLS_SPECIALIZATION = "speciality";
@@ -157,28 +158,13 @@ public class RandomProfileFactory extends XmlFactory<RandomProfile> {
 		}
 
 		Set<AvailableSkill> requiredSkills = new HashSet<>();
-		String requiredSkillsNames = translator.getNodeValue(profileId, REQUIRED_SKILLS);
-		try {
-			StringTokenizer requiredSkillsTokenizer = new StringTokenizer(requiredSkillsNames, ",");
-			while (requiredSkillsTokenizer.hasMoreTokens()) {
-				String preferredSkillId = requiredSkillsTokenizer.nextToken().trim();
-				try {
-					requiredSkills.add(AvailableSkillsFactory.getInstance().getElement(preferredSkillId, language));
-				} catch (InvalidXmlElementException e) {
-					throw new InvalidProfileException("Invalid skill '" + preferredSkillId + "' for  profile '" + profileId + "'.", e);
-				}
-			}
-		} catch (NullPointerException e) {
-			// No skills defined.
-		}
-
 		int node = 0;
 		while (true) {
 			try {
-				String preferredSkillId = null;
+				String requiredSkillId = null;
 				try {
-					preferredSkillId = translator.getNodeValue(profileId, REQUIRED_SKILL, REQUIRED_SKILLS_ID, node);
-					if (preferredSkillId == null) {
+					requiredSkillId = translator.getNodeValue(profileId, REQUIRED_SKILLS, REQUIRED_SKILL, REQUIRED_SKILLS_ID, node);
+					if (requiredSkillId == null) {
 						break;
 					}
 				} catch (NullPointerException e) {
@@ -187,18 +173,18 @@ public class RandomProfileFactory extends XmlFactory<RandomProfile> {
 				}
 				String skillSpeciality = null;
 				try {
-					skillSpeciality = translator.getNodeValue(profileId, REQUIRED_SKILL, REQUIRED_SKILLS_SPECIALIZATION, node);
+					skillSpeciality = translator.getNodeValue(profileId, REQUIRED_SKILLS, REQUIRED_SKILL, REQUIRED_SKILLS_SPECIALIZATION, node);
 				} catch (NullPointerException e) {
 					// Not mandatory
 				}
 				try {
 					if (skillSpeciality == null) {
-						requiredSkills.add(AvailableSkillsFactory.getInstance().getElement(preferredSkillId, language));
+						requiredSkills.add(AvailableSkillsFactory.getInstance().getElement(requiredSkillId, language));
 					} else {
-						requiredSkills.add(AvailableSkillsFactory.getInstance().getElement(preferredSkillId, skillSpeciality, language));
+						requiredSkills.add(AvailableSkillsFactory.getInstance().getElement(requiredSkillId, skillSpeciality, language));
 					}
 				} catch (InvalidXmlElementException e) {
-					throw new InvalidProfileException("Invalid skill '" + preferredSkillId + "' for  profile '" + profileId + "'.", e);
+					throw new InvalidProfileException("Invalid required skill '" + requiredSkillId + "' for  profile '" + profileId + "'.", e);
 				}
 				node++;
 			} catch (NumberFormatException e) {
@@ -206,7 +192,42 @@ public class RandomProfileFactory extends XmlFactory<RandomProfile> {
 			}
 		}
 
-		RandomProfile profile = new RandomProfile(profileId, name, language, preferencesSelected, characteristicsMinimumValues, requiredSkills);
+		Set<AvailableSkill> suggestedSkills = new HashSet<>();
+		node = 0;
+		while (true) {
+			try {
+				String suggestedSkillId = null;
+				try {
+					suggestedSkillId = translator.getNodeValue(profileId, SUGGESTED_SKILLS, REQUIRED_SKILL, REQUIRED_SKILLS_ID, node);
+					if (suggestedSkillId == null) {
+						break;
+					}
+				} catch (NullPointerException e) {
+					// Not more.
+					break;
+				}
+				String skillSpeciality = null;
+				try {
+					skillSpeciality = translator.getNodeValue(profileId, SUGGESTED_SKILLS, REQUIRED_SKILL, REQUIRED_SKILLS_SPECIALIZATION, node);
+				} catch (NullPointerException e) {
+					// Not mandatory
+				}
+				try {
+					if (skillSpeciality == null) {
+						suggestedSkills.add(AvailableSkillsFactory.getInstance().getElement(suggestedSkillId, language));
+					} else {
+						suggestedSkills.add(AvailableSkillsFactory.getInstance().getElement(suggestedSkillId, skillSpeciality, language));
+					}
+				} catch (InvalidXmlElementException e) {
+					throw new InvalidProfileException("Invalid suggested skill '" + suggestedSkillId + "' for  profile '" + profileId + "'.", e);
+				}
+				node++;
+			} catch (NumberFormatException e) {
+				break;
+			}
+		}
+
+		RandomProfile profile = new RandomProfile(profileId, name, language, preferencesSelected, characteristicsMinimumValues, requiredSkills, suggestedSkills);
 		return profile;
 	}
 }

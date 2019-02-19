@@ -25,6 +25,7 @@ package com.softwaremagico.tm.character.cybernetics;
  */
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Set;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
@@ -81,7 +82,8 @@ public class RandomCybernetics extends RandomSelector<CyberneticDevice> {
 				if (usability != null && usability.getId().equalsIgnoreCase("skillUse")) {
 					AvailableSkill skill = AvailableSkillsFactory.getInstance().getElement(selectedDevice.getId(), getCharacterPlayer().getLanguage());
 					if (skill != null) {
-						RandomSkillExtraPoints randomSkillExtraPoints = new RandomSkillExtraPoints(getCharacterPlayer(), getPreferences());
+						RandomSkillExtraPoints randomSkillExtraPoints = new RandomSkillExtraPoints(getCharacterPlayer(), getPreferences(),
+								new HashSet<AvailableSkill>());
 						// Assign random ranks to the skill.
 						remainingPoints -= randomSkillExtraPoints.spendSkillsPoints(skill, remainingPoints);
 					}

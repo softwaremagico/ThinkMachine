@@ -60,18 +60,21 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
 	private final Set<IRandomPreference> preferences;
 	private Random rand = new Random();
 
+	private final Set<Element> suggestedElements;
+
 	// Weight -> Characteristic.
 	private final TreeMap<Integer, Element> weightedElements;
 	private final int totalWeight;
 
 	protected RandomSelector(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences) throws InvalidXmlElementException {
-		this(characterPlayer, preferences, new HashSet<Element>());
+		this(characterPlayer, preferences, new HashSet<Element>(), new HashSet<Element>());
 	}
 
-	protected RandomSelector(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences, Set<Element> mandatoryValues)
+	protected RandomSelector(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences, Set<Element> mandatoryValues, Set<Element> suggestedElements)
 			throws InvalidXmlElementException {
 		this.characterPlayer = characterPlayer;
 		this.preferences = preferences;
+		this.suggestedElements = suggestedElements;
 		weightedElements = assignElementsWeight();
 		totalWeight = assignTotalWeight();
 		assignMandatoryValues(mandatoryValues);
@@ -142,6 +145,11 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
 			// Some probabilities are defined directly.
 			if (element.getRandomDefinition().getStaticProbability() != null) {
 				weight = element.getRandomDefinition().getStaticProbability();
+			}
+
+			// Suggested ones.
+			if (suggestedElements.contains(element)) {
+				weight *= FAIR_PROBABILITY;
 			}
 		}
 		return weight;

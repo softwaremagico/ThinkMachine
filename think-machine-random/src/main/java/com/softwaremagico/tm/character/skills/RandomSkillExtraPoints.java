@@ -37,8 +37,8 @@ import com.softwaremagico.tm.random.selectors.IRandomPreference;
 
 public class RandomSkillExtraPoints extends RandomSkills {
 
-	public RandomSkillExtraPoints(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences) throws InvalidXmlElementException {
-		super(characterPlayer, preferences, new HashSet<AvailableSkill>());
+	public RandomSkillExtraPoints(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences, Set<AvailableSkill> suggestedSkills) throws InvalidXmlElementException {
+		super(characterPlayer, preferences, new HashSet<AvailableSkill>(),suggestedSkills);
 	}
 
 	public int spendSkillsPoints(int remainingPoints) throws InvalidRandomElementSelectedException, InvalidXmlElementException {

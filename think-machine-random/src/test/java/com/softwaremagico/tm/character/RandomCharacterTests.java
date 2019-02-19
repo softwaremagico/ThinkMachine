@@ -132,6 +132,16 @@ public class RandomCharacterTests {
 		AvailableSkill availableSkill = AvailableSkillsFactory.getInstance().getElement("archery", LANGUAGE);
 		randomSkills.validateElement(availableSkill);
 	}
+	
+	@Test(expectedExceptions = { InvalidRandomElementSelectedException.class })
+	public void checkSkillLimitationByLowTechnology() throws InvalidXmlElementException, DuplicatedPreferenceException, InvalidRandomElementSelectedException {
+		CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
+		characterPlayer.getCharacteristic(CharacteristicName.TECH).setValue(1);
+
+		RandomSkills randomSkills = new RandomSkills(characterPlayer, null);
+		AvailableSkill availableSkill = AvailableSkillsFactory.getInstance().getElement("spacecraft", LANGUAGE);
+		randomSkills.validateElement(availableSkill);
+	}
 
 	@Test(expectedExceptions = { InvalidRandomElementSelectedException.class })
 	public void checkBeneficeLimitationByRace() throws InvalidXmlElementException, DuplicatedPreferenceException, InvalidRandomElementSelectedException {

@@ -42,20 +42,23 @@ public class RandomProfile extends Element<RandomProfile> implements IRandomProf
 	private final Set<IRandomPreference> randomPreferences;
 	private final Map<CharacteristicName, Integer> characteristicsMinimumValues;
 	private final Set<AvailableSkill> requiredSkills;
+	private final Set<AvailableSkill> suggestedSkills;
 
 	@ExcludeFromJson
 	public boolean parentMerged = false;
 
 	public RandomProfile(String id, String name, String language, Set<IRandomPreference> randomPreferences,
-			Map<CharacteristicName, Integer> characteristicsMinimumValues, Set<AvailableSkill> requiredSkills) {
+			Map<CharacteristicName, Integer> characteristicsMinimumValues, Set<AvailableSkill> requiredSkills, Set<AvailableSkill> suggestedSkills) {
 		super(id, name, language);
 		this.randomPreferences = randomPreferences;
 		this.characteristicsMinimumValues = characteristicsMinimumValues;
 		this.requiredSkills = requiredSkills;
+		this.suggestedSkills = suggestedSkills;
 	}
 
 	public RandomProfile(String id, String name, String language) {
-		this(id, name, language, new HashSet<IRandomPreference>(), new HashMap<CharacteristicName, Integer>(), new HashSet<AvailableSkill>());
+		this(id, name, language, new HashSet<IRandomPreference>(), new HashMap<CharacteristicName, Integer>(), new HashSet<AvailableSkill>(),
+				new HashSet<AvailableSkill>());
 	}
 
 	@Override
@@ -115,5 +118,10 @@ public class RandomProfile extends Element<RandomProfile> implements IRandomProf
 	@Override
 	public Set<AvailableSkill> getRequiredSkills() {
 		return requiredSkills;
+	}
+
+	@Override
+	public Set<AvailableSkill> getSuggestedSkills() {
+		return suggestedSkills;
 	}
 }

@@ -80,6 +80,7 @@ public class ProfileTests {
 		CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
 		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, RandomProfileFactory.getInstance().getElement("serf", LANGUAGE));
 		Assert.assertEquals(RandomProfileFactory.getInstance().getElement("serf", LANGUAGE).getRequiredSkills().size(), 1);
+		Assert.assertEquals(RandomProfileFactory.getInstance().getElement("serf", LANGUAGE).getSuggestedSkills().size(), 2);
 		randomizeCharacter.createCharacter();
 		Assert.assertTrue(characterPlayer.getSkillTotalRanks(AvailableSkillsFactory.getInstance().getElement("craft", "household", LANGUAGE)) > 0);
 		CharacterSheet characterSheet = new CharacterSheet(characterPlayer);

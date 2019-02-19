@@ -76,12 +76,14 @@ public class RandomizeCharacter {
 	private CharacterPlayer characterPlayer;
 	private final Set<IRandomPreference> preferences;
 	private final Set<AvailableSkill> requiredSkills;
+	private final Set<AvailableSkill> suggestedSkills;
 	private final Random random = new Random();
 
 	public RandomizeCharacter(CharacterPlayer characterPlayer, int experiencePoints, IRandomPreference... preferences) throws DuplicatedPreferenceException {
 		this.characterPlayer = characterPlayer;
 		this.preferences = new HashSet<>(Arrays.asList(preferences));
 		requiredSkills = new HashSet<>();
+		suggestedSkills = new HashSet<>();
 		checkValidPreferences();
 	}
 
@@ -94,6 +96,7 @@ public class RandomizeCharacter {
 		this.characterPlayer = characterPlayer;
 		this.preferences = finalProfile.getPreferences();
 		requiredSkills = finalProfile.getRequiredSkills();
+		suggestedSkills = finalProfile.getSuggestedSkills();
 		checkValidPreferences();
 
 		// Assign default values.
@@ -218,7 +221,7 @@ public class RandomizeCharacter {
 		RandomCharacteristics randomCharacteristics = new RandomCharacteristics(characterPlayer, preferences);
 		randomCharacteristics.assign();
 		// Skills
-		RandomSkills randomSkills = new RandomSkills(characterPlayer, preferences, requiredSkills);
+		RandomSkills randomSkills = new RandomSkills(characterPlayer, preferences, requiredSkills, suggestedSkills);
 		randomSkills.assign();
 		// Traits
 		RandomBeneficeDefinition randomBenefice = new RandomBeneficeDefinition(characterPlayer, preferences);
@@ -256,7 +259,7 @@ public class RandomizeCharacter {
 
 		if (remainingPoints > 0) {
 			RandomCharacteristicsExtraPoints randomCharacteristicsExtraPoints = new RandomCharacteristicsExtraPoints(characterPlayer, preferences);
-			RandomSkillExtraPoints randomSkillExtraPoints = new RandomSkillExtraPoints(characterPlayer, preferences);
+			RandomSkillExtraPoints randomSkillExtraPoints = new RandomSkillExtraPoints(characterPlayer, preferences, suggestedSkills);
 			while (remainingPoints > 0) {
 				// Characteristics only if is a little specialized.
 				if (remainingPoints >= CostCalculator.CHARACTERISTIC_EXTRA_POINTS_COST && specialization.randomGaussian() > 5) {

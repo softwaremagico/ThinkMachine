@@ -50,8 +50,11 @@ public class ProfileMerger {
 			// Merge characteristics.
 			mergeCharacteristics(finalProfile.getCharacteristicsMinimumValues(), profile.getCharacteristicsMinimumValues());
 
-			// Merge skills.
-			mergePreferredSkills(finalProfile.getRequiredSkills(), profile.getRequiredSkills());
+			// Merge Skills.
+			mergeSkills(finalProfile.getRequiredSkills(), profile.getRequiredSkills());
+
+			// Merge Skills
+			mergeSkills(finalProfile.getSuggestedSkills(), profile.getSuggestedSkills());
 
 		}
 		return finalProfile;
@@ -65,7 +68,7 @@ public class ProfileMerger {
 		}
 	}
 
-	private static void mergePreferredSkills(Set<AvailableSkill> originalRequiredSkills, Set<AvailableSkill> requiredSkills) {
+	private static void mergeSkills(Set<AvailableSkill> originalRequiredSkills, Set<AvailableSkill> requiredSkills) {
 		// Merge Characteristics
 		originalRequiredSkills.addAll(requiredSkills);
 	}
