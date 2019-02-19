@@ -364,7 +364,56 @@
 			<es>Oficio</es>
 		</name>
 		<group>creative</group>
-		<specializations>true</specializations>
+		<specializations>
+			<blacksmith>
+				<en>Blacksmith</en>
+				<es>Herrero</es>
+			</blacksmith>
+			<carpenter>
+				<en>Carpenter</en>
+				<es>Carpintero</es>
+			</carpenter>
+			<cartographer>
+				<en>Cartographer</en>
+				<es>Cartógrafo</es>
+			</cartographer>
+			<cook>
+				<en>Cook</en>
+				<es>Cocinero</es>
+			</cook>
+			<jeweler>
+				<en>Jeweler</en>
+				<es>Joyero</es>
+			</jeweler>
+			<leatherworker>
+				<en>Leatherworker</en>
+				<es>Curtidor</es>
+			</leatherworker>
+			<locksmith>
+				<en>Locksmith</en>
+				<es>Cerrajero</es>
+			</locksmith>
+			<mason>
+				<en>Mason</en>
+				<es>Masón</es>
+			</mason>
+			<potter>
+				<en>Potter</en>
+				<es>Alfarero</es>
+			</potter>
+			<tailor>
+				<en>Tailor</en>
+				<es>Sastre</es>
+			</tailor>
+			<weaver>
+				<en>Weaver</en>
+				<es>Tejedor</es>
+			</weaver>
+			<household>
+				<en>Household</en>
+				<es>Doméstico</es>
+			</household>
+		</specializations>
 		<numberToShow>2</numberToShow>
 	</craft>
 	<lockpicking>

@@ -60,7 +60,7 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 
 	public RandomSkills(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences, Set<AvailableSkill> requiredSkills)
 			throws InvalidXmlElementException {
-		super(characterPlayer, preferences);
+		super(characterPlayer, preferences, requiredSkills);
 	}
 
 	@Override

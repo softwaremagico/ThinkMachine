@@ -51,6 +51,9 @@ public class RandomProfileFactory extends XmlFactory<RandomProfile> {
 	private final static String PREFERENCES = "preferences";
 	private final static String CHARACTERISTICS_MINIMUM_VALUES = "characteristicsMinimumValues";
 	private final static String REQUIRED_SKILLS = "requiredSkills";
+	private final static String REQUIRED_SKILL = "skill";
+	private final static String REQUIRED_SKILLS_ID = "id";
+	private final static String REQUIRED_SKILLS_SPECIALIZATION = "speciality";
 	private final static String PARENT = "parent";
 
 	private static RandomProfileFactory instance;
@@ -167,6 +170,40 @@ public class RandomProfileFactory extends XmlFactory<RandomProfile> {
 			}
 		} catch (NullPointerException e) {
 			// No skills defined.
+		}
+
+		int node = 0;
+		while (true) {
+			try {
+				String preferredSkillId = null;
+				try {
+					preferredSkillId = translator.getNodeValue(profileId, REQUIRED_SKILL, REQUIRED_SKILLS_ID, node);
+					if (preferredSkillId == null) {
+						break;
+					}
+				} catch (NullPointerException e) {
+					// Not more.
+					break;
+				}
+				String skillSpeciality = null;
+				try {
+					skillSpeciality = translator.getNodeValue(profileId, REQUIRED_SKILL, REQUIRED_SKILLS_SPECIALIZATION, node);
+				} catch (NullPointerException e) {
+					// Not mandatory
+				}
+				try {
+					if (skillSpeciality == null) {
+						requiredSkills.add(AvailableSkillsFactory.getInstance().getElement(preferredSkillId, language));
+					} else {
+						requiredSkills.add(AvailableSkillsFactory.getInstance().getElement(preferredSkillId, skillSpeciality, language));
+					}
+				} catch (InvalidXmlElementException e) {
+					throw new InvalidProfileException("Invalid skill '" + preferredSkillId + "' for  profile '" + profileId + "'.", e);
+				}
+				node++;
+			} catch (NumberFormatException e) {
+				break;
+			}
 		}
 
 		RandomProfile profile = new RandomProfile(profileId, name, language, preferencesSelected, characteristicsMinimumValues, requiredSkills);

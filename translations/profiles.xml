@@ -21,4 +21,17 @@
 			<tech>7</tech>
 		</characteristicsMinimumValues>
 	</soldierLiHalan>
+	<serf>
+		<name>
+			<en>Serf</en>
+			<es>Siervo</es>
+		</name>
+		<preferences>CombatPreferences.PEACEFUL, CharacteristicsPreferences.BODY, SpecializationPreferences.VERY_GENERALIZED, StatusPreferences.NONE, TechnologicalPreferences.MEDIEVAL, WeaponsPreferences.NONE</preferences>
+		<requiredSkills>
+			<skill>
+				<id>craft</id>
+				<speciality>household</speciality>
+			</skill>
+		</requiredSkills>
+	</serf>	
 </profiles>

@@ -29,6 +29,8 @@ import java.util.Set;
 
 public enum StatusPreferences implements IRandomPreference, IGaussianDistribution {
 
+	NONE(0, 0, 0, 0),
+	
 	LOW(4, 8, 4, 1),
 
 	FAIR(4, 8, 6, 2),

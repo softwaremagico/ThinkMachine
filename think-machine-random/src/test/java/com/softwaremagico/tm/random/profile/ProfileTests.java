@@ -32,6 +32,7 @@ import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.RandomizeCharacter;
 import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
+import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.random.exceptions.DuplicatedPreferenceException;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.profiles.RandomProfileFactory;
@@ -70,6 +71,17 @@ public class ProfileTests {
 		CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
 		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, RandomProfileFactory.getInstance().getElement("soldier", LANGUAGE));
 		randomizeCharacter.createCharacter();
+		// CharacterSheet characterSheet = new CharacterSheet(characterPlayer);
+		// System.out.println(characterSheet.toString());
+	}
+
+	@Test
+	public void serf() throws DuplicatedPreferenceException, InvalidXmlElementException, InvalidRandomElementSelectedException, TooManyBlessingsException {
+		CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
+		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, RandomProfileFactory.getInstance().getElement("serf", LANGUAGE));
+		Assert.assertEquals(RandomProfileFactory.getInstance().getElement("serf", LANGUAGE).getRequiredSkills().size(), 1);
+		randomizeCharacter.createCharacter();
+		Assert.assertTrue(characterPlayer.getSkillTotalRanks(AvailableSkillsFactory.getInstance().getElement("craft", "household", LANGUAGE)) > 0);
 		CharacterSheet characterSheet = new CharacterSheet(characterPlayer);
 		System.out.println(characterSheet.toString());
 	}
