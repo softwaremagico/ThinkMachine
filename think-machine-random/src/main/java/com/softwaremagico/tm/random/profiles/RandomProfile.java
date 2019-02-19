@@ -35,7 +35,6 @@ import com.softwaremagico.tm.character.benefices.AvailableBenefice;
 import com.softwaremagico.tm.character.blessings.Blessing;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
-import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.json.ExcludeFromJson;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
 
@@ -48,18 +47,15 @@ public class RandomProfile extends Element<RandomProfile> implements IRandomProf
 	public boolean parentMerged = false;
 
 	public RandomProfile(String id, String name, String language, Set<IRandomPreference> randomPreferences,
-			Map<CharacteristicName, Integer> characteristicsMinimumValues, String... preferredSkillIds) throws InvalidXmlElementException {
+			Map<CharacteristicName, Integer> characteristicsMinimumValues, Set<AvailableSkill> requiredSkills) {
 		super(id, name, language);
 		this.randomPreferences = randomPreferences;
 		this.characteristicsMinimumValues = characteristicsMinimumValues;
-		requiredSkills = new HashSet<>();
-		for (String preferredSkillId : preferredSkillIds) {
-			requiredSkills.add(AvailableSkillsFactory.getInstance().getElement(preferredSkillId, language));
-		}
+		this.requiredSkills = requiredSkills;
 	}
 
-	public RandomProfile(String id, String name, String language) throws InvalidXmlElementException {
-		this(id, name, language, new HashSet<IRandomPreference>(), new HashMap<CharacteristicName, Integer>());
+	public RandomProfile(String id, String name, String language) {
+		this(id, name, language, new HashSet<IRandomPreference>(), new HashMap<CharacteristicName, Integer>(), new HashSet<AvailableSkill>());
 	}
 
 	@Override

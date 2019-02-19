@@ -36,6 +36,8 @@ import org.reflections.Reflections;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
+import com.softwaremagico.tm.character.skills.AvailableSkill;
+import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.random.selectors.AgePreferences;
@@ -48,6 +50,7 @@ public class RandomProfileFactory extends XmlFactory<RandomProfile> {
 	private final static String NAME = "name";
 	private final static String PREFERENCES = "preferences";
 	private final static String CHARACTERISTICS_MINIMUM_VALUES = "characteristicsMinimumValues";
+	private final static String REQUIRED_SKILLS = "requiredSkills";
 	private final static String PARENT = "parent";
 
 	private static RandomProfileFactory instance;
@@ -150,7 +153,23 @@ public class RandomProfileFactory extends XmlFactory<RandomProfile> {
 			}
 		}
 
-		RandomProfile profile = new RandomProfile(profileId, name, language, preferencesSelected, characteristicsMinimumValues);
+		Set<AvailableSkill> requiredSkills = new HashSet<>();
+		String requiredSkillsNames = translator.getNodeValue(profileId, REQUIRED_SKILLS);
+		try {
+			StringTokenizer requiredSkillsTokenizer = new StringTokenizer(requiredSkillsNames, ",");
+			while (requiredSkillsTokenizer.hasMoreTokens()) {
+				String preferredSkillId = requiredSkillsTokenizer.nextToken().trim();
+				try {
+					requiredSkills.add(AvailableSkillsFactory.getInstance().getElement(preferredSkillId, language));
+				} catch (InvalidXmlElementException e) {
+					throw new InvalidProfileException("Invalid skill '" + preferredSkillId + "' for  profile '" + profileId + "'.", e);
+				}
+			}
+		} catch (NullPointerException e) {
+			// No skills defined.
+		}
+
+		RandomProfile profile = new RandomProfile(profileId, name, language, preferencesSelected, characteristicsMinimumValues, requiredSkills);
 		return profile;
 	}
 }
