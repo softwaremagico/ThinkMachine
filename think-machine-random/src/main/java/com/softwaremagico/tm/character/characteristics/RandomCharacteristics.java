@@ -59,6 +59,13 @@ public class RandomCharacteristics extends RandomSelector<Characteristic> {
 		assignMinimumValuesOfCharacteristics();
 		SpecializationPreferences selectedSpecialization = SpecializationPreferences.getSelected(getPreferences());
 
+		IRandomPreference techPreference = null;
+		for (IRandomPreference preference : getPreferences()) {
+			if (preference instanceof TechnologicalPreferences) {
+				techPreference = preference;
+			}
+		}
+
 		// Assign random values by weight
 		while (getCharacterPlayer().getCharacteristicsTotalPoints() < FreeStyleCharacterCreation.getCharacteristicsPoints(getCharacterPlayer().getInfo()
 				.getAge())) {
@@ -70,7 +77,10 @@ public class RandomCharacteristics extends RandomSelector<Characteristic> {
 
 			if (selectedCharacteristic.getValue() < FreeStyleCharacterCreation.getMaxInitialCharacteristicsValues(
 					selectedCharacteristic.getCharacteristicName(), getCharacterPlayer().getInfo().getAge(), getCharacterPlayer().getRace())) {
-				selectedCharacteristic.setValue(selectedCharacteristic.getValue() + 1);
+				if (selectedCharacteristic.getCharacteristicName() != CharacteristicName.TECH
+						|| (techPreference == null || selectedCharacteristic.getValue() < techPreference.maximum())) {
+					selectedCharacteristic.setValue(selectedCharacteristic.getValue() + 1);
+				}
 			}
 		}
 	}

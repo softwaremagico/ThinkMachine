@@ -221,4 +221,9 @@ public class RandomElementDefinition {
 	public Set<FactionGroup> getRestrictedFactionGroups() {
 		return restrictedFactionGroups;
 	}
+
+	@Override
+	public String toString() {
+		return minimumTechLevel + "";
+	}
 }

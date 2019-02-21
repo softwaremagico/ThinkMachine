@@ -118,7 +118,7 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
 		}
 	}
 
-	protected TreeMap<Integer, Element> assignElementsWeight() throws InvalidXmlElementException {
+	private TreeMap<Integer, Element> assignElementsWeight() throws InvalidXmlElementException {
 		TreeMap<Integer, Element> weightedElements = new TreeMap<>();
 		int count = 1;
 		for (Element element : getAllElements()) {
