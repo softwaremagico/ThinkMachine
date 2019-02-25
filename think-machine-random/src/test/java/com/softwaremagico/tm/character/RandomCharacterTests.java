@@ -72,6 +72,7 @@ import com.softwaremagico.tm.random.selectors.SkillGroupPreferences;
 import com.softwaremagico.tm.random.selectors.SpecializationPreferences;
 import com.softwaremagico.tm.random.selectors.StatusPreferences;
 import com.softwaremagico.tm.random.selectors.TechnologicalPreferences;
+import com.softwaremagico.tm.txt.CharacterSheet;
 
 @Test(groups = { "randomCharacter" })
 public class RandomCharacterTests {
@@ -132,7 +133,7 @@ public class RandomCharacterTests {
 		AvailableSkill availableSkill = AvailableSkillsFactory.getInstance().getElement("archery", LANGUAGE);
 		randomSkills.validateElement(availableSkill);
 	}
-	
+
 	@Test(expectedExceptions = { InvalidRandomElementSelectedException.class })
 	public void checkSkillLimitationByLowTechnology() throws InvalidXmlElementException, DuplicatedPreferenceException, InvalidRandomElementSelectedException {
 		CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
@@ -202,14 +203,9 @@ public class RandomCharacterTests {
 			Assert.assertTrue(characterPlayer.getAllBlessings().size() <= BlessingNumberPreferences.HIGH.maximum()
 					+ characterPlayer.getFaction().getBlessings().size());
 		} catch (Error ae) {
+			CharacterSheet characterSheet = new CharacterSheet(characterPlayer);
+			System.out.println(characterSheet.toString());
 			throw ae;
-		}
-	}
-
-	@Test
-	public void test() throws DuplicatedPreferenceException, InvalidXmlElementException, InvalidRandomElementSelectedException {
-		for (int i = 0; i < 100; i++) {
-			checkBlessingPreferences();
 		}
 	}
 
