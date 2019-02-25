@@ -26,6 +26,7 @@ package com.softwaremagico.tm.random;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Map.Entry;
 import java.util.NoSuchElementException;
 import java.util.Random;
@@ -297,10 +298,24 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
 		for (Entry<Integer, Element> entry : weightedElements.entrySet()) {
 			if (entry.getValue().equals(element)) {
 				keyToDelete = entry.getKey();
+				break;
 			}
 		}
 		if (keyToDelete != null) {
+			int weightToDelete = getAssignedWeight(weightedElements.get(keyToDelete));
+
+			// Remove desired element.
 			weightedElements.remove(keyToDelete);
+			TreeMap<Integer, Element> elementsToUpdate = new TreeMap<>(weightedElements);
+
+			// Update keys weight
+			for (Entry<Integer, Element> entry : elementsToUpdate.entrySet()) {
+				if (entry.getKey() >= keyToDelete) {
+					int currentWeight = entry.getKey();
+					weightedElements.remove(entry.getKey());
+					weightedElements.put(currentWeight - weightToDelete, entry.getValue());
+				}
+			}
 		}
 	}
 
@@ -311,5 +326,21 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
 
 	public TreeMap<Integer, Element> getWeightedElements() {
 		return weightedElements;
+	}
+
+	public Integer getAssignedWeight(Element element) {
+		if (element == null) {
+			return null;
+		}
+		int previousWeight = 0;
+		Iterator<Integer> weightIterator = weightedElements.keySet().iterator();
+		while (weightIterator.hasNext()) {
+			Integer weight = weightIterator.next();
+			if (weightedElements.get(weight).equals(element)) {
+				return weight - previousWeight;
+			}
+			previousWeight = weight;
+		}
+		return null;
 	}
 }
