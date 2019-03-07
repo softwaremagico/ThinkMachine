@@ -16,5 +16,7 @@ deploy:
   - think-machine-rules/target/think-machine-rules-$project_version.jar
   - think-machine-random/target/think-machine-random-$project_version.jar
   - think-machine-pdf/target/think-machine-pdf-$project_version.jar
+  skip_cleanup: true
   on:
     repo: softwaremagico/ThinkMachine
+  name: $project_version
