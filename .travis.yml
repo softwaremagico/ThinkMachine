@@ -19,4 +19,4 @@ deploy:
   skip_cleanup: true
   on:
     repo: softwaremagico/ThinkMachine
-  name: $project_version
+  name: think-machine-$project_version
