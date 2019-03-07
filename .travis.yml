@@ -3,6 +3,19 @@ jdk:
 - openjdk7
 - openjdk8
 - oraclejdk8
-
 sudo: true
-
+before_deploy:
+- mvn help:evaluate -N -Dexpression=project.version|grep -v '\['
+- export project_version=$(mvn help:evaluate -N -Dexpression=project.version|grep
+  -v '\[')
+  
+deploy:
+  provider: releases
+  api_key:
+    secure: Yt6DvO1CRVgPP+fAlRw6B2wJJZMS+3Vfmd7yWnj83dgU8z59LwcE8LvNIEzvnLInYM8FMJ4GblSm7mJ7qK8gA0uto7olvBrIEjOOuYgMaV91a4gNxBNv6Up83BQs0z4OR9HjGmyyC3nYl0n/pop5r4TTWvQJIok8ZnVF6SANFo2HzOKi2ezV2bQx61NfgumbqLJgV1Uw10yZwxfm/ip61UzjD/j9pZAHdyCnYw86Jq0GSo8ntTaSoboCUdin50G2tzXMCZBr4I5xmJ3ekLK0yHR5I96YNKqbkLd89f1FmnaT9VDMJFG7jS7vS+1MujQOyozSyWBvfTIV/L2SlXhNE1c0lBv2qQMIKFhY4exiAe+ViaeuTl0JxO7k+0tXLLaM/ltmQ74P7Fl68U4xUlB1mz9XiEOBx4H2kB6+OmPNMHjICVNk6PZk9mDPwGnakWSxNT9tsAAYK9XA6QyxEcf+iPhS/xE+29NQtrgvJr5QgQ3Gacvn6oegL2LIeWrzCY9brYzB+LYrPhlKlgvYDAsbxvfHdgE+5rtPPElA0z2KTdy8CSsrmWq+fYkMAJCrvf5d140LC6fRgJ5Sd/ADdRW9tTxWI6XgZSuJpiSlyTkb1v7Btzkf7KYJIcik3YFbjleIKrTCVbyAaai17W5Kx5ip4IuANfLAFGDrMZM5DpDWrUk=
+  file: 
+  - think-machine-rules/target/think-machine-rules-$project_version.jar
+  - think-machine-random/target/think-machine-random-$project_version.jar
+  - think-machine-pdf/target/think-machine-pdf-$project_version.jar
+  on:
+    repo: softwaremagico/ThinkMachine
