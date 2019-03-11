@@ -75,6 +75,13 @@ Fonts used in this project: DejaVuSans, ArchitectsDaughter and Roman Antique.
 
 0.3.0 Small PDF chart generation added.
 
-0.4.0 Random character generator and equipment.
+0.4.0 Random character generator and equipment included.
+- 0.4.1 Weapons added. 
+- 0.4.2 Armours and shields added.
+- 0.4.3 Combat styles added.
+- 0.4.4 Age calculations
+- 0.4.5 Cybernetics included. 
+- *0.4.6 Random profiles.*
+- *0.4.7 Random groups generation*.
 
 *0.5.0 Lifepath system.*
