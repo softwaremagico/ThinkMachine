@@ -26,7 +26,7 @@
 			<en>Serf</en>
 			<es>Siervo</es>
 		</name>
-		<preferences>CombatPreferences.PEACEFUL, CharacteristicsPreferences.BODY, SpecializationPreferences.VERY_GENERALIZED, StatusPreferences.NONE, TechnologicalPreferences.MEDIEVAL, WeaponsPreferences.NONE</preferences>
+		<preferences>CombatPreferences.PEACEFUL, CharacteristicsPreferences.BODY, SpecializationPreferences.GENERALIZED, StatusPreferences.NONE, TechnologicalPreferences.BASIC, WeaponsPreferences.NONE</preferences>
 		<requiredSkills>
 			<skill>
 				<id>craft</id>
@@ -43,4 +43,29 @@
 			</skill>
 		</suggestedSkills>
 	</serf>	
+	<peasant>
+		<name>
+			<en>Peasant</en>
+			<es>Campesino</es>
+		</name>
+		<preferences>CombatPreferences.FAIR, CharacteristicsPreferences.BODY, SpecializationPreferences.FAIR, StatusPreferences.NONE, TechnologicalPreferences.MEDIEVAL, WeaponsPreferences.NONE</preferences>
+		<suggestedSkills>
+			<skill>
+				<id>archery</id>
+			</skill>
+			<skill>
+				<id>beastcraft</id>
+			</skill>
+			<skill>
+				<id>lore</id>
+				<speciality>beastsLore</speciality>
+			</skill>
+			<skill>
+				<id>survival</id>
+			</skill>
+			<skill>
+				<id>melee</id>
+			</skill>
+		</suggestedSkills>
+	</peasant>	
 </profiles>

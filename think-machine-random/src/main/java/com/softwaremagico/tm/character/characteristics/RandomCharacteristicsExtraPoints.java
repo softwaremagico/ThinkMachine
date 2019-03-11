@@ -37,6 +37,7 @@ import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedExcep
 import com.softwaremagico.tm.random.selectors.IGaussianDistribution;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
 import com.softwaremagico.tm.random.selectors.SpecializationPreferences;
+import com.softwaremagico.tm.random.selectors.TechnologicalPreferences;
 
 public class RandomCharacteristicsExtraPoints extends RandomCharacteristics {
 
@@ -46,15 +47,26 @@ public class RandomCharacteristicsExtraPoints extends RandomCharacteristics {
 
 	public int spendCharacteristicsPoints(int remainingPoints) throws InvalidRandomElementSelectedException {
 		IGaussianDistribution specialization = SpecializationPreferences.getSelected(getPreferences());
+
+		IRandomPreference techPreference = null;
+		for (IRandomPreference preference : getPreferences()) {
+			if (preference instanceof TechnologicalPreferences) {
+				techPreference = preference;
+			}
+		}
+
 		if (remainingPoints >= CostCalculator.CHARACTERISTIC_EXTRA_POINTS_COST) {
 			Characteristic selectedCharacteristic = selectElementByWeight();
 			// If specialization allows it.
 			if (specialization.randomGaussian() > selectedCharacteristic.getValue() && selectedCharacteristic.getValue() < specialization.maximum()) {
 				if (selectedCharacteristic.getValue() < FreeStyleCharacterCreation.getMaxInitialCharacteristicsValues(
 						selectedCharacteristic.getCharacteristicName(), getCharacterPlayer().getInfo().getAge(), getCharacterPlayer().getRace())) {
-					selectedCharacteristic.setValue(selectedCharacteristic.getValue() + 1);
-					RandomGenerationLog.info(this.getClass().getName(), "Increased value of '" + selectedCharacteristic + "'.");
-					return CostCalculator.CHARACTERISTIC_EXTRA_POINTS_COST;
+					if (selectedCharacteristic.getCharacteristicName() != CharacteristicName.TECH
+							|| (techPreference == null || selectedCharacteristic.getValue() < techPreference.maximum())) {
+						selectedCharacteristic.setValue(selectedCharacteristic.getValue() + 1);
+						RandomGenerationLog.debug(this.getClass().getName(), "Increased value of '" + selectedCharacteristic + "' in 1.");
+						return CostCalculator.CHARACTERISTIC_EXTRA_POINTS_COST;
+					}
 				}
 			}
 		}

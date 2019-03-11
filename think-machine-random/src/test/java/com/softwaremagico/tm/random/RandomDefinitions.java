@@ -28,7 +28,13 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
+import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
+import com.softwaremagico.tm.character.skills.AvailableSkill;
+import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
+import com.softwaremagico.tm.character.skills.RandomSkills;
+import com.softwaremagico.tm.random.exceptions.DuplicatedPreferenceException;
+import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 
 @Test(groups = { "randomDefinition" })
 public class RandomDefinitions {
@@ -37,5 +43,28 @@ public class RandomDefinitions {
 	@Test
 	public void checkRandomProbabilityMultiplier() throws InvalidXmlElementException {
 		Assert.assertEquals(WeaponFactory.getInstance().getElement("veryLargeRock", LANGUAGE).getRandomDefinition().getProbabilityMultiplier(), 0d);
+	}
+
+	@Test
+	public void removeElementWeight() throws DuplicatedPreferenceException, InvalidXmlElementException, InvalidRandomElementSelectedException {
+		CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
+
+		AvailableSkill ride = AvailableSkillsFactory.getInstance().getElement("ride", LANGUAGE);
+		AvailableSkill warfare = AvailableSkillsFactory.getInstance().getElement("warfare", LANGUAGE);
+
+		RandomSkills originalSkills = new RandomSkills(characterPlayer, null);
+		RandomSkills editedSkills = new RandomSkills(characterPlayer, null);
+
+		Assert.assertEquals(originalSkills.getAssignedWeight(ride), editedSkills.getAssignedWeight(ride));
+		Assert.assertEquals(originalSkills.getAssignedWeight(warfare), editedSkills.getAssignedWeight(warfare));
+		Assert.assertEquals(originalSkills.getWeightedElements().size(), editedSkills.getWeightedElements().size());
+
+		editedSkills.removeElementWeight(ride);
+
+		Assert.assertEquals(editedSkills.getWeightedElements().size(), originalSkills.getWeightedElements().size() - 1);
+		Assert.assertNull(editedSkills.getAssignedWeight(ride));
+		Assert.assertNotNull(originalSkills.getAssignedWeight(ride));
+		Assert.assertEquals(originalSkills.getAssignedWeight(warfare), editedSkills.getAssignedWeight(warfare));
+
 	}
 }

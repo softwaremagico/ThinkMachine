@@ -29,6 +29,8 @@ public enum TechnologicalPreferences implements IRandomPreference {
 	PREHISTORIC(0, 1),
 
 	MEDIEVAL(1, 2),
+	
+	BASIC(2, 3),
 
 	MODERN(3, 5),
 

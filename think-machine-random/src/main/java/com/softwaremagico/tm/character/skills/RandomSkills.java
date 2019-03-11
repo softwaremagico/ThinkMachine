@@ -49,7 +49,6 @@ import com.softwaremagico.tm.random.selectors.CombatPreferences;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
 import com.softwaremagico.tm.random.selectors.SkillGroupPreferences;
 import com.softwaremagico.tm.random.selectors.SpecializationPreferences;
-import com.softwaremagico.tm.random.selectors.TechnologicalPreferences;
 
 public class RandomSkills extends RandomSelector<AvailableSkill> {
 	private List<Entry<CharacteristicType, Integer>> preferredCharacteristicsTypeSorted;
@@ -138,11 +137,7 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 	}
 
 	private void assignMinimumValuesOfSkills() {
-		for (IRandomPreference preference : getPreferences()) {
-			if (preference instanceof TechnologicalPreferences) {
-				getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).setValue(((TechnologicalPreferences) preference).minimum());
-			}
-		}
+
 	}
 
 	@Override
