@@ -46,6 +46,7 @@ import com.softwaremagico.tm.log.RandomGenerationLog;
 import com.softwaremagico.tm.random.RandomSelector;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.CombatPreferences;
+import com.softwaremagico.tm.random.selectors.DifficultLevelPreferences;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
 import com.softwaremagico.tm.random.selectors.SkillGroupPreferences;
 import com.softwaremagico.tm.random.selectors.SpecializationPreferences;
@@ -67,8 +68,11 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 		// Set minimum values of skills by preferences.
 		assignMinimumValuesOfSkills();
 
+		DifficultLevelPreferences difficultLevel = DifficultLevelPreferences.getSelected(getPreferences());
+
 		// Meanwhile are ranks to expend.
-		while (getCharacterPlayer().getSkillsTotalPoints() < FreeStyleCharacterCreation.getSkillsPoints(getCharacterPlayer().getInfo().getAge())) {
+		while (getCharacterPlayer().getSkillsTotalPoints() < FreeStyleCharacterCreation.getSkillsPoints(getCharacterPlayer().getInfo().getAge())
+				+ difficultLevel.getSkillsBonus()) {
 			// Select a skill randomly.
 			AvailableSkill selectedSkill = selectElementByWeight();
 
@@ -82,8 +86,11 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 
 	@Override
 	protected void assignMandatoryValues(Set<AvailableSkill> mandatoryValues) throws InvalidXmlElementException {
+		DifficultLevelPreferences difficultLevel = DifficultLevelPreferences.getSelected(getPreferences());
+
 		for (AvailableSkill requiredSkill : mandatoryValues) {
-			if (getCharacterPlayer().getSkillsTotalPoints() < FreeStyleCharacterCreation.getSkillsPoints(getCharacterPlayer().getInfo().getAge())) {
+			if (getCharacterPlayer().getSkillsTotalPoints() < FreeStyleCharacterCreation.getSkillsPoints(getCharacterPlayer().getInfo().getAge())
+					+ difficultLevel.getSkillsBonus()) {
 				assignRandomRanks(requiredSkill);
 			}
 		}
@@ -324,10 +331,13 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 			finalRanks = FreeStyleCharacterCreation.getMaxInitialSkillsValues(getCharacterPlayer().getInfo().getAge());
 		}
 
+		DifficultLevelPreferences difficultLevel = DifficultLevelPreferences.getSelected(getPreferences());
+
 		// Final ranks cannot be greater that the total points remaining.
 		if (getCharacterPlayer().getSkillsTotalPoints() + (finalRanks - getCharacterPlayer().getSkillAssignedRanks(availableSkill)) > FreeStyleCharacterCreation
-				.getSkillsPoints(getCharacterPlayer().getInfo().getAge())) {
-			finalRanks = FreeStyleCharacterCreation.getSkillsPoints(getCharacterPlayer().getInfo().getAge()) - getCharacterPlayer().getSkillsTotalPoints();
+				.getSkillsPoints(getCharacterPlayer().getInfo().getAge()) + difficultLevel.getSkillsBonus()) {
+			finalRanks = (FreeStyleCharacterCreation.getSkillsPoints(getCharacterPlayer().getInfo().getAge()) + difficultLevel.getSkillsBonus())
+					- getCharacterPlayer().getSkillsTotalPoints();
 		}
 		return finalRanks;
 	}

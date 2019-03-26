@@ -45,6 +45,7 @@ import com.softwaremagico.tm.random.RandomSelector;
 import com.softwaremagico.tm.random.exceptions.ImpossibleToAssignMandatoryElementException;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.CombatPreferences;
+import com.softwaremagico.tm.random.selectors.DifficultLevelPreferences;
 import com.softwaremagico.tm.random.selectors.IGaussianDistribution;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
 import com.softwaremagico.tm.random.selectors.PsiqueLevelPreferences;
@@ -128,8 +129,10 @@ public class RandomPsiquePath extends RandomSelector<OccultismPath> {
 	}
 
 	private void assignPowersOfPath(OccultismPath path, int maxLevelSelected) throws InvalidXmlElementException {
+		DifficultLevelPreferences difficultyLevel = DifficultLevelPreferences.getSelected(getPreferences());
+		
 		int remainingPoints = FreeStyleCharacterCreation.getFreeAvailablePoints(getCharacterPlayer().getInfo().getAge())
-				- CostCalculator.getCost(getCharacterPlayer());
+				- CostCalculator.getCost(getCharacterPlayer(), difficultyLevel.getSkillsBonus(), difficultyLevel.getCharacteristicsBonus());
 		// Select powers to set.
 		List<OccultismPower> powersToAdd = new ArrayList<>();
 

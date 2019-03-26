@@ -64,6 +64,7 @@ import com.softwaremagico.tm.random.profiles.ProfileMerger;
 import com.softwaremagico.tm.random.selectors.AgePreferences;
 import com.softwaremagico.tm.random.selectors.ArmourPreferences;
 import com.softwaremagico.tm.random.selectors.CombatPreferences;
+import com.softwaremagico.tm.random.selectors.DifficultLevelPreferences;
 import com.softwaremagico.tm.random.selectors.IGaussianDistribution;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
 import com.softwaremagico.tm.random.selectors.PsiqueLevelPreferences;
@@ -78,6 +79,7 @@ public class RandomizeCharacter {
 	private final Set<AvailableSkill> requiredSkills;
 	private final Set<AvailableSkill> suggestedSkills;
 	private final Random random = new Random();
+	private final int experiencePoints;
 
 	public RandomizeCharacter(CharacterPlayer characterPlayer, int experiencePoints, IRandomPreference... preferences) throws DuplicatedPreferenceException {
 		this.characterPlayer = characterPlayer;
@@ -85,6 +87,8 @@ public class RandomizeCharacter {
 		requiredSkills = new HashSet<>();
 		suggestedSkills = new HashSet<>();
 		checkValidPreferences();
+		DifficultLevelPreferences difficultLevel = DifficultLevelPreferences.getSelected(this.preferences);
+		this.experiencePoints = experiencePoints + difficultLevel.getExperienceBonus();
 	}
 
 	public RandomizeCharacter(CharacterPlayer characterPlayer, IRandomProfile... profiles) throws DuplicatedPreferenceException, TooManyBlessingsException,
@@ -117,6 +121,9 @@ public class RandomizeCharacter {
 				characterPlayer.addBlessing(blessing);
 			}
 		}
+
+		DifficultLevelPreferences difficultLevel = DifficultLevelPreferences.getSelected(preferences);
+		experiencePoints = difficultLevel.getExperienceBonus();
 	}
 
 	private void checkValidPreferences() throws DuplicatedPreferenceException {
@@ -251,8 +258,11 @@ public class RandomizeCharacter {
 		RandomPsiquePath randomPsiquePath = new RandomPsiquePath(characterPlayer, preferences);
 		randomPsiquePath.assign();
 
+		DifficultLevelPreferences difficultLevel = DifficultLevelPreferences.getSelected(preferences);
+
 		// Spend remaining points in skills and characteristics.
-		int remainingPoints = FreeStyleCharacterCreation.getFreeAvailablePoints(characterPlayer.getInfo().getAge()) - CostCalculator.getCost(characterPlayer);
+		int remainingPoints = FreeStyleCharacterCreation.getFreeAvailablePoints(characterPlayer.getInfo().getAge())
+				- CostCalculator.getCost(characterPlayer, difficultLevel.getSkillsBonus(), difficultLevel.getCharacteristicsBonus());
 
 		RandomGenerationLog.info(this.getClass().getName(), "Remaining points '" + remainingPoints + "'.");
 		IGaussianDistribution specialization = SpecializationPreferences.getSelected(preferences);

@@ -45,6 +45,7 @@ import com.softwaremagico.tm.random.selectors.CombatPreferences;
 import com.softwaremagico.tm.random.selectors.CyberneticPointsPreferences;
 import com.softwaremagico.tm.random.selectors.CyberneticTotalDevicesPreferences;
 import com.softwaremagico.tm.random.selectors.CyberneticVisibilityPreferences;
+import com.softwaremagico.tm.random.selectors.DifficultLevelPreferences;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
 
 public class RandomCybernetics extends RandomSelector<CyberneticDevice> {
@@ -59,8 +60,10 @@ public class RandomCybernetics extends RandomSelector<CyberneticDevice> {
 
 	@Override
 	public void assign() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
+		DifficultLevelPreferences difficultyLevel = DifficultLevelPreferences.getSelected(getPreferences());
+
 		int remainingPoints = FreeStyleCharacterCreation.getFreeAvailablePoints(getCharacterPlayer().getInfo().getAge())
-				- CostCalculator.getCost(getCharacterPlayer());
+				- CostCalculator.getCost(getCharacterPlayer(), difficultyLevel.getSkillsBonus(), difficultyLevel.getCharacteristicsBonus());
 		// Select a cybernetic device.
 		int guard = 0;
 		while (guard < 20 && getCharacterPlayer().getCybernetics().size() < totalDevices

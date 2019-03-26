@@ -41,6 +41,7 @@ import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedExcep
 import com.softwaremagico.tm.random.selectors.CharacteristicsPreferences;
 import com.softwaremagico.tm.random.selectors.CombatPreferences;
 import com.softwaremagico.tm.random.selectors.CyberneticPointsPreferences;
+import com.softwaremagico.tm.random.selectors.DifficultLevelPreferences;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
 import com.softwaremagico.tm.random.selectors.PsiqueLevelPreferences;
 import com.softwaremagico.tm.random.selectors.SpecializationPreferences;
@@ -67,9 +68,11 @@ public class RandomCharacteristics extends RandomSelector<Characteristic> {
 			}
 		}
 
+		DifficultLevelPreferences difficultLevel = DifficultLevelPreferences.getSelected(getPreferences());
+
 		// Assign random values by weight
 		while (getCharacterPlayer().getCharacteristicsTotalPoints() < FreeStyleCharacterCreation.getCharacteristicsPoints(getCharacterPlayer().getInfo()
-				.getAge())) {
+				.getAge()) + difficultLevel.getCharacteristicsBonus()) {
 			Characteristic selectedCharacteristic = selectElementByWeight();
 			if (selectedCharacteristic.getValue() >= selectedSpecialization.maximum()) {
 				removeElementWeight(selectedCharacteristic);

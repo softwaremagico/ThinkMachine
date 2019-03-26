@@ -31,6 +31,7 @@ import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.benefices.AvailableBenefice;
 import com.softwaremagico.tm.character.blessings.Blessing;
+import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.cybernetics.ICyberneticDevice;
 import com.softwaremagico.tm.character.occultism.OccultismPath;
 import com.softwaremagico.tm.character.occultism.OccultismPathFactory;
@@ -47,12 +48,16 @@ public class CostCalculator {
 	public final static int OCCULSTIM_POWER_LEVEL_COST = 1;
 
 	public static int getCost(CharacterPlayer characterPlayer) throws InvalidXmlElementException {
+		return getCost(characterPlayer, 0, 0);
+	}
+
+	public static int getCost(CharacterPlayer characterPlayer, int extraSkillPoints, int extraCharacteristicsPoints) throws InvalidXmlElementException {
 		int cost = 0;
 		if (characterPlayer.getRace() != null) {
 			cost += characterPlayer.getRace().getCost();
 		}
-		cost += getCharacteristicsCost(characterPlayer);
-		cost += getSkillCosts(characterPlayer);
+		cost += getCharacteristicsCost(characterPlayer, extraCharacteristicsPoints);
+		cost += getSkillCosts(characterPlayer, extraSkillPoints);
 		cost += getTraitsCosts(characterPlayer);
 		cost += getPsiPowersCosts(characterPlayer);
 		cost += getCyberneticsCost(characterPlayer);
@@ -61,6 +66,10 @@ public class CostCalculator {
 	}
 
 	public static int logCost(CharacterPlayer characterPlayer) throws InvalidXmlElementException {
+		return logCost(characterPlayer, 0, 0);
+	}
+
+	public static int logCost(CharacterPlayer characterPlayer, int extraSkillPoints, int extraCharacteristicsPoints) throws InvalidXmlElementException {
 		int cost = 0;
 		CostCalculatorLog.info(CostCalculator.class.getName(), "####################### ");
 		CostCalculatorLog.info(CostCalculator.class.getName(), "\t" + characterPlayer.getNameRepresentation());
@@ -69,10 +78,10 @@ public class CostCalculator {
 			cost += characterPlayer.getRace().getCost();
 			CostCalculatorLog.info(CostCalculator.class.getName(), "Race cost: " + characterPlayer.getRace().getCost());
 		}
-		cost += getCharacteristicsCost(characterPlayer);
-		CostCalculatorLog.info(CostCalculator.class.getName(), "Characteristics cost: " + getCharacteristicsCost(characterPlayer));
-		cost += getSkillCosts(characterPlayer);
-		CostCalculatorLog.info(CostCalculator.class.getName(), "Skills cost: " + getSkillCosts(characterPlayer));
+		cost += getCharacteristicsCost(characterPlayer, extraCharacteristicsPoints);
+		CostCalculatorLog.info(CostCalculator.class.getName(), "Characteristics cost: " + getCharacteristicsCost(characterPlayer, extraCharacteristicsPoints));
+		cost += getSkillCosts(characterPlayer, extraSkillPoints);
+		CostCalculatorLog.info(CostCalculator.class.getName(), "Skills cost: " + getSkillCosts(characterPlayer, extraSkillPoints));
 		cost += getTraitsCosts(characterPlayer);
 		CostCalculatorLog.info(CostCalculator.class.getName(), "Traits cost: " + getTraitsCosts(characterPlayer));
 		cost += getPsiPowersCosts(characterPlayer);
@@ -83,13 +92,15 @@ public class CostCalculator {
 		return cost;
 	}
 
-	private static int getCharacteristicsCost(CharacterPlayer characterPlayer) {
-		return (characterPlayer.getCharacteristicsTotalPoints() - FreeStyleCharacterCreation.getCharacteristicsPoints(characterPlayer.getInfo().getAge()))
+	private static int getCharacteristicsCost(CharacterPlayer characterPlayer, int extraCharacteristicsPoints) {
+		return (characterPlayer.getCharacteristicsTotalPoints() - Math.max(CharacteristicName.values().length,
+				(FreeStyleCharacterCreation.getCharacteristicsPoints(characterPlayer.getInfo().getAge())) + extraCharacteristicsPoints))
 				* CHARACTERISTIC_EXTRA_POINTS_COST;
 	}
 
-	private static int getSkillCosts(CharacterPlayer characterPlayer) throws InvalidXmlElementException {
-		return (characterPlayer.getSkillsTotalPoints() - FreeStyleCharacterCreation.getSkillsPoints(characterPlayer.getInfo().getAge()))
+	private static int getSkillCosts(CharacterPlayer characterPlayer, int extraSkillPoints) throws InvalidXmlElementException {
+		return (characterPlayer.getSkillsTotalPoints() - Math.max(0, (FreeStyleCharacterCreation.getSkillsPoints(characterPlayer.getInfo().getAge()))
+				+ extraSkillPoints))
 				* SKILL_EXTRA_POINTS_COST;
 	}
 
