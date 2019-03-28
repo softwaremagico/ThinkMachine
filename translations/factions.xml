@@ -410,8 +410,8 @@
 	</reeves>
 	<freeMen>
 		<name>
-			<en>Hombre Libre</en>
-			<es>Free Men</es>
+			<en>Yeoman</en>
+			<es>Hombre Libre</es>
 		</name>
 		<group>none</group>
 		<benefices>darkSecret_3</benefices>

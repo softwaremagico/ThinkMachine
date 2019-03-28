@@ -68,4 +68,11 @@
 			</skill>
 		</suggestedSkills>
 	</peasant>	
+	<thug>
+		<name>
+			<en>Thug</en>
+			<es>Rufián</es>
+		</name>
+		<preferences>CombatPreferences.BELLIGERENT, CharacteristicsPreferences.BODY, SpecializationPreferences.SPECIALIZED, StatusPreferences.NONE, WeaponsPreferences.MEDIUM, SkillGroupPreferences.MALEFACTION, FactionPreferences.NONE</preferences>
+	</thug>
 </profiles>
