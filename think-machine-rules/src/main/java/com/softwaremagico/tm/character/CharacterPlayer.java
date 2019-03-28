@@ -474,16 +474,16 @@ public class CharacterPlayer {
 
 	public List<AvailableBenefice> getAfflictions() {
 		List<AvailableBenefice> afflictions = new ArrayList<>();
-		for (AvailableBenefice benefice : benefices) {
-			if (benefice.getBeneficeClassification() == BeneficeClassification.AFFLICTION) {
-				afflictions.add(benefice);
+		for (AvailableBenefice affliction : benefices) {
+			if (affliction.getBeneficeClassification() == BeneficeClassification.AFFLICTION) {
+				afflictions.add(affliction);
 			}
 		}
 		// Add faction afflictions
 		if (getFaction() != null && getFaction().getBenefices() != null) {
-			for (AvailableBenefice benefice : getFaction().getBenefices()) {
-				if (benefice.getBeneficeClassification() == BeneficeClassification.AFFLICTION) {
-					afflictions.add(benefice);
+			for (AvailableBenefice affliction : getFaction().getBenefices()) {
+				if (affliction.getBeneficeClassification() == BeneficeClassification.AFFLICTION) {
+					afflictions.add(affliction);
 				}
 			}
 		}

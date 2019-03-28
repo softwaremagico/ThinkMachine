@@ -414,6 +414,7 @@
 			<es>Hombre Libre</es>
 		</name>
 		<group>none</group>
+		<race>human</race>
 		<benefices>darkSecret_3</benefices>
 	</freeMen>
 	

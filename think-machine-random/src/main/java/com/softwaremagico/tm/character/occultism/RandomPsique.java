@@ -83,13 +83,8 @@ public class RandomPsique extends RandomSelector<OccultismType> {
 
 	private int assignLevelOfPsique(OccultismType psique) throws InvalidXmlElementException {
 		// A curse does not allow occultism.
-		try {
-			if (getCharacterPlayer().getAfflictions().contains(
-					AvailableBeneficeFactory.getInstance().getElement("noOccult", getCharacterPlayer().getLanguage()))) {
-				return 0;
-			}
-		} catch (InvalidXmlElementException e) {
-			RandomGenerationLog.errorMessage(this.getClass().getName(), e);
+		if (getCharacterPlayer().getAfflictions().contains(AvailableBeneficeFactory.getInstance().getElement("noOccult", getCharacterPlayer().getLanguage()))) {
+			return 0;
 		}
 		IGaussianDistribution psiqueLevelSelector = PsiqueLevelPreferences.getSelected(getPreferences());
 		int maxLevelSelected = psiqueLevelSelector.randomGaussian();
