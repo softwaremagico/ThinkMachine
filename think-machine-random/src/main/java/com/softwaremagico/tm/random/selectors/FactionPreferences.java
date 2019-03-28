@@ -33,6 +33,8 @@ public enum FactionPreferences implements IRandomPreference {
 	CHURCH,
 
 	GUILD,
+	
+	NONE,
 
 	XENO;
 

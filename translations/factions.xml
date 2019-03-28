@@ -367,7 +367,7 @@
 			<es>Magistrados</es>
 		</name>
 		<group>guild</group>
-				<ranks>
+		<ranks>
 			<apprentice>
 				<translation>
 					<en>Associate</en>
@@ -408,6 +408,14 @@
 		<race>human</race>
 		<blessings>shrewd, mammon</blessings>
 	</reeves>
+	<freeMen>
+		<name>
+			<en>Hombre Libre</en>
+			<es>Free Men</es>
+		</name>
+		<group>none</group>
+		<benefices>darkSecret_3</benefices>
+	</freeMen>
 	
 	<obun>
 		<name>
