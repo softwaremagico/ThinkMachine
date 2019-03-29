@@ -144,14 +144,14 @@ public class FactionsFactory extends XmlFactory<Faction> {
 
 			String raceRestrictionName = translator.getNodeValue(factionId, RACE);
 			Race raceRestriction = null;
-			if (raceRestrictionName != null) {
-				try {
-					raceRestriction = RaceFactory.getInstance().getElement(raceRestrictionName, language);
-				} catch (InvalidXmlElementException ixe) {
-					throw new InvalidFactionException("Error in faction '" + factionId + "' structure. Invalid race. ", ixe);
-				}
+			if (raceRestrictionName == null) {
+				throw new InvalidFactionException("Race not defined in faction '" + factionId + "'. Factions must have a race restriction.");
 			}
-
+			try {
+				raceRestriction = RaceFactory.getInstance().getElement(raceRestrictionName, language);
+			} catch (InvalidXmlElementException ixe) {
+				throw new InvalidFactionException("Error in faction '" + factionId + "' structure. Invalid race. ", ixe);
+			}
 			Faction faction = new Faction(factionId, name, factionGroup, raceRestriction, language);
 
 			for (String rankId : translator.getAllChildrenTags(factionId, RANKS_TAG)) {
