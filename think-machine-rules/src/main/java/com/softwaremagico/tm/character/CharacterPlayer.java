@@ -1060,11 +1060,28 @@ public class CharacterPlayer {
 	 */
 	public Weapon hasWeaponWithSkill(AvailableSkill skill) {
 		for (Weapon weapon : getAllWeapons()) {
-			if (Objects.equals(weapon.getSkill(), skill.getSkillDefinition())) {
+			if (Objects.equals(weapon.getSkill(), skill)) {
 				return weapon;
 			}
 		}
 		return null;
+	}
+
+	/**
+	 * Gets the weapon with higher ranks.
+	 * 
+	 * @return a weapon
+	 */
+	public Weapon getMainWeapon() {
+		Weapon mainWeapon = null;
+		int totalValue = 0;
+		for (Weapon weapon : getAllWeapons()) {
+			if (getSkillTotalRanks(weapon.getSkill()) + getCharacteristic(weapon.getCharacteristic().getCharacteristicName()).getValue() > totalValue) {
+				totalValue = getSkillTotalRanks(weapon.getSkill()) + getCharacteristic(weapon.getCharacteristic().getCharacteristicName()).getValue();
+				mainWeapon = weapon;
+			}
+		}
+		return mainWeapon;
 	}
 
 	public int getEquipmentMaxTechnologicalLevel() {

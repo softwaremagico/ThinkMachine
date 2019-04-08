@@ -29,11 +29,6 @@ import com.softwaremagico.tm.Element;
 public class Shield extends Element<Shield> {
 	private final int impact;
 	private final int techLevel;
-
-	public int getTechLevel() {
-		return techLevel;
-	}
-
 	private final int force;
 	private final int hits;
 	private final float cost;
@@ -61,6 +56,10 @@ public class Shield extends Element<Shield> {
 
 	public float getCost() {
 		return cost;
+	}
+
+	public int getTechLevel() {
+		return techLevel;
 	}
 
 }

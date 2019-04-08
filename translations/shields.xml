@@ -43,8 +43,8 @@
 		</name>
 		<techLevel>7</techLevel>
 		<impact>5</impact>
-		<force>15</force>
-		<hits>20</hits>
-		<cost>3000</cost>
+		<force>20</force>
+		<hits>30</hits>
+		<cost>5000</cost>
 	</battleShield>
 </shields>

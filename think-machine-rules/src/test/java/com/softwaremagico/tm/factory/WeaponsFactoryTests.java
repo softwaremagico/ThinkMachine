@@ -67,4 +67,11 @@ public class WeaponsFactoryTests {
 		Assert.assertEquals(0.01d, WeaponFactory.getInstance().getElement("arbata", LANGUAGE).getRandomDefinition().getProbabilityMultiplier());
 	}
 
+	@Test
+	public void getMainDamage() throws InvalidXmlElementException {
+		Assert.assertEquals(6, WeaponFactory.getInstance().getElement("arbata", LANGUAGE).getMainDamage());
+		Assert.assertEquals(8, WeaponFactory.getInstance().getElement("typicalShotgun", LANGUAGE).getMainDamage());
+		Assert.assertEquals(12, WeaponFactory.getInstance().getElement("wireGrenade", LANGUAGE).getMainDamage());
+	}
+
 }

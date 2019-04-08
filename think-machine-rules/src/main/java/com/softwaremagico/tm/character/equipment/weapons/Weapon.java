@@ -25,14 +25,19 @@ package com.softwaremagico.tm.character.equipment.weapons;
  */
 
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import com.softwaremagico.tm.Element;
 import com.softwaremagico.tm.character.characteristics.CharacteristicDefinition;
 import com.softwaremagico.tm.character.equipment.DamageType;
 import com.softwaremagico.tm.character.equipment.Size;
-import com.softwaremagico.tm.character.skills.SkillDefinition;
+import com.softwaremagico.tm.character.skills.AvailableSkill;
 
 public class Weapon extends Element<Weapon> {
+	private final static String NUMBER_EXTRACTOR_PATTERN = "^[^\\d]*(\\d+)";
+	private final static Pattern FIRST_NUMBER_PATTERN = Pattern.compile(NUMBER_EXTRACTOR_PATTERN);
+
 	private final String goal;
 	private final String damage;
 	private final int strength;
@@ -46,14 +51,14 @@ public class Weapon extends Element<Weapon> {
 	private final String special;
 	private final Set<DamageType> damageTypes;
 	private final float cost;
-	private final SkillDefinition skill;
+	private final AvailableSkill skill;
 	private final CharacteristicDefinition characteristic;
 	private final WeaponType type;
 
 	private final Set<Ammunition> ammunitions;
 	private final Set<Accessory> accesories;
 
-	public Weapon(String id, String name, String language, WeaponType type, String goal, CharacteristicDefinition characteristic, SkillDefinition skill,
+	public Weapon(String id, String name, String language, WeaponType type, String goal, CharacteristicDefinition characteristic, AvailableSkill skill,
 			String damage, int strength, String range, Integer shots, String rate, int tech, boolean techLevelSpecial, Size size, String special,
 			Set<DamageType> damageTypes, float cost, Set<Ammunition> ammunitions, Set<Accessory> accesories) {
 		super(id, name, language);
@@ -99,12 +104,32 @@ public class Weapon extends Element<Weapon> {
 		return damage;
 	}
 
+	public int getMainDamage() {
+		Matcher matcher = FIRST_NUMBER_PATTERN.matcher(getDamage());
+		if (matcher.find()) {
+			return Integer.parseInt(matcher.group());
+		}
+		return 0;
+	}
+
 	public Integer getShots() {
 		return shots;
 	}
 
 	public String getRate() {
 		return rate;
+	}
+
+	public int getMainRate() {
+		Matcher matcher = FIRST_NUMBER_PATTERN.matcher(getRate());
+		if (matcher.find()) {
+			return Integer.parseInt(matcher.group());
+		}
+		return 0;
+	}
+
+	public boolean isAutomaticWeapon() {
+		return getRate().toLowerCase().contains("a");
 	}
 
 	public Size getSize() {
@@ -127,11 +152,19 @@ public class Weapon extends Element<Weapon> {
 		return range;
 	}
 
+	public int getMainRange() {
+		Matcher matcher = FIRST_NUMBER_PATTERN.matcher(getRange());
+		if (matcher.find()) {
+			return Integer.parseInt(matcher.group());
+		}
+		return 0;
+	}
+
 	public float getCost() {
 		return cost;
 	}
 
-	public SkillDefinition getSkill() {
+	public AvailableSkill getSkill() {
 		return skill;
 	}
 

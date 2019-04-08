@@ -31,6 +31,7 @@ import org.testng.annotations.Test;
 import com.softwaremagico.tm.CacheHandler;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.cybernetics.CyberneticDeviceFactory;
+import com.softwaremagico.tm.character.cybernetics.CyberneticType;
 
 @Test(groups = { "cyberneticFactory" })
 public class CyberneticDeviceFactoryTests {
@@ -55,5 +56,12 @@ public class CyberneticDeviceFactoryTests {
 				CyberneticDeviceFactory.getInstance()
 						.getDevicesThatRequires(CyberneticDeviceFactory.getInstance().getElement("secondBrain", LANGUAGE), LANGUAGE).size(),
 				SECOND_BRAIN_SOFTWARE);
+	}
+
+	@Test
+	public void getTypes() throws InvalidXmlElementException {
+		Assert.assertEquals(CyberneticType.ENHANCEMENT, CyberneticDeviceFactory.getInstance().getElement("secondBrain", LANGUAGE).getType());
+		Assert.assertEquals(CyberneticType.COMBAT, CyberneticDeviceFactory.getInstance().getElement("viperSword", LANGUAGE).getType());
+		Assert.assertEquals(CyberneticType.OTHERS, CyberneticDeviceFactory.getInstance().getElement("stimusim", LANGUAGE).getType());
 	}
 }

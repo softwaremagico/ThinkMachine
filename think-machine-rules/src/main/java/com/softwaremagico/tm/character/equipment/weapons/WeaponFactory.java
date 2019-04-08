@@ -35,8 +35,8 @@ import com.softwaremagico.tm.character.characteristics.CharacteristicsDefinition
 import com.softwaremagico.tm.character.equipment.DamageType;
 import com.softwaremagico.tm.character.equipment.DamageTypeFactory;
 import com.softwaremagico.tm.character.equipment.Size;
-import com.softwaremagico.tm.character.skills.SkillDefinition;
-import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
+import com.softwaremagico.tm.character.skills.AvailableSkill;
+import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
 
@@ -107,10 +107,10 @@ public class WeaponFactory extends XmlFactory<Weapon> {
 			throw new InvalidWeaponException("Invalid characteristic name in weapon '" + weaponId + "'.");
 		}
 
-		SkillDefinition skill = null;
+		AvailableSkill skill = null;
 		try {
 			String skillName = translator.getNodeValue(weaponId, SKILL);
-			skill = SkillsDefinitionsFactory.getInstance().getElement(skillName, language);
+			skill = AvailableSkillsFactory.getInstance().getElement(skillName, language);
 		} catch (Exception e) {
 			throw new InvalidWeaponException("Invalid skill name in weapon '" + weaponId + "'.");
 		}

@@ -30,8 +30,6 @@ import java.util.Set;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
-import com.softwaremagico.tm.character.skills.AvailableSkill;
-import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.log.RandomGenerationLog;
 import com.softwaremagico.tm.random.RandomSelector;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
@@ -112,20 +110,10 @@ public abstract class RandomWeapon extends RandomSelector<Weapon> {
 		weight = weight / costModificator;
 
 		// Skill modifications.
-		try {
-			int skillMultiplier = 0;
-			for (AvailableSkill availableSkill : AvailableSkillsFactory.getInstance().getAvailableSkills(weapon.getSkill(), getCharacterPlayer().getLanguage())) {
-				int totalRanks = getCharacterPlayer().getSkillTotalRanks(availableSkill);
-				if (totalRanks > 0) {
-					if (totalRanks > skillMultiplier) {
-						skillMultiplier = totalRanks;
-					}
-				}
-			}
+		int skillMultiplier = getCharacterPlayer().getSkillTotalRanks(weapon.getSkill());
+		if (skillMultiplier > 0) {
 			RandomGenerationLog.debug(this.getClass().getName(), "Skill multiplication for weight for '" + weapon + "' is '" + skillMultiplier + "'.");
 			weight = (weight + skillMultiplier) * skillMultiplier;
-		} catch (InvalidXmlElementException e) {
-			RandomGenerationLog.errorMessage(this.getClass().getName(), e);
 		}
 
 		RandomGenerationLog.debug(this.getClass().getName(), "Total weight for '" + weapon + "' is '" + weight + "'.");

@@ -40,9 +40,8 @@ import com.softwaremagico.tm.character.equipment.DamageType;
 import com.softwaremagico.tm.character.equipment.weapons.Accessory;
 import com.softwaremagico.tm.character.equipment.weapons.Ammunition;
 import com.softwaremagico.tm.character.equipment.weapons.Weapon;
+import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
-import com.softwaremagico.tm.character.skills.SkillDefinition;
-import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
 import com.softwaremagico.tm.character.values.Bonification;
 import com.softwaremagico.tm.character.values.IValue;
 import com.softwaremagico.tm.character.values.SpecialValue;
@@ -81,6 +80,8 @@ public class CyberneticDeviceFactory extends XmlFactory<CyberneticDevice> {
 	private final static String RANGE = "range";
 	private final static String SHOTS = "shots";
 	private final static String RATE = "rate";
+
+	private final static String TYPE = "type";
 
 	private Map<CyberneticDevice, Set<CyberneticDevice>> requiredBy;
 
@@ -267,8 +268,15 @@ public class CyberneticDeviceFactory extends XmlFactory<CyberneticDevice> {
 				weapon = getWeapon(translator, cyberneticDeviceId, name, techLevel, language);
 			}
 
+			CyberneticType cyberneticType = CyberneticType.ENHANCEMENT;
+			try {
+				cyberneticType = CyberneticType.get(translator.getNodeValue(cyberneticDeviceId, TYPE));
+			} catch (Exception e) {
+				throw new InvalidCyberneticDeviceException("Invalid type value in cybernetic '" + cyberneticDeviceId + "'.");
+			}
+
 			CyberneticDevice cyberneticDevice = new CyberneticDevice(cyberneticDeviceId, name, language, points, incompatibility, cost, techLevel, requires,
-					weapon, traits, bonifications, staticValues);
+					weapon, traits, bonifications, staticValues, cyberneticType);
 			return cyberneticDevice;
 		} catch (Exception e) {
 			throw new InvalidCyberneticDeviceException("Invalid cybernetic device definition for '" + cyberneticDeviceId + "'.", e);
@@ -285,10 +293,10 @@ public class CyberneticDeviceFactory extends XmlFactory<CyberneticDevice> {
 			throw new InvalidCyberneticDeviceException("Invalid characteristic name in weapon of cybernetic '" + cyberneticDeviceId + "'.");
 		}
 
-		SkillDefinition skill = null;
+		AvailableSkill skill = null;
 		try {
 			String skillName = translator.getNodeValue(cyberneticDeviceId, WEAPON, SKILL);
-			skill = SkillsDefinitionsFactory.getInstance().getElement(skillName, language);
+			skill = AvailableSkillsFactory.getInstance().getElement(skillName, language);
 		} catch (Exception e) {
 			throw new InvalidCyberneticDeviceException("Invalid skill name in weapon of cybernetic '" + cyberneticDeviceId + "'.");
 		}
