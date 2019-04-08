@@ -197,9 +197,12 @@ public class WeaponFactory extends XmlFactory<Weapon> {
 			// Not mandatory.
 		}
 
-		String typeName = "";
+		WeaponType type = null;
 		try {
-			typeName = translator.getNodeValue(weaponId, TYPE);
+			type = WeaponType.get(translator.getNodeValue(weaponId, TYPE));
+			if (type == null) {
+				throw new Exception();
+			}
 		} catch (Exception e) {
 			throw new InvalidWeaponException("Invalid type value in weapon '" + weaponId + "'.");
 		}
@@ -248,8 +251,8 @@ public class WeaponFactory extends XmlFactory<Weapon> {
 			}
 		}
 
-		weapon = new Weapon(weaponId, name, language, WeaponType.get(typeName), goal, characteristicDefintion, skill, damage, strength, range, shots, rate,
-				techLevel, techLevelSpecial, size, special, damageOfWeapon, cost, ammunitions, accessories);
+		weapon = new Weapon(weaponId, name, language, type, goal, characteristicDefintion, skill, damage, strength, range, shots, rate, techLevel,
+				techLevelSpecial, size, special, damageOfWeapon, cost, ammunitions, accessories);
 
 		return weapon;
 	}

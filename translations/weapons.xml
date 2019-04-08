@@ -3435,7 +3435,7 @@
 		</name>
 		<characteristic>dexterity</characteristic>
 		<skill>throwing</skill>
-		<type>GRANADE</type>
+		<type>GRENADE</type>
 		<techLevel>6</techLevel>
 		<goal>0</goal>
 		<damage>3</damage>
@@ -3454,7 +3454,7 @@
 		</name>
 		<characteristic>dexterity</characteristic>
 		<skill>throwing</skill>
-		<type>GRANADE</type>
+		<type>GRENADE</type>
 		<techLevel>6</techLevel>
 		<goal>0</goal>
 		<damage>6 (3 m)</damage>
@@ -3473,7 +3473,7 @@
 		</name>
 		<characteristic>dexterity</characteristic>
 		<skill>throwing</skill>
-		<type>GRANADE</type>
+		<type>GRENADE</type>
 		<techLevel>4</techLevel>
 		<goal>0</goal>
 		<damage>KO</damage>
@@ -3491,7 +3491,7 @@
 		</name>
 		<characteristic>dexterity</characteristic>
 		<skill>throwing</skill>
-		<type>GRANADE</type>
+		<type>GRENADE</type>
 		<techLevel>4</techLevel>
 		<goal>0</goal>
 		<damage>12 (5 m)</damage>
@@ -3509,7 +3509,7 @@
 		</name>
 		<characteristic>dexterity</characteristic>
 		<skill>throwing</skill>
-		<type>GRANADE</type>
+		<type>GRENADE</type>
 		<techLevel>3</techLevel>
 		<techLevelSpecial>true</techLevelSpecial>
 		<goal>0</goal>
@@ -3528,7 +3528,7 @@
 		</name>
 		<characteristic>dexterity</characteristic>
 		<skill>throwing</skill>
-		<type>GRANADE</type>
+		<type>GRENADE</type>
 		<techLevel>4</techLevel>
 		<techLevelSpecial>true</techLevelSpecial>
 		<goal>0</goal>
@@ -3547,7 +3547,7 @@
 		</name>
 		<characteristic>dexterity</characteristic>
 		<skill>throwing</skill>
-		<type>GRANADE</type>
+		<type>GRENADE</type>
 		<techLevel>5</techLevel>
 		<techLevelSpecial>true</techLevelSpecial>
 		<goal>0</goal>
@@ -3566,7 +3566,7 @@
 		</name>
 		<characteristic>dexterity</characteristic>
 		<skill>throwing</skill>
-		<type>GRANADE</type>
+		<type>GRENADE</type>
 		<techLevel>6</techLevel>
 		<techLevelSpecial>true</techLevelSpecial>
 		<goal>0</goal>
@@ -3585,7 +3585,7 @@
 		</name>
 		<characteristic>dexterity</characteristic>
 		<skill>throwing</skill>
-		<type>GRANADE</type>
+		<type>GRENADE</type>
 		<techLevel>7</techLevel>
 		<techLevelSpecial>true</techLevelSpecial>
 		<goal>0</goal>
@@ -3604,7 +3604,7 @@
 		</name>
 		<characteristic>dexterity</characteristic>
 		<skill>throwing</skill>
-		<type>GRANADE</type>
+		<type>GRENADE</type>
 		<techLevel>8</techLevel>
 		<techLevelSpecial>true</techLevelSpecial>
 		<goal>0</goal>
@@ -3623,7 +3623,7 @@
 		</name>
 		<characteristic>dexterity</characteristic>
 		<skill>throwing</skill>
-		<type>GRANADE</type>
+		<type>GRENADE</type>
 		<techLevel>6</techLevel>
 		<goal>0</goal>
 		<damage>18 (6 m)</damage>
@@ -3642,7 +3642,7 @@
 		</name>
 		<characteristic>dexterity</characteristic>
 		<skill>throwing</skill>
-		<type>GRANADE</type>
+		<type>GRENADE</type>
 		<techLevel>4</techLevel>
 		<goal>0</goal>
 		<damage>*(4m)</damage>
@@ -3660,7 +3660,7 @@
 		</name>
 		<characteristic>dexterity</characteristic>
 		<skill>throwing</skill>
-		<type>GRANADE</type>
+		<type>GRENADE</type>
 		<techLevel>5</techLevel>
 		<goal>0</goal>
 		<damage>12 (3 m)</damage>

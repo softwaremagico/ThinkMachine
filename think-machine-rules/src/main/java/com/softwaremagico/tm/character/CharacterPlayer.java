@@ -69,6 +69,7 @@ import com.softwaremagico.tm.character.equipment.shields.InvalidShieldException;
 import com.softwaremagico.tm.character.equipment.shields.Shield;
 import com.softwaremagico.tm.character.equipment.weapons.Weapon;
 import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
+import com.softwaremagico.tm.character.equipment.weapons.WeaponType;
 import com.softwaremagico.tm.character.equipment.weapons.Weapons;
 import com.softwaremagico.tm.character.factions.Faction;
 import com.softwaremagico.tm.character.occultism.InvalidOccultismPowerException;
@@ -535,6 +536,18 @@ public class CharacterPlayer {
 
 	public void addWeapon(Weapon weapon) {
 		weapons.addElement(weapon);
+	}
+
+	public List<Weapon> getAllWeapons(WeaponType type) {
+		List<Weapon> allWeapons = new ArrayList<>(getAllWeapons());
+		List<Weapon> selectedWeapons = new ArrayList<>();
+		for (Weapon weapon : allWeapons) {
+			if (Objects.equals(weapon.getType(), type)) {
+				selectedWeapons.add(weapon);
+			}
+		}
+		Collections.sort(selectedWeapons);
+		return Collections.unmodifiableList(selectedWeapons);
 	}
 
 	public List<Weapon> getAllWeapons() {
