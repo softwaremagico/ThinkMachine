@@ -540,4 +540,8 @@
 		<en>Equipment</en>
 		<es>Equipo</es>
 	</equipment>
+	<threatLevel>
+		<en>Threat</en>
+		<es>Amenaza</es>
+	</threatLevel>
 </translator>

@@ -30,6 +30,7 @@ import java.util.List;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.character.ThreatLevel;
 import com.softwaremagico.tm.character.benefices.AvailableBenefice;
 import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
 import com.softwaremagico.tm.character.benefices.BeneficeClassification;
@@ -56,6 +57,8 @@ import com.softwaremagico.tm.log.MachineLog;
 
 public class CharacterSheet {
 	private final static String ELEMENT_SEPARATOR = ", ";
+	// private final static String THREAT_LEVEL_SYMBOL = "\u2620";
+
 	private static ITranslator translator = LanguagePool.getTranslator("character_sheet.xml");
 	private final CharacterPlayer characterPlayer;
 
@@ -74,6 +77,10 @@ public class CharacterSheet {
 
 	private void setCharacterInfoText(StringBuilder stringBuilder) throws InvalidXmlElementException {
 		stringBuilder.append(getCharacterPlayer().getNameRepresentation());
+		// stringBuilder.append(" (" +
+		// ThreatLevel.getThreatLevel(getCharacterPlayer()) +
+		// THREAT_LEVEL_SYMBOL + ")");
+		stringBuilder.append(" (" + getTranslator().getTranslatedText("threatLevel") + ": " + ThreatLevel.getThreatLevel(getCharacterPlayer()) + ")");
 		stringBuilder.append("\n");
 		stringBuilder.append(getCharacterPlayer().getRace().getName());
 		stringBuilder.append(" " + getCharacterPlayer().getInfo().getTranslatedParameter("gender"));
