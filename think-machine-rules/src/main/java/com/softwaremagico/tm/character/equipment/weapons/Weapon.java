@@ -105,9 +105,13 @@ public class Weapon extends Element<Weapon> {
 	}
 
 	public int getMainDamage() {
-		Matcher matcher = FIRST_NUMBER_PATTERN.matcher(getDamage());
-		if (matcher.find()) {
-			return Integer.parseInt(matcher.group());
+		try {
+			Matcher matcher = FIRST_NUMBER_PATTERN.matcher(getDamage());
+			if (matcher.find()) {
+				return Integer.parseInt(matcher.group());
+			}
+		} catch (NullPointerException e) {
+			// No damage
 		}
 		return 0;
 	}
@@ -121,15 +125,22 @@ public class Weapon extends Element<Weapon> {
 	}
 
 	public int getMainRate() {
-		Matcher matcher = FIRST_NUMBER_PATTERN.matcher(getRate());
-		if (matcher.find()) {
-			return Integer.parseInt(matcher.group());
+		try {
+			Matcher matcher = FIRST_NUMBER_PATTERN.matcher(getRate());
+			if (matcher.find()) {
+				return Integer.parseInt(matcher.group());
+			}
+		} catch (NullPointerException e) {
+			// Melee weapon.
 		}
 		return 0;
 	}
 
 	public boolean isAutomaticWeapon() {
-		return getRate().toLowerCase().contains("a");
+		if (getRate() != null) {
+			return getRate().toLowerCase().contains("a");
+		}
+		return false;
 	}
 
 	public Size getSize() {
@@ -153,9 +164,13 @@ public class Weapon extends Element<Weapon> {
 	}
 
 	public int getMainRange() {
-		Matcher matcher = FIRST_NUMBER_PATTERN.matcher(getRange());
-		if (matcher.find()) {
-			return Integer.parseInt(matcher.group());
+		try {
+			Matcher matcher = FIRST_NUMBER_PATTERN.matcher(getRange());
+			if (matcher.find()) {
+				return Integer.parseInt(matcher.group());
+			}
+		} catch (NullPointerException e) {
+			// Melee weapon.
 		}
 		return 0;
 	}

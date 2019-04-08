@@ -548,6 +548,7 @@
 		</name>
 		<characteristic>dexterity</characteristic>
 		<skill>artifactMelee</skill>
+		<type>MELEE_ARTIFACT</type>
 		<techLevel>8</techLevel>
 		<goal>+1</goal>
 		<damage>7</damage>
@@ -2963,7 +2964,7 @@
 		</name>
 		<characteristic>dexterity</characteristic>
 		<skill>energyGuns</skill>
-		<type>ENERGY</type>
+		<type>SCREECHER</type>
 		<techLevel>5</techLevel>
 		<goal>1</goal>
 		<damage>4</damage>
@@ -3027,7 +3028,7 @@
 		</name>
 		<characteristic>dexterity</characteristic>
 		<skill>energyGuns</skill>
-		<type>ENERGY</type>
+		<type>ARTIFACT_ENERGY</type>
 		<techLevel>8</techLevel>
 		<goal>1</goal>
 		<damage>15</damage>
@@ -3049,7 +3050,7 @@
 		</name>
 		<characteristic>dexterity</characteristic>
 		<skill>energyGuns</skill>
-		<type>NEURAL</type>
+		<type>ARTIFACT_ENERGY</type>
 		<techLevel>8</techLevel>
 		<goal>–3</goal>
 		<damage>5</damage>
@@ -3071,7 +3072,7 @@
 		</name>
 		<characteristic>dexterity</characteristic>
 		<skill>energyGuns</skill>
-		<type>NEURAL</type>
+		<type>ARTIFACT_ENERGY</type>
 		<techLevel>8</techLevel>
 		<goal>-2</goal>
 		<damage>4</damage>
@@ -3206,7 +3207,7 @@
 	<bosarkCannoneer>
 		<name>
 			<en>Bosark Cannoneer (Borer)</en>
-			<es>Cañonero Bosark ()Perforante)</es>
+			<es>Cañonero Bosark (Perforante)</es>
 		</name>
 		<characteristic>dexterity</characteristic>
 		<skill>slugGuns</skill>

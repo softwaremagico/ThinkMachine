@@ -42,10 +42,10 @@ import com.softwaremagico.tm.character.skills.AvailableSkill;
 public class ThreatLevel {
 	private final static int DAMAGE_THREAT_MULTIPLICATOR = 2;
 	private final static int DAMAGE_TYPES_THREAT_MULTIPLICATOR = 2;
-	private final static int COMBAT_STYLES_THREAT_MULTIPLICATOR = 3;
-	private final static int EXTRA_WYRD_THREAT_MULTIPLICATOR = 2;
+	private final static int COMBAT_STYLES_THREAT_MULTIPLICATOR = 5;
+	private final static int EXTRA_WYRD_THREAT_MULTIPLICATOR = 3;
 	private final static int PSI_LEVEL_THREAT_MULTIPLICATOR = 2;
-	private final static int VITALITYL_THREAT_MULTIPLICATOR = 2;
+	private final static int VITALITY_THREAT_MULTIPLICATOR = 2;
 
 	public static int getThreatLevel(CharacterPlayer characterPlayer) throws InvalidXmlElementException {
 		int threatLevel = 0;
@@ -67,7 +67,7 @@ public class ThreatLevel {
 		if (!characterPlayer.getAllWeapons().isEmpty()) {
 			Weapon mainWeapon = characterPlayer.getMainWeapon();
 			threatLevel += getThreatLevel(characterPlayer, characterPlayer.getCharacteristic(mainWeapon.getCharacteristic().getCharacteristicName()),
-					mainWeapon.getSkill());
+					mainWeapon.getSkill()) * 2;
 			threatLevel += getThreatLevel(mainWeapon);
 			if (WeaponType.getMeleeTypes().contains(mainWeapon.getType())) {
 				threatLevel += characterPlayer.getStrengthDamangeModification() * DAMAGE_THREAT_MULTIPLICATOR;
@@ -88,6 +88,7 @@ public class ThreatLevel {
 		threatLevel += weapon.getDamageTypes().size() * DAMAGE_TYPES_THREAT_MULTIPLICATOR;
 		threatLevel += weapon.getMainRange() / 10;
 		threatLevel += weapon.getMainRate();
+		// threatLevel += weapon.getAccesories().size();
 		if (weapon.isAutomaticWeapon()) {
 			threatLevel *= 2;
 		}
@@ -109,11 +110,11 @@ public class ThreatLevel {
 		for (SelectedCyberneticDevice cyberneticDevice : cyberneticDevices) {
 			switch (cyberneticDevice.getCyberneticDevice().getClassification()) {
 			case COMBAT:
-				threatLevel += cyberneticDevice.getCost() * 2;
+				threatLevel += cyberneticDevice.getPoints() * 2;
 				break;
 			case ENHANCEMENT:
 			case ALTERATION:
-				threatLevel += cyberneticDevice.getCost() / 2;
+				threatLevel += cyberneticDevice.getPoints() / 2;
 				break;
 			case OTHERS:
 				break;
@@ -129,7 +130,7 @@ public class ThreatLevel {
 			for (String occultismPowerName : occulstismPathEntry.getValue()) {
 				switch (occultismPath.getClassification()) {
 				case COMBAT:
-					threatLevel += occultismPath.getOccultismPowers().get(occultismPowerName).getLevel() * 2;
+					threatLevel += occultismPath.getOccultismPowers().get(occultismPowerName).getLevel();
 					break;
 				case ENHANCEMENT:
 				case ALTERATION:
@@ -156,6 +157,6 @@ public class ThreatLevel {
 	}
 
 	private static int getVitalityThreatLevel(CharacterPlayer characterPlayer) throws InvalidXmlElementException {
-		return characterPlayer.getVitalityValue() * VITALITYL_THREAT_MULTIPLICATOR;
+		return characterPlayer.getVitalityValue() * VITALITY_THREAT_MULTIPLICATOR;
 	}
 }
