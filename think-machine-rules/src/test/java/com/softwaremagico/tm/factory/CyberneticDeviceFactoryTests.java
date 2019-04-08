@@ -29,9 +29,9 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.softwaremagico.tm.CacheHandler;
+import com.softwaremagico.tm.ElementClassification;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.cybernetics.CyberneticDeviceFactory;
-import com.softwaremagico.tm.character.cybernetics.CyberneticType;
 
 @Test(groups = { "cyberneticFactory" })
 public class CyberneticDeviceFactoryTests {
@@ -59,9 +59,9 @@ public class CyberneticDeviceFactoryTests {
 	}
 
 	@Test
-	public void getTypes() throws InvalidXmlElementException {
-		Assert.assertEquals(CyberneticType.ENHANCEMENT, CyberneticDeviceFactory.getInstance().getElement("secondBrain", LANGUAGE).getType());
-		Assert.assertEquals(CyberneticType.COMBAT, CyberneticDeviceFactory.getInstance().getElement("viperSword", LANGUAGE).getType());
-		Assert.assertEquals(CyberneticType.OTHERS, CyberneticDeviceFactory.getInstance().getElement("stimusim", LANGUAGE).getType());
+	public void getClassifications() throws InvalidXmlElementException {
+		Assert.assertEquals(ElementClassification.ENHANCEMENT, CyberneticDeviceFactory.getInstance().getElement("secondBrain", LANGUAGE).getClassification());
+		Assert.assertEquals(ElementClassification.COMBAT, CyberneticDeviceFactory.getInstance().getElement("viperSword", LANGUAGE).getClassification());
+		Assert.assertEquals(ElementClassification.OTHERS, CyberneticDeviceFactory.getInstance().getElement("stimusim", LANGUAGE).getClassification());
 	}
 }

@@ -28,6 +28,7 @@ import junit.framework.Assert;
 
 import org.testng.annotations.Test;
 
+import com.softwaremagico.tm.ElementClassification;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.occultism.OccultismDurationFactory;
 import com.softwaremagico.tm.character.occultism.OccultismPathFactory;
@@ -81,5 +82,13 @@ public class OccultismFactoryTests {
 	@Test
 	public void getOcculstimTypes() throws InvalidXmlElementException {
 		Assert.assertEquals(OCCULTISM_TYPES, OccultismTypeFactory.getInstance().getElements(LANGUAGE).size());
+	}
+	
+	@Test
+	public void getClassifications() throws InvalidXmlElementException {
+		Assert.assertEquals(ElementClassification.ENHANCEMENT, OccultismPathFactory.getInstance().getElement("sixthSense", LANGUAGE).getClassification());
+		Assert.assertEquals(ElementClassification.COMBAT, OccultismPathFactory.getInstance().getElement("soma", LANGUAGE).getClassification());
+		Assert.assertEquals(ElementClassification.OTHERS, OccultismPathFactory.getInstance().getElement("sympathy", LANGUAGE).getClassification());
+		Assert.assertEquals(ElementClassification.ALTERATION, OccultismPathFactory.getInstance().getElement("templeAvestiRituals", LANGUAGE).getClassification());
 	}
 }

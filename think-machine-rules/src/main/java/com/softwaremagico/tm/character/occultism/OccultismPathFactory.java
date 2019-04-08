@@ -32,10 +32,12 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.StringTokenizer;
 
+import com.softwaremagico.tm.ElementClassification;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.characteristics.CharacteristicsDefinitionFactory;
+import com.softwaremagico.tm.character.cybernetics.InvalidCyberneticDeviceException;
 import com.softwaremagico.tm.character.factions.Faction;
 import com.softwaremagico.tm.character.factions.FactionsFactory;
 import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
@@ -60,6 +62,8 @@ public class OccultismPathFactory extends XmlFactory<OccultismPath> {
 	private final static String POWER_DURATION = "duration";
 	private final static String POWER_WYRD = "wyrd";
 	private final static String POWER_COMPONENTS = "components";
+
+	private final static String CLASSIFICATION = "classification";
 
 	private final static String VARIABLE_WYRD = "variable";
 
@@ -119,7 +123,14 @@ public class OccultismPathFactory extends XmlFactory<OccultismPath> {
 				}
 			}
 
-			OccultismPath occultismPath = new OccultismPath(occultismId, name, language, occultismType, factions);
+			ElementClassification classification = ElementClassification.ENHANCEMENT;
+			try {
+				classification = ElementClassification.get(translator.getNodeValue(occultismId, CLASSIFICATION));
+			} catch (Exception e) {
+				throw new InvalidCyberneticDeviceException("Invalid classification value in occultism '" + occultismId + "'.");
+			}
+
+			OccultismPath occultismPath = new OccultismPath(occultismId, name, language, occultismType, factions, classification);
 
 			for (String powerId : translator.getAllChildrenTags(occultismId, OCCULTISM_POWER)) {
 				String powerName = translator.getNodeValue(powerId, POWER_NAME, language);

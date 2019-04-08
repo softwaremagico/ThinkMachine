@@ -6,6 +6,7 @@
 			<es>Mano Lejana</es>
 		</name>
 		<type>psi</type>
+		<classification>combat</classification>
 		<powers>
 			<liftingHand>
 				<name>
@@ -119,6 +120,7 @@
 			<es>Augurio</es>
 		</name>
 		<type>psi</type>
+		<classification>others</classification>
 		<powers>
 			<shadowsGoneBy>
 				<name>
@@ -180,6 +182,7 @@
 			<es>Mentalismo</es>
 		</name>
 		<type>psi</type>
+		<classification>others</classification>
 		<powers>
 			<intuit>
 				<name>
@@ -319,6 +322,7 @@
 			<es>Sexto Sentido</es>
 		</name>
 		<type>psi</type>
+		<classification>enhancement</classification>
 		<powers>
 			<sensitivity>
 				<name>
@@ -445,6 +449,7 @@
 			<es>Soma</es>
 		</name>
 		<type>psi</type>
+		<classification>combat</classification>
 		<powers>
 			<toughening>
 				<name>
@@ -571,6 +576,7 @@
 			<es>Afinidad</es>
 		</name>
 		<type>psi</type>
+		<classification>others</classification>
 		<powers>
 			<bond>
 				<name>
@@ -671,6 +677,7 @@
 			<es>Manipular Vis</es>
 		</name>
 		<type>psi</type>
+		<classification>combat</classification>
 		<powers>
 			<visEye>
 				<name>
@@ -836,6 +843,7 @@
 			<es></es>
 		</name>
 		<type>theurgy</type>
+		<classification>combat</classification>
 		<factions></factions>
 		<powers>
 			<prophetsHolyBlessing>
@@ -987,6 +995,7 @@
 		</name>
 		<type>theurgy</type>
 		<factions>orthodox</factions>
+		<classification>others</classification>
 		<powers>
 			<consecration>
 				<name>
@@ -1121,6 +1130,7 @@
 		</name>
 		<type>theurgy</type>
 		<factions>brotherBattle</factions>
+		<classification>combat</classification>
 		<powers>
 			<soulsVessel>
 				<name>
@@ -1255,6 +1265,7 @@
 		</name>
 		<type>theurgy</type>
 		<factions>eskatonic</factions>
+		<classification>others</classification>
 		<powers>
 			<celestialAlignment>
 				<name>
@@ -1403,6 +1414,7 @@
 		</name>
 		<type>theurgy</type>
 		<factions>avestites</factions>
+		<classification>alteration</classification>
 		<powers>
 			<knowingTheFalseHeart>
 				<name>
@@ -1553,6 +1565,7 @@
 		</name>
 		<type>theurgy</type>
 		<factions>amaltheans</factions>
+		<classification>alteration</classification>
 		<powers>
 			<cleansing>
 				<name>

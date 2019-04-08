@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.character.cybernetics;
+package com.softwaremagico.tm;
 
 /*-
  * #%L
@@ -26,15 +26,18 @@ package com.softwaremagico.tm.character.cybernetics;
 
 import java.util.Objects;
 
-public enum CyberneticType {
+public enum ElementClassification {
+
 	COMBAT,
 
 	ENHANCEMENT,
+	
+	ALTERATION,
 
 	OTHERS;
 
-	public static CyberneticType get(String typeName) {
-		for (CyberneticType type : CyberneticType.values()) {
+	public static ElementClassification get(String typeName) {
+		for (ElementClassification type : ElementClassification.values()) {
 			if (Objects.equals(type.name().toLowerCase(), typeName.toLowerCase())) {
 				return type;
 			}

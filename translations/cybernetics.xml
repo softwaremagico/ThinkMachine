@@ -16,7 +16,7 @@
 			<goal>0</goal>
 			<damage>4</damage>
 		</weapon>
-		<type>combat</type>
+		<classification>combat</classification>
 	</centurionKnife>
 	<viperSword>
 		<name>
@@ -34,7 +34,7 @@
 			<goal>0</goal>
 			<damage>5</damage>
 		</weapon>
-		<type>combat</type>
+		<classification>combat</classification>
 	</viperSword>
 	<armHarpoon>
 		<name>
@@ -55,7 +55,7 @@
 			<shots>5</shots>
 			<rate>1</rate>
 		</weapon>
-		<type>combat</type>
+		<classification>combat</classification>
 	</armHarpoon>
 	<jonah>
 		<name>
@@ -76,7 +76,7 @@
 			<shots>5</shots>
 			<rate>1</rate>
 		</weapon>
-		<type>combat</type>
+		<classification>combat</classification>
 	</jonah>
 	<aquaLung>
 		<name>
@@ -89,7 +89,7 @@
 		<traits>organic, obvious, automatic, selfPowered</traits>
 		<cost>1655</cost>
 		<others>ciberLungWater</others>
-		<type>enhancement</type>
+		<classification>enhancement</classification>
 	</aquaLung>
 	<advancedAquaLung>
 		<name>
@@ -102,7 +102,7 @@
 		<traits>organic, hidden, automatic, selfPowered</traits>
 		<cost>1805</cost>
 		<others>ciberLungWater</others>
-		<type>enhancement</type>
+		<classification>enhancement</classification>
 	</advancedAquaLung>
 	<engineersEye>
 		<name>
@@ -127,7 +127,7 @@
 		<random>
 			<recommendedFactionGroups>engineer</recommendedFactionGroups>
 		</random>
-		<type>enhancement</type>
+		<classification>enhancement</classification>
 	</engineersEye>
 	<etherEar>
 		<name>
@@ -139,7 +139,7 @@
 		<incompatibility>5</incompatibility>
 		<traits>attached, hidden, skillUse, selfPowered, cybersenseRadio</traits>
 		<cost>1245</cost>
-		<type>enhancement</type>
+		<classification>enhancement</classification>
 	</etherEar>
 	<goliathSkin>
 		<name>
@@ -161,7 +161,7 @@
 				<affects>endurance</affects>
 			</bonification>
 		</bonifications>
-		<type>combat</type>
+		<classification>combat</classification>
 	</goliathSkin>
 	<litheWire>
 		<name>
@@ -179,7 +179,7 @@
 				<affects>dexterity</affects>
 			</bonification>
 		</bonifications>
-		<type>combat</type>
+		<classification>combat</classification>
 	</litheWire>
 	<oxyLung>
 		<name>
@@ -191,7 +191,7 @@
 		<incompatibility>7</incompatibility>
 		<cost>5250</cost>
 		<traits>organic, synthflesh, hidden, automatic, selfPowered, proscribed, ciberLungVoid</traits>
-		<type>enhancement</type>
+		<classification>enhancement</classification>
 	</oxyLung>
 	<secondBrain>
 		<name>
@@ -213,7 +213,7 @@
 				<affects>thinkMachine</affects>
 			</bonification>
 		</bonifications>
-		<type>enhancement</type>
+		<classification>enhancement</classification>
 	</secondBrain>
 	<secondBrainJumpLoreSoftware>
 		<name>
@@ -233,7 +233,7 @@
 			</skillValue>
 		</skillsStaticValues>
 		<requires>secondBrain</requires>
-		<type>enhancement</type>
+		<classification>enhancement</classification>
 	</secondBrainJumpLoreSoftware>
 	<secondBrainEnergyPistolsLore>
 		<name>
@@ -253,7 +253,7 @@
 			</skillValue>
 		</skillsStaticValues>
 		<requires>secondBrain</requires>
-		<type>enhancement</type>
+		<classification>enhancement</classification>
 	</secondBrainEnergyPistolsLore>
 	<secondBrainThinkMachineLore>
 		<name>
@@ -273,7 +273,7 @@
 			</skillValue>
 		</skillsStaticValues>
 		<requires>secondBrain</requires> 
-		<type>enhancement</type>
+		<classification>enhancement</classification>
 	</secondBrainThinkMachineLore>
 	<spyEye>
 		<name>
@@ -285,7 +285,7 @@
 		<incompatibility>5</incompatibility>
 		<cost>2655</cost>
 		<traits>organic, synthflesh, hidden, skillUse, selfPowered, cybersenseMagnifier, cybersenseVideo</traits>
-		<type>enhancement</type>
+		<classification>enhancement</classification>
 	</spyEye>
 	<stimusim>
 		<name>
@@ -304,7 +304,7 @@
 			</bonification>
 		</bonifications>
 		<others>cybersenseHypertouch</others>
-		<type>others</type>
+		<classification>others</classification>
 	</stimusim>
 	<xEyes>
 		<name>
@@ -316,6 +316,6 @@
 		<incompatibility>7</incompatibility>
 		<traits>organic, synthflesh, incognito, skillUse, selfPowered, cybersenseHypertouch</traits>
 		<cost>2150</cost>
-		<type>enhancement</type>
+		<classification>enhancement</classification>
 	</xEyes>
 </cybernetics>

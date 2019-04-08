@@ -90,11 +90,12 @@ public class ThreatLevel {
 	private static int getThreatLevel(List<SelectedCyberneticDevice> cyberneticDevices) {
 		int threatLevel = 0;
 		for (SelectedCyberneticDevice cyberneticDevice : cyberneticDevices) {
-			switch (cyberneticDevice.getCyberneticDevice().getType()) {
+			switch (cyberneticDevice.getCyberneticDevice().getClassification()) {
 			case COMBAT:
 				threatLevel += cyberneticDevice.getCost() * 2;
 				break;
 			case ENHANCEMENT:
+			case ALTERATION:
 				threatLevel += cyberneticDevice.getCost() / 2;
 				break;
 			case OTHERS:
@@ -109,7 +110,20 @@ public class ThreatLevel {
 		for (Entry<String, List<String>> occulstismPathEntry : characterPlayer.getSelectedPowers().entrySet()) {
 			OccultismPath occultismPath = OccultismPathFactory.getInstance().getElement(occulstismPathEntry.getKey(), characterPlayer.getLanguage());
 			for (String occultismPowerName : occulstismPathEntry.getValue()) {
-				threatLevel += occultismPath.getOccultismPowers().get(occultismPowerName).getLevel();
+				switch (occultismPath.getClassification()) {
+				case COMBAT:
+					threatLevel += occultismPath.getOccultismPowers().get(occultismPowerName).getLevel() * 2;
+					break;
+				case ENHANCEMENT:
+					threatLevel += occultismPath.getOccultismPowers().get(occultismPowerName).getLevel() / 2;
+					break;
+				case ALTERATION:
+					threatLevel += occultismPath.getOccultismPowers().get(occultismPowerName).getLevel() / 2;
+					break;
+				case OTHERS:
+					threatLevel += occultismPath.getOccultismPowers().get(occultismPowerName).getLevel() / 2;
+					break;
+				}
 			}
 		}
 		threatLevel += characterPlayer.getExtraWyrd() * 2;

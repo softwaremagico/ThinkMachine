@@ -32,6 +32,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.StringTokenizer;
 
+import com.softwaremagico.tm.ElementClassification;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
 import com.softwaremagico.tm.character.characteristics.CharacteristicDefinition;
@@ -81,7 +82,7 @@ public class CyberneticDeviceFactory extends XmlFactory<CyberneticDevice> {
 	private final static String SHOTS = "shots";
 	private final static String RATE = "rate";
 
-	private final static String TYPE = "type";
+	private final static String CLASSIFICATION = "classification";
 
 	private Map<CyberneticDevice, Set<CyberneticDevice>> requiredBy;
 
@@ -268,15 +269,15 @@ public class CyberneticDeviceFactory extends XmlFactory<CyberneticDevice> {
 				weapon = getWeapon(translator, cyberneticDeviceId, name, techLevel, language);
 			}
 
-			CyberneticType cyberneticType = CyberneticType.ENHANCEMENT;
+			ElementClassification cyberneticClassification = ElementClassification.ENHANCEMENT;
 			try {
-				cyberneticType = CyberneticType.get(translator.getNodeValue(cyberneticDeviceId, TYPE));
+				cyberneticClassification = ElementClassification.get(translator.getNodeValue(cyberneticDeviceId, CLASSIFICATION));
 			} catch (Exception e) {
-				throw new InvalidCyberneticDeviceException("Invalid type value in cybernetic '" + cyberneticDeviceId + "'.");
+				throw new InvalidCyberneticDeviceException("Invalid classification value in cybernetic '" + cyberneticDeviceId + "'.");
 			}
 
 			CyberneticDevice cyberneticDevice = new CyberneticDevice(cyberneticDeviceId, name, language, points, incompatibility, cost, techLevel, requires,
-					weapon, traits, bonifications, staticValues, cyberneticType);
+					weapon, traits, bonifications, staticValues, cyberneticClassification);
 			return cyberneticDevice;
 		} catch (Exception e) {
 			throw new InvalidCyberneticDeviceException("Invalid cybernetic device definition for '" + cyberneticDeviceId + "'.", e);

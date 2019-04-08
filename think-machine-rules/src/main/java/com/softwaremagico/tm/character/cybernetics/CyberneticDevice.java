@@ -29,6 +29,7 @@ import java.util.List;
 import java.util.Set;
 
 import com.softwaremagico.tm.Element;
+import com.softwaremagico.tm.ElementClassification;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.IElementWithBonification;
 import com.softwaremagico.tm.character.equipment.weapons.Weapon;
@@ -46,10 +47,11 @@ public class CyberneticDevice extends Element<CyberneticDevice> implements IElem
 	private final List<CyberneticDeviceTrait> traits;
 	private final Set<Bonification> bonifications;
 	private final Set<StaticValue> staticValues;
-	private final CyberneticType type;
+	private final ElementClassification classification;
 
 	public CyberneticDevice(String id, String name, String language, int points, int incompatibility, int cost, int techLevel, String requirement,
-			Weapon weapon, List<CyberneticDeviceTrait> traits, Set<Bonification> bonifications, Set<StaticValue> staticValues, CyberneticType type) {
+			Weapon weapon, List<CyberneticDeviceTrait> traits, Set<Bonification> bonifications, Set<StaticValue> staticValues,
+			ElementClassification classification) {
 		super(id, name, language);
 		this.points = points;
 		this.incompatibility = incompatibility;
@@ -61,7 +63,7 @@ public class CyberneticDevice extends Element<CyberneticDevice> implements IElem
 		this.weapon = weapon;
 		this.bonifications = bonifications;
 		this.staticValues = staticValues;
-		this.type = type;
+		this.classification = classification;
 	}
 
 	@Override
@@ -126,7 +128,7 @@ public class CyberneticDevice extends Element<CyberneticDevice> implements IElem
 		return traits;
 	}
 
-	public CyberneticType getType() {
-		return type;
+	public ElementClassification getClassification() {
+		return classification;
 	}
 }
