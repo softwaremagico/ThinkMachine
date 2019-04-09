@@ -37,6 +37,8 @@ import com.softwaremagico.tm.character.skills.AvailableSkill;
 public class Weapon extends Element<Weapon> {
 	private final static String NUMBER_EXTRACTOR_PATTERN = "^[^\\d]*(\\d+)";
 	private final static Pattern FIRST_NUMBER_PATTERN = Pattern.compile(NUMBER_EXTRACTOR_PATTERN);
+	private final static String AREA_DAMAGE = "\\((\\d+)\\s*m\\)$";
+	private final static Pattern AREA_DAMAGE_PATTERN = Pattern.compile(AREA_DAMAGE);
 
 	private final String goal;
 	private final String damage;
@@ -57,6 +59,9 @@ public class Weapon extends Element<Weapon> {
 
 	private final Set<Ammunition> ammunitions;
 	private final Set<Accessory> accesories;
+
+	private transient Integer mainDamage = null;
+	private transient Integer areaDamage = null;
 
 	public Weapon(String id, String name, String language, WeaponType type, String goal, CharacteristicDefinition characteristic, AvailableSkill skill,
 			String damage, int strength, String range, Integer shots, String rate, int tech, boolean techLevelSpecial, Size size, String special,
@@ -105,15 +110,37 @@ public class Weapon extends Element<Weapon> {
 	}
 
 	public int getMainDamage() {
-		try {
-			Matcher matcher = FIRST_NUMBER_PATTERN.matcher(getDamage());
-			if (matcher.find()) {
-				return Integer.parseInt(matcher.group());
+		if (mainDamage == null) {
+			try {
+				Matcher matcher = FIRST_NUMBER_PATTERN.matcher(getDamage());
+				if (matcher.find()) {
+					mainDamage = Integer.parseInt(matcher.group());
+				} else {
+					mainDamage = 0;
+				}
+			} catch (NullPointerException e) {
+				// No damage
+				mainDamage = 0;
 			}
-		} catch (NullPointerException e) {
-			// No damage
 		}
-		return 0;
+		return mainDamage;
+	}
+
+	public int getAreaDamage() {
+		if (areaDamage == null) {
+			try {
+				Matcher matcher = AREA_DAMAGE_PATTERN.matcher(getDamage());
+				if (matcher.find()) {
+					areaDamage = Integer.parseInt(matcher.group(1));
+				} else {
+					areaDamage = 0;
+				}
+			} catch (NullPointerException e) {
+				// No area
+				areaDamage = 0;
+			}
+		}
+		return areaDamage;
 	}
 
 	public Integer getShots() {

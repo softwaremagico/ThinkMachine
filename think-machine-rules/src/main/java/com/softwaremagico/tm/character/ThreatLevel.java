@@ -41,6 +41,7 @@ import com.softwaremagico.tm.character.skills.AvailableSkill;
 
 public class ThreatLevel {
 	private final static int DAMAGE_THREAT_MULTIPLICATOR = 2;
+	private final static int DAMAGE_AREA_THREAT_MULTIPLICATOR = 3;
 	private final static int DAMAGE_TYPES_THREAT_MULTIPLICATOR = 2;
 	private final static int COMBAT_STYLES_THREAT_MULTIPLICATOR = 5;
 	private final static int EXTRA_WYRD_THREAT_MULTIPLICATOR = 3;
@@ -85,6 +86,7 @@ public class ThreatLevel {
 		}
 		int threatLevel = 0;
 		threatLevel += weapon.getMainDamage() * DAMAGE_THREAT_MULTIPLICATOR;
+		threatLevel += weapon.getAreaDamage() * DAMAGE_AREA_THREAT_MULTIPLICATOR;
 		threatLevel += weapon.getDamageTypes().size() * DAMAGE_TYPES_THREAT_MULTIPLICATOR;
 		threatLevel += weapon.getMainRange() / 10;
 		threatLevel += weapon.getMainRate();

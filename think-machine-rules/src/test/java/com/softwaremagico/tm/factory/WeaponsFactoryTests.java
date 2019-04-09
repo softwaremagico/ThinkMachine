@@ -73,5 +73,13 @@ public class WeaponsFactoryTests {
 		Assert.assertEquals(8, WeaponFactory.getInstance().getElement("typicalShotgun", LANGUAGE).getMainDamage());
 		Assert.assertEquals(12, WeaponFactory.getInstance().getElement("wireGrenade", LANGUAGE).getMainDamage());
 	}
+	
+	@Test
+	public void getAreaDamage() throws InvalidXmlElementException {
+		Assert.assertEquals(1, WeaponFactory.getInstance().getElement("goboLobberJetPistol", LANGUAGE).getAreaDamage());
+		Assert.assertEquals(2, WeaponFactory.getInstance().getElement("goboGarbageChucker", LANGUAGE).getAreaDamage());
+		Assert.assertEquals(3, WeaponFactory.getInstance().getElement("musterNightstorm", LANGUAGE).getAreaDamage());
+		Assert.assertEquals(5, WeaponFactory.getInstance().getElement("fragGrenades", LANGUAGE).getAreaDamage());
+	}
 
 }
