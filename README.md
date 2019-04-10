@@ -82,6 +82,7 @@ Fonts used in this project: DejaVuSans, ArchitectsDaughter and Roman Antique.
 - 0.4.4 Age calculations
 - 0.4.5 Cybernetics included. 
 - 0.4.6 Random profiles.
-- *0.4.7 Random groups generation*.
+- 0.4.7 Threat level calculation.
+- *0.4.8 Random groups generation*.
 
 *0.5.0 Lifepath system.*
