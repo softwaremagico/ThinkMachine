@@ -33,6 +33,7 @@ import org.testng.annotations.Test;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.RandomizeCharacter;
+import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
 import com.softwaremagico.tm.character.creation.CostCalculator;
 import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
 import com.softwaremagico.tm.language.LanguagePool;
@@ -50,7 +51,8 @@ public class RandomCharacterSheetCreationTest {
 	}
 
 	@Test
-	public void completeRandomCharacter() throws InvalidXmlElementException, DuplicatedPreferenceException, InvalidRandomElementSelectedException {
+	public void completeRandomCharacter() throws InvalidXmlElementException, DuplicatedPreferenceException, InvalidRandomElementSelectedException,
+			TooManyBlessingsException {
 		CharacterPlayer characterPlayer = new CharacterPlayer("es");
 		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0);
 		randomizeCharacter.createCharacter();
@@ -63,7 +65,8 @@ public class RandomCharacterSheetCreationTest {
 	}
 
 	@Test
-	public void completeRandomCharacterSmallEs() throws InvalidXmlElementException, DuplicatedPreferenceException, InvalidRandomElementSelectedException {
+	public void completeRandomCharacterSmallEs() throws InvalidXmlElementException, DuplicatedPreferenceException, InvalidRandomElementSelectedException,
+			TooManyBlessingsException {
 		CharacterPlayer characterPlayer = new CharacterPlayer("es");
 		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0);
 		randomizeCharacter.createCharacter();
@@ -76,7 +79,8 @@ public class RandomCharacterSheetCreationTest {
 	}
 
 	@Test
-	public void completeRandomCharacterSmallEn() throws InvalidXmlElementException, DuplicatedPreferenceException, InvalidRandomElementSelectedException {
+	public void completeRandomCharacterSmallEn() throws InvalidXmlElementException, DuplicatedPreferenceException, InvalidRandomElementSelectedException,
+			TooManyBlessingsException {
 		CharacterPlayer characterPlayer = new CharacterPlayer("en");
 		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0);
 		randomizeCharacter.createCharacter();

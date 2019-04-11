@@ -61,7 +61,7 @@ public class ProfileMerger {
 		}
 
 		// Store all information in a new profile.
-		RandomProfile finalProfile = new RandomProfile(DEFAULT_ID, "", profiles.iterator().next().getLanguage());
+		RandomProfile finalProfile = new RandomProfile(DEFAULT_ID, "", language);
 
 		// Merge profiles
 		for (IRandomProfile profile : profiles) {
