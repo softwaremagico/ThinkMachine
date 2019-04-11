@@ -39,7 +39,7 @@ import com.softwaremagico.tm.random.selectors.IRandomPreference;
 
 public class RandomPlanet extends RandomSelector<Planet> {
 	private final static int FACTION_PLANET = 50;
-	private final static int NEUTRAL_PLANET = 5;
+	private final static int NEUTRAL_PLANET = 8;
 	private final static int ENEMY_PLANET = 1;
 
 	public RandomPlanet(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences) throws InvalidXmlElementException {

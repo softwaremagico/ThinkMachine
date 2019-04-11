@@ -29,11 +29,6 @@ import java.util.Set;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.character.blessings.Blessing;
-import com.softwaremagico.tm.character.blessings.BlessingClassification;
-import com.softwaremagico.tm.character.blessings.BlessingFactory;
-import com.softwaremagico.tm.character.blessings.BlessingGroup;
-import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.log.RandomGenerationLog;
 import com.softwaremagico.tm.random.RandomSelector;
@@ -77,16 +72,16 @@ public class RandomBlessingDefinition extends RandomSelector<Blessing> {
 	}
 
 	@Override
-	protected int getWeight(Blessing blessing) {
+	protected int getWeight(Blessing blessing) throws InvalidRandomElementSelectedException {
 		if (blessing == null) {
 			return 0;
 		}
 		if (blessing.getBlessingGroup() == BlessingGroup.RESTRICTED) {
-			return 0;
+			throw new InvalidRandomElementSelectedException("Blessing '" + blessing + "' is restricted.");
 		}
 		// Only curses.
 		if (blessing.getBlessingClassification() == BlessingClassification.CURSE) {
-			return 0;
+			throw new InvalidRandomElementSelectedException("Blessing '" + blessing + "' is a curse.");
 		}
 		// If specialization is set, add blessings that affects the skills with
 		// ranks.

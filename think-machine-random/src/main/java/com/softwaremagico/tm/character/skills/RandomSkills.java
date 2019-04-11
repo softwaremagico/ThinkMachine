@@ -130,7 +130,7 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 		}
 	}
 
-	public void mergeSkills(AvailableSkill availableSkill, SkillGroup skillGroup) throws InvalidXmlElementException {
+	public void mergeSkills(AvailableSkill availableSkill, SkillGroup skillGroup) throws InvalidXmlElementException, InvalidRandomElementSelectedException {
 		int weight = getWeight(availableSkill);
 		while (weight > 0) {
 			for (AvailableSkill selectedSkill : AvailableSkillsFactory.getInstance().getSkillsByGroup(skillGroup, getCharacterPlayer().getLanguage())) {
@@ -159,7 +159,7 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 	}
 
 	@Override
-	protected int getWeight(AvailableSkill skill) {
+	protected int getWeight(AvailableSkill skill) throws InvalidRandomElementSelectedException {
 		int weight = 1;
 
 		if (skill.getSkillDefinition().isNatural()) {
@@ -200,7 +200,7 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 		return weight * specializationMultiplier;
 	}
 
-	private int weightByCharacteristics(AvailableSkill skill) {
+	private int weightByCharacteristics(AvailableSkill skill) throws InvalidRandomElementSelectedException {
 		if (skill.getSkillDefinition().getSkillGroup().getPreferredCharacteristicsGroups() != null && !getPreferredCharacteristicsTypeSorted().isEmpty()) {
 			if (Objects.equals(skill.getSkillDefinition().getSkillGroup().getPreferredCharacteristicsGroups(), getPreferredCharacteristicsTypeSorted().get(0))) {
 				return FAIR_PROBABILITY;
@@ -229,11 +229,12 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 		return AvailableSkillsFactory.getInstance().getMaximumNumberOfSpecializations() / skill.getSkillDefinition().getSpecializations().size();
 	}
 
-	private int weightByFactions(AvailableSkill skill) {
+	private int weightByFactions(AvailableSkill skill) throws InvalidRandomElementSelectedException {
 		// No faction skills
 		if (skill.getSkillDefinition().isLimitedToFaction()) {
 			if (!skill.getSkillDefinition().getFactions().contains(getCharacterPlayer().getFaction())) {
-				return NO_PROBABILITY;
+				throw new InvalidRandomElementSelectedException("Skill '" + skill + "' restricted to factions '" + skill.getSkillDefinition().getFactions()
+						+ "'.");
 			} else if (getCharacterPlayer().getFaction() != null
 			// Recommended to my faction and only this faction can do it.
 					&& skill.getRandomDefinition().getRecommendedFactions().contains(getCharacterPlayer().getFaction())) {
@@ -244,11 +245,12 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 		return 0;
 	}
 
-	private int weightByNobility(AvailableSkill skill) {
+	private int weightByNobility(AvailableSkill skill) throws InvalidRandomElementSelectedException {
 		if (getCharacterPlayer().getFaction() != null && Objects.equals(getCharacterPlayer().getFaction().getFactionGroup(), FactionGroup.NOBILITY)) {
 			// beastcraft for nobility is not common in my point of view.
 			if (skill.getId().equalsIgnoreCase("beastcraft")) {
-				return NO_PROBABILITY;
+				throw new InvalidRandomElementSelectedException("Skill '" + skill + "' not desiderable for faction '" + getCharacterPlayer().getFaction()
+						+ "'.");
 			}
 		}
 		return 0;
@@ -267,12 +269,12 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 		return 0;
 	}
 
-	private int weightBySpecializationPreferences(AvailableSkill skill) {
+	private int weightBySpecializationPreferences(AvailableSkill skill) throws InvalidRandomElementSelectedException {
 		SpecializationPreferences selectedSpecialization = SpecializationPreferences.getSelected(getPreferences());
 		int skillRanks = getCharacterPlayer().getSkillTotalRanks(skill);
 		// No more that the maximum allowed.
 		if (skillRanks > selectedSpecialization.maximum()) {
-			return NO_PROBABILITY;
+			throw new InvalidRandomElementSelectedException("Skill '" + skill + "' has the maximum ranks preferred.");
 		}
 
 		// Good probability for values between the specialization.

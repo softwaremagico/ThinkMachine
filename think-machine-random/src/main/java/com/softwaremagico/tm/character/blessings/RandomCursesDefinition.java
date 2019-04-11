@@ -71,16 +71,16 @@ public class RandomCursesDefinition extends RandomSelector<Blessing> {
 	}
 
 	@Override
-	protected int getWeight(Blessing curse) {
+	protected int getWeight(Blessing curse) throws InvalidRandomElementSelectedException {
 		if (curse == null) {
 			return 0;
 		}
 		if (curse.getBlessingGroup() == BlessingGroup.RESTRICTED) {
-			return 0;
+			throw new InvalidRandomElementSelectedException("Curse '" + curse + "' is restricted.");
 		}
 		// Only curses.
 		if (curse.getBlessingClassification() == BlessingClassification.BLESSING) {
-			return 0;
+			throw new InvalidRandomElementSelectedException("Benefice '" + curse + "' is not a curse.");
 		}
 		BlessingPreferences blessingPreferences = BlessingPreferences.getSelected(getPreferences());
 		if (blessingPreferences != null && curse.getBlessingGroup() == BlessingGroup.get(blessingPreferences.name())) {
@@ -90,7 +90,7 @@ public class RandomCursesDefinition extends RandomSelector<Blessing> {
 		CombatPreferences selectedCombat = CombatPreferences.getSelected(getPreferences());
 		if (selectedCombat != null && selectedCombat.minimum() >= CombatPreferences.FAIR.minimum()) {
 			if (curse.getBlessingGroup() == BlessingGroup.INJURIES) {
-				return 0;
+				throw new InvalidRandomElementSelectedException("No injuries '" + curse + "' for a fighter.");
 			}
 		}
 		// If specialization is set, not curses that affects the skills with
@@ -100,7 +100,8 @@ public class RandomCursesDefinition extends RandomSelector<Blessing> {
 			for (AvailableSkill skill : curse.getAffectedSkill(getCharacterPlayer().getLanguage())) {
 				// More specialized, less ranks required to skip the curse.
 				if (getCharacterPlayer().getSkillAssignedRanks(skill) >= (10 - specializationPreferences.maximum())) {
-					return 0;
+					throw new InvalidRandomElementSelectedException("Curse '" + curse + "' affects the skill '" + skill + "' with ranks '"
+							+ getCharacterPlayer().getSkillAssignedRanks(skill) + "'.");
 				}
 			}
 		}

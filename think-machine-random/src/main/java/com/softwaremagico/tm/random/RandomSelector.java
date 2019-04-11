@@ -45,7 +45,6 @@ import com.softwaremagico.tm.random.selectors.IRandomPreference;
 
 public abstract class RandomSelector<Element extends com.softwaremagico.tm.Element<?>> {
 	protected final static int MAX_PROBABILITY = 1000000;
-	protected final static int NO_PROBABILITY = -10 * MAX_PROBABILITY;
 
 	protected final static int BAD_PROBABILITY = -20;
 	protected final static int DIFFICULT_PROBABILITY = -10;
@@ -140,20 +139,24 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
 	}
 
 	public int getTotalWeight(Element element) {
-		int weight = getWeight(element);
-		weight = (int) ((weight) * getRandomDefinitionBonus(element));
-		if (weight > 0) {
-			// Some probabilities are defined directly.
-			if (element.getRandomDefinition().getStaticProbability() != null) {
-				weight = element.getRandomDefinition().getStaticProbability();
-			}
+		try {
+			int weight = getWeight(element);
+			weight = (int) ((weight) * getRandomDefinitionBonus(element));
+			if (weight > 0) {
+				// Some probabilities are defined directly.
+				if (element.getRandomDefinition().getStaticProbability() != null) {
+					weight = element.getRandomDefinition().getStaticProbability();
+				}
 
-			// Suggested ones.
-			if (suggestedElements.contains(element)) {
-				weight *= FAIR_PROBABILITY;
+				// Suggested ones.
+				if (suggestedElements.contains(element)) {
+					weight *= FAIR_PROBABILITY;
+				}
 			}
+			return weight;
+		} catch (InvalidRandomElementSelectedException e) {
+			return 0;
 		}
-		return weight;
 	}
 
 	private double getRandomDefinitionBonus(Element element) {
@@ -268,7 +271,7 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
 	 *            element to get the weight
 	 * @return weight as integer
 	 */
-	protected abstract int getWeight(Element element);
+	protected abstract int getWeight(Element element) throws InvalidRandomElementSelectedException;
 
 	/**
 	 * Selects a characteristic depending on its weight.

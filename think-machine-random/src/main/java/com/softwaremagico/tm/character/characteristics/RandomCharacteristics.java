@@ -29,9 +29,6 @@ import java.util.Set;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.character.characteristics.Characteristic;
-import com.softwaremagico.tm.character.characteristics.CharacteristicName;
-import com.softwaremagico.tm.character.characteristics.CharacteristicType;
 import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
 import com.softwaremagico.tm.character.factions.FactionGroup;
 import com.softwaremagico.tm.log.RandomGenerationLog;
@@ -109,13 +106,13 @@ public class RandomCharacteristics extends RandomSelector<Characteristic> {
 	}
 
 	@Override
-	protected int getWeight(Characteristic characteristic) {
+	protected int getWeight(Characteristic characteristic) throws InvalidRandomElementSelectedException {
 		if (characteristic == null) {
-			return 0;
+			throw new InvalidRandomElementSelectedException("Null characteristic not allowed.");
 		}
 		// Others characteristics cannot be assigned ranks.
 		if (CharacteristicType.OTHERS.equals(characteristic.getType())) {
-			return 0;
+			throw new InvalidRandomElementSelectedException("Group '" + CharacteristicType.OTHERS + "' of '" + characteristic + "' cannot have assigned ranks.");
 		}
 
 		int weight = 1;
@@ -144,7 +141,7 @@ public class RandomCharacteristics extends RandomSelector<Characteristic> {
 			int characteristicRanks = getCharacterPlayer().getCharacteristic(characteristic.getCharacteristicName()).getValue();
 			// No more that the maximum allowed.
 			if (characteristicRanks > selectedSpecialization.maximum()) {
-				return 0;
+				throw new InvalidRandomElementSelectedException("Characteristic '" + characteristic + "' at maxium value");
 			}
 
 			// Good probability for values between the specialization.

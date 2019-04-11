@@ -110,7 +110,7 @@ public class RandomCybernetics extends RandomSelector<CyberneticDevice> {
 	}
 
 	@Override
-	protected int getWeight(CyberneticDevice cyberneticDevice) {
+	protected int getWeight(CyberneticDevice cyberneticDevice) throws InvalidRandomElementSelectedException {
 		// Close to the desired points
 		int weight = 1;
 		if (cyberneticDevice.getIncompatibility() > desiredCyberneticsPoints / 2) {
@@ -152,7 +152,7 @@ public class RandomCybernetics extends RandomSelector<CyberneticDevice> {
 					weight *= BASIC_MULTIPLICATOR;
 				} else {
 					// No visible devices.
-					return 0;
+					throw new InvalidRandomElementSelectedException("Visible cyberntics as '" + cyberneticDevice + "' not allowed by user preferences.");
 				}
 			}
 			break;

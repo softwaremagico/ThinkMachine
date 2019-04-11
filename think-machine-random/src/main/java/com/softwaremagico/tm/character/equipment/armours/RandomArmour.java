@@ -105,15 +105,17 @@ public class RandomArmour extends EquipmentSelector<Armour> {
 	}
 
 	@Override
-	protected int getWeight(Armour armour) {
+	protected int getWeight(Armour armour) throws InvalidRandomElementSelectedException {
+		super.getWeight(armour);
+
 		// Heavy armours only for real warriors.
 		if (!getPreferences().contains(CombatPreferences.BELLIGERENT)) {
 			if (armour.isHeavy()) {
-				return NO_PROBABILITY;
+				throw new InvalidRandomElementSelectedException("Heavy armour '" + armour + "' not accepted for not combat characters.");
 			}
 		}
 
-		int weight = super.getWeight(armour);
+		int weight = 1;
 		// Similar tech level preferred.
 		int weightTech = getWeightTechModificator(armour);
 		RandomGenerationLog.debug(this.getClass().getName(), "Weight value by tech level for '" + armour + "' is '" + weightTech + "'.");

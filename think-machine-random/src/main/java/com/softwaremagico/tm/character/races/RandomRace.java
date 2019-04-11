@@ -29,9 +29,6 @@ import java.util.Set;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.character.races.InvalidRaceException;
-import com.softwaremagico.tm.character.races.Race;
-import com.softwaremagico.tm.character.races.RaceFactory;
 import com.softwaremagico.tm.random.RandomSelector;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
@@ -54,12 +51,12 @@ public class RandomRace extends RandomSelector<Race> {
 	}
 
 	@Override
-	protected int getWeight(Race race) {
+	protected int getWeight(Race race) throws InvalidRandomElementSelectedException {
 		// Specialization desired.
 		RacePreferences selectedSpecialization = RacePreferences.getSelected(getPreferences());
 		if (selectedSpecialization != null) {
 			if (!race.getId().equalsIgnoreCase(selectedSpecialization.name())) {
-				return 0;
+				throw new InvalidRandomElementSelectedException("Race '" + race + "' restricted by user preferences.");
 			}
 		}
 

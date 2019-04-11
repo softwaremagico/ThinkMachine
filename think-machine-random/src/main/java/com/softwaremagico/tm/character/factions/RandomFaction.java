@@ -54,7 +54,7 @@ public class RandomFaction extends RandomSelector<Faction> {
 	}
 
 	@Override
-	protected int getWeight(Faction faction) {
+	protected int getWeight(Faction faction) throws InvalidRandomElementSelectedException {
 		// Specialization desired.
 		FactionPreferences selectedFactionGroup = FactionPreferences.getSelected(getPreferences());
 		if (selectedFactionGroup != null) {
@@ -62,11 +62,12 @@ public class RandomFaction extends RandomSelector<Faction> {
 				return 1;
 			}
 			// Different faction than selected.
-			return 0;
+			throw new InvalidRandomElementSelectedException("Faction '" + faction + "' not in prefereces selection '" + selectedFactionGroup + "'.");
 		}
 		// Humans only humans factions.
 		if (faction.getRestrictedRace() != null && !faction.getRestrictedRace().equals(getCharacterPlayer().getRace())) {
-			return 0;
+			throw new InvalidRandomElementSelectedException("Faction '" + faction + "' restricted for race '" + faction.getRestrictedRace()
+					+ "'. Character is '" + getCharacterPlayer().getRace() + "'.");
 		}
 		// No faction preference selected. All factions has the same
 		// probability.

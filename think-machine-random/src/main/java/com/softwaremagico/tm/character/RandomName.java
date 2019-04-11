@@ -29,8 +29,6 @@ import java.util.Objects;
 import java.util.Set;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.character.Name;
 import com.softwaremagico.tm.character.benefices.BeneficeSpecialization;
 import com.softwaremagico.tm.character.factions.FactionGroup;
 import com.softwaremagico.tm.character.factions.FactionsFactory;
@@ -86,17 +84,18 @@ public class RandomName extends RandomSelector<Name> {
 	}
 
 	@Override
-	protected int getWeight(Name name) {
+	protected int getWeight(Name name) throws InvalidRandomElementSelectedException {
 		// Only names of its gender.
 		if (!name.getGender().equals(getCharacterPlayer().getInfo().getGender())) {
-			return 0;
+			throw new InvalidRandomElementSelectedException("Name '" + name.getGender() + "' not valid for gender '"
+					+ getCharacterPlayer().getInfo().getGender() + "'.");
 		}
 		// Nobility almost always names of her planet.
 		if (getCharacterPlayer().getFaction() != null && getCharacterPlayer().getFaction().getFactionGroup() == FactionGroup.NOBILITY) {
 			if (getCharacterPlayer().getFaction().equals(name.getFaction())) {
 				return BASIC_PROBABILITY;
 			} else {
-				return 0;
+				throw new InvalidRandomElementSelectedException("Name '" + name.getGender() + "' not allowed for a nobility based character.");
 			}
 		}
 		// Not nobility, use names available on the planet.
@@ -104,7 +103,8 @@ public class RandomName extends RandomSelector<Name> {
 			if (getCharacterPlayer().getInfo().getPlanet().getFactions().contains(name.getFaction())) {
 				return BASIC_PROBABILITY;
 			} else {
-				return 0;
+				throw new InvalidRandomElementSelectedException("Name '" + name.getGender() + "' not existing in planet '"
+						+ getCharacterPlayer().getInfo().getPlanet() + "'.");
 			}
 		}
 		return 1;

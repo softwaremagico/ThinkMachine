@@ -71,8 +71,10 @@ public class RandomShield extends EquipmentSelector<Shield> {
 	}
 
 	@Override
-	protected int getWeight(Shield shield) {
-		int weight = super.getWeight(shield);
+	protected int getWeight(Shield shield) throws InvalidRandomElementSelectedException {
+		super.getWeight(shield);
+
+		int weight = 0;
 
 		// More protection is better.
 		if (getPreferences().contains(CombatPreferences.BELLIGERENT)) {

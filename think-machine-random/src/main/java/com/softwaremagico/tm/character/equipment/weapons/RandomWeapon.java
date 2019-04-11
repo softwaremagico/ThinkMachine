@@ -29,7 +29,6 @@ import java.util.Set;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.equipment.EquipmentSelector;
 import com.softwaremagico.tm.log.RandomGenerationLog;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
@@ -66,13 +65,16 @@ public abstract class RandomWeapon extends EquipmentSelector<Weapon> {
 	protected abstract int getWeightTechModificator(Weapon weapon);
 
 	@Override
-	protected int getWeight(Weapon weapon) {
+	protected int getWeight(Weapon weapon) throws InvalidRandomElementSelectedException {
+		super.getWeight(weapon);
+
 		// Only ranged weapons.
 		if (!weaponTypesFilter().contains(weapon.getType())) {
-			return NO_PROBABILITY;
+			throw new InvalidRandomElementSelectedException("Only weapons of type '" + weaponTypesFilter() + "' are accepted. Weapon '" + weapon
+					+ "' has not this type.");
 		}
 
-		int weight = super.getWeight(weapon);
+		int weight = 0;
 		// Similar tech level preferred.
 		int weightTech = getWeightTechModificator(weapon);
 		RandomGenerationLog.debug(this.getClass().getName(), "Weight value by tech level for '" + weapon + "' is '" + weightTech + "'.");

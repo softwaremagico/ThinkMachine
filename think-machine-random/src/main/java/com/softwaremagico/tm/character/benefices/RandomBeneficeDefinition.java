@@ -104,16 +104,16 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
 	}
 
 	@Override
-	protected int getWeight(BeneficeDefinition benefice) {
+	protected int getWeight(BeneficeDefinition benefice) throws InvalidRandomElementSelectedException {
 		// No restricted benefices.
 		if (benefice.getRestrictedFactionGroup() != null && getCharacterPlayer().getFaction() != null
 				&& benefice.getRestrictedFactionGroup() != getCharacterPlayer().getFaction().getFactionGroup()) {
-			return 0;
+			throw new InvalidRandomElementSelectedException("Benefice '" + benefice + "' is restricted to '" + benefice.getRestrictedFactionGroup() + "'.");
 		}
 
 		// No special benefices
 		if (benefice.getGroup() == BeneficeGroup.RESTRICTED) {
-			return 0;
+			throw new InvalidRandomElementSelectedException("Benefice '" + benefice + "' is restricted.");
 		}
 
 		// No faction preference selected. All benefices has the same
@@ -182,14 +182,18 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
 	@Override
 	protected void assignIfMandatory(BeneficeDefinition benefice) throws InvalidXmlElementException, ImpossibleToAssignMandatoryElementException {
 		// Set status of the character.
-		if ((benefice.getGroup() != null && benefice.getGroup().equals(BeneficeGroup.STATUS)) && getWeight(benefice) > 0
-				&& getCharacterPlayer().getFaction() != null
-				&& Objects.equals(benefice.getRestrictedFactionGroup(), getCharacterPlayer().getFaction().getFactionGroup())) {
-			IGaussianDistribution selectedStatus = StatusPreferences.getSelected(getPreferences());
-			if (selectedStatus != null) {
-				RandomGenerationLog.debug(this.getClass().getName(), "Searching grade '" + selectedStatus.maximum() + "' of benefice '" + benefice + "'.");
-				assignBenefice(benefice, selectedStatus.maximum());
+		try {
+			if ((benefice.getGroup() != null && benefice.getGroup().equals(BeneficeGroup.STATUS)) && getWeight(benefice) > 0
+					&& getCharacterPlayer().getFaction() != null
+					&& Objects.equals(benefice.getRestrictedFactionGroup(), getCharacterPlayer().getFaction().getFactionGroup())) {
+				IGaussianDistribution selectedStatus = StatusPreferences.getSelected(getPreferences());
+				if (selectedStatus != null) {
+					RandomGenerationLog.debug(this.getClass().getName(), "Searching grade '" + selectedStatus.maximum() + "' of benefice '" + benefice + "'.");
+					assignBenefice(benefice, selectedStatus.maximum());
+				}
 			}
+		} catch (InvalidRandomElementSelectedException e) {
+			// Weight is zero. Do nothing.
 		}
 	}
 

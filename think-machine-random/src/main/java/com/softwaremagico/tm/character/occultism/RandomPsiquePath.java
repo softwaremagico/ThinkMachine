@@ -88,10 +88,10 @@ public class RandomPsiquePath extends RandomSelector<OccultismPath> {
 	}
 
 	@Override
-	protected int getWeight(OccultismPath element) {
+	protected int getWeight(OccultismPath element) throws InvalidRandomElementSelectedException {
 		// Other factions path are forbidden
 		if (!element.getFactionsAllowed().isEmpty() && !element.getFactionsAllowed().contains(getCharacterPlayer().getFaction())) {
-			return 0;
+			throw new InvalidRandomElementSelectedException("Path '" + element + "' restricted to faction '" + element.getFactionsAllowed() + "'.");
 		}
 
 		// Only paths with psique level.
@@ -99,7 +99,7 @@ public class RandomPsiquePath extends RandomSelector<OccultismPath> {
 			for (OccultismType occultismType : OccultismTypeFactory.getInstance().getElements(getCharacterPlayer().getLanguage())) {
 				if (getCharacterPlayer().getPsiqueLevel(occultismType) == 0) {
 					if (Objects.equals(element.getOccultismType(), occultismType)) {
-						return 0;
+						throw new InvalidRandomElementSelectedException("Character must have a minimum psi level for path '" + element + "'.");
 					}
 				}
 			}
@@ -130,7 +130,7 @@ public class RandomPsiquePath extends RandomSelector<OccultismPath> {
 
 	private void assignPowersOfPath(OccultismPath path, int maxLevelSelected) throws InvalidXmlElementException {
 		DifficultLevelPreferences difficultyLevel = DifficultLevelPreferences.getSelected(getPreferences());
-		
+
 		int remainingPoints = FreeStyleCharacterCreation.getFreeAvailablePoints(getCharacterPlayer().getInfo().getAge())
 				- CostCalculator.getCost(getCharacterPlayer(), difficultyLevel.getSkillsBonus(), difficultyLevel.getCharacteristicsBonus());
 		// Select powers to set.

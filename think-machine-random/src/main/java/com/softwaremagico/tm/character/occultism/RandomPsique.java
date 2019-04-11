@@ -32,8 +32,6 @@ import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
 import com.softwaremagico.tm.character.factions.FactionGroup;
-import com.softwaremagico.tm.character.occultism.OccultismType;
-import com.softwaremagico.tm.character.occultism.OccultismTypeFactory;
 import com.softwaremagico.tm.log.RandomGenerationLog;
 import com.softwaremagico.tm.random.RandomSelector;
 import com.softwaremagico.tm.random.exceptions.ImpossibleToAssignMandatoryElementException;
@@ -66,16 +64,16 @@ public class RandomPsique extends RandomSelector<OccultismType> {
 	}
 
 	@Override
-	protected int getWeight(OccultismType element) {
+	protected int getWeight(OccultismType element) throws InvalidRandomElementSelectedException {
 		// Church factions must have always theurgy.
 		if (Objects.equals(element, OccultismTypeFactory.getPsi(getCharacterPlayer().getLanguage()))) {
 			if (getCharacterPlayer().getFaction().getFactionGroup() == FactionGroup.CHURCH) {
-				return 0;
+				throw new InvalidRandomElementSelectedException("Psi not allowed to church factions");
 			}
 			// No church factions have psi.
 		} else if (Objects.equals(element, OccultismTypeFactory.getTheurgy(getCharacterPlayer().getLanguage()))) {
 			if (getCharacterPlayer().getFaction().getFactionGroup() != FactionGroup.CHURCH) {
-				return 0;
+				throw new InvalidRandomElementSelectedException("Theurgy restricted to church factions");
 			}
 		}
 		return 1;
