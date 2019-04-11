@@ -26,17 +26,14 @@ package com.softwaremagico.tm.character;
 
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.Map.Entry;
 import java.util.Random;
 import java.util.Set;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.benefices.RandomBeneficeDefinition;
-import com.softwaremagico.tm.character.blessings.Blessing;
 import com.softwaremagico.tm.character.blessings.RandomBlessingDefinition;
 import com.softwaremagico.tm.character.blessings.RandomCursesDefinition;
 import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
-import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.characteristics.RandomCharacteristics;
 import com.softwaremagico.tm.character.characteristics.RandomCharacteristicsExtraPoints;
 import com.softwaremagico.tm.character.creation.CostCalculator;
@@ -81,49 +78,38 @@ public class RandomizeCharacter {
 	private final Random random = new Random();
 	private final int experiencePoints;
 
-	public RandomizeCharacter(CharacterPlayer characterPlayer, int experiencePoints, IRandomPreference... preferences) throws DuplicatedPreferenceException {
-		this.characterPlayer = characterPlayer;
-		this.preferences = new HashSet<>(Arrays.asList(preferences));
-		requiredSkills = new HashSet<>();
-		suggestedSkills = new HashSet<>();
-		checkValidPreferences();
-		DifficultLevelPreferences difficultLevel = DifficultLevelPreferences.getSelected(this.preferences);
-		this.experiencePoints = experiencePoints + difficultLevel.getExperienceBonus();
+	public RandomizeCharacter(CharacterPlayer characterPlayer, int experiencePoints, IRandomPreference... preferences) throws DuplicatedPreferenceException,
+			TooManyBlessingsException, InvalidXmlElementException {
+		this(characterPlayer, experiencePoints, null, new HashSet<>(Arrays.asList(preferences)), new HashSet<AvailableSkill>(), new HashSet<AvailableSkill>());
 	}
 
 	public RandomizeCharacter(CharacterPlayer characterPlayer, IRandomProfile... profiles) throws DuplicatedPreferenceException, TooManyBlessingsException,
 			InvalidXmlElementException {
+		this(characterPlayer, null, new HashSet<IRandomProfile>(Arrays.asList(profiles)), new HashSet<IRandomPreference>(), new HashSet<AvailableSkill>(),
+				new HashSet<AvailableSkill>());
+	}
 
-		IRandomProfile finalProfile = ProfileMerger.merge(profiles);
+	public RandomizeCharacter(CharacterPlayer characterPlayer, Integer experiencePoints, Set<IRandomProfile> profiles, Set<IRandomPreference> preferences,
+			Set<AvailableSkill> requiredSkills, Set<AvailableSkill> suggestedSkills) throws DuplicatedPreferenceException, TooManyBlessingsException,
+			InvalidXmlElementException {
+		this.characterPlayer = characterPlayer;
+
+		IRandomProfile finalProfile = ProfileMerger.merge(profiles, preferences, requiredSkills, suggestedSkills, characterPlayer.getLanguage());
 
 		// Assign preferences
-		this.characterPlayer = characterPlayer;
 		this.preferences = finalProfile.getPreferences();
-		requiredSkills = finalProfile.getRequiredSkills();
-		suggestedSkills = finalProfile.getSuggestedSkills();
+		this.requiredSkills = finalProfile.getRequiredSkills();
+		this.suggestedSkills = finalProfile.getSuggestedSkills();
+
 		checkValidPreferences();
 
-		// Assign default values.
-		if (finalProfile.getCharacteristicsMinimumValues() != null) {
-			for (Entry<CharacteristicName, Integer> characteristicValue : finalProfile.getCharacteristicsMinimumValues().entrySet()) {
-				characterPlayer.getCharacteristic(characteristicValue.getKey()).setValue(characteristicValue.getValue());
-			}
+		// Assign experience
+		if (experiencePoints == null) {
+			DifficultLevelPreferences difficultLevel = DifficultLevelPreferences.getSelected(this.preferences);
+			this.experiencePoints = difficultLevel.getExperienceBonus();
+		} else {
+			this.experiencePoints = experiencePoints;
 		}
-
-		if (finalProfile.getSkillsMinimumValues() != null) {
-			for (Entry<AvailableSkill, Integer> skillValue : finalProfile.getSkillsMinimumValues().entrySet()) {
-				characterPlayer.setSkillRank(skillValue.getKey(), skillValue.getValue());
-			}
-		}
-
-		if (finalProfile.getBlessings() != null) {
-			for (Blessing blessing : finalProfile.getBlessings()) {
-				characterPlayer.addBlessing(blessing);
-			}
-		}
-
-		DifficultLevelPreferences difficultLevel = DifficultLevelPreferences.getSelected(preferences);
-		experiencePoints = difficultLevel.getExperienceBonus();
 	}
 
 	private void checkValidPreferences() throws DuplicatedPreferenceException {

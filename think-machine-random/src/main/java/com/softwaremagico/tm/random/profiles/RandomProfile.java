@@ -63,9 +63,9 @@ public class RandomProfile extends Element<RandomProfile> implements IRandomProf
 
 	@Override
 	public void setParent(IRandomProfile parentProfile) throws InvalidXmlElementException {
-		if (!parentMerged) {
+		if (!parentMerged && parentProfile != null) {
 			// Merge preferences. This has preference over parent profile.
-			RandomProfile mergedProfile = ProfileMerger.merge(parentProfile, this);
+			RandomProfile mergedProfile = ProfileMerger.merge(parentProfile.getLanguage(), parentProfile, this);
 
 			randomPreferences.clear();
 			randomPreferences.addAll(mergedProfile.getPreferences());

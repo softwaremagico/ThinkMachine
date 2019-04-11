@@ -24,6 +24,7 @@ package com.softwaremagico.tm.random.profiles;
  * #L%
  */
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -37,12 +38,32 @@ import com.softwaremagico.tm.random.selectors.IRandomPreference;
 public class ProfileMerger {
 	private final static String DEFAULT_ID = "merged_profile";
 
-	public static RandomProfile merge(IRandomProfile... profiles) throws InvalidXmlElementException {
+	public static RandomProfile merge(String language, IRandomProfile... profiles) throws InvalidXmlElementException {
 		if (profiles == null || profiles.length == 0) {
 			return null;
 		}
 
-		RandomProfile finalProfile = new RandomProfile(DEFAULT_ID, "", profiles[0].getLanguage());
+		return merge(new HashSet<IRandomProfile>(Arrays.asList(profiles)), language);
+	}
+
+	public static RandomProfile merge(Set<IRandomProfile> profiles, String language) throws InvalidXmlElementException {
+		return merge(profiles, new HashSet<IRandomPreference>(), new HashSet<AvailableSkill>(), new HashSet<AvailableSkill>(), language);
+	}
+
+	public static RandomProfile merge(Set<IRandomProfile> profiles, Set<IRandomPreference> extraPreferences, Set<AvailableSkill> requiredSkills,
+			Set<AvailableSkill> suggestedSkills, String language) throws InvalidXmlElementException {
+		if (profiles == null) {
+			profiles = new HashSet<>();
+		}
+
+		if (extraPreferences == null) {
+			extraPreferences = new HashSet<>();
+		}
+
+		// Store all information in a new profile.
+		RandomProfile finalProfile = new RandomProfile(DEFAULT_ID, "", profiles.iterator().next().getLanguage());
+
+		// Merge profiles
 		for (IRandomProfile profile : profiles) {
 			// Merge preferences.
 			mergePreferences(finalProfile.getPreferences(), profile.getPreferences());
@@ -57,6 +78,20 @@ public class ProfileMerger {
 			mergeSkills(finalProfile.getSuggestedSkills(), profile.getSuggestedSkills());
 
 		}
+
+		// Add selected preferences with more priority.
+		mergePreferences(extraPreferences, finalProfile.getPreferences());
+		finalProfile.getPreferences().clear();
+		finalProfile.getPreferences().addAll(extraPreferences);
+
+		mergeSkills(requiredSkills, finalProfile.getRequiredSkills());
+		finalProfile.getRequiredSkills().clear();
+		finalProfile.getRequiredSkills().addAll(requiredSkills);
+
+		mergeSkills(suggestedSkills, finalProfile.getSuggestedSkills());
+		finalProfile.getSuggestedSkills().clear();
+		finalProfile.getSuggestedSkills().addAll(suggestedSkills);
+
 		return finalProfile;
 	}
 
