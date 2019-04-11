@@ -33,12 +33,14 @@ import com.softwaremagico.tm.character.equipment.DamageType;
 import com.softwaremagico.tm.character.equipment.Equipment;
 import com.softwaremagico.tm.character.equipment.Size;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
+import com.softwaremagico.tm.log.MachineLog;
 
 public class Weapon extends Equipment<Weapon> {
 	private final static String NUMBER_EXTRACTOR_PATTERN = "^[^\\d]*(\\d+)";
 	private final static Pattern FIRST_NUMBER_PATTERN = Pattern.compile(NUMBER_EXTRACTOR_PATTERN);
 	private final static String AREA_DAMAGE = "\\((\\d+)\\s*m\\)$";
 	private final static Pattern AREA_DAMAGE_PATTERN = Pattern.compile(AREA_DAMAGE);
+	private final static int SPECIAL_DAMAGE_THREAT = 5;
 
 	private final String goal;
 	private final String damage;
@@ -117,6 +119,13 @@ public class Weapon extends Equipment<Weapon> {
 			} catch (NullPointerException e) {
 				// No damage
 				mainDamage = 0;
+			} catch (NumberFormatException e) {
+				if (getDamage().contains("*")) {
+					// Special damage!
+					mainDamage = SPECIAL_DAMAGE_THREAT;
+				} else {
+					MachineLog.severe(this.getClass().getName(), "Invalid main damage in '" + getDamage() + "' for '" + this + "'.");
+				}
 			}
 		}
 		return mainDamage;
@@ -134,6 +143,8 @@ public class Weapon extends Equipment<Weapon> {
 			} catch (NullPointerException e) {
 				// No area
 				areaDamage = 0;
+			} catch (NumberFormatException e) {
+				MachineLog.severe(this.getClass().getName(), "Invalid area damage in '" + getDamage() + "' for '" + this + "'.");
 			}
 		}
 		return areaDamage;

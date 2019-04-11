@@ -30,6 +30,7 @@
 				<include name="randomCharacter" />
 				<include name="profile" />
 				<include name="difficulty" />
+				<exclude name="threatAverage" />
 				<exclude name="gaussianDistribution" />
 			</run>
 		</groups>
@@ -39,6 +40,7 @@
 			<class name="com.softwaremagico.tm.random.profile.ProfileTests" />
 			<class name="com.softwaremagico.tm.random.RandomCharacterDifficultyTests" />
 			<class name="com.softwaremagico.tm.random.GaussianDistributionTests" />
+			<class name="com.softwaremagico.tm.random.RandomCharacterThreatAverage" />
 		</classes>
 	</test>
 </suite>

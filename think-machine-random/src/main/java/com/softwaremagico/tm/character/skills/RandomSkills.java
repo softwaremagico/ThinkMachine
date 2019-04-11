@@ -355,9 +355,29 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 		}
 		// Gaussian distribution.
 		finalSkillValue = selectedSpecialization.randomGaussian();
+
+		// Update combat due to difficulties.
+		if (availableSkill.getSkillDefinition().getSkillGroup().equals(SkillGroup.COMBAT)) {
+			DifficultLevelPreferences difficultLevel = DifficultLevelPreferences.getSelected(getPreferences());
+			switch (difficultLevel) {
+			case VERY_EASY:
+				if (finalSkillValue > selectedSpecialization.minimum()) {
+					finalSkillValue--;
+				}
+			case VERY_HARD:
+				if (finalSkillValue < selectedSpecialization.maximum()) {
+					finalSkillValue++;
+				}
+				break;
+			default:
+				break;
+			}
+		}
+
 		if (finalSkillValue < minimumValue) {
 			finalSkillValue = minimumValue;
 		}
+
 		// Cannot be less that the actual value.
 		if (finalSkillValue < getCharacterPlayer().getSkillAssignedRanks(availableSkill)) {
 			return getCharacterPlayer().getSkillAssignedRanks(availableSkill);

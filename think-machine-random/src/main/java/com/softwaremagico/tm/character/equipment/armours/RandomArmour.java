@@ -35,6 +35,7 @@ import com.softwaremagico.tm.log.RandomGenerationLog;
 import com.softwaremagico.tm.random.exceptions.ImpossibleToAssignMandatoryElementException;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.CombatPreferences;
+import com.softwaremagico.tm.random.selectors.DifficultLevelPreferences;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
 
 public class RandomArmour extends EquipmentSelector<Armour> {
@@ -101,6 +102,7 @@ public class RandomArmour extends EquipmentSelector<Armour> {
 				weight = 1;
 			}
 		}
+
 		return weight;
 	}
 
@@ -113,6 +115,29 @@ public class RandomArmour extends EquipmentSelector<Armour> {
 			if (armour.isHeavy()) {
 				throw new InvalidRandomElementSelectedException("Heavy armour '" + armour + "' not accepted for not combat characters.");
 			}
+		}
+
+		DifficultLevelPreferences preference = DifficultLevelPreferences.getSelected(getPreferences());
+		switch (preference) {
+		case VERY_EASY:
+			break;
+		case EASY:
+			if (armour.isHeavy()) {
+				throw new InvalidRandomElementSelectedException("Heavy armour '" + armour + "' are not allowed by selected preference '" + preference + "'.");
+			}
+			break;
+		case MEDIUM:
+			break;
+		case HARD:
+			if (armour.getProtection() < 3) {
+				throw new InvalidRandomElementSelectedException("Basic armour '" + armour + "' are not allowed by selected preference '" + preference + "'.");
+			}
+			break;
+		case VERY_HARD:
+			if (armour.getProtection() < 5 || armour.getDamageTypes().isEmpty()) {
+				throw new InvalidRandomElementSelectedException("Basic armour '" + armour + "' are not allowed by selected preference '" + preference + "'.");
+			}
+			break;
 		}
 
 		int weight = 1;

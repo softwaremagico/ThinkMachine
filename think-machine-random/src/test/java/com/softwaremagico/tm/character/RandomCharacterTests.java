@@ -273,7 +273,7 @@ public class RandomCharacterTests {
 		characterPlayer.setSkillRank(AvailableSkillsFactory.getInstance().getElement("energyGuns", LANGUAGE), 5);
 		characterPlayer.setSkillRank(AvailableSkillsFactory.getInstance().getElement("melee", LANGUAGE), 5);
 		characterPlayer.getCharacteristic(CharacteristicName.TECH).setValue(7);
-		characterPlayer.addBenefice(AvailableBeneficeFactory.getInstance().getElement("cash [firebirds1000]", LANGUAGE));
+		characterPlayer.addBenefice(AvailableBeneficeFactory.getInstance().getElement("cash [firebirds2000]", LANGUAGE));
 		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0, CombatPreferences.BELLIGERENT);
 		randomizeCharacter.createCharacter();
 		Assert.assertTrue(characterPlayer.getAllWeapons().size() >= 2);
@@ -373,4 +373,5 @@ public class RandomCharacterTests {
 		Assert.assertTrue(characterPlayer.getSkillTotalRanks(AvailableSkillsFactory.getInstance().getElement("spyEye", LANGUAGE)) > 0);
 		Assert.assertTrue(characterPlayer.getSkillTotalRanks(AvailableSkillsFactory.getInstance().getElement("etherEar", LANGUAGE)) > 0);
 	}
+
 }

@@ -29,6 +29,7 @@ import java.util.Map.Entry;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.characteristics.Characteristic;
+import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.cybernetics.SelectedCyberneticDevice;
 import com.softwaremagico.tm.character.equipment.armours.Armour;
 import com.softwaremagico.tm.character.equipment.shields.Shield;
@@ -38,6 +39,7 @@ import com.softwaremagico.tm.character.occultism.OccultismPath;
 import com.softwaremagico.tm.character.occultism.OccultismPathFactory;
 import com.softwaremagico.tm.character.occultism.OccultismTypeFactory;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
+import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 
 public class ThreatLevel {
 	private final static int DAMAGE_THREAT_MULTIPLICATOR = 2;
@@ -77,6 +79,8 @@ public class ThreatLevel {
 		}
 		threatLevel += characterPlayer.getMeleeCombatStyles().size() * COMBAT_STYLES_THREAT_MULTIPLICATOR;
 		threatLevel += characterPlayer.getRangedCombatStyles().size() * COMBAT_STYLES_THREAT_MULTIPLICATOR;
+		threatLevel += getThreatLevel(characterPlayer, characterPlayer.getCharacteristic(CharacteristicName.DEXTERITY), AvailableSkillsFactory.getInstance()
+				.getElement("fight", characterPlayer.getLanguage()));
 		return threatLevel;
 	}
 

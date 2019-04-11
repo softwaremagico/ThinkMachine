@@ -54,8 +54,6 @@ public class RandomCharacteristics extends RandomSelector<Characteristic> {
 
 	@Override
 	public void assign() throws InvalidRandomElementSelectedException {
-		// Set minimum values of characteristics.
-		assignMinimumValuesOfCharacteristics();
 		SpecializationPreferences selectedSpecialization = SpecializationPreferences.getSelected(getPreferences());
 
 		IRandomPreference techPreference = null;
@@ -87,19 +85,6 @@ public class RandomCharacteristics extends RandomSelector<Characteristic> {
 		}
 	}
 
-	private void assignMinimumValuesOfCharacteristics() {
-		// Default minimums.
-		for (CharacteristicName characteristicName : CharacteristicName.values()) {
-			getCharacterPlayer().getCharacteristic(characteristicName).setValue(getCharacterPlayer().getStartingValue(characteristicName));
-		}
-
-		for (IRandomPreference preference : getPreferences()) {
-			if (preference instanceof TechnologicalPreferences) {
-				getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).setValue(((TechnologicalPreferences) preference).minimum());
-			}
-		}
-	}
-
 	@Override
 	protected Collection<Characteristic> getAllElements() throws InvalidXmlElementException {
 		return getCharacterPlayer().getCharacteristics();
@@ -115,6 +100,8 @@ public class RandomCharacteristics extends RandomSelector<Characteristic> {
 			throw new InvalidRandomElementSelectedException("Group '" + CharacteristicType.OTHERS + "' of '" + characteristic + "' cannot have assigned ranks.");
 		}
 
+		DifficultLevelPreferences preference = DifficultLevelPreferences.getSelected(getPreferences());
+
 		int weight = 1;
 		if (CharacteristicType.BODY.equals(characteristic.getType())) {
 			if (getPreferences().contains(CharacteristicsPreferences.BODY)) {
@@ -123,6 +110,19 @@ public class RandomCharacteristics extends RandomSelector<Characteristic> {
 			if (getPreferences().contains(CombatPreferences.BELLIGERENT)) {
 				weight += 2;
 			}
+
+			// More tought characters.
+			switch (preference) {
+			case HARD:
+				weight += 1;
+				break;
+			case VERY_HARD:
+				weight += 2;
+				break;
+			default:
+				break;
+			}
+
 		}
 		if (CharacteristicType.MIND.equals(characteristic.getType())) {
 			if (getPreferences().contains(CharacteristicsPreferences.MIND)) {
@@ -135,20 +135,21 @@ public class RandomCharacteristics extends RandomSelector<Characteristic> {
 			}
 		}
 
-		// Specialization desired.
-		SpecializationPreferences selectedSpecialization = SpecializationPreferences.getSelected(getPreferences());
-		if (selectedSpecialization != null) {
-			int characteristicRanks = getCharacterPlayer().getCharacteristic(characteristic.getCharacteristicName()).getValue();
-			// No more that the maximum allowed.
-			if (characteristicRanks > selectedSpecialization.maximum()) {
-				throw new InvalidRandomElementSelectedException("Characteristic '" + characteristic + "' at maxium value");
-			}
-
-			// Good probability for values between the specialization.
-			if (characteristicRanks > selectedSpecialization.minimum()) {
-				return FAIR_PROBABILITY;
+		// Tech
+		if (characteristic.getCharacteristicName() == CharacteristicName.TECH) {
+			// More technological characters.
+			switch (preference) {
+			case HARD:
+				weight += FAIR_PROBABILITY;
+				break;
+			case VERY_HARD:
+				weight += GOOD_PROBABILITY;
+				break;
+			default:
+				break;
 			}
 		}
+
 		// Theurgy
 		if (characteristic.getCharacteristicName() == CharacteristicName.FAITH) {
 			if (getCharacterPlayer().getFaction() != null && getCharacterPlayer().getFaction().getFactionGroup() == FactionGroup.CHURCH) {
@@ -194,6 +195,8 @@ public class RandomCharacteristics extends RandomSelector<Characteristic> {
 	protected void assignIfMandatory(Characteristic characteristic) throws InvalidXmlElementException, ImpossibleToAssignMandatoryElementException {
 		// If selected characteristic (has ranks), must have at least the
 		// minimum.
+		characteristic.setValue(getCharacterPlayer().getStartingValue(characteristic.getCharacteristicName()));
+
 		if (getCharacterPlayer().isCharacteristicTrained(characteristic)) {
 			SpecializationPreferences selectedSpecialization = SpecializationPreferences.getSelected(getPreferences());
 			int characteristicRanks = getCharacterPlayer().getCharacteristic(characteristic.getCharacteristicName()).getValue();
@@ -201,12 +204,28 @@ public class RandomCharacteristics extends RandomSelector<Characteristic> {
 				characteristic.setValue(selectedSpecialization.minimum());
 			}
 		}
-		// Minimum tech level for equipment.
+
 		if (characteristic.getCharacteristicName() == CharacteristicName.TECH) {
+			// Minimum tech level for preferences.
+			TechnologicalPreferences preference = TechnologicalPreferences.getSelected(getPreferences());
+			if (preference != null) {
+				getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).setValue(((TechnologicalPreferences) preference).minimum());
+			}
+
+			// Minimum tech level for equipment.
 			int techLevel = getCharacterPlayer().getEquipmentMaxTechnologicalLevel();
 			if (techLevel < characteristic.getValue() && (techLevel > getCharacterPlayer().getRace().get(CharacteristicName.TECH).getInitialValue())
 					&& techLevel < getCharacterPlayer().getRace().get(CharacteristicName.TECH).getMaximumValue()) {
 				characteristic.setValue(techLevel);
+			}
+
+			// Avoid to have more that the allowed values.
+			if (getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).getValue() > FreeStyleCharacterCreation.getMaxInitialCharacteristicsValues(
+					getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).getCharacteristicName(), getCharacterPlayer().getInfo().getAge(),
+					getCharacterPlayer().getRace())) {
+				getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).setValue(
+						FreeStyleCharacterCreation.getMaxInitialCharacteristicsValues(getCharacterPlayer().getCharacteristic(CharacteristicName.TECH)
+								.getCharacteristicName(), getCharacterPlayer().getInfo().getAge(), getCharacterPlayer().getRace()));
 			}
 		}
 		// Theurgy
@@ -230,6 +249,6 @@ public class RandomCharacteristics extends RandomSelector<Characteristic> {
 
 	@Override
 	protected void assignMandatoryValues(Set<Characteristic> mandatoryValues) throws InvalidXmlElementException {
-		return;
+
 	}
 }

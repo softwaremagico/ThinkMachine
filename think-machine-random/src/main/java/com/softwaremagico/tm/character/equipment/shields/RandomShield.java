@@ -33,6 +33,7 @@ import com.softwaremagico.tm.character.equipment.EquipmentSelector;
 import com.softwaremagico.tm.log.RandomGenerationLog;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.CombatPreferences;
+import com.softwaremagico.tm.random.selectors.DifficultLevelPreferences;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
 
 public class RandomShield extends EquipmentSelector<Shield> {
@@ -72,9 +73,21 @@ public class RandomShield extends EquipmentSelector<Shield> {
 
 	@Override
 	protected int getWeight(Shield shield) throws InvalidRandomElementSelectedException {
-		super.getWeight(shield);
+		int weight = super.getWeight(shield);
 
-		int weight = 0;
+		// Difficulty modification
+		DifficultLevelPreferences preference = DifficultLevelPreferences.getSelected(getPreferences());
+		switch (preference) {
+		case VERY_EASY:
+		case EASY:
+			throw new InvalidRandomElementSelectedException("Shield '" + shield + "' are not allowed by selected preference '" + preference + "'.");
+		case MEDIUM:
+			break;
+		case HARD:
+		case VERY_HARD:
+			weight *= shield.getHits();
+			break;
+		}
 
 		// More protection is better.
 		if (getPreferences().contains(CombatPreferences.BELLIGERENT)) {

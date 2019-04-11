@@ -1,5 +1,7 @@
 package com.softwaremagico.tm.random.selectors;
 
+import java.util.Set;
+
 /*-
  * #%L
  * Think Machine (Core)
@@ -29,7 +31,7 @@ public enum TechnologicalPreferences implements IRandomPreference {
 	PREHISTORIC(0, 1),
 
 	MEDIEVAL(1, 2),
-	
+
 	BASIC(2, 3),
 
 	MODERN(3, 5),
@@ -65,6 +67,15 @@ public enum TechnologicalPreferences implements IRandomPreference {
 	 */
 	public boolean isMoreThan(TechnologicalPreferences preference) {
 		return maximum >= preference.maximum;
+	}
+
+	public static TechnologicalPreferences getSelected(Set<IRandomPreference> preferences) {
+		for (IRandomPreference preference : preferences) {
+			if (preference instanceof TechnologicalPreferences) {
+				return (TechnologicalPreferences) preference;
+			}
+		}
+		return MODERN;
 	}
 
 }
