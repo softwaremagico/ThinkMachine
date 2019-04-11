@@ -28,13 +28,13 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.softwaremagico.tm.Element;
 import com.softwaremagico.tm.character.characteristics.CharacteristicDefinition;
 import com.softwaremagico.tm.character.equipment.DamageType;
+import com.softwaremagico.tm.character.equipment.Equipment;
 import com.softwaremagico.tm.character.equipment.Size;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 
-public class Weapon extends Element<Weapon> {
+public class Weapon extends Equipment<Weapon> {
 	private final static String NUMBER_EXTRACTOR_PATTERN = "^[^\\d]*(\\d+)";
 	private final static Pattern FIRST_NUMBER_PATTERN = Pattern.compile(NUMBER_EXTRACTOR_PATTERN);
 	private final static String AREA_DAMAGE = "\\((\\d+)\\s*m\\)$";
@@ -47,12 +47,10 @@ public class Weapon extends Element<Weapon> {
 	private final Integer shots;
 	private final String rate;
 	private final Size size;
-	private final int techLevel;
 	private final boolean techLevelSpecial;
 
 	private final String special;
 	private final Set<DamageType> damageTypes;
-	private final float cost;
 	private final AvailableSkill skill;
 	private final CharacteristicDefinition characteristic;
 	private final WeaponType type;
@@ -64,9 +62,9 @@ public class Weapon extends Element<Weapon> {
 	private transient Integer areaDamage = null;
 
 	public Weapon(String id, String name, String language, WeaponType type, String goal, CharacteristicDefinition characteristic, AvailableSkill skill,
-			String damage, int strength, String range, Integer shots, String rate, int tech, boolean techLevelSpecial, Size size, String special,
+			String damage, int strength, String range, Integer shots, String rate, int techLevel, boolean techLevelSpecial, Size size, String special,
 			Set<DamageType> damageTypes, float cost, Set<Ammunition> ammunitions, Set<Accessory> accesories) {
-		super(id, name, language);
+		super(id, name, cost, techLevel, language);
 		this.characteristic = characteristic;
 		this.skill = skill;
 		this.goal = goal;
@@ -76,12 +74,10 @@ public class Weapon extends Element<Weapon> {
 		this.shots = shots;
 		this.rate = rate;
 		this.size = size;
-		this.techLevel = tech;
 		this.techLevelSpecial = techLevelSpecial;
 		this.type = type;
 		this.special = special;
 		this.damageTypes = damageTypes;
-		this.cost = cost;
 		this.ammunitions = ammunitions;
 		this.accesories = accesories;
 	}
@@ -178,10 +174,6 @@ public class Weapon extends Element<Weapon> {
 		return special;
 	}
 
-	public int getTechLevel() {
-		return techLevel;
-	}
-
 	public int getStrength() {
 		return strength;
 	}
@@ -200,10 +192,6 @@ public class Weapon extends Element<Weapon> {
 			// Melee weapon.
 		}
 		return 0;
-	}
-
-	public float getCost() {
-		return cost;
 	}
 
 	public AvailableSkill getSkill() {

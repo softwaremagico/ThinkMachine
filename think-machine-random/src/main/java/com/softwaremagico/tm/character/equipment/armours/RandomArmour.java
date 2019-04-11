@@ -30,18 +30,14 @@ import java.util.Set;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
-import com.softwaremagico.tm.character.equipment.armours.Armour;
-import com.softwaremagico.tm.character.equipment.armours.ArmourFactory;
-import com.softwaremagico.tm.character.equipment.armours.InvalidArmourException;
+import com.softwaremagico.tm.character.equipment.EquipmentSelector;
 import com.softwaremagico.tm.log.RandomGenerationLog;
-import com.softwaremagico.tm.random.RandomSelector;
 import com.softwaremagico.tm.random.exceptions.ImpossibleToAssignMandatoryElementException;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.CombatPreferences;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
 
-public class RandomArmour extends RandomSelector<Armour> {
-	private Integer currentMoney = null;
+public class RandomArmour extends EquipmentSelector<Armour> {
 
 	public RandomArmour(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences) throws InvalidXmlElementException {
 		super(characterPlayer, preferences);
@@ -61,19 +57,13 @@ public class RandomArmour extends RandomSelector<Armour> {
 		return ArmourFactory.getInstance().getElements(getCharacterPlayer().getLanguage());
 	}
 
-	protected int getCurrentMoney() {
-		if (currentMoney == null) {
-			currentMoney = getCharacterPlayer().getMoney();
-		}
-		return currentMoney;
-	}
-
 	/**
 	 * Not so expensive armours.
 	 * 
 	 * @param armour
 	 * @return
 	 */
+	@Override
 	protected int getWeightCostModificator(Armour armour) {
 		if (armour.getCost() > getCurrentMoney() / 2) {
 			return 100;
@@ -116,24 +106,14 @@ public class RandomArmour extends RandomSelector<Armour> {
 
 	@Override
 	protected int getWeight(Armour armour) {
-		// armours only if technology is enough.
-		if (armour.getTechLevel() > getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).getValue()) {
-			return NO_PROBABILITY;
-		}
-
-		// I can afford it.
-		if (armour.getCost() > getCurrentMoney()) {
-			return NO_PROBABILITY;
-		}
-
 		// Heavy armours only for real warriors.
 		if (!getPreferences().contains(CombatPreferences.BELLIGERENT)) {
 			if (armour.isHeavy()) {
-				return 0;
+				return NO_PROBABILITY;
 			}
 		}
 
-		int weight = 0;
+		int weight = super.getWeight(armour);
 		// Similar tech level preferred.
 		int weightTech = getWeightTechModificator(armour);
 		RandomGenerationLog.debug(this.getClass().getName(), "Weight value by tech level for '" + armour + "' is '" + weightTech + "'.");
@@ -142,10 +122,10 @@ public class RandomArmour extends RandomSelector<Armour> {
 		// armours depending on the purchasing power of the character.
 		int costModificator = getWeightCostModificator(armour);
 		RandomGenerationLog.debug(this.getClass().getName(), "Cost multiplication for weight for '" + armour + "' is '" + costModificator + "'.");
-		weight = weight / costModificator;
+		weight /= costModificator;
 
 		// More protection is better.
-		weight = weight * armour.getProtection();
+		weight *= armour.getProtection();
 		RandomGenerationLog.debug(this.getClass().getName(), "Protection multiplicator for '" + armour + "' is '" + armour.getProtection() + "'.");
 
 		RandomGenerationLog.debug(this.getClass().getName(), "Total weight for '" + armour + "' is '" + weight + "'.");

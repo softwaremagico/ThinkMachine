@@ -29,18 +29,13 @@ import java.util.Set;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.character.characteristics.CharacteristicName;
-import com.softwaremagico.tm.character.equipment.shields.InvalidShieldException;
-import com.softwaremagico.tm.character.equipment.shields.Shield;
-import com.softwaremagico.tm.character.equipment.shields.ShieldFactory;
+import com.softwaremagico.tm.character.equipment.EquipmentSelector;
 import com.softwaremagico.tm.log.RandomGenerationLog;
-import com.softwaremagico.tm.random.RandomSelector;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.CombatPreferences;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
 
-public class RandomShield extends RandomSelector<Shield> {
-	private Integer currentMoney = null;
+public class RandomShield extends EquipmentSelector<Shield> {
 
 	public RandomShield(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences) throws InvalidXmlElementException {
 		super(characterPlayer, preferences);
@@ -60,19 +55,13 @@ public class RandomShield extends RandomSelector<Shield> {
 		return ShieldFactory.getInstance().getElements(getCharacterPlayer().getLanguage());
 	}
 
-	protected int getCurrentMoney() {
-		if (currentMoney == null) {
-			currentMoney = getCharacterPlayer().getMoney();
-		}
-		return currentMoney;
-	}
-
 	/**
 	 * Not so expensive shields.
 	 * 
 	 * @param shield
 	 * @return
 	 */
+	@Override
 	protected int getWeightCostModificator(Shield shield) {
 		if (shield.getCost() > getCurrentMoney() / 2) {
 			return 5;
@@ -83,28 +72,18 @@ public class RandomShield extends RandomSelector<Shield> {
 
 	@Override
 	protected int getWeight(Shield shield) {
-		// Shields only if technology is enough.
-		if (shield.getTechLevel() > getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).getValue()) {
-			return NO_PROBABILITY;
-		}
-
-		// I can afford it.
-		if (shield.getCost() > getCurrentMoney()) {
-			return NO_PROBABILITY;
-		}
-
-		int weight = 1;
+		int weight = super.getWeight(shield);
 
 		// More protection is better.
 		if (getPreferences().contains(CombatPreferences.BELLIGERENT)) {
-			weight = weight * shield.getHits();
+			weight *= shield.getHits();
 			RandomGenerationLog.debug(this.getClass().getName(), "Protection multiplicator for '" + shield + "' is '" + shield.getHits() + "'.");
 		}
 
 		// shields depending on the purchasing power of the character.
 		int costModificator = getWeightCostModificator(shield);
 		RandomGenerationLog.debug(this.getClass().getName(), "Cost multiplication for weight for '" + shield + "' is '" + costModificator + "'.");
-		weight = weight / costModificator;
+		weight /= costModificator;
 
 		RandomGenerationLog.debug(this.getClass().getName(), "Total weight for '" + shield + "' is '" + weight + "'.");
 		return weight;

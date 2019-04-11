@@ -24,22 +24,18 @@ package com.softwaremagico.tm.character.equipment.shields;
  * #L%
  */
 
-import com.softwaremagico.tm.Element;
+import com.softwaremagico.tm.character.equipment.Equipment;
 
-public class Shield extends Element<Shield> {
+public class Shield extends Equipment<Shield> {
 	private final int impact;
-	private final int techLevel;
 	private final int force;
 	private final int hits;
-	private final float cost;
 
 	public Shield(String shieldId, String name, String language, int techLevel, int impact, int force, int hits, float cost) {
-		super(shieldId, name, language);
+		super(shieldId, name, cost, techLevel, language);
 		this.impact = impact;
-		this.techLevel = techLevel;
 		this.force = force;
 		this.hits = hits;
-		this.cost = cost;
 	}
 
 	public int getImpact() {
@@ -52,14 +48,6 @@ public class Shield extends Element<Shield> {
 
 	public int getHits() {
 		return hits;
-	}
-
-	public float getCost() {
-		return cost;
-	}
-
-	public int getTechLevel() {
-		return techLevel;
 	}
 
 }

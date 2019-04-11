@@ -30,13 +30,12 @@ import java.util.Set;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
+import com.softwaremagico.tm.character.equipment.EquipmentSelector;
 import com.softwaremagico.tm.log.RandomGenerationLog;
-import com.softwaremagico.tm.random.RandomSelector;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
 
-public abstract class RandomWeapon extends RandomSelector<Weapon> {
-	private Integer currentMoney = null;
+public abstract class RandomWeapon extends EquipmentSelector<Weapon> {
 
 	protected RandomWeapon(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences) throws InvalidXmlElementException {
 		super(characterPlayer, preferences);
@@ -56,22 +55,7 @@ public abstract class RandomWeapon extends RandomSelector<Weapon> {
 		return WeaponFactory.getInstance().getElements(getCharacterPlayer().getLanguage());
 	}
 
-	protected int getCurrentMoney() {
-		if (currentMoney == null) {
-			currentMoney = getCharacterPlayer().getMoney();
-		}
-		return currentMoney;
-	}
-
 	protected abstract Set<WeaponType> weaponTypesFilter();
-
-	/**
-	 * Not so expensive weapons.
-	 * 
-	 * @param weapon
-	 * @return
-	 */
-	protected abstract int getWeightCostModificator(Weapon weapon);
 
 	/**
 	 * Similar tech level weapons preferred.
@@ -83,22 +67,12 @@ public abstract class RandomWeapon extends RandomSelector<Weapon> {
 
 	@Override
 	protected int getWeight(Weapon weapon) {
-		// Weapons only if technology is enough.
-		if (weapon.getTechLevel() > getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).getValue()) {
-			return NO_PROBABILITY;
-		}
-
 		// Only ranged weapons.
 		if (!weaponTypesFilter().contains(weapon.getType())) {
 			return NO_PROBABILITY;
 		}
 
-		// I can afford it.
-		if (weapon.getCost() > getCurrentMoney()) {
-			return NO_PROBABILITY;
-		}
-
-		int weight = 0;
+		int weight = super.getWeight(weapon);
 		// Similar tech level preferred.
 		int weightTech = getWeightTechModificator(weapon);
 		RandomGenerationLog.debug(this.getClass().getName(), "Weight value by tech level for '" + weapon + "' is '" + weightTech + "'.");
@@ -107,7 +81,7 @@ public abstract class RandomWeapon extends RandomSelector<Weapon> {
 		// Weapons depending on the purchasing power of the character.
 		int costModificator = getWeightCostModificator(weapon);
 		RandomGenerationLog.debug(this.getClass().getName(), "Cost multiplication for weight for '" + weapon + "' is '" + costModificator + "'.");
-		weight = weight / costModificator;
+		weight /= costModificator;
 
 		// Skill modifications.
 		int skillMultiplier = getCharacterPlayer().getSkillTotalRanks(weapon.getSkill());

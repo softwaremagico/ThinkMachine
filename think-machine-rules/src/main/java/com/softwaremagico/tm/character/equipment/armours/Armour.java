@@ -27,55 +27,41 @@ package com.softwaremagico.tm.character.equipment.armours;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.softwaremagico.tm.Element;
 import com.softwaremagico.tm.character.equipment.DamageType;
+import com.softwaremagico.tm.character.equipment.Equipment;
 import com.softwaremagico.tm.character.equipment.shields.Shield;
 
-public class Armour extends Element<Armour> {
+public class Armour extends Equipment<Armour> {
 	private final int protection;
 	private final Set<DamageType> damageTypes;
-	private final int techLevel;
 	private final ArmourPenalization standardPenalizations;
 	private final ArmourPenalization specialPenalizations;
-	private final float cost;
 	private final Set<Shield> allowedShields;
 	private final Set<ArmourSpecification> specifications;
 
 	public Armour(String id, String name, String language, int techLevel, int protection, Set<DamageType> damageTypes, float cost) {
-		super(id, name, language);
+		super(id, name, cost, techLevel, language);
 		this.protection = protection;
 		this.damageTypes = damageTypes;
-		this.techLevel = techLevel;
 		this.standardPenalizations = new ArmourPenalization(0, 0, 0, 0);
 		this.specialPenalizations = new ArmourPenalization(0, 0, 0, 0);
 		this.allowedShields = new HashSet<>();
 		this.specifications = new HashSet<>();
-		this.cost = cost;
 	}
 
 	public Armour(String id, String name, String language, int techLevel, int protection, Set<DamageType> damageTypes, ArmourPenalization specialPenalizations,
 			ArmourPenalization otherPenalizations, Set<Shield> allowedShields, Set<ArmourSpecification> specifications, float cost) {
-		super(id, name, language);
+		super(id, name, cost, techLevel, language);
 		this.protection = protection;
 		this.damageTypes = damageTypes;
-		this.techLevel = techLevel;
 		this.standardPenalizations = specialPenalizations;
 		this.specialPenalizations = otherPenalizations;
 		this.allowedShields = allowedShields;
 		this.specifications = specifications;
-		this.cost = cost;
 	}
 
 	public int getProtection() {
 		return protection;
-	}
-
-	public int getTechLevel() {
-		return techLevel;
-	}
-
-	public float getCost() {
-		return cost;
 	}
 
 	public Set<DamageType> getDamageTypes() {
