@@ -34,7 +34,9 @@ public enum TraitCostPreferences implements IRandomPreference, IGaussianDistribu
 
 	GOOD(1, 6, 2, 3),
 
-	HIGH(4, 24, 4, 12);
+	HIGH(4, 24, 4, 12),
+
+	VERY_HIGH(8, 24, 12, 10);
 
 	private final int minimum;
 	private final int maximum;

@@ -63,48 +63,48 @@ public class RandomCharacterThreatAverage {
 		ThreatLevel.showStaticis();
 		return threatLevel / NUMBER_OF_TESTS;
 	}
-
-	@Test
-	public void peacefulCharacterAverage() throws TooManyBlessingsException, DuplicatedPreferenceException, InvalidXmlElementException,
-			InvalidRandomElementSelectedException {
-		calculateThreatAverage(CombatPreferences.PEACEFUL);
-	}
-
-	@Test
-	public void fairCharacterAverage() throws TooManyBlessingsException, DuplicatedPreferenceException, InvalidXmlElementException,
-			InvalidRandomElementSelectedException {
-		calculateThreatAverage(CombatPreferences.FAIR);
-	}
-
-	@Test
-	public void belligerentCharacterAverage() throws TooManyBlessingsException, DuplicatedPreferenceException, InvalidXmlElementException,
-			InvalidRandomElementSelectedException {
-		calculateThreatAverage(CombatPreferences.BELLIGERENT);
-	}
-
-	@Test
-	public void easyCharacterAverage() throws TooManyBlessingsException, DuplicatedPreferenceException, InvalidXmlElementException,
-			InvalidRandomElementSelectedException {
-		calculateThreatAverage(DifficultLevelPreferences.EASY);
-	}
-
-	@Test
-	public void hardCharacterAverage() throws TooManyBlessingsException, DuplicatedPreferenceException, InvalidXmlElementException,
-			InvalidRandomElementSelectedException {
-		calculateThreatAverage(DifficultLevelPreferences.HARD);
-	}
-
-	@Test
-	public void mediumCharacterAverage() throws TooManyBlessingsException, DuplicatedPreferenceException, InvalidXmlElementException,
-			InvalidRandomElementSelectedException {
-		calculateThreatAverage(DifficultLevelPreferences.MEDIUM);
-	}
-
-	@Test
-	public void veryEasyCharacterAverage() throws TooManyBlessingsException, DuplicatedPreferenceException, InvalidXmlElementException,
-			InvalidRandomElementSelectedException {
-		calculateThreatAverage(DifficultLevelPreferences.VERY_EASY);
-	}
+//
+//	@Test
+//	public void peacefulCharacterAverage() throws TooManyBlessingsException, DuplicatedPreferenceException, InvalidXmlElementException,
+//			InvalidRandomElementSelectedException {
+//		calculateThreatAverage(CombatPreferences.PEACEFUL);
+//	}
+//
+//	@Test
+//	public void fairCharacterAverage() throws TooManyBlessingsException, DuplicatedPreferenceException, InvalidXmlElementException,
+//			InvalidRandomElementSelectedException {
+//		calculateThreatAverage(CombatPreferences.FAIR);
+//	}
+//
+//	@Test
+//	public void belligerentCharacterAverage() throws TooManyBlessingsException, DuplicatedPreferenceException, InvalidXmlElementException,
+//			InvalidRandomElementSelectedException {
+//		calculateThreatAverage(CombatPreferences.BELLIGERENT);
+//	}
+//
+//	@Test
+//	public void easyCharacterAverage() throws TooManyBlessingsException, DuplicatedPreferenceException, InvalidXmlElementException,
+//			InvalidRandomElementSelectedException {
+//		calculateThreatAverage(DifficultLevelPreferences.EASY);
+//	}
+//
+//	@Test
+//	public void hardCharacterAverage() throws TooManyBlessingsException, DuplicatedPreferenceException, InvalidXmlElementException,
+//			InvalidRandomElementSelectedException {
+//		calculateThreatAverage(DifficultLevelPreferences.HARD);
+//	}
+//
+//	@Test
+//	public void mediumCharacterAverage() throws TooManyBlessingsException, DuplicatedPreferenceException, InvalidXmlElementException,
+//			InvalidRandomElementSelectedException {
+//		calculateThreatAverage(DifficultLevelPreferences.MEDIUM);
+//	}
+//
+//	@Test
+//	public void veryEasyCharacterAverage() throws TooManyBlessingsException, DuplicatedPreferenceException, InvalidXmlElementException,
+//			InvalidRandomElementSelectedException {
+//		calculateThreatAverage(DifficultLevelPreferences.VERY_EASY);
+//	}
 
 	@Test
 	public void veryHardCharacterAverage() throws TooManyBlessingsException, DuplicatedPreferenceException, InvalidXmlElementException,

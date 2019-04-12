@@ -315,14 +315,14 @@ public class RandomizeCharacter {
 		// Set shields.
 		ShieldPreferences shieldPreferences = ShieldPreferences.getSelected(preferences);
 		if (random.nextFloat() < shieldPreferences.getShieldProbability()) {
-			RandomShield randomArmour = new RandomShield(characterPlayer, preferences);
+			RandomShield randomShield = new RandomShield(characterPlayer, preferences);
 			try {
-				randomArmour.assign();
+				randomShield.assign();
 			} catch (InvalidShieldException e) {
 				// Probably already has an armour.
 				RandomGenerationLog.warning(this.getClass().getName(), e.getMessage());
 			} catch (InvalidRandomElementSelectedException e) {
-				RandomGenerationLog.warning(this.getClass().getName(), "No armours available for '" + characterPlayer + "'.");
+				RandomGenerationLog.warning(this.getClass().getName(), "No shields available for '" + characterPlayer + "'.");
 			}
 		}
 	}

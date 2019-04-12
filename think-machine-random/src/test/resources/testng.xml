@@ -26,11 +26,11 @@
 	<test name="CharacterGenerator" enabled="true" preserve-order="true">
 		<groups>
 			<run>
-				<exclude name="randomDefinition" />
-				<exclude name="randomCharacter" />
-				<exclude name="profile" />
-				<exclude name="difficulty" />
-				<include name="threatAverage" />
+				<include name="randomDefinition" />
+				<include name="randomCharacter" />
+				<include name="profile" />
+				<include name="difficulty" />
+				<exclude name="threatAverage" />
 				<exclude name="gaussianDistribution" />
 			</run>
 		</groups>

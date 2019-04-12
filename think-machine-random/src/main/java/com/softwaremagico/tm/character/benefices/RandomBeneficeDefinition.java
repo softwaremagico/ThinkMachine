@@ -146,11 +146,16 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
 			case EASY:
 			case VERY_EASY:
 				selectedTraitCost = TraitCostPreferences.LOW;
+				break;
 			case MEDIUM:
 			case HARD:
+				// Be careful. maxPoints can limit this value.
 				selectedTraitCost = TraitCostPreferences.GOOD;
+				break;
 			case VERY_HARD:
-				selectedTraitCost = TraitCostPreferences.HIGH;
+				// Be careful. maxPoints can limit this value.
+				selectedTraitCost = TraitCostPreferences.VERY_HIGH;
+				break;
 			}
 		}
 
