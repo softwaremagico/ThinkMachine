@@ -50,6 +50,16 @@ public class ThreatLevel {
 	private final static int PSI_LEVEL_THREAT_MULTIPLICATOR = 2;
 	private final static int VITALITY_THREAT_MULTIPLICATOR = 2;
 
+	private static int total = 0;
+	private static int combatThreatLevel = 0;
+	private static int weaponThreatLevel = 0;
+	private static int armourThreatLevel = 0;
+	private static float shieldThreatLevel = 0;
+	private static int cyberneticsThreatLevel = 0;
+	private static int occultismThreatLevel = 0;
+	private static int vitalityThreatLevel = 0;
+	private static float totalThreatLevel = 0;
+
 	public static int getThreatLevel(CharacterPlayer characterPlayer) throws InvalidXmlElementException {
 		int threatLevel = 0;
 		threatLevel += getCombatThreatLevel(characterPlayer);
@@ -58,6 +68,8 @@ public class ThreatLevel {
 		threatLevel += getThreatLevel(characterPlayer.getCybernetics());
 		threatLevel += getOccultismThreatLevel(characterPlayer);
 		threatLevel *= getThreatLevelMultiplicator(characterPlayer.getShield());
+		totalThreatLevel += threatLevel;
+		total++;
 		return threatLevel;
 	}
 
@@ -81,6 +93,7 @@ public class ThreatLevel {
 		threatLevel += characterPlayer.getRangedCombatStyles().size() * COMBAT_STYLES_THREAT_MULTIPLICATOR;
 		threatLevel += getThreatLevel(characterPlayer, characterPlayer.getCharacteristic(CharacteristicName.DEXTERITY), AvailableSkillsFactory.getInstance()
 				.getElement("fight", characterPlayer.getLanguage()));
+		combatThreatLevel += threatLevel;
 		return threatLevel;
 	}
 
@@ -98,6 +111,7 @@ public class ThreatLevel {
 		if (weapon.isAutomaticWeapon()) {
 			threatLevel *= 2;
 		}
+		weaponThreatLevel += threatLevel;
 		return threatLevel;
 	}
 
@@ -108,6 +122,7 @@ public class ThreatLevel {
 		int threatLevel = 0;
 		threatLevel += armour.getProtection() * DAMAGE_THREAT_MULTIPLICATOR;
 		threatLevel += armour.getDamageTypes().size() * DAMAGE_TYPES_THREAT_MULTIPLICATOR;
+		armourThreatLevel += threatLevel;
 		return threatLevel;
 	}
 
@@ -126,6 +141,7 @@ public class ThreatLevel {
 				break;
 			}
 		}
+		cyberneticsThreatLevel += threatLevel;
 		return threatLevel;
 	}
 
@@ -149,6 +165,7 @@ public class ThreatLevel {
 		threatLevel += characterPlayer.getExtraWyrd() * EXTRA_WYRD_THREAT_MULTIPLICATOR;
 		threatLevel += characterPlayer.getPsiqueLevel(OccultismTypeFactory.getPsi(characterPlayer.getLanguage())) * PSI_LEVEL_THREAT_MULTIPLICATOR;
 		threatLevel += characterPlayer.getPsiqueLevel(OccultismTypeFactory.getTheurgy(characterPlayer.getLanguage())) * PSI_LEVEL_THREAT_MULTIPLICATOR;
+		occultismThreatLevel += threatLevel;
 		return threatLevel;
 	}
 
@@ -159,10 +176,39 @@ public class ThreatLevel {
 		float threatLevel = 0;
 		threatLevel += ((shield.getForce() - shield.getImpact()) + 5) / 10;
 		threatLevel += ((float) shield.getImpact()) / 10;
+		shieldThreatLevel += threatLevel;
 		return threatLevel;
 	}
 
 	private static int getVitalityThreatLevel(CharacterPlayer characterPlayer) throws InvalidXmlElementException {
-		return characterPlayer.getVitalityValue() * VITALITY_THREAT_MULTIPLICATOR;
+		int threatLevel = characterPlayer.getVitalityValue() * VITALITY_THREAT_MULTIPLICATOR;
+		vitalityThreatLevel += threatLevel;
+		return threatLevel;
+	}
+
+	public static void showStaticis() {
+		if (total > 0) {
+			System.out.println("######################################");
+			System.out.println("Total threat: " + totalThreatLevel / total + " (" + total + ")");
+			System.out.println("Combat threat: " + combatThreatLevel / total);
+			System.out.println("Weapon threat: " + weaponThreatLevel / total);
+			System.out.println("Armour threat: " + armourThreatLevel / total);
+			System.out.println("Shield threat: " + shieldThreatLevel / total);
+			System.out.println("Cybernetics threat: " + cyberneticsThreatLevel / total);
+			System.out.println("Occultism threat: " + occultismThreatLevel / total);
+			System.out.println("Vitality threat: " + vitalityThreatLevel / total);
+		}
+	}
+
+	public static void resetStatistics() {
+		total = 0;
+		combatThreatLevel = 0;
+		weaponThreatLevel = 0;
+		armourThreatLevel = 0;
+		shieldThreatLevel = 0;
+		cyberneticsThreatLevel = 0;
+		occultismThreatLevel = 0;
+		vitalityThreatLevel = 0;
+		totalThreatLevel = 0;
 	}
 }

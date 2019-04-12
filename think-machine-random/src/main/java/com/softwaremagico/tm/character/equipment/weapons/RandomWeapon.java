@@ -93,6 +93,14 @@ public abstract class RandomWeapon extends EquipmentSelector<Weapon> {
 			weight = (weight + skillMultiplier) * skillMultiplier;
 		}
 
+		RandomGenerationLog.debug(this.getClass().getName(), "Total weight for '" + weapon + "' is '" + weight + "'.");
+		return weight;
+	}
+
+	@Override
+	public void validateElement(Weapon weapon) throws InvalidRandomElementSelectedException {
+		super.validateElement(weapon);
+
 		// Difficulty modification
 		DifficultLevelPreferences preference = DifficultLevelPreferences.getSelected(getPreferences());
 		switch (preference) {
@@ -127,9 +135,6 @@ public abstract class RandomWeapon extends EquipmentSelector<Weapon> {
 			}
 			break;
 		}
-
-		RandomGenerationLog.debug(this.getClass().getName(), "Total weight for '" + weapon + "' is '" + weight + "'.");
-		return weight;
 	}
 
 	@Override

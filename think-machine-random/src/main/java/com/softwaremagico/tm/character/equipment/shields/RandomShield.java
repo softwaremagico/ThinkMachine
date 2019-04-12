@@ -80,7 +80,6 @@ public class RandomShield extends EquipmentSelector<Shield> {
 		switch (preference) {
 		case VERY_EASY:
 		case EASY:
-			throw new InvalidRandomElementSelectedException("Shield '" + shield + "' are not allowed by selected preference '" + preference + "'.");
 		case MEDIUM:
 			break;
 		case HARD:
@@ -102,6 +101,21 @@ public class RandomShield extends EquipmentSelector<Shield> {
 
 		RandomGenerationLog.debug(this.getClass().getName(), "Total weight for '" + shield + "' is '" + weight + "'.");
 		return weight;
+	}
+
+	@Override
+	public void validateElement(Shield shield) throws InvalidRandomElementSelectedException {
+		super.validateElement(shield);
+
+		// Difficulty modification
+		DifficultLevelPreferences preference = DifficultLevelPreferences.getSelected(getPreferences());
+		switch (preference) {
+		case VERY_EASY:
+		case EASY:
+			throw new InvalidRandomElementSelectedException("Shield '" + shield + "' are not allowed by selected preference '" + preference + "'.");
+		default:
+			break;
+		}
 	}
 
 	@Override

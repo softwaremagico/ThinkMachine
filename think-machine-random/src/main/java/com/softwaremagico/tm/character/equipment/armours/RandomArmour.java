@@ -117,6 +117,29 @@ public class RandomArmour extends EquipmentSelector<Armour> {
 			}
 		}
 
+		int weight = 1;
+		// Similar tech level preferred.
+		int weightTech = getWeightTechModificator(armour);
+		RandomGenerationLog.debug(this.getClass().getName(), "Weight value by tech level for '" + armour + "' is '" + weightTech + "'.");
+		weight += weightTech;
+
+		// armours depending on the purchasing power of the character.
+		int costModificator = getWeightCostModificator(armour);
+		RandomGenerationLog.debug(this.getClass().getName(), "Cost multiplication for weight for '" + armour + "' is '" + costModificator + "'.");
+		weight /= costModificator;
+
+		// More protection is better.
+		weight *= armour.getProtection();
+		RandomGenerationLog.debug(this.getClass().getName(), "Protection multiplicator for '" + armour + "' is '" + armour.getProtection() + "'.");
+
+		RandomGenerationLog.debug(this.getClass().getName(), "Total weight for '" + armour + "' is '" + weight + "'.");
+		return weight;
+	}
+
+	@Override
+	public void validateElement(Armour armour) throws InvalidRandomElementSelectedException {
+		super.validateElement(armour);
+
 		DifficultLevelPreferences preference = DifficultLevelPreferences.getSelected(getPreferences());
 		switch (preference) {
 		case VERY_EASY:
@@ -139,24 +162,6 @@ public class RandomArmour extends EquipmentSelector<Armour> {
 			}
 			break;
 		}
-
-		int weight = 1;
-		// Similar tech level preferred.
-		int weightTech = getWeightTechModificator(armour);
-		RandomGenerationLog.debug(this.getClass().getName(), "Weight value by tech level for '" + armour + "' is '" + weightTech + "'.");
-		weight += weightTech;
-
-		// armours depending on the purchasing power of the character.
-		int costModificator = getWeightCostModificator(armour);
-		RandomGenerationLog.debug(this.getClass().getName(), "Cost multiplication for weight for '" + armour + "' is '" + costModificator + "'.");
-		weight /= costModificator;
-
-		// More protection is better.
-		weight *= armour.getProtection();
-		RandomGenerationLog.debug(this.getClass().getName(), "Protection multiplicator for '" + armour + "' is '" + armour.getProtection() + "'.");
-
-		RandomGenerationLog.debug(this.getClass().getName(), "Total weight for '" + armour + "' is '" + weight + "'.");
-		return weight;
 	}
 
 	@Override

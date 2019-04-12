@@ -47,6 +47,7 @@ import com.softwaremagico.tm.log.RandomGenerationLog;
 import com.softwaremagico.tm.random.RandomSelector;
 import com.softwaremagico.tm.random.exceptions.ImpossibleToAssignMandatoryElementException;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
+import com.softwaremagico.tm.random.selectors.DifficultLevelPreferences;
 import com.softwaremagico.tm.random.selectors.IGaussianDistribution;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
 import com.softwaremagico.tm.random.selectors.StatusPreferences;
@@ -54,6 +55,7 @@ import com.softwaremagico.tm.random.selectors.TraitCostPreferences;
 
 public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition> {
 	private static final int MAX_AFFLICTIONS = 2;
+	private static final String CASH_BENEFICE_ID = "cash";
 
 	public RandomBeneficeDefinition(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences) throws InvalidXmlElementException {
 		super(characterPlayer, preferences);
@@ -116,6 +118,11 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
 			throw new InvalidRandomElementSelectedException("Benefice '" + benefice + "' is restricted.");
 		}
 
+		// PNJs likes money changes.
+		if (benefice.getId().equalsIgnoreCase(CASH_BENEFICE_ID)) {
+			return GOOD_PROBABILITY;
+		}
+
 		// No faction preference selected. All benefices has the same
 		// probability.
 		return 1;
@@ -132,6 +139,21 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
 	 */
 	private AvailableBenefice assignLevelOfBenefice(BeneficeDefinition benefice, int maxPoints) throws InvalidXmlElementException {
 		IGaussianDistribution selectedTraitCost = TraitCostPreferences.getSelected(getPreferences());
+
+		if (benefice.getId().equalsIgnoreCase(CASH_BENEFICE_ID)) {
+			DifficultLevelPreferences difficultPreferences = DifficultLevelPreferences.getSelected(getPreferences());
+			switch (difficultPreferences) {
+			case EASY:
+			case VERY_EASY:
+				selectedTraitCost = TraitCostPreferences.LOW;
+			case MEDIUM:
+			case HARD:
+				selectedTraitCost = TraitCostPreferences.GOOD;
+			case VERY_HARD:
+				selectedTraitCost = TraitCostPreferences.HIGH;
+			}
+		}
+
 		if (benefice.getGroup() != null && benefice.getGroup().equals(BeneficeGroup.STATUS)) {
 			// Status has also an special preference.
 			IGaussianDistribution selectedStatus = StatusPreferences.getSelected(getPreferences());
@@ -139,10 +161,12 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
 				selectedTraitCost = selectedStatus;
 			}
 		}
+
 		int maxRangeSelected = selectedTraitCost.randomGaussian();
 		if (maxRangeSelected > maxPoints) {
 			maxRangeSelected = maxPoints;
 		}
+
 		RandomGenerationLog.info(this.getClass().getName(), "MaxPoints of '" + benefice + "' are '" + maxRangeSelected + "'.");
 		Set<AvailableBenefice> beneficeLevels = AvailableBeneficeFactory.getInstance().getAvailableBeneficesByDefinition(getCharacterPlayer().getLanguage(),
 				benefice);

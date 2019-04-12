@@ -27,13 +27,13 @@ import java.util.Set;
  */
 
 public enum CombatPreferences implements IRandomPreference {
-	// Threat level ~73
+	// Threat level ~31
 	PEACEFUL(0, 1, WeaponsPreferences.LOW, ArmourPreferences.NONE, ShieldPreferences.NONE),
 
 	// Threat level ~58
 	FAIR(2, 5, WeaponsPreferences.MEDIUM, ArmourPreferences.MEDIUM, ShieldPreferences.LOW),
 
-	// Threat level ~31
+	// Threat level ~73
 	BELLIGERENT(4, 10, WeaponsPreferences.HIGH, ArmourPreferences.HIGH, ShieldPreferences.MEDIUM);
 
 	private final int minimum;
@@ -67,6 +67,16 @@ public enum CombatPreferences implements IRandomPreference {
 			if (preference instanceof CombatPreferences) {
 				return (CombatPreferences) preference;
 			}
+		}
+		DifficultLevelPreferences difficultPreferences = DifficultLevelPreferences.getSelected(preferences);
+		switch (difficultPreferences) {
+		case EASY:
+		case VERY_EASY:
+		case MEDIUM:
+			return FAIR;
+		case HARD:
+		case VERY_HARD:
+			return BELLIGERENT;
 		}
 		return FAIR;
 	}

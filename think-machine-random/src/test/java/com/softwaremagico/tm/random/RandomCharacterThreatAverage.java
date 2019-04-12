@@ -55,10 +55,12 @@ public class RandomCharacterThreatAverage {
 	public float calculateThreatAverage(IRandomPreference... preferences) throws TooManyBlessingsException, DuplicatedPreferenceException,
 			InvalidXmlElementException, InvalidRandomElementSelectedException {
 		float threatLevel = 0f;
+		ThreatLevel.resetStatistics();
 		for (int i = 0; i < NUMBER_OF_TESTS; i++) {
 			threatLevel += calculateThread(preferences);
 		}
 		System.out.println("Average threat level for '" + Arrays.toString(preferences) + "' is: " + threatLevel / NUMBER_OF_TESTS);
+		ThreatLevel.showStaticis();
 		return threatLevel / NUMBER_OF_TESTS;
 	}
 
