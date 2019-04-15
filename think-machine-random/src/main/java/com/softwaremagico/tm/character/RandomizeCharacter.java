@@ -31,6 +31,7 @@ import java.util.Set;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.benefices.RandomBeneficeDefinition;
+import com.softwaremagico.tm.character.benefices.RandomExtraBeneficeDefinition;
 import com.softwaremagico.tm.character.blessings.RandomBlessingDefinition;
 import com.softwaremagico.tm.character.blessings.RandomCursesDefinition;
 import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
@@ -229,6 +230,9 @@ public class RandomizeCharacter {
 		// Set blessings.
 		RandomBlessingDefinition randomBlessing = new RandomBlessingDefinition(characterPlayer, preferences);
 		randomBlessing.assign();
+		// Set benefices.
+		RandomBeneficeDefinition randomBenefice = new RandomExtraBeneficeDefinition(characterPlayer, preferences);
+		randomBenefice.assign();
 		// Set psique level
 		RandomPsique randomPsique = new RandomPsique(characterPlayer, preferences);
 		randomPsique.assign();

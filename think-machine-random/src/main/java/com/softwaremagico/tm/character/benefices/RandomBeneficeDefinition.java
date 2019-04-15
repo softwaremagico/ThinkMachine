@@ -35,12 +35,6 @@ import java.util.Set;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.character.benefices.AvailableBenefice;
-import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
-import com.softwaremagico.tm.character.benefices.BeneficeClassification;
-import com.softwaremagico.tm.character.benefices.BeneficeDefinition;
-import com.softwaremagico.tm.character.benefices.BeneficeDefinitionFactory;
-import com.softwaremagico.tm.character.benefices.BeneficeGroup;
 import com.softwaremagico.tm.character.creation.CostCalculator;
 import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
 import com.softwaremagico.tm.log.RandomGenerationLog;
@@ -83,18 +77,37 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
 		}
 	}
 
-	private void assignBenefice(BeneficeDefinition selectedBenefice, int maxPoints) throws InvalidXmlElementException {
+	protected void assignBenefice(BeneficeDefinition selectedBenefice, int maxPoints) throws InvalidXmlElementException {
 		// Select the range of the benefice.
 		AvailableBenefice selectedBeneficeWithLevel = assignLevelOfBenefice(selectedBenefice, maxPoints);
 		if (selectedBeneficeWithLevel != null) {
 			// Only a few afflictions.
 			if (selectedBeneficeWithLevel.getBeneficeClassification() == BeneficeClassification.AFFLICTION) {
 				if (getCharacterPlayer().getAfflictions().size() < MAX_AFFLICTIONS) {
-					getCharacterPlayer().addBenefice(selectedBeneficeWithLevel);
+					try {
+						getCharacterPlayer().addBenefice(selectedBeneficeWithLevel);
+					} catch (BeneficeAlreadyAddedException e) {
+						// Not add it again.
+					}
 				}
 			} else {
-				getCharacterPlayer().addBenefice(selectedBeneficeWithLevel);
-				RandomGenerationLog.info(this.getClass().getName(), "Added benefice '" + selectedBeneficeWithLevel + "'.");
+				try {
+					getCharacterPlayer().addBenefice(selectedBeneficeWithLevel);
+					RandomGenerationLog.info(this.getClass().getName(), "Added benefice '" + selectedBeneficeWithLevel + "'.");
+				} catch (BeneficeAlreadyAddedException e) {
+					// If level is bigger... replace it.
+					AvailableBenefice originalBenefice = getCharacterPlayer().getBenefice(selectedBenefice.getId());
+					if (originalBenefice.getCost() < selectedBeneficeWithLevel.getCost()) {
+						getCharacterPlayer().removeBenefice(originalBenefice);
+						try {
+							getCharacterPlayer().addBenefice(selectedBeneficeWithLevel);
+							RandomGenerationLog.info(this.getClass().getName(), "Replacing benefice '" + originalBenefice + "' with '"
+									+ selectedBeneficeWithLevel + "'.");
+						} catch (BeneficeAlreadyAddedException e1) {
+							RandomGenerationLog.errorMessage(this.getClass().getName(), e1);
+						}
+					}
+				}
 			}
 		}
 		removeElementWeight(selectedBenefice);

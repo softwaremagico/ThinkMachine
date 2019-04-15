@@ -31,6 +31,8 @@ import com.softwaremagico.tm.character.Gender;
 import com.softwaremagico.tm.character.Name;
 import com.softwaremagico.tm.character.Surname;
 import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
+import com.softwaremagico.tm.character.benefices.BeneficeAlreadyAddedException;
+import com.softwaremagico.tm.character.blessings.BlessingAlreadyAddedException;
 import com.softwaremagico.tm.character.blessings.BlessingFactory;
 import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
@@ -50,7 +52,7 @@ import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 public class CustomCharacter {
 
 	public static CharacterPlayer create(String language) throws InvalidXmlElementException, TooManyBlessingsException, TooManyCyberneticDevicesException,
-			RequiredCyberneticDevicesException {
+			RequiredCyberneticDevicesException, BlessingAlreadyAddedException, BeneficeAlreadyAddedException {
 		CacheHandler.clearCache();
 		CharacterPlayer player = new CharacterPlayer(language);
 		player.getInfo().addName(new Name("Oliver", language, Gender.MALE, null));

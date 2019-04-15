@@ -31,6 +31,7 @@ import org.testng.annotations.Test;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.benefices.AvailableBenefice;
 import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
+import com.softwaremagico.tm.character.benefices.BeneficeAlreadyAddedException;
 import com.softwaremagico.tm.character.benefices.RandomBeneficeDefinition;
 import com.softwaremagico.tm.character.blessings.BlessingClassification;
 import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
@@ -267,7 +268,8 @@ public class RandomCharacterTests {
 	}
 
 	@Test
-	public void weapons() throws InvalidXmlElementException, DuplicatedPreferenceException, InvalidRandomElementSelectedException, TooManyBlessingsException {
+	public void weapons() throws InvalidXmlElementException, DuplicatedPreferenceException, InvalidRandomElementSelectedException, TooManyBlessingsException,
+			BeneficeAlreadyAddedException {
 		CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
 		characterPlayer.setSkillRank(AvailableSkillsFactory.getInstance().getElement("slugGuns", LANGUAGE), 5);
 		characterPlayer.setSkillRank(AvailableSkillsFactory.getInstance().getElement("energyGuns", LANGUAGE), 5);

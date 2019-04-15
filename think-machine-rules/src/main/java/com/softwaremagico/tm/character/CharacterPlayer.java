@@ -40,11 +40,13 @@ import java.util.TreeMap;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.benefices.AvailableBenefice;
 import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
+import com.softwaremagico.tm.character.benefices.BeneficeAlreadyAddedException;
 import com.softwaremagico.tm.character.benefices.BeneficeClassification;
 import com.softwaremagico.tm.character.benefices.BeneficeGroup;
 import com.softwaremagico.tm.character.benefices.BeneficeSpecialization;
 import com.softwaremagico.tm.character.benefices.InvalidBeneficeException;
 import com.softwaremagico.tm.character.blessings.Blessing;
+import com.softwaremagico.tm.character.blessings.BlessingAlreadyAddedException;
 import com.softwaremagico.tm.character.blessings.BlessingClassification;
 import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
 import com.softwaremagico.tm.character.characteristics.Characteristic;
@@ -368,9 +370,9 @@ public class CharacterPlayer {
 		return occultism;
 	}
 
-	public void addBlessing(Blessing blessing) throws TooManyBlessingsException {
+	public void addBlessing(Blessing blessing) throws TooManyBlessingsException, BlessingAlreadyAddedException {
 		if (getAllBlessings().contains(blessing)) {
-			return;
+			throw new BlessingAlreadyAddedException("Character already has blessing '" + blessing + "'!");
 		}
 		if (blessing.getBlessingClassification() == BlessingClassification.CURSE) {
 			if (CostCalculator.getBlessingCosts(getCurses()) + blessing.getCost() >= FreeStyleCharacterCreation.getMaxCursePoints(getInfo().getAge())) {
@@ -441,9 +443,12 @@ public class CharacterPlayer {
 		return Collections.unmodifiableList(allBlessings);
 	}
 
-	public void addBenefice(AvailableBenefice benefice) throws InvalidBeneficeException {
+	public void addBenefice(AvailableBenefice benefice) throws InvalidBeneficeException, BeneficeAlreadyAddedException {
 		if (benefice.getBeneficeDefinition().getGroup() == BeneficeGroup.RESTRICTED) {
 			throw new InvalidBeneficeException("Benefice '" + benefice + "' is restricted and cannot be added.");
+		}
+		if (getBenefice(benefice.getBeneficeDefinition().getId()) != null) {
+			throw new BeneficeAlreadyAddedException("Character already has benefice '" + benefice + "'!");
 		}
 		benefices.add(benefice);
 		Collections.sort(benefices);
@@ -471,6 +476,19 @@ public class CharacterPlayer {
 		}
 		Collections.sort(positiveBenefices);
 		return Collections.unmodifiableList(positiveBenefices);
+	}
+
+	public void removeBenefice(AvailableBenefice benefice) {
+		benefices.remove(benefice);
+	}
+
+	public AvailableBenefice getBenefice(String beneficeDefinitionId) {
+		for (AvailableBenefice benefice : benefices) {
+			if (benefice.getBeneficeDefinition().getId().equalsIgnoreCase(beneficeDefinitionId)) {
+				return benefice;
+			}
+		}
+		return null;
 	}
 
 	public List<AvailableBenefice> getAfflictions() {

@@ -59,6 +59,7 @@ public class ThreatLevel {
 	private static int occultismThreatLevel = 0;
 	private static int vitalityThreatLevel = 0;
 	private static float totalThreatLevel = 0;
+	private static float totalMoney = 0;
 
 	public static int getThreatLevel(CharacterPlayer characterPlayer) throws InvalidXmlElementException {
 		int threatLevel = 0;
@@ -69,6 +70,7 @@ public class ThreatLevel {
 		threatLevel += getOccultismThreatLevel(characterPlayer);
 		threatLevel *= getThreatLevelMultiplicator(characterPlayer.getShield());
 		totalThreatLevel += threatLevel;
+		totalMoney += characterPlayer.getInitialMoney();
 		total++;
 		return threatLevel;
 	}
@@ -197,6 +199,7 @@ public class ThreatLevel {
 			System.out.println("Cybernetics threat: " + cyberneticsThreatLevel / total);
 			System.out.println("Occultism threat: " + occultismThreatLevel / total);
 			System.out.println("Vitality threat: " + vitalityThreatLevel / total);
+			System.out.println("Money: " + totalMoney / total);
 		}
 	}
 

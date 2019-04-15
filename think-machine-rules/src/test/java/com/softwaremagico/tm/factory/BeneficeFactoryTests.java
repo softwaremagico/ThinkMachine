@@ -34,6 +34,7 @@ import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.benefices.AvailableBenefice;
 import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
+import com.softwaremagico.tm.character.benefices.BeneficeAlreadyAddedException;
 import com.softwaremagico.tm.character.benefices.BeneficeClassification;
 import com.softwaremagico.tm.character.benefices.BeneficeDefinitionFactory;
 import com.softwaremagico.tm.character.creation.CostCalculator;
@@ -77,14 +78,14 @@ public class BeneficeFactoryTests {
 	}
 
 	@Test
-	public void getMoneyBenefice() throws InvalidXmlElementException {
+	public void getMoneyBenefice() throws InvalidXmlElementException, BeneficeAlreadyAddedException {
 		CharacterPlayer player = new CharacterPlayer(LANGUAGE);
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("cash [firebirds1000]", LANGUAGE));
 		Assert.assertEquals(1000, player.getInitialMoney());
 	}
 
 	@Test
-	public void getMoneyRemaining() throws InvalidXmlElementException {
+	public void getMoneyRemaining() throws InvalidXmlElementException, BeneficeAlreadyAddedException {
 		CharacterPlayer player = new CharacterPlayer(LANGUAGE);
 		// Weapon without cost.
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("fluxSword", LANGUAGE));
@@ -96,7 +97,7 @@ public class BeneficeFactoryTests {
 	}
 
 	@Test
-	public void getMoneyAsAfflictionCost() throws InvalidXmlElementException {
+	public void getMoneyAsAfflictionCost() throws InvalidXmlElementException, BeneficeAlreadyAddedException {
 		CharacterPlayer player = new CharacterPlayer(LANGUAGE);
 		int remainingCost = CostCalculator.getCost(player);
 		AvailableBenefice cash50 = AvailableBeneficeFactory.getInstance().getElement("cash [firebirds50]", LANGUAGE);

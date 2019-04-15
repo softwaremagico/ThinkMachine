@@ -29,7 +29,9 @@ import org.testng.annotations.Test;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.character.benefices.BeneficeAlreadyAddedException;
 import com.softwaremagico.tm.character.blessings.Blessing;
+import com.softwaremagico.tm.character.blessings.BlessingAlreadyAddedException;
 import com.softwaremagico.tm.character.blessings.BlessingFactory;
 import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
@@ -43,7 +45,8 @@ public class BlessingTests {
 	private final static String LANGUAGE = "es";
 
 	@Test
-	public void checkVitalityModifications() throws InvalidXmlElementException, TooManyBlessingsException, TooManyCyberneticDevicesException, RequiredCyberneticDevicesException {
+	public void checkVitalityModifications() throws InvalidXmlElementException, TooManyBlessingsException, TooManyCyberneticDevicesException,
+			RequiredCyberneticDevicesException, BlessingAlreadyAddedException, BeneficeAlreadyAddedException {
 		CharacterPlayer player = CustomCharacter.create(LANGUAGE);
 		int vitality = player.getVitalityValue();
 		player.addBlessing(BlessingFactory.getInstance().getElement("incurableDisease", LANGUAGE));
@@ -51,7 +54,8 @@ public class BlessingTests {
 	}
 
 	@Test
-	public void checkMovementModifications() throws InvalidXmlElementException, TooManyBlessingsException, TooManyCyberneticDevicesException, RequiredCyberneticDevicesException {
+	public void checkMovementModifications() throws InvalidXmlElementException, TooManyBlessingsException, TooManyCyberneticDevicesException,
+			RequiredCyberneticDevicesException, BlessingAlreadyAddedException, BeneficeAlreadyAddedException {
 		CharacterPlayer player = CustomCharacter.create(LANGUAGE);
 		int movement = player.getValue(CharacteristicName.MOVEMENT);
 		player.addBlessing(BlessingFactory.getInstance().getElement("limp", LANGUAGE));
@@ -60,20 +64,19 @@ public class BlessingTests {
 
 	@Test
 	public void checkRangedAttacksModifications() throws InvalidXmlElementException, TooManyBlessingsException, TooManyCyberneticDevicesException,
-			RequiredCyberneticDevicesException {
+			RequiredCyberneticDevicesException, BlessingAlreadyAddedException, BeneficeAlreadyAddedException {
 		CharacterPlayer player = CustomCharacter.create(LANGUAGE);
-		Assert.assertEquals((int) player.getSkillTotalRanks(AvailableSkillsFactory.getInstance().getElement(
-				"energyGuns", LANGUAGE)), 6);
+		Assert.assertEquals((int) player.getSkillTotalRanks(AvailableSkillsFactory.getInstance().getElement("energyGuns", LANGUAGE)), 6);
 	}
 
 	@Test
 	public void getAffectedSkills() throws InvalidXmlElementException {
 		Blessing missingEye = BlessingFactory.getInstance().getElement("missingEye", LANGUAGE);
 		Assert.assertEquals(missingEye.getAffectedSkill(LANGUAGE).size(), 5);
-		
+
 		Blessing pilot = BlessingFactory.getInstance().getElement("crackPilot", LANGUAGE);
 		Assert.assertEquals(pilot.getAffectedSkill(LANGUAGE).size(), 6);
-		
+
 		Blessing hacker = BlessingFactory.getInstance().getElement("hacker", LANGUAGE);
 		Assert.assertEquals(hacker.getAffectedSkill(LANGUAGE).size(), 1);
 	}

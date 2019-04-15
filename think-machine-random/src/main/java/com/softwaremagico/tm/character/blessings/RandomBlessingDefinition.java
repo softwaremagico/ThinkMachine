@@ -57,7 +57,7 @@ public class RandomBlessingDefinition extends RandomSelector<Blessing> {
 			try {
 				getCharacterPlayer().addBlessing(selectedBlessing);
 				RandomGenerationLog.info(this.getClass().getName(), "Added blessing '" + selectedBlessing + "'.");
-			} catch (TooManyBlessingsException e) {
+			} catch (TooManyBlessingsException | BlessingAlreadyAddedException e) {
 				RandomGenerationLog.debug(this.getClass().getName(), e.getMessage());
 				// No more possible.
 				break;
@@ -109,7 +109,7 @@ public class RandomBlessingDefinition extends RandomSelector<Blessing> {
 			try {
 				getCharacterPlayer().addBlessing(blessing);
 				RandomGenerationLog.info(this.getClass().getName(), "Added blessing '" + blessing + "'.");
-			} catch (TooManyBlessingsException e) {
+			} catch (TooManyBlessingsException | BlessingAlreadyAddedException e) {
 				throw new ImpossibleToAssignMandatoryElementException("Impossible to assign mandatory blessing '" + blessing + "'.", e);
 			}
 		}

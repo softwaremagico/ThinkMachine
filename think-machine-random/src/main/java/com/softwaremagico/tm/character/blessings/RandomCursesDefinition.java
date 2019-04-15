@@ -32,6 +32,7 @@ import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.log.RandomGenerationLog;
 import com.softwaremagico.tm.random.RandomSelector;
+import com.softwaremagico.tm.random.exceptions.ImpossibleToAssignMandatoryElementException;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.BlessingPreferences;
 import com.softwaremagico.tm.random.selectors.CombatPreferences;
@@ -57,7 +58,7 @@ public class RandomCursesDefinition extends RandomSelector<Blessing> {
 			try {
 				getCharacterPlayer().addBlessing(selectedCurse);
 				RandomGenerationLog.info(this.getClass().getName(), "Added curse '" + selectedCurse + "'.");
-			} catch (TooManyBlessingsException e) {
+			} catch (TooManyBlessingsException | BlessingAlreadyAddedException e) {
 				// No more possible.
 				break;
 			}
@@ -109,14 +110,13 @@ public class RandomCursesDefinition extends RandomSelector<Blessing> {
 	}
 
 	@Override
-	protected void assignIfMandatory(Blessing element) throws InvalidXmlElementException {
+	protected void assignIfMandatory(Blessing element) throws InvalidXmlElementException, ImpossibleToAssignMandatoryElementException {
 		BlessingPreferences blessingPreferences = BlessingPreferences.getSelected(getPreferences());
 		if (blessingPreferences != null && element.getBlessingGroup() == BlessingGroup.get(blessingPreferences.name())) {
 			try {
 				getCharacterPlayer().addBlessing(element);
-			} catch (TooManyBlessingsException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			} catch (TooManyBlessingsException | BlessingAlreadyAddedException e) {
+				throw new ImpossibleToAssignMandatoryElementException("Impossible to assign mandatory blessing '" + element + "'.", e);
 			}
 			RandomGenerationLog.info(this.getClass().getName(), "Added blessing '" + element + "'.");
 		}
