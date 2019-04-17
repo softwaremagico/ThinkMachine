@@ -301,6 +301,20 @@ public class RandomizeCharacter {
 			probabilityOfMeleeWeapon -= 0.4f;
 		}
 
+		// Set shields.
+		ShieldPreferences shieldPreferences = ShieldPreferences.getSelected(preferences);
+		if (random.nextFloat() < shieldPreferences.getShieldProbability()) {
+			RandomShield randomShield = new RandomShield(characterPlayer, preferences);
+			try {
+				randomShield.assign();
+			} catch (InvalidShieldException e) {
+				// Probably already has an armour.
+				RandomGenerationLog.warning(this.getClass().getName(), e.getMessage());
+			} catch (InvalidRandomElementSelectedException e) {
+				RandomGenerationLog.warning(this.getClass().getName(), "No shields available for '" + characterPlayer + "'.");
+			}
+		}
+
 		// Set armours
 		ArmourPreferences armourPreferences = ArmourPreferences.getSelected(preferences);
 		if (random.nextFloat() < armourPreferences.getArmourProbability()) {
@@ -314,20 +328,6 @@ public class RandomizeCharacter {
 				RandomGenerationLog.warning(this.getClass().getName(), "No armours available for '" + characterPlayer + "'.");
 			}
 
-		}
-
-		// Set shields.
-		ShieldPreferences shieldPreferences = ShieldPreferences.getSelected(preferences);
-		if (random.nextFloat() < shieldPreferences.getShieldProbability()) {
-			RandomShield randomShield = new RandomShield(characterPlayer, preferences);
-			try {
-				randomShield.assign();
-			} catch (InvalidShieldException e) {
-				// Probably already has an armour.
-				RandomGenerationLog.warning(this.getClass().getName(), e.getMessage());
-			} catch (InvalidRandomElementSelectedException e) {
-				RandomGenerationLog.warning(this.getClass().getName(), "No shields available for '" + characterPlayer + "'.");
-			}
 		}
 	}
 

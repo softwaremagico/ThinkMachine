@@ -48,6 +48,18 @@ public enum ShieldPreferences implements IRandomPreference {
 				return (ShieldPreferences) preference;
 			}
 		}
+		DifficultLevelPreferences difficultPreferences = DifficultLevelPreferences.getSelected(preferences);
+		switch (difficultPreferences) {
+		case EASY:
+		case VERY_EASY:
+			return NONE;
+		case MEDIUM:
+			return LOW;
+		case HARD:
+			return MEDIUM;
+		case VERY_HARD:
+			return HIGH;
+		}
 		return null;
 	}
 
