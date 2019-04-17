@@ -28,14 +28,19 @@ import java.util.Set;
 
 public enum DifficultLevelPreferences implements IRandomPreference {
 
+	// Threat level ~50
 	VERY_EASY(-5, -15, 0),
 
+	// Threat level ~58
 	EASY(-3, -10, 0),
 
+	// Threat level ~65
 	MEDIUM(0, 0, 0),
 
+	// Threat level ~85
 	HARD(0, 5, 20),
 
+	// Threat level ~100
 	VERY_HARD(5, 10, 20);
 
 	private final int experienceBonus;
