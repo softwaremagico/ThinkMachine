@@ -74,5 +74,7 @@
 			<es>Rufián</es>
 		</name>
 		<preferences>CombatPreferences.BELLIGERENT, CharacteristicsPreferences.BODY, SpecializationPreferences.SPECIALIZED, StatusPreferences.NONE, WeaponsPreferences.MEDIUM, SkillGroupPreferences.MALEFACTION, FactionPreferences.NONE</preferences>
+		<suggestedBenefices>escapedSerf, branded, escapedSlave, addiction, orphan</suggestedBenefices>
+		<mandatoryBenefices>outlaw</mandatoryBenefices>
 	</thug>
 </profiles>

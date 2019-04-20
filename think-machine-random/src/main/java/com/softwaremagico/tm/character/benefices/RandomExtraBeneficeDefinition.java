@@ -24,6 +24,7 @@ package com.softwaremagico.tm.character.benefices;
  * #L%
  */
 
+import java.util.HashSet;
 import java.util.Set;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
@@ -37,20 +38,25 @@ import com.softwaremagico.tm.random.selectors.IRandomPreference;
 public class RandomExtraBeneficeDefinition extends RandomBeneficeDefinition {
 	private static final int MAX_COMBAT_STYLES = 2;
 
-	public RandomExtraBeneficeDefinition(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences) throws InvalidXmlElementException {
-		super(characterPlayer, preferences);
+	public RandomExtraBeneficeDefinition(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences,
+			Set<BeneficeDefinition> suggestedBenefices)
+			throws InvalidXmlElementException {
+		super(characterPlayer, preferences, new HashSet<BeneficeDefinition>(), suggestedBenefices);
 	}
 
 	@Override
 	public void assign() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
-		int existingCombatStyles = getCharacterPlayer().getMeleeCombatStyles().size() + getCharacterPlayer().getRangedCombatStyles().size();
+		int existingCombatStyles = getCharacterPlayer().getMeleeCombatStyles().size()
+				+ getCharacterPlayer().getRangedCombatStyles().size();
 
 		IGaussianDistribution beneficesDistribution = ExtraBeneficesNumberPreferences.getSelected(getPreferences());
 		// Select a blessing
-		int totalExtraSelectedBenefices = beneficesDistribution.randomGaussian() + getCharacterPlayer().getAllBenefices().size();
+		int totalExtraSelectedBenefices = beneficesDistribution.randomGaussian()
+				+ getCharacterPlayer().getAllBenefices().size();
 
 		// Later, the others.
-		while (getCharacterPlayer().getAllBenefices().size() < totalExtraSelectedBenefices && !getWeightedElements().isEmpty()) {
+		while (getCharacterPlayer().getAllBenefices().size() < totalExtraSelectedBenefices
+				&& !getWeightedElements().isEmpty()) {
 			// Select a benefice
 			BeneficeDefinition selectedBenefice = selectElementByWeight();
 
@@ -62,7 +68,8 @@ public class RandomExtraBeneficeDefinition extends RandomBeneficeDefinition {
 				}
 			}
 
-			assignBenefice(selectedBenefice, FreeStyleCharacterCreation.getFreeAvailablePoints(getCharacterPlayer().getInfo().getAge()));
+			assignBenefice(selectedBenefice,
+					FreeStyleCharacterCreation.getFreeAvailablePoints(getCharacterPlayer().getInfo().getAge()));
 		}
 	}
 }

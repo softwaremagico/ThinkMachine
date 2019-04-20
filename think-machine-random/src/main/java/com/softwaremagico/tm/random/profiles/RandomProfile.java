@@ -32,6 +32,7 @@ import java.util.Set;
 import com.softwaremagico.tm.Element;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.benefices.AvailableBenefice;
+import com.softwaremagico.tm.character.benefices.BeneficeDefinition;
 import com.softwaremagico.tm.character.blessings.Blessing;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
@@ -43,22 +44,29 @@ public class RandomProfile extends Element<RandomProfile> implements IRandomProf
 	private final Map<CharacteristicName, Integer> characteristicsMinimumValues;
 	private final Set<AvailableSkill> requiredSkills;
 	private final Set<AvailableSkill> suggestedSkills;
+	private final Set<BeneficeDefinition> suggestedBenefices;
+	private final Set<BeneficeDefinition> mandatoryBenefices;
 
 	@ExcludeFromJson
 	public boolean parentMerged = false;
 
 	public RandomProfile(String id, String name, String language, Set<IRandomPreference> randomPreferences,
-			Map<CharacteristicName, Integer> characteristicsMinimumValues, Set<AvailableSkill> requiredSkills, Set<AvailableSkill> suggestedSkills) {
+			Map<CharacteristicName, Integer> characteristicsMinimumValues, Set<AvailableSkill> requiredSkills,
+			Set<AvailableSkill> suggestedSkills, Set<BeneficeDefinition> mandatoryBenefices,
+			Set<BeneficeDefinition> suggestedBenefices) {
 		super(id, name, language);
 		this.randomPreferences = randomPreferences;
 		this.characteristicsMinimumValues = characteristicsMinimumValues;
 		this.requiredSkills = requiredSkills;
 		this.suggestedSkills = suggestedSkills;
+		this.suggestedBenefices = suggestedBenefices;
+		this.mandatoryBenefices = mandatoryBenefices;
 	}
 
 	public RandomProfile(String id, String name, String language) {
-		this(id, name, language, new HashSet<IRandomPreference>(), new HashMap<CharacteristicName, Integer>(), new HashSet<AvailableSkill>(),
-				new HashSet<AvailableSkill>());
+		this(id, name, language, new HashSet<IRandomPreference>(), new HashMap<CharacteristicName, Integer>(),
+				new HashSet<AvailableSkill>(), new HashSet<AvailableSkill>(), new HashSet<BeneficeDefinition>(),
+				new HashSet<BeneficeDefinition>());
 	}
 
 	@Override
@@ -123,5 +131,15 @@ public class RandomProfile extends Element<RandomProfile> implements IRandomProf
 	@Override
 	public Set<AvailableSkill> getSuggestedSkills() {
 		return suggestedSkills;
+	}
+
+	@Override
+	public Set<BeneficeDefinition> getSuggestedBenefices() {
+		return suggestedBenefices;
+	}
+
+	@Override
+	public Set<BeneficeDefinition> getMandatoryBenefices() {
+		return mandatoryBenefices;
 	}
 }

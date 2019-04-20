@@ -44,46 +44,69 @@ public class ProfileTests {
 	private final static String LANGUAGE = "en";
 
 	@Test
-	public void checkPreferencesReader() throws DuplicatedPreferenceException, InvalidXmlElementException, InvalidRandomElementSelectedException,
-			TooManyBlessingsException {
-		Assert.assertEquals(RandomProfileFactory.getInstance().getElement("soldier", LANGUAGE).getPreferences().size(), 7);
-		Assert.assertTrue(RandomProfileFactory.getInstance().getElement("soldier", LANGUAGE).getPreferences().contains(CombatPreferences.BELLIGERENT));
-		Assert.assertEquals(
-				RandomProfileFactory.getInstance().getElement("soldier", LANGUAGE).getCharacteristicsMinimumValues().get(CharacteristicName.DEXTERITY),
-				new Integer(6));
+	public void checkPreferencesReader() throws DuplicatedPreferenceException, InvalidXmlElementException,
+			InvalidRandomElementSelectedException, TooManyBlessingsException {
+		Assert.assertEquals(RandomProfileFactory.getInstance().getElement("soldier", LANGUAGE).getPreferences().size(),
+				7);
+		Assert.assertTrue(RandomProfileFactory.getInstance().getElement("soldier", LANGUAGE).getPreferences()
+				.contains(CombatPreferences.BELLIGERENT));
+		Assert.assertEquals(RandomProfileFactory.getInstance().getElement("soldier", LANGUAGE)
+				.getCharacteristicsMinimumValues().get(CharacteristicName.DEXTERITY), new Integer(6));
 	}
 
 	@Test
-	public void checkParent() throws DuplicatedPreferenceException, InvalidXmlElementException, InvalidRandomElementSelectedException,
-			TooManyBlessingsException {
-		Assert.assertEquals(RandomProfileFactory.getInstance().getElement("soldierLiHalan", LANGUAGE).getPreferences().size(), 7);
-		Assert.assertTrue(RandomProfileFactory.getInstance().getElement("soldierLiHalan", LANGUAGE).getPreferences().contains(CombatPreferences.BELLIGERENT));
-		Assert.assertEquals(
-				RandomProfileFactory.getInstance().getElement("soldierLiHalan", LANGUAGE).getCharacteristicsMinimumValues().get(CharacteristicName.DEXTERITY),
-				new Integer(6));
-		Assert.assertEquals(
-				RandomProfileFactory.getInstance().getElement("soldierLiHalan", LANGUAGE).getCharacteristicsMinimumValues().get(CharacteristicName.TECH),
-				new Integer(7));
+	public void checkParent() throws DuplicatedPreferenceException, InvalidXmlElementException,
+			InvalidRandomElementSelectedException, TooManyBlessingsException {
+		Assert.assertEquals(RandomProfileFactory.getInstance().getElement("soldierLiHalan", LANGUAGE).getPreferences()
+				.size(), 7);
+		Assert.assertTrue(RandomProfileFactory.getInstance().getElement("soldierLiHalan", LANGUAGE).getPreferences()
+				.contains(CombatPreferences.BELLIGERENT));
+		Assert.assertEquals(RandomProfileFactory.getInstance().getElement("soldierLiHalan", LANGUAGE)
+				.getCharacteristicsMinimumValues().get(CharacteristicName.DEXTERITY), new Integer(6));
+		Assert.assertEquals(RandomProfileFactory.getInstance().getElement("soldierLiHalan", LANGUAGE)
+				.getCharacteristicsMinimumValues().get(CharacteristicName.TECH), new Integer(7));
 	}
 
 	@Test
-	public void soldier() throws DuplicatedPreferenceException, InvalidXmlElementException, InvalidRandomElementSelectedException, TooManyBlessingsException {
+	public void soldier() throws DuplicatedPreferenceException, InvalidXmlElementException,
+			InvalidRandomElementSelectedException, TooManyBlessingsException {
 		CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
-		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, RandomProfileFactory.getInstance().getElement("soldier", LANGUAGE));
+		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, RandomProfileFactory
+				.getInstance().getElement("soldier", LANGUAGE));
 		randomizeCharacter.createCharacter();
 		// CharacterSheet characterSheet = new CharacterSheet(characterPlayer);
 		// System.out.println(characterSheet.toString());
 	}
 
 	@Test
-	public void serf() throws DuplicatedPreferenceException, InvalidXmlElementException, InvalidRandomElementSelectedException, TooManyBlessingsException {
+	public void serf() throws DuplicatedPreferenceException, InvalidXmlElementException,
+			InvalidRandomElementSelectedException, TooManyBlessingsException {
 		CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
-		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, RandomProfileFactory.getInstance().getElement("serf", LANGUAGE));
-		Assert.assertEquals(RandomProfileFactory.getInstance().getElement("serf", LANGUAGE).getRequiredSkills().size(), 1);
-		Assert.assertEquals(RandomProfileFactory.getInstance().getElement("serf", LANGUAGE).getSuggestedSkills().size(), 2);
+		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, RandomProfileFactory
+				.getInstance().getElement("serf", LANGUAGE));
+		Assert.assertEquals(RandomProfileFactory.getInstance().getElement("serf", LANGUAGE).getRequiredSkills().size(),
+				1);
+		Assert.assertEquals(
+				RandomProfileFactory.getInstance().getElement("serf", LANGUAGE).getSuggestedSkills().size(), 2);
 		randomizeCharacter.createCharacter();
-		Assert.assertTrue(characterPlayer.getSkillTotalRanks(AvailableSkillsFactory.getInstance().getElement("craft", "household", LANGUAGE)) > 0);
+		Assert.assertTrue(characterPlayer.getSkillTotalRanks(AvailableSkillsFactory.getInstance().getElement("craft",
+				"household", LANGUAGE)) > 0);
 		CharacterSheet characterSheet = new CharacterSheet(characterPlayer);
 		System.out.println(characterSheet.toString());
+	}
+
+	@Test
+	public void thug() throws DuplicatedPreferenceException, InvalidXmlElementException,
+			InvalidRandomElementSelectedException, TooManyBlessingsException {
+		CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
+		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, RandomProfileFactory
+				.getInstance().getElement("thug", LANGUAGE));
+		Assert.assertEquals(RandomProfileFactory.getInstance().getElement("thug", LANGUAGE).getMandatoryBenefices()
+				.size(), 1);
+		Assert.assertEquals(RandomProfileFactory.getInstance().getElement("thug", LANGUAGE).getSuggestedBenefices()
+				.size(), 5);
+		randomizeCharacter.createCharacter();
+		System.out.println(characterPlayer.getAllBenefices());
+		Assert.assertNotNull(characterPlayer.getBenefice("outlaw"));
 	}
 }

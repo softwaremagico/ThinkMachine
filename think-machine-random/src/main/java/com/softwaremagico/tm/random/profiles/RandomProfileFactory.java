@@ -35,6 +35,8 @@ import org.reflections.Reflections;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
+import com.softwaremagico.tm.character.benefices.BeneficeDefinition;
+import com.softwaremagico.tm.character.benefices.BeneficeDefinitionFactory;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
@@ -55,6 +57,8 @@ public class RandomProfileFactory extends XmlFactory<RandomProfile> {
 	private final static String REQUIRED_SKILL = "skill";
 	private final static String REQUIRED_SKILLS_ID = "id";
 	private final static String REQUIRED_SKILLS_SPECIALIZATION = "speciality";
+	private final static String SUGGESTED_BENEFICES = "suggestedBenefices";
+	private final static String MANDATORY_BENEFICES = "mandatoryBenefices";
 	private final static String PARENT = "parent";
 
 	private static RandomProfileFactory instance;
@@ -226,8 +230,34 @@ public class RandomProfileFactory extends XmlFactory<RandomProfile> {
 				break;
 			}
 		}
+		
+		String mandatoryBeneficesList = getTranslator().getNodeValue(profileId, MANDATORY_BENEFICES);
+		Set<BeneficeDefinition> mandatoryBenefices = new HashSet<>();
+		if (mandatoryBeneficesList != null) {
+			StringTokenizer mandatoyBeneficesTokenizer = new StringTokenizer(mandatoryBeneficesList, ",");
+			while (mandatoyBeneficesTokenizer.hasMoreTokens()) {
+				try {
+					mandatoryBenefices.add(BeneficeDefinitionFactory.getInstance().getElement(mandatoyBeneficesTokenizer.nextToken().trim(), language));
+				} catch (InvalidXmlElementException ixe) {
+					throw new InvalidProfileException("Error in profile '" + profileId + "' structure. Invalid mandatory benefice defintion.", ixe);
+				}
+			}
+		}
+		
+		String suggestedBeneficesList = getTranslator().getNodeValue(profileId, SUGGESTED_BENEFICES);
+		Set<BeneficeDefinition> suggestedBenefices = new HashSet<>();
+		if (suggestedBeneficesList != null) {
+			StringTokenizer suggestedBeneficesTokenizer = new StringTokenizer(suggestedBeneficesList, ",");
+			while (suggestedBeneficesTokenizer.hasMoreTokens()) {
+				try {
+					suggestedBenefices.add(BeneficeDefinitionFactory.getInstance().getElement(suggestedBeneficesTokenizer.nextToken().trim(), language));
+				} catch (InvalidXmlElementException ixe) {
+					throw new InvalidProfileException("Error in profile '" + profileId + "' structure. Invalid suggested benefice definition.", ixe);
+				}
+			}
+		}
 
-		RandomProfile profile = new RandomProfile(profileId, name, language, preferencesSelected, characteristicsMinimumValues, requiredSkills, suggestedSkills);
+		RandomProfile profile = new RandomProfile(profileId, name, language, preferencesSelected, characteristicsMinimumValues, requiredSkills, suggestedSkills, mandatoryBenefices, suggestedBenefices);
 		return profile;
 	}
 }

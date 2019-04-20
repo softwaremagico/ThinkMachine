@@ -31,6 +31,7 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
+import com.softwaremagico.tm.character.benefices.BeneficeDefinition;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
@@ -47,11 +48,15 @@ public class ProfileMerger {
 	}
 
 	public static RandomProfile merge(Set<IRandomProfile> profiles, String language) throws InvalidXmlElementException {
-		return merge(profiles, new HashSet<IRandomPreference>(), new HashSet<AvailableSkill>(), new HashSet<AvailableSkill>(), language);
+		return merge(profiles, new HashSet<IRandomPreference>(), new HashSet<AvailableSkill>(),
+				new HashSet<AvailableSkill>(), new HashSet<BeneficeDefinition>(), new HashSet<BeneficeDefinition>(),
+				language);
 	}
 
-	public static RandomProfile merge(Set<IRandomProfile> profiles, Set<IRandomPreference> extraPreferences, Set<AvailableSkill> requiredSkills,
-			Set<AvailableSkill> suggestedSkills, String language) throws InvalidXmlElementException {
+	public static RandomProfile merge(Set<IRandomProfile> profiles, Set<IRandomPreference> extraPreferences,
+			Set<AvailableSkill> requiredSkills, Set<AvailableSkill> suggestedSkills,
+			Set<BeneficeDefinition> mandatoryBenefices, Set<BeneficeDefinition> suggestedBenefices, String language)
+			throws InvalidXmlElementException {
 		if (profiles == null) {
 			profiles = new HashSet<>();
 		}
@@ -69,13 +74,18 @@ public class ProfileMerger {
 			mergePreferences(finalProfile.getPreferences(), profile.getPreferences());
 
 			// Merge characteristics.
-			mergeCharacteristics(finalProfile.getCharacteristicsMinimumValues(), profile.getCharacteristicsMinimumValues());
+			mergeCharacteristics(finalProfile.getCharacteristicsMinimumValues(),
+					profile.getCharacteristicsMinimumValues());
 
 			// Merge Skills.
 			mergeSkills(finalProfile.getRequiredSkills(), profile.getRequiredSkills());
 
 			// Merge Skills
 			mergeSkills(finalProfile.getSuggestedSkills(), profile.getSuggestedSkills());
+
+			mergeBenefices(finalProfile.getMandatoryBenefices(), profile.getMandatoryBenefices());
+
+			mergeBenefices(finalProfile.getSuggestedBenefices(), profile.getSuggestedBenefices());
 
 		}
 
@@ -91,6 +101,15 @@ public class ProfileMerger {
 		mergeSkills(suggestedSkills, finalProfile.getSuggestedSkills());
 		finalProfile.getSuggestedSkills().clear();
 		finalProfile.getSuggestedSkills().addAll(suggestedSkills);
+		
+		mergeBenefices(mandatoryBenefices, finalProfile.getMandatoryBenefices());
+		finalProfile.getMandatoryBenefices().clear();
+		finalProfile.getMandatoryBenefices().addAll(mandatoryBenefices);
+		
+		mergeBenefices(suggestedBenefices, finalProfile.getSuggestedBenefices());
+		finalProfile.getSuggestedBenefices().clear();
+		finalProfile.getSuggestedBenefices().addAll(suggestedBenefices);
+		
 
 		return finalProfile;
 	}
@@ -103,19 +122,25 @@ public class ProfileMerger {
 		}
 	}
 
+	private static void mergeBenefices(Set<BeneficeDefinition> originalBenefices, Set<BeneficeDefinition> extraBenefices) {
+		originalBenefices.addAll(extraBenefices);
+	}
+
 	private static void mergeSkills(Set<AvailableSkill> originalRequiredSkills, Set<AvailableSkill> requiredSkills) {
 		// Merge Characteristics
 		originalRequiredSkills.addAll(requiredSkills);
 	}
 
-	private static void mergePreferences(Set<IRandomPreference> originalPreferences, Set<IRandomPreference> preferredPreferences) {
+	private static void mergePreferences(Set<IRandomPreference> originalPreferences,
+			Set<IRandomPreference> preferredPreferences) {
 		for (IRandomPreference preferredPreference : preferredPreferences) {
 			originalPreferences = removeAny(originalPreferences, preferredPreference);
 		}
 		originalPreferences.addAll(preferredPreferences);
 	}
 
-	private static Set<IRandomPreference> removeAny(Set<IRandomPreference> originalPreferences, IRandomPreference preferenceToRemove) {
+	private static Set<IRandomPreference> removeAny(Set<IRandomPreference> originalPreferences,
+			IRandomPreference preferenceToRemove) {
 		for (IRandomPreference randomPreference : new HashSet<>(originalPreferences)) {
 			if (randomPreference.getClass().equals(preferenceToRemove.getClass())) {
 				originalPreferences.remove(randomPreference);

@@ -29,6 +29,7 @@ import java.util.Set;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.benefices.AvailableBenefice;
+import com.softwaremagico.tm.character.benefices.BeneficeDefinition;
 import com.softwaremagico.tm.character.blessings.Blessing;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
@@ -55,5 +56,9 @@ public interface IRandomProfile {
 	Set<AvailableSkill> getRequiredSkills();
 
 	Set<AvailableSkill> getSuggestedSkills();
+
+	Set<BeneficeDefinition> getSuggestedBenefices();
+
+	Set<BeneficeDefinition> getMandatoryBenefices();
 
 }
