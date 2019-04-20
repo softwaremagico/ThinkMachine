@@ -48,7 +48,8 @@ public class RandomCharacteristics extends RandomSelector<Characteristic> {
 	private final static int MIN_FAITH_FOR_THEURGY = 6;
 	private final static int MIN_WILL_FOR_PSIQUE = 5;
 
-	public RandomCharacteristics(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences) throws InvalidXmlElementException {
+	public RandomCharacteristics(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences)
+			throws InvalidXmlElementException {
 		super(characterPlayer, preferences);
 	}
 
@@ -66,8 +67,9 @@ public class RandomCharacteristics extends RandomSelector<Characteristic> {
 		DifficultLevelPreferences difficultLevel = DifficultLevelPreferences.getSelected(getPreferences());
 
 		// Assign random values by weight
-		while (getCharacterPlayer().getCharacteristicsTotalPoints() < FreeStyleCharacterCreation.getCharacteristicsPoints(getCharacterPlayer().getInfo()
-				.getAge()) + difficultLevel.getCharacteristicsBonus()) {
+		while (getCharacterPlayer().getCharacteristicsTotalPoints() < FreeStyleCharacterCreation
+				.getCharacteristicsPoints(getCharacterPlayer().getInfo().getAge())
+				+ difficultLevel.getCharacteristicsBonus()) {
 			Characteristic selectedCharacteristic = selectElementByWeight();
 			if (selectedCharacteristic.getValue() >= selectedSpecialization.maximum()) {
 				removeElementWeight(selectedCharacteristic);
@@ -75,10 +77,12 @@ public class RandomCharacteristics extends RandomSelector<Characteristic> {
 			}
 
 			if (selectedCharacteristic.getValue() < FreeStyleCharacterCreation.getMaxInitialCharacteristicsValues(
-					selectedCharacteristic.getCharacteristicName(), getCharacterPlayer().getInfo().getAge(), getCharacterPlayer().getRace())) {
+					selectedCharacteristic.getCharacteristicName(), getCharacterPlayer().getInfo().getAge(),
+					getCharacterPlayer().getRace())) {
 				if (selectedCharacteristic.getCharacteristicName() != CharacteristicName.TECH
 						|| (techPreference == null || selectedCharacteristic.getValue() < techPreference.maximum())) {
-					RandomGenerationLog.debug(this.getClass().getName(), "Increased value of '" + selectedCharacteristic + "' in 1.");
+					RandomGenerationLog.debug(this.getClass().getName(), "Increased value of '"
+							+ selectedCharacteristic + "' in 1.");
 					selectedCharacteristic.setValue(selectedCharacteristic.getValue() + 1);
 				}
 			}
@@ -97,7 +101,8 @@ public class RandomCharacteristics extends RandomSelector<Characteristic> {
 		}
 		// Others characteristics cannot be assigned ranks.
 		if (CharacteristicType.OTHERS.equals(characteristic.getType())) {
-			throw new InvalidRandomElementSelectedException("Group '" + CharacteristicType.OTHERS + "' of '" + characteristic + "' cannot have assigned ranks.");
+			throw new InvalidRandomElementSelectedException("Group '" + CharacteristicType.OTHERS + "' of '"
+					+ characteristic + "' cannot have assigned ranks.");
 		}
 
 		DifficultLevelPreferences preference = DifficultLevelPreferences.getSelected(getPreferences());
@@ -152,7 +157,8 @@ public class RandomCharacteristics extends RandomSelector<Characteristic> {
 
 		// Theurgy
 		if (characteristic.getCharacteristicName() == CharacteristicName.FAITH) {
-			if (getCharacterPlayer().getFaction() != null && getCharacterPlayer().getFaction().getFactionGroup() == FactionGroup.CHURCH) {
+			if (getCharacterPlayer().getFaction() != null
+					&& getCharacterPlayer().getFaction().getFactionGroup() == FactionGroup.CHURCH) {
 				return FAIR_PROBABILITY;
 			}
 		}
@@ -182,7 +188,8 @@ public class RandomCharacteristics extends RandomSelector<Characteristic> {
 		}
 
 		// Nobility
-		if (getCharacterPlayer().getFaction() != null && getCharacterPlayer().getFaction().getFactionGroup() == FactionGroup.NOBILITY) {
+		if (getCharacterPlayer().getFaction() != null
+				&& getCharacterPlayer().getFaction().getFactionGroup() == FactionGroup.NOBILITY) {
 			if (characteristic.getCharacteristicName() == CharacteristicName.PRESENCE) {
 				return FAIR_PROBABILITY;
 			}
@@ -192,14 +199,16 @@ public class RandomCharacteristics extends RandomSelector<Characteristic> {
 	}
 
 	@Override
-	protected void assignIfMandatory(Characteristic characteristic) throws InvalidXmlElementException, ImpossibleToAssignMandatoryElementException {
+	protected void assignIfMandatory(Characteristic characteristic) throws InvalidXmlElementException,
+			ImpossibleToAssignMandatoryElementException {
 		// If selected characteristic (has ranks), must have at least the
 		// minimum.
 		characteristic.setValue(getCharacterPlayer().getStartingValue(characteristic.getCharacteristicName()));
 
 		if (getCharacterPlayer().isCharacteristicTrained(characteristic)) {
 			SpecializationPreferences selectedSpecialization = SpecializationPreferences.getSelected(getPreferences());
-			int characteristicRanks = getCharacterPlayer().getCharacteristic(characteristic.getCharacteristicName()).getValue();
+			int characteristicRanks = getCharacterPlayer().getCharacteristic(characteristic.getCharacteristicName())
+					.getValue();
 			if (characteristicRanks < selectedSpecialization.minimum()) {
 				characteristic.setValue(selectedSpecialization.minimum());
 			}
@@ -209,39 +218,56 @@ public class RandomCharacteristics extends RandomSelector<Characteristic> {
 			// Minimum tech level for preferences.
 			TechnologicalPreferences preference = TechnologicalPreferences.getSelected(getPreferences());
 			if (preference != null) {
-				getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).setValue(((TechnologicalPreferences) preference).minimum());
+				getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).setValue(
+						((TechnologicalPreferences) preference).minimum());
 			}
 
 			// Minimum tech level for equipment.
 			int techLevel = getCharacterPlayer().getEquipmentMaxTechnologicalLevel();
-			if (techLevel < characteristic.getValue() && (techLevel > getCharacterPlayer().getRace().get(CharacteristicName.TECH).getInitialValue())
+			if (techLevel < characteristic.getValue()
+					&& (techLevel > getCharacterPlayer().getRace().get(CharacteristicName.TECH).getInitialValue())
 					&& techLevel < getCharacterPlayer().getRace().get(CharacteristicName.TECH).getMaximumValue()) {
 				characteristic.setValue(techLevel);
 			}
 
 			// Avoid to have more that the allowed values.
-			if (getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).getValue() > FreeStyleCharacterCreation.getMaxInitialCharacteristicsValues(
-					getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).getCharacteristicName(), getCharacterPlayer().getInfo().getAge(),
-					getCharacterPlayer().getRace())) {
+			if (getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).getValue() > FreeStyleCharacterCreation
+					.getMaxInitialCharacteristicsValues(getCharacterPlayer().getCharacteristic(CharacteristicName.TECH)
+							.getCharacteristicName(), getCharacterPlayer().getInfo().getAge(), getCharacterPlayer()
+							.getRace())) {
 				getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).setValue(
-						FreeStyleCharacterCreation.getMaxInitialCharacteristicsValues(getCharacterPlayer().getCharacteristic(CharacteristicName.TECH)
-								.getCharacteristicName(), getCharacterPlayer().getInfo().getAge(), getCharacterPlayer().getRace()));
+						FreeStyleCharacterCreation.getMaxInitialCharacteristicsValues(getCharacterPlayer()
+								.getCharacteristic(CharacteristicName.TECH).getCharacteristicName(),
+								getCharacterPlayer().getInfo().getAge(), getCharacterPlayer().getRace()));
 			}
 		}
+		
 		// Theurgy
 		if (characteristic.getCharacteristicName() == CharacteristicName.FAITH) {
-			if (getCharacterPlayer().getFaction() != null && getCharacterPlayer().getFaction().getFactionGroup() == FactionGroup.CHURCH) {
-				if (characteristic.getValue() < MIN_FAITH_FOR_THEURGY) {
-					characteristic.setValue(MIN_FAITH_FOR_THEURGY);
+			PsiqueLevelPreferences psique = PsiqueLevelPreferences.getSelected(getPreferences());
+			if (psique.maximum() > 2) {
+				if (getCharacterPlayer().getFaction() != null
+						&& getCharacterPlayer().getFaction().getFactionGroup() == FactionGroup.CHURCH) {
+					if (characteristic.getValue() < Math.min(MIN_FAITH_FOR_THEURGY, FreeStyleCharacterCreation
+							.getMaxInitialCharacteristicsValues(characteristic.getCharacteristicName(),
+									getCharacterPlayer().getInfo().getAge(), getCharacterPlayer().getRace()))) {
+						characteristic.setValue(Math.min(MIN_FAITH_FOR_THEURGY, FreeStyleCharacterCreation
+								.getMaxInitialCharacteristicsValues(characteristic.getCharacteristicName(),
+										getCharacterPlayer().getInfo().getAge(), getCharacterPlayer().getRace())));
+					}
 				}
 			}
 		}
 		// Psique
 		if (characteristic.getCharacteristicName() == CharacteristicName.WILL) {
 			PsiqueLevelPreferences psique = PsiqueLevelPreferences.getSelected(getPreferences());
-			if ((psique == PsiqueLevelPreferences.HIGH) || (psique == PsiqueLevelPreferences.FAIR)) {
-				if (characteristic.getValue() < MIN_WILL_FOR_PSIQUE) {
-					characteristic.setValue(MIN_WILL_FOR_PSIQUE);
+			if (psique.maximum() > 2) {
+				if (characteristic.getValue() < Math.min(MIN_WILL_FOR_PSIQUE, FreeStyleCharacterCreation
+						.getMaxInitialCharacteristicsValues(characteristic.getCharacteristicName(),
+								getCharacterPlayer().getInfo().getAge(), getCharacterPlayer().getRace()))) {
+					characteristic.setValue(Math.min(MIN_WILL_FOR_PSIQUE, FreeStyleCharacterCreation
+							.getMaxInitialCharacteristicsValues(characteristic.getCharacteristicName(),
+									getCharacterPlayer().getInfo().getAge(), getCharacterPlayer().getRace())));
 				}
 			}
 		}

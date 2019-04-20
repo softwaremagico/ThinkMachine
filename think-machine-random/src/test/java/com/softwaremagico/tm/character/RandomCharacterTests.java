@@ -287,6 +287,9 @@ public class RandomCharacterTests {
 		characterPlayer.setRace(RaceFactory.getInstance().getElement("human", LANGUAGE));
 		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0, AgePreferences.PREADOLESCENT);
 		randomizeCharacter.createCharacter();
+		CharacterSheet characterSheet = new CharacterSheet(characterPlayer);
+		System.out.println(characterSheet.toString());
+		
 		Assert.assertEquals(
 				FreeStyleCharacterCreation.getMaxInitialCharacteristicsValues(CharacteristicName.DEXTERITY, characterPlayer.getInfo().getAge(),
 						characterPlayer.getRace()), 4);

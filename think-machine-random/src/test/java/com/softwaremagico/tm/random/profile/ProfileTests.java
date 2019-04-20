@@ -91,8 +91,8 @@ public class ProfileTests {
 		randomizeCharacter.createCharacter();
 		Assert.assertTrue(characterPlayer.getSkillTotalRanks(AvailableSkillsFactory.getInstance().getElement("craft",
 				"household", LANGUAGE)) > 0);
-		CharacterSheet characterSheet = new CharacterSheet(characterPlayer);
-		System.out.println(characterSheet.toString());
+//		CharacterSheet characterSheet = new CharacterSheet(characterPlayer);
+//		System.out.println(characterSheet.toString());
 	}
 
 	@Test
