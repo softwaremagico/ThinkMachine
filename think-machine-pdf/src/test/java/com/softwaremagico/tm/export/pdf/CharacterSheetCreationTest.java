@@ -40,6 +40,8 @@ import com.softwaremagico.tm.character.Gender;
 import com.softwaremagico.tm.character.Name;
 import com.softwaremagico.tm.character.Surname;
 import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
+import com.softwaremagico.tm.character.benefices.BeneficeAlreadyAddedException;
+import com.softwaremagico.tm.character.blessings.BlessingAlreadyAddedException;
 import com.softwaremagico.tm.character.blessings.BlessingFactory;
 import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
@@ -100,7 +102,7 @@ public class CharacterSheetCreationTest {
 
 	@Test
 	public void characterPdfSpanish() throws MalformedURLException, DocumentException, IOException, InvalidXmlElementException, TooManyBlessingsException,
-			TooManyCyberneticDevicesException, RequiredCyberneticDevicesException {
+			TooManyCyberneticDevicesException, RequiredCyberneticDevicesException, BlessingAlreadyAddedException, BeneficeAlreadyAddedException {
 		CacheHandler.clearCache();
 
 		player = new CharacterPlayer(LANGUAGE);

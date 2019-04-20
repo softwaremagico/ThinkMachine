@@ -40,6 +40,8 @@ import com.softwaremagico.tm.character.Gender;
 import com.softwaremagico.tm.character.Name;
 import com.softwaremagico.tm.character.Surname;
 import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
+import com.softwaremagico.tm.character.benefices.BeneficeAlreadyAddedException;
+import com.softwaremagico.tm.character.blessings.BlessingAlreadyAddedException;
 import com.softwaremagico.tm.character.blessings.BlessingFactory;
 import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
@@ -75,8 +77,9 @@ public class CustomCharacters {
 	}
 
 	@Test
-	public void createPaolaCharacter() throws MalformedURLException, DocumentException, IOException, InvalidXmlElementException, TooManyBlessingsException,
-			TooManyCyberneticDevicesException, RequiredCyberneticDevicesException {
+	public void createPaolaCharacter() throws MalformedURLException, DocumentException, IOException,
+			InvalidXmlElementException, TooManyBlessingsException, TooManyCyberneticDevicesException,
+			RequiredCyberneticDevicesException, BeneficeAlreadyAddedException, BlessingAlreadyAddedException {
 		CharacterPlayer player = new CharacterPlayer(LANGUAGE);
 		player.getInfo().addName(new Name("#5", LANGUAGE, Gender.FEMALE, null));
 		player.getInfo().setPlayer("Paola");
@@ -119,17 +122,23 @@ public class CustomCharacters {
 		player.addBlessing(BlessingFactory.getInstance().getElement("greaseMonkey", player.getLanguage()));
 		player.addBlessing(BlessingFactory.getInstance().getElement("horribleScar", player.getLanguage()));
 
-		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("language [turingLanguage]", player.getLanguage()));
-		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("commission [apprentice]", player.getLanguage()));
-		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("cash [firebirds1000]", player.getLanguage()));
+		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("language [turingLanguage]",
+				player.getLanguage()));
+		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("commission [apprentice]",
+				player.getLanguage()));
+		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("cash [firebirds1000]",
+				player.getLanguage()));
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("gossipNetwork_3", player.getLanguage()));
 
-		SelectedCyberneticDevice advancedEngineersEye = player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("engineersEye", LANGUAGE));
-		advancedEngineersEye.addCustomization(CyberneticDeviceTraitFactory.getInstance().getElement("hidden", LANGUAGE));
+		SelectedCyberneticDevice advancedEngineersEye = player.addCybernetics(CyberneticDeviceFactory.getInstance()
+				.getElement("engineersEye", LANGUAGE));
+		advancedEngineersEye
+				.addCustomization(CyberneticDeviceTraitFactory.getInstance().getElement("hidden", LANGUAGE));
 
 		player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("secondBrain", LANGUAGE));
 		player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("secondBrainJumpLoreSoftware", LANGUAGE));
-		player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("secondBrainEnergyPistolsLore", LANGUAGE));
+		player.addCybernetics(CyberneticDeviceFactory.getInstance()
+				.getElement("secondBrainEnergyPistolsLore", LANGUAGE));
 		player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("secondBrainThinkMachineLore", LANGUAGE));
 
 		player.setShield(ShieldFactory.getInstance().getElement("duelingShield", LANGUAGE));
@@ -142,12 +151,15 @@ public class CustomCharacters {
 		SmallCharacterSheet smallSheet = new SmallCharacterSheet(player);
 		smallSheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Paola_Small.pdf");
 
-		Assert.assertEquals(CostCalculator.getCost(player), FreeStyleCharacterCreation.getFreeAvailablePoints(player.getInfo().getAge()));
+		Assert.assertEquals(CostCalculator.getCost(player),
+				FreeStyleCharacterCreation.getFreeAvailablePoints(player.getInfo().getAge()));
 		Assert.assertEquals(player.getMoney(), 300);
 	}
 
 	@Test
-	public void characterAnaCharacter() throws MalformedURLException, DocumentException, IOException, InvalidXmlElementException, TooManyBlessingsException {
+	public void characterAnaCharacter() throws MalformedURLException, DocumentException, IOException,
+			InvalidXmlElementException, TooManyBlessingsException, BeneficeAlreadyAddedException,
+			BlessingAlreadyAddedException {
 		CharacterPlayer player = new CharacterPlayer(LANGUAGE);
 		player.getInfo().addName(new Name("Arya", LANGUAGE, Gender.FEMALE, null));
 		player.getInfo().setSurname(new Surname("Hawkwood", LANGUAGE, null));
@@ -186,7 +198,8 @@ public class CustomCharacters {
 		player.addBlessing(BlessingFactory.getInstance().getElement("horribleScar", player.getLanguage()));
 
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("nobility [knight]", player.getLanguage()));
-		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("language [latinLanguage]", player.getLanguage()));
+		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("language [latinLanguage]",
+				player.getLanguage()));
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("imperialCharter", player.getLanguage()));
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("fluxSword", player.getLanguage()));
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("vendetta_2", player.getLanguage()));
@@ -201,12 +214,15 @@ public class CustomCharacters {
 		SmallCharacterSheet smallSheet = new SmallCharacterSheet(player);
 		smallSheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Ana_Small.pdf");
 
-		Assert.assertEquals(CostCalculator.getCost(player), FreeStyleCharacterCreation.getFreeAvailablePoints(player.getInfo().getAge()));
+		Assert.assertEquals(CostCalculator.getCost(player),
+				FreeStyleCharacterCreation.getFreeAvailablePoints(player.getInfo().getAge()));
 		Assert.assertEquals(player.getMoney(), 250);
 	}
 
 	@Test
-	public void createCarlosCharacter() throws MalformedURLException, DocumentException, IOException, InvalidXmlElementException, TooManyBlessingsException {
+	public void createCarlosCharacter() throws MalformedURLException, DocumentException, IOException,
+			InvalidXmlElementException, TooManyBlessingsException, BeneficeAlreadyAddedException,
+			BlessingAlreadyAddedException {
 		CharacterPlayer player = new CharacterPlayer(LANGUAGE);
 		player.getInfo().addName(new Name("Carlos", LANGUAGE, Gender.MALE, null));
 		player.getInfo().setPlayer("Carlos");
@@ -247,9 +263,12 @@ public class CustomCharacters {
 
 		player.addBlessing(BlessingFactory.getInstance().getElement("horribleScar", player.getLanguage()));
 
-		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("commission [entered]", player.getLanguage()));
-		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("passageContracts_3", player.getLanguage()));
-		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("cash [firebirds1000]", player.getLanguage()));
+		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("commission [entered]",
+				player.getLanguage()));
+		player.addBenefice(AvailableBeneficeFactory.getInstance()
+				.getElement("passageContracts_3", player.getLanguage()));
+		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("cash [firebirds1000]",
+				player.getLanguage()));
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("ironHeel", player.getLanguage()));
 
 		player.addWeapon(WeaponFactory.getInstance().getElement("typicalShotgun", LANGUAGE));
@@ -263,13 +282,16 @@ public class CustomCharacters {
 		SmallCharacterSheet smallSheet = new SmallCharacterSheet(player);
 		smallSheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Carlos_Small.pdf");
 
-		Assert.assertEquals(CostCalculator.getCost(player), FreeStyleCharacterCreation.getFreeAvailablePoints(player.getInfo().getAge()));
+		Assert.assertEquals(CostCalculator.getCost(player),
+				FreeStyleCharacterCreation.getFreeAvailablePoints(player.getInfo().getAge()));
 		Assert.assertEquals(player.getRank(), "Genin");
 		Assert.assertEquals(500, player.getMoney());
 	}
 
 	@Test
-	public void createNoeliaCharacer() throws MalformedURLException, DocumentException, IOException, InvalidXmlElementException, TooManyBlessingsException {
+	public void createNoeliaCharacer() throws MalformedURLException, DocumentException, IOException,
+			InvalidXmlElementException, TooManyBlessingsException, BeneficeAlreadyAddedException,
+			BlessingAlreadyAddedException {
 		CharacterPlayer player = new CharacterPlayer(LANGUAGE);
 		player.getInfo().addName(new Name("Noelia", LANGUAGE, Gender.FEMALE, null));
 		player.getInfo().setPlayer("Noelia");
@@ -303,20 +325,30 @@ public class CustomCharacters {
 
 		player.setPsiqueLevel(OccultismTypeFactory.getPsi(player.getLanguage()), 6);
 
-		player.addOccultismPower(OccultismPathFactory.getInstance().getElement("farHand", LANGUAGE).getOccultismPowers().get("liftingHand"));
-		player.addOccultismPower(OccultismPathFactory.getInstance().getElement("farHand", LANGUAGE).getOccultismPowers().get("throwingHand"));
-		player.addOccultismPower(OccultismPathFactory.getInstance().getElement("farHand", LANGUAGE).getOccultismPowers().get("crushingHand"));
-		player.addOccultismPower(OccultismPathFactory.getInstance().getElement("farHand", LANGUAGE).getOccultismPowers().get("duelingHand"));
-		player.addOccultismPower(OccultismPathFactory.getInstance().getElement("farHand", LANGUAGE).getOccultismPowers().get("farWall"));
-		player.addOccultismPower(OccultismPathFactory.getInstance().getElement("psyche", LANGUAGE).getOccultismPowers().get("intuit"));
-		player.addOccultismPower(OccultismPathFactory.getInstance().getElement("psyche", LANGUAGE).getOccultismPowers().get("emote"));
-		player.addOccultismPower(OccultismPathFactory.getInstance().getElement("psyche", LANGUAGE).getOccultismPowers().get("mindSight"));
+		player.addOccultismPower(OccultismPathFactory.getInstance().getElement("farHand", LANGUAGE)
+				.getOccultismPowers().get("liftingHand"));
+		player.addOccultismPower(OccultismPathFactory.getInstance().getElement("farHand", LANGUAGE)
+				.getOccultismPowers().get("throwingHand"));
+		player.addOccultismPower(OccultismPathFactory.getInstance().getElement("farHand", LANGUAGE)
+				.getOccultismPowers().get("crushingHand"));
+		player.addOccultismPower(OccultismPathFactory.getInstance().getElement("farHand", LANGUAGE)
+				.getOccultismPowers().get("duelingHand"));
+		player.addOccultismPower(OccultismPathFactory.getInstance().getElement("farHand", LANGUAGE)
+				.getOccultismPowers().get("farWall"));
+		player.addOccultismPower(OccultismPathFactory.getInstance().getElement("psyche", LANGUAGE).getOccultismPowers()
+				.get("intuit"));
+		player.addOccultismPower(OccultismPathFactory.getInstance().getElement("psyche", LANGUAGE).getOccultismPowers()
+				.get("emote"));
+		player.addOccultismPower(OccultismPathFactory.getInstance().getElement("psyche", LANGUAGE).getOccultismPowers()
+				.get("mindSight"));
 		player.setExtraWyrd(3);
 
 		player.addBlessing(BlessingFactory.getInstance().getElement("horribleScar", player.getLanguage()));
 
-		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("ordained [novitiate]", player.getLanguage()));
-		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("language [urthish]", player.getLanguage()));
+		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("ordained [novitiate]",
+				player.getLanguage()));
+		player.addBenefice(AvailableBeneficeFactory.getInstance()
+				.getElement("language [urthish]", player.getLanguage()));
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("stigma_3", player.getLanguage()));
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("orphan", player.getLanguage()));
 
@@ -328,11 +360,13 @@ public class CustomCharacters {
 		SmallCharacterSheet smallSheet = new SmallCharacterSheet(player);
 		smallSheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Noelia_Small.pdf");
 
-		Assert.assertEquals(CostCalculator.getCost(player), FreeStyleCharacterCreation.getFreeAvailablePoints(player.getInfo().getAge()));
+		Assert.assertEquals(CostCalculator.getCost(player),
+				FreeStyleCharacterCreation.getFreeAvailablePoints(player.getInfo().getAge()));
 	}
 
 	@Test
-	public void createGolemCharacer() throws MalformedURLException, DocumentException, IOException, InvalidXmlElementException, TooManyBlessingsException {
+	public void createGolemCharacer() throws MalformedURLException, DocumentException, IOException,
+			InvalidXmlElementException, TooManyBlessingsException, BlessingAlreadyAddedException {
 		CharacterPlayer player = new CharacterPlayer(LANGUAGE);
 		player.getInfo().setPlayer("PNJ");
 		player.getInfo().addName(new Name("A", LANGUAGE, Gender.FEMALE, null));
