@@ -47,7 +47,7 @@ import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.log.MachineLog;
 
 public class FactionsFactory extends XmlFactory<Faction> {
-	private final static ITranslator translatorBenefit = LanguagePool.getTranslator("factions.xml");
+	private final static ITranslator translatorFaction = LanguagePool.getTranslator("factions.xml");
 
 	private final static String NAME = "name";
 	private final static String GROUP = "group";
@@ -93,7 +93,7 @@ public class FactionsFactory extends XmlFactory<Faction> {
 
 	@Override
 	protected ITranslator getTranslator() {
-		return translatorBenefit;
+		return translatorFaction;
 	}
 
 	public void setBlessings(Faction faction, String language) throws InvalidFactionException {

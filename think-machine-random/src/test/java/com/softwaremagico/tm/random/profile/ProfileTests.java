@@ -37,7 +37,6 @@ import com.softwaremagico.tm.random.exceptions.DuplicatedPreferenceException;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.profiles.RandomProfileFactory;
 import com.softwaremagico.tm.random.selectors.CombatPreferences;
-import com.softwaremagico.tm.txt.CharacterSheet;
 
 @Test(groups = "profile")
 public class ProfileTests {

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<parties>
+	<thugBand>
+		<name>
+			<en>Thug Band</en>
+			<es>Pandilla Callejera</es>
+		</name>
+		<members>
+			<member>
+				<name>
+					<en>Thug Boss</en>
+					<es>Jefe Rufián</es>
+				</name>
+				<profile>thug</profile>
+				<minNumber>1</minNumber>
+				<maxNumber>1</maxNumber>
+				<extraPreferences>DifficultLevelPreferences.HARD</extraPreferences>
+			</member>
+			<member>
+				<name>
+					<en>Standard Thug</en>
+					<es>Rufián Común</es>
+				</name>
+				<profile>thug</profile>
+				<weight>1</weight>
+			</member>
+			<member>
+				<name>
+					<en>Teen Thug</en>
+					<es>Rufián Adolescente</es>
+				</name>
+				<profile>thug</profile>
+				<weight>0.3</weight>
+				<extraPreferences>AgePreferences.TEENAGER</extraPreferences>
+			</member>
+		</members>
+		<random>
+			<names>
+				<en>Rats, Panthers, Weasels, Ferrets</en>
+				<es>Ratas, Panteras, Comadrejas, Hurones</es>
+			</names>
+			<adjectives>
+				<en>Steel, Fire, Black, White, Enraged, Furious</en>
+				<es>de Acero, de Fuego, Negros, Blancos, Rabiosos, Furiosos</es>
+			</adjectives>
+		</random>
+	</thugBand>
+</parties>
