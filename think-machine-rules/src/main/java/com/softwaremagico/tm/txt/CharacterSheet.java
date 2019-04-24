@@ -80,7 +80,8 @@ public class CharacterSheet {
 		// stringBuilder.append(" (" +
 		// ThreatLevel.getThreatLevel(getCharacterPlayer()) +
 		// THREAT_LEVEL_SYMBOL + ")");
-		stringBuilder.append(" (" + getTranslator().getTranslatedText("threatLevel") + ": " + ThreatLevel.getThreatLevel(getCharacterPlayer()) + ")");
+		stringBuilder.append(" (" + getTranslator().getTranslatedText("threatLevel") + ": "
+				+ ThreatLevel.getThreatLevel(getCharacterPlayer()) + ")");
 		stringBuilder.append("\n");
 		stringBuilder.append(getCharacterPlayer().getRace().getName());
 		stringBuilder.append(" " + getCharacterPlayer().getInfo().getTranslatedParameter("gender"));
@@ -97,7 +98,8 @@ public class CharacterSheet {
 		for (CharacteristicType characteristicType : CharacteristicType.values()) {
 			stringBuilder.append(getTranslator().getTranslatedText(characteristicType.getTranslationTag()) + ": ");
 			String separator = "";
-			List<Characteristic> characteristics = new ArrayList<>(getCharacterPlayer().getCharacteristics(characteristicType));
+			List<Characteristic> characteristics = new ArrayList<>(getCharacterPlayer().getCharacteristics(
+					characteristicType));
 			Collections.sort(characteristics);
 			for (Characteristic characteristic : characteristics) {
 				stringBuilder.append(separator);
@@ -114,7 +116,8 @@ public class CharacterSheet {
 		stringBuilder.append(skill.getCompleteName() + " (");
 		stringBuilder.append(characterPlayer.getSkillTotalRanks(skill));
 		stringBuilder.append(characterPlayer.isSkillSpecial(skill) ? "*" : "");
-		stringBuilder.append(characterPlayer.hasSkillTemporalModificator(skill) && characterPlayer.getSkillTotalRanks(skill) > 0 ? "!" : "");
+		stringBuilder.append(characterPlayer.hasSkillTemporalModificator(skill)
+				&& characterPlayer.getSkillTotalRanks(skill) > 0 ? "!" : "");
 		stringBuilder.append(")");
 	}
 
@@ -186,18 +189,24 @@ public class CharacterSheet {
 		}
 	}
 
-	private void representBenefice(StringBuilder stringBuilder, AvailableBenefice benefice) throws InvalidXmlElementException {
+	private void representBenefice(StringBuilder stringBuilder, AvailableBenefice benefice)
+			throws InvalidXmlElementException {
 		stringBuilder.append(benefice.getName());
 		if (benefice.getBeneficeDefinition().getSpecializations().size() > 1) {
-			stringBuilder.append(" (" + (benefice.getBeneficeClassification() == BeneficeClassification.AFFLICTION ? "+" : "") + Math.abs(benefice.getCost())
-					+ ")");
-		} else if (AvailableBeneficeFactory.getInstance()
-				.getAvailableBeneficesByDefinition(getCharacterPlayer().getLanguage(), benefice.getBeneficeDefinition()).size() > 1) {
-			stringBuilder.append(" (" + (benefice.getBeneficeClassification() == BeneficeClassification.AFFLICTION ? "+" : "") + Math.abs(benefice.getCost())
-					+ ")");
+			stringBuilder.append(" ("
+					+ (benefice.getBeneficeClassification() == BeneficeClassification.AFFLICTION ? "+" : "")
+					+ Math.abs(benefice.getCost()) + ")");
+		} else if (AvailableBeneficeFactory
+				.getInstance()
+				.getAvailableBeneficesByDefinition(getCharacterPlayer().getLanguage(), benefice.getBeneficeDefinition())
+				.size() > 1) {
+			stringBuilder.append(" ("
+					+ (benefice.getBeneficeClassification() == BeneficeClassification.AFFLICTION ? "+" : "")
+					+ Math.abs(benefice.getCost()) + ")");
 		}
 		if (benefice.getBeneficeDefinition().getGroup() == BeneficeGroup.FIGHTING) {
-			CombatStyle combatStyle = CombatStyleFactory.getInstance().getCombatStyle(benefice, getCharacterPlayer().getLanguage());
+			CombatStyle combatStyle = CombatStyleFactory.getInstance().getCombatStyle(benefice,
+					getCharacterPlayer().getLanguage());
 			for (CombatAction action : combatStyle.getCombatActions()) {
 				if (action.isAvailable(getCharacterPlayer())) {
 					stringBuilder.append(" (");
@@ -206,7 +215,8 @@ public class CharacterSheet {
 						stringBuilder.append(getTranslator().getTranslatedText("weaponGoal"));
 						stringBuilder.append(ELEMENT_SEPARATOR);
 					}
-					if (action.getDamage() != null && action.getDamage().length() > 0 && !action.getDamage().equals("0")) {
+					if (action.getDamage() != null && action.getDamage().length() > 0
+							&& !action.getDamage().equals("0")) {
 						stringBuilder.append(action.getDamage());
 						if (!action.getDamage().endsWith("d")) {
 							stringBuilder.append("d");
@@ -258,20 +268,25 @@ public class CharacterSheet {
 			OccultismTypeFactory.getInstance();
 			if (getCharacterPlayer().getPsiqueLevel(OccultismTypeFactory.getPsi(getCharacterPlayer().getLanguage())) > 0) {
 				stringBuilder.append(getTranslator().getTranslatedText("psi") + " ");
-				stringBuilder.append(getCharacterPlayer().getPsiqueLevel(OccultismTypeFactory.getPsi(getCharacterPlayer().getLanguage())));
+				stringBuilder.append(getCharacterPlayer().getPsiqueLevel(
+						OccultismTypeFactory.getPsi(getCharacterPlayer().getLanguage())));
 				stringBuilder.append(ELEMENT_SEPARATOR);
 				stringBuilder.append(getTranslator().getTranslatedText("urge") + " ");
-				stringBuilder.append(getCharacterPlayer().getDarkSideLevel(OccultismTypeFactory.getPsi(getCharacterPlayer().getLanguage())));
+				stringBuilder.append(getCharacterPlayer().getDarkSideLevel(
+						OccultismTypeFactory.getPsi(getCharacterPlayer().getLanguage())));
 				separator = ELEMENT_SEPARATOR;
 			}
 			OccultismTypeFactory.getInstance();
-			if (getCharacterPlayer().getPsiqueLevel(OccultismTypeFactory.getTheurgy(getCharacterPlayer().getLanguage())) > 0) {
+			if (getCharacterPlayer()
+					.getPsiqueLevel(OccultismTypeFactory.getTheurgy(getCharacterPlayer().getLanguage())) > 0) {
 				stringBuilder.append(separator);
 				stringBuilder.append(getTranslator().getTranslatedText("theurgy") + " ");
-				stringBuilder.append(getCharacterPlayer().getPsiqueLevel(OccultismTypeFactory.getTheurgy(getCharacterPlayer().getLanguage())));
+				stringBuilder.append(getCharacterPlayer().getPsiqueLevel(
+						OccultismTypeFactory.getTheurgy(getCharacterPlayer().getLanguage())));
 				stringBuilder.append(ELEMENT_SEPARATOR);
 				stringBuilder.append(getTranslator().getTranslatedText("hubris") + " ");
-				stringBuilder.append(getCharacterPlayer().getDarkSideLevel(OccultismTypeFactory.getTheurgy(getCharacterPlayer().getLanguage())));
+				stringBuilder.append(getCharacterPlayer().getDarkSideLevel(
+						OccultismTypeFactory.getTheurgy(getCharacterPlayer().getLanguage())));
 			}
 			stringBuilder.append(".\n");
 		}
@@ -285,7 +300,8 @@ public class CharacterSheet {
 			Collections.sort(paths);
 			for (String powersPath : paths) {
 				stringBuilder.append(separator);
-				OccultismPath occultismPath = OccultismPathFactory.getInstance().getElement(powersPath, getCharacterPlayer().getLanguage());
+				OccultismPath occultismPath = OccultismPathFactory.getInstance().getElement(powersPath,
+						getCharacterPlayer().getLanguage());
 				stringBuilder.append(occultismPath.getName());
 				stringBuilder.append(" (");
 				String powerSeparator = "";
@@ -313,9 +329,13 @@ public class CharacterSheet {
 				stringBuilder.append(getTranslator().getTranslatedText("weaponGoal"));
 				stringBuilder.append(ELEMENT_SEPARATOR);
 			}
-			stringBuilder.append(weapon.getDamage());
-			if (!weapon.getDamage().endsWith("d")) {
+			stringBuilder.append(weapon.getDamageWithoutArea());
+			if (!weapon.getDamageWithoutArea().endsWith("d")) {
 				stringBuilder.append("d");
+			}
+			if (weapon.getAreaMeters() > 0) {
+				stringBuilder.append(" ");
+				stringBuilder.append(weapon.getAreaMeters());
 			}
 			stringBuilder.append(ELEMENT_SEPARATOR);
 			if (weapon.getRange() != null && weapon.getRange().length() > 0) {
@@ -345,23 +365,35 @@ public class CharacterSheet {
 			stringBuilder.append(getCharacterPlayer().getArmour().getProtection() + "d");
 			stringBuilder.append(ELEMENT_SEPARATOR);
 			if (getCharacterPlayer().getArmour().getStandardPenalizations().getDexterityModification() != 0) {
-				stringBuilder.append(getTranslator().getTranslatedText(getCharacterPlayer().getCharacteristic(CharacteristicName.DEXTERITY).getId()) + " ");
-				stringBuilder.append(getCharacterPlayer().getArmour().getStandardPenalizations().getDexterityModification());
+				stringBuilder.append(getTranslator().getTranslatedText(
+						getCharacterPlayer().getCharacteristic(CharacteristicName.DEXTERITY).getId())
+						+ " ");
+				stringBuilder.append(getCharacterPlayer().getArmour().getStandardPenalizations()
+						.getDexterityModification());
 				stringBuilder.append(ELEMENT_SEPARATOR);
 			}
 			if (getCharacterPlayer().getArmour().getStandardPenalizations().getStrengthModification() != 0) {
-				stringBuilder.append(getTranslator().getTranslatedText(getCharacterPlayer().getCharacteristic(CharacteristicName.STRENGTH).getId()) + " ");
-				stringBuilder.append(getCharacterPlayer().getArmour().getStandardPenalizations().getStrengthModification());
+				stringBuilder.append(getTranslator().getTranslatedText(
+						getCharacterPlayer().getCharacteristic(CharacteristicName.STRENGTH).getId())
+						+ " ");
+				stringBuilder.append(getCharacterPlayer().getArmour().getStandardPenalizations()
+						.getStrengthModification());
 				stringBuilder.append(ELEMENT_SEPARATOR);
 			}
 			if (getCharacterPlayer().getArmour().getStandardPenalizations().getEnduranceModification() != 0) {
-				stringBuilder.append(getTranslator().getTranslatedText(getCharacterPlayer().getCharacteristic(CharacteristicName.ENDURANCE).getId()) + " ");
-				stringBuilder.append(getCharacterPlayer().getArmour().getStandardPenalizations().getEnduranceModification());
+				stringBuilder.append(getTranslator().getTranslatedText(
+						getCharacterPlayer().getCharacteristic(CharacteristicName.ENDURANCE).getId())
+						+ " ");
+				stringBuilder.append(getCharacterPlayer().getArmour().getStandardPenalizations()
+						.getEnduranceModification());
 				stringBuilder.append(ELEMENT_SEPARATOR);
 			}
 			if (getCharacterPlayer().getArmour().getStandardPenalizations().getInitiativeModification() != 0) {
-				stringBuilder.append(getTranslator().getTranslatedText(getCharacterPlayer().getCharacteristic(CharacteristicName.INITIATIVE).getId()) + " ");
-				stringBuilder.append(getCharacterPlayer().getArmour().getStandardPenalizations().getInitiativeModification());
+				stringBuilder.append(getTranslator().getTranslatedText(
+						getCharacterPlayer().getCharacteristic(CharacteristicName.INITIATIVE).getId())
+						+ " ");
+				stringBuilder.append(getCharacterPlayer().getArmour().getStandardPenalizations()
+						.getInitiativeModification());
 				stringBuilder.append(ELEMENT_SEPARATOR);
 			}
 			List<DamageType> damages = new ArrayList<>(getCharacterPlayer().getArmour().getDamageTypes());

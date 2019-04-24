@@ -60,7 +60,16 @@ public class WeaponsTable extends VerticalTable {
 				addCell(createFirstElementLine(weapon.getName(), NAME_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_SMALL_CONTENT_FONT_SIZE));
 				addCell(createElementLine((weapon.getGoal() != null ? weapon.getGoal() : ""), GOAL_COLUMN_WIDTH,
 						FadingSunsTheme.WEAPONS_SMALL_CONTENT_FONT_SIZE));
-				addCell(createElementLine(weapon.getDamage() + "d", DAMAGE_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_SMALL_CONTENT_FONT_SIZE));
+				StringBuilder stringBuilder = new StringBuilder();
+				stringBuilder.append(weapon.getDamageWithoutArea());
+				if (!weapon.getDamageWithoutArea().endsWith("d")) {
+					stringBuilder.append("d");
+				}
+				if (weapon.getAreaMeters() > 0) {
+					stringBuilder.append(" ");
+					stringBuilder.append(weapon.getAreaMeters());
+				}
+				addCell(createElementLine(stringBuilder.toString(), DAMAGE_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_SMALL_CONTENT_FONT_SIZE));
 				addCell(createElementLine(weapon.getShots() == null ? characterPlayer.getStrengthDamangeModification() + "" : weapon.getStrengthOrRange(),
 						RANGE_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_SMALL_CONTENT_FONT_SIZE));
 				addCell(createElementLine(weapon.getShots() + "", SHOTS_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_SMALL_CONTENT_FONT_SIZE));

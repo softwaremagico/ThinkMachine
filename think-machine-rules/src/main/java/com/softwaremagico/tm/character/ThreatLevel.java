@@ -109,7 +109,7 @@ public class ThreatLevel {
 		}
 		int threatLevel = 0;
 		threatLevel += weapon.getMainDamage() * DAMAGE_THREAT_MULTIPLICATOR;
-		threatLevel += weapon.getAreaDamage() * DAMAGE_AREA_THREAT_MULTIPLICATOR;
+		threatLevel += weapon.getAreaMeters() * DAMAGE_AREA_THREAT_MULTIPLICATOR;
 		threatLevel += weapon.getDamageTypes().size() * DAMAGE_TYPES_THREAT_MULTIPLICATOR;
 		try {
 			if (weapon.getDamageTypes().contains(

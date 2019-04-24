@@ -31,7 +31,7 @@ import com.softwaremagico.tm.character.combat.CombatStyle;
 import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.complete.elements.LateralHeaderPdfPTable;
 
-public class RangedWeaponsTable extends LateralHeaderPdfPTable {
+public class RangedManeuversTable extends LateralHeaderPdfPTable {
 	private final static float[] WIDTHS = { 1.2f, 4f, 3f, 2.5f, 5f };
 	private final static int ROWS = 12;
 	private final static String GAP = "____________________";
@@ -40,7 +40,7 @@ public class RangedWeaponsTable extends LateralHeaderPdfPTable {
 	private final static int DAMAGE_COLUMN_WIDHT = 30;
 	private final static int OTHERS_COLUMN_WIDHT = 65;
 
-	public RangedWeaponsTable(CharacterPlayer characterPlayer) throws InvalidXmlElementException {
+	public RangedManeuversTable(CharacterPlayer characterPlayer) throws InvalidXmlElementException {
 		super(WIDTHS);
 		addCell(createLateralVerticalTitle(getTranslator().getTranslatedText("rangedWeapons"), ROWS + 1));
 		addCell(createTableSubtitleElement(getTranslator().getTranslatedText("weaponsAction")));

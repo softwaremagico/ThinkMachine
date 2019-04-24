@@ -40,6 +40,8 @@ public class Weapon extends Equipment<Weapon> {
 	private final static Pattern FIRST_NUMBER_PATTERN = Pattern.compile(NUMBER_EXTRACTOR_PATTERN);
 	private final static String AREA_DAMAGE = "\\((\\d+)\\s*m\\)$";
 	private final static Pattern AREA_DAMAGE_PATTERN = Pattern.compile(AREA_DAMAGE);
+	private final static String DAMAGE_WITHOUT_AREA = "^(.*?)\\(";
+	private final static Pattern DAMAGE_WITHOUT_AREA_PATTERN = Pattern.compile(DAMAGE_WITHOUT_AREA);
 	private final static int SPECIAL_DAMAGE_THREAT = 5;
 
 	private final String goal;
@@ -62,9 +64,11 @@ public class Weapon extends Equipment<Weapon> {
 
 	private transient Integer mainDamage = null;
 	private transient Integer areaDamage = null;
+	private transient String areaWithoutDamage = null;
 
-	public Weapon(String id, String name, String language, WeaponType type, String goal, CharacteristicDefinition characteristic, AvailableSkill skill,
-			String damage, int strength, String range, Integer shots, String rate, int techLevel, boolean techLevelSpecial, Size size, String special,
+	public Weapon(String id, String name, String language, WeaponType type, String goal,
+			CharacteristicDefinition characteristic, AvailableSkill skill, String damage, int strength, String range,
+			Integer shots, String rate, int techLevel, boolean techLevelSpecial, Size size, String special,
 			Set<DamageType> damageTypes, float cost, Set<Ammunition> ammunitions, Set<Accessory> accesories) {
 		super(id, name, cost, techLevel, language);
 		this.characteristic = characteristic;
@@ -107,6 +111,24 @@ public class Weapon extends Equipment<Weapon> {
 		return damage;
 	}
 
+	public String getDamageWithoutArea() {
+		if (areaWithoutDamage == null) {
+			try {
+				Matcher matcher = DAMAGE_WITHOUT_AREA_PATTERN.matcher(getDamage());
+				if (matcher.find()) {
+					areaWithoutDamage = matcher.group(1);
+				} else {
+					areaWithoutDamage = getDamage();
+				}
+			} catch (NullPointerException e) {
+				// No area
+				areaWithoutDamage = getDamage();
+			}
+			areaWithoutDamage = areaWithoutDamage.trim();
+		}
+		return areaWithoutDamage;
+	}
+
 	public int getMainDamage() {
 		if (mainDamage == null) {
 			try {
@@ -124,14 +146,15 @@ public class Weapon extends Equipment<Weapon> {
 					// Special damage!
 					mainDamage = SPECIAL_DAMAGE_THREAT;
 				} else {
-					MachineLog.severe(this.getClass().getName(), "Invalid main damage in '" + getDamage() + "' for '" + this + "'.");
+					MachineLog.severe(this.getClass().getName(), "Invalid main damage in '" + getDamage() + "' for '"
+							+ this + "'.");
 				}
 			}
 		}
 		return mainDamage;
 	}
 
-	public int getAreaDamage() {
+	public int getAreaMeters() {
 		if (areaDamage == null) {
 			try {
 				Matcher matcher = AREA_DAMAGE_PATTERN.matcher(getDamage());
@@ -144,7 +167,8 @@ public class Weapon extends Equipment<Weapon> {
 				// No area
 				areaDamage = 0;
 			} catch (NumberFormatException e) {
-				MachineLog.severe(this.getClass().getName(), "Invalid area damage in '" + getDamage() + "' for '" + this + "'.");
+				MachineLog.severe(this.getClass().getName(), "Invalid area damage in '" + getDamage() + "' for '"
+						+ this + "'.");
 			}
 		}
 		return areaDamage;

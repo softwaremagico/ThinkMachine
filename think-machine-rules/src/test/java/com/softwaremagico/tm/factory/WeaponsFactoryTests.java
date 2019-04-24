@@ -76,10 +76,17 @@ public class WeaponsFactoryTests {
 	
 	@Test
 	public void getAreaDamage() throws InvalidXmlElementException {
-		Assert.assertEquals(1, WeaponFactory.getInstance().getElement("goboLobberJetPistol", LANGUAGE).getAreaDamage());
-		Assert.assertEquals(2, WeaponFactory.getInstance().getElement("goboGarbageChucker", LANGUAGE).getAreaDamage());
-		Assert.assertEquals(3, WeaponFactory.getInstance().getElement("musterNightstorm", LANGUAGE).getAreaDamage());
-		Assert.assertEquals(5, WeaponFactory.getInstance().getElement("fragGrenades", LANGUAGE).getAreaDamage());
+		Assert.assertEquals(1, WeaponFactory.getInstance().getElement("goboLobberJetPistol", LANGUAGE).getAreaMeters());
+		Assert.assertEquals(2, WeaponFactory.getInstance().getElement("goboGarbageChucker", LANGUAGE).getAreaMeters());
+		Assert.assertEquals(3, WeaponFactory.getInstance().getElement("musterNightstorm", LANGUAGE).getAreaMeters());
+		Assert.assertEquals(5, WeaponFactory.getInstance().getElement("fragGrenades", LANGUAGE).getAreaMeters());
+	}
+	
+	@Test
+	public void getDamageWithoutArea() throws InvalidXmlElementException {
+		Assert.assertEquals("3", WeaponFactory.getInstance().getElement("blastPellet", LANGUAGE).getDamageWithoutArea());
+		Assert.assertEquals("6", WeaponFactory.getInstance().getElement("blastPelletHeavy", LANGUAGE).getDamageWithoutArea());
+		Assert.assertEquals("12", WeaponFactory.getInstance().getElement("fragGrenades", LANGUAGE).getDamageWithoutArea());
 	}
 
 }
