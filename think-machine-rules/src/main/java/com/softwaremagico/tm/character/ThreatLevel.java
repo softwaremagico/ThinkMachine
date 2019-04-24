@@ -114,35 +114,35 @@ public class ThreatLevel {
 		try {
 			if (weapon.getDamageTypes().contains(
 					DamageTypeFactory.getInstance().getElement("fire", weapon.getLanguage()))) {
-				threatLevel += 3 * DAMAGE_THREAT_MULTIPLICATOR;
+				threatLevel += 3 * weapon.getMainDamage();
 			}
 			if (weapon.getDamageTypes().contains(
 					DamageTypeFactory.getInstance().getElement("laser", weapon.getLanguage()))) {
-				threatLevel += 1 * DAMAGE_THREAT_MULTIPLICATOR;
+				threatLevel += 1 * weapon.getMainDamage();
 			}
 			if (weapon.getDamageTypes().contains(
 					DamageTypeFactory.getInstance().getElement("xaser", weapon.getLanguage()))) {
-				threatLevel += 3 * DAMAGE_THREAT_MULTIPLICATOR;
+				threatLevel += 3 * weapon.getMainDamage();
 			}
 			if (weapon.getDamageTypes().contains(
 					DamageTypeFactory.getInstance().getElement("graser", weapon.getLanguage()))) {
-				threatLevel += 6 * DAMAGE_THREAT_MULTIPLICATOR;
+				threatLevel += 6 * weapon.getMainDamage();
 			}
 			if (weapon.getDamageTypes().contains(
 					DamageTypeFactory.getInstance().getElement("shock", weapon.getLanguage()))) {
-				threatLevel += 5 * DAMAGE_THREAT_MULTIPLICATOR;
+				threatLevel += 5 * weapon.getMainDamage();
 			}
 			if (weapon.getDamageTypes().contains(
 					DamageTypeFactory.getInstance().getElement("plasma", weapon.getLanguage()))) {
-				threatLevel += 5 * DAMAGE_THREAT_MULTIPLICATOR;
+				threatLevel += 5 * weapon.getMainDamage();
 			}
 			if (weapon.getDamageTypes().contains(
 					DamageTypeFactory.getInstance().getElement("halveArmour", weapon.getLanguage()))) {
-				threatLevel += 3 * DAMAGE_THREAT_MULTIPLICATOR;
+				threatLevel += 3 * weapon.getMainDamage();
 			}
 			if (weapon.getDamageTypes().contains(
 					DamageTypeFactory.getInstance().getElement("ignoreArmour", weapon.getLanguage()))) {
-				threatLevel += 6 * DAMAGE_THREAT_MULTIPLICATOR;
+				threatLevel += 6 * weapon.getMainDamage();
 			}
 		} catch (InvalidXmlElementException e) {
 			MachineLog.errorMessage(ThreatLevel.class.getName(), e);
@@ -163,7 +163,7 @@ public class ThreatLevel {
 		}
 		int threatLevel = 0;
 		threatLevel += armour.getProtection() * DAMAGE_THREAT_MULTIPLICATOR;
-		threatLevel += armour.getDamageTypes().size() * DAMAGE_TYPES_THREAT_MULTIPLICATOR;
+		threatLevel += armour.getDamageTypes().size() * armour.getProtection();
 		armourThreatLevel += threatLevel;
 		return threatLevel;
 	}

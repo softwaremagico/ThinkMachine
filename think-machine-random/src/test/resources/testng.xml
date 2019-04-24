@@ -14,11 +14,11 @@
 	<test name="CharacterGenerator" enabled="true" preserve-order="true">
 		<groups>
 			<run>
-				<exclude name="randomDefinition" />
-				<exclude name="randomCharacter" />
-				<exclude name="profile" />
-				<exclude name="difficulty" />
-				<exclude name="randomPartyFactory" />
+				<include name="randomDefinition" />
+				<include name="randomCharacter" />
+				<include name="profile" />
+				<include name="difficulty" />
+				<include name="randomPartyFactory" />
 				<include name="randomParty" />
 				<exclude name="threatAverage" />
 				<exclude name="gaussianDistribution" />
