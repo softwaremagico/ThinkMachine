@@ -105,7 +105,6 @@ public class ProfileTests {
 		Assert.assertEquals(RandomProfileFactory.getInstance().getElement("thug", LANGUAGE).getSuggestedBenefices()
 				.size(), 5);
 		randomizeCharacter.createCharacter();
-		System.out.println(characterPlayer.getAllBenefices());
 		Assert.assertNotNull(characterPlayer.getBenefice("outlaw"));
 	}
 }

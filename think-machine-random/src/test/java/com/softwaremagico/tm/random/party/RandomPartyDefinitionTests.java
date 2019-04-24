@@ -26,27 +26,45 @@ package com.softwaremagico.tm.random.party;
 
 import java.util.HashSet;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.party.Party;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
-import com.softwaremagico.tm.txt.PartySheet;
 
 @Test(groups = { "randomParty" })
 public class RandomPartyDefinitionTests {
-	private final static String LANGUAGE = "en";
+	private final static String LANGUAGE = "es";
 
 	@Test
-	public void createThugParty() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
+	public void mandatoryMembersAdded() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
+		RandomParty thugParty = RandomPartyFactory.getInstance().getElement("thugBand", LANGUAGE);
+		RandomPartyDefinition randomPartyDefinition = new RandomPartyDefinition(thugParty, 0,
+				new HashSet<IRandomPreference>());
+		randomPartyDefinition.assign();
+		// One mandatory and one random element that is always added.
+		Assert.assertEquals(randomPartyDefinition.getParty().getMembers().size(), 1 + 1);
+		Assert.assertNotNull(randomPartyDefinition.getParty().getPartyName());
+	}
+
+	@Test
+	public void threatLevelAddMoreMembersToParty() throws InvalidXmlElementException,
+			InvalidRandomElementSelectedException {
 		RandomParty thugParty = RandomPartyFactory.getInstance().getElement("thugBand", LANGUAGE);
 		RandomPartyDefinition randomPartyDefinition = new RandomPartyDefinition(thugParty, 200,
 				new HashSet<IRandomPreference>());
 		randomPartyDefinition.assign();
-		Party party = randomPartyDefinition.getParty();
-		PartySheet partySheet = new PartySheet(party);
-		System.out.println(partySheet.toString());
+		Assert.assertNotNull(randomPartyDefinition.getParty().getPartyName());
+
+		RandomParty thugParty2 = RandomPartyFactory.getInstance().getElement("thugBand", LANGUAGE);
+		RandomPartyDefinition randomPartyDefinition2 = new RandomPartyDefinition(thugParty2, 350,
+				new HashSet<IRandomPreference>());
+		randomPartyDefinition2.assign();
+
+		Assert.assertTrue(randomPartyDefinition2.getParty().getMembers().size() > randomPartyDefinition.getParty()
+				.getMembers().size());
+		Assert.assertNotNull(randomPartyDefinition2.getParty().getPartyName());
 	}
 
 }

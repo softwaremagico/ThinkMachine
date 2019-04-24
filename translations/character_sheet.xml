@@ -544,4 +544,8 @@
 		<en>Threat</en>
 		<es>Amenaza</es>
 	</threatLevel>
+	<years>
+		<en>Years</en>
+		<es>Años</es>
+	</years>
 </translator>

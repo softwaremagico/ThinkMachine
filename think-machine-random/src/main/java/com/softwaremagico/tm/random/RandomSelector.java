@@ -58,7 +58,7 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
 
 	private CharacterPlayer characterPlayer;
 	private final Set<IRandomPreference> preferences;
-	private Random rand = new Random();
+	protected Random rand = new Random();
 
 	private final Set<Element> suggestedElements;
 	private final Set<Element> mandatoryValues;

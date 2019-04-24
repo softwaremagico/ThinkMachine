@@ -38,6 +38,7 @@ import com.softwaremagico.tm.character.ThreatLevel;
 public class Party extends Element<Party> {
 	private final Set<CharacterPlayer> characterPlayers;
 	private final Map<CharacterPlayer, Integer> threatByCharacter;
+	private String partyName;
 
 	public Party(String id, String name, String language) {
 		super(id, name, language);
@@ -70,7 +71,15 @@ public class Party extends Element<Party> {
 		return threatByCharacter.get(characterPlayer);
 	}
 
-	public Set<CharacterPlayer> getCharacterPlayers() {
+	public Set<CharacterPlayer> getMembers() {
 		return Collections.unmodifiableSet(characterPlayers);
+	}
+
+	public String getPartyName() {
+		return partyName;
+	}
+
+	public void setPartyName(String partyName) {
+		this.partyName = partyName;
 	}
 }

@@ -27,6 +27,7 @@ package com.softwaremagico.tm.random.party;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
@@ -84,7 +85,6 @@ public class RandomPartyDefinition extends RandomSelector<RandomPartyMember> {
 		profilesAssigned.put(member, getProfileAssigned(member) + 1);
 		CharacterPlayer characterPlayer = createCharacter(member);
 		getParty().addCharacter(characterPlayer);
-		System.out.println(getParty().getCharacterPlayers().size());
 		threatByProfile.put(member, getThreatByProfile(member) + getParty().getThreatLevel(characterPlayer));
 		if (member.getMaxNumber() != null && member.getMaxNumber() >= getProfileAssigned(member)) {
 			removeElementWeight(member);
@@ -106,9 +106,11 @@ public class RandomPartyDefinition extends RandomSelector<RandomPartyMember> {
 
 	@Override
 	public void assign() throws InvalidXmlElementException {
-		int i = 0;
+		if (getParty().getPartyName() == null || getParty().getPartyName().isEmpty()) {
+			getParty().setPartyName(createName());
+		}
+
 		while (true) {
-			System.out.println(i++ + "->" + getWeightedElements());
 			// Select a skill randomly.
 			RandomPartyMember partyMember;
 			try {
@@ -126,6 +128,25 @@ public class RandomPartyDefinition extends RandomSelector<RandomPartyMember> {
 				break;
 			}
 		}
+	}
+
+	private String createName() {
+		return RandomPartyFactory.getPartyName(
+				pickOneRandom(RandomPartyFactory.getInstance().getNames((RandomParty) getElementWithRandomElements())),
+				pickOneRandom(RandomPartyFactory.getInstance().getAdjectives(
+						(RandomParty) getElementWithRandomElements())), getElementWithRandomElements().getLanguage());
+	}
+
+	private <T> T pickOneRandom(Set<T> elements) {
+		if (elements == null || elements.isEmpty()) {
+			return null;
+		}
+		int index = rand.nextInt(elements.size());
+		Iterator<T> iter = elements.iterator();
+		for (int i = 0; i < index; i++) {
+			iter.next();
+		}
+		return iter.next();
 	}
 
 	@Override

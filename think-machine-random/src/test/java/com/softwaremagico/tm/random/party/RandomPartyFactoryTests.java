@@ -43,6 +43,14 @@ public class RandomPartyFactoryTests {
 	}
 
 	@Test
+	public void readNames() throws InvalidXmlElementException {
+		Assert.assertNotNull(RandomPartyFactory.getInstance().getNames(
+				RandomPartyFactory.getInstance().getElement("thugBand", LANGUAGE)));
+		Assert.assertNotNull(RandomPartyFactory.getInstance().getAdjectives(
+				RandomPartyFactory.getInstance().getElement("thugBand", LANGUAGE)));
+	}
+
+	@Test
 	public void readThugParty() throws InvalidXmlElementException {
 		Assert.assertEquals(RandomPartyFactory.getInstance().getElement("thugBand", LANGUAGE).getRandomPartyMembers()
 				.size(), 3);
@@ -56,10 +64,10 @@ public class RandomPartyFactoryTests {
 				Assert.assertTrue(member.getRandomPreferences().contains(DifficultLevelPreferences.HARD));
 			} else if (member.getId().equals("thugBand_1")) {
 				checkedMemebers++;
-				Assert.assertEquals(member.getWeight(), 1.0f);
+				Assert.assertEquals((int) member.getWeight(), 3);
 			} else if (member.getId().equals("thugBand_2")) {
 				checkedMemebers++;
-				Assert.assertEquals(member.getWeight(), 0.3f);
+				Assert.assertEquals((int) member.getWeight(), 1);
 				Assert.assertTrue(member.getRandomPreferences().contains(AgePreferences.TEENAGER));
 			}
 		}

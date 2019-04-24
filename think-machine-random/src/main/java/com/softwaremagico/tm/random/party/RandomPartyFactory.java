@@ -42,7 +42,8 @@ public class RandomPartyFactory extends XmlFactory<RandomParty> {
 	private final static ITranslator translatorRandomParty = LanguagePool.getTranslator("parties.xml");
 
 	private final static String NAME = "name";
-	private final static String PARTY_NAME = "nams";
+	private final static String RANDOM = "random";
+	private final static String PARTY_NAME = "names";
 	private final static String PARTY_ADJECTIVE = "adjectives";
 
 	private final static String MEMBER = "member";
@@ -52,8 +53,9 @@ public class RandomPartyFactory extends XmlFactory<RandomParty> {
 	private final static String WEIGHT = "weight";
 	private final static String EXTRA_PREFERENCES = "extraPreferences";
 
-	private Map<RandomParty, Set<PartyName>> namesByParty;
-	private Map<RandomParty, Set<PartyAdjective>> adjectivesByParty;
+	// RandomParty --> Language --> Name
+	private Map<RandomParty, Map<String, Set<PartyName>>> namesByParty;
+	private Map<RandomParty, Map<String, Set<PartyAdjective>>> adjectivesByParty;
 
 	private static RandomPartyFactory instance;
 
@@ -84,9 +86,12 @@ public class RandomPartyFactory extends XmlFactory<RandomParty> {
 			namesByParty = new HashMap<>();
 		}
 		if (namesByParty.get(name.getRandomParty()) == null) {
-			namesByParty.put(name.getRandomParty(), new HashSet<PartyName>());
+			namesByParty.put(name.getRandomParty(), new HashMap<String, Set<PartyName>>());
 		}
-		namesByParty.get(name.getRandomParty()).add(name);
+		if (namesByParty.get(name.getRandomParty()).get(name.getLanguage()) == null) {
+			namesByParty.get(name.getRandomParty()).put(name.getLanguage(), new HashSet<PartyName>());
+		}
+		namesByParty.get(name.getRandomParty()).get(name.getLanguage()).add(name);
 	}
 
 	private void addAdjective(PartyAdjective adjective) {
@@ -94,9 +99,13 @@ public class RandomPartyFactory extends XmlFactory<RandomParty> {
 			adjectivesByParty = new HashMap<>();
 		}
 		if (adjectivesByParty.get(adjective.getRandomParty()) == null) {
-			adjectivesByParty.put(adjective.getRandomParty(), new HashSet<PartyAdjective>());
+			adjectivesByParty.put(adjective.getRandomParty(), new HashMap<String, Set<PartyAdjective>>());
 		}
-		adjectivesByParty.get(adjective.getRandomParty()).add(adjective);
+		if (adjectivesByParty.get(adjective.getRandomParty()).get(adjective.getLanguage()) == null) {
+			adjectivesByParty.get(adjective.getRandomParty()).put(adjective.getLanguage(),
+					new HashSet<PartyAdjective>());
+		}
+		adjectivesByParty.get(adjective.getRandomParty()).get(adjective.getLanguage()).add(adjective);
 	}
 
 	@Override
@@ -170,7 +179,7 @@ public class RandomPartyFactory extends XmlFactory<RandomParty> {
 		}
 
 		// Random options
-		String partyNames = translator.getNodeValue(partyId, PARTY_NAME, language);
+		String partyNames = translator.getNodeValue(partyId, RANDOM, PARTY_NAME, language);
 		if (partyNames != null) {
 			StringTokenizer partyNamesTokenizer = new StringTokenizer(partyNames, ",");
 			while (partyNamesTokenizer.hasMoreTokens()) {
@@ -178,7 +187,7 @@ public class RandomPartyFactory extends XmlFactory<RandomParty> {
 			}
 		}
 
-		String partyAdjectives = translator.getNodeValue(partyId, PARTY_ADJECTIVE, language);
+		String partyAdjectives = translator.getNodeValue(partyId, RANDOM, PARTY_ADJECTIVE, language);
 		if (partyAdjectives != null) {
 			StringTokenizer partyAdjectivesTokenizer = new StringTokenizer(partyAdjectives, ",");
 			while (partyAdjectivesTokenizer.hasMoreTokens()) {
@@ -191,12 +200,9 @@ public class RandomPartyFactory extends XmlFactory<RandomParty> {
 
 	public static String getPartyName(PartyName partyName, PartyAdjective partyAdjective, String language) {
 		if (partyName == null || partyAdjective == null) {
-			return "";
+			return null;
 		}
-		if (language == "en") {
-			return partyAdjective.getName() + " " + partyName.getName();
-		}
-		if (language == "es") {
+		if (language.equals("es")) {
 			StringBuilder name = new StringBuilder();
 			name.append(partyName.getName());
 			name.append(" ");
@@ -204,11 +210,29 @@ public class RandomPartyFactory extends XmlFactory<RandomParty> {
 			if (partyAdjective.getName().startsWith("de ")) {
 				name.append(partyAdjective.getName());
 			} else if (partyName.getName().endsWith("as")) {
-				name.append(partyAdjective.getName().substring(partyAdjective.getName().length() - 2));
+				name.append(partyAdjective.getName().substring(0, partyAdjective.getName().length() - 2));
 				name.append("as");
 			}
+			return name.toString();
+		} else {
+			return partyAdjective.getName() + " " + partyName.getName();
 		}
-		return "";
+	}
+
+	public Set<PartyName> getNames(RandomParty randomParty) {
+		try {
+			return namesByParty.get(randomParty).get(randomParty.getLanguage());
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
+	public Set<PartyAdjective> getAdjectives(RandomParty randomParty) {
+		try {
+			return adjectivesByParty.get(randomParty).get(randomParty.getLanguage());
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 }

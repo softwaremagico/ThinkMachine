@@ -42,7 +42,7 @@ public class PartySheet {
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append(party.getName());
 		stringBuilder.append("\n");
-		for (CharacterPlayer characterPlayer : getParty().getCharacterPlayers()) {
+		for (CharacterPlayer characterPlayer : getParty().getMembers()) {
 			CharacterSheet characterSheet = new CharacterSheet(characterPlayer);
 			stringBuilder.append(characterSheet.toString());
 			stringBuilder.append("\n");
