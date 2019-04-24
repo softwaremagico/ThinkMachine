@@ -31,6 +31,7 @@ import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.characteristics.Characteristic;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.cybernetics.SelectedCyberneticDevice;
+import com.softwaremagico.tm.character.equipment.DamageTypeFactory;
 import com.softwaremagico.tm.character.equipment.armours.Armour;
 import com.softwaremagico.tm.character.equipment.shields.Shield;
 import com.softwaremagico.tm.character.equipment.weapons.Weapon;
@@ -40,11 +41,12 @@ import com.softwaremagico.tm.character.occultism.OccultismPathFactory;
 import com.softwaremagico.tm.character.occultism.OccultismTypeFactory;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
+import com.softwaremagico.tm.log.MachineLog;
 
 public class ThreatLevel {
 	private final static int DAMAGE_THREAT_MULTIPLICATOR = 2;
 	private final static int DAMAGE_AREA_THREAT_MULTIPLICATOR = 3;
-	private final static int DAMAGE_TYPES_THREAT_MULTIPLICATOR = 2;
+	private final static int DAMAGE_TYPES_THREAT_MULTIPLICATOR = 3;
 	private final static int COMBAT_STYLES_THREAT_MULTIPLICATOR = 5;
 	private final static int EXTRA_WYRD_THREAT_MULTIPLICATOR = 3;
 	private final static int PSI_LEVEL_THREAT_MULTIPLICATOR = 2;
@@ -75,7 +77,8 @@ public class ThreatLevel {
 		return threatLevel;
 	}
 
-	private static int getThreatLevel(CharacterPlayer characterPlayer, Characteristic characteristic, AvailableSkill skill) {
+	private static int getThreatLevel(CharacterPlayer characterPlayer, Characteristic characteristic,
+			AvailableSkill skill) {
 		return characterPlayer.getSkillTotalRanks(skill) + characteristic.getValue();
 	}
 
@@ -83,7 +86,8 @@ public class ThreatLevel {
 		int threatLevel = 0;
 		if (!characterPlayer.getAllWeapons().isEmpty()) {
 			Weapon mainWeapon = characterPlayer.getMainWeapon();
-			threatLevel += getThreatLevel(characterPlayer, characterPlayer.getCharacteristic(mainWeapon.getCharacteristic().getCharacteristicName()),
+			threatLevel += getThreatLevel(characterPlayer,
+					characterPlayer.getCharacteristic(mainWeapon.getCharacteristic().getCharacteristicName()),
 					mainWeapon.getSkill()) * 2;
 			threatLevel += getThreatLevel(mainWeapon);
 			if (WeaponType.getMeleeTypes().contains(mainWeapon.getType())) {
@@ -93,8 +97,8 @@ public class ThreatLevel {
 		}
 		threatLevel += characterPlayer.getMeleeCombatStyles().size() * COMBAT_STYLES_THREAT_MULTIPLICATOR;
 		threatLevel += characterPlayer.getRangedCombatStyles().size() * COMBAT_STYLES_THREAT_MULTIPLICATOR;
-		threatLevel += getThreatLevel(characterPlayer, characterPlayer.getCharacteristic(CharacteristicName.DEXTERITY), AvailableSkillsFactory.getInstance()
-				.getElement("fight", characterPlayer.getLanguage()));
+		threatLevel += getThreatLevel(characterPlayer, characterPlayer.getCharacteristic(CharacteristicName.DEXTERITY),
+				AvailableSkillsFactory.getInstance().getElement("fight", characterPlayer.getLanguage()));
 		combatThreatLevel += threatLevel;
 		return threatLevel;
 	}
@@ -107,6 +111,42 @@ public class ThreatLevel {
 		threatLevel += weapon.getMainDamage() * DAMAGE_THREAT_MULTIPLICATOR;
 		threatLevel += weapon.getAreaDamage() * DAMAGE_AREA_THREAT_MULTIPLICATOR;
 		threatLevel += weapon.getDamageTypes().size() * DAMAGE_TYPES_THREAT_MULTIPLICATOR;
+		try {
+			if (weapon.getDamageTypes().contains(
+					DamageTypeFactory.getInstance().getElement("fire", weapon.getLanguage()))) {
+				threatLevel += 3 * DAMAGE_THREAT_MULTIPLICATOR;
+			}
+			if (weapon.getDamageTypes().contains(
+					DamageTypeFactory.getInstance().getElement("laser", weapon.getLanguage()))) {
+				threatLevel += 1 * DAMAGE_THREAT_MULTIPLICATOR;
+			}
+			if (weapon.getDamageTypes().contains(
+					DamageTypeFactory.getInstance().getElement("xaser", weapon.getLanguage()))) {
+				threatLevel += 3 * DAMAGE_THREAT_MULTIPLICATOR;
+			}
+			if (weapon.getDamageTypes().contains(
+					DamageTypeFactory.getInstance().getElement("graser", weapon.getLanguage()))) {
+				threatLevel += 6 * DAMAGE_THREAT_MULTIPLICATOR;
+			}
+			if (weapon.getDamageTypes().contains(
+					DamageTypeFactory.getInstance().getElement("shock", weapon.getLanguage()))) {
+				threatLevel += 5 * DAMAGE_THREAT_MULTIPLICATOR;
+			}
+			if (weapon.getDamageTypes().contains(
+					DamageTypeFactory.getInstance().getElement("plasma", weapon.getLanguage()))) {
+				threatLevel += 5 * DAMAGE_THREAT_MULTIPLICATOR;
+			}
+			if (weapon.getDamageTypes().contains(
+					DamageTypeFactory.getInstance().getElement("halveArmour", weapon.getLanguage()))) {
+				threatLevel += 3 * DAMAGE_THREAT_MULTIPLICATOR;
+			}
+			if (weapon.getDamageTypes().contains(
+					DamageTypeFactory.getInstance().getElement("ignoreArmour", weapon.getLanguage()))) {
+				threatLevel += 6 * DAMAGE_THREAT_MULTIPLICATOR;
+			}
+		} catch (InvalidXmlElementException e) {
+			MachineLog.errorMessage(ThreatLevel.class.getName(), e);
+		}
 		threatLevel += weapon.getMainRange() / 10;
 		threatLevel += weapon.getMainRate();
 		// threatLevel += weapon.getAccesories().size();
@@ -150,7 +190,8 @@ public class ThreatLevel {
 	private static int getOccultismThreatLevel(CharacterPlayer characterPlayer) throws InvalidXmlElementException {
 		int threatLevel = 0;
 		for (Entry<String, List<String>> occulstismPathEntry : characterPlayer.getSelectedPowers().entrySet()) {
-			OccultismPath occultismPath = OccultismPathFactory.getInstance().getElement(occulstismPathEntry.getKey(), characterPlayer.getLanguage());
+			OccultismPath occultismPath = OccultismPathFactory.getInstance().getElement(occulstismPathEntry.getKey(),
+					characterPlayer.getLanguage());
 			for (String occultismPowerName : occulstismPathEntry.getValue()) {
 				switch (occultismPath.getClassification()) {
 				case COMBAT:
@@ -165,8 +206,10 @@ public class ThreatLevel {
 			}
 		}
 		threatLevel += characterPlayer.getExtraWyrd() * EXTRA_WYRD_THREAT_MULTIPLICATOR;
-		threatLevel += characterPlayer.getPsiqueLevel(OccultismTypeFactory.getPsi(characterPlayer.getLanguage())) * PSI_LEVEL_THREAT_MULTIPLICATOR;
-		threatLevel += characterPlayer.getPsiqueLevel(OccultismTypeFactory.getTheurgy(characterPlayer.getLanguage())) * PSI_LEVEL_THREAT_MULTIPLICATOR;
+		threatLevel += characterPlayer.getPsiqueLevel(OccultismTypeFactory.getPsi(characterPlayer.getLanguage()))
+				* PSI_LEVEL_THREAT_MULTIPLICATOR;
+		threatLevel += characterPlayer.getPsiqueLevel(OccultismTypeFactory.getTheurgy(characterPlayer.getLanguage()))
+				* PSI_LEVEL_THREAT_MULTIPLICATOR;
 		occultismThreatLevel += threatLevel;
 		return threatLevel;
 	}

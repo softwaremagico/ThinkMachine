@@ -14,11 +14,12 @@
 	<test name="CharacterGenerator" enabled="true" preserve-order="true">
 		<groups>
 			<run>
-				<include name="randomDefinition" />
-				<include name="randomCharacter" />
-				<include name="profile" />
-				<include name="difficulty" />
-				<include name="randomPartyFactory" />
+				<exclude name="randomDefinition" />
+				<exclude name="randomCharacter" />
+				<exclude name="profile" />
+				<exclude name="difficulty" />
+				<exclude name="randomPartyFactory" />
+				<include name="randomParty" />
 				<exclude name="threatAverage" />
 				<exclude name="gaussianDistribution" />
 			</run>
@@ -28,6 +29,7 @@
 			<class name="com.softwaremagico.tm.character.RandomCharacterTests" />
 			<class name="com.softwaremagico.tm.random.profile.ProfileTests" />
 			<class name="com.softwaremagico.tm.random.party.RandomPartyFactoryTests" />
+			<class name="com.softwaremagico.tm.random.party.RandomPartyDefinitionTests" />
 			<class name="com.softwaremagico.tm.random.RandomCharacterDifficultyTests" />
 			<class name="com.softwaremagico.tm.random.GaussianDistributionTests" />
 			<class name="com.softwaremagico.tm.random.RandomCharacterThreatAverage" />

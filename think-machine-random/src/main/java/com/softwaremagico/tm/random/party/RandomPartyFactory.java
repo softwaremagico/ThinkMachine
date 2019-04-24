@@ -134,10 +134,10 @@ public class RandomPartyFactory extends XmlFactory<RandomParty> {
 					}
 				}
 				String weightTag = translator.getNodeValue(partyId, MEMBER, WEIGHT, node);
-				Float weight = null;
+				Integer weight = null;
 				if (weightTag != null) {
 					try {
-						weight = Float.parseFloat(weightTag);
+						weight = Integer.parseInt(weightTag);
 					} catch (NumberFormatException e) {
 						throw new InvalidRandomPartyException(
 								"Invalid random party definition. Parameter weight has an incorrect value '"
@@ -153,6 +153,10 @@ public class RandomPartyFactory extends XmlFactory<RandomParty> {
 						randomPreferences.add(RandomPreferenceUtils.getSelectedPreference(preferencesSelectedTokenizer
 								.nextToken().trim()));
 					}
+				}
+
+				if (weight == null && maxNumber == null) {
+					throw new InvalidRandomPartyException("Weight or maxNumber parameter must be set.");
 				}
 
 				randomParty.getRandomPartyMembers().add(

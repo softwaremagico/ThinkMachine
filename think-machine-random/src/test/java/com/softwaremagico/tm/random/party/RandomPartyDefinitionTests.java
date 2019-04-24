@@ -25,37 +25,28 @@ package com.softwaremagico.tm.random.party;
  */
 
 import java.util.HashSet;
-import java.util.Set;
 
-import com.softwaremagico.tm.Element;
-import com.softwaremagico.tm.random.IElementWithRandomElements;
+import org.testng.annotations.Test;
 
-public class RandomParty extends Element<RandomParty> implements IElementWithRandomElements<RandomPartyMember> {
-	private final HashSet<RandomPartyMember> randomPartyMembers;
+import com.softwaremagico.tm.InvalidXmlElementException;
+import com.softwaremagico.tm.party.Party;
+import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
+import com.softwaremagico.tm.random.selectors.IRandomPreference;
+import com.softwaremagico.tm.txt.PartySheet;
 
-	public RandomParty(String id, String name, String language) {
-		super(id, name, language);
-		randomPartyMembers = new HashSet<>();
-	}
+@Test(groups = { "randomParty" })
+public class RandomPartyDefinitionTests {
+	private final static String LANGUAGE = "en";
 
-	public HashSet<RandomPartyMember> getRandomPartyMembers() {
-		return randomPartyMembers;
-	}
-
-	@Override
-	public Set<RandomPartyMember> getAllElements() {
-		return getRandomPartyMembers();
-	}
-
-	@Override
-	public Set<RandomPartyMember> getMandatoryElements() {
-		Set<RandomPartyMember> mandatoryElements = new HashSet<>();
-		for (RandomPartyMember member : getRandomPartyMembers()) {
-			if (member.getMinNumber() != null && member.getMinNumber() > 0) {
-				mandatoryElements.add(member);
-			}
-		}
-		return mandatoryElements;
+	@Test
+	public void createThugParty() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
+		RandomParty thugParty = RandomPartyFactory.getInstance().getElement("thugBand", LANGUAGE);
+		RandomPartyDefinition randomPartyDefinition = new RandomPartyDefinition(thugParty, 200,
+				new HashSet<IRandomPreference>());
+		randomPartyDefinition.assign();
+		Party party = randomPartyDefinition.getParty();
+		PartySheet partySheet = new PartySheet(party);
+		System.out.println(partySheet.toString());
 	}
 
 }

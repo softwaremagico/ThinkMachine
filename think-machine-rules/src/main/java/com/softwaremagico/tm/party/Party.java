@@ -45,7 +45,7 @@ public class Party extends Element<Party> {
 		threatByCharacter = new HashMap<>();
 	}
 
-	public void setCharacter(CharacterPlayer characterPlayer) throws InvalidXmlElementException {
+	public void addCharacter(CharacterPlayer characterPlayer) throws InvalidXmlElementException {
 		characterPlayers.add(characterPlayer);
 		threatByCharacter.put(characterPlayer, ThreatLevel.getThreatLevel(characterPlayer));
 	}
@@ -61,6 +61,13 @@ public class Party extends Element<Party> {
 			threatLevel += threat;
 		}
 		return threatLevel;
+	}
+
+	public int getThreatLevel(CharacterPlayer characterPlayer) {
+		if (threatByCharacter.get(characterPlayer) == null) {
+			return 0;
+		}
+		return threatByCharacter.get(characterPlayer);
 	}
 
 	public Set<CharacterPlayer> getCharacterPlayers() {

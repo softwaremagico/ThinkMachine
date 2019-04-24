@@ -22,7 +22,7 @@
 					<es>Rufián Común</es>
 				</name>
 				<profile>thug</profile>
-				<weight>1</weight>
+				<weight>3</weight>
 			</member>
 			<member>
 				<name>
@@ -30,7 +30,7 @@
 					<es>Rufián Adolescente</es>
 				</name>
 				<profile>thug</profile>
-				<weight>0.3</weight>
+				<weight>1</weight>
 				<extraPreferences>AgePreferences.TEENAGER</extraPreferences>
 			</member>
 		</members>

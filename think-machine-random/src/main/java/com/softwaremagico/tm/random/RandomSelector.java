@@ -63,25 +63,33 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
 	private final Set<Element> suggestedElements;
 	private final Set<Element> mandatoryValues;
 
-	// Weight -> Characteristic.
-	private final TreeMap<Integer, Element> weightedElements;
-	private final int totalWeight;
+	// Weight -> Element.
+	private TreeMap<Integer, Element> weightedElements;
+	private int totalWeight;
+
+	private final IElementWithRandomElements<Element> elementWithRandomElements;
 
 	protected RandomSelector(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences)
 			throws InvalidXmlElementException {
-		this(characterPlayer, preferences, new HashSet<Element>(), new HashSet<Element>());
+		this(characterPlayer, null, preferences, new HashSet<Element>(), new HashSet<Element>());
 	}
 
-	protected RandomSelector(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences,
+	protected RandomSelector(CharacterPlayer characterPlayer,
+			IElementWithRandomElements<Element> elementWithRandomElements, Set<IRandomPreference> preferences,
 			Set<Element> mandatoryValues, Set<Element> suggestedElements) throws InvalidXmlElementException {
 		this.characterPlayer = characterPlayer;
 		this.preferences = preferences;
 		this.suggestedElements = suggestedElements;
 		this.mandatoryValues = mandatoryValues;
-		weightedElements = assignElementsWeight();
-		totalWeight = assignTotalWeight();
+		this.elementWithRandomElements = elementWithRandomElements;
+		updateWeights();
 		assignMandatoryValues(mandatoryValues);
 		assignMandatories();
+	}
+
+	protected void updateWeights() throws InvalidXmlElementException {
+		weightedElements = assignElementsWeight();
+		totalWeight = assignTotalWeight();
 	}
 
 	private Integer assignTotalWeight() {
@@ -107,8 +115,23 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
 
 	public abstract void assign() throws InvalidXmlElementException, InvalidRandomElementSelectedException;
 
+	/**
+	 * This mandatories values are defined but the user and must be assigned.
+	 * 
+	 * @param mandatoryValues
+	 *            set of elements to be assigned.
+	 * @throws InvalidXmlElementException
+	 */
 	protected abstract void assignMandatoryValues(Set<Element> mandatoryValues) throws InvalidXmlElementException;
 
+	/**
+	 * Must check if element is mandatory, and if it is, it must be assigned.
+	 * 
+	 * @param element
+	 *            element to check.
+	 * @throws InvalidXmlElementException
+	 * @throws ImpossibleToAssignMandatoryElementException
+	 */
 	protected abstract void assignIfMandatory(Element element) throws InvalidXmlElementException,
 			ImpossibleToAssignMandatoryElementException;
 
@@ -181,7 +204,7 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
 		}
 
 		// Recommended to race.
-		if (getCharacterPlayer().getRace() != null
+		if (getCharacterPlayer() != null && getCharacterPlayer().getRace() != null
 				&& randomDefinition.getRecommendedRaces().contains(getCharacterPlayer().getRace())) {
 			RandomGenerationLog.debug(this.getClass().getName(), "Random definition as recommended for '"
 					+ getCharacterPlayer().getRace() + "'.");
@@ -189,7 +212,8 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
 		}
 
 		// Recommended to my faction group.
-		if (getCharacterPlayer().getFaction() != null
+		if (getCharacterPlayer() != null
+				&& getCharacterPlayer().getFaction() != null
 				&& randomDefinition.getRecommendedFactionsGroups().contains(
 						getCharacterPlayer().getFaction().getFactionGroup())) {
 			RandomGenerationLog.debug(this.getClass().getName(), "Random definition as recommended for '"
@@ -198,7 +222,7 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
 		}
 
 		// Recommended to my faction.
-		if (getCharacterPlayer().getFaction() != null
+		if (getCharacterPlayer() != null && getCharacterPlayer().getFaction() != null
 				&& randomDefinition.getRecommendedFactions().contains(getCharacterPlayer().getFaction())) {
 			RandomGenerationLog.debug(this.getClass().getName(), "Random definition as recommended for '"
 					+ getCharacterPlayer().getFaction() + "'.");
@@ -236,39 +260,44 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
 		}
 
 		// Check technology limitations.
-		if (randomDefinition.getMinimumTechLevel() != null
+		if (getCharacterPlayer() != null
+				&& randomDefinition.getMinimumTechLevel() != null
 				&& randomDefinition.getMinimumTechLevel() > getCharacterPlayer().getCharacteristic(
 						CharacteristicName.TECH).getValue()) {
 			throw new InvalidRandomElementSelectedException("The tech level of the character is insufficient.");
 		}
 
-		if (randomDefinition.getMaximumTechLevel() != null
+		if (getCharacterPlayer() != null
+				&& randomDefinition.getMaximumTechLevel() != null
 				&& randomDefinition.getMaximumTechLevel() < getCharacterPlayer().getCharacteristic(
 						CharacteristicName.TECH).getValue()) {
 			throw new InvalidRandomElementSelectedException("The tech level of the character is too high.");
 		}
 
 		// Race limitation
-		if (randomDefinition.getRestrictedRaces() != null && !randomDefinition.getRestrictedRaces().isEmpty()
+		if (getCharacterPlayer() != null && randomDefinition.getRestrictedRaces() != null
+				&& !randomDefinition.getRestrictedRaces().isEmpty()
 				&& !randomDefinition.getRestrictedRaces().contains(getCharacterPlayer().getRace())) {
 			throw new InvalidRandomElementSelectedException("Element restricted to races '"
 					+ randomDefinition.getRestrictedRaces() + "'.");
 		}
 
-		if (randomDefinition.getForbiddenRaces() != null
+		if (getCharacterPlayer() != null && randomDefinition.getForbiddenRaces() != null
 				&& randomDefinition.getForbiddenRaces().contains(getCharacterPlayer().getRace())) {
 			throw new InvalidRandomElementSelectedException("Element forbidden to races '"
 					+ randomDefinition.getForbiddenRaces() + "'.");
 		}
 
 		// Faction restriction.
-		if (getCharacterPlayer().getFaction() != null && !randomDefinition.getRestrictedFactions().isEmpty()
+		if (getCharacterPlayer() != null && getCharacterPlayer().getFaction() != null
+				&& !randomDefinition.getRestrictedFactions().isEmpty()
 				&& !randomDefinition.getRestrictedFactions().contains(getCharacterPlayer().getFaction())) {
 			throw new InvalidRandomElementSelectedException("Element restricted to factions '"
 					+ randomDefinition.getRestrictedFactions() + "'.");
 		}
 
-		if (getCharacterPlayer().getFaction() != null
+		if (getCharacterPlayer() != null
+				&& getCharacterPlayer().getFaction() != null
 				&& !randomDefinition.getRecommendedFactionsGroups().isEmpty()
 				&& !randomDefinition.getRecommendedFactionsGroups().contains(
 						getCharacterPlayer().getFaction().getFactionGroup())) {
@@ -277,7 +306,8 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
 		}
 
 		// Faction groups restriction.
-		if (getCharacterPlayer().getFaction() != null
+		if (getCharacterPlayer() != null
+				&& getCharacterPlayer().getFaction() != null
 				&& !randomDefinition.getRestrictedFactions().isEmpty()
 				&& (getCharacterPlayer().getFaction().getFactionGroup() == null || !randomDefinition
 						.getRestrictedFactions().contains(getCharacterPlayer().getFaction().getFactionGroup()))) {
@@ -371,5 +401,9 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
 
 	public boolean isMandatory(Element element) {
 		return mandatoryValues.contains(element);
+	}
+
+	public IElementWithRandomElements<Element> getElementWithRandomElements() {
+		return elementWithRandomElements;
 	}
 }

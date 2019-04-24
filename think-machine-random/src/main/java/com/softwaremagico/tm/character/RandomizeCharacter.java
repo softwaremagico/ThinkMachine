@@ -96,6 +96,14 @@ public class RandomizeCharacter {
 				new HashSet<BeneficeDefinition>(), new HashSet<BeneficeDefinition>());
 	}
 
+	public RandomizeCharacter(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences,
+			IRandomProfile... profiles) throws DuplicatedPreferenceException, TooManyBlessingsException,
+			InvalidXmlElementException {
+		this(characterPlayer, null, new HashSet<IRandomProfile>(Arrays.asList(profiles)),
+				new HashSet<IRandomPreference>(), new HashSet<AvailableSkill>(), new HashSet<AvailableSkill>(),
+				new HashSet<BeneficeDefinition>(), new HashSet<BeneficeDefinition>());
+	}
+
 	public RandomizeCharacter(CharacterPlayer characterPlayer, Integer experiencePoints, Set<IRandomProfile> profiles,
 			Set<IRandomPreference> preferences, Set<AvailableSkill> requiredSkills,
 			Set<AvailableSkill> suggestedSkills, Set<BeneficeDefinition> mandatoryBenefices,

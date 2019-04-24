@@ -60,7 +60,7 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
 	public RandomBeneficeDefinition(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences,
 			Set<BeneficeDefinition> mandatoryBenefices, Set<BeneficeDefinition> suggestedBenefices)
 			throws InvalidXmlElementException {
-		super(characterPlayer, preferences, mandatoryBenefices, suggestedBenefices);
+		super(characterPlayer, null, preferences, mandatoryBenefices, suggestedBenefices);
 	}
 
 	@Override

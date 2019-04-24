@@ -60,14 +60,11 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 
 	public RandomSkills(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences, Set<AvailableSkill> requiredSkills,
 			Set<AvailableSkill> suggestedSkills) throws InvalidXmlElementException {
-		super(characterPlayer, preferences, requiredSkills, suggestedSkills);
+		super(characterPlayer, null, preferences, requiredSkills, suggestedSkills);
 	}
 
 	@Override
 	public void assign() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
-		// Set minimum values of skills by preferences.
-		assignMinimumValuesOfSkills();
-
 		DifficultLevelPreferences difficultLevel = DifficultLevelPreferences.getSelected(getPreferences());
 
 		// Meanwhile are ranks to expend.
@@ -141,10 +138,6 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 			}
 		}
 		removeElementWeight(availableSkill);
-	}
-
-	private void assignMinimumValuesOfSkills() {
-
 	}
 
 	@Override
