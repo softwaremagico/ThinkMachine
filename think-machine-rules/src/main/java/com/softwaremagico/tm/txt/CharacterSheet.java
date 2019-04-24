@@ -85,7 +85,7 @@ public class CharacterSheet {
 		stringBuilder.append("\n");
 		stringBuilder.append(getCharacterPlayer().getRace().getName());
 		stringBuilder.append(" " + getCharacterPlayer().getInfo().getTranslatedParameter("gender"));
-		stringBuilder.append(" " + getCharacterPlayer().getInfo().getBirthdate() + " "
+		stringBuilder.append(" " + getCharacterPlayer().getInfo().getAge() + " "
 				+ getTranslator().getTranslatedText("years").toLowerCase());
 		stringBuilder.append(" (" + getCharacterPlayer().getInfo().getPlanet().getName() + ")");
 		stringBuilder.append("\n");
