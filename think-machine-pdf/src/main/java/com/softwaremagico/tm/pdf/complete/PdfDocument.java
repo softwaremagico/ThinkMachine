@@ -30,6 +30,7 @@ import java.io.IOException;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.log.PdfExporterLog;
 import com.softwaremagico.tm.pdf.complete.events.FooterEvent;
 
@@ -54,12 +55,15 @@ public abstract class PdfDocument {
 		return document;
 	}
 
-	protected void generatePDF(Document document, PdfWriter writer) throws EmptyPdfBodyException, Exception {
+	private void generatePDF(Document document, PdfWriter writer) throws EmptyPdfBodyException, Exception {
 		addMetaData(document);
 		document.open();
-		createPagePDF(document);
+		//createCharacterPDF(document);
+		createContent(document);
 		document.close();
 	}
+	
+	protected abstract void createContent(Document document) throws Exception;
 
 	protected void addEvent(PdfWriter writer) {
 		writer.setPageEvent(new FooterEvent());
@@ -96,7 +100,7 @@ public abstract class PdfDocument {
 
 	protected abstract Rectangle getPageSize();
 
-	protected abstract void createPagePDF(Document document) throws Exception;
+	protected abstract void createCharacterPDF(Document document, CharacterPlayer character) throws Exception;
 
 	public String getLanguage() {
 		return language;

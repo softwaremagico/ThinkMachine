@@ -101,7 +101,7 @@ import com.softwaremagico.tm.log.MachineLog;
 import com.softwaremagico.tm.txt.CharacterSheet;
 
 public class CharacterPlayer {
-	private String language;
+	private final String language;
 
 	// Basic description of the character.
 	private CharacterInfo info;

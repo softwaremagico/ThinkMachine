@@ -1,8 +1,8 @@
-package com.softwaremagico.tm.txt;
+package com.softwaremagico.tm.pdf.complete;
 
 /*-
  * #%L
- * Think Machine (Rules)
+ * Think Machine (PDF Sheets)
  * %%
  * Copyright (C) 2017 - 2019 Softwaremagico
  * %%
@@ -24,35 +24,36 @@ package com.softwaremagico.tm.txt;
  * #L%
  */
 
+import com.itextpdf.text.Document;
+import com.itextpdf.text.pdf.PdfWriter;
 import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.language.Translator;
 import com.softwaremagico.tm.party.Party;
+import com.softwaremagico.tm.pdf.complete.events.PartyFooterEvent;
 
-public class PartySheet {
-	private final Party party;
+public class PartySheet extends CharacterSheet {
+	private Party party;
+
+	public PartySheet(String language) {
+		super(language);
+		Translator.setLanguage(language);
+	}
 
 	public PartySheet(Party party) {
+		this(party.getLanguage());
 		this.party = party;
 	}
 
-	private Party getParty() {
-		return party;
-	}
-
-	private String createContent() {
-		StringBuilder stringBuilder = new StringBuilder();
-		stringBuilder.append(party.getPartyName());
-		stringBuilder.append("\n");
-		for (CharacterPlayer characterPlayer : getParty().getMembers()) {
-			CharacterSheet characterSheet = new CharacterSheet(characterPlayer);
-			stringBuilder.append(characterSheet.toString());
-			stringBuilder.append("\n");
-		}
-
-		return stringBuilder.toString();
-	}
-
 	@Override
-	public String toString() {
-		return createContent();
+	protected void createContent(Document document) throws Exception {
+		for (CharacterPlayer characterPlayer : party.getMembers()) {
+			createCharacterPDF(document, characterPlayer);
+		}
 	}
+	
+	@Override
+	protected void addEvent(PdfWriter writer) {
+		writer.setPageEvent(new PartyFooterEvent(party));
+	}
+	
 }

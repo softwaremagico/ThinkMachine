@@ -31,6 +31,7 @@ import java.util.HashSet;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import com.itextpdf.text.DocumentException;
@@ -64,16 +65,25 @@ import com.softwaremagico.tm.character.races.Race;
 import com.softwaremagico.tm.character.races.RaceFactory;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.language.LanguagePool;
+import com.softwaremagico.tm.party.Party;
 import com.softwaremagico.tm.pdf.complete.CharacterSheet;
+import com.softwaremagico.tm.pdf.complete.PartySheet;
 import com.softwaremagico.tm.pdf.small.SmallCharacterSheet;
 
 @Test(groups = { "customCharacterGeneration" })
 public class CustomCharacters {
 	private final static String LANGUAGE = "en";
+	private Party party;
 
 	@AfterMethod
 	public void clearCache() {
 		LanguagePool.clearCache();
+	}
+
+	@BeforeClass
+	public void initialize() {
+		party = new Party(LANGUAGE);
+		party.setPartyName("Lost Wonderers");
 	}
 
 	@Test
@@ -154,6 +164,8 @@ public class CustomCharacters {
 		Assert.assertEquals(CostCalculator.getCost(player),
 				FreeStyleCharacterCreation.getFreeAvailablePoints(player.getInfo().getAge()));
 		Assert.assertEquals(player.getMoney(), 300);
+
+		party.addMember(player);
 	}
 
 	@Test
@@ -217,6 +229,8 @@ public class CustomCharacters {
 		Assert.assertEquals(CostCalculator.getCost(player),
 				FreeStyleCharacterCreation.getFreeAvailablePoints(player.getInfo().getAge()));
 		Assert.assertEquals(player.getMoney(), 250);
+
+		party.addMember(player);
 	}
 
 	@Test
@@ -286,6 +300,8 @@ public class CustomCharacters {
 				FreeStyleCharacterCreation.getFreeAvailablePoints(player.getInfo().getAge()));
 		Assert.assertEquals(player.getRank(), "Genin");
 		Assert.assertEquals(500, player.getMoney());
+
+		party.addMember(player);
 	}
 
 	@Test
@@ -362,6 +378,8 @@ public class CustomCharacters {
 
 		Assert.assertEquals(CostCalculator.getCost(player),
 				FreeStyleCharacterCreation.getFreeAvailablePoints(player.getInfo().getAge()));
+
+		party.addMember(player);
 	}
 
 	@Test
@@ -410,5 +428,13 @@ public class CustomCharacters {
 
 		Assert.assertEquals(CostCalculator.getCost(player), -5);
 		Assert.assertEquals(player.getMoney(), 250);
+
+		party.addMember(player);
+	}
+
+	@Test
+	public void createPartySheet() {
+		PartySheet sheet = new PartySheet(party);
+		sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + party.getPartyName() + ".pdf");
 	}
 }

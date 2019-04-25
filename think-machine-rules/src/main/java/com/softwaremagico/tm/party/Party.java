@@ -30,23 +30,23 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import com.softwaremagico.tm.Element;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.ThreatLevel;
 
-public class Party extends Element<Party> {
+public class Party {
 	private final Set<CharacterPlayer> characterPlayers;
 	private final Map<CharacterPlayer, Integer> threatByCharacter;
 	private String partyName;
+	private final String language;
 
-	public Party(String id, String name, String language) {
-		super(id, name, language);
+	public Party(String language) {
+		this.language = language;
 		characterPlayers = new HashSet<>();
 		threatByCharacter = new HashMap<>();
 	}
 
-	public void addCharacter(CharacterPlayer characterPlayer) throws InvalidXmlElementException {
+	public void addMember(CharacterPlayer characterPlayer) throws InvalidXmlElementException {
 		characterPlayers.add(characterPlayer);
 		threatByCharacter.put(characterPlayer, ThreatLevel.getThreatLevel(characterPlayer));
 	}
@@ -81,5 +81,9 @@ public class Party extends Element<Party> {
 
 	public void setPartyName(String partyName) {
 		this.partyName = partyName;
+	}
+
+	public String getLanguage() {
+		return language;
 	}
 }

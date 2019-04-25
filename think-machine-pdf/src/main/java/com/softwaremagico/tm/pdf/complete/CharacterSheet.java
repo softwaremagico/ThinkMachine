@@ -67,6 +67,11 @@ public class CharacterSheet extends PdfDocument {
 		this(characterPlayer.getLanguage());
 		this.characterPlayer = characterPlayer;
 	}
+	
+	@Override
+	protected void createContent(Document document) throws Exception{
+		createCharacterPDF(document, getCharacterPlayer());
+	}
 
 	@Override
 	protected Rectangle getPageSize() {
@@ -80,14 +85,14 @@ public class CharacterSheet extends PdfDocument {
 	}
 
 	@Override
-	protected void createPagePDF(Document document) throws Exception {
-		PdfPTable mainTable = CharacterBasicsCompleteTableFactory.getCharacterBasicsTable(getCharacterPlayer());
+	protected void createCharacterPDF(Document document, CharacterPlayer characterPlayer) throws Exception {
+		PdfPTable mainTable = CharacterBasicsCompleteTableFactory.getCharacterBasicsTable(characterPlayer);
 		document.add(mainTable);
-		PdfPTable characteristicsTable = CharacteristicsTableFactory.getCharacteristicsBasicsTable(getCharacterPlayer());
+		PdfPTable characteristicsTable = CharacteristicsTableFactory.getCharacteristicsBasicsTable(characterPlayer);
 		document.add(characteristicsTable);
-		PdfPTable skillsTable = MainSkillsTableFactory.getSkillsTable(getCharacterPlayer(), getLanguage());
+		PdfPTable skillsTable = MainSkillsTableFactory.getSkillsTable(characterPlayer, getLanguage());
 		document.add(skillsTable);
-		PdfPTable perksTable = MainPerksTableFactory.getPerksTable(getCharacterPlayer());
+		PdfPTable perksTable = MainPerksTableFactory.getPerksTable(characterPlayer);
 		document.add(perksTable);
 		document.newPage();
 		if (characterPlayer == null || characterPlayer.getTotalSelectedPowers() < PSI_ROWS) {
@@ -97,8 +102,8 @@ public class CharacterSheet extends PdfDocument {
 		} else {
 			document.add(createRearTable());
 		}
-		document.add(FightingManeuvers.getFightingManoeuvresTable(getCharacterPlayer()));
-		document.add(WeaponsAndArmours.getWeaponsAndArmoursTable(getCharacterPlayer()));
+		document.add(FightingManeuvers.getFightingManoeuvresTable(characterPlayer));
+		document.add(WeaponsAndArmours.getWeaponsAndArmoursTable(characterPlayer));
 
 		document.newPage();
 	}
@@ -108,7 +113,7 @@ public class CharacterSheet extends PdfDocument {
 		mainTable.getDefaultCell().setBorder(0);
 		mainTable.setWidthPercentage(100);
 
-		mainTable.addCell(new DescriptionTable(getCharacterPlayer()));
+		mainTable.addCell(new DescriptionTable(characterPlayer));
 		PdfPCell cell = new PdfPCell(new AnnotationsTable());
 		cell.setBorderWidth(0);
 		cell.setColspan(2);
@@ -121,9 +126,9 @@ public class CharacterSheet extends PdfDocument {
 		separatorCell.setColspan(2);
 		mainTable.addCell(separatorCell);
 
-		mainTable.addCell(new PropertiesTable(getCharacterPlayer()));
+		mainTable.addCell(new PropertiesTable(characterPlayer));
 
-		PdfPCell psiCell = new PdfPCell(new OccultismsPowerTable(getCharacterPlayer(), PSI_ROWS));
+		PdfPCell psiCell = new PdfPCell(new OccultismsPowerTable(characterPlayer, PSI_ROWS));
 		psiCell.setColspan(2);
 		mainTable.addCell(psiCell);
 
@@ -134,7 +139,7 @@ public class CharacterSheet extends PdfDocument {
 		PdfPTable othersTable = new OthersTable();
 		mainTable.addCell(othersTable);
 
-		PdfPCell cyberneticsCell = new PdfPCell(new CyberneticsTable(getCharacterPlayer()));
+		PdfPCell cyberneticsCell = new PdfPCell(new CyberneticsTable(characterPlayer));
 		cyberneticsCell.setColspan(2);
 		mainTable.addCell(cyberneticsCell);
 
@@ -146,7 +151,7 @@ public class CharacterSheet extends PdfDocument {
 		mainTable.getDefaultCell().setBorder(0);
 		mainTable.setWidthPercentage(100);
 
-		mainTable.addCell(new DescriptionTable(getCharacterPlayer()));
+		mainTable.addCell(new DescriptionTable(characterPlayer));
 		PdfPCell cell = new PdfPCell(new AnnotationsTable());
 		cell.setBorderWidth(0);
 		cell.setColspan(2);
@@ -159,9 +164,9 @@ public class CharacterSheet extends PdfDocument {
 		separatorCell.setColspan(2);
 		mainTable.addCell(separatorCell);
 
-		mainTable.addCell(new PropertiesTable(getCharacterPlayer()));
+		mainTable.addCell(new PropertiesTable(characterPlayer));
 
-		PdfPCell psiCell = new PdfPCell(new OccultismsPowerTable(getCharacterPlayer(), PSI_EXTENDED_ROWS));
+		PdfPCell psiCell = new PdfPCell(new OccultismsPowerTable(characterPlayer, PSI_EXTENDED_ROWS));
 		psiCell.setColspan(2);
 		psiCell.setRowspan(3);
 		mainTable.addCell(psiCell);
@@ -174,7 +179,7 @@ public class CharacterSheet extends PdfDocument {
 		return mainTable;
 	}
 
-	public CharacterPlayer getCharacterPlayer() {
+	private CharacterPlayer getCharacterPlayer() {
 		return characterPlayer;
 	}
 

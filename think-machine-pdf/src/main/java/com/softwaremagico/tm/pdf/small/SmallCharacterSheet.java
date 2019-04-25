@@ -67,6 +67,11 @@ public class SmallCharacterSheet extends PdfDocument {
 	}
 
 	@Override
+	protected void createContent(Document document) throws Exception {
+		createCharacterPDF(document, getCharacterPlayer());
+	}
+
+	@Override
 	protected Rectangle getPageSize() {
 		return PageSize.A5;
 	}
@@ -82,20 +87,20 @@ public class SmallCharacterSheet extends PdfDocument {
 	}
 
 	@Override
-	protected void createPagePDF(Document document) throws Exception {
+	protected void createCharacterPDF(Document document, CharacterPlayer characterPlayer) throws Exception {
 		float[] widths = { 2f, 1f };
 		PdfPTable mainTable = new PdfPTable(widths);
 		BaseElement.setTablePropierties(mainTable);
 		mainTable.getDefaultCell().setPadding(0);
 
-		PdfPTable infoTable = CharacterBasicsReducedTableFactory.getCharacterBasicsTable(getCharacterPlayer());
+		PdfPTable infoTable = CharacterBasicsReducedTableFactory.getCharacterBasicsTable(characterPlayer);
 		PdfPCell infoCell = new PdfPCell(infoTable);
 		infoCell.setBorderWidthTop(0);
 		infoCell.setBorderWidthLeft(0);
 		infoCell.setBorderWidthBottom(1);
 		mainTable.addCell(infoCell);
 
-		PdfPTable learnedSkillsTable = LearnedSkillsTable.getSkillsTable(getCharacterPlayer(), getLanguage());
+		PdfPTable learnedSkillsTable = LearnedSkillsTable.getSkillsTable(characterPlayer, getLanguage());
 		PdfPCell learnedSkillsCell = new PdfPCell(learnedSkillsTable);
 		learnedSkillsCell.setColspan(2);
 		learnedSkillsCell.setRowspan(3);
@@ -107,13 +112,12 @@ public class SmallCharacterSheet extends PdfDocument {
 		BaseElement.setTablePropierties(basicTable);
 		basicTable.getDefaultCell().setBorder(0);
 
-		PdfPTable characteristicsTable = CharacteristicsTableFactory
-				.getCharacteristicsBasicsTable(getCharacterPlayer());
+		PdfPTable characteristicsTable = CharacteristicsTableFactory.getCharacteristicsBasicsTable(characterPlayer);
 		PdfPCell characteristicCell = new PdfPCell(characteristicsTable);
 		characteristicCell.setBorderWidthLeft(0);
 		basicTable.addCell(characteristicCell);
 
-		PdfPTable naturalSkillsTable = NaturalSkillsTable.getSkillsTable(getCharacterPlayer(), getLanguage());
+		PdfPTable naturalSkillsTable = NaturalSkillsTable.getSkillsTable(characterPlayer, getLanguage());
 		PdfPCell naturalSkillsCell = new PdfPCell(naturalSkillsTable);
 		naturalSkillsCell.setBorderWidthRight(0);
 		basicTable.addCell(naturalSkillsCell);
@@ -124,13 +128,13 @@ public class SmallCharacterSheet extends PdfDocument {
 
 		PdfPTable composedTable = new PdfPTable(new float[] { 5f, 2f });
 
-		PdfPTable blessingsTable = new BlessingTable(getCharacterPlayer());
+		PdfPTable blessingsTable = new BlessingTable(characterPlayer);
 		PdfPCell blessingsCell = new PdfPCell(blessingsTable);
 		blessingsCell.setBorderWidthLeft(0);
 		blessingsCell.setBorderWidthBottom(1);
 		composedTable.addCell(blessingsCell);
 
-		PdfPTable beneficesTable = new BeneficesTable(getCharacterPlayer());
+		PdfPTable beneficesTable = new BeneficesTable(characterPlayer);
 		PdfPCell beneficesCell = new PdfPCell(beneficesTable);
 		beneficesCell.setBorderWidthBottom(1);
 		composedTable.addCell(beneficesCell);
@@ -140,7 +144,7 @@ public class SmallCharacterSheet extends PdfDocument {
 		composedCell.setBorder(0);
 		mainTable.addCell(composedCell);
 
-		PdfPTable armourTable = new ArmourTable(getCharacterPlayer());
+		PdfPTable armourTable = new ArmourTable(characterPlayer);
 		PdfPCell armourCell = new PdfPCell(armourTable);
 		armourCell.setBorderWidthRight(0);
 		armourCell.setBorderWidthBottom(1);
@@ -148,20 +152,20 @@ public class SmallCharacterSheet extends PdfDocument {
 
 		PdfPTable fightTable = new PdfPTable(new float[] { 3f, 5f, 1f });
 
-		if (characterPlayer==null  || (characterPlayer.getSelectedPowers().isEmpty()
-				&& !characterPlayer.getCybernetics().isEmpty())) {
-			PdfPTable cyberneticsTable = new CyberneticsTable(getCharacterPlayer());
+		if (characterPlayer == null
+				|| (characterPlayer.getSelectedPowers().isEmpty() && !characterPlayer.getCybernetics().isEmpty())) {
+			PdfPTable cyberneticsTable = new CyberneticsTable(characterPlayer);
 			PdfPCell cyberneticsCell = new PdfPCell(cyberneticsTable);
 			cyberneticsCell.setBorderWidthLeft(0);
 			fightTable.addCell(cyberneticsCell);
 		} else {
-			PdfPTable occultismTable = new OccultismTable(getCharacterPlayer(), getLanguage());
+			PdfPTable occultismTable = new OccultismTable(characterPlayer, getLanguage());
 			PdfPCell occultismCell = new PdfPCell(occultismTable);
 			occultismCell.setBorderWidthLeft(0);
 			fightTable.addCell(occultismCell);
 		}
 
-		PdfPTable weaponsTable = new WeaponsTable(getCharacterPlayer());
+		PdfPTable weaponsTable = new WeaponsTable(characterPlayer);
 		fightTable.addCell(weaponsTable);
 
 		PdfPCell victoryPointsCell = new PdfPCell(new VerticalVictoryPointsTable());
@@ -169,13 +173,13 @@ public class SmallCharacterSheet extends PdfDocument {
 		victoryPointsCell.setRowspan(3);
 		fightTable.addCell(victoryPointsCell);
 
-		PdfPTable vitalityTable = new VitalityTable(getCharacterPlayer());
+		PdfPTable vitalityTable = new VitalityTable(characterPlayer);
 		PdfPCell vitalityCell = new PdfPCell(vitalityTable);
 		vitalityCell.setColspan(2);
 		vitalityCell.setBorderWidth(1);
 		fightTable.addCell(vitalityCell);
 
-		PdfPTable wyrdTable = new WyrdTable(getCharacterPlayer());
+		PdfPTable wyrdTable = new WyrdTable(characterPlayer);
 		PdfPCell wyrdCell = new PdfPCell(wyrdTable);
 		wyrdCell.setBorderWidth(1);
 		wyrdCell.setColspan(2);

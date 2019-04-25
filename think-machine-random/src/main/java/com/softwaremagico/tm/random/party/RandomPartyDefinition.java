@@ -84,7 +84,7 @@ public class RandomPartyDefinition extends RandomSelector<RandomPartyMember> {
 		}
 		profilesAssigned.put(member, getProfileAssigned(member) + 1);
 		CharacterPlayer characterPlayer = createCharacter(member);
-		getParty().addCharacter(characterPlayer);
+		getParty().addMember(characterPlayer);
 		threatByProfile.put(member, getThreatByProfile(member) + getParty().getThreatLevel(characterPlayer));
 		if (member.getMaxNumber() != null && member.getMaxNumber() >= getProfileAssigned(member)) {
 			removeElementWeight(member);
@@ -93,8 +93,7 @@ public class RandomPartyDefinition extends RandomSelector<RandomPartyMember> {
 
 	public Party getParty() {
 		if (party == null) {
-			party = new Party(null, getElementWithRandomElements().getName(), getElementWithRandomElements()
-					.getLanguage());
+			party = new Party(getElementWithRandomElements().getLanguage());
 		}
 		return party;
 	}
