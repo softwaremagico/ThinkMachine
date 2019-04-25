@@ -104,8 +104,6 @@ public class CharacterSheet extends PdfDocument {
 		}
 		document.add(FightingManeuvers.getFightingManoeuvresTable(characterPlayer));
 		document.add(WeaponsAndArmours.getWeaponsAndArmoursTable(characterPlayer));
-
-		document.newPage();
 	}
 
 	private PdfPTable createRearTable() throws InvalidXmlElementException {

@@ -42,7 +42,7 @@ public class PartyFooterEvent extends PdfPageEventHelper {
 
 	public PartyFooterEvent(Party party, int bottomMargin) {
 		this.party = party;
-		this.bottomMargin=bottomMargin;
+		this.bottomMargin = bottomMargin;
 	}
 
 	/**
@@ -53,13 +53,11 @@ public class PartyFooterEvent extends PdfPageEventHelper {
 	 */
 	@Override
 	public void onEndPage(PdfWriter writer, Document document) {
-		if (writer.getPageNumber() % 2 == 0) {
-			PdfContentByte cb = writer.getDirectContent();
-			Phrase footer = new Phrase(party.getPartyName() + " - Created using 'Think Machine'"
-					+ (Version.getVersion() != null ? " v" + Version.getVersion() : ""), new Font(
-					FadingSunsTheme.getFooterFont(), FadingSunsTheme.FOOTER_FONT_SIZE));
-			ColumnText.showTextAligned(cb, Element.ALIGN_CENTER, footer, (document.right() - document.left()) / 2
-					+ document.leftMargin(), document.bottom() + bottomMargin, 0);
-		}
+		PdfContentByte cb = writer.getDirectContent();
+		Phrase footer = new Phrase(party.getPartyName() + " - Created using 'Think Machine'"
+				+ (Version.getVersion() != null ? " v" + Version.getVersion() : ""), new Font(
+				FadingSunsTheme.getFooterFont(), FadingSunsTheme.FOOTER_FONT_SIZE));
+		ColumnText.showTextAligned(cb, Element.ALIGN_CENTER, footer, (document.right() - document.left()) / 2
+				+ document.leftMargin(), document.bottom() + bottomMargin, 0);
 	}
 }

@@ -39,13 +39,11 @@ import com.softwaremagico.tm.character.characteristics.CharacteristicType;
 import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.complete.elements.BaseElement;
 import com.softwaremagico.tm.pdf.complete.elements.CustomPdfTable;
-import com.softwaremagico.tm.pdf.complete.skills.MainSkillsTableFactory;
 
 public class CharacteristicsColumn extends CustomPdfTable {
 	private final static String GAP = "   ";
-	private final static String SKILL_VALUE_GAP = "___";
+	private final static String SKILL_VALUE_GAP = "__";
 
-	private final static int ROWS = 3;
 	private final static int ROW_HEIGHT = 36;
 	private final static float[] widths = { 1 };
 
@@ -89,7 +87,7 @@ public class CharacteristicsColumn extends CustomPdfTable {
 
 			// Rectangle
 			if (characterPlayer == null) {
-				table.addCell(createSkillLine(SKILL_VALUE_GAP));
+				table.addCell(createCharacteristicLine(SKILL_VALUE_GAP));
 			} else {
 				table.addCell(getHandwrittingCell(
 						getCharacteristicValueRepresentation(characterPlayer, characteristic.getCharacteristicName()),
@@ -124,11 +122,11 @@ public class CharacteristicsColumn extends CustomPdfTable {
 		return cell;
 	}
 
-	private static PdfPCell createSkillLine(String text) {
+	private static PdfPCell createCharacteristicLine(String text) {
 		PdfPCell cell = BaseElement.getCell(text, 0, 1, Element.ALIGN_LEFT, BaseColor.WHITE,
-				FadingSunsTheme.getLineFont(), FadingSunsTheme.SKILLS_LINE_FONT_SIZE);
-		cell.setMinimumHeight((MainSkillsTableFactory.HEIGHT / ROWS));
-		cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+				FadingSunsTheme.getLineFont(), FadingSunsTheme.CHARACTER_SMALL_CHARACTERISTICS_LINE_FONT_SIZE);
+		//cell.setMinimumHeight((MainSkillsTableFactory.HEIGHT / ROWS));
+		//cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		return cell;
 	}
 

@@ -49,8 +49,8 @@ public abstract class PdfDocument {
 		document.addTitle("Fading Suns Character Sheet");
 		document.addAuthor("Software Magico");
 		document.addCreator("Think Machine");
-		document.addSubject("Role");
-		document.addKeywords("Role, Fading Suns, FS, " + language);
+		document.addSubject("RPG");
+		document.addKeywords("RPG, Fading Suns, FS, " + language);
 		document.addCreationDate();
 		return document;
 	}
@@ -58,11 +58,11 @@ public abstract class PdfDocument {
 	private void generatePDF(Document document, PdfWriter writer) throws EmptyPdfBodyException, Exception {
 		addMetaData(document);
 		document.open();
-		//createCharacterPDF(document);
+		// createCharacterPDF(document);
 		createContent(document);
 		document.close();
 	}
-	
+
 	protected abstract void createContent(Document document) throws Exception;
 
 	protected void addEvent(PdfWriter writer) {
@@ -71,7 +71,7 @@ public abstract class PdfDocument {
 
 	protected abstract void addDocumentWriterEvents(PdfWriter writer);
 
-	public boolean createFile(String path) {
+	public int createFile(String path) {
 		// DIN A6 105 x 148 mm
 		Document document = new Document(getPageSize(), rightMargin, leftMargin, topMargin, bottomMargin);
 		if (!path.endsWith(".pdf")) {
@@ -80,22 +80,20 @@ public abstract class PdfDocument {
 		// if (!MyFile.fileExist(path)) {
 		try {
 			PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(path));
-			// TableFooter event = new TableFooter();
-			// writer.setPageEvent(event);
 			addEvent(writer);
 			generatePDF(document, writer);
+			return writer.getPageNumber();
 		} catch (NullPointerException e) {
 			PdfExporterLog.errorMessage(this.getClass().getName(), e);
-			return false;
+			return 0;
 		} catch (EmptyPdfBodyException | IOException e) {
 			PdfExporterLog.errorMessage(this.getClass().getName(), e);
-			return false;
+			return 0;
 		} catch (Exception e) {
 			PdfExporterLog.errorMessage(this.getClass().getName(), e);
-			return false;
+			return 0;
 		}
 		// }
-		return true;
 	}
 
 	protected abstract Rectangle getPageSize();

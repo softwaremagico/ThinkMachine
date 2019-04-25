@@ -57,15 +57,17 @@ public class RandomPsiCharacterCreationTest {
 	}
 
 	@Test
-	public void createRandomPsiCharacter() throws MalformedURLException, DocumentException, IOException, InvalidXmlElementException, TooManyBlessingsException,
-			DuplicatedPreferenceException, InvalidRandomElementSelectedException {
+	public void createRandomPsiCharacter() throws MalformedURLException, DocumentException, IOException,
+			InvalidXmlElementException, TooManyBlessingsException, DuplicatedPreferenceException,
+			InvalidRandomElementSelectedException {
 		CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
-		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0, SpecializationPreferences.SPECIALIZED,
-				PsiquePathLevelPreferences.HIGH, PsiqueLevelPreferences.HIGH);
+		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0,
+				SpecializationPreferences.SPECIALIZED, PsiquePathLevelPreferences.HIGH, PsiqueLevelPreferences.HIGH);
 		randomizeCharacter.createCharacter();
 
 		try {
-			Assert.assertEquals(CostCalculator.getCost(characterPlayer), FreeStyleCharacterCreation.getFreeAvailablePoints(characterPlayer.getInfo().getAge()));
+			Assert.assertEquals(CostCalculator.getCost(characterPlayer),
+					FreeStyleCharacterCreation.getFreeAvailablePoints(characterPlayer.getInfo().getAge()));
 		} catch (AssertionError e) {
 			CostCalculator.logCost(characterPlayer);
 			throw e;
@@ -73,6 +75,7 @@ public class RandomPsiCharacterCreationTest {
 
 		LanguagePool.clearCache();
 		SmallCharacterSheet sheet = new SmallCharacterSheet(characterPlayer);
-		sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "RandomPsiCharacter.pdf");
+		Assert.assertEquals(
+				sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "RandomPsiCharacter.pdf"), 1);
 	}
 }

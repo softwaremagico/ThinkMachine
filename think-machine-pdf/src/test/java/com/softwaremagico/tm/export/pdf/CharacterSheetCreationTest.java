@@ -78,31 +78,36 @@ public class CharacterSheetCreationTest {
 	public void emptyPdfSpanish() throws MalformedURLException, DocumentException, IOException {
 		CacheHandler.clearCache();
 		CharacterSheet sheet = new CharacterSheet(LANGUAGE);
-		sheet.createFile(PDF_PATH_OUTPUT + "FadingSuns_ES.pdf");
+		Assert.assertEquals(sheet.createFile(PDF_PATH_OUTPUT + "FadingSuns_ES.pdf"), 2);
 	}
 
 	@Test
 	public void emptyPdfEnglish() throws MalformedURLException, DocumentException, IOException {
 		CacheHandler.clearCache();
 		CharacterSheet sheet = new CharacterSheet("en");
-		sheet.createFile(PDF_PATH_OUTPUT + "FadingSuns_EN.pdf");
+		Assert.assertEquals(sheet.createFile(PDF_PATH_OUTPUT + "FadingSuns_EN.pdf"), 2);
 	}
 
 	@Test
 	public void emptyPdfSmallEn() throws InvalidXmlElementException {
 		SmallCharacterSheet sheet = new SmallCharacterSheet("en");
-		sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "RandomCharacterSmallEmpty_EN.pdf");
+		Assert.assertEquals(
+				sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator
+						+ "RandomCharacterSmallEmpty_EN.pdf"), 1);
 	}
 
 	@Test
 	public void emptyPdfSmallEs() {
 		SmallCharacterSheet sheet = new SmallCharacterSheet("es");
-		sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "RandomCharacterSmallEmpty_ES.pdf");
+		Assert.assertEquals(
+				sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator
+						+ "RandomCharacterSmallEmpty_ES.pdf"), 1);
 	}
 
 	@Test
-	public void characterPdfSpanish() throws MalformedURLException, DocumentException, IOException, InvalidXmlElementException, TooManyBlessingsException,
-			TooManyCyberneticDevicesException, RequiredCyberneticDevicesException, BlessingAlreadyAddedException, BeneficeAlreadyAddedException {
+	public void characterPdfSpanish() throws MalformedURLException, DocumentException, IOException,
+			InvalidXmlElementException, TooManyBlessingsException, TooManyCyberneticDevicesException,
+			RequiredCyberneticDevicesException, BlessingAlreadyAddedException, BeneficeAlreadyAddedException {
 		CacheHandler.clearCache();
 
 		player = new CharacterPlayer(LANGUAGE);
@@ -144,13 +149,20 @@ public class CharacterSheetCreationTest {
 		player.setPsiqueLevel(OccultismTypeFactory.getPsi(player.getLanguage()), 4);
 		player.setDarkSideLevel(OccultismTypeFactory.getPsi(player.getLanguage()), 1);
 
-		player.addOccultismPower(OccultismPathFactory.getInstance().getElement("farHand", LANGUAGE).getOccultismPowers().get("liftingHand"));
-		player.addOccultismPower(OccultismPathFactory.getInstance().getElement("farHand", LANGUAGE).getOccultismPowers().get("throwingHand"));
-		player.addOccultismPower(OccultismPathFactory.getInstance().getElement("sixthSense", LANGUAGE).getOccultismPowers().get("sensitivity"));
-		player.addOccultismPower(OccultismPathFactory.getInstance().getElement("soma", LANGUAGE).getOccultismPowers().get("toughening"));
-		player.addOccultismPower(OccultismPathFactory.getInstance().getElement("soma", LANGUAGE).getOccultismPowers().get("strengthening"));
-		player.addOccultismPower(OccultismPathFactory.getInstance().getElement("soma", LANGUAGE).getOccultismPowers().get("quickening"));
-		player.addOccultismPower(OccultismPathFactory.getInstance().getElement("soma", LANGUAGE).getOccultismPowers().get("hardening"));
+		player.addOccultismPower(OccultismPathFactory.getInstance().getElement("farHand", LANGUAGE)
+				.getOccultismPowers().get("liftingHand"));
+		player.addOccultismPower(OccultismPathFactory.getInstance().getElement("farHand", LANGUAGE)
+				.getOccultismPowers().get("throwingHand"));
+		player.addOccultismPower(OccultismPathFactory.getInstance().getElement("sixthSense", LANGUAGE)
+				.getOccultismPowers().get("sensitivity"));
+		player.addOccultismPower(OccultismPathFactory.getInstance().getElement("soma", LANGUAGE).getOccultismPowers()
+				.get("toughening"));
+		player.addOccultismPower(OccultismPathFactory.getInstance().getElement("soma", LANGUAGE).getOccultismPowers()
+				.get("strengthening"));
+		player.addOccultismPower(OccultismPathFactory.getInstance().getElement("soma", LANGUAGE).getOccultismPowers()
+				.get("quickening"));
+		player.addOccultismPower(OccultismPathFactory.getInstance().getElement("soma", LANGUAGE).getOccultismPowers()
+				.get("hardening"));
 
 		player.addBlessing(BlessingFactory.getInstance().getElement("curious", player.getLanguage()));
 		player.addBlessing(BlessingFactory.getInstance().getElement("limp", player.getLanguage()));
@@ -175,7 +187,7 @@ public class CharacterSheetCreationTest {
 
 		LanguagePool.clearCache();
 		CharacterSheet sheet = new CharacterSheet(player);
-		sheet.createFile(PDF_PATH_OUTPUT + "CharacterFS_ES.pdf");
+		Assert.assertEquals(sheet.createFile(PDF_PATH_OUTPUT + "CharacterFS_ES.pdf"), 2);
 
 		Assert.assertEquals(CostCalculator.getCost(player), 50);
 	}

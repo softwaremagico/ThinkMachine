@@ -156,11 +156,12 @@ public class CustomCharacters {
 
 		LanguagePool.clearCache();
 		CharacterSheet sheet = new CharacterSheet(player);
-		sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Paola.pdf");
+		Assert.assertEquals(sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Paola.pdf"),2);
 
 		LanguagePool.clearCache();
 		SmallCharacterSheet smallSheet = new SmallCharacterSheet(player);
-		smallSheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Paola_Small.pdf");
+		Assert.assertEquals(
+				smallSheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Paola_Small.pdf"), 1);
 
 		Assert.assertEquals(CostCalculator.getCost(player),
 				FreeStyleCharacterCreation.getFreeAvailablePoints(player.getInfo().getAge()));
@@ -219,11 +220,12 @@ public class CustomCharacters {
 
 		LanguagePool.clearCache();
 		CharacterSheet sheet = new CharacterSheet(player);
-		sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Ana.pdf");
+		Assert.assertEquals(sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Ana.pdf"),2);
 
 		LanguagePool.clearCache();
 		SmallCharacterSheet smallSheet = new SmallCharacterSheet(player);
-		smallSheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Ana_Small.pdf");
+		Assert.assertEquals(
+				smallSheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Ana_Small.pdf"), 1);
 
 		Assert.assertEquals(CostCalculator.getCost(player),
 				FreeStyleCharacterCreation.getFreeAvailablePoints(player.getInfo().getAge()));
@@ -289,11 +291,12 @@ public class CustomCharacters {
 
 		LanguagePool.clearCache();
 		CharacterSheet sheet = new CharacterSheet(player);
-		sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Carlos.pdf");
+		Assert.assertEquals(sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Carlos.pdf"),2);
 
 		LanguagePool.clearCache();
 		SmallCharacterSheet smallSheet = new SmallCharacterSheet(player);
-		smallSheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Carlos_Small.pdf");
+		Assert.assertEquals(
+				smallSheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Carlos_Small.pdf"), 1);
 
 		Assert.assertEquals(CostCalculator.getCost(player),
 				FreeStyleCharacterCreation.getFreeAvailablePoints(player.getInfo().getAge()));
@@ -369,11 +372,12 @@ public class CustomCharacters {
 
 		LanguagePool.clearCache();
 		CharacterSheet sheet = new CharacterSheet(player);
-		sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Noelia.pdf");
+		Assert.assertEquals(sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Noelia.pdf"), 2);
 
 		LanguagePool.clearCache();
 		SmallCharacterSheet smallSheet = new SmallCharacterSheet(player);
-		smallSheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Noelia_Small.pdf");
+		Assert.assertEquals(
+				smallSheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Noelia_Small.pdf"), 1);
 
 		Assert.assertEquals(CostCalculator.getCost(player),
 				FreeStyleCharacterCreation.getFreeAvailablePoints(player.getInfo().getAge()));
@@ -423,7 +427,13 @@ public class CustomCharacters {
 
 		LanguagePool.clearCache();
 		CharacterSheet sheet = new CharacterSheet(player);
-		sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Golem.pdf");
+		Assert.assertEquals(sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Golem.pdf"), 2);
+		
+		LanguagePool.clearCache();
+		SmallCharacterSheet smallSheet = new SmallCharacterSheet(player);
+		Assert.assertEquals(
+				smallSheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Noelia_Golem.pdf"), 1);
+
 
 		Assert.assertEquals(CostCalculator.getCost(player), -5);
 		Assert.assertEquals(player.getMoney(), 250);
@@ -434,10 +444,13 @@ public class CustomCharacters {
 	@Test
 	public void createPartySheet() {
 		PartySheet sheet = new PartySheet(party);
-		sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + party.getPartyName() + ".pdf");
+		Assert.assertEquals(
+				sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + party.getPartyName() + ".pdf"),
+				10);
 
 		SmallPartySheet smallSheet = new SmallPartySheet(party);
-		smallSheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + party.getPartyName()
-				+ "_Small.pdf");
+		Assert.assertEquals(
+				smallSheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + party.getPartyName()
+						+ "_Small.pdf"), 3);
 	}
 }
