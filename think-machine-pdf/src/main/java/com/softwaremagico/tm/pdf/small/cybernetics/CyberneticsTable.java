@@ -25,7 +25,6 @@ package com.softwaremagico.tm.pdf.small.cybernetics;
  */
 
 import com.itextpdf.text.Element;
-import com.itextpdf.text.Paragraph;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.cybernetics.SelectedCyberneticDevice;
 import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
@@ -35,30 +34,34 @@ public class CyberneticsTable extends VerticalTable {
 	private final static int NAME_COLUMN_WIDTH = 95;
 	private final static int POINTS_COLUMN_WIDTH = 25;
 	private final static float[] WIDTHS = { 5f, 2f };
-	private final static int ROWS = 7;
+	private final static int ROWS = 9;
 
 	public CyberneticsTable(CharacterPlayer characterPlayer) {
 		super(WIDTHS);
 		getDefaultCell().setBorder(0);
 
-		addCell(createTitle(getTranslator().getTranslatedText("cybernetics"), FadingSunsTheme.CHARACTER_SMALL_CYBERNETICS_TITLE_FONT_SIZE));
+		addCell(createTitle(getTranslator().getTranslatedText("cybernetics"),
+				FadingSunsTheme.CHARACTER_SMALL_CYBERNETICS_TITLE_FONT_SIZE));
 
-		addCell(createSubtitleLine(getTranslator().getTranslatedText("cyberneticsName"), FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE,
-				Element.ALIGN_LEFT));
-		addCell(createSubtitleLine(getTranslator().getTranslatedText("cyberneticsPoints"), FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE));
+		addCell(createSubtitleLine(getTranslator().getTranslatedText("cyberneticsName"),
+				FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE, Element.ALIGN_LEFT));
+		addCell(createSubtitleLine(getTranslator().getTranslatedText("cyberneticsPoints"),
+				FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE));
 
 		int added = 0;
 		if (characterPlayer != null) {
 			for (SelectedCyberneticDevice device : characterPlayer.getCybernetics()) {
-				addCell(createFirstElementLine(device.getName(), NAME_COLUMN_WIDTH, FadingSunsTheme.CYBERNETICS_CONTENT_FONT_SIZE));
-				addCell(createElementLine(device.getPoints() + "", POINTS_COLUMN_WIDTH, FadingSunsTheme.CYBERNETICS_CONTENT_FONT_SIZE));
+				addCell(createFirstElementLine(device.getName(), NAME_COLUMN_WIDTH,
+						FadingSunsTheme.CYBERNETICS_CONTENT_FONT_SIZE));
+				addCell(createElementLine(device.getPoints() + "", POINTS_COLUMN_WIDTH,
+						FadingSunsTheme.CYBERNETICS_CONTENT_FONT_SIZE));
 				added++;
 			}
 		}
 
 		for (int i = added; i < ROWS; i++) {
 			for (int j = 0; j < WIDTHS.length; j++) {
-				addCell(new Paragraph(" "));
+				addCell(createEmptyElementLine(FadingSunsTheme.CYBERNETICS_CONTENT_FONT_SIZE));
 			}
 		}
 	}

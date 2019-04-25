@@ -69,6 +69,7 @@ import com.softwaremagico.tm.party.Party;
 import com.softwaremagico.tm.pdf.complete.CharacterSheet;
 import com.softwaremagico.tm.pdf.complete.PartySheet;
 import com.softwaremagico.tm.pdf.small.SmallCharacterSheet;
+import com.softwaremagico.tm.pdf.small.SmallPartySheet;
 
 @Test(groups = { "customCharacterGeneration" })
 public class CustomCharacters {
@@ -215,8 +216,6 @@ public class CustomCharacters {
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("imperialCharter", player.getLanguage()));
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("fluxSword", player.getLanguage()));
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("vendetta_2", player.getLanguage()));
-
-		player.addWeapon(WeaponFactory.getInstance().getElement("fluxSword", LANGUAGE));
 
 		LanguagePool.clearCache();
 		CharacterSheet sheet = new CharacterSheet(player);
@@ -436,5 +435,9 @@ public class CustomCharacters {
 	public void createPartySheet() {
 		PartySheet sheet = new PartySheet(party);
 		sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + party.getPartyName() + ".pdf");
+
+		SmallPartySheet smallSheet = new SmallPartySheet(party);
+		smallSheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + party.getPartyName()
+				+ "_Small.pdf");
 	}
 }

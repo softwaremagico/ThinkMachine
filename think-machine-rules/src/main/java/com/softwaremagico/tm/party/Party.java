@@ -24,9 +24,12 @@ package com.softwaremagico.tm.party;
  * #L%
  */
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -71,8 +74,16 @@ public class Party {
 		return threatByCharacter.get(characterPlayer);
 	}
 
-	public Set<CharacterPlayer> getMembers() {
-		return Collections.unmodifiableSet(characterPlayers);
+	public List<CharacterPlayer> getMembers() {
+		List<CharacterPlayer> sortedCharacterPlayers = new ArrayList<>(characterPlayers);
+		Collections.sort(sortedCharacterPlayers, new Comparator<CharacterPlayer>() {
+
+			@Override
+			public int compare(CharacterPlayer arg0, CharacterPlayer arg1) {
+				return threatByCharacter.get(arg1) - threatByCharacter.get(arg0);
+			}
+		});
+		return Collections.unmodifiableList(sortedCharacterPlayers);
 	}
 
 	public String getPartyName() {

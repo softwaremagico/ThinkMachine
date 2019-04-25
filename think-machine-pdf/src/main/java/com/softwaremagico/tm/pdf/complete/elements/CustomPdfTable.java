@@ -107,6 +107,10 @@ public abstract class CustomPdfTable extends PdfPTable {
 		}
 		return createElementLine((value > 0 ? "+" + value : value + ""), maxWidth, fontSize);
 	}
+	
+	protected static PdfPCell createEmptyElementLine(int fontSize){
+		return createBasicElementLine("", fontSize, Element.ALIGN_CENTER);
+	}
 
 	protected static PdfPCell createFirstElementLine(String text, int maxWidth, int fontSize) {
 		PdfPCell cell = createElementLine(text, maxWidth, fontSize);

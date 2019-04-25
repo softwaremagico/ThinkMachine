@@ -14,10 +14,10 @@
 	<test name="CharacterPdf" enabled="true" preserve-order="true">
 		<groups>
 			<run>
-				<include name="characterPdfGeneration" />
+				<exclude name="characterPdfGeneration" />
 				<include name="customCharacterGeneration" />
-				<include name="randomCharacterSheetCreation" />
-				<include name="randomPsiCharacterTest" />
+				<exclude name="randomCharacterSheetCreation" />
+				<exclude name="randomPsiCharacterTest" />
 			</run>
 		</groups>
 		<classes>

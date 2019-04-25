@@ -76,7 +76,7 @@ public class SmallCharacterSheet extends PdfDocument {
 		return PageSize.A5;
 	}
 
-	public CharacterPlayer getCharacterPlayer() {
+	private CharacterPlayer getCharacterPlayer() {
 		return characterPlayer;
 	}
 
@@ -86,8 +86,7 @@ public class SmallCharacterSheet extends PdfDocument {
 		writer.setPageEvent(new SheetBackgroundEvent());
 	}
 
-	@Override
-	protected void createCharacterPDF(Document document, CharacterPlayer characterPlayer) throws Exception {
+	protected PdfPTable createCharacterContent(CharacterPlayer characterPlayer) throws Exception {
 		float[] widths = { 2f, 1f };
 		PdfPTable mainTable = new PdfPTable(widths);
 		BaseElement.setTablePropierties(mainTable);
@@ -190,7 +189,12 @@ public class SmallCharacterSheet extends PdfDocument {
 		fightCell.setColspan(2);
 
 		mainTable.addCell(fightCell);
-		document.add(mainTable);
+		return mainTable;
+	}
+
+	@Override
+	protected void createCharacterPDF(Document document, CharacterPlayer characterPlayer) throws Exception {
+		document.add(createCharacterContent(characterPlayer));
 	}
 
 	@Override

@@ -61,7 +61,8 @@ public class WyrdTable extends CounterTable {
 	protected int getSelectedValue() {
 		if (getCharacterPlayer() != null) {
 			try {
-				return getCharacterPlayer().getWyrdValue().intValue();
+				return getCharacterPlayer().getWyrdValue().intValue() > 0 ? getCharacterPlayer().getWyrdValue()
+						.intValue() : -1;
 			} catch (InvalidXmlElementException e) {
 				PdfExporterLog.errorMessage(this.getClass().getName(), e);
 			}

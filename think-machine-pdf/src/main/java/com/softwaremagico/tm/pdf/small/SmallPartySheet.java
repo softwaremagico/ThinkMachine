@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.pdf.complete;
+package com.softwaremagico.tm.pdf.small;
 
 /*-
  * #%L
@@ -25,34 +25,66 @@ package com.softwaremagico.tm.pdf.complete;
  */
 
 import com.itextpdf.text.Document;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.PageSize;
+import com.itextpdf.text.Rectangle;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.language.Translator;
 import com.softwaremagico.tm.party.Party;
+import com.softwaremagico.tm.pdf.complete.elements.BaseElement;
+import com.softwaremagico.tm.pdf.complete.events.PartyFooterEvent;
 
-public class PartySheet extends CharacterSheet {
+public class SmallPartySheet extends SmallCharacterSheet {
 	private Party party;
+	private PdfPTable mainTable;
 
-	public PartySheet(String language) {
+	public SmallPartySheet(String language) {
 		super(language);
 		Translator.setLanguage(language);
 	}
 
-	public PartySheet(Party party) {
+	public SmallPartySheet(Party party) {
 		this(party.getLanguage());
 		this.party = party;
 	}
 
 	@Override
+	protected Rectangle getPageSize() {
+		return PageSize.A4.rotate();
+	}
+
+	private void initializeTableContent() {
+		float[] widths = { 1f, 1f };
+		mainTable = new PdfPTable(widths);
+		BaseElement.setTablePropierties(mainTable);
+		mainTable.getDefaultCell().setVerticalAlignment(Element.ALIGN_TOP);
+		mainTable.getDefaultCell().setBorderWidth(2);
+		mainTable.getDefaultCell().setPadding(0);
+	}
+
+	@Override
 	protected void createContent(Document document) throws Exception {
+		initializeTableContent();
 		for (CharacterPlayer characterPlayer : party.getMembers()) {
 			createCharacterPDF(document, characterPlayer);
 		}
+		if (party.getMembers().size() % 2 > 0) {
+			mainTable.addCell(new PdfPCell());
+		}
+		document.add(mainTable);
+	}
+
+	@Override
+	protected void createCharacterPDF(Document document, CharacterPlayer characterPlayer) throws Exception {
+		mainTable.addCell(createCharacterContent(characterPlayer));
 	}
 
 	@Override
 	protected void addEvent(PdfWriter writer) {
-		// No event.
+		writer.setPageEvent(new PartyFooterEvent(party, -15));
 	}
 
 }

@@ -38,9 +38,11 @@ import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 
 public class PartyFooterEvent extends PdfPageEventHelper {
 	private Party party;
+	private int bottomMargin;
 
-	public PartyFooterEvent(Party party) {
+	public PartyFooterEvent(Party party, int bottomMargin) {
 		this.party = party;
+		this.bottomMargin=bottomMargin;
 	}
 
 	/**
@@ -57,7 +59,7 @@ public class PartyFooterEvent extends PdfPageEventHelper {
 					+ (Version.getVersion() != null ? " v" + Version.getVersion() : ""), new Font(
 					FadingSunsTheme.getFooterFont(), FadingSunsTheme.FOOTER_FONT_SIZE));
 			ColumnText.showTextAligned(cb, Element.ALIGN_CENTER, footer, (document.right() - document.left()) / 2
-					+ document.leftMargin(), document.bottom() + 20, 0);
+					+ document.leftMargin(), document.bottom() + bottomMargin, 0);
 		}
 	}
 }

@@ -25,7 +25,7 @@ package com.softwaremagico.tm.pdf.small.fighting;
  */
 
 import com.itextpdf.text.Element;
-import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfPCell;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.equipment.weapons.Ammunition;
 import com.softwaremagico.tm.character.equipment.weapons.Weapon;
@@ -34,7 +34,7 @@ import com.softwaremagico.tm.pdf.complete.elements.VerticalTable;
 
 public class WeaponsTable extends VerticalTable {
 	private final static float[] WIDTHS = { 3f, 1f, 1f, 1.5f, 1.5f, 1f };
-	private final static int ROWS = 8;
+	private final static int ROWS = 9;
 	private final static int NAME_COLUMN_WIDTH = 60;
 	private final static int GOAL_COLUMN_WIDTH = 15;
 	private final static int DAMAGE_COLUMN_WIDTH = 18;
@@ -45,8 +45,10 @@ public class WeaponsTable extends VerticalTable {
 	public WeaponsTable(CharacterPlayer characterPlayer) {
 		super(WIDTHS);
 		getDefaultCell().setBorder(0);
-
-		addCell(createTitle(getTranslator().getTranslatedText("combat"), FadingSunsTheme.CHARACTER_SMALL_WEAPONS_TITLE_FONT_SIZE));
+		PdfPCell title = createTitle(getTranslator().getTranslatedText("combat"), FadingSunsTheme.CHARACTER_SMALL_WEAPONS_TITLE_FONT_SIZE);
+		//To adapt height with Occultism.
+		title.setMinimumHeight(20);
+		addCell(title);
 		addCell(createSubtitleLine(getTranslator().getTranslatedText("weaponsAction"), FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE, Element.ALIGN_LEFT));
 		addCell(createSubtitleLine(getTranslator().getTranslatedText("weaponGoal"), FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE));
 		addCell(createSubtitleLine(getTranslator().getTranslatedText("weaponDamage"), FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE));
@@ -91,12 +93,7 @@ public class WeaponsTable extends VerticalTable {
 
 		for (int i = added; i < ROWS; i++) {
 			for (int j = 0; j < WIDTHS.length; j++) {
-				addCell(new Paragraph(""));
-				addCell(new Paragraph(""));
-				addCell(new Paragraph(""));
-				addCell(new Paragraph(""));
-				addCell(new Paragraph(""));
-				addCell(new Paragraph(""));
+				addCell(createEmptyElementLine(FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
 			}
 		}
 	}

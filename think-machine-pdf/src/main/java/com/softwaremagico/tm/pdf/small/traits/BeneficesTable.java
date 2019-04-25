@@ -24,7 +24,6 @@ package com.softwaremagico.tm.pdf.small.traits;
  * #L%
  */
 
-import com.itextpdf.text.Paragraph;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.benefices.AvailableBenefice;
@@ -51,7 +50,7 @@ public class BeneficesTable extends VerticalTable {
 		}
 
 		for (int i = added; i < ROWS; i++) {
-			addCell(new Paragraph(""));
+			addCell(createEmptyElementLine(FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE));
 		}
 	}
 

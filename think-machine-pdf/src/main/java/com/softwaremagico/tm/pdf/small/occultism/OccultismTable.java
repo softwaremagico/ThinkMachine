@@ -28,7 +28,6 @@ import java.util.List;
 import java.util.Map.Entry;
 
 import com.itextpdf.text.Element;
-import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
@@ -44,7 +43,7 @@ public class OccultismTable extends VerticalTable {
 	private final static int POWER_COLUMN_WIDTH = 85;
 	private final static int ROLL_COLUMN_WIDTH = 25;
 	private final static float[] WIDTHS = { 2f, 1f, 1f, 1f, 2f };
-	private final static int ROWS = 6;
+	private final static int ROWS = 8;
 
 	public OccultismTable(CharacterPlayer characterPlayer, String language) throws InvalidXmlElementException {
 		super(WIDTHS);
@@ -84,8 +83,7 @@ public class OccultismTable extends VerticalTable {
 
 		int added = 0;
 		if (characterPlayer != null) {
-			for (Entry<String, List<String>> occultismPathEntry : characterPlayer.getSelectedPowers()
-					.entrySet()) {
+			for (Entry<String, List<String>> occultismPathEntry : characterPlayer.getSelectedPowers().entrySet()) {
 				OccultismPath occultismPath = OccultismPathFactory.getInstance().getElement(
 						occultismPathEntry.getKey(), characterPlayer.getLanguage());
 				for (String occultismPowerName : occultismPathEntry.getValue()) {
@@ -99,13 +97,16 @@ public class OccultismTable extends VerticalTable {
 								FadingSunsTheme.CHARACTER_SMALL_OCCULTISM_LINE_FONT_SIZE));
 						added++;
 					}
+					if (added >= ROWS) {
+						break;
+					}
 				}
 			}
 		}
 
 		for (int i = added; i < ROWS; i++) {
 			for (int j = 0; j < WIDTHS.length; j++) {
-				addCell(new Paragraph(" "));
+				addCell(createEmptyElementLine(FadingSunsTheme.CHARACTER_SMALL_OCCULTISM_LINE_FONT_SIZE));
 			}
 		}
 	}

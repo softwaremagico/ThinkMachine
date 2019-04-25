@@ -27,7 +27,6 @@ package com.softwaremagico.tm.pdf.small.traits;
 import java.util.Iterator;
 
 import com.itextpdf.text.Element;
-import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.blessings.Blessing;
@@ -79,7 +78,7 @@ public class BlessingTable extends VerticalTable {
 
 		for (int i = added; i < ROWS; i++) {
 			for (int j = 0; j < WIDTHS.length; j++) {
-				addCell(new Paragraph(""));
+				addCell(createEmptyElementLine(FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE));
 			}
 		}
 	}

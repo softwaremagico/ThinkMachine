@@ -25,7 +25,6 @@ package com.softwaremagico.tm.pdf.small.skills;
  */
 
 import com.itextpdf.text.Element;
-import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.softwaremagico.tm.InvalidXmlElementException;
@@ -70,7 +69,7 @@ public class LearnedSkillsTable extends SkillsTable {
 
 		for (int i = added; i < ROWS; i++) {
 			for (int j = 0; j < widths.length; j++) {
-				table.addCell(new Paragraph(" "));
+				table.addCell(createSkillElement(characterPlayer, null, FadingSunsTheme.CHARACTER_SMALL_SKILLS_LINE_FONT_SIZE, MAX_SKILL_COLUMN_WIDTH));
 			}
 		}
 
