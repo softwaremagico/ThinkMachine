@@ -22,3 +22,5 @@ tmp
 *.lyx#
 *.orig
 *.log*
+*.releaseBackup
+release.properties
