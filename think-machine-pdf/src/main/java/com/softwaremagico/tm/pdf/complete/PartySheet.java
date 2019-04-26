@@ -29,6 +29,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.language.Translator;
 import com.softwaremagico.tm.party.Party;
+import com.softwaremagico.tm.pdf.complete.events.PartyFooterEvent;
 
 public class PartySheet extends CharacterSheet {
 	private Party party;
@@ -52,7 +53,7 @@ public class PartySheet extends CharacterSheet {
 
 	@Override
 	protected void addEvent(PdfWriter writer) {
-		// No event.
+		writer.setPageEvent(new PartyFooterEvent(party, 20));
 	}
 
 }

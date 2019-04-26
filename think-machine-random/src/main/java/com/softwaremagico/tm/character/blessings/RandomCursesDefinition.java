@@ -43,7 +43,8 @@ import com.softwaremagico.tm.random.selectors.SpecializationPreferences;
 
 public class RandomCursesDefinition extends RandomSelector<Blessing> {
 
-	public RandomCursesDefinition(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences) throws InvalidXmlElementException {
+	public RandomCursesDefinition(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences)
+			throws InvalidXmlElementException {
 		super(characterPlayer, preferences);
 	}
 
@@ -58,9 +59,11 @@ public class RandomCursesDefinition extends RandomSelector<Blessing> {
 			try {
 				getCharacterPlayer().addBlessing(selectedCurse);
 				RandomGenerationLog.info(this.getClass().getName(), "Added curse '" + selectedCurse + "'.");
-			} catch (TooManyBlessingsException | BlessingAlreadyAddedException e) {
+			} catch (TooManyBlessingsException e) {
 				// No more possible.
 				break;
+			} catch (BlessingAlreadyAddedException e) {
+				continue;
 			}
 			removeElementWeight(selectedCurse);
 		}
@@ -101,8 +104,8 @@ public class RandomCursesDefinition extends RandomSelector<Blessing> {
 			for (AvailableSkill skill : curse.getAffectedSkill(getCharacterPlayer().getLanguage())) {
 				// More specialized, less ranks required to skip the curse.
 				if (getCharacterPlayer().getSkillAssignedRanks(skill) >= (10 - specializationPreferences.maximum())) {
-					throw new InvalidRandomElementSelectedException("Curse '" + curse + "' affects the skill '" + skill + "' with ranks '"
-							+ getCharacterPlayer().getSkillAssignedRanks(skill) + "'.");
+					throw new InvalidRandomElementSelectedException("Curse '" + curse + "' affects the skill '" + skill
+							+ "' with ranks '" + getCharacterPlayer().getSkillAssignedRanks(skill) + "'.");
 				}
 			}
 		}
@@ -110,13 +113,15 @@ public class RandomCursesDefinition extends RandomSelector<Blessing> {
 	}
 
 	@Override
-	protected void assignIfMandatory(Blessing element) throws InvalidXmlElementException, ImpossibleToAssignMandatoryElementException {
+	protected void assignIfMandatory(Blessing element) throws InvalidXmlElementException,
+			ImpossibleToAssignMandatoryElementException {
 		BlessingPreferences blessingPreferences = BlessingPreferences.getSelected(getPreferences());
 		if (blessingPreferences != null && element.getBlessingGroup() == BlessingGroup.get(blessingPreferences.name())) {
 			try {
 				getCharacterPlayer().addBlessing(element);
 			} catch (TooManyBlessingsException | BlessingAlreadyAddedException e) {
-				throw new ImpossibleToAssignMandatoryElementException("Impossible to assign mandatory blessing '" + element + "'.", e);
+				throw new ImpossibleToAssignMandatoryElementException("Impossible to assign mandatory blessing '"
+						+ element + "'.", e);
 			}
 			RandomGenerationLog.info(this.getClass().getName(), "Added blessing '" + element + "'.");
 		}
