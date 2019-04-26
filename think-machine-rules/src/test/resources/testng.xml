@@ -14,27 +14,27 @@
 	<test name="CharacterCrud" enabled="true" preserve-order="true">
 		<groups>
 			<run>
-				<include name="skillFactory" />
-				<include name="raceFactory" />
-				<include name="damageFactory" />
-				<include name="characteristicsFactory" />
-				<include name="weaponsFactory" />
-				<include name="beneficeFactory" />
-				<include name="blessingFactory" />
-				<include name="factionsFactory" />
-				<include name="occultismFactory" />
-				<include name="planetsFactory" />
-				<include name="shieldFactory" />
-				<include name="armourFactory" />
-				<include name="combatStyleFactory" />
-				<include name="cyberneticFactory" />
-				<include name="randomDefinition" />
-				<include name="randomCharacter" />
-				<include name="cybernetics" />
+				<exclude name="skillFactory" />
+				<exclude name="raceFactory" />
+				<exclude name="damageFactory" />
+				<exclude name="characteristicsFactory" />
+				<exclude name="weaponsFactory" />
+				<exclude name="beneficeFactory" />
+				<exclude name="blessingFactory" />
+				<exclude name="factionsFactory" />
+				<exclude name="occultismFactory" />
+				<exclude name="planetsFactory" />
+				<exclude name="shieldFactory" />
+				<exclude name="armourFactory" />
+				<exclude name="combatStyleFactory" />
+				<exclude name="cyberneticFactory" />
+				<exclude name="randomDefinition" />
+				<exclude name="randomCharacter" />
+				<exclude name="cybernetics" />
 				<include name="jsonExporter" />
-				<include name="blessings" />
-				<include name="occultism" />
-				<include name="exportTxt" />
+				<exclude name="blessings" />
+				<exclude name="occultism" />
+				<exclude name="exportTxt" />
 			</run>
 		</groups>
 		<classes>

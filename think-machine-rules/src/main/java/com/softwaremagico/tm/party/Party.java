@@ -39,7 +39,7 @@ import com.softwaremagico.tm.character.ThreatLevel;
 
 public class Party {
 	private final Set<CharacterPlayer> characterPlayers;
-	private final Map<CharacterPlayer, Integer> threatByCharacter;
+	private transient final Map<CharacterPlayer, Integer> threatByCharacter;
 	private String partyName;
 	private final String language;
 

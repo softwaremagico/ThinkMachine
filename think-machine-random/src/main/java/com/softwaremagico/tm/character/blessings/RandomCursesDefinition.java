@@ -59,13 +59,14 @@ public class RandomCursesDefinition extends RandomSelector<Blessing> {
 			try {
 				getCharacterPlayer().addBlessing(selectedCurse);
 				RandomGenerationLog.info(this.getClass().getName(), "Added curse '" + selectedCurse + "'.");
+				removeElementWeight(selectedCurse);
 			} catch (TooManyBlessingsException e) {
 				// No more possible.
 				break;
 			} catch (BlessingAlreadyAddedException e) {
+				removeElementWeight(selectedCurse);
 				continue;
 			}
-			removeElementWeight(selectedCurse);
 		}
 	}
 

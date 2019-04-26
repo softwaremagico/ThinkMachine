@@ -44,36 +44,61 @@ import com.softwaremagico.tm.character.cybernetics.RequiredCyberneticDevicesExce
 import com.softwaremagico.tm.character.cybernetics.TooManyCyberneticDevicesException;
 import com.softwaremagico.tm.characters.CustomCharacter;
 import com.softwaremagico.tm.language.LanguagePool;
+import com.softwaremagico.tm.party.Party;
 
 @Test(groups = { "jsonExporter" })
 public class JsonTests {
-	private final static String OUTPUT_PATH = System.getProperty("java.io.tmpdir") + File.separator + "Character.json";
+	private final static String OUTPUT_CHARACTER_PATH = System.getProperty("java.io.tmpdir") + File.separator + "Character.json";
+	private final static String OUTPUT_PARTY_PATH = System.getProperty("java.io.tmpdir") + File.separator + "Party.json";
 	private final static String LANGUAGE = "es";
 
 	private CharacterPlayer player;
-	private String originalJson;
+	private String originalPlayerJson;
+
+	private Party party;
+	private String originalPartyJson;
 
 	@BeforeClass
-	public void clearCache() throws InvalidXmlElementException, TooManyBlessingsException, TooManyCyberneticDevicesException,
-			RequiredCyberneticDevicesException, BlessingAlreadyAddedException, BeneficeAlreadyAddedException {
+	public void clearCache() throws InvalidXmlElementException, TooManyBlessingsException,
+			TooManyCyberneticDevicesException, RequiredCyberneticDevicesException, BlessingAlreadyAddedException,
+			BeneficeAlreadyAddedException {
 		LanguagePool.clearCache();
 		player = CustomCharacter.create(LANGUAGE);
 		Assert.assertEquals(CostCalculator.getCost(player), 50);
+		party = new Party(LANGUAGE);
+		party.setPartyName("JSON Test");
+		party.addMember(player);
 	}
 
 	@Test
-	public void exportToJson() throws InvalidXmlElementException, IOException {
+	public void exportCharacterPlayerToJson() throws InvalidXmlElementException, IOException {
 		Assert.assertNotNull(player);
-		originalJson = CharacterJsonManager.toJson(player);
-		try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(OUTPUT_PATH)), true)) {
-			out.println(originalJson);
+		originalPlayerJson = CharacterJsonManager.toJson(player);
+		try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(OUTPUT_CHARACTER_PATH)), true)) {
+			out.println(originalPlayerJson);
 		}
 	}
 
-	@Test(dependsOnMethods = { "exportToJson" })
-	public void importFromJson() throws IOException, InvalidXmlElementException {
-		CharacterPlayer player = CharacterJsonManager.fromFile(OUTPUT_PATH);
+	@Test(dependsOnMethods = { "exportCharacterPlayerToJson" })
+	public void importCharacterPlayerFromJson() throws IOException, InvalidXmlElementException {
+		CharacterPlayer player = CharacterJsonManager.fromFile(OUTPUT_CHARACTER_PATH);
 		Assert.assertEquals(CostCalculator.getCost(player), 50);
-		Assert.assertEquals(CharacterJsonManager.toJson(player), originalJson);
+		Assert.assertEquals(CharacterJsonManager.toJson(player), originalPlayerJson);
+	}
+
+	@Test
+	public void exportPartyToJson() throws InvalidXmlElementException, IOException {
+		Assert.assertNotNull(party);
+		originalPartyJson = PartyJsonManager.toJson(party);
+		try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(OUTPUT_PARTY_PATH)), true)) {
+			out.println(originalPartyJson);
+		}
+	}
+
+	@Test(dependsOnMethods = { "exportPartyToJson" })
+	public void importPartyFromJson() throws IOException, InvalidXmlElementException {
+		Party party = PartyJsonManager.fromFile(OUTPUT_PARTY_PATH);
+		Assert.assertEquals(CostCalculator.getCost(party.getMembers().iterator().next()), 50);
+		Assert.assertEquals(PartyJsonManager.toJson(party), originalPartyJson);
 	}
 }

@@ -203,6 +203,8 @@ public class RandomCharacterTests {
 			Assert.assertTrue(characterPlayer.getCurses().size() <= CurseNumberPreferences.FAIR.maximum()
 					+ characterPlayer.getFaction().getBlessings(BlessingClassification.CURSE).size());
 		} catch (Error ae) {
+			CharacterSheet characterSheet = new CharacterSheet(characterPlayer);
+			System.out.println(characterSheet.toString());
 			throw ae;
 		}
 

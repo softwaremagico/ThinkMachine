@@ -57,12 +57,14 @@ public class RandomBlessingDefinition extends RandomSelector<Blessing> {
 			try {
 				getCharacterPlayer().addBlessing(selectedBlessing);
 				RandomGenerationLog.info(this.getClass().getName(), "Added blessing '" + selectedBlessing + "'.");
-			} catch (TooManyBlessingsException | BlessingAlreadyAddedException e) {
-				RandomGenerationLog.debug(this.getClass().getName(), e.getMessage());
+				removeElementWeight(selectedBlessing);
+			} catch (TooManyBlessingsException e) {
 				// No more possible.
 				break;
+			} catch (BlessingAlreadyAddedException e) {
+				removeElementWeight(selectedBlessing);
+				continue;
 			}
-			removeElementWeight(selectedBlessing);
 		}
 	}
 
