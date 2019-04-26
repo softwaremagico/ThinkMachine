@@ -87,7 +87,7 @@ public class SmallCharacterSheet extends PdfDocument {
 	}
 
 	protected PdfPTable createCharacterContent(CharacterPlayer characterPlayer) throws Exception {
-		float[] widths = { 2f, 1f };
+		float[] widths = { 2.2f, 1f };
 		PdfPTable mainTable = new PdfPTable(widths);
 		BaseElement.setTablePropierties(mainTable);
 		mainTable.getDefaultCell().setPadding(0);
@@ -151,8 +151,8 @@ public class SmallCharacterSheet extends PdfDocument {
 
 		PdfPTable fightTable = new PdfPTable(new float[] { 3f, 5f, 1f });
 
-		if (characterPlayer == null
-				|| (characterPlayer.getSelectedPowers().isEmpty() && !characterPlayer.getCybernetics().isEmpty())) {
+		if (characterPlayer != null
+				&& (characterPlayer.getSelectedPowers().isEmpty() && !characterPlayer.getCybernetics().isEmpty())) {
 			PdfPTable cyberneticsTable = new CyberneticsTable(characterPlayer);
 			PdfPCell cyberneticsCell = new PdfPCell(cyberneticsTable);
 			cyberneticsCell.setBorderWidthLeft(0);
