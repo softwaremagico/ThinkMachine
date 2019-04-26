@@ -79,7 +79,7 @@ public class OccultismTable extends VerticalTable {
 		addCell(createSubtitleLine(getTranslator().getTranslatedText("occultismTablePower"),
 				FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE, 4, Element.ALIGN_LEFT));
 		addCell(createSubtitleLine(getTranslator().getTranslatedText("weaponGoal"),
-				FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE));
+				FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE, Element.ALIGN_RIGHT));
 
 		int added = 0;
 		if (characterPlayer != null) {

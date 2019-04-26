@@ -89,6 +89,7 @@ public abstract class CharacterBasicsTableFactory extends BaseElement {
 		PdfPCell cell = new PdfPCell();
 		cell.addElement(table);
 		setCellProperties(cell);
+		cell.setMinimumHeight(20);
 
 		return cell;
 	}

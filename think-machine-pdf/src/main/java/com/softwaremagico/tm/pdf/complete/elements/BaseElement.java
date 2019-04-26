@@ -46,7 +46,6 @@ public class BaseElement {
 	private static ITranslator translator = LanguagePool.getTranslator("character_sheet.xml");
 
 	public static PdfPCell getCell(String text, int border, int colspan, int align, BaseColor color, BaseFont font, float fontSize) {
-		// Paragraph p = new Paragraph(text, new Font(font, fontSize));
 		if (text == null) {
 			text = "";
 		}
