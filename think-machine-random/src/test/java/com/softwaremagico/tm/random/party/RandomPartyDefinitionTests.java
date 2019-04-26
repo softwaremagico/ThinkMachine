@@ -58,7 +58,7 @@ public class RandomPartyDefinitionTests {
 		Assert.assertNotNull(randomPartyDefinition.getParty().getPartyName());
 
 		RandomParty thugParty2 = RandomPartyFactory.getInstance().getElement("thugBand", LANGUAGE);
-		RandomPartyDefinition randomPartyDefinition2 = new RandomPartyDefinition(thugParty2, 350,
+		RandomPartyDefinition randomPartyDefinition2 = new RandomPartyDefinition(thugParty2, 450,
 				new HashSet<IRandomPreference>());
 		randomPartyDefinition2.assign();
 
