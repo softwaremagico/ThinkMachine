@@ -70,8 +70,10 @@ public class AvailableSkillsFactory {
 		skillsByGroup = new HashMap<>();
 	}
 
-	public Set<AvailableSkill> getSkillsByGroup(SkillGroup skillGroup, String language) throws InvalidXmlElementException {
-		if (skillsByGroup == null || skillsByGroup.isEmpty() || skillsByGroup.get(language) == null || skillsByGroup.get(language).isEmpty()) {
+	public Set<AvailableSkill> getSkillsByGroup(SkillGroup skillGroup, String language)
+			throws InvalidXmlElementException {
+		if (skillsByGroup == null || skillsByGroup.isEmpty() || skillsByGroup.get(language) == null
+				|| skillsByGroup.get(language).isEmpty()) {
 			for (AvailableSkill availableNaturalSkill : getNaturalSkills(language)) {
 				classifySkillByGroup(availableNaturalSkill, language);
 			}
@@ -140,14 +142,17 @@ public class AvailableSkillsFactory {
 		return getElement(elementId, null, language);
 	}
 
-	public AvailableSkill getElement(String elementId, String specializationId, String language) throws InvalidXmlElementException {
+	public AvailableSkill getElement(String elementId, String specializationId, String language)
+			throws InvalidXmlElementException {
 		for (AvailableSkill element : getElements(language)) {
 			if (element.getId() != null) {
 				if (Objects.equals(element.getId().toLowerCase(), elementId.toLowerCase())) {
 					if (element.getSpecialization() == null) {
 						return element;
 					} else {
-						if (specializationId != null && Objects.equals(element.getSpecialization().getId().toLowerCase(), specializationId.toLowerCase())) {
+						if (specializationId != null
+								&& Objects.equals(element.getSpecialization().getId().toLowerCase(),
+										specializationId.toLowerCase())) {
 							return element;
 						}
 					}
@@ -157,7 +162,8 @@ public class AvailableSkillsFactory {
 		if (specializationId == null) {
 			throw new InvalidXmlElementException("Element '" + elementId + "' does not exists.");
 		} else {
-			throw new InvalidXmlElementException("Element '" + elementId + " [" + specializationId + "]' does not exists.");
+			throw new InvalidXmlElementException("Element '" + elementId + " [" + specializationId
+					+ "]' does not exists.");
 		}
 	}
 
@@ -171,7 +177,8 @@ public class AvailableSkillsFactory {
 		return elements.get(language);
 	}
 
-	public List<AvailableSkill> getAvailableSkills(SkillDefinition skillDefinition, String language) throws InvalidXmlElementException {
+	public List<AvailableSkill> getAvailableSkills(SkillDefinition skillDefinition, String language)
+			throws InvalidXmlElementException {
 		List<AvailableSkill> availableSkills = new ArrayList<>();
 		for (AvailableSkill availableSkill : getNaturalSkills(language)) {
 			if (Objects.equals(availableSkill.getSkillDefinition(), skillDefinition)) {
@@ -191,7 +198,8 @@ public class AvailableSkillsFactory {
 			skillsByGroup.put(language, new HashMap<SkillGroup, Set<AvailableSkill>>());
 		}
 		if (skillsByGroup.get(language).get(availableSkill.getSkillDefinition().getSkillGroup()) == null) {
-			skillsByGroup.get(language).put(availableSkill.getSkillDefinition().getSkillGroup(), new HashSet<AvailableSkill>());
+			skillsByGroup.get(language).put(availableSkill.getSkillDefinition().getSkillGroup(),
+					new HashSet<AvailableSkill>());
 		}
 		skillsByGroup.get(language).get(availableSkill.getSkillDefinition().getSkillGroup()).add(availableSkill);
 	}
