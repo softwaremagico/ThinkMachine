@@ -40,7 +40,7 @@ public class ArmourTable extends CustomPdfTable {
 	private final static int ARMOUR_VALUE_COLUMN_WIDTH = 10;
 
 	public ArmourTable(CharacterPlayer characterPlayer) {
-		super(new float[] { 2, 3 });
+		super(new float[] { 2.2f, 3 });
 		getDefaultCell().setBorder(0);
 
 		// Armor
