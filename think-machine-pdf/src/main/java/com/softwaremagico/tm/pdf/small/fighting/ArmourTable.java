@@ -37,7 +37,7 @@ import com.softwaremagico.tm.pdf.complete.elements.CustomPdfTable;
 
 public class ArmourTable extends CustomPdfTable {
 	private final static String GAP = "____________________";
-	private final static int NAME_COLUMN_WIDTH = 60;
+	private final static int NAME_COLUMN_WIDTH = 30;
 	private final static int ARMOUR_VALUE_COLUMN_WIDTH = 10;
 
 	public ArmourTable(CharacterPlayer characterPlayer) {
@@ -52,10 +52,13 @@ public class ArmourTable extends CustomPdfTable {
 		addCell(titleCell);
 
 		PdfPCell nameCell;
-		if (characterPlayer == null || characterPlayer.getArmour() == null) {
+		if (characterPlayer == null) {
 			nameCell = CustomPdfTable.createEmptyElementLine(GAP, NAME_COLUMN_WIDTH);
+		} else if (characterPlayer.getArmour() == null) {
+			nameCell = createElementLine("", NAME_COLUMN_WIDTH);
 		} else {
-			nameCell = createElementLine(characterPlayer.getArmour().getName() + "(" + characterPlayer.getArmour().getProtection() + "d)", NAME_COLUMN_WIDTH,
+			nameCell = createElementLine(characterPlayer.getArmour().getName() + "("
+					+ characterPlayer.getArmour().getProtection() + "d)", NAME_COLUMN_WIDTH,
 					FadingSunsTheme.ARMOUR_CONTENT_FONT_SIZE - 1);
 		}
 		nameCell.setBorder(0);
@@ -66,10 +69,11 @@ public class ArmourTable extends CustomPdfTable {
 		addCell(getShieldRange(characterPlayer));
 
 		Paragraph paragraph = new Paragraph();
-		paragraph.add(new Paragraph(getTranslator().getTranslatedText("shieldHits") + ": ", new Font(FadingSunsTheme.getLineFont(),
-				FadingSunsTheme.ARMOUR_CONTENT_FONT_SIZE)));
+		paragraph.add(new Paragraph(getTranslator().getTranslatedText("shieldHits") + ": ", new Font(FadingSunsTheme
+				.getLineFont(), FadingSunsTheme.ARMOUR_CONTENT_FONT_SIZE)));
 		if (characterPlayer != null && characterPlayer.getShield() != null) {
-			paragraph.add(new Paragraph(characterPlayer.getShield().getHits() + "-", new Font(FadingSunsTheme.getHandwrittingFont(), FadingSunsTheme
+			paragraph.add(new Paragraph(characterPlayer.getShield().getHits() + "-", new Font(FadingSunsTheme
+					.getHandwrittingFont(), FadingSunsTheme
 					.getHandWrittingFontSize(FadingSunsTheme.ARMOUR_CONTENT_FONT_SIZE))));
 		}
 		PdfPCell shieldCell = new PdfPCell(paragraph);
