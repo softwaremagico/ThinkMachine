@@ -467,6 +467,16 @@ public class Translator implements ITranslator {
 			// Get from folder
 			return file;
 		}
+		
+		try {
+			if (Translator.class.getClassLoader().getResource(xmlFile) != null) {
+				file = new File(Translator.class.getClassLoader().getResource(xmlFile).toURI());
+				if (file.exists()) {
+					return file;
+				}
+			}
+		} catch (URISyntaxException e) {
+		}
 
 		try {
 			if (Translator.class.getClassLoader().getResource(Path.TRANSLATIONS_FOLDER + File.separator + xmlFile) != null) {
