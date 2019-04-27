@@ -78,6 +78,8 @@
 										<!-- Copy sheets -->
 										<copy file="/tmp/FadingSuns_EN.pdf" tofile="${main.basedir}/sheets/FadingSuns_EN.pdf" overwrite="true" />
 										<copy file="/tmp/FadingSuns_ES.pdf" tofile="${main.basedir}/sheets/FadingSuns_ES.pdf" overwrite="true" />
+										<copy file="/tmp/FadingSuns_Small_EN.pdf" tofile="${main.basedir}/sheets/FadingSuns_Small_EN.pdf" overwrite="true" />
+										<copy file="/tmp/FadingSuns_Small_ES.pdf" tofile="${main.basedir}/sheets/FadingSuns_Small_ES.pdf" overwrite="true" />
 									</target>
 								</configuration>
 								<goals>
@@ -128,6 +130,46 @@
 										<argument>600</argument>
 										<argument>${main.basedir}/sheets/FadingSuns_EN.pdf</argument>
 										<argument>${main.basedir}/sheets/FadingSuns_EN-%01d.png</argument>
+									</arguments>
+								</configuration>
+							</execution>
+							<execution>
+								<id>PdfToPng Small (ES)</id>
+								<phase>install</phase>
+								<goals>
+									<goal>exec</goal>
+								</goals>
+								<configuration>
+									<executable>convert</executable>
+									<arguments>
+										<argument>-background</argument>
+										<argument>white</argument>
+										<argument>-alpha</argument>
+										<argument>remove</argument>
+										<argument>-density</argument>
+										<argument>600</argument>
+										<argument>${main.basedir}/sheets/FadingSuns_Small_ES.pdf</argument>
+										<argument>${main.basedir}/sheets/FadingSuns_Small_ES-%01d.png</argument>
+									</arguments>
+								</configuration>
+							</execution>
+							<execution>
+								<id>PdfToPng Small (EN)</id>
+								<phase>install</phase>
+								<goals>
+									<goal>exec</goal>
+								</goals>
+								<configuration>
+									<executable>convert</executable>
+									<arguments>
+										<argument>-background</argument>
+										<argument>white</argument>
+										<argument>-alpha</argument>
+										<argument>remove</argument>
+										<argument>-density</argument>
+										<argument>600</argument>
+										<argument>${main.basedir}/sheets/FadingSuns_Small_EN.pdf</argument>
+										<argument>${main.basedir}/sheets/FadingSuns_Small_EN-%01d.png</argument>
 									</arguments>
 								</configuration>
 							</execution>

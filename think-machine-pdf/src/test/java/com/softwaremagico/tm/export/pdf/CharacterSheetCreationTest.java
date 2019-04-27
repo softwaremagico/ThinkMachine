@@ -93,7 +93,7 @@ public class CharacterSheetCreationTest {
 		SmallCharacterSheet sheet = new SmallCharacterSheet("en");
 		Assert.assertEquals(
 				sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator
-						+ "RandomCharacterSmallEmpty_EN.pdf"), 1);
+						+ "FadingSuns_Small_EN.pdf"), 1);
 	}
 
 	@Test
@@ -101,7 +101,7 @@ public class CharacterSheetCreationTest {
 		SmallCharacterSheet sheet = new SmallCharacterSheet("es");
 		Assert.assertEquals(
 				sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator
-						+ "RandomCharacterSmallEmpty_ES.pdf"), 1);
+						+ "FadingSuns_Small_ES.pdf"), 1);
 	}
 
 	@Test
