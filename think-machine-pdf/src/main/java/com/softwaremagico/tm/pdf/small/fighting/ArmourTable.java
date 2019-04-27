@@ -36,7 +36,8 @@ import com.softwaremagico.tm.pdf.complete.elements.BaseElement;
 import com.softwaremagico.tm.pdf.complete.elements.CustomPdfTable;
 
 public class ArmourTable extends CustomPdfTable {
-	private final static int NAME_COLUMN_WIDTH = 30;
+	private final static String GAP = "____________________";
+	private final static int NAME_COLUMN_WIDTH = 60;
 	private final static int ARMOUR_VALUE_COLUMN_WIDTH = 10;
 
 	public ArmourTable(CharacterPlayer characterPlayer) {
@@ -52,7 +53,7 @@ public class ArmourTable extends CustomPdfTable {
 
 		PdfPCell nameCell;
 		if (characterPlayer == null || characterPlayer.getArmour() == null) {
-			nameCell = createElementLine("", NAME_COLUMN_WIDTH);
+			nameCell = CustomPdfTable.createEmptyElementLine(GAP, NAME_COLUMN_WIDTH);
 		} else {
 			nameCell = createElementLine(characterPlayer.getArmour().getName() + "(" + characterPlayer.getArmour().getProtection() + "d)", NAME_COLUMN_WIDTH,
 					FadingSunsTheme.ARMOUR_CONTENT_FONT_SIZE - 1);

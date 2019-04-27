@@ -35,6 +35,7 @@ import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.complete.elements.VerticalTable;
 
 public class BlessingTable extends VerticalTable {
+	private final static String GAP = "__________________";
 	private final static int BONIFICATION_COLUMN_WIDTH = 15;
 	private final static int TRAIT_COLUMN_WIDTH = 60;
 	private final static int SITUATION_COLUMN_WIDTH = 78;
@@ -76,9 +77,17 @@ public class BlessingTable extends VerticalTable {
 			}
 		}
 
-		for (int i = added; i < ROWS; i++) {
-			for (int j = 0; j < WIDTHS.length; j++) {
-				addCell(createEmptyElementLine(FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE));
+		if (characterPlayer == null) {
+			for (int i = added; i < ROWS; i++) {
+				addCell(createEmptyElementLine(GAP, BONIFICATION_COLUMN_WIDTH));
+				addCell(createEmptyElementLine(GAP, TRAIT_COLUMN_WIDTH));
+				addCell(createEmptyElementLine(GAP, SITUATION_COLUMN_WIDTH));
+			}
+		} else {
+			for (int i = added; i < ROWS; i++) {
+				for (int j = 0; j < WIDTHS.length; j++) {
+					addCell(createEmptyElementLine(FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE));
+				}
 			}
 		}
 	}

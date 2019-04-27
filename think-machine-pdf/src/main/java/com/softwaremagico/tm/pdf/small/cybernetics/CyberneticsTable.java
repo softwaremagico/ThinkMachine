@@ -31,6 +31,7 @@ import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.complete.elements.VerticalTable;
 
 public class CyberneticsTable extends VerticalTable {
+	private final static String GAP = "__________________";
 	private final static int NAME_COLUMN_WIDTH = 95;
 	private final static int POINTS_COLUMN_WIDTH = 25;
 	private final static float[] WIDTHS = { 5f, 2f };
@@ -59,9 +60,16 @@ public class CyberneticsTable extends VerticalTable {
 			}
 		}
 
-		for (int i = added; i < ROWS; i++) {
-			for (int j = 0; j < WIDTHS.length; j++) {
-				addCell(createEmptyElementLine(FadingSunsTheme.CYBERNETICS_CONTENT_FONT_SIZE));
+		if (characterPlayer == null) {
+			for (int i = added; i < ROWS; i++) {
+				addCell(createEmptyElementLine(GAP, NAME_COLUMN_WIDTH));
+				addCell(createEmptyElementLine(GAP, POINTS_COLUMN_WIDTH));
+			}
+		} else {
+			for (int i = added; i < ROWS; i++) {
+				for (int j = 0; j < WIDTHS.length; j++) {
+					addCell(createEmptyElementLine(FadingSunsTheme.CYBERNETICS_CONTENT_FONT_SIZE));
+				}
 			}
 		}
 	}

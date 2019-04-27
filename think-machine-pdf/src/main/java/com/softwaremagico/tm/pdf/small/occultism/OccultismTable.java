@@ -40,8 +40,9 @@ import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.complete.elements.VerticalTable;
 
 public class OccultismTable extends VerticalTable {
-	private final static int POWER_COLUMN_WIDTH = 85;
-	private final static int ROLL_COLUMN_WIDTH = 25;
+	private final static String GAP = "_______________________";
+	private final static int POWER_COLUMN_WIDTH = 80;
+	private final static int ROLL_COLUMN_WIDTH = 30;
 	private final static float[] WIDTHS = { 2f, 1f, 1f, 1f, 2f };
 	private final static int ROWS = 8;
 
@@ -104,9 +105,18 @@ public class OccultismTable extends VerticalTable {
 			}
 		}
 
-		for (int i = added; i < ROWS; i++) {
-			for (int j = 0; j < WIDTHS.length; j++) {
-				addCell(createEmptyElementLine(FadingSunsTheme.CHARACTER_SMALL_OCCULTISM_LINE_FONT_SIZE));
+		if (characterPlayer == null) {
+			for (int i = added; i < ROWS; i++) {
+				PdfPCell cell = createEmptyElementLine(GAP, POWER_COLUMN_WIDTH);
+				cell.setColspan(WIDTHS.length - 1);
+				addCell(cell);
+				addCell(createEmptyElementLine(GAP, ROLL_COLUMN_WIDTH));
+			}
+		} else {
+			for (int i = added; i < ROWS; i++) {
+				for (int j = 0; j < WIDTHS.length; j++) {
+					addCell(createEmptyElementLine(FadingSunsTheme.CHARACTER_SMALL_OCCULTISM_LINE_FONT_SIZE));
+				}
 			}
 		}
 	}

@@ -31,13 +31,17 @@ import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
+import com.softwaremagico.tm.pdf.complete.elements.CustomPdfTable;
 import com.softwaremagico.tm.pdf.complete.skills.SkillsTable;
 
 public class LearnedSkillsTable extends SkillsTable {
-	private final static int ROWS = 20;
+	private final static String GAP = "__________________";
+	private final static int ROWS = 23;
 	private final static int MAX_SKILL_COLUMN_WIDTH = 115;
+	private final static int MAX_SKILL_RANK_WIDTH = 15;
 
-	public static PdfPTable getSkillsTable(CharacterPlayer characterPlayer, String language) throws InvalidXmlElementException {
+	public static PdfPTable getSkillsTable(CharacterPlayer characterPlayer, String language)
+			throws InvalidXmlElementException {
 		float[] widths = { 1f };
 		PdfPTable table = new PdfPTable(widths);
 		setTablePropierties(table);
@@ -46,30 +50,41 @@ public class LearnedSkillsTable extends SkillsTable {
 		return table;
 	}
 
-	private static PdfPCell getSkillsColumnTable(CharacterPlayer characterPlayer, String language) throws InvalidXmlElementException {
+	private static PdfPCell getSkillsColumnTable(CharacterPlayer characterPlayer, String language)
+			throws InvalidXmlElementException {
 		float[] widths = { 4f, 1f };
 		PdfPTable table = new PdfPTable(widths);
 		setTablePropierties(table);
 		table.getDefaultCell().setBorder(0);
 
-		table.addCell(createCompactTitle(getTranslator().getTranslatedText("learnedSkills"), FadingSunsTheme.CHARACTER_SMALL_SKILLS_TITLE_FONT_SIZE));
+		table.addCell(createCompactTitle(getTranslator().getTranslatedText("learnedSkills"),
+				FadingSunsTheme.CHARACTER_SMALL_SKILLS_TITLE_FONT_SIZE));
 
 		int added = 0;
 		if (characterPlayer != null) {
 			for (AvailableSkill skill : characterPlayer.getLearnedSkills()) {
 				if (characterPlayer.getSkillTotalRanks(skill) > 0) {
-					table.addCell(createSkillElement(characterPlayer, skill, FadingSunsTheme.CHARACTER_SMALL_SKILLS_LINE_FONT_SIZE, MAX_SKILL_COLUMN_WIDTH));
-					table.addCell(createSkillValue(characterPlayer.getSkillTotalRanks(skill),
+					table.addCell(createSkillElement(characterPlayer, skill,
+							FadingSunsTheme.CHARACTER_SMALL_SKILLS_LINE_FONT_SIZE, MAX_SKILL_COLUMN_WIDTH));
+					table.addCell(createSkillValue(
+							characterPlayer.getSkillTotalRanks(skill),
 							characterPlayer.isSkillSpecial(skill) || characterPlayer.hasSkillTemporalModificator(skill),
-							characterPlayer.hasSkillModificator(skill), FadingSunsTheme.CHARACTER_SMALL_SKILLS_LINE_FONT_SIZE));
+							characterPlayer.hasSkillModificator(skill),
+							FadingSunsTheme.CHARACTER_SMALL_SKILLS_LINE_FONT_SIZE));
 					added++;
 				}
 			}
 		}
 
-		for (int i = added; i < ROWS; i++) {
-			for (int j = 0; j < widths.length; j++) {
-				table.addCell(createSkillElement(characterPlayer, null, FadingSunsTheme.CHARACTER_SMALL_SKILLS_LINE_FONT_SIZE, MAX_SKILL_COLUMN_WIDTH));
+		if (characterPlayer == null) {
+			for (int i = added; i < ROWS; i++) {
+				table.addCell(CustomPdfTable.createEmptyElementLine(GAP, MAX_SKILL_COLUMN_WIDTH));
+				table.addCell(CustomPdfTable.createEmptyElementLine(GAP, MAX_SKILL_RANK_WIDTH));
+			}
+		} else {
+			for (int i = added; i < ROWS; i++) {
+				table.addCell(CustomPdfTable.createEmptyElementLine(" ", MAX_SKILL_COLUMN_WIDTH));
+				table.addCell(CustomPdfTable.createEmptyElementLine(" ", MAX_SKILL_RANK_WIDTH));
 			}
 		}
 

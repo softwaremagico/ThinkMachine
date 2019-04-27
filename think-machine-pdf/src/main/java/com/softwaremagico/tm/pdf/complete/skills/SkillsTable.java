@@ -97,10 +97,10 @@ public class SkillsTable extends BaseElement {
 
 	private static Paragraph createSkillSufix(CharacterPlayer characterPlayer, AvailableSkill availableSkill,
 			int fontSize, int maxColumnWidth) {
-		Paragraph paragraph = new Paragraph();
 		if (availableSkill == null) {
-			return paragraph;
+			return new Paragraph(" ");
 		}
+		Paragraph paragraph = new Paragraph();
 		// Add number first to calculate length.
 		if (availableSkill.getSpecialization() != null
 				// This two skills are special.

@@ -33,33 +33,42 @@ import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.complete.elements.VerticalTable;
 
 public class WeaponsTable extends VerticalTable {
+	private final static String GAP = "__________________";
 	private final static float[] WIDTHS = { 3f, 1f, 1f, 1.5f, 1.5f, 1f };
 	private final static int ROWS = 9;
 	private final static int NAME_COLUMN_WIDTH = 60;
 	private final static int GOAL_COLUMN_WIDTH = 15;
-	private final static int DAMAGE_COLUMN_WIDTH = 18;
-	private final static int RANGE_COLUMN_WIDTH = 30;
-	private final static int SHOTS_COLUMN_WIDTH = 30;
-	private final static int RATE_COLUMN_WIDTH = 30;
+	private final static int DAMAGE_COLUMN_WIDTH = 15;
+	private final static int RANGE_COLUMN_WIDTH = 25;
+	private final static int SHOTS_COLUMN_WIDTH = 25;
+	private final static int RATE_COLUMN_WIDTH = 15;
 
 	public WeaponsTable(CharacterPlayer characterPlayer) {
 		super(WIDTHS);
 		getDefaultCell().setBorder(0);
-		PdfPCell title = createTitle(getTranslator().getTranslatedText("combat"), FadingSunsTheme.CHARACTER_SMALL_WEAPONS_TITLE_FONT_SIZE);
-		//To adapt height with Occultism.
+		PdfPCell title = createTitle(getTranslator().getTranslatedText("combat"),
+				FadingSunsTheme.CHARACTER_SMALL_WEAPONS_TITLE_FONT_SIZE);
+		// To adapt height with Occultism.
 		title.setMinimumHeight(20);
 		addCell(title);
-		addCell(createSubtitleLine(getTranslator().getTranslatedText("weaponsAction"), FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE, Element.ALIGN_LEFT));
-		addCell(createSubtitleLine(getTranslator().getTranslatedText("weaponGoal"), FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE));
-		addCell(createSubtitleLine(getTranslator().getTranslatedText("weaponDamage"), FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE));
-		addCell(createSubtitleLine(getTranslator().getTranslatedText("weaponRange"), FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE));
-		addCell(createSubtitleLine(getTranslator().getTranslatedText("weaponShots"), FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE));
-		addCell(createSubtitleLine(getTranslator().getTranslatedText("weaponRate"), FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE));
+		addCell(createSubtitleLine(getTranslator().getTranslatedText("weaponsAction"),
+				FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE, Element.ALIGN_LEFT));
+		addCell(createSubtitleLine(getTranslator().getTranslatedText("weaponGoal"),
+				FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE));
+		addCell(createSubtitleLine(getTranslator().getTranslatedText("weaponDamage"),
+				FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE));
+		addCell(createSubtitleLine(getTranslator().getTranslatedText("weaponRange"),
+				FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE));
+		addCell(createSubtitleLine(getTranslator().getTranslatedText("weaponShots"),
+				FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE));
+		addCell(createSubtitleLine(getTranslator().getTranslatedText("weaponRate"),
+				FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE));
 
 		int added = 0;
 		if (characterPlayer != null) {
 			for (Weapon weapon : characterPlayer.getAllWeapons()) {
-				addCell(createFirstElementLine(weapon.getName(), NAME_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_SMALL_CONTENT_FONT_SIZE));
+				addCell(createFirstElementLine(weapon.getName(), NAME_COLUMN_WIDTH,
+						FadingSunsTheme.WEAPONS_SMALL_CONTENT_FONT_SIZE));
 				addCell(createElementLine((weapon.getGoal() != null ? weapon.getGoal() : ""), GOAL_COLUMN_WIDTH,
 						FadingSunsTheme.WEAPONS_SMALL_CONTENT_FONT_SIZE));
 				StringBuilder stringBuilder = new StringBuilder();
@@ -71,19 +80,26 @@ public class WeaponsTable extends VerticalTable {
 					stringBuilder.append(" ");
 					stringBuilder.append(weapon.getAreaMeters());
 				}
-				addCell(createElementLine(stringBuilder.toString(), DAMAGE_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_SMALL_CONTENT_FONT_SIZE));
-				addCell(createElementLine(weapon.getShots() == null ? characterPlayer.getStrengthDamangeModification() + "" : weapon.getStrengthOrRange(),
-						RANGE_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_SMALL_CONTENT_FONT_SIZE));
-				addCell(createElementLine(weapon.getShots() + "", SHOTS_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_SMALL_CONTENT_FONT_SIZE));
-				addCell(createElementLine(weapon.getRate(), RATE_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_SMALL_CONTENT_FONT_SIZE));
+				addCell(createElementLine(stringBuilder.toString(), DAMAGE_COLUMN_WIDTH,
+						FadingSunsTheme.WEAPONS_SMALL_CONTENT_FONT_SIZE));
+				addCell(createElementLine(weapon.getShots() == null ? characterPlayer.getStrengthDamangeModification()
+						+ "" : weapon.getStrengthOrRange(), RANGE_COLUMN_WIDTH,
+						FadingSunsTheme.WEAPONS_SMALL_CONTENT_FONT_SIZE));
+				addCell(createElementLine(weapon.getShots() + "", SHOTS_COLUMN_WIDTH,
+						FadingSunsTheme.WEAPONS_SMALL_CONTENT_FONT_SIZE));
+				addCell(createElementLine(weapon.getRate(), RATE_COLUMN_WIDTH,
+						FadingSunsTheme.WEAPONS_SMALL_CONTENT_FONT_SIZE));
 				added++;
 
 				for (Ammunition ammunition : weapon.getAmmunitions()) {
-					addCell(createFirstElementLine(" - " + ammunition.getName(), NAME_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
-					addCell(createElementLine((ammunition.getGoal() != null ? weapon.getGoal() : ""), GOAL_COLUMN_WIDTH,
+					addCell(createFirstElementLine(" - " + ammunition.getName(), NAME_COLUMN_WIDTH,
 							FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
-					addCell(createElementLine(ammunition.getDamage() + "d", DAMAGE_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
-					addCell(createElementLine(ammunition.getStrengthOrRange(), RANGE_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
+					addCell(createElementLine((ammunition.getGoal() != null ? weapon.getGoal() : ""),
+							GOAL_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
+					addCell(createElementLine(ammunition.getDamage() + "d", DAMAGE_COLUMN_WIDTH,
+							FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
+					addCell(createElementLine(ammunition.getStrengthOrRange(), RANGE_COLUMN_WIDTH,
+							FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
 					addCell(createElementLine("", SHOTS_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
 					addCell(createElementLine("", RATE_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
 					added++;
@@ -91,9 +107,20 @@ public class WeaponsTable extends VerticalTable {
 			}
 		}
 
-		for (int i = added; i < ROWS; i++) {
-			for (int j = 0; j < WIDTHS.length; j++) {
-				addCell(createEmptyElementLine(FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
+		if (characterPlayer == null) {
+			for (int i = added; i < ROWS; i++) {
+				addCell(createEmptyElementLine(GAP, NAME_COLUMN_WIDTH));
+				addCell(createEmptyElementLine(GAP, GOAL_COLUMN_WIDTH));
+				addCell(createEmptyElementLine(GAP, DAMAGE_COLUMN_WIDTH));
+				addCell(createEmptyElementLine(GAP, RANGE_COLUMN_WIDTH));
+				addCell(createEmptyElementLine(GAP, SHOTS_COLUMN_WIDTH));
+				addCell(createEmptyElementLine(GAP, RATE_COLUMN_WIDTH));
+			}
+		} else {
+			for (int i = added; i < ROWS; i++) {
+				for (int j = 0; j < WIDTHS.length; j++) {
+					addCell(createEmptyElementLine(FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
+				}
 			}
 		}
 	}
