@@ -264,6 +264,9 @@
 			<es>Controlar Embarcación</es>
 		</name>
 		<group>control</group>
+		<random>
+			<generalProbability>low</generalProbability>
+		</random>
 	</watercraft>
 	<ride>
 		<name>
@@ -285,6 +288,7 @@
 		<group>control</group>
 		<random>
 			<minTechLevel>3</minTechLevel>
+			<generalProbability>low</generalProbability>
 		</random>
 	</aircraft>
 	<spacecraft>
@@ -415,6 +419,10 @@
 			</household>
 		</specializations>
 		<numberToShow>2</numberToShow>
+		<random>
+			<restrictedFactionGroups>nobility, church</restrictedFactionGroups>
+			<generalProbability>low</generalProbability>
+		</random>
 	</craft>
 	<lockpicking>
 		<name>

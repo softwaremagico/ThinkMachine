@@ -40,7 +40,6 @@ import com.softwaremagico.tm.character.cybernetics.CyberneticDeviceTrait;
 import com.softwaremagico.tm.character.cybernetics.CyberneticDeviceTraitCategory;
 import com.softwaremagico.tm.character.cybernetics.SelectedCyberneticDevice;
 import com.softwaremagico.tm.character.equipment.weapons.Weapon;
-import com.softwaremagico.tm.character.factions.FactionGroup;
 import com.softwaremagico.tm.character.occultism.OccultismTypeFactory;
 import com.softwaremagico.tm.log.RandomGenerationLog;
 import com.softwaremagico.tm.random.RandomSelector;
@@ -52,8 +51,6 @@ import com.softwaremagico.tm.random.selectors.SkillGroupPreferences;
 import com.softwaremagico.tm.random.selectors.SpecializationPreferences;
 
 public class RandomSkills extends RandomSelector<AvailableSkill> {
-	private final static String CRAFT="craft";
-	private final static String BEASTCRAFT="beastcraft";
 	private List<Entry<CharacteristicType, Integer>> preferredCharacteristicsTypeSorted;
 
 	public RandomSkills(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences)
@@ -183,16 +180,6 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 				+ factionWeight + "'.");
 		weight += factionWeight;
 
-		int nobilityWeight = weightByNobility(skill);
-		RandomGenerationLog.debug(this.getClass().getName(), "Weight for '" + skill + "' by nobility modification is '"
-				+ nobilityWeight + "'.");
-		weight += nobilityWeight;
-
-		int churchWeight = weightByChurch(skill);
-		RandomGenerationLog.debug(this.getClass().getName(), "Weight for '" + skill + "' by church modification is '"
-				+ churchWeight + "'.");
-		weight += churchWeight;
-
 		int specializationWeight = weightBySpecializationPreferences(skill);
 		RandomGenerationLog.debug(this.getClass().getName(), "Weight for '" + skill
 				+ "' by specialization modification is '" + specializationWeight + "'.");
@@ -261,33 +248,6 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 			}
 		}
 
-		return 0;
-	}
-
-	private int weightByNobility(AvailableSkill skill) throws InvalidRandomElementSelectedException {
-		if (getCharacterPlayer().getFaction() != null
-				&& Objects.equals(getCharacterPlayer().getFaction().getFactionGroup(), FactionGroup.NOBILITY)) {
-			// beastcraft for nobility is not common in my point of view.
-			if (skill.getId().equalsIgnoreCase(BEASTCRAFT)) {
-				throw new InvalidRandomElementSelectedException("Skill '" + skill + "' not desiderable for faction '"
-						+ getCharacterPlayer().getFaction() + "'.");
-			} else if (skill.getSkillDefinition().getId().equalsIgnoreCase(CRAFT)) {
-				throw new InvalidRandomElementSelectedException("Skill '" + skill + "' not desiderable for faction '"
-						+ getCharacterPlayer().getFaction() + "'.");
-			}
-		}
-		return 0;
-	}
-
-	private int weightByChurch(AvailableSkill skill) throws InvalidRandomElementSelectedException {
-		if (getCharacterPlayer().getFaction() != null
-				&& Objects.equals(getCharacterPlayer().getFaction().getFactionGroup(), FactionGroup.CHURCH)) {
-			// Craft for church is not common in my point of view.
-			if (skill.getSkillDefinition().getId().equalsIgnoreCase(CRAFT)) {
-				throw new InvalidRandomElementSelectedException("Skill '" + skill + "' not desiderable for faction '"
-						+ getCharacterPlayer().getFaction() + "'.");
-			}
-		}
 		return 0;
 	}
 
