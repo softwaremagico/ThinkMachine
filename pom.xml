@@ -3,11 +3,10 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.softwaremagico</groupId>
 	<artifactId>think-machine</artifactId>
-	<version>0.5.0</version>
+	<version>0.5.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>Think Machine</name>
 	<url>https://github.com/jorgehortelano/TheThinkingMachine</url>
-	<description>Think Machine Character Generator</description>
 
 	<organization>
 		<name>Softwaremagico</name>
@@ -24,7 +23,7 @@
 		<connection>scm:git:ssh://git@github.com/jorgehortelano/ThinkMachine.git</connection>
 		<developerConnection>scm:git:ssh://git@github.com/jorgehortelano/ThinkMachine.git</developerConnection>
 		<url>https://github.com/jorgehortelano/ThinkMachine.git</url>
-		<tag>think-machine-0.5.0</tag>
+		<tag>HEAD</tag>
 	</scm>
 
 	<distributionManagement>
@@ -47,26 +46,6 @@
 		<system>Travis</system>
 		<url>https://travis-ci.org/softwaremagico/ThinkMachine</url>
 	</ciManagement>
-
-	<developers>
-		<developer>
-			<id>jhortelano</id>
-			<name>Jorge Hortelano</name>
-			<email>softwaremagico@gmail.com</email>
-			<roles>
-				<role>Project-Administrator</role>
-				<role>Developer</role>
-			</roles>
-		</developer>
-	</developers>
-
-	<licenses>
-		<license>
-			<name>GNU GPL v3</name>
-			<url>http://www.gnu.org/licenses/gpl-3.0.html</url>
-			<distribution>repo</distribution>
-		</license>
-	</licenses>
 
 	<properties>
 		<main.basedir>${project.basedir}</main.basedir>
