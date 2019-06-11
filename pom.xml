@@ -2,28 +2,50 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.softwaremagico</groupId>
 	<artifactId>think-machine</artifactId>
-	<version>0.5.0-SNAPSHOT</version>
+	<version>0.5.0</version>
 	<packaging>pom</packaging>
 	<name>Think Machine</name>
 	<url>https://github.com/jorgehortelano/TheThinkingMachine</url>
-	
+
 	<organization>
 		<name>Softwaremagico</name>
 		<url>https://github.com/jorgehortelano/TheThinkingMachine</url>
 	</organization>
-	
+
 	<modules>
 		<module>think-machine-rules</module>
 		<module>think-machine-random</module>
 		<module>think-machine-pdf</module>
 	</modules>
-	
+
 	<scm>
+		<connection>scm:git:ssh://git@github.com/jorgehortelano/ThinkMachine.git</connection>
 		<developerConnection>scm:git:ssh://git@github.com/jorgehortelano/ThinkMachine.git</developerConnection>
 		<url>https://github.com/jorgehortelano/ThinkMachine.git</url>
-		<tag>HEAD</tag>
+		<tag>think-machine-0.5.0</tag>
 	</scm>
-	
+
+	<distributionManagement>
+		<snapshotRepository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+		<repository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+		</repository>
+	</distributionManagement>
+
+	<issueManagement>
+		<system>Github</system>
+		<url>https://github.com/softwaremagico/ThinkMachine/issues</url>
+	</issueManagement>
+
+	<ciManagement>
+		<system>Travis</system>
+		<url>https://travis-ci.org/softwaremagico/ThinkMachine</url>
+	</ciManagement>
+
 	<properties>
 		<main.basedir>${project.basedir}</main.basedir>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -38,12 +60,16 @@
 		<org.testng.version>6.8.7</org.testng.version>
 		<gson.version>2.8.0</gson.version>
 		<license-maven-plugin.version>1.12</license-maven-plugin.version>
-		<maven-release-plugin.version>2.5.1</maven-release-plugin.version>
+		<maven-release-plugin.version>2.5.3</maven-release-plugin.version>
 		<maven-scm-provider-gitexe.version>1.9.2</maven-scm-provider-gitexe.version>
 		<project.scm.id>git</project.scm.id>
 		<reflections.version>0.9.11</reflections.version>
+		<nexus-staging-maven-plugin.version>1.6.7</nexus-staging-maven-plugin.version>
+		<maven-source-plugin.version>3.0.1</maven-source-plugin.version>
+		<maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
+		<maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>
 	</properties>
-	
+
 	<build>
 		<plugins>
 			<plugin>
@@ -94,6 +120,10 @@
 					</dependency>
 				</dependencies>
 				<configuration>
+					<localCheckout>true</localCheckout>
+					<pushChanges>false</pushChanges>
+					<mavenExecutorId>forked-path</mavenExecutorId>
+					<arguments>-Dgpg.passphrase=${gpg.passphrase}</arguments>
 					<checkModificationExcludes>
 						<checkModificationExclude>pom.xml</checkModificationExclude>
 					</checkModificationExcludes>
@@ -101,9 +131,77 @@
 					<!-- During release:perform, enable the "release" profile -->
 					<releaseProfiles>release</releaseProfiles>
 					<!-- This goal is used by release:perform -->
-					<goals>install</goals>
+					<goals>deploy</goals>
 				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<version>${maven-deploy-plugin.version}</version>
+				<executions>
+					<execution>
+						<id>default-deploy</id>
+						<phase>deploy</phase>
+						<goals>
+							<goal>deploy</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.sonatype.plugins</groupId>
+				<artifactId>nexus-staging-maven-plugin</artifactId>
+				<version>${nexus-staging-maven-plugin.version}</version>
+				<extensions>true</extensions>
+				<configuration>
+					<serverId>ossrh</serverId>
+					<nexusUrl>https://oss.sonatype.org/</nexusUrl>
+					<autoReleaseAfterClose>true</autoReleaseAfterClose>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>${maven-source-plugin.version}</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
+
+	<profiles>
+		<!-- GPG Signature on release -->
+		<profile>
+			<id>release-sign-artifacts</id>
+			<activation>
+				<property>
+					<name>performRelease</name>
+					<value>true</value>
+				</property>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-gpg-plugin</artifactId>
+						<version>${maven-gpg-plugin.version}</version>
+						<executions>
+							<execution>
+								<id>sign-artifacts</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>sign</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 </project>
