@@ -184,7 +184,7 @@ public class CharacterPlayer {
 	 * Gets the starting value for a characteristic depending on the race.
 	 * 
 	 * @param characteristicName
-	 * @return
+	 * @return the initial value of a characteristic.
 	 */
 	public Integer getStartingValue(CharacteristicName characteristicName) {
 		if (CharacteristicName.DEFENSE.equals(characteristicName)) {
@@ -351,7 +351,7 @@ public class CharacterPlayer {
 	 * Gets the selected skill by specialization.
 	 * 
 	 * @param skill
-	 * @return
+	 * @return a selectedSkill
 	 */
 	public SelectedSkill getSelectedSkill(AvailableSkill skill) {
 		for (SelectedSkill selectedSkill : skills.values()) {
@@ -431,7 +431,7 @@ public class CharacterPlayer {
 	/**
 	 * Return all blessings include the factions blessings and curses.
 	 * 
-	 * @return
+	 * @return a list of blessings
 	 */
 	public List<Blessing> getAllBlessings() {
 		List<Blessing> allBlessings = new ArrayList<>(blessings);
@@ -457,7 +457,7 @@ public class CharacterPlayer {
 	/**
 	 * Return all benefices include the factions benefices.
 	 * 
-	 * @return
+	 * @return a list of available benefices
 	 */
 	public List<AvailableBenefice> getAllBenefices() throws InvalidXmlElementException {
 		List<AvailableBenefice> positiveBenefices = new ArrayList<>();
@@ -723,7 +723,7 @@ public class CharacterPlayer {
 	/**
 	 * Total points spent in characteristics.
 	 * 
-	 * @return
+	 * @return the number of points spent in characteristics
 	 */
 	public int getCharacteristicsTotalPoints() {
 		int characteristicPoints = 0;
@@ -736,7 +736,7 @@ public class CharacterPlayer {
 	/**
 	 * Total points spent in skills.
 	 * 
-	 * @return
+	 * @return the number of points spent in skills
 	 * @throws InvalidXmlElementException
 	 */
 	public int getSkillsTotalPoints() throws InvalidXmlElementException {
@@ -806,7 +806,7 @@ public class CharacterPlayer {
 	 * Return which characteristic type has higher values in its
 	 * characteristics.
 	 * 
-	 * @return CharacteristicType
+	 * @return a list of characteristicTypes
 	 */
 	public List<Entry<CharacteristicType, Integer>> getPreferredCharacteristicsTypeSorted() {
 		Map<CharacteristicType, Integer> totalRanksByCharacteristicType = new TreeMap<>();
@@ -847,6 +847,12 @@ public class CharacterPlayer {
 		return null;
 	}
 
+	/**
+	 * Gets the starting value of money in firebirds. The value cames from
+	 * "cash" benefices.
+	 * 
+	 * @return an integer represented the starting ammount of firebirds.
+	 */
 	public int getInitialMoney() {
 		try {
 			for (AvailableBenefice benefice : getAllBenefices()) {
@@ -863,6 +869,11 @@ public class CharacterPlayer {
 		}
 	}
 
+	/**
+	 * Returns the total cost of money spent in equipment.
+	 * 
+	 * @return the summatory of the costs of the equipment.
+	 */
 	public int getSpentMoney() {
 		int total = 0;
 		for (Weapon weapon : weapons.getElements()) {
@@ -885,10 +896,21 @@ public class CharacterPlayer {
 		return total;
 	}
 
+	/**
+	 * Gets the actual remaining money of the character.
+	 * 
+	 * @return the difference between the starting money and the spent one.
+	 */
 	public int getMoney() {
 		return getInitialMoney() - getSpentMoney();
 	}
 
+	/**
+	 * Gets the current rank of the status of a character.
+	 * 
+	 * @return the status of the character.
+	 * @throws InvalidXmlElementException
+	 */
 	public String getRank() throws InvalidXmlElementException {
 		BeneficeSpecialization status = getStatus();
 		if (status == null) {
@@ -1087,7 +1109,7 @@ public class CharacterPlayer {
 	 * 
 	 * @param skill
 	 *            skill to check.
-	 * @return
+	 * @return a weapon that needs this skill
 	 */
 	public Weapon hasWeaponWithSkill(AvailableSkill skill) {
 		for (Weapon weapon : getAllWeapons()) {
