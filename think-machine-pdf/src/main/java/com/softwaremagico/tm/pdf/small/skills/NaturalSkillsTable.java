@@ -35,12 +35,12 @@ import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.complete.skills.SkillsTable;
 
 public class NaturalSkillsTable extends SkillsTable {
-	private final static int MAX_SKILL_COLUMN_WIDTH = 80;
+	private static final int MAX_SKILL_COLUMN_WIDTH = 80;
 
 	public static PdfPTable getSkillsTable(CharacterPlayer characterPlayer, String language)
 			throws InvalidXmlElementException {
-		float[] widths = { 1f };
-		PdfPTable table = new PdfPTable(widths);
+		final float[] widths = { 1f };
+		final PdfPTable table = new PdfPTable(widths);
 		setTablePropierties(table);
 		table.getDefaultCell().setBorder(0);
 		table.addCell(getSkillsColumnTable(characterPlayer, language));
@@ -49,8 +49,8 @@ public class NaturalSkillsTable extends SkillsTable {
 
 	private static PdfPCell getSkillsColumnTable(CharacterPlayer characterPlayer, String language)
 			throws InvalidXmlElementException {
-		float[] widths = { 4f, 1f };
-		PdfPTable table = new PdfPTable(widths);
+		final float[] widths = { 4f, 1f };
+		final PdfPTable table = new PdfPTable(widths);
 		setTablePropierties(table);
 		table.getDefaultCell().setBorder(0);
 
@@ -58,13 +58,13 @@ public class NaturalSkillsTable extends SkillsTable {
 				FadingSunsTheme.CHARACTER_SMALL_SKILLS_TITLE_FONT_SIZE));
 
 		if (characterPlayer == null) {
-			for (AvailableSkill skill : AvailableSkillsFactory.getInstance().getNaturalSkills(language)) {
+			for (final AvailableSkill skill : AvailableSkillsFactory.getInstance().getNaturalSkills(language)) {
 				table.addCell(createSkillElement(null, skill, FadingSunsTheme.CHARACTER_SMALL_SKILLS_LINE_FONT_SIZE,
 						MAX_SKILL_COLUMN_WIDTH));
 				table.addCell(createSkillLine(SKILL_VALUE_GAP, FadingSunsTheme.CHARACTER_SMALL_SKILLS_LINE_FONT_SIZE));
 			}
 		} else {
-			for (AvailableSkill skill : characterPlayer.getNaturalSkills()) {
+			for (final AvailableSkill skill : characterPlayer.getNaturalSkills()) {
 				table.addCell(createSkillElement(characterPlayer, skill,
 						FadingSunsTheme.CHARACTER_SMALL_SKILLS_LINE_FONT_SIZE, MAX_SKILL_COLUMN_WIDTH));
 				table.addCell(createSkillValue(characterPlayer.getSkillTotalRanks(skill),
@@ -74,7 +74,7 @@ public class NaturalSkillsTable extends SkillsTable {
 			}
 		}
 
-		PdfPCell cell = new PdfPCell();
+		final PdfPCell cell = new PdfPCell();
 		setCellProperties(cell);
 
 		cell.addElement(table);

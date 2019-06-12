@@ -37,19 +37,19 @@ import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
 
 public class AmmunitionFactory extends XmlFactory<Ammunition> {
-	private final static ITranslator translatorWeapon = LanguagePool.getTranslator("ammunition.xml");
+	private static final ITranslator translatorWeapon = LanguagePool.getTranslator("ammunition.xml");
 
-	private final static String NAME = "name";
+	private static final String NAME = "name";
 
-	private final static String GOAL = "goal";
-	private final static String DAMAGE = "damage";
-	private final static String STRENGTH = "strength";
-	private final static String RANGE = "range";
-	private final static String COST = "cost";
-	private final static String SIZE = "size";
+	private static final String GOAL = "goal";
+	private static final String DAMAGE = "damage";
+	private static final String STRENGTH = "strength";
+	private static final String RANGE = "range";
+	private static final String COST = "cost";
+	private static final String SIZE = "size";
 
-	private final static String ACCESSORIES = "others";
-	private final static String DAMAGE_TYPE = "damageType";
+	private static final String ACCESSORIES = "others";
+	private static final String DAMAGE_TYPE = "damageType";
 
 	private static AmmunitionFactory instance;
 
@@ -76,7 +76,8 @@ public class AmmunitionFactory extends XmlFactory<Ammunition> {
 	}
 
 	@Override
-	protected Ammunition createElement(ITranslator translator, String ammunitionId, String language) throws InvalidXmlElementException {
+	protected Ammunition createElement(ITranslator translator, String ammunitionId, String language)
+			throws InvalidXmlElementException {
 		Ammunition ammunition = null;
 		String name = null;
 		try {
@@ -101,7 +102,7 @@ public class AmmunitionFactory extends XmlFactory<Ammunition> {
 
 		Integer strength = null;
 		try {
-			String strengthValue = translator.getNodeValue(ammunitionId, STRENGTH);
+			final String strengthValue = translator.getNodeValue(ammunitionId, STRENGTH);
 			if (strengthValue != null) {
 				strength = Integer.parseInt(strengthValue);
 			}
@@ -130,33 +131,37 @@ public class AmmunitionFactory extends XmlFactory<Ammunition> {
 			// Not mandatory.
 		}
 
-		Set<DamageType> damageOfAmmunition = new HashSet<>();
+		final Set<DamageType> damageOfAmmunition = new HashSet<>();
 		try {
-			String damageDefinition = translator.getNodeValue(ammunitionId, DAMAGE_TYPE);
+			final String damageDefinition = translator.getNodeValue(ammunitionId, DAMAGE_TYPE);
 			if (damageDefinition != null) {
-				StringTokenizer damageTypesTokenizer = new StringTokenizer(damageDefinition, ",");
+				final StringTokenizer damageTypesTokenizer = new StringTokenizer(damageDefinition, ",");
 				while (damageTypesTokenizer.hasMoreTokens()) {
-					damageOfAmmunition.add(DamageTypeFactory.getInstance().getElement(damageTypesTokenizer.nextToken().trim(), language));
+					damageOfAmmunition.add(DamageTypeFactory.getInstance().getElement(
+							damageTypesTokenizer.nextToken().trim(), language));
 				}
 			}
 		} catch (Exception e) {
 			// Not mandatory.
 		}
 
-		Set<Accessory> accessories = new HashSet<>();
-		String accesoriesNames = translator.getNodeValue(ammunitionId, ACCESSORIES);
+		final Set<Accessory> accessories = new HashSet<>();
+		final String accesoriesNames = translator.getNodeValue(ammunitionId, ACCESSORIES);
 		if (accesoriesNames != null) {
-			StringTokenizer accessoryTokenizer = new StringTokenizer(accesoriesNames, ",");
+			final StringTokenizer accessoryTokenizer = new StringTokenizer(accesoriesNames, ",");
 			while (accessoryTokenizer.hasMoreTokens()) {
 				try {
-					accessories.add(AccessoryFactory.getInstance().getElement(accessoryTokenizer.nextToken().trim(), language));
+					accessories.add(AccessoryFactory.getInstance().getElement(accessoryTokenizer.nextToken().trim(),
+							language));
 				} catch (InvalidXmlElementException ixe) {
-					throw new InvalidWeaponException("Error in accessories '" + accesoriesNames + "' structure. Invalid accessory definition. ", ixe);
+					throw new InvalidWeaponException("Error in accessories '" + accesoriesNames
+							+ "' structure. Invalid accessory definition. ", ixe);
 				}
 			}
 		}
 
-		ammunition = new Ammunition(ammunitionId, name, language, goal, damage, strength, range, size, cost, damageOfAmmunition, accessories);
+		ammunition = new Ammunition(ammunitionId, name, language, goal, damage, strength, range, size, cost,
+				damageOfAmmunition, accessories);
 
 		return ammunition;
 	}

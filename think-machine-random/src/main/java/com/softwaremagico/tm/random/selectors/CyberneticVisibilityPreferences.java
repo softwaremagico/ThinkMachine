@@ -46,7 +46,7 @@ public enum CyberneticVisibilityPreferences implements IRandomPreference {
 	}
 
 	public static CyberneticVisibilityPreferences getSelected(Set<IRandomPreference> preferences) {
-		for (IRandomPreference preference : preferences) {
+		for (final IRandomPreference preference : preferences) {
 			if (preference instanceof CyberneticVisibilityPreferences) {
 				return (CyberneticVisibilityPreferences) preference;
 			}

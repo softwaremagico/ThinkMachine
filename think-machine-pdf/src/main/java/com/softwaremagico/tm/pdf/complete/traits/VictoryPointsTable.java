@@ -32,7 +32,7 @@ import com.softwaremagico.tm.pdf.complete.elements.BaseElement;
 import com.softwaremagico.tm.pdf.complete.elements.LateralHeaderPdfPTable;
 
 public class VictoryPointsTable extends LateralHeaderPdfPTable {
-	private final static float[] WIDTHS = { 3f, 4f, 4f };
+	private static final float[] WIDTHS = { 3f, 4f, 4f };
 
 	public VictoryPointsTable() {
 		super(WIDTHS);
@@ -77,15 +77,16 @@ public class VictoryPointsTable extends LateralHeaderPdfPTable {
 	}
 
 	private static PdfPCell createLine(String text, BaseColor color) {
-		PdfPCell cell = BaseElement.getCell(text, 0, 1, Element.ALIGN_CENTER, color, FadingSunsTheme.getLineFont(), FadingSunsTheme.VICTORY_POINTS_FONT_SIZE);
+		final PdfPCell cell = BaseElement.getCell(text, 0, 1, Element.ALIGN_CENTER, color,
+				FadingSunsTheme.getLineFont(), FadingSunsTheme.VICTORY_POINTS_FONT_SIZE);
 		cell.setMinimumHeight(11);
 		cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		return cell;
 	}
 
 	private static PdfPCell createSubTitle(String text, BaseColor color) {
-		PdfPCell cell = BaseElement.getCell(text, 0, 1, Element.ALIGN_CENTER, color, FadingSunsTheme.getLineFontBold(),
-				FadingSunsTheme.VICTORY_POINTS_FONT_SIZE);
+		final PdfPCell cell = BaseElement.getCell(text, 0, 1, Element.ALIGN_CENTER, color,
+				FadingSunsTheme.getLineFontBold(), FadingSunsTheme.VICTORY_POINTS_FONT_SIZE);
 		cell.setMinimumHeight(13);
 		cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		return cell;

@@ -60,10 +60,10 @@ public class CharacterInfo {
 	private String weight;
 
 	public String getTranslatedParameter(String fieldName) {
-		for (Field field : this.getClass().getDeclaredFields()) {
+		for (final Field field : this.getClass().getDeclaredFields()) {
 			// field.setAccessible(true); //Make it public.
 			if (field.getName().equals(fieldName)) {
-				Object value;
+				final Object value;
 				try {
 					value = field.get(this);
 					if (value != null) {
@@ -79,8 +79,9 @@ public class CharacterInfo {
 
 	private String getTranslation(Object parameterValue) {
 		try {
-			String xmlTag = parameterValue.toString().substring(0, 1).toLowerCase() + parameterValue.toString().substring(1);
-			String translatedText = translator.getTranslatedText(xmlTag);
+			final String xmlTag = parameterValue.toString().substring(0, 1).toLowerCase()
+					+ parameterValue.toString().substring(1);
+			final String translatedText = translator.getTranslatedText(xmlTag);
 			if (translatedText != null) {
 				return translatedText;
 			}

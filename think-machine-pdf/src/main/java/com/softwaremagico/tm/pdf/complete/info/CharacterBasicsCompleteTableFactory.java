@@ -36,8 +36,8 @@ import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 public class CharacterBasicsCompleteTableFactory extends CharacterBasicsTableFactory {
 
 	public static PdfPTable getCharacterBasicsTable(CharacterPlayer characterPlayer) {
-		float[] widths = { 1f, 1f, 1f };
-		PdfPTable table = new PdfPTable(widths);
+		final float[] widths = { 1f, 1f, 1f };
+		final PdfPTable table = new PdfPTable(widths);
 		setTablePropierties(table);
 		table.addCell(getFirstColumnTable(characterPlayer));
 		table.addCell(getSecondColumnTable(characterPlayer));
@@ -46,8 +46,8 @@ public class CharacterBasicsCompleteTableFactory extends CharacterBasicsTableFac
 	}
 
 	private static PdfPCell getFirstColumnTable(CharacterPlayer characterPlayer) {
-		float[] widths = { 1f };
-		PdfPTable table = new PdfPTable(widths);
+		final float[] widths = { 1f };
+		final PdfPTable table = new PdfPTable(widths);
 		setTablePropierties(table);
 
 		table.addCell(createField(characterPlayer, "name", FadingSunsTheme.CHARACTER_BASICS_FONT_SIZE));
@@ -55,7 +55,7 @@ public class CharacterBasicsCompleteTableFactory extends CharacterBasicsTableFac
 		table.addCell(createField(characterPlayer, "gender", FadingSunsTheme.CHARACTER_BASICS_FONT_SIZE));
 		table.addCell(createField(characterPlayer, "age", FadingSunsTheme.CHARACTER_BASICS_FONT_SIZE));
 
-		PdfPCell cell = new PdfPCell();
+		final PdfPCell cell = new PdfPCell();
 		setCellProperties(cell);
 
 		cell.addElement(table);
@@ -64,8 +64,8 @@ public class CharacterBasicsCompleteTableFactory extends CharacterBasicsTableFac
 	}
 
 	private static PdfPCell getSecondColumnTable(CharacterPlayer characterPlayer) {
-		float[] widths = { 1f };
-		PdfPTable table = new PdfPTable(widths);
+		final float[] widths = { 1f };
+		final PdfPTable table = new PdfPTable(widths);
 		setTablePropierties(table);
 
 		table.addCell(createField(characterPlayer, "race", FadingSunsTheme.CHARACTER_BASICS_FONT_SIZE));
@@ -73,7 +73,7 @@ public class CharacterBasicsCompleteTableFactory extends CharacterBasicsTableFac
 		table.addCell(createField(characterPlayer, "faction", FadingSunsTheme.CHARACTER_BASICS_FONT_SIZE));
 		table.addCell(createField(characterPlayer, "rank", FadingSunsTheme.CHARACTER_BASICS_FONT_SIZE));
 
-		PdfPCell cell = new PdfPCell();
+		final PdfPCell cell = new PdfPCell();
 		setCellProperties(cell);
 
 		cell.addElement(table);

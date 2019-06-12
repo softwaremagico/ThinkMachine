@@ -24,8 +24,6 @@ package com.softwaremagico.tm;
  * #L%
  */
 
-import com.softwaremagico.tm.InvalidXmlElementException;
-
 public class ElementAlreadyExistsException extends InvalidXmlElementException {
 	private static final long serialVersionUID = 3558660253411869827L;
 

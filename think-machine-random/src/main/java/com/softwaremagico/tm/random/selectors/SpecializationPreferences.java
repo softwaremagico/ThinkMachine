@@ -74,7 +74,7 @@ public enum SpecializationPreferences implements IRandomPreference, IGaussianDis
 	}
 
 	public static SpecializationPreferences getSelected(Set<IRandomPreference> preferences) {
-		for (IRandomPreference preference : preferences) {
+		for (final IRandomPreference preference : preferences) {
 			if (preference instanceof SpecializationPreferences) {
 				return (SpecializationPreferences) preference;
 			}

@@ -59,7 +59,7 @@ public class CharacteristicDefinition extends Element<CharacteristicDefinition> 
 	}
 
 	public CharacteristicName getCharacteristicName() {
-		for (CharacteristicName characteristicName : CharacteristicName.values()) {
+		for (final CharacteristicName characteristicName : CharacteristicName.values()) {
 			if (Objects.equals(characteristicName.getId().toLowerCase(), getId().toLowerCase())) {
 				return characteristicName;
 			}
@@ -82,18 +82,23 @@ public class CharacteristicDefinition extends Element<CharacteristicDefinition> 
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj) {
 			return true;
-		if (!super.equals(obj))
+		}
+		if (!super.equals(obj)) {
 			return false;
-		if (getClass() != obj.getClass())
+		}
+		if (getClass() != obj.getClass()) {
 			return false;
-		CharacteristicDefinition other = (CharacteristicDefinition) obj;
+		}
+		final CharacteristicDefinition other = (CharacteristicDefinition) obj;
 		if (abbreviature == null) {
-			if (other.abbreviature != null)
+			if (other.abbreviature != null) {
 				return false;
-		} else if (!abbreviature.equals(other.abbreviature))
+			}
+		} else if (!abbreviature.equals(other.abbreviature)) {
 			return false;
+		}
 		return true;
 	}
 }

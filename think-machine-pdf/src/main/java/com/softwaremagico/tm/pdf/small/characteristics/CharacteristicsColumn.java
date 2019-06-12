@@ -41,16 +41,16 @@ import com.softwaremagico.tm.pdf.complete.elements.BaseElement;
 import com.softwaremagico.tm.pdf.complete.elements.CustomPdfTable;
 
 public class CharacteristicsColumn extends CustomPdfTable {
-	private final static String GAP = "   ";
-	private final static String SKILL_VALUE_GAP = "__";
+	private static final String GAP = "   ";
+	private static final String SKILL_VALUE_GAP = "__";
 
-	private final static int ROW_HEIGHT = 36;
-	private final static float[] widths = { 1 };
+	private static final int ROW_HEIGHT = 36;
+	private static final float[] widths = { 1 };
 
 	public CharacteristicsColumn(CharacterPlayer characterPlayer, CharacteristicType characteristicType,
 			List<CharacteristicDefinition> content) {
 		super(widths);
-		PdfPCell title = createCompactTitle(getTranslator().getTranslatedText(characteristicType.getTranslationTag()),
+		final PdfPCell title = createCompactTitle(getTranslator().getTranslatedText(characteristicType.getTranslationTag()),
 				FadingSunsTheme.CHARACTER_SMALL_CHARACTERISTICS_TITLE_FONT_SIZE);
 		title.setColspan(widths.length);
 		addCell(title);
@@ -58,13 +58,13 @@ public class CharacteristicsColumn extends CustomPdfTable {
 	}
 
 	private PdfPCell createContent(CharacterPlayer characterPlayer, List<CharacteristicDefinition> content) {
-		float[] widths = { 4f, 1f };
-		PdfPTable table = new PdfPTable(widths);
+		final float[] widths = { 4f, 1f };
+		final PdfPTable table = new PdfPTable(widths);
 		BaseElement.setTablePropierties(table);
 		table.getDefaultCell().setBorder(0);
 
-		for (CharacteristicDefinition characteristic : content) {
-			Paragraph paragraph = new Paragraph();
+		for (final CharacteristicDefinition characteristic : content) {
+			final Paragraph paragraph = new Paragraph();
 			paragraph.add(new Paragraph(getTranslator().getTranslatedText(characteristic.getId()), new Font(
 					FadingSunsTheme.getLineFont(), FadingSunsTheme.CHARACTER_SMALL_CHARACTERISTICS_LINE_FONT_SIZE)));
 			paragraph.add(new Paragraph(" (", new Font(FadingSunsTheme.getLineFont(),
@@ -80,7 +80,7 @@ public class CharacteristicsColumn extends CustomPdfTable {
 			paragraph.add(new Paragraph(")", new Font(FadingSunsTheme.getLineFont(),
 					FadingSunsTheme.CHARACTER_SMALL_CHARACTERISTICS_LINE_FONT_SIZE)));
 
-			PdfPCell characteristicTitle = new PdfPCell(paragraph);
+			final PdfPCell characteristicTitle = new PdfPCell(paragraph);
 			characteristicTitle.setBorder(0);
 			characteristicTitle.setMinimumHeight(ROW_HEIGHT / content.size());
 			table.addCell(characteristicTitle);
@@ -95,7 +95,7 @@ public class CharacteristicsColumn extends CustomPdfTable {
 			}
 		}
 
-		PdfPCell cell = new PdfPCell();
+		final PdfPCell cell = new PdfPCell();
 		cell.addElement(table);
 		BaseElement.setCellProperties(cell);
 
@@ -104,7 +104,7 @@ public class CharacteristicsColumn extends CustomPdfTable {
 
 	private String getCharacteristicValueRepresentation(CharacterPlayer characterPlayer,
 			CharacteristicName characteristicName) {
-		StringBuilder representation = new StringBuilder();
+		final StringBuilder representation = new StringBuilder();
 		representation.append(characterPlayer.getValue(characteristicName));
 		if (characterPlayer.hasCharacteristicTemporalModificator(characteristicName)) {
 			representation.append("*");
@@ -116,14 +116,14 @@ public class CharacteristicsColumn extends CustomPdfTable {
 	}
 
 	private static PdfPCell getHandwrittingCell(String text, int align) {
-		PdfPCell cell = BaseElement
+		final PdfPCell cell = BaseElement
 				.getCell(text, 0, 0, align, BaseColor.WHITE, FadingSunsTheme.getHandwrittingFont(), FadingSunsTheme
 						.getHandWrittingFontSize(FadingSunsTheme.CHARACTER_SMALL_CHARACTERISTICS_LINE_FONT_SIZE));
 		return cell;
 	}
 
 	private static PdfPCell createCharacteristicLine(String text) {
-		PdfPCell cell = BaseElement.getCell(text, 0, 1, Element.ALIGN_LEFT, BaseColor.WHITE,
+		final PdfPCell cell = BaseElement.getCell(text, 0, 1, Element.ALIGN_LEFT, BaseColor.WHITE,
 				FadingSunsTheme.getLineFont(), FadingSunsTheme.CHARACTER_SMALL_CHARACTERISTICS_LINE_FONT_SIZE);
 		//cell.setMinimumHeight((MainSkillsTableFactory.HEIGHT / ROWS));
 		//cell.setVerticalAlignment(Element.ALIGN_MIDDLE);

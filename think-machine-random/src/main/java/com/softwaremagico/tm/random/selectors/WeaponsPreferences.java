@@ -47,7 +47,7 @@ public enum WeaponsPreferences implements IRandomPreference {
 	}
 
 	public static WeaponsPreferences getSelected(Set<IRandomPreference> preferences) {
-		for (IRandomPreference preference : preferences) {
+		for (final IRandomPreference preference : preferences) {
 			if (preference instanceof WeaponsPreferences) {
 				return (WeaponsPreferences) preference;
 			}

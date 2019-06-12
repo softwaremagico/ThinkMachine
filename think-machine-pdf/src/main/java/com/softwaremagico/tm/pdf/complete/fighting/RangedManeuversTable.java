@@ -32,13 +32,13 @@ import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.complete.elements.LateralHeaderPdfPTable;
 
 public class RangedManeuversTable extends LateralHeaderPdfPTable {
-	private final static float[] WIDTHS = { 1.2f, 4f, 3f, 2.5f, 5f };
-	private final static int ROWS = 12;
-	private final static String GAP = "____________________";
-	private final static int NAME_COLUMN_WIDHT = 60;
-	private final static int GOAL_COLUMN_WIDHT = 40;
-	private final static int DAMAGE_COLUMN_WIDHT = 30;
-	private final static int OTHERS_COLUMN_WIDHT = 65;
+	private static final float[] WIDTHS = { 1.2f, 4f, 3f, 2.5f, 5f };
+	private static final int ROWS = 12;
+	private static final String GAP = "____________________";
+	private static final int NAME_COLUMN_WIDHT = 60;
+	private static final int GOAL_COLUMN_WIDHT = 40;
+	private static final int DAMAGE_COLUMN_WIDHT = 30;
+	private static final int OTHERS_COLUMN_WIDHT = 65;
 
 	public RangedManeuversTable(CharacterPlayer characterPlayer) throws InvalidXmlElementException {
 		super(WIDTHS);
@@ -75,8 +75,8 @@ public class RangedManeuversTable extends LateralHeaderPdfPTable {
 
 		int addedActions = 0;
 		if (characterPlayer != null) {
-			for (CombatStyle style : characterPlayer.getRangedCombatStyles()) {
-				for (CombatAction action : style.getCombatActions()) {
+			for (final CombatStyle style : characterPlayer.getRangedCombatStyles()) {
+				for (final CombatAction action : style.getCombatActions()) {
 					if (action.isAvailable(characterPlayer)) {
 						addCell(createFirstElementLine(action.getName(), NAME_COLUMN_WIDHT, FadingSunsTheme.COMBAT_ACTIONS_CONTENT_FONT_SIZE));
 						addCell(createElementLine(action.getGoal(), GOAL_COLUMN_WIDHT, FadingSunsTheme.COMBAT_ACTIONS_CONTENT_FONT_SIZE));

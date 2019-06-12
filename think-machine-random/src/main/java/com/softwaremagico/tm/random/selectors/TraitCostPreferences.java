@@ -72,7 +72,7 @@ public enum TraitCostPreferences implements IRandomPreference, IGaussianDistribu
 	}
 
 	public static TraitCostPreferences getSelected(Set<IRandomPreference> preferences) {
-		for (IRandomPreference preference : preferences) {
+		for (final IRandomPreference preference : preferences) {
 			if (preference instanceof TraitCostPreferences) {
 				return (TraitCostPreferences) preference;
 			}

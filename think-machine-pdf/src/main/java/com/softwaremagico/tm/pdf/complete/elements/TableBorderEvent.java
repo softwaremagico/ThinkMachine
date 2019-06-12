@@ -53,14 +53,14 @@ public class TableBorderEvent implements PdfPTableEventAfterSplit {
 
 	@Override
 	public void tableLayout(PdfPTable table, float[][] widths, float[] heights, int headerRows, int rowStart, PdfContentByte[] canvas) {
-		float width[] = widths[0];
-		float x1 = width[0];
-		float x2 = width[width.length - 1];
-		float y1 = heights[0];
-		float y2 = heights[heights.length - 1];
+		final float width[] = widths[0];
+		final float x1 = width[0];
+		final float x2 = width[width.length - 1];
+		final float y1 = heights[0];
+		final float y2 = heights[heights.length - 1];
 
-		PdfContentByte cb = canvas[PdfPTable.LINECANVAS];
-		Rectangle rect1 = new Rectangle(x1, y1, x2, y2);
+		final PdfContentByte cb = canvas[PdfPTable.LINECANVAS];
+		final Rectangle rect1 = new Rectangle(x1, y1, x2, y2);
 		rect1.setBorder(Rectangle.BOX);
 		rect1.setBorderWidth(2);
 		cb.rectangle(rect1);

@@ -36,9 +36,9 @@ import com.softwaremagico.tm.random.selectors.StatusPreferences;
 public class GaussianDistributionTests {
 
 	private Map<Integer, Integer> getValues(IGaussianDistribution gaussianDistributionToTest, int maxIterations) {
-		Map<Integer, Integer> totalValues = new HashMap<>();
+		final Map<Integer, Integer> totalValues = new HashMap<>();
 		for (int i = 0; i < maxIterations; i++) {
-			int value = gaussianDistributionToTest.randomGaussian();
+			final int value = gaussianDistributionToTest.randomGaussian();
 			if (totalValues.get(value) == null) {
 				totalValues.put(value, 1);
 			} else {

@@ -43,19 +43,19 @@ import com.softwaremagico.tm.random.selectors.IRandomPreference;
 import com.softwaremagico.tm.random.selectors.RandomPreferenceUtils;
 
 public class RandomProfileFactory extends XmlFactory<RandomProfile> {
-	private final static ITranslator translator = LanguagePool.getTranslator("profiles.xml");
+	private static final ITranslator translator = LanguagePool.getTranslator("profiles.xml");
 
-	private final static String NAME = "name";
-	private final static String PREFERENCES = "preferences";
-	private final static String CHARACTERISTICS_MINIMUM_VALUES = "characteristicsMinimumValues";
-	private final static String REQUIRED_SKILLS = "requiredSkills";
-	private final static String SUGGESTED_SKILLS = "suggestedSkills";
-	private final static String REQUIRED_SKILL = "skill";
-	private final static String REQUIRED_SKILLS_ID = "id";
-	private final static String REQUIRED_SKILLS_SPECIALIZATION = "speciality";
-	private final static String SUGGESTED_BENEFICES = "suggestedBenefices";
-	private final static String MANDATORY_BENEFICES = "mandatoryBenefices";
-	private final static String PARENT = "parent";
+	private static final String NAME = "name";
+	private static final String PREFERENCES = "preferences";
+	private static final String CHARACTERISTICS_MINIMUM_VALUES = "characteristicsMinimumValues";
+	private static final String REQUIRED_SKILLS = "requiredSkills";
+	private static final String SUGGESTED_SKILLS = "suggestedSkills";
+	private static final String REQUIRED_SKILL = "skill";
+	private static final String REQUIRED_SKILLS_ID = "id";
+	private static final String REQUIRED_SKILLS_SPECIALIZATION = "speciality";
+	private static final String SUGGESTED_BENEFICES = "suggestedBenefices";
+	private static final String MANDATORY_BENEFICES = "mandatoryBenefices";
+	private static final String PARENT = "parent";
 
 	private static RandomProfileFactory instance;
 
@@ -87,7 +87,7 @@ public class RandomProfileFactory extends XmlFactory<RandomProfile> {
 
 	@Override
 	public RandomProfile getElement(String elementId, String language) throws InvalidXmlElementException {
-		RandomProfile randomProfile = super.getElement(elementId, language);
+		final RandomProfile randomProfile = super.getElement(elementId, language);
 		if (!randomProfile.isParentMerged()) {
 			setParent(randomProfile, translator, language);
 		}
@@ -96,10 +96,10 @@ public class RandomProfileFactory extends XmlFactory<RandomProfile> {
 
 	protected void setParent(RandomProfile profile, ITranslator translator, String language)
 			throws InvalidXmlElementException {
-		String parentName = translator.getNodeValue(profile.getId(), PARENT);
+		final String parentName = translator.getNodeValue(profile.getId(), PARENT);
 		if (parentName != null && !parentName.isEmpty()) {
 			try {
-				RandomProfile parent = RandomProfileFactory.getInstance().getElement(parentName, language);
+				final RandomProfile parent = RandomProfileFactory.getInstance().getElement(parentName, language);
 				profile.setParent(parent);
 			} catch (Exception e) {
 				throw new InvalidProfileException("Invalid parent in profile '" + profile + "'.");
@@ -117,19 +117,19 @@ public class RandomProfileFactory extends XmlFactory<RandomProfile> {
 			throw new InvalidProfileException("Invalid name in profile '" + profileId + "'.");
 		}
 
-		Set<IRandomPreference> preferencesSelected = new HashSet<>();
-		String preferencesSelectedNames = translator.getNodeValue(profileId, PREFERENCES);
+		final Set<IRandomPreference> preferencesSelected = new HashSet<>();
+		final String preferencesSelectedNames = translator.getNodeValue(profileId, PREFERENCES);
 		if (preferencesSelectedNames != null) {
-			StringTokenizer preferencesSelectedTokenizer = new StringTokenizer(preferencesSelectedNames, ",");
+			final StringTokenizer preferencesSelectedTokenizer = new StringTokenizer(preferencesSelectedNames, ",");
 			while (preferencesSelectedTokenizer.hasMoreTokens()) {
 				preferencesSelected.add(RandomPreferenceUtils.getSelectedPreference(preferencesSelectedTokenizer
 						.nextToken().trim()));
 			}
 		}
 
-		Map<CharacteristicName, Integer> characteristicsMinimumValues = new HashMap<>();
-		for (CharacteristicName characteristicName : CharacteristicName.values()) {
-			String characteristicValue = translator.getNodeValue(profileId, CHARACTERISTICS_MINIMUM_VALUES,
+		final Map<CharacteristicName, Integer> characteristicsMinimumValues = new HashMap<>();
+		for (final CharacteristicName characteristicName : CharacteristicName.values()) {
+			final String characteristicValue = translator.getNodeValue(profileId, CHARACTERISTICS_MINIMUM_VALUES,
 					characteristicName.name().toLowerCase());
 			if (characteristicValue != null) {
 				try {
@@ -141,7 +141,7 @@ public class RandomProfileFactory extends XmlFactory<RandomProfile> {
 			}
 		}
 
-		Set<AvailableSkill> requiredSkills = new HashSet<>();
+		final Set<AvailableSkill> requiredSkills = new HashSet<>();
 		int node = 0;
 		while (true) {
 			try {
@@ -180,7 +180,7 @@ public class RandomProfileFactory extends XmlFactory<RandomProfile> {
 			}
 		}
 
-		Set<AvailableSkill> suggestedSkills = new HashSet<>();
+		final Set<AvailableSkill> suggestedSkills = new HashSet<>();
 		node = 0;
 		while (true) {
 			try {
@@ -220,10 +220,10 @@ public class RandomProfileFactory extends XmlFactory<RandomProfile> {
 			}
 		}
 
-		String mandatoryBeneficesList = getTranslator().getNodeValue(profileId, MANDATORY_BENEFICES);
-		Set<BeneficeDefinition> mandatoryBenefices = new HashSet<>();
+		final String mandatoryBeneficesList = getTranslator().getNodeValue(profileId, MANDATORY_BENEFICES);
+		final Set<BeneficeDefinition> mandatoryBenefices = new HashSet<>();
 		if (mandatoryBeneficesList != null) {
-			StringTokenizer mandatoyBeneficesTokenizer = new StringTokenizer(mandatoryBeneficesList, ",");
+			final StringTokenizer mandatoyBeneficesTokenizer = new StringTokenizer(mandatoryBeneficesList, ",");
 			while (mandatoyBeneficesTokenizer.hasMoreTokens()) {
 				try {
 					mandatoryBenefices.add(BeneficeDefinitionFactory.getInstance().getElement(
@@ -235,10 +235,10 @@ public class RandomProfileFactory extends XmlFactory<RandomProfile> {
 			}
 		}
 
-		String suggestedBeneficesList = getTranslator().getNodeValue(profileId, SUGGESTED_BENEFICES);
-		Set<BeneficeDefinition> suggestedBenefices = new HashSet<>();
+		final String suggestedBeneficesList = getTranslator().getNodeValue(profileId, SUGGESTED_BENEFICES);
+		final Set<BeneficeDefinition> suggestedBenefices = new HashSet<>();
 		if (suggestedBeneficesList != null) {
-			StringTokenizer suggestedBeneficesTokenizer = new StringTokenizer(suggestedBeneficesList, ",");
+			final StringTokenizer suggestedBeneficesTokenizer = new StringTokenizer(suggestedBeneficesList, ",");
 			while (suggestedBeneficesTokenizer.hasMoreTokens()) {
 				try {
 					suggestedBenefices.add(BeneficeDefinitionFactory.getInstance().getElement(
@@ -250,7 +250,7 @@ public class RandomProfileFactory extends XmlFactory<RandomProfile> {
 			}
 		}
 
-		RandomProfile profile = new RandomProfile(profileId, name, language, preferencesSelected,
+		final RandomProfile profile = new RandomProfile(profileId, name, language, preferencesSelected,
 				characteristicsMinimumValues, requiredSkills, suggestedSkills, mandatoryBenefices, suggestedBenefices);
 		return profile;
 	}

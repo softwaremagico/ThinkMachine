@@ -64,8 +64,8 @@ import com.softwaremagico.tm.pdf.small.SmallCharacterSheet;
 
 @Test(groups = { "characterPdfGeneration" })
 public class CharacterSheetCreationTest {
-	private final static String PDF_PATH_OUTPUT = System.getProperty("java.io.tmpdir") + File.separator;
-	private final static String LANGUAGE = "es";
+	private static final String PDF_PATH_OUTPUT = System.getProperty("java.io.tmpdir") + File.separator;
+	private static final String LANGUAGE = "es";
 
 	private CharacterPlayer player;
 
@@ -77,20 +77,20 @@ public class CharacterSheetCreationTest {
 	@Test
 	public void emptyPdfSpanish() throws MalformedURLException, DocumentException, IOException {
 		CacheHandler.clearCache();
-		CharacterSheet sheet = new CharacterSheet(LANGUAGE);
+		final CharacterSheet sheet = new CharacterSheet(LANGUAGE);
 		Assert.assertEquals(sheet.createFile(PDF_PATH_OUTPUT + "FadingSuns_ES.pdf"), 2);
 	}
 
 	@Test
 	public void emptyPdfEnglish() throws MalformedURLException, DocumentException, IOException {
 		CacheHandler.clearCache();
-		CharacterSheet sheet = new CharacterSheet("en");
+		final CharacterSheet sheet = new CharacterSheet("en");
 		Assert.assertEquals(sheet.createFile(PDF_PATH_OUTPUT + "FadingSuns_EN.pdf"), 2);
 	}
 
 	@Test
 	public void emptyPdfSmallEn() throws InvalidXmlElementException {
-		SmallCharacterSheet sheet = new SmallCharacterSheet("en");
+		final SmallCharacterSheet sheet = new SmallCharacterSheet("en");
 		Assert.assertEquals(
 				sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator
 						+ "FadingSuns_Small_EN.pdf"), 1);
@@ -98,7 +98,7 @@ public class CharacterSheetCreationTest {
 
 	@Test
 	public void emptyPdfSmallEs() {
-		SmallCharacterSheet sheet = new SmallCharacterSheet("es");
+		final SmallCharacterSheet sheet = new SmallCharacterSheet("es");
 		Assert.assertEquals(
 				sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator
 						+ "FadingSuns_Small_ES.pdf"), 1);
@@ -186,7 +186,7 @@ public class CharacterSheetCreationTest {
 		player.setShield(ShieldFactory.getInstance().getElement("assaultShield", LANGUAGE));
 
 		LanguagePool.clearCache();
-		CharacterSheet sheet = new CharacterSheet(player);
+		final CharacterSheet sheet = new CharacterSheet(player);
 		Assert.assertEquals(sheet.createFile(PDF_PATH_OUTPUT + "CharacterFS_ES.pdf"), 2);
 
 		Assert.assertEquals(CostCalculator.getCost(player), 50);

@@ -48,19 +48,18 @@ public class Planet extends Element<Planet> {
 	}
 
 	public Set<Name> getNames() {
-		Set<Name> names = new HashSet<>();
-		for (Faction faction : factions) {
+		final Set<Name> names = new HashSet<>();
+		for (final Faction faction : factions) {
 			names.addAll(FactionsFactory.getInstance().getAllNames(faction));
 		}
 		return names;
 	}
 
 	public Set<Surname> getSurnames() {
-		Set<Surname> names = new HashSet<>();
-		for (Faction faction : factions) {
+		final Set<Surname> names = new HashSet<>();
+		for (final Faction faction : factions) {
 			names.addAll(FactionsFactory.getInstance().getAllSurnames(faction));
 		}
 		return names;
 	}
-
 }

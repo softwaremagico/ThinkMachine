@@ -36,22 +36,22 @@ import com.softwaremagico.tm.pdf.complete.elements.BaseElement;
 import com.softwaremagico.tm.pdf.complete.elements.CustomPdfTable;
 
 public class ArmourTable extends CustomPdfTable {
-	private final static String GAP = "____________________";
-	private final static int NAME_COLUMN_WIDTH = 30;
-	private final static int ARMOUR_VALUE_COLUMN_WIDTH = 10;
+	private static final String GAP = "____________________";
+	private static final int NAME_COLUMN_WIDTH = 30;
+	private static final int ARMOUR_VALUE_COLUMN_WIDTH = 10;
 
 	public ArmourTable(CharacterPlayer characterPlayer) {
 		super(new float[] { 2.2f, 3 });
 		getDefaultCell().setBorder(0);
 
 		// Armor
-		Font font = new Font(FadingSunsTheme.getTitleFont(), FadingSunsTheme.CHARACTER_SMALL_ARMOR_TITLE_FONT_SIZE);
-		Phrase content = new Phrase(getTranslator().getTranslatedText("armor"), font);
-		PdfPCell titleCell = new PdfPCell(content);
+		final Font font = new Font(FadingSunsTheme.getTitleFont(), FadingSunsTheme.CHARACTER_SMALL_ARMOR_TITLE_FONT_SIZE);
+		final Phrase content = new Phrase(getTranslator().getTranslatedText("armor"), font);
+		final PdfPCell titleCell = new PdfPCell(content);
 		titleCell.setBorder(0);
 		addCell(titleCell);
 
-		PdfPCell nameCell;
+		final PdfPCell nameCell;
 		if (characterPlayer == null) {
 			nameCell = CustomPdfTable.createEmptyElementLine(GAP, NAME_COLUMN_WIDTH);
 		} else if (characterPlayer.getArmour() == null) {
@@ -68,7 +68,7 @@ public class ArmourTable extends CustomPdfTable {
 		// Shield
 		addCell(getShieldRange(characterPlayer));
 
-		Paragraph paragraph = new Paragraph();
+		final Paragraph paragraph = new Paragraph();
 		paragraph.add(new Paragraph(getTranslator().getTranslatedText("shieldHits") + ": ", new Font(FadingSunsTheme
 				.getLineFont(), FadingSunsTheme.ARMOUR_CONTENT_FONT_SIZE)));
 		if (characterPlayer != null && characterPlayer.getShield() != null) {
@@ -76,15 +76,15 @@ public class ArmourTable extends CustomPdfTable {
 					.getHandwrittingFont(), FadingSunsTheme
 					.getHandWrittingFontSize(FadingSunsTheme.ARMOUR_CONTENT_FONT_SIZE))));
 		}
-		PdfPCell shieldCell = new PdfPCell(paragraph);
+		final PdfPCell shieldCell = new PdfPCell(paragraph);
 		shieldCell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		shieldCell.setBorder(0);
 		addCell(shieldCell);
 	}
 
 	private PdfPTable getShieldRange(CharacterPlayer characterPlayer) {
-		float[] widths = { 1f, 3f, 1f, 3f, 1f };
-		PdfPTable table = new PdfPTable(widths);
+		final float[] widths = { 1f, 3f, 1f, 3f, 1f };
+		final PdfPTable table = new PdfPTable(widths);
 		BaseElement.setTablePropierties(table);
 		table.getDefaultCell().setBorder(0);
 		table.getDefaultCell().setPadding(0);

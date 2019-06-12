@@ -46,7 +46,7 @@ public class PartySheet extends CharacterSheet {
 
 	@Override
 	protected void createContent(Document document) throws Exception {
-		for (CharacterPlayer characterPlayer : party.getMembers()) {
+		for (final CharacterPlayer characterPlayer : party.getMembers()) {
 			createCharacterPDF(document, characterPlayer);
 		}
 	}

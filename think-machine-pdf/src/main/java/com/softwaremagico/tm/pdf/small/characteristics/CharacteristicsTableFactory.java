@@ -39,14 +39,14 @@ import com.softwaremagico.tm.pdf.complete.elements.BaseElement;
 public class CharacteristicsTableFactory extends BaseElement {
 
 	public static PdfPTable getCharacteristicsBasicsTable(CharacterPlayer characterPlayer) {
-		float[] widths = { 1f, 1f };
-		PdfPTable table = new PdfPTable(widths);
+		final float[] widths = { 1f, 1f };
+		final PdfPTable table = new PdfPTable(widths);
 		setTablePropierties(table);
 		table.getDefaultCell().setBorder(0);
 
-		Phrase content = new Phrase(getTranslator().getTranslatedText("characteristics"), new Font(FadingSunsTheme.getTitleFont(),
-				FadingSunsTheme.CHARACTER_SMALL_TITLE_FONT_SIZE));
-		PdfPCell titleCell = new PdfPCell(content);
+		final Phrase content = new Phrase(getTranslator().getTranslatedText("characteristics"), new Font(
+				FadingSunsTheme.getTitleFont(), FadingSunsTheme.CHARACTER_SMALL_TITLE_FONT_SIZE));
+		final PdfPCell titleCell = new PdfPCell(content);
 		setCellProperties(titleCell);
 		titleCell.setHorizontalAlignment(Element.ALIGN_CENTER);
 		titleCell.setColspan(widths.length);
@@ -54,9 +54,9 @@ public class CharacteristicsTableFactory extends BaseElement {
 		table.addCell(titleCell);
 		table.getDefaultCell().setPadding(0);
 
-		for (CharacteristicType type : CharacteristicType.values()) {
-			table.addCell(new CharacteristicsColumn(characterPlayer, type, CharacteristicsDefinitionFactory.getInstance()
-					.getAll(type, Translator.getLanguage())));
+		for (final CharacteristicType type : CharacteristicType.values()) {
+			table.addCell(new CharacteristicsColumn(characterPlayer, type, CharacteristicsDefinitionFactory
+					.getInstance().getAll(type, Translator.getLanguage())));
 		}
 
 		return table;

@@ -40,9 +40,9 @@ public class WyrdTable extends CounterTable {
 
 		getDefaultCell().setBorder(0);
 
-		Font font = new Font(FadingSunsTheme.getTitleFont(), FadingSunsTheme.CHARACTER_VITALITY_TITLE_FONT_SIZE);
-		Phrase content = new Phrase(getTranslator().getTranslatedText("wyrd"), font);
-		PdfPCell titleCell = new PdfPCell(content);
+		final Font font = new Font(FadingSunsTheme.getTitleFont(), FadingSunsTheme.CHARACTER_VITALITY_TITLE_FONT_SIZE);
+		final Phrase content = new Phrase(getTranslator().getTranslatedText("wyrd"), font);
+		final PdfPCell titleCell = new PdfPCell(content);
 		titleCell.setBorder(0);
 		titleCell.setPaddingTop(paddingTop);
 		titleCell.setVerticalAlignment(Element.ALIGN_MIDDLE);

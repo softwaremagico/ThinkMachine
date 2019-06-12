@@ -78,9 +78,9 @@ public class Race extends Element<Race> {
 	}
 
 	public RaceCharacteristic getParameter(CharacteristicName characteristicName) {
-		for (Field field : this.getClass().getDeclaredFields()) {
+		for (final Field field : this.getClass().getDeclaredFields()) {
 			if (field.getType().isAssignableFrom(RaceCharacteristic.class)) {
-				RaceCharacteristic parameter;
+				final RaceCharacteristic parameter;
 				try {
 					parameter = (RaceCharacteristic) field.get(this);
 					if (parameter != null) {

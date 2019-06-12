@@ -35,7 +35,7 @@ import com.softwaremagico.tm.pdf.complete.elements.CustomPdfTable;
 import com.softwaremagico.tm.pdf.complete.elements.CellCompleteBoxEvent.Border;
 
 public abstract class CounterTable extends CustomPdfTable {
-	protected final static float[] WIDTHS = { 2.8f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f,
+	protected static final float[] WIDTHS = { 2.8f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f,
 			1f, 1f };
 	protected int addedCircle = 0;
 	// http://stackoverflow.com/questions/5554553/itext-pdftable-cell-vertical-alignment
@@ -58,15 +58,15 @@ public abstract class CounterTable extends CustomPdfTable {
 			return createCircle();
 		}
 		if (addedCircle == getSelectedValue() - 1) {
-			PdfPCell cell = createCircle();
+			final PdfPCell cell = createCircle();
 			cell.setCellEvent(new CellCompleteBoxEvent(1, new Border[] { Border.TOP, Border.BOTTOM, Border.RIGHT }));
 			return cell;
 		} else if (addedCircle == 0 && getSelectedValue() > 0) {
-			PdfPCell cell = createCircle();
+			final PdfPCell cell = createCircle();
 			cell.setCellEvent(new CellCompleteBoxEvent(1, new Border[] { Border.TOP, Border.BOTTOM, Border.LEFT }));
 			return cell;
 		} else if (addedCircle < getSelectedValue() - 1) {
-			PdfPCell cell = createCircle();
+			final PdfPCell cell = createCircle();
 			cell.setCellEvent(new CellCompleteBoxEvent(1, new Border[] { Border.TOP, Border.BOTTOM }));
 			return cell;
 		} else {
@@ -75,14 +75,14 @@ public abstract class CounterTable extends CustomPdfTable {
 	}
 
 	protected PdfPCell createCircle() {
-		PdfPCell cell = createValue("O", new Font(FadingSunsTheme.getTitleFont(),
+		final PdfPCell cell = createValue("O", new Font(FadingSunsTheme.getTitleFont(),
 				FadingSunsTheme.CHARACTER_COUNTER_POINT_SIZE), Element.ALIGN_MIDDLE);
 		return cell;
 	}
 
 	protected PdfPCell createValue(String text, Font font, int alignment) {
-		Phrase content = new Phrase(text, font);
-		PdfPCell circleCell = new PdfPCell(content);
+		final Phrase content = new Phrase(text, font);
+		final PdfPCell circleCell = new PdfPCell(content);
 		// Not putting correctly the "o" at the center of the cell.
 		// http://stackoverflow.com/questions/5554553/itext-pdftable-cell-vertical-alignment
 		circleCell.setPaddingTop(paddingTop);

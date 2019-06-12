@@ -103,7 +103,7 @@ public class Occultism {
 
 	public int getTotalSelectedPowers() {
 		int total = 0;
-		for (Entry<String, List<String>> entry : getSelectedPowers().entrySet()) {
+		for (final Entry<String, List<String>> entry : getSelectedPowers().entrySet()) {
 			if (entry.getValue() != null) {
 				total += entry.getValue().size();
 			}
@@ -115,7 +115,7 @@ public class Occultism {
 		if (power == null) {
 			throw new InvalidOccultismPowerException("Power cannot be null.");
 		}
-		OccultismPath path = OccultismPathFactory.getInstance().getOccultismPath(power, language);
+		final OccultismPath path = OccultismPathFactory.getInstance().getOccultismPath(power, language);
 		// Correct level of psi or teurgy
 		if (Objects.equals(path.getOccultismType(), OccultismTypeFactory.getPsi(language))
 				&& power.getLevel() > getPsiqueLevel(OccultismTypeFactory.getPsi(language))) {
@@ -134,7 +134,7 @@ public class Occultism {
 		// Psi must have previous level.
 		if (Objects.equals(path.getOccultismType(), OccultismTypeFactory.getPsi(language))) {
 			boolean acquiredLevel = false;
-			for (OccultismPower previousLevelPower : path.getPreviousLevelPowers(power)) {
+			for (final OccultismPower previousLevelPower : path.getPreviousLevelPowers(power)) {
 				if (selectedPowers.get(path.getId()) != null && selectedPowers.get(path.getId()).contains(previousLevelPower.getId())) {
 					acquiredLevel = true;
 					break;

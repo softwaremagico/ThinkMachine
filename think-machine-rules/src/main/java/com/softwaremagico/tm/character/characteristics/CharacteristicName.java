@@ -71,7 +71,7 @@ public enum CharacteristicName {
 	}
 
 	public static CharacteristicName get(String tag) {
-		for (CharacteristicName characteristicName : CharacteristicName.values()) {
+		for (final CharacteristicName characteristicName : CharacteristicName.values()) {
 			if (characteristicName.name().equalsIgnoreCase(tag)) {
 				return characteristicName;
 			}

@@ -28,7 +28,6 @@ import java.util.Collection;
 import java.util.Set;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.factions.Faction;
 import com.softwaremagico.tm.character.planets.Planet;
 import com.softwaremagico.tm.character.planets.PlanetFactory;
@@ -38,11 +37,12 @@ import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedExcep
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
 
 public class RandomPlanet extends RandomSelector<Planet> {
-	private final static int FACTION_PLANET = 50;
-	private final static int NEUTRAL_PLANET = 8;
-	private final static int ENEMY_PLANET = 1;
+	private static final int FACTION_PLANET = 50;
+	private static final int NEUTRAL_PLANET = 8;
+	private static final int ENEMY_PLANET = 1;
 
-	public RandomPlanet(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences) throws InvalidXmlElementException {
+	public RandomPlanet(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences)
+			throws InvalidXmlElementException {
 		super(characterPlayer, preferences);
 	}
 
@@ -61,7 +61,7 @@ public class RandomPlanet extends RandomSelector<Planet> {
 		if (planet.getFactions().contains(getCharacterPlayer().getFaction())) {
 			return FACTION_PLANET;
 		}
-		for (Faction factionsOfPlanet : planet.getFactions()) {
+		for (final Faction factionsOfPlanet : planet.getFactions()) {
 			if (factionsOfPlanet.getFactionGroup() == getCharacterPlayer().getFaction().getFactionGroup()) {
 				return ENEMY_PLANET;
 			}

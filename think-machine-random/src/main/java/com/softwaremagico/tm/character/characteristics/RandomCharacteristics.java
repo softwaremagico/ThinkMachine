@@ -45,8 +45,8 @@ import com.softwaremagico.tm.random.selectors.SpecializationPreferences;
 import com.softwaremagico.tm.random.selectors.TechnologicalPreferences;
 
 public class RandomCharacteristics extends RandomSelector<Characteristic> {
-	private final static int MIN_FAITH_FOR_THEURGY = 6;
-	private final static int MIN_WILL_FOR_PSIQUE = 5;
+	private static final int MIN_FAITH_FOR_THEURGY = 6;
+	private static final int MIN_WILL_FOR_PSIQUE = 5;
 
 	public RandomCharacteristics(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences)
 			throws InvalidXmlElementException {
@@ -55,22 +55,22 @@ public class RandomCharacteristics extends RandomSelector<Characteristic> {
 
 	@Override
 	public void assign() throws InvalidRandomElementSelectedException {
-		SpecializationPreferences selectedSpecialization = SpecializationPreferences.getSelected(getPreferences());
+		final SpecializationPreferences selectedSpecialization = SpecializationPreferences.getSelected(getPreferences());
 
 		IRandomPreference techPreference = null;
-		for (IRandomPreference preference : getPreferences()) {
+		for (final IRandomPreference preference : getPreferences()) {
 			if (preference instanceof TechnologicalPreferences) {
 				techPreference = preference;
 			}
 		}
 
-		DifficultLevelPreferences difficultLevel = DifficultLevelPreferences.getSelected(getPreferences());
+		final DifficultLevelPreferences difficultLevel = DifficultLevelPreferences.getSelected(getPreferences());
 
 		// Assign random values by weight
 		while (getCharacterPlayer().getCharacteristicsTotalPoints() < FreeStyleCharacterCreation
 				.getCharacteristicsPoints(getCharacterPlayer().getInfo().getAge())
 				+ difficultLevel.getCharacteristicsBonus()) {
-			Characteristic selectedCharacteristic = selectElementByWeight();
+			final Characteristic selectedCharacteristic = selectElementByWeight();
 			if (selectedCharacteristic.getValue() >= selectedSpecialization.maximum()) {
 				removeElementWeight(selectedCharacteristic);
 				continue;
@@ -105,7 +105,7 @@ public class RandomCharacteristics extends RandomSelector<Characteristic> {
 					+ characteristic + "' cannot have assigned ranks.");
 		}
 
-		DifficultLevelPreferences preference = DifficultLevelPreferences.getSelected(getPreferences());
+		final DifficultLevelPreferences preference = DifficultLevelPreferences.getSelected(getPreferences());
 
 		int weight = 1;
 		if (CharacteristicType.BODY.equals(characteristic.getType())) {
@@ -165,7 +165,7 @@ public class RandomCharacteristics extends RandomSelector<Characteristic> {
 
 		// Psique
 		if (characteristic.getCharacteristicName() == CharacteristicName.WILL) {
-			PsiqueLevelPreferences psique = PsiqueLevelPreferences.getSelected(getPreferences());
+			final PsiqueLevelPreferences psique = PsiqueLevelPreferences.getSelected(getPreferences());
 			switch (psique) {
 			case FAIR:
 			case HIGH:
@@ -174,7 +174,7 @@ public class RandomCharacteristics extends RandomSelector<Characteristic> {
 				break;
 			}
 
-			CyberneticPointsPreferences cyberneticPoints = CyberneticPointsPreferences.getSelected(getPreferences());
+			final CyberneticPointsPreferences cyberneticPoints = CyberneticPointsPreferences.getSelected(getPreferences());
 			switch (cyberneticPoints) {
 			case HIGH:
 				return LITTLE_PROBABILITY;
@@ -206,8 +206,8 @@ public class RandomCharacteristics extends RandomSelector<Characteristic> {
 		characteristic.setValue(getCharacterPlayer().getStartingValue(characteristic.getCharacteristicName()));
 
 		if (getCharacterPlayer().isCharacteristicTrained(characteristic)) {
-			SpecializationPreferences selectedSpecialization = SpecializationPreferences.getSelected(getPreferences());
-			int characteristicRanks = getCharacterPlayer().getCharacteristic(characteristic.getCharacteristicName())
+			final SpecializationPreferences selectedSpecialization = SpecializationPreferences.getSelected(getPreferences());
+			final int characteristicRanks = getCharacterPlayer().getCharacteristic(characteristic.getCharacteristicName())
 					.getValue();
 			if (characteristicRanks < selectedSpecialization.minimum()) {
 				characteristic.setValue(selectedSpecialization.minimum());
@@ -216,14 +216,14 @@ public class RandomCharacteristics extends RandomSelector<Characteristic> {
 
 		if (characteristic.getCharacteristicName() == CharacteristicName.TECH) {
 			// Minimum tech level for preferences.
-			TechnologicalPreferences preference = TechnologicalPreferences.getSelected(getPreferences());
+			final TechnologicalPreferences preference = TechnologicalPreferences.getSelected(getPreferences());
 			if (preference != null) {
 				getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).setValue(
 						((TechnologicalPreferences) preference).minimum());
 			}
 
 			// Minimum tech level for equipment.
-			int techLevel = getCharacterPlayer().getEquipmentMaxTechnologicalLevel();
+			final int techLevel = getCharacterPlayer().getEquipmentMaxTechnologicalLevel();
 			if (techLevel < characteristic.getValue()
 					&& (techLevel > getCharacterPlayer().getRace().get(CharacteristicName.TECH).getInitialValue())
 					&& techLevel < getCharacterPlayer().getRace().get(CharacteristicName.TECH).getMaximumValue()) {
@@ -244,7 +244,7 @@ public class RandomCharacteristics extends RandomSelector<Characteristic> {
 		
 		// Theurgy
 		if (characteristic.getCharacteristicName() == CharacteristicName.FAITH) {
-			PsiqueLevelPreferences psique = PsiqueLevelPreferences.getSelected(getPreferences());
+			final PsiqueLevelPreferences psique = PsiqueLevelPreferences.getSelected(getPreferences());
 			if (psique.maximum() > 2) {
 				if (getCharacterPlayer().getFaction() != null
 						&& getCharacterPlayer().getFaction().getFactionGroup() == FactionGroup.CHURCH) {
@@ -260,7 +260,7 @@ public class RandomCharacteristics extends RandomSelector<Characteristic> {
 		}
 		// Psique
 		if (characteristic.getCharacteristicName() == CharacteristicName.WILL) {
-			PsiqueLevelPreferences psique = PsiqueLevelPreferences.getSelected(getPreferences());
+			final PsiqueLevelPreferences psique = PsiqueLevelPreferences.getSelected(getPreferences());
 			if (psique.maximum() > 2) {
 				if (characteristic.getValue() < Math.min(MIN_WILL_FOR_PSIQUE, FreeStyleCharacterCreation
 						.getMaxInitialCharacteristicsValues(characteristic.getCharacteristicName(),

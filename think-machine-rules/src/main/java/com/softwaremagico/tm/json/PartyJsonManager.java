@@ -51,7 +51,7 @@ public class PartyJsonManager {
 
 	public static String toJson(Party party) {
 		if (party != null) {
-			GsonBuilder gsonBuilder = new GsonBuilder();
+			final GsonBuilder gsonBuilder = new GsonBuilder();
 			gsonBuilder.setPrettyPrinting();
 			gsonBuilder.setExclusionStrategies(new AnnotationExclusionStrategy()).create();
 			gsonBuilder.registerTypeAdapter(IValue.class, new IValueSerializer<IValue>());
@@ -67,8 +67,8 @@ public class PartyJsonManager {
 			gsonBuilder.registerTypeAdapter(CyberneticDevice.class, new CyberneticDeviceAdapter());
 			// final Gson gson = new
 			// GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
-			Gson gson = gsonBuilder.create();
-			String jsonText = gson.toJson(party);
+			final Gson gson = gsonBuilder.create();
+			final String jsonText = gson.toJson(party);
 			return jsonText;
 		}
 		return null;
@@ -76,7 +76,7 @@ public class PartyJsonManager {
 
 	public static Party fromJson(String jsonText) {
 		if (jsonText != null && jsonText.length() > 0) {
-			GsonBuilder gsonBuilder = new GsonBuilder();
+			final GsonBuilder gsonBuilder = new GsonBuilder();
 			gsonBuilder.setPrettyPrinting();
 			gsonBuilder.registerTypeAdapter(IValue.class, new InterfaceAdapter<IValue>());
 			gsonBuilder.registerTypeAdapter(Faction.class, new FactionAdapter());
@@ -89,16 +89,16 @@ public class PartyJsonManager {
 			gsonBuilder.registerTypeAdapter(Armour.class, new ArmourAdapter());
 			gsonBuilder.registerTypeAdapter(Shield.class, new ShieldAdapter());
 			gsonBuilder.registerTypeAdapter(CyberneticDevice.class, new CyberneticDeviceAdapter());
-			Gson gson = gsonBuilder.create();
+			final Gson gson = gsonBuilder.create();
 
-			Party party = gson.fromJson(jsonText, Party.class);
+			final Party party = gson.fromJson(jsonText, Party.class);
 			return party;
 		}
 		return null;
 	}
 
 	public static Party fromFile(String path) throws IOException {
-		String jsonText = new String(Files.readAllBytes(Paths.get(path)));
+		final String jsonText = new String(Files.readAllBytes(Paths.get(path)));
 		return fromJson(jsonText);
 	}
 

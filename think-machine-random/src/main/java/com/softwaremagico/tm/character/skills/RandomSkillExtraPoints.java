@@ -37,35 +37,42 @@ import com.softwaremagico.tm.random.selectors.IRandomPreference;
 
 public class RandomSkillExtraPoints extends RandomSkills {
 
-	public RandomSkillExtraPoints(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences, Set<AvailableSkill> suggestedSkills) throws InvalidXmlElementException {
-		super(characterPlayer, preferences, new HashSet<AvailableSkill>(),suggestedSkills);
+	public RandomSkillExtraPoints(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences,
+			Set<AvailableSkill> suggestedSkills) throws InvalidXmlElementException {
+		super(characterPlayer, preferences, new HashSet<AvailableSkill>(), suggestedSkills);
 	}
 
-	public int spendSkillsPoints(int remainingPoints) throws InvalidRandomElementSelectedException, InvalidXmlElementException {
+	public int spendSkillsPoints(int remainingPoints) throws InvalidRandomElementSelectedException,
+			InvalidXmlElementException {
 		return spendSkillsPoints(selectElementByWeight(), remainingPoints);
 	}
 
-	public int spendSkillsPoints(AvailableSkill selectedSkill, int remainingPoints) throws InvalidRandomElementSelectedException, InvalidXmlElementException {
+	public int spendSkillsPoints(AvailableSkill selectedSkill, int remainingPoints)
+			throws InvalidRandomElementSelectedException, InvalidXmlElementException {
 		int addedRanks = ranksToAdd(selectedSkill) - getCharacterPlayer().getSkillAssignedRanks(selectedSkill);
 		if (addedRanks * CostCalculator.SKILL_EXTRA_POINTS_COST > remainingPoints) {
 			addedRanks = remainingPoints / CostCalculator.SKILL_EXTRA_POINTS_COST;
 		}
 		if (addedRanks > 0) {
-			RandomGenerationLog.info(this.getClass().getName(), "Added '" + addedRanks + "' ranks to skill '" + selectedSkill + "'.");
+			RandomGenerationLog.info(this.getClass().getName(), "Added '" + addedRanks + "' ranks to skill '"
+					+ selectedSkill + "'.");
 		}
 		// Only if adding more ranks.
-		if (getCharacterPlayer().getSkillAssignedRanks(selectedSkill) + addedRanks < getCharacterPlayer().getSkillAssignedRanks(selectedSkill)) {
+		if (getCharacterPlayer().getSkillAssignedRanks(selectedSkill) + addedRanks < getCharacterPlayer()
+				.getSkillAssignedRanks(selectedSkill)) {
 			return 0;
 		}
-		getCharacterPlayer().setSkillRank(selectedSkill, getCharacterPlayer().getSkillAssignedRanks(selectedSkill) + addedRanks);
+		getCharacterPlayer().setSkillRank(selectedSkill,
+				getCharacterPlayer().getSkillAssignedRanks(selectedSkill) + addedRanks);
 		return addedRanks * CostCalculator.SKILL_EXTRA_POINTS_COST;
 	}
 
-	private int ranksToAdd(AvailableSkill availableSkill) throws InvalidXmlElementException, InvalidRandomElementSelectedException {
+	private int ranksToAdd(AvailableSkill availableSkill) throws InvalidXmlElementException,
+			InvalidRandomElementSelectedException {
 		int finalRanks = getRankValue(availableSkill);
-		int currentRanks = getCharacterPlayer().getSkillAssignedRanks(availableSkill);
-		if (getCharacterPlayer().getSkillAssignedRanks(availableSkill) + finalRanks > FreeStyleCharacterCreation.getMaxInitialSkillsValues(getCharacterPlayer()
-				.getInfo().getAge())) {
+		final int currentRanks = getCharacterPlayer().getSkillAssignedRanks(availableSkill);
+		if (getCharacterPlayer().getSkillAssignedRanks(availableSkill) + finalRanks > FreeStyleCharacterCreation
+				.getMaxInitialSkillsValues(getCharacterPlayer().getInfo().getAge())) {
 			finalRanks = FreeStyleCharacterCreation.getMaxInitialSkillsValues(getCharacterPlayer().getInfo().getAge());
 		}
 		if (finalRanks > currentRanks) {
@@ -75,7 +82,8 @@ public class RandomSkillExtraPoints extends RandomSkills {
 	}
 
 	@Override
-	protected int checkMaxSkillRanksValues(AvailableSkill availableSkill, int finalRanks) throws InvalidXmlElementException {
+	protected int checkMaxSkillRanksValues(AvailableSkill availableSkill, int finalRanks)
+			throws InvalidXmlElementException {
 		// If respects age maximum.
 		if (finalRanks > FreeStyleCharacterCreation.getMaxInitialSkillsValues(getCharacterPlayer().getInfo().getAge())) {
 			finalRanks = FreeStyleCharacterCreation.getMaxInitialSkillsValues(getCharacterPlayer().getInfo().getAge());

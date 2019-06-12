@@ -37,14 +37,14 @@ import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.complete.elements.LateralHeaderPdfPTable;
 
 public class CyberneticsTable extends LateralHeaderPdfPTable {
-	private final static float[] WIDTHS = { 0.8f, 3f, 1f, 1f, 11f };
-	private final static int ROWS = 9;
-	private final static String GAP = "____________________________________________________________________________________________________";
-	private final static String ELEMENT_SEPARATOR = ", ";
-	private final static int NAME_COLUMN_WIDTH = 60;
-	private final static int POINTS_COLUMN_WIDTH = 17;
-	private final static int INCOMPATIBILITY_COLUMN_WIDTH = 17;
-	private final static int TRAITS_COLUMN_WIDTH = 220;
+	private static final float[] WIDTHS = { 0.8f, 3f, 1f, 1f, 11f };
+	private static final int ROWS = 9;
+	private static final String GAP = "____________________________________________________________________________________________________";
+	private static final String ELEMENT_SEPARATOR = ", ";
+	private static final int NAME_COLUMN_WIDTH = 60;
+	private static final int POINTS_COLUMN_WIDTH = 17;
+	private static final int INCOMPATIBILITY_COLUMN_WIDTH = 17;
+	private static final int TRAITS_COLUMN_WIDTH = 220;
 
 	public CyberneticsTable(CharacterPlayer characterPlayer) {
 		super(WIDTHS);
@@ -57,9 +57,9 @@ public class CyberneticsTable extends LateralHeaderPdfPTable {
 
 		int addedDevices = 0;
 		if (characterPlayer != null) {
-			List<SelectedCyberneticDevice> devices = new ArrayList<>(characterPlayer.getCybernetics());
+			final List<SelectedCyberneticDevice> devices = new ArrayList<>(characterPlayer.getCybernetics());
 			Collections.sort(devices, new CyberneticComparatorByRequirements());
-			for (SelectedCyberneticDevice device : devices) {
+			for (final SelectedCyberneticDevice device : devices) {
 				addCell(createFirstElementLine(device.getRequirement() != null ? " - " + device.getName() : device.getName(), NAME_COLUMN_WIDTH,
 						FadingSunsTheme.CYBERNETICS_CONTENT_FONT_SIZE));
 				addCell(createElementLine(device.getPoints() + "", POINTS_COLUMN_WIDTH, FadingSunsTheme.CYBERNETICS_CONTENT_FONT_SIZE));
@@ -79,9 +79,9 @@ public class CyberneticsTable extends LateralHeaderPdfPTable {
 	}
 
 	private String getTraitsRepresentation(List<CyberneticDeviceTrait> traits) {
-		StringBuilder stringBuilder = new StringBuilder();
+		final StringBuilder stringBuilder = new StringBuilder();
 		String separator = "";
-		for (CyberneticDeviceTrait trait : traits) {
+		for (final CyberneticDeviceTrait trait : traits) {
 			stringBuilder.append(separator);
 			stringBuilder.append(trait.getName());
 			separator = ELEMENT_SEPARATOR;
@@ -108,13 +108,13 @@ public class CyberneticsTable extends LateralHeaderPdfPTable {
 				return 1;
 			}
 			// Use requirements to set priorities.
-			String name1;
+			final String name1;
 			if (a.getRequirement() != null) {
 				name1 = a.getRequirement().getName() + a.getName();
 			} else {
 				name1 = a.getName();
 			}
-			String name2;
+			final String name2;
 			if (element.getRequirement() != null) {
 				name2 = element.getRequirement().getName() + element.getName();
 			} else {

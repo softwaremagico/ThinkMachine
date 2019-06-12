@@ -36,16 +36,16 @@ import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
 
 public class BlessingFactory extends XmlFactory<Blessing> {
-	private final static ITranslator translatorBlessing = LanguagePool.getTranslator("blessings.xml");
+	private static final ITranslator translatorBlessing = LanguagePool.getTranslator("blessings.xml");
 
-	private final static String NAME = "name";
-	private final static String COST = "cost";
-	private final static String BONIFICATION = "bonification";
-	private final static String VALUE = "value";
-	private final static String AFFECTS = "affects";
-	private final static String SITUATION = "situation";
-	private final static String CURSE = "curse";
-	private final static String GROUP = "group";
+	private static final String NAME = "name";
+	private static final String COST = "cost";
+	private static final String BONIFICATION = "bonification";
+	private static final String VALUE = "value";
+	private static final String AFFECTS = "affects";
+	private static final String SITUATION = "situation";
+	private static final String CURSE = "curse";
+	private static final String GROUP = "group";
 
 	private static BlessingFactory instance;
 
@@ -70,29 +70,29 @@ public class BlessingFactory extends XmlFactory<Blessing> {
 	protected Blessing createElement(ITranslator translator, String blessingId, String language) throws InvalidXmlElementException {
 
 		try {
-			String name = translator.getNodeValue(blessingId, NAME, language);
+			final String name = translator.getNodeValue(blessingId, NAME, language);
 
-			String cost = translator.getNodeValue(blessingId, COST);
+			final String cost = translator.getNodeValue(blessingId, COST);
 
 			BlessingGroup blessingGroup = null;
-			String groupName = translator.getNodeValue(blessingId, GROUP);
+			final String groupName = translator.getNodeValue(blessingId, GROUP);
 			if (groupName != null) {
 				blessingGroup = BlessingGroup.get(groupName);
 			}
 
-			Set<Bonification> bonifications = new HashSet<>();
+			final Set<Bonification> bonifications = new HashSet<>();
 			int node = 0;
 			while (true) {
 				try {
-					String bonificationValue = translator.getNodeValue(blessingId, BONIFICATION, VALUE, node);
-					String valueName = translator.getNodeValue(blessingId, BONIFICATION, AFFECTS, node);
+					final String bonificationValue = translator.getNodeValue(blessingId, BONIFICATION, VALUE, node);
+					final String valueName = translator.getNodeValue(blessingId, BONIFICATION, AFFECTS, node);
 					IValue affects = null;
 					if (valueName != null) {
 						affects = SpecialValue.getValue(valueName, language);
 					}
-					String situation = translator.getNodeValue(blessingId, SITUATION, language, node);
+					final String situation = translator.getNodeValue(blessingId, SITUATION, language, node);
 
-					Bonification bonification = new Bonification(Integer.parseInt(bonificationValue), affects, situation);
+					final Bonification bonification = new Bonification(Integer.parseInt(bonificationValue), affects, situation);
 					bonifications.add(bonification);
 					node++;
 				} catch (Exception e) {
@@ -100,7 +100,7 @@ public class BlessingFactory extends XmlFactory<Blessing> {
 				}
 			}
 
-			String curseTag = translator.getNodeValue(blessingId, CURSE);
+			final String curseTag = translator.getNodeValue(blessingId, CURSE);
 			BlessingClassification blessingClassification = BlessingClassification.BLESSING;
 
 			if (curseTag != null) {
@@ -109,7 +109,7 @@ public class BlessingFactory extends XmlFactory<Blessing> {
 				}
 			}
 
-			Blessing blessing = new Blessing(blessingId, name, language, Integer.parseInt(cost), bonifications, blessingClassification, blessingGroup);
+			final Blessing blessing = new Blessing(blessingId, name, language, Integer.parseInt(cost), bonifications, blessingClassification, blessingGroup);
 			return blessing;
 		} catch (Exception e) {
 			throw new InvalidBlessingException("Invalid structure in blessing '" + blessingId + "'.", e);

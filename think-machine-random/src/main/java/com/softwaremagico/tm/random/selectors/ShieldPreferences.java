@@ -43,12 +43,12 @@ public enum ShieldPreferences implements IRandomPreference {
 	}
 
 	public static ShieldPreferences getSelected(Set<IRandomPreference> preferences) {
-		for (IRandomPreference preference : preferences) {
+		for (final IRandomPreference preference : preferences) {
 			if (preference instanceof ShieldPreferences) {
 				return (ShieldPreferences) preference;
 			}
 		}
-		DifficultLevelPreferences difficultPreferences = DifficultLevelPreferences.getSelected(preferences);
+		final DifficultLevelPreferences difficultPreferences = DifficultLevelPreferences.getSelected(preferences);
 		switch (difficultPreferences) {
 		case EASY:
 		case VERY_EASY:

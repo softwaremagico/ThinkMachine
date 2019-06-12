@@ -36,10 +36,10 @@ import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
 
 public class PlanetFactory extends XmlFactory<Planet> {
-	private final static ITranslator translator = LanguagePool.getTranslator("planets.xml");
+	private static final ITranslator translator = LanguagePool.getTranslator("planets.xml");
 
-	private final static String NAME = "name";
-	private final static String FACTION = "factions";
+	private static final String NAME = "name";
+	private static final String FACTION = "factions";
 
 	private static PlanetFactory instance;
 
@@ -61,19 +61,22 @@ public class PlanetFactory extends XmlFactory<Planet> {
 	}
 
 	@Override
-	protected Planet createElement(ITranslator translator, String planetId, String language) throws InvalidXmlElementException {
+	protected Planet createElement(ITranslator translator, String planetId, String language)
+			throws InvalidXmlElementException {
 		try {
-			String name = translator.getNodeValue(planetId, NAME, language);
-			String factionsName = translator.getNodeValue(planetId, FACTION);
+			final String name = translator.getNodeValue(planetId, NAME, language);
+			final String factionsName = translator.getNodeValue(planetId, FACTION);
 
-			Set<Faction> factions = new HashSet<>();
+			final Set<Faction> factions = new HashSet<>();
 			if (factionsName != null) {
-				StringTokenizer factionsNameTokenizer = new StringTokenizer(factionsName, ",");
+				final StringTokenizer factionsNameTokenizer = new StringTokenizer(factionsName, ",");
 				while (factionsNameTokenizer.hasMoreTokens()) {
 					try {
-						factions.add(FactionsFactory.getInstance().getElement(factionsNameTokenizer.nextToken().trim(), language));
+						factions.add(FactionsFactory.getInstance().getElement(factionsNameTokenizer.nextToken().trim(),
+								language));
 					} catch (InvalidXmlElementException ixe) {
-						throw new InvalidPlanetException("Error in planet '" + planetId + "' structure. Invalid faction defintion.", ixe);
+						throw new InvalidPlanetException("Error in planet '" + planetId
+								+ "' structure. Invalid faction defintion.", ixe);
 					}
 				}
 			}

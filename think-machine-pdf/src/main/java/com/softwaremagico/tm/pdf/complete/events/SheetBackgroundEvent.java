@@ -36,11 +36,11 @@ import com.softwaremagico.tm.log.PdfExporterLog;
 import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 
 public class SheetBackgroundEvent extends PdfPageEventHelper {
-	private final static int IMAGE_HEIGHT = 100;
-	private final static int IMAGE_WIDTH = 125;
-	private final static int IMAGE_BORDER = 10;
+	private static final int IMAGE_HEIGHT = 100;
+	private static final int IMAGE_WIDTH = 125;
+	private static final int IMAGE_BORDER = 10;
 
-	private final static int BAR_HEIGHT = 17;
+	private static final int BAR_HEIGHT = 17;
 
 	private Image rightCorner, leftCorner, mainTitle;
 
@@ -64,7 +64,7 @@ public class SheetBackgroundEvent extends PdfPageEventHelper {
 
 		try {
 			mainTitle = Image.getInstance(SheetBackgroundEvent.class.getResource("/" + FadingSunsTheme.MAIN_TITLE_IMAGE));
-			float barWeight = document.getPageSize().getWidth() - IMAGE_WIDTH * 2;
+			final float barWeight = document.getPageSize().getWidth() - IMAGE_WIDTH * 2;
 			mainTitle.setAbsolutePosition(IMAGE_HEIGHT + IMAGE_BORDER * 2 + 3, document.getPageSize().getHeight() - BAR_HEIGHT - IMAGE_BORDER);
 			mainTitle.scaleAbsolute(barWeight, BAR_HEIGHT);
 		} catch (BadElementException | IOException e) {

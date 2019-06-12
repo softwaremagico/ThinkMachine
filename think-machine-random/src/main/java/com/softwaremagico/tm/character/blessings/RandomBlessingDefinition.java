@@ -48,12 +48,12 @@ public class RandomBlessingDefinition extends RandomSelector<Blessing> {
 
 	@Override
 	public void assign() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
-		IGaussianDistribution blessingDistribution = BlessingNumberPreferences.getSelected(getPreferences());
+		final IGaussianDistribution blessingDistribution = BlessingNumberPreferences.getSelected(getPreferences());
 		// Select a blessing
-		int totalSelectedBlessings = blessingDistribution.randomGaussian();
+		final int totalSelectedBlessings = blessingDistribution.randomGaussian();
 		while (getCharacterPlayer().getBlessings().size() < totalSelectedBlessings
 				+ getCharacterPlayer().getFaction().getBlessings(BlessingClassification.BLESSING).size()) {
-			Blessing selectedBlessing = selectElementByWeight();
+			final Blessing selectedBlessing = selectElementByWeight();
 			try {
 				getCharacterPlayer().addBlessing(selectedBlessing);
 				RandomGenerationLog.info(this.getClass().getName(), "Added blessing '" + selectedBlessing + "'.");
@@ -87,15 +87,16 @@ public class RandomBlessingDefinition extends RandomSelector<Blessing> {
 		}
 		// If specialization is set, add blessings that affects the skills with
 		// ranks.
-		SpecializationPreferences specializationPreferences = SpecializationPreferences.getSelected(getPreferences());
-		for (AvailableSkill skill : blessing.getAffectedSkill(getCharacterPlayer().getLanguage())) {
+		final SpecializationPreferences specializationPreferences = SpecializationPreferences.getSelected(getPreferences());
+		for (final AvailableSkill skill : blessing.getAffectedSkill(getCharacterPlayer().getLanguage())) {
 			// More specialized, less ranks required to skip the curse.
-			if (specializationPreferences.mean() >= SpecializationPreferences.FAIR.mean())
+			if (specializationPreferences.mean() >= SpecializationPreferences.FAIR.mean()) {
 				if (getCharacterPlayer().getSkillAssignedRanks(skill) >= specializationPreferences.mean()) {
 					return GOOD_PROBABILITY;
 				}
+			}
 		}
-		for (AvailableSkill skill : blessing.getAffectedSkill(getCharacterPlayer().getLanguage())) {
+		for (final AvailableSkill skill : blessing.getAffectedSkill(getCharacterPlayer().getLanguage())) {
 			// More specialized, less ranks required to skip the curse.
 			if (getCharacterPlayer().getSkillAssignedRanks(skill) >= (10 - specializationPreferences.maximum())) {
 				return FAIR_PROBABILITY;
@@ -106,7 +107,7 @@ public class RandomBlessingDefinition extends RandomSelector<Blessing> {
 
 	@Override
 	protected void assignIfMandatory(Blessing blessing) throws InvalidXmlElementException, ImpossibleToAssignMandatoryElementException {
-		BlessingPreferences blessingPreferences = BlessingPreferences.getSelected(getPreferences());
+		final BlessingPreferences blessingPreferences = BlessingPreferences.getSelected(getPreferences());
 		if (blessingPreferences != null && blessing.getBlessingGroup() == BlessingGroup.get(blessingPreferences.name())) {
 			try {
 				getCharacterPlayer().addBlessing(blessing);

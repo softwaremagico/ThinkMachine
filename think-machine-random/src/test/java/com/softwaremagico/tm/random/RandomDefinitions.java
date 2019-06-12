@@ -47,13 +47,13 @@ public class RandomDefinitions {
 
 	@Test
 	public void removeElementWeight() throws DuplicatedPreferenceException, InvalidXmlElementException, InvalidRandomElementSelectedException {
-		CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
+		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
 
-		AvailableSkill ride = AvailableSkillsFactory.getInstance().getElement("ride", LANGUAGE);
-		AvailableSkill warfare = AvailableSkillsFactory.getInstance().getElement("warfare", LANGUAGE);
+		final AvailableSkill ride = AvailableSkillsFactory.getInstance().getElement("ride", LANGUAGE);
+		final AvailableSkill warfare = AvailableSkillsFactory.getInstance().getElement("warfare", LANGUAGE);
 
-		RandomSkills originalSkills = new RandomSkills(characterPlayer, null);
-		RandomSkills editedSkills = new RandomSkills(characterPlayer, null);
+		final RandomSkills originalSkills = new RandomSkills(characterPlayer, null);
+		final RandomSkills editedSkills = new RandomSkills(characterPlayer, null);
 
 		Assert.assertEquals(originalSkills.getAssignedWeight(ride), editedSkills.getAssignedWeight(ride));
 		Assert.assertEquals(originalSkills.getAssignedWeight(warfare), editedSkills.getAssignedWeight(warfare));

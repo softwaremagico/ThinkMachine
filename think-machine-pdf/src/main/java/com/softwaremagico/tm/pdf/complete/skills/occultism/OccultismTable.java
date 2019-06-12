@@ -38,8 +38,8 @@ import com.softwaremagico.tm.pdf.complete.elements.BaseElement;
 import com.softwaremagico.tm.pdf.complete.elements.LateralHeaderPdfPTable;
 
 public class OccultismTable extends LateralHeaderPdfPTable {
-	private final static int ROW_WIDTH = 70;
-	private final static float[] widths = { 1f, 6f };
+	private static final int ROW_WIDTH = 70;
+	private static final float[] widths = { 1f, 6f };
 
 	public OccultismTable(CharacterPlayer characterPlayer, String language) throws InvalidXmlElementException {
 		super(widths);
@@ -53,21 +53,21 @@ public class OccultismTable extends LateralHeaderPdfPTable {
 
 	@Override
 	protected PdfPCell createLateralVerticalTitle(String title, int rowspan) {
-		PdfPCell titleCell = super.createLateralVerticalTitle(title, rowspan);
+		final PdfPCell titleCell = super.createLateralVerticalTitle(title, rowspan);
 		titleCell.setMinimumHeight(ROW_WIDTH);
 		return titleCell;
 	}
 
 	private PdfPCell createContent(CharacterPlayer characterPlayer, String language) throws InvalidXmlElementException {
-		float[] widths = { 3f, 1f, 1f, 3f };
-		PdfPTable table = new PdfPTable(widths);
+		final float[] widths = { 3f, 1f, 1f, 3f };
+		final PdfPTable table = new PdfPTable(widths);
 		BaseElement.setTablePropierties(table);
 		table.getDefaultCell().setBorder(0);
 		table.getDefaultCell().setPadding(0);
 		table.getDefaultCell().setVerticalAlignment(Element.ALIGN_MIDDLE);
 
-		for (OccultismType occulstimType : OccultismTypeFactory.getInstance().getElements(language)) {
-			PdfPCell psiqueTitleCell = new PdfPCell(new Phrase(occulstimType.getName(), new Font(
+		for (final OccultismType occulstimType : OccultismTypeFactory.getInstance().getElements(language)) {
+			final PdfPCell psiqueTitleCell = new PdfPCell(new Phrase(occulstimType.getName(), new Font(
 					FadingSunsTheme.getLineFont(), FadingSunsTheme.CHARACTERISTICS_LINE_FONT_SIZE)));
 			psiqueTitleCell.setBorder(0);
 			// psiTitleCell.setMinimumHeight(30);
@@ -82,7 +82,7 @@ public class OccultismTable extends LateralHeaderPdfPTable {
 				table.addCell(createRectangle(characterPlayer.getDarkSideLevel(occulstimType)));
 			}
 
-			PdfPCell darkSideTitleCell = new PdfPCell(new Phrase(occulstimType.getDarkSideName(), new Font(
+			final PdfPCell darkSideTitleCell = new PdfPCell(new Phrase(occulstimType.getDarkSideName(), new Font(
 					FadingSunsTheme.getLineFont(), FadingSunsTheme.CHARACTERISTICS_LINE_FONT_SIZE)));
 			darkSideTitleCell.setBorder(0);
 			darkSideTitleCell.setHorizontalAlignment(Element.ALIGN_LEFT);
@@ -90,7 +90,7 @@ public class OccultismTable extends LateralHeaderPdfPTable {
 
 		}
 
-		PdfPCell cell = new PdfPCell();
+		final PdfPCell cell = new PdfPCell();
 		cell.addElement(table);
 		cell.setPadding(0);
 		BaseElement.setCellProperties(cell);

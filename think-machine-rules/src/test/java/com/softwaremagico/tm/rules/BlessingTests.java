@@ -42,13 +42,13 @@ import com.softwaremagico.tm.characters.CustomCharacter;
 
 @Test(groups = { "blessings" })
 public class BlessingTests {
-	private final static String LANGUAGE = "es";
+	private static final String LANGUAGE = "es";
 
 	@Test
 	public void checkVitalityModifications() throws InvalidXmlElementException, TooManyBlessingsException, TooManyCyberneticDevicesException,
 			RequiredCyberneticDevicesException, BlessingAlreadyAddedException, BeneficeAlreadyAddedException {
-		CharacterPlayer player = CustomCharacter.create(LANGUAGE);
-		int vitality = player.getVitalityValue();
+		final CharacterPlayer player = CustomCharacter.create(LANGUAGE);
+		final int vitality = player.getVitalityValue();
 		player.addBlessing(BlessingFactory.getInstance().getElement("incurableDisease", LANGUAGE));
 		Assert.assertEquals((int) player.getVitalityValue(), vitality - 1);
 	}
@@ -56,8 +56,8 @@ public class BlessingTests {
 	@Test
 	public void checkMovementModifications() throws InvalidXmlElementException, TooManyBlessingsException, TooManyCyberneticDevicesException,
 			RequiredCyberneticDevicesException, BlessingAlreadyAddedException, BeneficeAlreadyAddedException {
-		CharacterPlayer player = CustomCharacter.create(LANGUAGE);
-		int movement = player.getValue(CharacteristicName.MOVEMENT);
+		final CharacterPlayer player = CustomCharacter.create(LANGUAGE);
+		final int movement = player.getValue(CharacteristicName.MOVEMENT);
 		player.addBlessing(BlessingFactory.getInstance().getElement("limp", LANGUAGE));
 		Assert.assertEquals((int) player.getValue(CharacteristicName.MOVEMENT), movement - 1);
 	}
@@ -65,19 +65,19 @@ public class BlessingTests {
 	@Test
 	public void checkRangedAttacksModifications() throws InvalidXmlElementException, TooManyBlessingsException, TooManyCyberneticDevicesException,
 			RequiredCyberneticDevicesException, BlessingAlreadyAddedException, BeneficeAlreadyAddedException {
-		CharacterPlayer player = CustomCharacter.create(LANGUAGE);
+		final CharacterPlayer player = CustomCharacter.create(LANGUAGE);
 		Assert.assertEquals((int) player.getSkillTotalRanks(AvailableSkillsFactory.getInstance().getElement("energyGuns", LANGUAGE)), 6);
 	}
 
 	@Test
 	public void getAffectedSkills() throws InvalidXmlElementException {
-		Blessing missingEye = BlessingFactory.getInstance().getElement("missingEye", LANGUAGE);
+		final Blessing missingEye = BlessingFactory.getInstance().getElement("missingEye", LANGUAGE);
 		Assert.assertEquals(missingEye.getAffectedSkill(LANGUAGE).size(), 5);
 
-		Blessing pilot = BlessingFactory.getInstance().getElement("crackPilot", LANGUAGE);
+		final Blessing pilot = BlessingFactory.getInstance().getElement("crackPilot", LANGUAGE);
 		Assert.assertEquals(pilot.getAffectedSkill(LANGUAGE).size(), 6);
 
-		Blessing hacker = BlessingFactory.getInstance().getElement("hacker", LANGUAGE);
+		final Blessing hacker = BlessingFactory.getInstance().getElement("hacker", LANGUAGE);
 		Assert.assertEquals(hacker.getAffectedSkill(LANGUAGE).size(), 1);
 	}
 }

@@ -33,8 +33,8 @@ import com.softwaremagico.tm.character.equipment.armours.ArmourFactory;
 @Test(groups = { "armourFactory" })
 public class ArmourFactoryTests {
 
-	private final static int DEFINED_ARMOURS = 30;
-	private final static String LANGUAGE = "es";
+	private static final int DEFINED_ARMOURS = 30;
+	private static final String LANGUAGE = "es";
 
 	@Test
 	public void readArmours() throws InvalidXmlElementException {

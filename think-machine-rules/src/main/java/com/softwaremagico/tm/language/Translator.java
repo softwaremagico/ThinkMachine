@@ -51,8 +51,8 @@ import com.softwaremagico.tm.file.Path;
 import com.softwaremagico.tm.log.MachineLog;
 
 public class Translator implements ITranslator {
-	public final static String DEFAULT_LANGUAGE = "en";
-	private final static String LANGUAGES_FILE = "languages.xml";
+	public static final String DEFAULT_LANGUAGE = "en";
+	private static final String LANGUAGES_FILE = "languages.xml";
 	private Document doc = null;
 	private boolean errorShowed = false;
 	private boolean retried = false;
@@ -73,16 +73,17 @@ public class Translator implements ITranslator {
 	 *            Tag of the data to be read
 	 */
 	private static Document parseFile(Document usedDoc, String filePath) {
-		DocumentBuilderFactory dbf;
-		DocumentBuilder db;
+		final DocumentBuilderFactory dbf;
+		final DocumentBuilder db;
 		try {
-			File file = new File(filePath);
+			final File file = new File(filePath);
 			dbf = DocumentBuilderFactory.newInstance();
 			db = dbf.newDocumentBuilder();
 			usedDoc = db.parse(file);
 			usedDoc.getDocumentElement().normalize();
 		} catch (SAXParseException ex) {
-			String text = "Parsing error" + ".\n Line: " + ex.getLineNumber() + "\nUri: " + ex.getSystemId() + "\nMessage: " + ex.getMessage();
+			final String text = "Parsing error" + ".\n Line: " + ex.getLineNumber() + "\nUri: " + ex.getSystemId()
+					+ "\nMessage: " + ex.getMessage();
 			MachineLog.severe(Translator.class.getName(), text);
 			MachineLog.errorMessage(Translator.class.getName(), ex);
 		} catch (SAXException ex) {
@@ -90,9 +91,10 @@ public class Translator implements ITranslator {
 		} catch (ParserConfigurationException ex) {
 			MachineLog.errorMessage(Translator.class.getName(), ex);
 		} catch (FileNotFoundException fnf) {
-			String text = "The file "
+			final String text = "The file "
 					+ filePath
-					+ " containing the translations is not found. Please, check your program files and put the translation XML files on the \"translations\" folder.";
+					+ " containing the translations is not found. Please, check your program files and put the translation XML files "
+					+ "on the \"translations\" folder.";
 			System.out.println(text);
 		} catch (IOException ex) {
 			Logger.getLogger(Translator.class.getName()).log(Level.SEVERE, null, ex);
@@ -138,9 +140,9 @@ public class Translator implements ITranslator {
 
 	@Override
 	public List<String> getAllTranslatedElements() {
-		List<String> nodes = new ArrayList<>();
-		Element element = (Element) (doc.getDocumentElement());
-		NodeList nodeList = element.getChildNodes();
+		final List<String> nodes = new ArrayList<>();
+		final Element element = (Element) (doc.getDocumentElement());
+		final NodeList nodeList = element.getChildNodes();
 		for (int i = 0; i < nodeList.getLength(); i++) {
 			// Remove text values
 			if (nodeList.item(i).getNodeType() == Node.ELEMENT_NODE) {
@@ -162,15 +164,15 @@ public class Translator implements ITranslator {
 
 	@Override
 	public String getNodeValue(String tag, String node, int nodeNumber) {
-		NodeList nodeList = doc.getElementsByTagName(tag);
+		final NodeList nodeList = doc.getElementsByTagName(tag);
 		for (int child = 0; child < nodeList.getLength(); child++) {
-			Node firstNode = nodeList.item(child);
+			final Node firstNode = nodeList.item(child);
 			// Remove text values
 			if (firstNode.getNodeType() == Node.ELEMENT_NODE) {
-				Element firstElement = (Element) firstNode;
+				final Element firstElement = (Element) firstNode;
 				try {
-					NodeList firstNodeElementList = firstElement.getElementsByTagName(node);
-					Element firstNodeElement = (Element) firstNodeElementList.item(0);
+					final NodeList firstNodeElementList = firstElement.getElementsByTagName(node);
+					final Element firstNodeElement = (Element) firstNodeElementList.item(0);
 					return firstNodeElement.getChildNodes().item(nodeNumber).getNodeValue().trim();
 				} catch (NullPointerException npe) {
 					return null;
@@ -182,14 +184,14 @@ public class Translator implements ITranslator {
 
 	@Override
 	public boolean existsNode(String tag, String node, int nodeNumber) {
-		NodeList nodeList = doc.getElementsByTagName(tag);
+		final NodeList nodeList = doc.getElementsByTagName(tag);
 		for (int child = 0; child < nodeList.getLength(); child++) {
-			Node firstNode = nodeList.item(child);
+			final Node firstNode = nodeList.item(child);
 			// Remove text values
 			if (firstNode.getNodeType() == Node.ELEMENT_NODE) {
-				Element firstElement = (Element) firstNode;
+				final Element firstElement = (Element) firstNode;
 				try {
-					NodeList firstNodeElementList = firstElement.getElementsByTagName(node);
+					final NodeList firstNodeElementList = firstElement.getElementsByTagName(node);
 					return firstNodeElementList.getLength() > 0;
 				} catch (NullPointerException npe) {
 					return false;
@@ -211,18 +213,18 @@ public class Translator implements ITranslator {
 
 	@Override
 	public String getNodeValue(String parent, String tag, String node, int nodeNumber) {
-		NodeList nodeList = doc.getElementsByTagName(parent);
+		final NodeList nodeList = doc.getElementsByTagName(parent);
 		for (int child = 0; child < nodeList.getLength(); child++) {
-			Node parentNode = nodeList.item(child);
+			final Node parentNode = nodeList.item(child);
 			// Remove text values
 			if (parentNode.getNodeType() == Node.ELEMENT_NODE) {
-				Element parentElement = (Element) parentNode;
+				final Element parentElement = (Element) parentNode;
 				try {
-					NodeList childrenElementList = parentElement.getElementsByTagName(tag);
-					Element childrenElement = (Element) childrenElementList.item(nodeNumber);
+					final NodeList childrenElementList = parentElement.getElementsByTagName(tag);
+					final Element childrenElement = (Element) childrenElementList.item(nodeNumber);
 					try {
-						NodeList firstNodeElementList = childrenElement.getElementsByTagName(node);
-						Element firstNodeElement = (Element) firstNodeElementList.item(0);
+						final NodeList firstNodeElementList = childrenElement.getElementsByTagName(node);
+						final Element firstNodeElement = (Element) firstNodeElementList.item(0);
 						return firstNodeElement.getChildNodes().item(0).getNodeValue().trim();
 					} catch (NullPointerException npe) {
 						return null;
@@ -234,24 +236,24 @@ public class Translator implements ITranslator {
 		}
 		return null;
 	}
-	
+
 	@Override
 	public String getNodeValue(String grandparent, String parent, String tag, String node, int nodeNumber) {
-		NodeList nodeList = doc.getElementsByTagName(grandparent);
+		final NodeList nodeList = doc.getElementsByTagName(grandparent);
 		for (int child = 0; child < nodeList.getLength(); child++) {
-			Node grandParentNode = nodeList.item(child);
+			final Node grandParentNode = nodeList.item(child);
 			// Remove text values
 			if (grandParentNode.getNodeType() == Node.ELEMENT_NODE) {
-				Element grandParentElement = (Element) grandParentNode;
+				final Element grandParentElement = (Element) grandParentNode;
 				try {
-					NodeList parentElementList = grandParentElement.getElementsByTagName(parent);
-					Element parentElement = (Element) parentElementList.item(0);
+					final NodeList parentElementList = grandParentElement.getElementsByTagName(parent);
+					final Element parentElement = (Element) parentElementList.item(0);
 					try {
-						NodeList childrenElementList = parentElement.getElementsByTagName(tag);
-						Element childrenElement = (Element) childrenElementList.item(nodeNumber);
+						final NodeList childrenElementList = parentElement.getElementsByTagName(tag);
+						final Element childrenElement = (Element) childrenElementList.item(nodeNumber);
 						try {
-							NodeList firstNodeElementList = childrenElement.getElementsByTagName(node);
-							Element firstNodeElement = (Element) firstNodeElementList.item(0);
+							final NodeList firstNodeElementList = childrenElement.getElementsByTagName(node);
+							final Element firstNodeElement = (Element) firstNodeElementList.item(0);
 							return firstNodeElement.getChildNodes().item(0).getNodeValue().trim();
 						} catch (NullPointerException npe) {
 							return null;
@@ -269,17 +271,17 @@ public class Translator implements ITranslator {
 
 	@Override
 	public boolean existsNode(String parent, String tag, String node, int nodeNumber) {
-		NodeList nodeList = doc.getElementsByTagName(parent);
+		final NodeList nodeList = doc.getElementsByTagName(parent);
 		for (int child = 0; child < nodeList.getLength(); child++) {
-			Node parentNode = nodeList.item(child);
+			final Node parentNode = nodeList.item(child);
 			// Remove text values
 			if (parentNode.getNodeType() == Node.ELEMENT_NODE) {
-				Element parentElement = (Element) parentNode;
+				final Element parentElement = (Element) parentNode;
 				try {
-					NodeList childrenElementList = parentElement.getElementsByTagName(tag);
-					Element childrenElement = (Element) childrenElementList.item(nodeNumber);
+					final NodeList childrenElementList = parentElement.getElementsByTagName(tag);
+					final Element childrenElement = (Element) childrenElementList.item(nodeNumber);
 					try {
-						NodeList firstNodeElementList = childrenElement.getElementsByTagName(node);
+						final NodeList firstNodeElementList = childrenElement.getElementsByTagName(node);
 						return firstNodeElementList.getLength() > 0;
 					} catch (NullPointerException npe) {
 						return false;
@@ -294,21 +296,21 @@ public class Translator implements ITranslator {
 
 	@Override
 	public String getNodeValue(String grandparent, String parent, String tag, String node) {
-		NodeList nodeList = doc.getElementsByTagName(grandparent);
+		final NodeList nodeList = doc.getElementsByTagName(grandparent);
 		for (int child = 0; child < nodeList.getLength(); child++) {
-			Node grandParentNode = nodeList.item(child);
+			final Node grandParentNode = nodeList.item(child);
 			// Remove text values
 			if (grandParentNode.getNodeType() == Node.ELEMENT_NODE) {
-				Element grandParentElement = (Element) grandParentNode;
+				final Element grandParentElement = (Element) grandParentNode;
 				try {
-					NodeList parentElementList = grandParentElement.getElementsByTagName(parent);
-					Element parentElement = (Element) parentElementList.item(0);
+					final NodeList parentElementList = grandParentElement.getElementsByTagName(parent);
+					final Element parentElement = (Element) parentElementList.item(0);
 					try {
-						NodeList childrenElementList = parentElement.getElementsByTagName(tag);
-						Element childrenElement = (Element) childrenElementList.item(0);
+						final NodeList childrenElementList = parentElement.getElementsByTagName(tag);
+						final Element childrenElement = (Element) childrenElementList.item(0);
 						try {
-							NodeList firstNodeElementList = childrenElement.getElementsByTagName(node);
-							Element firstNodeElement = (Element) firstNodeElementList.item(0);
+							final NodeList firstNodeElementList = childrenElement.getElementsByTagName(node);
+							final Element firstNodeElement = (Element) firstNodeElementList.item(0);
 							return firstNodeElement.getChildNodes().item(0).getNodeValue().trim();
 						} catch (NullPointerException npe) {
 							return null;
@@ -326,20 +328,20 @@ public class Translator implements ITranslator {
 
 	@Override
 	public boolean existsNode(String grandparent, String parent, String tag, String node) {
-		NodeList nodeList = doc.getElementsByTagName(grandparent);
+		final NodeList nodeList = doc.getElementsByTagName(grandparent);
 		for (int child = 0; child < nodeList.getLength(); child++) {
-			Node grandParentNode = nodeList.item(child);
+			final Node grandParentNode = nodeList.item(child);
 			// Remove text values
 			if (grandParentNode.getNodeType() == Node.ELEMENT_NODE) {
-				Element grandParentElement = (Element) grandParentNode;
+				final Element grandParentElement = (Element) grandParentNode;
 				try {
-					NodeList parentElementList = grandParentElement.getElementsByTagName(parent);
-					Element parentElement = (Element) parentElementList.item(0);
+					final NodeList parentElementList = grandParentElement.getElementsByTagName(parent);
+					final Element parentElement = (Element) parentElementList.item(0);
 					try {
-						NodeList childrenElementList = parentElement.getElementsByTagName(tag);
-						Element childrenElement = (Element) childrenElementList.item(0);
+						final NodeList childrenElementList = parentElement.getElementsByTagName(tag);
+						final Element childrenElement = (Element) childrenElementList.item(0);
 						try {
-							NodeList firstNodeElementList = childrenElement.getElementsByTagName(node);
+							final NodeList firstNodeElementList = childrenElement.getElementsByTagName(node);
 							return firstNodeElementList.getLength() > 0;
 						} catch (NullPointerException npe) {
 							return false;
@@ -357,20 +359,20 @@ public class Translator implements ITranslator {
 
 	@Override
 	public Set<String> getAllChildrenTags(String parent, String group) {
-		Set<String> childrenTags = new HashSet<>();
-		NodeList nodeList = doc.getElementsByTagName(parent);
+		final Set<String> childrenTags = new HashSet<>();
+		final NodeList nodeList = doc.getElementsByTagName(parent);
 		for (int child = 0; child < nodeList.getLength(); child++) {
-			Node parentNode = nodeList.item(child);
+			final Node parentNode = nodeList.item(child);
 			// Remove text values
 			if (parentNode.getNodeType() == Node.ELEMENT_NODE) {
-				Element parentElement = (Element) parentNode;
+				final Element parentElement = (Element) parentNode;
 				try {
-					NodeList groupList = parentElement.getElementsByTagName(group);
-					Element groupElement = (Element) groupList.item(0);
+					final NodeList groupList = parentElement.getElementsByTagName(group);
+					final Element groupElement = (Element) groupList.item(0);
 					try {
-						NodeList childrenList = groupElement.getChildNodes();
+						final NodeList childrenList = groupElement.getChildNodes();
 						for (int childIndex = 0; childIndex < childrenList.getLength(); childIndex++) {
-							Node childNode = childrenList.item(childIndex);
+							final Node childNode = childrenList.item(childIndex);
 							// Remove text values
 							if (childNode.getNodeType() == Node.ELEMENT_NODE) {
 								childrenTags.add(childNode.getNodeName());
@@ -389,22 +391,23 @@ public class Translator implements ITranslator {
 
 	private String readTag(String tag, String language) {
 		try {
-			NodeList nodeList = doc.getElementsByTagName(tag);
+			final NodeList nodeList = doc.getElementsByTagName(tag);
 			for (int child = 0; child < nodeList.getLength(); child++) {
-				Node firstNode = nodeList.item(child);
+				final Node firstNode = nodeList.item(child);
 				// Remove text values
 				if (firstNode.getNodeType() == Node.ELEMENT_NODE) {
-					Element firstElement = (Element) firstNode;
-					NodeList firstNodeElementList = firstElement.getElementsByTagName(language);
-					Element firstNodeElement = (Element) firstNodeElementList.item(0);
+					final Element firstElement = (Element) firstNode;
+					final NodeList firstNodeElementList = firstElement.getElementsByTagName(language);
+					final Element firstNodeElement = (Element) firstNodeElementList.item(0);
 					try {
-						NodeList firstNodeList = firstNodeElement.getChildNodes();
+						final NodeList firstNodeList = firstNodeElement.getChildNodes();
 						retried = false;
 						return ((Node) firstNodeList.item(0)).getNodeValue().trim();
 					} catch (NullPointerException npe) {
 						if (!retried) {
 							if (!showedMessage) {
-								MachineLog.warning(Translator.class.getName(), "There is a problem with tag: " + tag + " in  language: \"" + language
+								MachineLog.warning(Translator.class.getName(), "There is a problem with tag: " + tag
+										+ " in  language: \"" + language
 										+ "\". We tray to use english language instead.");
 								showedMessage = true;
 							}
@@ -419,7 +422,8 @@ public class Translator implements ITranslator {
 							return readTag(tag, DEFAULT_LANGUAGE);
 						} else {
 							if (!errorShowed) {
-								MachineLog.severe(this.getClass().getName(), "Language selection failed: " + language + " on " + tag + ".");
+								MachineLog.severe(this.getClass().getName(), "Language selection failed: " + language
+										+ " on " + tag + ".");
 								errorShowed = true;
 							}
 							return null;
@@ -441,15 +445,17 @@ public class Translator implements ITranslator {
 			languagesList = new ArrayList<>();
 			Document storedLanguages = null;
 			storedLanguages = parseFile(storedLanguages, getTranslatorPath(LANGUAGES_FILE).getPath());
-			NodeList nodeLst = storedLanguages.getElementsByTagName("languages");
+			final NodeList nodeLst = storedLanguages.getElementsByTagName("languages");
 			for (int s = 0; s < nodeLst.getLength(); s++) {
-				Node fstNode = nodeLst.item(s);
+				final Node fstNode = nodeLst.item(s);
 				try {
-					Language lang = new Language(fstNode.getTextContent(), fstNode.getAttributes().getNamedItem("abbrev").getNodeValue(), fstNode
-							.getAttributes().getNamedItem("flag").getNodeValue());
+					final Language lang = new Language(fstNode.getTextContent(), fstNode.getAttributes()
+							.getNamedItem("abbrev").getNodeValue(), fstNode.getAttributes().getNamedItem("flag")
+							.getNodeValue());
 					languagesList.add(lang);
 				} catch (NullPointerException npe) {
-					MachineLog.severe(Translator.class.getName(), "Error retrieving the available languages. Check your installation.");
+					MachineLog.severe(Translator.class.getName(),
+							"Error retrieving the available languages. Check your installation.");
 				}
 			}
 		}
@@ -467,7 +473,7 @@ public class Translator implements ITranslator {
 			// Get from folder
 			return file;
 		}
-		
+
 		try {
 			if (Translator.class.getClassLoader().getResource(xmlFile) != null) {
 				file = new File(Translator.class.getClassLoader().getResource(xmlFile).toURI());
@@ -480,7 +486,8 @@ public class Translator implements ITranslator {
 
 		try {
 			if (Translator.class.getClassLoader().getResource(Path.TRANSLATIONS_FOLDER + File.separator + xmlFile) != null) {
-				file = new File(Translator.class.getClassLoader().getResource(Path.TRANSLATIONS_FOLDER + File.separator + xmlFile).toURI());
+				file = new File(Translator.class.getClassLoader()
+						.getResource(Path.TRANSLATIONS_FOLDER + File.separator + xmlFile).toURI());
 				if (file.exists()) {
 					return file;
 				}

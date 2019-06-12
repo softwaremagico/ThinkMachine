@@ -31,7 +31,7 @@ import java.util.List;
 import com.softwaremagico.tm.Element;
 
 public class CombatStyle extends Element<CombatStyle> {
-	private final static int COMBAT_SYTLE_COST = 5;
+	private static final int COMBAT_SYTLE_COST = 5;
 	private final CombatStyleGroup group;
 	private final List<CombatStance> combatStances;
 	private List<CombatAction> combatActions;
@@ -61,7 +61,7 @@ public class CombatStyle extends Element<CombatStyle> {
 	}
 
 	public CombatStance getCombatStance(String stanceId) {
-		for (CombatStance stance : combatStances) {
+		for (final CombatStance stance : combatStances) {
 			if (stance.getId().equalsIgnoreCase(stanceId)) {
 				return stance;
 			}
@@ -79,7 +79,7 @@ public class CombatStyle extends Element<CombatStyle> {
 	}
 
 	public CombatAction getCombatAction(String actionId) {
-		for (CombatAction action : combatActions) {
+		for (final CombatAction action : combatActions) {
 			if (action.getId().equalsIgnoreCase(actionId)) {
 				return action;
 			}

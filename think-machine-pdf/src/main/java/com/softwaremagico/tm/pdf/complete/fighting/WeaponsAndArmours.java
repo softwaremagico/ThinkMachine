@@ -31,44 +31,44 @@ import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.pdf.complete.elements.BaseElement;
 
 public class WeaponsAndArmours extends BaseElement {
-	public final static int PADDING = 2;
+	public static final int PADDING = 2;
 
 	public static PdfPTable getWeaponsAndArmoursTable(CharacterPlayer characterPlayer) throws InvalidXmlElementException {
-		float[] widths = { 4f, 1.1f };
-		PdfPTable table = new PdfPTable(widths);
+		final float[] widths = { 4f, 1.1f };
+		final PdfPTable table = new PdfPTable(widths);
 		setTablePropierties(table);
 		table.getDefaultCell().setPadding(PADDING);
 		table.getDefaultCell().setBorder(0);
 
-		PdfPTable leftTable = new PdfPTable(new float[] { 1f });
+		final PdfPTable leftTable = new PdfPTable(new float[] { 1f });
 		setTablePropierties(leftTable);
 		leftTable.getDefaultCell().setBorder(0);
 		leftTable.getDefaultCell().setPadding(0);
 
-		PdfPCell fireArmsCell = new PdfPCell(new WeaponsTable(characterPlayer));
+		final PdfPCell fireArmsCell = new PdfPCell(new WeaponsTable(characterPlayer));
 		leftTable.addCell(fireArmsCell);
 
-		PdfPTable stancesXpTable = new PdfPTable(new float[] { 4f, 1f });
+		final PdfPTable stancesXpTable = new PdfPTable(new float[] { 4f, 1f });
 		setTablePropierties(stancesXpTable);
 		stancesXpTable.getDefaultCell().setBorder(0);
 		stancesXpTable.getDefaultCell().setPadding(0);
 
-		PdfPCell stancesCell = new PdfPCell(new StancesTable(characterPlayer));
+		final PdfPCell stancesCell = new PdfPCell(new StancesTable(characterPlayer));
 		stancesXpTable.addCell(stancesCell);
 
-		PdfPCell experienceCell = new PdfPCell(new ExperienceTable(characterPlayer));
+		final PdfPCell experienceCell = new PdfPCell(new ExperienceTable(characterPlayer));
 		stancesXpTable.addCell(experienceCell);
 
 		leftTable.addCell(stancesXpTable);
 
-		PdfPCell leftCell = new PdfPCell(leftTable);
+		final PdfPCell leftCell = new PdfPCell(leftTable);
 		leftCell.setRowspan(2);
 		table.addCell(leftCell);
 
-		PdfPCell armourCell = new PdfPCell(new ArmourTable(characterPlayer));
+		final PdfPCell armourCell = new PdfPCell(new ArmourTable(characterPlayer));
 		table.addCell(armourCell);
 
-		PdfPCell shieldCell = new PdfPCell(new ShieldTable(characterPlayer));
+		final PdfPCell shieldCell = new PdfPCell(new ShieldTable(characterPlayer));
 		table.addCell(shieldCell);
 
 		return table;

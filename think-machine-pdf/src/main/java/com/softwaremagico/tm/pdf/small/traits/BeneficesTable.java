@@ -31,10 +31,10 @@ import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.complete.elements.VerticalTable;
 
 public class BeneficesTable extends VerticalTable {
-	private final static String GAP = "__________________";
-	private final static int TRAIT_COLUMN_WIDTH = 60;
-	private final static float[] WIDTHS = { 1f };
-	private final static int ROWS = 10;
+	private static final String GAP = "__________________";
+	private static final int TRAIT_COLUMN_WIDTH = 60;
+	private static final float[] WIDTHS = { 1f };
+	private static final int ROWS = 10;
 
 	public BeneficesTable(CharacterPlayer characterPlayer) throws InvalidXmlElementException {
 		super(WIDTHS);
@@ -45,7 +45,7 @@ public class BeneficesTable extends VerticalTable {
 
 		int added = 0;
 		if (characterPlayer != null) {
-			for (AvailableBenefice benefit : characterPlayer.getAllBenefices()) {
+			for (final AvailableBenefice benefit : characterPlayer.getAllBenefices()) {
 				addCell(createElementLine(benefit.getName(), TRAIT_COLUMN_WIDTH,
 						FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE));
 				added++;

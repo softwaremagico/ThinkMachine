@@ -44,17 +44,17 @@ import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedExcep
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
 
 public abstract class RandomSelector<Element extends com.softwaremagico.tm.Element<?>> {
-	protected final static int MAX_PROBABILITY = 1000000;
+	protected static final int MAX_PROBABILITY = 1000000;
 
-	protected final static int BAD_PROBABILITY = -20;
-	protected final static int DIFFICULT_PROBABILITY = -10;
-	protected final static int BASIC_PROBABILITY = 1;
-	protected final static int LITTLE_PROBABILITY = 6;
-	protected final static int FAIR_PROBABILITY = 11;
-	protected final static int GOOD_PROBABILITY = 21;
+	protected static final int BAD_PROBABILITY = -20;
+	protected static final int DIFFICULT_PROBABILITY = -10;
+	protected static final int BASIC_PROBABILITY = 1;
+	protected static final int LITTLE_PROBABILITY = 6;
+	protected static final int FAIR_PROBABILITY = 11;
+	protected static final int GOOD_PROBABILITY = 21;
 
-	protected final static int BASIC_MULTIPLICATOR = 5;
-	protected final static int HIGH_MULTIPLICATOR = 10;
+	protected static final int BASIC_MULTIPLICATOR = 5;
+	protected static final int HIGH_MULTIPLICATOR = 10;
 
 	private CharacterPlayer characterPlayer;
 	private final Set<IRandomPreference> preferences;
@@ -136,7 +136,7 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
 			ImpossibleToAssignMandatoryElementException;
 
 	private void assignMandatories() throws InvalidXmlElementException {
-		for (Element element : getAllElements()) {
+		for (final Element element : getAllElements()) {
 			try {
 				assignIfMandatory(element);
 			} catch (ImpossibleToAssignMandatoryElementException e) {
@@ -146,9 +146,9 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
 	}
 
 	private TreeMap<Integer, Element> assignElementsWeight() throws InvalidXmlElementException {
-		TreeMap<Integer, Element> weightedElements = new TreeMap<>();
+		final TreeMap<Integer, Element> weightedElements = new TreeMap<>();
 		int count = 1;
-		for (Element element : getAllElements()) {
+		for (final Element element : getAllElements()) {
 			try {
 				validateElement(element);
 			} catch (InvalidRandomElementSelectedException e) {
@@ -156,7 +156,7 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
 				continue;
 			}
 
-			int weight = getTotalWeight(element);
+			final int weight = getTotalWeight(element);
 			if (weight > 0) {
 				weightedElements.put(count, element);
 				count += weight;
@@ -334,9 +334,9 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
 		if (weightedElements == null || weightedElements.isEmpty() || totalWeight == 0) {
 			throw new InvalidRandomElementSelectedException("No elements to select");
 		}
-		int value = rand.nextInt(totalWeight) + 1;
+		final int value = rand.nextInt(totalWeight) + 1;
 		Element selectedElement = weightedElements.values().iterator().next();
-		SortedMap<Integer, Element> view = weightedElements.headMap(value, true);
+		final SortedMap<Integer, Element> view = weightedElements.headMap(value, true);
 		try {
 			selectedElement = view.get(view.lastKey());
 		} catch (NoSuchElementException nse) {
@@ -350,23 +350,23 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
 
 	protected void removeElementWeight(Element element) {
 		Integer keyToDelete = null;
-		for (Entry<Integer, Element> entry : weightedElements.entrySet()) {
+		for (final Entry<Integer, Element> entry : weightedElements.entrySet()) {
 			if (entry.getValue().equals(element)) {
 				keyToDelete = entry.getKey();
 				break;
 			}
 		}
 		if (keyToDelete != null) {
-			int weightToDelete = getAssignedWeight(weightedElements.get(keyToDelete));
+			final int weightToDelete = getAssignedWeight(weightedElements.get(keyToDelete));
 
 			// Remove desired element.
 			weightedElements.remove(keyToDelete);
-			TreeMap<Integer, Element> elementsToUpdate = new TreeMap<>(weightedElements);
+			final TreeMap<Integer, Element> elementsToUpdate = new TreeMap<>(weightedElements);
 
 			// Update keys weight
-			for (Entry<Integer, Element> entry : elementsToUpdate.entrySet()) {
+			for (final Entry<Integer, Element> entry : elementsToUpdate.entrySet()) {
 				if (entry.getKey() >= keyToDelete) {
-					int currentWeight = entry.getKey();
+					final int currentWeight = entry.getKey();
 					weightedElements.remove(entry.getKey());
 					weightedElements.put(currentWeight - weightToDelete, entry.getValue());
 				}
@@ -388,9 +388,9 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
 			return null;
 		}
 		int previousWeight = 0;
-		Iterator<Integer> weightIterator = weightedElements.keySet().iterator();
+		final Iterator<Integer> weightIterator = weightedElements.keySet().iterator();
 		while (weightIterator.hasNext()) {
-			Integer weight = weightIterator.next();
+			final Integer weight = weightIterator.next();
 			if (weightedElements.get(weight).equals(element)) {
 				return weight - previousWeight;
 			}

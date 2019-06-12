@@ -74,7 +74,7 @@ public enum CyberneticTotalDevicesPreferences implements IRandomPreference, IGau
 	}
 
 	public static CyberneticTotalDevicesPreferences getSelected(Set<IRandomPreference> preferences) {
-		for (IRandomPreference preference : preferences) {
+		for (final IRandomPreference preference : preferences) {
 			if (preference instanceof CyberneticTotalDevicesPreferences) {
 				return (CyberneticTotalDevicesPreferences) preference;
 			}

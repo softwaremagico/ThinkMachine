@@ -40,7 +40,7 @@ import com.softwaremagico.tm.random.selectors.CombatPreferences;
 
 @Test(groups = "profile")
 public class ProfileTests {
-	private final static String LANGUAGE = "en";
+	private static final String LANGUAGE = "en";
 
 	@Test
 	public void checkPreferencesReader() throws DuplicatedPreferenceException, InvalidXmlElementException,
@@ -69,8 +69,8 @@ public class ProfileTests {
 	@Test
 	public void soldier() throws DuplicatedPreferenceException, InvalidXmlElementException,
 			InvalidRandomElementSelectedException, TooManyBlessingsException {
-		CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
-		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, RandomProfileFactory
+		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
+		final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, RandomProfileFactory
 				.getInstance().getElement("soldier", LANGUAGE));
 		randomizeCharacter.createCharacter();
 		// CharacterSheet characterSheet = new CharacterSheet(characterPlayer);
@@ -80,8 +80,8 @@ public class ProfileTests {
 	@Test
 	public void serf() throws DuplicatedPreferenceException, InvalidXmlElementException,
 			InvalidRandomElementSelectedException, TooManyBlessingsException {
-		CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
-		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, RandomProfileFactory
+		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
+		final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, RandomProfileFactory
 				.getInstance().getElement("serf", LANGUAGE));
 		Assert.assertEquals(RandomProfileFactory.getInstance().getElement("serf", LANGUAGE).getRequiredSkills().size(),
 				1);
@@ -97,8 +97,8 @@ public class ProfileTests {
 	@Test
 	public void thug() throws DuplicatedPreferenceException, InvalidXmlElementException,
 			InvalidRandomElementSelectedException, TooManyBlessingsException {
-		CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
-		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, RandomProfileFactory
+		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
+		final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, RandomProfileFactory
 				.getInstance().getElement("thug", LANGUAGE));
 		Assert.assertEquals(RandomProfileFactory.getInstance().getElement("thug", LANGUAGE).getMandatoryBenefices()
 				.size(), 1);

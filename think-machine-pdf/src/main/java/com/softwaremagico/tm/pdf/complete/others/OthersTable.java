@@ -28,8 +28,8 @@ import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.complete.elements.VerticalTable;
 
 public class OthersTable extends VerticalTable {
-	private final static int EMPTY_ROWS = 7;
-	private final static float[] WIDTHS = { 1f };
+	private static final int EMPTY_ROWS = 7;
+	private static final float[] WIDTHS = { 1f };
 
 	public OthersTable() {
 		super(WIDTHS);

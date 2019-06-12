@@ -74,10 +74,10 @@ public class Blessing extends Element<Blessing> implements IElementWithBonificat
 
 	public String getTrait() {
 		if (bonifications != null && !bonifications.isEmpty()) {
-			Iterator<Bonification> iterator = bonifications.iterator();
+			final Iterator<Bonification> iterator = bonifications.iterator();
 			String text = "";
 			while (iterator.hasNext()) {
-				IValue affects = iterator.next().getAffects();
+				final IValue affects = iterator.next().getAffects();
 				if (affects != null && affects.getName() != null) {
 					if (text.length() > 0) {
 						text += ", ";
@@ -91,13 +91,13 @@ public class Blessing extends Element<Blessing> implements IElementWithBonificat
 	}
 
 	public Set<AvailableSkill> getAffectedSkill(String language) {
-		Set<AvailableSkill> affectedSkills = new HashSet<>();
-		for (Bonification bonification : getBonifications()) {
+		final Set<AvailableSkill> affectedSkills = new HashSet<>();
+		for (final Bonification bonification : getBonifications()) {
 			if (bonification.getAffects() != null) {
 				if (bonification.getAffects() instanceof SpecialValue) {
-					SpecialValue specialValue = (SpecialValue) bonification.getAffects();
+					final SpecialValue specialValue = (SpecialValue) bonification.getAffects();
 					// Has a list of values defined.
-					for (IValue specialValueSkill : specialValue.getAffects()) {
+					for (final IValue specialValueSkill : specialValue.getAffects()) {
 						try {
 							affectedSkills.add(AvailableSkillsFactory.getInstance().getElement(specialValueSkill.getId(), language));
 						} catch (InvalidXmlElementException e) {

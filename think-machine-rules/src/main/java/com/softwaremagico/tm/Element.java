@@ -86,19 +86,24 @@ public class Element<T extends Element<?>> implements Comparable<T> {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj) {
 			return true;
-		if (obj == null)
+		}
+		if (obj == null) {
 			return false;
-		if (getClass() != obj.getClass())
+		}
+		if (getClass() != obj.getClass()) {
 			return false;
+		}
 		@SuppressWarnings("unchecked")
-		T other = (T) obj;
+		final T other = (T) obj;
 		if (id == null) {
-			if (other.getId() != null)
+			if (other.getId() != null) {
 				return false;
-		} else if (!id.equals(other.getId()))
+			}
+		} else if (!id.equals(other.getId())) {
 			return false;
+		}
 		return true;
 	}
 

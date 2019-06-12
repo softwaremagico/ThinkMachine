@@ -35,12 +35,12 @@ import com.softwaremagico.tm.random.selectors.IRandomPreference;
 
 @Test(groups = { "randomParty" })
 public class RandomPartyDefinitionTests {
-	private final static String LANGUAGE = "es";
+	private static final String LANGUAGE = "es";
 
 	@Test
 	public void mandatoryMembersAdded() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
-		RandomParty thugParty = RandomPartyFactory.getInstance().getElement("thugBand", LANGUAGE);
-		RandomPartyDefinition randomPartyDefinition = new RandomPartyDefinition(thugParty, 0,
+		final RandomParty thugParty = RandomPartyFactory.getInstance().getElement("thugBand", LANGUAGE);
+		final RandomPartyDefinition randomPartyDefinition = new RandomPartyDefinition(thugParty, 0,
 				new HashSet<IRandomPreference>());
 		randomPartyDefinition.assign();
 		// One mandatory and one random element that is always added.
@@ -51,14 +51,14 @@ public class RandomPartyDefinitionTests {
 	@Test
 	public void threatLevelAddMoreMembersToParty() throws InvalidXmlElementException,
 			InvalidRandomElementSelectedException {
-		RandomParty thugParty = RandomPartyFactory.getInstance().getElement("thugBand", LANGUAGE);
-		RandomPartyDefinition randomPartyDefinition = new RandomPartyDefinition(thugParty, 200,
+		final RandomParty thugParty = RandomPartyFactory.getInstance().getElement("thugBand", LANGUAGE);
+		final RandomPartyDefinition randomPartyDefinition = new RandomPartyDefinition(thugParty, 200,
 				new HashSet<IRandomPreference>());
 		randomPartyDefinition.assign();
 		Assert.assertNotNull(randomPartyDefinition.getParty().getPartyName());
 
-		RandomParty thugParty2 = RandomPartyFactory.getInstance().getElement("thugBand", LANGUAGE);
-		RandomPartyDefinition randomPartyDefinition2 = new RandomPartyDefinition(thugParty2, 450,
+		final RandomParty thugParty2 = RandomPartyFactory.getInstance().getElement("thugBand", LANGUAGE);
+		final RandomPartyDefinition randomPartyDefinition2 = new RandomPartyDefinition(thugParty2, 450,
 				new HashSet<IRandomPreference>());
 		randomPartyDefinition2.assign();
 

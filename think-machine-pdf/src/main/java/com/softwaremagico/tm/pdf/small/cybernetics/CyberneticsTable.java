@@ -31,11 +31,11 @@ import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.complete.elements.VerticalTable;
 
 public class CyberneticsTable extends VerticalTable {
-	private final static String GAP = "__________________";
-	private final static int NAME_COLUMN_WIDTH = 95;
-	private final static int POINTS_COLUMN_WIDTH = 25;
-	private final static float[] WIDTHS = { 5f, 2f };
-	private final static int ROWS = 9;
+	private static final String GAP = "__________________";
+	private static final int NAME_COLUMN_WIDTH = 95;
+	private static final int POINTS_COLUMN_WIDTH = 25;
+	private static final float[] WIDTHS = { 5f, 2f };
+	private static final int ROWS = 9;
 
 	public CyberneticsTable(CharacterPlayer characterPlayer) {
 		super(WIDTHS);
@@ -51,7 +51,7 @@ public class CyberneticsTable extends VerticalTable {
 
 		int added = 0;
 		if (characterPlayer != null) {
-			for (SelectedCyberneticDevice device : characterPlayer.getCybernetics()) {
+			for (final SelectedCyberneticDevice device : characterPlayer.getCybernetics()) {
 				addCell(createFirstElementLine(device.getName(), NAME_COLUMN_WIDTH,
 						FadingSunsTheme.CYBERNETICS_CONTENT_FONT_SIZE));
 				addCell(createElementLine(device.getPoints() + "", POINTS_COLUMN_WIDTH,

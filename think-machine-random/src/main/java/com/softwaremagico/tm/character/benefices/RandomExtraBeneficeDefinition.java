@@ -46,19 +46,19 @@ public class RandomExtraBeneficeDefinition extends RandomBeneficeDefinition {
 
 	@Override
 	public void assign() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
-		int existingCombatStyles = getCharacterPlayer().getMeleeCombatStyles().size()
+		final int existingCombatStyles = getCharacterPlayer().getMeleeCombatStyles().size()
 				+ getCharacterPlayer().getRangedCombatStyles().size();
 
-		IGaussianDistribution beneficesDistribution = ExtraBeneficesNumberPreferences.getSelected(getPreferences());
+		final IGaussianDistribution beneficesDistribution = ExtraBeneficesNumberPreferences.getSelected(getPreferences());
 		// Select a blessing
-		int totalExtraSelectedBenefices = beneficesDistribution.randomGaussian()
+		final int totalExtraSelectedBenefices = beneficesDistribution.randomGaussian()
 				+ getCharacterPlayer().getAllBenefices().size();
 
 		// Later, the others.
 		while (getCharacterPlayer().getAllBenefices().size() < totalExtraSelectedBenefices
 				&& !getWeightedElements().isEmpty()) {
 			// Select a benefice
-			BeneficeDefinition selectedBenefice = selectElementByWeight();
+			final BeneficeDefinition selectedBenefice = selectElementByWeight();
 
 			// Only a few fighting style by character.
 			if (selectedBenefice.getGroup().equals(BeneficeGroup.FIGHTING)) {

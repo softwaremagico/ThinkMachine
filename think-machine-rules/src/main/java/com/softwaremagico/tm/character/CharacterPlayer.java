@@ -175,7 +175,8 @@ public class CharacterPlayer {
 
 	private void initializeCharacteristics() {
 		characteristics = new HashMap<String, Characteristic>();
-		for (CharacteristicDefinition characteristicDefinition : CharacteristicsDefinitionFactory.getInstance().getAll(language)) {
+		for (final CharacteristicDefinition characteristicDefinition : CharacteristicsDefinitionFactory.getInstance()
+				.getAll(language)) {
 			characteristics.put(characteristicDefinition.getId(), new Characteristic(characteristicDefinition));
 		}
 	}
@@ -213,7 +214,7 @@ public class CharacterPlayer {
 		if (CharacteristicName.MOVEMENT.equals(characteristicName)) {
 			return getStartingValue(characteristicName);
 		}
-		Integer value = characteristics.get(characteristicName.getId()).getValue();
+		final Integer value = characteristics.get(characteristicName.getId()).getValue();
 
 		if (value == null) {
 			return 0;
@@ -224,16 +225,20 @@ public class CharacterPlayer {
 
 	public Integer getValue(CharacteristicName characteristicName) {
 		if (CharacteristicName.INITIATIVE.equals(characteristicName)) {
-			return getValue(CharacteristicName.DEXTERITY) + getValue(CharacteristicName.WITS)
-					+ getBlessingModificationAlways(CharacteristicsDefinitionFactory.getInstance().get(characteristicName, language));
+			return getValue(CharacteristicName.DEXTERITY)
+					+ getValue(CharacteristicName.WITS)
+					+ getBlessingModificationAlways(CharacteristicsDefinitionFactory.getInstance().get(
+							characteristicName, language));
 		}
 		if (CharacteristicName.DEFENSE.equals(characteristicName)) {
 			return getStartingValue(characteristicName)
-					+ getBlessingModificationAlways(CharacteristicsDefinitionFactory.getInstance().get(characteristicName, language));
+					+ getBlessingModificationAlways(CharacteristicsDefinitionFactory.getInstance().get(
+							characteristicName, language));
 		}
 		if (CharacteristicName.MOVEMENT.equals(characteristicName)) {
 			return getStartingValue(characteristicName)
-					+ getBlessingModificationAlways(CharacteristicsDefinitionFactory.getInstance().get(characteristicName, language));
+					+ getBlessingModificationAlways(CharacteristicsDefinitionFactory.getInstance().get(
+							characteristicName, language));
 		}
 		Integer value = characteristics.get(characteristicName.getId()).getValue();
 
@@ -244,14 +249,17 @@ public class CharacterPlayer {
 		value += getCyberneticsModificationAlways(getCharacteristic(characteristicName));
 
 		// Add modifications always applied.
-		value += getBlessingModificationAlways(CharacteristicsDefinitionFactory.getInstance().get(characteristicName, language));
+		value += getBlessingModificationAlways(CharacteristicsDefinitionFactory.getInstance().get(characteristicName,
+				language));
 
 		return value;
 	}
 
 	public Integer getVitalityValue() throws InvalidXmlElementException {
-		return getValue(CharacteristicName.ENDURANCE) + 5
-				+ getBlessingModificationAlways(SpecialValuesFactory.getInstance().getElement(SpecialValue.VITALITY, getLanguage()));
+		return getValue(CharacteristicName.ENDURANCE)
+				+ 5
+				+ getBlessingModificationAlways(SpecialValuesFactory.getInstance().getElement(SpecialValue.VITALITY,
+						getLanguage()));
 	}
 
 	public Integer getBasicWyrdValue() {
@@ -259,15 +267,17 @@ public class CharacterPlayer {
 	}
 
 	public Integer getWyrdValue() throws InvalidXmlElementException {
-		return getBasicWyrdValue() + occultism.getExtraWyrd()
-				+ getBlessingModificationAlways(SpecialValuesFactory.getInstance().getElement(SpecialValue.WYRD, getLanguage()));
+		return getBasicWyrdValue()
+				+ occultism.getExtraWyrd()
+				+ getBlessingModificationAlways(SpecialValuesFactory.getInstance().getElement(SpecialValue.WYRD,
+						getLanguage()));
 	}
 
 	public void setSkillRank(AvailableSkill availableSkill, int value) throws InvalidSkillException {
 		if (availableSkill == null) {
 			throw new InvalidSkillException("Null skill is not allowed here.");
 		}
-		SelectedSkill skillWithRank = new SelectedSkill(availableSkill, value, false);
+		final SelectedSkill skillWithRank = new SelectedSkill(availableSkill, value, false);
 		skills.put(availableSkill.getUniqueId(), skillWithRank);
 	}
 
@@ -289,7 +299,7 @@ public class CharacterPlayer {
 	 * @return ranks of the skill.
 	 */
 	public Integer getSkillAssignedRanks(AvailableSkill skill) {
-		SelectedSkill selectedSkill = getSelectedSkill(skill);
+		final SelectedSkill selectedSkill = getSelectedSkill(skill);
 		// Use the skill with generalization.
 		if (selectedSkill != null) {
 			return getSkillAssignedRanks(selectedSkill);
@@ -312,11 +322,12 @@ public class CharacterPlayer {
 	 * @return ranks of the skill.
 	 */
 	public Integer getSkillTotalRanks(AvailableSkill skill) {
-		Integer cyberneticBonus = getCyberneticsValue(skill);
+		final Integer cyberneticBonus = getCyberneticsValue(skill);
 		Integer skillValue = getSkillAssignedRanks(skill);
 		// Set the modifications of blessings.
 		if (skills.get(skill.getUniqueId()) != null) {
-			skillValue += getBlessingModificationAlways(skills.get(skill.getUniqueId()).getAvailableSkill().getSkillDefinition());
+			skillValue += getBlessingModificationAlways(skills.get(skill.getUniqueId()).getAvailableSkill()
+					.getSkillDefinition());
 		}
 		// Cybernetics only if better.
 		if (cyberneticBonus != null) {
@@ -327,8 +338,8 @@ public class CharacterPlayer {
 
 	private Integer getCyberneticsValue(Skill<?> skill) {
 		int maxValue = 0;
-		for (ICyberneticDevice device : cybernetics.getElements()) {
-			for (StaticValue staticValue : device.getStaticValues()) {
+		for (final ICyberneticDevice device : cybernetics.getElements()) {
+			for (final StaticValue staticValue : device.getStaticValues()) {
 				if (Objects.equals(staticValue.getAffects().getId(), skill.getId())) {
 					if (maxValue < staticValue.getValue()) {
 						maxValue = staticValue.getValue();
@@ -354,7 +365,7 @@ public class CharacterPlayer {
 	 * @return a selectedSkill
 	 */
 	public SelectedSkill getSelectedSkill(AvailableSkill skill) {
-		for (SelectedSkill selectedSkill : skills.values()) {
+		for (final SelectedSkill selectedSkill : skills.values()) {
 			if (Objects.equals(selectedSkill.getAvailableSkill(), skill)) {
 				return selectedSkill;
 			}
@@ -375,20 +386,27 @@ public class CharacterPlayer {
 			throw new BlessingAlreadyAddedException("Character already has blessing '" + blessing + "'!");
 		}
 		if (blessing.getBlessingClassification() == BlessingClassification.CURSE) {
-			if (CostCalculator.getBlessingCosts(getCurses()) + blessing.getCost() >= FreeStyleCharacterCreation.getMaxCursePoints(getInfo().getAge())) {
-				throw new TooManyBlessingsException("Only a total of '" + FreeStyleCharacterCreation.getMaxCursePoints(getInfo().getAge())
+			if (CostCalculator.getBlessingCosts(getCurses()) + blessing.getCost() >= FreeStyleCharacterCreation
+					.getMaxCursePoints(getInfo().getAge())) {
+				throw new TooManyBlessingsException("Only a total of '"
+						+ FreeStyleCharacterCreation.getMaxCursePoints(getInfo().getAge())
 						+ "' points are allowed for curses.");
 			}
 		}
 		// Only 7 values can be modified by blessings.
-		if (getBlessingModificationsNumber() + blessing.getBonifications().size() > FreeStyleCharacterCreation.getMaxBlessingModifications(getInfo().getAge())) {
-			throw new TooManyBlessingsException("Only a total of '" + FreeStyleCharacterCreation.getMaxBlessingModifications(getInfo().getAge())
-					+ "' modifications are allowed for blessings. Now exists '" + getAllBlessings() + "' and adding '" + blessing + "'.");
+		if (getBlessingModificationsNumber() + blessing.getBonifications().size() > FreeStyleCharacterCreation
+				.getMaxBlessingModifications(getInfo().getAge())) {
+			throw new TooManyBlessingsException("Only a total of '"
+					+ FreeStyleCharacterCreation.getMaxBlessingModifications(getInfo().getAge())
+					+ "' modifications are allowed for blessings. Now exists '" + getAllBlessings() + "' and adding '"
+					+ blessing + "'.");
 		}
 		// Only 7 blessings as max.
 		if (getAllBlessings().size() > FreeStyleCharacterCreation.getMaxBlessingModifications(getInfo().getAge())) {
-			throw new TooManyBlessingsException("Only a total of '" + FreeStyleCharacterCreation.getMaxBlessingModifications(getInfo().getAge())
-					+ "' modifications are allowed for blessings. Now exists '" + getAllBlessings() + "' and adding '" + blessing + "'.");
+			throw new TooManyBlessingsException("Only a total of '"
+					+ FreeStyleCharacterCreation.getMaxBlessingModifications(getInfo().getAge())
+					+ "' modifications are allowed for blessings. Now exists '" + getAllBlessings() + "' and adding '"
+					+ blessing + "'.");
 		}
 		blessings.add(blessing);
 		Collections.sort(blessings);
@@ -396,16 +414,16 @@ public class CharacterPlayer {
 
 	private int getBlessingModificationsNumber() {
 		int counter = 0;
-		for (Blessing blessing : getAllBlessings()) {
+		for (final Blessing blessing : getAllBlessings()) {
 			counter += blessing.getBonifications().size();
 		}
 		return counter;
 	}
 
 	public List<Blessing> getCurses() {
-		List<Blessing> curses = new ArrayList<>();
+		final List<Blessing> curses = new ArrayList<>();
 
-		for (Blessing blessing : getAllBlessings()) {
+		for (final Blessing blessing : getAllBlessings()) {
 			if (blessing.getBlessingClassification() == BlessingClassification.CURSE) {
 				curses.add(blessing);
 			}
@@ -416,9 +434,9 @@ public class CharacterPlayer {
 	}
 
 	public List<Blessing> getBlessings() {
-		List<Blessing> blessings = new ArrayList<>();
+		final List<Blessing> blessings = new ArrayList<>();
 
-		for (Blessing blessing : getAllBlessings()) {
+		for (final Blessing blessing : getAllBlessings()) {
 			if (blessing.getBlessingClassification() == BlessingClassification.BLESSING) {
 				blessings.add(blessing);
 			}
@@ -434,7 +452,7 @@ public class CharacterPlayer {
 	 * @return a list of blessings
 	 */
 	public List<Blessing> getAllBlessings() {
-		List<Blessing> allBlessings = new ArrayList<>(blessings);
+		final List<Blessing> allBlessings = new ArrayList<>(blessings);
 		// Add faction blessings
 		if (getFaction() != null) {
 			allBlessings.addAll(getFaction().getBlessings());
@@ -460,15 +478,15 @@ public class CharacterPlayer {
 	 * @return a list of available benefices
 	 */
 	public List<AvailableBenefice> getAllBenefices() throws InvalidXmlElementException {
-		List<AvailableBenefice> positiveBenefices = new ArrayList<>();
-		for (AvailableBenefice benefice : benefices) {
+		final List<AvailableBenefice> positiveBenefices = new ArrayList<>();
+		for (final AvailableBenefice benefice : benefices) {
 			if (benefice.getBeneficeClassification() == BeneficeClassification.BENEFICE) {
 				positiveBenefices.add(benefice);
 			}
 		}
 		// Add faction benefices
 		if (getFaction() != null && getFaction().getBenefices() != null) {
-			for (AvailableBenefice benefice : getFaction().getBenefices()) {
+			for (final AvailableBenefice benefice : getFaction().getBenefices()) {
 				if (benefice.getBeneficeClassification() == BeneficeClassification.BENEFICE) {
 					positiveBenefices.add(benefice);
 				}
@@ -483,7 +501,7 @@ public class CharacterPlayer {
 	}
 
 	public AvailableBenefice getBenefice(String beneficeDefinitionId) {
-		for (AvailableBenefice benefice : benefices) {
+		for (final AvailableBenefice benefice : benefices) {
 			if (benefice.getBeneficeDefinition().getId().equalsIgnoreCase(beneficeDefinitionId)) {
 				return benefice;
 			}
@@ -492,15 +510,15 @@ public class CharacterPlayer {
 	}
 
 	public List<AvailableBenefice> getAfflictions() {
-		List<AvailableBenefice> afflictions = new ArrayList<>();
-		for (AvailableBenefice affliction : benefices) {
+		final List<AvailableBenefice> afflictions = new ArrayList<>();
+		for (final AvailableBenefice affliction : benefices) {
 			if (affliction.getBeneficeClassification() == BeneficeClassification.AFFLICTION) {
 				afflictions.add(affliction);
 			}
 		}
 		// Add faction afflictions
 		if (getFaction() != null && getFaction().getBenefices() != null) {
-			for (AvailableBenefice affliction : getFaction().getBenefices()) {
+			for (final AvailableBenefice affliction : getFaction().getBenefices()) {
 				if (affliction.getBeneficeClassification() == BeneficeClassification.AFFLICTION) {
 					afflictions.add(affliction);
 				}
@@ -518,7 +536,7 @@ public class CharacterPlayer {
 	}
 
 	public boolean hasCyberneticDevice(CyberneticDevice cyberneticDevice) {
-		for (SelectedCyberneticDevice device : getCybernetics()) {
+		for (final SelectedCyberneticDevice device : getCybernetics()) {
 			if (Objects.equals(device.getCyberneticDevice(), cyberneticDevice)) {
 				return true;
 			}
@@ -526,27 +544,31 @@ public class CharacterPlayer {
 		return false;
 	}
 
-	public SelectedCyberneticDevice addCybernetics(CyberneticDevice cyberneticDevice) throws TooManyCyberneticDevicesException,
-			RequiredCyberneticDevicesException {
-		if (getCyberneticsIncompatibility() + cyberneticDevice.getIncompatibility() > Cybernetics.getMaxCyberneticIncompatibility(this)) {
-			throw new TooManyCyberneticDevicesException("Cybernatic device cannot be added due to incompatibility requirements. Current incompatibility '"
-					+ getCyberneticsIncompatibility() + "', device incompatibility '" + cyberneticDevice.getIncompatibility()
-					+ "', maximum incompatibility for this character is '" + Cybernetics.getMaxCyberneticIncompatibility(this) + "'.");
+	public SelectedCyberneticDevice addCybernetics(CyberneticDevice cyberneticDevice)
+			throws TooManyCyberneticDevicesException, RequiredCyberneticDevicesException {
+		if (getCyberneticsIncompatibility() + cyberneticDevice.getIncompatibility() > Cybernetics
+				.getMaxCyberneticIncompatibility(this)) {
+			throw new TooManyCyberneticDevicesException(
+					"Cybernatic device cannot be added due to incompatibility requirements. Current incompatibility '"
+							+ getCyberneticsIncompatibility() + "', device incompatibility '"
+							+ cyberneticDevice.getIncompatibility()
+							+ "', maximum incompatibility for this character is '"
+							+ Cybernetics.getMaxCyberneticIncompatibility(this) + "'.");
 		}
 		if (cyberneticDevice.getRequirement() != null) {
 			if (!hasCyberneticDevice(cyberneticDevice.getRequirement())) {
-				throw new RequiredCyberneticDevicesException("Cybernetic device '" + cyberneticDevice + "' requires '" + cyberneticDevice.getRequirement()
-						+ "' to be added to the character.");
+				throw new RequiredCyberneticDevicesException("Cybernetic device '" + cyberneticDevice + "' requires '"
+						+ cyberneticDevice.getRequirement() + "' to be added to the character.");
 			}
 		}
-		SelectedCyberneticDevice selectedCiberneticDevice = new SelectedCyberneticDevice(cyberneticDevice);
+		final SelectedCyberneticDevice selectedCiberneticDevice = new SelectedCyberneticDevice(cyberneticDevice);
 		getCyberneticList().addElement(selectedCiberneticDevice);
 		return selectedCiberneticDevice;
 	}
 
 	public int getCyberneticsIncompatibility() {
 		int incompatibility = 0;
-		for (SelectedCyberneticDevice device : getCybernetics()) {
+		for (final SelectedCyberneticDevice device : getCybernetics()) {
 			incompatibility += device.getIncompatibility();
 		}
 		return incompatibility;
@@ -557,9 +579,9 @@ public class CharacterPlayer {
 	}
 
 	public List<Weapon> getAllWeapons(WeaponType type) {
-		List<Weapon> allWeapons = new ArrayList<>(getAllWeapons());
-		List<Weapon> selectedWeapons = new ArrayList<>();
-		for (Weapon weapon : allWeapons) {
+		final List<Weapon> allWeapons = new ArrayList<>(getAllWeapons());
+		final List<Weapon> selectedWeapons = new ArrayList<>();
+		for (final Weapon weapon : allWeapons) {
 			if (Objects.equals(weapon.getType(), type)) {
 				selectedWeapons.add(weapon);
 			}
@@ -569,11 +591,11 @@ public class CharacterPlayer {
 	}
 
 	public List<Weapon> getAllWeapons() {
-		List<Weapon> allWeapons = new ArrayList<>();
+		final List<Weapon> allWeapons = new ArrayList<>();
 		allWeapons.addAll(weapons.getElements());
 		try {
 			// Weapons from benefices.
-			for (AvailableBenefice benefice : getAllBenefices()) {
+			for (final AvailableBenefice benefice : getAllBenefices()) {
 				try {
 					allWeapons.add(WeaponFactory.getInstance().getElement(benefice.getId(), getLanguage()));
 				} catch (InvalidXmlElementException ixmle) {
@@ -581,7 +603,7 @@ public class CharacterPlayer {
 				}
 			}
 			// Weapons from cybernetics.
-			for (ICyberneticDevice cyberneticDevice : getCyberneticList().getElements()) {
+			for (final ICyberneticDevice cyberneticDevice : getCyberneticList().getElements()) {
 				if (cyberneticDevice.getWeapon() != null) {
 					allWeapons.add(cyberneticDevice.getWeapon());
 				}
@@ -599,7 +621,8 @@ public class CharacterPlayer {
 
 	public void setArmour(Armour armour) throws InvalidArmourException {
 		if (getShield() != null && armour != null && !armour.getAllowedShields().contains(getShield())) {
-			throw new InvalidArmourException("Armour '" + armour + "' is not compatible with shield '" + getShield() + "'.");
+			throw new InvalidArmourException("Armour '" + armour + "' is not compatible with shield '" + getShield()
+					+ "'.");
 		}
 		this.armour = armour;
 	}
@@ -610,17 +633,20 @@ public class CharacterPlayer {
 
 	public void setShield(Shield shield) throws InvalidShieldException {
 		if (getArmour() != null && shield != null && !getArmour().getAllowedShields().contains(shield)) {
-			throw new InvalidShieldException("Shield '" + shield + "' is not compatible with armour '" + getArmour() + "'.");
+			throw new InvalidShieldException("Shield '" + shield + "' is not compatible with armour '" + getArmour()
+					+ "'.");
 		}
 		this.shield = shield;
 	}
 
 	public List<CombatStyle> getMeleeCombatStyles() throws InvalidXmlElementException {
-		List<CombatStyle> meleeCombatActions = new ArrayList<>();
-		for (AvailableBenefice beneficeDefinition : getAllBenefices()) {
+		final List<CombatStyle> meleeCombatActions = new ArrayList<>();
+		for (final AvailableBenefice beneficeDefinition : getAllBenefices()) {
 			if (beneficeDefinition.getBeneficeDefinition().getGroup() == BeneficeGroup.FIGHTING) {
-				CombatStyle combatStyle = CombatStyleFactory.getInstance().getElement(beneficeDefinition.getId(), getLanguage());
-				if (combatStyle.getGroup() == CombatStyleGroup.MELEE || combatStyle.getGroup() == CombatStyleGroup.FIGHT) {
+				final CombatStyle combatStyle = CombatStyleFactory.getInstance().getElement(beneficeDefinition.getId(),
+						getLanguage());
+				if (combatStyle.getGroup() == CombatStyleGroup.MELEE
+						|| combatStyle.getGroup() == CombatStyleGroup.FIGHT) {
 					meleeCombatActions.add(combatStyle);
 				}
 			}
@@ -630,10 +656,11 @@ public class CharacterPlayer {
 	}
 
 	public List<CombatStyle> getRangedCombatStyles() throws InvalidXmlElementException {
-		List<CombatStyle> rangedCombatActions = new ArrayList<>();
-		for (AvailableBenefice beneficeDefinition : getAllBenefices()) {
+		final List<CombatStyle> rangedCombatActions = new ArrayList<>();
+		for (final AvailableBenefice beneficeDefinition : getAllBenefices()) {
 			if (beneficeDefinition.getBeneficeDefinition().getGroup() == BeneficeGroup.FIGHTING) {
-				CombatStyle combatStyle = CombatStyleFactory.getInstance().getElement(beneficeDefinition.getId(), getLanguage());
+				final CombatStyle combatStyle = CombatStyleFactory.getInstance().getElement(beneficeDefinition.getId(),
+						getLanguage());
 				if (combatStyle.getGroup() == CombatStyleGroup.RANGED) {
 					rangedCombatActions.add(combatStyle);
 				}
@@ -656,7 +683,7 @@ public class CharacterPlayer {
 
 	private int getRaceCharacteristicStartingValue(CharacteristicName characteristicName) {
 		if (getRace() != null) {
-			RaceCharacteristic value = getRace().getParameter(characteristicName);
+			final RaceCharacteristic value = getRace().getParameter(characteristicName);
 			if (value != null) {
 				return value.getInitialValue();
 			}
@@ -666,16 +693,18 @@ public class CharacterPlayer {
 	}
 
 	public List<AvailableSkill> getNaturalSkills() throws InvalidXmlElementException {
-		List<AvailableSkill> naturalSkills = new ArrayList<>();
+		final List<AvailableSkill> naturalSkills = new ArrayList<>();
 		// Adds default planet and faction.
-		for (AvailableSkill skill : AvailableSkillsFactory.getInstance().getNaturalSkills(language)) {
+		for (final AvailableSkill skill : AvailableSkillsFactory.getInstance().getNaturalSkills(language)) {
 			if (skill.getSkillDefinition().getId().equals(SkillDefinition.PLANETARY_LORE_ID)) {
 				if (getInfo().getPlanet() != null) {
-					skill.setSpecialization(new Specialization(getInfo().getPlanet().getName().toLowerCase(), getInfo().getPlanet().getName(), language));
+					skill.setSpecialization(new Specialization(getInfo().getPlanet().getName().toLowerCase(), getInfo()
+							.getPlanet().getName(), language));
 				}
 			} else if (skill.getSkillDefinition().getId().equals(SkillDefinition.FACTORION_LORE_ID)) {
 				if (getFaction() != null) {
-					skill.setSpecialization(new Specialization(getFaction().getName().toLowerCase(), getFaction().getName(), language));
+					skill.setSpecialization(new Specialization(getFaction().getName().toLowerCase(), getFaction()
+							.getName(), language));
 				}
 			}
 			naturalSkills.add(skill);
@@ -684,8 +713,8 @@ public class CharacterPlayer {
 	}
 
 	public List<AvailableSkill> getLearnedSkills() throws InvalidXmlElementException {
-		List<AvailableSkill> learnedSkills = new ArrayList<>();
-		for (AvailableSkill skill : AvailableSkillsFactory.getInstance().getLearnedSkills(language)) {
+		final List<AvailableSkill> learnedSkills = new ArrayList<>();
+		for (final AvailableSkill skill : AvailableSkillsFactory.getInstance().getLearnedSkills(language)) {
 			if (getSkillTotalRanks(skill) != null) {
 				learnedSkills.add(skill);
 			}
@@ -695,7 +724,7 @@ public class CharacterPlayer {
 
 	@Override
 	public String toString() {
-		String name = getNameRepresentation();
+		final String name = getNameRepresentation();
 		if (name.length() > 0) {
 			return name;
 		}
@@ -703,13 +732,13 @@ public class CharacterPlayer {
 	}
 
 	public String getRepresentation() {
-		CharacterSheet characterSheet = new CharacterSheet(this);
+		final CharacterSheet characterSheet = new CharacterSheet(this);
 		return characterSheet.toString();
 	}
 
 	public int getStrengthDamangeModification() {
 		try {
-			int strength = characteristics.get(CharacteristicName.STRENGTH.getId()).getValue();
+			final int strength = characteristics.get(CharacteristicName.STRENGTH.getId()).getValue();
 
 			if (strength > 5) {
 				return strength / 3 - 1;
@@ -727,7 +756,7 @@ public class CharacterPlayer {
 	 */
 	public int getCharacteristicsTotalPoints() {
 		int characteristicPoints = 0;
-		for (CharacteristicName characteristicName : CharacteristicName.getBasicCharacteristics()) {
+		for (final CharacteristicName characteristicName : CharacteristicName.getBasicCharacteristics()) {
 			characteristicPoints += getRawValue(characteristicName) - getStartingValue(characteristicName);
 		}
 		return characteristicPoints;
@@ -741,11 +770,11 @@ public class CharacterPlayer {
 	 */
 	public int getSkillsTotalPoints() throws InvalidXmlElementException {
 		int skillPoints = 0;
-		for (AvailableSkill skill : AvailableSkillsFactory.getInstance().getNaturalSkills(getLanguage())) {
+		for (final AvailableSkill skill : AvailableSkillsFactory.getInstance().getNaturalSkills(getLanguage())) {
 			skillPoints += getSkillAssignedRanks(skill) - getStartingValue(skill);
 		}
 
-		for (AvailableSkill skill : AvailableSkillsFactory.getInstance().getLearnedSkills((getLanguage()))) {
+		for (final AvailableSkill skill : AvailableSkillsFactory.getInstance().getLearnedSkills((getLanguage()))) {
 			if (isSkillSpecial(skill)) {
 				continue;
 			}
@@ -777,7 +806,7 @@ public class CharacterPlayer {
 	public Set<Characteristic> getCharacteristics(CharacteristicType characteristicType) {
 		if (characteristicsByType == null || characteristicsByType.isEmpty()) {
 			characteristicsByType = new HashMap<>();
-			for (Characteristic characteristic : characteristics.values()) {
+			for (final Characteristic characteristic : characteristics.values()) {
 				if (characteristicsByType.get(characteristic.getType()) == null) {
 					characteristicsByType.put(characteristic.getType(), new HashSet<Characteristic>());
 				}
@@ -788,10 +817,11 @@ public class CharacterPlayer {
 	}
 
 	public boolean isSkillTrained(AvailableSkill skill) {
-		int skillRanks = getSkillTotalRanks(skill);
+		final int skillRanks = getSkillTotalRanks(skill);
 		try {
-			boolean isNatural = getNaturalSkills().contains(skill);
-			return ((skillRanks > FreeStyleCharacterCreation.getMinInitialNaturalSkillsValues(getInfo().getAge()) && isNatural) || (skillRanks > 0 && isNatural));
+			final boolean isNatural = getNaturalSkills().contains(skill);
+			return ((skillRanks > FreeStyleCharacterCreation.getMinInitialNaturalSkillsValues(getInfo().getAge()) && isNatural) 
+					|| (skillRanks > 0 && isNatural));
 		} catch (InvalidXmlElementException e) {
 			MachineLog.errorMessage(this.getClass().getName(), e);
 		}
@@ -809,15 +839,17 @@ public class CharacterPlayer {
 	 * @return a list of characteristicTypes
 	 */
 	public List<Entry<CharacteristicType, Integer>> getPreferredCharacteristicsTypeSorted() {
-		Map<CharacteristicType, Integer> totalRanksByCharacteristicType = new TreeMap<>();
-		for (CharacteristicType characteristicType : CharacteristicType.values()) {
+		final Map<CharacteristicType, Integer> totalRanksByCharacteristicType = new TreeMap<>();
+		for (final CharacteristicType characteristicType : CharacteristicType.values()) {
 			if (characteristicType != CharacteristicType.OTHERS && getCharacteristics(characteristicType) != null) {
-				for (Characteristic characteristic : getCharacteristics(characteristicType)) {
+				for (final Characteristic characteristic : getCharacteristics(characteristicType)) {
 					if (totalRanksByCharacteristicType.get(characteristicType) == null) {
 						totalRanksByCharacteristicType.put(characteristicType, 0);
 					}
-					totalRanksByCharacteristicType.put(characteristicType,
-							totalRanksByCharacteristicType.get(characteristicType) + getValue(characteristic.getCharacteristicName()));
+					totalRanksByCharacteristicType.put(
+							characteristicType,
+							totalRanksByCharacteristicType.get(characteristicType)
+									+ getValue(characteristic.getCharacteristicName()));
 				}
 			}
 		}
@@ -825,7 +857,8 @@ public class CharacterPlayer {
 			return null;
 		}
 		// Sort result.
-		List<Entry<CharacteristicType, Integer>> sortedList = new LinkedList<>(totalRanksByCharacteristicType.entrySet());
+		final List<Entry<CharacteristicType, Integer>> sortedList = new LinkedList<>(
+				totalRanksByCharacteristicType.entrySet());
 		Collections.sort(sortedList, new Comparator<Entry<CharacteristicType, Integer>>() {
 			public int compare(Entry<CharacteristicType, Integer> o1, Entry<CharacteristicType, Integer> o2) {
 				return o2.getValue().compareTo(o1.getValue());
@@ -836,7 +869,7 @@ public class CharacterPlayer {
 	}
 
 	public BeneficeSpecialization getStatus() throws InvalidXmlElementException {
-		for (AvailableBenefice benefice : getAllBenefices()) {
+		for (final AvailableBenefice benefice : getAllBenefices()) {
 			if (benefice.getBeneficeDefinition().getGroup() == BeneficeGroup.STATUS) {
 				// Must have an specialization.
 				if (benefice.getSpecialization() != null) {
@@ -855,7 +888,7 @@ public class CharacterPlayer {
 	 */
 	public int getInitialMoney() {
 		try {
-			for (AvailableBenefice benefice : getAllBenefices()) {
+			for (final AvailableBenefice benefice : getAllBenefices()) {
 				if ((benefice.getId().startsWith("cash"))) {
 					// Must have an specialization.
 					if (benefice.getSpecialization() != null) {
@@ -863,7 +896,8 @@ public class CharacterPlayer {
 					}
 				}
 			}
-			return Integer.parseInt(AvailableBeneficeFactory.getInstance().getElement("cash [firebirds250]", getLanguage()).getId().replaceAll("[^\\d.]", ""));
+			return Integer.parseInt(AvailableBeneficeFactory.getInstance()
+					.getElement("cash [firebirds250]", getLanguage()).getId().replaceAll("[^\\d.]", ""));
 		} catch (InvalidXmlElementException e) {
 			return 0;
 		}
@@ -876,10 +910,11 @@ public class CharacterPlayer {
 	 */
 	public int getSpentMoney() {
 		int total = 0;
-		for (Weapon weapon : weapons.getElements()) {
+		for (final Weapon weapon : weapons.getElements()) {
 			// Skip weapons payed by benefices.
 			try {
-				if (!getAllBenefices().contains(AvailableBeneficeFactory.getInstance().getElement(weapon.getId(), getLanguage()))) {
+				if (!getAllBenefices().contains(
+						AvailableBeneficeFactory.getInstance().getElement(weapon.getId(), getLanguage()))) {
 					total += weapon.getCost();
 				}
 			} catch (InvalidXmlElementException ibe) {
@@ -912,7 +947,7 @@ public class CharacterPlayer {
 	 * @throws InvalidXmlElementException
 	 */
 	public String getRank() throws InvalidXmlElementException {
-		BeneficeSpecialization status = getStatus();
+		final BeneficeSpecialization status = getStatus();
 		if (status == null) {
 			return null;
 		}
@@ -934,7 +969,7 @@ public class CharacterPlayer {
 
 	public int getBlessingModificationSituation(IValue value) {
 		int modification = 0;
-		for (Blessing blessing : getAllBlessings()) {
+		for (final Blessing blessing : getAllBlessings()) {
 			modification += getModification(blessing, value, false);
 		}
 		return modification;
@@ -942,7 +977,7 @@ public class CharacterPlayer {
 
 	public int getCyberneticsModificationSituation(IValue value) {
 		int modification = 0;
-		for (ICyberneticDevice cyberneticDevice : getCybernetics()) {
+		for (final ICyberneticDevice cyberneticDevice : getCybernetics()) {
 			modification += getModification(cyberneticDevice, value, false);
 		}
 		return modification;
@@ -950,7 +985,7 @@ public class CharacterPlayer {
 
 	public int getBlessingModificationAlways(IValue value) {
 		int modification = 0;
-		for (Blessing blessing : getAllBlessings()) {
+		for (final Blessing blessing : getAllBlessings()) {
 			modification += getModification(blessing, value, true);
 		}
 		return modification;
@@ -958,7 +993,7 @@ public class CharacterPlayer {
 
 	public int getCyberneticsModificationAlways(IValue value) {
 		int modification = 0;
-		for (ICyberneticDevice cyberneticDevice : getCyberneticList().getElements()) {
+		for (final ICyberneticDevice cyberneticDevice : getCyberneticList().getElements()) {
 			modification += getModification(cyberneticDevice, value, true);
 		}
 		return modification;
@@ -966,12 +1001,13 @@ public class CharacterPlayer {
 
 	private int getModification(IElementWithBonification element, IValue value, boolean always) {
 		int bonus = 0;
-		for (Bonification bonification : element.getBonifications()) {
-			if (bonification.getSituation() == null || (always && bonification.getSituation().isEmpty()) || (!always && !bonification.getSituation().isEmpty())) {
+		for (final Bonification bonification : element.getBonifications()) {
+			if (bonification.getSituation() == null || (always && bonification.getSituation().isEmpty())
+					|| (!always && !bonification.getSituation().isEmpty())) {
 				if (bonification.getAffects() instanceof SpecialValue) {
-					SpecialValue specialValue = (SpecialValue) bonification.getAffects();
+					final SpecialValue specialValue = (SpecialValue) bonification.getAffects();
 					// Has a list of values defined.
-					for (IValue specialValueSkill : specialValue.getAffects()) {
+					for (final IValue specialValueSkill : specialValue.getAffects()) {
 						if (Objects.equals(specialValueSkill, value)) {
 							bonus += bonification.getBonification();
 							break;
@@ -979,7 +1015,8 @@ public class CharacterPlayer {
 					}
 				}
 				if (value instanceof Characteristic) {
-					if (Objects.equals(bonification.getAffects(), ((Characteristic) value).getCharacteristicDefinition())) {
+					if (Objects.equals(bonification.getAffects(),
+							((Characteristic) value).getCharacteristicDefinition())) {
 						bonus += bonification.getBonification();
 					}
 				}
@@ -1015,20 +1052,24 @@ public class CharacterPlayer {
 	}
 
 	public boolean hasCharacteristicTemporalModificator(CharacteristicName characteristicName) {
-		if (getBlessingModificationSituation(CharacteristicsDefinitionFactory.getInstance().get(characteristicName, getLanguage())) != 0) {
+		if (getBlessingModificationSituation(CharacteristicsDefinitionFactory.getInstance().get(characteristicName,
+				getLanguage())) != 0) {
 			return true;
 		}
-		if (getCyberneticsModificationSituation(CharacteristicsDefinitionFactory.getInstance().get(characteristicName, getLanguage())) != 0) {
+		if (getCyberneticsModificationSituation(CharacteristicsDefinitionFactory.getInstance().get(characteristicName,
+				getLanguage())) != 0) {
 			return true;
 		}
 		return false;
 	}
 
 	public boolean hasCharacteristicModificator(CharacteristicName characteristicName) {
-		if (getBlessingModificationAlways(CharacteristicsDefinitionFactory.getInstance().get(characteristicName, getLanguage())) != 0) {
+		if (getBlessingModificationAlways(CharacteristicsDefinitionFactory.getInstance().get(characteristicName,
+				getLanguage())) != 0) {
 			return true;
 		}
-		if (getCyberneticsModificationAlways(CharacteristicsDefinitionFactory.getInstance().get(characteristicName, getLanguage())) != 0) {
+		if (getCyberneticsModificationAlways(CharacteristicsDefinitionFactory.getInstance().get(characteristicName,
+				getLanguage())) != 0) {
 			return true;
 		}
 		return false;
@@ -1071,9 +1112,9 @@ public class CharacterPlayer {
 	}
 
 	public String getNameRepresentation() {
-		StringBuilder stringBuilder = new StringBuilder("");
+		final StringBuilder stringBuilder = new StringBuilder("");
 		if (getInfo() != null && getInfo().getNames() != null && !getInfo().getNames().isEmpty()) {
-			for (Name name : getInfo().getNames()) {
+			for (final Name name : getInfo().getNames()) {
 				stringBuilder.append(name.getName());
 				stringBuilder.append(" ");
 			}
@@ -1095,7 +1136,7 @@ public class CharacterPlayer {
 	 */
 	public int getRanksAssigned(SkillGroup skillGroup) throws InvalidXmlElementException {
 		int ranks = 0;
-		for (AvailableSkill skill : AvailableSkillsFactory.getInstance().getSkillsByGroup(skillGroup, getLanguage())) {
+		for (final AvailableSkill skill : AvailableSkillsFactory.getInstance().getSkillsByGroup(skillGroup, getLanguage())) {
 			ranks += getSkillAssignedRanks(skill);
 			if (skill.getSkillDefinition().isNatural()) {
 				ranks -= FreeStyleCharacterCreation.getMinInitialNaturalSkillsValues(getInfo().getAge());
@@ -1112,7 +1153,7 @@ public class CharacterPlayer {
 	 * @return a weapon that needs this skill
 	 */
 	public Weapon hasWeaponWithSkill(AvailableSkill skill) {
-		for (Weapon weapon : getAllWeapons()) {
+		for (final Weapon weapon : getAllWeapons()) {
 			if (Objects.equals(weapon.getSkill(), skill)) {
 				return weapon;
 			}
@@ -1128,9 +1169,11 @@ public class CharacterPlayer {
 	public Weapon getMainWeapon() {
 		Weapon mainWeapon = null;
 		int totalValue = 0;
-		for (Weapon weapon : getAllWeapons()) {
-			if (getSkillTotalRanks(weapon.getSkill()) + getCharacteristic(weapon.getCharacteristic().getCharacteristicName()).getValue() > totalValue) {
-				totalValue = getSkillTotalRanks(weapon.getSkill()) + getCharacteristic(weapon.getCharacteristic().getCharacteristicName()).getValue();
+		for (final Weapon weapon : getAllWeapons()) {
+			if (getSkillTotalRanks(weapon.getSkill())
+					+ getCharacteristic(weapon.getCharacteristic().getCharacteristicName()).getValue() > totalValue) {
+				totalValue = getSkillTotalRanks(weapon.getSkill())
+						+ getCharacteristic(weapon.getCharacteristic().getCharacteristicName()).getValue();
 				mainWeapon = weapon;
 			}
 		}
@@ -1139,7 +1182,7 @@ public class CharacterPlayer {
 
 	public int getEquipmentMaxTechnologicalLevel() {
 		int techLevel = 1;
-		for (Weapon weapon : getAllWeapons()) {
+		for (final Weapon weapon : getAllWeapons()) {
 			if (weapon.getTechLevel() > techLevel) {
 				techLevel = weapon.getTechLevel();
 			}

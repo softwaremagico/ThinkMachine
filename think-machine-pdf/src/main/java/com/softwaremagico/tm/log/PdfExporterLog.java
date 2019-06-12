@@ -118,13 +118,13 @@ public class PdfExporterLog {
 	 * @param throwable
 	 */
 	public static void errorMessage(String className, Throwable throwable) {
-		String error = getStackTrace(throwable);
+		final String error = getStackTrace(throwable);
 		severe(className, error);
 	}
 
 	private static String getStackTrace(Throwable throwable) {
-		Writer writer = new StringWriter();
-		PrintWriter printWriter = new PrintWriter(writer);
+		final Writer writer = new StringWriter();
+		final PrintWriter printWriter = new PrintWriter(writer);
 		throwable.printStackTrace(printWriter);
 		return writer.toString();
 	}

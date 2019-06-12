@@ -38,14 +38,14 @@ import com.softwaremagico.tm.character.occultism.TheurgyComponentFactory;
 
 @Test(groups = { "occultismFactory" })
 public class OccultismFactoryTests {
-	private final static String LANGUAGE = "es";
+	private static final String LANGUAGE = "es";
 
-	private final static int DEFINED_PSI_PATHS = 7;
-	private final static int DEFINED_THEURGY_PATHS = 6;
-	private final static int DEFINED_RANGES = 5;
-	private final static int DEFINED_DURATIONS = 7;
-	private final static int DEFINED_THEURGY_COMPONENTS = 3;
-	private final static int OCCULTISM_TYPES = 2;
+	private static final int DEFINED_PSI_PATHS = 7;
+	private static final int DEFINED_THEURGY_PATHS = 6;
+	private static final int DEFINED_RANGES = 5;
+	private static final int DEFINED_DURATIONS = 7;
+	private static final int DEFINED_THEURGY_COMPONENTS = 3;
+	private static final int OCCULTISM_TYPES = 2;
 
 	@Test
 	public void readPaths() throws InvalidXmlElementException {
@@ -83,12 +83,16 @@ public class OccultismFactoryTests {
 	public void getOcculstimTypes() throws InvalidXmlElementException {
 		Assert.assertEquals(OCCULTISM_TYPES, OccultismTypeFactory.getInstance().getElements(LANGUAGE).size());
 	}
-	
+
 	@Test
 	public void getClassifications() throws InvalidXmlElementException {
-		Assert.assertEquals(ElementClassification.ENHANCEMENT, OccultismPathFactory.getInstance().getElement("sixthSense", LANGUAGE).getClassification());
-		Assert.assertEquals(ElementClassification.COMBAT, OccultismPathFactory.getInstance().getElement("soma", LANGUAGE).getClassification());
-		Assert.assertEquals(ElementClassification.OTHERS, OccultismPathFactory.getInstance().getElement("sympathy", LANGUAGE).getClassification());
-		Assert.assertEquals(ElementClassification.ALTERATION, OccultismPathFactory.getInstance().getElement("templeAvestiRituals", LANGUAGE).getClassification());
+		Assert.assertEquals(ElementClassification.ENHANCEMENT,
+				OccultismPathFactory.getInstance().getElement("sixthSense", LANGUAGE).getClassification());
+		Assert.assertEquals(ElementClassification.COMBAT,
+				OccultismPathFactory.getInstance().getElement("soma", LANGUAGE).getClassification());
+		Assert.assertEquals(ElementClassification.OTHERS,
+				OccultismPathFactory.getInstance().getElement("sympathy", LANGUAGE).getClassification());
+		Assert.assertEquals(ElementClassification.ALTERATION,
+				OccultismPathFactory.getInstance().getElement("templeAvestiRituals", LANGUAGE).getClassification());
 	}
 }

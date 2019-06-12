@@ -33,8 +33,8 @@ import com.softwaremagico.tm.character.planets.PlanetFactory;
 
 @Test(groups = { "planetsFactory" })
 public class PlanetsFactoryTests {
-	private final static String LANGUAGE = "en";
-	private final static int DEFINED_PLANETS = 37;
+	private static final String LANGUAGE = "en";
+	private static final int DEFINED_PLANETS = 37;
 
 	@Test
 	public void readPlanets() throws InvalidXmlElementException {

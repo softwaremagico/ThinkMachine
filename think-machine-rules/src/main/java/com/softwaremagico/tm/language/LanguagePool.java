@@ -39,7 +39,7 @@ public class LanguagePool {
 	public static ITranslator getTranslator(String xmlFile) {
 		ITranslator translator = existingTranslators.get(xmlFile);
 		if (translator == null) {
-			File file = Translator.getTranslatorPath(xmlFile);
+			final File file = Translator.getTranslatorPath(xmlFile);
 			if (file != null && file.exists()) {
 				// Get from folder
 				translator = new Translator(file.getPath());

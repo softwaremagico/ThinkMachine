@@ -49,8 +49,8 @@ public class RandomParty extends Element<RandomParty> implements IElementWithRan
 
 	@Override
 	public Set<RandomPartyMember> getMandatoryElements() {
-		Set<RandomPartyMember> mandatoryElements = new HashSet<>();
-		for (RandomPartyMember member : getRandomPartyMembers()) {
+		final Set<RandomPartyMember> mandatoryElements = new HashSet<>();
+		for (final RandomPartyMember member : getRandomPartyMembers()) {
 			if (member.getMinNumber() != null && member.getMinNumber() > 0) {
 				mandatoryElements.add(member);
 			}

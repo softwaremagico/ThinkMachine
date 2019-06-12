@@ -42,9 +42,9 @@ import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
 
 @Test(groups = { "beneficeFactory" })
 public class BeneficeFactoryTests {
-	private final static String LANGUAGE = "es";
-	private final static int DEFINED_BENEFICES = 74;
-	private final static int AVAILABLE_BENEFICES = 206;
+	private static final String LANGUAGE = "es";
+	private static final int DEFINED_BENEFICES = 74;
+	private static final int AVAILABLE_BENEFICES = 206;
 
 	@Test
 	public void readBenefices() throws InvalidXmlElementException {
@@ -60,7 +60,7 @@ public class BeneficeFactoryTests {
 	public void getBeneficesClassification() throws InvalidXmlElementException {
 		Assert.assertEquals(DEFINED_BENEFICES, AvailableBeneficeFactory.getInstance().getAvailableBeneficesByDefinition(LANGUAGE).keySet().size());
 		int count = 0;
-		for (Set<AvailableBenefice> benefices : AvailableBeneficeFactory.getInstance().getAvailableBeneficesByDefinition(LANGUAGE).values()) {
+		for (final Set<AvailableBenefice> benefices : AvailableBeneficeFactory.getInstance().getAvailableBeneficesByDefinition(LANGUAGE).values()) {
 			count += benefices.size();
 		}
 		Assert.assertEquals(AVAILABLE_BENEFICES, count);
@@ -73,20 +73,20 @@ public class BeneficeFactoryTests {
 
 	@Test
 	public void getMoneyStandard() throws InvalidXmlElementException {
-		CharacterPlayer player = new CharacterPlayer(LANGUAGE);
+		final CharacterPlayer player = new CharacterPlayer(LANGUAGE);
 		Assert.assertEquals(250, player.getInitialMoney());
 	}
 
 	@Test
 	public void getMoneyBenefice() throws InvalidXmlElementException, BeneficeAlreadyAddedException {
-		CharacterPlayer player = new CharacterPlayer(LANGUAGE);
+		final CharacterPlayer player = new CharacterPlayer(LANGUAGE);
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("cash [firebirds1000]", LANGUAGE));
 		Assert.assertEquals(1000, player.getInitialMoney());
 	}
 
 	@Test
 	public void getMoneyRemaining() throws InvalidXmlElementException, BeneficeAlreadyAddedException {
-		CharacterPlayer player = new CharacterPlayer(LANGUAGE);
+		final CharacterPlayer player = new CharacterPlayer(LANGUAGE);
 		// Weapon without cost.
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("fluxSword", LANGUAGE));
 		// Weapon with cost.
@@ -98,9 +98,9 @@ public class BeneficeFactoryTests {
 
 	@Test
 	public void getMoneyAsAfflictionCost() throws InvalidXmlElementException, BeneficeAlreadyAddedException {
-		CharacterPlayer player = new CharacterPlayer(LANGUAGE);
-		int remainingCost = CostCalculator.getCost(player);
-		AvailableBenefice cash50 = AvailableBeneficeFactory.getInstance().getElement("cash [firebirds50]", LANGUAGE);
+		final CharacterPlayer player = new CharacterPlayer(LANGUAGE);
+		final int remainingCost = CostCalculator.getCost(player);
+		final AvailableBenefice cash50 = AvailableBeneficeFactory.getInstance().getElement("cash [firebirds50]", LANGUAGE);
 		Assert.assertEquals(BeneficeClassification.AFFLICTION, cash50.getBeneficeClassification());
 		Assert.assertEquals(-2, cash50.getCost());
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("cash [firebirds50]", LANGUAGE));

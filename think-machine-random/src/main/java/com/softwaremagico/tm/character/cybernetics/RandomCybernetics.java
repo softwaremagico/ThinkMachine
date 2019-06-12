@@ -52,7 +52,8 @@ public class RandomCybernetics extends RandomSelector<CyberneticDevice> {
 	private int totalDevices;
 	private int desiredCyberneticsPoints;
 
-	public RandomCybernetics(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences) throws InvalidXmlElementException {
+	public RandomCybernetics(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences)
+			throws InvalidXmlElementException {
 		super(characterPlayer, preferences);
 		totalDevices = CyberneticTotalDevicesPreferences.getSelected(getPreferences()).randomGaussian();
 		desiredCyberneticsPoints = CyberneticPointsPreferences.getSelected(getPreferences()).randomGaussian();
@@ -60,15 +61,17 @@ public class RandomCybernetics extends RandomSelector<CyberneticDevice> {
 
 	@Override
 	public void assign() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
-		DifficultLevelPreferences difficultyLevel = DifficultLevelPreferences.getSelected(getPreferences());
+		final DifficultLevelPreferences difficultyLevel = DifficultLevelPreferences.getSelected(getPreferences());
 
-		int remainingPoints = FreeStyleCharacterCreation.getFreeAvailablePoints(getCharacterPlayer().getInfo().getAge())
-				- CostCalculator.getCost(getCharacterPlayer(), difficultyLevel.getSkillsBonus(), difficultyLevel.getCharacteristicsBonus());
+		int remainingPoints = FreeStyleCharacterCreation
+				.getFreeAvailablePoints(getCharacterPlayer().getInfo().getAge())
+				- CostCalculator.getCost(getCharacterPlayer(), difficultyLevel.getSkillsBonus(),
+						difficultyLevel.getCharacteristicsBonus());
 		// Select a cybernetic device.
 		int guard = 0;
 		while (guard < 20 && getCharacterPlayer().getCybernetics().size() < totalDevices
 				&& getCharacterPlayer().getCyberneticsIncompatibility() < desiredCyberneticsPoints) {
-			CyberneticDevice selectedDevice = selectElementByWeight();
+			final CyberneticDevice selectedDevice = selectElementByWeight();
 			if (selectedDevice.getPoints() > remainingPoints) {
 				continue;
 			}
@@ -76,24 +79,28 @@ public class RandomCybernetics extends RandomSelector<CyberneticDevice> {
 				getCharacterPlayer().addCybernetics(selectedDevice);
 				remainingPoints -= selectedDevice.getPoints();
 				// Update requirements.
-				for (CyberneticDevice device : CyberneticDeviceFactory.getInstance().getDevicesThatRequires(selectedDevice, getCharacterPlayer().getLanguage())) {
+				for (final CyberneticDevice device : CyberneticDeviceFactory.getInstance().getDevicesThatRequires(
+						selectedDevice, getCharacterPlayer().getLanguage())) {
 					updateWeight(device, getWeight(device) * 20);
 				}
 				// Assign skills if needed.
 				// Some Cybernetics needs skills
-				CyberneticDeviceTrait usability = selectedDevice.getTrait(CyberneticDeviceTraitCategory.USABILITY);
+				final CyberneticDeviceTrait usability = selectedDevice
+						.getTrait(CyberneticDeviceTraitCategory.USABILITY);
 				if (usability != null && usability.getId().equalsIgnoreCase("skillUse")) {
-					AvailableSkill skill = AvailableSkillsFactory.getInstance().getElement(selectedDevice.getId(), getCharacterPlayer().getLanguage());
+					final AvailableSkill skill = AvailableSkillsFactory.getInstance().getElement(
+							selectedDevice.getId(), getCharacterPlayer().getLanguage());
 					if (skill != null) {
-						RandomSkillExtraPoints randomSkillExtraPoints = new RandomSkillExtraPoints(getCharacterPlayer(), getPreferences(),
-								new HashSet<AvailableSkill>());
+						final RandomSkillExtraPoints randomSkillExtraPoints = new RandomSkillExtraPoints(
+								getCharacterPlayer(), getPreferences(), new HashSet<AvailableSkill>());
 						// Assign random ranks to the skill.
 						remainingPoints -= randomSkillExtraPoints.spendSkillsPoints(skill, remainingPoints);
 					}
 				}
 			} catch (TooManyCyberneticDevicesException e) {
 				// No more cybernetics is possible.
-				if (getCharacterPlayer().getCyberneticsIncompatibility() >= Cybernetics.getMaxCyberneticIncompatibility(getCharacterPlayer())) {
+				if (getCharacterPlayer().getCyberneticsIncompatibility() >= Cybernetics
+						.getMaxCyberneticIncompatibility(getCharacterPlayer())) {
 					break;
 				}
 			} catch (RequiredCyberneticDevicesException e) {
@@ -124,7 +131,7 @@ public class RandomCybernetics extends RandomSelector<CyberneticDevice> {
 		}
 
 		// Letal cybernetics for soldiers.
-		CombatPreferences combatPreferences = CombatPreferences.getSelected(getPreferences());
+		final CombatPreferences combatPreferences = CombatPreferences.getSelected(getPreferences());
 		if (combatPreferences == CombatPreferences.BELLIGERENT) {
 			// Preferred weapons
 			if (cyberneticDevice.getWeapon() != null) {
@@ -132,9 +139,10 @@ public class RandomCybernetics extends RandomSelector<CyberneticDevice> {
 			}
 
 			// Preferred body bonus.
-			for (Bonification bonification : cyberneticDevice.getBonifications()) {
+			for (final Bonification bonification : cyberneticDevice.getBonifications()) {
 				if (bonification.getAffects() instanceof CharacteristicDefinition) {
-					if (((CharacteristicDefinition) bonification.getAffects()).getType().equals(CharacteristicType.BODY)) {
+					if (((CharacteristicDefinition) bonification.getAffects()).getType()
+							.equals(CharacteristicType.BODY)) {
 						weight *= BASIC_MULTIPLICATOR;
 					}
 				}
@@ -142,7 +150,7 @@ public class RandomCybernetics extends RandomSelector<CyberneticDevice> {
 		}
 
 		// Visibility
-		CyberneticDeviceTrait visibility = cyberneticDevice.getTrait(CyberneticDeviceTraitCategory.VISIBILITY);
+		final CyberneticDeviceTrait visibility = cyberneticDevice.getTrait(CyberneticDeviceTraitCategory.VISIBILITY);
 		switch (CyberneticVisibilityPreferences.getSelected(getPreferences())) {
 		case HIDDEN:
 			if (visibility != null) {
@@ -152,7 +160,8 @@ public class RandomCybernetics extends RandomSelector<CyberneticDevice> {
 					weight *= BASIC_MULTIPLICATOR;
 				} else {
 					// No visible devices.
-					throw new InvalidRandomElementSelectedException("Visible cyberntics as '" + cyberneticDevice + "' not allowed by user preferences.");
+					throw new InvalidRandomElementSelectedException("Visible cyberntics as '" + cyberneticDevice
+							+ "' not allowed by user preferences.");
 				}
 			}
 			break;
@@ -162,7 +171,9 @@ public class RandomCybernetics extends RandomSelector<CyberneticDevice> {
 
 		// Forbidden are rare.
 		try {
-			if (cyberneticDevice.getTraits().contains(CyberneticDeviceTraitFactory.getInstance().getElement("proscribed", getCharacterPlayer().getLanguage()))) {
+			if (cyberneticDevice.getTraits().contains(
+					CyberneticDeviceTraitFactory.getInstance().getElement("proscribed",
+							getCharacterPlayer().getLanguage()))) {
 				if (CyberneticPointsPreferences.getSelected(getPreferences()) == CyberneticPointsPreferences.SUBTLE) {
 					return 0;
 				}

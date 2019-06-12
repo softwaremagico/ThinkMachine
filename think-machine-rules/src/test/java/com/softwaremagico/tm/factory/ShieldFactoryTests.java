@@ -34,8 +34,8 @@ import com.softwaremagico.tm.character.equipment.shields.ShieldFactory;
 @Test(groups = { "shieldFactory" })
 public class ShieldFactoryTests {
 
-	private final static int DEFINED_SHIELDS = 4;
-	private final static String LANGUAGE = "es";
+	private static final int DEFINED_SHIELDS = 4;
+	private static final String LANGUAGE = "es";
 
 	@Test
 	public void readDamages() throws InvalidXmlElementException {

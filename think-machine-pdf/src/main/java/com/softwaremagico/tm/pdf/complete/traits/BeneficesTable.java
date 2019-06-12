@@ -30,10 +30,10 @@ import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.complete.elements.VerticalTable;
 
 public class BeneficesTable extends VerticalTable {
-	private final static String GAP = "__________________";
-	private final static int NAME_COLUMN_WIDTH = 80;
-	private final static int COST_COLUMN_WIDTH = 25;
-	private final static float[] WIDTHS = { 2f, 5f, 2f, 5f };
+	private static final String GAP = "__________________";
+	private static final int NAME_COLUMN_WIDTH = 80;
+	private static final int COST_COLUMN_WIDTH = 25;
+	private static final float[] WIDTHS = { 2f, 5f, 2f, 5f };
 
 	public BeneficesTable(CharacterPlayer characterPlayer) {
 		super(WIDTHS);

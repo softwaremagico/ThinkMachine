@@ -70,7 +70,7 @@ public enum TechnologicalPreferences implements IRandomPreference {
 	}
 
 	public static TechnologicalPreferences getSelected(Set<IRandomPreference> preferences) {
-		for (IRandomPreference preference : preferences) {
+		for (final IRandomPreference preference : preferences) {
 			if (preference instanceof TechnologicalPreferences) {
 				return (TechnologicalPreferences) preference;
 			}

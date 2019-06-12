@@ -95,7 +95,7 @@ public class OccultismPower extends Element<OccultismPower> {
 	}
 
 	public String getRoll() {
-		StringBuilder stringBuilder = new StringBuilder();
+		final StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append(getCharacteristic().getAbbreviature());
 		stringBuilder.append("+");
 		for (int i = 0; i < values.size(); i++) {
@@ -112,10 +112,10 @@ public class OccultismPower extends Element<OccultismPower> {
 	}
 
 	public String getComponentsRepresentation() {
-		List<TheurgyComponent> sortedComponents = new ArrayList<>(getComponents());
+		final List<TheurgyComponent> sortedComponents = new ArrayList<>(getComponents());
 		Collections.sort(sortedComponents);
-		StringBuilder representation = new StringBuilder();
-		for (TheurgyComponent theurgyComponent : sortedComponents) {
+		final StringBuilder representation = new StringBuilder();
+		for (final TheurgyComponent theurgyComponent : sortedComponents) {
 			representation.append(theurgyComponent.getAbbreviature());
 		}
 		return representation.toString();

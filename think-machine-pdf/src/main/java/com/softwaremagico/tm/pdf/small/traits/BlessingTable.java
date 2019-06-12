@@ -35,13 +35,13 @@ import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.complete.elements.VerticalTable;
 
 public class BlessingTable extends VerticalTable {
-	private final static String GAP = "__________________";
-	private final static int BONIFICATION_COLUMN_WIDTH = 15;
-	private final static int TRAIT_COLUMN_WIDTH = 60;
-	private final static int SITUATION_COLUMN_WIDTH = 78;
-	private final static int ROWS = 9;
+	private static final String GAP = "__________________";
+	private static final int BONIFICATION_COLUMN_WIDTH = 15;
+	private static final int TRAIT_COLUMN_WIDTH = 60;
+	private static final int SITUATION_COLUMN_WIDTH = 78;
+	private static final int ROWS = 9;
 
-	private final static float[] WIDTHS = { 2f, 7f, 8f };
+	private static final float[] WIDTHS = { 2f, 7f, 8f };
 
 	public BlessingTable(CharacterPlayer characterPlayer) {
 		super(WIDTHS);
@@ -58,18 +58,19 @@ public class BlessingTable extends VerticalTable {
 
 		int added = 0;
 		if (characterPlayer != null) {
-			for (Blessing blessing : characterPlayer.getAllBlessings()) {
-				Iterator<Bonification> it = blessing.getBonifications().iterator();
+			for (final Blessing blessing : characterPlayer.getAllBlessings()) {
+				final Iterator<Bonification> it = blessing.getBonifications().iterator();
 				while (it.hasNext()) {
-					Bonification bonification = it.next();
+					final Bonification bonification = it.next();
 					addCell(createElementLine(bonification.getBonification(), BONIFICATION_COLUMN_WIDTH,
 							FadingSunsTheme.CHARACTER_SMALL_TRAITS_FONT_SIZE));
-					PdfPCell nameCell = createElementLine(bonification.getAffects() != null ? bonification.getAffects()
-							.getName() : "", TRAIT_COLUMN_WIDTH, FadingSunsTheme.CHARACTER_SMALL_TRAITS_FONT_SIZE);
+					final PdfPCell nameCell = createElementLine(bonification.getAffects() != null ? bonification
+							.getAffects().getName() : "", TRAIT_COLUMN_WIDTH,
+							FadingSunsTheme.CHARACTER_SMALL_TRAITS_FONT_SIZE);
 					nameCell.setHorizontalAlignment(Element.ALIGN_LEFT);
 					addCell(nameCell);
-					PdfPCell descriptionCell = createElementLine(bonification.getSituation(), SITUATION_COLUMN_WIDTH,
-							FadingSunsTheme.CHARACTER_SMALL_TRAITS_FONT_SIZE);
+					final PdfPCell descriptionCell = createElementLine(bonification.getSituation(),
+							SITUATION_COLUMN_WIDTH, FadingSunsTheme.CHARACTER_SMALL_TRAITS_FONT_SIZE);
 					descriptionCell.setHorizontalAlignment(Element.ALIGN_LEFT);
 					addCell(descriptionCell);
 					added++;

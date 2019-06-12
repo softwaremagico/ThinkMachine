@@ -57,7 +57,7 @@ public class SmallPartySheet extends SmallCharacterSheet {
 	}
 
 	private void initializeTableContent() {
-		float[] widths = { 1f, 1f };
+		final float[] widths = { 1f, 1f };
 		mainTable = new PdfPTable(widths);
 		BaseElement.setTablePropierties(mainTable);
 		mainTable.getDefaultCell().setVerticalAlignment(Element.ALIGN_TOP);
@@ -68,7 +68,7 @@ public class SmallPartySheet extends SmallCharacterSheet {
 	@Override
 	protected void createContent(Document document) throws Exception {
 		initializeTableContent();
-		for (CharacterPlayer characterPlayer : party.getMembers()) {
+		for (final CharacterPlayer characterPlayer : party.getMembers()) {
 			createCharacterPDF(document, characterPlayer);
 		}
 		if (party.getMembers().size() % 2 > 0) {

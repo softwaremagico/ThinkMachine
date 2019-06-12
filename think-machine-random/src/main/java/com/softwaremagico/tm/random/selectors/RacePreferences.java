@@ -46,7 +46,7 @@ public enum RacePreferences implements IRandomPreference {
 	}
 
 	public static RacePreferences getSelected(Set<IRandomPreference> preferences) {
-		for (IRandomPreference preference : preferences) {
+		for (final IRandomPreference preference : preferences) {
 			if (preference instanceof RacePreferences) {
 				return (RacePreferences) preference;
 			}

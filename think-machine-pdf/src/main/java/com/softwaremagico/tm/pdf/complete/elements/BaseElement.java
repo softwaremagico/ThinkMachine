@@ -49,8 +49,8 @@ public class BaseElement {
 		if (text == null) {
 			text = "";
 		}
-		Phrase content = new Phrase(text, new Font(font, fontSize));
-		PdfPCell cell = new PdfPCell(content);
+		final Phrase content = new Phrase(text, new Font(font, fontSize));
+		final PdfPCell cell = new PdfPCell(content);
 		cell.setColspan(colspan);
 		cell.setBorderWidth(border);
 		cell.setHorizontalAlignment(align);
@@ -60,7 +60,7 @@ public class BaseElement {
 	}
 
 	public static PdfPCell getCell(Paragraph paragraph, int border, int colspan, int align, BaseColor color) {
-		PdfPCell cell = new PdfPCell(paragraph);
+		final PdfPCell cell = new PdfPCell(paragraph);
 		cell.setColspan(colspan);
 		cell.setBorderWidth(border);
 		cell.setHorizontalAlignment(align);
@@ -73,8 +73,8 @@ public class BaseElement {
 		if (text == null) {
 			text = "";
 		}
-		Paragraph p = new Paragraph(text, FontFactory.getFont(font, fontSize, fontType));
-		PdfPCell cell = new PdfPCell(p);
+		final Paragraph p = new Paragraph(text, FontFactory.getFont(font, fontSize, fontType));
+		final PdfPCell cell = new PdfPCell(p);
 		cell.setColspan(colspan);
 		cell.setBorderWidth(border);
 		cell.setHorizontalAlignment(align);
@@ -84,15 +84,15 @@ public class BaseElement {
 	}
 
 	public static PdfPCell createImageCell(String path) throws DocumentException, IOException {
-		Image img = Image.getInstance(path);
-		PdfPCell cell = new PdfPCell(img, true);
+		final Image img = Image.getInstance(path);
+		final PdfPCell cell = new PdfPCell(img, true);
 		setCellProperties(cell);
 		return cell;
 	}
 
 	public static PdfPCell createLogoCell() throws DocumentException, IOException {
-		Image image = Image.getInstance(CharacterBasicsCompleteTableFactory.class.getResource("/" + FadingSunsTheme.LOGO_IMAGE));
-		PdfPCell cell = new PdfPCell(image, true);
+		final Image image = Image.getInstance(CharacterBasicsCompleteTableFactory.class.getResource("/" + FadingSunsTheme.LOGO_IMAGE));
+		final PdfPCell cell = new PdfPCell(image, true);
 		setCellProperties(cell);
 		cell.setHorizontalAlignment(Element.ALIGN_CENTER);
 		cell.setPaddingTop(10);
@@ -106,14 +106,14 @@ public class BaseElement {
 	}
 
 	public static PdfPCell createSeparator() {
-		float[] widths = { 1f };
-		PdfPTable table = new PdfPTable(widths);
+		final float[] widths = { 1f };
+		final PdfPTable table = new PdfPTable(widths);
 		table.setWidthPercentage(100);
 		table.addCell(createWhiteSeparator());
 		table.addCell(createBlackSeparator());
 		// table.addCell(createWhiteSeparator());
 
-		PdfPCell cell = new PdfPCell();
+		final PdfPCell cell = new PdfPCell();
 		cell.addElement(table);
 		setCellProperties(cell);
 
@@ -125,14 +125,14 @@ public class BaseElement {
 	}
 
 	public static PdfPCell createBigSeparator(int width) {
-		float[] widths = { 1f };
-		PdfPTable table = new PdfPTable(widths);
+		final float[] widths = { 1f };
+		final PdfPTable table = new PdfPTable(widths);
 		table.setWidthPercentage(width);
 		table.addCell(createWhiteSeparator());
 		table.addCell(createBlackSeparator());
 		table.addCell(createWhiteSeparator());
 
-		PdfPCell cell = new PdfPCell();
+		final PdfPCell cell = new PdfPCell();
 		cell.addElement(table);
 		setCellProperties(cell);
 
@@ -140,7 +140,7 @@ public class BaseElement {
 	}
 
 	public static PdfPCell createBlackSeparator() {
-		PdfPCell cell = new PdfPCell();
+		final PdfPCell cell = new PdfPCell();
 		cell.setBackgroundColor(BaseColor.BLACK);
 		setCellProperties(cell);
 		cell.setMinimumHeight(10f);
@@ -148,7 +148,7 @@ public class BaseElement {
 	}
 
 	public static PdfPCell createWhiteSeparator() {
-		PdfPCell cell = new PdfPCell();
+		final PdfPCell cell = new PdfPCell();
 		cell.setBackgroundColor(BaseColor.WHITE);
 		setCellProperties(cell);
 		cell.setMinimumHeight(6f);

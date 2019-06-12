@@ -33,7 +33,7 @@ public enum CyberneticDeviceTraitCategory {
 	}
 
 	public static CyberneticDeviceTraitCategory get(String tag) {
-		for (CyberneticDeviceTraitCategory category : CyberneticDeviceTraitCategory.values()) {
+		for (final CyberneticDeviceTraitCategory category : CyberneticDeviceTraitCategory.values()) {
 			if (category.name().equalsIgnoreCase(tag)) {
 				return category;
 			}

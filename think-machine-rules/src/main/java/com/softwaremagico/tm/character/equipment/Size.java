@@ -30,7 +30,7 @@ public enum Size {
 	XS, S, M, L, XL;
 
 	public static Size get(String sizeName) {
-		for (Size size : Size.values()) {
+		for (final Size size : Size.values()) {
 			if (Objects.equals(size.name().toLowerCase(), sizeName.toLowerCase())) {
 				return size;
 			}

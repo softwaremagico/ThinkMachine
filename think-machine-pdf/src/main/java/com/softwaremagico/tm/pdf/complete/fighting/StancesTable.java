@@ -32,12 +32,12 @@ import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.complete.elements.LateralHeaderPdfPTable;
 
 public class StancesTable extends LateralHeaderPdfPTable {
-	private final static float[] WIDTHS = { 2f, 11f, 23f };
-	private final static String GAP = "_____________________________________";
-	private final static int ROWS = 5;
+	private static final float[] WIDTHS = { 2f, 11f, 23f };
+	private static final String GAP = "_____________________________________";
+	private static final int ROWS = 5;
 
-	private final static int NAME_COLUMN_WIDTH = 100;
-	private final static int DESCRIPTION_COLUMN_WIDTH = 200;
+	private static final int NAME_COLUMN_WIDTH = 100;
+	private static final int DESCRIPTION_COLUMN_WIDTH = 200;
 
 	protected StancesTable(CharacterPlayer characterPlayer) throws InvalidXmlElementException {
 		super(WIDTHS);
@@ -58,15 +58,15 @@ public class StancesTable extends LateralHeaderPdfPTable {
 
 		int added = 0;
 		if (characterPlayer != null) {
-			for (CombatStyle combatStyle : characterPlayer.getMeleeCombatStyles()) {
-				for (CombatStance stance : combatStyle.getCombatStances()) {
+			for (final CombatStyle combatStyle : characterPlayer.getMeleeCombatStyles()) {
+				for (final CombatStance stance : combatStyle.getCombatStances()) {
 					addCell(createElementLine(stance.getName(), NAME_COLUMN_WIDTH));
 					addCell(createElementLine(stance.getDescription(), DESCRIPTION_COLUMN_WIDTH));
 					added++;
 				}
 			}
-			for (CombatStyle combatStyle : characterPlayer.getRangedCombatStyles()) {
-				for (CombatStance stance : combatStyle.getCombatStances()) {
+			for (final CombatStyle combatStyle : characterPlayer.getRangedCombatStyles()) {
+				for (final CombatStance stance : combatStyle.getCombatStances()) {
 					addCell(createElementLine(stance.getName(), NAME_COLUMN_WIDTH));
 					addCell(createElementLine(stance.getDescription(), DESCRIPTION_COLUMN_WIDTH));
 					added++;

@@ -40,13 +40,14 @@ import com.softwaremagico.tm.random.selectors.IRandomPreference;
 
 public class RandomArmour extends EquipmentSelector<Armour> {
 
-	public RandomArmour(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences) throws InvalidXmlElementException {
+	public RandomArmour(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences)
+			throws InvalidXmlElementException {
 		super(characterPlayer, preferences);
 	}
 
 	@Override
 	public void assign() throws InvalidRandomElementSelectedException, InvalidArmourException {
-		Armour selectedArmour = selectElementByWeight();
+		final Armour selectedArmour = selectElementByWeight();
 		if (getCharacterPlayer().getArmour() == null) {
 			getCharacterPlayer().setArmour(selectedArmour);
 			RandomGenerationLog.info(this.getClass().getName(), "Selected armour: " + selectedArmour);
@@ -90,11 +91,17 @@ public class RandomArmour extends EquipmentSelector<Armour> {
 	protected int getWeightTechModificator(Armour armour) {
 		int weight = 0;
 		// Similar tech level preferred.
-		weight += MAX_PROBABILITY / Math.pow(10, (getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).getValue() - armour.getTechLevel()));
-		RandomGenerationLog.debug(
-				this.getClass().getName(),
-				"Weight tech bonus for '" + armour + "' is '" + MAX_PROBABILITY
-						/ Math.pow(10, 2 * (getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).getValue() - armour.getTechLevel())) + "'.");
+		weight += MAX_PROBABILITY
+				/ Math.pow(10, (getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).getValue() - armour
+						.getTechLevel()));
+		RandomGenerationLog
+				.debug(this.getClass().getName(),
+						"Weight tech bonus for '"
+								+ armour
+								+ "' is '"
+								+ MAX_PROBABILITY
+								/ Math.pow(10, 2 * (getCharacterPlayer().getCharacteristic(CharacteristicName.TECH)
+										.getValue() - armour.getTechLevel())) + "'.");
 		if (weight <= 0) {
 			if (armour.getTechLevel() < 3) {
 				weight = 0;
@@ -113,24 +120,28 @@ public class RandomArmour extends EquipmentSelector<Armour> {
 		// Heavy armours only for real warriors.
 		if (!getPreferences().contains(CombatPreferences.BELLIGERENT)) {
 			if (armour.isHeavy()) {
-				throw new InvalidRandomElementSelectedException("Heavy armour '" + armour + "' not accepted for not combat characters.");
+				throw new InvalidRandomElementSelectedException("Heavy armour '" + armour
+						+ "' not accepted for not combat characters.");
 			}
 		}
 
 		int weight = 1;
 		// Similar tech level preferred.
-		int weightTech = getWeightTechModificator(armour);
-		RandomGenerationLog.debug(this.getClass().getName(), "Weight value by tech level for '" + armour + "' is '" + weightTech + "'.");
+		final int weightTech = getWeightTechModificator(armour);
+		RandomGenerationLog.debug(this.getClass().getName(), "Weight value by tech level for '" + armour + "' is '"
+				+ weightTech + "'.");
 		weight += weightTech;
 
 		// armours depending on the purchasing power of the character.
-		int costModificator = getWeightCostModificator(armour);
-		RandomGenerationLog.debug(this.getClass().getName(), "Cost multiplication for weight for '" + armour + "' is '" + costModificator + "'.");
+		final int costModificator = getWeightCostModificator(armour);
+		RandomGenerationLog.debug(this.getClass().getName(), "Cost multiplication for weight for '" + armour + "' is '"
+				+ costModificator + "'.");
 		weight /= costModificator;
 
 		// More protection is better.
 		weight *= armour.getProtection();
-		RandomGenerationLog.debug(this.getClass().getName(), "Protection multiplicator for '" + armour + "' is '" + armour.getProtection() + "'.");
+		RandomGenerationLog.debug(this.getClass().getName(), "Protection multiplicator for '" + armour + "' is '"
+				+ armour.getProtection() + "'.");
 
 		RandomGenerationLog.debug(this.getClass().getName(), "Total weight for '" + armour + "' is '" + weight + "'.");
 		return weight;
@@ -140,32 +151,36 @@ public class RandomArmour extends EquipmentSelector<Armour> {
 	public void validateElement(Armour armour) throws InvalidRandomElementSelectedException {
 		super.validateElement(armour);
 
-		DifficultLevelPreferences preference = DifficultLevelPreferences.getSelected(getPreferences());
+		final DifficultLevelPreferences preference = DifficultLevelPreferences.getSelected(getPreferences());
 		switch (preference) {
 		case VERY_EASY:
 			break;
 		case EASY:
 			if (armour.isHeavy()) {
-				throw new InvalidRandomElementSelectedException("Heavy armour '" + armour + "' are not allowed by selected preference '" + preference + "'.");
+				throw new InvalidRandomElementSelectedException("Heavy armour '" + armour
+						+ "' are not allowed by selected preference '" + preference + "'.");
 			}
 			break;
 		case MEDIUM:
 			break;
 		case HARD:
 			if (armour.getProtection() < 3) {
-				throw new InvalidRandomElementSelectedException("Basic armour '" + armour + "' are not allowed by selected preference '" + preference + "'.");
+				throw new InvalidRandomElementSelectedException("Basic armour '" + armour
+						+ "' are not allowed by selected preference '" + preference + "'.");
 			}
 			break;
 		case VERY_HARD:
 			if (armour.getProtection() < 5 || armour.getDamageTypes().isEmpty()) {
-				throw new InvalidRandomElementSelectedException("Basic armour '" + armour + "' are not allowed by selected preference '" + preference + "'.");
+				throw new InvalidRandomElementSelectedException("Basic armour '" + armour
+						+ "' are not allowed by selected preference '" + preference + "'.");
 			}
 			break;
 		}
 	}
 
 	@Override
-	protected void assignIfMandatory(Armour element) throws InvalidXmlElementException, ImpossibleToAssignMandatoryElementException {
+	protected void assignIfMandatory(Armour element) throws InvalidXmlElementException,
+			ImpossibleToAssignMandatoryElementException {
 		return;
 	}
 

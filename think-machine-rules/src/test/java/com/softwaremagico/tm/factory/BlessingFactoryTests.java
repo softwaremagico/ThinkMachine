@@ -33,9 +33,9 @@ import com.softwaremagico.tm.character.blessings.BlessingFactory;
 
 @Test(groups = { "blessingFactory" })
 public class BlessingFactoryTests {
-	private final static String LANGUAGE = "es";
-	private final static int DEFINED_BLESSINGS = 97;
-	private final static int DEFINED_BONIFICATIONS_MISSING_EYE = 2;
+	private static final String LANGUAGE = "es";
+	private static final int DEFINED_BLESSINGS = 97;
+	private static final int DEFINED_BONIFICATIONS_MISSING_EYE = 2;
 
 	@Test
 	public void readBlessings() throws InvalidXmlElementException {

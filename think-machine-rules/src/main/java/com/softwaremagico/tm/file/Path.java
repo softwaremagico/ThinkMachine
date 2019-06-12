@@ -27,7 +27,7 @@ package com.softwaremagico.tm.file;
 import java.io.File;
 
 public class Path {
-	private final static String APPLICATION_FOLDER = "think-machine";
+	private static final String APPLICATION_FOLDER = "think-machine";
 	public static final String TRANSLATIONS_FOLDER = "translations";
 	public static final String SKILLS_FOLDER = "skills";
 
@@ -35,9 +35,9 @@ public class Path {
 	}
 
 	public static String getRootPath() {
-		String soName = System.getProperty("os.name");
+		final String soName = System.getProperty("os.name");
 		if (soName.contains("Linux") || soName.contains("linux")) {
-			File file = new File("/usr/share/" + APPLICATION_FOLDER);
+			final File file = new File("/usr/share/" + APPLICATION_FOLDER);
 			if (file.exists()) {
 				return file.getPath() + File.separator;
 			} else {

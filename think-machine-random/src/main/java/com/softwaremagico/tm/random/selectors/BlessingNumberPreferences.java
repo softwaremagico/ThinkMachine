@@ -71,7 +71,7 @@ public enum BlessingNumberPreferences implements IRandomPreference, IGaussianDis
 	}
 
 	public static BlessingNumberPreferences getSelected(Set<IRandomPreference> preferences) {
-		for (IRandomPreference preference : preferences) {
+		for (final IRandomPreference preference : preferences) {
 			if (preference instanceof BlessingNumberPreferences) {
 				return (BlessingNumberPreferences) preference;
 			}

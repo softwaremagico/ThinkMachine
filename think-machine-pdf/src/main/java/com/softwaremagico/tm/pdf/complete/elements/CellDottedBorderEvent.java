@@ -37,7 +37,7 @@ public class CellDottedBorderEvent implements PdfPCellEvent {
 	}
 
 	public void cellLayout(PdfPCell cell, Rectangle position, PdfContentByte[] canvases) {
-		PdfContentByte canvas = canvases[PdfPTable.LINECANVAS];
+		final PdfContentByte canvas = canvases[PdfPTable.LINECANVAS];
 		canvas.setLineDash(3f, 3f);
 		canvas.moveTo(position.getLeft(), position.getTop());
 		canvas.lineTo(position.getRight(), position.getTop());

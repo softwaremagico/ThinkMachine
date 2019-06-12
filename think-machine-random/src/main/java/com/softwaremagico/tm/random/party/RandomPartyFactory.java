@@ -39,19 +39,19 @@ import com.softwaremagico.tm.random.selectors.IRandomPreference;
 import com.softwaremagico.tm.random.selectors.RandomPreferenceUtils;
 
 public class RandomPartyFactory extends XmlFactory<RandomParty> {
-	private final static ITranslator translatorRandomParty = LanguagePool.getTranslator("parties.xml");
+	private static final ITranslator translatorRandomParty = LanguagePool.getTranslator("parties.xml");
 
-	private final static String NAME = "name";
-	private final static String RANDOM = "random";
-	private final static String PARTY_NAME = "names";
-	private final static String PARTY_ADJECTIVE = "adjectives";
+	private static final String NAME = "name";
+	private static final String RANDOM = "random";
+	private static final String PARTY_NAME = "names";
+	private static final String PARTY_ADJECTIVE = "adjectives";
 
-	private final static String MEMBER = "member";
-	private final static String PROFILE = "profile";
-	private final static String MINIMUM_NUMBER = "minNumber";
-	private final static String MAXIMUM_NUMBER = "maxNumber";
-	private final static String WEIGHT = "weight";
-	private final static String EXTRA_PREFERENCES = "extraPreferences";
+	private static final String MEMBER = "member";
+	private static final String PROFILE = "profile";
+	private static final String MINIMUM_NUMBER = "minNumber";
+	private static final String MAXIMUM_NUMBER = "maxNumber";
+	private static final String WEIGHT = "weight";
+	private static final String EXTRA_PREFERENCES = "extraPreferences";
 
 	// RandomParty --> Language --> Name
 	private Map<RandomParty, Map<String, Set<PartyName>>> namesByParty;
@@ -111,16 +111,16 @@ public class RandomPartyFactory extends XmlFactory<RandomParty> {
 	@Override
 	protected RandomParty createElement(ITranslator translator, String partyId, String language)
 			throws InvalidXmlElementException {
-		String name = translator.getNodeValue(partyId, NAME, language);
+		final String name = translator.getNodeValue(partyId, NAME, language);
 
-		RandomParty randomParty = new RandomParty(partyId, name, language);
+		final RandomParty randomParty = new RandomParty(partyId, name, language);
 
 		int node = 0;
 		while (true) {
 			try {
-				String profile = translator.getNodeValue(partyId, MEMBER, PROFILE, node);
-				String profileName = translator.getNodeValue(partyId, MEMBER, NAME, language, node);
-				String minNumberTag = translator.getNodeValue(partyId, MEMBER, MINIMUM_NUMBER, node);
+				final String profile = translator.getNodeValue(partyId, MEMBER, PROFILE, node);
+				final String profileName = translator.getNodeValue(partyId, MEMBER, NAME, language, node);
+				final String minNumberTag = translator.getNodeValue(partyId, MEMBER, MINIMUM_NUMBER, node);
 				Integer minNumber = null;
 				if (minNumberTag != null) {
 					try {
@@ -131,7 +131,7 @@ public class RandomPartyFactory extends XmlFactory<RandomParty> {
 										+ minNumberTag + "'.", e);
 					}
 				}
-				String maxNumberTag = translator.getNodeValue(partyId, MEMBER, MAXIMUM_NUMBER, node);
+				final String maxNumberTag = translator.getNodeValue(partyId, MEMBER, MAXIMUM_NUMBER, node);
 				Integer maxNumber = null;
 				if (maxNumberTag != null) {
 					try {
@@ -142,7 +142,7 @@ public class RandomPartyFactory extends XmlFactory<RandomParty> {
 										+ maxNumberTag + "'.", e);
 					}
 				}
-				String weightTag = translator.getNodeValue(partyId, MEMBER, WEIGHT, node);
+				final String weightTag = translator.getNodeValue(partyId, MEMBER, WEIGHT, node);
 				Integer weight = null;
 				if (weightTag != null) {
 					try {
@@ -154,10 +154,12 @@ public class RandomPartyFactory extends XmlFactory<RandomParty> {
 					}
 				}
 
-				Set<IRandomPreference> randomPreferences = new HashSet<>();
-				String preferencesSelectedNames = translator.getNodeValue(partyId, MEMBER, EXTRA_PREFERENCES, node);
+				final Set<IRandomPreference> randomPreferences = new HashSet<>();
+				final String preferencesSelectedNames = translator.getNodeValue(partyId, MEMBER, EXTRA_PREFERENCES,
+						node);
 				if (preferencesSelectedNames != null) {
-					StringTokenizer preferencesSelectedTokenizer = new StringTokenizer(preferencesSelectedNames, ",");
+					final StringTokenizer preferencesSelectedTokenizer = new StringTokenizer(preferencesSelectedNames,
+							",");
 					while (preferencesSelectedTokenizer.hasMoreTokens()) {
 						randomPreferences.add(RandomPreferenceUtils.getSelectedPreference(preferencesSelectedTokenizer
 								.nextToken().trim()));
@@ -179,17 +181,17 @@ public class RandomPartyFactory extends XmlFactory<RandomParty> {
 		}
 
 		// Random options
-		String partyNames = translator.getNodeValue(partyId, RANDOM, PARTY_NAME, language);
+		final String partyNames = translator.getNodeValue(partyId, RANDOM, PARTY_NAME, language);
 		if (partyNames != null) {
-			StringTokenizer partyNamesTokenizer = new StringTokenizer(partyNames, ",");
+			final StringTokenizer partyNamesTokenizer = new StringTokenizer(partyNames, ",");
 			while (partyNamesTokenizer.hasMoreTokens()) {
 				addName(new PartyName(partyNamesTokenizer.nextToken().trim(), randomParty, language));
 			}
 		}
 
-		String partyAdjectives = translator.getNodeValue(partyId, RANDOM, PARTY_ADJECTIVE, language);
+		final String partyAdjectives = translator.getNodeValue(partyId, RANDOM, PARTY_ADJECTIVE, language);
 		if (partyAdjectives != null) {
-			StringTokenizer partyAdjectivesTokenizer = new StringTokenizer(partyAdjectives, ",");
+			final StringTokenizer partyAdjectivesTokenizer = new StringTokenizer(partyAdjectives, ",");
 			while (partyAdjectivesTokenizer.hasMoreTokens()) {
 				addAdjective(new PartyAdjective(partyAdjectivesTokenizer.nextToken().trim(), randomParty, language));
 			}
@@ -203,7 +205,7 @@ public class RandomPartyFactory extends XmlFactory<RandomParty> {
 			return null;
 		}
 		if (language.equals("es")) {
-			StringBuilder name = new StringBuilder();
+			final StringBuilder name = new StringBuilder();
 			name.append(partyName.getName());
 			name.append(" ");
 			// Genre modification.

@@ -31,9 +31,9 @@ import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
 
 public class DamageTypeFactory extends XmlFactory<DamageType> {
-	private final static ITranslator translatorDamage = LanguagePool.getTranslator("damage.xml");
+	private static final ITranslator translatorDamage = LanguagePool.getTranslator("damage.xml");
 
-	private final static String NAME = "name";
+	private static final String NAME = "name";
 
 	private static DamageTypeFactory instance;
 
@@ -63,7 +63,7 @@ public class DamageTypeFactory extends XmlFactory<DamageType> {
 	protected DamageType createElement(ITranslator translator, String damageId, String language) throws InvalidXmlElementException {
 		DamageType damageType = null;
 		try {
-			String name = translator.getNodeValue(damageId, NAME, language);
+			final String name = translator.getNodeValue(damageId, NAME, language);
 			damageType = new DamageType(damageId, name, language);
 		} catch (Exception e) {
 			throw new InvalidWeaponException("Invalid name in damage '" + damageId + "'.", e);

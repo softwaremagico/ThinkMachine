@@ -71,7 +71,7 @@ public enum ExtraBeneficesNumberPreferences implements IRandomPreference, IGauss
 	}
 
 	public static ExtraBeneficesNumberPreferences getSelected(Set<IRandomPreference> preferences) {
-		for (IRandomPreference preference : preferences) {
+		for (final IRandomPreference preference : preferences) {
 			if (preference instanceof ExtraBeneficesNumberPreferences) {
 				return (ExtraBeneficesNumberPreferences) preference;
 			}

@@ -36,13 +36,13 @@ import com.softwaremagico.tm.pdf.complete.elements.BaseElement;
 
 public abstract class CharacterBasicsTableFactory extends BaseElement {
 
-	protected final static String LINE = "_______________";
-	protected final static String LANGUAGE_PREFIX = "info";
-	protected final static int MAX_VALUE_LENGTH = 13;
+	protected static final String LINE = "_______________";
+	protected static final String LANGUAGE_PREFIX = "info";
+	protected static final int MAX_VALUE_LENGTH = 13;
 
 	protected static PdfPCell createField(CharacterPlayer characterPlayer, String tag, int fontSize) {
-		float[] widths = { 0.7f, 1f };
-		PdfPTable table = new PdfPTable(widths);
+		final float[] widths = { 0.7f, 1f };
+		final PdfPTable table = new PdfPTable(widths);
 		setTablePropierties(table);
 
 		table.addCell(getCell(getTranslatedTag(tag), Element.ALIGN_RIGHT, fontSize));
@@ -50,16 +50,19 @@ public abstract class CharacterBasicsTableFactory extends BaseElement {
 			table.addCell(getCell(LINE, Element.ALIGN_LEFT, fontSize));
 		} else {
 			if (tag.equals("name")) {
-				table.addCell(getHandwrittingCell(characterPlayer.getNameRepresentation(), Element.ALIGN_LEFT, fontSize - 1));
+				table.addCell(getHandwrittingCell(characterPlayer.getNameRepresentation(), Element.ALIGN_LEFT,
+						fontSize - 1));
 			} else if (tag.equals("race")) {
 				if (characterPlayer.getRace() != null) {
-					table.addCell(getHandwrittingCell(characterPlayer.getRace().getName(), Element.ALIGN_LEFT, fontSize - 1));
+					table.addCell(getHandwrittingCell(characterPlayer.getRace().getName(), Element.ALIGN_LEFT,
+							fontSize - 1));
 				} else {
 					table.addCell(getHandwrittingCell("", Element.ALIGN_LEFT, fontSize - 1));
 				}
 			} else if (tag.equals("faction")) {
 				if (characterPlayer.getFaction() != null) {
-					table.addCell(getHandwrittingCell(characterPlayer.getFaction().getName(), Element.ALIGN_LEFT, fontSize - 1));
+					table.addCell(getHandwrittingCell(characterPlayer.getFaction().getName(), Element.ALIGN_LEFT,
+							fontSize - 1));
 				} else {
 					table.addCell(getHandwrittingCell("", Element.ALIGN_LEFT, fontSize - 1));
 				}
@@ -75,18 +78,21 @@ public abstract class CharacterBasicsTableFactory extends BaseElement {
 				}
 			} else if (tag.equals("planet")) {
 				if (characterPlayer.getInfo().getPlanet() != null) {
-					table.addCell(getHandwrittingCell(characterPlayer.getInfo().getPlanet().getName(), Element.ALIGN_LEFT, fontSize - 1));
+					table.addCell(getHandwrittingCell(characterPlayer.getInfo().getPlanet().getName(),
+							Element.ALIGN_LEFT, fontSize - 1));
 				} else {
 					table.addCell(getHandwrittingCell("", Element.ALIGN_LEFT, fontSize - 1));
 				}
 			} else if (tag.equals("gender")) {
-				table.addCell(getHandwrittingCell(characterPlayer.getInfo().getTranslatedParameter(tag), Element.ALIGN_LEFT, fontSize - 1));
+				table.addCell(getHandwrittingCell(characterPlayer.getInfo().getTranslatedParameter(tag),
+						Element.ALIGN_LEFT, fontSize - 1));
 			} else {
-				table.addCell(getHandwrittingCell(characterPlayer.getInfo().getTranslatedParameter(tag), Element.ALIGN_LEFT, fontSize - 1));
+				table.addCell(getHandwrittingCell(characterPlayer.getInfo().getTranslatedParameter(tag),
+						Element.ALIGN_LEFT, fontSize - 1));
 			}
 		}
 
-		PdfPCell cell = new PdfPCell();
+		final PdfPCell cell = new PdfPCell();
 		cell.addElement(table);
 		setCellProperties(cell);
 		cell.setMinimumHeight(20);
@@ -95,7 +101,7 @@ public abstract class CharacterBasicsTableFactory extends BaseElement {
 	}
 
 	protected static PdfPCell getCell(String text, int align, int fontSize) {
-		PdfPCell cell = getCell(text, 0, 1, align, BaseColor.WHITE, FadingSunsTheme.getLineFont(), fontSize);
+		final PdfPCell cell = getCell(text, 0, 1, align, BaseColor.WHITE, FadingSunsTheme.getLineFont(), fontSize);
 		return cell;
 	}
 
@@ -103,13 +109,15 @@ public abstract class CharacterBasicsTableFactory extends BaseElement {
 		if (text != null && text.length() > MAX_VALUE_LENGTH) {
 			text = text.substring(0, MAX_VALUE_LENGTH + 1);
 		}
-		PdfPCell cell = getCell(text, 0, 1, align, BaseColor.WHITE, FadingSunsTheme.getHandwrittingFont(), FadingSunsTheme.getHandWrittingFontSize(fontSize));
+		final PdfPCell cell = getCell(text, 0, 1, align, BaseColor.WHITE, FadingSunsTheme.getHandwrittingFont(),
+				FadingSunsTheme.getHandWrittingFontSize(fontSize));
 		cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		return cell;
 	}
 
 	protected static String getTranslatedTag(String tag) {
-		String value = getTranslator().getTranslatedText(LANGUAGE_PREFIX + tag.substring(0, 1).toUpperCase() + tag.substring(1));
+		final String value = getTranslator().getTranslatedText(
+				LANGUAGE_PREFIX + tag.substring(0, 1).toUpperCase() + tag.substring(1));
 		if (value != null) {
 			if (value.length() > MAX_VALUE_LENGTH) {
 				return value.substring(0, MAX_VALUE_LENGTH + 1);

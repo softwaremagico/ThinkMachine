@@ -49,7 +49,7 @@ public enum FactionPreferences implements IRandomPreference {
 	}
 
 	public static FactionPreferences getSelected(Set<IRandomPreference> preferences) {
-		for (IRandomPreference preference : preferences) {
+		for (final IRandomPreference preference : preferences) {
 			if (preference instanceof FactionPreferences) {
 				return (FactionPreferences) preference;
 			}

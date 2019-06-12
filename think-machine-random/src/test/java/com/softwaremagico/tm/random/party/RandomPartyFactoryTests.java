@@ -34,8 +34,8 @@ import com.softwaremagico.tm.random.selectors.DifficultLevelPreferences;
 @Test(groups = { "randomPartyFactory" })
 public class RandomPartyFactoryTests {
 
-	private final static int DEFINED_PARTIES = 1;
-	private final static String LANGUAGE = "en";
+	private static final int DEFINED_PARTIES = 1;
+	private static final String LANGUAGE = "en";
 
 	@Test
 	public void readParties() throws InvalidXmlElementException {
@@ -55,7 +55,7 @@ public class RandomPartyFactoryTests {
 		Assert.assertEquals(RandomPartyFactory.getInstance().getElement("thugBand", LANGUAGE).getRandomPartyMembers()
 				.size(), 3);
 		int checkedMemebers = 0;
-		for (RandomPartyMember member : RandomPartyFactory.getInstance().getElement("thugBand", LANGUAGE)
+		for (final RandomPartyMember member : RandomPartyFactory.getInstance().getElement("thugBand", LANGUAGE)
 				.getRandomPartyMembers()) {
 			if (member.getId().equals("thugBand_0")) {
 				checkedMemebers++;

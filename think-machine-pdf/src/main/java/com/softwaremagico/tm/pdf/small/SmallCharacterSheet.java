@@ -87,104 +87,104 @@ public class SmallCharacterSheet extends PdfDocument {
 	}
 
 	protected PdfPTable createCharacterContent(CharacterPlayer characterPlayer) throws Exception {
-		float[] widths = { 2.2f, 1f };
-		PdfPTable mainTable = new PdfPTable(widths);
+		final float[] widths = { 2.2f, 1f };
+		final PdfPTable mainTable = new PdfPTable(widths);
 		BaseElement.setTablePropierties(mainTable);
 		mainTable.getDefaultCell().setPadding(0);
 
-		PdfPTable infoTable = CharacterBasicsReducedTableFactory.getCharacterBasicsTable(characterPlayer);
-		PdfPCell infoCell = new PdfPCell(infoTable);
+		final PdfPTable infoTable = CharacterBasicsReducedTableFactory.getCharacterBasicsTable(characterPlayer);
+		final PdfPCell infoCell = new PdfPCell(infoTable);
 		infoCell.setBorderWidthTop(0);
 		infoCell.setBorderWidthLeft(0);
 		infoCell.setBorderWidthBottom(1);
 		mainTable.addCell(infoCell);
 
-		PdfPTable learnedSkillsTable = LearnedSkillsTable.getSkillsTable(characterPlayer, getLanguage());
-		PdfPCell learnedSkillsCell = new PdfPCell(learnedSkillsTable);
+		final PdfPTable learnedSkillsTable = LearnedSkillsTable.getSkillsTable(characterPlayer, getLanguage());
+		final PdfPCell learnedSkillsCell = new PdfPCell(learnedSkillsTable);
 		learnedSkillsCell.setColspan(2);
 		learnedSkillsCell.setRowspan(3);
 		learnedSkillsCell.setBorderWidthTop(0);
 		learnedSkillsCell.setBorderWidthRight(0);
 		mainTable.addCell(learnedSkillsCell);
 
-		PdfPTable basicTable = new PdfPTable(new float[] { 5f, 4f });
+		final PdfPTable basicTable = new PdfPTable(new float[] { 5f, 4f });
 		BaseElement.setTablePropierties(basicTable);
 		basicTable.getDefaultCell().setBorder(0);
 
-		PdfPTable characteristicsTable = CharacteristicsTableFactory.getCharacteristicsBasicsTable(characterPlayer);
-		PdfPCell characteristicCell = new PdfPCell(characteristicsTable);
+		final PdfPTable characteristicsTable = CharacteristicsTableFactory.getCharacteristicsBasicsTable(characterPlayer);
+		final PdfPCell characteristicCell = new PdfPCell(characteristicsTable);
 		characteristicCell.setBorderWidthLeft(0);
 		basicTable.addCell(characteristicCell);
 
-		PdfPTable naturalSkillsTable = NaturalSkillsTable.getSkillsTable(characterPlayer, getLanguage());
-		PdfPCell naturalSkillsCell = new PdfPCell(naturalSkillsTable);
+		final PdfPTable naturalSkillsTable = NaturalSkillsTable.getSkillsTable(characterPlayer, getLanguage());
+		final PdfPCell naturalSkillsCell = new PdfPCell(naturalSkillsTable);
 		naturalSkillsCell.setBorderWidthRight(0);
 		basicTable.addCell(naturalSkillsCell);
 
-		PdfPCell basicComposedCell = new PdfPCell(basicTable);
+		final PdfPCell basicComposedCell = new PdfPCell(basicTable);
 		basicComposedCell.setBorder(0);
 		mainTable.addCell(basicComposedCell);
 
-		PdfPTable composedTable = new PdfPTable(new float[] { 5f, 2f });
+		final PdfPTable composedTable = new PdfPTable(new float[] { 5f, 2f });
 
-		PdfPTable blessingsTable = new BlessingTable(characterPlayer);
-		PdfPCell blessingsCell = new PdfPCell(blessingsTable);
+		final PdfPTable blessingsTable = new BlessingTable(characterPlayer);
+		final PdfPCell blessingsCell = new PdfPCell(blessingsTable);
 		blessingsCell.setBorderWidthLeft(0);
 		blessingsCell.setBorderWidthBottom(1);
 		composedTable.addCell(blessingsCell);
 
-		PdfPTable beneficesTable = new BeneficesTable(characterPlayer);
-		PdfPCell beneficesCell = new PdfPCell(beneficesTable);
+		final PdfPTable beneficesTable = new BeneficesTable(characterPlayer);
+		final PdfPCell beneficesCell = new PdfPCell(beneficesTable);
 		beneficesCell.setBorderWidthBottom(1);
 		composedTable.addCell(beneficesCell);
 
-		PdfPCell composedCell = new PdfPCell(composedTable);
+		final PdfPCell composedCell = new PdfPCell(composedTable);
 		composedCell.setRowspan(2);
 		composedCell.setBorder(0);
 		mainTable.addCell(composedCell);
 
-		PdfPTable armourTable = new ArmourTable(characterPlayer);
-		PdfPCell armourCell = new PdfPCell(armourTable);
+		final PdfPTable armourTable = new ArmourTable(characterPlayer);
+		final PdfPCell armourCell = new PdfPCell(armourTable);
 		armourCell.setBorderWidthRight(0);
 		armourCell.setBorderWidthBottom(1);
 		mainTable.addCell(armourCell);
 
-		PdfPTable fightTable = new PdfPTable(new float[] { 3f, 5f, 1f });
+		final PdfPTable fightTable = new PdfPTable(new float[] { 3f, 5f, 1f });
 
 		if (characterPlayer != null
 				&& (characterPlayer.getSelectedPowers().isEmpty() && !characterPlayer.getCybernetics().isEmpty())) {
-			PdfPTable cyberneticsTable = new CyberneticsTable(characterPlayer);
-			PdfPCell cyberneticsCell = new PdfPCell(cyberneticsTable);
+			final PdfPTable cyberneticsTable = new CyberneticsTable(characterPlayer);
+			final PdfPCell cyberneticsCell = new PdfPCell(cyberneticsTable);
 			cyberneticsCell.setBorderWidthLeft(0);
 			fightTable.addCell(cyberneticsCell);
 		} else {
-			PdfPTable occultismTable = new OccultismTable(characterPlayer, getLanguage());
-			PdfPCell occultismCell = new PdfPCell(occultismTable);
+			final PdfPTable occultismTable = new OccultismTable(characterPlayer, getLanguage());
+			final PdfPCell occultismCell = new PdfPCell(occultismTable);
 			occultismCell.setBorderWidthLeft(0);
 			fightTable.addCell(occultismCell);
 		}
 
-		PdfPTable weaponsTable = new WeaponsTable(characterPlayer);
+		final PdfPTable weaponsTable = new WeaponsTable(characterPlayer);
 		fightTable.addCell(weaponsTable);
 
-		PdfPCell victoryPointsCell = new PdfPCell(new VerticalVictoryPointsTable());
+		final PdfPCell victoryPointsCell = new PdfPCell(new VerticalVictoryPointsTable());
 		victoryPointsCell.setPadding(0);
 		victoryPointsCell.setRowspan(3);
 		fightTable.addCell(victoryPointsCell);
 
-		PdfPTable vitalityTable = new VitalityTable(characterPlayer);
-		PdfPCell vitalityCell = new PdfPCell(vitalityTable);
+		final PdfPTable vitalityTable = new VitalityTable(characterPlayer);
+		final PdfPCell vitalityCell = new PdfPCell(vitalityTable);
 		vitalityCell.setColspan(2);
 		vitalityCell.setBorderWidth(1);
 		fightTable.addCell(vitalityCell);
 
-		PdfPTable wyrdTable = new WyrdTable(characterPlayer);
-		PdfPCell wyrdCell = new PdfPCell(wyrdTable);
+		final PdfPTable wyrdTable = new WyrdTable(characterPlayer);
+		final PdfPCell wyrdCell = new PdfPCell(wyrdTable);
 		wyrdCell.setBorderWidth(1);
 		wyrdCell.setColspan(2);
 		fightTable.addCell(wyrdCell);
 
-		PdfPCell fightCell = new PdfPCell(fightTable);
+		final PdfPCell fightCell = new PdfPCell(fightTable);
 		fightCell.setBorder(0);
 		fightCell.setColspan(2);
 

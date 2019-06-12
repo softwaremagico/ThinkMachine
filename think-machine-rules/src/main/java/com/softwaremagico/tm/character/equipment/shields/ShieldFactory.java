@@ -30,15 +30,15 @@ import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
 
 public class ShieldFactory extends XmlFactory<Shield> {
-	private final static ITranslator translatorWeapon = LanguagePool.getTranslator("shields.xml");
+	private static final ITranslator translatorWeapon = LanguagePool.getTranslator("shields.xml");
 
-	private final static String NAME = "name";
+	private static final String NAME = "name";
 
-	private final static String TECH = "techLevel";
-	private final static String IMPACT = "impact";
-	private final static String FORCE = "force";
-	private final static String HITS = "hits";
-	private final static String COST = "cost";
+	private static final String TECH = "techLevel";
+	private static final String IMPACT = "impact";
+	private static final String FORCE = "force";
+	private static final String HITS = "hits";
+	private static final String COST = "cost";
 
 	private static ShieldFactory instance;
 
@@ -65,7 +65,8 @@ public class ShieldFactory extends XmlFactory<Shield> {
 	}
 
 	@Override
-	protected Shield createElement(ITranslator translator, String shieldId, String language) throws InvalidXmlElementException {
+	protected Shield createElement(ITranslator translator, String shieldId, String language)
+			throws InvalidXmlElementException {
 		Shield shield = null;
 		String name = null;
 		try {
@@ -76,7 +77,7 @@ public class ShieldFactory extends XmlFactory<Shield> {
 
 		int techLevel = 0;
 		try {
-			String techValue = translator.getNodeValue(shieldId, TECH);
+			final String techValue = translator.getNodeValue(shieldId, TECH);
 			techLevel = Integer.parseInt(techValue);
 		} catch (Exception e) {
 			throw new InvalidShieldException("Invalid tech value in shield '" + shieldId + "'.");
@@ -84,7 +85,7 @@ public class ShieldFactory extends XmlFactory<Shield> {
 
 		int impact = 0;
 		try {
-			String impactValue = translator.getNodeValue(shieldId, IMPACT);
+			final String impactValue = translator.getNodeValue(shieldId, IMPACT);
 			impact = Integer.parseInt(impactValue);
 		} catch (Exception e) {
 			throw new InvalidShieldException("Invalid impact value in shield '" + shieldId + "'.");
@@ -92,7 +93,7 @@ public class ShieldFactory extends XmlFactory<Shield> {
 
 		int force = 0;
 		try {
-			String forceValue = translator.getNodeValue(shieldId, FORCE);
+			final String forceValue = translator.getNodeValue(shieldId, FORCE);
 			force = Integer.parseInt(forceValue);
 		} catch (Exception e) {
 			throw new InvalidShieldException("Invalid force value in shield '" + shieldId + "'.");
@@ -100,7 +101,7 @@ public class ShieldFactory extends XmlFactory<Shield> {
 
 		int hits = 0;
 		try {
-			String hitsValue = translator.getNodeValue(shieldId, HITS);
+			final String hitsValue = translator.getNodeValue(shieldId, HITS);
 			hits = Integer.parseInt(hitsValue);
 		} catch (Exception e) {
 			throw new InvalidShieldException("Invalid hits value in shield '" + shieldId + "'.");
@@ -108,7 +109,7 @@ public class ShieldFactory extends XmlFactory<Shield> {
 
 		float cost = 0;
 		try {
-			String costValue = translator.getNodeValue(shieldId, COST);
+			final String costValue = translator.getNodeValue(shieldId, COST);
 			cost = Float.parseFloat(costValue);
 		} catch (Exception e) {
 			throw new InvalidShieldException("Invalid cost value in shield '" + shieldId + "'.");

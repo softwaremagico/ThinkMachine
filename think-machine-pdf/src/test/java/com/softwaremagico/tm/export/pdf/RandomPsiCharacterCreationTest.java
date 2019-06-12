@@ -49,7 +49,7 @@ import com.softwaremagico.tm.random.selectors.SpecializationPreferences;
 
 @Test(groups = { "randomPsiCharacterTest" })
 public class RandomPsiCharacterCreationTest {
-	private final static String LANGUAGE = "en";
+	private static final String LANGUAGE = "en";
 
 	@BeforeMethod
 	public void clearCache() {
@@ -60,8 +60,8 @@ public class RandomPsiCharacterCreationTest {
 	public void createRandomPsiCharacter() throws MalformedURLException, DocumentException, IOException,
 			InvalidXmlElementException, TooManyBlessingsException, DuplicatedPreferenceException,
 			InvalidRandomElementSelectedException {
-		CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
-		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0,
+		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
+		final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0,
 				SpecializationPreferences.SPECIALIZED, PsiquePathLevelPreferences.HIGH, PsiqueLevelPreferences.HIGH);
 		randomizeCharacter.createCharacter();
 
@@ -74,7 +74,7 @@ public class RandomPsiCharacterCreationTest {
 		}
 
 		LanguagePool.clearCache();
-		SmallCharacterSheet sheet = new SmallCharacterSheet(characterPlayer);
+		final SmallCharacterSheet sheet = new SmallCharacterSheet(characterPlayer);
 		Assert.assertEquals(
 				sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "RandomPsiCharacter.pdf"), 1);
 	}

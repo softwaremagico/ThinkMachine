@@ -33,20 +33,20 @@ import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.complete.elements.VerticalTable;
 
 public class WeaponsTable extends VerticalTable {
-	private final static String GAP = "__________________";
-	private final static float[] WIDTHS = { 3f, 1f, 1f, 1.5f, 1.5f, 1f };
-	private final static int ROWS = 9;
-	private final static int NAME_COLUMN_WIDTH = 60;
-	private final static int GOAL_COLUMN_WIDTH = 15;
-	private final static int DAMAGE_COLUMN_WIDTH = 15;
-	private final static int RANGE_COLUMN_WIDTH = 25;
-	private final static int SHOTS_COLUMN_WIDTH = 25;
-	private final static int RATE_COLUMN_WIDTH = 15;
+	private static final String GAP = "__________________";
+	private static final float[] WIDTHS = { 3f, 1f, 1f, 1.5f, 1.5f, 1f };
+	private static final int ROWS = 9;
+	private static final int NAME_COLUMN_WIDTH = 60;
+	private static final int GOAL_COLUMN_WIDTH = 15;
+	private static final int DAMAGE_COLUMN_WIDTH = 15;
+	private static final int RANGE_COLUMN_WIDTH = 25;
+	private static final int SHOTS_COLUMN_WIDTH = 25;
+	private static final int RATE_COLUMN_WIDTH = 15;
 
 	public WeaponsTable(CharacterPlayer characterPlayer) {
 		super(WIDTHS);
 		getDefaultCell().setBorder(0);
-		PdfPCell title = createTitle(getTranslator().getTranslatedText("combat"),
+		final PdfPCell title = createTitle(getTranslator().getTranslatedText("combat"),
 				FadingSunsTheme.CHARACTER_SMALL_WEAPONS_TITLE_FONT_SIZE);
 		// To adapt height with Occultism.
 		title.setMinimumHeight(20);
@@ -66,12 +66,12 @@ public class WeaponsTable extends VerticalTable {
 
 		int added = 0;
 		if (characterPlayer != null) {
-			for (Weapon weapon : characterPlayer.getAllWeapons()) {
+			for (final Weapon weapon : characterPlayer.getAllWeapons()) {
 				addCell(createFirstElementLine(weapon.getName(), NAME_COLUMN_WIDTH,
 						FadingSunsTheme.WEAPONS_SMALL_CONTENT_FONT_SIZE));
 				addCell(createElementLine((weapon.getGoal() != null ? weapon.getGoal() : ""), GOAL_COLUMN_WIDTH,
 						FadingSunsTheme.WEAPONS_SMALL_CONTENT_FONT_SIZE));
-				StringBuilder stringBuilder = new StringBuilder();
+				final StringBuilder stringBuilder = new StringBuilder();
 				stringBuilder.append(weapon.getDamageWithoutArea());
 				if (!weapon.getDamageWithoutArea().endsWith("d")) {
 					stringBuilder.append("d");
@@ -91,7 +91,7 @@ public class WeaponsTable extends VerticalTable {
 						FadingSunsTheme.WEAPONS_SMALL_CONTENT_FONT_SIZE));
 				added++;
 
-				for (Ammunition ammunition : weapon.getAmmunitions()) {
+				for (final Ammunition ammunition : weapon.getAmmunitions()) {
 					addCell(createFirstElementLine(" - " + ammunition.getName(), NAME_COLUMN_WIDTH,
 							FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
 					addCell(createElementLine((ammunition.getGoal() != null ? weapon.getGoal() : ""),

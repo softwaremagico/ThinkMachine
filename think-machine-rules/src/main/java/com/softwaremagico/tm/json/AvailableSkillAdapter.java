@@ -38,11 +38,11 @@ import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.log.MachineLog;
 
 public class AvailableSkillAdapter extends ElementAdapter<AvailableSkill> {
-	private final static String SPECIALIZATION = "specialization";
+	private static final String SPECIALIZATION = "specialization";
 
 	@Override
 	public JsonElement serialize(AvailableSkill element, Type elementType, JsonSerializationContext jsonSerializationContext) {
-		JsonElement jsonObject = super.serialize(element, elementType, jsonSerializationContext);
+		final JsonElement jsonObject = super.serialize(element, elementType, jsonSerializationContext);
 		if (element.getSpecialization() != null) {
 			((JsonObject) jsonObject).addProperty(SPECIALIZATION, element.getSpecialization().getId());
 		}
@@ -52,8 +52,8 @@ public class AvailableSkillAdapter extends ElementAdapter<AvailableSkill> {
 	@Override
 	public AvailableSkill deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
 		try {
-			String specializationId = getSpecialization(jsonElement);
-			AvailableSkill availableSkill = AvailableSkillsFactory.getInstance().getElement(super.getElementId(jsonElement), specializationId,
+			final String specializationId = getSpecialization(jsonElement);
+			final AvailableSkill availableSkill = AvailableSkillsFactory.getInstance().getElement(super.getElementId(jsonElement), specializationId,
 					super.getLanguage(jsonElement));
 			return availableSkill;
 		} catch (InvalidXmlElementException e) {
@@ -63,8 +63,8 @@ public class AvailableSkillAdapter extends ElementAdapter<AvailableSkill> {
 	}
 
 	protected String getSpecialization(JsonElement jsonElement) {
-		JsonObject jsonObject = jsonElement.getAsJsonObject();
-		JsonPrimitive specialization = (JsonPrimitive) jsonObject.get(SPECIALIZATION);
+		final JsonObject jsonObject = jsonElement.getAsJsonObject();
+		final JsonPrimitive specialization = (JsonPrimitive) jsonObject.get(SPECIALIZATION);
 		if (specialization == null) {
 			return null;
 		}

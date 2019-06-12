@@ -64,7 +64,7 @@ public enum DifficultLevelPreferences implements IRandomPreference {
 	}
 
 	public static DifficultLevelPreferences getSelected(Set<IRandomPreference> preferences) {
-		for (IRandomPreference preference : preferences) {
+		for (final IRandomPreference preference : preferences) {
 			if (preference instanceof DifficultLevelPreferences) {
 				return (DifficultLevelPreferences) preference;
 			}

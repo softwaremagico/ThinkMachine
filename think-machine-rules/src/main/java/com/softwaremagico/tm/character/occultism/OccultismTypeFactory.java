@@ -31,13 +31,13 @@ import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.log.MachineLog;
 
 public class OccultismTypeFactory extends XmlFactory<OccultismType> {
-	private final static ITranslator translatorBlessing = LanguagePool.getTranslator("occultismTypes.xml");
+	private static final ITranslator translatorBlessing = LanguagePool.getTranslator("occultismTypes.xml");
 
-	private final static String NAME = "name";
-	private final static String DARK_SIDE = "darkSide";
+	private static final String NAME = "name";
+	private static final String DARK_SIDE = "darkSide";
 
-	private final static String PSI_TAG = "psi";
-	private final static String THEURGY_TAG = "theurgy";
+	private static final String PSI_TAG = "psi";
+	private static final String THEURGY_TAG = "theurgy";
 
 	private static OccultismTypeFactory instance;
 
@@ -61,8 +61,8 @@ public class OccultismTypeFactory extends XmlFactory<OccultismType> {
 	@Override
 	protected OccultismType createElement(ITranslator translator, String occulstimTypeId, String language) throws InvalidXmlElementException {
 		try {
-			String name = translator.getNodeValue(occulstimTypeId, NAME, language);
-			String darkSide = translator.getNodeValue(occulstimTypeId, DARK_SIDE, language);
+			final String name = translator.getNodeValue(occulstimTypeId, NAME, language);
+			final String darkSide = translator.getNodeValue(occulstimTypeId, DARK_SIDE, language);
 			return new OccultismType(occulstimTypeId, name, language, darkSide);
 		} catch (Exception e) {
 			throw new InvalidOccultismTypeException("Invalid structure in occultism type '" + occulstimTypeId + "'.", e);

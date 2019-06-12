@@ -72,7 +72,7 @@ public enum PsiqueLevelPreferences implements IRandomPreference, IGaussianDistri
 	}
 
 	public static PsiqueLevelPreferences getSelected(Set<IRandomPreference> preferences) {
-		for (IRandomPreference preference : preferences) {
+		for (final IRandomPreference preference : preferences) {
 			if (preference instanceof PsiqueLevelPreferences) {
 				return (PsiqueLevelPreferences) preference;
 			}

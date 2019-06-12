@@ -50,12 +50,12 @@ public class RandomCursesDefinition extends RandomSelector<Blessing> {
 
 	@Override
 	public void assign() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
-		IGaussianDistribution cursesDistribution = CurseNumberPreferences.getSelected(getPreferences());
+		final IGaussianDistribution cursesDistribution = CurseNumberPreferences.getSelected(getPreferences());
 		// Select a curse
-		int totalSelectedCurses = cursesDistribution.randomGaussian();
+		final int totalSelectedCurses = cursesDistribution.randomGaussian();
 		while (getCharacterPlayer().getCurses().size() < totalSelectedCurses
 				+ getCharacterPlayer().getFaction().getBlessings(BlessingClassification.CURSE).size()) {
-			Blessing selectedCurse = selectElementByWeight();
+			final Blessing selectedCurse = selectElementByWeight();
 			try {
 				getCharacterPlayer().addBlessing(selectedCurse);
 				RandomGenerationLog.info(this.getClass().getName(), "Added curse '" + selectedCurse + "'.");
@@ -87,12 +87,12 @@ public class RandomCursesDefinition extends RandomSelector<Blessing> {
 		if (curse.getBlessingClassification() == BlessingClassification.BLESSING) {
 			throw new InvalidRandomElementSelectedException("Benefice '" + curse + "' is not a curse.");
 		}
-		BlessingPreferences blessingPreferences = BlessingPreferences.getSelected(getPreferences());
+		final BlessingPreferences blessingPreferences = BlessingPreferences.getSelected(getPreferences());
 		if (blessingPreferences != null && curse.getBlessingGroup() == BlessingGroup.get(blessingPreferences.name())) {
 			return MAX_PROBABILITY;
 		}
 		// No injuries for a combat character.
-		CombatPreferences selectedCombat = CombatPreferences.getSelected(getPreferences());
+		final CombatPreferences selectedCombat = CombatPreferences.getSelected(getPreferences());
 		if (selectedCombat != null && selectedCombat.minimum() >= CombatPreferences.FAIR.minimum()) {
 			if (curse.getBlessingGroup() == BlessingGroup.INJURIES) {
 				throw new InvalidRandomElementSelectedException("No injuries '" + curse + "' for a fighter.");
@@ -100,9 +100,9 @@ public class RandomCursesDefinition extends RandomSelector<Blessing> {
 		}
 		// If specialization is set, not curses that affects the skills with
 		// ranks.
-		SpecializationPreferences specializationPreferences = SpecializationPreferences.getSelected(getPreferences());
+		final SpecializationPreferences specializationPreferences = SpecializationPreferences.getSelected(getPreferences());
 		if (specializationPreferences.mean() >= SpecializationPreferences.FAIR.mean()) {
-			for (AvailableSkill skill : curse.getAffectedSkill(getCharacterPlayer().getLanguage())) {
+			for (final AvailableSkill skill : curse.getAffectedSkill(getCharacterPlayer().getLanguage())) {
 				// More specialized, less ranks required to skip the curse.
 				if (getCharacterPlayer().getSkillAssignedRanks(skill) >= (10 - specializationPreferences.maximum())) {
 					throw new InvalidRandomElementSelectedException("Curse '" + curse + "' affects the skill '" + skill
@@ -116,7 +116,7 @@ public class RandomCursesDefinition extends RandomSelector<Blessing> {
 	@Override
 	protected void assignIfMandatory(Blessing element) throws InvalidXmlElementException,
 			ImpossibleToAssignMandatoryElementException {
-		BlessingPreferences blessingPreferences = BlessingPreferences.getSelected(getPreferences());
+		final BlessingPreferences blessingPreferences = BlessingPreferences.getSelected(getPreferences());
 		if (blessingPreferences != null && element.getBlessingGroup() == BlessingGroup.get(blessingPreferences.name())) {
 			try {
 				getCharacterPlayer().addBlessing(element);

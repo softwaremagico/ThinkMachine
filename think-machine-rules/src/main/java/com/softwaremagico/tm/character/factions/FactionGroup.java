@@ -36,7 +36,7 @@ public enum FactionGroup {
 	NONE;
 
 	public static FactionGroup get(String groupName) {
-		for (FactionGroup factionGroup : FactionGroup.values()) {
+		for (final FactionGroup factionGroup : FactionGroup.values()) {
 			if (factionGroup.name().equalsIgnoreCase(groupName)) {
 				return factionGroup;
 			}

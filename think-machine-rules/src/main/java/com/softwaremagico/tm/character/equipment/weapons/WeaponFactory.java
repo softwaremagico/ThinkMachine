@@ -41,28 +41,28 @@ import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
 
 public class WeaponFactory extends XmlFactory<Weapon> {
-	private final static ITranslator translatorWeapon = LanguagePool.getTranslator("weapons.xml");
+	private static final ITranslator translatorWeapon = LanguagePool.getTranslator("weapons.xml");
 
-	private final static String NAME = "name";
-	private final static String CHARACTERISTIC = "characteristic";
-	private final static String SKILL = "skill";
-	private final static String TECH_LEVEL = "techLevel";
-	private final static String TECH_LEVEL_SPECIAL = "techLevelSpecial";
-	private final static String GOAL = "goal";
-	private final static String DAMAGE = "damage";
-	private final static String STRENGTH = "strength";
-	private final static String RANGE = "range";
-	private final static String SHOTS = "shots";
-	private final static String RATE = "rate";
-	private final static String SIZE = "size";
-	private final static String COST = "cost";
+	private static final String NAME = "name";
+	private static final String CHARACTERISTIC = "characteristic";
+	private static final String SKILL = "skill";
+	private static final String TECH_LEVEL = "techLevel";
+	private static final String TECH_LEVEL_SPECIAL = "techLevelSpecial";
+	private static final String GOAL = "goal";
+	private static final String DAMAGE = "damage";
+	private static final String STRENGTH = "strength";
+	private static final String RANGE = "range";
+	private static final String SHOTS = "shots";
+	private static final String RATE = "rate";
+	private static final String SIZE = "size";
+	private static final String COST = "cost";
 
-	private final static String TYPE = "type";
-	private final static String SPECIAL = "special";
-	private final static String DAMAGE_TYPE = "damageType";
+	private static final String TYPE = "type";
+	private static final String SPECIAL = "special";
+	private static final String DAMAGE_TYPE = "damageType";
 
-	private final static String AMMUNITION = "ammunition";
-	private final static String ACCESSORIES = "others";
+	private static final String AMMUNITION = "ammunition";
+	private static final String ACCESSORIES = "others";
 
 	private static WeaponFactory instance;
 
@@ -100,7 +100,7 @@ public class WeaponFactory extends XmlFactory<Weapon> {
 
 		CharacteristicDefinition characteristicDefintion = null;
 		try {
-			String characteristicName = translator.getNodeValue(weaponId, CHARACTERISTIC);
+			final String characteristicName = translator.getNodeValue(weaponId, CHARACTERISTIC);
 			characteristicDefintion = CharacteristicsDefinitionFactory.getInstance().getElement(characteristicName, language);
 
 		} catch (Exception e) {
@@ -109,7 +109,7 @@ public class WeaponFactory extends XmlFactory<Weapon> {
 
 		AvailableSkill skill = null;
 		try {
-			String skillName = translator.getNodeValue(weaponId, SKILL);
+			final String skillName = translator.getNodeValue(weaponId, SKILL);
 			skill = AvailableSkillsFactory.getInstance().getElement(skillName, language);
 		} catch (Exception e) {
 			throw new InvalidWeaponException("Invalid skill name in weapon '" + weaponId + "'.");
@@ -117,7 +117,7 @@ public class WeaponFactory extends XmlFactory<Weapon> {
 
 		int techLevel = 0;
 		try {
-			String techLevelName = translator.getNodeValue(weaponId, TECH_LEVEL);
+			final String techLevelName = translator.getNodeValue(weaponId, TECH_LEVEL);
 			techLevel = Integer.parseInt(techLevelName);
 		} catch (Exception e) {
 			throw new InvalidWeaponException("Invalid tech level in weapon '" + weaponId + "'.");
@@ -125,7 +125,7 @@ public class WeaponFactory extends XmlFactory<Weapon> {
 
 		boolean techLevelSpecial = false;
 		try {
-			String techLevelSpecialValue = translator.getNodeValue(weaponId, TECH_LEVEL_SPECIAL);
+			final String techLevelSpecialValue = translator.getNodeValue(weaponId, TECH_LEVEL_SPECIAL);
 			techLevelSpecial = Boolean.parseBoolean(techLevelSpecialValue);
 		} catch (Exception e) {
 			throw new InvalidWeaponException("Invalid tech level special in weapon '" + weaponId + "'.");
@@ -147,7 +147,7 @@ public class WeaponFactory extends XmlFactory<Weapon> {
 
 		int strength = 0;
 		try {
-			String strengthValue = translator.getNodeValue(weaponId, STRENGTH);
+			final String strengthValue = translator.getNodeValue(weaponId, STRENGTH);
 			strength = Integer.parseInt(strengthValue);
 		} catch (Exception e) {
 			throw new InvalidWeaponException("Invalid strength value in weapon '" + weaponId + "'.");
@@ -162,7 +162,7 @@ public class WeaponFactory extends XmlFactory<Weapon> {
 
 		Integer shots = null;
 		try {
-			String shotsValue = translator.getNodeValue(weaponId, SHOTS);
+			final String shotsValue = translator.getNodeValue(weaponId, SHOTS);
 			shots = Integer.parseInt(shotsValue);
 		} catch (Exception e) {
 			// Not mandatory.
@@ -184,7 +184,7 @@ public class WeaponFactory extends XmlFactory<Weapon> {
 
 		float cost = 0;
 		try {
-			String costValue = translator.getNodeValue(weaponId, COST);
+			final String costValue = translator.getNodeValue(weaponId, COST);
 			cost = Float.parseFloat(costValue);
 		} catch (Exception e) {
 			throw new InvalidWeaponException("Invalid cost value in weapon '" + weaponId + "'.");
@@ -207,11 +207,11 @@ public class WeaponFactory extends XmlFactory<Weapon> {
 			throw new InvalidWeaponException("Invalid type value in weapon '" + weaponId + "'.");
 		}
 
-		Set<DamageType> damageOfWeapon = new HashSet<>();
+		final Set<DamageType> damageOfWeapon = new HashSet<>();
 		try {
-			String damageDefinition = translator.getNodeValue(weaponId, DAMAGE_TYPE);
+			final String damageDefinition = translator.getNodeValue(weaponId, DAMAGE_TYPE);
 			if (damageDefinition != null) {
-				StringTokenizer damageTypesTokenizer = new StringTokenizer(damageDefinition, ",");
+				final StringTokenizer damageTypesTokenizer = new StringTokenizer(damageDefinition, ",");
 				while (damageTypesTokenizer.hasMoreTokens()) {
 					try {
 						damageOfWeapon.add(DamageTypeFactory.getInstance().getElement(damageTypesTokenizer.nextToken().trim(), language));
@@ -224,10 +224,10 @@ public class WeaponFactory extends XmlFactory<Weapon> {
 			// Not mandatory.
 		}
 
-		Set<Ammunition> ammunitions = new HashSet<>();
-		String ammunitionsNames = translator.getNodeValue(weaponId, AMMUNITION);
+		final Set<Ammunition> ammunitions = new HashSet<>();
+		final String ammunitionsNames = translator.getNodeValue(weaponId, AMMUNITION);
 		if (ammunitionsNames != null) {
-			StringTokenizer ammunitionTokenizer = new StringTokenizer(ammunitionsNames, ",");
+			final StringTokenizer ammunitionTokenizer = new StringTokenizer(ammunitionsNames, ",");
 			while (ammunitionTokenizer.hasMoreTokens()) {
 				try {
 					ammunitions.add(AmmunitionFactory.getInstance().getElement(ammunitionTokenizer.nextToken().trim(), language));
@@ -237,10 +237,10 @@ public class WeaponFactory extends XmlFactory<Weapon> {
 			}
 		}
 
-		Set<Accessory> accessories = new HashSet<>();
-		String accesoriesNames = translator.getNodeValue(weaponId, ACCESSORIES);
+		final Set<Accessory> accessories = new HashSet<>();
+		final String accesoriesNames = translator.getNodeValue(weaponId, ACCESSORIES);
 		if (accesoriesNames != null) {
-			StringTokenizer accessoryTokenizer = new StringTokenizer(accesoriesNames, ",");
+			final StringTokenizer accessoryTokenizer = new StringTokenizer(accesoriesNames, ",");
 			while (accessoryTokenizer.hasMoreTokens()) {
 				try {
 					accessories.add(AccessoryFactory.getInstance().getElement(accessoryTokenizer.nextToken().trim(), language));

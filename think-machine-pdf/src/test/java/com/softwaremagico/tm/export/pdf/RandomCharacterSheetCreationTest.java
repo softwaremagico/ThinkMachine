@@ -53,15 +53,15 @@ public class RandomCharacterSheetCreationTest {
 	@Test
 	public void completeRandomCharacter() throws InvalidXmlElementException, DuplicatedPreferenceException,
 			InvalidRandomElementSelectedException, TooManyBlessingsException {
-		CharacterPlayer characterPlayer = new CharacterPlayer("es");
-		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0);
+		final CharacterPlayer characterPlayer = new CharacterPlayer("es");
+		final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0);
 		randomizeCharacter.createCharacter();
 
 		Assert.assertEquals(CostCalculator.logCost(characterPlayer),
 				FreeStyleCharacterCreation.getFreeAvailablePoints(characterPlayer.getInfo().getAge()));
 
 		LanguagePool.clearCache();
-		CharacterSheet sheet = new CharacterSheet(characterPlayer);
+		final CharacterSheet sheet = new CharacterSheet(characterPlayer);
 		Assert.assertEquals(
 				sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "RandomCharacter.pdf"), 2);
 	}
@@ -69,15 +69,15 @@ public class RandomCharacterSheetCreationTest {
 	@Test
 	public void completeRandomCharacterSmallEs() throws InvalidXmlElementException, DuplicatedPreferenceException,
 			InvalidRandomElementSelectedException, TooManyBlessingsException {
-		CharacterPlayer characterPlayer = new CharacterPlayer("es");
-		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0);
+		final CharacterPlayer characterPlayer = new CharacterPlayer("es");
+		final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0);
 		randomizeCharacter.createCharacter();
 
 		Assert.assertEquals(CostCalculator.logCost(characterPlayer),
 				FreeStyleCharacterCreation.getFreeAvailablePoints(characterPlayer.getInfo().getAge()));
 
 		LanguagePool.clearCache();
-		SmallCharacterSheet sheet = new SmallCharacterSheet(characterPlayer);
+		final SmallCharacterSheet sheet = new SmallCharacterSheet(characterPlayer);
 		Assert.assertEquals(
 				sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "RandomCharacterSmall_ES.pdf"),
 				1);
@@ -86,15 +86,15 @@ public class RandomCharacterSheetCreationTest {
 	@Test
 	public void completeRandomCharacterSmallEn() throws InvalidXmlElementException, DuplicatedPreferenceException,
 			InvalidRandomElementSelectedException, TooManyBlessingsException {
-		CharacterPlayer characterPlayer = new CharacterPlayer("en");
-		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0);
+		final CharacterPlayer characterPlayer = new CharacterPlayer("en");
+		final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0);
 		randomizeCharacter.createCharacter();
 
 		Assert.assertEquals(CostCalculator.logCost(characterPlayer),
 				FreeStyleCharacterCreation.getFreeAvailablePoints(characterPlayer.getInfo().getAge()));
 
 		LanguagePool.clearCache();
-		SmallCharacterSheet sheet = new SmallCharacterSheet(characterPlayer);
+		final SmallCharacterSheet sheet = new SmallCharacterSheet(characterPlayer);
 		Assert.assertEquals(
 				sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "RandomCharacterSmall_EN.pdf"),
 				1);

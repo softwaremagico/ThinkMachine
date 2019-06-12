@@ -39,7 +39,7 @@ import com.softwaremagico.tm.character.ThreatLevel;
 
 public class Party {
 	private final Set<CharacterPlayer> characterPlayers;
-	private transient final Map<CharacterPlayer, Integer> threatByCharacter;
+	private final transient Map<CharacterPlayer, Integer> threatByCharacter;
 	private String partyName;
 	private final String language;
 
@@ -61,7 +61,7 @@ public class Party {
 
 	public int getThreatLevel() {
 		int threatLevel = 0;
-		for (Integer threat : threatByCharacter.values()) {
+		for (final Integer threat : threatByCharacter.values()) {
 			threatLevel += threat;
 		}
 		return threatLevel;
@@ -75,7 +75,7 @@ public class Party {
 	}
 
 	public List<CharacterPlayer> getMembers() {
-		List<CharacterPlayer> sortedCharacterPlayers = new ArrayList<>(characterPlayers);
+		final List<CharacterPlayer> sortedCharacterPlayers = new ArrayList<>(characterPlayers);
 		Collections.sort(sortedCharacterPlayers, new Comparator<CharacterPlayer>() {
 
 			@Override

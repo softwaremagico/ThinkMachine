@@ -63,12 +63,12 @@ public enum CombatPreferences implements IRandomPreference {
 	}
 
 	public static CombatPreferences getSelected(Set<IRandomPreference> preferences) {
-		for (IRandomPreference preference : preferences) {
+		for (final IRandomPreference preference : preferences) {
 			if (preference instanceof CombatPreferences) {
 				return (CombatPreferences) preference;
 			}
 		}
-		DifficultLevelPreferences difficultPreferences = DifficultLevelPreferences.getSelected(preferences);
+		final DifficultLevelPreferences difficultPreferences = DifficultLevelPreferences.getSelected(preferences);
 		switch (difficultPreferences) {
 		case EASY:
 		case VERY_EASY:

@@ -49,9 +49,9 @@ import com.softwaremagico.tm.pdf.complete.skills.occultism.OccultismsPowerTable;
 import com.softwaremagico.tm.pdf.complete.traits.MainPerksTableFactory;
 
 public class CharacterSheet extends PdfDocument {
-	private final static float[] REAR_TABLE_WIDTHS = { 1f, 1f, 1f };
-	private final static int PSI_ROWS = 10;
-	private final static int PSI_EXTENDED_ROWS = 21;
+	private static final float[] REAR_TABLE_WIDTHS = { 1f, 1f, 1f };
+	private static final int PSI_ROWS = 10;
+	private static final int PSI_EXTENDED_ROWS = 21;
 	private CharacterPlayer characterPlayer = null;
 
 	public CharacterSheet() {
@@ -86,13 +86,13 @@ public class CharacterSheet extends PdfDocument {
 
 	@Override
 	protected void createCharacterPDF(Document document, CharacterPlayer characterPlayer) throws Exception {
-		PdfPTable mainTable = CharacterBasicsCompleteTableFactory.getCharacterBasicsTable(characterPlayer);
+		final PdfPTable mainTable = CharacterBasicsCompleteTableFactory.getCharacterBasicsTable(characterPlayer);
 		document.add(mainTable);
-		PdfPTable characteristicsTable = CharacteristicsTableFactory.getCharacteristicsBasicsTable(characterPlayer);
+		final PdfPTable characteristicsTable = CharacteristicsTableFactory.getCharacteristicsBasicsTable(characterPlayer);
 		document.add(characteristicsTable);
-		PdfPTable skillsTable = MainSkillsTableFactory.getSkillsTable(characterPlayer, getLanguage());
+		final PdfPTable skillsTable = MainSkillsTableFactory.getSkillsTable(characterPlayer, getLanguage());
 		document.add(skillsTable);
-		PdfPTable perksTable = MainPerksTableFactory.getPerksTable(characterPlayer);
+		final PdfPTable perksTable = MainPerksTableFactory.getPerksTable(characterPlayer);
 		document.add(perksTable);
 		document.newPage();
 		if (characterPlayer == null || characterPlayer.getTotalSelectedPowers() < PSI_ROWS) {
@@ -107,26 +107,26 @@ public class CharacterSheet extends PdfDocument {
 	}
 
 	private PdfPTable createRearTable() throws InvalidXmlElementException {
-		PdfPTable mainTable = new PdfPTable(REAR_TABLE_WIDTHS);
+		final PdfPTable mainTable = new PdfPTable(REAR_TABLE_WIDTHS);
 		mainTable.getDefaultCell().setBorder(0);
 		mainTable.setWidthPercentage(100);
 
 		mainTable.addCell(new DescriptionTable(characterPlayer));
-		PdfPCell cell = new PdfPCell(new AnnotationsTable());
+		final PdfPCell cell = new PdfPCell(new AnnotationsTable());
 		cell.setBorderWidth(0);
 		cell.setColspan(2);
 		mainTable.addCell(cell);
 
-		PdfPCell blackSeparator = BaseElement.createBigSeparator(90);
+		final PdfPCell blackSeparator = BaseElement.createBigSeparator(90);
 		mainTable.addCell(blackSeparator);
 
-		PdfPCell separatorCell = new PdfPCell(BaseElement.createWhiteSeparator());
+		final PdfPCell separatorCell = new PdfPCell(BaseElement.createWhiteSeparator());
 		separatorCell.setColspan(2);
 		mainTable.addCell(separatorCell);
 
 		mainTable.addCell(new PropertiesTable(characterPlayer));
 
-		PdfPCell psiCell = new PdfPCell(new OccultismsPowerTable(characterPlayer, PSI_ROWS));
+		final PdfPCell psiCell = new PdfPCell(new OccultismsPowerTable(characterPlayer, PSI_ROWS));
 		psiCell.setColspan(2);
 		mainTable.addCell(psiCell);
 
@@ -134,10 +134,10 @@ public class CharacterSheet extends PdfDocument {
 
 		mainTable.addCell(separatorCell);
 
-		PdfPTable othersTable = new OthersTable();
+		final PdfPTable othersTable = new OthersTable();
 		mainTable.addCell(othersTable);
 
-		PdfPCell cyberneticsCell = new PdfPCell(new CyberneticsTable(characterPlayer));
+		final PdfPCell cyberneticsCell = new PdfPCell(new CyberneticsTable(characterPlayer));
 		cyberneticsCell.setColspan(2);
 		mainTable.addCell(cyberneticsCell);
 
@@ -145,33 +145,33 @@ public class CharacterSheet extends PdfDocument {
 	}
 
 	private PdfPTable createRearTablePsiExtended() throws InvalidXmlElementException {
-		PdfPTable mainTable = new PdfPTable(REAR_TABLE_WIDTHS);
+		final PdfPTable mainTable = new PdfPTable(REAR_TABLE_WIDTHS);
 		mainTable.getDefaultCell().setBorder(0);
 		mainTable.setWidthPercentage(100);
 
 		mainTable.addCell(new DescriptionTable(characterPlayer));
-		PdfPCell cell = new PdfPCell(new AnnotationsTable());
+		final PdfPCell cell = new PdfPCell(new AnnotationsTable());
 		cell.setBorderWidth(0);
 		cell.setColspan(2);
 		mainTable.addCell(cell);
 
-		PdfPCell blackSeparator = BaseElement.createBigSeparator(90);
+		final PdfPCell blackSeparator = BaseElement.createBigSeparator(90);
 		mainTable.addCell(blackSeparator);
 
-		PdfPCell separatorCell = new PdfPCell(BaseElement.createWhiteSeparator());
+		final PdfPCell separatorCell = new PdfPCell(BaseElement.createWhiteSeparator());
 		separatorCell.setColspan(2);
 		mainTable.addCell(separatorCell);
 
 		mainTable.addCell(new PropertiesTable(characterPlayer));
 
-		PdfPCell psiCell = new PdfPCell(new OccultismsPowerTable(characterPlayer, PSI_EXTENDED_ROWS));
+		final PdfPCell psiCell = new PdfPCell(new OccultismsPowerTable(characterPlayer, PSI_EXTENDED_ROWS));
 		psiCell.setColspan(2);
 		psiCell.setRowspan(3);
 		mainTable.addCell(psiCell);
 
 		mainTable.addCell(BaseElement.createBigSeparator(90));
 
-		PdfPTable othersTable = new OthersTable();
+		final PdfPTable othersTable = new OthersTable();
 		mainTable.addCell(othersTable);
 
 		return mainTable;

@@ -44,7 +44,7 @@ import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedExcep
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
 
 public class RandomPartyDefinition extends RandomSelector<RandomPartyMember> {
-	private final static int THREAT_MARGIN = 10;
+	private static final int THREAT_MARGIN = 10;
 	private Party party = null;
 	private final int threatLevel;
 	private Map<RandomPartyMember, Integer> profilesAssigned = new HashMap<>();
@@ -83,7 +83,7 @@ public class RandomPartyDefinition extends RandomSelector<RandomPartyMember> {
 			return;
 		}
 		profilesAssigned.put(member, getProfileAssigned(member) + 1);
-		CharacterPlayer characterPlayer = createCharacter(member);
+		final CharacterPlayer characterPlayer = createCharacter(member);
 		getParty().addMember(characterPlayer);
 		threatByProfile.put(member, getThreatByProfile(member) + getParty().getThreatLevel(characterPlayer));
 		if (member.getMaxNumber() != null && member.getMaxNumber() >= getProfileAssigned(member)) {
@@ -111,7 +111,7 @@ public class RandomPartyDefinition extends RandomSelector<RandomPartyMember> {
 
 		while (true) {
 			// Select a skill randomly.
-			RandomPartyMember partyMember;
+			final RandomPartyMember partyMember;
 			try {
 				partyMember = selectElementByWeight();
 				try {
@@ -140,8 +140,8 @@ public class RandomPartyDefinition extends RandomSelector<RandomPartyMember> {
 		if (elements == null || elements.isEmpty()) {
 			return null;
 		}
-		int index = rand.nextInt(elements.size());
-		Iterator<T> iter = elements.iterator();
+		final int index = rand.nextInt(elements.size());
+		final Iterator<T> iter = elements.iterator();
 		for (int i = 0; i < index; i++) {
 			iter.next();
 		}
@@ -155,8 +155,8 @@ public class RandomPartyDefinition extends RandomSelector<RandomPartyMember> {
 
 	private CharacterPlayer createCharacter(RandomPartyMember member) throws TooManyBlessingsException,
 			DuplicatedPreferenceException, InvalidXmlElementException, InvalidRandomElementSelectedException {
-		CharacterPlayer characterPlayer = new CharacterPlayer(member.getLanguage());
-		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, getPreferences(),
+		final CharacterPlayer characterPlayer = new CharacterPlayer(member.getLanguage());
+		final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, getPreferences(),
 				member.getRandomProfile());
 		randomizeCharacter.createCharacter();
 		return characterPlayer;
@@ -178,7 +178,7 @@ public class RandomPartyDefinition extends RandomSelector<RandomPartyMember> {
 	protected int getWeight(RandomPartyMember member) throws InvalidRandomElementSelectedException {
 		// Threat estimation.
 		if (getProfileAssigned(member) > 0) {
-			int estimatedThreat = getThreatByProfile(member) / getProfileAssigned(member);
+			final int estimatedThreat = getThreatByProfile(member) / getProfileAssigned(member);
 			if (getParty().getThreatLevel() + estimatedThreat > threatLevel + THREAT_MARGIN) {
 				return 0;
 			}

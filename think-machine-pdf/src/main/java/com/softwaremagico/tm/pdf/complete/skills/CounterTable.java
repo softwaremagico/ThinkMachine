@@ -35,9 +35,9 @@ import com.softwaremagico.tm.pdf.complete.elements.LateralHeaderPdfPTable;
 import com.softwaremagico.tm.pdf.complete.elements.CellCompleteBoxEvent.Border;
 
 public abstract class CounterTable extends LateralHeaderPdfPTable {
-	protected final static float[] WIDTHS = { 1f, 1f };
-	protected final static int CIRCLES = 23;
-	protected final static int TITLE_SPAN = 5;
+	protected static final float[] WIDTHS = { 1f, 1f };
+	protected static final int CIRCLES = 23;
+	protected static final int TITLE_SPAN = 5;
 	protected int addedCircle = 0;
 
 	protected CounterTable(float[] widths) {
@@ -45,7 +45,7 @@ public abstract class CounterTable extends LateralHeaderPdfPTable {
 	}
 
 	protected PdfPCell space(int rowspan) {
-		PdfPCell emptyCell = new PdfPCell();
+		final PdfPCell emptyCell = new PdfPCell();
 		emptyCell.setRowspan(rowspan);
 		emptyCell.setBorder(0);
 		return emptyCell;
@@ -56,15 +56,15 @@ public abstract class CounterTable extends LateralHeaderPdfPTable {
 			return createCircle();
 		}
 		if (CIRCLES - addedCircle == getSelectedValue(characterPlayer)) {
-			PdfPCell cell = createCircle();
+			final PdfPCell cell = createCircle();
 			cell.setCellEvent(new CellCompleteBoxEvent(2, new Border[] { Border.TOP, Border.LEFT, Border.RIGHT }));
 			return cell;
 		} else if (CIRCLES - addedCircle == 1) {
-			PdfPCell cell = createCircle();
+			final PdfPCell cell = createCircle();
 			cell.setCellEvent(new CellCompleteBoxEvent(2, new Border[] { Border.BOTTOM, Border.LEFT, Border.RIGHT }));
 			return cell;
 		} else if (CIRCLES - addedCircle < getSelectedValue(characterPlayer)) {
-			PdfPCell cell = createCircle();
+			final PdfPCell cell = createCircle();
 			cell.setCellEvent(new CellCompleteBoxEvent(2, new Border[] { Border.LEFT, Border.RIGHT }));
 			return cell;
 		} else {
@@ -73,13 +73,13 @@ public abstract class CounterTable extends LateralHeaderPdfPTable {
 	}
 
 	private PdfPCell createCircle() {
-		PdfPCell cell = createValue("O", new Font(FadingSunsTheme.getTitleFont(), FadingSunsTheme.CHARACTERISTICS_TITLE_FONT_SIZE), Element.ALIGN_MIDDLE);
+		final PdfPCell cell = createValue("O", new Font(FadingSunsTheme.getTitleFont(), FadingSunsTheme.CHARACTERISTICS_TITLE_FONT_SIZE), Element.ALIGN_MIDDLE);
 		return cell;
 	}
 
 	protected PdfPCell createValue(String text, Font font, int alignment) {
-		Phrase content = new Phrase(text, font);
-		PdfPCell circleCell = new PdfPCell(content);
+		final Phrase content = new Phrase(text, font);
+		final PdfPCell circleCell = new PdfPCell(content);
 		// Not putting correctly the "o" at the center of the cell.
 		// http://stackoverflow.com/questions/5554553/itext-pdftable-cell-vertical-alignment
 		circleCell.setPaddingTop(-4f);

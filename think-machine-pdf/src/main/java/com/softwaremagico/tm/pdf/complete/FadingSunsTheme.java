@@ -30,70 +30,70 @@ import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.pdf.BaseFont;
 
 public abstract class FadingSunsTheme {
-	public final static String LOGO_IMAGE = "fading-suns.png";
-	public final static String RIGHT_CORNER_IMAGE = "rightCorner.png";
-	public final static String LEFT_CORNER_IMAGE = "leftCorner.png";
-	public final static String MAIN_TITLE_IMAGE = "pageTitle.png";
-	public final static String LINE_FONT_NAME = "DejaVuSansCondensed.ttf";
-	public final static String LINE_FONT_ITALIC_NAME = "DejaVuSansCondensed-Oblique.ttf";
-	public final static String TABLE_SUBTITLE_FONT_NAME = "DejaVuSansCondensed-Oblique.ttf";
-	public final static String LINE_BOLD_FONT_NAME = "DejaVuSansCondensed-Bold.ttf";
-	public final static String TITLE_FONT_NAME = "Roman Antique.ttf";
-	public final static String HANDWRITTING_FONT_NAME = "ArchitectsDaughter.ttf";
+	public static final String LOGO_IMAGE = "fading-suns.png";
+	public static final String RIGHT_CORNER_IMAGE = "rightCorner.png";
+	public static final String LEFT_CORNER_IMAGE = "leftCorner.png";
+	public static final String MAIN_TITLE_IMAGE = "pageTitle.png";
+	public static final String LINE_FONT_NAME = "DejaVuSansCondensed.ttf";
+	public static final String LINE_FONT_ITALIC_NAME = "DejaVuSansCondensed-Oblique.ttf";
+	public static final String TABLE_SUBTITLE_FONT_NAME = "DejaVuSansCondensed-Oblique.ttf";
+	public static final String LINE_BOLD_FONT_NAME = "DejaVuSansCondensed-Bold.ttf";
+	public static final String TITLE_FONT_NAME = "Roman Antique.ttf";
+	public static final String HANDWRITTING_FONT_NAME = "ArchitectsDaughter.ttf";
 
-	public final static int TITLE_FONT_SIZE = 18;
-	public final static int CHARACTER_BASICS_FONT_SIZE = 12;
-	public final static int CHARACTERISTICS_TITLE_FONT_SIZE = 14;
-	public final static int CHARACTERISTICS_LINE_FONT_SIZE = 10;
-	public final static int SKILLS_TITLE_FONT_SIZE = 16;
-	public final static int SKILLS_LINE_FONT_SIZE = 10;
-	public final static int OCCULSTISM_TITLE_FONT_SIZE = 12;
-	public final static int OCCULSTISM_POWERS_TITLE_FONT_SIZE = 12;
-	public final static int OCCULSTISM_POWERS_CONTENT_FONT_SIZE = 6;
-	public final static int ANNOTATIONS_TITLE_FONT_SIZE = 12;
-	public final static int ANNOTATIONS_SUBTITLE_FONT_SIZE = 9;
-	public final static int VERTICALTABLE_TITLE_FONT_SIZE = 12;
-	public final static int TABLE_LINE_FONT_SIZE = 8;
-	public final static int TRAITS_FONT_SIZE = 7;
-	public final static int VICTORY_POINTS_FONT_SIZE = 6;
-	public final static int VICTORY_POINTS_TITLE_FONT_SIZE = 12;
-	public final static int FIGHTING_TITLE_FONT_SIZE = 12;
-	public final static int ARMOUR_TITLE_FONT_SIZE = 12;
-	public final static int ARMOUR_CONTENT_FONT_SIZE = 7;
-	public final static int SHIELD_CONTENT_FONT_SIZE = 7;
-	public final static int WEAPONS_CONTENT_FONT_SIZE = 6;
-	public final static int CYBERNETICS_TITLE_FONT_SIZE = 12;
-	public final static int CYBERNETICS_CONTENT_FONT_SIZE = 6;
-	public final static int COMBAT_ACTIONS_CONTENT_FONT_SIZE = 6;
-	public final static int INFO_CONTENT_FONT_SIZE = 7;
-	public final static int FOOTER_FONT_SIZE = 8;
-	public final static int POSITIONS_CONTENT_FONT_SIZE = 6;
-	public final static int EXPERIENCE_VALUE_FONT_SIZE = 10;
+	public static final int TITLE_FONT_SIZE = 18;
+	public static final int CHARACTER_BASICS_FONT_SIZE = 12;
+	public static final int CHARACTERISTICS_TITLE_FONT_SIZE = 14;
+	public static final int CHARACTERISTICS_LINE_FONT_SIZE = 10;
+	public static final int SKILLS_TITLE_FONT_SIZE = 16;
+	public static final int SKILLS_LINE_FONT_SIZE = 10;
+	public static final int OCCULSTISM_TITLE_FONT_SIZE = 12;
+	public static final int OCCULSTISM_POWERS_TITLE_FONT_SIZE = 12;
+	public static final int OCCULSTISM_POWERS_CONTENT_FONT_SIZE = 6;
+	public static final int ANNOTATIONS_TITLE_FONT_SIZE = 12;
+	public static final int ANNOTATIONS_SUBTITLE_FONT_SIZE = 9;
+	public static final int VERTICALTABLE_TITLE_FONT_SIZE = 12;
+	public static final int TABLE_LINE_FONT_SIZE = 8;
+	public static final int TRAITS_FONT_SIZE = 7;
+	public static final int VICTORY_POINTS_FONT_SIZE = 6;
+	public static final int VICTORY_POINTS_TITLE_FONT_SIZE = 12;
+	public static final int FIGHTING_TITLE_FONT_SIZE = 12;
+	public static final int ARMOUR_TITLE_FONT_SIZE = 12;
+	public static final int ARMOUR_CONTENT_FONT_SIZE = 7;
+	public static final int SHIELD_CONTENT_FONT_SIZE = 7;
+	public static final int WEAPONS_CONTENT_FONT_SIZE = 6;
+	public static final int CYBERNETICS_TITLE_FONT_SIZE = 12;
+	public static final int CYBERNETICS_CONTENT_FONT_SIZE = 6;
+	public static final int COMBAT_ACTIONS_CONTENT_FONT_SIZE = 6;
+	public static final int INFO_CONTENT_FONT_SIZE = 7;
+	public static final int FOOTER_FONT_SIZE = 8;
+	public static final int POSITIONS_CONTENT_FONT_SIZE = 6;
+	public static final int EXPERIENCE_VALUE_FONT_SIZE = 10;
 	
-	public final static int CHARACTER_SMALL_BASICS_FONT_SIZE = 9;
-	public final static int CHARACTER_SMALL_TITLE_FONT_SIZE = 12;
-	public final static int CHARACTER_SMALL_CHARACTERISTICS_TITLE_FONT_SIZE = 8;
-	public final static int CHARACTER_SMALL_CHARACTERISTICS_LINE_FONT_SIZE = 7;
-	public final static int CHARACTER_SMALL_SKILLS_TITLE_FONT_SIZE = CHARACTER_SMALL_TITLE_FONT_SIZE;
-	public final static int CHARACTER_SMALL_BLESSING_TITLE_FONT_SIZE = CHARACTER_SMALL_TITLE_FONT_SIZE;
-	public final static int CHARACTER_SMALL_BENEFICES_TITLE_FONT_SIZE = CHARACTER_SMALL_BLESSING_TITLE_FONT_SIZE;
-	public final static int CHARACTER_SMALL_ARMOR_TITLE_FONT_SIZE = CHARACTER_SMALL_TITLE_FONT_SIZE;
-	public final static int CHARACTER_VITALITY_TITLE_FONT_SIZE = 11;
-	public final static int CHARACTER_VITALITY_PENALTIES_TITLE_FONT_SIZE = 9;
-	public final static int CHARACTER_SMALL_SKILLS_LINE_FONT_SIZE = 7;
-	public final static int CHARACTER_SMALL_TABLE_LINE_FONT_SIZE = 6;
-	public final static int CHARACTER_SMALL_TRAITS_FONT_SIZE = 6;
-	public final static int CHARACTER_COUNTER_POINT_SIZE = 11;
-	public final static int CHARACTER_SMALL_WEAPONS_TITLE_FONT_SIZE = CHARACTER_SMALL_BLESSING_TITLE_FONT_SIZE;
-	public final static int CHARACTER_SMALL_OCCULTISM_TITLE_FONT_SIZE = CHARACTER_SMALL_BLESSING_TITLE_FONT_SIZE;
-	public final static int CHARACTER_SMALL_OCCULTISM_LINE_FONT_SIZE = CHARACTER_SMALL_TABLE_LINE_FONT_SIZE;
-	public final static int VICTORY_SMALL_POINTS_FONT_SIZE = VICTORY_POINTS_FONT_SIZE;
-	public final static int WEAPONS_SMALL_CONTENT_FONT_SIZE = 6;
-	public final static int CHARACTER_SMALL_CYBERNETICS_TITLE_FONT_SIZE = CHARACTER_SMALL_BLESSING_TITLE_FONT_SIZE;
+	public static final int CHARACTER_SMALL_BASICS_FONT_SIZE = 9;
+	public static final int CHARACTER_SMALL_TITLE_FONT_SIZE = 12;
+	public static final int CHARACTER_SMALL_CHARACTERISTICS_TITLE_FONT_SIZE = 8;
+	public static final int CHARACTER_SMALL_CHARACTERISTICS_LINE_FONT_SIZE = 7;
+	public static final int CHARACTER_SMALL_SKILLS_TITLE_FONT_SIZE = CHARACTER_SMALL_TITLE_FONT_SIZE;
+	public static final int CHARACTER_SMALL_BLESSING_TITLE_FONT_SIZE = CHARACTER_SMALL_TITLE_FONT_SIZE;
+	public static final int CHARACTER_SMALL_BENEFICES_TITLE_FONT_SIZE = CHARACTER_SMALL_BLESSING_TITLE_FONT_SIZE;
+	public static final int CHARACTER_SMALL_ARMOR_TITLE_FONT_SIZE = CHARACTER_SMALL_TITLE_FONT_SIZE;
+	public static final int CHARACTER_VITALITY_TITLE_FONT_SIZE = 11;
+	public static final int CHARACTER_VITALITY_PENALTIES_TITLE_FONT_SIZE = 9;
+	public static final int CHARACTER_SMALL_SKILLS_LINE_FONT_SIZE = 7;
+	public static final int CHARACTER_SMALL_TABLE_LINE_FONT_SIZE = 6;
+	public static final int CHARACTER_SMALL_TRAITS_FONT_SIZE = 6;
+	public static final int CHARACTER_COUNTER_POINT_SIZE = 11;
+	public static final int CHARACTER_SMALL_WEAPONS_TITLE_FONT_SIZE = CHARACTER_SMALL_BLESSING_TITLE_FONT_SIZE;
+	public static final int CHARACTER_SMALL_OCCULTISM_TITLE_FONT_SIZE = CHARACTER_SMALL_BLESSING_TITLE_FONT_SIZE;
+	public static final int CHARACTER_SMALL_OCCULTISM_LINE_FONT_SIZE = CHARACTER_SMALL_TABLE_LINE_FONT_SIZE;
+	public static final int VICTORY_SMALL_POINTS_FONT_SIZE = VICTORY_POINTS_FONT_SIZE;
+	public static final int WEAPONS_SMALL_CONTENT_FONT_SIZE = 6;
+	public static final int CHARACTER_SMALL_CYBERNETICS_TITLE_FONT_SIZE = CHARACTER_SMALL_BLESSING_TITLE_FONT_SIZE;
 	
-	public final static int HANDWRITTING_DEFAULT_FONT_SIZE = 10;
+	public static final int HANDWRITTING_DEFAULT_FONT_SIZE = 10;
 
-	public final static int DEFAULT_MARGIN = 3;
+	public static final int DEFAULT_MARGIN = 3;
 
 	private static BaseFont footerFont;
 	private static BaseFont lineFont;
@@ -105,7 +105,7 @@ public abstract class FadingSunsTheme {
 	
 	public static BaseFont getFooterFont() {
 		if (footerFont == null) {
-			Font font = FontFactory.getFont("/" + TITLE_FONT_NAME, BaseFont.IDENTITY_H, BaseFont.EMBEDDED, 0.5f, Font.NORMAL, BaseColor.BLACK);
+			final Font font = FontFactory.getFont("/" + TITLE_FONT_NAME, BaseFont.IDENTITY_H, BaseFont.EMBEDDED, 0.5f, Font.NORMAL, BaseColor.BLACK);
 			footerFont = font.getBaseFont();
 		}
 		return footerFont;
@@ -113,7 +113,7 @@ public abstract class FadingSunsTheme {
 
 	public static BaseFont getLineFont() {
 		if (lineFont == null) {
-			Font font = FontFactory.getFont("/" + LINE_FONT_NAME, BaseFont.IDENTITY_H, BaseFont.EMBEDDED, 0.8f, Font.NORMAL, BaseColor.BLACK);
+			final Font font = FontFactory.getFont("/" + LINE_FONT_NAME, BaseFont.IDENTITY_H, BaseFont.EMBEDDED, 0.8f, Font.NORMAL, BaseColor.BLACK);
 			lineFont = font.getBaseFont();
 		}
 		return lineFont;
@@ -121,7 +121,7 @@ public abstract class FadingSunsTheme {
 
 	public static BaseFont getLineItalicFont() {
 		if (lineItalicFont == null) {
-			Font font = FontFactory.getFont("/" + LINE_FONT_ITALIC_NAME, BaseFont.IDENTITY_H, BaseFont.EMBEDDED, 0.8f, Font.ITALIC, BaseColor.BLACK);
+			final Font font = FontFactory.getFont("/" + LINE_FONT_ITALIC_NAME, BaseFont.IDENTITY_H, BaseFont.EMBEDDED, 0.8f, Font.ITALIC, BaseColor.BLACK);
 			lineItalicFont = font.getBaseFont();
 		}
 		return lineItalicFont;
@@ -129,7 +129,7 @@ public abstract class FadingSunsTheme {
 
 	public static BaseFont getLineFontBold() {
 		if (lineBoldFont == null) {
-			Font font = FontFactory.getFont("/" + LINE_BOLD_FONT_NAME, BaseFont.IDENTITY_H, BaseFont.EMBEDDED, 0.8f, Font.BOLD, BaseColor.BLACK);
+			final Font font = FontFactory.getFont("/" + LINE_BOLD_FONT_NAME, BaseFont.IDENTITY_H, BaseFont.EMBEDDED, 0.8f, Font.BOLD, BaseColor.BLACK);
 			lineBoldFont = font.getBaseFont();
 		}
 		return lineBoldFont;
@@ -137,7 +137,7 @@ public abstract class FadingSunsTheme {
 
 	public static BaseFont getTitleFont() {
 		if (titleFont == null) {
-			Font font = FontFactory.getFont("/" + TITLE_FONT_NAME, BaseFont.IDENTITY_H, BaseFont.EMBEDDED, 0.8f, Font.NORMAL, BaseColor.BLACK);
+			final Font font = FontFactory.getFont("/" + TITLE_FONT_NAME, BaseFont.IDENTITY_H, BaseFont.EMBEDDED, 0.8f, Font.NORMAL, BaseColor.BLACK);
 			titleFont = font.getBaseFont();
 		}
 		return titleFont;
@@ -145,7 +145,7 @@ public abstract class FadingSunsTheme {
 
 	public static BaseFont getSubtitleFont() {
 		if (tableSubtitleFont == null) {
-			Font font = FontFactory.getFont("/" + TABLE_SUBTITLE_FONT_NAME, BaseFont.IDENTITY_H, BaseFont.EMBEDDED, 0.8f, Font.ITALIC, BaseColor.BLACK);
+			final Font font = FontFactory.getFont("/" + TABLE_SUBTITLE_FONT_NAME, BaseFont.IDENTITY_H, BaseFont.EMBEDDED, 0.8f, Font.ITALIC, BaseColor.BLACK);
 			tableSubtitleFont = font.getBaseFont();
 		}
 		return tableSubtitleFont;
@@ -153,7 +153,7 @@ public abstract class FadingSunsTheme {
 
 	public static BaseFont getHandwrittingFont() {
 		if (handwrittingFont == null) {
-			Font font = FontFactory.getFont("/" + HANDWRITTING_FONT_NAME, BaseFont.IDENTITY_H, BaseFont.EMBEDDED, 0.8f, Font.NORMAL, BaseColor.BLACK);
+			final Font font = FontFactory.getFont("/" + HANDWRITTING_FONT_NAME, BaseFont.IDENTITY_H, BaseFont.EMBEDDED, 0.8f, Font.NORMAL, BaseColor.BLACK);
 			handwrittingFont = font.getBaseFont();
 		}
 		return handwrittingFont;

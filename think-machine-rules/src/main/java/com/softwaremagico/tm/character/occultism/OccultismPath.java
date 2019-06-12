@@ -73,7 +73,7 @@ public class OccultismPath extends Element<OccultismPath> {
 	 * @return A set with one or more powers.
 	 */
 	public Set<OccultismPower> getPreviousLevelPowers(OccultismPower power) {
-		Integer previousLevel = getPreviousLevelWithPowers(power);
+		final Integer previousLevel = getPreviousLevelWithPowers(power);
 		if (previousLevel != null) {
 			return getPowersOfLevel(previousLevel);
 		}
@@ -81,7 +81,7 @@ public class OccultismPath extends Element<OccultismPath> {
 	}
 
 	private Integer getPreviousLevelWithPowers(OccultismPower power) {
-		List<OccultismPower> powersOfPath = new ArrayList<>(occultismPowers.values());
+		final List<OccultismPower> powersOfPath = new ArrayList<>(occultismPowers.values());
 
 		// Sort by level inverse.
 		Collections.sort(powersOfPath, new Comparator<OccultismPower>() {
@@ -97,9 +97,9 @@ public class OccultismPath extends Element<OccultismPath> {
 		});
 
 		// From up to down.
-		Iterator<OccultismPower> powerIterator = powersOfPath.iterator();
+		final Iterator<OccultismPower> powerIterator = powersOfPath.iterator();
 		while (powerIterator.hasNext()) {
-			OccultismPower next = powerIterator.next();
+			final OccultismPower next = powerIterator.next();
 			if (next.getLevel() < power.getLevel()) {
 				return next.getLevel();
 			}
@@ -108,8 +108,8 @@ public class OccultismPath extends Element<OccultismPath> {
 	}
 
 	public Set<OccultismPower> getPowersOfLevel(int level) {
-		Set<OccultismPower> powersOfLevel = new HashSet<>();
-		for (OccultismPower power : getOccultismPowers().values()) {
+		final Set<OccultismPower> powersOfLevel = new HashSet<>();
+		for (final OccultismPower power : getOccultismPowers().values()) {
 			if (power.getLevel() == level) {
 				powersOfLevel.add(power);
 			}

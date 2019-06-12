@@ -31,7 +31,7 @@ import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.complete.elements.LateralHeaderPdfPTable;
 
 public class ExperienceTable extends LateralHeaderPdfPTable {
-	private final static float[] WIDTHS = { 1f, 4f };
+	private static final float[] WIDTHS = { 1f, 4f };
 
 	protected ExperienceTable(CharacterPlayer characterPlayer) {
 		super(WIDTHS);
@@ -39,7 +39,7 @@ public class ExperienceTable extends LateralHeaderPdfPTable {
 		addCell(createLateralVerticalTitle(
 				getTranslator().getTranslatedText("experience"), 1));
 		if (characterPlayer != null) {
-			PdfPCell cell = createElementLine(
+			final PdfPCell cell = createElementLine(
 					"" + characterPlayer.getRemainginExperience() + "-", 50,
 					FadingSunsTheme.EXPERIENCE_VALUE_FONT_SIZE);
 			cell.setHorizontalAlignment(Element.ALIGN_LEFT);

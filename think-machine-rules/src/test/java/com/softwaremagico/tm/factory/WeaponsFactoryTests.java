@@ -35,7 +35,7 @@ import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
 
 @Test(groups = { "weaponsFactory" })
 public class WeaponsFactoryTests {
-	private final static String LANGUAGE = "es";
+	private static final String LANGUAGE = "es";
 
 	@Test
 	public void readWeapons() throws InvalidXmlElementException {

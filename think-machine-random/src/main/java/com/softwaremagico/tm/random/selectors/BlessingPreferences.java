@@ -50,7 +50,7 @@ public enum BlessingPreferences implements IRandomPreference {
 	}
 
 	public static BlessingPreferences getSelected(Set<IRandomPreference> preferences) {
-		for (IRandomPreference preference : preferences) {
+		for (final IRandomPreference preference : preferences) {
 			if (preference instanceof BlessingPreferences) {
 				return (BlessingPreferences) preference;
 			}

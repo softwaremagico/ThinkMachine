@@ -56,7 +56,7 @@ public enum SkillGroup {
 
 	public static SkillGroup getSkillGroup(String tag) {
 		if (tag != null) {
-			for (SkillGroup skillGroup : SkillGroup.values()) {
+			for (final SkillGroup skillGroup : SkillGroup.values()) {
 				if (skillGroup.name().toLowerCase().equals(tag.toLowerCase())) {
 					return skillGroup;
 				}

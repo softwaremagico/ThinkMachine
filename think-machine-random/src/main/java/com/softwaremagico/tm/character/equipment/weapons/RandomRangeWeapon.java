@@ -29,14 +29,13 @@ import java.util.Set;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
-import com.softwaremagico.tm.character.equipment.weapons.Weapon;
-import com.softwaremagico.tm.character.equipment.weapons.WeaponType;
 import com.softwaremagico.tm.log.RandomGenerationLog;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
 
 public class RandomRangeWeapon extends RandomWeapon {
 
-	public RandomRangeWeapon(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences) throws InvalidXmlElementException {
+	public RandomRangeWeapon(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences)
+			throws InvalidXmlElementException {
 		super(characterPlayer, preferences);
 	}
 
@@ -71,11 +70,17 @@ public class RandomRangeWeapon extends RandomWeapon {
 	protected int getWeightTechModificator(Weapon weapon) {
 		int weight = 0;
 		// Similar tech level preferred.
-		weight += MAX_PROBABILITY / Math.pow(10, 2 * (getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).getValue() - weapon.getTechLevel()));
-		RandomGenerationLog.debug(
-				this.getClass().getName(),
-				"Weight tech bonus for '" + weapon + "' is '" + MAX_PROBABILITY
-						/ Math.pow(10, 2 * (getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).getValue() - weapon.getTechLevel())) + "'.");
+		weight += MAX_PROBABILITY
+				/ Math.pow(10, 2 * (getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).getValue() - weapon
+						.getTechLevel()));
+		RandomGenerationLog
+				.debug(this.getClass().getName(),
+						"Weight tech bonus for '"
+								+ weapon
+								+ "' is '"
+								+ MAX_PROBABILITY
+								/ Math.pow(10, 2 * (getCharacterPlayer().getCharacteristic(CharacteristicName.TECH)
+										.getValue() - weapon.getTechLevel())) + "'.");
 		if (weight <= 0) {
 			weight = 0;
 		}

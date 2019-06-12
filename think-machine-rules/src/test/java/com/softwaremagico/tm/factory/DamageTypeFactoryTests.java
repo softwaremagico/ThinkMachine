@@ -33,8 +33,8 @@ import com.softwaremagico.tm.character.equipment.DamageTypeFactory;
 @Test(groups = { "damageFactory" })
 public class DamageTypeFactoryTests {
 
-	private final static int DEFINED_DAMAGES = 17;
-	private final static String LANGUAGE = "es";
+	private static final int DEFINED_DAMAGES = 17;
+	private static final String LANGUAGE = "es";
 
 	@Test
 	public void readDamages() throws InvalidXmlElementException {

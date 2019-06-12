@@ -29,7 +29,7 @@ public enum BeneficeGroup {
 
 	public static BeneficeGroup get(String tag) {
 		if (tag != null) {
-			for (BeneficeGroup benefitGroup : BeneficeGroup.values()) {
+			for (final BeneficeGroup benefitGroup : BeneficeGroup.values()) {
 				if (benefitGroup.name().equalsIgnoreCase(tag)) {
 					return benefitGroup;
 				}

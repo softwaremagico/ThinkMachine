@@ -35,15 +35,15 @@ import com.softwaremagico.tm.pdf.complete.elements.CustomPdfTable;
 import com.softwaremagico.tm.pdf.complete.skills.SkillsTable;
 
 public class LearnedSkillsTable extends SkillsTable {
-	private final static String GAP = "__________________";
-	private final static int ROWS = 23;
-	private final static int MAX_SKILL_COLUMN_WIDTH = 115;
-	private final static int MAX_SKILL_RANK_WIDTH = 15;
+	private static final String GAP = "__________________";
+	private static final int ROWS = 23;
+	private static final int MAX_SKILL_COLUMN_WIDTH = 115;
+	private static final int MAX_SKILL_RANK_WIDTH = 15;
 
 	public static PdfPTable getSkillsTable(CharacterPlayer characterPlayer, String language)
 			throws InvalidXmlElementException {
-		float[] widths = { 1f };
-		PdfPTable table = new PdfPTable(widths);
+		final float[] widths = { 1f };
+		final PdfPTable table = new PdfPTable(widths);
 		setTablePropierties(table);
 		table.getDefaultCell().setBorder(0);
 		table.addCell(getSkillsColumnTable(characterPlayer, language));
@@ -52,8 +52,8 @@ public class LearnedSkillsTable extends SkillsTable {
 
 	private static PdfPCell getSkillsColumnTable(CharacterPlayer characterPlayer, String language)
 			throws InvalidXmlElementException {
-		float[] widths = { 4f, 1f };
-		PdfPTable table = new PdfPTable(widths);
+		final float[] widths = { 4f, 1f };
+		final PdfPTable table = new PdfPTable(widths);
 		setTablePropierties(table);
 		table.getDefaultCell().setBorder(0);
 
@@ -62,7 +62,7 @@ public class LearnedSkillsTable extends SkillsTable {
 
 		int added = 0;
 		if (characterPlayer != null) {
-			for (AvailableSkill skill : characterPlayer.getLearnedSkills()) {
+			for (final AvailableSkill skill : characterPlayer.getLearnedSkills()) {
 				if (characterPlayer.getSkillTotalRanks(skill) > 0) {
 					table.addCell(createSkillElement(characterPlayer, skill,
 							FadingSunsTheme.CHARACTER_SMALL_SKILLS_LINE_FONT_SIZE, MAX_SKILL_COLUMN_WIDTH));
@@ -88,7 +88,7 @@ public class LearnedSkillsTable extends SkillsTable {
 			}
 		}
 
-		PdfPCell cell = new PdfPCell();
+		final PdfPCell cell = new PdfPCell();
 		setCellProperties(cell);
 
 		cell.addElement(table);

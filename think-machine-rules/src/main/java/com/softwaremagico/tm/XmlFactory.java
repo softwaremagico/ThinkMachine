@@ -43,28 +43,28 @@ import com.softwaremagico.tm.random.definition.RandomProbabilityDefinition;
 public abstract class XmlFactory<T extends Element<T>> {
 	protected Map<String, List<T>> elements = new HashMap<>();
 
-	private final static String RANDOM = "random";
-	private final static String ELEMENT_PROBABILITY_MULTIPLIER = "probabilityMultiplier";
-	private final static String RESTRICTED_FACTIONS = "restrictedFactions";
-	private final static String MIN_TECH_LEVEL = "minTechLevel";
-	private final static String MAX_TECH_LEVEL = "maxTechLevel";
-	private final static String RECOMMENDED_FACTIONS = "recommendedFactions";
-	private final static String RECOMMENDED_FACTION_GROUPS = "recommendedFactionGroups";
-	private final static String RESTRICTED_FACTION_GROUPS = "restrictedFactionGroups";
-	private final static String RESTRICTED_RACES = "restrictedRaces";
-	private final static String FORBIDDEN_RACES = "forbiddenRaces";
-	private final static String RECOMMENDED_RACES = "recommendedRaces";
-	private final static String GENERAL_PROBABILITY = "generalProbability";
-	private final static String STATIC_PROBABILITY = "staticProbability";
+	private static final String RANDOM = "random";
+	private static final String ELEMENT_PROBABILITY_MULTIPLIER = "probabilityMultiplier";
+	private static final String RESTRICTED_FACTIONS = "restrictedFactions";
+	private static final String MIN_TECH_LEVEL = "minTechLevel";
+	private static final String MAX_TECH_LEVEL = "maxTechLevel";
+	private static final String RECOMMENDED_FACTIONS = "recommendedFactions";
+	private static final String RECOMMENDED_FACTION_GROUPS = "recommendedFactionGroups";
+	private static final String RESTRICTED_FACTION_GROUPS = "restrictedFactionGroups";
+	private static final String RESTRICTED_RACES = "restrictedRaces";
+	private static final String FORBIDDEN_RACES = "forbiddenRaces";
+	private static final String RECOMMENDED_RACES = "recommendedRaces";
+	private static final String GENERAL_PROBABILITY = "generalProbability";
+	private static final String STATIC_PROBABILITY = "staticProbability";
 
 	protected XmlFactory() {
 		initialize();
 	}
 
 	protected void initialize() {
-		List<Language> languages = getTranslator().getAvailableLanguages();
+		final List<Language> languages = getTranslator().getAvailableLanguages();
 		List<T> elements = new ArrayList<>();
-		for (Language language : languages) {
+		for (final Language language : languages) {
 			try {
 				elements = getElements(language.getAbbreviature());
 			} catch (InvalidXmlElementException e) {
@@ -84,9 +84,9 @@ public abstract class XmlFactory<T extends Element<T>> {
 	protected void setRandomConfiguration(Element<?> element, ITranslator translator, String language) throws InvalidXmlElementException {
 		// Is an element restricted to a faction?
 		try {
-			String restrictedFactionsId = translator.getNodeValue(element.getId(), RANDOM, RESTRICTED_FACTIONS);
+			final String restrictedFactionsId = translator.getNodeValue(element.getId(), RANDOM, RESTRICTED_FACTIONS);
 			if (restrictedFactionsId != null) {
-				StringTokenizer factionTokenizer = new StringTokenizer(restrictedFactionsId, ",");
+				final StringTokenizer factionTokenizer = new StringTokenizer(restrictedFactionsId, ",");
 				while (factionTokenizer.hasMoreTokens()) {
 					element.getRandomDefinition().getRestrictedFactions()
 							.add(FactionsFactory.getInstance().getElement(factionTokenizer.nextToken().trim(), language));
@@ -97,7 +97,7 @@ public abstract class XmlFactory<T extends Element<T>> {
 		}
 
 		try {
-			String elementProbability = getTranslator().getNodeValue(element.getId(), RANDOM, ELEMENT_PROBABILITY_MULTIPLIER);
+			final String elementProbability = getTranslator().getNodeValue(element.getId(), RANDOM, ELEMENT_PROBABILITY_MULTIPLIER);
 			if (elementProbability != null) {
 				element.getRandomDefinition().setProbabilityMultiplier(Double.parseDouble(elementProbability));
 			} else {
@@ -110,7 +110,7 @@ public abstract class XmlFactory<T extends Element<T>> {
 		}
 
 		try {
-			String minTechLevel = translator.getNodeValue(element.getId(), RANDOM, MIN_TECH_LEVEL);
+			final String minTechLevel = translator.getNodeValue(element.getId(), RANDOM, MIN_TECH_LEVEL);
 			if (minTechLevel != null) {
 				element.getRandomDefinition().setMinimumTechLevel(Integer.parseInt(minTechLevel));
 			}
@@ -121,7 +121,7 @@ public abstract class XmlFactory<T extends Element<T>> {
 		}
 
 		try {
-			String maxTechLevel = translator.getNodeValue(element.getId(), RANDOM, MAX_TECH_LEVEL);
+			final String maxTechLevel = translator.getNodeValue(element.getId(), RANDOM, MAX_TECH_LEVEL);
 			if (maxTechLevel != null) {
 				element.getRandomDefinition().setMaximumTechLevel(Integer.parseInt(maxTechLevel));
 			}
@@ -132,9 +132,9 @@ public abstract class XmlFactory<T extends Element<T>> {
 		}
 
 		try {
-			String recommendedFactionGroups = translator.getNodeValue(element.getId(), RANDOM, RECOMMENDED_FACTION_GROUPS);
+			final String recommendedFactionGroups = translator.getNodeValue(element.getId(), RANDOM, RECOMMENDED_FACTION_GROUPS);
 			if (recommendedFactionGroups != null) {
-				StringTokenizer recommendedFactionGroupsTokenizer = new StringTokenizer(recommendedFactionGroups, ",");
+				final StringTokenizer recommendedFactionGroupsTokenizer = new StringTokenizer(recommendedFactionGroups, ",");
 				while (recommendedFactionGroupsTokenizer.hasMoreTokens()) {
 					element.getRandomDefinition().addRecommendedFactionGroup(FactionGroup.get(recommendedFactionGroupsTokenizer.nextToken().trim()));
 				}
@@ -144,9 +144,9 @@ public abstract class XmlFactory<T extends Element<T>> {
 		}
 
 		try {
-			String restrictedFactionGroups = translator.getNodeValue(element.getId(), RANDOM, RESTRICTED_FACTION_GROUPS);
+			final String restrictedFactionGroups = translator.getNodeValue(element.getId(), RANDOM, RESTRICTED_FACTION_GROUPS);
 			if (restrictedFactionGroups != null) {
-				StringTokenizer restrictedFactionGroupsTokenizer = new StringTokenizer(restrictedFactionGroups, ",");
+				final StringTokenizer restrictedFactionGroupsTokenizer = new StringTokenizer(restrictedFactionGroups, ",");
 				while (restrictedFactionGroupsTokenizer.hasMoreTokens()) {
 					element.getRandomDefinition().addRestrictedFactionGroup(FactionGroup.get(restrictedFactionGroupsTokenizer.nextToken().trim()));
 				}
@@ -156,9 +156,9 @@ public abstract class XmlFactory<T extends Element<T>> {
 		}
 
 		try {
-			String recommendedFactions = translator.getNodeValue(element.getId(), RANDOM, RECOMMENDED_FACTIONS);
+			final String recommendedFactions = translator.getNodeValue(element.getId(), RANDOM, RECOMMENDED_FACTIONS);
 			if (recommendedFactions != null) {
-				StringTokenizer recommendedFactionsOfSkill = new StringTokenizer(recommendedFactions, ",");
+				final StringTokenizer recommendedFactionsOfSkill = new StringTokenizer(recommendedFactions, ",");
 				while (recommendedFactionsOfSkill.hasMoreTokens()) {
 					element.getRandomDefinition().addRecommendedFaction(
 							FactionsFactory.getInstance().getElement(recommendedFactionsOfSkill.nextToken().trim(), language));
@@ -169,9 +169,9 @@ public abstract class XmlFactory<T extends Element<T>> {
 		}
 
 		try {
-			String restrictedRaces = translator.getNodeValue(element.getId(), RANDOM, RESTRICTED_RACES);
+			final String restrictedRaces = translator.getNodeValue(element.getId(), RANDOM, RESTRICTED_RACES);
 			if (restrictedRaces != null) {
-				StringTokenizer restrictedRacesOfSkill = new StringTokenizer(restrictedRaces, ",");
+				final StringTokenizer restrictedRacesOfSkill = new StringTokenizer(restrictedRaces, ",");
 				while (restrictedRacesOfSkill.hasMoreTokens()) {
 					element.getRandomDefinition().addRestrictedRace(RaceFactory.getInstance().getElement(restrictedRacesOfSkill.nextToken().trim(), language));
 				}
@@ -181,9 +181,9 @@ public abstract class XmlFactory<T extends Element<T>> {
 		}
 
 		try {
-			String recommendedRaces = translator.getNodeValue(element.getId(), RANDOM, RECOMMENDED_RACES);
+			final String recommendedRaces = translator.getNodeValue(element.getId(), RANDOM, RECOMMENDED_RACES);
 			if (recommendedRaces != null) {
-				StringTokenizer recommendedRacesTokenizer = new StringTokenizer(recommendedRaces, ",");
+				final StringTokenizer recommendedRacesTokenizer = new StringTokenizer(recommendedRaces, ",");
 				while (recommendedRacesTokenizer.hasMoreTokens()) {
 					element.getRandomDefinition().addRecommendedRace(
 							RaceFactory.getInstance().getElement(recommendedRacesTokenizer.nextToken().trim(), language));
@@ -194,9 +194,9 @@ public abstract class XmlFactory<T extends Element<T>> {
 		}
 
 		try {
-			String forbiddenRaces = translator.getNodeValue(element.getId(), RANDOM, FORBIDDEN_RACES);
+			final String forbiddenRaces = translator.getNodeValue(element.getId(), RANDOM, FORBIDDEN_RACES);
 			if (forbiddenRaces != null) {
-				StringTokenizer forbiddenRacesTokenizer = new StringTokenizer(forbiddenRaces, ",");
+				final StringTokenizer forbiddenRacesTokenizer = new StringTokenizer(forbiddenRaces, ",");
 				while (forbiddenRacesTokenizer.hasMoreTokens()) {
 					element.getRandomDefinition().addForbiddenRace(RaceFactory.getInstance().getElement(forbiddenRacesTokenizer.nextToken().trim(), language));
 				}
@@ -206,7 +206,7 @@ public abstract class XmlFactory<T extends Element<T>> {
 		}
 
 		try {
-			String generalProbability = translator.getNodeValue(element.getId(), RANDOM, GENERAL_PROBABILITY);
+			final String generalProbability = translator.getNodeValue(element.getId(), RANDOM, GENERAL_PROBABILITY);
 			if (generalProbability != null) {
 				element.getRandomDefinition().setProbability(RandomProbabilityDefinition.get(generalProbability));
 			}
@@ -215,7 +215,7 @@ public abstract class XmlFactory<T extends Element<T>> {
 		}
 
 		try {
-			String staticProbability = translator.getNodeValue(element.getId(), RANDOM, STATIC_PROBABILITY);
+			final String staticProbability = translator.getNodeValue(element.getId(), RANDOM, STATIC_PROBABILITY);
 			if (staticProbability != null) {
 				element.getRandomDefinition().setStaticProbability(Integer.parseInt(staticProbability));
 			}
@@ -229,8 +229,8 @@ public abstract class XmlFactory<T extends Element<T>> {
 	public List<T> getElements(String language) throws InvalidXmlElementException {
 		if (elements.get(language) == null) {
 			elements.put(language, new ArrayList<T>());
-			for (String elementId : getTranslator().getAllTranslatedElements()) {
-				T element = createElement(getTranslator(), elementId, language);
+			for (final String elementId : getTranslator().getAllTranslatedElements()) {
+				final T element = createElement(getTranslator(), elementId, language);
 				setRandomConfiguration(element, getTranslator(), language);
 				if (elements.get(language).contains(element)) {
 					throw new ElementAlreadyExistsException("Element '" + element + "' already is inserted. Probably the ID is duplicated.");
@@ -243,8 +243,8 @@ public abstract class XmlFactory<T extends Element<T>> {
 	}
 
 	public T getElement(String elementId, String language) throws InvalidXmlElementException {
-		List<T> elements = getElements(language);
-		for (T element : elements) {
+		final List<T> elements = getElements(language);
+		for (final T element : elements) {
 			if (element.getId() != null) {
 				if (Objects.equals(element.getId().toLowerCase(), elementId.trim().toLowerCase())) {
 					return element;

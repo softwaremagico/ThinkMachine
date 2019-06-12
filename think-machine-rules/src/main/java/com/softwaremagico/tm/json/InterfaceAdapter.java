@@ -44,18 +44,18 @@ public class InterfaceAdapter<T> implements JsonSerializer<T>, JsonDeserializer<
 	public T deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext)
 			throws JsonParseException {
 
-		JsonObject jsonObject = jsonElement.getAsJsonObject();
-		JsonPrimitive prim = (JsonPrimitive) jsonObject.get(JSON_CLASSNAME);
+		final JsonObject jsonObject = jsonElement.getAsJsonObject();
+		final JsonPrimitive prim = (JsonPrimitive) jsonObject.get(JSON_CLASSNAME);
 		if (prim == null) {
 			return null;
 		}
-		String className = prim.getAsString();
+		final String className = prim.getAsString();
 		return jsonDeserializationContext.deserialize(jsonObject.get(JSON_DATA), getObjectClass(className));
 	}
 
 	@Override
 	public JsonElement serialize(T jsonElement, Type type, JsonSerializationContext jsonSerializationContext) {
-		JsonObject jsonObject = new JsonObject();
+		final JsonObject jsonObject = new JsonObject();
 		jsonObject.addProperty(JSON_CLASSNAME, jsonElement.getClass().getName());
 		jsonObject.add(JSON_DATA, jsonSerializationContext.serialize(jsonElement));
 		return jsonObject;

@@ -42,17 +42,18 @@ import com.softwaremagico.tm.random.selectors.PsiqueLevelPreferences;
 
 public class RandomPsique extends RandomSelector<OccultismType> {
 
-	public RandomPsique(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences) throws InvalidXmlElementException {
+	public RandomPsique(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences)
+			throws InvalidXmlElementException {
 		super(characterPlayer, preferences);
 	}
 
 	@Override
 	public void assign() throws InvalidRandomElementSelectedException, InvalidXmlElementException {
 		// Select which type of psique.
-		OccultismType selectedOccultismType = selectElementByWeight();
+		final OccultismType selectedOccultismType = selectElementByWeight();
 		RandomGenerationLog.info(this.getClass().getName(), "Assinged psique '" + selectedOccultismType + "'.");
 		// Select a level of psique.
-		int level = assignLevelOfPsique(selectedOccultismType);
+		final int level = assignLevelOfPsique(selectedOccultismType);
 		RandomGenerationLog.info(this.getClass().getName(), "Assinged psique level of '" + level + "'.");
 		// Assign to the character.
 		getCharacterPlayer().setPsiqueLevel(selectedOccultismType, level);
@@ -81,10 +82,11 @@ public class RandomPsique extends RandomSelector<OccultismType> {
 
 	private int assignLevelOfPsique(OccultismType psique) throws InvalidXmlElementException {
 		// A curse does not allow occultism.
-		if (getCharacterPlayer().getAfflictions().contains(AvailableBeneficeFactory.getInstance().getElement("noOccult", getCharacterPlayer().getLanguage()))) {
+		if (getCharacterPlayer().getAfflictions().contains(
+				AvailableBeneficeFactory.getInstance().getElement("noOccult", getCharacterPlayer().getLanguage()))) {
 			return 0;
 		}
-		IGaussianDistribution psiqueLevelSelector = PsiqueLevelPreferences.getSelected(getPreferences());
+		final IGaussianDistribution psiqueLevelSelector = PsiqueLevelPreferences.getSelected(getPreferences());
 		int maxLevelSelected = psiqueLevelSelector.randomGaussian();
 		if (maxLevelSelected > psiqueLevelSelector.maximum()) {
 			maxLevelSelected = psiqueLevelSelector.maximum();
@@ -93,7 +95,8 @@ public class RandomPsique extends RandomSelector<OccultismType> {
 	}
 
 	@Override
-	protected void assignIfMandatory(OccultismType element) throws InvalidXmlElementException, ImpossibleToAssignMandatoryElementException {
+	protected void assignIfMandatory(OccultismType element) throws InvalidXmlElementException,
+			ImpossibleToAssignMandatoryElementException {
 		return;
 	}
 

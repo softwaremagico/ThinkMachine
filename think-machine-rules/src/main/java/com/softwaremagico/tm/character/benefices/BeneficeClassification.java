@@ -30,7 +30,7 @@ public enum BeneficeClassification {
 
 	public static BeneficeClassification get(String tag) {
 		if (tag != null) {
-			for (BeneficeClassification classification : BeneficeClassification.values()) {
+			for (final BeneficeClassification classification : BeneficeClassification.values()) {
 				if (classification.name().toLowerCase().equals(tag.toLowerCase())) {
 					return classification;
 				}

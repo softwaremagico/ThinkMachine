@@ -28,7 +28,7 @@ public enum CombatStyleGroup {
 	MELEE, FIGHT, RANGED;
 
 	public static CombatStyleGroup get(String groupName) {
-		for (CombatStyleGroup combatStyleGroup : CombatStyleGroup.values()) {
+		for (final CombatStyleGroup combatStyleGroup : CombatStyleGroup.values()) {
 			if (combatStyleGroup.name().equalsIgnoreCase(groupName)) {
 				return combatStyleGroup;
 			}

@@ -37,7 +37,7 @@ import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
 
 public class ProfileMerger {
-	private final static String DEFAULT_ID = "merged_profile";
+	private static final String DEFAULT_ID = "merged_profile";
 
 	public static RandomProfile merge(String language, IRandomProfile... profiles) throws InvalidXmlElementException {
 		if (profiles == null || profiles.length == 0) {
@@ -66,10 +66,10 @@ public class ProfileMerger {
 		}
 
 		// Store all information in a new profile.
-		RandomProfile finalProfile = new RandomProfile(DEFAULT_ID, "", language);
+		final RandomProfile finalProfile = new RandomProfile(DEFAULT_ID, "", language);
 
 		// Merge profiles
-		for (IRandomProfile profile : profiles) {
+		for (final IRandomProfile profile : profiles) {
 			// Merge preferences.
 			mergePreferences(finalProfile.getPreferences(), profile.getPreferences());
 
@@ -101,15 +101,14 @@ public class ProfileMerger {
 		mergeSkills(suggestedSkills, finalProfile.getSuggestedSkills());
 		finalProfile.getSuggestedSkills().clear();
 		finalProfile.getSuggestedSkills().addAll(suggestedSkills);
-		
+
 		mergeBenefices(mandatoryBenefices, finalProfile.getMandatoryBenefices());
 		finalProfile.getMandatoryBenefices().clear();
 		finalProfile.getMandatoryBenefices().addAll(mandatoryBenefices);
-		
+
 		mergeBenefices(suggestedBenefices, finalProfile.getSuggestedBenefices());
 		finalProfile.getSuggestedBenefices().clear();
 		finalProfile.getSuggestedBenefices().addAll(suggestedBenefices);
-		
 
 		return finalProfile;
 	}
@@ -117,7 +116,7 @@ public class ProfileMerger {
 	private static void mergeCharacteristics(Map<CharacteristicName, Integer> originalCharacteristicsMinimumValues,
 			Map<CharacteristicName, Integer> preferredCharacteristicsMinimumValues) {
 		// Merge Characteristics
-		for (Entry<CharacteristicName, Integer> entry : preferredCharacteristicsMinimumValues.entrySet()) {
+		for (final Entry<CharacteristicName, Integer> entry : preferredCharacteristicsMinimumValues.entrySet()) {
 			originalCharacteristicsMinimumValues.put(entry.getKey(), entry.getValue());
 		}
 	}
@@ -133,7 +132,7 @@ public class ProfileMerger {
 
 	private static void mergePreferences(Set<IRandomPreference> originalPreferences,
 			Set<IRandomPreference> preferredPreferences) {
-		for (IRandomPreference preferredPreference : preferredPreferences) {
+		for (final IRandomPreference preferredPreference : preferredPreferences) {
 			originalPreferences = removeAny(originalPreferences, preferredPreference);
 		}
 		originalPreferences.addAll(preferredPreferences);
@@ -141,7 +140,7 @@ public class ProfileMerger {
 
 	private static Set<IRandomPreference> removeAny(Set<IRandomPreference> originalPreferences,
 			IRandomPreference preferenceToRemove) {
-		for (IRandomPreference randomPreference : new HashSet<>(originalPreferences)) {
+		for (final IRandomPreference randomPreference : new HashSet<>(originalPreferences)) {
 			if (randomPreference.getClass().equals(preferenceToRemove.getClass())) {
 				originalPreferences.remove(randomPreference);
 			}

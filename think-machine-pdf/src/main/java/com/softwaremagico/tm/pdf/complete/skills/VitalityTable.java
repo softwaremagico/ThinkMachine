@@ -32,10 +32,10 @@ import com.softwaremagico.tm.log.PdfExporterLog;
 import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 
 public class VitalityTable extends CounterTable {
-	private final static float[] WIDTHS = { 1f, 1f };
-	private final static int CIRCLES = 23;
-	private final static int TITLE_SPAN = 5;
-	private final static int MODIFICATORS_SPAN = 5;
+	private static final float[] WIDTHS = { 1f, 1f };
+	private static final int CIRCLES = 23;
+	private static final int TITLE_SPAN = 5;
+	private static final int MODIFICATORS_SPAN = 5;
 
 	public VitalityTable(CharacterPlayer characterPlayer) {
 		super(WIDTHS);

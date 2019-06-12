@@ -36,55 +36,63 @@ import com.softwaremagico.tm.log.PdfExporterLog;
 import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 
 public class SheetAlternatedBackgroundEvent extends PdfPageEventHelper {
-	private final static int IMAGE_HEIGHT = 100;
-	private final static int IMAGE_WIDTH = 125;
-	private final static int IMAGE_BORDER = 10;
-	private final static int IMAGE_TOP_BORDER = 13;
+	private static final int IMAGE_HEIGHT = 100;
+	private static final int IMAGE_WIDTH = 125;
+	private static final int IMAGE_BORDER = 10;
+	private static final int IMAGE_TOP_BORDER = 13;
 
-	private final static int BAR_HEIGHT = 17;
+	private static final int BAR_HEIGHT = 17;
 
 	private Image rightCorner, leftCorner, mainTitleRight, mainTitleLeft;
 
 	@Override
 	public void onOpenDocument(PdfWriter writer, Document document) {
 		try {
-			rightCorner = Image.getInstance(SheetAlternatedBackgroundEvent.class.getResource("/" + FadingSunsTheme.RIGHT_CORNER_IMAGE));
-			rightCorner.setAbsolutePosition(document.getPageSize().getWidth() - IMAGE_WIDTH, document.getPageSize().getHeight() - IMAGE_HEIGHT - IMAGE_TOP_BORDER);
+			rightCorner = Image.getInstance(SheetAlternatedBackgroundEvent.class.getResource("/"
+					+ FadingSunsTheme.RIGHT_CORNER_IMAGE));
+			rightCorner.setAbsolutePosition(document.getPageSize().getWidth() - IMAGE_WIDTH, document.getPageSize()
+					.getHeight() - IMAGE_HEIGHT - IMAGE_TOP_BORDER);
 			rightCorner.scaleToFit(IMAGE_WIDTH, IMAGE_HEIGHT);
 		} catch (BadElementException | IOException e) {
 			PdfExporterLog.errorMessage(this.getClass().getName(), e);
 		}
 
 		try {
-			leftCorner = Image.getInstance(SheetAlternatedBackgroundEvent.class.getResource("/" + FadingSunsTheme.LEFT_CORNER_IMAGE));
+			leftCorner = Image.getInstance(SheetAlternatedBackgroundEvent.class.getResource("/"
+					+ FadingSunsTheme.LEFT_CORNER_IMAGE));
 			// leftCorner.setAbsolutePosition(IMAGE_BORDER,
 			// document.getPageSize().getHeight() - IMAGE_HEIGHT -
 			// IMAGE_BORDER);
-			leftCorner.setAbsolutePosition(IMAGE_BORDER, document.getPageSize().getHeight() - IMAGE_HEIGHT - IMAGE_TOP_BORDER);
+			leftCorner.setAbsolutePosition(IMAGE_BORDER, document.getPageSize().getHeight() - IMAGE_HEIGHT
+					- IMAGE_TOP_BORDER);
 			leftCorner.scaleToFit(IMAGE_WIDTH, IMAGE_HEIGHT);
 		} catch (BadElementException | IOException e) {
 			PdfExporterLog.errorMessage(this.getClass().getName(), e);
 		}
 
 		try {
-			mainTitleRight = Image.getInstance(SheetAlternatedBackgroundEvent.class.getResource("/" + FadingSunsTheme.MAIN_TITLE_IMAGE));
+			mainTitleRight = Image.getInstance(SheetAlternatedBackgroundEvent.class.getResource("/"
+					+ FadingSunsTheme.MAIN_TITLE_IMAGE));
 			// leftCorner.setAbsolutePosition(IMAGE_BORDER,
 			// document.getPageSize().getHeight() - IMAGE_HEIGHT -
 			// IMAGE_BORDER);
-			float barWidth = document.getPageSize().getWidth() - IMAGE_WIDTH - IMAGE_BORDER * 2;
-			mainTitleRight.setAbsolutePosition(IMAGE_HEIGHT + IMAGE_BORDER * 2 + 3, document.getPageSize().getHeight() - BAR_HEIGHT - IMAGE_TOP_BORDER - 2);
+			final float barWidth = document.getPageSize().getWidth() - IMAGE_WIDTH - IMAGE_BORDER * 2;
+			mainTitleRight.setAbsolutePosition(IMAGE_HEIGHT + IMAGE_BORDER * 2 + 3, document.getPageSize().getHeight()
+					- BAR_HEIGHT - IMAGE_TOP_BORDER - 2);
 			mainTitleRight.scaleAbsolute(barWidth, BAR_HEIGHT);
 		} catch (BadElementException | IOException e) {
 			PdfExporterLog.errorMessage(this.getClass().getName(), e);
 		}
 
 		try {
-			mainTitleLeft = Image.getInstance(SheetAlternatedBackgroundEvent.class.getResource("/" + FadingSunsTheme.MAIN_TITLE_IMAGE));
+			mainTitleLeft = Image.getInstance(SheetAlternatedBackgroundEvent.class.getResource("/"
+					+ FadingSunsTheme.MAIN_TITLE_IMAGE));
 			// leftCorner.setAbsolutePosition(IMAGE_BORDER,
 			// document.getPageSize().getHeight() - IMAGE_HEIGHT -
 			// IMAGE_BORDER);
-			float barWidth = document.getPageSize().getWidth() - IMAGE_WIDTH - IMAGE_BORDER * 2;
-			mainTitleLeft.setAbsolutePosition(IMAGE_BORDER * 2 + 3, document.getPageSize().getHeight() - BAR_HEIGHT - IMAGE_TOP_BORDER - 2);
+			final float barWidth = document.getPageSize().getWidth() - IMAGE_WIDTH - IMAGE_BORDER * 2;
+			mainTitleLeft.setAbsolutePosition(IMAGE_BORDER * 2 + 3, document.getPageSize().getHeight() - BAR_HEIGHT
+					- IMAGE_TOP_BORDER - 2);
 			mainTitleLeft.scaleAbsolute(barWidth, BAR_HEIGHT);
 		} catch (BadElementException | IOException e) {
 			PdfExporterLog.errorMessage(this.getClass().getName(), e);

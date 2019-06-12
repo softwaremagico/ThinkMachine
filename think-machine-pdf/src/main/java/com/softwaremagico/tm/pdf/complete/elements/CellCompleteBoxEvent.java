@@ -50,13 +50,13 @@ public class CellCompleteBoxEvent implements PdfPCellEvent {
 	}
 
 	public void cellLayout(PdfPCell cell, Rectangle position, PdfContentByte[] canvases) {
-		PdfContentByte canvas = canvases[PdfPTable.LINECANVAS];
+		final PdfContentByte canvas = canvases[PdfPTable.LINECANVAS];
 		canvas.setLineWidth(borderThickness);
 
-		int bottomMargin = isBorderEnabled(Border.BOTTOM) ? margin : 0;
-		int topMargin = isBorderEnabled(Border.TOP) ? margin : 0;
-		int leftMargin = isBorderEnabled(Border.LEFT) ? margin : 0;
-		int rightMargin = isBorderEnabled(Border.RIGHT) ? margin : 0;
+		final int bottomMargin = isBorderEnabled(Border.BOTTOM) ? margin : 0;
+		final int topMargin = isBorderEnabled(Border.TOP) ? margin : 0;
+		final int leftMargin = isBorderEnabled(Border.LEFT) ? margin : 0;
+		final int rightMargin = isBorderEnabled(Border.RIGHT) ? margin : 0;
 
 		if (isBorderEnabled(Border.TOP)) {
 			canvas.moveTo(position.getLeft() + leftMargin, position.getTop() - topMargin);
@@ -78,7 +78,7 @@ public class CellCompleteBoxEvent implements PdfPCellEvent {
 	}
 
 	private boolean isBorderEnabled(Border border) {
-		for (Border selectedBorder : borders) {
+		for (final Border selectedBorder : borders) {
 			if (selectedBorder.equals(border)) {
 				return true;
 			}

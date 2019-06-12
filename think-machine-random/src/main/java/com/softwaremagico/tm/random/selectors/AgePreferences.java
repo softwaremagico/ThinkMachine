@@ -78,7 +78,7 @@ public enum AgePreferences implements IRandomPreference, IGaussianDistribution {
 	}
 
 	public static AgePreferences getSelected(Set<IRandomPreference> preferences) {
-		for (IRandomPreference preference : preferences) {
+		for (final IRandomPreference preference : preferences) {
 			if (preference instanceof AgePreferences) {
 				return (AgePreferences) preference;
 			}

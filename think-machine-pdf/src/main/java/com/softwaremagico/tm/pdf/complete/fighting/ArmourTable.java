@@ -37,10 +37,10 @@ import com.softwaremagico.tm.pdf.complete.elements.BaseElement;
 import com.softwaremagico.tm.pdf.complete.elements.LateralHeaderPdfPTable;
 
 public class ArmourTable extends LateralHeaderPdfPTable {
-	private final static float[] WIDTHS = { 0.75f, 1f, 1f, 1f };
-	private final static int ROWS = 5;
-	private final static String GAP = "___________________";
-	private final static int NAME_COLUMN_WIDTH = 70;
+	private static final float[] WIDTHS = { 0.75f, 1f, 1f, 1f };
+	private static final int ROWS = 5;
+	private static final String GAP = "___________________";
+	private static final int NAME_COLUMN_WIDTH = 70;
 
 	public ArmourTable(CharacterPlayer characterPlayer) throws InvalidXmlElementException {
 		super(WIDTHS);
@@ -48,29 +48,30 @@ public class ArmourTable extends LateralHeaderPdfPTable {
 
 		addCell(createLateralVerticalTitle(getTranslator().getTranslatedText("armor"), ROWS + 1));
 
-		PdfPCell nameCell;
+		final PdfPCell nameCell;
 		if (characterPlayer == null || characterPlayer.getArmour() == null) {
 			nameCell = createEmptyElementLine(GAP);
 		} else {
-			nameCell = createElementLine(characterPlayer.getArmour().getName(), NAME_COLUMN_WIDTH, FadingSunsTheme.ARMOUR_CONTENT_FONT_SIZE);
+			nameCell = createElementLine(characterPlayer.getArmour().getName(), NAME_COLUMN_WIDTH,
+					FadingSunsTheme.ARMOUR_CONTENT_FONT_SIZE);
 		}
 		nameCell.setColspan(WIDTHS.length);
 		nameCell.setMinimumHeight(20);
 		addCell(nameCell);
-		PdfPCell protectionCell;
+		final PdfPCell protectionCell;
 		if (characterPlayer == null || characterPlayer.getArmour() == null) {
 			protectionCell = createEmptyElementLine(getTranslator().getTranslatedText("armorRating") + ": ____ "
 					+ getTranslator().getTranslatedText("diceAbbreviature"));
 		} else {
-			Paragraph paragraph = new Paragraph();
-			paragraph.add(new Paragraph(getTranslator().getTranslatedText("armorRating") + ": ", new Font(FadingSunsTheme.getLineFont(),
-					FadingSunsTheme.TABLE_LINE_FONT_SIZE)));
+			final Paragraph paragraph = new Paragraph();
+			paragraph.add(new Paragraph(getTranslator().getTranslatedText("armorRating") + ": ", new Font(
+					FadingSunsTheme.getLineFont(), FadingSunsTheme.TABLE_LINE_FONT_SIZE)));
 
-			paragraph.add(new Paragraph(characterPlayer.getArmour().getProtection() + " ", new Font(FadingSunsTheme.getHandwrittingFont(),
-					FadingSunsTheme.ARMOUR_CONTENT_FONT_SIZE)));
+			paragraph.add(new Paragraph(characterPlayer.getArmour().getProtection() + " ", new Font(FadingSunsTheme
+					.getHandwrittingFont(), FadingSunsTheme.ARMOUR_CONTENT_FONT_SIZE)));
 
-			paragraph.add(new Paragraph(getTranslator().getTranslatedText("diceAbbreviature"), new Font(FadingSunsTheme.getLineFont(),
-					FadingSunsTheme.TABLE_LINE_FONT_SIZE)));
+			paragraph.add(new Paragraph(getTranslator().getTranslatedText("diceAbbreviature"), new Font(FadingSunsTheme
+					.getLineFont(), FadingSunsTheme.TABLE_LINE_FONT_SIZE)));
 
 			protectionCell = createEmptyElementLine("");
 
@@ -79,32 +80,37 @@ public class ArmourTable extends LateralHeaderPdfPTable {
 		protectionCell.setColspan(WIDTHS.length);
 		addCell(protectionCell);
 
-		PdfPCell malusCell;
+		final PdfPCell malusCell;
 		if (characterPlayer == null || characterPlayer.getArmour() == null) {
 			malusCell = createEmptyElementLine(getTranslator().getTranslatedText("strengthAbbreviature") + ":__  "
-					+ getTranslator().getTranslatedText("dexterityAbbreviature") + ":__  " + getTranslator().getTranslatedText("enduranceAbbreviature")
-					+ ":__ " + getTranslator().getTranslatedText("iniciativeAbbreviature") + ":__");
+					+ getTranslator().getTranslatedText("dexterityAbbreviature") + ":__  "
+					+ getTranslator().getTranslatedText("enduranceAbbreviature") + ":__ "
+					+ getTranslator().getTranslatedText("iniciativeAbbreviature") + ":__");
 		} else {
-			Paragraph paragraph = new Paragraph();
-			paragraph.add(new Paragraph(getTranslator().getTranslatedText("strengthAbbreviature") + ":", new Font(FadingSunsTheme.getLineFont(),
-					FadingSunsTheme.TABLE_LINE_FONT_SIZE)));
-			paragraph.add(new Paragraph(characterPlayer.getArmour().getStandardPenalizations().getStrengthModification() + " ", new Font(FadingSunsTheme
-					.getHandwrittingFont(), FadingSunsTheme.ARMOUR_CONTENT_FONT_SIZE)));
+			final Paragraph paragraph = new Paragraph();
+			paragraph.add(new Paragraph(getTranslator().getTranslatedText("strengthAbbreviature") + ":", new Font(
+					FadingSunsTheme.getLineFont(), FadingSunsTheme.TABLE_LINE_FONT_SIZE)));
+			paragraph.add(new Paragraph(characterPlayer.getArmour().getStandardPenalizations()
+					.getStrengthModification()
+					+ " ", new Font(FadingSunsTheme.getHandwrittingFont(), FadingSunsTheme.ARMOUR_CONTENT_FONT_SIZE)));
 
-			paragraph.add(new Paragraph(" " + getTranslator().getTranslatedText("dexterityAbbreviature") + ":", new Font(FadingSunsTheme.getLineFont(),
-					FadingSunsTheme.TABLE_LINE_FONT_SIZE)));
-			paragraph.add(new Paragraph(characterPlayer.getArmour().getStandardPenalizations().getDexterityModification() + " ", new Font(FadingSunsTheme
-					.getHandwrittingFont(), FadingSunsTheme.ARMOUR_CONTENT_FONT_SIZE)));
+			paragraph.add(new Paragraph(" " + getTranslator().getTranslatedText("dexterityAbbreviature") + ":",
+					new Font(FadingSunsTheme.getLineFont(), FadingSunsTheme.TABLE_LINE_FONT_SIZE)));
+			paragraph.add(new Paragraph(characterPlayer.getArmour().getStandardPenalizations()
+					.getDexterityModification()
+					+ " ", new Font(FadingSunsTheme.getHandwrittingFont(), FadingSunsTheme.ARMOUR_CONTENT_FONT_SIZE)));
 
-			paragraph.add(new Paragraph(" " + getTranslator().getTranslatedText("enduranceAbbreviature") + ":", new Font(FadingSunsTheme.getLineFont(),
-					FadingSunsTheme.TABLE_LINE_FONT_SIZE)));
-			paragraph.add(new Paragraph(characterPlayer.getArmour().getStandardPenalizations().getEnduranceModification() + " ", new Font(FadingSunsTheme
-					.getHandwrittingFont(), FadingSunsTheme.ARMOUR_CONTENT_FONT_SIZE)));
+			paragraph.add(new Paragraph(" " + getTranslator().getTranslatedText("enduranceAbbreviature") + ":",
+					new Font(FadingSunsTheme.getLineFont(), FadingSunsTheme.TABLE_LINE_FONT_SIZE)));
+			paragraph.add(new Paragraph(characterPlayer.getArmour().getStandardPenalizations()
+					.getEnduranceModification()
+					+ " ", new Font(FadingSunsTheme.getHandwrittingFont(), FadingSunsTheme.ARMOUR_CONTENT_FONT_SIZE)));
 
-			paragraph.add(new Paragraph(" " + getTranslator().getTranslatedText("iniciativeAbbreviature") + ":", new Font(FadingSunsTheme.getLineFont(),
-					FadingSunsTheme.TABLE_LINE_FONT_SIZE)));
-			paragraph.add(new Paragraph(characterPlayer.getArmour().getStandardPenalizations().getEnduranceModification() + " ", new Font(FadingSunsTheme
-					.getHandwrittingFont(), FadingSunsTheme.ARMOUR_CONTENT_FONT_SIZE)));
+			paragraph.add(new Paragraph(" " + getTranslator().getTranslatedText("iniciativeAbbreviature") + ":",
+					new Font(FadingSunsTheme.getLineFont(), FadingSunsTheme.TABLE_LINE_FONT_SIZE)));
+			paragraph.add(new Paragraph(characterPlayer.getArmour().getStandardPenalizations()
+					.getEnduranceModification()
+					+ " ", new Font(FadingSunsTheme.getHandwrittingFont(), FadingSunsTheme.ARMOUR_CONTENT_FONT_SIZE)));
 
 			malusCell = createEmptyElementLine("");
 
@@ -121,26 +127,53 @@ public class ArmourTable extends LateralHeaderPdfPTable {
 			addCell(getArmourProperty(getTranslator().getTranslatedText("armorShockAbbreviature"), false));
 			addCell(getArmourProperty(getTranslator().getTranslatedText("armorImpactAbbreviature"), false));
 		} else {
-			addCell(getArmourProperty(getTranslator().getTranslatedText("armorHardAbbreviature"),
-					characterPlayer.getArmour().getDamageTypes().contains(DamageTypeFactory.getInstance().getElement("hard", characterPlayer.getLanguage()))));
-			addCell(getArmourProperty(getTranslator().getTranslatedText("armorFireAbbreviature"),
-					characterPlayer.getArmour().getDamageTypes().contains(DamageTypeFactory.getInstance().getElement("fire", characterPlayer.getLanguage()))));
-			addCell(getArmourProperty(getTranslator().getTranslatedText("armorLaserAbbreviature"),
-					characterPlayer.getArmour().getDamageTypes().contains(DamageTypeFactory.getInstance().getElement("laser", characterPlayer.getLanguage()))));
-			addCell(getArmourProperty(getTranslator().getTranslatedText("armorPlasmAbbreviature"),
-					characterPlayer.getArmour().getDamageTypes().contains(DamageTypeFactory.getInstance().getElement("plasma", characterPlayer.getLanguage()))));
-			addCell(getArmourProperty(getTranslator().getTranslatedText("armorShockAbbreviature"),
-					characterPlayer.getArmour().getDamageTypes().contains(DamageTypeFactory.getInstance().getElement("shock", characterPlayer.getLanguage()))));
-			addCell(getArmourProperty(getTranslator().getTranslatedText("armorImpactAbbreviature"),
-					characterPlayer.getArmour().getDamageTypes()
-							.contains(DamageTypeFactory.getInstance().getElement("impact", characterPlayer.getLanguage()))));
+			addCell(getArmourProperty(
+					getTranslator().getTranslatedText("armorHardAbbreviature"),
+					characterPlayer
+							.getArmour()
+							.getDamageTypes()
+							.contains(DamageTypeFactory.getInstance().getElement("hard", characterPlayer.getLanguage()))));
+			addCell(getArmourProperty(
+					getTranslator().getTranslatedText("armorFireAbbreviature"),
+					characterPlayer
+							.getArmour()
+							.getDamageTypes()
+							.contains(DamageTypeFactory.getInstance().getElement("fire", characterPlayer.getLanguage()))));
+			addCell(getArmourProperty(
+					getTranslator().getTranslatedText("armorLaserAbbreviature"),
+					characterPlayer
+							.getArmour()
+							.getDamageTypes()
+							.contains(
+									DamageTypeFactory.getInstance().getElement("laser", characterPlayer.getLanguage()))));
+			addCell(getArmourProperty(
+					getTranslator().getTranslatedText("armorPlasmAbbreviature"),
+					characterPlayer
+							.getArmour()
+							.getDamageTypes()
+							.contains(
+									DamageTypeFactory.getInstance().getElement("plasma", characterPlayer.getLanguage()))));
+			addCell(getArmourProperty(
+					getTranslator().getTranslatedText("armorShockAbbreviature"),
+					characterPlayer
+							.getArmour()
+							.getDamageTypes()
+							.contains(
+									DamageTypeFactory.getInstance().getElement("shock", characterPlayer.getLanguage()))));
+			addCell(getArmourProperty(
+					getTranslator().getTranslatedText("armorImpactAbbreviature"),
+					characterPlayer
+							.getArmour()
+							.getDamageTypes()
+							.contains(
+									DamageTypeFactory.getInstance().getElement("impact", characterPlayer.getLanguage()))));
 		}
 
 	}
 
 	private PdfPTable getArmourProperty(String text, boolean selected) {
-		float[] widths = { 1f, 1f };
-		PdfPTable table = new PdfPTable(widths);
+		final float[] widths = { 1f, 1f };
+		final PdfPTable table = new PdfPTable(widths);
 		BaseElement.setTablePropierties(table);
 		table.getDefaultCell().setBorder(0);
 		table.getDefaultCell().setPadding(0);

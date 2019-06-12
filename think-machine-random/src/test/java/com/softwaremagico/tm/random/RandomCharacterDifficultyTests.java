@@ -43,16 +43,16 @@ public class RandomCharacterDifficultyTests {
 
 	@Test
 	public void easy() throws DuplicatedPreferenceException, InvalidXmlElementException, InvalidRandomElementSelectedException, TooManyBlessingsException {
-		CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
-		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0, DifficultLevelPreferences.EASY);
+		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
+		final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0, DifficultLevelPreferences.EASY);
 		randomizeCharacter.createCharacter();
 		Assert.assertTrue(CostCalculator.getCost(characterPlayer) < FreeStyleCharacterCreation.getFreeAvailablePoints(characterPlayer.getInfo().getAge()));
 	}
 
 	@Test
 	public void hard() throws DuplicatedPreferenceException, InvalidXmlElementException, InvalidRandomElementSelectedException, TooManyBlessingsException {
-		CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
-		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0, DifficultLevelPreferences.HARD);
+		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
+		final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0, DifficultLevelPreferences.HARD);
 		randomizeCharacter.createCharacter();
 		Assert.assertTrue(characterPlayer.getCharacteristicsTotalPoints() >= FreeStyleCharacterCreation.getCharacteristicsPoints(characterPlayer.getInfo()
 				.getAge()) + DifficultLevelPreferences.HARD.getCharacteristicsBonus());
@@ -63,8 +63,8 @@ public class RandomCharacterDifficultyTests {
 
 	@Test
 	public void veryHard() throws DuplicatedPreferenceException, InvalidXmlElementException, InvalidRandomElementSelectedException, TooManyBlessingsException {
-		CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
-		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0, DifficultLevelPreferences.VERY_HARD);
+		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
+		final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0, DifficultLevelPreferences.VERY_HARD);
 		randomizeCharacter.createCharacter();
 		Assert.assertTrue(characterPlayer.getCharacteristicsTotalPoints() >= FreeStyleCharacterCreation.getCharacteristicsPoints(characterPlayer.getInfo()
 				.getAge()) + DifficultLevelPreferences.VERY_HARD.getCharacteristicsBonus());

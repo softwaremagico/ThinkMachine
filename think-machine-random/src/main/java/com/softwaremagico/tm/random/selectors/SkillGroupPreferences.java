@@ -56,7 +56,7 @@ public enum SkillGroupPreferences implements IRandomPreference {
 
 	public static SkillGroupPreferences getSkillGroupPreference(SkillGroup skillGroup) {
 		if (skillGroup != null) {
-			for (SkillGroupPreferences skillGroupPreference : SkillGroupPreferences.values()) {
+			for (final SkillGroupPreferences skillGroupPreference : SkillGroupPreferences.values()) {
 				if (skillGroupPreference.getSkillGroup() == skillGroup) {
 					return skillGroupPreference;
 				}

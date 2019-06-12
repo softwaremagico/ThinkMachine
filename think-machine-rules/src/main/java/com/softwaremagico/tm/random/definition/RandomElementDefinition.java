@@ -52,7 +52,7 @@ public class RandomElementDefinition {
 
 	public RandomElementDefinition(RandomElementDefinition... randomDefinitions) {
 		this();
-		for (RandomElementDefinition randomDefinition : randomDefinitions) {
+		for (final RandomElementDefinition randomDefinition : randomDefinitions) {
 			update(randomDefinition);
 		}
 	}

@@ -71,7 +71,7 @@ public enum CurseNumberPreferences implements IRandomPreference, IGaussianDistri
 	}
 
 	public static CurseNumberPreferences getSelected(Set<IRandomPreference> preferences) {
-		for (IRandomPreference preference : preferences) {
+		for (final IRandomPreference preference : preferences) {
 			if (preference instanceof CurseNumberPreferences) {
 				return (CurseNumberPreferences) preference;
 			}

@@ -29,8 +29,6 @@ import java.util.Set;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.character.factions.Faction;
-import com.softwaremagico.tm.character.factions.FactionsFactory;
 import com.softwaremagico.tm.character.races.InvalidRaceException;
 import com.softwaremagico.tm.random.RandomSelector;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
@@ -39,7 +37,8 @@ import com.softwaremagico.tm.random.selectors.IRandomPreference;
 
 public class RandomFaction extends RandomSelector<Faction> {
 
-	public RandomFaction(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences) throws InvalidXmlElementException {
+	public RandomFaction(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences)
+			throws InvalidXmlElementException {
 		super(characterPlayer, preferences);
 	}
 
@@ -56,18 +55,20 @@ public class RandomFaction extends RandomSelector<Faction> {
 	@Override
 	protected int getWeight(Faction faction) throws InvalidRandomElementSelectedException {
 		// Specialization desired.
-		FactionPreferences selectedFactionGroup = FactionPreferences.getSelected(getPreferences());
+		final FactionPreferences selectedFactionGroup = FactionPreferences.getSelected(getPreferences());
 		if (selectedFactionGroup != null) {
-			if (faction.getFactionGroup() != null && faction.getFactionGroup().name().equalsIgnoreCase(selectedFactionGroup.name())) {
+			if (faction.getFactionGroup() != null
+					&& faction.getFactionGroup().name().equalsIgnoreCase(selectedFactionGroup.name())) {
 				return 1;
 			}
 			// Different faction than selected.
-			throw new InvalidRandomElementSelectedException("Faction '" + faction + "' not in prefereces selection '" + selectedFactionGroup + "'.");
+			throw new InvalidRandomElementSelectedException("Faction '" + faction + "' not in prefereces selection '"
+					+ selectedFactionGroup + "'.");
 		}
 		// Humans only humans factions.
 		if (faction.getRestrictedRace() != null && !faction.getRestrictedRace().equals(getCharacterPlayer().getRace())) {
-			throw new InvalidRandomElementSelectedException("Faction '" + faction + "' restricted for race '" + faction.getRestrictedRace()
-					+ "'. Character is '" + getCharacterPlayer().getRace() + "'.");
+			throw new InvalidRandomElementSelectedException("Faction '" + faction + "' restricted for race '"
+					+ faction.getRestrictedRace() + "'. Character is '" + getCharacterPlayer().getRace() + "'.");
 		}
 		// No faction preference selected. All factions has the same
 		// probability.

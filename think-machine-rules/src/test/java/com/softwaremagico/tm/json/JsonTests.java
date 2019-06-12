@@ -48,9 +48,11 @@ import com.softwaremagico.tm.party.Party;
 
 @Test(groups = { "jsonExporter" })
 public class JsonTests {
-	private final static String OUTPUT_CHARACTER_PATH = System.getProperty("java.io.tmpdir") + File.separator + "Character.json";
-	private final static String OUTPUT_PARTY_PATH = System.getProperty("java.io.tmpdir") + File.separator + "Party.json";
-	private final static String LANGUAGE = "es";
+	private static final String OUTPUT_CHARACTER_PATH = System.getProperty("java.io.tmpdir") + File.separator
+			+ "Character.json";
+	private static final String OUTPUT_PARTY_PATH = System.getProperty("java.io.tmpdir") + File.separator
+			+ "Party.json";
+	private static final String LANGUAGE = "es";
 
 	private CharacterPlayer player;
 	private String originalPlayerJson;
@@ -81,7 +83,7 @@ public class JsonTests {
 
 	@Test(dependsOnMethods = { "exportCharacterPlayerToJson" })
 	public void importCharacterPlayerFromJson() throws IOException, InvalidXmlElementException {
-		CharacterPlayer player = CharacterJsonManager.fromFile(OUTPUT_CHARACTER_PATH);
+		final CharacterPlayer player = CharacterJsonManager.fromFile(OUTPUT_CHARACTER_PATH);
 		Assert.assertEquals(CostCalculator.getCost(player), 50);
 		Assert.assertEquals(CharacterJsonManager.toJson(player), originalPlayerJson);
 	}
@@ -97,7 +99,7 @@ public class JsonTests {
 
 	@Test(dependsOnMethods = { "exportPartyToJson" })
 	public void importPartyFromJson() throws IOException, InvalidXmlElementException {
-		Party party = PartyJsonManager.fromFile(OUTPUT_PARTY_PATH);
+		final Party party = PartyJsonManager.fromFile(OUTPUT_PARTY_PATH);
 		Assert.assertEquals(CostCalculator.getCost(party.getMembers().iterator().next()), 50);
 		Assert.assertEquals(PartyJsonManager.toJson(party), originalPartyJson);
 	}

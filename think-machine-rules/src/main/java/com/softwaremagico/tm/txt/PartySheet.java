@@ -39,11 +39,11 @@ public class PartySheet {
 	}
 
 	private String createContent() {
-		StringBuilder stringBuilder = new StringBuilder();
+		final StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append(party.getPartyName());
 		stringBuilder.append("\n");
-		for (CharacterPlayer characterPlayer : getParty().getMembers()) {
-			CharacterSheet characterSheet = new CharacterSheet(characterPlayer);
+		for (final CharacterPlayer characterPlayer : getParty().getMembers()) {
+			final CharacterSheet characterSheet = new CharacterSheet(characterPlayer);
 			stringBuilder.append(characterSheet.toString());
 			stringBuilder.append("\n");
 		}

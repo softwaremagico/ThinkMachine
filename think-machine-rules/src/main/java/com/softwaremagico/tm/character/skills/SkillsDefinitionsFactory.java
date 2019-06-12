@@ -42,14 +42,14 @@ import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.log.MachineLog;
 
 public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
-	private final static ITranslator translatorSkill = LanguagePool.getTranslator("skills.xml");
+	private static final ITranslator translatorSkill = LanguagePool.getTranslator("skills.xml");
 
-	private final static String NAME = "name";
-	private final static String FACTION_SKILL_TAG = "factionSkill";
-	private final static String SPECIALIZABLE_SKILL_TAG = "specializations";
-	private final static String GROUP_SKILL_TAG = "group";
-	private final static String NATURAL_SKILL_TAG = "natural";
-	private final static String NUMBER_TO_SHOW_TAG = "numberToShow";
+	private static final String NAME = "name";
+	private static final String FACTION_SKILL_TAG = "factionSkill";
+	private static final String SPECIALIZABLE_SKILL_TAG = "specializations";
+	private static final String GROUP_SKILL_TAG = "group";
+	private static final String NATURAL_SKILL_TAG = "natural";
+	private static final String NUMBER_TO_SHOW_TAG = "numberToShow";
 
 	private static Map<String, List<SkillDefinition>> naturalSkills = new HashMap<>();
 	private static Map<String, List<SkillDefinition>> learnedSkills = new HashMap<>();
@@ -96,7 +96,7 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 	}
 
 	public boolean isNaturalSkill(String skillName, String language) {
-		for (SkillDefinition availableSkill : getNaturalSkills(language)) {
+		for (final SkillDefinition availableSkill : getNaturalSkills(language)) {
 			if (Objects.equals(availableSkill.getName(), skillName)) {
 				return true;
 			}
@@ -106,7 +106,7 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 
 	public SkillDefinition get(String skillName, String language) {
 		try {
-			for (SkillDefinition availableSkill : getElements(language)) {
+			for (final SkillDefinition availableSkill : getElements(language)) {
 				if (Objects.equals(availableSkill.getId(), skillName)) {
 					return availableSkill;
 				}
@@ -121,8 +121,8 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 	public List<SkillDefinition> getElements(String language) throws InvalidXmlElementException {
 		if (elements.get(language) == null) {
 			elements.put(language, new ArrayList<SkillDefinition>());
-			for (String skillId : translatorSkill.getAllTranslatedElements()) {
-				SkillDefinition skill = createElement(translatorSkill, skillId, language);
+			for (final String skillId : translatorSkill.getAllTranslatedElements()) {
+				final SkillDefinition skill = createElement(translatorSkill, skillId, language);
 				elements.get(language).add(skill);
 				setRandomConfiguration(skill, getTranslator(), language);
 				if (skill.isNatural()) {
@@ -147,13 +147,13 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 	@Override
 	protected SkillDefinition createElement(ITranslator translator, String skillId, String language) throws InvalidXmlElementException {
 		try {
-			String name = translator.getNodeValue(skillId, NAME, language);
-			SkillDefinition skill = new SkillDefinition(skillId, name, language);
+			final String name = translator.getNodeValue(skillId, NAME, language);
+			final SkillDefinition skill = new SkillDefinition(skillId, name, language);
 			try {
-				Set<Specialization> specializations = new HashSet<>();
-				for (String specializationId : translator.getAllChildrenTags(skillId, SPECIALIZABLE_SKILL_TAG)) {
-					String specizalizationName = translator.getNodeValue(specializationId, language);
-					Specialization specialization = new Specialization(specializationId, specizalizationName, language);
+				final Set<Specialization> specializations = new HashSet<>();
+				for (final String specializationId : translator.getAllChildrenTags(skillId, SPECIALIZABLE_SKILL_TAG)) {
+					final String specizalizationName = translator.getNodeValue(specializationId, language);
+					final Specialization specialization = new Specialization(specializationId, specizalizationName, language);
 					setRandomConfiguration(specialization, translator, language);
 					specializations.add(specialization);
 				}
@@ -162,16 +162,16 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 				throw new InvalidSkillException("Invalid specialization value for skill '" + skillId + "'.");
 			}
 			try {
-				String numberToShow = translator.getNodeValue(skillId, NUMBER_TO_SHOW_TAG);
+				final String numberToShow = translator.getNodeValue(skillId, NUMBER_TO_SHOW_TAG);
 				if (numberToShow != null) {
 					skill.setNumberToShow(Integer.parseInt(numberToShow));
 				}
 			} catch (NumberFormatException nfe) {
 				throw new InvalidSkillException("Invalid number value for skill '" + skillId + "'.");
 			}
-			String factionSkill = translator.getNodeValue(skillId, FACTION_SKILL_TAG);
+			final String factionSkill = translator.getNodeValue(skillId, FACTION_SKILL_TAG);
 			if (factionSkill != null) {
-				StringTokenizer factionsOfSkill = new StringTokenizer(factionSkill, ",");
+				final StringTokenizer factionsOfSkill = new StringTokenizer(factionSkill, ",");
 				while (factionsOfSkill.hasMoreTokens()) {
 					try {
 						skill.addFaction(FactionsFactory.getInstance().getElement(factionsOfSkill.nextToken().trim(), language));
@@ -181,10 +181,10 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 				}
 			}
 
-			String group = translator.getNodeValue(skillId, GROUP_SKILL_TAG);
+			final String group = translator.getNodeValue(skillId, GROUP_SKILL_TAG);
 			skill.setSkillGroup(SkillGroup.getSkillGroup(group));
 
-			String natural = translator.getNodeValue(skillId, NATURAL_SKILL_TAG);
+			final String natural = translator.getNodeValue(skillId, NATURAL_SKILL_TAG);
 			skill.setNatural(Boolean.parseBoolean(natural));
 
 			classifySkillByGroup(skill, language);

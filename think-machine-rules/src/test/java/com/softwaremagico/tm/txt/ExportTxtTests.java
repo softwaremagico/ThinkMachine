@@ -43,15 +43,17 @@ import com.softwaremagico.tm.characters.CustomCharacter;
 
 @Test(groups = { "exportTxt" })
 public class ExportTxtTests {
-	private final static String LANGUAGE = "es";
+	private static final String LANGUAGE = "es";
 
 	@Test
-	private void checkCustomCharacter() throws TooManyBlessingsException, InvalidXmlElementException, IOException, URISyntaxException,
-			TooManyCyberneticDevicesException, RequiredCyberneticDevicesException, BlessingAlreadyAddedException, BeneficeAlreadyAddedException {
-		CharacterPlayer player = CustomCharacter.create(LANGUAGE);
-		CharacterSheet characterSheet = new CharacterSheet(player);
+	private void checkCustomCharacter() throws TooManyBlessingsException, InvalidXmlElementException, IOException,
+			URISyntaxException, TooManyCyberneticDevicesException, RequiredCyberneticDevicesException,
+			BlessingAlreadyAddedException, BeneficeAlreadyAddedException {
+		final CharacterPlayer player = CustomCharacter.create(LANGUAGE);
+		final CharacterSheet characterSheet = new CharacterSheet(player);
 
-		String text = new String(Files.readAllBytes(Paths.get(getClass().getClassLoader().getResource("CustomCharacter.txt").toURI())));
+		final String text = new String(Files.readAllBytes(Paths.get(getClass().getClassLoader()
+				.getResource("CustomCharacter.txt").toURI())));
 		Assert.assertEquals(characterSheet.toString(), text);
 	}
 }

@@ -25,8 +25,8 @@ package com.softwaremagico.tm.character.characteristics;
  */
 
 public class Characteristic extends CharacteristicDefinition {
-	public final static int DEFAULT_INITIAL_VALUE = 3;
-	public final static int MAX_VALUE = 12;
+	public static final int DEFAULT_INITIAL_VALUE = 3;
+	public static final int MAX_VALUE = 12;
 	private int value;
 	private final CharacteristicDefinition characteristicDefinition;
 

@@ -30,39 +30,39 @@ import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.pdf.complete.elements.BaseElement;
 
 public class MainPerksTableFactory extends BaseElement {
-	protected final static int EMPTY_ROWS = 8;
-	public final static int PADDING = 2;
+	protected static final int EMPTY_ROWS = 8;
+	public static final int PADDING = 2;
 
 	public static PdfPTable getPerksTable(CharacterPlayer characterPlayer) {
-		float[] widths = { 4f, 0.1f, 4f, 0.1f, 1f };
-		PdfPTable table = new PdfPTable(widths);
+		final float[] widths = { 4f, 0.1f, 4f, 0.1f, 1f };
+		final PdfPTable table = new PdfPTable(widths);
 		setTablePropierties(table);
 		table.getDefaultCell().setPadding(PADDING);
 
-		PdfPCell whiteSeparator = createWhiteSeparator();
+		final PdfPCell whiteSeparator = createWhiteSeparator();
 		whiteSeparator.setColspan(widths.length);
 		table.addCell(whiteSeparator);
 
-		PdfPCell blackSeparator = createBlackSeparator();
+		final PdfPCell blackSeparator = createBlackSeparator();
 		whiteSeparator.setColspan(1);
 		table.addCell(blackSeparator);
 		table.addCell(whiteSeparator);
 		table.addCell(blackSeparator);
 		table.addCell(whiteSeparator);
 
-		PdfPCell victoryPointsCell = new PdfPCell(new VictoryPointsTable());
+		final PdfPCell victoryPointsCell = new PdfPCell(new VictoryPointsTable());
 		victoryPointsCell.setPadding(0);
 		victoryPointsCell.setRowspan(2);
 		table.addCell(victoryPointsCell);
 
-		PdfPCell blessingCell = new PdfPCell(new BlessingTable(characterPlayer));
+		final PdfPCell blessingCell = new PdfPCell(new BlessingTable(characterPlayer));
 		blessingCell.setPadding(0);
 		blessingCell.setBorder(0);
 		table.addCell(blessingCell);
 
 		table.addCell(whiteSeparator);
 
-		PdfPCell perksCell = new PdfPCell(new BeneficesTable(characterPlayer));
+		final PdfPCell perksCell = new PdfPCell(new BeneficesTable(characterPlayer));
 		perksCell.setPadding(0);
 		perksCell.setBorder(0);
 		table.addCell(perksCell);

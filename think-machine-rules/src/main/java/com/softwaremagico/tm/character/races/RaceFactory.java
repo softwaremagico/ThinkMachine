@@ -31,18 +31,18 @@ import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
 
 public class RaceFactory extends XmlFactory<Race> {
-	private final static ITranslator translatorRace = LanguagePool.getTranslator("races.xml");
+	private static final ITranslator translatorRace = LanguagePool.getTranslator("races.xml");
 
-	private final static String NAME = "name";
-	private final static String MAX_VALUE = "maximumValue";
-	private final static String MAX_INITIAL_VALUE = "maximumInitialValue";
-	private final static String VALUE = "value";
-	private final static String COST = "cost";
+	private static final String NAME = "name";
+	private static final String MAX_VALUE = "maximumValue";
+	private static final String MAX_INITIAL_VALUE = "maximumInitialValue";
+	private static final String VALUE = "value";
+	private static final String COST = "cost";
 
-	private final static String PSI = "psi";
-	private final static String URGE = "urge";
-	private final static String THEURGY = "theurgy";
-	private final static String HUBRIS = "hubris";
+	private static final String PSI = "psi";
+	private static final String URGE = "urge";
+	private static final String THEURGY = "theurgy";
+	private static final String HUBRIS = "hubris";
 
 	private static RaceFactory instance;
 
@@ -72,28 +72,28 @@ public class RaceFactory extends XmlFactory<Race> {
 	protected Race createElement(ITranslator translator, String raceId, String language) throws InvalidXmlElementException {
 		Race race = null;
 		try {
-			String name = translator.getNodeValue(raceId, NAME, language);
+			final String name = translator.getNodeValue(raceId, NAME, language);
 			race = new Race(raceId, name, language);
 		} catch (Exception e) {
 			throw new InvalidRaceException("Invalid structure in race '" + raceId + "'.", e);
 		}
 		try {
-			String cost = translator.getNodeValue(raceId, COST);
+			final String cost = translator.getNodeValue(raceId, COST);
 			race.setCost(Integer.parseInt(cost));
 		} catch (Exception e) {
 			throw new InvalidRaceException("Invalid cost in race '" + raceId + "'.");
 		}
-		for (CharacteristicName characteristic : CharacteristicName.values()) {
+		for (final CharacteristicName characteristic : CharacteristicName.values()) {
 			try {
-				String maxValue = translator.getNodeValue(raceId, characteristic.getId(), MAX_VALUE);
+				final String maxValue = translator.getNodeValue(raceId, characteristic.getId(), MAX_VALUE);
 				if (maxValue != null) {
 					race.setMaximumValue(characteristic, Integer.parseInt(maxValue));
 				}
-				String maxInitialValue = translator.getNodeValue(raceId, characteristic.getId(), MAX_INITIAL_VALUE);
+				final String maxInitialValue = translator.getNodeValue(raceId, characteristic.getId(), MAX_INITIAL_VALUE);
 				if (maxInitialValue != null) {
 					race.setMaximumInitialValue(characteristic, Integer.parseInt(maxInitialValue));
 				}
-				String value = translator.getNodeValue(raceId, characteristic.getId(), VALUE);
+				final String value = translator.getNodeValue(raceId, characteristic.getId(), VALUE);
 				if (value != null) {
 					race.setValue(characteristic, Integer.parseInt(value));
 				}
@@ -102,25 +102,25 @@ public class RaceFactory extends XmlFactory<Race> {
 			}
 		}
 		try {
-			String psi = translator.getNodeValue(raceId, PSI);
+			final String psi = translator.getNodeValue(raceId, PSI);
 			race.setPsi(Integer.parseInt(psi));
 		} catch (Exception e) {
 			throw new InvalidRaceException("Invalid psi value in race '" + raceId + "'.");
 		}
 		try {
-			String urge = translator.getNodeValue(raceId, URGE);
+			final String urge = translator.getNodeValue(raceId, URGE);
 			race.setUrge(Integer.parseInt(urge));
 		} catch (Exception e) {
 			throw new InvalidRaceException("Invalid urge value in race '" + raceId + "'.");
 		}
 		try {
-			String theurgy = translator.getNodeValue(raceId, THEURGY);
+			final String theurgy = translator.getNodeValue(raceId, THEURGY);
 			race.setTheurgy(Integer.parseInt(theurgy));
 		} catch (Exception e) {
 			throw new InvalidRaceException("Invalid theurgy value in race '" + raceId + "'.");
 		}
 		try {
-			String hubris = translator.getNodeValue(raceId, HUBRIS);
+			final String hubris = translator.getNodeValue(raceId, HUBRIS);
 			race.setHubris(Integer.parseInt(hubris));
 		} catch (Exception e) {
 			throw new InvalidRaceException("Invalid hubris value in race '" + raceId + "'.");

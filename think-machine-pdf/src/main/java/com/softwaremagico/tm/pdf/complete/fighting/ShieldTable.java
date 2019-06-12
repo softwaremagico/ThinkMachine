@@ -35,11 +35,11 @@ import com.softwaremagico.tm.pdf.complete.elements.BaseElement;
 import com.softwaremagico.tm.pdf.complete.elements.LateralHeaderPdfPTable;
 
 public class ShieldTable extends LateralHeaderPdfPTable {
-	private final static float[] WIDTHS = { 1f, 4f };
-	private final static int ROWS = 4;
-	private final static String GAP = "___________________";
-	private final static int NAME_COLUMN_WIDTH = 70;
-	private final static int HITS_COLUMN_WIDTH = 70;
+	private static final float[] WIDTHS = { 1f, 4f };
+	private static final int ROWS = 4;
+	private static final String GAP = "___________________";
+	private static final int NAME_COLUMN_WIDTH = 70;
+	private static final int HITS_COLUMN_WIDTH = 70;
 
 	public ShieldTable(CharacterPlayer characterPlayer) {
 		super(WIDTHS);
@@ -47,7 +47,7 @@ public class ShieldTable extends LateralHeaderPdfPTable {
 
 		addCell(createLateralVerticalTitle(getTranslator().getTranslatedText("shield"), ROWS + 1));
 
-		PdfPCell nameCell;
+		final PdfPCell nameCell;
 		if (characterPlayer == null || characterPlayer.getShield() == null) {
 			nameCell = createEmptyElementLine(GAP, NAME_COLUMN_WIDTH);
 		} else {
@@ -61,14 +61,14 @@ public class ShieldTable extends LateralHeaderPdfPTable {
 		if (characterPlayer == null || characterPlayer.getShield() == null) {
 			addCell(createEmptyElementLine(getTranslator().getTranslatedText("shieldHits") + ": " + GAP, HITS_COLUMN_WIDTH));
 		} else {
-			Paragraph paragraph = new Paragraph();
+			final Paragraph paragraph = new Paragraph();
 			paragraph.add(new Paragraph(getTranslator().getTranslatedText("shieldHits") + ": ", new Font(FadingSunsTheme.getLineFont(),
 					FadingSunsTheme.TABLE_LINE_FONT_SIZE)));
 
 			paragraph.add(new Paragraph(characterPlayer.getShield().getHits() + " ", new Font(FadingSunsTheme.getHandwrittingFont(),
 					FadingSunsTheme.SHIELD_CONTENT_FONT_SIZE)));
 
-			PdfPCell protectionCell = createEmptyElementLine("");
+			final PdfPCell protectionCell = createEmptyElementLine("");
 			protectionCell.setPhrase(paragraph);
 
 			addCell(protectionCell);
@@ -78,8 +78,8 @@ public class ShieldTable extends LateralHeaderPdfPTable {
 	}
 
 	private PdfPTable getShieldRange(CharacterPlayer characterPlayer) {
-		float[] widths = { 1f, 1f, 1f, 1f, 1f };
-		PdfPTable table = new PdfPTable(widths);
+		final float[] widths = { 1f, 1f, 1f, 1f, 1f };
+		final PdfPTable table = new PdfPTable(widths);
 		BaseElement.setTablePropierties(table);
 		table.getDefaultCell().setBorder(0);
 		table.getDefaultCell().setPadding(0);

@@ -35,7 +35,8 @@ import com.softwaremagico.tm.character.equipment.weapons.Weapon;
 import com.softwaremagico.tm.character.values.Bonification;
 import com.softwaremagico.tm.character.values.StaticValue;
 
-public class SelectedCyberneticDevice extends Element<SelectedCyberneticDevice> implements ICyberneticDevice, IElementWithBonification {
+public class SelectedCyberneticDevice extends Element<SelectedCyberneticDevice> implements ICyberneticDevice,
+		IElementWithBonification {
 
 	private final List<CyberneticDeviceTrait> customizations;
 	private final CyberneticDevice cyberneticDevice;
@@ -49,7 +50,7 @@ public class SelectedCyberneticDevice extends Element<SelectedCyberneticDevice> 
 	@Override
 	public int getPoints() {
 		int basicPoints = getCyberneticDevice().getPoints();
-		for (CyberneticDeviceTrait customization : customizations) {
+		for (final CyberneticDeviceTrait customization : customizations) {
 			basicPoints += customization.getExtraPoints();
 		}
 		return basicPoints;
@@ -58,7 +59,7 @@ public class SelectedCyberneticDevice extends Element<SelectedCyberneticDevice> 
 	@Override
 	public int getIncompatibility() {
 		int basicIncompatibility = getCyberneticDevice().getIncompatibility();
-		for (CyberneticDeviceTrait customization : customizations) {
+		for (final CyberneticDeviceTrait customization : customizations) {
 			basicIncompatibility += customization.getExtraIncompatibility();
 		}
 		return basicIncompatibility;
@@ -66,7 +67,7 @@ public class SelectedCyberneticDevice extends Element<SelectedCyberneticDevice> 
 
 	@Override
 	public CyberneticDeviceTrait getTrait(CyberneticDeviceTraitCategory category) {
-		for (CyberneticDeviceTrait customization : customizations) {
+		for (final CyberneticDeviceTrait customization : customizations) {
 			if (customization.getCategory().equals(category)) {
 				return customization;
 			}
@@ -81,7 +82,7 @@ public class SelectedCyberneticDevice extends Element<SelectedCyberneticDevice> 
 	@Override
 	public int getCost() {
 		int basicCost = getCyberneticDevice().getCost();
-		for (CyberneticDeviceTrait customization : customizations) {
+		for (final CyberneticDeviceTrait customization : customizations) {
 			basicCost *= customization.getExtraCostMultiplier();
 			basicCost += customization.getExtraCost();
 		}
@@ -91,7 +92,7 @@ public class SelectedCyberneticDevice extends Element<SelectedCyberneticDevice> 
 	@Override
 	public int getTechLevel() {
 		int techLevel = getCyberneticDevice().getTechLevel();
-		for (CyberneticDeviceTrait customization : customizations) {
+		for (final CyberneticDeviceTrait customization : customizations) {
 			techLevel = Math.max(techLevel, customization.getMinimumTechLevel());
 		}
 		return techLevel;
@@ -113,9 +114,9 @@ public class SelectedCyberneticDevice extends Element<SelectedCyberneticDevice> 
 
 	@Override
 	public List<CyberneticDeviceTrait> getTraits() {
-		List<CyberneticDeviceTrait> traits = new ArrayList<>(getCyberneticDevice().getTraits());
-		for (CyberneticDeviceTrait trait : getCyberneticDevice().getTraits()) {
-			for (CyberneticDeviceTrait customization : getCustomizations()) {
+		final List<CyberneticDeviceTrait> traits = new ArrayList<>(getCyberneticDevice().getTraits());
+		for (final CyberneticDeviceTrait trait : getCyberneticDevice().getTraits()) {
+			for (final CyberneticDeviceTrait customization : getCustomizations()) {
 				if (customization.getCategory() == trait.getCategory()) {
 					traits.remove(trait);
 				}

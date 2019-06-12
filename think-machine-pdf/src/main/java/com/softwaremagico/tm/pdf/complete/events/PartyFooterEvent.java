@@ -53,8 +53,8 @@ public class PartyFooterEvent extends PdfPageEventHelper {
 	 */
 	@Override
 	public void onEndPage(PdfWriter writer, Document document) {
-		PdfContentByte cb = writer.getDirectContent();
-		Phrase footer = new Phrase(party.getPartyName() + " - Created using 'Think Machine'"
+		final PdfContentByte cb = writer.getDirectContent();
+		final Phrase footer = new Phrase(party.getPartyName() + " - Created using 'Think Machine'"
 				+ (Version.getVersion() != null ? " v" + Version.getVersion() : ""), new Font(
 				FadingSunsTheme.getFooterFont(), FadingSunsTheme.FOOTER_FONT_SIZE));
 		ColumnText.showTextAligned(cb, Element.ALIGN_CENTER, footer, (document.right() - document.left()) / 2

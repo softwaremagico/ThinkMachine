@@ -35,12 +35,12 @@ import com.google.gson.JsonSerializer;
 import com.softwaremagico.tm.Element;
 
 public abstract class ElementAdapter<E extends Element<E>> implements JsonSerializer<E>, JsonDeserializer<E> {
-	private final static String ID = "id";
-	private final static String LANGUAGE = "language";
+	private static final String ID = "id";
+	private static final String LANGUAGE = "language";
 
 	protected String getElementId(JsonElement jsonElement) {
-		JsonObject jsonObject = jsonElement.getAsJsonObject();
-		JsonPrimitive elementId = (JsonPrimitive) jsonObject.get(ID);
+		final JsonObject jsonObject = jsonElement.getAsJsonObject();
+		final JsonPrimitive elementId = (JsonPrimitive) jsonObject.get(ID);
 		if (elementId == null) {
 			return null;
 		}
@@ -48,8 +48,8 @@ public abstract class ElementAdapter<E extends Element<E>> implements JsonSerial
 	}
 
 	protected String getLanguage(JsonElement jsonElement) {
-		JsonObject jsonObject = jsonElement.getAsJsonObject();
-		JsonPrimitive language = (JsonPrimitive) jsonObject.get(LANGUAGE);
+		final JsonObject jsonObject = jsonElement.getAsJsonObject();
+		final JsonPrimitive language = (JsonPrimitive) jsonObject.get(LANGUAGE);
 		if (language == null) {
 			return null;
 		}
@@ -58,7 +58,7 @@ public abstract class ElementAdapter<E extends Element<E>> implements JsonSerial
 
 	@Override
 	public JsonElement serialize(E element, Type elementType, JsonSerializationContext jsonSerializationContext) {
-		JsonObject jsonObject = new JsonObject();
+		final JsonObject jsonObject = new JsonObject();
 		jsonObject.addProperty(ID, element.getId());
 		jsonObject.addProperty(LANGUAGE, element.getLanguage());
 		return jsonObject;

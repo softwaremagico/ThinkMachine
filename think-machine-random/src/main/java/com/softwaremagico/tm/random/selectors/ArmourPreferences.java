@@ -43,7 +43,7 @@ public enum ArmourPreferences implements IRandomPreference {
 	}
 
 	public static ArmourPreferences getSelected(Set<IRandomPreference> preferences) {
-		for (IRandomPreference preference : preferences) {
+		for (final IRandomPreference preference : preferences) {
 			if (preference instanceof ArmourPreferences) {
 				return (ArmourPreferences) preference;
 			}

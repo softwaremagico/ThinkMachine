@@ -38,21 +38,21 @@ import com.softwaremagico.tm.pdf.complete.elements.BaseElement;
 import com.softwaremagico.tm.pdf.complete.utils.CellUtils;
 
 public class SkillsTable extends BaseElement {
-	private final static int ROWS = 30;
-	protected final static int TITLE_ROWSPAN = 2;
+	private static final int ROWS = 30;
+	protected static final int TITLE_ROWSPAN = 2;
 
-	private final static String DEFAULT_NATURAL_SKILL_VALUE = " (3)";
-	private final static String DEFAULT_WHITE_SPACES = "                                ";
-	public final static String SKILL_VALUE_GAP = "____";
+	private static final String DEFAULT_NATURAL_SKILL_VALUE = " (3)";
+	private static final String DEFAULT_WHITE_SPACES = "                                ";
+	public static final String SKILL_VALUE_GAP = "____";
 
 	protected static PdfPCell createTitle(String text, int fontSize) {
-		PdfPCell cell = createCompactTitle(text, fontSize);
+		final PdfPCell cell = createCompactTitle(text, fontSize);
 		cell.setMinimumHeight(MainSkillsTableFactory.HEIGHT / (ROWS / TITLE_ROWSPAN) + 1);
 		return cell;
 	}
 
 	protected static PdfPCell createCompactTitle(String text, int fontSize) {
-		PdfPCell cell = getCell(text, 0, 2, Element.ALIGN_CENTER, BaseColor.WHITE, FadingSunsTheme.getTitleFont(),
+		final PdfPCell cell = getCell(text, 0, 2, Element.ALIGN_CENTER, BaseColor.WHITE, FadingSunsTheme.getTitleFont(),
 				fontSize);
 		cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		return cell;
@@ -60,7 +60,7 @@ public class SkillsTable extends BaseElement {
 
 	protected static PdfPCell createSkillElement(CharacterPlayer characterPlayer, AvailableSkill skill, int fontSize,
 			int maxColumnWidth) {
-		PdfPCell cell = getCell(createSkillSufix(characterPlayer, skill, fontSize, maxColumnWidth), 0, 1,
+		final PdfPCell cell = getCell(createSkillSufix(characterPlayer, skill, fontSize, maxColumnWidth), 0, 1,
 				Element.ALIGN_LEFT, BaseColor.WHITE);
 		cell.setMinimumHeight((MainSkillsTableFactory.HEIGHT / ROWS));
 		cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
@@ -68,7 +68,7 @@ public class SkillsTable extends BaseElement {
 	}
 
 	protected static PdfPCell createSkillElement(SkillDefinition skill, int fontSize, int maxColumnWidth) {
-		PdfPCell cell = getCell(createSkillSufix(skill, fontSize, maxColumnWidth), 0, 1, Element.ALIGN_LEFT,
+		final PdfPCell cell = getCell(createSkillSufix(skill, fontSize, maxColumnWidth), 0, 1, Element.ALIGN_LEFT,
 				BaseColor.WHITE);
 		cell.setMinimumHeight((MainSkillsTableFactory.HEIGHT / ROWS));
 		cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
@@ -76,7 +76,7 @@ public class SkillsTable extends BaseElement {
 	}
 
 	protected static PdfPCell createSkillLine(String text, int fontSize) {
-		PdfPCell cell = getCell(text, 0, 1, Element.ALIGN_LEFT, BaseColor.WHITE, FadingSunsTheme.getLineFont(),
+		final PdfPCell cell = getCell(text, 0, 1, Element.ALIGN_LEFT, BaseColor.WHITE, FadingSunsTheme.getLineFont(),
 				fontSize);
 		cell.setMinimumHeight((MainSkillsTableFactory.HEIGHT / ROWS));
 		cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
@@ -87,7 +87,7 @@ public class SkillsTable extends BaseElement {
 		if (value == null) {
 			return createSkillLine(SKILL_VALUE_GAP, fontSize);
 		}
-		PdfPCell cell = getCell(value + (special ? "*" : "") + (modified && value > 0 ? "!" : ""), 0, 1,
+		final PdfPCell cell = getCell(value + (special ? "*" : "") + (modified && value > 0 ? "!" : ""), 0, 1,
 				Element.ALIGN_CENTER, BaseColor.WHITE, FadingSunsTheme.getHandwrittingFont(),
 				FadingSunsTheme.getHandWrittingFontSize(fontSize));
 		cell.setMinimumHeight((MainSkillsTableFactory.HEIGHT / ROWS));
@@ -100,7 +100,7 @@ public class SkillsTable extends BaseElement {
 		if (availableSkill == null) {
 			return new Paragraph(" ");
 		}
-		Paragraph paragraph = new Paragraph();
+		final Paragraph paragraph = new Paragraph();
 		// Add number first to calculate length.
 		if (availableSkill.getSpecialization() != null
 				// This two skills are special.
@@ -133,8 +133,8 @@ public class SkillsTable extends BaseElement {
 
 	private static Paragraph createSpecializedSkill(CharacterPlayer characterPlayer, AvailableSkill availableSkill,
 			BaseFont font, int fontSize, int maxColumnWidth) {
-		Paragraph paragraph = new Paragraph();
-		float usedWidth = font.getWidthPoint(availableSkill.getName() + " []"
+		final Paragraph paragraph = new Paragraph();
+		final float usedWidth = font.getWidthPoint(availableSkill.getName() + " []"
 				+ (availableSkill.getSkillDefinition().isNatural() ? DEFAULT_NATURAL_SKILL_VALUE : ""), fontSize);
 		paragraph.add(new Paragraph(availableSkill.getName() + " [", new Font(font, fontSize)));
 		if (characterPlayer != null && characterPlayer.getSelectedSkill(availableSkill) == null) {
@@ -159,7 +159,7 @@ public class SkillsTable extends BaseElement {
 	}
 
 	private static Paragraph createSkillSufix(SkillDefinition skillDefinition, int fontSize, int maxColumnWidth) {
-		Paragraph paragraph = new Paragraph();
+		final Paragraph paragraph = new Paragraph();
 		// Add number first to calculate length.
 		if (skillDefinition.isSpecializable()) {
 			if (skillDefinition.isLimitedToFaction()) {
@@ -189,8 +189,8 @@ public class SkillsTable extends BaseElement {
 
 	private static Paragraph createSpecializedSkill(SkillDefinition skillDefinition, BaseFont font, int fontSize,
 			int maxColumnWidth) {
-		Paragraph paragraph = new Paragraph();
-		float usedWidth = font.getWidthPoint(skillDefinition.getName() + " []"
+		final Paragraph paragraph = new Paragraph();
+		final float usedWidth = font.getWidthPoint(skillDefinition.getName() + " []"
 				+ (skillDefinition.isNatural() ? DEFAULT_NATURAL_SKILL_VALUE : ""), fontSize);
 		paragraph.add(new Paragraph(skillDefinition.getName() + " [", new Font(font, fontSize)));
 		paragraph.add(new Paragraph(CellUtils.getSubStringFitsIn(DEFAULT_WHITE_SPACES, font, fontSize, maxColumnWidth

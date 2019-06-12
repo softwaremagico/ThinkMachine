@@ -63,9 +63,9 @@ public class CombatAction extends Element<CombatAction> {
 	}
 
 	public boolean isAvailable(CharacterPlayer characterPlayer) {
-		for (CombatActionRequirement requirement : getRequirements()) {
+		for (final CombatActionRequirement requirement : getRequirements()) {
 			boolean allowed = false;
-			for (IValue restriction : requirement.getRequirements()) {
+			for (final IValue restriction : requirement.getRequirements()) {
 				if (restriction instanceof AvailableSkill) {
 					if (characterPlayer.getSkillTotalRanks((AvailableSkill) restriction) >= requirement.getValue()) {
 						allowed = true;

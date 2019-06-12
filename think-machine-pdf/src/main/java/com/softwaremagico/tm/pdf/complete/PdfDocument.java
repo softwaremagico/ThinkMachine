@@ -73,13 +73,13 @@ public abstract class PdfDocument {
 
 	public int createFile(String path) {
 		// DIN A6 105 x 148 mm
-		Document document = new Document(getPageSize(), rightMargin, leftMargin, topMargin, bottomMargin);
+		final Document document = new Document(getPageSize(), rightMargin, leftMargin, topMargin, bottomMargin);
 		if (!path.endsWith(".pdf")) {
 			path += ".pdf";
 		}
 		// if (!MyFile.fileExist(path)) {
 		try {
-			PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(path));
+			final PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(path));
 			addEvent(writer);
 			generatePDF(document, writer);
 			return writer.getPageNumber();

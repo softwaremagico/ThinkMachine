@@ -36,15 +36,15 @@ import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.complete.elements.LateralHeaderPdfPTable;
 
 public class OccultismsPowerTable extends LateralHeaderPdfPTable {
-	private final static float[] WIDTHS = { 1.25f, 5f, 2f, 5f, 4f, 4f, 4f, 3f };
-	private final static String GAP = "__________________";
-	private final static int NAME_COLUMN_WIDTH = 55;
-	private final static int LEVEL_COLUMN_WIDTH = 20;
-	private final static int ROLL_COLUMN_WIDTH = 45;
-	private final static int RANGE_COLUMN_WIDTH = 40;
-	private final static int DURATION_COLUMN_WIDTH = 40;
-	private final static int REQUIREMENTS_COLUMN_WIDTH = 40;
-	private final static int COST_COLUMN_WIDTH = 15;
+	private static final float[] WIDTHS = { 1.25f, 5f, 2f, 5f, 4f, 4f, 4f, 3f };
+	private static final String GAP = "__________________";
+	private static final int NAME_COLUMN_WIDTH = 55;
+	private static final int LEVEL_COLUMN_WIDTH = 20;
+	private static final int ROLL_COLUMN_WIDTH = 45;
+	private static final int RANGE_COLUMN_WIDTH = 40;
+	private static final int DURATION_COLUMN_WIDTH = 40;
+	private static final int REQUIREMENTS_COLUMN_WIDTH = 40;
+	private static final int COST_COLUMN_WIDTH = 15;
 
 	public OccultismsPowerTable(CharacterPlayer characterPlayer, int totalRows) throws InvalidXmlElementException {
 		super(WIDTHS);
@@ -59,10 +59,10 @@ public class OccultismsPowerTable extends LateralHeaderPdfPTable {
 
 		int addedPowers = 0;
 		if (characterPlayer != null) {
-			for (Entry<String, List<String>> occultismPathEntry : characterPlayer.getSelectedPowers().entrySet()) {
-				OccultismPath occultismPath = OccultismPathFactory.getInstance().getElement(occultismPathEntry.getKey(), characterPlayer.getLanguage());
-				for (String occultismPowerName : occultismPathEntry.getValue()) {
-					OccultismPower occultismPower = occultismPath.getOccultismPowers().get(occultismPowerName);
+			for (final Entry<String, List<String>> occultismPathEntry : characterPlayer.getSelectedPowers().entrySet()) {
+				final OccultismPath occultismPath = OccultismPathFactory.getInstance().getElement(occultismPathEntry.getKey(), characterPlayer.getLanguage());
+				for (final String occultismPowerName : occultismPathEntry.getValue()) {
+					final OccultismPower occultismPower = occultismPath.getOccultismPowers().get(occultismPowerName);
 					if (occultismPower.isEnabled()) {
 						addCell(createFirstElementLine(occultismPower.getName(), NAME_COLUMN_WIDTH, FadingSunsTheme.OCCULSTISM_POWERS_CONTENT_FONT_SIZE));
 						addCell(createElementLine(occultismPower.getLevel() + "", LEVEL_COLUMN_WIDTH, FadingSunsTheme.OCCULSTISM_POWERS_CONTENT_FONT_SIZE));

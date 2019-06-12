@@ -34,10 +34,10 @@ import com.softwaremagico.tm.pdf.complete.elements.VerticalTable;
 import com.softwaremagico.tm.pdf.complete.utils.CellUtils;
 
 public class DescriptionTable extends VerticalTable {
-	private final static float[] WIDTHS = { 1f };
-	private final static String LANGUAGE_PREFIX = "info";
-	private final static String GAP = "_______________________________________________";
-	private final static int COLUMN_WIDTH = 170;
+	private static final float[] WIDTHS = { 1f };
+	private static final String LANGUAGE_PREFIX = "info";
+	private static final String GAP = "_______________________________________________";
+	private static final int COLUMN_WIDTH = 170;
 
 	public DescriptionTable(CharacterPlayer characterPlayer) {
 		super(WIDTHS);
@@ -56,12 +56,12 @@ public class DescriptionTable extends VerticalTable {
 	}
 
 	private PdfPCell createLine(CharacterPlayer characterPlayer, String tag) {
-		Paragraph paragraph = new Paragraph();
+		final Paragraph paragraph = new Paragraph();
 
-		String text = getTranslatedTag(tag);
+		final String text = getTranslatedTag(tag);
 		// Spaces at the end are eliminated. For calculating width we can put
 		// the characters in different order.
-		float textWidth = FadingSunsTheme.getLineFont().getWidthPoint(text + " :", FadingSunsTheme.TABLE_LINE_FONT_SIZE);
+		final float textWidth = FadingSunsTheme.getLineFont().getWidthPoint(text + " :", FadingSunsTheme.TABLE_LINE_FONT_SIZE);
 
 		paragraph.add(new Paragraph(text + ": ", new Font(FadingSunsTheme.getLineFont(), FadingSunsTheme.TABLE_LINE_FONT_SIZE)));
 		if (characterPlayer == null || characterPlayer.getInfo().getTranslatedParameter(tag) == null) {
@@ -73,7 +73,7 @@ public class DescriptionTable extends VerticalTable {
 					.getHandwrittingFont(), FadingSunsTheme.INFO_CONTENT_FONT_SIZE)));
 		}
 
-		PdfPCell cell = createEmptyElementLine("");
+		final PdfPCell cell = createEmptyElementLine("");
 		cell.setHorizontalAlignment(Element.ALIGN_LEFT);
 		cell.setPhrase(paragraph);
 
@@ -81,7 +81,7 @@ public class DescriptionTable extends VerticalTable {
 	}
 
 	private static String getTranslatedTag(String tag) {
-		String value = getTranslator().getTranslatedText(LANGUAGE_PREFIX + tag.substring(0, 1).toUpperCase() + tag.substring(1));
+		final String value = getTranslator().getTranslatedText(LANGUAGE_PREFIX + tag.substring(0, 1).toUpperCase() + tag.substring(1));
 		return value;
 	}
 }

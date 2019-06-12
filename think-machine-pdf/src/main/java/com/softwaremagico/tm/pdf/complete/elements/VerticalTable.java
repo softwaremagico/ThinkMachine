@@ -44,14 +44,14 @@ public abstract class VerticalTable extends CustomPdfTable {
 	}
 
 	protected static PdfPCell createSubtitleLine(String text, int fontSize, int colspan, int alignment) {
-		PdfPCell cell = BaseElement.getCell(text, 0, colspan, alignment, BaseColor.WHITE, FadingSunsTheme.getSubtitleFont(), fontSize);
+		final PdfPCell cell = BaseElement.getCell(text, 0, colspan, alignment, BaseColor.WHITE, FadingSunsTheme.getSubtitleFont(), fontSize);
 		cell.setMinimumHeight(10);
 		cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		return cell;
 	}
 
 	protected static PdfPCell createValueLine(String text, int fontSize) {
-		PdfPCell cell = BaseElement.getCell(text, 0, 1, Element.ALIGN_CENTER, BaseColor.WHITE, FadingSunsTheme.getHandwrittingFont(), fontSize);
+		final PdfPCell cell = BaseElement.getCell(text, 0, 1, Element.ALIGN_CENTER, BaseColor.WHITE, FadingSunsTheme.getHandwrittingFont(), fontSize);
 		cell.setMinimumHeight(10);
 		cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		return cell;

@@ -52,37 +52,37 @@ import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.log.MachineLog;
 
 public class CyberneticDeviceFactory extends XmlFactory<CyberneticDevice> {
-	private final static ITranslator translatorCybernetics = LanguagePool.getTranslator("cybernetics.xml");
+	private static final ITranslator translatorCybernetics = LanguagePool.getTranslator("cybernetics.xml");
 
-	private final static String NAME = "name";
-	private final static String TECH_LEVEL = "techLevel";
-	private final static String POINTS = "points";
+	private static final String NAME = "name";
+	private static final String TECH_LEVEL = "techLevel";
+	private static final String POINTS = "points";
 
-	private final static String COST = "cost";
-	private final static String INCOMPATIBILITY = "incompatibility";
-	private final static String TRAITS = "traits";
+	private static final String COST = "cost";
+	private static final String INCOMPATIBILITY = "incompatibility";
+	private static final String TRAITS = "traits";
 
-	private final static String BONIFICATION = "bonification";
-	private final static String VALUE = "value";
-	private final static String AFFECTS = "affects";
-	private final static String SITUATION = "situation";
+	private static final String BONIFICATION = "bonification";
+	private static final String VALUE = "value";
+	private static final String AFFECTS = "affects";
+	private static final String SITUATION = "situation";
 
-	private final static String SKILL_STATIC_VALUE = "skillsStaticValues";
-	private final static String SKILL_VALUE = "skillValue";
-	private final static String SKILL_SPECIALITY = "speciality";
+	private static final String SKILL_STATIC_VALUE = "skillsStaticValues";
+	private static final String SKILL_VALUE = "skillValue";
+	private static final String SKILL_SPECIALITY = "speciality";
 
-	private final static String REQUIRES = "requires";
+	private static final String REQUIRES = "requires";
 
-	private final static String WEAPON = "weapon";
-	private final static String CHARACTERISTIC = "characteristic";
-	private final static String SKILL = "skill";
-	private final static String GOAL = "goal";
-	private final static String DAMAGE = "damage";
-	private final static String RANGE = "range";
-	private final static String SHOTS = "shots";
-	private final static String RATE = "rate";
+	private static final String WEAPON = "weapon";
+	private static final String CHARACTERISTIC = "characteristic";
+	private static final String SKILL = "skill";
+	private static final String GOAL = "goal";
+	private static final String DAMAGE = "damage";
+	private static final String RANGE = "range";
+	private static final String SHOTS = "shots";
+	private static final String RATE = "rate";
 
-	private final static String CLASSIFICATION = "classification";
+	private static final String CLASSIFICATION = "classification";
 
 	private Map<CyberneticDevice, Set<CyberneticDevice>> requiredBy;
 
@@ -129,7 +129,7 @@ public class CyberneticDeviceFactory extends XmlFactory<CyberneticDevice> {
 	private void initializeRequirements(String language) {
 		requiredBy = new HashMap<>();
 		try {
-			for (CyberneticDevice device : getElements(language)) {
+			for (final CyberneticDevice device : getElements(language)) {
 				addRequirement(device);
 			}
 		} catch (InvalidXmlElementException e) {
@@ -142,9 +142,9 @@ public class CyberneticDeviceFactory extends XmlFactory<CyberneticDevice> {
 			initializeRequirements(language);
 		}
 
-		Set<CyberneticDevice> requiredDevice = new HashSet<>();
+		final Set<CyberneticDevice> requiredDevice = new HashSet<>();
 		if (requiredBy.get(device) != null) {
-			for (CyberneticDevice requirement : requiredBy.get(device)) {
+			for (final CyberneticDevice requirement : requiredBy.get(device)) {
 				requiredDevice.add(requirement);
 			}
 		}
@@ -152,57 +152,63 @@ public class CyberneticDeviceFactory extends XmlFactory<CyberneticDevice> {
 	}
 
 	@Override
-	protected CyberneticDevice createElement(ITranslator translator, String cyberneticDeviceId, String language) throws InvalidXmlElementException {
+	protected CyberneticDevice createElement(ITranslator translator, String cyberneticDeviceId, String language)
+			throws InvalidXmlElementException {
 		try {
-			String name = translator.getNodeValue(cyberneticDeviceId, NAME, language);
+			final String name = translator.getNodeValue(cyberneticDeviceId, NAME, language);
 
 			int techLevel = 0;
 			try {
-				String techLevelName = translator.getNodeValue(cyberneticDeviceId, TECH_LEVEL);
+				final String techLevelName = translator.getNodeValue(cyberneticDeviceId, TECH_LEVEL);
 				techLevel = Integer.parseInt(techLevelName);
 			} catch (Exception e) {
-				throw new InvalidCyberneticDeviceException("Invalid tech level in cybernetic device '" + cyberneticDeviceId + "'.");
+				throw new InvalidCyberneticDeviceException("Invalid tech level in cybernetic device '"
+						+ cyberneticDeviceId + "'.");
 			}
 
 			int points = 0;
 			try {
-				String pointsName = translator.getNodeValue(cyberneticDeviceId, POINTS);
+				final String pointsName = translator.getNodeValue(cyberneticDeviceId, POINTS);
 				points = Integer.parseInt(pointsName);
 			} catch (Exception e) {
-				throw new InvalidCyberneticDeviceException("Invalid points value in cybernetic device '" + cyberneticDeviceId + "'.");
+				throw new InvalidCyberneticDeviceException("Invalid points value in cybernetic device '"
+						+ cyberneticDeviceId + "'.");
 			}
 
 			int cost = 0;
 			try {
-				String costName = translator.getNodeValue(cyberneticDeviceId, COST);
+				final String costName = translator.getNodeValue(cyberneticDeviceId, COST);
 				cost = Integer.parseInt(costName);
 			} catch (Exception e) {
-				throw new InvalidCyberneticDeviceException("Invalid cost in cybernetic device '" + cyberneticDeviceId + "'.");
+				throw new InvalidCyberneticDeviceException("Invalid cost in cybernetic device '" + cyberneticDeviceId
+						+ "'.");
 			}
 
 			int incompatibility = 0;
 			try {
-				String incompatibilityName = translator.getNodeValue(cyberneticDeviceId, INCOMPATIBILITY);
+				final String incompatibilityName = translator.getNodeValue(cyberneticDeviceId, INCOMPATIBILITY);
 				incompatibility = Integer.parseInt(incompatibilityName);
 			} catch (Exception e) {
-				throw new InvalidCyberneticDeviceException("Invalid incompatibility value in cybernetic device '" + cyberneticDeviceId + "'.");
+				throw new InvalidCyberneticDeviceException("Invalid incompatibility value in cybernetic device '"
+						+ cyberneticDeviceId + "'.");
 			}
 
-			List<CyberneticDeviceTrait> traits = new ArrayList<>();
-			String traitsNames = translator.getNodeValue(cyberneticDeviceId, TRAITS);
+			final List<CyberneticDeviceTrait> traits = new ArrayList<>();
+			final String traitsNames = translator.getNodeValue(cyberneticDeviceId, TRAITS);
 			try {
-				StringTokenizer traitTokenizer = new StringTokenizer(traitsNames, ",");
+				final StringTokenizer traitTokenizer = new StringTokenizer(traitsNames, ",");
 				while (traitTokenizer.hasMoreTokens()) {
-					String traitName = traitTokenizer.nextToken().trim();
+					final String traitName = traitTokenizer.nextToken().trim();
 					try {
 						traits.add(CyberneticDeviceTraitFactory.getInstance().getElement(traitName, language));
 					} catch (InvalidXmlElementException e) {
-						throw new InvalidCyberneticDeviceException("Invalid trait '" + traitName + "' for traits '" + traitsNames + "' in cybernetic device '"
-								+ cyberneticDeviceId + "'.", e);
+						throw new InvalidCyberneticDeviceException("Invalid trait '" + traitName + "' for traits '"
+								+ traitsNames + "' in cybernetic device '" + cyberneticDeviceId + "'.", e);
 					}
 				}
 			} catch (NullPointerException e) {
-				throw new InvalidCyberneticDeviceException("Invalid traits '" + traitsNames + "' in cybernetic device '" + cyberneticDeviceId + "'.", e);
+				throw new InvalidCyberneticDeviceException("Invalid traits '" + traitsNames
+						+ "' in cybernetic device '" + cyberneticDeviceId + "'.", e);
 			}
 
 			String requires = null;
@@ -212,19 +218,21 @@ public class CyberneticDeviceFactory extends XmlFactory<CyberneticDevice> {
 				// Not mandatory
 			}
 
-			Set<Bonification> bonifications = new HashSet<>();
+			final Set<Bonification> bonifications = new HashSet<>();
 			int node = 0;
 			while (true) {
 				try {
-					String bonificationValue = translator.getNodeValue(cyberneticDeviceId, BONIFICATION, VALUE, node);
-					String valueName = translator.getNodeValue(cyberneticDeviceId, BONIFICATION, AFFECTS, node);
+					final String bonificationValue = translator.getNodeValue(cyberneticDeviceId, BONIFICATION, VALUE,
+							node);
+					final String valueName = translator.getNodeValue(cyberneticDeviceId, BONIFICATION, AFFECTS, node);
 					IValue affects = null;
 					if (valueName != null) {
 						affects = SpecialValue.getValue(valueName, language);
 					}
-					String situation = translator.getNodeValue(cyberneticDeviceId, SITUATION, language, node);
+					final String situation = translator.getNodeValue(cyberneticDeviceId, SITUATION, language, node);
 
-					Bonification bonification = new Bonification(Integer.parseInt(bonificationValue), affects, situation);
+					final Bonification bonification = new Bonification(Integer.parseInt(bonificationValue), affects,
+							situation);
 					bonifications.add(bonification);
 					node++;
 				} catch (Exception e) {
@@ -232,15 +240,18 @@ public class CyberneticDeviceFactory extends XmlFactory<CyberneticDevice> {
 				}
 			}
 
-			Set<StaticValue> staticValues = new HashSet<>();
+			final Set<StaticValue> staticValues = new HashSet<>();
 			node = 0;
 			while (true) {
 				try {
-					String bonificationValue = translator.getNodeValue(cyberneticDeviceId, SKILL_STATIC_VALUE, SKILL_VALUE, VALUE, node);
-					String skillName = translator.getNodeValue(cyberneticDeviceId, SKILL_STATIC_VALUE, SKILL_VALUE, AFFECTS, node);
+					final String bonificationValue = translator.getNodeValue(cyberneticDeviceId, SKILL_STATIC_VALUE,
+							SKILL_VALUE, VALUE, node);
+					final String skillName = translator.getNodeValue(cyberneticDeviceId, SKILL_STATIC_VALUE,
+							SKILL_VALUE, AFFECTS, node);
 					String skillSpeciality = null;
 					try {
-						skillSpeciality = translator.getNodeValue(cyberneticDeviceId, SKILL_STATIC_VALUE, SKILL_VALUE, SKILL_SPECIALITY, node);
+						skillSpeciality = translator.getNodeValue(cyberneticDeviceId, SKILL_STATIC_VALUE, SKILL_VALUE,
+								SKILL_SPECIALITY, node);
 					} catch (NullPointerException e) {
 						// Not mandatory
 					}
@@ -250,11 +261,12 @@ public class CyberneticDeviceFactory extends XmlFactory<CyberneticDevice> {
 							if (skillSpeciality == null) {
 								affects = AvailableSkillsFactory.getInstance().getElement(skillName, language);
 							} else {
-								affects = AvailableSkillsFactory.getInstance().getElement(skillName, skillSpeciality, language);
+								affects = AvailableSkillsFactory.getInstance().getElement(skillName, skillSpeciality,
+										language);
 							}
 						} catch (InvalidXmlElementException e) {
-							throw new InvalidCyberneticDeviceException("Skill value number '" + node + "' invalid for cybernetic device '" + cyberneticDeviceId
-									+ "'.");
+							throw new InvalidCyberneticDeviceException("Skill value number '" + node
+									+ "' invalid for cybernetic device '" + cyberneticDeviceId + "'.");
 						}
 					}
 					staticValues.add(new StaticValue(Integer.parseInt(bonificationValue), affects));
@@ -271,35 +283,42 @@ public class CyberneticDeviceFactory extends XmlFactory<CyberneticDevice> {
 
 			ElementClassification cyberneticClassification = ElementClassification.ENHANCEMENT;
 			try {
-				cyberneticClassification = ElementClassification.get(translator.getNodeValue(cyberneticDeviceId, CLASSIFICATION));
+				cyberneticClassification = ElementClassification.get(translator.getNodeValue(cyberneticDeviceId,
+						CLASSIFICATION));
 			} catch (Exception e) {
-				throw new InvalidCyberneticDeviceException("Invalid classification value in cybernetic '" + cyberneticDeviceId + "'.");
+				throw new InvalidCyberneticDeviceException("Invalid classification value in cybernetic '"
+						+ cyberneticDeviceId + "'.");
 			}
 
-			CyberneticDevice cyberneticDevice = new CyberneticDevice(cyberneticDeviceId, name, language, points, incompatibility, cost, techLevel, requires,
-					weapon, traits, bonifications, staticValues, cyberneticClassification);
+			final CyberneticDevice cyberneticDevice = new CyberneticDevice(cyberneticDeviceId, name, language, points,
+					incompatibility, cost, techLevel, requires, weapon, traits, bonifications, staticValues,
+					cyberneticClassification);
 			return cyberneticDevice;
 		} catch (Exception e) {
-			throw new InvalidCyberneticDeviceException("Invalid cybernetic device definition for '" + cyberneticDeviceId + "'.", e);
+			throw new InvalidCyberneticDeviceException("Invalid cybernetic device definition for '"
+					+ cyberneticDeviceId + "'.", e);
 		}
 	}
 
-	private Weapon getWeapon(ITranslator translator, String cyberneticDeviceId, String name, int techLevel, String language)
-			throws InvalidCyberneticDeviceException {
+	private Weapon getWeapon(ITranslator translator, String cyberneticDeviceId, String name, int techLevel,
+			String language) throws InvalidCyberneticDeviceException {
 		CharacteristicDefinition characteristicDefintion = null;
 		try {
-			String characteristicName = translator.getNodeValue(cyberneticDeviceId, WEAPON, CHARACTERISTIC);
-			characteristicDefintion = CharacteristicsDefinitionFactory.getInstance().getElement(characteristicName, language);
+			final String characteristicName = translator.getNodeValue(cyberneticDeviceId, WEAPON, CHARACTERISTIC);
+			characteristicDefintion = CharacteristicsDefinitionFactory.getInstance().getElement(characteristicName,
+					language);
 		} catch (Exception e) {
-			throw new InvalidCyberneticDeviceException("Invalid characteristic name in weapon of cybernetic '" + cyberneticDeviceId + "'.");
+			throw new InvalidCyberneticDeviceException("Invalid characteristic name in weapon of cybernetic '"
+					+ cyberneticDeviceId + "'.");
 		}
 
 		AvailableSkill skill = null;
 		try {
-			String skillName = translator.getNodeValue(cyberneticDeviceId, WEAPON, SKILL);
+			final String skillName = translator.getNodeValue(cyberneticDeviceId, WEAPON, SKILL);
 			skill = AvailableSkillsFactory.getInstance().getElement(skillName, language);
 		} catch (Exception e) {
-			throw new InvalidCyberneticDeviceException("Invalid skill name in weapon of cybernetic '" + cyberneticDeviceId + "'.");
+			throw new InvalidCyberneticDeviceException("Invalid skill name in weapon of cybernetic '"
+					+ cyberneticDeviceId + "'.");
 		}
 
 		String goal = "";
@@ -313,7 +332,8 @@ public class CyberneticDeviceFactory extends XmlFactory<CyberneticDevice> {
 		try {
 			damage = translator.getNodeValue(cyberneticDeviceId, WEAPON, DAMAGE);
 		} catch (Exception e) {
-			throw new InvalidCyberneticDeviceException("Invalid weapon damage value in cybernetic '" + cyberneticDeviceId + "'.");
+			throw new InvalidCyberneticDeviceException("Invalid weapon damage value in cybernetic '"
+					+ cyberneticDeviceId + "'.");
 		}
 
 		String range = null;
@@ -325,7 +345,7 @@ public class CyberneticDeviceFactory extends XmlFactory<CyberneticDevice> {
 
 		Integer shots = null;
 		try {
-			String shotsValue = translator.getNodeValue(cyberneticDeviceId, WEAPON, SHOTS);
+			final String shotsValue = translator.getNodeValue(cyberneticDeviceId, WEAPON, SHOTS);
 			shots = Integer.parseInt(shotsValue);
 		} catch (Exception e) {
 			// Not mandatory.
@@ -338,8 +358,9 @@ public class CyberneticDeviceFactory extends XmlFactory<CyberneticDevice> {
 			// Not mandatory.
 		}
 
-		return new Weapon(cyberneticDeviceId, name, language, null, goal, characteristicDefintion, skill, damage, 0, range, shots, rate, techLevel, false,
-				null, "", new HashSet<DamageType>(), 0, new HashSet<Ammunition>(), new HashSet<Accessory>());
+		return new Weapon(cyberneticDeviceId, name, language, null, goal, characteristicDefintion, skill, damage, 0,
+				range, shots, rate, techLevel, false, null, "", new HashSet<DamageType>(), 0,
+				new HashSet<Ammunition>(), new HashSet<Accessory>());
 
 	}
 }

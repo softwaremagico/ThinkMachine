@@ -30,9 +30,9 @@ import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
 
 public class OccultismDurationFactory extends XmlFactory<OccultismDuration> {
-	private final static ITranslator translatorBlessing = LanguagePool.getTranslator("occultismDuration.xml");
+	private static final ITranslator translatorBlessing = LanguagePool.getTranslator("occultismDuration.xml");
 
-	private final static String NAME = "name";
+	private static final String NAME = "name";
 
 	private static OccultismDurationFactory instance;
 
@@ -56,7 +56,7 @@ public class OccultismDurationFactory extends XmlFactory<OccultismDuration> {
 	@Override
 	protected OccultismDuration createElement(ITranslator translator, String rangeId, String language) throws InvalidXmlElementException {
 		try {
-			String name = translator.getNodeValue(rangeId, NAME, language);
+			final String name = translator.getNodeValue(rangeId, NAME, language);
 			return new OccultismDuration(rangeId, name, language);
 		} catch (Exception e) {
 			throw new InvalidOccultismDurationException("Invalid structure in duration '" + rangeId + "'.", e);

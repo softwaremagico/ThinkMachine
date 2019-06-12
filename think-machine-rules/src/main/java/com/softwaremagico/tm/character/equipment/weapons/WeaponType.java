@@ -31,12 +31,15 @@ import java.util.Set;
 
 public enum WeaponType {
 
-	THROWING, BOW, CROSSBOW, SLUG, MINE, MELEE, MELEE_SHIELD, MELEE_ARTIFACT, LASER, BLASTER, FLAMMER, ARTIFACT_ENERGY, SCREECHER, STUNNER, NEURAL, HEAVY, ROCKETEER, GRENADE, GRENADE_LAUNCHER;
+	THROWING, BOW, CROSSBOW, SLUG, MINE, MELEE, MELEE_SHIELD, MELEE_ARTIFACT, LASER, BLASTER, FLAMMER, ARTIFACT_ENERGY,
 
-	private static final Set<WeaponType> MELEE_TYPES = new HashSet<>(Arrays.asList(WeaponType.MELEE, WeaponType.MELEE_SHIELD, WeaponType.MELEE_ARTIFACT));
+	SCREECHER, STUNNER, NEURAL, HEAVY, ROCKETEER, GRENADE, GRENADE_LAUNCHER;
+
+	private static final Set<WeaponType> MELEE_TYPES = new HashSet<>(Arrays.asList(WeaponType.MELEE,
+			WeaponType.MELEE_SHIELD, WeaponType.MELEE_ARTIFACT));
 
 	public static WeaponType get(String typeName) {
-		for (WeaponType type : WeaponType.values()) {
+		for (final WeaponType type : WeaponType.values()) {
 			if (type.name().equalsIgnoreCase(typeName)) {
 				return type;
 			}
@@ -49,7 +52,7 @@ public enum WeaponType {
 	}
 
 	public static Set<WeaponType> getRangedTypes() {
-		Set<WeaponType> rangedWeapons = new HashSet<>(Arrays.asList(WeaponType.values()));
+		final Set<WeaponType> rangedWeapons = new HashSet<>(Arrays.asList(WeaponType.values()));
 		rangedWeapons.removeAll(MELEE_TYPES);
 		return Collections.unmodifiableSet(rangedWeapons);
 	}

@@ -49,10 +49,10 @@ public class FileManager {
 	}
 
 	public static List<String> inLines(String filename) throws FileNotFoundException, IOException {
-		String OS = System.getProperty("os.name");
-		if (OS.contains("Windows Vista")) {
+		final String os = System.getProperty("os.name");
+		if (os.contains("Windows Vista")) {
 			return readTextFileInLines(filename, "ISO8859_1");
-		} else if (OS.contains("Windows")) {
+		} else if (os.contains("Windows")) {
 			return readTextFileInLines(filename, "Cp1252");
 		}
 		return readTextFileInLines(filename, "UTF8");
@@ -78,7 +78,7 @@ public class FileManager {
 	}
 
 	private static List<String> readTextFileInLines(String filename, String mode) throws FileNotFoundException {
-		List<String> contents = new ArrayList<>();
+		final List<String> contents = new ArrayList<>();
 
 		BufferedReader input = null;
 		try {
@@ -103,19 +103,19 @@ public class FileManager {
 	}
 
 	public static String readTextFile(String filename) {
-		File file = new File(filename);
+		final File file = new File(filename);
 		if (!file.exists()) {
 			return "File not found: " + filename;
 		}
-		String text;
-		byte bt[] = new byte[(int) file.length()];
+		final String text;
+		final byte bt[] = new byte[(int) file.length()];
 		text = new String(bt);
 		return text;
 	}
 
 	private static String readTextFile(String filename, String mode) throws FileNotFoundException {
 		String text = "";
-		List<String> doc = readTextFileInLines(filename, mode);
+		final List<String> doc = readTextFileInLines(filename, mode);
 
 		for (int i = 0; i < doc.size(); i++) {
 			if (!doc.get(i).startsWith("[") && !doc.get(i).startsWith("]") && !doc.get(i).startsWith("<")) {
@@ -127,15 +127,15 @@ public class FileManager {
 	}
 
 	public static List<String> getFileFromResources(String fileName) {
-		List<String> contents = new ArrayList<>();
+		final List<String> contents = new ArrayList<>();
 
 		// Get file from resources folder
-		ClassLoader classLoader = FileManager.class.getClassLoader();
-		File file = new File(classLoader.getResource(fileName).getFile());
+		final ClassLoader classLoader = FileManager.class.getClassLoader();
+		final File file = new File(classLoader.getResource(fileName).getFile());
 
 		try (Scanner scanner = new Scanner(file)) {
 			while (scanner.hasNextLine()) {
-				String line = scanner.nextLine();
+				final String line = scanner.nextLine();
 				if (line.length() > 0) {
 					contents.add(line);
 				}
@@ -150,11 +150,11 @@ public class FileManager {
 	}
 
 	public static List<String> readTextFromJarInLines(String file) {
-		List<String> contents = new ArrayList<>();
+		final List<String> contents = new ArrayList<>();
 		String thisLine;
 		try {
-			InputStream is = FileManager.class.getResourceAsStream(file);
-			BufferedReader br = new BufferedReader(new InputStreamReader(is));
+			final InputStream is = FileManager.class.getResourceAsStream(file);
+			final BufferedReader br = new BufferedReader(new InputStreamReader(is));
 			while ((thisLine = br.readLine()) != null) {
 				contents.add(thisLine);
 			}
@@ -168,8 +168,8 @@ public class FileManager {
 		String totalText = "";
 		String thisLine;
 		try {
-			InputStream is = FileManager.class.getResourceAsStream(file);
-			BufferedReader br = new BufferedReader(new InputStreamReader(is));
+			final InputStream is = FileManager.class.getResourceAsStream(file);
+			final BufferedReader br = new BufferedReader(new InputStreamReader(is));
 			while ((thisLine = br.readLine()) != null) {
 				totalText += thisLine;
 			}
@@ -185,7 +185,7 @@ public class FileManager {
 	 * @param filename
 	 */
 	public static void deleteFile(String filename) {
-		File f = new File(filename);
+		final File f = new File(filename);
 		if (f.exists() && f.canWrite()) {
 			f.delete();
 		}
@@ -199,11 +199,11 @@ public class FileManager {
 		 * produce the string.
 		 */
 		if (is != null) {
-			Writer writer = new StringWriter();
+			final Writer writer = new StringWriter();
 
-			char[] buffer = new char[1024];
+			final char[] buffer = new char[1024];
 			try {
-				Reader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
+				final Reader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
 				int n;
 				while ((n = reader.read(buffer)) != -1) {
 					writer.write(buffer, 0, n);
@@ -224,7 +224,7 @@ public class FileManager {
 	 * @return
 	 */
 	public static boolean fileExist(String path) {
-		File f = new File(path);
+		final File f = new File(path);
 		if (f.exists()) {
 			return true;
 		}

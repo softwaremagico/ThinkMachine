@@ -38,24 +38,24 @@ import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
 
 public class ArmourFactory extends XmlFactory<Armour> {
-	private final static ITranslator translator = LanguagePool.getTranslator("armours.xml");
+	private static final ITranslator translator = LanguagePool.getTranslator("armours.xml");
 
-	private final static String NAME = "name";
+	private static final String NAME = "name";
 
-	private final static String TECH = "techLevel";
-	private final static String PROTECTION = "protection";
-	private final static String STRENGTH_MODIFICATION = "strength";
-	private final static String DEXTERITY_MODIFICATION = "dexterity";
-	private final static String ENDURANCE_MODIFICATION = "endurance";
-	private final static String INITIATIVE_MODIFICATION = "initiative";
+	private static final String TECH = "techLevel";
+	private static final String PROTECTION = "protection";
+	private static final String STRENGTH_MODIFICATION = "strength";
+	private static final String DEXTERITY_MODIFICATION = "dexterity";
+	private static final String ENDURANCE_MODIFICATION = "endurance";
+	private static final String INITIATIVE_MODIFICATION = "initiative";
 
-	private final static String STANDARD_PENALIZATIONS = "standardPenalizations";
-	private final static String SPECIAL_PENALIZATIONS = "specialPenalizations";
+	private static final String STANDARD_PENALIZATIONS = "standardPenalizations";
+	private static final String SPECIAL_PENALIZATIONS = "specialPenalizations";
 
-	private final static String COST = "cost";
-	private final static String DAMAGE_TYPE = "damageType";
-	private final static String SHIELD = "shield";
-	private final static String OTHER = "others";
+	private static final String COST = "cost";
+	private static final String DAMAGE_TYPE = "damageType";
+	private static final String SHIELD = "shield";
+	private static final String OTHER = "others";
 
 	private static ArmourFactory instance;
 
@@ -82,7 +82,8 @@ public class ArmourFactory extends XmlFactory<Armour> {
 	}
 
 	@Override
-	protected Armour createElement(ITranslator translator, String armourId, String language) throws InvalidXmlElementException {
+	protected Armour createElement(ITranslator translator, String armourId, String language)
+			throws InvalidXmlElementException {
 		String name = null;
 		try {
 			name = translator.getNodeValue(armourId, NAME, language);
@@ -92,7 +93,7 @@ public class ArmourFactory extends XmlFactory<Armour> {
 
 		int techLevel = 0;
 		try {
-			String techValue = translator.getNodeValue(armourId, TECH);
+			final String techValue = translator.getNodeValue(armourId, TECH);
 			techLevel = Integer.parseInt(techValue);
 		} catch (Exception e) {
 			throw new InvalidArmourException("Invalid tech value in armour '" + armourId + "'.");
@@ -100,7 +101,7 @@ public class ArmourFactory extends XmlFactory<Armour> {
 
 		int protection = 0;
 		try {
-			String protectionValue = translator.getNodeValue(armourId, PROTECTION);
+			final String protectionValue = translator.getNodeValue(armourId, PROTECTION);
 			protection = Integer.parseInt(protectionValue);
 		} catch (Exception e) {
 			throw new InvalidArmourException("Invalid protection value in armour '" + armourId + "'.");
@@ -108,15 +109,18 @@ public class ArmourFactory extends XmlFactory<Armour> {
 
 		int standardStrengthModification = 0;
 		try {
-			String strengthModificationValue = translator.getNodeValue(armourId, STANDARD_PENALIZATIONS, STRENGTH_MODIFICATION);
+			final String strengthModificationValue = translator.getNodeValue(armourId, STANDARD_PENALIZATIONS,
+					STRENGTH_MODIFICATION);
 			standardStrengthModification = Integer.parseInt(strengthModificationValue);
 		} catch (Exception e) {
-			throw new InvalidArmourException("Invalid standard strength Modification value in armour '" + armourId + "'.");
+			throw new InvalidArmourException("Invalid standard strength Modification value in armour '" + armourId
+					+ "'.");
 		}
 
 		int standardDexterityModification = 0;
 		try {
-			String dexterityModificationValue = translator.getNodeValue(armourId, STANDARD_PENALIZATIONS, DEXTERITY_MODIFICATION);
+			final String dexterityModificationValue = translator.getNodeValue(armourId, STANDARD_PENALIZATIONS,
+					DEXTERITY_MODIFICATION);
 			standardDexterityModification = Integer.parseInt(dexterityModificationValue);
 		} catch (Exception e) {
 			throw new InvalidArmourException("Invalid standard dexterity Modification in armour '" + armourId + "'.");
@@ -124,7 +128,8 @@ public class ArmourFactory extends XmlFactory<Armour> {
 
 		int standardEnduranceModification = 0;
 		try {
-			String enduranceModificationValue = translator.getNodeValue(armourId, STANDARD_PENALIZATIONS, ENDURANCE_MODIFICATION);
+			final String enduranceModificationValue = translator.getNodeValue(armourId, STANDARD_PENALIZATIONS,
+					ENDURANCE_MODIFICATION);
 			standardEnduranceModification = Integer.parseInt(enduranceModificationValue);
 		} catch (Exception e) {
 			throw new InvalidArmourException("Invalid standard endurance Modification in armour '" + armourId + "'.");
@@ -132,7 +137,8 @@ public class ArmourFactory extends XmlFactory<Armour> {
 
 		int standardInitiativeModification = 0;
 		try {
-			String initiativeModificationValue = translator.getNodeValue(armourId, STANDARD_PENALIZATIONS, INITIATIVE_MODIFICATION);
+			final String initiativeModificationValue = translator.getNodeValue(armourId, STANDARD_PENALIZATIONS,
+					INITIATIVE_MODIFICATION);
 			standardInitiativeModification = Integer.parseInt(initiativeModificationValue);
 		} catch (Exception e) {
 			throw new InvalidArmourException("Invalid standard initiative Modification in armour '" + armourId + "'.");
@@ -140,7 +146,8 @@ public class ArmourFactory extends XmlFactory<Armour> {
 
 		Integer specialStrengthModification = null;
 		try {
-			String strengthModificationValue = translator.getNodeValue(armourId, SPECIAL_PENALIZATIONS, STRENGTH_MODIFICATION);
+			final String strengthModificationValue = translator.getNodeValue(armourId, SPECIAL_PENALIZATIONS,
+					STRENGTH_MODIFICATION);
 			specialStrengthModification = Integer.parseInt(strengthModificationValue);
 		} catch (Exception e) {
 			// Not mandatory
@@ -148,7 +155,8 @@ public class ArmourFactory extends XmlFactory<Armour> {
 
 		Integer specialDexterityModification = null;
 		try {
-			String dexterityModificationValue = translator.getNodeValue(armourId, SPECIAL_PENALIZATIONS, DEXTERITY_MODIFICATION);
+			final String dexterityModificationValue = translator.getNodeValue(armourId, SPECIAL_PENALIZATIONS,
+					DEXTERITY_MODIFICATION);
 			specialDexterityModification = Integer.parseInt(dexterityModificationValue);
 		} catch (Exception e) {
 			// Not mandatory
@@ -156,7 +164,8 @@ public class ArmourFactory extends XmlFactory<Armour> {
 
 		Integer specialEnduranceModification = null;
 		try {
-			String enduranceModificationValue = translator.getNodeValue(armourId, SPECIAL_PENALIZATIONS, ENDURANCE_MODIFICATION);
+			final String enduranceModificationValue = translator.getNodeValue(armourId, SPECIAL_PENALIZATIONS,
+					ENDURANCE_MODIFICATION);
 			specialEnduranceModification = Integer.parseInt(enduranceModificationValue);
 		} catch (Exception e) {
 			// Not mandatory
@@ -164,7 +173,8 @@ public class ArmourFactory extends XmlFactory<Armour> {
 
 		Integer specialInitiativeModification = null;
 		try {
-			String initiativeModificationValue = translator.getNodeValue(armourId, SPECIAL_PENALIZATIONS, INITIATIVE_MODIFICATION);
+			final String initiativeModificationValue = translator.getNodeValue(armourId, SPECIAL_PENALIZATIONS,
+					INITIATIVE_MODIFICATION);
 			specialInitiativeModification = Integer.parseInt(initiativeModificationValue);
 		} catch (Exception e) {
 			// Not mandatory
@@ -172,64 +182,67 @@ public class ArmourFactory extends XmlFactory<Armour> {
 
 		float cost = 0;
 		try {
-			String costValue = translator.getNodeValue(armourId, COST);
+			final String costValue = translator.getNodeValue(armourId, COST);
 			cost = Float.parseFloat(costValue);
 		} catch (Exception e) {
 			throw new InvalidArmourException("Invalid cost value in armour '" + armourId + "'.");
 		}
 
-		Set<DamageType> damageOfArmour = new HashSet<>();
-		String damageDefinition = translator.getNodeValue(armourId, DAMAGE_TYPE);
+		final Set<DamageType> damageOfArmour = new HashSet<>();
+		final String damageDefinition = translator.getNodeValue(armourId, DAMAGE_TYPE);
 		if (damageDefinition != null) {
-			StringTokenizer damageTypesTokenizer = new StringTokenizer(damageDefinition, ",");
+			final StringTokenizer damageTypesTokenizer = new StringTokenizer(damageDefinition, ",");
 			while (damageTypesTokenizer.hasMoreTokens()) {
 				try {
-					damageOfArmour.add(DamageTypeFactory.getInstance().getElement(damageTypesTokenizer.nextToken().trim(), language));
+					damageOfArmour.add(DamageTypeFactory.getInstance().getElement(
+							damageTypesTokenizer.nextToken().trim(), language));
 				} catch (InvalidXmlElementException e) {
 					throw new InvalidArmourException("Invalid damage type in armour '" + armourId + "'.", e);
 				}
 			}
 		}
 
-		Set<Shield> allowedShields = new HashSet<>();
+		final Set<Shield> allowedShields = new HashSet<>();
 		try {
-			String shieldNames = translator.getNodeValue(armourId, SHIELD);
+			final String shieldNames = translator.getNodeValue(armourId, SHIELD);
 			if (shieldNames != null) {
-				StringTokenizer shieldTokenizer = new StringTokenizer(shieldNames, ",");
+				final StringTokenizer shieldTokenizer = new StringTokenizer(shieldNames, ",");
 				while (shieldTokenizer.hasMoreTokens()) {
-					allowedShields.add(ShieldFactory.getInstance().getElement(shieldTokenizer.nextToken().trim(), language));
+					allowedShields.add(ShieldFactory.getInstance().getElement(shieldTokenizer.nextToken().trim(),
+							language));
 				}
 			}
 		} catch (Exception e) {
 			// Not mandatory.
 		}
 
-		ArmourPenalization standardPenalizations = new ArmourPenalization(standardDexterityModification, standardStrengthModification,
-				standardInitiativeModification, standardEnduranceModification);
+		final ArmourPenalization standardPenalizations = new ArmourPenalization(standardDexterityModification,
+				standardStrengthModification, standardInitiativeModification, standardEnduranceModification);
 
 		ArmourPenalization specialPenalizations = null;
-		if (specialDexterityModification != null && specialStrengthModification != null && specialInitiativeModification != null
-				&& specialEnduranceModification != null) {
-			specialPenalizations = new ArmourPenalization(specialDexterityModification, specialStrengthModification, specialInitiativeModification,
-					specialEnduranceModification);
+		if (specialDexterityModification != null && specialStrengthModification != null
+				&& specialInitiativeModification != null && specialEnduranceModification != null) {
+			specialPenalizations = new ArmourPenalization(specialDexterityModification, specialStrengthModification,
+					specialInitiativeModification, specialEnduranceModification);
 		}
 
-		Set<ArmourSpecification> specifications = new HashSet<>();
-		String specificationsNames = translator.getNodeValue(armourId, OTHER);
+		final Set<ArmourSpecification> specifications = new HashSet<>();
+		final String specificationsNames = translator.getNodeValue(armourId, OTHER);
 		if (specificationsNames != null) {
-			StringTokenizer specificationTokenizer = new StringTokenizer(specificationsNames, ",");
+			final StringTokenizer specificationTokenizer = new StringTokenizer(specificationsNames, ",");
 			while (specificationTokenizer.hasMoreTokens()) {
 				try {
-					specifications.add(ArmourSpecificationFactory.getInstance().getElement(specificationTokenizer.nextToken().trim(), language));
+					specifications.add(ArmourSpecificationFactory.getInstance().getElement(
+							specificationTokenizer.nextToken().trim(), language));
 				} catch (InvalidXmlElementException ixe) {
-					throw new InvalidArmourException("Error in specifications '" + specificationsNames + "' in armour '" + armourId
-							+ "'. Invalid spceification definition. ", ixe);
+					throw new InvalidArmourException("Error in specifications '" + specificationsNames
+							+ "' in armour '" + armourId + "'. Invalid spceification definition. ", ixe);
 				}
 			}
 		}
 
-		Armour armour = new Armour(armourId, name, language, techLevel, protection, damageOfArmour, standardPenalizations, specialPenalizations,
-				allowedShields, specifications, cost);
+		final Armour armour = new Armour(armourId, name, language, techLevel, protection, damageOfArmour,
+				standardPenalizations, specialPenalizations, allowedShields, specifications, cost);
 
 		return armour;
 	}

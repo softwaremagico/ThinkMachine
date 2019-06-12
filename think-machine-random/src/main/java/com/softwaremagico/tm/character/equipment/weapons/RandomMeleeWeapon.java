@@ -29,14 +29,13 @@ import java.util.Set;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
-import com.softwaremagico.tm.character.equipment.weapons.Weapon;
-import com.softwaremagico.tm.character.equipment.weapons.WeaponType;
 import com.softwaremagico.tm.log.RandomGenerationLog;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
 
 public class RandomMeleeWeapon extends RandomWeapon {
 
-	public RandomMeleeWeapon(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences) throws InvalidXmlElementException {
+	public RandomMeleeWeapon(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences)
+			throws InvalidXmlElementException {
 		super(characterPlayer, preferences);
 	}
 
@@ -72,9 +71,10 @@ public class RandomMeleeWeapon extends RandomWeapon {
 		// Shields only if already has a weapon.
 		if (weapon.getType().equals(WeaponType.MELEE_SHIELD)) {
 			boolean alreadyWeapon = false;
-			for (Weapon weaponEquiped : getCharacterPlayer().getAllWeapons()) {
+			for (final Weapon weaponEquiped : getCharacterPlayer().getAllWeapons()) {
 				// Already a different weapon
-				if (weaponEquiped.getType() != WeaponType.MELEE_SHIELD && weaponTypesFilter().contains(weaponEquiped.getType())) {
+				if (weaponEquiped.getType() != WeaponType.MELEE_SHIELD
+						&& weaponTypesFilter().contains(weaponEquiped.getType())) {
 					alreadyWeapon = true;
 					break;
 				}
@@ -85,11 +85,17 @@ public class RandomMeleeWeapon extends RandomWeapon {
 		}
 
 		// Similar tech level preferred.
-		weight += MAX_PROBABILITY / Math.pow(10, 2 * (getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).getValue() - weapon.getTechLevel()));
-		RandomGenerationLog.debug(
-				this.getClass().getName(),
-				"Weight tech bonus for '" + weapon + "' is '" + MAX_PROBABILITY
-						/ Math.pow(10, 2 * (getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).getValue() - weapon.getTechLevel())) + "'.");
+		weight += MAX_PROBABILITY
+				/ Math.pow(10, 2 * (getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).getValue() - weapon
+						.getTechLevel()));
+		RandomGenerationLog
+				.debug(this.getClass().getName(),
+						"Weight tech bonus for '"
+								+ weapon
+								+ "' is '"
+								+ MAX_PROBABILITY
+								/ Math.pow(10, 2 * (getCharacterPlayer().getCharacteristic(CharacteristicName.TECH)
+										.getValue() - weapon.getTechLevel())) + "'.");
 		if (weight <= 0) {
 			// Melee weapons usually has very low tech level.
 			weight = 1;

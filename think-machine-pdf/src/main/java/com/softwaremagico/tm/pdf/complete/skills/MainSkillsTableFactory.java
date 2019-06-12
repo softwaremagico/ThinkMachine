@@ -33,33 +33,33 @@ import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.complete.elements.BaseElement;
 
 public class MainSkillsTableFactory extends BaseElement {
-	public final static int HEIGHT = 400;
-	public final static int PADDING = 2;
+	public static final int HEIGHT = 400;
+	public static final int PADDING = 2;
 
 	public static PdfPTable getSkillsTable(CharacterPlayer characterPlayer, String language) throws InvalidXmlElementException {
-		float[] widths = { 1f, 12f, 1f };
-		PdfPTable table = new PdfPTable(widths);
+		final float[] widths = { 1f, 12f, 1f };
+		final PdfPTable table = new PdfPTable(widths);
 		setTablePropierties(table);
 
-		PdfPCell separator = createSeparator();
+		final PdfPCell separator = createSeparator();
 		separator.setPadding(PADDING);
 		table.addCell(separator);
 		table.addCell(separator);
 		table.addCell(separator);
 
-		PdfPCell vitalityCell = new PdfPCell(new VitalityTable(characterPlayer));
+		final PdfPCell vitalityCell = new PdfPCell(new VitalityTable(characterPlayer));
 		vitalityCell.setBorder(Rectangle.BOTTOM | Rectangle.RIGHT | Rectangle.TOP | Rectangle.LEFT);
 		vitalityCell.setPadding(0);
 		table.addCell(vitalityCell);
 
-		PdfPCell skillsCell = new PdfPCell(CompleteSkillsTable.getSkillsTable(characterPlayer, language));
+		final PdfPCell skillsCell = new PdfPCell(CompleteSkillsTable.getSkillsTable(characterPlayer, language));
 		skillsCell.setBorder(0);
 		skillsCell.setPadding(0);
 		skillsCell.setPaddingRight(FadingSunsTheme.DEFAULT_MARGIN);
 		skillsCell.setPaddingLeft(FadingSunsTheme.DEFAULT_MARGIN);
 		table.addCell(skillsCell);
 
-		PdfPCell wyrdCell = new PdfPCell(new WyrdTable(characterPlayer));
+		final PdfPCell wyrdCell = new PdfPCell(new WyrdTable(characterPlayer));
 		wyrdCell.setBorder(Rectangle.BOTTOM | Rectangle.RIGHT | Rectangle.TOP | Rectangle.LEFT);
 		wyrdCell.setPadding(0);
 		table.addCell(wyrdCell);

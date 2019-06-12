@@ -47,15 +47,15 @@ public abstract class CustomPdfTable extends PdfPTable {
 	}
 
 	protected PdfPCell createTitle(String title, int fontSize) {
-		PdfPCell titleCell = createCompactTitle(title, fontSize);
+		final PdfPCell titleCell = createCompactTitle(title, fontSize);
 		titleCell.setRowspan(2);
 		return titleCell;
 	}
 
 	protected PdfPCell createCompactTitle(String title, int fontSize) {
-		Font font = new Font(FadingSunsTheme.getTitleFont(), fontSize);
-		Phrase content = new Phrase(title, font);
-		PdfPCell titleCell = new PdfPCell(content);
+		final Font font = new Font(FadingSunsTheme.getTitleFont(), fontSize);
+		final Phrase content = new Phrase(title, font);
+		final PdfPCell titleCell = new PdfPCell(content);
 		titleCell.setColspan(getColumnWidths().length);
 		titleCell.setHorizontalAlignment(Element.ALIGN_CENTER);
 		titleCell.setBorder(0);
@@ -71,14 +71,16 @@ public abstract class CustomPdfTable extends PdfPTable {
 	}
 
 	protected static PdfPCell createEmptyElementLine(int alignment, String text) {
-		PdfPCell cell = BaseElement.getCell(text, 0, 1, alignment, BaseColor.WHITE, FadingSunsTheme.getLineFont(), FadingSunsTheme.TABLE_LINE_FONT_SIZE);
+		final PdfPCell cell = BaseElement.getCell(text, 0, 1, alignment, BaseColor.WHITE,
+				FadingSunsTheme.getLineFont(), FadingSunsTheme.TABLE_LINE_FONT_SIZE);
 		cell.setMinimumHeight(10);
 		cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		return cell;
 	}
 
 	public static PdfPCell createEmptyElementLine(String text, int maxWidth) {
-		String remainingText = CellUtils.getSubStringFitsIn(text, FadingSunsTheme.getLineFont(), FadingSunsTheme.TABLE_LINE_FONT_SIZE, maxWidth);
+		final String remainingText = CellUtils.getSubStringFitsIn(text, FadingSunsTheme.getLineFont(),
+				FadingSunsTheme.TABLE_LINE_FONT_SIZE, maxWidth);
 		return createEmptyElementLine(remainingText);
 	}
 
@@ -87,18 +89,21 @@ public abstract class CustomPdfTable extends PdfPTable {
 	}
 
 	private static PdfPCell createBasicElementLine(String text, int fontSize, int horizontalAlignment) {
-		PdfPCell cell = BaseElement.getCell(text, 0, 1, horizontalAlignment, BaseColor.WHITE, FadingSunsTheme.getHandwrittingFont(), fontSize);
+		final PdfPCell cell = BaseElement.getCell(text, 0, 1, horizontalAlignment, BaseColor.WHITE,
+				FadingSunsTheme.getHandwrittingFont(), fontSize);
 		cell.setMinimumHeight(12);
 		cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		return cell;
 	}
 
 	protected static PdfPCell createElementLine(String text, int maxWidth) {
-		return createElementLine(text, maxWidth, FadingSunsTheme.getHandWrittingFontSize(FadingSunsTheme.TABLE_LINE_FONT_SIZE));
+		return createElementLine(text, maxWidth,
+				FadingSunsTheme.getHandWrittingFontSize(FadingSunsTheme.TABLE_LINE_FONT_SIZE));
 	}
 
 	protected static PdfPCell createElementLine(Integer value, int maxWidth) {
-		return createElementLine(value, maxWidth, FadingSunsTheme.getHandWrittingFontSize(FadingSunsTheme.TABLE_LINE_FONT_SIZE));
+		return createElementLine(value, maxWidth,
+				FadingSunsTheme.getHandWrittingFontSize(FadingSunsTheme.TABLE_LINE_FONT_SIZE));
 	}
 
 	protected static PdfPCell createElementLine(Integer value, int maxWidth, int fontSize) {
@@ -107,13 +112,13 @@ public abstract class CustomPdfTable extends PdfPTable {
 		}
 		return createElementLine((value > 0 ? "+" + value : value + ""), maxWidth, fontSize);
 	}
-	
-	protected static PdfPCell createEmptyElementLine(int fontSize){
+
+	protected static PdfPCell createEmptyElementLine(int fontSize) {
 		return createBasicElementLine("", fontSize, Element.ALIGN_CENTER);
 	}
 
 	protected static PdfPCell createFirstElementLine(String text, int maxWidth, int fontSize) {
-		PdfPCell cell = createElementLine(text, maxWidth, fontSize);
+		final PdfPCell cell = createElementLine(text, maxWidth, fontSize);
 		cell.setHorizontalAlignment(Element.ALIGN_LEFT);
 		return cell;
 	}
@@ -122,15 +127,17 @@ public abstract class CustomPdfTable extends PdfPTable {
 		if (text == null || text.equals("null")) {
 			text = "";
 		}
-		String remainingText = CellUtils.getSubStringFitsIn(text, FadingSunsTheme.getHandwrittingFont(), fontSize, maxWidth);
+		final String remainingText = CellUtils.getSubStringFitsIn(text, FadingSunsTheme.getHandwrittingFont(),
+				fontSize, maxWidth);
 		return createBasicElementLine(remainingText, fontSize);
 	}
-	
+
 	protected static PdfPCell createElementLine(String text, int maxWidth, int fontSize, int alignment) {
 		if (text == null || text.equals("null")) {
 			text = "";
 		}
-		String remainingText = CellUtils.getSubStringFitsIn(text, FadingSunsTheme.getHandwrittingFont(), fontSize, maxWidth);
+		final String remainingText = CellUtils.getSubStringFitsIn(text, FadingSunsTheme.getHandwrittingFont(),
+				fontSize, maxWidth);
 		return createBasicElementLine(remainingText, fontSize, alignment);
 	}
 
@@ -143,7 +150,7 @@ public abstract class CustomPdfTable extends PdfPTable {
 	}
 
 	protected PdfPCell createRectangle() {
-		PdfPCell box = new PdfPCell();
+		final PdfPCell box = new PdfPCell();
 		box.setMinimumHeight(15);
 		box.setBorder(0);
 		box.setCellEvent(new CellCompleteBoxEvent(new Border[] { Border.TOP, Border.BOTTOM, Border.LEFT, Border.RIGHT }));
@@ -158,7 +165,8 @@ public abstract class CustomPdfTable extends PdfPTable {
 		if (value == null) {
 			return createRectangle();
 		}
-		PdfPCell box = new PdfPCell(new Paragraph(value, new Font(FadingSunsTheme.getHandwrittingFont(), FadingSunsTheme.HANDWRITTING_DEFAULT_FONT_SIZE)));
+		final PdfPCell box = new PdfPCell(new Paragraph(value, new Font(FadingSunsTheme.getHandwrittingFont(),
+				FadingSunsTheme.HANDWRITTING_DEFAULT_FONT_SIZE)));
 		box.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		box.setHorizontalAlignment(Element.ALIGN_CENTER);
 		box.setMinimumHeight(15);
@@ -168,7 +176,7 @@ public abstract class CustomPdfTable extends PdfPTable {
 	}
 
 	protected PdfPCell getCell(Paragraph paragraph, int border, int colspan, int align) {
-		PdfPCell cell = new PdfPCell(paragraph);
+		final PdfPCell cell = new PdfPCell(paragraph);
 		cell.setColspan(colspan);
 		cell.setBorderWidth(border);
 		cell.setHorizontalAlignment(align);

@@ -31,13 +31,13 @@ public enum ElementClassification {
 	COMBAT,
 
 	ENHANCEMENT,
-	
+
 	ALTERATION,
 
 	OTHERS;
 
 	public static ElementClassification get(String typeName) {
-		for (ElementClassification type : ElementClassification.values()) {
+		for (final ElementClassification type : ElementClassification.values()) {
 			if (Objects.equals(type.name().toLowerCase(), typeName.toLowerCase())) {
 				return type;
 			}

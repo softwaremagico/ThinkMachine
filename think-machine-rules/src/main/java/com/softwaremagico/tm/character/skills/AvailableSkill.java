@@ -94,18 +94,23 @@ public class AvailableSkill extends Skill<AvailableSkill> implements IValue {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj) {
 			return true;
-		if (!super.equals(obj))
+		}
+		if (!super.equals(obj)) {
 			return false;
-		if (getClass() != obj.getClass())
+		}
+		if (getClass() != obj.getClass()) {
 			return false;
-		AvailableSkill other = (AvailableSkill) obj;
+		}
+		final AvailableSkill other = (AvailableSkill) obj;
 		if (specialization == null) {
-			if (other.specialization != null)
+			if (other.specialization != null) {
 				return false;
-		} else if (!specialization.equals(other.specialization))
+			}
+		} else if (!specialization.equals(other.specialization)) {
 			return false;
+		}
 		return true;
 	}
 

@@ -33,13 +33,13 @@ import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.complete.elements.VerticalTable;
 
 public class BlessingTable extends VerticalTable {
-	private final static String GAP = "__________________";
-	private final static int NAME_COLUMN_WIDTH = 60;
-	private final static int BONIFICATION_COLUMN_WIDTH = 15;
-	private final static int TRAIT_COLUMN_WIDTH = 42;
-	private final static int SITUATION_COLUMN_WIDTH = 80;
+	private static final String GAP = "__________________";
+	private static final int NAME_COLUMN_WIDTH = 60;
+	private static final int BONIFICATION_COLUMN_WIDTH = 15;
+	private static final int TRAIT_COLUMN_WIDTH = 42;
+	private static final int SITUATION_COLUMN_WIDTH = 80;
 
-	private final static float[] WIDTHS = { 8f, 2f, 5f, 10f };
+	private static final float[] WIDTHS = { 8f, 2f, 5f, 10f };
 
 	public BlessingTable(CharacterPlayer characterPlayer) {
 		super(WIDTHS);
@@ -56,11 +56,11 @@ public class BlessingTable extends VerticalTable {
 
 		int addedBlessings = 0;
 		if (characterPlayer != null) {
-			for (Blessing blessing : characterPlayer.getAllBlessings()) {
-				Iterator<Bonification> it = blessing.getBonifications().iterator();
+			for (final Blessing blessing : characterPlayer.getAllBlessings()) {
+				final Iterator<Bonification> it = blessing.getBonifications().iterator();
 				int i = 0;
 				while (it.hasNext()) {
-					Bonification bonification = it.next();
+					final Bonification bonification = it.next();
 					if (i == 0) {
 						addCell(createElementLine(blessing.getName(), NAME_COLUMN_WIDTH, FadingSunsTheme.TRAITS_FONT_SIZE));
 					} else {

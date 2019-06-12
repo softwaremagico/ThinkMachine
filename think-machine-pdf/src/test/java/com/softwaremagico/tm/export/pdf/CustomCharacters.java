@@ -73,7 +73,7 @@ import com.softwaremagico.tm.pdf.small.SmallPartySheet;
 
 @Test(groups = { "customCharacterGeneration" })
 public class CustomCharacters {
-	private final static String LANGUAGE = "en";
+	private static final String LANGUAGE = "en";
 	private Party party;
 
 	@AfterMethod
@@ -91,7 +91,7 @@ public class CustomCharacters {
 	public void createPaolaCharacter() throws MalformedURLException, DocumentException, IOException,
 			InvalidXmlElementException, TooManyBlessingsException, TooManyCyberneticDevicesException,
 			RequiredCyberneticDevicesException, BeneficeAlreadyAddedException, BlessingAlreadyAddedException {
-		CharacterPlayer player = new CharacterPlayer(LANGUAGE);
+		final CharacterPlayer player = new CharacterPlayer(LANGUAGE);
 		player.getInfo().addName(new Name("#5", LANGUAGE, Gender.FEMALE, null));
 		player.getInfo().setPlayer("Paola");
 		player.getInfo().setGender(Gender.FEMALE);
@@ -141,8 +141,8 @@ public class CustomCharacters {
 				player.getLanguage()));
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("gossipNetwork_3", player.getLanguage()));
 
-		SelectedCyberneticDevice advancedEngineersEye = player.addCybernetics(CyberneticDeviceFactory.getInstance()
-				.getElement("engineersEye", LANGUAGE));
+		final SelectedCyberneticDevice advancedEngineersEye = player.addCybernetics(CyberneticDeviceFactory
+				.getInstance().getElement("engineersEye", LANGUAGE));
 		advancedEngineersEye
 				.addCustomization(CyberneticDeviceTraitFactory.getInstance().getElement("hidden", LANGUAGE));
 
@@ -155,11 +155,11 @@ public class CustomCharacters {
 		player.setShield(ShieldFactory.getInstance().getElement("duelingShield", LANGUAGE));
 
 		LanguagePool.clearCache();
-		CharacterSheet sheet = new CharacterSheet(player);
-		Assert.assertEquals(sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Paola.pdf"),2);
+		final CharacterSheet sheet = new CharacterSheet(player);
+		Assert.assertEquals(sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Paola.pdf"), 2);
 
 		LanguagePool.clearCache();
-		SmallCharacterSheet smallSheet = new SmallCharacterSheet(player);
+		final SmallCharacterSheet smallSheet = new SmallCharacterSheet(player);
 		Assert.assertEquals(
 				smallSheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Paola_Small.pdf"), 1);
 
@@ -174,7 +174,7 @@ public class CustomCharacters {
 	public void characterAnaCharacter() throws MalformedURLException, DocumentException, IOException,
 			InvalidXmlElementException, TooManyBlessingsException, BeneficeAlreadyAddedException,
 			BlessingAlreadyAddedException {
-		CharacterPlayer player = new CharacterPlayer(LANGUAGE);
+		final CharacterPlayer player = new CharacterPlayer(LANGUAGE);
 		player.getInfo().addName(new Name("Arya", LANGUAGE, Gender.FEMALE, null));
 		player.getInfo().setSurname(new Surname("Hawkwood", LANGUAGE, null));
 		player.getInfo().setPlayer("Ana");
@@ -219,11 +219,11 @@ public class CustomCharacters {
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("vendetta_2", player.getLanguage()));
 
 		LanguagePool.clearCache();
-		CharacterSheet sheet = new CharacterSheet(player);
-		Assert.assertEquals(sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Ana.pdf"),2);
+		final CharacterSheet sheet = new CharacterSheet(player);
+		Assert.assertEquals(sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Ana.pdf"), 2);
 
 		LanguagePool.clearCache();
-		SmallCharacterSheet smallSheet = new SmallCharacterSheet(player);
+		final SmallCharacterSheet smallSheet = new SmallCharacterSheet(player);
 		Assert.assertEquals(
 				smallSheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Ana_Small.pdf"), 1);
 
@@ -238,7 +238,7 @@ public class CustomCharacters {
 	public void createCarlosCharacter() throws MalformedURLException, DocumentException, IOException,
 			InvalidXmlElementException, TooManyBlessingsException, BeneficeAlreadyAddedException,
 			BlessingAlreadyAddedException {
-		CharacterPlayer player = new CharacterPlayer(LANGUAGE);
+		final CharacterPlayer player = new CharacterPlayer(LANGUAGE);
 		player.getInfo().addName(new Name("Carlos", LANGUAGE, Gender.MALE, null));
 		player.getInfo().setPlayer("Carlos");
 		player.getInfo().setGender(Gender.MALE);
@@ -290,11 +290,11 @@ public class CustomCharacters {
 		player.addWeapon(WeaponFactory.getInstance().getElement("mediumAutofeedHandgun", LANGUAGE));
 
 		LanguagePool.clearCache();
-		CharacterSheet sheet = new CharacterSheet(player);
-		Assert.assertEquals(sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Carlos.pdf"),2);
+		final CharacterSheet sheet = new CharacterSheet(player);
+		Assert.assertEquals(sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Carlos.pdf"), 2);
 
 		LanguagePool.clearCache();
-		SmallCharacterSheet smallSheet = new SmallCharacterSheet(player);
+		final SmallCharacterSheet smallSheet = new SmallCharacterSheet(player);
 		Assert.assertEquals(
 				smallSheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Carlos_Small.pdf"), 1);
 
@@ -310,7 +310,7 @@ public class CustomCharacters {
 	public void createNoeliaCharacer() throws MalformedURLException, DocumentException, IOException,
 			InvalidXmlElementException, TooManyBlessingsException, BeneficeAlreadyAddedException,
 			BlessingAlreadyAddedException {
-		CharacterPlayer player = new CharacterPlayer(LANGUAGE);
+		final CharacterPlayer player = new CharacterPlayer(LANGUAGE);
 		player.getInfo().addName(new Name("Noelia", LANGUAGE, Gender.FEMALE, null));
 		player.getInfo().setPlayer("Noelia");
 		player.getInfo().setGender(Gender.FEMALE);
@@ -371,11 +371,11 @@ public class CustomCharacters {
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("orphan", player.getLanguage()));
 
 		LanguagePool.clearCache();
-		CharacterSheet sheet = new CharacterSheet(player);
+		final CharacterSheet sheet = new CharacterSheet(player);
 		Assert.assertEquals(sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Noelia.pdf"), 2);
 
 		LanguagePool.clearCache();
-		SmallCharacterSheet smallSheet = new SmallCharacterSheet(player);
+		final SmallCharacterSheet smallSheet = new SmallCharacterSheet(player);
 		Assert.assertEquals(
 				smallSheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Noelia_Small.pdf"), 1);
 
@@ -388,7 +388,7 @@ public class CustomCharacters {
 	@Test
 	public void createGolemCharacer() throws MalformedURLException, DocumentException, IOException,
 			InvalidXmlElementException, TooManyBlessingsException, BlessingAlreadyAddedException {
-		CharacterPlayer player = new CharacterPlayer(LANGUAGE);
+		final CharacterPlayer player = new CharacterPlayer(LANGUAGE);
 		player.getInfo().setPlayer("PNJ");
 		player.getInfo().addName(new Name("A", LANGUAGE, Gender.FEMALE, null));
 		player.getInfo().setSurname(new Surname("(Prototipo A)", LANGUAGE, null));
@@ -426,14 +426,13 @@ public class CustomCharacters {
 		player.setArmour(new Armour("skin", "Piel", LANGUAGE, 5, 2, new HashSet<DamageType>(), 0));
 
 		LanguagePool.clearCache();
-		CharacterSheet sheet = new CharacterSheet(player);
+		final CharacterSheet sheet = new CharacterSheet(player);
 		Assert.assertEquals(sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Golem.pdf"), 2);
-		
+
 		LanguagePool.clearCache();
-		SmallCharacterSheet smallSheet = new SmallCharacterSheet(player);
+		final SmallCharacterSheet smallSheet = new SmallCharacterSheet(player);
 		Assert.assertEquals(
 				smallSheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Noelia_Golem.pdf"), 1);
-
 
 		Assert.assertEquals(CostCalculator.getCost(player), -5);
 		Assert.assertEquals(player.getMoney(), 250);
@@ -443,12 +442,12 @@ public class CustomCharacters {
 
 	@Test
 	public void createPartySheet() {
-		PartySheet sheet = new PartySheet(party);
+		final PartySheet sheet = new PartySheet(party);
 		Assert.assertEquals(
 				sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + party.getPartyName() + ".pdf"),
 				10);
 
-		SmallPartySheet smallSheet = new SmallPartySheet(party);
+		final SmallPartySheet smallSheet = new SmallPartySheet(party);
 		Assert.assertEquals(
 				smallSheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + party.getPartyName()
 						+ "_Small.pdf"), 3);

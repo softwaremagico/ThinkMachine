@@ -38,11 +38,11 @@ import com.softwaremagico.tm.character.factions.FactionsFactory;
 
 @Test(groups = { "factionsFactory" })
 public class FactionFactoryTests {
-	private final static int DEFINED_FACTIONS = 20;
-	private final static int DEFINED_MALE_NAMES = 103;
-	private final static int DEFINED_FEMALE_NAMES = 100;
-	private final static int DEFINED_SURNAMES = 125;
-	private final static String LANGUAGE = "es";
+	private static final int DEFINED_FACTIONS = 20;
+	private static final int DEFINED_MALE_NAMES = 103;
+	private static final int DEFINED_FEMALE_NAMES = 100;
+	private static final int DEFINED_SURNAMES = 125;
+	private static final String LANGUAGE = "es";
 
 	@BeforeClass
 	public void clearCache() {
@@ -56,19 +56,19 @@ public class FactionFactoryTests {
 
 	@Test
 	public void readAfflictions() throws InvalidXmlElementException {
-		Faction vorox = FactionsFactory.getInstance().getElement("vorox", LANGUAGE);
+		final Faction vorox = FactionsFactory.getInstance().getElement("vorox", LANGUAGE);
 		Assert.assertTrue(vorox.getBenefices().contains(AvailableBeneficeFactory.getInstance().getElement("noOccult", LANGUAGE)));
 	}
 	
 	@Test
 	public void readAfflictionsWithRank() throws InvalidXmlElementException {
-		Faction freeMen = FactionsFactory.getInstance().getElement("freeMen", LANGUAGE);
+		final Faction freeMen = FactionsFactory.getInstance().getElement("freeMen", LANGUAGE);
 		Assert.assertTrue(freeMen.getBenefices().contains(AvailableBeneficeFactory.getInstance().getElement("darkSecret_3", LANGUAGE)));
 	}
 
 	@Test
 	public void readNames() throws InvalidXmlElementException {
-		Faction hazat = FactionsFactory.getInstance().getElement("hazat", LANGUAGE);
+		final Faction hazat = FactionsFactory.getInstance().getElement("hazat", LANGUAGE);
 		Assert.assertNotNull(hazat);
 		Assert.assertTrue(FactionsFactory.getInstance().getAllNames(hazat, Gender.MALE).size() >= DEFINED_MALE_NAMES);
 		Assert.assertTrue(FactionsFactory.getInstance().getAllNames(hazat, Gender.FEMALE).size() >= DEFINED_FEMALE_NAMES);

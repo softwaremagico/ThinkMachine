@@ -61,7 +61,7 @@ public class Faction extends Element<Faction> {
 	}
 
 	public FactionRankTranslation getRankTranslation(String rankId) {
-		for (FactionRankTranslation factionRankTranslation : getRanksTranslations()) {
+		for (final FactionRankTranslation factionRankTranslation : getRanksTranslations()) {
 			if (Objects.equals(factionRankTranslation.getId(), rankId)) {
 				return factionRankTranslation;
 			}
@@ -87,8 +87,8 @@ public class Faction extends Element<Faction> {
 	}
 
 	public Set<Blessing> getBlessings(BlessingClassification classification) {
-		Set<Blessing> curses = new HashSet<>();
-		for (Blessing blessing : getBlessings()) {
+		final Set<Blessing> curses = new HashSet<>();
+		for (final Blessing blessing : getBlessings()) {
 			if (blessing.getBlessingClassification() == classification) {
 				curses.add(blessing);
 			}

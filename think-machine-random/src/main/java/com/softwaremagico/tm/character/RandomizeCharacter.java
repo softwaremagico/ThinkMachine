@@ -111,7 +111,7 @@ public class RandomizeCharacter {
 			TooManyBlessingsException, InvalidXmlElementException {
 		this.characterPlayer = characterPlayer;
 
-		IRandomProfile finalProfile = ProfileMerger.merge(profiles, preferences, requiredSkills, suggestedSkills,
+		final IRandomProfile finalProfile = ProfileMerger.merge(profiles, preferences, requiredSkills, suggestedSkills,
 				mandatoryBenefices, suggestedBenefices, characterPlayer.getLanguage());
 
 		// Assign preferences
@@ -125,7 +125,7 @@ public class RandomizeCharacter {
 
 		// Assign experience
 		if (experiencePoints == null) {
-			DifficultLevelPreferences difficultLevel = DifficultLevelPreferences.getSelected(this.preferences);
+			final DifficultLevelPreferences difficultLevel = DifficultLevelPreferences.getSelected(this.preferences);
 			this.experiencePoints = difficultLevel.getExperienceBonus();
 		} else {
 			this.experiencePoints = experiencePoints;
@@ -133,9 +133,9 @@ public class RandomizeCharacter {
 	}
 
 	private void checkValidPreferences() throws DuplicatedPreferenceException {
-		Set<Class<? extends IRandomPreference>> existingPreferences = new HashSet<>();
+		final Set<Class<? extends IRandomPreference>> existingPreferences = new HashSet<>();
 		// Only one of each class allowed.
-		for (IRandomPreference preference : preferences) {
+		for (final IRandomPreference preference : preferences) {
 			if (existingPreferences.contains(preference.getClass())) {
 				throw new DuplicatedPreferenceException("Preference '" + preference
 						+ "' collides with another preference. Only one of each type is allowed.");
@@ -156,32 +156,32 @@ public class RandomizeCharacter {
 
 	private void setDefaultPreferences() {
 		// Point distribution is "Fair" by default.
-		SpecializationPreferences selectedSpecialization = SpecializationPreferences.getSelected(preferences);
+		final SpecializationPreferences selectedSpecialization = SpecializationPreferences.getSelected(preferences);
 		if (selectedSpecialization == null) {
 			preferences.add(SpecializationPreferences.FAIR);
 		}
 
 		// Low traits by default.
-		TraitCostPreferences traitCostPreferences = TraitCostPreferences.getSelected(preferences);
+		final TraitCostPreferences traitCostPreferences = TraitCostPreferences.getSelected(preferences);
 		if (traitCostPreferences == null) {
 			preferences.add(TraitCostPreferences.LOW);
 		}
 
 		// Weapons, armors and shield depending on combatPreferences if not
 		// defined.
-		WeaponsPreferences weaponPreferences = WeaponsPreferences.getSelected(preferences);
+		final WeaponsPreferences weaponPreferences = WeaponsPreferences.getSelected(preferences);
 		if (weaponPreferences == null) {
-			CombatPreferences combatePreferences = CombatPreferences.getSelected(preferences);
+			final CombatPreferences combatePreferences = CombatPreferences.getSelected(preferences);
 			preferences.add(combatePreferences.getDefaultWeaponPreferences());
 		}
-		ArmourPreferences armourPreferences = ArmourPreferences.getSelected(preferences);
+		final ArmourPreferences armourPreferences = ArmourPreferences.getSelected(preferences);
 		if (armourPreferences == null) {
-			CombatPreferences combatePreferences = CombatPreferences.getSelected(preferences);
+			final CombatPreferences combatePreferences = CombatPreferences.getSelected(preferences);
 			preferences.add(combatePreferences.getDefaultArmourPreferences());
 		}
-		ShieldPreferences shieldPreferences = ShieldPreferences.getSelected(preferences);
+		final ShieldPreferences shieldPreferences = ShieldPreferences.getSelected(preferences);
 		if (shieldPreferences == null) {
-			CombatPreferences combatePreferences = CombatPreferences.getSelected(preferences);
+			final CombatPreferences combatePreferences = CombatPreferences.getSelected(preferences);
 			preferences.add(combatePreferences.getDefaultShieldPreferences());
 		}
 	}
@@ -189,7 +189,7 @@ public class RandomizeCharacter {
 	protected void setCharacterDefinition() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
 		// Check if race is set.
 		if (characterPlayer.getRace() == null) {
-			RandomRace randomRace = new RandomRace(characterPlayer, preferences);
+			final RandomRace randomRace = new RandomRace(characterPlayer, preferences);
 			randomRace.assign();
 		}
 
@@ -198,27 +198,27 @@ public class RandomizeCharacter {
 		}
 
 		if (characterPlayer.getInfo().getAge() == null) {
-			IGaussianDistribution ageDistribution = AgePreferences.getSelected(preferences);
+			final IGaussianDistribution ageDistribution = AgePreferences.getSelected(preferences);
 			characterPlayer.getInfo().setAge(ageDistribution.randomGaussian());
 		}
 
 		if (characterPlayer.getFaction() == null) {
-			RandomFaction randomFaction = new RandomFaction(characterPlayer, preferences);
+			final RandomFaction randomFaction = new RandomFaction(characterPlayer, preferences);
 			randomFaction.assign();
 		}
 
 		if (characterPlayer.getInfo().getPlanet() == null) {
-			RandomPlanet randomPlanet = new RandomPlanet(characterPlayer, preferences);
+			final RandomPlanet randomPlanet = new RandomPlanet(characterPlayer, preferences);
 			randomPlanet.assign();
 		}
 
 		if (characterPlayer.getInfo().getNames() == null || characterPlayer.getInfo().getNames().isEmpty()) {
-			RandomName randomName = new RandomName(characterPlayer, preferences);
+			final RandomName randomName = new RandomName(characterPlayer, preferences);
 			randomName.assign();
 		}
 
 		if (characterPlayer.getInfo().getSurname() == null) {
-			RandomSurname randomSurname = new RandomSurname(characterPlayer, preferences);
+			final RandomSurname randomSurname = new RandomSurname(characterPlayer, preferences);
 			randomSurname.assign();
 		}
 	}
@@ -231,13 +231,13 @@ public class RandomizeCharacter {
 	 */
 	private void setStartingValues() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
 		// Characteristics
-		RandomCharacteristics randomCharacteristics = new RandomCharacteristics(characterPlayer, preferences);
+		final RandomCharacteristics randomCharacteristics = new RandomCharacteristics(characterPlayer, preferences);
 		randomCharacteristics.assign();
 		// Skills
-		RandomSkills randomSkills = new RandomSkills(characterPlayer, preferences, requiredSkills, suggestedSkills);
+		final RandomSkills randomSkills = new RandomSkills(characterPlayer, preferences, requiredSkills, suggestedSkills);
 		randomSkills.assign();
 		// Traits
-		RandomBeneficeDefinition randomBenefice = new RandomBeneficeDefinition(characterPlayer, preferences,
+		final RandomBeneficeDefinition randomBenefice = new RandomBeneficeDefinition(characterPlayer, preferences,
 				mandatoryBenefices, suggestedBenefices);
 		randomBenefice.assign();
 	}
@@ -245,31 +245,31 @@ public class RandomizeCharacter {
 	private void setExtraPoints() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
 		// Traits.
 		// First, assign curses.
-		RandomCursesDefinition randomCurses = new RandomCursesDefinition(characterPlayer, preferences);
+		final RandomCursesDefinition randomCurses = new RandomCursesDefinition(characterPlayer, preferences);
 		randomCurses.assign();
 		// Set blessings.
-		RandomBlessingDefinition randomBlessing = new RandomBlessingDefinition(characterPlayer, preferences);
+		final RandomBlessingDefinition randomBlessing = new RandomBlessingDefinition(characterPlayer, preferences);
 		randomBlessing.assign();
 		// Set benefices.
-		RandomBeneficeDefinition randomBenefice = new RandomExtraBeneficeDefinition(characterPlayer, preferences,
+		final RandomBeneficeDefinition randomBenefice = new RandomExtraBeneficeDefinition(characterPlayer, preferences,
 				suggestedBenefices);
 		randomBenefice.assign();
 		// Set psique level
-		RandomPsique randomPsique = new RandomPsique(characterPlayer, preferences);
+		final RandomPsique randomPsique = new RandomPsique(characterPlayer, preferences);
 		randomPsique.assign();
 		// Set cybernetics
-		RandomCybernetics randomCybernetics = new RandomCybernetics(characterPlayer, preferences);
+		final RandomCybernetics randomCybernetics = new RandomCybernetics(characterPlayer, preferences);
 		randomCybernetics.assign();
 		// Set Wyrd
-		IGaussianDistribution wyrdDistrubution = PsiqueLevelPreferences.getSelected(preferences);
-		int extraWyrd = wyrdDistrubution.randomGaussian();
+		final IGaussianDistribution wyrdDistrubution = PsiqueLevelPreferences.getSelected(preferences);
+		final int extraWyrd = wyrdDistrubution.randomGaussian();
 		characterPlayer.setExtraWyrd(extraWyrd - characterPlayer.getBasicWyrdValue());
 		RandomGenerationLog.info(this.getClass().getName(), "Added extra wyrd '" + extraWyrd + "'.");
 		// Set psi paths.
-		RandomPsiquePath randomPsiquePath = new RandomPsiquePath(characterPlayer, preferences);
+		final RandomPsiquePath randomPsiquePath = new RandomPsiquePath(characterPlayer, preferences);
 		randomPsiquePath.assign();
 
-		DifficultLevelPreferences difficultLevel = DifficultLevelPreferences.getSelected(preferences);
+		final DifficultLevelPreferences difficultLevel = DifficultLevelPreferences.getSelected(preferences);
 
 		// Spend remaining points in skills and characteristics.
 		int remainingPoints = FreeStyleCharacterCreation.getFreeAvailablePoints(characterPlayer.getInfo().getAge())
@@ -277,12 +277,12 @@ public class RandomizeCharacter {
 						difficultLevel.getCharacteristicsBonus());
 
 		RandomGenerationLog.info(this.getClass().getName(), "Remaining points '" + remainingPoints + "'.");
-		IGaussianDistribution specialization = SpecializationPreferences.getSelected(preferences);
+		final IGaussianDistribution specialization = SpecializationPreferences.getSelected(preferences);
 
 		if (remainingPoints > 0) {
-			RandomCharacteristicsExtraPoints randomCharacteristicsExtraPoints = new RandomCharacteristicsExtraPoints(
+			final RandomCharacteristicsExtraPoints randomCharacteristicsExtraPoints = new RandomCharacteristicsExtraPoints(
 					characterPlayer, preferences);
-			RandomSkillExtraPoints randomSkillExtraPoints = new RandomSkillExtraPoints(characterPlayer, preferences,
+			final RandomSkillExtraPoints randomSkillExtraPoints = new RandomSkillExtraPoints(characterPlayer, preferences,
 					suggestedSkills);
 			while (remainingPoints > 0) {
 				// Characteristics only if is a little specialized.
@@ -300,13 +300,13 @@ public class RandomizeCharacter {
 
 	private void setInitialEquipment() throws InvalidXmlElementException {
 		// Set weapons.
-		WeaponsPreferences weaponPreferences = WeaponsPreferences.getSelected(preferences);
+		final WeaponsPreferences weaponPreferences = WeaponsPreferences.getSelected(preferences);
 		float probabilityOfRangedWeapon = weaponPreferences.getRangeWeaponProbability();
 		float probabilityOfMeleeWeapon = weaponPreferences.getMeleeWeaponProbability();
 
 		while (probabilityOfRangedWeapon > 0 || probabilityOfMeleeWeapon > 0) {
 			if (probabilityOfRangedWeapon > 0 && random.nextFloat() < probabilityOfRangedWeapon) {
-				RandomWeapon randomRangedWeapon = new RandomRangeWeapon(characterPlayer, preferences);
+				final RandomWeapon randomRangedWeapon = new RandomRangeWeapon(characterPlayer, preferences);
 				try {
 					randomRangedWeapon.assign();
 				} catch (InvalidRandomElementSelectedException ires) {
@@ -317,7 +317,7 @@ public class RandomizeCharacter {
 			probabilityOfRangedWeapon -= 0.3f;
 
 			if (probabilityOfMeleeWeapon > 0 && random.nextFloat() < probabilityOfMeleeWeapon) {
-				RandomWeapon randomMeleeWeapon = new RandomMeleeWeapon(characterPlayer, preferences);
+				final RandomWeapon randomMeleeWeapon = new RandomMeleeWeapon(characterPlayer, preferences);
 				try {
 					randomMeleeWeapon.assign();
 				} catch (InvalidRandomElementSelectedException ires) {
@@ -329,9 +329,9 @@ public class RandomizeCharacter {
 		}
 
 		// Set shields.
-		ShieldPreferences shieldPreferences = ShieldPreferences.getSelected(preferences);
+		final ShieldPreferences shieldPreferences = ShieldPreferences.getSelected(preferences);
 		if (random.nextFloat() < shieldPreferences.getShieldProbability()) {
-			RandomShield randomShield = new RandomShield(characterPlayer, preferences);
+			final RandomShield randomShield = new RandomShield(characterPlayer, preferences);
 			try {
 				randomShield.assign();
 			} catch (InvalidShieldException e) {
@@ -344,9 +344,9 @@ public class RandomizeCharacter {
 		}
 
 		// Set armours
-		ArmourPreferences armourPreferences = ArmourPreferences.getSelected(preferences);
+		final ArmourPreferences armourPreferences = ArmourPreferences.getSelected(preferences);
 		if (random.nextFloat() < armourPreferences.getArmourProbability()) {
-			RandomArmour randomArmour = new RandomArmour(characterPlayer, preferences);
+			final RandomArmour randomArmour = new RandomArmour(characterPlayer, preferences);
 			try {
 				randomArmour.assign();
 			} catch (InvalidArmourException e) {
@@ -366,7 +366,7 @@ public class RandomizeCharacter {
 
 	@Override
 	public String toString() {
-		StringBuilder sb = new StringBuilder();
+		final StringBuilder sb = new StringBuilder();
 		sb.append(characterPlayer.getNameRepresentation() + " (" + characterPlayer.getRace() + ") ["
 				+ characterPlayer.getFaction() + "]");
 		return sb.toString();

@@ -39,15 +39,15 @@ import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
 
 public class BeneficeDefinitionFactory extends XmlFactory<BeneficeDefinition> {
-	private final static ITranslator translatorBenefit = LanguagePool.getTranslator("benefices.xml");
+	private static final ITranslator translatorBenefit = LanguagePool.getTranslator("benefices.xml");
 
-	private final static String NAME = "name";
-	private final static String COST = "cost";
-	private final static String GROUP = "group";
-	private final static String AFFLICTION = "affliction";
-	private final static String SPECIALIZATION_AFFLICTION = "specializationIsAffliction";
-	private final static String SPECIALIZABLE_BENEFICE_TAG = "specializations";
-	private final static String RESTRICTED_TAG = "restricted";
+	private static final String NAME = "name";
+	private static final String COST = "cost";
+	private static final String GROUP = "group";
+	private static final String AFFLICTION = "affliction";
+	private static final String SPECIALIZATION_AFFLICTION = "specializationIsAffliction";
+	private static final String SPECIALIZABLE_BENEFICE_TAG = "specializations";
+	private static final String RESTRICTED_TAG = "restricted";
 
 	private static BeneficeDefinitionFactory instance;
 
@@ -82,18 +82,19 @@ public class BeneficeDefinitionFactory extends XmlFactory<BeneficeDefinition> {
 	}
 
 	@Override
-	protected BeneficeDefinition createElement(ITranslator translator, String benefitId, String language) throws InvalidXmlElementException {
+	protected BeneficeDefinition createElement(ITranslator translator, String benefitId, String language)
+			throws InvalidXmlElementException {
 		try {
-			String name = translator.getNodeValue(benefitId, NAME, language);
-			String costRange = translator.getNodeValue(benefitId, COST);
+			final String name = translator.getNodeValue(benefitId, NAME, language);
+			final String costRange = translator.getNodeValue(benefitId, COST);
 
 			BeneficeGroup benefitGroup = null;
-			String groupName = translator.getNodeValue(benefitId, GROUP);
+			final String groupName = translator.getNodeValue(benefitId, GROUP);
 			if (groupName != null) {
 				benefitGroup = BeneficeGroup.get(groupName);
 			}
 
-			String afflictionTag = translator.getNodeValue(benefitId, AFFLICTION);
+			final String afflictionTag = translator.getNodeValue(benefitId, AFFLICTION);
 			BeneficeClassification classification = BeneficeClassification.BENEFICE;
 			if (afflictionTag != null) {
 				if (Boolean.parseBoolean(afflictionTag)) {
@@ -101,25 +102,28 @@ public class BeneficeDefinitionFactory extends XmlFactory<BeneficeDefinition> {
 				}
 			}
 
-			Set<BeneficeSpecialization> specializations = new HashSet<>();
-			for (String specializationId : translator.getAllChildrenTags(benefitId, SPECIALIZABLE_BENEFICE_TAG)) {
-				String specizalizationName = translator.getNodeValue(specializationId, NAME, language);
-				BeneficeSpecialization specialization = new BeneficeSpecialization(specializationId, specizalizationName, language);
+			final Set<BeneficeSpecialization> specializations = new HashSet<>();
+			for (final String specializationId : translator.getAllChildrenTags(benefitId, SPECIALIZABLE_BENEFICE_TAG)) {
+				final String specizalizationName = translator.getNodeValue(specializationId, NAME, language);
+				final BeneficeSpecialization specialization = new BeneficeSpecialization(specializationId,
+						specizalizationName, language);
 				specializations.add(specialization);
 				// Set random option.
 				setRandomConfiguration(specialization, translator, language);
 
 				// Set specific cost.
-				String specizalizationCost = translator.getNodeValue(specializationId, COST);
+				final String specizalizationCost = translator.getNodeValue(specializationId, COST);
 				if (specizalizationCost != null) {
 					try {
 						specialization.setCost(Integer.parseInt(specizalizationCost));
 					} catch (NumberFormatException e) {
-						throw new InvalidBeneficeException("Invalid cost in benefit '" + benefitId + "' and specialization '" + specializationId + "'.", e);
+						throw new InvalidBeneficeException("Invalid cost in benefit '" + benefitId
+								+ "' and specialization '" + specializationId + "'.", e);
 					}
 				}
 				// Set specific classification.
-				String specializationClassificationValue = translator.getNodeValue(specializationId, SPECIALIZATION_AFFLICTION);
+				final String specializationClassificationValue = translator.getNodeValue(specializationId,
+						SPECIALIZATION_AFFLICTION);
 				BeneficeClassification specializationClassification = BeneficeClassification.BENEFICE;
 				if (specializationClassificationValue != null) {
 					if (Boolean.parseBoolean(specializationClassificationValue)) {
@@ -132,15 +136,15 @@ public class BeneficeDefinitionFactory extends XmlFactory<BeneficeDefinition> {
 				specialization.setClassification(specializationClassification);
 			}
 
-			List<Integer> costs = new ArrayList<>();
+			final List<Integer> costs = new ArrayList<>();
 			if (costRange.contains("-")) {
-				int minValue = Integer.parseInt(costRange.substring(0, costRange.indexOf('-')));
-				int maxValue = Integer.parseInt(costRange.substring(costRange.indexOf('-') + 1, costRange.length()));
+				final int minValue = Integer.parseInt(costRange.substring(0, costRange.indexOf('-')));
+				final int maxValue = Integer.parseInt(costRange.substring(costRange.indexOf('-') + 1, costRange.length()));
 				for (int i = minValue; i <= maxValue; i++) {
 					costs.add(i);
 				}
 			} else if (costRange.contains(",")) {
-				StringTokenizer costsOfBenefice = new StringTokenizer(costRange, ",");
+				final StringTokenizer costsOfBenefice = new StringTokenizer(costRange, ",");
 				while (costsOfBenefice.hasMoreTokens()) {
 					costs.add(Integer.parseInt(costsOfBenefice.nextToken().trim()));
 				}
@@ -148,13 +152,14 @@ public class BeneficeDefinitionFactory extends XmlFactory<BeneficeDefinition> {
 				costs.add(Integer.parseInt(costRange));
 			}
 
-			String restriction = translator.getNodeValue(benefitId, RESTRICTED_TAG);
+			final String restriction = translator.getNodeValue(benefitId, RESTRICTED_TAG);
 			FactionGroup restrictedToGroup = null;
 			if (restriction != null) {
 				restrictedToGroup = FactionGroup.get(restriction);
 			}
 
-			BeneficeDefinition benefit = new BeneficeDefinition(benefitId, name, language, costs, benefitGroup, classification, restrictedToGroup);
+			final BeneficeDefinition benefit = new BeneficeDefinition(benefitId, name, language, costs, benefitGroup,
+					classification, restrictedToGroup);
 			benefit.addSpecializations(specializations);
 			return benefit;
 
@@ -163,9 +168,10 @@ public class BeneficeDefinitionFactory extends XmlFactory<BeneficeDefinition> {
 		}
 	}
 
-	public Map<BeneficeGroup, Set<BeneficeDefinition>> getBeneficesByGroup(String language) throws InvalidXmlElementException {
+	public Map<BeneficeGroup, Set<BeneficeDefinition>> getBeneficesByGroup(String language)
+			throws InvalidXmlElementException {
 		if (beneficesByGroup.isEmpty()) {
-			for (BeneficeDefinition benefice : getElements(language)) {
+			for (final BeneficeDefinition benefice : getElements(language)) {
 				if (beneficesByGroup.get(benefice.getGroup()) == null) {
 					beneficesByGroup.put(benefice.getGroup(), new HashSet<BeneficeDefinition>());
 				}

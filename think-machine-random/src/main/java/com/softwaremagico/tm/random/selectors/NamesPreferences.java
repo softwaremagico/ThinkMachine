@@ -72,7 +72,7 @@ public enum NamesPreferences implements IRandomPreference, IGaussianDistribution
 	}
 
 	public static NamesPreferences getSelected(Set<IRandomPreference> preferences) {
-		for (IRandomPreference preference : preferences) {
+		for (final IRandomPreference preference : preferences) {
 			if (preference instanceof NamesPreferences) {
 				return (NamesPreferences) preference;
 			}

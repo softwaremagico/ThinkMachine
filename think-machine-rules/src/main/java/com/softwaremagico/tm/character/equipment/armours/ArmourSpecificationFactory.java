@@ -30,9 +30,9 @@ import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
 
 public class ArmourSpecificationFactory extends XmlFactory<ArmourSpecification> {
-	private final static ITranslator translatorArmourSpecification = LanguagePool.getTranslator("armour_specifications.xml");
+	private static final ITranslator translatorArmourSpecification = LanguagePool.getTranslator("armour_specifications.xml");
 
-	private final static String NAME = "name";
+	private static final String NAME = "name";
 
 	private static ArmourSpecificationFactory instance;
 

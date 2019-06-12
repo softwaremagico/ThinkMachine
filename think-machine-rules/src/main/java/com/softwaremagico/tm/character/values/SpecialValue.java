@@ -32,8 +32,8 @@ import com.softwaremagico.tm.character.characteristics.CharacteristicsDefinition
 import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
 
 public class SpecialValue extends Element<SpecialValue> implements IValue {
-	public final static String VITALITY = "vitality";
-	public final static String WYRD = "wyrd";
+	public static final String VITALITY = "vitality";
+	public static final String WYRD = "wyrd";
 
 	private final Set<IValue> affects;
 

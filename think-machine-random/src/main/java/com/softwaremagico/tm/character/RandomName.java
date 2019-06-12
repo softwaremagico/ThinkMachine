@@ -49,7 +49,7 @@ public class RandomName extends RandomSelector<Name> {
 	public void assign() throws InvalidRaceException, InvalidRandomElementSelectedException {
 		NamesPreferences namesPreference = NamesPreferences.getSelected(getPreferences());
 		try {
-			BeneficeSpecialization status = getCharacterPlayer().getStatus();
+			final BeneficeSpecialization status = getCharacterPlayer().getStatus();
 			// Nobility with more names. Unless set by the user.
 			if (status != null && namesPreference == NamesPreferences.LOW && !getPreferences().contains(NamesPreferences.LOW)) {
 				namesPreference = NamesPreferences.getByStatus(status.getCost());
@@ -61,12 +61,12 @@ public class RandomName extends RandomSelector<Name> {
 
 		for (int i = 0; i < namesPreference.randomGaussian(); i++) {
 			try {
-				Name selectedName = selectElementByWeight();
+				final Name selectedName = selectElementByWeight();
 				getCharacterPlayer().getInfo().addName(selectedName);
 				removeElementWeight(selectedName);
 				// Remove names from different factions. All names must be from
 				// same faction
-				for (Name name : FactionsFactory.getInstance().getAllNames()) {
+				for (final Name name : FactionsFactory.getInstance().getAllNames()) {
 					if (!Objects.equals(name.getFaction(), selectedName.getFaction())) {
 						removeElementWeight(name);
 					}

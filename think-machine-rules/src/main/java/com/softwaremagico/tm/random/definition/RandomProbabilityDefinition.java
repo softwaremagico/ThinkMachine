@@ -34,7 +34,7 @@ public enum RandomProbabilityDefinition {
 	}
 
 	public static RandomProbabilityDefinition get(String probabilityName) {
-		for (RandomProbabilityDefinition probability : RandomProbabilityDefinition.values()) {
+		for (final RandomProbabilityDefinition probability : RandomProbabilityDefinition.values()) {
 			if (probability.name().equalsIgnoreCase(probabilityName)) {
 				return probability;
 			}

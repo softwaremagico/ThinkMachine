@@ -30,9 +30,9 @@ import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
 
 public class OccultismRangeFactory extends XmlFactory<OccultismRange> {
-	private final static ITranslator translatorBlessing = LanguagePool.getTranslator("occultismRanges.xml");
+	private static final ITranslator translatorBlessing = LanguagePool.getTranslator("occultismRanges.xml");
 
-	private final static String NAME = "name";
+	private static final String NAME = "name";
 
 	private static OccultismRangeFactory instance;
 
@@ -56,7 +56,7 @@ public class OccultismRangeFactory extends XmlFactory<OccultismRange> {
 	@Override
 	protected OccultismRange createElement(ITranslator translator, String rangeId, String language) throws InvalidXmlElementException {
 		try {
-			String name = translator.getNodeValue(rangeId, NAME, language);
+			final String name = translator.getNodeValue(rangeId, NAME, language);
 			return new OccultismRange(rangeId, name, language);
 		} catch (Exception e) {
 			throw new InvalidOccultismRangeException("Invalid structure in range '" + rangeId + "'.", e);

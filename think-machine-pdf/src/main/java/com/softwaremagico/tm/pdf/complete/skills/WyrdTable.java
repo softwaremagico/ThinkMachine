@@ -63,7 +63,7 @@ public class WyrdTable extends CounterTable {
 
 	@Override
 	protected PdfPCell createLateralVerticalTitle(String title, int rowspan) {
-		PdfPCell titleCell = super.createLateralVerticalTitle(title, rowspan);
+		final PdfPCell titleCell = super.createLateralVerticalTitle(title, rowspan);
 		titleCell.setRotation(270);
 		return titleCell;
 	}

@@ -53,13 +53,13 @@ public class Main {
 		setArguments(args);
 
 		LanguagePool.clearCache();
-		CharacterSheet sheet;
+		final CharacterSheet sheet;
 		if (jsonFile == null) {
 			sheet = new CharacterSheet(language);
 			sheet.createFile(destinationPath + "FadingSuns_" + language.toUpperCase() + ".pdf");
 		} else {
 			try {
-				CharacterPlayer player = CharacterJsonManager.fromFile(jsonFile);
+				final CharacterPlayer player = CharacterJsonManager.fromFile(jsonFile);
 				sheet = new CharacterSheet(player);
 				sheet.createFile(destinationPath + "FadingSuns_" + language.toUpperCase() + ".pdf");
 			} catch (IOException e) {

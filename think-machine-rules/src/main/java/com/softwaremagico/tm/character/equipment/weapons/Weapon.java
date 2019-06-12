@@ -36,13 +36,13 @@ import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.log.MachineLog;
 
 public class Weapon extends Equipment<Weapon> {
-	private final static String NUMBER_EXTRACTOR_PATTERN = "^[^\\d]*(\\d+)";
-	private final static Pattern FIRST_NUMBER_PATTERN = Pattern.compile(NUMBER_EXTRACTOR_PATTERN);
-	private final static String AREA_DAMAGE = "\\((\\d+)\\s*m\\)$";
-	private final static Pattern AREA_DAMAGE_PATTERN = Pattern.compile(AREA_DAMAGE);
-	private final static String DAMAGE_WITHOUT_AREA = "^(.*?)\\(";
-	private final static Pattern DAMAGE_WITHOUT_AREA_PATTERN = Pattern.compile(DAMAGE_WITHOUT_AREA);
-	private final static int SPECIAL_DAMAGE_THREAT = 5;
+	private static final String NUMBER_EXTRACTOR_PATTERN = "^[^\\d]*(\\d+)";
+	private static final Pattern FIRST_NUMBER_PATTERN = Pattern.compile(NUMBER_EXTRACTOR_PATTERN);
+	private static final String AREA_DAMAGE = "\\((\\d+)\\s*m\\)$";
+	private static final Pattern AREA_DAMAGE_PATTERN = Pattern.compile(AREA_DAMAGE);
+	private static final String DAMAGE_WITHOUT_AREA = "^(.*?)\\(";
+	private static final Pattern DAMAGE_WITHOUT_AREA_PATTERN = Pattern.compile(DAMAGE_WITHOUT_AREA);
+	private static final int SPECIAL_DAMAGE_THREAT = 5;
 
 	private final String goal;
 	private final String damage;
@@ -114,7 +114,7 @@ public class Weapon extends Equipment<Weapon> {
 	public String getDamageWithoutArea() {
 		if (areaWithoutDamage == null) {
 			try {
-				Matcher matcher = DAMAGE_WITHOUT_AREA_PATTERN.matcher(getDamage());
+				final Matcher matcher = DAMAGE_WITHOUT_AREA_PATTERN.matcher(getDamage());
 				if (matcher.find()) {
 					areaWithoutDamage = matcher.group(1);
 				} else {
@@ -132,7 +132,7 @@ public class Weapon extends Equipment<Weapon> {
 	public int getMainDamage() {
 		if (mainDamage == null) {
 			try {
-				Matcher matcher = FIRST_NUMBER_PATTERN.matcher(getDamage());
+				final Matcher matcher = FIRST_NUMBER_PATTERN.matcher(getDamage());
 				if (matcher.find()) {
 					mainDamage = Integer.parseInt(matcher.group());
 				} else {
@@ -157,7 +157,7 @@ public class Weapon extends Equipment<Weapon> {
 	public int getAreaMeters() {
 		if (areaDamage == null) {
 			try {
-				Matcher matcher = AREA_DAMAGE_PATTERN.matcher(getDamage());
+				final Matcher matcher = AREA_DAMAGE_PATTERN.matcher(getDamage());
 				if (matcher.find()) {
 					areaDamage = Integer.parseInt(matcher.group(1));
 				} else {
@@ -184,7 +184,7 @@ public class Weapon extends Equipment<Weapon> {
 
 	public int getMainRate() {
 		try {
-			Matcher matcher = FIRST_NUMBER_PATTERN.matcher(getRate());
+			final Matcher matcher = FIRST_NUMBER_PATTERN.matcher(getRate());
 			if (matcher.find()) {
 				return Integer.parseInt(matcher.group());
 			}
@@ -219,7 +219,7 @@ public class Weapon extends Equipment<Weapon> {
 
 	public int getMainRange() {
 		try {
-			Matcher matcher = FIRST_NUMBER_PATTERN.matcher(getRange());
+			final Matcher matcher = FIRST_NUMBER_PATTERN.matcher(getRange());
 			if (matcher.find()) {
 				return Integer.parseInt(matcher.group());
 			}

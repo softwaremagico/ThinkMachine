@@ -44,7 +44,7 @@ public enum CharacteristicType {
 	}
 
 	public static CharacteristicType getType(String name) {
-		for (CharacteristicType type : CharacteristicType.values()) {
+		for (final CharacteristicType type : CharacteristicType.values()) {
 			if (Objects.equals(type.name().toLowerCase(), name.toLowerCase())) {
 				return type;
 			}

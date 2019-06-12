@@ -31,11 +31,11 @@ import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.pdf.complete.elements.BaseElement;
 
 public class FightingManeuvers extends BaseElement {
-	public final static int PADDING = 2;
+	public static final int PADDING = 2;
 
 	public static PdfPTable getFightingManoeuvresTable(CharacterPlayer characterPlayer) throws InvalidXmlElementException {
-		float[] widths = { 1f, 1f };
-		PdfPTable table = new PdfPTable(widths);
+		final float[] widths = { 1f, 1f };
+		final PdfPTable table = new PdfPTable(widths);
 		setTablePropierties(table);
 		table.getDefaultCell().setPadding(PADDING);
 		table.getDefaultCell().setBorder(0);
@@ -46,10 +46,10 @@ public class FightingManeuvers extends BaseElement {
 		table.addCell(BaseElement.createWhiteSeparator());
 		table.addCell(BaseElement.createWhiteSeparator());
 
-		PdfPCell fireArmsCell = new PdfPCell(new RangedManeuversTable(characterPlayer));
+		final PdfPCell fireArmsCell = new PdfPCell(new RangedManeuversTable(characterPlayer));
 		table.addCell(fireArmsCell);
 
-		PdfPCell fencingCell = new PdfPCell(new MeleeManeuversTable(characterPlayer));
+		final PdfPCell fencingCell = new PdfPCell(new MeleeManeuversTable(characterPlayer));
 		table.addCell(fencingCell);
 
 		return table;

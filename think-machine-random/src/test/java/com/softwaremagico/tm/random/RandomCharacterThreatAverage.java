@@ -46,8 +46,8 @@ public class RandomCharacterThreatAverage {
 
 	public int calculateThread(IRandomPreference... preferences) throws TooManyBlessingsException, DuplicatedPreferenceException, InvalidXmlElementException,
 			InvalidRandomElementSelectedException {
-		CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
-		RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0, preferences);
+		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
+		final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0, preferences);
 		randomizeCharacter.createCharacter();
 		return ThreatLevel.getThreatLevel(characterPlayer);
 	}

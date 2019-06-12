@@ -31,8 +31,8 @@ import com.softwaremagico.tm.character.values.IValue;
  */
 
 public class SkillDefinition extends Skill<SkillDefinition> implements ISkillRandomDefintions, IValue {
-	public final static String FACTORION_LORE_ID = "factionLore";
-	public final static String PLANETARY_LORE_ID = "planetaryLore";
+	public static final String FACTORION_LORE_ID = "factionLore";
+	public static final String PLANETARY_LORE_ID = "planetaryLore";
 
 	private final Set<Faction> factions = new HashSet<>();
 	private boolean natural = false;

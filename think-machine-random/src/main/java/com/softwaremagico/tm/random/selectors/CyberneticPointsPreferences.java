@@ -74,7 +74,7 @@ public enum CyberneticPointsPreferences implements IRandomPreference, IGaussianD
 	}
 
 	public static CyberneticPointsPreferences getSelected(Set<IRandomPreference> preferences) {
-		for (IRandomPreference preference : preferences) {
+		for (final IRandomPreference preference : preferences) {
 			if (preference instanceof CyberneticPointsPreferences) {
 				return (CyberneticPointsPreferences) preference;
 			}

@@ -73,7 +73,7 @@ public enum StatusPreferences implements IRandomPreference, IGaussianDistributio
 	}
 
 	public static StatusPreferences getSelected(Set<IRandomPreference> preferences) {
-		for (IRandomPreference preference : preferences) {
+		for (final IRandomPreference preference : preferences) {
 			if (preference instanceof StatusPreferences) {
 				return (StatusPreferences) preference;
 			}

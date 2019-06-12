@@ -36,9 +36,9 @@ import com.softwaremagico.tm.character.cybernetics.CyberneticDeviceFactory;
 @Test(groups = { "cyberneticFactory" })
 public class CyberneticDeviceFactoryTests {
 
-	private final static int DEFINED_DEVICES = 18;
-	private final static int SECOND_BRAIN_SOFTWARE = 3;
-	private final static String LANGUAGE = "es";
+	private static final int DEFINED_DEVICES = 18;
+	private static final int SECOND_BRAIN_SOFTWARE = 3;
+	private static final String LANGUAGE = "es";
 
 	@BeforeClass
 	public void clearCache() {

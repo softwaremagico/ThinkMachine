@@ -78,7 +78,7 @@ public class CyberneticDevice extends Element<CyberneticDevice> implements IElem
 
 	@Override
 	public CyberneticDeviceTrait getTrait(CyberneticDeviceTraitCategory category) {
-		for (CyberneticDeviceTrait trait : traits) {
+		for (final CyberneticDeviceTrait trait : traits) {
 			if (trait.getCategory().equals(category)) {
 				return trait;
 			}

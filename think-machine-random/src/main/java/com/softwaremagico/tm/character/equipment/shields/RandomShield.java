@@ -38,13 +38,14 @@ import com.softwaremagico.tm.random.selectors.IRandomPreference;
 
 public class RandomShield extends EquipmentSelector<Shield> {
 
-	public RandomShield(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences) throws InvalidXmlElementException {
+	public RandomShield(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences)
+			throws InvalidXmlElementException {
 		super(characterPlayer, preferences);
 	}
 
 	@Override
 	public void assign() throws InvalidRandomElementSelectedException, InvalidShieldException {
-		Shield selectedShield = selectElementByWeight();
+		final Shield selectedShield = selectElementByWeight();
 		if (getCharacterPlayer().getShield() == null) {
 			getCharacterPlayer().setShield(selectedShield);
 			RandomGenerationLog.info(this.getClass().getName(), "Selected shield: " + selectedShield);
@@ -76,7 +77,7 @@ public class RandomShield extends EquipmentSelector<Shield> {
 		int weight = super.getWeight(shield);
 
 		// Difficulty modification
-		DifficultLevelPreferences preference = DifficultLevelPreferences.getSelected(getPreferences());
+		final DifficultLevelPreferences preference = DifficultLevelPreferences.getSelected(getPreferences());
 		switch (preference) {
 		case VERY_EASY:
 		case EASY:
@@ -91,12 +92,14 @@ public class RandomShield extends EquipmentSelector<Shield> {
 		// More protection is better.
 		if (getPreferences().contains(CombatPreferences.BELLIGERENT)) {
 			weight *= shield.getHits();
-			RandomGenerationLog.debug(this.getClass().getName(), "Protection multiplicator for '" + shield + "' is '" + shield.getHits() + "'.");
+			RandomGenerationLog.debug(this.getClass().getName(), "Protection multiplicator for '" + shield + "' is '"
+					+ shield.getHits() + "'.");
 		}
 
 		// shields depending on the purchasing power of the character.
-		int costModificator = getWeightCostModificator(shield);
-		RandomGenerationLog.debug(this.getClass().getName(), "Cost multiplication for weight for '" + shield + "' is '" + costModificator + "'.");
+		final int costModificator = getWeightCostModificator(shield);
+		RandomGenerationLog.debug(this.getClass().getName(), "Cost multiplication for weight for '" + shield + "' is '"
+				+ costModificator + "'.");
 		weight /= costModificator;
 
 		RandomGenerationLog.debug(this.getClass().getName(), "Total weight for '" + shield + "' is '" + weight + "'.");
@@ -108,11 +111,12 @@ public class RandomShield extends EquipmentSelector<Shield> {
 		super.validateElement(shield);
 
 		// Difficulty modification
-		DifficultLevelPreferences preference = DifficultLevelPreferences.getSelected(getPreferences());
+		final DifficultLevelPreferences preference = DifficultLevelPreferences.getSelected(getPreferences());
 		switch (preference) {
 		case VERY_EASY:
 		case EASY:
-			throw new InvalidRandomElementSelectedException("Shield '" + shield + "' are not allowed by selected preference '" + preference + "'.");
+			throw new InvalidRandomElementSelectedException("Shield '" + shield
+					+ "' are not allowed by selected preference '" + preference + "'.");
 		default:
 			break;
 		}
