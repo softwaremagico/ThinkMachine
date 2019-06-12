@@ -5,8 +5,8 @@
 	<version>0.5.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>Think Machine</name>
-	<url>https://github.com/jorgehortelano/TheThinkingMachine</url>
-	<description>Think Machine Character Generator</description>
+	<url>https://github.com/softwaremagico/ThinkMachine</url>
+	<description>Think Machine - A Fading Suns character generator</description>
 
 	<organization>
 		<name>Softwaremagico</name>

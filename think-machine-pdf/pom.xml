@@ -3,6 +3,7 @@
 	<artifactId>think-machine-pdf</artifactId>
 	<packaging>jar</packaging>
 	<name>Think Machine (PDF Sheets)</name>
+	<description>Think Machine - A Fading Suns character generator (PDF sheets generation)</description>
 
 	<parent>
 		<groupId>com.softwaremagico</groupId>

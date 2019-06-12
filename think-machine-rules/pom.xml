@@ -3,6 +3,7 @@
 	<artifactId>think-machine-rules</artifactId>
 	<packaging>jar</packaging>
 	<name>Think Machine (Rules)</name>
+	<description>Think Machine - A Fading Suns character generator (character creation rules implementation)</description>
 
 	<parent>
 		<groupId>com.softwaremagico</groupId>
