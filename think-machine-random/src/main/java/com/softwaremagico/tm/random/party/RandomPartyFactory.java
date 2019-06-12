@@ -175,7 +175,7 @@ public class RandomPartyFactory extends XmlFactory<RandomParty> {
 								.getInstance().getElement(profile, language), minNumber, maxNumber, weight,
 								randomPreferences));
 				node++;
-			} catch (Exception e) {
+			} catch (InvalidRandomPartyException e) {
 				break;
 			}
 		}

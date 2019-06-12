@@ -310,7 +310,7 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
 				&& getCharacterPlayer().getFaction() != null
 				&& !randomDefinition.getRestrictedFactions().isEmpty()
 				&& (getCharacterPlayer().getFaction().getFactionGroup() == null || !randomDefinition
-						.getRestrictedFactions().contains(getCharacterPlayer().getFaction().getFactionGroup()))) {
+						.getRestrictedFactionGroups().contains(getCharacterPlayer().getFaction().getFactionGroup()))) {
 			throw new InvalidRandomElementSelectedException("Element restricted to factions '"
 					+ randomDefinition.getRestrictedFactions() + "'.");
 		}

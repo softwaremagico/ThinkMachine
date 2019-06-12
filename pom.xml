@@ -91,6 +91,7 @@
 		<maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
 		<maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>
 		<checkstyle.version>2.17</checkstyle.version>
+		<findbug.version>3.0.5</findbug.version>
 	</properties>
 
 	<build>
@@ -215,6 +216,11 @@
 					</execution>
 				</executions>
 			</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>findbugs-maven-plugin</artifactId>
+					<version>${findbug.version}</version>
+				</plugin>
 		</plugins>
 	</build>
 

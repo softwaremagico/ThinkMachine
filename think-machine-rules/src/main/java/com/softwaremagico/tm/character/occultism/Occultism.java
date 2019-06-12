@@ -80,7 +80,7 @@ public class Occultism {
 		} catch (InvalidXmlElementException e) {
 			MachineLog.errorMessage(this.getClass().getName(), e);
 		}
-		if (psyValue != 0 && (faction.getBenefices().contains(noOccult) || faction == null)) {
+		if (psyValue != 0 && (faction == null || faction.getBenefices().contains(noOccult))) {
 			throw new InvalidPsiqueLevelException("Faction '" + faction + "' cannot have psique levels.");
 		}
 		psiqueValue.put(occultismType.getId(), new Integer(psyValue));

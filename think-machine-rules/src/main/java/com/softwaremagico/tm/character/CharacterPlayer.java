@@ -820,8 +820,9 @@ public class CharacterPlayer {
 		final int skillRanks = getSkillTotalRanks(skill);
 		try {
 			final boolean isNatural = getNaturalSkills().contains(skill);
-			return ((skillRanks > FreeStyleCharacterCreation.getMinInitialNaturalSkillsValues(getInfo().getAge()) && isNatural) 
-					|| (skillRanks > 0 && isNatural));
+			return ((skillRanks > FreeStyleCharacterCreation.getMinInitialNaturalSkillsValues(getInfo().getAge()) && isNatural)
+			// check ranks and if is natural.
+			|| (skillRanks > 0 && isNatural));
 		} catch (InvalidXmlElementException e) {
 			MachineLog.errorMessage(this.getClass().getName(), e);
 		}
@@ -1021,11 +1022,8 @@ public class CharacterPlayer {
 					}
 				}
 				if (Objects.equals(bonification.getAffects(), value)) {
-					if (Objects.equals(bonification.getAffects(), value)) {
-						bonus += bonification.getBonification();
-					}
+					bonus += bonification.getBonification();
 				}
-
 			}
 		}
 		return bonus;
@@ -1136,7 +1134,8 @@ public class CharacterPlayer {
 	 */
 	public int getRanksAssigned(SkillGroup skillGroup) throws InvalidXmlElementException {
 		int ranks = 0;
-		for (final AvailableSkill skill : AvailableSkillsFactory.getInstance().getSkillsByGroup(skillGroup, getLanguage())) {
+		for (final AvailableSkill skill : AvailableSkillsFactory.getInstance().getSkillsByGroup(skillGroup,
+				getLanguage())) {
 			ranks += getSkillAssignedRanks(skill);
 			if (skill.getSkillDefinition().isNatural()) {
 				ranks -= FreeStyleCharacterCreation.getMinInitialNaturalSkillsValues(getInfo().getAge());
