@@ -4,7 +4,7 @@ plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
   
-logo: images/ThinkMachine_logo_fenix.svg
+logo: blob/master/images/ThinkMachine_logo_fenix.svg
 title: Think Machine
 description: Fading Suns character sheet generator based on Java. 
 author: 
@@ -12,4 +12,4 @@ author:
   email: softwaremagico@gmail.com
 
 image:
-  path: images/ThinkMachine_logo_fenix.png
+  path: blob/master/images/ThinkMachine_logo_fenix.png
