@@ -65,6 +65,18 @@ Some examples already generated are:
 - [Farida Benkira (English Small DIN A5)](https://github.com/softwaremagico/ThinkMachine/blob/master/NPC/Farida%20Benkira.png)
 - [Oleg Decados (Spanish Small DIN A5)](https://github.com/softwaremagico/ThinkMachine/blob/master/NPC/Oleg%20Decados.png)
 
+## Using as a dependency in an external project
+This component is available at the [Maven Central Repository](https://mvnrepository.com/artifact/com.softwaremagico/) and can be includeded as any other dependency. For example, for Maven the dependency would be: 
+```
+<!-- https://mvnrepository.com/artifact/com.softwaremagico/think-machine-rules -->
+<dependency>
+    <groupId>com.softwaremagico</groupId>
+    <artifactId>think-machine-rules</artifactId>
+    <version>0.5.0</version>
+</dependency>
+```
+Currently, this project is divided in three subprojects: `think-machine-rules` (for Fading Suns rules related to the character generation), `think-machine-random` (tool for creating random characters) and `think-machine-pdf`(exporting a character to a PDF sheet). Each subproject can be included separately. For any extra information about how to do it or use Gradle, Ivy or any other, please follow [this link](https://mvnrepository.com/artifact/com.softwaremagico/).
+
 ## Final thoughts
 This application only contains the logic for defining characters and NPC using Fading Suns victory point rule system. No user interface is included and therefore, cannot be use as a standalone application. In the close future new applications will appear for different platforms that includes a UI. This application will be listed here. 
 
@@ -96,3 +108,4 @@ Fonts used in this project: DejaVuSans, ArchitectsDaughter and Roman Antique.
 - 0.4.7 Threat level calculation.
 - 0.4.8 Random groups generation.
 
+0.5.0 Stable version ready to be used. 
