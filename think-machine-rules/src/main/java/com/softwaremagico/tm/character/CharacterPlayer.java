@@ -676,7 +676,7 @@ public class CharacterPlayer {
 
 	public void setRace(Race race) throws InvalidRaceException {
 		if (race == null) {
-			throw new InvalidRaceException("Race '" + race + "' does not exists!");
+			throw new InvalidRaceException("Race is null!");
 		}
 		this.race = race;
 	}

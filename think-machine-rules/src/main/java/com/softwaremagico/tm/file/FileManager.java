@@ -33,7 +33,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.StringWriter;
+import java.io.UnsupportedEncodingException;
 import java.io.Writer;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -109,21 +111,26 @@ public class FileManager {
 		}
 		final String text;
 		final byte bt[] = new byte[(int) file.length()];
-		text = new String(bt);
-		return text;
+		try {
+			text = new String(bt, StandardCharsets.UTF_8.name());
+			return text;
+		} catch (UnsupportedEncodingException e) {
+			MachineLog.errorMessage(FileManager.class.getName(), e);
+		}
+		return "";
 	}
 
 	private static String readTextFile(String filename, String mode) throws FileNotFoundException {
-		String text = "";
+		final StringBuilder text = new StringBuilder();
 		final List<String> doc = readTextFileInLines(filename, mode);
 
 		for (int i = 0; i < doc.size(); i++) {
 			if (!doc.get(i).startsWith("[") && !doc.get(i).startsWith("]") && !doc.get(i).startsWith("<")) {
-				text += doc.get(i) + "\n";
+				text.append(doc.get(i)).append("\n");
 			}
 		}
 
-		return text;
+		return text.toString();
 	}
 
 	public static List<String> getFileFromResources(String fileName) {
@@ -133,7 +140,7 @@ public class FileManager {
 		final ClassLoader classLoader = FileManager.class.getClassLoader();
 		final File file = new File(classLoader.getResource(fileName).getFile());
 
-		try (Scanner scanner = new Scanner(file)) {
+		try (Scanner scanner = new Scanner(file, StandardCharsets.UTF_8.name())) {
 			while (scanner.hasNextLine()) {
 				final String line = scanner.nextLine();
 				if (line.length() > 0) {
@@ -152,9 +159,8 @@ public class FileManager {
 	public static List<String> readTextFromJarInLines(String file) {
 		final List<String> contents = new ArrayList<>();
 		String thisLine;
-		try {
-			final InputStream is = FileManager.class.getResourceAsStream(file);
-			final BufferedReader br = new BufferedReader(new InputStreamReader(is));
+		try (final InputStream is = FileManager.class.getResourceAsStream(file);
+				final BufferedReader br = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8.name()));) {
 			while ((thisLine = br.readLine()) != null) {
 				contents.add(thisLine);
 			}
@@ -165,18 +171,17 @@ public class FileManager {
 	}
 
 	public static String readTextFromJar(String file) {
-		String totalText = "";
+		final StringBuilder totalText = new StringBuilder();
 		String thisLine;
-		try {
-			final InputStream is = FileManager.class.getResourceAsStream(file);
-			final BufferedReader br = new BufferedReader(new InputStreamReader(is));
+		try (final InputStream is = FileManager.class.getResourceAsStream(file);
+				final BufferedReader br = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8.name()));) {
 			while ((thisLine = br.readLine()) != null) {
-				totalText += thisLine;
+				totalText.append(thisLine);
 			}
 		} catch (Exception e) {
 			MachineLog.errorMessage(FileManager.class.getName(), e);
 		}
-		return totalText;
+		return totalText.toString();
 	}
 
 	/**
@@ -184,11 +189,12 @@ public class FileManager {
 	 * 
 	 * @param filename
 	 */
-	public static void deleteFile(String filename) {
+	public static boolean deleteFile(String filename) {
 		final File f = new File(filename);
 		if (f.exists() && f.canWrite()) {
-			f.delete();
+			return f.delete();
 		}
+		return false;
 	}
 
 	public static String convertStreamToString(InputStream is) throws IOException {

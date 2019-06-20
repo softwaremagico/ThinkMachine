@@ -26,6 +26,7 @@ package com.softwaremagico.tm.json;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
@@ -98,7 +99,7 @@ public class CharacterJsonManager {
 	}
 
 	public static CharacterPlayer fromFile(String path) throws IOException {
-		final String jsonText = new String(Files.readAllBytes(Paths.get(path)));
+		final String jsonText = new String(Files.readAllBytes(Paths.get(path)), StandardCharsets.UTF_8.name());
 		return fromJson(jsonText);
 	}
 

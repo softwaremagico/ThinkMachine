@@ -75,17 +75,17 @@ public class Blessing extends Element<Blessing> implements IElementWithBonificat
 	public String getTrait() {
 		if (bonifications != null && !bonifications.isEmpty()) {
 			final Iterator<Bonification> iterator = bonifications.iterator();
-			String text = "";
+			final StringBuilder text = new StringBuilder();
 			while (iterator.hasNext()) {
 				final IValue affects = iterator.next().getAffects();
 				if (affects != null && affects.getName() != null) {
 					if (text.length() > 0) {
-						text += ", ";
+						text.append(", ");
 					}
-					text += affects.getName();
+					text.append(affects.getName());
 				}
 			}
-			return text;
+			return text.toString();
 		}
 		return "";
 	}

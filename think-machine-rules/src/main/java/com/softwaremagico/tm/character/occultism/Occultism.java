@@ -83,7 +83,7 @@ public class Occultism {
 		if (psyValue != 0 && (faction == null || faction.getBenefices().contains(noOccult))) {
 			throw new InvalidPsiqueLevelException("Faction '" + faction + "' cannot have psique levels.");
 		}
-		psiqueValue.put(occultismType.getId(), new Integer(psyValue));
+		psiqueValue.put(occultismType.getId(), Integer.valueOf(psyValue));
 	}
 
 	public int getDarkSideLevel(OccultismType occultismType) {
@@ -94,7 +94,7 @@ public class Occultism {
 	}
 
 	public void setDarkSideLevel(OccultismType occultismType, int darkSideValue) {
-		this.darkSideValue.put(occultismType.getId(), new Integer(darkSideValue));
+		this.darkSideValue.put(occultismType.getId(), Integer.valueOf(darkSideValue));
 	}
 
 	public Map<String, List<String>> getSelectedPowers() {

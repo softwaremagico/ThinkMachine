@@ -81,6 +81,10 @@ public class AvailableSkillsFactory {
 				classifySkillByGroup(availableLearnedSkill, language);
 			}
 		}
+		if (skillsByGroup == null || skillsByGroup.get(language) == null
+				|| skillsByGroup.get(language).get(skillGroup) == null) {
+			return new HashSet<>();
+		}
 		return skillsByGroup.get(language).get(skillGroup);
 	}
 
@@ -92,7 +96,8 @@ public class AvailableSkillsFactory {
 			if (elements.get(language) == null) {
 				elements.put(language, new ArrayList<AvailableSkill>());
 			}
-			for (final SkillDefinition skillDefinition : SkillsDefinitionsFactory.getInstance().getNaturalSkills(language)) {
+			for (final SkillDefinition skillDefinition : SkillsDefinitionsFactory.getInstance().getNaturalSkills(
+					language)) {
 				final Set<AvailableSkill> skills = createElement(skillDefinition);
 
 				naturalSkills.get(language).addAll(skills);
@@ -112,7 +117,8 @@ public class AvailableSkillsFactory {
 			if (elements.get(language) == null) {
 				elements.put(language, new ArrayList<AvailableSkill>());
 			}
-			for (final SkillDefinition skillDefinition : SkillsDefinitionsFactory.getInstance().getLearnedSkills(language)) {
+			for (final SkillDefinition skillDefinition : SkillsDefinitionsFactory.getInstance().getLearnedSkills(
+					language)) {
 				final Set<AvailableSkill> skills = createElement(skillDefinition);
 				learnedSkills.get(language).addAll(skills);
 				elements.get(language).addAll(skills);
