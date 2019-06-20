@@ -35,23 +35,12 @@ public class DamageTypeFactory extends XmlFactory<DamageType> {
 
 	private static final String NAME = "name";
 
-	private static DamageTypeFactory instance;
-
-	private static void createInstance() {
-		if (instance == null) {
-			synchronized (DamageTypeFactory.class) {
-				if (instance == null) {
-					instance = new DamageTypeFactory();
-				}
-			}
-		}
+	private static class DamageTypeFactoryInit {
+		public static final DamageTypeFactory INSTANCE = new DamageTypeFactory();
 	}
 
 	public static DamageTypeFactory getInstance() {
-		if (instance == null) {
-			createInstance();
-		}
-		return instance;
+		return DamageTypeFactoryInit.INSTANCE;
 	}
 
 	@Override
@@ -60,7 +49,8 @@ public class DamageTypeFactory extends XmlFactory<DamageType> {
 	}
 
 	@Override
-	protected DamageType createElement(ITranslator translator, String damageId, String language) throws InvalidXmlElementException {
+	protected DamageType createElement(ITranslator translator, String damageId, String language)
+			throws InvalidXmlElementException {
 		DamageType damageType = null;
 		try {
 			final String name = translator.getNodeValue(damageId, NAME, language);

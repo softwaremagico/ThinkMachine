@@ -30,27 +30,17 @@ import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
 
 public class ArmourSpecificationFactory extends XmlFactory<ArmourSpecification> {
-	private static final ITranslator translatorArmourSpecification = LanguagePool.getTranslator("armour_specifications.xml");
+	private static final ITranslator translatorArmourSpecification = LanguagePool
+			.getTranslator("armour_specifications.xml");
 
 	private static final String NAME = "name";
 
-	private static ArmourSpecificationFactory instance;
-
-	private static void createInstance() {
-		if (instance == null) {
-			synchronized (ArmourSpecificationFactory.class) {
-				if (instance == null) {
-					instance = new ArmourSpecificationFactory();
-				}
-			}
-		}
+	private static class ArmourSpecificationFactoryInit {
+		public static final ArmourSpecificationFactory INSTANCE = new ArmourSpecificationFactory();
 	}
 
 	public static ArmourSpecificationFactory getInstance() {
-		if (instance == null) {
-			createInstance();
-		}
-		return instance;
+		return ArmourSpecificationFactoryInit.INSTANCE;
 	}
 
 	@Override
@@ -59,7 +49,8 @@ public class ArmourSpecificationFactory extends XmlFactory<ArmourSpecification> 
 	}
 
 	@Override
-	protected ArmourSpecification createElement(ITranslator translator, String specificationId, String language) throws InvalidXmlElementException {
+	protected ArmourSpecification createElement(ITranslator translator, String specificationId, String language)
+			throws InvalidXmlElementException {
 		ArmourSpecification specification = null;
 		String name = null;
 		try {

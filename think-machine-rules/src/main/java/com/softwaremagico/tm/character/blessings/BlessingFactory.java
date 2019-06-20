@@ -47,27 +47,17 @@ public class BlessingFactory extends XmlFactory<Blessing> {
 	private static final String CURSE = "curse";
 	private static final String GROUP = "group";
 
-	private static BlessingFactory instance;
-
-	private static void createInstance() {
-		if (instance == null) {
-			synchronized (BlessingFactory.class) {
-				if (instance == null) {
-					instance = new BlessingFactory();
-				}
-			}
-		}
+	private static class BlessingFactoryInit {
+		public static final BlessingFactory INSTANCE = new BlessingFactory();
 	}
 
 	public static BlessingFactory getInstance() {
-		if (instance == null) {
-			createInstance();
-		}
-		return instance;
+		return BlessingFactoryInit.INSTANCE;
 	}
 
 	@Override
-	protected Blessing createElement(ITranslator translator, String blessingId, String language) throws InvalidXmlElementException {
+	protected Blessing createElement(ITranslator translator, String blessingId, String language)
+			throws InvalidXmlElementException {
 
 		try {
 			final String name = translator.getNodeValue(blessingId, NAME, language);
@@ -92,7 +82,8 @@ public class BlessingFactory extends XmlFactory<Blessing> {
 					}
 					final String situation = translator.getNodeValue(blessingId, SITUATION, language, node);
 
-					final Bonification bonification = new Bonification(Integer.parseInt(bonificationValue), affects, situation);
+					final Bonification bonification = new Bonification(Integer.parseInt(bonificationValue), affects,
+							situation);
 					bonifications.add(bonification);
 					node++;
 				} catch (Exception e) {
@@ -109,7 +100,8 @@ public class BlessingFactory extends XmlFactory<Blessing> {
 				}
 			}
 
-			final Blessing blessing = new Blessing(blessingId, name, language, Integer.parseInt(cost), bonifications, blessingClassification, blessingGroup);
+			final Blessing blessing = new Blessing(blessingId, name, language, Integer.parseInt(cost), bonifications,
+					blessingClassification, blessingGroup);
 			return blessing;
 		} catch (Exception e) {
 			throw new InvalidBlessingException("Invalid structure in blessing '" + blessingId + "'.", e);

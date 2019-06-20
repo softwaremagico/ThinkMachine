@@ -44,23 +44,12 @@ public class RaceFactory extends XmlFactory<Race> {
 	private static final String THEURGY = "theurgy";
 	private static final String HUBRIS = "hubris";
 
-	private static RaceFactory instance;
-
-	private static void createInstance() {
-		if (instance == null) {
-			synchronized (RaceFactory.class) {
-				if (instance == null) {
-					instance = new RaceFactory();
-				}
-			}
-		}
+	private static class RaceFactoryInit {
+		public static final RaceFactory INSTANCE = new RaceFactory();
 	}
 
 	public static RaceFactory getInstance() {
-		if (instance == null) {
-			createInstance();
-		}
-		return instance;
+		return RaceFactoryInit.INSTANCE;
 	}
 
 	@Override
@@ -69,7 +58,8 @@ public class RaceFactory extends XmlFactory<Race> {
 	}
 
 	@Override
-	protected Race createElement(ITranslator translator, String raceId, String language) throws InvalidXmlElementException {
+	protected Race createElement(ITranslator translator, String raceId, String language)
+			throws InvalidXmlElementException {
 		Race race = null;
 		try {
 			final String name = translator.getNodeValue(raceId, NAME, language);
@@ -89,7 +79,8 @@ public class RaceFactory extends XmlFactory<Race> {
 				if (maxValue != null) {
 					race.setMaximumValue(characteristic, Integer.parseInt(maxValue));
 				}
-				final String maxInitialValue = translator.getNodeValue(raceId, characteristic.getId(), MAX_INITIAL_VALUE);
+				final String maxInitialValue = translator.getNodeValue(raceId, characteristic.getId(),
+						MAX_INITIAL_VALUE);
 				if (maxInitialValue != null) {
 					race.setMaximumInitialValue(characteristic, Integer.parseInt(maxInitialValue));
 				}
@@ -98,7 +89,8 @@ public class RaceFactory extends XmlFactory<Race> {
 					race.setValue(characteristic, Integer.parseInt(value));
 				}
 			} catch (NumberFormatException nfe) {
-				throw new InvalidRaceException("Invalid value for characteristic '" + characteristic.getId() + "' in race '" + raceId + "'.");
+				throw new InvalidRaceException("Invalid value for characteristic '" + characteristic.getId()
+						+ "' in race '" + raceId + "'.");
 			}
 		}
 		try {

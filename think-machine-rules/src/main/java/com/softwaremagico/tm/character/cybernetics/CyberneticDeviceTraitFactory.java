@@ -40,23 +40,12 @@ public class CyberneticDeviceTraitFactory extends XmlFactory<CyberneticDeviceTra
 	private static final String EXTRA_COST = "extraCostMultiplier";
 	private static final String EXTRA_INCOMPATIBILITY = "extraIncompatibility";
 
-	private static CyberneticDeviceTraitFactory instance;
-
-	private static void createInstance() {
-		if (instance == null) {
-			synchronized (CyberneticDeviceTraitFactory.class) {
-				if (instance == null) {
-					instance = new CyberneticDeviceTraitFactory();
-				}
-			}
-		}
+	private static class CyberneticDeviceTraitFactoryInit {
+		public static final CyberneticDeviceTraitFactory INSTANCE = new CyberneticDeviceTraitFactory();
 	}
 
 	public static CyberneticDeviceTraitFactory getInstance() {
-		if (instance == null) {
-			createInstance();
-		}
-		return instance;
+		return CyberneticDeviceTraitFactoryInit.INSTANCE;
 	}
 
 	@Override

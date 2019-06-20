@@ -37,30 +37,18 @@ import com.softwaremagico.tm.InvalidXmlElementException;
 
 public class AvailableSkillsFactory {
 	protected Map<String, List<AvailableSkill>> elements = new HashMap<>();
-	private static Map<String, List<AvailableSkill>> naturalSkills = new HashMap<>();
-	private static Map<String, List<AvailableSkill>> learnedSkills = new HashMap<>();
-
-	private static Map<String, Map<SkillGroup, Set<AvailableSkill>>> skillsByGroup = new HashMap<>();
-
-	private static AvailableSkillsFactory instance;
+	private Map<String, List<AvailableSkill>> naturalSkills = new HashMap<>();
+	private Map<String, List<AvailableSkill>> learnedSkills = new HashMap<>();
+	private Map<String, Map<SkillGroup, Set<AvailableSkill>>> skillsByGroup = new HashMap<>();
 
 	private int maximumNumberOfSpecializations = 0;
 
-	private static void createInstance() {
-		if (instance == null) {
-			synchronized (AvailableSkillsFactory.class) {
-				if (instance == null) {
-					instance = new AvailableSkillsFactory();
-				}
-			}
-		}
+	private static class AvailableSkillsFactoryInit {
+		public static final AvailableSkillsFactory INSTANCE = new AvailableSkillsFactory();
 	}
 
 	public static AvailableSkillsFactory getInstance() {
-		if (instance == null) {
-			createInstance();
-		}
-		return instance;
+		return AvailableSkillsFactoryInit.INSTANCE;
 	}
 
 	public void clearCache() {

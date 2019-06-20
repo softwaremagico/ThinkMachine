@@ -57,23 +57,12 @@ public class ArmourFactory extends XmlFactory<Armour> {
 	private static final String SHIELD = "shield";
 	private static final String OTHER = "others";
 
-	private static ArmourFactory instance;
-
-	private static void createInstance() {
-		if (instance == null) {
-			synchronized (ArmourFactory.class) {
-				if (instance == null) {
-					instance = new ArmourFactory();
-				}
-			}
-		}
+	private static class ArmourFactoryInit {
+		public static final ArmourFactory INSTANCE = new ArmourFactory();
 	}
 
 	public static ArmourFactory getInstance() {
-		if (instance == null) {
-			createInstance();
-		}
-		return instance;
+		return ArmourFactoryInit.INSTANCE;
 	}
 
 	@Override

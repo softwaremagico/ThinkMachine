@@ -64,23 +64,12 @@ public class WeaponFactory extends XmlFactory<Weapon> {
 	private static final String AMMUNITION = "ammunition";
 	private static final String ACCESSORIES = "others";
 
-	private static WeaponFactory instance;
-
-	private static void createInstance() {
-		if (instance == null) {
-			synchronized (WeaponFactory.class) {
-				if (instance == null) {
-					instance = new WeaponFactory();
-				}
-			}
-		}
+	private static class WeaponFactoryInit {
+		public static final WeaponFactory INSTANCE = new WeaponFactory();
 	}
 
 	public static WeaponFactory getInstance() {
-		if (instance == null) {
-			createInstance();
-		}
-		return instance;
+		return WeaponFactoryInit.INSTANCE;
 	}
 
 	@Override
@@ -89,7 +78,8 @@ public class WeaponFactory extends XmlFactory<Weapon> {
 	}
 
 	@Override
-	protected Weapon createElement(ITranslator translator, String weaponId, String language) throws InvalidXmlElementException {
+	protected Weapon createElement(ITranslator translator, String weaponId, String language)
+			throws InvalidXmlElementException {
 		Weapon weapon = null;
 		String name = null;
 		try {
@@ -101,7 +91,8 @@ public class WeaponFactory extends XmlFactory<Weapon> {
 		CharacteristicDefinition characteristicDefintion = null;
 		try {
 			final String characteristicName = translator.getNodeValue(weaponId, CHARACTERISTIC);
-			characteristicDefintion = CharacteristicsDefinitionFactory.getInstance().getElement(characteristicName, language);
+			characteristicDefintion = CharacteristicsDefinitionFactory.getInstance().getElement(characteristicName,
+					language);
 
 		} catch (Exception e) {
 			throw new InvalidWeaponException("Invalid characteristic name in weapon '" + weaponId + "'.");
@@ -214,7 +205,8 @@ public class WeaponFactory extends XmlFactory<Weapon> {
 				final StringTokenizer damageTypesTokenizer = new StringTokenizer(damageDefinition, ",");
 				while (damageTypesTokenizer.hasMoreTokens()) {
 					try {
-						damageOfWeapon.add(DamageTypeFactory.getInstance().getElement(damageTypesTokenizer.nextToken().trim(), language));
+						damageOfWeapon.add(DamageTypeFactory.getInstance().getElement(
+								damageTypesTokenizer.nextToken().trim(), language));
 					} catch (InvalidXmlElementException e) {
 						throw new InvalidWeaponException("Invalid damage type in weapon '" + weaponId + "'.", e);
 					}
@@ -230,9 +222,11 @@ public class WeaponFactory extends XmlFactory<Weapon> {
 			final StringTokenizer ammunitionTokenizer = new StringTokenizer(ammunitionsNames, ",");
 			while (ammunitionTokenizer.hasMoreTokens()) {
 				try {
-					ammunitions.add(AmmunitionFactory.getInstance().getElement(ammunitionTokenizer.nextToken().trim(), language));
+					ammunitions.add(AmmunitionFactory.getInstance().getElement(ammunitionTokenizer.nextToken().trim(),
+							language));
 				} catch (InvalidXmlElementException ixe) {
-					throw new InvalidWeaponException("Error in ammunitions '" + ammunitionsNames + "' structure. Invalid ammunition definition. ", ixe);
+					throw new InvalidWeaponException("Error in ammunitions '" + ammunitionsNames
+							+ "' structure. Invalid ammunition definition. ", ixe);
 				}
 			}
 		}
@@ -243,16 +237,18 @@ public class WeaponFactory extends XmlFactory<Weapon> {
 			final StringTokenizer accessoryTokenizer = new StringTokenizer(accesoriesNames, ",");
 			while (accessoryTokenizer.hasMoreTokens()) {
 				try {
-					accessories.add(AccessoryFactory.getInstance().getElement(accessoryTokenizer.nextToken().trim(), language));
+					accessories.add(AccessoryFactory.getInstance().getElement(accessoryTokenizer.nextToken().trim(),
+							language));
 				} catch (InvalidXmlElementException ixe) {
-					throw new InvalidWeaponException("Error in accessories '" + accesoriesNames + "' structure in weapon '" + weaponId
-							+ "'. Invalid accessory definition. ", ixe);
+					throw new InvalidWeaponException("Error in accessories '" + accesoriesNames
+							+ "' structure in weapon '" + weaponId + "'. Invalid accessory definition. ", ixe);
 				}
 			}
 		}
 
-		weapon = new Weapon(weaponId, name, language, type, goal, characteristicDefintion, skill, damage, strength, range, shots, rate, techLevel,
-				techLevelSpecial, size, special, damageOfWeapon, cost, ammunitions, accessories);
+		weapon = new Weapon(weaponId, name, language, type, goal, characteristicDefintion, skill, damage, strength,
+				range, shots, rate, techLevel, techLevelSpecial, size, special, damageOfWeapon, cost, ammunitions,
+				accessories);
 
 		return weapon;
 	}

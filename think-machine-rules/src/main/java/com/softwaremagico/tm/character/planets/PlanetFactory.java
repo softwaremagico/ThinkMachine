@@ -41,23 +41,12 @@ public class PlanetFactory extends XmlFactory<Planet> {
 	private static final String NAME = "name";
 	private static final String FACTION = "factions";
 
-	private static PlanetFactory instance;
-
-	private static void createInstance() {
-		if (instance == null) {
-			synchronized (PlanetFactory.class) {
-				if (instance == null) {
-					instance = new PlanetFactory();
-				}
-			}
-		}
+	private static class PlanetFactoryInit {
+		public static final PlanetFactory INSTANCE = new PlanetFactory();
 	}
 
 	public static PlanetFactory getInstance() {
-		if (instance == null) {
-			createInstance();
-		}
-		return instance;
+		return PlanetFactoryInit.INSTANCE;
 	}
 
 	@Override

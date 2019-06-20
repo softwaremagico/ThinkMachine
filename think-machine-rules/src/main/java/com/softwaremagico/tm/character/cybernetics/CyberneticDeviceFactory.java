@@ -86,23 +86,12 @@ public class CyberneticDeviceFactory extends XmlFactory<CyberneticDevice> {
 
 	private Map<CyberneticDevice, Set<CyberneticDevice>> requiredBy;
 
-	private static CyberneticDeviceFactory instance;
-
-	private static void createInstance() {
-		if (instance == null) {
-			synchronized (CyberneticDeviceFactory.class) {
-				if (instance == null) {
-					instance = new CyberneticDeviceFactory();
-				}
-			}
-		}
+	private static class CyberneticDeviceFactoryInit {
+		public static final CyberneticDeviceFactory INSTANCE = new CyberneticDeviceFactory();
 	}
 
 	public static CyberneticDeviceFactory getInstance() {
-		if (instance == null) {
-			createInstance();
-		}
-		return instance;
+		return CyberneticDeviceFactoryInit.INSTANCE;
 	}
 
 	@Override

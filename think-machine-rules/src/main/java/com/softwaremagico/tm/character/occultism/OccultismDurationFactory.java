@@ -34,27 +34,17 @@ public class OccultismDurationFactory extends XmlFactory<OccultismDuration> {
 
 	private static final String NAME = "name";
 
-	private static OccultismDurationFactory instance;
-
-	private static void createInstance() {
-		if (instance == null) {
-			synchronized (OccultismDurationFactory.class) {
-				if (instance == null) {
-					instance = new OccultismDurationFactory();
-				}
-			}
-		}
+	private static class OccultismDurationFactoryInit {
+		public static final OccultismDurationFactory INSTANCE = new OccultismDurationFactory();
 	}
 
 	public static OccultismDurationFactory getInstance() {
-		if (instance == null) {
-			createInstance();
-		}
-		return instance;
+		return OccultismDurationFactoryInit.INSTANCE;
 	}
 
 	@Override
-	protected OccultismDuration createElement(ITranslator translator, String rangeId, String language) throws InvalidXmlElementException {
+	protected OccultismDuration createElement(ITranslator translator, String rangeId, String language)
+			throws InvalidXmlElementException {
 		try {
 			final String name = translator.getNodeValue(rangeId, NAME, language);
 			return new OccultismDuration(rangeId, name, language);

@@ -34,23 +34,12 @@ public class AccessoryFactory extends XmlFactory<Accessory> {
 
 	private static final String NAME = "name";
 
-	private static AccessoryFactory instance;
-
-	private static void createInstance() {
-		if (instance == null) {
-			synchronized (AccessoryFactory.class) {
-				if (instance == null) {
-					instance = new AccessoryFactory();
-				}
-			}
-		}
+	private static class AccessoryFactoryInit {
+		public static final AccessoryFactory INSTANCE = new AccessoryFactory();
 	}
 
 	public static AccessoryFactory getInstance() {
-		if (instance == null) {
-			createInstance();
-		}
-		return instance;
+		return AccessoryFactoryInit.INSTANCE;
 	}
 
 	@Override
@@ -59,7 +48,8 @@ public class AccessoryFactory extends XmlFactory<Accessory> {
 	}
 
 	@Override
-	protected Accessory createElement(ITranslator translator, String accessoryId, String language) throws InvalidXmlElementException {
+	protected Accessory createElement(ITranslator translator, String accessoryId, String language)
+			throws InvalidXmlElementException {
 		Accessory accessory = null;
 		String name = null;
 		try {

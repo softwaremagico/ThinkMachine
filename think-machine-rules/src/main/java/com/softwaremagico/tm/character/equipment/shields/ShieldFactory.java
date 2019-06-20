@@ -40,23 +40,12 @@ public class ShieldFactory extends XmlFactory<Shield> {
 	private static final String HITS = "hits";
 	private static final String COST = "cost";
 
-	private static ShieldFactory instance;
-
-	private static void createInstance() {
-		if (instance == null) {
-			synchronized (ShieldFactory.class) {
-				if (instance == null) {
-					instance = new ShieldFactory();
-				}
-			}
-		}
+	private static class ShieldFactoryInit {
+		public static final ShieldFactory INSTANCE = new ShieldFactory();
 	}
 
 	public static ShieldFactory getInstance() {
-		if (instance == null) {
-			createInstance();
-		}
-		return instance;
+		return ShieldFactoryInit.INSTANCE;
 	}
 
 	@Override

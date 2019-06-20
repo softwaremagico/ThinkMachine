@@ -49,31 +49,20 @@ public class BeneficeDefinitionFactory extends XmlFactory<BeneficeDefinition> {
 	private static final String SPECIALIZABLE_BENEFICE_TAG = "specializations";
 	private static final String RESTRICTED_TAG = "restricted";
 
-	private static BeneficeDefinitionFactory instance;
-
 	private Map<BeneficeGroup, Set<BeneficeDefinition>> beneficesByGroup = new HashMap<>();
 
-	private static void createInstance() {
-		if (instance == null) {
-			synchronized (BeneficeDefinitionFactory.class) {
-				if (instance == null) {
-					instance = new BeneficeDefinitionFactory();
-				}
-			}
-		}
+	private static class BeneficeDefinitionFactoryInit {
+		public static final BeneficeDefinitionFactory INSTANCE = new BeneficeDefinitionFactory();
+	}
+
+	public static BeneficeDefinitionFactory getInstance() {
+		return BeneficeDefinitionFactoryInit.INSTANCE;
 	}
 
 	@Override
 	public void clearCache() {
 		beneficesByGroup = new HashMap<>();
 		super.clearCache();
-	}
-
-	public static BeneficeDefinitionFactory getInstance() {
-		if (instance == null) {
-			createInstance();
-		}
-		return instance;
 	}
 
 	@Override
@@ -139,7 +128,8 @@ public class BeneficeDefinitionFactory extends XmlFactory<BeneficeDefinition> {
 			final List<Integer> costs = new ArrayList<>();
 			if (costRange.contains("-")) {
 				final int minValue = Integer.parseInt(costRange.substring(0, costRange.indexOf('-')));
-				final int maxValue = Integer.parseInt(costRange.substring(costRange.indexOf('-') + 1, costRange.length()));
+				final int maxValue = Integer.parseInt(costRange.substring(costRange.indexOf('-') + 1,
+						costRange.length()));
 				for (int i = minValue; i <= maxValue; i++) {
 					costs.add(i);
 				}

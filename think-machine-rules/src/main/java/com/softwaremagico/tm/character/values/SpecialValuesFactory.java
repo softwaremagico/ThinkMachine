@@ -39,23 +39,12 @@ public class SpecialValuesFactory extends XmlFactory<SpecialValue> {
 	private static final String NAME = "name";
 	private static final String AFFECTS = "affects";
 
-	private static SpecialValuesFactory instance;
-
-	private static void createInstance() {
-		if (instance == null) {
-			synchronized (SpecialValuesFactory.class) {
-				if (instance == null) {
-					instance = new SpecialValuesFactory();
-				}
-			}
-		}
+	private static class SpecialValuesFactoryInit {
+		public static final SpecialValuesFactory INSTANCE = new SpecialValuesFactory();
 	}
 
 	public static SpecialValuesFactory getInstance() {
-		if (instance == null) {
-			createInstance();
-		}
-		return instance;
+		return SpecialValuesFactoryInit.INSTANCE;
 	}
 
 	@Override
@@ -64,7 +53,8 @@ public class SpecialValuesFactory extends XmlFactory<SpecialValue> {
 	}
 
 	@Override
-	protected SpecialValue createElement(ITranslator translator, String specialId, String language) throws InvalidXmlElementException {
+	protected SpecialValue createElement(ITranslator translator, String specialId, String language)
+			throws InvalidXmlElementException {
 		try {
 			final String name = translator.getNodeValue(specialId, NAME, language);
 			final String affects = translator.getNodeValue(specialId, AFFECTS);

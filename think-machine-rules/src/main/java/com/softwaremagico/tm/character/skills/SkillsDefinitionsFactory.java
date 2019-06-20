@@ -51,21 +51,16 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 	private static final String NATURAL_SKILL_TAG = "natural";
 	private static final String NUMBER_TO_SHOW_TAG = "numberToShow";
 
-	private static Map<String, List<SkillDefinition>> naturalSkills = new HashMap<>();
-	private static Map<String, List<SkillDefinition>> learnedSkills = new HashMap<>();
+	private Map<String, List<SkillDefinition>> naturalSkills = new HashMap<>();
+	private Map<String, List<SkillDefinition>> learnedSkills = new HashMap<>();
+	private Map<String, Map<SkillGroup, Set<SkillDefinition>>> skillsByGroup = new HashMap<>();
 
-	private static Map<String, Map<SkillGroup, Set<SkillDefinition>>> skillsByGroup = new HashMap<>();
+	private static class SkillsDefinitionsFactoryInit {
+		public static final SkillsDefinitionsFactory INSTANCE = new SkillsDefinitionsFactory();
+	}
 
-	private static SkillsDefinitionsFactory instance;
-
-	private static void createInstance() {
-		if (instance == null) {
-			synchronized (SkillsDefinitionsFactory.class) {
-				if (instance == null) {
-					instance = new SkillsDefinitionsFactory();
-				}
-			}
-		}
+	public static SkillsDefinitionsFactory getInstance() {
+		return SkillsDefinitionsFactoryInit.INSTANCE;
 	}
 
 	@Override
@@ -74,13 +69,6 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 		learnedSkills = new HashMap<>();
 		skillsByGroup = new HashMap<>();
 		super.clearCache();
-	}
-
-	public static SkillsDefinitionsFactory getInstance() {
-		if (instance == null) {
-			createInstance();
-		}
-		return instance;
 	}
 
 	public List<SkillDefinition> getNaturalSkills(String language) {
@@ -145,7 +133,8 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 	}
 
 	@Override
-	protected SkillDefinition createElement(ITranslator translator, String skillId, String language) throws InvalidXmlElementException {
+	protected SkillDefinition createElement(ITranslator translator, String skillId, String language)
+			throws InvalidXmlElementException {
 		try {
 			final String name = translator.getNodeValue(skillId, NAME, language);
 			final SkillDefinition skill = new SkillDefinition(skillId, name, language);
@@ -153,7 +142,8 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 				final Set<Specialization> specializations = new HashSet<>();
 				for (final String specializationId : translator.getAllChildrenTags(skillId, SPECIALIZABLE_SKILL_TAG)) {
 					final String specizalizationName = translator.getNodeValue(specializationId, language);
-					final Specialization specialization = new Specialization(specializationId, specizalizationName, language);
+					final Specialization specialization = new Specialization(specializationId, specizalizationName,
+							language);
 					setRandomConfiguration(specialization, translator, language);
 					specializations.add(specialization);
 				}
@@ -174,9 +164,11 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 				final StringTokenizer factionsOfSkill = new StringTokenizer(factionSkill, ",");
 				while (factionsOfSkill.hasMoreTokens()) {
 					try {
-						skill.addFaction(FactionsFactory.getInstance().getElement(factionsOfSkill.nextToken().trim(), language));
+						skill.addFaction(FactionsFactory.getInstance().getElement(factionsOfSkill.nextToken().trim(),
+								language));
 					} catch (InvalidXmlElementException ixe) {
-						throw new InvalidSkillException("Error in skill '" + skillId + "' structure. Invalid faction defintion. ", ixe);
+						throw new InvalidSkillException("Error in skill '" + skillId
+								+ "' structure. Invalid faction defintion. ", ixe);
 					}
 				}
 			}

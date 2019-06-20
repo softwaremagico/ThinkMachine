@@ -51,23 +51,12 @@ public class AmmunitionFactory extends XmlFactory<Ammunition> {
 	private static final String ACCESSORIES = "others";
 	private static final String DAMAGE_TYPE = "damageType";
 
-	private static AmmunitionFactory instance;
-
-	private static void createInstance() {
-		if (instance == null) {
-			synchronized (AmmunitionFactory.class) {
-				if (instance == null) {
-					instance = new AmmunitionFactory();
-				}
-			}
-		}
+	private static class AmmunitionFactoryInit {
+		public static final AmmunitionFactory INSTANCE = new AmmunitionFactory();
 	}
 
 	public static AmmunitionFactory getInstance() {
-		if (instance == null) {
-			createInstance();
-		}
-		return instance;
+		return AmmunitionFactoryInit.INSTANCE;
 	}
 
 	@Override

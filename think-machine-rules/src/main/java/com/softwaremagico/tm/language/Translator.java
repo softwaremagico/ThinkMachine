@@ -58,7 +58,7 @@ public class Translator implements ITranslator {
 	private boolean retried = false;
 	private boolean showedMessage = false;
 	private static List<Language> languagesList = null;
-	private static HashMap<String, HashMap<String, String>> tagTranslations;
+	private HashMap<String, HashMap<String, String>> tagTranslations;
 	private static String language = DEFAULT_LANGUAGE;
 
 	public Translator(String filePath) {

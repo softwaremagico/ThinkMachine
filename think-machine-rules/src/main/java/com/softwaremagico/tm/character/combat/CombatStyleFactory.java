@@ -56,23 +56,12 @@ public class CombatStyleFactory extends XmlFactory<CombatStyle> {
 	private static final String STANCE_NAME = "name";
 	private static final String STANCE_DESCRIPTION = "description";
 
-	private static CombatStyleFactory instance;
-
-	private static void createInstance() {
-		if (instance == null) {
-			synchronized (CombatStyleFactory.class) {
-				if (instance == null) {
-					instance = new CombatStyleFactory();
-				}
-			}
-		}
+	private static class CombatStyleFactoryInit {
+		public static final CombatStyleFactory INSTANCE = new CombatStyleFactory();
 	}
 
 	public static CombatStyleFactory getInstance() {
-		if (instance == null) {
-			createInstance();
-		}
-		return instance;
+		return CombatStyleFactoryInit.INSTANCE;
 	}
 
 	@Override
@@ -86,10 +75,12 @@ public class CombatStyleFactory extends XmlFactory<CombatStyle> {
 	}
 
 	@Override
-	protected CombatStyle createElement(ITranslator translator, String combatStyleId, String language) throws InvalidXmlElementException {
+	protected CombatStyle createElement(ITranslator translator, String combatStyleId, String language)
+			throws InvalidXmlElementException {
 		try {
 			final String name = translator.getNodeValue(combatStyleId, NAME, language);
-			final CombatStyleGroup combatStyleGroup = CombatStyleGroup.get(translator.getNodeValue(combatStyleId, COMBAT_STYLE_GROUP));
+			final CombatStyleGroup combatStyleGroup = CombatStyleGroup.get(translator.getNodeValue(combatStyleId,
+					COMBAT_STYLE_GROUP));
 			if (combatStyleGroup == null) {
 				throw new InvalidCombatStyleException("Invalid group in combat style '" + combatStyleId + "'.");
 			}
@@ -103,10 +94,11 @@ public class CombatStyleFactory extends XmlFactory<CombatStyle> {
 
 				// Set requirements
 				final Set<CombatActionRequirement> requirements = new HashSet<>();
-				final Set<String> combatActionRequirements = translator.getAllChildrenTags(combatActionId, COMBAT_ACTION_REQUIREMENTS);
+				final Set<String> combatActionRequirements = translator.getAllChildrenTags(combatActionId,
+						COMBAT_ACTION_REQUIREMENTS);
 				for (final String combatActionRequirementId : combatActionRequirements) {
-					final String skillNames = translator.getNodeValue(combatActionId, COMBAT_ACTION_REQUIREMENTS, combatActionRequirementId,
-							COMBAT_ACTION_REQUIREMENTS_SKILL);
+					final String skillNames = translator.getNodeValue(combatActionId, COMBAT_ACTION_REQUIREMENTS,
+							combatActionRequirementId, COMBAT_ACTION_REQUIREMENTS_SKILL);
 
 					final Set<IValue> restrictions = new HashSet<>();
 					try {
@@ -118,26 +110,29 @@ public class CombatStyleFactory extends XmlFactory<CombatStyle> {
 							} catch (InvalidXmlElementException e) {
 								// Maybe is a characteristic.
 								try {
-									restrictions.add(CharacteristicsDefinitionFactory.getInstance().getElement(skillName, language));
+									restrictions.add(CharacteristicsDefinitionFactory.getInstance().getElement(
+											skillName, language));
 								} catch (InvalidXmlElementException e2) {
-									throw new InvalidCombatStyleException("Invalid requirement '" + skillName + "' in combat style '" + combatStyleId + "'.",
-											e2);
+									throw new InvalidCombatStyleException("Invalid requirement '" + skillName
+											+ "' in combat style '" + combatStyleId + "'.", e2);
 								}
 							}
 						}
 					} catch (NullPointerException e) {
-						throw new InvalidCombatStyleException("Invalid requirement '" + combatActionRequirementId + "' for skills '" + skillNames + "' in '"
-								+ combatActionId + "' at combat style '" + combatStyleId + "'.", e);
+						throw new InvalidCombatStyleException("Invalid requirement '" + combatActionRequirementId
+								+ "' for skills '" + skillNames + "' in '" + combatActionId + "' at combat style '"
+								+ combatStyleId + "'.", e);
 					}
 
 					try {
-						final String skillValue = translator.getNodeValue(combatActionId, COMBAT_ACTION_REQUIREMENTS, combatActionRequirementId,
-								COMBAT_ACTION_REQUIREMENTS_VALUE);
-						final CombatActionRequirement combatActionRequirement = new CombatActionRequirement(restrictions, Integer.parseInt(skillValue));
+						final String skillValue = translator.getNodeValue(combatActionId, COMBAT_ACTION_REQUIREMENTS,
+								combatActionRequirementId, COMBAT_ACTION_REQUIREMENTS_VALUE);
+						final CombatActionRequirement combatActionRequirement = new CombatActionRequirement(
+								restrictions, Integer.parseInt(skillValue));
 						requirements.add(combatActionRequirement);
 					} catch (NumberFormatException e) {
-						throw new InvalidCombatStyleException("Invalid requirement value in '" + combatActionId + "' at combat style '" + combatStyleId + "'.",
-								e);
+						throw new InvalidCombatStyleException("Invalid requirement value in '" + combatActionId
+								+ "' at combat style '" + combatStyleId + "'.", e);
 					}
 				}
 
@@ -162,8 +157,8 @@ public class CombatStyleFactory extends XmlFactory<CombatStyle> {
 					// Not mandatory
 				}
 
-				final CombatAction combatAction = new CombatAction(combatActionId, combatActionName, language, combatActionGoal, combatActionDamage,
-						combatActionOthers, requirements);
+				final CombatAction combatAction = new CombatAction(combatActionId, combatActionName, language,
+						combatActionGoal, combatActionDamage, combatActionOthers, requirements);
 				combatStyle.addCombatAction(combatAction);
 			}
 
@@ -194,7 +189,8 @@ public class CombatStyleFactory extends XmlFactory<CombatStyle> {
 		}
 	}
 
-	public CombatStyle getCombatStyle(AvailableBenefice beneficeDefinition, String language) throws InvalidXmlElementException {
+	public CombatStyle getCombatStyle(AvailableBenefice beneficeDefinition, String language)
+			throws InvalidXmlElementException {
 		if (beneficeDefinition.getBeneficeDefinition().getGroup() == BeneficeGroup.FIGHTING) {
 			return getElement(beneficeDefinition.getId(), language);
 		}

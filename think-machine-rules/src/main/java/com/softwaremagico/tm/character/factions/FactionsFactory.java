@@ -62,26 +62,15 @@ public class FactionsFactory extends XmlFactory<Faction> {
 	private static final String FEMALE_NAMES = "female";
 	private static final String SURNAMES = "surnames";
 
-	private static FactionsFactory instance;
-
 	private Map<Faction, Map<Gender, Set<Name>>> namesByFaction;
 	private Map<Faction, Set<Surname>> surnamesByFaction;
 
-	private static void createInstance() {
-		if (instance == null) {
-			synchronized (FactionsFactory.class) {
-				if (instance == null) {
-					instance = new FactionsFactory();
-				}
-			}
-		}
+	private static class FactionsFactoryInit {
+		public static final FactionsFactory INSTANCE = new FactionsFactory();
 	}
 
 	public static FactionsFactory getInstance() {
-		if (instance == null) {
-			createInstance();
-		}
-		return instance;
+		return FactionsFactoryInit.INSTANCE;
 	}
 
 	@Override

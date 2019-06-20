@@ -48,16 +48,12 @@ public class CharacteristicsDefinitionFactory extends XmlFactory<CharacteristicD
 
 	private Map<String, Map<CharacteristicType, List<CharacteristicDefinition>>> characteristics;
 
-	private static CharacteristicsDefinitionFactory instance;
+	private static class CharacteristicsDefinitionFactoryInit {
+		public static final CharacteristicsDefinitionFactory INSTANCE = new CharacteristicsDefinitionFactory();
+	}
 
-	private static void createInstance() {
-		if (instance == null) {
-			synchronized (CharacteristicsDefinitionFactory.class) {
-				if (instance == null) {
-					instance = new CharacteristicsDefinitionFactory();
-				}
-			}
-		}
+	public static CharacteristicsDefinitionFactory getInstance() {
+		return CharacteristicsDefinitionFactoryInit.INSTANCE;
 	}
 
 	@Override
@@ -79,26 +75,22 @@ public class CharacteristicsDefinitionFactory extends XmlFactory<CharacteristicD
 					characteristics = new HashMap<>();
 				}
 				if (characteristics.get(language.getAbbreviature()) == null) {
-					characteristics.put(language.getAbbreviature(), new HashMap<CharacteristicType, List<CharacteristicDefinition>>());
+					characteristics.put(language.getAbbreviature(),
+							new HashMap<CharacteristicType, List<CharacteristicDefinition>>());
 				}
 				for (final CharacteristicDefinition characteristicsDefinition : characteristicsDefinitions) {
 					if (characteristics.get(language.getAbbreviature()).get(characteristicsDefinition.getType()) == null) {
-						characteristics.get(language.getAbbreviature()).put(characteristicsDefinition.getType(), new ArrayList<CharacteristicDefinition>());
+						characteristics.get(language.getAbbreviature()).put(characteristicsDefinition.getType(),
+								new ArrayList<CharacteristicDefinition>());
 					}
 
-					characteristics.get(language.getAbbreviature()).get(characteristicsDefinition.getType()).add(characteristicsDefinition);
+					characteristics.get(language.getAbbreviature()).get(characteristicsDefinition.getType())
+							.add(characteristicsDefinition);
 				}
 			} catch (InvalidXmlElementException e) {
 				MachineLog.errorMessage(this.getClass().getName(), e);
 			}
 		}
-	}
-
-	public static CharacteristicsDefinitionFactory getInstance() {
-		if (instance == null) {
-			createInstance();
-		}
-		return instance;
 	}
 
 	@Override
@@ -107,7 +99,8 @@ public class CharacteristicsDefinitionFactory extends XmlFactory<CharacteristicD
 	}
 
 	@Override
-	protected CharacteristicDefinition createElement(ITranslator translator, String characteristicId, String language) throws InvalidXmlElementException {
+	protected CharacteristicDefinition createElement(ITranslator translator, String characteristicId, String language)
+			throws InvalidXmlElementException {
 		CharacteristicDefinition characteristic = null;
 		try {
 			final String name = translator.getNodeValue(characteristicId, NAME, language);
@@ -120,7 +113,8 @@ public class CharacteristicsDefinitionFactory extends XmlFactory<CharacteristicD
 			final String abbreviature = translator.getNodeValue(characteristicId, ABBREVIATURE, language);
 			characteristic.setAbbreviature(abbreviature);
 		} catch (Exception e) {
-			throw new InvalidCharacteristicException("Invalid abbreviature in characteristic '" + characteristicId + "'.");
+			throw new InvalidCharacteristicException("Invalid abbreviature in characteristic '" + characteristicId
+					+ "'.");
 		}
 
 		try {

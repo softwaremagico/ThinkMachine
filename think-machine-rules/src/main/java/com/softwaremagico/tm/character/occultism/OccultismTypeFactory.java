@@ -39,27 +39,17 @@ public class OccultismTypeFactory extends XmlFactory<OccultismType> {
 	private static final String PSI_TAG = "psi";
 	private static final String THEURGY_TAG = "theurgy";
 
-	private static OccultismTypeFactory instance;
-
-	private static void createInstance() {
-		if (instance == null) {
-			synchronized (OccultismTypeFactory.class) {
-				if (instance == null) {
-					instance = new OccultismTypeFactory();
-				}
-			}
-		}
+	private static class OccultismTypeFactoryInit {
+		public static final OccultismTypeFactory INSTANCE = new OccultismTypeFactory();
 	}
 
 	public static OccultismTypeFactory getInstance() {
-		if (instance == null) {
-			createInstance();
-		}
-		return instance;
+		return OccultismTypeFactoryInit.INSTANCE;
 	}
 
 	@Override
-	protected OccultismType createElement(ITranslator translator, String occulstimTypeId, String language) throws InvalidXmlElementException {
+	protected OccultismType createElement(ITranslator translator, String occulstimTypeId, String language)
+			throws InvalidXmlElementException {
 		try {
 			final String name = translator.getNodeValue(occulstimTypeId, NAME, language);
 			final String darkSide = translator.getNodeValue(occulstimTypeId, DARK_SIDE, language);
