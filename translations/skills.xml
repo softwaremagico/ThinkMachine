@@ -520,6 +520,10 @@
 					<generalProbability>low</generalProbability>
 				</random>
 			</kelantiLore>
+			<poisons>
+				<en>Poisons</en>
+				<es>Venenos</es>
+			</poisons>
 		</specializations>
 		<numberToShow>4</numberToShow>
 		<random>

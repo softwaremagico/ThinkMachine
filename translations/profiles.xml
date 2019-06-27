@@ -74,7 +74,56 @@
 			<es>Rufián</es>
 		</name>
 		<preferences>CombatPreferences.BELLIGERENT, CharacteristicsPreferences.BODY, SpecializationPreferences.SPECIALIZED, StatusPreferences.NONE, WeaponsPreferences.MEDIUM, SkillGroupPreferences.MALEFACTION, FactionPreferences.NONE</preferences>
+		<skill>
+			<id>streetWise</id>
+		</skill>
 		<suggestedBenefices>escapedSerf, branded, escapedSlave, addiction, orphan</suggestedBenefices>
 		<mandatoryBenefices>outlaw</mandatoryBenefices>
 	</thug>
+	<slayer>
+		<name>
+			<en>Slayer</en>
+			<es>Asesino</es>
+		</name>
+		<preferences>CombatPreferences.BELLIGERENT, SpecializationPreferences.SPECIALIZED, SkillGroupPreferences.MALEFACTION, FactionPreferences.NONE,  CharacteristicsPreferences.BODY, SpecializationPreferences.SPECIALIZED, TechnologicalPreferences.SPACE_CITIZEN, WeaponsPreferences.HIGH</preferences>
+		<characteristicsMinimumValues>
+			<tech>6</tech>
+			<wits>6</wits>
+			<dexterity>6</dexterity>
+		</characteristicsMinimumValues>
+		<suggestedSkills>
+			<skill>
+				<id>fight</id>
+			</skill>
+			<skill>
+				<id>melee</id>
+			</skill>
+			<skill>
+				<id>observe</id>
+			</skill>
+			<skill>
+				<id>energyGuns</id>
+			</skill>
+			<skill>
+				<id>sneak</id>
+			</skill>
+			<skill>
+				<id>vigor</id>
+			</skill>
+			<skill>
+				<id>lore</id>
+				<speciality>poisons</speciality>
+			</skill>
+			<skill>
+				<id>lockpicking</id>
+			</skill>
+			<skill>
+				<id>sleightOfHand</id>
+			</skill>
+			<skill>
+				<id>streetWise</id>
+			</skill>
+			<suggestedBenefices>passageContracts, professionalContract, secrets, darkSecret</suggestedBenefices>
+		</suggestedSkills>
+	</slayer>
 </profiles>

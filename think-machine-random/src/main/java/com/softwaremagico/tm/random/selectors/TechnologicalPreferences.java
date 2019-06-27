@@ -37,6 +37,8 @@ public enum TechnologicalPreferences implements IRandomPreference {
 	MODERN(3, 5),
 
 	FUTURIST(4, 7),
+	
+	SPACE_CITIZEN(6, 9),
 
 	MAXIMAL(7, 10);
 

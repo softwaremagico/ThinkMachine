@@ -90,8 +90,8 @@ public class ProfileTests {
 		randomizeCharacter.createCharacter();
 		Assert.assertTrue(characterPlayer.getSkillTotalRanks(AvailableSkillsFactory.getInstance().getElement("craft",
 				"household", LANGUAGE)) > 0);
-//		CharacterSheet characterSheet = new CharacterSheet(characterPlayer);
-//		System.out.println(characterSheet.toString());
+		// CharacterSheet characterSheet = new CharacterSheet(characterPlayer);
+		// System.out.println(characterSheet.toString());
 	}
 
 	@Test
@@ -106,5 +106,16 @@ public class ProfileTests {
 				.size(), 5);
 		randomizeCharacter.createCharacter();
 		Assert.assertNotNull(characterPlayer.getBenefice("outlaw"));
+	}
+
+	@Test
+	public void slayer() throws DuplicatedPreferenceException, InvalidXmlElementException,
+			InvalidRandomElementSelectedException, TooManyBlessingsException {
+		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
+		final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, RandomProfileFactory
+				.getInstance().getElement("slayer", LANGUAGE));
+		Assert.assertEquals(RandomProfileFactory.getInstance().getElement("slayer", LANGUAGE).getSuggestedBenefices()
+				.size(), 4);
+		randomizeCharacter.createCharacter();
 	}
 }
