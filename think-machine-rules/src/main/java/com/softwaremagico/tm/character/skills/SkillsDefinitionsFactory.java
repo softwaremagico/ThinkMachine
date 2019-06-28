@@ -51,9 +51,9 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 	private static final String NATURAL_SKILL_TAG = "natural";
 	private static final String NUMBER_TO_SHOW_TAG = "numberToShow";
 
-	private Map<String, List<SkillDefinition>> naturalSkills = new HashMap<>();
-	private Map<String, List<SkillDefinition>> learnedSkills = new HashMap<>();
-	private Map<String, Map<SkillGroup, Set<SkillDefinition>>> skillsByGroup = new HashMap<>();
+	private static Map<String, List<SkillDefinition>> naturalSkills = new HashMap<>();
+	private static Map<String, List<SkillDefinition>> learnedSkills = new HashMap<>();
+	private static Map<String, Map<SkillGroup, Set<SkillDefinition>>> skillsByGroup = new HashMap<>();
 
 	private static class SkillsDefinitionsFactoryInit {
 		public static final SkillsDefinitionsFactory INSTANCE = new SkillsDefinitionsFactory();
@@ -65,21 +65,42 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 
 	@Override
 	public void clearCache() {
-		naturalSkills = new HashMap<>();
-		learnedSkills = new HashMap<>();
-		skillsByGroup = new HashMap<>();
+		naturalSkills.clear();
+		learnedSkills.clear();
+		skillsByGroup.clear();
 		super.clearCache();
 	}
 
 	public List<SkillDefinition> getNaturalSkills(String language) {
+		if (naturalSkills.get(language) == null) {
+			try {
+				getElements(language);
+			} catch (InvalidXmlElementException e) {
+				MachineLog.errorMessage(this.getClass().getName(), e);
+			}
+		}
 		return naturalSkills.get(language);
 	}
 
 	public List<SkillDefinition> getLearnedSkills(String language) {
+		if (learnedSkills.get(language) == null) {
+			try {
+				getElements(language);
+			} catch (InvalidXmlElementException e) {
+				MachineLog.errorMessage(this.getClass().getName(), e);
+			}
+		}
 		return learnedSkills.get(language);
 	}
 
 	public Set<SkillDefinition> getSkills(SkillGroup skillGroup, String language) {
+		if (skillsByGroup.get(language) == null) {
+			try {
+				getElements(language);
+			} catch (InvalidXmlElementException e) {
+				MachineLog.errorMessage(this.getClass().getName(), e);
+			}
+		}
 		return skillsByGroup.get(language).get(skillGroup);
 	}
 
