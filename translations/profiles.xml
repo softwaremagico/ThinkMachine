@@ -80,6 +80,117 @@
 		<suggestedBenefices>escapedSerf, branded, escapedSlave, addiction, orphan</suggestedBenefices>
 		<mandatoryBenefices>outlaw</mandatoryBenefices>
 	</thug>
+	<militia>
+		<name>
+			<en>Militia</en>
+			<es>Milicia</es>
+		</name>
+		<preferences>CombatPreferences.FAIR, CharacteristicsPreferences.BODY, TechnologicalPreferences.BASIC, DifficultLevelPreferences.EASY</preferences>
+		<characteristicsMinimumValues>
+			<strength>6</strength>
+		</characteristicsMinimumValues>
+		<suggestedSkills>
+			<skill>
+				<id>slugGuns</id>
+			</skill>
+			<skill>
+				<id>melee</id>
+			</skill>
+			<skill>
+				<id>fight</id>
+			</skill>
+		</suggestedSkills>
+	</militia>
+	<infantry>
+		<name>
+			<en>Infantry</en>
+			<es>Infantería</es>
+		</name>
+		<preferences>CombatPreferences.FAIR, CharacteristicsPreferences.BODY, TechnologicalPreferences.MODERN</preferences>
+		<characteristicsMinimumValues>
+			<endurance>6</endurance>
+		</characteristicsMinimumValues>
+		<suggestedSkills>
+			<skill>
+				<id>slugGuns</id>
+			</skill>
+			<skill>
+				<id>melee</id>
+			</skill>
+			<skill>
+				<id>fight</id>
+			</skill>
+			<skill>
+				<id>vigor</id>
+			</skill>
+			<skill>
+				<id>survival</id>
+			</skill>
+			<equipment>imperialRifle, scaleMailMetal</equipment>
+		</suggestedSkills>
+	</infantry>
+	<heavyInfantry>
+		<name>
+			<en>Infantry</en>
+			<es>Infantería</es>
+		</name>
+		<preferences>CombatPreferences.FAIR, CharacteristicsPreferences.BODY, TechnologicalPreferences.MODERN</preferences>
+		<characteristicsMinimumValues>
+			<strength>6</strength>
+		</characteristicsMinimumValues>
+		<suggestedSkills>
+			<skill>
+				<id>slugGuns</id>
+			</skill>
+			<skill>
+				<id>melee</id>
+			</skill>
+			<skill>
+				<id>fight</id>
+			</skill>
+			<skill>
+				<id>vigor</id>
+			</skill>
+			<skill>
+				<id>survival</id>
+			</skill>
+			<skill>
+				<id>techRedemption</id>
+			</skill>
+			<equipment>jahnisak040MG, leatherJerkin</equipment>
+		</suggestedSkills>
+	</heavyInfantry>
+	<tracker>
+		<name>
+			<en>Tracker</en>
+			<es>Rastreador</es>
+		</name>
+		<preferences>CombatPreferences.FAIR, TechnologicalPreferences.MODERN</preferences>
+		<characteristicsMinimumValues>
+			<perception>6</perception>
+		</characteristicsMinimumValues>
+		<suggestedSkills>
+			<skill>
+				<id>slugGuns</id>
+			</skill>
+			<skill>
+				<id>melee</id>
+			</skill>
+			<skill>
+				<id>vigor</id>
+			</skill>
+			<skill>
+				<id>sneak</id>
+			</skill>
+			<skill>
+				<id>observe</id>
+			</skill>
+			<skill>
+				<id>survival</id>
+			</skill>
+			<equipment>typicalSniperRifle, leatherJerkin</equipment>
+		</suggestedSkills>
+	</tracker>
 	<slayer>
 		<name>
 			<en>Slayer</en>
