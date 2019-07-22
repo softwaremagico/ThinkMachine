@@ -51,9 +51,9 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 	private static final String NATURAL_SKILL_TAG = "natural";
 	private static final String NUMBER_TO_SHOW_TAG = "numberToShow";
 
-	private Map<String, List<SkillDefinition>> naturalSkills = new HashMap<>();
-	private Map<String, List<SkillDefinition>> learnedSkills = new HashMap<>();
-	private Map<String, Map<SkillGroup, Set<SkillDefinition>>> skillsByGroup = new HashMap<>();
+	private static Map<String, List<SkillDefinition>> naturalSkills = new HashMap<>();
+	private static Map<String, List<SkillDefinition>> learnedSkills = new HashMap<>();
+	private static Map<String, Map<SkillGroup, Set<SkillDefinition>>> skillsByGroup = new HashMap<>();
 
 	private static class SkillsDefinitionsFactoryInit {
 		public static final SkillsDefinitionsFactory INSTANCE = new SkillsDefinitionsFactory();
@@ -62,12 +62,16 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 	public static SkillsDefinitionsFactory getInstance() {
 		return SkillsDefinitionsFactoryInit.INSTANCE;
 	}
-
-	@Override
-	public void clearCache() {
+	
+	private static void initializeMaps() {
 		naturalSkills = new HashMap<>();
 		learnedSkills = new HashMap<>();
 		skillsByGroup = new HashMap<>();
+	}
+
+	@Override
+	public void clearCache() {
+		initializeMaps();
 		super.clearCache();
 	}
 
@@ -164,11 +168,11 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 				final StringTokenizer factionsOfSkill = new StringTokenizer(factionSkill, ",");
 				while (factionsOfSkill.hasMoreTokens()) {
 					try {
-						skill.addFaction(FactionsFactory.getInstance().getElement(factionsOfSkill.nextToken().trim(),
-								language));
+						skill.addFaction(
+								FactionsFactory.getInstance().getElement(factionsOfSkill.nextToken().trim(), language));
 					} catch (InvalidXmlElementException ixe) {
-						throw new InvalidSkillException("Error in skill '" + skillId
-								+ "' structure. Invalid faction defintion. ", ixe);
+						throw new InvalidSkillException(
+								"Error in skill '" + skillId + "' structure. Invalid faction defintion. ", ixe);
 					}
 				}
 			}
@@ -187,7 +191,7 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 		}
 	}
 
-	private void classifySkillByGroup(SkillDefinition skillDefintion, String language) {
+	private synchronized void classifySkillByGroup(SkillDefinition skillDefintion, String language) {
 		if (skillsByGroup.get(language) == null) {
 			skillsByGroup.put(language, new HashMap<SkillGroup, Set<SkillDefinition>>());
 		}
