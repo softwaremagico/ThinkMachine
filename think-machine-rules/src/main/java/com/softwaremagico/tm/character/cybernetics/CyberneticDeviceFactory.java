@@ -2,9 +2,9 @@ package com.softwaremagico.tm.character.cybernetics;
 
 /*-
  * #%L
- * Think Machine (Core)
+ * Think Machine (Rules)
  * %%
- * Copyright (C) 2018 Softwaremagico
+ * Copyright (C) 2017 - 2019 Softwaremagico
  * %%
  * This software is designed by Jorge Hortelano Otero. Jorge Hortelano Otero
  * <softwaremagico@gmail.com> Valencia (Spain).
@@ -24,13 +24,10 @@ package com.softwaremagico.tm.character.cybernetics;
  * #L%
  */
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.StringTokenizer;
 
 import com.softwaremagico.tm.ElementClassification;
 import com.softwaremagico.tm.InvalidXmlElementException;
@@ -184,23 +181,8 @@ public class CyberneticDeviceFactory extends XmlFactory<CyberneticDevice> {
 						"Invalid incompatibility value in cybernetic device '" + cyberneticDeviceId + "'.");
 			}
 
-			final List<CyberneticDeviceTrait> traits = new ArrayList<>();
-			final String traitsNames = translator.getNodeValue(cyberneticDeviceId, TRAITS);
-			try {
-				final StringTokenizer traitTokenizer = new StringTokenizer(traitsNames, ",");
-				while (traitTokenizer.hasMoreTokens()) {
-					final String traitName = traitTokenizer.nextToken().trim();
-					try {
-						traits.add(CyberneticDeviceTraitFactory.getInstance().getElement(traitName, language));
-					} catch (InvalidXmlElementException e) {
-						throw new InvalidCyberneticDeviceException("Invalid trait '" + traitName + "' for traits '"
-								+ traitsNames + "' in cybernetic device '" + cyberneticDeviceId + "'.", e);
-					}
-				}
-			} catch (NullPointerException e) {
-				throw new InvalidCyberneticDeviceException(
-						"Invalid traits '" + traitsNames + "' in cybernetic device '" + cyberneticDeviceId + "'.", e);
-			}
+			final Set<CyberneticDeviceTrait> traits = getCommaSeparatedValues(cyberneticDeviceId, TRAITS, language,
+					CyberneticDeviceTraitFactory.getInstance());
 
 			String requires = null;
 			try {

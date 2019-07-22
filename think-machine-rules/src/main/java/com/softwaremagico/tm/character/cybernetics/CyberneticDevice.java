@@ -1,5 +1,7 @@
 package com.softwaremagico.tm.character.cybernetics;
 
+import java.util.ArrayList;
+
 /*-
  * #%L
  * Think Machine (Core)
@@ -50,14 +52,14 @@ public class CyberneticDevice extends Element<CyberneticDevice> implements IElem
 	private final ElementClassification classification;
 
 	public CyberneticDevice(String id, String name, String language, int points, int incompatibility, int cost,
-			int techLevel, String requirement, Weapon weapon, List<CyberneticDeviceTrait> traits,
+			int techLevel, String requirement, Weapon weapon, Set<CyberneticDeviceTrait> traits,
 			Set<Bonification> bonifications, Set<StaticValue> staticValues, ElementClassification classification) {
 		super(id, name, language);
 		this.points = points;
 		this.incompatibility = incompatibility;
 		this.cost = cost;
 		this.techLevel = techLevel;
-		this.traits = traits;
+		this.traits = new ArrayList<>(traits);
 		Collections.sort(this.traits);
 		this.requirement = requirement;
 		this.weapon = weapon;

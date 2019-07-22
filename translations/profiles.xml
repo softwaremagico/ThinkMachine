@@ -188,7 +188,7 @@
 			<skill>
 				<id>survival</id>
 			</skill>
-			<equipment>typicalSniperRifle, leatherJerkin</equipment>
+			<weapons>typicalSniperRifle, leatherJerkin</weapons>
 		</suggestedSkills>
 	</tracker>
 	<slayer>

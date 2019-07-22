@@ -35,6 +35,8 @@ import com.softwaremagico.tm.XmlFactory;
 import com.softwaremagico.tm.character.benefices.BeneficeDefinition;
 import com.softwaremagico.tm.character.benefices.BeneficeDefinitionFactory;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
+import com.softwaremagico.tm.character.equipment.weapons.Weapon;
+import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.language.ITranslator;
@@ -55,6 +57,7 @@ public class RandomProfileFactory extends XmlFactory<RandomProfile> {
 	private static final String REQUIRED_SKILLS_SPECIALIZATION = "speciality";
 	private static final String SUGGESTED_BENEFICES = "suggestedBenefices";
 	private static final String MANDATORY_BENEFICES = "mandatoryBenefices";
+	private static final String MANDATORY_WEAPONS = "weapons";
 	private static final String PARENT = "parent";
 
 	private static class RandomProfileFactoryInit {
@@ -209,37 +212,14 @@ public class RandomProfileFactory extends XmlFactory<RandomProfile> {
 			}
 		}
 
-		final String mandatoryBeneficesList = getTranslator().getNodeValue(profileId, MANDATORY_BENEFICES);
-		final Set<BeneficeDefinition> mandatoryBenefices = new HashSet<>();
-		if (mandatoryBeneficesList != null) {
-			final StringTokenizer mandatoyBeneficesTokenizer = new StringTokenizer(mandatoryBeneficesList, ",");
-			while (mandatoyBeneficesTokenizer.hasMoreTokens()) {
-				try {
-					mandatoryBenefices.add(BeneficeDefinitionFactory.getInstance()
-							.getElement(mandatoyBeneficesTokenizer.nextToken().trim(), language));
-				} catch (InvalidXmlElementException ixe) {
-					throw new InvalidProfileException(
-							"Error in profile '" + profileId + "' structure. Invalid mandatory benefice defintion.",
-							ixe);
-				}
-			}
-		}
+		final Set<BeneficeDefinition> mandatoryBenefices = getCommaSeparatedValues(profileId, MANDATORY_BENEFICES,
+				language, BeneficeDefinitionFactory.getInstance());
 
-		final String suggestedBeneficesList = getTranslator().getNodeValue(profileId, SUGGESTED_BENEFICES);
-		final Set<BeneficeDefinition> suggestedBenefices = new HashSet<>();
-		if (suggestedBeneficesList != null) {
-			final StringTokenizer suggestedBeneficesTokenizer = new StringTokenizer(suggestedBeneficesList, ",");
-			while (suggestedBeneficesTokenizer.hasMoreTokens()) {
-				try {
-					suggestedBenefices.add(BeneficeDefinitionFactory.getInstance()
-							.getElement(suggestedBeneficesTokenizer.nextToken().trim(), language));
-				} catch (InvalidXmlElementException ixe) {
-					throw new InvalidProfileException(
-							"Error in profile '" + profileId + "' structure. Invalid suggested benefice definition.",
-							ixe);
-				}
-			}
-		}
+		final Set<BeneficeDefinition> suggestedBenefices = getCommaSeparatedValues(profileId, SUGGESTED_BENEFICES,
+				language, BeneficeDefinitionFactory.getInstance());
+
+		final Set<Weapon> mandatoryWeapons = getCommaSeparatedValues(profileId, MANDATORY_WEAPONS, language,
+				WeaponFactory.getInstance());
 
 		final RandomProfile profile = new RandomProfile(profileId, name, language, preferencesSelected,
 				characteristicsMinimumValues, requiredSkills, suggestedSkills, mandatoryBenefices, suggestedBenefices);
