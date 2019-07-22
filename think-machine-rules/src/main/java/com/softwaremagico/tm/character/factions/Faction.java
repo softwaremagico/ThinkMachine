@@ -116,4 +116,14 @@ public class Faction extends Element<Faction> {
 	public void setBenefices(Set<AvailableBenefice> benefices) {
 		this.benefices = benefices;
 	}
+
+	@Override
+	public int hashCode() {
+		return super.hashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return super.equals(obj);
+	}
 }

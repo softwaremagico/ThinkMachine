@@ -1,5 +1,7 @@
 package com.softwaremagico.tm.pdf.complete.cybernetics;
 
+import java.io.Serializable;
+
 /*-
  * #%L
  * Think Machine (Core)
@@ -60,12 +62,15 @@ public class CyberneticsTable extends LateralHeaderPdfPTable {
 			final List<SelectedCyberneticDevice> devices = new ArrayList<>(characterPlayer.getCybernetics());
 			Collections.sort(devices, new CyberneticComparatorByRequirements());
 			for (final SelectedCyberneticDevice device : devices) {
-				addCell(createFirstElementLine(device.getRequirement() != null ? " - " + device.getName() : device.getName(), NAME_COLUMN_WIDTH,
+				addCell(createFirstElementLine(
+						device.getRequirement() != null ? " - " + device.getName() : device.getName(),
+						NAME_COLUMN_WIDTH, FadingSunsTheme.CYBERNETICS_CONTENT_FONT_SIZE));
+				addCell(createElementLine(device.getPoints() + "", POINTS_COLUMN_WIDTH,
 						FadingSunsTheme.CYBERNETICS_CONTENT_FONT_SIZE));
-				addCell(createElementLine(device.getPoints() + "", POINTS_COLUMN_WIDTH, FadingSunsTheme.CYBERNETICS_CONTENT_FONT_SIZE));
-				addCell(createElementLine(device.getIncompatibility() + "", INCOMPATIBILITY_COLUMN_WIDTH, FadingSunsTheme.CYBERNETICS_CONTENT_FONT_SIZE));
-				addCell(createElementLine(getTraitsRepresentation(device.getTraits()), TRAITS_COLUMN_WIDTH, FadingSunsTheme.CYBERNETICS_CONTENT_FONT_SIZE,
-						Element.ALIGN_LEFT));
+				addCell(createElementLine(device.getIncompatibility() + "", INCOMPATIBILITY_COLUMN_WIDTH,
+						FadingSunsTheme.CYBERNETICS_CONTENT_FONT_SIZE));
+				addCell(createElementLine(getTraitsRepresentation(device.getTraits()), TRAITS_COLUMN_WIDTH,
+						FadingSunsTheme.CYBERNETICS_CONTENT_FONT_SIZE, Element.ALIGN_LEFT));
 				addedDevices++;
 			}
 		}
@@ -94,7 +99,9 @@ public class CyberneticsTable extends LateralHeaderPdfPTable {
 		return FadingSunsTheme.CYBERNETICS_TITLE_FONT_SIZE;
 	}
 
-	class CyberneticComparatorByRequirements implements Comparator<SelectedCyberneticDevice> {
+	private static class CyberneticComparatorByRequirements
+			implements Comparator<SelectedCyberneticDevice>, Serializable {
+		private static final long serialVersionUID = -5736202150064911876L;
 
 		@Override
 		public int compare(SelectedCyberneticDevice a, SelectedCyberneticDevice element) {

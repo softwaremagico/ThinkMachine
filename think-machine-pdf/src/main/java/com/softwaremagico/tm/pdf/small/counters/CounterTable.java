@@ -35,11 +35,10 @@ import com.softwaremagico.tm.pdf.complete.elements.CustomPdfTable;
 import com.softwaremagico.tm.pdf.complete.elements.CellCompleteBoxEvent.Border;
 
 public abstract class CounterTable extends CustomPdfTable {
-	protected static final float[] WIDTHS = { 2.8f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f,
-			1f, 1f };
+	static final float[] WIDTHS = { 2.8f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f };
 	protected int addedCircle = 0;
 	// http://stackoverflow.com/questions/5554553/itext-pdftable-cell-vertical-alignment
-	protected float paddingTop = -3f;
+	protected float newPaddingTop = -3f;
 
 	private CharacterPlayer characterPlayer;
 
@@ -75,8 +74,9 @@ public abstract class CounterTable extends CustomPdfTable {
 	}
 
 	protected PdfPCell createCircle() {
-		final PdfPCell cell = createValue("O", new Font(FadingSunsTheme.getTitleFont(),
-				FadingSunsTheme.CHARACTER_COUNTER_POINT_SIZE), Element.ALIGN_MIDDLE);
+		final PdfPCell cell = createValue("O",
+				new Font(FadingSunsTheme.getTitleFont(), FadingSunsTheme.CHARACTER_COUNTER_POINT_SIZE),
+				Element.ALIGN_MIDDLE);
 		return cell;
 	}
 
@@ -85,7 +85,7 @@ public abstract class CounterTable extends CustomPdfTable {
 		final PdfPCell circleCell = new PdfPCell(content);
 		// Not putting correctly the "o" at the center of the cell.
 		// http://stackoverflow.com/questions/5554553/itext-pdftable-cell-vertical-alignment
-		circleCell.setPaddingTop(paddingTop);
+		circleCell.setPaddingTop(newPaddingTop);
 		circleCell.setHorizontalAlignment(Element.ALIGN_CENTER);
 		circleCell.setVerticalAlignment(alignment);
 		circleCell.setBorder(0);

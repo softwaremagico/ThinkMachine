@@ -100,4 +100,14 @@ public class SkillDefinition extends Skill<SkillDefinition> implements ISkillRan
 	public boolean isLimitedToFaction() {
 		return !factions.isEmpty();
 	}
+
+	@Override
+	public int hashCode() {
+		return super.hashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return super.equals(obj);
+	}
 }

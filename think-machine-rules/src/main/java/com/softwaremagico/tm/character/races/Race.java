@@ -57,8 +57,9 @@ public class Race extends Element<Race> {
 		super(id, name, language);
 	}
 
-	public Race(String name, String language, int strength, int dexterity, int endurance, int wits, int perception, int tech, int presence, int will,
-			int faith, int movement, int psi, int teurgy, int urge, int hubris, int cost) {
+	public Race(String name, String language, int strength, int dexterity, int endurance, int wits, int perception,
+			int tech, int presence, int will, int faith, int movement, int psi, int teurgy, int urge, int hubris,
+			int cost) {
 		this(null, name, language);
 		setValue(CharacteristicName.STRENGTH, strength);
 		setValue(CharacteristicName.DEXTERITY, dexterity);
@@ -108,7 +109,8 @@ public class Race extends Element<Race> {
 		try {
 			getParameter(characteristicName).setMaximumInitialValue(maxValue);
 		} catch (NullPointerException npe) {
-			MachineLog.severe(this.getClass().getName(), "Invalid maximum initial parameter '" + characteristicName + "'.");
+			MachineLog.severe(this.getClass().getName(),
+					"Invalid maximum initial parameter '" + characteristicName + "'.");
 		}
 	}
 
@@ -162,5 +164,15 @@ public class Race extends Element<Race> {
 
 	public void setCost(int cost) {
 		this.cost = cost;
+	}
+
+	@Override
+	public int hashCode() {
+		return super.hashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return super.equals(obj);
 	}
 }

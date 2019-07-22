@@ -39,7 +39,8 @@ public class Armour extends Equipment<Armour> {
 	private final Set<Shield> allowedShields;
 	private final Set<ArmourSpecification> specifications;
 
-	public Armour(String id, String name, String language, int techLevel, int protection, Set<DamageType> damageTypes, float cost) {
+	public Armour(String id, String name, String language, int techLevel, int protection, Set<DamageType> damageTypes,
+			float cost) {
 		super(id, name, cost, techLevel, language);
 		this.protection = protection;
 		this.damageTypes = damageTypes;
@@ -49,8 +50,9 @@ public class Armour extends Equipment<Armour> {
 		this.specifications = new HashSet<>();
 	}
 
-	public Armour(String id, String name, String language, int techLevel, int protection, Set<DamageType> damageTypes, ArmourPenalization specialPenalizations,
-			ArmourPenalization otherPenalizations, Set<Shield> allowedShields, Set<ArmourSpecification> specifications, float cost) {
+	public Armour(String id, String name, String language, int techLevel, int protection, Set<DamageType> damageTypes,
+			ArmourPenalization specialPenalizations, ArmourPenalization otherPenalizations, Set<Shield> allowedShields,
+			Set<ArmourSpecification> specifications, float cost) {
 		super(id, name, cost, techLevel, language);
 		this.protection = protection;
 		this.damageTypes = damageTypes;
@@ -81,11 +83,22 @@ public class Armour extends Equipment<Armour> {
 	}
 
 	public boolean isHeavy() {
-		return standardPenalizations.getDexterityModification() > 0 || standardPenalizations.getStrengthModification() > 0
+		return standardPenalizations.getDexterityModification() > 0
+				|| standardPenalizations.getStrengthModification() > 0
 				|| standardPenalizations.getEnduranceModification() > 0;
 	}
 
 	public Set<ArmourSpecification> getSpecifications() {
 		return specifications;
+	}
+
+	@Override
+	public int hashCode() {
+		return super.hashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return super.equals(obj);
 	}
 }

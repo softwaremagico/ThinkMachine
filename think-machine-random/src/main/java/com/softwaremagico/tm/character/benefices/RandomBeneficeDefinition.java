@@ -77,7 +77,8 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
 		}
 	}
 
-	protected void assignBenefice(BeneficeDefinition selectedBenefice, int maxPoints) throws InvalidXmlElementException {
+	protected void assignBenefice(BeneficeDefinition selectedBenefice, int maxPoints)
+			throws InvalidXmlElementException {
 		// Select the range of the benefice.
 		final AvailableBenefice selectedBeneficeWithLevel = assignLevelOfBenefice(selectedBenefice, maxPoints);
 		if (selectedBeneficeWithLevel != null) {
@@ -93,12 +94,12 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
 			} else {
 				try {
 					getCharacterPlayer().addBenefice(selectedBeneficeWithLevel);
-					RandomGenerationLog.info(this.getClass().getName(), "Added benefice '" + selectedBeneficeWithLevel
-							+ "'.");
+					RandomGenerationLog.info(this.getClass().getName(),
+							"Added benefice '" + selectedBeneficeWithLevel + "'.");
 				} catch (BeneficeAlreadyAddedException e) {
 					// If level is bigger... replace it.
-					final AvailableBenefice originalBenefice = getCharacterPlayer().getBenefice(
-							selectedBenefice.getId());
+					final AvailableBenefice originalBenefice = getCharacterPlayer()
+							.getBenefice(selectedBenefice.getId());
 					if (originalBenefice.getCost() < selectedBeneficeWithLevel.getCost()) {
 						getCharacterPlayer().removeBenefice(originalBenefice);
 						try {
@@ -116,8 +117,8 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
 
 		// Only one fighting style by character.
 		if (selectedBenefice.getGroup().equals(BeneficeGroup.FIGHTING)) {
-			for (final BeneficeDefinition beneficeDefinition : BeneficeDefinitionFactory.getInstance().getBenefices(
-					BeneficeGroup.FIGHTING, getCharacterPlayer().getLanguage())) {
+			for (final BeneficeDefinition beneficeDefinition : BeneficeDefinitionFactory.getInstance()
+					.getBenefices(BeneficeGroup.FIGHTING, getCharacterPlayer().getLanguage())) {
 				removeElementWeight(beneficeDefinition);
 			}
 		}
@@ -142,8 +143,8 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
 		// No restricted benefices.
 		if (benefice.getRestrictedFactionGroup() != null && getCharacterPlayer().getFaction() != null
 				&& benefice.getRestrictedFactionGroup() != getCharacterPlayer().getFaction().getFactionGroup()) {
-			throw new InvalidRandomElementSelectedException("Benefice '" + benefice + "' is restricted to '"
-					+ benefice.getRestrictedFactionGroup() + "'.");
+			throw new InvalidRandomElementSelectedException(
+					"Benefice '" + benefice + "' is restricted to '" + benefice.getRestrictedFactionGroup() + "'.");
 		}
 
 		// No special benefices
@@ -162,8 +163,7 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
 	}
 
 	/**
-	 * Returns a cost for a benefice depending on the preferences of the
-	 * character.
+	 * Returns a cost for a benefice depending on the preferences of the character.
 	 * 
 	 * @param benefice
 	 * @param maxPoints
@@ -207,8 +207,8 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
 			maxRangeSelected = maxPoints;
 		}
 
-		RandomGenerationLog.info(this.getClass().getName(), "MaxPoints of '" + benefice + "' are '" + maxRangeSelected
-				+ "'.");
+		RandomGenerationLog.info(this.getClass().getName(),
+				"MaxPoints of '" + benefice + "' are '" + maxRangeSelected + "'.");
 		Set<AvailableBenefice> beneficeLevels = AvailableBeneficeFactory.getInstance()
 				.getAvailableBeneficesByDefinition(getCharacterPlayer().getLanguage(), benefice);
 		// Cannot be null, but...
@@ -228,11 +228,11 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
 				if ((int) (o1Preferred - o2Preferred) != 0) {
 					return (int) (o1Preferred - o2Preferred);
 				}
-				return new Integer(o2.getCost()).compareTo(new Integer(o1.getCost()));
+				return Integer.compare(o2.getCost(), o1.getCost());
 			}
 		});
-		RandomGenerationLog.info(this.getClass().getName(), "Available benefice levels of '" + benefice + "' are '"
-				+ sortedBenefices + "'.");
+		RandomGenerationLog.info(this.getClass().getName(),
+				"Available benefice levels of '" + benefice + "' are '" + sortedBenefices + "'.");
 		for (final AvailableBenefice availableBenefice : sortedBenefices) {
 			try {
 				validateElement(availableBenefice.getRandomDefinition());
@@ -240,9 +240,9 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
 				continue;
 			}
 			if (Math.abs(availableBenefice.getCost()) <= maxRangeSelected
-			// Or is mandatory and is the last of the list.
-					|| (isMandatory(availableBenefice.getBeneficeDefinition()) && Objects.equals(availableBenefice,
-							sortedBenefices.get(sortedBenefices.size() - 1)))) {
+					// Or is mandatory and is the last of the list.
+					|| (isMandatory(availableBenefice.getBeneficeDefinition())
+							&& Objects.equals(availableBenefice, sortedBenefices.get(sortedBenefices.size() - 1)))) {
 				return availableBenefice;
 			}
 		}
@@ -250,19 +250,18 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
 	}
 
 	@Override
-	protected void assignIfMandatory(BeneficeDefinition benefice) throws InvalidXmlElementException,
-			ImpossibleToAssignMandatoryElementException {
+	protected void assignIfMandatory(BeneficeDefinition benefice)
+			throws InvalidXmlElementException, ImpossibleToAssignMandatoryElementException {
 		// Set status of the character.
 		try {
 			if ((benefice.getGroup() != null && benefice.getGroup().equals(BeneficeGroup.STATUS))
-					&& getWeight(benefice) > 0
-					&& getCharacterPlayer().getFaction() != null
-					&& Objects.equals(benefice.getRestrictedFactionGroup(), getCharacterPlayer().getFaction()
-							.getFactionGroup())) {
+					&& getWeight(benefice) > 0 && getCharacterPlayer().getFaction() != null
+					&& Objects.equals(benefice.getRestrictedFactionGroup(),
+							getCharacterPlayer().getFaction().getFactionGroup())) {
 				final IGaussianDistribution selectedStatus = StatusPreferences.getSelected(getPreferences());
 				if (selectedStatus != null) {
-					RandomGenerationLog.debug(this.getClass().getName(), "Searching grade '" + selectedStatus.maximum()
-							+ "' of benefice '" + benefice + "'.");
+					RandomGenerationLog.debug(this.getClass().getName(),
+							"Searching grade '" + selectedStatus.maximum() + "' of benefice '" + benefice + "'.");
 					assignBenefice(benefice, selectedStatus.maximum());
 				}
 			}

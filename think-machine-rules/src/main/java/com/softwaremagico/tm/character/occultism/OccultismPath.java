@@ -45,8 +45,8 @@ public class OccultismPath extends Element<OccultismPath> {
 	private final Set<Faction> factionsAllowed;
 	private final ElementClassification classification;
 
-	public OccultismPath(String id, String name, String language, OccultismType occultismType, Set<Faction> allowedFactions,
-			ElementClassification classification) {
+	public OccultismPath(String id, String name, String language, OccultismType occultismType,
+			Set<Faction> allowedFactions, ElementClassification classification) {
 		super(id, name, language);
 		this.occultismType = occultismType;
 		occultismPowers = new HashMap<>();
@@ -66,10 +66,8 @@ public class OccultismPath extends Element<OccultismPath> {
 	 * Gets the previous level powers form a power. At least one of them must be
 	 * aquired to purchase this power if is a psi path.
 	 * 
-	 * @param path
-	 *            the path of the power.
-	 * @param power
-	 *            the power that has one level more than the previous one
+	 * @param path  the path of the power.
+	 * @param power the power that has one level more than the previous one
 	 * @return A set with one or more powers.
 	 */
 	public Set<OccultismPower> getPreviousLevelPowers(OccultismPower power) {
@@ -123,5 +121,15 @@ public class OccultismPath extends Element<OccultismPath> {
 
 	public ElementClassification getClassification() {
 		return classification;
+	}
+
+	@Override
+	public int hashCode() {
+		return super.hashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return super.equals(obj);
 	}
 }

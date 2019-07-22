@@ -33,8 +33,8 @@ public class AvailableBenefice extends Element<AvailableBenefice> {
 	private final int cost;
 	private final BeneficeClassification beneficeClassification;
 
-	public AvailableBenefice(String id, String name, String language, BeneficeDefinition benefitDefinition, BeneficeClassification beneficeClassification,
-			int cost, RandomElementDefinition randomDefinition) {
+	public AvailableBenefice(String id, String name, String language, BeneficeDefinition benefitDefinition,
+			BeneficeClassification beneficeClassification, int cost, RandomElementDefinition randomDefinition) {
 		super(id, name, language, randomDefinition);
 		this.benefitDefinition = benefitDefinition;
 		this.beneficeClassification = beneficeClassification;
@@ -55,7 +55,10 @@ public class AvailableBenefice extends Element<AvailableBenefice> {
 
 	@Override
 	public String toString() {
-		return getName() + " (" + (benefitDefinition != null && benefitDefinition.getBeneficeClassification() == BeneficeClassification.AFFLICTION ? "+" : "")
+		return getName() + " ("
+				+ (benefitDefinition != null
+						&& benefitDefinition.getBeneficeClassification() == BeneficeClassification.AFFLICTION ? "+"
+								: "")
 				+ cost + ")";
 	}
 
@@ -69,6 +72,16 @@ public class AvailableBenefice extends Element<AvailableBenefice> {
 
 	public BeneficeClassification getBeneficeClassification() {
 		return beneficeClassification;
+	}
+
+	@Override
+	public int hashCode() {
+		return super.hashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return super.equals(obj);
 	}
 
 }

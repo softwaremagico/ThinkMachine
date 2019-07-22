@@ -43,8 +43,9 @@ public class OccultismPower extends Element<OccultismPower> {
 	private final Set<TheurgyComponent> components;
 	private boolean enabled;
 
-	public OccultismPower(String id, String name, String language, CharacteristicDefinition characteristic, List<IValue> values, int level,
-			OccultismRange range, OccultismDuration duration, Integer cost, Set<TheurgyComponent> components) {
+	public OccultismPower(String id, String name, String language, CharacteristicDefinition characteristic,
+			List<IValue> values, int level, OccultismRange range, OccultismDuration duration, Integer cost,
+			Set<TheurgyComponent> components) {
 		super(id, name, language);
 		this.characteristic = characteristic;
 		this.values = values;
@@ -56,8 +57,9 @@ public class OccultismPower extends Element<OccultismPower> {
 		enabled = true;
 	}
 
-	public OccultismPower(String id, String name, String language, CharacteristicDefinition characteristic, List<IValue> values, int level,
-			OccultismRange range, OccultismDuration duration, int cost, Set<TheurgyComponent> components, boolean enabled) {
+	public OccultismPower(String id, String name, String language, CharacteristicDefinition characteristic,
+			List<IValue> values, int level, OccultismRange range, OccultismDuration duration, int cost,
+			Set<TheurgyComponent> components, boolean enabled) {
 		this(id, name, language, characteristic, values, level, range, duration, cost, components);
 		setEnabled(enabled);
 	}
@@ -119,6 +121,16 @@ public class OccultismPower extends Element<OccultismPower> {
 			representation.append(theurgyComponent.getAbbreviature());
 		}
 		return representation.toString();
+	}
+
+	@Override
+	public int hashCode() {
+		return super.hashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return super.equals(obj);
 	}
 
 }

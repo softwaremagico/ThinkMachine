@@ -31,7 +31,8 @@ public class Shield extends Equipment<Shield> {
 	private final int force;
 	private final int hits;
 
-	public Shield(String shieldId, String name, String language, int techLevel, int impact, int force, int hits, float cost) {
+	public Shield(String shieldId, String name, String language, int techLevel, int impact, int force, int hits,
+			float cost) {
 		super(shieldId, name, cost, techLevel, language);
 		this.impact = impact;
 		this.force = force;
@@ -48,6 +49,16 @@ public class Shield extends Equipment<Shield> {
 
 	public int getHits() {
 		return hits;
+	}
+
+	@Override
+	public int hashCode() {
+		return super.hashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return super.equals(obj);
 	}
 
 }

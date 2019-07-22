@@ -1,10 +1,10 @@
-package com.softwaremagico.tm.character.equipment;
+package com.softwaremagico.tm.log;
 
 /*-
  * #%L
- * Think Machine (Core)
+ * Think Machine (Rules)
  * %%
- * Copyright (C) 2017 - 2018 Softwaremagico
+ * Copyright (C) 2017 - 2019 Softwaremagico
  * %%
  * This software is designed by Jorge Hortelano Otero. Jorge Hortelano Otero
  * <softwaremagico@gmail.com> Valencia (Spain).
@@ -24,22 +24,20 @@ package com.softwaremagico.tm.character.equipment;
  * #L%
  */
 
-import com.softwaremagico.tm.Element;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 
-public class DamageType extends Element<DamageType> {
+@Retention(RetentionPolicy.CLASS)
+public @interface SuppressFBWarnings {
+	/**
+	 * The set of FindBugs warnings that are to be suppressed in annotated element.
+	 * The value can be a bug category, kind or pattern.
+	 *
+	 */
+	String[] value() default {};
 
-	public DamageType(String id, String name, String language) {
-		super(id, name, language);
-	}
-
-	@Override
-	public int hashCode() {
-		return super.hashCode();
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		return super.equals(obj);
-	}
-
+	/**
+	 * Optional documentation of the reason why the warning is suppressed
+	 */
+	String justification() default "";
 }

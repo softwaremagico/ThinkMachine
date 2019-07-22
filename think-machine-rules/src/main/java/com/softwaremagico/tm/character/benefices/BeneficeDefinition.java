@@ -38,8 +38,8 @@ public class BeneficeDefinition extends Element<BeneficeDefinition> {
 	private final BeneficeClassification beneficeClassification;
 	private final FactionGroup restrictedFactionGroup;
 
-	public BeneficeDefinition(String id, String name, String language, List<Integer> costs, BeneficeGroup group, BeneficeClassification beneficeClassification,
-			FactionGroup restricted) {
+	public BeneficeDefinition(String id, String name, String language, List<Integer> costs, BeneficeGroup group,
+			BeneficeClassification beneficeClassification, FactionGroup restricted) {
 		super(id, name, language);
 		this.costs = costs;
 		this.group = group;
@@ -69,6 +69,16 @@ public class BeneficeDefinition extends Element<BeneficeDefinition> {
 
 	public FactionGroup getRestrictedFactionGroup() {
 		return restrictedFactionGroup;
+	}
+
+	@Override
+	public int hashCode() {
+		return super.hashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return super.equals(obj);
 	}
 
 }

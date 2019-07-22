@@ -35,7 +35,7 @@ import com.softwaremagico.tm.pdf.complete.elements.LateralHeaderPdfPTable;
 import com.softwaremagico.tm.pdf.complete.elements.CellCompleteBoxEvent.Border;
 
 public abstract class CounterTable extends LateralHeaderPdfPTable {
-	protected static final float[] WIDTHS = { 1f, 1f };
+	static final float[] WIDTHS = { 1f, 1f };
 	protected static final int CIRCLES = 23;
 	protected static final int TITLE_SPAN = 5;
 	protected int addedCircle = 0;
@@ -73,7 +73,9 @@ public abstract class CounterTable extends LateralHeaderPdfPTable {
 	}
 
 	private PdfPCell createCircle() {
-		final PdfPCell cell = createValue("O", new Font(FadingSunsTheme.getTitleFont(), FadingSunsTheme.CHARACTERISTICS_TITLE_FONT_SIZE), Element.ALIGN_MIDDLE);
+		final PdfPCell cell = createValue("O",
+				new Font(FadingSunsTheme.getTitleFont(), FadingSunsTheme.CHARACTERISTICS_TITLE_FONT_SIZE),
+				Element.ALIGN_MIDDLE);
 		return cell;
 	}
 

@@ -32,14 +32,9 @@ import com.itextpdf.text.pdf.PdfPTableEventAfterSplit;
 
 public class TableBorderEvent implements PdfPTableEventAfterSplit {
 	protected int rowCount;
-	protected boolean bottom = true;
-	protected boolean top = true;
 
 	@Override
 	public void splitTable(PdfPTable table) {
-		if (table.getRows().size() != rowCount) {
-			bottom = false;
-		}
 	}
 
 	@Override
@@ -47,12 +42,12 @@ public class TableBorderEvent implements PdfPTableEventAfterSplit {
 		if (table.getRows().size() != rowCount) {
 			// if the table gains a row, a row was split
 			rowCount = table.getRows().size();
-			top = false;
 		}
 	}
 
 	@Override
-	public void tableLayout(PdfPTable table, float[][] widths, float[] heights, int headerRows, int rowStart, PdfContentByte[] canvas) {
+	public void tableLayout(PdfPTable table, float[][] widths, float[] heights, int headerRows, int rowStart,
+			PdfContentByte[] canvas) {
 		final float width[] = widths[0];
 		final float x1 = width[0];
 		final float x2 = width[width.length - 1];

@@ -35,8 +35,8 @@ import com.softwaremagico.tm.character.equipment.weapons.Weapon;
 import com.softwaremagico.tm.character.values.Bonification;
 import com.softwaremagico.tm.character.values.StaticValue;
 
-public class SelectedCyberneticDevice extends Element<SelectedCyberneticDevice> implements ICyberneticDevice,
-		IElementWithBonification {
+public class SelectedCyberneticDevice extends Element<SelectedCyberneticDevice>
+		implements ICyberneticDevice, IElementWithBonification {
 
 	private final List<CyberneticDeviceTrait> customizations;
 	private final CyberneticDevice cyberneticDevice;
@@ -144,6 +144,16 @@ public class SelectedCyberneticDevice extends Element<SelectedCyberneticDevice> 
 	@Override
 	public String toString() {
 		return getCyberneticDevice().getId();
+	}
+
+	@Override
+	public int hashCode() {
+		return super.hashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return super.equals(obj);
 	}
 
 }

@@ -26,7 +26,6 @@ package com.softwaremagico.tm.random;
 
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Map.Entry;
 import java.util.NoSuchElementException;
 import java.util.Random;
@@ -118,8 +117,7 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
 	/**
 	 * This mandatories values are defined but the user and must be assigned.
 	 * 
-	 * @param mandatoryValues
-	 *            set of elements to be assigned.
+	 * @param mandatoryValues set of elements to be assigned.
 	 * @throws InvalidXmlElementException
 	 */
 	protected abstract void assignMandatoryValues(Set<Element> mandatoryValues) throws InvalidXmlElementException;
@@ -127,13 +125,12 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
 	/**
 	 * Must check if element is mandatory, and if it is, it must be assigned.
 	 * 
-	 * @param element
-	 *            element to check.
+	 * @param element element to check.
 	 * @throws InvalidXmlElementException
 	 * @throws ImpossibleToAssignMandatoryElementException
 	 */
-	protected abstract void assignIfMandatory(Element element) throws InvalidXmlElementException,
-			ImpossibleToAssignMandatoryElementException;
+	protected abstract void assignIfMandatory(Element element)
+			throws InvalidXmlElementException, ImpossibleToAssignMandatoryElementException;
 
 	private void assignMandatories() throws InvalidXmlElementException {
 		for (final Element element : getAllElements()) {
@@ -198,24 +195,22 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
 		}
 
 		if (randomDefinition.getProbabilityMultiplier() != null) {
-			RandomGenerationLog.debug(this.getClass().getName(), "Random definition multiplicator is '"
-					+ randomDefinition.getProbabilityMultiplier() + "'.");
+			RandomGenerationLog.debug(this.getClass().getName(),
+					"Random definition multiplicator is '" + randomDefinition.getProbabilityMultiplier() + "'.");
 			multiplier *= randomDefinition.getProbabilityMultiplier();
 		}
 
 		// Recommended to race.
 		if (getCharacterPlayer() != null && getCharacterPlayer().getRace() != null
 				&& randomDefinition.getRecommendedRaces().contains(getCharacterPlayer().getRace())) {
-			RandomGenerationLog.debug(this.getClass().getName(), "Random definition as recommended for '"
-					+ getCharacterPlayer().getRace() + "'.");
+			RandomGenerationLog.debug(this.getClass().getName(),
+					"Random definition as recommended for '" + getCharacterPlayer().getRace() + "'.");
 			multiplier *= BASIC_MULTIPLICATOR;
 		}
 
 		// Recommended to my faction group.
-		if (getCharacterPlayer() != null
-				&& getCharacterPlayer().getFaction() != null
-				&& randomDefinition.getRecommendedFactionsGroups().contains(
-						getCharacterPlayer().getFaction().getFactionGroup())) {
+		if (getCharacterPlayer() != null && getCharacterPlayer().getFaction() != null && randomDefinition
+				.getRecommendedFactionsGroups().contains(getCharacterPlayer().getFaction().getFactionGroup())) {
 			RandomGenerationLog.debug(this.getClass().getName(), "Random definition as recommended for '"
 					+ getCharacterPlayer().getFaction().getFactionGroup() + "'.");
 			multiplier *= BASIC_MULTIPLICATOR;
@@ -224,21 +219,20 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
 		// Recommended to my faction.
 		if (getCharacterPlayer() != null && getCharacterPlayer().getFaction() != null
 				&& randomDefinition.getRecommendedFactions().contains(getCharacterPlayer().getFaction())) {
-			RandomGenerationLog.debug(this.getClass().getName(), "Random definition as recommended for '"
-					+ getCharacterPlayer().getFaction() + "'.");
+			RandomGenerationLog.debug(this.getClass().getName(),
+					"Random definition as recommended for '" + getCharacterPlayer().getFaction() + "'.");
 			multiplier *= HIGH_MULTIPLICATOR;
 		}
 
 		// Probability definition by preference.
 		if (randomDefinition.getProbability() != null) {
 			multiplier *= randomDefinition.getProbability().getProbabilityMultiplicator();
-			RandomGenerationLog.debug(this.getClass().getName(),
-					"Random definition defines with bonus probability of '"
-							+ randomDefinition.getProbability().getProbabilityMultiplicator() + "'.");
+			RandomGenerationLog.debug(this.getClass().getName(), "Random definition defines with bonus probability of '"
+					+ randomDefinition.getProbability().getProbabilityMultiplicator() + "'.");
 		}
 
-		RandomGenerationLog.debug(this.getClass().getName(), "Random definitions bonus multiplier is '" + multiplier
-				+ "'.");
+		RandomGenerationLog.debug(this.getClass().getName(),
+				"Random definitions bonus multiplier is '" + multiplier + "'.");
 		return multiplier;
 	}
 
@@ -260,17 +254,13 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
 		}
 
 		// Check technology limitations.
-		if (getCharacterPlayer() != null
-				&& randomDefinition.getMinimumTechLevel() != null
-				&& randomDefinition.getMinimumTechLevel() > getCharacterPlayer().getCharacteristic(
-						CharacteristicName.TECH).getValue()) {
+		if (getCharacterPlayer() != null && randomDefinition.getMinimumTechLevel() != null && randomDefinition
+				.getMinimumTechLevel() > getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).getValue()) {
 			throw new InvalidRandomElementSelectedException("The tech level of the character is insufficient.");
 		}
 
-		if (getCharacterPlayer() != null
-				&& randomDefinition.getMaximumTechLevel() != null
-				&& randomDefinition.getMaximumTechLevel() < getCharacterPlayer().getCharacteristic(
-						CharacteristicName.TECH).getValue()) {
+		if (getCharacterPlayer() != null && randomDefinition.getMaximumTechLevel() != null && randomDefinition
+				.getMaximumTechLevel() < getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).getValue()) {
 			throw new InvalidRandomElementSelectedException("The tech level of the character is too high.");
 		}
 
@@ -278,49 +268,45 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
 		if (getCharacterPlayer() != null && randomDefinition.getRestrictedRaces() != null
 				&& !randomDefinition.getRestrictedRaces().isEmpty()
 				&& !randomDefinition.getRestrictedRaces().contains(getCharacterPlayer().getRace())) {
-			throw new InvalidRandomElementSelectedException("Element restricted to races '"
-					+ randomDefinition.getRestrictedRaces() + "'.");
+			throw new InvalidRandomElementSelectedException(
+					"Element restricted to races '" + randomDefinition.getRestrictedRaces() + "'.");
 		}
 
 		if (getCharacterPlayer() != null && randomDefinition.getForbiddenRaces() != null
 				&& randomDefinition.getForbiddenRaces().contains(getCharacterPlayer().getRace())) {
-			throw new InvalidRandomElementSelectedException("Element forbidden to races '"
-					+ randomDefinition.getForbiddenRaces() + "'.");
+			throw new InvalidRandomElementSelectedException(
+					"Element forbidden to races '" + randomDefinition.getForbiddenRaces() + "'.");
 		}
 
 		// Faction restriction.
 		if (getCharacterPlayer() != null && getCharacterPlayer().getFaction() != null
 				&& !randomDefinition.getRestrictedFactions().isEmpty()
 				&& !randomDefinition.getRestrictedFactions().contains(getCharacterPlayer().getFaction())) {
-			throw new InvalidRandomElementSelectedException("Element restricted to factions '"
-					+ randomDefinition.getRestrictedFactions() + "'.");
+			throw new InvalidRandomElementSelectedException(
+					"Element restricted to factions '" + randomDefinition.getRestrictedFactions() + "'.");
 		}
 
-		if (getCharacterPlayer() != null
-				&& getCharacterPlayer().getFaction() != null
-				&& !randomDefinition.getRecommendedFactionsGroups().isEmpty()
-				&& !randomDefinition.getRecommendedFactionsGroups().contains(
-						getCharacterPlayer().getFaction().getFactionGroup())) {
-			throw new InvalidRandomElementSelectedException("Element restricted to factions '"
-					+ randomDefinition.getRecommendedFactionsGroups() + "'.");
+		if (getCharacterPlayer() != null && getCharacterPlayer().getFaction() != null
+				&& !randomDefinition.getRecommendedFactionsGroups().isEmpty() && !randomDefinition
+						.getRecommendedFactionsGroups().contains(getCharacterPlayer().getFaction().getFactionGroup())) {
+			throw new InvalidRandomElementSelectedException(
+					"Element restricted to factions '" + randomDefinition.getRecommendedFactionsGroups() + "'.");
 		}
 
 		// Faction groups restriction.
-		if (getCharacterPlayer() != null
-				&& getCharacterPlayer().getFaction() != null
+		if (getCharacterPlayer() != null && getCharacterPlayer().getFaction() != null
 				&& !randomDefinition.getRestrictedFactions().isEmpty()
 				&& (getCharacterPlayer().getFaction().getFactionGroup() == null || !randomDefinition
 						.getRestrictedFactionGroups().contains(getCharacterPlayer().getFaction().getFactionGroup()))) {
-			throw new InvalidRandomElementSelectedException("Element restricted to factions '"
-					+ randomDefinition.getRestrictedFactions() + "'.");
+			throw new InvalidRandomElementSelectedException(
+					"Element restricted to factions '" + randomDefinition.getRestrictedFactions() + "'.");
 		}
 	}
 
 	/**
 	 * Assign a weight to an element depending on the preferences selected.
 	 * 
-	 * @param Element
-	 *            element to get the weight
+	 * @param Element element to get the weight
 	 * @return weight as integer
 	 */
 	protected abstract int getWeight(Element element) throws InvalidRandomElementSelectedException;
@@ -388,13 +374,11 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
 			return null;
 		}
 		int previousWeight = 0;
-		final Iterator<Integer> weightIterator = weightedElements.keySet().iterator();
-		while (weightIterator.hasNext()) {
-			final Integer weight = weightIterator.next();
-			if (weightedElements.get(weight).equals(element)) {
-				return weight - previousWeight;
+		for (final Entry<Integer, Element> entry : weightedElements.entrySet()) {
+			if (entry.getValue().equals(element)) {
+				return entry.getKey() - previousWeight;
 			}
-			previousWeight = weight;
+			previousWeight = entry.getKey();
 		}
 		return null;
 	}

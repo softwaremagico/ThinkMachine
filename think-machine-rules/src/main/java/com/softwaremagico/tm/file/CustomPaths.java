@@ -1,10 +1,10 @@
-package com.softwaremagico.tm.character.equipment;
+package com.softwaremagico.tm.file;
 
 /*-
  * #%L
- * Think Machine (Core)
+ * Think Machine (Rules)
  * %%
- * Copyright (C) 2017 - 2018 Softwaremagico
+ * Copyright (C) 2017 - 2019 Softwaremagico
  * %%
  * This software is designed by Jorge Hortelano Otero. Jorge Hortelano Otero
  * <softwaremagico@gmail.com> Valencia (Spain).
@@ -24,22 +24,17 @@ package com.softwaremagico.tm.character.equipment;
  * #L%
  */
 
-import com.softwaremagico.tm.Element;
+public enum CustomPaths {
+	APPLICATION_LOCATION("/usr/share/");
 
-public class DamageType extends Element<DamageType> {
+	private String value;
 
-	public DamageType(String id, String name, String language) {
-		super(id, name, language);
+	private CustomPaths(String value) {
+		this.value = value;
 	}
 
-	@Override
-	public int hashCode() {
-		return super.hashCode();
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		return super.equals(obj);
+	public String getValue() {
+		return value;
 	}
 
 }

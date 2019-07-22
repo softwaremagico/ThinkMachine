@@ -49,9 +49,9 @@ public class CyberneticDevice extends Element<CyberneticDevice> implements IElem
 	private final Set<StaticValue> staticValues;
 	private final ElementClassification classification;
 
-	public CyberneticDevice(String id, String name, String language, int points, int incompatibility, int cost, int techLevel, String requirement,
-			Weapon weapon, List<CyberneticDeviceTrait> traits, Set<Bonification> bonifications, Set<StaticValue> staticValues,
-			ElementClassification classification) {
+	public CyberneticDevice(String id, String name, String language, int points, int incompatibility, int cost,
+			int techLevel, String requirement, Weapon weapon, List<CyberneticDeviceTrait> traits,
+			Set<Bonification> bonifications, Set<StaticValue> staticValues, ElementClassification classification) {
 		super(id, name, language);
 		this.points = points;
 		this.incompatibility = incompatibility;
@@ -130,5 +130,15 @@ public class CyberneticDevice extends Element<CyberneticDevice> implements IElem
 
 	public ElementClassification getClassification() {
 		return classification;
+	}
+
+	@Override
+	public int hashCode() {
+		return super.hashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return super.equals(obj);
 	}
 }

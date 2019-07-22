@@ -57,23 +57,12 @@ public class RandomProfileFactory extends XmlFactory<RandomProfile> {
 	private static final String MANDATORY_BENEFICES = "mandatoryBenefices";
 	private static final String PARENT = "parent";
 
-	private static RandomProfileFactory instance;
-
-	private static void createInstance() {
-		if (instance == null) {
-			synchronized (RandomProfileFactory.class) {
-				if (instance == null) {
-					instance = new RandomProfileFactory();
-				}
-			}
-		}
+	private static class RandomProfileFactoryInit {
+		public static final RandomProfileFactory INSTANCE = new RandomProfileFactory();
 	}
 
 	public static RandomProfileFactory getInstance() {
-		if (instance == null) {
-			createInstance();
-		}
-		return instance;
+		return RandomProfileFactoryInit.INSTANCE;
 	}
 
 	public static <T extends Enum<T>> T getEnum(final String value, final Class<T> enumClass) {
@@ -122,8 +111,8 @@ public class RandomProfileFactory extends XmlFactory<RandomProfile> {
 		if (preferencesSelectedNames != null) {
 			final StringTokenizer preferencesSelectedTokenizer = new StringTokenizer(preferencesSelectedNames, ",");
 			while (preferencesSelectedTokenizer.hasMoreTokens()) {
-				preferencesSelected.add(RandomPreferenceUtils.getSelectedPreference(preferencesSelectedTokenizer
-						.nextToken().trim()));
+				preferencesSelected.add(
+						RandomPreferenceUtils.getSelectedPreference(preferencesSelectedTokenizer.nextToken().trim()));
 			}
 		}
 
@@ -171,8 +160,8 @@ public class RandomProfileFactory extends XmlFactory<RandomProfile> {
 								skillSpeciality, language));
 					}
 				} catch (InvalidXmlElementException e) {
-					throw new InvalidProfileException("Invalid required skill '" + requiredSkillId + "' for  profile '"
-							+ profileId + "'.", e);
+					throw new InvalidProfileException(
+							"Invalid required skill '" + requiredSkillId + "' for  profile '" + profileId + "'.", e);
 				}
 				node++;
 			} catch (NumberFormatException e) {
@@ -211,8 +200,8 @@ public class RandomProfileFactory extends XmlFactory<RandomProfile> {
 								skillSpeciality, language));
 					}
 				} catch (InvalidXmlElementException e) {
-					throw new InvalidProfileException("Invalid suggested skill '" + suggestedSkillId
-							+ "' for  profile '" + profileId + "'.", e);
+					throw new InvalidProfileException(
+							"Invalid suggested skill '" + suggestedSkillId + "' for  profile '" + profileId + "'.", e);
 				}
 				node++;
 			} catch (NumberFormatException e) {
@@ -226,11 +215,12 @@ public class RandomProfileFactory extends XmlFactory<RandomProfile> {
 			final StringTokenizer mandatoyBeneficesTokenizer = new StringTokenizer(mandatoryBeneficesList, ",");
 			while (mandatoyBeneficesTokenizer.hasMoreTokens()) {
 				try {
-					mandatoryBenefices.add(BeneficeDefinitionFactory.getInstance().getElement(
-							mandatoyBeneficesTokenizer.nextToken().trim(), language));
+					mandatoryBenefices.add(BeneficeDefinitionFactory.getInstance()
+							.getElement(mandatoyBeneficesTokenizer.nextToken().trim(), language));
 				} catch (InvalidXmlElementException ixe) {
-					throw new InvalidProfileException("Error in profile '" + profileId
-							+ "' structure. Invalid mandatory benefice defintion.", ixe);
+					throw new InvalidProfileException(
+							"Error in profile '" + profileId + "' structure. Invalid mandatory benefice defintion.",
+							ixe);
 				}
 			}
 		}
@@ -241,11 +231,12 @@ public class RandomProfileFactory extends XmlFactory<RandomProfile> {
 			final StringTokenizer suggestedBeneficesTokenizer = new StringTokenizer(suggestedBeneficesList, ",");
 			while (suggestedBeneficesTokenizer.hasMoreTokens()) {
 				try {
-					suggestedBenefices.add(BeneficeDefinitionFactory.getInstance().getElement(
-							suggestedBeneficesTokenizer.nextToken().trim(), language));
+					suggestedBenefices.add(BeneficeDefinitionFactory.getInstance()
+							.getElement(suggestedBeneficesTokenizer.nextToken().trim(), language));
 				} catch (InvalidXmlElementException ixe) {
-					throw new InvalidProfileException("Error in profile '" + profileId
-							+ "' structure. Invalid suggested benefice definition.", ixe);
+					throw new InvalidProfileException(
+							"Error in profile '" + profileId + "' structure. Invalid suggested benefice definition.",
+							ixe);
 				}
 			}
 		}

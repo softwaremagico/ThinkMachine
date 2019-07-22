@@ -142,4 +142,14 @@ public class RandomProfile extends Element<RandomProfile> implements IRandomProf
 	public Set<BeneficeDefinition> getMandatoryBenefices() {
 		return mandatoryBenefices;
 	}
+
+	@Override
+	public int hashCode() {
+		return super.hashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return super.equals(obj);
+	}
 }

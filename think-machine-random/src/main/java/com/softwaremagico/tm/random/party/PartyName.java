@@ -38,4 +38,14 @@ public class PartyName extends Element<PartyName> {
 		return randomParty;
 	}
 
+	@Override
+	public int hashCode() {
+		return super.hashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return super.equals(obj);
+	}
+
 }

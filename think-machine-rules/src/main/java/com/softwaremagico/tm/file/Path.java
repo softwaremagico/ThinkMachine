@@ -37,13 +37,14 @@ public class Path {
 	public static String getRootPath() {
 		final String soName = System.getProperty("os.name");
 		if (soName.contains("Linux") || soName.contains("linux")) {
-			final File file = new File("/usr/share/" + APPLICATION_FOLDER);
+			final File file = new File(CustomPaths.APPLICATION_LOCATION.getValue() + APPLICATION_FOLDER);
 			if (file.exists()) {
 				return file.getPath() + File.separator;
 			} else {
 				return "";
 			}
-		} else if (soName.contains("Windows") || soName.contains("windows") || soName.contains("vista") || soName.contains("Vista")) {
+		} else if (soName.contains("Windows") || soName.contains("windows") || soName.contains("vista")
+				|| soName.contains("Vista")) {
 			return "";
 		}
 		return "";

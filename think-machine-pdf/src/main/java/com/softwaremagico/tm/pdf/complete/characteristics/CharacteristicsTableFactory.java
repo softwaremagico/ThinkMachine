@@ -60,7 +60,7 @@ public class CharacteristicsTableFactory extends BaseElement {
 
 		for (final CharacteristicType type : CharacteristicType.values()) {
 			try {
-				table.addCell(new CharacteristicColumn(characterPlayer, type, CharacteristicsDefinitionFactory.getInstance().getAll(type,
+				table.addCell(new CharacteristicsColumn(characterPlayer, type, CharacteristicsDefinitionFactory.getInstance().getAll(type,
 						Translator.getLanguage())));
 			} catch (NullPointerException npe) {
 				PdfExporterLog.errorMessage(CharacteristicsTableFactory.class.getName(), npe);

@@ -50,12 +50,12 @@ public abstract class CharacterBasicsTableFactory extends BaseElement {
 			table.addCell(getCell(LINE, Element.ALIGN_LEFT, fontSize));
 		} else {
 			if (tag.equals("name")) {
-				table.addCell(getHandwrittingCell(characterPlayer.getNameRepresentation(), Element.ALIGN_LEFT,
-						fontSize - 1));
+				table.addCell(
+						getHandwrittingCell(characterPlayer.getNameRepresentation(), Element.ALIGN_LEFT, fontSize - 1));
 			} else if (tag.equals("race")) {
 				if (characterPlayer.getRace() != null) {
-					table.addCell(getHandwrittingCell(characterPlayer.getRace().getName(), Element.ALIGN_LEFT,
-							fontSize - 1));
+					table.addCell(
+							getHandwrittingCell(characterPlayer.getRace().getName(), Element.ALIGN_LEFT, fontSize - 1));
 				} else {
 					table.addCell(getHandwrittingCell("", Element.ALIGN_LEFT, fontSize - 1));
 				}
@@ -83,9 +83,6 @@ public abstract class CharacterBasicsTableFactory extends BaseElement {
 				} else {
 					table.addCell(getHandwrittingCell("", Element.ALIGN_LEFT, fontSize - 1));
 				}
-			} else if (tag.equals("gender")) {
-				table.addCell(getHandwrittingCell(characterPlayer.getInfo().getTranslatedParameter(tag),
-						Element.ALIGN_LEFT, fontSize - 1));
 			} else {
 				table.addCell(getHandwrittingCell(characterPlayer.getInfo().getTranslatedParameter(tag),
 						Element.ALIGN_LEFT, fontSize - 1));
@@ -116,8 +113,8 @@ public abstract class CharacterBasicsTableFactory extends BaseElement {
 	}
 
 	protected static String getTranslatedTag(String tag) {
-		final String value = getTranslator().getTranslatedText(
-				LANGUAGE_PREFIX + tag.substring(0, 1).toUpperCase() + tag.substring(1));
+		final String value = getTranslator()
+				.getTranslatedText(LANGUAGE_PREFIX + tag.substring(0, 1).toUpperCase() + tag.substring(1));
 		if (value != null) {
 			if (value.length() > MAX_VALUE_LENGTH) {
 				return value.substring(0, MAX_VALUE_LENGTH + 1);

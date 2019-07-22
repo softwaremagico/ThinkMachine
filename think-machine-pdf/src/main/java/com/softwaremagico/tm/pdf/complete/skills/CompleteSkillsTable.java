@@ -74,7 +74,7 @@ public class CompleteSkillsTable extends SkillsTable {
 
 		if (characterPlayer == null) {
 			for (final AvailableSkill skill : AvailableSkillsFactory.getInstance().getNaturalSkills(language)) {
-				table.addCell(createSkillElement(characterPlayer, skill, FadingSunsTheme.SKILLS_LINE_FONT_SIZE,
+				table.addCell(createSkillElement(null, skill, FadingSunsTheme.SKILLS_LINE_FONT_SIZE,
 						MAX_SKILL_COLUMN_WIDTH));
 				table.addCell(createSkillLine(SKILL_VALUE_GAP, FadingSunsTheme.SKILLS_LINE_FONT_SIZE));
 			}

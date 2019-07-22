@@ -40,6 +40,7 @@ import com.softwaremagico.tm.character.factions.FactionsFactory;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.log.MachineLog;
+import com.softwaremagico.tm.log.SuppressFBWarnings;
 
 public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 	private static final ITranslator translatorSkill = LanguagePool.getTranslator("skills.xml");
@@ -62,7 +63,7 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 	public static SkillsDefinitionsFactory getInstance() {
 		return SkillsDefinitionsFactoryInit.INSTANCE;
 	}
-	
+
 	private static void initializeMaps() {
 		naturalSkills = new HashMap<>();
 		learnedSkills = new HashMap<>();
@@ -137,6 +138,7 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 	}
 
 	@Override
+	@SuppressFBWarnings("REC_CATCH_EXCEPTION")
 	protected SkillDefinition createElement(ITranslator translator, String skillId, String language)
 			throws InvalidXmlElementException {
 		try {

@@ -146,8 +146,8 @@ public class Weapon extends Equipment<Weapon> {
 					// Special damage!
 					mainDamage = SPECIAL_DAMAGE_THREAT;
 				} else {
-					MachineLog.severe(this.getClass().getName(), "Invalid main damage in '" + getDamage() + "' for '"
-							+ this + "'.");
+					MachineLog.severe(this.getClass().getName(),
+							"Invalid main damage in '" + getDamage() + "' for '" + this + "'.");
 				}
 			}
 		}
@@ -167,8 +167,8 @@ public class Weapon extends Equipment<Weapon> {
 				// No area
 				areaDamage = 0;
 			} catch (NumberFormatException e) {
-				MachineLog.severe(this.getClass().getName(), "Invalid area damage in '" + getDamage() + "' for '"
-						+ this + "'.");
+				MachineLog.severe(this.getClass().getName(),
+						"Invalid area damage in '" + getDamage() + "' for '" + this + "'.");
 			}
 		}
 		return areaDamage;
@@ -258,5 +258,15 @@ public class Weapon extends Equipment<Weapon> {
 
 	public Set<Accessory> getAccesories() {
 		return accesories;
+	}
+
+	@Override
+	public int hashCode() {
+		return super.hashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return super.equals(obj);
 	}
 }

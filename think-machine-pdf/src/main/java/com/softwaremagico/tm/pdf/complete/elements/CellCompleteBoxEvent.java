@@ -1,5 +1,7 @@
 package com.softwaremagico.tm.pdf.complete.elements;
 
+import java.util.Arrays;
+
 /*-
  * #%L
  * Think Machine (Core)
@@ -41,12 +43,12 @@ public class CellCompleteBoxEvent implements PdfPCellEvent {
 	private Border[] borders;
 
 	public CellCompleteBoxEvent(Border[] borders) {
-		this.borders = borders;
+		this.borders = Arrays.copyOf(borders, borders.length);
 	}
 
 	public CellCompleteBoxEvent(int borderThickness, Border[] borders) {
 		this.borderThickness = borderThickness;
-		this.borders = borders;
+		this.borders = Arrays.copyOf(borders, borders.length);
 	}
 
 	public void cellLayout(PdfPCell cell, Rectangle position, PdfContentByte[] canvases) {

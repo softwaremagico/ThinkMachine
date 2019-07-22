@@ -31,7 +31,8 @@ public class Characteristic extends CharacteristicDefinition {
 	private final CharacteristicDefinition characteristicDefinition;
 
 	public Characteristic(CharacteristicDefinition characteristicDefinition) {
-		super(characteristicDefinition.getId(), characteristicDefinition.getName(), characteristicDefinition.getLanguage());
+		super(characteristicDefinition.getId(), characteristicDefinition.getName(),
+				characteristicDefinition.getLanguage());
 		setAbbreviature(characteristicDefinition.getAbbreviature());
 		setType(characteristicDefinition.getType());
 		this.characteristicDefinition = characteristicDefinition;
@@ -47,5 +48,15 @@ public class Characteristic extends CharacteristicDefinition {
 
 	public CharacteristicDefinition getCharacteristicDefinition() {
 		return characteristicDefinition;
+	}
+
+	@Override
+	public int hashCode() {
+		return super.hashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return super.equals(obj);
 	}
 }

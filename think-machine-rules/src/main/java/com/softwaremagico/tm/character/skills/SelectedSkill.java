@@ -57,4 +57,14 @@ public class SelectedSkill extends Skill<SelectedSkill> {
 	public String toString() {
 		return super.toString() + " (" + value + ")";
 	}
+
+	@Override
+	public int hashCode() {
+		return super.hashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return super.equals(obj);
+	}
 }

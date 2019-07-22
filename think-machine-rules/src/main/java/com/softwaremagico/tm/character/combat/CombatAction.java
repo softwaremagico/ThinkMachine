@@ -38,7 +38,8 @@ public class CombatAction extends Element<CombatAction> {
 	private final String others;
 	private final Set<CombatActionRequirement> requirements;
 
-	public CombatAction(String id, String name, String language, String goal, String damage, String others, Set<CombatActionRequirement> requirements) {
+	public CombatAction(String id, String name, String language, String goal, String damage, String others,
+			Set<CombatActionRequirement> requirements) {
 		super(id, name, language);
 		this.goal = goal;
 		this.damage = damage;
@@ -81,5 +82,15 @@ public class CombatAction extends Element<CombatAction> {
 			}
 		}
 		return true;
+	}
+
+	@Override
+	public int hashCode() {
+		return super.hashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return super.equals(obj);
 	}
 }

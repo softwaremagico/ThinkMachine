@@ -57,23 +57,12 @@ public class RandomPartyFactory extends XmlFactory<RandomParty> {
 	private Map<RandomParty, Map<String, Set<PartyName>>> namesByParty;
 	private Map<RandomParty, Map<String, Set<PartyAdjective>>> adjectivesByParty;
 
-	private static RandomPartyFactory instance;
-
-	private static void createInstance() {
-		if (instance == null) {
-			synchronized (RandomPartyFactory.class) {
-				if (instance == null) {
-					instance = new RandomPartyFactory();
-				}
-			}
-		}
+	private static class RandomPartyFactoryInit {
+		public static final RandomPartyFactory INSTANCE = new RandomPartyFactory();
 	}
 
 	public static RandomPartyFactory getInstance() {
-		if (instance == null) {
-			createInstance();
-		}
-		return instance;
+		return RandomPartyFactoryInit.INSTANCE;
 	}
 
 	@Override
@@ -128,7 +117,8 @@ public class RandomPartyFactory extends XmlFactory<RandomParty> {
 					} catch (NumberFormatException e) {
 						throw new InvalidRandomPartyException(
 								"Invalid random party definition. Parameter minNumber has an incorrect value '"
-										+ minNumberTag + "'.", e);
+										+ minNumberTag + "'.",
+								e);
 					}
 				}
 				final String maxNumberTag = translator.getNodeValue(partyId, MEMBER, MAXIMUM_NUMBER, node);
@@ -139,7 +129,8 @@ public class RandomPartyFactory extends XmlFactory<RandomParty> {
 					} catch (NumberFormatException e) {
 						throw new InvalidRandomPartyException(
 								"Invalid random party definition. Parameter maxNumber has an incorrect value '"
-										+ maxNumberTag + "'.", e);
+										+ maxNumberTag + "'.",
+								e);
 					}
 				}
 				final String weightTag = translator.getNodeValue(partyId, MEMBER, WEIGHT, node);
@@ -149,8 +140,9 @@ public class RandomPartyFactory extends XmlFactory<RandomParty> {
 						weight = Integer.parseInt(weightTag);
 					} catch (NumberFormatException e) {
 						throw new InvalidRandomPartyException(
-								"Invalid random party definition. Parameter weight has an incorrect value '"
-										+ weightTag + "'.", e);
+								"Invalid random party definition. Parameter weight has an incorrect value '" + weightTag
+										+ "'.",
+								e);
 					}
 				}
 
@@ -161,8 +153,8 @@ public class RandomPartyFactory extends XmlFactory<RandomParty> {
 					final StringTokenizer preferencesSelectedTokenizer = new StringTokenizer(preferencesSelectedNames,
 							",");
 					while (preferencesSelectedTokenizer.hasMoreTokens()) {
-						randomPreferences.add(RandomPreferenceUtils.getSelectedPreference(preferencesSelectedTokenizer
-								.nextToken().trim()));
+						randomPreferences.add(RandomPreferenceUtils
+								.getSelectedPreference(preferencesSelectedTokenizer.nextToken().trim()));
 					}
 				}
 
@@ -170,10 +162,10 @@ public class RandomPartyFactory extends XmlFactory<RandomParty> {
 					throw new InvalidRandomPartyException("Weight or maxNumber parameter must be set.");
 				}
 
-				randomParty.getRandomPartyMembers().add(
-						new RandomPartyMember(partyId + "_" + node, profileName, language, RandomProfileFactory
-								.getInstance().getElement(profile, language), minNumber, maxNumber, weight,
-								randomPreferences));
+				randomParty.getRandomPartyMembers()
+						.add(new RandomPartyMember(partyId + "_" + node, profileName, language,
+								RandomProfileFactory.getInstance().getElement(profile, language), minNumber, maxNumber,
+								weight, randomPreferences));
 				node++;
 			} catch (InvalidRandomPartyException e) {
 				break;

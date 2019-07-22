@@ -37,6 +37,7 @@ import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.character.values.IValue;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
+import com.softwaremagico.tm.log.SuppressFBWarnings;
 
 public class CombatStyleFactory extends XmlFactory<CombatStyle> {
 	private static final ITranslator translatorCombatStyle = LanguagePool.getTranslator("combat_styles.xml");
@@ -75,12 +76,13 @@ public class CombatStyleFactory extends XmlFactory<CombatStyle> {
 	}
 
 	@Override
+	@SuppressFBWarnings("REC_CATCH_EXCEPTION")
 	protected CombatStyle createElement(ITranslator translator, String combatStyleId, String language)
 			throws InvalidXmlElementException {
 		try {
 			final String name = translator.getNodeValue(combatStyleId, NAME, language);
-			final CombatStyleGroup combatStyleGroup = CombatStyleGroup.get(translator.getNodeValue(combatStyleId,
-					COMBAT_STYLE_GROUP));
+			final CombatStyleGroup combatStyleGroup = CombatStyleGroup
+					.get(translator.getNodeValue(combatStyleId, COMBAT_STYLE_GROUP));
 			if (combatStyleGroup == null) {
 				throw new InvalidCombatStyleException("Invalid group in combat style '" + combatStyleId + "'.");
 			}
@@ -110,8 +112,8 @@ public class CombatStyleFactory extends XmlFactory<CombatStyle> {
 							} catch (InvalidXmlElementException e) {
 								// Maybe is a characteristic.
 								try {
-									restrictions.add(CharacteristicsDefinitionFactory.getInstance().getElement(
-											skillName, language));
+									restrictions.add(CharacteristicsDefinitionFactory.getInstance()
+											.getElement(skillName, language));
 								} catch (InvalidXmlElementException e2) {
 									throw new InvalidCombatStyleException("Invalid requirement '" + skillName
 											+ "' in combat style '" + combatStyleId + "'.", e2);
@@ -119,9 +121,10 @@ public class CombatStyleFactory extends XmlFactory<CombatStyle> {
 							}
 						}
 					} catch (NullPointerException e) {
-						throw new InvalidCombatStyleException("Invalid requirement '" + combatActionRequirementId
-								+ "' for skills '" + skillNames + "' in '" + combatActionId + "' at combat style '"
-								+ combatStyleId + "'.", e);
+						throw new InvalidCombatStyleException(
+								"Invalid requirement '" + combatActionRequirementId + "' for skills '" + skillNames
+										+ "' in '" + combatActionId + "' at combat style '" + combatStyleId + "'.",
+								e);
 					}
 
 					try {

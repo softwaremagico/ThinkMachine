@@ -67,15 +67,15 @@ public class RandomArmour extends EquipmentSelector<Armour> {
 	 */
 	@Override
 	protected int getWeightCostModificator(Armour armour) {
-		if (armour.getCost() > getCurrentMoney() / 2) {
+		if (armour.getCost() > getCurrentMoney() / 2d) {
 			return 100;
-		} else if (armour.getCost() > getCurrentMoney() / 3) {
+		} else if (armour.getCost() > getCurrentMoney() / 3d) {
 			return 50;
-		} else if (armour.getCost() > getCurrentMoney() / 4) {
+		} else if (armour.getCost() > getCurrentMoney() / 4d) {
 			return 25;
-		} else if (armour.getCost() > getCurrentMoney() / 5) {
+		} else if (armour.getCost() > getCurrentMoney() / 5d) {
 			return 5;
-		} else if (armour.getCost() > getCurrentMoney() / 10) {
+		} else if (armour.getCost() > getCurrentMoney() / 10d) {
 			return 2;
 		} else {
 			return 1;

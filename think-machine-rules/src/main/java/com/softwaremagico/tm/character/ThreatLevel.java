@@ -219,7 +219,7 @@ public class ThreatLevel {
 			return 1;
 		}
 		float threatLevel = 0;
-		threatLevel += ((shield.getForce() - shield.getImpact()) + 5) / 10;
+		threatLevel += ((shield.getForce() - (double) shield.getImpact()) + 5) / 10;
 		threatLevel += ((float) shield.getImpact()) / 10;
 		shieldThreatLevel += threatLevel;
 		return threatLevel;

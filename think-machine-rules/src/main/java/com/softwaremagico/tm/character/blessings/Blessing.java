@@ -43,8 +43,8 @@ public class Blessing extends Element<Blessing> implements IElementWithBonificat
 	private final BlessingClassification blessingClassification;
 	private final BlessingGroup blessingGroup;
 
-	public Blessing(String id, String name, String language, Integer cost, Set<Bonification> bonifications, BlessingClassification blessingClassification,
-			BlessingGroup blessingGroup) {
+	public Blessing(String id, String name, String language, Integer cost, Set<Bonification> bonifications,
+			BlessingClassification blessingClassification, BlessingGroup blessingGroup) {
 		super(id, name, language);
 		this.cost = cost;
 		this.bonifications = bonifications;
@@ -99,19 +99,31 @@ public class Blessing extends Element<Blessing> implements IElementWithBonificat
 					// Has a list of values defined.
 					for (final IValue specialValueSkill : specialValue.getAffects()) {
 						try {
-							affectedSkills.add(AvailableSkillsFactory.getInstance().getElement(specialValueSkill.getId(), language));
+							affectedSkills.add(AvailableSkillsFactory.getInstance()
+									.getElement(specialValueSkill.getId(), language));
 						} catch (InvalidXmlElementException e) {
 							// Not a skill
 						}
 					}
 				}
 				try {
-					affectedSkills.add(AvailableSkillsFactory.getInstance().getElement(bonification.getAffects().getId(), language));
+					affectedSkills.add(AvailableSkillsFactory.getInstance()
+							.getElement(bonification.getAffects().getId(), language));
 				} catch (InvalidXmlElementException e) {
 					// Not a skill
 				}
 			}
 		}
 		return affectedSkills;
+	}
+
+	@Override
+	public int hashCode() {
+		return super.hashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return super.equals(obj);
 	}
 }

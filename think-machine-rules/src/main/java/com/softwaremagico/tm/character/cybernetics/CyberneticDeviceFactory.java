@@ -50,6 +50,7 @@ import com.softwaremagico.tm.character.values.StaticValue;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.log.MachineLog;
+import com.softwaremagico.tm.log.SuppressFBWarnings;
 
 public class CyberneticDeviceFactory extends XmlFactory<CyberneticDevice> {
 	private static final ITranslator translatorCybernetics = LanguagePool.getTranslator("cybernetics.xml");
@@ -141,6 +142,7 @@ public class CyberneticDeviceFactory extends XmlFactory<CyberneticDevice> {
 	}
 
 	@Override
+	@SuppressFBWarnings("REC_CATCH_EXCEPTION")
 	protected CyberneticDevice createElement(ITranslator translator, String cyberneticDeviceId, String language)
 			throws InvalidXmlElementException {
 		try {
@@ -151,8 +153,8 @@ public class CyberneticDeviceFactory extends XmlFactory<CyberneticDevice> {
 				final String techLevelName = translator.getNodeValue(cyberneticDeviceId, TECH_LEVEL);
 				techLevel = Integer.parseInt(techLevelName);
 			} catch (Exception e) {
-				throw new InvalidCyberneticDeviceException("Invalid tech level in cybernetic device '"
-						+ cyberneticDeviceId + "'.");
+				throw new InvalidCyberneticDeviceException(
+						"Invalid tech level in cybernetic device '" + cyberneticDeviceId + "'.");
 			}
 
 			int points = 0;
@@ -160,8 +162,8 @@ public class CyberneticDeviceFactory extends XmlFactory<CyberneticDevice> {
 				final String pointsName = translator.getNodeValue(cyberneticDeviceId, POINTS);
 				points = Integer.parseInt(pointsName);
 			} catch (Exception e) {
-				throw new InvalidCyberneticDeviceException("Invalid points value in cybernetic device '"
-						+ cyberneticDeviceId + "'.");
+				throw new InvalidCyberneticDeviceException(
+						"Invalid points value in cybernetic device '" + cyberneticDeviceId + "'.");
 			}
 
 			int cost = 0;
@@ -169,8 +171,8 @@ public class CyberneticDeviceFactory extends XmlFactory<CyberneticDevice> {
 				final String costName = translator.getNodeValue(cyberneticDeviceId, COST);
 				cost = Integer.parseInt(costName);
 			} catch (Exception e) {
-				throw new InvalidCyberneticDeviceException("Invalid cost in cybernetic device '" + cyberneticDeviceId
-						+ "'.");
+				throw new InvalidCyberneticDeviceException(
+						"Invalid cost in cybernetic device '" + cyberneticDeviceId + "'.");
 			}
 
 			int incompatibility = 0;
@@ -178,8 +180,8 @@ public class CyberneticDeviceFactory extends XmlFactory<CyberneticDevice> {
 				final String incompatibilityName = translator.getNodeValue(cyberneticDeviceId, INCOMPATIBILITY);
 				incompatibility = Integer.parseInt(incompatibilityName);
 			} catch (Exception e) {
-				throw new InvalidCyberneticDeviceException("Invalid incompatibility value in cybernetic device '"
-						+ cyberneticDeviceId + "'.");
+				throw new InvalidCyberneticDeviceException(
+						"Invalid incompatibility value in cybernetic device '" + cyberneticDeviceId + "'.");
 			}
 
 			final List<CyberneticDeviceTrait> traits = new ArrayList<>();
@@ -196,8 +198,8 @@ public class CyberneticDeviceFactory extends XmlFactory<CyberneticDevice> {
 					}
 				}
 			} catch (NullPointerException e) {
-				throw new InvalidCyberneticDeviceException("Invalid traits '" + traitsNames
-						+ "' in cybernetic device '" + cyberneticDeviceId + "'.", e);
+				throw new InvalidCyberneticDeviceException(
+						"Invalid traits '" + traitsNames + "' in cybernetic device '" + cyberneticDeviceId + "'.", e);
 			}
 
 			String requires = null;
@@ -272,11 +274,11 @@ public class CyberneticDeviceFactory extends XmlFactory<CyberneticDevice> {
 
 			ElementClassification cyberneticClassification = ElementClassification.ENHANCEMENT;
 			try {
-				cyberneticClassification = ElementClassification.get(translator.getNodeValue(cyberneticDeviceId,
-						CLASSIFICATION));
+				cyberneticClassification = ElementClassification
+						.get(translator.getNodeValue(cyberneticDeviceId, CLASSIFICATION));
 			} catch (Exception e) {
-				throw new InvalidCyberneticDeviceException("Invalid classification value in cybernetic '"
-						+ cyberneticDeviceId + "'.");
+				throw new InvalidCyberneticDeviceException(
+						"Invalid classification value in cybernetic '" + cyberneticDeviceId + "'.");
 			}
 
 			final CyberneticDevice cyberneticDevice = new CyberneticDevice(cyberneticDeviceId, name, language, points,
@@ -284,8 +286,8 @@ public class CyberneticDeviceFactory extends XmlFactory<CyberneticDevice> {
 					cyberneticClassification);
 			return cyberneticDevice;
 		} catch (Exception e) {
-			throw new InvalidCyberneticDeviceException("Invalid cybernetic device definition for '"
-					+ cyberneticDeviceId + "'.", e);
+			throw new InvalidCyberneticDeviceException(
+					"Invalid cybernetic device definition for '" + cyberneticDeviceId + "'.", e);
 		}
 	}
 
@@ -297,8 +299,8 @@ public class CyberneticDeviceFactory extends XmlFactory<CyberneticDevice> {
 			characteristicDefintion = CharacteristicsDefinitionFactory.getInstance().getElement(characteristicName,
 					language);
 		} catch (Exception e) {
-			throw new InvalidCyberneticDeviceException("Invalid characteristic name in weapon of cybernetic '"
-					+ cyberneticDeviceId + "'.");
+			throw new InvalidCyberneticDeviceException(
+					"Invalid characteristic name in weapon of cybernetic '" + cyberneticDeviceId + "'.");
 		}
 
 		AvailableSkill skill = null;
@@ -306,8 +308,8 @@ public class CyberneticDeviceFactory extends XmlFactory<CyberneticDevice> {
 			final String skillName = translator.getNodeValue(cyberneticDeviceId, WEAPON, SKILL);
 			skill = AvailableSkillsFactory.getInstance().getElement(skillName, language);
 		} catch (Exception e) {
-			throw new InvalidCyberneticDeviceException("Invalid skill name in weapon of cybernetic '"
-					+ cyberneticDeviceId + "'.");
+			throw new InvalidCyberneticDeviceException(
+					"Invalid skill name in weapon of cybernetic '" + cyberneticDeviceId + "'.");
 		}
 
 		String goal = "";
@@ -321,8 +323,8 @@ public class CyberneticDeviceFactory extends XmlFactory<CyberneticDevice> {
 		try {
 			damage = translator.getNodeValue(cyberneticDeviceId, WEAPON, DAMAGE);
 		} catch (Exception e) {
-			throw new InvalidCyberneticDeviceException("Invalid weapon damage value in cybernetic '"
-					+ cyberneticDeviceId + "'.");
+			throw new InvalidCyberneticDeviceException(
+					"Invalid weapon damage value in cybernetic '" + cyberneticDeviceId + "'.");
 		}
 
 		String range = null;
@@ -348,8 +350,8 @@ public class CyberneticDeviceFactory extends XmlFactory<CyberneticDevice> {
 		}
 
 		return new Weapon(cyberneticDeviceId, name, language, null, goal, characteristicDefintion, skill, damage, 0,
-				range, shots, rate, techLevel, false, null, "", new HashSet<DamageType>(), 0,
-				new HashSet<Ammunition>(), new HashSet<Accessory>());
+				range, shots, rate, techLevel, false, null, "", new HashSet<DamageType>(), 0, new HashSet<Ammunition>(),
+				new HashSet<Accessory>());
 
 	}
 }

@@ -44,7 +44,7 @@ public class WyrdTable extends CounterTable {
 		final Phrase content = new Phrase(getTranslator().getTranslatedText("wyrd"), font);
 		final PdfPCell titleCell = new PdfPCell(content);
 		titleCell.setBorder(0);
-		titleCell.setPaddingTop(paddingTop);
+		titleCell.setPaddingTop(newPaddingTop);
 		titleCell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		addCell(titleCell);
 

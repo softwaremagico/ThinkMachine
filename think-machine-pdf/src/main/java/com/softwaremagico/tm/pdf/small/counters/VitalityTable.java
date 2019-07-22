@@ -45,7 +45,7 @@ public class VitalityTable extends CounterTable {
 		final PdfPCell titleCell = new PdfPCell(content);
 		titleCell.setBorder(0);
 		titleCell.setPaddingRight(0);
-		titleCell.setPaddingTop(paddingTop);
+		titleCell.setPaddingTop(newPaddingTop);
 		titleCell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		addCell(titleCell);
 

@@ -28,6 +28,7 @@ import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
+import com.softwaremagico.tm.log.SuppressFBWarnings;
 
 public class CyberneticDeviceTraitFactory extends XmlFactory<CyberneticDeviceTrait> {
 	private static final ITranslator translatorCybernetics = LanguagePool.getTranslator("cybernetics_traits.xml");
@@ -59,6 +60,7 @@ public class CyberneticDeviceTraitFactory extends XmlFactory<CyberneticDeviceTra
 	}
 
 	@Override
+	@SuppressFBWarnings("REC_CATCH_EXCEPTION")
 	protected CyberneticDeviceTrait createElement(ITranslator translator, String cyberneticDeviceTraitId,
 			String language) throws InvalidXmlElementException {
 		try {
@@ -68,8 +70,8 @@ public class CyberneticDeviceTraitFactory extends XmlFactory<CyberneticDeviceTra
 			final CyberneticDeviceTraitCategory cyberneticDeviceTraitCategory = CyberneticDeviceTraitCategory
 					.get(categoryName);
 			if (cyberneticDeviceTraitCategory == null) {
-				throw new InvalidCyberneticDeviceTraitException("Invalid category definition for '"
-						+ cyberneticDeviceTraitId + "'.");
+				throw new InvalidCyberneticDeviceTraitException(
+						"Invalid category definition for '" + cyberneticDeviceTraitId + "'.");
 			}
 
 			int extraPoints = 0;
@@ -77,8 +79,8 @@ public class CyberneticDeviceTraitFactory extends XmlFactory<CyberneticDeviceTra
 				final String pointsName = translator.getNodeValue(cyberneticDeviceTraitId, EXTRA_POINTS);
 				extraPoints = Integer.parseInt(pointsName);
 			} catch (Exception e) {
-				throw new InvalidCyberneticDeviceTraitException("Invalid cost in cybernetic trait '"
-						+ cyberneticDeviceTraitId + "'.");
+				throw new InvalidCyberneticDeviceTraitException(
+						"Invalid cost in cybernetic trait '" + cyberneticDeviceTraitId + "'.");
 			}
 
 			int minimumTechLevel = 0;
@@ -86,8 +88,8 @@ public class CyberneticDeviceTraitFactory extends XmlFactory<CyberneticDeviceTra
 				final String techLevelName = translator.getNodeValue(cyberneticDeviceTraitId, MIN_TECH_LEVEL);
 				minimumTechLevel = Integer.parseInt(techLevelName);
 			} catch (Exception e) {
-				throw new InvalidCyberneticDeviceTraitException("Invalid minimum tech level in cybernetic trait '"
-						+ cyberneticDeviceTraitId + "'.");
+				throw new InvalidCyberneticDeviceTraitException(
+						"Invalid minimum tech level in cybernetic trait '" + cyberneticDeviceTraitId + "'.");
 			}
 
 			int extraIncompatibility = 0;
@@ -96,8 +98,8 @@ public class CyberneticDeviceTraitFactory extends XmlFactory<CyberneticDeviceTra
 						EXTRA_INCOMPATIBILITY);
 				extraIncompatibility = Integer.parseInt(incompatibilityName);
 			} catch (Exception e) {
-				throw new InvalidCyberneticDeviceTraitException("Invalid extra incomptability in cybernetic trait '"
-						+ cyberneticDeviceTraitId + "'.");
+				throw new InvalidCyberneticDeviceTraitException(
+						"Invalid extra incomptability in cybernetic trait '" + cyberneticDeviceTraitId + "'.");
 			}
 
 			int extraCost = 0;
@@ -107,8 +109,8 @@ public class CyberneticDeviceTraitFactory extends XmlFactory<CyberneticDeviceTra
 			} catch (NullPointerException npe) {
 				// Not mandatory
 			} catch (NumberFormatException e) {
-				throw new InvalidCyberneticDeviceTraitException("Invalid extra cost in cybernetic trait '"
-						+ cyberneticDeviceTraitId + "'.");
+				throw new InvalidCyberneticDeviceTraitException(
+						"Invalid extra cost in cybernetic trait '" + cyberneticDeviceTraitId + "'.");
 			}
 
 			float extraCostMultiplier = 1;
@@ -118,15 +120,15 @@ public class CyberneticDeviceTraitFactory extends XmlFactory<CyberneticDeviceTra
 			} catch (NullPointerException npe) {
 				// Not mandatory
 			} catch (NumberFormatException e) {
-				throw new InvalidCyberneticDeviceTraitException("Invalid cost in cybernetic trait '"
-						+ cyberneticDeviceTraitId + "'.");
+				throw new InvalidCyberneticDeviceTraitException(
+						"Invalid cost in cybernetic trait '" + cyberneticDeviceTraitId + "'.");
 			}
 
 			return new CyberneticDeviceTrait(cyberneticDeviceTraitId, name, language, cyberneticDeviceTraitCategory,
 					minimumTechLevel, extraPoints, extraCost, extraCostMultiplier, extraIncompatibility);
 		} catch (Exception e) {
-			throw new InvalidCyberneticDeviceTraitException("Invalid cybernetic trait definition for '"
-					+ cyberneticDeviceTraitId + "'.", e);
+			throw new InvalidCyberneticDeviceTraitException(
+					"Invalid cybernetic trait definition for '" + cyberneticDeviceTraitId + "'.", e);
 		}
 	}
 }

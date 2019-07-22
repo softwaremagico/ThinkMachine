@@ -37,4 +37,14 @@ public class CombatStance extends Element<CombatStance> {
 	public String getDescription() {
 		return description;
 	}
+
+	@Override
+	public int hashCode() {
+		return super.hashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return super.equals(obj);
+	}
 }

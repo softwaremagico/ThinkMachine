@@ -30,4 +30,14 @@ public class FactionRankTranslation extends Element<FactionRankTranslation> {
 	public FactionRankTranslation(String id, String name, String language) {
 		super(id, name, language);
 	}
+
+	@Override
+	public int hashCode() {
+		return super.hashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return super.equals(obj);
+	}
 }

@@ -34,6 +34,7 @@ import com.softwaremagico.tm.character.values.IValue;
 import com.softwaremagico.tm.character.values.SpecialValue;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
+import com.softwaremagico.tm.log.SuppressFBWarnings;
 
 public class BlessingFactory extends XmlFactory<Blessing> {
 	private static final ITranslator translatorBlessing = LanguagePool.getTranslator("blessings.xml");
@@ -56,6 +57,7 @@ public class BlessingFactory extends XmlFactory<Blessing> {
 	}
 
 	@Override
+	@SuppressFBWarnings("REC_CATCH_EXCEPTION")
 	protected Blessing createElement(ITranslator translator, String blessingId, String language)
 			throws InvalidXmlElementException {
 

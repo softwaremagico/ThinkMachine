@@ -37,6 +37,7 @@ import com.softwaremagico.tm.XmlFactory;
 import com.softwaremagico.tm.character.factions.FactionGroup;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
+import com.softwaremagico.tm.log.SuppressFBWarnings;
 
 public class BeneficeDefinitionFactory extends XmlFactory<BeneficeDefinition> {
 	private static final ITranslator translatorBenefit = LanguagePool.getTranslator("benefices.xml");
@@ -71,6 +72,7 @@ public class BeneficeDefinitionFactory extends XmlFactory<BeneficeDefinition> {
 	}
 
 	@Override
+	@SuppressFBWarnings("REC_CATCH_EXCEPTION")
 	protected BeneficeDefinition createElement(ITranslator translator, String benefitId, String language)
 			throws InvalidXmlElementException {
 		try {
@@ -128,8 +130,8 @@ public class BeneficeDefinitionFactory extends XmlFactory<BeneficeDefinition> {
 			final List<Integer> costs = new ArrayList<>();
 			if (costRange.contains("-")) {
 				final int minValue = Integer.parseInt(costRange.substring(0, costRange.indexOf('-')));
-				final int maxValue = Integer.parseInt(costRange.substring(costRange.indexOf('-') + 1,
-						costRange.length()));
+				final int maxValue = Integer
+						.parseInt(costRange.substring(costRange.indexOf('-') + 1, costRange.length()));
 				for (int i = minValue; i <= maxValue; i++) {
 					costs.add(i);
 				}
@@ -171,7 +173,8 @@ public class BeneficeDefinitionFactory extends XmlFactory<BeneficeDefinition> {
 		return beneficesByGroup;
 	}
 
-	public Set<BeneficeDefinition> getBenefices(BeneficeGroup group, String language) throws InvalidXmlElementException {
+	public Set<BeneficeDefinition> getBenefices(BeneficeGroup group, String language)
+			throws InvalidXmlElementException {
 		if (group == null) {
 			return null;
 		}

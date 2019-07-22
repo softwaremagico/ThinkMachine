@@ -65,7 +65,7 @@ public class RandomShield extends EquipmentSelector<Shield> {
 	 */
 	@Override
 	protected int getWeightCostModificator(Shield shield) {
-		if (shield.getCost() > getCurrentMoney() / 2) {
+		if (shield.getCost() > getCurrentMoney() / (double) 2) {
 			return 5;
 		} else {
 			return 1;
@@ -92,14 +92,14 @@ public class RandomShield extends EquipmentSelector<Shield> {
 		// More protection is better.
 		if (getPreferences().contains(CombatPreferences.BELLIGERENT)) {
 			weight *= shield.getHits();
-			RandomGenerationLog.debug(this.getClass().getName(), "Protection multiplicator for '" + shield + "' is '"
-					+ shield.getHits() + "'.");
+			RandomGenerationLog.debug(this.getClass().getName(),
+					"Protection multiplicator for '" + shield + "' is '" + shield.getHits() + "'.");
 		}
 
 		// shields depending on the purchasing power of the character.
 		final int costModificator = getWeightCostModificator(shield);
-		RandomGenerationLog.debug(this.getClass().getName(), "Cost multiplication for weight for '" + shield + "' is '"
-				+ costModificator + "'.");
+		RandomGenerationLog.debug(this.getClass().getName(),
+				"Cost multiplication for weight for '" + shield + "' is '" + costModificator + "'.");
 		weight /= costModificator;
 
 		RandomGenerationLog.debug(this.getClass().getName(), "Total weight for '" + shield + "' is '" + weight + "'.");
@@ -115,8 +115,8 @@ public class RandomShield extends EquipmentSelector<Shield> {
 		switch (preference) {
 		case VERY_EASY:
 		case EASY:
-			throw new InvalidRandomElementSelectedException("Shield '" + shield
-					+ "' are not allowed by selected preference '" + preference + "'.");
+			throw new InvalidRandomElementSelectedException(
+					"Shield '" + shield + "' are not allowed by selected preference '" + preference + "'.");
 		default:
 			break;
 		}

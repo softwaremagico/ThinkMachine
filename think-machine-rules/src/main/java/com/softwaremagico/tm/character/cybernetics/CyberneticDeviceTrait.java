@@ -34,8 +34,8 @@ public class CyberneticDeviceTrait extends Element<CyberneticDeviceTrait> {
 	private final float extraCostMultiplier;
 	private final int extraIncompatibility;
 
-	public CyberneticDeviceTrait(String id, String name, String language, CyberneticDeviceTraitCategory category, int minimumTechLevel, int extraPoints,
-			int extraCost, float extraCostMultiplier, int extraIncompatibility) {
+	public CyberneticDeviceTrait(String id, String name, String language, CyberneticDeviceTraitCategory category,
+			int minimumTechLevel, int extraPoints, int extraCost, float extraCostMultiplier, int extraIncompatibility) {
 		super(id, name, language);
 		this.category = category;
 		this.minimumTechLevel = minimumTechLevel;
@@ -88,4 +88,13 @@ public class CyberneticDeviceTrait extends Element<CyberneticDeviceTrait> {
 		return extraCost;
 	}
 
+	@Override
+	public int hashCode() {
+		return super.hashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return super.equals(obj);
+	}
 }

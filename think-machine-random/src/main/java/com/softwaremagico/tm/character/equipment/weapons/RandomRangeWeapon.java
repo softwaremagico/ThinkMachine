@@ -46,19 +46,19 @@ public class RandomRangeWeapon extends RandomWeapon {
 
 	@Override
 	protected int getWeightCostModificator(Weapon weapon) {
-		if (weapon.getCost() > getCurrentMoney() / 1.1) {
+		if (weapon.getCost() > getCurrentMoney() / (double) 1.1) {
 			return 100;
-		} else if (weapon.getCost() > getCurrentMoney() / 2) {
+		} else if (weapon.getCost() > getCurrentMoney() / (double) 2) {
 			return 7;
-		} else if (weapon.getCost() > getCurrentMoney() / 3) {
+		} else if (weapon.getCost() > getCurrentMoney() / (double) 3) {
 			return 5;
-		} else if (weapon.getCost() > getCurrentMoney() / 4) {
+		} else if (weapon.getCost() > getCurrentMoney() / (double) 4) {
 			return 4;
-		} else if (weapon.getCost() > getCurrentMoney() / 5) {
+		} else if (weapon.getCost() > getCurrentMoney() / (double) 5) {
 			return 3;
-		} else if (weapon.getCost() > getCurrentMoney() / 10) {
+		} else if (weapon.getCost() > getCurrentMoney() / (double) 10) {
 			return 2;
-		} else if (weapon.getCost() > getCurrentMoney() / 20) {
+		} else if (weapon.getCost() > getCurrentMoney() / (double) 20) {
 			return 1;
 		} else {
 			// No so cheap weapons.
@@ -70,17 +70,13 @@ public class RandomRangeWeapon extends RandomWeapon {
 	protected int getWeightTechModificator(Weapon weapon) {
 		int weight = 0;
 		// Similar tech level preferred.
-		weight += MAX_PROBABILITY
-				/ Math.pow(10, 2 * (getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).getValue() - weapon
-						.getTechLevel()));
-		RandomGenerationLog
-				.debug(this.getClass().getName(),
-						"Weight tech bonus for '"
-								+ weapon
-								+ "' is '"
-								+ MAX_PROBABILITY
-								/ Math.pow(10, 2 * (getCharacterPlayer().getCharacteristic(CharacteristicName.TECH)
-										.getValue() - weapon.getTechLevel())) + "'.");
+		weight += MAX_PROBABILITY / Math.pow(10, 2
+				* (getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).getValue() - weapon.getTechLevel()));
+		RandomGenerationLog.debug(this.getClass().getName(), "Weight tech bonus for '" + weapon + "' is '"
+				+ MAX_PROBABILITY
+						/ Math.pow(10, 2 * (getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).getValue()
+								- weapon.getTechLevel()))
+				+ "'.");
 		if (weight <= 0) {
 			weight = 0;
 		}
