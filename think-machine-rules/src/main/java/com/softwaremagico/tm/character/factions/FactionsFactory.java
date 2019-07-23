@@ -38,6 +38,8 @@ import com.softwaremagico.tm.character.Name;
 import com.softwaremagico.tm.character.Surname;
 import com.softwaremagico.tm.character.benefices.AvailableBenefice;
 import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
+import com.softwaremagico.tm.character.benefices.BeneficeDefinition;
+import com.softwaremagico.tm.character.benefices.BeneficeDefinitionFactory;
 import com.softwaremagico.tm.character.blessings.Blessing;
 import com.softwaremagico.tm.character.blessings.BlessingFactory;
 import com.softwaremagico.tm.character.races.Race;
@@ -87,19 +89,13 @@ public class FactionsFactory extends XmlFactory<Faction> {
 	}
 
 	public void setBlessings(Faction faction, String language) throws InvalidFactionException {
-		final String mandatoryBlessingsList = getTranslator().getNodeValue(faction.getId(), BLESSINGS);
-		final Set<Blessing> mandatoryBlessings = new HashSet<>();
-		if (mandatoryBlessingsList != null) {
-			final StringTokenizer mandatoyBlessingTokenizer = new StringTokenizer(mandatoryBlessingsList, ",");
-			while (mandatoyBlessingTokenizer.hasMoreTokens()) {
-				try {
-					mandatoryBlessings.add(BlessingFactory.getInstance()
-							.getElement(mandatoyBlessingTokenizer.nextToken().trim(), language));
-				} catch (InvalidXmlElementException ixe) {
-					throw new InvalidFactionException(
-							"Error in faction '" + faction + "' structure. Invalid blessing defintion. ", ixe);
-				}
-			}
+		Set<Blessing> mandatoryBlessings = new HashSet<>();
+		try {
+			mandatoryBlessings = getCommaSeparatedValues(faction.getId(), BLESSINGS, language,
+					BlessingFactory.getInstance());
+		} catch (InvalidXmlElementException ixe) {
+			throw new InvalidFactionException(
+					"Error in faction '" + faction + "' structure. Invalid blessing defintion. ", ixe);
 		}
 		faction.setBlessings(mandatoryBlessings);
 	}

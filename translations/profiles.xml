@@ -126,7 +126,8 @@
 			<skill>
 				<id>survival</id>
 			</skill>
-			<equipment>imperialRifle, scaleMailMetal</equipment>
+			<weapons>imperialRifle</weapons>
+			<armours>scaleMailMetal</armours>
 		</suggestedSkills>
 	</infantry>
 	<heavyInfantry>
@@ -157,7 +158,8 @@
 			<skill>
 				<id>techRedemption</id>
 			</skill>
-			<equipment>jahnisak040MG, leatherJerkin</equipment>
+			<weapons>jahnisak040MG</weapons>
+			<armours>leatherJerkin</armours>
 		</suggestedSkills>
 	</heavyInfantry>
 	<tracker>
@@ -188,7 +190,8 @@
 			<skill>
 				<id>survival</id>
 			</skill>
-			<weapons>typicalSniperRifle, leatherJerkin</weapons>
+			<weapons>typicalSniperRifle</weapons>
+			<armours>leatherJerkin</armours>
 		</suggestedSkills>
 	</tracker>
 	<slayer>

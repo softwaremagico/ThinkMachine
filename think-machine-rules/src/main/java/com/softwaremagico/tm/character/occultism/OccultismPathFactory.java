@@ -105,16 +105,8 @@ public class OccultismPathFactory extends XmlFactory<OccultismPath> {
 				throw new InvalidOccultismPowerException("No type defined for '" + occultismId + "'.");
 			}
 
-			final String factionsList = translator.getNodeValue(occultismId, FACTIONS);
-
-			final Set<Faction> factions = new HashSet<>();
-			if (factionsList != null) {
-				final StringTokenizer factionTokenizer = new StringTokenizer(factionsList, ",");
-				while (factionTokenizer.hasMoreTokens()) {
-					factions.add(
-							FactionsFactory.getInstance().getElement(factionTokenizer.nextToken().trim(), language));
-				}
-			}
+			final Set<Faction> factions = getCommaSeparatedValues(occultismId, FACTIONS, language,
+					FactionsFactory.getInstance());
 
 			ElementClassification classification = ElementClassification.ENHANCEMENT;
 			try {

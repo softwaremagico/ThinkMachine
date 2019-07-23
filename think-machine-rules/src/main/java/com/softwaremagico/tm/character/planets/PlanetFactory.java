@@ -26,7 +26,6 @@ package com.softwaremagico.tm.character.planets;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.StringTokenizer;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
@@ -54,20 +53,13 @@ public class PlanetFactory extends XmlFactory<Planet> {
 			throws InvalidXmlElementException {
 		try {
 			final String name = translator.getNodeValue(planetId, NAME, language);
-			final String factionsName = translator.getNodeValue(planetId, FACTION);
 
-			final Set<Faction> factions = new HashSet<>();
-			if (factionsName != null) {
-				final StringTokenizer factionsNameTokenizer = new StringTokenizer(factionsName, ",");
-				while (factionsNameTokenizer.hasMoreTokens()) {
-					try {
-						factions.add(FactionsFactory.getInstance().getElement(factionsNameTokenizer.nextToken().trim(),
-								language));
-					} catch (InvalidXmlElementException ixe) {
-						throw new InvalidPlanetException("Error in planet '" + planetId
-								+ "' structure. Invalid faction defintion.", ixe);
-					}
-				}
+			Set<Faction> factions = new HashSet<>();
+			try {
+				factions = getCommaSeparatedValues(planetId, FACTION, language, FactionsFactory.getInstance());
+			} catch (InvalidXmlElementException ixe) {
+				throw new InvalidPlanetException(
+						"Error in planet '" + planetId + "' structure. Invalid faction defintion.", ixe);
 			}
 
 			return new Planet(planetId, name, language, factions);

@@ -102,8 +102,8 @@ public class ArmourFactory extends XmlFactory<Armour> {
 					STRENGTH_MODIFICATION);
 			standardStrengthModification = Integer.parseInt(strengthModificationValue);
 		} catch (Exception e) {
-			throw new InvalidArmourException("Invalid standard strength Modification value in armour '" + armourId
-					+ "'.");
+			throw new InvalidArmourException(
+					"Invalid standard strength Modification value in armour '" + armourId + "'.");
 		}
 
 		int standardDexterityModification = 0;
@@ -183,24 +183,17 @@ public class ArmourFactory extends XmlFactory<Armour> {
 			final StringTokenizer damageTypesTokenizer = new StringTokenizer(damageDefinition, ",");
 			while (damageTypesTokenizer.hasMoreTokens()) {
 				try {
-					damageOfArmour.add(DamageTypeFactory.getInstance().getElement(
-							damageTypesTokenizer.nextToken().trim(), language));
+					damageOfArmour.add(DamageTypeFactory.getInstance()
+							.getElement(damageTypesTokenizer.nextToken().trim(), language));
 				} catch (InvalidXmlElementException e) {
 					throw new InvalidArmourException("Invalid damage type in armour '" + armourId + "'.", e);
 				}
 			}
 		}
 
-		final Set<Shield> allowedShields = new HashSet<>();
+		Set<Shield> allowedShields = new HashSet<>();
 		try {
-			final String shieldNames = translator.getNodeValue(armourId, SHIELD);
-			if (shieldNames != null) {
-				final StringTokenizer shieldTokenizer = new StringTokenizer(shieldNames, ",");
-				while (shieldTokenizer.hasMoreTokens()) {
-					allowedShields.add(ShieldFactory.getInstance().getElement(shieldTokenizer.nextToken().trim(),
-							language));
-				}
-			}
+			allowedShields = getCommaSeparatedValues(armourId, SHIELD, language, ShieldFactory.getInstance());
 		} catch (Exception e) {
 			// Not mandatory.
 		}
@@ -215,19 +208,13 @@ public class ArmourFactory extends XmlFactory<Armour> {
 					specialInitiativeModification, specialEnduranceModification);
 		}
 
-		final Set<ArmourSpecification> specifications = new HashSet<>();
-		final String specificationsNames = translator.getNodeValue(armourId, OTHER);
-		if (specificationsNames != null) {
-			final StringTokenizer specificationTokenizer = new StringTokenizer(specificationsNames, ",");
-			while (specificationTokenizer.hasMoreTokens()) {
-				try {
-					specifications.add(ArmourSpecificationFactory.getInstance().getElement(
-							specificationTokenizer.nextToken().trim(), language));
-				} catch (InvalidXmlElementException ixe) {
-					throw new InvalidArmourException("Error in specifications '" + specificationsNames
-							+ "' in armour '" + armourId + "'. Invalid spceification definition. ", ixe);
-				}
-			}
+		Set<ArmourSpecification> specifications = new HashSet<>();
+		try {
+			specifications = getCommaSeparatedValues(armourId, OTHER, language,
+					ArmourSpecificationFactory.getInstance());
+		} catch (InvalidXmlElementException ixe) {
+			throw new InvalidArmourException("Error in specifications in '" + OTHER + "' for armour '" + armourId
+					+ "'. Invalid spceification definition. ", ixe);
 		}
 
 		final Armour armour = new Armour(armourId, name, language, techLevel, protection, damageOfArmour,

@@ -26,7 +26,6 @@ package com.softwaremagico.tm.character.equipment.weapons;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.StringTokenizer;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
@@ -120,33 +119,20 @@ public class AmmunitionFactory extends XmlFactory<Ammunition> {
 			// Not mandatory.
 		}
 
-		final Set<DamageType> damageOfAmmunition = new HashSet<>();
+		Set<DamageType> damageOfAmmunition = new HashSet<>();
 		try {
-			final String damageDefinition = translator.getNodeValue(ammunitionId, DAMAGE_TYPE);
-			if (damageDefinition != null) {
-				final StringTokenizer damageTypesTokenizer = new StringTokenizer(damageDefinition, ",");
-				while (damageTypesTokenizer.hasMoreTokens()) {
-					damageOfAmmunition.add(DamageTypeFactory.getInstance().getElement(
-							damageTypesTokenizer.nextToken().trim(), language));
-				}
-			}
+			damageOfAmmunition = getCommaSeparatedValues(ammunitionId, DAMAGE_TYPE, language,
+					DamageTypeFactory.getInstance());
 		} catch (Exception e) {
 			// Not mandatory.
 		}
 
-		final Set<Accessory> accessories = new HashSet<>();
-		final String accesoriesNames = translator.getNodeValue(ammunitionId, ACCESSORIES);
-		if (accesoriesNames != null) {
-			final StringTokenizer accessoryTokenizer = new StringTokenizer(accesoriesNames, ",");
-			while (accessoryTokenizer.hasMoreTokens()) {
-				try {
-					accessories.add(AccessoryFactory.getInstance().getElement(accessoryTokenizer.nextToken().trim(),
-							language));
-				} catch (InvalidXmlElementException ixe) {
-					throw new InvalidWeaponException("Error in accessories '" + accesoriesNames
-							+ "' structure. Invalid accessory definition. ", ixe);
-				}
-			}
+		Set<Accessory> accessories = new HashSet<>();
+		try {
+			accessories = getCommaSeparatedValues(ammunitionId, ACCESSORIES, language, AccessoryFactory.getInstance());
+		} catch (Exception e) {
+			throw new InvalidWeaponException("Error in accessories of ammunition '" + ammunitionId
+					+ "' structure. Invalid accessory definition. ", e);
 		}
 
 		ammunition = new Ammunition(ammunitionId, name, language, goal, damage, strength, range, size, cost,
