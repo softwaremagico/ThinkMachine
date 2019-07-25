@@ -1,5 +1,7 @@
 package com.softwaremagico.tm.character.characteristics;
 
+import java.util.HashSet;
+
 /*-
  * #%L
  * Think Machine (Core)
@@ -42,7 +44,7 @@ public class RandomCharacteristicsExtraPoints extends RandomCharacteristics {
 
 	public RandomCharacteristicsExtraPoints(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences)
 			throws InvalidXmlElementException {
-		super(characterPlayer, preferences);
+		super(characterPlayer, preferences, new HashSet<Characteristic>());
 	}
 
 	public int spendCharacteristicsPoints(int remainingPoints) throws InvalidRandomElementSelectedException {
@@ -64,10 +66,11 @@ public class RandomCharacteristicsExtraPoints extends RandomCharacteristics {
 						selectedCharacteristic.getCharacteristicName(), getCharacterPlayer().getInfo().getAge(),
 						getCharacterPlayer().getRace())) {
 					if (selectedCharacteristic.getCharacteristicName() != CharacteristicName.TECH
-							|| (techPreference == null || selectedCharacteristic.getValue() < techPreference.maximum())) {
+							|| (techPreference == null
+									|| selectedCharacteristic.getValue() < techPreference.maximum())) {
 						selectedCharacteristic.setValue(selectedCharacteristic.getValue() + 1);
-						RandomGenerationLog.debug(this.getClass().getName(), "Increased value of '"
-								+ selectedCharacteristic + "' in 1.");
+						RandomGenerationLog.debug(this.getClass().getName(),
+								"Increased value of '" + selectedCharacteristic + "' in 1.");
 						return CostCalculator.CHARACTERISTIC_EXTRA_POINTS_COST;
 					}
 				}
@@ -77,8 +80,8 @@ public class RandomCharacteristicsExtraPoints extends RandomCharacteristics {
 	}
 
 	@Override
-	protected void assignIfMandatory(Characteristic characteristic) throws InvalidXmlElementException,
-			ImpossibleToAssignMandatoryElementException {
+	protected void assignIfMandatory(Characteristic characteristic)
+			throws InvalidXmlElementException, ImpossibleToAssignMandatoryElementException {
 		// Nothing
 	}
 }

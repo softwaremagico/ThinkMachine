@@ -31,6 +31,7 @@ import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.benefices.AvailableBenefice;
 import com.softwaremagico.tm.character.benefices.BeneficeDefinition;
 import com.softwaremagico.tm.character.blessings.Blessing;
+import com.softwaremagico.tm.character.characteristics.Characteristic;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
@@ -41,7 +42,7 @@ public interface IRandomProfile {
 
 	Set<IRandomPreference> getPreferences();
 
-	Map<CharacteristicName, Integer> getCharacteristicsMinimumValues();
+	Set<Characteristic> getCharacteristicsMinimumValues();
 
 	Map<AvailableSkill, Integer> getSkillsMinimumValues();
 
@@ -60,5 +61,7 @@ public interface IRandomProfile {
 	Set<BeneficeDefinition> getSuggestedBenefices();
 
 	Set<BeneficeDefinition> getMandatoryBenefices();
+
+	Characteristic getCharacteristicMinimumValues(CharacteristicName characteristicName);
 
 }

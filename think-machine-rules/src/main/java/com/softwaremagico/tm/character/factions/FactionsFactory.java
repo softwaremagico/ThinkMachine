@@ -38,8 +38,6 @@ import com.softwaremagico.tm.character.Name;
 import com.softwaremagico.tm.character.Surname;
 import com.softwaremagico.tm.character.benefices.AvailableBenefice;
 import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
-import com.softwaremagico.tm.character.benefices.BeneficeDefinition;
-import com.softwaremagico.tm.character.benefices.BeneficeDefinitionFactory;
 import com.softwaremagico.tm.character.blessings.Blessing;
 import com.softwaremagico.tm.character.blessings.BlessingFactory;
 import com.softwaremagico.tm.character.races.Race;
@@ -89,7 +87,7 @@ public class FactionsFactory extends XmlFactory<Faction> {
 	}
 
 	public void setBlessings(Faction faction, String language) throws InvalidFactionException {
-		Set<Blessing> mandatoryBlessings = new HashSet<>();
+		final Set<Blessing> mandatoryBlessings;
 		try {
 			mandatoryBlessings = getCommaSeparatedValues(faction.getId(), BLESSINGS, language,
 					BlessingFactory.getInstance());

@@ -2,9 +2,9 @@ package com.softwaremagico.tm.random.profiles;
 
 /*-
  * #%L
- * Think Machine (Core)
+ * Think Machine (Random Generator)
  * %%
- * Copyright (C) 2017 - 2018 Softwaremagico
+ * Copyright (C) 2017 - 2019 Softwaremagico
  * %%
  * This software is designed by Jorge Hortelano Otero. Jorge Hortelano Otero
  * <softwaremagico@gmail.com> Valencia (Spain).
@@ -24,9 +24,7 @@ package com.softwaremagico.tm.random.profiles;
  * #L%
  */
 
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 import java.util.StringTokenizer;
 
@@ -34,7 +32,9 @@ import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
 import com.softwaremagico.tm.character.benefices.BeneficeDefinition;
 import com.softwaremagico.tm.character.benefices.BeneficeDefinitionFactory;
+import com.softwaremagico.tm.character.characteristics.Characteristic;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
+import com.softwaremagico.tm.character.characteristics.CharacteristicsDefinitionFactory;
 import com.softwaremagico.tm.character.equipment.armours.Armour;
 import com.softwaremagico.tm.character.equipment.armours.ArmourFactory;
 import com.softwaremagico.tm.character.equipment.weapons.Weapon;
@@ -122,13 +122,16 @@ public class RandomProfileFactory extends XmlFactory<RandomProfile> {
 			}
 		}
 
-		final Map<CharacteristicName, Integer> characteristicsMinimumValues = new HashMap<>();
+		final Set<Characteristic> characteristicsMinimumValues = new HashSet<>();
 		for (final CharacteristicName characteristicName : CharacteristicName.values()) {
 			final String characteristicValue = translator.getNodeValue(profileId, CHARACTERISTICS_MINIMUM_VALUES,
 					characteristicName.name().toLowerCase());
 			if (characteristicValue != null) {
 				try {
-					characteristicsMinimumValues.put(characteristicName, Integer.parseInt(characteristicValue));
+					final Characteristic characteristicOption = new Characteristic(
+							CharacteristicsDefinitionFactory.getInstance().get(characteristicName, language));
+					characteristicOption.setValue(Integer.parseInt(characteristicValue));
+					characteristicsMinimumValues.add(characteristicOption);
 				} catch (NumberFormatException e) {
 					throw new InvalidProfileException("Invalid min value in characteristic '"
 							+ characteristicName.name().toLowerCase() + "' of profile '" + profileId + "'.");

@@ -206,11 +206,11 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 		if (skill.getSkillDefinition().getSkillGroup().getPreferredCharacteristicsGroups() != null
 				&& !getPreferredCharacteristicsTypeSorted().isEmpty()) {
 			if (Objects.equals(skill.getSkillDefinition().getSkillGroup().getPreferredCharacteristicsGroups(),
-					getPreferredCharacteristicsTypeSorted().get(0))) {
+					getPreferredCharacteristicsTypeSorted().get(0).getKey())) {
 				return FAIR_PROBABILITY;
 			}
 			if (Objects.equals(skill.getSkillDefinition().getSkillGroup().getPreferredCharacteristicsGroups(),
-					getPreferredCharacteristicsTypeSorted().get(1))) {
+					getPreferredCharacteristicsTypeSorted().get(1).getKey())) {
 				return LITTLE_PROBABILITY;
 			}
 		}

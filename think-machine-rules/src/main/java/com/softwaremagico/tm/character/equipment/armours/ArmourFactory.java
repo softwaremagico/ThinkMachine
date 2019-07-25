@@ -208,7 +208,7 @@ public class ArmourFactory extends XmlFactory<Armour> {
 					specialInitiativeModification, specialEnduranceModification);
 		}
 
-		Set<ArmourSpecification> specifications = new HashSet<>();
+		final Set<ArmourSpecification> specifications;
 		try {
 			specifications = getCommaSeparatedValues(armourId, OTHER, language,
 					ArmourSpecificationFactory.getInstance());

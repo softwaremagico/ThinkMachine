@@ -36,6 +36,7 @@ import com.softwaremagico.tm.character.benefices.RandomExtraBeneficeDefinition;
 import com.softwaremagico.tm.character.blessings.RandomBlessingDefinition;
 import com.softwaremagico.tm.character.blessings.RandomCursesDefinition;
 import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
+import com.softwaremagico.tm.character.characteristics.Characteristic;
 import com.softwaremagico.tm.character.characteristics.RandomCharacteristics;
 import com.softwaremagico.tm.character.characteristics.RandomCharacteristicsExtraPoints;
 import com.softwaremagico.tm.character.creation.CostCalculator;
@@ -79,6 +80,7 @@ public class RandomizeCharacter {
 	private final Set<AvailableSkill> suggestedSkills;
 	private final Set<BeneficeDefinition> mandatoryBenefices;
 	private final Set<BeneficeDefinition> suggestedBenefices;
+	private final Set<Characteristic> characteristicsMinimumValues;
 	private final Random random = new Random();
 	private final int experiencePoints;
 
@@ -97,18 +99,17 @@ public class RandomizeCharacter {
 	}
 
 	public RandomizeCharacter(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences,
-			IRandomProfile... profiles) throws DuplicatedPreferenceException, TooManyBlessingsException,
-			InvalidXmlElementException {
+			IRandomProfile... profiles)
+			throws DuplicatedPreferenceException, TooManyBlessingsException, InvalidXmlElementException {
 		this(characterPlayer, null, new HashSet<IRandomProfile>(Arrays.asList(profiles)),
 				new HashSet<IRandomPreference>(), new HashSet<AvailableSkill>(), new HashSet<AvailableSkill>(),
 				new HashSet<BeneficeDefinition>(), new HashSet<BeneficeDefinition>());
 	}
 
 	public RandomizeCharacter(CharacterPlayer characterPlayer, Integer experiencePoints, Set<IRandomProfile> profiles,
-			Set<IRandomPreference> preferences, Set<AvailableSkill> requiredSkills,
-			Set<AvailableSkill> suggestedSkills, Set<BeneficeDefinition> mandatoryBenefices,
-			Set<BeneficeDefinition> suggestedBenefices) throws DuplicatedPreferenceException,
-			TooManyBlessingsException, InvalidXmlElementException {
+			Set<IRandomPreference> preferences, Set<AvailableSkill> requiredSkills, Set<AvailableSkill> suggestedSkills,
+			Set<BeneficeDefinition> mandatoryBenefices, Set<BeneficeDefinition> suggestedBenefices)
+			throws DuplicatedPreferenceException, TooManyBlessingsException, InvalidXmlElementException {
 		this.characterPlayer = characterPlayer;
 
 		final IRandomProfile finalProfile = ProfileMerger.merge(profiles, preferences, requiredSkills, suggestedSkills,
@@ -120,6 +121,7 @@ public class RandomizeCharacter {
 		this.suggestedSkills = finalProfile.getSuggestedSkills();
 		this.mandatoryBenefices = finalProfile.getMandatoryBenefices();
 		this.suggestedBenefices = finalProfile.getSuggestedBenefices();
+		this.characteristicsMinimumValues = finalProfile.getCharacteristicsMinimumValues();
 
 		checkValidPreferences();
 
@@ -224,17 +226,19 @@ public class RandomizeCharacter {
 	}
 
 	/**
-	 * Using free style character generation. Only the first points to expend in a character.
+	 * Using free style character generation. Only the first points to expend in a
+	 * character.
 	 * 
 	 * @throws InvalidXmlElementException
 	 * @throws InvalidRandomElementSelectedException
 	 */
 	private void setStartingValues() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
 		// Characteristics
-		final RandomCharacteristics randomCharacteristics = new RandomCharacteristics(characterPlayer, preferences);
+		final RandomCharacteristics randomCharacteristics = new RandomCharacteristics(characterPlayer, preferences, characteristicsMinimumValues);
 		randomCharacteristics.assign();
 		// Skills
-		final RandomSkills randomSkills = new RandomSkills(characterPlayer, preferences, requiredSkills, suggestedSkills);
+		final RandomSkills randomSkills = new RandomSkills(characterPlayer, preferences, requiredSkills,
+				suggestedSkills);
 		randomSkills.assign();
 		// Traits
 		final RandomBeneficeDefinition randomBenefice = new RandomBeneficeDefinition(characterPlayer, preferences,
@@ -282,8 +286,8 @@ public class RandomizeCharacter {
 		if (remainingPoints > 0) {
 			final RandomCharacteristicsExtraPoints randomCharacteristicsExtraPoints = new RandomCharacteristicsExtraPoints(
 					characterPlayer, preferences);
-			final RandomSkillExtraPoints randomSkillExtraPoints = new RandomSkillExtraPoints(characterPlayer, preferences,
-					suggestedSkills);
+			final RandomSkillExtraPoints randomSkillExtraPoints = new RandomSkillExtraPoints(characterPlayer,
+					preferences, suggestedSkills);
 			while (remainingPoints > 0) {
 				// Characteristics only if is a little specialized.
 				if (remainingPoints >= CostCalculator.CHARACTERISTIC_EXTRA_POINTS_COST
@@ -310,8 +314,8 @@ public class RandomizeCharacter {
 				try {
 					randomRangedWeapon.assign();
 				} catch (InvalidRandomElementSelectedException ires) {
-					RandomGenerationLog.warning(this.getClass().getName(), "No ranged weapons available for '"
-							+ characterPlayer + "'.");
+					RandomGenerationLog.warning(this.getClass().getName(),
+							"No ranged weapons available for '" + characterPlayer + "'.");
 				}
 			}
 			probabilityOfRangedWeapon -= 0.3f;
@@ -321,8 +325,8 @@ public class RandomizeCharacter {
 				try {
 					randomMeleeWeapon.assign();
 				} catch (InvalidRandomElementSelectedException ires) {
-					RandomGenerationLog.warning(this.getClass().getName(), "No melee weapons available for '"
-							+ characterPlayer + "'.");
+					RandomGenerationLog.warning(this.getClass().getName(),
+							"No melee weapons available for '" + characterPlayer + "'.");
 				}
 			}
 			probabilityOfMeleeWeapon -= 0.4f;
@@ -338,8 +342,8 @@ public class RandomizeCharacter {
 				// Probably already has an armour.
 				RandomGenerationLog.warning(this.getClass().getName(), e.getMessage());
 			} catch (InvalidRandomElementSelectedException e) {
-				RandomGenerationLog.warning(this.getClass().getName(), "No shields available for '" + characterPlayer
-						+ "'.");
+				RandomGenerationLog.warning(this.getClass().getName(),
+						"No shields available for '" + characterPlayer + "'.");
 			}
 		}
 
@@ -353,8 +357,8 @@ public class RandomizeCharacter {
 				// Probably already has a shield.
 				RandomGenerationLog.warning(this.getClass().getName(), e.getMessage());
 			} catch (InvalidRandomElementSelectedException e) {
-				RandomGenerationLog.warning(this.getClass().getName(), "No armours available for '" + characterPlayer
-						+ "'.");
+				RandomGenerationLog.warning(this.getClass().getName(),
+						"No armours available for '" + characterPlayer + "'.");
 			}
 
 		}

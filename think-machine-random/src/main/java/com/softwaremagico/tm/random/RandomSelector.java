@@ -173,7 +173,7 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
 				}
 
 				// Suggested ones.
-				if (suggestedElements.contains(element)) {
+				if (suggestedElements != null && suggestedElements.contains(element)) {
 					weight *= FAIR_PROBABILITY;
 				}
 			}

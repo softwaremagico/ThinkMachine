@@ -127,7 +127,7 @@ public class AmmunitionFactory extends XmlFactory<Ammunition> {
 			// Not mandatory.
 		}
 
-		Set<Accessory> accessories = new HashSet<>();
+		final Set<Accessory> accessories;
 		try {
 			accessories = getCommaSeparatedValues(ammunitionId, ACCESSORIES, language, AccessoryFactory.getInstance());
 		} catch (Exception e) {

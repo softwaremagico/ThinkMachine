@@ -27,6 +27,7 @@ package com.softwaremagico.tm.random.profiles;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 import com.softwaremagico.tm.Element;
@@ -34,6 +35,7 @@ import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.benefices.AvailableBenefice;
 import com.softwaremagico.tm.character.benefices.BeneficeDefinition;
 import com.softwaremagico.tm.character.blessings.Blessing;
+import com.softwaremagico.tm.character.characteristics.Characteristic;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.json.ExcludeFromJson;
@@ -41,7 +43,7 @@ import com.softwaremagico.tm.random.selectors.IRandomPreference;
 
 public class RandomProfile extends Element<RandomProfile> implements IRandomProfile {
 	private final Set<IRandomPreference> randomPreferences;
-	private final Map<CharacteristicName, Integer> characteristicsMinimumValues;
+	private final Set<Characteristic> characteristicsMinimumValues;
 	private final Set<AvailableSkill> requiredSkills;
 	private final Set<AvailableSkill> suggestedSkills;
 	private final Set<BeneficeDefinition> suggestedBenefices;
@@ -51,7 +53,7 @@ public class RandomProfile extends Element<RandomProfile> implements IRandomProf
 	public boolean parentMerged = false;
 
 	public RandomProfile(String id, String name, String language, Set<IRandomPreference> randomPreferences,
-			Map<CharacteristicName, Integer> characteristicsMinimumValues, Set<AvailableSkill> requiredSkills,
+			Set<Characteristic> characteristicsMinimumValues, Set<AvailableSkill> requiredSkills,
 			Set<AvailableSkill> suggestedSkills, Set<BeneficeDefinition> mandatoryBenefices,
 			Set<BeneficeDefinition> suggestedBenefices) {
 		super(id, name, language);
@@ -64,7 +66,7 @@ public class RandomProfile extends Element<RandomProfile> implements IRandomProf
 	}
 
 	public RandomProfile(String id, String name, String language) {
-		this(id, name, language, new HashSet<IRandomPreference>(), new HashMap<CharacteristicName, Integer>(),
+		this(id, name, language, new HashSet<IRandomPreference>(), new HashSet<Characteristic>(),
 				new HashSet<AvailableSkill>(), new HashSet<AvailableSkill>(), new HashSet<BeneficeDefinition>(),
 				new HashSet<BeneficeDefinition>());
 	}
@@ -79,15 +81,26 @@ public class RandomProfile extends Element<RandomProfile> implements IRandomProf
 			randomPreferences.addAll(mergedProfile.getPreferences());
 
 			characteristicsMinimumValues.clear();
-			characteristicsMinimumValues.putAll(mergedProfile.getCharacteristicsMinimumValues());
+			characteristicsMinimumValues.addAll(mergedProfile.getCharacteristicsMinimumValues());
 
 			parentMerged = true;
 		}
 	}
 
 	@Override
-	public Map<CharacteristicName, Integer> getCharacteristicsMinimumValues() {
+	public Set<Characteristic> getCharacteristicsMinimumValues() {
 		return characteristicsMinimumValues;
+	}
+
+	@Override
+	public Characteristic getCharacteristicMinimumValues(CharacteristicName characteristicName) {
+		for (final Characteristic characteristic : getCharacteristicsMinimumValues()) {
+			if (Objects.equals(characteristic.getCharacteristicDefinition().getCharacteristicName(),
+					characteristicName)) {
+				return characteristic;
+			}
+		}
+		return null;
 	}
 
 	@Override

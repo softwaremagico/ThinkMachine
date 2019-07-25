@@ -62,7 +62,7 @@ public class ProfileTests {
 		Assert.assertTrue(RandomProfileFactory.getInstance().getElement("soldier", LANGUAGE).getPreferences()
 				.contains(CombatPreferences.BELLIGERENT));
 		Assert.assertEquals(RandomProfileFactory.getInstance().getElement("soldier", LANGUAGE)
-				.getCharacteristicsMinimumValues().get(CharacteristicName.DEXTERITY), Integer.valueOf(6));
+				.getCharacteristicMinimumValues(CharacteristicName.DEXTERITY).getValue(), 6);
 	}
 
 	@Test
@@ -73,9 +73,9 @@ public class ProfileTests {
 		Assert.assertTrue(RandomProfileFactory.getInstance().getElement("soldierLiHalan", LANGUAGE).getPreferences()
 				.contains(CombatPreferences.BELLIGERENT));
 		Assert.assertEquals(RandomProfileFactory.getInstance().getElement("soldierLiHalan", LANGUAGE)
-				.getCharacteristicsMinimumValues().get(CharacteristicName.DEXTERITY), Integer.valueOf(6));
+				.getCharacteristicMinimumValues(CharacteristicName.DEXTERITY).getValue(), 6);
 		Assert.assertEquals(RandomProfileFactory.getInstance().getElement("soldierLiHalan", LANGUAGE)
-				.getCharacteristicsMinimumValues().get(CharacteristicName.TECH), Integer.valueOf(7));
+				.getCharacteristicMinimumValues(CharacteristicName.TECH).getValue(), 7);
 	}
 
 	@Test
@@ -138,7 +138,7 @@ public class ProfileTests {
 		final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
 				RandomProfileFactory.getInstance().getElement("militia", LANGUAGE));
 		Assert.assertEquals(RandomProfileFactory.getInstance().getElement("militia", LANGUAGE)
-				.getCharacteristicsMinimumValues().get(CharacteristicName.STRENGTH), Integer.valueOf(6));
+				.getCharacteristicMinimumValues(CharacteristicName.STRENGTH).getValue(), 6);
 		randomizeCharacter.createCharacter();
 		checkCharacterisic(characterPlayer, CharacteristicName.STRENGTH, 6);
 	}
@@ -150,7 +150,7 @@ public class ProfileTests {
 		final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
 				RandomProfileFactory.getInstance().getElement("infantry", LANGUAGE));
 		Assert.assertEquals(RandomProfileFactory.getInstance().getElement("infantry", LANGUAGE)
-				.getCharacteristicsMinimumValues().get(CharacteristicName.ENDURANCE), Integer.valueOf(6));
+				.getCharacteristicMinimumValues(CharacteristicName.ENDURANCE).getValue(), 6);
 		randomizeCharacter.createCharacter();
 		checkCharacterisic(characterPlayer, CharacteristicName.ENDURANCE, 6);
 	}
@@ -162,7 +162,7 @@ public class ProfileTests {
 		final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
 				RandomProfileFactory.getInstance().getElement("heavyInfantry", LANGUAGE));
 		Assert.assertEquals(RandomProfileFactory.getInstance().getElement("heavyInfantry", LANGUAGE)
-				.getCharacteristicsMinimumValues().get(CharacteristicName.STRENGTH), Integer.valueOf(6));
+				.getCharacteristicMinimumValues(CharacteristicName.STRENGTH).getValue(), 6);
 		randomizeCharacter.createCharacter();
 		checkCharacterisic(characterPlayer, CharacteristicName.STRENGTH, 6);
 	}
@@ -174,7 +174,7 @@ public class ProfileTests {
 		final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
 				RandomProfileFactory.getInstance().getElement("tracker", LANGUAGE));
 		Assert.assertEquals(RandomProfileFactory.getInstance().getElement("tracker", LANGUAGE)
-				.getCharacteristicsMinimumValues().get(CharacteristicName.PERCEPTION), Integer.valueOf(6));
+				.getCharacteristicMinimumValues(CharacteristicName.PERCEPTION).getValue(), 6);
 		randomizeCharacter.createCharacter();
 		checkCharacterisic(characterPlayer, CharacteristicName.PERCEPTION, 6);
 	}

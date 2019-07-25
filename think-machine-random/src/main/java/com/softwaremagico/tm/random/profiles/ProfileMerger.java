@@ -26,13 +26,12 @@ package com.softwaremagico.tm.random.profiles;
 
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
+import com.google.common.base.Objects;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.benefices.BeneficeDefinition;
-import com.softwaremagico.tm.character.characteristics.CharacteristicName;
+import com.softwaremagico.tm.character.characteristics.Characteristic;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
 
@@ -113,15 +112,28 @@ public class ProfileMerger {
 		return finalProfile;
 	}
 
-	private static void mergeCharacteristics(Map<CharacteristicName, Integer> originalCharacteristicsMinimumValues,
-			Map<CharacteristicName, Integer> preferredCharacteristicsMinimumValues) {
+	private static void mergeCharacteristics(Set<Characteristic> originalCharacteristicsMinimumValues,
+			Set<Characteristic> preferredCharacteristicsMinimumValues) {
 		// Merge Characteristics
-		for (final Entry<CharacteristicName, Integer> entry : preferredCharacteristicsMinimumValues.entrySet()) {
-			originalCharacteristicsMinimumValues.put(entry.getKey(), entry.getValue());
+		for (final Characteristic newCharacteristic : preferredCharacteristicsMinimumValues) {
+			boolean added = false;
+			for (final Characteristic characteristic : originalCharacteristicsMinimumValues) {
+				if (Objects.equal(characteristic.getCharacteristicName(), newCharacteristic.getCharacteristicName())) {
+					if (characteristic.getValue() < newCharacteristic.getValue()) {
+						characteristic.setValue(newCharacteristic.getValue());
+						added = true;
+						break;
+					}
+				}
+			}
+			if (!added) {
+				originalCharacteristicsMinimumValues.add(newCharacteristic);
+			}
 		}
 	}
 
-	private static void mergeBenefices(Set<BeneficeDefinition> originalBenefices, Set<BeneficeDefinition> extraBenefices) {
+	private static void mergeBenefices(Set<BeneficeDefinition> originalBenefices,
+			Set<BeneficeDefinition> extraBenefices) {
 		originalBenefices.addAll(extraBenefices);
 	}
 
