@@ -37,6 +37,8 @@ import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.characteristics.CharacteristicsDefinitionFactory;
 import com.softwaremagico.tm.character.equipment.armours.Armour;
 import com.softwaremagico.tm.character.equipment.armours.ArmourFactory;
+import com.softwaremagico.tm.character.equipment.shields.Shield;
+import com.softwaremagico.tm.character.equipment.shields.ShieldFactory;
 import com.softwaremagico.tm.character.equipment.weapons.Weapon;
 import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
@@ -61,6 +63,7 @@ public class RandomProfileFactory extends XmlFactory<RandomProfile> {
 	private static final String MANDATORY_BENEFICES = "mandatoryBenefices";
 	private static final String MANDATORY_WEAPONS = "weapons";
 	private static final String MANDATORY_ARMOURS = "armours";
+	private static final String MANDATORY_SHIELDS = "shields";
 	private static final String PARENT = "parent";
 
 	private static class RandomProfileFactoryInit {
@@ -230,8 +233,12 @@ public class RandomProfileFactory extends XmlFactory<RandomProfile> {
 		final Set<Armour> mandatoryArmours = getCommaSeparatedValues(profileId, MANDATORY_ARMOURS, language,
 				ArmourFactory.getInstance());
 
+		final Set<Shield> mandatoryShields = getCommaSeparatedValues(profileId, MANDATORY_SHIELDS, language,
+				ShieldFactory.getInstance());
+
 		final RandomProfile profile = new RandomProfile(profileId, name, language, preferencesSelected,
-				characteristicsMinimumValues, requiredSkills, suggestedSkills, mandatoryBenefices, suggestedBenefices);
+				characteristicsMinimumValues, requiredSkills, suggestedSkills, mandatoryBenefices, suggestedBenefices,
+				mandatoryWeapons, mandatoryArmours, mandatoryShields);
 		return profile;
 	}
 }

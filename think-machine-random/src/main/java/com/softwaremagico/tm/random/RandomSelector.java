@@ -115,7 +115,9 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
 	public abstract void assign() throws InvalidXmlElementException, InvalidRandomElementSelectedException;
 
 	/**
-	 * This mandatories values are defined but the user and must be assigned.
+	 * This mandatories values are defined by the user and must be assigned directly
+	 * without random approach. This method uses a list of elements that must be
+	 * directly assigned to the user.
 	 * 
 	 * @param mandatoryValues set of elements to be assigned.
 	 * @throws InvalidXmlElementException
@@ -123,7 +125,9 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
 	protected abstract void assignMandatoryValues(Set<Element> mandatoryValues) throws InvalidXmlElementException;
 
 	/**
-	 * Must check if element is mandatory, and if it is, it must be assigned.
+	 * Must check if an element is mandatory, and if it is, it must be assigned.
+	 * This method defines a set of property for any element, that if accomplished
+	 * must be assigned.
 	 * 
 	 * @param element element to check.
 	 * @throws InvalidXmlElementException

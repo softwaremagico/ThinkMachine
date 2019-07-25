@@ -1,5 +1,7 @@
 package com.softwaremagico.tm.random.profile;
 
+import java.util.Objects;
+
 /*-
  * #%L
  * Think Machine (Core)
@@ -32,6 +34,10 @@ import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.RandomizeCharacter;
 import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
+import com.softwaremagico.tm.character.equipment.armours.Armour;
+import com.softwaremagico.tm.character.equipment.armours.ArmourFactory;
+import com.softwaremagico.tm.character.equipment.weapons.Weapon;
+import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.random.exceptions.DuplicatedPreferenceException;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
@@ -51,6 +57,22 @@ public class ProfileTests {
 			final CharacterSheet characterSheet = new CharacterSheet(characterPlayer);
 			System.out.println(characterSheet.toString());
 			throw e;
+		}
+	}
+
+	private void checkContainsWeapon(CharacterPlayer characterPlayer, Weapon weapon) {
+		System.out.println(characterPlayer.getAllWeapons() + " <-> " + weapon);
+		for (Weapon characterWeapon : characterPlayer.getAllWeapons()) {
+			if (Objects.equals(characterWeapon, weapon)) {
+				return;
+			}
+		}
+		throw new AssertionError();
+	}
+
+	private void checkContainsArmour(CharacterPlayer characterPlayer, Armour armour) {
+		if (!Objects.equals(characterPlayer.getArmour(), armour)) {
+			throw new AssertionError();
 		}
 	}
 
@@ -153,6 +175,8 @@ public class ProfileTests {
 				.getCharacteristicMinimumValues(CharacteristicName.ENDURANCE).getValue(), 6);
 		randomizeCharacter.createCharacter();
 		checkCharacterisic(characterPlayer, CharacteristicName.ENDURANCE, 6);
+		checkContainsWeapon(characterPlayer, WeaponFactory.getInstance().getElement("imperialRifle", LANGUAGE));
+		checkContainsArmour(characterPlayer, ArmourFactory.getInstance().getElement("scaleMailMetal", LANGUAGE));
 	}
 
 	@Test
@@ -163,8 +187,12 @@ public class ProfileTests {
 				RandomProfileFactory.getInstance().getElement("heavyInfantry", LANGUAGE));
 		Assert.assertEquals(RandomProfileFactory.getInstance().getElement("heavyInfantry", LANGUAGE)
 				.getCharacteristicMinimumValues(CharacteristicName.STRENGTH).getValue(), 6);
+		Assert.assertEquals(RandomProfileFactory.getInstance().getElement("heavyInfantry", LANGUAGE)
+				.getMandatoryWeapons().size(), 1);
 		randomizeCharacter.createCharacter();
 		checkCharacterisic(characterPlayer, CharacteristicName.STRENGTH, 6);
+		checkContainsWeapon(characterPlayer, WeaponFactory.getInstance().getElement("jahnisak040MG", LANGUAGE));
+		checkContainsArmour(characterPlayer, ArmourFactory.getInstance().getElement("leatherJerkin", LANGUAGE));
 	}
 
 	@Test
@@ -175,8 +203,12 @@ public class ProfileTests {
 				RandomProfileFactory.getInstance().getElement("tracker", LANGUAGE));
 		Assert.assertEquals(RandomProfileFactory.getInstance().getElement("tracker", LANGUAGE)
 				.getCharacteristicMinimumValues(CharacteristicName.PERCEPTION).getValue(), 6);
+		Assert.assertEquals(RandomProfileFactory.getInstance().getElement("tracker", LANGUAGE)
+				.getMandatoryWeapons().size(), 1);
 		randomizeCharacter.createCharacter();
 		checkCharacterisic(characterPlayer, CharacteristicName.PERCEPTION, 6);
+		checkContainsWeapon(characterPlayer, WeaponFactory.getInstance().getElement("typicalSniperRifle", LANGUAGE));
+		checkContainsArmour(characterPlayer, ArmourFactory.getInstance().getElement("leatherJerkin", LANGUAGE));
 	}
 
 }

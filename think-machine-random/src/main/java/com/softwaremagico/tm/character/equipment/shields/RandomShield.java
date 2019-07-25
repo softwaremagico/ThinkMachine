@@ -1,5 +1,7 @@
 package com.softwaremagico.tm.character.equipment.shields;
 
+import java.util.ArrayList;
+
 /*-
  * #%L
  * Think Machine (Core)
@@ -25,6 +27,10 @@ package com.softwaremagico.tm.character.equipment.shields;
  */
 
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Random;
 import java.util.Set;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
@@ -35,20 +41,26 @@ import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedExcep
 import com.softwaremagico.tm.random.selectors.CombatPreferences;
 import com.softwaremagico.tm.random.selectors.DifficultLevelPreferences;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
+import com.softwaremagico.tm.random.selectors.ShieldPreferences;
 
 public class RandomShield extends EquipmentSelector<Shield> {
 
-	public RandomShield(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences)
-			throws InvalidXmlElementException {
-		super(characterPlayer, preferences);
+	public RandomShield(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences,
+			Set<Shield> mandatoryShields) throws InvalidXmlElementException {
+		super(characterPlayer, preferences, mandatoryShields);
 	}
 
 	@Override
 	public void assign() throws InvalidRandomElementSelectedException, InvalidShieldException {
-		final Shield selectedShield = selectElementByWeight();
-		if (getCharacterPlayer().getShield() == null) {
-			getCharacterPlayer().setShield(selectedShield);
-			RandomGenerationLog.info(this.getClass().getName(), "Selected shield: " + selectedShield);
+		final Random random = new Random();
+
+		final ShieldPreferences shieldPreferences = ShieldPreferences.getSelected(getPreferences());
+		if (random.nextFloat() < shieldPreferences.getShieldProbability()) {
+			final Shield selectedShield = selectElementByWeight();
+			if (getCharacterPlayer().getShield() == null) {
+				getCharacterPlayer().setShield(selectedShield);
+				RandomGenerationLog.info(this.getClass().getName(), "Selected shield: " + selectedShield);
+			}
 		}
 	}
 
@@ -100,7 +112,7 @@ public class RandomShield extends EquipmentSelector<Shield> {
 		final int costModificator = getWeightCostModificator(shield);
 		RandomGenerationLog.debug(this.getClass().getName(),
 				"Cost multiplication for weight for '" + shield + "' is '" + costModificator + "'.");
-		weight /= costModificator;
+		weight /= (double) costModificator;
 
 		RandomGenerationLog.debug(this.getClass().getName(), "Total weight for '" + shield + "' is '" + weight + "'.");
 		return weight;
@@ -129,6 +141,17 @@ public class RandomShield extends EquipmentSelector<Shield> {
 
 	@Override
 	protected void assignMandatoryValues(Set<Shield> mandatoryValues) throws InvalidXmlElementException {
-		return;
+		// We only assign the most expensive one.
+		if (!mandatoryValues.isEmpty()) {
+			final List<Shield> sortedShields = new ArrayList<>(mandatoryValues);
+			Collections.sort(sortedShields, new Comparator<Shield>() {
+
+				@Override
+				public int compare(Shield shield0, Shield shield1) {
+					return shield0.getCost() > shield1.getCost() ? -1 : shield0.getCost() < shield1.getCost() ? 1 : 0;
+				}
+			});
+			getCharacterPlayer().setShield(sortedShields.get(0));
+		}
 	}
 }

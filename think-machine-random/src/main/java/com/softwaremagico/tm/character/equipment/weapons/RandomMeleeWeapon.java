@@ -1,5 +1,7 @@
 package com.softwaremagico.tm.character.equipment.weapons;
 
+import java.util.Random;
+
 /*-
  * #%L
  * Think Machine (Core)
@@ -30,13 +32,34 @@ import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.log.RandomGenerationLog;
+import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
+import com.softwaremagico.tm.random.selectors.WeaponsPreferences;
 
 public class RandomMeleeWeapon extends RandomWeapon {
 
-	public RandomMeleeWeapon(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences)
-			throws InvalidXmlElementException {
-		super(characterPlayer, preferences);
+	public RandomMeleeWeapon(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences,
+			Set<Weapon> mandatoryWeapons) throws InvalidXmlElementException {
+		super(characterPlayer, preferences, mandatoryWeapons);
+	}
+
+	@Override
+	public void assign() throws InvalidRandomElementSelectedException {
+		final Random random = new Random();
+
+		final WeaponsPreferences weaponPreferences = WeaponsPreferences.getSelected(getPreferences());
+		float probabilityOfMeleeWeapon = weaponPreferences.getMeleeWeaponProbability();
+		while (probabilityOfMeleeWeapon > 0) {
+			if (probabilityOfMeleeWeapon > 0 && random.nextFloat() < probabilityOfMeleeWeapon) {
+				try {
+					super.assign();
+				} catch (InvalidRandomElementSelectedException ires) {
+					RandomGenerationLog.warning(this.getClass().getName(),
+							"No melee weapons available for '" + getCharacterPlayer() + "'.");
+				}
+			}
+			probabilityOfMeleeWeapon -= 0.4f;
+		}
 	}
 
 	@Override

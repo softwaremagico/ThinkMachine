@@ -36,8 +36,9 @@ import com.softwaremagico.tm.random.selectors.IRandomPreference;
 public abstract class EquipmentSelector<E extends Equipment<?>> extends RandomSelector<E> {
 	private Integer currentMoney = null;
 
-	protected EquipmentSelector(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences) throws InvalidXmlElementException {
-		super(characterPlayer, preferences);
+	protected EquipmentSelector(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences,
+			Set<E> mandatoryElements) throws InvalidXmlElementException {
+		super(characterPlayer, null, preferences, mandatoryElements, null);
 	}
 
 	protected int getCurrentMoney() {

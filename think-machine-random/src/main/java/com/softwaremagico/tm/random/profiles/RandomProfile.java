@@ -37,6 +37,9 @@ import com.softwaremagico.tm.character.benefices.BeneficeDefinition;
 import com.softwaremagico.tm.character.blessings.Blessing;
 import com.softwaremagico.tm.character.characteristics.Characteristic;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
+import com.softwaremagico.tm.character.equipment.armours.Armour;
+import com.softwaremagico.tm.character.equipment.shields.Shield;
+import com.softwaremagico.tm.character.equipment.weapons.Weapon;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.json.ExcludeFromJson;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
@@ -48,6 +51,9 @@ public class RandomProfile extends Element<RandomProfile> implements IRandomProf
 	private final Set<AvailableSkill> suggestedSkills;
 	private final Set<BeneficeDefinition> suggestedBenefices;
 	private final Set<BeneficeDefinition> mandatoryBenefices;
+	private final Set<Weapon> mandatoryWeapons;
+	private final Set<Armour> mandatoryArmours;
+	private final Set<Shield> mandatoryShields;
 
 	@ExcludeFromJson
 	public boolean parentMerged = false;
@@ -55,7 +61,8 @@ public class RandomProfile extends Element<RandomProfile> implements IRandomProf
 	public RandomProfile(String id, String name, String language, Set<IRandomPreference> randomPreferences,
 			Set<Characteristic> characteristicsMinimumValues, Set<AvailableSkill> requiredSkills,
 			Set<AvailableSkill> suggestedSkills, Set<BeneficeDefinition> mandatoryBenefices,
-			Set<BeneficeDefinition> suggestedBenefices) {
+			Set<BeneficeDefinition> suggestedBenefices, Set<Weapon> mandatoryWeapons, Set<Armour> mandatoryArmours,
+			Set<Shield> mandatoryShields) {
 		super(id, name, language);
 		this.randomPreferences = randomPreferences;
 		this.characteristicsMinimumValues = characteristicsMinimumValues;
@@ -63,12 +70,15 @@ public class RandomProfile extends Element<RandomProfile> implements IRandomProf
 		this.suggestedSkills = suggestedSkills;
 		this.suggestedBenefices = suggestedBenefices;
 		this.mandatoryBenefices = mandatoryBenefices;
+		this.mandatoryWeapons = mandatoryWeapons;
+		this.mandatoryArmours = mandatoryArmours;
+		this.mandatoryShields = mandatoryShields;
 	}
 
 	public RandomProfile(String id, String name, String language) {
 		this(id, name, language, new HashSet<IRandomPreference>(), new HashSet<Characteristic>(),
 				new HashSet<AvailableSkill>(), new HashSet<AvailableSkill>(), new HashSet<BeneficeDefinition>(),
-				new HashSet<BeneficeDefinition>());
+				new HashSet<BeneficeDefinition>(), new HashSet<Weapon>(), new HashSet<Armour>(), new HashSet<Shield>());
 	}
 
 	@Override
@@ -164,5 +174,20 @@ public class RandomProfile extends Element<RandomProfile> implements IRandomProf
 	@Override
 	public boolean equals(Object obj) {
 		return super.equals(obj);
+	}
+
+	@Override
+	public Set<Weapon> getMandatoryWeapons() {
+		return mandatoryWeapons;
+	}
+
+	@Override
+	public Set<Armour> getMandatoryArmours() {
+		return mandatoryArmours;
+	}
+
+	@Override
+	public Set<Shield> getMandatoryShields() {
+		return mandatoryShields;
 	}
 }

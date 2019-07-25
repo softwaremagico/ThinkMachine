@@ -37,9 +37,9 @@ import com.softwaremagico.tm.random.selectors.IRandomPreference;
 
 public abstract class RandomWeapon extends EquipmentSelector<Weapon> {
 
-	protected RandomWeapon(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences)
-			throws InvalidXmlElementException {
-		super(characterPlayer, preferences);
+	protected RandomWeapon(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences,
+			Set<Weapon> mandatoryWeapons) throws InvalidXmlElementException {
+		super(characterPlayer, preferences, mandatoryWeapons);
 	}
 
 	@Override
@@ -70,6 +70,8 @@ public abstract class RandomWeapon extends EquipmentSelector<Weapon> {
 	protected int getWeight(Weapon weapon) throws InvalidRandomElementSelectedException {
 		super.getWeight(weapon);
 
+		// Preferences
+
 		// Only ranged weapons.
 		if (!weaponTypesFilter().contains(weapon.getType())) {
 			throw new InvalidRandomElementSelectedException("Only weapons of type '" + weaponTypesFilter()
@@ -79,21 +81,21 @@ public abstract class RandomWeapon extends EquipmentSelector<Weapon> {
 		int weight = 0;
 		// Similar tech level preferred.
 		final int weightTech = getWeightTechModificator(weapon);
-		RandomGenerationLog.debug(this.getClass().getName(), "Weight value by tech level for '" + weapon + "' is '"
-				+ weightTech + "'.");
+		RandomGenerationLog.debug(this.getClass().getName(),
+				"Weight value by tech level for '" + weapon + "' is '" + weightTech + "'.");
 		weight += weightTech;
 
 		// Weapons depending on the purchasing power of the character.
 		final int costModificator = getWeightCostModificator(weapon);
-		RandomGenerationLog.debug(this.getClass().getName(), "Cost multiplication for weight for '" + weapon + "' is '"
-				+ costModificator + "'.");
+		RandomGenerationLog.debug(this.getClass().getName(),
+				"Cost multiplication for weight for '" + weapon + "' is '" + costModificator + "'.");
 		weight /= costModificator;
 
 		// Skill modifications.
 		final int skillMultiplier = getCharacterPlayer().getSkillTotalRanks(weapon.getSkill());
 		if (skillMultiplier > 0) {
-			RandomGenerationLog.debug(this.getClass().getName(), "Skill multiplication for weight for '" + weapon
-					+ "' is '" + skillMultiplier + "'.");
+			RandomGenerationLog.debug(this.getClass().getName(),
+					"Skill multiplication for weight for '" + weapon + "' is '" + skillMultiplier + "'.");
 			weight = (weight + skillMultiplier) * skillMultiplier;
 		}
 
@@ -149,6 +151,10 @@ public abstract class RandomWeapon extends EquipmentSelector<Weapon> {
 
 	@Override
 	protected void assignMandatoryValues(Set<Weapon> mandatoryValues) throws InvalidXmlElementException {
-		return;
+		for (final Weapon weapon : mandatoryValues) {
+			if (weaponTypesFilter().contains(weapon.getType())) {
+				getCharacterPlayer().addWeapon(weapon);
+			}
+		}
 	}
 }
