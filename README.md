@@ -6,7 +6,7 @@
 [![GNU GPL 3.0 License](https://img.shields.io/badge/license-GNU_GPL_3.0-brightgreen.svg)](https://github.com/softwaremagico/ThinkMachine/blob/master/license/gnugpl/license.txt)
 [![Issues](https://img.shields.io/github/issues/softwaremagico/ThinkMachine.svg)](https://github.com/softwaremagico/ThinkMachine/issues)
 
-This software generated in Java allows the creation of a character sheet for the role play game called **Fading Suns** (Revised Edition). Personally, I do not like the provided character sheet in the Player's Guide book, and I have designed a new one, based on some old files I have found ten years ago for previous versions of this game.
+This software generated in Java includes all rules needed for the creation of a character sheet for the role play game called **Fading Suns** (Revised Edition). Personally, I do not like the provided character sheet in the Player's Guide book, and I have designed a new one, based on some old files I have found ten years ago for previous versions of this game. Also, I have added some custom rules for random character generation that can be used for a NPC generation. This software only includes the rules, that can be included as a dependency on other softwares, but cannot be used in a desktop environment. If you are looking for a complete software to generata characters, take a look on [Think Machine: Advisor](https://github.com/softwaremagico/ThinkMachineAdvisor), a desktop application for character generation. 
 
 To get an idea of the final result, here you have a preview: 
 
@@ -56,14 +56,14 @@ And all the possible PDFs will be generated and later converted to PNG. Final re
 ## Random character generation
 From version 0.4.0 exists the option to generate randomly characters sheets. This feature is very usfeul for the creation of random NPC (non-player characters). You can define some basic options for the character such us nobility, psi, combat and more;  and the software will generate the complete character for you in a few seconds. Each character generated is following the rules of the Fading Suns core rule book and therefore, also can be use a playable character. I hope this feature will add extra color in your campaigns.
 
-## Random party generation
-From version 0.4.8 exists a new option for autogenerating a complete group of NPC. Only must to select the maxium threat level of the group and a party schema. The application will generate a complete party from these inputs. Very useful if you want to generate encounters quickly. 
-
 Some examples already generated are:
 - [Catherine Hawkwood (English)](https://github.com/softwaremagico/ThinkMachine/blob/master/NPC/Catherine%20Hawkwood.png)
 - [Shinsuke Li Halan (Spanish)](https://github.com/softwaremagico/ThinkMachine/blob/master/NPC/Shinsuke%20Li%20Halan.png)
 - [Farida Benkira (English Small DIN A5)](https://github.com/softwaremagico/ThinkMachine/blob/master/NPC/Farida%20Benkira.png)
 - [Oleg Decados (Spanish Small DIN A5)](https://github.com/softwaremagico/ThinkMachine/blob/master/NPC/Oleg%20Decados.png)
+
+## Random party generation
+From version 0.4.8 exists a new option for autogenerating a complete group of NPC. Only must to select the maxium threat level of the group and a party schema. The application will generate a complete party from these inputs. Very useful if you want to generate encounters quickly. 
 
 ## Using as a dependency in an external project
 This component is available at the [Maven Central Repository](https://mvnrepository.com/artifact/com.softwaremagico/) and can be includeded as any other dependency. For example, for Maven the dependency would be: 
