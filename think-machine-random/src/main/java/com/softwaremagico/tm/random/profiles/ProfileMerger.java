@@ -31,17 +31,17 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
-import com.google.common.base.Objects;
-import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.character.benefices.BeneficeDefinition;
-import com.softwaremagico.tm.character.characteristics.Characteristic;
-import com.softwaremagico.tm.character.equipment.armours.Armour;
-import com.softwaremagico.tm.character.equipment.shields.Shield;
-import com.softwaremagico.tm.character.equipment.weapons.Weapon;
-import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
+import com.softwaremagico.tm.rules.InvalidXmlElementException;
+import com.softwaremagico.tm.rules.character.benefices.BeneficeDefinition;
+import com.softwaremagico.tm.rules.character.characteristics.Characteristic;
+import com.softwaremagico.tm.rules.character.equipment.armours.Armour;
+import com.softwaremagico.tm.rules.character.equipment.shields.Shield;
+import com.softwaremagico.tm.rules.character.equipment.weapons.Weapon;
+import com.softwaremagico.tm.rules.character.skills.AvailableSkill;
 
 public class ProfileMerger {
 	private static final String DEFAULT_ID = "merged_profile";
@@ -139,7 +139,7 @@ public class ProfileMerger {
 		for (final Characteristic newCharacteristic : preferredCharacteristicsMinimumValues) {
 			boolean added = false;
 			for (final Characteristic characteristic : originalCharacteristicsMinimumValues) {
-				if (Objects.equal(characteristic.getCharacteristicName(), newCharacteristic.getCharacteristicName())) {
+				if (Objects.equals(characteristic.getCharacteristicName(), newCharacteristic.getCharacteristicName())) {
 					if (characteristic.getValue() < newCharacteristic.getValue()) {
 						characteristic.setValue(newCharacteristic.getValue());
 						added = true;

@@ -27,12 +27,12 @@ package com.softwaremagico.tm.pdf.small.skills;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
-import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.character.skills.AvailableSkill;
-import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.complete.skills.SkillsTable;
+import com.softwaremagico.tm.rules.InvalidXmlElementException;
+import com.softwaremagico.tm.rules.character.CharacterPlayer;
+import com.softwaremagico.tm.rules.character.skills.AvailableSkill;
+import com.softwaremagico.tm.rules.character.skills.AvailableSkillsFactory;
 
 public class NaturalSkillsTable extends SkillsTable {
 	private static final int MAX_SKILL_COLUMN_WIDTH = 80;

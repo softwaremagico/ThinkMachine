@@ -2,9 +2,9 @@ package com.softwaremagico.tm.characters;
 
 /*-
  * #%L
- * Think Machine (Core)
+ * Think Machine (Rules)
  * %%
- * Copyright (C) 2017 - 2018 Softwaremagico
+ * Copyright (C) 2017 - 2019 Softwaremagico
  * %%
  * This software is designed by Jorge Hortelano Otero. Jorge Hortelano Otero
  * <softwaremagico@gmail.com> Valencia (Spain).
@@ -24,30 +24,30 @@ package com.softwaremagico.tm.characters;
  * #L%
  */
 
-import com.softwaremagico.tm.CacheHandler;
-import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.character.Gender;
-import com.softwaremagico.tm.character.Name;
-import com.softwaremagico.tm.character.Surname;
-import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
-import com.softwaremagico.tm.character.benefices.BeneficeAlreadyAddedException;
-import com.softwaremagico.tm.character.blessings.BlessingAlreadyAddedException;
-import com.softwaremagico.tm.character.blessings.BlessingFactory;
-import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
-import com.softwaremagico.tm.character.characteristics.CharacteristicName;
-import com.softwaremagico.tm.character.cybernetics.CyberneticDeviceFactory;
-import com.softwaremagico.tm.character.cybernetics.RequiredCyberneticDevicesException;
-import com.softwaremagico.tm.character.cybernetics.TooManyCyberneticDevicesException;
-import com.softwaremagico.tm.character.equipment.armours.ArmourFactory;
-import com.softwaremagico.tm.character.equipment.shields.ShieldFactory;
-import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
-import com.softwaremagico.tm.character.factions.FactionsFactory;
-import com.softwaremagico.tm.character.occultism.OccultismPathFactory;
-import com.softwaremagico.tm.character.occultism.OccultismTypeFactory;
-import com.softwaremagico.tm.character.planets.PlanetFactory;
-import com.softwaremagico.tm.character.races.RaceFactory;
-import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
+import com.softwaremagico.tm.rules.CacheHandler;
+import com.softwaremagico.tm.rules.InvalidXmlElementException;
+import com.softwaremagico.tm.rules.character.CharacterPlayer;
+import com.softwaremagico.tm.rules.character.Gender;
+import com.softwaremagico.tm.rules.character.Name;
+import com.softwaremagico.tm.rules.character.Surname;
+import com.softwaremagico.tm.rules.character.benefices.AvailableBeneficeFactory;
+import com.softwaremagico.tm.rules.character.benefices.BeneficeAlreadyAddedException;
+import com.softwaremagico.tm.rules.character.blessings.BlessingAlreadyAddedException;
+import com.softwaremagico.tm.rules.character.blessings.BlessingFactory;
+import com.softwaremagico.tm.rules.character.blessings.TooManyBlessingsException;
+import com.softwaremagico.tm.rules.character.characteristics.CharacteristicName;
+import com.softwaremagico.tm.rules.character.cybernetics.CyberneticDeviceFactory;
+import com.softwaremagico.tm.rules.character.cybernetics.RequiredCyberneticDevicesException;
+import com.softwaremagico.tm.rules.character.cybernetics.TooManyCyberneticDevicesException;
+import com.softwaremagico.tm.rules.character.equipment.armours.ArmourFactory;
+import com.softwaremagico.tm.rules.character.equipment.shields.ShieldFactory;
+import com.softwaremagico.tm.rules.character.equipment.weapons.WeaponFactory;
+import com.softwaremagico.tm.rules.character.factions.FactionsFactory;
+import com.softwaremagico.tm.rules.character.occultism.OccultismPathFactory;
+import com.softwaremagico.tm.rules.character.occultism.OccultismTypeFactory;
+import com.softwaremagico.tm.rules.character.planets.PlanetFactory;
+import com.softwaremagico.tm.rules.character.races.RaceFactory;
+import com.softwaremagico.tm.rules.character.skills.AvailableSkillsFactory;
 
 public class CustomCharacter {
 

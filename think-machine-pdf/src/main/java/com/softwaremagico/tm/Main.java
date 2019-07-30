@@ -3,11 +3,11 @@ package com.softwaremagico.tm;
 import java.io.File;
 import java.io.IOException;
 
-import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.json.CharacterJsonManager;
-import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.log.PdfExporterLog;
 import com.softwaremagico.tm.pdf.complete.CharacterSheet;
+import com.softwaremagico.tm.rules.character.CharacterPlayer;
+import com.softwaremagico.tm.rules.json.CharacterJsonManager;
+import com.softwaremagico.tm.rules.language.LanguagePool;
 
 /*-
  * #%L

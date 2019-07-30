@@ -28,13 +28,13 @@ import junit.framework.Assert;
 
 import org.testng.annotations.Test;
 
-import com.softwaremagico.tm.ElementClassification;
-import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.character.occultism.OccultismDurationFactory;
-import com.softwaremagico.tm.character.occultism.OccultismPathFactory;
-import com.softwaremagico.tm.character.occultism.OccultismRangeFactory;
-import com.softwaremagico.tm.character.occultism.OccultismTypeFactory;
-import com.softwaremagico.tm.character.occultism.TheurgyComponentFactory;
+import com.softwaremagico.tm.rules.ElementClassification;
+import com.softwaremagico.tm.rules.InvalidXmlElementException;
+import com.softwaremagico.tm.rules.character.occultism.OccultismDurationFactory;
+import com.softwaremagico.tm.rules.character.occultism.OccultismPathFactory;
+import com.softwaremagico.tm.rules.character.occultism.OccultismRangeFactory;
+import com.softwaremagico.tm.rules.character.occultism.OccultismTypeFactory;
+import com.softwaremagico.tm.rules.character.occultism.TheurgyComponentFactory;
 
 @Test(groups = { "occultismFactory" })
 public class OccultismFactoryTests {

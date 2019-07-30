@@ -30,13 +30,13 @@ import java.util.Map;
 import java.util.Set;
 import java.util.StringTokenizer;
 
-import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.XmlFactory;
-import com.softwaremagico.tm.language.ITranslator;
-import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.random.profiles.RandomProfileFactory;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
 import com.softwaremagico.tm.random.selectors.RandomPreferenceUtils;
+import com.softwaremagico.tm.rules.InvalidXmlElementException;
+import com.softwaremagico.tm.rules.XmlFactory;
+import com.softwaremagico.tm.rules.language.ITranslator;
+import com.softwaremagico.tm.rules.language.LanguagePool;
 
 public class RandomPartyFactory extends XmlFactory<RandomParty> {
 	private static final ITranslator translatorRandomParty = LanguagePool.getTranslator("parties.xml");

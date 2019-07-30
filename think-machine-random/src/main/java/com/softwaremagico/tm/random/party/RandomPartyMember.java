@@ -26,9 +26,9 @@ package com.softwaremagico.tm.random.party;
 
 import java.util.Set;
 
-import com.softwaremagico.tm.Element;
 import com.softwaremagico.tm.random.profiles.RandomProfile;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
+import com.softwaremagico.tm.rules.Element;
 
 public class RandomPartyMember extends Element<RandomPartyMember> {
 	private final RandomProfile randomProfile;

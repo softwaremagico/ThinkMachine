@@ -30,8 +30,6 @@ import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
-import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.language.Translator;
 import com.softwaremagico.tm.pdf.complete.PdfDocument;
 import com.softwaremagico.tm.pdf.complete.elements.BaseElement;
 import com.softwaremagico.tm.pdf.complete.events.SheetBackgroundEvent;
@@ -48,6 +46,8 @@ import com.softwaremagico.tm.pdf.small.skills.NaturalSkillsTable;
 import com.softwaremagico.tm.pdf.small.traits.BeneficesTable;
 import com.softwaremagico.tm.pdf.small.traits.BlessingTable;
 import com.softwaremagico.tm.pdf.small.victorytable.VerticalVictoryPointsTable;
+import com.softwaremagico.tm.rules.character.CharacterPlayer;
+import com.softwaremagico.tm.rules.language.Translator;
 
 public class SmallCharacterSheet extends PdfDocument {
 	private CharacterPlayer characterPlayer = null;

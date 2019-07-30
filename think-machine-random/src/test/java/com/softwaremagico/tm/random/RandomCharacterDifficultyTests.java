@@ -27,15 +27,15 @@ package com.softwaremagico.tm.random;
 import org.junit.Assert;
 import org.testng.annotations.Test;
 
-import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.character.RandomizeCharacter;
-import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
-import com.softwaremagico.tm.character.creation.CostCalculator;
-import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
+import com.softwaremagico.tm.random.character.RandomizeCharacter;
 import com.softwaremagico.tm.random.exceptions.DuplicatedPreferenceException;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.DifficultLevelPreferences;
+import com.softwaremagico.tm.rules.InvalidXmlElementException;
+import com.softwaremagico.tm.rules.character.CharacterPlayer;
+import com.softwaremagico.tm.rules.character.blessings.TooManyBlessingsException;
+import com.softwaremagico.tm.rules.character.creation.CostCalculator;
+import com.softwaremagico.tm.rules.character.creation.FreeStyleCharacterCreation;
 
 @Test(groups = { "difficulty" })
 public class RandomCharacterDifficultyTests {

@@ -27,14 +27,13 @@ package com.softwaremagico.tm.rules;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.character.characteristics.CharacteristicName;
-import com.softwaremagico.tm.character.cybernetics.CyberneticDeviceFactory;
-import com.softwaremagico.tm.character.cybernetics.Cybernetics;
-import com.softwaremagico.tm.character.cybernetics.RequiredCyberneticDevicesException;
-import com.softwaremagico.tm.character.cybernetics.TooManyCyberneticDevicesException;
-import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
+import com.softwaremagico.tm.rules.character.CharacterPlayer;
+import com.softwaremagico.tm.rules.character.characteristics.CharacteristicName;
+import com.softwaremagico.tm.rules.character.cybernetics.CyberneticDeviceFactory;
+import com.softwaremagico.tm.rules.character.cybernetics.Cybernetics;
+import com.softwaremagico.tm.rules.character.cybernetics.RequiredCyberneticDevicesException;
+import com.softwaremagico.tm.rules.character.cybernetics.TooManyCyberneticDevicesException;
+import com.softwaremagico.tm.rules.character.skills.AvailableSkillsFactory;
 
 @Test(groups = { "cybernetics" })
 public class CyberneticsTests {

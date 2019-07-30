@@ -26,10 +26,10 @@ package com.softwaremagico.tm.pdf.complete.skills;
 
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
-import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.log.PdfExporterLog;
 import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
+import com.softwaremagico.tm.rules.InvalidXmlElementException;
+import com.softwaremagico.tm.rules.character.CharacterPlayer;
 
 public class VitalityTable extends CounterTable {
 	private static final float[] WIDTHS = { 1f, 1f };

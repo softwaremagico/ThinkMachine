@@ -28,8 +28,8 @@ import junit.framework.Assert;
 
 import org.testng.annotations.Test;
 
-import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.character.blessings.BlessingFactory;
+import com.softwaremagico.tm.rules.InvalidXmlElementException;
+import com.softwaremagico.tm.rules.character.blessings.BlessingFactory;
 
 @Test(groups = { "blessingFactory" })
 public class BlessingFactoryTests {

@@ -28,10 +28,10 @@ import org.junit.BeforeClass;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.softwaremagico.tm.CacheHandler;
-import com.softwaremagico.tm.ElementClassification;
-import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.character.cybernetics.CyberneticDeviceFactory;
+import com.softwaremagico.tm.rules.CacheHandler;
+import com.softwaremagico.tm.rules.ElementClassification;
+import com.softwaremagico.tm.rules.InvalidXmlElementException;
+import com.softwaremagico.tm.rules.character.cybernetics.CyberneticDeviceFactory;
 
 @Test(groups = { "cyberneticFactory" })
 public class CyberneticDeviceFactoryTests {

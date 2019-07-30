@@ -28,11 +28,11 @@ import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
-import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.complete.elements.CellCompleteBoxEvent;
 import com.softwaremagico.tm.pdf.complete.elements.LateralHeaderPdfPTable;
 import com.softwaremagico.tm.pdf.complete.elements.CellCompleteBoxEvent.Border;
+import com.softwaremagico.tm.rules.character.CharacterPlayer;
 
 public abstract class CounterTable extends LateralHeaderPdfPTable {
 	static final float[] WIDTHS = { 1f, 1f };

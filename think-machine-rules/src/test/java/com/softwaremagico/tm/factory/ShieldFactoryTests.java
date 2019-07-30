@@ -28,8 +28,8 @@ import junit.framework.Assert;
 
 import org.testng.annotations.Test;
 
-import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.character.equipment.shields.ShieldFactory;
+import com.softwaremagico.tm.rules.InvalidXmlElementException;
+import com.softwaremagico.tm.rules.character.equipment.shields.ShieldFactory;
 
 @Test(groups = { "shieldFactory" })
 public class ShieldFactoryTests {

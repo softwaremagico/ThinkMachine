@@ -29,12 +29,12 @@ import junit.framework.Assert;
 import org.junit.BeforeClass;
 import org.testng.annotations.Test;
 
-import com.softwaremagico.tm.CacheHandler;
-import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.character.Gender;
-import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
-import com.softwaremagico.tm.character.factions.Faction;
-import com.softwaremagico.tm.character.factions.FactionsFactory;
+import com.softwaremagico.tm.rules.CacheHandler;
+import com.softwaremagico.tm.rules.InvalidXmlElementException;
+import com.softwaremagico.tm.rules.character.Gender;
+import com.softwaremagico.tm.rules.character.benefices.AvailableBeneficeFactory;
+import com.softwaremagico.tm.rules.character.factions.Faction;
+import com.softwaremagico.tm.rules.character.factions.FactionsFactory;
 
 @Test(groups = { "factionsFactory" })
 public class FactionFactoryTests {

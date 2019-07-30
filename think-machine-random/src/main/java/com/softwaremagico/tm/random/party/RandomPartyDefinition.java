@@ -31,17 +31,17 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
-import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.character.RandomizeCharacter;
-import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
-import com.softwaremagico.tm.log.MachineLog;
-import com.softwaremagico.tm.party.Party;
 import com.softwaremagico.tm.random.RandomSelector;
+import com.softwaremagico.tm.random.character.RandomizeCharacter;
 import com.softwaremagico.tm.random.exceptions.DuplicatedPreferenceException;
 import com.softwaremagico.tm.random.exceptions.ImpossibleToAssignMandatoryElementException;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
+import com.softwaremagico.tm.rules.InvalidXmlElementException;
+import com.softwaremagico.tm.rules.character.CharacterPlayer;
+import com.softwaremagico.tm.rules.character.blessings.TooManyBlessingsException;
+import com.softwaremagico.tm.rules.log.MachineLog;
+import com.softwaremagico.tm.rules.party.Party;
 
 public class RandomPartyDefinition extends RandomSelector<RandomPartyMember> {
 	private static final int THREAT_MARGIN = 10;

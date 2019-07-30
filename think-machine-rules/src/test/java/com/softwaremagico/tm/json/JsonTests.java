@@ -34,17 +34,19 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.character.benefices.BeneficeAlreadyAddedException;
-import com.softwaremagico.tm.character.blessings.BlessingAlreadyAddedException;
-import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
-import com.softwaremagico.tm.character.creation.CostCalculator;
-import com.softwaremagico.tm.character.cybernetics.RequiredCyberneticDevicesException;
-import com.softwaremagico.tm.character.cybernetics.TooManyCyberneticDevicesException;
 import com.softwaremagico.tm.characters.CustomCharacter;
-import com.softwaremagico.tm.language.LanguagePool;
-import com.softwaremagico.tm.party.Party;
+import com.softwaremagico.tm.rules.InvalidXmlElementException;
+import com.softwaremagico.tm.rules.character.CharacterPlayer;
+import com.softwaremagico.tm.rules.character.benefices.BeneficeAlreadyAddedException;
+import com.softwaremagico.tm.rules.character.blessings.BlessingAlreadyAddedException;
+import com.softwaremagico.tm.rules.character.blessings.TooManyBlessingsException;
+import com.softwaremagico.tm.rules.character.creation.CostCalculator;
+import com.softwaremagico.tm.rules.character.cybernetics.RequiredCyberneticDevicesException;
+import com.softwaremagico.tm.rules.character.cybernetics.TooManyCyberneticDevicesException;
+import com.softwaremagico.tm.rules.json.CharacterJsonManager;
+import com.softwaremagico.tm.rules.json.PartyJsonManager;
+import com.softwaremagico.tm.rules.language.LanguagePool;
+import com.softwaremagico.tm.rules.party.Party;
 
 @Test(groups = { "jsonExporter" })
 public class JsonTests {

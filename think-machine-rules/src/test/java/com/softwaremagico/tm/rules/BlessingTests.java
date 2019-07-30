@@ -27,18 +27,17 @@ package com.softwaremagico.tm.rules;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.character.benefices.BeneficeAlreadyAddedException;
-import com.softwaremagico.tm.character.blessings.Blessing;
-import com.softwaremagico.tm.character.blessings.BlessingAlreadyAddedException;
-import com.softwaremagico.tm.character.blessings.BlessingFactory;
-import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
-import com.softwaremagico.tm.character.characteristics.CharacteristicName;
-import com.softwaremagico.tm.character.cybernetics.RequiredCyberneticDevicesException;
-import com.softwaremagico.tm.character.cybernetics.TooManyCyberneticDevicesException;
-import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.characters.CustomCharacter;
+import com.softwaremagico.tm.rules.character.CharacterPlayer;
+import com.softwaremagico.tm.rules.character.benefices.BeneficeAlreadyAddedException;
+import com.softwaremagico.tm.rules.character.blessings.Blessing;
+import com.softwaremagico.tm.rules.character.blessings.BlessingAlreadyAddedException;
+import com.softwaremagico.tm.rules.character.blessings.BlessingFactory;
+import com.softwaremagico.tm.rules.character.blessings.TooManyBlessingsException;
+import com.softwaremagico.tm.rules.character.characteristics.CharacteristicName;
+import com.softwaremagico.tm.rules.character.cybernetics.RequiredCyberneticDevicesException;
+import com.softwaremagico.tm.rules.character.cybernetics.TooManyCyberneticDevicesException;
+import com.softwaremagico.tm.rules.character.skills.AvailableSkillsFactory;
 
 @Test(groups = { "blessings" })
 public class BlessingTests {

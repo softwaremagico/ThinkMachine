@@ -30,9 +30,6 @@ import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
-import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.language.Translator;
 import com.softwaremagico.tm.pdf.complete.characteristics.CharacteristicsTableFactory;
 import com.softwaremagico.tm.pdf.complete.cybernetics.CyberneticsTable;
 import com.softwaremagico.tm.pdf.complete.elements.BaseElement;
@@ -47,6 +44,9 @@ import com.softwaremagico.tm.pdf.complete.others.OthersTable;
 import com.softwaremagico.tm.pdf.complete.skills.MainSkillsTableFactory;
 import com.softwaremagico.tm.pdf.complete.skills.occultism.OccultismsPowerTable;
 import com.softwaremagico.tm.pdf.complete.traits.MainPerksTableFactory;
+import com.softwaremagico.tm.rules.InvalidXmlElementException;
+import com.softwaremagico.tm.rules.character.CharacterPlayer;
+import com.softwaremagico.tm.rules.language.Translator;
 
 public class CharacterSheet extends PdfDocument {
 	private static final float[] REAR_TABLE_WIDTHS = { 1f, 1f, 1f };

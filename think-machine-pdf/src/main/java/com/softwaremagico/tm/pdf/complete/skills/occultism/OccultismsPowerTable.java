@@ -27,13 +27,13 @@ package com.softwaremagico.tm.pdf.complete.skills.occultism;
 import java.util.List;
 import java.util.Map.Entry;
 
-import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.character.occultism.OccultismPath;
-import com.softwaremagico.tm.character.occultism.OccultismPathFactory;
-import com.softwaremagico.tm.character.occultism.OccultismPower;
 import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.complete.elements.LateralHeaderPdfPTable;
+import com.softwaremagico.tm.rules.InvalidXmlElementException;
+import com.softwaremagico.tm.rules.character.CharacterPlayer;
+import com.softwaremagico.tm.rules.character.occultism.OccultismPath;
+import com.softwaremagico.tm.rules.character.occultism.OccultismPathFactory;
+import com.softwaremagico.tm.rules.character.occultism.OccultismPower;
 
 public class OccultismsPowerTable extends LateralHeaderPdfPTable {
 	private static final float[] WIDTHS = { 1.25f, 5f, 2f, 5f, 4f, 4f, 4f, 3f };

@@ -27,9 +27,9 @@ package com.softwaremagico.tm.random.party;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.random.selectors.AgePreferences;
 import com.softwaremagico.tm.random.selectors.DifficultLevelPreferences;
+import com.softwaremagico.tm.rules.InvalidXmlElementException;
 
 @Test(groups = { "randomPartyFactory" })
 public class RandomPartyFactoryTests {

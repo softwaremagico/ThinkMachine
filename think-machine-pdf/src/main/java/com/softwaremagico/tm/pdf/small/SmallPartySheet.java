@@ -31,11 +31,11 @@ import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
-import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.language.Translator;
-import com.softwaremagico.tm.party.Party;
 import com.softwaremagico.tm.pdf.complete.elements.BaseElement;
 import com.softwaremagico.tm.pdf.complete.events.PartyFooterEvent;
+import com.softwaremagico.tm.rules.character.CharacterPlayer;
+import com.softwaremagico.tm.rules.language.Translator;
+import com.softwaremagico.tm.rules.party.Party;
 
 public class SmallPartySheet extends SmallCharacterSheet {
 	private Party party;

@@ -29,9 +29,9 @@ import java.io.IOException;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
-import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.log.PdfExporterLog;
 import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
+import com.softwaremagico.tm.rules.character.CharacterPlayer;
 
 public class CharacterBasicsCompleteTableFactory extends CharacterBasicsTableFactory {
 

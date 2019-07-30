@@ -26,9 +26,9 @@ package com.softwaremagico.tm.pdf.small.info;
 
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
-import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.complete.info.CharacterBasicsTableFactory;
+import com.softwaremagico.tm.rules.character.CharacterPlayer;
 
 public class CharacterBasicsReducedTableFactory extends CharacterBasicsTableFactory {
 

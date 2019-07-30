@@ -73,7 +73,7 @@
 		<main.basedir>${project.basedir}</main.basedir>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<license.licenseName>gnugpl</license.licenseName>
-		<license.licenseResolver>file://${basedir}/src/license</license.licenseResolver>
+		<license.licenseResolver>file://${main.basedir}/license</license.licenseResolver>
 		<maven-surefire.version>2.14.1</maven-surefire.version>
 		<maven-resources-plugin.version>2.7</maven-resources-plugin.version>
 		<maven-antrun-plugin.version>1.7</maven-antrun-plugin.version>
@@ -100,14 +100,10 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.0</version>
+				<version>3.7.0</version>
 				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
-					<compilerArgs>
-						<arg>--add-modules</arg>
-						<arg>java.sql</arg>
-					</compilerArgs>
+					<source>9</source>
+					<target>9</target>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -122,7 +118,7 @@
 				<configuration>
 					<inceptionYear>2017</inceptionYear>
 					<licenseName>gnugpl</licenseName>
-					<licenseResolver>file://${main.basedir}/license</licenseResolver>
+					<licenseResolver>${license.licenseResolver}</licenseResolver>
 					<excludes>
 						<exclude>**/licenses.properties</exclude>
 					</excludes>
@@ -210,6 +206,7 @@
 					<consoleOutput>true</consoleOutput>
 					<failsOnError>true</failsOnError>
 					<linkXRef>false</linkXRef>
+					<excludes>**/module-info.java</excludes>
 				</configuration>
 				<executions>
 					<execution>

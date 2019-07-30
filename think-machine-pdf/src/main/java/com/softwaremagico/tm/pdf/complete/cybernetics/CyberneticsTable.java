@@ -32,11 +32,11 @@ import java.util.Comparator;
 import java.util.List;
 
 import com.itextpdf.text.Element;
-import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.character.cybernetics.CyberneticDeviceTrait;
-import com.softwaremagico.tm.character.cybernetics.SelectedCyberneticDevice;
 import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.complete.elements.LateralHeaderPdfPTable;
+import com.softwaremagico.tm.rules.character.CharacterPlayer;
+import com.softwaremagico.tm.rules.character.cybernetics.CyberneticDeviceTrait;
+import com.softwaremagico.tm.rules.character.cybernetics.SelectedCyberneticDevice;
 
 public class CyberneticsTable extends LateralHeaderPdfPTable {
 	private static final float[] WIDTHS = { 0.8f, 3f, 1f, 1f, 11f };

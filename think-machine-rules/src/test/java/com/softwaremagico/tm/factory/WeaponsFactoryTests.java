@@ -28,10 +28,10 @@ import junit.framework.Assert;
 
 import org.testng.annotations.Test;
 
-import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.character.equipment.weapons.AccessoryFactory;
-import com.softwaremagico.tm.character.equipment.weapons.AmmunitionFactory;
-import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
+import com.softwaremagico.tm.rules.InvalidXmlElementException;
+import com.softwaremagico.tm.rules.character.equipment.weapons.AccessoryFactory;
+import com.softwaremagico.tm.rules.character.equipment.weapons.AmmunitionFactory;
+import com.softwaremagico.tm.rules.character.equipment.weapons.WeaponFactory;
 
 @Test(groups = { "weaponsFactory" })
 public class WeaponsFactoryTests {

@@ -1,6 +1,6 @@
 package com.softwaremagico.tm.random.selectors;
 
-import com.softwaremagico.tm.character.skills.SkillGroup;
+import com.softwaremagico.tm.rules.character.skills.SkillGroup;
 
 /*-
  * #%L

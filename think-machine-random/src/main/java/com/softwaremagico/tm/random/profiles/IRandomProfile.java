@@ -27,17 +27,17 @@ package com.softwaremagico.tm.random.profiles;
 import java.util.Map;
 import java.util.Set;
 
-import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.character.benefices.AvailableBenefice;
-import com.softwaremagico.tm.character.benefices.BeneficeDefinition;
-import com.softwaremagico.tm.character.blessings.Blessing;
-import com.softwaremagico.tm.character.characteristics.Characteristic;
-import com.softwaremagico.tm.character.characteristics.CharacteristicName;
-import com.softwaremagico.tm.character.equipment.armours.Armour;
-import com.softwaremagico.tm.character.equipment.shields.Shield;
-import com.softwaremagico.tm.character.equipment.weapons.Weapon;
-import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
+import com.softwaremagico.tm.rules.InvalidXmlElementException;
+import com.softwaremagico.tm.rules.character.benefices.AvailableBenefice;
+import com.softwaremagico.tm.rules.character.benefices.BeneficeDefinition;
+import com.softwaremagico.tm.rules.character.blessings.Blessing;
+import com.softwaremagico.tm.rules.character.characteristics.Characteristic;
+import com.softwaremagico.tm.rules.character.characteristics.CharacteristicName;
+import com.softwaremagico.tm.rules.character.equipment.armours.Armour;
+import com.softwaremagico.tm.rules.character.equipment.shields.Shield;
+import com.softwaremagico.tm.rules.character.equipment.weapons.Weapon;
+import com.softwaremagico.tm.rules.character.skills.AvailableSkill;
 
 public interface IRandomProfile {
 

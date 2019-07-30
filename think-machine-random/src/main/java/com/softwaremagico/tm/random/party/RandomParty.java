@@ -27,8 +27,8 @@ package com.softwaremagico.tm.random.party;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.softwaremagico.tm.Element;
 import com.softwaremagico.tm.random.IElementWithRandomElements;
+import com.softwaremagico.tm.rules.Element;
 
 public class RandomParty extends Element<RandomParty> implements IElementWithRandomElements<RandomPartyMember> {
 	private final HashSet<RandomPartyMember> randomPartyMembers;

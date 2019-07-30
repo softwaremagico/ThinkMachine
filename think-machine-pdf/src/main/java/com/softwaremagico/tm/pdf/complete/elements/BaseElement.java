@@ -37,10 +37,10 @@ import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
-import com.softwaremagico.tm.language.ITranslator;
-import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.complete.info.CharacterBasicsCompleteTableFactory;
+import com.softwaremagico.tm.rules.language.ITranslator;
+import com.softwaremagico.tm.rules.language.LanguagePool;
 
 public class BaseElement {
 	private static ITranslator translator = LanguagePool.getTranslator("character_sheet.xml");

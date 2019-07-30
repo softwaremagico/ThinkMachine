@@ -25,9 +25,9 @@ package com.softwaremagico.tm.pdf.complete.traits;
  */
 
 import com.itextpdf.text.pdf.PdfPCell;
-import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.complete.elements.VerticalTable;
+import com.softwaremagico.tm.rules.character.CharacterPlayer;
 
 public class BeneficesTable extends VerticalTable {
 	private static final String GAP = "__________________";

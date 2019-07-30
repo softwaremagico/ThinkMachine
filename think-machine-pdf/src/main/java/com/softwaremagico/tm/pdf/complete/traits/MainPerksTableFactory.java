@@ -26,8 +26,8 @@ package com.softwaremagico.tm.pdf.complete.traits;
 
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
-import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.pdf.complete.elements.BaseElement;
+import com.softwaremagico.tm.rules.character.CharacterPlayer;
 
 public class MainPerksTableFactory extends BaseElement {
 	protected static final int EMPTY_ROWS = 8;

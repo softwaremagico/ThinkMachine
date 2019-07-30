@@ -29,20 +29,20 @@ import java.util.Objects;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.character.RandomizeCharacter;
-import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
-import com.softwaremagico.tm.character.characteristics.CharacteristicName;
-import com.softwaremagico.tm.character.equipment.armours.Armour;
-import com.softwaremagico.tm.character.equipment.armours.ArmourFactory;
-import com.softwaremagico.tm.character.equipment.weapons.Weapon;
-import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
-import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
+import com.softwaremagico.tm.random.character.RandomizeCharacter;
 import com.softwaremagico.tm.random.exceptions.DuplicatedPreferenceException;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.profiles.RandomProfileFactory;
 import com.softwaremagico.tm.random.selectors.CombatPreferences;
+import com.softwaremagico.tm.rules.InvalidXmlElementException;
+import com.softwaremagico.tm.rules.character.CharacterPlayer;
+import com.softwaremagico.tm.rules.character.blessings.TooManyBlessingsException;
+import com.softwaremagico.tm.rules.character.characteristics.CharacteristicName;
+import com.softwaremagico.tm.rules.character.equipment.armours.Armour;
+import com.softwaremagico.tm.rules.character.equipment.armours.ArmourFactory;
+import com.softwaremagico.tm.rules.character.equipment.weapons.Weapon;
+import com.softwaremagico.tm.rules.character.equipment.weapons.WeaponFactory;
+import com.softwaremagico.tm.rules.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.txt.CharacterSheet;
 
 @Test(groups = "profile")

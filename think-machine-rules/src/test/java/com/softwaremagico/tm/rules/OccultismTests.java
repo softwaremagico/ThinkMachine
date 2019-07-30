@@ -26,22 +26,21 @@ package com.softwaremagico.tm.rules;
 
 import org.testng.annotations.Test;
 
-import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.character.benefices.BeneficeAlreadyAddedException;
-import com.softwaremagico.tm.character.blessings.BlessingAlreadyAddedException;
-import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
-import com.softwaremagico.tm.character.cybernetics.RequiredCyberneticDevicesException;
-import com.softwaremagico.tm.character.cybernetics.TooManyCyberneticDevicesException;
-import com.softwaremagico.tm.character.factions.FactionsFactory;
-import com.softwaremagico.tm.character.occultism.InvalidFactionOfPowerException;
-import com.softwaremagico.tm.character.occultism.InvalidPowerLevelException;
-import com.softwaremagico.tm.character.occultism.InvalidPsiqueLevelException;
-import com.softwaremagico.tm.character.occultism.OccultismPathFactory;
-import com.softwaremagico.tm.character.occultism.OccultismTypeFactory;
-import com.softwaremagico.tm.character.races.InvalidRaceException;
-import com.softwaremagico.tm.character.races.RaceFactory;
 import com.softwaremagico.tm.characters.CustomCharacter;
+import com.softwaremagico.tm.rules.character.CharacterPlayer;
+import com.softwaremagico.tm.rules.character.benefices.BeneficeAlreadyAddedException;
+import com.softwaremagico.tm.rules.character.blessings.BlessingAlreadyAddedException;
+import com.softwaremagico.tm.rules.character.blessings.TooManyBlessingsException;
+import com.softwaremagico.tm.rules.character.cybernetics.RequiredCyberneticDevicesException;
+import com.softwaremagico.tm.rules.character.cybernetics.TooManyCyberneticDevicesException;
+import com.softwaremagico.tm.rules.character.factions.FactionsFactory;
+import com.softwaremagico.tm.rules.character.occultism.InvalidFactionOfPowerException;
+import com.softwaremagico.tm.rules.character.occultism.InvalidPowerLevelException;
+import com.softwaremagico.tm.rules.character.occultism.InvalidPsiqueLevelException;
+import com.softwaremagico.tm.rules.character.occultism.OccultismPathFactory;
+import com.softwaremagico.tm.rules.character.occultism.OccultismTypeFactory;
+import com.softwaremagico.tm.rules.character.races.InvalidRaceException;
+import com.softwaremagico.tm.rules.character.races.RaceFactory;
 
 @Test(groups = { "occultism" })
 public class OccultismTests {

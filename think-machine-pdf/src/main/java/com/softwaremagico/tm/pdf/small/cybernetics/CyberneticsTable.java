@@ -25,10 +25,10 @@ package com.softwaremagico.tm.pdf.small.cybernetics;
  */
 
 import com.itextpdf.text.Element;
-import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.character.cybernetics.SelectedCyberneticDevice;
 import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.complete.elements.VerticalTable;
+import com.softwaremagico.tm.rules.character.CharacterPlayer;
+import com.softwaremagico.tm.rules.character.cybernetics.SelectedCyberneticDevice;
 
 public class CyberneticsTable extends VerticalTable {
 	private static final String GAP = "__________________";

@@ -2,9 +2,9 @@ package com.softwaremagico.tm.random.party;
 
 /*-
  * #%L
- * Think Machine (Core)
+ * Think Machine (Random Generator)
  * %%
- * Copyright (C) 2017 Softwaremagico
+ * Copyright (C) 2017 - 2019 Softwaremagico
  * %%
  * This software is designed by Jorge Hortelano Otero. Jorge Hortelano Otero
  * <softwaremagico@gmail.com> Valencia (Spain).
@@ -24,7 +24,7 @@ package com.softwaremagico.tm.random.party;
  * #L%
  */
 
-import com.softwaremagico.tm.InvalidXmlElementException;
+import com.softwaremagico.tm.rules.InvalidXmlElementException;
 
 public class InvalidRandomPartyException extends InvalidXmlElementException {
 	private static final long serialVersionUID = -1980141717604433603L;

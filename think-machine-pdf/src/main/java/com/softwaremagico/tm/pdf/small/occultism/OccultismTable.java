@@ -29,15 +29,15 @@ import java.util.Map.Entry;
 
 import com.itextpdf.text.Element;
 import com.itextpdf.text.pdf.PdfPCell;
-import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.character.occultism.OccultismPath;
-import com.softwaremagico.tm.character.occultism.OccultismPathFactory;
-import com.softwaremagico.tm.character.occultism.OccultismPower;
-import com.softwaremagico.tm.character.occultism.OccultismType;
-import com.softwaremagico.tm.character.occultism.OccultismTypeFactory;
 import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.complete.elements.VerticalTable;
+import com.softwaremagico.tm.rules.InvalidXmlElementException;
+import com.softwaremagico.tm.rules.character.CharacterPlayer;
+import com.softwaremagico.tm.rules.character.occultism.OccultismPath;
+import com.softwaremagico.tm.rules.character.occultism.OccultismPathFactory;
+import com.softwaremagico.tm.rules.character.occultism.OccultismPower;
+import com.softwaremagico.tm.rules.character.occultism.OccultismType;
+import com.softwaremagico.tm.rules.character.occultism.OccultismTypeFactory;
 
 public class OccultismTable extends VerticalTable {
 	private static final String GAP = "_______________________";

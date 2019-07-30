@@ -24,8 +24,8 @@ package com.softwaremagico.tm.txt;
  * #L%
  */
 
-import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.party.Party;
+import com.softwaremagico.tm.rules.character.CharacterPlayer;
+import com.softwaremagico.tm.rules.party.Party;
 
 public class PartySheet {
 	private final Party party;

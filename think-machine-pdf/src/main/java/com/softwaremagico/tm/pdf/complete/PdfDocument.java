@@ -30,9 +30,9 @@ import java.io.IOException;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.PdfWriter;
-import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.log.PdfExporterLog;
 import com.softwaremagico.tm.pdf.complete.events.FooterEvent;
+import com.softwaremagico.tm.rules.character.CharacterPlayer;
 
 public abstract class PdfDocument {
 	private int rightMargin = 30;

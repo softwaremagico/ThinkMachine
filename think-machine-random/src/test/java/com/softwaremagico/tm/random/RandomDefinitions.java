@@ -27,14 +27,14 @@ package com.softwaremagico.tm.random;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
-import com.softwaremagico.tm.character.skills.AvailableSkill;
-import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
-import com.softwaremagico.tm.character.skills.RandomSkills;
+import com.softwaremagico.tm.random.character.skills.RandomSkills;
 import com.softwaremagico.tm.random.exceptions.DuplicatedPreferenceException;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
+import com.softwaremagico.tm.rules.InvalidXmlElementException;
+import com.softwaremagico.tm.rules.character.CharacterPlayer;
+import com.softwaremagico.tm.rules.character.equipment.weapons.WeaponFactory;
+import com.softwaremagico.tm.rules.character.skills.AvailableSkill;
+import com.softwaremagico.tm.rules.character.skills.AvailableSkillsFactory;
 
 @Test(groups = { "randomDefinition" })
 public class RandomDefinitions {

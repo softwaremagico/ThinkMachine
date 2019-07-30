@@ -24,7 +24,7 @@ package com.softwaremagico.tm.random.party;
  * #L%
  */
 
-import com.softwaremagico.tm.Element;
+import com.softwaremagico.tm.rules.Element;
 
 public class PartyName extends Element<PartyName> {
 	private final RandomParty randomParty;

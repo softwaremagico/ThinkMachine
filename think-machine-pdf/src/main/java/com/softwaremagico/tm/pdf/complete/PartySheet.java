@@ -26,10 +26,10 @@ package com.softwaremagico.tm.pdf.complete;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.pdf.PdfWriter;
-import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.language.Translator;
-import com.softwaremagico.tm.party.Party;
 import com.softwaremagico.tm.pdf.complete.events.PartyFooterEvent;
+import com.softwaremagico.tm.rules.character.CharacterPlayer;
+import com.softwaremagico.tm.rules.language.Translator;
+import com.softwaremagico.tm.rules.party.Party;
 
 public class PartySheet extends CharacterSheet {
 	private Party party;

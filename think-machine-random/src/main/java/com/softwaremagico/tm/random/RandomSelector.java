@@ -33,16 +33,16 @@ import java.util.Set;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
-import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.character.characteristics.CharacteristicName;
-import com.softwaremagico.tm.log.RandomGenerationLog;
-import com.softwaremagico.tm.random.definition.RandomElementDefinition;
 import com.softwaremagico.tm.random.exceptions.ImpossibleToAssignMandatoryElementException;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
+import com.softwaremagico.tm.rules.InvalidXmlElementException;
+import com.softwaremagico.tm.rules.character.CharacterPlayer;
+import com.softwaremagico.tm.rules.character.characteristics.CharacteristicName;
+import com.softwaremagico.tm.rules.log.RandomGenerationLog;
+import com.softwaremagico.tm.rules.random.definition.RandomElementDefinition;
 
-public abstract class RandomSelector<Element extends com.softwaremagico.tm.Element<?>> {
+public abstract class RandomSelector<Element extends com.softwaremagico.tm.rules.Element<?>> {
 	protected static final int MAX_PROBABILITY = 1000000;
 
 	protected static final int BAD_PROBABILITY = -20;

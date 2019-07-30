@@ -27,8 +27,8 @@ package com.softwaremagico.tm.factory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.character.equipment.DamageTypeFactory;
+import com.softwaremagico.tm.rules.InvalidXmlElementException;
+import com.softwaremagico.tm.rules.character.equipment.DamageTypeFactory;
 
 @Test(groups = { "damageFactory" })
 public class DamageTypeFactoryTests {

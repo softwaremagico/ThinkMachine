@@ -28,13 +28,13 @@ import junit.framework.Assert;
 
 import org.testng.annotations.Test;
 
-import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.character.characteristics.CharacteristicName;
-import com.softwaremagico.tm.character.combat.CombatStyle;
-import com.softwaremagico.tm.character.combat.CombatStyleFactory;
-import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
-import com.softwaremagico.tm.character.skills.InvalidSkillException;
+import com.softwaremagico.tm.rules.InvalidXmlElementException;
+import com.softwaremagico.tm.rules.character.CharacterPlayer;
+import com.softwaremagico.tm.rules.character.characteristics.CharacteristicName;
+import com.softwaremagico.tm.rules.character.combat.CombatStyle;
+import com.softwaremagico.tm.rules.character.combat.CombatStyleFactory;
+import com.softwaremagico.tm.rules.character.skills.AvailableSkillsFactory;
+import com.softwaremagico.tm.rules.character.skills.InvalidSkillException;
 
 @Test(groups = { "combatStyleFactory" })
 public class CombatStylesFactoryTests {

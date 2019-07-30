@@ -26,7 +26,7 @@ package com.softwaremagico.tm.random;
 
 import java.util.Set;
 
-public interface IElementWithRandomElements<Element extends com.softwaremagico.tm.Element<?>> {
+public interface IElementWithRandomElements<Element extends com.softwaremagico.tm.rules.Element<?>> {
 
 	Set<Element> getAllElements();
 

@@ -28,8 +28,8 @@ import junit.framework.Assert;
 
 import org.testng.annotations.Test;
 
-import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
+import com.softwaremagico.tm.rules.InvalidXmlElementException;
+import com.softwaremagico.tm.rules.character.skills.SkillsDefinitionsFactory;
 
 @Test(groups = { "skillFactory" })
 public class SkillFactoryTests {
