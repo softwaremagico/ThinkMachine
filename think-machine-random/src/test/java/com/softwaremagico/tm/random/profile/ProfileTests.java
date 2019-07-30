@@ -61,7 +61,6 @@ public class ProfileTests {
 	}
 
 	private void checkContainsWeapon(CharacterPlayer characterPlayer, Weapon weapon) {
-		System.out.println(characterPlayer.getAllWeapons() + " <-> " + weapon);
 		for (Weapon characterWeapon : characterPlayer.getAllWeapons()) {
 			if (Objects.equals(characterWeapon, weapon)) {
 				return;

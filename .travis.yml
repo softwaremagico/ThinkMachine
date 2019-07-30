@@ -1,8 +1,5 @@
 language: java
 jdk:
 - openjdk8
-- openjdk9
-- openjdk14
-- oraclejdk9
-- oraclejdk14
 sudo: true
+

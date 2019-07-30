@@ -148,7 +148,7 @@ public class RandomShield extends EquipmentSelector<Shield> {
 
 				@Override
 				public int compare(Shield shield0, Shield shield1) {
-					return shield0.getCost() > shield1.getCost() ? -1 : shield0.getCost() < shield1.getCost() ? 1 : 0;
+					return Float.compare(shield0.getCost(), shield1.getCost());
 				}
 			});
 			getCharacterPlayer().setShield(sortedShields.get(0));

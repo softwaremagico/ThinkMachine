@@ -171,7 +171,7 @@ public class ProfileMerger {
 
 			@Override
 			public int compare(Weapon weapon0, Weapon weapon1) {
-				return weapon0.getCost() > weapon1.getCost() ? -1 : weapon0.getCost() < weapon1.getCost() ? 1 : 0;
+				return Float.compare(weapon0.getCost(), weapon1.getCost());
 			}
 		});
 		// Keep only the most expensives ones.
@@ -191,7 +191,7 @@ public class ProfileMerger {
 
 			@Override
 			public int compare(Armour armour0, Armour armour1) {
-				return armour0.getCost() > armour1.getCost() ? -1 : armour0.getCost() < armour1.getCost() ? 1 : 0;
+				return Float.compare(armour0.getCost(), armour1.getCost());
 			}
 		});
 		// Keep the most expensive one
