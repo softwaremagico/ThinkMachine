@@ -48,4 +48,6 @@ module rules {
 	exports com.softwaremagico.tm.rules.json;
 	exports com.softwaremagico.tm.rules.language;
 	exports com.softwaremagico.tm.rules.party;
+	exports com.softwaremagico.tm.rules.txt;
+	exports com.softwaremagico.tm.rules.file;
 }

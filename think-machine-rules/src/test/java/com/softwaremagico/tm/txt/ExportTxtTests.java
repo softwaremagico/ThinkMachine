@@ -40,6 +40,7 @@ import com.softwaremagico.tm.rules.character.blessings.BlessingAlreadyAddedExcep
 import com.softwaremagico.tm.rules.character.blessings.TooManyBlessingsException;
 import com.softwaremagico.tm.rules.character.cybernetics.RequiredCyberneticDevicesException;
 import com.softwaremagico.tm.rules.character.cybernetics.TooManyCyberneticDevicesException;
+import com.softwaremagico.tm.rules.txt.CharacterSheet;
 
 @Test(groups = { "exportTxt" })
 public class ExportTxtTests {

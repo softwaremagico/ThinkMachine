@@ -98,7 +98,7 @@ import com.softwaremagico.tm.rules.character.values.SpecialValuesFactory;
 import com.softwaremagico.tm.rules.character.values.StaticValue;
 import com.softwaremagico.tm.rules.log.CostCalculatorLog;
 import com.softwaremagico.tm.rules.log.MachineLog;
-import com.softwaremagico.tm.txt.CharacterSheet;
+import com.softwaremagico.tm.rules.txt.CharacterSheet;
 
 public class CharacterPlayer {
 	private final String language;

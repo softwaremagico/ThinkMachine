@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.character;
+package com.softwaremagico.tm.random.character;
 
 import java.util.HashSet;
 
@@ -80,7 +80,7 @@ import com.softwaremagico.tm.rules.character.skills.SkillDefinition;
 import com.softwaremagico.tm.rules.character.skills.SkillsDefinitionsFactory;
 import com.softwaremagico.tm.rules.language.LanguagePool;
 import com.softwaremagico.tm.rules.log.MachineLog;
-import com.softwaremagico.tm.txt.CharacterSheet;
+import com.softwaremagico.tm.rules.txt.CharacterSheet;
 
 @Test(groups = { "randomCharacter" })
 public class RandomCharacterTests {

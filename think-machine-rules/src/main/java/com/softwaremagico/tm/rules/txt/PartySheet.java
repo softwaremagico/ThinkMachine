@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.txt;
+package com.softwaremagico.tm.rules.txt;
 
 /*-
  * #%L

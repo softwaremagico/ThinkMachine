@@ -37,5 +37,4 @@ module random {
     exports com.softwaremagico.tm.random.character.occultism;
     exports com.softwaremagico.tm.random.character.races;
     exports com.softwaremagico.tm.random.character.skills;
-    
 }

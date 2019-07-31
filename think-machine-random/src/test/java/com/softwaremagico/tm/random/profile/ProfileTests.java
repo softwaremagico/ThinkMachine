@@ -43,7 +43,7 @@ import com.softwaremagico.tm.rules.character.equipment.armours.ArmourFactory;
 import com.softwaremagico.tm.rules.character.equipment.weapons.Weapon;
 import com.softwaremagico.tm.rules.character.equipment.weapons.WeaponFactory;
 import com.softwaremagico.tm.rules.character.skills.AvailableSkillsFactory;
-import com.softwaremagico.tm.txt.CharacterSheet;
+import com.softwaremagico.tm.rules.txt.CharacterSheet;
 
 @Test(groups = "profile")
 public class ProfileTests {

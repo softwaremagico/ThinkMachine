@@ -219,26 +219,9 @@
 				</executions>
 			</plugin>
 			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>findbugs-maven-plugin</artifactId>
-				<version>${findbug.version}</version>
-				<executions>
-					<execution>
-						<phase>compile</phase>
-						<goals>
-							<goal>check</goal>
-						</goals>
-						<configuration>
-							<!-- Enables analysis which takes more memory but finds more bugs. 
-								If you run out of memory, changes the value of the effort element to 'Low'. -->
-							<effort>Max</effort>
-							<!-- Build fail if problems are found -->
-							<failOnError>false</failOnError>
-							<!-- Reports all bugs (values are max, medium and max) -->
-							<threshold>max</threshold>
-						</configuration>
-					</execution>
-				</executions>
+				<groupId>com.github.spotbugs</groupId>
+				<artifactId>spotbugs-maven-plugin</artifactId>
+				<version>3.1.12</version>
 			</plugin>
 		</plugins>
 	</build>
