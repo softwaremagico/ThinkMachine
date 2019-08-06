@@ -338,7 +338,7 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.rules
 		return selectedElement;
 	}
 
-	protected void removeElementWeight(Element element) {
+	public void removeElementWeight(Element element) {
 		Integer keyToDelete = null;
 		for (final Entry<Integer, Element> entry : weightedElements.entrySet()) {
 			if (entry.getValue().equals(element)) {

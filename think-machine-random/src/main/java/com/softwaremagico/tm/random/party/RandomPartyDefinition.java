@@ -51,7 +51,7 @@ public class RandomPartyDefinition extends RandomSelector<RandomPartyMember> {
 	// RandomParty id --> Threat
 	private Map<RandomPartyMember, Integer> threatByProfile = new HashMap<>();
 
-	protected RandomPartyDefinition(RandomParty randomParty, int threatLevel, Set<IRandomPreference> preferences)
+	public RandomPartyDefinition(RandomParty randomParty, int threatLevel, Set<IRandomPreference> preferences)
 			throws InvalidXmlElementException {
 		super(null, randomParty, preferences, new HashSet<RandomPartyMember>(), new HashSet<RandomPartyMember>());
 		this.threatLevel = threatLevel;
@@ -132,8 +132,9 @@ public class RandomPartyDefinition extends RandomSelector<RandomPartyMember> {
 	private String createName() {
 		return RandomPartyFactory.getPartyName(
 				pickOneRandom(RandomPartyFactory.getInstance().getNames((RandomParty) getElementWithRandomElements())),
-				pickOneRandom(RandomPartyFactory.getInstance().getAdjectives(
-						(RandomParty) getElementWithRandomElements())), getElementWithRandomElements().getLanguage());
+				pickOneRandom(
+						RandomPartyFactory.getInstance().getAdjectives((RandomParty) getElementWithRandomElements())),
+				getElementWithRandomElements().getLanguage());
 	}
 
 	private <T> T pickOneRandom(Set<T> elements) {
@@ -163,8 +164,8 @@ public class RandomPartyDefinition extends RandomSelector<RandomPartyMember> {
 	}
 
 	@Override
-	protected void assignIfMandatory(RandomPartyMember member) throws InvalidXmlElementException,
-			ImpossibleToAssignMandatoryElementException {
+	protected void assignIfMandatory(RandomPartyMember member)
+			throws InvalidXmlElementException, ImpossibleToAssignMandatoryElementException {
 		try {
 			while (member.getMinNumber() != null && member.getMinNumber() < getProfileAssigned(member)) {
 				assignProfile(member);

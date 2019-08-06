@@ -201,7 +201,7 @@ public class RandomizeCharacter {
 		}
 	}
 
-	protected void setCharacterDefinition() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
+	public void setCharacterDefinition() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
 		// Check if race is set.
 		if (characterPlayer.getRace() == null) {
 			final RandomRace randomRace = new RandomRace(characterPlayer, preferences);
