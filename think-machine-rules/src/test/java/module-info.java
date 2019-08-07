@@ -21,9 +21,11 @@
  * this program; If not, see <http://www.gnu.org/licenses/gpl-3.0.html>.
  * #L%
  */
-module rules.test {
-    requires gson;
-    requires java.sql;
-    requires log4j;
-    requires rules;
+module com.softwaremagico.tm.tests {
+	requires java.sql;
+	requires gson;
+	requires log4j;
+	requires com.softwaremagico.tm.rules;
+	requires junit;
+	requires testng;
 }

@@ -21,10 +21,11 @@
  * this program; If not, see <http://www.gnu.org/licenses/gpl-3.0.html>.
  * #L%
  */
-module rules {
-    requires gson;
-    requires java.sql;
-    requires log4j;
+module com.softwaremagico.tm.rules {
+	requires java.sql;
+	requires gson;
+	requires log4j;
+	requires reflections;
 	exports com.softwaremagico.tm.rules;
 	exports com.softwaremagico.tm.rules.character;
 	exports com.softwaremagico.tm.rules.character.benefices;
