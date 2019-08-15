@@ -28,18 +28,30 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.io.Reader;
 import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
 import java.io.Writer;
+import java.net.URL;
+import java.net.URLClassLoader;
+import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
+import java.util.jar.JarEntry;
+import java.util.jar.JarFile;
 
+import com.softwaremagico.tm.file.configurator.MachineConfigurationReader;
 import com.softwaremagico.tm.log.MachineLog;
 
 public class FileManager {
@@ -69,14 +81,7 @@ public class FileManager {
 	 * @throws IOException
 	 */
 	public static String inString(String filename) throws FileNotFoundException, IOException {
-		// String OS = System.getProperty("os.name");
 		return readTextFile(filename, "ISO8859_1");
-		/*
-		 * if (OS.contains("Windows Vista") || (OS.contains("Windows 7"))) {
-		 * return ReadTextFile("ISO8859_1", verbose); } else if
-		 * (OS.contains("Windows")) { return ReadTextFile("Cp1252", verbose); }
-		 * return ReadTextFile("UTF8", verbose);
-		 */
 	}
 
 	private static List<String> readTextFileInLines(String filename, String mode) throws FileNotFoundException {
@@ -104,20 +109,22 @@ public class FileManager {
 		return contents;
 	}
 
-	public static String readTextFile(String filename) {
-		final File file = new File(filename);
+	public static String readTextFile(String filename) throws FileNotFoundException {
+		return readTextFile(new File(filename));
+	}
+
+	public static String readTextFile(File file) throws FileNotFoundException {
 		if (!file.exists()) {
-			return "File not found: " + filename;
+			throw new FileNotFoundException("File not found: " + file.getAbsolutePath());
 		}
-		final String text;
-		final byte bt[] = new byte[(int) file.length()];
-		try {
-			text = new String(bt, StandardCharsets.UTF_8.name());
-			return text;
-		} catch (UnsupportedEncodingException e) {
-			MachineLog.errorMessage(FileManager.class.getName(), e);
+		final StringBuilder text = new StringBuilder();
+		try (Scanner scanner = new Scanner(file)) {
+			while (scanner.hasNextLine()) {
+				String line = scanner.nextLine();
+				text.append(line).append("\n");
+			}
+			return text.toString();
 		}
-		return "";
 	}
 
 	private static String readTextFile(String filename, String mode) throws FileNotFoundException {
@@ -170,6 +177,50 @@ public class FileManager {
 		return contents;
 	}
 
+	public static File[] findJarFiles(String path) {
+		final File dir = new File(path);
+		return dir.listFiles(new FilenameFilter() {
+			public boolean accept(File dir, String filename) {
+				return filename.endsWith(".jar");
+			}
+		});
+	}
+
+	public static Set<String> getAvailableModules() {
+		final Set<String> availableModules = new HashSet<>();
+		try {
+			final File[] availableJars = findJarFiles(MachineConfigurationReader.getInstance().getModulesPath()
+					+ File.separator);
+			for (final File jar : availableJars) {
+				availableModules.add(jar.getName());
+			}
+			return availableModules;
+		} catch (Exception ex) {
+			MachineLog.warning(FileManager.class.getName(), "Error meanwhile loading modules: " + ex.getMessage());
+			return new HashSet<>();
+		}
+	}
+
+	public static void getAllModules(String pathToJar) throws IOException, ClassNotFoundException {
+		try (final JarFile jarFile = new JarFile(pathToJar)) {
+			final Enumeration<JarEntry> e = jarFile.entries();
+
+			final URL[] urls = { new URL("jar:file:" + pathToJar + "!/") };
+			final URLClassLoader cl = URLClassLoader.newInstance(urls);
+
+			while (e.hasMoreElements()) {
+				final JarEntry je = e.nextElement();
+				if (je.isDirectory() || !je.getName().endsWith(".class")) {
+					continue;
+				}
+				// -6 because of .class
+				String className = je.getName().substring(0, je.getName().length() - 6);
+				className = className.replace('/', '.');
+				final Class c = cl.loadClass(className);
+			}
+		}
+	}
+
 	public static String readTextFromJar(String file) {
 		final StringBuilder totalText = new StringBuilder();
 		String thisLine;
@@ -199,10 +250,9 @@ public class FileManager {
 
 	public static String convertStreamToString(InputStream is) throws IOException {
 		/*
-		 * To convert the InputStream to String we use the Reader.read(char[]
-		 * buffer) method. We iterate until the Reader return -1 which means
-		 * there's no more data to read. We use the StringWriter class to
-		 * produce the string.
+		 * To convert the InputStream to String we use the Reader.read(char[] buffer) method. We iterate until the
+		 * Reader return -1 which means there's no more data to read. We use the StringWriter class to produce the
+		 * string.
 		 */
 		if (is != null) {
 			final Writer writer = new StringWriter();
@@ -235,5 +285,95 @@ public class FileManager {
 			return true;
 		}
 		return false;
+	}
+
+	public static File getResource(String fileName) throws NullPointerException {
+		return getResource(FileManager.class, fileName);
+	}
+
+	public static File getResource(Class<?> classWithResources, String fileName) throws NullPointerException {
+		final URL url = classWithResources.getClassLoader().getResource(fileName);
+		if (url != null) {
+			MachineLog.info(FileManager.class.getName(),
+					"Resource to read '" + fileName + "' found at url '" + url.toString() + "'.");
+		} else {
+			MachineLog.warning(FileManager.class.getName(), "Invalid resource '" + fileName + "'.");
+		}
+		File file = null;
+		// Jetty load resource.
+		try {
+			// We use path to remove URI special codification that is not
+			// allowed for File.
+			final String path = URLDecoder.decode(url.getPath(), "UTF-8");
+			file = new File(convert2OsPath(url));
+			// Apache load resource
+			if (!file.exists()) {
+				file = new File(path);
+				// Resource inside a jar.
+				if (path.contains(".jar!")) {
+					MachineLog.info(FileManager.class.getName(), "Resource inside a jar. Copy to a temporal file.");
+					// Copy to a temp file and return it.
+					try {
+						// Url has the absolute path with the correct
+						// codification for an InputStream.
+						final InputStream inputStream = url.openStream();
+						try {
+							if (inputStream != null) {
+								final File tempFile = File.createTempFile(fileName, "_jar");
+								// tempFile.deleteOnExit();
+								final OutputStream os = new FileOutputStream(tempFile);
+								final byte[] buffer = new byte[1024];
+								int bytesRead;
+								// read from is to buffer
+								while ((bytesRead = inputStream.read(buffer)) != -1) {
+									os.write(buffer, 0, bytesRead);
+								}
+								os.close();
+								return tempFile;
+							}
+						} finally {
+							try {
+								inputStream.close();
+							} catch (Exception e) {
+								// Do nothing.
+							}
+						}
+					} catch (FileNotFoundException e1) {
+						MachineLog.errorMessage(FileManager.class.getName(), e1);
+					} catch (IOException e) {
+						MachineLog.errorMessage(FileManager.class.getName(), e);
+					}
+				}
+				if (!file.exists()) {
+					MachineLog.severe(FileManager.class.getName(), "File not found '" + path + "'.");
+				}
+			}
+		} catch (NullPointerException npe) {
+			throw new NullPointerException("File '" + fileName + "' does not exist.");
+		} catch (UnsupportedEncodingException ue) {
+			MachineLog.errorMessage(FileManager.class.getName(), ue);
+		}
+		return file;
+	}
+
+	public static String convert2OsPath(URL string) {
+		try {
+			if (System.getProperty("os.name").toLowerCase().indexOf("win") >= 0) {
+				if (string.getPath().startsWith("file:")) {
+					return (string.getPath()).replace("file:", "").substring(1);
+				} else {
+					return (string.getPath()).substring(1);
+				}
+			} else {
+				return (string.getPath());
+			}
+		} catch (NullPointerException npe) {
+			return null;
+		}
+	}
+
+	public static void makeFolderIfNotExist(String file) {
+		final File f = new File(file);
+		f.mkdir();
 	}
 }
