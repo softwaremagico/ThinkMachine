@@ -28,8 +28,8 @@ import com.softwaremagico.tm.Element;
 
 public class ArmourSpecification extends Element<ArmourSpecification> {
 
-	public ArmourSpecification(String id, String name, String language) {
-		super(id, name, language);
+	public ArmourSpecification(String id, String name, String language, String moduleName) {
+		super(id, name, language, moduleName);
 	}
 
 	@Override

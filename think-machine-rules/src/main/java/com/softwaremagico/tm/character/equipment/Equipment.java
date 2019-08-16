@@ -30,8 +30,8 @@ public abstract class Equipment<E extends com.softwaremagico.tm.Element<?>> exte
 	private final float cost;
 	private final int techLevel;
 
-	public Equipment(String id, String name, float cost, int techLevel, String language) {
-		super(id, name, language);
+	public Equipment(String id, String name, float cost, int techLevel, String language, String moduleName) {
+		super(id, name, language, moduleName);
 		this.cost = cost;
 		this.techLevel = techLevel;
 	}

@@ -46,44 +46,55 @@ import com.softwaremagico.tm.characters.CustomCharacter;
 @Test(groups = { "occultism" })
 public class OccultismTests {
 	private static final String LANGUAGE = "es";
+	private static final String MODULE = "Fading Suns Revised Edition";
 
 	@Test(expectedExceptions = { InvalidPowerLevelException.class })
-	public void cannotAddPowersIncorrectPsiqueLevel() throws InvalidXmlElementException, TooManyBlessingsException, TooManyCyberneticDevicesException,
-			RequiredCyberneticDevicesException, BlessingAlreadyAddedException, BeneficeAlreadyAddedException {
-		final CharacterPlayer player = CustomCharacter.create(LANGUAGE);
-		player.addOccultismPower(OccultismPathFactory.getInstance().getElement("psyche", player.getLanguage()).getOccultismPowers().get("emote"));
+	public void cannotAddPowersIncorrectPsiqueLevel() throws InvalidXmlElementException, TooManyBlessingsException,
+			TooManyCyberneticDevicesException, RequiredCyberneticDevicesException, BlessingAlreadyAddedException,
+			BeneficeAlreadyAddedException {
+		final CharacterPlayer player = CustomCharacter.create(LANGUAGE, MODULE);
+		player.addOccultismPower(OccultismPathFactory.getInstance()
+				.getElement("psyche", player.getLanguage(), player.getModuleName()).getOccultismPowers().get("emote"));
 	}
 
 	@Test(expectedExceptions = { InvalidPsiqueLevelException.class })
-	public void cannotAddPowersIncorrectPathLevel() throws InvalidXmlElementException, TooManyBlessingsException, TooManyCyberneticDevicesException,
-			RequiredCyberneticDevicesException, BlessingAlreadyAddedException, BeneficeAlreadyAddedException {
-		final CharacterPlayer player = CustomCharacter.create(LANGUAGE);
-		player.addOccultismPower(OccultismPathFactory.getInstance().getElement("farHand", player.getLanguage()).getOccultismPowers().get("farWall"));
+	public void cannotAddPowersIncorrectPathLevel() throws InvalidXmlElementException, TooManyBlessingsException,
+			TooManyCyberneticDevicesException, RequiredCyberneticDevicesException, BlessingAlreadyAddedException,
+			BeneficeAlreadyAddedException {
+		final CharacterPlayer player = CustomCharacter.create(LANGUAGE, MODULE);
+		player.addOccultismPower(OccultismPathFactory.getInstance()
+				.getElement("farHand", player.getLanguage(), player.getModuleName()).getOccultismPowers()
+				.get("farWall"));
 	}
 
 	@Test
-	public void canAddPowersWithMissingLevels() throws InvalidXmlElementException, TooManyBlessingsException, TooManyCyberneticDevicesException,
-			RequiredCyberneticDevicesException, BlessingAlreadyAddedException, BeneficeAlreadyAddedException {
-		final CharacterPlayer player = CustomCharacter.create(LANGUAGE);
-		player.setPsiqueLevel(OccultismTypeFactory.getPsi(player.getLanguage()), 6);
-		player.addOccultismPower(OccultismPathFactory.getInstance().getElement("farHand", player.getLanguage()).getOccultismPowers().get("farWall"));
+	public void canAddPowersWithMissingLevels() throws InvalidXmlElementException, TooManyBlessingsException,
+			TooManyCyberneticDevicesException, RequiredCyberneticDevicesException, BlessingAlreadyAddedException,
+			BeneficeAlreadyAddedException {
+		final CharacterPlayer player = CustomCharacter.create(LANGUAGE, MODULE);
+		player.setPsiqueLevel(OccultismTypeFactory.getPsi(player.getLanguage(), player.getModuleName()), 6);
+		player.addOccultismPower(OccultismPathFactory.getInstance()
+				.getElement("farHand", player.getLanguage(), player.getModuleName()).getOccultismPowers()
+				.get("farWall"));
 	}
 
 	@Test(expectedExceptions = { InvalidFactionOfPowerException.class })
-	public void cannotAddPowerOfDifferentFaction() throws TooManyBlessingsException, InvalidXmlElementException, TooManyCyberneticDevicesException,
-			RequiredCyberneticDevicesException, BlessingAlreadyAddedException, BeneficeAlreadyAddedException {
-		final CharacterPlayer player = CustomCharacter.create(LANGUAGE);
-		player.setPsiqueLevel(OccultismTypeFactory.getTheurgy(player.getLanguage()), 5);
-		player.addOccultismPower(OccultismPathFactory.getInstance().getElement("orthodoxRituals", player.getLanguage()).getOccultismPowers()
+	public void cannotAddPowerOfDifferentFaction() throws TooManyBlessingsException, InvalidXmlElementException,
+			TooManyCyberneticDevicesException, RequiredCyberneticDevicesException, BlessingAlreadyAddedException,
+			BeneficeAlreadyAddedException {
+		final CharacterPlayer player = CustomCharacter.create(LANGUAGE, MODULE);
+		player.setPsiqueLevel(OccultismTypeFactory.getTheurgy(player.getLanguage(), player.getModuleName()), 5);
+		player.addOccultismPower(OccultismPathFactory.getInstance()
+				.getElement("orthodoxRituals", player.getLanguage(), player.getModuleName()).getOccultismPowers()
 				.get("consecration"));
 	}
 
 	@Test(expectedExceptions = { InvalidPsiqueLevelException.class })
 	public void voroxCannotHavePsiqueLevel() throws InvalidRaceException, InvalidXmlElementException {
-		final CharacterPlayer player = new CharacterPlayer(LANGUAGE);
-		player.setRace(RaceFactory.getInstance().getElement("vorox", LANGUAGE));
-		player.setFaction(FactionsFactory.getInstance().getElement("vorox", LANGUAGE));
-		player.setPsiqueLevel(OccultismTypeFactory.getPsi(LANGUAGE), 1);
+		final CharacterPlayer player = new CharacterPlayer(LANGUAGE, MODULE);
+		player.setRace(RaceFactory.getInstance().getElement("vorox", LANGUAGE, MODULE));
+		player.setFaction(FactionsFactory.getInstance().getElement("vorox", LANGUAGE, MODULE));
+		player.setPsiqueLevel(OccultismTypeFactory.getPsi(LANGUAGE, MODULE), 1);
 	}
 
 }

@@ -27,10 +27,9 @@ package com.softwaremagico.tm.character.equipment.weapons;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
 import com.softwaremagico.tm.language.ITranslator;
-import com.softwaremagico.tm.language.LanguagePool;
 
 public class AccessoryFactory extends XmlFactory<Accessory> {
-	private static final ITranslator translatorWeapon = LanguagePool.getTranslator("weapons_accessories.xml");
+	private static final String TRANSLATOR_FILE = "weapons_accessories.xml";
 
 	private static final String NAME = "name";
 
@@ -43,12 +42,12 @@ public class AccessoryFactory extends XmlFactory<Accessory> {
 	}
 
 	@Override
-	protected ITranslator getTranslator() {
-		return translatorWeapon;
+	protected String getTranslatorFile() {
+		return TRANSLATOR_FILE;
 	}
 
 	@Override
-	protected Accessory createElement(ITranslator translator, String accessoryId, String language)
+	protected Accessory createElement(ITranslator translator, String accessoryId, String language, String moduleName)
 			throws InvalidXmlElementException {
 		Accessory accessory = null;
 		String name = null;
@@ -58,7 +57,7 @@ public class AccessoryFactory extends XmlFactory<Accessory> {
 			throw new InvalidWeaponException("Invalid name in accessory '" + accessoryId + "'.");
 		}
 
-		accessory = new Accessory(accessoryId, name, language);
+		accessory = new Accessory(accessoryId, name, language, moduleName);
 
 		return accessory;
 	}

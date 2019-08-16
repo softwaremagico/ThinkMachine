@@ -53,7 +53,7 @@ public class SmallCharacterSheet extends PdfDocument {
 	private CharacterPlayer characterPlayer = null;
 
 	public SmallCharacterSheet() {
-		this(Translator.DEFAULT_LANGUAGE);
+		this(Translator.DEFAULT_LANGUAGE, MODULE);
 	}
 
 	public SmallCharacterSheet(String language) {

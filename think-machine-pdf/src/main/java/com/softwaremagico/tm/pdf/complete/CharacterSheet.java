@@ -55,7 +55,7 @@ public class CharacterSheet extends PdfDocument {
 	private CharacterPlayer characterPlayer = null;
 
 	public CharacterSheet() {
-		this(Translator.DEFAULT_LANGUAGE);
+		this(Translator.DEFAULT_LANGUAGE, MODULE);
 	}
 
 	public CharacterSheet(String language) {

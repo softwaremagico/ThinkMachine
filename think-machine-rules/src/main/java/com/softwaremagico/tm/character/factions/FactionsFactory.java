@@ -43,12 +43,11 @@ import com.softwaremagico.tm.character.blessings.BlessingFactory;
 import com.softwaremagico.tm.character.races.Race;
 import com.softwaremagico.tm.character.races.RaceFactory;
 import com.softwaremagico.tm.language.ITranslator;
-import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.log.MachineLog;
 import com.softwaremagico.tm.log.SuppressFBWarnings;
 
 public class FactionsFactory extends XmlFactory<Faction> {
-	private static final ITranslator translatorFaction = LanguagePool.getTranslator("factions.xml");
+	private static final String TRANSLATOR_FILE = "factions.xml";
 
 	private static final String NAME = "name";
 	private static final String GROUP = "group";
@@ -82,34 +81,35 @@ public class FactionsFactory extends XmlFactory<Faction> {
 	}
 
 	@Override
-	protected ITranslator getTranslator() {
-		return translatorFaction;
+	protected String getTranslatorFile() {
+		return TRANSLATOR_FILE;
 	}
 
 	public void setBlessings(Faction faction, String language) throws InvalidFactionException {
 		final Set<Blessing> mandatoryBlessings;
 		try {
-			mandatoryBlessings = getCommaSeparatedValues(faction.getId(), BLESSINGS, language,
+			mandatoryBlessings = getCommaSeparatedValues(faction.getId(), BLESSINGS, language, faction.getModuleName(),
 					BlessingFactory.getInstance());
 		} catch (InvalidXmlElementException ixe) {
-			throw new InvalidFactionException(
-					"Error in faction '" + faction + "' structure. Invalid blessing defintion. ", ixe);
+			throw new InvalidFactionException("Error in faction '" + faction
+					+ "' structure. Invalid blessing defintion. ", ixe);
 		}
 		faction.setBlessings(mandatoryBlessings);
 	}
 
 	public void setBenefices(Faction faction, String language) throws InvalidFactionException {
-		final String mandatoryBeneficesList = getTranslator().getNodeValue(faction.getId(), BENEFICES);
+		final String mandatoryBeneficesList = getTranslator(faction.getModuleName()).getNodeValue(faction.getId(),
+				BENEFICES);
 		final Set<AvailableBenefice> mandatoryBenefices = new HashSet<>();
 		if (mandatoryBeneficesList != null) {
 			final StringTokenizer mandatoyBeneficesTokenizer = new StringTokenizer(mandatoryBeneficesList, ",");
 			while (mandatoyBeneficesTokenizer.hasMoreTokens()) {
 				try {
-					mandatoryBenefices.add(AvailableBeneficeFactory.getInstance()
-							.getElement(mandatoyBeneficesTokenizer.nextToken().trim(), language));
+					mandatoryBenefices.add(AvailableBeneficeFactory.getInstance().getElement(
+							mandatoyBeneficesTokenizer.nextToken().trim(), language, faction.getModuleName()));
 				} catch (InvalidXmlElementException ixe) {
-					throw new InvalidFactionException(
-							"Error in faction '" + faction.getId() + "' structure. Invalid benefice defintion. ", ixe);
+					throw new InvalidFactionException("Error in faction '" + faction.getId()
+							+ "' structure. Invalid benefice defintion. ", ixe);
 				}
 			}
 		}
@@ -118,7 +118,7 @@ public class FactionsFactory extends XmlFactory<Faction> {
 
 	@Override
 	@SuppressFBWarnings("REC_CATCH_EXCEPTION")
-	protected Faction createElement(ITranslator translator, String factionId, String language)
+	protected Faction createElement(ITranslator translator, String factionId, String language, String moduleName)
 			throws InvalidXmlElementException {
 		try {
 			final String name = translator.getNodeValue(factionId, NAME, language);
@@ -135,20 +135,20 @@ public class FactionsFactory extends XmlFactory<Faction> {
 			final String raceRestrictionName = translator.getNodeValue(factionId, RACE);
 			Race raceRestriction = null;
 			if (raceRestrictionName == null) {
-				throw new InvalidFactionException(
-						"Race not defined in faction '" + factionId + "'. Factions must have a race restriction.");
+				throw new InvalidFactionException("Race not defined in faction '" + factionId
+						+ "'. Factions must have a race restriction.");
 			}
 			try {
-				raceRestriction = RaceFactory.getInstance().getElement(raceRestrictionName, language);
+				raceRestriction = RaceFactory.getInstance().getElement(raceRestrictionName, language, moduleName);
 			} catch (InvalidXmlElementException ixe) {
-				throw new InvalidFactionException("Error in faction '" + factionId + "' structure. Invalid race. ",
-						ixe);
+				throw new InvalidFactionException("Error in faction '" + factionId + "' structure. Invalid race. ", ixe);
 			}
-			final Faction faction = new Faction(factionId, name, factionGroup, raceRestriction, language);
+			final Faction faction = new Faction(factionId, name, factionGroup, raceRestriction, language, moduleName);
 
 			for (final String rankId : translator.getAllChildrenTags(factionId, RANKS_TAG)) {
 				final String rankName = translator.getNodeValue(factionId, rankId, RANKS_TRANSLATION_TAG, language);
-				final FactionRankTranslation factionRank = new FactionRankTranslation(rankId, rankName, language);
+				final FactionRankTranslation factionRank = new FactionRankTranslation(rankId, rankName, language,
+						moduleName);
 				faction.addRankTranslation(factionRank);
 			}
 
@@ -157,7 +157,7 @@ public class FactionsFactory extends XmlFactory<Faction> {
 			if (maleNames != null) {
 				final StringTokenizer maleNamesTokenizer = new StringTokenizer(maleNames, ",");
 				while (maleNamesTokenizer.hasMoreTokens()) {
-					addName(new Name(maleNamesTokenizer.nextToken().trim(), language, Gender.MALE, faction));
+					addName(new Name(maleNamesTokenizer.nextToken().trim(), language, moduleName, Gender.MALE, faction));
 				}
 			}
 
@@ -165,7 +165,8 @@ public class FactionsFactory extends XmlFactory<Faction> {
 			if (femaleNames != null) {
 				final StringTokenizer femaleNamesTokenizer = new StringTokenizer(femaleNames, ",");
 				while (femaleNamesTokenizer.hasMoreTokens()) {
-					addName(new Name(femaleNamesTokenizer.nextToken().trim(), language, Gender.FEMALE, faction));
+					addName(new Name(femaleNamesTokenizer.nextToken().trim(), language, moduleName, Gender.FEMALE,
+							faction));
 				}
 			}
 
@@ -173,7 +174,7 @@ public class FactionsFactory extends XmlFactory<Faction> {
 			if (surnames != null) {
 				final StringTokenizer surnamesTokenizer = new StringTokenizer(surnames, ",");
 				while (surnamesTokenizer.hasMoreTokens()) {
-					addSurname(new Surname(surnamesTokenizer.nextToken().trim(), language, faction));
+					addSurname(new Surname(surnamesTokenizer.nextToken().trim(), language, moduleName, faction));
 				}
 			}
 

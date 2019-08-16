@@ -27,10 +27,9 @@ package com.softwaremagico.tm.character.occultism;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
 import com.softwaremagico.tm.language.ITranslator;
-import com.softwaremagico.tm.language.LanguagePool;
 
 public class OccultismDurationFactory extends XmlFactory<OccultismDuration> {
-	private static final ITranslator translatorBlessing = LanguagePool.getTranslator("occultismDuration.xml");
+	private static final String TRANSLATOR_FILE = "occultismDuration.xml";
 
 	private static final String NAME = "name";
 
@@ -43,18 +42,18 @@ public class OccultismDurationFactory extends XmlFactory<OccultismDuration> {
 	}
 
 	@Override
-	protected OccultismDuration createElement(ITranslator translator, String rangeId, String language)
+	protected OccultismDuration createElement(ITranslator translator, String rangeId, String language, String moduleName)
 			throws InvalidXmlElementException {
 		try {
 			final String name = translator.getNodeValue(rangeId, NAME, language);
-			return new OccultismDuration(rangeId, name, language);
+			return new OccultismDuration(rangeId, name, language, moduleName);
 		} catch (Exception e) {
 			throw new InvalidOccultismDurationException("Invalid structure in duration '" + rangeId + "'.", e);
 		}
 	}
 
 	@Override
-	protected ITranslator getTranslator() {
-		return translatorBlessing;
+	protected String getTranslatorFile() {
+		return TRANSLATOR_FILE;
 	}
 }

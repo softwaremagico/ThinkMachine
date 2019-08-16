@@ -28,8 +28,8 @@ import com.softwaremagico.tm.Element;
 
 public class Skill<T extends Skill<?>> extends Element<T> {
 
-	public Skill(String id, String name, String language) {
-		super(id, name, language);
+	public Skill(String id, String name, String language, String moduleName) {
+		super(id, name, language, moduleName);
 	}
 
 	public String getUniqueId() {

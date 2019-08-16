@@ -34,17 +34,18 @@ import com.softwaremagico.tm.character.blessings.BlessingFactory;
 @Test(groups = { "blessingFactory" })
 public class BlessingFactoryTests {
 	private static final String LANGUAGE = "es";
+	private static final String MODULE = "Fading Suns Revised Edition";
 	private static final int DEFINED_BLESSINGS = 97;
 	private static final int DEFINED_BONIFICATIONS_MISSING_EYE = 2;
 
 	@Test
 	public void readBlessings() throws InvalidXmlElementException {
-		Assert.assertEquals(DEFINED_BLESSINGS, BlessingFactory.getInstance().getElements(LANGUAGE).size());
+		Assert.assertEquals(DEFINED_BLESSINGS, BlessingFactory.getInstance().getElements(LANGUAGE, MODULE).size());
 	}
 
 	@Test
 	public void multiplesBonifications() throws InvalidXmlElementException {
 		Assert.assertEquals(DEFINED_BONIFICATIONS_MISSING_EYE,
-				BlessingFactory.getInstance().getElement("missingEye", LANGUAGE).getBonifications().size());
+				BlessingFactory.getInstance().getElement("missingEye", LANGUAGE, MODULE).getBonifications().size());
 	}
 }

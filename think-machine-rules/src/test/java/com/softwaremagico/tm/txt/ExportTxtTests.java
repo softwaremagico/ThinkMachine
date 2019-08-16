@@ -44,12 +44,13 @@ import com.softwaremagico.tm.characters.CustomCharacter;
 @Test(groups = { "exportTxt" })
 public class ExportTxtTests {
 	private static final String LANGUAGE = "es";
+	private static final String MODULE = "Fading Suns Revised Edition";
 
 	@Test
 	private void checkCustomCharacter() throws TooManyBlessingsException, InvalidXmlElementException, IOException,
 			URISyntaxException, TooManyCyberneticDevicesException, RequiredCyberneticDevicesException,
 			BlessingAlreadyAddedException, BeneficeAlreadyAddedException {
-		final CharacterPlayer player = CustomCharacter.create(LANGUAGE);
+		final CharacterPlayer player = CustomCharacter.create(LANGUAGE, MODULE);
 		final CharacterSheet characterSheet = new CharacterSheet(player);
 
 		final String text = new String(Files.readAllBytes(Paths.get(getClass().getClassLoader()

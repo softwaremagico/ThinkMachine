@@ -37,9 +37,11 @@ import com.softwaremagico.tm.log.MachineLog;
 public class AvailableBeneficeAdapter extends ElementAdapter<AvailableBenefice> {
 
 	@Override
-	public AvailableBenefice deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
+	public AvailableBenefice deserialize(JsonElement jsonElement, Type type,
+			JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
 		try {
-			return AvailableBeneficeFactory.getInstance().getElement(super.getElementId(jsonElement), super.getLanguage(jsonElement));
+			return AvailableBeneficeFactory.getInstance().getElement(super.getElementId(jsonElement),
+					super.getLanguage(jsonElement), super.getModuleName(jsonElement));
 		} catch (InvalidXmlElementException e) {
 			MachineLog.errorMessage(this.getClass().getName(), e);
 			return null;

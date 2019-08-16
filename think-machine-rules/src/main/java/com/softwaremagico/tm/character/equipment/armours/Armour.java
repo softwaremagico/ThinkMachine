@@ -39,9 +39,9 @@ public class Armour extends Equipment<Armour> {
 	private final Set<Shield> allowedShields;
 	private final Set<ArmourSpecification> specifications;
 
-	public Armour(String id, String name, String language, int techLevel, int protection, Set<DamageType> damageTypes,
-			float cost) {
-		super(id, name, cost, techLevel, language);
+	public Armour(String id, String name, String language, String moduleName, int techLevel, int protection,
+			Set<DamageType> damageTypes, float cost) {
+		super(id, name, cost, techLevel, language, moduleName);
 		this.protection = protection;
 		this.damageTypes = damageTypes;
 		this.standardPenalizations = new ArmourPenalization(0, 0, 0, 0);
@@ -50,10 +50,11 @@ public class Armour extends Equipment<Armour> {
 		this.specifications = new HashSet<>();
 	}
 
-	public Armour(String id, String name, String language, int techLevel, int protection, Set<DamageType> damageTypes,
-			ArmourPenalization specialPenalizations, ArmourPenalization otherPenalizations, Set<Shield> allowedShields,
-			Set<ArmourSpecification> specifications, float cost) {
-		super(id, name, cost, techLevel, language);
+	public Armour(String id, String name, String language, String moduleName, int techLevel, int protection,
+			Set<DamageType> damageTypes, ArmourPenalization specialPenalizations,
+			ArmourPenalization otherPenalizations, Set<Shield> allowedShields, Set<ArmourSpecification> specifications,
+			float cost) {
+		super(id, name, cost, techLevel, language, moduleName);
 		this.protection = protection;
 		this.damageTypes = damageTypes;
 		this.standardPenalizations = specialPenalizations;

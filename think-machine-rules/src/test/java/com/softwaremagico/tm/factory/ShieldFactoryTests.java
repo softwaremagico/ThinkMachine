@@ -33,12 +33,12 @@ import com.softwaremagico.tm.character.equipment.shields.ShieldFactory;
 
 @Test(groups = { "shieldFactory" })
 public class ShieldFactoryTests {
-
-	private static final int DEFINED_SHIELDS = 4;
 	private static final String LANGUAGE = "es";
+	private static final String MODULE = "Fading Suns Revised Edition";
+	private static final int DEFINED_SHIELDS = 4;
 
 	@Test
 	public void readDamages() throws InvalidXmlElementException {
-		Assert.assertEquals(DEFINED_SHIELDS, ShieldFactory.getInstance().getElements(LANGUAGE).size());
+		Assert.assertEquals(DEFINED_SHIELDS, ShieldFactory.getInstance().getElements(LANGUAGE, MODULE).size());
 	}
 }

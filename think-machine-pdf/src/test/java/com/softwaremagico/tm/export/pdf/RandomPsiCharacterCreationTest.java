@@ -60,7 +60,7 @@ public class RandomPsiCharacterCreationTest {
 	public void createRandomPsiCharacter() throws MalformedURLException, DocumentException, IOException,
 			InvalidXmlElementException, TooManyBlessingsException, DuplicatedPreferenceException,
 			InvalidRandomElementSelectedException {
-		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
+		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, MODULE);
 		final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0,
 				SpecializationPreferences.SPECIALIZED, PsiquePathLevelPreferences.HIGH, PsiqueLevelPreferences.HIGH);
 		randomizeCharacter.createCharacter();

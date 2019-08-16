@@ -69,7 +69,7 @@ public class Main {
 	}
 
 	private static void setArguments(String[] args) {
-		if (args.length <= LANGUAGE) {
+		if (args.length <= LANGUAGE, MODULE) {
 			language = "en";
 		} else {
 			language = args[LANGUAGE];

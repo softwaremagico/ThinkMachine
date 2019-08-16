@@ -39,8 +39,8 @@ public class Name extends Element<Name> {
 		return faction;
 	}
 
-	public Name(String name, String language, Gender gender, Faction faction) {
-		super(name.toLowerCase(), name, language);
+	public Name(String name, String language, String moduleName, Gender gender, Faction faction) {
+		super(name.toLowerCase(), name, language, moduleName);
 		this.gender = gender;
 		this.faction = faction;
 	}

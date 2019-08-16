@@ -38,12 +38,11 @@ import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
 import com.softwaremagico.tm.character.factions.FactionsFactory;
 import com.softwaremagico.tm.language.ITranslator;
-import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.log.MachineLog;
 import com.softwaremagico.tm.log.SuppressFBWarnings;
 
 public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
-	private static final ITranslator translatorSkill = LanguagePool.getTranslator("skills.xml");
+	private static final String TRANSLATOR_FILE = "skills.xml";
 
 	private static final String NAME = "name";
 	private static final String FACTION_SKILL_TAG = "factionSkill";
@@ -97,9 +96,9 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 		return false;
 	}
 
-	public SkillDefinition get(String skillName, String language) {
+	public SkillDefinition get(String skillName, String language, String moduleName) {
 		try {
-			for (final SkillDefinition availableSkill : getElements(language)) {
+			for (final SkillDefinition availableSkill : getElements(language, moduleName)) {
 				if (Objects.equals(availableSkill.getId(), skillName)) {
 					return availableSkill;
 				}
@@ -111,13 +110,13 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 	}
 
 	@Override
-	public List<SkillDefinition> getElements(String language) throws InvalidXmlElementException {
+	public List<SkillDefinition> getElements(String language, String moduleName) throws InvalidXmlElementException {
 		if (elements.get(language) == null) {
 			elements.put(language, new ArrayList<SkillDefinition>());
-			for (final String skillId : translatorSkill.getAllTranslatedElements()) {
-				final SkillDefinition skill = createElement(translatorSkill, skillId, language);
+			for (final String skillId : getTranslator(moduleName).getAllTranslatedElements()) {
+				final SkillDefinition skill = createElement(getTranslator(moduleName), skillId, language, moduleName);
 				elements.get(language).add(skill);
-				setRandomConfiguration(skill, getTranslator(), language);
+				setRandomConfiguration(skill, getTranslator(moduleName), language, moduleName);
 				if (skill.isNatural()) {
 					if (naturalSkills.get(language) == null) {
 						naturalSkills.put(language, new ArrayList<SkillDefinition>());
@@ -139,18 +138,18 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 
 	@Override
 	@SuppressFBWarnings("REC_CATCH_EXCEPTION")
-	protected SkillDefinition createElement(ITranslator translator, String skillId, String language)
+	protected SkillDefinition createElement(ITranslator translator, String skillId, String language, String moduleName)
 			throws InvalidXmlElementException {
 		try {
 			final String name = translator.getNodeValue(skillId, NAME, language);
-			final SkillDefinition skill = new SkillDefinition(skillId, name, language);
+			final SkillDefinition skill = new SkillDefinition(skillId, name, language, moduleName);
 			try {
 				final Set<Specialization> specializations = new HashSet<>();
 				for (final String specializationId : translator.getAllChildrenTags(skillId, SPECIALIZABLE_SKILL_TAG)) {
 					final String specizalizationName = translator.getNodeValue(specializationId, language);
 					final Specialization specialization = new Specialization(specializationId, specizalizationName,
-							language);
-					setRandomConfiguration(specialization, translator, language);
+							language, moduleName);
+					setRandomConfiguration(specialization, translator, language, moduleName);
 					specializations.add(specialization);
 				}
 				skill.setSpecializations(specializations);
@@ -170,11 +169,11 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 				final StringTokenizer factionsOfSkill = new StringTokenizer(factionSkill, ",");
 				while (factionsOfSkill.hasMoreTokens()) {
 					try {
-						skill.addFaction(
-								FactionsFactory.getInstance().getElement(factionsOfSkill.nextToken().trim(), language));
+						skill.addFaction(FactionsFactory.getInstance().getElement(factionsOfSkill.nextToken().trim(),
+								language, moduleName));
 					} catch (InvalidXmlElementException ixe) {
-						throw new InvalidSkillException(
-								"Error in skill '" + skillId + "' structure. Invalid faction defintion. ", ixe);
+						throw new InvalidSkillException("Error in skill '" + skillId
+								+ "' structure. Invalid faction defintion. ", ixe);
 					}
 				}
 			}
@@ -204,7 +203,7 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 	}
 
 	@Override
-	protected ITranslator getTranslator() {
-		return translatorSkill;
+	protected String getTranslatorFile() {
+		return TRANSLATOR_FILE;
 	}
 }

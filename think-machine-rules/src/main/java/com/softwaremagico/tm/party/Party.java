@@ -42,9 +42,11 @@ public class Party {
 	private final transient Map<CharacterPlayer, Integer> threatByCharacter;
 	private String partyName;
 	private final String language;
+	private final String moduleName;
 
-	public Party(String language) {
+	public Party(String language, String moduleName) {
 		this.language = language;
+		this.moduleName = moduleName;
 		characterPlayers = new HashSet<>();
 		threatByCharacter = new HashMap<>();
 	}
@@ -96,5 +98,9 @@ public class Party {
 
 	public String getLanguage() {
 		return language;
+	}
+
+	public String getModuleName() {
+		return moduleName;
 	}
 }

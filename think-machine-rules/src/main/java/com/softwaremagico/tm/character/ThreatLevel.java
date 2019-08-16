@@ -89,7 +89,7 @@ public class ThreatLevel {
 			threatLevel += getThreatLevel(characterPlayer,
 					characterPlayer.getCharacteristic(mainWeapon.getCharacteristic().getCharacteristicName()),
 					mainWeapon.getSkill()) * 2;
-			threatLevel += getThreatLevel(mainWeapon);
+			threatLevel += getThreatLevel(mainWeapon, characterPlayer.getModuleName());
 			if (WeaponType.getMeleeTypes().contains(mainWeapon.getType())) {
 				threatLevel += characterPlayer.getStrengthDamangeModification() * DAMAGE_THREAT_MULTIPLICATOR;
 			}
@@ -97,13 +97,16 @@ public class ThreatLevel {
 		}
 		threatLevel += characterPlayer.getMeleeCombatStyles().size() * COMBAT_STYLES_THREAT_MULTIPLICATOR;
 		threatLevel += characterPlayer.getRangedCombatStyles().size() * COMBAT_STYLES_THREAT_MULTIPLICATOR;
-		threatLevel += getThreatLevel(characterPlayer, characterPlayer.getCharacteristic(CharacteristicName.DEXTERITY),
-				AvailableSkillsFactory.getInstance().getElement("fight", characterPlayer.getLanguage()));
+		threatLevel += getThreatLevel(
+				characterPlayer,
+				characterPlayer.getCharacteristic(CharacteristicName.DEXTERITY),
+				AvailableSkillsFactory.getInstance().getElement("fight", characterPlayer.getLanguage(),
+						characterPlayer.getModuleName()));
 		combatThreatLevel += threatLevel;
 		return threatLevel;
 	}
 
-	private static int getThreatLevel(Weapon weapon) {
+	private static int getThreatLevel(Weapon weapon, String moduleName) {
 		if (weapon == null) {
 			return 0;
 		}
@@ -113,35 +116,35 @@ public class ThreatLevel {
 		threatLevel += weapon.getDamageTypes().size() * DAMAGE_TYPES_THREAT_MULTIPLICATOR;
 		try {
 			if (weapon.getDamageTypes().contains(
-					DamageTypeFactory.getInstance().getElement("fire", weapon.getLanguage()))) {
+					DamageTypeFactory.getInstance().getElement("fire", weapon.getLanguage(), moduleName))) {
 				threatLevel += 3 * weapon.getMainDamage();
 			}
 			if (weapon.getDamageTypes().contains(
-					DamageTypeFactory.getInstance().getElement("laser", weapon.getLanguage()))) {
+					DamageTypeFactory.getInstance().getElement("laser", weapon.getLanguage(), moduleName))) {
 				threatLevel += 1 * weapon.getMainDamage();
 			}
 			if (weapon.getDamageTypes().contains(
-					DamageTypeFactory.getInstance().getElement("xaser", weapon.getLanguage()))) {
+					DamageTypeFactory.getInstance().getElement("xaser", weapon.getLanguage(), moduleName))) {
 				threatLevel += 3 * weapon.getMainDamage();
 			}
 			if (weapon.getDamageTypes().contains(
-					DamageTypeFactory.getInstance().getElement("graser", weapon.getLanguage()))) {
+					DamageTypeFactory.getInstance().getElement("graser", weapon.getLanguage(), moduleName))) {
 				threatLevel += 6 * weapon.getMainDamage();
 			}
 			if (weapon.getDamageTypes().contains(
-					DamageTypeFactory.getInstance().getElement("shock", weapon.getLanguage()))) {
+					DamageTypeFactory.getInstance().getElement("shock", weapon.getLanguage(), moduleName))) {
 				threatLevel += 5 * weapon.getMainDamage();
 			}
 			if (weapon.getDamageTypes().contains(
-					DamageTypeFactory.getInstance().getElement("plasma", weapon.getLanguage()))) {
+					DamageTypeFactory.getInstance().getElement("plasma", weapon.getLanguage(), moduleName))) {
 				threatLevel += 5 * weapon.getMainDamage();
 			}
 			if (weapon.getDamageTypes().contains(
-					DamageTypeFactory.getInstance().getElement("halveArmour", weapon.getLanguage()))) {
+					DamageTypeFactory.getInstance().getElement("halveArmour", weapon.getLanguage(), moduleName))) {
 				threatLevel += 3 * weapon.getMainDamage();
 			}
 			if (weapon.getDamageTypes().contains(
-					DamageTypeFactory.getInstance().getElement("ignoreArmour", weapon.getLanguage()))) {
+					DamageTypeFactory.getInstance().getElement("ignoreArmour", weapon.getLanguage(), moduleName))) {
 				threatLevel += 6 * weapon.getMainDamage();
 			}
 		} catch (InvalidXmlElementException e) {
@@ -190,8 +193,8 @@ public class ThreatLevel {
 	private static int getOccultismThreatLevel(CharacterPlayer characterPlayer) throws InvalidXmlElementException {
 		int threatLevel = 0;
 		for (final Entry<String, List<String>> occulstismPathEntry : characterPlayer.getSelectedPowers().entrySet()) {
-			 final OccultismPath occultismPath = OccultismPathFactory.getInstance().getElement(occulstismPathEntry.getKey(),
-					characterPlayer.getLanguage());
+			final OccultismPath occultismPath = OccultismPathFactory.getInstance().getElement(
+					occulstismPathEntry.getKey(), characterPlayer.getLanguage(), characterPlayer.getModuleName());
 			for (final String occultismPowerName : occulstismPathEntry.getValue()) {
 				switch (occultismPath.getClassification()) {
 				case COMBAT:
@@ -206,10 +209,10 @@ public class ThreatLevel {
 			}
 		}
 		threatLevel += characterPlayer.getExtraWyrd() * EXTRA_WYRD_THREAT_MULTIPLICATOR;
-		threatLevel += characterPlayer.getPsiqueLevel(OccultismTypeFactory.getPsi(characterPlayer.getLanguage()))
-				* PSI_LEVEL_THREAT_MULTIPLICATOR;
-		threatLevel += characterPlayer.getPsiqueLevel(OccultismTypeFactory.getTheurgy(characterPlayer.getLanguage()))
-				* PSI_LEVEL_THREAT_MULTIPLICATOR;
+		threatLevel += characterPlayer.getPsiqueLevel(OccultismTypeFactory.getPsi(characterPlayer.getLanguage(),
+				characterPlayer.getModuleName())) * PSI_LEVEL_THREAT_MULTIPLICATOR;
+		threatLevel += characterPlayer.getPsiqueLevel(OccultismTypeFactory.getTheurgy(characterPlayer.getLanguage(),
+				characterPlayer.getModuleName())) * PSI_LEVEL_THREAT_MULTIPLICATOR;
 		occultismThreatLevel += threatLevel;
 		return threatLevel;
 	}

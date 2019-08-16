@@ -43,7 +43,7 @@ public class RandomCharacterDifficultyTests {
 
 	@Test
 	public void easy() throws DuplicatedPreferenceException, InvalidXmlElementException, InvalidRandomElementSelectedException, TooManyBlessingsException {
-		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
+		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, MODULE);
 		final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0, DifficultLevelPreferences.EASY);
 		randomizeCharacter.createCharacter();
 		Assert.assertTrue(CostCalculator.getCost(characterPlayer) < FreeStyleCharacterCreation.getFreeAvailablePoints(characterPlayer.getInfo().getAge()));
@@ -51,7 +51,7 @@ public class RandomCharacterDifficultyTests {
 
 	@Test
 	public void hard() throws DuplicatedPreferenceException, InvalidXmlElementException, InvalidRandomElementSelectedException, TooManyBlessingsException {
-		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
+		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, MODULE);
 		final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0, DifficultLevelPreferences.HARD);
 		randomizeCharacter.createCharacter();
 		Assert.assertTrue(characterPlayer.getCharacteristicsTotalPoints() >= FreeStyleCharacterCreation.getCharacteristicsPoints(characterPlayer.getInfo()
@@ -63,7 +63,7 @@ public class RandomCharacterDifficultyTests {
 
 	@Test
 	public void veryHard() throws DuplicatedPreferenceException, InvalidXmlElementException, InvalidRandomElementSelectedException, TooManyBlessingsException {
-		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
+		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, MODULE);
 		final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0, DifficultLevelPreferences.VERY_HARD);
 		randomizeCharacter.createCharacter();
 		Assert.assertTrue(characterPlayer.getCharacteristicsTotalPoints() >= FreeStyleCharacterCreation.getCharacteristicsPoints(characterPlayer.getInfo()

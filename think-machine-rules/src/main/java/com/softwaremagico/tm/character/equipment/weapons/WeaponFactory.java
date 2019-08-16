@@ -38,10 +38,9 @@ import com.softwaremagico.tm.character.equipment.Size;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.language.ITranslator;
-import com.softwaremagico.tm.language.LanguagePool;
 
 public class WeaponFactory extends XmlFactory<Weapon> {
-	private static final ITranslator translatorWeapon = LanguagePool.getTranslator("weapons.xml");
+	private static final String TRANSLATOR_FILE = "weapons.xml";
 
 	private static final String NAME = "name";
 	private static final String CHARACTERISTIC = "characteristic";
@@ -73,12 +72,12 @@ public class WeaponFactory extends XmlFactory<Weapon> {
 	}
 
 	@Override
-	protected ITranslator getTranslator() {
-		return translatorWeapon;
+	protected String getTranslatorFile() {
+		return TRANSLATOR_FILE;
 	}
 
 	@Override
-	protected Weapon createElement(ITranslator translator, String weaponId, String language)
+	protected Weapon createElement(ITranslator translator, String weaponId, String language, String moduleName)
 			throws InvalidXmlElementException {
 		Weapon weapon = null;
 		String name = null;
@@ -92,8 +91,7 @@ public class WeaponFactory extends XmlFactory<Weapon> {
 		try {
 			final String characteristicName = translator.getNodeValue(weaponId, CHARACTERISTIC);
 			characteristicDefintion = CharacteristicsDefinitionFactory.getInstance().getElement(characteristicName,
-					language);
-
+					language, moduleName);
 		} catch (Exception e) {
 			throw new InvalidWeaponException("Invalid characteristic name in weapon '" + weaponId + "'.");
 		}
@@ -101,7 +99,7 @@ public class WeaponFactory extends XmlFactory<Weapon> {
 		AvailableSkill skill = null;
 		try {
 			final String skillName = translator.getNodeValue(weaponId, SKILL);
-			skill = AvailableSkillsFactory.getInstance().getElement(skillName, language);
+			skill = AvailableSkillsFactory.getInstance().getElement(skillName, language, moduleName);
 		} catch (Exception e) {
 			throw new InvalidWeaponException("Invalid skill name in weapon '" + weaponId + "'.");
 		}
@@ -206,7 +204,7 @@ public class WeaponFactory extends XmlFactory<Weapon> {
 				while (damageTypesTokenizer.hasMoreTokens()) {
 					try {
 						damageOfWeapon.add(DamageTypeFactory.getInstance().getElement(
-								damageTypesTokenizer.nextToken().trim(), language));
+								damageTypesTokenizer.nextToken().trim(), language, moduleName));
 					} catch (InvalidXmlElementException e) {
 						throw new InvalidWeaponException("Invalid damage type in weapon '" + weaponId + "'.", e);
 					}
@@ -223,7 +221,7 @@ public class WeaponFactory extends XmlFactory<Weapon> {
 			while (ammunitionTokenizer.hasMoreTokens()) {
 				try {
 					ammunitions.add(AmmunitionFactory.getInstance().getElement(ammunitionTokenizer.nextToken().trim(),
-							language));
+							language, moduleName));
 				} catch (InvalidXmlElementException ixe) {
 					throw new InvalidWeaponException("Error in ammunitions '" + ammunitionsNames
 							+ "' structure. Invalid ammunition definition. ", ixe);
@@ -238,7 +236,7 @@ public class WeaponFactory extends XmlFactory<Weapon> {
 			while (accessoryTokenizer.hasMoreTokens()) {
 				try {
 					accessories.add(AccessoryFactory.getInstance().getElement(accessoryTokenizer.nextToken().trim(),
-							language));
+							language, moduleName));
 				} catch (InvalidXmlElementException ixe) {
 					throw new InvalidWeaponException("Error in accessories '" + accesoriesNames
 							+ "' structure in weapon '" + weaponId + "'. Invalid accessory definition. ", ixe);
@@ -246,9 +244,9 @@ public class WeaponFactory extends XmlFactory<Weapon> {
 			}
 		}
 
-		weapon = new Weapon(weaponId, name, language, type, goal, characteristicDefintion, skill, damage, strength,
-				range, shots, rate, techLevel, techLevelSpecial, size, special, damageOfWeapon, cost, ammunitions,
-				accessories);
+		weapon = new Weapon(weaponId, name, language, moduleName, type, goal, characteristicDefintion, skill, damage,
+				strength, range, shots, rate, techLevel, techLevelSpecial, size, special, damageOfWeapon, cost,
+				ammunitions, accessories);
 
 		return weapon;
 	}

@@ -35,10 +35,9 @@ import com.softwaremagico.tm.character.equipment.DamageTypeFactory;
 import com.softwaremagico.tm.character.equipment.shields.Shield;
 import com.softwaremagico.tm.character.equipment.shields.ShieldFactory;
 import com.softwaremagico.tm.language.ITranslator;
-import com.softwaremagico.tm.language.LanguagePool;
 
 public class ArmourFactory extends XmlFactory<Armour> {
-	private static final ITranslator translator = LanguagePool.getTranslator("armours.xml");
+	private static final String TRANSLATOR_FILE = "armours.xml";
 
 	private static final String NAME = "name";
 
@@ -66,12 +65,12 @@ public class ArmourFactory extends XmlFactory<Armour> {
 	}
 
 	@Override
-	protected ITranslator getTranslator() {
-		return translator;
+	protected String getTranslatorFile() {
+		return TRANSLATOR_FILE;
 	}
 
 	@Override
-	protected Armour createElement(ITranslator translator, String armourId, String language)
+	protected Armour createElement(ITranslator translator, String armourId, String language, String moduleName)
 			throws InvalidXmlElementException {
 		String name = null;
 		try {
@@ -102,8 +101,8 @@ public class ArmourFactory extends XmlFactory<Armour> {
 					STRENGTH_MODIFICATION);
 			standardStrengthModification = Integer.parseInt(strengthModificationValue);
 		} catch (Exception e) {
-			throw new InvalidArmourException(
-					"Invalid standard strength Modification value in armour '" + armourId + "'.");
+			throw new InvalidArmourException("Invalid standard strength Modification value in armour '" + armourId
+					+ "'.");
 		}
 
 		int standardDexterityModification = 0;
@@ -183,8 +182,8 @@ public class ArmourFactory extends XmlFactory<Armour> {
 			final StringTokenizer damageTypesTokenizer = new StringTokenizer(damageDefinition, ",");
 			while (damageTypesTokenizer.hasMoreTokens()) {
 				try {
-					damageOfArmour.add(DamageTypeFactory.getInstance()
-							.getElement(damageTypesTokenizer.nextToken().trim(), language));
+					damageOfArmour.add(DamageTypeFactory.getInstance().getElement(
+							damageTypesTokenizer.nextToken().trim(), language, moduleName));
 				} catch (InvalidXmlElementException e) {
 					throw new InvalidArmourException("Invalid damage type in armour '" + armourId + "'.", e);
 				}
@@ -193,7 +192,8 @@ public class ArmourFactory extends XmlFactory<Armour> {
 
 		Set<Shield> allowedShields = new HashSet<>();
 		try {
-			allowedShields = getCommaSeparatedValues(armourId, SHIELD, language, ShieldFactory.getInstance());
+			allowedShields = getCommaSeparatedValues(armourId, SHIELD, language, moduleName,
+					ShieldFactory.getInstance());
 		} catch (Exception e) {
 			// Not mandatory.
 		}
@@ -210,14 +210,14 @@ public class ArmourFactory extends XmlFactory<Armour> {
 
 		final Set<ArmourSpecification> specifications;
 		try {
-			specifications = getCommaSeparatedValues(armourId, OTHER, language,
+			specifications = getCommaSeparatedValues(armourId, OTHER, language, moduleName,
 					ArmourSpecificationFactory.getInstance());
 		} catch (InvalidXmlElementException ixe) {
 			throw new InvalidArmourException("Error in specifications in '" + OTHER + "' for armour '" + armourId
 					+ "'. Invalid spceification definition. ", ixe);
 		}
 
-		final Armour armour = new Armour(armourId, name, language, techLevel, protection, damageOfArmour,
+		final Armour armour = new Armour(armourId, name, language, moduleName, techLevel, protection, damageOfArmour,
 				standardPenalizations, specialPenalizations, allowedShields, specifications, cost);
 
 		return armour;

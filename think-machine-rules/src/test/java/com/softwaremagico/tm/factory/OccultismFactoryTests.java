@@ -39,6 +39,7 @@ import com.softwaremagico.tm.character.occultism.TheurgyComponentFactory;
 @Test(groups = { "occultismFactory" })
 public class OccultismFactoryTests {
 	private static final String LANGUAGE = "es";
+	private static final String MODULE = "Fading Suns Revised Edition";
 
 	private static final int DEFINED_PSI_PATHS = 7;
 	private static final int DEFINED_THEURGY_PATHS = 6;
@@ -50,49 +51,52 @@ public class OccultismFactoryTests {
 	@Test
 	public void readPaths() throws InvalidXmlElementException {
 		Assert.assertEquals(DEFINED_PSI_PATHS + DEFINED_THEURGY_PATHS,
-				OccultismPathFactory.getInstance().getElements(LANGUAGE).size());
+				OccultismPathFactory.getInstance().getElements(LANGUAGE, MODULE).size());
 	}
 
 	@Test
 	public void readPsiPaths() throws InvalidXmlElementException {
-		Assert.assertEquals(DEFINED_PSI_PATHS, OccultismPathFactory.getInstance().getPsiPaths(LANGUAGE).size());
+		Assert.assertEquals(DEFINED_PSI_PATHS, OccultismPathFactory.getInstance().getPsiPaths(LANGUAGE, MODULE).size());
 	}
 
 	@Test
 	public void readTheurgyPaths() throws InvalidXmlElementException {
-		Assert.assertEquals(DEFINED_THEURGY_PATHS, OccultismPathFactory.getInstance().getTheurgyPaths(LANGUAGE).size());
-	}
-
-	@Test
-	public void readRanges() throws InvalidXmlElementException {
-		Assert.assertEquals(DEFINED_RANGES, OccultismRangeFactory.getInstance().getElements(LANGUAGE).size());
-	}
-
-	@Test
-	public void readDurations() throws InvalidXmlElementException {
-		Assert.assertEquals(DEFINED_DURATIONS, OccultismDurationFactory.getInstance().getElements(LANGUAGE).size());
-	}
-
-	@Test
-	public void readTheurgyComponents() throws InvalidXmlElementException {
-		Assert.assertEquals(DEFINED_THEURGY_COMPONENTS, TheurgyComponentFactory.getInstance().getElements(LANGUAGE)
+		Assert.assertEquals(DEFINED_THEURGY_PATHS, OccultismPathFactory.getInstance().getTheurgyPaths(LANGUAGE, MODULE)
 				.size());
 	}
 
 	@Test
+	public void readRanges() throws InvalidXmlElementException {
+		Assert.assertEquals(DEFINED_RANGES, OccultismRangeFactory.getInstance().getElements(LANGUAGE, MODULE).size());
+	}
+
+	@Test
+	public void readDurations() throws InvalidXmlElementException {
+		Assert.assertEquals(DEFINED_DURATIONS, OccultismDurationFactory.getInstance().getElements(LANGUAGE, MODULE)
+				.size());
+	}
+
+	@Test
+	public void readTheurgyComponents() throws InvalidXmlElementException {
+		Assert.assertEquals(DEFINED_THEURGY_COMPONENTS,
+				TheurgyComponentFactory.getInstance().getElements(LANGUAGE, MODULE).size());
+	}
+
+	@Test
 	public void getOcculstimTypes() throws InvalidXmlElementException {
-		Assert.assertEquals(OCCULTISM_TYPES, OccultismTypeFactory.getInstance().getElements(LANGUAGE).size());
+		Assert.assertEquals(OCCULTISM_TYPES, OccultismTypeFactory.getInstance().getElements(LANGUAGE, MODULE).size());
 	}
 
 	@Test
 	public void getClassifications() throws InvalidXmlElementException {
 		Assert.assertEquals(ElementClassification.ENHANCEMENT,
-				OccultismPathFactory.getInstance().getElement("sixthSense", LANGUAGE).getClassification());
+				OccultismPathFactory.getInstance().getElement("sixthSense", LANGUAGE, MODULE).getClassification());
 		Assert.assertEquals(ElementClassification.COMBAT,
-				OccultismPathFactory.getInstance().getElement("soma", LANGUAGE).getClassification());
+				OccultismPathFactory.getInstance().getElement("soma", LANGUAGE, MODULE).getClassification());
 		Assert.assertEquals(ElementClassification.OTHERS,
-				OccultismPathFactory.getInstance().getElement("sympathy", LANGUAGE).getClassification());
+				OccultismPathFactory.getInstance().getElement("sympathy", LANGUAGE, MODULE).getClassification());
 		Assert.assertEquals(ElementClassification.ALTERATION,
-				OccultismPathFactory.getInstance().getElement("templeAvestiRituals", LANGUAGE).getClassification());
+				OccultismPathFactory.getInstance().getElement("templeAvestiRituals", LANGUAGE, MODULE)
+						.getClassification());
 	}
 }

@@ -28,8 +28,8 @@ import com.softwaremagico.tm.Element;
 
 public class OccultismRange extends Element<OccultismRange> {
 
-	public OccultismRange(String id, String name, String language) {
-		super(id, name, language);
+	public OccultismRange(String id, String name, String language, String moduleName) {
+		super(id, name, language, moduleName);
 	}
 
 	@Override

@@ -33,9 +33,11 @@ import com.softwaremagico.tm.character.characteristics.CharacteristicsDefinition
 
 @Test(groups = { "characteristicsFactory" })
 public class CharacteristicsDefinitionFactoryTests {
+	private static final String LANGUAGE = "es";
+	private static final String MODULE = "Fading Suns Revised Edition";
 
 	@Test
 	public void readCharacteristics() throws InvalidXmlElementException {
-		Assert.assertEquals(12, CharacteristicsDefinitionFactory.getInstance().getElements("es").size());
+		Assert.assertEquals(12, CharacteristicsDefinitionFactory.getInstance().getElements(LANGUAGE, MODULE).size());
 	}
 }

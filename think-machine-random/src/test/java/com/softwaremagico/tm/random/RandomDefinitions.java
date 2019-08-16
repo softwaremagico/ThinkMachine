@@ -42,15 +42,15 @@ public class RandomDefinitions {
 
 	@Test
 	public void checkRandomProbabilityMultiplier() throws InvalidXmlElementException {
-		Assert.assertEquals(WeaponFactory.getInstance().getElement("veryLargeRock", LANGUAGE).getRandomDefinition().getProbabilityMultiplier(), 0d);
+		Assert.assertEquals(WeaponFactory.getInstance().getElement("veryLargeRock", LANGUAGE, MODULE).getRandomDefinition().getProbabilityMultiplier(), 0d);
 	}
 
 	@Test
 	public void removeElementWeight() throws DuplicatedPreferenceException, InvalidXmlElementException, InvalidRandomElementSelectedException {
-		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
+		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, MODULE);
 
-		final AvailableSkill ride = AvailableSkillsFactory.getInstance().getElement("ride", LANGUAGE);
-		final AvailableSkill warfare = AvailableSkillsFactory.getInstance().getElement("warfare", LANGUAGE);
+		final AvailableSkill ride = AvailableSkillsFactory.getInstance().getElement("ride", LANGUAGE, MODULE);
+		final AvailableSkill warfare = AvailableSkillsFactory.getInstance().getElement("warfare", LANGUAGE, MODULE);
 
 		final RandomSkills originalSkills = new RandomSkills(characterPlayer, null);
 		final RandomSkills editedSkills = new RandomSkills(characterPlayer, null);

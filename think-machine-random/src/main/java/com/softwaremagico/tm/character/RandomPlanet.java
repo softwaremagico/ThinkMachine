@@ -53,7 +53,8 @@ public class RandomPlanet extends RandomSelector<Planet> {
 
 	@Override
 	protected Collection<Planet> getAllElements() throws InvalidXmlElementException {
-		return PlanetFactory.getInstance().getElements(getCharacterPlayer().getLanguage());
+		return PlanetFactory.getInstance().getElements(getCharacterPlayer().getLanguage(),
+				getCharacterPlayer().getModuleName());
 	}
 
 	@Override

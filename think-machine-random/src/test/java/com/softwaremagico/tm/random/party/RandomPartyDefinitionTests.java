@@ -39,7 +39,7 @@ public class RandomPartyDefinitionTests {
 
 	@Test
 	public void mandatoryMembersAdded() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
-		final RandomParty thugParty = RandomPartyFactory.getInstance().getElement("thugBand", LANGUAGE);
+		final RandomParty thugParty = RandomPartyFactory.getInstance().getElement("thugBand", LANGUAGE, MODULE);
 		final RandomPartyDefinition randomPartyDefinition = new RandomPartyDefinition(thugParty, 0,
 				new HashSet<IRandomPreference>());
 		randomPartyDefinition.assign();
@@ -51,13 +51,13 @@ public class RandomPartyDefinitionTests {
 	@Test
 	public void threatLevelAddMoreMembersToParty() throws InvalidXmlElementException,
 			InvalidRandomElementSelectedException {
-		final RandomParty thugParty = RandomPartyFactory.getInstance().getElement("thugBand", LANGUAGE);
+		final RandomParty thugParty = RandomPartyFactory.getInstance().getElement("thugBand", LANGUAGE, MODULE);
 		final RandomPartyDefinition randomPartyDefinition = new RandomPartyDefinition(thugParty, 200,
 				new HashSet<IRandomPreference>());
 		randomPartyDefinition.assign();
 		Assert.assertNotNull(randomPartyDefinition.getParty().getPartyName());
 
-		final RandomParty thugParty2 = RandomPartyFactory.getInstance().getElement("thugBand", LANGUAGE);
+		final RandomParty thugParty2 = RandomPartyFactory.getInstance().getElement("thugBand", LANGUAGE, MODULE);
 		final RandomPartyDefinition randomPartyDefinition2 = new RandomPartyDefinition(thugParty2, 450,
 				new HashSet<IRandomPreference>());
 		randomPartyDefinition2.assign();

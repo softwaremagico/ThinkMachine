@@ -28,10 +28,9 @@ import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
 import com.softwaremagico.tm.character.equipment.weapons.InvalidWeaponException;
 import com.softwaremagico.tm.language.ITranslator;
-import com.softwaremagico.tm.language.LanguagePool;
 
 public class DamageTypeFactory extends XmlFactory<DamageType> {
-	private static final ITranslator translatorDamage = LanguagePool.getTranslator("damage.xml");
+	private static final String TRANSLATOR_FILE = "damage.xml";
 
 	private static final String NAME = "name";
 
@@ -44,17 +43,17 @@ public class DamageTypeFactory extends XmlFactory<DamageType> {
 	}
 
 	@Override
-	protected ITranslator getTranslator() {
-		return translatorDamage;
+	protected String getTranslatorFile() {
+		return TRANSLATOR_FILE;
 	}
 
 	@Override
-	protected DamageType createElement(ITranslator translator, String damageId, String language)
+	protected DamageType createElement(ITranslator translator, String damageId, String language, String moduleName)
 			throws InvalidXmlElementException {
 		DamageType damageType = null;
 		try {
 			final String name = translator.getNodeValue(damageId, NAME, language);
-			damageType = new DamageType(damageId, name, language);
+			damageType = new DamageType(damageId, name, language, moduleName);
 		} catch (Exception e) {
 			throw new InvalidWeaponException("Invalid name in damage '" + damageId + "'.", e);
 		}

@@ -38,8 +38,8 @@ public class Planet extends Element<Planet> {
 	@ExcludeFromJson
 	private final Set<Faction> factions;
 
-	public Planet(String id, String name, String language, Set<Faction> factions) {
-		super(id, name, language);
+	public Planet(String id, String name, String language, String moduleName, Set<Faction> factions) {
+		super(id, name, language, moduleName);
 		this.factions = factions;
 	}
 

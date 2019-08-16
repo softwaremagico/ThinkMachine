@@ -39,7 +39,8 @@ public class ArmourAdapter extends ElementAdapter<Armour> {
 	@Override
 	public Armour deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
 		try {
-			return ArmourFactory.getInstance().getElement(super.getElementId(jsonElement), super.getLanguage(jsonElement));
+			return ArmourFactory.getInstance().getElement(super.getElementId(jsonElement),
+					super.getLanguage(jsonElement), super.getModuleName(jsonElement));
 		} catch (InvalidXmlElementException e) {
 			MachineLog.errorMessage(this.getClass().getName(), e);
 			return null;

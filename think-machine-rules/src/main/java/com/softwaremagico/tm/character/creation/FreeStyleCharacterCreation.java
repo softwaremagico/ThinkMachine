@@ -1,5 +1,8 @@
 package com.softwaremagico.tm.character.creation;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.races.Race;
@@ -32,7 +35,7 @@ import com.softwaremagico.tm.log.MachineLog;
 
 public class FreeStyleCharacterCreation {
 	// Human is used as a base in rules.
-	private static Race human;
+	private static final Map<String, Race> humans = new HashMap<>();
 	private static final int MIN_INITIAL_NATURAL_SKILL_VALUE = 3;
 	private static final int MIN_INITIAL_CHARACTERISTICS_VALUE = 3;
 	private static final int MAX_INITIAL_SKILL_VALUE = 8;
@@ -44,12 +47,15 @@ public class FreeStyleCharacterCreation {
 	private static final int MAX_CURSE_POINTS = 7;
 	private static final int MAX_BLESSING_MODIFICATIONS = 7;
 
-	static {
-		try {
-			human = RaceFactory.getInstance().getElement("human", "en");
-		} catch (InvalidXmlElementException e) {
-			MachineLog.errorMessage(FreeStyleCharacterCreation.class.getName(), e);
+	private static Race getHuman(String moduleName) {
+		if (humans.get(moduleName) == null) {
+			try {
+				humans.put(moduleName, RaceFactory.getInstance().getElement("human", "en", moduleName));
+			} catch (InvalidXmlElementException e) {
+				MachineLog.errorMessage(FreeStyleCharacterCreation.class.getName(), e);
+			}
 		}
+		return humans.get(moduleName);
 	}
 
 	public static int getMinInitialNaturalSkillsValues(Integer age) {
@@ -72,9 +78,11 @@ public class FreeStyleCharacterCreation {
 	public static int getMinInitialCharacteristicsValues(CharacteristicName characteristicName, Integer age, Race race) {
 		if (age != null && characteristicName != null && race != null) {
 			if (age <= 12) {
-				return Math.min(1, race.get(characteristicName).getInitialValue() - (human.get(characteristicName).getInitialValue() - 1));
+				return Math.min(1, race.get(characteristicName).getInitialValue()
+						- (getHuman(race.getModuleName()).get(characteristicName).getInitialValue() - 1));
 			} else if (age <= 16) {
-				return Math.min(1, race.get(characteristicName).getInitialValue() - (human.get(characteristicName).getInitialValue() - 2));
+				return Math.min(1, race.get(characteristicName).getInitialValue()
+						- (getHuman(race.getModuleName()).get(characteristicName).getInitialValue() - 2));
 			} else if (age <= 20) {
 				return race.get(characteristicName).getInitialValue();
 			} else if (age <= 30) {
@@ -106,13 +114,17 @@ public class FreeStyleCharacterCreation {
 	public static int getMaxInitialCharacteristicsValues(CharacteristicName characteristicName, Integer age, Race race) {
 		if (age != null && characteristicName != null && race != null) {
 			if (age <= 12) {
-				return race.get(characteristicName).getMaximumInitialValue() - (human.get(characteristicName).getMaximumInitialValue() - 4);
+				return race.get(characteristicName).getMaximumInitialValue()
+						- (getHuman(race.getModuleName()).get(characteristicName).getMaximumInitialValue() - 4);
 			} else if (age <= 16) {
-				return race.get(characteristicName).getMaximumInitialValue() - (human.get(characteristicName).getMaximumInitialValue() - 5);
+				return race.get(characteristicName).getMaximumInitialValue()
+						- (getHuman(race.getModuleName()).get(characteristicName).getMaximumInitialValue() - 5);
 			} else if (age <= 20) {
-				return race.get(characteristicName).getMaximumInitialValue() - (human.get(characteristicName).getMaximumInitialValue() - 6);
+				return race.get(characteristicName).getMaximumInitialValue()
+						- (getHuman(race.getModuleName()).get(characteristicName).getMaximumInitialValue() - 6);
 			} else if (age <= 30) {
-				return race.get(characteristicName).getMaximumInitialValue() - (human.get(characteristicName).getMaximumInitialValue() - 7);
+				return race.get(characteristicName).getMaximumInitialValue()
+						- (getHuman(race.getModuleName()).get(characteristicName).getMaximumInitialValue() - 7);
 			} else if (age <= 40) {
 				return race.get(characteristicName).getMaximumInitialValue();
 			}

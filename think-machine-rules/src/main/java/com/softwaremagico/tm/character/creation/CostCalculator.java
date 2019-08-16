@@ -151,21 +151,25 @@ public class CostCalculator {
 		int cost = 0;
 		for (final Entry<String, List<String>> occulstismPathEntry : characterPlayer.getSelectedPowers().entrySet()) {
 			final OccultismPath occultismPath = OccultismPathFactory.getInstance().getElement(
-					occulstismPathEntry.getKey(), characterPlayer.getLanguage());
+					occulstismPathEntry.getKey(), characterPlayer.getLanguage(), characterPlayer.getModuleName());
 			for (final String occultismPowerName : occulstismPathEntry.getValue()) {
 				cost += occultismPath.getOccultismPowers().get(occultismPowerName).getLevel()
 						* OCCULSTIM_POWER_LEVEL_COST;
 			}
 		}
 		cost += characterPlayer.getExtraWyrd() * EXTRA_WYRD_COST;
-		cost += Math
-				.max(0,
-						(characterPlayer.getPsiqueLevel(OccultismTypeFactory.getPsi(characterPlayer.getLanguage())) - (characterPlayer
-								.getRace() != null ? characterPlayer.getRace().getPsi() : 0)) * PSIQUE_LEVEL_COST);
-		cost += Math
-				.max(0,
-						(characterPlayer.getPsiqueLevel(OccultismTypeFactory.getTheurgy(characterPlayer.getLanguage())) - (characterPlayer
-								.getRace() != null ? characterPlayer.getRace().getTheurgy() : 0)) * PSIQUE_LEVEL_COST);
+		cost += Math.max(
+				0,
+				(characterPlayer.getPsiqueLevel(OccultismTypeFactory.getPsi(characterPlayer.getLanguage(),
+						characterPlayer.getModuleName())) - (characterPlayer.getRace() != null ? characterPlayer
+						.getRace().getPsi() : 0))
+						* PSIQUE_LEVEL_COST);
+		cost += Math.max(
+				0,
+				(characterPlayer.getPsiqueLevel(OccultismTypeFactory.getTheurgy(characterPlayer.getLanguage(),
+						characterPlayer.getModuleName())) - (characterPlayer.getRace() != null ? characterPlayer
+						.getRace().getTheurgy() : 0))
+						* PSIQUE_LEVEL_COST);
 		return cost;
 	}
 

@@ -33,8 +33,8 @@ import com.softwaremagico.tm.random.IElementWithRandomElements;
 public class RandomParty extends Element<RandomParty> implements IElementWithRandomElements<RandomPartyMember> {
 	private final HashSet<RandomPartyMember> randomPartyMembers;
 
-	public RandomParty(String id, String name, String language) {
-		super(id, name, language);
+	public RandomParty(String id, String name, String language, String moduleName) {
+		super(id, name, language, moduleName);
 		randomPartyMembers = new HashSet<>();
 	}
 

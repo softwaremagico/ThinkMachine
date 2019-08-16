@@ -41,9 +41,10 @@ public class Ammunition extends Element<Ammunition> {
 	private final Set<DamageType> damageTypes;
 	private final Set<Accessory> accesories;
 
-	public Ammunition(String id, String name, String language, String goal, String damage, Integer strength,
-			String range, Size size, Integer cost, Set<DamageType> damageTypes, Set<Accessory> accesories) {
-		super(id, name, language);
+	public Ammunition(String id, String name, String language, String moduleName, String goal, String damage,
+			Integer strength, String range, Size size, Integer cost, Set<DamageType> damageTypes,
+			Set<Accessory> accesories) {
+		super(id, name, language, moduleName);
 		this.goal = goal;
 		this.damage = damage;
 		this.strength = strength;

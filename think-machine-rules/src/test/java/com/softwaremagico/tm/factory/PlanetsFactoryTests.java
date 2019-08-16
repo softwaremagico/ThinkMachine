@@ -34,15 +34,17 @@ import com.softwaremagico.tm.character.planets.PlanetFactory;
 @Test(groups = { "planetsFactory" })
 public class PlanetsFactoryTests {
 	private static final String LANGUAGE = "en";
+	private static final String MODULE = "Fading Suns Revised Edition";
 	private static final int DEFINED_PLANETS = 37;
 
 	@Test
 	public void readPlanets() throws InvalidXmlElementException {
-		Assert.assertEquals(DEFINED_PLANETS, PlanetFactory.getInstance().getElements("es").size());
+		Assert.assertEquals(DEFINED_PLANETS, PlanetFactory.getInstance().getElements(LANGUAGE, MODULE).size());
 	}
 
 	@Test
 	public void readPlanetsFactions() throws InvalidXmlElementException {
-		Assert.assertEquals(3, PlanetFactory.getInstance().getElement("stigmata", LANGUAGE).getFactions().size());
+		Assert.assertEquals(3, PlanetFactory.getInstance().getElement("stigmata", LANGUAGE, MODULE).getFactions()
+				.size());
 	}
 }

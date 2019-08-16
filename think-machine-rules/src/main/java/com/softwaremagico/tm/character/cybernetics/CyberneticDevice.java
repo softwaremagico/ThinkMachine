@@ -51,10 +51,11 @@ public class CyberneticDevice extends Element<CyberneticDevice> implements IElem
 	private final Set<StaticValue> staticValues;
 	private final ElementClassification classification;
 
-	public CyberneticDevice(String id, String name, String language, int points, int incompatibility, int cost,
-			int techLevel, String requirement, Weapon weapon, Set<CyberneticDeviceTrait> traits,
-			Set<Bonification> bonifications, Set<StaticValue> staticValues, ElementClassification classification) {
-		super(id, name, language);
+	public CyberneticDevice(String id, String name, String language, String moduleName, int points,
+			int incompatibility, int cost, int techLevel, String requirement, Weapon weapon,
+			Set<CyberneticDeviceTrait> traits, Set<Bonification> bonifications, Set<StaticValue> staticValues,
+			ElementClassification classification) {
+		super(id, name, language, moduleName);
 		this.points = points;
 		this.incompatibility = incompatibility;
 		this.cost = cost;
@@ -92,7 +93,7 @@ public class CyberneticDevice extends Element<CyberneticDevice> implements IElem
 	public CyberneticDevice getRequirement() {
 		if (requirement != null) {
 			try {
-				return CyberneticDeviceFactory.getInstance().getElement(requirement, getLanguage());
+				return CyberneticDeviceFactory.getInstance().getElement(requirement, getLanguage(), getModuleName());
 			} catch (InvalidXmlElementException e) {
 				MachineLog.errorMessage(this.getClass().getName(), e);
 			}

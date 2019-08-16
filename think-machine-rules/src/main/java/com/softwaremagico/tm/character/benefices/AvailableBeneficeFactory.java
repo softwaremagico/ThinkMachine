@@ -54,10 +54,11 @@ public class AvailableBeneficeFactory {
 		availableBeneficesByDefinition = new HashMap<>();
 	}
 
-	public Collection<AvailableBenefice> getElements(String language) throws InvalidXmlElementException {
+	public Collection<AvailableBenefice> getElements(String language, String moduleName)
+			throws InvalidXmlElementException {
 		if (availableBenefices.get(language) == null) {
 			for (final BeneficeDefinition benefitDefinition : BeneficeDefinitionFactory.getInstance().getElements(
-					language)) {
+					language, moduleName)) {
 				if (benefitDefinition.getSpecializations().isEmpty()) {
 					for (final Integer cost : benefitDefinition.getCosts()) {
 						final String id = benefitDefinition.getId()
@@ -117,9 +118,10 @@ public class AvailableBeneficeFactory {
 		availableBeneficesByDefinition.get(language).get(beneficeDefinition).add(availableBenefice);
 	}
 
-	public AvailableBenefice getElement(String beneficeId, String language) throws InvalidXmlElementException {
+	public AvailableBenefice getElement(String beneficeId, String language, String moduleName)
+			throws InvalidXmlElementException {
 		if (availableBenefices.get(language) == null) {
-			getElements(language);
+			getElements(language, moduleName);
 		}
 		final AvailableBenefice avilableBenefice = availableBenefices.get(language).get(beneficeId);
 		if (avilableBenefice == null) {
@@ -128,22 +130,22 @@ public class AvailableBeneficeFactory {
 		return avilableBenefice;
 	}
 
-	public Set<AvailableBenefice> getAvailableBeneficesByDefinition(String language,
+	public Set<AvailableBenefice> getAvailableBeneficesByDefinition(String language, String moduleName,
 			BeneficeDefinition beneficeDefinition) throws InvalidXmlElementException {
 		if (language == null) {
 			return null;
 		}
 		// Force the load.
 		if (availableBeneficesByDefinition.get(language) == null) {
-			getElements(language);
+			getElements(language, moduleName);
 		}
 		return availableBeneficesByDefinition.get(language).get(beneficeDefinition);
 	}
 
-	public Map<BeneficeDefinition, Set<AvailableBenefice>> getAvailableBeneficesByDefinition(String language)
-			throws InvalidXmlElementException {
+	public Map<BeneficeDefinition, Set<AvailableBenefice>> getAvailableBeneficesByDefinition(String language,
+			String moduleName) throws InvalidXmlElementException {
 		if (availableBeneficesByDefinition == null || availableBeneficesByDefinition.get(language) == null) {
-			getElements(language);
+			getElements(language, moduleName);
 		}
 		return availableBeneficesByDefinition.get(language);
 	}

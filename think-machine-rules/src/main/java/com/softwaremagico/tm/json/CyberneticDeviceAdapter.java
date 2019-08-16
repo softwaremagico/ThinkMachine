@@ -37,9 +37,11 @@ import com.softwaremagico.tm.log.MachineLog;
 public class CyberneticDeviceAdapter extends ElementAdapter<CyberneticDevice> {
 
 	@Override
-	public CyberneticDevice deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
+	public CyberneticDevice deserialize(JsonElement jsonElement, Type type,
+			JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
 		try {
-			return CyberneticDeviceFactory.getInstance().getElement(super.getElementId(jsonElement), super.getLanguage(jsonElement));
+			return CyberneticDeviceFactory.getInstance().getElement(super.getElementId(jsonElement),
+					super.getLanguage(jsonElement), super.getModuleName(jsonElement));
 		} catch (InvalidXmlElementException e) {
 			MachineLog.errorMessage(this.getClass().getName(), e);
 			return null;

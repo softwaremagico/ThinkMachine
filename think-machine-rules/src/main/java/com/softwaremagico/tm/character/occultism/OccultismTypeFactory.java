@@ -27,11 +27,10 @@ package com.softwaremagico.tm.character.occultism;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
 import com.softwaremagico.tm.language.ITranslator;
-import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.log.MachineLog;
 
 public class OccultismTypeFactory extends XmlFactory<OccultismType> {
-	private static final ITranslator translatorBlessing = LanguagePool.getTranslator("occultismTypes.xml");
+	private static final String TRANSLATOR_FILE = "occultismTypes.xml";
 
 	private static final String NAME = "name";
 	private static final String DARK_SIDE = "darkSide";
@@ -48,34 +47,34 @@ public class OccultismTypeFactory extends XmlFactory<OccultismType> {
 	}
 
 	@Override
-	protected OccultismType createElement(ITranslator translator, String occulstimTypeId, String language)
-			throws InvalidXmlElementException {
+	protected OccultismType createElement(ITranslator translator, String occulstimTypeId, String language,
+			String moduleName) throws InvalidXmlElementException {
 		try {
 			final String name = translator.getNodeValue(occulstimTypeId, NAME, language);
 			final String darkSide = translator.getNodeValue(occulstimTypeId, DARK_SIDE, language);
-			return new OccultismType(occulstimTypeId, name, language, darkSide);
+			return new OccultismType(occulstimTypeId, name, language, moduleName, darkSide);
 		} catch (Exception e) {
 			throw new InvalidOccultismTypeException("Invalid structure in occultism type '" + occulstimTypeId + "'.", e);
 		}
 	}
 
 	@Override
-	protected ITranslator getTranslator() {
-		return translatorBlessing;
+	protected String getTranslatorFile() {
+		return TRANSLATOR_FILE;
 	}
 
-	public static OccultismType getPsi(String language) {
+	public static OccultismType getPsi(String language, String moduleName) {
 		try {
-			return OccultismTypeFactory.getInstance().getElement(PSI_TAG, language);
+			return OccultismTypeFactory.getInstance().getElement(PSI_TAG, language, moduleName);
 		} catch (InvalidXmlElementException e) {
 			MachineLog.errorMessage(OccultismTypeFactory.class.getName(), e);
 			return null;
 		}
 	}
 
-	public static OccultismType getTheurgy(String language) {
+	public static OccultismType getTheurgy(String language, String moduleName) {
 		try {
-			return OccultismTypeFactory.getInstance().getElement(THEURGY_TAG, language);
+			return OccultismTypeFactory.getInstance().getElement(THEURGY_TAG, language, moduleName);
 		} catch (InvalidXmlElementException e) {
 			MachineLog.errorMessage(OccultismTypeFactory.class.getName(), e);
 			return null;

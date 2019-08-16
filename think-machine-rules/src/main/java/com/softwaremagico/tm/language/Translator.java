@@ -444,7 +444,7 @@ public class Translator implements ITranslator {
 		if (languagesList == null) {
 			languagesList = new ArrayList<>();
 			Document storedLanguages = null;
-			storedLanguages = parseFile(storedLanguages, getTranslatorPath(LANGUAGES_FILE).getPath());
+			storedLanguages = parseFile(storedLanguages, getTranslatorPath(LANGUAGES_FILE, null).getPath());
 			final NodeList nodeLst = storedLanguages.getElementsByTagName("languages");
 			for (int s = 0; s < nodeLst.getLength(); s++) {
 				final Node fstNode = nodeLst.item(s);
@@ -462,13 +462,13 @@ public class Translator implements ITranslator {
 		return languagesList;
 	}
 
-	public static File getTranslatorPath(String xmlFile) {
-		File file = new File(Path.getTranslatorPath() + xmlFile);
+	public static File getTranslatorPath(String xmlFile, String moduleName) {
+		File file = new File(Path.getModulePath(moduleName) + xmlFile);
 		if (file.exists()) {
 			// Get from folder
 			return file;
 		}
-		file = new File(".." + File.separator + Path.getTranslatorPath() + xmlFile);
+		file = new File(".." + File.separator + Path.getModulePath(moduleName) + xmlFile);
 		if (file.exists()) {
 			// Get from folder
 			return file;
@@ -485,9 +485,9 @@ public class Translator implements ITranslator {
 		}
 
 		try {
-			if (Translator.class.getClassLoader().getResource(Path.TRANSLATIONS_FOLDER + File.separator + xmlFile) != null) {
+			if (Translator.class.getClassLoader().getResource(Path.MODULES_FOLDER + File.separator + xmlFile) != null) {
 				file = new File(Translator.class.getClassLoader()
-						.getResource(Path.TRANSLATIONS_FOLDER + File.separator + xmlFile).toURI());
+						.getResource(Path.MODULES_FOLDER + File.separator + xmlFile).toURI());
 				if (file.exists()) {
 					return file;
 				}

@@ -37,9 +37,11 @@ import com.softwaremagico.tm.log.MachineLog;
 public class WeaponAdapter extends ElementAdapter<Weapon> {
 
 	@Override
-	public Weapon deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
+	public Weapon deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext)
+			throws JsonParseException {
 		try {
-			return WeaponFactory.getInstance().getElement(super.getElementId(jsonElement), super.getLanguage(jsonElement));
+			return WeaponFactory.getInstance().getElement(super.getElementId(jsonElement),
+					super.getLanguage(jsonElement), super.getModuleName(jsonElement));
 		} catch (InvalidXmlElementException e) {
 			MachineLog.errorMessage(this.getClass().getName(), e);
 			return null;

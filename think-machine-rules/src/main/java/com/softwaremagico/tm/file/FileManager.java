@@ -120,8 +120,7 @@ public class FileManager {
 		final StringBuilder text = new StringBuilder();
 		try (Scanner scanner = new Scanner(file)) {
 			while (scanner.hasNextLine()) {
-				String line = scanner.nextLine();
-				text.append(line).append("\n");
+				text.append(scanner.nextLine()).append("\n");
 			}
 			return text.toString();
 		}

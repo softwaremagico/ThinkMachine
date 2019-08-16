@@ -33,10 +33,9 @@ import com.softwaremagico.tm.character.equipment.DamageType;
 import com.softwaremagico.tm.character.equipment.DamageTypeFactory;
 import com.softwaremagico.tm.character.equipment.Size;
 import com.softwaremagico.tm.language.ITranslator;
-import com.softwaremagico.tm.language.LanguagePool;
 
 public class AmmunitionFactory extends XmlFactory<Ammunition> {
-	private static final ITranslator translatorWeapon = LanguagePool.getTranslator("ammunition.xml");
+	private static final String TRANSLATOR_FILE = "ammunition.xml";
 
 	private static final String NAME = "name";
 
@@ -59,12 +58,12 @@ public class AmmunitionFactory extends XmlFactory<Ammunition> {
 	}
 
 	@Override
-	protected ITranslator getTranslator() {
-		return translatorWeapon;
+	protected String getTranslatorFile() {
+		return TRANSLATOR_FILE;
 	}
 
 	@Override
-	protected Ammunition createElement(ITranslator translator, String ammunitionId, String language)
+	protected Ammunition createElement(ITranslator translator, String ammunitionId, String language, String moduleName)
 			throws InvalidXmlElementException {
 		Ammunition ammunition = null;
 		String name = null;
@@ -121,7 +120,7 @@ public class AmmunitionFactory extends XmlFactory<Ammunition> {
 
 		Set<DamageType> damageOfAmmunition = new HashSet<>();
 		try {
-			damageOfAmmunition = getCommaSeparatedValues(ammunitionId, DAMAGE_TYPE, language,
+			damageOfAmmunition = getCommaSeparatedValues(ammunitionId, DAMAGE_TYPE, language, moduleName,
 					DamageTypeFactory.getInstance());
 		} catch (Exception e) {
 			// Not mandatory.
@@ -129,14 +128,15 @@ public class AmmunitionFactory extends XmlFactory<Ammunition> {
 
 		final Set<Accessory> accessories;
 		try {
-			accessories = getCommaSeparatedValues(ammunitionId, ACCESSORIES, language, AccessoryFactory.getInstance());
+			accessories = getCommaSeparatedValues(ammunitionId, ACCESSORIES, language, moduleName,
+					AccessoryFactory.getInstance());
 		} catch (Exception e) {
 			throw new InvalidWeaponException("Error in accessories of ammunition '" + ammunitionId
 					+ "' structure. Invalid accessory definition. ", e);
 		}
 
-		ammunition = new Ammunition(ammunitionId, name, language, goal, damage, strength, range, size, cost,
-				damageOfAmmunition, accessories);
+		ammunition = new Ammunition(ammunitionId, name, language, moduleName, goal, damage, strength, range, size,
+				cost, damageOfAmmunition, accessories);
 
 		return ammunition;
 	}

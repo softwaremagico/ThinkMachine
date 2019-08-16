@@ -27,10 +27,9 @@ package com.softwaremagico.tm.character.equipment.shields;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
 import com.softwaremagico.tm.language.ITranslator;
-import com.softwaremagico.tm.language.LanguagePool;
 
 public class ShieldFactory extends XmlFactory<Shield> {
-	private static final ITranslator translatorWeapon = LanguagePool.getTranslator("shields.xml");
+	private static final String TRANSLATOR_FILE = "shields.xml";
 
 	private static final String NAME = "name";
 
@@ -49,12 +48,12 @@ public class ShieldFactory extends XmlFactory<Shield> {
 	}
 
 	@Override
-	protected ITranslator getTranslator() {
-		return translatorWeapon;
+	protected String getTranslatorFile() {
+		return TRANSLATOR_FILE;
 	}
 
 	@Override
-	protected Shield createElement(ITranslator translator, String shieldId, String language)
+	protected Shield createElement(ITranslator translator, String shieldId, String language, String moduleName)
 			throws InvalidXmlElementException {
 		Shield shield = null;
 		String name = null;
@@ -104,7 +103,7 @@ public class ShieldFactory extends XmlFactory<Shield> {
 			throw new InvalidShieldException("Invalid cost value in shield '" + shieldId + "'.");
 		}
 
-		shield = new Shield(shieldId, name, language, techLevel, impact, force, hits, cost);
+		shield = new Shield(shieldId, name, language, moduleName, techLevel, impact, force, hits, cost);
 
 		return shield;
 	}

@@ -77,7 +77,7 @@ public class CharacterSheetCreationTest {
 	@Test
 	public void emptyPdfSpanish() throws MalformedURLException, DocumentException, IOException {
 		CacheHandler.clearCache();
-		final CharacterSheet sheet = new CharacterSheet(LANGUAGE);
+		final CharacterSheet sheet = new CharacterSheet(LANGUAGE, MODULE);
 		Assert.assertEquals(sheet.createFile(PDF_PATH_OUTPUT + "FadingSuns_ES.pdf"), 2);
 	}
 
@@ -110,15 +110,15 @@ public class CharacterSheetCreationTest {
 			RequiredCyberneticDevicesException, BlessingAlreadyAddedException, BeneficeAlreadyAddedException {
 		CacheHandler.clearCache();
 
-		player = new CharacterPlayer(LANGUAGE);
+		player = new CharacterPlayer(LANGUAGE, MODULE);
 		player.getInfo().addName(new Name("John", LANGUAGE, Gender.MALE, null));
 		player.getInfo().setSurname(new Surname("Sephard", LANGUAGE, null));
 		player.getInfo().setPlayer("Player 1");
 		player.getInfo().setGender(Gender.MALE);
 		player.getInfo().setAge(30);
-		player.setRace(RaceFactory.getInstance().getElement("human", LANGUAGE));
-		player.getInfo().setPlanet(PlanetFactory.getInstance().getElement("sutek", LANGUAGE));
-		player.setFaction(FactionsFactory.getInstance().getElement("hazat", LANGUAGE));
+		player.setRace(RaceFactory.getInstance().getElement("human", LANGUAGE, MODULE));
+		player.getInfo().setPlanet(PlanetFactory.getInstance().getElement("sutek", LANGUAGE, MODULE));
+		player.setFaction(FactionsFactory.getInstance().getElement("hazat", LANGUAGE, MODULE));
 
 		player.getInfo().setBirthdate("4996-09-16");
 		player.getInfo().setHair("Moreno");
@@ -137,31 +137,31 @@ public class CharacterSheetCreationTest {
 		player.getCharacteristic(CharacteristicName.WILL).setValue(8);
 		player.getCharacteristic(CharacteristicName.FAITH).setValue(9);
 
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("influence", LANGUAGE), 5);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("sneak", LANGUAGE), 4);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("gaming", LANGUAGE), 4);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("lockpicking", LANGUAGE), 6);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("energyGuns", LANGUAGE), 6);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("warfare", LANGUAGE), 8);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("lore", "jumpwebLore", LANGUAGE), 4);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("lore", "beastsLore", LANGUAGE), 2);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("influence", LANGUAGE, MODULE), 5);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("sneak", LANGUAGE, MODULE), 4);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("gaming", LANGUAGE, MODULE), 4);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("lockpicking", LANGUAGE, MODULE), 6);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("energyGuns", LANGUAGE, MODULE), 6);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("warfare", LANGUAGE, MODULE), 8);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("lore", "jumpwebLore", LANGUAGE, MODULE), 4);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("lore", "beastsLore", LANGUAGE, MODULE), 2);
 
 		player.setPsiqueLevel(OccultismTypeFactory.getPsi(player.getLanguage()), 4);
 		player.setDarkSideLevel(OccultismTypeFactory.getPsi(player.getLanguage()), 1);
 
-		player.addOccultismPower(OccultismPathFactory.getInstance().getElement("farHand", LANGUAGE)
+		player.addOccultismPower(OccultismPathFactory.getInstance().getElement("farHand", LANGUAGE, MODULE)
 				.getOccultismPowers().get("liftingHand"));
-		player.addOccultismPower(OccultismPathFactory.getInstance().getElement("farHand", LANGUAGE)
+		player.addOccultismPower(OccultismPathFactory.getInstance().getElement("farHand", LANGUAGE, MODULE)
 				.getOccultismPowers().get("throwingHand"));
-		player.addOccultismPower(OccultismPathFactory.getInstance().getElement("sixthSense", LANGUAGE)
+		player.addOccultismPower(OccultismPathFactory.getInstance().getElement("sixthSense", LANGUAGE, MODULE)
 				.getOccultismPowers().get("sensitivity"));
-		player.addOccultismPower(OccultismPathFactory.getInstance().getElement("soma", LANGUAGE).getOccultismPowers()
+		player.addOccultismPower(OccultismPathFactory.getInstance().getElement("soma", LANGUAGE, MODULE).getOccultismPowers()
 				.get("toughening"));
-		player.addOccultismPower(OccultismPathFactory.getInstance().getElement("soma", LANGUAGE).getOccultismPowers()
+		player.addOccultismPower(OccultismPathFactory.getInstance().getElement("soma", LANGUAGE, MODULE).getOccultismPowers()
 				.get("strengthening"));
-		player.addOccultismPower(OccultismPathFactory.getInstance().getElement("soma", LANGUAGE).getOccultismPowers()
+		player.addOccultismPower(OccultismPathFactory.getInstance().getElement("soma", LANGUAGE, MODULE).getOccultismPowers()
 				.get("quickening"));
-		player.addOccultismPower(OccultismPathFactory.getInstance().getElement("soma", LANGUAGE).getOccultismPowers()
+		player.addOccultismPower(OccultismPathFactory.getInstance().getElement("soma", LANGUAGE, MODULE).getOccultismPowers()
 				.get("hardening"));
 
 		player.addBlessing(BlessingFactory.getInstance().getElement("curious", player.getLanguage()));
@@ -175,15 +175,15 @@ public class CharacterSheetCreationTest {
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("pistola", player.getLanguage()));
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("shaidan", player.getLanguage()));
 
-		player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("engineersEye", LANGUAGE));
-		player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("jonah", LANGUAGE));
+		player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("engineersEye", LANGUAGE, MODULE));
+		player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("jonah", LANGUAGE, MODULE));
 
-		player.addWeapon(WeaponFactory.getInstance().getElement("mace", LANGUAGE));
-		player.addWeapon(WeaponFactory.getInstance().getElement("martechGold", LANGUAGE));
+		player.addWeapon(WeaponFactory.getInstance().getElement("mace", LANGUAGE, MODULE));
+		player.addWeapon(WeaponFactory.getInstance().getElement("martechGold", LANGUAGE, MODULE));
 
-		player.setArmour(ArmourFactory.getInstance().getElement("synthsilk", LANGUAGE));
+		player.setArmour(ArmourFactory.getInstance().getElement("synthsilk", LANGUAGE, MODULE));
 
-		player.setShield(ShieldFactory.getInstance().getElement("assaultShield", LANGUAGE));
+		player.setShield(ShieldFactory.getInstance().getElement("assaultShield", LANGUAGE, MODULE));
 
 		LanguagePool.clearCache();
 		final CharacterSheet sheet = new CharacterSheet(player);

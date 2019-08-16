@@ -26,28 +26,33 @@ package com.softwaremagico.tm.language;
 
 import java.io.File;
 import java.util.HashMap;
+import java.util.Map;
 
 import com.softwaremagico.tm.file.Path;
 
 public class LanguagePool {
 
-	private static HashMap<String, ITranslator> existingTranslators = new HashMap<>();
+	private static Map<String, Map<String, ITranslator>> existingTranslators = new HashMap<>();
 
 	private LanguagePool() {
 	}
 
-	public static ITranslator getTranslator(String xmlFile) {
-		ITranslator translator = existingTranslators.get(xmlFile);
+	public static ITranslator getTranslator(String xmlFile, String moduleName) {
+		if (existingTranslators.get(moduleName) == null) {
+			existingTranslators.put(moduleName, new HashMap<String, ITranslator>());
+		}
+		ITranslator translator = existingTranslators.get(moduleName).get(xmlFile);
 		if (translator == null) {
-			final File file = Translator.getTranslatorPath(xmlFile);
+			final File file = Translator.getTranslatorPath(xmlFile, moduleName);
 			if (file != null && file.exists()) {
 				// Get from folder
 				translator = new Translator(file.getPath());
-				existingTranslators.put(xmlFile, translator);
+				existingTranslators.get(moduleName).put(xmlFile, translator);
 			} else {
 				// Get from resources
-				translator = new Translator(LanguagePool.class.getClassLoader().getResource(Path.TRANSLATIONS_FOLDER + File.separator + xmlFile).toString());
-				existingTranslators.put(xmlFile, translator);
+				translator = new Translator(LanguagePool.class.getClassLoader()
+						.getResource(Path.MODULES_FOLDER + File.separator + xmlFile).toString());
+				existingTranslators.get(moduleName).put(xmlFile, translator);
 			}
 		}
 		return translator;

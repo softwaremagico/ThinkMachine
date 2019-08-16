@@ -37,8 +37,8 @@ public class SpecialValue extends Element<SpecialValue> implements IValue {
 
 	private final Set<IValue> affects;
 
-	public SpecialValue(String id, String name, String language, Set<IValue> affects) {
-		super(id, name, language);
+	public SpecialValue(String id, String name, String language, String moduleName, Set<IValue> affects) {
+		super(id, name, language, moduleName);
 		this.affects = affects;
 	}
 
@@ -46,18 +46,19 @@ public class SpecialValue extends Element<SpecialValue> implements IValue {
 		return affects;
 	}
 
-	public static IValue getValue(String valueName, String language) throws InvalidXmlElementException {
+	public static IValue getValue(String valueName, String language, String moduleName)
+			throws InvalidXmlElementException {
 		try {
 			// Is a characteristic?
-			return CharacteristicsDefinitionFactory.getInstance().getElement(valueName, language);
+			return CharacteristicsDefinitionFactory.getInstance().getElement(valueName, language, moduleName);
 		} catch (InvalidXmlElementException e) {
 			// Is a skill??
 			try {
-				return SkillsDefinitionsFactory.getInstance().getElement(valueName, language);
+				return SkillsDefinitionsFactory.getInstance().getElement(valueName, language, moduleName);
 			} catch (InvalidXmlElementException e2) {
 				// Is something else?
 				try {
-					return SpecialValuesFactory.getInstance().getElement(valueName, language);
+					return SpecialValuesFactory.getInstance().getElement(valueName, language, moduleName);
 				} catch (InvalidXmlElementException e3) {
 					throw new InvalidXmlElementException("Invalid value '" + valueName + "'.", e3);
 				}

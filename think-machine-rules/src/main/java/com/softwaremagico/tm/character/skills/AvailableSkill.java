@@ -35,7 +35,8 @@ public class AvailableSkill extends Skill<AvailableSkill> implements IValue {
 	private SkillDefinition skillDefinition;
 
 	public AvailableSkill(SkillDefinition skillDefinition) {
-		super(skillDefinition.getId(), skillDefinition.getName(), skillDefinition.getLanguage());
+		super(skillDefinition.getId(), skillDefinition.getName(), skillDefinition.getLanguage(), skillDefinition
+				.getModuleName());
 		this.skillDefinition = skillDefinition;
 	}
 

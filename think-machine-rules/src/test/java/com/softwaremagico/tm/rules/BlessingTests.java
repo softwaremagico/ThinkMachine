@@ -43,41 +43,47 @@ import com.softwaremagico.tm.characters.CustomCharacter;
 @Test(groups = { "blessings" })
 public class BlessingTests {
 	private static final String LANGUAGE = "es";
+	private static final String MODULE = "Fading Suns Revised Edition";
 
 	@Test
-	public void checkVitalityModifications() throws InvalidXmlElementException, TooManyBlessingsException, TooManyCyberneticDevicesException,
-			RequiredCyberneticDevicesException, BlessingAlreadyAddedException, BeneficeAlreadyAddedException {
-		final CharacterPlayer player = CustomCharacter.create(LANGUAGE);
+	public void checkVitalityModifications() throws InvalidXmlElementException, TooManyBlessingsException,
+			TooManyCyberneticDevicesException, RequiredCyberneticDevicesException, BlessingAlreadyAddedException,
+			BeneficeAlreadyAddedException {
+		final CharacterPlayer player = CustomCharacter.create(LANGUAGE, MODULE);
 		final int vitality = player.getVitalityValue();
-		player.addBlessing(BlessingFactory.getInstance().getElement("incurableDisease", LANGUAGE));
+		player.addBlessing(BlessingFactory.getInstance().getElement("incurableDisease", LANGUAGE, MODULE));
 		Assert.assertEquals((int) player.getVitalityValue(), vitality - 1);
 	}
 
 	@Test
-	public void checkMovementModifications() throws InvalidXmlElementException, TooManyBlessingsException, TooManyCyberneticDevicesException,
-			RequiredCyberneticDevicesException, BlessingAlreadyAddedException, BeneficeAlreadyAddedException {
-		final CharacterPlayer player = CustomCharacter.create(LANGUAGE);
+	public void checkMovementModifications() throws InvalidXmlElementException, TooManyBlessingsException,
+			TooManyCyberneticDevicesException, RequiredCyberneticDevicesException, BlessingAlreadyAddedException,
+			BeneficeAlreadyAddedException {
+		final CharacterPlayer player = CustomCharacter.create(LANGUAGE, MODULE);
 		final int movement = player.getValue(CharacteristicName.MOVEMENT);
-		player.addBlessing(BlessingFactory.getInstance().getElement("limp", LANGUAGE));
+		player.addBlessing(BlessingFactory.getInstance().getElement("limp", LANGUAGE, MODULE));
 		Assert.assertEquals((int) player.getValue(CharacteristicName.MOVEMENT), movement - 1);
 	}
 
 	@Test
-	public void checkRangedAttacksModifications() throws InvalidXmlElementException, TooManyBlessingsException, TooManyCyberneticDevicesException,
-			RequiredCyberneticDevicesException, BlessingAlreadyAddedException, BeneficeAlreadyAddedException {
-		final CharacterPlayer player = CustomCharacter.create(LANGUAGE);
-		Assert.assertEquals((int) player.getSkillTotalRanks(AvailableSkillsFactory.getInstance().getElement("energyGuns", LANGUAGE)), 6);
+	public void checkRangedAttacksModifications() throws InvalidXmlElementException, TooManyBlessingsException,
+			TooManyCyberneticDevicesException, RequiredCyberneticDevicesException, BlessingAlreadyAddedException,
+			BeneficeAlreadyAddedException {
+		final CharacterPlayer player = CustomCharacter.create(LANGUAGE, MODULE);
+		Assert.assertEquals(
+				(int) player.getSkillTotalRanks(AvailableSkillsFactory.getInstance().getElement("energyGuns", LANGUAGE,
+						MODULE)), 6);
 	}
 
 	@Test
 	public void getAffectedSkills() throws InvalidXmlElementException {
-		final Blessing missingEye = BlessingFactory.getInstance().getElement("missingEye", LANGUAGE);
-		Assert.assertEquals(missingEye.getAffectedSkill(LANGUAGE).size(), 5);
+		final Blessing missingEye = BlessingFactory.getInstance().getElement("missingEye", LANGUAGE, MODULE);
+		Assert.assertEquals(missingEye.getAffectedSkill().size(), 5);
 
-		final Blessing pilot = BlessingFactory.getInstance().getElement("crackPilot", LANGUAGE);
-		Assert.assertEquals(pilot.getAffectedSkill(LANGUAGE).size(), 6);
+		final Blessing pilot = BlessingFactory.getInstance().getElement("crackPilot", LANGUAGE, MODULE);
+		Assert.assertEquals(pilot.getAffectedSkill().size(), 6);
 
-		final Blessing hacker = BlessingFactory.getInstance().getElement("hacker", LANGUAGE);
-		Assert.assertEquals(hacker.getAffectedSkill(LANGUAGE).size(), 1);
+		final Blessing hacker = BlessingFactory.getInstance().getElement("hacker", LANGUAGE, MODULE);
+		Assert.assertEquals(hacker.getAffectedSkill().size(), 1);
 	}
 }

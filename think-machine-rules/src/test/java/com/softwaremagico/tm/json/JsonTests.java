@@ -53,6 +53,7 @@ public class JsonTests {
 	private static final String OUTPUT_PARTY_PATH = System.getProperty("java.io.tmpdir") + File.separator
 			+ "Party.json";
 	private static final String LANGUAGE = "es";
+	private static final String MODULE = "Fading Suns Revised Edition";
 
 	private CharacterPlayer player;
 	private String originalPlayerJson;
@@ -65,9 +66,9 @@ public class JsonTests {
 			TooManyCyberneticDevicesException, RequiredCyberneticDevicesException, BlessingAlreadyAddedException,
 			BeneficeAlreadyAddedException {
 		LanguagePool.clearCache();
-		player = CustomCharacter.create(LANGUAGE);
+		player = CustomCharacter.create(LANGUAGE, MODULE);
 		Assert.assertEquals(CostCalculator.getCost(player), 50);
-		party = new Party(LANGUAGE);
+		party = new Party(LANGUAGE, MODULE);
 		party.setPartyName("JSON Test");
 		party.addMember(player);
 	}

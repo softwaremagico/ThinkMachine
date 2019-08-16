@@ -31,9 +31,9 @@ public class Shield extends Equipment<Shield> {
 	private final int force;
 	private final int hits;
 
-	public Shield(String shieldId, String name, String language, int techLevel, int impact, int force, int hits,
-			float cost) {
-		super(shieldId, name, cost, techLevel, language);
+	public Shield(String shieldId, String name, String language, String moduleName, int techLevel, int impact,
+			int force, int hits, float cost) {
+		super(shieldId, name, cost, techLevel, language, moduleName);
 		this.impact = impact;
 		this.force = force;
 		this.hits = hits;

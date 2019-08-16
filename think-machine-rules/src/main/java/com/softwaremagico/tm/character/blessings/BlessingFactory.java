@@ -33,11 +33,10 @@ import com.softwaremagico.tm.character.values.Bonification;
 import com.softwaremagico.tm.character.values.IValue;
 import com.softwaremagico.tm.character.values.SpecialValue;
 import com.softwaremagico.tm.language.ITranslator;
-import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.log.SuppressFBWarnings;
 
 public class BlessingFactory extends XmlFactory<Blessing> {
-	private static final ITranslator translatorBlessing = LanguagePool.getTranslator("blessings.xml");
+	private static final String TRANSLATOR_FILE = "blessings.xml";
 
 	private static final String NAME = "name";
 	private static final String COST = "cost";
@@ -57,8 +56,13 @@ public class BlessingFactory extends XmlFactory<Blessing> {
 	}
 
 	@Override
+	protected String getTranslatorFile() {
+		return TRANSLATOR_FILE;
+	}
+
+	@Override
 	@SuppressFBWarnings("REC_CATCH_EXCEPTION")
-	protected Blessing createElement(ITranslator translator, String blessingId, String language)
+	protected Blessing createElement(ITranslator translator, String blessingId, String language, String moduleName)
 			throws InvalidXmlElementException {
 
 		try {
@@ -80,7 +84,7 @@ public class BlessingFactory extends XmlFactory<Blessing> {
 					final String valueName = translator.getNodeValue(blessingId, BONIFICATION, AFFECTS, node);
 					IValue affects = null;
 					if (valueName != null) {
-						affects = SpecialValue.getValue(valueName, language);
+						affects = SpecialValue.getValue(valueName, language, moduleName);
 					}
 					final String situation = translator.getNodeValue(blessingId, SITUATION, language, node);
 
@@ -102,16 +106,11 @@ public class BlessingFactory extends XmlFactory<Blessing> {
 				}
 			}
 
-			final Blessing blessing = new Blessing(blessingId, name, language, Integer.parseInt(cost), bonifications,
-					blessingClassification, blessingGroup);
+			final Blessing blessing = new Blessing(blessingId, name, moduleName, language, Integer.parseInt(cost),
+					bonifications, blessingClassification, blessingGroup);
 			return blessing;
 		} catch (Exception e) {
 			throw new InvalidBlessingException("Invalid structure in blessing '" + blessingId + "'.", e);
 		}
-	}
-
-	@Override
-	protected ITranslator getTranslator() {
-		return translatorBlessing;
 	}
 }

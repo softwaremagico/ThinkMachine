@@ -31,10 +31,9 @@ import java.util.StringTokenizer;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
 import com.softwaremagico.tm.language.ITranslator;
-import com.softwaremagico.tm.language.LanguagePool;
 
 public class SpecialValuesFactory extends XmlFactory<SpecialValue> {
-	private static final ITranslator translatorSpecials = LanguagePool.getTranslator("special_values.xml");
+	private static final String TRANSLATOR_FILE = "special_values.xml";
 
 	private static final String NAME = "name";
 	private static final String AFFECTS = "affects";
@@ -48,12 +47,12 @@ public class SpecialValuesFactory extends XmlFactory<SpecialValue> {
 	}
 
 	@Override
-	protected ITranslator getTranslator() {
-		return translatorSpecials;
+	protected String getTranslatorFile() {
+		return TRANSLATOR_FILE;
 	}
 
 	@Override
-	protected SpecialValue createElement(ITranslator translator, String specialId, String language)
+	protected SpecialValue createElement(ITranslator translator, String specialId, String language, String moduleName)
 			throws InvalidXmlElementException {
 		try {
 			final String name = translator.getNodeValue(specialId, NAME, language);
@@ -64,11 +63,11 @@ public class SpecialValuesFactory extends XmlFactory<SpecialValue> {
 			if (affects != null && !affects.isEmpty()) {
 				final StringTokenizer affectsValue = new StringTokenizer(affects, ",");
 				while (affectsValue.hasMoreTokens()) {
-					affectsGroup.add(SpecialValue.getValue(affectsValue.nextToken().trim(), language));
+					affectsGroup.add(SpecialValue.getValue(affectsValue.nextToken().trim(), language, moduleName));
 				}
 			}
 
-			final SpecialValue specialValue = new SpecialValue(specialId, name, language, affectsGroup);
+			final SpecialValue specialValue = new SpecialValue(specialId, name, language, moduleName, affectsGroup);
 			return specialValue;
 		} catch (Exception e) {
 			throw new InvalidSpecialValueException("Invalid structure in special '" + specialId + "'.", e);

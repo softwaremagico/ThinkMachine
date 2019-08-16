@@ -29,21 +29,21 @@ import com.softwaremagico.tm.random.definition.RandomElementDefinition;
 
 public class AvailableBenefice extends Element<AvailableBenefice> {
 	private BeneficeSpecialization specialization = null;
-	private final BeneficeDefinition benefitDefinition;
+	private final BeneficeDefinition beneficeDefinition;
 	private final int cost;
 	private final BeneficeClassification beneficeClassification;
 
-	public AvailableBenefice(String id, String name, String language, BeneficeDefinition benefitDefinition,
+	public AvailableBenefice(String id, String name, String language, BeneficeDefinition beneficeDefinition,
 			BeneficeClassification beneficeClassification, int cost, RandomElementDefinition randomDefinition) {
-		super(id, name, language, randomDefinition);
-		this.benefitDefinition = benefitDefinition;
+		super(id, name, language, randomDefinition, beneficeDefinition.getModuleName());
+		this.beneficeDefinition = beneficeDefinition;
 		this.beneficeClassification = beneficeClassification;
 		this.cost = cost;
 
 	}
 
 	public BeneficeDefinition getBeneficeDefinition() {
-		return benefitDefinition;
+		return beneficeDefinition;
 	}
 
 	public int getCost() {
@@ -56,8 +56,8 @@ public class AvailableBenefice extends Element<AvailableBenefice> {
 	@Override
 	public String toString() {
 		return getName() + " ("
-				+ (benefitDefinition != null
-						&& benefitDefinition.getBeneficeClassification() == BeneficeClassification.AFFLICTION ? "+"
+				+ (beneficeDefinition != null
+						&& beneficeDefinition.getBeneficeClassification() == BeneficeClassification.AFFLICTION ? "+"
 								: "")
 				+ cost + ")";
 	}

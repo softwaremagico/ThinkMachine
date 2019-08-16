@@ -43,6 +43,7 @@ public class FactionFactoryTests {
 	private static final int DEFINED_FEMALE_NAMES = 100;
 	private static final int DEFINED_SURNAMES = 125;
 	private static final String LANGUAGE = "es";
+	private static final String MODULE = "Fading Suns Revised Edition";
 
 	@BeforeClass
 	public void clearCache() {
@@ -51,24 +52,24 @@ public class FactionFactoryTests {
 
 	@Test
 	public void readFactions() throws InvalidXmlElementException {
-		Assert.assertEquals(DEFINED_FACTIONS, FactionsFactory.getInstance().getElements(LANGUAGE).size());
+		Assert.assertEquals(DEFINED_FACTIONS, FactionsFactory.getInstance().getElements(LANGUAGE, MODULE).size());
 	}
 
 	@Test
 	public void readAfflictions() throws InvalidXmlElementException {
-		final Faction vorox = FactionsFactory.getInstance().getElement("vorox", LANGUAGE);
-		Assert.assertTrue(vorox.getBenefices().contains(AvailableBeneficeFactory.getInstance().getElement("noOccult", LANGUAGE)));
+		final Faction vorox = FactionsFactory.getInstance().getElement("vorox", LANGUAGE, MODULE);
+		Assert.assertTrue(vorox.getBenefices().contains(AvailableBeneficeFactory.getInstance().getElement("noOccult", LANGUAGE, MODULE)));
 	}
 	
 	@Test
 	public void readAfflictionsWithRank() throws InvalidXmlElementException {
-		final Faction freeMen = FactionsFactory.getInstance().getElement("freeMen", LANGUAGE);
-		Assert.assertTrue(freeMen.getBenefices().contains(AvailableBeneficeFactory.getInstance().getElement("darkSecret_3", LANGUAGE)));
+		final Faction freeMen = FactionsFactory.getInstance().getElement("freeMen", LANGUAGE, MODULE);
+		Assert.assertTrue(freeMen.getBenefices().contains(AvailableBeneficeFactory.getInstance().getElement("darkSecret_3", LANGUAGE, MODULE)));
 	}
 
 	@Test
 	public void readNames() throws InvalidXmlElementException {
-		final Faction hazat = FactionsFactory.getInstance().getElement("hazat", LANGUAGE);
+		final Faction hazat = FactionsFactory.getInstance().getElement("hazat", LANGUAGE, MODULE);
 		Assert.assertNotNull(hazat);
 		Assert.assertTrue(FactionsFactory.getInstance().getAllNames(hazat, Gender.MALE).size() >= DEFINED_MALE_NAMES);
 		Assert.assertTrue(FactionsFactory.getInstance().getAllNames(hazat, Gender.FEMALE).size() >= DEFINED_FEMALE_NAMES);

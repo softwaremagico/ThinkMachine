@@ -27,10 +27,9 @@ package com.softwaremagico.tm.character.occultism;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
 import com.softwaremagico.tm.language.ITranslator;
-import com.softwaremagico.tm.language.LanguagePool;
 
 public class OccultismRangeFactory extends XmlFactory<OccultismRange> {
-	private static final ITranslator translatorBlessing = LanguagePool.getTranslator("occultismRanges.xml");
+	private static final String TRANSLATOR_FILE = "occultismRanges.xml";
 
 	private static final String NAME = "name";
 
@@ -43,18 +42,18 @@ public class OccultismRangeFactory extends XmlFactory<OccultismRange> {
 	}
 
 	@Override
-	protected OccultismRange createElement(ITranslator translator, String rangeId, String language)
+	protected OccultismRange createElement(ITranslator translator, String rangeId, String language, String moduleName)
 			throws InvalidXmlElementException {
 		try {
 			final String name = translator.getNodeValue(rangeId, NAME, language);
-			return new OccultismRange(rangeId, name, language);
+			return new OccultismRange(rangeId, name, language, moduleName);
 		} catch (Exception e) {
 			throw new InvalidOccultismRangeException("Invalid structure in range '" + rangeId + "'.", e);
 		}
 	}
 
 	@Override
-	protected ITranslator getTranslator() {
-		return translatorBlessing;
+	protected String getTranslatorFile() {
+		return TRANSLATOR_FILE;
 	}
 }

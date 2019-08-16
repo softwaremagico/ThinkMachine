@@ -92,7 +92,7 @@ public class RandomCharacterTests {
 	@Test(expectedExceptions = { DuplicatedPreferenceException.class })
 	public void preferencesCollision()
 			throws InvalidXmlElementException, DuplicatedPreferenceException, TooManyBlessingsException {
-		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
+		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, MODULE);
 		new RandomizeCharacter(characterPlayer, 0, TechnologicalPreferences.MEDIEVAL,
 				TechnologicalPreferences.FUTURIST);
 	}
@@ -100,27 +100,27 @@ public class RandomCharacterTests {
 	@Test
 	public void chooseRaceAndFactionTest() throws InvalidXmlElementException, DuplicatedPreferenceException,
 			InvalidRandomElementSelectedException, TooManyBlessingsException {
-		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
+		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, MODULE);
 		final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0, RacePreferences.HUMAN,
 				FactionPreferences.NOBILITY);
 		randomizeCharacter.setCharacterDefinition();
 
 		Assert.assertEquals(characterPlayer.getFaction().getFactionGroup(), FactionGroup.NOBILITY);
 		Assert.assertEquals(characterPlayer.getRace(),
-				RaceFactory.getInstance().getElement(RacePreferences.HUMAN.name(), LANGUAGE));
+				RaceFactory.getInstance().getElement(RacePreferences.HUMAN.name(), LANGUAGE, MODULE));
 	}
 
 	@Test
 	public void chooseRaceAndFactionTestXeno() throws InvalidXmlElementException, DuplicatedPreferenceException,
 			InvalidRandomElementSelectedException, TooManyBlessingsException {
-		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
+		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, MODULE);
 		final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0, RacePreferences.OBUN,
 				FactionPreferences.GUILD);
 		randomizeCharacter.setCharacterDefinition();
 
 		Assert.assertEquals(characterPlayer.getFaction().getFactionGroup(), FactionGroup.GUILD);
 		Assert.assertEquals(characterPlayer.getRace(),
-				RaceFactory.getInstance().getElement(RacePreferences.OBUN.name(), LANGUAGE));
+				RaceFactory.getInstance().getElement(RacePreferences.OBUN.name(), LANGUAGE, MODULE));
 	}
 
 	@Test
@@ -133,43 +133,43 @@ public class RandomCharacterTests {
 	@Test
 	public void checkWeightLimitedByDefinition()
 			throws InvalidXmlElementException, DuplicatedPreferenceException, InvalidRandomElementSelectedException {
-		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
+		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, MODULE);
 		final RandomWeapon randomWeapons = new RandomRangeWeapon(characterPlayer, null, new HashSet<Weapon>());
-		final Weapon largeRock = WeaponFactory.getInstance().getElement("veryLargeRock", LANGUAGE);
+		final Weapon largeRock = WeaponFactory.getInstance().getElement("veryLargeRock", LANGUAGE, MODULE);
 		Assert.assertEquals(randomWeapons.getTotalWeight(largeRock), 0);
 	}
 
 	@Test(expectedExceptions = { InvalidRandomElementSelectedException.class })
 	public void checkSkillLimitationByTechnology()
 			throws InvalidXmlElementException, DuplicatedPreferenceException, InvalidRandomElementSelectedException {
-		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
+		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, MODULE);
 		characterPlayer.getCharacteristic(CharacteristicName.TECH).setValue(7);
 
 		final RandomSkills randomSkills = new RandomSkills(characterPlayer, null);
-		final AvailableSkill availableSkill = AvailableSkillsFactory.getInstance().getElement("archery", LANGUAGE);
+		final AvailableSkill availableSkill = AvailableSkillsFactory.getInstance().getElement("archery", LANGUAGE, MODULE);
 		randomSkills.validateElement(availableSkill);
 	}
 
 	@Test(expectedExceptions = { InvalidRandomElementSelectedException.class })
 	public void checkSkillLimitationByLowTechnology()
 			throws InvalidXmlElementException, DuplicatedPreferenceException, InvalidRandomElementSelectedException {
-		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
+		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, MODULE);
 		characterPlayer.getCharacteristic(CharacteristicName.TECH).setValue(1);
 
 		final RandomSkills randomSkills = new RandomSkills(characterPlayer, null);
-		final AvailableSkill availableSkill = AvailableSkillsFactory.getInstance().getElement("spacecraft", LANGUAGE);
+		final AvailableSkill availableSkill = AvailableSkillsFactory.getInstance().getElement("spacecraft", LANGUAGE, MODULE);
 		randomSkills.validateElement(availableSkill);
 	}
 
 	@Test(expectedExceptions = { InvalidRandomElementSelectedException.class })
 	public void checkBeneficeLimitationByRace()
 			throws InvalidXmlElementException, DuplicatedPreferenceException, InvalidRandomElementSelectedException {
-		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
-		characterPlayer.setRace(RaceFactory.getInstance().getElement("human", LANGUAGE));
+		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, MODULE);
+		characterPlayer.setRace(RaceFactory.getInstance().getElement("human", LANGUAGE, MODULE));
 
 		final RandomBeneficeDefinition randomBenefice = new RandomBeneficeDefinition(characterPlayer, null);
 		final AvailableBenefice benefice = AvailableBeneficeFactory.getInstance().getElement("language [urthish]",
-				LANGUAGE);
+				LANGUAGE, MODULE);
 		randomBenefice.validateElement(benefice.getRandomDefinition());
 	}
 
@@ -183,7 +183,7 @@ public class RandomCharacterTests {
 	@Test
 	public void selectSkillGroup() throws InvalidXmlElementException, DuplicatedPreferenceException,
 			InvalidRandomElementSelectedException, TooManyBlessingsException {
-		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
+		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, MODULE);
 		final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0,
 				SkillGroupPreferences.COMBAT);
 		randomizeCharacter.createCharacter();
@@ -196,9 +196,9 @@ public class RandomCharacterTests {
 	@Test
 	public void mustHaveStatus() throws DuplicatedPreferenceException, InvalidXmlElementException,
 			InvalidRandomElementSelectedException, TooManyBlessingsException {
-		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
-		characterPlayer.setRace(RaceFactory.getInstance().getElement("human", LANGUAGE));
-		characterPlayer.setFaction(FactionsFactory.getInstance().getElement("hazat", LANGUAGE));
+		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, MODULE);
+		characterPlayer.setRace(RaceFactory.getInstance().getElement("human", LANGUAGE, MODULE));
+		characterPlayer.setFaction(FactionsFactory.getInstance().getElement("hazat", LANGUAGE, MODULE));
 		final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0,
 				StatusPreferences.HIGHT);
 		randomizeCharacter.createCharacter();
@@ -210,10 +210,10 @@ public class RandomCharacterTests {
 	@Test
 	public void checkBlessingPreferences() throws DuplicatedPreferenceException, InvalidXmlElementException,
 			InvalidRandomElementSelectedException, TooManyBlessingsException {
-		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
+		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, MODULE);
 		final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0,
 				CurseNumberPreferences.FAIR, BlessingNumberPreferences.HIGH);
-		characterPlayer.setRace(RaceFactory.getInstance().getElement("human", LANGUAGE));
+		characterPlayer.setRace(RaceFactory.getInstance().getElement("human", LANGUAGE, MODULE));
 		randomizeCharacter.createCharacter();
 		try {
 			Assert.assertTrue(characterPlayer.getCurses().size() >= CurseNumberPreferences.FAIR.minimum()
@@ -241,8 +241,8 @@ public class RandomCharacterTests {
 	@Test
 	public void createPsiqueCharacter() throws DuplicatedPreferenceException, InvalidXmlElementException,
 			InvalidRandomElementSelectedException, TooManyBlessingsException {
-		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
-		characterPlayer.setRace(RaceFactory.getInstance().getElement("human", LANGUAGE));
+		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, MODULE);
+		characterPlayer.setRace(RaceFactory.getInstance().getElement("human", LANGUAGE, MODULE));
 		final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0,
 				SpecializationPreferences.SPECIALIZED, PsiquePathLevelPreferences.HIGH, PsiqueLevelPreferences.HIGH,
 				StatusPreferences.FAIR);
@@ -253,9 +253,9 @@ public class RandomCharacterTests {
 	@Test
 	public void createChurchCharacter() throws DuplicatedPreferenceException, InvalidXmlElementException,
 			InvalidRandomElementSelectedException, TooManyBlessingsException {
-		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
-		characterPlayer.setRace(RaceFactory.getInstance().getElement("human", LANGUAGE));
-		characterPlayer.setFaction(FactionsFactory.getInstance().getElement("orthodox", LANGUAGE));
+		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, MODULE);
+		characterPlayer.setRace(RaceFactory.getInstance().getElement("human", LANGUAGE, MODULE));
+		characterPlayer.setFaction(FactionsFactory.getInstance().getElement("orthodox", LANGUAGE, MODULE));
 		final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0,
 				SpecializationPreferences.SPECIALIZED, PsiquePathLevelPreferences.HIGH, PsiqueLevelPreferences.HIGH,
 				StatusPreferences.FAIR);
@@ -266,16 +266,16 @@ public class RandomCharacterTests {
 	@Test
 	public void voroxCannotHavePsique() throws DuplicatedPreferenceException, InvalidXmlElementException,
 			InvalidRandomElementSelectedException, TooManyBlessingsException {
-		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
-		characterPlayer.setRace(RaceFactory.getInstance().getElement("vorox", LANGUAGE));
+		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, MODULE);
+		characterPlayer.setRace(RaceFactory.getInstance().getElement("vorox", LANGUAGE, MODULE));
 		final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0,
 				SpecializationPreferences.SPECIALIZED, PsiquePathLevelPreferences.HIGH, PsiqueLevelPreferences.HIGH);
 		randomizeCharacter.createCharacter();
 		Assert.assertTrue(characterPlayer.getFaction().getBenefices()
-				.contains(AvailableBeneficeFactory.getInstance().getElement("noOccult", LANGUAGE)));
+				.contains(AvailableBeneficeFactory.getInstance().getElement("noOccult", LANGUAGE, MODULE)));
 		Assert.assertTrue(characterPlayer.getAfflictions()
-				.contains(AvailableBeneficeFactory.getInstance().getElement("noOccult", LANGUAGE)));
-		for (final OccultismType occultismType : OccultismTypeFactory.getInstance().getElements(LANGUAGE)) {
+				.contains(AvailableBeneficeFactory.getInstance().getElement("noOccult", LANGUAGE, MODULE)));
+		for (final OccultismType occultismType : OccultismTypeFactory.getInstance().getElements(LANGUAGE, MODULE)) {
 			Assert.assertEquals(characterPlayer.getPsiqueLevel(occultismType), 0);
 		}
 		Assert.assertEquals(characterPlayer.getTotalSelectedPowers(), 0);
@@ -284,7 +284,7 @@ public class RandomCharacterTests {
 	@Test
 	public void namesByStatus() throws InvalidXmlElementException, InvalidRandomElementSelectedException,
 			DuplicatedPreferenceException, TooManyBlessingsException {
-		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
+		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, MODULE);
 		final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0,
 				NamesPreferences.VERY_HIGHT);
 		randomizeCharacter.createCharacter();
@@ -295,13 +295,13 @@ public class RandomCharacterTests {
 	@Test
 	public void weapons() throws InvalidXmlElementException, DuplicatedPreferenceException,
 			InvalidRandomElementSelectedException, TooManyBlessingsException, BeneficeAlreadyAddedException {
-		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
-		characterPlayer.setSkillRank(AvailableSkillsFactory.getInstance().getElement("slugGuns", LANGUAGE), 5);
-		characterPlayer.setSkillRank(AvailableSkillsFactory.getInstance().getElement("energyGuns", LANGUAGE), 5);
-		characterPlayer.setSkillRank(AvailableSkillsFactory.getInstance().getElement("melee", LANGUAGE), 5);
+		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, MODULE);
+		characterPlayer.setSkillRank(AvailableSkillsFactory.getInstance().getElement("slugGuns", LANGUAGE, MODULE), 5);
+		characterPlayer.setSkillRank(AvailableSkillsFactory.getInstance().getElement("energyGuns", LANGUAGE, MODULE), 5);
+		characterPlayer.setSkillRank(AvailableSkillsFactory.getInstance().getElement("melee", LANGUAGE, MODULE), 5);
 		characterPlayer.getCharacteristic(CharacteristicName.TECH).setValue(7);
 		characterPlayer
-				.addBenefice(AvailableBeneficeFactory.getInstance().getElement("cash [firebirds2000]", LANGUAGE));
+				.addBenefice(AvailableBeneficeFactory.getInstance().getElement("cash [firebirds2000]", LANGUAGE, MODULE));
 		final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0,
 				CombatPreferences.BELLIGERENT);
 		randomizeCharacter.createCharacter();
@@ -311,8 +311,8 @@ public class RandomCharacterTests {
 	@Test
 	public void age() throws InvalidXmlElementException, DuplicatedPreferenceException,
 			InvalidRandomElementSelectedException, TooManyBlessingsException {
-		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
-		characterPlayer.setRace(RaceFactory.getInstance().getElement("human", LANGUAGE));
+		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, MODULE);
+		characterPlayer.setRace(RaceFactory.getInstance().getElement("human", LANGUAGE, MODULE));
 		final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0,
 				AgePreferences.PREADOLESCENT);
 		randomizeCharacter.createCharacter();
@@ -339,7 +339,7 @@ public class RandomCharacterTests {
 							characterPlayer.getInfo().getAge(), characterPlayer.getRace()));
 		}
 
-		for (final AvailableSkill skill : AvailableSkillsFactory.getInstance().getNaturalSkills(LANGUAGE)) {
+		for (final AvailableSkill skill : AvailableSkillsFactory.getInstance().getNaturalSkills(LANGUAGE, MODULE)) {
 			try {
 				Assert.assertTrue(characterPlayer.getSkillAssignedRanks(skill) <= FreeStyleCharacterCreation
 						.getMaxInitialSkillsValues(characterPlayer.getInfo().getAge()));
@@ -350,7 +350,7 @@ public class RandomCharacterTests {
 				throw e;
 			}
 		}
-		for (final AvailableSkill skill : AvailableSkillsFactory.getInstance().getLearnedSkills(LANGUAGE)) {
+		for (final AvailableSkill skill : AvailableSkillsFactory.getInstance().getLearnedSkills(LANGUAGE, MODULE)) {
 			try {
 				Assert.assertTrue(characterPlayer.getSkillAssignedRanks(skill) <= FreeStyleCharacterCreation
 						.getMaxInitialSkillsValues(characterPlayer.getInfo().getAge()));
@@ -366,36 +366,36 @@ public class RandomCharacterTests {
 	@Test
 	public void weaponsSkills() throws DuplicatedPreferenceException, InvalidXmlElementException,
 			InvalidRandomElementSelectedException, TooManyBlessingsException {
-		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
-		characterPlayer.addWeapon(WeaponFactory.getInstance().getElement("axe", LANGUAGE));
-		characterPlayer.addWeapon(WeaponFactory.getInstance().getElement("martechGold", LANGUAGE));
+		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, MODULE);
+		characterPlayer.addWeapon(WeaponFactory.getInstance().getElement("axe", LANGUAGE, MODULE));
+		characterPlayer.addWeapon(WeaponFactory.getInstance().getElement("martechGold", LANGUAGE, MODULE));
 
 		Assert.assertNotNull(
-				characterPlayer.hasWeaponWithSkill(AvailableSkillsFactory.getInstance().getElement("melee", LANGUAGE)));
+				characterPlayer.hasWeaponWithSkill(AvailableSkillsFactory.getInstance().getElement("melee", LANGUAGE, MODULE)));
 		Assert.assertNotNull(characterPlayer
-				.hasWeaponWithSkill(AvailableSkillsFactory.getInstance().getElement("energyGuns", LANGUAGE)));
+				.hasWeaponWithSkill(AvailableSkillsFactory.getInstance().getElement("energyGuns", LANGUAGE, MODULE)));
 
 		characterPlayer.getCharacteristic(CharacteristicName.TECH).setValue(6);
 
 		final RandomSkills randomSkills = new RandomSkills(characterPlayer, null);
-		final AvailableSkill energyGuns = AvailableSkillsFactory.getInstance().getElement("energyGuns", LANGUAGE);
+		final AvailableSkill energyGuns = AvailableSkillsFactory.getInstance().getElement("energyGuns", LANGUAGE, MODULE);
 		randomSkills.validateElement(energyGuns.getRandomDefinition());
-		final AvailableSkill fight = AvailableSkillsFactory.getInstance().getElement("melee", LANGUAGE);
+		final AvailableSkill fight = AvailableSkillsFactory.getInstance().getElement("melee", LANGUAGE, MODULE);
 		randomSkills.validateElement(fight.getRandomDefinition());
 
 		final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0);
 		randomizeCharacter.createCharacter();
 
 		Assert.assertTrue(characterPlayer
-				.getSkillTotalRanks(AvailableSkillsFactory.getInstance().getElement("melee", LANGUAGE)) > 0);
+				.getSkillTotalRanks(AvailableSkillsFactory.getInstance().getElement("melee", LANGUAGE, MODULE)) > 0);
 		Assert.assertTrue(characterPlayer
-				.getSkillTotalRanks(AvailableSkillsFactory.getInstance().getElement("energyGuns", LANGUAGE)) > 0);
+				.getSkillTotalRanks(AvailableSkillsFactory.getInstance().getElement("energyGuns", LANGUAGE, MODULE)) > 0);
 	}
 
 	@Test
 	public void cybernetics() throws InvalidXmlElementException, DuplicatedPreferenceException,
 			InvalidRandomElementSelectedException, TooManyBlessingsException {
-		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
+		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, MODULE);
 		final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0,
 				CyberneticTotalDevicesPreferences.CYBORG, CyberneticPointsPreferences.SOUL_LESS);
 		randomizeCharacter.createCharacter();
@@ -408,17 +408,17 @@ public class RandomCharacterTests {
 	public void cyberneticsSkills()
 			throws InvalidXmlElementException, DuplicatedPreferenceException, InvalidRandomElementSelectedException,
 			TooManyCyberneticDevicesException, RequiredCyberneticDevicesException, TooManyBlessingsException {
-		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE);
+		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, MODULE);
 		characterPlayer.getCharacteristic(CharacteristicName.WILL).setValue(6);
-		characterPlayer.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("spyEye", LANGUAGE));
-		characterPlayer.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("etherEar", LANGUAGE));
+		characterPlayer.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("spyEye", LANGUAGE, MODULE));
+		characterPlayer.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("etherEar", LANGUAGE, MODULE));
 		final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0);
 		randomizeCharacter.createCharacter();
 
 		Assert.assertTrue(characterPlayer
-				.getSkillTotalRanks(AvailableSkillsFactory.getInstance().getElement("spyEye", LANGUAGE)) > 0);
+				.getSkillTotalRanks(AvailableSkillsFactory.getInstance().getElement("spyEye", LANGUAGE, MODULE)) > 0);
 		Assert.assertTrue(characterPlayer
-				.getSkillTotalRanks(AvailableSkillsFactory.getInstance().getElement("etherEar", LANGUAGE)) > 0);
+				.getSkillTotalRanks(AvailableSkillsFactory.getInstance().getElement("etherEar", LANGUAGE, MODULE)) > 0);
 	}
 
 }

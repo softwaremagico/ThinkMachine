@@ -37,9 +37,11 @@ import com.softwaremagico.tm.log.MachineLog;
 public class RaceAdapter extends ElementAdapter<Race> {
 
 	@Override
-	public Race deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
+	public Race deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext)
+			throws JsonParseException {
 		try {
-			return RaceFactory.getInstance().getElement(super.getElementId(jsonElement), super.getLanguage(jsonElement));
+			return RaceFactory.getInstance().getElement(super.getElementId(jsonElement),
+					super.getLanguage(jsonElement), super.getModuleName(jsonElement));
 		} catch (InvalidXmlElementException e) {
 			MachineLog.errorMessage(this.getClass().getName(), e);
 			return null;

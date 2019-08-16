@@ -39,112 +39,115 @@ import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 @Test(groups = { "cybernetics" })
 public class CyberneticsTests {
 	private static final String LANGUAGE = "es";
+	private static final String MODULE = "Fading Suns Revised Edition";
 	private static final int WITS = 7;
 	private static final int MAX_INCOMPATIBILITY = WITS * 3 + 2;
 
 	@Test(expectedExceptions = { TooManyCyberneticDevicesException.class })
 	public void tooManyCybernetics() throws TooManyCyberneticDevicesException, InvalidXmlElementException,
 			RequiredCyberneticDevicesException {
-		final CharacterPlayer player = new CharacterPlayer(LANGUAGE);
+		final CharacterPlayer player = new CharacterPlayer(LANGUAGE, MODULE);
 		player.getCharacteristic(CharacteristicName.WILL).setValue(7);
 
 		Assert.assertEquals(Cybernetics.getMaxCyberneticIncompatibility(player), MAX_INCOMPATIBILITY);
 
 		try {
 			// 2 points
-			player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("centurionKnife", LANGUAGE));
+			player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("centurionKnife", LANGUAGE, MODULE));
 			Assert.assertEquals(player.getCyberneticsIncompatibility(), 2);
 
 			// 6 points
-			player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("goliathSkin", LANGUAGE));
+			player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("goliathSkin", LANGUAGE, MODULE));
 			Assert.assertEquals(player.getCyberneticsIncompatibility(), 8);
 
 			// 7 points
-			player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("oxyLung", LANGUAGE));
+			player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("oxyLung", LANGUAGE, MODULE));
 			Assert.assertEquals(player.getCyberneticsIncompatibility(), 15);
 
 			// 7 points
-			player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("xEyes", LANGUAGE));
+			player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("xEyes", LANGUAGE, MODULE));
 			Assert.assertEquals(player.getCyberneticsIncompatibility(), 22);
 		} catch (TooManyCyberneticDevicesException e) {
 			// Not correct
 			Assert.assertTrue(false);
 		}
 
-		player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("jonah", LANGUAGE));
+		player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("jonah", LANGUAGE, MODULE));
 	}
 
 	@Test(expectedExceptions = { RequiredCyberneticDevicesException.class })
 	public void restrictedDevice() throws InvalidXmlElementException, TooManyCyberneticDevicesException,
 			RequiredCyberneticDevicesException {
-		final CharacterPlayer player = new CharacterPlayer(LANGUAGE);
+		final CharacterPlayer player = new CharacterPlayer(LANGUAGE, MODULE);
 		player.getCharacteristic(CharacteristicName.WILL).setValue(8);
 
-		player.addCybernetics(CyberneticDeviceFactory.getInstance()
-				.getElement("secondBrainEnergyPistolsLore", LANGUAGE));
+		player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("secondBrainEnergyPistolsLore",
+				LANGUAGE, MODULE));
 	}
 
 	@Test
 	public void restrictedDeviceAcepted() throws InvalidXmlElementException, TooManyCyberneticDevicesException,
 			RequiredCyberneticDevicesException {
-		final CharacterPlayer player = new CharacterPlayer(LANGUAGE);
+		final CharacterPlayer player = new CharacterPlayer(LANGUAGE, MODULE);
 		player.getCharacteristic(CharacteristicName.WILL).setValue(8);
 
-		player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("secondBrain", LANGUAGE));
-		player.addCybernetics(CyberneticDeviceFactory.getInstance()
-				.getElement("secondBrainEnergyPistolsLore", LANGUAGE));
+		player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("secondBrain", LANGUAGE, MODULE));
+		player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("secondBrainEnergyPistolsLore",
+				LANGUAGE, MODULE));
 	}
 
 	@Test
 	public void cyberneticAsAWeapon() throws TooManyCyberneticDevicesException, InvalidXmlElementException,
 			RequiredCyberneticDevicesException {
-		final CharacterPlayer player = new CharacterPlayer(LANGUAGE);
+		final CharacterPlayer player = new CharacterPlayer(LANGUAGE, MODULE);
 		player.getCharacteristic(CharacteristicName.WILL).setValue(7);
 
-		player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("centurionKnife", LANGUAGE));
+		player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("centurionKnife", LANGUAGE, MODULE));
 		Assert.assertEquals(player.getAllWeapons().size(), 1);
 	}
 
 	@Test
 	public void cyberneticCharacteristicsImprovement() throws InvalidXmlElementException,
 			TooManyCyberneticDevicesException, RequiredCyberneticDevicesException {
-		final CharacterPlayer player = new CharacterPlayer(LANGUAGE);
+		final CharacterPlayer player = new CharacterPlayer(LANGUAGE, MODULE);
 		player.getCharacteristic(CharacteristicName.WILL).setValue(8);
 		player.getCharacteristic(CharacteristicName.WITS).setValue(6);
 
-		player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("secondBrain", LANGUAGE));
+		player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("secondBrain", LANGUAGE, MODULE));
 		Assert.assertEquals((int) player.getValue(CharacteristicName.WITS), 8);
 	}
 
 	@Test
 	public void cyberneticSkillStaticValue() throws InvalidXmlElementException, TooManyCyberneticDevicesException,
 			RequiredCyberneticDevicesException {
-		final CharacterPlayer player = new CharacterPlayer(LANGUAGE);
+		final CharacterPlayer player = new CharacterPlayer(LANGUAGE, MODULE);
 		player.getCharacteristic(CharacteristicName.WILL).setValue(8);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("lore", "energyPistolsLore", LANGUAGE), 3);
+		player.setSkillRank(
+				AvailableSkillsFactory.getInstance().getElement("lore", "energyPistolsLore", LANGUAGE, MODULE), 3);
 
-		player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("secondBrain", LANGUAGE));
-		player.addCybernetics(CyberneticDeviceFactory.getInstance()
-				.getElement("secondBrainEnergyPistolsLore", LANGUAGE));
+		player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("secondBrain", LANGUAGE, MODULE));
+		player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("secondBrainEnergyPistolsLore",
+				LANGUAGE, MODULE));
 
 		Assert.assertEquals(
 				(int) player.getSkillTotalRanks(AvailableSkillsFactory.getInstance().getElement("lore",
-						"energyPistolsLore", LANGUAGE)), 4);
+						"energyPistolsLore", LANGUAGE, MODULE)), 4);
 	}
 
 	@Test
 	public void cyberneticSkillStaticValueSurpassed() throws InvalidXmlElementException,
 			TooManyCyberneticDevicesException, RequiredCyberneticDevicesException {
-		final CharacterPlayer player = new CharacterPlayer(LANGUAGE);
+		final CharacterPlayer player = new CharacterPlayer(LANGUAGE, MODULE);
 		player.getCharacteristic(CharacteristicName.WILL).setValue(8);
-		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("lore", "energyPistolsLore", LANGUAGE), 6);
+		player.setSkillRank(
+				AvailableSkillsFactory.getInstance().getElement("lore", "energyPistolsLore", LANGUAGE, MODULE), 6);
 
-		player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("secondBrain", LANGUAGE));
-		player.addCybernetics(CyberneticDeviceFactory.getInstance()
-				.getElement("secondBrainEnergyPistolsLore", LANGUAGE));
+		player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("secondBrain", LANGUAGE, MODULE));
+		player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("secondBrainEnergyPistolsLore",
+				LANGUAGE, MODULE));
 
 		Assert.assertEquals(
 				(int) player.getSkillTotalRanks(AvailableSkillsFactory.getInstance().getElement("lore",
-						"energyPistolsLore", LANGUAGE)), 6);
+						"energyPistolsLore", LANGUAGE, MODULE)), 6);
 	}
 }

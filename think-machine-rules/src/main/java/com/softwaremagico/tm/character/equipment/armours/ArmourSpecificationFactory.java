@@ -27,11 +27,9 @@ package com.softwaremagico.tm.character.equipment.armours;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
 import com.softwaremagico.tm.language.ITranslator;
-import com.softwaremagico.tm.language.LanguagePool;
 
 public class ArmourSpecificationFactory extends XmlFactory<ArmourSpecification> {
-	private static final ITranslator translatorArmourSpecification = LanguagePool
-			.getTranslator("armour_specifications.xml");
+	private static final String TRANSLATOR_FILE = "armour_specifications.xml";
 
 	private static final String NAME = "name";
 
@@ -44,13 +42,13 @@ public class ArmourSpecificationFactory extends XmlFactory<ArmourSpecification> 
 	}
 
 	@Override
-	protected ITranslator getTranslator() {
-		return translatorArmourSpecification;
+	protected String getTranslatorFile() {
+		return TRANSLATOR_FILE;
 	}
 
 	@Override
-	protected ArmourSpecification createElement(ITranslator translator, String specificationId, String language)
-			throws InvalidXmlElementException {
+	protected ArmourSpecification createElement(ITranslator translator, String specificationId, String language,
+			String moduleName) throws InvalidXmlElementException {
 		ArmourSpecification specification = null;
 		String name = null;
 		try {
@@ -59,7 +57,7 @@ public class ArmourSpecificationFactory extends XmlFactory<ArmourSpecification> 
 			throw new InvalidArmourException("Invalid name in armour specification '" + specificationId + "'.");
 		}
 
-		specification = new ArmourSpecification(specificationId, name, language);
+		specification = new ArmourSpecification(specificationId, name, language, moduleName);
 
 		return specification;
 	}

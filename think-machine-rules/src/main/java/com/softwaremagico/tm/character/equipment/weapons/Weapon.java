@@ -66,11 +66,11 @@ public class Weapon extends Equipment<Weapon> {
 	private transient Integer areaDamage = null;
 	private transient String areaWithoutDamage = null;
 
-	public Weapon(String id, String name, String language, WeaponType type, String goal,
+	public Weapon(String id, String name, String language, String moduleName, WeaponType type, String goal,
 			CharacteristicDefinition characteristic, AvailableSkill skill, String damage, int strength, String range,
 			Integer shots, String rate, int techLevel, boolean techLevelSpecial, Size size, String special,
 			Set<DamageType> damageTypes, float cost, Set<Ammunition> ammunitions, Set<Accessory> accesories) {
-		super(id, name, cost, techLevel, language);
+		super(id, name, cost, techLevel, language, moduleName);
 		this.characteristic = characteristic;
 		this.skill = skill;
 		this.goal = goal;
@@ -146,8 +146,8 @@ public class Weapon extends Equipment<Weapon> {
 					// Special damage!
 					mainDamage = SPECIAL_DAMAGE_THREAT;
 				} else {
-					MachineLog.severe(this.getClass().getName(),
-							"Invalid main damage in '" + getDamage() + "' for '" + this + "'.");
+					MachineLog.severe(this.getClass().getName(), "Invalid main damage in '" + getDamage() + "' for '"
+							+ this + "'.");
 				}
 			}
 		}
@@ -167,8 +167,8 @@ public class Weapon extends Equipment<Weapon> {
 				// No area
 				areaDamage = 0;
 			} catch (NumberFormatException e) {
-				MachineLog.severe(this.getClass().getName(),
-						"Invalid area damage in '" + getDamage() + "' for '" + this + "'.");
+				MachineLog.severe(this.getClass().getName(), "Invalid area damage in '" + getDamage() + "' for '"
+						+ this + "'.");
 			}
 		}
 		return areaDamage;

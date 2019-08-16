@@ -33,7 +33,7 @@ import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
 
 public class CharacterInfo {
-	private static final ITranslator translator = LanguagePool.getTranslator("character_values.xml");
+	private static final String TRANSLATOR_FILE = "character_values.xml";
 
 	private List<Name> names;
 
@@ -59,7 +59,7 @@ public class CharacterInfo {
 
 	private String weight;
 
-	public String getTranslatedParameter(String fieldName) {
+	public String getTranslatedParameter(String fieldName, String moduleName) {
 		for (final Field field : this.getClass().getDeclaredFields()) {
 			// field.setAccessible(true); //Make it public.
 			if (field.getName().equals(fieldName)) {
@@ -67,7 +67,7 @@ public class CharacterInfo {
 				try {
 					value = field.get(this);
 					if (value != null) {
-						return getTranslation(value);
+						return getTranslation(value, moduleName);
 					}
 				} catch (IllegalArgumentException | IllegalAccessException e) {
 					// Not valid field.
@@ -77,11 +77,11 @@ public class CharacterInfo {
 		return null;
 	}
 
-	private String getTranslation(Object parameterValue) {
+	private String getTranslation(Object parameterValue, String moduleName) {
 		try {
 			final String xmlTag = parameterValue.toString().substring(0, 1).toLowerCase()
 					+ parameterValue.toString().substring(1);
-			final String translatedText = translator.getTranslatedText(xmlTag);
+			final String translatedText = getTranslator(moduleName).getTranslatedText(xmlTag);
 			if (translatedText != null) {
 				return translatedText;
 			}
@@ -192,6 +192,14 @@ public class CharacterInfo {
 
 	public void setSurname(Surname surname) {
 		this.surname = surname;
+	}
+
+	private ITranslator getTranslator(String moduleName) {
+		return LanguagePool.getTranslator(getTranslatorFile(), moduleName);
+	}
+
+	private String getTranslatorFile() {
+		return TRANSLATOR_FILE;
 	}
 
 }

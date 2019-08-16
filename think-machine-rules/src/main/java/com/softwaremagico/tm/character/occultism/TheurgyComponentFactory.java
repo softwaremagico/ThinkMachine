@@ -27,10 +27,9 @@ package com.softwaremagico.tm.character.occultism;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
 import com.softwaremagico.tm.language.ITranslator;
-import com.softwaremagico.tm.language.LanguagePool;
 
 public class TheurgyComponentFactory extends XmlFactory<TheurgyComponent> {
-	private static final ITranslator translatorCharacteristics = LanguagePool.getTranslator("theurgyComponents.xml");
+	private static final String TRANSLATOR_FILE = "theurgyComponents.xml";
 
 	private static final String NAME = "name";
 	private static final String ABBREVIATURE = "abbreviature";
@@ -45,13 +44,13 @@ public class TheurgyComponentFactory extends XmlFactory<TheurgyComponent> {
 	}
 
 	@Override
-	protected ITranslator getTranslator() {
-		return translatorCharacteristics;
+	protected String getTranslatorFile() {
+		return TRANSLATOR_FILE;
 	}
 
 	@Override
-	protected TheurgyComponent createElement(ITranslator translator, String theurgyComponentId, String language)
-			throws InvalidXmlElementException {
+	protected TheurgyComponent createElement(ITranslator translator, String theurgyComponentId, String language,
+			String moduleName) throws InvalidXmlElementException {
 		try {
 			final String name = translator.getNodeValue(theurgyComponentId, NAME, language);
 
@@ -72,7 +71,7 @@ public class TheurgyComponentFactory extends XmlFactory<TheurgyComponent> {
 			}
 
 			final TheurgyComponent theurgyComponent = new TheurgyComponent(theurgyComponentId, name, language,
-					abbreviature, code.charAt(0));
+					moduleName, abbreviature, code.charAt(0));
 			return theurgyComponent;
 		} catch (Exception e) {
 			throw new InvalidTheurgyComponentException("Invalid structure in theurgyComponent '" + theurgyComponentId
@@ -80,8 +79,9 @@ public class TheurgyComponentFactory extends XmlFactory<TheurgyComponent> {
 		}
 	}
 
-	public TheurgyComponent getTheurgyComponent(char code, String language) throws InvalidXmlElementException {
-		for (final TheurgyComponent theurgyComponent : getElements(language)) {
+	public TheurgyComponent getTheurgyComponent(char code, String language, String moduleName)
+			throws InvalidXmlElementException {
+		for (final TheurgyComponent theurgyComponent : getElements(language, moduleName)) {
 			if (theurgyComponent.getCode() == code) {
 				return theurgyComponent;
 			}

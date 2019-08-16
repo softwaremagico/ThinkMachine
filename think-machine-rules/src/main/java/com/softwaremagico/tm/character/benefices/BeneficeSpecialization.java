@@ -30,8 +30,8 @@ public class BeneficeSpecialization extends Element<BeneficeSpecialization> {
 	private Integer cost = null;
 	private BeneficeClassification classification = BeneficeClassification.BENEFICE;
 
-	public BeneficeSpecialization(String id, String name, String language) {
-		super(id, name, language);
+	public BeneficeSpecialization(String id, String name, String language, String moduleName) {
+		super(id, name, language, moduleName);
 	}
 
 	public Integer getCost() {

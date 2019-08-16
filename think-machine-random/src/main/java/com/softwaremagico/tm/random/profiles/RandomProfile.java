@@ -63,7 +63,7 @@ public class RandomProfile extends Element<RandomProfile> implements IRandomProf
 			Set<AvailableSkill> suggestedSkills, Set<BeneficeDefinition> mandatoryBenefices,
 			Set<BeneficeDefinition> suggestedBenefices, Set<Weapon> mandatoryWeapons, Set<Armour> mandatoryArmours,
 			Set<Shield> mandatoryShields) {
-		super(id, name, language);
+		super(id, name, language, moduleName);
 		this.randomPreferences = randomPreferences;
 		this.characteristicsMinimumValues = characteristicsMinimumValues;
 		this.requiredSkills = requiredSkills;
@@ -75,7 +75,7 @@ public class RandomProfile extends Element<RandomProfile> implements IRandomProf
 		this.mandatoryShields = mandatoryShields;
 	}
 
-	public RandomProfile(String id, String name, String language) {
+	public RandomProfile(String id, String name, String language, String moduleName) {
 		this(id, name, language, new HashSet<IRandomPreference>(), new HashSet<Characteristic>(),
 				new HashSet<AvailableSkill>(), new HashSet<AvailableSkill>(), new HashSet<BeneficeDefinition>(),
 				new HashSet<BeneficeDefinition>(), new HashSet<Weapon>(), new HashSet<Armour>(), new HashSet<Shield>());

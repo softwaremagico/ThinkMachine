@@ -39,6 +39,7 @@ public class CyberneticDeviceFactoryTests {
 	private static final int DEFINED_DEVICES = 18;
 	private static final int SECOND_BRAIN_SOFTWARE = 3;
 	private static final String LANGUAGE = "es";
+	private static final String MODULE = "Fading Suns Revised Edition";
 
 	@BeforeClass
 	public void clearCache() {
@@ -47,21 +48,26 @@ public class CyberneticDeviceFactoryTests {
 
 	@Test
 	public void readDevices() throws InvalidXmlElementException {
-		Assert.assertEquals(CyberneticDeviceFactory.getInstance().getElements(LANGUAGE).size(), DEFINED_DEVICES);
+		Assert.assertEquals(CyberneticDeviceFactory.getInstance().getElements(LANGUAGE, MODULE).size(), DEFINED_DEVICES);
 	}
 
 	@Test
 	public void getRequirements() throws InvalidXmlElementException {
 		Assert.assertEquals(
-				CyberneticDeviceFactory.getInstance()
-						.getDevicesThatRequires(CyberneticDeviceFactory.getInstance().getElement("secondBrain", LANGUAGE), LANGUAGE).size(),
-				SECOND_BRAIN_SOFTWARE);
+				CyberneticDeviceFactory
+						.getInstance()
+						.getDevicesThatRequires(
+								CyberneticDeviceFactory.getInstance().getElement("secondBrain", LANGUAGE, MODULE),
+								LANGUAGE, MODULE).size(), SECOND_BRAIN_SOFTWARE);
 	}
 
 	@Test
 	public void getClassifications() throws InvalidXmlElementException {
-		Assert.assertEquals(ElementClassification.ENHANCEMENT, CyberneticDeviceFactory.getInstance().getElement("secondBrain", LANGUAGE).getClassification());
-		Assert.assertEquals(ElementClassification.COMBAT, CyberneticDeviceFactory.getInstance().getElement("viperSword", LANGUAGE).getClassification());
-		Assert.assertEquals(ElementClassification.OTHERS, CyberneticDeviceFactory.getInstance().getElement("stimusim", LANGUAGE).getClassification());
+		Assert.assertEquals(ElementClassification.ENHANCEMENT,
+				CyberneticDeviceFactory.getInstance().getElement("secondBrain", LANGUAGE, MODULE).getClassification());
+		Assert.assertEquals(ElementClassification.COMBAT,
+				CyberneticDeviceFactory.getInstance().getElement("viperSword", LANGUAGE, MODULE).getClassification());
+		Assert.assertEquals(ElementClassification.OTHERS,
+				CyberneticDeviceFactory.getInstance().getElement("stimusim", LANGUAGE, MODULE).getClassification());
 	}
 }

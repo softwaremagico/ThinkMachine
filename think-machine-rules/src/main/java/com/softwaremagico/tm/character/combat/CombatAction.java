@@ -38,9 +38,9 @@ public class CombatAction extends Element<CombatAction> {
 	private final String others;
 	private final Set<CombatActionRequirement> requirements;
 
-	public CombatAction(String id, String name, String language, String goal, String damage, String others,
+	public CombatAction(String id, String name, String language, String moduleName, String goal, String damage, String others,
 			Set<CombatActionRequirement> requirements) {
-		super(id, name, language);
+		super(id, name, language, moduleName);
 		this.goal = goal;
 		this.damage = damage;
 		this.others = others;

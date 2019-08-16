@@ -132,11 +132,12 @@ public class AvailableSkillsFactory {
 		return availableSkills;
 	}
 
-	public AvailableSkill getElement(String elementId, String language) throws InvalidXmlElementException {
-		return getElement(elementId, null, language);
+	public AvailableSkill getElement(String elementId, String language, String moduleName)
+			throws InvalidXmlElementException {
+		return getElement(elementId, null, language, moduleName);
 	}
 
-	public AvailableSkill getElement(String elementId, String specializationId, String language)
+	public AvailableSkill getElement(String elementId, String specializationId, String language, String moduleName)
 			throws InvalidXmlElementException {
 		for (final AvailableSkill element : getElements(language)) {
 			if (element.getId() != null) {

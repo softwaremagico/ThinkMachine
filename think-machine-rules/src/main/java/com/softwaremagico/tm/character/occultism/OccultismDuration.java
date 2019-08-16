@@ -28,8 +28,8 @@ import com.softwaremagico.tm.Element;
 
 public class OccultismDuration extends Element<OccultismDuration> {
 
-	public OccultismDuration(String id, String name, String language) {
-		super(id, name, language);
+	public OccultismDuration(String id, String name, String language, String moduleName) {
+		super(id, name, language, moduleName);
 	}
 
 	@Override

@@ -36,57 +36,68 @@ import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
 @Test(groups = { "weaponsFactory" })
 public class WeaponsFactoryTests {
 	private static final String LANGUAGE = "es";
+	private static final String MODULE = "Fading Suns Revised Edition";
 
 	@Test
 	public void readWeapons() throws InvalidXmlElementException {
-		Assert.assertTrue(WeaponFactory.getInstance().getElements(LANGUAGE).size() > 90);
+		Assert.assertTrue(WeaponFactory.getInstance().getElements(LANGUAGE, MODULE).size() > 90);
 	}
 
 	@Test
 	public void readAmmunition() throws InvalidXmlElementException {
-		Assert.assertTrue(AmmunitionFactory.getInstance().getElements(LANGUAGE).size() > 0);
+		Assert.assertTrue(AmmunitionFactory.getInstance().getElements(LANGUAGE, MODULE).size() > 0);
 	}
 
 	@Test
 	public void readAccessory() throws InvalidXmlElementException {
-		Assert.assertTrue(AccessoryFactory.getInstance().getElements(LANGUAGE).size() > 0);
+		Assert.assertTrue(AccessoryFactory.getInstance().getElements(LANGUAGE, MODULE).size() > 0);
 	}
 
 	@Test
 	public void checkShotgun() throws InvalidXmlElementException {
-		Assert.assertEquals(1, WeaponFactory.getInstance().getElement("typicalShotgun", LANGUAGE).getAmmunitions().size());
+		Assert.assertEquals(1, WeaponFactory.getInstance().getElement("typicalShotgun", LANGUAGE, MODULE)
+				.getAmmunitions().size());
 	}
 
 	@Test
 	public void checkBasicHuntingRifle() throws InvalidXmlElementException {
-		Assert.assertEquals(3, WeaponFactory.getInstance().getElement("basicHuntingRifle", LANGUAGE).getAccesories().size());
+		Assert.assertEquals(3, WeaponFactory.getInstance().getElement("basicHuntingRifle", LANGUAGE, MODULE)
+				.getAccesories().size());
 	}
 
 	@Test
 	public void checkRandomModifications() throws InvalidXmlElementException {
-		Assert.assertEquals(0.01d, WeaponFactory.getInstance().getElement("arbata", LANGUAGE).getRandomDefinition().getProbabilityMultiplier());
+		Assert.assertEquals(0.01d, WeaponFactory.getInstance().getElement("arbata", LANGUAGE, MODULE)
+				.getRandomDefinition().getProbabilityMultiplier());
 	}
 
 	@Test
 	public void getMainDamage() throws InvalidXmlElementException {
-		Assert.assertEquals(6, WeaponFactory.getInstance().getElement("arbata", LANGUAGE).getMainDamage());
-		Assert.assertEquals(8, WeaponFactory.getInstance().getElement("typicalShotgun", LANGUAGE).getMainDamage());
-		Assert.assertEquals(12, WeaponFactory.getInstance().getElement("wireGrenade", LANGUAGE).getMainDamage());
+		Assert.assertEquals(6, WeaponFactory.getInstance().getElement("arbata", LANGUAGE, MODULE).getMainDamage());
+		Assert.assertEquals(8, WeaponFactory.getInstance().getElement("typicalShotgun", LANGUAGE, MODULE)
+				.getMainDamage());
+		Assert.assertEquals(12, WeaponFactory.getInstance().getElement("wireGrenade", LANGUAGE, MODULE).getMainDamage());
 	}
-	
+
 	@Test
 	public void getAreaDamage() throws InvalidXmlElementException {
-		Assert.assertEquals(1, WeaponFactory.getInstance().getElement("goboLobberJetPistol", LANGUAGE).getAreaMeters());
-		Assert.assertEquals(2, WeaponFactory.getInstance().getElement("goboGarbageChucker", LANGUAGE).getAreaMeters());
-		Assert.assertEquals(3, WeaponFactory.getInstance().getElement("musterNightstorm", LANGUAGE).getAreaMeters());
-		Assert.assertEquals(5, WeaponFactory.getInstance().getElement("fragGrenades", LANGUAGE).getAreaMeters());
+		Assert.assertEquals(1, WeaponFactory.getInstance().getElement("goboLobberJetPistol", LANGUAGE, MODULE)
+				.getAreaMeters());
+		Assert.assertEquals(2, WeaponFactory.getInstance().getElement("goboGarbageChucker", LANGUAGE, MODULE)
+				.getAreaMeters());
+		Assert.assertEquals(3, WeaponFactory.getInstance().getElement("musterNightstorm", LANGUAGE, MODULE)
+				.getAreaMeters());
+		Assert.assertEquals(5, WeaponFactory.getInstance().getElement("fragGrenades", LANGUAGE, MODULE).getAreaMeters());
 	}
-	
+
 	@Test
 	public void getDamageWithoutArea() throws InvalidXmlElementException {
-		Assert.assertEquals("3", WeaponFactory.getInstance().getElement("blastPellet", LANGUAGE).getDamageWithoutArea());
-		Assert.assertEquals("6", WeaponFactory.getInstance().getElement("blastPelletHeavy", LANGUAGE).getDamageWithoutArea());
-		Assert.assertEquals("12", WeaponFactory.getInstance().getElement("fragGrenades", LANGUAGE).getDamageWithoutArea());
+		Assert.assertEquals("3", WeaponFactory.getInstance().getElement("blastPellet", LANGUAGE, MODULE)
+				.getDamageWithoutArea());
+		Assert.assertEquals("6", WeaponFactory.getInstance().getElement("blastPelletHeavy", LANGUAGE, MODULE)
+				.getDamageWithoutArea());
+		Assert.assertEquals("12", WeaponFactory.getInstance().getElement("fragGrenades", LANGUAGE, MODULE)
+				.getDamageWithoutArea());
 	}
 
 }

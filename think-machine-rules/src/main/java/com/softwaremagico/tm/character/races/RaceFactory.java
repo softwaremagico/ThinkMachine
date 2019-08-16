@@ -28,10 +28,9 @@ import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.language.ITranslator;
-import com.softwaremagico.tm.language.LanguagePool;
 
 public class RaceFactory extends XmlFactory<Race> {
-	private static final ITranslator translatorRace = LanguagePool.getTranslator("races.xml");
+	private static final String TRANSLATOR_FILE = "races.xml";
 
 	private static final String NAME = "name";
 	private static final String MAX_VALUE = "maximumValue";
@@ -53,17 +52,17 @@ public class RaceFactory extends XmlFactory<Race> {
 	}
 
 	@Override
-	protected ITranslator getTranslator() {
-		return translatorRace;
+	protected String getTranslatorFile() {
+		return TRANSLATOR_FILE;
 	}
 
 	@Override
-	protected Race createElement(ITranslator translator, String raceId, String language)
+	protected Race createElement(ITranslator translator, String raceId, String language, String moduleName)
 			throws InvalidXmlElementException {
 		Race race = null;
 		try {
 			final String name = translator.getNodeValue(raceId, NAME, language);
-			race = new Race(raceId, name, language);
+			race = new Race(raceId, name, language, moduleName);
 		} catch (Exception e) {
 			throw new InvalidRaceException("Invalid structure in race '" + raceId + "'.", e);
 		}

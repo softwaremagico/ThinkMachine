@@ -30,8 +30,8 @@ public class TheurgyComponent extends Element<TheurgyComponent> {
 	private final String abbreviature;
 	private final char code;
 
-	public TheurgyComponent(String id, String name, String language, String abbreviature, char code) {
-		super(id, name, language);
+	public TheurgyComponent(String id, String name, String language, String moduleName, String abbreviature, char code) {
+		super(id, name, language, moduleName);
 		this.abbreviature = abbreviature;
 		this.code = code;
 	}

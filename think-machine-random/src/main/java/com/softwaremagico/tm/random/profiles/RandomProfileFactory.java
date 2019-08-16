@@ -49,7 +49,7 @@ import com.softwaremagico.tm.random.selectors.IRandomPreference;
 import com.softwaremagico.tm.random.selectors.RandomPreferenceUtils;
 
 public class RandomProfileFactory extends XmlFactory<RandomProfile> {
-	private static final ITranslator translator = LanguagePool.getTranslator("profiles.xml");
+	private static final String TRANSLATOR_FILE = "profiles.xml");
 
 	private static final String NAME = "name";
 	private static final String PREFERENCES = "preferences";

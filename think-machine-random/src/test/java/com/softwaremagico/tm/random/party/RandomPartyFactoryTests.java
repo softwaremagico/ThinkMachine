@@ -39,23 +39,23 @@ public class RandomPartyFactoryTests {
 
 	@Test
 	public void readParties() throws InvalidXmlElementException {
-		Assert.assertEquals(RandomPartyFactory.getInstance().getElements(LANGUAGE).size(), DEFINED_PARTIES);
+		Assert.assertEquals(RandomPartyFactory.getInstance().getElements(LANGUAGE, MODULE).size(), DEFINED_PARTIES);
 	}
 
 	@Test
 	public void readNames() throws InvalidXmlElementException {
 		Assert.assertNotNull(RandomPartyFactory.getInstance().getNames(
-				RandomPartyFactory.getInstance().getElement("thugBand", LANGUAGE)));
+				RandomPartyFactory.getInstance().getElement("thugBand", LANGUAGE, MODULE)));
 		Assert.assertNotNull(RandomPartyFactory.getInstance().getAdjectives(
-				RandomPartyFactory.getInstance().getElement("thugBand", LANGUAGE)));
+				RandomPartyFactory.getInstance().getElement("thugBand", LANGUAGE, MODULE)));
 	}
 
 	@Test
 	public void readThugParty() throws InvalidXmlElementException {
-		Assert.assertEquals(RandomPartyFactory.getInstance().getElement("thugBand", LANGUAGE).getRandomPartyMembers()
+		Assert.assertEquals(RandomPartyFactory.getInstance().getElement("thugBand", LANGUAGE, MODULE).getRandomPartyMembers()
 				.size(), 3);
 		int checkedMemebers = 0;
-		for (final RandomPartyMember member : RandomPartyFactory.getInstance().getElement("thugBand", LANGUAGE)
+		for (final RandomPartyMember member : RandomPartyFactory.getInstance().getElement("thugBand", LANGUAGE, MODULE)
 				.getRandomPartyMembers()) {
 			if (member.getId().equals("thugBand_0")) {
 				checkedMemebers++;

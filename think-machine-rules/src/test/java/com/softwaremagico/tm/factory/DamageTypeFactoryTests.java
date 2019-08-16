@@ -32,12 +32,12 @@ import com.softwaremagico.tm.character.equipment.DamageTypeFactory;
 
 @Test(groups = { "damageFactory" })
 public class DamageTypeFactoryTests {
-
 	private static final int DEFINED_DAMAGES = 17;
 	private static final String LANGUAGE = "es";
+	private static final String MODULE = "Fading Suns Revised Edition";
 
 	@Test
 	public void readDamages() throws InvalidXmlElementException {
-		Assert.assertEquals(DamageTypeFactory.getInstance().getElements(LANGUAGE).size(), DEFINED_DAMAGES);
+		Assert.assertEquals(DamageTypeFactory.getInstance().getElements(LANGUAGE, MODULE).size(), DEFINED_DAMAGES);
 	}
 }

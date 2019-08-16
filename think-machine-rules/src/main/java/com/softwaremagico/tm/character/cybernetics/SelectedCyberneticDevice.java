@@ -35,14 +35,14 @@ import com.softwaremagico.tm.character.equipment.weapons.Weapon;
 import com.softwaremagico.tm.character.values.Bonification;
 import com.softwaremagico.tm.character.values.StaticValue;
 
-public class SelectedCyberneticDevice extends Element<SelectedCyberneticDevice>
-		implements ICyberneticDevice, IElementWithBonification {
+public class SelectedCyberneticDevice extends Element<SelectedCyberneticDevice> implements ICyberneticDevice,
+		IElementWithBonification {
 
 	private final List<CyberneticDeviceTrait> customizations;
 	private final CyberneticDevice cyberneticDevice;
 
 	public SelectedCyberneticDevice(CyberneticDevice cyberneticDevice) {
-		super(null, cyberneticDevice.getName(), cyberneticDevice.getLanguage());
+		super(null, cyberneticDevice.getName(), cyberneticDevice.getLanguage(), cyberneticDevice.getModuleName());
 		this.cyberneticDevice = cyberneticDevice;
 		customizations = new ArrayList<>();
 	}

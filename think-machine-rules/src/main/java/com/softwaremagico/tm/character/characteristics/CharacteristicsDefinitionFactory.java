@@ -34,13 +34,13 @@ import java.util.Set;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
+import com.softwaremagico.tm.file.FileManager;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.Language;
-import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.log.MachineLog;
 
 public class CharacteristicsDefinitionFactory extends XmlFactory<CharacteristicDefinition> {
-	private static final ITranslator translatorCharacteristics = LanguagePool.getTranslator("characteristics.xml");
+	private static final String TRANSLATOR_FILE = "characteristics.xml";
 
 	private static final String NAME = "name";
 	private static final String ABBREVIATURE = "abbreviature";
@@ -66,45 +66,47 @@ public class CharacteristicsDefinitionFactory extends XmlFactory<CharacteristicD
 	protected void initialize() {
 		super.initialize();
 
-		final List<Language> languages = getTranslator().getAvailableLanguages();
-		for (final Language language : languages) {
-			final List<CharacteristicDefinition> characteristicsDefinitions;
-			try {
-				characteristicsDefinitions = getElements(language.getAbbreviature());
-				if (characteristics == null) {
-					characteristics = new HashMap<>();
-				}
-				if (characteristics.get(language.getAbbreviature()) == null) {
-					characteristics.put(language.getAbbreviature(),
-							new HashMap<CharacteristicType, List<CharacteristicDefinition>>());
-				}
-				for (final CharacteristicDefinition characteristicsDefinition : characteristicsDefinitions) {
-					if (characteristics.get(language.getAbbreviature()).get(characteristicsDefinition.getType()) == null) {
-						characteristics.get(language.getAbbreviature()).put(characteristicsDefinition.getType(),
-								new ArrayList<CharacteristicDefinition>());
+		for (final String module : FileManager.getAvailableModules()) {
+			final List<Language> languages = getTranslator(module).getAvailableLanguages();
+			for (final Language language : languages) {
+				final List<CharacteristicDefinition> characteristicsDefinitions;
+				try {
+					characteristicsDefinitions = getElements(language.getAbbreviature(), module);
+					if (characteristics == null) {
+						characteristics = new HashMap<>();
 					}
+					if (characteristics.get(language.getAbbreviature()) == null) {
+						characteristics.put(language.getAbbreviature(),
+								new HashMap<CharacteristicType, List<CharacteristicDefinition>>());
+					}
+					for (final CharacteristicDefinition characteristicsDefinition : characteristicsDefinitions) {
+						if (characteristics.get(language.getAbbreviature()).get(characteristicsDefinition.getType()) == null) {
+							characteristics.get(language.getAbbreviature()).put(characteristicsDefinition.getType(),
+									new ArrayList<CharacteristicDefinition>());
+						}
 
-					characteristics.get(language.getAbbreviature()).get(characteristicsDefinition.getType())
-							.add(characteristicsDefinition);
+						characteristics.get(language.getAbbreviature()).get(characteristicsDefinition.getType())
+								.add(characteristicsDefinition);
+					}
+				} catch (InvalidXmlElementException e) {
+					MachineLog.errorMessage(this.getClass().getName(), e);
 				}
-			} catch (InvalidXmlElementException e) {
-				MachineLog.errorMessage(this.getClass().getName(), e);
 			}
 		}
 	}
 
 	@Override
-	protected ITranslator getTranslator() {
-		return translatorCharacteristics;
+	protected String getTranslatorFile() {
+		return TRANSLATOR_FILE;
 	}
 
 	@Override
-	protected CharacteristicDefinition createElement(ITranslator translator, String characteristicId, String language)
-			throws InvalidXmlElementException {
+	protected CharacteristicDefinition createElement(ITranslator translator, String characteristicId, String language,
+			String moduleName) throws InvalidXmlElementException {
 		CharacteristicDefinition characteristic = null;
 		try {
 			final String name = translator.getNodeValue(characteristicId, NAME, language);
-			characteristic = new CharacteristicDefinition(characteristicId, name, language);
+			characteristic = new CharacteristicDefinition(characteristicId, name, language, moduleName);
 		} catch (Exception e) {
 			throw new InvalidCharacteristicException("Invalid name in characteristic '" + characteristicId + "'.");
 		}

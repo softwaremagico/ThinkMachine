@@ -45,9 +45,9 @@ public class OccultismPath extends Element<OccultismPath> {
 	private final Set<Faction> factionsAllowed;
 	private final ElementClassification classification;
 
-	public OccultismPath(String id, String name, String language, OccultismType occultismType,
+	public OccultismPath(String id, String name, String language, String moduleName, OccultismType occultismType,
 			Set<Faction> allowedFactions, ElementClassification classification) {
-		super(id, name, language);
+		super(id, name, language, moduleName);
 		this.occultismType = occultismType;
 		occultismPowers = new HashMap<>();
 		this.factionsAllowed = allowedFactions;

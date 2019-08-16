@@ -31,8 +31,8 @@ public class Characteristic extends CharacteristicDefinition {
 	private final CharacteristicDefinition characteristicDefinition;
 
 	public Characteristic(CharacteristicDefinition characteristicDefinition) {
-		super(characteristicDefinition.getId(), characteristicDefinition.getName(),
-				characteristicDefinition.getLanguage());
+		super(characteristicDefinition.getId(), characteristicDefinition.getName(), characteristicDefinition
+				.getLanguage(), characteristicDefinition.getModuleName());
 		setAbbreviature(characteristicDefinition.getAbbreviature());
 		setType(characteristicDefinition.getType());
 		this.characteristicDefinition = characteristicDefinition;

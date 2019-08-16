@@ -42,8 +42,9 @@ public class Faction extends Element<Faction> {
 	private Set<Blessing> blessings = null;
 	private Set<AvailableBenefice> benefices = null;
 
-	public Faction(String id, String name, FactionGroup factionGroup, Race restrictedRace, String language) {
-		super(id, name, language);
+	public Faction(String id, String name, FactionGroup factionGroup, Race restrictedRace,
+			String language, String moduleName) {
+		super(id, name, language, moduleName);
 		this.factionGroup = factionGroup;
 		this.restrictedRace = restrictedRace;
 	}

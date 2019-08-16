@@ -37,6 +37,7 @@ import com.softwaremagico.tm.Element;
 public abstract class ElementAdapter<E extends Element<E>> implements JsonSerializer<E>, JsonDeserializer<E> {
 	private static final String ID = "id";
 	private static final String LANGUAGE = "language";
+	private static final String MODULE_NAME = "moduleName";
 
 	protected String getElementId(JsonElement jsonElement) {
 		final JsonObject jsonObject = jsonElement.getAsJsonObject();
@@ -54,6 +55,15 @@ public abstract class ElementAdapter<E extends Element<E>> implements JsonSerial
 			return null;
 		}
 		return language.getAsString();
+	}
+	
+	protected String getModuleName(JsonElement jsonElement) {
+		final JsonObject jsonObject = jsonElement.getAsJsonObject();
+		final JsonPrimitive moduleName = (JsonPrimitive) jsonObject.get(MODULE_NAME);
+		if (moduleName == null) {
+			return null;
+		}
+		return moduleName.getAsString();
 	}
 
 	@Override

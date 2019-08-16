@@ -28,8 +28,8 @@ import com.softwaremagico.tm.Element;
 
 public class Accessory extends Element<Accessory> {
 
-	public Accessory(String id, String name, String language) {
-		super(id, name, language);
+	public Accessory(String id, String name, String language, String moduleName) {
+		super(id, name, language, moduleName);
 	}
 
 	@Override

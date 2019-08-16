@@ -28,9 +28,12 @@ import com.softwaremagico.tm.random.definition.RandomElementDefinition;
  */
 
 public class Element<T extends Element<?>> implements Comparable<T> {
+
 	private final String id;
 
 	private final String name;
+
+	private final String moduleName;
 
 	@ExcludeFromJson
 	private final String language;
@@ -38,15 +41,16 @@ public class Element<T extends Element<?>> implements Comparable<T> {
 	@ExcludeFromJson
 	private final RandomElementDefinition randomDefinition;
 
-	public Element(String id, String name, String language) {
-		this(id, name, language, new RandomElementDefinition());
+	public Element(String id, String name, String language, String moduleName) {
+		this(id, name, language, new RandomElementDefinition(), moduleName);
 	}
 
-	public Element(String id, String name, String language, RandomElementDefinition ranDefinition) {
+	public Element(String id, String name, String language, RandomElementDefinition ranDefinition, String moduleName) {
 		this.id = id != null ? id.trim() : null;
 		this.name = name != null ? name.trim() : null;
 		this.language = language;
 		this.randomDefinition = ranDefinition;
+		this.moduleName = moduleName;
 	}
 
 	public String getName() {
@@ -113,5 +117,9 @@ public class Element<T extends Element<?>> implements Comparable<T> {
 
 	public String getLanguage() {
 		return language;
+	}
+
+	public String getModuleName() {
+		return moduleName;
 	}
 }
