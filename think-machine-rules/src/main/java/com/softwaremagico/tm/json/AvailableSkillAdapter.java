@@ -41,7 +41,8 @@ public class AvailableSkillAdapter extends ElementAdapter<AvailableSkill> {
 	private static final String SPECIALIZATION = "specialization";
 
 	@Override
-	public JsonElement serialize(AvailableSkill element, Type elementType, JsonSerializationContext jsonSerializationContext) {
+	public JsonElement serialize(AvailableSkill element, Type elementType,
+			JsonSerializationContext jsonSerializationContext) {
 		final JsonElement jsonObject = super.serialize(element, elementType, jsonSerializationContext);
 		if (element.getSpecialization() != null) {
 			((JsonObject) jsonObject).addProperty(SPECIALIZATION, element.getSpecialization().getId());
@@ -50,11 +51,13 @@ public class AvailableSkillAdapter extends ElementAdapter<AvailableSkill> {
 	}
 
 	@Override
-	public AvailableSkill deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
+	public AvailableSkill deserialize(JsonElement jsonElement, Type type,
+			JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
 		try {
 			final String specializationId = getSpecialization(jsonElement);
-			final AvailableSkill availableSkill = AvailableSkillsFactory.getInstance().getElement(super.getElementId(jsonElement), specializationId,
-					super.getLanguage(jsonElement));
+			final AvailableSkill availableSkill = AvailableSkillsFactory.getInstance().getElement(
+					super.getElementId(jsonElement), specializationId, super.getLanguage(jsonElement),
+					super.getModuleName(jsonElement));
 			return availableSkill;
 		} catch (InvalidXmlElementException e) {
 			MachineLog.errorMessage(this.getClass().getName(), e);

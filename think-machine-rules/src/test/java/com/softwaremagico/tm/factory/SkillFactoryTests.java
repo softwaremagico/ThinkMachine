@@ -30,15 +30,17 @@ import org.testng.annotations.Test;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
+import com.softwaremagico.tm.file.Path;
 
 @Test(groups = { "skillFactory" })
 public class SkillFactoryTests {
+	private static final String LANGUAGE = "es";
 	private static final int NATURAL_SKILLS = 9;
 	private static final int LEARNED_SKILLS = 47;
 
 	@Test
 	public void readSkills() throws InvalidXmlElementException {
-		Assert.assertEquals(NATURAL_SKILLS, SkillsDefinitionsFactory.getInstance().getNaturalSkills("es").size());
-		Assert.assertEquals(LEARNED_SKILLS, SkillsDefinitionsFactory.getInstance().getLearnedSkills("es").size());
+		Assert.assertEquals(NATURAL_SKILLS, SkillsDefinitionsFactory.getInstance().getNaturalSkills(LANGUAGE, Path.DEFAULT_MODULE_FOLDER).size());
+		Assert.assertEquals(LEARNED_SKILLS, SkillsDefinitionsFactory.getInstance().getLearnedSkills(LANGUAGE, Path.DEFAULT_MODULE_FOLDER).size());
 	}
 }

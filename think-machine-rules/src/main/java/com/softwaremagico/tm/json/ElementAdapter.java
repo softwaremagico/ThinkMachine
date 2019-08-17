@@ -71,6 +71,7 @@ public abstract class ElementAdapter<E extends Element<E>> implements JsonSerial
 		final JsonObject jsonObject = new JsonObject();
 		jsonObject.addProperty(ID, element.getId());
 		jsonObject.addProperty(LANGUAGE, element.getLanguage());
+		jsonObject.addProperty(MODULE_NAME, element.getModuleName());
 		return jsonObject;
 	}
 

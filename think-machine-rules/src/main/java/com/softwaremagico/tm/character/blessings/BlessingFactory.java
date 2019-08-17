@@ -106,7 +106,7 @@ public class BlessingFactory extends XmlFactory<Blessing> {
 				}
 			}
 
-			final Blessing blessing = new Blessing(blessingId, name, moduleName, language, Integer.parseInt(cost),
+			final Blessing blessing = new Blessing(blessingId, name, language, moduleName, Integer.parseInt(cost),
 					bonifications, blessingClassification, blessingGroup);
 			return blessing;
 		} catch (Exception e) {

@@ -48,6 +48,7 @@ import com.softwaremagico.tm.character.occultism.OccultismTypeFactory;
 import com.softwaremagico.tm.character.planets.PlanetFactory;
 import com.softwaremagico.tm.character.races.RaceFactory;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
+import com.softwaremagico.tm.file.Path;
 
 public class CustomCharacter {
 
@@ -55,7 +56,7 @@ public class CustomCharacter {
 			TooManyBlessingsException, TooManyCyberneticDevicesException, RequiredCyberneticDevicesException,
 			BlessingAlreadyAddedException, BeneficeAlreadyAddedException {
 		CacheHandler.clearCache();
-		final CharacterPlayer player = new CharacterPlayer(language);
+		final CharacterPlayer player = new CharacterPlayer(language, Path.DEFAULT_MODULE_FOLDER);
 		player.getInfo().addName(new Name("Oliver", language, moduleName, Gender.MALE, null));
 		player.getInfo().setSurname(new Surname("Queen", language, moduleName, null));
 		player.getInfo().setPlayer("Player 1");

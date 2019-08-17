@@ -175,7 +175,7 @@ public class OccultismPathFactory extends XmlFactory<OccultismPath> {
 
 				final OccultismPower occultismPower = new OccultismPower(powerId, powerName, language, moduleName,
 						CharacteristicsDefinitionFactory.getInstance().get(CharacteristicName.get(characteristicName),
-								language), values, Integer.parseInt(level), occultismRange, occultismDuration, wyrd,
+								language, moduleName), values, Integer.parseInt(level), occultismRange, occultismDuration, wyrd,
 						theurgyComponents);
 
 				occultismPath.getOccultismPowers().put(powerId, occultismPower);

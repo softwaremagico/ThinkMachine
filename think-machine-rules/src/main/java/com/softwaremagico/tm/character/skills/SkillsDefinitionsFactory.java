@@ -51,9 +51,9 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 	private static final String NATURAL_SKILL_TAG = "natural";
 	private static final String NUMBER_TO_SHOW_TAG = "numberToShow";
 
-	private static Map<String, List<SkillDefinition>> naturalSkills = new HashMap<>();
-	private static Map<String, List<SkillDefinition>> learnedSkills = new HashMap<>();
-	private static Map<String, Map<SkillGroup, Set<SkillDefinition>>> skillsByGroup = new HashMap<>();
+	private static Map<String, Map<String, List<SkillDefinition>>> naturalSkills = new HashMap<>();
+	private static Map<String, Map<String, List<SkillDefinition>>> learnedSkills = new HashMap<>();
+	private static Map<String, Map<String, Map<SkillGroup, Set<SkillDefinition>>>> skillsByGroup = new HashMap<>();
 
 	private static class SkillsDefinitionsFactoryInit {
 		public static final SkillsDefinitionsFactory INSTANCE = new SkillsDefinitionsFactory();
@@ -61,6 +61,10 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 
 	public static SkillsDefinitionsFactory getInstance() {
 		return SkillsDefinitionsFactoryInit.INSTANCE;
+	}
+
+	private SkillsDefinitionsFactory() {
+		super();
 	}
 
 	private static void initializeMaps() {
@@ -75,20 +79,34 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 		super.clearCache();
 	}
 
-	public List<SkillDefinition> getNaturalSkills(String language) {
-		return naturalSkills.get(language);
+	public List<SkillDefinition> getNaturalSkills(String language, String moduleName) {
+		if (naturalSkills.get(language) == null || naturalSkills.get(language).get(moduleName) == null) {
+			try {
+				getElements(language, moduleName);
+			} catch (InvalidXmlElementException e) {
+				MachineLog.errorMessage(this.getClass().getName(), e);
+			}
+		}
+		return naturalSkills.get(language).get(moduleName);
 	}
 
-	public List<SkillDefinition> getLearnedSkills(String language) {
-		return learnedSkills.get(language);
+	public List<SkillDefinition> getLearnedSkills(String language, String moduleName) {
+		if (learnedSkills.get(language) == null || learnedSkills.get(language).get(moduleName) == null) {
+			try {
+				getElements(language, moduleName);
+			} catch (InvalidXmlElementException e) {
+				MachineLog.errorMessage(this.getClass().getName(), e);
+			}
+		}
+		return learnedSkills.get(language).get(moduleName);
 	}
 
-	public Set<SkillDefinition> getSkills(SkillGroup skillGroup, String language) {
-		return skillsByGroup.get(language).get(skillGroup);
+	public Set<SkillDefinition> getSkills(SkillGroup skillGroup, String language, String moduleName) {
+		return skillsByGroup.get(language).get(moduleName).get(skillGroup);
 	}
 
-	public boolean isNaturalSkill(String skillName, String language) {
-		for (final SkillDefinition availableSkill : getNaturalSkills(language)) {
+	public boolean isNaturalSkill(String skillName, String language, String moduleName) {
+		for (final SkillDefinition availableSkill : getNaturalSkills(language, moduleName)) {
 			if (Objects.equals(availableSkill.getName(), skillName)) {
 				return true;
 			}
@@ -119,16 +137,22 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 				setRandomConfiguration(skill, getTranslator(moduleName), language, moduleName);
 				if (skill.isNatural()) {
 					if (naturalSkills.get(language) == null) {
-						naturalSkills.put(language, new ArrayList<SkillDefinition>());
+						naturalSkills.put(language, new HashMap<String, List<SkillDefinition>>());
 					}
-					naturalSkills.get(language).add(skill);
-					Collections.sort(naturalSkills.get(language));
+					if (naturalSkills.get(language).get(moduleName) == null) {
+						naturalSkills.get(language).put(moduleName, new ArrayList<SkillDefinition>());
+					}
+					naturalSkills.get(language).get(moduleName).add(skill);
+					Collections.sort(naturalSkills.get(language).get(moduleName));
 				} else {
 					if (learnedSkills.get(language) == null) {
-						learnedSkills.put(language, new ArrayList<SkillDefinition>());
+						learnedSkills.put(language, new HashMap<String, List<SkillDefinition>>());
 					}
-					learnedSkills.get(language).add(skill);
-					Collections.sort(learnedSkills.get(language));
+					if (learnedSkills.get(language).get(moduleName) == null) {
+						learnedSkills.get(language).put(moduleName, new ArrayList<SkillDefinition>());
+					}
+					learnedSkills.get(language).get(moduleName).add(skill);
+					Collections.sort(learnedSkills.get(language).get(moduleName));
 				}
 			}
 			Collections.sort(elements.get(language));
@@ -184,7 +208,7 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 			final String natural = translator.getNodeValue(skillId, NATURAL_SKILL_TAG);
 			skill.setNatural(Boolean.parseBoolean(natural));
 
-			classifySkillByGroup(skill, language);
+			classifySkillByGroup(skill, language, moduleName);
 
 			return skill;
 		} catch (Exception e) {
@@ -192,14 +216,18 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 		}
 	}
 
-	private synchronized void classifySkillByGroup(SkillDefinition skillDefintion, String language) {
+	private synchronized void classifySkillByGroup(SkillDefinition skillDefintion, String language, String moduleName) {
 		if (skillsByGroup.get(language) == null) {
-			skillsByGroup.put(language, new HashMap<SkillGroup, Set<SkillDefinition>>());
+			skillsByGroup.put(language, new HashMap<String, Map<SkillGroup, Set<SkillDefinition>>>());
 		}
-		if (skillsByGroup.get(language).get(skillDefintion.getSkillGroup()) == null) {
-			skillsByGroup.get(language).put(skillDefintion.getSkillGroup(), new HashSet<SkillDefinition>());
+		if (skillsByGroup.get(language).get(moduleName) == null) {
+			skillsByGroup.get(language).put(moduleName, new HashMap<SkillGroup, Set<SkillDefinition>>());
 		}
-		skillsByGroup.get(language).get(skillDefintion.getSkillGroup()).add(skillDefintion);
+		if (skillsByGroup.get(language).get(moduleName).get(skillDefintion.getSkillGroup()) == null) {
+			skillsByGroup.get(language).get(moduleName)
+					.put(skillDefintion.getSkillGroup(), new HashSet<SkillDefinition>());
+		}
+		skillsByGroup.get(language).get(moduleName).get(skillDefintion.getSkillGroup()).add(skillDefintion);
 	}
 
 	@Override

@@ -30,22 +30,23 @@ import org.testng.annotations.Test;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.blessings.BlessingFactory;
+import com.softwaremagico.tm.file.Path;
 
 @Test(groups = { "blessingFactory" })
 public class BlessingFactoryTests {
 	private static final String LANGUAGE = "es";
-	private static final String MODULE = "Fading Suns Revised Edition";
+
 	private static final int DEFINED_BLESSINGS = 97;
 	private static final int DEFINED_BONIFICATIONS_MISSING_EYE = 2;
 
 	@Test
 	public void readBlessings() throws InvalidXmlElementException {
-		Assert.assertEquals(DEFINED_BLESSINGS, BlessingFactory.getInstance().getElements(LANGUAGE, MODULE).size());
+		Assert.assertEquals(DEFINED_BLESSINGS, BlessingFactory.getInstance().getElements(LANGUAGE, Path.DEFAULT_MODULE_FOLDER).size());
 	}
 
 	@Test
 	public void multiplesBonifications() throws InvalidXmlElementException {
 		Assert.assertEquals(DEFINED_BONIFICATIONS_MISSING_EYE,
-				BlessingFactory.getInstance().getElement("missingEye", LANGUAGE, MODULE).getBonifications().size());
+				BlessingFactory.getInstance().getElement("missingEye", LANGUAGE, Path.DEFAULT_MODULE_FOLDER).getBonifications().size());
 	}
 }

@@ -50,10 +50,12 @@ public class RandomPartyDefinition extends RandomSelector<RandomPartyMember> {
 	private Map<RandomPartyMember, Integer> profilesAssigned = new HashMap<>();
 	// RandomParty id --> Threat
 	private Map<RandomPartyMember, Integer> threatByProfile = new HashMap<>();
+	private final String moduleName;
 
-	protected RandomPartyDefinition(RandomParty randomParty, int threatLevel, Set<IRandomPreference> preferences)
-			throws InvalidXmlElementException {
+	protected RandomPartyDefinition(RandomParty randomParty, int threatLevel, String moduleName,
+			Set<IRandomPreference> preferences) throws InvalidXmlElementException {
 		super(null, randomParty, preferences, new HashSet<RandomPartyMember>(), new HashSet<RandomPartyMember>());
+		this.moduleName = moduleName;
 		this.threatLevel = threatLevel;
 	}
 
@@ -93,7 +95,7 @@ public class RandomPartyDefinition extends RandomSelector<RandomPartyMember> {
 
 	public Party getParty() {
 		if (party == null) {
-			party = new Party(getElementWithRandomElements().getLanguage());
+			party = new Party(getElementWithRandomElements().getLanguage(), getModuleName());
 		}
 		return party;
 	}
@@ -155,7 +157,7 @@ public class RandomPartyDefinition extends RandomSelector<RandomPartyMember> {
 
 	private CharacterPlayer createCharacter(RandomPartyMember member) throws TooManyBlessingsException,
 			DuplicatedPreferenceException, InvalidXmlElementException, InvalidRandomElementSelectedException {
-		final CharacterPlayer characterPlayer = new CharacterPlayer(member.getLanguage());
+		final CharacterPlayer characterPlayer = new CharacterPlayer(member.getLanguage(), member.getModuleName());
 		final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, getPreferences(),
 				member.getRandomProfile());
 		randomizeCharacter.createCharacter();
@@ -191,5 +193,9 @@ public class RandomPartyDefinition extends RandomSelector<RandomPartyMember> {
 			return 1;
 		}
 		return member.getWeight();
+	}
+
+	public String getModuleName() {
+		return moduleName;
 	}
 }

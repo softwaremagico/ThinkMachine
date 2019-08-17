@@ -30,15 +30,16 @@ import org.testng.annotations.Test;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.equipment.shields.ShieldFactory;
+import com.softwaremagico.tm.file.Path;
 
 @Test(groups = { "shieldFactory" })
 public class ShieldFactoryTests {
 	private static final String LANGUAGE = "es";
-	private static final String MODULE = "Fading Suns Revised Edition";
 	private static final int DEFINED_SHIELDS = 4;
 
 	@Test
 	public void readDamages() throws InvalidXmlElementException {
-		Assert.assertEquals(DEFINED_SHIELDS, ShieldFactory.getInstance().getElements(LANGUAGE, MODULE).size());
+		Assert.assertEquals(DEFINED_SHIELDS,
+				ShieldFactory.getInstance().getElements(LANGUAGE, Path.DEFAULT_MODULE_FOLDER).size());
 	}
 }

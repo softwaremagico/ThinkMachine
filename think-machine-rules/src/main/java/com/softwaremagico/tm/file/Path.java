@@ -29,6 +29,7 @@ import java.io.File;
 public class Path {
 	private static final String APPLICATION_FOLDER = "think-machine";
 	public static final String MODULES_FOLDER = "modules";
+	public static final String DEFAULT_MODULE_FOLDER = "Fading Suns Revised Edition";
 	public static final String SKILLS_FOLDER = "skills";
 
 	private Path() {
@@ -54,11 +55,15 @@ public class Path {
 		return getRootPath() + "images" + File.separator;
 	}
 
+	public static String getDefaultModulesFolder() {
+		return getModulePath(null);
+	}
+
 	public static String getModulePath(String moduleName) {
 		if (moduleName == null) {
-			return getRootPath() + MODULES_FOLDER + File.separator;
+			return  MODULES_FOLDER + File.separator;
 		}
-		return getRootPath() + MODULES_FOLDER + File.separator + moduleName + File.separator;
+		return MODULES_FOLDER + File.separator + moduleName + File.separator;
 	}
 
 	public static String getBackgroundPath() {

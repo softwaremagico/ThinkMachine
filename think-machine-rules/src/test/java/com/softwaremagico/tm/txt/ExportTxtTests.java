@@ -40,17 +40,17 @@ import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
 import com.softwaremagico.tm.character.cybernetics.RequiredCyberneticDevicesException;
 import com.softwaremagico.tm.character.cybernetics.TooManyCyberneticDevicesException;
 import com.softwaremagico.tm.characters.CustomCharacter;
+import com.softwaremagico.tm.file.Path;
 
 @Test(groups = { "exportTxt" })
 public class ExportTxtTests {
 	private static final String LANGUAGE = "es";
-	private static final String MODULE = "Fading Suns Revised Edition";
 
 	@Test
 	private void checkCustomCharacter() throws TooManyBlessingsException, InvalidXmlElementException, IOException,
 			URISyntaxException, TooManyCyberneticDevicesException, RequiredCyberneticDevicesException,
 			BlessingAlreadyAddedException, BeneficeAlreadyAddedException {
-		final CharacterPlayer player = CustomCharacter.create(LANGUAGE, MODULE);
+		final CharacterPlayer player = CustomCharacter.create(LANGUAGE, Path.DEFAULT_MODULE_FOLDER);
 		final CharacterSheet characterSheet = new CharacterSheet(player);
 
 		final String text = new String(Files.readAllBytes(Paths.get(getClass().getClassLoader()

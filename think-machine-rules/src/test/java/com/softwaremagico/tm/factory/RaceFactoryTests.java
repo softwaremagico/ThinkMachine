@@ -30,15 +30,16 @@ import org.testng.annotations.Test;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.races.RaceFactory;
+import com.softwaremagico.tm.file.Path;
 
 @Test(groups = { "raceFactory" })
 public class RaceFactoryTests {
 	private static final String LANGUAGE = "en";
-	private static final String MODULE = "Fading Suns Revised Edition";
 	private static final int DEFINED_RACES = 4;
 
 	@Test
 	public void readRaces() throws InvalidXmlElementException {
-		Assert.assertEquals(DEFINED_RACES, RaceFactory.getInstance().getElements(LANGUAGE, MODULE).size());
+		Assert.assertEquals(DEFINED_RACES, RaceFactory.getInstance().getElements(LANGUAGE, Path.DEFAULT_MODULE_FOLDER)
+				.size());
 	}
 }

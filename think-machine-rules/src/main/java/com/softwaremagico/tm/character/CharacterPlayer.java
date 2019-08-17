@@ -137,10 +137,6 @@ public class CharacterPlayer {
 
 	private int experience = 0;
 
-	public CharacterPlayer(String moduleName) {
-		this("en", moduleName);
-	}
-
 	public CharacterPlayer(String language, String moduleName) {
 		this.language = language;
 		this.moduleName = moduleName;
@@ -179,7 +175,7 @@ public class CharacterPlayer {
 	private void initializeCharacteristics() {
 		characteristics = new HashMap<String, Characteristic>();
 		for (final CharacteristicDefinition characteristicDefinition : CharacteristicsDefinitionFactory.getInstance()
-				.getAll(language)) {
+				.getAll(getLanguage(), getModuleName())) {
 			characteristics.put(characteristicDefinition.getId(), new Characteristic(characteristicDefinition));
 		}
 	}
@@ -227,17 +223,17 @@ public class CharacterPlayer {
 			return getValue(CharacteristicName.DEXTERITY)
 					+ getValue(CharacteristicName.WITS)
 					+ getBlessingModificationAlways(CharacteristicsDefinitionFactory.getInstance().get(
-							characteristicName, language));
+							characteristicName, getLanguage(), getModuleName()));
 		}
 		if (CharacteristicName.DEFENSE.equals(characteristicName)) {
 			return getStartingValue(characteristicName)
 					+ getBlessingModificationAlways(CharacteristicsDefinitionFactory.getInstance().get(
-							characteristicName, language));
+							characteristicName, getLanguage(), getModuleName()));
 		}
 		if (CharacteristicName.MOVEMENT.equals(characteristicName)) {
 			return getStartingValue(characteristicName)
 					+ getBlessingModificationAlways(CharacteristicsDefinitionFactory.getInstance().get(
-							characteristicName, language));
+							characteristicName, getLanguage(), getModuleName()));
 		}
 		Integer value = characteristics.get(characteristicName.getId()).getValue();
 
@@ -246,7 +242,7 @@ public class CharacterPlayer {
 
 		// Add modifications always applied.
 		value += getBlessingModificationAlways(CharacteristicsDefinitionFactory.getInstance().get(characteristicName,
-				language));
+				getLanguage(), getModuleName()));
 
 		return value;
 	}
@@ -279,7 +275,7 @@ public class CharacterPlayer {
 
 	private Integer getSkillAssignedRanks(Skill<?> skill) {
 		if (skills.get(skill.getUniqueId()) == null) {
-			if (SkillsDefinitionsFactory.getInstance().isNaturalSkill(skill.getName(), language)) {
+			if (SkillsDefinitionsFactory.getInstance().isNaturalSkill(skill.getName(), getLanguage(), getModuleName())) {
 				return FreeStyleCharacterCreation.getMinInitialNaturalSkillsValues(getInfo().getAge());
 			}
 			return 0;
@@ -691,7 +687,8 @@ public class CharacterPlayer {
 	public List<AvailableSkill> getNaturalSkills() throws InvalidXmlElementException {
 		final List<AvailableSkill> naturalSkills = new ArrayList<>();
 		// Adds default planet and faction.
-		for (final AvailableSkill skill : AvailableSkillsFactory.getInstance().getNaturalSkills(language)) {
+		for (final AvailableSkill skill : AvailableSkillsFactory.getInstance().getNaturalSkills(getLanguage(),
+				getModuleName())) {
 			if (skill.getSkillDefinition().getId().equals(SkillDefinition.PLANETARY_LORE_ID)) {
 				if (getInfo().getPlanet() != null) {
 					skill.setSpecialization(new Specialization(getInfo().getPlanet().getName().toLowerCase(), getInfo()
@@ -710,7 +707,8 @@ public class CharacterPlayer {
 
 	public List<AvailableSkill> getLearnedSkills() throws InvalidXmlElementException {
 		final List<AvailableSkill> learnedSkills = new ArrayList<>();
-		for (final AvailableSkill skill : AvailableSkillsFactory.getInstance().getLearnedSkills(language)) {
+		for (final AvailableSkill skill : AvailableSkillsFactory.getInstance().getLearnedSkills(getLanguage(),
+				getModuleName())) {
 			if (getSkillTotalRanks(skill) != null) {
 				learnedSkills.add(skill);
 			}
@@ -766,11 +764,13 @@ public class CharacterPlayer {
 	 */
 	public int getSkillsTotalPoints() throws InvalidXmlElementException {
 		int skillPoints = 0;
-		for (final AvailableSkill skill : AvailableSkillsFactory.getInstance().getNaturalSkills(getLanguage())) {
+		for (final AvailableSkill skill : AvailableSkillsFactory.getInstance().getNaturalSkills(getLanguage(),
+				getModuleName())) {
 			skillPoints += getSkillAssignedRanks(skill) - getStartingValue(skill);
 		}
 
-		for (final AvailableSkill skill : AvailableSkillsFactory.getInstance().getLearnedSkills((getLanguage()))) {
+		for (final AvailableSkill skill : AvailableSkillsFactory.getInstance().getLearnedSkills(getLanguage(),
+				getModuleName())) {
 			if (isSkillSpecial(skill)) {
 				continue;
 			}
@@ -1047,11 +1047,11 @@ public class CharacterPlayer {
 
 	public boolean hasCharacteristicTemporalModificator(CharacteristicName characteristicName) {
 		if (getBlessingModificationSituation(CharacteristicsDefinitionFactory.getInstance().get(characteristicName,
-				getLanguage())) != 0) {
+				getLanguage(), getModuleName())) != 0) {
 			return true;
 		}
 		if (getCyberneticsModificationSituation(CharacteristicsDefinitionFactory.getInstance().get(characteristicName,
-				getLanguage())) != 0) {
+				getLanguage(), getModuleName())) != 0) {
 			return true;
 		}
 		return false;
@@ -1059,11 +1059,11 @@ public class CharacterPlayer {
 
 	public boolean hasCharacteristicModificator(CharacteristicName characteristicName) {
 		if (getBlessingModificationAlways(CharacteristicsDefinitionFactory.getInstance().get(characteristicName,
-				getLanguage())) != 0) {
+				getLanguage(), getModuleName())) != 0) {
 			return true;
 		}
 		if (getCyberneticsModificationAlways(CharacteristicsDefinitionFactory.getInstance().get(characteristicName,
-				getLanguage())) != 0) {
+				getLanguage(), getModuleName())) != 0) {
 			return true;
 		}
 		return false;
@@ -1131,7 +1131,7 @@ public class CharacterPlayer {
 	public int getRanksAssigned(SkillGroup skillGroup) throws InvalidXmlElementException {
 		int ranks = 0;
 		for (final AvailableSkill skill : AvailableSkillsFactory.getInstance().getSkillsByGroup(skillGroup,
-				getLanguage())) {
+				getLanguage(), getModuleName())) {
 			ranks += getSkillAssignedRanks(skill);
 			if (skill.getSkillDefinition().isNatural()) {
 				ranks -= FreeStyleCharacterCreation.getMinInitialNaturalSkillsValues(getInfo().getAge());

@@ -30,14 +30,15 @@ import org.testng.annotations.Test;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.characteristics.CharacteristicsDefinitionFactory;
+import com.softwaremagico.tm.file.Path;
 
 @Test(groups = { "characteristicsFactory" })
 public class CharacteristicsDefinitionFactoryTests {
 	private static final String LANGUAGE = "es";
-	private static final String MODULE = "Fading Suns Revised Edition";
 
 	@Test
 	public void readCharacteristics() throws InvalidXmlElementException {
-		Assert.assertEquals(12, CharacteristicsDefinitionFactory.getInstance().getElements(LANGUAGE, MODULE).size());
+		Assert.assertEquals(12,
+				CharacteristicsDefinitionFactory.getInstance().getElements(LANGUAGE, Path.DEFAULT_MODULE_FOLDER).size());
 	}
 }

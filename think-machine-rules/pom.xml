@@ -21,7 +21,8 @@
 	<build>
 		<resources>
 			<resource>
-				<directory>../translations</directory>
+				<directory>../modules</directory>
+				<targetPath>modules/</targetPath>
 			</resource>
 		</resources>
 		<plugins>

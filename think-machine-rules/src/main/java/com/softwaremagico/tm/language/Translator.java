@@ -75,12 +75,14 @@ public class Translator implements ITranslator {
 	private static Document parseFile(Document usedDoc, String filePath) {
 		final DocumentBuilderFactory dbf;
 		final DocumentBuilder db;
+
 		try {
-			final File file = new File(filePath);
 			dbf = DocumentBuilderFactory.newInstance();
 			db = dbf.newDocumentBuilder();
-			usedDoc = db.parse(file);
+			usedDoc = db.parse(Translator.class.getClassLoader().getResource(filePath).openStream());
 			usedDoc.getDocumentElement().normalize();
+		} catch (NullPointerException e) {
+			MachineLog.severe(Translator.class.getName(), "Invalud xml at resource '" + filePath + "'.");
 		} catch (SAXParseException ex) {
 			final String text = "Parsing error" + ".\n Line: " + ex.getLineNumber() + "\nUri: " + ex.getSystemId()
 					+ "\nMessage: " + ex.getMessage();
@@ -444,7 +446,7 @@ public class Translator implements ITranslator {
 		if (languagesList == null) {
 			languagesList = new ArrayList<>();
 			Document storedLanguages = null;
-			storedLanguages = parseFile(storedLanguages, getTranslatorPath(LANGUAGES_FILE, null).getPath());
+			storedLanguages = parseFile(storedLanguages, Path.getModulePath(null) + LANGUAGES_FILE);
 			final NodeList nodeLst = storedLanguages.getElementsByTagName("languages");
 			for (int s = 0; s < nodeLst.getLength(); s++) {
 				final Node fstNode = nodeLst.item(s);
@@ -464,11 +466,6 @@ public class Translator implements ITranslator {
 
 	public static File getTranslatorPath(String xmlFile, String moduleName) {
 		File file = new File(Path.getModulePath(moduleName) + xmlFile);
-		if (file.exists()) {
-			// Get from folder
-			return file;
-		}
-		file = new File(".." + File.separator + Path.getModulePath(moduleName) + xmlFile);
 		if (file.exists()) {
 			// Get from folder
 			return file;

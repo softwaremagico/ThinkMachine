@@ -30,21 +30,23 @@ import org.testng.annotations.Test;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.planets.PlanetFactory;
+import com.softwaremagico.tm.file.Path;
 
 @Test(groups = { "planetsFactory" })
 public class PlanetsFactoryTests {
 	private static final String LANGUAGE = "en";
-	private static final String MODULE = "Fading Suns Revised Edition";
+
 	private static final int DEFINED_PLANETS = 37;
 
 	@Test
 	public void readPlanets() throws InvalidXmlElementException {
-		Assert.assertEquals(DEFINED_PLANETS, PlanetFactory.getInstance().getElements(LANGUAGE, MODULE).size());
+		Assert.assertEquals(DEFINED_PLANETS,
+				PlanetFactory.getInstance().getElements(LANGUAGE, Path.DEFAULT_MODULE_FOLDER).size());
 	}
 
 	@Test
 	public void readPlanetsFactions() throws InvalidXmlElementException {
-		Assert.assertEquals(3, PlanetFactory.getInstance().getElement("stigmata", LANGUAGE, MODULE).getFactions()
-				.size());
+		Assert.assertEquals(3, PlanetFactory.getInstance().getElement("stigmata", LANGUAGE, Path.DEFAULT_MODULE_FOLDER)
+				.getFactions().size());
 	}
 }

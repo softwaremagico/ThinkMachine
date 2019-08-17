@@ -42,17 +42,18 @@ import com.softwaremagico.tm.character.occultism.OccultismTypeFactory;
 import com.softwaremagico.tm.character.races.InvalidRaceException;
 import com.softwaremagico.tm.character.races.RaceFactory;
 import com.softwaremagico.tm.characters.CustomCharacter;
+import com.softwaremagico.tm.file.Path;
 
 @Test(groups = { "occultism" })
 public class OccultismTests {
 	private static final String LANGUAGE = "es";
-	private static final String MODULE = "Fading Suns Revised Edition";
+
 
 	@Test(expectedExceptions = { InvalidPowerLevelException.class })
 	public void cannotAddPowersIncorrectPsiqueLevel() throws InvalidXmlElementException, TooManyBlessingsException,
 			TooManyCyberneticDevicesException, RequiredCyberneticDevicesException, BlessingAlreadyAddedException,
 			BeneficeAlreadyAddedException {
-		final CharacterPlayer player = CustomCharacter.create(LANGUAGE, MODULE);
+		final CharacterPlayer player = CustomCharacter.create(LANGUAGE, Path.DEFAULT_MODULE_FOLDER);
 		player.addOccultismPower(OccultismPathFactory.getInstance()
 				.getElement("psyche", player.getLanguage(), player.getModuleName()).getOccultismPowers().get("emote"));
 	}
@@ -61,7 +62,7 @@ public class OccultismTests {
 	public void cannotAddPowersIncorrectPathLevel() throws InvalidXmlElementException, TooManyBlessingsException,
 			TooManyCyberneticDevicesException, RequiredCyberneticDevicesException, BlessingAlreadyAddedException,
 			BeneficeAlreadyAddedException {
-		final CharacterPlayer player = CustomCharacter.create(LANGUAGE, MODULE);
+		final CharacterPlayer player = CustomCharacter.create(LANGUAGE, Path.DEFAULT_MODULE_FOLDER);
 		player.addOccultismPower(OccultismPathFactory.getInstance()
 				.getElement("farHand", player.getLanguage(), player.getModuleName()).getOccultismPowers()
 				.get("farWall"));
@@ -71,7 +72,7 @@ public class OccultismTests {
 	public void canAddPowersWithMissingLevels() throws InvalidXmlElementException, TooManyBlessingsException,
 			TooManyCyberneticDevicesException, RequiredCyberneticDevicesException, BlessingAlreadyAddedException,
 			BeneficeAlreadyAddedException {
-		final CharacterPlayer player = CustomCharacter.create(LANGUAGE, MODULE);
+		final CharacterPlayer player = CustomCharacter.create(LANGUAGE, Path.DEFAULT_MODULE_FOLDER);
 		player.setPsiqueLevel(OccultismTypeFactory.getPsi(player.getLanguage(), player.getModuleName()), 6);
 		player.addOccultismPower(OccultismPathFactory.getInstance()
 				.getElement("farHand", player.getLanguage(), player.getModuleName()).getOccultismPowers()
@@ -82,7 +83,7 @@ public class OccultismTests {
 	public void cannotAddPowerOfDifferentFaction() throws TooManyBlessingsException, InvalidXmlElementException,
 			TooManyCyberneticDevicesException, RequiredCyberneticDevicesException, BlessingAlreadyAddedException,
 			BeneficeAlreadyAddedException {
-		final CharacterPlayer player = CustomCharacter.create(LANGUAGE, MODULE);
+		final CharacterPlayer player = CustomCharacter.create(LANGUAGE, Path.DEFAULT_MODULE_FOLDER);
 		player.setPsiqueLevel(OccultismTypeFactory.getTheurgy(player.getLanguage(), player.getModuleName()), 5);
 		player.addOccultismPower(OccultismPathFactory.getInstance()
 				.getElement("orthodoxRituals", player.getLanguage(), player.getModuleName()).getOccultismPowers()
@@ -91,10 +92,10 @@ public class OccultismTests {
 
 	@Test(expectedExceptions = { InvalidPsiqueLevelException.class })
 	public void voroxCannotHavePsiqueLevel() throws InvalidRaceException, InvalidXmlElementException {
-		final CharacterPlayer player = new CharacterPlayer(LANGUAGE, MODULE);
-		player.setRace(RaceFactory.getInstance().getElement("vorox", LANGUAGE, MODULE));
-		player.setFaction(FactionsFactory.getInstance().getElement("vorox", LANGUAGE, MODULE));
-		player.setPsiqueLevel(OccultismTypeFactory.getPsi(LANGUAGE, MODULE), 1);
+		final CharacterPlayer player = new CharacterPlayer(LANGUAGE, Path.DEFAULT_MODULE_FOLDER);
+		player.setRace(RaceFactory.getInstance().getElement("vorox", LANGUAGE, Path.DEFAULT_MODULE_FOLDER));
+		player.setFaction(FactionsFactory.getInstance().getElement("vorox", LANGUAGE, Path.DEFAULT_MODULE_FOLDER));
+		player.setPsiqueLevel(OccultismTypeFactory.getPsi(LANGUAGE, Path.DEFAULT_MODULE_FOLDER), 1);
 	}
 
 }

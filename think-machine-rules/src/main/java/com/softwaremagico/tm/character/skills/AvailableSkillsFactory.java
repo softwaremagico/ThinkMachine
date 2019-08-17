@@ -58,14 +58,14 @@ public class AvailableSkillsFactory {
 		skillsByGroup = new HashMap<>();
 	}
 
-	public Set<AvailableSkill> getSkillsByGroup(SkillGroup skillGroup, String language)
+	public Set<AvailableSkill> getSkillsByGroup(SkillGroup skillGroup, String language, String moduleName)
 			throws InvalidXmlElementException {
 		if (skillsByGroup == null || skillsByGroup.isEmpty() || skillsByGroup.get(language) == null
 				|| skillsByGroup.get(language).isEmpty()) {
-			for (final AvailableSkill availableNaturalSkill : getNaturalSkills(language)) {
+			for (final AvailableSkill availableNaturalSkill : getNaturalSkills(language, moduleName)) {
 				classifySkillByGroup(availableNaturalSkill, language);
 			}
-			for (final AvailableSkill availableLearnedSkill : getLearnedSkills(language)) {
+			for (final AvailableSkill availableLearnedSkill : getLearnedSkills(language, moduleName)) {
 				classifySkillByGroup(availableLearnedSkill, language);
 			}
 		}
@@ -76,7 +76,7 @@ public class AvailableSkillsFactory {
 		return skillsByGroup.get(language).get(skillGroup);
 	}
 
-	public List<AvailableSkill> getNaturalSkills(String language) throws InvalidXmlElementException {
+	public List<AvailableSkill> getNaturalSkills(String language, String moduleName) throws InvalidXmlElementException {
 		if (naturalSkills.get(language) == null) {
 			naturalSkills.put(language, new ArrayList<AvailableSkill>());
 		}
@@ -85,7 +85,7 @@ public class AvailableSkillsFactory {
 				elements.put(language, new ArrayList<AvailableSkill>());
 			}
 			for (final SkillDefinition skillDefinition : SkillsDefinitionsFactory.getInstance().getNaturalSkills(
-					language)) {
+					language, moduleName)) {
 				final Set<AvailableSkill> skills = createElement(skillDefinition);
 
 				naturalSkills.get(language).addAll(skills);
@@ -97,7 +97,7 @@ public class AvailableSkillsFactory {
 		return naturalSkills.get(language);
 	}
 
-	public List<AvailableSkill> getLearnedSkills(String language) throws InvalidXmlElementException {
+	public List<AvailableSkill> getLearnedSkills(String language, String moduleName) throws InvalidXmlElementException {
 		if (learnedSkills.get(language) == null) {
 			learnedSkills.put(language, new ArrayList<AvailableSkill>());
 		}
@@ -106,7 +106,7 @@ public class AvailableSkillsFactory {
 				elements.put(language, new ArrayList<AvailableSkill>());
 			}
 			for (final SkillDefinition skillDefinition : SkillsDefinitionsFactory.getInstance().getLearnedSkills(
-					language)) {
+					language, moduleName)) {
 				final Set<AvailableSkill> skills = createElement(skillDefinition);
 				learnedSkills.get(language).addAll(skills);
 				elements.get(language).addAll(skills);
@@ -139,7 +139,7 @@ public class AvailableSkillsFactory {
 
 	public AvailableSkill getElement(String elementId, String specializationId, String language, String moduleName)
 			throws InvalidXmlElementException {
-		for (final AvailableSkill element : getElements(language)) {
+		for (final AvailableSkill element : getElements(language, moduleName)) {
 			if (element.getId() != null) {
 				if (Objects.equals(element.getId().toLowerCase(), elementId.toLowerCase())) {
 					if (element.getSpecialization() == null) {
@@ -162,25 +162,25 @@ public class AvailableSkillsFactory {
 		}
 	}
 
-	private List<AvailableSkill> getElements(String language) throws InvalidXmlElementException {
+	private List<AvailableSkill> getElements(String language, String moduleName) throws InvalidXmlElementException {
 		if (elements.get(language) == null) {
 			elements.put(language, new ArrayList<AvailableSkill>());
 			// Initialize values
-			getNaturalSkills(language);
-			getLearnedSkills(language);
+			getNaturalSkills(language, moduleName);
+			getLearnedSkills(language, moduleName);
 		}
 		return elements.get(language);
 	}
 
-	public List<AvailableSkill> getAvailableSkills(SkillDefinition skillDefinition, String language)
+	public List<AvailableSkill> getAvailableSkills(SkillDefinition skillDefinition, String language, String moduleName)
 			throws InvalidXmlElementException {
 		final List<AvailableSkill> availableSkills = new ArrayList<>();
-		for (final AvailableSkill availableSkill : getNaturalSkills(language)) {
+		for (final AvailableSkill availableSkill : getNaturalSkills(language, moduleName)) {
 			if (Objects.equals(availableSkill.getSkillDefinition(), skillDefinition)) {
 				availableSkills.add(availableSkill);
 			}
 		}
-		for (final AvailableSkill availableSkill : getLearnedSkills(language)) {
+		for (final AvailableSkill availableSkill : getLearnedSkills(language, moduleName)) {
 			if (Objects.equals(availableSkill.getSkillDefinition(), skillDefinition)) {
 				availableSkills.add(availableSkill);
 			}

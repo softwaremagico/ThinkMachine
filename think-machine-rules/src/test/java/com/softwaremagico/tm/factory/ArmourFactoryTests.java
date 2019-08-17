@@ -29,36 +29,39 @@ import org.testng.annotations.Test;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.equipment.armours.ArmourFactory;
+import com.softwaremagico.tm.file.Path;
 
 @Test(groups = { "armourFactory" })
 public class ArmourFactoryTests {
-
 	private static final int DEFINED_ARMOURS = 30;
 	private static final String LANGUAGE = "es";
-	private static final String MODULE = "Fading Suns Revised Edition";
 
 	@Test
 	public void readArmours() throws InvalidXmlElementException {
-		Assert.assertEquals(ArmourFactory.getInstance().getElements(LANGUAGE, MODULE).size(), DEFINED_ARMOURS);
+		Assert.assertEquals(ArmourFactory.getInstance().getElements(LANGUAGE, Path.DEFAULT_MODULE_FOLDER).size(),
+				DEFINED_ARMOURS);
 	}
 
 	@Test
 	public void readArmoursSpecifications() throws InvalidXmlElementException {
-		Assert.assertEquals(ArmourFactory.getInstance().getElement("adeptRobes", LANGUAGE, MODULE).getSpecifications()
-				.size(), 7);
+		Assert.assertEquals(ArmourFactory.getInstance().getElement("adeptRobes", LANGUAGE, Path.DEFAULT_MODULE_FOLDER)
+				.getSpecifications().size(), 7);
 	}
 
 	@Test
 	public void readShieldsOfArmour() throws InvalidXmlElementException {
-		Assert.assertEquals(ArmourFactory.getInstance().getElement("synthsilk", LANGUAGE, MODULE).getAllowedShields().size(), 4);
-		Assert.assertEquals(ArmourFactory.getInstance().getElement("adeptRobes", LANGUAGE, MODULE).getAllowedShields().size(),
-				1);
+		Assert.assertEquals(ArmourFactory.getInstance().getElement("synthsilk", LANGUAGE, Path.DEFAULT_MODULE_FOLDER)
+				.getAllowedShields().size(), 4);
+		Assert.assertEquals(ArmourFactory.getInstance().getElement("adeptRobes", LANGUAGE, Path.DEFAULT_MODULE_FOLDER)
+				.getAllowedShields().size(), 1);
 	}
 
 	@Test
 	public void readDamagesOfArmour() throws InvalidXmlElementException {
-		Assert.assertEquals(ArmourFactory.getInstance().getElement("ceramsteelExoframe", LANGUAGE, MODULE).getDamageTypes()
-				.size(), 4);
-		Assert.assertEquals(ArmourFactory.getInstance().getElement("spacesuit", LANGUAGE, MODULE).getDamageTypes().size(), 4);
+		Assert.assertEquals(
+				ArmourFactory.getInstance().getElement("ceramsteelExoframe", LANGUAGE, Path.DEFAULT_MODULE_FOLDER)
+						.getDamageTypes().size(), 4);
+		Assert.assertEquals(ArmourFactory.getInstance().getElement("spacesuit", LANGUAGE, Path.DEFAULT_MODULE_FOLDER)
+				.getDamageTypes().size(), 4);
 	}
 }

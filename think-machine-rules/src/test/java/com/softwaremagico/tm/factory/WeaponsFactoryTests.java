@@ -32,71 +32,72 @@ import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.equipment.weapons.AccessoryFactory;
 import com.softwaremagico.tm.character.equipment.weapons.AmmunitionFactory;
 import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
+import com.softwaremagico.tm.file.Path;
 
 @Test(groups = { "weaponsFactory" })
 public class WeaponsFactoryTests {
 	private static final String LANGUAGE = "es";
-	private static final String MODULE = "Fading Suns Revised Edition";
+
 
 	@Test
 	public void readWeapons() throws InvalidXmlElementException {
-		Assert.assertTrue(WeaponFactory.getInstance().getElements(LANGUAGE, MODULE).size() > 90);
+		Assert.assertTrue(WeaponFactory.getInstance().getElements(LANGUAGE, Path.DEFAULT_MODULE_FOLDER).size() > 90);
 	}
 
 	@Test
 	public void readAmmunition() throws InvalidXmlElementException {
-		Assert.assertTrue(AmmunitionFactory.getInstance().getElements(LANGUAGE, MODULE).size() > 0);
+		Assert.assertTrue(AmmunitionFactory.getInstance().getElements(LANGUAGE, Path.DEFAULT_MODULE_FOLDER).size() > 0);
 	}
 
 	@Test
 	public void readAccessory() throws InvalidXmlElementException {
-		Assert.assertTrue(AccessoryFactory.getInstance().getElements(LANGUAGE, MODULE).size() > 0);
+		Assert.assertTrue(AccessoryFactory.getInstance().getElements(LANGUAGE, Path.DEFAULT_MODULE_FOLDER).size() > 0);
 	}
 
 	@Test
 	public void checkShotgun() throws InvalidXmlElementException {
-		Assert.assertEquals(1, WeaponFactory.getInstance().getElement("typicalShotgun", LANGUAGE, MODULE)
+		Assert.assertEquals(1, WeaponFactory.getInstance().getElement("typicalShotgun", LANGUAGE, Path.DEFAULT_MODULE_FOLDER)
 				.getAmmunitions().size());
 	}
 
 	@Test
 	public void checkBasicHuntingRifle() throws InvalidXmlElementException {
-		Assert.assertEquals(3, WeaponFactory.getInstance().getElement("basicHuntingRifle", LANGUAGE, MODULE)
+		Assert.assertEquals(3, WeaponFactory.getInstance().getElement("basicHuntingRifle", LANGUAGE, Path.DEFAULT_MODULE_FOLDER)
 				.getAccesories().size());
 	}
 
 	@Test
 	public void checkRandomModifications() throws InvalidXmlElementException {
-		Assert.assertEquals(0.01d, WeaponFactory.getInstance().getElement("arbata", LANGUAGE, MODULE)
+		Assert.assertEquals(0.01d, WeaponFactory.getInstance().getElement("arbata", LANGUAGE, Path.DEFAULT_MODULE_FOLDER)
 				.getRandomDefinition().getProbabilityMultiplier());
 	}
 
 	@Test
 	public void getMainDamage() throws InvalidXmlElementException {
-		Assert.assertEquals(6, WeaponFactory.getInstance().getElement("arbata", LANGUAGE, MODULE).getMainDamage());
-		Assert.assertEquals(8, WeaponFactory.getInstance().getElement("typicalShotgun", LANGUAGE, MODULE)
+		Assert.assertEquals(6, WeaponFactory.getInstance().getElement("arbata", LANGUAGE, Path.DEFAULT_MODULE_FOLDER).getMainDamage());
+		Assert.assertEquals(8, WeaponFactory.getInstance().getElement("typicalShotgun", LANGUAGE, Path.DEFAULT_MODULE_FOLDER)
 				.getMainDamage());
-		Assert.assertEquals(12, WeaponFactory.getInstance().getElement("wireGrenade", LANGUAGE, MODULE).getMainDamage());
+		Assert.assertEquals(12, WeaponFactory.getInstance().getElement("wireGrenade", LANGUAGE, Path.DEFAULT_MODULE_FOLDER).getMainDamage());
 	}
 
 	@Test
 	public void getAreaDamage() throws InvalidXmlElementException {
-		Assert.assertEquals(1, WeaponFactory.getInstance().getElement("goboLobberJetPistol", LANGUAGE, MODULE)
+		Assert.assertEquals(1, WeaponFactory.getInstance().getElement("goboLobberJetPistol", LANGUAGE, Path.DEFAULT_MODULE_FOLDER)
 				.getAreaMeters());
-		Assert.assertEquals(2, WeaponFactory.getInstance().getElement("goboGarbageChucker", LANGUAGE, MODULE)
+		Assert.assertEquals(2, WeaponFactory.getInstance().getElement("goboGarbageChucker", LANGUAGE, Path.DEFAULT_MODULE_FOLDER)
 				.getAreaMeters());
-		Assert.assertEquals(3, WeaponFactory.getInstance().getElement("musterNightstorm", LANGUAGE, MODULE)
+		Assert.assertEquals(3, WeaponFactory.getInstance().getElement("musterNightstorm", LANGUAGE, Path.DEFAULT_MODULE_FOLDER)
 				.getAreaMeters());
-		Assert.assertEquals(5, WeaponFactory.getInstance().getElement("fragGrenades", LANGUAGE, MODULE).getAreaMeters());
+		Assert.assertEquals(5, WeaponFactory.getInstance().getElement("fragGrenades", LANGUAGE, Path.DEFAULT_MODULE_FOLDER).getAreaMeters());
 	}
 
 	@Test
 	public void getDamageWithoutArea() throws InvalidXmlElementException {
-		Assert.assertEquals("3", WeaponFactory.getInstance().getElement("blastPellet", LANGUAGE, MODULE)
+		Assert.assertEquals("3", WeaponFactory.getInstance().getElement("blastPellet", LANGUAGE, Path.DEFAULT_MODULE_FOLDER)
 				.getDamageWithoutArea());
-		Assert.assertEquals("6", WeaponFactory.getInstance().getElement("blastPelletHeavy", LANGUAGE, MODULE)
+		Assert.assertEquals("6", WeaponFactory.getInstance().getElement("blastPelletHeavy", LANGUAGE, Path.DEFAULT_MODULE_FOLDER)
 				.getDamageWithoutArea());
-		Assert.assertEquals("12", WeaponFactory.getInstance().getElement("fragGrenades", LANGUAGE, MODULE)
+		Assert.assertEquals("12", WeaponFactory.getInstance().getElement("fragGrenades", LANGUAGE, Path.DEFAULT_MODULE_FOLDER)
 				.getDamageWithoutArea());
 	}
 

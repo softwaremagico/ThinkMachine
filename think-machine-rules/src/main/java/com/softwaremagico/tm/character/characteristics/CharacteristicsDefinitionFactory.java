@@ -46,7 +46,7 @@ public class CharacteristicsDefinitionFactory extends XmlFactory<CharacteristicD
 	private static final String ABBREVIATURE = "abbreviature";
 	private static final String TYPE = "type";
 
-	private Map<String, Map<CharacteristicType, List<CharacteristicDefinition>>> characteristics;
+	private Map<String, Map<String, Map<CharacteristicType, List<CharacteristicDefinition>>>> characteristics;
 
 	private static class CharacteristicsDefinitionFactoryInit {
 		public static final CharacteristicsDefinitionFactory INSTANCE = new CharacteristicsDefinitionFactory();
@@ -66,27 +66,34 @@ public class CharacteristicsDefinitionFactory extends XmlFactory<CharacteristicD
 	protected void initialize() {
 		super.initialize();
 
-		for (final String module : FileManager.getAvailableModules()) {
-			final List<Language> languages = getTranslator(module).getAvailableLanguages();
+		for (final String moduleName : FileManager.getAvailableModules()) {
+			final List<Language> languages = getTranslator(moduleName).getAvailableLanguages();
 			for (final Language language : languages) {
 				final List<CharacteristicDefinition> characteristicsDefinitions;
 				try {
-					characteristicsDefinitions = getElements(language.getAbbreviature(), module);
+					characteristicsDefinitions = getElements(language.getAbbreviature(), moduleName);
 					if (characteristics == null) {
 						characteristics = new HashMap<>();
 					}
 					if (characteristics.get(language.getAbbreviature()) == null) {
 						characteristics.put(language.getAbbreviature(),
+								new HashMap<String, Map<CharacteristicType, List<CharacteristicDefinition>>>());
+					}
+					if (characteristics.get(language.getAbbreviature()).get(moduleName) == null) {
+						characteristics.get(language.getAbbreviature()).put(moduleName,
 								new HashMap<CharacteristicType, List<CharacteristicDefinition>>());
 					}
 					for (final CharacteristicDefinition characteristicsDefinition : characteristicsDefinitions) {
-						if (characteristics.get(language.getAbbreviature()).get(characteristicsDefinition.getType()) == null) {
-							characteristics.get(language.getAbbreviature()).put(characteristicsDefinition.getType(),
-									new ArrayList<CharacteristicDefinition>());
+						if (characteristics.get(language.getAbbreviature()).get(moduleName)
+								.get(characteristicsDefinition.getType()) == null) {
+							characteristics
+									.get(language.getAbbreviature())
+									.get(moduleName)
+									.put(characteristicsDefinition.getType(), new ArrayList<CharacteristicDefinition>());
 						}
 
-						characteristics.get(language.getAbbreviature()).get(characteristicsDefinition.getType())
-								.add(characteristicsDefinition);
+						characteristics.get(language.getAbbreviature()).get(moduleName)
+								.get(characteristicsDefinition.getType()).add(characteristicsDefinition);
 					}
 				} catch (InvalidXmlElementException e) {
 					MachineLog.errorMessage(this.getClass().getName(), e);
@@ -129,21 +136,38 @@ public class CharacteristicsDefinitionFactory extends XmlFactory<CharacteristicD
 		return characteristic;
 	}
 
-	public Set<CharacteristicDefinition> getAll(String language) {
+	public Set<CharacteristicDefinition> getAll(String language, String moduleName) {
 		final Set<CharacteristicDefinition> allCharacteristics = new HashSet<>();
-		for (final List<CharacteristicDefinition> characteristicsByType : characteristics.get(language).values()) {
+		for (final List<CharacteristicDefinition> characteristicsByType : getCharacteristics(language, moduleName)
+				.values()) {
 			allCharacteristics.addAll(characteristicsByType);
 		}
 		return allCharacteristics;
 	}
 
-	public List<CharacteristicDefinition> getAll(CharacteristicType type, String language) {
-		return characteristics.get(language).get(type);
+	private Map<CharacteristicType, List<CharacteristicDefinition>> getCharacteristics(String language,
+			String moduleName) {
+		if (characteristics == null) {
+			characteristics = new HashMap<>();
+		}
+		if (characteristics.get(language) == null) {
+			characteristics.put(language,
+					new HashMap<String, Map<CharacteristicType, List<CharacteristicDefinition>>>());
+		}
+		if (characteristics.get(language).get(moduleName) == null) {
+			characteristics.get(language).put(moduleName,
+					new HashMap<CharacteristicType, List<CharacteristicDefinition>>());
+		}
+		return characteristics.get(language).get(moduleName);
 	}
 
-	public CharacteristicDefinition get(CharacteristicName characteristicName, String language) {
+	public List<CharacteristicDefinition> getAll(CharacteristicType type, String language, String moduleName) {
+		return getCharacteristics(language, moduleName).get(type);
+	}
+
+	public CharacteristicDefinition get(CharacteristicName characteristicName, String language, String moduleName) {
 		for (final CharacteristicType type : CharacteristicType.values()) {
-			for (final CharacteristicDefinition characteristic : characteristics.get(language).get(type)) {
+			for (final CharacteristicDefinition characteristic : getCharacteristics(language, moduleName).get(type)) {
 				if (Objects.equals(characteristic.getId().toLowerCase(), characteristicName.getId().toLowerCase())) {
 					return characteristic;
 				}

@@ -43,6 +43,7 @@ import com.softwaremagico.tm.character.creation.CostCalculator;
 import com.softwaremagico.tm.character.cybernetics.RequiredCyberneticDevicesException;
 import com.softwaremagico.tm.character.cybernetics.TooManyCyberneticDevicesException;
 import com.softwaremagico.tm.characters.CustomCharacter;
+import com.softwaremagico.tm.file.Path;
 import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.party.Party;
 
@@ -53,7 +54,6 @@ public class JsonTests {
 	private static final String OUTPUT_PARTY_PATH = System.getProperty("java.io.tmpdir") + File.separator
 			+ "Party.json";
 	private static final String LANGUAGE = "es";
-	private static final String MODULE = "Fading Suns Revised Edition";
 
 	private CharacterPlayer player;
 	private String originalPlayerJson;
@@ -66,9 +66,9 @@ public class JsonTests {
 			TooManyCyberneticDevicesException, RequiredCyberneticDevicesException, BlessingAlreadyAddedException,
 			BeneficeAlreadyAddedException {
 		LanguagePool.clearCache();
-		player = CustomCharacter.create(LANGUAGE, MODULE);
+		player = CustomCharacter.create(LANGUAGE, Path.DEFAULT_MODULE_FOLDER);
 		Assert.assertEquals(CostCalculator.getCost(player), 50);
-		party = new Party(LANGUAGE, MODULE);
+		party = new Party(LANGUAGE, Path.DEFAULT_MODULE_FOLDER);
 		party.setPartyName("JSON Test");
 		party.addMember(player);
 	}

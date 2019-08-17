@@ -75,8 +75,12 @@ public class FactionsFactory extends XmlFactory<Faction> {
 
 	@Override
 	public void clearCache() {
-		namesByFaction.clear();
-		surnamesByFaction.clear();
+		if (namesByFaction != null) {
+			namesByFaction.clear();
+		}
+		if (surnamesByFaction != null) {
+			surnamesByFaction.clear();
+		}
 		super.clearCache();
 	}
 

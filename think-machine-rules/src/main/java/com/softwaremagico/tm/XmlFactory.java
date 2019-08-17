@@ -66,12 +66,12 @@ public abstract class XmlFactory<T extends Element<T>> {
 	}
 
 	protected void initialize() {
-		for (final String module : FileManager.getAvailableModules()) {
-			final List<Language> languages = getTranslator(module).getAvailableLanguages();
+		for (final String moduleName : FileManager.getAvailableModules()) {
+			final List<Language> languages = getTranslator(moduleName).getAvailableLanguages();
 			List<T> elements = new ArrayList<>();
 			for (final Language language : languages) {
 				try {
-					elements = getElements(language.getAbbreviature(), module);
+					elements = getElements(language.getAbbreviature(), moduleName);
 				} catch (InvalidXmlElementException e) {
 					MachineLog.errorMessage(this.getClass().getName(), e);
 				}
@@ -79,6 +79,10 @@ public abstract class XmlFactory<T extends Element<T>> {
 			MachineLog.debug(this.getClass().getName(), "Loaded " + elements.size() + " elements at '"
 					+ this.getClass().getSimpleName() + "'.");
 		}
+	}
+	
+	protected ITranslator getTranslator() {
+		return LanguagePool.getTranslator(getTranslatorFile(), null);
 	}
 
 	protected ITranslator getTranslator(String moduleName) {
