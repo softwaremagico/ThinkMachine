@@ -31,6 +31,7 @@ import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.file.Path;
 import com.softwaremagico.tm.language.Translator;
 import com.softwaremagico.tm.pdf.complete.PdfDocument;
 import com.softwaremagico.tm.pdf.complete.elements.BaseElement;
@@ -53,7 +54,7 @@ public class SmallCharacterSheet extends PdfDocument {
 	private CharacterPlayer characterPlayer = null;
 
 	public SmallCharacterSheet() {
-		this(Translator.DEFAULT_LANGUAGE, MODULE);
+		this(Translator.DEFAULT_LANGUAGE, Path.DEFAULT_MODULE_FOLDER);
 	}
 
 	public SmallCharacterSheet(String language) {
@@ -62,13 +63,13 @@ public class SmallCharacterSheet extends PdfDocument {
 	}
 
 	public SmallCharacterSheet(CharacterPlayer characterPlayer) {
-		this(characterPlayer.getLanguage());
+		this(characterPlayer.getLanguage(), characterPlayer.getModuleName());
 		this.characterPlayer = characterPlayer;
 	}
 
 	@Override
 	protected void createContent(Document document) throws Exception {
-		createCharacterPDF(document, getCharacterPlayer());
+		createCharacterPDF(document, getCharacterPlayer(), getModuleName());
 	}
 
 	@Override
@@ -111,12 +112,14 @@ public class SmallCharacterSheet extends PdfDocument {
 		BaseElement.setTablePropierties(basicTable);
 		basicTable.getDefaultCell().setBorder(0);
 
-		final PdfPTable characteristicsTable = CharacteristicsTableFactory.getCharacteristicsBasicsTable(characterPlayer);
+		final PdfPTable characteristicsTable = CharacteristicsTableFactory.getCharacteristicsBasicsTable(
+				characterPlayer, getModuleName());
 		final PdfPCell characteristicCell = new PdfPCell(characteristicsTable);
 		characteristicCell.setBorderWidthLeft(0);
 		basicTable.addCell(characteristicCell);
 
-		final PdfPTable naturalSkillsTable = NaturalSkillsTable.getSkillsTable(characterPlayer, getLanguage());
+		final PdfPTable naturalSkillsTable = NaturalSkillsTable.getSkillsTable(characterPlayer, getLanguage(),
+				getModuleName());
 		final PdfPCell naturalSkillsCell = new PdfPCell(naturalSkillsTable);
 		naturalSkillsCell.setBorderWidthRight(0);
 		basicTable.addCell(naturalSkillsCell);
@@ -158,7 +161,7 @@ public class SmallCharacterSheet extends PdfDocument {
 			cyberneticsCell.setBorderWidthLeft(0);
 			fightTable.addCell(cyberneticsCell);
 		} else {
-			final PdfPTable occultismTable = new OccultismTable(characterPlayer, getLanguage());
+			final PdfPTable occultismTable = new OccultismTable(characterPlayer, getLanguage(), getModuleName());
 			final PdfPCell occultismCell = new PdfPCell(occultismTable);
 			occultismCell.setBorderWidthLeft(0);
 			fightTable.addCell(occultismCell);
@@ -193,7 +196,8 @@ public class SmallCharacterSheet extends PdfDocument {
 	}
 
 	@Override
-	protected void createCharacterPDF(Document document, CharacterPlayer characterPlayer) throws Exception {
+	protected void createCharacterPDF(Document document, CharacterPlayer characterPlayer)
+			throws Exception {
 		document.add(createCharacterContent(characterPlayer));
 	}
 

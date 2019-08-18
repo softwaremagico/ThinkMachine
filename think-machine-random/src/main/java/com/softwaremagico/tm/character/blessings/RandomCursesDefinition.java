@@ -72,7 +72,7 @@ public class RandomCursesDefinition extends RandomSelector<Blessing> {
 
 	@Override
 	protected Collection<Blessing> getAllElements() throws InvalidXmlElementException {
-		return BlessingFactory.getInstance().getElements(getCharacterPlayer().getLanguage());
+		return BlessingFactory.getInstance().getElements(getCharacterPlayer().getLanguage(), getCharacterPlayer().getModuleName());
 	}
 
 	@Override
@@ -102,7 +102,7 @@ public class RandomCursesDefinition extends RandomSelector<Blessing> {
 		// ranks.
 		final SpecializationPreferences specializationPreferences = SpecializationPreferences.getSelected(getPreferences());
 		if (specializationPreferences.mean() >= SpecializationPreferences.FAIR.mean()) {
-			for (final AvailableSkill skill : curse.getAffectedSkill(getCharacterPlayer().getLanguage())) {
+			for (final AvailableSkill skill : curse.getAffectedSkill()) {
 				// More specialized, less ranks required to skip the curse.
 				if (getCharacterPlayer().getSkillAssignedRanks(skill) >= (10 - specializationPreferences.maximum())) {
 					throw new InvalidRandomElementSelectedException("Curse '" + curse + "' affects the skill '" + skill

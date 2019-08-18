@@ -49,7 +49,7 @@ public class RandomFaction extends RandomSelector<Faction> {
 
 	@Override
 	protected Collection<Faction> getAllElements() throws InvalidXmlElementException {
-		return FactionsFactory.getInstance().getElements(getCharacterPlayer().getLanguage());
+		return FactionsFactory.getInstance().getElements(getCharacterPlayer().getLanguage(), getCharacterPlayer().getModuleName());
 	}
 
 	@Override

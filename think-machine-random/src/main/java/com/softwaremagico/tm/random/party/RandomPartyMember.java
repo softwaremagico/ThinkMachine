@@ -37,7 +37,7 @@ public class RandomPartyMember extends Element<RandomPartyMember> {
 	private final Integer weight;
 	private final Set<IRandomPreference> randomPreferences;
 
-	public RandomPartyMember(String id, String name, String language, RandomProfile randomProfile, Integer minNumber,
+	public RandomPartyMember(String id, String name, String language, String moduleName, RandomProfile randomProfile, Integer minNumber,
 			Integer maxNumber, Integer weight, Set<IRandomPreference> randomPreferences) {
 		super(id, name, language, moduleName);
 		this.randomProfile = randomProfile;

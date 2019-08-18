@@ -99,8 +99,8 @@ public class CyberneticsTable extends LateralHeaderPdfPTable {
 		return FadingSunsTheme.CYBERNETICS_TITLE_FONT_SIZE;
 	}
 
-	private static class CyberneticComparatorByRequirements
-			implements Comparator<SelectedCyberneticDevice>, Serializable {
+	private static class CyberneticComparatorByRequirements implements Comparator<SelectedCyberneticDevice>,
+			Serializable {
 		private static final long serialVersionUID = -5736202150064911876L;
 
 		@Override

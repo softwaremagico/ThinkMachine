@@ -58,7 +58,8 @@ public class NaturalSkillsTable extends SkillsTable {
 				FadingSunsTheme.CHARACTER_SMALL_SKILLS_TITLE_FONT_SIZE));
 
 		if (characterPlayer == null) {
-			for (final AvailableSkill skill : AvailableSkillsFactory.getInstance().getNaturalSkills(language)) {
+			for (final AvailableSkill skill : AvailableSkillsFactory.getInstance().getNaturalSkills(language,
+					moduleName)) {
 				table.addCell(createSkillElement(null, skill, FadingSunsTheme.CHARACTER_SMALL_SKILLS_LINE_FONT_SIZE,
 						MAX_SKILL_COLUMN_WIDTH));
 				table.addCell(createSkillLine(SKILL_VALUE_GAP, FadingSunsTheme.CHARACTER_SMALL_SKILLS_LINE_FONT_SIZE));

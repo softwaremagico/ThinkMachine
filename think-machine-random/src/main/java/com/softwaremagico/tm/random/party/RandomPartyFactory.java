@@ -33,13 +33,12 @@ import java.util.StringTokenizer;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
 import com.softwaremagico.tm.language.ITranslator;
-import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.random.profiles.RandomProfileFactory;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
 import com.softwaremagico.tm.random.selectors.RandomPreferenceUtils;
 
 public class RandomPartyFactory extends XmlFactory<RandomParty> {
-	private static final ITranslator translatorRandomParty = LanguagePool.getTranslator("parties.xml");
+	private static final String TRANSLATOR_FILE = "parties.xml";
 
 	private static final String NAME = "name";
 	private static final String RANDOM = "random";
@@ -66,8 +65,8 @@ public class RandomPartyFactory extends XmlFactory<RandomParty> {
 	}
 
 	@Override
-	protected ITranslator getTranslator() {
-		return translatorRandomParty;
+	protected String getTranslatorFile() {
+		return TRANSLATOR_FILE;
 	}
 
 	private void addName(PartyName name) {
@@ -98,11 +97,11 @@ public class RandomPartyFactory extends XmlFactory<RandomParty> {
 	}
 
 	@Override
-	protected RandomParty createElement(ITranslator translator, String partyId, String language)
+	protected RandomParty createElement(ITranslator translator, String partyId, String language, String moduleName)
 			throws InvalidXmlElementException {
 		final String name = translator.getNodeValue(partyId, NAME, language);
 
-		final RandomParty randomParty = new RandomParty(partyId, name, language);
+		final RandomParty randomParty = new RandomParty(partyId, name, language, moduleName);
 
 		int node = 0;
 		while (true) {
@@ -117,8 +116,7 @@ public class RandomPartyFactory extends XmlFactory<RandomParty> {
 					} catch (NumberFormatException e) {
 						throw new InvalidRandomPartyException(
 								"Invalid random party definition. Parameter minNumber has an incorrect value '"
-										+ minNumberTag + "'.",
-								e);
+										+ minNumberTag + "'.", e);
 					}
 				}
 				final String maxNumberTag = translator.getNodeValue(partyId, MEMBER, MAXIMUM_NUMBER, node);
@@ -129,8 +127,7 @@ public class RandomPartyFactory extends XmlFactory<RandomParty> {
 					} catch (NumberFormatException e) {
 						throw new InvalidRandomPartyException(
 								"Invalid random party definition. Parameter maxNumber has an incorrect value '"
-										+ maxNumberTag + "'.",
-								e);
+										+ maxNumberTag + "'.", e);
 					}
 				}
 				final String weightTag = translator.getNodeValue(partyId, MEMBER, WEIGHT, node);
@@ -140,9 +137,8 @@ public class RandomPartyFactory extends XmlFactory<RandomParty> {
 						weight = Integer.parseInt(weightTag);
 					} catch (NumberFormatException e) {
 						throw new InvalidRandomPartyException(
-								"Invalid random party definition. Parameter weight has an incorrect value '" + weightTag
-										+ "'.",
-								e);
+								"Invalid random party definition. Parameter weight has an incorrect value '"
+										+ weightTag + "'.", e);
 					}
 				}
 
@@ -153,8 +149,8 @@ public class RandomPartyFactory extends XmlFactory<RandomParty> {
 					final StringTokenizer preferencesSelectedTokenizer = new StringTokenizer(preferencesSelectedNames,
 							",");
 					while (preferencesSelectedTokenizer.hasMoreTokens()) {
-						randomPreferences.add(RandomPreferenceUtils
-								.getSelectedPreference(preferencesSelectedTokenizer.nextToken().trim()));
+						randomPreferences.add(RandomPreferenceUtils.getSelectedPreference(preferencesSelectedTokenizer
+								.nextToken().trim()));
 					}
 				}
 
@@ -162,10 +158,10 @@ public class RandomPartyFactory extends XmlFactory<RandomParty> {
 					throw new InvalidRandomPartyException("Weight or maxNumber parameter must be set.");
 				}
 
-				randomParty.getRandomPartyMembers()
-						.add(new RandomPartyMember(partyId + "_" + node, profileName, language,
-								RandomProfileFactory.getInstance().getElement(profile, language), minNumber, maxNumber,
-								weight, randomPreferences));
+				randomParty.getRandomPartyMembers().add(
+						new RandomPartyMember(partyId + "_" + node, profileName, language, moduleName,
+								RandomProfileFactory.getInstance().getElement(profile, language, moduleName),
+								minNumber, maxNumber, weight, randomPreferences));
 				node++;
 			} catch (InvalidRandomPartyException e) {
 				break;
@@ -177,7 +173,7 @@ public class RandomPartyFactory extends XmlFactory<RandomParty> {
 		if (partyNames != null) {
 			final StringTokenizer partyNamesTokenizer = new StringTokenizer(partyNames, ",");
 			while (partyNamesTokenizer.hasMoreTokens()) {
-				addName(new PartyName(partyNamesTokenizer.nextToken().trim(), randomParty, language));
+				addName(new PartyName(partyNamesTokenizer.nextToken().trim(), randomParty, language, moduleName));
 			}
 		}
 
@@ -185,7 +181,8 @@ public class RandomPartyFactory extends XmlFactory<RandomParty> {
 		if (partyAdjectives != null) {
 			final StringTokenizer partyAdjectivesTokenizer = new StringTokenizer(partyAdjectives, ",");
 			while (partyAdjectivesTokenizer.hasMoreTokens()) {
-				addAdjective(new PartyAdjective(partyAdjectivesTokenizer.nextToken().trim(), randomParty, language));
+				addAdjective(new PartyAdjective(partyAdjectivesTokenizer.nextToken().trim(), randomParty, language,
+						moduleName));
 			}
 		}
 

@@ -41,7 +41,8 @@ public class OccultismTable extends LateralHeaderPdfPTable {
 	private static final int ROW_WIDTH = 70;
 	private static final float[] widths = { 1f, 6f };
 
-	public OccultismTable(CharacterPlayer characterPlayer, String language) throws InvalidXmlElementException {
+	public OccultismTable(CharacterPlayer characterPlayer, String language)
+			throws InvalidXmlElementException {
 		super(widths);
 		addCell(createLateralVerticalTitle(getTranslator().getTranslatedText("occultism"), 1));
 		addCell(createContent(characterPlayer, language));
@@ -58,7 +59,8 @@ public class OccultismTable extends LateralHeaderPdfPTable {
 		return titleCell;
 	}
 
-	private PdfPCell createContent(CharacterPlayer characterPlayer, String language) throws InvalidXmlElementException {
+	private PdfPCell createContent(CharacterPlayer characterPlayer, String language)
+			throws InvalidXmlElementException {
 		final float[] widths = { 3f, 1f, 1f, 3f };
 		final PdfPTable table = new PdfPTable(widths);
 		BaseElement.setTablePropierties(table);

@@ -40,8 +40,9 @@ import com.softwaremagico.tm.pdf.complete.elements.CellCompleteBoxEvent.Border;
 import com.softwaremagico.tm.pdf.complete.utils.CellUtils;
 
 public abstract class CustomPdfTable extends PdfPTable {
+	private static final String TRANSLATOR_FILE = "character_sheet.xml";
 	private float[] columnWidths;
-	private static ITranslator translator = LanguagePool.getTranslator("character_sheet.xml");
+	private static ITranslator translator;
 
 	public CustomPdfTable(float[] widths) {
 		super(widths);
@@ -73,8 +74,8 @@ public abstract class CustomPdfTable extends PdfPTable {
 	}
 
 	protected static PdfPCell createEmptyElementLine(int alignment, String text) {
-		final PdfPCell cell = BaseElement.getCell(text, 0, 1, alignment, BaseColor.WHITE, FadingSunsTheme.getLineFont(),
-				FadingSunsTheme.TABLE_LINE_FONT_SIZE);
+		final PdfPCell cell = BaseElement.getCell(text, 0, 1, alignment, BaseColor.WHITE,
+				FadingSunsTheme.getLineFont(), FadingSunsTheme.TABLE_LINE_FONT_SIZE);
 		cell.setMinimumHeight(10);
 		cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		return cell;
@@ -129,8 +130,8 @@ public abstract class CustomPdfTable extends PdfPTable {
 		if (text == null || text.equals("null")) {
 			text = "";
 		}
-		final String remainingText = CellUtils.getSubStringFitsIn(text, FadingSunsTheme.getHandwrittingFont(), fontSize,
-				maxWidth);
+		final String remainingText = CellUtils.getSubStringFitsIn(text, FadingSunsTheme.getHandwrittingFont(),
+				fontSize, maxWidth);
 		return createBasicElementLine(remainingText, fontSize);
 	}
 
@@ -138,8 +139,8 @@ public abstract class CustomPdfTable extends PdfPTable {
 		if (text == null || text.equals("null")) {
 			text = "";
 		}
-		final String remainingText = CellUtils.getSubStringFitsIn(text, FadingSunsTheme.getHandwrittingFont(), fontSize,
-				maxWidth);
+		final String remainingText = CellUtils.getSubStringFitsIn(text, FadingSunsTheme.getHandwrittingFont(),
+				fontSize, maxWidth);
 		return createBasicElementLine(remainingText, fontSize, alignment);
 	}
 
@@ -155,8 +156,7 @@ public abstract class CustomPdfTable extends PdfPTable {
 		final PdfPCell box = new PdfPCell();
 		box.setMinimumHeight(15);
 		box.setBorder(0);
-		box.setCellEvent(
-				new CellCompleteBoxEvent(new Border[] { Border.TOP, Border.BOTTOM, Border.LEFT, Border.RIGHT }));
+		box.setCellEvent(new CellCompleteBoxEvent(new Border[] { Border.TOP, Border.BOTTOM, Border.LEFT, Border.RIGHT }));
 		return box;
 	}
 
@@ -168,14 +168,13 @@ public abstract class CustomPdfTable extends PdfPTable {
 		if (value == null) {
 			return createRectangle();
 		}
-		final PdfPCell box = new PdfPCell(new Paragraph(value,
-				new Font(FadingSunsTheme.getHandwrittingFont(), FadingSunsTheme.HANDWRITTING_DEFAULT_FONT_SIZE)));
+		final PdfPCell box = new PdfPCell(new Paragraph(value, new Font(FadingSunsTheme.getHandwrittingFont(),
+				FadingSunsTheme.HANDWRITTING_DEFAULT_FONT_SIZE)));
 		box.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		box.setHorizontalAlignment(Element.ALIGN_CENTER);
 		box.setMinimumHeight(15);
 		box.setBorder(0);
-		box.setCellEvent(
-				new CellCompleteBoxEvent(new Border[] { Border.TOP, Border.BOTTOM, Border.LEFT, Border.RIGHT }));
+		box.setCellEvent(new CellCompleteBoxEvent(new Border[] { Border.TOP, Border.BOTTOM, Border.LEFT, Border.RIGHT }));
 		return box;
 	}
 
@@ -189,6 +188,9 @@ public abstract class CustomPdfTable extends PdfPTable {
 	}
 
 	public static ITranslator getTranslator() {
+		if (translator == null) {
+			translator = LanguagePool.getTranslator(TRANSLATOR_FILE, null);
+		}
 		return translator;
 	}
 

@@ -29,8 +29,8 @@ import com.softwaremagico.tm.Element;
 public class PartyAdjective extends Element<PartyAdjective> {
 	private final RandomParty randomParty;
 
-	public PartyAdjective(String adjective, RandomParty randomParty, String language) {
-		super(adjective.toLowerCase(), adjective, language);
+	public PartyAdjective(String adjective, RandomParty randomParty, String language, String moduleName) {
+		super(adjective.toLowerCase(), adjective, language, moduleName);
 		this.randomParty = randomParty;
 	}
 

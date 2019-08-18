@@ -29,8 +29,8 @@ import com.softwaremagico.tm.Element;
 public class PartyName extends Element<PartyName> {
 	private final RandomParty randomParty;
 
-	public PartyName(String name, RandomParty randomParty, String language) {
-		super(name.toLowerCase(), name, language);
+	public PartyName(String name, RandomParty randomParty, String language, String moduleName) {
+		super(name.toLowerCase(), name, language, moduleName);
 		this.randomParty = randomParty;
 	}
 

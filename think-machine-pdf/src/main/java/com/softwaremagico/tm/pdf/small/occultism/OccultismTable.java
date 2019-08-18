@@ -46,7 +46,8 @@ public class OccultismTable extends VerticalTable {
 	private static final float[] WIDTHS = { 2f, 1f, 1f, 1f, 2f };
 	private static final int ROWS = 8;
 
-	public OccultismTable(CharacterPlayer characterPlayer, String language) throws InvalidXmlElementException {
+	public OccultismTable(CharacterPlayer characterPlayer, String language)
+			throws InvalidXmlElementException {
 		super(WIDTHS);
 		getDefaultCell().setBorder(0);
 
@@ -86,7 +87,7 @@ public class OccultismTable extends VerticalTable {
 		if (characterPlayer != null) {
 			for (final Entry<String, List<String>> occultismPathEntry : characterPlayer.getSelectedPowers().entrySet()) {
 				final OccultismPath occultismPath = OccultismPathFactory.getInstance().getElement(
-						occultismPathEntry.getKey(), characterPlayer.getLanguage());
+						occultismPathEntry.getKey(), characterPlayer.getLanguage(), characterPlayer.getModuleName());
 				for (final String occultismPowerName : occultismPathEntry.getValue()) {
 					final OccultismPower occultismPower = occultismPath.getOccultismPowers().get(occultismPowerName);
 					if (occultismPower.isEnabled()) {

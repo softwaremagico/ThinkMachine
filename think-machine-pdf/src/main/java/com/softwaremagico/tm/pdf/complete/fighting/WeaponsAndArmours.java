@@ -33,7 +33,8 @@ import com.softwaremagico.tm.pdf.complete.elements.BaseElement;
 public class WeaponsAndArmours extends BaseElement {
 	public static final int PADDING = 2;
 
-	public static PdfPTable getWeaponsAndArmoursTable(CharacterPlayer characterPlayer) throws InvalidXmlElementException {
+	public static PdfPTable getWeaponsAndArmoursTable(CharacterPlayer characterPlayer)
+			throws InvalidXmlElementException {
 		final float[] widths = { 4f, 1.1f };
 		final PdfPTable table = new PdfPTable(widths);
 		setTablePropierties(table);

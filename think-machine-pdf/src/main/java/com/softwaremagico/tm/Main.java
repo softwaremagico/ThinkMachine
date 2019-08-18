@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 
 import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.file.Path;
 import com.softwaremagico.tm.json.CharacterJsonManager;
 import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.log.PdfExporterLog;
@@ -55,7 +56,7 @@ public class Main {
 		LanguagePool.clearCache();
 		final CharacterSheet sheet;
 		if (jsonFile == null) {
-			sheet = new CharacterSheet(language);
+			sheet = new CharacterSheet(language, Path.DEFAULT_MODULE_FOLDER);
 			sheet.createFile(destinationPath + "FadingSuns_" + language.toUpperCase() + ".pdf");
 		} else {
 			try {
@@ -69,7 +70,7 @@ public class Main {
 	}
 
 	private static void setArguments(String[] args) {
-		if (args.length <= LANGUAGE, MODULE) {
+		if (args.length <= LANGUAGE) {
 			language = "en";
 		} else {
 			language = args[LANGUAGE];

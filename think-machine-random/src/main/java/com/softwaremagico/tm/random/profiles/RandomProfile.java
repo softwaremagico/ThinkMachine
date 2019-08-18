@@ -58,11 +58,11 @@ public class RandomProfile extends Element<RandomProfile> implements IRandomProf
 	@ExcludeFromJson
 	public boolean parentMerged = false;
 
-	public RandomProfile(String id, String name, String language, Set<IRandomPreference> randomPreferences,
-			Set<Characteristic> characteristicsMinimumValues, Set<AvailableSkill> requiredSkills,
-			Set<AvailableSkill> suggestedSkills, Set<BeneficeDefinition> mandatoryBenefices,
-			Set<BeneficeDefinition> suggestedBenefices, Set<Weapon> mandatoryWeapons, Set<Armour> mandatoryArmours,
-			Set<Shield> mandatoryShields) {
+	public RandomProfile(String id, String name, String language, String moduleName,
+			Set<IRandomPreference> randomPreferences, Set<Characteristic> characteristicsMinimumValues,
+			Set<AvailableSkill> requiredSkills, Set<AvailableSkill> suggestedSkills,
+			Set<BeneficeDefinition> mandatoryBenefices, Set<BeneficeDefinition> suggestedBenefices,
+			Set<Weapon> mandatoryWeapons, Set<Armour> mandatoryArmours, Set<Shield> mandatoryShields) {
 		super(id, name, language, moduleName);
 		this.randomPreferences = randomPreferences;
 		this.characteristicsMinimumValues = characteristicsMinimumValues;
@@ -76,7 +76,7 @@ public class RandomProfile extends Element<RandomProfile> implements IRandomProf
 	}
 
 	public RandomProfile(String id, String name, String language, String moduleName) {
-		this(id, name, language, new HashSet<IRandomPreference>(), new HashSet<Characteristic>(),
+		this(id, name, language, moduleName, new HashSet<IRandomPreference>(), new HashSet<Characteristic>(),
 				new HashSet<AvailableSkill>(), new HashSet<AvailableSkill>(), new HashSet<BeneficeDefinition>(),
 				new HashSet<BeneficeDefinition>(), new HashSet<Weapon>(), new HashSet<Armour>(), new HashSet<Shield>());
 	}
@@ -85,7 +85,8 @@ public class RandomProfile extends Element<RandomProfile> implements IRandomProf
 	public void setParent(IRandomProfile parentProfile) throws InvalidXmlElementException {
 		if (!parentMerged && parentProfile != null) {
 			// Merge preferences. This has preference over parent profile.
-			final RandomProfile mergedProfile = ProfileMerger.merge(parentProfile.getLanguage(), parentProfile, this);
+			final RandomProfile mergedProfile = ProfileMerger.merge(parentProfile.getLanguage(),
+					parentProfile.getModuleName(), parentProfile, this);
 
 			randomPreferences.clear();
 			randomPreferences.addAll(mergedProfile.getPreferences());
@@ -105,8 +106,8 @@ public class RandomProfile extends Element<RandomProfile> implements IRandomProf
 	@Override
 	public Characteristic getCharacteristicMinimumValues(CharacteristicName characteristicName) {
 		for (final Characteristic characteristic : getCharacteristicsMinimumValues()) {
-			if (Objects.equals(characteristic.getCharacteristicDefinition().getCharacteristicName(),
-					characteristicName)) {
+			if (Objects
+					.equals(characteristic.getCharacteristicDefinition().getCharacteristicName(), characteristicName)) {
 				return characteristic;
 			}
 		}

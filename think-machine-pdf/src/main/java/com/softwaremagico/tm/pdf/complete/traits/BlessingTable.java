@@ -43,8 +43,10 @@ public class BlessingTable extends VerticalTable {
 
 	public BlessingTable(CharacterPlayer characterPlayer) {
 		super(WIDTHS);
-		addCell(createTitle(getTranslator().getTranslatedText("blessingTable") + " / "
-				+ getTranslator().getTranslatedText("cursesTable"), FadingSunsTheme.VERTICALTABLE_TITLE_FONT_SIZE));
+		addCell(createTitle(
+				getTranslator().getTranslatedText("blessingTable") + " / "
+						+ getTranslator().getTranslatedText("cursesTable"),
+				FadingSunsTheme.VERTICALTABLE_TITLE_FONT_SIZE));
 
 		addCell(createSubtitleLine(getTranslator().getTranslatedText("blessingTableName"),
 				FadingSunsTheme.TABLE_LINE_FONT_SIZE));
@@ -62,14 +64,17 @@ public class BlessingTable extends VerticalTable {
 				while (it.hasNext()) {
 					final Bonification bonification = it.next();
 					if (i == 0) {
-						addCell(createElementLine(blessing.getName(), NAME_COLUMN_WIDTH, FadingSunsTheme.TRAITS_FONT_SIZE));
+						addCell(createElementLine(blessing.getName(), NAME_COLUMN_WIDTH,
+								FadingSunsTheme.TRAITS_FONT_SIZE));
 					} else {
 						addCell(createElementLine("      ", NAME_COLUMN_WIDTH, FadingSunsTheme.TRAITS_FONT_SIZE));
 					}
-					addCell(createElementLine(bonification.getBonification(), BONIFICATION_COLUMN_WIDTH, FadingSunsTheme.TRAITS_FONT_SIZE));
+					addCell(createElementLine(bonification.getBonification(), BONIFICATION_COLUMN_WIDTH,
+							FadingSunsTheme.TRAITS_FONT_SIZE));
 					addCell(createElementLine(bonification.getAffects() != null ? bonification.getAffects().getName()
 							: "", TRAIT_COLUMN_WIDTH, FadingSunsTheme.TRAITS_FONT_SIZE));
-					addCell(createElementLine(bonification.getSituation(), SITUATION_COLUMN_WIDTH, FadingSunsTheme.TRAITS_FONT_SIZE));
+					addCell(createElementLine(bonification.getSituation(), SITUATION_COLUMN_WIDTH,
+							FadingSunsTheme.TRAITS_FONT_SIZE));
 					addedBlessings++;
 					i++;
 				}

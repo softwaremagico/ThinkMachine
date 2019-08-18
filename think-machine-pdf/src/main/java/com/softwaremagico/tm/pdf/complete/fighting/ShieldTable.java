@@ -51,7 +51,8 @@ public class ShieldTable extends LateralHeaderPdfPTable {
 		if (characterPlayer == null || characterPlayer.getShield() == null) {
 			nameCell = createEmptyElementLine(GAP, NAME_COLUMN_WIDTH);
 		} else {
-			nameCell = createElementLine(characterPlayer.getShield().getName(), NAME_COLUMN_WIDTH, FadingSunsTheme.SHIELD_CONTENT_FONT_SIZE);
+			nameCell = createElementLine(characterPlayer.getShield().getName(), NAME_COLUMN_WIDTH,
+					FadingSunsTheme.SHIELD_CONTENT_FONT_SIZE);
 		}
 		nameCell.setColspan(WIDTHS.length);
 		nameCell.setMinimumHeight(20);
@@ -59,14 +60,15 @@ public class ShieldTable extends LateralHeaderPdfPTable {
 
 		addCell(getShieldRange(characterPlayer));
 		if (characterPlayer == null || characterPlayer.getShield() == null) {
-			addCell(createEmptyElementLine(getTranslator().getTranslatedText("shieldHits") + ": " + GAP, HITS_COLUMN_WIDTH));
+			addCell(createEmptyElementLine(getTranslator().getTranslatedText("shieldHits") + ": " + GAP,
+					HITS_COLUMN_WIDTH));
 		} else {
 			final Paragraph paragraph = new Paragraph();
-			paragraph.add(new Paragraph(getTranslator().getTranslatedText("shieldHits") + ": ", new Font(FadingSunsTheme.getLineFont(),
-					FadingSunsTheme.TABLE_LINE_FONT_SIZE)));
+			paragraph.add(new Paragraph(getTranslator().getTranslatedText("shieldHits") + ": ", new Font(
+					FadingSunsTheme.getLineFont(), FadingSunsTheme.TABLE_LINE_FONT_SIZE)));
 
-			paragraph.add(new Paragraph(characterPlayer.getShield().getHits() + " ", new Font(FadingSunsTheme.getHandwrittingFont(),
-					FadingSunsTheme.SHIELD_CONTENT_FONT_SIZE)));
+			paragraph.add(new Paragraph(characterPlayer.getShield().getHits() + " ", new Font(FadingSunsTheme
+					.getHandwrittingFont(), FadingSunsTheme.SHIELD_CONTENT_FONT_SIZE)));
 
 			final PdfPCell protectionCell = createEmptyElementLine("");
 			protectionCell.setPhrase(paragraph);

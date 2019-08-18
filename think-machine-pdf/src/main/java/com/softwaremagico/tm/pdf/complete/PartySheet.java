@@ -40,14 +40,14 @@ public class PartySheet extends CharacterSheet {
 	}
 
 	public PartySheet(Party party) {
-		this(party.getLanguage());
+		this(party.getLanguage(), party.getModuleName());
 		this.party = party;
 	}
 
 	@Override
 	protected void createContent(Document document) throws Exception {
 		for (final CharacterPlayer characterPlayer : party.getMembers()) {
-			createCharacterPDF(document, characterPlayer);
+			createCharacterPDF(document, characterPlayer, getModuleName());
 		}
 	}
 

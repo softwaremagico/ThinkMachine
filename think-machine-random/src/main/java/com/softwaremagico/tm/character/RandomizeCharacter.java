@@ -104,8 +104,8 @@ public class RandomizeCharacter {
 	}
 
 	public RandomizeCharacter(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences,
-			IRandomProfile... profiles)
-			throws DuplicatedPreferenceException, TooManyBlessingsException, InvalidXmlElementException {
+			IRandomProfile... profiles) throws DuplicatedPreferenceException, TooManyBlessingsException,
+			InvalidXmlElementException {
 		this(characterPlayer, null, new HashSet<IRandomProfile>(Arrays.asList(profiles)),
 				new HashSet<IRandomPreference>(), new HashSet<AvailableSkill>(), new HashSet<AvailableSkill>(),
 				new HashSet<BeneficeDefinition>(), new HashSet<BeneficeDefinition>(), new HashSet<Weapon>(),
@@ -113,15 +113,16 @@ public class RandomizeCharacter {
 	}
 
 	public RandomizeCharacter(CharacterPlayer characterPlayer, Integer experiencePoints, Set<IRandomProfile> profiles,
-			Set<IRandomPreference> preferences, Set<AvailableSkill> requiredSkills, Set<AvailableSkill> suggestedSkills,
-			Set<BeneficeDefinition> mandatoryBenefices, Set<BeneficeDefinition> suggestedBenefices,
-			Set<Weapon> mandatoryWeapons, Set<Armour> mandatoryArmours, Set<Shield> mandatoryShields)
-			throws DuplicatedPreferenceException, TooManyBlessingsException, InvalidXmlElementException {
+			Set<IRandomPreference> preferences, Set<AvailableSkill> requiredSkills,
+			Set<AvailableSkill> suggestedSkills, Set<BeneficeDefinition> mandatoryBenefices,
+			Set<BeneficeDefinition> suggestedBenefices, Set<Weapon> mandatoryWeapons, Set<Armour> mandatoryArmours,
+			Set<Shield> mandatoryShields) throws DuplicatedPreferenceException, TooManyBlessingsException,
+			InvalidXmlElementException {
 		this.characterPlayer = characterPlayer;
 
 		final IRandomProfile finalProfile = ProfileMerger.merge(profiles, preferences, requiredSkills, suggestedSkills,
 				mandatoryBenefices, suggestedBenefices, mandatoryWeapons, mandatoryArmours, mandatoryShields,
-				characterPlayer.getLanguage());
+				characterPlayer.getLanguage(), characterPlayer.getModuleName());
 
 		// Assign preferences
 		this.preferences = finalProfile.getPreferences();
@@ -237,8 +238,7 @@ public class RandomizeCharacter {
 	}
 
 	/**
-	 * Using free style character generation. Only the first points to expend in a
-	 * character.
+	 * Using free style character generation. Only the first points to expend in a character.
 	 * 
 	 * @throws InvalidXmlElementException
 	 * @throws InvalidRandomElementSelectedException
@@ -320,15 +320,15 @@ public class RandomizeCharacter {
 		try {
 			randomRangedWeapon.assign();
 		} catch (InvalidRandomElementSelectedException ires) {
-			RandomGenerationLog.warning(this.getClass().getName(),
-					"No ranged weapons available for '" + characterPlayer + "'.");
+			RandomGenerationLog.warning(this.getClass().getName(), "No ranged weapons available for '"
+					+ characterPlayer + "'.");
 		}
 		final RandomWeapon randomMeleeWeapon = new RandomMeleeWeapon(characterPlayer, preferences, mandatoryWeapons);
 		try {
 			randomMeleeWeapon.assign();
 		} catch (InvalidRandomElementSelectedException ires) {
-			RandomGenerationLog.warning(this.getClass().getName(),
-					"No melee weapons available for '" + characterPlayer + "'.");
+			RandomGenerationLog.warning(this.getClass().getName(), "No melee weapons available for '" + characterPlayer
+					+ "'.");
 		}
 
 		final RandomShield randomShield = new RandomShield(characterPlayer, preferences, mandatoryShields);
@@ -338,8 +338,8 @@ public class RandomizeCharacter {
 			// Probably already has a shield.
 			RandomGenerationLog.warning(this.getClass().getName(), e.getMessage());
 		} catch (InvalidRandomElementSelectedException e) {
-			RandomGenerationLog.warning(this.getClass().getName(),
-					"No shields available for '" + characterPlayer + "'.");
+			RandomGenerationLog.warning(this.getClass().getName(), "No shields available for '" + characterPlayer
+					+ "'.");
 		}
 
 		// Set armours
@@ -350,8 +350,8 @@ public class RandomizeCharacter {
 			// Probably already has a shield.
 			RandomGenerationLog.warning(this.getClass().getName(), e.getMessage());
 		} catch (InvalidRandomElementSelectedException e) {
-			RandomGenerationLog.warning(this.getClass().getName(),
-					"No armours available for '" + characterPlayer + "'.");
+			RandomGenerationLog.warning(this.getClass().getName(), "No armours available for '" + characterPlayer
+					+ "'.");
 		}
 	}
 

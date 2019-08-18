@@ -80,7 +80,7 @@ public class RandomCybernetics extends RandomSelector<CyberneticDevice> {
 				remainingPoints -= selectedDevice.getPoints();
 				// Update requirements.
 				for (final CyberneticDevice device : CyberneticDeviceFactory.getInstance().getDevicesThatRequires(
-						selectedDevice, getCharacterPlayer().getLanguage())) {
+						selectedDevice, getCharacterPlayer().getLanguage(), getCharacterPlayer().getModuleName())) {
 					updateWeight(device, getWeight(device) * 20);
 				}
 				// Assign skills if needed.
@@ -89,7 +89,8 @@ public class RandomCybernetics extends RandomSelector<CyberneticDevice> {
 						.getTrait(CyberneticDeviceTraitCategory.USABILITY);
 				if (usability != null && usability.getId().equalsIgnoreCase("skillUse")) {
 					final AvailableSkill skill = AvailableSkillsFactory.getInstance().getElement(
-							selectedDevice.getId(), getCharacterPlayer().getLanguage());
+							selectedDevice.getId(), getCharacterPlayer().getLanguage(),
+							getCharacterPlayer().getModuleName());
 					if (skill != null) {
 						final RandomSkillExtraPoints randomSkillExtraPoints = new RandomSkillExtraPoints(
 								getCharacterPlayer(), getPreferences(), new HashSet<AvailableSkill>());
@@ -113,7 +114,8 @@ public class RandomCybernetics extends RandomSelector<CyberneticDevice> {
 
 	@Override
 	protected Collection<CyberneticDevice> getAllElements() throws InvalidXmlElementException {
-		return CyberneticDeviceFactory.getInstance().getElements(getCharacterPlayer().getLanguage());
+		return CyberneticDeviceFactory.getInstance().getElements(getCharacterPlayer().getLanguage(),
+				getCharacterPlayer().getModuleName());
 	}
 
 	@Override
@@ -173,7 +175,7 @@ public class RandomCybernetics extends RandomSelector<CyberneticDevice> {
 		try {
 			if (cyberneticDevice.getTraits().contains(
 					CyberneticDeviceTraitFactory.getInstance().getElement("proscribed",
-							getCharacterPlayer().getLanguage()))) {
+							getCharacterPlayer().getLanguage(), getCharacterPlayer().getModuleName()))) {
 				if (CyberneticPointsPreferences.getSelected(getPreferences()) == CyberneticPointsPreferences.SUBTLE) {
 					return 0;
 				}

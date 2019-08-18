@@ -68,7 +68,7 @@ public class RandomSurname extends RandomSelector<Surname> {
 		}
 		// Not nobility no faction as surname.
 		try {
-			for (final Faction faction : FactionsFactory.getInstance().getElements(getCharacterPlayer().getLanguage())) {
+			for (final Faction faction : FactionsFactory.getInstance().getElements(getCharacterPlayer().getLanguage(), getCharacterPlayer().getModuleName())) {
 				if (faction.getName().contains(surname.getName())) {
 					return 0;
 				}

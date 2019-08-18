@@ -62,7 +62,7 @@ public class RandomArmour extends EquipmentSelector<Armour> {
 
 	@Override
 	protected Collection<Armour> getAllElements() throws InvalidXmlElementException {
-		return ArmourFactory.getInstance().getElements(getCharacterPlayer().getLanguage());
+		return ArmourFactory.getInstance().getElements(getCharacterPlayer().getLanguage(), getCharacterPlayer().getModuleName());
 	}
 
 	/**

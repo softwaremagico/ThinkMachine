@@ -32,7 +32,6 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.characteristics.CharacteristicType;
 import com.softwaremagico.tm.character.characteristics.CharacteristicsDefinitionFactory;
-import com.softwaremagico.tm.language.Translator;
 import com.softwaremagico.tm.log.PdfExporterLog;
 import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.complete.elements.BaseElement;
@@ -48,8 +47,8 @@ public class CharacteristicsTableFactory extends BaseElement {
 		separator.setColspan(widths.length);
 		table.addCell(separator);
 
-		final Phrase content = new Phrase(getTranslator().getTranslatedText("characteristics").toUpperCase(), new Font(FadingSunsTheme.getTitleFont(),
-				FadingSunsTheme.TITLE_FONT_SIZE));
+		final Phrase content = new Phrase(getTranslator().getTranslatedText("characteristics").toUpperCase(),
+				new Font(FadingSunsTheme.getTitleFont(), FadingSunsTheme.TITLE_FONT_SIZE));
 		final PdfPCell titleCell = new PdfPCell(content);
 		setCellProperties(titleCell);
 		titleCell.setColspan(widths.length);
@@ -60,8 +59,9 @@ public class CharacteristicsTableFactory extends BaseElement {
 
 		for (final CharacteristicType type : CharacteristicType.values()) {
 			try {
-				table.addCell(new CharacteristicsColumn(characterPlayer, type, CharacteristicsDefinitionFactory.getInstance().getAll(type,
-						Translator.getLanguage())));
+				table.addCell(new CharacteristicsColumn(characterPlayer, type,
+						CharacteristicsDefinitionFactory.getInstance().getAll(type, characterPlayer.getLanguage(),
+								characterPlayer.getModuleName())));
 			} catch (NullPointerException npe) {
 				PdfExporterLog.errorMessage(CharacteristicsTableFactory.class.getName(), npe);
 			}

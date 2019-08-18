@@ -42,12 +42,12 @@ public class DescriptionTable extends VerticalTable {
 	public DescriptionTable(CharacterPlayer characterPlayer) {
 		super(WIDTHS);
 
-		addCell(createTitle(getTranslator().getTranslatedText("description"), FadingSunsTheme.VERTICALTABLE_TITLE_FONT_SIZE));
+		addCell(createTitle(getTranslator().getTranslatedText("description"),
+				FadingSunsTheme.VERTICALTABLE_TITLE_FONT_SIZE));
 		addCell(createLine(characterPlayer, "birthdate"));
 		addCell(createLine(characterPlayer, "hair"));
 		addCell(createLine(characterPlayer, "eyes"));
 		addCell(createLine(characterPlayer, "complexion"));
-		addCell(createLine(characterPlayer, "height"));
 		addCell(createLine(characterPlayer, "weight"));
 		addCell(createLine(characterPlayer, "appearance"));
 		addCell(createEmptyElementLine(GAP, COLUMN_WIDTH));
@@ -61,16 +61,22 @@ public class DescriptionTable extends VerticalTable {
 		final String text = getTranslatedTag(tag);
 		// Spaces at the end are eliminated. For calculating width we can put
 		// the characters in different order.
-		final float textWidth = FadingSunsTheme.getLineFont().getWidthPoint(text + " :", FadingSunsTheme.TABLE_LINE_FONT_SIZE);
+		final float textWidth = FadingSunsTheme.getLineFont().getWidthPoint(text + " :",
+				FadingSunsTheme.TABLE_LINE_FONT_SIZE);
 
-		paragraph.add(new Paragraph(text + ": ", new Font(FadingSunsTheme.getLineFont(), FadingSunsTheme.TABLE_LINE_FONT_SIZE)));
-		if (characterPlayer == null || characterPlayer.getInfo().getTranslatedParameter(tag) == null) {
-			paragraph.add(new Paragraph(CellUtils.getSubStringFitsIn(GAP, FadingSunsTheme.getLineFont(), FadingSunsTheme.TABLE_LINE_FONT_SIZE, COLUMN_WIDTH
-					- textWidth), new Font(FadingSunsTheme.getLineFont(), FadingSunsTheme.TABLE_LINE_FONT_SIZE)));
+		paragraph.add(new Paragraph(text + ": ", new Font(FadingSunsTheme.getLineFont(),
+				FadingSunsTheme.TABLE_LINE_FONT_SIZE)));
+		if (characterPlayer == null
+				|| characterPlayer.getInfo().getTranslatedParameter(tag, characterPlayer.getModuleName()) == null) {
+			paragraph.add(new Paragraph(CellUtils.getSubStringFitsIn(GAP, FadingSunsTheme.getLineFont(),
+					FadingSunsTheme.TABLE_LINE_FONT_SIZE, COLUMN_WIDTH - textWidth), new Font(FadingSunsTheme
+					.getLineFont(), FadingSunsTheme.TABLE_LINE_FONT_SIZE)));
 		} else {
-			paragraph.add(new Paragraph(CellUtils.getSubStringFitsIn(characterPlayer.getInfo().getTranslatedParameter(tag),
-					FadingSunsTheme.getHandwrittingFont(), FadingSunsTheme.INFO_CONTENT_FONT_SIZE, COLUMN_WIDTH - textWidth), new Font(FadingSunsTheme
-					.getHandwrittingFont(), FadingSunsTheme.INFO_CONTENT_FONT_SIZE)));
+			paragraph.add(new Paragraph(CellUtils.getSubStringFitsIn(
+					characterPlayer.getInfo().getTranslatedParameter(tag, characterPlayer.getModuleName()),
+					FadingSunsTheme.getHandwrittingFont(), FadingSunsTheme.INFO_CONTENT_FONT_SIZE, COLUMN_WIDTH
+							- textWidth), new Font(FadingSunsTheme.getHandwrittingFont(),
+					FadingSunsTheme.INFO_CONTENT_FONT_SIZE)));
 		}
 
 		final PdfPCell cell = createEmptyElementLine("");
@@ -81,7 +87,8 @@ public class DescriptionTable extends VerticalTable {
 	}
 
 	private static String getTranslatedTag(String tag) {
-		final String value = getTranslator().getTranslatedText(LANGUAGE_PREFIX + tag.substring(0, 1).toUpperCase() + tag.substring(1));
+		final String value = getTranslator().getTranslatedText(
+				LANGUAGE_PREFIX + tag.substring(0, 1).toUpperCase() + tag.substring(1));
 		return value;
 	}
 }

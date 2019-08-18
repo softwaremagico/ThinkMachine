@@ -44,12 +44,11 @@ import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.language.ITranslator;
-import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
 import com.softwaremagico.tm.random.selectors.RandomPreferenceUtils;
 
 public class RandomProfileFactory extends XmlFactory<RandomProfile> {
-	private static final String TRANSLATOR_FILE = "profiles.xml");
+	private static final String TRANSLATOR_FILE = "profiles.xml";
 
 	private static final String NAME = "name";
 	private static final String PREFERENCES = "preferences";
@@ -79,25 +78,27 @@ public class RandomProfileFactory extends XmlFactory<RandomProfile> {
 	}
 
 	@Override
-	protected ITranslator getTranslator() {
-		return translator;
+	protected String getTranslatorFile() {
+		return TRANSLATOR_FILE;
 	}
 
 	@Override
-	public RandomProfile getElement(String elementId, String language) throws InvalidXmlElementException {
-		final RandomProfile randomProfile = super.getElement(elementId, language);
+	public RandomProfile getElement(String elementId, String language, String moduleName)
+			throws InvalidXmlElementException {
+		final RandomProfile randomProfile = super.getElement(elementId, language, moduleName);
 		if (!randomProfile.isParentMerged()) {
-			setParent(randomProfile, translator, language);
+			setParent(randomProfile, language, moduleName);
 		}
 		return randomProfile;
 	}
 
-	protected void setParent(RandomProfile profile, ITranslator translator, String language)
+	protected void setParent(RandomProfile profile, String language, String moduleName)
 			throws InvalidXmlElementException {
-		final String parentName = translator.getNodeValue(profile.getId(), PARENT);
+		final String parentName = getTranslator().getNodeValue(profile.getId(), PARENT);
 		if (parentName != null && !parentName.isEmpty()) {
 			try {
-				final RandomProfile parent = RandomProfileFactory.getInstance().getElement(parentName, language);
+				final RandomProfile parent = RandomProfileFactory.getInstance().getElement(parentName, language,
+						moduleName);
 				profile.setParent(parent);
 			} catch (Exception e) {
 				throw new InvalidProfileException("Invalid parent in profile '" + profile + "'.");
@@ -106,7 +107,7 @@ public class RandomProfileFactory extends XmlFactory<RandomProfile> {
 	}
 
 	@Override
-	protected RandomProfile createElement(ITranslator translator, String profileId, String language)
+	protected RandomProfile createElement(ITranslator translator, String profileId, String language, String moduleName)
 			throws InvalidXmlElementException {
 		String name = null;
 		try {
@@ -120,8 +121,8 @@ public class RandomProfileFactory extends XmlFactory<RandomProfile> {
 		if (preferencesSelectedNames != null) {
 			final StringTokenizer preferencesSelectedTokenizer = new StringTokenizer(preferencesSelectedNames, ",");
 			while (preferencesSelectedTokenizer.hasMoreTokens()) {
-				preferencesSelected.add(
-						RandomPreferenceUtils.getSelectedPreference(preferencesSelectedTokenizer.nextToken().trim()));
+				preferencesSelected.add(RandomPreferenceUtils.getSelectedPreference(preferencesSelectedTokenizer
+						.nextToken().trim()));
 			}
 		}
 
@@ -131,8 +132,8 @@ public class RandomProfileFactory extends XmlFactory<RandomProfile> {
 					characteristicName.name().toLowerCase());
 			if (characteristicValue != null) {
 				try {
-					final Characteristic characteristicOption = new Characteristic(
-							CharacteristicsDefinitionFactory.getInstance().get(characteristicName, language));
+					final Characteristic characteristicOption = new Characteristic(CharacteristicsDefinitionFactory
+							.getInstance().get(characteristicName, language, moduleName));
 					characteristicOption.setValue(Integer.parseInt(characteristicValue));
 					characteristicsMinimumValues.add(characteristicOption);
 				} catch (NumberFormatException e) {
@@ -166,14 +167,15 @@ public class RandomProfileFactory extends XmlFactory<RandomProfile> {
 				}
 				try {
 					if (skillSpeciality == null) {
-						requiredSkills.add(AvailableSkillsFactory.getInstance().getElement(requiredSkillId, language));
+						requiredSkills.add(AvailableSkillsFactory.getInstance().getElement(requiredSkillId, language,
+								moduleName));
 					} else {
 						requiredSkills.add(AvailableSkillsFactory.getInstance().getElement(requiredSkillId,
-								skillSpeciality, language));
+								skillSpeciality, language, moduleName));
 					}
 				} catch (InvalidXmlElementException e) {
-					throw new InvalidProfileException(
-							"Invalid required skill '" + requiredSkillId + "' for  profile '" + profileId + "'.", e);
+					throw new InvalidProfileException("Invalid required skill '" + requiredSkillId + "' for  profile '"
+							+ profileId + "'.", e);
 				}
 				node++;
 			} catch (NumberFormatException e) {
@@ -205,15 +207,15 @@ public class RandomProfileFactory extends XmlFactory<RandomProfile> {
 				}
 				try {
 					if (skillSpeciality == null) {
-						suggestedSkills
-								.add(AvailableSkillsFactory.getInstance().getElement(suggestedSkillId, language));
+						suggestedSkills.add(AvailableSkillsFactory.getInstance().getElement(suggestedSkillId, language,
+								moduleName));
 					} else {
 						suggestedSkills.add(AvailableSkillsFactory.getInstance().getElement(suggestedSkillId,
 								skillSpeciality, language));
 					}
 				} catch (InvalidXmlElementException e) {
-					throw new InvalidProfileException(
-							"Invalid suggested skill '" + suggestedSkillId + "' for  profile '" + profileId + "'.", e);
+					throw new InvalidProfileException("Invalid suggested skill '" + suggestedSkillId
+							+ "' for  profile '" + profileId + "'.", e);
 				}
 				node++;
 			} catch (NumberFormatException e) {
@@ -222,21 +224,21 @@ public class RandomProfileFactory extends XmlFactory<RandomProfile> {
 		}
 
 		final Set<BeneficeDefinition> mandatoryBenefices = getCommaSeparatedValues(profileId, MANDATORY_BENEFICES,
-				language, BeneficeDefinitionFactory.getInstance());
+				language, moduleName, BeneficeDefinitionFactory.getInstance());
 
 		final Set<BeneficeDefinition> suggestedBenefices = getCommaSeparatedValues(profileId, SUGGESTED_BENEFICES,
-				language, BeneficeDefinitionFactory.getInstance());
+				language, moduleName, BeneficeDefinitionFactory.getInstance());
 
 		final Set<Weapon> mandatoryWeapons = getCommaSeparatedValues(profileId, MANDATORY_WEAPONS, language,
-				WeaponFactory.getInstance());
+				moduleName, WeaponFactory.getInstance());
 
 		final Set<Armour> mandatoryArmours = getCommaSeparatedValues(profileId, MANDATORY_ARMOURS, language,
-				ArmourFactory.getInstance());
+				moduleName, ArmourFactory.getInstance());
 
 		final Set<Shield> mandatoryShields = getCommaSeparatedValues(profileId, MANDATORY_SHIELDS, language,
-				ShieldFactory.getInstance());
+				moduleName, ShieldFactory.getInstance());
 
-		final RandomProfile profile = new RandomProfile(profileId, name, language, preferencesSelected,
+		final RandomProfile profile = new RandomProfile(profileId, name, language, moduleName, preferencesSelected,
 				characteristicsMinimumValues, requiredSkills, suggestedSkills, mandatoryBenefices, suggestedBenefices,
 				mandatoryWeapons, mandatoryArmours, mandatoryShields);
 		return profile;

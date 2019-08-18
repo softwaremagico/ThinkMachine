@@ -132,41 +132,49 @@ public class ArmourTable extends LateralHeaderPdfPTable {
 					characterPlayer
 							.getArmour()
 							.getDamageTypes()
-							.contains(DamageTypeFactory.getInstance().getElement("hard", characterPlayer.getLanguage()))));
+							.contains(
+									DamageTypeFactory.getInstance().getElement("hard", characterPlayer.getLanguage(),
+											characterPlayer.getModuleName()))));
 			addCell(getArmourProperty(
 					getTranslator().getTranslatedText("armorFireAbbreviature"),
 					characterPlayer
 							.getArmour()
 							.getDamageTypes()
-							.contains(DamageTypeFactory.getInstance().getElement("fire", characterPlayer.getLanguage()))));
+							.contains(
+									DamageTypeFactory.getInstance().getElement("fire", characterPlayer.getLanguage(),
+											characterPlayer.getModuleName()))));
 			addCell(getArmourProperty(
 					getTranslator().getTranslatedText("armorLaserAbbreviature"),
 					characterPlayer
 							.getArmour()
 							.getDamageTypes()
 							.contains(
-									DamageTypeFactory.getInstance().getElement("laser", characterPlayer.getLanguage()))));
+									DamageTypeFactory.getInstance().getElement("laser", characterPlayer.getLanguage(),
+											characterPlayer.getModuleName()))));
 			addCell(getArmourProperty(
 					getTranslator().getTranslatedText("armorPlasmAbbreviature"),
 					characterPlayer
 							.getArmour()
 							.getDamageTypes()
 							.contains(
-									DamageTypeFactory.getInstance().getElement("plasma", characterPlayer.getLanguage()))));
+									DamageTypeFactory.getInstance().getElement("plasma", characterPlayer.getLanguage(),
+											characterPlayer.getModuleName()))));
 			addCell(getArmourProperty(
 					getTranslator().getTranslatedText("armorShockAbbreviature"),
 					characterPlayer
 							.getArmour()
 							.getDamageTypes()
 							.contains(
-									DamageTypeFactory.getInstance().getElement("shock", characterPlayer.getLanguage()))));
+									DamageTypeFactory.getInstance().getElement("shock", characterPlayer.getLanguage(),
+											characterPlayer.getModuleName()))));
 			addCell(getArmourProperty(
 					getTranslator().getTranslatedText("armorImpactAbbreviature"),
 					characterPlayer
 							.getArmour()
 							.getDamageTypes()
 							.contains(
-									DamageTypeFactory.getInstance().getElement("impact", characterPlayer.getLanguage()))));
+									DamageTypeFactory.getInstance().getElement("impact", characterPlayer.getLanguage(),
+											characterPlayer.getModuleName()))));
 		}
 
 	}

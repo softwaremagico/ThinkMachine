@@ -46,9 +46,11 @@ public class OccultismsPowerTable extends LateralHeaderPdfPTable {
 	private static final int REQUIREMENTS_COLUMN_WIDTH = 40;
 	private static final int COST_COLUMN_WIDTH = 15;
 
-	public OccultismsPowerTable(CharacterPlayer characterPlayer, int totalRows) throws InvalidXmlElementException {
+	public OccultismsPowerTable(CharacterPlayer characterPlayer, int totalRows)
+			throws InvalidXmlElementException {
 		super(WIDTHS);
-		addCell(createLateralVerticalTitle(getTranslator().getTranslatedText("occultismPowers"), totalRows + 1));
+		addCell(createLateralVerticalTitle(getTranslator().getTranslatedText("occultismPowers"),
+				totalRows + 1));
 		addCell(createTableSubtitleElement(getTranslator().getTranslatedText("occultismTablePower")));
 		addCell(createTableSubtitleElement(getTranslator().getTranslatedText("occultismTableLevel")));
 		addCell(createTableSubtitleElement(getTranslator().getTranslatedText("occultismTableRoll")));
@@ -60,21 +62,29 @@ public class OccultismsPowerTable extends LateralHeaderPdfPTable {
 		int addedPowers = 0;
 		if (characterPlayer != null) {
 			for (final Entry<String, List<String>> occultismPathEntry : characterPlayer.getSelectedPowers().entrySet()) {
-				final OccultismPath occultismPath = OccultismPathFactory.getInstance().getElement(occultismPathEntry.getKey(), characterPlayer.getLanguage());
+				final OccultismPath occultismPath = OccultismPathFactory.getInstance().getElement(
+						occultismPathEntry.getKey(), characterPlayer.getLanguage(), characterPlayer.getModuleName());
 				for (final String occultismPowerName : occultismPathEntry.getValue()) {
 					final OccultismPower occultismPower = occultismPath.getOccultismPowers().get(occultismPowerName);
 					if (occultismPower.isEnabled()) {
-						addCell(createFirstElementLine(occultismPower.getName(), NAME_COLUMN_WIDTH, FadingSunsTheme.OCCULSTISM_POWERS_CONTENT_FONT_SIZE));
-						addCell(createElementLine(occultismPower.getLevel() + "", LEVEL_COLUMN_WIDTH, FadingSunsTheme.OCCULSTISM_POWERS_CONTENT_FONT_SIZE));
-						addCell(createElementLine(occultismPower.getRoll(), ROLL_COLUMN_WIDTH, FadingSunsTheme.OCCULSTISM_POWERS_CONTENT_FONT_SIZE));
-						addCell(createElementLine(occultismPower.getRange() != null ? occultismPower.getRange().getName() : "", RANGE_COLUMN_WIDTH,
+						addCell(createFirstElementLine(occultismPower.getName(), NAME_COLUMN_WIDTH,
 								FadingSunsTheme.OCCULSTISM_POWERS_CONTENT_FONT_SIZE));
-						addCell(createElementLine(occultismPower.getDuration() != null ? occultismPower.getDuration().getName() : "", DURATION_COLUMN_WIDTH,
+						addCell(createElementLine(occultismPower.getLevel() + "", LEVEL_COLUMN_WIDTH,
 								FadingSunsTheme.OCCULSTISM_POWERS_CONTENT_FONT_SIZE));
-						addCell(createElementLine(occultismPower.getComponentsRepresentation().length() > 0 ? occultismPower.getComponentsRepresentation()
-								: "--", REQUIREMENTS_COLUMN_WIDTH, FadingSunsTheme.OCCULSTISM_POWERS_CONTENT_FONT_SIZE));
-						addCell(createElementLine(occultismPower.getCost() != null ? occultismPower.getCost() + "" : "*", COST_COLUMN_WIDTH,
+						addCell(createElementLine(occultismPower.getRoll(), ROLL_COLUMN_WIDTH,
 								FadingSunsTheme.OCCULSTISM_POWERS_CONTENT_FONT_SIZE));
+						addCell(createElementLine(occultismPower.getRange() != null ? occultismPower.getRange()
+								.getName() : "", RANGE_COLUMN_WIDTH,
+								FadingSunsTheme.OCCULSTISM_POWERS_CONTENT_FONT_SIZE));
+						addCell(createElementLine(occultismPower.getDuration() != null ? occultismPower.getDuration()
+								.getName() : "", DURATION_COLUMN_WIDTH,
+								FadingSunsTheme.OCCULSTISM_POWERS_CONTENT_FONT_SIZE));
+						addCell(createElementLine(
+								occultismPower.getComponentsRepresentation().length() > 0 ? occultismPower.getComponentsRepresentation()
+										: "--", REQUIREMENTS_COLUMN_WIDTH,
+								FadingSunsTheme.OCCULSTISM_POWERS_CONTENT_FONT_SIZE));
+						addCell(createElementLine(occultismPower.getCost() != null ? occultismPower.getCost() + ""
+								: "*", COST_COLUMN_WIDTH, FadingSunsTheme.OCCULSTISM_POWERS_CONTENT_FONT_SIZE));
 						addedPowers++;
 					}
 				}

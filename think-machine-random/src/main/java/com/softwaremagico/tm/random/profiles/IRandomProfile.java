@@ -56,6 +56,8 @@ public interface IRandomProfile {
 	void setParent(IRandomProfile randomProfile) throws InvalidXmlElementException;
 
 	public String getLanguage();
+	
+	public String getModuleName();
 
 	Set<AvailableSkill> getRequiredSkills();
 

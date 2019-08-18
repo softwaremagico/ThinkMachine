@@ -61,18 +61,18 @@ public class RandomPsique extends RandomSelector<OccultismType> {
 
 	@Override
 	protected Collection<OccultismType> getAllElements() throws InvalidXmlElementException {
-		return OccultismTypeFactory.getInstance().getElements(getCharacterPlayer().getLanguage());
+		return OccultismTypeFactory.getInstance().getElements(getCharacterPlayer().getLanguage(), getCharacterPlayer().getModuleName());
 	}
 
 	@Override
 	protected int getWeight(OccultismType element) throws InvalidRandomElementSelectedException {
 		// Church factions must have always theurgy.
-		if (Objects.equals(element, OccultismTypeFactory.getPsi(getCharacterPlayer().getLanguage()))) {
+		if (Objects.equals(element, OccultismTypeFactory.getPsi(getCharacterPlayer().getLanguage(), getCharacterPlayer().getModuleName()))) {
 			if (getCharacterPlayer().getFaction().getFactionGroup() == FactionGroup.CHURCH) {
 				throw new InvalidRandomElementSelectedException("Psi not allowed to church factions");
 			}
 			// No church factions have psi.
-		} else if (Objects.equals(element, OccultismTypeFactory.getTheurgy(getCharacterPlayer().getLanguage()))) {
+		} else if (Objects.equals(element, OccultismTypeFactory.getTheurgy(getCharacterPlayer().getLanguage(), getCharacterPlayer().getModuleName()))) {
 			if (getCharacterPlayer().getFaction().getFactionGroup() != FactionGroup.CHURCH) {
 				throw new InvalidRandomElementSelectedException("Theurgy restricted to church factions");
 			}
@@ -83,7 +83,7 @@ public class RandomPsique extends RandomSelector<OccultismType> {
 	private int assignLevelOfPsique(OccultismType psique) throws InvalidXmlElementException {
 		// A curse does not allow occultism.
 		if (getCharacterPlayer().getAfflictions().contains(
-				AvailableBeneficeFactory.getInstance().getElement("noOccult", getCharacterPlayer().getLanguage()))) {
+				AvailableBeneficeFactory.getInstance().getElement("noOccult", getCharacterPlayer().getLanguage(), getCharacterPlayer().getModuleName()))) {
 			return 0;
 		}
 		final IGaussianDistribution psiqueLevelSelector = PsiqueLevelPreferences.getSelected(getPreferences());

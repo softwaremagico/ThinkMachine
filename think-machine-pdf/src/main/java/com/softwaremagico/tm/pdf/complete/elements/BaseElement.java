@@ -43,9 +43,11 @@ import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.complete.info.CharacterBasicsCompleteTableFactory;
 
 public class BaseElement {
-	private static ITranslator translator = LanguagePool.getTranslator("character_sheet.xml");
+	private static final String TRANSLATOR_FILE = "character_sheet.xml";
+	private static ITranslator translator;
 
-	public static PdfPCell getCell(String text, int border, int colspan, int align, BaseColor color, BaseFont font, float fontSize) {
+	public static PdfPCell getCell(String text, int border, int colspan, int align, BaseColor color, BaseFont font,
+			float fontSize) {
 		if (text == null) {
 			text = "";
 		}
@@ -69,7 +71,8 @@ public class BaseElement {
 		return cell;
 	}
 
-	protected PdfPCell getCell(String text, int border, int colspan, int align, BaseColor color, String font, int fontSize, int fontType) {
+	protected PdfPCell getCell(String text, int border, int colspan, int align, BaseColor color, String font,
+			int fontSize, int fontType) {
 		if (text == null) {
 			text = "";
 		}
@@ -91,7 +94,8 @@ public class BaseElement {
 	}
 
 	public static PdfPCell createLogoCell() throws DocumentException, IOException {
-		final Image image = Image.getInstance(CharacterBasicsCompleteTableFactory.class.getResource("/" + FadingSunsTheme.LOGO_IMAGE));
+		final Image image = Image.getInstance(CharacterBasicsCompleteTableFactory.class.getResource("/"
+				+ FadingSunsTheme.LOGO_IMAGE));
 		final PdfPCell cell = new PdfPCell(image, true);
 		setCellProperties(cell);
 		cell.setHorizontalAlignment(Element.ALIGN_CENTER);
@@ -165,6 +169,9 @@ public class BaseElement {
 	}
 
 	public static ITranslator getTranslator() {
+		if (translator == null) {
+			translator = LanguagePool.getTranslator(TRANSLATOR_FILE, null);
+		}
 		return translator;
 	}
 }

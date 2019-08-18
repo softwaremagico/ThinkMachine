@@ -133,7 +133,7 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 		int weight = getWeight(availableSkill);
 		while (weight > 0) {
 			for (final AvailableSkill selectedSkill : AvailableSkillsFactory.getInstance().getSkillsByGroup(skillGroup,
-					getCharacterPlayer().getLanguage())) {
+					getCharacterPlayer().getLanguage(), getCharacterPlayer().getModuleName())) {
 				if (weight > 0 && !Objects.equals(availableSkill, selectedSkill)) {
 					updateWeight(selectedSkill, getWeight(selectedSkill) + 1);
 					weight--;
@@ -147,9 +147,9 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 	protected Collection<AvailableSkill> getAllElements() throws InvalidXmlElementException {
 		final Set<AvailableSkill> availableSkills = new HashSet<AvailableSkill>();
 		for (final SkillDefinition skillDefinition : SkillsDefinitionsFactory.getInstance().getElements(
-				getCharacterPlayer().getLanguage())) {
+				getCharacterPlayer().getLanguage(), getCharacterPlayer().getModuleName())) {
 			for (final AvailableSkill skill : AvailableSkillsFactory.getInstance().getAvailableSkills(skillDefinition,
-					getCharacterPlayer().getLanguage())) {
+					getCharacterPlayer().getLanguage(), getCharacterPlayer().getModuleName())) {
 				availableSkills.add(skill);
 			}
 		}
@@ -218,8 +218,8 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 	}
 
 	/**
-	 * Skills with lots of specializations has more chance to have at least one
-	 * of the specializations selected. This methods reduces its probability.
+	 * Skills with lots of specializations has more chance to have at least one of the specializations selected. This
+	 * methods reduces its probability.
 	 * 
 	 * @param skill
 	 *            skill to check.
@@ -284,13 +284,16 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 	}
 
 	private int weightByPsique(AvailableSkill skill) {
-		if (getCharacterPlayer().getPsiqueLevel(OccultismTypeFactory.getPsi(getCharacterPlayer().getLanguage())) > 0) {
+		if (getCharacterPlayer().getPsiqueLevel(
+				OccultismTypeFactory.getPsi(getCharacterPlayer().getLanguage(), getCharacterPlayer().getModuleName())) > 0) {
 			// Self control useful for psique.
 			if (skill.getId().equals("selfControl")) {
 				return MAX_PROBABILITY;
 			}
 		}
-		if (getCharacterPlayer().getPsiqueLevel(OccultismTypeFactory.getTheurgy(getCharacterPlayer().getLanguage())) > 0) {
+		if (getCharacterPlayer().getPsiqueLevel(
+				OccultismTypeFactory.getTheurgy(getCharacterPlayer().getLanguage(), getCharacterPlayer()
+						.getModuleName())) > 0) {
 			if (skill.getId().equals("influence")) {
 				return MAX_PROBABILITY;
 			}

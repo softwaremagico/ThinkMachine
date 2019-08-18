@@ -61,9 +61,12 @@ public class WeaponsTable extends LateralHeaderPdfPTable {
 		int addedWeapons = 0;
 		if (characterPlayer != null) {
 			for (final Weapon weapon : characterPlayer.getAllWeapons()) {
-				addCell(createFirstElementLine(weapon.getName(), NAME_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
-				addCell(createElementLine(weapon.getRoll(), ROLL_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
-				addCell(createElementLine((weapon.getGoal() != null ? weapon.getGoal() : ""), GOAL_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
+				addCell(createFirstElementLine(weapon.getName(), NAME_COLUMN_WIDTH,
+						FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
+				addCell(createElementLine(weapon.getRoll(), ROLL_COLUMN_WIDTH,
+						FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
+				addCell(createElementLine((weapon.getGoal() != null ? weapon.getGoal() : ""), GOAL_COLUMN_WIDTH,
+						FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
 				final StringBuilder stringBuilder = new StringBuilder();
 				stringBuilder.append(weapon.getDamageWithoutArea());
 				if (!weapon.getDamageWithoutArea().endsWith("d")) {
@@ -73,28 +76,36 @@ public class WeaponsTable extends LateralHeaderPdfPTable {
 					stringBuilder.append(" ");
 					stringBuilder.append(weapon.getAreaMeters());
 				}
-				addCell(createElementLine(stringBuilder.toString(), DAMAGE_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
-				addCell(createElementLine(weapon.getShots() == null ? characterPlayer.getStrengthDamangeModification() + "" : weapon.getStrengthOrRange(),
-						RANGE_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
-				addCell(createElementLine(weapon.getShots() + "", SHOTS_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
-				addCell(createElementLine(weapon.getRate(), RATE_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
-				addCell(createElementLine(weapon.getSize() != null ? weapon.getSize().toString() : "", SIZE_COLUMN_WIDTH,
+				addCell(createElementLine(stringBuilder.toString(), DAMAGE_COLUMN_WIDTH,
 						FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
-				addCell(createElementLine(getWeaponOthers(weapon), OTHERS_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
+				addCell(createElementLine(weapon.getShots() == null ? characterPlayer.getStrengthDamangeModification()
+						+ "" : weapon.getStrengthOrRange(), RANGE_COLUMN_WIDTH,
+						FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
+				addCell(createElementLine(weapon.getShots() + "", SHOTS_COLUMN_WIDTH,
+						FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
+				addCell(createElementLine(weapon.getRate(), RATE_COLUMN_WIDTH,
+						FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
+				addCell(createElementLine(weapon.getSize() != null ? weapon.getSize().toString() : "",
+						SIZE_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
+				addCell(createElementLine(getWeaponOthers(weapon), OTHERS_COLUMN_WIDTH,
+						FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
 
 				addedWeapons++;
 
 				for (final Ammunition ammunition : weapon.getAmmunitions()) {
-					addCell(createFirstElementLine(" - " + ammunition.getName(), NAME_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
-					addCell(createElementLine("", ROLL_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
-					addCell(createElementLine((ammunition.getGoal() != null ? weapon.getGoal() : ""), GOAL_COLUMN_WIDTH,
+					addCell(createFirstElementLine(" - " + ammunition.getName(), NAME_COLUMN_WIDTH,
 							FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
-					addCell(createElementLine(ammunition.getDamage() + "d", DAMAGE_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
-					addCell(createElementLine(ammunition.getStrengthOrRange(), RANGE_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
+					addCell(createElementLine("", ROLL_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
+					addCell(createElementLine((ammunition.getGoal() != null ? weapon.getGoal() : ""),
+							GOAL_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
+					addCell(createElementLine(ammunition.getDamage() + "d", DAMAGE_COLUMN_WIDTH,
+							FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
+					addCell(createElementLine(ammunition.getStrengthOrRange(), RANGE_COLUMN_WIDTH,
+							FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
 					addCell(createElementLine("", RANGE_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
 					addCell(createElementLine("", RATE_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
-					addCell(createElementLine(ammunition.getSize() != null ? ammunition.getSize().toString() : "", SIZE_COLUMN_WIDTH,
-							FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
+					addCell(createElementLine(ammunition.getSize() != null ? ammunition.getSize().toString() : "",
+							SIZE_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
 					addCell(createElementLine("", OTHERS_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
 					addedWeapons++;
 				}

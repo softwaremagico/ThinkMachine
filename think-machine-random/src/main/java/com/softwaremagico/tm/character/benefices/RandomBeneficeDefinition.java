@@ -118,7 +118,7 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
 		// Only one fighting style by character.
 		if (selectedBenefice.getGroup().equals(BeneficeGroup.FIGHTING)) {
 			for (final BeneficeDefinition beneficeDefinition : BeneficeDefinitionFactory.getInstance()
-					.getBenefices(BeneficeGroup.FIGHTING, getCharacterPlayer().getLanguage())) {
+					.getBenefices(BeneficeGroup.FIGHTING, getCharacterPlayer().getLanguage(), getCharacterPlayer().getModuleName())) {
 				removeElementWeight(beneficeDefinition);
 			}
 		}
@@ -135,7 +135,7 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
 
 	@Override
 	protected Collection<BeneficeDefinition> getAllElements() throws InvalidXmlElementException {
-		return BeneficeDefinitionFactory.getInstance().getElements(getCharacterPlayer().getLanguage());
+		return BeneficeDefinitionFactory.getInstance().getElements(getCharacterPlayer().getLanguage(), getCharacterPlayer().getModuleName());
 	}
 
 	@Override
@@ -210,7 +210,7 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
 		RandomGenerationLog.info(this.getClass().getName(),
 				"MaxPoints of '" + benefice + "' are '" + maxRangeSelected + "'.");
 		Set<AvailableBenefice> beneficeLevels = AvailableBeneficeFactory.getInstance()
-				.getAvailableBeneficesByDefinition(getCharacterPlayer().getLanguage(), benefice);
+				.getAvailableBeneficesByDefinition(getCharacterPlayer().getLanguage(), getCharacterPlayer().getModuleName(), benefice);
 		// Cannot be null, but...
 		if (beneficeLevels == null) {
 			beneficeLevels = new HashSet<>();

@@ -36,6 +36,7 @@ import com.softwaremagico.tm.character.RandomizeCharacter;
 import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
 import com.softwaremagico.tm.character.creation.CostCalculator;
 import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
+import com.softwaremagico.tm.file.Path;
 import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.pdf.complete.CharacterSheet;
 import com.softwaremagico.tm.pdf.small.SmallCharacterSheet;
@@ -53,7 +54,7 @@ public class RandomCharacterSheetCreationTest {
 	@Test
 	public void completeRandomCharacter() throws InvalidXmlElementException, DuplicatedPreferenceException,
 			InvalidRandomElementSelectedException, TooManyBlessingsException {
-		final CharacterPlayer characterPlayer = new CharacterPlayer("es");
+		final CharacterPlayer characterPlayer = new CharacterPlayer("es", Path.DEFAULT_MODULE_FOLDER);
 		final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0);
 		randomizeCharacter.createCharacter();
 
@@ -69,7 +70,7 @@ public class RandomCharacterSheetCreationTest {
 	@Test
 	public void completeRandomCharacterSmallEs() throws InvalidXmlElementException, DuplicatedPreferenceException,
 			InvalidRandomElementSelectedException, TooManyBlessingsException {
-		final CharacterPlayer characterPlayer = new CharacterPlayer("es");
+		final CharacterPlayer characterPlayer = new CharacterPlayer("es", Path.DEFAULT_MODULE_FOLDER);
 		final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0);
 		randomizeCharacter.createCharacter();
 
@@ -86,7 +87,7 @@ public class RandomCharacterSheetCreationTest {
 	@Test
 	public void completeRandomCharacterSmallEn() throws InvalidXmlElementException, DuplicatedPreferenceException,
 			InvalidRandomElementSelectedException, TooManyBlessingsException {
-		final CharacterPlayer characterPlayer = new CharacterPlayer("en");
+		final CharacterPlayer characterPlayer = new CharacterPlayer("en", Path.DEFAULT_MODULE_FOLDER);
 		final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0);
 		randomizeCharacter.createCharacter();
 

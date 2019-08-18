@@ -38,13 +38,11 @@ import java.io.Reader;
 import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
 import java.io.Writer;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.HashSet;
 import java.util.List;
@@ -52,8 +50,11 @@ import java.util.Scanner;
 import java.util.Set;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
+import java.util.regex.Pattern;
 
-import com.softwaremagico.tm.file.configurator.MachineConfigurationReader;
+import org.reflections.Reflections;
+import org.reflections.scanners.ResourcesScanner;
+
 import com.softwaremagico.tm.log.MachineLog;
 
 public class FileManager {
@@ -190,68 +191,29 @@ public class FileManager {
 
 	public static Set<String> getAvailableModules() {
 		if (availableModules == null) {
-			availableModules = new HashSet<>();
-
-			// In rules classes.
-			final List<File> defaultModules = listFolders(Path.getDefaultModulesFolder());
-			for (final File module : defaultModules) {
-				if (module.isDirectory()) {
-					availableModules.add(module.getName());
-				}
-			}
-
-			// From external jars.
-			try {
-				final File[] availableJars = findJarFiles(MachineConfigurationReader.getInstance().getModulesPath()
-						+ File.separator);
-				for (final File jar : availableJars) {
-					availableModules.add(jar.getName());
-				}
-				return availableModules;
-			} catch (Exception ex) {
-				MachineLog.warning(FileManager.class.getName(), "Error meanwhile loading modules: " + ex.getMessage());
-				return new HashSet<>();
-			}
+			availableModules = listModulesInResources();
 		}
 		return availableModules;
 	}
 
-	public static List<File> listFolders(String directoryPath) {
-		final List<File> resultList = new ArrayList<File>();
+	private static Set<String> listModulesInResources() {
+		Set<String> resources = new Reflections(Path.MODULES_FOLDER, new ResourcesScanner()).getResources(Pattern
+				.compile(".*\\.xml"));
 
-		final File jarFile = new File(FileManager.class.getProtectionDomain().getCodeSource().getLocation().getPath());
-		if (jarFile.isFile()) { // Run with JAR file
-			try (final JarFile jar = new JarFile(jarFile)) {
-				final Enumeration<JarEntry> entries = jar.entries(); // gives ALL entries in jar
-				while (entries.hasMoreElements()) {
-					final String name = entries.nextElement().getName();
-					if (name.startsWith(directoryPath + "/")) { // filter according to the path
-						// TODO, read resources as files.
-					}
-				}
-			} catch (IOException e) {
-				MachineLog.errorMessage(FileManager.class.getName(), e);
-			}
-		} else {
-			final URL url = FileManager.class.getClassLoader().getResource(directoryPath);
-			if (url != null) {
-				try {
-					final File directory = new File(url.toURI());
-					final File[] fileList = directory.listFiles();
-					resultList.addAll(Arrays.asList(fileList));
-					for (final File file : fileList) {
-						if (file.isDirectory()) {
-							MachineLog.info(FileManager.class.getName(), "Found module '" + file.getName() + "'.");
-							resultList.add(file);
-						}
-					}
-				} catch (URISyntaxException e) {
-					// Never happens
-					MachineLog.errorMessage(FileManager.class.getName(), e);
-				}
+		Set<String> modules = new HashSet<>();
+		for (String resource : resources) {
+			try {
+				String[] path = resource.split("/");
+				if (path.length > 2)
+					modules.add(path[1]);
+			} catch (ArrayIndexOutOfBoundsException e) {
+
 			}
 		}
-		return resultList;
+		if(modules.isEmpty()){
+			MachineLog.severe(FileManager.class.getName(), "No modules found!");
+		}
+		return modules;
 	}
 
 	public static void getAllModules(String pathToJar) throws IOException, ClassNotFoundException {

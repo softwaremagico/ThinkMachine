@@ -46,25 +46,27 @@ import com.softwaremagico.tm.random.selectors.IRandomPreference;
 public class ProfileMerger {
 	private static final String DEFAULT_ID = "merged_profile";
 
-	public static RandomProfile merge(String language, IRandomProfile... profiles) throws InvalidXmlElementException {
+	public static RandomProfile merge(String language, String moduleName, IRandomProfile... profiles)
+			throws InvalidXmlElementException {
 		if (profiles == null || profiles.length == 0) {
 			return null;
 		}
 
-		return merge(new HashSet<IRandomProfile>(Arrays.asList(profiles)), language);
+		return merge(new HashSet<IRandomProfile>(Arrays.asList(profiles)), language, moduleName);
 	}
 
-	public static RandomProfile merge(Set<IRandomProfile> profiles, String language) throws InvalidXmlElementException {
+	public static RandomProfile merge(Set<IRandomProfile> profiles, String language, String moduleName)
+			throws InvalidXmlElementException {
 		return merge(profiles, new HashSet<IRandomPreference>(), new HashSet<AvailableSkill>(),
 				new HashSet<AvailableSkill>(), new HashSet<BeneficeDefinition>(), new HashSet<BeneficeDefinition>(),
-				new HashSet<Weapon>(), new HashSet<Armour>(), new HashSet<Shield>(), language);
+				new HashSet<Weapon>(), new HashSet<Armour>(), new HashSet<Shield>(), language, moduleName);
 	}
 
 	public static RandomProfile merge(Set<IRandomProfile> profiles, Set<IRandomPreference> extraPreferences,
 			Set<AvailableSkill> requiredSkills, Set<AvailableSkill> suggestedSkills,
 			Set<BeneficeDefinition> mandatoryBenefices, Set<BeneficeDefinition> suggestedBenefices,
-			Set<Weapon> mandatoryWeapons, Set<Armour> mandatoryArmours, Set<Shield> mandatoryShields, String language)
-			throws InvalidXmlElementException {
+			Set<Weapon> mandatoryWeapons, Set<Armour> mandatoryArmours, Set<Shield> mandatoryShields, String language,
+			String moduleName) throws InvalidXmlElementException {
 		if (profiles == null) {
 			profiles = new HashSet<>();
 		}
@@ -74,7 +76,7 @@ public class ProfileMerger {
 		}
 
 		// Store all information in a new profile.
-		final RandomProfile finalProfile = new RandomProfile(DEFAULT_ID, "", language);
+		final RandomProfile finalProfile = new RandomProfile(DEFAULT_ID, "", language, moduleName);
 
 		// Merge profiles
 		for (final IRandomProfile profile : profiles) {
@@ -153,8 +155,7 @@ public class ProfileMerger {
 		}
 	}
 
-	private static void mergeBenefices(Set<BeneficeDefinition> originalBenefices,
-			Set<BeneficeDefinition> extraBenefices) {
+	private static void mergeBenefices(Set<BeneficeDefinition> originalBenefices, Set<BeneficeDefinition> extraBenefices) {
 		originalBenefices.addAll(extraBenefices);
 	}
 
@@ -177,9 +178,10 @@ public class ProfileMerger {
 		// Keep only the most expensives ones.
 		if (!sortedWeapons.isEmpty()) {
 			originalWeapons.clear();
-			originalWeapons.addAll(sortedWeapons.subList(0,
-					sortedWeapons.size() / 2 > originalWeapons.size() ? sortedWeapons.size() / 2 + 1
-							: sortedWeapons.size()));
+			originalWeapons.addAll(sortedWeapons.subList(
+					0,
+					sortedWeapons.size() / 2 > originalWeapons.size() ? sortedWeapons.size() / 2 + 1 : sortedWeapons
+							.size()));
 		}
 	}
 

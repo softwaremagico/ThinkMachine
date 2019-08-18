@@ -30,6 +30,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
+import com.softwaremagico.tm.file.Path;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
 
@@ -39,9 +40,10 @@ public class RandomPartyDefinitionTests {
 
 	@Test
 	public void mandatoryMembersAdded() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
-		final RandomParty thugParty = RandomPartyFactory.getInstance().getElement("thugBand", LANGUAGE, MODULE);
+		final RandomParty thugParty = RandomPartyFactory.getInstance().getElement("thugBand", LANGUAGE,
+				Path.DEFAULT_MODULE_FOLDER);
 		final RandomPartyDefinition randomPartyDefinition = new RandomPartyDefinition(thugParty, 0,
-				new HashSet<IRandomPreference>());
+				Path.DEFAULT_MODULE_FOLDER, new HashSet<IRandomPreference>());
 		randomPartyDefinition.assign();
 		// One mandatory and one random element that is always added.
 		Assert.assertEquals(randomPartyDefinition.getParty().getMembers().size(), 1 + 1);
@@ -51,15 +53,17 @@ public class RandomPartyDefinitionTests {
 	@Test
 	public void threatLevelAddMoreMembersToParty() throws InvalidXmlElementException,
 			InvalidRandomElementSelectedException {
-		final RandomParty thugParty = RandomPartyFactory.getInstance().getElement("thugBand", LANGUAGE, MODULE);
+		final RandomParty thugParty = RandomPartyFactory.getInstance().getElement("thugBand", LANGUAGE,
+				Path.DEFAULT_MODULE_FOLDER);
 		final RandomPartyDefinition randomPartyDefinition = new RandomPartyDefinition(thugParty, 200,
-				new HashSet<IRandomPreference>());
+				Path.DEFAULT_MODULE_FOLDER, new HashSet<IRandomPreference>());
 		randomPartyDefinition.assign();
 		Assert.assertNotNull(randomPartyDefinition.getParty().getPartyName());
 
-		final RandomParty thugParty2 = RandomPartyFactory.getInstance().getElement("thugBand", LANGUAGE, MODULE);
+		final RandomParty thugParty2 = RandomPartyFactory.getInstance().getElement("thugBand", LANGUAGE,
+				Path.DEFAULT_MODULE_FOLDER);
 		final RandomPartyDefinition randomPartyDefinition2 = new RandomPartyDefinition(thugParty2, 450,
-				new HashSet<IRandomPreference>());
+				Path.DEFAULT_MODULE_FOLDER, new HashSet<IRandomPreference>());
 		randomPartyDefinition2.assign();
 
 		Assert.assertTrue(randomPartyDefinition2.getParty().getMembers().size() > randomPartyDefinition.getParty()

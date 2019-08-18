@@ -33,6 +33,7 @@ import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.RandomizeCharacter;
 import com.softwaremagico.tm.character.ThreatLevel;
 import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
+import com.softwaremagico.tm.file.Path;
 import com.softwaremagico.tm.random.exceptions.DuplicatedPreferenceException;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.CombatPreferences;
@@ -46,7 +47,7 @@ public class RandomCharacterThreatAverage {
 
 	public int calculateThread(IRandomPreference... preferences) throws TooManyBlessingsException, DuplicatedPreferenceException, InvalidXmlElementException,
 			InvalidRandomElementSelectedException {
-		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, MODULE);
+		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, Path.DEFAULT_MODULE_FOLDER);
 		final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0, preferences);
 		randomizeCharacter.createCharacter();
 		return ThreatLevel.getThreatLevel(characterPlayer);

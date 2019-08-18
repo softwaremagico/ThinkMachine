@@ -73,7 +73,8 @@ public class CompleteSkillsTable extends SkillsTable {
 				FadingSunsTheme.SKILLS_TITLE_FONT_SIZE));
 
 		if (characterPlayer == null) {
-			for (final AvailableSkill skill : AvailableSkillsFactory.getInstance().getNaturalSkills(language)) {
+			for (final AvailableSkill skill : AvailableSkillsFactory.getInstance().getNaturalSkills(language,
+					moduleName)) {
 				table.addCell(createSkillElement(null, skill, FadingSunsTheme.SKILLS_LINE_FONT_SIZE,
 						MAX_SKILL_COLUMN_WIDTH));
 				table.addCell(createSkillLine(SKILL_VALUE_GAP, FadingSunsTheme.SKILLS_LINE_FONT_SIZE));
@@ -157,12 +158,14 @@ public class CompleteSkillsTable extends SkillsTable {
 		return cell;
 	}
 
-	private static int getTotalLearnedSkillsToShow(String language) throws InvalidXmlElementException {
+	private static int getTotalLearnedSkillsToShow(String language)
+			throws InvalidXmlElementException {
 		if (totalSkillsToShow != null) {
 			return totalSkillsToShow;
 		}
 		int total = 0;
-		for (final SkillDefinition skillDefinition : SkillsDefinitionsFactory.getInstance().getLearnedSkills(language)) {
+		for (final SkillDefinition skillDefinition : SkillsDefinitionsFactory.getInstance().getLearnedSkills(language,
+				moduleName)) {
 			total += skillDefinition.getNumberToShow();
 		}
 		totalSkillsToShow = total;
@@ -187,7 +190,8 @@ public class CompleteSkillsTable extends SkillsTable {
 		final Stack<PdfPCell> rows = new Stack<>();
 
 		int rowsAdded = 0;
-		for (final SkillDefinition skillDefinition : SkillsDefinitionsFactory.getInstance().getLearnedSkills(language)) {
+		for (final SkillDefinition skillDefinition : SkillsDefinitionsFactory.getInstance().getLearnedSkills(language,
+				moduleName)) {
 			// We need to put empty specialized skills, but not all possible
 			// specializations.
 			try {
@@ -208,7 +212,8 @@ public class CompleteSkillsTable extends SkillsTable {
 									characterPlayer.getSkillTotalRanks(availableSkill),
 									characterPlayer.isSkillSpecial(availableSkill)
 											|| characterPlayer.hasSkillTemporalModificator(availableSkill),
-									characterPlayer.hasSkillModificator(availableSkill), FadingSunsTheme.SKILLS_LINE_FONT_SIZE));
+									characterPlayer.hasSkillModificator(availableSkill),
+									FadingSunsTheme.SKILLS_LINE_FONT_SIZE));
 						}
 						addedAvailableSkill++;
 						rowsAdded++;

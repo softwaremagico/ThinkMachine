@@ -39,10 +39,12 @@ public abstract class PdfDocument {
 	private int leftMargin = 30;
 	private int topMargin = 30;
 	private int bottomMargin = 30;
-	private String language;
+	private final String language;
+	private final String moduleName;
 
-	protected PdfDocument(String language) {
+	protected PdfDocument(String language, String moduleName) {
 		this.language = language;
+		this.moduleName = moduleName;
 	}
 
 	protected Document addMetaData(Document document) {
@@ -98,9 +100,14 @@ public abstract class PdfDocument {
 
 	protected abstract Rectangle getPageSize();
 
-	protected abstract void createCharacterPDF(Document document, CharacterPlayer character) throws Exception;
+	protected abstract void createCharacterPDF(Document document, CharacterPlayer character)
+			throws Exception;
 
 	public String getLanguage() {
 		return language;
+	}
+
+	public String getModuleName() {
+		return moduleName;
 	}
 }

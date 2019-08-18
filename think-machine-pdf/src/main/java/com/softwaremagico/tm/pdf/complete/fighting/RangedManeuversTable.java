@@ -78,10 +78,14 @@ public class RangedManeuversTable extends LateralHeaderPdfPTable {
 			for (final CombatStyle style : characterPlayer.getRangedCombatStyles()) {
 				for (final CombatAction action : style.getCombatActions()) {
 					if (action.isAvailable(characterPlayer)) {
-						addCell(createFirstElementLine(action.getName(), NAME_COLUMN_WIDHT, FadingSunsTheme.COMBAT_ACTIONS_CONTENT_FONT_SIZE));
-						addCell(createElementLine(action.getGoal(), GOAL_COLUMN_WIDHT, FadingSunsTheme.COMBAT_ACTIONS_CONTENT_FONT_SIZE));
-						addCell(createElementLine(action.getDamage(), DAMAGE_COLUMN_WIDHT, FadingSunsTheme.COMBAT_ACTIONS_CONTENT_FONT_SIZE));
-						addCell(createElementLine(action.getOthers(), OTHERS_COLUMN_WIDHT, FadingSunsTheme.COMBAT_ACTIONS_CONTENT_FONT_SIZE));
+						addCell(createFirstElementLine(action.getName(), NAME_COLUMN_WIDHT,
+								FadingSunsTheme.COMBAT_ACTIONS_CONTENT_FONT_SIZE));
+						addCell(createElementLine(action.getGoal(), GOAL_COLUMN_WIDHT,
+								FadingSunsTheme.COMBAT_ACTIONS_CONTENT_FONT_SIZE));
+						addCell(createElementLine(action.getDamage(), DAMAGE_COLUMN_WIDHT,
+								FadingSunsTheme.COMBAT_ACTIONS_CONTENT_FONT_SIZE));
+						addCell(createElementLine(action.getOthers(), OTHERS_COLUMN_WIDHT,
+								FadingSunsTheme.COMBAT_ACTIONS_CONTENT_FONT_SIZE));
 						addedActions++;
 					}
 				}

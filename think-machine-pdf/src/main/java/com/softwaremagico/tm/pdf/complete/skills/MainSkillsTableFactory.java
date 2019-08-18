@@ -36,7 +36,8 @@ public class MainSkillsTableFactory extends BaseElement {
 	public static final int HEIGHT = 400;
 	public static final int PADDING = 2;
 
-	public static PdfPTable getSkillsTable(CharacterPlayer characterPlayer, String language) throws InvalidXmlElementException {
+	public static PdfPTable getSkillsTable(CharacterPlayer characterPlayer, String language)
+			throws InvalidXmlElementException {
 		final float[] widths = { 1f, 12f, 1f };
 		final PdfPTable table = new PdfPTable(widths);
 		setTablePropierties(table);
@@ -52,7 +53,8 @@ public class MainSkillsTableFactory extends BaseElement {
 		vitalityCell.setPadding(0);
 		table.addCell(vitalityCell);
 
-		final PdfPCell skillsCell = new PdfPCell(CompleteSkillsTable.getSkillsTable(characterPlayer, language));
+		final PdfPCell skillsCell = new PdfPCell(CompleteSkillsTable.getSkillsTable(characterPlayer, language,
+				moduleName));
 		skillsCell.setBorder(0);
 		skillsCell.setPadding(0);
 		skillsCell.setPaddingRight(FadingSunsTheme.DEFAULT_MARGIN);

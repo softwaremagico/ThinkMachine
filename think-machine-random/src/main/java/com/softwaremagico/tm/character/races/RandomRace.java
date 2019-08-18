@@ -48,7 +48,7 @@ public class RandomRace extends RandomSelector<Race> {
 
 	@Override
 	protected Collection<Race> getAllElements() throws InvalidXmlElementException {
-		return RaceFactory.getInstance().getElements(getCharacterPlayer().getLanguage());
+		return RaceFactory.getInstance().getElements(getCharacterPlayer().getLanguage(), getCharacterPlayer().getModuleName());
 	}
 
 	@Override

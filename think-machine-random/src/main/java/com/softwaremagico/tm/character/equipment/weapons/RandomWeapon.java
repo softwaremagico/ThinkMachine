@@ -53,7 +53,7 @@ public abstract class RandomWeapon extends EquipmentSelector<Weapon> {
 
 	@Override
 	protected Collection<Weapon> getAllElements() throws InvalidXmlElementException {
-		return WeaponFactory.getInstance().getElements(getCharacterPlayer().getLanguage());
+		return WeaponFactory.getInstance().getElements(getCharacterPlayer().getLanguage(), getCharacterPlayer().getModuleName());
 	}
 
 	protected abstract Set<WeaponType> weaponTypesFilter();
