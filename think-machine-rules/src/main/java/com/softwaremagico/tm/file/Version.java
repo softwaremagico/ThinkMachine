@@ -36,7 +36,7 @@ public class Version {
 	public static String getVersion() {
 		try {
 			final String className = Version.class.getSimpleName() + ".class";
-			final String classPath = Version.class.getClassLoader().getResource(className).toString();
+			final String classPath = Version.class.getResource(className).toString();
 			Manifest manifest = null;
 			// Not found, search the manifest.
 			if (!classPath.startsWith("jar")) {

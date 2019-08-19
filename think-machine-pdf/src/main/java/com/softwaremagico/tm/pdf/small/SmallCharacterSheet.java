@@ -57,8 +57,8 @@ public class SmallCharacterSheet extends PdfDocument {
 		this(Translator.DEFAULT_LANGUAGE, Path.DEFAULT_MODULE_FOLDER);
 	}
 
-	public SmallCharacterSheet(String language) {
-		super(language);
+	public SmallCharacterSheet(String language, String moduleName) {
+		super(language, moduleName);
 		Translator.setLanguage(language);
 	}
 
@@ -69,7 +69,7 @@ public class SmallCharacterSheet extends PdfDocument {
 
 	@Override
 	protected void createContent(Document document) throws Exception {
-		createCharacterPDF(document, getCharacterPlayer(), getModuleName());
+		createCharacterPDF(document, getCharacterPlayer());
 	}
 
 	@Override
@@ -112,14 +112,13 @@ public class SmallCharacterSheet extends PdfDocument {
 		BaseElement.setTablePropierties(basicTable);
 		basicTable.getDefaultCell().setBorder(0);
 
-		final PdfPTable characteristicsTable = CharacteristicsTableFactory.getCharacteristicsBasicsTable(
-				characterPlayer, getModuleName());
+		final PdfPTable characteristicsTable = CharacteristicsTableFactory
+				.getCharacteristicsBasicsTable(characterPlayer, getModuleName());
 		final PdfPCell characteristicCell = new PdfPCell(characteristicsTable);
 		characteristicCell.setBorderWidthLeft(0);
 		basicTable.addCell(characteristicCell);
 
-		final PdfPTable naturalSkillsTable = NaturalSkillsTable.getSkillsTable(characterPlayer, getLanguage(),
-				getModuleName());
+		final PdfPTable naturalSkillsTable = NaturalSkillsTable.getSkillsTable(characterPlayer, getLanguage(), getModuleName());
 		final PdfPCell naturalSkillsCell = new PdfPCell(naturalSkillsTable);
 		naturalSkillsCell.setBorderWidthRight(0);
 		basicTable.addCell(naturalSkillsCell);
@@ -196,8 +195,7 @@ public class SmallCharacterSheet extends PdfDocument {
 	}
 
 	@Override
-	protected void createCharacterPDF(Document document, CharacterPlayer characterPlayer)
-			throws Exception {
+	protected void createCharacterPDF(Document document, CharacterPlayer characterPlayer) throws Exception {
 		document.add(createCharacterContent(characterPlayer));
 	}
 

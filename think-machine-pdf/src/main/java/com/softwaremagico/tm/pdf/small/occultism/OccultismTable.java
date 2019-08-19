@@ -46,7 +46,7 @@ public class OccultismTable extends VerticalTable {
 	private static final float[] WIDTHS = { 2f, 1f, 1f, 1f, 2f };
 	private static final int ROWS = 8;
 
-	public OccultismTable(CharacterPlayer characterPlayer, String language)
+	public OccultismTable(CharacterPlayer characterPlayer, String language, String moduleName)
 			throws InvalidXmlElementException {
 		super(WIDTHS);
 		getDefaultCell().setBorder(0);
@@ -54,7 +54,7 @@ public class OccultismTable extends VerticalTable {
 		addCell(createTitle(getTranslator().getTranslatedText("occultism"),
 				FadingSunsTheme.CHARACTER_SMALL_OCCULTISM_TITLE_FONT_SIZE));
 
-		for (final OccultismType occultismType : OccultismTypeFactory.getInstance().getElements(language)) {
+		for (final OccultismType occultismType : OccultismTypeFactory.getInstance().getElements(language, moduleName)) {
 			addCell(createSubtitleLine(occultismType.getName(), FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE,
 					Element.ALIGN_LEFT));
 

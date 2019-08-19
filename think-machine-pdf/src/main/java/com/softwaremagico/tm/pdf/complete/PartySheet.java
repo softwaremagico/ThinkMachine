@@ -34,8 +34,8 @@ import com.softwaremagico.tm.pdf.complete.events.PartyFooterEvent;
 public class PartySheet extends CharacterSheet {
 	private Party party;
 
-	public PartySheet(String language) {
-		super(language);
+	public PartySheet(String language, String moduleName) {
+		super(language, moduleName);
 		Translator.setLanguage(language);
 	}
 
@@ -47,7 +47,7 @@ public class PartySheet extends CharacterSheet {
 	@Override
 	protected void createContent(Document document) throws Exception {
 		for (final CharacterPlayer characterPlayer : party.getMembers()) {
-			createCharacterPDF(document, characterPlayer, getModuleName());
+			createCharacterPDF(document, characterPlayer);
 		}
 	}
 

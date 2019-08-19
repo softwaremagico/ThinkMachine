@@ -36,7 +36,7 @@ public class MainSkillsTableFactory extends BaseElement {
 	public static final int HEIGHT = 400;
 	public static final int PADDING = 2;
 
-	public static PdfPTable getSkillsTable(CharacterPlayer characterPlayer, String language)
+	public static PdfPTable getSkillsTable(CharacterPlayer characterPlayer, String language, String moduleName)
 			throws InvalidXmlElementException {
 		final float[] widths = { 1f, 12f, 1f };
 		final PdfPTable table = new PdfPTable(widths);

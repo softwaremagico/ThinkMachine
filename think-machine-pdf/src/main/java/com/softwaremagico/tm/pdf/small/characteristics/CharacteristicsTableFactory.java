@@ -38,7 +38,7 @@ import com.softwaremagico.tm.pdf.complete.elements.BaseElement;
 
 public class CharacteristicsTableFactory extends BaseElement {
 
-	public static PdfPTable getCharacteristicsBasicsTable(CharacterPlayer characterPlayer) {
+	public static PdfPTable getCharacteristicsBasicsTable(CharacterPlayer characterPlayer, String moduleName) {
 		final float[] widths = { 1f, 1f };
 		final PdfPTable table = new PdfPTable(widths);
 		setTablePropierties(table);
@@ -56,7 +56,7 @@ public class CharacteristicsTableFactory extends BaseElement {
 
 		for (final CharacteristicType type : CharacteristicType.values()) {
 			table.addCell(new CharacteristicsColumn(characterPlayer, type, CharacteristicsDefinitionFactory
-					.getInstance().getAll(type, Translator.getLanguage())));
+					.getInstance().getAll(type, Translator.getLanguage(), moduleName)));
 		}
 
 		return table;

@@ -41,8 +41,8 @@ public class SmallPartySheet extends SmallCharacterSheet {
 	private Party party;
 	private PdfPTable mainTable;
 
-	public SmallPartySheet(String language) {
-		super(language);
+	public SmallPartySheet(String language, String moduleName) {
+		super(language, moduleName);
 		Translator.setLanguage(language);
 	}
 
@@ -69,7 +69,7 @@ public class SmallPartySheet extends SmallCharacterSheet {
 	protected void createContent(Document document) throws Exception {
 		initializeTableContent();
 		for (final CharacterPlayer characterPlayer : party.getMembers()) {
-			createCharacterPDF(document, characterPlayer, getModuleName());
+			createCharacterPDF(document, characterPlayer);
 		}
 		if (party.getMembers().size() % 2 > 0) {
 			mainTable.addCell(new PdfPCell());
@@ -78,8 +78,7 @@ public class SmallPartySheet extends SmallCharacterSheet {
 	}
 
 	@Override
-	protected void createCharacterPDF(Document document, CharacterPlayer characterPlayer)
-			throws Exception {
+	protected void createCharacterPDF(Document document, CharacterPlayer characterPlayer) throws Exception {
 		mainTable.addCell(createCharacterContent(characterPlayer));
 	}
 

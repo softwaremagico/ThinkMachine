@@ -41,11 +41,11 @@ public class OccultismTable extends LateralHeaderPdfPTable {
 	private static final int ROW_WIDTH = 70;
 	private static final float[] widths = { 1f, 6f };
 
-	public OccultismTable(CharacterPlayer characterPlayer, String language)
+	public OccultismTable(CharacterPlayer characterPlayer, String language, String moduleName)
 			throws InvalidXmlElementException {
 		super(widths);
 		addCell(createLateralVerticalTitle(getTranslator().getTranslatedText("occultism"), 1));
-		addCell(createContent(characterPlayer, language));
+		addCell(createContent(characterPlayer, language, moduleName));
 		setWidthPercentage(100);
 		getDefaultCell().setPadding(0);
 		setSpacingAfter(0);
@@ -59,7 +59,7 @@ public class OccultismTable extends LateralHeaderPdfPTable {
 		return titleCell;
 	}
 
-	private PdfPCell createContent(CharacterPlayer characterPlayer, String language)
+	private PdfPCell createContent(CharacterPlayer characterPlayer, String language, String moduleName)
 			throws InvalidXmlElementException {
 		final float[] widths = { 3f, 1f, 1f, 3f };
 		final PdfPTable table = new PdfPTable(widths);
@@ -68,7 +68,7 @@ public class OccultismTable extends LateralHeaderPdfPTable {
 		table.getDefaultCell().setPadding(0);
 		table.getDefaultCell().setVerticalAlignment(Element.ALIGN_MIDDLE);
 
-		for (final OccultismType occulstimType : OccultismTypeFactory.getInstance().getElements(language)) {
+		for (final OccultismType occulstimType : OccultismTypeFactory.getInstance().getElements(language, moduleName)) {
 			final PdfPCell psiqueTitleCell = new PdfPCell(new Phrase(occulstimType.getName(), new Font(
 					FadingSunsTheme.getLineFont(), FadingSunsTheme.CHARACTERISTICS_LINE_FONT_SIZE)));
 			psiqueTitleCell.setBorder(0);

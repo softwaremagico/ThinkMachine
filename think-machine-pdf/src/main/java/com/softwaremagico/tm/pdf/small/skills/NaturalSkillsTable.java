@@ -37,17 +37,17 @@ import com.softwaremagico.tm.pdf.complete.skills.SkillsTable;
 public class NaturalSkillsTable extends SkillsTable {
 	private static final int MAX_SKILL_COLUMN_WIDTH = 80;
 
-	public static PdfPTable getSkillsTable(CharacterPlayer characterPlayer, String language)
+	public static PdfPTable getSkillsTable(CharacterPlayer characterPlayer, String language, String moduleName)
 			throws InvalidXmlElementException {
 		final float[] widths = { 1f };
 		final PdfPTable table = new PdfPTable(widths);
 		setTablePropierties(table);
 		table.getDefaultCell().setBorder(0);
-		table.addCell(getSkillsColumnTable(characterPlayer, language));
+		table.addCell(getSkillsColumnTable(characterPlayer, language, moduleName));
 		return table;
 	}
 
-	private static PdfPCell getSkillsColumnTable(CharacterPlayer characterPlayer, String language)
+	private static PdfPCell getSkillsColumnTable(CharacterPlayer characterPlayer, String language, String moduleName)
 			throws InvalidXmlElementException {
 		final float[] widths = { 4f, 1f };
 		final PdfPTable table = new PdfPTable(widths);
