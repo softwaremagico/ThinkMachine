@@ -269,4 +269,26 @@ public class Weapon extends Equipment<Weapon> {
 	public boolean equals(Object obj) {
 		return super.equals(obj);
 	}
+	
+	public String getWeaponOthersText() {
+		// Damage types
+		final StringBuilder stringBuilder = new StringBuilder();
+		for (final DamageType damageType : getDamageTypes()) {
+			if (stringBuilder.length() > 0) {
+				stringBuilder.append(", ");
+			}
+			stringBuilder.append(damageType.getName());
+		}
+
+		// Others
+		if (getSpecial() != null && !getSpecial().isEmpty()) {
+			if (stringBuilder.length() > 0) {
+				stringBuilder.append(" / ");
+			}
+			stringBuilder.append(getSpecial());
+		}
+
+		return stringBuilder.toString();
+
+	}
 }

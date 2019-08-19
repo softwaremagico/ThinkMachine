@@ -42,6 +42,7 @@ import com.softwaremagico.tm.pdf.small.counters.WyrdTable;
 import com.softwaremagico.tm.pdf.small.cybernetics.CyberneticsTable;
 import com.softwaremagico.tm.pdf.small.fighting.ArmourTable;
 import com.softwaremagico.tm.pdf.small.fighting.WeaponsTable;
+import com.softwaremagico.tm.pdf.small.fighting.WeaponsTableLong;
 import com.softwaremagico.tm.pdf.small.info.CharacterBasicsReducedTableFactory;
 import com.softwaremagico.tm.pdf.small.occultism.OccultismTable;
 import com.softwaremagico.tm.pdf.small.skills.LearnedSkillsTable;
@@ -112,13 +113,14 @@ public class SmallCharacterSheet extends PdfDocument {
 		BaseElement.setTablePropierties(basicTable);
 		basicTable.getDefaultCell().setBorder(0);
 
-		final PdfPTable characteristicsTable = CharacteristicsTableFactory
-				.getCharacteristicsBasicsTable(characterPlayer, getModuleName());
+		final PdfPTable characteristicsTable = CharacteristicsTableFactory.getCharacteristicsBasicsTable(
+				characterPlayer, getModuleName());
 		final PdfPCell characteristicCell = new PdfPCell(characteristicsTable);
 		characteristicCell.setBorderWidthLeft(0);
 		basicTable.addCell(characteristicCell);
 
-		final PdfPTable naturalSkillsTable = NaturalSkillsTable.getSkillsTable(characterPlayer, getLanguage(), getModuleName());
+		final PdfPTable naturalSkillsTable = NaturalSkillsTable.getSkillsTable(characterPlayer, getLanguage(),
+				getModuleName());
 		final PdfPCell naturalSkillsCell = new PdfPCell(naturalSkillsTable);
 		naturalSkillsCell.setBorderWidthRight(0);
 		basicTable.addCell(naturalSkillsCell);
@@ -153,21 +155,33 @@ public class SmallCharacterSheet extends PdfDocument {
 
 		final PdfPTable fightTable = new PdfPTable(new float[] { 3f, 5f, 1f });
 
+		// Only weapons table.
 		if (characterPlayer != null
-				&& (characterPlayer.getSelectedPowers().isEmpty() && !characterPlayer.getCybernetics().isEmpty())) {
-			final PdfPTable cyberneticsTable = new CyberneticsTable(characterPlayer);
-			final PdfPCell cyberneticsCell = new PdfPCell(cyberneticsTable);
-			cyberneticsCell.setBorderWidthLeft(0);
-			fightTable.addCell(cyberneticsCell);
+				&& (characterPlayer.getSelectedPowers().isEmpty() && characterPlayer.getCybernetics().isEmpty())) {
+			final PdfPTable weaponsTable = new WeaponsTableLong(characterPlayer);
+			final PdfPCell weaponsCell = new PdfPCell(weaponsTable);
+			weaponsCell.setBorderWidthLeft(0);
+			weaponsCell.setColspan(2);
+			fightTable.addCell(weaponsCell);
 		} else {
-			final PdfPTable occultismTable = new OccultismTable(characterPlayer, getLanguage(), getModuleName());
-			final PdfPCell occultismCell = new PdfPCell(occultismTable);
-			occultismCell.setBorderWidthLeft(0);
-			fightTable.addCell(occultismCell);
-		}
+			// Include cybernetics
+			if (characterPlayer != null
+					&& (characterPlayer.getSelectedPowers().isEmpty() && !characterPlayer.getCybernetics().isEmpty())) {
+				final PdfPTable cyberneticsTable = new CyberneticsTable(characterPlayer);
+				final PdfPCell cyberneticsCell = new PdfPCell(cyberneticsTable);
+				cyberneticsCell.setBorderWidthLeft(0);
+				fightTable.addCell(cyberneticsCell);
+				// Include occultism
+			} else {
+				final PdfPTable occultismTable = new OccultismTable(characterPlayer, getLanguage(), getModuleName());
+				final PdfPCell occultismCell = new PdfPCell(occultismTable);
+				occultismCell.setBorderWidthLeft(0);
+				fightTable.addCell(occultismCell);
+			}
 
-		final PdfPTable weaponsTable = new WeaponsTable(characterPlayer);
-		fightTable.addCell(weaponsTable);
+			final PdfPTable weaponsTable = new WeaponsTable(characterPlayer);
+			fightTable.addCell(weaponsTable);
+		}
 
 		final PdfPCell victoryPointsCell = new PdfPCell(new VerticalVictoryPointsTable());
 		victoryPointsCell.setPadding(0);

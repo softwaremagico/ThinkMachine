@@ -87,7 +87,7 @@ public class WeaponsTable extends LateralHeaderPdfPTable {
 						FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
 				addCell(createElementLine(weapon.getSize() != null ? weapon.getSize().toString() : "",
 						SIZE_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
-				addCell(createElementLine(getWeaponOthers(weapon), OTHERS_COLUMN_WIDTH,
+				addCell(createElementLine(weapon.getWeaponOthersText(), OTHERS_COLUMN_WIDTH,
 						FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
 
 				addedWeapons++;
@@ -123,28 +123,6 @@ public class WeaponsTable extends LateralHeaderPdfPTable {
 			addCell(createEmptyElementLine(GAP, SIZE_COLUMN_WIDTH));
 			addCell(createEmptyElementLine(GAP, OTHERS_COLUMN_WIDTH));
 		}
-	}
-
-	private String getWeaponOthers(Weapon weapon) {
-		// Damage types
-		final StringBuilder stringBuilder = new StringBuilder();
-		for (final DamageType damageType : weapon.getDamageTypes()) {
-			if (stringBuilder.length() > 0) {
-				stringBuilder.append(", ");
-			}
-			stringBuilder.append(damageType.getName());
-		}
-
-		// Others
-		if (weapon.getSpecial() != null && !weapon.getSpecial().isEmpty()) {
-			if (stringBuilder.length() > 0) {
-				stringBuilder.append(" / ");
-			}
-			stringBuilder.append(weapon.getSpecial());
-		}
-
-		return stringBuilder.toString();
-
 	}
 
 	@Override

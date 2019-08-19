@@ -621,7 +621,7 @@ public class CustomCharacters {
 		LanguagePool.clearCache();
 		final SmallCharacterSheet smallSheet = new SmallCharacterSheet(player);
 		Assert.assertEquals(
-				smallSheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Noelia_Golem.pdf"), 1);
+				smallSheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Golem.pdf"), 1);
 
 		Assert.assertEquals(CostCalculator.getCost(player), -5);
 		Assert.assertEquals(player.getMoney(), 250);
