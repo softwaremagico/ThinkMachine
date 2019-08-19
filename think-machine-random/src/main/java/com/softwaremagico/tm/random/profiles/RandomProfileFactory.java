@@ -94,7 +94,7 @@ public class RandomProfileFactory extends XmlFactory<RandomProfile> {
 
 	protected void setParent(RandomProfile profile, String language, String moduleName)
 			throws InvalidXmlElementException {
-		final String parentName = getTranslator().getNodeValue(profile.getId(), PARENT);
+		final String parentName = getTranslator(moduleName).getNodeValue(profile.getId(), PARENT);
 		if (parentName != null && !parentName.isEmpty()) {
 			try {
 				final RandomProfile parent = RandomProfileFactory.getInstance().getElement(parentName, language,
@@ -211,7 +211,7 @@ public class RandomProfileFactory extends XmlFactory<RandomProfile> {
 								moduleName));
 					} else {
 						suggestedSkills.add(AvailableSkillsFactory.getInstance().getElement(suggestedSkillId,
-								skillSpeciality, language));
+								skillSpeciality, language, moduleName));
 					}
 				} catch (InvalidXmlElementException e) {
 					throw new InvalidProfileException("Invalid suggested skill '" + suggestedSkillId

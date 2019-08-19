@@ -82,7 +82,8 @@ public class Translator implements ITranslator {
 			usedDoc = db.parse(Translator.class.getClassLoader().getResource(filePath).openStream());
 			usedDoc.getDocumentElement().normalize();
 		} catch (NullPointerException e) {
-			MachineLog.severe(Translator.class.getName(), "Invalud xml at resource '" + filePath + "'.");
+			MachineLog.severe(Translator.class.getName(), "Invalid xml at resource '" + filePath + "'.");
+			MachineLog.errorMessage(Translator.class.getName(), e);
 		} catch (SAXParseException ex) {
 			final String text = "Parsing error" + ".\n Line: " + ex.getLineNumber() + "\nUri: " + ex.getSystemId()
 					+ "\nMessage: " + ex.getMessage();
@@ -460,6 +461,7 @@ public class Translator implements ITranslator {
 							"Error retrieving the available languages. Check your installation.");
 				}
 			}
+			MachineLog.debug(this.getClass().getName(), "Available languages are '" + languagesList + "'.");
 		}
 		return languagesList;
 	}

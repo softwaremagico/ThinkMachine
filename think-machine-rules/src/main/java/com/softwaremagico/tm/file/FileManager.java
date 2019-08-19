@@ -192,25 +192,27 @@ public class FileManager {
 	public static Set<String> getAvailableModules() {
 		if (availableModules == null) {
 			availableModules = listModulesInResources();
+			MachineLog.debug(FileManager.class.getName(), "Found modules '" + availableModules + "'.");
 		}
 		return availableModules;
 	}
 
 	private static Set<String> listModulesInResources() {
-		Set<String> resources = new Reflections(Path.MODULES_FOLDER, new ResourcesScanner()).getResources(Pattern
+		final Set<String> resources = new Reflections(Path.MODULES_FOLDER, new ResourcesScanner()).getResources(Pattern
 				.compile(".*\\.xml"));
 
-		Set<String> modules = new HashSet<>();
-		for (String resource : resources) {
+		final Set<String> modules = new HashSet<>();
+		for (final String resource : resources) {
 			try {
-				String[] path = resource.split("/");
-				if (path.length > 2)
+				final String[] path = resource.split("/");
+				if (path.length > 2) {
 					modules.add(path[1]);
+				}
 			} catch (ArrayIndexOutOfBoundsException e) {
 
 			}
 		}
-		if(modules.isEmpty()){
+		if (modules.isEmpty()) {
 			MachineLog.severe(FileManager.class.getName(), "No modules found!");
 		}
 		return modules;
