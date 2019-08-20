@@ -71,7 +71,7 @@
 		<main.basedir>${project.basedir}</main.basedir>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<license.licenseName>gnugpl</license.licenseName>
-		<license.licenseResolver>file://${basedir}/license</license.licenseResolver>
+		<license.licenseResolver>file://${main.basedir}/license</license.licenseResolver>
 		<maven-surefire.version>2.14.1</maven-surefire.version>
 		<maven-resources-plugin.version>2.7</maven-resources-plugin.version>
 		<maven-antrun-plugin.version>1.7</maven-antrun-plugin.version>
