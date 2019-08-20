@@ -115,8 +115,8 @@
 				<version>${license-maven-plugin.version}</version>
 				<configuration>
 					<inceptionYear>2017</inceptionYear>
-					<licenseName>gnugpl</licenseName>
-					<licenseResolver>file://${main.basedir}/license</licenseResolver>
+					<licenseName>${license.licenseName}</licenseName>
+					<licenseResolver>${license.licenseResolver}</licenseResolver>
 					<excludes>
 						<exclude>**/licenses.properties</exclude>
 					</excludes>

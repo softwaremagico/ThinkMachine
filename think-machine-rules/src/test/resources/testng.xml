@@ -14,7 +14,7 @@
 	<test name="CharacterCrud" enabled="true" preserve-order="true">
 		<groups>
 			<run>
-				<include name="fileManager" />
+				<include name="moduleManager" />
 				<include name="configurationReader" />
 				<include name="skillFactory" />
 				<include name="raceFactory" />
@@ -40,7 +40,7 @@
 			</run>
 		</groups>
 		<classes>
-			<class name="com.softwaremagico.tm.file.FileManagerTests" />
+			<class name="com.softwaremagico.tm.file.ModuleManagerTests" />
 			<class name="com.softwaremagico.tm.file.configurator.ConfigurationTests" />
 			<class name="com.softwaremagico.tm.factory.SkillFactoryTests" />
 			<class name="com.softwaremagico.tm.factory.RaceFactoryTests" />

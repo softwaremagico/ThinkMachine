@@ -32,15 +32,15 @@ import java.util.Set;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.softwaremagico.tm.file.FileManager;
 import com.softwaremagico.tm.file.configurator.MachineConfigurationReader;
+import com.softwaremagico.tm.file.modules.ModuleManager;
 
-@Test(groups = "fileManager")
-public class FileManagerTests {
+@Test(groups = "moduleManager")
+public class ModuleManagerTests {
 
 	@Test(enabled=false)
 	public void checkModuleReader() throws IOException {
-		Assert.assertEquals(FileManager.getAvailableModules().size(), 1);
+		Assert.assertEquals(ModuleManager.getAvailableModules().size(), 1);
 		// Emulate some jars.
 		Set<File> modules = new HashSet<>();
 		MachineConfigurationReader.getInstance().setProperty("modulesPath", "/tmp");
@@ -50,10 +50,10 @@ public class FileManagerTests {
 			module.createNewFile();
 			modules.add(module);
 		}
-		Assert.assertEquals(FileManager.getAvailableModules().size(), 11);
+		Assert.assertEquals(ModuleManager.getAvailableModules().size(), 11);
 		for (File module : modules) {
 			module.delete();
 		}
-		Assert.assertEquals(FileManager.getAvailableModules().size(), 0);
+		Assert.assertEquals(ModuleManager.getAvailableModules().size(), 0);
 	}
 }

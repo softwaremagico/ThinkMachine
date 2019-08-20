@@ -34,7 +34,7 @@ import java.util.Set;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
-import com.softwaremagico.tm.file.FileManager;
+import com.softwaremagico.tm.file.modules.ModuleManager;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.Language;
 import com.softwaremagico.tm.log.MachineLog;
@@ -66,7 +66,7 @@ public class CharacteristicsDefinitionFactory extends XmlFactory<CharacteristicD
 	protected void initialize() {
 		super.initialize();
 
-		for (final String moduleName : FileManager.getAvailableModules()) {
+		for (final String moduleName : ModuleManager.getAvailableModules()) {
 			final List<Language> languages = getTranslator(moduleName).getAvailableLanguages();
 			for (final Language language : languages) {
 				final List<CharacteristicDefinition> characteristicsDefinitions;

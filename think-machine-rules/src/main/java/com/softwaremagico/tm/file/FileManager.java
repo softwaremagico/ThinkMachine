@@ -39,26 +39,15 @@ import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 import java.net.URL;
-import java.net.URLClassLoader;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
-import java.util.Set;
-import java.util.jar.JarEntry;
-import java.util.jar.JarFile;
-import java.util.regex.Pattern;
-
-import org.reflections.Reflections;
-import org.reflections.scanners.ResourcesScanner;
 
 import com.softwaremagico.tm.log.MachineLog;
 
 public class FileManager {
-	private static Set<String> availableModules;
 
 	/**
 	 * Creates a new instance of MyFile
@@ -187,55 +176,6 @@ public class FileManager {
 				return filename.endsWith(".jar");
 			}
 		});
-	}
-
-	public static Set<String> getAvailableModules() {
-		if (availableModules == null) {
-			availableModules = listModulesInResources();
-			MachineLog.debug(FileManager.class.getName(), "Found modules '" + availableModules + "'.");
-		}
-		return availableModules;
-	}
-
-	private static Set<String> listModulesInResources() {
-		final Set<String> resources = new Reflections(Path.MODULES_FOLDER, new ResourcesScanner()).getResources(Pattern
-				.compile(".*\\.xml"));
-
-		final Set<String> modules = new HashSet<>();
-		for (final String resource : resources) {
-			try {
-				final String[] path = resource.split("/");
-				if (path.length > 2) {
-					modules.add(path[1]);
-				}
-			} catch (ArrayIndexOutOfBoundsException e) {
-
-			}
-		}
-		if (modules.isEmpty()) {
-			MachineLog.severe(FileManager.class.getName(), "No modules found!");
-		}
-		return modules;
-	}
-
-	public static void getAllModules(String pathToJar) throws IOException, ClassNotFoundException {
-		try (final JarFile jarFile = new JarFile(pathToJar)) {
-			final Enumeration<JarEntry> e = jarFile.entries();
-
-			final URL[] urls = { new URL("jar:file:" + pathToJar + "!/") };
-			final URLClassLoader cl = URLClassLoader.newInstance(urls);
-
-			while (e.hasMoreElements()) {
-				final JarEntry je = e.nextElement();
-				if (je.isDirectory() || !je.getName().endsWith(".class")) {
-					continue;
-				}
-				// -6 because of .class
-				String className = je.getName().substring(0, je.getName().length() - 6);
-				className = className.replace('/', '.');
-				final Class c = cl.loadClass(className);
-			}
-		}
 	}
 
 	public static String readTextFromJar(String file) {

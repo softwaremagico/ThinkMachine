@@ -37,7 +37,7 @@ import java.util.StringTokenizer;
 import com.softwaremagico.tm.character.factions.FactionGroup;
 import com.softwaremagico.tm.character.factions.FactionsFactory;
 import com.softwaremagico.tm.character.races.RaceFactory;
-import com.softwaremagico.tm.file.FileManager;
+import com.softwaremagico.tm.file.modules.ModuleManager;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.Language;
 import com.softwaremagico.tm.language.LanguagePool;
@@ -66,7 +66,7 @@ public abstract class XmlFactory<T extends Element<T>> {
 	}
 
 	protected void initialize() {
-		for (final String moduleName : FileManager.getAvailableModules()) {
+		for (final String moduleName : ModuleManager.getAvailableModules()) {
 			final List<Language> languages = getTranslator(moduleName).getAvailableLanguages();
 			List<T> elements = new ArrayList<>();
 			for (final Language language : languages) {

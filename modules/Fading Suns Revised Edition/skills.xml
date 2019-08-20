@@ -526,9 +526,6 @@
 			</poisons>
 		</specializations>
 		<numberToShow>4</numberToShow>
-		<random>
-			<minTechLevel>4</minTechLevel>
-		</random>
 	</lore>
 	<xenoLore>
 		<name>
