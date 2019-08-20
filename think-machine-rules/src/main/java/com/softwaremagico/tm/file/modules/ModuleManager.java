@@ -88,15 +88,15 @@ public class ModuleManager {
 	public static synchronized void loadJar(File jar) throws InvalidJarFileException {
 		try {
 			// We are using reflection here to circumvent encapsulation; addURL is not public
-			URLClassLoader loader = (URLClassLoader) ClassLoader.getSystemClassLoader();
-			URL url = jar.toURI().toURL();
+			final URLClassLoader loader = (URLClassLoader) ClassLoader.getSystemClassLoader();
+			final URL url = jar.toURI().toURL();
 			// Disallow if already loaded
-			for (URL it : Arrays.asList(loader.getURLs())) {
+			for (final URL it : Arrays.asList(loader.getURLs())) {
 				if (it.equals(url)) {
 					return;
 				}
 			}
-			Method method = URLClassLoader.class.getDeclaredMethod("addURL", new Class[] { URL.class });
+			final Method method = URLClassLoader.class.getDeclaredMethod("addURL", new Class[] { URL.class });
 			method.setAccessible(true); // promote the method to public access.FS
 			method.invoke(loader, new Object[] { url });
 		} catch (final NoSuchMethodException | IllegalAccessException | MalformedURLException
