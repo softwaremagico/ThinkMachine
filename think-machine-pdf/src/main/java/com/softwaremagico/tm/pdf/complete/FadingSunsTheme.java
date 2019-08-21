@@ -53,6 +53,7 @@ public abstract class FadingSunsTheme {
 	public static final int DESCRIPTION_FONT_SIZE = 11;
 	public static final int ANNOTATIONS_TITLE_FONT_SIZE = 12;
 	public static final int ANNOTATIONS_SUBTITLE_FONT_SIZE = 9;
+	public static final int CHARACTER_DESCRIPTION_FONT_SIZE = 8;
 	public static final int VERTICALTABLE_TITLE_FONT_SIZE = 12;
 	public static final int TABLE_LINE_FONT_SIZE = 8;
 	public static final int TRAITS_FONT_SIZE = 7;

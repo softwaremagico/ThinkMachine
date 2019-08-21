@@ -75,6 +75,7 @@ import com.softwaremagico.tm.pdf.small.SmallPartySheet;
 @Test(groups = { "customCharacterGeneration" })
 public class CustomCharacters {
 	private static final String LANGUAGE = "en";
+	private static final String LOREM_IPSUM = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In interdum varius rutrum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nam eu ipsum semper, tincidunt mi sit amet, feugiat neque. Nam vitae eleifend mauris, at rhoncus lacus. Maecenas non felis lectus. Vestibulum luctus tristique mauris sit amet ultrices. Vivamus molestie pharetra ante, facilisis dictum velit. Aenean a quam vitae nibh rhoncus ultricies sit amet et enim. Fusce ut arcu et libero viverra luctus quis at eros. Morbi consectetur leo eu ante posuere, at consectetur diam pretium. Quisque lacinia sagittis dolor ac pellentesque. Cras ullamcorper nulla fringilla nunc eleifend rhoncus. Suspendisse interdum elit eu elit vehicula, vel porta enim mattis. In scelerisque finibus mi vitae porta. Morbi nisl tellus, eleifend dapibus lorem vitae, rhoncus rutrum velit. Aenean sollicitudin suscipit mauris eget auctor. Nunc fermentum vehicula justo eu interdum. In porttitor eros et massa commodo viverra. Fusce in mi convallis, auctor mi vitae, rutrum nunc. Aliquam massa turpis, luctus in odio vitae, facilisis malesuada libero. Aliquam tincidunt lacus faucibus pharetra convallis. Duis non vestibulum arcu.";
 	private Party party;
 
 	@AfterMethod
@@ -324,6 +325,10 @@ public class CustomCharacters {
 		player.getInfo().setPlayer("Carlos");
 		player.getInfo().setGender(Gender.MALE);
 		player.getInfo().setAge(38);
+
+		player.getInfo().setCharacterDescription(LOREM_IPSUM);
+		player.getInfo().setBackgroundDecription(LOREM_IPSUM);
+
 		player.setRace(RaceFactory.getInstance().getElement("human", player.getLanguage(), player.getModuleName()));
 		player.getInfo().setPlanet(
 				PlanetFactory.getInstance().getElement("byzantiumSecundus", player.getLanguage(),
@@ -620,8 +625,8 @@ public class CustomCharacters {
 
 		LanguagePool.clearCache();
 		final SmallCharacterSheet smallSheet = new SmallCharacterSheet(player);
-		Assert.assertEquals(
-				smallSheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Golem.pdf"), 1);
+		Assert.assertEquals(smallSheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Golem.pdf"),
+				1);
 
 		Assert.assertEquals(CostCalculator.getCost(player), -5);
 		Assert.assertEquals(player.getMoney(), 250);

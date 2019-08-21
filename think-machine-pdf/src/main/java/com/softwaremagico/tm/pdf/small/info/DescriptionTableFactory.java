@@ -78,9 +78,11 @@ public class DescriptionTableFactory extends BaseElement {
 		final Paragraph paragraph = new Paragraph();
 		paragraph.add(new Paragraph(getTranslator().getTranslatedText("characterAnnotations") + ": ", new Font(
 				FadingSunsTheme.getTitleFont(), FadingSunsTheme.CHARACTER_SMALL_DESCRIPTION_TITLE_FONT_SIZE)));
-		paragraph.add(new Paragraph(characterPlayer.getInfo().getCharacterDescription(), new Font(FadingSunsTheme
-				.getHandwrittingFont(), FadingSunsTheme
-				.getHandWrittingFontSize(FadingSunsTheme.CHARACTER_SMALL_DESCRIPTION_FONT_SIZE))));
+		if (characterPlayer != null) {
+			paragraph.add(new Paragraph(characterPlayer.getInfo().getCharacterDescription(), new Font(FadingSunsTheme
+					.getHandwrittingFont(), FadingSunsTheme
+					.getHandWrittingFontSize(FadingSunsTheme.CHARACTER_SMALL_DESCRIPTION_FONT_SIZE))));
+		}
 		return paragraph;
 	}
 
@@ -88,9 +90,11 @@ public class DescriptionTableFactory extends BaseElement {
 		final Paragraph paragraph = new Paragraph();
 		paragraph.add(new Paragraph(getTranslator().getTranslatedText("historyAnnotations") + ": ", new Font(
 				FadingSunsTheme.getTitleFont(), FadingSunsTheme.CHARACTER_SMALL_DESCRIPTION_TITLE_FONT_SIZE)));
-		paragraph.add(new Paragraph(characterPlayer.getInfo().getBackgroundDecription(), new Font(FadingSunsTheme
-				.getHandwrittingFont(), FadingSunsTheme
-				.getHandWrittingFontSize(FadingSunsTheme.CHARACTER_SMALL_DESCRIPTION_FONT_SIZE))));
+		if (characterPlayer != null) {
+			paragraph.add(new Paragraph(characterPlayer.getInfo().getBackgroundDecription(), new Font(FadingSunsTheme
+					.getHandwrittingFont(), FadingSunsTheme
+					.getHandWrittingFontSize(FadingSunsTheme.CHARACTER_SMALL_DESCRIPTION_FONT_SIZE))));
+		}
 		return paragraph;
 	}
 

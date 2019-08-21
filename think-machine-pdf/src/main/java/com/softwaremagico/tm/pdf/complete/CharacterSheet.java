@@ -115,7 +115,7 @@ public class CharacterSheet extends PdfDocument {
 		mainTable.setWidthPercentage(100);
 
 		mainTable.addCell(new DescriptionTable(characterPlayer));
-		final PdfPCell cell = new PdfPCell(new AnnotationsTable());
+		final PdfPCell cell = new PdfPCell(new AnnotationsTable(characterPlayer));
 		cell.setBorderWidth(0);
 		cell.setColspan(2);
 		mainTable.addCell(cell);
@@ -153,7 +153,7 @@ public class CharacterSheet extends PdfDocument {
 		mainTable.setWidthPercentage(100);
 
 		mainTable.addCell(new DescriptionTable(characterPlayer));
-		final PdfPCell cell = new PdfPCell(new AnnotationsTable());
+		final PdfPCell cell = new PdfPCell(new AnnotationsTable(characterPlayer));
 		cell.setBorderWidth(0);
 		cell.setColspan(2);
 		mainTable.addCell(cell);

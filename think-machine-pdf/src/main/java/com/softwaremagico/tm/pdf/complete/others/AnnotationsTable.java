@@ -24,30 +24,35 @@ package com.softwaremagico.tm.pdf.complete.others;
  * #L%
  */
 
-import com.itextpdf.text.BaseColor;
-import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPCell;
+import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
-import com.softwaremagico.tm.pdf.complete.elements.BaseElement;
 import com.softwaremagico.tm.pdf.complete.elements.LateralHeaderPdfPTable;
+import com.softwaremagico.tm.pdf.complete.utils.CellUtils;
 
 public class AnnotationsTable extends LateralHeaderPdfPTable {
 	private static final float[] WIDTHS = { 1f, 24f };
-	private static final int CELL_HEIGHT = 70;
+	private static final int CELL_HEIGHT = 65;
+	private static final int DESCRIPTION_WIDTH = 2500;
 
-	public AnnotationsTable() {
+	public AnnotationsTable(CharacterPlayer characterPlayer) {
 		super(WIDTHS, false);
 
-		PdfPCell cell = createLateralVerticalTitle(getTranslator().getTranslatedText("annotationsTable"), 2);
+		final PdfPCell cell = createLateralVerticalTitle(getTranslator().getTranslatedText("annotationsTable"), 2);
 		cell.setBorderWidth(2);
+		cell.setMinimumHeight(CELL_HEIGHT * 2);
 		addCell(cell);
 
-		cell = createSubtitleLine(getTranslator().getTranslatedText("characterAnnotations"));
-		cell.setBorderWidth(0);
-		addCell(cell);
-		cell = createSubtitleLine(getTranslator().getTranslatedText("historyAnnotations"));
-		cell.setBorderWidth(2);
-		addCell(cell);
+		final PdfPCell descriptionCell = new PdfPCell(getCharacterDescription(characterPlayer));
+		descriptionCell.setMinimumHeight(CELL_HEIGHT);
+		descriptionCell.setBorderWidth(0);
+		addCell(descriptionCell);
+
+		final PdfPCell backgroundCell = new PdfPCell(getCharacterBackground(characterPlayer));
+		backgroundCell.setBorderWidth(2);
+		addCell(backgroundCell);
 	}
 
 	@Override
@@ -55,12 +60,32 @@ public class AnnotationsTable extends LateralHeaderPdfPTable {
 		return FadingSunsTheme.ANNOTATIONS_TITLE_FONT_SIZE;
 	}
 
-	protected static PdfPCell createSubtitleLine(String text) {
-		final PdfPCell cell = BaseElement.getCell(text, 1, 1, Element.ALIGN_LEFT, BaseColor.WHITE,
-				FadingSunsTheme.getTitleFont(), FadingSunsTheme.ANNOTATIONS_SUBTITLE_FONT_SIZE);
-		cell.setMinimumHeight(CELL_HEIGHT);
-		cell.setVerticalAlignment(Element.ALIGN_TOP);
-		return cell;
+	private static Paragraph getCharacterDescription(CharacterPlayer characterPlayer) {
+		final Paragraph paragraph = new Paragraph();
+		paragraph.add(new Paragraph(getTranslator().getTranslatedText("characterAnnotations") + ": ", new Font(
+				FadingSunsTheme.getTitleFont(), FadingSunsTheme.ANNOTATIONS_SUBTITLE_FONT_SIZE)));
+		if (characterPlayer != null) {
+			paragraph.add(new Paragraph(CellUtils.getSubStringFitsIn(characterPlayer.getInfo()
+					.getCharacterDescription(), FadingSunsTheme.getHandwrittingFont(), FadingSunsTheme
+					.getHandWrittingFontSize(FadingSunsTheme.CHARACTER_DESCRIPTION_FONT_SIZE), DESCRIPTION_WIDTH),
+					new Font(FadingSunsTheme.getHandwrittingFont(), FadingSunsTheme
+							.getHandWrittingFontSize(FadingSunsTheme.CHARACTER_DESCRIPTION_FONT_SIZE))));
+		}
+		return paragraph;
+	}
+
+	private static Paragraph getCharacterBackground(CharacterPlayer characterPlayer) {
+		final Paragraph paragraph = new Paragraph();
+		paragraph.add(new Paragraph(getTranslator().getTranslatedText("historyAnnotations") + ": ", new Font(
+				FadingSunsTheme.getTitleFont(), FadingSunsTheme.ANNOTATIONS_SUBTITLE_FONT_SIZE)));
+		if (characterPlayer != null) {
+			paragraph.add(new Paragraph(CellUtils.getSubStringFitsIn(characterPlayer.getInfo()
+					.getBackgroundDecription(), FadingSunsTheme.getHandwrittingFont(), FadingSunsTheme
+					.getHandWrittingFontSize(FadingSunsTheme.CHARACTER_DESCRIPTION_FONT_SIZE), DESCRIPTION_WIDTH),
+					new Font(FadingSunsTheme.getHandwrittingFont(), FadingSunsTheme
+							.getHandWrittingFontSize(FadingSunsTheme.CHARACTER_DESCRIPTION_FONT_SIZE))));
+		}
+		return paragraph;
 	}
 
 }
