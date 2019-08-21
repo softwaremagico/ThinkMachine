@@ -52,7 +52,7 @@ public class NaturalSkillsTable extends SkillsTable {
 		final float[] widths = { 4f, 1f };
 		final PdfPTable table = new PdfPTable(widths);
 		setTablePropierties(table);
-		table.getDefaultCell().setBorder(0);
+
 
 		table.addCell(createCompactTitle(getTranslator().getTranslatedText("naturalSkills"),
 				FadingSunsTheme.CHARACTER_SMALL_SKILLS_TITLE_FONT_SIZE));
@@ -77,6 +77,7 @@ public class NaturalSkillsTable extends SkillsTable {
 
 		final PdfPCell cell = new PdfPCell();
 		setCellProperties(cell);
+		cell.setBorderWidthRight(1);
 
 		cell.addElement(table);
 		cell.setVerticalAlignment(Element.ALIGN_TOP);

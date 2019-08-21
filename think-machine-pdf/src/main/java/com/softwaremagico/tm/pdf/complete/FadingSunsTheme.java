@@ -50,6 +50,7 @@ public abstract class FadingSunsTheme {
 	public static final int OCCULSTISM_TITLE_FONT_SIZE = 12;
 	public static final int OCCULSTISM_POWERS_TITLE_FONT_SIZE = 12;
 	public static final int OCCULSTISM_POWERS_CONTENT_FONT_SIZE = 6;
+	public static final int DESCRIPTION_FONT_SIZE = 11;
 	public static final int ANNOTATIONS_TITLE_FONT_SIZE = 12;
 	public static final int ANNOTATIONS_SUBTITLE_FONT_SIZE = 9;
 	public static final int VERTICALTABLE_TITLE_FONT_SIZE = 12;
@@ -69,7 +70,7 @@ public abstract class FadingSunsTheme {
 	public static final int FOOTER_FONT_SIZE = 8;
 	public static final int POSITIONS_CONTENT_FONT_SIZE = 6;
 	public static final int EXPERIENCE_VALUE_FONT_SIZE = 10;
-	
+
 	public static final int CHARACTER_SMALL_BASICS_FONT_SIZE = 9;
 	public static final int CHARACTER_SMALL_TITLE_FONT_SIZE = 12;
 	public static final int CHARACTER_SMALL_CHARACTERISTICS_TITLE_FONT_SIZE = 8;
@@ -83,6 +84,8 @@ public abstract class FadingSunsTheme {
 	public static final int CHARACTER_SMALL_SKILLS_LINE_FONT_SIZE = 7;
 	public static final int CHARACTER_SMALL_TABLE_LINE_FONT_SIZE = 6;
 	public static final int CHARACTER_SMALL_TRAITS_FONT_SIZE = 6;
+	public static final int CHARACTER_SMALL_DESCRIPTION_TITLE_FONT_SIZE = 9;
+	public static final int CHARACTER_SMALL_DESCRIPTION_FONT_SIZE = 7;
 	public static final int CHARACTER_COUNTER_POINT_SIZE = 11;
 	public static final int CHARACTER_SMALL_WEAPONS_TITLE_FONT_SIZE = CHARACTER_SMALL_BLESSING_TITLE_FONT_SIZE;
 	public static final int CHARACTER_SMALL_OCCULTISM_TITLE_FONT_SIZE = CHARACTER_SMALL_BLESSING_TITLE_FONT_SIZE;
@@ -90,7 +93,7 @@ public abstract class FadingSunsTheme {
 	public static final int VICTORY_SMALL_POINTS_FONT_SIZE = VICTORY_POINTS_FONT_SIZE;
 	public static final int WEAPONS_SMALL_CONTENT_FONT_SIZE = 6;
 	public static final int CHARACTER_SMALL_CYBERNETICS_TITLE_FONT_SIZE = CHARACTER_SMALL_BLESSING_TITLE_FONT_SIZE;
-	
+
 	public static final int HANDWRITTING_DEFAULT_FONT_SIZE = 10;
 
 	public static final int DEFAULT_MARGIN = 3;
@@ -102,10 +105,11 @@ public abstract class FadingSunsTheme {
 	private static BaseFont titleFont;
 	private static BaseFont tableSubtitleFont;
 	private static BaseFont handwrittingFont;
-	
+
 	public static BaseFont getFooterFont() {
 		if (footerFont == null) {
-			final Font font = FontFactory.getFont("/" + TITLE_FONT_NAME, BaseFont.IDENTITY_H, BaseFont.EMBEDDED, 0.5f, Font.NORMAL, BaseColor.BLACK);
+			final Font font = FontFactory.getFont("/" + TITLE_FONT_NAME, BaseFont.IDENTITY_H, BaseFont.EMBEDDED, 0.5f,
+					Font.NORMAL, BaseColor.BLACK);
 			footerFont = font.getBaseFont();
 		}
 		return footerFont;
@@ -113,7 +117,8 @@ public abstract class FadingSunsTheme {
 
 	public static BaseFont getLineFont() {
 		if (lineFont == null) {
-			final Font font = FontFactory.getFont("/" + LINE_FONT_NAME, BaseFont.IDENTITY_H, BaseFont.EMBEDDED, 0.8f, Font.NORMAL, BaseColor.BLACK);
+			final Font font = FontFactory.getFont("/" + LINE_FONT_NAME, BaseFont.IDENTITY_H, BaseFont.EMBEDDED, 0.8f,
+					Font.NORMAL, BaseColor.BLACK);
 			lineFont = font.getBaseFont();
 		}
 		return lineFont;
@@ -121,7 +126,8 @@ public abstract class FadingSunsTheme {
 
 	public static BaseFont getLineItalicFont() {
 		if (lineItalicFont == null) {
-			final Font font = FontFactory.getFont("/" + LINE_FONT_ITALIC_NAME, BaseFont.IDENTITY_H, BaseFont.EMBEDDED, 0.8f, Font.ITALIC, BaseColor.BLACK);
+			final Font font = FontFactory.getFont("/" + LINE_FONT_ITALIC_NAME, BaseFont.IDENTITY_H, BaseFont.EMBEDDED,
+					0.8f, Font.ITALIC, BaseColor.BLACK);
 			lineItalicFont = font.getBaseFont();
 		}
 		return lineItalicFont;
@@ -129,7 +135,8 @@ public abstract class FadingSunsTheme {
 
 	public static BaseFont getLineFontBold() {
 		if (lineBoldFont == null) {
-			final Font font = FontFactory.getFont("/" + LINE_BOLD_FONT_NAME, BaseFont.IDENTITY_H, BaseFont.EMBEDDED, 0.8f, Font.BOLD, BaseColor.BLACK);
+			final Font font = FontFactory.getFont("/" + LINE_BOLD_FONT_NAME, BaseFont.IDENTITY_H, BaseFont.EMBEDDED,
+					0.8f, Font.BOLD, BaseColor.BLACK);
 			lineBoldFont = font.getBaseFont();
 		}
 		return lineBoldFont;
@@ -137,7 +144,8 @@ public abstract class FadingSunsTheme {
 
 	public static BaseFont getTitleFont() {
 		if (titleFont == null) {
-			final Font font = FontFactory.getFont("/" + TITLE_FONT_NAME, BaseFont.IDENTITY_H, BaseFont.EMBEDDED, 0.8f, Font.NORMAL, BaseColor.BLACK);
+			final Font font = FontFactory.getFont("/" + TITLE_FONT_NAME, BaseFont.IDENTITY_H, BaseFont.EMBEDDED, 0.8f,
+					Font.NORMAL, BaseColor.BLACK);
 			titleFont = font.getBaseFont();
 		}
 		return titleFont;
@@ -145,7 +153,8 @@ public abstract class FadingSunsTheme {
 
 	public static BaseFont getSubtitleFont() {
 		if (tableSubtitleFont == null) {
-			final Font font = FontFactory.getFont("/" + TABLE_SUBTITLE_FONT_NAME, BaseFont.IDENTITY_H, BaseFont.EMBEDDED, 0.8f, Font.ITALIC, BaseColor.BLACK);
+			final Font font = FontFactory.getFont("/" + TABLE_SUBTITLE_FONT_NAME, BaseFont.IDENTITY_H,
+					BaseFont.EMBEDDED, 0.8f, Font.ITALIC, BaseColor.BLACK);
 			tableSubtitleFont = font.getBaseFont();
 		}
 		return tableSubtitleFont;
@@ -153,7 +162,8 @@ public abstract class FadingSunsTheme {
 
 	public static BaseFont getHandwrittingFont() {
 		if (handwrittingFont == null) {
-			final Font font = FontFactory.getFont("/" + HANDWRITTING_FONT_NAME, BaseFont.IDENTITY_H, BaseFont.EMBEDDED, 0.8f, Font.NORMAL, BaseColor.BLACK);
+			final Font font = FontFactory.getFont("/" + HANDWRITTING_FONT_NAME, BaseFont.IDENTITY_H, BaseFont.EMBEDDED,
+					0.8f, Font.NORMAL, BaseColor.BLACK);
 			handwrittingFont = font.getBaseFont();
 		}
 		return handwrittingFont;

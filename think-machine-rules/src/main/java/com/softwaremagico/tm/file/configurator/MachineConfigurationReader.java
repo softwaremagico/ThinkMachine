@@ -48,7 +48,19 @@ public class MachineConfigurationReader extends ConfigurationReader {
 	private static MachineConfigurationReader instance;
 	private final PropertiesSourceFile userSourceFile;
 
-	private MachineConfigurationReader() {
+	@SuppressFBWarnings(value = "DC_DOUBLECHECK")
+	public static MachineConfigurationReader getInstance() {
+		if (instance == null) {
+			synchronized (MachineConfigurationReader.class) {
+				if (instance == null) {
+					instance = new MachineConfigurationReader();
+				}
+			}
+		}
+		return instance;
+	}
+
+	protected MachineConfigurationReader() {
 		super();
 
 		setProperty(MODULES_PATH, "");
@@ -111,19 +123,7 @@ public class MachineConfigurationReader extends ConfigurationReader {
 		return new File(userSourceFile.getFilePath() + File.separator + userSourceFile.getFileName());
 	}
 
-	@SuppressFBWarnings(value = "DC_DOUBLECHECK")
-	public static MachineConfigurationReader getInstance() {
-		if (instance == null) {
-			synchronized (MachineConfigurationReader.class) {
-				if (instance == null) {
-					instance = new MachineConfigurationReader();
-				}
-			}
-		}
-		return instance;
-	}
-
-	private String getPropertyLogException(String propertyId) {
+	protected String getPropertyLogException(String propertyId) {
 		try {
 			return getProperty(propertyId);
 		} catch (PropertyNotFoundException e) {

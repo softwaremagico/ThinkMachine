@@ -35,7 +35,6 @@ import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.benefices.AvailableBenefice;
 import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
 import com.softwaremagico.tm.character.factions.Faction;
-import com.softwaremagico.tm.log.MachineLog;
 
 public class Occultism {
 	private Map<String, Integer> psiqueValue;
@@ -79,7 +78,7 @@ public class Occultism {
 		try {
 			noOccult = AvailableBeneficeFactory.getInstance().getElement("noOccult", language, faction.getModuleName());
 		} catch (InvalidXmlElementException e) {
-			MachineLog.errorMessage(this.getClass().getName(), e);
+			// Module without noocc benefice.
 		}
 		if (psyValue != 0 && (faction == null || faction.getBenefices().contains(noOccult))) {
 			throw new InvalidPsiqueLevelException("Faction '" + faction + "' cannot have psique levels.");

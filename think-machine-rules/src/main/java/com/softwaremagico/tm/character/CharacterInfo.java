@@ -59,6 +59,10 @@ public class CharacterInfo {
 
 	private String weight;
 
+	private String characterDescription = "";
+
+	private String backgroundDecription = "";
+
 	public String getTranslatedParameter(String fieldName, String moduleName) {
 		for (final Field field : this.getClass().getDeclaredFields()) {
 			// field.setAccessible(true); //Make it public.
@@ -200,6 +204,22 @@ public class CharacterInfo {
 
 	private String getTranslatorFile() {
 		return TRANSLATOR_FILE;
+	}
+
+	public String getCharacterDescription() {
+		return characterDescription;
+	}
+
+	public void setCharacterDescription(String characterDescription) {
+		this.characterDescription = characterDescription;
+	}
+
+	public String getBackgroundDecription() {
+		return backgroundDecription;
+	}
+
+	public void setBackgroundDecription(String backgroundDecription) {
+		this.backgroundDecription = backgroundDecription;
 	}
 
 }
