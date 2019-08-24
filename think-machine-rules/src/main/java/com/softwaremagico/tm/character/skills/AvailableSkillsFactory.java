@@ -36,9 +36,9 @@ import java.util.Set;
 import com.softwaremagico.tm.InvalidXmlElementException;
 
 public class AvailableSkillsFactory {
-	protected Map<String, List<AvailableSkill>> elements = new HashMap<>();
-	private Map<String, List<AvailableSkill>> naturalSkills = new HashMap<>();
-	private Map<String, List<AvailableSkill>> learnedSkills = new HashMap<>();
+	protected Map<String, Map<String, List<AvailableSkill>>> elements = new HashMap<>();
+	private Map<String, Map<String, List<AvailableSkill>>> naturalSkills = new HashMap<>();
+	private Map<String, Map<String, List<AvailableSkill>>> learnedSkills = new HashMap<>();
 	private Map<String, Map<SkillGroup, Set<AvailableSkill>>> skillsByGroup = new HashMap<>();
 
 	private int maximumNumberOfSpecializations = 0;
@@ -77,44 +77,56 @@ public class AvailableSkillsFactory {
 	}
 
 	public List<AvailableSkill> getNaturalSkills(String language, String moduleName) throws InvalidXmlElementException {
-		if (naturalSkills.get(language) == null) {
-			naturalSkills.put(language, new ArrayList<AvailableSkill>());
-		}
-		if (naturalSkills.get(language).isEmpty()) {
+		if (naturalSkills.get(language) == null || naturalSkills.get(language).get(moduleName) == null) {
+			if (naturalSkills.get(language) == null) {
+				naturalSkills.put(language, new HashMap<String, List<AvailableSkill>>());
+			}
+			if (naturalSkills.get(language).get(moduleName) == null) {
+				naturalSkills.get(language).put(moduleName, new ArrayList<AvailableSkill>());
+			}
 			if (elements.get(language) == null) {
-				elements.put(language, new ArrayList<AvailableSkill>());
+				elements.put(language, new HashMap<String, List<AvailableSkill>>());
+			}
+			if (elements.get(language).get(moduleName) == null) {
+				elements.get(language).put(moduleName, new ArrayList<AvailableSkill>());
 			}
 			for (final SkillDefinition skillDefinition : SkillsDefinitionsFactory.getInstance().getNaturalSkills(
 					language, moduleName)) {
 				final Set<AvailableSkill> skills = createElement(skillDefinition);
 
-				naturalSkills.get(language).addAll(skills);
-				elements.get(language).addAll(skills);
+				naturalSkills.get(language).get(moduleName).addAll(skills);
+				elements.get(language).get(moduleName).addAll(skills);
 			}
-			Collections.sort(naturalSkills.get(language));
-			Collections.sort(elements.get(language));
+			Collections.sort(naturalSkills.get(language).get(moduleName));
+			Collections.sort(elements.get(language).get(moduleName));
 		}
-		return naturalSkills.get(language);
+		return naturalSkills.get(language).get(moduleName);
 	}
 
 	public List<AvailableSkill> getLearnedSkills(String language, String moduleName) throws InvalidXmlElementException {
-		if (learnedSkills.get(language) == null) {
-			learnedSkills.put(language, new ArrayList<AvailableSkill>());
-		}
-		if (learnedSkills.get(language).isEmpty()) {
+		if (learnedSkills.get(language) == null || learnedSkills.get(language).get(moduleName) == null) {
+			if (learnedSkills.get(language) == null) {
+				learnedSkills.put(language, new HashMap<String, List<AvailableSkill>>());
+			}
+			if (learnedSkills.get(language).get(moduleName) == null) {
+				learnedSkills.get(language).put(moduleName, new ArrayList<AvailableSkill>());
+			}
 			if (elements.get(language) == null) {
-				elements.put(language, new ArrayList<AvailableSkill>());
+				elements.put(language, new HashMap<String, List<AvailableSkill>>());
+			}
+			if (elements.get(language).get(moduleName) == null) {
+				elements.get(language).put(moduleName, new ArrayList<AvailableSkill>());
 			}
 			for (final SkillDefinition skillDefinition : SkillsDefinitionsFactory.getInstance().getLearnedSkills(
 					language, moduleName)) {
 				final Set<AvailableSkill> skills = createElement(skillDefinition);
-				learnedSkills.get(language).addAll(skills);
-				elements.get(language).addAll(skills);
+				learnedSkills.get(language).get(moduleName).addAll(skills);
+				elements.get(language).get(moduleName).addAll(skills);
 			}
-			Collections.sort(learnedSkills.get(language));
-			Collections.sort(elements.get(language));
+			Collections.sort(learnedSkills.get(language).get(moduleName));
+			Collections.sort(elements.get(language).get(moduleName));
 		}
-		return learnedSkills.get(language);
+		return learnedSkills.get(language).get(moduleName);
 	}
 
 	private Set<AvailableSkill> createElement(SkillDefinition skillDefinition) {
@@ -163,13 +175,18 @@ public class AvailableSkillsFactory {
 	}
 
 	private List<AvailableSkill> getElements(String language, String moduleName) throws InvalidXmlElementException {
-		if (elements.get(language) == null) {
-			elements.put(language, new ArrayList<AvailableSkill>());
+		if (elements.get(language) == null || elements.get(language).get(moduleName) == null) {
+			if (elements.get(language) == null) {
+				elements.put(language, new HashMap<String, List<AvailableSkill>>());
+			}
+			if (elements.get(language).get(moduleName) == null) {
+				elements.get(language).put(moduleName, new ArrayList<AvailableSkill>());
+			}
 			// Initialize values
 			getNaturalSkills(language, moduleName);
 			getLearnedSkills(language, moduleName);
 		}
-		return elements.get(language);
+		return elements.get(language).get(moduleName);
 	}
 
 	public List<AvailableSkill> getAvailableSkills(SkillDefinition skillDefinition, String language, String moduleName)

@@ -39,7 +39,7 @@ import com.softwaremagico.tm.character.benefices.BeneficeClassification;
 import com.softwaremagico.tm.character.benefices.BeneficeDefinitionFactory;
 import com.softwaremagico.tm.character.creation.CostCalculator;
 import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
-import com.softwaremagico.tm.file.Path;
+import com.softwaremagico.tm.file.PathManager;
 
 @Test(groups = { "beneficeFactory" })
 public class BeneficeFactoryTests {
@@ -50,23 +50,23 @@ public class BeneficeFactoryTests {
 
 	@Test
 	public void readBenefices() throws InvalidXmlElementException {
-		Assert.assertEquals(DEFINED_BENEFICES, BeneficeDefinitionFactory.getInstance().getElements(LANGUAGE, Path.DEFAULT_MODULE_FOLDER)
+		Assert.assertEquals(DEFINED_BENEFICES, BeneficeDefinitionFactory.getInstance().getElements(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)
 				.size());
 	}
 
 	@Test
 	public void getCalculatedBenefices() throws InvalidXmlElementException {
 		Assert.assertEquals(AVAILABLE_BENEFICES,
-				AvailableBeneficeFactory.getInstance().getElements(LANGUAGE, Path.DEFAULT_MODULE_FOLDER).size());
+				AvailableBeneficeFactory.getInstance().getElements(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).size());
 	}
 
 	@Test
 	public void getBeneficesClassification() throws InvalidXmlElementException {
 		Assert.assertEquals(DEFINED_BENEFICES, AvailableBeneficeFactory.getInstance()
-				.getAvailableBeneficesByDefinition(LANGUAGE, Path.DEFAULT_MODULE_FOLDER).keySet().size());
+				.getAvailableBeneficesByDefinition(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).keySet().size());
 		int count = 0;
 		for (final Set<AvailableBenefice> benefices : AvailableBeneficeFactory.getInstance()
-				.getAvailableBeneficesByDefinition(LANGUAGE, Path.DEFAULT_MODULE_FOLDER).values()) {
+				.getAvailableBeneficesByDefinition(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).values()) {
 			count += benefices.size();
 		}
 		Assert.assertEquals(AVAILABLE_BENEFICES, count);
@@ -74,44 +74,44 @@ public class BeneficeFactoryTests {
 
 	@Test
 	public void getBeneficeSpecialization() throws InvalidXmlElementException {
-		Assert.assertNotNull(AvailableBeneficeFactory.getInstance().getElement("cash [firebirds250]", LANGUAGE, Path.DEFAULT_MODULE_FOLDER));
+		Assert.assertNotNull(AvailableBeneficeFactory.getInstance().getElement("cash [firebirds250]", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
 	}
 
 	@Test
 	public void getMoneyStandard() throws InvalidXmlElementException {
-		final CharacterPlayer player = new CharacterPlayer(LANGUAGE, Path.DEFAULT_MODULE_FOLDER);
+		final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
 		Assert.assertEquals(250, player.getInitialMoney());
 	}
 
 	@Test
 	public void getMoneyBenefice() throws InvalidXmlElementException, BeneficeAlreadyAddedException {
-		final CharacterPlayer player = new CharacterPlayer(LANGUAGE, Path.DEFAULT_MODULE_FOLDER);
-		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("cash [firebirds1000]", LANGUAGE, Path.DEFAULT_MODULE_FOLDER));
+		final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("cash [firebirds1000]", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
 		Assert.assertEquals(1000, player.getInitialMoney());
 	}
 
 	@Test
 	public void getMoneyRemaining() throws InvalidXmlElementException, BeneficeAlreadyAddedException {
-		final CharacterPlayer player = new CharacterPlayer(LANGUAGE, Path.DEFAULT_MODULE_FOLDER);
+		final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
 		// Weapon without cost.
-		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("fluxSword", LANGUAGE, Path.DEFAULT_MODULE_FOLDER));
+		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("fluxSword", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
 		// Weapon with cost.
-		player.addWeapon(WeaponFactory.getInstance().getElement("typicalShotgun", LANGUAGE, Path.DEFAULT_MODULE_FOLDER));
-		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("cash [firebirds1000]", LANGUAGE, Path.DEFAULT_MODULE_FOLDER));
+		player.addWeapon(WeaponFactory.getInstance().getElement("typicalShotgun", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("cash [firebirds1000]", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
 		Assert.assertEquals(2, player.getAllWeapons().size());
 		Assert.assertEquals(700, player.getMoney());
 	}
 
 	@Test
 	public void getMoneyAsAfflictionCost() throws InvalidXmlElementException, BeneficeAlreadyAddedException {
-		final CharacterPlayer player = new CharacterPlayer(LANGUAGE, Path.DEFAULT_MODULE_FOLDER);
+		final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
 		final int remainingCost = CostCalculator.getCost(player);
 		final AvailableBenefice cash50 = AvailableBeneficeFactory.getInstance().getElement("cash [firebirds50]",
-				LANGUAGE, Path.DEFAULT_MODULE_FOLDER);
+				LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
 		Assert.assertEquals(BeneficeClassification.AFFLICTION, cash50.getBeneficeClassification());
 		Assert.assertEquals(-2, cash50.getCost());
 		player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("cash [firebirds50]", LANGUAGE,
-				Path.DEFAULT_MODULE_FOLDER));
+				PathManager.DEFAULT_MODULE_FOLDER));
 		Assert.assertEquals(remainingCost - 2, CostCalculator.getCost(player));
 	}
 

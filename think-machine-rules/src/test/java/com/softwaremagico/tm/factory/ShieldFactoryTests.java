@@ -30,7 +30,7 @@ import org.testng.annotations.Test;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.equipment.shields.ShieldFactory;
-import com.softwaremagico.tm.file.Path;
+import com.softwaremagico.tm.file.PathManager;
 
 @Test(groups = { "shieldFactory" })
 public class ShieldFactoryTests {
@@ -40,6 +40,6 @@ public class ShieldFactoryTests {
 	@Test
 	public void readDamages() throws InvalidXmlElementException {
 		Assert.assertEquals(DEFINED_SHIELDS,
-				ShieldFactory.getInstance().getElements(LANGUAGE, Path.DEFAULT_MODULE_FOLDER).size());
+				ShieldFactory.getInstance().getElements(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).size());
 	}
 }

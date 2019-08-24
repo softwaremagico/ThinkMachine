@@ -718,7 +718,7 @@ public class CharacterPlayer {
 
 	@Override
 	public String toString() {
-		final String name = getNameRepresentation();
+		final String name = getCompleteNameRepresentation();
 		if (name.length() > 0) {
 			return name;
 		}
@@ -1082,7 +1082,7 @@ public class CharacterPlayer {
 	}
 
 	public void setPsiqueLevel(OccultismType occultismType, int psyValue) throws InvalidPsiqueLevelException {
-		getOccultism().setPsiqueLevel(occultismType, psyValue, getLanguage(), getFaction());
+		getOccultism().setPsiqueLevel(occultismType, psyValue, getLanguage(), getModuleName(), getFaction());
 	}
 
 	public int getDarkSideLevel(OccultismType occultismType) {
@@ -1105,14 +1105,10 @@ public class CharacterPlayer {
 		getOccultism().addPower(power, getLanguage(), getFaction());
 	}
 
-	public String getNameRepresentation() {
+	public String getCompleteNameRepresentation() {
 		final StringBuilder stringBuilder = new StringBuilder("");
-		if (getInfo() != null && getInfo().getNames() != null && !getInfo().getNames().isEmpty()) {
-			for (final Name name : getInfo().getNames()) {
-				stringBuilder.append(name.getName());
-				stringBuilder.append(" ");
-			}
-		}
+		stringBuilder.append(getInfo().getNameRepresentation());
+		stringBuilder.append(" ");
 		if (getInfo() != null && getInfo().getSurname() != null) {
 			stringBuilder.append(getInfo().getSurname().getName());
 		}

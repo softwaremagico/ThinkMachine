@@ -30,7 +30,7 @@ import org.testng.annotations.Test;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
-import com.softwaremagico.tm.file.Path;
+import com.softwaremagico.tm.file.PathManager;
 
 @Test(groups = { "skillFactory" })
 public class SkillFactoryTests {
@@ -40,7 +40,7 @@ public class SkillFactoryTests {
 
 	@Test
 	public void readSkills() throws InvalidXmlElementException {
-		Assert.assertEquals(NATURAL_SKILLS, SkillsDefinitionsFactory.getInstance().getNaturalSkills(LANGUAGE, Path.DEFAULT_MODULE_FOLDER).size());
-		Assert.assertEquals(LEARNED_SKILLS, SkillsDefinitionsFactory.getInstance().getLearnedSkills(LANGUAGE, Path.DEFAULT_MODULE_FOLDER).size());
+		Assert.assertEquals(NATURAL_SKILLS, SkillsDefinitionsFactory.getInstance().getNaturalSkills(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).size());
+		Assert.assertEquals(LEARNED_SKILLS, SkillsDefinitionsFactory.getInstance().getLearnedSkills(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).size());
 	}
 }

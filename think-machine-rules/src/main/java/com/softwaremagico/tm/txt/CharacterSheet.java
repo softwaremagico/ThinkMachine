@@ -77,7 +77,7 @@ public class CharacterSheet {
 	}
 
 	private void setCharacterInfoText(StringBuilder stringBuilder) throws InvalidXmlElementException {
-		stringBuilder.append(getCharacterPlayer().getNameRepresentation());
+		stringBuilder.append(getCharacterPlayer().getCompleteNameRepresentation());
 		// stringBuilder.append(" (" +
 		// ThreatLevel.getThreatLevel(getCharacterPlayer()) +
 		// THREAT_LEVEL_SYMBOL + ")");

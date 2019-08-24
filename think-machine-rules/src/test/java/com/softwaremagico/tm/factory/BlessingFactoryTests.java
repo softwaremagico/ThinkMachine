@@ -30,7 +30,7 @@ import org.testng.annotations.Test;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.blessings.BlessingFactory;
-import com.softwaremagico.tm.file.Path;
+import com.softwaremagico.tm.file.PathManager;
 
 @Test(groups = { "blessingFactory" })
 public class BlessingFactoryTests {
@@ -41,12 +41,12 @@ public class BlessingFactoryTests {
 
 	@Test
 	public void readBlessings() throws InvalidXmlElementException {
-		Assert.assertEquals(DEFINED_BLESSINGS, BlessingFactory.getInstance().getElements(LANGUAGE, Path.DEFAULT_MODULE_FOLDER).size());
+		Assert.assertEquals(DEFINED_BLESSINGS, BlessingFactory.getInstance().getElements(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).size());
 	}
 
 	@Test
 	public void multiplesBonifications() throws InvalidXmlElementException {
 		Assert.assertEquals(DEFINED_BONIFICATIONS_MISSING_EYE,
-				BlessingFactory.getInstance().getElement("missingEye", LANGUAGE, Path.DEFAULT_MODULE_FOLDER).getBonifications().size());
+				BlessingFactory.getInstance().getElement("missingEye", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).getBonifications().size());
 	}
 }

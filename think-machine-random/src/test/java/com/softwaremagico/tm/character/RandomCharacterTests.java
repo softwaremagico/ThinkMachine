@@ -59,7 +59,7 @@ import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.character.skills.RandomSkills;
 import com.softwaremagico.tm.character.skills.SkillDefinition;
 import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
-import com.softwaremagico.tm.file.Path;
+import com.softwaremagico.tm.file.PathManager;
 import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.log.MachineLog;
 import com.softwaremagico.tm.random.exceptions.DuplicatedPreferenceException;
@@ -93,14 +93,14 @@ public class RandomCharacterTests {
 	@Test(expectedExceptions = { DuplicatedPreferenceException.class })
 	public void preferencesCollision() throws InvalidXmlElementException, DuplicatedPreferenceException,
 			TooManyBlessingsException {
-		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, Path.DEFAULT_MODULE_FOLDER);
+		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
 		new RandomizeCharacter(characterPlayer, 0, TechnologicalPreferences.MEDIEVAL, TechnologicalPreferences.FUTURIST);
 	}
 
 	@Test
 	public void chooseRaceAndFactionTest() throws InvalidXmlElementException, DuplicatedPreferenceException,
 			InvalidRandomElementSelectedException, TooManyBlessingsException {
-		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, Path.DEFAULT_MODULE_FOLDER);
+		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
 		final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0, RacePreferences.HUMAN,
 				FactionPreferences.NOBILITY);
 		randomizeCharacter.setCharacterDefinition();
@@ -108,26 +108,26 @@ public class RandomCharacterTests {
 		Assert.assertEquals(characterPlayer.getFaction().getFactionGroup(), FactionGroup.NOBILITY);
 		Assert.assertEquals(characterPlayer.getRace(),
 				RaceFactory.getInstance()
-						.getElement(RacePreferences.HUMAN.name(), LANGUAGE, Path.DEFAULT_MODULE_FOLDER));
+						.getElement(RacePreferences.HUMAN.name(), LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
 	}
 
 	@Test
 	public void chooseRaceAndFactionTestXeno() throws InvalidXmlElementException, DuplicatedPreferenceException,
 			InvalidRandomElementSelectedException, TooManyBlessingsException {
-		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, Path.DEFAULT_MODULE_FOLDER);
+		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
 		final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0, RacePreferences.OBUN,
 				FactionPreferences.GUILD);
 		randomizeCharacter.setCharacterDefinition();
 
 		Assert.assertEquals(characterPlayer.getFaction().getFactionGroup(), FactionGroup.GUILD);
 		Assert.assertEquals(characterPlayer.getRace(),
-				RaceFactory.getInstance().getElement(RacePreferences.OBUN.name(), LANGUAGE, Path.DEFAULT_MODULE_FOLDER));
+				RaceFactory.getInstance().getElement(RacePreferences.OBUN.name(), LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
 	}
 
 	@Test
 	public void readRandomSkillConfigurationarchery() throws InvalidXmlElementException, DuplicatedPreferenceException {
 		final SkillDefinition skillDefinition = SkillsDefinitionsFactory.getInstance().get("archery", "en",
-				Path.DEFAULT_MODULE_FOLDER);
+				PathManager.DEFAULT_MODULE_FOLDER);
 		Assert.assertEquals(skillDefinition.getRandomDefinition().getMinimumTechLevel().intValue(), 0);
 		Assert.assertEquals(skillDefinition.getRandomDefinition().getMaximumTechLevel().intValue(), 2);
 	}
@@ -135,53 +135,53 @@ public class RandomCharacterTests {
 	@Test
 	public void checkWeightLimitedByDefinition() throws InvalidXmlElementException, DuplicatedPreferenceException,
 			InvalidRandomElementSelectedException {
-		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, Path.DEFAULT_MODULE_FOLDER);
+		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
 		final RandomWeapon randomWeapons = new RandomRangeWeapon(characterPlayer, null, new HashSet<Weapon>());
 		final Weapon largeRock = WeaponFactory.getInstance().getElement("veryLargeRock", LANGUAGE,
-				Path.DEFAULT_MODULE_FOLDER);
+				PathManager.DEFAULT_MODULE_FOLDER);
 		Assert.assertEquals(randomWeapons.getTotalWeight(largeRock), 0);
 	}
 
 	@Test(expectedExceptions = { InvalidRandomElementSelectedException.class })
 	public void checkSkillLimitationByTechnology() throws InvalidXmlElementException, DuplicatedPreferenceException,
 			InvalidRandomElementSelectedException {
-		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, Path.DEFAULT_MODULE_FOLDER);
+		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
 		characterPlayer.getCharacteristic(CharacteristicName.TECH).setValue(7);
 
 		final RandomSkills randomSkills = new RandomSkills(characterPlayer, null);
 		final AvailableSkill availableSkill = AvailableSkillsFactory.getInstance().getElement("archery", LANGUAGE,
-				Path.DEFAULT_MODULE_FOLDER);
+				PathManager.DEFAULT_MODULE_FOLDER);
 		randomSkills.validateElement(availableSkill);
 	}
 
 	@Test(expectedExceptions = { InvalidRandomElementSelectedException.class })
 	public void checkSkillLimitationByLowTechnology() throws InvalidXmlElementException, DuplicatedPreferenceException,
 			InvalidRandomElementSelectedException {
-		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, Path.DEFAULT_MODULE_FOLDER);
+		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
 		characterPlayer.getCharacteristic(CharacteristicName.TECH).setValue(1);
 
 		final RandomSkills randomSkills = new RandomSkills(characterPlayer, null);
 		final AvailableSkill availableSkill = AvailableSkillsFactory.getInstance().getElement("spacecraft", LANGUAGE,
-				Path.DEFAULT_MODULE_FOLDER);
+				PathManager.DEFAULT_MODULE_FOLDER);
 		randomSkills.validateElement(availableSkill);
 	}
 
 	@Test(expectedExceptions = { InvalidRandomElementSelectedException.class })
 	public void checkBeneficeLimitationByRace() throws InvalidXmlElementException, DuplicatedPreferenceException,
 			InvalidRandomElementSelectedException {
-		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, Path.DEFAULT_MODULE_FOLDER);
-		characterPlayer.setRace(RaceFactory.getInstance().getElement("human", LANGUAGE, Path.DEFAULT_MODULE_FOLDER));
+		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+		characterPlayer.setRace(RaceFactory.getInstance().getElement("human", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
 
 		final RandomBeneficeDefinition randomBenefice = new RandomBeneficeDefinition(characterPlayer, null);
 		final AvailableBenefice benefice = AvailableBeneficeFactory.getInstance().getElement("language [urthish]",
-				LANGUAGE, Path.DEFAULT_MODULE_FOLDER);
+				LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
 		randomBenefice.validateElement(benefice.getRandomDefinition());
 	}
 
 	@Test
 	public void readRandomSkillConfigurationSlugs() throws InvalidXmlElementException, DuplicatedPreferenceException {
 		final SkillDefinition skillDefinition = SkillsDefinitionsFactory.getInstance().get("slugGuns", "en",
-				Path.DEFAULT_MODULE_FOLDER);
+				PathManager.DEFAULT_MODULE_FOLDER);
 		Assert.assertEquals(skillDefinition.getRandomDefinition().getMinimumTechLevel().intValue(), 2);
 		Assert.assertEquals(skillDefinition.getRandomDefinition().getMaximumTechLevel().intValue(), 6);
 	}
@@ -189,7 +189,7 @@ public class RandomCharacterTests {
 	@Test
 	public void selectSkillGroup() throws InvalidXmlElementException, DuplicatedPreferenceException,
 			InvalidRandomElementSelectedException, TooManyBlessingsException {
-		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, Path.DEFAULT_MODULE_FOLDER);
+		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
 		final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0,
 				SkillGroupPreferences.COMBAT);
 		randomizeCharacter.createCharacter();
@@ -202,10 +202,10 @@ public class RandomCharacterTests {
 	@Test
 	public void mustHaveStatus() throws DuplicatedPreferenceException, InvalidXmlElementException,
 			InvalidRandomElementSelectedException, TooManyBlessingsException {
-		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, Path.DEFAULT_MODULE_FOLDER);
-		characterPlayer.setRace(RaceFactory.getInstance().getElement("human", LANGUAGE, Path.DEFAULT_MODULE_FOLDER));
+		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+		characterPlayer.setRace(RaceFactory.getInstance().getElement("human", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
 		characterPlayer.setFaction(FactionsFactory.getInstance().getElement("hazat", LANGUAGE,
-				Path.DEFAULT_MODULE_FOLDER));
+				PathManager.DEFAULT_MODULE_FOLDER));
 		final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0,
 				StatusPreferences.HIGHT);
 		randomizeCharacter.createCharacter();
@@ -217,10 +217,10 @@ public class RandomCharacterTests {
 	@Test
 	public void checkBlessingPreferences() throws DuplicatedPreferenceException, InvalidXmlElementException,
 			InvalidRandomElementSelectedException, TooManyBlessingsException {
-		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, Path.DEFAULT_MODULE_FOLDER);
+		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
 		final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0,
 				CurseNumberPreferences.FAIR, BlessingNumberPreferences.HIGH);
-		characterPlayer.setRace(RaceFactory.getInstance().getElement("human", LANGUAGE, Path.DEFAULT_MODULE_FOLDER));
+		characterPlayer.setRace(RaceFactory.getInstance().getElement("human", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
 		randomizeCharacter.createCharacter();
 		try {
 			Assert.assertTrue(characterPlayer.getCurses().size() >= CurseNumberPreferences.FAIR.minimum()
@@ -248,8 +248,8 @@ public class RandomCharacterTests {
 	@Test
 	public void createPsiqueCharacter() throws DuplicatedPreferenceException, InvalidXmlElementException,
 			InvalidRandomElementSelectedException, TooManyBlessingsException {
-		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, Path.DEFAULT_MODULE_FOLDER);
-		characterPlayer.setRace(RaceFactory.getInstance().getElement("human", LANGUAGE, Path.DEFAULT_MODULE_FOLDER));
+		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+		characterPlayer.setRace(RaceFactory.getInstance().getElement("human", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
 		final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0,
 				SpecializationPreferences.SPECIALIZED, PsiquePathLevelPreferences.HIGH, PsiqueLevelPreferences.HIGH,
 				StatusPreferences.FAIR);
@@ -260,10 +260,10 @@ public class RandomCharacterTests {
 	@Test
 	public void createChurchCharacter() throws DuplicatedPreferenceException, InvalidXmlElementException,
 			InvalidRandomElementSelectedException, TooManyBlessingsException {
-		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, Path.DEFAULT_MODULE_FOLDER);
-		characterPlayer.setRace(RaceFactory.getInstance().getElement("human", LANGUAGE, Path.DEFAULT_MODULE_FOLDER));
+		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+		characterPlayer.setRace(RaceFactory.getInstance().getElement("human", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
 		characterPlayer.setFaction(FactionsFactory.getInstance().getElement("orthodox", LANGUAGE,
-				Path.DEFAULT_MODULE_FOLDER));
+				PathManager.DEFAULT_MODULE_FOLDER));
 		final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0,
 				SpecializationPreferences.SPECIALIZED, PsiquePathLevelPreferences.HIGH, PsiqueLevelPreferences.HIGH,
 				StatusPreferences.FAIR);
@@ -274,8 +274,8 @@ public class RandomCharacterTests {
 	@Test
 	public void voroxCannotHavePsique() throws DuplicatedPreferenceException, InvalidXmlElementException,
 			InvalidRandomElementSelectedException, TooManyBlessingsException {
-		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, Path.DEFAULT_MODULE_FOLDER);
-		characterPlayer.setRace(RaceFactory.getInstance().getElement("vorox", LANGUAGE, Path.DEFAULT_MODULE_FOLDER));
+		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+		characterPlayer.setRace(RaceFactory.getInstance().getElement("vorox", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
 		final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0,
 				SpecializationPreferences.SPECIALIZED, PsiquePathLevelPreferences.HIGH, PsiqueLevelPreferences.HIGH);
 		randomizeCharacter.createCharacter();
@@ -284,11 +284,11 @@ public class RandomCharacterTests {
 				.getBenefices()
 				.contains(
 						AvailableBeneficeFactory.getInstance().getElement("noOccult", LANGUAGE,
-								Path.DEFAULT_MODULE_FOLDER)));
+								PathManager.DEFAULT_MODULE_FOLDER)));
 		Assert.assertTrue(characterPlayer.getAfflictions().contains(
-				AvailableBeneficeFactory.getInstance().getElement("noOccult", LANGUAGE, Path.DEFAULT_MODULE_FOLDER)));
+				AvailableBeneficeFactory.getInstance().getElement("noOccult", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)));
 		for (final OccultismType occultismType : OccultismTypeFactory.getInstance().getElements(LANGUAGE,
-				Path.DEFAULT_MODULE_FOLDER)) {
+				PathManager.DEFAULT_MODULE_FOLDER)) {
 			Assert.assertEquals(characterPlayer.getPsiqueLevel(occultismType), 0);
 		}
 		Assert.assertEquals(characterPlayer.getTotalSelectedPowers(), 0);
@@ -297,7 +297,7 @@ public class RandomCharacterTests {
 	@Test
 	public void namesByStatus() throws InvalidXmlElementException, InvalidRandomElementSelectedException,
 			DuplicatedPreferenceException, TooManyBlessingsException {
-		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, Path.DEFAULT_MODULE_FOLDER);
+		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
 		final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0,
 				NamesPreferences.VERY_HIGHT);
 		randomizeCharacter.createCharacter();
@@ -308,16 +308,16 @@ public class RandomCharacterTests {
 	@Test
 	public void weapons() throws InvalidXmlElementException, DuplicatedPreferenceException,
 			InvalidRandomElementSelectedException, TooManyBlessingsException, BeneficeAlreadyAddedException {
-		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, Path.DEFAULT_MODULE_FOLDER);
+		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
 		characterPlayer.setSkillRank(
-				AvailableSkillsFactory.getInstance().getElement("slugGuns", LANGUAGE, Path.DEFAULT_MODULE_FOLDER), 5);
+				AvailableSkillsFactory.getInstance().getElement("slugGuns", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER), 5);
 		characterPlayer.setSkillRank(
-				AvailableSkillsFactory.getInstance().getElement("energyGuns", LANGUAGE, Path.DEFAULT_MODULE_FOLDER), 5);
+				AvailableSkillsFactory.getInstance().getElement("energyGuns", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER), 5);
 		characterPlayer.setSkillRank(
-				AvailableSkillsFactory.getInstance().getElement("melee", LANGUAGE, Path.DEFAULT_MODULE_FOLDER), 5);
+				AvailableSkillsFactory.getInstance().getElement("melee", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER), 5);
 		characterPlayer.getCharacteristic(CharacteristicName.TECH).setValue(7);
 		characterPlayer.addBenefice(AvailableBeneficeFactory.getInstance().getElement("cash [firebirds2000]", LANGUAGE,
-				Path.DEFAULT_MODULE_FOLDER));
+				PathManager.DEFAULT_MODULE_FOLDER));
 		final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0,
 				CombatPreferences.BELLIGERENT);
 		randomizeCharacter.createCharacter();
@@ -327,8 +327,8 @@ public class RandomCharacterTests {
 	@Test
 	public void age() throws InvalidXmlElementException, DuplicatedPreferenceException,
 			InvalidRandomElementSelectedException, TooManyBlessingsException {
-		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, Path.DEFAULT_MODULE_FOLDER);
-		characterPlayer.setRace(RaceFactory.getInstance().getElement("human", LANGUAGE, Path.DEFAULT_MODULE_FOLDER));
+		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+		characterPlayer.setRace(RaceFactory.getInstance().getElement("human", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
 		final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0,
 				AgePreferences.PREADOLESCENT);
 		randomizeCharacter.createCharacter();
@@ -353,7 +353,7 @@ public class RandomCharacterTests {
 		}
 
 		for (final AvailableSkill skill : AvailableSkillsFactory.getInstance().getNaturalSkills(LANGUAGE,
-				Path.DEFAULT_MODULE_FOLDER)) {
+				PathManager.DEFAULT_MODULE_FOLDER)) {
 			try {
 				Assert.assertTrue(characterPlayer.getSkillAssignedRanks(skill) <= FreeStyleCharacterCreation
 						.getMaxInitialSkillsValues(characterPlayer.getInfo().getAge()));
@@ -371,7 +371,7 @@ public class RandomCharacterTests {
 			}
 		}
 		for (final AvailableSkill skill : AvailableSkillsFactory.getInstance().getLearnedSkills(LANGUAGE,
-				Path.DEFAULT_MODULE_FOLDER)) {
+				PathManager.DEFAULT_MODULE_FOLDER)) {
 			try {
 				Assert.assertTrue(characterPlayer.getSkillAssignedRanks(skill) <= FreeStyleCharacterCreation
 						.getMaxInitialSkillsValues(characterPlayer.getInfo().getAge()));
@@ -393,39 +393,39 @@ public class RandomCharacterTests {
 	@Test
 	public void weaponsSkills() throws DuplicatedPreferenceException, InvalidXmlElementException,
 			InvalidRandomElementSelectedException, TooManyBlessingsException {
-		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, Path.DEFAULT_MODULE_FOLDER);
-		characterPlayer.addWeapon(WeaponFactory.getInstance().getElement("axe", LANGUAGE, Path.DEFAULT_MODULE_FOLDER));
+		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+		characterPlayer.addWeapon(WeaponFactory.getInstance().getElement("axe", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
 		characterPlayer.addWeapon(WeaponFactory.getInstance().getElement("martechGold", LANGUAGE,
-				Path.DEFAULT_MODULE_FOLDER));
+				PathManager.DEFAULT_MODULE_FOLDER));
 
 		Assert.assertNotNull(characterPlayer.hasWeaponWithSkill(AvailableSkillsFactory.getInstance().getElement(
-				"melee", LANGUAGE, Path.DEFAULT_MODULE_FOLDER)));
+				"melee", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)));
 		Assert.assertNotNull(characterPlayer.hasWeaponWithSkill(AvailableSkillsFactory.getInstance().getElement(
-				"energyGuns", LANGUAGE, Path.DEFAULT_MODULE_FOLDER)));
+				"energyGuns", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)));
 
 		characterPlayer.getCharacteristic(CharacteristicName.TECH).setValue(6);
 
 		final RandomSkills randomSkills = new RandomSkills(characterPlayer, null);
 		final AvailableSkill energyGuns = AvailableSkillsFactory.getInstance().getElement("energyGuns", LANGUAGE,
-				Path.DEFAULT_MODULE_FOLDER);
+				PathManager.DEFAULT_MODULE_FOLDER);
 		randomSkills.validateElement(energyGuns.getRandomDefinition());
 		final AvailableSkill fight = AvailableSkillsFactory.getInstance().getElement("melee", LANGUAGE,
-				Path.DEFAULT_MODULE_FOLDER);
+				PathManager.DEFAULT_MODULE_FOLDER);
 		randomSkills.validateElement(fight.getRandomDefinition());
 
 		final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0);
 		randomizeCharacter.createCharacter();
 
 		Assert.assertTrue(characterPlayer.getSkillTotalRanks(AvailableSkillsFactory.getInstance().getElement("melee",
-				LANGUAGE, Path.DEFAULT_MODULE_FOLDER)) > 0);
+				LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)) > 0);
 		Assert.assertTrue(characterPlayer.getSkillTotalRanks(AvailableSkillsFactory.getInstance().getElement(
-				"energyGuns", LANGUAGE, Path.DEFAULT_MODULE_FOLDER)) > 0);
+				"energyGuns", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)) > 0);
 	}
 
 	@Test
 	public void cybernetics() throws InvalidXmlElementException, DuplicatedPreferenceException,
 			InvalidRandomElementSelectedException, TooManyBlessingsException {
-		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, Path.DEFAULT_MODULE_FOLDER);
+		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
 		final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0,
 				CyberneticTotalDevicesPreferences.CYBORG, CyberneticPointsPreferences.SOUL_LESS);
 		randomizeCharacter.createCharacter();
@@ -437,19 +437,19 @@ public class RandomCharacterTests {
 	public void cyberneticsSkills() throws InvalidXmlElementException, DuplicatedPreferenceException,
 			InvalidRandomElementSelectedException, TooManyCyberneticDevicesException,
 			RequiredCyberneticDevicesException, TooManyBlessingsException {
-		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, Path.DEFAULT_MODULE_FOLDER);
+		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
 		characterPlayer.getCharacteristic(CharacteristicName.WILL).setValue(6);
 		characterPlayer.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("spyEye", LANGUAGE,
-				Path.DEFAULT_MODULE_FOLDER));
+				PathManager.DEFAULT_MODULE_FOLDER));
 		characterPlayer.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("etherEar", LANGUAGE,
-				Path.DEFAULT_MODULE_FOLDER));
+				PathManager.DEFAULT_MODULE_FOLDER));
 		final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0);
 		randomizeCharacter.createCharacter();
 
 		Assert.assertTrue(characterPlayer.getSkillTotalRanks(AvailableSkillsFactory.getInstance().getElement("spyEye",
-				LANGUAGE, Path.DEFAULT_MODULE_FOLDER)) > 0);
+				LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)) > 0);
 		Assert.assertTrue(characterPlayer.getSkillTotalRanks(AvailableSkillsFactory.getInstance().getElement(
-				"etherEar", LANGUAGE, Path.DEFAULT_MODULE_FOLDER)) > 0);
+				"etherEar", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)) > 0);
 	}
 
 }

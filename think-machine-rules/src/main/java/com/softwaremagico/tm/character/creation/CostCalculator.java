@@ -62,7 +62,7 @@ public class CostCalculator {
 		cost += getTraitsCosts(characterPlayer);
 		cost += getPsiPowersCosts(characterPlayer);
 		cost += getCyberneticsCost(characterPlayer);
-		CostCalculatorLog.debug(CostCalculator.class.getName(), "Character '" + characterPlayer.getNameRepresentation()
+		CostCalculatorLog.debug(CostCalculator.class.getName(), "Character '" + characterPlayer.getCompleteNameRepresentation()
 				+ "' total cost: " + cost + "\n");
 		return cost;
 	}
@@ -75,7 +75,7 @@ public class CostCalculator {
 			throws InvalidXmlElementException {
 		int cost = 0;
 		CostCalculatorLog.info(CostCalculator.class.getName(), "####################### ");
-		CostCalculatorLog.info(CostCalculator.class.getName(), "\t" + characterPlayer.getNameRepresentation());
+		CostCalculatorLog.info(CostCalculator.class.getName(), "\t" + characterPlayer.getCompleteNameRepresentation());
 		CostCalculatorLog.info(CostCalculator.class.getName(), "####################### ");
 		if (characterPlayer.getRace() != null) {
 			cost += characterPlayer.getRace().getCost();

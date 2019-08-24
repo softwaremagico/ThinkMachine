@@ -35,7 +35,7 @@ import com.softwaremagico.tm.character.Gender;
 import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
 import com.softwaremagico.tm.character.factions.Faction;
 import com.softwaremagico.tm.character.factions.FactionsFactory;
-import com.softwaremagico.tm.file.Path;
+import com.softwaremagico.tm.file.PathManager;
 
 @Test(groups = { "factionsFactory" })
 public class FactionFactoryTests {
@@ -53,24 +53,24 @@ public class FactionFactoryTests {
 
 	@Test
 	public void readFactions() throws InvalidXmlElementException {
-		Assert.assertEquals(DEFINED_FACTIONS, FactionsFactory.getInstance().getElements(LANGUAGE, Path.DEFAULT_MODULE_FOLDER).size());
+		Assert.assertEquals(DEFINED_FACTIONS, FactionsFactory.getInstance().getElements(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).size());
 	}
 
 	@Test
 	public void readAfflictions() throws InvalidXmlElementException {
-		final Faction vorox = FactionsFactory.getInstance().getElement("vorox", LANGUAGE, Path.DEFAULT_MODULE_FOLDER);
-		Assert.assertTrue(vorox.getBenefices().contains(AvailableBeneficeFactory.getInstance().getElement("noOccult", LANGUAGE, Path.DEFAULT_MODULE_FOLDER)));
+		final Faction vorox = FactionsFactory.getInstance().getElement("vorox", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+		Assert.assertTrue(vorox.getBenefices().contains(AvailableBeneficeFactory.getInstance().getElement("noOccult", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)));
 	}
 	
 	@Test
 	public void readAfflictionsWithRank() throws InvalidXmlElementException {
-		final Faction freeMen = FactionsFactory.getInstance().getElement("freeMen", LANGUAGE, Path.DEFAULT_MODULE_FOLDER);
-		Assert.assertTrue(freeMen.getBenefices().contains(AvailableBeneficeFactory.getInstance().getElement("darkSecret_3", LANGUAGE, Path.DEFAULT_MODULE_FOLDER)));
+		final Faction freeMen = FactionsFactory.getInstance().getElement("freeMen", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+		Assert.assertTrue(freeMen.getBenefices().contains(AvailableBeneficeFactory.getInstance().getElement("darkSecret_3", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)));
 	}
 
 	@Test
 	public void readNames() throws InvalidXmlElementException {
-		final Faction hazat = FactionsFactory.getInstance().getElement("hazat", LANGUAGE, Path.DEFAULT_MODULE_FOLDER);
+		final Faction hazat = FactionsFactory.getInstance().getElement("hazat", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
 		Assert.assertNotNull(hazat);
 		Assert.assertTrue(FactionsFactory.getInstance().getAllNames(hazat, Gender.MALE).size() >= DEFINED_MALE_NAMES);
 		Assert.assertTrue(FactionsFactory.getInstance().getAllNames(hazat, Gender.FEMALE).size() >= DEFINED_FEMALE_NAMES);

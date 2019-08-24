@@ -31,7 +31,7 @@ import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.file.Path;
+import com.softwaremagico.tm.file.PathManager;
 import com.softwaremagico.tm.language.Translator;
 import com.softwaremagico.tm.pdf.complete.PdfDocument;
 import com.softwaremagico.tm.pdf.complete.elements.BaseElement;
@@ -55,7 +55,7 @@ public class SmallCharacterSheet extends PdfDocument {
 	private CharacterPlayer characterPlayer = null;
 
 	public SmallCharacterSheet() {
-		this(Translator.DEFAULT_LANGUAGE, Path.DEFAULT_MODULE_FOLDER);
+		this(Translator.DEFAULT_LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
 	}
 
 	public SmallCharacterSheet(String language, String moduleName) {

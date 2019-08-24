@@ -33,7 +33,7 @@ import com.softwaremagico.tm.character.RandomizeCharacter;
 import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
 import com.softwaremagico.tm.character.creation.CostCalculator;
 import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
-import com.softwaremagico.tm.file.Path;
+import com.softwaremagico.tm.file.PathManager;
 import com.softwaremagico.tm.random.exceptions.DuplicatedPreferenceException;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.DifficultLevelPreferences;
@@ -44,7 +44,7 @@ public class RandomCharacterDifficultyTests {
 
 	@Test
 	public void easy() throws DuplicatedPreferenceException, InvalidXmlElementException, InvalidRandomElementSelectedException, TooManyBlessingsException {
-		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, Path.DEFAULT_MODULE_FOLDER);
+		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
 		final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0, DifficultLevelPreferences.EASY);
 		randomizeCharacter.createCharacter();
 		Assert.assertTrue(CostCalculator.getCost(characterPlayer) < FreeStyleCharacterCreation.getFreeAvailablePoints(characterPlayer.getInfo().getAge()));
@@ -52,7 +52,7 @@ public class RandomCharacterDifficultyTests {
 
 	@Test
 	public void hard() throws DuplicatedPreferenceException, InvalidXmlElementException, InvalidRandomElementSelectedException, TooManyBlessingsException {
-		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, Path.DEFAULT_MODULE_FOLDER);
+		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
 		final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0, DifficultLevelPreferences.HARD);
 		randomizeCharacter.createCharacter();
 		Assert.assertTrue(characterPlayer.getCharacteristicsTotalPoints() >= FreeStyleCharacterCreation.getCharacteristicsPoints(characterPlayer.getInfo()
@@ -64,7 +64,7 @@ public class RandomCharacterDifficultyTests {
 
 	@Test
 	public void veryHard() throws DuplicatedPreferenceException, InvalidXmlElementException, InvalidRandomElementSelectedException, TooManyBlessingsException {
-		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, Path.DEFAULT_MODULE_FOLDER);
+		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
 		final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0, DifficultLevelPreferences.VERY_HARD);
 		randomizeCharacter.createCharacter();
 		Assert.assertTrue(characterPlayer.getCharacteristicsTotalPoints() >= FreeStyleCharacterCreation.getCharacteristicsPoints(characterPlayer.getInfo()

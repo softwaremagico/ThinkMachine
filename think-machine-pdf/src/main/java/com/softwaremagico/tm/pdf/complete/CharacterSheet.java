@@ -32,7 +32,7 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.file.Path;
+import com.softwaremagico.tm.file.PathManager;
 import com.softwaremagico.tm.language.Translator;
 import com.softwaremagico.tm.pdf.complete.characteristics.CharacteristicsTableFactory;
 import com.softwaremagico.tm.pdf.complete.cybernetics.CyberneticsTable;
@@ -56,7 +56,7 @@ public class CharacterSheet extends PdfDocument {
 	private CharacterPlayer characterPlayer = null;
 
 	public CharacterSheet() {
-		this(Translator.DEFAULT_LANGUAGE, Path.DEFAULT_MODULE_FOLDER);
+		this(Translator.DEFAULT_LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
 	}
 
 	public CharacterSheet(String language, String moduleName) {

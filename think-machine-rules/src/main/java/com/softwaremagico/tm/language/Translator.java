@@ -28,6 +28,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.net.URL;
+import java.net.URLClassLoader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -47,7 +49,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
-import com.softwaremagico.tm.file.Path;
+import com.softwaremagico.tm.file.PathManager;
 import com.softwaremagico.tm.log.MachineLog;
 
 public class Translator implements ITranslator {
@@ -79,7 +81,15 @@ public class Translator implements ITranslator {
 		try {
 			dbf = DocumentBuilderFactory.newInstance();
 			db = dbf.newDocumentBuilder();
-			usedDoc = db.parse(Translator.class.getClassLoader().getResource(filePath).openStream());
+			URL resource = null;
+			if (Translator.class.getClassLoader().getResource(filePath) != null) {
+				resource = Translator.class.getClassLoader().getResource(filePath);
+			} else {
+				// Is inside of a module.
+				resource = URLClassLoader.getSystemResource(filePath);
+			}
+			MachineLog.debug(Translator.class.getName(), "Found resource '" + filePath + "' at '" + resource + "'.");
+			usedDoc = db.parse(resource.openStream());
 			usedDoc.getDocumentElement().normalize();
 		} catch (NullPointerException e) {
 			MachineLog.severe(Translator.class.getName(), "Invalid xml at resource '" + filePath + "'.");
@@ -447,7 +457,7 @@ public class Translator implements ITranslator {
 		if (languagesList == null) {
 			languagesList = new ArrayList<>();
 			Document storedLanguages = null;
-			storedLanguages = parseFile(storedLanguages, Path.getModulePath(null) + LANGUAGES_FILE);
+			storedLanguages = parseFile(storedLanguages, PathManager.getModulePath(null) + LANGUAGES_FILE);
 			final NodeList nodeLst = storedLanguages.getElementsByTagName("languages");
 			for (int s = 0; s < nodeLst.getLength(); s++) {
 				final Node fstNode = nodeLst.item(s);
@@ -467,7 +477,7 @@ public class Translator implements ITranslator {
 	}
 
 	public static File getTranslatorPath(String xmlFile, String moduleName) {
-		File file = new File(Path.getModulePath(moduleName) + xmlFile);
+		File file = new File(PathManager.getModulePath(moduleName) + xmlFile);
 		if (file.exists()) {
 			// Get from folder
 			return file;
@@ -484,9 +494,9 @@ public class Translator implements ITranslator {
 		}
 
 		try {
-			if (Translator.class.getClassLoader().getResource(Path.MODULES_FOLDER + File.separator + xmlFile) != null) {
+			if (Translator.class.getClassLoader().getResource(PathManager.MODULES_FOLDER + File.separator + xmlFile) != null) {
 				file = new File(Translator.class.getClassLoader()
-						.getResource(Path.MODULES_FOLDER + File.separator + xmlFile).toURI());
+						.getResource(PathManager.MODULES_FOLDER + File.separator + xmlFile).toURI());
 				if (file.exists()) {
 					return file;
 				}

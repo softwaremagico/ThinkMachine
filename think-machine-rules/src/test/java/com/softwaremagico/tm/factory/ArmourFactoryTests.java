@@ -29,7 +29,7 @@ import org.testng.annotations.Test;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.equipment.armours.ArmourFactory;
-import com.softwaremagico.tm.file.Path;
+import com.softwaremagico.tm.file.PathManager;
 
 @Test(groups = { "armourFactory" })
 public class ArmourFactoryTests {
@@ -38,30 +38,30 @@ public class ArmourFactoryTests {
 
 	@Test
 	public void readArmours() throws InvalidXmlElementException {
-		Assert.assertEquals(ArmourFactory.getInstance().getElements(LANGUAGE, Path.DEFAULT_MODULE_FOLDER).size(),
+		Assert.assertEquals(ArmourFactory.getInstance().getElements(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).size(),
 				DEFINED_ARMOURS);
 	}
 
 	@Test
 	public void readArmoursSpecifications() throws InvalidXmlElementException {
-		Assert.assertEquals(ArmourFactory.getInstance().getElement("adeptRobes", LANGUAGE, Path.DEFAULT_MODULE_FOLDER)
+		Assert.assertEquals(ArmourFactory.getInstance().getElement("adeptRobes", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)
 				.getSpecifications().size(), 7);
 	}
 
 	@Test
 	public void readShieldsOfArmour() throws InvalidXmlElementException {
-		Assert.assertEquals(ArmourFactory.getInstance().getElement("synthsilk", LANGUAGE, Path.DEFAULT_MODULE_FOLDER)
+		Assert.assertEquals(ArmourFactory.getInstance().getElement("synthsilk", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)
 				.getAllowedShields().size(), 4);
-		Assert.assertEquals(ArmourFactory.getInstance().getElement("adeptRobes", LANGUAGE, Path.DEFAULT_MODULE_FOLDER)
+		Assert.assertEquals(ArmourFactory.getInstance().getElement("adeptRobes", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)
 				.getAllowedShields().size(), 1);
 	}
 
 	@Test
 	public void readDamagesOfArmour() throws InvalidXmlElementException {
 		Assert.assertEquals(
-				ArmourFactory.getInstance().getElement("ceramsteelExoframe", LANGUAGE, Path.DEFAULT_MODULE_FOLDER)
+				ArmourFactory.getInstance().getElement("ceramsteelExoframe", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)
 						.getDamageTypes().size(), 4);
-		Assert.assertEquals(ArmourFactory.getInstance().getElement("spacesuit", LANGUAGE, Path.DEFAULT_MODULE_FOLDER)
+		Assert.assertEquals(ArmourFactory.getInstance().getElement("spacesuit", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)
 				.getDamageTypes().size(), 4);
 	}
 }

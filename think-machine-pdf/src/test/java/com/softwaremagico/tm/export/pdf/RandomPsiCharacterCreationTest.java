@@ -39,7 +39,7 @@ import com.softwaremagico.tm.character.RandomizeCharacter;
 import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
 import com.softwaremagico.tm.character.creation.CostCalculator;
 import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
-import com.softwaremagico.tm.file.Path;
+import com.softwaremagico.tm.file.PathManager;
 import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.pdf.small.SmallCharacterSheet;
 import com.softwaremagico.tm.random.exceptions.DuplicatedPreferenceException;
@@ -61,7 +61,7 @@ public class RandomPsiCharacterCreationTest {
 	public void createRandomPsiCharacter() throws MalformedURLException, DocumentException, IOException,
 			InvalidXmlElementException, TooManyBlessingsException, DuplicatedPreferenceException,
 			InvalidRandomElementSelectedException {
-		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, Path.DEFAULT_MODULE_FOLDER);
+		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
 		final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0,
 				SpecializationPreferences.SPECIALIZED, PsiquePathLevelPreferences.HIGH, PsiqueLevelPreferences.HIGH);
 		randomizeCharacter.createCharacter();

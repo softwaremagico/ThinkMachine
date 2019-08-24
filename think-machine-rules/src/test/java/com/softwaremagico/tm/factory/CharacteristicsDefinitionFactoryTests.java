@@ -30,7 +30,7 @@ import org.testng.annotations.Test;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.characteristics.CharacteristicsDefinitionFactory;
-import com.softwaremagico.tm.file.Path;
+import com.softwaremagico.tm.file.PathManager;
 
 @Test(groups = { "characteristicsFactory" })
 public class CharacteristicsDefinitionFactoryTests {
@@ -39,6 +39,6 @@ public class CharacteristicsDefinitionFactoryTests {
 	@Test
 	public void readCharacteristics() throws InvalidXmlElementException {
 		Assert.assertEquals(12,
-				CharacteristicsDefinitionFactory.getInstance().getElements(LANGUAGE, Path.DEFAULT_MODULE_FOLDER).size());
+				CharacteristicsDefinitionFactory.getInstance().getElements(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).size());
 	}
 }

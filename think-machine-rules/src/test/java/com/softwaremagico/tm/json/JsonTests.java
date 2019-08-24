@@ -43,7 +43,7 @@ import com.softwaremagico.tm.character.creation.CostCalculator;
 import com.softwaremagico.tm.character.cybernetics.RequiredCyberneticDevicesException;
 import com.softwaremagico.tm.character.cybernetics.TooManyCyberneticDevicesException;
 import com.softwaremagico.tm.characters.CustomCharacter;
-import com.softwaremagico.tm.file.Path;
+import com.softwaremagico.tm.file.PathManager;
 import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.party.Party;
 
@@ -66,9 +66,9 @@ public class JsonTests {
 			TooManyCyberneticDevicesException, RequiredCyberneticDevicesException, BlessingAlreadyAddedException,
 			BeneficeAlreadyAddedException {
 		LanguagePool.clearCache();
-		player = CustomCharacter.create(LANGUAGE, Path.DEFAULT_MODULE_FOLDER);
+		player = CustomCharacter.create(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
 		Assert.assertEquals(CostCalculator.getCost(player), 50);
-		party = new Party(LANGUAGE, Path.DEFAULT_MODULE_FOLDER);
+		party = new Party(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
 		party.setPartyName("JSON Test");
 		party.addMember(player);
 	}

@@ -129,11 +129,16 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 
 	@Override
 	public List<SkillDefinition> getElements(String language, String moduleName) throws InvalidXmlElementException {
-		if (elements.get(language) == null) {
-			elements.put(language, new ArrayList<SkillDefinition>());
+		if (elements.get(language) == null || elements.get(language).get(moduleName) == null) {
+			if (elements.get(language) == null) {
+				elements.put(language, new HashMap<String, List<SkillDefinition>>());
+			}
+			if (elements.get(language).get(moduleName) == null) {
+				elements.get(language).put(moduleName, new ArrayList<SkillDefinition>());
+			}
 			for (final String skillId : getTranslator(moduleName).getAllTranslatedElements()) {
 				final SkillDefinition skill = createElement(getTranslator(moduleName), skillId, language, moduleName);
-				elements.get(language).add(skill);
+				elements.get(language).get(moduleName).add(skill);
 				setRandomConfiguration(skill, getTranslator(moduleName), language, moduleName);
 				if (skill.isNatural()) {
 					if (naturalSkills.get(language) == null) {
@@ -155,9 +160,9 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 					Collections.sort(learnedSkills.get(language).get(moduleName));
 				}
 			}
-			Collections.sort(elements.get(language));
+			Collections.sort(elements.get(language).get(moduleName));
 		}
-		return elements.get(language);
+		return elements.get(language).get(moduleName);
 	}
 
 	@Override

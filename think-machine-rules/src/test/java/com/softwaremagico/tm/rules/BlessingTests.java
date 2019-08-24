@@ -39,7 +39,7 @@ import com.softwaremagico.tm.character.cybernetics.RequiredCyberneticDevicesExce
 import com.softwaremagico.tm.character.cybernetics.TooManyCyberneticDevicesException;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.characters.CustomCharacter;
-import com.softwaremagico.tm.file.Path;
+import com.softwaremagico.tm.file.PathManager;
 
 @Test(groups = { "blessings" })
 public class BlessingTests {
@@ -50,9 +50,9 @@ public class BlessingTests {
 	public void checkVitalityModifications() throws InvalidXmlElementException, TooManyBlessingsException,
 			TooManyCyberneticDevicesException, RequiredCyberneticDevicesException, BlessingAlreadyAddedException,
 			BeneficeAlreadyAddedException {
-		final CharacterPlayer player = CustomCharacter.create(LANGUAGE, Path.DEFAULT_MODULE_FOLDER);
+		final CharacterPlayer player = CustomCharacter.create(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
 		final int vitality = player.getVitalityValue();
-		player.addBlessing(BlessingFactory.getInstance().getElement("incurableDisease", LANGUAGE, Path.DEFAULT_MODULE_FOLDER));
+		player.addBlessing(BlessingFactory.getInstance().getElement("incurableDisease", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
 		Assert.assertEquals((int) player.getVitalityValue(), vitality - 1);
 	}
 
@@ -60,9 +60,9 @@ public class BlessingTests {
 	public void checkMovementModifications() throws InvalidXmlElementException, TooManyBlessingsException,
 			TooManyCyberneticDevicesException, RequiredCyberneticDevicesException, BlessingAlreadyAddedException,
 			BeneficeAlreadyAddedException {
-		final CharacterPlayer player = CustomCharacter.create(LANGUAGE, Path.DEFAULT_MODULE_FOLDER);
+		final CharacterPlayer player = CustomCharacter.create(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
 		final int movement = player.getValue(CharacteristicName.MOVEMENT);
-		player.addBlessing(BlessingFactory.getInstance().getElement("limp", LANGUAGE, Path.DEFAULT_MODULE_FOLDER));
+		player.addBlessing(BlessingFactory.getInstance().getElement("limp", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
 		Assert.assertEquals((int) player.getValue(CharacteristicName.MOVEMENT), movement - 1);
 	}
 
@@ -70,22 +70,22 @@ public class BlessingTests {
 	public void checkRangedAttacksModifications() throws InvalidXmlElementException, TooManyBlessingsException,
 			TooManyCyberneticDevicesException, RequiredCyberneticDevicesException, BlessingAlreadyAddedException,
 			BeneficeAlreadyAddedException {
-		final CharacterPlayer player = CustomCharacter.create(LANGUAGE, Path.DEFAULT_MODULE_FOLDER);
+		final CharacterPlayer player = CustomCharacter.create(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
 		Assert.assertEquals(
 				(int) player.getSkillTotalRanks(AvailableSkillsFactory.getInstance().getElement("energyGuns", LANGUAGE,
-						Path.DEFAULT_MODULE_FOLDER)), 6);
+						PathManager.DEFAULT_MODULE_FOLDER)), 6);
 	}
 
 	@Test
 	public void getAffectedSkills() throws InvalidXmlElementException {
-		final Blessing missingEye = BlessingFactory.getInstance().getElement("missingEye", LANGUAGE, Path.DEFAULT_MODULE_FOLDER);
+		final Blessing missingEye = BlessingFactory.getInstance().getElement("missingEye", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
 		Assert.assertEquals(missingEye.getAffectedSkill().size(), 5);
 
-		final Blessing pilot = BlessingFactory.getInstance().getElement("crackPilot", LANGUAGE, Path.DEFAULT_MODULE_FOLDER);
+		final Blessing pilot = BlessingFactory.getInstance().getElement("crackPilot", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
 		Assert.assertEquals(pilot.getAffectedSkill().size(), 6);
 
 		final Blessing hacker = BlessingFactory.getInstance()
-				.getElement("hacker", LANGUAGE, Path.DEFAULT_MODULE_FOLDER);
+				.getElement("hacker", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
 		Assert.assertEquals(hacker.getAffectedSkill().size(), 1);
 	}
 }

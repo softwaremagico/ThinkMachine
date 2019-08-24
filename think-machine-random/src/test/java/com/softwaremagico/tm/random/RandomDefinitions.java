@@ -33,7 +33,7 @@ import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.character.skills.RandomSkills;
-import com.softwaremagico.tm.file.Path;
+import com.softwaremagico.tm.file.PathManager;
 import com.softwaremagico.tm.random.exceptions.DuplicatedPreferenceException;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 
@@ -43,15 +43,15 @@ public class RandomDefinitions {
 
 	@Test
 	public void checkRandomProbabilityMultiplier() throws InvalidXmlElementException {
-		Assert.assertEquals(WeaponFactory.getInstance().getElement("veryLargeRock", LANGUAGE, Path.DEFAULT_MODULE_FOLDER).getRandomDefinition().getProbabilityMultiplier(), 0d);
+		Assert.assertEquals(WeaponFactory.getInstance().getElement("veryLargeRock", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).getRandomDefinition().getProbabilityMultiplier(), 0d);
 	}
 
 	@Test
 	public void removeElementWeight() throws DuplicatedPreferenceException, InvalidXmlElementException, InvalidRandomElementSelectedException {
-		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, Path.DEFAULT_MODULE_FOLDER);
+		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
 
-		final AvailableSkill ride = AvailableSkillsFactory.getInstance().getElement("ride", LANGUAGE, Path.DEFAULT_MODULE_FOLDER);
-		final AvailableSkill warfare = AvailableSkillsFactory.getInstance().getElement("warfare", LANGUAGE, Path.DEFAULT_MODULE_FOLDER);
+		final AvailableSkill ride = AvailableSkillsFactory.getInstance().getElement("ride", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+		final AvailableSkill warfare = AvailableSkillsFactory.getInstance().getElement("warfare", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
 
 		final RandomSkills originalSkills = new RandomSkills(characterPlayer, null);
 		final RandomSkills editedSkills = new RandomSkills(characterPlayer, null);

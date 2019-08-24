@@ -26,13 +26,13 @@ package com.softwaremagico.tm.file;
 
 import java.io.File;
 
-public class Path {
+public class PathManager {
 	private static final String APPLICATION_FOLDER = "think-machine";
 	public static final String MODULES_FOLDER = "modules";
 	public static final String DEFAULT_MODULE_FOLDER = "Fading Suns Revised Edition";
 	public static final String SKILLS_FOLDER = "skills";
 
-	private Path() {
+	private PathManager() {
 	}
 
 	public static String getRootPath() {

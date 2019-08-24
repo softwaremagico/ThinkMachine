@@ -779,7 +779,7 @@
 		<bonifications>
 			<bonification>
 				<value>-2</value>
-				<affects>Presence</affects>
+				<affects>presence</affects>
 				<situation>
 					<en>Society functions</en>
 					<es>Otras casas nobles</es>
@@ -1415,7 +1415,7 @@
 		<bonifications>
 			<bonification>
 				<value>-2</value>
-				<affects>Perception</affects>
+				<affects>perception</affects>
 				<situation>
 					<en>Sight only</en>
 					<es>Con la visión</es>
@@ -1529,7 +1529,7 @@
 		<bonifications>
 			<bonification>
 				<value>1</value>
-				<affects>Influence</affects>
+				<affects>influence</affects>
 				<situation>
 					<en>When recognized</en>
 					<es>Cuando es reconocido</es>
@@ -1677,7 +1677,7 @@
 		<bonifications>
 			<bonification>
 				<value>2</value>
-				<affects>Influence</affects>
+				<affects>influence</affects>
 				<situation>
 					<en>Among peasants</en>
 					<es>Entre campesinos</es>

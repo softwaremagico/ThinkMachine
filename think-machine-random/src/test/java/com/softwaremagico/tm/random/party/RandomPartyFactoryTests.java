@@ -28,7 +28,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.file.Path;
+import com.softwaremagico.tm.file.PathManager;
 import com.softwaremagico.tm.random.selectors.AgePreferences;
 import com.softwaremagico.tm.random.selectors.DifficultLevelPreferences;
 
@@ -40,24 +40,24 @@ public class RandomPartyFactoryTests {
 
 	@Test
 	public void readParties() throws InvalidXmlElementException {
-		Assert.assertEquals(RandomPartyFactory.getInstance().getElements(LANGUAGE, Path.DEFAULT_MODULE_FOLDER).size(), DEFINED_PARTIES);
+		Assert.assertEquals(RandomPartyFactory.getInstance().getElements(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).size(), DEFINED_PARTIES);
 	}
 
 	@Test
 	public void readNames() throws InvalidXmlElementException {
 		Assert.assertNotNull(RandomPartyFactory.getInstance().getNames(
-				RandomPartyFactory.getInstance().getElement("thugBand", LANGUAGE, Path.DEFAULT_MODULE_FOLDER)));
+				RandomPartyFactory.getInstance().getElement("thugBand", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)));
 		Assert.assertNotNull(RandomPartyFactory.getInstance().getAdjectives(
-				RandomPartyFactory.getInstance().getElement("thugBand", LANGUAGE, Path.DEFAULT_MODULE_FOLDER)));
+				RandomPartyFactory.getInstance().getElement("thugBand", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)));
 	}
 
 	@Test
 	public void readThugParty() throws InvalidXmlElementException {
-		Assert.assertEquals(RandomPartyFactory.getInstance().getElement("thugBand", LANGUAGE, Path.DEFAULT_MODULE_FOLDER).getRandomPartyMembers()
+		Assert.assertEquals(RandomPartyFactory.getInstance().getElement("thugBand", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).getRandomPartyMembers()
 				.size(), 3);
 		int checkedMemebers = 0;
 		for (final RandomPartyMember member : RandomPartyFactory.getInstance()
-				.getElement("thugBand", LANGUAGE, Path.DEFAULT_MODULE_FOLDER)
+				.getElement("thugBand", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)
 				.getRandomPartyMembers()) {
 			if (member.getId().equals("thugBand_0")) {
 				checkedMemebers++;

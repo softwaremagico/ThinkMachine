@@ -111,7 +111,7 @@ public class FileManager {
 			throw new FileNotFoundException("File not found: " + file.getAbsolutePath());
 		}
 		final StringBuilder text = new StringBuilder();
-		try (Scanner scanner = new Scanner(file)) {
+		try (Scanner scanner = new Scanner(file, StandardCharsets.UTF_8.name())) {
 			while (scanner.hasNextLine()) {
 				text.append(scanner.nextLine()).append("\n");
 			}
@@ -216,7 +216,7 @@ public class FileManager {
 
 			final char[] buffer = new char[1024];
 			try {
-				final Reader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
+				final Reader reader = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8.name()));
 				int n;
 				while ((n = reader.read(buffer)) != -1) {
 					writer.write(buffer, 0, n);
@@ -261,7 +261,7 @@ public class FileManager {
 		try {
 			// We use path to remove URI special codification that is not
 			// allowed for File.
-			final String path = URLDecoder.decode(url.getPath(), "UTF-8");
+			final String path = URLDecoder.decode(url.getPath(), StandardCharsets.UTF_8.name());
 			file = new File(convert2OsPath(url));
 			// Apache load resource
 			if (!file.exists()) {
@@ -331,6 +331,8 @@ public class FileManager {
 
 	public static void makeFolderIfNotExist(String file) {
 		final File f = new File(file);
-		f.mkdir();
+		if (f.mkdir()) {
+			MachineLog.debug(FileManager.class.getName(), "File '" + file + "' created.");
+		}
 	}
 }

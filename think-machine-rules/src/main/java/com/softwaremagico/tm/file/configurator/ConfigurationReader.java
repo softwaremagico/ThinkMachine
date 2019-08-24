@@ -143,7 +143,7 @@ public abstract class ConfigurationReader {
 	 * @param propertyName
 	 * @param defaultValue
 	 */
-	public <T> void setProperty(String propertyName, T defaultValue) {
+	protected <T> void setProperty(String propertyName, T defaultValue) {
 		if (defaultValue == null) {
 			propertiesDefault.put(propertyName, null);
 			propertiesFinalValue.put(propertyName, null);
@@ -228,8 +228,7 @@ public abstract class ConfigurationReader {
 	}
 
 	/**
-	 * Stops file watchers in from all configuration files. This is necessary in projects such as JpaSchemaExporters
-	 * that waits until all threads are closed.
+	 * Stops file watchers in from all configuration files.
 	 */
 	public void stopFileWatchers() {
 		for (final IPropertiesSource sources : propertiesSources) {

@@ -32,7 +32,7 @@ import com.softwaremagico.tm.CacheHandler;
 import com.softwaremagico.tm.ElementClassification;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.cybernetics.CyberneticDeviceFactory;
-import com.softwaremagico.tm.file.Path;
+import com.softwaremagico.tm.file.PathManager;
 
 @Test(groups = { "cyberneticFactory" })
 public class CyberneticDeviceFactoryTests {
@@ -49,7 +49,7 @@ public class CyberneticDeviceFactoryTests {
 
 	@Test
 	public void readDevices() throws InvalidXmlElementException {
-		Assert.assertEquals(CyberneticDeviceFactory.getInstance().getElements(LANGUAGE, Path.DEFAULT_MODULE_FOLDER).size(), DEFINED_DEVICES);
+		Assert.assertEquals(CyberneticDeviceFactory.getInstance().getElements(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).size(), DEFINED_DEVICES);
 	}
 
 	@Test
@@ -58,17 +58,17 @@ public class CyberneticDeviceFactoryTests {
 				CyberneticDeviceFactory
 						.getInstance()
 						.getDevicesThatRequires(
-								CyberneticDeviceFactory.getInstance().getElement("secondBrain", LANGUAGE, Path.DEFAULT_MODULE_FOLDER),
-								LANGUAGE, Path.DEFAULT_MODULE_FOLDER).size(), SECOND_BRAIN_SOFTWARE);
+								CyberneticDeviceFactory.getInstance().getElement("secondBrain", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER),
+								LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).size(), SECOND_BRAIN_SOFTWARE);
 	}
 
 	@Test
 	public void getClassifications() throws InvalidXmlElementException {
 		Assert.assertEquals(ElementClassification.ENHANCEMENT,
-				CyberneticDeviceFactory.getInstance().getElement("secondBrain", LANGUAGE, Path.DEFAULT_MODULE_FOLDER).getClassification());
+				CyberneticDeviceFactory.getInstance().getElement("secondBrain", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).getClassification());
 		Assert.assertEquals(ElementClassification.COMBAT,
-				CyberneticDeviceFactory.getInstance().getElement("viperSword", LANGUAGE, Path.DEFAULT_MODULE_FOLDER).getClassification());
+				CyberneticDeviceFactory.getInstance().getElement("viperSword", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).getClassification());
 		Assert.assertEquals(ElementClassification.OTHERS,
-				CyberneticDeviceFactory.getInstance().getElement("stimusim", LANGUAGE, Path.DEFAULT_MODULE_FOLDER).getClassification());
+				CyberneticDeviceFactory.getInstance().getElement("stimusim", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).getClassification());
 	}
 }

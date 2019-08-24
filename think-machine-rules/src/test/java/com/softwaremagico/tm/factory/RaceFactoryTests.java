@@ -30,7 +30,7 @@ import org.testng.annotations.Test;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.races.RaceFactory;
-import com.softwaremagico.tm.file.Path;
+import com.softwaremagico.tm.file.PathManager;
 
 @Test(groups = { "raceFactory" })
 public class RaceFactoryTests {
@@ -39,7 +39,7 @@ public class RaceFactoryTests {
 
 	@Test
 	public void readRaces() throws InvalidXmlElementException {
-		Assert.assertEquals(DEFINED_RACES, RaceFactory.getInstance().getElements(LANGUAGE, Path.DEFAULT_MODULE_FOLDER)
+		Assert.assertEquals(DEFINED_RACES, RaceFactory.getInstance().getElements(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)
 				.size());
 	}
 }

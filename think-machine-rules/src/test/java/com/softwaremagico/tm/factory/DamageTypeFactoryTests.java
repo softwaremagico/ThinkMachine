@@ -29,7 +29,7 @@ import org.testng.annotations.Test;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.equipment.DamageTypeFactory;
-import com.softwaremagico.tm.file.Path;
+import com.softwaremagico.tm.file.PathManager;
 
 @Test(groups = { "damageFactory" })
 public class DamageTypeFactoryTests {
@@ -38,7 +38,7 @@ public class DamageTypeFactoryTests {
 
 	@Test
 	public void readDamages() throws InvalidXmlElementException {
-		Assert.assertEquals(DamageTypeFactory.getInstance().getElements(LANGUAGE, Path.DEFAULT_MODULE_FOLDER).size(),
+		Assert.assertEquals(DamageTypeFactory.getInstance().getElements(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).size(),
 				DEFINED_DAMAGES);
 	}
 }

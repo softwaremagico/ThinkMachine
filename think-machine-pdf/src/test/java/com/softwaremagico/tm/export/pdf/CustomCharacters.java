@@ -30,6 +30,7 @@ import java.net.MalformedURLException;
 import java.util.HashSet;
 
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -64,7 +65,7 @@ import com.softwaremagico.tm.character.planets.PlanetFactory;
 import com.softwaremagico.tm.character.races.Race;
 import com.softwaremagico.tm.character.races.RaceFactory;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
-import com.softwaremagico.tm.file.Path;
+import com.softwaremagico.tm.file.PathManager;
 import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.party.Party;
 import com.softwaremagico.tm.pdf.complete.CharacterSheet;
@@ -85,7 +86,7 @@ public class CustomCharacters {
 
 	@BeforeClass
 	public void initialize() {
-		party = new Party(LANGUAGE, Path.DEFAULT_MODULE_FOLDER);
+		party = new Party(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
 		party.setPartyName("Lost Wonderers");
 	}
 
@@ -93,7 +94,7 @@ public class CustomCharacters {
 	public void createPaolaCharacter() throws MalformedURLException, DocumentException, IOException,
 			InvalidXmlElementException, TooManyBlessingsException, TooManyCyberneticDevicesException,
 			RequiredCyberneticDevicesException, BeneficeAlreadyAddedException, BlessingAlreadyAddedException {
-		final CharacterPlayer player = new CharacterPlayer(LANGUAGE, Path.DEFAULT_MODULE_FOLDER);
+		final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
 		player.getInfo().addName(new Name("#5", player.getLanguage(), player.getModuleName(), Gender.FEMALE, null));
 		player.getInfo().setPlayer("Paola");
 		player.getInfo().setGender(Gender.FEMALE);
@@ -158,7 +159,7 @@ public class CustomCharacters {
 						player.getModuleName()), 2);
 		player.setSkillRank(
 				AvailableSkillsFactory.getInstance().getElement("spacecraftOperations", LANGUAGE,
-						Path.DEFAULT_MODULE_FOLDER), 2);
+						PathManager.DEFAULT_MODULE_FOLDER), 2);
 		player.setSkillRank(
 				AvailableSkillsFactory.getInstance().getElement("thinkMachine", player.getLanguage(),
 						player.getModuleName()), 4);
@@ -187,16 +188,16 @@ public class CustomCharacters {
 		final SelectedCyberneticDevice advancedEngineersEye = player.addCybernetics(CyberneticDeviceFactory
 				.getInstance().getElement("engineersEye", player.getLanguage(), player.getModuleName()));
 		advancedEngineersEye.addCustomization(CyberneticDeviceTraitFactory.getInstance().getElement("hidden", LANGUAGE,
-				Path.DEFAULT_MODULE_FOLDER));
+				PathManager.DEFAULT_MODULE_FOLDER));
 
 		player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("secondBrain", LANGUAGE,
-				Path.DEFAULT_MODULE_FOLDER));
+				PathManager.DEFAULT_MODULE_FOLDER));
 		player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("secondBrainJumpLoreSoftware", LANGUAGE,
-				Path.DEFAULT_MODULE_FOLDER));
+				PathManager.DEFAULT_MODULE_FOLDER));
 		player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("secondBrainEnergyPistolsLore",
 				player.getLanguage(), player.getModuleName()));
 		player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("secondBrainThinkMachineLore", LANGUAGE,
-				Path.DEFAULT_MODULE_FOLDER));
+				PathManager.DEFAULT_MODULE_FOLDER));
 
 		player.setShield(ShieldFactory.getInstance().getElement("duelingShield", player.getLanguage(),
 				player.getModuleName()));
@@ -221,7 +222,7 @@ public class CustomCharacters {
 	public void characterAnaCharacter() throws MalformedURLException, DocumentException, IOException,
 			InvalidXmlElementException, TooManyBlessingsException, BeneficeAlreadyAddedException,
 			BlessingAlreadyAddedException {
-		final CharacterPlayer player = new CharacterPlayer(LANGUAGE, Path.DEFAULT_MODULE_FOLDER);
+		final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
 		player.getInfo().addName(new Name("Arya", player.getLanguage(), player.getModuleName(), Gender.FEMALE, null));
 		player.getInfo().setSurname(new Surname("Hawkwood", player.getLanguage(), player.getModuleName(), null));
 		player.getInfo().setPlayer("Ana");
@@ -320,7 +321,7 @@ public class CustomCharacters {
 	public void createCarlosCharacter() throws MalformedURLException, DocumentException, IOException,
 			InvalidXmlElementException, TooManyBlessingsException, BeneficeAlreadyAddedException,
 			BlessingAlreadyAddedException {
-		final CharacterPlayer player = new CharacterPlayer(LANGUAGE, Path.DEFAULT_MODULE_FOLDER);
+		final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
 		player.getInfo().addName(new Name("Carlos", player.getLanguage(), player.getModuleName(), Gender.MALE, null));
 		player.getInfo().setPlayer("Carlos");
 		player.getInfo().setGender(Gender.MALE);
@@ -416,7 +417,7 @@ public class CustomCharacters {
 		player.addWeapon(WeaponFactory.getInstance().getElement("typicalShotgun", player.getLanguage(),
 				player.getModuleName()));
 		player.addWeapon(WeaponFactory.getInstance().getElement("mediumAutofeedHandgun", LANGUAGE,
-				Path.DEFAULT_MODULE_FOLDER));
+				PathManager.DEFAULT_MODULE_FOLDER));
 
 		LanguagePool.clearCache();
 		final CharacterSheet sheet = new CharacterSheet(player);
@@ -439,7 +440,7 @@ public class CustomCharacters {
 	public void createNoeliaCharacer() throws MalformedURLException, DocumentException, IOException,
 			InvalidXmlElementException, TooManyBlessingsException, BeneficeAlreadyAddedException,
 			BlessingAlreadyAddedException {
-		final CharacterPlayer player = new CharacterPlayer(LANGUAGE, Path.DEFAULT_MODULE_FOLDER);
+		final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
 		player.getInfo().addName(new Name("Noelia", player.getLanguage(), player.getModuleName(), Gender.FEMALE, null));
 		player.getInfo().setPlayer("Noelia");
 		player.getInfo().setGender(Gender.FEMALE);
@@ -490,7 +491,7 @@ public class CustomCharacters {
 						player.getModuleName()), 3);
 		player.setSkillRank(
 				AvailableSkillsFactory.getInstance().getElement("lore", "kelantiLore", LANGUAGE,
-						Path.DEFAULT_MODULE_FOLDER), 3);
+						PathManager.DEFAULT_MODULE_FOLDER), 3);
 
 		player.setPsiqueLevel(OccultismTypeFactory.getPsi(player.getLanguage(), player.getModuleName()), 6);
 
@@ -548,7 +549,7 @@ public class CustomCharacters {
 	@Test
 	public void createGolemCharacer() throws MalformedURLException, DocumentException, IOException,
 			InvalidXmlElementException, TooManyBlessingsException, BlessingAlreadyAddedException {
-		final CharacterPlayer player = new CharacterPlayer(LANGUAGE, Path.DEFAULT_MODULE_FOLDER);
+		final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
 		player.getInfo().setPlayer("PNJ");
 		player.getInfo().addName(new Name("A", player.getLanguage(), player.getModuleName(), Gender.FEMALE, null));
 		player.getInfo().setSurname(new Surname("(Prototipo A)", player.getLanguage(), player.getModuleName(), null));
@@ -594,16 +595,16 @@ public class CustomCharacters {
 						player.getModuleName()), 3);
 		player.setSkillRank(
 				AvailableSkillsFactory.getInstance().getElement("spacecraftOperations", LANGUAGE,
-						Path.DEFAULT_MODULE_FOLDER), 3);
+						PathManager.DEFAULT_MODULE_FOLDER), 3);
 		player.setSkillRank(
 				AvailableSkillsFactory.getInstance()
 						.getElement("warfare", player.getLanguage(), player.getModuleName()), 3);
 		player.setSkillRank(
 				AvailableSkillsFactory.getInstance().getElement("lore", "jumpwebLore", LANGUAGE,
-						Path.DEFAULT_MODULE_FOLDER), 3);
+						PathManager.DEFAULT_MODULE_FOLDER), 3);
 		player.setSkillRank(
 				AvailableSkillsFactory.getInstance().getElement("lore", "thinkMachineLore", LANGUAGE,
-						Path.DEFAULT_MODULE_FOLDER), 3);
+						PathManager.DEFAULT_MODULE_FOLDER), 3);
 		player.setSkillRank(
 				AvailableSkillsFactory.getInstance().getElement("thinkMachine", player.getLanguage(),
 						player.getModuleName()), 3);
@@ -634,7 +635,7 @@ public class CustomCharacters {
 		party.addMember(player);
 	}
 
-	@Test
+	@AfterClass
 	public void createPartySheet() {
 		final PartySheet sheet = new PartySheet(party);
 		Assert.assertEquals(

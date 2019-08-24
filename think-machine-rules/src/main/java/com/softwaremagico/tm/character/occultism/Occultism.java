@@ -69,14 +69,14 @@ public class Occultism {
 		return 0;
 	}
 
-	public void setPsiqueLevel(OccultismType occultismType, int psyValue, String language, Faction faction)
+	public void setPsiqueLevel(OccultismType occultismType, int psyValue, String language, String moduleName, Faction faction)
 			throws InvalidPsiqueLevelException {
 		if (psyValue < 0) {
 			throw new InvalidPsiqueLevelException("Psique level cannot be less than zero.");
 		}
 		AvailableBenefice noOccult = null;
 		try {
-			noOccult = AvailableBeneficeFactory.getInstance().getElement("noOccult", language, faction.getModuleName());
+			noOccult = AvailableBeneficeFactory.getInstance().getElement("noOccult", language, moduleName);
 		} catch (InvalidXmlElementException e) {
 			// Module without noocc benefice.
 		}

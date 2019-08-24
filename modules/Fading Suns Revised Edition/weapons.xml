@@ -1384,7 +1384,7 @@
 	<typicalMed.Autofeed>
 		<name>
 			<en>Typical Med. Autofeed (.40)</en>
-			<es>Autorecarga Mediana Típica</es>
+			<es>Autorrecarga Mediana Típica</es>
 		</name>
 		<characteristic>dexterity</characteristic>
 		<skill>slugGuns</skill>
@@ -1772,7 +1772,7 @@
 	<typicalAutoRifle>
 		<name>
 			<en>Typical Auto. Rifle (10mm)</en>
-			<es>Rifle de Autorecarga Típico (10mm)</es>
+			<es>Rifle de Autorrecarga Típico (10mm)</es>
 		</name>
 		<characteristic>dexterity</characteristic>
 		<skill>slugGuns</skill>

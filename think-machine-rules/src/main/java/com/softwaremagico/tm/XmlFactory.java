@@ -45,7 +45,7 @@ import com.softwaremagico.tm.log.MachineLog;
 import com.softwaremagico.tm.random.definition.RandomProbabilityDefinition;
 
 public abstract class XmlFactory<T extends Element<T>> {
-	protected Map<String, List<T>> elements = new HashMap<>();
+	protected Map<String, Map<String, List<T>>> elements = new HashMap<>();
 
 	private static final String RANDOM = "random";
 	private static final String ELEMENT_PROBABILITY_MULTIPLIER = "probabilityMultiplier";
@@ -80,7 +80,7 @@ public abstract class XmlFactory<T extends Element<T>> {
 					+ this.getClass().getSimpleName() + "'.");
 		}
 	}
-	
+
 	protected ITranslator getTranslator() {
 		return LanguagePool.getTranslator(getTranslatorFile(), null);
 	}
@@ -203,7 +203,8 @@ public abstract class XmlFactory<T extends Element<T>> {
 				final StringTokenizer restrictedRacesOfSkill = new StringTokenizer(restrictedRaces, ",");
 				while (restrictedRacesOfSkill.hasMoreTokens()) {
 					element.getRandomDefinition().addRestrictedRace(
-							RaceFactory.getInstance().getElement(restrictedRacesOfSkill.nextToken().trim(), language, moduleName));
+							RaceFactory.getInstance().getElement(restrictedRacesOfSkill.nextToken().trim(), language,
+									moduleName));
 				}
 			}
 		} catch (NullPointerException npe) {
@@ -216,8 +217,8 @@ public abstract class XmlFactory<T extends Element<T>> {
 				final StringTokenizer recommendedRacesTokenizer = new StringTokenizer(recommendedRaces, ",");
 				while (recommendedRacesTokenizer.hasMoreTokens()) {
 					element.getRandomDefinition().addRecommendedRace(
-							RaceFactory.getInstance()
-									.getElement(recommendedRacesTokenizer.nextToken().trim(), language, moduleName));
+							RaceFactory.getInstance().getElement(recommendedRacesTokenizer.nextToken().trim(),
+									language, moduleName));
 				}
 			}
 		} catch (NullPointerException npe) {
@@ -230,7 +231,8 @@ public abstract class XmlFactory<T extends Element<T>> {
 				final StringTokenizer forbiddenRacesTokenizer = new StringTokenizer(forbiddenRaces, ",");
 				while (forbiddenRacesTokenizer.hasMoreTokens()) {
 					element.getRandomDefinition().addForbiddenRace(
-							RaceFactory.getInstance().getElement(forbiddenRacesTokenizer.nextToken().trim(), language, moduleName));
+							RaceFactory.getInstance().getElement(forbiddenRacesTokenizer.nextToken().trim(), language,
+									moduleName));
 				}
 			}
 		} catch (NullPointerException npe) {
@@ -260,20 +262,25 @@ public abstract class XmlFactory<T extends Element<T>> {
 	}
 
 	public List<T> getElements(String language, String moduleName) throws InvalidXmlElementException {
-		if (elements.get(language) == null) {
-			elements.put(language, new ArrayList<T>());
+		if (elements.get(language) == null || elements.get(language).get(moduleName) == null) {
+			if (elements.get(language) == null) {
+				elements.put(language, new HashMap<String, List<T>>());
+			}
+			if (elements.get(language).get(moduleName) == null) {
+				elements.get(language).put(moduleName, new ArrayList<T>());
+			}
 			for (final String elementId : getTranslator(moduleName).getAllTranslatedElements()) {
 				final T element = createElement(getTranslator(moduleName), elementId, language, moduleName);
 				setRandomConfiguration(element, getTranslator(moduleName), language, moduleName);
-				if (elements.get(language).contains(element)) {
+				if (elements.get(language).get(moduleName).contains(element)) {
 					throw new ElementAlreadyExistsException("Element '" + element
 							+ "' already is inserted. Probably the ID is duplicated.");
 				}
-				elements.get(language).add(element);
+				elements.get(language).get(moduleName).add(element);
 			}
-			Collections.sort(elements.get(language));
+			Collections.sort(elements.get(language).get(moduleName));
 		}
-		return elements.get(language);
+		return elements.get(language).get(moduleName);
 	}
 
 	public T getElement(String elementId, String language, String moduleName) throws InvalidXmlElementException {
@@ -292,7 +299,7 @@ public abstract class XmlFactory<T extends Element<T>> {
 			throws InvalidXmlElementException;
 
 	protected <E extends Element<E>, F extends XmlFactory<E>> Set<E> getCommaSeparatedValues(String elementId,
-			String node, String language,  String moduleName, F factory) throws InvalidXmlElementException {
+			String node, String language, String moduleName, F factory) throws InvalidXmlElementException {
 		final String elementTags = getTranslator(moduleName).getNodeValue(elementId, node);
 		final Set<E> elements = new HashSet<>();
 		try {

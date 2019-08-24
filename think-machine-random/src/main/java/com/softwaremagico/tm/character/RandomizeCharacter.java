@@ -362,7 +362,7 @@ public class RandomizeCharacter {
 	@Override
 	public String toString() {
 		final StringBuilder sb = new StringBuilder();
-		sb.append(characterPlayer.getNameRepresentation() + " (" + characterPlayer.getRace() + ") ["
+		sb.append(characterPlayer.getCompleteNameRepresentation() + " (" + characterPlayer.getRace() + ") ["
 				+ characterPlayer.getFaction() + "]");
 		return sb.toString();
 	}

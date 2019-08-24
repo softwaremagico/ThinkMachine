@@ -35,7 +35,7 @@ import com.softwaremagico.tm.character.occultism.OccultismPathFactory;
 import com.softwaremagico.tm.character.occultism.OccultismRangeFactory;
 import com.softwaremagico.tm.character.occultism.OccultismTypeFactory;
 import com.softwaremagico.tm.character.occultism.TheurgyComponentFactory;
-import com.softwaremagico.tm.file.Path;
+import com.softwaremagico.tm.file.PathManager;
 
 @Test(groups = { "occultismFactory" })
 public class OccultismFactoryTests {
@@ -52,52 +52,52 @@ public class OccultismFactoryTests {
 	@Test
 	public void readPaths() throws InvalidXmlElementException {
 		Assert.assertEquals(DEFINED_PSI_PATHS + DEFINED_THEURGY_PATHS,
-				OccultismPathFactory.getInstance().getElements(LANGUAGE, Path.DEFAULT_MODULE_FOLDER).size());
+				OccultismPathFactory.getInstance().getElements(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).size());
 	}
 
 	@Test
 	public void readPsiPaths() throws InvalidXmlElementException {
-		Assert.assertEquals(DEFINED_PSI_PATHS, OccultismPathFactory.getInstance().getPsiPaths(LANGUAGE, Path.DEFAULT_MODULE_FOLDER).size());
+		Assert.assertEquals(DEFINED_PSI_PATHS, OccultismPathFactory.getInstance().getPsiPaths(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).size());
 	}
 
 	@Test
 	public void readTheurgyPaths() throws InvalidXmlElementException {
-		Assert.assertEquals(DEFINED_THEURGY_PATHS, OccultismPathFactory.getInstance().getTheurgyPaths(LANGUAGE, Path.DEFAULT_MODULE_FOLDER)
+		Assert.assertEquals(DEFINED_THEURGY_PATHS, OccultismPathFactory.getInstance().getTheurgyPaths(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)
 				.size());
 	}
 
 	@Test
 	public void readRanges() throws InvalidXmlElementException {
-		Assert.assertEquals(DEFINED_RANGES, OccultismRangeFactory.getInstance().getElements(LANGUAGE, Path.DEFAULT_MODULE_FOLDER).size());
+		Assert.assertEquals(DEFINED_RANGES, OccultismRangeFactory.getInstance().getElements(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).size());
 	}
 
 	@Test
 	public void readDurations() throws InvalidXmlElementException {
-		Assert.assertEquals(DEFINED_DURATIONS, OccultismDurationFactory.getInstance().getElements(LANGUAGE, Path.DEFAULT_MODULE_FOLDER)
+		Assert.assertEquals(DEFINED_DURATIONS, OccultismDurationFactory.getInstance().getElements(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)
 				.size());
 	}
 
 	@Test
 	public void readTheurgyComponents() throws InvalidXmlElementException {
 		Assert.assertEquals(DEFINED_THEURGY_COMPONENTS,
-				TheurgyComponentFactory.getInstance().getElements(LANGUAGE, Path.DEFAULT_MODULE_FOLDER).size());
+				TheurgyComponentFactory.getInstance().getElements(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).size());
 	}
 
 	@Test
 	public void getOcculstimTypes() throws InvalidXmlElementException {
-		Assert.assertEquals(OCCULTISM_TYPES, OccultismTypeFactory.getInstance().getElements(LANGUAGE, Path.DEFAULT_MODULE_FOLDER).size());
+		Assert.assertEquals(OCCULTISM_TYPES, OccultismTypeFactory.getInstance().getElements(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).size());
 	}
 
 	@Test
 	public void getClassifications() throws InvalidXmlElementException {
 		Assert.assertEquals(ElementClassification.ENHANCEMENT,
-				OccultismPathFactory.getInstance().getElement("sixthSense", LANGUAGE, Path.DEFAULT_MODULE_FOLDER).getClassification());
+				OccultismPathFactory.getInstance().getElement("sixthSense", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).getClassification());
 		Assert.assertEquals(ElementClassification.COMBAT,
-				OccultismPathFactory.getInstance().getElement("soma", LANGUAGE, Path.DEFAULT_MODULE_FOLDER).getClassification());
+				OccultismPathFactory.getInstance().getElement("soma", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).getClassification());
 		Assert.assertEquals(ElementClassification.OTHERS,
-				OccultismPathFactory.getInstance().getElement("sympathy", LANGUAGE, Path.DEFAULT_MODULE_FOLDER).getClassification());
+				OccultismPathFactory.getInstance().getElement("sympathy", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).getClassification());
 		Assert.assertEquals(ElementClassification.ALTERATION,
-				OccultismPathFactory.getInstance().getElement("templeAvestiRituals", LANGUAGE, Path.DEFAULT_MODULE_FOLDER)
+				OccultismPathFactory.getInstance().getElement("templeAvestiRituals", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)
 						.getClassification());
 	}
 }

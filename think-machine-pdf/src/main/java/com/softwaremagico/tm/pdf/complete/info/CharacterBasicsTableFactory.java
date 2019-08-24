@@ -50,7 +50,7 @@ public abstract class CharacterBasicsTableFactory extends BaseElement {
 			table.addCell(getCell(LINE, Element.ALIGN_LEFT, fontSize));
 		} else {
 			if (tag.equals("name")) {
-				table.addCell(getHandwrittingCell(characterPlayer.getNameRepresentation(), Element.ALIGN_LEFT,
+				table.addCell(getHandwrittingCell(characterPlayer.getCompleteNameRepresentation(), Element.ALIGN_LEFT,
 						fontSize - 1));
 			} else if (tag.equals("race")) {
 				if (characterPlayer.getRace() != null) {

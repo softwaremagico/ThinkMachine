@@ -25,57 +25,84 @@ package com.softwaremagico.tm.file.modules;
  */
 
 import java.io.File;
+import java.io.FilenameFilter;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
+import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 import java.util.regex.Pattern;
 
 import org.reflections.Reflections;
 import org.reflections.scanners.ResourcesScanner;
+import org.reflections.util.ClasspathHelper;
+import org.reflections.util.ConfigurationBuilder;
 
-import com.softwaremagico.tm.file.FileManager;
 import com.softwaremagico.tm.file.InvalidJarFileException;
-import com.softwaremagico.tm.file.Path;
-import com.softwaremagico.tm.log.MachineLog;
+import com.softwaremagico.tm.file.PathManager;
+import com.softwaremagico.tm.file.configurator.MachineConfigurationReader;
+import com.softwaremagico.tm.file.watcher.FileWatcher.FileModifiedListener;
+import com.softwaremagico.tm.log.MachineModulesLog;
 
 public class ModuleManager {
 	private static Set<String> availableModules;
+	private static String currentModuleFolder = null;
 
 	public static void resetModules() {
 		availableModules = null;
 	}
 
-	public static Set<String> getAvailableModules() {
+	public static synchronized Set<String> getAvailableModules() {
 		if (availableModules == null) {
+			// Force to load modules in current module's folder and enable the file watchers.
+			if (currentModuleFolder == null) {
+				setModulesFolder(MachineConfigurationReader.getInstance().getModulesPath());
+			}
+
 			availableModules = listModulesInResources();
-			MachineLog.debug(FileManager.class.getName(), "Found modules '" + availableModules + "'.");
+			MachineModulesLog.debug(ModuleManager.class.getName(), "Found modules '" + availableModules + "'.");
 		}
 		return availableModules;
 	}
 
+	/**
+	 * Search for any available module on the application or in the modules folder. This code has not optimal
+	 * performance but is only being executed one time.
+	 * 
+	 * @return A list of modules.
+	 */
 	private static Set<String> listModulesInResources() {
-		final Set<String> resources = new Reflections(Path.MODULES_FOLDER, new ResourcesScanner()).getResources(Pattern
-				.compile(".*\\.xml"));
+		final ConfigurationBuilder builder = new ConfigurationBuilder();
+		builder.addUrls(ClasspathHelper.forPackage(PathManager.MODULES_FOLDER, ClassLoader.getSystemClassLoader(),
+				ClasspathHelper.contextClassLoader(), ClasspathHelper.staticClassLoader()));
+		builder.addScanners(new ResourcesScanner());
+		final Reflections reflections = new Reflections(builder);
+		final Set<String> resources = reflections.getResources(Pattern.compile(".*\\.xml"));
 
 		final Set<String> modules = new HashSet<>();
 		for (final String resource : resources) {
 			try {
 				final String[] path = resource.split("/");
 				if (path.length > 2) {
-					modules.add(path[1]);
+					if (path[0].equals(PathManager.MODULES_FOLDER)) {
+						modules.add(path[1]);
+					}
 				}
 			} catch (ArrayIndexOutOfBoundsException e) {
 
 			}
 		}
 		if (modules.isEmpty()) {
-			MachineLog.severe(FileManager.class.getName(), "No modules found!");
+			MachineModulesLog.severe(ModuleManager.class.getName(), "No modules found!");
+		} else {
+			MachineModulesLog.info(ModuleManager.class.getName(), "Found modules '" + modules + "'.");
 		}
+
 		return modules;
 	}
 
@@ -92,16 +119,55 @@ public class ModuleManager {
 			final URL url = jar.toURI().toURL();
 			// Disallow if already loaded
 			for (final URL it : Arrays.asList(loader.getURLs())) {
-				if (it.equals(url)) {
+				if (Objects.equals(it.toString(), (url.toString()))) {
+					MachineModulesLog.info(ModuleManager.class.getName(), "JAR file '" + jar.toURI().getPath()
+							+ "' already loaded.");
 					return;
 				}
 			}
+
 			final Method method = URLClassLoader.class.getDeclaredMethod("addURL", new Class[] { URL.class });
-			method.setAccessible(true); // promote the method to public access.FS
+			method.setAccessible(true); // promote the method to public access.
 			method.invoke(loader, new Object[] { url });
+			MachineModulesLog.info(ModuleManager.class.getName(), "Loaded JAR file '" + jar.toURI().getPath() + "'.");
 		} catch (final NoSuchMethodException | IllegalAccessException | MalformedURLException
 				| InvocationTargetException e) {
 			throw new InvalidJarFileException("Unable to load JAR file '" + jar.toURI().getPath() + "'.", e);
 		}
+	}
+
+	public static void setModulesFolder(final String modulesFolderpath) {
+		MachineConfigurationReader.getInstance().setModulesPath(modulesFolderpath, new FileModifiedListener() {
+
+			@Override
+			public void changeDetected(Path pathToFile) {
+				MachineModulesLog.info(ModuleManager.class.getName(), "New module '" + pathToFile + "' detected!");
+				loadModules(modulesFolderpath);
+			}
+		});
+		loadModules(modulesFolderpath);
+		currentModuleFolder = modulesFolderpath;
+	}
+
+	private static void loadModules(String modulesFolder) {
+		resetModules();
+		for (final File module : getAllJarFiles(modulesFolder)) {
+			try {
+				loadJar(module);
+			} catch (InvalidJarFileException e) {
+				MachineModulesLog.errorMessage(ModuleManager.class.getName(), e);
+			}
+		}
+	}
+
+	public static File[] getAllJarFiles(String folderPath) {
+		final File dir = new File(folderPath);
+		final File[] files = dir.listFiles(new FilenameFilter() {
+			@Override
+			public boolean accept(File dir, String name) {
+				return name.endsWith(".jar");
+			}
+		});
+		return files;
 	}
 }

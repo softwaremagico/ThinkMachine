@@ -145,7 +145,9 @@ public class FileWatcher {
 					try {
 						MachineLog.debug(this.getClass().getName(), "Closing filewatcher for directory '"
 								+ directoryToWatch + "' and files '" + filesNames + "'.");
-						watcher.close();
+						if (watcher != null) {
+							watcher.close();
+						}
 					} catch (Exception e) {
 						MachineLog.errorMessage(this.getClass().getName(), e);
 					}

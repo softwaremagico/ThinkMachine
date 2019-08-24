@@ -27,7 +27,8 @@ package com.softwaremagico.tm.language;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.softwaremagico.tm.file.Path;
+import com.softwaremagico.tm.file.PathManager;
+import com.softwaremagico.tm.log.MachineLog;
 
 public class LanguagePool {
 
@@ -43,7 +44,9 @@ public class LanguagePool {
 		ITranslator translator = existingTranslators.get(moduleName).get(xmlFile);
 		if (translator == null) {
 			// Get from resources
-			translator = new Translator(Path.getModulePath(moduleName) + xmlFile);
+			translator = new Translator(PathManager.getModulePath(moduleName) + xmlFile);
+			MachineLog.debug(LanguagePool.class.getName(),
+					"Created translator for '" + PathManager.getModulePath(moduleName) + xmlFile + "'.");
 			existingTranslators.get(moduleName).put(xmlFile, translator);
 		}
 		return translator;

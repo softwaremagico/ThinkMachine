@@ -190,6 +190,17 @@ public class CharacterInfo {
 		this.complexion = complexion;
 	}
 
+	public String getNameRepresentation() {
+		final StringBuilder stringBuilder = new StringBuilder("");
+		if (getNames() != null && !getNames().isEmpty()) {
+			for (final Name name : getNames()) {
+				stringBuilder.append(name.getName());
+				stringBuilder.append(" ");
+			}
+		}
+		return stringBuilder.toString().trim();
+	}
+
 	public Surname getSurname() {
 		return surname;
 	}

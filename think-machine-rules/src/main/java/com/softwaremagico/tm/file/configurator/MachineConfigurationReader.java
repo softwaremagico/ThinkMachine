@@ -31,6 +31,8 @@ import java.nio.file.Path;
 import com.softwaremagico.tm.file.FileManager;
 import com.softwaremagico.tm.file.configurator.exceptions.PropertyNotFoundException;
 import com.softwaremagico.tm.file.configurator.exceptions.PropertyNotStoredException;
+import com.softwaremagico.tm.file.modules.ModuleManager;
+import com.softwaremagico.tm.file.watcher.FileWatcher;
 import com.softwaremagico.tm.file.watcher.FileWatcher.FileModifiedListener;
 import com.softwaremagico.tm.log.MachineLog;
 import com.softwaremagico.tm.log.SuppressFBWarnings;
@@ -39,6 +41,7 @@ public class MachineConfigurationReader extends ConfigurationReader {
 	private static final String DEFAULT_CONFIG_FILE = "settings.conf";
 	private static final String USER_CONFIG_FILE = "settings.conf";
 	private static final String FOLDER_STORE_USER_DATA = "ThinkMachine";
+	private FileWatcher modulesFileWatcher;
 
 	// Tags
 	private static final String MODULES_PATH = "modulesPath";
@@ -134,5 +137,42 @@ public class MachineConfigurationReader extends ConfigurationReader {
 
 	public String getModulesPath() {
 		return getPropertyLogException(MODULES_PATH);
+	}
+
+	/**
+	 * This method is intended to be only used by the ModuleManager.
+	 * 
+	 * @param modulesFolder
+	 *            path to the new modules folder.
+	 * @param fileModifiedListener
+	 *            Listen if a new module is added.
+	 */
+	public void setModulesPath(String modulesFolder, FileModifiedListener fileModifiedListener) {
+		setProperty("modulesPath", modulesFolder);
+		setModulesWatcher(modulesFolder);
+		addModulesFileModifiedListener(fileModifiedListener);
+	}
+
+	private void setModulesWatcher(final String modulesFolderpath) {
+		stopModulesFileWatcher();
+		try {
+			modulesFileWatcher = new FileWatcher(modulesFolderpath);
+		} catch (IOException e) {
+			MachineLog.errorMessage(ModuleManager.class.getName(), e);
+		} catch (NullPointerException npe) {
+			MachineLog.warning(ModuleManager.class.getName(), "Modules directory to watch not found!");
+		}
+	}
+
+	public void stopModulesFileWatcher() {
+		if (modulesFileWatcher != null) {
+			modulesFileWatcher.closeFileWatcher();
+		}
+	}
+
+	public void addModulesFileModifiedListener(FileModifiedListener fileModifiedListener) {
+		if (modulesFileWatcher != null) {
+			modulesFileWatcher.addFileModifiedListener(fileModifiedListener);
+		}
 	}
 }
