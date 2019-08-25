@@ -162,8 +162,8 @@ public class ModuleManager {
 				}
 			}
 		} catch (NullPointerException e) {
-			MachineModulesLog.errorMessage(ModuleManager.class.getName(), "Jar cannot be loaded at '" + modulesFolder
-					+ "'.", e);
+			MachineModulesLog.warning(ModuleManager.class.getName(), "Jar cannot be loaded at '" + modulesFolder
+					+ "'.");
 		}
 	}
 

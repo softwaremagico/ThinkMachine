@@ -37,11 +37,12 @@ public class ConfigurationTests {
 
 	@Test
 	public void checkStoreSettings() throws PropertyNotStoredException, FileNotFoundException {
-		MachineConfigurationReader.getInstance().setProperty("modulesPath", "/tmp");
-		Assert.assertEquals(MachineConfigurationReader.getInstance().getModulesPath(), "/tmp");
+		MachineConfigurationReader.getInstance().setProperty("modulesPath", System.getProperty("java.io.tmpdir"));
+		Assert.assertEquals(MachineConfigurationReader.getInstance().getModulesPath(),
+				System.getProperty("java.io.tmpdir"));
 
 		MachineConfigurationReader.getInstance().storeProperties();
 		String content = FileManager.readTextFile(MachineConfigurationReader.getInstance().getUserProperties());
-		Assert.assertTrue(content.contains("modulesPath=/tmp"));
+		Assert.assertTrue(content.contains("modulesPath=" + System.getProperty("java.io.tmpdir")));
 	}
 }
