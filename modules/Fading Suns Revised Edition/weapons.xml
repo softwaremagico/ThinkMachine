@@ -297,7 +297,7 @@
 		<strength>5</strength>
 		<size>L</size>
 		<cost>150</cost>
-		<damage>hard, vibro</damage>
+		<damageType>hard, vibro</damageType>
 		<ammunition>innactiveKossack</ammunition>
 		<random>
 			<probabilityMultiplier>0.1</probabilityMultiplier>
@@ -347,7 +347,7 @@
 		<strength>6</strength>
 		<size>L</size>
 		<cost>5</cost>
-		<damage>hard</damage>
+		<damageType>hard</damageType>
 		<random>
 			<probabilityMultiplier>0.1</probabilityMultiplier>
 		</random>

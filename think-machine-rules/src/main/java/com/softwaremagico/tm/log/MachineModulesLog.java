@@ -122,6 +122,17 @@ public class MachineModulesLog {
 		severe(className, error);
 	}
 
+	/**
+	 * To log java exceptions and log also the stack trace.
+	 * 
+	 * @param className
+	 * @param throwable
+	 */
+	public static void errorMessage(String className, String message, Throwable throwable) {
+		final String error = getStackTrace(throwable);
+		severe(className, message + "\n" + error);
+	}
+
 	private static String getStackTrace(Throwable throwable) {
 		final Writer writer = new StringWriter();
 		final PrintWriter printWriter = new PrintWriter(writer);

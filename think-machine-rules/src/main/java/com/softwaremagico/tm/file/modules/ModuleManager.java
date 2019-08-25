@@ -141,8 +141,10 @@ public class ModuleManager {
 
 			@Override
 			public void changeDetected(Path pathToFile) {
-				MachineModulesLog.info(ModuleManager.class.getName(), "New module '" + pathToFile + "' detected!");
-				loadModules(modulesFolderpath);
+				if (pathToFile.toString().endsWith(".jar")) {
+					MachineModulesLog.info(ModuleManager.class.getName(), "New module '" + pathToFile + "' detected!");
+					loadModules(modulesFolderpath);
+				}
 			}
 		});
 		loadModules(modulesFolderpath);
@@ -151,12 +153,17 @@ public class ModuleManager {
 
 	private static void loadModules(String modulesFolder) {
 		resetModules();
-		for (final File module : getAllJarFiles(modulesFolder)) {
-			try {
-				loadJar(module);
-			} catch (InvalidJarFileException e) {
-				MachineModulesLog.errorMessage(ModuleManager.class.getName(), e);
+		try {
+			for (final File module : getAllJarFiles(modulesFolder)) {
+				try {
+					loadJar(module);
+				} catch (InvalidJarFileException e) {
+					MachineModulesLog.errorMessage(ModuleManager.class.getName(), e);
+				}
 			}
+		} catch (NullPointerException e) {
+			MachineModulesLog.errorMessage(ModuleManager.class.getName(), "Jar cannot be loaded at '" + modulesFolder
+					+ "'.", e);
 		}
 	}
 

@@ -66,7 +66,7 @@ public class MachineConfigurationReader extends ConfigurationReader {
 	protected MachineConfigurationReader() {
 		super();
 
-		setProperty(MODULES_PATH, "");
+		setProperty(MODULES_PATH, "/tmp/modules");
 
 		final PropertiesSourceFile sourceFile = new PropertiesSourceFile(DEFAULT_CONFIG_FILE);
 		sourceFile.addFileModifiedListeners(new FileModifiedListener() {

@@ -37,6 +37,7 @@ import org.testng.annotations.Test;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.file.modules.ModuleManager;
+import com.softwaremagico.tm.log.MachineLog;
 
 @Test(groups = "moduleManager")
 public class ModuleManagerTests {
@@ -55,6 +56,8 @@ public class ModuleManagerTests {
 	public void copyModule() throws IOException {
 		modulesDirectory = new File(Files.createTempDirectory("Modules_").toString());
 		modulesDirectory.deleteOnExit();
+		MachineLog.info(ModuleManagerTests.class.getName(),
+				"Temporal modules folder '" + modulesDirectory.getAbsolutePath() + "' created.");
 		Files.copy(Paths.get(SOURCE_MODULE_FOLDER + File.separator + MODULE1),
 				Paths.get(modulesDirectory.getPath() + File.separator + MODULE1), StandardCopyOption.REPLACE_EXISTING);
 		Assert.assertEquals(new File(SOURCE_MODULE_FOLDER + File.separator + MODULE1).length(), new File(
@@ -64,7 +67,7 @@ public class ModuleManagerTests {
 	@Test(dependsOnMethods = "copyModule")
 	public void checkNewModules() {
 		ModuleManager.setModulesFolder(modulesDirectory.getPath());
-	//	Assert.assertEquals(ModuleManager.getAvailableModules().size(), 2);
+		// Assert.assertEquals(ModuleManager.getAvailableModules().size(), 2);
 	}
 
 	@Test(dependsOnMethods = "checkNewModules")
