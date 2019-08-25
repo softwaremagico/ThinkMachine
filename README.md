@@ -77,8 +77,14 @@ This component is available at the [Maven Central Repository](https://mvnreposit
 ```
 Currently, this project is divided in three subprojects: `think-machine-rules` (for Fading Suns rules related to the character generation), `think-machine-random` (tool for creating random characters) and `think-machine-pdf`(exporting a character to a PDF sheet). Each subproject can be included separately. For any extra information about how to do it or use Gradle, Ivy or any other, please follow [this link](https://mvnrepository.com/artifact/com.softwaremagico/).
 
+## Modules
+Since version 0.6 this application allows the inclusion of modules. Each module can have different definitions of skills, weapons, psi powers, etc. Can be useful to include custom weapons, change some skills or add different languages. Also it is interesting if you want to use the Victory Point systems for other diferent adventures without using the Fading Suns world. 
+As an example, [The Last Week](https://github.com/softwaremagico/ThinkMachine-Last-Week) is a module that can be use as a reference for creating new ones. It is based on year 2047 and some skills and equipment has been adapted for this specific adventure. 
+
 ## Final thoughts
-This application only contains the logic for defining characters and NPC using Fading Suns victory point rule system. No user interface is included and therefore, cannot be use as a standalone application. In the close future new applications will appear for different platforms that includes a UI. This application will be listed here. 
+This application only contains the logic for defining characters and NPC using Fading Suns victory point rule system. No user interface is included and therefore, cannot be use as a standalone application. In the close future new applications will appear for different platforms that includes a UI. These applications will be listed here:
+
+- [Think Machine: Advisor](https://github.com/softwaremagico/ThinkMachineAdvisor) is a desktop application also based on Java that allows the use of this library for the creation of Player and Non Player Characters (currently in development).
 
 ## Notes
 This software has been developed using the [iText library](http://itextpdf.com/) for PDF generation. 
@@ -108,4 +114,6 @@ Fonts used in this project: DejaVuSans, ArchitectsDaughter and Roman Antique.
 - 0.4.7 Threat level calculation.
 - 0.4.8 Random groups generation.
 
-0.5.0 Stable version ready to be used. 
+0.5.0 Performance improvements and code checks. 
+
+0.6.0 Modules system.
