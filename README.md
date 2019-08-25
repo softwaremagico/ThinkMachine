@@ -84,7 +84,7 @@ As an example, [The Last Week](https://github.com/softwaremagico/ThinkMachine-La
 ## Final thoughts
 This application only contains the logic for defining characters and NPC using Fading Suns victory point rule system. No user interface is included and therefore, cannot be use as a standalone application. In the close future new applications will appear for different platforms that includes a UI. These applications will be listed here:
 
-- [Think Machine: Advisor](https://github.com/softwaremagico/ThinkMachineAdvisor) is a desktop application also based on Java that allows the use of this library for the creation of Player and Non Player Characters (currently in development).
+- [Think Machine: Advisor](https://github.com/softwaremagico/ThinkMachine-Advisor) is a desktop application also based on Java that allows the use of this library for the creation of Player and Non Player Characters (currently in development).
 
 ## Notes
 This software has been developed using the [iText library](http://itextpdf.com/) for PDF generation. 
