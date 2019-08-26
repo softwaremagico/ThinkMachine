@@ -25,10 +25,7 @@ package com.softwaremagico.tm.file.configurator;
  */
 
 import java.io.IOException;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;

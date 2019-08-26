@@ -123,7 +123,7 @@ public class FileManager {
 	}
 	
 	public static String readTextFile(String path, Charset encoding) throws IOException {
-		byte[] encoded = Files.readAllBytes(Paths.get(path));
+		final byte[] encoded = Files.readAllBytes(Paths.get(path));
 		return new String(encoded, encoding);
 	}
 
