@@ -24,27 +24,30 @@ package com.softwaremagico.tm.file.configurator;
  * #L%
  */
 
-import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.softwaremagico.tm.file.FileManager;
 import com.softwaremagico.tm.file.configurator.exceptions.PropertyNotStoredException;
-import com.softwaremagico.tm.log.MachineLog;
 
 @Test(groups = "configurationReader")
 public class ConfigurationTests {
 
 	@Test
-	public void checkStoreSettings() throws PropertyNotStoredException, FileNotFoundException {
+	public void checkStoreSettings() throws PropertyNotStoredException, IOException {
 		MachineConfigurationReader.getInstance().setModulesPath(System.getProperty("java.io.tmpdir"), null);
 		Assert.assertEquals(MachineConfigurationReader.getInstance().getModulesPath(),
 				System.getProperty("java.io.tmpdir"));
 
 		MachineConfigurationReader.getInstance().storeProperties();
-		String content = FileManager.readTextFile(MachineConfigurationReader.getInstance().getUserProperties());
-		MachineLog.info(this.getClass().getName(), "#### " + content);
+		String content = FileManager.readTextFile(MachineConfigurationReader.getInstance().getUserPropertiesPath(),
+				StandardCharsets.UTF_8);
 		Assert.assertTrue(content.contains("modulesPath=" + System.getProperty("java.io.tmpdir")));
 	}
 }

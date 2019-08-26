@@ -247,4 +247,6 @@ public abstract class ConfigurationReader {
 
 	}
 
+	public abstract String getUserPropertiesPath();
+
 }

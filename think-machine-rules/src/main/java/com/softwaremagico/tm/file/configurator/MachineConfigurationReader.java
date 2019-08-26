@@ -126,6 +126,11 @@ public class MachineConfigurationReader extends ConfigurationReader {
 	public File getUserProperties() {
 		return new File(userSourceFile.getFilePath() + File.separator + userSourceFile.getFileName());
 	}
+	
+	@Override
+	public String getUserPropertiesPath() {
+		return userSourceFile.getFilePath() + File.separator + userSourceFile.getFileName();
+	}
 
 	protected String getPropertyLogException(String propertyId) {
 		try {
