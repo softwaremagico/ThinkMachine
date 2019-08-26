@@ -24,6 +24,7 @@ package com.softwaremagico.tm.file.configurator;
  * #L%
  */
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Map;
 
@@ -60,7 +61,7 @@ public abstract class SourceFile<FileType> implements ISourceFile<FileType> {
 
 	@Override
 	public String toString() {
-		return (getFilePath() != null ? getFilePath() + "/" : "") + getFileName();
+		return (getFilePath() != null ? getFilePath() + File.separator : "") + getFileName();
 	}
 
 	public static String readEnvironmentVariable(String environmentVariable) {

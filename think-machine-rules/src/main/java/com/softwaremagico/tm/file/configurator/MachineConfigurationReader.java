@@ -82,6 +82,7 @@ public class MachineConfigurationReader extends ConfigurationReader {
 
 		userSourceFile = new PropertiesSourceFile(USER_CONFIG_FILE);
 		userSourceFile.setFilePath(getSettingsFolderAtHome());
+		MachineLog.info(this.getClass().getName(), "User config file set to '" + userSourceFile.toString() + "'.");
 		userSourceFile.addFileModifiedListeners(new FileModifiedListener() {
 
 			@Override
@@ -148,9 +149,11 @@ public class MachineConfigurationReader extends ConfigurationReader {
 	 *            Listen if a new module is added.
 	 */
 	public void setModulesPath(String modulesFolder, FileModifiedListener fileModifiedListener) {
-		setProperty("modulesPath", modulesFolder);
+		setProperty(MODULES_PATH, modulesFolder);
 		setModulesWatcher(modulesFolder);
-		addModulesFileModifiedListener(fileModifiedListener);
+		if (fileModifiedListener != null) {
+			addModulesFileModifiedListener(fileModifiedListener);
+		}
 	}
 
 	private void setModulesWatcher(final String modulesFolderpath) {
