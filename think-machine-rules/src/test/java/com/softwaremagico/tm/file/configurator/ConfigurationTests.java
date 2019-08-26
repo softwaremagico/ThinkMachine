@@ -31,6 +31,7 @@ import org.testng.annotations.Test;
 
 import com.softwaremagico.tm.file.FileManager;
 import com.softwaremagico.tm.file.configurator.exceptions.PropertyNotStoredException;
+import com.softwaremagico.tm.log.MachineLog;
 
 @Test(groups = "configurationReader")
 public class ConfigurationTests {
@@ -43,6 +44,7 @@ public class ConfigurationTests {
 
 		MachineConfigurationReader.getInstance().storeProperties();
 		String content = FileManager.readTextFile(MachineConfigurationReader.getInstance().getUserProperties());
+		MachineLog.info(this.getClass().getName(), "#### " + content);
 		Assert.assertTrue(content.contains("modulesPath=" + System.getProperty("java.io.tmpdir")));
 	}
 }
