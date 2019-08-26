@@ -49,7 +49,7 @@ public class MachineConfigurationReader extends ConfigurationReader {
 	// Default
 
 	private static MachineConfigurationReader instance;
-	private final PropertiesSourceFile userSourceFile;
+	private PropertiesSourceFile userSourceFile;
 
 	@SuppressFBWarnings(value = "DC_DOUBLECHECK")
 	public static MachineConfigurationReader getInstance() {
@@ -80,19 +80,7 @@ public class MachineConfigurationReader extends ConfigurationReader {
 		});
 		addPropertiesSource(sourceFile);
 
-		userSourceFile = new PropertiesSourceFile(USER_CONFIG_FILE);
-		userSourceFile.setFilePath(getSettingsFolderAtHome());
-		MachineLog.info(this.getClass().getName(), "User config file set to '" + userSourceFile.toString() + "'.");
-		userSourceFile.addFileModifiedListeners(new FileModifiedListener() {
-
-			@Override
-			public void changeDetected(Path pathToFile) {
-				MachineLog.info(this.getClass().getName(), "Application's settings file '" + pathToFile
-						+ "' change detected.");
-				readConfigurations();
-			}
-		});
-		addPropertiesSource(userSourceFile);
+		setUserSourceFile(getSettingsFolderAtHome(), USER_CONFIG_FILE);
 
 		// Log if any property has changed the value.
 		addPropertyChangedListener(new PropertyChangedListener() {
@@ -105,6 +93,23 @@ public class MachineConfigurationReader extends ConfigurationReader {
 		});
 
 		readConfigurations();
+	}
+
+	public void setUserSourceFile(String path, String file) {
+		removePropertiesSource(userSourceFile);
+		userSourceFile = new PropertiesSourceFile(file);
+		userSourceFile.setFilePath(path);
+		MachineLog.info(this.getClass().getName(), "User config file set to '" + userSourceFile.toString() + "'.");
+		userSourceFile.addFileModifiedListeners(new FileModifiedListener() {
+
+			@Override
+			public void changeDetected(Path pathToFile) {
+				MachineLog.info(this.getClass().getName(), "Application's settings file '" + pathToFile
+						+ "' change detected.");
+				readConfigurations();
+			}
+		});
+		addPropertiesSource(userSourceFile);
 	}
 
 	public static String getSettingsFolderAtHome() {
@@ -126,7 +131,7 @@ public class MachineConfigurationReader extends ConfigurationReader {
 	public File getUserProperties() {
 		return new File(userSourceFile.getFilePath() + File.separator + userSourceFile.getFileName());
 	}
-	
+
 	@Override
 	public String getUserPropertiesPath() {
 		return userSourceFile.getFilePath() + File.separator + userSourceFile.getFileName();

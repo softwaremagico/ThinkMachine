@@ -45,8 +45,6 @@ public class ConfigurationTests {
 		MachineConfigurationReader.getInstance().storeProperties();
 		String content = FileManager.readTextFile(MachineConfigurationReader.getInstance().getUserPropertiesPath(),
 				StandardCharsets.UTF_8);
-		System.out.println("##### " + MachineConfigurationReader.getInstance().getUserPropertiesPath() + "-> "
-				+ content);
 		Assert.assertTrue(content.contains("modulesPath=" + System.getProperty("java.io.tmpdir")));
 	}
 }

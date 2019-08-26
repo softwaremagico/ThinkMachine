@@ -88,6 +88,12 @@ public abstract class ConfigurationReader {
 		propertiesSources.add(propertiesSource);
 	}
 
+	public void removePropertiesSource(IPropertiesSource propertiesSource) {
+		if (propertiesSource != null) {
+			propertiesSources.remove(propertiesSource);
+		}
+	}
+
 	/**
 	 * Restarts all properties to their default values and then reads all the configuration files again.
 	 */

@@ -37,6 +37,7 @@ import java.net.URLConnection;
 import java.util.Properties;
 
 import com.softwaremagico.tm.file.FileManager;
+import com.softwaremagico.tm.file.configurator.exceptions.PropertyNotStoredException;
 
 public class PropertiesFile {
 
@@ -84,11 +85,13 @@ public class PropertiesFile {
 		return properties;
 	}
 
-	public static boolean store(Properties properties, String filePath) throws IOException {
+	public static boolean store(Properties properties, String filePath) throws IOException, PropertyNotStoredException {
 		if (filePath != null) {
 			final File file = new File(filePath);
 			if (!file.exists()) {
-				return file.createNewFile();
+				if (!file.createNewFile()) {
+					throw new PropertyNotStoredException("File '" + filePath + "' cannot be created.");
+				}
 			}
 			store(properties, file);
 		}

@@ -36,6 +36,7 @@ import java.util.Properties;
 import java.util.Set;
 import java.util.TreeMap;
 
+import com.softwaremagico.tm.file.configurator.exceptions.PropertyNotStoredException;
 import com.softwaremagico.tm.file.watcher.FileWatcher;
 import com.softwaremagico.tm.file.watcher.FileWatcher.FileModifiedListener;
 import com.softwaremagico.tm.log.MachineLog;
@@ -64,7 +65,7 @@ public class PropertiesSourceFile extends SourceFile<Properties> implements IPro
 		setWatcher();
 	}
 
-	public void storeInFile(Map<String, String> propertiesValues) throws IOException {
+	public void storeInFile(Map<String, String> propertiesValues) throws IOException, PropertyNotStoredException {
 		final Properties properties = new Properties();
 		// Sort properties and add it.
 		for (final Entry<String, String> entry : new TreeMap<String, String>(propertiesValues).entrySet()) {
