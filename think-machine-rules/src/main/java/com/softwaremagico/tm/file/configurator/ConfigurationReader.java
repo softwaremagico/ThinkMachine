@@ -216,7 +216,7 @@ public abstract class ConfigurationReader {
 	}
 
 	public Map<String, String> getAllProperties() {
-		return this.propertiesFinalValue;
+		return propertiesFinalValue;
 	}
 
 	public List<IPropertiesSource> getPropertiesSources() {

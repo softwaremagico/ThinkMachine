@@ -71,6 +71,8 @@ public class PropertiesSourceFile extends SourceFile<Properties> implements IPro
 			properties.setProperty(entry.getKey(), entry.getValue());
 		}
 		PropertiesFile.store(properties, getFilePath() + File.separator + getFileName());
+		MachineLog.info(this.getClass().getName(), "Storing '" + properties + "' at properties file '" + getFilePath()
+				+ File.separator + getFileName() + "'.");
 	}
 
 	@Override
