@@ -687,17 +687,6 @@ public class CharacterPlayer {
 		// Adds default planet and faction.
 		for (final AvailableSkill skill : AvailableSkillsFactory.getInstance().getNaturalSkills(getLanguage(),
 				getModuleName())) {
-//			if (skill.getSkillDefinition().getId().equals(SkillDefinition.PLANETARY_LORE_ID)) {
-//				if (getInfo().getPlanet() != null) {
-//					skill.setSpecialization(new Specialization(getInfo().getPlanet().getName().toLowerCase(), getInfo()
-//							.getPlanet().getName(), getLanguage(), getModuleName()));
-//				}
-//			} else if (skill.getSkillDefinition().getId().equals(SkillDefinition.FACTORION_LORE_ID)) {
-//				if (getFaction() != null) {
-//					skill.setSpecialization(new Specialization(getFaction().getName().toLowerCase(), getFaction()
-//							.getName(), getLanguage(), getModuleName()));
-//				}
-//			}
 			naturalSkills.add(skill);
 		}
 		return naturalSkills;

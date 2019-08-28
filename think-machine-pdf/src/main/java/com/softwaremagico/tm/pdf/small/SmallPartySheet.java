@@ -36,8 +36,9 @@ import com.softwaremagico.tm.language.Translator;
 import com.softwaremagico.tm.party.Party;
 import com.softwaremagico.tm.pdf.complete.elements.BaseElement;
 import com.softwaremagico.tm.pdf.complete.events.PartyFooterEvent;
+import com.softwaremagico.tm.pdf.small.info.DescriptionTableFactory;
 
-public class SmallPartySheet extends SmallCharacterSheet {
+public class SmallPartySheet extends SmallCharacterSheetWithDescriptions {
 	private Party party;
 	private PdfPTable mainTable;
 
@@ -68,10 +69,23 @@ public class SmallPartySheet extends SmallCharacterSheet {
 	@Override
 	protected void createContent(Document document) throws Exception {
 		initializeTableContent();
+		boolean hasDescription = false;
+		for (final CharacterPlayer characterPlayer : party.getMembers()) {
+			if ((characterPlayer.getInfo().getBackgroundDecription() != null && !characterPlayer.getInfo()
+					.getBackgroundDecription().isEmpty())
+					|| (characterPlayer.getInfo().getCharacterDescription() != null && !characterPlayer.getInfo()
+							.getCharacterDescription().isEmpty())) {
+				hasDescription = true;
+				break;
+			}
+		}
 		for (final CharacterPlayer characterPlayer : party.getMembers()) {
 			createCharacterPDF(document, characterPlayer);
+			if (hasDescription) {
+				createDescriptionPage(characterPlayer);
+			}
 		}
-		if (party.getMembers().size() % 2 > 0) {
+		if (party.getMembers().size() % 2 > 0 && !hasDescription) {
 			mainTable.addCell(new PdfPCell());
 		}
 		document.add(mainTable);
@@ -80,6 +94,10 @@ public class SmallPartySheet extends SmallCharacterSheet {
 	@Override
 	protected void createCharacterPDF(Document document, CharacterPlayer characterPlayer) throws Exception {
 		mainTable.addCell(createCharacterContent(characterPlayer));
+	}
+
+	private void createDescriptionPage(CharacterPlayer characterPlayer) {
+		mainTable.addCell(DescriptionTableFactory.getDescriptionTable(characterPlayer, getLanguage(), getModuleName()));
 	}
 
 	@Override
