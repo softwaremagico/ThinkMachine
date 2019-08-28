@@ -27,6 +27,7 @@ package com.softwaremagico.tm.file.watcher;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.ClosedWatchServiceException;
+import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardWatchEventKinds;
@@ -153,6 +154,8 @@ public class FileWatcher {
 					}
 				}
 			});
+		} catch (NoSuchFileException e) {
+			MachineLog.warning(this.getClass().getName(), "Folder '" + getDirectoryToWatch() + "' not found!");
 		} catch (IOException e) {
 			MachineLog.errorMessage(this.getClass().getName(), e);
 		}

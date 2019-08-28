@@ -38,6 +38,7 @@ import java.util.Properties;
 
 import com.softwaremagico.tm.file.FileManager;
 import com.softwaremagico.tm.file.configurator.exceptions.PropertyNotStoredException;
+import com.softwaremagico.tm.log.MachineLog;
 
 public class PropertiesFile {
 
@@ -85,12 +86,22 @@ public class PropertiesFile {
 		return properties;
 	}
 
-	public static boolean store(Properties properties, String filePath) throws IOException, PropertyNotStoredException {
-		if (filePath != null) {
-			final File file = new File(filePath);
+	public static boolean store(Properties properties, String folderPath, String fileName) throws IOException,
+			PropertyNotStoredException {
+		if (folderPath != null && fileName != null) {
+			// Ensure that the folder exists.
+			final File folder = new File(folderPath);
+			try {
+				folder.mkdirs();
+			} catch (Exception e) {
+				MachineLog.errorMessage(PropertiesFile.class.getName(), e);
+			}
+			// Create file if not exists.
+			final File file = new File(folderPath + File.separator + fileName);
 			if (!file.exists()) {
 				if (!file.createNewFile()) {
-					throw new PropertyNotStoredException("File '" + filePath + "' cannot be created.");
+					throw new PropertyNotStoredException("File '" + folderPath + File.separator + fileName
+							+ "' cannot be created.");
 				}
 			}
 			store(properties, file);

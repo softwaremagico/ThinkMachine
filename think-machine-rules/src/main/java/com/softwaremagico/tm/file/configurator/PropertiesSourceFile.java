@@ -27,6 +27,7 @@ package com.softwaremagico.tm.file.configurator;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -71,7 +72,7 @@ public class PropertiesSourceFile extends SourceFile<Properties> implements IPro
 		for (final Entry<String, String> entry : new TreeMap<String, String>(propertiesValues).entrySet()) {
 			properties.setProperty(entry.getKey(), entry.getValue());
 		}
-		PropertiesFile.store(properties, getFilePath() + File.separator + getFileName());
+		PropertiesFile.store(properties, getFilePath(), getFileName());
 		MachineLog.debug(this.getClass().getName(), "Storing '" + properties + "' at properties file '" + getFilePath()
 				+ File.separator + getFileName() + "'.");
 	}
@@ -113,10 +114,11 @@ public class PropertiesSourceFile extends SourceFile<Properties> implements IPro
 					}
 				}
 			});
+		} catch (NoSuchFileException | NullPointerException e) {
+			MachineLog.warning(this.getClass().getName(), "Directory '" + getDirectoryToWatch()
+					+ "' to watch not found!");
 		} catch (IOException e) {
 			MachineLog.errorMessage(this.getClass().getName(), e);
-		} catch (NullPointerException npe) {
-			MachineLog.warning(this.getClass().getName(), "Directory to watch not found!");
 		}
 	}
 
