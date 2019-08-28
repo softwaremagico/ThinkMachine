@@ -87,10 +87,8 @@ import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.character.skills.InvalidSkillException;
 import com.softwaremagico.tm.character.skills.SelectedSkill;
 import com.softwaremagico.tm.character.skills.Skill;
-import com.softwaremagico.tm.character.skills.SkillDefinition;
 import com.softwaremagico.tm.character.skills.SkillGroup;
 import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
-import com.softwaremagico.tm.character.skills.Specialization;
 import com.softwaremagico.tm.character.values.Bonification;
 import com.softwaremagico.tm.character.values.IValue;
 import com.softwaremagico.tm.character.values.SpecialValue;
@@ -689,17 +687,17 @@ public class CharacterPlayer {
 		// Adds default planet and faction.
 		for (final AvailableSkill skill : AvailableSkillsFactory.getInstance().getNaturalSkills(getLanguage(),
 				getModuleName())) {
-			if (skill.getSkillDefinition().getId().equals(SkillDefinition.PLANETARY_LORE_ID)) {
-				if (getInfo().getPlanet() != null) {
-					skill.setSpecialization(new Specialization(getInfo().getPlanet().getName().toLowerCase(), getInfo()
-							.getPlanet().getName(), getLanguage(), getModuleName()));
-				}
-			} else if (skill.getSkillDefinition().getId().equals(SkillDefinition.FACTORION_LORE_ID)) {
-				if (getFaction() != null) {
-					skill.setSpecialization(new Specialization(getFaction().getName().toLowerCase(), getFaction()
-							.getName(), getLanguage(), getModuleName()));
-				}
-			}
+//			if (skill.getSkillDefinition().getId().equals(SkillDefinition.PLANETARY_LORE_ID)) {
+//				if (getInfo().getPlanet() != null) {
+//					skill.setSpecialization(new Specialization(getInfo().getPlanet().getName().toLowerCase(), getInfo()
+//							.getPlanet().getName(), getLanguage(), getModuleName()));
+//				}
+//			} else if (skill.getSkillDefinition().getId().equals(SkillDefinition.FACTORION_LORE_ID)) {
+//				if (getFaction() != null) {
+//					skill.setSpecialization(new Specialization(getFaction().getName().toLowerCase(), getFaction()
+//							.getName(), getLanguage(), getModuleName()));
+//				}
+//			}
 			naturalSkills.add(skill);
 		}
 		return naturalSkills;

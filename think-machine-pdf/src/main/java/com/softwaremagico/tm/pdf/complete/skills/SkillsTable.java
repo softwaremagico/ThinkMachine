@@ -52,8 +52,8 @@ public class SkillsTable extends BaseElement {
 	}
 
 	protected static PdfPCell createCompactTitle(String text, int fontSize) {
-		final PdfPCell cell = getCell(text, 0, 2, Element.ALIGN_CENTER, BaseColor.WHITE, FadingSunsTheme.getTitleFont(),
-				fontSize);
+		final PdfPCell cell = getCell(text, 0, 2, Element.ALIGN_CENTER, BaseColor.WHITE,
+				FadingSunsTheme.getTitleFont(), fontSize);
 		cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		return cell;
 	}
@@ -138,7 +138,19 @@ public class SkillsTable extends BaseElement {
 				+ (availableSkill.getSkillDefinition().isNatural() ? DEFAULT_NATURAL_SKILL_VALUE : ""), fontSize);
 		paragraph.add(new Paragraph(availableSkill.getName() + " [", new Font(font, fontSize)));
 		if (characterPlayer != null && characterPlayer.getSelectedSkill(availableSkill) == null) {
-			if (availableSkill.getSpecialization() != null && availableSkill.getSpecialization().getName() != null) {
+			// Lore factions and planet are specials.
+			if (availableSkill.getId().equalsIgnoreCase(SkillDefinition.PLANETARY_LORE_ID)) {
+				paragraph.add(new Paragraph(CellUtils.getSubStringFitsIn(characterPlayer.getInfo().getPlanet()
+						.getName(), FadingSunsTheme.getHandwrittingFont(),
+						FadingSunsTheme.getHandWrittingFontSize(fontSize), maxColumnWidth - usedWidth), new Font(
+						FadingSunsTheme.getHandwrittingFont(), FadingSunsTheme.getHandWrittingFontSize(fontSize))));
+			} else if (availableSkill.getId().equalsIgnoreCase(SkillDefinition.FACTORION_LORE_ID)) {
+				paragraph.add(new Paragraph(CellUtils.getSubStringFitsIn(characterPlayer.getFaction().getName(),
+						FadingSunsTheme.getHandwrittingFont(), FadingSunsTheme.getHandWrittingFontSize(fontSize),
+						maxColumnWidth - usedWidth), new Font(FadingSunsTheme.getHandwrittingFont(), FadingSunsTheme
+						.getHandWrittingFontSize(fontSize))));
+			} else if (availableSkill.getSpecialization() != null
+					&& availableSkill.getSpecialization().getName() != null) {
 				paragraph.add(new Paragraph(CellUtils.getSubStringFitsIn(availableSkill.getSpecialization().getName(),
 						FadingSunsTheme.getHandwrittingFont(), FadingSunsTheme.getHandWrittingFontSize(fontSize),
 						maxColumnWidth - usedWidth), new Font(FadingSunsTheme.getHandwrittingFont(), FadingSunsTheme

@@ -62,10 +62,14 @@ public class AvailableSkill extends Skill<AvailableSkill> implements IValue {
 	}
 
 	public static String getCompleteName(String name, Specialization specialization) {
-		if (specialization == null) {
+		return getCompleteName(name, specialization != null ? specialization.getName() : null);
+	}
+
+	public static String getCompleteName(String name, String specializationName) {
+		if (specializationName == null) {
 			return name;
 		}
-		return name + " [" + specialization.getName() + "]";
+		return name + " [" + specializationName + "]";
 	}
 
 	@Override
