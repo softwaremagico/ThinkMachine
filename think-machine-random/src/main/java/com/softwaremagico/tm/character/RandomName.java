@@ -41,7 +41,8 @@ import com.softwaremagico.tm.random.selectors.NamesPreferences;
 
 public class RandomName extends RandomSelector<Name> {
 
-	public RandomName(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences) throws InvalidXmlElementException {
+	public RandomName(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences)
+			throws InvalidXmlElementException {
 		super(characterPlayer, preferences);
 	}
 
@@ -51,7 +52,8 @@ public class RandomName extends RandomSelector<Name> {
 		try {
 			final BeneficeSpecialization status = getCharacterPlayer().getStatus();
 			// Nobility with more names. Unless set by the user.
-			if (status != null && namesPreference == NamesPreferences.LOW && !getPreferences().contains(NamesPreferences.LOW)) {
+			if (status != null && namesPreference == NamesPreferences.LOW
+					&& !getPreferences().contains(NamesPreferences.LOW)) {
 				namesPreference = NamesPreferences.getByStatus(status.getCost());
 			}
 		} catch (InvalidXmlElementException e) {
@@ -72,8 +74,9 @@ public class RandomName extends RandomSelector<Name> {
 					}
 				}
 			} catch (InvalidRandomElementSelectedException e) {
-				throw new InvalidRandomElementSelectedException("No possible name for faction '" + getCharacterPlayer().getFaction() + "' at '"
-						+ getCharacterPlayer().getInfo().getPlanet() + "'.", e);
+				throw new InvalidRandomElementSelectedException("No possible name for faction '"
+						+ getCharacterPlayer().getFaction() + "' at '" + getCharacterPlayer().getInfo().getPlanet()
+						+ "'.", e);
 			}
 		}
 	}
@@ -87,27 +90,38 @@ public class RandomName extends RandomSelector<Name> {
 	protected int getWeight(Name name) throws InvalidRandomElementSelectedException {
 		// Only names of its gender.
 		if (!name.getGender().equals(getCharacterPlayer().getInfo().getGender())) {
-			throw new InvalidRandomElementSelectedException("Name '" + name.getGender() + "' not valid for gender '"
+			throw new InvalidRandomElementSelectedException("Name '" + name + "' not valid for gender '"
 					+ getCharacterPlayer().getInfo().getGender() + "'.");
 		}
 		// Nobility almost always names of her planet.
-		if (getCharacterPlayer().getFaction() != null && getCharacterPlayer().getFaction().getFactionGroup() == FactionGroup.NOBILITY) {
+		if (getCharacterPlayer().getFaction() != null
+				&& getCharacterPlayer().getFaction().getFactionGroup() == FactionGroup.NOBILITY) {
 			if (getCharacterPlayer().getFaction().equals(name.getFaction())) {
 				return BASIC_PROBABILITY;
 			} else {
-				throw new InvalidRandomElementSelectedException("Name '" + name.getGender() + "' not allowed for a nobility based character.");
+				throw new InvalidRandomElementSelectedException("Name '" + name
+						+ "' not allowed for a nobility based character.");
 			}
 		}
 		// Not nobility, use names available on the planet.
-		if (getCharacterPlayer().getInfo().getPlanet() != null && !getCharacterPlayer().getInfo().getPlanet().getNames().isEmpty()) {
+		if (getCharacterPlayer().getInfo().getPlanet() != null
+				&& !getCharacterPlayer().getInfo().getPlanet().getNames().isEmpty()) {
 			if (getCharacterPlayer().getInfo().getPlanet().getFactions().contains(name.getFaction())) {
 				return BASIC_PROBABILITY;
 			} else {
-				throw new InvalidRandomElementSelectedException("Name '" + name.getGender() + "' not existing in planet '"
+				throw new InvalidRandomElementSelectedException("Name '" + name + "' not existing in planet '"
 						+ getCharacterPlayer().getInfo().getPlanet() + "'.");
 			}
 		}
-		return 1;
+		// Planet without factions. Then choose own faction names
+		if (getCharacterPlayer().getFaction() != null
+				&& !FactionsFactory.getInstance().getAllNames(getCharacterPlayer().getFaction()).isEmpty()
+				&& !getCharacterPlayer().getFaction().equals(name.getFaction())) {
+			throw new InvalidRandomElementSelectedException("Name '" + name + "' from an invalid faction '"
+					+ getCharacterPlayer().getFaction() + "'.");
+		}
+
+		return BASIC_PROBABILITY;
 	}
 
 	@Override

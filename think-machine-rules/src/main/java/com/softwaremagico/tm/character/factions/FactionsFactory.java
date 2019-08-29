@@ -198,6 +198,8 @@ public class FactionsFactory extends XmlFactory<Faction> {
 		if (namesByFaction.get(name.getFaction()).get(name.getGender()) == null) {
 			namesByFaction.get(name.getFaction()).put(name.getGender(), new HashSet<Name>());
 		}
+		System.out.println(name + " . " + name.getGender() + " . "
+				+ name.getFaction());
 		namesByFaction.get(name.getFaction()).get(name.getGender()).add(name);
 	}
 

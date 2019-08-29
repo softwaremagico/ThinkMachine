@@ -95,6 +95,12 @@ public class RandomSurname extends RandomSelector<Surname> {
 				return 0;
 			}
 		}
+		// Planet without factions. Then choose own faction names
+		if (getCharacterPlayer().getFaction() != null
+				&& !FactionsFactory.getInstance().getAllSurnames(getCharacterPlayer().getFaction()).isEmpty()
+				&& !getCharacterPlayer().getFaction().equals(surname.getFaction())) {
+			return 0;
+		}
 		return 1;
 	}
 

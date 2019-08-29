@@ -31,13 +31,14 @@ import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.configurator.MachinePdfConfigurationReader;
 import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.complete.elements.BaseElement;
 import com.softwaremagico.tm.pdf.complete.elements.CustomPdfTable;
 
 public class ArmourTable extends CustomPdfTable {
 	private static final String GAP = "____________________";
-	private static final int NAME_COLUMN_WIDTH = 30;
+	private static final int NAME_COLUMN_WIDTH = 60;
 	private static final int ARMOUR_VALUE_COLUMN_WIDTH = 10;
 
 	public ArmourTable(CharacterPlayer characterPlayer) {
@@ -45,7 +46,8 @@ public class ArmourTable extends CustomPdfTable {
 		getDefaultCell().setBorder(0);
 
 		// Armor
-		final Font font = new Font(FadingSunsTheme.getTitleFont(), FadingSunsTheme.CHARACTER_SMALL_ARMOR_TITLE_FONT_SIZE);
+		final Font font = new Font(FadingSunsTheme.getTitleFont(),
+				FadingSunsTheme.CHARACTER_SMALL_ARMOR_TITLE_FONT_SIZE);
 		final Phrase content = new Phrase(getTranslator().getTranslatedText("armor"), font);
 		final PdfPCell titleCell = new PdfPCell(content);
 		titleCell.setBorder(0);
@@ -57,29 +59,32 @@ public class ArmourTable extends CustomPdfTable {
 		} else if (characterPlayer.getArmour() == null) {
 			nameCell = createElementLine("", NAME_COLUMN_WIDTH);
 		} else {
-			nameCell = createElementLine(characterPlayer.getArmour().getName() + "("
-					+ characterPlayer.getArmour().getProtection() + "d)", NAME_COLUMN_WIDTH,
+			nameCell = createElementLine(characterPlayer.getArmour().getProtection() + "d ("
+					+ characterPlayer.getArmour().getName() + ")", NAME_COLUMN_WIDTH,
 					FadingSunsTheme.ARMOUR_CONTENT_FONT_SIZE - 1);
 		}
 		nameCell.setBorder(0);
 		nameCell.setHorizontalAlignment(Element.ALIGN_LEFT);
+		nameCell.setVerticalAlignment(Element.ALIGN_BOTTOM);
 		addCell(nameCell);
 
 		// Shield
-		addCell(getShieldRange(characterPlayer));
+		if (MachinePdfConfigurationReader.getInstance().isSmallPdfShieldEnabled()) {
+			addCell(getShieldRange(characterPlayer));
 
-		final Paragraph paragraph = new Paragraph();
-		paragraph.add(new Paragraph(getTranslator().getTranslatedText("shieldHits") + ": ", new Font(FadingSunsTheme
-				.getLineFont(), FadingSunsTheme.ARMOUR_CONTENT_FONT_SIZE)));
-		if (characterPlayer != null && characterPlayer.getShield() != null) {
-			paragraph.add(new Paragraph(characterPlayer.getShield().getHits() + "-", new Font(FadingSunsTheme
-					.getHandwrittingFont(), FadingSunsTheme
-					.getHandWrittingFontSize(FadingSunsTheme.ARMOUR_CONTENT_FONT_SIZE))));
+			final Paragraph paragraph = new Paragraph();
+			paragraph.add(new Paragraph(getTranslator().getTranslatedText("shieldHits") + ": ", new Font(
+					FadingSunsTheme.getLineFont(), FadingSunsTheme.ARMOUR_CONTENT_FONT_SIZE)));
+			if (characterPlayer != null && characterPlayer.getShield() != null) {
+				paragraph.add(new Paragraph(characterPlayer.getShield().getHits() + "-", new Font(FadingSunsTheme
+						.getHandwrittingFont(), FadingSunsTheme
+						.getHandWrittingFontSize(FadingSunsTheme.ARMOUR_CONTENT_FONT_SIZE))));
+			}
+			final PdfPCell shieldCell = new PdfPCell(paragraph);
+			shieldCell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			shieldCell.setBorder(0);
+			addCell(shieldCell);
 		}
-		final PdfPCell shieldCell = new PdfPCell(paragraph);
-		shieldCell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-		shieldCell.setBorder(0);
-		addCell(shieldCell);
 	}
 
 	private PdfPTable getShieldRange(CharacterPlayer characterPlayer) {

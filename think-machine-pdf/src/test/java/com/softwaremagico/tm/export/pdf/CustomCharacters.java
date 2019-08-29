@@ -645,6 +645,6 @@ public class CustomCharacters {
 		final SmallPartySheet smallSheet = new SmallPartySheet(party);
 		Assert.assertEquals(
 				smallSheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + party.getPartyName()
-						+ "_Small.pdf"), 3);
+						+ "_Small.pdf"), 5);
 	}
 }

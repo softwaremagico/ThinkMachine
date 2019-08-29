@@ -35,13 +35,13 @@ import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.complete.elements.VerticalTable;
 
 public class BlessingTable extends VerticalTable {
-	private static final String GAP = "__________________";
+	private static final String GAP = "_______________________________";
 	private static final int BONIFICATION_COLUMN_WIDTH = 15;
-	private static final int TRAIT_COLUMN_WIDTH = 60;
-	private static final int SITUATION_COLUMN_WIDTH = 78;
+	private static final int TRAIT_COLUMN_WIDTH = 50;
+	private static final int SITUATION_COLUMN_WIDTH = 100;
 	private static final int ROWS = 9;
 
-	private static final float[] WIDTHS = { 2f, 7f, 8f };
+	private static final float[] WIDTHS = { 2f, 5f, 10f };
 
 	public BlessingTable(CharacterPlayer characterPlayer) {
 		super(WIDTHS);

@@ -137,7 +137,7 @@ public class SkillsTable extends BaseElement {
 		final float usedWidth = font.getWidthPoint(availableSkill.getName() + " []"
 				+ (availableSkill.getSkillDefinition().isNatural() ? DEFAULT_NATURAL_SKILL_VALUE : ""), fontSize);
 		paragraph.add(new Paragraph(availableSkill.getName() + " [", new Font(font, fontSize)));
-		if (characterPlayer != null && characterPlayer.getSelectedSkill(availableSkill) == null) {
+		if (characterPlayer != null) {
 			// Lore factions and planet are specials.
 			if (availableSkill.getId().equalsIgnoreCase(SkillDefinition.PLANETARY_LORE_ID)) {
 				paragraph.add(new Paragraph(CellUtils.getSubStringFitsIn(characterPlayer.getInfo().getPlanet()
@@ -160,11 +160,10 @@ public class SkillsTable extends BaseElement {
 						maxColumnWidth - usedWidth), new Font(font, fontSize)));
 			}
 		} else {
-			paragraph.add(new Paragraph(CellUtils.getSubStringFitsIn(characterPlayer != null ? characterPlayer
-					.getSelectedSkill(availableSkill).getName().replace(availableSkill.getName(), "").replace("[", "")
-					.replace("]", "").trim() : DEFAULT_WHITE_SPACES, FadingSunsTheme.getHandwrittingFont(),
-					FadingSunsTheme.getHandWrittingFontSize(fontSize), maxColumnWidth - usedWidth), new Font(
-					FadingSunsTheme.getHandwrittingFont(), FadingSunsTheme.getHandWrittingFontSize(fontSize))));
+			paragraph.add(new Paragraph(CellUtils.getSubStringFitsIn(DEFAULT_WHITE_SPACES,
+					FadingSunsTheme.getHandwrittingFont(), FadingSunsTheme.getHandWrittingFontSize(fontSize),
+					maxColumnWidth - usedWidth), new Font(FadingSunsTheme.getHandwrittingFont(), FadingSunsTheme
+					.getHandWrittingFontSize(fontSize))));
 		}
 		paragraph.add(new Paragraph("]", new Font(font, fontSize)));
 		return paragraph;

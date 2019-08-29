@@ -35,7 +35,7 @@ public class Surname extends Element<Surname> {
 	}
 
 	public Surname(String surname, String language, String moduleName, Faction faction) {
-		super(surname.toLowerCase(), surname, language, moduleName);
+		super(surname.toLowerCase() + "_" + moduleName, surname, language, moduleName);
 		this.faction = faction;
 	}
 
