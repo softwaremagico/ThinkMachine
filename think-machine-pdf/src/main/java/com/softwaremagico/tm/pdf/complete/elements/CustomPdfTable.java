@@ -82,8 +82,12 @@ public abstract class CustomPdfTable extends PdfPTable {
 	}
 
 	public static PdfPCell createEmptyElementLine(String text, int maxWidth) {
-		final String remainingText = CellUtils.getSubStringFitsIn(text, FadingSunsTheme.getLineFont(),
-				FadingSunsTheme.TABLE_LINE_FONT_SIZE, maxWidth);
+		return createEmptyElementLine(text, maxWidth, FadingSunsTheme.TABLE_LINE_FONT_SIZE);
+	}
+
+	public static PdfPCell createEmptyElementLine(String text, int maxWidth, int fontSize) {
+		final String remainingText = CellUtils.getSubStringFitsIn(text, FadingSunsTheme.getLineFont(), fontSize,
+				maxWidth);
 		return createEmptyElementLine(remainingText);
 	}
 

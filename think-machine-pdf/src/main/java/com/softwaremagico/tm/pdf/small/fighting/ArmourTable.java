@@ -59,8 +59,8 @@ public class ArmourTable extends CustomPdfTable {
 		} else if (characterPlayer.getArmour() == null) {
 			nameCell = createElementLine("", NAME_COLUMN_WIDTH);
 		} else {
-			nameCell = createElementLine(characterPlayer.getArmour().getProtection() + "d ("
-					+ characterPlayer.getArmour().getName() + ")", NAME_COLUMN_WIDTH,
+			nameCell = createElementLine(characterPlayer.getArmour().getProtection() + "d "
+					+ characterPlayer.getArmour().getName(), NAME_COLUMN_WIDTH,
 					FadingSunsTheme.ARMOUR_CONTENT_FONT_SIZE - 1);
 		}
 		nameCell.setBorder(0);

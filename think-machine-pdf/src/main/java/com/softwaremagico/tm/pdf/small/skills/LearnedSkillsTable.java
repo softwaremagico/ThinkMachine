@@ -30,6 +30,7 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
+import com.softwaremagico.tm.configurator.MachinePdfConfigurationReader;
 import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.complete.elements.CustomPdfTable;
 import com.softwaremagico.tm.pdf.complete.skills.SkillsTable;
@@ -76,15 +77,20 @@ public class LearnedSkillsTable extends SkillsTable {
 			}
 		}
 
+		final int rows = MachinePdfConfigurationReader.getInstance().isSmallPdfShieldEnabled() ? ROWS : ROWS + 1;
 		if (characterPlayer == null) {
-			for (int i = added; i < ROWS; i++) {
-				table.addCell(CustomPdfTable.createEmptyElementLine(GAP, MAX_SKILL_COLUMN_WIDTH));
-				table.addCell(CustomPdfTable.createEmptyElementLine(GAP, MAX_SKILL_RANK_WIDTH));
+			for (int i = added; i < rows; i++) {
+				table.addCell(CustomPdfTable.createEmptyElementLine(GAP, MAX_SKILL_COLUMN_WIDTH,
+						FadingSunsTheme.CHARACTER_SMALL_SKILLS_LINE_FONT_SIZE));
+				table.addCell(CustomPdfTable.createEmptyElementLine(GAP, MAX_SKILL_RANK_WIDTH,
+						FadingSunsTheme.CHARACTER_SMALL_SKILLS_LINE_FONT_SIZE));
 			}
 		} else {
-			for (int i = added; i < ROWS; i++) {
-				table.addCell(CustomPdfTable.createEmptyElementLine(" ", MAX_SKILL_COLUMN_WIDTH));
-				table.addCell(CustomPdfTable.createEmptyElementLine(" ", MAX_SKILL_RANK_WIDTH));
+			for (int i = added; i < rows; i++) {
+				table.addCell(CustomPdfTable.createEmptyElementLine(" ", MAX_SKILL_COLUMN_WIDTH,
+						FadingSunsTheme.CHARACTER_SMALL_SKILLS_LINE_FONT_SIZE));
+				table.addCell(CustomPdfTable.createEmptyElementLine(" ", MAX_SKILL_RANK_WIDTH,
+						FadingSunsTheme.CHARACTER_SMALL_SKILLS_LINE_FONT_SIZE));
 			}
 		}
 
