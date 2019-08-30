@@ -74,7 +74,7 @@ public class BlessingTable extends VerticalTable {
 
 			for (final Blessing blessing : characterPlayer.getAllBlessings()) {
 				if (addBlessingTitle) {
-					PdfPCell titleCell = createElementLine(blessing.getName(), BONIFICATION_COLUMN_WIDTH
+					final PdfPCell titleCell = createElementLine(blessing.getName(), BONIFICATION_COLUMN_WIDTH
 							+ TRAIT_COLUMN_WIDTH + SITUATION_COLUMN_WIDTH,
 							FadingSunsTheme.CHARACTER_SMALL_TRAITS_FONT_SIZE, FadingSunsTheme.getLineFont());
 					titleCell.setColspan(WIDTHS.length);
@@ -87,7 +87,7 @@ public class BlessingTable extends VerticalTable {
 				final Iterator<Bonification> it = blessing.getBonifications().iterator();
 				while (it.hasNext()) {
 					final Bonification bonification = it.next();
-					PdfPCell bonificationCell = createElementLine(bonification.getBonification(), BONIFICATION_COLUMN_WIDTH,
+					final PdfPCell bonificationCell = createElementLine(bonification.getBonification(), BONIFICATION_COLUMN_WIDTH,
 							FadingSunsTheme.CHARACTER_SMALL_TRAITS_FONT_SIZE);
 					bonificationCell.setPaddingLeft(3f);
 					addCell(bonificationCell);

@@ -986,8 +986,8 @@ public class CharacterPlayer {
 	private int getModification(IElementWithBonification element, IValue value, boolean always) {
 		int bonus = 0;
 		for (final Bonification bonification : element.getBonifications()) {
-			if (bonification.getSituation() == null || (always && bonification.getSituation().isEmpty())
-					|| (!always && !bonification.getSituation().isEmpty())) {
+			if ((always && (bonification.getSituation() == null || bonification.getSituation().isEmpty()))
+					|| (!always && bonification.getSituation() != null && !bonification.getSituation().isEmpty())) {
 				if (bonification.getAffects() instanceof SpecialValue) {
 					final SpecialValue specialValue = (SpecialValue) bonification.getAffects();
 					// Has a list of values defined.
