@@ -30,6 +30,7 @@ import com.softwaremagico.tm.log.SuppressFBWarnings;
 public class MachinePdfConfigurationReader extends MachineConfigurationReader {
 	// Tags
 	private static final String SMALL_PDF_CHARACTER_SHIELDS = "sheet.small.shields";
+	private static final String SMALL_PDF_CHARACTER_BLESSINGS_NAME = "sheet.small.blessings.name";
 
 	private static MachinePdfConfigurationReader instance;
 
@@ -48,7 +49,8 @@ public class MachinePdfConfigurationReader extends MachineConfigurationReader {
 	private MachinePdfConfigurationReader() {
 		super();
 
-		setProperty(SMALL_PDF_CHARACTER_SHIELDS, false);
+		setProperty(SMALL_PDF_CHARACTER_SHIELDS, true);
+		setProperty(SMALL_PDF_CHARACTER_BLESSINGS_NAME, false);
 
 		readConfigurations();
 	}
@@ -60,8 +62,20 @@ public class MachinePdfConfigurationReader extends MachineConfigurationReader {
 			return false;
 		}
 	}
-	
+
 	public void setSmallPdfShieldEnabled(boolean value) {
 		setProperty(SMALL_PDF_CHARACTER_SHIELDS, value);
+	}
+
+	public boolean isSmallPdfBlessingNameEnabled() {
+		try {
+			return Boolean.parseBoolean(getPropertyLogException(SMALL_PDF_CHARACTER_BLESSINGS_NAME));
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	public void setSmallPdfBlessingNameEnabled(boolean value) {
+		setProperty(SMALL_PDF_CHARACTER_BLESSINGS_NAME, value);
 	}
 }

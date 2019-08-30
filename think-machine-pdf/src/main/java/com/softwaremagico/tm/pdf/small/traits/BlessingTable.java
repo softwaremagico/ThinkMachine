@@ -31,6 +31,7 @@ import com.itextpdf.text.pdf.PdfPCell;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.blessings.Blessing;
 import com.softwaremagico.tm.character.values.Bonification;
+import com.softwaremagico.tm.configurator.MachinePdfConfigurationReader;
 import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.complete.elements.VerticalTable;
 
@@ -57,13 +58,39 @@ public class BlessingTable extends VerticalTable {
 				FadingSunsTheme.CHARACTER_SMALL_TRAITS_FONT_SIZE));
 
 		int added = 0;
+
 		if (characterPlayer != null) {
+
+			boolean addBlessingTitle = false;
+			if (MachinePdfConfigurationReader.getInstance().isSmallPdfBlessingNameEnabled()) {
+				// Calculate if we can put blessing titles.
+				int usedLines = characterPlayer.getAllBlessings().size();
+				for (final Blessing blessing : characterPlayer.getAllBlessings()) {
+					usedLines += blessing.getBonifications().size();
+				}
+
+				addBlessingTitle = (usedLines <= ROWS);
+			}
+
 			for (final Blessing blessing : characterPlayer.getAllBlessings()) {
+				if (addBlessingTitle) {
+					PdfPCell titleCell = createElementLine(blessing.getName(), BONIFICATION_COLUMN_WIDTH
+							+ TRAIT_COLUMN_WIDTH + SITUATION_COLUMN_WIDTH,
+							FadingSunsTheme.CHARACTER_SMALL_TRAITS_FONT_SIZE, FadingSunsTheme.getLineFont());
+					titleCell.setColspan(WIDTHS.length);
+					titleCell.setHorizontalAlignment(Element.ALIGN_LEFT);
+					titleCell.setPaddingLeft(16f);
+					addCell(titleCell);
+					added++;
+				}
+
 				final Iterator<Bonification> it = blessing.getBonifications().iterator();
 				while (it.hasNext()) {
 					final Bonification bonification = it.next();
-					addCell(createElementLine(bonification.getBonification(), BONIFICATION_COLUMN_WIDTH,
-							FadingSunsTheme.CHARACTER_SMALL_TRAITS_FONT_SIZE));
+					PdfPCell bonificationCell = createElementLine(bonification.getBonification(), BONIFICATION_COLUMN_WIDTH,
+							FadingSunsTheme.CHARACTER_SMALL_TRAITS_FONT_SIZE);
+					bonificationCell.setPaddingLeft(3f);
+					addCell(bonificationCell);
 					final PdfPCell nameCell = createElementLine(bonification.getAffects() != null ? bonification
 							.getAffects().getName() : "", TRAIT_COLUMN_WIDTH,
 							FadingSunsTheme.CHARACTER_SMALL_TRAITS_FONT_SIZE);
