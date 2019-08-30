@@ -34,6 +34,7 @@ import com.softwaremagico.tm.log.PdfExporterLog;
 import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 
 public class CharacterBasicsCompleteTableFactory extends CharacterBasicsTableFactory {
+	private static final int MAX_VALUE_LENGTH = 13;
 
 	public static PdfPTable getCharacterBasicsTable(CharacterPlayer characterPlayer) {
 		final float[] widths = { 1f, 1f, 1f };
@@ -50,10 +51,12 @@ public class CharacterBasicsCompleteTableFactory extends CharacterBasicsTableFac
 		final PdfPTable table = new PdfPTable(widths);
 		setTablePropierties(table);
 
-		table.addCell(createField(characterPlayer, "name", FadingSunsTheme.CHARACTER_BASICS_FONT_SIZE));
-		table.addCell(createField(characterPlayer, "player", FadingSunsTheme.CHARACTER_BASICS_FONT_SIZE));
-		table.addCell(createField(characterPlayer, "gender", FadingSunsTheme.CHARACTER_BASICS_FONT_SIZE));
-		table.addCell(createField(characterPlayer, "age", FadingSunsTheme.CHARACTER_BASICS_FONT_SIZE));
+		table.addCell(createField(characterPlayer, "name", FadingSunsTheme.CHARACTER_BASICS_FONT_SIZE, MAX_VALUE_LENGTH));
+		table.addCell(createField(characterPlayer, "player", FadingSunsTheme.CHARACTER_BASICS_FONT_SIZE,
+				MAX_VALUE_LENGTH));
+		table.addCell(createField(characterPlayer, "gender", FadingSunsTheme.CHARACTER_BASICS_FONT_SIZE,
+				MAX_VALUE_LENGTH));
+		table.addCell(createField(characterPlayer, "age", FadingSunsTheme.CHARACTER_BASICS_FONT_SIZE, MAX_VALUE_LENGTH));
 
 		final PdfPCell cell = new PdfPCell();
 		setCellProperties(cell);
@@ -68,10 +71,12 @@ public class CharacterBasicsCompleteTableFactory extends CharacterBasicsTableFac
 		final PdfPTable table = new PdfPTable(widths);
 		setTablePropierties(table);
 
-		table.addCell(createField(characterPlayer, "race", FadingSunsTheme.CHARACTER_BASICS_FONT_SIZE));
-		table.addCell(createField(characterPlayer, "planet", FadingSunsTheme.CHARACTER_BASICS_FONT_SIZE));
-		table.addCell(createField(characterPlayer, "faction", FadingSunsTheme.CHARACTER_BASICS_FONT_SIZE));
-		table.addCell(createField(characterPlayer, "rank", FadingSunsTheme.CHARACTER_BASICS_FONT_SIZE));
+		table.addCell(createField(characterPlayer, "race", FadingSunsTheme.CHARACTER_BASICS_FONT_SIZE, MAX_VALUE_LENGTH));
+		table.addCell(createField(characterPlayer, "planet", FadingSunsTheme.CHARACTER_BASICS_FONT_SIZE,
+				MAX_VALUE_LENGTH));
+		table.addCell(createField(characterPlayer, "faction", FadingSunsTheme.CHARACTER_BASICS_FONT_SIZE,
+				MAX_VALUE_LENGTH));
+		table.addCell(createField(characterPlayer, "rank", FadingSunsTheme.CHARACTER_BASICS_FONT_SIZE, MAX_VALUE_LENGTH));
 
 		final PdfPCell cell = new PdfPCell();
 		setCellProperties(cell);
