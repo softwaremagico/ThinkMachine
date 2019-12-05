@@ -62,9 +62,9 @@ public class JsonTests {
 	private String originalPartyJson;
 
 	@BeforeClass
-	public void clearCache() throws InvalidXmlElementException, TooManyBlessingsException,
-			TooManyCyberneticDevicesException, RequiredCyberneticDevicesException, BlessingAlreadyAddedException,
-			BeneficeAlreadyAddedException {
+	public void clearCache()
+			throws InvalidXmlElementException, TooManyBlessingsException, TooManyCyberneticDevicesException,
+			RequiredCyberneticDevicesException, BlessingAlreadyAddedException, BeneficeAlreadyAddedException {
 		LanguagePool.clearCache();
 		player = CustomCharacter.create(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
 		Assert.assertEquals(CostCalculator.getCost(player), 50);
@@ -75,7 +75,6 @@ public class JsonTests {
 
 	@Test
 	public void exportCharacterPlayerToJson() throws InvalidXmlElementException, IOException {
-		Assert.assertNotNull(player);
 		originalPlayerJson = CharacterJsonManager.toJson(player);
 		try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(OUTPUT_CHARACTER_PATH)), true)) {
 			out.println(originalPlayerJson);
@@ -83,7 +82,7 @@ public class JsonTests {
 	}
 
 	@Test(dependsOnMethods = { "exportCharacterPlayerToJson" })
-	public void importCharacterPlayerFromJson() throws IOException, InvalidXmlElementException {
+	public void importCharacterPlayerFromJson() throws IOException, InvalidXmlElementException, InvalidJsonException {
 		final CharacterPlayer player = CharacterJsonManager.fromFile(OUTPUT_CHARACTER_PATH);
 		Assert.assertEquals(CostCalculator.getCost(player), 50);
 		Assert.assertEquals(CharacterJsonManager.toJson(player), originalPlayerJson);
@@ -91,7 +90,6 @@ public class JsonTests {
 
 	@Test
 	public void exportPartyToJson() throws InvalidXmlElementException, IOException {
-		Assert.assertNotNull(party);
 		originalPartyJson = PartyJsonManager.toJson(party);
 		try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(OUTPUT_PARTY_PATH)), true)) {
 			out.println(originalPartyJson);
@@ -99,7 +97,7 @@ public class JsonTests {
 	}
 
 	@Test(dependsOnMethods = { "exportPartyToJson" })
-	public void importPartyFromJson() throws IOException, InvalidXmlElementException {
+	public void importPartyFromJson() throws IOException, InvalidXmlElementException, InvalidJsonException {
 		final Party party = PartyJsonManager.fromFile(OUTPUT_PARTY_PATH);
 		Assert.assertEquals(CostCalculator.getCost(party.getMembers().iterator().next()), 50);
 		Assert.assertEquals(PartyJsonManager.toJson(party), originalPartyJson);

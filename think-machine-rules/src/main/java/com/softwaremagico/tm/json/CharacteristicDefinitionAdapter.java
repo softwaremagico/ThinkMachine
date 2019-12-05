@@ -36,6 +36,10 @@ import com.softwaremagico.tm.log.MachineLog;
 
 public class CharacteristicDefinitionAdapter extends ElementAdapter<CharacteristicDefinition> {
 
+	protected CharacteristicDefinitionAdapter(String language, String moduleName) {
+		super(language, moduleName);
+	}
+
 	@Override
 	public CharacteristicDefinition deserialize(JsonElement jsonElement, Type type,
 			JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {

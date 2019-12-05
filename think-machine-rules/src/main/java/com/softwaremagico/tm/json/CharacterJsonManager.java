@@ -48,7 +48,7 @@ import com.softwaremagico.tm.character.races.Race;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.character.values.IValue;
 
-public class CharacterJsonManager {
+public class CharacterJsonManager extends JsonManager {
 
 	public static String toJson(CharacterPlayer characterPlayer) {
 		if (characterPlayer != null) {
@@ -56,16 +56,26 @@ public class CharacterJsonManager {
 			gsonBuilder.setPrettyPrinting();
 			gsonBuilder.setExclusionStrategies(new AnnotationExclusionStrategy()).create();
 			gsonBuilder.registerTypeAdapter(IValue.class, new IValueSerializer<IValue>());
-			gsonBuilder.registerTypeAdapter(Faction.class, new FactionAdapter());
-			gsonBuilder.registerTypeAdapter(Blessing.class, new BlessingAdapter());
-			gsonBuilder.registerTypeAdapter(AvailableBenefice.class, new AvailableBeneficeAdapter());
-			gsonBuilder.registerTypeAdapter(AvailableSkill.class, new AvailableSkillAdapter());
-			gsonBuilder.registerTypeAdapter(CharacteristicDefinition.class, new CharacteristicDefinitionAdapter());
-			gsonBuilder.registerTypeAdapter(Race.class, new RaceAdapter());
-			gsonBuilder.registerTypeAdapter(Weapon.class, new WeaponAdapter());
-			gsonBuilder.registerTypeAdapter(Armour.class, new ArmourAdapter());
-			gsonBuilder.registerTypeAdapter(Shield.class, new ShieldAdapter());
-			gsonBuilder.registerTypeAdapter(CyberneticDevice.class, new CyberneticDeviceAdapter());
+			gsonBuilder.registerTypeAdapter(Faction.class,
+					new FactionAdapter(characterPlayer.getLanguage(), characterPlayer.getModuleName()));
+			gsonBuilder.registerTypeAdapter(Blessing.class,
+					new BlessingAdapter(characterPlayer.getLanguage(), characterPlayer.getModuleName()));
+			gsonBuilder.registerTypeAdapter(AvailableBenefice.class,
+					new AvailableBeneficeAdapter(characterPlayer.getLanguage(), characterPlayer.getModuleName()));
+			gsonBuilder.registerTypeAdapter(AvailableSkill.class,
+					new AvailableSkillAdapter(characterPlayer.getLanguage(), characterPlayer.getModuleName()));
+			gsonBuilder.registerTypeAdapter(CharacteristicDefinition.class, new CharacteristicDefinitionAdapter(
+					characterPlayer.getLanguage(), characterPlayer.getModuleName()));
+			gsonBuilder.registerTypeAdapter(Race.class,
+					new RaceAdapter(characterPlayer.getLanguage(), characterPlayer.getModuleName()));
+			gsonBuilder.registerTypeAdapter(Weapon.class,
+					new WeaponAdapter(characterPlayer.getLanguage(), characterPlayer.getModuleName()));
+			gsonBuilder.registerTypeAdapter(Armour.class,
+					new ArmourAdapter(characterPlayer.getLanguage(), characterPlayer.getModuleName()));
+			gsonBuilder.registerTypeAdapter(Shield.class,
+					new ShieldAdapter(characterPlayer.getLanguage(), characterPlayer.getModuleName()));
+			gsonBuilder.registerTypeAdapter(CyberneticDevice.class,
+					new CyberneticDeviceAdapter(characterPlayer.getLanguage(), characterPlayer.getModuleName()));
 			// final Gson gson = new
 			// GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
 			final Gson gson = gsonBuilder.create();
@@ -75,21 +85,25 @@ public class CharacterJsonManager {
 		return null;
 	}
 
-	public static CharacterPlayer fromJson(String jsonText) {
+	public static CharacterPlayer fromJson(String jsonText) throws InvalidJsonException {
 		if (jsonText != null && jsonText.length() > 0) {
+			final String language = getLanguage(jsonText);
+			final String moduleName = getModuleName(jsonText);
 			final GsonBuilder gsonBuilder = new GsonBuilder();
 			gsonBuilder.setPrettyPrinting();
 			gsonBuilder.registerTypeAdapter(IValue.class, new InterfaceAdapter<IValue>());
-			gsonBuilder.registerTypeAdapter(Faction.class, new FactionAdapter());
-			gsonBuilder.registerTypeAdapter(Blessing.class, new BlessingAdapter());
-			gsonBuilder.registerTypeAdapter(AvailableBenefice.class, new AvailableBeneficeAdapter());
-			gsonBuilder.registerTypeAdapter(AvailableSkill.class, new AvailableSkillAdapter());
-			gsonBuilder.registerTypeAdapter(CharacteristicDefinition.class, new CharacteristicDefinitionAdapter());
-			gsonBuilder.registerTypeAdapter(Race.class, new RaceAdapter());
-			gsonBuilder.registerTypeAdapter(Weapon.class, new WeaponAdapter());
-			gsonBuilder.registerTypeAdapter(Armour.class, new ArmourAdapter());
-			gsonBuilder.registerTypeAdapter(Shield.class, new ShieldAdapter());
-			gsonBuilder.registerTypeAdapter(CyberneticDevice.class, new CyberneticDeviceAdapter());
+			gsonBuilder.registerTypeAdapter(Faction.class, new FactionAdapter(language, moduleName));
+			gsonBuilder.registerTypeAdapter(Blessing.class, new BlessingAdapter(language, moduleName));
+			gsonBuilder.registerTypeAdapter(AvailableBenefice.class,
+					new AvailableBeneficeAdapter(language, moduleName));
+			gsonBuilder.registerTypeAdapter(AvailableSkill.class, new AvailableSkillAdapter(language, moduleName));
+			gsonBuilder.registerTypeAdapter(CharacteristicDefinition.class,
+					new CharacteristicDefinitionAdapter(language, moduleName));
+			gsonBuilder.registerTypeAdapter(Race.class, new RaceAdapter(language, moduleName));
+			gsonBuilder.registerTypeAdapter(Weapon.class, new WeaponAdapter(language, moduleName));
+			gsonBuilder.registerTypeAdapter(Armour.class, new ArmourAdapter(language, moduleName));
+			gsonBuilder.registerTypeAdapter(Shield.class, new ShieldAdapter(language, moduleName));
+			gsonBuilder.registerTypeAdapter(CyberneticDevice.class, new CyberneticDeviceAdapter(language, moduleName));
 			final Gson gson = gsonBuilder.create();
 
 			final CharacterPlayer characterPlayer = gson.fromJson(jsonText, CharacterPlayer.class);
@@ -98,7 +112,7 @@ public class CharacterJsonManager {
 		return null;
 	}
 
-	public static CharacterPlayer fromFile(String path) throws IOException {
+	public static CharacterPlayer fromFile(String path) throws IOException, InvalidJsonException {
 		final String jsonText = new String(Files.readAllBytes(Paths.get(path)), StandardCharsets.UTF_8.name());
 		return fromJson(jsonText);
 	}

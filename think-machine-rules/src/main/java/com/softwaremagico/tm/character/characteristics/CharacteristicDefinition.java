@@ -4,6 +4,7 @@ import java.util.Objects;
 
 import com.softwaremagico.tm.Element;
 import com.softwaremagico.tm.character.values.IValue;
+import com.softwaremagico.tm.json.ExcludeFromJson;
 
 /*-
  * #%L
@@ -29,8 +30,11 @@ import com.softwaremagico.tm.character.values.IValue;
  * #L%
  */
 
-public class CharacteristicDefinition extends Element<CharacteristicDefinition> implements Comparable<CharacteristicDefinition>, IValue {
+public class CharacteristicDefinition extends Element<CharacteristicDefinition>
+		implements Comparable<CharacteristicDefinition>, IValue {
+	@ExcludeFromJson
 	private String abbreviature;
+	@ExcludeFromJson
 	private CharacteristicType type;
 
 	public CharacteristicDefinition(String id, String name, String language, String moduleName) {

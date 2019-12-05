@@ -1,6 +1,7 @@
 package com.softwaremagico.tm.character.skills;
 
 import com.softwaremagico.tm.character.values.IValue;
+import com.softwaremagico.tm.json.ExcludeFromJson;
 import com.softwaremagico.tm.random.definition.RandomElementDefinition;
 
 /*-
@@ -32,11 +33,12 @@ import com.softwaremagico.tm.random.definition.RandomElementDefinition;
  */
 public class AvailableSkill extends Skill<AvailableSkill> implements IValue {
 	private Specialization specialization = null;
+	@ExcludeFromJson
 	private SkillDefinition skillDefinition;
 
 	public AvailableSkill(SkillDefinition skillDefinition) {
-		super(skillDefinition.getId(), skillDefinition.getName(), skillDefinition.getLanguage(), skillDefinition
-				.getModuleName());
+		super(skillDefinition.getId(), skillDefinition.getName(), skillDefinition.getLanguage(),
+				skillDefinition.getModuleName());
 		this.skillDefinition = skillDefinition;
 	}
 

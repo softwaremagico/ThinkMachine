@@ -36,6 +36,10 @@ import com.softwaremagico.tm.log.MachineLog;
 
 public class ShieldAdapter extends ElementAdapter<Shield> {
 
+	protected ShieldAdapter(String language, String moduleName) {
+		super(language, moduleName);
+	}
+
 	@Override
 	public Shield deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext)
 			throws JsonParseException {

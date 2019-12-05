@@ -36,6 +36,10 @@ import com.softwaremagico.tm.log.MachineLog;
 
 public class WeaponAdapter extends ElementAdapter<Weapon> {
 
+	protected WeaponAdapter(String language, String moduleName) {
+		super(language, moduleName);
+	}
+
 	@Override
 	public Weapon deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext)
 			throws JsonParseException {

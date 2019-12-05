@@ -1,10 +1,10 @@
-package com.softwaremagico.tm.character;
+package com.softwaremagico.tm.json;
 
 /*-
  * #%L
- * Think Machine (Core)
+ * Think Machine (Rules)
  * %%
- * Copyright (C) 2017 - 2018 Softwaremagico
+ * Copyright (C) 2017 - 2019 Softwaremagico
  * %%
  * This software is designed by Jorge Hortelano Otero. Jorge Hortelano Otero
  * <softwaremagico@gmail.com> Valencia (Spain).
@@ -24,33 +24,10 @@ package com.softwaremagico.tm.character;
  * #L%
  */
 
-import com.softwaremagico.tm.Element;
-import com.softwaremagico.tm.character.factions.Faction;
+public class InvalidJsonException extends Exception {
+	private static final long serialVersionUID = -1523207707800773863L;
 
-public class Surname extends Element<Surname> {
-	private final Faction faction;
-
-	public Faction getFaction() {
-		return faction;
+	public InvalidJsonException(String string) {
+		super(string);
 	}
-
-	public Surname(String surname, String language, String moduleName, Faction faction) {
-		super(getId(surname, moduleName), surname, language, moduleName);
-		this.faction = faction;
-	}
-
-	@Override
-	public int hashCode() {
-		return super.hashCode();
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		return super.equals(obj);
-	}
-
-	private static String getId(String surname, String moduleName) {
-		return surname.toLowerCase() + "_" + moduleName.replaceAll("\\s+", "_").toLowerCase();
-	}
-
 }

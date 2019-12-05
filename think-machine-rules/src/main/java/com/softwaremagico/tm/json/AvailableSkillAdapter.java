@@ -38,6 +38,11 @@ import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.log.MachineLog;
 
 public class AvailableSkillAdapter extends ElementAdapter<AvailableSkill> {
+
+	protected AvailableSkillAdapter(String language, String moduleName) {
+		super(language, moduleName);
+	}
+
 	private static final String SPECIALIZATION = "specialization";
 
 	@Override

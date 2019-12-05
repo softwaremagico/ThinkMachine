@@ -6,6 +6,7 @@ import java.io.IOException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.file.PathManager;
 import com.softwaremagico.tm.json.CharacterJsonManager;
+import com.softwaremagico.tm.json.InvalidJsonException;
 import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.log.PdfExporterLog;
 import com.softwaremagico.tm.pdf.complete.CharacterSheet;
@@ -63,7 +64,7 @@ public class Main {
 				final CharacterPlayer player = CharacterJsonManager.fromFile(jsonFile);
 				sheet = new CharacterSheet(player);
 				sheet.createFile(destinationPath + "FadingSuns_" + language.toUpperCase() + ".pdf");
-			} catch (IOException e) {
+			} catch (IOException | InvalidJsonException e) {
 				PdfExporterLog.errorMessage(Main.class.getName(), e);
 			}
 		}

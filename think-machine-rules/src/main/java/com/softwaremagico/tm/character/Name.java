@@ -40,7 +40,7 @@ public class Name extends Element<Name> {
 	}
 
 	public Name(String name, String language, String moduleName, Gender gender, Faction faction) {
-		super(name.toLowerCase() + "_" + moduleName, name, language, moduleName);
+		super(getId(name, moduleName), name, language, moduleName);
 		this.gender = gender;
 		this.faction = faction;
 	}
@@ -57,6 +57,10 @@ public class Name extends Element<Name> {
 	@Override
 	public boolean equals(Object obj) {
 		return super.equals(obj);
+	}
+
+	private static String getId(String name, String moduleName) {
+		return name.toLowerCase() + "_" + moduleName.replaceAll("\\s+", "_").toLowerCase();
 	}
 
 }

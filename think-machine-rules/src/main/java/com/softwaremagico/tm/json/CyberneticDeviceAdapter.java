@@ -36,6 +36,10 @@ import com.softwaremagico.tm.log.MachineLog;
 
 public class CyberneticDeviceAdapter extends ElementAdapter<CyberneticDevice> {
 
+	protected CyberneticDeviceAdapter(String language, String moduleName) {
+		super(language, moduleName);
+	}
+
 	@Override
 	public CyberneticDevice deserialize(JsonElement jsonElement, Type type,
 			JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {

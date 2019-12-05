@@ -1,5 +1,7 @@
 package com.softwaremagico.tm.character.characteristics;
 
+import com.softwaremagico.tm.json.ExcludeFromJson;
+
 /*-
  * #%L
  * Think Machine (Core)
@@ -28,11 +30,12 @@ public class Characteristic extends CharacteristicDefinition {
 	public static final int DEFAULT_INITIAL_VALUE = 3;
 	public static final int MAX_VALUE = 12;
 	private int value;
+	@ExcludeFromJson
 	private final CharacteristicDefinition characteristicDefinition;
 
 	public Characteristic(CharacteristicDefinition characteristicDefinition) {
-		super(characteristicDefinition.getId(), characteristicDefinition.getName(), characteristicDefinition
-				.getLanguage(), characteristicDefinition.getModuleName());
+		super(characteristicDefinition.getId(), characteristicDefinition.getName(),
+				characteristicDefinition.getLanguage(), characteristicDefinition.getModuleName());
 		setAbbreviature(characteristicDefinition.getAbbreviature());
 		setType(characteristicDefinition.getType());
 		this.characteristicDefinition = characteristicDefinition;

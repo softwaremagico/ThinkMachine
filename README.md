@@ -116,4 +116,5 @@ Fonts used in this project: DejaVuSans, ArchitectsDaughter and Roman Antique.
 
 0.5.0 Performance improvements and code checks. 
 
-0.6.0 Modules system.
+0.6.0 Modules system and some improvements
+- 0.6.1 Improvements in Json exporter

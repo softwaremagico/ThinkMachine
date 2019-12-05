@@ -25,7 +25,6 @@ package com.softwaremagico.tm.pdf.complete.fighting;
  */
 
 import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.character.equipment.DamageType;
 import com.softwaremagico.tm.character.equipment.weapons.Ammunition;
 import com.softwaremagico.tm.character.equipment.weapons.Weapon;
 import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
@@ -78,9 +77,10 @@ public class WeaponsTable extends LateralHeaderPdfPTable {
 				}
 				addCell(createElementLine(stringBuilder.toString(), DAMAGE_COLUMN_WIDTH,
 						FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
-				addCell(createElementLine(weapon.getShots() == null ? characterPlayer.getStrengthDamangeModification()
-						+ "" : weapon.getStrengthOrRange(), RANGE_COLUMN_WIDTH,
-						FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
+				addCell(createElementLine(
+						weapon.getShots() == null ? characterPlayer.getStrengthDamangeModification() + ""
+								: weapon.getStrengthOrRange(),
+						RANGE_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
 				addCell(createElementLine(weapon.getShots() + "", SHOTS_COLUMN_WIDTH,
 						FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
 				addCell(createElementLine(weapon.getRate(), RATE_COLUMN_WIDTH,
@@ -96,8 +96,8 @@ public class WeaponsTable extends LateralHeaderPdfPTable {
 					addCell(createFirstElementLine(" - " + ammunition.getName(), NAME_COLUMN_WIDTH,
 							FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
 					addCell(createElementLine("", ROLL_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
-					addCell(createElementLine((ammunition.getGoal() != null ? weapon.getGoal() : ""),
-							GOAL_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
+					addCell(createElementLine((ammunition.getGoal() != null ? weapon.getGoal() : ""), GOAL_COLUMN_WIDTH,
+							FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
 					addCell(createElementLine(ammunition.getDamage() + "d", DAMAGE_COLUMN_WIDTH,
 							FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
 					addCell(createElementLine(ammunition.getStrengthOrRange(), RANGE_COLUMN_WIDTH,

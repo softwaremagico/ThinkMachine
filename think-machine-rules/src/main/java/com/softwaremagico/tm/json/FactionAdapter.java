@@ -36,9 +36,13 @@ import com.softwaremagico.tm.log.MachineLog;
 
 public class FactionAdapter extends ElementAdapter<Faction> {
 
+	protected FactionAdapter(String language, String moduleName) {
+		super(language, moduleName);
+	}
+
 	@Override
-	public Faction deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext)
-			throws JsonParseException {
+	public Faction deserialize(JsonElement jsonElement, Type type,
+			JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
 		try {
 			return FactionsFactory.getInstance().getElement(super.getElementId(jsonElement),
 					super.getLanguage(jsonElement), super.getModuleName(jsonElement));

@@ -36,8 +36,13 @@ import com.softwaremagico.tm.log.MachineLog;
 
 public class ArmourAdapter extends ElementAdapter<Armour> {
 
+	protected ArmourAdapter(String language, String moduleName) {
+		super(language, moduleName);
+	}
+
 	@Override
-	public Armour deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
+	public Armour deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext)
+			throws JsonParseException {
 		try {
 			return ArmourFactory.getInstance().getElement(super.getElementId(jsonElement),
 					super.getLanguage(jsonElement), super.getModuleName(jsonElement));

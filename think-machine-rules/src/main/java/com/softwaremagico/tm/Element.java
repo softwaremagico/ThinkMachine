@@ -31,8 +31,10 @@ public class Element<T extends Element<?>> implements Comparable<T> {
 
 	private final String id;
 
+	@ExcludeFromJson
 	private final String name;
 
+	@ExcludeFromJson
 	private final String moduleName;
 
 	@ExcludeFromJson
