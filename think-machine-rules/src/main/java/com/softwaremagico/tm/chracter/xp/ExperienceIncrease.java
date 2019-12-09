@@ -2,17 +2,15 @@ package com.softwaremagico.tm.chracter.xp;
 
 import java.util.Date;
 
-import com.softwaremagico.tm.Element;
-
 public class ExperienceIncrease implements Comparable<ExperienceIncrease> {
-	private final Element<?> element;
+	private final String elementId;
 	private final Integer rank;
 	private final Integer cost;
 	private final Date createdAt;
 
-	public ExperienceIncrease(Element<?> element, int rank, int cost) {
+	public ExperienceIncrease(String elementId, int rank, int cost) {
 		this.createdAt = new Date();
-		this.element = element;
+		this.elementId = elementId;
 		this.rank = Integer.valueOf(rank);
 		this.cost = Integer.valueOf(cost);
 	}
@@ -21,8 +19,8 @@ public class ExperienceIncrease implements Comparable<ExperienceIncrease> {
 		return createdAt;
 	}
 
-	public Element<?> getElement() {
-		return element;
+	public String getElementId() {
+		return elementId;
 	}
 
 	public Integer getRank() {
@@ -33,7 +31,7 @@ public class ExperienceIncrease implements Comparable<ExperienceIncrease> {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((element == null) ? 0 : element.hashCode());
+		result = prime * result + ((elementId == null) ? 0 : elementId.hashCode());
 		result = prime * result + ((rank == null) ? 0 : rank.hashCode());
 		return result;
 	}
@@ -50,11 +48,11 @@ public class ExperienceIncrease implements Comparable<ExperienceIncrease> {
 			return false;
 		}
 		final ExperienceIncrease other = (ExperienceIncrease) obj;
-		if (element == null) {
-			if (other.element != null) {
+		if (elementId == null) {
+			if (other.elementId != null) {
 				return false;
 			}
-		} else if (!element.equals(other.element)) {
+		} else if (!elementId.equals(other.elementId)) {
 			return false;
 		}
 		if (rank == null) {

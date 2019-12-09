@@ -29,12 +29,21 @@ import org.testng.annotations.Test;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.character.benefices.BeneficeAlreadyAddedException;
+import com.softwaremagico.tm.character.blessings.BlessingAlreadyAddedException;
+import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
+import com.softwaremagico.tm.character.creation.CostCalculator;
+import com.softwaremagico.tm.character.cybernetics.RequiredCyberneticDevicesException;
+import com.softwaremagico.tm.character.cybernetics.TooManyCyberneticDevicesException;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.character.skills.InvalidSkillException;
+import com.softwaremagico.tm.characters.CustomCharacter;
 import com.softwaremagico.tm.chracter.xp.ElementCannotBeUpgradeWithExperienceException;
 import com.softwaremagico.tm.chracter.xp.NotEnoughExperienceException;
 import com.softwaremagico.tm.file.PathManager;
+import com.softwaremagico.tm.json.CharacterJsonManager;
+import com.softwaremagico.tm.json.InvalidJsonException;
 
 @Test(groups = { "experience" })
 public class ExperienceTests {
@@ -142,5 +151,29 @@ public class ExperienceTests {
 
 		player.setEarnedExperience(12);
 		player.setIncreaseRanksUsingExperience(player.getCharacteristic(CharacteristicName.STRENGTH), 1);
+	}
+
+	@Test
+	public void checkJsonConverter()
+			throws TooManyBlessingsException, BlessingAlreadyAddedException, BeneficeAlreadyAddedException,
+			InvalidXmlElementException, TooManyCyberneticDevicesException, RequiredCyberneticDevicesException,
+			NotEnoughExperienceException, ElementCannotBeUpgradeWithExperienceException, InvalidJsonException {
+		CharacterPlayer player = CustomCharacter.create(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+		Assert.assertEquals(CostCalculator.getCost(player), 50);
+
+		player.setEarnedExperience(100);
+		player.setIncreaseRanksUsingExperience(player.getCharacteristic(CharacteristicName.PERCEPTION), 1);
+		player.setIncreaseRanksUsingExperience(AvailableSkillsFactory.getInstance().getElement("influence", LANGUAGE,
+				PathManager.DEFAULT_MODULE_FOLDER), 2);
+
+		String jsonText = CharacterJsonManager.toJson(player);
+		final CharacterPlayer playerImported = CharacterJsonManager.fromJson(jsonText);
+
+		Assert.assertEquals((int) playerImported.getEarnedExperience(), 100);
+		Assert.assertEquals((int) playerImported.getSkillTotalRanks(AvailableSkillsFactory.getInstance()
+				.getElement("influence", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)), 7);
+		Assert.assertEquals((int) playerImported.getValue(CharacteristicName.PERCEPTION), 6);
+		Assert.assertEquals(player.getExpendedExperience(), (18 + 12 + 14));
+
 	}
 }

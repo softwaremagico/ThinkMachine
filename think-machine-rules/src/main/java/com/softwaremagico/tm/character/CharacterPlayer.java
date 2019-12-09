@@ -248,7 +248,7 @@ public class CharacterPlayer {
 	}
 
 	public Integer getWyrdValue() throws InvalidXmlElementException {
-		return getBasicWyrdValue() + getExtraWyrd() + getBlessingModificationAlways(
+		return getBasicWyrdValue() + getExtraWyrd() + experience.getExtraWyrd() + getBlessingModificationAlways(
 				SpecialValuesFactory.getInstance().getElement(SpecialValue.WYRD, getLanguage(), getModuleName()));
 	}
 
@@ -800,7 +800,7 @@ public class CharacterPlayer {
 	public int getExpendedExperience() {
 		int expendedExperience = 0;
 		// Experience spent on skills.
-		for (final Entry<Element<?>, Set<ExperienceIncrease>> elementsImproved : experience.getRanksIncreased()
+		for (final Entry<String, Set<ExperienceIncrease>> elementsImproved : experience.getRanksIncreased()
 				.entrySet()) {
 			for (final ExperienceIncrease experienceIncrease : elementsImproved.getValue()) {
 				expendedExperience += experienceIncrease.getCost();

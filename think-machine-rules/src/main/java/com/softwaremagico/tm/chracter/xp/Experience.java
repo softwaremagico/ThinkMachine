@@ -13,7 +13,9 @@ import com.softwaremagico.tm.character.skills.SkillGroup;
 
 public class Experience {
 	private int totalExperience = 0;
-	private final Map<Element<?>, Set<ExperienceIncrease>> ranksIncreased;
+	// Element id, set of increases.
+	private final Map<String, Set<ExperienceIncrease>> ranksIncreased;
+	private int extraWyrd = 0;
 
 	public Experience() {
 		ranksIncreased = new HashMap<>();
@@ -23,29 +25,29 @@ public class Experience {
 		return totalExperience;
 	}
 
-	public Map<Element<?>, Set<ExperienceIncrease>> getRanksIncreased() {
+	public Map<String, Set<ExperienceIncrease>> getRanksIncreased() {
 		return Collections.unmodifiableMap(ranksIncreased);
 	}
 
 	public Set<ExperienceIncrease> getExperienceIncreased(Element<?> element) {
-		if (getRanksIncreased().get(element) == null) {
+		if (getRanksIncreased().get(element.getId()) == null) {
 			return new HashSet<>();
 		}
-		return getRanksIncreased().get(element);
+		return getRanksIncreased().get(element.getId());
 	}
 
 	public ExperienceIncrease setExperienceIncrease(Element<?> element, int value, int cost) {
-		if (ranksIncreased.get(element) == null) {
-			ranksIncreased.put(element, new HashSet<>());
+		if (ranksIncreased.get(element.getId()) == null) {
+			ranksIncreased.put(element.getId(), new HashSet<>());
 		}
-		final ExperienceIncrease experienceIncrease = new ExperienceIncrease(element, value, cost);
-		ranksIncreased.get(element).add(experienceIncrease);
+		final ExperienceIncrease experienceIncrease = new ExperienceIncrease(element.getId(), value, cost);
+		ranksIncreased.get(element.getId()).add(experienceIncrease);
 		return experienceIncrease;
 	}
 
 	public void remove(ExperienceIncrease experienceIncrease) {
-		if (ranksIncreased.get(experienceIncrease.getElement()) != null) {
-			ranksIncreased.get(experienceIncrease.getElement()).remove(experienceIncrease);
+		if (ranksIncreased.get(experienceIncrease.getElementId()) != null) {
+			ranksIncreased.get(experienceIncrease.getElementId()).remove(experienceIncrease);
 		}
 	}
 
@@ -67,5 +69,13 @@ public class Experience {
 
 	public void setTotalExperience(int totalExperience) {
 		this.totalExperience = totalExperience;
+	}
+
+	public int getExtraWyrd() {
+		return extraWyrd;
+	}
+
+	public void setExtraWyrd(int extraWyrd) {
+		this.extraWyrd = extraWyrd;
 	}
 }
