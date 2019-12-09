@@ -32,11 +32,11 @@ import com.softwaremagico.tm.character.characteristics.Characteristic;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.character.skills.SkillGroup;
 
-public class ExperienceManager {
+public class Experience {
 	private int totalExperience = 0;
 	private final Map<Element<?>, Integer> ranksIncreased;
 
-	public ExperienceManager() {
+	public Experience() {
 		ranksIncreased = new HashMap<>();
 	}
 
