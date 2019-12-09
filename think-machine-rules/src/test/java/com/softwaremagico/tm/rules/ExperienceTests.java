@@ -32,8 +32,8 @@ import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.character.skills.InvalidSkillException;
+import com.softwaremagico.tm.chracter.xp.NotEnoughExperienceException;
 import com.softwaremagico.tm.file.PathManager;
-import com.softwaremagico.tm.xp.NotEnoughExperienceException;
 
 @Test(groups = { "experience" })
 public class ExperienceTests {

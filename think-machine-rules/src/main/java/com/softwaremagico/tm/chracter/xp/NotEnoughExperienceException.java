@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.xp;
+package com.softwaremagico.tm.chracter.xp;
 
 /*-
  * #%L
@@ -24,14 +24,14 @@ package com.softwaremagico.tm.xp;
  * #L%
  */
 
-public class ElementCannotBeUpgradeWithExperienceException extends Exception {
-	private static final long serialVersionUID = -521232631873986474L;
+public class NotEnoughExperienceException extends Exception {
+	private static final long serialVersionUID = 3107150469275906743L;
 
-	public ElementCannotBeUpgradeWithExperienceException(String string) {
+	public NotEnoughExperienceException(String string) {
 		super(string);
 	}
 
-	public ElementCannotBeUpgradeWithExperienceException(String string, Throwable e) {
+	public NotEnoughExperienceException(String string, Throwable e) {
 		super(string, e);
 	}
 }

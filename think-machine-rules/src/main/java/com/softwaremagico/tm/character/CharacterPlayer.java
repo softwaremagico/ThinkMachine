@@ -95,12 +95,12 @@ import com.softwaremagico.tm.character.values.IValue;
 import com.softwaremagico.tm.character.values.SpecialValue;
 import com.softwaremagico.tm.character.values.SpecialValuesFactory;
 import com.softwaremagico.tm.character.values.StaticValue;
+import com.softwaremagico.tm.chracter.xp.ElementCannotBeUpgradeWithExperienceException;
+import com.softwaremagico.tm.chracter.xp.ExperienceManager;
+import com.softwaremagico.tm.chracter.xp.NotEnoughExperienceException;
 import com.softwaremagico.tm.log.CostCalculatorLog;
 import com.softwaremagico.tm.log.MachineLog;
 import com.softwaremagico.tm.txt.CharacterSheet;
-import com.softwaremagico.tm.xp.ElementCannotBeUpgradeWithExperienceException;
-import com.softwaremagico.tm.xp.ExperienceManager;
-import com.softwaremagico.tm.xp.NotEnoughExperienceException;
 
 public class CharacterPlayer {
 	private final String language;
