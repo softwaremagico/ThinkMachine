@@ -63,7 +63,32 @@ public class ExperienceTests {
 		Assert.assertEquals((int) player.getSkillTotalRanks(AvailableSkillsFactory.getInstance().getElement("influence",
 				LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)), 7);
 		Assert.assertEquals(player.getExpendedExperience(), 26);
+	}
 
+	@Test
+	public void addOneRankToLoreSkill()
+			throws InvalidSkillException, InvalidXmlElementException, NotEnoughExperienceException {
+		final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("phoenixEmpireLore", LANGUAGE,
+				PathManager.DEFAULT_MODULE_FOLDER), 5);
+
+		player.setEarnedExperience(9);
+		player.setIncreaseByExperience(AvailableSkillsFactory.getInstance().getElement("phoenixEmpireLore", LANGUAGE,
+				PathManager.DEFAULT_MODULE_FOLDER), 1);
+		Assert.assertEquals((int) player.getSkillAssignedRanks(AvailableSkillsFactory.getInstance()
+				.getElement("phoenixEmpireLore", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)), 5);
+		Assert.assertEquals((int) player.getSkillTotalRanks(AvailableSkillsFactory.getInstance()
+				.getElement("phoenixEmpireLore", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)), 6);
+		Assert.assertEquals(player.getExpendedExperience(), 9);
+
+		player.setEarnedExperience(19);
+		player.setIncreaseByExperience(AvailableSkillsFactory.getInstance().getElement("phoenixEmpireLore", LANGUAGE,
+				PathManager.DEFAULT_MODULE_FOLDER), 2);
+		Assert.assertEquals((int) player.getSkillAssignedRanks(AvailableSkillsFactory.getInstance()
+				.getElement("phoenixEmpireLore", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)), 5);
+		Assert.assertEquals((int) player.getSkillTotalRanks(AvailableSkillsFactory.getInstance()
+				.getElement("phoenixEmpireLore", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)), 7);
+		Assert.assertEquals(player.getExpendedExperience(), 19);
 	}
 
 	@Test(expectedExceptions = { NotEnoughExperienceException.class })

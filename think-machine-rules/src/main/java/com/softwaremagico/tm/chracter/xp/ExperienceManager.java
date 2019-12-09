@@ -30,6 +30,7 @@ import java.util.Map;
 import com.softwaremagico.tm.Element;
 import com.softwaremagico.tm.character.characteristics.Characteristic;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
+import com.softwaremagico.tm.character.skills.SkillGroup;
 
 public class ExperienceManager {
 	private int totalExperience = 0;
@@ -50,6 +51,10 @@ public class ExperienceManager {
 	public static int getExperienceCostToImprove(Element<?> element, int currentValue)
 			throws ElementCannotBeUpgradeWithExperienceException {
 		if (element instanceof AvailableSkill) {
+			// Lore skills are cheaper
+			if (((AvailableSkill) element).getSkillDefinition().getSkillGroup().equals(SkillGroup.LORE)) {
+				return (int) ((currentValue + 1) * 1.5);
+			}
 			return (currentValue + 1) * 2;
 		}
 		if (element instanceof Characteristic) {
