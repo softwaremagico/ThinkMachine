@@ -247,7 +247,7 @@ public class CharacterPlayer {
 	}
 
 	public Integer getWyrdValue() throws InvalidXmlElementException {
-		return getBasicWyrdValue() + occultism.getExtraWyrd() + getBlessingModificationAlways(
+		return getBasicWyrdValue() + getExtraWyrd() + getBlessingModificationAlways(
 				SpecialValuesFactory.getInstance().getElement(SpecialValue.WYRD, getLanguage(), getModuleName()));
 	}
 
