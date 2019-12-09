@@ -8,6 +8,7 @@ import java.util.Set;
 
 import com.softwaremagico.tm.Element;
 import com.softwaremagico.tm.character.characteristics.Characteristic;
+import com.softwaremagico.tm.character.occultism.OccultismType;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.character.skills.SkillGroup;
 
@@ -75,6 +76,9 @@ public class Experience {
 			return valueToPurchase * 2;
 		}
 		if (element instanceof Characteristic) {
+			return valueToPurchase * 3;
+		}
+		if (element instanceof OccultismType) {
 			return valueToPurchase * 3;
 		}
 		throw new ElementCannotBeUpgradeWithExperienceException(

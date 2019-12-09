@@ -160,13 +160,13 @@ public class CostCalculator {
 		cost += characterPlayer.getExtraWyrd() * EXTRA_WYRD_COST;
 		cost += Math.max(
 				0,
-				(characterPlayer.getPsiqueLevel(OccultismTypeFactory.getPsi(characterPlayer.getLanguage(),
+				(characterPlayer.getBasicPsiqueLevel(OccultismTypeFactory.getPsi(characterPlayer.getLanguage(),
 						characterPlayer.getModuleName())) - (characterPlayer.getRace() != null ? characterPlayer
 						.getRace().getPsi() : 0))
 						* PSIQUE_LEVEL_COST);
 		cost += Math.max(
 				0,
-				(characterPlayer.getPsiqueLevel(OccultismTypeFactory.getTheurgy(characterPlayer.getLanguage(),
+				(characterPlayer.getBasicPsiqueLevel(OccultismTypeFactory.getTheurgy(characterPlayer.getLanguage(),
 						characterPlayer.getModuleName())) - (characterPlayer.getRace() != null ? characterPlayer
 						.getRace().getTheurgy() : 0))
 						* PSIQUE_LEVEL_COST);

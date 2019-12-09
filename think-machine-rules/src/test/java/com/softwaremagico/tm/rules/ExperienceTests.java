@@ -36,6 +36,8 @@ import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.creation.CostCalculator;
 import com.softwaremagico.tm.character.cybernetics.RequiredCyberneticDevicesException;
 import com.softwaremagico.tm.character.cybernetics.TooManyCyberneticDevicesException;
+import com.softwaremagico.tm.character.factions.FactionsFactory;
+import com.softwaremagico.tm.character.occultism.OccultismTypeFactory;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.character.skills.InvalidSkillException;
 import com.softwaremagico.tm.characters.CustomCharacter;
@@ -172,6 +174,28 @@ public class ExperienceTests {
 		player.removeExperienceExtraWyrd(7);
 		Assert.assertEquals((int) player.getWyrdValue(), 6);
 		Assert.assertEquals(player.getExperienceExpended(), (12));
+	}
+
+	@Test
+	public void setPsiLevel() throws ElementCannotBeUpgradeWithExperienceException, InvalidXmlElementException,
+			NotEnoughExperienceException {
+		final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+		player.setFaction(
+				FactionsFactory.getInstance().getElement("hazat", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+		player.setPsiqueLevel(OccultismTypeFactory.getPsi(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER), 4);
+
+		player.setExperienceEarned(33);
+		player.setExperiencePsiLevel(OccultismTypeFactory.getPsi(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER), 2);
+		Assert.assertEquals(
+				(int) player.getPsiqueLevel(OccultismTypeFactory.getPsi(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)),
+				6);
+		Assert.assertEquals(player.getExperienceExpended(), (15 + 18));
+
+		player.removeExperiencePsiLevel(OccultismTypeFactory.getPsi(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER), 6);
+		Assert.assertEquals(
+				(int) player.getPsiqueLevel(OccultismTypeFactory.getPsi(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)),
+				5);
+		Assert.assertEquals(player.getExperienceExpended(), (15));
 	}
 
 	@Test

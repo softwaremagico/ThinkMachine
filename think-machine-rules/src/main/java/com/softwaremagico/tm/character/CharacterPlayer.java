@@ -794,6 +794,9 @@ public class CharacterPlayer {
 		} else if (element instanceof Characteristic) {
 			previousRanks = getRawValue(((Characteristic) element).getCharacteristicName())
 					+ getExperienceIncrease((Characteristic) element).size();
+		} else if (element instanceof OccultismType) {
+			previousRanks = getBasicPsiqueLevel((OccultismType) element)
+					+ getExperienceIncrease((OccultismType) element).size();
 		} else {
 			previousRanks = 0;
 		}
@@ -815,6 +818,20 @@ public class CharacterPlayer {
 
 	public Set<ExperienceIncrease> getExperienceIncrease(Element<?> element) {
 		return experience.getExperienceIncreased(element);
+	}
+
+	public void setExperiencePsiLevel(OccultismType occultismType, int addedValues)
+			throws NotEnoughExperienceException, ElementCannotBeUpgradeWithExperienceException {
+		setExperienceIncreasedRanks(occultismType, addedValues);
+	}
+
+	public Set<ExperienceIncrease> getExperiencePsiLevel(OccultismType occultismType) {
+		return getExperienceIncrease(occultismType);
+	}
+
+	public void removeExperiencePsiLevel(OccultismType occultismType, int ranks)
+			throws NotEnoughExperienceException, ElementCannotBeUpgradeWithExperienceException {
+		removeExperienceIncreasedRanks(occultismType, ranks);
 	}
 
 	public int getExperienceExpended() {
@@ -1119,8 +1136,12 @@ public class CharacterPlayer {
 		getOccultism().setExtraWyrd(extraWyrd);
 	}
 
-	public int getPsiqueLevel(OccultismType occultismType) {
+	public int getBasicPsiqueLevel(OccultismType occultismType) {
 		return getOccultism().getPsiqueLevel(occultismType);
+	}
+
+	public int getPsiqueLevel(OccultismType occultismType) {
+		return getBasicPsiqueLevel(occultismType) + getExperiencePsiLevel(occultismType).size();
 	}
 
 	public void setPsiqueLevel(OccultismType occultismType, int psyValue) throws InvalidPsiqueLevelException {
