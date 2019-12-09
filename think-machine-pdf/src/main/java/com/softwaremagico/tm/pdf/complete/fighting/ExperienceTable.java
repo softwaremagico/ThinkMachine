@@ -38,7 +38,7 @@ public class ExperienceTable extends LateralHeaderPdfPTable {
 
 		addCell(createLateralVerticalTitle(getTranslator().getTranslatedText("experience"), 1));
 		if (characterPlayer != null) {
-			final PdfPCell cell = createElementLine("" + characterPlayer.getRemainginExperience() + "-", 50,
+			final PdfPCell cell = createElementLine("" + characterPlayer.getEarnedExperience() + "-", 50,
 					FadingSunsTheme.EXPERIENCE_VALUE_FONT_SIZE);
 			cell.setHorizontalAlignment(Element.ALIGN_LEFT);
 			cell.setVerticalAlignment(Element.ALIGN_TOP);

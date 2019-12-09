@@ -37,6 +37,7 @@
 				<include name="blessings" />
 				<include name="occultism" />
 				<include name="exportTxt" />
+				<include name="experience" />
 			</run>
 		</groups>
 		<classes>
@@ -60,6 +61,7 @@
 			<class name="com.softwaremagico.tm.rules.BlessingTests" />
 			<class name="com.softwaremagico.tm.rules.OccultismTests" />
 			<class name="com.softwaremagico.tm.rules.CyberneticsTests" />
+			<class name="com.softwaremagico.tm.rules.ExperienceTests" />
 			<class name="com.softwaremagico.tm.txt.ExportTxtTests" />
 			<class name="com.softwaremagico.tm.txt.ExportTxtTests" />
 			<class name="com.softwaremagico.tm.json.JsonTests" />
