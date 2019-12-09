@@ -32,6 +32,7 @@ import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.character.skills.InvalidSkillException;
+import com.softwaremagico.tm.chracter.xp.ElementCannotBeUpgradeWithExperienceException;
 import com.softwaremagico.tm.chracter.xp.NotEnoughExperienceException;
 import com.softwaremagico.tm.file.PathManager;
 
@@ -40,14 +41,14 @@ public class ExperienceTests {
 	private static final String LANGUAGE = "es";
 
 	@Test
-	public void addOneRankToSkill()
-			throws InvalidSkillException, InvalidXmlElementException, NotEnoughExperienceException {
+	public void addOneByOneRankToSkill() throws InvalidSkillException, InvalidXmlElementException,
+			NotEnoughExperienceException, ElementCannotBeUpgradeWithExperienceException {
 		final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("influence", LANGUAGE,
 				PathManager.DEFAULT_MODULE_FOLDER), 5);
 
 		player.setEarnedExperience(12);
-		player.setIncreaseByExperience(AvailableSkillsFactory.getInstance().getElement("influence", LANGUAGE,
+		player.setIncreaseRanksUsingExperience(AvailableSkillsFactory.getInstance().getElement("influence", LANGUAGE,
 				PathManager.DEFAULT_MODULE_FOLDER), 1);
 		Assert.assertEquals((int) player.getSkillAssignedRanks(AvailableSkillsFactory.getInstance()
 				.getElement("influence", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)), 5);
@@ -56,7 +57,24 @@ public class ExperienceTests {
 		Assert.assertEquals(player.getExpendedExperience(), 12);
 
 		player.setEarnedExperience(26);
-		player.setIncreaseByExperience(AvailableSkillsFactory.getInstance().getElement("influence", LANGUAGE,
+		player.setIncreaseRanksUsingExperience(AvailableSkillsFactory.getInstance().getElement("influence", LANGUAGE,
+				PathManager.DEFAULT_MODULE_FOLDER), 1);
+		Assert.assertEquals((int) player.getSkillAssignedRanks(AvailableSkillsFactory.getInstance()
+				.getElement("influence", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)), 5);
+		Assert.assertEquals((int) player.getSkillTotalRanks(AvailableSkillsFactory.getInstance().getElement("influence",
+				LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)), 7);
+		Assert.assertEquals(player.getExpendedExperience(), 26);
+	}
+
+	@Test
+	public void addTwoRanksToSkill() throws InvalidSkillException, InvalidXmlElementException,
+			NotEnoughExperienceException, ElementCannotBeUpgradeWithExperienceException {
+		final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("influence", LANGUAGE,
+				PathManager.DEFAULT_MODULE_FOLDER), 5);
+
+		player.setEarnedExperience(26);
+		player.setIncreaseRanksUsingExperience(AvailableSkillsFactory.getInstance().getElement("influence", LANGUAGE,
 				PathManager.DEFAULT_MODULE_FOLDER), 2);
 		Assert.assertEquals((int) player.getSkillAssignedRanks(AvailableSkillsFactory.getInstance()
 				.getElement("influence", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)), 5);
@@ -66,15 +84,15 @@ public class ExperienceTests {
 	}
 
 	@Test
-	public void addOneRankToLoreSkill()
-			throws InvalidSkillException, InvalidXmlElementException, NotEnoughExperienceException {
+	public void addOneByOneRankToLoreSkill() throws InvalidSkillException, InvalidXmlElementException,
+			NotEnoughExperienceException, ElementCannotBeUpgradeWithExperienceException {
 		final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("phoenixEmpireLore", LANGUAGE,
 				PathManager.DEFAULT_MODULE_FOLDER), 5);
 
 		player.setEarnedExperience(9);
-		player.setIncreaseByExperience(AvailableSkillsFactory.getInstance().getElement("phoenixEmpireLore", LANGUAGE,
-				PathManager.DEFAULT_MODULE_FOLDER), 1);
+		player.setIncreaseRanksUsingExperience(AvailableSkillsFactory.getInstance().getElement("phoenixEmpireLore",
+				LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER), 1);
 		Assert.assertEquals((int) player.getSkillAssignedRanks(AvailableSkillsFactory.getInstance()
 				.getElement("phoenixEmpireLore", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)), 5);
 		Assert.assertEquals((int) player.getSkillTotalRanks(AvailableSkillsFactory.getInstance()
@@ -82,8 +100,8 @@ public class ExperienceTests {
 		Assert.assertEquals(player.getExpendedExperience(), 9);
 
 		player.setEarnedExperience(19);
-		player.setIncreaseByExperience(AvailableSkillsFactory.getInstance().getElement("phoenixEmpireLore", LANGUAGE,
-				PathManager.DEFAULT_MODULE_FOLDER), 2);
+		player.setIncreaseRanksUsingExperience(AvailableSkillsFactory.getInstance().getElement("phoenixEmpireLore",
+				LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER), 1);
 		Assert.assertEquals((int) player.getSkillAssignedRanks(AvailableSkillsFactory.getInstance()
 				.getElement("phoenixEmpireLore", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)), 5);
 		Assert.assertEquals((int) player.getSkillTotalRanks(AvailableSkillsFactory.getInstance()
@@ -92,37 +110,37 @@ public class ExperienceTests {
 	}
 
 	@Test(expectedExceptions = { NotEnoughExperienceException.class })
-	public void addOneRankToSkillNotPossible()
-			throws InvalidSkillException, InvalidXmlElementException, NotEnoughExperienceException {
+	public void addOneRankToSkillNotPossible() throws InvalidSkillException, InvalidXmlElementException,
+			NotEnoughExperienceException, ElementCannotBeUpgradeWithExperienceException {
 		final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("influence", LANGUAGE,
 				PathManager.DEFAULT_MODULE_FOLDER), 5);
 
 		player.setEarnedExperience(0);
-		player.setIncreaseByExperience(AvailableSkillsFactory.getInstance().getElement("influence", LANGUAGE,
+		player.setIncreaseRanksUsingExperience(AvailableSkillsFactory.getInstance().getElement("influence", LANGUAGE,
 				PathManager.DEFAULT_MODULE_FOLDER), 1);
 	}
 
 	@Test
-	public void addOneRankToCharacteristic()
-			throws InvalidSkillException, InvalidXmlElementException, NotEnoughExperienceException {
+	public void addOneRankToCharacteristic() throws InvalidSkillException, InvalidXmlElementException,
+			NotEnoughExperienceException, ElementCannotBeUpgradeWithExperienceException {
 		final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
 		player.getCharacteristic(CharacteristicName.STRENGTH).setValue(5);
 
 		player.setEarnedExperience(18);
-		player.setIncreaseByExperience(player.getCharacteristic(CharacteristicName.STRENGTH), 1);
+		player.setIncreaseRanksUsingExperience(player.getCharacteristic(CharacteristicName.STRENGTH), 1);
 		Assert.assertEquals((int) player.getRawValue(CharacteristicName.STRENGTH), 5);
 		Assert.assertEquals((int) player.getValue(CharacteristicName.STRENGTH), 6);
 		Assert.assertEquals(player.getExpendedExperience(), 18);
 	}
 
 	@Test(expectedExceptions = { NotEnoughExperienceException.class })
-	public void addOneRankToCharacteristicNotPossible()
-			throws InvalidSkillException, InvalidXmlElementException, NotEnoughExperienceException {
+	public void addOneRankToCharacteristicNotPossible() throws InvalidSkillException, InvalidXmlElementException,
+			NotEnoughExperienceException, ElementCannotBeUpgradeWithExperienceException {
 		final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
 		player.getCharacteristic(CharacteristicName.STRENGTH).setValue(5);
 
 		player.setEarnedExperience(12);
-		player.setIncreaseByExperience(player.getCharacteristic(CharacteristicName.STRENGTH), 1);
+		player.setIncreaseRanksUsingExperience(player.getCharacteristic(CharacteristicName.STRENGTH), 1);
 	}
 }

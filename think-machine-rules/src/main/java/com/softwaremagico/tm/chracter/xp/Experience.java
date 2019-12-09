@@ -1,31 +1,10 @@
 package com.softwaremagico.tm.chracter.xp;
 
-/*-
- * #%L
- * Think Machine (Rules)
- * %%
- * Copyright (C) 2017 - 2019 Softwaremagico
- * %%
- * This software is designed by Jorge Hortelano Otero. Jorge Hortelano Otero
- * <softwaremagico@gmail.com> Valencia (Spain).
- *  
- * This program is free software; you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by the Free Software
- * Foundation; either version 2 of the License, or (at your option) any later
- * version.
- *  
- * This program is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
- * details.
- *  
- * You should have received a copy of the GNU General Public License along with
- * this program; If not, see <http://www.gnu.org/licenses/gpl-3.0.html>.
- * #L%
- */
-
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import com.softwaremagico.tm.Element;
 import com.softwaremagico.tm.character.characteristics.Characteristic;
@@ -34,7 +13,7 @@ import com.softwaremagico.tm.character.skills.SkillGroup;
 
 public class Experience {
 	private int totalExperience = 0;
-	private final Map<Element<?>, Integer> ranksIncreased;
+	private final Map<Element<?>, Set<ExperienceIncrease>> ranksIncreased;
 
 	public Experience() {
 		ranksIncreased = new HashMap<>();
@@ -44,24 +23,46 @@ public class Experience {
 		return totalExperience;
 	}
 
-	public Map<Element<?>, Integer> getRanksIncreased() {
-		return ranksIncreased;
+	public Map<Element<?>, Set<ExperienceIncrease>> getRanksIncreased() {
+		return Collections.unmodifiableMap(ranksIncreased);
 	}
 
-	public static int getExperienceCostToImprove(Element<?> element, int currentValue)
+	public Set<ExperienceIncrease> getExperienceIncreased(Element<?> element) {
+		if (getRanksIncreased().get(element) == null) {
+			return new HashSet<>();
+		}
+		return getRanksIncreased().get(element);
+	}
+
+	public ExperienceIncrease setExperienceIncrease(Element<?> element, int value, int cost) {
+		if (ranksIncreased.get(element) == null) {
+			ranksIncreased.put(element, new HashSet<>());
+		}
+		final ExperienceIncrease experienceIncrease = new ExperienceIncrease(element, value, cost);
+		ranksIncreased.get(element).add(experienceIncrease);
+		return experienceIncrease;
+	}
+
+	public void remove(ExperienceIncrease experienceIncrease) {
+		if (ranksIncreased.get(experienceIncrease.getElement()) != null) {
+			ranksIncreased.get(experienceIncrease.getElement()).remove(experienceIncrease);
+		}
+	}
+
+	public static int getExperienceCostFor(Element<?> element, int valueToPurchase)
 			throws ElementCannotBeUpgradeWithExperienceException {
 		if (element instanceof AvailableSkill) {
 			// Lore skills are cheaper
 			if (((AvailableSkill) element).getSkillDefinition().getSkillGroup().equals(SkillGroup.LORE)) {
-				return (int) ((currentValue + 1) * 1.5);
+				return (int) (valueToPurchase * 1.5);
 			}
-			return (currentValue + 1) * 2;
+			return valueToPurchase * 2;
 		}
 		if (element instanceof Characteristic) {
-			return (currentValue + 1) * 3;
+			return valueToPurchase * 3;
 		}
 		throw new ElementCannotBeUpgradeWithExperienceException(
-				"Invalid element '" + element + "'. Experience cannot be used on it.");
+				"Not upgradable element '" + element + "'. Experience cannot be used on it.");
 	}
 
 	public void setTotalExperience(int totalExperience) {

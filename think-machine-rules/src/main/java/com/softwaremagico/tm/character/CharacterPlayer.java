@@ -97,6 +97,7 @@ import com.softwaremagico.tm.character.values.SpecialValuesFactory;
 import com.softwaremagico.tm.character.values.StaticValue;
 import com.softwaremagico.tm.chracter.xp.ElementCannotBeUpgradeWithExperienceException;
 import com.softwaremagico.tm.chracter.xp.Experience;
+import com.softwaremagico.tm.chracter.xp.ExperienceIncrease;
 import com.softwaremagico.tm.chracter.xp.NotEnoughExperienceException;
 import com.softwaremagico.tm.log.CostCalculatorLog;
 import com.softwaremagico.tm.log.MachineLog;
@@ -225,7 +226,7 @@ public class CharacterPlayer {
 		Integer value = getRawValue(characteristicName);
 
 		// Add XP modifications
-		value += getIncreaseByExperience(characteristics.get(characteristicName.getId()));
+		value += getIncreaseByExperience(characteristics.get(characteristicName.getId())).size();
 
 		// Add cybernetics modifications
 		value += getCyberneticsModificationAlways(getCharacteristic(characteristicName));
@@ -307,7 +308,7 @@ public class CharacterPlayer {
 					skills.get(skill.getUniqueId()).getAvailableSkill().getSkillDefinition());
 		}
 		// XP
-		skillValue += getIncreaseByExperience(skill);
+		skillValue += getIncreaseByExperience(skill).size();
 		// Cybernetics only if better.
 		if (cyberneticBonus != null) {
 			return Math.max(skillValue, cyberneticBonus);
@@ -768,43 +769,41 @@ public class CharacterPlayer {
 		experience.setTotalExperience(totalExperience);
 	}
 
-	public void setIncreaseByExperience(Element<?> element, int value) throws NotEnoughExperienceException {
-		experience.getRanksIncreased().put(element, value);
-		if (getExpendedExperience() > getEarnedExperience()) {
-			experience.getRanksIncreased().remove(element);
-			throw new NotEnoughExperienceException(
-					"Not enough experience to increase '" + value + "' ranks to element '" + element + "'.");
+	public void setIncreaseRanksUsingExperience(Element<?> element, int addedValues)
+			throws NotEnoughExperienceException, ElementCannotBeUpgradeWithExperienceException {
+		final int previousRanks;
+		if (element instanceof AvailableSkill) {
+			previousRanks = getSkillAssignedRanks((AvailableSkill) element)
+					+ getIncreaseByExperience((AvailableSkill) element).size();
+		} else if (element instanceof Characteristic) {
+			previousRanks = getRawValue(((Characteristic) element).getCharacteristicName())
+					+ getIncreaseByExperience((Characteristic) element).size();
+		} else {
+			previousRanks = 0;
+		}
+
+		for (int addedValue = 1; addedValue <= addedValues; addedValue++) {
+			final ExperienceIncrease increase = experience.setExperienceIncrease(element, previousRanks + addedValue,
+					Experience.getExperienceCostFor(element, previousRanks + addedValue));
+			if (getExpendedExperience() > getEarnedExperience()) {
+				experience.remove(increase);
+				throw new NotEnoughExperienceException(
+						"Not enough experience to increase '" + addedValue + "' ranks to element '" + element + "'.");
+			}
 		}
 	}
 
-	public int getIncreaseByExperience(Element<?> element) {
-		final Integer ranks = experience.getRanksIncreased().get(element);
-		if (ranks == null) {
-			return 0;
-		}
-		return ranks;
+	public Set<ExperienceIncrease> getIncreaseByExperience(Element<?> element) {
+		return experience.getExperienceIncreased(element);
 	}
 
 	public int getExpendedExperience() {
 		int expendedExperience = 0;
 		// Experience spent on skills.
-		for (final Entry<Element<?>, Integer> elementsImproved : experience.getRanksIncreased().entrySet()) {
-			final int ranksWithoutExperience;
-			if (elementsImproved.getKey() instanceof AvailableSkill) {
-				ranksWithoutExperience = getSkillAssignedRanks((AvailableSkill) elementsImproved.getKey());
-			} else if (elementsImproved.getKey() instanceof Characteristic) {
-				ranksWithoutExperience = getRawValue(
-						((Characteristic) elementsImproved.getKey()).getCharacteristicName());
-			} else {
-				ranksWithoutExperience = 0;
-			}
-			for (int i = 0; i < elementsImproved.getValue(); i++) {
-				try {
-					expendedExperience += Experience.getExperienceCostToImprove(elementsImproved.getKey(),
-							ranksWithoutExperience + i);
-				} catch (ElementCannotBeUpgradeWithExperienceException e) {
-					MachineLog.errorMessage(this.getClass().getName(), e);
-				}
+		for (final Entry<Element<?>, Set<ExperienceIncrease>> elementsImproved : experience.getRanksIncreased()
+				.entrySet()) {
+			for (final ExperienceIncrease experienceIncrease : elementsImproved.getValue()) {
+				expendedExperience += experienceIncrease.getCost();
 			}
 		}
 		return expendedExperience;
