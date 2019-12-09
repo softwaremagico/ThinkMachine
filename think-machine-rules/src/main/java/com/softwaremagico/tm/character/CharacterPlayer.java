@@ -226,7 +226,7 @@ public class CharacterPlayer {
 		Integer value = getRawValue(characteristicName);
 
 		// Add XP modifications
-		value += getIncreaseByExperience(characteristics.get(characteristicName.getId())).size();
+		value += getExperienceIncrease(characteristics.get(characteristicName.getId())).size();
 
 		// Add cybernetics modifications
 		value += getCyberneticsModificationAlways(getCharacteristic(characteristicName));
@@ -248,7 +248,7 @@ public class CharacterPlayer {
 	}
 
 	public Integer getWyrdValue() throws InvalidXmlElementException {
-		return getBasicWyrdValue() + getExtraWyrd() + experience.getExtraWyrd() + getBlessingModificationAlways(
+		return getBasicWyrdValue() + getExtraWyrd() + getExperienceExtraWyrd().size() + getBlessingModificationAlways(
 				SpecialValuesFactory.getInstance().getElement(SpecialValue.WYRD, getLanguage(), getModuleName()));
 	}
 
@@ -308,7 +308,7 @@ public class CharacterPlayer {
 					skills.get(skill.getUniqueId()).getAvailableSkill().getSkillDefinition());
 		}
 		// XP
-		skillValue += getIncreaseByExperience(skill).size();
+		skillValue += getExperienceIncrease(skill).size();
 		// Cybernetics only if better.
 		if (cyberneticBonus != null) {
 			return Math.max(skillValue, cyberneticBonus);
@@ -761,23 +761,39 @@ public class CharacterPlayer {
 		return skillPoints;
 	}
 
-	public int getEarnedExperience() {
+	public int getExperienceEarned() {
 		return experience.getTotalExperience();
 	}
 
-	public void setEarnedExperience(int totalExperience) {
+	public void setExperienceEarned(int totalExperience) {
 		experience.setTotalExperience(totalExperience);
 	}
 
-	public void setIncreaseRanksUsingExperience(Element<?> element, int addedValues)
+	public void setExperienceExtraWyrd(int addedValues) throws ElementCannotBeUpgradeWithExperienceException {
+		final int previousRanks = getBasicWyrdValue() + getExtraWyrd();
+		for (int addedValue = 1; addedValue <= addedValues; addedValue++) {
+			experience.setExtraWyrd(previousRanks + addedValue,
+					Experience.getExperienceCostForWyrd(previousRanks + addedValue));
+		}
+	}
+
+	public Set<ExperienceIncrease> getExperienceExtraWyrd() {
+		return experience.getExtraWyrd();
+	}
+
+	public void removeExperienceExtraWyrd(int ranks) {
+		experience.removeExtraWyrd(ranks);
+	}
+
+	public void setExperienceIncreasedRanks(Element<?> element, int addedValues)
 			throws NotEnoughExperienceException, ElementCannotBeUpgradeWithExperienceException {
 		final int previousRanks;
 		if (element instanceof AvailableSkill) {
 			previousRanks = getSkillAssignedRanks((AvailableSkill) element)
-					+ getIncreaseByExperience((AvailableSkill) element).size();
+					+ getExperienceIncrease((AvailableSkill) element).size();
 		} else if (element instanceof Characteristic) {
 			previousRanks = getRawValue(((Characteristic) element).getCharacteristicName())
-					+ getIncreaseByExperience((Characteristic) element).size();
+					+ getExperienceIncrease((Characteristic) element).size();
 		} else {
 			previousRanks = 0;
 		}
@@ -785,7 +801,7 @@ public class CharacterPlayer {
 		for (int addedValue = 1; addedValue <= addedValues; addedValue++) {
 			final ExperienceIncrease increase = experience.setExperienceIncrease(element, previousRanks + addedValue,
 					Experience.getExperienceCostFor(element, previousRanks + addedValue));
-			if (getExpendedExperience() > getEarnedExperience()) {
+			if (getExperienceExpended() > getExperienceEarned()) {
 				experience.remove(increase);
 				throw new NotEnoughExperienceException(
 						"Not enough experience to increase '" + addedValue + "' ranks to element '" + element + "'.");
@@ -793,11 +809,15 @@ public class CharacterPlayer {
 		}
 	}
 
-	public Set<ExperienceIncrease> getIncreaseByExperience(Element<?> element) {
+	public void removeExperienceIncreasedRanks(Element<?> element, int ranks) {
+		experience.remove(element, ranks);
+	}
+
+	public Set<ExperienceIncrease> getExperienceIncrease(Element<?> element) {
 		return experience.getExperienceIncreased(element);
 	}
 
-	public int getExpendedExperience() {
+	public int getExperienceExpended() {
 		int expendedExperience = 0;
 		// Experience spent on skills.
 		for (final Entry<String, Set<ExperienceIncrease>> elementsImproved : experience.getRanksIncreased()

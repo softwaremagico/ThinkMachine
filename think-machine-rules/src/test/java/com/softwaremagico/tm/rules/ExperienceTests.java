@@ -56,23 +56,23 @@ public class ExperienceTests {
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("influence", LANGUAGE,
 				PathManager.DEFAULT_MODULE_FOLDER), 5);
 
-		player.setEarnedExperience(12);
-		player.setIncreaseRanksUsingExperience(AvailableSkillsFactory.getInstance().getElement("influence", LANGUAGE,
+		player.setExperienceEarned(12);
+		player.setExperienceIncreasedRanks(AvailableSkillsFactory.getInstance().getElement("influence", LANGUAGE,
 				PathManager.DEFAULT_MODULE_FOLDER), 1);
 		Assert.assertEquals((int) player.getSkillAssignedRanks(AvailableSkillsFactory.getInstance()
 				.getElement("influence", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)), 5);
 		Assert.assertEquals((int) player.getSkillTotalRanks(AvailableSkillsFactory.getInstance().getElement("influence",
 				LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)), 6);
-		Assert.assertEquals(player.getExpendedExperience(), 12);
+		Assert.assertEquals(player.getExperienceExpended(), 12);
 
-		player.setEarnedExperience(26);
-		player.setIncreaseRanksUsingExperience(AvailableSkillsFactory.getInstance().getElement("influence", LANGUAGE,
+		player.setExperienceEarned(26);
+		player.setExperienceIncreasedRanks(AvailableSkillsFactory.getInstance().getElement("influence", LANGUAGE,
 				PathManager.DEFAULT_MODULE_FOLDER), 1);
 		Assert.assertEquals((int) player.getSkillAssignedRanks(AvailableSkillsFactory.getInstance()
 				.getElement("influence", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)), 5);
 		Assert.assertEquals((int) player.getSkillTotalRanks(AvailableSkillsFactory.getInstance().getElement("influence",
 				LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)), 7);
-		Assert.assertEquals(player.getExpendedExperience(), 26);
+		Assert.assertEquals(player.getExperienceExpended(), 26);
 	}
 
 	@Test
@@ -82,14 +82,20 @@ public class ExperienceTests {
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("influence", LANGUAGE,
 				PathManager.DEFAULT_MODULE_FOLDER), 5);
 
-		player.setEarnedExperience(26);
-		player.setIncreaseRanksUsingExperience(AvailableSkillsFactory.getInstance().getElement("influence", LANGUAGE,
+		player.setExperienceEarned(26);
+		player.setExperienceIncreasedRanks(AvailableSkillsFactory.getInstance().getElement("influence", LANGUAGE,
 				PathManager.DEFAULT_MODULE_FOLDER), 2);
 		Assert.assertEquals((int) player.getSkillAssignedRanks(AvailableSkillsFactory.getInstance()
 				.getElement("influence", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)), 5);
 		Assert.assertEquals((int) player.getSkillTotalRanks(AvailableSkillsFactory.getInstance().getElement("influence",
 				LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)), 7);
-		Assert.assertEquals(player.getExpendedExperience(), 26);
+		Assert.assertEquals(player.getExperienceExpended(), 26);
+
+		player.removeExperienceIncreasedRanks((AvailableSkillsFactory.getInstance().getElement("influence", LANGUAGE,
+				PathManager.DEFAULT_MODULE_FOLDER)), 7);
+		Assert.assertEquals((int) player.getSkillTotalRanks(AvailableSkillsFactory.getInstance().getElement("influence",
+				LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)), 6);
+		Assert.assertEquals(player.getExperienceExpended(), (12));
 	}
 
 	@Test
@@ -99,23 +105,23 @@ public class ExperienceTests {
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("phoenixEmpireLore", LANGUAGE,
 				PathManager.DEFAULT_MODULE_FOLDER), 5);
 
-		player.setEarnedExperience(9);
-		player.setIncreaseRanksUsingExperience(AvailableSkillsFactory.getInstance().getElement("phoenixEmpireLore",
+		player.setExperienceEarned(9);
+		player.setExperienceIncreasedRanks(AvailableSkillsFactory.getInstance().getElement("phoenixEmpireLore",
 				LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER), 1);
 		Assert.assertEquals((int) player.getSkillAssignedRanks(AvailableSkillsFactory.getInstance()
 				.getElement("phoenixEmpireLore", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)), 5);
 		Assert.assertEquals((int) player.getSkillTotalRanks(AvailableSkillsFactory.getInstance()
 				.getElement("phoenixEmpireLore", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)), 6);
-		Assert.assertEquals(player.getExpendedExperience(), 9);
+		Assert.assertEquals(player.getExperienceExpended(), 9);
 
-		player.setEarnedExperience(19);
-		player.setIncreaseRanksUsingExperience(AvailableSkillsFactory.getInstance().getElement("phoenixEmpireLore",
+		player.setExperienceEarned(19);
+		player.setExperienceIncreasedRanks(AvailableSkillsFactory.getInstance().getElement("phoenixEmpireLore",
 				LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER), 1);
 		Assert.assertEquals((int) player.getSkillAssignedRanks(AvailableSkillsFactory.getInstance()
 				.getElement("phoenixEmpireLore", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)), 5);
 		Assert.assertEquals((int) player.getSkillTotalRanks(AvailableSkillsFactory.getInstance()
 				.getElement("phoenixEmpireLore", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)), 7);
-		Assert.assertEquals(player.getExpendedExperience(), 19);
+		Assert.assertEquals(player.getExperienceExpended(), 19);
 	}
 
 	@Test(expectedExceptions = { NotEnoughExperienceException.class })
@@ -125,8 +131,8 @@ public class ExperienceTests {
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("influence", LANGUAGE,
 				PathManager.DEFAULT_MODULE_FOLDER), 5);
 
-		player.setEarnedExperience(0);
-		player.setIncreaseRanksUsingExperience(AvailableSkillsFactory.getInstance().getElement("influence", LANGUAGE,
+		player.setExperienceEarned(0);
+		player.setExperienceIncreasedRanks(AvailableSkillsFactory.getInstance().getElement("influence", LANGUAGE,
 				PathManager.DEFAULT_MODULE_FOLDER), 1);
 	}
 
@@ -136,11 +142,11 @@ public class ExperienceTests {
 		final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
 		player.getCharacteristic(CharacteristicName.STRENGTH).setValue(5);
 
-		player.setEarnedExperience(18);
-		player.setIncreaseRanksUsingExperience(player.getCharacteristic(CharacteristicName.STRENGTH), 1);
+		player.setExperienceEarned(18);
+		player.setExperienceIncreasedRanks(player.getCharacteristic(CharacteristicName.STRENGTH), 1);
 		Assert.assertEquals((int) player.getRawValue(CharacteristicName.STRENGTH), 5);
 		Assert.assertEquals((int) player.getValue(CharacteristicName.STRENGTH), 6);
-		Assert.assertEquals(player.getExpendedExperience(), 18);
+		Assert.assertEquals(player.getExperienceExpended(), 18);
 	}
 
 	@Test(expectedExceptions = { NotEnoughExperienceException.class })
@@ -149,8 +155,23 @@ public class ExperienceTests {
 		final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
 		player.getCharacteristic(CharacteristicName.STRENGTH).setValue(5);
 
-		player.setEarnedExperience(12);
-		player.setIncreaseRanksUsingExperience(player.getCharacteristic(CharacteristicName.STRENGTH), 1);
+		player.setExperienceEarned(12);
+		player.setExperienceIncreasedRanks(player.getCharacteristic(CharacteristicName.STRENGTH), 1);
+	}
+
+	@Test
+	public void addWyrd() throws ElementCannotBeUpgradeWithExperienceException, InvalidXmlElementException {
+		final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+		player.getCharacteristic(CharacteristicName.WILL).setValue(5);
+
+		player.setExperienceEarned(26);
+		player.setExperienceExtraWyrd(2);
+		Assert.assertEquals((int) player.getWyrdValue(), 7);
+		Assert.assertEquals(player.getExperienceExpended(), (12 + 14));
+
+		player.removeExperienceExtraWyrd(7);
+		Assert.assertEquals((int) player.getWyrdValue(), 6);
+		Assert.assertEquals(player.getExperienceExpended(), (12));
 	}
 
 	@Test
@@ -161,19 +182,19 @@ public class ExperienceTests {
 		CharacterPlayer player = CustomCharacter.create(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
 		Assert.assertEquals(CostCalculator.getCost(player), 50);
 
-		player.setEarnedExperience(100);
-		player.setIncreaseRanksUsingExperience(player.getCharacteristic(CharacteristicName.PERCEPTION), 1);
-		player.setIncreaseRanksUsingExperience(AvailableSkillsFactory.getInstance().getElement("influence", LANGUAGE,
+		player.setExperienceEarned(100);
+		player.setExperienceIncreasedRanks(player.getCharacteristic(CharacteristicName.PERCEPTION), 1);
+		player.setExperienceIncreasedRanks(AvailableSkillsFactory.getInstance().getElement("influence", LANGUAGE,
 				PathManager.DEFAULT_MODULE_FOLDER), 2);
 
 		String jsonText = CharacterJsonManager.toJson(player);
 		final CharacterPlayer playerImported = CharacterJsonManager.fromJson(jsonText);
 
-		Assert.assertEquals((int) playerImported.getEarnedExperience(), 100);
+		Assert.assertEquals((int) playerImported.getExperienceEarned(), 100);
 		Assert.assertEquals((int) playerImported.getSkillTotalRanks(AvailableSkillsFactory.getInstance()
 				.getElement("influence", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)), 7);
 		Assert.assertEquals((int) playerImported.getValue(CharacteristicName.PERCEPTION), 6);
-		Assert.assertEquals(player.getExpendedExperience(), (18 + 12 + 14));
+		Assert.assertEquals(player.getExperienceExpended(), (18 + 12 + 14));
 
 	}
 }

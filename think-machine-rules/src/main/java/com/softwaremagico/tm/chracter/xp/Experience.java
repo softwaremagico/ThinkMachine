@@ -12,10 +12,10 @@ import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.character.skills.SkillGroup;
 
 public class Experience {
-	private int totalExperience = 0;
+	private static final String WYRD_ID_PREFIX = "Wyrd";
 	// Element id, set of increases.
 	private final Map<String, Set<ExperienceIncrease>> ranksIncreased;
-	private int extraWyrd = 0;
+	private int totalExperience = 0;
 
 	public Experience() {
 		ranksIncreased = new HashMap<>();
@@ -30,10 +30,17 @@ public class Experience {
 	}
 
 	public Set<ExperienceIncrease> getExperienceIncreased(Element<?> element) {
-		if (getRanksIncreased().get(element.getId()) == null) {
+		if (element == null) {
 			return new HashSet<>();
 		}
-		return getRanksIncreased().get(element.getId());
+		return getExperienceIncreased(element.getId());
+	}
+
+	public Set<ExperienceIncrease> getExperienceIncreased(String elementId) {
+		if (getRanksIncreased().get(elementId) == null) {
+			return new HashSet<>();
+		}
+		return getRanksIncreased().get(elementId);
 	}
 
 	public ExperienceIncrease setExperienceIncrease(Element<?> element, int value, int cost) {
@@ -43,6 +50,13 @@ public class Experience {
 		final ExperienceIncrease experienceIncrease = new ExperienceIncrease(element.getId(), value, cost);
 		ranksIncreased.get(element.getId()).add(experienceIncrease);
 		return experienceIncrease;
+	}
+
+	public void remove(Element<?> element, int value) {
+		if (element == null) {
+			return;
+		}
+		remove(new ExperienceIncrease(element.getId(), value, 0));
 	}
 
 	public void remove(ExperienceIncrease experienceIncrease) {
@@ -71,11 +85,29 @@ public class Experience {
 		this.totalExperience = totalExperience;
 	}
 
-	public int getExtraWyrd() {
-		return extraWyrd;
+	public Set<ExperienceIncrease> getExtraWyrd() {
+		return getExperienceIncreased(WYRD_ID_PREFIX);
 	}
 
-	public void setExtraWyrd(int extraWyrd) {
-		this.extraWyrd = extraWyrd;
+	public ExperienceIncrease setExtraWyrd(int value, int cost) {
+		final ExperienceIncrease experienceIncrease = new ExperienceIncrease(WYRD_ID_PREFIX, value, cost);
+		if (ranksIncreased.get(WYRD_ID_PREFIX) == null) {
+			ranksIncreased.put(WYRD_ID_PREFIX, new HashSet<>());
+		}
+		ranksIncreased.get(WYRD_ID_PREFIX).add(experienceIncrease);
+		return experienceIncrease;
+	}
+
+	public void removeExtraWyrd(int value) {
+		if (ranksIncreased.get(WYRD_ID_PREFIX) == null) {
+			return;
+		}
+		final ExperienceIncrease experienceIncrease = new ExperienceIncrease(WYRD_ID_PREFIX, value, 0);
+		ranksIncreased.get(WYRD_ID_PREFIX).remove(experienceIncrease);
+	}
+
+	public static int getExperienceCostForWyrd(int valueToPurchase)
+			throws ElementCannotBeUpgradeWithExperienceException {
+		return valueToPurchase * 2;
 	}
 }
