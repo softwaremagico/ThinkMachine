@@ -26,15 +26,17 @@ package com.softwaremagico.tm.chracter.xp;
 
 import java.util.Date;
 
+import com.softwaremagico.tm.Element;
+
 public class ExperienceIncrease implements Comparable<ExperienceIncrease> {
-	private final String elementId;
+	private final Element<?> element;
 	private final Integer rank;
 	private final Integer cost;
 	private final Date createdAt;
 
-	public ExperienceIncrease(String elementId, int rank, int cost) {
+	public ExperienceIncrease(Element<?> element, int rank, int cost) {
 		this.createdAt = new Date();
-		this.elementId = elementId;
+		this.element = element;
 		this.rank = Integer.valueOf(rank);
 		this.cost = Integer.valueOf(cost);
 	}
@@ -43,8 +45,8 @@ public class ExperienceIncrease implements Comparable<ExperienceIncrease> {
 		return new Date(createdAt.getTime());
 	}
 
-	public String getElementId() {
-		return elementId;
+	public Element<?> getElement() {
+		return element;
 	}
 
 	public Integer getRank() {
@@ -52,10 +54,19 @@ public class ExperienceIncrease implements Comparable<ExperienceIncrease> {
 	}
 
 	@Override
+	public int compareTo(ExperienceIncrease cost) {
+		return getRank().compareTo(cost.getRank());
+	}
+
+	public Integer getCost() {
+		return cost;
+	}
+
+	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((elementId == null) ? 0 : elementId.hashCode());
+		result = prime * result + ((element == null) ? 0 : element.hashCode());
 		result = prime * result + ((rank == null) ? 0 : rank.hashCode());
 		return result;
 	}
@@ -72,11 +83,11 @@ public class ExperienceIncrease implements Comparable<ExperienceIncrease> {
 			return false;
 		}
 		final ExperienceIncrease other = (ExperienceIncrease) obj;
-		if (elementId == null) {
-			if (other.elementId != null) {
+		if (element == null) {
+			if (other.element != null) {
 				return false;
 			}
-		} else if (!elementId.equals(other.elementId)) {
+		} else if (!element.equals(other.element)) {
 			return false;
 		}
 		if (rank == null) {
@@ -90,12 +101,8 @@ public class ExperienceIncrease implements Comparable<ExperienceIncrease> {
 	}
 
 	@Override
-	public int compareTo(ExperienceIncrease cost) {
-		return getRank().compareTo(cost.getRank());
-	}
-
-	public Integer getCost() {
-		return cost;
+	public String toString() {
+		return "{" + element + " (" + getRank() + ")" + "}";
 	}
 
 }

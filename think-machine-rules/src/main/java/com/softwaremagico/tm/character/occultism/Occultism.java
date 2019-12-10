@@ -39,7 +39,7 @@ import com.softwaremagico.tm.character.factions.Faction;
 public class Occultism {
 	private Map<String, Integer> psiqueValue;
 	private Map<String, Integer> darkSideValue;
-	private int extraWyrd = 0;
+	private Wyrd extraWyrd;
 
 	// Path --> Set<Power>
 	private final Map<String, List<OccultismPower>> selectedPowers;
@@ -50,15 +50,15 @@ public class Occultism {
 		darkSideValue = new HashMap<>();
 	}
 
-	public int getExtraWyrd() {
+	public Wyrd getExtraWyrd() {
 		return extraWyrd;
 	}
 
-	public void setExtraWyrd(int extraWyrd) {
+	public void setExtraWyrd(int extraWyrd, String language, String moduleName) {
 		if (extraWyrd > 0) {
-			this.extraWyrd = extraWyrd;
+			this.extraWyrd = new Wyrd(language, moduleName, extraWyrd);
 		} else {
-			this.extraWyrd = 0;
+			this.extraWyrd = null;
 		}
 	}
 
@@ -111,11 +111,11 @@ public class Occultism {
 		return total;
 	}
 
-	public void addPower(OccultismPower power, String language, Faction faction) throws InvalidOccultismPowerException {
+	public void addPower(OccultismPath path, OccultismPower power, String language, Faction faction)
+			throws InvalidOccultismPowerException {
 		if (power == null) {
 			throw new InvalidOccultismPowerException("Power cannot be null.");
 		}
-		final OccultismPath path = OccultismPathFactory.getInstance().getOccultismPath(power, language);
 		// Correct level of psi or teurgy
 		if (Objects.equals(path.getOccultismType(), OccultismTypeFactory.getPsi(language, faction.getModuleName()))
 				&& power.getLevel() > getPsiqueLevel(OccultismTypeFactory.getPsi(language, faction.getModuleName()))) {

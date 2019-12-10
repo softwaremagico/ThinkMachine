@@ -109,9 +109,6 @@ public class CharacterJsonManager extends JsonManager {
 			gsonBuilder.registerTypeAdapter(CyberneticDevice.class, new CyberneticDeviceAdapter(language, moduleName));
 			gsonBuilder.registerTypeAdapter(OccultismPower.class, new OccultismPowerAdapter(language, moduleName));
 			final Gson gson = gsonBuilder.create();
-
-			System.out.println(jsonText);
-
 			final CharacterPlayer characterPlayer = gson.fromJson(jsonText, CharacterPlayer.class);
 			return characterPlayer;
 		}

@@ -192,9 +192,9 @@ public class OccultismPathFactory extends XmlFactory<OccultismPath> {
 		return TRANSLATOR_FILE;
 	}
 
-	public OccultismPath getOccultismPath(OccultismPower power, String language) {
+	public OccultismPath getOccultismPath(OccultismPower power) {
 		try {
-			for (final OccultismPath occultismPath : getElements(language, power.getModuleName())) {
+			for (final OccultismPath occultismPath : getElements(power.getLanguage(), power.getModuleName())) {
 				if (occultismPath.getOccultismPowers().containsKey(power.getId())) {
 					return occultismPath;
 				}

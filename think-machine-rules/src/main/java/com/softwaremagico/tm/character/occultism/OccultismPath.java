@@ -66,9 +66,8 @@ public class OccultismPath extends Element<OccultismPath> {
 	 * Gets the previous level powers form a power. At least one of them must be
 	 * aquired to purchase this power if is a psi path.
 	 * 
-	 * @param path  the path of the power.
 	 * @param power the power that has one level more than the previous one
-	 * @return A set with one or more powers.
+	 * @return A set with one or more powers for one level.
 	 */
 	public Set<OccultismPower> getPreviousLevelPowers(OccultismPower power) {
 		final Integer previousLevel = getPreviousLevelWithPowers(power);

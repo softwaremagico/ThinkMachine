@@ -76,10 +76,14 @@ import com.softwaremagico.tm.character.equipment.weapons.WeaponType;
 import com.softwaremagico.tm.character.equipment.weapons.Weapons;
 import com.softwaremagico.tm.character.factions.Faction;
 import com.softwaremagico.tm.character.occultism.InvalidOccultismPowerException;
+import com.softwaremagico.tm.character.occultism.InvalidPowerLevelException;
 import com.softwaremagico.tm.character.occultism.InvalidPsiqueLevelException;
 import com.softwaremagico.tm.character.occultism.Occultism;
+import com.softwaremagico.tm.character.occultism.OccultismPath;
+import com.softwaremagico.tm.character.occultism.OccultismPathFactory;
 import com.softwaremagico.tm.character.occultism.OccultismPower;
 import com.softwaremagico.tm.character.occultism.OccultismType;
+import com.softwaremagico.tm.character.occultism.Wyrd;
 import com.softwaremagico.tm.character.races.InvalidRaceException;
 import com.softwaremagico.tm.character.races.Race;
 import com.softwaremagico.tm.character.races.RaceCharacteristic;
@@ -769,20 +773,37 @@ public class CharacterPlayer {
 		experience.setTotalExperience(totalExperience);
 	}
 
-	public void setExperienceExtraWyrd(int addedValues) throws ElementCannotBeUpgradeWithExperienceException {
-		final int previousRanks = getBasicWyrdValue() + getExtraWyrd();
-		for (int addedValue = 1; addedValue <= addedValues; addedValue++) {
-			experience.setExtraWyrd(previousRanks + addedValue,
-					Experience.getExperienceCostForWyrd(previousRanks + addedValue));
-		}
+	public void setExperienceExtraWyrd(int addedValues)
+			throws NotEnoughExperienceException, ElementCannotBeUpgradeWithExperienceException {
+		setExperienceIncreasedRanks(new Wyrd(getLanguage(), getModuleName()), addedValues);
 	}
 
 	public Set<ExperienceIncrease> getExperienceExtraWyrd() {
-		return experience.getExtraWyrd();
+		return getExperienceIncrease(new Wyrd(getLanguage(), getModuleName()));
 	}
 
 	public void removeExperienceExtraWyrd(int ranks) {
-		experience.removeExtraWyrd(ranks);
+		removeExperienceIncreasedRanks(new Wyrd(getLanguage(), getModuleName()), ranks);
+	}
+
+	public void setExperienceInOccultism(OccultismPath occultismPath, OccultismPower occultismPower)
+			throws NotEnoughExperienceException, ElementCannotBeUpgradeWithExperienceException {
+		final ExperienceIncrease increase = experience.setExperienceIncrease(occultismPath, occultismPower,
+				occultismPower.getLevel(), Experience.getExperienceCostFor(occultismPower, occultismPower.getLevel()));
+		if (getExperienceExpended() > getExperienceEarned()) {
+			experience.remove(occultismPath, increase);
+			throw new NotEnoughExperienceException(
+					"Not enough experience to add occultism power '" + occultismPower + "'.");
+		}
+	}
+
+	public void removeExperienceInOccultismPower(OccultismPath occultismPath, OccultismPower occultismPower)
+			throws InvalidPowerLevelException {
+		experience.remove(occultismPath, occultismPower);
+	}
+
+	public Set<ExperienceIncrease> getExperienceInOccultismPower(OccultismPower occultismPower) {
+		return getExperienceIncrease(occultismPower);
 	}
 
 	public void setExperienceIncreasedRanks(Element<?> element, int addedValues)
@@ -797,6 +818,8 @@ public class CharacterPlayer {
 		} else if (element instanceof OccultismType) {
 			previousRanks = getBasicPsiqueLevel((OccultismType) element)
 					+ getExperienceIncrease((OccultismType) element).size();
+		} else if (element instanceof Wyrd) {
+			previousRanks = getBasicWyrdValue() + getExtraWyrd();
 		} else {
 			previousRanks = 0;
 		}
@@ -805,7 +828,7 @@ public class CharacterPlayer {
 			final ExperienceIncrease increase = experience.setExperienceIncrease(element, previousRanks + addedValue,
 					Experience.getExperienceCostFor(element, previousRanks + addedValue));
 			if (getExperienceExpended() > getExperienceEarned()) {
-				experience.remove(increase);
+				experience.remove(element, increase);
 				throw new NotEnoughExperienceException(
 						"Not enough experience to increase '" + addedValue + "' ranks to element '" + element + "'.");
 			}
@@ -1129,11 +1152,11 @@ public class CharacterPlayer {
 	}
 
 	public int getExtraWyrd() {
-		return getOccultism().getExtraWyrd();
+		return getOccultism().getExtraWyrd() != null ? getOccultism().getExtraWyrd().getValue() : 0;
 	}
 
 	public void setExtraWyrd(int extraWyrd) {
-		getOccultism().setExtraWyrd(extraWyrd);
+		getOccultism().setExtraWyrd(extraWyrd, getLanguage(), getModuleName());
 	}
 
 	public int getBasicPsiqueLevel(OccultismType occultismType) {
@@ -1165,7 +1188,8 @@ public class CharacterPlayer {
 	}
 
 	public void addOccultismPower(OccultismPower power) throws InvalidOccultismPowerException {
-		getOccultism().addPower(power, getLanguage(), getFaction());
+		final OccultismPath path = OccultismPathFactory.getInstance().getOccultismPath(power);
+		getOccultism().addPower(path, power, getLanguage(), getFaction());
 	}
 
 	public String getCompleteNameRepresentation() {

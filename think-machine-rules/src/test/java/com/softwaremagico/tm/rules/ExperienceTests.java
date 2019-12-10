@@ -37,6 +37,8 @@ import com.softwaremagico.tm.character.creation.CostCalculator;
 import com.softwaremagico.tm.character.cybernetics.RequiredCyberneticDevicesException;
 import com.softwaremagico.tm.character.cybernetics.TooManyCyberneticDevicesException;
 import com.softwaremagico.tm.character.factions.FactionsFactory;
+import com.softwaremagico.tm.character.occultism.InvalidPowerLevelException;
+import com.softwaremagico.tm.character.occultism.OccultismPathFactory;
 import com.softwaremagico.tm.character.occultism.OccultismTypeFactory;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.character.skills.InvalidSkillException;
@@ -162,7 +164,8 @@ public class ExperienceTests {
 	}
 
 	@Test
-	public void addWyrd() throws ElementCannotBeUpgradeWithExperienceException, InvalidXmlElementException {
+	public void addWyrd() throws ElementCannotBeUpgradeWithExperienceException, InvalidXmlElementException,
+			NotEnoughExperienceException {
 		final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
 		player.getCharacteristic(CharacteristicName.WILL).setValue(5);
 
@@ -196,6 +199,81 @@ public class ExperienceTests {
 				(int) player.getPsiqueLevel(OccultismTypeFactory.getPsi(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)),
 				5);
 		Assert.assertEquals(player.getExperienceExpended(), (15));
+	}
+
+	@Test
+	public void setPsiPowers() throws ElementCannotBeUpgradeWithExperienceException, InvalidXmlElementException,
+			NotEnoughExperienceException {
+		final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+		player.setFaction(
+				FactionsFactory.getInstance().getElement("hazat", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+		player.setPsiqueLevel(OccultismTypeFactory.getPsi(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER), 4);
+
+		player.setExperienceEarned(6);
+		player.setExperienceInOccultism(
+				OccultismPathFactory.getInstance().getElement("farHand", player.getLanguage(), player.getModuleName()),
+				OccultismPathFactory.getInstance().getElement("farHand", player.getLanguage(), player.getModuleName())
+						.getOccultismPowers().get("liftingHand"));
+		Assert.assertEquals(player.getExperienceExpended(), (2));
+		player.setExperienceInOccultism(
+				OccultismPathFactory.getInstance().getElement("farHand", player.getLanguage(), player.getModuleName()),
+				OccultismPathFactory.getInstance().getElement("farHand", player.getLanguage(), player.getModuleName())
+						.getOccultismPowers().get("throwingHand"));
+		Assert.assertEquals(player.getExperienceExpended(), (2 + 4));
+
+	}
+
+	@Test(expectedExceptions = { InvalidPowerLevelException.class })
+	public void removeInvalidPsiPowers() throws ElementCannotBeUpgradeWithExperienceException,
+			InvalidXmlElementException, NotEnoughExperienceException {
+		final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+		player.setFaction(
+				FactionsFactory.getInstance().getElement("hazat", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+		player.setPsiqueLevel(OccultismTypeFactory.getPsi(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER), 4);
+
+		player.setExperienceEarned(6);
+		player.setExperienceInOccultism(
+				OccultismPathFactory.getInstance().getElement("farHand", player.getLanguage(), player.getModuleName()),
+				OccultismPathFactory.getInstance().getElement("farHand", player.getLanguage(), player.getModuleName())
+						.getOccultismPowers().get("liftingHand"));
+		player.setExperienceInOccultism(
+				OccultismPathFactory.getInstance().getElement("farHand", player.getLanguage(), player.getModuleName()),
+				OccultismPathFactory.getInstance().getElement("farHand", player.getLanguage(), player.getModuleName())
+						.getOccultismPowers().get("throwingHand"));
+		// Remove level1 but left level2. Error
+		player.removeExperienceInOccultismPower(
+				OccultismPathFactory.getInstance().getElement("farHand", player.getLanguage(), player.getModuleName()),
+				OccultismPathFactory.getInstance().getElement("farHand", player.getLanguage(), player.getModuleName())
+						.getOccultismPowers().get("liftingHand"));
+
+	}
+
+	@Test
+	public void removeValidOrderPsiPowers() throws ElementCannotBeUpgradeWithExperienceException,
+			InvalidXmlElementException, NotEnoughExperienceException {
+		final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+		player.setFaction(
+				FactionsFactory.getInstance().getElement("hazat", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+		player.setPsiqueLevel(OccultismTypeFactory.getPsi(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER), 4);
+
+		player.setExperienceEarned(6);
+		player.setExperienceInOccultism(
+				OccultismPathFactory.getInstance().getElement("farHand", player.getLanguage(), player.getModuleName()),
+				OccultismPathFactory.getInstance().getElement("farHand", player.getLanguage(), player.getModuleName())
+						.getOccultismPowers().get("liftingHand"));
+		player.setExperienceInOccultism(
+				OccultismPathFactory.getInstance().getElement("farHand", player.getLanguage(), player.getModuleName()),
+				OccultismPathFactory.getInstance().getElement("farHand", player.getLanguage(), player.getModuleName())
+						.getOccultismPowers().get("throwingHand"));
+		// Remove level2 and later level1
+		player.removeExperienceInOccultismPower(
+				OccultismPathFactory.getInstance().getElement("farHand", player.getLanguage(), player.getModuleName()),
+				OccultismPathFactory.getInstance().getElement("farHand", player.getLanguage(), player.getModuleName())
+						.getOccultismPowers().get("throwingHand"));
+		player.removeExperienceInOccultismPower(
+				OccultismPathFactory.getInstance().getElement("farHand", player.getLanguage(), player.getModuleName()),
+				OccultismPathFactory.getInstance().getElement("farHand", player.getLanguage(), player.getModuleName())
+						.getOccultismPowers().get("liftingHand"));
 	}
 
 	@Test
