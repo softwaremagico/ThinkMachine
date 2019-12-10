@@ -32,15 +32,24 @@ import java.util.Set;
 import com.softwaremagico.tm.Element;
 import com.softwaremagico.tm.character.characteristics.CharacteristicDefinition;
 import com.softwaremagico.tm.character.values.IValue;
+import com.softwaremagico.tm.json.ExcludeFromJson;
 
 public class OccultismPower extends Element<OccultismPower> {
+	@ExcludeFromJson
 	private final CharacteristicDefinition characteristic;
+	@ExcludeFromJson
 	private final List<IValue> values;
+	@ExcludeFromJson
 	private final int level;
+	@ExcludeFromJson
 	private final OccultismRange range;
+	@ExcludeFromJson
 	private final OccultismDuration duration;
+	@ExcludeFromJson
 	private final Integer cost;
+	@ExcludeFromJson
 	private final Set<TheurgyComponent> components;
+	@ExcludeFromJson
 	private boolean enabled;
 
 	public OccultismPower(String id, String name, String language, String moduleName,
@@ -131,6 +140,14 @@ public class OccultismPower extends Element<OccultismPower> {
 	@Override
 	public boolean equals(Object obj) {
 		return super.equals(obj);
+	}
+
+	@Override
+	public int compareTo(OccultismPower element) {
+		if (getLevel() != element.getLevel()) {
+			return Integer.compare(getLevel(), element.getLevel());
+		}
+		return super.compareTo(element);
 	}
 
 }

@@ -44,6 +44,7 @@ import com.softwaremagico.tm.character.equipment.armours.Armour;
 import com.softwaremagico.tm.character.equipment.shields.Shield;
 import com.softwaremagico.tm.character.equipment.weapons.Weapon;
 import com.softwaremagico.tm.character.factions.Faction;
+import com.softwaremagico.tm.character.occultism.OccultismPower;
 import com.softwaremagico.tm.character.races.Race;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.character.values.IValue;
@@ -76,6 +77,8 @@ public class CharacterJsonManager extends JsonManager {
 					new ShieldAdapter(characterPlayer.getLanguage(), characterPlayer.getModuleName()));
 			gsonBuilder.registerTypeAdapter(CyberneticDevice.class,
 					new CyberneticDeviceAdapter(characterPlayer.getLanguage(), characterPlayer.getModuleName()));
+			gsonBuilder.registerTypeAdapter(OccultismPower.class,
+					new OccultismPowerAdapter(characterPlayer.getLanguage(), characterPlayer.getModuleName()));
 			// final Gson gson = new
 			// GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
 			final Gson gson = gsonBuilder.create();
@@ -104,7 +107,10 @@ public class CharacterJsonManager extends JsonManager {
 			gsonBuilder.registerTypeAdapter(Armour.class, new ArmourAdapter(language, moduleName));
 			gsonBuilder.registerTypeAdapter(Shield.class, new ShieldAdapter(language, moduleName));
 			gsonBuilder.registerTypeAdapter(CyberneticDevice.class, new CyberneticDeviceAdapter(language, moduleName));
+			gsonBuilder.registerTypeAdapter(OccultismPower.class, new OccultismPowerAdapter(language, moduleName));
 			final Gson gson = gsonBuilder.create();
+
+			System.out.println(jsonText);
 
 			final CharacterPlayer characterPlayer = gson.fromJson(jsonText, CharacterPlayer.class);
 			return characterPlayer;

@@ -68,8 +68,8 @@ public class OccultismTests {
 				.get("farWall"));
 	}
 
-	@Test
-	public void canAddPowersWithMissingLevels() throws InvalidXmlElementException, TooManyBlessingsException,
+	@Test(expectedExceptions = { InvalidPowerLevelException.class })
+	public void cannotAddPsiPowersWithMissingLevels() throws InvalidXmlElementException, TooManyBlessingsException,
 			TooManyCyberneticDevicesException, RequiredCyberneticDevicesException, BlessingAlreadyAddedException,
 			BeneficeAlreadyAddedException {
 		final CharacterPlayer player = CustomCharacter.create(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);

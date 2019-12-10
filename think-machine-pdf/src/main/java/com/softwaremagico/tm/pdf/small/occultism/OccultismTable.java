@@ -31,8 +31,6 @@ import com.itextpdf.text.Element;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.character.occultism.OccultismPath;
-import com.softwaremagico.tm.character.occultism.OccultismPathFactory;
 import com.softwaremagico.tm.character.occultism.OccultismPower;
 import com.softwaremagico.tm.character.occultism.OccultismType;
 import com.softwaremagico.tm.character.occultism.OccultismTypeFactory;
@@ -85,11 +83,9 @@ public class OccultismTable extends VerticalTable {
 
 		int added = 0;
 		if (characterPlayer != null) {
-			for (final Entry<String, List<String>> occultismPathEntry : characterPlayer.getSelectedPowers().entrySet()) {
-				final OccultismPath occultismPath = OccultismPathFactory.getInstance().getElement(
-						occultismPathEntry.getKey(), characterPlayer.getLanguage(), characterPlayer.getModuleName());
-				for (final String occultismPowerName : occultismPathEntry.getValue()) {
-					final OccultismPower occultismPower = occultismPath.getOccultismPowers().get(occultismPowerName);
+			for (final Entry<String, List<OccultismPower>> occultismPathEntry : characterPlayer.getSelectedPowers()
+					.entrySet()) {
+				for (final OccultismPower occultismPower : occultismPathEntry.getValue()) {
 					if (occultismPower.isEnabled()) {
 						final PdfPCell cell = createFirstElementLine(occultismPower.getName(), POWER_COLUMN_WIDTH,
 								FadingSunsTheme.CHARACTER_SMALL_OCCULTISM_LINE_FONT_SIZE);

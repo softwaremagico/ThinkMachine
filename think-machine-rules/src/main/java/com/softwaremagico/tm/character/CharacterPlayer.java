@@ -1156,7 +1156,7 @@ public class CharacterPlayer {
 		getOccultism().setDarkSideLevel(occultismType, darkSideValue);
 	}
 
-	public Map<String, List<String>> getSelectedPowers() {
+	public Map<String, List<OccultismPower>> getSelectedPowers() {
 		return getOccultism().getSelectedPowers();
 	}
 

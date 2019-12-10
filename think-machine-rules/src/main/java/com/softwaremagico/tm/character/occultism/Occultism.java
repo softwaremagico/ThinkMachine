@@ -42,7 +42,7 @@ public class Occultism {
 	private int extraWyrd = 0;
 
 	// Path --> Set<Power>
-	private final Map<String, List<String>> selectedPowers;
+	private final Map<String, List<OccultismPower>> selectedPowers;
 
 	public Occultism() {
 		selectedPowers = new HashMap<>();
@@ -69,8 +69,8 @@ public class Occultism {
 		return 0;
 	}
 
-	public void setPsiqueLevel(OccultismType occultismType, int psyValue, String language, String moduleName, Faction faction)
-			throws InvalidPsiqueLevelException {
+	public void setPsiqueLevel(OccultismType occultismType, int psyValue, String language, String moduleName,
+			Faction faction) throws InvalidPsiqueLevelException {
 		if (psyValue < 0) {
 			throw new InvalidPsiqueLevelException("Psique level cannot be less than zero.");
 		}
@@ -97,13 +97,13 @@ public class Occultism {
 		this.darkSideValue.put(occultismType.getId(), Integer.valueOf(darkSideValue));
 	}
 
-	public Map<String, List<String>> getSelectedPowers() {
+	public Map<String, List<OccultismPower>> getSelectedPowers() {
 		return selectedPowers;
 	}
 
 	public int getTotalSelectedPowers() {
 		int total = 0;
-		for (final Entry<String, List<String>> entry : getSelectedPowers().entrySet()) {
+		for (final Entry<String, List<OccultismPower>> entry : getSelectedPowers().entrySet()) {
 			if (entry.getValue() != null) {
 				total += entry.getValue().size();
 			}
@@ -122,7 +122,8 @@ public class Occultism {
 			throw new InvalidPsiqueLevelException("Insuficient psi level to acquire '" + power + "'.");
 		}
 		if (Objects.equals(path.getOccultismType(), OccultismTypeFactory.getTheurgy(language, faction.getModuleName()))
-				&& power.getLevel() > getPsiqueLevel(OccultismTypeFactory.getTheurgy(language, faction.getModuleName()))) {
+				&& power.getLevel() > getPsiqueLevel(
+						OccultismTypeFactory.getTheurgy(language, faction.getModuleName()))) {
 			throw new InvalidPsiqueLevelException("Insuficient theurgy level to acquire '" + power + "'.");
 		}
 		// Limited to some factions
@@ -136,19 +137,19 @@ public class Occultism {
 			boolean acquiredLevel = false;
 			for (final OccultismPower previousLevelPower : path.getPreviousLevelPowers(power)) {
 				if (selectedPowers.get(path.getId()) != null
-						&& selectedPowers.get(path.getId()).contains(previousLevelPower.getId())) {
+						&& selectedPowers.get(path.getId()).contains(previousLevelPower)) {
 					acquiredLevel = true;
 					break;
 				}
 			}
 			if (!acquiredLevel && !path.getPreviousLevelPowers(power).isEmpty()) {
-				throw new InvalidPowerLevelException("At least one power of '" + path.getPreviousLevelPowers(power)
-						+ "' must be selected.");
+				throw new InvalidPowerLevelException(
+						"At least one power of '" + path.getPreviousLevelPowers(power) + "' must be selected.");
 			}
 		}
 		if (selectedPowers.get(path.getId()) == null) {
-			selectedPowers.put(path.getId(), new ArrayList<String>());
+			selectedPowers.put(path.getId(), new ArrayList<OccultismPower>());
 		}
-		selectedPowers.get(path.getId()).add(power.getId());
+		selectedPowers.get(path.getId()).add(power);
 	}
 }
