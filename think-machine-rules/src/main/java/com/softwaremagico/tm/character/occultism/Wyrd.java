@@ -43,4 +43,14 @@ public class Wyrd extends Element<Wyrd> {
 	public int getValue() {
 		return value;
 	}
+
+	@Override
+	public int hashCode() {
+		return super.hashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return super.equals(obj);
+	}
 }

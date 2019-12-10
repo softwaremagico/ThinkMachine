@@ -58,6 +58,8 @@ import com.softwaremagico.tm.character.occultism.OccultismTypeFactory;
 import com.softwaremagico.tm.character.planets.PlanetFactory;
 import com.softwaremagico.tm.character.races.RaceFactory;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
+import com.softwaremagico.tm.chracter.xp.ElementCannotBeUpgradeWithExperienceException;
+import com.softwaremagico.tm.chracter.xp.NotEnoughExperienceException;
 import com.softwaremagico.tm.file.PathManager;
 import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.pdf.complete.CharacterSheet;
@@ -106,7 +108,8 @@ public class CharacterSheetCreationTest {
 	@Test
 	public void characterPdfSpanish() throws MalformedURLException, DocumentException, IOException,
 			InvalidXmlElementException, TooManyBlessingsException, TooManyCyberneticDevicesException,
-			RequiredCyberneticDevicesException, BlessingAlreadyAddedException, BeneficeAlreadyAddedException {
+			RequiredCyberneticDevicesException, BlessingAlreadyAddedException, BeneficeAlreadyAddedException,
+			NotEnoughExperienceException, ElementCannotBeUpgradeWithExperienceException {
 		CacheHandler.clearCache();
 
 		player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
@@ -118,7 +121,8 @@ public class CharacterSheetCreationTest {
 		player.setRace(RaceFactory.getInstance().getElement("human", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
 		player.getInfo().setPlanet(
 				PlanetFactory.getInstance().getElement("sutek", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
-		player.setFaction(FactionsFactory.getInstance().getElement("hazat", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+		player.setFaction(
+				FactionsFactory.getInstance().getElement("hazat", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
 
 		player.getInfo().setBirthdate("4996-09-16");
 		player.getInfo().setHair("Moreno");
@@ -137,49 +141,56 @@ public class CharacterSheetCreationTest {
 		player.getCharacteristic(CharacteristicName.WILL).setValue(8);
 		player.getCharacteristic(CharacteristicName.FAITH).setValue(9);
 
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("influence", LANGUAGE,
+				PathManager.DEFAULT_MODULE_FOLDER), 5);
 		player.setSkillRank(
-				AvailableSkillsFactory.getInstance().getElement("influence", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER), 5);
+				AvailableSkillsFactory.getInstance().getElement("sneak", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER),
+				4);
 		player.setSkillRank(
-				AvailableSkillsFactory.getInstance().getElement("sneak", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER), 4);
+				AvailableSkillsFactory.getInstance().getElement("gaming", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER),
+				4);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("lockpicking", LANGUAGE,
+				PathManager.DEFAULT_MODULE_FOLDER), 6);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("energyGuns", LANGUAGE,
+				PathManager.DEFAULT_MODULE_FOLDER), 6);
 		player.setSkillRank(
-				AvailableSkillsFactory.getInstance().getElement("gaming", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER), 4);
-		player.setSkillRank(
-				AvailableSkillsFactory.getInstance().getElement("lockpicking", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER), 6);
-		player.setSkillRank(
-				AvailableSkillsFactory.getInstance().getElement("energyGuns", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER), 6);
-		player.setSkillRank(
-				AvailableSkillsFactory.getInstance().getElement("warfare", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER), 8);
-		player.setSkillRank(
-				AvailableSkillsFactory.getInstance().getElement("lore", "jumpwebLore", LANGUAGE,
-						PathManager.DEFAULT_MODULE_FOLDER), 4);
-		player.setSkillRank(
-				AvailableSkillsFactory.getInstance().getElement("lore", "beastsLore", LANGUAGE,
-						PathManager.DEFAULT_MODULE_FOLDER), 2);
+				AvailableSkillsFactory.getInstance().getElement("warfare", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER),
+				8);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("lore", "jumpwebLore", LANGUAGE,
+				PathManager.DEFAULT_MODULE_FOLDER), 4);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("lore", "beastsLore", LANGUAGE,
+				PathManager.DEFAULT_MODULE_FOLDER), 2);
 
 		player.setPsiqueLevel(OccultismTypeFactory.getPsi(player.getLanguage(), player.getModuleName()), 4);
 		player.setDarkSideLevel(OccultismTypeFactory.getPsi(player.getLanguage(), player.getModuleName()), 1);
 
-		player.addOccultismPower(OccultismPathFactory.getInstance()
-				.getElement("farHand", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).getOccultismPowers().get("liftingHand"));
-		player.addOccultismPower(OccultismPathFactory.getInstance()
-				.getElement("farHand", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).getOccultismPowers().get("throwingHand"));
-		player.addOccultismPower(OccultismPathFactory.getInstance()
-				.getElement("sixthSense", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).getOccultismPowers().get("sensitivity"));
-		player.addOccultismPower(OccultismPathFactory.getInstance()
-				.getElement("soma", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).getOccultismPowers().get("toughening"));
-		player.addOccultismPower(OccultismPathFactory.getInstance()
-				.getElement("soma", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).getOccultismPowers().get("strengthening"));
-		player.addOccultismPower(OccultismPathFactory.getInstance()
-				.getElement("soma", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).getOccultismPowers().get("quickening"));
+		player.addOccultismPower(
+				OccultismPathFactory.getInstance().getElement("farHand", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)
+						.getOccultismPowers().get("liftingHand"));
+		player.addOccultismPower(
+				OccultismPathFactory.getInstance().getElement("farHand", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)
+						.getOccultismPowers().get("throwingHand"));
+		player.addOccultismPower(
+				OccultismPathFactory.getInstance().getElement("sixthSense", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)
+						.getOccultismPowers().get("sensitivity"));
+		player.addOccultismPower(
+				OccultismPathFactory.getInstance().getElement("soma", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)
+						.getOccultismPowers().get("toughening"));
+		player.addOccultismPower(
+				OccultismPathFactory.getInstance().getElement("soma", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)
+						.getOccultismPowers().get("strengthening"));
+		player.addOccultismPower(
+				OccultismPathFactory.getInstance().getElement("soma", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)
+						.getOccultismPowers().get("quickening"));
 		player.addOccultismPower(OccultismPathFactory.getInstance()
 				.getElement("soma", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).getOccultismPowers().get("hardening"));
 
-		player.addBlessing(BlessingFactory.getInstance().getElement("curious", player.getLanguage(),
-				player.getModuleName()));
-		player.addBlessing(BlessingFactory.getInstance().getElement("limp", player.getLanguage(),
-				player.getModuleName()));
-		player.addBlessing(BlessingFactory.getInstance().getElement("missingEye", player.getLanguage(),
-				player.getModuleName()));
+		player.addBlessing(
+				BlessingFactory.getInstance().getElement("curious", player.getLanguage(), player.getModuleName()));
+		player.addBlessing(
+				BlessingFactory.getInstance().getElement("limp", player.getLanguage(), player.getModuleName()));
+		player.addBlessing(
+				BlessingFactory.getInstance().getElement("missingEye", player.getLanguage(), player.getModuleName()));
 		player.addBlessing(BlessingFactory.getInstance().getElement("incurableDisease", player.getLanguage(),
 				player.getModuleName()));
 
@@ -196,15 +207,27 @@ public class CharacterSheetCreationTest {
 
 		player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("engineersEye", LANGUAGE,
 				PathManager.DEFAULT_MODULE_FOLDER));
-		player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("jonah", LANGUAGE,
-				PathManager.DEFAULT_MODULE_FOLDER));
+		player.addCybernetics(
+				CyberneticDeviceFactory.getInstance().getElement("jonah", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
 
 		player.addWeapon(WeaponFactory.getInstance().getElement("mace", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
-		player.addWeapon(WeaponFactory.getInstance().getElement("martechGold", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+		player.addWeapon(
+				WeaponFactory.getInstance().getElement("martechGold", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
 
-		player.setArmour(ArmourFactory.getInstance().getElement("synthsilk", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+		player.setArmour(
+				ArmourFactory.getInstance().getElement("synthsilk", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
 
-		player.setShield(ShieldFactory.getInstance().getElement("assaultShield", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+		player.setShield(
+				ShieldFactory.getInstance().getElement("assaultShield", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+
+		// XP tests
+		player.setExperienceEarned(60);
+		player.setExperienceIncreasedRanks(player.getCharacteristic(CharacteristicName.STRENGTH), 1);
+		Assert.assertEquals((int) player.getValue(CharacteristicName.STRENGTH), 4);
+		player.setExperienceIncreasedRanks(AvailableSkillsFactory.getInstance().getElement("influence", LANGUAGE,
+				PathManager.DEFAULT_MODULE_FOLDER), 2);
+		Assert.assertEquals((int) player.getSkillTotalRanks(AvailableSkillsFactory.getInstance()
+				.getElement("phoenixEmpireLore", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)), 7);
 
 		LanguagePool.clearCache();
 		final CharacterSheet sheet = new CharacterSheet(player);
