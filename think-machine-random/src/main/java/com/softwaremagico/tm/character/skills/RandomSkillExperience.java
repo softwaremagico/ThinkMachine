@@ -29,7 +29,6 @@ import java.util.Set;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.character.characteristics.Characteristic;
 import com.softwaremagico.tm.chracter.xp.ElementCannotBeUpgradeWithExperienceException;
 import com.softwaremagico.tm.chracter.xp.Experience;
 import com.softwaremagico.tm.chracter.xp.NotEnoughExperienceException;
@@ -91,7 +90,7 @@ public class RandomSkillExperience extends RandomSkills {
 
 	@Override
 	protected int getWeight(AvailableSkill skill) throws InvalidRandomElementSelectedException {
-		SpecializationPreferences specializationPreferences = SpecializationPreferences.getSelected(getPreferences());
+		final SpecializationPreferences specializationPreferences = SpecializationPreferences.getSelected(getPreferences());
 		if (specializationPreferences.ordinal() > 2) {
 			final int totalRanks = getCharacterPlayer().getSkillTotalRanks(skill);
 			if (totalRanks > 0) {

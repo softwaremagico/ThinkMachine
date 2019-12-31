@@ -227,7 +227,7 @@ public class CharacterSheetCreationTest {
 		player.setExperienceIncreasedRanks(AvailableSkillsFactory.getInstance().getElement("influence", LANGUAGE,
 				PathManager.DEFAULT_MODULE_FOLDER), 2);
 		Assert.assertEquals((int) player.getSkillTotalRanks(AvailableSkillsFactory.getInstance()
-				.getElement("phoenixEmpireLore", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)), 7);
+				.getElement("influence", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)), 7);
 
 		LanguagePool.clearCache();
 		final CharacterSheet sheet = new CharacterSheet(player);

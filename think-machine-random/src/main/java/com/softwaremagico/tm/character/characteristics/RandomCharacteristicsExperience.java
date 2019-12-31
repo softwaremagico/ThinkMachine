@@ -95,7 +95,7 @@ public class RandomCharacteristicsExperience extends RandomCharacteristics {
 		} catch (ElementCannotBeUpgradeWithExperienceException e) {
 			throw new InvalidRandomElementSelectedException("Invalid element to be updated with experience.");
 		}
-		SpecializationPreferences specializationPreferences = SpecializationPreferences.getSelected(getPreferences());
+		final SpecializationPreferences specializationPreferences = SpecializationPreferences.getSelected(getPreferences());
 		if (specializationPreferences.ordinal() > 2) {
 			return getCharacterPlayer().getValue(characteristic.getCharacteristicName()) * super.getWeight(characteristic);
 		}
