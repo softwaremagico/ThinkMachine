@@ -400,6 +400,9 @@
 			<mason>
 				<en>Mason</en>
 				<es>Masón</es>
+				<random>
+					<generalProbability>minimum</generalProbability>
+				</random>
 			</mason>
 			<potter>
 				<en>Potter</en>
@@ -517,12 +520,15 @@
 				<es>Kelanti</es>
 				<random>
 					<recommendedRaces>obun</recommendedRaces>
-					<generalProbability>low</generalProbability>
+					<generalProbability>minimum</generalProbability>
 				</random>
 			</kelantiLore>
 			<poisons>
 				<en>Poisons</en>
 				<es>Venenos</es>
+				<random>
+					<generalProbability>low</generalProbability>
+				</random>
 			</poisons>
 		</specializations>
 		<numberToShow>4</numberToShow>

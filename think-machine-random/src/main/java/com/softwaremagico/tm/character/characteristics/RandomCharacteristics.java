@@ -118,7 +118,7 @@ public class RandomCharacteristics extends RandomSelector<Characteristic> {
 				weight += 2;
 			}
 
-			// More tought characters.
+			// More thought characters.
 			switch (preference) {
 			case HARD:
 				weight += 1;

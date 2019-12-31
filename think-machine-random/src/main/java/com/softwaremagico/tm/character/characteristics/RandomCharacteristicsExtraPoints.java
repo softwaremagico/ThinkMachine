@@ -1,12 +1,10 @@
 package com.softwaremagico.tm.character.characteristics;
 
-import java.util.HashSet;
-
 /*-
  * #%L
- * Think Machine (Core)
+ * Think Machine (Random Generator)
  * %%
- * Copyright (C) 2017 - 2018 Softwaremagico
+ * Copyright (C) 2017 - 2019 Softwaremagico
  * %%
  * This software is designed by Jorge Hortelano Otero. Jorge Hortelano Otero
  * <softwaremagico@gmail.com> Valencia (Spain).
@@ -26,6 +24,7 @@ import java.util.HashSet;
  * #L%
  */
 
+import java.util.HashSet;
 import java.util.Set;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
@@ -42,8 +41,7 @@ import com.softwaremagico.tm.random.selectors.TechnologicalPreferences;
 
 public class RandomCharacteristicsExtraPoints extends RandomCharacteristics {
 
-	public RandomCharacteristicsExtraPoints(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences)
-			throws InvalidXmlElementException {
+	public RandomCharacteristicsExtraPoints(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences) throws InvalidXmlElementException {
 		super(characterPlayer, preferences, new HashSet<Characteristic>());
 	}
 
@@ -60,17 +58,13 @@ public class RandomCharacteristicsExtraPoints extends RandomCharacteristics {
 		if (remainingPoints >= CostCalculator.CHARACTERISTIC_EXTRA_POINTS_COST) {
 			final Characteristic selectedCharacteristic = selectElementByWeight();
 			// If specialization allows it.
-			if (specialization.randomGaussian() > selectedCharacteristic.getValue()
-					&& selectedCharacteristic.getValue() < specialization.maximum()) {
+			if (specialization.randomGaussian() > selectedCharacteristic.getValue() && selectedCharacteristic.getValue() < specialization.maximum()) {
 				if (selectedCharacteristic.getValue() < FreeStyleCharacterCreation.getMaxInitialCharacteristicsValues(
-						selectedCharacteristic.getCharacteristicName(), getCharacterPlayer().getInfo().getAge(),
-						getCharacterPlayer().getRace())) {
+						selectedCharacteristic.getCharacteristicName(), getCharacterPlayer().getInfo().getAge(), getCharacterPlayer().getRace())) {
 					if (selectedCharacteristic.getCharacteristicName() != CharacteristicName.TECH
-							|| (techPreference == null
-									|| selectedCharacteristic.getValue() < techPreference.maximum())) {
+							|| (techPreference == null || selectedCharacteristic.getValue() < techPreference.maximum())) {
 						selectedCharacteristic.setValue(selectedCharacteristic.getValue() + 1);
-						RandomGenerationLog.debug(this.getClass().getName(),
-								"Increased value of '" + selectedCharacteristic + "' in 1.");
+						RandomGenerationLog.debug(this.getClass().getName(), "Increased value of '" + selectedCharacteristic + "' in 1.");
 						return CostCalculator.CHARACTERISTIC_EXTRA_POINTS_COST;
 					}
 				}
@@ -80,8 +74,7 @@ public class RandomCharacteristicsExtraPoints extends RandomCharacteristics {
 	}
 
 	@Override
-	protected void assignIfMandatory(Characteristic characteristic)
-			throws InvalidXmlElementException, ImpossibleToAssignMandatoryElementException {
+	protected void assignIfMandatory(Characteristic characteristic) throws InvalidXmlElementException, ImpossibleToAssignMandatoryElementException {
 		// Nothing
 	}
 }
