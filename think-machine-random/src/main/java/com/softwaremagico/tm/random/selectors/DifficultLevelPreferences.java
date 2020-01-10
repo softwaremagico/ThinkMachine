@@ -38,10 +38,10 @@ public enum DifficultLevelPreferences implements IRandomPreference {
 	MEDIUM(0, 0, 0),
 
 	// Threat level ~85
-	HARD(0, 5, 20),
+	HARD(0, 5, 50),
 
 	// Threat level ~100
-	VERY_HARD(5, 10, 20);
+	VERY_HARD(5, 10, 100);
 
 	private final int experienceBonus;
 	private final int skillsBonus;
