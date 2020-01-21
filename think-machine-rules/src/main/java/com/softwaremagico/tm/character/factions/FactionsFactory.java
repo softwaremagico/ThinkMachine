@@ -40,6 +40,7 @@ import com.softwaremagico.tm.character.benefices.AvailableBenefice;
 import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
 import com.softwaremagico.tm.character.benefices.BeneficeDefinition;
 import com.softwaremagico.tm.character.benefices.BeneficeDefinitionFactory;
+import com.softwaremagico.tm.character.benefices.RestrictedBenefice;
 import com.softwaremagico.tm.character.blessings.Blessing;
 import com.softwaremagico.tm.character.blessings.BlessingFactory;
 import com.softwaremagico.tm.character.races.Race;
@@ -60,7 +61,7 @@ public class FactionsFactory extends XmlFactory<Faction> {
 	private static final String BENEFICES = "benefices";
 	private static final String SUGGESTED_BENEFICES = "suggestedBenefices";
 	private static final String RESTRICTED_BENEFICES = "restrictedBenefices";
-	private static final String BENEFICE = "benefice";
+	private static final String BENEFICE_ID = "id";
 	private static final String BENEFICE_MAX_VALUE = "maxValue";
 
 	private static final String RANDOM_NAMES = "names";
@@ -146,6 +147,22 @@ public class FactionsFactory extends XmlFactory<Faction> {
 			}
 		}
 		faction.setSuggestedBenefices(suggestedBenefices);
+	}
+
+	public void setRestrictedBenefices(Faction faction, String language)
+			throws NumberFormatException, InvalidXmlElementException {
+		final Set<RestrictedBenefice> restrictedBenefices = new HashSet<>();
+		for (final String restrictedBeneficeId : getTranslator(faction.getModuleName())
+				.getAllChildrenTags(faction.getId(), RESTRICTED_BENEFICES)) {
+			final String beneficeName = getTranslator(faction.getModuleName()).getNodeValue(faction.getId(),
+					RESTRICTED_BENEFICES, restrictedBeneficeId, BENEFICE_ID);
+			final String maxValueTag = getTranslator(faction.getModuleName()).getNodeValue(faction.getId(),
+					RESTRICTED_BENEFICES, restrictedBeneficeId, BENEFICE_MAX_VALUE);
+			restrictedBenefices.add(new RestrictedBenefice(
+					BeneficeDefinitionFactory.getInstance().getElement(beneficeName, language, faction.getModuleName()),
+					Integer.parseInt(maxValueTag)));
+		}
+		faction.setRestrictedBenefices(restrictedBenefices);
 	}
 
 	@Override

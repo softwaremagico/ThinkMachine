@@ -65,7 +65,6 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
 
 	@Override
 	public void assign() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
-
 		// Later, the others.
 		while (CostCalculator.getBeneficesCosts(getCharacterPlayer()) < FreeStyleCharacterCreation
 				.getTraitsPoints(getCharacterPlayer().getInfo().getAge()) && !getWeightedElements().isEmpty()) {
@@ -213,6 +212,19 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
 		int maxRangeSelected = selectedTraitCost.randomGaussian();
 		if (maxRangeSelected > maxPoints) {
 			maxRangeSelected = maxPoints;
+		}
+
+		// Set faction restrictions.
+		if (getCharacterPlayer().getFaction() != null) {
+			for (final RestrictedBenefice restrictedBenefice : getCharacterPlayer().getFaction()
+					.getRestrictedBenefices()) {
+				if (Objects.equals(restrictedBenefice.getBeneficeDefinition(), benefice)) {
+					if (maxRangeSelected > restrictedBenefice.getMaxValue()) {
+						maxRangeSelected = restrictedBenefice.getMaxValue();
+					}
+					break;
+				}
+			}
 		}
 
 		RandomGenerationLog.info(this.getClass().getName(),

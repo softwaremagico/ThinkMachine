@@ -29,8 +29,10 @@ import java.util.Objects;
 import java.util.Set;
 
 import com.softwaremagico.tm.Element;
+import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.benefices.AvailableBenefice;
 import com.softwaremagico.tm.character.benefices.BeneficeDefinition;
+import com.softwaremagico.tm.character.benefices.RestrictedBenefice;
 import com.softwaremagico.tm.character.blessings.Blessing;
 import com.softwaremagico.tm.character.blessings.BlessingClassification;
 import com.softwaremagico.tm.character.races.Race;
@@ -43,6 +45,7 @@ public class Faction extends Element<Faction> {
 	private Set<Blessing> blessings = null;
 	private Set<AvailableBenefice> benefices = null;
 	private Set<BeneficeDefinition> suggestedBenefices = null;
+	private Set<RestrictedBenefice> restrictedBenefices = null;
 
 	public Faction(String id, String name, FactionGroup factionGroup, Race restrictedRace, String language,
 			String moduleName) {
@@ -125,6 +128,19 @@ public class Faction extends Element<Faction> {
 		return suggestedBenefices;
 	}
 
+	public Set<RestrictedBenefice> getRestrictedBenefices() {
+		if (restrictedBenefices == null) {
+			// Benefices are not read with factions due to a loop
+			// factions->benefices->skills->factions
+			try {
+				FactionsFactory.getInstance().setRestrictedBenefices(this, getLanguage());
+			} catch (NumberFormatException | InvalidXmlElementException e) {
+				MachineLog.errorMessage(this.getClass().getName(), e);
+			}
+		}
+		return restrictedBenefices;
+	}
+
 	public void setBlessings(Set<Blessing> blessings) {
 		this.blessings = blessings;
 	}
@@ -132,9 +148,13 @@ public class Faction extends Element<Faction> {
 	public void setBenefices(Set<AvailableBenefice> benefices) {
 		this.benefices = benefices;
 	}
-	
+
 	public void setSuggestedBenefices(Set<BeneficeDefinition> suggestedBenefices) {
 		this.suggestedBenefices = suggestedBenefices;
+	}
+
+	public void setRestrictedBenefices(Set<RestrictedBenefice> restrictedBenefices) {
+		this.restrictedBenefices = restrictedBenefices;
 	}
 
 	@Override

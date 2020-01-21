@@ -35,6 +35,7 @@
 				<include name="cybernetics" />
 				<include name="jsonExporter" />
 				<include name="blessings" />
+				<include name="benefices" />
 				<include name="occultism" />
 				<include name="exportTxt" />
 				<include name="experience" />
@@ -59,6 +60,7 @@
 			<class name="com.softwaremagico.tm.factory.CombatStylesFactoryTests" />
 			<class name="com.softwaremagico.tm.factory.CyberneticDeviceFactoryTests" />
 			<class name="com.softwaremagico.tm.rules.BlessingTests" />
+			<class name="com.softwaremagico.tm.rules.BeneficeTests" />
 			<class name="com.softwaremagico.tm.rules.OccultismTests" />
 			<class name="com.softwaremagico.tm.rules.CyberneticsTests" />
 			<class name="com.softwaremagico.tm.rules.ExperienceTests" />

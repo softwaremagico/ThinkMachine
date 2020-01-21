@@ -46,6 +46,7 @@ import com.softwaremagico.tm.character.benefices.BeneficeClassification;
 import com.softwaremagico.tm.character.benefices.BeneficeGroup;
 import com.softwaremagico.tm.character.benefices.BeneficeSpecialization;
 import com.softwaremagico.tm.character.benefices.InvalidBeneficeException;
+import com.softwaremagico.tm.character.benefices.RestrictedBenefice;
 import com.softwaremagico.tm.character.blessings.Blessing;
 import com.softwaremagico.tm.character.blessings.BlessingAlreadyAddedException;
 import com.softwaremagico.tm.character.blessings.BlessingClassification;
@@ -451,6 +452,16 @@ public class CharacterPlayer {
 		}
 		if (getBenefice(benefice.getBeneficeDefinition().getId()) != null) {
 			throw new BeneficeAlreadyAddedException("Character already has benefice '" + benefice + "'!");
+		}
+		if (getFaction() != null) {
+			for (final RestrictedBenefice restrictedBenefice : getFaction().getRestrictedBenefices()) {
+				if (Objects.equals(restrictedBenefice.getBeneficeDefinition(), benefice.getBeneficeDefinition())) {
+					if (benefice.getCost() > restrictedBenefice.getMaxValue()) {
+						throw new InvalidBeneficeException("Faction '" + getFaction()
+								+ "' limits the cost of benefit to '" + restrictedBenefice.getMaxValue() + "'");
+					}
+				}
+			}
 		}
 		benefices.add(benefice);
 		Collections.sort(benefices);

@@ -93,4 +93,13 @@ public class FactionFactoryTests {
 		Assert.assertTrue(amaltheans.getSuggestedBenefices().contains(BeneficeDefinitionFactory.getInstance()
 				.getElement("ordained", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)));
 	}
+
+	@Test
+	public void checkRestrictedBenefices() throws InvalidXmlElementException {
+		final Faction amaltheans = FactionsFactory.getInstance().getElement("amaltheans", LANGUAGE,
+				PathManager.DEFAULT_MODULE_FOLDER);
+		Assert.assertEquals(amaltheans.getRestrictedBenefices().size(), 1);
+		Assert.assertEquals(amaltheans.getRestrictedBenefices().iterator().next().getId(), "cash");
+		Assert.assertEquals(amaltheans.getRestrictedBenefices().iterator().next().getMaxValue(), 8);
+	}
 }

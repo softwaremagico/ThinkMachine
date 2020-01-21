@@ -76,13 +76,9 @@ public abstract class XmlFactory<T extends Element<T>> {
 					MachineLog.errorMessage(this.getClass().getName(), e);
 				}
 			}
-			MachineLog.debug(this.getClass().getName(), "Loaded " + elements.size() + " elements at '"
-					+ this.getClass().getSimpleName() + "'.");
+			MachineLog.debug(this.getClass().getName(),
+					"Loaded " + elements.size() + " elements at '" + this.getClass().getSimpleName() + "'.");
 		}
-	}
-
-	protected ITranslator getTranslator() {
-		return LanguagePool.getTranslator(getTranslatorFile(), null);
 	}
 
 	protected ITranslator getTranslator(String moduleName) {
@@ -96,18 +92,16 @@ public abstract class XmlFactory<T extends Element<T>> {
 		initialize();
 	}
 
-	protected void setRandomConfiguration(Element<?> element, ITranslator translator, String language, String moduleName)
-			throws InvalidXmlElementException {
+	protected void setRandomConfiguration(Element<?> element, ITranslator translator, String language,
+			String moduleName) throws InvalidXmlElementException {
 		// Is an element restricted to a faction?
 		try {
 			final String restrictedFactionsId = translator.getNodeValue(element.getId(), RANDOM, RESTRICTED_FACTIONS);
 			if (restrictedFactionsId != null) {
 				final StringTokenizer factionTokenizer = new StringTokenizer(restrictedFactionsId, ",");
 				while (factionTokenizer.hasMoreTokens()) {
-					element.getRandomDefinition()
-							.getRestrictedFactions()
-							.add(FactionsFactory.getInstance().getElement(factionTokenizer.nextToken().trim(),
-									language, moduleName));
+					element.getRandomDefinition().getRestrictedFactions().add(FactionsFactory.getInstance()
+							.getElement(factionTokenizer.nextToken().trim(), language, moduleName));
 				}
 			}
 		} catch (NullPointerException npe) {
@@ -123,8 +117,8 @@ public abstract class XmlFactory<T extends Element<T>> {
 				element.getRandomDefinition().setProbabilityMultiplier(1d);
 			}
 		} catch (NumberFormatException nfe) {
-			throw new InvalidXmlElementException("Invalid number value for element probability in '" + element.getId()
-					+ "'.");
+			throw new InvalidXmlElementException(
+					"Invalid number value for element probability in '" + element.getId() + "'.");
 		} catch (NullPointerException npe) {
 			// Optional
 		}
@@ -135,8 +129,8 @@ public abstract class XmlFactory<T extends Element<T>> {
 				element.getRandomDefinition().setMinimumTechLevel(Integer.parseInt(minTechLevel));
 			}
 		} catch (NumberFormatException nfe) {
-			throw new InvalidXmlElementException("Invalid number value for techlevel in element '" + element.getId()
-					+ "'.");
+			throw new InvalidXmlElementException(
+					"Invalid number value for techlevel in element '" + element.getId() + "'.");
 		} catch (NullPointerException npe) {
 			// Optional
 		}
@@ -147,8 +141,8 @@ public abstract class XmlFactory<T extends Element<T>> {
 				element.getRandomDefinition().setMaximumTechLevel(Integer.parseInt(maxTechLevel));
 			}
 		} catch (NumberFormatException nfe) {
-			throw new InvalidXmlElementException("Invalid number value for max techlevel in element '"
-					+ element.getId() + "'.");
+			throw new InvalidXmlElementException(
+					"Invalid number value for max techlevel in element '" + element.getId() + "'.");
 		} catch (NullPointerException npe) {
 			// Optional
 		}
@@ -188,9 +182,8 @@ public abstract class XmlFactory<T extends Element<T>> {
 			if (recommendedFactions != null) {
 				final StringTokenizer recommendedFactionsOfSkill = new StringTokenizer(recommendedFactions, ",");
 				while (recommendedFactionsOfSkill.hasMoreTokens()) {
-					element.getRandomDefinition().addRecommendedFaction(
-							FactionsFactory.getInstance().getElement(recommendedFactionsOfSkill.nextToken().trim(),
-									language, moduleName));
+					element.getRandomDefinition().addRecommendedFaction(FactionsFactory.getInstance()
+							.getElement(recommendedFactionsOfSkill.nextToken().trim(), language, moduleName));
 				}
 			}
 		} catch (NullPointerException npe) {
@@ -202,9 +195,8 @@ public abstract class XmlFactory<T extends Element<T>> {
 			if (restrictedRaces != null) {
 				final StringTokenizer restrictedRacesOfSkill = new StringTokenizer(restrictedRaces, ",");
 				while (restrictedRacesOfSkill.hasMoreTokens()) {
-					element.getRandomDefinition().addRestrictedRace(
-							RaceFactory.getInstance().getElement(restrictedRacesOfSkill.nextToken().trim(), language,
-									moduleName));
+					element.getRandomDefinition().addRestrictedRace(RaceFactory.getInstance()
+							.getElement(restrictedRacesOfSkill.nextToken().trim(), language, moduleName));
 				}
 			}
 		} catch (NullPointerException npe) {
@@ -216,9 +208,8 @@ public abstract class XmlFactory<T extends Element<T>> {
 			if (recommendedRaces != null) {
 				final StringTokenizer recommendedRacesTokenizer = new StringTokenizer(recommendedRaces, ",");
 				while (recommendedRacesTokenizer.hasMoreTokens()) {
-					element.getRandomDefinition().addRecommendedRace(
-							RaceFactory.getInstance().getElement(recommendedRacesTokenizer.nextToken().trim(),
-									language, moduleName));
+					element.getRandomDefinition().addRecommendedRace(RaceFactory.getInstance()
+							.getElement(recommendedRacesTokenizer.nextToken().trim(), language, moduleName));
 				}
 			}
 		} catch (NullPointerException npe) {
@@ -230,9 +221,8 @@ public abstract class XmlFactory<T extends Element<T>> {
 			if (forbiddenRaces != null) {
 				final StringTokenizer forbiddenRacesTokenizer = new StringTokenizer(forbiddenRaces, ",");
 				while (forbiddenRacesTokenizer.hasMoreTokens()) {
-					element.getRandomDefinition().addForbiddenRace(
-							RaceFactory.getInstance().getElement(forbiddenRacesTokenizer.nextToken().trim(), language,
-									moduleName));
+					element.getRandomDefinition().addForbiddenRace(RaceFactory.getInstance()
+							.getElement(forbiddenRacesTokenizer.nextToken().trim(), language, moduleName));
 				}
 			}
 		} catch (NullPointerException npe) {
@@ -254,8 +244,8 @@ public abstract class XmlFactory<T extends Element<T>> {
 				element.getRandomDefinition().setStaticProbability(Integer.parseInt(staticProbability));
 			}
 		} catch (NumberFormatException nfe) {
-			throw new InvalidXmlElementException("Invalid number value for element probability in '" + element.getId()
-					+ "'.");
+			throw new InvalidXmlElementException(
+					"Invalid number value for element probability in '" + element.getId() + "'.");
 		} catch (NullPointerException npe) {
 			// Optional
 		}
@@ -273,8 +263,8 @@ public abstract class XmlFactory<T extends Element<T>> {
 				final T element = createElement(getTranslator(moduleName), elementId, language, moduleName);
 				setRandomConfiguration(element, getTranslator(moduleName), language, moduleName);
 				if (elements.get(language).get(moduleName).contains(element)) {
-					throw new ElementAlreadyExistsException("Element '" + element
-							+ "' already is inserted. Probably the ID is duplicated.");
+					throw new ElementAlreadyExistsException(
+							"Element '" + element + "' already is inserted. Probably the ID is duplicated.");
 				}
 				elements.get(language).get(moduleName).add(element);
 			}
@@ -309,14 +299,14 @@ public abstract class XmlFactory<T extends Element<T>> {
 					try {
 						elements.add(factory.getElement(elementsTokenizer.nextToken().trim(), language, moduleName));
 					} catch (InvalidXmlElementException e) {
-						throw new InvalidXmlElementException("Invalid elements '" + elementTags + "' for element '"
-								+ elementId + "'.", e);
+						throw new InvalidXmlElementException(
+								"Invalid elements '" + elementTags + "' for element '" + elementId + "'.", e);
 					}
 				}
 			}
 		} catch (NullPointerException e) {
-			throw new InvalidXmlElementException("Invalid tag list '" + elementTags + "' in element '" + elementId
-					+ "'.", e);
+			throw new InvalidXmlElementException(
+					"Invalid tag list '" + elementTags + "' in element '" + elementId + "'.", e);
 		}
 		return elements;
 	}
