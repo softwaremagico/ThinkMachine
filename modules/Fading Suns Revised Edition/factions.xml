@@ -89,6 +89,11 @@
 		<group>church</group>
 		<race>human</race>
 		<blessings>pious, austere</blessings>
+		<suggestedBenefices>vestments, ordained</suggestedBenefices>
+		<restrictedBenefices>
+			<benefice>cash</benefice>
+			<maxValue>8</maxValue>
+		</restrictedBenefices>
 	</orthodox>
 	<brotherBattle>
 		<name>
@@ -136,6 +141,11 @@
 		</ranks>
 		<race>human</race>
 		<blessings>disciplined, clueless</blessings>
+		<suggestedBenefices>vestments, ordained</suggestedBenefices>
+		<restrictedBenefices>
+			<benefice>cash</benefice>
+			<maxValue>8</maxValue>
+		</restrictedBenefices>
 	</brotherBattle>
 	<eskatonic>
 		<name>
@@ -183,6 +193,11 @@
 		</ranks>
 		<race>human</race>
 		<blessings>curious, subtle</blessings>
+		<suggestedBenefices>vestments, ordained</suggestedBenefices>
+		<restrictedBenefices>
+			<benefice>cash</benefice>
+			<maxValue>8</maxValue>
+		</restrictedBenefices>
 	</eskatonic>
 	<avestites>
 		<name>
@@ -192,6 +207,11 @@
 		<group>church</group>
 		<race>human</race>
 		<blessings>pious, righteous</blessings>
+		<suggestedBenefices>vestments, ordained</suggestedBenefices>
+		<restrictedBenefices>
+			<benefice>cash</benefice>
+			<maxValue>8</maxValue>
+		</restrictedBenefices>
 	</avestites>
 	<amaltheans>
 		<name>
@@ -201,6 +221,11 @@
 		<group>church</group>
 		<race>human</race>
 		<blessings>compassionate, gullible</blessings>
+		<suggestedBenefices>vestments, ordained</suggestedBenefices>
+		<restrictedBenefices>
+			<benefice>cash</benefice>
+			<maxValue>8</maxValue>
+		</restrictedBenefices>
 	</amaltheans>
 	<mendicantMonks>
 		<name>
@@ -209,6 +234,11 @@
 		</name>
 		<group>church</group>
 		<race>human</race>
+		<suggestedBenefices>vestments, ordained</suggestedBenefices>
+		<restrictedBenefices>
+			<benefice>cash</benefice>
+			<maxValue>8</maxValue>
+		</restrictedBenefices>
 	</mendicantMonks>
 
 	<charioteers>

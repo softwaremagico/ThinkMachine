@@ -1,5 +1,17 @@
 package com.softwaremagico.tm.factory;
 
+import org.junit.BeforeClass;
+import org.testng.annotations.Test;
+
+import com.softwaremagico.tm.CacheHandler;
+import com.softwaremagico.tm.InvalidXmlElementException;
+import com.softwaremagico.tm.character.Gender;
+import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
+import com.softwaremagico.tm.character.benefices.BeneficeDefinitionFactory;
+import com.softwaremagico.tm.character.factions.Faction;
+import com.softwaremagico.tm.character.factions.FactionsFactory;
+import com.softwaremagico.tm.file.PathManager;
+
 /*-
  * #%L
  * Think Machine (Core)
@@ -26,17 +38,6 @@ package com.softwaremagico.tm.factory;
 
 import junit.framework.Assert;
 
-import org.junit.BeforeClass;
-import org.testng.annotations.Test;
-
-import com.softwaremagico.tm.CacheHandler;
-import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.character.Gender;
-import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
-import com.softwaremagico.tm.character.factions.Faction;
-import com.softwaremagico.tm.character.factions.FactionsFactory;
-import com.softwaremagico.tm.file.PathManager;
-
 @Test(groups = { "factionsFactory" })
 public class FactionFactoryTests {
 	private static final int DEFINED_FACTIONS = 20;
@@ -45,7 +46,6 @@ public class FactionFactoryTests {
 	private static final int DEFINED_SURNAMES = 125;
 	private static final String LANGUAGE = "es";
 
-
 	@BeforeClass
 	public void clearCache() {
 		CacheHandler.clearCache();
@@ -53,27 +53,44 @@ public class FactionFactoryTests {
 
 	@Test
 	public void readFactions() throws InvalidXmlElementException {
-		Assert.assertEquals(DEFINED_FACTIONS, FactionsFactory.getInstance().getElements(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).size());
+		Assert.assertEquals(DEFINED_FACTIONS,
+				FactionsFactory.getInstance().getElements(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).size());
 	}
 
 	@Test
 	public void readAfflictions() throws InvalidXmlElementException {
-		final Faction vorox = FactionsFactory.getInstance().getElement("vorox", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
-		Assert.assertTrue(vorox.getBenefices().contains(AvailableBeneficeFactory.getInstance().getElement("noOccult", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)));
+		final Faction vorox = FactionsFactory.getInstance().getElement("vorox", LANGUAGE,
+				PathManager.DEFAULT_MODULE_FOLDER);
+		Assert.assertTrue(vorox.getBenefices().contains(AvailableBeneficeFactory.getInstance().getElement("noOccult",
+				LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)));
 	}
-	
+
 	@Test
 	public void readAfflictionsWithRank() throws InvalidXmlElementException {
-		final Faction freeMen = FactionsFactory.getInstance().getElement("freeMen", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
-		Assert.assertTrue(freeMen.getBenefices().contains(AvailableBeneficeFactory.getInstance().getElement("darkSecret_3", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)));
+		final Faction freeMen = FactionsFactory.getInstance().getElement("freeMen", LANGUAGE,
+				PathManager.DEFAULT_MODULE_FOLDER);
+		Assert.assertTrue(freeMen.getBenefices().contains(AvailableBeneficeFactory.getInstance()
+				.getElement("darkSecret_3", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)));
 	}
 
 	@Test
 	public void readNames() throws InvalidXmlElementException {
-		final Faction hazat = FactionsFactory.getInstance().getElement("hazat", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+		final Faction hazat = FactionsFactory.getInstance().getElement("hazat", LANGUAGE,
+				PathManager.DEFAULT_MODULE_FOLDER);
 		Assert.assertNotNull(hazat);
 		Assert.assertTrue(FactionsFactory.getInstance().getAllNames(hazat, Gender.MALE).size() >= DEFINED_MALE_NAMES);
-		Assert.assertTrue(FactionsFactory.getInstance().getAllNames(hazat, Gender.FEMALE).size() >= DEFINED_FEMALE_NAMES);
+		Assert.assertTrue(
+				FactionsFactory.getInstance().getAllNames(hazat, Gender.FEMALE).size() >= DEFINED_FEMALE_NAMES);
 		Assert.assertTrue(FactionsFactory.getInstance().getAllSurnames(hazat).size() >= DEFINED_SURNAMES);
+	}
+
+	@Test
+	public void checkSuggestedBenefices() throws InvalidXmlElementException {
+		final Faction amaltheans = FactionsFactory.getInstance().getElement("amaltheans", LANGUAGE,
+				PathManager.DEFAULT_MODULE_FOLDER);
+		Assert.assertTrue(amaltheans.getSuggestedBenefices().contains(BeneficeDefinitionFactory.getInstance()
+				.getElement("vestments", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)));
+		Assert.assertTrue(amaltheans.getSuggestedBenefices().contains(BeneficeDefinitionFactory.getInstance()
+				.getElement("ordained", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)));
 	}
 }

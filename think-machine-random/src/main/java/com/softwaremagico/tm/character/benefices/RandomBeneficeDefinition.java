@@ -117,8 +117,8 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
 
 		// Only one fighting style by character.
 		if (selectedBenefice.getGroup().equals(BeneficeGroup.FIGHTING)) {
-			for (final BeneficeDefinition beneficeDefinition : BeneficeDefinitionFactory.getInstance()
-					.getBenefices(BeneficeGroup.FIGHTING, getCharacterPlayer().getLanguage(), getCharacterPlayer().getModuleName())) {
+			for (final BeneficeDefinition beneficeDefinition : BeneficeDefinitionFactory.getInstance().getBenefices(
+					BeneficeGroup.FIGHTING, getCharacterPlayer().getLanguage(), getCharacterPlayer().getModuleName())) {
 				removeElementWeight(beneficeDefinition);
 			}
 		}
@@ -135,7 +135,8 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
 
 	@Override
 	protected Collection<BeneficeDefinition> getAllElements() throws InvalidXmlElementException {
-		return BeneficeDefinitionFactory.getInstance().getElements(getCharacterPlayer().getLanguage(), getCharacterPlayer().getModuleName());
+		return BeneficeDefinitionFactory.getInstance().getElements(getCharacterPlayer().getLanguage(),
+				getCharacterPlayer().getModuleName());
 	}
 
 	@Override
@@ -150,6 +151,13 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
 		// No special benefices
 		if (benefice.getGroup() == BeneficeGroup.RESTRICTED) {
 			throw new InvalidRandomElementSelectedException("Benefice '" + benefice + "' is restricted.");
+		}
+
+		// Suggested benefices by faction.
+		if (getCharacterPlayer().getFaction() != null) {
+			if (getCharacterPlayer().getFaction().getSuggestedBenefices().contains(benefice)) {
+				return GOOD_PROBABILITY;
+			}
 		}
 
 		// PNJs likes money changes.
@@ -210,7 +218,8 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
 		RandomGenerationLog.info(this.getClass().getName(),
 				"MaxPoints of '" + benefice + "' are '" + maxRangeSelected + "'.");
 		Set<AvailableBenefice> beneficeLevels = AvailableBeneficeFactory.getInstance()
-				.getAvailableBeneficesByDefinition(getCharacterPlayer().getLanguage(), getCharacterPlayer().getModuleName(), benefice);
+				.getAvailableBeneficesByDefinition(getCharacterPlayer().getLanguage(),
+						getCharacterPlayer().getModuleName(), benefice);
 		// Cannot be null, but...
 		if (beneficeLevels == null) {
 			beneficeLevels = new HashSet<>();

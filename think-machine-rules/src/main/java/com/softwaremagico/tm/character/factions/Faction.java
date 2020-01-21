@@ -30,6 +30,7 @@ import java.util.Set;
 
 import com.softwaremagico.tm.Element;
 import com.softwaremagico.tm.character.benefices.AvailableBenefice;
+import com.softwaremagico.tm.character.benefices.BeneficeDefinition;
 import com.softwaremagico.tm.character.blessings.Blessing;
 import com.softwaremagico.tm.character.blessings.BlessingClassification;
 import com.softwaremagico.tm.character.races.Race;
@@ -41,9 +42,10 @@ public class Faction extends Element<Faction> {
 	private final Race restrictedRace;
 	private Set<Blessing> blessings = null;
 	private Set<AvailableBenefice> benefices = null;
+	private Set<BeneficeDefinition> suggestedBenefices = null;
 
-	public Faction(String id, String name, FactionGroup factionGroup, Race restrictedRace,
-			String language, String moduleName) {
+	public Faction(String id, String name, FactionGroup factionGroup, Race restrictedRace, String language,
+			String moduleName) {
 		super(id, name, language, moduleName);
 		this.factionGroup = factionGroup;
 		this.restrictedRace = restrictedRace;
@@ -110,12 +112,29 @@ public class Faction extends Element<Faction> {
 		return benefices;
 	}
 
+	public Set<BeneficeDefinition> getSuggestedBenefices() {
+		if (suggestedBenefices == null) {
+			// Benefices are not read with factions due to a loop
+			// factions->benefices->skills->factions
+			try {
+				FactionsFactory.getInstance().setSuggestedBenefices(this, getLanguage());
+			} catch (InvalidFactionException e) {
+				MachineLog.errorMessage(this.getClass().getName(), e);
+			}
+		}
+		return suggestedBenefices;
+	}
+
 	public void setBlessings(Set<Blessing> blessings) {
 		this.blessings = blessings;
 	}
 
 	public void setBenefices(Set<AvailableBenefice> benefices) {
 		this.benefices = benefices;
+	}
+	
+	public void setSuggestedBenefices(Set<BeneficeDefinition> suggestedBenefices) {
+		this.suggestedBenefices = suggestedBenefices;
 	}
 
 	@Override

@@ -38,6 +38,8 @@ import com.softwaremagico.tm.character.Name;
 import com.softwaremagico.tm.character.Surname;
 import com.softwaremagico.tm.character.benefices.AvailableBenefice;
 import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
+import com.softwaremagico.tm.character.benefices.BeneficeDefinition;
+import com.softwaremagico.tm.character.benefices.BeneficeDefinitionFactory;
 import com.softwaremagico.tm.character.blessings.Blessing;
 import com.softwaremagico.tm.character.blessings.BlessingFactory;
 import com.softwaremagico.tm.character.races.Race;
@@ -56,6 +58,10 @@ public class FactionsFactory extends XmlFactory<Faction> {
 	private static final String RACE = "race";
 	private static final String BLESSINGS = "blessings";
 	private static final String BENEFICES = "benefices";
+	private static final String SUGGESTED_BENEFICES = "suggestedBenefices";
+	private static final String RESTRICTED_BENEFICES = "restrictedBenefices";
+	private static final String BENEFICE = "benefice";
+	private static final String BENEFICE_MAX_VALUE = "maxValue";
 
 	private static final String RANDOM_NAMES = "names";
 	private static final String MALE_NAMES = "male";
@@ -95,8 +101,8 @@ public class FactionsFactory extends XmlFactory<Faction> {
 			mandatoryBlessings = getCommaSeparatedValues(faction.getId(), BLESSINGS, language, faction.getModuleName(),
 					BlessingFactory.getInstance());
 		} catch (InvalidXmlElementException ixe) {
-			throw new InvalidFactionException("Error in faction '" + faction
-					+ "' structure. Invalid blessing defintion. ", ixe);
+			throw new InvalidFactionException(
+					"Error in faction '" + faction + "' structure. Invalid blessing defintion. ", ixe);
 		}
 		faction.setBlessings(mandatoryBlessings);
 	}
@@ -108,16 +114,38 @@ public class FactionsFactory extends XmlFactory<Faction> {
 		if (mandatoryBeneficesList != null) {
 			final StringTokenizer mandatoyBeneficesTokenizer = new StringTokenizer(mandatoryBeneficesList, ",");
 			while (mandatoyBeneficesTokenizer.hasMoreTokens()) {
+				final String beneficeName = mandatoyBeneficesTokenizer.nextToken().trim();
 				try {
-					mandatoryBenefices.add(AvailableBeneficeFactory.getInstance().getElement(
-							mandatoyBeneficesTokenizer.nextToken().trim(), language, faction.getModuleName()));
+					mandatoryBenefices.add(AvailableBeneficeFactory.getInstance().getElement(beneficeName, language,
+							faction.getModuleName()));
 				} catch (InvalidXmlElementException ixe) {
 					throw new InvalidFactionException("Error in faction '" + faction.getId()
-							+ "' structure. Invalid benefice defintion. ", ixe);
+							+ "' structure. Invalid benefice '" + beneficeName + "' defintion. ", ixe);
 				}
 			}
 		}
 		faction.setBenefices(mandatoryBenefices);
+	}
+
+	public void setSuggestedBenefices(Faction faction, String language) throws InvalidFactionException {
+		final String suggestedBeneficesList = getTranslator(faction.getModuleName()).getNodeValue(faction.getId(),
+				SUGGESTED_BENEFICES);
+		final Set<BeneficeDefinition> suggestedBenefices = new HashSet<>();
+		if (suggestedBeneficesList != null) {
+			final StringTokenizer suggestedBeneficesTokenizer = new StringTokenizer(suggestedBeneficesList, ",");
+			while (suggestedBeneficesTokenizer.hasMoreTokens()) {
+				final String suggestedBeneficeName = suggestedBeneficesTokenizer.nextToken().trim();
+				try {
+					suggestedBenefices.add(BeneficeDefinitionFactory.getInstance().getElement(suggestedBeneficeName,
+							language, faction.getModuleName()));
+				} catch (InvalidXmlElementException ixe) {
+					throw new InvalidFactionException("Error in faction '" + faction.getId()
+							+ "' structure. Invalid suggested benefice '" + suggestedBeneficeName + "' defintion. ",
+							ixe);
+				}
+			}
+		}
+		faction.setSuggestedBenefices(suggestedBenefices);
 	}
 
 	@Override
@@ -139,13 +167,14 @@ public class FactionsFactory extends XmlFactory<Faction> {
 			final String raceRestrictionName = translator.getNodeValue(factionId, RACE);
 			Race raceRestriction = null;
 			if (raceRestrictionName == null) {
-				throw new InvalidFactionException("Race not defined in faction '" + factionId
-						+ "'. Factions must have a race restriction.");
+				throw new InvalidFactionException(
+						"Race not defined in faction '" + factionId + "'. Factions must have a race restriction.");
 			}
 			try {
 				raceRestriction = RaceFactory.getInstance().getElement(raceRestrictionName, language, moduleName);
 			} catch (InvalidXmlElementException ixe) {
-				throw new InvalidFactionException("Error in faction '" + factionId + "' structure. Invalid race. ", ixe);
+				throw new InvalidFactionException("Error in faction '" + factionId + "' structure. Invalid race. ",
+						ixe);
 			}
 			final Faction faction = new Faction(factionId, name, factionGroup, raceRestriction, language, moduleName);
 
@@ -161,7 +190,8 @@ public class FactionsFactory extends XmlFactory<Faction> {
 			if (maleNames != null) {
 				final StringTokenizer maleNamesTokenizer = new StringTokenizer(maleNames, ",");
 				while (maleNamesTokenizer.hasMoreTokens()) {
-					addName(new Name(maleNamesTokenizer.nextToken().trim(), language, moduleName, Gender.MALE, faction));
+					addName(new Name(maleNamesTokenizer.nextToken().trim(), language, moduleName, Gender.MALE,
+							faction));
 				}
 			}
 
