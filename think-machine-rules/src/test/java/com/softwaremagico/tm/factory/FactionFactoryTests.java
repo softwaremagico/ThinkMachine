@@ -89,6 +89,7 @@ public class FactionFactoryTests {
 				PathManager.DEFAULT_MODULE_FOLDER);
 		Assert.assertEquals(obun.getSuggestedBenefices().size(), 1);
 		Assert.assertEquals(obun.getSuggestedBenefices().iterator().next().getId(), "refuge");
+		Assert.assertEquals((int) obun.getSuggestedBenefices().iterator().next().getValue(), 4);
 	}
 
 	@Test

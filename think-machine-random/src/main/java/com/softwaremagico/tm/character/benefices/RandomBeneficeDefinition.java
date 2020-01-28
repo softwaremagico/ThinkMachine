@@ -152,11 +152,25 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
 			throw new InvalidRandomElementSelectedException("Benefice '" + benefice + "' is restricted.");
 		}
 
+		// Set faction limitations.
+		if (getCharacterPlayer().getFaction() != null) {
+			for (final RestrictedBenefice restrictedBenefice : getCharacterPlayer().getFaction()
+					.getRestrictedBenefices()) {
+				if (Objects.equals(restrictedBenefice.getBeneficeDefinition(), benefice)) {
+					if (restrictedBenefice.getMaxValue() == null) {
+						throw new InvalidRandomElementSelectedException("Benefice '" + benefice
+								+ "' is restricted by faction '" + getCharacterPlayer().getFaction() + "'.");
+					}
+					break;
+				}
+			}
+		}
+
 		// Suggested benefices by faction.
 		if (getCharacterPlayer().getFaction() != null) {
 			for (final SuggestedBenefice suggestedBenefice : getCharacterPlayer().getFaction()
 					.getSuggestedBenefices()) {
-				if (Objects.deepEquals(suggestedBenefice.getBeneficeDefinition(), benefice)) {
+				if (Objects.equals(suggestedBenefice.getBeneficeDefinition(), benefice)) {
 					return VERY_GOOD_PROBABILITY;
 				}
 
@@ -214,16 +228,34 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
 		}
 
 		int maxRangeSelected = selectedTraitCost.randomGaussian();
+
+		// Suggested benefices values by faction.
+		if (getCharacterPlayer().getFaction() != null) {
+			for (final SuggestedBenefice suggestedBenefice : getCharacterPlayer().getFaction()
+					.getSuggestedBenefices()) {
+				if (Objects.equals(suggestedBenefice.getBeneficeDefinition(), benefice)) {
+					if (suggestedBenefice.getValue() != null) {
+						RandomGenerationLog.debug(this.getClass().getName(), "Suggested benefice '" + benefice
+								+ "' has a value of '" + suggestedBenefice.getValue() + "'.");
+						maxRangeSelected = suggestedBenefice.getValue();
+					}
+				}
+			}
+		}
+
+		// Maximum points to be spent.
 		if (maxRangeSelected > maxPoints) {
 			maxRangeSelected = maxPoints;
 		}
 
-		// Set faction restrictions.
+		// Set faction limitations.
 		if (getCharacterPlayer().getFaction() != null) {
 			for (final RestrictedBenefice restrictedBenefice : getCharacterPlayer().getFaction()
 					.getRestrictedBenefices()) {
 				if (Objects.equals(restrictedBenefice.getBeneficeDefinition(), benefice)) {
 					if (maxRangeSelected > restrictedBenefice.getMaxValue()) {
+						RandomGenerationLog.debug(this.getClass().getName(), "Suggested benefice '" + benefice
+								+ "' has a restriction of value of '" + restrictedBenefice.getMaxValue() + "'.");
 						maxRangeSelected = restrictedBenefice.getMaxValue();
 					}
 					break;

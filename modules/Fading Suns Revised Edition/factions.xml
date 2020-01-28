@@ -87,6 +87,9 @@
 			<benefice>
 				<id>cash</id>
 			</benefice>
+			<benefice>
+				<id>ally</id>
+			</benefice>
 		</suggestedBenefices>
 		<random>
 			<names>
@@ -110,6 +113,10 @@
 			</benefice>
 			<benefice>
 				<id>cash</id>
+			</benefice>
+			<benefice>
+				<id>passageContracts</id>
+				<value>8</value>
 			</benefice>
 		</suggestedBenefices>
 		<random>
@@ -135,6 +142,9 @@
 			</benefice>
 			<benefice>
 				<id>ordained</id>
+			</benefice>
+			<benefice>
+				<id>ally</id>
 			</benefice>
 		</suggestedBenefices>
 		<restrictedBenefices>
@@ -260,9 +270,11 @@
 			</benefice>
 			<benefice>
 				<id>refuge</id>
+				<value>6</value>
 			</benefice>
 			<benefice>
 				<id>secrets</id>
+				<value>2</value>
 			</benefice>
 		</suggestedBenefices>
 		<restrictedBenefices>
@@ -610,6 +622,7 @@
 		<suggestedBenefices>
 			<benefice>
 				<id>darkSecret</id>
+				<value>3</value>
 			</benefice>
 		</suggestedBenefices>
 	</freeMen>
@@ -632,6 +645,7 @@
 		<suggestedBenefices>
 			<benefice>
 				<id>refuge</id>
+				<value>4</value>
 			</benefice>
 		</suggestedBenefices>
 	</obun>
