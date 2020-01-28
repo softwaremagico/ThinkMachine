@@ -154,8 +154,12 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
 
 		// Suggested benefices by faction.
 		if (getCharacterPlayer().getFaction() != null) {
-			if (getCharacterPlayer().getFaction().getSuggestedBenefices().contains(benefice)) {
-				return GOOD_PROBABILITY;
+			for (final SuggestedBenefice suggestedBenefice : getCharacterPlayer().getFaction()
+					.getSuggestedBenefices()) {
+				if (Objects.deepEquals(suggestedBenefice.getBeneficeDefinition(), benefice)) {
+					return VERY_GOOD_PROBABILITY;
+				}
+
 			}
 		}
 

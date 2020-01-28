@@ -26,19 +26,19 @@ package com.softwaremagico.tm.character.benefices;
 
 import com.softwaremagico.tm.Element;
 
-public class RestrictedBenefice extends Element<RestrictedBenefice> {
+public class SuggestedBenefice extends Element<SuggestedBenefice> {
 	private final BeneficeDefinition beneficeDefinition;
-	private final Integer maxValue;
+	private final Integer value;
 
-	public RestrictedBenefice(BeneficeDefinition beneficeDefinition, Integer maxValue) {
+	public SuggestedBenefice(BeneficeDefinition beneficeDefinition, Integer value) {
 		super(beneficeDefinition.getId(), beneficeDefinition.getName(), beneficeDefinition.getLanguage(),
 				beneficeDefinition.getModuleName());
 		this.beneficeDefinition = beneficeDefinition;
-		this.maxValue = maxValue;
+		this.value = value;
 	}
 
-	public Integer getMaxValue() {
-		return maxValue;
+	public Integer getValue() {
+		return value;
 	}
 
 	public BeneficeDefinition getBeneficeDefinition() {

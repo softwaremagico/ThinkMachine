@@ -38,9 +38,9 @@ import com.softwaremagico.tm.character.Name;
 import com.softwaremagico.tm.character.Surname;
 import com.softwaremagico.tm.character.benefices.AvailableBenefice;
 import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
-import com.softwaremagico.tm.character.benefices.BeneficeDefinition;
 import com.softwaremagico.tm.character.benefices.BeneficeDefinitionFactory;
 import com.softwaremagico.tm.character.benefices.RestrictedBenefice;
+import com.softwaremagico.tm.character.benefices.SuggestedBenefice;
 import com.softwaremagico.tm.character.blessings.Blessing;
 import com.softwaremagico.tm.character.blessings.BlessingFactory;
 import com.softwaremagico.tm.character.races.Race;
@@ -63,6 +63,7 @@ public class FactionsFactory extends XmlFactory<Faction> {
 	private static final String RESTRICTED_BENEFICES = "restrictedBenefices";
 	private static final String BENEFICE_ID = "id";
 	private static final String BENEFICE_MAX_VALUE = "maxValue";
+	private static final String BENEFICE_VALUE = "value";
 
 	private static final String RANDOM_NAMES = "names";
 	private static final String MALE_NAMES = "male";
@@ -128,25 +129,21 @@ public class FactionsFactory extends XmlFactory<Faction> {
 		faction.setBenefices(mandatoryBenefices);
 	}
 
-	public void setSuggestedBenefices(Faction faction, String language) throws InvalidFactionException {
-		final String suggestedBeneficesList = getTranslator(faction.getModuleName()).getNodeValue(faction.getId(),
-				SUGGESTED_BENEFICES);
-		final Set<BeneficeDefinition> suggestedBenefices = new HashSet<>();
-		if (suggestedBeneficesList != null) {
-			final StringTokenizer suggestedBeneficesTokenizer = new StringTokenizer(suggestedBeneficesList, ",");
-			while (suggestedBeneficesTokenizer.hasMoreTokens()) {
-				final String suggestedBeneficeName = suggestedBeneficesTokenizer.nextToken().trim();
-				try {
-					suggestedBenefices.add(BeneficeDefinitionFactory.getInstance().getElement(suggestedBeneficeName,
-							language, faction.getModuleName()));
-				} catch (InvalidXmlElementException ixe) {
-					throw new InvalidFactionException("Error in faction '" + faction.getId()
-							+ "' structure. Invalid suggested benefice '" + suggestedBeneficeName + "' defintion. ",
-							ixe);
-				}
-			}
+	public void setSuggestedBenefices(Faction faction, String language)
+			throws NumberFormatException, InvalidXmlElementException {
+		final Set<SuggestedBenefice> restrictedBenefices = new HashSet<>();
+		for (final String restrictedBeneficeId : getTranslator(faction.getModuleName())
+				.getAllChildrenTags(faction.getId(), SUGGESTED_BENEFICES)) {
+			final String beneficeName = getTranslator(faction.getModuleName()).getNodeValue(faction.getId(), SUGGESTED_BENEFICES,
+					restrictedBeneficeId, BENEFICE_ID);
+			final String valueTag = getTranslator(faction.getModuleName()).getNodeValue(faction.getId(), SUGGESTED_BENEFICES,
+					restrictedBeneficeId, BENEFICE_VALUE);
+			final Integer value = valueTag != null ? Integer.parseInt(valueTag) : null;
+			restrictedBenefices.add(new SuggestedBenefice(
+					BeneficeDefinitionFactory.getInstance().getElement(beneficeName, language, faction.getModuleName()),
+					value));
 		}
-		faction.setSuggestedBenefices(suggestedBenefices);
+		faction.setSuggestedBenefices(restrictedBenefices);
 	}
 
 	public void setRestrictedBenefices(Faction faction, String language)
@@ -154,13 +151,14 @@ public class FactionsFactory extends XmlFactory<Faction> {
 		final Set<RestrictedBenefice> restrictedBenefices = new HashSet<>();
 		for (final String restrictedBeneficeId : getTranslator(faction.getModuleName())
 				.getAllChildrenTags(faction.getId(), RESTRICTED_BENEFICES)) {
-			final String beneficeName = getTranslator(faction.getModuleName()).getNodeValue(faction.getId(),
-					RESTRICTED_BENEFICES, restrictedBeneficeId, BENEFICE_ID);
-			final String maxValueTag = getTranslator(faction.getModuleName()).getNodeValue(faction.getId(),
-					RESTRICTED_BENEFICES, restrictedBeneficeId, BENEFICE_MAX_VALUE);
+			final String beneficeName = getTranslator(faction.getModuleName()).getNodeValue(faction.getId(), RESTRICTED_BENEFICES,
+					restrictedBeneficeId, BENEFICE_ID);
+			final String maxValueTag = getTranslator(faction.getModuleName()).getNodeValue(faction.getId(), RESTRICTED_BENEFICES,
+					restrictedBeneficeId, BENEFICE_MAX_VALUE);
+			final Integer maxValue = maxValueTag != null ? Integer.parseInt(maxValueTag) : null;
 			restrictedBenefices.add(new RestrictedBenefice(
 					BeneficeDefinitionFactory.getInstance().getElement(beneficeName, language, faction.getModuleName()),
-					Integer.parseInt(maxValueTag)));
+					maxValue));
 		}
 		faction.setRestrictedBenefices(restrictedBenefices);
 	}

@@ -51,6 +51,7 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
 	protected static final int LITTLE_PROBABILITY = 6;
 	protected static final int FAIR_PROBABILITY = 11;
 	protected static final int GOOD_PROBABILITY = 21;
+	protected static final int VERY_GOOD_PROBABILITY = 31;
 
 	protected static final int BASIC_MULTIPLICATOR = 5;
 	protected static final int HIGH_MULTIPLICATOR = 10;

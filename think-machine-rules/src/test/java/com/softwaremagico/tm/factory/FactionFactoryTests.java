@@ -7,7 +7,6 @@ import com.softwaremagico.tm.CacheHandler;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.Gender;
 import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
-import com.softwaremagico.tm.character.benefices.BeneficeDefinitionFactory;
 import com.softwaremagico.tm.character.factions.Faction;
 import com.softwaremagico.tm.character.factions.FactionsFactory;
 import com.softwaremagico.tm.file.PathManager;
@@ -86,12 +85,10 @@ public class FactionFactoryTests {
 
 	@Test
 	public void checkSuggestedBenefices() throws InvalidXmlElementException {
-		final Faction amaltheans = FactionsFactory.getInstance().getElement("amaltheans", LANGUAGE,
+		final Faction obun = FactionsFactory.getInstance().getElement("obun", LANGUAGE,
 				PathManager.DEFAULT_MODULE_FOLDER);
-		Assert.assertTrue(amaltheans.getSuggestedBenefices().contains(BeneficeDefinitionFactory.getInstance()
-				.getElement("vestments", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)));
-		Assert.assertTrue(amaltheans.getSuggestedBenefices().contains(BeneficeDefinitionFactory.getInstance()
-				.getElement("ordained", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)));
+		Assert.assertEquals(obun.getSuggestedBenefices().size(), 1);
+		Assert.assertEquals(obun.getSuggestedBenefices().iterator().next().getId(), "refuge");
 	}
 
 	@Test
@@ -100,6 +97,6 @@ public class FactionFactoryTests {
 				PathManager.DEFAULT_MODULE_FOLDER);
 		Assert.assertEquals(amaltheans.getRestrictedBenefices().size(), 1);
 		Assert.assertEquals(amaltheans.getRestrictedBenefices().iterator().next().getId(), "cash");
-		Assert.assertEquals(amaltheans.getRestrictedBenefices().iterator().next().getMaxValue(), 8);
+		Assert.assertEquals((int) amaltheans.getRestrictedBenefices().iterator().next().getMaxValue(), 8);
 	}
 }

@@ -31,8 +31,8 @@ import java.util.Set;
 import com.softwaremagico.tm.Element;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.benefices.AvailableBenefice;
-import com.softwaremagico.tm.character.benefices.BeneficeDefinition;
 import com.softwaremagico.tm.character.benefices.RestrictedBenefice;
+import com.softwaremagico.tm.character.benefices.SuggestedBenefice;
 import com.softwaremagico.tm.character.blessings.Blessing;
 import com.softwaremagico.tm.character.blessings.BlessingClassification;
 import com.softwaremagico.tm.character.races.Race;
@@ -44,7 +44,7 @@ public class Faction extends Element<Faction> {
 	private final Race restrictedRace;
 	private Set<Blessing> blessings = null;
 	private Set<AvailableBenefice> benefices = null;
-	private Set<BeneficeDefinition> suggestedBenefices = null;
+	private Set<SuggestedBenefice> suggestedBenefices = null;
 	private Set<RestrictedBenefice> restrictedBenefices = null;
 
 	public Faction(String id, String name, FactionGroup factionGroup, Race restrictedRace, String language,
@@ -115,13 +115,13 @@ public class Faction extends Element<Faction> {
 		return benefices;
 	}
 
-	public Set<BeneficeDefinition> getSuggestedBenefices() {
+	public Set<SuggestedBenefice> getSuggestedBenefices() {
 		if (suggestedBenefices == null) {
 			// Benefices are not read with factions due to a loop
 			// factions->benefices->skills->factions
 			try {
 				FactionsFactory.getInstance().setSuggestedBenefices(this, getLanguage());
-			} catch (InvalidFactionException e) {
+			} catch (NumberFormatException | InvalidXmlElementException e) {
 				MachineLog.errorMessage(this.getClass().getName(), e);
 			}
 		}
@@ -149,7 +149,7 @@ public class Faction extends Element<Faction> {
 		this.benefices = benefices;
 	}
 
-	public void setSuggestedBenefices(Set<BeneficeDefinition> suggestedBenefices) {
+	public void setSuggestedBenefices(Set<SuggestedBenefice> suggestedBenefices) {
 		this.suggestedBenefices = suggestedBenefices;
 	}
 
