@@ -8,6 +8,7 @@
 		<group>nobility</group>
 		<race>human</race>
 		<blessings>unyielding, prideful</blessings>
+		<suggestedBenefices>nobility, cash</suggestedBenefices>
 		<random>
 			<names>
 				<male>George, Jake, Gilfoyle, Charlie, Henry, Jacob, John, Thomas, Lawrence, Richard, James, Alfred, Edward, Vincent, Richard, Christopher, Geoffrey, Robert, William, Chester, Phipps, Josephus, James, Shed, Anderson, Percy, Calvin, Dominic, Wallace, Xavier, Oliver, Mark, Ethan, Alexander</male>
@@ -24,6 +25,7 @@
 		<group>nobility</group>
 		<race>human</race>
 		<blessings>suspicious, vain</blessings>
+		<suggestedBenefices>nobility, cash</suggestedBenefices>
 		<random>
 			<names>
 				<male>Anatoly, Zach, Mordecai, Misha, Vaughn, Lev, Oleg, Yunek, Luka, Gregory, Vasily, Aleksei, Rodion, Grigory, Gennadi, Evgeny, Pyotr, Vladimir, Nikitin, Dmitri, Nikoli, Alun, Zaretsky, Guillot, Triquet, Gregor, Alun, Igor, Ilya, Vladyslav, Denys, Dmytro, Maksym, Bogdan, Maksym</male>
@@ -40,13 +42,14 @@
 		<group>nobility</group>
 		<race>human</race>
 		<blessings>disciplined, vengeful</blessings>
+		<suggestedBenefices>nobility, cash</suggestedBenefices>
 		<random>
 			<names>
 				<male>Alonso, Rodrigo, Mardoqueo, Íñigo, Lucius, Augusto, Florentino, Simon, Mauricio, Guillermo, Quintino, Federico, Edgardo, Beremundo, Quinciano, Gustavo, Fausto, Constantin, Alain, Armando, Alfred, Álvaro, Antón, Max, León, Acoidan, Atugio, Beyanor, Bentago, Himar, Adolfo, Abelardo, Ademar, Agapito, Ambrosio, Arcadio, Artemio, Aurelio, Baldomero, Balvino, Berenguer, Braulio, Blas, Cancio, Casio, Cecilio, Clelio, Cenobio, Clodomiro, Conrado, Crescencio, Dalmiro, Delfo, Diaco, Donato, Eladio, Eleodoro, Eliodoro, Elvio, Ercilio, Eusebio, Eustaquio, Evaristo, Florencio, Froilán, Genaro, Gregorio, German, Gumersindo, Higinio, Honorato, Ireneo, Lauro, Leoncio, Lisandro, Longino, Lidovico, Mamerto, Marcindo, Melitón, Modestino, Nemesio, Nicanor, Nolasco, Normando, Pascasio, Pilaro, Pomposo, Prudencio, Raimundo, Rufino, Ruperto, Sandalio, Segismundo, Serapio, Severo, Seveso, Sisebuto, Toribicio, Trifón, Tristán, Tubal, Ubaldo, Urko, Valeriano, Werino, Zacarías, Zenón</male>
 				<female>Rosaria, Ligeia, Roberta, Octavia, Daniela, Helena, Aldagracia, Zoe, Pandora, Dara, Daza, Naira, Alba, Aniseta, Arcadia, Arminda, Artemia, Aurea, Brigida, Bartola, Bella, Cándida, Ciriaca, Casilda, Cleotilde, Cleofe, Delfa, Diana, Diega, Domitilia, Dorila, Elegia, Emilse, Enriqueta, Emelinda, Esperanza, Eufamia, Eutilia, Eufrocina, Feliciana, Fortunata, Florinda, Flora, Fructuosa, Genoveva, Gerturdes, Gregoria, Gumersinda, Hercilia, Higinia, Honorata, Indalecia, Irina, Idinea, Isaura, Isidora, Italia, Jacinta, Jovita, Leonarda, Leopoldina, Livia, Liboria, Librada, Ludovica, Lugarda, Macaria, Marcelina, Matiana, Mauricia, Melitona, Molinaria, Mucia, Minervina, Nefer, Nemesia, Nicanora, Nigia, Ofelia, Octaviana, Ogaria, Oliva, Olivia, Pánfila, Peregrina, Petrona, Policarpa, Polonia, Primitiva, Prudencia, Refugia, Restituta, Romidia, Serafina, Sinesia, Sinforosa, Sesebuta, Tecla, Teodolina, Tiburcia, Trinidad, Uberlinda, Ulpiana, Vitalia, Zenobia, Zoila</female>
 			</names>
 			<surnames>Hazat, Lafayette, Bursandra, Peñano, Iturbi, Mariana, Justus, Castenda, Leon, Rolan, Escovedo, Serra, Méndez, Elcano, Azatlan, Abarca, Alfaro, Azagra, Badia, Borja, Bravo, Colombo, Durán, Fragoso, Fuertes, Gobea, Hidalgo, Lázaro, Maese, Mendo, Moreno, Ortega, Pacheco, Pardo, Perianes, Periañez, Rivas, Rosellón, Sandoval, Sousa, Vadillo, Viera, Villalobos, Ballesteros, Baudelaire, Dalton, Defoe, Alquezar, Albiac, Balda, Bolado, Bortia, Berna, Bastida, Capella, Cota, Duat, Guijarro, Iñigo, Ivorra, Lacorte, Luna, Lloria, Monzos, Marsa, Marc, Millán, Noguera, Olmos, Palmer, Palafox, Rubio, Saborido, Solaz, Sans, Timor, Toro, Urrea, Beldevere, Lampiño, Audaz, Delfino, González, Del Toro, Rosales, De la Vega, Salazar, Camacho, Varela, Vargas, Velez, Quintero, Rodríguez, Saucedo, Rivera, Castro, Cervantes, Ciarfalio, Jovellanos, Miranda, Navia, Riego, Vega, Ayamonte, Cenete, Comares, Medina, Quesada, Torres, Alba, Lara, Castro, Cifuentes, Calderón, Villegas, Medinaceli, Miranda, Osuna, Valverde, Pizarro, Feijóo, Silvela, Robles, Santalla, Trénor, Balboa, Bazán, Lezo, Doria</surnames>
-			</random>
+		</random>
 	</hazat>
 	<liHalan>
 		<name>
@@ -56,6 +59,7 @@
 		<group>nobility</group>
 		<race>human</race>
 		<blessings>pious, guilty</blessings>
+		<suggestedBenefices>nobility, cash, ally</suggestedBenefices>
 		<random>
 			<names>
 				<male>Kiri, Naomasa, Akira, Batu, Kazuo, Kei, Shinsuke, Hideaki, Shirô, Yôko, Yutaka, Shintarou, Takashi, Hikaru, Makoto, Goru, Goro, Shinjitsu, Isamu, Kenshin, Yoshi, Heihachiro, Isoroku</male>
@@ -72,6 +76,7 @@
 		<group>nobility</group>
 		<race>human</race>
 		<blessings>gracious, impetuous</blessings>
+		<suggestedBenefices>nobility, cash, passageContracts</suggestedBenefices>
 		<random>
 			<names>
 				<male>Aban, Abbas, Abbud, Abbudin, Abdul, Abdel, 'Abd al, Abdullah, 'Abid, 'Abidin, Abu Bakr, Abu al Khayr, Adan, Adel, 'Adil, Adham, Adib, 'Adli, Adnan, 'Adnan, 'Afif, Afeef, Ahmad, Ahmed, 'Ajib, 'Akif, Akil, Akram,  Ala' al Din, Al 'Abbas, Aladdin, Ala' al din, Al Bara', Al Hakam, Al Harith, Alhasan, Alhusain, Alhusayn, Ali, 'Ali, 'Aliyy, Alim, Almahdi, Al Safi, Altaf, Altair, Al Tayyib, Al Tijani, Al Tufail, Al Tufayl, Amid, 'Amid, Amin, Ameen, Amir, Ameer, 'Amir, Amjad, Ammar, 'Ammar, 'Amro, Anas, Anis, 'Antarah, Anwar, 'Aqil, Arfan, Arif, 'Arif, Asad, As'ad, Asadel, Ashraf, Asif, Asim, 'Asim, Aswad, Ata', 'Ataa, Ata' Allah, Ata' al Rahman, Athil, Athir, Atif, 'Atif, Awad, 'Awad, 'Awf, Aws, Awwab, Ayham, Ayman, Ayser, Ayyub, Ayoob, Aza, 'Azab, Azhar, Azeem, Azim, Aziz, 'Aziz, Azzam, 'Azzam, Badi, Badi al Zaman, Badr, Badr al Din, Badri, Baha, Baha', Baha al Din, Bahiyy al Din, Bahij, Bahir, Bakr, Bakri, Baligh, Bandar, Barakah, Barir, Bashir, Bashshar, Basil, Basim, Bassam, Bayhas, Bilal, Bishr, Boulos, Budail, Budayl, Burhan, Bushr, Butrus, Dabir, Dani, Darwish, Da'ud, Dawud, Dhakir, Dhakiy, Dhakwan, Dhul Fiqar, Dirar, Diya, Diya al Din, Duqaq, Fadi, Fadil, Fadl, Fadl Allah, Fahd, Fahad, Fahmi, Faisal, Faysal, Fa'iz, Fakhir, Fakhr al Din, Fakhri, Fakhry, Fakih, Falah, Falih, Faraj, Farraj, Farhan, Farid, Fareed, Fariq, Fareeq, Faris, Faruq, Farooq, Fath, Fathi, Fatih, Fatin, Fateen, Fawwaz, Fawzan, Fawzi, Fayyad, Ferran, Fida, Fikri, Firas, Fouad, Fu'ad, Fudail, Gamal, Gamali, Ghaith, Ghayth, Ghali, Ghalib, Ghanim, Ghassan, Ghawth, Ghazi, Ghazwan, Ghiyath, Habbab, Habib, Hadad, Haddad, Hadi, Hafiz, Hakem, Hakim, Hakeem, Halim, Hamal, Hamas, Hamdan, Hamdi, Hamid, Hamim, Hamzah, Hana, Hana'i, Hanbal, Hani, Hanif, Hannad, Haris, Harith, Haroun, Harun, Hashim, Hassan, Hatim, Haydar, Haytham, Hayyan, Hazim, Hilal, Hilel, Hilmi, Hisham, Hud, Houd, Hudad, Hudhafah, Hudhaifah, Hudhayfah, Humam, Husain, Husayn, Hussein, Husam, Husam al Din, Ibrahim, 'Id, Idris, Ihsan, Ihtisham, 'Ikrimah, Ilias, Imad, 'Imad, Imad al Din, Imam, Imran, 'Imran, Imtiyaz, In'am, Iqbal, Irfan, 'Irfan, Isa, 'Isa, Eisa, Isam, 'Isam, Issam, Ishaq, Isma'il, Iyad, Iyas, Izz al Din, Jabalah, Jabbar, Jabr, Jabir, Jad Allah, Jafar, Ja'far, Jal, Jalal, Jalal al Din, Jalil, Jaleel, Jamal, Jamal al Din, Jamil, Jameel, Jarir, Jasim, Jaul, Jaun, Jawad, Jawdah, Jawhar, Jibran, Jibril, Jihad, Jubair, Jubayr, Jul, Jumah, Jumu'ah, Junaid, Junayd, Juwain, Juwayn, Kadar, Kedar, Kadeen, Kadin, Kadeer, Kadir, Kahil, Kaliq, Kamal, Kamil, Kameel, Karam, Kardal, Karif, Kareef, Karim, Kareem, Kasib, Kaseeb, Kaseem, Kasim, Kateb, Katib, Kazim, Khalaf, Khaldun, Khaldoon, Khalid, Khaled, Khalifah, Khalil, Khaleel, Kalil, Khalil al Allah, Khalis, Khatib, Khair al Din, Khairi, Khairy, Khayri, Khoury, Khulus, Khuzaimah, Khuzaymah, Kutaiba, Labib, Labeeb, Lablab, Latif, Layth, Lu'ay, Lubaid, Lubayd, Luqman, Lut, Lutfi, Ma'd, Madani, Mahbub, Mahdi, Mahfuz, Mahir, Mahjub, Mahmud, Mahmoud, Mahrus, Maimun, Maymun, Majd, Majdy, Majd al Din, Majid, Makin, Malik, Mamdouh, Mamduh, Ma'mun, Ma'n, Ma'in, Mandhur, Mansur, Marghub, Marid, Ma'ruf, Marwan, Marzuq, Mash'al, Mashhur, Masrur, Mas'ud, Masun, Maysarah, Mazhar, Mazin, Mihran, Mihyar, Mika'il, Miqdad, Misbah, Mishaal, Mish'al, Miyaz, Mu'adh, Mu'awiyah, Mu'ayyad, Mubarak, Mubin, Mudar, Muddaththir, Mufid, Mufeed, Muflih, Muhab, Muhair, Muhayr, Muhammad, Mohammed, Muhanna, Muhannad, Muhanned, Muhib, Muhibb, Muhsin, Muhtadi, Muhyi al Din, Mu'in, Mu'izz, Mujab, Mujahid, Mukarram, Mukhlis, Mukhtar, Mulham, Mulhim, Mu'mmar, Mu'min, Mumtaz, Munahid, Mundhir, Munib, Munif, Munir, Muneer, Mu'nis, Munjid, Munsif, Muntasir, Murad, Murshid, Murtada, Murtadi, Murtadhy, Musa, Moosa, Mus'ab, Mus'ad, Musa'id, Mushtaq, Muslih, Muslim, Mustafa, Muta', Mu'tasim, Mutawalli, Mu'tazz, Muthanna, Muti, Muwaffaq, Muyassar, Muzaffar, Muzzammil, Nabhan, Nabih, Nabighah, Nabih, Nabil, Nabeel, Nadhir, Nadim, Nadeem, Nadir, Nafi', Nahid, Na'il, Na'im, Naji, Najib, Najeeb, Najid, Najjar, Najm al Din, Na'man, Namir, Nash'ah, Nash'at, Nashwan, Nasib, Nasih, Nasim, Nasir, Nasir al Din, Nasr, Nasser, Nasri, Nasuh, Nawaf, Nawwaf, Nawfal, Nayif, Naif, Nazih, Nazeeh, Nazim, Nazeem, Nazmi, Nibras, Nidal, Nijad, Nimr, Nizar, Nu'aim, Nu'aym, Nuh, Nooh, Nuhaid, Nuhayd, Numair, Nu'man, Nur al Din, Nuri, Noori, Nusrah, Nusrat, Qasim, Qays, Qais, Qudamah, Qusay, Qatadah, Qutaybah, Qutaibah, Qutb, Qutuz, R, Rabah, Rabi, Radi, Rafi, Rafid, Rafiq, Raghib, Ragheb, Raghid, Rahman, Ra'id, Ra'if, Rais, Raja, Rajab, Raji, Rajih, Rakin, Ramadan, Rami, Ramih, Ramiz, Ramzi, Rani, Rashad, Rashid, Rasil, Rasin, Rasmi, Rasul, Ratib, Ra'uf, Rayhan, Rayyan, Razin, Reda, Rida, Ridha, Ridwan, Rihab, Riyad, Riyadh, Rizq, Ruhi, Rushd, Rushdi, Ruwaid, Ruwayd, Saad, Sa'adah, Sab, Sabih, Sabeeh, Sabir, Sabeer, Sabri, Sa'd, Sa'd al Din, Sadad, Sadid, Sadiq, Sa'dun, Sa'eed, Sa'id, Safi, Safiy, Safiy al Din, Safuh, Safwah, Safwat, Safwan, Sahib, Sahir, Sahl, Sa'ib, Saif, Sayf, Seif, Saif al Din, Sajid, Sajjad, Sakhr, Salah, Salah al Din, Salamah, Saleh, Salih, Salim, Saleem, Salman, Sami, Samih, Samir, Sameer, Samman, Saqr, Sariyah, Sati, Saud, Sayyid, Sha'ban, Shadi, Shadin, Shafi, Shafiq, Shafeeq, Shahid, Shahin, Shahir, Shakib, Shakir, Shams al Din, Shamal, Shamil, Shamim, Sharaf, Sharif, Shareef, Shawqi, Shihab, Shihab al Din, Shihad, Shu'aib, Shu'ayb, Shukri, Shumayl, Siddiq, Sinan, Siraj, Siraj al Din, Sofian, Subhi, Sufyan, Suhaib, Suhayb, Suhail, Suhayl, Suhaim, Suhaym, Sulaiman, Sulayman, Sultan, Sumrah, Suraqah, Su'ud, Suoud, Tahir, Tahsin, Taim Allah, Taym Allah, Taj, Taj al Din, Talal, Talib, Tamim, Tamir, Tamam, Tammam, Taqiy, Tarif, Tareef, Tariq, Taslim, Tawfiq, Tawhid, Taymullah, Taysir, Tayyib, Thabit, Thamer, Thamir, Thaqib, Thawab, Thawban, 'Ubaidah, 'Ubaydah, Ubaid, Ubayy, 'Udail, 'Udayl, 'Uday, 'Umar, Omar, Umarah, Umayr, Umair, Umayyah, 'Urwah, Usaim, Usaym, Usama, Usamah, 'Utbah, Uthal, Uthman, Waddah, Wadi, Wadid, Wafiq, Wafeeq, Wahab, Wahhab, Wahid, Wa'il, Wajdi, Wajid, Wajih, Wakil, Walid, Waleed, Walif, Waliy Allah, Waliy al Din, Waqar, Waqqas, Ward, Wasif, Wasil, Wasim, Waseem, Wazir, Yahya, Yaman, Ya'qub, Yasar, Yasser, Yasin, Yaseen, Yasir, Yazan, Yazid, Yazeed, Youssef, Yusef, Yusuf, Yunus, Yoonus, Yushua, Yusri, Yusuf, Zafar, Zafir, Zahid, Zahir, Zaid, Zayd, Zaim, Zain, Zayn, Zarif, Zakariyya, Zaki, Zaky, Zakwan, Ziad, Ziyad, Zubair, Zubayr, Zuhair, Zuhayr</male>
@@ -197,7 +202,7 @@
 		</ranks>
 		<race>human</race>
 		<blessings>curious, subtle</blessings>
-		<suggestedBenefices>vestments, ordained</suggestedBenefices>
+		<suggestedBenefices>vestments, ordained, refuge, secrets</suggestedBenefices>
 		<restrictedBenefices>
 			<benefice>
 				<id>cash</id>
@@ -229,7 +234,7 @@
 		<group>church</group>
 		<race>human</race>
 		<blessings>compassionate, gullible</blessings>
-		<suggestedBenefices>vestments, ordained</suggestedBenefices>
+		<suggestedBenefices>vestments, ordained, ally</suggestedBenefices>
 		<restrictedBenefices>
 			<benefice>
 				<id>cash</id>
@@ -244,7 +249,7 @@
 		</name>
 		<group>church</group>
 		<race>human</race>
-		<suggestedBenefices>vestments, ordained</suggestedBenefices>
+		<suggestedBenefices>vestments, ordained, cloistered</suggestedBenefices>
 		<restrictedBenefices>
 			<benefice>
 				<id>cash</id>
@@ -299,6 +304,7 @@
 		</ranks>
 		<race>human</race>
 		<blessings>curious, nosy</blessings>
+		<suggestedBenefices>cash, passageContracts, commission</suggestedBenefices>
 	</charioteers>
 	<engineers>
 		<name>
@@ -308,6 +314,7 @@
 		<group>guild</group>
 		<race>human</race>
 		<blessings>innovative, unnerving</blessings>
+		<suggestedBenefices>cash, passageContracts, commission</suggestedBenefices>
 	</engineers>
 	<scravers>
 		<name>
@@ -355,6 +362,7 @@
 		</ranks>
 		<race>human</race>
 		<blessings>theman, possessive</blessings>
+		<suggestedBenefices>cash, passageContracts, commission</suggestedBenefices>
 	</scravers>
 	<muster>
 		<name>
@@ -402,6 +410,7 @@
 		</ranks>
 		<race>human</race>
 		<blessings>bold, callous</blessings>
+		<suggestedBenefices>cash, passageContracts, commission</suggestedBenefices>
 	</muster>
 	<reeves>
 		<name>
@@ -449,6 +458,7 @@
 		</ranks>
 		<race>human</race>
 		<blessings>shrewd, mammon</blessings>
+		<suggestedBenefices>cash, passageContracts, commission</suggestedBenefices>
 	</reeves>
 	<freeMen>
 		<name>
@@ -458,6 +468,7 @@
 		<group>none</group>
 		<race>human</race>
 		<benefices>darkSecret_3</benefices>
+		<suggestedBenefices>darkSecret</suggestedBenefices>
 	</freeMen>
 	
 	<obun>
@@ -475,6 +486,7 @@
 			</names>
 			<surnames>HanSeer, HanLoaaj, Harn, Haleigha, Haulani, Kahiau, Maylee, Pazhani, Pualani</surnames>		
 		</random>
+		<suggestedBenefices>refuge</suggestedBenefices>
 	</obun>
 	<ukar>
 		<name>
@@ -492,6 +504,7 @@
 			</names>
 			<surnames>Nadakira, Wahind, Malak, Nolents, Oed Nata, Borduk, Nont, Veldiryn, Nilite, Tushan</surnames>		
 		</random>
+		<suggestedBenefices>familiyTies</suggestedBenefices>
 	</ukar>
 	<vorox>
 		<name>
@@ -502,5 +515,6 @@
 		<race>vorox</race>
 		<blessings>predatory, giant, sensitiveSmell, uncouth</blessings>
 		<benefices>bite, extraLimbs, noOccult, ostraziced</benefices>
+		<suggestedBenefices>familiyTies</suggestedBenefices>
 	</vorox>
 </factions>
