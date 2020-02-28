@@ -44,5 +44,15 @@ public class SuggestedBenefice extends Element<SuggestedBenefice> {
 	public BeneficeDefinition getBeneficeDefinition() {
 		return beneficeDefinition;
 	}
+	
+	@Override
+	public int hashCode() {
+		return super.hashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return super.equals(obj);
+	}
 
 }

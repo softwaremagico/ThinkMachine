@@ -28,11 +28,12 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.io.Writer;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class CostCalculatorLog {
 
-	private static final Logger logger = Logger.getLogger(CostCalculatorLog.class);
+	private static final Logger logger = LoggerFactory.getLogger(CostCalculatorLog.class);
 
 	private CostCalculatorLog() {
 

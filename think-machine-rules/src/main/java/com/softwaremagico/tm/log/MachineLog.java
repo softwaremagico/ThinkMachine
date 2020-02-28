@@ -28,11 +28,12 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.io.Writer;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class MachineLog {
 
-	private static final Logger logger = Logger.getLogger(MachineLog.class);
+	private static final Logger logger = LoggerFactory.getLogger(MachineLog.class);
 
 	private MachineLog() {
 
