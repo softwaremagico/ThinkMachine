@@ -61,7 +61,7 @@ public class RandomCharacteristicsExperience extends RandomCharacteristics {
 				if (getCharacterPlayer().getExperienceExpended() + Experience.getExperienceCostFor(characteristic, newValue) <= getCharacterPlayer()
 						.getExperienceEarned()) {
 					RandomGenerationLog
-							.severe(this.getClass().getName(),
+							.debug(this.getClass().getName(),
 									"Spent '"
 											+ Experience.getExperienceCostFor(characteristic, newValue)
 											+ "' experience points on '"
