@@ -27,6 +27,7 @@ package com.softwaremagico.tm.language;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLClassLoader;
@@ -68,19 +69,18 @@ public class Translator implements ITranslator {
 		doc = parseFile(doc, filePath);
 	}
 
+	public Translator(InputStream content) {
+		tagTranslations = new HashMap<>();
+		doc = parseContent(doc, content);
+	}
+
 	/**
 	 * Parse the file
 	 *
-	 * @param tagName
-	 *            Tag of the data to be read
+	 * @param tagName Tag of the data to be read
 	 */
 	private static Document parseFile(Document usedDoc, String filePath) {
-		final DocumentBuilderFactory dbf;
-		final DocumentBuilder db;
-
 		try {
-			dbf = DocumentBuilderFactory.newInstance();
-			db = dbf.newDocumentBuilder();
 			URL resource = null;
 			if (Translator.class.getClassLoader().getResource(filePath) != null) {
 				resource = Translator.class.getClassLoader().getResource(filePath);
@@ -89,28 +89,40 @@ public class Translator implements ITranslator {
 				resource = URLClassLoader.getSystemResource(filePath);
 			}
 			MachineLog.debug(Translator.class.getName(), "Found resource '" + filePath + "' at '" + resource + "'.");
-			usedDoc = db.parse(resource.openStream());
-			usedDoc.getDocumentElement().normalize();
+			return parseContent(usedDoc, resource.openStream());
 		} catch (NullPointerException e) {
 			MachineLog.severe(Translator.class.getName(), "Invalid xml at resource '" + filePath + "'.");
 			MachineLog.errorMessage(Translator.class.getName(), e);
-		} catch (SAXParseException ex) {
-			final String text = "Parsing error" + ".\n Line: " + ex.getLineNumber() + "\nUri: " + ex.getSystemId()
-					+ "\nMessage: " + ex.getMessage();
-			MachineLog.severe(Translator.class.getName(), text);
-			MachineLog.errorMessage(Translator.class.getName(), ex);
-		} catch (SAXException ex) {
-			MachineLog.errorMessage(Translator.class.getName(), ex);
-		} catch (ParserConfigurationException ex) {
-			MachineLog.errorMessage(Translator.class.getName(), ex);
 		} catch (FileNotFoundException fnf) {
-			final String text = "The file "
-					+ filePath
+			final String text = "The file " + filePath
 					+ " containing the translations is not found. Please, check your program files and put the translation XML files "
 					+ "on the \"translations\" folder.";
 			System.out.println(text);
 		} catch (IOException ex) {
 			Logger.getLogger(Translator.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		return usedDoc;
+	}
+
+	private static Document parseContent(Document usedDoc, InputStream content) {
+		final DocumentBuilderFactory dbf;
+		final DocumentBuilder db;
+
+		try {
+			dbf = DocumentBuilderFactory.newInstance();
+			db = dbf.newDocumentBuilder();
+			usedDoc = db.parse(content);
+			usedDoc.getDocumentElement().normalize();
+		} catch (SAXParseException ex) {
+			final String text = "Parsing error" + ".\n Line: " + ex.getLineNumber() + "\nUri: " + ex.getSystemId() + "\nMessage: " + ex.getMessage();
+			MachineLog.severe(Translator.class.getName(), text);
+			MachineLog.errorMessage(Translator.class.getName(), ex);
+		} catch (SAXException ex) {
+			MachineLog.errorMessage(Translator.class.getName(), ex);
+		} catch (IOException ex) {
+			Logger.getLogger(Translator.class.getName()).log(Level.SEVERE, null, ex);
+		} catch (ParserConfigurationException ex) {
+			MachineLog.errorMessage(Translator.class.getName(), ex);
 		}
 		return usedDoc;
 	}
@@ -419,8 +431,7 @@ public class Translator implements ITranslator {
 					} catch (NullPointerException npe) {
 						if (!retried) {
 							if (!showedMessage) {
-								MachineLog.warning(Translator.class.getName(), "There is a problem with tag: " + tag
-										+ " in  language: \"" + language
+								MachineLog.warning(Translator.class.getName(), "There is a problem with tag: " + tag + " in  language: \"" + language
 										+ "\". We tray to use english language instead.");
 								showedMessage = true;
 							}
@@ -435,8 +446,7 @@ public class Translator implements ITranslator {
 							return readTag(tag, DEFAULT_LANGUAGE);
 						} else {
 							if (!errorShowed) {
-								MachineLog.severe(this.getClass().getName(), "Language selection failed: " + language
-										+ " on " + tag + ".");
+								MachineLog.severe(this.getClass().getName(), "Language selection failed: " + language + " on " + tag + ".");
 								errorShowed = true;
 							}
 							return null;
@@ -462,13 +472,11 @@ public class Translator implements ITranslator {
 			for (int s = 0; s < nodeLst.getLength(); s++) {
 				final Node fstNode = nodeLst.item(s);
 				try {
-					final Language lang = new Language(fstNode.getTextContent(), fstNode.getAttributes()
-							.getNamedItem("abbrev").getNodeValue(), fstNode.getAttributes().getNamedItem("flag")
-							.getNodeValue());
+					final Language lang = new Language(fstNode.getTextContent(), fstNode.getAttributes().getNamedItem("abbrev").getNodeValue(),
+							fstNode.getAttributes().getNamedItem("flag").getNodeValue());
 					languagesList.add(lang);
 				} catch (NullPointerException npe) {
-					MachineLog.severe(Translator.class.getName(),
-							"Error retrieving the available languages. Check your installation.");
+					MachineLog.severe(Translator.class.getName(), "Error retrieving the available languages. Check your installation.");
 				}
 			}
 			MachineLog.debug(this.getClass().getName(), "Available languages are '" + languagesList + "'.");
@@ -495,8 +503,7 @@ public class Translator implements ITranslator {
 
 		try {
 			if (Translator.class.getClassLoader().getResource(PathManager.MODULES_FOLDER + File.separator + xmlFile) != null) {
-				file = new File(Translator.class.getClassLoader()
-						.getResource(PathManager.MODULES_FOLDER + File.separator + xmlFile).toURI());
+				file = new File(Translator.class.getClassLoader().getResource(PathManager.MODULES_FOLDER + File.separator + xmlFile).toURI());
 				if (file.exists()) {
 					return file;
 				}

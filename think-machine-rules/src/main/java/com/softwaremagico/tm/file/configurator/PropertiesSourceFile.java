@@ -37,6 +37,7 @@ import java.util.Properties;
 import java.util.Set;
 import java.util.TreeMap;
 
+import com.softwaremagico.tm.file.configurator.exceptions.ResurceNotFoundException;
 import com.softwaremagico.tm.file.configurator.exceptions.PropertyNotStoredException;
 import com.softwaremagico.tm.file.watcher.FileWatcher;
 import com.softwaremagico.tm.file.watcher.FileWatcher.FileModifiedListener;
@@ -73,8 +74,8 @@ public class PropertiesSourceFile extends SourceFile<Properties> implements IPro
 			properties.setProperty(entry.getKey(), entry.getValue());
 		}
 		PropertiesFile.store(properties, getFilePath(), getFileName());
-		MachineLog.debug(this.getClass().getName(), "Storing '" + properties + "' at properties file '" + getFilePath()
-				+ File.separator + getFileName() + "'.");
+		MachineLog.debug(this.getClass().getName(),
+				"Storing '" + properties + "' at properties file '" + getFilePath() + File.separator + getFileName() + "'.");
 	}
 
 	@Override
@@ -95,8 +96,12 @@ public class PropertiesSourceFile extends SourceFile<Properties> implements IPro
 		return null;
 	}
 
-	private String getDirectoryToWatch() {
-		return (getFilePath() != null ? getFilePath() : this.getClass().getClassLoader().getResource(".").getPath());
+	private String getDirectoryToWatch() throws ResurceNotFoundException {
+		try {
+			return (getFilePath() != null ? getFilePath() : this.getClass().getClassLoader().getResource(".").getPath());
+		} catch (NullPointerException e) {
+			throw new ResurceNotFoundException("No modules found.");
+		}
 	}
 
 	private void setWatcher() {
@@ -115,10 +120,15 @@ public class PropertiesSourceFile extends SourceFile<Properties> implements IPro
 				}
 			});
 		} catch (NoSuchFileException | NullPointerException e) {
-			MachineLog.warning(this.getClass().getName(), "Directory '" + getDirectoryToWatch()
-					+ "' to watch not found!");
+			try {
+				MachineLog.warning(this.getClass().getName(), "Directory '" + getDirectoryToWatch() + "' to watch not found!");
+			} catch (ResurceNotFoundException e1) {
+				MachineLog.warning(this.getClass().getName(), "Modules not found!");
+			}
 		} catch (IOException e) {
 			MachineLog.errorMessage(this.getClass().getName(), e);
+		} catch (ResurceNotFoundException e) {
+			MachineLog.warning(this.getClass().getName(), "Modules not found!");
 		}
 	}
 

@@ -59,7 +59,8 @@ public class ModuleManager {
 
 	public static synchronized Set<String> getAvailableModules() {
 		if (availableModules == null) {
-			// Force to load modules in current module's folder and enable the file watchers.
+			// Force to load modules in current module's folder and enable the file
+			// watchers.
 			if (currentModuleFolder == null) {
 				setModulesFolder(MachineConfigurationReader.getInstance().getModulesPath());
 			}
@@ -70,16 +71,23 @@ public class ModuleManager {
 		return availableModules;
 	}
 
+	public static void addAvailableModule(String moduleName) {
+		if (availableModules == null) {
+			availableModules = new HashSet<>();
+		}
+		availableModules.add(moduleName);
+	}
+
 	/**
-	 * Search for any available module on the application or in the modules folder. This code has not optimal
-	 * performance but is only being executed one time.
+	 * Search for any available module on the application or in the modules folder.
+	 * This code has not optimal performance but is only being executed one time.
 	 * 
 	 * @return A list of modules.
 	 */
 	private static Set<String> listModulesInResources() {
 		final ConfigurationBuilder builder = new ConfigurationBuilder();
-		builder.addUrls(ClasspathHelper.forPackage(PathManager.MODULES_FOLDER, ClassLoader.getSystemClassLoader(),
-				ClasspathHelper.contextClassLoader(), ClasspathHelper.staticClassLoader()));
+		builder.addUrls(ClasspathHelper.forPackage(PathManager.MODULES_FOLDER, ClassLoader.getSystemClassLoader(), ClasspathHelper.contextClassLoader(),
+				ClasspathHelper.staticClassLoader()));
 		builder.addScanners(new ResourcesScanner());
 		final Reflections reflections = new Reflections(builder);
 		final Set<String> resources = reflections.getResources(Pattern.compile(".*\\.xml"));
@@ -107,21 +115,21 @@ public class ModuleManager {
 	}
 
 	/**
-	 * Adds the supplied Java Archive library to java.class.path. This is benign if the library is already loaded.
+	 * Adds the supplied Java Archive library to java.class.path. This is benign if
+	 * the library is already loaded.
 	 * 
-	 * @param jar
-	 *            The jar file to include in the application.
+	 * @param jar The jar file to include in the application.
 	 */
 	public static synchronized void loadJar(File jar) throws InvalidJarFileException {
 		try {
-			// We are using reflection here to circumvent encapsulation; addURL is not public
+			// We are using reflection here to circumvent encapsulation; addURL is not
+			// public
 			final URLClassLoader loader = (URLClassLoader) ClassLoader.getSystemClassLoader();
 			final URL url = jar.toURI().toURL();
 			// Disallow if already loaded
 			for (final URL it : Arrays.asList(loader.getURLs())) {
 				if (Objects.equals(it.toString(), (url.toString()))) {
-					MachineModulesLog.info(ModuleManager.class.getName(), "JAR file '" + jar.toURI().getPath()
-							+ "' already loaded.");
+					MachineModulesLog.info(ModuleManager.class.getName(), "JAR file '" + jar.toURI().getPath() + "' already loaded.");
 					return;
 				}
 			}
@@ -130,8 +138,7 @@ public class ModuleManager {
 			method.setAccessible(true); // promote the method to public access.
 			method.invoke(loader, new Object[] { url });
 			MachineModulesLog.info(ModuleManager.class.getName(), "Loaded JAR file '" + jar.toURI().getPath() + "'.");
-		} catch (final NoSuchMethodException | IllegalAccessException | MalformedURLException
-				| InvocationTargetException e) {
+		} catch (final NoSuchMethodException | IllegalAccessException | MalformedURLException | InvocationTargetException e) {
 			throw new InvalidJarFileException("Unable to load JAR file '" + jar.toURI().getPath() + "'.", e);
 		}
 	}
@@ -162,8 +169,7 @@ public class ModuleManager {
 				}
 			}
 		} catch (NullPointerException e) {
-			MachineModulesLog.warning(ModuleManager.class.getName(), "Jar cannot be loaded at '" + modulesFolder
-					+ "'.");
+			MachineModulesLog.warning(ModuleManager.class.getName(), "Jar cannot be loaded at '" + modulesFolder + "'.");
 		}
 	}
 

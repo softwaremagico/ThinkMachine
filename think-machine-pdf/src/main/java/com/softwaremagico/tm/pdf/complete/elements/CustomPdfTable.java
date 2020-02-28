@@ -192,7 +192,7 @@ public abstract class CustomPdfTable extends PdfPTable {
 
 	public static ITranslator getTranslator() {
 		if (translator == null) {
-			translator = LanguagePool.getTranslator(TRANSLATOR_FILE, null);
+			translator = LanguagePool.getTranslator(TRANSLATOR_FILE, (String) null);
 		}
 		return translator;
 	}
