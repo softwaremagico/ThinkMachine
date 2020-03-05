@@ -87,9 +87,13 @@ public class CharacterSheet {
 		stringBuilder.append(getCharacterPlayer().getRace().getName());
 		stringBuilder.append(" " + getCharacterPlayer().getInfo().getTranslatedParameter("gender", getCharacterPlayer().getModuleName()));
 		stringBuilder.append(" " + getCharacterPlayer().getInfo().getAge() + " " + getTranslator().getTranslatedText("years").toLowerCase());
-		stringBuilder.append(" (" + getCharacterPlayer().getInfo().getPlanet().getName() + ")");
+		if (getCharacterPlayer().getInfo().getPlanet() != null) {
+			stringBuilder.append(" (" + getCharacterPlayer().getInfo().getPlanet().getName() + ")");
+		}
 		stringBuilder.append("\n");
-		stringBuilder.append(getCharacterPlayer().getFaction().getName());
+		if (getCharacterPlayer().getFaction() != null) {
+			stringBuilder.append(getCharacterPlayer().getFaction().getName());
+		}
 		if (getCharacterPlayer().getRank() != null) {
 			stringBuilder.append(" (" + getCharacterPlayer().getRank() + ")");
 		}
@@ -100,6 +104,9 @@ public class CharacterSheet {
 		for (final CharacteristicType characteristicType : CharacteristicType.values()) {
 			stringBuilder.append(getTranslator().getTranslatedText(characteristicType.getTranslationTag()) + ": ");
 			String separator = "";
+			if (getCharacterPlayer().getCharacteristics(characteristicType) == null) {
+				return;
+			}
 			final List<Characteristic> characteristics = new ArrayList<>(getCharacterPlayer().getCharacteristics(characteristicType));
 			Collections.sort(characteristics);
 			for (final Characteristic characteristic : characteristics) {
@@ -114,9 +121,9 @@ public class CharacterSheet {
 	}
 
 	private void representSkill(StringBuilder stringBuilder, AvailableSkill skill) {
-		if (skill.getId().equalsIgnoreCase(SkillDefinition.PLANETARY_LORE_ID)) {
+		if (skill.getId().equalsIgnoreCase(SkillDefinition.PLANETARY_LORE_ID) && characterPlayer.getInfo().getPlanet() != null) {
 			stringBuilder.append(AvailableSkill.getCompleteName(skill.getName(), characterPlayer.getInfo().getPlanet().getName()) + " (");
-		} else if (skill.getId().equalsIgnoreCase(SkillDefinition.FACTORION_LORE_ID)) {
+		} else if (skill.getId().equalsIgnoreCase(SkillDefinition.FACTORION_LORE_ID) && characterPlayer.getFaction() != null) {
 			stringBuilder.append(AvailableSkill.getCompleteName(skill.getName(), characterPlayer.getFaction().getName()) + " (");
 		} else {
 			stringBuilder.append(AvailableSkill.getCompleteName(skill.getName(), skill.getSpecialization()) + " (");
