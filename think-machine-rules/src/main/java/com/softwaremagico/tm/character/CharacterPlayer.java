@@ -76,6 +76,7 @@ import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
 import com.softwaremagico.tm.character.equipment.weapons.WeaponType;
 import com.softwaremagico.tm.character.equipment.weapons.Weapons;
 import com.softwaremagico.tm.character.factions.Faction;
+import com.softwaremagico.tm.character.factions.InvalidFactionException;
 import com.softwaremagico.tm.character.occultism.InvalidOccultismPowerException;
 import com.softwaremagico.tm.character.occultism.InvalidPowerLevelException;
 import com.softwaremagico.tm.character.occultism.InvalidPsiqueLevelException;
@@ -657,8 +658,10 @@ public class CharacterPlayer {
 		if (race == null) {
 			throw new InvalidRaceException("Race is null!");
 		}
-		MachineLog.debug(this.getClass().getName(), "Race set to '" + race + "'.");
-		this.race = race;
+		if (!Objects.equals(this.race, race)) {
+			MachineLog.debug(this.getClass().getName(), "Race set to '" + race + "'.");
+			this.race = race;
+		}
 	}
 
 	private int getRaceCharacteristicStartingValue(CharacteristicName characteristicName) {
@@ -1020,9 +1023,14 @@ public class CharacterPlayer {
 		return faction;
 	}
 
-	public void setFaction(Faction faction) {
-		MachineLog.debug(this.getClass().getName(), "Faction set to '" + faction + "'.");
-		this.faction = faction;
+	public void setFaction(Faction faction) throws InvalidFactionException {
+		if (faction == null) {
+			throw new InvalidFactionException("Faction is null!");
+		}
+		if (!Objects.equals(this.faction, faction)) {
+			MachineLog.debug(this.getClass().getName(), "Faction set to '" + faction + "'.");
+			this.faction = faction;
+		}
 	}
 
 	public int getBlessingModificationSituation(IValue value) {

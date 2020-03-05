@@ -83,8 +83,7 @@ public class CharacterInfo {
 
 	private String getTranslation(Object parameterValue, String moduleName) {
 		try {
-			final String xmlTag = parameterValue.toString().substring(0, 1).toLowerCase()
-					+ parameterValue.toString().substring(1);
+			final String xmlTag = parameterValue.toString().substring(0, 1).toLowerCase() + parameterValue.toString().substring(1);
 			final String translatedText = getTranslator(moduleName).getTranslatedText(xmlTag);
 			if (translatedText != null) {
 				return translatedText;
@@ -101,6 +100,17 @@ public class CharacterInfo {
 
 	public void setNames(List<Name> names) {
 		this.names = names;
+	}
+
+	public void setNames(String names) {
+		if (names == null) {
+			return;
+		}
+		this.names = new ArrayList<>();
+		final String[] namesSeparated = names.split("(?=\\p{Lu})");
+		for (final String name : namesSeparated) {
+			addName(new Name(name, null, null, gender, null));
+		}
 	}
 
 	public void addName(Name name) {
@@ -207,6 +217,10 @@ public class CharacterInfo {
 
 	public void setSurname(Surname surname) {
 		this.surname = surname;
+	}
+
+	public void setSurname(String surname) {
+		this.surname = new Surname(surname, null, null, null);
 	}
 
 	private ITranslator getTranslator(String moduleName) {

@@ -4,6 +4,10 @@
 		<en>Name:</en>
 		<es>Nombre:</es>
 	</infoName>
+	<infoSurname>
+		<en>Surname:</en>
+		<es>Apellido:</es>
+	</infoSurname>
 	<infoPlayer>
 		<en>Player:</en>
 		<es>Jugador:</es>
@@ -12,6 +16,14 @@
 		<en>Gender:</en>
 		<es>Género:</es>
 	</infoGender>
+	<male>
+		<en>Male</en>
+		<es>Varón</es>
+	</male>
+	<female>
+		<en>Female</en>
+		<es>Mujer</es>
+	</female>
 	<infoAge>
 		<en>Age:</en>
 		<es>Edad:</es>

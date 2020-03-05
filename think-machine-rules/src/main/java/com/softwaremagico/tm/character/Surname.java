@@ -50,6 +50,9 @@ public class Surname extends Element<Surname> {
 	}
 
 	private static String getId(String surname, String moduleName) {
+		if (moduleName == null) {
+			return surname.toLowerCase();
+		}
 		return surname.toLowerCase() + "_" + moduleName.replaceAll("\\s+", "_").toLowerCase();
 	}
 

@@ -60,6 +60,9 @@ public class Name extends Element<Name> {
 	}
 
 	private static String getId(String name, String moduleName) {
+		if (moduleName == null) {
+			return name.toLowerCase();
+		}
 		return name.toLowerCase() + "_" + moduleName.replaceAll("\\s+", "_").toLowerCase();
 	}
 

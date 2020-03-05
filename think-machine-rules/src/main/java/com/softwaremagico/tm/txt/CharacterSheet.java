@@ -84,9 +84,15 @@ public class CharacterSheet {
 		// THREAT_LEVEL_SYMBOL + ")");
 		stringBuilder.append(" (" + getTranslator().getTranslatedText("threatLevel") + ": " + ThreatLevel.getThreatLevel(getCharacterPlayer()) + ")");
 		stringBuilder.append("\n");
-		stringBuilder.append(getCharacterPlayer().getRace().getName());
-		stringBuilder.append(" " + getCharacterPlayer().getInfo().getTranslatedParameter("gender", getCharacterPlayer().getModuleName()));
-		stringBuilder.append(" " + getCharacterPlayer().getInfo().getAge() + " " + getTranslator().getTranslatedText("years").toLowerCase());
+		if (getCharacterPlayer().getRace() != null) {
+			stringBuilder.append(getCharacterPlayer().getRace().getName());
+		}
+		if (getCharacterPlayer().getInfo().getGender() != null) {
+			stringBuilder.append(" " + getCharacterPlayer().getInfo().getTranslatedParameter("gender", getCharacterPlayer().getModuleName()));
+		}
+		if (getCharacterPlayer().getInfo().getAge() != null) {
+			stringBuilder.append(" " + getCharacterPlayer().getInfo().getAge() + " " + getTranslator().getTranslatedText("years").toLowerCase());
+		}
 		if (getCharacterPlayer().getInfo().getPlanet() != null) {
 			stringBuilder.append(" (" + getCharacterPlayer().getInfo().getPlanet().getName() + ")");
 		}
@@ -105,7 +111,8 @@ public class CharacterSheet {
 			stringBuilder.append(getTranslator().getTranslatedText(characteristicType.getTranslationTag()) + ": ");
 			String separator = "";
 			if (getCharacterPlayer().getCharacteristics(characteristicType) == null) {
-				return;
+				stringBuilder.append("\n");
+				continue;
 			}
 			final List<Characteristic> characteristics = new ArrayList<>(getCharacterPlayer().getCharacteristics(characteristicType));
 			Collections.sort(characteristics);
