@@ -25,7 +25,9 @@ package com.softwaremagico.tm.pdf.complete;
  */
 
 import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.language.Translator;
 import com.softwaremagico.tm.party.Party;
@@ -45,7 +47,7 @@ public class PartySheet extends CharacterSheet {
 	}
 
 	@Override
-	protected void createContent(Document document) throws Exception {
+	protected void createContent(Document document) throws InvalidXmlElementException, DocumentException  {
 		for (final CharacterPlayer characterPlayer : party.getMembers()) {
 			createCharacterPDF(document, characterPlayer);
 		}

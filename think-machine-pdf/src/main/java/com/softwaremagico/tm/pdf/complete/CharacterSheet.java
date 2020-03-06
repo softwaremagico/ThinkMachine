@@ -25,6 +25,7 @@ package com.softwaremagico.tm.pdf.complete;
  */
 
 import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.PdfPCell;
@@ -70,7 +71,7 @@ public class CharacterSheet extends PdfDocument {
 	}
 
 	@Override
-	protected void createContent(Document document) throws Exception {
+	protected void createContent(Document document) throws InvalidXmlElementException, DocumentException {
 		createCharacterPDF(document, getCharacterPlayer());
 	}
 
@@ -86,8 +87,7 @@ public class CharacterSheet extends PdfDocument {
 	}
 
 	@Override
-	protected void createCharacterPDF(Document document, CharacterPlayer characterPlayer)
-			throws Exception {
+	protected void createCharacterPDF(Document document, CharacterPlayer characterPlayer) throws InvalidXmlElementException, DocumentException {
 		final PdfPTable mainTable = CharacterBasicsCompleteTableFactory.getCharacterBasicsTable(characterPlayer);
 		document.add(mainTable);
 		final PdfPTable characteristicsTable = CharacteristicsTableFactory.getCharacteristicsBasicsTable(

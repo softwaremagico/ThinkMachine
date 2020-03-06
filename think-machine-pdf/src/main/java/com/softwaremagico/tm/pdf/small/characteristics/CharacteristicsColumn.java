@@ -47,53 +47,48 @@ public class CharacteristicsColumn extends CustomPdfTable {
 	private static final int ROW_HEIGHT = 36;
 	private static final float[] widths = { 1 };
 
-	public CharacteristicsColumn(CharacterPlayer characterPlayer,
-			CharacteristicType characteristicType, List<CharacteristicDefinition> content) {
+	public CharacteristicsColumn(CharacterPlayer characterPlayer, CharacteristicType characteristicType, List<CharacteristicDefinition> content) {
 		super(widths);
-		final PdfPCell title = createCompactTitle(
-				getTranslator().getTranslatedText(characteristicType.getTranslationTag()),
+		final PdfPCell title = createCompactTitle(getTranslator().getTranslatedText(characteristicType.getTranslationTag()),
 				FadingSunsTheme.CHARACTER_SMALL_CHARACTERISTICS_TITLE_FONT_SIZE);
 		title.setColspan(widths.length);
 		addCell(title);
 		addCell(createContent(characterPlayer, content));
 	}
 
-	private PdfPCell createContent(CharacterPlayer characterPlayer,
-			List<CharacteristicDefinition> content) {
+	private PdfPCell createContent(CharacterPlayer characterPlayer, List<CharacteristicDefinition> content) {
 		final float[] widths = { 4f, 1f };
 		final PdfPTable table = new PdfPTable(widths);
 		BaseElement.setTablePropierties(table);
 		table.getDefaultCell().setBorder(0);
 
-		for (final CharacteristicDefinition characteristic : content) {
-			final Paragraph paragraph = new Paragraph();
-			paragraph.add(new Paragraph(getTranslator().getTranslatedText(characteristic.getId()), new Font(
-					FadingSunsTheme.getLineFont(), FadingSunsTheme.CHARACTER_SMALL_CHARACTERISTICS_LINE_FONT_SIZE)));
-			paragraph.add(new Paragraph(" (", new Font(FadingSunsTheme.getLineFont(),
-					FadingSunsTheme.CHARACTER_SMALL_CHARACTERISTICS_LINE_FONT_SIZE)));
-			if (characterPlayer == null) {
-				paragraph.add(new Paragraph(GAP, new Font(FadingSunsTheme.getLineFont(),
-						FadingSunsTheme.CHARACTER_SMALL_CHARACTERISTICS_LINE_FONT_SIZE)));
-			} else {
-				paragraph.add(new Paragraph(characterPlayer.getStartingValue(characteristic.getCharacteristicName())
-						+ "", new Font(FadingSunsTheme.getHandwrittingFont(), FadingSunsTheme
-						.getHandWrittingFontSize(FadingSunsTheme.CHARACTER_SMALL_CHARACTERISTICS_LINE_FONT_SIZE))));
-			}
-			paragraph.add(new Paragraph(")", new Font(FadingSunsTheme.getLineFont(),
-					FadingSunsTheme.CHARACTER_SMALL_CHARACTERISTICS_LINE_FONT_SIZE)));
+		if (content != null) {
+			for (final CharacteristicDefinition characteristic : content) {
+				final Paragraph paragraph = new Paragraph();
+				paragraph.add(new Paragraph(getTranslator().getTranslatedText(characteristic.getId()),
+						new Font(FadingSunsTheme.getLineFont(), FadingSunsTheme.CHARACTER_SMALL_CHARACTERISTICS_LINE_FONT_SIZE)));
+				paragraph.add(new Paragraph(" (", new Font(FadingSunsTheme.getLineFont(), FadingSunsTheme.CHARACTER_SMALL_CHARACTERISTICS_LINE_FONT_SIZE)));
+				if (characterPlayer == null) {
+					paragraph.add(new Paragraph(GAP, new Font(FadingSunsTheme.getLineFont(), FadingSunsTheme.CHARACTER_SMALL_CHARACTERISTICS_LINE_FONT_SIZE)));
+				} else {
+					paragraph.add(new Paragraph(characterPlayer.getStartingValue(characteristic.getCharacteristicName()) + "",
+							new Font(FadingSunsTheme.getHandwrittingFont(),
+									FadingSunsTheme.getHandWrittingFontSize(FadingSunsTheme.CHARACTER_SMALL_CHARACTERISTICS_LINE_FONT_SIZE))));
+				}
+				paragraph.add(new Paragraph(")", new Font(FadingSunsTheme.getLineFont(), FadingSunsTheme.CHARACTER_SMALL_CHARACTERISTICS_LINE_FONT_SIZE)));
 
-			final PdfPCell characteristicTitle = new PdfPCell(paragraph);
-			characteristicTitle.setBorder(0);
-			characteristicTitle.setMinimumHeight(ROW_HEIGHT / (float) content.size());
-			table.addCell(characteristicTitle);
+				final PdfPCell characteristicTitle = new PdfPCell(paragraph);
+				characteristicTitle.setBorder(0);
+				characteristicTitle.setMinimumHeight(ROW_HEIGHT / (float) content.size());
+				table.addCell(characteristicTitle);
 
-			// Rectangle
-			if (characterPlayer == null) {
-				table.addCell(createCharacteristicLine(SKILL_VALUE_GAP));
-			} else {
-				table.addCell(getHandwrittingCell(
-						getCharacteristicValueRepresentation(characterPlayer, characteristic.getCharacteristicName()),
-						Element.ALIGN_LEFT));
+				// Rectangle
+				if (characterPlayer == null) {
+					table.addCell(createCharacteristicLine(SKILL_VALUE_GAP));
+				} else {
+					table.addCell(getHandwrittingCell(getCharacteristicValueRepresentation(characterPlayer, characteristic.getCharacteristicName()),
+							Element.ALIGN_LEFT));
+				}
 			}
 		}
 
@@ -104,8 +99,7 @@ public class CharacteristicsColumn extends CustomPdfTable {
 		return cell;
 	}
 
-	private String getCharacteristicValueRepresentation(CharacterPlayer characterPlayer,
-			CharacteristicName characteristicName) {
+	private String getCharacteristicValueRepresentation(CharacterPlayer characterPlayer, CharacteristicName characteristicName) {
 		final StringBuilder representation = new StringBuilder();
 		representation.append(characterPlayer.getValue(characteristicName));
 		if (characterPlayer.hasCharacteristicTemporalModificator(characteristicName)) {
@@ -118,15 +112,14 @@ public class CharacteristicsColumn extends CustomPdfTable {
 	}
 
 	private static PdfPCell getHandwrittingCell(String text, int align) {
-		final PdfPCell cell = BaseElement
-				.getCell(text, 0, 0, align, BaseColor.WHITE, FadingSunsTheme.getHandwrittingFont(), FadingSunsTheme
-						.getHandWrittingFontSize(FadingSunsTheme.CHARACTER_SMALL_CHARACTERISTICS_LINE_FONT_SIZE));
+		final PdfPCell cell = BaseElement.getCell(text, 0, 0, align, BaseColor.WHITE, FadingSunsTheme.getHandwrittingFont(),
+				FadingSunsTheme.getHandWrittingFontSize(FadingSunsTheme.CHARACTER_SMALL_CHARACTERISTICS_LINE_FONT_SIZE));
 		return cell;
 	}
 
 	private static PdfPCell createCharacteristicLine(String text) {
-		final PdfPCell cell = BaseElement.getCell(text, 0, 1, Element.ALIGN_LEFT, BaseColor.WHITE,
-				FadingSunsTheme.getLineFont(), FadingSunsTheme.CHARACTER_SMALL_CHARACTERISTICS_LINE_FONT_SIZE);
+		final PdfPCell cell = BaseElement.getCell(text, 0, 1, Element.ALIGN_LEFT, BaseColor.WHITE, FadingSunsTheme.getLineFont(),
+				FadingSunsTheme.CHARACTER_SMALL_CHARACTERISTICS_LINE_FONT_SIZE);
 		// cell.setMinimumHeight((MainSkillsTableFactory.HEIGHT / ROWS));
 		// cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		return cell;

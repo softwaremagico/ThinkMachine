@@ -1,10 +1,10 @@
 package com.softwaremagico.tm.file;
 
-/*
+/*-
  * #%L
- * Libro de Esher (GUI)
+ * Think Machine (Rules)
  * %%
- * Copyright (C) 2007 - 2014 Softwaremagico
+ * Copyright (C) 2017 - 2020 Softwaremagico
  * %%
  * This software is designed by Jorge Hortelano Otero. Jorge Hortelano Otero
  * <softwaremagico@gmail.com> Valencia (Spain).
@@ -24,7 +24,6 @@ package com.softwaremagico.tm.file;
  * #L%
  */
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.Enumeration;
 import java.util.jar.Attributes;
@@ -48,8 +47,7 @@ public class Version {
 					}
 				}
 			} else {
-				final String manifestPath = classPath.substring(0, classPath.lastIndexOf("!") + 1)
-						+ "/META-INF/MANIFEST.MF";
+				final String manifestPath = classPath.substring(0, classPath.lastIndexOf("!") + 1) + "/META-INF/MANIFEST.MF";
 				manifest = new Manifest(new URL(manifestPath).openStream());
 			}
 
@@ -58,8 +56,8 @@ public class Version {
 				final String version = attributes.getValue("Implementation-Version");
 				return version;
 			}
-		} catch (IOException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+			return null;
 		}
 		return null;
 	}

@@ -25,11 +25,13 @@ package com.softwaremagico.tm.pdf.small;
  */
 
 import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.file.PathManager;
 import com.softwaremagico.tm.language.Translator;
@@ -69,7 +71,7 @@ public class SmallCharacterSheet extends PdfDocument {
 	}
 
 	@Override
-	protected void createContent(Document document) throws Exception {
+	protected void createContent(Document document) throws DocumentException, InvalidXmlElementException {
 		createCharacterPDF(document, getCharacterPlayer());
 	}
 
@@ -88,7 +90,7 @@ public class SmallCharacterSheet extends PdfDocument {
 		writer.setPageEvent(new SheetBackgroundEvent());
 	}
 
-	protected PdfPTable createCharacterContent(CharacterPlayer characterPlayer) throws Exception {
+	protected PdfPTable createCharacterContent(CharacterPlayer characterPlayer) throws InvalidXmlElementException {
 		final float[] widths = { 2.2f, 1f };
 		final PdfPTable mainTable = new PdfPTable(widths);
 		BaseElement.setTablePropierties(mainTable);
@@ -113,14 +115,12 @@ public class SmallCharacterSheet extends PdfDocument {
 		BaseElement.setTablePropierties(basicTable);
 		basicTable.getDefaultCell().setBorder(0);
 
-		final PdfPTable characteristicsTable = CharacteristicsTableFactory.getCharacteristicsBasicsTable(
-				characterPlayer, getModuleName());
+		final PdfPTable characteristicsTable = CharacteristicsTableFactory.getCharacteristicsBasicsTable(characterPlayer, getModuleName());
 		final PdfPCell characteristicCell = new PdfPCell(characteristicsTable);
 		characteristicCell.setBorderWidthLeft(0);
 		basicTable.addCell(characteristicCell);
 
-		final PdfPTable naturalSkillsTable = NaturalSkillsTable.getSkillsTable(characterPlayer, getLanguage(),
-				getModuleName());
+		final PdfPTable naturalSkillsTable = NaturalSkillsTable.getSkillsTable(characterPlayer, getLanguage(), getModuleName());
 		final PdfPCell naturalSkillsCell = new PdfPCell(naturalSkillsTable);
 		naturalSkillsCell.setBorderWidthRight(0);
 		basicTable.addCell(naturalSkillsCell);
@@ -156,8 +156,7 @@ public class SmallCharacterSheet extends PdfDocument {
 		final PdfPTable fightTable = new PdfPTable(new float[] { 3f, 5f, 1f });
 
 		// Only weapons table.
-		if (characterPlayer != null
-				&& (characterPlayer.getSelectedPowers().isEmpty() && characterPlayer.getCybernetics().isEmpty())) {
+		if (characterPlayer != null && (characterPlayer.getSelectedPowers().isEmpty() && characterPlayer.getCybernetics().isEmpty())) {
 			final PdfPTable weaponsTable = new WeaponsTableLong(characterPlayer);
 			final PdfPCell weaponsCell = new PdfPCell(weaponsTable);
 			weaponsCell.setBorderWidthLeft(0);
@@ -165,8 +164,7 @@ public class SmallCharacterSheet extends PdfDocument {
 			fightTable.addCell(weaponsCell);
 		} else {
 			// Include cybernetics
-			if (characterPlayer != null
-					&& (characterPlayer.getSelectedPowers().isEmpty() && !characterPlayer.getCybernetics().isEmpty())) {
+			if (characterPlayer != null && (characterPlayer.getSelectedPowers().isEmpty() && !characterPlayer.getCybernetics().isEmpty())) {
 				final PdfPTable cyberneticsTable = new CyberneticsTable(characterPlayer);
 				final PdfPCell cyberneticsCell = new PdfPCell(cyberneticsTable);
 				cyberneticsCell.setBorderWidthLeft(0);
@@ -209,7 +207,7 @@ public class SmallCharacterSheet extends PdfDocument {
 	}
 
 	@Override
-	protected void createCharacterPDF(Document document, CharacterPlayer characterPlayer) throws Exception {
+	protected void createCharacterPDF(Document document, CharacterPlayer characterPlayer) throws DocumentException, InvalidXmlElementException {
 		document.add(createCharacterContent(characterPlayer));
 	}
 

@@ -25,12 +25,14 @@ package com.softwaremagico.tm.pdf.small;
  */
 
 import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.language.Translator;
 import com.softwaremagico.tm.party.Party;
@@ -67,7 +69,7 @@ public class SmallPartySheet extends SmallCharacterSheetWithDescriptions {
 	}
 
 	@Override
-	protected void createContent(Document document) throws Exception {
+	protected void createContent(Document document) throws DocumentException, InvalidXmlElementException  {
 		initializeTableContent();
 		boolean hasDescription = false;
 		for (final CharacterPlayer characterPlayer : party.getMembers()) {
@@ -92,7 +94,7 @@ public class SmallPartySheet extends SmallCharacterSheetWithDescriptions {
 	}
 
 	@Override
-	protected void createCharacterPDF(Document document, CharacterPlayer characterPlayer) throws Exception {
+	protected void createCharacterPDF(Document document, CharacterPlayer characterPlayer) throws InvalidXmlElementException  {
 		mainTable.addCell(createCharacterContent(characterPlayer));
 	}
 

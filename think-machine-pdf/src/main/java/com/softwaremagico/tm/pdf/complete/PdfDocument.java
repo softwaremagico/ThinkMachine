@@ -1,5 +1,7 @@
 package com.softwaremagico.tm.pdf.complete;
 
+import java.io.ByteArrayOutputStream;
+
 /*
  * #%L
  * KendoTournamentGenerator
@@ -28,8 +30,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.log.PdfExporterLog;
 import com.softwaremagico.tm.pdf.complete.events.FooterEvent;
@@ -57,7 +61,7 @@ public abstract class PdfDocument {
 		return document;
 	}
 
-	private void generatePDF(Document document, PdfWriter writer) throws EmptyPdfBodyException, Exception {
+	private void generatePDF(Document document, PdfWriter writer) throws EmptyPdfBodyException, InvalidXmlElementException, DocumentException {
 		addMetaData(document);
 		document.open();
 		// createCharacterPDF(document);
@@ -65,20 +69,40 @@ public abstract class PdfDocument {
 		document.close();
 	}
 
-	protected abstract void createContent(Document document) throws Exception;
+	protected abstract void createContent(Document document) throws InvalidXmlElementException, DocumentException;
 
 	protected void addEvent(PdfWriter writer) {
 		writer.setPageEvent(new FooterEvent());
 	}
 
+	/**
+	 * Pdf as byte array. Be careful with big PDF files.
+	 * 
+	 * @return
+	 * @throws EmptyPdfBodyException
+	 * @throws DocumentException
+	 * @throws InvalidXmlElementException
+	 */
+	public final byte[] generate() throws EmptyPdfBodyException, DocumentException, InvalidXmlElementException {
+		final Document document = new Document(getPageSize(), rightMargin, leftMargin, topMargin, bottomMargin);
+		final ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		final PdfWriter writer = PdfWriter.getInstance(document, baos);
+		addEvent(writer);
+		generatePDF(document, writer);
+		return baos.toByteArray();
+
+	}
+
 	protected abstract void addDocumentWriterEvents(PdfWriter writer);
 
 	public int createFile(String path) {
-		// DIN A6 105 x 148 mm
-		final Document document = new Document(getPageSize(), rightMargin, leftMargin, topMargin, bottomMargin);
 		if (!path.endsWith(".pdf")) {
 			path += ".pdf";
 		}
+
+		// DIN A6 105 x 148 mm
+		final Document document = new Document(getPageSize(), rightMargin, leftMargin, topMargin, bottomMargin);
+
 		// if (!MyFile.fileExist(path)) {
 		try {
 			final PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(path));
@@ -100,8 +124,7 @@ public abstract class PdfDocument {
 
 	protected abstract Rectangle getPageSize();
 
-	protected abstract void createCharacterPDF(Document document, CharacterPlayer character)
-			throws Exception;
+	protected abstract void createCharacterPDF(Document document, CharacterPlayer character) throws Exception;
 
 	public String getLanguage() {
 		return language;

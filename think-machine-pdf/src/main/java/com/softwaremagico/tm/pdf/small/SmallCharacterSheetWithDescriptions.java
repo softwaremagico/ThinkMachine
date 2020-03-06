@@ -25,10 +25,12 @@ package com.softwaremagico.tm.pdf.small;
  */
 
 import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.PdfPTable;
+import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.language.Translator;
 import com.softwaremagico.tm.pdf.complete.elements.BaseElement;
@@ -63,7 +65,7 @@ public class SmallCharacterSheetWithDescriptions extends SmallCharacterSheet {
 	}
 
 	@Override
-	protected void createContent(Document document) throws Exception {
+	protected void createContent(Document document) throws DocumentException, InvalidXmlElementException {
 		initializeTableContent();
 		createCharacterPDF(document, characterPlayer);
 		createDescriptionPage(characterPlayer);
@@ -71,7 +73,7 @@ public class SmallCharacterSheetWithDescriptions extends SmallCharacterSheet {
 	}
 
 	@Override
-	protected void createCharacterPDF(Document document, CharacterPlayer characterPlayer) throws Exception {
+	protected void createCharacterPDF(Document document, CharacterPlayer characterPlayer) throws InvalidXmlElementException {
 		mainTable.addCell(createCharacterContent(characterPlayer));
 	}
 
