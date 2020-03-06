@@ -51,7 +51,7 @@ import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
 import com.softwaremagico.tm.file.PathManager;
-import com.softwaremagico.tm.log.MachineLog;
+import com.softwaremagico.tm.log.ConfigurationLog;
 
 public class Translator implements ITranslator {
 	public static final String DEFAULT_LANGUAGE = "en";
@@ -88,11 +88,11 @@ public class Translator implements ITranslator {
 				// Is inside of a module.
 				resource = URLClassLoader.getSystemResource(filePath);
 			}
-			MachineLog.debug(Translator.class.getName(), "Found resource '" + filePath + "' at '" + resource + "'.");
+			ConfigurationLog.debug(Translator.class.getName(), "Found resource '" + filePath + "' at '" + resource + "'.");
 			return parseContent(usedDoc, resource.openStream());
 		} catch (NullPointerException e) {
-			MachineLog.severe(Translator.class.getName(), "Invalid xml at resource '" + filePath + "'.");
-			MachineLog.errorMessage(Translator.class.getName(), e);
+			ConfigurationLog.severe(Translator.class.getName(), "Invalid xml at resource '" + filePath + "'.");
+			ConfigurationLog.errorMessage(Translator.class.getName(), e);
 		} catch (FileNotFoundException fnf) {
 			final String text = "The file " + filePath
 					+ " containing the translations is not found. Please, check your program files and put the translation XML files "
@@ -115,14 +115,14 @@ public class Translator implements ITranslator {
 			usedDoc.getDocumentElement().normalize();
 		} catch (SAXParseException ex) {
 			final String text = "Parsing error" + ".\n Line: " + ex.getLineNumber() + "\nUri: " + ex.getSystemId() + "\nMessage: " + ex.getMessage();
-			MachineLog.severe(Translator.class.getName(), text);
-			MachineLog.errorMessage(Translator.class.getName(), ex);
+			ConfigurationLog.severe(Translator.class.getName(), text);
+			ConfigurationLog.errorMessage(Translator.class.getName(), ex);
 		} catch (SAXException ex) {
-			MachineLog.errorMessage(Translator.class.getName(), ex);
+			ConfigurationLog.errorMessage(Translator.class.getName(), ex);
 		} catch (IOException ex) {
 			Logger.getLogger(Translator.class.getName()).log(Level.SEVERE, null, ex);
 		} catch (ParserConfigurationException ex) {
-			MachineLog.errorMessage(Translator.class.getName(), ex);
+			ConfigurationLog.errorMessage(Translator.class.getName(), ex);
 		}
 		return usedDoc;
 	}
@@ -431,7 +431,7 @@ public class Translator implements ITranslator {
 					} catch (NullPointerException npe) {
 						if (!retried) {
 							if (!showedMessage) {
-								MachineLog.warning(Translator.class.getName(), "There is a problem with tag: " + tag + " in  language: \"" + language
+								ConfigurationLog.warning(Translator.class.getName(), "There is a problem with tag: " + tag + " in  language: \"" + language
 										+ "\". We tray to use english language instead.");
 								showedMessage = true;
 							}
@@ -440,13 +440,13 @@ public class Translator implements ITranslator {
 						}
 						if (!language.equals(DEFAULT_LANGUAGE)) {
 							if (!errorShowed) {
-								MachineLog.warning(this.getClass().getName(), "Selecting english language by default.");
+								ConfigurationLog.warning(this.getClass().getName(), "Selecting english language by default.");
 								errorShowed = true;
 							}
 							return readTag(tag, DEFAULT_LANGUAGE);
 						} else {
 							if (!errorShowed) {
-								MachineLog.severe(this.getClass().getName(), "Language selection failed: " + language + " on " + tag + ".");
+								ConfigurationLog.severe(this.getClass().getName(), "Language selection failed: " + language + " on " + tag + ".");
 								errorShowed = true;
 							}
 							return null;
@@ -455,7 +455,7 @@ public class Translator implements ITranslator {
 
 				}
 			}
-			MachineLog.debug(this.getClass().getName(), "No tag for: " + tag + ".");
+			ConfigurationLog.debug(this.getClass().getName(), "No tag for: " + tag + ".");
 			return null;
 		} catch (NullPointerException npe) {
 			return null;
@@ -476,10 +476,10 @@ public class Translator implements ITranslator {
 							fstNode.getAttributes().getNamedItem("flag").getNodeValue());
 					languagesList.add(lang);
 				} catch (NullPointerException npe) {
-					MachineLog.severe(Translator.class.getName(), "Error retrieving the available languages. Check your installation.");
+					ConfigurationLog.severe(Translator.class.getName(), "Error retrieving the available languages. Check your installation.");
 				}
 			}
-			MachineLog.debug(this.getClass().getName(), "Available languages are '" + languagesList + "'.");
+			ConfigurationLog.debug(this.getClass().getName(), "Available languages are '" + languagesList + "'.");
 		}
 		return languagesList;
 	}

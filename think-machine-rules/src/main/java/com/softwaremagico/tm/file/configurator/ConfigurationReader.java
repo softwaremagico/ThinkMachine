@@ -36,7 +36,7 @@ import java.util.Set;
 
 import com.softwaremagico.tm.file.configurator.exceptions.PropertyNotFoundException;
 import com.softwaremagico.tm.file.configurator.exceptions.PropertyNotStoredException;
-import com.softwaremagico.tm.log.MachineLog;
+import com.softwaremagico.tm.log.ConfigurationLog;
 
 public abstract class ConfigurationReader {
 	private static final String VALUES_SEPARATOR_REGEX = " *, *";
@@ -65,8 +65,8 @@ public abstract class ConfigurationReader {
 
 			@Override
 			public void propertyChanged(String propertyId, String oldValue, String newValue) {
-				MachineLog.info(this.getClass().getName(), "Property '" + propertyId + "' has changed value from '"
-						+ oldValue + "' to '" + newValue + "'.");
+				ConfigurationLog.info(this.getClass().getName(),
+						"Property '" + propertyId + "' has changed value from '" + oldValue + "' to '" + newValue + "'.");
 			}
 		});
 	}
@@ -95,7 +95,8 @@ public abstract class ConfigurationReader {
 	}
 
 	/**
-	 * Restarts all properties to their default values and then reads all the configuration files again.
+	 * Restarts all properties to their default values and then reads all the
+	 * configuration files again.
 	 */
 	public void readConfigurations() {
 		propertiesFinalValue.clear();
@@ -114,8 +115,9 @@ public abstract class ConfigurationReader {
 	public abstract File getUserProperties();
 
 	/**
-	 * Reads all properties configured in this configuration reader from propertyFile. If they doesn't exist, then the
-	 * current value is mantained as default value.
+	 * Reads all properties configured in this configuration reader from
+	 * propertyFile. If they doesn't exist, then the current value is mantained as
+	 * default value.
 	 * 
 	 * @param propertyFile
 	 */
@@ -134,12 +136,12 @@ public abstract class ConfigurationReader {
 				for (final PropertyChangedListener propertyChangedListener : propertyChangedListeners) {
 					propertyChangedListener.propertyChanged(propertyId, propertiesFinalValue.get(propertyId), value);
 				}
-				MachineLog.info(this.getClass().getName(), "Property '" + propertyId + "' updated as '" + value + "'.");
+				ConfigurationLog.info(this.getClass().getName(), "Property '" + propertyId + "' updated as '" + value + "'.");
 			}
 			// Store value.
 			propertiesBySourceValues.get(propertiesSource).put(propertyId, value);
 			propertiesFinalValue.put(propertyId, value);
-			MachineLog.debug(this.getClass().getName(), "Property '" + propertyId + "' set as value '" + value + "'.");
+			ConfigurationLog.debug(this.getClass().getName(), "Property '" + propertyId + "' set as value '" + value + "'.");
 		}
 	}
 
@@ -207,8 +209,7 @@ public abstract class ConfigurationReader {
 				return null;
 			}
 		} else {
-			throw new PropertyNotFoundException("Property '" + propertyName
-					+ "' not defined in the configuration reader");
+			throw new PropertyNotFoundException("Property '" + propertyName + "' not defined in the configuration reader");
 		}
 	}
 

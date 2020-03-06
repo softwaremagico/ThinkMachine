@@ -34,7 +34,7 @@ import com.softwaremagico.tm.file.configurator.exceptions.PropertyNotStoredExcep
 import com.softwaremagico.tm.file.modules.ModuleManager;
 import com.softwaremagico.tm.file.watcher.FileWatcher;
 import com.softwaremagico.tm.file.watcher.FileWatcher.FileModifiedListener;
-import com.softwaremagico.tm.log.MachineLog;
+import com.softwaremagico.tm.log.ConfigurationLog;
 import com.softwaremagico.tm.log.SuppressFBWarnings;
 
 public class MachineConfigurationReader extends ConfigurationReader {
@@ -73,8 +73,7 @@ public class MachineConfigurationReader extends ConfigurationReader {
 
 			@Override
 			public void changeDetected(Path pathToFile) {
-				MachineLog.info(this.getClass().getName(), "Application's settings file '" + pathToFile
-						+ "' change detected.");
+				ConfigurationLog.info(this.getClass().getName(), "Application's settings file '" + pathToFile + "' change detected.");
 				readConfigurations();
 			}
 		});
@@ -87,8 +86,8 @@ public class MachineConfigurationReader extends ConfigurationReader {
 
 			@Override
 			public void propertyChanged(String propertyId, String oldValue, String newValue) {
-				MachineLog.info(this.getClass().getName(), "Property '" + propertyId + "' has changed value from '"
-						+ oldValue + "' to '" + newValue + "'.");
+				ConfigurationLog.info(this.getClass().getName(),
+						"Property '" + propertyId + "' has changed value from '" + oldValue + "' to '" + newValue + "'.");
 			}
 		});
 
@@ -99,13 +98,12 @@ public class MachineConfigurationReader extends ConfigurationReader {
 		removePropertiesSource(userSourceFile);
 		userSourceFile = new PropertiesSourceFile(file);
 		userSourceFile.setFilePath(path);
-		MachineLog.info(this.getClass().getName(), "User config file set to '" + userSourceFile.toString() + "'.");
+		ConfigurationLog.info(this.getClass().getName(), "User config file set to '" + userSourceFile.toString() + "'.");
 		userSourceFile.addFileModifiedListeners(new FileModifiedListener() {
 
 			@Override
 			public void changeDetected(Path pathToFile) {
-				MachineLog.info(this.getClass().getName(), "Application's settings file '" + pathToFile
-						+ "' change detected.");
+				ConfigurationLog.info(this.getClass().getName(), "Application's settings file '" + pathToFile + "' change detected.");
 				readConfigurations();
 			}
 		});
@@ -141,7 +139,7 @@ public class MachineConfigurationReader extends ConfigurationReader {
 		try {
 			return getProperty(propertyId);
 		} catch (PropertyNotFoundException e) {
-			MachineLog.errorMessage(this.getClass().getName(), e);
+			ConfigurationLog.errorMessage(this.getClass().getName(), e);
 			return null;
 		}
 	}
@@ -153,10 +151,8 @@ public class MachineConfigurationReader extends ConfigurationReader {
 	/**
 	 * This method is intended to be only used by the ModuleManager.
 	 * 
-	 * @param modulesFolder
-	 *            path to the new modules folder.
-	 * @param fileModifiedListener
-	 *            Listen if a new module is added.
+	 * @param modulesFolder        path to the new modules folder.
+	 * @param fileModifiedListener Listen if a new module is added.
 	 */
 	public void setModulesPath(String modulesFolder, FileModifiedListener fileModifiedListener) {
 		setProperty(MODULES_PATH, modulesFolder);
@@ -171,9 +167,9 @@ public class MachineConfigurationReader extends ConfigurationReader {
 		try {
 			modulesFileWatcher = new FileWatcher(modulesFolderpath);
 		} catch (IOException e) {
-			MachineLog.errorMessage(ModuleManager.class.getName(), e);
+			ConfigurationLog.errorMessage(ModuleManager.class.getName(), e);
 		} catch (NullPointerException npe) {
-			MachineLog.warning(ModuleManager.class.getName(), "Modules directory to watch not found!");
+			ConfigurationLog.warning(ModuleManager.class.getName(), "Modules directory to watch not found!");
 		}
 	}
 

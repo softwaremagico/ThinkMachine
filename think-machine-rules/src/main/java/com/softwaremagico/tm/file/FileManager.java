@@ -48,7 +48,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import com.softwaremagico.tm.log.MachineLog;
+import com.softwaremagico.tm.log.ConfigurationLog;
 
 public class FileManager {
 
@@ -156,7 +156,7 @@ public class FileManager {
 			}
 			scanner.close();
 		} catch (IOException e) {
-			MachineLog.errorMessage(FileManager.class.getName(), e);
+			ConfigurationLog.errorMessage(FileManager.class.getName(), e);
 		}
 
 		return contents;
@@ -172,7 +172,7 @@ public class FileManager {
 				contents.add(thisLine);
 			}
 		} catch (Exception e) {
-			MachineLog.errorMessage(FileManager.class.getName(), e);
+			ConfigurationLog.errorMessage(FileManager.class.getName(), e);
 		}
 		return contents;
 	}
@@ -195,7 +195,7 @@ public class FileManager {
 				totalText.append(thisLine);
 			}
 		} catch (Exception e) {
-			MachineLog.errorMessage(FileManager.class.getName(), e);
+			ConfigurationLog.errorMessage(FileManager.class.getName(), e);
 		}
 		return totalText.toString();
 	}
@@ -259,10 +259,10 @@ public class FileManager {
 	public static File getResource(Class<?> classWithResources, String fileName) throws NullPointerException {
 		final URL url = classWithResources.getClassLoader().getResource(fileName);
 		if (url != null) {
-			MachineLog.info(FileManager.class.getName(),
+			ConfigurationLog.info(FileManager.class.getName(),
 					"Resource to read '" + fileName + "' found at url '" + url.toString() + "'.");
 		} else {
-			MachineLog.warning(FileManager.class.getName(), "Invalid resource '" + fileName + "'.");
+			ConfigurationLog.warning(FileManager.class.getName(), "Invalid resource '" + fileName + "'.");
 		}
 		File file = null;
 		// Jetty load resource.
@@ -276,7 +276,7 @@ public class FileManager {
 				file = new File(path);
 				// Resource inside a jar.
 				if (path.contains(".jar!")) {
-					MachineLog.info(FileManager.class.getName(), "Resource inside a jar. Copy to a temporal file.");
+					ConfigurationLog.info(FileManager.class.getName(), "Resource inside a jar. Copy to a temporal file.");
 					// Copy to a temp file and return it.
 					try {
 						// Url has the absolute path with the correct
@@ -304,19 +304,19 @@ public class FileManager {
 							}
 						}
 					} catch (FileNotFoundException e1) {
-						MachineLog.errorMessage(FileManager.class.getName(), e1);
+						ConfigurationLog.errorMessage(FileManager.class.getName(), e1);
 					} catch (IOException e) {
-						MachineLog.errorMessage(FileManager.class.getName(), e);
+						ConfigurationLog.errorMessage(FileManager.class.getName(), e);
 					}
 				}
 				if (!file.exists()) {
-					MachineLog.severe(FileManager.class.getName(), "File not found '" + path + "'.");
+					ConfigurationLog.severe(FileManager.class.getName(), "File not found '" + path + "'.");
 				}
 			}
 		} catch (NullPointerException npe) {
 			throw new NullPointerException("File '" + fileName + "' does not exist.");
 		} catch (UnsupportedEncodingException ue) {
-			MachineLog.errorMessage(FileManager.class.getName(), ue);
+			ConfigurationLog.errorMessage(FileManager.class.getName(), ue);
 		}
 		return file;
 	}
@@ -340,7 +340,7 @@ public class FileManager {
 	public static void makeFolderIfNotExist(String file) {
 		final File f = new File(file);
 		if (f.mkdir()) {
-			MachineLog.debug(FileManager.class.getName(), "File '" + file + "' created.");
+			ConfigurationLog.debug(FileManager.class.getName(), "File '" + file + "' created.");
 		}
 	}
 }

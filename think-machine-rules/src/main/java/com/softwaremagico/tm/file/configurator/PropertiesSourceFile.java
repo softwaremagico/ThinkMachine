@@ -41,7 +41,7 @@ import com.softwaremagico.tm.file.configurator.exceptions.ResurceNotFoundExcepti
 import com.softwaremagico.tm.file.configurator.exceptions.PropertyNotStoredException;
 import com.softwaremagico.tm.file.watcher.FileWatcher;
 import com.softwaremagico.tm.file.watcher.FileWatcher.FileModifiedListener;
-import com.softwaremagico.tm.log.MachineLog;
+import com.softwaremagico.tm.log.ConfigurationLog;
 
 public class PropertiesSourceFile extends SourceFile<Properties> implements IPropertiesSource {
 	private Set<FileModifiedListener> fileModifiedListeners;
@@ -74,7 +74,7 @@ public class PropertiesSourceFile extends SourceFile<Properties> implements IPro
 			properties.setProperty(entry.getKey(), entry.getValue());
 		}
 		PropertiesFile.store(properties, getFilePath(), getFileName());
-		MachineLog.debug(this.getClass().getName(),
+		ConfigurationLog.debug(this.getClass().getName(),
 				"Storing '" + properties + "' at properties file '" + getFilePath() + File.separator + getFileName() + "'.");
 	}
 
@@ -87,11 +87,11 @@ public class PropertiesSourceFile extends SourceFile<Properties> implements IPro
 				return PropertiesFile.load(getFilePath(), getFileName());
 			}
 		} catch (FileNotFoundException e) {
-			MachineLog.debug(this.getClass().getName(), e.getMessage());
+			ConfigurationLog.debug(this.getClass().getName(), e.getMessage());
 		} catch (IOException e) {
-			MachineLog.errorMessage(this.getClass().getName(), e);
+			ConfigurationLog.errorMessage(this.getClass().getName(), e);
 		} catch (NullPointerException e) {
-			MachineLog.info(this.getClass().getName(), e.getMessage());
+			ConfigurationLog.info(this.getClass().getName(), e.getMessage());
 		}
 		return null;
 	}
@@ -121,14 +121,14 @@ public class PropertiesSourceFile extends SourceFile<Properties> implements IPro
 			});
 		} catch (NoSuchFileException | NullPointerException e) {
 			try {
-				MachineLog.warning(this.getClass().getName(), "Directory '" + getDirectoryToWatch() + "' to watch not found!");
+				ConfigurationLog.warning(this.getClass().getName(), "Directory '" + getDirectoryToWatch() + "' to watch not found!");
 			} catch (ResurceNotFoundException e1) {
-				MachineLog.warning(this.getClass().getName(), "Modules not found!");
+				ConfigurationLog.warning(this.getClass().getName(), "Modules not found!");
 			}
 		} catch (IOException e) {
-			MachineLog.errorMessage(this.getClass().getName(), e);
+			ConfigurationLog.errorMessage(this.getClass().getName(), e);
 		} catch (ResurceNotFoundException e) {
-			MachineLog.warning(this.getClass().getName(), "Modules not found!");
+			ConfigurationLog.warning(this.getClass().getName(), "Modules not found!");
 		}
 	}
 
