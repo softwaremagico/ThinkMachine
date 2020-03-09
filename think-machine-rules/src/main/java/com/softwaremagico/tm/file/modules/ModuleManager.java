@@ -50,6 +50,7 @@ import com.softwaremagico.tm.file.watcher.FileWatcher.FileModifiedListener;
 import com.softwaremagico.tm.log.MachineModulesLog;
 
 public class ModuleManager {
+	public static final String DEFAULT_MODULE = "Fading Suns Revised Edition";
 	private static Set<String> availableModules;
 	private static String currentModuleFolder = null;
 
@@ -106,7 +107,8 @@ public class ModuleManager {
 			}
 		}
 		if (modules.isEmpty()) {
-			MachineModulesLog.severe(ModuleManager.class.getName(), "No modules found!");
+			MachineModulesLog.severe(ModuleManager.class.getName(), "No modules found! Adding default one.");
+			modules.add(DEFAULT_MODULE);
 		} else {
 			MachineModulesLog.info(ModuleManager.class.getName(), "Found modules '" + modules + "'.");
 		}
