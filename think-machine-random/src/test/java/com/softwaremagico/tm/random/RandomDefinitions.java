@@ -50,21 +50,21 @@ public class RandomDefinitions {
 	public void removeElementWeight() throws DuplicatedPreferenceException, InvalidXmlElementException, InvalidRandomElementSelectedException {
 		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
 
-		final AvailableSkill ride = AvailableSkillsFactory.getInstance().getElement("ride", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+		final AvailableSkill sneak = AvailableSkillsFactory.getInstance().getElement("sneak", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
 		final AvailableSkill warfare = AvailableSkillsFactory.getInstance().getElement("warfare", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
 
 		final RandomSkills originalSkills = new RandomSkills(characterPlayer, null);
 		final RandomSkills editedSkills = new RandomSkills(characterPlayer, null);
 
-		Assert.assertEquals(originalSkills.getAssignedWeight(ride), editedSkills.getAssignedWeight(ride));
+		Assert.assertEquals(originalSkills.getAssignedWeight(sneak), editedSkills.getAssignedWeight(sneak));
 		Assert.assertEquals(originalSkills.getAssignedWeight(warfare), editedSkills.getAssignedWeight(warfare));
 		Assert.assertEquals(originalSkills.getWeightedElements().size(), editedSkills.getWeightedElements().size());
 
-		editedSkills.removeElementWeight(ride);
+		editedSkills.removeElementWeight(sneak);
 
 		Assert.assertEquals(editedSkills.getWeightedElements().size(), originalSkills.getWeightedElements().size() - 1);
-		Assert.assertNull(editedSkills.getAssignedWeight(ride));
-		Assert.assertNotNull(originalSkills.getAssignedWeight(ride));
+		Assert.assertNull(editedSkills.getAssignedWeight(sneak));
+		Assert.assertNotNull(originalSkills.getAssignedWeight(sneak));
 		Assert.assertEquals(originalSkills.getAssignedWeight(warfare), editedSkills.getAssignedWeight(warfare));
 
 	}

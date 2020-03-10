@@ -661,6 +661,16 @@ public class CharacterPlayer {
 		if (!Objects.equals(this.race, race)) {
 			MachineLog.debug(this.getClass().getName(), "Race set to '" + race + "'.");
 			this.race = race;
+			for (final Characteristic characteristics : characteristics.values()) {
+				final int raceInitialValue = race.get(characteristics.getCharacteristicName()).getInitialValue();
+				if (getRawValue(characteristics.getCharacteristicName()) < raceInitialValue) {
+					this.characteristics.get(characteristics.getCharacteristicName().getId()).setValue(raceInitialValue);
+				}
+				final int raceMaxValue = race.get(characteristics.getCharacteristicName()).getMaximumInitialValue();
+				if (getRawValue(characteristics.getCharacteristicName()) > raceMaxValue) {
+					this.characteristics.get(characteristics.getCharacteristicName().getId()).setValue(raceMaxValue);
+				}
+			}
 		}
 	}
 
