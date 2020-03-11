@@ -28,6 +28,7 @@ import com.softwaremagico.tm.json.ExcludeFromJson;
 
 public class Characteristic extends CharacteristicDefinition {
 	public static final int DEFAULT_INITIAL_VALUE = 3;
+	public static final int DEFAULT_INITIAL_MAX_VALUE = 8;
 	public static final int MAX_VALUE = 12;
 	private int value = DEFAULT_INITIAL_VALUE;
 

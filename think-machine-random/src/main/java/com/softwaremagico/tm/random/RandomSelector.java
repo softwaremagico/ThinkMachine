@@ -45,8 +45,10 @@ import com.softwaremagico.tm.random.selectors.IRandomPreference;
 public abstract class RandomSelector<Element extends com.softwaremagico.tm.Element<?>> {
 	protected static final int MAX_PROBABILITY = 1000000;
 
-	protected static final int BAD_PROBABILITY = -20;
+	protected static final int TERRIBLE_PROBABILITY = -20;
 	protected static final int DIFFICULT_PROBABILITY = -10;
+	protected static final int BAD_PROBABILITY = -5;
+	protected static final int PENALIZED_PROBABILITY = -1;
 	protected static final int BASIC_PROBABILITY = 1;
 	protected static final int LITTLE_PROBABILITY = 6;
 	protected static final int FAIR_PROBABILITY = 11;
