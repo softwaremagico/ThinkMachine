@@ -1,5 +1,7 @@
 package com.softwaremagico.tm.file;
 
+import java.io.IOException;
+
 /*-
  * #%L
  * Think Machine (Rules)
@@ -56,7 +58,7 @@ public class Version {
 				final String version = attributes.getValue("Implementation-Version");
 				return version;
 			}
-		} catch (Exception e) {
+		} catch (IOException e) {
 			return null;
 		}
 		return null;

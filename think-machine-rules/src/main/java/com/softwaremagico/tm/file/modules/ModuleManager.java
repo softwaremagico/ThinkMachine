@@ -39,6 +39,7 @@ import java.util.Set;
 import java.util.regex.Pattern;
 
 import org.reflections.Reflections;
+import org.reflections.ReflectionsException;
 import org.reflections.scanners.ResourcesScanner;
 import org.reflections.util.ClasspathHelper;
 import org.reflections.util.ConfigurationBuilder;
@@ -72,7 +73,7 @@ public class ModuleManager {
 		return availableModules;
 	}
 
-	public static void addAvailableModule(String moduleName) {
+	public static synchronized void addAvailableModule(String moduleName) {
 		if (availableModules == null) {
 			availableModules = new HashSet<>();
 		}
@@ -90,27 +91,32 @@ public class ModuleManager {
 		builder.addUrls(ClasspathHelper.forPackage(PathManager.MODULES_FOLDER, ClassLoader.getSystemClassLoader(), ClasspathHelper.contextClassLoader(),
 				ClasspathHelper.staticClassLoader()));
 		builder.addScanners(new ResourcesScanner());
-		final Reflections reflections = new Reflections(builder);
-		final Set<String> resources = reflections.getResources(Pattern.compile(".*\\.xml"));
-
 		final Set<String> modules = new HashSet<>();
-		for (final String resource : resources) {
-			try {
-				final String[] path = resource.split("/");
-				if (path.length > 2) {
-					if (path[0].equals(PathManager.MODULES_FOLDER)) {
-						modules.add(path[1]);
-					}
-				}
-			} catch (ArrayIndexOutOfBoundsException e) {
 
+		try {
+			final Reflections reflections = new Reflections(builder);
+			final Set<String> resources = reflections.getResources(Pattern.compile(".*\\.xml"));
+
+			for (final String resource : resources) {
+				try {
+					final String[] path = resource.split("/");
+					if (path.length > 2) {
+						if (path[0].equals(PathManager.MODULES_FOLDER)) {
+							modules.add(path[1]);
+						}
+					}
+				} catch (ArrayIndexOutOfBoundsException e) {
+
+				}
 			}
-		}
-		if (modules.isEmpty()) {
-			MachineModulesLog.severe(ModuleManager.class.getName(), "No modules found! Adding default one.");
-			modules.add(DEFAULT_MODULE);
-		} else {
-			MachineModulesLog.info(ModuleManager.class.getName(), "Found modules '" + modules + "'.");
+			if (modules.isEmpty()) {
+				MachineModulesLog.severe(ModuleManager.class.getName(), "No modules found! Adding default one.");
+				modules.add(DEFAULT_MODULE);
+			} else {
+				MachineModulesLog.info(ModuleManager.class.getName(), "Found modules '" + modules + "'.");
+			}
+		} catch (ReflectionsException e) {
+
 		}
 
 		return modules;
