@@ -190,7 +190,7 @@ public class CharacterPlayer {
 	}
 
 	/**
-	 * Gets the starting value for a characteristic depending on the race.
+	 * Gets the starting value for a characteristic depending on the race and age.
 	 * 
 	 * @param characteristicName
 	 * @return the initial value of a characteristic.
@@ -201,6 +201,9 @@ public class CharacterPlayer {
 		}
 		if (CharacteristicName.INITIATIVE.equals(characteristicName)) {
 			return getStartingValue(CharacteristicName.DEXTERITY) + getStartingValue(CharacteristicName.WITS);
+		}
+		if (getInfo() != null && getInfo().getAge() != null) {
+			return FreeStyleCharacterCreation.getMinInitialCharacteristicsValues(characteristicName, getInfo().getAge(), getRace());
 		}
 		return getRaceCharacteristicStartingValue(characteristicName);
 	}

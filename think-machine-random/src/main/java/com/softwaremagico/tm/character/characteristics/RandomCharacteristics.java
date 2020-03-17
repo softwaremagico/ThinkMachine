@@ -250,7 +250,8 @@ public class RandomCharacteristics extends RandomSelector<Characteristic> {
 			// Minimum tech level for equipment.
 			final int techLevel = getCharacterPlayer().getEquipmentMaxTechnologicalLevel();
 			if (techLevel < characteristic.getValue() && (techLevel > getCharacterPlayer().getRace().get(CharacteristicName.TECH).getInitialValue())
-					&& techLevel < getCharacterPlayer().getRace().get(CharacteristicName.TECH).getMaximumValue()) {
+					&& techLevel < FreeStyleCharacterCreation.getMaxInitialCharacteristicsValues(CharacteristicName.TECH,
+							getCharacterPlayer().getInfo().getAge(), getCharacterPlayer().getRace())) {
 				characteristic.setValue(techLevel);
 			}
 

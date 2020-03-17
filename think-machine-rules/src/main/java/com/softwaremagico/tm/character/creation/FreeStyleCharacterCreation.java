@@ -36,9 +36,9 @@ import com.softwaremagico.tm.log.MachineLog;
 public class FreeStyleCharacterCreation {
 	// Human is used as a base in rules.
 	private static final Map<String, Race> humans = new HashMap<>();
-	private static final int MIN_INITIAL_NATURAL_SKILL_VALUE = 3;
+	public static final int MIN_INITIAL_NATURAL_SKILL_VALUE = 3;
 	private static final int MIN_INITIAL_CHARACTERISTICS_VALUE = 3;
-	private static final int MAX_INITIAL_SKILL_VALUE = 8;
+	public static final int MAX_INITIAL_SKILL_VALUE = 8;
 	private static final int MAX_INITIAL_CHARACTERISTIC_VALUE = 8;
 	private static final int CHARACTERISTICS_POINTS = 20;
 	private static final int SKILLS_POINTS = 30;
@@ -78,11 +78,11 @@ public class FreeStyleCharacterCreation {
 	public static int getMinInitialCharacteristicsValues(CharacteristicName characteristicName, Integer age, Race race) {
 		if (age != null && characteristicName != null && race != null) {
 			if (age <= 12) {
-				return Math.min(1, race.get(characteristicName).getInitialValue()
-						- (getHuman(race.getModuleName()).get(characteristicName).getInitialValue() - 1));
+				return Math.min(1,
+						race.get(characteristicName).getInitialValue() - (getHuman(race.getModuleName()).get(characteristicName).getInitialValue() - 1));
 			} else if (age <= 16) {
-				return Math.min(1, race.get(characteristicName).getInitialValue()
-						- (getHuman(race.getModuleName()).get(characteristicName).getInitialValue() - 2));
+				return Math.min(1,
+						race.get(characteristicName).getInitialValue() - (getHuman(race.getModuleName()).get(characteristicName).getInitialValue() - 2));
 			} else if (age <= 20) {
 				return race.get(characteristicName).getInitialValue();
 			} else if (age <= 30) {
@@ -90,6 +90,8 @@ public class FreeStyleCharacterCreation {
 			} else if (age <= 40) {
 				return race.get(characteristicName).getInitialValue();
 			}
+		} else if (race != null) {
+			return race.get(characteristicName).getInitialValue();
 		}
 		return MIN_INITIAL_CHARACTERISTICS_VALUE;
 	}
@@ -128,6 +130,8 @@ public class FreeStyleCharacterCreation {
 			} else if (age <= 40) {
 				return race.get(characteristicName).getMaximumInitialValue();
 			}
+		} else if (race != null) {
+			return race.get(characteristicName).getMaximumInitialValue();
 		}
 		return MAX_INITIAL_CHARACTERISTIC_VALUE;
 	}

@@ -58,7 +58,7 @@ public class Version {
 				final String version = attributes.getValue("Implementation-Version");
 				return version;
 			}
-		} catch (IOException e) {
+		} catch (IOException | NullPointerException e) {
 			return null;
 		}
 		return null;
