@@ -244,6 +244,10 @@
 		<en>Name</en>
 		<es>Nombre</es>
 	</blessingTableName>
+	<traits>
+		<en>Traits</en>
+		<es>Rasgos</es>
+	</traits>
 	<blessingTableTrait>
 		<en>Trait</en>
 		<es>Rasgo</es>
