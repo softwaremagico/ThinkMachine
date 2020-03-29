@@ -28,6 +28,7 @@ import com.softwaremagico.tm.random.definition.RandomElementDefinition;
  */
 
 public class Element<T extends Element<?>> implements Comparable<T> {
+	public static final String DEFAULT_NULL_ID = "null";
 
 	private final String id;
 
@@ -43,15 +44,26 @@ public class Element<T extends Element<?>> implements Comparable<T> {
 	@ExcludeFromJson
 	private final RandomElementDefinition randomDefinition;
 
+	/**
+	 * For creating empty elements.
+	 */
+	public Element() {
+		this.id = DEFAULT_NULL_ID;
+		this.name = "";
+		this.moduleName = "";
+		this.language = "";
+		this.randomDefinition = new RandomElementDefinition();
+	}
+
 	public Element(String id, String name, String language, String moduleName) {
 		this(id, name, language, new RandomElementDefinition(), moduleName);
 	}
 
-	public Element(String id, String name, String language, RandomElementDefinition ranDefinition, String moduleName) {
+	public Element(String id, String name, String language, RandomElementDefinition randomDefinition, String moduleName) {
 		this.id = id != null ? id.trim() : null;
 		this.name = name != null ? name.trim() : null;
 		this.language = language;
-		this.randomDefinition = ranDefinition;
+		this.randomDefinition = randomDefinition;
 		this.moduleName = moduleName;
 	}
 
