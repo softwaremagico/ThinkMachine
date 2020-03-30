@@ -1,5 +1,6 @@
 package com.softwaremagico.tm;
 
+import com.google.common.base.Objects;
 import com.softwaremagico.tm.json.ExcludeFromJson;
 import com.softwaremagico.tm.random.definition.RandomElementDefinition;
 
@@ -135,5 +136,12 @@ public class Element<T extends Element<?>> implements Comparable<T> {
 
 	public String getModuleName() {
 		return moduleName;
+	}
+
+	public static boolean isNull(Element<?> element) {
+		if (element == null) {
+			return true;
+		}
+		return Objects.equal(element.getId(), DEFAULT_NULL_ID);
 	}
 }

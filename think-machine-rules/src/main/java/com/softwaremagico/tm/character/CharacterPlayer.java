@@ -25,6 +25,7 @@ package com.softwaremagico.tm.character;
  */
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -369,6 +370,17 @@ public class CharacterPlayer {
 		return occultism;
 	}
 
+	public void setBlessings(Collection<Blessing> blessings) throws TooManyBlessingsException {
+		blessings = new ArrayList<>();
+		for (final Blessing blessing : blessings) {
+			try {
+				addBlessing(blessing);
+			} catch (BlessingAlreadyAddedException e) {
+				continue;
+			}
+		}
+	}
+
 	public void addBlessing(Blessing blessing) throws TooManyBlessingsException, BlessingAlreadyAddedException {
 		if (getAllBlessings().contains(blessing)) {
 			throw new BlessingAlreadyAddedException("Character already has blessing '" + blessing + "'!");
@@ -441,6 +453,18 @@ public class CharacterPlayer {
 		}
 		Collections.sort(allBlessings);
 		return Collections.unmodifiableList(allBlessings);
+	}
+	
+	
+	public void setBenefices(Collection<AvailableBenefice> benefices) throws InvalidBeneficeException{
+		benefices = new ArrayList<>();
+		for (final AvailableBenefice benefice : benefices) {
+			try {
+				addBenefice(benefice);
+			} catch (BeneficeAlreadyAddedException e) {
+				continue;
+			}
+		}
 	}
 
 	public void addBenefice(AvailableBenefice benefice) throws InvalidBeneficeException, BeneficeAlreadyAddedException {
