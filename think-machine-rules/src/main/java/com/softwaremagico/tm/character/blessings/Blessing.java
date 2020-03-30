@@ -43,8 +43,19 @@ public class Blessing extends Element<Blessing> implements IElementWithBonificat
 	private final BlessingClassification blessingClassification;
 	private final BlessingGroup blessingGroup;
 
-	public Blessing(String id, String name, String language, String moduleName, Integer cost,
-			Set<Bonification> bonifications, BlessingClassification blessingClassification, BlessingGroup blessingGroup) {
+	/**
+	 * For creating empty elements.
+	 */
+	public Blessing() {
+		super();
+		cost = 0;
+		bonifications = new HashSet<>();
+		blessingClassification = null;
+		blessingGroup = null;
+	}
+
+	public Blessing(String id, String name, String language, String moduleName, Integer cost, Set<Bonification> bonifications,
+			BlessingClassification blessingClassification, BlessingGroup blessingGroup) {
 		super(id, name, language, moduleName);
 		this.cost = cost;
 		this.bonifications = bonifications;
@@ -99,16 +110,14 @@ public class Blessing extends Element<Blessing> implements IElementWithBonificat
 					// Has a list of values defined.
 					for (final IValue specialValueSkill : specialValue.getAffects()) {
 						try {
-							affectedSkills.add(AvailableSkillsFactory.getInstance().getElement(
-									specialValueSkill.getId(), getLanguage(), getModuleName()));
+							affectedSkills.add(AvailableSkillsFactory.getInstance().getElement(specialValueSkill.getId(), getLanguage(), getModuleName()));
 						} catch (InvalidXmlElementException e) {
 							// Not a skill
 						}
 					}
 				}
 				try {
-					affectedSkills.add(AvailableSkillsFactory.getInstance().getElement(
-							bonification.getAffects().getId(), getLanguage(), getModuleName()));
+					affectedSkills.add(AvailableSkillsFactory.getInstance().getElement(bonification.getAffects().getId(), getLanguage(), getModuleName()));
 				} catch (InvalidXmlElementException e) {
 					// Not a skill
 				}

@@ -33,8 +33,18 @@ public class AvailableBenefice extends Element<AvailableBenefice> {
 	private final int cost;
 	private final BeneficeClassification beneficeClassification;
 
-	public AvailableBenefice(String id, String name, String language, BeneficeDefinition beneficeDefinition,
-			BeneficeClassification beneficeClassification, int cost, RandomElementDefinition randomDefinition) {
+	/**
+	 * For creating empty elements.
+	 */
+	public AvailableBenefice() {
+		super();
+		cost = 0;
+		beneficeDefinition = null;
+		beneficeClassification = null;
+	}
+
+	public AvailableBenefice(String id, String name, String language, BeneficeDefinition beneficeDefinition, BeneficeClassification beneficeClassification,
+			int cost, RandomElementDefinition randomDefinition) {
 		super(id, name, language, randomDefinition, beneficeDefinition.getModuleName());
 		this.beneficeDefinition = beneficeDefinition;
 		this.beneficeClassification = beneficeClassification;
@@ -55,10 +65,7 @@ public class AvailableBenefice extends Element<AvailableBenefice> {
 
 	@Override
 	public String toString() {
-		return getName() + " ("
-				+ (beneficeDefinition != null
-						&& beneficeDefinition.getBeneficeClassification() == BeneficeClassification.AFFLICTION ? "+"
-								: "")
+		return getName() + " (" + (beneficeDefinition != null && beneficeDefinition.getBeneficeClassification() == BeneficeClassification.AFFLICTION ? "+" : "")
 				+ cost + ")";
 	}
 
