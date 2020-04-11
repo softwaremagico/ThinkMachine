@@ -40,14 +40,16 @@ public class BeneficesTable extends VerticalTable {
 		super(WIDTHS);
 		getDefaultCell().setBorder(0);
 
-		addCell(createTitle(getTranslator().getTranslatedText("beneficesTable"),
-				FadingSunsTheme.CHARACTER_SMALL_BENEFICES_TITLE_FONT_SIZE));
+		addCell(createTitle(getTranslator().getTranslatedText("beneficesTable"), FadingSunsTheme.CHARACTER_SMALL_BENEFICES_TITLE_FONT_SIZE));
 
 		int added = 0;
 		if (characterPlayer != null) {
 			for (final AvailableBenefice benefit : characterPlayer.getAllBenefices()) {
-				addCell(createElementLine(benefit.getName(), TRAIT_COLUMN_WIDTH,
-						FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE));
+				if (benefit.getSpecialization() != null) {
+					addCell(createElementLine(benefit.getSpecialization().getName(), TRAIT_COLUMN_WIDTH, FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE));
+				} else {
+					addCell(createElementLine(benefit.getName(), TRAIT_COLUMN_WIDTH, FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE));
+				}
 				added++;
 			}
 		}

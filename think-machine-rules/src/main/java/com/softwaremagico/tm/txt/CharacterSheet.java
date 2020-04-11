@@ -210,7 +210,11 @@ public class CharacterSheet {
 	}
 
 	private void representBenefice(StringBuilder stringBuilder, AvailableBenefice benefice) throws InvalidXmlElementException {
-		stringBuilder.append(benefice.getName());
+		if (benefice.getSpecialization() != null) {
+			stringBuilder.append(benefice.getSpecialization().getName());
+		} else {
+			stringBuilder.append(benefice.getName());
+		}
 		if (benefice.getBeneficeDefinition().getSpecializations().size() > 1) {
 			stringBuilder
 					.append(" (" + (benefice.getBeneficeClassification() == BeneficeClassification.AFFLICTION ? "+" : "") + Math.abs(benefice.getCost()) + ")");

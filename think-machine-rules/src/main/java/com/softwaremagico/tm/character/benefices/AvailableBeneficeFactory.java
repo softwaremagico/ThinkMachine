@@ -73,7 +73,7 @@ public class AvailableBeneficeFactory {
 						// Cost in specialization
 						if (specialization.getCost() != null) {
 							final String id = benefitDefinition.getId() + " [" + specialization.getId() + "]";
-							final AvailableBenefice availableBenefice = new AvailableBenefice(id, specialization.getName(), language, benefitDefinition,
+							final AvailableBenefice availableBenefice = new AvailableBenefice(id, benefitDefinition.getName(), language, benefitDefinition,
 									specialization.getClassification(), specialization.getCost(),
 									new RandomElementDefinition(benefitDefinition.getRandomDefinition(), specialization.getRandomDefinition()));
 							availableBenefice.setSpecialization(specialization);
@@ -82,7 +82,7 @@ public class AvailableBeneficeFactory {
 							for (final Integer cost : benefitDefinition.getCosts()) {
 								final String id = benefitDefinition.getId() + (benefitDefinition.getCosts().size() == 1 ? "" : "_" + cost) + " ["
 										+ specialization.getId() + "]";
-								final AvailableBenefice availableBenefice = new AvailableBenefice(id, specialization.getName(), language, benefitDefinition,
+								final AvailableBenefice availableBenefice = new AvailableBenefice(id, benefitDefinition.getName(), language, benefitDefinition,
 										specialization.getClassification(), cost,
 										new RandomElementDefinition(benefitDefinition.getRandomDefinition(), specialization.getRandomDefinition()));
 								availableBenefice.setSpecialization(specialization);
@@ -155,7 +155,7 @@ public class AvailableBeneficeFactory {
 		return availableBeneficesByDefinition.get(language).get(moduleName);
 	}
 
-	private class AvailableBeneficesComparator implements Comparator<AvailableBenefice> {
+	private static class AvailableBeneficesComparator implements Comparator<AvailableBenefice> {
 
 		@Override
 		public int compare(AvailableBenefice o1, AvailableBenefice o2) {

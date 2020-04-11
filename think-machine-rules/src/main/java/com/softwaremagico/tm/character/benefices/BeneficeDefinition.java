@@ -63,7 +63,7 @@ public class BeneficeDefinition extends Element<BeneficeDefinition> {
 		this.specializations.addAll(specializations);
 	}
 
-	protected BeneficeClassification getBeneficeClassification() {
+	public BeneficeClassification getBeneficeClassification() {
 		return beneficeClassification;
 	}
 

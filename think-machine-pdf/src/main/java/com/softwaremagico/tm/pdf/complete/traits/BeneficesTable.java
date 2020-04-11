@@ -37,19 +37,13 @@ public class BeneficesTable extends VerticalTable {
 
 	public BeneficesTable(CharacterPlayer characterPlayer) {
 		super(WIDTHS);
-		addCell(createTitle(
-				getTranslator().getTranslatedText("beneficesTable") + " / "
-						+ getTranslator().getTranslatedText("afflictionsTable"),
+		addCell(createTitle(getTranslator().getTranslatedText("beneficesTable") + " / " + getTranslator().getTranslatedText("afflictionsTable"),
 				FadingSunsTheme.VERTICALTABLE_TITLE_FONT_SIZE));
 
-		addCell(createSubtitleLine(getTranslator().getTranslatedText("beneficesTablePoints"),
-				FadingSunsTheme.TABLE_LINE_FONT_SIZE));
-		addCell(createSubtitleLine(getTranslator().getTranslatedText("benefices"),
-				FadingSunsTheme.TABLE_LINE_FONT_SIZE));
-		addCell(createSubtitleLine(getTranslator().getTranslatedText("beneficesTablePoints"),
-				FadingSunsTheme.TABLE_LINE_FONT_SIZE));
-		addCell(createSubtitleLine(getTranslator().getTranslatedText("afflictions"),
-				FadingSunsTheme.TABLE_LINE_FONT_SIZE));
+		addCell(createSubtitleLine(getTranslator().getTranslatedText("beneficesTablePoints"), FadingSunsTheme.TABLE_LINE_FONT_SIZE));
+		addCell(createSubtitleLine(getTranslator().getTranslatedText("benefices"), FadingSunsTheme.TABLE_LINE_FONT_SIZE));
+		addCell(createSubtitleLine(getTranslator().getTranslatedText("beneficesTablePoints"), FadingSunsTheme.TABLE_LINE_FONT_SIZE));
+		addCell(createSubtitleLine(getTranslator().getTranslatedText("afflictions"), FadingSunsTheme.TABLE_LINE_FONT_SIZE));
 
 		for (int i = 0; i < MainPerksTableFactory.EMPTY_ROWS * 2; i++) {
 			if (i % 2 == 0) {
@@ -65,6 +59,9 @@ public class BeneficesTable extends VerticalTable {
 	private PdfPCell getBenefices(CharacterPlayer characterPlayer, int row) {
 		try {
 			if (characterPlayer != null) {
+				if (characterPlayer.getAllBenefices().get(row).getSpecialization() != null) {
+					return createElementLine(characterPlayer.getAllBenefices().get(row).getSpecialization().getName(), NAME_COLUMN_WIDTH);
+				}
 				return createElementLine(characterPlayer.getAllBenefices().get(row).getName(), NAME_COLUMN_WIDTH);
 			}
 		} catch (Exception e) {
@@ -87,6 +84,9 @@ public class BeneficesTable extends VerticalTable {
 	private PdfPCell getAfflictions(CharacterPlayer characterPlayer, int row) {
 		try {
 			if (characterPlayer != null) {
+				if (characterPlayer.getAfflictions().get(row).getSpecialization() != null) {
+					return createElementLine(characterPlayer.getAfflictions().get(row).getSpecialization().getName(), NAME_COLUMN_WIDTH);
+				}
 				return createElementLine(characterPlayer.getAfflictions().get(row).getName(), NAME_COLUMN_WIDTH);
 			}
 		} catch (Exception e) {
