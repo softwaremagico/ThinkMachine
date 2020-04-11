@@ -71,6 +71,10 @@ public class Element<T extends Element<?>> implements Comparable<T> {
 	public String getName() {
 		return name;
 	}
+	
+	public String getNameRepresentation() {
+		return getName();
+	}
 
 	public String getId() {
 		return id;
