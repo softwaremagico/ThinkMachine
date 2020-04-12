@@ -454,9 +454,8 @@ public class CharacterPlayer {
 		Collections.sort(allBlessings);
 		return Collections.unmodifiableList(allBlessings);
 	}
-	
-	
-	public void setBenefices(Collection<AvailableBenefice> benefices) throws InvalidBeneficeException{
+
+	public void setBenefices(Collection<AvailableBenefice> benefices) throws InvalidBeneficeException {
 		benefices = new ArrayList<>();
 		for (final AvailableBenefice benefice : benefices) {
 			try {
@@ -588,6 +587,13 @@ public class CharacterPlayer {
 
 	public void addWeapon(Weapon weapon) {
 		weapons.addElement(weapon);
+	}
+
+	public void setWeapons(List<Weapon> weapons) {
+		this.weapons = new Weapons();
+		for (final Weapon weapon : weapons) {
+			this.weapons.addElement(weapon);
+		}
 	}
 
 	public List<Weapon> getAllWeapons(WeaponType type) {
