@@ -64,7 +64,6 @@ public class PropertiesSourceFile extends SourceFile<Properties> implements IPro
 	@Override
 	public void setFilePath(String filePath) {
 		super.setFilePath(filePath);
-		setWatcher();
 	}
 
 	public void storeInFile(Map<String, String> propertiesValues) throws IOException, PropertyNotStoredException {
@@ -113,7 +112,7 @@ public class PropertiesSourceFile extends SourceFile<Properties> implements IPro
 
 				@Override
 				public void changeDetected(Path pathToFile) {
-					// Pass the listener to current listeners.S
+					// Pass the listener to current listeners.
 					for (final FileModifiedListener fileModifiedListener : fileModifiedListeners) {
 						fileModifiedListener.changeDetected(pathToFile);
 					}
@@ -129,6 +128,8 @@ public class PropertiesSourceFile extends SourceFile<Properties> implements IPro
 			ConfigurationLog.errorMessage(this.getClass().getName(), e);
 		} catch (ResurceNotFoundException e) {
 			ConfigurationLog.warning(this.getClass().getName(), "Modules not found!");
+		} catch (Exception e) {
+			ConfigurationLog.warning(this.getClass().getName(), "Watcher not enabled!");
 		}
 	}
 

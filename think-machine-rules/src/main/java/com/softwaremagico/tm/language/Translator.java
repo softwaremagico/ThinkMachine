@@ -201,7 +201,8 @@ public class Translator implements ITranslator {
 					final Element firstNodeElement = (Element) firstNodeElementList.item(0);
 					return firstNodeElement.getChildNodes().item(nodeNumber).getNodeValue().trim();
 				} catch (NullPointerException npe) {
-					MachineLog.debug(this.getClass().getName(), "Node '" + tag + "/" + node + "' not found on xml.");
+					// MachineLog.debug(this.getClass().getName(), "Node '" + tag + "/" + node + "'
+					// not found on xml.");
 					return null;
 				}
 			}
@@ -221,7 +222,8 @@ public class Translator implements ITranslator {
 					final NodeList firstNodeElementList = firstElement.getElementsByTagName(node);
 					return firstNodeElementList.getLength() > 0;
 				} catch (NullPointerException npe) {
-					MachineLog.debug(this.getClass().getName(), "Node '" + tag + "/" + node + "' not found on xml.");
+					// MachineLog.debug(this.getClass().getName(), "Node '" + tag + "/" + node + "'
+					// not found on xml.");
 					return false;
 				}
 			}
@@ -285,8 +287,7 @@ public class Translator implements ITranslator {
 							final Element firstNodeElement = (Element) firstNodeElementList.item(0);
 							return firstNodeElement.getChildNodes().item(0).getNodeValue().trim();
 						} catch (NullPointerException npe) {
-							MachineLog.debug(this.getClass().getName(),
-									"Node '" + grandparent + "/" + parent + "/" + tag + "/" + node + "' not found on xml.");
+							MachineLog.debug(this.getClass().getName(), "Node '" + grandparent + "/" + parent + "/" + tag + "/" + node + "' not found on xml.");
 							return null;
 						}
 					} catch (NullPointerException npe) {

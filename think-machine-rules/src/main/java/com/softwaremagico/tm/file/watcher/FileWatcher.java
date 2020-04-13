@@ -1,5 +1,7 @@
 package com.softwaremagico.tm.file.watcher;
 
+import java.io.File;
+
 /*-
  * #%L
  * Think Machine (Rules)
@@ -34,6 +36,7 @@ import java.nio.file.StandardWatchEventKinds;
 import java.nio.file.WatchEvent;
 import java.nio.file.WatchKey;
 import java.nio.file.WatchService;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -64,10 +67,8 @@ public class FileWatcher {
 	/**
 	 * Check some files in a specific path
 	 * 
-	 * @param directoryToWatch
-	 *            directory where the files are stored.
-	 * @param filesNames
-	 *            the files to check
+	 * @param directoryToWatch directory where the files are stored.
+	 * @param filesNames       the files to check
 	 * @throws IOException
 	 */
 	public FileWatcher(String directoryToWatch, Set<String> filesNames) throws IOException {
@@ -79,7 +80,17 @@ public class FileWatcher {
 		fileModifiedListeners = new HashSet<>();
 		fileAddedListeners = new HashSet<>();
 		fileRemovedListeners = new HashSet<>();
-		startWatcher(filesNames);
+		// Remove unexisting files.
+		for (final String fileName : new ArrayList<>(filesNames)) {
+			final File file = new File(directoryToWatch + File.pathSeparator + fileName);
+			if (!file.exists()) {
+				filesNames.remove(fileName);
+			}
+		}
+
+		if (!filesNames.isEmpty()) {
+			startWatcher(filesNames);
+		}
 	}
 
 	/**
@@ -138,14 +149,14 @@ public class FileWatcher {
 			stopThread();
 			thread = new Thread(fileWatcher, "FileWatcher");
 			thread.start();
-			pathToWatch.register(getWatchService(), StandardWatchEventKinds.ENTRY_CREATE,
-					StandardWatchEventKinds.ENTRY_MODIFY, StandardWatchEventKinds.ENTRY_DELETE);
+			pathToWatch.register(getWatchService(), StandardWatchEventKinds.ENTRY_CREATE, StandardWatchEventKinds.ENTRY_MODIFY,
+					StandardWatchEventKinds.ENTRY_DELETE);
 			// Ensure to close the watcher.
 			Runtime.getRuntime().addShutdownHook(new Thread() {
 				public void run() {
 					try {
-						MachineLog.debug(this.getClass().getName(), "Closing filewatcher for directory '"
-								+ directoryToWatch + "' and files '" + filesNames + "'.");
+						MachineLog.debug(this.getClass().getName(),
+								"Closing filewatcher for directory '" + directoryToWatch + "' and files '" + filesNames + "'.");
 						if (watcher != null) {
 							watcher.close();
 						}
@@ -183,8 +194,7 @@ public class FileWatcher {
 						// Event on a directory or a set of files.
 						if (filesNames == null || (filesNames.contains(event.context().toString()))) {
 							if (event.kind().equals(StandardWatchEventKinds.ENTRY_MODIFY)) {
-								for (final FileModifiedListener fileModifiedListener : new HashSet<>(
-										fileModifiedListeners)) {
+								for (final FileModifiedListener fileModifiedListener : new HashSet<>(fileModifiedListeners)) {
 									fileModifiedListener.changeDetected(combine(pathToWatch, (Path) event.context()));
 								}
 							} else if (event.kind().equals(StandardWatchEventKinds.ENTRY_CREATE)) {
@@ -192,13 +202,11 @@ public class FileWatcher {
 									fileCreationListener.fileCreated(combine(pathToWatch, (Path) event.context()));
 								}
 							} else if (event.kind().equals(StandardWatchEventKinds.ENTRY_DELETE)) {
-								for (final FileRemovedListener fileDeletionListener : new HashSet<>(
-										fileRemovedListeners)) {
+								for (final FileRemovedListener fileDeletionListener : new HashSet<>(fileRemovedListeners)) {
 									fileDeletionListener.fileDeleted(combine(pathToWatch, (Path) event.context()));
 								}
 							} else if (event.kind().equals(StandardWatchEventKinds.OVERFLOW)) {
-								MachineLog.severe(this.getClass().getName(),
-										"File Watcher events vents may have been lost or discarded.");
+								MachineLog.severe(this.getClass().getName(), "File Watcher events vents may have been lost or discarded.");
 							}
 						}
 					}
