@@ -39,8 +39,20 @@ public class Armour extends Equipment<Armour> {
 	private final Set<Shield> allowedShields;
 	private final Set<ArmourSpecification> specifications;
 
-	public Armour(String id, String name, String language, String moduleName, int techLevel, int protection,
-			Set<DamageType> damageTypes, float cost) {
+	/**
+	 * For creating empty elements.
+	 */
+	public Armour() {
+		super();
+		this.protection = 0;
+		this.damageTypes = new HashSet<>();
+		this.standardPenalizations = new ArmourPenalization(0, 0, 0, 0);
+		this.specialPenalizations = new ArmourPenalization(0, 0, 0, 0);
+		this.allowedShields = new HashSet<>();
+		this.specifications = new HashSet<>();
+	}
+
+	public Armour(String id, String name, String language, String moduleName, int techLevel, int protection, Set<DamageType> damageTypes, float cost) {
 		super(id, name, cost, techLevel, language, moduleName);
 		this.protection = protection;
 		this.damageTypes = damageTypes;
@@ -50,9 +62,8 @@ public class Armour extends Equipment<Armour> {
 		this.specifications = new HashSet<>();
 	}
 
-	public Armour(String id, String name, String language, String moduleName, int techLevel, int protection,
-			Set<DamageType> damageTypes, ArmourPenalization specialPenalizations,
-			ArmourPenalization otherPenalizations, Set<Shield> allowedShields, Set<ArmourSpecification> specifications,
+	public Armour(String id, String name, String language, String moduleName, int techLevel, int protection, Set<DamageType> damageTypes,
+			ArmourPenalization specialPenalizations, ArmourPenalization otherPenalizations, Set<Shield> allowedShields, Set<ArmourSpecification> specifications,
 			float cost) {
 		super(id, name, cost, techLevel, language, moduleName);
 		this.protection = protection;
@@ -84,8 +95,7 @@ public class Armour extends Equipment<Armour> {
 	}
 
 	public boolean isHeavy() {
-		return standardPenalizations.getDexterityModification() > 0
-				|| standardPenalizations.getStrengthModification() > 0
+		return standardPenalizations.getDexterityModification() > 0 || standardPenalizations.getStrengthModification() > 0
 				|| standardPenalizations.getEnduranceModification() > 0;
 	}
 

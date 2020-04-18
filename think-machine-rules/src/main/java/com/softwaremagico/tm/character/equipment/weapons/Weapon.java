@@ -1,5 +1,7 @@
 package com.softwaremagico.tm.character.equipment.weapons;
 
+import java.util.HashSet;
+
 /*-
  * #%L
  * Think Machine (Core)
@@ -66,10 +68,31 @@ public class Weapon extends Equipment<Weapon> {
 	private transient Integer areaDamage = null;
 	private transient String areaWithoutDamage = null;
 
-	public Weapon(String id, String name, String language, String moduleName, WeaponType type, String goal,
-			CharacteristicDefinition characteristic, AvailableSkill skill, String damage, int strength, String range,
-			Integer shots, String rate, int techLevel, boolean techLevelSpecial, Size size, String special,
-			Set<DamageType> damageTypes, float cost, Set<Ammunition> ammunitions, Set<Accessory> accesories) {
+	/**
+	 * For creating empty elements.
+	 */
+	public Weapon() {
+		super();
+		this.ammunitions = new HashSet<>();
+		this.accesories = new HashSet<>();
+		this.damageTypes = new HashSet<>();
+		this.type = null;
+		this.techLevelSpecial = false;
+		this.goal = "";
+		this.strength = 0;
+		this.range = "";
+		this.shots = 0;
+		this.rate = "";
+		this.special = "";
+		this.skill = null;
+		this.characteristic = null;
+		this.size = null;
+		this.damage = "";
+	}
+
+	public Weapon(String id, String name, String language, String moduleName, WeaponType type, String goal, CharacteristicDefinition characteristic,
+			AvailableSkill skill, String damage, int strength, String range, Integer shots, String rate, int techLevel, boolean techLevelSpecial, Size size,
+			String special, Set<DamageType> damageTypes, float cost, Set<Ammunition> ammunitions, Set<Accessory> accesories) {
 		super(id, name, cost, techLevel, language, moduleName);
 		this.characteristic = characteristic;
 		this.skill = skill;
@@ -146,8 +169,7 @@ public class Weapon extends Equipment<Weapon> {
 					// Special damage!
 					mainDamage = SPECIAL_DAMAGE_THREAT;
 				} else {
-					MachineLog.severe(this.getClass().getName(), "Invalid main damage in '" + getDamage() + "' for '"
-							+ this + "'.");
+					MachineLog.severe(this.getClass().getName(), "Invalid main damage in '" + getDamage() + "' for '" + this + "'.");
 				}
 			}
 		}
@@ -167,8 +189,7 @@ public class Weapon extends Equipment<Weapon> {
 				// No area
 				areaDamage = 0;
 			} catch (NumberFormatException e) {
-				MachineLog.severe(this.getClass().getName(), "Invalid area damage in '" + getDamage() + "' for '"
-						+ this + "'.");
+				MachineLog.severe(this.getClass().getName(), "Invalid area damage in '" + getDamage() + "' for '" + this + "'.");
 			}
 		}
 		return areaDamage;
@@ -269,7 +290,7 @@ public class Weapon extends Equipment<Weapon> {
 	public boolean equals(Object obj) {
 		return super.equals(obj);
 	}
-	
+
 	public String getWeaponOthersText() {
 		// Damage types
 		final StringBuilder stringBuilder = new StringBuilder();
