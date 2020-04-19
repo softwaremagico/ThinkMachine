@@ -239,7 +239,7 @@ public abstract class XmlFactory<T extends Element<T>> {
 		}
 	}
 
-	public List<T> getElements(String language, String moduleName) throws InvalidXmlElementException {
+	public synchronized List<T> getElements(String language, String moduleName) throws InvalidXmlElementException {
 		if (elements.get(language) == null || elements.get(language).get(moduleName) == null) {
 			if (elements.get(language) == null) {
 				elements.put(language, new HashMap<String, List<T>>());
