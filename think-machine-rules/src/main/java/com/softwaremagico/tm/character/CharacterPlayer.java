@@ -371,7 +371,7 @@ public class CharacterPlayer {
 	}
 
 	public void setBlessings(Collection<Blessing> blessings) throws TooManyBlessingsException {
-		blessings = new ArrayList<>();
+		while (blessings.remove(null));
 		for (final Blessing blessing : blessings) {
 			try {
 				addBlessing(blessing);
@@ -456,7 +456,7 @@ public class CharacterPlayer {
 	}
 
 	public void setBenefices(Collection<AvailableBenefice> benefices) throws InvalidBeneficeException {
-		benefices = new ArrayList<>();
+		while (benefices.remove(null));
 		for (final AvailableBenefice benefice : benefices) {
 			try {
 				addBenefice(benefice);
