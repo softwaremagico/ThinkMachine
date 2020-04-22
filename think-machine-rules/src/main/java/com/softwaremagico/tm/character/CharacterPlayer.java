@@ -371,7 +371,9 @@ public class CharacterPlayer {
 	}
 
 	public void setBlessings(Collection<Blessing> blessings) throws TooManyBlessingsException {
-		while (blessings.remove(null));
+		this.blessings = new ArrayList<>();
+		while (blessings.remove(null))
+			;
 		for (final Blessing blessing : blessings) {
 			try {
 				addBlessing(blessing);
@@ -441,6 +443,16 @@ public class CharacterPlayer {
 	}
 
 	/**
+	 * Returns all selected blessings and curses not including faction and race
+	 * mandatories.
+	 * 
+	 * @return
+	 */
+	public List<Blessing> getSelectedBlessings() {
+		return blessings;
+	}
+
+	/**
 	 * Return all blessings include the factions blessings and curses.
 	 * 
 	 * @return a list of blessings
@@ -456,7 +468,9 @@ public class CharacterPlayer {
 	}
 
 	public void setBenefices(Collection<AvailableBenefice> benefices) throws InvalidBeneficeException {
-		while (benefices.remove(null));
+		this.benefices = new ArrayList<>();
+		while (benefices.remove(null))
+			;
 		for (final AvailableBenefice benefice : benefices) {
 			try {
 				addBenefice(benefice);
@@ -485,6 +499,16 @@ public class CharacterPlayer {
 		}
 		benefices.add(benefice);
 		Collections.sort(benefices);
+	}
+
+	/**
+	 * Returns all selected benefices and afflictions not including faction and race
+	 * mandatories.
+	 * 
+	 * @return
+	 */
+	public List<AvailableBenefice> getSelectedBenefices() {
+		return benefices;
 	}
 
 	/**
