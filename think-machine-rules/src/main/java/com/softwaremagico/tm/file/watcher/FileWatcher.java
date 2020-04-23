@@ -77,6 +77,9 @@ public class FileWatcher {
 		} else {
 			setDirectoryToWatch(FileReader.class.getClassLoader().getResource(".").toString());
 		}
+		if (filesNames == null) {
+			filesNames = new HashSet<>();
+		}
 		fileModifiedListeners = new HashSet<>();
 		fileAddedListeners = new HashSet<>();
 		fileRemovedListeners = new HashSet<>();

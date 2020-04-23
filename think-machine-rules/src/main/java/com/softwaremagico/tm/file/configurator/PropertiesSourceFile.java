@@ -37,8 +37,8 @@ import java.util.Properties;
 import java.util.Set;
 import java.util.TreeMap;
 
-import com.softwaremagico.tm.file.configurator.exceptions.ResurceNotFoundException;
 import com.softwaremagico.tm.file.configurator.exceptions.PropertyNotStoredException;
+import com.softwaremagico.tm.file.configurator.exceptions.ResurceNotFoundException;
 import com.softwaremagico.tm.file.watcher.FileWatcher;
 import com.softwaremagico.tm.file.watcher.FileWatcher.FileModifiedListener;
 import com.softwaremagico.tm.log.ConfigurationLog;
@@ -103,6 +103,7 @@ public class PropertiesSourceFile extends SourceFile<Properties> implements IPro
 		}
 	}
 
+	@SuppressWarnings("unused")
 	private void setWatcher() {
 		final Set<String> checkedFiles = new HashSet<>(Arrays.asList(new String[] { getFileName() }));
 

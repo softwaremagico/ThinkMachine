@@ -56,24 +56,26 @@ public class ModuleManagerTests {
 	public void copyModule() throws IOException {
 		modulesDirectory = new File(Files.createTempDirectory("Modules_").toString());
 		modulesDirectory.deleteOnExit();
-		MachineLog.info(ModuleManagerTests.class.getName(),
-				"Temporal modules folder '" + modulesDirectory.getAbsolutePath() + "' created.");
-		Files.copy(Paths.get(SOURCE_MODULE_FOLDER + File.separator + MODULE1),
-				Paths.get(modulesDirectory.getPath() + File.separator + MODULE1), StandardCopyOption.REPLACE_EXISTING);
-		Assert.assertEquals(new File(SOURCE_MODULE_FOLDER + File.separator + MODULE1).length(), new File(
-				modulesDirectory.getPath() + File.separator + MODULE1).length());
+		MachineLog.info(ModuleManagerTests.class.getName(), "Temporal modules folder '" + modulesDirectory.getAbsolutePath() + "' created.");
+		Files.copy(Paths.get(SOURCE_MODULE_FOLDER + File.separator + MODULE1), Paths.get(modulesDirectory.getPath() + File.separator + MODULE1),
+				StandardCopyOption.REPLACE_EXISTING);
+		Assert.assertEquals(new File(SOURCE_MODULE_FOLDER + File.separator + MODULE1).length(),
+				new File(modulesDirectory.getPath() + File.separator + MODULE1).length());
 	}
 
 	@Test(dependsOnMethods = "copyModule")
 	public void checkNewModules() {
 		ModuleManager.setModulesFolder(modulesDirectory.getPath());
-		// Assert.assertEquals(ModuleManager.getAvailableModules().size(), 2);
+		Assert.assertEquals(ModuleManager.getAvailableModules().size(), 2);
 	}
 
-	@Test(dependsOnMethods = "checkNewModules")
+	/*
+	 * File watcher has been disabled
+	 */
+	@Test(dependsOnMethods = "checkNewModules", enabled = false)
 	public void checkFileWatcher() throws IOException, InterruptedException {
-		Files.copy(Paths.get(SOURCE_MODULE_FOLDER + File.separator + MODULE2),
-				Paths.get(modulesDirectory.getPath() + File.separator + MODULE2), StandardCopyOption.REPLACE_EXISTING);
+		Files.copy(Paths.get(SOURCE_MODULE_FOLDER + File.separator + MODULE2), Paths.get(modulesDirectory.getPath() + File.separator + MODULE2),
+				StandardCopyOption.REPLACE_EXISTING);
 		// Wait until the watcher does its work and refresh the modules.
 		Thread.sleep(1000);
 		// Watcher must be launched and modules must be reloaded.
@@ -82,8 +84,7 @@ public class ModuleManagerTests {
 
 	@Test(dependsOnMethods = "checkNewModules")
 	public void checkModulesContent() throws InvalidXmlElementException {
-		Assert.assertNotNull(AvailableSkillsFactory.getInstance().getElement("thinkMachine", "en",
-				"Fading Suns Revised Edition"));
+		Assert.assertNotNull(AvailableSkillsFactory.getInstance().getElement("thinkMachine", "en", "Fading Suns Revised Edition"));
 		Assert.assertNotNull(AvailableSkillsFactory.getInstance().getElement("mechanics", "en", "The Last Week"));
 	}
 

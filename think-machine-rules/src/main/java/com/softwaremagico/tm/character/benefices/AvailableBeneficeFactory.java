@@ -1,5 +1,7 @@
 package com.softwaremagico.tm.character.benefices;
 
+import java.io.Serializable;
+
 /*-
  * #%L
  * Think Machine (Core)
@@ -155,7 +157,8 @@ public class AvailableBeneficeFactory {
 		return availableBeneficesByDefinition.get(language).get(moduleName);
 	}
 
-	private static class AvailableBeneficesComparator implements Comparator<AvailableBenefice> {
+	private static class AvailableBeneficesComparator implements Comparator<AvailableBenefice>, Serializable {
+		private static final long serialVersionUID = -6197075436977682790L;
 
 		@Override
 		public int compare(AvailableBenefice o1, AvailableBenefice o2) {

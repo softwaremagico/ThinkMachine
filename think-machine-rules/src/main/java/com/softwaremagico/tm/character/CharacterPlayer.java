@@ -69,9 +69,11 @@ import com.softwaremagico.tm.character.cybernetics.RequiredCyberneticDevicesExce
 import com.softwaremagico.tm.character.cybernetics.SelectedCyberneticDevice;
 import com.softwaremagico.tm.character.cybernetics.TooManyCyberneticDevicesException;
 import com.softwaremagico.tm.character.equipment.armours.Armour;
+import com.softwaremagico.tm.character.equipment.armours.ArmourFactory;
 import com.softwaremagico.tm.character.equipment.armours.InvalidArmourException;
 import com.softwaremagico.tm.character.equipment.shields.InvalidShieldException;
 import com.softwaremagico.tm.character.equipment.shields.Shield;
+import com.softwaremagico.tm.character.equipment.shields.ShieldFactory;
 import com.softwaremagico.tm.character.equipment.weapons.Weapon;
 import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
 import com.softwaremagico.tm.character.equipment.weapons.WeaponType;
@@ -372,8 +374,9 @@ public class CharacterPlayer {
 
 	public void setBlessings(Collection<Blessing> blessings) throws TooManyBlessingsException {
 		this.blessings = new ArrayList<>();
-		while (blessings.remove(null))
+		while (blessings.remove(null)) {
 			;
+		}
 		for (final Blessing blessing : blessings) {
 			try {
 				addBlessing(blessing);
@@ -469,8 +472,9 @@ public class CharacterPlayer {
 
 	public void setBenefices(Collection<AvailableBenefice> benefices) throws InvalidBeneficeException {
 		this.benefices = new ArrayList<>();
-		while (benefices.remove(null))
+		while (benefices.remove(null)) {
 			;
+		}
 		for (final AvailableBenefice benefice : benefices) {
 			try {
 				addBenefice(benefice);
@@ -632,6 +636,11 @@ public class CharacterPlayer {
 		return Collections.unmodifiableList(selectedWeapons);
 	}
 
+	/**
+	 * Gets all weapons purchased and adquired with benefices.
+	 * 
+	 * @return
+	 */
 	public List<Weapon> getAllWeapons() {
 		final List<Weapon> allWeapons = new ArrayList<>();
 		allWeapons.addAll(weapons.getElements());
@@ -657,7 +666,35 @@ public class CharacterPlayer {
 		return Collections.unmodifiableList(allWeapons);
 	}
 
+	/**
+	 * Gets only all weapons purchased.
+	 * 
+	 * @return
+	 */
+	public List<Weapon> getSelectedWeapons() {
+		return weapons.getElements();
+	}
+
+	public Armour getSelectedArmour() {
+		return armour;
+	}
+
 	public Armour getArmour() {
+		try {
+			// Armour from benefices.
+			for (final AvailableBenefice benefice : getAllBenefices()) {
+				try {
+					final Armour armour = ArmourFactory.getInstance().getElement(benefice.getId(), getLanguage(), getModuleName());
+					if (armour != null) {
+						return armour;
+					}
+				} catch (InvalidXmlElementException ixmle) {
+					// Benefice is not an armour.
+				}
+			}
+		} catch (InvalidXmlElementException e) {
+			MachineLog.errorMessage(this.getClass().getName(), e);
+		}
 		return armour;
 	}
 
@@ -668,7 +705,26 @@ public class CharacterPlayer {
 		this.armour = armour;
 	}
 
+	public Shield getSelectedShield() {
+		return shield;
+	}
+
 	public Shield getShield() {
+		try {
+			// Shields from benefices.
+			for (final AvailableBenefice benefice : getAllBenefices()) {
+				try {
+					final Shield shield = ShieldFactory.getInstance().getElement(benefice.getId(), getLanguage(), getModuleName());
+					if (shield != null) {
+						return shield;
+					}
+				} catch (InvalidXmlElementException ixmle) {
+					// Benefice is not a shield.
+				}
+			}
+		} catch (InvalidXmlElementException e) {
+			MachineLog.errorMessage(this.getClass().getName(), e);
+		}
 		return shield;
 	}
 
