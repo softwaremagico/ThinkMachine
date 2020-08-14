@@ -1383,4 +1383,34 @@ public class CharacterPlayer {
 	public String getComparationId() {
 		return comparationId;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((comparationId == null) ? 0 : comparationId.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		final CharacterPlayer other = (CharacterPlayer) obj;
+		if (comparationId == null) {
+			if (other.comparationId != null) {
+				return false;
+			}
+		} else if (!comparationId.equals(other.comparationId)) {
+			return false;
+		}
+		return true;
+	}
 }
