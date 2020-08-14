@@ -149,7 +149,10 @@ public class CharacterPlayer {
 
 	private Experience experience;
 
+	private final String comparationId;
+
 	public CharacterPlayer(String language, String moduleName) {
+		comparationId = IdGenerator.createId();
 		this.language = language;
 		this.moduleName = moduleName;
 		reset();
@@ -1375,5 +1378,9 @@ public class CharacterPlayer {
 
 	public String getModuleName() {
 		return moduleName;
+	}
+
+	public String getComparationId() {
+		return comparationId;
 	}
 }
