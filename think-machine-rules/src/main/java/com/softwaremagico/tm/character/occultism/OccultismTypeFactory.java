@@ -27,7 +27,7 @@ package com.softwaremagico.tm.character.occultism;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
 import com.softwaremagico.tm.language.ITranslator;
-import com.softwaremagico.tm.log.MachineLog;
+import com.softwaremagico.tm.log.MachineXmlReaderLog;
 
 public class OccultismTypeFactory extends XmlFactory<OccultismType> {
 	private static final String TRANSLATOR_FILE = "occultismTypes.xml";
@@ -67,7 +67,7 @@ public class OccultismTypeFactory extends XmlFactory<OccultismType> {
 		try {
 			return OccultismTypeFactory.getInstance().getElement(PSI_TAG, language, moduleName);
 		} catch (InvalidXmlElementException e) {
-			MachineLog.errorMessage(OccultismTypeFactory.class.getName(), e);
+			MachineXmlReaderLog.errorMessage(OccultismTypeFactory.class.getName(), e);
 			return null;
 		}
 	}
@@ -76,7 +76,7 @@ public class OccultismTypeFactory extends XmlFactory<OccultismType> {
 		try {
 			return OccultismTypeFactory.getInstance().getElement(THEURGY_TAG, language, moduleName);
 		} catch (InvalidXmlElementException e) {
-			MachineLog.errorMessage(OccultismTypeFactory.class.getName(), e);
+			MachineXmlReaderLog.errorMessage(OccultismTypeFactory.class.getName(), e);
 			return null;
 		}
 	}

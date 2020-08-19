@@ -52,7 +52,7 @@ import org.xml.sax.SAXParseException;
 
 import com.softwaremagico.tm.file.PathManager;
 import com.softwaremagico.tm.log.ConfigurationLog;
-import com.softwaremagico.tm.log.MachineLog;
+import com.softwaremagico.tm.log.MachineXmlReaderLog;
 
 public class Translator implements ITranslator {
 	public static final String DEFAULT_LANGUAGE = "en";
@@ -201,7 +201,8 @@ public class Translator implements ITranslator {
 					final Element firstNodeElement = (Element) firstNodeElementList.item(0);
 					return firstNodeElement.getChildNodes().item(nodeNumber).getNodeValue().trim();
 				} catch (NullPointerException npe) {
-					// MachineLog.debug(this.getClass().getName(), "Node '" + tag + "/" + node + "'
+					// MachineXmlReaderLog.debug(this.getClass().getName(), "Node '" + tag + "/" +
+					// node + "'
 					// not found on xml.");
 					return null;
 				}
@@ -222,7 +223,8 @@ public class Translator implements ITranslator {
 					final NodeList firstNodeElementList = firstElement.getElementsByTagName(node);
 					return firstNodeElementList.getLength() > 0;
 				} catch (NullPointerException npe) {
-					// MachineLog.debug(this.getClass().getName(), "Node '" + tag + "/" + node + "'
+					// MachineXmlReaderLog.debug(this.getClass().getName(), "Node '" + tag + "/" +
+					// node + "'
 					// not found on xml.");
 					return false;
 				}
@@ -257,7 +259,7 @@ public class Translator implements ITranslator {
 						final Element firstNodeElement = (Element) firstNodeElementList.item(0);
 						return firstNodeElement.getChildNodes().item(0).getNodeValue().trim();
 					} catch (NullPointerException npe) {
-						MachineLog.debug(this.getClass().getName(), "Node '" + parent + "/" + tag + "/" + node + "' not found on xml.");
+						MachineXmlReaderLog.debug(this.getClass().getName(), "Node '" + parent + "/" + tag + "/" + node + "' not found on xml.");
 						return null;
 					}
 				} catch (NullPointerException npe) {
@@ -287,7 +289,8 @@ public class Translator implements ITranslator {
 							final Element firstNodeElement = (Element) firstNodeElementList.item(0);
 							return firstNodeElement.getChildNodes().item(0).getNodeValue().trim();
 						} catch (NullPointerException npe) {
-							MachineLog.debug(this.getClass().getName(), "Node '" + grandparent + "/" + parent + "/" + tag + "/" + node + "' not found on xml.");
+							MachineXmlReaderLog.debug(this.getClass().getName(),
+									"Node '" + grandparent + "/" + parent + "/" + tag + "/" + node + "' not found on xml.");
 							return null;
 						}
 					} catch (NullPointerException npe) {

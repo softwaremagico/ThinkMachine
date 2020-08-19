@@ -46,7 +46,7 @@ import com.softwaremagico.tm.character.blessings.BlessingFactory;
 import com.softwaremagico.tm.character.races.Race;
 import com.softwaremagico.tm.character.races.RaceFactory;
 import com.softwaremagico.tm.language.ITranslator;
-import com.softwaremagico.tm.log.MachineLog;
+import com.softwaremagico.tm.log.MachineXmlReaderLog;
 import com.softwaremagico.tm.log.SuppressFBWarnings;
 
 public class FactionsFactory extends XmlFactory<Faction> {
@@ -175,7 +175,7 @@ public class FactionsFactory extends XmlFactory<Faction> {
 				final String groupName = translator.getNodeValue(factionId, GROUP);
 				factionGroup = FactionGroup.get(groupName);
 			} catch (Exception e) {
-				MachineLog.errorMessage(this.getClass().getName(), e);
+				MachineXmlReaderLog.errorMessage(this.getClass().getName(), e);
 				factionGroup = FactionGroup.NONE;
 			}
 

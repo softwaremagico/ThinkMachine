@@ -37,7 +37,7 @@ import com.softwaremagico.tm.XmlFactory;
 import com.softwaremagico.tm.file.modules.ModuleManager;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.Language;
-import com.softwaremagico.tm.log.MachineLog;
+import com.softwaremagico.tm.log.MachineXmlReaderLog;
 
 public class CharacteristicsDefinitionFactory extends XmlFactory<CharacteristicDefinition> {
 	private static final String TRANSLATOR_FILE = "characteristics.xml";
@@ -90,7 +90,7 @@ public class CharacteristicsDefinitionFactory extends XmlFactory<CharacteristicD
 						characteristics.get(language.getAbbreviature()).get(moduleName).get(characteristicsDefinition.getType()).add(characteristicsDefinition);
 					}
 				} catch (InvalidXmlElementException e) {
-					MachineLog.errorMessage(this.getClass().getName(), e);
+					MachineXmlReaderLog.errorMessage(this.getClass().getName(), e);
 				}
 			}
 		}

@@ -43,7 +43,7 @@ import com.softwaremagico.tm.character.factions.FactionsFactory;
 import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
 import com.softwaremagico.tm.character.values.IValue;
 import com.softwaremagico.tm.language.ITranslator;
-import com.softwaremagico.tm.log.MachineLog;
+import com.softwaremagico.tm.log.MachineXmlReaderLog;
 import com.softwaremagico.tm.log.SuppressFBWarnings;
 
 public class OccultismPathFactory extends XmlFactory<OccultismPath> {
@@ -200,7 +200,7 @@ public class OccultismPathFactory extends XmlFactory<OccultismPath> {
 				}
 			}
 		} catch (InvalidXmlElementException e) {
-			MachineLog.errorMessage(this.getClass().getName(), e);
+			MachineXmlReaderLog.errorMessage(this.getClass().getName(), e);
 		}
 		return null;
 	}
@@ -214,7 +214,7 @@ public class OccultismPathFactory extends XmlFactory<OccultismPath> {
 					}
 				}
 			} catch (InvalidXmlElementException e) {
-				MachineLog.errorMessage(this.getClass().getName(), e);
+				MachineXmlReaderLog.errorMessage(this.getClass().getName(), e);
 			}
 		}
 		return Collections.unmodifiableSet(psiPaths);
@@ -229,7 +229,7 @@ public class OccultismPathFactory extends XmlFactory<OccultismPath> {
 					}
 				}
 			} catch (InvalidXmlElementException e) {
-				MachineLog.errorMessage(this.getClass().getName(), e);
+				MachineXmlReaderLog.errorMessage(this.getClass().getName(), e);
 			}
 		}
 		return Collections.unmodifiableSet(theurgyPaths);

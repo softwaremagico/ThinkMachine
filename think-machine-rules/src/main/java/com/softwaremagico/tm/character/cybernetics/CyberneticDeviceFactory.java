@@ -45,7 +45,7 @@ import com.softwaremagico.tm.character.values.IValue;
 import com.softwaremagico.tm.character.values.SpecialValue;
 import com.softwaremagico.tm.character.values.StaticValue;
 import com.softwaremagico.tm.language.ITranslator;
-import com.softwaremagico.tm.log.MachineLog;
+import com.softwaremagico.tm.log.MachineXmlReaderLog;
 import com.softwaremagico.tm.log.SuppressFBWarnings;
 
 public class CyberneticDeviceFactory extends XmlFactory<CyberneticDevice> {
@@ -119,7 +119,7 @@ public class CyberneticDeviceFactory extends XmlFactory<CyberneticDevice> {
 				addRequirement(device);
 			}
 		} catch (InvalidXmlElementException e) {
-			MachineLog.errorMessage(this.getClass().getName(), e);
+			MachineXmlReaderLog.errorMessage(this.getClass().getName(), e);
 		}
 	}
 

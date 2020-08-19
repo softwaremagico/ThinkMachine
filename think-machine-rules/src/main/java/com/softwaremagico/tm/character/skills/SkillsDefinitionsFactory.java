@@ -38,7 +38,7 @@ import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
 import com.softwaremagico.tm.character.factions.FactionsFactory;
 import com.softwaremagico.tm.language.ITranslator;
-import com.softwaremagico.tm.log.MachineLog;
+import com.softwaremagico.tm.log.MachineXmlReaderLog;
 import com.softwaremagico.tm.log.SuppressFBWarnings;
 
 public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
@@ -84,7 +84,7 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 			try {
 				getElements(language, moduleName);
 			} catch (InvalidXmlElementException e) {
-				MachineLog.errorMessage(this.getClass().getName(), e);
+				MachineXmlReaderLog.errorMessage(this.getClass().getName(), e);
 			}
 		}
 		return naturalSkills.get(language).get(moduleName);
@@ -95,7 +95,7 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 			try {
 				getElements(language, moduleName);
 			} catch (InvalidXmlElementException e) {
-				MachineLog.errorMessage(this.getClass().getName(), e);
+				MachineXmlReaderLog.errorMessage(this.getClass().getName(), e);
 			}
 		}
 		return learnedSkills.get(language).get(moduleName);
@@ -122,7 +122,7 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 				}
 			}
 		} catch (InvalidXmlElementException ixee) {
-			MachineLog.errorMessage(this.getClass().getName(), ixee);
+			MachineXmlReaderLog.errorMessage(this.getClass().getName(), ixee);
 		}
 		return null;
 	}

@@ -41,7 +41,7 @@ import com.softwaremagico.tm.file.modules.ModuleManager;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.Language;
 import com.softwaremagico.tm.language.LanguagePool;
-import com.softwaremagico.tm.log.MachineLog;
+import com.softwaremagico.tm.log.MachineXmlReaderLog;
 import com.softwaremagico.tm.random.definition.RandomProbabilityDefinition;
 
 public abstract class XmlFactory<T extends Element<T>> {
@@ -73,10 +73,10 @@ public abstract class XmlFactory<T extends Element<T>> {
 				try {
 					elements = getElements(language.getAbbreviature(), moduleName);
 				} catch (InvalidXmlElementException e) {
-					MachineLog.errorMessage(this.getClass().getName(), e);
+					MachineXmlReaderLog.errorMessage(this.getClass().getName(), e);
 				}
 			}
-			MachineLog.debug(this.getClass().getName(),
+			MachineXmlReaderLog.debug(this.getClass().getName(),
 					"Loaded " + elements.size() + " elements at '" + this.getClass().getSimpleName() + "' from module '" + moduleName + "'..");
 		}
 	}
