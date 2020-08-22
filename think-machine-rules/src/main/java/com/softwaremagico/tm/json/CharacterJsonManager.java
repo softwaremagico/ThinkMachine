@@ -51,6 +51,7 @@ import com.softwaremagico.tm.character.equipment.weapons.Weapon;
 import com.softwaremagico.tm.character.factions.Faction;
 import com.softwaremagico.tm.character.factions.FactionsFactory;
 import com.softwaremagico.tm.character.occultism.OccultismPower;
+import com.softwaremagico.tm.character.planets.Planet;
 import com.softwaremagico.tm.character.races.Race;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.character.values.IValue;
@@ -71,6 +72,7 @@ public class CharacterJsonManager extends JsonManager {
 			gsonBuilder.registerTypeAdapter(CharacteristicDefinition.class,
 					new CharacteristicDefinitionAdapter(characterPlayer.getLanguage(), characterPlayer.getModuleName()));
 			gsonBuilder.registerTypeAdapter(Race.class, new RaceAdapter(characterPlayer.getLanguage(), characterPlayer.getModuleName()));
+			gsonBuilder.registerTypeAdapter(Planet.class, new PlanetAdapter(characterPlayer.getLanguage(), characterPlayer.getModuleName()));
 			gsonBuilder.registerTypeAdapter(Weapon.class, new WeaponAdapter(characterPlayer.getLanguage(), characterPlayer.getModuleName()));
 			gsonBuilder.registerTypeAdapter(Armour.class, new ArmourAdapter(characterPlayer.getLanguage(), characterPlayer.getModuleName()));
 			gsonBuilder.registerTypeAdapter(Shield.class, new ShieldAdapter(characterPlayer.getLanguage(), characterPlayer.getModuleName()));
@@ -99,6 +101,7 @@ public class CharacterJsonManager extends JsonManager {
 			gsonBuilder.registerTypeAdapter(AvailableSkill.class, new AvailableSkillAdapter(language, moduleName));
 			gsonBuilder.registerTypeAdapter(CharacteristicDefinition.class, new CharacteristicDefinitionAdapter(language, moduleName));
 			gsonBuilder.registerTypeAdapter(Race.class, new RaceAdapter(language, moduleName));
+			gsonBuilder.registerTypeAdapter(Planet.class, new PlanetAdapter(language, moduleName));
 			gsonBuilder.registerTypeAdapter(Weapon.class, new WeaponAdapter(language, moduleName));
 			gsonBuilder.registerTypeAdapter(Armour.class, new ArmourAdapter(language, moduleName));
 			gsonBuilder.registerTypeAdapter(Shield.class, new ShieldAdapter(language, moduleName));
