@@ -38,6 +38,12 @@ public class Name extends Element<Name> {
 	public Faction getFaction() {
 		return faction;
 	}
+	
+	public Name(String id, String name, String language, String moduleName, Gender gender, Faction faction) {
+		super(id, name, language, moduleName);
+		this.gender = gender;
+		this.faction = faction;
+	}
 
 	public Name(String name, String language, String moduleName, Gender gender, Faction faction) {
 		super(getId(name, moduleName), name, language, moduleName);

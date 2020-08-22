@@ -29,6 +29,9 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URISyntaxException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
@@ -46,6 +49,7 @@ import com.softwaremagico.tm.characters.CustomCharacter;
 import com.softwaremagico.tm.file.PathManager;
 import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.party.Party;
+import com.softwaremagico.tm.txt.CharacterSheet;
 
 @Test(groups = { "jsonExporter" })
 public class JsonTests {
@@ -62,7 +66,7 @@ public class JsonTests {
 	private String originalPartyJson;
 
 	@BeforeClass
-	public void clearCache()
+	public void init()
 			throws InvalidXmlElementException, TooManyBlessingsException, TooManyCyberneticDevicesException,
 			RequiredCyberneticDevicesException, BlessingAlreadyAddedException, BeneficeAlreadyAddedException {
 		LanguagePool.clearCache();
@@ -82,10 +86,17 @@ public class JsonTests {
 	}
 
 	@Test(dependsOnMethods = { "exportCharacterPlayerToJson" })
-	public void importCharacterPlayerFromJson() throws IOException, InvalidXmlElementException, InvalidJsonException {
+	public void importCharacterPlayerFromJson() throws IOException, InvalidXmlElementException, InvalidJsonException, URISyntaxException {
 		final CharacterPlayer player = CharacterJsonManager.fromFile(OUTPUT_CHARACTER_PATH);
+		Assert.assertEquals(player.getInfo().getNames().size(), 1);
+		
 		Assert.assertEquals(CostCalculator.getCost(player), 50);
 		Assert.assertEquals(CharacterJsonManager.toJson(player), originalPlayerJson);
+		
+		final String text = new String(Files.readAllBytes(Paths.get(getClass().getClassLoader()
+				.getResource("CustomCharacter.txt").toURI())));
+		final CharacterSheet characterSheet = new CharacterSheet(player);
+		Assert.assertEquals(characterSheet.toString(), text);
 	}
 
 	@Test

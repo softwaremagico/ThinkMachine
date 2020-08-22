@@ -112,22 +112,37 @@ public class CharacterJsonManager extends JsonManager {
 			// Update names and surnames
 			final List<Name> realNames = new ArrayList<>();
 			if (characterPlayer.getInfo().getNames() != null) {
+				// Check existing name.
 				for (final Name name : characterPlayer.getInfo().getNames()) {
+					boolean isFactionName = false;
 					for (final Name factionName : FactionsFactory.getInstance().getAllNames(characterPlayer.getFaction(),
 							characterPlayer.getInfo().getGender())) {
 						if (Objects.equals(name.getId(), factionName.getId())) {
 							realNames.add(factionName);
+							isFactionName = true;
+							break;
 						}
+					}
+					// Custom name
+					if (!isFactionName) {
+						realNames.add(new Name(name.getId(), name.getName(), language, moduleName, characterPlayer.getInfo().getGender(), null));
 					}
 				}
 				characterPlayer.getInfo().setNames(realNames);
 			}
 			if (characterPlayer.getInfo().getSurname() != null) {
+				boolean isFactionSurname = false;
 				for (final Surname factionSurname : FactionsFactory.getInstance().getAllSurnames(characterPlayer.getFaction())) {
 					if (Objects.equals(characterPlayer.getInfo().getSurname().getId(), factionSurname.getId())) {
 						characterPlayer.getInfo().setSurname(factionSurname);
+						isFactionSurname = true;
 						break;
 					}
+				}
+				// Custom name
+				if (!isFactionSurname) {
+					characterPlayer.getInfo().setSurname(new Surname(characterPlayer.getInfo().getSurname().getId(),
+							characterPlayer.getInfo().getSurname().getName(), language, moduleName, characterPlayer.getFaction()));
 				}
 			}
 			return characterPlayer;

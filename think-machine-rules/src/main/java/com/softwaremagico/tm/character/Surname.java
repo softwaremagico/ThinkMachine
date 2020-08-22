@@ -33,6 +33,11 @@ public class Surname extends Element<Surname> {
 	public Faction getFaction() {
 		return faction;
 	}
+	
+	public Surname(String id, String surname, String language, String moduleName, Faction faction) {
+		super(id, surname, language, moduleName);
+		this.faction = faction;
+	}
 
 	public Surname(String surname, String language, String moduleName, Faction faction) {
 		super(getId(surname, moduleName), surname, language, moduleName);
