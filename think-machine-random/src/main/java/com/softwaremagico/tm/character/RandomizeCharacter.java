@@ -89,14 +89,14 @@ public class RandomizeCharacter {
 	private final Set<Armour> mandatoryArmours;
 	private final Set<Shield> mandatoryShields;
 
-	public RandomizeCharacter(CharacterPlayer characterPlayer, int experiencePoints, IRandomPreference... preferences) throws DuplicatedPreferenceException,
-			TooManyBlessingsException, InvalidXmlElementException {
+	public RandomizeCharacter(CharacterPlayer characterPlayer, int experiencePoints, IRandomPreference... preferences)
+			throws DuplicatedPreferenceException, TooManyBlessingsException, InvalidXmlElementException {
 		this(characterPlayer, experiencePoints, null, new HashSet<>(Arrays.asList(preferences)), new HashSet<AvailableSkill>(), new HashSet<AvailableSkill>(),
 				new HashSet<BeneficeDefinition>(), new HashSet<BeneficeDefinition>(), new HashSet<Weapon>(), new HashSet<Armour>(), new HashSet<Shield>());
 	}
 
-	public RandomizeCharacter(CharacterPlayer characterPlayer, IRandomProfile... profiles) throws DuplicatedPreferenceException, TooManyBlessingsException,
-			InvalidXmlElementException {
+	public RandomizeCharacter(CharacterPlayer characterPlayer, IRandomProfile... profiles)
+			throws DuplicatedPreferenceException, TooManyBlessingsException, InvalidXmlElementException {
 		this(characterPlayer, null, new HashSet<IRandomProfile>(Arrays.asList(profiles)), new HashSet<IRandomPreference>(), new HashSet<AvailableSkill>(),
 				new HashSet<AvailableSkill>(), new HashSet<BeneficeDefinition>(), new HashSet<BeneficeDefinition>(), new HashSet<Weapon>(),
 				new HashSet<Armour>(), new HashSet<Shield>());
@@ -231,8 +231,8 @@ public class RandomizeCharacter {
 	}
 
 	/**
-	 * Using free style character generation. Only the first points to expend in
-	 * a character.
+	 * Using free style character generation. Only the first points to expend in a
+	 * character.
 	 * 
 	 * @throws InvalidXmlElementException
 	 * @throws InvalidRandomElementSelectedException
@@ -338,18 +338,20 @@ public class RandomizeCharacter {
 	}
 
 	private void setExperiencePoints() throws InvalidXmlElementException {
-		final RandomCharacteristicsExperience randomCharacteristicsExperience = new RandomCharacteristicsExperience(characterPlayer, preferences);
-		try {
-			randomCharacteristicsExperience.assign();
-		} catch (InvalidRandomElementSelectedException e) {
-			// Not valid characteristic. Ignore it.
-		}
-		// Spend remaingin XP on skills.
-		final RandomSkillExperience randomSkillExperience = new RandomSkillExperience(characterPlayer, preferences);
-		try {
-			randomSkillExperience.assign();
-		} catch (InvalidRandomElementSelectedException e) {
-			// Not more skills to improve. Ignore it.
+		if (characterPlayer.getExperienceEarned() > 0) {
+			final RandomCharacteristicsExperience randomCharacteristicsExperience = new RandomCharacteristicsExperience(characterPlayer, preferences);
+			try {
+				randomCharacteristicsExperience.assign();
+			} catch (InvalidRandomElementSelectedException e) {
+				// Not valid characteristic. Ignore it.
+			}
+			// Spend remaingin XP on skills.
+			final RandomSkillExperience randomSkillExperience = new RandomSkillExperience(characterPlayer, preferences);
+			try {
+				randomSkillExperience.assign();
+			} catch (InvalidRandomElementSelectedException e) {
+				// Not more skills to improve. Ignore it.
+			}
 		}
 	}
 
