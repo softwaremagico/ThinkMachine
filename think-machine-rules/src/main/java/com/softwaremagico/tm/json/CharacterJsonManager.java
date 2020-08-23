@@ -109,6 +109,7 @@ public class CharacterJsonManager extends JsonManager {
 			gsonBuilder.registerTypeAdapter(OccultismPower.class, new OccultismPowerAdapter(language, moduleName));
 			final Gson gson = gsonBuilder.create();
 			final CharacterPlayer characterPlayer = gson.fromJson(jsonText, CharacterPlayer.class);
+
 			// Update names and surnames
 			final List<Name> realNames = new ArrayList<>();
 			if (characterPlayer.getInfo().getNames() != null) {
@@ -125,7 +126,8 @@ public class CharacterJsonManager extends JsonManager {
 					}
 					// Custom name
 					if (!isFactionName) {
-						realNames.add(new Name(name.getId(), name.getName(), language, moduleName, characterPlayer.getInfo().getGender(), null));
+						realNames.add(new Name(name.getId(), name.getName(), name.getCustomName(), language, moduleName, characterPlayer.getInfo().getGender(),
+								null));
 					}
 				}
 				characterPlayer.getInfo().setNames(realNames);
@@ -139,10 +141,11 @@ public class CharacterJsonManager extends JsonManager {
 						break;
 					}
 				}
-				// Custom name
+				// Custom surname
 				if (!isFactionSurname) {
-					characterPlayer.getInfo().setSurname(new Surname(characterPlayer.getInfo().getSurname().getId(),
-							characterPlayer.getInfo().getSurname().getName(), language, moduleName, characterPlayer.getFaction()));
+					characterPlayer.getInfo()
+							.setSurname(new Surname(characterPlayer.getInfo().getSurname().getId(), characterPlayer.getInfo().getSurname().getName(),
+									characterPlayer.getInfo().getSurname().getCustomSurname(), language, moduleName, characterPlayer.getFaction()));
 				}
 			}
 			return characterPlayer;

@@ -26,22 +26,29 @@ package com.softwaremagico.tm.character;
 
 import com.softwaremagico.tm.Element;
 import com.softwaremagico.tm.character.factions.Faction;
+import com.softwaremagico.tm.json.ExcludeFromJson;
 
 public class Surname extends Element<Surname> {
+	
+	private String customSurname;
+
+	@ExcludeFromJson
 	private final Faction faction;
 
 	public Faction getFaction() {
 		return faction;
 	}
-	
-	public Surname(String id, String surname, String language, String moduleName, Faction faction) {
+
+	public Surname(String id, String surname, String customSurname, String language, String moduleName, Faction faction) {
 		super(id, surname, language, moduleName);
 		this.faction = faction;
+		this.customSurname = customSurname;
 	}
 
 	public Surname(String surname, String language, String moduleName, Faction faction) {
 		super(getId(surname, moduleName), surname, language, moduleName);
 		this.faction = faction;
+		this.customSurname = surname;
 	}
 
 	@Override
@@ -53,12 +60,28 @@ public class Surname extends Element<Surname> {
 	public boolean equals(Object obj) {
 		return super.equals(obj);
 	}
+	
+	@Override
+	public String getName() {
+		if (customSurname != null) {
+			return customSurname;
+		}
+		return super.getName();
+	}
 
 	private static String getId(String surname, String moduleName) {
 		if (moduleName == null) {
 			return surname.toLowerCase();
 		}
 		return surname.toLowerCase() + "_" + moduleName.replaceAll("\\s+", "_").toLowerCase();
+	}
+
+	public String getCustomSurname() {
+		return customSurname;
+	}
+
+	public void setCustomSurname(String customSurname) {
+		this.customSurname = customSurname;
 	}
 
 }
