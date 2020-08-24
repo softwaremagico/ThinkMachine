@@ -58,6 +58,7 @@ public class JsonTests {
 	private static final String OUTPUT_PARTY_PATH = System.getProperty("java.io.tmpdir") + File.separator
 			+ "Party.json";
 	private static final String LANGUAGE = "es";
+	private static final int COST = 52;
 
 	private CharacterPlayer player;
 	private String originalPlayerJson;
@@ -71,7 +72,7 @@ public class JsonTests {
 			RequiredCyberneticDevicesException, BlessingAlreadyAddedException, BeneficeAlreadyAddedException {
 		LanguagePool.clearCache();
 		player = CustomCharacter.create(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
-		Assert.assertEquals(CostCalculator.getCost(player), 52);
+		Assert.assertEquals(CostCalculator.getCost(player), COST);
 		party = new Party(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
 		party.setPartyName("JSON Test");
 		party.addMember(player);
@@ -90,7 +91,7 @@ public class JsonTests {
 		final CharacterPlayer player = CharacterJsonManager.fromFile(OUTPUT_CHARACTER_PATH);
 		Assert.assertEquals(player.getInfo().getNames().size(), 1);
 		
-		Assert.assertEquals(CostCalculator.getCost(player), 52);
+		Assert.assertEquals(CostCalculator.getCost(player), COST);
 		Assert.assertEquals(CharacterJsonManager.toJson(player), originalPlayerJson);
 		
 		final String text = new String(Files.readAllBytes(Paths.get(getClass().getClassLoader()
@@ -110,7 +111,7 @@ public class JsonTests {
 	@Test(dependsOnMethods = { "exportPartyToJson" })
 	public void importPartyFromJson() throws IOException, InvalidXmlElementException, InvalidJsonException {
 		final Party party = PartyJsonManager.fromFile(OUTPUT_PARTY_PATH);
-		Assert.assertEquals(CostCalculator.getCost(party.getMembers().iterator().next()), 50);
+		Assert.assertEquals(CostCalculator.getCost(party.getMembers().iterator().next()), COST);
 		Assert.assertEquals(PartyJsonManager.toJson(party), originalPartyJson);
 	}
 }

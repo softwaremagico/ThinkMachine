@@ -29,44 +29,49 @@ import com.softwaremagico.tm.json.ExcludeFromJson;
  */
 
 public class Characteristic extends Element<Characteristic> implements IValue {
-	public static final int DEFAULT_INITIAL_VALUE = 3;
-	public static final int DEFAULT_INITIAL_MAX_VALUE = 8;
-	public static final int MAX_VALUE = 12;
-	private int value = DEFAULT_INITIAL_VALUE;
+    public static final int DEFAULT_INITIAL_VALUE = 3;
+    public static final int DEFAULT_INITIAL_MAX_VALUE = 8;
+    public static final int MAX_VALUE = 12;
+    private int value = DEFAULT_INITIAL_VALUE;
 
-	@ExcludeFromJson
-	private final CharacteristicDefinition characteristicDefinition;
+    @ExcludeFromJson
+    private final CharacteristicDefinition characteristicDefinition;
 
-	public Characteristic(CharacteristicDefinition characteristicDefinition) {
-		super(characteristicDefinition.getId(), characteristicDefinition.getName(), characteristicDefinition.getLanguage(),
-				characteristicDefinition.getModuleName());
-		this.characteristicDefinition = characteristicDefinition;
-	}
+    public Characteristic(CharacteristicDefinition characteristicDefinition) {
+        super(characteristicDefinition.getId(), characteristicDefinition.getName(), characteristicDefinition.getLanguage(),
+                characteristicDefinition.getModuleName());
+        this.characteristicDefinition = characteristicDefinition;
+    }
 
-	public int getValue() {
-		return value;
-	}
+    public int getValue() {
+        return value;
+    }
 
-	public void setValue(int value) {
-		this.value = value;
-	}
+    public void setValue(int value) {
+        this.value = value;
+    }
 
-	public CharacteristicDefinition getCharacteristicDefinition() {
-		return characteristicDefinition;
-	}
+    public CharacteristicDefinition getCharacteristicDefinition() {
+        return characteristicDefinition;
+    }
 
-	@Override
-	public String toString() {
-		return getName() + " (" + getValue() + ")";
-	}
+    @Override
+    public String toString() {
+        return getName() + " (" + getValue() + ")";
+    }
 
-	@Override
-	public int hashCode() {
-		return super.hashCode();
-	}
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		return super.equals(obj);
-	}
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
+
+    @Override
+    public int compareTo(Characteristic element) {
+        return getCharacteristicDefinition().getOrder().compareTo(element.getCharacteristicDefinition().getOrder());
+    }
 }

@@ -50,5 +50,4 @@ public class CyberneticDeviceTraitAdapter extends ElementAdapter<CyberneticDevic
 			return null;
 		}
 	}
-
 }

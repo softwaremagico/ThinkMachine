@@ -282,7 +282,7 @@ public class ExperienceTests {
 			InvalidXmlElementException, TooManyCyberneticDevicesException, RequiredCyberneticDevicesException,
 			NotEnoughExperienceException, ElementCannotBeUpgradeWithExperienceException, InvalidJsonException {
 		CharacterPlayer player = CustomCharacter.create(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
-		Assert.assertEquals(CostCalculator.getCost(player), 50);
+		Assert.assertEquals(CostCalculator.getCost(player), 52);
 
 		player.setExperienceEarned(100);
 		player.setExperienceIncreasedRanks(player.getCharacteristic(CharacteristicName.PERCEPTION), 1);

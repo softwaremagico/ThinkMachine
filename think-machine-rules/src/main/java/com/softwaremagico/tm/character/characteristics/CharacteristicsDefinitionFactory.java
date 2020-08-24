@@ -8,17 +8,17 @@ package com.softwaremagico.tm.character.characteristics;
  * %%
  * This software is designed by Jorge Hortelano Otero. Jorge Hortelano Otero
  * <softwaremagico@gmail.com> Valencia (Spain).
- *  
+ *
  * This program is free software; you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software
  * Foundation; either version 2 of the License, or (at your option) any later
  * version.
- *  
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
  * details.
- *  
+ *
  * You should have received a copy of the GNU General Public License along with
  * this program; If not, see <http://www.gnu.org/licenses/gpl-3.0.html>.
  * #L%
@@ -45,6 +45,8 @@ public class CharacteristicsDefinitionFactory extends XmlFactory<CharacteristicD
 	private static final String NAME = "name";
 	private static final String ABBREVIATURE = "abbreviature";
 	private static final String TYPE = "type";
+
+	private static int order = 0;
 
 	private Map<String, Map<String, Map<CharacteristicType, List<CharacteristicDefinition>>>> characteristics;
 
@@ -107,7 +109,7 @@ public class CharacteristicsDefinitionFactory extends XmlFactory<CharacteristicD
 		CharacteristicDefinition characteristic = null;
 		try {
 			final String name = translator.getNodeValue(characteristicId, NAME, language);
-			characteristic = new CharacteristicDefinition(characteristicId, name, language, moduleName);
+			characteristic = new CharacteristicDefinition(characteristicId, name, order++, language, moduleName);
 		} catch (Exception e) {
 			throw new InvalidCharacteristicException("Invalid name in characteristic '" + characteristicId + "'.");
 		}
