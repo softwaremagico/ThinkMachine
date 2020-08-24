@@ -777,14 +777,14 @@ public class CharacterPlayer {
 		if (!Objects.equals(this.race, race)) {
 			MachineLog.debug(this.getClass().getName(), "Race set to '" + race + "'.");
 			this.race = race;
-			for (final Characteristic characteristics : characteristics.values()) {
-				final int raceInitialValue = race.get(characteristics.getCharacteristicName()).getInitialValue();
-				if (getRawValue(characteristics.getCharacteristicName()) < raceInitialValue) {
-					this.characteristics.get(characteristics.getCharacteristicName().getId()).setValue(raceInitialValue);
+			for (final Characteristic characteristic : characteristics.values()) {
+				final int raceInitialValue = race.get(characteristic.getCharacteristicDefinition().getCharacteristicName()).getInitialValue();
+				if (getRawValue(characteristic.getCharacteristicDefinition().getCharacteristicName()) < raceInitialValue) {
+					this.characteristics.get(characteristic.getCharacteristicDefinition().getCharacteristicName().getId()).setValue(raceInitialValue);
 				}
-				final int raceMaxValue = race.get(characteristics.getCharacteristicName()).getMaximumInitialValue();
-				if (getRawValue(characteristics.getCharacteristicName()) > raceMaxValue) {
-					this.characteristics.get(characteristics.getCharacteristicName().getId()).setValue(raceMaxValue);
+				final int raceMaxValue = race.get(characteristic.getCharacteristicDefinition().getCharacteristicName()).getMaximumInitialValue();
+				if (getRawValue(characteristic.getCharacteristicDefinition().getCharacteristicName()) > raceMaxValue) {
+					this.characteristics.get(characteristic.getCharacteristicDefinition().getCharacteristicName().getId()).setValue(raceMaxValue);
 				}
 			}
 		}
@@ -929,7 +929,8 @@ public class CharacterPlayer {
 		if (element instanceof AvailableSkill) {
 			previousRanks = getSkillAssignedRanks((AvailableSkill) element) + getExperienceIncrease((AvailableSkill) element).size();
 		} else if (element instanceof Characteristic) {
-			previousRanks = getRawValue(((Characteristic) element).getCharacteristicName()) + getExperienceIncrease((Characteristic) element).size();
+			previousRanks = getRawValue(((Characteristic) element).getCharacteristicDefinition().getCharacteristicName())
+					+ getExperienceIncrease((Characteristic) element).size();
 		} else if (element instanceof OccultismType) {
 			previousRanks = getBasicPsiqueLevel((OccultismType) element) + getExperienceIncrease((OccultismType) element).size();
 		} else if (element instanceof Wyrd) {
@@ -997,10 +998,10 @@ public class CharacterPlayer {
 		if (characteristicsByType == null || characteristicsByType.isEmpty()) {
 			characteristicsByType = new HashMap<>();
 			for (final Characteristic characteristic : characteristics.values()) {
-				if (characteristicsByType.get(characteristic.getType()) == null) {
-					characteristicsByType.put(characteristic.getType(), new HashSet<Characteristic>());
+				if (characteristicsByType.get(characteristic.getCharacteristicDefinition().getType()) == null) {
+					characteristicsByType.put(characteristic.getCharacteristicDefinition().getType(), new HashSet<Characteristic>());
 				}
-				characteristicsByType.get(characteristic.getType()).add(characteristic);
+				characteristicsByType.get(characteristic.getCharacteristicDefinition().getType()).add(characteristic);
 			}
 		}
 		return characteristicsByType.get(characteristicType);
@@ -1020,7 +1021,7 @@ public class CharacterPlayer {
 	}
 
 	public boolean isCharacteristicTrained(Characteristic characteristic) {
-		return characteristic.getValue() > getStartingValue(characteristic.getCharacteristicName());
+		return characteristic.getValue() > getStartingValue(characteristic.getCharacteristicDefinition().getCharacteristicName());
 	}
 
 	/**
@@ -1036,8 +1037,8 @@ public class CharacterPlayer {
 					if (totalRanksByCharacteristicType.get(characteristicType) == null) {
 						totalRanksByCharacteristicType.put(characteristicType, 0);
 					}
-					totalRanksByCharacteristicType.put(characteristicType,
-							totalRanksByCharacteristicType.get(characteristicType) + getValue(characteristic.getCharacteristicName()));
+					totalRanksByCharacteristicType.put(characteristicType, totalRanksByCharacteristicType.get(characteristicType)
+							+ getValue(characteristic.getCharacteristicDefinition().getCharacteristicName()));
 				}
 			}
 		}

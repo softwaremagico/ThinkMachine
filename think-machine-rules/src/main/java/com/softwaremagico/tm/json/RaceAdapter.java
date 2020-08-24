@@ -41,11 +41,9 @@ public class RaceAdapter extends ElementAdapter<Race> {
 	}
 
 	@Override
-	public Race deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext)
-			throws JsonParseException {
+	public Race deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
 		try {
-			return RaceFactory.getInstance().getElement(super.getElementId(jsonElement), super.getLanguage(jsonElement),
-					super.getModuleName(jsonElement));
+			return RaceFactory.getInstance().getElement(super.getElementId(jsonElement), super.getLanguage(), super.getModuleName());
 		} catch (InvalidXmlElementException e) {
 			MachineLog.errorMessage(this.getClass().getName(), e);
 			return null;

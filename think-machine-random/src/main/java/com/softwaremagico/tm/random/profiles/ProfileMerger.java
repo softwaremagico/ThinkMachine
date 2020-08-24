@@ -46,8 +46,7 @@ import com.softwaremagico.tm.random.selectors.IRandomPreference;
 public class ProfileMerger {
 	private static final String DEFAULT_ID = "merged_profile";
 
-	public static RandomProfile merge(String language, String moduleName, IRandomProfile... profiles)
-			throws InvalidXmlElementException {
+	public static RandomProfile merge(String language, String moduleName, IRandomProfile... profiles) throws InvalidXmlElementException {
 		if (profiles == null || profiles.length == 0) {
 			return null;
 		}
@@ -55,18 +54,16 @@ public class ProfileMerger {
 		return merge(new HashSet<IRandomProfile>(Arrays.asList(profiles)), language, moduleName);
 	}
 
-	public static RandomProfile merge(Set<IRandomProfile> profiles, String language, String moduleName)
-			throws InvalidXmlElementException {
-		return merge(profiles, new HashSet<IRandomPreference>(), new HashSet<AvailableSkill>(),
-				new HashSet<AvailableSkill>(), new HashSet<BeneficeDefinition>(), new HashSet<BeneficeDefinition>(),
-				new HashSet<Weapon>(), new HashSet<Armour>(), new HashSet<Shield>(), language, moduleName);
+	public static RandomProfile merge(Set<IRandomProfile> profiles, String language, String moduleName) throws InvalidXmlElementException {
+		return merge(profiles, new HashSet<IRandomPreference>(), new HashSet<AvailableSkill>(), new HashSet<AvailableSkill>(),
+				new HashSet<BeneficeDefinition>(), new HashSet<BeneficeDefinition>(), new HashSet<Weapon>(), new HashSet<Armour>(), new HashSet<Shield>(),
+				language, moduleName);
 	}
 
-	public static RandomProfile merge(Set<IRandomProfile> profiles, Set<IRandomPreference> extraPreferences,
-			Set<AvailableSkill> requiredSkills, Set<AvailableSkill> suggestedSkills,
-			Set<BeneficeDefinition> mandatoryBenefices, Set<BeneficeDefinition> suggestedBenefices,
-			Set<Weapon> mandatoryWeapons, Set<Armour> mandatoryArmours, Set<Shield> mandatoryShields, String language,
-			String moduleName) throws InvalidXmlElementException {
+	public static RandomProfile merge(Set<IRandomProfile> profiles, Set<IRandomPreference> extraPreferences, Set<AvailableSkill> requiredSkills,
+			Set<AvailableSkill> suggestedSkills, Set<BeneficeDefinition> mandatoryBenefices, Set<BeneficeDefinition> suggestedBenefices,
+			Set<Weapon> mandatoryWeapons, Set<Armour> mandatoryArmours, Set<Shield> mandatoryShields, String language, String moduleName)
+			throws InvalidXmlElementException {
 		if (profiles == null) {
 			profiles = new HashSet<>();
 		}
@@ -84,8 +81,7 @@ public class ProfileMerger {
 			mergePreferences(finalProfile.getPreferences(), profile.getPreferences());
 
 			// Merge characteristics.
-			mergeCharacteristics(finalProfile.getCharacteristicsMinimumValues(),
-					profile.getCharacteristicsMinimumValues());
+			mergeCharacteristics(finalProfile.getCharacteristicsMinimumValues(), profile.getCharacteristicsMinimumValues());
 
 			// Merge Skills.
 			mergeSkills(finalProfile.getRequiredSkills(), profile.getRequiredSkills());
@@ -141,7 +137,8 @@ public class ProfileMerger {
 		for (final Characteristic newCharacteristic : preferredCharacteristicsMinimumValues) {
 			boolean added = false;
 			for (final Characteristic characteristic : originalCharacteristicsMinimumValues) {
-				if (Objects.equal(characteristic.getCharacteristicName(), newCharacteristic.getCharacteristicName())) {
+				if (Objects.equal(characteristic.getCharacteristicDefinition().getCharacteristicName(),
+						newCharacteristic.getCharacteristicDefinition().getCharacteristicName())) {
 					if (characteristic.getValue() < newCharacteristic.getValue()) {
 						characteristic.setValue(newCharacteristic.getValue());
 						added = true;
@@ -178,10 +175,8 @@ public class ProfileMerger {
 		// Keep only the most expensives ones.
 		if (!sortedWeapons.isEmpty()) {
 			originalWeapons.clear();
-			originalWeapons.addAll(sortedWeapons.subList(
-					0,
-					sortedWeapons.size() / 2 > originalWeapons.size() ? sortedWeapons.size() / 2 + 1 : sortedWeapons
-							.size()));
+			originalWeapons
+					.addAll(sortedWeapons.subList(0, sortedWeapons.size() / 2 > originalWeapons.size() ? sortedWeapons.size() / 2 + 1 : sortedWeapons.size()));
 		}
 	}
 
@@ -203,16 +198,14 @@ public class ProfileMerger {
 		}
 	}
 
-	private static void mergePreferences(Set<IRandomPreference> originalPreferences,
-			Set<IRandomPreference> preferredPreferences) {
+	private static void mergePreferences(Set<IRandomPreference> originalPreferences, Set<IRandomPreference> preferredPreferences) {
 		for (final IRandomPreference preferredPreference : preferredPreferences) {
 			originalPreferences = removeAny(originalPreferences, preferredPreference);
 		}
 		originalPreferences.addAll(preferredPreferences);
 	}
 
-	private static Set<IRandomPreference> removeAny(Set<IRandomPreference> originalPreferences,
-			IRandomPreference preferenceToRemove) {
+	private static Set<IRandomPreference> removeAny(Set<IRandomPreference> originalPreferences, IRandomPreference preferenceToRemove) {
 		for (final IRandomPreference randomPreference : new HashSet<>(originalPreferences)) {
 			if (randomPreference.getClass().equals(preferenceToRemove.getClass())) {
 				originalPreferences.remove(randomPreference);

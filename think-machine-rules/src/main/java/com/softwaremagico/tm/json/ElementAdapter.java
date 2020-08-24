@@ -53,11 +53,11 @@ public abstract class ElementAdapter<E extends Element<E>> implements JsonSerial
 		return elementId.getAsString();
 	}
 
-	protected String getLanguage(JsonElement jsonElement) {
+	protected String getLanguage() {
 		return language;
 	}
 
-	protected String getModuleName(JsonElement jsonElement) {
+	protected String getModuleName() {
 		return moduleName;
 	}
 

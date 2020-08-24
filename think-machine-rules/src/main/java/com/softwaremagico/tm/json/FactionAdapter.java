@@ -41,11 +41,9 @@ public class FactionAdapter extends ElementAdapter<Faction> {
 	}
 
 	@Override
-	public Faction deserialize(JsonElement jsonElement, Type type,
-			JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
+	public Faction deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
 		try {
-			return FactionsFactory.getInstance().getElement(super.getElementId(jsonElement),
-					super.getLanguage(jsonElement), super.getModuleName(jsonElement));
+			return FactionsFactory.getInstance().getElement(super.getElementId(jsonElement), super.getLanguage(), super.getModuleName());
 		} catch (InvalidXmlElementException e) {
 			MachineLog.errorMessage(this.getClass().getName(), e);
 			return null;

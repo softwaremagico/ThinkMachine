@@ -38,11 +38,11 @@ import com.softwaremagico.tm.character.values.StaticValue;
 public class SelectedCyberneticDevice extends Element<SelectedCyberneticDevice> implements ICyberneticDevice,
 		IElementWithBonification {
 
-	private final List<CyberneticDeviceTrait> customizations;
+	private List<CyberneticDeviceTrait> customizations;
 	private final CyberneticDevice cyberneticDevice;
 
 	public SelectedCyberneticDevice(CyberneticDevice cyberneticDevice) {
-		super(null, cyberneticDevice.getName(), cyberneticDevice.getLanguage(), cyberneticDevice.getModuleName());
+		super(cyberneticDevice.getId(), cyberneticDevice.getName(), cyberneticDevice.getLanguage(), cyberneticDevice.getModuleName());
 		this.cyberneticDevice = cyberneticDevice;
 		customizations = new ArrayList<>();
 	}
@@ -154,6 +154,10 @@ public class SelectedCyberneticDevice extends Element<SelectedCyberneticDevice> 
 	@Override
 	public boolean equals(Object obj) {
 		return super.equals(obj);
+	}
+
+	public void setCustomizations(List<CyberneticDeviceTrait> customizations) {
+		this.customizations = customizations;
 	}
 
 }

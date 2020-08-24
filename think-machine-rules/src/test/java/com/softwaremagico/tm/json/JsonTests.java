@@ -71,7 +71,7 @@ public class JsonTests {
 			RequiredCyberneticDevicesException, BlessingAlreadyAddedException, BeneficeAlreadyAddedException {
 		LanguagePool.clearCache();
 		player = CustomCharacter.create(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
-		Assert.assertEquals(CostCalculator.getCost(player), 50);
+		Assert.assertEquals(CostCalculator.getCost(player), 52);
 		party = new Party(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
 		party.setPartyName("JSON Test");
 		party.addMember(player);
@@ -90,7 +90,7 @@ public class JsonTests {
 		final CharacterPlayer player = CharacterJsonManager.fromFile(OUTPUT_CHARACTER_PATH);
 		Assert.assertEquals(player.getInfo().getNames().size(), 1);
 		
-		Assert.assertEquals(CostCalculator.getCost(player), 50);
+		Assert.assertEquals(CostCalculator.getCost(player), 52);
 		Assert.assertEquals(CharacterJsonManager.toJson(player), originalPlayerJson);
 		
 		final String text = new String(Files.readAllBytes(Paths.get(getClass().getClassLoader()

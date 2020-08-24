@@ -41,11 +41,9 @@ public class BlessingAdapter extends ElementAdapter<Blessing> {
 	}
 
 	@Override
-	public Blessing deserialize(JsonElement jsonElement, Type type,
-			JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
+	public Blessing deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
 		try {
-			return BlessingFactory.getInstance().getElement(super.getElementId(jsonElement),
-					super.getLanguage(jsonElement), super.getModuleName(jsonElement));
+			return BlessingFactory.getInstance().getElement(super.getElementId(jsonElement), super.getLanguage(), super.getModuleName());
 		} catch (InvalidXmlElementException e) {
 			MachineLog.errorMessage(this.getClass().getName(), e);
 			return null;

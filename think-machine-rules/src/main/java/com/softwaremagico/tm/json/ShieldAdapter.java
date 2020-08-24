@@ -41,11 +41,9 @@ public class ShieldAdapter extends ElementAdapter<Shield> {
 	}
 
 	@Override
-	public Shield deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext)
-			throws JsonParseException {
+	public Shield deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
 		try {
-			return ShieldFactory.getInstance().getElement(super.getElementId(jsonElement),
-					super.getLanguage(jsonElement), super.getModuleName(jsonElement));
+			return ShieldFactory.getInstance().getElement(super.getElementId(jsonElement), super.getLanguage(), super.getModuleName());
 		} catch (InvalidXmlElementException e) {
 			MachineLog.errorMessage(this.getClass().getName(), e);
 			return null;

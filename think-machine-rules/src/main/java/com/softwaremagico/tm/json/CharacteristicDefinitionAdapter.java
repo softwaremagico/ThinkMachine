@@ -41,11 +41,10 @@ public class CharacteristicDefinitionAdapter extends ElementAdapter<Characterist
 	}
 
 	@Override
-	public CharacteristicDefinition deserialize(JsonElement jsonElement, Type type,
-			JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
+	public CharacteristicDefinition deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext)
+			throws JsonParseException {
 		try {
-			return CharacteristicsDefinitionFactory.getInstance().getElement(super.getElementId(jsonElement),
-					super.getLanguage(jsonElement), super.getModuleName(jsonElement));
+			return CharacteristicsDefinitionFactory.getInstance().getElement(super.getElementId(jsonElement), super.getLanguage(), super.getModuleName());
 		} catch (InvalidXmlElementException e) {
 			MachineLog.errorMessage(this.getClass().getName(), e);
 			return null;

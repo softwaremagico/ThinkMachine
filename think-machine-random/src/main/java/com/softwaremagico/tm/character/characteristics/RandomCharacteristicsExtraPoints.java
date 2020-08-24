@@ -60,8 +60,9 @@ public class RandomCharacteristicsExtraPoints extends RandomCharacteristics {
 			// If specialization allows it.
 			if (specialization.randomGaussian() > selectedCharacteristic.getValue() && selectedCharacteristic.getValue() < specialization.maximum()) {
 				if (selectedCharacteristic.getValue() < FreeStyleCharacterCreation.getMaxInitialCharacteristicsValues(
-						selectedCharacteristic.getCharacteristicName(), getCharacterPlayer().getInfo().getAge(), getCharacterPlayer().getRace())) {
-					if (selectedCharacteristic.getCharacteristicName() != CharacteristicName.TECH
+						selectedCharacteristic.getCharacteristicDefinition().getCharacteristicName(), getCharacterPlayer().getInfo().getAge(),
+						getCharacterPlayer().getRace())) {
+					if (selectedCharacteristic.getCharacteristicDefinition().getCharacteristicName() != CharacteristicName.TECH
 							|| (techPreference == null || selectedCharacteristic.getValue() < techPreference.maximum())) {
 						selectedCharacteristic.setValue(selectedCharacteristic.getValue() + 1);
 						RandomGenerationLog.debug(this.getClass().getName(), "Increased value of '" + selectedCharacteristic + "' in 1.");

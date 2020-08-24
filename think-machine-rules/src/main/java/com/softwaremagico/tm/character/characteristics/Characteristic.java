@@ -1,5 +1,7 @@
 package com.softwaremagico.tm.character.characteristics;
 
+import com.softwaremagico.tm.Element;
+import com.softwaremagico.tm.character.values.IValue;
 import com.softwaremagico.tm.json.ExcludeFromJson;
 
 /*-
@@ -10,23 +12,23 @@ import com.softwaremagico.tm.json.ExcludeFromJson;
  * %%
  * This software is designed by Jorge Hortelano Otero. Jorge Hortelano Otero
  * <softwaremagico@gmail.com> Valencia (Spain).
- *  
+ *
  * This program is free software; you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software
  * Foundation; either version 2 of the License, or (at your option) any later
  * version.
- *  
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
  * details.
- *  
+ *
  * You should have received a copy of the GNU General Public License along with
  * this program; If not, see <http://www.gnu.org/licenses/gpl-3.0.html>.
  * #L%
  */
 
-public class Characteristic extends CharacteristicDefinition {
+public class Characteristic extends Element<Characteristic> implements IValue {
 	public static final int DEFAULT_INITIAL_VALUE = 3;
 	public static final int DEFAULT_INITIAL_MAX_VALUE = 8;
 	public static final int MAX_VALUE = 12;
@@ -38,8 +40,6 @@ public class Characteristic extends CharacteristicDefinition {
 	public Characteristic(CharacteristicDefinition characteristicDefinition) {
 		super(characteristicDefinition.getId(), characteristicDefinition.getName(), characteristicDefinition.getLanguage(),
 				characteristicDefinition.getModuleName());
-		setAbbreviature(characteristicDefinition.getAbbreviature());
-		setType(characteristicDefinition.getType());
 		this.characteristicDefinition = characteristicDefinition;
 	}
 
@@ -53,6 +53,11 @@ public class Characteristic extends CharacteristicDefinition {
 
 	public CharacteristicDefinition getCharacteristicDefinition() {
 		return characteristicDefinition;
+	}
+
+	@Override
+	public String toString() {
+		return getName() + " (" + getValue() + ")";
 	}
 
 	@Override

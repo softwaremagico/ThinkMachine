@@ -40,8 +40,7 @@ import com.softwaremagico.tm.random.selectors.SpecializationPreferences;
 
 public class RandomCharacteristicsExperience extends RandomCharacteristics {
 
-	public RandomCharacteristicsExperience(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences)
-			throws InvalidXmlElementException {
+	public RandomCharacteristicsExperience(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences) throws InvalidXmlElementException {
 		super(characterPlayer, preferences, new HashSet<Characteristic>());
 	}
 
@@ -55,20 +54,17 @@ public class RandomCharacteristicsExperience extends RandomCharacteristics {
 				continue;
 			}
 			final Characteristic characteristic = selectElementByWeight();
-			final int newValue = getCharacterPlayer().getRawValue(characteristic.getCharacteristicName())
+			final int newValue = getCharacterPlayer().getRawValue(characteristic.getCharacteristicDefinition().getCharacteristicName())
 					+ getCharacterPlayer().getExperienceIncrease(characteristic).size() + 1;
 			try {
 				if (getCharacterPlayer().getExperienceExpended() + Experience.getExperienceCostFor(characteristic, newValue) <= getCharacterPlayer()
 						.getExperienceEarned()) {
 					RandomGenerationLog
 							.debug(this.getClass().getName(),
-									"Spent '"
-											+ Experience.getExperienceCostFor(characteristic, newValue)
-											+ "' experience points on '"
-											+ characteristic
-											+ "'. Remaining experience '"
-											+ (getCharacterPlayer().getExperienceEarned() - getCharacterPlayer().getExperienceExpended() - Experience
-													.getExperienceCostFor(characteristic, newValue)) + "'.");
+									"Spent '" + Experience.getExperienceCostFor(characteristic, newValue) + "' experience points on '" + characteristic
+											+ "'. Remaining experience '" + (getCharacterPlayer().getExperienceEarned()
+													- getCharacterPlayer().getExperienceExpended() - Experience.getExperienceCostFor(characteristic, newValue))
+											+ "'.");
 					getCharacterPlayer().setExperienceIncreasedRanks(characteristic, 1);
 				} else {
 					// Remove characteristic from options to avoid adding more
@@ -88,8 +84,9 @@ public class RandomCharacteristicsExperience extends RandomCharacteristics {
 	@Override
 	protected int getWeight(Characteristic characteristic) throws InvalidRandomElementSelectedException {
 		try {
-			if (Experience.getExperienceCostFor(characteristic, getCharacterPlayer().getRawValue(characteristic.getCharacteristicName())
-					+ getCharacterPlayer().getExperienceIncrease(characteristic).size()) > getCharacterPlayer().getExperienceEarned()) {
+			if (Experience.getExperienceCostFor(characteristic,
+					getCharacterPlayer().getRawValue(characteristic.getCharacteristicDefinition().getCharacteristicName())
+							+ getCharacterPlayer().getExperienceIncrease(characteristic).size()) > getCharacterPlayer().getExperienceEarned()) {
 				throw new InvalidRandomElementSelectedException("Not enought experience.");
 			}
 		} catch (ElementCannotBeUpgradeWithExperienceException e) {
@@ -97,14 +94,13 @@ public class RandomCharacteristicsExperience extends RandomCharacteristics {
 		}
 		final SpecializationPreferences specializationPreferences = SpecializationPreferences.getSelected(getPreferences());
 		if (specializationPreferences.ordinal() > 2) {
-			return getCharacterPlayer().getValue(characteristic.getCharacteristicName()) * super.getWeight(characteristic);
+			return getCharacterPlayer().getValue(characteristic.getCharacteristicDefinition().getCharacteristicName()) * super.getWeight(characteristic);
 		}
 		return super.getWeight(characteristic);
 	}
 
 	@Override
-	protected void assignIfMandatory(Characteristic characteristic) throws InvalidXmlElementException,
-			ImpossibleToAssignMandatoryElementException {
+	protected void assignIfMandatory(Characteristic characteristic) throws InvalidXmlElementException, ImpossibleToAssignMandatoryElementException {
 		// Nothing
 	}
 }

@@ -27,4 +27,6 @@ release.properties
 think-machine-pdf/.checkstyle
 think-machine-random/.checkstyle
 think-machine-rules/.checkstyle
+/.idea/
+*.iml
 

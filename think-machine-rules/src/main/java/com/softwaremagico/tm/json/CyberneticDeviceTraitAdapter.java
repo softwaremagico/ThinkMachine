@@ -2,9 +2,9 @@ package com.softwaremagico.tm.json;
 
 /*-
  * #%L
- * Think Machine (Core)
+ * Think Machine (Rules)
  * %%
- * Copyright (C) 2017 - 2018 Softwaremagico
+ * Copyright (C) 2017 - 2019 Softwaremagico
  * %%
  * This software is designed by Jorge Hortelano Otero. Jorge Hortelano Otero
  * <softwaremagico@gmail.com> Valencia (Spain).
@@ -30,23 +30,25 @@ import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
 import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.character.equipment.weapons.Weapon;
-import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
+import com.softwaremagico.tm.character.cybernetics.CyberneticDeviceTrait;
+import com.softwaremagico.tm.character.cybernetics.CyberneticDeviceTraitFactory;
 import com.softwaremagico.tm.log.MachineLog;
 
-public class WeaponAdapter extends ElementAdapter<Weapon> {
+public class CyberneticDeviceTraitAdapter extends ElementAdapter<CyberneticDeviceTrait> {
 
-	protected WeaponAdapter(String language, String moduleName) {
+	protected CyberneticDeviceTraitAdapter(String language, String moduleName) {
 		super(language, moduleName);
 	}
 
 	@Override
-	public Weapon deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
+	public CyberneticDeviceTrait deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext)
+			throws JsonParseException {
 		try {
-			return WeaponFactory.getInstance().getElement(super.getElementId(jsonElement), super.getLanguage(), super.getModuleName());
+			return CyberneticDeviceTraitFactory.getInstance().getElement(super.getElementId(jsonElement), super.getLanguage(), super.getModuleName());
 		} catch (InvalidXmlElementException e) {
 			MachineLog.errorMessage(this.getClass().getName(), e);
 			return null;
 		}
 	}
+
 }

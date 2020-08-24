@@ -43,12 +43,10 @@ public class OccultismPowerAdapter extends ElementAdapter<OccultismPower> {
 	}
 
 	@Override
-	public OccultismPower deserialize(JsonElement jsonElement, Type type,
-			JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
+	public OccultismPower deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
 		try {
 			final String occulstimPowerName = getElementId(jsonElement);
-			final List<OccultismPath> occultismPaths = OccultismPathFactory.getInstance()
-					.getElements(super.getLanguage(jsonElement), super.getModuleName(jsonElement));
+			final List<OccultismPath> occultismPaths = OccultismPathFactory.getInstance().getElements(super.getLanguage(), super.getModuleName());
 			for (final OccultismPath occultismPath : occultismPaths) {
 				if (occultismPath.getOccultismPowers().get(occulstimPowerName) != null) {
 					return occultismPath.getOccultismPowers().get(occulstimPowerName);

@@ -41,11 +41,9 @@ public class CyberneticDeviceAdapter extends ElementAdapter<CyberneticDevice> {
 	}
 
 	@Override
-	public CyberneticDevice deserialize(JsonElement jsonElement, Type type,
-			JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
+	public CyberneticDevice deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
 		try {
-			return CyberneticDeviceFactory.getInstance().getElement(super.getElementId(jsonElement),
-					super.getLanguage(jsonElement), super.getModuleName(jsonElement));
+			return CyberneticDeviceFactory.getInstance().getElement(super.getElementId(jsonElement), super.getLanguage(), super.getModuleName());
 		} catch (InvalidXmlElementException e) {
 			MachineLog.errorMessage(this.getClass().getName(), e);
 			return null;

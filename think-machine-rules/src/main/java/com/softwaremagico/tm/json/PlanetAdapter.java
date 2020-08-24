@@ -41,11 +41,9 @@ public class PlanetAdapter extends ElementAdapter<Planet> {
 	}
 
 	@Override
-	public Planet deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext)
-			throws JsonParseException {
+	public Planet deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
 		try {
-			return PlanetFactory.getInstance().getElement(super.getElementId(jsonElement),
-					super.getLanguage(jsonElement), super.getModuleName(jsonElement));
+			return PlanetFactory.getInstance().getElement(super.getElementId(jsonElement), super.getLanguage(), super.getModuleName());
 		} catch (InvalidXmlElementException e) {
 			MachineLog.errorMessage(this.getClass().getName(), e);
 			return null;
