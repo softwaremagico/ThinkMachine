@@ -58,8 +58,8 @@ import com.softwaremagico.tm.character.occultism.OccultismTypeFactory;
 import com.softwaremagico.tm.character.planets.PlanetFactory;
 import com.softwaremagico.tm.character.races.RaceFactory;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
-import com.softwaremagico.tm.chracter.xp.ElementCannotBeUpgradeWithExperienceException;
-import com.softwaremagico.tm.chracter.xp.NotEnoughExperienceException;
+import com.softwaremagico.tm.character.xp.ElementCannotBeUpgradeWithExperienceException;
+import com.softwaremagico.tm.character.xp.NotEnoughExperienceException;
 import com.softwaremagico.tm.file.PathManager;
 import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.pdf.complete.CharacterSheet;
@@ -131,15 +131,15 @@ public class CharacterSheetCreationTest {
 		player.getInfo().setHeight("1,76m");
 		player.getInfo().setWeight("78kg");
 
-		player.getCharacteristic(CharacteristicName.STRENGTH).setValue(3);
-		player.getCharacteristic(CharacteristicName.DEXTERITY).setValue(2);
-		player.getCharacteristic(CharacteristicName.ENDURANCE).setValue(3);
-		player.getCharacteristic(CharacteristicName.WITS).setValue(4);
-		player.getCharacteristic(CharacteristicName.PERCEPTION).setValue(5);
-		player.getCharacteristic(CharacteristicName.TECH).setValue(6);
-		player.getCharacteristic(CharacteristicName.PRESENCE).setValue(7);
-		player.getCharacteristic(CharacteristicName.WILL).setValue(8);
-		player.getCharacteristic(CharacteristicName.FAITH).setValue(9);
+		player.setCharacteristic(CharacteristicName.STRENGTH, 3);
+		player.setCharacteristic(CharacteristicName.DEXTERITY, 2);
+		player.setCharacteristic(CharacteristicName.ENDURANCE, 3);
+		player.setCharacteristic(CharacteristicName.WITS, 4);
+		player.setCharacteristic(CharacteristicName.PERCEPTION, 5);
+		player.setCharacteristic(CharacteristicName.TECH, 6);
+		player.setCharacteristic(CharacteristicName.PRESENCE, 7);
+		player.setCharacteristic(CharacteristicName.WILL, 8);
+		player.setCharacteristic(CharacteristicName.FAITH, 9);
 
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("influence", LANGUAGE,
 				PathManager.DEFAULT_MODULE_FOLDER), 5);
@@ -226,8 +226,8 @@ public class CharacterSheetCreationTest {
 		Assert.assertEquals((int) player.getValue(CharacteristicName.STRENGTH), 4);
 		player.setExperienceIncreasedRanks(AvailableSkillsFactory.getInstance().getElement("influence", LANGUAGE,
 				PathManager.DEFAULT_MODULE_FOLDER), 2);
-		Assert.assertEquals((int) player.getSkillTotalRanks(AvailableSkillsFactory.getInstance()
-				.getElement("influence", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)), 7);
+		Assert.assertEquals((int) player.getSkillTotalRanks(AvailableSkillsFactory.getInstance().getElement("influence",
+				LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)), 7);
 
 		LanguagePool.clearCache();
 		final CharacterSheet sheet = new CharacterSheet(player);

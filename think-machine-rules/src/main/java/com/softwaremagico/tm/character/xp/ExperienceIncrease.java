@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.chracter.xp;
+package com.softwaremagico.tm.character.xp;
 
 /*-
  * #%L

@@ -29,9 +29,9 @@ import java.util.Set;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.chracter.xp.ElementCannotBeUpgradeWithExperienceException;
-import com.softwaremagico.tm.chracter.xp.Experience;
-import com.softwaremagico.tm.chracter.xp.NotEnoughExperienceException;
+import com.softwaremagico.tm.character.xp.ElementCannotBeUpgradeWithExperienceException;
+import com.softwaremagico.tm.character.xp.Experience;
+import com.softwaremagico.tm.character.xp.NotEnoughExperienceException;
 import com.softwaremagico.tm.log.RandomGenerationLog;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
