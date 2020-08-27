@@ -100,8 +100,8 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 		if (weapon != null) {
 			// Assign random ranks to the skill.
 			final int ranksAssigned = assignRandomRanks(skill);
-			RandomGenerationLog.debug(this.getClass().getName(), "Assigning '" + ranksAssigned + "' ranks for '"
-					+ skill + "' needed for a selected weapon '" + weapon + "'.");
+			RandomGenerationLog.debug(this.getClass().getName(), "Assigning '" + ranksAssigned + "' ranks for '" + skill
+					+ "' needed for a selected weapon '" + weapon + "'.");
 			// Remove skill from options to avoid adding more ranks.
 			removeElementWeight(skill);
 		}
@@ -128,8 +128,8 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 		}
 	}
 
-	public void mergeSkills(AvailableSkill availableSkill, SkillGroup skillGroup) throws InvalidXmlElementException,
-			InvalidRandomElementSelectedException {
+	public void mergeSkills(AvailableSkill availableSkill, SkillGroup skillGroup)
+			throws InvalidXmlElementException, InvalidRandomElementSelectedException {
 		int weight = getWeight(availableSkill);
 		while (weight > 0) {
 			for (final AvailableSkill selectedSkill : AvailableSkillsFactory.getInstance().getSkillsByGroup(skillGroup,
@@ -146,8 +146,8 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 	@Override
 	protected Collection<AvailableSkill> getAllElements() throws InvalidXmlElementException {
 		final Set<AvailableSkill> availableSkills = new HashSet<AvailableSkill>();
-		for (final SkillDefinition skillDefinition : SkillsDefinitionsFactory.getInstance().getElements(
-				getCharacterPlayer().getLanguage(), getCharacterPlayer().getModuleName())) {
+		for (final SkillDefinition skillDefinition : SkillsDefinitionsFactory.getInstance()
+				.getElements(getCharacterPlayer().getLanguage(), getCharacterPlayer().getModuleName())) {
 			for (final AvailableSkill skill : AvailableSkillsFactory.getInstance().getAvailableSkills(skillDefinition,
 					getCharacterPlayer().getLanguage(), getCharacterPlayer().getModuleName())) {
 				availableSkills.add(skill);
@@ -161,44 +161,44 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 		int weight = 1;
 
 		if (skill.getSkillDefinition().isNatural()) {
-			RandomGenerationLog.debug(this.getClass().getName(), "Weight for '" + skill
-					+ "' as natural skill is increased.");
+			RandomGenerationLog.debug(this.getClass().getName(),
+					"Weight for '" + skill + "' as natural skill is increased.");
 			weight += 5;
 		}
 
 		final int characteristicsWeight = weightByCharacteristics(skill);
-		RandomGenerationLog.debug(this.getClass().getName(), "Weight for '" + skill
-				+ "' by characteristics modification is '" + characteristicsWeight + "'.");
+		RandomGenerationLog.debug(this.getClass().getName(),
+				"Weight for '" + skill + "' by characteristics modification is '" + characteristicsWeight + "'.");
 		weight += characteristicsWeight;
 
 		final int preferencesWeight = weightByPreferences(skill);
-		RandomGenerationLog.debug(this.getClass().getName(), "Weight for '" + skill
-				+ "' by preferences modification is '" + preferencesWeight + "'.");
+		RandomGenerationLog.debug(this.getClass().getName(),
+				"Weight for '" + skill + "' by preferences modification is '" + preferencesWeight + "'.");
 		weight += preferencesWeight;
 
 		final int factionWeight = weightByFactions(skill);
-		RandomGenerationLog.debug(this.getClass().getName(), "Weight for '" + skill + "' by faction modification is '"
-				+ factionWeight + "'.");
+		RandomGenerationLog.debug(this.getClass().getName(),
+				"Weight for '" + skill + "' by faction modification is '" + factionWeight + "'.");
 		weight += factionWeight;
 
 		final int specializationWeight = weightBySpecializationPreferences(skill);
-		RandomGenerationLog.debug(this.getClass().getName(), "Weight for '" + skill
-				+ "' by specialization modification is '" + specializationWeight + "'.");
+		RandomGenerationLog.debug(this.getClass().getName(),
+				"Weight for '" + skill + "' by specialization modification is '" + specializationWeight + "'.");
 		weight += specializationWeight;
 
 		final int psiqueWeight = weightByPsique(skill);
-		RandomGenerationLog.debug(this.getClass().getName(), "Weight for '" + skill + "' by psique modification is '"
-				+ psiqueWeight + "'.");
+		RandomGenerationLog.debug(this.getClass().getName(),
+				"Weight for '" + skill + "' by psique modification is '" + psiqueWeight + "'.");
 		weight += psiqueWeight;
 
 		final int combatWeight = weightByCombat(skill);
-		RandomGenerationLog.debug(this.getClass().getName(), "Weight for '" + skill + "' by combat definitions is '"
-				+ combatWeight + "'.");
+		RandomGenerationLog.debug(this.getClass().getName(),
+				"Weight for '" + skill + "' by combat definitions is '" + combatWeight + "'.");
 		weight += combatWeight;
 
 		final int specializationMultiplier = weightBySpecializationSize(skill);
-		RandomGenerationLog.debug(this.getClass().getName(), "Specialization multiplier for '" + skill + "' is '"
-				+ specializationMultiplier + "'.");
+		RandomGenerationLog.debug(this.getClass().getName(),
+				"Specialization multiplier for '" + skill + "' is '" + specializationMultiplier + "'.");
 		return weight * specializationMultiplier;
 	}
 
@@ -218,11 +218,10 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 	}
 
 	/**
-	 * Skills with lots of specializations has more chance to have at least one of the specializations selected. This
-	 * methods reduces its probability.
+	 * Skills with lots of specializations has more chance to have at least one of
+	 * the specializations selected. This methods reduces its probability.
 	 * 
-	 * @param skill
-	 *            skill to check.
+	 * @param skill skill to check.
 	 * @return multiplier for the other bonus.
 	 */
 	private int weightBySpecializationSize(AvailableSkill skill) {
@@ -243,8 +242,9 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 				throw new InvalidRandomElementSelectedException("Skill '" + skill + "' restricted to factions '"
 						+ skill.getSkillDefinition().getFactions() + "'.");
 			} else if (getCharacterPlayer().getFaction() != null
-			// Recommended to my faction and only this faction can do it.
-					&& skill.getRandomDefinition().getRecommendedFactions().contains(getCharacterPlayer().getFaction())) {
+					// Recommended to my faction and only this faction can do it.
+					&& skill.getRandomDefinition().getRecommendedFactions()
+							.contains(getCharacterPlayer().getFaction())) {
 				return MAX_PROBABILITY;
 			}
 		}
@@ -254,8 +254,8 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 
 	private int weightByPreferences(AvailableSkill skill) {
 		// Specialization by selection.
-		if (getPreferences().contains(
-				SkillGroupPreferences.getSkillGroupPreference(skill.getSkillDefinition().getSkillGroup()))) {
+		if (getPreferences()
+				.contains(SkillGroupPreferences.getSkillGroupPreference(skill.getSkillDefinition().getSkillGroup()))) {
 			final int skillRanks = getCharacterPlayer().getSkillTotalRanks(skill);
 
 			// Good probability for values between the specialization.
@@ -284,16 +284,15 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 	}
 
 	private int weightByPsique(AvailableSkill skill) {
-		if (getCharacterPlayer().getPsiqueLevel(
-				OccultismTypeFactory.getPsi(getCharacterPlayer().getLanguage(), getCharacterPlayer().getModuleName())) > 0) {
+		if (getCharacterPlayer().getPsiqueLevel(OccultismTypeFactory.getPsi(getCharacterPlayer().getLanguage(),
+				getCharacterPlayer().getModuleName())) > 0) {
 			// Self control useful for psique.
 			if (skill.getId().equals("selfControl")) {
 				return MAX_PROBABILITY;
 			}
 		}
-		if (getCharacterPlayer().getPsiqueLevel(
-				OccultismTypeFactory.getTheurgy(getCharacterPlayer().getLanguage(), getCharacterPlayer()
-						.getModuleName())) > 0) {
+		if (getCharacterPlayer().getPsiqueLevel(OccultismTypeFactory.getTheurgy(getCharacterPlayer().getLanguage(),
+				getCharacterPlayer().getModuleName())) > 0) {
 			if (skill.getId().equals("influence")) {
 				return MAX_PROBABILITY;
 			}
@@ -333,7 +332,8 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 	protected int checkMaxSkillRanksValues(AvailableSkill availableSkill, int finalRanks)
 			throws InvalidXmlElementException {
 		// If respects age maximum.
-		if (finalRanks > FreeStyleCharacterCreation.getMaxInitialSkillsValues(getCharacterPlayer().getInfo().getAge())) {
+		if (finalRanks > FreeStyleCharacterCreation
+				.getMaxInitialSkillsValues(getCharacterPlayer().getInfo().getAge())) {
 			finalRanks = FreeStyleCharacterCreation.getMaxInitialSkillsValues(getCharacterPlayer().getInfo().getAge());
 		}
 
@@ -342,9 +342,9 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 		// Final ranks cannot be greater that the total points remaining.
 		if (getCharacterPlayer().getSkillsTotalPoints()
 				+ (finalRanks - getCharacterPlayer().getSkillAssignedRanks(availableSkill)) > FreeStyleCharacterCreation
-				.getSkillsPoints(getCharacterPlayer().getInfo().getAge()) + difficultLevel.getSkillsBonus()) {
-			finalRanks = (FreeStyleCharacterCreation.getSkillsPoints(getCharacterPlayer().getInfo().getAge()) + difficultLevel
-					.getSkillsBonus()) - getCharacterPlayer().getSkillsTotalPoints();
+						.getSkillsPoints(getCharacterPlayer().getInfo().getAge()) + difficultLevel.getSkillsBonus()) {
+			finalRanks = (FreeStyleCharacterCreation.getSkillsPoints(getCharacterPlayer().getInfo().getAge())
+					+ difficultLevel.getSkillsBonus()) - getCharacterPlayer().getSkillsTotalPoints();
 		}
 		return finalRanks;
 	}
@@ -355,11 +355,10 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 				.getSelected(getPreferences());
 		int minimumValue = selectedSpecialization.minimum();
 		// Natural skills always a minimum value of 3.
-		if (availableSkill.getSkillDefinition().isNatural()
-				&& minimumValue < FreeStyleCharacterCreation.getMinInitialNaturalSkillsValues(getCharacterPlayer()
-						.getInfo().getAge())) {
-			minimumValue = FreeStyleCharacterCreation.getMinInitialNaturalSkillsValues(getCharacterPlayer().getInfo()
-					.getAge());
+		if (availableSkill.getSkillDefinition().isNatural() && minimumValue < FreeStyleCharacterCreation
+				.getMinInitialNaturalSkillsValues(getCharacterPlayer().getInfo().getAge())) {
+			minimumValue = FreeStyleCharacterCreation
+					.getMinInitialNaturalSkillsValues(getCharacterPlayer().getInfo().getAge());
 		}
 		// Gaussian distribution.
 		finalSkillValue = selectedSpecialization.randomGaussian();
@@ -393,10 +392,10 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 		}
 
 		// Not more than the max allowed.
-		if (finalSkillValue > FreeStyleCharacterCreation.getMaxInitialSkillsValues(getCharacterPlayer().getInfo()
-				.getAge())) {
-			finalSkillValue = FreeStyleCharacterCreation.getMaxInitialSkillsValues(getCharacterPlayer().getInfo()
-					.getAge());
+		if (finalSkillValue > FreeStyleCharacterCreation
+				.getMaxInitialSkillsValues(getCharacterPlayer().getInfo().getAge())) {
+			finalSkillValue = FreeStyleCharacterCreation
+					.getMaxInitialSkillsValues(getCharacterPlayer().getInfo().getAge());
 		}
 		return finalSkillValue;
 	}
@@ -411,11 +410,11 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 		final CombatPreferences combatPreferences = CombatPreferences.getSelected(getPreferences());
 		// Set some attack skills
 		if (combatPreferences.minimum() >= CombatPreferences.FAIR.minimum()) {
-			if (getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).getValue() >= 5) {
+			if (getCharacterPlayer().getCharacteristicValue(CharacteristicName.TECH) >= 5) {
 				if (Objects.equals(availableSkill.getId(), "energyGuns")) {
 					return GOOD_PROBABILITY * combatPreferences.maximum();
 				}
-			} else if (getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).getValue() >= 3) {
+			} else if (getCharacterPlayer().getCharacteristicValue(CharacteristicName.TECH) >= 3) {
 				if (Objects.equals(availableSkill.getId(), "slugGuns")) {
 					return GOOD_PROBABILITY * combatPreferences.maximum();
 				}
@@ -425,7 +424,7 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 				}
 			}
 			if (Objects.equals(availableSkill.getId(), "fight")) {
-				if (getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).getValue() >= 3) {
+				if (getCharacterPlayer().getCharacteristicValue(CharacteristicName.TECH) >= 3) {
 					return FAIR_PROBABILITY * combatPreferences.maximum();
 				} else {
 					return GOOD_PROBABILITY * combatPreferences.maximum();

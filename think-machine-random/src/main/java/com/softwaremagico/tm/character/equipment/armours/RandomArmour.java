@@ -62,7 +62,8 @@ public class RandomArmour extends EquipmentSelector<Armour> {
 
 	@Override
 	protected Collection<Armour> getAllElements() throws InvalidXmlElementException {
-		return ArmourFactory.getInstance().getElements(getCharacterPlayer().getLanguage(), getCharacterPlayer().getModuleName());
+		return ArmourFactory.getInstance().getElements(getCharacterPlayer().getLanguage(),
+				getCharacterPlayer().getModuleName());
 	}
 
 	/**
@@ -98,12 +99,13 @@ public class RandomArmour extends EquipmentSelector<Armour> {
 		int weight = 0;
 		// Similar tech level preferred.
 		weight += MAX_PROBABILITY / Math.pow(10,
-				(getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).getValue() - armour.getTechLevel()));
-		RandomGenerationLog.debug(this.getClass().getName(), "Weight tech bonus for '" + armour + "' is '"
-				+ MAX_PROBABILITY
-						/ Math.pow(10, 2 * (getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).getValue()
-								- armour.getTechLevel()))
-				+ "'.");
+				(getCharacterPlayer().getCharacteristicValue(CharacteristicName.TECH) - armour.getTechLevel()));
+		RandomGenerationLog.debug(this.getClass().getName(),
+				"Weight tech bonus for '" + armour + "' is '"
+						+ MAX_PROBABILITY
+								/ Math.pow(10, 2 * (getCharacterPlayer().getCharacteristicValue(CharacteristicName.TECH)
+										- armour.getTechLevel()))
+						+ "'.");
 		if (weight <= 0) {
 			if (armour.getTechLevel() < 3) {
 				weight = 0;

@@ -283,7 +283,7 @@ public class CharacterPlayer {
 			throw new InvalidSkillException("Null skill is not allowed here.");
 		}
 		if (skills.get(availableSkill.getUniqueId()) != null) {
-			characterModificationHandler.launchSkillUpdateListener(availableSkill,
+			characterModificationHandler.launchSkillUpdatedListener(availableSkill,
 					value - skills.get(availableSkill.getUniqueId()).getValue());
 		}
 		final SelectedSkill skillWithRank = new SelectedSkill(availableSkill, value, false);
@@ -433,7 +433,14 @@ public class CharacterPlayer {
 							+ "' and adding '" + blessing + "'.");
 		}
 		blessings.add(blessing);
+		characterModificationHandler.launchBlessingUpdatedListener(blessing, false);
 		Collections.sort(blessings);
+	}
+
+	public void removeBlessing(Blessing blessing) {
+		if (blessings.remove(blessing)) {
+			characterModificationHandler.launchBlessingUpdatedListener(blessing, true);
+		}
 	}
 
 	private int getBlessingModificationsNumber() {
@@ -527,6 +534,7 @@ public class CharacterPlayer {
 			}
 		}
 		benefices.add(benefice);
+		characterModificationHandler.launchBeneficesUpdatedListener(benefice, false);
 		Collections.sort(benefices);
 	}
 
@@ -565,7 +573,9 @@ public class CharacterPlayer {
 	}
 
 	public void removeBenefice(AvailableBenefice benefice) {
-		benefices.remove(benefice);
+		if (benefices.remove(benefice)) {
+			characterModificationHandler.launchBeneficesUpdatedListener(benefice, true);
+		}
 	}
 
 	public AvailableBenefice getBenefice(String beneficeDefinitionId) {
@@ -630,7 +640,9 @@ public class CharacterPlayer {
 			}
 		}
 		final SelectedCyberneticDevice selectedCiberneticDevice = new SelectedCyberneticDevice(cyberneticDevice);
-		getCyberneticList().addElement(selectedCiberneticDevice);
+		if (getCyberneticList().addElement(selectedCiberneticDevice)) {
+			characterModificationHandler.launchCyberneticDeviceUpdatedListener(selectedCiberneticDevice, false);
+		}
 		return selectedCiberneticDevice;
 	}
 
@@ -643,7 +655,9 @@ public class CharacterPlayer {
 	}
 
 	public void addWeapon(Weapon weapon) {
-		weapons.addElement(weapon);
+		if (weapons.addElement(weapon)) {
+			characterModificationHandler.launchEquipmentUpdatedListener(weapon, false);
+		}
 	}
 
 	public void setWeapons(List<Weapon> weapons) {
@@ -734,6 +748,9 @@ public class CharacterPlayer {
 			throw new InvalidArmourException(
 					"Armour '" + armour + "' is not compatible with shield '" + getShield() + "'.");
 		}
+		if (this.armour != armour) {
+			characterModificationHandler.launchEquipmentUpdatedListener(armour, false);
+		}
 		this.armour = armour;
 	}
 
@@ -765,6 +782,9 @@ public class CharacterPlayer {
 		if (getArmour() != null && shield != null && !getArmour().getAllowedShields().contains(shield)) {
 			throw new InvalidShieldException(
 					"Shield '" + shield + "' is not compatible with armour '" + getArmour() + "'.");
+		}
+		if (this.shield != shield) {
+			characterModificationHandler.launchEquipmentUpdatedListener(shield, false);
 		}
 		this.shield = shield;
 	}
@@ -1043,11 +1063,15 @@ public class CharacterPlayer {
 		return getCharacteristic(characteristicName.getId());
 	}
 
+	public int getCharacteristicValue(CharacteristicName characteristicName) {
+		return getCharacteristic(characteristicName.getId()).getValue();
+	}
+
 	public void setCharacteristic(CharacteristicName characteristicName, int value) {
 		if (value < getRaceCharacteristicStartingValue(characteristicName)) {
 			value = getRaceCharacteristicStartingValue(characteristicName);
 		}
-		characterModificationHandler.launchCharacteristicUpdateListener(getCharacteristic(characteristicName.getId()),
+		characterModificationHandler.launchCharacteristicUpdatedListener(getCharacteristic(characteristicName.getId()),
 				value - getCharacteristic(characteristicName.getId()).getValue());
 		getCharacteristic(characteristicName.getId()).setValue(value);
 	}
@@ -1351,6 +1375,10 @@ public class CharacterPlayer {
 	}
 
 	public void setPsiqueLevel(OccultismType occultismType, int psyValue) throws InvalidPsiqueLevelException {
+		if (getOccultism().getPsiqueLevel(occultismType) != psyValue) {
+			characterModificationHandler.launchOccultismLevelUpdatedListener(occultismType,
+					psyValue - getOccultism().getPsiqueLevel(occultismType));
+		}
 		getOccultism().setPsiqueLevel(occultismType, psyValue, getLanguage(), getModuleName(), getFaction());
 	}
 
@@ -1372,7 +1400,9 @@ public class CharacterPlayer {
 
 	public void addOccultismPower(OccultismPower power) throws InvalidOccultismPowerException {
 		final OccultismPath path = OccultismPathFactory.getInstance().getOccultismPath(power);
-		getOccultism().addPower(path, power, getLanguage(), getFaction());
+		if (getOccultism().addPower(path, power, getLanguage(), getFaction())) {
+			characterModificationHandler.launchOccultismPowerUpdatedListener(power, false);
+		}
 	}
 
 	public String getCompleteNameRepresentation() {
@@ -1429,9 +1459,9 @@ public class CharacterPlayer {
 		int totalValue = 0;
 		for (final Weapon weapon : getAllWeapons()) {
 			if (getSkillTotalRanks(weapon.getSkill())
-					+ getCharacteristic(weapon.getCharacteristic().getCharacteristicName()).getValue() > totalValue) {
+					+ getCharacteristicValue(weapon.getCharacteristic().getCharacteristicName()) > totalValue) {
 				totalValue = getSkillTotalRanks(weapon.getSkill())
-						+ getCharacteristic(weapon.getCharacteristic().getCharacteristicName()).getValue();
+						+ getCharacteristicValue(weapon.getCharacteristic().getCharacteristicName());
 				mainWeapon = weapon;
 			}
 		}

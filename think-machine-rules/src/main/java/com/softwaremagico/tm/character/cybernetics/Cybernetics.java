@@ -31,6 +31,6 @@ import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 public class Cybernetics extends ElementList<SelectedCyberneticDevice> {
 
 	public static int getMaxCyberneticIncompatibility(CharacterPlayer characterPlayer) {
-		return (characterPlayer.getCharacteristic(CharacteristicName.WILL).getValue() * 3) + 2;
+		return (characterPlayer.getCharacteristicValue(CharacteristicName.WILL) * 3) + 2;
 	}
 }

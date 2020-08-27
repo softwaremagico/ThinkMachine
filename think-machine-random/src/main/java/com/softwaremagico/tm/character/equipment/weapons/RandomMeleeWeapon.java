@@ -108,8 +108,8 @@ public class RandomMeleeWeapon extends RandomWeapon {
 		}
 
 		// Similar tech level preferred.
-		weight += MAX_PROBABILITY / Math.pow(10, 2
-				* (getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).getValue() - weapon.getTechLevel()));
+		weight += MAX_PROBABILITY / Math.pow(10,
+				2 * (getCharacterPlayer().getCharacteristicValue(CharacteristicName.TECH) - weapon.getTechLevel()));
 		RandomGenerationLog.debug(this.getClass().getName(), "Weight tech bonus for '" + weapon + "' is '"
 				+ MAX_PROBABILITY
 						/ Math.pow(10, 2 * (getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).getValue()

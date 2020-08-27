@@ -111,7 +111,7 @@ public class Occultism {
 		return total;
 	}
 
-	public void addPower(OccultismPath path, OccultismPower power, String language, Faction faction)
+	public boolean addPower(OccultismPath path, OccultismPower power, String language, Faction faction)
 			throws InvalidOccultismPowerException {
 		if (power == null) {
 			throw new InvalidOccultismPowerException("Power cannot be null.");
@@ -150,6 +150,7 @@ public class Occultism {
 		if (selectedPowers.get(path.getId()) == null) {
 			selectedPowers.put(path.getId(), new ArrayList<OccultismPower>());
 		}
-		selectedPowers.get(path.getId()).add(power);
+
+		return selectedPowers.get(path.getId()).add(power);
 	}
 }

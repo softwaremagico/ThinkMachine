@@ -45,110 +45,118 @@ public class CyberneticsTests {
 	private static final int MAX_INCOMPATIBILITY = WITS * 3 + 2;
 
 	@Test(expectedExceptions = { TooManyCyberneticDevicesException.class })
-	public void tooManyCybernetics() throws TooManyCyberneticDevicesException, InvalidXmlElementException,
-			RequiredCyberneticDevicesException {
+	public void tooManyCybernetics()
+			throws TooManyCyberneticDevicesException, InvalidXmlElementException, RequiredCyberneticDevicesException {
 		final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
-		player.getCharacteristic(CharacteristicName.WILL).setValue(7);
+		player.setCharacteristic(CharacteristicName.WILL, 7);
 
 		Assert.assertEquals(Cybernetics.getMaxCyberneticIncompatibility(player), MAX_INCOMPATIBILITY);
 
 		try {
 			// 2 points
-			player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("centurionKnife", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+			player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("centurionKnife", LANGUAGE,
+					PathManager.DEFAULT_MODULE_FOLDER));
 			Assert.assertEquals(player.getCyberneticsIncompatibility(), 2);
 
 			// 6 points
-			player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("goliathSkin", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+			player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("goliathSkin", LANGUAGE,
+					PathManager.DEFAULT_MODULE_FOLDER));
 			Assert.assertEquals(player.getCyberneticsIncompatibility(), 8);
 
 			// 7 points
-			player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("oxyLung", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+			player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("oxyLung", LANGUAGE,
+					PathManager.DEFAULT_MODULE_FOLDER));
 			Assert.assertEquals(player.getCyberneticsIncompatibility(), 15);
 
 			// 7 points
-			player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("xEyes", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+			player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("xEyes", LANGUAGE,
+					PathManager.DEFAULT_MODULE_FOLDER));
 			Assert.assertEquals(player.getCyberneticsIncompatibility(), 22);
 		} catch (TooManyCyberneticDevicesException e) {
 			// Not correct
 			Assert.assertTrue(false);
 		}
 
-		player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("jonah", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+		player.addCybernetics(
+				CyberneticDeviceFactory.getInstance().getElement("jonah", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
 	}
 
 	@Test(expectedExceptions = { RequiredCyberneticDevicesException.class })
-	public void restrictedDevice() throws InvalidXmlElementException, TooManyCyberneticDevicesException,
-			RequiredCyberneticDevicesException {
+	public void restrictedDevice()
+			throws InvalidXmlElementException, TooManyCyberneticDevicesException, RequiredCyberneticDevicesException {
 		final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
-		player.getCharacteristic(CharacteristicName.WILL).setValue(8);
+		player.setCharacteristic(CharacteristicName.WILL, 8);
 
-		player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("secondBrainEnergyPistolsLore",
-				LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+		player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("secondBrainEnergyPistolsLore", LANGUAGE,
+				PathManager.DEFAULT_MODULE_FOLDER));
 	}
 
 	@Test
-	public void restrictedDeviceAcepted() throws InvalidXmlElementException, TooManyCyberneticDevicesException,
-			RequiredCyberneticDevicesException {
+	public void restrictedDeviceAcepted()
+			throws InvalidXmlElementException, TooManyCyberneticDevicesException, RequiredCyberneticDevicesException {
 		final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
-		player.getCharacteristic(CharacteristicName.WILL).setValue(8);
+		player.setCharacteristic(CharacteristicName.WILL, 8);
 
-		player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("secondBrain", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
-		player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("secondBrainEnergyPistolsLore",
-				LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+		player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("secondBrain", LANGUAGE,
+				PathManager.DEFAULT_MODULE_FOLDER));
+		player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("secondBrainEnergyPistolsLore", LANGUAGE,
+				PathManager.DEFAULT_MODULE_FOLDER));
 	}
 
 	@Test
-	public void cyberneticAsAWeapon() throws TooManyCyberneticDevicesException, InvalidXmlElementException,
-			RequiredCyberneticDevicesException {
+	public void cyberneticAsAWeapon()
+			throws TooManyCyberneticDevicesException, InvalidXmlElementException, RequiredCyberneticDevicesException {
 		final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
-		player.getCharacteristic(CharacteristicName.WILL).setValue(7);
+		player.setCharacteristic(CharacteristicName.WILL, 7);
 
-		player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("centurionKnife", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+		player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("centurionKnife", LANGUAGE,
+				PathManager.DEFAULT_MODULE_FOLDER));
 		Assert.assertEquals(player.getAllWeapons().size(), 1);
 	}
 
 	@Test
-	public void cyberneticCharacteristicsImprovement() throws InvalidXmlElementException,
-			TooManyCyberneticDevicesException, RequiredCyberneticDevicesException {
+	public void cyberneticCharacteristicsImprovement()
+			throws InvalidXmlElementException, TooManyCyberneticDevicesException, RequiredCyberneticDevicesException {
 		final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
-		player.getCharacteristic(CharacteristicName.WILL).setValue(8);
-		player.getCharacteristic(CharacteristicName.WITS).setValue(6);
+		player.setCharacteristic(CharacteristicName.WILL, 8);
+		player.setCharacteristic(CharacteristicName.WITS, 6);
 
-		player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("secondBrain", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+		player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("secondBrain", LANGUAGE,
+				PathManager.DEFAULT_MODULE_FOLDER));
 		Assert.assertEquals((int) player.getValue(CharacteristicName.WITS), 8);
 	}
 
 	@Test
-	public void cyberneticSkillStaticValue() throws InvalidXmlElementException, TooManyCyberneticDevicesException,
-			RequiredCyberneticDevicesException {
+	public void cyberneticSkillStaticValue()
+			throws InvalidXmlElementException, TooManyCyberneticDevicesException, RequiredCyberneticDevicesException {
 		final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
-		player.getCharacteristic(CharacteristicName.WILL).setValue(8);
-		player.setSkillRank(
-				AvailableSkillsFactory.getInstance().getElement("lore", "energyPistolsLore", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER), 3);
+		player.setCharacteristic(CharacteristicName.WILL, 8);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("lore", "energyPistolsLore", LANGUAGE,
+				PathManager.DEFAULT_MODULE_FOLDER), 3);
 
-		player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("secondBrain", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
-		player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("secondBrainEnergyPistolsLore",
-				LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+		player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("secondBrain", LANGUAGE,
+				PathManager.DEFAULT_MODULE_FOLDER));
+		player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("secondBrainEnergyPistolsLore", LANGUAGE,
+				PathManager.DEFAULT_MODULE_FOLDER));
 
-		Assert.assertEquals(
-				(int) player.getSkillTotalRanks(AvailableSkillsFactory.getInstance().getElement("lore",
-						"energyPistolsLore", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)), 4);
+		Assert.assertEquals((int) player.getSkillTotalRanks(AvailableSkillsFactory.getInstance().getElement("lore",
+				"energyPistolsLore", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)), 4);
 	}
 
 	@Test
-	public void cyberneticSkillStaticValueSurpassed() throws InvalidXmlElementException,
-			TooManyCyberneticDevicesException, RequiredCyberneticDevicesException {
+	public void cyberneticSkillStaticValueSurpassed()
+			throws InvalidXmlElementException, TooManyCyberneticDevicesException, RequiredCyberneticDevicesException {
 		final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
-		player.getCharacteristic(CharacteristicName.WILL).setValue(8);
-		player.setSkillRank(
-				AvailableSkillsFactory.getInstance().getElement("lore", "energyPistolsLore", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER), 6);
+		player.setCharacteristic(CharacteristicName.WILL, 8);
+		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("lore", "energyPistolsLore", LANGUAGE,
+				PathManager.DEFAULT_MODULE_FOLDER), 6);
 
-		player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("secondBrain", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
-		player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("secondBrainEnergyPistolsLore",
-				LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+		player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("secondBrain", LANGUAGE,
+				PathManager.DEFAULT_MODULE_FOLDER));
+		player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("secondBrainEnergyPistolsLore", LANGUAGE,
+				PathManager.DEFAULT_MODULE_FOLDER));
 
-		Assert.assertEquals(
-				(int) player.getSkillTotalRanks(AvailableSkillsFactory.getInstance().getElement("lore",
-						"energyPistolsLore", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)), 6);
+		Assert.assertEquals((int) player.getSkillTotalRanks(AvailableSkillsFactory.getInstance().getElement("lore",
+				"energyPistolsLore", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)), 6);
 	}
 }

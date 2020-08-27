@@ -59,7 +59,7 @@ public abstract class EquipmentSelector<E extends Equipment<?>> extends RandomSe
 	@Override
 	protected int getWeight(E equipment) throws InvalidRandomElementSelectedException {
 		// Weapons only if technology is enough.
-		if (equipment.getTechLevel() > getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).getValue()) {
+		if (equipment.getTechLevel() > getCharacterPlayer().getCharacteristicValue(CharacteristicName.TECH)) {
 			throw new InvalidRandomElementSelectedException("Technology requirements not met for '" + equipment + "'.");
 		}
 

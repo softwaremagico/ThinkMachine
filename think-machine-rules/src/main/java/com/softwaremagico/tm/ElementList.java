@@ -36,9 +36,12 @@ public class ElementList<T extends Comparable<T>> {
 		elements = new ArrayList<T>();
 	}
 
-	public void addElement(T element) {
-		elements.add(element);
-		Collections.sort(elements);
+	public boolean addElement(T element) {
+		try {
+			return elements.add(element);
+		} finally {
+			Collections.sort(elements);
+		}
 	}
 
 	public List<T> getElements() {

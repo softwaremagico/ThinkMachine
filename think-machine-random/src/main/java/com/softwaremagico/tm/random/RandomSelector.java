@@ -262,12 +262,12 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
 
 		// Check technology limitations.
 		if (getCharacterPlayer() != null && randomDefinition.getMinimumTechLevel() != null && randomDefinition
-				.getMinimumTechLevel() > getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).getValue()) {
+				.getMinimumTechLevel() > getCharacterPlayer().getCharacteristicValue(CharacteristicName.TECH)) {
 			throw new InvalidRandomElementSelectedException("The tech level of the character is insufficient.");
 		}
 
 		if (getCharacterPlayer() != null && randomDefinition.getMaximumTechLevel() != null && randomDefinition
-				.getMaximumTechLevel() < getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).getValue()) {
+				.getMaximumTechLevel() < getCharacterPlayer().getCharacteristicValue(CharacteristicName.TECH)) {
 			throw new InvalidRandomElementSelectedException("The tech level of the character is too high.");
 		}
 

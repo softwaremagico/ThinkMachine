@@ -144,7 +144,7 @@ public class ExperienceTests {
 	public void addOneRankToCharacteristic() throws InvalidSkillException, InvalidXmlElementException,
 			NotEnoughExperienceException, ElementCannotBeUpgradeWithExperienceException {
 		final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
-		player.getCharacteristic(CharacteristicName.STRENGTH).setValue(5);
+		player.setCharacteristic(CharacteristicName.STRENGTH, 5);
 
 		player.setExperienceEarned(18);
 		player.setExperienceIncreasedRanks(player.getCharacteristic(CharacteristicName.STRENGTH), 1);
@@ -157,7 +157,7 @@ public class ExperienceTests {
 	public void addOneRankToCharacteristicNotPossible() throws InvalidSkillException, InvalidXmlElementException,
 			NotEnoughExperienceException, ElementCannotBeUpgradeWithExperienceException {
 		final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
-		player.getCharacteristic(CharacteristicName.STRENGTH).setValue(5);
+		player.setCharacteristic(CharacteristicName.STRENGTH, 5);
 
 		player.setExperienceEarned(12);
 		player.setExperienceIncreasedRanks(player.getCharacteristic(CharacteristicName.STRENGTH), 1);
@@ -167,7 +167,7 @@ public class ExperienceTests {
 	public void addWyrd() throws ElementCannotBeUpgradeWithExperienceException, InvalidXmlElementException,
 			NotEnoughExperienceException {
 		final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
-		player.getCharacteristic(CharacteristicName.WILL).setValue(5);
+		player.setCharacteristic(CharacteristicName.WILL, 5);
 
 		player.setExperienceEarned(26);
 		player.setExperienceExtraWyrd(2);
