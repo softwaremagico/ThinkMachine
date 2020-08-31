@@ -131,6 +131,7 @@ public class CharacterSheetCreationTest {
 		player.getInfo().setHeight("1,76m");
 		player.getInfo().setWeight("78kg");
 
+		//Min DEX is 3!
 		player.setCharacteristic(CharacteristicName.STRENGTH, 3);
 		player.setCharacteristic(CharacteristicName.DEXTERITY, 2);
 		player.setCharacteristic(CharacteristicName.ENDURANCE, 3);
@@ -233,6 +234,6 @@ public class CharacterSheetCreationTest {
 		final CharacterSheet sheet = new CharacterSheet(player);
 		Assert.assertEquals(sheet.createFile(PDF_PATH_OUTPUT + "CharacterFS_ES.pdf"), 2);
 
-		Assert.assertEquals(CostCalculator.getCost(player), 50);
+		Assert.assertEquals(CostCalculator.getCost(player), 53);
 	}
 }

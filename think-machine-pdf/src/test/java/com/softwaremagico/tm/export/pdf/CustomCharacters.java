@@ -516,7 +516,7 @@ public class CustomCharacters {
 		player.setCharacteristic(CharacteristicName.ENDURANCE, 10);
 		player.setCharacteristic(CharacteristicName.WITS, 5);
 		player.setCharacteristic(CharacteristicName.PERCEPTION, 7);
-		player.setCharacteristic(CharacteristicName.TECH, 5);
+		player.setCharacteristic(CharacteristicName.TECH, 6);
 
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("observe", player.getLanguage(),
 				player.getModuleName()), 6);
@@ -566,7 +566,7 @@ public class CustomCharacters {
 		Assert.assertEquals(smallSheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Golem.pdf"),
 				1);
 
-		Assert.assertEquals(CostCalculator.getCost(player), -5);
+		Assert.assertEquals(CostCalculator.getCost(player), -2);
 		Assert.assertEquals(player.getMoney(), 250);
 
 		party.addMember(player);

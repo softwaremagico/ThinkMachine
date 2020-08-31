@@ -36,7 +36,11 @@ import com.softwaremagico.tm.character.blessings.BlessingAlreadyAddedException;
 import com.softwaremagico.tm.character.blessings.BlessingFactory;
 import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
-import com.softwaremagico.tm.character.cybernetics.*;
+import com.softwaremagico.tm.character.cybernetics.CyberneticDeviceFactory;
+import com.softwaremagico.tm.character.cybernetics.CyberneticDeviceTraitFactory;
+import com.softwaremagico.tm.character.cybernetics.RequiredCyberneticDevicesException;
+import com.softwaremagico.tm.character.cybernetics.SelectedCyberneticDevice;
+import com.softwaremagico.tm.character.cybernetics.TooManyCyberneticDevicesException;
 import com.softwaremagico.tm.character.equipment.armours.ArmourFactory;
 import com.softwaremagico.tm.character.equipment.shields.ShieldFactory;
 import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
@@ -49,6 +53,7 @@ import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.file.PathManager;
 
 public class CustomCharacter {
+	public final static int COST = 58;
 
 	public static CharacterPlayer create(String language, String moduleName)
 			throws InvalidXmlElementException, TooManyBlessingsException, TooManyCyberneticDevicesException,
@@ -71,6 +76,7 @@ public class CustomCharacter {
 		player.getInfo().setHeight("1,76m");
 		player.getInfo().setWeight("78kg");
 
+		//Min value for STG and DEX is 3!
 		player.setCharacteristic(CharacteristicName.STRENGTH, 2);
 		player.setCharacteristic(CharacteristicName.DEXTERITY, 2);
 		player.setCharacteristic(CharacteristicName.ENDURANCE, 3);
