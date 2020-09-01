@@ -151,17 +151,12 @@ public class CharacterPlayer {
 
 	private final String comparationId;
 
-	private final transient CharacterModificationHandler characterModificationHandler;
-
-	public CharacterModificationHandler getCharacterModificationHandler() {
-		return characterModificationHandler;
-	}
+	private transient CharacterModificationHandler characterModificationHandler;
 
 	public CharacterPlayer(String language, String moduleName) {
 		comparationId = IdGenerator.createId();
 		this.language = language;
 		this.moduleName = moduleName;
-		characterModificationHandler = new CharacterModificationHandler();
 		reset();
 	}
 
@@ -283,7 +278,7 @@ public class CharacterPlayer {
 			throw new InvalidSkillException("Null skill is not allowed here.");
 		}
 		if (skills.get(availableSkill.getUniqueId()) != null) {
-			characterModificationHandler.launchSkillUpdatedListener(availableSkill,
+			getCharacterModificationHandler().launchSkillUpdatedListener(availableSkill,
 					value - skills.get(availableSkill.getUniqueId()).getValue());
 		}
 		final SelectedSkill skillWithRank = new SelectedSkill(availableSkill, value, false);
@@ -433,13 +428,13 @@ public class CharacterPlayer {
 							+ "' and adding '" + blessing + "'.");
 		}
 		blessings.add(blessing);
-		characterModificationHandler.launchBlessingUpdatedListener(blessing, false);
+		getCharacterModificationHandler().launchBlessingUpdatedListener(blessing, false);
 		Collections.sort(blessings);
 	}
 
 	public void removeBlessing(Blessing blessing) {
 		if (blessings.remove(blessing)) {
-			characterModificationHandler.launchBlessingUpdatedListener(blessing, true);
+			getCharacterModificationHandler().launchBlessingUpdatedListener(blessing, true);
 		}
 	}
 
@@ -534,7 +529,7 @@ public class CharacterPlayer {
 			}
 		}
 		benefices.add(benefice);
-		characterModificationHandler.launchBeneficesUpdatedListener(benefice, false);
+		getCharacterModificationHandler().launchBeneficesUpdatedListener(benefice, false);
 		Collections.sort(benefices);
 	}
 
@@ -574,7 +569,7 @@ public class CharacterPlayer {
 
 	public void removeBenefice(AvailableBenefice benefice) {
 		if (benefices.remove(benefice)) {
-			characterModificationHandler.launchBeneficesUpdatedListener(benefice, true);
+			getCharacterModificationHandler().launchBeneficesUpdatedListener(benefice, true);
 		}
 	}
 
@@ -641,7 +636,7 @@ public class CharacterPlayer {
 		}
 		final SelectedCyberneticDevice selectedCiberneticDevice = new SelectedCyberneticDevice(cyberneticDevice);
 		if (getCyberneticList().addElement(selectedCiberneticDevice)) {
-			characterModificationHandler.launchCyberneticDeviceUpdatedListener(selectedCiberneticDevice, false);
+			getCharacterModificationHandler().launchCyberneticDeviceUpdatedListener(selectedCiberneticDevice, false);
 		}
 		return selectedCiberneticDevice;
 	}
@@ -656,7 +651,7 @@ public class CharacterPlayer {
 
 	public void addWeapon(Weapon weapon) {
 		if (weapons.addElement(weapon)) {
-			characterModificationHandler.launchEquipmentUpdatedListener(weapon, false);
+			getCharacterModificationHandler().launchEquipmentUpdatedListener(weapon, false);
 		}
 	}
 
@@ -749,7 +744,7 @@ public class CharacterPlayer {
 					"Armour '" + armour + "' is not compatible with shield '" + getShield() + "'.");
 		}
 		if (this.armour != armour) {
-			characterModificationHandler.launchEquipmentUpdatedListener(armour, false);
+			getCharacterModificationHandler().launchEquipmentUpdatedListener(armour, false);
 		}
 		this.armour = armour;
 	}
@@ -784,7 +779,7 @@ public class CharacterPlayer {
 					"Shield '" + shield + "' is not compatible with armour '" + getArmour() + "'.");
 		}
 		if (this.shield != shield) {
-			characterModificationHandler.launchEquipmentUpdatedListener(shield, false);
+			getCharacterModificationHandler().launchEquipmentUpdatedListener(shield, false);
 		}
 		this.shield = shield;
 	}
@@ -1071,7 +1066,8 @@ public class CharacterPlayer {
 		if (value < getRaceCharacteristicStartingValue(characteristicName)) {
 			value = getRaceCharacteristicStartingValue(characteristicName);
 		}
-		characterModificationHandler.launchCharacteristicUpdatedListener(getCharacteristic(characteristicName.getId()),
+		getCharacterModificationHandler().launchCharacteristicUpdatedListener(
+				getCharacteristic(characteristicName.getId()),
 				value - getCharacteristic(characteristicName.getId()).getValue());
 		getCharacteristic(characteristicName.getId()).setValue(value);
 	}
@@ -1376,7 +1372,7 @@ public class CharacterPlayer {
 
 	public void setPsiqueLevel(OccultismType occultismType, int psyValue) throws InvalidPsiqueLevelException {
 		if (getOccultism().getPsiqueLevel(occultismType) != psyValue) {
-			characterModificationHandler.launchOccultismLevelUpdatedListener(occultismType,
+			getCharacterModificationHandler().launchOccultismLevelUpdatedListener(occultismType,
 					psyValue - getOccultism().getPsiqueLevel(occultismType));
 		}
 		getOccultism().setPsiqueLevel(occultismType, psyValue, getLanguage(), getModuleName(), getFaction());
@@ -1401,7 +1397,7 @@ public class CharacterPlayer {
 	public void addOccultismPower(OccultismPower power) throws InvalidOccultismPowerException {
 		final OccultismPath path = OccultismPathFactory.getInstance().getOccultismPath(power);
 		if (getOccultism().addPower(path, power, getLanguage(), getFaction())) {
-			characterModificationHandler.launchOccultismPowerUpdatedListener(power, false);
+			getCharacterModificationHandler().launchOccultismPowerUpdatedListener(power, false);
 		}
 	}
 
@@ -1520,5 +1516,12 @@ public class CharacterPlayer {
 			return false;
 		}
 		return true;
+	}
+
+	public CharacterModificationHandler getCharacterModificationHandler() {
+		if (characterModificationHandler == null) {
+			characterModificationHandler = new CharacterModificationHandler();
+		}
+		return characterModificationHandler;
 	}
 }

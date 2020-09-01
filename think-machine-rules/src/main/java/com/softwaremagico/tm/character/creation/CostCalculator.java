@@ -44,7 +44,7 @@ public class CostCalculator {
 	public static final int PSIQUE_LEVEL_COST = 3;
 	public static final int PATH_LEVEL_COST = 1;
 	public static final int EXTRA_WYRD_COST = 2;
-	public static final int OCCULSTIM_POWER_LEVEL_COST = 1;
+	public static final int OCCULTISM_POWER_LEVEL_COST = 1;
 
 	public static int getCost(CharacterPlayer characterPlayer) throws InvalidXmlElementException {
 		return getCost(characterPlayer, 0, 0);
@@ -151,7 +151,7 @@ public class CostCalculator {
 		for (final Entry<String, List<OccultismPower>> occulstismPathEntry : characterPlayer.getSelectedPowers()
 				.entrySet()) {
 			for (final OccultismPower occultismPower : occulstismPathEntry.getValue()) {
-				cost += occultismPower.getLevel() * OCCULSTIM_POWER_LEVEL_COST;
+				cost += occultismPower.getLevel() * OCCULTISM_POWER_LEVEL_COST;
 			}
 		}
 		cost += characterPlayer.getExtraWyrd() * EXTRA_WYRD_COST;

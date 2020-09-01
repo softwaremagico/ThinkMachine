@@ -241,10 +241,10 @@ public class RandomCharacterTests {
 					+ characterPlayer.getFaction().getBlessings().size());
 			Assert.assertTrue(characterPlayer.getAllBlessings().size() <= BlessingNumberPreferences.HIGH.maximum()
 					+ characterPlayer.getFaction().getBlessings().size());
-		} catch (Error ae) {
+		} catch (Exception e) {
 			final CharacterSheet characterSheet = new CharacterSheet(characterPlayer);
 			System.out.println(characterSheet.toString());
-			throw ae;
+			throw e;
 		}
 	}
 
@@ -258,7 +258,13 @@ public class RandomCharacterTests {
 				SpecializationPreferences.SPECIALIZED, PsiquePathLevelPreferences.HIGH, PsiqueLevelPreferences.HIGH,
 				StatusPreferences.FAIR);
 		randomizeCharacter.createCharacter();
-		Assert.assertTrue(characterPlayer.getSelectedPowers().values().size() > 0);
+		try {
+			Assert.assertTrue(characterPlayer.getSelectedPowers().values().size() > 0);
+		} catch (Exception e) {
+			final CharacterSheet characterSheet = new CharacterSheet(characterPlayer);
+			System.out.println(characterSheet.toString());
+			throw e;
+		}
 	}
 
 	@Test
