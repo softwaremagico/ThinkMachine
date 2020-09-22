@@ -56,7 +56,7 @@ public class ModuleManagerTests {
 	public void copyModule() throws IOException {
 		modulesDirectory = new File(Files.createTempDirectory("Modules_").toString());
 		modulesDirectory.deleteOnExit();
-		MachineLog.info(ModuleManagerTests.class.getName(), "Temporal modules folder '" + modulesDirectory.getAbsolutePath() + "' created.");
+		MachineLog.info(ModuleManagerTests.class.getName(), "Temporal modules folder '{}' created.", modulesDirectory.getAbsolutePath());
 		Files.copy(Paths.get(SOURCE_MODULE_FOLDER + File.separator + MODULE1), Paths.get(modulesDirectory.getPath() + File.separator + MODULE1),
 				StandardCopyOption.REPLACE_EXISTING);
 		Assert.assertEquals(new File(SOURCE_MODULE_FOLDER + File.separator + MODULE1).length(),

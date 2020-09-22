@@ -52,10 +52,10 @@ public class RandomPsique extends RandomSelector<OccultismType> {
 	public void assign() throws InvalidRandomElementSelectedException, InvalidXmlElementException {
 		// Select which type of psique.
 		final OccultismType selectedOccultismType = selectElementByWeight();
-		RandomGenerationLog.info(this.getClass().getName(), "Assinged psique '" + selectedOccultismType + "'.");
+		RandomGenerationLog.info(this.getClass().getName(), "Assinged psique '{}'.", selectedOccultismType);
 		// Select a level of psique.
 		final int level = assignLevelOfPsique(selectedOccultismType);
-		RandomGenerationLog.info(this.getClass().getName(), "Assinged psique level of '" + level + "'.");
+		RandomGenerationLog.info(this.getClass().getName(), "Assinged psique level of '{}'.", level);
 		// Assign to the character.
 		getCharacterPlayer().setPsiqueLevel(selectedOccultismType, level);
 	}

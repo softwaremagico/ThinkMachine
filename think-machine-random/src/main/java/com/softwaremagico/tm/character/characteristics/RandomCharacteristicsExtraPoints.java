@@ -65,7 +65,7 @@ public class RandomCharacteristicsExtraPoints extends RandomCharacteristics {
 					if (selectedCharacteristic.getCharacteristicDefinition().getCharacteristicName() != CharacteristicName.TECH
 							|| (techPreference == null || selectedCharacteristic.getValue() < techPreference.maximum())) {
 						selectedCharacteristic.setValue(selectedCharacteristic.getValue() + 1);
-						RandomGenerationLog.debug(this.getClass().getName(), "Increased value of '" + selectedCharacteristic + "' in 1.");
+						RandomGenerationLog.debug(this.getClass().getName(), "Increased value of '{}' in 1.", selectedCharacteristic);
 						return CostCalculator.CHARACTERISTIC_EXTRA_POINTS_COST;
 					}
 				}

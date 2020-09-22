@@ -77,7 +77,7 @@ public abstract class XmlFactory<T extends Element<T>> {
                 }
             }
             MachineXmlReaderLog.debug(this.getClass().getName(),
-                    "Loaded " + elements.size() + " elements at '" + this.getClass().getSimpleName() + "' from module '" + moduleName + "'..");
+                    "Loaded '{}' elements at '{}' from module '{}'.", elements.size(), this.getClass().getSimpleName(), moduleName);
         }
     }
 

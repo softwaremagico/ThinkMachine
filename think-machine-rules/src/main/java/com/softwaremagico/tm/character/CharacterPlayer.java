@@ -824,7 +824,7 @@ public class CharacterPlayer {
 			throw new InvalidRaceException("Race is null!");
 		}
 		if (!Objects.equals(this.race, race)) {
-			MachineLog.debug(this.getClass().getName(), "Race set to '" + race + "'.");
+			MachineLog.debug(this.getClass().getName(), "Race set to '{}'.", race);
 			this.race = race;
 			for (final Characteristic characteristic : characteristics.values()) {
 				final int raceInitialValue = race
@@ -941,7 +941,6 @@ public class CharacterPlayer {
 			}
 		}
 
-		CostCalculatorLog.debug(this.getClass().getName(), skills.toString());
 		return skillPoints;
 	}
 
@@ -1244,7 +1243,7 @@ public class CharacterPlayer {
 			throw new InvalidFactionException("Faction is null!");
 		}
 		if (!Objects.equals(this.faction, faction)) {
-			MachineLog.debug(this.getClass().getName(), "Faction set to '" + faction + "'.");
+			MachineLog.debug(this.getClass().getName(), "Faction set to '{}'.", faction);
 			this.faction = faction;
 		}
 	}
