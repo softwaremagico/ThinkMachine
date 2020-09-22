@@ -112,7 +112,7 @@ public class RandomMeleeWeapon extends RandomWeapon {
                 2 * (getCharacterPlayer().getCharacteristicValue(CharacteristicName.TECH) - weapon.getTechLevel()));
         RandomGenerationLog.debug(this.getClass().getName(), "Weight tech bonus for '{}' is '{}'.", weapon, MAX_PROBABILITY
                 / Math.pow(10, 2 * (getCharacterPlayer().getCharacteristic(CharacteristicName.TECH).getValue()
-                - weapon.getTechLevel()));
+                - weapon.getTechLevel())));
         if (weight <= 0) {
             // Melee weapons usually has very low tech level.
             weight = 1;
