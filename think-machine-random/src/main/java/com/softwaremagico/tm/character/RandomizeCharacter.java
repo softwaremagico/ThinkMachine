@@ -111,7 +111,8 @@ public class RandomizeCharacter {
 
     public RandomizeCharacter(CharacterPlayer characterPlayer, Integer experiencePoints, Set<IRandomProfile> profiles, Set<IRandomPreference> preferences,
                               Set<AvailableSkill> requiredSkills, Set<AvailableSkill> suggestedSkills, Set<BeneficeDefinition> mandatoryBenefices,
-                              Set<BeneficeDefinition> suggestedBenefices, Set<Weapon> mandatoryWeapons, Set<Armour> mandatoryArmours, Set<Shield> mandatoryShields)
+                              Set<BeneficeDefinition> suggestedBenefices, Set<Weapon> mandatoryWeapons, Set<Armour> mandatoryArmours,
+                              Set<Shield> mandatoryShields)
             throws DuplicatedPreferenceException, TooManyBlessingsException, InvalidXmlElementException {
         this.characterPlayer = characterPlayer;
 
