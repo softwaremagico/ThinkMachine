@@ -59,7 +59,7 @@ public class CustomCharacter {
 			throws InvalidXmlElementException, TooManyBlessingsException, TooManyCyberneticDevicesException,
 			RequiredCyberneticDevicesException, BlessingAlreadyAddedException, BeneficeAlreadyAddedException {
 		CacheHandler.clearCache();
-		final CharacterPlayer player = new CharacterPlayer(language, PathManager.DEFAULT_MODULE_FOLDER);
+		final CharacterPlayer player = new CharacterPlayer(language, moduleName);
 		player.getInfo().addName(new Name("Oliver", language, moduleName, Gender.MALE, null));
 		player.getInfo().setSurname(new Surname("Queen", language, moduleName, null));
 		player.getInfo().setPlayer("Player 1");

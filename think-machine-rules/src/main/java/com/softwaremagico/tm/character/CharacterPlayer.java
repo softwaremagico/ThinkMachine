@@ -229,12 +229,16 @@ public class CharacterPlayer {
         if (availableSkill == null) {
             throw new InvalidSkillException("Null skill is not allowed here.");
         }
+        int previousValue = 0;
         if (skills.get(availableSkill.getUniqueId()) != null) {
-            getCharacterModificationHandler().launchSkillUpdatedListener(availableSkill,
-                    value - skills.get(availableSkill.getUniqueId()).getValue());
+            previousValue = skills.get(availableSkill.getUniqueId()).getValue();
+        } else if (availableSkill.getSkillDefinition().isNatural()) {
+            previousValue = FreeStyleCharacterCreation.getMinInitialNaturalSkillsValues(getInfo().getAge());
         }
         final SelectedSkill skillWithRank = new SelectedSkill(availableSkill, value, false);
         skills.put(availableSkill.getUniqueId(), skillWithRank);
+        getCharacterModificationHandler().launchSkillUpdatedListener(availableSkill,
+                value - previousValue);
     }
 
     private Integer getSkillAssignedRanks(Skill<?> skill) {
@@ -1018,16 +1022,10 @@ public class CharacterPlayer {
 
     public boolean isSkillTrained(AvailableSkill skill) {
         final int skillRanks = getSkillTotalRanks(skill);
-        try {
-            final boolean isNatural = getNaturalSkills().contains(skill);
-            return ((skillRanks > FreeStyleCharacterCreation.getMinInitialNaturalSkillsValues(getInfo().getAge())
-                    && isNatural)
-                    // check ranks and if is natural.
-                    || (skillRanks > 0 && isNatural));
-        } catch (InvalidXmlElementException e) {
-            MachineLog.errorMessage(this.getClass().getName(), e);
-        }
-        return false;
+        return ((skillRanks > FreeStyleCharacterCreation.getMinInitialNaturalSkillsValues(getInfo().getAge())
+                && skill.getSkillDefinition().isNatural())
+                // check ranks and if is natural.
+                || (skillRanks > 0 && skill.getSkillDefinition().isNatural()));
     }
 
     public boolean isCharacteristicTrained(Characteristic characteristic) {

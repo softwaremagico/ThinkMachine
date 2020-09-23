@@ -77,6 +77,19 @@ public class CostCalculator {
 
 
     private void setCostListeners(CharacterPlayer characterPlayer) {
+        currentCharacteristicPoints = new AtomicInteger(0);
+        currentCharacteristicExtraPoints = new AtomicInteger(0);
+        currentSkillsPoints = new AtomicInteger(0);
+        currentSkillsExtraPoints = new AtomicInteger(0);
+        currentTraitsPoints = new AtomicInteger(0);
+        currentTraitsExtraPoints = new AtomicInteger(0);
+        currentOccultismLevelExtraPoints = new AtomicInteger(0);
+        currentOccultismPowersExtraPoints = new AtomicInteger(0);
+        currentWyrdExtraPoints = new AtomicInteger(0);
+        currentCyberneticsExtraPoints = new AtomicInteger(0);
+        fireBirdsExpend = 0f;
+
+
         characterPlayer.getCharacterModificationHandler().addCharacteristicUpdatedListener((characteristic, rankModifications) -> {
             updateCost(currentCharacteristicPoints, FreeStyleCharacterCreation.getCharacteristicsPoints(characterPlayer.getInfo().getAge()),
                     currentCharacteristicExtraPoints, rankModifications,
@@ -141,28 +154,57 @@ public class CostCalculator {
      */
     private void updateCost(AtomicInteger mainPoints, int maximumMainPoints, AtomicInteger extraPoints, int increment,
                             ICurrentPointsChanged currentPointsChanged, ICurrentExtraPointsChanged currentExtraPointsChanged) {
-        if (mainPoints.get() + increment <= maximumMainPoints) {
+        if (mainPoints.get() + increment + extraPoints.get() <= maximumMainPoints) {
             if (extraPoints.get() > 0) {
                 //increment must be negative.
                 mainPoints.addAndGet(extraPoints.get() - increment);
-                currentPointsChanged.updated(extraPoints.get() - increment);
-                currentExtraPointsChanged.updated(0 - extraPoints.get());
+                if (currentPointsChanged != null) {
+                    currentPointsChanged.updated(extraPoints.get() - increment);
+                }
+                if (currentExtraPointsChanged != null) {
+                    currentExtraPointsChanged.updated(0 - extraPoints.get());
+                }
                 extraPoints.set(0);
             } else {
                 mainPoints.addAndGet(increment);
-                currentPointsChanged.updated(increment);
+                if (currentPointsChanged != null) {
+                    currentPointsChanged.updated(increment);
+                }
             }
         } else {
             if (extraPoints.get() > 0) {
-                extraPoints.addAndGet(increment);
-                currentExtraPointsChanged.updated(increment);
-            } else {
+                if (increment > 0) {
+                    extraPoints.addAndGet(increment);
+                    if (currentExtraPointsChanged != null) {
+                        currentExtraPointsChanged.updated(increment);
+                    }
+                } else {
+                    int extraPointIncrement = Math.min(Math.abs(increment), extraPoints.get());
+                    extraPoints.addAndGet(-extraPointIncrement);
+                    currentExtraPointsChanged.updated(-extraPointIncrement);
+                    if (extraPointIncrement < Math.abs(increment)) {
+                        mainPoints.set(-(Math.abs(increment) - extraPointIncrement));
+                        currentPointsChanged.updated(-(Math.abs(increment) - extraPointIncrement));
+                    }
+                }
                 // Not extraPoints spent yet.
-                extraPoints.addAndGet(increment - (maximumMainPoints - mainPoints.get()));
-                currentExtraPointsChanged.updated(increment - (maximumMainPoints - mainPoints.get()));
-                if (mainPoints.get() != maximumMainPoints) {
-                    mainPoints.set(maximumMainPoints);
-                    currentPointsChanged.updated(maximumMainPoints);
+            } else {
+                if (increment > 0) {
+                    extraPoints.addAndGet(increment - (maximumMainPoints - mainPoints.get()));
+                    if (currentExtraPointsChanged != null) {
+                        currentExtraPointsChanged.updated(increment - (maximumMainPoints - mainPoints.get()));
+                    }
+                    if (mainPoints.get() != maximumMainPoints) {
+                        mainPoints.set(maximumMainPoints);
+                        if (currentPointsChanged != null) {
+                            currentPointsChanged.updated(maximumMainPoints);
+                        }
+                    }
+                } else {
+                    mainPoints.set(increment);
+                    if (currentPointsChanged != null) {
+                        currentPointsChanged.updated(increment);
+                    }
                 }
             }
         }
@@ -314,4 +356,47 @@ public class CostCalculator {
         return costCalculatorModificationHandler;
     }
 
+    public int getCurrentCharacteristicPoints() {
+        return currentCharacteristicPoints.get();
+    }
+
+    public int getCurrentCharacteristicExtraPoints() {
+        return currentCharacteristicExtraPoints.get();
+    }
+
+    public int getCurrentSkillsPoints() {
+        return currentSkillsPoints.get();
+    }
+
+    public int getCurrentSkillsExtraPoints() {
+        return currentSkillsExtraPoints.get();
+    }
+
+    public int getCurrentTraitsPoints() {
+        return currentTraitsPoints.get();
+    }
+
+    public int getCurrentTraitsExtraPoints() {
+        return currentTraitsExtraPoints.get();
+    }
+
+    public int getCurrentOccultismLevelExtraPoints() {
+        return currentOccultismLevelExtraPoints.get();
+    }
+
+    public int getCurrentOccultismPowersExtraPoints() {
+        return currentOccultismPowersExtraPoints.get();
+    }
+
+    public int getCurrentWyrdExtraPoints() {
+        return currentWyrdExtraPoints.get();
+    }
+
+    public int getCurrentCyberneticsExtraPoints() {
+        return currentCyberneticsExtraPoints.get();
+    }
+
+    public float getFireBirdsExpend() {
+        return fireBirdsExpend;
+    }
 }
