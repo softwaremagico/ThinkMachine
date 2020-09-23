@@ -157,7 +157,7 @@ public class CostCalculator {
         if (mainPoints.get() + increment + extraPoints.get() <= maximumMainPoints) {
             if (extraPoints.get() > 0) {
                 //increment must be negative.
-                mainPoints.addAndGet(extraPoints.get() - increment);
+                mainPoints.addAndGet(extraPoints.get() + increment);
                 if (currentPointsChanged != null) {
                     currentPointsChanged.updated(extraPoints.get() - increment);
                 }
