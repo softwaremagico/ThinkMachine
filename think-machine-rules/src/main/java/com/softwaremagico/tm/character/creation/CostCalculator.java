@@ -115,6 +115,21 @@ public class CostCalculator {
                     value -> getCostCharacterModificationHandler().launchTraitsPointsUpdatedListeners(value));
         });
         characterPlayer.getCharacterModificationHandler().addOccultismLevelUpdatedListener((occultismType, psyValue) -> {
+            if (currentOccultismLevelExtraPoints.get() == 0) {
+                if (occultismType.getId() == OccultismTypeFactory.PSI_TAG) {
+                    if (psyValue > 0) {
+                        psyValue -= (characterPlayer.getRace() != null ? characterPlayer.getRace().getPsi() : 0);
+                    } else {
+                        psyValue += (characterPlayer.getRace() != null ? characterPlayer.getRace().getPsi() : 0);
+                    }
+                } else if (occultismType.getId() == OccultismTypeFactory.THEURGY_TAG) {
+                    if (psyValue > 0) {
+                        psyValue -= (characterPlayer.getRace() != null ? characterPlayer.getRace().getTheurgy() : 0);
+                    } else {
+                        psyValue += (characterPlayer.getRace() != null ? characterPlayer.getRace().getTheurgy() : 0);
+                    }
+                }
+            }
             updateCost(new AtomicInteger(0), 0,
                     currentOccultismLevelExtraPoints, psyValue,
                     null,

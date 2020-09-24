@@ -1268,6 +1268,14 @@ public class CharacterPlayer {
     }
 
     public int getBasicPsiqueLevel(OccultismType occultismType) {
+        if (getRace() != null) {
+            if (occultismType.getId() == OccultismTypeFactory.PSI_TAG) {
+                return Math.max(getRace().getPsi(), getOccultism().getPsiqueLevel(occultismType));
+            }
+            if (occultismType.getId() == OccultismTypeFactory.THEURGY_TAG) {
+                return Math.max(getRace().getTheurgy(), getOccultism().getPsiqueLevel(occultismType));
+            }
+        }
         return getOccultism().getPsiqueLevel(occultismType);
     }
 
@@ -1279,6 +1287,14 @@ public class CharacterPlayer {
         if (getOccultism().getPsiqueLevel(occultismType) != psyValue) {
             getCharacterModificationHandler().launchOccultismLevelUpdatedListener(occultismType,
                     psyValue - getOccultism().getPsiqueLevel(occultismType));
+        }
+        if (getRace() != null) {
+            if (occultismType.getId() == OccultismTypeFactory.PSI_TAG && psyValue <= getRace().getPsi()) {
+                psyValue = 0;
+            }
+            if (occultismType.getId() == OccultismTypeFactory.THEURGY_TAG && psyValue <= getRace().getTheurgy()) {
+                psyValue = 0;
+            }
         }
         getOccultism().setPsiqueLevel(occultismType, psyValue, getLanguage(), getModuleName(), getFaction());
     }

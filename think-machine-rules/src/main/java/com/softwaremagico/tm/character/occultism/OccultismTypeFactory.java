@@ -35,8 +35,8 @@ public class OccultismTypeFactory extends XmlFactory<OccultismType> {
 	private static final String NAME = "name";
 	private static final String DARK_SIDE = "darkSide";
 
-	private static final String PSI_TAG = "psi";
-	private static final String THEURGY_TAG = "theurgy";
+	public static final String PSI_TAG = "psi";
+	public static final String THEURGY_TAG = "theurgy";
 
 	private static class OccultismTypeFactoryInit {
 		public static final OccultismTypeFactory INSTANCE = new OccultismTypeFactory();

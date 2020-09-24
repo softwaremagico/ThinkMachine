@@ -12,6 +12,7 @@ import com.softwaremagico.tm.character.blessings.BlessingAlreadyAddedException;
 import com.softwaremagico.tm.character.blessings.BlessingFactory;
 import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
+import com.softwaremagico.tm.character.creation.CostCalculator;
 import com.softwaremagico.tm.character.cybernetics.*;
 import com.softwaremagico.tm.character.equipment.armours.ArmourFactory;
 import com.softwaremagico.tm.character.equipment.shields.ShieldFactory;
@@ -19,7 +20,6 @@ import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
 import com.softwaremagico.tm.character.factions.FactionsFactory;
 import com.softwaremagico.tm.character.occultism.OccultismPathFactory;
 import com.softwaremagico.tm.character.occultism.OccultismTypeFactory;
-import com.softwaremagico.tm.character.planets.PlanetFactory;
 import com.softwaremagico.tm.character.races.RaceFactory;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.file.PathManager;
@@ -27,38 +27,20 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 @Test(groups = {"costCalculator"})
-public class CostCalculator {
+public class CostCalculatorTests {
     private static final String LANGUAGE = "es";
     private static final String MODULE = PathManager.DEFAULT_MODULE_FOLDER;
 
     @Test
-    public void createCharacter()
-            throws InvalidXmlElementException, TooManyBlessingsException, TooManyCyberneticDevicesException,
-            RequiredCyberneticDevicesException, BlessingAlreadyAddedException, BeneficeAlreadyAddedException {
+    public void checkCharacteristicsCost() throws InvalidXmlElementException {
         CacheHandler.clearCache();
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
-        player.getInfo().addName(new Name("Oliver", LANGUAGE, MODULE, Gender.MALE, null));
-        player.getInfo().setSurname(new Surname("Queen", LANGUAGE, MODULE, null));
-        player.getInfo().setPlayer("Player 1");
-        player.getInfo().setGender(Gender.MALE);
         player.getInfo().setAge(31);
         player.setRace(RaceFactory.getInstance().getElement("human", LANGUAGE, MODULE));
-        player.getInfo().setPlanet(PlanetFactory.getInstance().getElement("sutek", LANGUAGE, MODULE));
         player.setFaction(FactionsFactory.getInstance().getElement("hazat", LANGUAGE, MODULE));
 
-        player.getInfo().setBirthdate("4996-09-16");
-        player.getInfo().setHair("Moreno");
-        player.getInfo().setEyes("Marrones");
-        player.getInfo().setComplexion("Delgado");
-        player.getInfo().setHeight("1,76m");
-        player.getInfo().setWeight("78kg");
+        CostCalculator costCalculator = new CostCalculator(player);
 
-        com.softwaremagico.tm.character.creation.CostCalculator costCalculator = new com.softwaremagico.tm.character.creation.CostCalculator(player);
-
-        //Min value for STG and DEX is 3!
-        player.setCharacteristic(CharacteristicName.STRENGTH, 2);
-        player.setCharacteristic(CharacteristicName.DEXTERITY, 2);
-        player.setCharacteristic(CharacteristicName.ENDURANCE, 3);
         player.setCharacteristic(CharacteristicName.WITS, 4);
         Assert.assertEquals(costCalculator.getCurrentCharacteristicPoints(), 1);
         player.setCharacteristic(CharacteristicName.PERCEPTION, 5);
@@ -72,6 +54,18 @@ public class CostCalculator {
         player.setCharacteristic(CharacteristicName.FAITH, 9);
         Assert.assertEquals(costCalculator.getCurrentCharacteristicPoints(), 20);
         Assert.assertEquals(costCalculator.getCurrentCharacteristicExtraPoints(), 1);
+
+    }
+
+    @Test
+    public void checkSkillsCost() throws InvalidXmlElementException {
+        CacheHandler.clearCache();
+        final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        player.getInfo().setAge(31);
+        player.setRace(RaceFactory.getInstance().getElement("human", LANGUAGE, MODULE));
+        player.setFaction(FactionsFactory.getInstance().getElement("hazat", LANGUAGE, MODULE));
+
+        CostCalculator costCalculator = new CostCalculator(player);
 
         player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("influence", LANGUAGE, MODULE), 5);
         Assert.assertEquals(costCalculator.getCurrentSkillsPoints(), 2);
@@ -131,9 +125,50 @@ public class CostCalculator {
         player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("energyGuns", LANGUAGE, MODULE), 3);
         Assert.assertEquals(costCalculator.getCurrentSkillsPoints(), 30);
         Assert.assertEquals(costCalculator.getCurrentSkillsExtraPoints(), 1);
+    }
+
+
+    @Test
+    public void checkOccultismLevelCost() throws InvalidXmlElementException {
+        CacheHandler.clearCache();
+        final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        player.getInfo().setAge(31);
+        player.setRace(RaceFactory.getInstance().getElement("obun", LANGUAGE, MODULE));
+        player.setFaction(FactionsFactory.getInstance().getElement("obun", LANGUAGE, MODULE));
+
+        CostCalculator costCalculator = new CostCalculator(player);
 
         player.setPsiqueLevel(OccultismTypeFactory.getPsi(LANGUAGE, MODULE), 4);
-        player.setDarkSideLevel(OccultismTypeFactory.getPsi(LANGUAGE, MODULE), 1);
+        Assert.assertEquals(costCalculator.getCurrentOccultismLevelExtraPoints(), 3);
+
+        player.setPsiqueLevel(OccultismTypeFactory.getPsi(LANGUAGE, MODULE), 0);
+        Assert.assertEquals(costCalculator.getCurrentOccultismLevelExtraPoints(), 0);
+
+        player.setPsiqueLevel(OccultismTypeFactory.getPsi(LANGUAGE, MODULE), 3);
+        Assert.assertEquals(costCalculator.getCurrentOccultismLevelExtraPoints(), 2);
+
+        player.setPsiqueLevel(OccultismTypeFactory.getPsi(LANGUAGE, MODULE), 4);
+        Assert.assertEquals(costCalculator.getCurrentOccultismLevelExtraPoints(), 3);
+
+        player.setPsiqueLevel(OccultismTypeFactory.getPsi(LANGUAGE, MODULE), 1);
+        Assert.assertEquals(costCalculator.getCurrentOccultismLevelExtraPoints(), 0);
+
+        player.setPsiqueLevel(OccultismTypeFactory.getPsi(LANGUAGE, MODULE), 6);
+        Assert.assertEquals(costCalculator.getCurrentOccultismLevelExtraPoints(), 5);
+    }
+
+    @Test
+    public void checkOccultismPowerCost() throws InvalidXmlElementException {
+        CacheHandler.clearCache();
+        final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        player.getInfo().setAge(31);
+        player.setRace(RaceFactory.getInstance().getElement("obun", LANGUAGE, MODULE));
+        player.setFaction(FactionsFactory.getInstance().getElement("obun", LANGUAGE, MODULE));
+
+        CostCalculator costCalculator = new CostCalculator(player);
+
+        player.setPsiqueLevel(OccultismTypeFactory.getPsi(LANGUAGE, MODULE), 6);
+        Assert.assertEquals(costCalculator.getCurrentOccultismLevelExtraPoints(), 5);
 
         player.addOccultismPower(
                 OccultismPathFactory.getInstance().getElement("farHand", player.getLanguage(), player.getModuleName())
@@ -156,6 +191,18 @@ public class CostCalculator {
         player.addOccultismPower(
                 OccultismPathFactory.getInstance().getElement("soma", player.getLanguage(), player.getModuleName())
                         .getOccultismPowers().get("hardening"));
+    }
+
+    @Test
+    public void checkTraitsCost() throws InvalidXmlElementException, TooManyBlessingsException,
+            BlessingAlreadyAddedException, BeneficeAlreadyAddedException {
+        CacheHandler.clearCache();
+        final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        player.getInfo().setAge(31);
+        player.setRace(RaceFactory.getInstance().getElement("human", LANGUAGE, MODULE));
+        player.setFaction(FactionsFactory.getInstance().getElement("hazat", LANGUAGE, MODULE));
+
+        CostCalculator costCalculator = new CostCalculator(player);
 
         player.addBlessing(
                 BlessingFactory.getInstance().getElement("handsome", player.getLanguage(), player.getModuleName()));
@@ -176,6 +223,18 @@ public class CostCalculator {
                 player.getModuleName()));
         player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("shaidan", player.getLanguage(),
                 player.getModuleName()));
+    }
+
+    @Test
+    public void checkCyberneticsCost()
+            throws InvalidXmlElementException, TooManyCyberneticDevicesException, RequiredCyberneticDevicesException {
+        CacheHandler.clearCache();
+        final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        player.getInfo().setAge(31);
+        player.setRace(RaceFactory.getInstance().getElement("human", LANGUAGE, MODULE));
+        player.setFaction(FactionsFactory.getInstance().getElement("hazat", LANGUAGE, MODULE));
+
+        CostCalculator costCalculator = new CostCalculator(player);
 
         SelectedCyberneticDevice engineersEye = player.addCybernetics(CyberneticDeviceFactory.getInstance()
                 .getElement("engineersEye", player.getLanguage(), player.getModuleName()));
@@ -183,6 +242,18 @@ public class CostCalculator {
                 player.getLanguage(), player.getModuleName()));
         player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("jonah", player.getLanguage(),
                 player.getModuleName()));
+    }
+
+    @Test
+    public void checkEquipmentCost()
+            throws InvalidXmlElementException {
+        CacheHandler.clearCache();
+        final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        player.getInfo().setAge(31);
+        player.setRace(RaceFactory.getInstance().getElement("human", LANGUAGE, MODULE));
+        player.setFaction(FactionsFactory.getInstance().getElement("hazat", LANGUAGE, MODULE));
+
+        CostCalculator costCalculator = new CostCalculator(player);
 
         player.addWeapon(WeaponFactory.getInstance().getElement("mace", player.getLanguage(), player.getModuleName()));
         player.addWeapon(

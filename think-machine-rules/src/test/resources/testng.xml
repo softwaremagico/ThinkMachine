@@ -68,7 +68,7 @@
             <class name="com.softwaremagico.tm.txt.ExportTxtTests"/>
             <class name="com.softwaremagico.tm.txt.ExportTxtTests"/>
             <class name="com.softwaremagico.tm.json.JsonTests"/>
-            <class name="com.softwaremagico.tm.characters.CostCalculator"/>
+            <class name="com.softwaremagico.tm.characters.CostCalculatorTests"/>
         </classes>
     </test>
 </suite>

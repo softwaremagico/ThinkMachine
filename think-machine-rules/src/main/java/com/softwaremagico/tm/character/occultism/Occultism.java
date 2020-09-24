@@ -119,12 +119,12 @@ public class Occultism {
 		// Correct level of psi or teurgy
 		if (Objects.equals(path.getOccultismType(), OccultismTypeFactory.getPsi(language, faction.getModuleName()))
 				&& power.getLevel() > getPsiqueLevel(OccultismTypeFactory.getPsi(language, faction.getModuleName()))) {
-			throw new InvalidPsiqueLevelException("Insuficient psi level to acquire '" + power + "'.");
+			throw new InvalidPsiqueLevelException("Insufficient psi level to acquire '" + power + "'.");
 		}
 		if (Objects.equals(path.getOccultismType(), OccultismTypeFactory.getTheurgy(language, faction.getModuleName()))
 				&& power.getLevel() > getPsiqueLevel(
 						OccultismTypeFactory.getTheurgy(language, faction.getModuleName()))) {
-			throw new InvalidPsiqueLevelException("Insuficient theurgy level to acquire '" + power + "'.");
+			throw new InvalidPsiqueLevelException("Insufficient theurgy level to acquire '" + power + "'.");
 		}
 		// Limited to some factions
 		if (!path.getFactionsAllowed().isEmpty() && !path.getFactionsAllowed().contains(faction)) {
