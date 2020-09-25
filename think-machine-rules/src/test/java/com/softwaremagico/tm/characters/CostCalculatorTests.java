@@ -33,7 +33,6 @@ public class CostCalculatorTests {
 
     @Test
     public void checkCharacteristicsCost() throws InvalidXmlElementException {
-        CacheHandler.clearCache();
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.getInfo().setAge(31);
         player.setRace(RaceFactory.getInstance().getElement("human", LANGUAGE, MODULE));
@@ -58,8 +57,32 @@ public class CostCalculatorTests {
     }
 
     @Test
+    public void checkNaturalSkillsCost() throws InvalidXmlElementException {
+        final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        player.getInfo().setAge(31);
+        player.setRace(RaceFactory.getInstance().getElement("human", LANGUAGE, MODULE));
+        player.setFaction(FactionsFactory.getInstance().getElement("hazat", LANGUAGE, MODULE));
+
+        CostCalculator costCalculator = new CostCalculator(player);
+
+        player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("influence", LANGUAGE, MODULE), 5);
+        Assert.assertEquals(costCalculator.getCurrentSkillsPoints(), 2);
+
+        player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("influence", LANGUAGE, MODULE), 0);
+        Assert.assertEquals(costCalculator.getCurrentSkillsPoints(), 0);
+
+        player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("influence", LANGUAGE, MODULE), 3);
+        Assert.assertEquals(costCalculator.getCurrentSkillsPoints(), 0);
+
+        player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("influence", LANGUAGE, MODULE), 4);
+        Assert.assertEquals(costCalculator.getCurrentSkillsPoints(), 1);
+
+        player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("influence", LANGUAGE, MODULE), 5);
+        Assert.assertEquals(costCalculator.getCurrentSkillsPoints(), 2);
+    }
+
+    @Test
     public void checkSkillsCost() throws InvalidXmlElementException {
-        CacheHandler.clearCache();
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.getInfo().setAge(31);
         player.setRace(RaceFactory.getInstance().getElement("human", LANGUAGE, MODULE));
@@ -130,7 +153,6 @@ public class CostCalculatorTests {
 
     @Test
     public void checkOccultismLevelCost() throws InvalidXmlElementException {
-        CacheHandler.clearCache();
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.getInfo().setAge(31);
         player.setRace(RaceFactory.getInstance().getElement("obun", LANGUAGE, MODULE));
@@ -153,13 +175,45 @@ public class CostCalculatorTests {
         player.setPsiqueLevel(OccultismTypeFactory.getPsi(LANGUAGE, MODULE), 1);
         Assert.assertEquals(costCalculator.getCurrentOccultismLevelExtraPoints(), 0);
 
+        player.setPsiqueLevel(OccultismTypeFactory.getPsi(LANGUAGE, MODULE), 4);
+        Assert.assertEquals(costCalculator.getCurrentOccultismLevelExtraPoints(), 3);
+
+        player.setPsiqueLevel(OccultismTypeFactory.getPsi(LANGUAGE, MODULE), 0);
+        Assert.assertEquals(costCalculator.getCurrentOccultismLevelExtraPoints(), 0);
+
+        player.setPsiqueLevel(OccultismTypeFactory.getPsi(LANGUAGE, MODULE), 1);
+        Assert.assertEquals(costCalculator.getCurrentOccultismLevelExtraPoints(), 0);
+
+        player.setPsiqueLevel(OccultismTypeFactory.getPsi(LANGUAGE, MODULE), 1);
+        Assert.assertEquals(costCalculator.getCurrentOccultismLevelExtraPoints(), 0);
+
+        player.setPsiqueLevel(OccultismTypeFactory.getPsi(LANGUAGE, MODULE), 0);
+        Assert.assertEquals(costCalculator.getCurrentOccultismLevelExtraPoints(), 0);
+
+        player.setPsiqueLevel(OccultismTypeFactory.getPsi(LANGUAGE, MODULE), 6);
+        Assert.assertEquals(costCalculator.getCurrentOccultismLevelExtraPoints(), 5);
+
+        player.setPsiqueLevel(OccultismTypeFactory.getPsi(LANGUAGE, MODULE), 5);
+        Assert.assertEquals(costCalculator.getCurrentOccultismLevelExtraPoints(), 4);
+
+        player.setPsiqueLevel(OccultismTypeFactory.getPsi(LANGUAGE, MODULE), 6);
+        Assert.assertEquals(costCalculator.getCurrentOccultismLevelExtraPoints(), 5);
+
+        player.setPsiqueLevel(OccultismTypeFactory.getPsi(LANGUAGE, MODULE), 7);
+        Assert.assertEquals(costCalculator.getCurrentOccultismLevelExtraPoints(), 6);
+
+        player.setPsiqueLevel(OccultismTypeFactory.getPsi(LANGUAGE, MODULE), 1);
+        Assert.assertEquals(costCalculator.getCurrentOccultismLevelExtraPoints(), 0);
+
+        player.setPsiqueLevel(OccultismTypeFactory.getPsi(LANGUAGE, MODULE), 0);
+        Assert.assertEquals(costCalculator.getCurrentOccultismLevelExtraPoints(), 0);
+
         player.setPsiqueLevel(OccultismTypeFactory.getPsi(LANGUAGE, MODULE), 6);
         Assert.assertEquals(costCalculator.getCurrentOccultismLevelExtraPoints(), 5);
     }
 
     @Test
     public void checkOccultismPowerCost() throws InvalidXmlElementException {
-        CacheHandler.clearCache();
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.getInfo().setAge(31);
         player.setRace(RaceFactory.getInstance().getElement("obun", LANGUAGE, MODULE));
@@ -196,7 +250,6 @@ public class CostCalculatorTests {
     @Test
     public void checkTraitsCost() throws InvalidXmlElementException, TooManyBlessingsException,
             BlessingAlreadyAddedException, BeneficeAlreadyAddedException {
-        CacheHandler.clearCache();
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.getInfo().setAge(31);
         player.setRace(RaceFactory.getInstance().getElement("human", LANGUAGE, MODULE));
@@ -228,7 +281,6 @@ public class CostCalculatorTests {
     @Test
     public void checkCyberneticsCost()
             throws InvalidXmlElementException, TooManyCyberneticDevicesException, RequiredCyberneticDevicesException {
-        CacheHandler.clearCache();
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.getInfo().setAge(31);
         player.setRace(RaceFactory.getInstance().getElement("human", LANGUAGE, MODULE));
@@ -247,7 +299,6 @@ public class CostCalculatorTests {
     @Test
     public void checkEquipmentCost()
             throws InvalidXmlElementException {
-        CacheHandler.clearCache();
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.getInfo().setAge(31);
         player.setRace(RaceFactory.getInstance().getElement("human", LANGUAGE, MODULE));

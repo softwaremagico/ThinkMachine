@@ -92,52 +92,44 @@ public class CostCalculator {
 
         characterPlayer.getCharacterModificationHandler().addCharacteristicUpdatedListener((characteristic, rankModifications) -> {
             updateCost(currentCharacteristicPoints, FreeStyleCharacterCreation.getCharacteristicsPoints(characterPlayer.getInfo().getAge()),
-                    currentCharacteristicExtraPoints, rankModifications,
+                    currentCharacteristicExtraPoints, rankModifications, 0,
                     value -> getCostCharacterModificationHandler().launchCharacteristicPointsUpdatedListeners(value),
                     value -> getCostCharacterModificationHandler().launchCharacteristicExtraPointsUpdatedListeners(value));
         });
         characterPlayer.getCharacterModificationHandler().addSkillUpdateListener((skill, rankModifications) -> {
             updateCost(currentSkillsPoints, FreeStyleCharacterCreation.getSkillsPoints(characterPlayer.getInfo().getAge()),
-                    currentSkillsExtraPoints, rankModifications,
+                    currentSkillsExtraPoints, rankModifications, skill.getSkillDefinition().isNatural() ?
+                            FreeStyleCharacterCreation.getMinInitialNaturalSkillsValues(characterPlayer.getInfo().getAge()) : 0,
                     value -> getCostCharacterModificationHandler().launchSkillsPointsUpdatedListeners(value),
                     value -> getCostCharacterModificationHandler().launchSkillsExtraPointsUpdatedListeners(value));
         });
         characterPlayer.getCharacterModificationHandler().addBeneficesUpdatedListener((benefice, removed) -> {
             updateCost(currentTraitsPoints, FreeStyleCharacterCreation.getSkillsPoints(characterPlayer.getInfo().getAge()),
-                    currentTraitsExtraPoints, removed ? -benefice.getCost() : benefice.getCost(),
+                    currentTraitsExtraPoints, removed ? -benefice.getCost() : benefice.getCost(), 0,
                     value -> getCostCharacterModificationHandler().launchTraitsPointsUpdatedListeners(value),
                     value -> getCostCharacterModificationHandler().launchTraitsPointsUpdatedListeners(value));
         });
         characterPlayer.getCharacterModificationHandler().addBlessingUpdatedListener((blessing, removed) -> {
             updateCost(currentTraitsPoints, FreeStyleCharacterCreation.getSkillsPoints(characterPlayer.getInfo().getAge()),
-                    currentTraitsExtraPoints, removed ? -blessing.getCost() : blessing.getCost(),
+                    currentTraitsExtraPoints, removed ? -blessing.getCost() : blessing.getCost(), 0,
                     value -> getCostCharacterModificationHandler().launchTraitsPointsUpdatedListeners(value),
                     value -> getCostCharacterModificationHandler().launchTraitsPointsUpdatedListeners(value));
         });
         characterPlayer.getCharacterModificationHandler().addOccultismLevelUpdatedListener((occultismType, psyValue) -> {
-            if (currentOccultismLevelExtraPoints.get() == 0) {
-                if (occultismType.getId() == OccultismTypeFactory.PSI_TAG) {
-                    if (psyValue > 0) {
-                        psyValue -= (characterPlayer.getRace() != null ? characterPlayer.getRace().getPsi() : 0);
-                    } else {
-                        psyValue += (characterPlayer.getRace() != null ? characterPlayer.getRace().getPsi() : 0);
-                    }
-                } else if (occultismType.getId() == OccultismTypeFactory.THEURGY_TAG) {
-                    if (psyValue > 0) {
-                        psyValue -= (characterPlayer.getRace() != null ? characterPlayer.getRace().getTheurgy() : 0);
-                    } else {
-                        psyValue += (characterPlayer.getRace() != null ? characterPlayer.getRace().getTheurgy() : 0);
-                    }
-                }
+            int defaultValue = 0;
+            if (occultismType.getId() == OccultismTypeFactory.PSI_TAG) {
+                defaultValue = (characterPlayer.getRace() != null ? characterPlayer.getRace().getPsi() : 0);
+            } else if (occultismType.getId() == OccultismTypeFactory.THEURGY_TAG) {
+                defaultValue = (characterPlayer.getRace() != null ? characterPlayer.getRace().getTheurgy() : 0);
             }
             updateCost(new AtomicInteger(0), 0,
-                    currentOccultismLevelExtraPoints, psyValue,
+                    currentOccultismLevelExtraPoints, psyValue, defaultValue,
                     null,
                     value -> getCostCharacterModificationHandler().launchOccultismLevelExtraPointUpdatedListeners(value));
         });
         characterPlayer.getCharacterModificationHandler().addOccultismPowerUpdatedListener((power, removed) -> {
             updateCost(new AtomicInteger(0), 0,
-                    currentOccultismPowersExtraPoints, removed ? -power.getCost() : power.getCost(),
+                    currentOccultismPowersExtraPoints, removed ? -power.getCost() : power.getCost(), 0,
                     null,
                     value -> getCostCharacterModificationHandler().launchOccultismPowerExtraPointUpdatedListeners(value));
         });
@@ -149,14 +141,18 @@ public class CostCalculator {
         });
         characterPlayer.getCharacterModificationHandler().addCyberneticDeviceUpdatedListener((device, removed) -> {
             updateCost(new AtomicInteger(0), 0,
-                    currentCyberneticsExtraPoints, removed ? -device.getCost() : device.getCost(),
+                    currentCyberneticsExtraPoints, removed ? -device.getCost() : device.getCost(), 0,
                     null,
                     value -> getCostCharacterModificationHandler().launchCyberneticExtraPointsListeners(value));
         });
-        characterPlayer.getCharacterModificationHandler().addEquipmentUpdatedListener((equipment, removed) -> {
-            fireBirdsExpend += (removed ? -equipment.getCost() : equipment.getCost());
-            getCostCharacterModificationHandler().launchFirebirdSpendListeners((removed ? -equipment.getCost() : equipment.getCost()));
-        });
+        characterPlayer.getCharacterModificationHandler().
+
+                addEquipmentUpdatedListener((equipment, removed) ->
+
+                {
+                    fireBirdsExpend += (removed ? -equipment.getCost() : equipment.getCost());
+                    getCostCharacterModificationHandler().launchFirebirdSpendListeners((removed ? -equipment.getCost() : equipment.getCost()));
+                });
     }
 
     /**
@@ -167,8 +163,13 @@ public class CostCalculator {
      * @param extraPoints       extra points assigned after all main points are consumed.
      * @param increment         current change on the value.
      */
-    private void updateCost(AtomicInteger mainPoints, int maximumMainPoints, AtomicInteger extraPoints, int increment,
+    private void updateCost(AtomicInteger mainPoints, int maximumMainPoints, AtomicInteger extraPoints, int increment, int defaultValue,
                             ICurrentPointsChanged currentPointsChanged, ICurrentExtraPointsChanged currentExtraPointsChanged) {
+        if ((extraPoints.get() == 0 && mainPoints.get() == 0)) {
+            increment += (increment > 0) ? -defaultValue : defaultValue;
+        }
+
+
         if (mainPoints.get() + increment + extraPoints.get() <= maximumMainPoints) {
             if (extraPoints.get() > 0) {
                 //increment must be negative.

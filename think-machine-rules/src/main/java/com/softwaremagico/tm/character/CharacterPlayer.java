@@ -229,16 +229,24 @@ public class CharacterPlayer {
         if (availableSkill == null) {
             throw new InvalidSkillException("Null skill is not allowed here.");
         }
+
         int previousValue = 0;
         if (skills.get(availableSkill.getUniqueId()) != null) {
             previousValue = skills.get(availableSkill.getUniqueId()).getValue();
-        } else if (availableSkill.getSkillDefinition().isNatural()) {
-            previousValue = FreeStyleCharacterCreation.getMinInitialNaturalSkillsValues(getInfo().getAge());
+        }
+        if (availableSkill.getSkillDefinition().isNatural() && value <= FreeStyleCharacterCreation.getMinInitialNaturalSkillsValues(getInfo().getAge())) {
+            value = 0;
+        }
+        if (previousValue != value) {
+            getCharacterModificationHandler().launchSkillUpdatedListener(availableSkill,
+                    value - previousValue);
         }
         final SelectedSkill skillWithRank = new SelectedSkill(availableSkill, value, false);
-        skills.put(availableSkill.getUniqueId(), skillWithRank);
-        getCharacterModificationHandler().launchSkillUpdatedListener(availableSkill,
-                value - previousValue);
+        if (value == 0) {
+            skills.remove(availableSkill.getUniqueId());
+        } else {
+            skills.put(availableSkill.getUniqueId(), skillWithRank);
+        }
     }
 
     private Integer getSkillAssignedRanks(Skill<?> skill) {
@@ -1284,10 +1292,6 @@ public class CharacterPlayer {
     }
 
     public void setPsiqueLevel(OccultismType occultismType, int psyValue) throws InvalidPsiqueLevelException {
-        if (getOccultism().getPsiqueLevel(occultismType) != psyValue) {
-            getCharacterModificationHandler().launchOccultismLevelUpdatedListener(occultismType,
-                    psyValue - getOccultism().getPsiqueLevel(occultismType));
-        }
         if (getRace() != null) {
             if (occultismType.getId() == OccultismTypeFactory.PSI_TAG && psyValue <= getRace().getPsi()) {
                 psyValue = 0;
@@ -1295,6 +1299,10 @@ public class CharacterPlayer {
             if (occultismType.getId() == OccultismTypeFactory.THEURGY_TAG && psyValue <= getRace().getTheurgy()) {
                 psyValue = 0;
             }
+        }
+        if (getOccultism().getPsiqueLevel(occultismType) != psyValue) {
+            getCharacterModificationHandler().launchOccultismLevelUpdatedListener(occultismType,
+                    psyValue - getOccultism().getPsiqueLevel(occultismType));
         }
         getOccultism().setPsiqueLevel(occultismType, psyValue, getLanguage(), getModuleName(), getFaction());
     }
