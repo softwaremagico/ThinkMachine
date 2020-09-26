@@ -52,11 +52,11 @@ public class CharacterModificationHandler {
     }
 
     public interface ISkillUpdated {
-        void updated(AvailableSkill skill, int rankModifications);
+        void updated(AvailableSkill skill, int previousRank, int newRank, int minimumRank);
     }
 
     public interface ICharacteristicUpdated {
-        void updated(Characteristic characteristic, int rankModifications);
+        void updated(Characteristic characteristic, int previousRank, int newRank, int minimumRank);
     }
 
     public interface IBlessingUpdated {
@@ -68,7 +68,7 @@ public class CharacterModificationHandler {
     }
 
     public interface IOccultismLevelUpdated {
-        void updated(OccultismType occultismType, int psyValue);
+        void updated(OccultismType occultismType, int previousPsyValue, int newPsyValue, int minimumPsyValue);
     }
 
     public interface IOccultismPowerUpdated {
@@ -135,15 +135,15 @@ public class CharacterModificationHandler {
         equipmentUpdatedListeners.add(listener);
     }
 
-    public void launchSkillUpdatedListener(AvailableSkill skill, int rankModifications) {
+    public void launchSkillUpdatedListener(AvailableSkill skill, int previousRank, int newRank, int minimumRank) {
         for (final ISkillUpdated listener : skillUpdatedListeners) {
-            listener.updated(skill, rankModifications);
+            listener.updated(skill, previousRank, newRank, minimumRank);
         }
     }
 
-    public void launchCharacteristicUpdatedListener(Characteristic characteristic, int rankModifications) {
+    public void launchCharacteristicUpdatedListener(Characteristic characteristic, int previousRank, int newRank, int minimumRank) {
         for (final ICharacteristicUpdated listener : characteristicUpdatedListeners) {
-            listener.updated(characteristic, rankModifications);
+            listener.updated(characteristic, previousRank, newRank, minimumRank);
         }
     }
 
@@ -159,9 +159,9 @@ public class CharacterModificationHandler {
         }
     }
 
-    public void launchOccultismLevelUpdatedListener(OccultismType occultismType, int psyValue) {
+    public void launchOccultismLevelUpdatedListener(OccultismType occultismType, int previousPsyValue, int newPsyValue, int minimumPsyValue) {
         for (final IOccultismLevelUpdated listener : occultismLevelUpdatedListeners) {
-            listener.updated(occultismType, psyValue);
+            listener.updated(occultismType, previousPsyValue, newPsyValue, minimumPsyValue);
         }
     }
 

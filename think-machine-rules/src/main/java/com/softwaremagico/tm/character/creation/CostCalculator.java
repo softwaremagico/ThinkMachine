@@ -89,47 +89,41 @@ public class CostCalculator {
         currentCyberneticsExtraPoints = new AtomicInteger(0);
         fireBirdsExpend = 0f;
 
-
-        characterPlayer.getCharacterModificationHandler().addCharacteristicUpdatedListener((characteristic, rankModifications) -> {
-            updateCost(currentCharacteristicPoints, FreeStyleCharacterCreation.getCharacteristicsPoints(characterPlayer.getInfo().getAge()),
-                    currentCharacteristicExtraPoints, rankModifications, 0,
-                    value -> getCostCharacterModificationHandler().launchCharacteristicPointsUpdatedListeners(value),
-                    value -> getCostCharacterModificationHandler().launchCharacteristicExtraPointsUpdatedListeners(value));
-        });
-        characterPlayer.getCharacterModificationHandler().addSkillUpdateListener((skill, rankModifications) -> {
+        characterPlayer.getCharacterModificationHandler().addCharacteristicUpdatedListener(
+                (characteristic, previousRank, newRank, minimumRank) -> {
+                    updateCost(currentCharacteristicPoints, FreeStyleCharacterCreation.getCharacteristicsPoints(characterPlayer.getInfo().getAge()),
+                            currentCharacteristicExtraPoints, previousRank, newRank, minimumRank,
+                            value -> getCostCharacterModificationHandler().launchCharacteristicPointsUpdatedListeners(value),
+                            value -> getCostCharacterModificationHandler().launchCharacteristicExtraPointsUpdatedListeners(value));
+                });
+        characterPlayer.getCharacterModificationHandler().addSkillUpdateListener((skill, previousRank, newRank, minimumRank) -> {
             updateCost(currentSkillsPoints, FreeStyleCharacterCreation.getSkillsPoints(characterPlayer.getInfo().getAge()),
-                    currentSkillsExtraPoints, rankModifications, skill.getSkillDefinition().isNatural() ?
-                            FreeStyleCharacterCreation.getMinInitialNaturalSkillsValues(characterPlayer.getInfo().getAge()) : 0,
+                    currentSkillsExtraPoints, previousRank, newRank, minimumRank,
                     value -> getCostCharacterModificationHandler().launchSkillsPointsUpdatedListeners(value),
                     value -> getCostCharacterModificationHandler().launchSkillsExtraPointsUpdatedListeners(value));
         });
         characterPlayer.getCharacterModificationHandler().addBeneficesUpdatedListener((benefice, removed) -> {
             updateCost(currentTraitsPoints, FreeStyleCharacterCreation.getSkillsPoints(characterPlayer.getInfo().getAge()),
-                    currentTraitsExtraPoints, removed ? -benefice.getCost() : benefice.getCost(), 0,
+                    currentTraitsExtraPoints, removed ? benefice.getCost() : 0, removed ? 0 : benefice.getCost(), 0,
                     value -> getCostCharacterModificationHandler().launchTraitsPointsUpdatedListeners(value),
                     value -> getCostCharacterModificationHandler().launchTraitsPointsUpdatedListeners(value));
         });
         characterPlayer.getCharacterModificationHandler().addBlessingUpdatedListener((blessing, removed) -> {
             updateCost(currentTraitsPoints, FreeStyleCharacterCreation.getSkillsPoints(characterPlayer.getInfo().getAge()),
-                    currentTraitsExtraPoints, removed ? -blessing.getCost() : blessing.getCost(), 0,
+                    currentTraitsExtraPoints, removed ? blessing.getCost() : 0, removed ? 0 : blessing.getCost(), 0,
                     value -> getCostCharacterModificationHandler().launchTraitsPointsUpdatedListeners(value),
                     value -> getCostCharacterModificationHandler().launchTraitsPointsUpdatedListeners(value));
         });
-        characterPlayer.getCharacterModificationHandler().addOccultismLevelUpdatedListener((occultismType, psyValue) -> {
-            int defaultValue = 0;
-            if (occultismType.getId() == OccultismTypeFactory.PSI_TAG) {
-                defaultValue = (characterPlayer.getRace() != null ? characterPlayer.getRace().getPsi() : 0);
-            } else if (occultismType.getId() == OccultismTypeFactory.THEURGY_TAG) {
-                defaultValue = (characterPlayer.getRace() != null ? characterPlayer.getRace().getTheurgy() : 0);
-            }
-            updateCost(new AtomicInteger(0), 0,
-                    currentOccultismLevelExtraPoints, psyValue, defaultValue,
-                    null,
-                    value -> getCostCharacterModificationHandler().launchOccultismLevelExtraPointUpdatedListeners(value));
-        });
+        characterPlayer.getCharacterModificationHandler().addOccultismLevelUpdatedListener(
+                (occultismType, previousPsyValue, newPsyValue, minimumPsyValue) -> {
+                    updateCost(new AtomicInteger(0), 0,
+                            currentOccultismLevelExtraPoints, previousPsyValue, newPsyValue, minimumPsyValue,
+                            null,
+                            value -> getCostCharacterModificationHandler().launchOccultismLevelExtraPointUpdatedListeners(value));
+                });
         characterPlayer.getCharacterModificationHandler().addOccultismPowerUpdatedListener((power, removed) -> {
             updateCost(new AtomicInteger(0), 0,
-                    currentOccultismPowersExtraPoints, removed ? -power.getCost() : power.getCost(), 0,
+                    currentOccultismPowersExtraPoints, removed ? power.getCost() : 0, removed ? 0 : power.getCost(), 0,
                     null,
                     value -> getCostCharacterModificationHandler().launchOccultismPowerExtraPointUpdatedListeners(value));
         });
@@ -141,7 +135,7 @@ public class CostCalculator {
         });
         characterPlayer.getCharacterModificationHandler().addCyberneticDeviceUpdatedListener((device, removed) -> {
             updateCost(new AtomicInteger(0), 0,
-                    currentCyberneticsExtraPoints, removed ? -device.getCost() : device.getCost(), 0,
+                    currentCyberneticsExtraPoints, removed ? device.getCost() : 0, removed ? 0 : device.getCost(), 0,
                     null,
                     value -> getCostCharacterModificationHandler().launchCyberneticExtraPointsListeners(value));
         });
@@ -158,17 +152,19 @@ public class CostCalculator {
     /**
      * Calculates the cost variation for a points category (skill, characteristics, traits).
      *
-     * @param mainPoints        points by default assigned to a category (skill, characteristics, traits)
-     * @param maximumMainPoints total maximum points available to the category
-     * @param extraPoints       extra points assigned after all main points are consumed.
-     * @param increment         current change on the value.
+     * @param mainPoints                points by default assigned to a category (skill, characteristics, traits)
+     * @param maximumMainPoints         total maximum points available to the category
+     * @param extraPoints               extra points assigned after all main points are consumed.
+     * @param previousValue             already existing value.
+     * @param newValue                  value to change.
+     * @param defaultValue              initial starting value.
+     * @param currentPointsChanged      callback when basic points are changed.
+     * @param currentExtraPointsChanged callback when extra points are changed.
      */
-    private void updateCost(AtomicInteger mainPoints, int maximumMainPoints, AtomicInteger extraPoints, int increment, int defaultValue,
-                            ICurrentPointsChanged currentPointsChanged, ICurrentExtraPointsChanged currentExtraPointsChanged) {
-        if ((extraPoints.get() == 0 && mainPoints.get() == 0)) {
-            increment += (increment > 0) ? -defaultValue : defaultValue;
-        }
-
+    private void updateCost(AtomicInteger mainPoints, int maximumMainPoints, AtomicInteger extraPoints, int previousValue,
+                            int newValue, int defaultValue, ICurrentPointsChanged currentPointsChanged,
+                            ICurrentExtraPointsChanged currentExtraPointsChanged) {
+        int increment = Math.max(newValue, defaultValue) - Math.max(previousValue, defaultValue);
 
         if (mainPoints.get() + increment + extraPoints.get() <= maximumMainPoints) {
             if (extraPoints.get() > 0) {

@@ -239,7 +239,8 @@ public class CharacterPlayer {
         }
         if (previousValue != value) {
             getCharacterModificationHandler().launchSkillUpdatedListener(availableSkill,
-                    value - previousValue);
+                    previousValue, value, availableSkill.getSkillDefinition().isNatural() ?
+                            FreeStyleCharacterCreation.getMinInitialNaturalSkillsValues(getInfo().getAge()) : 0);
         }
         final SelectedSkill skillWithRank = new SelectedSkill(availableSkill, value, false);
         if (value == 0) {
@@ -1008,7 +1009,7 @@ public class CharacterPlayer {
         }
         getCharacterModificationHandler().launchCharacteristicUpdatedListener(
                 getCharacteristic(characteristicName.getId()),
-                value - getCharacteristic(characteristicName.getId()).getValue());
+                getCharacteristic(characteristicName.getId()).getValue(), value, getRaceCharacteristicStartingValue(characteristicName));
         getCharacteristic(characteristicName.getId()).setValue(value);
     }
 
@@ -1292,17 +1293,16 @@ public class CharacterPlayer {
     }
 
     public void setPsiqueLevel(OccultismType occultismType, int psyValue) throws InvalidPsiqueLevelException {
+        int defaultValue = 0;
         if (getRace() != null) {
-            if (occultismType.getId() == OccultismTypeFactory.PSI_TAG && psyValue <= getRace().getPsi()) {
-                psyValue = 0;
-            }
-            if (occultismType.getId() == OccultismTypeFactory.THEURGY_TAG && psyValue <= getRace().getTheurgy()) {
-                psyValue = 0;
+            if (Objects.equals(occultismType.getId(), OccultismTypeFactory.PSI_TAG) ||
+                    Objects.equals(occultismType.getId(), OccultismTypeFactory.THEURGY_TAG)) {
+                defaultValue = 1;
             }
         }
         if (getOccultism().getPsiqueLevel(occultismType) != psyValue) {
             getCharacterModificationHandler().launchOccultismLevelUpdatedListener(occultismType,
-                    psyValue - getOccultism().getPsiqueLevel(occultismType));
+                    getOccultism().getPsiqueLevel(occultismType), psyValue, defaultValue);
         }
         getOccultism().setPsiqueLevel(occultismType, psyValue, getLanguage(), getModuleName(), getFaction());
     }

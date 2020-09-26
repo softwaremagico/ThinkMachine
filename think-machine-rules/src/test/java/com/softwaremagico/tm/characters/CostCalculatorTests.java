@@ -148,6 +148,15 @@ public class CostCalculatorTests {
         player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("energyGuns", LANGUAGE, MODULE), 3);
         Assert.assertEquals(costCalculator.getCurrentSkillsPoints(), 30);
         Assert.assertEquals(costCalculator.getCurrentSkillsExtraPoints(), 1);
+        player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("influence", LANGUAGE, MODULE), 0);
+        Assert.assertEquals(costCalculator.getCurrentSkillsPoints(), 29);
+        Assert.assertEquals(costCalculator.getCurrentSkillsExtraPoints(), 0);
+        player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("influence", LANGUAGE, MODULE), 5);
+        Assert.assertEquals(costCalculator.getCurrentSkillsPoints(), 30);
+        Assert.assertEquals(costCalculator.getCurrentSkillsExtraPoints(), 1);
+        player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("influence", LANGUAGE, MODULE), 6);
+        Assert.assertEquals(costCalculator.getCurrentSkillsPoints(), 30);
+        Assert.assertEquals(costCalculator.getCurrentSkillsExtraPoints(), 2);
     }
 
 
