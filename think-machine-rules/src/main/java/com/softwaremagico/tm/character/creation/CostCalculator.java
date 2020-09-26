@@ -41,7 +41,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class CostCalculator {
     public static final int CHARACTERISTIC_EXTRA_POINTS_COST = 3;
     public static final int SKILL_EXTRA_POINTS_COST = 1;
-
+    public static final int TRAITS_EXTRA_POINTS_COST = 1;
     public static final int PSIQUE_LEVEL_COST = 3;
     public static final int PATH_LEVEL_COST = 1;
     public static final int EXTRA_WYRD_COST = 2;
@@ -222,14 +222,17 @@ public class CostCalculator {
         }
     }
 
-    public int getIncrementalCost() {
+    public int getTotalExtraCost() {
         return currentCharacteristicExtraPoints.get() * CHARACTERISTIC_EXTRA_POINTS_COST +
-                currentSkillsPoints.get() * SKILL_EXTRA_POINTS_COST +
+                currentSkillsExtraPoints.get() * SKILL_EXTRA_POINTS_COST +
+                currentTraitsExtraPoints.get() * TRAITS_EXTRA_POINTS_COST +
                 currentOccultismLevelExtraPoints.get() * PSIQUE_LEVEL_COST +
                 currentOccultismPowersExtraPoints.get() * PATH_LEVEL_COST +
                 currentCyberneticsExtraPoints.get() * CYBERNETIC_DEVICE_COST +
                 currentWyrdExtraPoints.get() * EXTRA_WYRD_COST;
     }
+
+
 
     public static int getCost(CharacterPlayer characterPlayer) throws InvalidXmlElementException {
         return getCost(characterPlayer, 0, 0);

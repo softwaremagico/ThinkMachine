@@ -602,6 +602,20 @@ public class CharacterPlayer {
         return selectedCiberneticDevice;
     }
 
+    public void removeCybernetics(CyberneticDevice cyberneticDevice) {
+        SelectedCyberneticDevice existingDevice = null;
+        for (SelectedCyberneticDevice selectedCyberneticDevice : getCyberneticList().getElements()) {
+            if (Objects.equals(selectedCyberneticDevice.getCyberneticDevice(), cyberneticDevice)) {
+                existingDevice = selectedCyberneticDevice;
+                break;
+            }
+        }
+        if (existingDevice != null) {
+            getCyberneticList().removeElement(existingDevice);
+            getCharacterModificationHandler().launchCyberneticDeviceUpdatedListener(existingDevice, true);
+        }
+    }
+
     public int getCyberneticsIncompatibility() {
         int incompatibility = 0;
         for (final SelectedCyberneticDevice device : getCybernetics()) {
