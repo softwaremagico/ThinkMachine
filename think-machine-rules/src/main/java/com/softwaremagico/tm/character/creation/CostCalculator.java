@@ -164,7 +164,7 @@ public class CostCalculator {
     private void updateCost(AtomicInteger mainPoints, int maximumMainPoints, AtomicInteger extraPoints, int previousValue,
                             int newValue, int defaultValue, ICurrentPointsChanged currentPointsChanged,
                             ICurrentExtraPointsChanged currentExtraPointsChanged) {
-        int increment = Math.max(newValue, defaultValue) - Math.max(previousValue, defaultValue);
+        final int increment = Math.max(newValue, defaultValue) - Math.max(previousValue, defaultValue);
 
         if (mainPoints.get() + increment + extraPoints.get() <= maximumMainPoints) {
             if (extraPoints.get() > 0) {
@@ -191,7 +191,7 @@ public class CostCalculator {
                         currentExtraPointsChanged.updated(increment);
                     }
                 } else {
-                    int extraPointIncrement = Math.min(Math.abs(increment), extraPoints.get());
+                    final int extraPointIncrement = Math.min(Math.abs(increment), extraPoints.get());
                     extraPoints.addAndGet(-extraPointIncrement);
                     currentExtraPointsChanged.updated(-extraPointIncrement);
                     if (extraPointIncrement < Math.abs(increment)) {

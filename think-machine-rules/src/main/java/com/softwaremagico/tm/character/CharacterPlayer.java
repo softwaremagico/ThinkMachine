@@ -604,7 +604,7 @@ public class CharacterPlayer {
 
     public void removeCybernetics(CyberneticDevice cyberneticDevice) {
         SelectedCyberneticDevice existingDevice = null;
-        for (SelectedCyberneticDevice selectedCyberneticDevice : getCyberneticList().getElements()) {
+        for (final SelectedCyberneticDevice selectedCyberneticDevice : getCyberneticList().getElements()) {
             if (Objects.equals(selectedCyberneticDevice.getCyberneticDevice(), cyberneticDevice)) {
                 existingDevice = selectedCyberneticDevice;
                 break;
