@@ -63,10 +63,12 @@ public class CostCalculator {
     private AtomicInteger currentWyrdExtraPoints;
     private AtomicInteger currentCyberneticsExtraPoints;
     private float fireBirdsExpend;
+    private final CharacterPlayer characterPlayer;
 
     public CostCalculator(CharacterPlayer characterPlayer) {
-        setCostListeners(characterPlayer);
-        updateCost(characterPlayer);
+        this.characterPlayer = characterPlayer;
+        setCostListeners();
+        updateCost();
     }
 
     public interface ICurrentPointsChanged {
@@ -77,7 +79,7 @@ public class CostCalculator {
         void updated(int value);
     }
 
-    public CharacterProgressionStatus getStatus(CharacterPlayer characterPlayer) {
+    public CharacterProgressionStatus getStatus() {
         if (characterPlayer.getRace() == null || characterPlayer.getInfo() == null || characterPlayer.getFaction() == null) {
             return CharacterProgressionStatus.UNDEFINED;
         }
@@ -99,7 +101,7 @@ public class CostCalculator {
         return CharacterProgressionStatus.FINISHED;
     }
 
-    private void updateCost(CharacterPlayer characterPlayer) {
+    private void updateCost() {
         if (characterPlayer != null && characterPlayer.getInfo() != null) {
             currentCharacteristicPoints.set(Math.min(characterPlayer.getCharacteristicsTotalPoints(),
                     FreeStyleCharacterCreation.getCharacteristicsPoints(characterPlayer.getInfo().getAge())));
@@ -142,7 +144,7 @@ public class CostCalculator {
         }
     }
 
-    private void setCostListeners(CharacterPlayer characterPlayer) {
+    private void setCostListeners() {
         currentCharacteristicPoints = new AtomicInteger(0);
         currentCharacteristicExtraPoints = new AtomicInteger(0);
         currentSkillsPoints = new AtomicInteger(0);
@@ -294,6 +296,10 @@ public class CostCalculator {
                 currentWyrdExtraPoints.get() * EXTRA_WYRD_COST;
     }
 
+    public int getCost() throws InvalidXmlElementException {
+        return getCost(characterPlayer);
+    }
+
 
     public static int getCost(CharacterPlayer characterPlayer) throws InvalidXmlElementException {
         return getCost(characterPlayer, 0, 0);
@@ -384,6 +390,10 @@ public class CostCalculator {
         return cost;
     }
 
+    public int getBeneficesCosts() throws InvalidXmlElementException {
+        return getBeneficesCosts(characterPlayer);
+    }
+
     public static int getBeneficesCosts(CharacterPlayer characterPlayer) throws InvalidXmlElementException {
         int cost = 0;
         for (final AvailableBenefice benefit : characterPlayer.getAllBenefices()) {
@@ -393,6 +403,10 @@ public class CostCalculator {
             cost += affliction.getCost();
         }
         return cost;
+    }
+
+    private int getPsiPathsCosts() {
+        return getPsiPathsCosts(characterPlayer);
     }
 
     private static int getPsiPathsCosts(CharacterPlayer characterPlayer) {
