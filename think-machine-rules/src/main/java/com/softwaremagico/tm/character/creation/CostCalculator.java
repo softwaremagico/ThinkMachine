@@ -33,6 +33,7 @@ import com.softwaremagico.tm.character.cybernetics.ICyberneticDevice;
 import com.softwaremagico.tm.character.occultism.OccultismPower;
 import com.softwaremagico.tm.character.occultism.OccultismTypeFactory;
 import com.softwaremagico.tm.log.CostCalculatorLog;
+import com.softwaremagico.tm.log.MachineLog;
 
 import java.util.List;
 import java.util.Map.Entry;
@@ -65,6 +66,7 @@ public class CostCalculator {
 
     public CostCalculator(CharacterPlayer characterPlayer) {
         setCostListeners(characterPlayer);
+        updateCost(characterPlayer);
     }
 
     public interface ICurrentPointsChanged {
@@ -75,6 +77,70 @@ public class CostCalculator {
         void updated(int value);
     }
 
+    public CharacterProgressionStatus getStatus(CharacterPlayer characterPlayer) {
+        if (characterPlayer.getRace() == null || characterPlayer.getInfo() == null || characterPlayer.getFaction() == null) {
+            return CharacterProgressionStatus.UNDEFINED;
+        }
+        if (currentCharacteristicPoints.get() == 0) {
+            return CharacterProgressionStatus.NOT_STARTED;
+        }
+        if (currentSkillsPoints.get() == 0) {
+            return CharacterProgressionStatus.DRAFT;
+        }
+        if (getTotalExtraCost() < FreeStyleCharacterCreation.getFreeAvailablePoints(characterPlayer.getInfo().getAge())) {
+            return CharacterProgressionStatus.IN_PROGRESS;
+        }
+        if (characterPlayer.getExperienceExpended() > 0) {
+            return CharacterProgressionStatus.EXTENDED;
+        }
+        if (fireBirdsExpend > 0) {
+            return CharacterProgressionStatus.EQUIPPED;
+        }
+        return CharacterProgressionStatus.FINISHED;
+    }
+
+    private void updateCost(CharacterPlayer characterPlayer) {
+        if (characterPlayer != null && characterPlayer.getInfo() != null) {
+            currentCharacteristicPoints.set(Math.min(characterPlayer.getCharacteristicsTotalPoints(),
+                    FreeStyleCharacterCreation.getCharacteristicsPoints(characterPlayer.getInfo().getAge())));
+            currentCharacteristicExtraPoints.set(Math.max(characterPlayer.getCharacteristicsTotalPoints() -
+                            (FreeStyleCharacterCreation.getCharacteristicsPoints(characterPlayer.getInfo().getAge()))
+                    , 0));
+            try {
+                currentSkillsPoints.set(Math.min(characterPlayer.getSkillsTotalPoints(),
+                        FreeStyleCharacterCreation.getSkillsPoints(characterPlayer.getInfo().getAge())));
+            } catch (InvalidXmlElementException e) {
+                MachineLog.errorMessage(this.getClass().getName(), e);
+            }
+            try {
+                currentSkillsExtraPoints.set(Math.max(characterPlayer.getSkillsTotalPoints() -
+                        FreeStyleCharacterCreation.getSkillsPoints(characterPlayer.getInfo().getAge()), 0));
+            } catch (InvalidXmlElementException e) {
+                MachineLog.errorMessage(this.getClass().getName(), e);
+            }
+            try {
+                currentTraitsPoints.set(Math.min(getBlessingCosts(characterPlayer) + getBeneficesCosts(characterPlayer),
+                        FreeStyleCharacterCreation.getTraitsPoints(characterPlayer.getInfo().getAge())));
+            } catch (InvalidXmlElementException e) {
+                MachineLog.errorMessage(this.getClass().getName(), e);
+            }
+            try {
+                currentTraitsExtraPoints.set(getTraitsCosts(characterPlayer));
+            } catch (InvalidXmlElementException e) {
+                MachineLog.errorMessage(this.getClass().getName(), e);
+            }
+            currentOccultismLevelExtraPoints.set(characterPlayer.getBasicPsiqueLevel(
+                    OccultismTypeFactory.getPsi(characterPlayer.getLanguage(), characterPlayer.getModuleName()))
+                    - (characterPlayer.getRace() != null ? characterPlayer.getRace().getPsi() : 0) +
+                    characterPlayer.getBasicPsiqueLevel(
+                            OccultismTypeFactory.getTheurgy(characterPlayer.getLanguage(), characterPlayer.getModuleName()))
+                    - (characterPlayer.getRace() != null ? characterPlayer.getRace().getTheurgy() : 0));
+            currentOccultismPowersExtraPoints.set(getPsiPathsCosts(characterPlayer));
+            currentWyrdExtraPoints.set(characterPlayer.getExtraWyrd());
+            currentCyberneticsExtraPoints.set(getCyberneticsCost(characterPlayer));
+            fireBirdsExpend = characterPlayer.getSpentMoney();
+        }
+    }
 
     private void setCostListeners(CharacterPlayer characterPlayer) {
         currentCharacteristicPoints = new AtomicInteger(0);
@@ -139,14 +205,10 @@ public class CostCalculator {
                     null,
                     value -> getCostCharacterModificationHandler().launchCyberneticExtraPointsListeners(value));
         });
-        characterPlayer.getCharacterModificationHandler().
-
-                addEquipmentUpdatedListener((equipment, removed) ->
-
-                {
-                    fireBirdsExpend += (removed ? -equipment.getCost() : equipment.getCost());
-                    getCostCharacterModificationHandler().launchFirebirdSpendListeners((removed ? -equipment.getCost() : equipment.getCost()));
-                });
+        characterPlayer.getCharacterModificationHandler().addEquipmentUpdatedListener((equipment, removed) -> {
+            fireBirdsExpend += (removed ? -equipment.getCost() : equipment.getCost());
+            getCostCharacterModificationHandler().launchFirebirdSpendListeners((removed ? -equipment.getCost() : equipment.getCost()));
+        });
     }
 
     /**
@@ -231,7 +293,6 @@ public class CostCalculator {
                 currentCyberneticsExtraPoints.get() * CYBERNETIC_DEVICE_COST +
                 currentWyrdExtraPoints.get() * EXTRA_WYRD_COST;
     }
-
 
 
     public static int getCost(CharacterPlayer characterPlayer) throws InvalidXmlElementException {
@@ -334,14 +395,19 @@ public class CostCalculator {
         return cost;
     }
 
-    private static int getPsiPowersCosts(CharacterPlayer characterPlayer) throws InvalidXmlElementException {
+    private static int getPsiPathsCosts(CharacterPlayer characterPlayer) {
         int cost = 0;
-        for (final Entry<String, List<OccultismPower>> occulstismPathEntry : characterPlayer.getSelectedPowers()
+        for (final Entry<String, List<OccultismPower>> occultismPathEntry : characterPlayer.getSelectedPowers()
                 .entrySet()) {
-            for (final OccultismPower occultismPower : occulstismPathEntry.getValue()) {
+            for (final OccultismPower occultismPower : occultismPathEntry.getValue()) {
                 cost += occultismPower.getLevel() * OCCULTISM_POWER_LEVEL_COST;
             }
         }
+        return cost;
+    }
+
+    private static int getPsiPowersCosts(CharacterPlayer characterPlayer) throws InvalidXmlElementException {
+        int cost = getPsiPathsCosts(characterPlayer);
         cost += characterPlayer.getExtraWyrd() * EXTRA_WYRD_COST;
         cost += Math.max(0,
                 (characterPlayer.getBasicPsiqueLevel(
