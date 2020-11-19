@@ -630,7 +630,19 @@ public class CharacterPlayer {
         }
     }
 
+    public void removeWeapon(Weapon weapon) {
+        if (weapons.getElements().remove(weapon)) {
+            getCharacterModificationHandler().launchEquipmentUpdatedListener(weapon, true);
+        }
+    }
+
     public void setWeapons(List<Weapon> weapons) {
+        if (weapons == null || weapons.isEmpty()) {
+            //Remove costs of previous weapons.
+            for (final Weapon weapon : this.weapons.getElements()) {
+                getCharacterModificationHandler().launchEquipmentUpdatedListener(weapon, true);
+            }
+        }
         this.weapons = new Weapons();
         for (final Weapon weapon : weapons) {
             this.weapons.addElement(weapon);
@@ -710,7 +722,12 @@ public class CharacterPlayer {
                     "Armour '" + armour + "' is not compatible with shield '" + getShield() + "'.");
         }
         if (this.armour != armour) {
-            getCharacterModificationHandler().launchEquipmentUpdatedListener(armour, false);
+            if (armour == null) {
+                //Remove costs of previous armour.
+                getCharacterModificationHandler().launchEquipmentUpdatedListener(this.armour, true);
+            } else {
+                getCharacterModificationHandler().launchEquipmentUpdatedListener(armour, false);
+            }
         }
         this.armour = armour;
     }
@@ -741,7 +758,12 @@ public class CharacterPlayer {
                     "Shield '" + shield + "' is not compatible with armour '" + getArmour() + "'.");
         }
         if (this.shield != shield) {
-            getCharacterModificationHandler().launchEquipmentUpdatedListener(shield, false);
+            if (shield == null) {
+                //Remove costs of previous shield.
+                getCharacterModificationHandler().launchEquipmentUpdatedListener(this.shield, true);
+            } else {
+                getCharacterModificationHandler().launchEquipmentUpdatedListener(shield, false);
+            }
         }
         this.shield = shield;
     }

@@ -208,8 +208,10 @@ public class CostCalculator {
                     value -> getCostCharacterModificationHandler().launchCyberneticExtraPointsListeners(value));
         });
         characterPlayer.getCharacterModificationHandler().addEquipmentUpdatedListener((equipment, removed) -> {
-            fireBirdsExpend += (removed ? -equipment.getCost() : equipment.getCost());
-            getCostCharacterModificationHandler().launchFirebirdSpendListeners((removed ? -equipment.getCost() : equipment.getCost()));
+            if (equipment != null) {
+                fireBirdsExpend += (removed ? -equipment.getCost() : equipment.getCost());
+                getCostCharacterModificationHandler().launchFirebirdSpendListeners((removed ? -equipment.getCost() : equipment.getCost()));
+            }
         });
     }
 
