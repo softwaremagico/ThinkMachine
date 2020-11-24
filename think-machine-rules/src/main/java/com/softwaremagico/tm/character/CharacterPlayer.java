@@ -60,6 +60,8 @@ import com.softwaremagico.tm.character.xp.ElementCannotBeUpgradeWithExperienceEx
 import com.softwaremagico.tm.character.xp.Experience;
 import com.softwaremagico.tm.character.xp.ExperienceIncrease;
 import com.softwaremagico.tm.character.xp.NotEnoughExperienceException;
+import com.softwaremagico.tm.json.CharacterJsonManager;
+import com.softwaremagico.tm.json.InvalidJsonException;
 import com.softwaremagico.tm.log.MachineLog;
 import com.softwaremagico.tm.txt.CharacterSheet;
 
@@ -103,7 +105,7 @@ public class CharacterPlayer {
 
     private Experience experience;
 
-    private final String comparisonId;
+    private String comparisonId;
 
     private transient CharacterModificationHandler characterModificationHandler;
 
@@ -1485,5 +1487,15 @@ public class CharacterPlayer {
             characterModificationHandler = new CharacterModificationHandler();
         }
         return characterModificationHandler;
+    }
+
+    public CharacterPlayer duplicate() throws InvalidGeneratedCharacter {
+        try {
+            final CharacterPlayer characterPlayer = CharacterJsonManager.fromJson(CharacterJsonManager.toJson(this));
+            characterPlayer.comparisonId = IdGenerator.createId();
+            return characterPlayer;
+        } catch (InvalidJsonException e) {
+            throw new InvalidGeneratedCharacter("Error duplicating character", e);
+        }
     }
 }
