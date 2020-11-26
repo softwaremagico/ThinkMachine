@@ -6,6 +6,8 @@
 [![GNU GPL 3.0 License](https://img.shields.io/badge/license-GNU_GPL_3.0-brightgreen.svg)](https://github.com/softwaremagico/ThinkMachine/blob/master/license/gnugpl/license.txt)
 [![Issues](https://img.shields.io/github/issues/softwaremagico/ThinkMachine.svg)](https://github.com/softwaremagico/ThinkMachine/issues)
 [![think-machine-core](https://img.shields.io/maven-central/v/com.softwaremagico/think-machine.svg)](https://search.maven.org/remote_content?g=com.softwaremagico&a=think-machine-rules&v=latest)
+[![Activity](https://img.shields.io/github/commit-activity/y/softwaremagico/ThinkMachine)](https://github.com/softwaremagico/ThinkMachine)
+[![Activity](https://img.shields.io/github/last-commit/softwaremagico/ThinkMachine)](https://github.com/softwaremagico/ThinkMachine)
 
 This software generated in Java includes all rules needed for the creation of a character sheet for the role play game called **Fading Suns** (Revised Edition). Personally, I do not like the provided character sheet in the Player's Guide book, and I have designed a new one, based on some old files I have found ten years ago for previous versions of this game. Also, I have added some custom rules for random character generation that can be used for PC or NPC generation. This software only includes the rules, that can be included as a dependency on other softwares, but cannot be used in a desktop environment. If you are looking for a complete software to generata characters, take a look on [Think Machine: Advisor](https://github.com/softwaremagico/ThinkMachineAdvisor), a desktop application for character generation. 
 
