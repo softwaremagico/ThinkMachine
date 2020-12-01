@@ -65,17 +65,25 @@ public class CostCalculator {
     private float fireBirdsExpend;
     private final CharacterPlayer characterPlayer;
 
+    public interface CharacteristicCostUpdated {
+        void updated(int currentCharacteristicPoints);
+    }
+
+    public interface ExtraCostUpdated {
+        void updated(int extraPoints);
+    }
+
     public CostCalculator(CharacterPlayer characterPlayer) {
         this.characterPlayer = characterPlayer;
         setCostListeners();
         updateCost();
     }
 
-    public interface ICurrentPointsChanged {
+    private interface ICurrentPointsChanged {
         void updated(int value);
     }
 
-    public interface ICurrentExtraPointsChanged {
+    private interface ICurrentExtraPointsChanged {
         void updated(int value);
     }
 
@@ -127,7 +135,7 @@ public class CostCalculator {
                 MachineLog.errorMessage(this.getClass().getName(), e);
             }
             try {
-                currentTraitsExtraPoints.set(getTraitsCosts(characterPlayer));
+                currentTraitsExtraPoints.set(Math.max(getTraitsCosts(characterPlayer), 0));
             } catch (InvalidXmlElementException e) {
                 MachineLog.errorMessage(this.getClass().getName(), e);
             }
@@ -138,8 +146,8 @@ public class CostCalculator {
                             OccultismTypeFactory.getTheurgy(characterPlayer.getLanguage(), characterPlayer.getModuleName()))
                     - (characterPlayer.getRace() != null ? characterPlayer.getRace().getTheurgy() : 0));
             currentOccultismPowersExtraPoints.set(getPsiPathsCosts(characterPlayer));
-            currentWyrdExtraPoints.set(characterPlayer.getExtraWyrd());
-            currentCyberneticsExtraPoints.set(getCyberneticsCost(characterPlayer));
+            currentWyrdExtraPoints.set(Math.max(characterPlayer.getExtraWyrd(), 0));
+            currentCyberneticsExtraPoints.set(Math.max(getCyberneticsCost(characterPlayer), 0));
             fireBirdsExpend = characterPlayer.getSpentMoney();
         }
     }
@@ -231,6 +239,7 @@ public class CostCalculator {
                             int newValue, int defaultValue, ICurrentPointsChanged currentPointsChanged,
                             ICurrentExtraPointsChanged currentExtraPointsChanged) {
         final int increment = Math.max(newValue, defaultValue) - Math.max(previousValue, defaultValue);
+        final int previousExtraPoints = extraPoints.get();
 
         if (mainPoints.get() + increment + extraPoints.get() <= maximumMainPoints) {
             if (extraPoints.get() > 0) {
@@ -285,6 +294,9 @@ public class CostCalculator {
                     }
                 }
             }
+        }
+        if (previousExtraPoints != extraPoints.get()) {
+            getCostCharacterModificationHandler().launchExtraPointsUpdatedListeners();
         }
     }
 
