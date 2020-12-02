@@ -1045,10 +1045,11 @@ public class CharacterPlayer {
         if (value < getRaceCharacteristicStartingValue(characteristicName)) {
             value = getRaceCharacteristicStartingValue(characteristicName);
         }
+        final int previousValue = getCharacteristic(characteristicName.getId()).getValue();
+        getCharacteristic(characteristicName.getId()).setValue(value);
         getCharacterModificationHandler().launchCharacteristicUpdatedListener(
                 getCharacteristic(characteristicName.getId()),
-                getCharacteristic(characteristicName.getId()).getValue(), value, getRaceCharacteristicStartingValue(characteristicName));
-        getCharacteristic(characteristicName.getId()).setValue(value);
+                previousValue, value, getRaceCharacteristicStartingValue(characteristicName));
     }
 
     public Set<Characteristic> getCharacteristics() {
