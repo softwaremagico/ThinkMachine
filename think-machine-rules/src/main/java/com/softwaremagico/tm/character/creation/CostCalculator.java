@@ -235,7 +235,7 @@ public class CostCalculator {
      * @param currentPointsChanged      callback when basic points are changed.
      * @param currentExtraPointsChanged callback when extra points are changed.
      */
-    private void updateCost(AtomicInteger mainPoints, int maximumMainPoints, AtomicInteger extraPoints, int previousValue,
+    private synchronized void updateCost(AtomicInteger mainPoints, int maximumMainPoints, AtomicInteger extraPoints, int previousValue,
                             int newValue, int defaultValue, ICurrentPointsChanged currentPointsChanged,
                             ICurrentExtraPointsChanged currentExtraPointsChanged) {
         final int increment = Math.max(newValue, defaultValue) - Math.max(previousValue, defaultValue);
