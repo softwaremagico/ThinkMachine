@@ -356,9 +356,7 @@ public class CharacterPlayer {
         //Get all blessings that will be removed.
         final Set<Blessing> blessingsToRemove = new HashSet<>(this.blessings);
         blessingsToRemove.removeAll(blessings);
-        for (final Blessing blessingToRemove : blessings) {
-            removeBlessing(blessingToRemove);
-        }
+        blessingsToRemove.forEach(blessingToRemove -> removeBlessing(blessingToRemove));
 
         for (final Blessing blessing : blessings) {
             try {
@@ -475,9 +473,7 @@ public class CharacterPlayer {
         //Get all benefices that will be removed.
         final Set<AvailableBenefice> beneficesToRemove = new HashSet<>(this.benefices);
         beneficesToRemove.removeAll(benefices);
-        for (final AvailableBenefice beneficeToRemove : benefices) {
-            removeBenefice(beneficeToRemove);
-        }
+        beneficesToRemove.forEach(beneficeToRemove -> removeBenefice(beneficeToRemove));
 
         for (final AvailableBenefice benefice : benefices) {
             try {
