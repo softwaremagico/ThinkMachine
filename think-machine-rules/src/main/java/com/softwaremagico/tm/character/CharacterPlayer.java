@@ -350,13 +350,21 @@ public class CharacterPlayer {
     }
 
     public void setBlessings(Collection<Blessing> blessings) throws TooManyBlessingsException {
-        this.blessings = new ArrayList<>();
         while (blessings.remove(null)) {
             ;
         }
+        //Get all blessings that will be removed.
+        final Set<Blessing> blessingsToRemove = new HashSet<>(this.blessings);
+        blessingsToRemove.removeAll(blessings);
+        for (final Blessing blessingToRemove : blessings) {
+            removeBlessing(blessingToRemove);
+        }
+
         for (final Blessing blessing : blessings) {
             try {
-                addBlessing(blessing);
+                if (!this.blessings.contains(blessing)) {
+                    addBlessing(blessing);
+                }
             } catch (BlessingAlreadyAddedException e) {
                 //Nothing to do.
             }
@@ -461,13 +469,21 @@ public class CharacterPlayer {
     }
 
     public void setBenefices(Collection<AvailableBenefice> benefices) throws InvalidBeneficeException {
-        this.benefices = new ArrayList<>();
         while (benefices.remove(null)) {
             ;
         }
+        //Get all benefices that will be removed.
+        final Set<AvailableBenefice> beneficesToRemove = new HashSet<>(this.benefices);
+        beneficesToRemove.removeAll(benefices);
+        for (final AvailableBenefice beneficeToRemove : benefices) {
+            removeBenefice(beneficeToRemove);
+        }
+
         for (final AvailableBenefice benefice : benefices) {
             try {
-                addBenefice(benefice);
+                if (!this.benefices.contains(benefice)) {
+                    addBenefice(benefice);
+                }
             } catch (BeneficeAlreadyAddedException e) {
                 // Nothing to do.
             }
