@@ -182,13 +182,13 @@ public class CostCalculator {
             updateCost(currentTraitsPoints, FreeStyleCharacterCreation.getSkillsPoints(characterPlayer.getInfo().getAge()),
                     currentTraitsExtraPoints, removed ? benefice.getCost() : 0, removed ? 0 : benefice.getCost(), 0,
                     value -> getCostCharacterModificationHandler().launchTraitsPointsUpdatedListeners(value),
-                    value -> getCostCharacterModificationHandler().launchTraitsPointsUpdatedListeners(value));
+                    value -> getCostCharacterModificationHandler().launchTraitsExtraPointsUpdatedListeners(value));
         });
         characterPlayer.getCharacterModificationHandler().addBlessingUpdatedListener((blessing, removed) -> {
             updateCost(currentTraitsPoints, FreeStyleCharacterCreation.getSkillsPoints(characterPlayer.getInfo().getAge()),
                     currentTraitsExtraPoints, removed ? blessing.getCost() : 0, removed ? 0 : blessing.getCost(), 0,
                     value -> getCostCharacterModificationHandler().launchTraitsPointsUpdatedListeners(value),
-                    value -> getCostCharacterModificationHandler().launchTraitsPointsUpdatedListeners(value));
+                    value -> getCostCharacterModificationHandler().launchTraitsExtraPointsUpdatedListeners(value));
         });
         characterPlayer.getCharacterModificationHandler().addOccultismLevelUpdatedListener(
                 (occultismType, previousPsyValue, newPsyValue, minimumPsyValue) -> {
