@@ -294,23 +294,35 @@ public class CostCalculatorTests {
 
         player.addBlessing(
                 BlessingFactory.getInstance().getElement("handsome", player.getLanguage(), player.getModuleName()));
+        Assert.assertEquals(costCalculator.getCurrentTraitsPoints(), 1);
         player.addBlessing(
                 BlessingFactory.getInstance().getElement("curious", player.getLanguage(), player.getModuleName()));
+        Assert.assertEquals(costCalculator.getCurrentTraitsPoints(), 3);
         player.addBlessing(
                 BlessingFactory.getInstance().getElement("missingEye", player.getLanguage(), player.getModuleName()));
+        Assert.assertEquals(costCalculator.getCurrentTraitsPoints(), 0);
         player.addBlessing(
                 BlessingFactory.getInstance().getElement("luckyAtCards", player.getLanguage(), player.getModuleName()));
+        Assert.assertEquals(costCalculator.getCurrentTraitsPoints(), 2);
 
         player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("stigma_1", player.getLanguage(),
                 player.getModuleName()));
+        Assert.assertEquals(costCalculator.getCurrentTraitsPoints(), 1);
         player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("heir", player.getLanguage(),
                 player.getModuleName()));
+        Assert.assertEquals(costCalculator.getCurrentTraitsPoints(), 3);
         player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("wireblade", player.getLanguage(),
                 player.getModuleName()));
+        Assert.assertEquals(costCalculator.getCurrentTraitsPoints(), 10);
+        Assert.assertEquals(costCalculator.getCurrentTraitsExtraPoints(), 5);
         player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("pistola", player.getLanguage(),
                 player.getModuleName()));
+        Assert.assertEquals(costCalculator.getCurrentTraitsPoints(), 10);
+        Assert.assertEquals(costCalculator.getCurrentTraitsExtraPoints(), 10);
         player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("shaidan", player.getLanguage(),
                 player.getModuleName()));
+        Assert.assertEquals(costCalculator.getCurrentTraitsPoints(), 10);
+        Assert.assertEquals(costCalculator.getCurrentTraitsExtraPoints(), 15);
     }
 
     @Test
