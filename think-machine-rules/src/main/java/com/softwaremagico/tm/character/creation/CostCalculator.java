@@ -109,7 +109,7 @@ public class CostCalculator {
         return CharacterProgressionStatus.FINISHED;
     }
 
-    private void updateCost() {
+    public void updateCost() {
         if (characterPlayer != null && characterPlayer.getInfo() != null) {
             currentCharacteristicPoints.set(Math.min(characterPlayer.getCharacteristicsTotalPoints(),
                     FreeStyleCharacterCreation.getCharacteristicsPoints(characterPlayer.getInfo().getAge())));
