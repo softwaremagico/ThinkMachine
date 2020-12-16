@@ -1142,7 +1142,7 @@ public class CharacterPlayer {
      * @return an integer represented the starting ammount of firebirds.
      */
     public int getInitialMoney() {
-        if(initialMoney!=null){
+        if (initialMoney != null) {
             return initialMoney;
         }
         try {
