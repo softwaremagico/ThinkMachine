@@ -109,6 +109,8 @@ public class CharacterPlayer {
 
     private transient CharacterModificationHandler characterModificationHandler;
 
+    private transient Integer initialMoney;
+
     public CharacterPlayer(String language, String moduleName) {
         comparisonId = IdGenerator.createId();
         this.language = language;
@@ -506,6 +508,7 @@ public class CharacterPlayer {
         benefices.add(benefice);
         getCharacterModificationHandler().launchBeneficesUpdatedListener(benefice, false);
         Collections.sort(benefices);
+        initialMoney = null;
     }
 
     /**
@@ -1139,6 +1142,9 @@ public class CharacterPlayer {
      * @return an integer represented the starting ammount of firebirds.
      */
     public int getInitialMoney() {
+        if(initialMoney!=null){
+            return initialMoney;
+        }
         try {
             for (final AvailableBenefice benefice : getAllBenefices()) {
                 if ((benefice.getId().startsWith("cash"))) {
