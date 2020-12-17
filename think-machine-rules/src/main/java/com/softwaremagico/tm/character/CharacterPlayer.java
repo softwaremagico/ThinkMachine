@@ -508,7 +508,10 @@ public class CharacterPlayer {
         benefices.add(benefice);
         getCharacterModificationHandler().launchBeneficesUpdatedListener(benefice, false);
         Collections.sort(benefices);
-        initialMoney = null;
+        if ((benefice.getId().startsWith("cash"))) {
+            initialMoney = null;
+            getCharacterModificationHandler().launchInitialFirebirdsUpdatedListener(getInitialMoney());
+        }
     }
 
     /**
@@ -548,6 +551,10 @@ public class CharacterPlayer {
     public void removeBenefice(AvailableBenefice benefice) {
         if (benefices.remove(benefice)) {
             getCharacterModificationHandler().launchBeneficesUpdatedListener(benefice, true);
+        }
+        if ((benefice.getId().startsWith("cash"))) {
+            initialMoney = null;
+            getCharacterModificationHandler().launchInitialFirebirdsUpdatedListener(getInitialMoney());
         }
     }
 
@@ -648,21 +655,21 @@ public class CharacterPlayer {
     }
 
     public void removeWeapon(Weapon weapon) {
-        if (weapons.getElements().remove(weapon)) {
+        if (weapons.removeElement(weapon)) {
             getCharacterModificationHandler().launchEquipmentUpdatedListener(weapon, true);
         }
     }
 
     public void setWeapons(List<Weapon> weapons) {
-        if (weapons == null || weapons.isEmpty()) {
-            //Remove costs of previous weapons.
-            for (final Weapon weapon : this.weapons.getElements()) {
-                getCharacterModificationHandler().launchEquipmentUpdatedListener(weapon, true);
-            }
-        }
-        this.weapons = new Weapons();
+        //Get all benefices that will be removed.
+        final Set<Weapon> weaponsToRemove = new HashSet<>(this.weapons.getElements());
+        weaponsToRemove.removeAll(weapons);
+        weaponsToRemove.forEach(weaponToRemove -> removeWeapon(weaponToRemove));
+
         for (final Weapon weapon : weapons) {
-            this.weapons.addElement(weapon);
+            if (!this.weapons.getElements().contains(weapon)) {
+                addWeapon(weapon);
+            }
         }
     }
 
@@ -1142,24 +1149,26 @@ public class CharacterPlayer {
      * @return an integer represented the starting ammount of firebirds.
      */
     public int getInitialMoney() {
-        if (initialMoney != null) {
-            return initialMoney;
-        }
-        try {
+        if (initialMoney == null) {
             for (final AvailableBenefice benefice : getAllBenefices()) {
                 if ((benefice.getId().startsWith("cash"))) {
                     // Must have an specialization.
                     if (benefice.getSpecialization() != null) {
-                        return Integer.parseInt(benefice.getId().replaceAll("[^\\d.]", ""));
+                        initialMoney = Integer.parseInt(benefice.getId().replaceAll("[^\\d.]", ""));
+                        return initialMoney;
                     }
                 }
             }
-            return Integer.parseInt(AvailableBeneficeFactory.getInstance()
-                    .getElement("cash [firebirds250]", getLanguage(), getModuleName()).getId()
-                    .replaceAll("[^\\d.]", ""));
-        } catch (InvalidXmlElementException e) {
-            return 0;
+            try {
+                initialMoney = Integer.parseInt(AvailableBeneficeFactory.getInstance()
+                        .getElement("cash [firebirds250]", getLanguage(), getModuleName()).getId()
+                        .replaceAll("[^\\d.]", ""));
+                return initialMoney;
+            } catch (InvalidXmlElementException e) {
+                return 0;
+            }
         }
+        return initialMoney;
     }
 
     /**

@@ -39,6 +39,7 @@ public class CostCalculatorModificationHandler {
     private Set<ICurrentWyrdExtraPointUpdatedListener> wyrdExtraPointUpdatedListeners;
     private Set<ICurrentCyberneticExtraPointsListener> cyberneticExtraPointsListeners;
     private Set<ICurrentFirebirdSpendListener> firebirdSpendListeners;
+    private Set<IInitialFirebirdsUpdated> initialFirebirdsUpdatedListeners;
     private Set<IExtraPointUpdatedListener> extraPointUpdatedListeners;
 
 
@@ -90,6 +91,10 @@ public class CostCalculatorModificationHandler {
         void updated();
     }
 
+    public interface IInitialFirebirdsUpdated {
+        void updated(float initialMoney);
+    }
+
     public CostCalculatorModificationHandler() {
         resetListeners();
     }
@@ -106,6 +111,7 @@ public class CostCalculatorModificationHandler {
         wyrdExtraPointUpdatedListeners = new HashSet<>();
         cyberneticExtraPointsListeners = new HashSet<>();
         firebirdSpendListeners = new HashSet<>();
+        initialFirebirdsUpdatedListeners = new HashSet<>();
         extraPointUpdatedListeners = new HashSet<>();
     }
 
@@ -269,7 +275,7 @@ public class CostCalculatorModificationHandler {
     }
 
     public void removeWyrdExtraPointUpdatedListeners(ICurrentWyrdExtraPointUpdatedListener listener) {
-        wyrdExtraPointUpdatedListeners.add(listener);
+        wyrdExtraPointUpdatedListeners.remove(listener);
     }
 
     public void launchWyrdExtraPointUpdatedListeners(int value) {
@@ -296,12 +302,29 @@ public class CostCalculatorModificationHandler {
     }
 
     public void removeFirebirdSpendListeners(ICurrentFirebirdSpendListener listener) {
-        firebirdSpendListeners.add(listener);
+        firebirdSpendListeners.remove(listener);
     }
 
     public void launchFirebirdSpendListeners(float value) {
         if (value != 0) {
             for (final ICurrentFirebirdSpendListener listener : firebirdSpendListeners) {
+                listener.updated(value);
+            }
+        }
+    }
+
+    public IInitialFirebirdsUpdated addInitialFirebirdListeners(IInitialFirebirdsUpdated listener) {
+        initialFirebirdsUpdatedListeners.add(listener);
+        return listener;
+    }
+
+    public void removeInitialFirebirdListeners(IInitialFirebirdsUpdated listener) {
+        initialFirebirdsUpdatedListeners.remove(listener);
+    }
+
+    public void launchInitialFirebirdListeners(float value) {
+        if (value != 0) {
+            for (final IInitialFirebirdsUpdated listener : initialFirebirdsUpdatedListeners) {
                 listener.updated(value);
             }
         }

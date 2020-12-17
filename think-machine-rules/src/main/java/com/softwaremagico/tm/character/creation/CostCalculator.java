@@ -88,6 +88,9 @@ public class CostCalculator {
     }
 
     public CharacterProgressionStatus getStatus() {
+        if (getTotalExtraCost() < 0) {
+            return CharacterProgressionStatus.INVALID;
+        }
         if (characterPlayer.getRace() == null || characterPlayer.getInfo() == null || characterPlayer.getFaction() == null) {
             return CharacterProgressionStatus.UNDEFINED;
         }
@@ -220,6 +223,9 @@ public class CostCalculator {
                 fireBirdsExpend += (removed ? -equipment.getCost() : equipment.getCost());
                 getCostCharacterModificationHandler().launchFirebirdSpendListeners((removed ? -equipment.getCost() : equipment.getCost()));
             }
+        });
+        characterPlayer.getCharacterModificationHandler().addFirebirdsUpdatedListener(initialMoney -> {
+            getCostCharacterModificationHandler().launchInitialFirebirdListeners(initialMoney);
         });
     }
 
