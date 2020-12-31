@@ -36,8 +36,8 @@ public class CombatStyle extends Element<CombatStyle> {
 	private final List<CombatStance> combatStances;
 	private List<CombatAction> combatActions;
 
-	public CombatStyle(String id, String name, String language, String moduleName, CombatStyleGroup group) {
-		super(id, name, language, moduleName);
+	public CombatStyle(String id, String name, String description, String language, String moduleName, CombatStyleGroup group) {
+		super(id, name, description, language, moduleName);
 		combatActions = new ArrayList<CombatAction>();
 		this.group = group;
 		combatStances = new ArrayList<>();

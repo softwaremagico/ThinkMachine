@@ -385,24 +385,24 @@ public class CharacterSheet {
             stringBuilder.append(" (");
             stringBuilder.append(getCharacterPlayer().getArmour().getProtection() + "d");
             stringBuilder.append(ELEMENT_SEPARATOR);
-            if (getCharacterPlayer().getArmour().getStandardPenalizations().getDexterityModification() != 0) {
+            if (getCharacterPlayer().getArmour().getStandardPenalization().getDexterityModification() != 0) {
                 stringBuilder.append(getTranslator().getTranslatedText(getCharacterPlayer().getCharacteristic(CharacteristicName.DEXTERITY).getId()) + " ");
-                stringBuilder.append(getCharacterPlayer().getArmour().getStandardPenalizations().getDexterityModification());
+                stringBuilder.append(getCharacterPlayer().getArmour().getStandardPenalization().getDexterityModification());
                 stringBuilder.append(ELEMENT_SEPARATOR);
             }
-            if (getCharacterPlayer().getArmour().getStandardPenalizations().getStrengthModification() != 0) {
+            if (getCharacterPlayer().getArmour().getStandardPenalization().getStrengthModification() != 0) {
                 stringBuilder.append(getTranslator().getTranslatedText(getCharacterPlayer().getCharacteristic(CharacteristicName.STRENGTH).getId()) + " ");
-                stringBuilder.append(getCharacterPlayer().getArmour().getStandardPenalizations().getStrengthModification());
+                stringBuilder.append(getCharacterPlayer().getArmour().getStandardPenalization().getStrengthModification());
                 stringBuilder.append(ELEMENT_SEPARATOR);
             }
-            if (getCharacterPlayer().getArmour().getStandardPenalizations().getEnduranceModification() != 0) {
+            if (getCharacterPlayer().getArmour().getStandardPenalization().getEnduranceModification() != 0) {
                 stringBuilder.append(getTranslator().getTranslatedText(getCharacterPlayer().getCharacteristic(CharacteristicName.ENDURANCE).getId()) + " ");
-                stringBuilder.append(getCharacterPlayer().getArmour().getStandardPenalizations().getEnduranceModification());
+                stringBuilder.append(getCharacterPlayer().getArmour().getStandardPenalization().getEnduranceModification());
                 stringBuilder.append(ELEMENT_SEPARATOR);
             }
-            if (getCharacterPlayer().getArmour().getStandardPenalizations().getInitiativeModification() != 0) {
+            if (getCharacterPlayer().getArmour().getStandardPenalization().getInitiativeModification() != 0) {
                 stringBuilder.append(getTranslator().getTranslatedText(getCharacterPlayer().getCharacteristic(CharacteristicName.INITIATIVE).getId()) + " ");
-                stringBuilder.append(getCharacterPlayer().getArmour().getStandardPenalizations().getInitiativeModification());
+                stringBuilder.append(getCharacterPlayer().getArmour().getStandardPenalization().getInitiativeModification());
                 stringBuilder.append(ELEMENT_SEPARATOR);
             }
             final List<DamageType> damages = new ArrayList<>(getCharacterPlayer().getArmour().getDamageTypes());

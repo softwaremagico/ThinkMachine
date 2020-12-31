@@ -8,17 +8,17 @@ package com.softwaremagico.tm.character;
  * %%
  * This software is designed by Jorge Hortelano Otero. Jorge Hortelano Otero
  * <softwaremagico@gmail.com> Valencia (Spain).
- *  
+ *
  * This program is free software; you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software
  * Foundation; either version 2 of the License, or (at your option) any later
  * version.
- *  
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
  * details.
- *  
+ *
  * You should have received a copy of the GNU General Public License along with
  * this program; If not, see <http://www.gnu.org/licenses/gpl-3.0.html>.
  * #L%
@@ -29,59 +29,59 @@ import com.softwaremagico.tm.character.factions.Faction;
 import com.softwaremagico.tm.json.ExcludeFromJson;
 
 public class Surname extends Element<Surname> {
-	
-	private String customSurname;
 
-	@ExcludeFromJson
-	private final Faction faction;
+    private String customSurname;
 
-	public Faction getFaction() {
-		return faction;
-	}
+    @ExcludeFromJson
+    private final Faction faction;
 
-	public Surname(String id, String surname, String customSurname, String language, String moduleName, Faction faction) {
-		super(id, surname, language, moduleName);
-		this.faction = faction;
-		this.customSurname = customSurname;
-	}
+    public Faction getFaction() {
+        return faction;
+    }
 
-	public Surname(String surname, String language, String moduleName, Faction faction) {
-		super(getId(surname, moduleName), surname, language, moduleName);
-		this.faction = faction;
-		this.customSurname = surname;
-	}
+    public Surname(String id, String surname, String customSurname, String language, String moduleName, Faction faction) {
+        super(id, surname, null, language, moduleName);
+        this.faction = faction;
+        this.customSurname = customSurname;
+    }
 
-	@Override
-	public int hashCode() {
-		return super.hashCode();
-	}
+    public Surname(String surname, String language, String moduleName, Faction faction) {
+        super(getId(surname, moduleName), surname, null, language, moduleName);
+        this.faction = faction;
+        this.customSurname = surname;
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		return super.equals(obj);
-	}
-	
-	@Override
-	public String getName() {
-		if (customSurname != null) {
-			return customSurname;
-		}
-		return super.getName();
-	}
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
 
-	private static String getId(String surname, String moduleName) {
-		if (moduleName == null) {
-			return surname.toLowerCase();
-		}
-		return surname.toLowerCase() + "_" + moduleName.replaceAll("\\s+", "_").toLowerCase();
-	}
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
 
-	public String getCustomSurname() {
-		return customSurname;
-	}
+    @Override
+    public String getName() {
+        if (customSurname != null) {
+            return customSurname;
+        }
+        return super.getName();
+    }
 
-	public void setCustomSurname(String customSurname) {
-		this.customSurname = customSurname;
-	}
+    private static String getId(String surname, String moduleName) {
+        if (moduleName == null) {
+            return surname.toLowerCase();
+        }
+        return surname.toLowerCase() + "_" + moduleName.replaceAll("\\s+", "_").toLowerCase();
+    }
+
+    public String getCustomSurname() {
+        return customSurname;
+    }
+
+    public void setCustomSurname(String customSurname) {
+        this.customSurname = customSurname;
+    }
 
 }

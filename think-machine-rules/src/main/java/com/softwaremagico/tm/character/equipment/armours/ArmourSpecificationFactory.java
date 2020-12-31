@@ -32,6 +32,7 @@ public class ArmourSpecificationFactory extends XmlFactory<ArmourSpecification> 
 	private static final String TRANSLATOR_FILE = "armour_specifications.xml";
 
 	private static final String NAME = "name";
+	private static final String DESCRIPTION = "description";
 
 	private static class ArmourSpecificationFactoryInit {
 		public static final ArmourSpecificationFactory INSTANCE = new ArmourSpecificationFactory();
@@ -57,7 +58,14 @@ public class ArmourSpecificationFactory extends XmlFactory<ArmourSpecification> 
 			throw new InvalidArmourException("Invalid name in armour specification '" + specificationId + "'.");
 		}
 
-		specification = new ArmourSpecification(specificationId, name, language, moduleName);
+		String description = null;
+		try {
+			description = translator.getNodeValue(specificationId, DESCRIPTION, language);
+		} catch (Exception e) {
+			//Description is not mandatory.
+		}
+
+		specification = new ArmourSpecification(specificationId, name, description, language, moduleName);
 
 		return specification;
 	}

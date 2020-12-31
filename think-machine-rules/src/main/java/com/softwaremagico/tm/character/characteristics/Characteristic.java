@@ -38,7 +38,7 @@ public class Characteristic extends Element<Characteristic> implements IValue {
     private final CharacteristicDefinition characteristicDefinition;
 
     public Characteristic(CharacteristicDefinition characteristicDefinition) {
-        super(characteristicDefinition.getId(), characteristicDefinition.getName(), characteristicDefinition.getLanguage(),
+        super(characteristicDefinition.getId(), characteristicDefinition.getName(), characteristicDefinition.getDescription(), characteristicDefinition.getLanguage(),
                 characteristicDefinition.getModuleName());
         this.characteristicDefinition = characteristicDefinition;
     }

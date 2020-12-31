@@ -90,25 +90,25 @@ public class ArmourTable extends LateralHeaderPdfPTable {
 			final Paragraph paragraph = new Paragraph();
 			paragraph.add(new Paragraph(getTranslator().getTranslatedText("strengthAbbreviature") + ":", new Font(
 					FadingSunsTheme.getLineFont(), FadingSunsTheme.TABLE_LINE_FONT_SIZE)));
-			paragraph.add(new Paragraph(characterPlayer.getArmour().getStandardPenalizations()
+			paragraph.add(new Paragraph(characterPlayer.getArmour().getStandardPenalization()
 					.getStrengthModification()
 					+ " ", new Font(FadingSunsTheme.getHandwrittingFont(), FadingSunsTheme.ARMOUR_CONTENT_FONT_SIZE)));
 
 			paragraph.add(new Paragraph(" " + getTranslator().getTranslatedText("dexterityAbbreviature") + ":",
 					new Font(FadingSunsTheme.getLineFont(), FadingSunsTheme.TABLE_LINE_FONT_SIZE)));
-			paragraph.add(new Paragraph(characterPlayer.getArmour().getStandardPenalizations()
+			paragraph.add(new Paragraph(characterPlayer.getArmour().getStandardPenalization()
 					.getDexterityModification()
 					+ " ", new Font(FadingSunsTheme.getHandwrittingFont(), FadingSunsTheme.ARMOUR_CONTENT_FONT_SIZE)));
 
 			paragraph.add(new Paragraph(" " + getTranslator().getTranslatedText("enduranceAbbreviature") + ":",
 					new Font(FadingSunsTheme.getLineFont(), FadingSunsTheme.TABLE_LINE_FONT_SIZE)));
-			paragraph.add(new Paragraph(characterPlayer.getArmour().getStandardPenalizations()
+			paragraph.add(new Paragraph(characterPlayer.getArmour().getStandardPenalization()
 					.getEnduranceModification()
 					+ " ", new Font(FadingSunsTheme.getHandwrittingFont(), FadingSunsTheme.ARMOUR_CONTENT_FONT_SIZE)));
 
 			paragraph.add(new Paragraph(" " + getTranslator().getTranslatedText("iniciativeAbbreviature") + ":",
 					new Font(FadingSunsTheme.getLineFont(), FadingSunsTheme.TABLE_LINE_FONT_SIZE)));
-			paragraph.add(new Paragraph(characterPlayer.getArmour().getStandardPenalizations()
+			paragraph.add(new Paragraph(characterPlayer.getArmour().getStandardPenalization()
 					.getEnduranceModification()
 					+ " ", new Font(FadingSunsTheme.getHandwrittingFont(), FadingSunsTheme.ARMOUR_CONTENT_FONT_SIZE)));
 

@@ -40,8 +40,8 @@ public class CharacteristicDefinition extends Element<CharacteristicDefinition>
     @ExcludeFromJson
     private final int order;
 
-    public CharacteristicDefinition(String id, String name, int order, String language, String moduleName) {
-        super(id, name, language, moduleName);
+    public CharacteristicDefinition(String id, String name, String description, int order, String language, String moduleName) {
+        super(id, name, description, language, moduleName);
         this.order = order;
     }
 

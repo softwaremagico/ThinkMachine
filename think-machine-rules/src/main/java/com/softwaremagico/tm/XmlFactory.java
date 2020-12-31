@@ -34,6 +34,7 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.StringTokenizer;
 
+import com.softwaremagico.tm.character.equipment.armours.InvalidArmourException;
 import com.softwaremagico.tm.character.factions.FactionGroup;
 import com.softwaremagico.tm.character.factions.FactionsFactory;
 import com.softwaremagico.tm.character.races.RaceFactory;
@@ -60,6 +61,9 @@ public abstract class XmlFactory<T extends Element<T>> {
     private static final String RECOMMENDED_RACES = "recommendedRaces";
     private static final String GENERAL_PROBABILITY = "generalProbability";
     private static final String STATIC_PROBABILITY = "staticProbability";
+
+    private static final String NAME = "name";
+    private static final String DESCRIPTION = "description";
 
     protected XmlFactory() {
         initialize();
@@ -248,7 +252,20 @@ public abstract class XmlFactory<T extends Element<T>> {
                 elements.get(language).put(moduleName, new ArrayList<T>());
             }
             for (final String elementId : getTranslator(moduleName).getAllTranslatedElements()) {
-                final T element = createElement(getTranslator(moduleName), elementId, language, moduleName);
+                String name = null;
+                try {
+                    name = getTranslator(moduleName).getNodeValue(elementId, NAME, language);
+                } catch (Exception e) {
+                    throw new InvalidXmlElementException("Invalid name in element '" + elementId + "'.");
+                }
+
+                String description = null;
+                try {
+                    description = getTranslator(moduleName).getNodeValue(elementId, DESCRIPTION, language);
+                } catch (Exception e) {
+                    //Description is not mandatory.
+                }
+                final T element = createElement(getTranslator(moduleName), elementId, name, description, language, moduleName);
                 setRandomConfiguration(element, getTranslator(moduleName), language, moduleName);
                 if (elements.get(language).get(moduleName).contains(element)) {
                     throw new ElementAlreadyExistsException("Element '" + element + "' already is inserted. Probably the ID is duplicated.");
@@ -272,7 +289,7 @@ public abstract class XmlFactory<T extends Element<T>> {
         throw new InvalidXmlElementException("Element '" + elementId + "' does not exists.");
     }
 
-    protected abstract T createElement(ITranslator translator, String elementId, String language, String moduleName) throws InvalidXmlElementException;
+    protected abstract T createElement(ITranslator translator, String elementId, String name, String description, String language, String moduleName) throws InvalidXmlElementException;
 
     protected <E extends Element<E>, F extends XmlFactory<E>> Set<E> getCommaSeparatedValues(String elementId, String node, String language, String moduleName,
                                                                                              F factory) throws InvalidXmlElementException {
