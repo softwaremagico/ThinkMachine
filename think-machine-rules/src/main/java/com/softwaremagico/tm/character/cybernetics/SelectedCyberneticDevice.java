@@ -24,16 +24,16 @@ package com.softwaremagico.tm.character.cybernetics;
  * #L%
  */
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
-
 import com.softwaremagico.tm.Element;
 import com.softwaremagico.tm.character.IElementWithBonification;
 import com.softwaremagico.tm.character.equipment.weapons.Weapon;
 import com.softwaremagico.tm.character.values.Bonification;
 import com.softwaremagico.tm.character.values.StaticValue;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Set;
 
 public class SelectedCyberneticDevice extends Element<SelectedCyberneticDevice> implements ICyberneticDevice,
         IElementWithBonification {
@@ -42,7 +42,8 @@ public class SelectedCyberneticDevice extends Element<SelectedCyberneticDevice> 
     private final CyberneticDevice cyberneticDevice;
 
     public SelectedCyberneticDevice(CyberneticDevice cyberneticDevice) {
-        super(cyberneticDevice.getId(), cyberneticDevice.getName(), cyberneticDevice.getDescription(), cyberneticDevice.getLanguage(), cyberneticDevice.getModuleName());
+        super(cyberneticDevice.getId(), cyberneticDevice.getName(), cyberneticDevice.getDescription(), cyberneticDevice.getLanguage(),
+                cyberneticDevice.getModuleName());
         this.cyberneticDevice = cyberneticDevice;
         customizations = new ArrayList<>();
     }

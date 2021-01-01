@@ -28,7 +28,7 @@ import com.softwaremagico.tm.Element;
 
 public class CombatStance extends Element<CombatStance> {
 
-    public CombatStance(String id, String name, String language, String moduleName, String description) {
+    public CombatStance(String id, String name, String description, String language, String moduleName) {
         super(id, name, description, language, moduleName);
     }
 

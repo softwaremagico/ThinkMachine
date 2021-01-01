@@ -1,10 +1,10 @@
 package com.softwaremagico.tm.character.skills;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import com.softwaremagico.tm.character.factions.Faction;
 import com.softwaremagico.tm.character.values.IValue;
+
+import java.util.HashSet;
+import java.util.Set;
 
 /*-
  * #%L
@@ -31,7 +31,7 @@ import com.softwaremagico.tm.character.values.IValue;
  */
 
 public class SkillDefinition extends Skill<SkillDefinition> implements ISkillRandomDefintions, IValue {
-    public static final String FACTORION_LORE_ID = "factionLore";
+    public static final String FACTION_LORE_ID = "factionLore";
     public static final String PLANETARY_LORE_ID = "planetaryLore";
 
     private final Set<Faction> factions = new HashSet<>();

@@ -98,7 +98,7 @@ public class SkillsTable extends BaseElement {
 		if (availableSkill.getSpecialization() != null
 				// This two skills are special.
 				|| availableSkill.getId().equalsIgnoreCase(SkillDefinition.PLANETARY_LORE_ID)
-				|| availableSkill.getId().equalsIgnoreCase(SkillDefinition.FACTORION_LORE_ID)) {
+				|| availableSkill.getId().equalsIgnoreCase(SkillDefinition.FACTION_LORE_ID)) {
 			if (availableSkill.getSkillDefinition().isLimitedToFaction()) {
 				paragraph.add(createSpecializedSkill(characterPlayer, availableSkill, FadingSunsTheme.getLineItalicFont(), fontSize, maxColumnWidth));
 			} else {
@@ -134,7 +134,7 @@ public class SkillsTable extends BaseElement {
 									FadingSunsTheme.getHandWrittingFontSize(fontSize), maxColumnWidth - usedWidth),
 							new Font(FadingSunsTheme.getHandwrittingFont(), FadingSunsTheme.getHandWrittingFontSize(fontSize))));
 				}
-			} else if (availableSkill.getId().equalsIgnoreCase(SkillDefinition.FACTORION_LORE_ID)) {
+			} else if (availableSkill.getId().equalsIgnoreCase(SkillDefinition.FACTION_LORE_ID)) {
 				if (characterPlayer.getFaction() != null) {
 					paragraph.add(new Paragraph(
 							CellUtils.getSubStringFitsIn(characterPlayer.getFaction().getName(), FadingSunsTheme.getHandwrittingFont(),

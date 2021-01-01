@@ -24,15 +24,6 @@ package com.softwaremagico.tm.random;
  * #L%
  */
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Map.Entry;
-import java.util.NoSuchElementException;
-import java.util.Random;
-import java.util.Set;
-import java.util.SortedMap;
-import java.util.TreeMap;
-
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
@@ -41,6 +32,9 @@ import com.softwaremagico.tm.random.definition.RandomElementDefinition;
 import com.softwaremagico.tm.random.exceptions.ImpossibleToAssignMandatoryElementException;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
+
+import java.util.*;
+import java.util.Map.Entry;
 
 public abstract class RandomSelector<Element extends com.softwaremagico.tm.Element<?>> {
     protected static final int MAX_PROBABILITY = 1000000;
@@ -73,7 +67,7 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
 
     protected RandomSelector(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences)
             throws InvalidXmlElementException {
-        this(characterPlayer, null, preferences, new HashSet<Element>(), new HashSet<Element>());
+        this(characterPlayer, null, preferences, new HashSet<>(), new HashSet<>());
     }
 
     protected RandomSelector(CharacterPlayer characterPlayer,
@@ -108,7 +102,7 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
 
     protected Set<IRandomPreference> getPreferences() {
         if (preferences == null) {
-            return new HashSet<IRandomPreference>();
+            return new HashSet<>();
         }
         return preferences;
     }
@@ -313,7 +307,7 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
     /**
      * Assign a weight to an element depending on the preferences selected.
      *
-     * @param Element element to get the weight
+     * @param element to get the weight
      * @return weight as integer
      */
     protected abstract int getWeight(Element element) throws InvalidRandomElementSelectedException;

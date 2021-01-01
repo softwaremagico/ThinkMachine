@@ -73,12 +73,8 @@ public class RandomPartyFactory extends XmlFactory<RandomParty> {
 		if (namesByParty == null) {
 			namesByParty = new HashMap<>();
 		}
-		if (namesByParty.get(name.getRandomParty()) == null) {
-			namesByParty.put(name.getRandomParty(), new HashMap<String, Set<PartyName>>());
-		}
-		if (namesByParty.get(name.getRandomParty()).get(name.getLanguage()) == null) {
-			namesByParty.get(name.getRandomParty()).put(name.getLanguage(), new HashSet<PartyName>());
-		}
+		namesByParty.computeIfAbsent(name.getRandomParty(), k -> new HashMap<>());
+		namesByParty.get(name.getRandomParty()).computeIfAbsent(name.getLanguage(), k -> new HashSet<>());
 		namesByParty.get(name.getRandomParty()).get(name.getLanguage()).add(name);
 	}
 
@@ -86,21 +82,16 @@ public class RandomPartyFactory extends XmlFactory<RandomParty> {
 		if (adjectivesByParty == null) {
 			adjectivesByParty = new HashMap<>();
 		}
-		if (adjectivesByParty.get(adjective.getRandomParty()) == null) {
-			adjectivesByParty.put(adjective.getRandomParty(), new HashMap<String, Set<PartyAdjective>>());
-		}
-		if (adjectivesByParty.get(adjective.getRandomParty()).get(adjective.getLanguage()) == null) {
-			adjectivesByParty.get(adjective.getRandomParty()).put(adjective.getLanguage(),
-					new HashSet<PartyAdjective>());
-		}
+		adjectivesByParty.computeIfAbsent(adjective.getRandomParty(), k -> new HashMap<>());
+		adjectivesByParty.get(adjective.getRandomParty()).computeIfAbsent(adjective.getLanguage(),
+				k -> new HashSet<>());
 		adjectivesByParty.get(adjective.getRandomParty()).get(adjective.getLanguage()).add(adjective);
 	}
 
 	@Override
-	protected RandomParty createElement(ITranslator translator, String partyId, String language, String moduleName)
+	protected RandomParty createElement(ITranslator translator, String partyId, String name, String description,
+										String language, String moduleName)
 			throws InvalidXmlElementException {
-		final String name = translator.getNodeValue(partyId, NAME, language);
-
 		final RandomParty randomParty = new RandomParty(partyId, name, language, moduleName);
 
 		int node = 0;
@@ -201,7 +192,7 @@ public class RandomPartyFactory extends XmlFactory<RandomParty> {
 			if (partyAdjective.getName().startsWith("de ")) {
 				name.append(partyAdjective.getName());
 			} else if (partyName.getName().endsWith("as")) {
-				name.append(partyAdjective.getName().substring(0, partyAdjective.getName().length() - 2));
+				name.append(partyAdjective.getName(), 0, partyAdjective.getName().length() - 2);
 				name.append("as");
 			}
 			return name.toString();

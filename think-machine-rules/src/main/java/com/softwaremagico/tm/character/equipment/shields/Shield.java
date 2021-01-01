@@ -41,7 +41,8 @@ public class Shield extends Equipment<Shield> {
         this.hits = 0;
     }
 
-    public Shield(String shieldId, String name, String description, String language, String moduleName, int techLevel, int impact, int force, int hits, float cost) {
+    public Shield(String shieldId, String name, String description, String language, String moduleName, int techLevel,
+                  int impact, int force, int hits, float cost) {
         super(shieldId, name, description, cost, techLevel, language, moduleName);
         this.impact = impact;
         this.force = force;

@@ -24,23 +24,12 @@ package com.softwaremagico.tm.character.factions;
  * #L%
  */
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
-import java.util.StringTokenizer;
-
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
 import com.softwaremagico.tm.character.Gender;
 import com.softwaremagico.tm.character.Name;
 import com.softwaremagico.tm.character.Surname;
-import com.softwaremagico.tm.character.benefices.AvailableBenefice;
-import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
-import com.softwaremagico.tm.character.benefices.BeneficeDefinitionFactory;
-import com.softwaremagico.tm.character.benefices.RestrictedBenefice;
-import com.softwaremagico.tm.character.benefices.SuggestedBenefice;
+import com.softwaremagico.tm.character.benefices.*;
 import com.softwaremagico.tm.character.blessings.Blessing;
 import com.softwaremagico.tm.character.blessings.BlessingFactory;
 import com.softwaremagico.tm.character.races.Race;
@@ -49,10 +38,12 @@ import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.log.MachineXmlReaderLog;
 import com.softwaremagico.tm.log.SuppressFBWarnings;
 
+import java.util.*;
+import java.util.Map.Entry;
+
 public class FactionsFactory extends XmlFactory<Faction> {
 	private static final String TRANSLATOR_FILE = "factions.xml";
 
-	private static final String NAME = "name";
 	private static final String GROUP = "group";
 	private static final String RANKS_TAG = "ranks";
 	private static final String RANKS_TRANSLATION_TAG = "translation";
@@ -165,10 +156,10 @@ public class FactionsFactory extends XmlFactory<Faction> {
 
 	@Override
 	@SuppressFBWarnings("REC_CATCH_EXCEPTION")
-	protected Faction createElement(ITranslator translator, String factionId, String language, String moduleName)
+	protected Faction createElement(ITranslator translator, String factionId, String name, String description,
+									String language, String moduleName)
 			throws InvalidXmlElementException {
 		try {
-			final String name = translator.getNodeValue(factionId, NAME, language);
 			FactionGroup factionGroup;
 
 			try {
@@ -180,7 +171,7 @@ public class FactionsFactory extends XmlFactory<Faction> {
 			}
 
 			final String raceRestrictionName = translator.getNodeValue(factionId, RACE);
-			Race raceRestriction = null;
+			Race raceRestriction;
 			if (raceRestrictionName == null) {
 				throw new InvalidFactionException(
 						"Race not defined in faction '" + factionId + "'. Factions must have a race restriction.");
@@ -191,7 +182,7 @@ public class FactionsFactory extends XmlFactory<Faction> {
 				throw new InvalidFactionException("Error in faction '" + factionId + "' structure. Invalid race. ",
 						ixe);
 			}
-			final Faction faction = new Faction(factionId, name, factionGroup, raceRestriction, language, moduleName);
+			final Faction faction = new Faction(factionId, name, description, factionGroup, raceRestriction, language, moduleName);
 
 			for (final String rankId : translator.getAllChildrenTags(factionId, RANKS_TAG)) {
 				final String rankName = translator.getNodeValue(factionId, rankId, RANKS_TRANSLATION_TAG, language);
@@ -237,12 +228,8 @@ public class FactionsFactory extends XmlFactory<Faction> {
 		if (namesByFaction == null) {
 			namesByFaction = new HashMap<>();
 		}
-		if (namesByFaction.get(name.getFaction()) == null) {
-			namesByFaction.put(name.getFaction(), new HashMap<Gender, Set<Name>>());
-		}
-		if (namesByFaction.get(name.getFaction()).get(name.getGender()) == null) {
-			namesByFaction.get(name.getFaction()).put(name.getGender(), new HashSet<Name>());
-		}
+		namesByFaction.computeIfAbsent(name.getFaction(), k -> new HashMap<>());
+		namesByFaction.get(name.getFaction()).computeIfAbsent(name.getGender(), k -> new HashSet<>());
 		namesByFaction.get(name.getFaction()).get(name.getGender()).add(name);
 	}
 
@@ -250,9 +237,7 @@ public class FactionsFactory extends XmlFactory<Faction> {
 		if (surnamesByFaction == null) {
 			surnamesByFaction = new HashMap<>();
 		}
-		if (surnamesByFaction.get(surname.getFaction()) == null) {
-			surnamesByFaction.put(surname.getFaction(), new HashSet<Surname>());
-		}
+		surnamesByFaction.computeIfAbsent(surname.getFaction(), k -> new HashSet<>());
 		surnamesByFaction.get(surname.getFaction()).add(surname);
 	}
 

@@ -131,7 +131,7 @@ public class CharacterSheet {
     private void representSkill(StringBuilder stringBuilder, AvailableSkill skill) {
         if (skill.getId().equalsIgnoreCase(SkillDefinition.PLANETARY_LORE_ID) && characterPlayer.getInfo().getPlanet() != null) {
             stringBuilder.append(AvailableSkill.getCompleteName(skill.getName(), characterPlayer.getInfo().getPlanet().getName()) + " (");
-        } else if (skill.getId().equalsIgnoreCase(SkillDefinition.FACTORION_LORE_ID) && characterPlayer.getFaction() != null) {
+        } else if (skill.getId().equalsIgnoreCase(SkillDefinition.FACTION_LORE_ID) && characterPlayer.getFaction() != null) {
             stringBuilder.append(AvailableSkill.getCompleteName(skill.getName(), characterPlayer.getFaction().getName()) + " (");
         } else {
             stringBuilder.append(AvailableSkill.getCompleteName(skill.getName(), skill.getSpecialization()) + " (");

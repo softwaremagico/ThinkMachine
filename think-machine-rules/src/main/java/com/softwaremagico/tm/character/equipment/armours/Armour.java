@@ -24,12 +24,12 @@ package com.softwaremagico.tm.character.equipment.armours;
  * #L%
  */
 
-import java.util.HashSet;
-import java.util.Set;
-
 import com.softwaremagico.tm.character.equipment.DamageType;
 import com.softwaremagico.tm.character.equipment.Equipment;
 import com.softwaremagico.tm.character.equipment.shields.Shield;
+
+import java.util.HashSet;
+import java.util.Set;
 
 public class Armour extends Equipment<Armour> {
     private final int protection;
@@ -52,7 +52,8 @@ public class Armour extends Equipment<Armour> {
         this.specifications = new HashSet<>();
     }
 
-    public Armour(String id, String name, String description, String language, String moduleName, int techLevel, int protection, Set<DamageType> damageTypes, float cost) {
+    public Armour(String id, String name, String description, String language, String moduleName, int techLevel, int protection,
+                  Set<DamageType> damageTypes, float cost) {
         super(id, name, description, cost, techLevel, language, moduleName);
         this.protection = protection;
         this.damageTypes = damageTypes;
@@ -62,9 +63,9 @@ public class Armour extends Equipment<Armour> {
         this.specifications = new HashSet<>();
     }
 
-    public Armour(String id, String name, String description, String language, String moduleName, int techLevel, int protection, Set<DamageType> damageTypes,
-                  ArmourPenalization specialPenalization, ArmourPenalization otherPenalization, Set<Shield> allowedShields, Set<ArmourSpecification> specifications,
-                  float cost) {
+    public Armour(String id, String name, String description, String language, String moduleName, int techLevel, int protection,
+                  Set<DamageType> damageTypes, ArmourPenalization specialPenalization, ArmourPenalization otherPenalization,
+                  Set<Shield> allowedShields, Set<ArmourSpecification> specifications, float cost) {
         super(id, name, description, cost, techLevel, language, moduleName);
         this.protection = protection;
         this.damageTypes = damageTypes;

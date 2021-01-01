@@ -24,17 +24,6 @@ package com.softwaremagico.tm;
  * #L%
  */
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
-import java.util.StringTokenizer;
-
-import com.softwaremagico.tm.character.equipment.armours.InvalidArmourException;
 import com.softwaremagico.tm.character.factions.FactionGroup;
 import com.softwaremagico.tm.character.factions.FactionsFactory;
 import com.softwaremagico.tm.character.races.RaceFactory;
@@ -44,6 +33,8 @@ import com.softwaremagico.tm.language.Language;
 import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.log.MachineXmlReaderLog;
 import com.softwaremagico.tm.random.definition.RandomProbabilityDefinition;
+
+import java.util.*;
 
 public abstract class XmlFactory<T extends Element<T>> {
     protected Map<String, Map<String, List<T>>> elements = new HashMap<>();
@@ -130,7 +121,7 @@ public abstract class XmlFactory<T extends Element<T>> {
                 element.getRandomDefinition().setMinimumTechLevel(Integer.parseInt(minTechLevel));
             }
         } catch (NumberFormatException nfe) {
-            throw new InvalidXmlElementException("Invalid number value for techlevel in element '" + element.getId() + "'.");
+            throw new InvalidXmlElementException("Invalid number value for techLevel in element '" + element.getId() + "'.");
         } catch (NullPointerException npe) {
             // Optional
         }
@@ -141,7 +132,7 @@ public abstract class XmlFactory<T extends Element<T>> {
                 element.getRandomDefinition().setMaximumTechLevel(Integer.parseInt(maxTechLevel));
             }
         } catch (NumberFormatException nfe) {
-            throw new InvalidXmlElementException("Invalid number value for max techlevel in element '" + element.getId() + "'.");
+            throw new InvalidXmlElementException("Invalid number value for max techLevel in element '" + element.getId() + "'.");
         } catch (NullPointerException npe) {
             // Optional
         }
@@ -245,14 +236,10 @@ public abstract class XmlFactory<T extends Element<T>> {
 
     public synchronized List<T> getElements(String language, String moduleName) throws InvalidXmlElementException {
         if (elements.get(language) == null || elements.get(language).get(moduleName) == null) {
-            if (elements.get(language) == null) {
-                elements.put(language, new HashMap<String, List<T>>());
-            }
-            if (elements.get(language).get(moduleName) == null) {
-                elements.get(language).put(moduleName, new ArrayList<T>());
-            }
+            elements.computeIfAbsent(language, k -> new HashMap<>());
+            elements.get(language).computeIfAbsent(moduleName, k -> new ArrayList<>());
             for (final String elementId : getTranslator(moduleName).getAllTranslatedElements()) {
-                String name = null;
+                String name;
                 try {
                     name = getTranslator(moduleName).getNodeValue(elementId, NAME, language);
                 } catch (Exception e) {
@@ -289,7 +276,8 @@ public abstract class XmlFactory<T extends Element<T>> {
         throw new InvalidXmlElementException("Element '" + elementId + "' does not exists.");
     }
 
-    protected abstract T createElement(ITranslator translator, String elementId, String name, String description, String language, String moduleName) throws InvalidXmlElementException;
+    protected abstract T createElement(ITranslator translator, String elementId, String name, String description, String language,
+                                       String moduleName) throws InvalidXmlElementException;
 
     protected <E extends Element<E>, F extends XmlFactory<E>> Set<E> getCommaSeparatedValues(String elementId, String node, String language, String moduleName,
                                                                                              F factory) throws InvalidXmlElementException {

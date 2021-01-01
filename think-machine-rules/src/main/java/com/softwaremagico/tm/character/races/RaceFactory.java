@@ -32,7 +32,6 @@ import com.softwaremagico.tm.language.ITranslator;
 public class RaceFactory extends XmlFactory<Race> {
 	private static final String TRANSLATOR_FILE = "races.xml";
 
-	private static final String NAME = "name";
 	private static final String MAX_VALUE = "maximumValue";
 	private static final String MAX_INITIAL_VALUE = "maximumInitialValue";
 	private static final String VALUE = "value";
@@ -57,12 +56,12 @@ public class RaceFactory extends XmlFactory<Race> {
 	}
 
 	@Override
-	protected Race createElement(ITranslator translator, String raceId, String language, String moduleName)
+	protected Race createElement(ITranslator translator, String raceId, String name, String description,
+								 String language, String moduleName)
 			throws InvalidXmlElementException {
-		Race race = null;
+		Race race;
 		try {
-			final String name = translator.getNodeValue(raceId, NAME, language);
-			race = new Race(raceId, name, language, moduleName);
+			race = new Race(raceId, name, description, language, moduleName);
 		} catch (Exception e) {
 			throw new InvalidRaceException("Invalid structure in race '" + raceId + "'.", e);
 		}
