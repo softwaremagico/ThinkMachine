@@ -88,6 +88,9 @@ public class CostCalculator {
     }
 
     public CharacterProgressionStatus getStatus() {
+        if (getTotalExtraCost() < 0) {
+            return CharacterProgressionStatus.INVALID;
+        }
         if (characterPlayer.getRace() == null || characterPlayer.getInfo() == null || characterPlayer.getFaction() == null) {
             return CharacterProgressionStatus.UNDEFINED;
         }
@@ -109,7 +112,7 @@ public class CostCalculator {
         return CharacterProgressionStatus.FINISHED;
     }
 
-    private void updateCost() {
+    public void updateCost() {
         if (characterPlayer != null && characterPlayer.getInfo() != null) {
             currentCharacteristicPoints.set(Math.min(characterPlayer.getCharacteristicsTotalPoints(),
                     FreeStyleCharacterCreation.getCharacteristicsPoints(characterPlayer.getInfo().getAge())));
@@ -179,16 +182,16 @@ public class CostCalculator {
                     value -> getCostCharacterModificationHandler().launchSkillsExtraPointsUpdatedListeners(value));
         });
         characterPlayer.getCharacterModificationHandler().addBeneficesUpdatedListener((benefice, removed) -> {
-            updateCost(currentTraitsPoints, FreeStyleCharacterCreation.getSkillsPoints(characterPlayer.getInfo().getAge()),
-                    currentTraitsExtraPoints, removed ? benefice.getCost() : 0, removed ? 0 : benefice.getCost(), 0,
+            updateCost(currentTraitsPoints, FreeStyleCharacterCreation.getTraitsPoints(characterPlayer.getInfo().getAge()),
+                    currentTraitsExtraPoints, removed ? benefice.getCost() : 0, removed ? 0 : benefice.getCost(), null,
                     value -> getCostCharacterModificationHandler().launchTraitsPointsUpdatedListeners(value),
-                    value -> getCostCharacterModificationHandler().launchTraitsPointsUpdatedListeners(value));
+                    value -> getCostCharacterModificationHandler().launchTraitsExtraPointsUpdatedListeners(value));
         });
         characterPlayer.getCharacterModificationHandler().addBlessingUpdatedListener((blessing, removed) -> {
-            updateCost(currentTraitsPoints, FreeStyleCharacterCreation.getSkillsPoints(characterPlayer.getInfo().getAge()),
-                    currentTraitsExtraPoints, removed ? blessing.getCost() : 0, removed ? 0 : blessing.getCost(), 0,
+            updateCost(currentTraitsPoints, FreeStyleCharacterCreation.getTraitsPoints(characterPlayer.getInfo().getAge()),
+                    currentTraitsExtraPoints, removed ? blessing.getCost() : 0, removed ? 0 : blessing.getCost(), null,
                     value -> getCostCharacterModificationHandler().launchTraitsPointsUpdatedListeners(value),
-                    value -> getCostCharacterModificationHandler().launchTraitsPointsUpdatedListeners(value));
+                    value -> getCostCharacterModificationHandler().launchTraitsExtraPointsUpdatedListeners(value));
         });
         characterPlayer.getCharacterModificationHandler().addOccultismLevelUpdatedListener(
                 (occultismType, previousPsyValue, newPsyValue, minimumPsyValue) -> {
@@ -221,6 +224,9 @@ public class CostCalculator {
                 getCostCharacterModificationHandler().launchFirebirdSpendListeners((removed ? -equipment.getCost() : equipment.getCost()));
             }
         });
+        characterPlayer.getCharacterModificationHandler().addFirebirdsUpdatedListener(initialMoney -> {
+            getCostCharacterModificationHandler().launchInitialFirebirdListeners(initialMoney);
+        });
     }
 
     /**
@@ -236,9 +242,9 @@ public class CostCalculator {
      * @param currentExtraPointsChanged callback when extra points are changed.
      */
     private synchronized void updateCost(AtomicInteger mainPoints, int maximumMainPoints, AtomicInteger extraPoints, int previousValue,
-                            int newValue, int defaultValue, ICurrentPointsChanged currentPointsChanged,
-                            ICurrentExtraPointsChanged currentExtraPointsChanged) {
-        final int increment = Math.max(newValue, defaultValue) - Math.max(previousValue, defaultValue);
+                                         int newValue, Integer defaultValue, ICurrentPointsChanged currentPointsChanged,
+                                         ICurrentExtraPointsChanged currentExtraPointsChanged) {
+        final int increment = defaultValue != null ? Math.max(newValue, defaultValue) - Math.max(previousValue, defaultValue) : newValue - previousValue;
         final int previousExtraPoints = extraPoints.get();
 
         if (mainPoints.get() + increment + extraPoints.get() <= maximumMainPoints) {
@@ -249,7 +255,7 @@ public class CostCalculator {
                     currentPointsChanged.updated(extraPoints.get() - increment);
                 }
                 if (currentExtraPointsChanged != null) {
-                    currentExtraPointsChanged.updated(0 - extraPoints.get());
+                    currentExtraPointsChanged.updated(-extraPoints.get());
                 }
                 extraPoints.set(0);
             } else {

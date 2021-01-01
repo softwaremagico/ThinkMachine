@@ -25,6 +25,7 @@ package com.softwaremagico.tm.character.creation;
  */
 
 public enum CharacterProgressionStatus {
+    INVALID,
     DRAFT,
     EQUIPPED,
     EXTENDED,

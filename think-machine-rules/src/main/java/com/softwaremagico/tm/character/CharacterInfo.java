@@ -137,9 +137,6 @@ public class CharacterInfo {
     }
 
     public Integer getAge() {
-        if (age == null) {
-            return 31;
-        }
         return age;
     }
 

@@ -75,7 +75,7 @@ This component is available at the [Maven Central Repository](https://mvnreposit
 <dependency>
     <groupId>com.softwaremagico</groupId>
     <artifactId>think-machine-rules</artifactId>
-    <version>0.5.0</version>
+    <version>0.8.6</version>
 </dependency>
 ```
 Currently, this project is divided in three subprojects: `think-machine-rules` (for Fading Suns rules related to the character generation), `think-machine-random` (tool for creating random characters) and `think-machine-pdf`(exporting a character to a PDF sheet). Each subproject can be included separately. For any extra information about how to do it or use Gradle, Ivy or any other, please follow [this link](https://mvnrepository.com/artifact/com.softwaremagico/).

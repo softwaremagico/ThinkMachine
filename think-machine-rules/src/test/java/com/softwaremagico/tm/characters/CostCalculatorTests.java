@@ -294,23 +294,35 @@ public class CostCalculatorTests {
 
         player.addBlessing(
                 BlessingFactory.getInstance().getElement("handsome", player.getLanguage(), player.getModuleName()));
+        Assert.assertEquals(costCalculator.getCurrentTraitsPoints(), 1);
         player.addBlessing(
                 BlessingFactory.getInstance().getElement("curious", player.getLanguage(), player.getModuleName()));
+        Assert.assertEquals(costCalculator.getCurrentTraitsPoints(), 3);
         player.addBlessing(
                 BlessingFactory.getInstance().getElement("missingEye", player.getLanguage(), player.getModuleName()));
+        Assert.assertEquals(costCalculator.getCurrentTraitsPoints(), 0);
         player.addBlessing(
                 BlessingFactory.getInstance().getElement("luckyAtCards", player.getLanguage(), player.getModuleName()));
+        Assert.assertEquals(costCalculator.getCurrentTraitsPoints(), 2);
 
         player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("stigma_1", player.getLanguage(),
                 player.getModuleName()));
+        Assert.assertEquals(costCalculator.getCurrentTraitsPoints(), 1);
         player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("heir", player.getLanguage(),
                 player.getModuleName()));
+        Assert.assertEquals(costCalculator.getCurrentTraitsPoints(), 3);
         player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("wireblade", player.getLanguage(),
                 player.getModuleName()));
+        Assert.assertEquals(costCalculator.getCurrentTraitsPoints(), 10);
+        Assert.assertEquals(costCalculator.getCurrentTraitsExtraPoints(), 5);
         player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("pistola", player.getLanguage(),
                 player.getModuleName()));
+        Assert.assertEquals(costCalculator.getCurrentTraitsPoints(), 10);
+        Assert.assertEquals(costCalculator.getCurrentTraitsExtraPoints(), 10);
         player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("shaidan", player.getLanguage(),
                 player.getModuleName()));
+        Assert.assertEquals(costCalculator.getCurrentTraitsPoints(), 10);
+        Assert.assertEquals(costCalculator.getCurrentTraitsExtraPoints(), 15);
     }
 
     @Test
@@ -333,25 +345,44 @@ public class CostCalculatorTests {
 
     @Test
     public void checkEquipmentCost()
-            throws InvalidXmlElementException {
+            throws InvalidXmlElementException, BeneficeAlreadyAddedException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.getInfo().setAge(31);
         player.setRace(RaceFactory.getInstance().getElement("human", LANGUAGE, MODULE));
         player.setFaction(FactionsFactory.getInstance().getElement("hazat", LANGUAGE, MODULE));
+        player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("cash [firebirds2000]", LANGUAGE,
+                PathManager.DEFAULT_MODULE_FOLDER));
 
         CostCalculator costCalculator = new CostCalculator(player);
 
         float money = costCalculator.getFireBirdsExpend();
 
+        // Mace costs 10 fbs.
         player.addWeapon(WeaponFactory.getInstance().getElement("mace", player.getLanguage(), player.getModuleName()));
+        Assert.assertEquals(player.getInitialMoney() - costCalculator.getFireBirdsExpend(), 1990f);
+        Assert.assertEquals(player.getMoney(), 1990);
+        // Martech costs 300 fbs.
         player.addWeapon(
                 WeaponFactory.getInstance().getElement("martechGold", player.getLanguage(), player.getModuleName()));
-
+        Assert.assertEquals(player.getInitialMoney() - costCalculator.getFireBirdsExpend(), 1690f);
+        Assert.assertEquals(player.getMoney(), 1690);
+        // Synthsilk costs 300 fbs.
         player.setArmour(
                 ArmourFactory.getInstance().getElement("synthsilk", player.getLanguage(), player.getModuleName()));
+        Assert.assertEquals(player.getInitialMoney() - costCalculator.getFireBirdsExpend(), 1390f);
+        Assert.assertEquals(player.getMoney(), 1390);
 
+        // Add 3000 fbs more.
+        player.removeBenefice(AvailableBeneficeFactory.getInstance().getElement("cash [firebirds2000]", LANGUAGE,
+                PathManager.DEFAULT_MODULE_FOLDER));
+        player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("cash [firebirds5000]", LANGUAGE,
+                PathManager.DEFAULT_MODULE_FOLDER));
+
+        // Synthsilk costs 3000 fbs.
         player.setShield(
                 ShieldFactory.getInstance().getElement("assaultShield", player.getLanguage(), player.getModuleName()));
+        Assert.assertEquals(player.getInitialMoney() - costCalculator.getFireBirdsExpend(), 1390f);
+        Assert.assertEquals(player.getMoney(), 1390);
 
         //Remove equipment
         player.setArmour(null);
@@ -359,5 +390,6 @@ public class CostCalculatorTests {
         player.setWeapons(new ArrayList<>());
 
         Assert.assertEquals(costCalculator.getFireBirdsExpend(), money);
+        Assert.assertEquals(player.getMoney(), 5000);
     }
 }

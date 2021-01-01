@@ -36,7 +36,7 @@ public class LanguagePool {
 	private LanguagePool() {
 	}
 
-	public static ITranslator getTranslator(String xmlFile, String moduleName) {
+	public static synchronized ITranslator getTranslator(String xmlFile, String moduleName) {
 		if (existingTranslators.get(moduleName) == null) {
 			existingTranslators.put(moduleName, new HashMap<String, ITranslator>());
 		}

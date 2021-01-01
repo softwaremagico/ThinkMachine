@@ -46,6 +46,7 @@ public class CharacterModificationHandler {
     private Set<IWyrdUpdated> wyrdUpdatedListener;
     private Set<ICyberneticDeviceUpdated> cyberneticDeviceUpdatedListeners;
     private Set<IEquipmentUpdated> equipmentUpdatedListeners;
+    private Set<IInitialFirebirdsUpdated> firebirdsUpdatedListeners;
 
     public CharacterModificationHandler() {
         resetListeners();
@@ -87,6 +88,10 @@ public class CharacterModificationHandler {
         void updated(Equipment<?> equipment, boolean removed);
     }
 
+    public interface IInitialFirebirdsUpdated {
+        void updated(float initialMoney);
+    }
+
     public void resetListeners() {
         skillUpdatedListeners = new HashSet<>();
         characteristicUpdatedListeners = new HashSet<>();
@@ -97,6 +102,7 @@ public class CharacterModificationHandler {
         cyberneticDeviceUpdatedListeners = new HashSet<>();
         equipmentUpdatedListeners = new HashSet<>();
         wyrdUpdatedListener = new HashSet<>();
+        firebirdsUpdatedListeners = new HashSet<>();
     }
 
     public void addSkillUpdateListener(ISkillUpdated listener) {
@@ -133,6 +139,10 @@ public class CharacterModificationHandler {
 
     public void addEquipmentUpdatedListener(IEquipmentUpdated listener) {
         equipmentUpdatedListeners.add(listener);
+    }
+
+    public void addFirebirdsUpdatedListener(IInitialFirebirdsUpdated listener) {
+        firebirdsUpdatedListeners.add(listener);
     }
 
     public void launchSkillUpdatedListener(AvailableSkill skill, int previousRank, int newRank, int minimumRank) {
@@ -186,6 +196,12 @@ public class CharacterModificationHandler {
     public void launchEquipmentUpdatedListener(Equipment<?> equipment, boolean removed) {
         for (final IEquipmentUpdated listener : equipmentUpdatedListeners) {
             listener.updated(equipment, removed);
+        }
+    }
+
+    public void launchInitialFirebirdsUpdatedListener(float newInitialCash) {
+        for (final IInitialFirebirdsUpdated listener : firebirdsUpdatedListeners) {
+            listener.updated(newInitialCash);
         }
     }
 

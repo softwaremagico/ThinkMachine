@@ -39,6 +39,7 @@ public class CostCalculatorModificationHandler {
     private Set<ICurrentWyrdExtraPointUpdatedListener> wyrdExtraPointUpdatedListeners;
     private Set<ICurrentCyberneticExtraPointsListener> cyberneticExtraPointsListeners;
     private Set<ICurrentFirebirdSpendListener> firebirdSpendListeners;
+    private Set<IInitialFirebirdsUpdated> initialFirebirdsUpdatedListeners;
     private Set<IExtraPointUpdatedListener> extraPointUpdatedListeners;
 
 
@@ -90,6 +91,10 @@ public class CostCalculatorModificationHandler {
         void updated();
     }
 
+    public interface IInitialFirebirdsUpdated {
+        void updated(float initialMoney);
+    }
+
     public CostCalculatorModificationHandler() {
         resetListeners();
     }
@@ -106,11 +111,17 @@ public class CostCalculatorModificationHandler {
         wyrdExtraPointUpdatedListeners = new HashSet<>();
         cyberneticExtraPointsListeners = new HashSet<>();
         firebirdSpendListeners = new HashSet<>();
+        initialFirebirdsUpdatedListeners = new HashSet<>();
         extraPointUpdatedListeners = new HashSet<>();
     }
 
-    public void addExtraPointsUpdatedListeners(IExtraPointUpdatedListener listener) {
+    public IExtraPointUpdatedListener addExtraPointsUpdatedListeners(IExtraPointUpdatedListener listener) {
         extraPointUpdatedListeners.add(listener);
+        return listener;
+    }
+
+    public void removeExtraPointsUpdatedListeners(IExtraPointUpdatedListener listener) {
+        extraPointUpdatedListeners.remove(listener);
     }
 
     public void launchExtraPointsUpdatedListeners() {
@@ -119,8 +130,13 @@ public class CostCalculatorModificationHandler {
         }
     }
 
-    public void addCharacteristicPointsUpdatedListeners(ICurrentCharacteristicPointsUpdatedListener listener) {
+    public ICurrentCharacteristicPointsUpdatedListener addCharacteristicPointsUpdatedListeners(ICurrentCharacteristicPointsUpdatedListener listener) {
         characteristicPointsUpdatedListeners.add(listener);
+        return listener;
+    }
+
+    public void removeCharacteristicPointsUpdatedListeners(ICurrentCharacteristicPointsUpdatedListener listener) {
+        characteristicPointsUpdatedListeners.remove(listener);
     }
 
     public void launchCharacteristicPointsUpdatedListeners(int value) {
@@ -131,8 +147,14 @@ public class CostCalculatorModificationHandler {
         }
     }
 
-    public void addCharacteristicExtraPointsUpdatedListeners(ICurrentCharacteristicExtraPointsUpdatedListener listener) {
+    public ICurrentCharacteristicExtraPointsUpdatedListener addCharacteristicExtraPointsUpdatedListeners(
+            ICurrentCharacteristicExtraPointsUpdatedListener listener) {
         characteristicExtraPointsUpdatedListeners.add(listener);
+        return listener;
+    }
+
+    public void removeCharacteristicExtraPointsUpdatedListeners(ICurrentCharacteristicExtraPointsUpdatedListener listener) {
+        characteristicExtraPointsUpdatedListeners.remove(listener);
     }
 
     public void launchCharacteristicExtraPointsUpdatedListeners(int value) {
@@ -143,8 +165,13 @@ public class CostCalculatorModificationHandler {
         }
     }
 
-    public void addSkillsPointsUpdatedListeners(ICurrentSkillsPointsUpdatedListener listener) {
+    public ICurrentSkillsPointsUpdatedListener addSkillsPointsUpdatedListeners(ICurrentSkillsPointsUpdatedListener listener) {
         skillsPointsUpdatedListeners.add(listener);
+        return listener;
+    }
+
+    public void removeSkillsPointsUpdatedListeners(ICurrentSkillsPointsUpdatedListener listener) {
+        skillsPointsUpdatedListeners.remove(listener);
     }
 
     public void launchSkillsPointsUpdatedListeners(int value) {
@@ -155,8 +182,13 @@ public class CostCalculatorModificationHandler {
         }
     }
 
-    public void addSkillsExtraPointsUpdatedListeners(ICurrentSkillsExtraPointsUpdatedListener listener) {
+    public ICurrentSkillsExtraPointsUpdatedListener addSkillsExtraPointsUpdatedListeners(ICurrentSkillsExtraPointsUpdatedListener listener) {
         skillsExtraPointsUpdatedListeners.add(listener);
+        return listener;
+    }
+
+    public void removeSkillsExtraPointsUpdatedListeners(ICurrentSkillsExtraPointsUpdatedListener listener) {
+        skillsExtraPointsUpdatedListeners.remove(listener);
     }
 
     public void launchSkillsExtraPointsUpdatedListeners(int value) {
@@ -167,8 +199,13 @@ public class CostCalculatorModificationHandler {
         }
     }
 
-    public void addTraitsPointsUpdatedListeners(ICurrentTraitsPointsUpdatedListener listener) {
+    public ICurrentTraitsPointsUpdatedListener addTraitsPointsUpdatedListeners(ICurrentTraitsPointsUpdatedListener listener) {
         traitsPointsUpdatedListeners.add(listener);
+        return listener;
+    }
+
+    public void removeTraitsPointsUpdatedListeners(ICurrentTraitsPointsUpdatedListener listener) {
+        traitsPointsUpdatedListeners.remove(listener);
     }
 
     public void launchTraitsPointsUpdatedListeners(int value) {
@@ -179,8 +216,13 @@ public class CostCalculatorModificationHandler {
         }
     }
 
-    public void addTraitsExtraPointsUpdatedListeners(ICurrentTraitsExtraPointsUpdatedListener listener) {
+    public ICurrentTraitsExtraPointsUpdatedListener addTraitsExtraPointsUpdatedListeners(ICurrentTraitsExtraPointsUpdatedListener listener) {
         traitsExtraPointsUpdatedListeners.add(listener);
+        return listener;
+    }
+
+    public void removeTraitsExtraPointsUpdatedListeners(ICurrentTraitsExtraPointsUpdatedListener listener) {
+        traitsExtraPointsUpdatedListeners.remove(listener);
     }
 
     public void launchTraitsExtraPointsUpdatedListeners(int value) {
@@ -191,8 +233,14 @@ public class CostCalculatorModificationHandler {
         }
     }
 
-    public void addOccultismLevelExtraPointUpdatedListeners(ICurrentOccultismLevelExtraPointUpdatedListener listener) {
+    public ICurrentOccultismLevelExtraPointUpdatedListener addOccultismLevelExtraPointUpdatedListeners(
+            ICurrentOccultismLevelExtraPointUpdatedListener listener) {
         occultismLevelExtraPointUpdatedListeners.add(listener);
+        return listener;
+    }
+
+    public void removeOccultismLevelExtraPointUpdatedListeners(ICurrentOccultismLevelExtraPointUpdatedListener listener) {
+        occultismLevelExtraPointUpdatedListeners.remove(listener);
     }
 
     public void launchOccultismLevelExtraPointUpdatedListeners(int value) {
@@ -203,8 +251,14 @@ public class CostCalculatorModificationHandler {
         }
     }
 
-    public void addOccultismPowerExtraPointUpdatedListeners(ICurrentOccultismPowerExtraPointUpdatedListener listener) {
+    public ICurrentOccultismPowerExtraPointUpdatedListener addOccultismPowerExtraPointUpdatedListeners(
+            ICurrentOccultismPowerExtraPointUpdatedListener listener) {
         occultismPowerExtraPointUpdatedListeners.add(listener);
+        return listener;
+    }
+
+    public void removeOccultismPowerExtraPointUpdatedListeners(ICurrentOccultismPowerExtraPointUpdatedListener listener) {
+        occultismPowerExtraPointUpdatedListeners.remove(listener);
     }
 
     public void launchOccultismPowerExtraPointUpdatedListeners(int value) {
@@ -215,8 +269,13 @@ public class CostCalculatorModificationHandler {
         }
     }
 
-    public void addWyrdExtraPointUpdatedListeners(ICurrentWyrdExtraPointUpdatedListener listener) {
+    public ICurrentWyrdExtraPointUpdatedListener addWyrdExtraPointUpdatedListeners(ICurrentWyrdExtraPointUpdatedListener listener) {
         wyrdExtraPointUpdatedListeners.add(listener);
+        return listener;
+    }
+
+    public void removeWyrdExtraPointUpdatedListeners(ICurrentWyrdExtraPointUpdatedListener listener) {
+        wyrdExtraPointUpdatedListeners.remove(listener);
     }
 
     public void launchWyrdExtraPointUpdatedListeners(int value) {
@@ -225,8 +284,8 @@ public class CostCalculatorModificationHandler {
         }
     }
 
-    public void addCyberneticExtraPointsListeners(ICurrentCyberneticExtraPointsListener listener) {
-        cyberneticExtraPointsListeners.add(listener);
+    public void removeCyberneticExtraPointsListeners(ICurrentCyberneticExtraPointsListener listener) {
+        cyberneticExtraPointsListeners.remove(listener);
     }
 
     public void launchCyberneticExtraPointsListeners(int value) {
@@ -237,13 +296,35 @@ public class CostCalculatorModificationHandler {
         }
     }
 
-    public void addFirebirdSpendListeners(ICurrentFirebirdSpendListener listener) {
+    public ICurrentFirebirdSpendListener addFirebirdSpendListeners(ICurrentFirebirdSpendListener listener) {
         firebirdSpendListeners.add(listener);
+        return listener;
+    }
+
+    public void removeFirebirdSpendListeners(ICurrentFirebirdSpendListener listener) {
+        firebirdSpendListeners.remove(listener);
     }
 
     public void launchFirebirdSpendListeners(float value) {
         if (value != 0) {
             for (final ICurrentFirebirdSpendListener listener : firebirdSpendListeners) {
+                listener.updated(value);
+            }
+        }
+    }
+
+    public IInitialFirebirdsUpdated addInitialFirebirdListeners(IInitialFirebirdsUpdated listener) {
+        initialFirebirdsUpdatedListeners.add(listener);
+        return listener;
+    }
+
+    public void removeInitialFirebirdListeners(IInitialFirebirdsUpdated listener) {
+        initialFirebirdsUpdatedListeners.remove(listener);
+    }
+
+    public void launchInitialFirebirdListeners(float value) {
+        if (value != 0) {
+            for (final IInitialFirebirdsUpdated listener : initialFirebirdsUpdatedListeners) {
                 listener.updated(value);
             }
         }
