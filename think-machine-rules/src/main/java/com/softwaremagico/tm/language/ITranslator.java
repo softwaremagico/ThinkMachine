@@ -29,6 +29,8 @@ import java.util.Set;
 
 public interface ITranslator {
 
+	void clear();
+
 	String getTranslatedText(String tag);
 
 	String getTranslatedText(String tag, String language);

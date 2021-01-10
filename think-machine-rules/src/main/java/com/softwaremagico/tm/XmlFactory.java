@@ -261,6 +261,8 @@ public abstract class XmlFactory<T extends Element<T>> {
             }
             Collections.sort(elements.get(language).get(moduleName));
         }
+        //getTranslator(moduleName).clear();
+        //LanguagePool.clearCache(getTranslatorFile(), moduleName);
         return elements.get(language).get(moduleName);
     }
 

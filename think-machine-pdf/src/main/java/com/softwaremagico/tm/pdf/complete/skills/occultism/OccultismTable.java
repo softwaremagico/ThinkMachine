@@ -38,7 +38,7 @@ import com.softwaremagico.tm.pdf.complete.elements.BaseElement;
 import com.softwaremagico.tm.pdf.complete.elements.LateralHeaderPdfPTable;
 
 public class OccultismTable extends LateralHeaderPdfPTable {
-	private static final int ROW_WIDTH = 70;
+	private static final float ROW_HEIGHT = 70f;
 	private static final float[] widths = { 1f, 6f };
 
 	public OccultismTable(CharacterPlayer characterPlayer, String language, String moduleName)
@@ -55,7 +55,7 @@ public class OccultismTable extends LateralHeaderPdfPTable {
 	@Override
 	protected PdfPCell createLateralVerticalTitle(String title, int rowspan) {
 		final PdfPCell titleCell = super.createLateralVerticalTitle(title, rowspan);
-		titleCell.setMinimumHeight(ROW_WIDTH);
+		titleCell.setMinimumHeight(ROW_HEIGHT);
 		return titleCell;
 	}
 
