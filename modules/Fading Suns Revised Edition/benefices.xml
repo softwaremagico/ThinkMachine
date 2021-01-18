@@ -5,6 +5,10 @@
 			<en>Alien Upbringing</en>
 			<es>Educación Alienígena</es>
 		</name>
+		<description>
+			<en>Due to some odd series of events, the character was raised by members of another race. It’s almost unheard of for humans to care for a Ur-Ukar child or a Vorox to take care of a human infant, but it has happened. A character with this Benefice begins with knowledge of that species’ language (the Speak skill) instead of his own. Anyone with a prejudice against non-human races (which includes almost every person in the Known Worlds) will tend to have a special distrust for the character.</en>
+			<es>Debido a una extraña serie de sucesión de eventos, el personaje ha sido criado por miembros de otra raza. Casi nunca se oye que un humano se preocupe por un niño Ur-Ukar, o que un Vorox se preocupe de un infante humano, pero esto ha ocurrido. Un personaje con este Beneficio empieza con los conocimientos del idioma de esa especie (la habilidad de Hablar) en lugar de la suya propia. Cualquiera con un prejuicio hacia las razas no humanas (lo cual incluye prácticamente a todas las personas en los Mundos Conocidos) tenderá a desarrollar una desconfianza especial hacia el personaje.</es>
+		</description>
 		<cost>2</cost>
 		<group>background</group>
 	</alienUpbringing>
@@ -13,6 +17,10 @@
 			<en>Heir</en>
 			<es>Herencia</es>
 		</name>
+		<description>
+			<en>The character is next in line for some position of importance. When her parents die, she might become duchess of the al-Malik, inherit a Charioteer spaceship or lead the Vorox, but she has no idea when this will happen. It may never occur or it may be next week—it’s all up to the Game Master. Note that characters who want to be heirs to a noble still need to have the Nobility Benefice.</en>
+			<es>El personaje está cerca de la línea de alguna posición importante. Cuando sus padres mueran, puede que se convierta en el duque de los al-Malik, puede que herede una nave de los Aurigas o que dirija a los Vorox, pero no tiene ni idea de cuándo ocurrirá. Puede que no ocurra jamás o puede que ocurra la semana que viene, todo depende del Director de Juego. Nótese que el personaje que quiera ser heredero de un noble aun necesitará tener el Beneficio Nobleza.</es>
+		</description>
 		<cost>2</cost>
 		<group>background</group>
 	</heir>
@@ -21,6 +29,11 @@
 			<en>Language</en>
 			<es>Idioma</es>
 		</name>
+		<description>
+			<en>The character is able to speak an additional language. If they are literate and
+the chosen language has a common written form they are able to read and write as well. This benefice can be bought multiple times with a new language learned each time.</en>
+			<es>El personaje es capaz de hablar un idioma adicional. Si están alfabetizados y el idioma escogido posee una forma de escritura común, también serán capaces de leerlo y escribirlo. Este Beneficio puede adquirirse varias veces, aprendiendo un idioma nuevo cada vez.</es>
+		</description>
 		<specializations>
 			<latinLanguage>
 				<name>
@@ -103,6 +116,11 @@
 			<en>Secrets</en>
 			<es>Secretos</es>
 		</name>
+		<description>
+			<en>This Benefice is one of the most wide-ranging in the game. The secret the character knows can range from blackmail on a minor noble to the location of a forgotten planet. Game Masters should work closely with players to ensure their secrets fit into the game he wants to run. What follows are guidelines on how to handle this since only the Game Master knows what secrets most influence her campaign</en>
+			<es>Este Beneficio es uno de los más polivalentes del juego. El secreto que un personaje sabe puede abarcar desde el chantaje a un noble menor, hasta la localización de un planeta olvidado. El Director de Juego debería trabajar codo con codo con los jugadores para asegurar que sus secretos encajan con la partida que quiere llevar a cabo. Lo que sigue son unas pautas sobre cómo manejarse con esto, ya que tan solo el DJ sabe cuánto puede influenciar en
+la campaña un secreto.</es>
+		</description>
 		<cost>1-5</cost>
 		<group>background</group>
 	</secrets>
@@ -111,6 +129,10 @@
 			<en>Spacer</en>
 			<es>Habitante del Espacio</es>
 		</name>
+		<description>
+			<en>The ability to function normally while inside a spacesuit or in a zero-gravity environment is not common, and members of the Charioteers guild often get more practice at it than others outside the guild. Many skills which seem straightforward when performed under normal conditions become much more complicated when the character is using a spacesuit or other type of large, bulky armor. The Spacer benefice offsets any penalties levied for unfamiliarity with space-suits or zero-g environments. Characters without this benefice are not proficient at doing things in spacesuits; all physical actions are considered Demanding tasks (–4)</en>
+			<es>La habilidad para actuar con normalidad mientras se está dentro de un traje espacial o de un entorno en gravedad cero no es muy común, y los miembros del gremio de los Aurigas a menudo tienen más práctica con ello que otros de fuera del gremio. Muchas habilidades que parecen ser simples cuando se realizan bajo condiciones normales, se convierten en habilidades mucho más complicadas cuando el personaje está usando un traje espacial o cualquier otro tipo de armadura grande y corpulenta. El beneficio de Habitante del Espacio afecta a cualquier penalizador percibido por parte de la falta de familiaridad con los trajes espaciales o los entornos en gravedad cero. Los personajes sin este beneficio no son competentes a la hora de realizar acciones en un traje espacial; todas las acciones físicas se consideran tareas Exigentes (-4).</es>
+		</description>
 		<cost>2</cost>
 		<group>background</group>
 	</spacer>
@@ -119,6 +141,10 @@
 			<en>Well-Traveled</en>
 			<es>Trotamundos</es>
 		</name>
+		<description>
+			<en>The character has been around a bit, and has heard a bit more. The character has the equivalent of Planetary Lore 1 for every major planet in his travel radius.</en>
+			<es>El personaje ha estado un poco en todas partes y ha escuchado aún un poco más. El personaje tiene el Saber Planetario 1 equivalente a cada planeta grande que esté en el radio de su viaje.</es>
+		</description>
 		<cost>3,5</cost>
 		<group>background</group>
 	</wellTraveled>
@@ -127,6 +153,10 @@
 			<en>Addiction</en>
 			<es>Adicción</es>
 		</name>
+		<description>
+			<en>The character is addicted to some substance, and this addiction makes his life difficult at times. Symptoms of withdrawal vary based upon the drug and the withdrawal period. Game Masters may require Will rolls, or assign goal penalties as the symptoms get worse—whatever increases the dramatic tension of the moment is appropriate.</en>
+			<es>El personaje es adicto a alguna sustancia, y esta adicción a veces hace que su vida sea difícil. Los síntomas del síndrome de abstinencia varían en función del período de abstinencia de la droga. Puede que los Directores de Juego exijan realizar tiradas de Voluntad, o que asignen unos penalizadores a los aciertos a medida que los síntomas se ponen peor; sea lo que sea, que incremente la tensión dramática en el momento apropiado.</es>
+		</description>
 		<cost>2-4</cost>
 		<group>background</group>
 		<affliction>true</affliction>
@@ -136,15 +166,27 @@
 			<en>Cloistered</en>
 			<es>Enclaustrado</es>
 		</name>
+		<description>
+			<en>The character grew up separately from other people, and has never gotten over the fact. Since she has had so few dealings with others, she may well misunderstand them, be nervous around them and have a hard time relating to them. Others are likely to find her odd, especially when she starts using the unique language she developed as a child.</en>
+			<es>El personaje ha crecido separado del resto de personas, y nunca lo ha superado. Como ha tenido muy pocos encontronazos con otras personas, puede que los malinterprete, que esté nervioso cuando esté con ellos y pasar un mal rato cuando tenga que relacionarse. Otros suelen encontrar al personaje como una persona extraña, especialmente cuando empieza a usar el único idioma que desarrolló como niño.</es>
+		</description>
 		<cost>1</cost>
 		<group>background</group>
 		<affliction>true</affliction>
+		<random>
+			<recommendedFactionGroups>church</recommendedFactionGroups>
+			<probabilityMultiplier>0.2</probabilityMultiplier>
+		</random>
 	</cloistered>
 	<darkSecret>
 		<name>
 			<en>Dark Secret</en>
 			<es>Secreto Oscuro</es>
 		</name>
+		<description>
+			<en>Something about the character is so horrible that he will do almost anything to cover it up. Almost no one should know about it at the beginning of the game, but if it does come out, then the player should have a chance to either cover it back up or make up for it.</en>
+			<es>Algo referente al personaje es tan horrible que hará prácticamente cualquier cosa para encubrirlo. Casi nadie debería saber algo al respecto al principio de la partida, pero si se da el caso, entonces el personaje debería tener o bien la oportunidad de encubrirlo o bien de maquillarlo.</es>
+		</description>
 		<cost>1-3</cost>
 		<group>background</group>
 		<affliction>true</affliction>
@@ -154,6 +196,10 @@
 			<en>Infamous Family</en>
 			<es>Familia Infame</es>
 		</name>
+		<description>
+			<en>The character's family has gained notoriety, and this affects the way people view her. She may come from a family of thieves, heretics or murderers. Note that a character can buy both the Nobility Benefice and this Affliction to represent how certain branches of even the noblest families have their problems.</en>
+			<es>La familia del personaje se ha granjeado cierta notoriedad y esto afecta al modo en el que la gente le mira. Puede provenir de una familia de ladrones, herederos o asesinos. Nótese que un personaje puede comprar tanto el Beneficio de nobleza como esta Aflicción para representar que incluso las ramas de las familias más nobles tienen sus problemas.</es> 
+		</description>
 		<cost>1</cost>
 		<group>background</group>
 		<affliction>true</affliction>
@@ -163,6 +209,10 @@
 			<en>Lost Worlder</en>
 			<es>Habitante de un Mundo Perdido</es>
 		</name>
+		<description>
+			<en>The character is from one of the recently rediscovered Lost Worlds. In the millennia between the Fall of the Republic and the rediscovery of the planet, culture has changed greatly. It is a struggle to fit in, and most people are wary of you.</en>
+			<es>El personaje proviene de uno de los mundos perdidos descubierto recientemente. En los milenios que hay entre la caída de la república y el redescubrimiento del planeta, la cultura ha cambiado enormemente. Es un combate constante para encajar en el mundo, y la mayoría de la gente es recelosa contigo.</es>
+		</description>
 		<cost>1</cost>
 		<group>background</group>
 		<affliction>true</affliction>
@@ -172,6 +222,10 @@
 			<en>Oath of Fealty</en>
 			<es>Juramento de Lealtad</es>
 		</name>
+		<description>
+			<en>The character owes an oath of fealty abovie and beyond is normal obligations. All nobles owe an oath to their prince, all priests to their archbishop, all League members to their dean. This is something in addition to that oath. The object of the oath my call on the character's aid when he/she desires, although there is usually something the character receives in return for this oath (such as a plege to send soliders in case the character's fief is under assault).</en>
+			<es>El personaje posee un juramento de lealtad más allá de sus obligaciones normales. Todos los nobles tienen un juramento a su príncipe, todos los sacerdotes a su arzobispo, todos los miembros de la Liga a su decano. Esto es algo que se puede añadir a ese juramento. Es posible que el objeto del juramento sea disponer de la ayuda del personaje cuando se desee, aunque el personaje siempre recibe algo a cambio de su juramento (cosas tales como la promesa de enviar soldados en caso de que el feudo del personaje esté bajo asalto)</es>
+		</description>
 		<cost>1-3</cost>
 		<group>background</group>
 		<affliction>true</affliction>
@@ -181,6 +235,10 @@
 			<en>Obligation</en>
 			<es>Obligación</es>
 		</name>
+		<description>
+			<en>The character has a duty he cannot avoid. This could be a sacred site he has to keep holy, a Vorox child he must raise, or a payment he must make on a regular basis. This differs from the Oath of Fealty in that the character will not get anything in return for his obligaction. </en>
+			<es>El personaje tiene un deber que no puede obviar. Esto podría ser un lugar sagrado que debe mantenerlo santo, un niño Vorox al que debe criar, o el pago que debe realizar de forma regular. Esto difiere del Juramento de Lealtad en que el personaje no obtiene nada a cambio de realizar su obligación.</es>
+		</description>
 		<cost>1-3</cost>
 		<group>background</group>
 		<affliction>true</affliction>
@@ -190,6 +248,10 @@
 			<en>Orphan</en>
 			<es>Huérfano</es>
 		</name>
+		<description>
+			<en></en>
+			<es></es>
+		</description>
 		<cost>1</cost>
 		<group>background</group>
 		<affliction>true</affliction>
@@ -199,6 +261,10 @@
 			<en>Stigma</en>
 			<es>Estigma</es>
 		</name>
+		<description>
+			<en></en>
+			<es></es>
+		</description>
 		<cost>1-4</cost>
 		<group>background</group>
 		<affliction>true</affliction>
@@ -208,6 +274,10 @@
 			<en>Vow</en>
 			<es>Voto</es>
 		</name>
+		<description>
+			<en></en>
+			<es></es>
+		</description>
 		<cost>1-3</cost>
 		<group>background</group>
 		<affliction>true</affliction>
@@ -225,6 +295,10 @@
 			<en>Contact</en>
 			<es>Contacto</es>
 		</name>
+		<description>
+			<en></en>
+			<es></es>
+		</description>
 		<cost>1</cost>
 		<group>community</group>
 	</contact>
@@ -233,6 +307,10 @@
 			<en>Family Ties</en>
 			<es>Lazos Familiares</es>
 		</name>
+		<description>
+			<en></en>
+			<es></es>
+		</description>
 		<cost>3</cost>
 		<group>community</group>
 	</familiyTies>
@@ -241,6 +319,10 @@
 			<en>Gossip Network</en>
 			<es>Red de Información</es>
 		</name>
+		<description>
+			<en></en>
+			<es></es>
+		</description>
 		<cost>1-4</cost>
 		<group>community</group>
 	</gossipNetwork>
@@ -249,6 +331,10 @@
 			<en>Protection</en>
 			<es>Protección</es>
 		</name>
+		<description>
+			<en></en>
+			<es></es>
+		</description>
 		<cost>3</cost>
 		<group>community</group>
 	</protection>
@@ -257,6 +343,10 @@
 			<en>Retinue</en>
 			<es>Séquito</es>
 		</name>
+		<description>
+			<en></en>
+			<es></es>
+		</description>
 		<cost>1-4</cost>
 		<group>community</group>
 	</retinue>
@@ -265,6 +355,10 @@
 			<en>Dependent</en>
 			<es>Dependiente</es>
 		</name>
+		<description>
+			<en></en>
+			<es></es>
+		</description>
 		<cost>1</cost>
 		<group>community</group>
 		<affliction>true</affliction>
@@ -274,6 +368,10 @@
 			<en>Vendetta</en>
 			<es>Vendetta</es>
 		</name>
+		<description>
+			<en></en>
+			<es></es>
+		</description>
 		<cost>1-4</cost>
 		<group>community</group>
 		<affliction>true</affliction>
