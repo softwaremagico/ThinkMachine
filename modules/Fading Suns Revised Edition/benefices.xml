@@ -18,7 +18,7 @@
 			<es>Herencia</es>
 		</name>
 		<description>
-			<en>The character is next in line for some position of importance. When her parents die, she might become duchess of the al-Malik, inherit a Charioteer spaceship or lead the Vorox, but she has no idea when this will happen. It may never occur or it may be next week—it’s all up to the Game Master. Note that characters who want to be heirs to a noble still need to have the Nobility Benefice.</en>
+			<en>The character is next in line for some position of importance. When her parents die, she might become duchess of the al-Malik, inherit a Charioteer spaceship or lead the Vorox, but she has no idea when this will happen. It may never occur or it may be next week-it’s all up to the Game Master. Note that characters who want to be heirs to a noble still need to have the Nobility Benefice.</en>
 			<es>El personaje está cerca de la línea de alguna posición importante. Cuando sus padres mueran, puede que se convierta en el duque de los al-Malik, puede que herede una nave de los Aurigas o que dirija a los Vorox, pero no tiene ni idea de cuándo ocurrirá. Puede que no ocurra jamás o puede que ocurra la semana que viene, todo depende del Director de Juego. Nótese que el personaje que quiera ser heredero de un noble aun necesitará tener el Beneficio Nobleza.</es>
 		</description>
 		<cost>2</cost>
@@ -154,7 +154,7 @@ la campaña un secreto.</es>
 			<es>Adicción</es>
 		</name>
 		<description>
-			<en>The character is addicted to some substance, and this addiction makes his life difficult at times. Symptoms of withdrawal vary based upon the drug and the withdrawal period. Game Masters may require Will rolls, or assign goal penalties as the symptoms get worse—whatever increases the dramatic tension of the moment is appropriate.</en>
+			<en>The character is addicted to some substance, and this addiction makes his life difficult at times. Symptoms of withdrawal vary based upon the drug and the withdrawal period. Game Masters may require Will rolls, or assign goal penalties as the symptoms get worse-whatever increases the dramatic tension of the moment is appropriate.</en>
 			<es>El personaje es adicto a alguna sustancia, y esta adicción a veces hace que su vida sea difícil. Los síntomas del síndrome de abstinencia varían en función del período de abstinencia de la droga. Puede que los Directores de Juego exijan realizar tiradas de Voluntad, o que asignen unos penalizadores a los aciertos a medida que los síntomas se ponen peor; sea lo que sea, que incremente la tensión dramática en el momento apropiado.</es>
 		</description>
 		<cost>2-4</cost>
@@ -249,12 +249,13 @@ la campaña un secreto.</es>
 			<es>Huérfano</es>
 		</name>
 		<description>
-			<en></en>
-			<es></es>
+			<en>Family ties are the most important ones to the majority of people in Fading Suns, but the character doesn’t even have these. He lost his family at a very young age and nothing ever replaced it. For him, the Chainers are a very real danger unless he finds some alliance. Note that a character cannot take Nobility or Alien Upbringing with this Affliction, as both of those require a family of some kind.</en>
+			<es>Los lazos familiares son los más importantes para la mayoría de la gente en Fading Suns, pero el personaje ni siquiera los tiene. Perdió a su familia a una edad muy temprana y nunca nada ha logrado reemplazarla. Para él, los Esclavistas son un peligro muy real a menos que encuentre alguna alianza. Nótese que el personaje no puede escoger Nobleza o Educación Alienígena con esta Aflicción, ya que ambas requieren algún tipo de familia.</es> 
 		</description>
 		<cost>1</cost>
 		<group>background</group>
 		<affliction>true</affliction>
+		<incompatibleWith>alienUpbringing, nobility</incompatibleWith>
 	</orphan>
 	<stigma>
 		<name>
@@ -262,8 +263,8 @@ la campaña un secreto.</es>
 			<es>Estigma</es>
 		</name>
 		<description>
-			<en></en>
-			<es></es>
+			<en>The character has a stigma of some sort. This is something which, if noticed by the common populace, would cause revulsion, suspicion or fear. When coming up with these, think of what would unnerve a superstitious medieval peasant. (All occultists and cybernetics-bearers have a mild Stigma, although theurgic Stigmas are often seen as holy rather than damning. They do not receive points for this Stigma.)</en>
+			<es>El personaje tiene un estigma de alguna clase. En caso de que el populacho común se percate de ello, esto es algo que le causaría una gran repulsión, desconfianza o miedo. Cuando se den estos casos, considera qué podría poner nerviosos a los supersticiosos campesinos medievales (todos los ocultistas y portadores de dispositivos cibernéticos tienen un estigma leve, aunque los estigmas teúrgicos generalmente son considerados más como algo santo que como maldito; no reciben puntos por este estigma).</es>
 		</description>
 		<cost>1-4</cost>
 		<group>background</group>
@@ -275,8 +276,8 @@ la campaña un secreto.</es>
 			<es>Voto</es>
 		</name>
 		<description>
-			<en></en>
-			<es></es>
+			<en>Some village priests complain that commoners swear by anything, but some people take their vows seriously. It is not only Church leaders who take vows of celibacy, but lay men, nobles and guildmembers as well. Vows generally cover something the character decides to give up, such as material goods, sex, or talking. The Game Master decides how many points it is worth based on the impact the vow has on the game.</en>
+			<es>Algunos sacerdotes de las villas se quejan de que los plebeyos maldicen por cualquier cosa, pero algunas personas se toman en serio sus votos. No sólo son los líderes de la Iglesia quienes toman los votos del celibato, sino también los hom- bres laicos, los nobles y los miembros de los gremios. Los votos, por lo general, cubren algo de lo que el personaje decide desprenderse, cosas como los bienes materiales, el sexo o hablar. El Director de Juego decide cuántos puntos otorgan estos votos basándose en el impacto que posee en la partida.</es>
 		</description>
 		<cost>1-3</cost>
 		<group>background</group>
@@ -287,7 +288,11 @@ la campaña un secreto.</es>
 			<en>Ally</en>
 			<es>Aliado</es>
 		</name>
-		<cost>1-11</cost>
+		<description>
+			<en>The character has a close relationship with someone in a position of power, and that person will go out of his way to help her. The cost of this Benefice is two points less than it would cost the player to buy that same level of status for her character. Thus if the character wants a Duke of House Hawkwood to be his ally, it will cost 22 points, compared to the 24 points it would cost the player to have that title. Note that many allies may not have a title, but this should give the GM an idea of how to rank them.</en>
+			<es>El personaje tiene una relación muy cercana con alguien en una posición de poder, y esa persona abandonaría su propio camino para ayudarle. El coste de este beneficio es dos puntos menos de lo que le costaría al jugador adquirir el mismo nivel de estatus para su personaje. Por este motivo si el personaje quiere que un duque de la casa Hawkwood sea su aliado, le costará 22 puntos, comparado con los 24 puntos que le costaría al jugador poseer tal título. Nótese que muchos aliados no poseen un título, pero esto debería darle al DJ una idea sobre cómo valorar los rangos de los mismos.</es>
+		</description>
+		<cost>1-22</cost>
 		<group>community</group>
 	</ally>
 	<contact>
@@ -296,8 +301,8 @@ la campaña un secreto.</es>
 			<es>Contacto</es>
 		</name>
 		<description>
-			<en></en>
-			<es></es>
+			<en>The character has an acquaintance who helps him out in little ways. The contact might provide information, sell good weapons or just be willing to give him a place to stay when he needs it. Players should come up with basic information about the contact, and the Game Master can flesh her out as he desires.</en> 
+			<es>El personaje posee cierto conocido que le ayuda a sacarse las castañas del fuego. El contacto puede proporcionarle información, venderle buenas armas o simplemente estar dispuesto a darle un lugar donde quedarse cuando lo necesite. A los jugadores se les debería ocurrir la información básica sobre el contacto, y el Director de Juego puede hacerlo más sustancioso si lo desea.</es>
 		</description>
 		<cost>1</cost>
 		<group>community</group>
@@ -308,8 +313,8 @@ la campaña un secreto.</es>
 			<es>Lazos Familiares</es>
 		</name>
 		<description>
-			<en></en>
-			<es></es>
+			<en>Blood can be thicker than wine, and a character with this Benefice can draw on some exceptionally loyal allies of similar status to himself. Of course, this cuts both ways-if someone kills your father, you will have to hunt him down to the farthest planet.</en>
+			<es>La sangre puede ser más densa que el vino, y un personaje con este beneficio puede sacarse de la manga algunos aliados excepcionalmente leales o de un estatus similar al suyo. Por supuesto, esto es recíproco, si alguien asesina a tu padre, tendrás que darle caza hasta el planeta más lejano.</es>
 		</description>
 		<cost>3</cost>
 		<group>community</group>
@@ -320,8 +325,8 @@ la campaña un secreto.</es>
 			<es>Red de Información</es>
 		</name>
 		<description>
-			<en></en>
-			<es></es>
+			<en>The character has a series of informants who keep her up to date on certain areas of information. These may be cackling old nobles who let her know which lords have committed breaches of etiquette, merchants who will let her know who is buying what, or farmers who will be more than glad to tell her who has gone through their area recently. Their information may not be as good as a contact’s, but they are everywhere. Still, the bigger it is, the less reliable the information. The cost varies by size of the network.</en>
+			<es>El personaje tiene una serie de fuentes que le mantienen al día sobre ciertas áreas de información. Estos pueden ser viejos nobles que chismorrean sobre qué señores han cometido faltas de etiqueta, mercaderes que le informarán de quién está comprando qué, o granjeros que estarán más que encantados de contarle quién ha atravesado la zona recientemente. Su información puede que no sea tan buena como la de un contacto, pero están por todas partes. Aun así, cuanto mayor sea la red, menos fiable será la información. El coste varía en función del tamaño de la red.</es>
 		</description>
 		<cost>1-4</cost>
 		<group>community</group>
@@ -332,8 +337,8 @@ la campaña un secreto.</es>
 			<es>Protección</es>
 		</name>
 		<description>
-			<en></en>
-			<es></es>
+			<en>Someone (or group of people) is looking out for the character. The character may well owe his protector something in return, but it is always helpful to be a Charioteer with the backing of the local Hawkwoods, even if he does have to fly them wherever they want to go.</en>
+			<es>Alguien (un grupo de personas) está cuidando al personaje. El personaje puede que le deba algo a su protector a cambio, pero siempre es útil ser un Auriga con el respaldo de los Hawkwood locales, incluso si tiene que llevarlos en la nave a donde quieran ir.</es>
 		</description>
 		<cost>3</cost>
 		<group>community</group>
@@ -344,8 +349,8 @@ la campaña un secreto.</es>
 			<es>Séquito</es>
 		</name>
 		<description>
-			<en></en>
-			<es></es>
+			<en>If good help is hard to find, then good, loyal help is really going to cost you. You may have any number of servants your wealth can afford, but the really devoted ones cost points.</en>
+			<es>Si la buena ayuda es difícil de encontrar, entonces la ayuda buena y leal realmente va a costarte algo. Puede que tengas tantos sirvientes como tu fortuna pueda costear, pero los que son realmente devotos cuestan puntos.</es>
 		</description>
 		<cost>1-4</cost>
 		<group>community</group>
@@ -356,8 +361,8 @@ la campaña un secreto.</es>
 			<es>Dependiente</es>
 		</name>
 		<description>
-			<en></en>
-			<es></es>
+			<en>Somebody relies a great deal on the character. This may be an elderly family member, a child or an often-in-trouble friend. Whatever the case, the character is likely to have some difficulty ensuring that this person is taken care of.</en>
+			<es>Alguien necesita del personaje. Este puede ser un anciano de la familia, un niño o un amigo que siempre está en problemas. Sea cual sea el caso, el personaje seguramente tendrá algunas dificultades para asegurarse de que se está cuidando de esta persona.</es>
 		</description>
 		<cost>1</cost>
 		<group>community</group>
@@ -369,8 +374,8 @@ la campaña un secreto.</es>
 			<es>Vendetta</es>
 		</name>
 		<description>
-			<en></en>
-			<es></es>
+			<en>Something you, your family or your friends has done have earned you an unyielding enemy. This person (or people) will do everything in his power to make your life difficult.</en>
+			<es>Algo que tú, tu familia o tus amigos habéis hecho os ha granjeado un implacable enemigo. Esta persona (o personas) hará todo lo que esté en su mano para hacerte la vida difícil.</es>
 		</description>
 		<cost>1-4</cost>
 		<group>community</group>
@@ -382,6 +387,10 @@ la campaña un secreto.</es>
 			<en>Advisor</en>
 			<es>Asesor</es>
 		</name>
+		<description>
+			<en>The character has a hand-held think machine with an artificial intelligence that can advise him on a number of matters. It is a bit crude, however, and may become more annoying than helpful at times.</en>
+			<es>El personaje posee una máquina pensante portátil, con una inteligencia artificial que puede aconsejarle en un determinado número de cuestiones. Sin embargo, es un poco primitiva y es posible que en ocasiones sea más molesta que útil</es>
+		</description>
 		<cost>5</cost>
 		<group>technology</group>
 	</advisor>
@@ -390,6 +399,10 @@ la campaña un secreto.</es>
 			<en>Flux Sword</en>
 			<es>Espada de Flujo</es>
 		</name>
+		<description>
+			<en>An energy sword, using a more advanced variation on blaster and energy shield tech. While these are still occasionally produced by ingenious weaponsmiths, they are rare.</en>
+			<es>Una espada de energía, usa una variación más avanzada de la tecnología del bláster y del escudo de energía. A pesar de que estas espadas son todavía producidas por armeros talentosos, son difíciles de encontrar.</es>
+		</description>
 		<cost>11</cost>
 		<group>technology</group>
 	</fluxSword>
@@ -398,6 +411,10 @@ la campaña un secreto.</es>
 			<en>Mist Sword</en>
 			<es>Espada Mística</es>
 		</name>
+		<description>
+			<en>A flux sword that can be psychically attuned to its wielder-making this a very rare and sought-after artifact by psychic covens.</en>
+			<es>Una espada de flujo que puede enlazarse psíquicamente con su portador, haciendo de este un artefacto muy raro y muy buscado por los aquelarres psíquicos.</es>
+		</description>
 		<cost>13</cost>
 		<group>technology</group>
 	</mistSword>
@@ -406,6 +423,10 @@ la campaña un secreto.</es>
 			<en>Neural Disruptor</en>
 			<es>Disruptor Neural</es>
 		</name>
+		<description>
+			<en>A deadly and banned weapon that harms a victim’s brain cells.</en>
+			<es>Un arma mortal y prohibida que daña las células cerebrales de la víctima.</es>
+		</description>
 		<cost>10</cost>
 		<group>technology</group>
 	</neuralDisruptor>
@@ -414,6 +435,10 @@ la campaña un secreto.</es>
 			<en>Wireblade</en>
 			<es>Filoespada</es>
 		</name>
+		<description>
+			<en>A monomolecular blade that can easily slice through ceramsteel-or clumsy wielders. These swords are extremely rare and can no longer be made.</en>
+			<es>Una hoja mono celular que puede atravesar con facilidad la Acerámica, o a los jugadores torpes.</es>
+		</description>
 		<cost>12</cost>
 		<group>technology</group>
 	</wireblade>
@@ -422,6 +447,10 @@ la campaña un secreto.</es>
 			<en>Psi Cloack</en>
 			<es>Manto de Psique</es>
 		</name>
+		<description>
+			<en>Advanced Second Republic tech that provides its wearer defense against psychic attacks and neural disrupters.</en>
+			<es>Tecnología avanzada de la Segunda República, que proporciona defensa a su portador contra los ataques psíquicos y disruptores neurales.</es>
+		</description>
 		<cost>10</cost>
 		<group>technology</group>
 	</psiCloack>
@@ -431,6 +460,10 @@ la campaña un secreto.</es>
 			<en>Adept Robes</en>
 			<es>Túnica de Adepto</es>
 		</name>
+		<description>
+			<en>The famed armor of the Brother Battle order. A ceramsteel suit powered by fusion; the ultimate in battlefield protection, and thus very expensive. Only Brother Battle characters can begin game play with Adept Robes, representing an inheritance from one’s master.</en>
+			<es>La famosa armadura de la orden de los Hermanos de Batalla. Un traje de Acerámica reforzado con la fusión; la protección definitiva en el campo de batalla, y por esta razón es muy cara. Tan solo los personajes Hermanos de Batalla pueden comenzar la partida con una Túnica de Adepto, alegando que es una herencia de un maestro.</es>
+		</description>
 		<cost>20</cost>
 		<group>relics</group>
 		<restricted>church</restricted>
@@ -440,6 +473,10 @@ la campaña un secreto.</es>
 			<en>Article of Faith</en>
 			<es>Artículo de Fe</es>
 		</name>
+		<description>
+			<en>An item that aids a theurge in a particular rite (such as a thorn which adds +3 to an Avestite’s Sting of Conscience roll). These come in all shapes and sizes, and not always necessarily obvious to their task.</en>
+			<es>Un objeto que ayude a un teúrgo en un rito particular (como una espina que añade un +3 a la tirada de Trampa de Conciencia de un Avestita). Estos objetos se dan de todas las formas y tamaños y su uso no será siempre necesariamente obvio.</es>
+		</description>
 		<cost>1-4</cost>
 		<group>relics</group>
 		<restricted>church</restricted>
@@ -449,7 +486,11 @@ la campaña un secreto.</es>
 			<en>Saint's Lore</en>
 			<es>Sabiduría de Santo</es>
 		</name>
-		<cost>11</cost>
+		<description>
+			<en>A miraculous item esteemed by all the faithful. A finger bone of Saint Rasmussen might have Avert Evil (Level Three) and Devotion (Level One); the cost would be 8.</en>
+			<es>Un objeto milagroso estimado por todos los creyentes. Un dedo huesudo del santo Ramussen podría tener Apartar el Mal (Nivel Tres) y Devoción (Nivel Uno); el coste en este caso sería de 8.</es>
+		</description>
+		<cost>3-22</cost>
 		<group>relics</group>
 		<restricted>church</restricted>
 	</saintLore>
@@ -458,6 +499,10 @@ la campaña un secreto.</es>
 			<en>Vestments</en>
 			<es>Vestiduras</es>
 		</name>
+		<description>
+			<en>The character has some properly -blessed Church equipment- robes, rosaries, miters, or other vestments. These items cannot be bought with money, but must be earned through service to the Church.</en>
+			<es>El personaje posee un equipamiento bendecido correctamente por la Iglesia, ya sean ropas, rosarios, mitras u otras vestiduras. Estos objetos no pueden adquirirse con dinero, sino que deben merecerse mediante servicios a la Iglesia.</es>
+		</description>
 		<cost>1</cost>
 		<group>relics</group>
 		<restricted>church</restricted>
@@ -467,7 +512,11 @@ la campaña un secreto.</es>
 			<en>Wyrd Tabernacle</en>
 			<es>Tabernáculo de Wyrd</es>
 		</name>
-		<cost>2-10</cost>
+		<description>
+			<en>A holy vessel of spiritual energy. This can take many forms, from a font or a book to a staff or shroud.</en>
+			<es>Un recipiente sagrado de energía espiritual. Este puede tomar muchas formas, desde una fuente o un libro hasta una vara o un sudario.</es>
+		</description>
+		<cost>2-20</cost>
 		<group>relics</group>
 		<restricted>church</restricted>
 	</wyrdTabernacle>
@@ -477,6 +526,10 @@ la campaña un secreto.</es>
 			<en>Jumpkey</en>
 			<es>Llave de Salto</es>
 		</name>
+		<description>
+			<en>Usually only Charioteers or high-ranking members of the noble houses and Church have these, since the Charioteers consider it somewhat of a crime for others to carry them. Nonetheless, black market trade in jumpkeys is popular, regardless of the risk of being thrown out of an airlock by a Charioteer protecting his guild’s monopoly. Each key holds coordinates for a jumproute between two planets: the departure planet and the destination planet; the key works both ways (coming and going) between these worlds.</en> 
+			<es>Por lo general tan solo los Aurigas o los miembros de alto rango de las casas nobles y la Iglesia tienen estas llaves, ya que los Aurigas consideran como una especie de crimen que otros que no sean ellos las lleven. Sin embargo, el comercio de llaves de salto en el mercado negro es popular, a pesar del riesgo de ser arrojado afuera de una cámara de descompresión por un Auriga, que esté protegiendo el monopolio de su gremio. Cada llave conserva las coordenadas de una ruta de salto entre dos planetas: el planeta de origen y el planeta de destino; la llave funciona en ambos sentidos (en ida y en regreso) entre estos mundos</es>
+		</description>
 		<cost>2</cost>
 		<group>possessions</group>
 		<random>
@@ -488,6 +541,10 @@ la campaña un secreto.</es>
 			<en>Passage Contracts</en>
 			<es>Contratos de Pasaje</es>
 		</name>
+		<description>
+			<en>Thanks to some preexisting arrangement with one of the guilds, the character does not have to worry about booking passage on starships. Of course, the accommodations may not always be the best, and the ship may make a number of stops along the way, but it is a (mostly) sure thing.</en>
+			<es>Gracias a algunos acuerdos preexistentes con uno de los gremios, el personaje no tiene que preocuparse de buscar un pasaje para una nave espacial. Por supuesto, las comodidades puede que no sean siempre las mejores, y la nave puede hacer muchas paradas a lo largo del camino, pero es (en la mayoría de los casos) un transporte seguro.</es>
+		</description>
 		<cost>2-10</cost>
 		<group>possessions</group>
 	</passageContracts>
@@ -496,6 +553,10 @@ la campaña un secreto.</es>
 			<en>Refuge</en>
 			<es>Refugio</es>
 		</name>
+		<description>
+			<en>The character has some place he can go where he feels safe. It might be a noble’s castle, a hidden monastery, a guild safe house or just a cave he outfitted himself. Whatever the case, it is almost always open to him—unless someone destroys it first. The following costs are only guidelines. Game Masters should make the player pay for extra protection, comfort or whatever.</en>
+			<es>El personaje posee un lugar donde puede ir para sentirse a salvo. Puede que sea el castillo de un noble, un monasterio escondido, una casa franca de un gremio o simplemente una cueva que acondicionó él mismo. Sea como sea, prácticamente está siempre abierto para él, a menos que alguien lo destruya primero. Los costes mostrados a continuación son unas meras refe- rencias. Los Directores de Juego deberían hacer pagar al jugador por protección extra, confort o lo que sea.</es>
+		</description>
 		<cost>2-10</cost>
 		<group>possessions</group>
 	</refuge>
@@ -505,6 +566,10 @@ la campaña un secreto.</es>
 			<en>Cash</en>
 			<es>Dinero</es>
 		</name>
+		<description>
+			<en>Through well-earned wages, inheritance, treasure seeking or wise saving, the character begins the game with a goodly sum of firebirds. She may carry it on her person or keep it in a local bank or with trusted friends; regardless, she can access it freely. This money may be spent to equip the character before gameplay. However, unlike Assets, below, this money is all the character has to her name—once it has been spent, it is gone.</en>
+			<es>Ya sea por buen salario, herencias, la búsqueda de tesoros o ahorrando sabiamente, el personaje empieza la partida con una buena suma de fénix. Puede llevarla toda encima o puede depositarla en un banco local o puede guardársela un amigo en el que confía; de cualquier modo, puede acceder a su dinero libremente. El personaje puede invertir este dinero en equipo antes de empezar a jugar la partida. Sin embargo, a diferencia de los Activos, (más abajo), este es todo el dinero que el personaje tiene a su nombre, una vez que se lo haya gastado, se fue.</es>
+		</description>
 		<specializations>
 			<firebirds0>
 				<name>
@@ -513,6 +578,7 @@ la campaña un secreto.</es>
 				</name>
 				<cost>4</cost>
 				<specializationIsAffliction>true</specializationIsAffliction>
+				<incompatibleWith>assets</incompatibleWith>
 			</firebirds0>
 			<firebirds50>
 				<name>
@@ -521,6 +587,7 @@ la campaña un secreto.</es>
 				</name>
 				<cost>2</cost>
 				<specializationIsAffliction>true</specializationIsAffliction>
+				<incompatibleWith>assets</incompatibleWith>
 			</firebirds50>
 			<firebirds250>
 				<name>
@@ -579,7 +646,53 @@ la campaña un secreto.</es>
 			<en>Assets</en>
 			<es>Activos</es>
 		</name>
-		<cost>4-20</cost>
+		<description>
+			<en>Some characters are lucky enough to have real wealth—not just savings or wages, but land rulership or control of a business. These types of Assets provide characters with regular income and are usually tied to a character’s rank and station in life. The character does not actually own the business -her house or guild does- but through birthright, luck, or hard work, she has gained control over it and thus reaps its benefits (and suffers its responsibilities). She cannot sell the business, but may abdicate her position or temporarily place someone else in charge; during this time, she does not gain the income associated with that Asset. Each form of Asset listed below includes a firebird value: how much the Asset brings the character in yearly income after paying expenses, barring no disasters or dramatic changes in circumstance for good or ill. When beginning game play, a character has access to one-tenth (10%) of his yearly income; he may use this to purchase beginning equipment.</en>
+			<es>Algunos personajes son lo suficientemente afortunados para tener una verdadera fortuna, no simplemente mediante el ahorro o los salarios, sino también con la posesión de tierras o el control de un negocio. Esta clase de Activos proporcionan a los personajes unos ingresos regulares y por lo general están asociados al rango del personaje. Los personajes, de hecho, no son los verdaderos dueños del negocio, sino más bien su casa o su gremio, pero mediante el derecho de nacimiento, la suerte, o el trabajo duro, el personaje ha obtenido el control sobre todo ello, y por este motivo recoge sus Beneficios (y sufre las responsabilidades consecuentes). El personaje no puede vender el negocio, pero puede abdicar de su posición temporalmente, colocando a alguien en el cargo; durante este tiempo, el personaje no obtendrá los ingresos asociados con ese Activo.</es>
+		</description>
+		<specializations>
+			<assets3000>
+				<name>
+					<en>3000 firebirds (300 initial firebirds)</en>
+					<es>3000 fénix (300 fénix iniciales)</es>
+				</name>
+				<cost>4</cost>
+			</assets3000>
+			<assets5000>
+				<name>
+					<en>5000 firebirds (500 initial firebirds)</en>
+					<es>5000 fénix (500 fénix iniciales)</es>
+				</name>
+				<cost>4</cost>
+			</assets5000>
+			<assets10000>
+				<name>
+					<en>10000 firebirds (1000 initial firebirds)</en>
+					<es>10000 fénix (1000 fénix iniciales)</es>
+				</name>
+				<cost>4</cost>
+			</assets10000>
+			<assets15000>
+				<name>
+					<en>15000 firebirds (1500 initial firebirds)</en>
+					<es>15000 fénix (1500 fénix iniciales)</es>
+				</name>
+				<cost>4</cost>
+				<random>
+					<recommendedFactionGroups>nobility</recommendedFactionGroups>
+				</random>
+			</assets15000>
+			<assets20000>
+				<name>
+					<en>20000 firebirds (2000 initial firebirds)</en>
+					<es>20000 fénix (2000 fénix iniciales)</es>
+				</name>
+				<cost>4</cost>
+				<random>
+					<recommendedFactionGroups>nobility</recommendedFactionGroups>
+				</random>
+			</assets20000>
+		</specializations>
 		<group>riches</group>
 	</assets>
 	<indebted>
@@ -587,6 +700,10 @@ la campaña un secreto.</es>
 			<en>Indebted</en>
 			<es>Endeudado</es>
 		</name>
+		<description>
+			<en></en>
+			<es></es>
+		</description>
 		<cost>2-7</cost>
 		<group>riches</group>
 		<affliction>true</affliction>
@@ -597,6 +714,10 @@ la campaña un secreto.</es>
 			<en>Cohort Badge</en>
 			<es>Insignia de Corte</es>
 		</name>
+		<description>
+			<en></en>
+			<es></es>
+		</description>
 		<cost>3</cost>
 		<group>status</group>
 	</cohortBadge>
@@ -605,6 +726,10 @@ la campaña un secreto.</es>
 			<en>Coven</en>
 			<es>Aquelarre</es>
 		</name>
+		<description>
+			<en></en>
+			<es></es>
+		</description>
 		<cost>2</cost>
 		<group>status</group>
 	</coven>
@@ -613,6 +738,10 @@ la campaña un secreto.</es>
 			<en>Householder</en>
 			<es>Propietario</es>
 		</name>
+		<description>
+			<en></en>
+			<es></es>
+		</description>
 		<cost>1</cost>
 		<group>status</group>
 	</householder>
@@ -621,6 +750,10 @@ la campaña un secreto.</es>
 			<en>Imperial Charter</en>
 			<es>Decreto Imperial</es>
 		</name>
+		<description>
+			<en></en>
+			<es></es>
+		</description>
 		<cost>4</cost>
 		<group>status</group>
 	</imperialCharter>
@@ -635,6 +768,10 @@ la campaña un secreto.</es>
 					<en>Apprentice</en>
 					<es>Aprendiz</es>
 				</name>
+				<description>
+					<en></en>
+					<es></es>
+				</description>
 				<cost>4</cost>
 			</apprentice>
 			<entered>
@@ -681,6 +818,10 @@ la campaña un secreto.</es>
 			<en>Nobility</en>
 			<es>Nobleza</es>
 		</name>
+		<description>
+			<en></en>
+			<es></es>
+		</description>
 		<specializations>
 			<knight>
 				<name>
@@ -733,6 +874,10 @@ la campaña un secreto.</es>
 			<en>Ordained</en>
 			<es>Ordenado</es>
 		</name>
+		<description>
+			<en></en>
+			<es></es>
+		</description>
 		<specializations>
 			<novitiate>
 				<name>
@@ -785,6 +930,10 @@ la campaña un secreto.</es>
 			<en>Professional Contract</en>
 			<es>Contrato Profesional</es>
 		</name>
+		<description>
+			<en></en>
+			<es></es>
+		</description>
 		<cost>1-10</cost>
 		<group>status</group>
 	</professionalContract>
@@ -793,6 +942,10 @@ la campaña un secreto.</es>
 			<en>Barbarian</en>
 			<es>Bárbaro</es>
 		</name>
+		<description>
+			<en></en>
+			<es></es>
+		</description>
 		<cost>2</cost>
 		<group>status</group>
 		<affliction>true</affliction>
@@ -802,6 +955,10 @@ la campaña un secreto.</es>
 			<en>Bastard</en>
 			<es>Bastardo</es>
 		</name>
+		<description>
+			<en></en>
+			<es></es>
+		</description>
 		<cost>1</cost>
 		<group>status</group>
 		<affliction>true</affliction>
@@ -811,6 +968,10 @@ la campaña un secreto.</es>
 			<en>Black Sheep</en>
 			<es>Oveja Negra</es>
 		</name>
+		<description>
+			<en></en>
+			<es></es>
+		</description>
 		<cost>1-3</cost>
 		<group>status</group>
 		<affliction>true</affliction>
@@ -820,6 +981,10 @@ la campaña un secreto.</es>
 			<en>Branded</en>
 			<es>Mala Fama</es>
 		</name>
+		<description>
+			<en></en>
+			<es></es>
+		</description>
 		<cost>1</cost>
 		<group>status</group>
 		<affliction>true</affliction>
@@ -829,6 +994,10 @@ la campaña un secreto.</es>
 			<en>Escaped Serf</en>
 			<es>Siervo Fugado</es>
 		</name>
+		<description>
+			<en></en>
+			<es></es>
+		</description>
 		<cost>2</cost>
 		<group>status</group>
 		<affliction>true</affliction>
@@ -838,6 +1007,10 @@ la campaña un secreto.</es>
 			<en>Escaped Slave</en>
 			<es>Esclavo Fugado</es>
 		</name>
+		<description>
+			<en></en>
+			<es></es>
+		</description>
 		<cost>3</cost>
 		<group>status</group>
 		<affliction>true</affliction>
@@ -847,6 +1020,10 @@ la campaña un secreto.</es>
 			<en>Excommunicated</en>
 			<es>Excomulgado</es>
 		</name>
+		<description>
+			<en></en>
+			<es></es>
+		</description>
 		<cost>3</cost>
 		<group>status</group>
 		<affliction>true</affliction>
@@ -856,6 +1033,10 @@ la campaña un secreto.</es>
 			<en>Fallen form Grace</en>
 			<es>Caído en Desgracia</es>
 		</name>
+		<description>
+			<en></en>
+			<es></es>
+		</description>
 		<cost>1-3</cost>
 		<group>status</group>
 		<affliction>true</affliction>
@@ -865,6 +1046,10 @@ la campaña un secreto.</es>
 			<en>Outlaw</en>
 			<es>Forajido</es>
 		</name>
+		<description>
+			<en></en>
+			<es></es>
+		</description>
 		<cost>1-4</cost>
 		<group>status</group>
 		<affliction>true</affliction>
