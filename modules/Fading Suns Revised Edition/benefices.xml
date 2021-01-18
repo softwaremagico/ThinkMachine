@@ -135,10 +135,6 @@ la campaña un secreto.</es>
 		</description>
 		<cost>2</cost>
 		<group>background</group>
-		<random>
-			<minTechLevel>4</minTechLevel>
-			<probabilityMultiplier>0.01</probabilityMultiplier>
-		</random>
 	</spacer>
 	<wellTraveled>
 		<name>
@@ -397,6 +393,12 @@ la campaña un secreto.</es>
 		</description>
 		<cost>5</cost>
 		<group>technology</group>
+		<random>
+			<minTechLevel>8</minTechLevel>
+		</random>
+		<random>
+			<minTechLevel>8</minTechLevel>
+		</random>
 	</advisor>
 	<fluxSword>
 		<name>
@@ -409,6 +411,9 @@ la campaña un secreto.</es>
 		</description>
 		<cost>11</cost>
 		<group>technology</group>
+		<random>
+			<minTechLevel>8</minTechLevel>
+		</random>
 	</fluxSword>
 	<mistSword>
 		<name>
@@ -421,6 +426,9 @@ la campaña un secreto.</es>
 		</description>
 		<cost>13</cost>
 		<group>technology</group>
+		<random>
+			<minTechLevel>8</minTechLevel>
+		</random>
 	</mistSword>
 	<neuralDisruptor>
 		<name>
@@ -445,6 +453,9 @@ la campaña un secreto.</es>
 		</description>
 		<cost>12</cost>
 		<group>technology</group>
+		<random>
+			<minTechLevel>8</minTechLevel>
+		</random>
 	</wireblade>
 	<psiCloack>
 		<name>
@@ -457,6 +468,9 @@ la campaña un secreto.</es>
 		</description>
 		<cost>10</cost>
 		<group>technology</group>
+		<random>
+			<minTechLevel>8</minTechLevel>
+		</random>
 	</psiCloack>
 	
 	<adeptRobes>
@@ -471,6 +485,9 @@ la campaña un secreto.</es>
 		<cost>20</cost>
 		<group>relics</group>
 		<restricted>church</restricted>
+		<random>
+			<minTechLevel>6</minTechLevel>
+		</random>
 	</adeptRobes>
 	<articleOfFaith>
 		<name>
@@ -647,6 +664,9 @@ la campaña un secreto.</es>
 			</firebirds6000>
 		</specializations>
 		<group>riches</group>	
+		<random>
+			<recommendedFactionGroups>nobility</recommendedFactionGroups>
+		</random>
 	</cash>
 	<assets>
 		<name>
@@ -701,6 +721,9 @@ la campaña un secreto.</es>
 			</assets20000>
 		</specializations>
 		<group>riches</group>
+		<random>
+			<recommendedFactionGroups>nobility</recommendedFactionGroups>
+		</random>
 	</assets>
 	<indebted>
 		<name>
