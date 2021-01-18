@@ -492,6 +492,21 @@ public class CharacterPlayer {
         if (benefice.getBeneficeDefinition().getGroup() == BeneficeGroup.RESTRICTED) {
             throw new InvalidBeneficeException("Benefice '" + benefice + "' is restricted and cannot be added.");
         }
+        //Check if is incompatible with others.
+        for (AvailableBenefice existingBenefice : benefices) {
+            if (benefice.getBeneficeDefinition().getIncompatibleWith().contains(existingBenefice.getId())) {
+                throw new IncompatibleBeneficeException("Benefice '" + benefice + "' is incompatible with '" + existingBenefice + "'.");
+            }
+            if (existingBenefice.getBeneficeDefinition().getIncompatibleWith().contains(benefice.getId())) {
+                throw new IncompatibleBeneficeException("Benefice '" + benefice + "' is incompatible with '" + existingBenefice + "'.");
+            }
+            if (benefice.getSpecialization() != null && benefice.getSpecialization().getIncompatibleWith().contains(existingBenefice.getBeneficeDefinition().getId())) {
+                throw new IncompatibleBeneficeException("Benefice '" + benefice + "' is incompatible with '" + existingBenefice + "'.");
+            }
+            if (existingBenefice.getSpecialization() != null && existingBenefice.getSpecialization().getIncompatibleWith().contains(benefice.getBeneficeDefinition().getId())) {
+                throw new IncompatibleBeneficeException("Benefice '" + benefice + "' is incompatible with '" + existingBenefice + "'.");
+            }
+        }
         if (getBenefice(benefice.getBeneficeDefinition().getId()) != null) {
             throw new BeneficeAlreadyAddedException("Character already has benefice '" + benefice + "'!");
         }
@@ -508,7 +523,7 @@ public class CharacterPlayer {
         benefices.add(benefice);
         getCharacterModificationHandler().launchBeneficesUpdatedListener(benefice, false);
         Collections.sort(benefices);
-        if ((benefice.getId().startsWith("cash"))) {
+        if ((benefice.getId().startsWith("cash") || (benefice.getId().startsWith("assets")))) {
             initialMoney = null;
             getCharacterModificationHandler().launchInitialFirebirdsUpdatedListener(getInitialMoney());
         }
@@ -1150,14 +1165,24 @@ public class CharacterPlayer {
      */
     public int getInitialMoney() {
         if (initialMoney == null) {
+            initialMoney = 0;
+            boolean defined = false;
             for (final AvailableBenefice benefice : getAllBenefices()) {
                 if ((benefice.getId().startsWith("cash"))) {
                     // Must have an specialization.
                     if (benefice.getSpecialization() != null) {
-                        initialMoney = Integer.parseInt(benefice.getId().replaceAll("[^\\d.]", ""));
-                        return initialMoney;
+                        initialMoney += Integer.parseInt(benefice.getId().replaceAll("[^\\d.]", ""));
+                        defined = true;
+                    }
+                } else if ((benefice.getId().startsWith("assets"))) {
+                    if (benefice.getSpecialization() != null) {
+                        initialMoney += (int) (Integer.parseInt(benefice.getId().replaceAll("[^\\d.]", "")) * 0.1);
+                        defined = true;
                     }
                 }
+            }
+            if (defined) {
+                return initialMoney;
             }
             try {
                 initialMoney = Integer.parseInt(AvailableBeneficeFactory.getInstance()
