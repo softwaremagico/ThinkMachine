@@ -135,6 +135,10 @@ la campaña un secreto.</es>
 		</description>
 		<cost>2</cost>
 		<group>background</group>
+		<random>
+			<minTechLevel>4</minTechLevel>
+			<probabilityMultiplier>0.01</probabilityMultiplier>
+		</random>
 	</spacer>
 	<wellTraveled>
 		<name>
@@ -493,6 +497,9 @@ la campaña un secreto.</es>
 		<cost>3-22</cost>
 		<group>relics</group>
 		<restricted>church</restricted>
+		<random>
+			<probabilityMultiplier>0</probabilityMultiplier>
+		</random>
 	</saintLore>
 	<vestments>
 		<name>

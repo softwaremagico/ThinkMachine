@@ -24,28 +24,22 @@ package com.softwaremagico.tm.character.benefices;
  * #L%
  */
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
-
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.creation.CostCalculator;
 import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
+import com.softwaremagico.tm.character.equipment.armours.Armour;
+import com.softwaremagico.tm.character.equipment.armours.ArmourFactory;
+import com.softwaremagico.tm.character.equipment.weapons.Weapon;
+import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
 import com.softwaremagico.tm.log.RandomGenerationLog;
 import com.softwaremagico.tm.random.RandomSelector;
 import com.softwaremagico.tm.random.exceptions.ImpossibleToAssignMandatoryElementException;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
-import com.softwaremagico.tm.random.selectors.DifficultLevelPreferences;
-import com.softwaremagico.tm.random.selectors.IGaussianDistribution;
-import com.softwaremagico.tm.random.selectors.IRandomPreference;
-import com.softwaremagico.tm.random.selectors.StatusPreferences;
-import com.softwaremagico.tm.random.selectors.TraitCostPreferences;
+import com.softwaremagico.tm.random.selectors.*;
+
+import java.util.*;
 
 public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition> {
     private static final int MAX_AFFLICTIONS = 2;
@@ -83,34 +77,62 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
         if (selectedBeneficeWithLevel != null) {
             // Only a few afflictions.
             if (selectedBeneficeWithLevel.getBeneficeClassification() == BeneficeClassification.AFFLICTION) {
-                if (getCharacterPlayer().getAfflictions().size() < MAX_AFFLICTIONS) {
-                    try {
-                        getCharacterPlayer().addBenefice(selectedBeneficeWithLevel);
-                    } catch (BeneficeAlreadyAddedException e) {
-                        // Not add it again.
-                    }
-                }
-            } else {
-                try {
-                    getCharacterPlayer().addBenefice(selectedBeneficeWithLevel);
-                    RandomGenerationLog.info(this.getClass().getName(),
-                            "Added benefice '{}'.", selectedBeneficeWithLevel);
-                } catch (BeneficeAlreadyAddedException e) {
-                    // If level is bigger... replace it.
-                    final AvailableBenefice originalBenefice = getCharacterPlayer()
-                            .getBenefice(selectedBenefice.getId());
-                    if (originalBenefice.getCost() < selectedBeneficeWithLevel.getCost()) {
-                        getCharacterPlayer().removeBenefice(originalBenefice);
-                        try {
-                            getCharacterPlayer().addBenefice(selectedBeneficeWithLevel);
-                            RandomGenerationLog.info(this.getClass().getName(), "Replacing benefice '{}' with '{}'.",
-                                    originalBenefice, selectedBeneficeWithLevel);
-                        } catch (BeneficeAlreadyAddedException e1) {
-                            RandomGenerationLog.errorMessage(this.getClass().getName(), e1);
-                        }
-                    }
+                if (getCharacterPlayer().getAfflictions().size() >= MAX_AFFLICTIONS) {
+                    //Not add more afflictions
+                    removeElementWeight(selectedBenefice);
+                    return;
                 }
             }
+
+            //Only elements with enough Tech level.
+            if (selectedBeneficeWithLevel.getBeneficeDefinition().getGroup() == BeneficeGroup.TECHNOLOGY) {
+                try {
+
+                    Weapon weapon = WeaponFactory.getInstance().getElement(selectedBenefice.getId(), getCharacterPlayer().getLanguage(),
+                            getCharacterPlayer().getModuleName());
+                    if (weapon.getTechLevel() > getCharacterPlayer().getCharacteristicValue(CharacteristicName.TECH)) {
+                        //Not enough tech level.
+                        removeElementWeight(selectedBenefice);
+                        return;
+                    }
+                } catch (InvalidXmlElementException e) {
+                    // Benefice is not a weapon.
+                }
+                try {
+                    Armour armour = ArmourFactory.getInstance().getElement(selectedBenefice.getId(), getCharacterPlayer().getLanguage(),
+                            getCharacterPlayer().getModuleName());
+                    if (armour.getTechLevel() > getCharacterPlayer().getCharacteristicValue(CharacteristicName.TECH)) {
+                        //Not enough tech level.
+                        removeElementWeight(selectedBenefice);
+                        return;
+                    }
+                } catch (InvalidXmlElementException e) {
+                    // Benefice is not an armour.
+                }
+            }
+
+            try {
+                getCharacterPlayer().addBenefice(selectedBeneficeWithLevel);
+                RandomGenerationLog.info(this.getClass().getName(),
+                        "Added benefice '{}'.", selectedBeneficeWithLevel);
+            } catch (BeneficeAlreadyAddedException e) {
+                // If level is bigger... replace it.
+                final AvailableBenefice originalBenefice = getCharacterPlayer()
+                        .getBenefice(selectedBenefice.getId());
+                if (originalBenefice.getCost() < selectedBeneficeWithLevel.getCost()) {
+                    getCharacterPlayer().removeBenefice(originalBenefice);
+                    try {
+                        getCharacterPlayer().addBenefice(selectedBeneficeWithLevel);
+                        RandomGenerationLog.info(this.getClass().getName(), "Replacing benefice '{}' with '{}'.",
+                                originalBenefice, selectedBeneficeWithLevel);
+                    } catch (BeneficeAlreadyAddedException e1) {
+                        RandomGenerationLog.errorMessage(this.getClass().getName(), e1);
+                    }
+                }
+            } catch (IncompatibleBeneficeException e) {
+                //Incompatible. Cannot be added.
+            }
+
         }
         removeElementWeight(selectedBenefice);
 

@@ -495,16 +495,20 @@ public class CharacterPlayer {
         //Check if is incompatible with others.
         for (AvailableBenefice existingBenefice : benefices) {
             if (benefice.getBeneficeDefinition().getIncompatibleWith().contains(existingBenefice.getId())) {
-                throw new IncompatibleBeneficeException("Benefice '" + benefice + "' is incompatible with '" + existingBenefice + "'.");
+                throw new IncompatibleBeneficeException("Benefice '" + benefice + "' is incompatible with '" + existingBenefice + "'.",
+                        benefice, existingBenefice);
             }
             if (existingBenefice.getBeneficeDefinition().getIncompatibleWith().contains(benefice.getId())) {
-                throw new IncompatibleBeneficeException("Benefice '" + benefice + "' is incompatible with '" + existingBenefice + "'.");
+                throw new IncompatibleBeneficeException("Benefice '" + benefice + "' is incompatible with '" + existingBenefice + "'.",
+                        benefice, existingBenefice);
             }
             if (benefice.getSpecialization() != null && benefice.getSpecialization().getIncompatibleWith().contains(existingBenefice.getBeneficeDefinition().getId())) {
-                throw new IncompatibleBeneficeException("Benefice '" + benefice + "' is incompatible with '" + existingBenefice + "'.");
+                throw new IncompatibleBeneficeException("Benefice '" + benefice + "' is incompatible with '" + existingBenefice + "'.",
+                        benefice, existingBenefice);
             }
             if (existingBenefice.getSpecialization() != null && existingBenefice.getSpecialization().getIncompatibleWith().contains(benefice.getBeneficeDefinition().getId())) {
-                throw new IncompatibleBeneficeException("Benefice '" + benefice + "' is incompatible with '" + existingBenefice + "'.");
+                throw new IncompatibleBeneficeException("Benefice '" + benefice + "' is incompatible with '" + existingBenefice + "'.",
+                        benefice, existingBenefice);
             }
         }
         if (getBenefice(benefice.getBeneficeDefinition().getId()) != null) {
