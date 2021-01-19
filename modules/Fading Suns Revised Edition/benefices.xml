@@ -23,6 +23,9 @@
 		</description>
 		<cost>2</cost>
 		<group>background</group>
+		<random>
+			<recommendedFactionGroups>nobility</recommendedFactionGroups>
+		</random>
 	</heir>
 	<language>
 		<name>
@@ -282,6 +285,9 @@ la campaña un secreto.</es>
 		<cost>1-3</cost>
 		<group>background</group>
 		<affliction>true</affliction>
+		<random>
+			<recommendedFactionGroups>church</recommendedFactionGroups>
+		</random>
 	</vow>
 	<ally>
 		<name>
@@ -874,8 +880,8 @@ la campaña un secreto.</es>
 			<es>Nobleza</es>
 		</name>
 		<description>
-			<en></en>
-			<es></es>
+			<en>The character is a member of a noble house. While both royal and minor houses use most of the same titles, a baronet for a minor house generally has less responsibilities and less power than one in a royal house. Note that not only does a character have to buy at least five points of this Benefice to be considered landed, but he must also buy the Riches Benefice in order to get any money from it. If a character wants to be in line to lead a royal house, he must buy both the Duke level of Nobility and the Heir Benefice. The landed titles are the often the same for both men and women (Knight Hillary al-Malik), but the higher ranks often use a gender distinction.</en>
+			<es>El personaje es miembro de una casa noble. Aunque tanto las casas reales como las menores emplean en su mayoría los mismos títulos, un baronet de una casa menor por lo general tiene menos responsabilidades y menos poder que uno de una casa real. Nótese que un personaje no tiene que adquirir sólo cinco puntos para este beneficio para ser considerado propietario de tierras, sino que también debe adquirir el beneficio Riquezas para conseguir todo el dinero posible de él. Si un personaje quiere estar a la altura para liderar una casa real, debe adquirir tanto el nivel de Duque como los beneficios de Nobleza y Herencia. Los propietarios de tierras normalmente son hombres y mujeres por igual (el caballero Hillary de los al-Malik), pero los rangos más altos generalmente tienen distinción de género.</es>
 		</description>
 		<specializations>
 			<knight>
@@ -930,8 +936,8 @@ la campaña un secreto.</es>
 			<es>Ordenado</es>
 		</name>
 		<description>
-			<en></en>
-			<es></es>
+			<en>The character is an ordained minister of the Universal Church, protector of souls and bringer of light. Men and women have the same titles for the same duties. In addition, there are different duties within the Church each with their own titles. Priests who act as ambassadors to a planet, house or guild are called “legates.” Those renowned for theology (and who have been approved by the Patriarch as official theologians) are called “hierophants.” A keeper of Church records holds the post of “chartophylax.” A deputy to the patriarch is called “syneculla”. These duty titles are in addition to the rank titles.</en>
+			<es>El personaje es ordenado ministro de la Iglesia Universal, protector de las almas y portador de la luz. Los hombres y las mujeres poseen los mismos títulos y las mismas obligaciones. Además, existen diferentes obligaciones dentro de la Iglesia propias de cada título. Los sacerdotes que actúan como embajadores en un planeta, una casa o un gremio se les llaman “Legados”. Aquellos que son muy renombrados en la teología (y a quienes el Patriarca les ha dado el visto bueno como teólogos oficiales) se les llama “hierofantes”. Un conservador de las grabaciones de la Iglesia recibe el sobrenombre de “cartófilo”. Al sustituto del patriarca se le llama “sinecura”. Estos títulos asociados a las obligaciones y deberes están, además, asociados a títulos de rangos.</es>
 		</description>
 		<specializations>
 			<novitiate>
@@ -986,8 +992,8 @@ la campaña un secreto.</es>
 			<es>Contrato Profesional</es>
 		</name>
 		<description>
-			<en></en>
-			<es></es>
+			<en>This Benefice represents a contract or agreement a character has with a guild in order to learn guild-specific skills. Each point of this Benefice represents how many levels of a guild skill he may buy. One contract might only teach the basics (1–3 points), while another may be an invite to learn all the secrets (up to 10 points!). This is usually the only way someone will learn guild skills without joining the League.</en>
+			<es>Este beneficio representa un contrato o un acuerdo que un personaje tiene con un gremio, para aprender una habilidad específica de este. Cada punto de este beneficio representa cuántos rangos de habilidad de gremio puede adquirir. Un contrato puede que enseñara tan solo la base (de 1 a 3 puntos), mientras que otro podría invitarle a aprender todos los secretos (hasta 10 pun- tos). Esta es, por lo general, la única manera en la que alguien aprendería las habilidades de un gremio sin unirse a la Liga.</es>
 		</description>
 		<cost>1-10</cost>
 		<group>status</group>
@@ -998,8 +1004,8 @@ la campaña un secreto.</es>
 			<es>Bárbaro</es>
 		</name>
 		<description>
-			<en></en>
-			<es></es>
+			<en>The character comes from an uncivilized upbringing and must struggle to fit into spacefaring society. Additionally, people from all classes tend to look at her askance and will rarely trust her. She may begin the game with no more than three points in Etiquette.</en>
+			<es>El personaje proviene de una educación incivilizada y debe esforzarse para encajar en una sociedad tan centrada en el universo espacial. Además, la gente de todas las clases tienden a mirarle de reojo y en extrañas ocasiones confiarán en él. No puede empezar el juego con más de tres puntos en Etiqueta.</es>
 		</description>
 		<cost>2</cost>
 		<group>status</group>
@@ -1011,12 +1017,13 @@ la campaña un secreto.</es>
 			<es>Bastardo</es>
 		</name>
 		<description>
-			<en></en>
-			<es></es>
+			<en>The character is a bastard child of a noble. He can still buy a noble title, but he will receive no inheritance.</en>
+			<es>El personaje es un niño bastardo de un noble. Aún puede adquirir el título de noble, pero no recibirá ninguna herencia.</es>
 		</description>
 		<cost>1</cost>
 		<group>status</group>
 		<affliction>true</affliction>
+		<incompatibleWith>heir</incompatibleWith>
 	</bastard>
 	<blackSheep>
 		<name>
@@ -1024,8 +1031,8 @@ la campaña un secreto.</es>
 			<es>Oveja Negra</es>
 		</name>
 		<description>
-			<en></en>
-			<es></es>
+			<en>The character is the black sheep of his family and is currently being ostracized by it. The character must have the Nobility Benefice to take this Affliction.</en>
+			<es>El personaje es la oveja negra de su familia y actualmente está condenado al ostracismo por ello. El personaje debe tener el beneficio de Nobleza para elegir esta aflicción.</es>
 		</description>
 		<cost>1-3</cost>
 		<group>status</group>
@@ -1037,8 +1044,8 @@ la campaña un secreto.</es>
 			<es>Mala Fama</es>
 		</name>
 		<description>
-			<en></en>
-			<es></es>
+			<en>Many cultures brand criminals and evil-doers, and the character sports one of these brands. It might be for theft, prostitution, or just speaking bad about the duke, but it is an unerasable feature.</en>
+			<es>Muchas culturas marcan a los criminales y malhechores y el personaje tiene una de estas marcas. Podría ser por ladrón, prostitución, etc. En cualquier caso, es un distintivo imborrable.</es>
 		</description>
 		<cost>1</cost>
 		<group>status</group>
@@ -1050,8 +1057,8 @@ la campaña un secreto.</es>
 			<es>Siervo Fugado</es>
 		</name>
 		<description>
-			<en></en>
-			<es></es>
+			<en>The character is actually a serf, not a freeman. He must hide this fact or risk being seized by officials for sale to the Chainers -or, worse, be sent back to his original master for punishment.</en>
+			<es>El personaje es un siervo, no es un hombre libre. Debe esconder este hecho o se arriesgará a que los oficiales lo atrapen y lo vendan a los esclavistas, o peor, será devuelto a su dueño original para recibir un castigo.</es>
 		</description>
 		<cost>2</cost>
 		<group>status</group>
@@ -1063,12 +1070,13 @@ la campaña un secreto.</es>
 			<es>Esclavo Fugado</es>
 		</name>
 		<description>
-			<en></en>
-			<es></es>
+			<en>The character has escaped from slavery, but now is on the run from everyone. Finding any place of refuge should be next to impossible. This character should have almost no ties to anyone except the other player characters.</en> 
+			<es>El personaje ha escapado de la esclavitud, pero ahora está en fuga para todos. Encontrar cualquier lugar para refugiarse es prácticamente imposible. Este personaje no debería tener prácticamente ningún lazo con nadie, excepto con el resto de personajes de los jugadores.</es>
 		</description>
 		<cost>3</cost>
 		<group>status</group>
 		<affliction>true</affliction>
+		<incompatibleWith>ally</incompatibleWith>
 	</escapedSlave>
 	<excommunicated>
 		<name>
@@ -1076,8 +1084,8 @@ la campaña un secreto.</es>
 			<es>Excomulgado</es>
 		</name>
 		<description>
-			<en></en>
-			<es></es>
+			<en>The character has committed some great heresy and repeatedly refused absolution from a priest, forcing the Church to excommunicate him. Orthodox doctrine states that the character is damned, denied the Pancreator’s grace. The character is an outcast; any further crimes against Church law or doctrine are punishable by flame</en>
+			<es>El personaje ha cometido una grave herejía y ha rechazado en repetidas ocasiones la absolución de un sacerdote, forzando a la Iglesia a excomulgarle. La doctrina ortodoxa dictamina que el personaje está condenado, y se le niega la gracia de Pancreator. El personaje es un marginado de la sociedad; cualquier otro crimen cometido contra la ley o la doctrina de la Iglesia pueden ser castigados con la hoguera.</es>
 		</description>
 		<cost>3</cost>
 		<group>status</group>
@@ -1090,11 +1098,12 @@ la campaña un secreto.</es>
 		</name>
 		<description>
 			<en></en>
-			<es></es>
+			<es>Esta aflicción es similar a la de Oveja Negra, pero se aplica a una secta/orden o gremio. El personaje ha perdido la credibilidad frente a sus colegas y superiores, y sólo la recuperará tras años de penitencia, si cabe. Los personajes deben tener el beneficio de Cargo u Ordenado para escoger esta Aflicción.</es>
 		</description>
 		<cost>1-3</cost>
 		<group>status</group>
 		<affliction>true</affliction>
+		<incompatibleWith>ordained, commission</incompatibleWith>
 	</fallenFromGrace>
 	<outlaw>
 		<name>
@@ -1102,8 +1111,8 @@ la campaña un secreto.</es>
 			<es>Forajido</es>
 		</name>
 		<description>
-			<en></en>
-			<es></es>
+			<en>Has roto la ley y la has liado muy gorda. Alguien, en algún sitio, ha puesto precio a tu cabeza y cualquiera puede reclamarla. Un largo tiempo entre rejas es lo mejor que puedes esperar si te cogen. Vigila tus espaldas todo el tiempo.</en> 
+			<es>You broke the law in a big way. Someone, somewhere has put a price on your head, and anyone can collect it. A long jail term is the best you can hope for if you are caught. Guard your back at all times.</es>
 		</description>
 		<cost>1-4</cost>
 		<group>status</group>
@@ -1226,9 +1235,13 @@ la campaña un secreto.</es>
 	</extraLimbs>
 	<noOccult>
 		<name>
+			<en>No Occult</en>
+			<es>No Oculstista</es>
+		</name>
+		<description>
 			<en>Cannot awaken Psi or Theurgy</en>
 			<es>No puede despertar Psi o Teúrgia</es>
-		</name>
+		</description>
 		<cost>6</cost>
 		<affliction>true</affliction>
 		<group>restricted</group>
