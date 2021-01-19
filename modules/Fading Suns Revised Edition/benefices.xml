@@ -766,8 +766,8 @@ la campaña un secreto.</es>
 			<es>Insignia de Corte</es>
 		</name>
 		<description>
-			<en></en>
-			<es></es>
+			<en>The character is an Imperial Cohort, an aide de camp to one of the Emperor’s Questing Knights. Such status is only granted to members of the Church or Merchant League (characters must also have at least the 3 pt Commissioned or Ordained Benefice). While the knight is allowed the Imperial Charter (see below), his aides also need legal and monetary powers with which to perform their duties. Cohorts gain a small stipend of 100 firebirds per year and free transport on any Imperial Navy ship (a 4 pt Passage Contract). In addition, they can cross feudal boundaries free of taxation and are allowed free counsel in case of legal prosecution. However, they must uphold a code of behavior and duty. They can never operate against Imperial interests, and they can be called upon at any time to undergo any number of missions for the order or the Emperor (a 3 pt Oath of Fealty). Note that, while Cohorts are given an emblem to wear, the “badge” is an oath of duty, not a mere symbol. Once a Cohort “turns in his badge,” he is no longer bound by its code, but likewise does not receive its benefits.</en>
+			<es>El personaje es un Cohorte Imperial, un ayudante de campo para los Caballeros de la Búsqueda del Emperador. Tan solo se concede semejante estatus a los miembros de la Iglesia o a un mercader de la Liga (los personajes también deben tener al menos los 4 Pts de los Beneficios Cargo u Ordenado). Aunque a un caballero se le conceda el Decreto Imperial, sus ayudantes también necesitan poderes legales y monetarios con los que llevar a cabo sus obligaciones. Los cohortes reciben un pequeño estipendio de 100 fénix anuales y transporte gratuito en cualquier nave de la flota Imperial (un Contrato de Pasaje de 4 Pts). Además, pueden cruzar fronteras feudales sin impuestos y se les asigna un abogado gratuito en caso de acusación legal. Sin embargo, deben atenerse a un código de conducta y obligación. Nunca pueden actuar en contra de los intereses del Imperio, y pueden ser convocados en cualquier momento para que realicen cualquier número de misiones por orden del Emperador (un Juramento de Lealtad de 3 Pts). Nótese que, aunque se les dé un emblema para que lo lleven puesto a los Cohortes, el “emblema” es un juramento de lealtad, no un mero símbolo. Una vez que un Cohorte “cuelgue su emblema”, no estará atado nunca más al código, pero de la misma manera tampoco recibirá sus beneficios.</es>
 		</description>
 		<cost>3</cost>
 		<group>status</group>
@@ -778,8 +778,8 @@ la campaña un secreto.</es>
 			<es>Aquelarre</es>
 		</name>
 		<description>
-			<en></en>
-			<es></es>
+			<en>The character is a member of a psychic coven, such as the Favyana or the Invisible Path. While participation in coven leadership issues is open only to psychics, non-psychics may also join; they must pledge service (usually as spies or informants in the civilian sector) in return for occasional psychic aid from a coven member. While membership allows psychics the ability to meet with other psychics and petition them for training or aid, it also obligates them to perform missions for the coven. Since membership in a coven is illegal in the eyes of the Church and punishable by imprisonment and even death, these missions can get characters into a lot of trouble.</en>
+			<es>El personaje es un miembro de un aquelarre psíquico, tal como el de Favyana o el Sendero Invisible. Aunque la participación en temas de liderazgo del aquelarre esté abierta tan sólo a los psíquicos, los no psíquicos también pueden unirse; deben comprometerse a ofrecer sus servicios (general- mente como espías o informadores en el sector civil) a cambio de ayuda psíquica ocasional por parte de un miembro del aquelarre. Aunque el ser miembro conceda a los psíquicos la posibilidad de conocer a otros psíquicos y pedirles entrenamiento o ayuda, también les obliga a realizar misiones para el aquelarre. Dado que ser miembro de un aquelarre es ilegal a ojos de la Iglesia y es por ello sancionable con prisión e incluso la muerte, es probable que estas misiones metan a los personajes en un montón de problemas.</es>
 		</description>
 		<cost>2</cost>
 		<group>status</group>
@@ -790,8 +790,8 @@ la campaña un secreto.</es>
 			<es>Propietario</es>
 		</name>
 		<description>
-			<en></en>
-			<es></es>
+			<en>The character is employed or in some way closely associated with a noble house, merchant guild or Church sect. He might be a minor guardsman, a groundskeeper, cook or masseuse. However, he holds no rank in the organization he works for, but he does gain occasional benefits (the local bartender is careful not to cheat the Decados gate guards).</en>
+			<es>El personaje, de un modo u otro, es un empleado estrechamente asociado con una casa noble, con un gremio de mercaderes o una secta de la Iglesia. Podría ser un mero vigilante, un encargado, un cocinero o un masajista. Sea como sea, no posee ningún rango en la organización para la que trabaja, pero obtiene beneficios ocasionales, (el camarero local tiene cuidado de no engañar a los guardias Decados de la puerta).</es>
 		</description>
 		<cost>1</cost>
 		<group>status</group>
@@ -802,8 +802,8 @@ la campaña un secreto.</es>
 			<es>Decreto Imperial</es>
 		</name>
 		<description>
-			<en></en>
-			<es></es>
+			<en>Only granted to Questing Knights (who must also have at least the 3 pt Nobility Benefice), this is one of the most powerful knightly order charters. It allows each knight a stipend of 300 firebirds per year and free transport on any Imperial Navy ship (a 4 pt Passage Contract). In addition, knights may inspect public Church or League records (though not private cathedral or guild records). They can cross feudal boundaries free of taxation and are immune from prosecution (all charges are brought before the order’s council instead of the ruling body bringing the charge, whether it be noble or Church). However, they must uphold a code of behavior and duty. They can never operate against Imperial interests, and they can be called upon at any time to undergo any number of missions for the order or the Emperor (a 3 pt Oath of Fealty). Once a knight leaves the order, she is no longer bound by the charter, but likewise does not receive its benefits.</en>
+			<es>Tan sólo se le concede a los Caballeros de la Búsqueda (quienes además también deben tener al menos 3 Pts en el Beneficios de Nobleza), este es uno de los decretos más poderosos de la orden de caballería. Permite a cada caballero recibir un estipendio de 300 fénix anuales y transporte gratuito en cualquier nave de la flota Imperial (un Contrato de Pasaje de 4 Pts). Además, los caballeros pueden inspeccionar grabaciones públicas de la Iglesia o de la Liga (aunque no las grabaciones privadas de la catedral o del gremio). Pueden cruzar fronteras feudales libres de todo impuesto y son inmunes a la persecución legal (todos los cargos se llevan ante el consejo de la orden en lugar de al cuerpo legislador al cargo, tanto si este fuera noble o de la Iglesia). Sin embargo, deben atenerse a un código de conducta y de obligación. Nunca pueden actuar en contra de los intereses del Imperio, y pueden ser convocados en cualquier momento para desempeñar cualquier número de misiones por orden del Emperador (un Juramento de Lealtad de 3 Pts). Una vez que el caballero abandona la orden, ya no estará atado al decreto, pero del mismo modo tampoco recibirá sus beneficios.</es>
 		</description>
 		<cost>4</cost>
 		<group>status</group>
@@ -813,6 +813,10 @@ la campaña un secreto.</es>
 			<en>Comission</en>
 			<es>Cargo</es>
 		</name>
+		<description>
+			<en>The character is a member of a guild within the Merchant League and can learn guild skills at the base cost. The higher his degree, the more power (and responsibilities) he has. The degrees are almost always the same for men and women.</en>
+			<es>El personaje es un miembro de un gremio dentro de la Liga Mercantil y puede aprender habilidades del gremio al coste base. Cuanto mayor sea su titulación, mayor poder (y responsabilidades) tendrá. Los títulos casi siempre son los mismos para hombres que para mujeres</es>
+		</description>
 		<specializations>
 			<apprentice>
 				<name>
