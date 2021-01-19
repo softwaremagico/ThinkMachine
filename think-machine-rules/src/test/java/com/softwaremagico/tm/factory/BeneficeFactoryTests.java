@@ -74,7 +74,7 @@ public class BeneficeFactoryTests {
     }
 
     @Test
-    public void getMoneyStandard() throws InvalidXmlElementException {
+    public void getMoneyStandard() {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         Assert.assertEquals(250, player.getInitialMoney());
     }
@@ -145,6 +145,13 @@ public class BeneficeFactoryTests {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("cash [firebirds0]", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("assets [assets3000]", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+    }
+
+    @Test(expectedExceptions = IncompatibleBeneficeException.class)
+    public void checkIncompatibilitiesWithSpecializations() throws InvalidXmlElementException, BeneficeAlreadyAddedException {
+        final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("indebted_4", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+        player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("assets [assets5000]", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
     }
 
 }

@@ -113,11 +113,11 @@ public class AvailableBeneficeFactory {
         if (availableBenefices.get(language) == null || availableBenefices.get(language).isEmpty()) {
             getElements(language, moduleName);
         }
-        final AvailableBenefice avilableBenefice = availableBenefices.get(language).get(moduleName).get(beneficeId);
-        if (avilableBenefice == null) {
+        final AvailableBenefice availableBenefice = availableBenefices.get(language).get(moduleName).get(beneficeId);
+        if (availableBenefice == null) {
             throw new InvalidBeneficeException("The benefice '" + beneficeId + "' does not exists.");
         }
-        return avilableBenefice;
+        return availableBenefice;
     }
 
     public Set<AvailableBenefice> getAvailableBeneficesByDefinition(String language, String moduleName, BeneficeDefinition beneficeDefinition)

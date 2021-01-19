@@ -475,7 +475,7 @@ public class CharacterPlayer {
         //Get all benefices that will be removed.
         final Set<AvailableBenefice> beneficesToRemove = new HashSet<>(this.benefices);
         beneficesToRemove.removeAll(benefices);
-        beneficesToRemove.forEach(beneficeToRemove -> removeBenefice(beneficeToRemove));
+        beneficesToRemove.forEach(this::removeBenefice);
 
         for (final AvailableBenefice benefice : benefices) {
             try {
@@ -499,6 +499,14 @@ public class CharacterPlayer {
                         benefice, existingBenefice);
             }
             if (existingBenefice.getBeneficeDefinition().getIncompatibleWith().contains(benefice.getId())) {
+                throw new IncompatibleBeneficeException("Benefice '" + benefice + "' is incompatible with '" + existingBenefice + "'.",
+                        benefice, existingBenefice);
+            }
+            if (existingBenefice.getBeneficeDefinition().getIncompatibleWith().contains(benefice.getSpecialization().getId())) {
+                throw new IncompatibleBeneficeException("Benefice '" + benefice + "' is incompatible with '" + existingBenefice + "'.",
+                        benefice, existingBenefice);
+            }
+            if (benefice.getBeneficeDefinition().getIncompatibleWith().contains(existingBenefice.getSpecialization().getId())) {
                 throw new IncompatibleBeneficeException("Benefice '" + benefice + "' is incompatible with '" + existingBenefice + "'.",
                         benefice, existingBenefice);
             }
@@ -683,7 +691,7 @@ public class CharacterPlayer {
         //Get all benefices that will be removed.
         final Set<Weapon> weaponsToRemove = new HashSet<>(this.weapons.getElements());
         weaponsToRemove.removeAll(weapons);
-        weaponsToRemove.forEach(weaponToRemove -> removeWeapon(weaponToRemove));
+        weaponsToRemove.forEach(this::removeWeapon);
 
         for (final Weapon weapon : weapons) {
             if (!this.weapons.getElements().contains(weapon)) {
@@ -1373,10 +1381,10 @@ public class CharacterPlayer {
 
     public int getBasicPsiqueLevel(OccultismType occultismType) {
         if (getRace() != null) {
-            if (occultismType.getId() == OccultismTypeFactory.PSI_TAG) {
+            if (occultismType.getId().equals(OccultismTypeFactory.PSI_TAG)) {
                 return Math.max(getRace().getPsi(), getOccultism().getPsiqueLevel(occultismType));
             }
-            if (occultismType.getId() == OccultismTypeFactory.THEURGY_TAG) {
+            if (occultismType.getId().equals(OccultismTypeFactory.THEURGY_TAG)) {
                 return Math.max(getRace().getTheurgy(), getOccultism().getPsiqueLevel(occultismType));
             }
         }

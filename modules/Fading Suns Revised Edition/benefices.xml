@@ -680,30 +680,46 @@ la campaña un secreto.</es>
 		<specializations>
 			<assets3000>
 				<name>
+					<en>3000 firebirds</en>
+					<es>3000 fénix</es>
+				</name>
+				<description>
 					<en>3000 firebirds (300 initial firebirds)</en>
 					<es>3000 fénix (300 fénix iniciales)</es>
-				</name>
+				</description>
 				<cost>4</cost>
 			</assets3000>
 			<assets5000>
 				<name>
+					<en>5000 firebirds</en>
+					<es>5000 fénix</es>
+				</name>
+				<description>
 					<en>5000 firebirds (500 initial firebirds)</en>
 					<es>5000 fénix (500 fénix iniciales)</es>
-				</name>
+				</description>
 				<cost>4</cost>
 			</assets5000>
 			<assets10000>
 				<name>
+					<en>10000 firebirds</en>
+					<es>10000 fénix</es>
+				</name>
+				<description>
 					<en>10000 firebirds (1000 initial firebirds)</en>
 					<es>10000 fénix (1000 fénix iniciales)</es>
-				</name>
+				</description>
 				<cost>4</cost>
 			</assets10000>
 			<assets15000>
 				<name>
+					<en>15000 firebirds</en>
+					<es>15000 fénix</es>
+				</name>
+				<description>
 					<en>15000 firebirds (1500 initial firebirds)</en>
 					<es>15000 fénix (1500 fénix iniciales)</es>
-				</name>
+				</description>
 				<cost>4</cost>
 				<random>
 					<recommendedFactionGroups>nobility</recommendedFactionGroups>
@@ -711,9 +727,13 @@ la campaña un secreto.</es>
 			</assets15000>
 			<assets20000>
 				<name>
+					<en>20000 firebirds</en>
+					<es>20000 fénix</es>
+				</name>
+				<description>
 					<en>20000 firebirds (2000 initial firebirds)</en>
 					<es>20000 fénix (2000 fénix iniciales)</es>
-				</name>
+				</description>
 				<cost>4</cost>
 				<random>
 					<recommendedFactionGroups>nobility</recommendedFactionGroups>
@@ -731,9 +751,10 @@ la campaña un secreto.</es>
 			<es>Endeudado</es>
 		</name>
 		<description>
-			<en></en>
-			<es></es>
+			<en>The character is in debt. He cannot buy more than 4 points of Riches (enough to live on) and must work to assuage this debt, lest his creditor take his land and possessions or sell him to the Chainers.</en>
+			<es>El personaje tiene una deuda. No puede adquirir más de 4 puntos en Riquezas (suficiente para vivir) y debe trabajar para aliviar dicha deuda, no sea que su acreedor le expropie su tierra y posesiones o le venda a los Esclavistas.</es>
 		</description>
+		<incompatibleWith>assets5000, assets10000, assets15000, assets20000, firebirds2000, firebirds3000, firebirds4000, firebirds5000, firebirds6000</incompatibleWith>
 		<cost>2-7</cost>
 		<group>riches</group>
 		<affliction>true</affliction>
