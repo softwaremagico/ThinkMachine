@@ -503,11 +503,13 @@ public class CharacterPlayer {
                 throw new IncompatibleBeneficeException("Benefice '" + benefice + "' is incompatible with '" + existingBenefice + "'.",
                         benefice, existingBenefice);
             }
-            if (existingBenefice.getBeneficeDefinition().getIncompatibleWith().contains(benefice.getSpecialization().getId())) {
+            if (benefice.getSpecialization() != null &&
+                    existingBenefice.getBeneficeDefinition().getIncompatibleWith().contains(benefice.getSpecialization().getId())) {
                 throw new IncompatibleBeneficeException("Benefice '" + benefice + "' is incompatible with '" + existingBenefice + "'.",
                         benefice, existingBenefice);
             }
-            if (benefice.getBeneficeDefinition().getIncompatibleWith().contains(existingBenefice.getSpecialization().getId())) {
+            if (existingBenefice.getSpecialization() != null &&
+                    benefice.getBeneficeDefinition().getIncompatibleWith().contains(existingBenefice.getSpecialization().getId())) {
                 throw new IncompatibleBeneficeException("Benefice '" + benefice + "' is incompatible with '" + existingBenefice + "'.",
                         benefice, existingBenefice);
             }
