@@ -246,7 +246,6 @@ public class WeaponFactory extends XmlFactory<Weapon> {
 
     public synchronized List<Weapon> getRangedWeapons(String language, String moduleName) throws InvalidXmlElementException {
         rangedWeapons.computeIfAbsent(language, k -> new HashMap<>());
-        rangedWeapons.get(language).computeIfAbsent(moduleName, k -> new ArrayList<>());
         if (rangedWeapons.get(language).get(moduleName) == null) {
             rangedWeapons.get(language).put(moduleName, getElements(language, moduleName).stream().
                     filter(Weapon::isRangedWeapon).collect(Collectors.toList()));
@@ -256,7 +255,6 @@ public class WeaponFactory extends XmlFactory<Weapon> {
 
     public synchronized List<Weapon> getMeleeWeapons(String language, String moduleName) throws InvalidXmlElementException {
         meleeWeapons.computeIfAbsent(language, k -> new HashMap<>());
-        meleeWeapons.get(language).computeIfAbsent(moduleName, k -> new ArrayList<>());
         if (meleeWeapons.get(language).get(moduleName) == null) {
             meleeWeapons.get(language).put(moduleName, getElements(language, moduleName).stream().
                     filter(Weapon::isMeleeWeapon).collect(Collectors.toList()));
