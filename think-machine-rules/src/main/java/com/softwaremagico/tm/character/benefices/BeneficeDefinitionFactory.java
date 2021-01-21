@@ -93,7 +93,7 @@ public class BeneficeDefinitionFactory extends XmlFactory<BeneficeDefinition> {
                 final String specializationName = translator.getNodeValue(specializationId, NAME, language);
                 final String specializationDescription = translator.getNodeValue(specializationId, DESCRIPTION, language);
 
-                Set<String> incompatibleWith = new HashSet<>();
+                final Set<String> incompatibleWith = new HashSet<>();
                 try {
                     final String incompatibleWithValues = translator.getNodeValue(specializationId, INCOMPATIBLE_WITH);
                     if (incompatibleWithValues != null) {
@@ -160,7 +160,7 @@ public class BeneficeDefinitionFactory extends XmlFactory<BeneficeDefinition> {
                 restrictedToGroup = FactionGroup.get(restriction);
             }
 
-            Set<String> incompatibleWith = new HashSet<>();
+            final Set<String> incompatibleWith = new HashSet<>();
             try {
                 final String incompatibleWithValues = translator.getNodeValue(benefitId, INCOMPATIBLE_WITH);
                 if (incompatibleWithValues != null) {

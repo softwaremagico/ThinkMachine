@@ -493,7 +493,7 @@ public class CharacterPlayer {
             throw new InvalidBeneficeException("Benefice '" + benefice + "' is restricted and cannot be added.");
         }
         //Check if is incompatible with others.
-        for (AvailableBenefice existingBenefice : benefices) {
+        for (final AvailableBenefice existingBenefice : benefices) {
             if (benefice.getBeneficeDefinition().getIncompatibleWith().contains(existingBenefice.getId())) {
                 throw new IncompatibleBeneficeException("Benefice '" + benefice + "' is incompatible with '" + existingBenefice + "'.",
                         benefice, existingBenefice);
@@ -510,11 +510,13 @@ public class CharacterPlayer {
                 throw new IncompatibleBeneficeException("Benefice '" + benefice + "' is incompatible with '" + existingBenefice + "'.",
                         benefice, existingBenefice);
             }
-            if (benefice.getSpecialization() != null && benefice.getSpecialization().getIncompatibleWith().contains(existingBenefice.getBeneficeDefinition().getId())) {
+            if (benefice.getSpecialization() != null &&
+                    benefice.getSpecialization().getIncompatibleWith().contains(existingBenefice.getBeneficeDefinition().getId())) {
                 throw new IncompatibleBeneficeException("Benefice '" + benefice + "' is incompatible with '" + existingBenefice + "'.",
                         benefice, existingBenefice);
             }
-            if (existingBenefice.getSpecialization() != null && existingBenefice.getSpecialization().getIncompatibleWith().contains(benefice.getBeneficeDefinition().getId())) {
+            if (existingBenefice.getSpecialization() != null &&
+                    existingBenefice.getSpecialization().getIncompatibleWith().contains(benefice.getBeneficeDefinition().getId())) {
                 throw new IncompatibleBeneficeException("Benefice '" + benefice + "' is incompatible with '" + existingBenefice + "'.",
                         benefice, existingBenefice);
             }

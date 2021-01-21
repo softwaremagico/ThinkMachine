@@ -87,8 +87,7 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
             //Only elements with enough Tech level.
             if (selectedBeneficeWithLevel.getBeneficeDefinition().getGroup() == BeneficeGroup.TECHNOLOGY) {
                 try {
-
-                    Weapon weapon = WeaponFactory.getInstance().getElement(selectedBenefice.getId(), getCharacterPlayer().getLanguage(),
+                    final Weapon weapon = WeaponFactory.getInstance().getElement(selectedBenefice.getId(), getCharacterPlayer().getLanguage(),
                             getCharacterPlayer().getModuleName());
                     if (weapon.getTechLevel() > getCharacterPlayer().getCharacteristicValue(CharacteristicName.TECH)) {
                         //Not enough tech level.
@@ -99,7 +98,7 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
                     // Benefice is not a weapon.
                 }
                 try {
-                    Armour armour = ArmourFactory.getInstance().getElement(selectedBenefice.getId(), getCharacterPlayer().getLanguage(),
+                    final Armour armour = ArmourFactory.getInstance().getElement(selectedBenefice.getId(), getCharacterPlayer().getLanguage(),
                             getCharacterPlayer().getModuleName());
                     if (armour.getTechLevel() > getCharacterPlayer().getCharacteristicValue(CharacteristicName.TECH)) {
                         //Not enough tech level.
