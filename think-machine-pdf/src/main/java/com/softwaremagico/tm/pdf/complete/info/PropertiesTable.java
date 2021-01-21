@@ -49,7 +49,7 @@ public class PropertiesTable extends VerticalTable {
 
 	private Paragraph getMoney(CharacterPlayer characterPlayer) {
 		final Paragraph paragraph = new Paragraph();
-		paragraph.add(new Paragraph(getTranslator().getTranslatedText("firebirds"), new Font(FadingSunsTheme
+		paragraph.add(new Paragraph(getTranslator().getTranslatedText("firebirds") + ":", new Font(FadingSunsTheme
 				.getLineFont(), FadingSunsTheme.TABLE_LINE_FONT_SIZE)));
 		String moneyText = "";
 		float usedWidth = 0;

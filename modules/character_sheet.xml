@@ -549,8 +549,8 @@
 		<es>EXP</es>
 	</experience>
 	<firebirds>
-		<en>Firebirds:</en>
-		<es>Fénix:</es>
+		<en>Firebirds</en>
+		<es>Fénix</es>
 	</firebirds>
 	<equipment>
 		<en>Equipment</en>
@@ -564,4 +564,12 @@
 		<en>Years</en>
 		<es>Años</es>
 	</years>
+	<techLevel>
+		<en>TL</en>
+		<es>NT</es>
+	</techLevel>
+	<impactForce>
+		<en>Impact/Force</en>
+		<es>Impacto/Fuerza</es>
+	</impactForce>
 </translator>
