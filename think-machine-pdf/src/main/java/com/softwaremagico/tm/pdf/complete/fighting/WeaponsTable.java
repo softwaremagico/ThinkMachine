@@ -92,7 +92,7 @@ public class WeaponsTable extends LateralHeaderPdfPTable {
 
 				addedWeapons++;
 
-				for (final Ammunition ammunition : weapon.getAmmunitions()) {
+				for (final Ammunition ammunition : weapon.getAmmunition()) {
 					addCell(createFirstElementLine(" - " + ammunition.getName(), NAME_COLUMN_WIDTH,
 							FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
 					addCell(createElementLine("", ROLL_COLUMN_WIDTH, FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));

@@ -67,6 +67,7 @@ import com.softwaremagico.tm.txt.CharacterSheet;
 
 import java.util.*;
 import java.util.Map.Entry;
+import java.util.stream.Collectors;
 
 public class CharacterPlayer {
     private final String language;
@@ -636,7 +637,7 @@ public class CharacterPlayer {
         if (getCyberneticsIncompatibility() + cyberneticDevice.getIncompatibility() > Cybernetics
                 .getMaxCyberneticIncompatibility(this)) {
             throw new TooManyCyberneticDevicesException(
-                    "Cybernatic device cannot be added due to incompatibility requirements. Current incompatibility '"
+                    "Cybernetic device cannot be added due to incompatibility requirements. Current incompatibility '"
                             + getCyberneticsIncompatibility() + "', device incompatibility '"
                             + cyberneticDevice.getIncompatibility()
                             + "', maximum incompatibility for this character is '"
@@ -648,11 +649,11 @@ public class CharacterPlayer {
                         + cyberneticDevice.getRequirement() + "' to be added to the character.");
             }
         }
-        final SelectedCyberneticDevice selectedCiberneticDevice = new SelectedCyberneticDevice(cyberneticDevice);
-        if (getCyberneticList().addElement(selectedCiberneticDevice)) {
-            getCharacterModificationHandler().launchCyberneticDeviceUpdatedListener(selectedCiberneticDevice, false);
+        final SelectedCyberneticDevice selectedCyberneticDevice = new SelectedCyberneticDevice(cyberneticDevice);
+        if (getCyberneticList().addElement(selectedCyberneticDevice)) {
+            getCharacterModificationHandler().launchCyberneticDeviceUpdatedListener(selectedCyberneticDevice, false);
         }
-        return selectedCiberneticDevice;
+        return selectedCyberneticDevice;
     }
 
     public void removeCybernetics(CyberneticDevice cyberneticDevice) {
@@ -689,7 +690,35 @@ public class CharacterPlayer {
         }
     }
 
-    public void setWeapons(List<Weapon> weapons) {
+    public void setMeleeWeapons(Collection<Weapon> weapons) {
+        //Get all benefices that will be removed.
+        final Set<Weapon> weaponsToRemove = new HashSet<>(this.weapons.getElements()).stream().
+                filter(weapon -> weapon.isMeleeWeapon()).collect(Collectors.toSet());
+        weaponsToRemove.removeAll(weapons);
+        weaponsToRemove.forEach(this::removeWeapon);
+
+        for (final Weapon weapon : weapons) {
+            if (!this.weapons.getElements().contains(weapon)) {
+                addWeapon(weapon);
+            }
+        }
+    }
+
+    public void setRangeWeapons(Collection<Weapon> weapons) {
+        //Get all benefices that will be removed.
+        final Set<Weapon> weaponsToRemove = new HashSet<>(this.weapons.getElements()).stream().
+                filter(weapon -> weapon.isRangeWeapon()).collect(Collectors.toSet());
+        weaponsToRemove.removeAll(weapons);
+        weaponsToRemove.forEach(this::removeWeapon);
+
+        for (final Weapon weapon : weapons) {
+            if (!this.weapons.getElements().contains(weapon)) {
+                addWeapon(weapon);
+            }
+        }
+    }
+
+    public void setWeapons(Collection<Weapon> weapons) {
         //Get all benefices that will be removed.
         final Set<Weapon> weaponsToRemove = new HashSet<>(this.weapons.getElements());
         weaponsToRemove.removeAll(weapons);

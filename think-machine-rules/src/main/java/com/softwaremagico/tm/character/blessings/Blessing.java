@@ -54,7 +54,7 @@ public class Blessing extends Element<Blessing> implements IElementWithBonificat
         blessingGroup = null;
     }
 
-    public Blessing(String id, String name, String language, String description, String moduleName, Integer cost, Set<Bonification> bonifications,
+    public Blessing(String id, String name, String description, String language,  String moduleName, Integer cost, Set<Bonification> bonifications,
                     BlessingClassification blessingClassification, BlessingGroup blessingGroup) {
         super(id, name, description, language, moduleName);
         this.cost = cost;

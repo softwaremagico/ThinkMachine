@@ -101,7 +101,7 @@ public class WeaponsTableLong extends VerticalTable {
 					FadingSunsTheme.WEAPONS_SMALL_CONTENT_FONT_SIZE));
 			added++;
 
-			for (final Ammunition ammunition : weapon.getAmmunitions()) {
+			for (final Ammunition ammunition : weapon.getAmmunition()) {
 				addCell(createFirstElementLine(" - " + ammunition.getName(), NAME_COLUMN_WIDTH,
 						FadingSunsTheme.WEAPONS_CONTENT_FONT_SIZE));
 				addCell(createElementLine((ammunition.getGoal() != null ? weapon.getGoal() : ""), GOAL_COLUMN_WIDTH,
