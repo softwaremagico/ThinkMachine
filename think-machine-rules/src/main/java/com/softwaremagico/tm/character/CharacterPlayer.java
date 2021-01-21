@@ -693,7 +693,7 @@ public class CharacterPlayer {
     public void setMeleeWeapons(Collection<Weapon> weapons) {
         //Get all benefices that will be removed.
         final Set<Weapon> weaponsToRemove = new HashSet<>(this.weapons.getElements()).stream().
-                filter(weapon -> weapon.isMeleeWeapon()).collect(Collectors.toSet());
+                filter(Weapon::isMeleeWeapon).collect(Collectors.toSet());
         weaponsToRemove.removeAll(weapons);
         weaponsToRemove.forEach(this::removeWeapon);
 
@@ -704,10 +704,10 @@ public class CharacterPlayer {
         }
     }
 
-    public void setRangeWeapons(Collection<Weapon> weapons) {
+    public void setRangedWeapons(Collection<Weapon> weapons) {
         //Get all benefices that will be removed.
         final Set<Weapon> weaponsToRemove = new HashSet<>(this.weapons.getElements()).stream().
-                filter(weapon -> weapon.isRangeWeapon()).collect(Collectors.toSet());
+                filter(Weapon::isRangedWeapon).collect(Collectors.toSet());
         weaponsToRemove.removeAll(weapons);
         weaponsToRemove.forEach(this::removeWeapon);
 

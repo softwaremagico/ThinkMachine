@@ -220,7 +220,7 @@ public class Weapon extends Equipment<Weapon> {
         return getType() == WeaponType.MELEE;
     }
 
-    public boolean isRangeWeapon() {
+    public boolean isRangedWeapon() {
         return !isMeleeWeapon();
     }
 

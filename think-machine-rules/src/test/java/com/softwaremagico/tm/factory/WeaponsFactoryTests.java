@@ -112,13 +112,13 @@ public class WeaponsFactoryTests {
         Set<Weapon> weaponsToAdd = new HashSet<>();
         weaponsToAdd.add(WeaponFactory.getInstance().getElement("typicalShotgun", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         weaponsToAdd.add(WeaponFactory.getInstance().getElement("martechSafireSniper", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
-        player.setRangeWeapons(weaponsToAdd);
+        player.setRangedWeapons(weaponsToAdd);
         Assert.assertEquals(2, player.getAllWeapons().size());
 
         weaponsToAdd = new HashSet<>();
         weaponsToAdd.add(WeaponFactory.getInstance().getElement("typicalShotgun", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         weaponsToAdd.add(WeaponFactory.getInstance().getElement("soeCrucible", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
-        player.setRangeWeapons(weaponsToAdd);
+        player.setRangedWeapons(weaponsToAdd);
         Assert.assertEquals(2, player.getAllWeapons().size());
 
         weaponsToAdd = new HashSet<>();
@@ -128,11 +128,11 @@ public class WeaponsFactoryTests {
 
         weaponsToAdd = new HashSet<>();
         weaponsToAdd.add(WeaponFactory.getInstance().getElement("nitobiBlasterAxe", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
-        player.setRangeWeapons(weaponsToAdd);
+        player.setRangedWeapons(weaponsToAdd);
         Assert.assertEquals(2, player.getAllWeapons().size());
 
         weaponsToAdd = new HashSet<>();
-        player.setRangeWeapons(weaponsToAdd);
+        player.setRangedWeapons(weaponsToAdd);
         Assert.assertEquals(1, player.getAllWeapons().size());
 
         weaponsToAdd = new HashSet<>();
