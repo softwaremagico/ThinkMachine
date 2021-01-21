@@ -45,7 +45,7 @@ public class AvailableBenefice extends Element<AvailableBenefice> {
 
     public AvailableBenefice(String id, String name, String description, String language, BeneficeDefinition beneficeDefinition,
                              BeneficeClassification beneficeClassification, int cost, RandomElementDefinition randomDefinition) {
-        super(id, name, language, description, randomDefinition, beneficeDefinition.getModuleName());
+        super(id, name, description, language, randomDefinition, beneficeDefinition.getModuleName());
         this.beneficeDefinition = beneficeDefinition;
         this.beneficeClassification = beneficeClassification;
         this.cost = cost;

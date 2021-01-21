@@ -154,4 +154,13 @@ public class BeneficeFactoryTests {
         player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("assets [assets5000]", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
     }
 
+    @Test
+    public void checkDescription() throws InvalidXmlElementException {
+        Assert.assertEquals("Debido a una extraña serie de sucesión de eventos, el personaje ha sido criado por miembros de otra raza. Casi nunca se oye que un humano " +
+                "se preocupe por un niño Ur-Ukar, o que un Vorox se preocupe de un infante humano, pero esto ha ocurrido. Un personaje con este Beneficio empieza con los " +
+                "conocimientos del idioma de esa especie (la habilidad de Hablar) en lugar de la suya propia. Cualquiera con un prejuicio hacia las razas no humanas (lo cual " +
+                "incluye prácticamente a todas las personas en los Mundos Conocidos) tenderá a desarrollar una desconfianza especial hacia el personaje.",
+                AvailableBeneficeFactory.getInstance().getElement("alienUpbringing", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).getDescription());
+    }
+
 }
