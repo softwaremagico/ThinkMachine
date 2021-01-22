@@ -24,25 +24,23 @@ package com.softwaremagico.tm.factory;
  * #L%
  */
 
-import java.util.Set;
-
-import com.softwaremagico.tm.character.benefices.*;
-import junit.framework.Assert;
-
-import org.testng.annotations.Test;
-
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.character.benefices.*;
 import com.softwaremagico.tm.character.creation.CostCalculator;
 import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
 import com.softwaremagico.tm.file.PathManager;
+import junit.framework.Assert;
+import org.testng.annotations.Test;
+
+import java.util.Set;
 
 @Test(groups = {"beneficeFactory"})
 public class BeneficeFactoryTests {
     private static final String LANGUAGE = "es";
 
     private static final int DEFINED_BENEFICES = 74;
-    private static final int AVAILABLE_BENEFICES = 206;
+    private static final int AVAILABLE_BENEFICES = 234;
 
     @Test
     public void readBenefices() throws InvalidXmlElementException {
