@@ -56,9 +56,13 @@
 	</radiationProtection>
 	<metal>
 		<name>
-			<en>Metal (-1d energy weapons)</en>
-			<es>Metal (-1d armas de energía)</es>
+			<en>Metal</en>
+			<es>Metal</es>
 		</name>
+		<description>
+			<en>-1 success energy weapons</en>
+			<es>-1 éxito armas de energía</es>
+		</description>
 	</metal>
 	<occult>
 		<name>
