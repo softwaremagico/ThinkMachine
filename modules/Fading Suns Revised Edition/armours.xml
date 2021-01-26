@@ -421,7 +421,7 @@
 			<es>Consiste en placas grandes y metálicas entrelazadas, atadas mediante una correa a través de una armadura interior de cuero y utilizada por tropas bien equipadas a lo largo de muchos mundos. Con la introducción de plásticos en el NT5 los conjuntos de armadura completos empiezan a fabricarse con la idea de que sean más ligeros, y el plastiacero del NT5 hace que sean más efectivos a la hora de proteger contra las armas de fuego. La mayoría de las versiones de la alta tecnología incorporan materiales que protegen al portador de los entornos hostiles.</es>
 		</description>
 		<techLevel>5</techLevel>
-		<protection>0</protection>
+		<protection>10</protection>
 		<standardPenalizations>
 			<strength>0</strength>
 			<dexterity>-1</dexterity>
