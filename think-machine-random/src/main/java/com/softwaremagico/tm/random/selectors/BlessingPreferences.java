@@ -49,6 +49,11 @@ public enum BlessingPreferences implements IRandomPreference {
 		return 0;
 	}
 
+	@Override
+	public PreferenceGroup getGroup() {
+		return PreferenceGroup.CHARACTER_DESCRIPTION;
+	}
+
 	public static BlessingPreferences getSelected(Set<IRandomPreference> preferences) {
 		for (final IRandomPreference preference : preferences) {
 			if (preference instanceof BlessingPreferences) {

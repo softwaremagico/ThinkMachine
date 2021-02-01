@@ -209,7 +209,7 @@ public class RandomCharacterTests {
         characterPlayer.setFaction(
                 FactionsFactory.getInstance().getElement("hazat", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0,
-                StatusPreferences.HIGHT);
+                StatusPreferences.HIGH);
         randomizeCharacter.createCharacter();
         Assert.assertNotNull(characterPlayer.getRank());
         Assert.assertEquals(CostCalculator.getCost(characterPlayer),

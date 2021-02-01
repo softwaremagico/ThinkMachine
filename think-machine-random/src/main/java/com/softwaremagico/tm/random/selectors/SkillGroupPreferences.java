@@ -10,17 +10,17 @@ import com.softwaremagico.tm.character.skills.SkillGroup;
  * %%
  * This software is designed by Jorge Hortelano Otero. Jorge Hortelano Otero
  * <softwaremagico@gmail.com> Valencia (Spain).
- *  
+ *
  * This program is free software; you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software
  * Foundation; either version 2 of the License, or (at your option) any later
  * version.
- *  
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
  * details.
- *  
+ *
  * You should have received a copy of the GNU General Public License along with
  * this program; If not, see <http://www.gnu.org/licenses/gpl-3.0.html>.
  * #L%
@@ -28,55 +28,60 @@ import com.softwaremagico.tm.character.skills.SkillGroup;
 
 public enum SkillGroupPreferences implements IRandomPreference {
 
-	ANALYTICAL(SkillGroup.ANALYTICAL),
+    ANALYTICAL(SkillGroup.ANALYTICAL),
 
-	COMBAT(SkillGroup.COMBAT),
+    COMBAT(SkillGroup.COMBAT),
 
-	CONTROL(SkillGroup.CONTROL),
+    CONTROL(SkillGroup.CONTROL),
 
-	CREATIVE(SkillGroup.CREATIVE),
+    CREATIVE(SkillGroup.CREATIVE),
 
-	LORE(SkillGroup.LORE),
+    LORE(SkillGroup.LORE),
 
-	MALEFACTION(SkillGroup.MALEFACTION),
+    MALEFACTION(SkillGroup.MALEFACTION),
 
-	PHYSICAL(SkillGroup.PHYSICAL),
+    PHYSICAL(SkillGroup.PHYSICAL),
 
-	SCIENCE(SkillGroup.SCIENCE),
+    SCIENCE(SkillGroup.SCIENCE),
 
-	SOCIAL(SkillGroup.SOCIAL),
+    SOCIAL(SkillGroup.SOCIAL),
 
-	TECHNICAL(SkillGroup.TECHNICAL);
+    TECHNICAL(SkillGroup.TECHNICAL);
 
-	private final SkillGroup skillGroup;
+    private final SkillGroup skillGroup;
 
-	private SkillGroupPreferences(SkillGroup skillGroup) {
-		this.skillGroup = skillGroup;
-	}
+    private SkillGroupPreferences(SkillGroup skillGroup) {
+        this.skillGroup = skillGroup;
+    }
 
-	public static SkillGroupPreferences getSkillGroupPreference(SkillGroup skillGroup) {
-		if (skillGroup != null) {
-			for (final SkillGroupPreferences skillGroupPreference : SkillGroupPreferences.values()) {
-				if (skillGroupPreference.getSkillGroup() == skillGroup) {
-					return skillGroupPreference;
-				}
-			}
-		}
-		return null;
-	}
+    public static SkillGroupPreferences getSkillGroupPreference(SkillGroup skillGroup) {
+        if (skillGroup != null) {
+            for (final SkillGroupPreferences skillGroupPreference : SkillGroupPreferences.values()) {
+                if (skillGroupPreference.getSkillGroup() == skillGroup) {
+                    return skillGroupPreference;
+                }
+            }
+        }
+        return null;
+    }
 
-	@Override
-	public int maximum() {
-		return SpecializationPreferences.SPECIALIZED.maximum();
-	}
+    @Override
+    public int maximum() {
+        return SpecializationPreferences.SPECIALIZED.maximum();
+    }
 
-	@Override
-	public int minimum() {
-		return SpecializationPreferences.SPECIALIZED.minimum();
-	}
+    @Override
+    public int minimum() {
+        return SpecializationPreferences.SPECIALIZED.minimum();
+    }
 
-	public SkillGroup getSkillGroup() {
-		return skillGroup;
-	}
+    @Override
+    public PreferenceGroup getGroup() {
+        return PreferenceGroup.CHARACTER_CREATION;
+    }
+
+    public SkillGroup getSkillGroup() {
+        return skillGroup;
+    }
 
 }

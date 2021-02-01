@@ -50,7 +50,7 @@ public class GaussianDistributionTests {
 
 	@Test
 	public void checkGaussianValuesForPreference() {
-		System.out.println(getValues(StatusPreferences.HIGHT, 10000));
+		System.out.println(getValues(StatusPreferences.HIGH, 10000));
 		System.out.println(getValues(StatusPreferences.GOOD, 10000));
 		System.out.println(getValues(StatusPreferences.LOW, 10000));
 	}
