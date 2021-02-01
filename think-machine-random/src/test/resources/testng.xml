@@ -15,6 +15,7 @@
 		<groups>
 			<run>
 				<include name="randomDefinition" />
+				<include name="randomPreferences" />
 				<include name="randomCharacter" />
 				<include name="profile" />
 				<include name="difficulty" />

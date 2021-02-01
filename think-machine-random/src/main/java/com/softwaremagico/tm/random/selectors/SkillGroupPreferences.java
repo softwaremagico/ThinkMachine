@@ -26,7 +26,7 @@ import com.softwaremagico.tm.character.skills.SkillGroup;
  * #L%
  */
 
-public enum SkillGroupPreferences implements IRandomPreference {
+public enum SkillGroupPreferences implements ICharacterCreationPreference {
 
     ANALYTICAL(SkillGroup.ANALYTICAL),
 
@@ -73,11 +73,6 @@ public enum SkillGroupPreferences implements IRandomPreference {
     @Override
     public int minimum() {
         return SpecializationPreferences.SPECIALIZED.minimum();
-    }
-
-    @Override
-    public PreferenceGroup getGroup() {
-        return PreferenceGroup.CHARACTER_CREATION;
     }
 
     public SkillGroup getSkillGroup() {

@@ -27,7 +27,7 @@ package com.softwaremagico.tm.random.selectors;
 import java.util.Random;
 import java.util.Set;
 
-public enum CyberneticPointsPreferences implements IRandomPreference, IGaussianDistribution {
+public enum CyberneticPointsPreferences implements ICyberneticsPreference, IGaussianDistribution {
 
     // Gaussian distribution.
     NONE(0, 0, 0, 0),
@@ -71,11 +71,6 @@ public enum CyberneticPointsPreferences implements IRandomPreference, IGaussianD
     @Override
     public int mean() {
         return mean;
-    }
-
-    @Override
-    public PreferenceGroup getGroup() {
-        return PreferenceGroup.CYBERNETICS;
     }
 
 

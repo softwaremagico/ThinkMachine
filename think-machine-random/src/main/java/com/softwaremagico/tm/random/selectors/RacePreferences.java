@@ -26,7 +26,7 @@ package com.softwaremagico.tm.random.selectors;
 
 import java.util.Set;
 
-public enum RacePreferences implements IRandomPreference {
+public enum RacePreferences implements ICharacterDescriptionPreference {
     HUMAN,
 
     OBUN,
@@ -43,11 +43,6 @@ public enum RacePreferences implements IRandomPreference {
     @Override
     public int minimum() {
         return 0;
-    }
-
-    @Override
-    public PreferenceGroup getGroup() {
-        return PreferenceGroup.CHARACTER_DESCRIPTION;
     }
 
     public static RacePreferences getSelected(Set<IRandomPreference> preferences) {

@@ -27,7 +27,7 @@ package com.softwaremagico.tm.random.selectors;
 import java.util.Random;
 import java.util.Set;
 
-public enum BlessingNumberPreferences implements IRandomPreference, IGaussianDistribution {
+public enum BlessingNumberPreferences implements ICharacterCreationPreference, IGaussianDistribution {
 
     NONE(0, 0, 0, 0),
 
@@ -63,11 +63,6 @@ public enum BlessingNumberPreferences implements IRandomPreference, IGaussianDis
     @Override
     public int variance() {
         return variance;
-    }
-
-    @Override
-    public PreferenceGroup getGroup() {
-        return PreferenceGroup.CHARACTER_CREATION;
     }
 
     @Override

@@ -27,7 +27,7 @@ package com.softwaremagico.tm.random.selectors;
 import java.util.Random;
 import java.util.Set;
 
-public enum ExtraBeneficesNumberPreferences implements IRandomPreference, IGaussianDistribution {
+public enum ExtraBeneficesNumberPreferences implements ICharacterCreationPreference, IGaussianDistribution {
 
     NONE(0, 0, 0, 0),
 
@@ -68,11 +68,6 @@ public enum ExtraBeneficesNumberPreferences implements IRandomPreference, IGauss
     @Override
     public int mean() {
         return mean;
-    }
-
-    @Override
-    public PreferenceGroup getGroup() {
-        return PreferenceGroup.CHARACTER_CREATION;
     }
 
     public static ExtraBeneficesNumberPreferences getSelected(Set<IRandomPreference> preferences) {

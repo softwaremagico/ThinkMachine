@@ -27,7 +27,7 @@ package com.softwaremagico.tm.random.selectors;
 import java.util.Random;
 import java.util.Set;
 
-public enum PsiquePathLevelPreferences implements IRandomPreference, IGaussianDistribution {
+public enum PsiquePathLevelPreferences implements IPsiPreference, IGaussianDistribution {
 
     // Gaussian distribution.
     NONE(0, 0, 0, 0),
@@ -69,11 +69,6 @@ public enum PsiquePathLevelPreferences implements IRandomPreference, IGaussianDi
     @Override
     public int mean() {
         return mean;
-    }
-
-    @Override
-    public PreferenceGroup getGroup() {
-        return PreferenceGroup.PSI;
     }
 
     public static PsiquePathLevelPreferences getSelected(Set<IRandomPreference> preferences) {

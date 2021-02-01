@@ -26,7 +26,7 @@ package com.softwaremagico.tm.random.selectors;
 
 import java.util.Set;
 
-public enum ArmourPreferences implements IRandomPreference {
+public enum ArmourPreferences implements IEquipmentPreference {
 
     NONE(0f),
 
@@ -59,11 +59,6 @@ public enum ArmourPreferences implements IRandomPreference {
     @Override
     public int minimum() {
         return 0;
-    }
-
-    @Override
-    public PreferenceGroup getGroup() {
-        return PreferenceGroup.EQUIPMENT;
     }
 
     public float getArmourProbability() {

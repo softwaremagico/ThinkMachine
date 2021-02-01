@@ -26,7 +26,7 @@ import java.util.Set;
  * #L%
  */
 
-public enum TechnologicalPreferences implements IRandomPreference {
+public enum TechnologicalPreferences implements IEquipmentPreference {
 
     PREHISTORIC(0, 1),
 
@@ -58,11 +58,6 @@ public enum TechnologicalPreferences implements IRandomPreference {
     @Override
     public int minimum() {
         return minimum;
-    }
-
-    @Override
-    public PreferenceGroup getGroup() {
-        return PreferenceGroup.EQUIPMENT;
     }
 
     /**

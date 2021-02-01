@@ -27,7 +27,7 @@ package com.softwaremagico.tm.random.selectors;
 import java.util.Random;
 import java.util.Set;
 
-public enum AgePreferences implements IRandomPreference, IGaussianDistribution {
+public enum AgePreferences implements ICharacterDescriptionPreference, IGaussianDistribution {
 
     // Gaussian distribution.
     PREADOLESCENT(6, 12, 9, 2),
@@ -76,12 +76,6 @@ public enum AgePreferences implements IRandomPreference, IGaussianDistribution {
     public int mean() {
         return mean;
     }
-
-    @Override
-    public PreferenceGroup getGroup() {
-        return PreferenceGroup.CHARACTER_DESCRIPTION;
-    }
-
 
     public static AgePreferences getSelected(Set<IRandomPreference> preferences) {
         for (final IRandomPreference preference : preferences) {

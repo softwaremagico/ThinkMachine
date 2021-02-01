@@ -27,7 +27,7 @@ package com.softwaremagico.tm.random.selectors;
 import java.util.Random;
 import java.util.Set;
 
-public enum NamesPreferences implements IRandomPreference, IGaussianDistribution {
+public enum NamesPreferences implements ICharacterDescriptionPreference, IGaussianDistribution {
 
     // Gaussian distribution.
     LOW(1, 1, 1, 1),
@@ -64,11 +64,6 @@ public enum NamesPreferences implements IRandomPreference, IGaussianDistribution
     @Override
     public int variance() {
         return (int) variance;
-    }
-
-    @Override
-    public PreferenceGroup getGroup() {
-        return PreferenceGroup.CHARACTER_DESCRIPTION;
     }
 
     @Override

@@ -26,7 +26,7 @@ package com.softwaremagico.tm.random.selectors;
 
 import java.util.Set;
 
-public enum DifficultLevelPreferences implements IRandomPreference {
+public enum DifficultLevelPreferences implements ICharacterDescriptionPreference {
 
     // Threat level ~50
     VERY_EASY(-5, -15, 0),
@@ -61,11 +61,6 @@ public enum DifficultLevelPreferences implements IRandomPreference {
     @Override
     public int minimum() {
         return 0;
-    }
-
-    @Override
-    public PreferenceGroup getGroup() {
-        return PreferenceGroup.CHARACTER_DESCRIPTION;
     }
 
     public static DifficultLevelPreferences getSelected(Set<IRandomPreference> preferences) {

@@ -26,7 +26,7 @@ package com.softwaremagico.tm.random.selectors;
 
 import java.util.Set;
 
-public enum WeaponsPreferences implements IRandomPreference {
+public enum WeaponsPreferences implements ICharacterCreationPreference {
 
     NONE(0f, 0f),
 
@@ -71,10 +71,5 @@ public enum WeaponsPreferences implements IRandomPreference {
     @Override
     public int minimum() {
         return 0;
-    }
-
-    @Override
-    public PreferenceGroup getGroup() {
-        return PreferenceGroup.EQUIPMENT;
     }
 }

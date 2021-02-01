@@ -29,6 +29,4 @@ public interface IRandomPreference {
 	int maximum();
 
 	int minimum();
-
-	PreferenceGroup getGroup();
 }

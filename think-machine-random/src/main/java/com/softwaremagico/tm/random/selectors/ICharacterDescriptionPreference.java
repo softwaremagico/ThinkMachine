@@ -24,15 +24,5 @@ package com.softwaremagico.tm.random.selectors;
  * #L%
  */
 
-public enum PreferenceGroup {
-
-    EQUIPMENT,
-
-    CYBERNETICS,
-
-    PSI,
-
-    CHARACTER_CREATION,
-
-    CHARACTER_DESCRIPTION;
+public interface ICharacterDescriptionPreference extends IRandomPreference {
 }

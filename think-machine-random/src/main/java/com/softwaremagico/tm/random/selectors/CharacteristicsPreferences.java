@@ -24,7 +24,7 @@ package com.softwaremagico.tm.random.selectors;
  * #L%
  */
 
-public enum CharacteristicsPreferences implements IRandomPreference {
+public enum CharacteristicsPreferences implements ICharacterCreationPreference {
     MIND(3, 8),
 
     BODY(3, 8),
@@ -47,10 +47,5 @@ public enum CharacteristicsPreferences implements IRandomPreference {
     @Override
     public int minimum() {
         return minimum;
-    }
-
-    @Override
-    public PreferenceGroup getGroup() {
-        return PreferenceGroup.CHARACTER_CREATION;
     }
 }

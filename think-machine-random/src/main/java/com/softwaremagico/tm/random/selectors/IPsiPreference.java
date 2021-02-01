@@ -1,12 +1,10 @@
 package com.softwaremagico.tm.random.selectors;
 
-import java.util.Set;
-
 /*-
  * #%L
- * Think Machine (Core)
+ * Think Machine (Random Generator)
  * %%
- * Copyright (C) 2017 - 2018 Softwaremagico
+ * Copyright (C) 2017 - 2021 Softwaremagico
  * %%
  * This software is designed by Jorge Hortelano Otero. Jorge Hortelano Otero
  * <softwaremagico@gmail.com> Valencia (Spain).
@@ -26,36 +24,5 @@ import java.util.Set;
  * #L%
  */
 
-public enum BlessingPreferences implements ICharacterCreationPreference {
-	APPEARANCE,
-
-	BEHAVIOUR,
-
-	INJURIES,
-
-	KNACKS,
-
-	REPUTATION,
-
-	SIZE;
-
-	@Override
-	public int maximum() {
-		return 0;
-	}
-
-	@Override
-	public int minimum() {
-		return 0;
-	}
-
-	public static BlessingPreferences getSelected(Set<IRandomPreference> preferences) {
-		for (final IRandomPreference preference : preferences) {
-			if (preference instanceof BlessingPreferences) {
-				return (BlessingPreferences) preference;
-			}
-		}
-		return null;
-	}
-
+public interface IPsiPreference extends IRandomPreference {
 }

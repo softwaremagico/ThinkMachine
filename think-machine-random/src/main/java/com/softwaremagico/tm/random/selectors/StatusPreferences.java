@@ -27,7 +27,7 @@ package com.softwaremagico.tm.random.selectors;
 import java.util.Random;
 import java.util.Set;
 
-public enum StatusPreferences implements IRandomPreference, IGaussianDistribution {
+public enum StatusPreferences implements ICharacterDescriptionPreference, IGaussianDistribution {
 
     NONE(0, 0, 0, 0),
 
@@ -70,11 +70,6 @@ public enum StatusPreferences implements IRandomPreference, IGaussianDistributio
     @Override
     public int mean() {
         return mean;
-    }
-
-    @Override
-    public PreferenceGroup getGroup() {
-        return PreferenceGroup.CHARACTER_DESCRIPTION;
     }
 
     public static StatusPreferences getSelected(Set<IRandomPreference> preferences) {

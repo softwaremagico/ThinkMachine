@@ -26,7 +26,7 @@ import java.util.Set;
  * #L%
  */
 
-public enum CombatPreferences implements IRandomPreference {
+public enum CombatPreferences implements ICharacterDescriptionPreference {
     // Threat level ~40
     PEACEFUL(0, 1, WeaponsPreferences.LOW, ArmourPreferences.NONE, ShieldPreferences.NONE),
 
@@ -60,11 +60,6 @@ public enum CombatPreferences implements IRandomPreference {
     @Override
     public int minimum() {
         return minimum;
-    }
-
-    @Override
-    public PreferenceGroup getGroup() {
-        return PreferenceGroup.CHARACTER_DESCRIPTION;
     }
 
     public static CombatPreferences getSelected(Set<IRandomPreference> preferences) {

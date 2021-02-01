@@ -27,7 +27,7 @@ package com.softwaremagico.tm.random.selectors;
 import java.util.Random;
 import java.util.Set;
 
-public enum TraitCostPreferences implements IRandomPreference, IGaussianDistribution {
+public enum TraitCostPreferences implements ICharacterCreationPreference, IGaussianDistribution {
 
     // Gaussian distribution.
     LOW(1, 4, 2, 1),
@@ -69,11 +69,6 @@ public enum TraitCostPreferences implements IRandomPreference, IGaussianDistribu
     @Override
     public int mean() {
         return mean;
-    }
-
-    @Override
-    public PreferenceGroup getGroup() {
-        return PreferenceGroup.CHARACTER_CREATION;
     }
 
     public static TraitCostPreferences getSelected(Set<IRandomPreference> preferences) {
