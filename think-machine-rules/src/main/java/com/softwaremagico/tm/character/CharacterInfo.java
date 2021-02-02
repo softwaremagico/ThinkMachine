@@ -27,6 +27,7 @@ package com.softwaremagico.tm.character;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.softwaremagico.tm.character.planets.Planet;
 import com.softwaremagico.tm.language.ITranslator;
@@ -118,6 +119,7 @@ public class CharacterInfo {
             names = new ArrayList<>();
         }
         names.add(name);
+        names = names.stream().filter(n -> !n.getName().equals("")).collect(Collectors.toList());
     }
 
     public String getPlayer() {
@@ -141,7 +143,15 @@ public class CharacterInfo {
     }
 
     public void setAge(Integer age) {
-        this.age = age;
+        if (age == null) {
+            this.age = null;
+        } else if (age > 99) {
+            this.age = 99;
+        } else if (age < 5) {
+            this.age = 5;
+        } else {
+            this.age = age;
+        }
     }
 
     public Planet getPlanet() {
@@ -220,7 +230,11 @@ public class CharacterInfo {
     }
 
     public void setSurname(String surname) {
-        this.surname = new Surname(surname, null, null, null);
+        if (surname == null || surname.isEmpty()) {
+            this.surname = null;
+        } else {
+            this.surname = new Surname(surname, null, null, null);
+        }
     }
 
     private ITranslator getTranslator(String moduleName) {
