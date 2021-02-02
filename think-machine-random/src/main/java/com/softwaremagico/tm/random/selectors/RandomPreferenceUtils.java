@@ -31,8 +31,13 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import com.softwaremagico.tm.file.PathManager;
 import com.softwaremagico.tm.log.MachineLog;
 import org.reflections.Reflections;
+import org.reflections.scanners.ResourcesScanner;
+import org.reflections.util.ClasspathHelper;
+import org.reflections.util.ConfigurationBuilder;
+import org.reflections.util.FilterBuilder;
 
 @SuppressWarnings({"unchecked", "rawtypes"})
 public class RandomPreferenceUtils {

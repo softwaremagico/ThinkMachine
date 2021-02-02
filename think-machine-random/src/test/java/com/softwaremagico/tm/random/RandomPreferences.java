@@ -35,12 +35,12 @@ public class RandomPreferences {
     private static final String LANGUAGE = "en";
 
     @Test
-    public void checkGroups() throws InvalidXmlElementException {
+    public void checkGroups() {
         Assert.assertFalse(RandomPreferenceUtils.getPreferencesByGroup().isEmpty());
     }
 
     @Test
-    public void checkGroupReader() throws InvalidXmlElementException {
+    public void checkGroupReader() {
         Assert.assertFalse(RandomPreferenceUtils.getByGroup(IPsiPreference.class).isEmpty());
     }
 
