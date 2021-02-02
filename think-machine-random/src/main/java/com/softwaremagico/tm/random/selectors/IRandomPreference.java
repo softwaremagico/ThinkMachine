@@ -29,4 +29,6 @@ public interface IRandomPreference {
 	int maximum();
 
 	int minimum();
+
+	String name();
 }

@@ -25,9 +25,9 @@ package com.softwaremagico.tm.random.selectors;
  */
 
 public enum CharacteristicsPreferences implements ICharacterCreationPreference {
-    MIND(3, 8),
-
     BODY(3, 8),
+
+    MIND(3, 8),
 
     SPIRIT(3, 8);
 

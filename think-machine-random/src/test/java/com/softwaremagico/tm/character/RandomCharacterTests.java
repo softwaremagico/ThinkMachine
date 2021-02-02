@@ -307,7 +307,7 @@ public class RandomCharacterTests {
             DuplicatedPreferenceException, TooManyBlessingsException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0,
-                NamesPreferences.VERY_HIGHT);
+                NamesPreferences.VERY_HIGH);
         randomizeCharacter.createCharacter();
         Assert.assertTrue(characterPlayer.getInfo().getNames().size() >= 2);
         Assert.assertTrue(characterPlayer.getInfo().getSurname() != null);
@@ -340,7 +340,7 @@ public class RandomCharacterTests {
         characterPlayer
                 .setRace(RaceFactory.getInstance().getElement("human", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0,
-                AgePreferences.PREADOLESCENT);
+                AgePreferences.CHILD);
         randomizeCharacter.createCharacter();
 
         Assert.assertEquals(FreeStyleCharacterCreation.getMaxInitialCharacteristicsValues(CharacteristicName.DEXTERITY,

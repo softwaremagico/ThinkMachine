@@ -36,7 +36,7 @@ public enum NamesPreferences implements ICharacterDescriptionPreference, IGaussi
 
     HIGH(2, 3, 1, 1),
 
-    VERY_HIGHT(2, 4, 3, 1);
+    VERY_HIGH(2, 4, 3, 1);
 
     private final int minimum;
     private final int maximum;
