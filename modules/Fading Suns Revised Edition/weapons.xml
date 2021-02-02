@@ -3524,6 +3524,9 @@
 		<rate>2</rate>
 		<size>S</size>
 		<cost>30</cost>
+		<random>
+			<probabilityMultiplier>0.01</probabilityMultiplier>
+		</random>
 	</pipeBomb3>
 	<pipeBomb4>
 		<name>
@@ -3543,6 +3546,9 @@
 		<rate>2</rate>
 		<size>S</size>
 		<cost>40</cost>
+		<random>
+			<probabilityMultiplier>0.01</probabilityMultiplier>
+		</random>
 	</pipeBomb4>
 	<pipeBomb5>
 		<name>
@@ -3562,6 +3568,9 @@
 		<rate>2</rate>
 		<size>S</size>
 		<cost>50</cost>
+		<random>
+			<probabilityMultiplier>0.01</probabilityMultiplier>
+		</random>
 	</pipeBomb5>
 	<pipeBomb6>
 		<name>
@@ -3581,6 +3590,9 @@
 		<rate>2</rate>
 		<size>S</size>
 		<cost>60</cost>
+		<random>
+			<probabilityMultiplier>0.01</probabilityMultiplier>
+		</random>
 	</pipeBomb6>
 	<pipeBomb7>
 		<name>
@@ -3600,6 +3612,9 @@
 		<rate>2</rate>
 		<size>S</size>
 		<cost>70</cost>
+		<random>
+			<probabilityMultiplier>0.01</probabilityMultiplier>
+		</random>
 	</pipeBomb7>
 	<pipeBomb8>
 		<name>
@@ -3619,6 +3634,9 @@
 		<rate>2</rate>
 		<size>S</size>
 		<cost>80</cost>
+		<random>
+			<probabilityMultiplier>0.01</probabilityMultiplier>
+		</random>
 	</pipeBomb8>
 	<plasmaGrenade>
 		<name>
