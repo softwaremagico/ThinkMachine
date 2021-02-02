@@ -26,6 +26,7 @@ package com.softwaremagico.tm.character;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
@@ -225,12 +226,14 @@ public class RandomizeCharacter {
             randomPlanet.assign();
         }
 
-        if (characterPlayer.getInfo().getNames() == null || characterPlayer.getInfo().getNames().isEmpty()) {
+        if (characterPlayer.getInfo().getNames() == null || characterPlayer.getInfo().getNames().isEmpty() ||
+                (!characterPlayer.getInfo().getNames().stream().
+                        filter(name -> !name.getName().equals("")).findAny().isPresent())) {
             final RandomName randomName = new RandomName(characterPlayer, preferences);
             randomName.assign();
         }
 
-        if (characterPlayer.getInfo().getSurname() == null) {
+        if (characterPlayer.getInfo().getSurname() == null || Objects.equals(characterPlayer.getInfo().getSurname().getName(), "")) {
             final RandomSurname randomSurname = new RandomSurname(characterPlayer, preferences);
             randomSurname.assign();
         }
