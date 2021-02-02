@@ -94,4 +94,13 @@ public enum AgePreferences implements ICharacterDescriptionPreference, IGaussian
         } while (selectedValue < minimum() || selectedValue > maximum());
         return selectedValue;
     }
+
+    @Override
+    public IRandomPreference getDefault() {
+        return getDefaultOption();
+    }
+
+    public static AgePreferences getDefaultOption() {
+        return AgePreferences.EXPERIENCED_ADULT;
+    }
 }

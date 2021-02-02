@@ -53,4 +53,13 @@ public enum CyberneticVisibilityPreferences implements ICyberneticsPreference {
         }
         return VISIBLE;
     }
+
+    @Override
+    public IRandomPreference getDefault() {
+        return getDefaultOption();
+    }
+
+    public static CyberneticVisibilityPreferences getDefaultOption() {
+        return null;
+    }
 }

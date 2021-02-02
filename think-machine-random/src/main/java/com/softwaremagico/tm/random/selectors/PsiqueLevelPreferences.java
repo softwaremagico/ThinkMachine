@@ -88,4 +88,13 @@ public enum PsiqueLevelPreferences implements IPsiPreference, IGaussianDistribut
         } while (selectedValue < minimum() || selectedValue > maximum());
         return selectedValue;
     }
+
+    @Override
+    public IRandomPreference getDefault() {
+        return getDefaultOption();
+    }
+
+    public static PsiqueLevelPreferences getDefaultOption() {
+        return null;
+    }
 }

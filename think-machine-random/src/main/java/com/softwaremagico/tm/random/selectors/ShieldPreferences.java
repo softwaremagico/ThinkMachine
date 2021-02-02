@@ -77,4 +77,13 @@ public enum ShieldPreferences implements IEquipmentPreference {
         return shieldProbability;
     }
 
+    @Override
+    public IRandomPreference getDefault() {
+        return getDefaultOption();
+    }
+
+    public static ShieldPreferences getDefaultOption() {
+        return null;
+    }
+
 }

@@ -57,4 +57,13 @@ public enum FactionPreferences implements ICharacterDescriptionPreference {
         return null;
     }
 
+    @Override
+    public IRandomPreference getDefault() {
+        return getDefaultOption();
+    }
+
+    public static FactionPreferences getDefaultOption() {
+        return null;
+    }
+
 }

@@ -79,4 +79,13 @@ public enum SkillGroupPreferences implements ICharacterCreationPreference {
         return skillGroup;
     }
 
+    @Override
+    public IRandomPreference getDefault() {
+        return getDefaultOption();
+    }
+
+    public static SkillGroupPreferences getDefaultOption() {
+        return null;
+    }
+
 }

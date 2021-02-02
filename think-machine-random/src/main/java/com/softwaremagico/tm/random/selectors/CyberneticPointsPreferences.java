@@ -91,4 +91,13 @@ public enum CyberneticPointsPreferences implements ICyberneticsPreference, IGaus
         } while (selectedValue < minimum() || selectedValue > maximum());
         return selectedValue;
     }
+
+    @Override
+    public IRandomPreference getDefault() {
+        return getDefaultOption();
+    }
+
+    public static CyberneticPointsPreferences getDefaultOption() {
+        return null;
+    }
 }

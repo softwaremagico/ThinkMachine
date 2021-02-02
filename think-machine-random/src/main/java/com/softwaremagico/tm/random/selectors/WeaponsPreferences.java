@@ -72,4 +72,13 @@ public enum WeaponsPreferences implements ICharacterCreationPreference {
     public int minimum() {
         return 0;
     }
+
+    @Override
+    public IRandomPreference getDefault() {
+        return getDefaultOption();
+    }
+
+    public static WeaponsPreferences getDefaultOption() {
+        return null;
+    }
 }

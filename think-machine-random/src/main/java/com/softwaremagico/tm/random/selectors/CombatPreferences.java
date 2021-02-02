@@ -92,4 +92,13 @@ public enum CombatPreferences implements ICharacterDescriptionPreference {
     public ShieldPreferences getDefaultShieldPreferences() {
         return defaultShieldPreferences;
     }
+
+    @Override
+    public IRandomPreference getDefault() {
+        return getDefaultOption();
+    }
+
+    public static CombatPreferences getDefaultOption() {
+        return null;
+    }
 }

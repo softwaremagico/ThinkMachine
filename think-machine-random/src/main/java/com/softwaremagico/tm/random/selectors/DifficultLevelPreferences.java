@@ -84,4 +84,13 @@ public enum DifficultLevelPreferences implements ICharacterDescriptionPreference
         return characteristicsBonus;
     }
 
+    @Override
+    public IRandomPreference getDefault() {
+        return getDefaultOption();
+    }
+
+    public static DifficultLevelPreferences getDefaultOption() {
+        return null;
+    }
+
 }

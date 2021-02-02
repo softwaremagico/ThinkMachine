@@ -65,4 +65,13 @@ public enum ArmourPreferences implements IEquipmentPreference {
         return armourProbability;
     }
 
+    @Override
+    public IRandomPreference getDefault() {
+        return getDefaultOption();
+    }
+
+    public static ArmourPreferences getDefaultOption() {
+        return null;
+    }
+
 }

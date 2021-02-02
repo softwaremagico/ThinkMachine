@@ -163,34 +163,39 @@ public class RandomizeCharacter {
     }
 
     private void setDefaultPreferences() {
+        final AgePreferences agePreferences = AgePreferences.getSelected(preferences);
+        if (agePreferences == null) {
+            preferences.add(AgePreferences.getDefaultOption());
+        }
+
         // Point distribution is "Fair" by default.
         final SpecializationPreferences selectedSpecialization = SpecializationPreferences.getSelected(preferences);
         if (selectedSpecialization == null) {
-            preferences.add(SpecializationPreferences.FAIR);
+            preferences.add(SpecializationPreferences.getDefaultOption());
         }
 
         // Low traits by default.
         final TraitCostPreferences traitCostPreferences = TraitCostPreferences.getSelected(preferences);
         if (traitCostPreferences == null) {
-            preferences.add(TraitCostPreferences.LOW);
+            preferences.add(TraitCostPreferences.getDefaultOption());
         }
 
         // Weapons, armors and shield depending on combatPreferences if not
         // defined.
         final WeaponsPreferences weaponPreferences = WeaponsPreferences.getSelected(preferences);
         if (weaponPreferences == null) {
-            final CombatPreferences combatePreferences = CombatPreferences.getSelected(preferences);
-            preferences.add(combatePreferences.getDefaultWeaponPreferences());
+            final CombatPreferences combatPreferences = CombatPreferences.getSelected(preferences);
+            preferences.add(combatPreferences.getDefaultWeaponPreferences());
         }
         final ArmourPreferences armourPreferences = ArmourPreferences.getSelected(preferences);
         if (armourPreferences == null) {
-            final CombatPreferences combatePreferences = CombatPreferences.getSelected(preferences);
-            preferences.add(combatePreferences.getDefaultArmourPreferences());
+            final CombatPreferences combatPreferences = CombatPreferences.getSelected(preferences);
+            preferences.add(combatPreferences.getDefaultArmourPreferences());
         }
         final ShieldPreferences shieldPreferences = ShieldPreferences.getSelected(preferences);
         if (shieldPreferences == null) {
-            final CombatPreferences combatePreferences = CombatPreferences.getSelected(preferences);
-            preferences.add(combatePreferences.getDefaultShieldPreferences());
+            final CombatPreferences combatPreferences = CombatPreferences.getSelected(preferences);
+            preferences.add(combatPreferences.getDefaultShieldPreferences());
         }
     }
 
@@ -268,8 +273,8 @@ public class RandomizeCharacter {
         final RandomCybernetics randomCybernetics = new RandomCybernetics(characterPlayer, preferences);
         randomCybernetics.assign();
         // Set Wyrd
-        final IGaussianDistribution wyrdDistrubution = PsiqueLevelPreferences.getSelected(preferences);
-        final int extraWyrd = wyrdDistrubution.randomGaussian();
+        final IGaussianDistribution wyrdDistribution = PsiqueLevelPreferences.getSelected(preferences);
+        final int extraWyrd = wyrdDistribution.randomGaussian();
         characterPlayer.setExtraWyrd(extraWyrd - characterPlayer.getBasicWyrdValue());
         RandomGenerationLog.info(this.getClass().getName(), "Added extra wyrd '{}'.", extraWyrd);
         // Set psi paths.

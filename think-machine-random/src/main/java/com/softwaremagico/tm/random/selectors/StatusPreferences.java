@@ -89,4 +89,13 @@ public enum StatusPreferences implements ICharacterDescriptionPreference, IGauss
         } while (selectedValue < minimum() || selectedValue > maximum());
         return selectedValue;
     }
+
+    @Override
+    public IRandomPreference getDefault() {
+        return getDefaultOption();
+    }
+
+    public static StatusPreferences getDefaultOption() {
+        return StatusPreferences.FAIR;
+    }
 }

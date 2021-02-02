@@ -87,4 +87,13 @@ public enum BlessingNumberPreferences implements ICharacterCreationPreference, I
         } while (selectedValue < minimum() || selectedValue > maximum());
         return selectedValue;
     }
+
+    @Override
+    public IRandomPreference getDefault() {
+        return getDefaultOption();
+    }
+
+    public static BlessingNumberPreferences getDefaultOption() {
+        return null;
+    }
 }

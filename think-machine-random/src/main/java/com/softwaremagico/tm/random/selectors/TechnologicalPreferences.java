@@ -79,4 +79,13 @@ public enum TechnologicalPreferences implements IEquipmentPreference {
         return MODERN;
     }
 
+    @Override
+    public IRandomPreference getDefault() {
+        return getDefaultOption();
+    }
+
+    public static TechnologicalPreferences getDefaultOption() {
+        return null;
+    }
+
 }

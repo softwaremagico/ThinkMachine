@@ -29,11 +29,7 @@ import java.util.Set;
 public enum RacePreferences implements ICharacterDescriptionPreference {
     HUMAN,
 
-    OBUN,
-
-    UKAR,
-
-    VOROX;
+    XENO;
 
     @Override
     public int maximum() {
@@ -51,6 +47,15 @@ public enum RacePreferences implements ICharacterDescriptionPreference {
                 return (RacePreferences) preference;
             }
         }
+        return null;
+    }
+
+    @Override
+    public IRandomPreference getDefault() {
+        return getDefaultOption();
+    }
+
+    public static RacePreferences getDefaultOption() {
         return null;
     }
 

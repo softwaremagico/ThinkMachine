@@ -48,4 +48,13 @@ public enum CharacteristicsPreferences implements ICharacterCreationPreference {
     public int minimum() {
         return minimum;
     }
+
+    @Override
+    public IRandomPreference getDefault() {
+        return getDefaultOption();
+    }
+
+    public static CharacteristicsPreferences getDefaultOption() {
+        return null;
+    }
 }

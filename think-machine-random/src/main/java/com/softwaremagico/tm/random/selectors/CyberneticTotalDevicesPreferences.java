@@ -90,4 +90,13 @@ public enum CyberneticTotalDevicesPreferences implements ICyberneticsPreference,
         } while (selectedValue < minimum() || selectedValue > maximum());
         return selectedValue;
     }
+
+    @Override
+    public IRandomPreference getDefault() {
+        return getDefaultOption();
+    }
+
+    public static CyberneticTotalDevicesPreferences getDefaultOption() {
+        return null;
+    }
 }

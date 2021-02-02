@@ -88,4 +88,13 @@ public enum TraitCostPreferences implements ICharacterCreationPreference, IGauss
         } while (selectedValue < minimum() || selectedValue > maximum());
         return selectedValue;
     }
+
+    @Override
+    public IRandomPreference getDefault() {
+        return getDefaultOption();
+    }
+
+    public static TraitCostPreferences getDefaultOption() {
+        return TraitCostPreferences.LOW;
+    }
 }

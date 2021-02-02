@@ -100,4 +100,13 @@ public enum NamesPreferences implements ICharacterDescriptionPreference, IGaussi
         }
         return NamesPreferences.values()[index];
     }
+
+    @Override
+    public IRandomPreference getDefault() {
+        return getDefaultOption();
+    }
+
+    public static NamesPreferences getDefaultOption() {
+        return null;
+    }
 }

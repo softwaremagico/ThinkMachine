@@ -91,4 +91,13 @@ public enum SpecializationPreferences implements ICharacterCreationPreference, I
         return selectedValue;
     }
 
+    @Override
+    public IRandomPreference getDefault() {
+        return getDefaultOption();
+    }
+
+    public static SpecializationPreferences getDefaultOption() {
+        return null;
+    }
+
 }

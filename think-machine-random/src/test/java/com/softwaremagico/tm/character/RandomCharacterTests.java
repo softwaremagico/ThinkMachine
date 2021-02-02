@@ -115,12 +115,12 @@ public class RandomCharacterTests {
     public void chooseRaceAndFactionTestXeno() throws InvalidXmlElementException, DuplicatedPreferenceException,
             InvalidRandomElementSelectedException, TooManyBlessingsException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
-        final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0, RacePreferences.OBUN,
+        final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0, RacePreferences.XENO,
                 FactionPreferences.GUILD);
         randomizeCharacter.setCharacterDefinition();
 
         Assert.assertEquals(characterPlayer.getFaction().getFactionGroup(), FactionGroup.GUILD);
-        Assert.assertEquals(characterPlayer.getRace(), RaceFactory.getInstance().getElement(RacePreferences.OBUN.name(),
+        Assert.assertNotEquals(characterPlayer.getRace(), RaceFactory.getInstance().getElement(RacePreferences.HUMAN.name(),
                 LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
     }
 

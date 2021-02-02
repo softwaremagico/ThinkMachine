@@ -87,4 +87,13 @@ public enum ExtraBeneficesNumberPreferences implements ICharacterCreationPrefere
         } while (selectedValue < minimum() || selectedValue > maximum());
         return selectedValue;
     }
+
+    @Override
+    public IRandomPreference getDefault() {
+        return getDefaultOption();
+    }
+
+    public static ExtraBeneficesNumberPreferences getDefaultOption() {
+        return null;
+    }
 }
