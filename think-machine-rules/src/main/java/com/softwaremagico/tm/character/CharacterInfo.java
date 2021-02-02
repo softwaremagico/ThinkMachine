@@ -90,7 +90,7 @@ public class CharacterInfo {
                 return translatedText;
             }
         } catch (Exception e) {
-
+            //No translation
         }
         return parameterValue.toString();
     }
@@ -211,7 +211,7 @@ public class CharacterInfo {
     }
 
     public String getNameRepresentation() {
-        final StringBuilder stringBuilder = new StringBuilder("");
+        final StringBuilder stringBuilder = new StringBuilder();
         if (getNames() != null && !getNames().isEmpty()) {
             for (final Name name : getNames()) {
                 stringBuilder.append(name.getName());
