@@ -2385,6 +2385,8 @@
 		<others>autofeed, flechette</others>
 		<random>
 			<probabilityMultiplier>0.01</probabilityMultiplier>
+			<restrictedFactionGroups>guild</restrictedFactionGroups>
+		</random>	
 		</random>
 	</reznorNailGun>
 	<nailgunPowerTool>
@@ -2406,6 +2408,7 @@
 		<cost>20</cost>
 		<random>
 			<probabilityMultiplier>0.01</probabilityMultiplier>
+			<restrictedFactionGroups>guild</restrictedFactionGroups>
 		</random>
 	</nailgunPowerTool>
 	<capekAquaRifle>
