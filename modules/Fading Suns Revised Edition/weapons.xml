@@ -2386,7 +2386,6 @@
 		<random>
 			<probabilityMultiplier>0.01</probabilityMultiplier>
 			<restrictedFactionGroups>guild</restrictedFactionGroups>
-		</random>	
 		</random>
 	</reznorNailGun>
 	<nailgunPowerTool>
