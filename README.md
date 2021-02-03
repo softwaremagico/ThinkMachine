@@ -1,4 +1,4 @@
-<img src="./images/ThinkMachine_logo_fenix.png" width="800" alt="Think Machine" align="middle"> 
+<img src="./images/ThinkMachine_logo_fenix.svg" width="800" alt="Think Machine" align="middle"> 
 
 # Think Machine
 
