@@ -67,6 +67,7 @@ import com.softwaremagico.tm.txt.CharacterSheet;
 
 import java.util.*;
 import java.util.Map.Entry;
+import java.util.stream.Collectors;
 
 public class CharacterPlayer {
     private final String language;
@@ -475,7 +476,7 @@ public class CharacterPlayer {
         //Get all benefices that will be removed.
         final Set<AvailableBenefice> beneficesToRemove = new HashSet<>(this.benefices);
         beneficesToRemove.removeAll(benefices);
-        beneficesToRemove.forEach(beneficeToRemove -> removeBenefice(beneficeToRemove));
+        beneficesToRemove.forEach(this::removeBenefice);
 
         for (final AvailableBenefice benefice : benefices) {
             try {
@@ -491,6 +492,37 @@ public class CharacterPlayer {
     public void addBenefice(AvailableBenefice benefice) throws InvalidBeneficeException, BeneficeAlreadyAddedException {
         if (benefice.getBeneficeDefinition().getGroup() == BeneficeGroup.RESTRICTED) {
             throw new InvalidBeneficeException("Benefice '" + benefice + "' is restricted and cannot be added.");
+        }
+        //Check if is incompatible with others.
+        for (final AvailableBenefice existingBenefice : benefices) {
+            if (benefice.getBeneficeDefinition().getIncompatibleWith().contains(existingBenefice.getId())) {
+                throw new IncompatibleBeneficeException("Benefice '" + benefice + "' is incompatible with '" + existingBenefice + "'.",
+                        benefice, existingBenefice);
+            }
+            if (existingBenefice.getBeneficeDefinition().getIncompatibleWith().contains(benefice.getId())) {
+                throw new IncompatibleBeneficeException("Benefice '" + benefice + "' is incompatible with '" + existingBenefice + "'.",
+                        benefice, existingBenefice);
+            }
+            if (benefice.getSpecialization() != null &&
+                    existingBenefice.getBeneficeDefinition().getIncompatibleWith().contains(benefice.getSpecialization().getId())) {
+                throw new IncompatibleBeneficeException("Benefice '" + benefice + "' is incompatible with '" + existingBenefice + "'.",
+                        benefice, existingBenefice);
+            }
+            if (existingBenefice.getSpecialization() != null &&
+                    benefice.getBeneficeDefinition().getIncompatibleWith().contains(existingBenefice.getSpecialization().getId())) {
+                throw new IncompatibleBeneficeException("Benefice '" + benefice + "' is incompatible with '" + existingBenefice + "'.",
+                        benefice, existingBenefice);
+            }
+            if (benefice.getSpecialization() != null &&
+                    benefice.getSpecialization().getIncompatibleWith().contains(existingBenefice.getBeneficeDefinition().getId())) {
+                throw new IncompatibleBeneficeException("Benefice '" + benefice + "' is incompatible with '" + existingBenefice + "'.",
+                        benefice, existingBenefice);
+            }
+            if (existingBenefice.getSpecialization() != null &&
+                    existingBenefice.getSpecialization().getIncompatibleWith().contains(benefice.getBeneficeDefinition().getId())) {
+                throw new IncompatibleBeneficeException("Benefice '" + benefice + "' is incompatible with '" + existingBenefice + "'.",
+                        benefice, existingBenefice);
+            }
         }
         if (getBenefice(benefice.getBeneficeDefinition().getId()) != null) {
             throw new BeneficeAlreadyAddedException("Character already has benefice '" + benefice + "'!");
@@ -508,7 +540,7 @@ public class CharacterPlayer {
         benefices.add(benefice);
         getCharacterModificationHandler().launchBeneficesUpdatedListener(benefice, false);
         Collections.sort(benefices);
-        if ((benefice.getId().startsWith("cash"))) {
+        if ((benefice.getId().startsWith("cash") || (benefice.getId().startsWith("assets")))) {
             initialMoney = null;
             getCharacterModificationHandler().launchInitialFirebirdsUpdatedListener(getInitialMoney());
         }
@@ -607,7 +639,7 @@ public class CharacterPlayer {
         if (getCyberneticsIncompatibility() + cyberneticDevice.getIncompatibility() > Cybernetics
                 .getMaxCyberneticIncompatibility(this)) {
             throw new TooManyCyberneticDevicesException(
-                    "Cybernatic device cannot be added due to incompatibility requirements. Current incompatibility '"
+                    "Cybernetic device cannot be added due to incompatibility requirements. Current incompatibility '"
                             + getCyberneticsIncompatibility() + "', device incompatibility '"
                             + cyberneticDevice.getIncompatibility()
                             + "', maximum incompatibility for this character is '"
@@ -619,11 +651,11 @@ public class CharacterPlayer {
                         + cyberneticDevice.getRequirement() + "' to be added to the character.");
             }
         }
-        final SelectedCyberneticDevice selectedCiberneticDevice = new SelectedCyberneticDevice(cyberneticDevice);
-        if (getCyberneticList().addElement(selectedCiberneticDevice)) {
-            getCharacterModificationHandler().launchCyberneticDeviceUpdatedListener(selectedCiberneticDevice, false);
+        final SelectedCyberneticDevice selectedCyberneticDevice = new SelectedCyberneticDevice(cyberneticDevice);
+        if (getCyberneticList().addElement(selectedCyberneticDevice)) {
+            getCharacterModificationHandler().launchCyberneticDeviceUpdatedListener(selectedCyberneticDevice, false);
         }
-        return selectedCiberneticDevice;
+        return selectedCyberneticDevice;
     }
 
     public void removeCybernetics(CyberneticDevice cyberneticDevice) {
@@ -660,11 +692,39 @@ public class CharacterPlayer {
         }
     }
 
-    public void setWeapons(List<Weapon> weapons) {
+    public void setMeleeWeapons(Collection<Weapon> weapons) {
+        //Get all benefices that will be removed.
+        final Set<Weapon> weaponsToRemove = new HashSet<>(this.weapons.getElements()).stream().
+                filter(Weapon::isMeleeWeapon).collect(Collectors.toSet());
+        weaponsToRemove.removeAll(weapons);
+        weaponsToRemove.forEach(this::removeWeapon);
+
+        for (final Weapon weapon : weapons) {
+            if (!this.weapons.getElements().contains(weapon)) {
+                addWeapon(weapon);
+            }
+        }
+    }
+
+    public void setRangedWeapons(Collection<Weapon> weapons) {
+        //Get all benefices that will be removed.
+        final Set<Weapon> weaponsToRemove = new HashSet<>(this.weapons.getElements()).stream().
+                filter(Weapon::isRangedWeapon).collect(Collectors.toSet());
+        weaponsToRemove.removeAll(weapons);
+        weaponsToRemove.forEach(this::removeWeapon);
+
+        for (final Weapon weapon : weapons) {
+            if (!this.weapons.getElements().contains(weapon)) {
+                addWeapon(weapon);
+            }
+        }
+    }
+
+    public void setWeapons(Collection<Weapon> weapons) {
         //Get all benefices that will be removed.
         final Set<Weapon> weaponsToRemove = new HashSet<>(this.weapons.getElements());
         weaponsToRemove.removeAll(weapons);
-        weaponsToRemove.forEach(weaponToRemove -> removeWeapon(weaponToRemove));
+        weaponsToRemove.forEach(this::removeWeapon);
 
         for (final Weapon weapon : weapons) {
             if (!this.weapons.getElements().contains(weapon)) {
@@ -1150,14 +1210,24 @@ public class CharacterPlayer {
      */
     public int getInitialMoney() {
         if (initialMoney == null) {
+            initialMoney = 0;
+            boolean defined = false;
             for (final AvailableBenefice benefice : getAllBenefices()) {
                 if ((benefice.getId().startsWith("cash"))) {
                     // Must have an specialization.
                     if (benefice.getSpecialization() != null) {
-                        initialMoney = Integer.parseInt(benefice.getId().replaceAll("[^\\d.]", ""));
-                        return initialMoney;
+                        initialMoney += Integer.parseInt(benefice.getId().replaceAll("[^\\d.]", ""));
+                        defined = true;
+                    }
+                } else if ((benefice.getId().startsWith("assets"))) {
+                    if (benefice.getSpecialization() != null) {
+                        initialMoney += (int) (Integer.parseInt(benefice.getId().replaceAll("[^\\d.]", "")) * 0.1);
+                        defined = true;
                     }
                 }
+            }
+            if (defined) {
+                return initialMoney;
             }
             try {
                 initialMoney = Integer.parseInt(AvailableBeneficeFactory.getInstance()
@@ -1344,10 +1414,10 @@ public class CharacterPlayer {
 
     public int getBasicPsiqueLevel(OccultismType occultismType) {
         if (getRace() != null) {
-            if (occultismType.getId() == OccultismTypeFactory.PSI_TAG) {
+            if (occultismType.getId().equals(OccultismTypeFactory.PSI_TAG)) {
                 return Math.max(getRace().getPsi(), getOccultism().getPsiqueLevel(occultismType));
             }
-            if (occultismType.getId() == OccultismTypeFactory.THEURGY_TAG) {
+            if (occultismType.getId().equals(OccultismTypeFactory.THEURGY_TAG)) {
                 return Math.max(getRace().getTheurgy(), getOccultism().getPsiqueLevel(occultismType));
             }
         }

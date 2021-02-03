@@ -61,8 +61,8 @@ public class Weapon extends Equipment<Weapon> {
     private final CharacteristicDefinition characteristic;
     private final WeaponType type;
 
-    private final Set<Ammunition> ammunitions;
-    private final Set<Accessory> accesories;
+    private final Set<Ammunition> ammunition;
+    private final Set<Accessory> accessories;
 
     private transient Integer mainDamage = null;
     private transient Integer areaDamage = null;
@@ -73,8 +73,8 @@ public class Weapon extends Equipment<Weapon> {
      */
     public Weapon() {
         super();
-        this.ammunitions = new HashSet<>();
-        this.accesories = new HashSet<>();
+        this.ammunition = new HashSet<>();
+        this.accessories = new HashSet<>();
         this.damageTypes = new HashSet<>();
         this.type = null;
         this.techLevelSpecial = false;
@@ -93,7 +93,7 @@ public class Weapon extends Equipment<Weapon> {
     public Weapon(String id, String name, String description, String language, String moduleName, WeaponType type, String goal,
                   CharacteristicDefinition characteristic, AvailableSkill skill, String damage, int strength, String range,
                   Integer shots, String rate, int techLevel, boolean techLevelSpecial, Size size, String special, Set<DamageType> damageTypes,
-                  float cost, Set<Ammunition> ammunitions, Set<Accessory> accesories) {
+                  float cost, Set<Ammunition> ammunition, Set<Accessory> accessories) {
         super(id, name, description, cost, techLevel, language, moduleName);
         this.characteristic = characteristic;
         this.skill = skill;
@@ -108,8 +108,8 @@ public class Weapon extends Equipment<Weapon> {
         this.type = type;
         this.special = special;
         this.damageTypes = damageTypes;
-        this.ammunitions = ammunitions;
-        this.accesories = accesories;
+        this.ammunition = ammunition;
+        this.accessories = accessories;
     }
 
     public String getRoll() {
@@ -216,6 +216,14 @@ public class Weapon extends Equipment<Weapon> {
         return 0;
     }
 
+    public boolean isMeleeWeapon() {
+        return getType() == WeaponType.MELEE || getType() == WeaponType.MELEE_ARTIFACT || getType() == WeaponType.MELEE_SHIELD;
+    }
+
+    public boolean isRangedWeapon() {
+        return !isMeleeWeapon();
+    }
+
     public boolean isAutomaticWeapon() {
         if (getRate() != null) {
             return getRate().toLowerCase().contains("a");
@@ -274,12 +282,12 @@ public class Weapon extends Equipment<Weapon> {
         return techLevelSpecial;
     }
 
-    public Set<Ammunition> getAmmunitions() {
-        return ammunitions;
+    public Set<Ammunition> getAmmunition() {
+        return ammunition;
     }
 
-    public Set<Accessory> getAccesories() {
-        return accesories;
+    public Set<Accessory> getAccessories() {
+        return accessories;
     }
 
     @Override

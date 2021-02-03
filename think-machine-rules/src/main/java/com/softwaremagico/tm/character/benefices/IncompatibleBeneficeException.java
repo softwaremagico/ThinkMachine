@@ -1,10 +1,10 @@
-package com.softwaremagico.tm.random.selectors;
+package com.softwaremagico.tm.character.benefices;
 
 /*-
  * #%L
  * Think Machine (Core)
  * %%
- * Copyright (C) 2017 - 2018 Softwaremagico
+ * Copyright (C) 2017 Softwaremagico
  * %%
  * This software is designed by Jorge Hortelano Otero. Jorge Hortelano Otero
  * <softwaremagico@gmail.com> Valencia (Spain).
@@ -24,39 +24,22 @@ package com.softwaremagico.tm.random.selectors;
  * #L%
  */
 
-import java.util.Set;
+public class IncompatibleBeneficeException extends InvalidBeneficeException {
+    private static final long serialVersionUID = 3558660253411869827L;
+    private final AvailableBenefice newBenefice;
+    private final AvailableBenefice incompatibleBenefice;
 
-public enum RacePreferences implements ICharacterDescriptionPreference {
-    HUMAN,
-
-    XENO;
-
-    @Override
-    public int maximum() {
-        return 0;
+    public IncompatibleBeneficeException(String message, AvailableBenefice newBenefice, AvailableBenefice incompatibleBenefice) {
+        super(message);
+        this.newBenefice = newBenefice;
+        this.incompatibleBenefice = incompatibleBenefice;
     }
 
-    @Override
-    public int minimum() {
-        return 0;
+    public AvailableBenefice getNewBenefice() {
+        return newBenefice;
     }
 
-    public static RacePreferences getSelected(Set<IRandomPreference> preferences) {
-        for (final IRandomPreference preference : preferences) {
-            if (preference instanceof RacePreferences) {
-                return (RacePreferences) preference;
-            }
-        }
-        return null;
+    public AvailableBenefice getIncompatibleBenefice() {
+        return incompatibleBenefice;
     }
-
-    @Override
-    public IRandomPreference getDefault() {
-        return getDefaultOption();
-    }
-
-    public static RacePreferences getDefaultOption() {
-        return null;
-    }
-
 }

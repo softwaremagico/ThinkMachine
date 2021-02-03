@@ -49,6 +49,7 @@ public class BeneficeDefinitionFactory extends XmlFactory<BeneficeDefinition> {
     private static final String SPECIALIZATION_AFFLICTION = "specializationIsAffliction";
     private static final String SPECIALIZABLE_BENEFICE_TAG = "specializations";
     private static final String RESTRICTED_TAG = "restricted";
+    private static final String INCOMPATIBLE_WITH = "incompatibleWith";
 
     private Map<BeneficeGroup, Set<BeneficeDefinition>> beneficesByGroup = new HashMap<>();
 
@@ -91,9 +92,23 @@ public class BeneficeDefinitionFactory extends XmlFactory<BeneficeDefinition> {
             for (final String specializationId : translator.getAllChildrenTags(benefitId, SPECIALIZABLE_BENEFICE_TAG)) {
                 final String specializationName = translator.getNodeValue(specializationId, NAME, language);
                 final String specializationDescription = translator.getNodeValue(specializationId, DESCRIPTION, language);
+
+                final Set<String> incompatibleWith = new HashSet<>();
+                try {
+                    final String incompatibleWithValues = translator.getNodeValue(specializationId, INCOMPATIBLE_WITH);
+                    if (incompatibleWithValues != null) {
+                        final StringTokenizer incompatibleWithValuesTokenizer = new StringTokenizer(incompatibleWithValues, ",");
+                        while (incompatibleWithValuesTokenizer.hasMoreTokens()) {
+                            incompatibleWith.add(incompatibleWithValuesTokenizer.nextToken().trim());
+                        }
+                    }
+                } catch (NullPointerException npe) {
+                    // Optional
+                }
+
                 final BeneficeSpecialization specialization = new BeneficeSpecialization(specializationId,
                         specializationName, specializationDescription != null ? specializationDescription : description,
-                        language, moduleName);
+                        language, moduleName, incompatibleWith);
                 specializations.add(specialization);
                 // Set random option.
                 setRandomConfiguration(specialization, translator, language, moduleName);
@@ -145,8 +160,21 @@ public class BeneficeDefinitionFactory extends XmlFactory<BeneficeDefinition> {
                 restrictedToGroup = FactionGroup.get(restriction);
             }
 
+            final Set<String> incompatibleWith = new HashSet<>();
+            try {
+                final String incompatibleWithValues = translator.getNodeValue(benefitId, INCOMPATIBLE_WITH);
+                if (incompatibleWithValues != null) {
+                    final StringTokenizer incompatibleWithValuesTokenizer = new StringTokenizer(incompatibleWithValues, ",");
+                    while (incompatibleWithValuesTokenizer.hasMoreTokens()) {
+                        incompatibleWith.add(incompatibleWithValuesTokenizer.nextToken().trim());
+                    }
+                }
+            } catch (NullPointerException npe) {
+                // Optional
+            }
+
             final BeneficeDefinition benefice = new BeneficeDefinition(benefitId, name, description, language, moduleName, costs,
-                    benefitGroup, classification, restrictedToGroup);
+                    benefitGroup, classification, restrictedToGroup, incompatibleWith);
             benefice.addSpecializations(specializations);
             return benefice;
 

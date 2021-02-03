@@ -129,3 +129,5 @@ Fonts used in this project: DejaVuSans, ArchitectsDaughter and Roman Antique.
 - 0.8.1 Android SDK compatibility
 - 0.8.2 Cost changes interaction with UX. 
 
+0.9.0 Element descriptions
+

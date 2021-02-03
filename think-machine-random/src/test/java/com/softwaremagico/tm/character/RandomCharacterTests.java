@@ -115,12 +115,12 @@ public class RandomCharacterTests {
     public void chooseRaceAndFactionTestXeno() throws InvalidXmlElementException, DuplicatedPreferenceException,
             InvalidRandomElementSelectedException, TooManyBlessingsException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
-        final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0, RacePreferences.OBUN,
+        final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0, RacePreferences.XENO,
                 FactionPreferences.GUILD);
         randomizeCharacter.setCharacterDefinition();
 
         Assert.assertEquals(characterPlayer.getFaction().getFactionGroup(), FactionGroup.GUILD);
-        Assert.assertEquals(characterPlayer.getRace(), RaceFactory.getInstance().getElement(RacePreferences.OBUN.name(),
+        Assert.assertNotEquals(characterPlayer.getRace(), RaceFactory.getInstance().getElement(RacePreferences.HUMAN.name(),
                 LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
     }
 
@@ -209,7 +209,7 @@ public class RandomCharacterTests {
         characterPlayer.setFaction(
                 FactionsFactory.getInstance().getElement("hazat", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0,
-                StatusPreferences.HIGHT);
+                StatusPreferences.HIGH);
         randomizeCharacter.createCharacter();
         Assert.assertNotNull(characterPlayer.getRank());
         Assert.assertEquals(CostCalculator.getCost(characterPlayer),
@@ -307,7 +307,7 @@ public class RandomCharacterTests {
             DuplicatedPreferenceException, TooManyBlessingsException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0,
-                NamesPreferences.VERY_HIGHT);
+                NamesPreferences.VERY_HIGH);
         randomizeCharacter.createCharacter();
         Assert.assertTrue(characterPlayer.getInfo().getNames().size() >= 2);
         Assert.assertTrue(characterPlayer.getInfo().getSurname() != null);
@@ -340,7 +340,7 @@ public class RandomCharacterTests {
         characterPlayer
                 .setRace(RaceFactory.getInstance().getElement("human", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0,
-                AgePreferences.PREADOLESCENT);
+                AgePreferences.CHILD);
         randomizeCharacter.createCharacter();
 
         Assert.assertEquals(FreeStyleCharacterCreation.getMaxInitialCharacteristicsValues(CharacteristicName.DEXTERITY,

@@ -34,17 +34,19 @@ import com.softwaremagico.tm.character.factions.FactionGroup;
 public class BeneficeDefinition extends Element<BeneficeDefinition> {
     private final List<Integer> costs;
     private final Set<BeneficeSpecialization> specializations = new HashSet<>();
+    private final Set<String> incompatibleWith = new HashSet<>();
     private final BeneficeGroup group;
     private final BeneficeClassification beneficeClassification;
     private final FactionGroup restrictedFactionGroup;
 
     public BeneficeDefinition(String id, String name, String description, String language, String moduleName, List<Integer> costs, BeneficeGroup group,
-                              BeneficeClassification beneficeClassification, FactionGroup restricted) {
+                              BeneficeClassification beneficeClassification, FactionGroup restricted, Set<String> incompatibleWith) {
         super(id, name, description, language, moduleName);
         this.costs = costs;
         this.group = group;
         this.beneficeClassification = beneficeClassification;
         this.restrictedFactionGroup = restricted;
+        this.incompatibleWith.addAll(incompatibleWith);
     }
 
     public List<Integer> getCosts() {
@@ -79,6 +81,10 @@ public class BeneficeDefinition extends Element<BeneficeDefinition> {
     @Override
     public boolean equals(Object obj) {
         return super.equals(obj);
+    }
+
+    public Set<String> getIncompatibleWith() {
+        return incompatibleWith;
     }
 
 }

@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.random.selectors;
+package com.softwaremagico.tm.random;
 
 /*-
  * #%L
@@ -24,39 +24,25 @@ package com.softwaremagico.tm.random.selectors;
  * #L%
  */
 
-import java.util.Set;
+import com.softwaremagico.tm.InvalidXmlElementException;
+import com.softwaremagico.tm.random.selectors.IPsiPreference;
+import com.softwaremagico.tm.random.selectors.RandomPreferenceUtils;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
-public enum RacePreferences implements ICharacterDescriptionPreference {
-    HUMAN,
+@Test(groups = {"randomPreferences"})
+public class RandomPreferences {
+    private static final String LANGUAGE = "en";
 
-    XENO;
-
-    @Override
-    public int maximum() {
-        return 0;
+    @Test
+    public void checkGroups() {
+        Assert.assertFalse(RandomPreferenceUtils.getPreferencesByGroup().isEmpty());
     }
 
-    @Override
-    public int minimum() {
-        return 0;
+    @Test
+    public void checkGroupReader() {
+        Assert.assertFalse(RandomPreferenceUtils.getByGroup(IPsiPreference.class).isEmpty());
     }
 
-    public static RacePreferences getSelected(Set<IRandomPreference> preferences) {
-        for (final IRandomPreference preference : preferences) {
-            if (preference instanceof RacePreferences) {
-                return (RacePreferences) preference;
-            }
-        }
-        return null;
-    }
-
-    @Override
-    public IRandomPreference getDefault() {
-        return getDefaultOption();
-    }
-
-    public static RacePreferences getDefaultOption() {
-        return null;
-    }
 
 }

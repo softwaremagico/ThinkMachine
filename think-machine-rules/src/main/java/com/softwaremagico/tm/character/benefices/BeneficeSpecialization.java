@@ -26,12 +26,17 @@ package com.softwaremagico.tm.character.benefices;
 
 import com.softwaremagico.tm.Element;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class BeneficeSpecialization extends Element<BeneficeSpecialization> {
     private Integer cost = null;
+    private final Set<String> incompatibleWith = new HashSet<>();
     private BeneficeClassification classification = BeneficeClassification.BENEFICE;
 
-    public BeneficeSpecialization(String id, String name, String description, String language, String moduleName) {
+    public BeneficeSpecialization(String id, String name, String description, String language, String moduleName, Set<String> incompatibleWith) {
         super(id, name, description, language, moduleName);
+        this.incompatibleWith.addAll(incompatibleWith);
     }
 
     public Integer getCost() {
@@ -62,4 +67,7 @@ public class BeneficeSpecialization extends Element<BeneficeSpecialization> {
         return super.equals(obj);
     }
 
+    public Set<String> getIncompatibleWith() {
+        return incompatibleWith;
+    }
 }

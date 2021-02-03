@@ -35,9 +35,8 @@ import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.language.ITranslator;
 
-import java.util.HashSet;
-import java.util.Set;
-import java.util.StringTokenizer;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class WeaponFactory extends XmlFactory<Weapon> {
     private static final String TRANSLATOR_FILE = "weapons.xml";
@@ -69,6 +68,9 @@ public class WeaponFactory extends XmlFactory<Weapon> {
     public static WeaponFactory getInstance() {
         return WeaponFactoryInit.INSTANCE;
     }
+
+    protected Map<String, Map<String, List<Weapon>>> rangedWeapons = new HashMap<>();
+    protected Map<String, Map<String, List<Weapon>>> meleeWeapons = new HashMap<>();
 
     @Override
     protected String getTranslatorFile() {
@@ -207,16 +209,16 @@ public class WeaponFactory extends XmlFactory<Weapon> {
             // Not mandatory.
         }
 
-        final Set<Ammunition> ammunitions = new HashSet<>();
-        final String ammunitionsNames = translator.getNodeValue(weaponId, AMMUNITION);
-        if (ammunitionsNames != null) {
-            final StringTokenizer ammunitionTokenizer = new StringTokenizer(ammunitionsNames, ",");
+        final Set<Ammunition> ammunition = new HashSet<>();
+        final String ammunitionNames = translator.getNodeValue(weaponId, AMMUNITION);
+        if (ammunitionNames != null) {
+            final StringTokenizer ammunitionTokenizer = new StringTokenizer(ammunitionNames, ",");
             while (ammunitionTokenizer.hasMoreTokens()) {
                 try {
-                    ammunitions.add(AmmunitionFactory.getInstance().getElement(ammunitionTokenizer.nextToken().trim(),
+                    ammunition.add(AmmunitionFactory.getInstance().getElement(ammunitionTokenizer.nextToken().trim(),
                             language, moduleName));
                 } catch (InvalidXmlElementException ixe) {
-                    throw new InvalidWeaponException("Error in ammunitions '" + ammunitionsNames
+                    throw new InvalidWeaponException("Error in ammunition '" + ammunitionNames
                             + "' structure. Invalid ammunition definition. ", ixe);
                 }
             }
@@ -239,6 +241,24 @@ public class WeaponFactory extends XmlFactory<Weapon> {
 
         return new Weapon(weaponId, name, description, language, moduleName, type, goal, characteristicDefintion, skill, damage,
                 strength, range, shots, rate, techLevel, techLevelSpecial, size, special, damageOfWeapon, cost,
-                ammunitions, accessories);
+                ammunition, accessories);
+    }
+
+    public synchronized List<Weapon> getRangedWeapons(String language, String moduleName) throws InvalidXmlElementException {
+        rangedWeapons.computeIfAbsent(language, k -> new HashMap<>());
+        if (rangedWeapons.get(language).get(moduleName) == null) {
+            rangedWeapons.get(language).put(moduleName, getElements(language, moduleName).stream().
+                    filter(Weapon::isRangedWeapon).collect(Collectors.toList()));
+        }
+        return rangedWeapons.get(language).get(moduleName);
+    }
+
+    public synchronized List<Weapon> getMeleeWeapons(String language, String moduleName) throws InvalidXmlElementException {
+        meleeWeapons.computeIfAbsent(language, k -> new HashMap<>());
+        if (meleeWeapons.get(language).get(moduleName) == null) {
+            meleeWeapons.get(language).put(moduleName, getElements(language, moduleName).stream().
+                    filter(Weapon::isMeleeWeapon).collect(Collectors.toList()));
+        }
+        return meleeWeapons.get(language).get(moduleName);
     }
 }
