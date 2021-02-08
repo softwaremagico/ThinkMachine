@@ -377,9 +377,13 @@
 		<es>Disparos</es>
 	</weaponShots>
 	<weaponRange>
-		<en>Str/Rng</en>
-		<es>Fue/Alc</es>
+		<en>Rng</en>
+		<es>Alc</es>
 	</weaponRange>
+	<weaponStrength>
+		<en>Str</en>
+		<es>Fue</es>
+	</weaponStrength>
 	<weaponGoal>
 		<en>Goal</en>
 		<es>RA</es>

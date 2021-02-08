@@ -5,6 +5,10 @@
 			<en>Arbat’a (Crystal Sword)</en>
 			<es>Arbat'a (Espada de Cristal)</es>
 		</name>
+		<description>
+			<en>This amazing Ascorbite "crystal sword" is made from a unique crystalline substance found only in deep underground grottos on Severus. The crystal flows in a near-liquid state in small streams "bleeding" from gashes chipped into hard crystal rocks, and from this form it can be shaped. Once exposed to light it hardens to near-diamond-like strength. When struck against a hard rock right before attacking, the blade resonates and works exactly like a vibro sword (lasting for 3 rounds or until the first successful strike). There is no real consumer market for these weapons, although some specimens fetch high prices with collectors.</en>
+			<es>Esta increíble "espada de cristal" de Ascorbito está fabricada con una sustancia cristalina única que sólo se encuentra en las profundas grutas subterráneas de Severus. El cristal fluye en un estado casi líquido en pequeños arroyos que se "desangran" a través de cortes tallados en duras rocas cristalinas, y a partir de esta forma puede modelarse. Una vez que se haya expuesto a la luz, el material se endurece a una fuerza similar a la del diamante. Al propinar un golpe contra una roca dura justo antes de atacar, la hoja resuena y funciona exactamente igual que una vibroespada (que dura, o bien durante 3 rondas o hasta que realiza su primer impacto con éxito). No existe un mercado real para los que suelen adquirir este tipo de arma, aunque algunos modelos se venden a altos precios a los coleccionistas.</es>
+		</description>
 		<characteristic>dexterity</characteristic>
 		<skill>melee</skill>
 		<type>MELEE</type>
@@ -582,6 +586,10 @@
 			<en>Dart fletched</en>
 			<es>Dardo (Disparado)</es>
 		</name>
+		<description>
+			<en>A pointed needle with small guiding wings designed for accuracy in throwing (un-winged darts have their RNG halved). These are not the common variety darts found in bars, but are larger and more deadly versions of the same.</en>
+			<es>Una aguja en punta con pequeñas alas que le sirven como guía diseñadas para la precisión a la hora de lanzar los propios dardos (el alcance de los dardos sin alas se reduce a la mitad). Esta no es la variedad común de dardos que se pueden encontrar en los bares, sino que son versiones más grandes y más mortales.</es> 
+		</description>
 		<characteristic>dexterity</characteristic>
 		<skill>throwing</skill>
 		<type>THROWING</type>
@@ -600,6 +608,10 @@
 			<en>Javelin</en>
 			<es>Jabalina</es>
 		</name>
+		<description>
+			<en></en>
+			<es></es>
+		</description>
 		<characteristic>dexterity</characteristic>
 		<skill>throwing</skill>
 		<type>THROWING</type>
