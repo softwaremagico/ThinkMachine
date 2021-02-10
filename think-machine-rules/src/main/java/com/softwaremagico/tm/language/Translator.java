@@ -174,6 +174,11 @@ public class Translator implements ITranslator {
     }
 
     @Override
+    public String getNodeValue( String node) {
+        return getNodeValue(node, 0);
+    }
+
+    @Override
     public String getNodeValue(String tag, String node) {
         return getNodeValue(tag, node, 0);
     }
@@ -181,6 +186,20 @@ public class Translator implements ITranslator {
     @Override
     public boolean existsNode(String tag, String node) {
         return existsNode(tag, node, 0);
+    }
+
+    @Override
+    public String getNodeValue(String node, int nodeNumber) {
+        final NodeList nodeList = doc.getElementsByTagName(node);
+        for (int child = 0; child < nodeList.getLength(); child++) {
+            final Node firstNode = nodeList.item(child);
+            // Remove text values
+            if (firstNode.getNodeType() == Node.ELEMENT_NODE) {
+                final Element firstElement = (Element) firstNode;
+                return firstElement.getChildNodes().item(nodeNumber).getNodeValue().trim();
+            }
+        }
+        return null;
     }
 
     @Override

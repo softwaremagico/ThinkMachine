@@ -24,17 +24,15 @@ package com.softwaremagico.tm.factory;
  * #L%
  */
 
-import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.character.equipment.weapons.Weapon;
-import junit.framework.Assert;
-
-import org.testng.annotations.Test;
-
 import com.softwaremagico.tm.InvalidXmlElementException;
+import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.equipment.weapons.AccessoryFactory;
 import com.softwaremagico.tm.character.equipment.weapons.AmmunitionFactory;
+import com.softwaremagico.tm.character.equipment.weapons.Weapon;
 import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
 import com.softwaremagico.tm.file.PathManager;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -43,10 +41,18 @@ import java.util.Set;
 public class WeaponsFactoryTests {
     private static final String LANGUAGE = "es";
 
+    private static final int DEFINED_WEAPONS = 189;
+
+    @Test
+    public void checkTotalElements() {
+        Assert.assertEquals((int) WeaponFactory.getInstance().getNumberOfElements(PathManager.DEFAULT_MODULE_FOLDER),
+                DEFINED_WEAPONS);
+    }
+
 
     @Test
     public void readWeapons() throws InvalidXmlElementException {
-        Assert.assertTrue(WeaponFactory.getInstance().getElements(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).size() > 90);
+        Assert.assertEquals(DEFINED_WEAPONS, WeaponFactory.getInstance().getElements(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).size());
     }
 
     @Test

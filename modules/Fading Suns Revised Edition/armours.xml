@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <armours>
+	<totalElements>30</totalElements>
 	<ceramsteelExoframe>
 		<name>
 			<en>Ceramsteel Exoframe</en>

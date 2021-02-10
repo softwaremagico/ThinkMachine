@@ -24,18 +24,22 @@ package com.softwaremagico.tm.factory;
  * #L%
  */
 
-import junit.framework.Assert;
-
-import org.testng.annotations.Test;
-
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.equipment.shields.ShieldFactory;
 import com.softwaremagico.tm.file.PathManager;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
 @Test(groups = { "shieldFactory" })
 public class ShieldFactoryTests {
 	private static final String LANGUAGE = "es";
 	private static final int DEFINED_SHIELDS = 4;
+
+	@Test
+	public void checkTotalElements() {
+		Assert.assertEquals((int) ShieldFactory.getInstance().getNumberOfElements(PathManager.DEFAULT_MODULE_FOLDER),
+				DEFINED_SHIELDS);
+	}
 
 	@Test
 	public void readDamages() throws InvalidXmlElementException {

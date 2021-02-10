@@ -24,17 +24,22 @@ package com.softwaremagico.tm.factory;
  * #L%
  */
 
-import org.testng.Assert;
-import org.testng.annotations.Test;
-
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.equipment.DamageTypeFactory;
 import com.softwaremagico.tm.file.PathManager;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
 @Test(groups = { "damageFactory" })
 public class DamageTypeFactoryTests {
 	private static final int DEFINED_DAMAGES = 17;
 	private static final String LANGUAGE = "es";
+
+	@Test
+	public void checkTotalElements() {
+		Assert.assertEquals((int) DamageTypeFactory.getInstance().getNumberOfElements(PathManager.DEFAULT_MODULE_FOLDER),
+				DEFINED_DAMAGES);
+	}
 
 	@Test
 	public void readDamages() throws InvalidXmlElementException {

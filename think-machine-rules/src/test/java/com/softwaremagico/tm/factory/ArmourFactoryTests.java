@@ -24,19 +24,23 @@ package com.softwaremagico.tm.factory;
  * #L%
  */
 
-import com.softwaremagico.tm.character.equipment.armours.ArmourSpecification;
-import com.softwaremagico.tm.character.equipment.armours.ArmourSpecificationFactory;
-import org.testng.Assert;
-import org.testng.annotations.Test;
-
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.equipment.armours.ArmourFactory;
+import com.softwaremagico.tm.character.equipment.armours.ArmourSpecificationFactory;
 import com.softwaremagico.tm.file.PathManager;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
 @Test(groups = {"armourFactory"})
 public class ArmourFactoryTests {
     private static final int DEFINED_ARMOURS = 30;
     private static final String LANGUAGE = "es";
+
+    @Test
+    public void checkTotalElements() {
+        Assert.assertEquals((int) ArmourFactory.getInstance().getNumberOfElements(PathManager.DEFAULT_MODULE_FOLDER),
+                DEFINED_ARMOURS);
+    }
 
     @Test
     public void readArmours() throws InvalidXmlElementException {

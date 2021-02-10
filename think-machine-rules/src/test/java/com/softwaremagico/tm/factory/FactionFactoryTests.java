@@ -1,21 +1,10 @@
 package com.softwaremagico.tm.factory;
 
-import org.junit.BeforeClass;
-import org.testng.annotations.Test;
-
-import com.softwaremagico.tm.CacheHandler;
-import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.character.Gender;
-import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
-import com.softwaremagico.tm.character.factions.Faction;
-import com.softwaremagico.tm.character.factions.FactionsFactory;
-import com.softwaremagico.tm.file.PathManager;
-
 /*-
  * #%L
- * Think Machine (Core)
+ * Think Machine (Rules)
  * %%
- * Copyright (C) 2017 - 2018 Softwaremagico
+ * Copyright (C) 2017 - 2021 Softwaremagico
  * %%
  * This software is designed by Jorge Hortelano Otero. Jorge Hortelano Otero
  * <softwaremagico@gmail.com> Valencia (Spain).
@@ -35,7 +24,16 @@ import com.softwaremagico.tm.file.PathManager;
  * #L%
  */
 
-import junit.framework.Assert;
+import com.softwaremagico.tm.CacheHandler;
+import com.softwaremagico.tm.InvalidXmlElementException;
+import com.softwaremagico.tm.character.Gender;
+import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
+import com.softwaremagico.tm.character.factions.Faction;
+import com.softwaremagico.tm.character.factions.FactionsFactory;
+import com.softwaremagico.tm.file.PathManager;
+import org.junit.BeforeClass;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
 @Test(groups = { "factionsFactory" })
 public class FactionFactoryTests {
@@ -48,6 +46,12 @@ public class FactionFactoryTests {
 	@BeforeClass
 	public void clearCache() {
 		CacheHandler.clearCache();
+	}
+
+	@Test
+	public void checkTotalElements() {
+		Assert.assertEquals((int) FactionsFactory.getInstance().getNumberOfElements(PathManager.DEFAULT_MODULE_FOLDER),
+				DEFINED_FACTIONS);
 	}
 
 	@Test

@@ -31,6 +31,7 @@ import com.softwaremagico.tm.file.modules.ModuleManager;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.Language;
 import com.softwaremagico.tm.language.LanguagePool;
+import com.softwaremagico.tm.log.MachineLog;
 import com.softwaremagico.tm.log.MachineXmlReaderLog;
 import com.softwaremagico.tm.random.definition.RandomProbabilityDefinition;
 
@@ -55,10 +56,7 @@ public abstract class XmlFactory<T extends Element<T>> {
 
     private static final String NAME = "name";
     private static final String DESCRIPTION = "description";
-
-    protected XmlFactory() {
-        initialize();
-    }
+    protected static final String TOTAL_ELEMENTS = "totalElements";
 
     protected void initialize() {
         for (final String moduleName : ModuleManager.getAvailableModules()) {
@@ -234,11 +232,39 @@ public abstract class XmlFactory<T extends Element<T>> {
         }
     }
 
+    /**
+     * Initialize the factory from external source and not from XML sources.
+     *
+     * @param language   language.
+     * @param moduleName module classification
+     * @param elements   list of elements to include.
+     */
+    public void setElements(String language, String moduleName, List<T> elements) {
+        this.elements.computeIfAbsent(language, k -> new HashMap<>());
+        this.elements.get(language).computeIfAbsent(moduleName, k -> new ArrayList<>());
+        this.elements.get(language).get(moduleName).addAll(elements);
+    }
+
+    public Integer getNumberOfElements(String moduleName) {
+        try {
+            return Integer.parseInt(getTranslator(moduleName).getNodeValue(TOTAL_ELEMENTS));
+        } catch (Exception e) {
+            //Not mandatory.
+            MachineLog.debug(this.getClass().getName(), "No element number set on the xml '" + getTranslatorFile()
+                    + "' file.");
+        }
+        return null;
+    }
+
     public synchronized List<T> getElements(String language, String moduleName) throws InvalidXmlElementException {
         if (elements.get(language) == null || elements.get(language).get(moduleName) == null) {
             elements.computeIfAbsent(language, k -> new HashMap<>());
             elements.get(language).computeIfAbsent(moduleName, k -> new ArrayList<>());
             for (final String elementId : getTranslator(moduleName).getAllTranslatedElements()) {
+                //Skip totalElements nodes.
+                if (Objects.equals(elementId, TOTAL_ELEMENTS)) {
+                    continue;
+                }
                 String name;
                 try {
                     name = getTranslator(moduleName).getNodeValue(elementId, NAME, language);
@@ -261,8 +287,6 @@ public abstract class XmlFactory<T extends Element<T>> {
             }
             Collections.sort(elements.get(language).get(moduleName));
         }
-        //getTranslator(moduleName).clear();
-        //LanguagePool.clearCache(getTranslatorFile(), moduleName);
         return elements.get(language).get(moduleName);
     }
 

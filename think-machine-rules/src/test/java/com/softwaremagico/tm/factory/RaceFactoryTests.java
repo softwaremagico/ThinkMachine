@@ -24,13 +24,11 @@ package com.softwaremagico.tm.factory;
  * #L%
  */
 
-import junit.framework.Assert;
-
-import org.testng.annotations.Test;
-
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.races.RaceFactory;
 import com.softwaremagico.tm.file.PathManager;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
 @Test(groups = { "raceFactory" })
 public class RaceFactoryTests {
@@ -38,8 +36,14 @@ public class RaceFactoryTests {
 	private static final int DEFINED_RACES = 4;
 
 	@Test
+	public void checkTotalElements() {
+		Assert.assertEquals((int) RaceFactory.getInstance().getNumberOfElements(PathManager.DEFAULT_MODULE_FOLDER),
+				DEFINED_RACES);
+	}
+
+	@Test
 	public void readRaces() throws InvalidXmlElementException {
-		Assert.assertEquals(DEFINED_RACES, RaceFactory.getInstance().getElements(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)
-				.size());
+		Assert.assertEquals(RaceFactory.getInstance().getElements(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)
+				.size(), DEFINED_RACES);
 	}
 }

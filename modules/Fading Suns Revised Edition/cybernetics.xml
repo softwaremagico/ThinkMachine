@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <cybernetics>
+	<totalElements>18</totalElements>
 	<centurionKnife>
 		<name>
 			<en>Centurion Knife</en>

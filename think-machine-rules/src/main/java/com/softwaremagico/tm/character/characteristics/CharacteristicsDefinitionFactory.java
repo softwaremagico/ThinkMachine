@@ -41,7 +41,7 @@ public class CharacteristicsDefinitionFactory extends XmlFactory<CharacteristicD
 
     private static int order = 0;
 
-    private Map<String, Map<String, Map<CharacteristicType, List<CharacteristicDefinition>>>> characteristics;
+    private Map<String, Map<String, Map<CharacteristicType, List<CharacteristicDefinition>>>> characteristicsPerType;
 
     private static class CharacteristicsDefinitionFactoryInit {
         public static final CharacteristicsDefinitionFactory INSTANCE = new CharacteristicsDefinitionFactory();
@@ -53,7 +53,7 @@ public class CharacteristicsDefinitionFactory extends XmlFactory<CharacteristicD
 
     @Override
     public void clearCache() {
-        characteristics = null;
+        characteristicsPerType = null;
         super.clearCache();
     }
 
@@ -67,16 +67,17 @@ public class CharacteristicsDefinitionFactory extends XmlFactory<CharacteristicD
                 final List<CharacteristicDefinition> characteristicsDefinitions;
                 try {
                     characteristicsDefinitions = getElements(language.getAbbreviature(), moduleName);
-                    if (characteristics == null) {
-                        characteristics = new HashMap<>();
+                    if (characteristicsPerType == null) {
+                        characteristicsPerType = new HashMap<>();
                     }
-                    characteristics.computeIfAbsent(language.getAbbreviature(), k -> new HashMap<>());
-                    characteristics.get(language.getAbbreviature()).computeIfAbsent(moduleName, k -> new HashMap<>());
+                    characteristicsPerType.computeIfAbsent(language.getAbbreviature(), k -> new HashMap<>());
+                    characteristicsPerType.get(language.getAbbreviature()).computeIfAbsent(moduleName, k -> new HashMap<>());
                     for (final CharacteristicDefinition characteristicsDefinition : characteristicsDefinitions) {
-                        characteristics.get(language.getAbbreviature()).get(moduleName).computeIfAbsent(characteristicsDefinition.getType(),
+                        characteristicsPerType.get(language.getAbbreviature()).get(moduleName).computeIfAbsent(characteristicsDefinition.getType(),
                                 k -> new ArrayList<>());
 
-                        characteristics.get(language.getAbbreviature()).get(moduleName).get(characteristicsDefinition.getType()).add(characteristicsDefinition);
+                        characteristicsPerType.get(language.getAbbreviature()).get(moduleName).
+                                get(characteristicsDefinition.getType()).add(characteristicsDefinition);
                     }
                 } catch (InvalidXmlElementException e) {
                     MachineXmlReaderLog.errorMessage(this.getClass().getName(), e);
@@ -127,12 +128,10 @@ public class CharacteristicsDefinitionFactory extends XmlFactory<CharacteristicD
     }
 
     private Map<CharacteristicType, List<CharacteristicDefinition>> getCharacteristics(String language, String moduleName) {
-        if (characteristics == null) {
-            characteristics = new HashMap<>();
+        if (characteristicsPerType == null) {
+            initialize();
         }
-        characteristics.computeIfAbsent(language, k -> new HashMap<>());
-        characteristics.get(language).computeIfAbsent(moduleName, k -> new HashMap<>());
-        return characteristics.get(language).get(moduleName);
+        return characteristicsPerType.get(language).get(moduleName);
     }
 
     public List<CharacteristicDefinition> getAll(CharacteristicType type, String language, String moduleName) {
