@@ -84,7 +84,7 @@ public class FactionsFactory extends XmlFactory<Faction> {
 	}
 
 	@Override
-	protected String getTranslatorFile() {
+	public String getTranslatorFile() {
 		return TRANSLATOR_FILE;
 	}
 

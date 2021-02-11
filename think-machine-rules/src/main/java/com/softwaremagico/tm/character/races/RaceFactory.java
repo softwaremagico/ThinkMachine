@@ -51,7 +51,7 @@ public class RaceFactory extends XmlFactory<Race> {
 	}
 
 	@Override
-	protected String getTranslatorFile() {
+    public String getTranslatorFile() {
 		return TRANSLATOR_FILE;
 	}
 

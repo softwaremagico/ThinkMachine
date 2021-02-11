@@ -51,17 +51,17 @@ import java.util.logging.Logger;
 public class Translator implements ITranslator {
     public static final String DEFAULT_LANGUAGE = "en";
     private static final String LANGUAGES_FILE = "languages.xml";
-    private Document doc = null;
+    private Document doc;
     private boolean errorShowed = false;
     private boolean retried = false;
     private boolean showedMessage = false;
     private static List<Language> languagesList = null;
-    private HashMap<String, HashMap<String, String>> tagTranslations;
+    private final HashMap<String, HashMap<String, String>> tagTranslations;
     private static String language = DEFAULT_LANGUAGE;
 
     public Translator(String filePath) {
         tagTranslations = new HashMap<>();
-        doc = parseFile(doc, filePath);
+        doc = parseFile(null, filePath);
     }
 
     @Override
@@ -77,7 +77,7 @@ public class Translator implements ITranslator {
      */
     private static Document parseFile(Document usedDoc, String filePath) {
         try {
-            URL resource = null;
+            URL resource;
             if (Translator.class.getClassLoader().getResource(filePath) != null) {
                 resource = Translator.class.getClassLoader().getResource(filePath);
             } else {
@@ -113,12 +113,10 @@ public class Translator implements ITranslator {
             final String text = "Parsing error" + ".\n Line: " + ex.getLineNumber() + "\nUri: " + ex.getSystemId() + "\nMessage: " + ex.getMessage();
             ConfigurationLog.severe(Translator.class.getName(), text);
             ConfigurationLog.errorMessage(Translator.class.getName(), ex);
-        } catch (SAXException ex) {
+        } catch (SAXException | ParserConfigurationException ex) {
             ConfigurationLog.errorMessage(Translator.class.getName(), ex);
         } catch (IOException ex) {
             Logger.getLogger(Translator.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ParserConfigurationException ex) {
-            ConfigurationLog.errorMessage(Translator.class.getName(), ex);
         }
         return usedDoc;
     }
@@ -140,9 +138,7 @@ public class Translator implements ITranslator {
 
     @Override
     public String getTranslatedText(String tag, String language, Object[] args) {
-        if (tagTranslations.get(language) == null) {
-            tagTranslations.put(language, new HashMap<String, String>());
-        }
+        tagTranslations.computeIfAbsent(language, k -> new HashMap<>());
 
         if (tagTranslations.get(language).get(tag) == null) {
             tagTranslations.get(language).put(tag, readTag(tag, language));
@@ -162,7 +158,7 @@ public class Translator implements ITranslator {
     @Override
     public List<String> getAllTranslatedElements() {
         final List<String> nodes = new ArrayList<>();
-        final Element element = (Element) (doc.getDocumentElement());
+        final Element element = doc.getDocumentElement();
         final NodeList nodeList = element.getChildNodes();
         for (int i = 0; i < nodeList.getLength(); i++) {
             // Remove text values
@@ -174,7 +170,7 @@ public class Translator implements ITranslator {
     }
 
     @Override
-    public String getNodeValue( String node) {
+    public String getNodeValue(String node) {
         return getNodeValue(node, 0);
     }
 
@@ -445,7 +441,7 @@ public class Translator implements ITranslator {
                     try {
                         final NodeList firstNodeList = firstNodeElement.getChildNodes();
                         retried = false;
-                        return ((Node) firstNodeList.item(0)).getNodeValue().trim();
+                        return firstNodeList.item(0).getNodeValue().trim();
                     } catch (NullPointerException npe) {
                         if (!retried) {
                             if (!showedMessage) {
@@ -484,8 +480,7 @@ public class Translator implements ITranslator {
     public synchronized List<Language> getAvailableLanguages() {
         if (languagesList == null) {
             languagesList = new ArrayList<>();
-            Document storedLanguages = null;
-            storedLanguages = parseFile(storedLanguages, PathManager.getModulePath(null) + LANGUAGES_FILE);
+            Document storedLanguages = parseFile(null, PathManager.getModulePath(null) + LANGUAGES_FILE);
             final NodeList nodeLst = storedLanguages.getElementsByTagName("languages");
             for (int s = 0; s < nodeLst.getLength(); s++) {
                 final Node fstNode = nodeLst.item(s);
@@ -517,6 +512,7 @@ public class Translator implements ITranslator {
                 }
             }
         } catch (URISyntaxException e) {
+            //Nothing
         }
 
         try {
@@ -527,6 +523,7 @@ public class Translator implements ITranslator {
                 }
             }
         } catch (URISyntaxException e) {
+            //Nothing
         }
         return null;
     }

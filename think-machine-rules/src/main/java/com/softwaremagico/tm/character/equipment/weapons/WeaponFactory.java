@@ -73,7 +73,7 @@ public class WeaponFactory extends XmlFactory<Weapon> {
     protected Map<String, Map<String, List<Weapon>>> meleeWeapons = new HashMap<>();
 
     @Override
-    protected String getTranslatorFile() {
+    public String getTranslatorFile() {
         return TRANSLATOR_FILE;
     }
 

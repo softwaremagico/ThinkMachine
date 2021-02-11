@@ -87,7 +87,7 @@ public class CharacteristicsDefinitionFactory extends XmlFactory<CharacteristicD
     }
 
     @Override
-    protected String getTranslatorFile() {
+    public String getTranslatorFile() {
         return TRANSLATOR_FILE;
     }
 

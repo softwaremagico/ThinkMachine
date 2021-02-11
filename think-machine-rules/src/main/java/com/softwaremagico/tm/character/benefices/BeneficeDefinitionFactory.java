@@ -203,7 +203,7 @@ public class BeneficeDefinitionFactory extends XmlFactory<BeneficeDefinition> {
     }
 
     @Override
-    protected String getTranslatorFile() {
+    public String getTranslatorFile() {
         return TRANSLATOR_FILE;
     }
 }

@@ -40,7 +40,7 @@ public class DamageTypeFactory extends XmlFactory<DamageType> {
     }
 
     @Override
-    protected String getTranslatorFile() {
+    public String getTranslatorFile() {
         return TRANSLATOR_FILE;
     }
 

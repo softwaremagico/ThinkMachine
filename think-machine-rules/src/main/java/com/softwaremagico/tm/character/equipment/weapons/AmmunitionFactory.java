@@ -56,7 +56,7 @@ public class AmmunitionFactory extends XmlFactory<Ammunition> {
     }
 
     @Override
-    protected String getTranslatorFile() {
+    public String getTranslatorFile() {
         return TRANSLATOR_FILE;
     }
 

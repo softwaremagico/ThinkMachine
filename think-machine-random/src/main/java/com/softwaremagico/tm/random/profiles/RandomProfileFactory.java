@@ -77,7 +77,7 @@ public class RandomProfileFactory extends XmlFactory<RandomProfile> {
     }
 
     @Override
-    protected String getTranslatorFile() {
+    public String getTranslatorFile() {
         return TRANSLATOR_FILE;
     }
 

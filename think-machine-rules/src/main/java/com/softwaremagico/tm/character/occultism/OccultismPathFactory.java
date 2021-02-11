@@ -182,7 +182,7 @@ public class OccultismPathFactory extends XmlFactory<OccultismPath> {
     }
 
     @Override
-    protected String getTranslatorFile() {
+    public String getTranslatorFile() {
         return TRANSLATOR_FILE;
     }
 

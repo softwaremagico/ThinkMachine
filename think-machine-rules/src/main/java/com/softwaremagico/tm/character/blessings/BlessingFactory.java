@@ -55,7 +55,7 @@ public class BlessingFactory extends XmlFactory<Blessing> {
     }
 
     @Override
-    protected String getTranslatorFile() {
+    public String getTranslatorFile() {
         return TRANSLATOR_FILE;
     }
 

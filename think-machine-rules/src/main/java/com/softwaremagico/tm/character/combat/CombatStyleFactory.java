@@ -71,7 +71,7 @@ public class CombatStyleFactory extends XmlFactory<CombatStyle> {
     }
 
     @Override
-    protected String getTranslatorFile() {
+    public String getTranslatorFile() {
         return TRANSLATOR_FILE;
     }
 

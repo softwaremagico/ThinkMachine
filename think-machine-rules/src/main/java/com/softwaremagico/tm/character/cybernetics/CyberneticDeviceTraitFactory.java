@@ -53,7 +53,7 @@ public class CyberneticDeviceTraitFactory extends XmlFactory<CyberneticDeviceTra
     }
 
     @Override
-    protected String getTranslatorFile() {
+    public String getTranslatorFile() {
         return TRANSLATOR_FILE;
     }
 

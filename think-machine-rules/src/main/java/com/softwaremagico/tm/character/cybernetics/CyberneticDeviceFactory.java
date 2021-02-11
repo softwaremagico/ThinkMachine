@@ -94,7 +94,7 @@ public class CyberneticDeviceFactory extends XmlFactory<CyberneticDevice> {
     }
 
     @Override
-    protected String getTranslatorFile() {
+    public String getTranslatorFile() {
         return TRANSLATOR_FILE;
     }
 

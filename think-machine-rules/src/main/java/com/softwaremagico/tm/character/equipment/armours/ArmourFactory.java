@@ -63,7 +63,7 @@ public class ArmourFactory extends XmlFactory<Armour> {
     }
 
     @Override
-    protected String getTranslatorFile() {
+    public String getTranslatorFile() {
         return TRANSLATOR_FILE;
     }
 
