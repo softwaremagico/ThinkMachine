@@ -41,6 +41,13 @@ public class BeneficeFactoryTests {
 
     private static final int DEFINED_BENEFICES = 74;
     private static final int AVAILABLE_BENEFICES = 234;
+    private static final int VERSION = 1;
+
+    @Test
+    public void checkVersion() {
+        org.testng.Assert.assertEquals((int) BeneficeDefinitionFactory.getInstance().getVersion(PathManager.DEFAULT_MODULE_FOLDER),
+                VERSION);
+    }
 
     @Test
     public void checkTotalElements() {

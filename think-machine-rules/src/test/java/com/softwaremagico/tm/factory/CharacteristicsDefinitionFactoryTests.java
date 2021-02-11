@@ -34,6 +34,13 @@ import org.testng.annotations.Test;
 public class CharacteristicsDefinitionFactoryTests {
     private static final String LANGUAGE = "es";
     private static final int DEFINED_CHARACTERISTICS = 12;
+    private static final int VERSION = 1;
+
+    @Test
+    public void checkVersion() {
+        org.testng.Assert.assertEquals((int) CharacteristicsDefinitionFactory.getInstance().getVersion(PathManager.DEFAULT_MODULE_FOLDER),
+                VERSION);
+    }
 
     @Test
     public void checkTotalElements() {

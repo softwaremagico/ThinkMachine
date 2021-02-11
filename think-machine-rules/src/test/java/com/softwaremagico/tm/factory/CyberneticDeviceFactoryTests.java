@@ -39,11 +39,17 @@ public class CyberneticDeviceFactoryTests {
     private static final int DEFINED_DEVICES = 18;
     private static final int SECOND_BRAIN_SOFTWARE = 3;
     private static final String LANGUAGE = "es";
-
+    private static final int VERSION = 1;
 
     @BeforeClass
     public void clearCache() {
         CacheHandler.clearCache();
+    }
+
+    @Test
+    public void checkVersion() {
+        Assert.assertEquals((int) CyberneticDeviceFactory.getInstance().getVersion(PathManager.DEFAULT_MODULE_FOLDER),
+                VERSION);
     }
 
     @Test

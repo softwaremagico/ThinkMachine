@@ -35,6 +35,13 @@ public class PlanetsFactoryTests {
     private static final String LANGUAGE = "en";
 
     private static final int DEFINED_PLANETS = 37;
+    private static final int VERSION = 1;
+
+    @Test
+    public void checkVersion() {
+        Assert.assertEquals((int) PlanetFactory.getInstance().getVersion(PathManager.DEFAULT_MODULE_FOLDER),
+                VERSION);
+    }
 
     @Test
     public void checkTotalElements() {

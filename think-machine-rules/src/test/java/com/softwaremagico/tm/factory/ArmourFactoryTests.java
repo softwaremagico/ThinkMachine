@@ -35,6 +35,13 @@ import org.testng.annotations.Test;
 public class ArmourFactoryTests {
     private static final int DEFINED_ARMOURS = 30;
     private static final String LANGUAGE = "es";
+    private static final int VERSION = 1;
+
+    @Test
+    public void checkVersion() {
+        org.testng.Assert.assertEquals((int) ArmourFactory.getInstance().getVersion(PathManager.DEFAULT_MODULE_FOLDER),
+                VERSION);
+    }
 
     @Test
     public void checkTotalElements() {

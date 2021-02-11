@@ -35,6 +35,13 @@ public class SkillFactoryTests {
     private static final String LANGUAGE = "es";
     private static final int NATURAL_SKILLS = 9;
     private static final int LEARNED_SKILLS = 47;
+    private static final int VERSION = 1;
+
+    @Test
+    public void checkVersion() {
+        Assert.assertEquals((int) SkillsDefinitionsFactory.getInstance().getVersion(PathManager.DEFAULT_MODULE_FOLDER),
+                VERSION);
+    }
 
     @Test
     public void checkTotalElements() {

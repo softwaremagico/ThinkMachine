@@ -42,6 +42,13 @@ public class OccultismFactoryTests {
     private static final int DEFINED_DURATIONS = 7;
     private static final int DEFINED_THEURGY_COMPONENTS = 3;
     private static final int OCCULTISM_TYPES = 2;
+    private static final int VERSION = 1;
+
+    @Test
+    public void checkVersion() {
+        Assert.assertEquals((int) OccultismPathFactory.getInstance().getVersion(PathManager.DEFAULT_MODULE_FOLDER),
+                VERSION);
+    }
 
     @Test
     public void checkTotalElements() {

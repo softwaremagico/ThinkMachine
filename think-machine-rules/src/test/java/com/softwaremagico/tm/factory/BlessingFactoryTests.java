@@ -36,6 +36,13 @@ public class BlessingFactoryTests {
 
     private static final int DEFINED_BLESSINGS = 97;
     private static final int DEFINED_BONIFICATIONS_MISSING_EYE = 2;
+    private static final int VERSION = 1;
+
+    @Test
+    public void checkVersion() {
+        org.testng.Assert.assertEquals((int) BlessingFactory.getInstance().getVersion(PathManager.DEFAULT_MODULE_FOLDER),
+                VERSION);
+    }
 
     @Test
     public void checkTotalElements() {

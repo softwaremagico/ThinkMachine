@@ -34,6 +34,13 @@ import org.testng.annotations.Test;
 public class ShieldFactoryTests {
 	private static final String LANGUAGE = "es";
 	private static final int DEFINED_SHIELDS = 4;
+	private static final int VERSION = 1;
+
+	@Test
+	public void checkVersion() {
+		Assert.assertEquals((int) ShieldFactory.getInstance().getVersion(PathManager.DEFAULT_MODULE_FOLDER),
+				VERSION);
+	}
 
 	@Test
 	public void checkTotalElements() {

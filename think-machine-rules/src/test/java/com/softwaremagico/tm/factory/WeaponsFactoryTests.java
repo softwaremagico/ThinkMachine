@@ -42,6 +42,13 @@ public class WeaponsFactoryTests {
     private static final String LANGUAGE = "es";
 
     private static final int DEFINED_WEAPONS = 189;
+    private static final int VERSION = 1;
+
+    @Test
+    public void checkVersion() {
+        Assert.assertEquals((int) WeaponFactory.getInstance().getVersion(PathManager.DEFAULT_MODULE_FOLDER),
+                VERSION);
+    }
 
     @Test
     public void checkTotalElements() {

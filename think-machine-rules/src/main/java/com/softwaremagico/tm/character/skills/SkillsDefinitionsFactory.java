@@ -127,7 +127,7 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
             elements.computeIfAbsent(language, k -> new HashMap<>());
             elements.get(language).computeIfAbsent(moduleName, k -> new ArrayList<>());
             for (final String skillId : getTranslator(moduleName).getAllTranslatedElements()) {
-                if (Objects.equals(skillId, TOTAL_ELEMENTS)) {
+                if (Objects.equals(skillId, TOTAL_ELEMENTS) || Objects.equals(skillId, VERSION)) {
                     continue;
                 }
                 String name = null;

@@ -57,6 +57,10 @@ public abstract class XmlFactory<T extends Element<T>> {
     private static final String NAME = "name";
     private static final String DESCRIPTION = "description";
     protected static final String TOTAL_ELEMENTS = "totalElements";
+    protected static final String VERSION = "version";
+
+    private Integer totalElements;
+    private Integer version;
 
     protected void initialize() {
         for (final String moduleName : ModuleManager.getAvailableModules()) {
@@ -246,11 +250,30 @@ public abstract class XmlFactory<T extends Element<T>> {
     }
 
     public Integer getNumberOfElements(String moduleName) {
+        if (totalElements != null) {
+            return totalElements;
+        }
         try {
-            return Integer.parseInt(getTranslator(moduleName).getNodeValue(TOTAL_ELEMENTS));
+            totalElements = Integer.parseInt(getTranslator(moduleName).getNodeValue(TOTAL_ELEMENTS));
+            return totalElements;
         } catch (Exception e) {
             //Not mandatory.
             MachineLog.debug(this.getClass().getName(), "No element number set on the xml '" + getTranslatorFile()
+                    + "' file.");
+        }
+        return null;
+    }
+
+    public Integer getVersion(String moduleName){
+        if (version != null) {
+            return version;
+        }
+        try {
+            version = Integer.parseInt(getTranslator(moduleName).getNodeValue(VERSION));
+            return version;
+        } catch (Exception e) {
+            //Not mandatory.
+            MachineLog.debug(this.getClass().getName(), "No version set on the xml '" + getTranslatorFile()
                     + "' file.");
         }
         return null;
@@ -262,7 +285,7 @@ public abstract class XmlFactory<T extends Element<T>> {
             elements.get(language).computeIfAbsent(moduleName, k -> new ArrayList<>());
             for (final String elementId : getTranslator(moduleName).getAllTranslatedElements()) {
                 //Skip totalElements nodes.
-                if (Objects.equals(elementId, TOTAL_ELEMENTS)) {
+                if (Objects.equals(elementId, TOTAL_ELEMENTS) || Objects.equals(elementId, VERSION)) {
                     continue;
                 }
                 String name;
