@@ -37,17 +37,13 @@ import com.softwaremagico.tm.character.equipment.armours.ArmourSpecificationFact
 import com.softwaremagico.tm.character.equipment.shields.ShieldFactory;
 import com.softwaremagico.tm.character.equipment.weapons.AccessoryFactory;
 import com.softwaremagico.tm.character.equipment.weapons.AmmunitionFactory;
-import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
 import com.softwaremagico.tm.character.factions.FactionsFactory;
-import com.softwaremagico.tm.character.occultism.OccultismDurationFactory;
-import com.softwaremagico.tm.character.occultism.OccultismPathFactory;
-import com.softwaremagico.tm.character.occultism.OccultismRangeFactory;
-import com.softwaremagico.tm.character.occultism.OccultismTypeFactory;
-import com.softwaremagico.tm.character.occultism.TheurgyComponentFactory;
+import com.softwaremagico.tm.character.occultism.*;
 import com.softwaremagico.tm.character.planets.PlanetFactory;
 import com.softwaremagico.tm.character.races.RaceFactory;
 import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
 import com.softwaremagico.tm.character.values.SpecialValuesFactory;
+import com.softwaremagico.tm.json.WeaponsFactoryCacheLoader;
 import com.softwaremagico.tm.log.MachineLog;
 
 import java.util.ArrayList;
@@ -217,11 +213,12 @@ public class ModuleLoaderEnforcer {
             }
         }));
         futures.add(CompletableFuture.runAsync(() -> {
-            try {
-                loadedElements.addAndGet(WeaponFactory.getInstance().getElements(language, moduleName).size());
-            } catch (InvalidXmlElementException e) {
-                MachineLog.errorMessage(ModuleLoaderEnforcer.class.getName(), e);
-            }
+//            try {
+//                loadedElements.addAndGet(WeaponFactory.getInstance().getElements(language, moduleName).size());
+//            } catch (InvalidXmlElementException e) {
+//                MachineLog.errorMessage(ModuleLoaderEnforcer.class.getName(), e);
+//            }
+            WeaponsFactoryCacheLoader.load(language, moduleName);
         }));
         CompletableFuture.allOf(futures.toArray(new CompletableFuture[0])).join();
         final long duration = (System.nanoTime() - startTime);

@@ -29,4 +29,4 @@ think-machine-random/.checkstyle
 think-machine-rules/.checkstyle
 /.idea/
 *.iml
-
+modules/Fading Suns Revised Edition/json/*

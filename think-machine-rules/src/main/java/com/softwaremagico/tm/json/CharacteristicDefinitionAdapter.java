@@ -24,8 +24,6 @@ package com.softwaremagico.tm.json;
  * #L%
  */
 
-import java.lang.reflect.Type;
-
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
@@ -33,6 +31,8 @@ import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.characteristics.CharacteristicDefinition;
 import com.softwaremagico.tm.character.characteristics.CharacteristicsDefinitionFactory;
 import com.softwaremagico.tm.log.MachineLog;
+
+import java.lang.reflect.Type;
 
 public class CharacteristicDefinitionAdapter extends ElementAdapter<CharacteristicDefinition> {
 
