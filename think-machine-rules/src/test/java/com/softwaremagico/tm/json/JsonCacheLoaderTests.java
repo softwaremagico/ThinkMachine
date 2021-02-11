@@ -24,19 +24,16 @@ package com.softwaremagico.tm.json;
  * #L%
  */
 
-import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.file.PathManager;
 import com.softwaremagico.tm.file.modules.ModuleLoaderEnforcer;
 import org.testng.annotations.Test;
-
-import java.io.IOException;
 
 @Test(groups = { "jsonCache" })
 public class JsonCacheLoaderTests {
 	private static final String LANGUAGE = "es";
 
 	@Test
-	public void loadWeaponsCache() throws InvalidXmlElementException, IOException {
+	public void loadWeaponsCache() {
 		ModuleLoaderEnforcer.loadAllFactories(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
 	}
 
