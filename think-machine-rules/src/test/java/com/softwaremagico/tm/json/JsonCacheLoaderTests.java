@@ -26,7 +26,9 @@ package com.softwaremagico.tm.json;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
+import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
 import com.softwaremagico.tm.file.PathManager;
+import com.softwaremagico.tm.json.factories.cache.SkillDefinitionsFactoryCacheLoader;
 import com.softwaremagico.tm.json.factories.cache.WeaponsFactoryCacheLoader;
 import org.junit.Assert;
 import org.testng.annotations.Test;
@@ -44,12 +46,12 @@ public class JsonCacheLoaderTests {
         Assert.assertTrue(weaponsFactoryCacheLoader.load(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER) > 0);
     }
 
-    @Test(enabled = false)
-    public void checkImprovement() throws InvalidXmlElementException {
+    @Test(enabled = true)
+    public void checkWeaponsImprovement() throws InvalidXmlElementException {
         //Force Json generation.
 
         Instant start = Instant.now();
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 50; i++) {
             WeaponFactory.getInstance().getElements(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
             WeaponFactory.getInstance().removeData();
         }
@@ -64,7 +66,31 @@ public class JsonCacheLoaderTests {
         }
         end = Instant.now();
         Duration jsonMethod = Duration.between(start, end);
-        System.out.println("Xml: " + xmlMethod + ", Json: " + jsonMethod);
+        System.out.println("Weapons [Xml: " + xmlMethod + ", Json: " + jsonMethod+ " ]");
+
+    }
+
+    @Test(enabled = true)
+    public void checkSkillsImprovement() throws InvalidXmlElementException {
+        //Force Json generation.
+
+        Instant start = Instant.now();
+        for (int i = 0; i < 50; i++) {
+            SkillsDefinitionsFactory.getInstance().getElements(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+            SkillsDefinitionsFactory.getInstance().removeData();
+        }
+        Instant end = Instant.now();
+        Duration xmlMethod = Duration.between(start, end);
+
+        start = Instant.now();
+        for (int i = 0; i < 100; i++) {
+            SkillDefinitionsFactoryCacheLoader skillDefinitionsFactoryCacheLoader = new SkillDefinitionsFactoryCacheLoader();
+            Assert.assertTrue(skillDefinitionsFactoryCacheLoader.load(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER) > 0);
+            SkillsDefinitionsFactory.getInstance().removeData();
+        }
+        end = Instant.now();
+        Duration jsonMethod = Duration.between(start, end);
+        System.out.println("Skills [Xml: " + xmlMethod + ", Json: " + jsonMethod+ " ]");
 
     }
 

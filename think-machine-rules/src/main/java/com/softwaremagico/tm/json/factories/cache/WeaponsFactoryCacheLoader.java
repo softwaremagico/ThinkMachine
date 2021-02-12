@@ -41,10 +41,10 @@ import com.softwaremagico.tm.json.factories.WeaponsFactoryElements;
 
 import java.util.Locale;
 
-public class WeaponsFactoryCacheLoader extends FactoryCacheLoader<Weapon, WeaponFactory> {
+public class WeaponsFactoryCacheLoader extends FactoryCacheLoader<Weapon> {
 
     public int load(String language, String moduleName) {
-        final FactoryElements<Weapon> factoryElements = load(WeaponsFactoryElements.class, language, moduleName);
+        final FactoryElements<Weapon> factoryElements = load(WeaponFactory.class, WeaponsFactoryElements.class, language, moduleName);
         if (!factoryElements.getElements().isEmpty()) {
             WeaponFactory.getInstance().setElements(Locale.getDefault().getLanguage(), moduleName, factoryElements.getElements());
         }

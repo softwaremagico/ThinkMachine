@@ -30,12 +30,11 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.softwaremagico.tm.Element;
 import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.XmlFactory;
 import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
+import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
 import com.softwaremagico.tm.file.PathManager;
 import com.softwaremagico.tm.file.modules.ModuleManager;
 import com.softwaremagico.tm.json.factories.FactoryElements;
-import com.softwaremagico.tm.json.factories.WeaponsFactoryElements;
 import com.softwaremagico.tm.language.Language;
 import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.log.ConfigurationLog;
@@ -58,14 +57,18 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
-public abstract class FactoryCacheLoader<E extends Element<E>, T extends XmlFactory<E>> {
+public abstract class FactoryCacheLoader<E extends Element<E>> {
     protected static final String GSON_TEMPORAL_FOLDER = "json";
 
     public static void main(String[] args) throws InvalidXmlElementException {
         disableLogs();
         final WeaponsFactoryCacheLoader weaponsFactoryCacheLoader = new WeaponsFactoryCacheLoader();
         for (final String moduleName : ModuleManager.getAvailableModules()) {
-            weaponsFactoryCacheLoader.save(moduleName, WeaponFactory.getInstance().getTranslatorFile());
+            weaponsFactoryCacheLoader.save(WeaponFactory.class, moduleName, WeaponFactory.getInstance().getTranslatorFile());
+        }
+        final SkillDefinitionsFactoryCacheLoader skillDefinitionsFactoryCacheLoader = new SkillDefinitionsFactoryCacheLoader();
+        for (final String moduleName : ModuleManager.getAvailableModules()) {
+            skillDefinitionsFactoryCacheLoader.save(SkillsDefinitionsFactory.class, moduleName, SkillsDefinitionsFactory.getInstance().getTranslatorFile());
         }
     }
 
@@ -121,19 +124,19 @@ public abstract class FactoryCacheLoader<E extends Element<E>, T extends XmlFact
 
     protected abstract FactoryElements<E> getFactoryElements(String moduleName, String language) throws InvalidXmlElementException;
 
-    public FactoryElements<E> load(Class<?> factoryClass, String language, String moduleName) {
+    public FactoryElements<E> load(Class<?> factoryClass, Class<?> factoryElementsClass, String language, String moduleName) {
         final Gson gson = initGsonBuilder(language, moduleName).create();
         return gson.fromJson(getJsonContent(moduleName, language, getFileName(factoryClass)),
-                (Type) factoryClass);
+                (Type) factoryElementsClass);
     }
 
-    public void save(String moduleName, String xmlFile) throws InvalidXmlElementException {
+    public void save(Class<?> factoryClass, String moduleName, String xmlFile) throws InvalidXmlElementException {
         final List<Language> languages = LanguagePool.getTranslator(xmlFile, moduleName).getAvailableLanguages();
         for (final Language language : languages) {
             final FactoryElements<E> factoryElements = getFactoryElements(moduleName, language.getAbbreviature());
             final Gson gson = initGsonBuilder(language.getAbbreviature(), moduleName).create();
             final String jsonCode = gson.toJson(factoryElements);
-            saveFile(jsonCode, WeaponsFactoryElements.class, moduleName, language.getAbbreviature());
+            saveFile(jsonCode, factoryClass, moduleName, language.getAbbreviature());
         }
     }
 
