@@ -16,7 +16,8 @@
     <properties>
         <main.basedir>${basedir}/..</main.basedir>
         <gson.cache.folder>${main.basedir}/modules/Fading Suns Revised Edition/json</gson.cache.folder>
-        <gson.cache.tmp.folder>${main.basedir}/think-machine-rules/target/classes/Fading Suns Revised Edition/json</gson.cache.tmp.folder>
+        <gson.cache.tmp.folder>${main.basedir}/think-machine-rules/target/classes/Fading Suns Revised Edition/json
+        </gson.cache.tmp.folder>
         <maven-assembly-plugin.version>2.5.3</maven-assembly-plugin.version>
         <mainClass>com.softwaremagico.tm.Main</mainClass>
         <splashImage>images/ThinkingMachine_logo.png</splashImage>
@@ -78,7 +79,7 @@
                                 <mkdir dir="${gson.cache.folder}"/>
                                 <!-- copy json files -->
                                 <copy todir="${gson.cache.folder}" overwrite="true">
-                                    <fileset dir="${gson.cache.tmp.folder}" includes="**" />
+                                    <fileset dir="${gson.cache.tmp.folder}" includes="**"/>
                                 </copy>
                             </target>
                         </configuration>
