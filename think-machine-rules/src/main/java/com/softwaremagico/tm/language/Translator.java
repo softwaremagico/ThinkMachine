@@ -480,7 +480,7 @@ public class Translator implements ITranslator {
     public synchronized List<Language> getAvailableLanguages() {
         if (languagesList == null) {
             languagesList = new ArrayList<>();
-            Document storedLanguages = parseFile(null, PathManager.getModulePath(null) + LANGUAGES_FILE);
+            final Document storedLanguages = parseFile(null, PathManager.getModulePath(null) + LANGUAGES_FILE);
             final NodeList nodeLst = storedLanguages.getElementsByTagName("languages");
             for (int s = 0; s < nodeLst.getLength(); s++) {
                 final Node fstNode = nodeLst.item(s);

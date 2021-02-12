@@ -43,7 +43,7 @@ import com.softwaremagico.tm.character.planets.PlanetFactory;
 import com.softwaremagico.tm.character.races.RaceFactory;
 import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
 import com.softwaremagico.tm.character.values.SpecialValuesFactory;
-import com.softwaremagico.tm.json.WeaponsFactoryCacheLoader;
+import com.softwaremagico.tm.json.factories.cache.WeaponsFactoryCacheLoader;
 import com.softwaremagico.tm.log.MachineLog;
 
 import java.util.ArrayList;
@@ -218,7 +218,8 @@ public class ModuleLoaderEnforcer {
 //            } catch (InvalidXmlElementException e) {
 //                MachineLog.errorMessage(ModuleLoaderEnforcer.class.getName(), e);
 //            }
-            WeaponsFactoryCacheLoader.load(language, moduleName);
+            final WeaponsFactoryCacheLoader weaponsFactoryCacheLoader = new WeaponsFactoryCacheLoader();
+            weaponsFactoryCacheLoader.load(language, moduleName);
         }));
         CompletableFuture.allOf(futures.toArray(new CompletableFuture[0])).join();
         final long duration = (System.nanoTime() - startTime);

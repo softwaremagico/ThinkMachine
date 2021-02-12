@@ -1,14 +1,37 @@
 package com.softwaremagico.tm.json.factories;
 
+/*-
+ * #%L
+ * Think Machine (Rules)
+ * %%
+ * Copyright (C) 2017 - 2021 Softwaremagico
+ * %%
+ * This software is designed by Jorge Hortelano Otero. Jorge Hortelano Otero
+ * <softwaremagico@gmail.com> Valencia (Spain).
+ *
+ * This program is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software
+ * Foundation; either version 2 of the License, or (at your option) any later
+ * version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+ * details.
+ *
+ * You should have received a copy of the GNU General Public License along with
+ * this program; If not, see <http://www.gnu.org/licenses/gpl-3.0.html>.
+ * #L%
+ */
+
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.equipment.weapons.Weapon;
 import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
 
 import java.sql.Timestamp;
 import java.util.Date;
-import java.util.List;
 
-public class WeaponsFactoryElements extends FactoryElements<Weapon, WeaponFactory> {
+public class WeaponsFactoryElements extends FactoryElements<Weapon> {
 
     public WeaponsFactoryElements() {
         super();
@@ -21,12 +44,5 @@ public class WeaponsFactoryElements extends FactoryElements<Weapon, WeaponFactor
         setElements(WeaponFactory.getInstance().getElements(language, moduleName));
         setVersion(WeaponFactory.getInstance().getVersion(moduleName));
         setTotalElements(WeaponFactory.getInstance().getNumberOfElements(moduleName));
-    }
-
-    public WeaponsFactoryElements(int version, int totalElements, List<Weapon> elements) {
-        this();
-        setElements(elements);
-        setVersion(version);
-        setTotalElements(totalElements);
     }
 }

@@ -88,9 +88,9 @@ public class CyberneticDeviceFactory extends XmlFactory<CyberneticDevice> {
     }
 
     @Override
-    public void clearCache() {
+    public void refreshCache() {
         requiredBy = null;
-        super.clearCache();
+        super.refreshCache();
     }
 
     @Override

@@ -36,7 +36,7 @@ import com.softwaremagico.tm.log.MachineLog;
 
 public class RaceAdapter extends ElementAdapter<Race> {
 
-	protected RaceAdapter(String language, String moduleName) {
+	public RaceAdapter(String language, String moduleName) {
 		super(language, moduleName);
 	}
 

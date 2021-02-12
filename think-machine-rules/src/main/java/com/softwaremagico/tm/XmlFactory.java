@@ -84,8 +84,12 @@ public abstract class XmlFactory<T extends Element<T>> {
 
     public abstract String getTranslatorFile();
 
-    public void clearCache() {
+    public void removeData() {
         elements = new HashMap<>();
+    }
+
+    public void refreshCache() {
+        removeData();
         initialize();
     }
 

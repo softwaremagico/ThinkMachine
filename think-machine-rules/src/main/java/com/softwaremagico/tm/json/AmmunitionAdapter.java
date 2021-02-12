@@ -36,7 +36,7 @@ import java.lang.reflect.Type;
 
 public class AmmunitionAdapter extends ElementAdapter<Ammunition> {
 
-    protected AmmunitionAdapter(String language, String moduleName) {
+    public AmmunitionAdapter(String language, String moduleName) {
         super(language, moduleName);
     }
 

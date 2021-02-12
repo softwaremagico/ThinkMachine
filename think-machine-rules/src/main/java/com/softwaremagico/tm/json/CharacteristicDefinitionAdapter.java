@@ -36,7 +36,7 @@ import java.lang.reflect.Type;
 
 public class CharacteristicDefinitionAdapter extends ElementAdapter<CharacteristicDefinition> {
 
-	protected CharacteristicDefinitionAdapter(String language, String moduleName) {
+	public CharacteristicDefinitionAdapter(String language, String moduleName) {
 		super(language, moduleName);
 	}
 

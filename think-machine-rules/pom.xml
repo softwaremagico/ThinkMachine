@@ -1,79 +1,128 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<artifactId>think-machine-rules</artifactId>
-	<packaging>jar</packaging>
-	<name>Think Machine (Rules)</name>
-	<description>Think Machine - A Fading Suns character generator (character creation rules implementation)</description>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>think-machine-rules</artifactId>
+    <packaging>jar</packaging>
+    <name>Think Machine (Rules)</name>
+    <description>Think Machine - A Fading Suns character generator (character creation rules implementation)
+    </description>
 
-	<parent>
-		<groupId>com.softwaremagico</groupId>
-		<artifactId>think-machine</artifactId>
-		<version>0.9.1-SNAPSHOT</version>
-	</parent>
+    <parent>
+        <groupId>com.softwaremagico</groupId>
+        <artifactId>think-machine</artifactId>
+        <version>0.9.1-SNAPSHOT</version>
+    </parent>
 
-	<properties>
-		<main.basedir>${basedir}/..</main.basedir>
-		<maven-assembly-plugin.version>2.5.3</maven-assembly-plugin.version>
-		<mainClass>com.softwaremagico.tm.Main</mainClass>
-		<splashImage>images/ThinkingMachine_logo.png</splashImage>
-	</properties>
+    <properties>
+        <main.basedir>${basedir}/..</main.basedir>
+        <gson.cache.folder>${main.basedir}/modules/Fading Suns Revised Edition/json</gson.cache.folder>
+        <gson.cache.tmp.folder>${main.basedir}/think-machine-rules/target/classes/Fading Suns Revised Edition/json</gson.cache.tmp.folder>
+        <maven-assembly-plugin.version>2.5.3</maven-assembly-plugin.version>
+        <mainClass>com.softwaremagico.tm.Main</mainClass>
+        <splashImage>images/ThinkingMachine_logo.png</splashImage>
+        <exec-maven-plugin.version>3.0.0</exec-maven-plugin.version>
+    </properties>
 
-	<build>
-		<resources>
-			<resource>
-				<directory>../modules</directory>
-				<targetPath>modules/</targetPath>
-			</resource>
-		</resources>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>${maven-surefire.version}</version>
-				<configuration>
-					<useFile>false</useFile>
-					<trimStackTrace>false</trimStackTrace>
-					<suiteXmlFiles>
-						<suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
-					</suiteXmlFiles>
-					<useSystemClassLoader>false</useSystemClassLoader>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
+    <build>
+        <resources>
+            <resource>
+                <directory>../modules</directory>
+                <targetPath>modules/</targetPath>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven-surefire.version}</version>
+                <configuration>
+                    <useFile>false</useFile>
+                    <trimStackTrace>false</trimStackTrace>
+                    <suiteXmlFiles>
+                        <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
+                    </suiteXmlFiles>
+                    <useSystemClassLoader>false</useSystemClassLoader>
+                </configuration>
+            </plugin>
+            <!-- Generates new json cached -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>${exec-maven-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <mainClass>com.softwaremagico.tm.json.factories.cache.FactoryCacheLoader</mainClass>
+                    <skip>false</skip>
+                    <quietLogs>true</quietLogs>
+                </configuration>
+            </plugin>
+            <!-- Copies and replace json cached -->
+            <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>${maven-antrun-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <phase>process-test-resources</phase>
+                        <configuration>
+                            <target>
+                                <!-- delete old tmp folder -->
+                                <delete dir="${gson.cache.folder}" failonerror="false" includeemptydirs="true"/>
+                                <!-- create tmp folder -->
+                                <mkdir dir="${gson.cache.folder}"/>
+                                <!-- copy json files -->
+                                <copy todir="${gson.cache.folder}" overwrite="true">
+                                    <fileset dir="${gson.cache.tmp.folder}" includes="**" />
+                                </copy>
+                            </target>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
-	<dependencies>
-		<!-- JSON -->
-		<dependency>
-			<groupId>com.google.code.gson</groupId>
-			<artifactId>gson</artifactId>
-			<version>${gson.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>${slf4j.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>ch.qos.logback</groupId>
-			<artifactId>logback-core</artifactId>
-			<version>${logback.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>ch.qos.logback</groupId>
-			<artifactId>logback-classic</artifactId>
-			<version>${logback.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.testng</groupId>
-			<artifactId>testng</artifactId>
-			<version>${org.testng.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.reflections</groupId>
-			<artifactId>reflections</artifactId>
-			<version>${reflections.version}</version>
-		</dependency>
-	</dependencies>
+    <dependencies>
+        <!-- JSON -->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>${gson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+            <version>${logback.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>${org.testng.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.reflections</groupId>
+            <artifactId>reflections</artifactId>
+            <version>${reflections.version}</version>
+        </dependency>
+    </dependencies>
 </project>

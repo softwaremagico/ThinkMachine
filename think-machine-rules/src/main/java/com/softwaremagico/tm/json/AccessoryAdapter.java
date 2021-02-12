@@ -36,7 +36,7 @@ import java.lang.reflect.Type;
 
 public class AccessoryAdapter extends ElementAdapter<Accessory> {
 
-    protected AccessoryAdapter(String language, String moduleName) {
+    public AccessoryAdapter(String language, String moduleName) {
         super(language, moduleName);
     }
 

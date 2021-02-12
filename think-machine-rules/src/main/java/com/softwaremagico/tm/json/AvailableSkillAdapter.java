@@ -34,7 +34,7 @@ import java.lang.reflect.Type;
 
 public class AvailableSkillAdapter extends ElementAdapter<AvailableSkill> {
 
-	protected AvailableSkillAdapter(String language, String moduleName) {
+	public AvailableSkillAdapter(String language, String moduleName) {
 		super(language, moduleName);
 	}
 

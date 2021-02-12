@@ -36,7 +36,7 @@ import java.lang.reflect.Type;
 
 public class DamageTypeAdapter extends ElementAdapter<DamageType> {
 
-    protected DamageTypeAdapter(String language, String moduleName) {
+    public DamageTypeAdapter(String language, String moduleName) {
         super(language, moduleName);
     }
 

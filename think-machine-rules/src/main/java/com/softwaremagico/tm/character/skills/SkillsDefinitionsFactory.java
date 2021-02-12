@@ -68,9 +68,9 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
     }
 
     @Override
-    public void clearCache() {
+    public void refreshCache() {
         initializeMaps();
-        super.clearCache();
+        super.refreshCache();
     }
 
     public List<SkillDefinition> getNaturalSkills(String language, String moduleName) {

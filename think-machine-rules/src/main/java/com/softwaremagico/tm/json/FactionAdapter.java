@@ -36,7 +36,7 @@ import com.softwaremagico.tm.log.MachineLog;
 
 public class FactionAdapter extends ElementAdapter<Faction> {
 
-	protected FactionAdapter(String language, String moduleName) {
+	public FactionAdapter(String language, String moduleName) {
 		super(language, moduleName);
 	}
 
