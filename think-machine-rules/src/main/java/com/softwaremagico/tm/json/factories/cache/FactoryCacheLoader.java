@@ -92,19 +92,19 @@ public abstract class FactoryCacheLoader<E extends Element<E>> {
     }
 
     private static String getPath(String moduleName, String language, String file) {
-        return PathManager.getModulePath(moduleName) + "/json/" + language + "/" + file;
+        return PathManager.getModulePath(moduleName) + GSON_TEMPORAL_FOLDER + "/" + language + "/" + file;
     }
 
     private static String readFile(String filePath) {
         try {
             URL resource;
-            if (WeaponsFactoryCacheLoader.class.getClassLoader().getResource(filePath) != null) {
-                resource = WeaponsFactoryCacheLoader.class.getClassLoader().getResource(filePath);
+            if (FactoryCacheLoader.class.getClassLoader().getResource(filePath) != null) {
+                resource = FactoryCacheLoader.class.getClassLoader().getResource(filePath);
             } else {
                 // Is inside of a module.
                 resource = URLClassLoader.getSystemResource(filePath);
             }
-            MachineLog.debug(WeaponsFactoryCacheLoader.class.getName(), "Found json factory '" + filePath + "' at '" + resource + "'.");
+            MachineLog.debug(FactoryCacheLoader.class.getName(), "Found json factory '" + filePath + "' at '" + resource + "'.");
             final StringBuilder resultStringBuilder = new StringBuilder();
             assert resource != null;
             try (BufferedReader read = new BufferedReader(new InputStreamReader(resource.openStream(), StandardCharsets.UTF_8.name()))) {
@@ -115,7 +115,7 @@ public abstract class FactoryCacheLoader<E extends Element<E>> {
             }
             return resultStringBuilder.toString();
         } catch (NullPointerException | IOException e) {
-            MachineLog.errorMessage(WeaponsFactoryCacheLoader.class.getName(), e);
+            MachineLog.errorMessage(FactoryCacheLoader.class.getName(), e);
         }
         return null;
     }
@@ -142,8 +142,8 @@ public abstract class FactoryCacheLoader<E extends Element<E>> {
 
     private void saveFile(String jsonCode, Class<?> factoryClass, String moduleName, String language) {
         //Stores it on target folder. Ant will move it later.
-        final Path source = Paths.get(WeaponsFactoryCacheLoader.class.getResource("/").getPath());
-        final Path gsonFolder = Paths.get(source.toAbsolutePath() + "/" + moduleName + "/" + GSON_TEMPORAL_FOLDER + "/" + language + "/");
+        final Path source = Paths.get(FactoryCacheLoader.class.getResource("/").getPath());
+        final Path gsonFolder = Paths.get(source.toAbsolutePath() + "/" + moduleName + GSON_TEMPORAL_FOLDER + "/" + language + "/");
         try {
             Files.createDirectories(gsonFolder);
             final Path gsonFile = gsonFolder.resolve(getFileName(factoryClass));
@@ -151,7 +151,7 @@ public abstract class FactoryCacheLoader<E extends Element<E>> {
                 writer.write(jsonCode);
             }
         } catch (IOException e) {
-            MachineLog.errorMessage(WeaponsFactoryCacheLoader.class.getName(), e);
+            MachineLog.errorMessage(FactoryCacheLoader.class.getName(), e);
         }
     }
 }
