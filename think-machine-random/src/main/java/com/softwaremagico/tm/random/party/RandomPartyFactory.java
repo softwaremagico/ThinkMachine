@@ -65,7 +65,7 @@ public class RandomPartyFactory extends XmlFactory<RandomParty> {
 	}
 
 	@Override
-	protected String getTranslatorFile() {
+    public String getTranslatorFile() {
 		return TRANSLATOR_FILE;
 	}
 

@@ -66,12 +66,12 @@ public class CombatStyleFactory extends XmlFactory<CombatStyle> {
     }
 
     @Override
-    public void clearCache() {
-        super.clearCache();
+    public void refreshCache() {
+        super.refreshCache();
     }
 
     @Override
-    protected String getTranslatorFile() {
+    public String getTranslatorFile() {
         return TRANSLATOR_FILE;
     }
 

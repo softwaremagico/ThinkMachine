@@ -47,7 +47,7 @@ public class OccultismRangeFactory extends XmlFactory<OccultismRange> {
     }
 
     @Override
-    protected String getTranslatorFile() {
+    public String getTranslatorFile() {
         return TRANSLATOR_FILE;
     }
 }

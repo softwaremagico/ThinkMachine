@@ -47,7 +47,7 @@ public class OccultismDurationFactory extends XmlFactory<OccultismDuration> {
     }
 
     @Override
-    protected String getTranslatorFile() {
+    public String getTranslatorFile() {
         return TRANSLATOR_FILE;
     }
 }

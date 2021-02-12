@@ -66,7 +66,7 @@ public class PlanetFactory extends XmlFactory<Planet> {
     }
 
     @Override
-    protected String getTranslatorFile() {
+    public String getTranslatorFile() {
         return TRANSLATOR_FILE;
     }
 }

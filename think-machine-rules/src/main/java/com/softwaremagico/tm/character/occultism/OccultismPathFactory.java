@@ -78,10 +78,10 @@ public class OccultismPathFactory extends XmlFactory<OccultismPath> {
     }
 
     @Override
-    public void clearCache() {
+    public void refreshCache() {
         psiPaths.clear();
         theurgyPaths.clear();
-        super.clearCache();
+        super.refreshCache();
     }
 
     @Override
@@ -182,7 +182,7 @@ public class OccultismPathFactory extends XmlFactory<OccultismPath> {
     }
 
     @Override
-    protected String getTranslatorFile() {
+    public String getTranslatorFile() {
         return TRANSLATOR_FILE;
     }
 

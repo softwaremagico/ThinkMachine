@@ -88,13 +88,13 @@ public class CyberneticDeviceFactory extends XmlFactory<CyberneticDevice> {
     }
 
     @Override
-    public void clearCache() {
+    public void refreshCache() {
         requiredBy = null;
-        super.clearCache();
+        super.refreshCache();
     }
 
     @Override
-    protected String getTranslatorFile() {
+    public String getTranslatorFile() {
         return TRANSLATOR_FILE;
     }
 

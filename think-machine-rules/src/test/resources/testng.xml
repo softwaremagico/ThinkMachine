@@ -40,6 +40,8 @@
                 <include name="exportTxt"/>
                 <include name="experience"/>
                 <include name="costCalculator"/>
+                <include name="jsonCache" />
+                <include name="moduleEnforcer" />
             </run>
         </groups>
         <classes>
@@ -69,6 +71,8 @@
             <class name="com.softwaremagico.tm.txt.ExportTxtTests"/>
             <class name="com.softwaremagico.tm.json.JsonTests"/>
             <class name="com.softwaremagico.tm.characters.CostCalculatorTests"/>
+            <class name="com.softwaremagico.tm.json.JsonCacheLoaderTests"/>
+            <class name="com.softwaremagico.tm.file.ModuleManagerTests"/>
         </classes>
     </test>
 </suite>

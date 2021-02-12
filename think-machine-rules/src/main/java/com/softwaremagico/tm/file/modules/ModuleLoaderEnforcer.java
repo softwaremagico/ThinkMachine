@@ -37,17 +37,13 @@ import com.softwaremagico.tm.character.equipment.armours.ArmourSpecificationFact
 import com.softwaremagico.tm.character.equipment.shields.ShieldFactory;
 import com.softwaremagico.tm.character.equipment.weapons.AccessoryFactory;
 import com.softwaremagico.tm.character.equipment.weapons.AmmunitionFactory;
-import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
 import com.softwaremagico.tm.character.factions.FactionsFactory;
-import com.softwaremagico.tm.character.occultism.OccultismDurationFactory;
-import com.softwaremagico.tm.character.occultism.OccultismPathFactory;
-import com.softwaremagico.tm.character.occultism.OccultismRangeFactory;
-import com.softwaremagico.tm.character.occultism.OccultismTypeFactory;
-import com.softwaremagico.tm.character.occultism.TheurgyComponentFactory;
+import com.softwaremagico.tm.character.occultism.*;
 import com.softwaremagico.tm.character.planets.PlanetFactory;
 import com.softwaremagico.tm.character.races.RaceFactory;
-import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
 import com.softwaremagico.tm.character.values.SpecialValuesFactory;
+import com.softwaremagico.tm.json.factories.cache.SkillDefinitionsFactoryCacheLoader;
+import com.softwaremagico.tm.json.factories.cache.WeaponsFactoryCacheLoader;
 import com.softwaremagico.tm.log.MachineLog;
 
 import java.util.ArrayList;
@@ -60,8 +56,10 @@ public class ModuleLoaderEnforcer {
     public static int loadAllFactories(String language, String moduleName) {
         final long startTime = System.nanoTime();
         final AtomicInteger loadedElements = new AtomicInteger(0);
-        final List<CompletableFuture<Void>> futures = new ArrayList<>();
+        List<CompletableFuture<Void>> futures = new ArrayList<>();
         MachineLog.info(ModuleLoaderEnforcer.class.getName(), "Loading all factories...");
+
+        //Primitive factories
         futures.add(CompletableFuture.runAsync(() -> {
             try {
                 loadedElements.addAndGet(AccessoryFactory.getInstance().getElements(language, moduleName).size());
@@ -72,13 +70,6 @@ public class ModuleLoaderEnforcer {
         futures.add(CompletableFuture.runAsync(() -> {
             try {
                 loadedElements.addAndGet(AmmunitionFactory.getInstance().getElements(language, moduleName).size());
-            } catch (InvalidXmlElementException e) {
-                MachineLog.errorMessage(ModuleLoaderEnforcer.class.getName(), e);
-            }
-        }));
-        futures.add(CompletableFuture.runAsync(() -> {
-            try {
-                loadedElements.addAndGet(ArmourFactory.getInstance().getElements(language, moduleName).size());
             } catch (InvalidXmlElementException e) {
                 MachineLog.errorMessage(ModuleLoaderEnforcer.class.getName(), e);
             }
@@ -113,20 +104,6 @@ public class ModuleLoaderEnforcer {
         }));
         futures.add(CompletableFuture.runAsync(() -> {
             try {
-                loadedElements.addAndGet(CombatStyleFactory.getInstance().getElements(language, moduleName).size());
-            } catch (InvalidXmlElementException e) {
-                MachineLog.errorMessage(ModuleLoaderEnforcer.class.getName(), e);
-            }
-        }));
-        futures.add(CompletableFuture.runAsync(() -> {
-            try {
-                loadedElements.addAndGet(CyberneticDeviceFactory.getInstance().getElements(language, moduleName).size());
-            } catch (InvalidXmlElementException e) {
-                MachineLog.errorMessage(ModuleLoaderEnforcer.class.getName(), e);
-            }
-        }));
-        futures.add(CompletableFuture.runAsync(() -> {
-            try {
                 loadedElements.addAndGet(CyberneticDeviceTraitFactory.getInstance().getElements(language, moduleName).size());
             } catch (InvalidXmlElementException e) {
                 MachineLog.errorMessage(ModuleLoaderEnforcer.class.getName(), e);
@@ -141,21 +118,7 @@ public class ModuleLoaderEnforcer {
         }));
         futures.add(CompletableFuture.runAsync(() -> {
             try {
-                loadedElements.addAndGet(FactionsFactory.getInstance().getElements(language, moduleName).size());
-            } catch (InvalidXmlElementException e) {
-                MachineLog.errorMessage(ModuleLoaderEnforcer.class.getName(), e);
-            }
-        }));
-        futures.add(CompletableFuture.runAsync(() -> {
-            try {
                 loadedElements.addAndGet(OccultismDurationFactory.getInstance().getElements(language, moduleName).size());
-            } catch (InvalidXmlElementException e) {
-                MachineLog.errorMessage(ModuleLoaderEnforcer.class.getName(), e);
-            }
-        }));
-        futures.add(CompletableFuture.runAsync(() -> {
-            try {
-                loadedElements.addAndGet(OccultismPathFactory.getInstance().getElements(language, moduleName).size());
             } catch (InvalidXmlElementException e) {
                 MachineLog.errorMessage(ModuleLoaderEnforcer.class.getName(), e);
             }
@@ -176,13 +139,6 @@ public class ModuleLoaderEnforcer {
         }));
         futures.add(CompletableFuture.runAsync(() -> {
             try {
-                loadedElements.addAndGet(PlanetFactory.getInstance().getElements(language, moduleName).size());
-            } catch (InvalidXmlElementException e) {
-                MachineLog.errorMessage(ModuleLoaderEnforcer.class.getName(), e);
-            }
-        }));
-        futures.add(CompletableFuture.runAsync(() -> {
-            try {
                 loadedElements.addAndGet(RaceFactory.getInstance().getElements(language, moduleName).size());
             } catch (InvalidXmlElementException e) {
                 MachineLog.errorMessage(ModuleLoaderEnforcer.class.getName(), e);
@@ -197,7 +153,69 @@ public class ModuleLoaderEnforcer {
         }));
         futures.add(CompletableFuture.runAsync(() -> {
             try {
-                loadedElements.addAndGet(SkillsDefinitionsFactory.getInstance().getElements(language, moduleName).size());
+                loadedElements.addAndGet(TheurgyComponentFactory.getInstance().getElements(language, moduleName).size());
+            } catch (InvalidXmlElementException e) {
+                MachineLog.errorMessage(ModuleLoaderEnforcer.class.getName(), e);
+            }
+        }));
+        CompletableFuture.allOf(futures.toArray(new CompletableFuture[0])).join();
+        futures = new ArrayList<>();
+
+        //Second level
+        futures.add(CompletableFuture.runAsync(() -> {
+            try {
+                loadedElements.addAndGet(ArmourFactory.getInstance().getElements(language, moduleName).size());
+            } catch (InvalidXmlElementException e) {
+                MachineLog.errorMessage(ModuleLoaderEnforcer.class.getName(), e);
+            }
+        }));
+        futures.add(CompletableFuture.runAsync(() -> {
+            try {
+                loadedElements.addAndGet(CyberneticDeviceFactory.getInstance().getElements(language, moduleName).size());
+            } catch (InvalidXmlElementException e) {
+                MachineLog.errorMessage(ModuleLoaderEnforcer.class.getName(), e);
+            }
+        }));
+        futures.add(CompletableFuture.runAsync(() -> {
+            try {
+                loadedElements.addAndGet(FactionsFactory.getInstance().getElements(language, moduleName).size());
+            } catch (InvalidXmlElementException e) {
+                MachineLog.errorMessage(ModuleLoaderEnforcer.class.getName(), e);
+            }
+        }));
+        CompletableFuture.allOf(futures.toArray(new CompletableFuture[0])).join();
+        futures = new ArrayList<>();
+
+        //Faction dependency.
+        futures.add(CompletableFuture.runAsync(() -> {
+            try {
+                loadedElements.addAndGet(OccultismPathFactory.getInstance().getElements(language, moduleName).size());
+            } catch (InvalidXmlElementException e) {
+                MachineLog.errorMessage(ModuleLoaderEnforcer.class.getName(), e);
+            }
+        }));
+        futures.add(CompletableFuture.runAsync(() -> {
+            try {
+                loadedElements.addAndGet(PlanetFactory.getInstance().getElements(language, moduleName).size());
+            } catch (InvalidXmlElementException e) {
+                MachineLog.errorMessage(ModuleLoaderEnforcer.class.getName(), e);
+            }
+        }));
+        futures.add(CompletableFuture.runAsync(() -> {
+            final SkillDefinitionsFactoryCacheLoader skillDefinitionsFactoryCacheLoader = new SkillDefinitionsFactoryCacheLoader();
+            loadedElements.addAndGet(skillDefinitionsFactoryCacheLoader.load(language, moduleName));
+        }));
+        futures.add(CompletableFuture.runAsync(() -> {
+            final WeaponsFactoryCacheLoader weaponsFactoryCacheLoader = new WeaponsFactoryCacheLoader();
+            loadedElements.addAndGet(weaponsFactoryCacheLoader.load(language, moduleName));
+        }));
+        CompletableFuture.allOf(futures.toArray(new CompletableFuture[0])).join();
+        futures = new ArrayList<>();
+
+        //Depends on skills
+        futures.add(CompletableFuture.runAsync(() -> {
+            try {
+                loadedElements.addAndGet(CombatStyleFactory.getInstance().getElements(language, moduleName).size());
             } catch (InvalidXmlElementException e) {
                 MachineLog.errorMessage(ModuleLoaderEnforcer.class.getName(), e);
             }
@@ -209,25 +227,11 @@ public class ModuleLoaderEnforcer {
                 MachineLog.errorMessage(ModuleLoaderEnforcer.class.getName(), e);
             }
         }));
-        futures.add(CompletableFuture.runAsync(() -> {
-            try {
-                loadedElements.addAndGet(TheurgyComponentFactory.getInstance().getElements(language, moduleName).size());
-            } catch (InvalidXmlElementException e) {
-                MachineLog.errorMessage(ModuleLoaderEnforcer.class.getName(), e);
-            }
-        }));
-        futures.add(CompletableFuture.runAsync(() -> {
-            try {
-                loadedElements.addAndGet(WeaponFactory.getInstance().getElements(language, moduleName).size());
-            } catch (InvalidXmlElementException e) {
-                MachineLog.errorMessage(ModuleLoaderEnforcer.class.getName(), e);
-            }
-        }));
         CompletableFuture.allOf(futures.toArray(new CompletableFuture[0])).join();
+
         final long duration = (System.nanoTime() - startTime);
         MachineLog.info(ModuleLoaderEnforcer.class.getName(), "All factories loaded! Total {} elements loaded in {} milliseconds.",
                 loadedElements.get(), duration / 1000000);
         return loadedElements.get();
     }
-
 }

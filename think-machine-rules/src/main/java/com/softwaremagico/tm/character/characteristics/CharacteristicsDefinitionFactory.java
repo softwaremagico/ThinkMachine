@@ -52,9 +52,9 @@ public class CharacteristicsDefinitionFactory extends XmlFactory<CharacteristicD
     }
 
     @Override
-    public void clearCache() {
+    public void refreshCache() {
         characteristicsPerType = null;
-        super.clearCache();
+        super.refreshCache();
     }
 
     @Override
@@ -87,7 +87,7 @@ public class CharacteristicsDefinitionFactory extends XmlFactory<CharacteristicD
     }
 
     @Override
-    protected String getTranslatorFile() {
+    public String getTranslatorFile() {
         return TRANSLATOR_FILE;
     }
 

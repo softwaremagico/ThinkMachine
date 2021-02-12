@@ -82,10 +82,14 @@ public abstract class XmlFactory<T extends Element<T>> {
         return LanguagePool.getTranslator(getTranslatorFile(), moduleName);
     }
 
-    protected abstract String getTranslatorFile();
+    public abstract String getTranslatorFile();
 
-    public void clearCache() {
+    public void removeData() {
         elements = new HashMap<>();
+    }
+
+    public void refreshCache() {
+        removeData();
         initialize();
     }
 

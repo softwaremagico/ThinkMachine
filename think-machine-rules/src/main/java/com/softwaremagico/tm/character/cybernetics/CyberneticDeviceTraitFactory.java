@@ -48,12 +48,12 @@ public class CyberneticDeviceTraitFactory extends XmlFactory<CyberneticDeviceTra
     }
 
     @Override
-    public void clearCache() {
-        super.clearCache();
+    public void refreshCache() {
+        super.refreshCache();
     }
 
     @Override
-    protected String getTranslatorFile() {
+    public String getTranslatorFile() {
         return TRANSLATOR_FILE;
     }
 

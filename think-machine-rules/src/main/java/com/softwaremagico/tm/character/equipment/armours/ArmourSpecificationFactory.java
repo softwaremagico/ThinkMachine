@@ -40,7 +40,7 @@ public class ArmourSpecificationFactory extends XmlFactory<ArmourSpecification> 
     }
 
     @Override
-    protected String getTranslatorFile() {
+    public String getTranslatorFile() {
         return TRANSLATOR_FILE;
     }
 

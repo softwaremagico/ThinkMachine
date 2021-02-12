@@ -24,22 +24,17 @@ package com.softwaremagico.tm.json;
  * #L%
  */
 
-import java.lang.reflect.Type;
-
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.JsonPrimitive;
-import com.google.gson.JsonSerializationContext;
+import com.google.gson.*;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.log.MachineLog;
 
+import java.lang.reflect.Type;
+
 public class AvailableSkillAdapter extends ElementAdapter<AvailableSkill> {
 
-	protected AvailableSkillAdapter(String language, String moduleName) {
+	public AvailableSkillAdapter(String language, String moduleName) {
 		super(language, moduleName);
 	}
 

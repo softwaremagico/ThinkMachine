@@ -50,23 +50,23 @@ public class CacheHandler {
 		LanguagePool.clearCache();
 
 		AvailableSkillsFactory.getInstance().clearCache();
-		SkillsDefinitionsFactory.getInstance().clearCache();
-		BlessingFactory.getInstance().clearCache();
-		RaceFactory.getInstance().clearCache();
-		BeneficeDefinitionFactory.getInstance().clearCache();
+		SkillsDefinitionsFactory.getInstance().refreshCache();
+		BlessingFactory.getInstance().refreshCache();
+		RaceFactory.getInstance().refreshCache();
+		BeneficeDefinitionFactory.getInstance().refreshCache();
 		AvailableBeneficeFactory.getInstance().clearCache();
-		WeaponFactory.getInstance().clearCache();
-		AmmunitionFactory.getInstance().clearCache();
-		ShieldFactory.getInstance().clearCache();
-		ArmourFactory.getInstance().clearCache();
-		CombatStyleFactory.getInstance().clearCache();
-		CharacteristicsDefinitionFactory.getInstance().clearCache();
-		FactionsFactory.getInstance().clearCache();
-		BlessingFactory.getInstance().clearCache();
-		OccultismPathFactory.getInstance().clearCache();
-		OccultismDurationFactory.getInstance().clearCache();
-		OccultismRangeFactory.getInstance().clearCache();
-		CyberneticDeviceTraitFactory.getInstance().clearCache();
-		CyberneticDeviceFactory.getInstance().clearCache();
+		WeaponFactory.getInstance().refreshCache();
+		AmmunitionFactory.getInstance().refreshCache();
+		ShieldFactory.getInstance().refreshCache();
+		ArmourFactory.getInstance().refreshCache();
+		CombatStyleFactory.getInstance().refreshCache();
+		CharacteristicsDefinitionFactory.getInstance().refreshCache();
+		FactionsFactory.getInstance().refreshCache();
+		BlessingFactory.getInstance().refreshCache();
+		OccultismPathFactory.getInstance().refreshCache();
+		OccultismDurationFactory.getInstance().refreshCache();
+		OccultismRangeFactory.getInstance().refreshCache();
+		CyberneticDeviceTraitFactory.getInstance().refreshCache();
+		CyberneticDeviceFactory.getInstance().refreshCache();
 	}
 }

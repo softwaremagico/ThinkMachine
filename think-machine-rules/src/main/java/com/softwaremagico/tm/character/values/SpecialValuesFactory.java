@@ -46,7 +46,7 @@ public class SpecialValuesFactory extends XmlFactory<SpecialValue> {
     }
 
     @Override
-    protected String getTranslatorFile() {
+    public String getTranslatorFile() {
         return TRANSLATOR_FILE;
     }
 

@@ -43,7 +43,7 @@ public class TheurgyComponentFactory extends XmlFactory<TheurgyComponent> {
     }
 
     @Override
-    protected String getTranslatorFile() {
+    public String getTranslatorFile() {
         return TRANSLATOR_FILE;
     }
 

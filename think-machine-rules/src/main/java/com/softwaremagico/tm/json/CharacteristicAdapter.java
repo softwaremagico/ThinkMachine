@@ -1,5 +1,11 @@
 package com.softwaremagico.tm.json;
 
+import com.google.gson.*;
+import com.softwaremagico.tm.InvalidXmlElementException;
+import com.softwaremagico.tm.character.characteristics.Characteristic;
+import com.softwaremagico.tm.character.characteristics.CharacteristicsDefinitionFactory;
+import com.softwaremagico.tm.log.MachineLog;
+
 import java.lang.reflect.Type;
 
 /*-
@@ -25,11 +31,6 @@ import java.lang.reflect.Type;
  * this program; If not, see <http://www.gnu.org/licenses/gpl-3.0.html>.
  * #L%
  */
-import com.google.gson.*;
-import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.character.characteristics.Characteristic;
-import com.softwaremagico.tm.character.characteristics.CharacteristicsDefinitionFactory;
-import com.softwaremagico.tm.log.MachineLog;
 
 public class CharacteristicAdapter extends ElementAdapter<Characteristic> {
 	private static final String VALUE = "value";

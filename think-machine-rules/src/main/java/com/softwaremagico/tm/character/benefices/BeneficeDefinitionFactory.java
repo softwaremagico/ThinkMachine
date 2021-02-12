@@ -62,9 +62,9 @@ public class BeneficeDefinitionFactory extends XmlFactory<BeneficeDefinition> {
     }
 
     @Override
-    public void clearCache() {
+    public void refreshCache() {
         beneficesByGroup = new HashMap<>();
-        super.clearCache();
+        super.refreshCache();
     }
 
     @Override
@@ -203,7 +203,7 @@ public class BeneficeDefinitionFactory extends XmlFactory<BeneficeDefinition> {
     }
 
     @Override
-    protected String getTranslatorFile() {
+    public String getTranslatorFile() {
         return TRANSLATOR_FILE;
     }
 }
