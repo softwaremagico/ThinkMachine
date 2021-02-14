@@ -28,6 +28,7 @@ import com.softwaremagico.tm.character.factions.FactionGroup;
 import com.softwaremagico.tm.character.factions.FactionsFactory;
 import com.softwaremagico.tm.character.races.RaceFactory;
 import com.softwaremagico.tm.file.modules.ModuleManager;
+import com.softwaremagico.tm.json.factories.cache.FactoryCacheLoader;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.Language;
 import com.softwaremagico.tm.language.LanguagePool;
@@ -268,7 +269,7 @@ public abstract class XmlFactory<T extends Element<T>> {
         return null;
     }
 
-    public Integer getVersion(String moduleName){
+    public Integer getVersion(String moduleName) {
         if (version != null) {
             return version;
         }
@@ -283,10 +284,20 @@ public abstract class XmlFactory<T extends Element<T>> {
         return null;
     }
 
+    public abstract FactoryCacheLoader<T> getFactoryCacheLoader();
+
     public synchronized List<T> getElements(String language, String moduleName) throws InvalidXmlElementException {
         if (elements.get(language) == null || elements.get(language).get(moduleName) == null) {
             elements.computeIfAbsent(language, k -> new HashMap<>());
             elements.get(language).computeIfAbsent(moduleName, k -> new ArrayList<>());
+            if (getFactoryCacheLoader() != null) {
+                final List<T> cachedElements = getFactoryCacheLoader().load(language, moduleName);
+                if (cachedElements != null) {
+                    elements.get(language).get(moduleName).addAll(cachedElements);
+                    Collections.sort(elements.get(language).get(moduleName));
+                    return elements.get(language).get(moduleName);
+                }
+            }
             for (final String elementId : getTranslator(moduleName).getAllTranslatedElements()) {
                 //Skip totalElements nodes.
                 if (Objects.equals(elementId, TOTAL_ELEMENTS) || Objects.equals(elementId, VERSION)) {

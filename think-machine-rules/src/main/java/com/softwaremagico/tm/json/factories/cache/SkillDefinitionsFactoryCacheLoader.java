@@ -35,17 +35,23 @@ import com.softwaremagico.tm.json.RaceAdapter;
 import com.softwaremagico.tm.json.factories.FactoryElements;
 import com.softwaremagico.tm.json.factories.SkillDefinitionFactoryElements;
 
-import java.util.Locale;
+import java.util.List;
 
 public class SkillDefinitionsFactoryCacheLoader extends FactoryCacheLoader<SkillDefinition> {
 
-    public int load(String language, String moduleName) {
-        final FactoryElements<SkillDefinition> factoryElements = load(SkillsDefinitionsFactory.class, SkillDefinitionFactoryElements.class,
-                language, moduleName);
-        if (!factoryElements.getElements().isEmpty()) {
-            SkillsDefinitionsFactory.getInstance().setElements(Locale.getDefault().getLanguage(), moduleName, factoryElements.getElements());
+    @Override
+    public List<SkillDefinition> load(String language, String moduleName) {
+        final FactoryElements<SkillDefinition> factoryElements;
+        try {
+            factoryElements = load(SkillsDefinitionsFactory.class, SkillDefinitionFactoryElements.class,
+                    language, moduleName);
+            if (factoryElements != null && !factoryElements.getElements().isEmpty()) {
+                return factoryElements.getElements();
+            }
+        } catch (InvalidCacheFile invalidCacheFile) {
+            // Not cache file on this module.
         }
-        return SkillsDefinitionsFactory.getInstance().getNumberOfElements(moduleName);
+        return null;
     }
 
     @Override

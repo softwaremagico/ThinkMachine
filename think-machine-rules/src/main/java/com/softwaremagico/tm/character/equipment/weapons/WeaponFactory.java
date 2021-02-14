@@ -33,6 +33,8 @@ import com.softwaremagico.tm.character.equipment.DamageTypeFactory;
 import com.softwaremagico.tm.character.equipment.Size;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
+import com.softwaremagico.tm.json.factories.cache.FactoryCacheLoader;
+import com.softwaremagico.tm.json.factories.cache.WeaponsFactoryCacheLoader;
 import com.softwaremagico.tm.language.ITranslator;
 
 import java.util.*;
@@ -72,9 +74,19 @@ public class WeaponFactory extends XmlFactory<Weapon> {
     protected Map<String, Map<String, List<Weapon>>> rangedWeapons = new HashMap<>();
     protected Map<String, Map<String, List<Weapon>>> meleeWeapons = new HashMap<>();
 
+    private WeaponsFactoryCacheLoader weaponsFactoryCacheLoader;
+
     @Override
     public String getTranslatorFile() {
         return TRANSLATOR_FILE;
+    }
+
+    @Override
+    public FactoryCacheLoader<Weapon> getFactoryCacheLoader() {
+        if (weaponsFactoryCacheLoader == null) {
+            weaponsFactoryCacheLoader = new WeaponsFactoryCacheLoader();
+        }
+        return weaponsFactoryCacheLoader;
     }
 
     @Override
@@ -225,15 +237,15 @@ public class WeaponFactory extends XmlFactory<Weapon> {
         }
 
         final Set<Accessory> accessories = new HashSet<>();
-        final String accesoriesNames = translator.getNodeValue(weaponId, ACCESSORIES);
-        if (accesoriesNames != null) {
-            final StringTokenizer accessoryTokenizer = new StringTokenizer(accesoriesNames, ",");
+        final String accessoriesNames = translator.getNodeValue(weaponId, ACCESSORIES);
+        if (accessoriesNames != null) {
+            final StringTokenizer accessoryTokenizer = new StringTokenizer(accessoriesNames, ",");
             while (accessoryTokenizer.hasMoreTokens()) {
                 try {
                     accessories.add(AccessoryFactory.getInstance().getElement(accessoryTokenizer.nextToken().trim(),
                             language, moduleName));
                 } catch (InvalidXmlElementException ixe) {
-                    throw new InvalidWeaponException("Error in accessories '" + accesoriesNames
+                    throw new InvalidWeaponException("Error in accessories '" + accessoriesNames
                             + "' structure in weapon '" + weaponId + "'. Invalid accessory definition. ", ixe);
                 }
             }

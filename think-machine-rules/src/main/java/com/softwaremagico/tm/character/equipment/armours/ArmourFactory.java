@@ -24,17 +24,18 @@ package com.softwaremagico.tm.character.equipment.armours;
  * #L%
  */
 
-import java.util.HashSet;
-import java.util.Set;
-import java.util.StringTokenizer;
-
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
 import com.softwaremagico.tm.character.equipment.DamageType;
 import com.softwaremagico.tm.character.equipment.DamageTypeFactory;
 import com.softwaremagico.tm.character.equipment.shields.Shield;
 import com.softwaremagico.tm.character.equipment.shields.ShieldFactory;
+import com.softwaremagico.tm.json.factories.cache.FactoryCacheLoader;
 import com.softwaremagico.tm.language.ITranslator;
+
+import java.util.HashSet;
+import java.util.Set;
+import java.util.StringTokenizer;
 
 public class ArmourFactory extends XmlFactory<Armour> {
     private static final String TRANSLATOR_FILE = "armours.xml";
@@ -65,6 +66,11 @@ public class ArmourFactory extends XmlFactory<Armour> {
     @Override
     public String getTranslatorFile() {
         return TRANSLATOR_FILE;
+    }
+
+    @Override
+    public FactoryCacheLoader<Armour> getFactoryCacheLoader() {
+        return null;
     }
 
     @Override

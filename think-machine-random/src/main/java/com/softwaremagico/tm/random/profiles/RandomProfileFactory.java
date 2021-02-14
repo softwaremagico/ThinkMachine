@@ -24,10 +24,6 @@ package com.softwaremagico.tm.random.profiles;
  * #L%
  */
 
-import java.util.HashSet;
-import java.util.Set;
-import java.util.StringTokenizer;
-
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
 import com.softwaremagico.tm.character.benefices.BeneficeDefinition;
@@ -43,9 +39,14 @@ import com.softwaremagico.tm.character.equipment.weapons.Weapon;
 import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
+import com.softwaremagico.tm.json.factories.cache.FactoryCacheLoader;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
 import com.softwaremagico.tm.random.selectors.RandomPreferenceUtils;
+
+import java.util.HashSet;
+import java.util.Set;
+import java.util.StringTokenizer;
 
 public class RandomProfileFactory extends XmlFactory<RandomProfile> {
     private static final String TRANSLATOR_FILE = "profiles.xml";
@@ -79,6 +80,11 @@ public class RandomProfileFactory extends XmlFactory<RandomProfile> {
     @Override
     public String getTranslatorFile() {
         return TRANSLATOR_FILE;
+    }
+
+    @Override
+    public FactoryCacheLoader<RandomProfile> getFactoryCacheLoader() {
+        return null;
     }
 
     @Override

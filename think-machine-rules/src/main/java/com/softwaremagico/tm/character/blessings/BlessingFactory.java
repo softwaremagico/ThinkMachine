@@ -24,16 +24,17 @@ package com.softwaremagico.tm.character.blessings;
  * #L%
  */
 
-import java.util.HashSet;
-import java.util.Set;
-
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
 import com.softwaremagico.tm.character.values.Bonification;
 import com.softwaremagico.tm.character.values.IValue;
 import com.softwaremagico.tm.character.values.SpecialValue;
+import com.softwaremagico.tm.json.factories.cache.FactoryCacheLoader;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.log.SuppressFBWarnings;
+
+import java.util.HashSet;
+import java.util.Set;
 
 public class BlessingFactory extends XmlFactory<Blessing> {
     private static final String TRANSLATOR_FILE = "blessings.xml";
@@ -57,6 +58,11 @@ public class BlessingFactory extends XmlFactory<Blessing> {
     @Override
     public String getTranslatorFile() {
         return TRANSLATOR_FILE;
+    }
+
+    @Override
+    public FactoryCacheLoader<Blessing> getFactoryCacheLoader() {
+        return null;
     }
 
     @Override

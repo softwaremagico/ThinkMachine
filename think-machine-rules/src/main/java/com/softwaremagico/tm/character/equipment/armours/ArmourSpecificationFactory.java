@@ -26,6 +26,7 @@ package com.softwaremagico.tm.character.equipment.armours;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
+import com.softwaremagico.tm.json.factories.cache.FactoryCacheLoader;
 import com.softwaremagico.tm.language.ITranslator;
 
 public class ArmourSpecificationFactory extends XmlFactory<ArmourSpecification> {
@@ -42,6 +43,11 @@ public class ArmourSpecificationFactory extends XmlFactory<ArmourSpecification> 
     @Override
     public String getTranslatorFile() {
         return TRANSLATOR_FILE;
+    }
+
+    @Override
+    public FactoryCacheLoader<ArmourSpecification> getFactoryCacheLoader() {
+        return null;
     }
 
     @Override

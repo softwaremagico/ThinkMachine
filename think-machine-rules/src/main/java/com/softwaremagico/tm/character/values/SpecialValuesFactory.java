@@ -26,6 +26,7 @@ package com.softwaremagico.tm.character.values;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
+import com.softwaremagico.tm.json.factories.cache.FactoryCacheLoader;
 import com.softwaremagico.tm.language.ITranslator;
 
 import java.util.HashSet;
@@ -48,6 +49,11 @@ public class SpecialValuesFactory extends XmlFactory<SpecialValue> {
     @Override
     public String getTranslatorFile() {
         return TRANSLATOR_FILE;
+    }
+
+    @Override
+    public FactoryCacheLoader<SpecialValue> getFactoryCacheLoader() {
+        return null;
     }
 
     @Override

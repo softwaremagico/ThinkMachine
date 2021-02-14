@@ -27,6 +27,7 @@ package com.softwaremagico.tm.character.characteristics;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
 import com.softwaremagico.tm.file.modules.ModuleManager;
+import com.softwaremagico.tm.json.factories.cache.FactoryCacheLoader;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.Language;
 import com.softwaremagico.tm.log.MachineXmlReaderLog;
@@ -89,6 +90,11 @@ public class CharacteristicsDefinitionFactory extends XmlFactory<CharacteristicD
     @Override
     public String getTranslatorFile() {
         return TRANSLATOR_FILE;
+    }
+
+    @Override
+    public FactoryCacheLoader<CharacteristicDefinition> getFactoryCacheLoader() {
+        return null;
     }
 
     @Override

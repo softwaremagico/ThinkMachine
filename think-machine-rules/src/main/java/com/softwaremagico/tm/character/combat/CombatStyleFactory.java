@@ -24,10 +24,6 @@ package com.softwaremagico.tm.character.combat;
  * #L%
  */
 
-import java.util.HashSet;
-import java.util.Set;
-import java.util.StringTokenizer;
-
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
 import com.softwaremagico.tm.character.benefices.AvailableBenefice;
@@ -35,8 +31,13 @@ import com.softwaremagico.tm.character.benefices.BeneficeGroup;
 import com.softwaremagico.tm.character.characteristics.CharacteristicsDefinitionFactory;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.character.values.IValue;
+import com.softwaremagico.tm.json.factories.cache.FactoryCacheLoader;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.log.SuppressFBWarnings;
+
+import java.util.HashSet;
+import java.util.Set;
+import java.util.StringTokenizer;
 
 public class CombatStyleFactory extends XmlFactory<CombatStyle> {
     private static final String TRANSLATOR_FILE = "combat_styles.xml";
@@ -73,6 +74,11 @@ public class CombatStyleFactory extends XmlFactory<CombatStyle> {
     @Override
     public String getTranslatorFile() {
         return TRANSLATOR_FILE;
+    }
+
+    @Override
+    public FactoryCacheLoader<CombatStyle> getFactoryCacheLoader() {
+        return null;
     }
 
     @Override

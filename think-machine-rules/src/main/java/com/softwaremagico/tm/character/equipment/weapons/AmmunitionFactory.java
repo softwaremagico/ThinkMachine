@@ -29,6 +29,7 @@ import com.softwaremagico.tm.XmlFactory;
 import com.softwaremagico.tm.character.equipment.DamageType;
 import com.softwaremagico.tm.character.equipment.DamageTypeFactory;
 import com.softwaremagico.tm.character.equipment.Size;
+import com.softwaremagico.tm.json.factories.cache.FactoryCacheLoader;
 import com.softwaremagico.tm.language.ITranslator;
 
 import java.util.HashSet;
@@ -58,6 +59,11 @@ public class AmmunitionFactory extends XmlFactory<Ammunition> {
     @Override
     public String getTranslatorFile() {
         return TRANSLATOR_FILE;
+    }
+
+    @Override
+    public FactoryCacheLoader<Ammunition> getFactoryCacheLoader() {
+        return null;
     }
 
     @Override

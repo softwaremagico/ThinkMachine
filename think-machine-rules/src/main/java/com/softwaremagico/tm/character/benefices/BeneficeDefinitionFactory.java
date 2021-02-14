@@ -24,19 +24,14 @@ package com.softwaremagico.tm.character.benefices;
  * #L%
  */
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.StringTokenizer;
-
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
 import com.softwaremagico.tm.character.factions.FactionGroup;
+import com.softwaremagico.tm.json.factories.cache.FactoryCacheLoader;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.log.SuppressFBWarnings;
+
+import java.util.*;
 
 public class BeneficeDefinitionFactory extends XmlFactory<BeneficeDefinition> {
     private static final String TRANSLATOR_FILE = "benefices.xml";
@@ -205,5 +200,10 @@ public class BeneficeDefinitionFactory extends XmlFactory<BeneficeDefinition> {
     @Override
     public String getTranslatorFile() {
         return TRANSLATOR_FILE;
+    }
+
+    @Override
+    public FactoryCacheLoader<BeneficeDefinition> getFactoryCacheLoader() {
+        return null;
     }
 }

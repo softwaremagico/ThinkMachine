@@ -39,16 +39,21 @@ import com.softwaremagico.tm.json.*;
 import com.softwaremagico.tm.json.factories.FactoryElements;
 import com.softwaremagico.tm.json.factories.WeaponsFactoryElements;
 
-import java.util.Locale;
+import java.util.List;
 
 public class WeaponsFactoryCacheLoader extends FactoryCacheLoader<Weapon> {
 
-    public int load(String language, String moduleName) {
-        final FactoryElements<Weapon> factoryElements = load(WeaponFactory.class, WeaponsFactoryElements.class, language, moduleName);
-        if (!factoryElements.getElements().isEmpty()) {
-            WeaponFactory.getInstance().setElements(Locale.getDefault().getLanguage(), moduleName, factoryElements.getElements());
+    @Override
+    public List<Weapon> load(String language, String moduleName) {
+        try {
+            final FactoryElements<Weapon> factoryElements = load(WeaponFactory.class, WeaponsFactoryElements.class, language, moduleName);
+            if (factoryElements != null && !factoryElements.getElements().isEmpty()) {
+                return factoryElements.getElements();
+            }
+        } catch (InvalidCacheFile invalidCacheFile) {
+           // Not cache file on this module.
         }
-        return WeaponFactory.getInstance().getNumberOfElements(moduleName);
+        return null;
     }
 
     @Override
