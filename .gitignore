@@ -30,3 +30,4 @@ think-machine-rules/.checkstyle
 /.idea/
 *.iml
 modules/Fading Suns Revised Edition/json/*
+src/main/resources/version.txt
