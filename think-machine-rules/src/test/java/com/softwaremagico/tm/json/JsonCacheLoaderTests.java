@@ -25,11 +25,14 @@ package com.softwaremagico.tm.json;
  */
 
 import com.softwaremagico.tm.InvalidXmlElementException;
+import com.softwaremagico.tm.character.blessings.Blessing;
+import com.softwaremagico.tm.character.blessings.BlessingFactory;
 import com.softwaremagico.tm.character.equipment.weapons.Weapon;
 import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
 import com.softwaremagico.tm.character.skills.SkillDefinition;
 import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
 import com.softwaremagico.tm.file.PathManager;
+import com.softwaremagico.tm.json.factories.cache.BlessingFactoryCacheLoader;
 import com.softwaremagico.tm.json.factories.cache.FactoryCacheLoader;
 import com.softwaremagico.tm.json.factories.cache.SkillDefinitionsFactoryCacheLoader;
 import com.softwaremagico.tm.json.factories.cache.WeaponsFactoryCacheLoader;
@@ -106,6 +109,40 @@ public class JsonCacheLoaderTests {
             SkillDefinitionsFactoryCacheLoader skillDefinitionsFactoryCacheLoader = new SkillDefinitionsFactoryCacheLoader();
             Assert.assertTrue(skillDefinitionsFactoryCacheLoader.load(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).size() > 0);
             SkillsDefinitionsFactory.getInstance().removeData();
+        }
+        end = Instant.now();
+        Duration jsonMethod = Duration.between(start, end);
+
+        //Check speed is at least 10x
+        Assert.assertTrue(jsonMethod.getNano() * 10 < xmlMethod.getNano());
+        //System.out.println("Skills [Xml: " + xmlMethod + ", Json: " + jsonMethod + " ]");
+
+    }
+
+    @Test()
+    public void checkBlessingsImprovement() throws InvalidXmlElementException {
+        //Force Json generation.
+
+        BlessingFactory blessingFactory = new BlessingFactory() {
+            @Override
+            public FactoryCacheLoader<Blessing> getFactoryCacheLoader() {
+                return null;
+            }
+        };
+
+        Instant start = Instant.now();
+        for (int i = 0; i < ITERATIONS; i++) {
+            blessingFactory.getElements(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+            blessingFactory.removeData();
+        }
+        Instant end = Instant.now();
+        Duration xmlMethod = Duration.between(start, end);
+
+        start = Instant.now();
+        for (int i = 0; i < ITERATIONS; i++) {
+            BlessingFactoryCacheLoader blessingFactoryCacheLoader = new BlessingFactoryCacheLoader();
+            Assert.assertTrue(blessingFactoryCacheLoader.load(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).size() > 0);
+            BlessingFactory.getInstance().removeData();
         }
         end = Instant.now();
         Duration jsonMethod = Duration.between(start, end);

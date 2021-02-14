@@ -62,6 +62,7 @@ public class BlessingFactory extends XmlFactory<Blessing> {
 
     @Override
     public FactoryCacheLoader<Blessing> getFactoryCacheLoader() {
+        // return new BlessingFactoryCacheLoader();
         return null;
     }
 
