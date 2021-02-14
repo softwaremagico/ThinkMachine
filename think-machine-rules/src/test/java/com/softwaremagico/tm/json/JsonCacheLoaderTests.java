@@ -25,6 +25,8 @@ package com.softwaremagico.tm.json;
  */
 
 import com.softwaremagico.tm.InvalidXmlElementException;
+import com.softwaremagico.tm.character.benefices.BeneficeDefinition;
+import com.softwaremagico.tm.character.benefices.BeneficeDefinitionFactory;
 import com.softwaremagico.tm.character.blessings.Blessing;
 import com.softwaremagico.tm.character.blessings.BlessingFactory;
 import com.softwaremagico.tm.character.equipment.weapons.Weapon;
@@ -32,10 +34,7 @@ import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
 import com.softwaremagico.tm.character.skills.SkillDefinition;
 import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
 import com.softwaremagico.tm.file.PathManager;
-import com.softwaremagico.tm.json.factories.cache.BlessingFactoryCacheLoader;
-import com.softwaremagico.tm.json.factories.cache.FactoryCacheLoader;
-import com.softwaremagico.tm.json.factories.cache.SkillDefinitionsFactoryCacheLoader;
-import com.softwaremagico.tm.json.factories.cache.WeaponsFactoryCacheLoader;
+import com.softwaremagico.tm.json.factories.cache.*;
 import org.junit.Assert;
 import org.testng.annotations.Test;
 
@@ -150,6 +149,39 @@ public class JsonCacheLoaderTests {
         //Check speed is at least 10x
         Assert.assertTrue(jsonMethod.getNano() * 10 < xmlMethod.getNano());
         //System.out.println("Skills [Xml: " + xmlMethod + ", Json: " + jsonMethod + " ]");
+    }
+
+    @Test()
+    public void checkBeneficesImprovement() throws InvalidXmlElementException {
+        //Force Json generation.
+
+        BeneficeDefinitionFactory beneficeFactory = new BeneficeDefinitionFactory() {
+            @Override
+            public FactoryCacheLoader<BeneficeDefinition> getFactoryCacheLoader() {
+                return null;
+            }
+        };
+
+        Instant start = Instant.now();
+        for (int i = 0; i < ITERATIONS; i++) {
+            beneficeFactory.getElements(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+            beneficeFactory.removeData();
+        }
+        Instant end = Instant.now();
+        Duration xmlMethod = Duration.between(start, end);
+
+        start = Instant.now();
+        for (int i = 0; i < ITERATIONS; i++) {
+            BeneficeDefinitionFactoryCacheLoader beneficeDefinitionFactoryCacheLoader = new BeneficeDefinitionFactoryCacheLoader();
+            Assert.assertTrue(beneficeDefinitionFactoryCacheLoader.load(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).size() > 0);
+            BeneficeDefinitionFactory.getInstance().removeData();
+        }
+        end = Instant.now();
+        Duration jsonMethod = Duration.between(start, end);
+
+        //Check speed is at least 10x
+        //System.out.println("Benefices [Xml: " + xmlMethod + ", Json: " + jsonMethod + " ]");
+        Assert.assertTrue(jsonMethod.getNano() * 5 < xmlMethod.getNano());
 
     }
 

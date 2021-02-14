@@ -30,6 +30,9 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.softwaremagico.tm.Element;
 import com.softwaremagico.tm.InvalidXmlElementException;
+import com.softwaremagico.tm.XmlFactory;
+import com.softwaremagico.tm.character.benefices.BeneficeDefinitionFactory;
+import com.softwaremagico.tm.character.blessings.BlessingFactory;
 import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
 import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
 import com.softwaremagico.tm.file.PathManager;
@@ -70,10 +73,15 @@ public abstract class FactoryCacheLoader<E extends Element<E>> {
         for (final String moduleName : ModuleManager.getAvailableModules()) {
             skillDefinitionsFactoryCacheLoader.save(SkillsDefinitionsFactory.class, moduleName, SkillsDefinitionsFactory.getInstance().getTranslatorFile());
         }
-//        final BlessingFactoryCacheLoader blessingFactoryCacheLoader = new BlessingFactoryCacheLoader();
-//        for (final String moduleName : ModuleManager.getAvailableModules()) {
-//            blessingFactoryCacheLoader.save(BlessingFactory.class, moduleName, BlessingFactory.getInstance().getTranslatorFile());
-//        }
+        final BlessingFactoryCacheLoader blessingFactoryCacheLoader = new BlessingFactoryCacheLoader();
+        for (final String moduleName : ModuleManager.getAvailableModules()) {
+            blessingFactoryCacheLoader.save(BlessingFactory.class, moduleName, BlessingFactory.getInstance().getTranslatorFile());
+        }
+        final BeneficeDefinitionFactoryCacheLoader beneficeDefinitionFactoryCacheLoader = new BeneficeDefinitionFactoryCacheLoader();
+        for (final String moduleName : ModuleManager.getAvailableModules()) {
+            beneficeDefinitionFactoryCacheLoader.save(BeneficeDefinitionFactory.class, moduleName,
+                    BeneficeDefinitionFactory.getInstance().getTranslatorFile());
+        }
     }
 
     private static void disableLogs() {
@@ -121,6 +129,7 @@ public abstract class FactoryCacheLoader<E extends Element<E>> {
             }
             return resultStringBuilder.toString();
         } catch (NullPointerException | IOException e) {
+            //Do nothing.
         }
         return null;
     }
@@ -131,7 +140,8 @@ public abstract class FactoryCacheLoader<E extends Element<E>> {
 
     public abstract List<E> load(String language, String moduleName);
 
-    public FactoryElements<E> load(Class<?> factoryClass, Class<?> factoryElementsClass, String language, String moduleName) throws InvalidCacheFile {
+    public <X extends XmlFactory<E>, F extends FactoryElements<E>> FactoryElements<E> load(Class<X> factoryClass, Class<F> factoryElementsClass,
+                                                                                     String language, String moduleName) throws InvalidCacheFile {
         final Gson gson = initGsonBuilder(language, moduleName).create();
         return gson.fromJson(getJsonContent(moduleName, language, getFileName(factoryClass)),
                 (Type) factoryElementsClass);
