@@ -35,6 +35,7 @@ import com.softwaremagico.tm.character.benefices.BeneficeDefinitionFactory;
 import com.softwaremagico.tm.character.blessings.BlessingFactory;
 import com.softwaremagico.tm.character.equipment.armours.ArmourFactory;
 import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
+import com.softwaremagico.tm.character.planets.PlanetFactory;
 import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
 import com.softwaremagico.tm.file.PathManager;
 import com.softwaremagico.tm.file.modules.ModuleManager;
@@ -86,6 +87,11 @@ public abstract class FactoryCacheLoader<E extends Element<E>> {
         for (final String moduleName : ModuleManager.getAvailableModules()) {
             beneficeDefinitionFactoryCacheLoader.save(BeneficeDefinitionFactory.class, moduleName,
                     BeneficeDefinitionFactory.getInstance().getTranslatorFile());
+        }
+        final PlanetFactoryCacheLoader planetFactoryCacheLoader = new PlanetFactoryCacheLoader();
+        for (final String moduleName : ModuleManager.getAvailableModules()) {
+            planetFactoryCacheLoader.save(PlanetFactory.class, moduleName,
+                    PlanetFactory.getInstance().getTranslatorFile());
         }
     }
 

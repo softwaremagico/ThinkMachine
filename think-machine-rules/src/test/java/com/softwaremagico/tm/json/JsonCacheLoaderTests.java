@@ -33,6 +33,8 @@ import com.softwaremagico.tm.character.equipment.armours.Armour;
 import com.softwaremagico.tm.character.equipment.armours.ArmourFactory;
 import com.softwaremagico.tm.character.equipment.weapons.Weapon;
 import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
+import com.softwaremagico.tm.character.planets.Planet;
+import com.softwaremagico.tm.character.planets.PlanetFactory;
 import com.softwaremagico.tm.character.skills.SkillDefinition;
 import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
 import com.softwaremagico.tm.file.PathManager;
@@ -215,9 +217,40 @@ public class JsonCacheLoaderTests {
         Duration jsonMethod = Duration.between(start, end);
 
         //Check speed is at least 10x
-        System.out.println("Armour [Xml: " + xmlMethod + ", Json: " + jsonMethod + " ]");
+        //System.out.println("Armour [Xml: " + xmlMethod + ", Json: " + jsonMethod + " ]");
         Assert.assertTrue(jsonMethod.getNano() * 2 < xmlMethod.getNano());
     }
 
+    @Test()
+    public void checkPlanetsImprovement() throws InvalidXmlElementException {
+        //Force Json generation.
 
+        PlanetFactory planetFactory = new PlanetFactory() {
+            @Override
+            public FactoryCacheLoader<Planet> getFactoryCacheLoader() {
+                return null;
+            }
+        };
+
+        Instant start = Instant.now();
+        for (int i = 0; i < ITERATIONS; i++) {
+            planetFactory.getElements(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+            planetFactory.removeData();
+        }
+        Instant end = Instant.now();
+        Duration xmlMethod = Duration.between(start, end);
+
+        start = Instant.now();
+        for (int i = 0; i < ITERATIONS; i++) {
+            PlanetFactoryCacheLoader planetFactoryCacheLoader = new PlanetFactoryCacheLoader();
+            Assert.assertTrue(planetFactoryCacheLoader.load(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).size() > 0);
+            PlanetFactory.getInstance().removeData();
+        }
+        end = Instant.now();
+        Duration jsonMethod = Duration.between(start, end);
+
+        //Check speed is at least 10x
+        //System.out.println("Planets [Xml: " + xmlMethod + ", Json: " + jsonMethod + " ]");
+        Assert.assertTrue(jsonMethod.getNano() * 2 < xmlMethod.getNano());
+    }
 }
