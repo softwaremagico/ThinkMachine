@@ -37,6 +37,7 @@ import com.softwaremagico.tm.character.cybernetics.CyberneticDeviceTrait;
 import com.softwaremagico.tm.character.cybernetics.SelectedCyberneticDevice;
 import com.softwaremagico.tm.character.equipment.DamageType;
 import com.softwaremagico.tm.character.equipment.armours.Armour;
+import com.softwaremagico.tm.character.equipment.armours.ArmourSpecification;
 import com.softwaremagico.tm.character.equipment.shields.Shield;
 import com.softwaremagico.tm.character.equipment.weapons.Accessory;
 import com.softwaremagico.tm.character.equipment.weapons.Ammunition;
@@ -152,6 +153,7 @@ public class CharacterJsonManager extends JsonManager {
         gsonBuilder.registerTypeAdapter(SpecialValue.class, new SpecialValueAdapter(language, moduleName));
         gsonBuilder.registerTypeAdapter(OccultismType.class, new OccultismTypeAdapter(language, moduleName));
         gsonBuilder.registerTypeAdapter(SkillDefinition.class, new SkillDefinitionAdapter(language, moduleName));
+        gsonBuilder.registerTypeAdapter(ArmourSpecification.class, new ArmourSpecificationAdapter(language, moduleName));
 
         return gsonBuilder;
     }

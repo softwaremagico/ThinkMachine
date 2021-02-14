@@ -29,6 +29,8 @@ import com.softwaremagico.tm.character.benefices.BeneficeDefinition;
 import com.softwaremagico.tm.character.benefices.BeneficeDefinitionFactory;
 import com.softwaremagico.tm.character.blessings.Blessing;
 import com.softwaremagico.tm.character.blessings.BlessingFactory;
+import com.softwaremagico.tm.character.equipment.armours.Armour;
+import com.softwaremagico.tm.character.equipment.armours.ArmourFactory;
 import com.softwaremagico.tm.character.equipment.weapons.Weapon;
 import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
 import com.softwaremagico.tm.character.skills.SkillDefinition;
@@ -182,7 +184,39 @@ public class JsonCacheLoaderTests {
         //Check speed is at least 10x
         //System.out.println("Benefices [Xml: " + xmlMethod + ", Json: " + jsonMethod + " ]");
         Assert.assertTrue(jsonMethod.getNano() * 5 < xmlMethod.getNano());
+    }
 
+    @Test()
+    public void checkArmoursImprovement() throws InvalidXmlElementException {
+        //Force Json generation.
+
+        ArmourFactory armourFactory = new ArmourFactory() {
+            @Override
+            public FactoryCacheLoader<Armour> getFactoryCacheLoader() {
+                return null;
+            }
+        };
+
+        Instant start = Instant.now();
+        for (int i = 0; i < ITERATIONS; i++) {
+            armourFactory.getElements(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+            armourFactory.removeData();
+        }
+        Instant end = Instant.now();
+        Duration xmlMethod = Duration.between(start, end);
+
+        start = Instant.now();
+        for (int i = 0; i < ITERATIONS; i++) {
+            ArmourFactoryCacheLoader armourFactoryCacheLoader = new ArmourFactoryCacheLoader();
+            Assert.assertTrue(armourFactoryCacheLoader.load(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).size() > 0);
+            ArmourFactory.getInstance().removeData();
+        }
+        end = Instant.now();
+        Duration jsonMethod = Duration.between(start, end);
+
+        //Check speed is at least 10x
+        System.out.println("Armour [Xml: " + xmlMethod + ", Json: " + jsonMethod + " ]");
+        Assert.assertTrue(jsonMethod.getNano() * 2 < xmlMethod.getNano());
     }
 
 

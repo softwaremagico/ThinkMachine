@@ -33,6 +33,7 @@ import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
 import com.softwaremagico.tm.character.benefices.BeneficeDefinitionFactory;
 import com.softwaremagico.tm.character.blessings.BlessingFactory;
+import com.softwaremagico.tm.character.equipment.armours.ArmourFactory;
 import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
 import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
 import com.softwaremagico.tm.file.PathManager;
@@ -68,6 +69,10 @@ public abstract class FactoryCacheLoader<E extends Element<E>> {
         final WeaponsFactoryCacheLoader weaponsFactoryCacheLoader = new WeaponsFactoryCacheLoader();
         for (final String moduleName : ModuleManager.getAvailableModules()) {
             weaponsFactoryCacheLoader.save(WeaponFactory.class, moduleName, WeaponFactory.getInstance().getTranslatorFile());
+        }
+        final ArmourFactoryCacheLoader armourFactoryCacheLoader = new ArmourFactoryCacheLoader();
+        for (final String moduleName : ModuleManager.getAvailableModules()) {
+            armourFactoryCacheLoader.save(ArmourFactory.class, moduleName, ArmourFactory.getInstance().getTranslatorFile());
         }
         final SkillDefinitionsFactoryCacheLoader skillDefinitionsFactoryCacheLoader = new SkillDefinitionsFactoryCacheLoader();
         for (final String moduleName : ModuleManager.getAvailableModules()) {
@@ -141,7 +146,7 @@ public abstract class FactoryCacheLoader<E extends Element<E>> {
     public abstract List<E> load(String language, String moduleName);
 
     public <X extends XmlFactory<E>, F extends FactoryElements<E>> FactoryElements<E> load(Class<X> factoryClass, Class<F> factoryElementsClass,
-                                                                                     String language, String moduleName) throws InvalidCacheFile {
+                                                                                           String language, String moduleName) throws InvalidCacheFile {
         final Gson gson = initGsonBuilder(language, moduleName).create();
         return gson.fromJson(getJsonContent(moduleName, language, getFileName(factoryClass)),
                 (Type) factoryElementsClass);
