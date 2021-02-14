@@ -66,11 +66,6 @@ public class Characteristic extends Element<Characteristic> implements IValue {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        return super.equals(obj);
-    }
-
-    @Override
     public int compareTo(Characteristic element) {
         return getCharacteristicDefinition().getOrder().compareTo(element.getCharacteristicDefinition().getOrder());
     }
