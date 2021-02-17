@@ -24,14 +24,6 @@ package com.softwaremagico.tm.txt;
  * #L%
  */
 
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-
-import org.testng.Assert;
-import org.testng.annotations.Test;
-
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.benefices.BeneficeAlreadyAddedException;
@@ -41,13 +33,20 @@ import com.softwaremagico.tm.character.cybernetics.RequiredCyberneticDevicesExce
 import com.softwaremagico.tm.character.cybernetics.TooManyCyberneticDevicesException;
 import com.softwaremagico.tm.characters.CustomCharacter;
 import com.softwaremagico.tm.file.PathManager;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 @Test(groups = { "exportTxt" })
 public class ExportTxtTests {
 	private static final String LANGUAGE = "es";
 
 	@Test
-	private void checkCustomCharacter() throws TooManyBlessingsException, InvalidXmlElementException, IOException,
+	public void checkCustomCharacter() throws TooManyBlessingsException, InvalidXmlElementException, IOException,
 			URISyntaxException, TooManyCyberneticDevicesException, RequiredCyberneticDevicesException,
 			BlessingAlreadyAddedException, BeneficeAlreadyAddedException {
 		final CharacterPlayer player = CustomCharacter.create(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);

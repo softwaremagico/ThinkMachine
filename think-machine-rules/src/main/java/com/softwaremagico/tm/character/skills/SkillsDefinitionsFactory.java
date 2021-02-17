@@ -27,6 +27,8 @@ package com.softwaremagico.tm.character.skills;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
 import com.softwaremagico.tm.character.factions.FactionsFactory;
+import com.softwaremagico.tm.json.factories.cache.FactoryCacheLoader;
+import com.softwaremagico.tm.json.factories.cache.SkillDefinitionsFactoryCacheLoader;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.log.MachineXmlReaderLog;
 import com.softwaremagico.tm.log.SuppressFBWarnings;
@@ -49,16 +51,14 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
     private static Map<String, Map<String, List<SkillDefinition>>> learnedSkills = new HashMap<>();
     private static Map<String, Map<String, Map<SkillGroup, Set<SkillDefinition>>>> skillsByGroup = new HashMap<>();
 
+    private SkillDefinitionsFactoryCacheLoader skillDefinitionsFactoryCacheLoader;
+
     private static class SkillsDefinitionsFactoryInit {
         public static final SkillsDefinitionsFactory INSTANCE = new SkillsDefinitionsFactory();
     }
 
     public static SkillsDefinitionsFactory getInstance() {
         return SkillsDefinitionsFactoryInit.INSTANCE;
-    }
-
-    private SkillsDefinitionsFactory() {
-        super();
     }
 
     private static void initializeMaps() {
@@ -122,30 +122,24 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
     }
 
     @Override
-    public List<SkillDefinition> getElements(String language, String moduleName) throws InvalidXmlElementException {
-        if (elements.get(language) == null || elements.get(language).get(moduleName) == null) {
-            elements.computeIfAbsent(language, k -> new HashMap<>());
-            elements.get(language).computeIfAbsent(moduleName, k -> new ArrayList<>());
-            for (final String skillId : getTranslator(moduleName).getAllTranslatedElements()) {
-                if (Objects.equals(skillId, TOTAL_ELEMENTS) || Objects.equals(skillId, VERSION)) {
-                    continue;
-                }
-                String name = null;
-                try {
-                    name = getTranslator(moduleName).getNodeValue(skillId, NAME, language);
-                } catch (Exception e) {
-                    //Name is optional?
-                }
+    public FactoryCacheLoader<SkillDefinition> getFactoryCacheLoader() {
+        if (skillDefinitionsFactoryCacheLoader == null) {
+            skillDefinitionsFactoryCacheLoader = new SkillDefinitionsFactoryCacheLoader();
+        }
+        return skillDefinitionsFactoryCacheLoader;
+    }
 
-                String description = null;
-                try {
-                    description = getTranslator(moduleName).getNodeValue(skillId, DESCRIPTION, language);
-                } catch (Exception e) {
-                    //Description is not mandatory.
-                }
-                final SkillDefinition skill = createElement(getTranslator(moduleName), skillId, name, description, language, moduleName);
-                elements.get(language).get(moduleName).add(skill);
-                setRandomConfiguration(skill, getTranslator(moduleName), language, moduleName);
+
+    @Override
+    public List<SkillDefinition> getElements(String language, String moduleName) throws InvalidXmlElementException {
+        boolean initialization = false;
+        if (elements.get(language) == null || elements.get(language).get(moduleName) == null) {
+            initialization = true;
+        }
+        final List<SkillDefinition> skillDefinitions = super.getElements(language, moduleName);
+
+        if (initialization) {
+            for (final SkillDefinition skill : skillDefinitions) {
                 if (skill.isNatural()) {
                     naturalSkills.computeIfAbsent(language, k -> new HashMap<>());
                     naturalSkills.get(language).computeIfAbsent(moduleName, k -> new ArrayList<>());
@@ -158,9 +152,8 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
                     Collections.sort(learnedSkills.get(language).get(moduleName));
                 }
             }
-            Collections.sort(elements.get(language).get(moduleName));
         }
-        return elements.get(language).get(moduleName);
+        return skillDefinitions;
     }
 
     @Override

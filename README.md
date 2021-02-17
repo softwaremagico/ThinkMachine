@@ -120,14 +120,14 @@ Fonts used in this project: DejaVuSans, ArchitectsDaughter and Roman Antique.
 0.5.0 Performance improvements and code checks. 
 
 0.6.0 Modules system and some improvements
-- 0.6.1 Improvements in Json exporter
+- 0.6.1 Improvements in Json exporter.
 
 0.7.0 Experience added.
 - 0.7.1	Faction restricted and suggested benefices.
 
 0.8.0 UI integration improvements.
-- 0.8.1 Android SDK compatibility
+- 0.8.1 Android SDK compatibility.
 - 0.8.2 Cost changes interaction with UX. 
 
 0.9.0 Element descriptions
-
+- 0.9.1 Improved performance.

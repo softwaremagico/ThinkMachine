@@ -26,51 +26,39 @@ package com.softwaremagico.tm.json.factories.cache;
 
 import com.google.gson.GsonBuilder;
 import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.character.characteristics.CharacteristicDefinition;
-import com.softwaremagico.tm.character.equipment.DamageType;
-import com.softwaremagico.tm.character.equipment.weapons.Accessory;
-import com.softwaremagico.tm.character.equipment.weapons.Ammunition;
-import com.softwaremagico.tm.character.equipment.weapons.Weapon;
-import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
 import com.softwaremagico.tm.character.factions.Faction;
-import com.softwaremagico.tm.character.races.Race;
-import com.softwaremagico.tm.character.skills.AvailableSkill;
-import com.softwaremagico.tm.json.*;
+import com.softwaremagico.tm.character.planets.Planet;
+import com.softwaremagico.tm.character.planets.PlanetFactory;
+import com.softwaremagico.tm.json.FactionAdapter;
 import com.softwaremagico.tm.json.factories.FactoryElements;
-import com.softwaremagico.tm.json.factories.WeaponsFactoryElements;
+import com.softwaremagico.tm.json.factories.PlanetFactoryElements;
 
 import java.util.List;
 
-public class WeaponsFactoryCacheLoader extends FactoryCacheLoader<Weapon> {
+public class PlanetFactoryCacheLoader extends FactoryCacheLoader<Planet> {
 
     @Override
-    public List<Weapon> load(String language, String moduleName) {
+    public List<Planet> load(String language, String moduleName) {
         try {
-            final FactoryElements<Weapon> factoryElements = load(WeaponFactory.class, WeaponsFactoryElements.class, language, moduleName);
+            final FactoryElements<Planet> factoryElements = load(PlanetFactory.class, PlanetFactoryElements.class, language, moduleName);
             if (factoryElements != null && !factoryElements.getElements().isEmpty()) {
                 return factoryElements.getElements();
             }
         } catch (InvalidCacheFile invalidCacheFile) {
-           // Not cache file on this module.
+            // Not cache file on this module.
         }
         return null;
     }
 
     @Override
-    protected FactoryElements<Weapon> getFactoryElements(String moduleName, String language) throws InvalidXmlElementException {
-        return new WeaponsFactoryElements(language, moduleName);
+    protected FactoryElements<Planet> getFactoryElements(String moduleName, String language) throws InvalidXmlElementException {
+        return new PlanetFactoryElements(language, moduleName);
     }
 
     @Override
     protected GsonBuilder initGsonBuilder(final String language, final String moduleName) {
         final GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.setPrettyPrinting();
-        gsonBuilder.registerTypeAdapter(AvailableSkill.class, new AvailableSkillAdapter(language, moduleName));
-        gsonBuilder.registerTypeAdapter(CharacteristicDefinition.class, new CharacteristicDefinitionAdapter(language, moduleName));
-        gsonBuilder.registerTypeAdapter(Accessory.class, new AccessoryAdapter(language, moduleName));
-        gsonBuilder.registerTypeAdapter(DamageType.class, new DamageTypeAdapter(language, moduleName));
-        gsonBuilder.registerTypeAdapter(Ammunition.class, new AmmunitionAdapter(language, moduleName));
-        gsonBuilder.registerTypeAdapter(Race.class, new RaceAdapter(language, moduleName));
         gsonBuilder.registerTypeAdapter(Faction.class, new FactionAdapter(language, moduleName));
         return gsonBuilder;
     }

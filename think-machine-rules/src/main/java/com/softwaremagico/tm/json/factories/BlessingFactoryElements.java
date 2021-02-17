@@ -25,34 +25,34 @@ package com.softwaremagico.tm.json.factories;
  */
 
 import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.character.equipment.weapons.Weapon;
-import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
+import com.softwaremagico.tm.character.blessings.Blessing;
+import com.softwaremagico.tm.character.blessings.BlessingFactory;
 import com.softwaremagico.tm.json.factories.cache.FactoryCacheLoader;
 
 import java.sql.Timestamp;
 import java.util.Date;
 
-public class WeaponsFactoryElements extends FactoryElements<Weapon> {
+public class BlessingFactoryElements extends FactoryElements<Blessing> {
 
-    public WeaponsFactoryElements() {
+    public BlessingFactoryElements() {
         super();
         creationTime = new Timestamp(new Date().getTime());
     }
 
-    public WeaponsFactoryElements(String language, String moduleName) throws InvalidXmlElementException {
+    public BlessingFactoryElements(String language, String moduleName) throws InvalidXmlElementException {
         this();
         creationTime = new Timestamp(new Date().getTime());
 
         //Skip Json generation in loop.
-        final WeaponFactory weaponFactory = new WeaponFactory() {
+        final BlessingFactory blessingFactory = new BlessingFactory() {
             @Override
-            public FactoryCacheLoader<Weapon> getFactoryCacheLoader() {
+            public FactoryCacheLoader<Blessing> getFactoryCacheLoader() {
                 return null;
             }
         };
 
-        setElements(weaponFactory.getElements(language, moduleName));
-        setVersion(weaponFactory.getVersion(moduleName));
-        setTotalElements(weaponFactory.getNumberOfElements(moduleName));
+        setElements(blessingFactory.getElements(language, moduleName));
+        setVersion(blessingFactory.getVersion(moduleName));
+        setTotalElements(blessingFactory.getNumberOfElements(moduleName));
     }
 }

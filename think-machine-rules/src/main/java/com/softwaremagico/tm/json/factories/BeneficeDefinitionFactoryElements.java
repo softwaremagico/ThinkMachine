@@ -25,34 +25,34 @@ package com.softwaremagico.tm.json.factories;
  */
 
 import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.character.equipment.weapons.Weapon;
-import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
+import com.softwaremagico.tm.character.benefices.BeneficeDefinition;
+import com.softwaremagico.tm.character.benefices.BeneficeDefinitionFactory;
 import com.softwaremagico.tm.json.factories.cache.FactoryCacheLoader;
 
 import java.sql.Timestamp;
 import java.util.Date;
 
-public class WeaponsFactoryElements extends FactoryElements<Weapon> {
+public class BeneficeDefinitionFactoryElements extends FactoryElements<BeneficeDefinition> {
 
-    public WeaponsFactoryElements() {
+    public BeneficeDefinitionFactoryElements() {
         super();
         creationTime = new Timestamp(new Date().getTime());
     }
 
-    public WeaponsFactoryElements(String language, String moduleName) throws InvalidXmlElementException {
+    public BeneficeDefinitionFactoryElements(String language, String moduleName) throws InvalidXmlElementException {
         this();
         creationTime = new Timestamp(new Date().getTime());
 
         //Skip Json generation in loop.
-        final WeaponFactory weaponFactory = new WeaponFactory() {
+        final BeneficeDefinitionFactory beneficeDefinitionFactory = new BeneficeDefinitionFactory() {
             @Override
-            public FactoryCacheLoader<Weapon> getFactoryCacheLoader() {
+            public FactoryCacheLoader<BeneficeDefinition> getFactoryCacheLoader() {
                 return null;
             }
         };
 
-        setElements(weaponFactory.getElements(language, moduleName));
-        setVersion(weaponFactory.getVersion(moduleName));
-        setTotalElements(weaponFactory.getNumberOfElements(moduleName));
+        setElements(beneficeDefinitionFactory.getElements(language, moduleName));
+        setVersion(beneficeDefinitionFactory.getVersion(moduleName));
+        setTotalElements(beneficeDefinitionFactory.getNumberOfElements(moduleName));
     }
 }

@@ -26,25 +26,20 @@ package com.softwaremagico.tm.json.factories.cache;
 
 import com.google.gson.GsonBuilder;
 import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.character.factions.Faction;
-import com.softwaremagico.tm.character.races.Race;
-import com.softwaremagico.tm.character.skills.SkillDefinition;
-import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
-import com.softwaremagico.tm.json.FactionAdapter;
-import com.softwaremagico.tm.json.RaceAdapter;
+import com.softwaremagico.tm.character.benefices.BeneficeDefinition;
+import com.softwaremagico.tm.character.benefices.BeneficeDefinitionFactory;
+import com.softwaremagico.tm.json.factories.BeneficeDefinitionFactoryElements;
 import com.softwaremagico.tm.json.factories.FactoryElements;
-import com.softwaremagico.tm.json.factories.SkillDefinitionFactoryElements;
 
 import java.util.List;
 
-public class SkillDefinitionsFactoryCacheLoader extends FactoryCacheLoader<SkillDefinition> {
+public class BeneficeDefinitionFactoryCacheLoader extends FactoryCacheLoader<BeneficeDefinition> {
 
     @Override
-    public List<SkillDefinition> load(String language, String moduleName) {
-        final FactoryElements<SkillDefinition> factoryElements;
+    public List<BeneficeDefinition> load(String language, String moduleName) {
         try {
-            factoryElements = load(SkillsDefinitionsFactory.class, SkillDefinitionFactoryElements.class,
-                    language, moduleName);
+            final FactoryElements<BeneficeDefinition> factoryElements = load(BeneficeDefinitionFactory.class,
+                    BeneficeDefinitionFactoryElements.class, language, moduleName);
             if (factoryElements != null && !factoryElements.getElements().isEmpty()) {
                 return factoryElements.getElements();
             }
@@ -55,16 +50,15 @@ public class SkillDefinitionsFactoryCacheLoader extends FactoryCacheLoader<Skill
     }
 
     @Override
-    protected FactoryElements<SkillDefinition> getFactoryElements(String moduleName, String language) throws InvalidXmlElementException {
-        return new SkillDefinitionFactoryElements(language, moduleName);
+    protected FactoryElements<BeneficeDefinition> getFactoryElements(String moduleName, String language) throws InvalidXmlElementException {
+        return new BeneficeDefinitionFactoryElements(language, moduleName);
     }
 
     @Override
     protected GsonBuilder initGsonBuilder(final String language, final String moduleName) {
         final GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.setPrettyPrinting();
-        gsonBuilder.registerTypeAdapter(Faction.class, new FactionAdapter(language, moduleName));
-        gsonBuilder.registerTypeAdapter(Race.class, new RaceAdapter(language, moduleName));
+
         return gsonBuilder;
     }
 

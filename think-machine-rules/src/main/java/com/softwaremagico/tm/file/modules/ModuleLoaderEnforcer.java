@@ -37,13 +37,13 @@ import com.softwaremagico.tm.character.equipment.armours.ArmourSpecificationFact
 import com.softwaremagico.tm.character.equipment.shields.ShieldFactory;
 import com.softwaremagico.tm.character.equipment.weapons.AccessoryFactory;
 import com.softwaremagico.tm.character.equipment.weapons.AmmunitionFactory;
+import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
 import com.softwaremagico.tm.character.factions.FactionsFactory;
 import com.softwaremagico.tm.character.occultism.*;
 import com.softwaremagico.tm.character.planets.PlanetFactory;
 import com.softwaremagico.tm.character.races.RaceFactory;
+import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
 import com.softwaremagico.tm.character.values.SpecialValuesFactory;
-import com.softwaremagico.tm.json.factories.cache.SkillDefinitionsFactoryCacheLoader;
-import com.softwaremagico.tm.json.factories.cache.WeaponsFactoryCacheLoader;
 import com.softwaremagico.tm.log.MachineLog;
 
 import java.util.ArrayList;
@@ -202,12 +202,18 @@ public class ModuleLoaderEnforcer {
             }
         }));
         futures.add(CompletableFuture.runAsync(() -> {
-            final SkillDefinitionsFactoryCacheLoader skillDefinitionsFactoryCacheLoader = new SkillDefinitionsFactoryCacheLoader();
-            loadedElements.addAndGet(skillDefinitionsFactoryCacheLoader.load(language, moduleName));
+            try {
+                loadedElements.addAndGet(SkillsDefinitionsFactory.getInstance().getElements(language, moduleName).size());
+            } catch (InvalidXmlElementException e) {
+                MachineLog.errorMessage(ModuleLoaderEnforcer.class.getName(), e);
+            }
         }));
         futures.add(CompletableFuture.runAsync(() -> {
-            final WeaponsFactoryCacheLoader weaponsFactoryCacheLoader = new WeaponsFactoryCacheLoader();
-            loadedElements.addAndGet(weaponsFactoryCacheLoader.load(language, moduleName));
+            try {
+                loadedElements.addAndGet(WeaponFactory.getInstance().getElements(language, moduleName).size());
+            } catch (InvalidXmlElementException e) {
+                MachineLog.errorMessage(ModuleLoaderEnforcer.class.getName(), e);
+            }
         }));
         CompletableFuture.allOf(futures.toArray(new CompletableFuture[0])).join();
         futures = new ArrayList<>();

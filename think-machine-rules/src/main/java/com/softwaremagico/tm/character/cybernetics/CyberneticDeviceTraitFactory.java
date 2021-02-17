@@ -26,6 +26,7 @@ package com.softwaremagico.tm.character.cybernetics;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
+import com.softwaremagico.tm.json.factories.cache.FactoryCacheLoader;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.log.SuppressFBWarnings;
 
@@ -55,6 +56,11 @@ public class CyberneticDeviceTraitFactory extends XmlFactory<CyberneticDeviceTra
     @Override
     public String getTranslatorFile() {
         return TRANSLATOR_FILE;
+    }
+
+    @Override
+    public FactoryCacheLoader<CyberneticDeviceTrait> getFactoryCacheLoader() {
+        return null;
     }
 
     @Override

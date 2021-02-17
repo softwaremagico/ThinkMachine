@@ -25,34 +25,34 @@ package com.softwaremagico.tm.json.factories;
  */
 
 import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.character.equipment.weapons.Weapon;
-import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
+import com.softwaremagico.tm.character.planets.Planet;
+import com.softwaremagico.tm.character.planets.PlanetFactory;
 import com.softwaremagico.tm.json.factories.cache.FactoryCacheLoader;
 
 import java.sql.Timestamp;
 import java.util.Date;
 
-public class WeaponsFactoryElements extends FactoryElements<Weapon> {
+public class PlanetFactoryElements extends FactoryElements<Planet> {
 
-    public WeaponsFactoryElements() {
+    public PlanetFactoryElements() {
         super();
         creationTime = new Timestamp(new Date().getTime());
     }
 
-    public WeaponsFactoryElements(String language, String moduleName) throws InvalidXmlElementException {
+    public PlanetFactoryElements(String language, String moduleName) throws InvalidXmlElementException {
         this();
         creationTime = new Timestamp(new Date().getTime());
 
         //Skip Json generation in loop.
-        final WeaponFactory weaponFactory = new WeaponFactory() {
+        final PlanetFactory planetFactory = new PlanetFactory() {
             @Override
-            public FactoryCacheLoader<Weapon> getFactoryCacheLoader() {
+            public FactoryCacheLoader<Planet> getFactoryCacheLoader() {
                 return null;
             }
         };
 
-        setElements(weaponFactory.getElements(language, moduleName));
-        setVersion(weaponFactory.getVersion(moduleName));
-        setTotalElements(weaponFactory.getNumberOfElements(moduleName));
+        setElements(planetFactory.getElements(language, moduleName));
+        setVersion(planetFactory.getVersion(moduleName));
+        setTotalElements(planetFactory.getNumberOfElements(moduleName));
     }
 }

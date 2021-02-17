@@ -30,7 +30,12 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.softwaremagico.tm.Element;
 import com.softwaremagico.tm.InvalidXmlElementException;
+import com.softwaremagico.tm.XmlFactory;
+import com.softwaremagico.tm.character.benefices.BeneficeDefinitionFactory;
+import com.softwaremagico.tm.character.blessings.BlessingFactory;
+import com.softwaremagico.tm.character.equipment.armours.ArmourFactory;
 import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
+import com.softwaremagico.tm.character.planets.PlanetFactory;
 import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
 import com.softwaremagico.tm.file.PathManager;
 import com.softwaremagico.tm.file.modules.ModuleManager;
@@ -66,9 +71,27 @@ public abstract class FactoryCacheLoader<E extends Element<E>> {
         for (final String moduleName : ModuleManager.getAvailableModules()) {
             weaponsFactoryCacheLoader.save(WeaponFactory.class, moduleName, WeaponFactory.getInstance().getTranslatorFile());
         }
+        final ArmourFactoryCacheLoader armourFactoryCacheLoader = new ArmourFactoryCacheLoader();
+        for (final String moduleName : ModuleManager.getAvailableModules()) {
+            armourFactoryCacheLoader.save(ArmourFactory.class, moduleName, ArmourFactory.getInstance().getTranslatorFile());
+        }
         final SkillDefinitionsFactoryCacheLoader skillDefinitionsFactoryCacheLoader = new SkillDefinitionsFactoryCacheLoader();
         for (final String moduleName : ModuleManager.getAvailableModules()) {
             skillDefinitionsFactoryCacheLoader.save(SkillsDefinitionsFactory.class, moduleName, SkillsDefinitionsFactory.getInstance().getTranslatorFile());
+        }
+        final BlessingFactoryCacheLoader blessingFactoryCacheLoader = new BlessingFactoryCacheLoader();
+        for (final String moduleName : ModuleManager.getAvailableModules()) {
+            blessingFactoryCacheLoader.save(BlessingFactory.class, moduleName, BlessingFactory.getInstance().getTranslatorFile());
+        }
+        final BeneficeDefinitionFactoryCacheLoader beneficeDefinitionFactoryCacheLoader = new BeneficeDefinitionFactoryCacheLoader();
+        for (final String moduleName : ModuleManager.getAvailableModules()) {
+            beneficeDefinitionFactoryCacheLoader.save(BeneficeDefinitionFactory.class, moduleName,
+                    BeneficeDefinitionFactory.getInstance().getTranslatorFile());
+        }
+        final PlanetFactoryCacheLoader planetFactoryCacheLoader = new PlanetFactoryCacheLoader();
+        for (final String moduleName : ModuleManager.getAvailableModules()) {
+            planetFactoryCacheLoader.save(PlanetFactory.class, moduleName,
+                    PlanetFactory.getInstance().getTranslatorFile());
         }
     }
 
@@ -83,7 +106,7 @@ public abstract class FactoryCacheLoader<E extends Element<E>> {
         logger.setLevel(Level.OFF);
     }
 
-    protected static String getJsonContent(String moduleName, String language, String file) {
+    protected static String getJsonContent(String moduleName, String language, String file) throws InvalidCacheFile {
         return readFile(getPath(moduleName, language, file));
     }
 
@@ -95,7 +118,7 @@ public abstract class FactoryCacheLoader<E extends Element<E>> {
         return PathManager.getModulePath(moduleName) + GSON_TEMPORAL_FOLDER + "/" + language + "/" + file;
     }
 
-    private static String readFile(String filePath) {
+    private static String readFile(String filePath) throws InvalidCacheFile {
         try {
             URL resource;
             if (FactoryCacheLoader.class.getClassLoader().getResource(filePath) != null) {
@@ -106,7 +129,9 @@ public abstract class FactoryCacheLoader<E extends Element<E>> {
             }
             MachineLog.debug(FactoryCacheLoader.class.getName(), "Found json factory '" + filePath + "' at '" + resource + "'.");
             final StringBuilder resultStringBuilder = new StringBuilder();
-            assert resource != null;
+            if (resource == null) {
+                throw new InvalidCacheFile("Resource not found on '" + filePath + "' is invalid.");
+            }
             try (BufferedReader read = new BufferedReader(new InputStreamReader(resource.openStream(), StandardCharsets.UTF_8.name()))) {
                 String line;
                 while ((line = read.readLine()) != null) {
@@ -115,7 +140,7 @@ public abstract class FactoryCacheLoader<E extends Element<E>> {
             }
             return resultStringBuilder.toString();
         } catch (NullPointerException | IOException e) {
-            MachineLog.errorMessage(FactoryCacheLoader.class.getName(), e);
+            //Do nothing.
         }
         return null;
     }
@@ -124,7 +149,10 @@ public abstract class FactoryCacheLoader<E extends Element<E>> {
 
     protected abstract FactoryElements<E> getFactoryElements(String moduleName, String language) throws InvalidXmlElementException;
 
-    public FactoryElements<E> load(Class<?> factoryClass, Class<?> factoryElementsClass, String language, String moduleName) {
+    public abstract List<E> load(String language, String moduleName);
+
+    public <X extends XmlFactory<E>, F extends FactoryElements<E>> FactoryElements<E> load(Class<X> factoryClass, Class<F> factoryElementsClass,
+                                                                                           String language, String moduleName) throws InvalidCacheFile {
         final Gson gson = initGsonBuilder(language, moduleName).create();
         return gson.fromJson(getJsonContent(moduleName, language, getFileName(factoryClass)),
                 (Type) factoryElementsClass);
@@ -143,7 +171,7 @@ public abstract class FactoryCacheLoader<E extends Element<E>> {
     private void saveFile(String jsonCode, Class<?> factoryClass, String moduleName, String language) {
         //Stores it on target folder. Ant will move it later.
         final Path source = Paths.get(FactoryCacheLoader.class.getResource("/").getPath());
-        final Path gsonFolder = Paths.get(source.toAbsolutePath() + "/" + moduleName + GSON_TEMPORAL_FOLDER + "/" + language + "/");
+        final Path gsonFolder = Paths.get(source.toAbsolutePath() + "/" + moduleName + "/" + GSON_TEMPORAL_FOLDER + "/" + language + "/");
         try {
             Files.createDirectories(gsonFolder);
             final Path gsonFile = gsonFolder.resolve(getFileName(factoryClass));

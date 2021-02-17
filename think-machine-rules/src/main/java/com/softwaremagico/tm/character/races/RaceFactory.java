@@ -27,6 +27,7 @@ package com.softwaremagico.tm.character.races;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
+import com.softwaremagico.tm.json.factories.cache.FactoryCacheLoader;
 import com.softwaremagico.tm.language.ITranslator;
 
 public class RaceFactory extends XmlFactory<Race> {
@@ -53,6 +54,11 @@ public class RaceFactory extends XmlFactory<Race> {
 	@Override
     public String getTranslatorFile() {
 		return TRANSLATOR_FILE;
+	}
+
+	@Override
+	public FactoryCacheLoader<Race> getFactoryCacheLoader() {
+		return null;
 	}
 
 	@Override

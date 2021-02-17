@@ -26,6 +26,7 @@ package com.softwaremagico.tm.character.occultism;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
+import com.softwaremagico.tm.json.factories.cache.FactoryCacheLoader;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.log.MachineXmlReaderLog;
 
@@ -59,6 +60,11 @@ public class OccultismTypeFactory extends XmlFactory<OccultismType> {
     @Override
     public String getTranslatorFile() {
         return TRANSLATOR_FILE;
+    }
+
+    @Override
+    public FactoryCacheLoader<OccultismType> getFactoryCacheLoader() {
+        return null;
     }
 
     public static OccultismType getPsi(String language, String moduleName) {

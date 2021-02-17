@@ -2,9 +2,9 @@ package com.softwaremagico.tm.json;
 
 /*-
  * #%L
- * Think Machine (Core)
+ * Think Machine (Rules)
  * %%
- * Copyright (C) 2017 - 2018 Softwaremagico
+ * Copyright (C) 2017 - 2019 Softwaremagico
  * %%
  * This software is designed by Jorge Hortelano Otero. Jorge Hortelano Otero
  * <softwaremagico@gmail.com> Valencia (Spain).
@@ -24,29 +24,30 @@ package com.softwaremagico.tm.json;
  * #L%
  */
 
-import java.lang.reflect.Type;
-
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
 import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.character.equipment.shields.Shield;
-import com.softwaremagico.tm.character.equipment.shields.ShieldFactory;
+import com.softwaremagico.tm.character.occultism.OccultismType;
+import com.softwaremagico.tm.character.occultism.OccultismTypeFactory;
 import com.softwaremagico.tm.log.MachineLog;
 
-public class ShieldAdapter extends ElementAdapter<Shield> {
+import java.lang.reflect.Type;
 
-	public ShieldAdapter(String language, String moduleName) {
+public class OccultismTypeAdapter extends ElementAdapter<OccultismType> {
+
+	public OccultismTypeAdapter(String language, String moduleName) {
 		super(language, moduleName);
 	}
 
 	@Override
-	public Shield deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
+	public OccultismType deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
 		try {
-			return ShieldFactory.getInstance().getElement(super.getElementId(jsonElement), super.getLanguage(), super.getModuleName());
+			return OccultismTypeFactory.getInstance().getElement(super.getElementId(jsonElement), super.getLanguage(), super.getModuleName());
 		} catch (InvalidXmlElementException e) {
 			MachineLog.errorMessage(this.getClass().getName(), e);
 			return null;
 		}
 	}
+
 }

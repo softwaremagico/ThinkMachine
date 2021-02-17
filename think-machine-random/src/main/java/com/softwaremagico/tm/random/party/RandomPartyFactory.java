@@ -24,18 +24,15 @@ package com.softwaremagico.tm.random.party;
  * #L%
  */
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-import java.util.StringTokenizer;
-
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
+import com.softwaremagico.tm.json.factories.cache.FactoryCacheLoader;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.random.profiles.RandomProfileFactory;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
 import com.softwaremagico.tm.random.selectors.RandomPreferenceUtils;
+
+import java.util.*;
 
 public class RandomPartyFactory extends XmlFactory<RandomParty> {
 	private static final String TRANSLATOR_FILE = "parties.xml";
@@ -62,6 +59,11 @@ public class RandomPartyFactory extends XmlFactory<RandomParty> {
 
 	public static RandomPartyFactory getInstance() {
 		return RandomPartyFactoryInit.INSTANCE;
+	}
+
+	@Override
+	public FactoryCacheLoader<RandomParty> getFactoryCacheLoader() {
+		return null;
 	}
 
 	@Override

@@ -34,6 +34,7 @@ import com.softwaremagico.tm.character.blessings.Blessing;
 import com.softwaremagico.tm.character.blessings.BlessingFactory;
 import com.softwaremagico.tm.character.races.Race;
 import com.softwaremagico.tm.character.races.RaceFactory;
+import com.softwaremagico.tm.json.factories.cache.FactoryCacheLoader;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.log.MachineXmlReaderLog;
 import com.softwaremagico.tm.log.SuppressFBWarnings;
@@ -70,6 +71,11 @@ public class FactionsFactory extends XmlFactory<Faction> {
 
 	public static FactionsFactory getInstance() {
 		return FactionsFactoryInit.INSTANCE;
+	}
+
+	@Override
+	public FactoryCacheLoader<Faction> getFactoryCacheLoader() {
+		return null;
 	}
 
 	@Override

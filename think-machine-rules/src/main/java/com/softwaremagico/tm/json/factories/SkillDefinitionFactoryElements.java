@@ -27,6 +27,7 @@ package com.softwaremagico.tm.json.factories;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.skills.SkillDefinition;
 import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
+import com.softwaremagico.tm.json.factories.cache.FactoryCacheLoader;
 
 import java.sql.Timestamp;
 import java.util.Date;
@@ -41,8 +42,17 @@ public class SkillDefinitionFactoryElements extends FactoryElements<SkillDefinit
     public SkillDefinitionFactoryElements(String language, String moduleName) throws InvalidXmlElementException {
         this();
         creationTime = new Timestamp(new Date().getTime());
-        setElements(SkillsDefinitionsFactory.getInstance().getElements(language, moduleName));
-        setVersion(SkillsDefinitionsFactory.getInstance().getVersion(moduleName));
-        setTotalElements(SkillsDefinitionsFactory.getInstance().getNumberOfElements(moduleName));
+
+        //Skip Json generation in loop.
+        final SkillsDefinitionsFactory skillsDefinitionsFactory = new SkillsDefinitionsFactory() {
+            @Override
+            public FactoryCacheLoader<SkillDefinition> getFactoryCacheLoader() {
+                return null;
+            }
+        };
+
+        setElements(skillsDefinitionsFactory.getElements(language, moduleName));
+        setVersion(skillsDefinitionsFactory.getVersion(moduleName));
+        setTotalElements(skillsDefinitionsFactory.getNumberOfElements(moduleName));
     }
 }

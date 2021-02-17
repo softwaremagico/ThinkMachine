@@ -28,6 +28,7 @@ import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
 import com.softwaremagico.tm.character.factions.Faction;
 import com.softwaremagico.tm.character.factions.FactionsFactory;
+import com.softwaremagico.tm.json.factories.cache.FactoryCacheLoader;
 import com.softwaremagico.tm.language.ITranslator;
 
 import java.util.Set;
@@ -43,6 +44,11 @@ public class PlanetFactory extends XmlFactory<Planet> {
 
     public static PlanetFactory getInstance() {
         return PlanetFactoryInit.INSTANCE;
+    }
+
+    @Override
+    public FactoryCacheLoader<Planet> getFactoryCacheLoader() {
+        return null;
     }
 
     @Override

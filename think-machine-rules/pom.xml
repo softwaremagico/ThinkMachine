@@ -70,8 +70,9 @@
                 <version>${maven-antrun-plugin.version}</version>
                 <executions>
                     <execution>
-                        <phase>process-test-resources</phase>
+                        <phase>compile</phase>
                         <configuration>
+                            <failOnError>false</failOnError>
                             <target>
                                 <!-- delete old tmp folder -->
                                 <delete dir="${gson.cache.folder}" failonerror="false" includeemptydirs="true"/>

@@ -34,6 +34,7 @@ import com.softwaremagico.tm.character.factions.Faction;
 import com.softwaremagico.tm.character.factions.FactionsFactory;
 import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
 import com.softwaremagico.tm.character.values.IValue;
+import com.softwaremagico.tm.json.factories.cache.FactoryCacheLoader;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.log.MachineXmlReaderLog;
 import com.softwaremagico.tm.log.SuppressFBWarnings;
@@ -184,6 +185,11 @@ public class OccultismPathFactory extends XmlFactory<OccultismPath> {
     @Override
     public String getTranslatorFile() {
         return TRANSLATOR_FILE;
+    }
+
+    @Override
+    public FactoryCacheLoader<OccultismPath> getFactoryCacheLoader() {
+        return null;
     }
 
     public OccultismPath getOccultismPath(OccultismPower power) {

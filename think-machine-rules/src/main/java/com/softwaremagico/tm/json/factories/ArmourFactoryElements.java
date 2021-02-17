@@ -25,34 +25,34 @@ package com.softwaremagico.tm.json.factories;
  */
 
 import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.character.equipment.weapons.Weapon;
-import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
+import com.softwaremagico.tm.character.equipment.armours.Armour;
+import com.softwaremagico.tm.character.equipment.armours.ArmourFactory;
 import com.softwaremagico.tm.json.factories.cache.FactoryCacheLoader;
 
 import java.sql.Timestamp;
 import java.util.Date;
 
-public class WeaponsFactoryElements extends FactoryElements<Weapon> {
+public class ArmourFactoryElements extends FactoryElements<Armour> {
 
-    public WeaponsFactoryElements() {
+    public ArmourFactoryElements() {
         super();
         creationTime = new Timestamp(new Date().getTime());
     }
 
-    public WeaponsFactoryElements(String language, String moduleName) throws InvalidXmlElementException {
+    public ArmourFactoryElements(String language, String moduleName) throws InvalidXmlElementException {
         this();
         creationTime = new Timestamp(new Date().getTime());
 
         //Skip Json generation in loop.
-        final WeaponFactory weaponFactory = new WeaponFactory() {
+        final ArmourFactory armourFactory = new ArmourFactory() {
             @Override
-            public FactoryCacheLoader<Weapon> getFactoryCacheLoader() {
+            public FactoryCacheLoader<Armour> getFactoryCacheLoader() {
                 return null;
             }
         };
 
-        setElements(weaponFactory.getElements(language, moduleName));
-        setVersion(weaponFactory.getVersion(moduleName));
-        setTotalElements(weaponFactory.getNumberOfElements(moduleName));
+        setElements(armourFactory.getElements(language, moduleName));
+        setVersion(armourFactory.getVersion(moduleName));
+        setTotalElements(armourFactory.getNumberOfElements(moduleName));
     }
 }

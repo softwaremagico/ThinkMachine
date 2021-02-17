@@ -26,6 +26,7 @@ package com.softwaremagico.tm.character.equipment.weapons;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
+import com.softwaremagico.tm.json.factories.cache.FactoryCacheLoader;
 import com.softwaremagico.tm.language.ITranslator;
 
 public class AccessoryFactory extends XmlFactory<Accessory> {
@@ -49,5 +50,10 @@ public class AccessoryFactory extends XmlFactory<Accessory> {
                                       String language, String moduleName)
             throws InvalidXmlElementException {
         return new Accessory(accessoryId, name, description, language, moduleName);
+    }
+
+    @Override
+    public FactoryCacheLoader<Accessory> getFactoryCacheLoader() {
+        return null;
     }
 }

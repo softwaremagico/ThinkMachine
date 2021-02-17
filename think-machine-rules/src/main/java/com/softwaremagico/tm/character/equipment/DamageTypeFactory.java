@@ -26,6 +26,7 @@ package com.softwaremagico.tm.character.equipment;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
+import com.softwaremagico.tm.json.factories.cache.FactoryCacheLoader;
 import com.softwaremagico.tm.language.ITranslator;
 
 public class DamageTypeFactory extends XmlFactory<DamageType> {
@@ -42,6 +43,11 @@ public class DamageTypeFactory extends XmlFactory<DamageType> {
     @Override
     public String getTranslatorFile() {
         return TRANSLATOR_FILE;
+    }
+
+    @Override
+    public FactoryCacheLoader<DamageType> getFactoryCacheLoader() {
+        return null;
     }
 
     @Override

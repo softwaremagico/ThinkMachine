@@ -25,11 +25,20 @@ package com.softwaremagico.tm.json;
  */
 
 import com.softwaremagico.tm.InvalidXmlElementException;
+import com.softwaremagico.tm.character.benefices.BeneficeDefinition;
+import com.softwaremagico.tm.character.benefices.BeneficeDefinitionFactory;
+import com.softwaremagico.tm.character.blessings.Blessing;
+import com.softwaremagico.tm.character.blessings.BlessingFactory;
+import com.softwaremagico.tm.character.equipment.armours.Armour;
+import com.softwaremagico.tm.character.equipment.armours.ArmourFactory;
+import com.softwaremagico.tm.character.equipment.weapons.Weapon;
 import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
+import com.softwaremagico.tm.character.planets.Planet;
+import com.softwaremagico.tm.character.planets.PlanetFactory;
+import com.softwaremagico.tm.character.skills.SkillDefinition;
 import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
 import com.softwaremagico.tm.file.PathManager;
-import com.softwaremagico.tm.json.factories.cache.SkillDefinitionsFactoryCacheLoader;
-import com.softwaremagico.tm.json.factories.cache.WeaponsFactoryCacheLoader;
+import com.softwaremagico.tm.json.factories.cache.*;
 import org.junit.Assert;
 import org.testng.annotations.Test;
 
@@ -39,60 +48,209 @@ import java.time.Instant;
 @Test(groups = {"jsonCache"})
 public class JsonCacheLoaderTests {
     private static final String LANGUAGE = "es";
+    private static final int ITERATIONS = 5;
 
     @Test(enabled = false)
     public void loadWeaponsCache() {
         WeaponsFactoryCacheLoader weaponsFactoryCacheLoader = new WeaponsFactoryCacheLoader();
-        Assert.assertTrue(weaponsFactoryCacheLoader.load(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER) > 0);
+        Assert.assertTrue(weaponsFactoryCacheLoader.load(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).size() > 0);
     }
 
-    @Test(enabled = true)
+    @Test()
     public void checkWeaponsImprovement() throws InvalidXmlElementException {
-        //Force Json generation.
+        //Skip Json generation.
+        WeaponFactory weaponFactory = new WeaponFactory() {
+            @Override
+            public FactoryCacheLoader<Weapon> getFactoryCacheLoader() {
+                return null;
+            }
+        };
+
 
         Instant start = Instant.now();
-        for (int i = 0; i < 50; i++) {
-            WeaponFactory.getInstance().getElements(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
-            WeaponFactory.getInstance().removeData();
+        for (int i = 0; i < ITERATIONS; i++) {
+            weaponFactory.getElements(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+            weaponFactory.removeData();
         }
         Instant end = Instant.now();
         Duration xmlMethod = Duration.between(start, end);
 
         start = Instant.now();
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < ITERATIONS; i++) {
             WeaponsFactoryCacheLoader weaponsFactoryCacheLoader = new WeaponsFactoryCacheLoader();
-            Assert.assertTrue(weaponsFactoryCacheLoader.load(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER) > 0);
+            Assert.assertTrue(weaponsFactoryCacheLoader.load(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).size() > 0);
             WeaponFactory.getInstance().removeData();
         }
         end = Instant.now();
         Duration jsonMethod = Duration.between(start, end);
-        System.out.println("Weapons [Xml: " + xmlMethod + ", Json: " + jsonMethod+ " ]");
+        Assert.assertTrue(jsonMethod.getNano() * 10 < xmlMethod.getNano());
+        //System.out.println("Weapons [Xml: " + xmlMethod + ", Json: " + jsonMethod + " ]");
 
     }
 
-    @Test(enabled = true)
+    @Test()
     public void checkSkillsImprovement() throws InvalidXmlElementException {
         //Force Json generation.
 
+        SkillsDefinitionsFactory skillsDefinitionsFactory = new SkillsDefinitionsFactory() {
+            @Override
+            public FactoryCacheLoader<SkillDefinition> getFactoryCacheLoader() {
+                return null;
+            }
+        };
+
         Instant start = Instant.now();
-        for (int i = 0; i < 50; i++) {
-            SkillsDefinitionsFactory.getInstance().getElements(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
-            SkillsDefinitionsFactory.getInstance().removeData();
+        for (int i = 0; i < ITERATIONS; i++) {
+            skillsDefinitionsFactory.getElements(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+            skillsDefinitionsFactory.removeData();
         }
         Instant end = Instant.now();
         Duration xmlMethod = Duration.between(start, end);
 
         start = Instant.now();
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < ITERATIONS; i++) {
             SkillDefinitionsFactoryCacheLoader skillDefinitionsFactoryCacheLoader = new SkillDefinitionsFactoryCacheLoader();
-            Assert.assertTrue(skillDefinitionsFactoryCacheLoader.load(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER) > 0);
+            Assert.assertTrue(skillDefinitionsFactoryCacheLoader.load(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).size() > 0);
             SkillsDefinitionsFactory.getInstance().removeData();
         }
         end = Instant.now();
         Duration jsonMethod = Duration.between(start, end);
-        //System.out.println("Skills [Xml: " + xmlMethod + ", Json: " + jsonMethod+ " ]");
+
+        //Check speed is at least 10x
+        Assert.assertTrue(jsonMethod.getNano() * 10 < xmlMethod.getNano());
+        //System.out.println("Skills [Xml: " + xmlMethod + ", Json: " + jsonMethod + " ]");
 
     }
 
+    @Test()
+    public void checkBlessingsImprovement() throws InvalidXmlElementException {
+        //Force Json generation.
 
+        BlessingFactory blessingFactory = new BlessingFactory() {
+            @Override
+            public FactoryCacheLoader<Blessing> getFactoryCacheLoader() {
+                return null;
+            }
+        };
+
+        Instant start = Instant.now();
+        for (int i = 0; i < ITERATIONS; i++) {
+            blessingFactory.getElements(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+            blessingFactory.removeData();
+        }
+        Instant end = Instant.now();
+        Duration xmlMethod = Duration.between(start, end);
+
+        start = Instant.now();
+        for (int i = 0; i < ITERATIONS; i++) {
+            BlessingFactoryCacheLoader blessingFactoryCacheLoader = new BlessingFactoryCacheLoader();
+            Assert.assertTrue(blessingFactoryCacheLoader.load(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).size() > 0);
+            BlessingFactory.getInstance().removeData();
+        }
+        end = Instant.now();
+        Duration jsonMethod = Duration.between(start, end);
+
+        //Check speed is at least 10x
+        Assert.assertTrue(jsonMethod.getNano() * 10 < xmlMethod.getNano());
+        //System.out.println("Skills [Xml: " + xmlMethod + ", Json: " + jsonMethod + " ]");
+    }
+
+    @Test()
+    public void checkBeneficesImprovement() throws InvalidXmlElementException {
+        //Force Json generation.
+
+        BeneficeDefinitionFactory beneficeFactory = new BeneficeDefinitionFactory() {
+            @Override
+            public FactoryCacheLoader<BeneficeDefinition> getFactoryCacheLoader() {
+                return null;
+            }
+        };
+
+        Instant start = Instant.now();
+        for (int i = 0; i < ITERATIONS; i++) {
+            beneficeFactory.getElements(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+            beneficeFactory.removeData();
+        }
+        Instant end = Instant.now();
+        Duration xmlMethod = Duration.between(start, end);
+
+        start = Instant.now();
+        for (int i = 0; i < ITERATIONS; i++) {
+            BeneficeDefinitionFactoryCacheLoader beneficeDefinitionFactoryCacheLoader = new BeneficeDefinitionFactoryCacheLoader();
+            Assert.assertTrue(beneficeDefinitionFactoryCacheLoader.load(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).size() > 0);
+            BeneficeDefinitionFactory.getInstance().removeData();
+        }
+        end = Instant.now();
+        Duration jsonMethod = Duration.between(start, end);
+
+        //Check speed is at least 10x
+        //System.out.println("Benefices [Xml: " + xmlMethod + ", Json: " + jsonMethod + " ]");
+        Assert.assertTrue(jsonMethod.getNano() * 5 < xmlMethod.getNano());
+    }
+
+    @Test()
+    public void checkArmoursImprovement() throws InvalidXmlElementException {
+        //Force Json generation.
+
+        ArmourFactory armourFactory = new ArmourFactory() {
+            @Override
+            public FactoryCacheLoader<Armour> getFactoryCacheLoader() {
+                return null;
+            }
+        };
+
+        Instant start = Instant.now();
+        for (int i = 0; i < ITERATIONS; i++) {
+            armourFactory.getElements(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+            armourFactory.removeData();
+        }
+        Instant end = Instant.now();
+        Duration xmlMethod = Duration.between(start, end);
+
+        start = Instant.now();
+        for (int i = 0; i < ITERATIONS; i++) {
+            ArmourFactoryCacheLoader armourFactoryCacheLoader = new ArmourFactoryCacheLoader();
+            Assert.assertTrue(armourFactoryCacheLoader.load(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).size() > 0);
+            ArmourFactory.getInstance().removeData();
+        }
+        end = Instant.now();
+        Duration jsonMethod = Duration.between(start, end);
+
+        //Check speed is at least 10x
+        //System.out.println("Armour [Xml: " + xmlMethod + ", Json: " + jsonMethod + " ]");
+        Assert.assertTrue(jsonMethod.getNano() * 2 < xmlMethod.getNano());
+    }
+
+    @Test()
+    public void checkPlanetsImprovement() throws InvalidXmlElementException {
+        //Force Json generation.
+
+        PlanetFactory planetFactory = new PlanetFactory() {
+            @Override
+            public FactoryCacheLoader<Planet> getFactoryCacheLoader() {
+                return null;
+            }
+        };
+
+        Instant start = Instant.now();
+        for (int i = 0; i < ITERATIONS; i++) {
+            planetFactory.getElements(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+            planetFactory.removeData();
+        }
+        Instant end = Instant.now();
+        Duration xmlMethod = Duration.between(start, end);
+
+        start = Instant.now();
+        for (int i = 0; i < ITERATIONS; i++) {
+            PlanetFactoryCacheLoader planetFactoryCacheLoader = new PlanetFactoryCacheLoader();
+            Assert.assertTrue(planetFactoryCacheLoader.load(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).size() > 0);
+            PlanetFactory.getInstance().removeData();
+        }
+        end = Instant.now();
+        Duration jsonMethod = Duration.between(start, end);
+
+        //Check speed is at least 10x
+        //System.out.println("Planets [Xml: " + xmlMethod + ", Json: " + jsonMethod + " ]");
+        Assert.assertTrue(jsonMethod.getNano() * 2 < xmlMethod.getNano());
+    }
 }
