@@ -59,6 +59,7 @@ public class WeaponFactory extends XmlFactory<Weapon> {
     private static final String TYPE = "type";
     private static final String SPECIAL = "special";
     private static final String DAMAGE_TYPE = "damageType";
+    private static final String PRIMARY_DAMAGE = "primaryDamage";
 
     private static final String AMMUNITION = "ammunition";
     private static final String ACCESSORIES = "others";
@@ -94,10 +95,10 @@ public class WeaponFactory extends XmlFactory<Weapon> {
                                    String language, String moduleName)
             throws InvalidXmlElementException {
 
-        CharacteristicDefinition characteristicDefintion;
+        CharacteristicDefinition characteristicDefinition;
         try {
             final String characteristicName = translator.getNodeValue(weaponId, CHARACTERISTIC);
-            characteristicDefintion = CharacteristicsDefinitionFactory.getInstance().getElement(characteristicName,
+            characteristicDefinition = CharacteristicsDefinitionFactory.getInstance().getElement(characteristicName,
                     language, moduleName);
         } catch (Exception e) {
             throw new InvalidWeaponException("Invalid characteristic name in weapon '" + weaponId + "'.");
@@ -129,36 +130,39 @@ public class WeaponFactory extends XmlFactory<Weapon> {
 
         String goal = "";
         try {
-            goal = translator.getNodeValue(weaponId, GOAL);
+            goal = translator.getNodeValue(weaponId, PRIMARY_DAMAGE, GOAL);
         } catch (Exception e) {
             // Not mandatory
         }
 
         String damage;
         try {
-            damage = translator.getNodeValue(weaponId, DAMAGE);
+            damage = translator.getNodeValue(weaponId, PRIMARY_DAMAGE, DAMAGE);
+            if (damage == null) {
+                throw new InvalidWeaponException("Invalid damage null value in weapon '" + weaponId + "'.");
+            }
         } catch (Exception e) {
-            throw new InvalidWeaponException("Invalid damage value in weapon '" + weaponId + "'.");
+            throw new InvalidWeaponException("Invalid damage value in weapon '" + weaponId + "'.", e);
         }
 
         int strength;
         try {
-            final String strengthValue = translator.getNodeValue(weaponId, STRENGTH);
+            final String strengthValue = translator.getNodeValue(weaponId, PRIMARY_DAMAGE, STRENGTH);
             strength = Integer.parseInt(strengthValue);
         } catch (Exception e) {
-            throw new InvalidWeaponException("Invalid strength value in weapon '" + weaponId + "'.");
+            throw new InvalidWeaponException("Invalid strength value in weapon '" + weaponId + "'.", e);
         }
 
         String range = null;
         try {
-            range = translator.getNodeValue(weaponId, RANGE);
+            range = translator.getNodeValue(weaponId, PRIMARY_DAMAGE, RANGE);
         } catch (Exception e) {
             // Not mandatory.
         }
 
         Integer shots = null;
         try {
-            final String shotsValue = translator.getNodeValue(weaponId, SHOTS);
+            final String shotsValue = translator.getNodeValue(weaponId, PRIMARY_DAMAGE, SHOTS);
             shots = Integer.parseInt(shotsValue);
         } catch (Exception e) {
             // Not mandatory.
@@ -166,7 +170,7 @@ public class WeaponFactory extends XmlFactory<Weapon> {
 
         String rate = "";
         try {
-            rate = translator.getNodeValue(weaponId, RATE);
+            rate = translator.getNodeValue(weaponId, PRIMARY_DAMAGE, RATE);
         } catch (Exception e) {
             // Not mandatory.
         }
@@ -175,7 +179,7 @@ public class WeaponFactory extends XmlFactory<Weapon> {
         try {
             size = Size.get(translator.getNodeValue(weaponId, SIZE));
         } catch (Exception e) {
-            throw new InvalidWeaponException("Invalid size value in weapon '" + weaponId + "'.");
+            throw new InvalidWeaponException("Invalid size value in weapon '" + weaponId + "'.", e);
         }
 
         float cost;
@@ -251,7 +255,7 @@ public class WeaponFactory extends XmlFactory<Weapon> {
             }
         }
 
-        return new Weapon(weaponId, name, description, language, moduleName, type, goal, characteristicDefintion, skill, damage,
+        return new Weapon(weaponId, name, description, language, moduleName, type, goal, characteristicDefinition, skill, damage,
                 strength, range, shots, rate, techLevel, techLevelSpecial, size, special, damageOfWeapon, cost,
                 ammunition, accessories);
     }
