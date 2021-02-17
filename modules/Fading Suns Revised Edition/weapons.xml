@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <weapons>
 	<version>1</version>
-	<totalElements>189</totalElements>
+	<totalElements>192</totalElements>
 	<arbata>
 		<name>
 			<en>Arbat’a (Crystal Sword)</en>
@@ -29,6 +29,10 @@
 			<en>Axe</en>
 			<es>Hacha</es>
 		</name>
+		<description>
+			<en>This could be a battleaxe or a simple woodcutter’s tool (DMG 6 for TL2+). This is the kind of weapon often snatched up by peasants trying to defend their farms from strangers.</en>
+			<es>Podría ser un hacha de batalla o una sencilla herramienta de un leñador (Daño 6 para un NT2+). Esta es la clase de arma que a menudo emplean los campesinos que tratan de defender sus granjas de los extraños.</es>
+		</description>
 		<characteristic>dexterity</characteristic>
 		<skill>melee</skill>
 		<type>MELEE</type>
@@ -44,6 +48,10 @@
 			<en>Body Shield</en>
 			<es>Escudo de Cuerpo</es>
 		</name>
+		<description>
+			<en>A large shield designed to protect more of the body than a buckler, providing +1d armor to the wielder. It is often used in tandem with another melee weapon, or sometimes with a handgun. TL1 versions (hide and round shields) provide an additional +1d armor effect dice. TL2 versions are usually larger (tower or kite shields), providing a final +1d armor. TL4 versions use lightweight plastics, adding the Hard property, and can therefore resist slug guns. When used to bash an opponent the shield does not provide the armor benefit for the round but does DMG3 at TL1 and DMG4 at TL2+.</en> 
+			<es>Un gran escudo diseñado para proteger más cuerpo que una rodela, proporcionando +1d de armadura al portador. A menudo se utiliza junto a otra arma cuerpo a cuerpo, o a veces con una pistola. Las versiones de un NT1 (escudos de piel y redondos) proporcionan un dado de efecto de armadura adicional. Las versiones de un NT2 son, por lo general, más grandes (escudos de torre o ligeros) proporcionando un dado adicional de armadura perpetuo. Las versiones de un NT4 emplean plásticos ligeros en su fabricación, añadiendo la propiedad Duro, con lo que pueden resistir ataques de armas de fuego. Cuando se usa para golpear a un oponente el escudo no proporcionará su beneficio a la armadura durante esa ronda, pero inflige un Daño de 3 en un NT1 y un Daño de 4 en un NT2+.</es>
+		</description>
 		<characteristic>dexterity</characteristic>
 		<skill>melee</skill>
 		<type>MELEE_SHIELD</type>
@@ -61,6 +69,10 @@
 			<en>Body Shield</en>
 			<es>Escudo de Cuerpo</es>
 		</name>
+		<description>
+			<en>A large shield designed to protect more of the body than a buckler, providing +1d armor to the wielder. It is often used in tandem with another melee weapon, or sometimes with a handgun. TL1 versions (hide and round shields) provide an additional +1d armor effect dice. TL2 versions are usually larger (tower or kite shields), providing a final +1d armor. TL4 versions use lightweight plastics, adding the Hard property, and can therefore resist slug guns. When used to bash an opponent the shield does not provide the armor benefit for the round but does DMG3 at TL1 and DMG4 at TL2+.</en> 
+			<es>Un gran escudo diseñado para proteger más cuerpo que una rodela, proporcionando +1d de armadura al portador. A menudo se utiliza junto a otra arma cuerpo a cuerpo, o a veces con una pistola. Las versiones de un NT1 (escudos de piel y redondos) proporcionan un dado de efecto de armadura adicional. Las versiones de un NT2 son, por lo general, más grandes (escudos de torre o ligeros) proporcionando un dado adicional de armadura perpetuo. Las versiones de un NT4 emplean plásticos ligeros en su fabricación, añadiendo la propiedad Duro, con lo que pueden resistir ataques de armas de fuego. Cuando se usa para golpear a un oponente el escudo no proporcionará su beneficio a la armadura durante esa ronda, pero inflige un Daño de 3 en un NT1 y un Daño de 4 en un NT2+.</es>
+		</description>
 		<characteristic>dexterity</characteristic>
 		<skill>melee</skill>
 		<type>MELEE_SHIELD</type>
@@ -78,6 +90,10 @@
 			<en>Body Shield</en>
 			<es>Escudo de Cuerpo</es>
 		</name>
+		<description>
+			<en>A large shield designed to protect more of the body than a buckler, providing +1d armor to the wielder. It is often used in tandem with another melee weapon, or sometimes with a handgun. TL1 versions (hide and round shields) provide an additional +1d armor effect dice. TL2 versions are usually larger (tower or kite shields), providing a final +1d armor. TL4 versions use lightweight plastics, adding the Hard property, and can therefore resist slug guns. When used to bash an opponent the shield does not provide the armor benefit for the round but does DMG3 at TL1 and DMG4 at TL2+.</en> 
+			<es>Un gran escudo diseñado para proteger más cuerpo que una rodela, proporcionando +1d de armadura al portador. A menudo se utiliza junto a otra arma cuerpo a cuerpo, o a veces con una pistola. Las versiones de un NT1 (escudos de piel y redondos) proporcionan un dado de efecto de armadura adicional. Las versiones de un NT2 son, por lo general, más grandes (escudos de torre o ligeros) proporcionando un dado adicional de armadura perpetuo. Las versiones de un NT4 emplean plásticos ligeros en su fabricación, añadiendo la propiedad Duro, con lo que pueden resistir ataques de armas de fuego. Cuando se usa para golpear a un oponente el escudo no proporcionará su beneficio a la armadura durante esa ronda, pero inflige un Daño de 3 en un NT1 y un Daño de 4 en un NT2+.</es>
+		</description>
 		<characteristic>dexterity</characteristic>
 		<skill>melee</skill>
 		<type>MELEE_SHIELD</type>
@@ -95,6 +111,10 @@
 			<en>Buckler</en>
 			<es>Rodela</es>
 		</name>
+		<description>
+			<en>A small shield the size of a dinner plate, used in tandem with another melee weapon in close combat. This weapon is used to parry incoming blows, but can also be used to backhand a foe. The buckler provides +1d armor. Because of its small size it halves the off-hand penalty when used for protection when fighting. At TL4, plastic construction makes the buckler lighter.</en> 
+			<es>Un escudo pequeño del tamaño de un plato de comida, utilizado con otra arma cuerpo a cuerpo en combates de corta distancia. Este escudo se utiliza para parar golpes dirigidos hacia el portador, pero también puede utilizarse para propinar un revés a un enemigo. La rodela proporciona +1d de Armadura. Dado su pequeño tamaño sufre la mitad del penalizador por mano torpe cuando se usa para protegerse durante una pelea. En un NT4, los materiales plásticos empleados en su fabricación hacen que la rodela sea más ligera</es>
+		</description>
 		<characteristic>dexterity</characteristic>
 		<skill>melee</skill>
 		<type>MELEE_SHIELD</type>
@@ -111,6 +131,10 @@
 			<en>Cestus</en>
 			<es>Cestus</es>
 		</name>
+		<description>
+			<en>These metal knuckle covers give the wearer an edge in fist fights. Most are simple lumps of metal worn over the knuckles, but some are ornate designs with hooks, poison jets, and spikes. The spiked ones are especially popular among Bannockburn’s professional pugilists. The cestus adds to a characters unarmed damage.</en>
+			<es>Estos nudillos de metal conceden a su portador una ventaja en las peleas a puñetazos. La mayoría de los Cestus son simples trozos de metal que se colocan en los nudillos, pero algunos Cestus son diseños adornados con ganchos, inyectores de veneno, y pinchos. Los Cestus con pinchos son especialmente populares entre los pugilistas profesionales de Bannockburn</es> 
+		</description>
 		<characteristic>dexterity</characteristic>
 		<skill>melee</skill>
 		<type>MELEE</type>
@@ -121,11 +145,15 @@
 		<size>XS</size>
 		<cost>1</cost>
 	</cestus>
-	<club>
+	<club0>
 		<name>
 			<en>Club</en>
 			<es>Porra</es>
 		</name>
+		<description>
+			<en>Used by peasants and Zen masters alike, a club is an equal-opportunity weapon, because anyone can pick up a stick and beat someone with it. This could be a short tree branch found in the woods or a polished hate stick (DMG 3 for TL1+).</en>
+			<es>Utilizada por igual por los campesinos y por los maestros zen, una porra es un arma que iguala las condiciones en un combate, porque cualquiera puede coger un palo y golpear a alguien con él. Este palo podría ser una rama corta de un árbol que se puede encontrar en el bosque o un bate pulido (Daño 3 en un NT1+).</es>
+		</description>
 		<characteristic>dexterity</characteristic>
 		<skill>melee</skill>
 		<type>MELEE</type>
@@ -135,12 +163,35 @@
 		<strength>2</strength>
 		<size>L</size>
 		<cost>0.5</cost>
-	</club>
+	</club0>
+	<club1>
+		<name>
+			<en>Club</en>
+			<es>Porra</es>
+		</name>
+		<description>
+			<en>Used by peasants and Zen masters alike, a club is an equal-opportunity weapon, because anyone can pick up a stick and beat someone with it. This could be a short tree branch found in the woods or a polished hate stick (DMG 3 for TL1+).</en>
+			<es>Utilizada por igual por los campesinos y por los maestros zen, una porra es un arma que iguala las condiciones en un combate, porque cualquiera puede coger un palo y golpear a alguien con él. Este palo podría ser una rama corta de un árbol que se puede encontrar en el bosque o un bate pulido (Daño 3 en un NT1+).</es>
+		</description>
+		<characteristic>dexterity</characteristic>
+		<skill>melee</skill>
+		<type>MELEE</type>
+		<techLevel>1</techLevel>
+		<goal>0</goal>
+		<damage>3</damage>
+		<strength>2</strength>
+		<size>L</size>
+		<cost>0.5</cost>
+	</club1>
 	<curvedSword>
 		<name>
 			<en>Curved Sword</en>
 			<es>Espada Curva</es>
 		</name>
+		<description>
+			<en>A curved sword with either one edge or two, and lighter than a war sword. This could be a scimitar or a pirate cutlass. Scimitars are popular among the Kurgan barbarians. These are hacking weapons.</en>
+			<es>Una espada curva con un filo o dos, y más ligera que una espada de guerra. Esta podría ser una cimitarra o un machete pirata. Las cimitarras son populares entre los bárbaros Kurgan. Estas son armas perfectas para la piratería.</es>
+		</description>
 		<characteristic>dexterity</characteristic>
 		<skill>melee</skill>
 		<type>MELEE</type>
@@ -151,11 +202,15 @@
 		<size>L</size>
 		<cost>20</cost>
 	</curvedSword>
-	<dagger>
+	<dagger1>
 		<name>
 			<en>Dagger</en>
 			<es>Daga</es>
 		</name>
+		<description>
+			<en>A large knife or short sword, depending on the manufacture (DMG 3 for TL2+). Similar to the Ghurka kukri, the Bowie knife, or the Roman gladius.</en>
+			<es>Un gran cuchillo o una espada corta, en función de cómo haya sido fabricado (Daño 3 en un NT2+). Similar al kukri Ghurka, al cuchillo Bowie o al Gladius romano.</es>
+		</description>
 		<characteristic>dexterity</characteristic>
 		<skill>melee</skill>
 		<type>MELEE</type>
@@ -165,12 +220,35 @@
 		<strength>2</strength>
 		<size>M</size>
 		<cost>4</cost>
-	</dagger>
-	<flail>
+	</dagger1>
+	<dagger2>
+		<name>
+			<en>Dagger</en>
+			<es>Daga</es>
+		</name>
+		<description>
+			<en>A large knife or short sword, depending on the manufacture (DMG 3 for TL2+). Similar to the Ghurka kukri, the Bowie knife, or the Roman gladius.</en>
+			<es>Un gran cuchillo o una espada corta, en función de cómo haya sido fabricado (Daño 3 en un NT2+). Similar al kukri Ghurka, al cuchillo Bowie o al Gladius romano.</es>
+		</description>
+		<characteristic>dexterity</characteristic>
+		<skill>melee</skill>
+		<type>MELEE</type>
+		<techLevel>2</techLevel>
+		<goal>0</goal>
+		<damage>3</damage>
+		<strength>2</strength>
+		<size>M</size>
+		<cost>4</cost>
+	</dagger2>
+	<flail1>
 		<name>
 			<en>Flail</en>
 			<es>Mayal</es>
 		</name>
+		<description>
+			<en>Two long sticks connected by a chain. This could be the standard medieval weapon or the more modern nunchaku. Metal flails and morning stars are the business versions of this weapon (DMG 5 for TL2+).</en>
+			<es>Dos palos largos unidos por una cadena. Esta podría ser el arma medieval estándar o el nunchaku moderno. Los Mayales con cuchillas metálicas y las Estrellas de la Mañana son las versiones comerciales de este arma (Daño 5 en un NT2+).</es>
+		</description>
 		<characteristic>dexterity</characteristic>
 		<skill>melee</skill>
 		<type>MELEE</type>
@@ -180,12 +258,35 @@
 		<strength>4</strength>
 		<size>L</size>
 		<cost>4</cost>
-	</flail>
+	</flail1>
+	<flail2>
+		<name>
+			<en>Flail</en>
+			<es>Mayal</es>
+		</name>
+		<description>
+			<en>Two long sticks connected by a chain. This could be the standard medieval weapon or the more modern nunchaku. Metal flails and morning stars are the business versions of this weapon (DMG 5 for TL2+).</en>
+			<es>Dos palos largos unidos por una cadena. Esta podría ser el arma medieval estándar o el nunchaku moderno. Los Mayales con cuchillas metálicas y las Estrellas de la Mañana son las versiones comerciales de este arma (Daño 5 en un NT2+).</es>
+		</description>
+		<characteristic>dexterity</characteristic>
+		<skill>melee</skill>
+		<type>MELEE</type>
+		<techLevel>2</techLevel>
+		<goal>0</goal>
+		<damage>5</damage>
+		<strength>4</strength>
+		<size>L</size>
+		<cost>4</cost>
+	</flail2>
 	<frapStick>
 		<name>
 			<en>Frap Stick</en>
 			<es>Palo de Amarre</es>
 		</name>
+		<description>
+			<en>This is a simple stick with a volt tip (similar to an anti-shark stick or cattle prod). Thugs often use these weapons against shielded opponents as the stick itself has little impact energy, and tap the target once the tip is past the protective energy field (withhold VP effect dice to try to avoid activating the shield). Once the tip contacts a surface, a charge is released (ignoring the shield). A fusion cell is required.</en>
+			<es>Este es un simple palo con una punta eléctrica (similar a un palo anti tiburones o a una picana). Los matones suelen utilizar estas armas contra oponentes blindados ya que el propio palo libera un poco de energía en el impacto, y puede alcanzar al objetivo una vez que la punta haya superado el campo protector de energía (retén los PV de los dados de efecto a fin de tratar de evitar la activación del escudo). Una vez que la punta entre en contacto con la superficie, se libera una carga (ignorando el escudo). Se requiere una pila de fusión.</es>
+		</description>
 		<characteristic>dexterity</characteristic>
 		<skill>melee</skill>
 		<type>MELEE</type>
@@ -205,6 +306,10 @@
 			<en>Garrote</en>
 			<es>Garrote</es>
 		</name>
+		<description>
+			<en>A favorite assassin’s weapon, garrotes have been used to strangle people throughout the centuries. Different models have been manufactured at different Tech Levels. Primitive versions are made from metal wire, but more advanced models can be made from unbreakable synthetic plastics. At TL4+, garrotes can be hidden in increasingly clever places, from a line drawn forth from a wristwatch to a line that shoots out of a pen to wrap around its target from a short distance.</en> 
+			<es>El arma favorita de un asesino. Los garrotes se han utilizado para estrangular a la gente a lo largo de toda la historia. Se han fabricado diferentes modelos en distintos niveles de tecnología. Las versiones primitivas se fabrican con alambre de metal, pero los modelos más avanzados pueden estar fabricados con plástico sintético irrompible. En un NT4+, los garrotes se pueden ocultar en lugares cada vez más insospechados, desde una delgada cuerda que se saca de un reloj de pulsera hasta una delgada cuerda que se dispara desde una distancia corta con un bolígrafo para después enrollarse alrededor de su objetivo.</es> 
+		</description>
 		<characteristic>dexterity</characteristic>
 		<skill>melee</skill>
 		<type>MELEE</type>
@@ -220,6 +325,10 @@
 			<en>Glankesh (Vorox Sword)</en>
 			<es>Glankesh (Espada Vorox)</es>
 		</name>
+		<description>
+			<en>A crescent blade resembling a Chinese deerhook sword (DMG 6). Crafted by the Vorox, these weapons are made of superior-quality alloys that are abundant on Ungavorox. For a human these blades should be considered twohanded, but for a Vorox they can easily be hefted in a single hand. Vorox warriors typically use one in each of their four fighting hands, to make up for their lack of claws. The Glankesh is often handed down from warrior to warrior and they gather trophies and engraved inscriptions with each new owner. The age and value of such a blade can be determined by its decorations.</en>
+			<es>Una hoja de media luna parecida a una espada China tradicional (Daño 6). Fabricadas por los Vorox, estas armas están diseñadas con aleaciones de calidad superior que abundan en Ungavorox. Para un ser humano estas hojas se consideran como armas a dos manos, pero para un Vorox que puede blandirla con facilidad se considera como un arma de una mano. Los guerreros Vorox suelen utilizar una en cada una de sus cuatro manos, a fin de compensar su falta de garras. El Glankesh a menudo se transmite de guerrero en guerrero y se van sumando los trofeos y grabando las inscripciones con cada nuevo propietario. La edad y el valor de dicha hoja pueden determinarse en base a sus decoraciones.</es>
+		</description>
 		<characteristic>dexterity</characteristic>
 		<skill>melee</skill>
 		<type>MELEE</type>
@@ -238,6 +347,10 @@
 			<en>Hollow Knife</en>
 			<es>Cuchillo Hueco</es>
 		</name>
+		<description>
+			<en>This dagger is hollow down the center of its blade and hilt, allowing it to be filled with a poisonous liquid through the screw-off pommel. It can hold up to five doses of poison. Whenever the blade encounters resistance (including when stopped by armor), a dose of the poison is released through miniature pores along the blade. When idle, the knife appears as any other dagger upon examination, and its special qualities cannot be easily discerned by sight alone.</en> 
+			<es>Esta daga está hueca por el centro de su hoja y su empuñadura, lo que permite al portador rellenarla con algún líquido venenoso por la empuñadura de rosca. Puede contener hasta cinco dosis de veneno. Siempre que la hoja encuentre algún tipo de resistencia (incluyendo cuando una armadura la detenga), se libera una dosis del veneno a través de los pequeños poros presentes a lo largo de la hoja. Cuando no se usa, el cuchillo tiene la apariencia de cualquier otro cuchillo normal, y sus cualidades especiales no pueden apreciarse a simple vista.</es>
+		</description>
 		<characteristic>dexterity</characteristic>
 		<skill>melee</skill>
 		<type>MELEE</type>
@@ -257,6 +370,10 @@
 			<en>Knife</en>
 			<es>Cuchillo</es>
 		</name>
+		<description>
+			<en>The only weapon most peasants are allowed by law is a knife, but this can be anything from a turkey carver to a survival knife. Knives produced with superior materials hold a better edge and cause more DMG (DMG 2 for TL2+), while bone and stone blades (TL 0) tend to blunt fast and break easily. Larger knives are considered to be daggers. There are a great many variations on the humble knife -some are straight-edged, while others are curved; some are serrated, and others have concealed blades that spring out of the handle. Some spring knives are exceptionally well-concealed, being worked into belt buckles, boot toes, or even jewelry, but these are often several times more expensive than ordinary knives. Needless to say, possession of concealed knives is a crime in many cities of the Known Worlds, s they are weapons of intimidation and murder, not workman’s tools.</en>
+			<es>La única arma que la ley permite portar a la mayoría de los campesinos. Este cuchillo puede ser de cualquier clase, desde un cuchillo de cocina hasta un cuchillo de supervivencia. Los cuchillos que se fabriquen con materiales de calidad superior tienen un mejor filo e infligen más Daño (DAÑO 2 en un NT2+), mientras que las hojas de piedra y hueso (NT0) tienden a atascarse rápidamente y se rompen con facilidad. Los cuchillos que sean más grandes se consideran dagas. Existen una gran cantidad de cuchillos diferentes creados a partir de los cuchillos más humildes, algunos son de filo recto mientras que otros son curvos; algunos son de sierra, y otros son de hojas ocultas que se pliegan en la empuñadura. Algunos cuchillos de resorte ocultan excepcionalmente bien las hojas, en lugares como en las hebillas del cinturón, las plantas de los pies, o incluso en joyas, pero estos suelen ser más caros que los cuchillos normales. Huelga decir que, la posesión de un cuchillo oculto es un delito en muchas ciudades de los Mundos Conocidos, ya que son armas pensadas para la intimidación y el asesinato; no son la típica herramienta de un obrero.</es>
+		</description>
 		<characteristic>dexterity</characteristic>
 		<skill>melee</skill>
 		<type>MELEE</type>
@@ -275,6 +392,10 @@
 			<en>Kurgan Side Sword</en>
 			<es>Espada Ropera Kurgan</es>
 		</name>
+		<description>
+			<en>Sword: A lightweight and deadly blade (DMG 6), held at a crossbar inside a basket-type hilt (+2 to resist being disarmed). It is a rare blade, encountered only with the Kurgans. When not in use, the side sword is stored in a leg sheath secured by a quick-snap strap.</en>
+			<es>Una hoja ligera y mortal (Daño 6), contenida en una barra transversal dentro de una empuñadura parecida a una cesta (véase Guarda con Empuñadura de Cesta página 329). Es una extraña hoja que tan solo utilizan los Kurgans. Cuando no se usa, la Espada Ropera se enfunda en una vaina de pierna asegurada por una correa de desenfundado rápido.</es>
+		</description>
 		<characteristic>dexterity</characteristic>
 		<skill>melee</skill>
 		<type>MELEE</type>
@@ -291,9 +412,13 @@
 	</kurganSideSword>
 	<kossackChainsword>
 		<name>
-			<en>Kossack Chainsword</en>
-			<es>Espada de Esclavista Cosaco</es>
+			<en>Kossack Osteotomic Sword</en>
+			<es>Espada Osteotómica Cosaca</es>
 		</name>
+		<description>
+			<en>The Jakovian Kossacks, the shock troops of House Decados’ secret police (the Jakovian Agency), traditionally wield these fearsome chainswords when on intimidation missions. Consisting of a thick saber with a serrated-edge internal chain, the chainsword is designed for psychological impact more than combat, and emits a high-pitched whine when activated. The chainsaw blade offers great armor penetration, and any physical armor struck by the blade is halved. Although frightening, the weapon is slow and easily defended against (opponents receive a +2 bonus to Defense against an attack from an Osteotomic Sword).</en>
+			<es>Los cosacos Jacovianos, las tropas de choque de la policía secreta de la Casa Decados (la Agencia Jacoviana), tradicionalmente blanden estas temibles espadas de sierra cuando realizan misiones intimidatorias. Consiste en un sable grueso con una cadena interna de filo de sierra; la espada de sierra está diseñada para intimidar psicológicamente al objetivo más que para el combate, y emite un sonido agudo cuando se activa. La hoja de sierra puede penetrar con facilidad una armadura, y cualquier armadura física que sea golpeada por la cuchilla reduce a la mitad su efectividad. Aunque sea muy intimidante, el arma es lenta y es fácil defenderse contra ella (los oponentes reciben un bonificador de +2 a la Defensa contra un ataque de una espada Osteotómica).</es>
+		</description>
 		<characteristic>dexterity</characteristic>
 		<skill>melee</skill>
 		<type>MELEE</type>
@@ -314,6 +439,10 @@
 			<en>Mace</en>
 			<es>Maza</es>
 		</name>
+		<description>
+			<en>A metal ball, reinforced club, and ornate Inquisitor’s "prod" or long-handled hammer. Basically, it’s a very mean club (DMG 5 for TL2+).</en>
+			<es>Una bola de metal, una porra reforzada y adornada con el puño del inquisidor o un martillo de mango largo. Básicamente es una porra con una contundencia brutal (Daño 5 en un NT2+).</es>
+		</description>
 		<characteristic>dexterity</characteristic>
 		<skill>melee</skill>
 		<type>MELEE</type>
@@ -329,6 +458,10 @@
 			<en>Main Gauche</en>
 			<es>Daga de Misericordia</es>
 		</name>
+		<description>
+			<en>A specialized parrying blade used in tandem with another melee weapon, usually a rapier. Fencers who use a multi-weapon fighting style typically use this weapon. Though the main gauche can be used as a weapon, it is designed to parry or trap another fencer’s weapon. It grants a +2 goal number bonus when attempting to Disarm an opponent with it.</en>
+			<es>Una hoja especializada en la defensa utilizada en compañía de otra arma cuerpo a cuerpo, por lo general un estoque. Los esgrimistas que utilizan un estilo de pelea de varias armas suelen emplear este arma. Aunque la Daga de Misericordia pueda utilizarse como un arma, está diseñada para parar o para atrapar el arma de otro esgrimista. Proporciona un bonificador de +2 al rango de acierto cuando se intente Desarmar a un oponente con ella.</es>
+		</description>
 		<characteristic>dexterity</characteristic>
 		<skill>melee</skill>
 		<type>MELEE</type>
@@ -344,6 +477,10 @@
 			<en>Pick</en>
 			<es>Pico</es>
 		</name>
+		<description>
+			<en>A pickaxe or a spiked club, these are devastating weapons. The weapon’s great momentum and impaling spike give it the Hard property for the purpose of armor protection. Picks are unwieldy, however, and the wielder receives a –2 goal penalty when used for parrying.</en>
+			<es>Es una piqueta o una porra con un pincho, estas son armas devastadoras. Un amplio movimiento del arma con el fin de ensartar al objetivo concederá al arma la propiedad de Duro a efectos de obviar la protección de armadura. Sin embargo los picos son difíciles de manejar y el portador recibe un penalizador de -2 al rango de acierto cuando use el arma para bloquear un ataque.</es>
+		</description>
 		<characteristic>dexterity</characteristic>
 		<skill>melee</skill>
 		<type>MELEE</type>
@@ -363,6 +500,10 @@
 			<en>Rapier</en>
 			<es>Estoque</es>
 		</name>
+		<description>
+			<en>The most popular noble melee weapon in the Phoenix Empire, the rapier is elegant and light, perfect for fencing. The construction of the blade requires advanced metallurgy techniques to forge with sufficient hardness to hold an edge, but sufficiently flexible not to shatter (DMG 5 for TL3+). The common rapier resembles a renaissance blade with a cup or swept hilt guard, usually engraved with fine decorations.</en>
+			<es>El arma más popular cuerpo a cuerpo entre los nobles del Imperio del Fénix, el estoque es elegante y ligero, perfecto para la esgrima. La construcción de la hoja requiere técnicas de metalurgia avanzada para forjar una hoja con la dureza suficiente como para mantener el filo, pero lo suficientemente flexible como para que no se rompa (Daño 5 en un NT3+). El estoque común se asemeja a una hoja del renacimiento con una guarda similar a una taza o a una empuñadura de barrido, y por lo general posee grabados con finas decoraciones.</es>
+		</description>
 		<characteristic>dexterity</characteristic>
 		<skill>melee</skill>
 		<type>MELEE</type>
@@ -373,7 +514,6 @@
 		<size>L</size>
 		<cost>20</cost>
 		<random>
-			<probabilityMultiplier>10</probabilityMultiplier>
 			<recommendedFactionGroups>nobility</recommendedFactionGroups>
 		</random>
 	</rapier>
@@ -382,6 +522,10 @@
 			<en>Saber</en>
 			<es>Sable</es>
 		</name>
+		<description>
+			<en>These curved one-handed swords of high precision and quality are very sharp and are made for cutting and slicing, instead of hacking. They are of higher quality than common blades, being stronger, sharper, more flexible, and better balanced, and also quite expensive. Lightweight and strong, this category includes cavalry sabers and the Samurai katana</en>
+			<es>Estas espadas curvas de una mano de alta precisión y calidad son muy afiladas y se fabrican para cortar con precisión, y no para la piratería. Son de mayor calidad que las hojas comunes, siendo más fuertes, más afiladas, más flexibles y mejor equilibradas, aunque también bastante más caras. Ligera y fuerte, esta categoría incluye sables de caballería y la Katana samurái.</es>
+		</description>
 		<characteristic>dexterity</characteristic>
 		<skill>melee</skill>
 		<type>MELEE</type>
@@ -397,6 +541,10 @@
 			<en>Spear</en>
 			<es>Lanza</es>
 		</name>
+		<description>
+			<en>An old favorite, spears have made a comeback on many worlds (DMG 4 for TL1+). Most peasants consider them primitive, but the increasing need on some backwater worlds to supplement crops with hunting means their use is on the rise. Some military observers have noted that the cost efficiency of arming a regiment of peasant levies with spears, as opposed to swords or axes, is great. A spear requires little training, being deadly in anyone’s hands, while swords and axes need practice and skill to be effective. When used two handed, spears grant a +2 goal bonus. Longer and sturdier lances are particularly effective when used by or against mounted cavalry, in which case the mount’s Strength is added to the lance wielder’s for the purpose of determining Damage Bonus (p. 93). Note, that the mount’s Strength is added to a footman’s Strength against the mount’s rider!</en>
+			<es>Un clásico, las lanzas han reaparecido en muchos mundos (Daño 4 en un NT1+). La mayoría de campesinos las consideran armas primitivas, pero la creciente necesidad de complementar la actividad agraria con la caza en algunos mundos rurales a provocado que su uso vaya en aumento. Algunos observadores militares han señalado la gran rentabilidad de armar a un regimiento de campesinos con lanzas, en lugar de armarlos con hachas o espadas. Una lanza requiere de poco entrenamiento y es mortal en las manos de cualquiera, mientras que las espadas y las hachas necesitan práctica y habilidad para ser eficaces. Cuando se usan las dos manos, las lanzas otorgan un bonificador de +2 al rango de acierto. Las lanzas que son más largas y más robustas son particularmente eficaces cuando son utilizadas por o en contra de la caballería montada, en cuyo caso se suma la Fuerza de la montura a la del portador de la lanza, a fin de determinar el bonificador al Daño (página 96).</es>
+		</description>
 		<characteristic>dexterity</characteristic>
 		<skill>melee</skill>
 		<type>MELEE</type>
@@ -412,6 +560,10 @@
 			<en>Splinter Sword</en>
 			<es>Espada de Esquirlas</es>
 		</name>
+		<description>
+			<en>This plastic sword shatters on  impact, leaving tiny, sharp, and fibrous threads in the victim’s body that continue to cut and slice until surgically removed. After the sword has struck, the victim will suffer DMG 1 at the beginning of each successive turn moving, or per hour if remaining absolutely still, until the threads are removed. This requires a number of VP on a sustained Dexterity + Physick equal to the total damage caused by the splinter sword. The problem with splinter swords is that they are disposable, breaking apart with each hit (including parrying). A sword can only deliver three hits before it is broken beyond use. These weapons were factory manufactured during the Second Republic for cheap mass-shipboard defense, and they are no longer produced in the Known Worlds, though they are often recovered from Second Republic weapons caches.</en>
+			<es>Esta espada de plástico se rompe con un solo impacto, soltando pequeñas y afiladas fibras de hilo que se adhieren al cuerpo de la víctima y siguen cortando y sajando hasta que se extirpan quirúrgicamente. Después de que la espada haya golpeado, la víctima sufrirá Daño 1 al comienzo de cada turno, o por hora, si se queda absolutamente quieto, hasta que se eliminen los hilillos. Esto requiere una serie de PV en una tirada prolongada de Destreza + Conocimiento del Cuerpo igual al Daño total causado por la Espada de Esquirlas. El problema con las Espadas de Esquirlas es que son desechables, porque se rompen con cada golpe (incluso al bloquear un ataque). Estas armas se fabricaban masivamente durante la Segunda República, con el fin de producir baratas armas de defensa que pudieran ser utilizadas abordo de las naves espaciales, pero ya no se siguen produciendo en los Mundos Conocidos, aunque a menudo se suelen recuperar muchos ejemplares de los depósitos de armas de la Segunda República.</es>	
+		</description>
 		<characteristic>dexterity</characteristic>
 		<skill>melee</skill>
 		<type>MELEE</type>
@@ -431,6 +583,10 @@
 			<en>Staff</en>
 			<es>Báculo</es>
 		</name>
+		<description>
+			<en>The ol’ standby for merry men everywhere (DMG 3 for TL1), this could be Little John’s quarterstaff, a Japanese monk’s bo staff, or just about any long stick (a short stick is considered a club).</en>
+			<es>El apoyo físico para hombres de todas partes (Daño 3 en un NT1), este podría ser el bastón de Little John, el bastón bo de un monje japonés, o prácticamente cualquier palo que sea largo (un palo corto se considera una porra).</es>
+		</description>
 		<characteristic>dexterity</characteristic>
 		<skill>melee</skill>
 		<type>MELEE</type>
@@ -446,6 +602,10 @@
 			<en>Suresnake Whip</en>
 			<es>Látigo Serpiente</es>
 		</name>
+		<description>
+			<en>This can be any type of whip, with a special tracking wire threaded throughout its length. The tip of the lash holds a nanite think machine that can home in on a chosen target. The tip must first be aimed at the target, then “locked down” on that target with a flick of a switch in the handle (to achieve this, one VP must be delegated to the tracking rather than to damage effect dice). As long as the target does not disappear from the computer’s sight for more than three turns, the attacker gains a +2 goal bonus to hit his chosen target. These whips are popular among the Chainers, who use them to keep “special” cargo in line.</en> 
+			<es>Este puede ser cualquier tipo de látigo, con un cable enroscado a lo largo de su superficie que le permite fijar a un objetivo. La punta del látigo tiene una nanomáquina pensante que puede fijar a un objetivo seleccionado. En primer lugar la punta debe señalar en la misma dirección del objetivo, a continuación, debe fijar a ese objetivo pulsando un botón en el mango (para conseguirlo, debe invertirse un PV para fijar el objetivo en lugar de conseguir un dado de efecto de Daño). Mientras que el objetivo no desaparezca de la vista del ordenador durante más de tres turnos, el atacante recibe un bonificador de +2 al rango de acierto para golpear a su objetivo seleccionado. Estos látigos son populares entre los Esclavistas, que los utilizan para mantener al cargamento "especial" formando una fila.</es>
+		</description>
 		<characteristic>dexterity</characteristic>
 		<skill>melee</skill>
 		<type>MELEE</type>
@@ -461,6 +621,10 @@
 			<en>Trench Knife</en>
 			<es>Cuchillo de Trinchera</es>
 		</name>
+		<description>
+			<en>The trench knife traditionally attaches a strong cutting and slashing blade to a large hilt. The hilt acts as a cestus (above).</en>
+			<es>Al cuchillo de trinchera se le atribuye tradicionalmente la propiedad de propinar profundos cortes, aparte de poseer una hoja para sajar carne, unida a una gran empuñadura. La empuñadura funciona como un Cestus (anterioremente).</es>
+		</description>
 		<characteristic>dexterity</characteristic>
 		<skill>melee</skill>
 		<type>MELEE</type>
@@ -476,6 +640,10 @@
 			<en>Two-Handed Axe</en>
 			<es>Hacha a Dos Manos</es>
 		</name>
+		<description>
+			<en>A huge battle axe, heavy to lift and unpleasant to suffer (DMG 8 for TL2+). This heavy hacking weapon could be any smashhead axe, including heavy woodchoppers and halberds. Very intimidating to face, two-handed axes rely on brute force and centrifugal momentum to smash through armor and energy shields. The drawback is that these heavy weapons are unwieldy and slow to use, making getting out of the axe’s way easier (opponent Dodge goal +2), although parrying these massive weapons is tricky (opponent parrying goal –2).</en>
+			<es>Una enorme hacha de batalla, (Daño 8 en un NT2+). Este arma pesada de piratería podría ser cualquier hacha aplasta cabezas, incluyendo las hachas pesadas de los leñadores y las alabardas. Son muy intimidantes cuando las tienes delante: las hachas a dos manos se basan en el uso de la fuerza bruta y en el impulso que concede la propia inercia para aplastar cualquier cosa, pudiendo atravesar armaduras y escudos de energía. El inconveniente es que estas armas pesadas son difíciles de manejar y lentas de usar, por lo que es relativamente fácil apartarse de la trayectoria del hacha (el oponente recibe un +2 al rango de acierto de Esquivar), aunque bloquear un ataque de estas armas tan grandes es complicado (el oponente recibe un -2 al rango de acierto al bloquear).</es>
+		</description>
 		<characteristic>dexterity</characteristic>
 		<skill>melee</skill>
 		<type>MELEE</type>
@@ -491,6 +659,10 @@
 			<en>Two-Handed Sword</en>
 			<es>Espada a Dos Manos</es>
 		</name>
+		<description>
+			<en>The biggest, baddest sword around (DMG 8 for TL2+), though they require a lot of room to swing with full force. This mammoth sword could be any huge blade, but is mainly modeled after the Scottish claymore. Two-handed swords are popular among those who do not have the finesse to slide a blade through an energy shield’s impact threshold, but who might deliver enough damage to exceed its protection threshold. These are primarily hacking weapons.</en>
+			<es>La espada más letal y más grande (Daño 8 en un NT2+), a pesar de que requieren de una gran cantidad de espacio para que el portador pueda matar empleando toda su fuerza. Esta espada descomunal podría ser cualquier espada enorme, pero su diseño se basa, sobre todo, en la claymore escocesa. Las Espadas de Dos manos son populares entre aquellos que no poseen la delicadeza necesaria para introducir una hoja a través del umbral de impacto de un escudo de energía, pero que puede infligir una cantidad de Daño suficiente para superar este umbral de protección. Estas armas son principalmente diseñadas para la piratería.</es> 
+		</description>
 		<characteristic>dexterity</characteristic>
 		<skill>melee</skill>
 		<type>MELEE</type>
@@ -506,6 +678,10 @@
 			<en>War Sword</en>
 			<es>Espada de Guerra</es>
 		</name>
+		<description>
+			<en>A heavy sword favored by certain soldiers. This could be a Viking broadsword, a Norman conqueror’s sword, or just about any broad, straight sword from history. Advances in steel forging allow for the construction of weapons that hold a better edge (DMG 6 for TL2+). These are hacking weapons, and can have one or two edges.</en>
+			<es>Una espada pesada preferida por algunos soldados. Esta podría ser una espada ancha vikinga, una espada de conquistadores normandos o casi cualquier espada ancha y recta de toda la historia. Los avances en la forja del acero permiten la construcción de armas que tienen un mejor filo (Daño 6 para NT2+). Son armas para ataques de corte y pueden tener uno o dos filos.</es>
+		</description>
 		<characteristic>dexterity</characteristic>
 		<skill>melee</skill>
 		<type>MELEE</type>
@@ -521,6 +697,10 @@
 			<en>Whip</en>
 			<es>Látigo</es>
 		</name>
+		<description>
+			<en>Whips come in all shapes and sizes, from bullwhips to slaver whips to cat-tail whips (DMG 3). Some whips are given barbs or hooks for added effect (DMG 4; Cost: +1). High-tech synthetic whips are known at Tech Level 6+, and these usually have a base of 4 dice of damage and only require STR 3 to wield.</en>
+			<es>Los látigos tienen todo tipo de formas y tamaños, desde látigos de una cola hasta látigos de esclavos o de múltiples colas (Daño 3). Algunos látigos tienen pinchos o ganchos para aumentar el efecto (Daño 4; Coste: +1). Los látigos sintéticos de alta tecnología están disponibles con Nivel de Tecnología 6+; estos látigos normalmente tienen una base de cuatro dados de daño y solo requieren 4 de Fuerza para empuñarlos.</es>
+		</description>
 		<characteristic>dexterity</characteristic>
 		<skill>melee</skill>
 		<type>MELEE</type>
@@ -536,6 +716,10 @@
 			<en>Wireblade</en>
 			<es>Filoespada</es>
 		</name>
+		<description>
+			<en>A monomolecular blade, the height of Second Republic weapon technology. A wireblade can slice through even ceramsteel, and is popular among the very few space marine boarding parties who can afford to have one. When activated, the monofilament blade slides out of the handle and is surrounded by a corona of faint light (the only way to see the blade with the naked eye). Wireblades ignore phyiscal armor, cutting right through them. Wireblades can be deadly to their users if they get careless, for the blades will cut through flesh with no hindrance, as if slicing through air. A fusion cell powers the light and lasts for a Span. If the cell runs dry with the blade extended, things could get tricky -there is no easy way to see the blade, and people may walk into it accidentally.</en>
+			<es>Una hoja mono molecular, a la altura de la tecnología armamentística de la Segunda República. Una Filoespada puede atravesar incluso la acerámica, y es un arma popular entre los escasos grupos de abordaje de marines espaciales que pueden darse el lujo de tener una. Cuando se activa, el monofilamento de la hoja sale deslizándose de la empuñadura y está rodeado por una corona de luz tenue (la única manera de ver la cuchilla a simple vista). Las Hojas Eléctricas ignoran las armaduras físicas, cortando a través de ellas sin ninguna dificultad. Pueden llegar a ser mortales para quienes las esgrimen, si no se andan con cuidado, puesto que las hojas cortarán la carne sin problemas, como si cortaran a través del propio aire. Una pila de fusión abastece de energía a la luz y tiene una duración de una Escena. Si la pila se agota con la hoja extendida, las cosas podrían ponerse difíciles, pues no hay manera de ver la hoja a simple vista, y la gente puede chocarse con ella accidentalmente.</es>
+		</description>
 		<characteristic>dexterity</characteristic>
 		<skill>artifactMelee</skill>
 		<type>MELEE_ARTIFACT</type>
@@ -552,6 +736,9 @@
 			<en>Flux Sword</en>
 			<es>Espada de Flujo</es>
 		</name>
+		<description>
+			<en>An energy sword. Flux swords -like most Second Republic energy tech- were developed from stolen Vautech. At the flick of a switch, a sword-shaped force field is created which instantly fills with plasma. Anything which comes into contact with this blade-shaped field can get severely damaged (Flux Swords have the Plasma Property), These swords are powered by a fusion cell, which lasts for a Span.</en>
+			<es>Una espada de energía que, como la mayor parte de la tecnología de energía de la Segunda República, se desarrollaron mediante la tecnología robada a los Vau. Simplemente al accionar el interruptor, se genera un campo de fuerza con la forma de una espada que se rellena automáticamente con plasma. Cualquier cosa que entre en contacto con este campo en forma de hoja puede quedar gravemente dañada (Las Espadas de Flujo tienen la propiedad de Plasma). Estas espadas reciben la energía de una pila de fusión, que tiene una duración de una Escena</es>		</description>
 		<characteristic>dexterity</characteristic>
 		<skill>artifactMelee</skill>
 		<type>MELEE_ARTIFACT</type>
@@ -568,6 +755,10 @@
 			<en>Mist Sword</en>
 			<es>Espada Mística</es>
 		</name>
+		<description>
+			<en>A Flux Sword which can be psychically attuned to the wielder. The wielder must have some Psi (at least one level) and must achieve 20 VP on a sustained Psi + Self Control goal roll to attune the weapon. Once attuned, the wielder receives a +4 bonus to all Psi goal rolls targeting the Mist Sword, and the wielder can increase her goal roll or DMG by spending Wyrd, up to a maximum equal to her Will (+1 to either goal or DMG per Wyrd spent). Despite being extremely rare, Mist Swords have been made famous by magic lantern shows and tales of mystic Mist Swordwielding heroes.</en> 
+			<es>Una Espada de Flujo que puede estar en sintonía con el portador psíquicamente. El portador debe tener como mínimo 1 punto en su característica de Psique y debe alcanzar los 20 PV en una tirada prolongada de Psique Autocontrol para sintonizar con el arma. Una vez sintonizado, el portador recibe un bonificador de +4 a todas las tiradas de acierto de Psique que tengan que ver con la Espada Mística, y además el portador puede incrementar su rango de acierto o el Daño invirtiendo Wyrd, hasta un máximo equivalente a su Voluntad (+1 al rango de acierto o al Daño por punto de Wyrd invertido). A pesar de ser extremadamente raras, las Espadas Místicas se han hecho famosas a causa de los espectáculos de linterna mágica y los relatos sobre héroes místicos que portaban estas Espadas Místicas.</es>
+		</description>
 		<characteristic>dexterity</characteristic>
 		<skill>artifactMelee</skill>
 		<type>MELEE_ARTIFACT</type>
@@ -583,6 +774,7 @@
 			<probabilityMultiplier>0.01</probabilityMultiplier>
 		</random>
 	</mistSword>
+	
 	<dartfletched>
 		<name>
 			<en>Dart fletched</en>

@@ -1,107 +1,209 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <accessories>
+	<basketHiltedGuard>
+		<name>
+			<en>Basket-Hilted Guard</en>
+			<es>Guarda Empuñadura de Cesta</es>
+		</name>
+		<description>
+			<en>Bladed weapons fitted with a basket-Hilted Guard grants a +2 goal bonus against being disarmed.</en>
+			<es>Las armas blancas equipadas con una guarda empuñadura de cesta conceden un penalizador adicional de -2 al rango de acierto de un atacante que intente desarmar.</es>
+		</description>
+	</basketHiltedGuard>
+	<breaker>
+		<name>
+			<en>Breaker</en>
+			<es>Disyuntor</es>
+		</name>
+		<description>
+			<en>Any melee weapon can be fitted with a shield breaker that shorts out the target’s energy shield on impact. When activated, the breaker weapon sparkles and glows with energy, discharging its power in a bright flash of light when touching an energy shield. Most nobles consider this highly dishonorable (and often illegal), but the Decados have been known to employ these devices. A fusion cell is required and is good for one use before recharging.</en>
+			<es>Puede equiparse un disyuntor de escudos a cualquier arma cuerpo a cuerpo para que cortocircuite el escudo de energía del objetivo cuando el arma impacte. Cuando se activa, el arma disyuntora brilla y resplandece con la energía, al tocar un escudo de energía libera un destello de luz. La mayoría de los nobles consideran esta clase de armas altamente deshonrosas (y a menudo ilegales), pero se sabe que los Decados emplean estos dispositivos. Precisa de una pila de fusión y ésta necesita ser recargada tras un uso. Un escudo que reciba un impacto de un arma con un disyuntor sufrirá un cortocircuito y no funcionará hasta que se sustituya la pila de fusión.</es>
+		</description>
+	</breaker>
+	<hardSpike>
+		<name>
+			<en>Hard Spike</en>
+			<es>Punta Reforzada</es>
+		</name>
+		<description>
+			<en>Many melee weapon can be fitted with a Hard Spike, making it Hard for the purpose of penetrating armor. Note however, that the same melee weapon cannot benefit from both the Hard property and a Hard Spike accessory (the latter being simply another way of gaining the effect).</en> 
+			<es>A muchas armas cuerpo a cuerpo se les puede aplicar una punta reforzada, concediéndoles la característica de “Duro” con el fin de penetrar mejor las armaduras. Nótese, sin embargo, que la propia arma cuerpo a cuerpo no puede beneficiarse de la propiedad Duro a la vez que del accesorio de Punta Reforzada (ya que este accesorio es otra manera de otorgar la característica de “Duro” a un arma).</es>
+		</description>
+	</hardSpike>
+	<shocker>
+		<name>
+			<en>Shocker</en>
+			<es>Electrocutante</es>
+		</name>
+		<description>
+			<en>Any knife, sword, mace, or even whip can be turned into a Shocker, adding +3 DMG effect dice (Shock Property). It simply means that the weapon is rigged to release an electrical charge whenever it hits a target. This effect is nullified by any armor with the Shock-Proof quality. A fusion cell is required, lasting for 20 discharges.</en> 
+			<es>Cualquier cuchillo, espada, maza, o incluso un látigo se puede convertir con facilidad en un arma electrocutante y agregar un +3 dados de efecto de Daño (propiedad Eléctrica). Esto significa que se configura el arma para que libere una descarga eléctrica cada vez que golpee a un objetivo. Este efecto es anulado por cualquier armadura con la característica de “Aprueba de Electricidad”. Se necesita una pila de fusión, que suele durar unas 20 descargas.</es>
+		</description>
+	</shocker>
+	<vibro>
+		<name>
+			<en>Vibro</en>
+			<es>Vibro</es>
+		</name>
+		<description>
+			<en>Any edged melee weapon can be modified to use a vibrating blade. Usually the hilt conceals the device and a switch to activate the effect. Once activated the blade vibrates minutely at incredible speeds, allowing it to cleanly cleave through soft armor (halve Soft armors). In addition, vibrating blades reduce the effectiveness of energy shields by raising the minimum damage required to activate the shield by one and also subtracting the maximum protection by one -an ordinary energy shield range of 5/10 would be reduced to 6/9. A humming sound always accompanies an active vibrating blade, and when it is not activated the blade is slightly loose (DMG –1). Activation requires a fusion cell, lasting for one Span per activation.</en>
+			<es>Cualquier arma cuerpo a cuerpo con filo puede ser modificada para que use una cuchilla vibrante. Por lo general, la empuñadura oculta el dispositivo y un interruptor que sirve para activar el efecto. Una vez activada la cuchilla, vibra intensamente, lo que le permite penetrar limpiamente a través de cualquier armadura Blanda (reduce a la mitad a las Armaduras blandas). Además, las vibrohojas reducen la efectividad de los escudos de energía incrementando en uno el Daño mínimo necesario para activar el escudo y también resta uno a la protección máxima. De este modo un escudo de energía que posea un rango de protección estándar de 5/10 reduciría su rango a 6/9. La activarse la vibrohoja emitirá un zumbido característico, y cuando no esté activa la hoja estará ligeramente suelta (bailará en la empuñadura) (Daño -1). Para funcionar requiere de una pila de fusión, con una duración de una Escena por activación.</es>
+		</description>
+	</vibro>
 	<stock>
-		<en>Stock</en>
-		<es>Culata</es>
+		<name>
+			<en>Stock</en>
+			<es>Culata</es>
+		</name>
 	</stock>
 	<retractableStock>
-		<en>Stock (retractable)</en>
-		<es>Culata (retráctil)</es>
+		<name>
+			<en>Stock (retractable)</en>
+			<es>Culata (retráctil)</es>
+		</name>
 	</retractableStock>
 	<boltfeed>
-		<en>Boltfeed</en>
-		<es>Cinta</es>
+		<name>
+			<en>Boltfeed</en>
+			<es>Cinta</es>
+		</name>
 	</boltfeed>
 	<leverfeed>
-		<en>Leverfeed</en>
-		<es>Palanca</es>
+		<name>
+			<en>Leverfeed</en>
+			<es>Palanca</es>
+		</name>
 	</leverfeed>
 	<pumpfeed>
-		<en>Pumpfeed</en>
-		<es>Cinta Corredora</es>
+		<name>
+			<en>Pumpfeed</en>
+			<es>Cinta Corredora</es>
+		</name>
 	</pumpfeed>
 	<beltfeed>
-		<en>Beltfeed</en>
-		<es>Cargador de Cinta</es>
+		<name>
+			<en>Beltfeed</en>
+			<es>Cargador de Cinta</es>
+		</name>
 	</beltfeed>
 	<sight2>
-		<en>Sight (2)</en>
-		<es>Mira (2)</es>
+		<name>
+			<en>Sight (2)</en>
+			<es>Mira (2)</es>
+		</name>
 	</sight2>
 	<sight3>
-		<en>Sight (3)</en>
-		<es>Mira (3)</es>
+		<name>
+			<en>Sight (3)</en>
+			<es>Mira (3)</es>
+		</name>
 	</sight3>
 	<sight4>
-		<en>Sight (4)</en>
-		<es>Mira (4)</es>
+		<name>
+			<en>Sight (4)</en>
+			<es>Mira (4)</es>
+		</name>
 	</sight4>
 	<autofeed>
-		<en>Autofeed</en>
-		<es>Autorecarga</es>
+		<name>
+			<en>Autofeed</en>
+			<es>Autorecarga</es>
+		</name>
 	</autofeed>
 	<breakfeed>
-		<en>Breakfeed</en>
-		<es>Cañón partido</es>
+		<name>
+			<en>Breakfeed</en>
+			<es>Cañón partido</es>
+		</name>
 	</breakfeed>
 	<sawed>
-		<en>Sawed</en>
-		<es>Sierra</es>
+		<name>
+			<en>Sawed</en>
+			<es>Sierra</es>
+		</name>
 	</sawed>
 	<hidden>
-		<en>Hidden</en>
-		<es>Oculta</es>
+		<name>
+			<en>Hidden</en>
+			<es>Oculta</es>
+		</name>
 	</hidden>
 	<flechette>
-		<en>Flechette</en>
-		<es>Flechette</es>
+		<name>
+			<en>Flechette</en>
+			<es>Flechette</es>
+		</name>
 	</flechette>
 	<syringe>
-		<en>Syringe</en>
-		<es>Jeringa</es>
+		<name>
+			<en>Syringe</en>
+			<es>Jeringa</es>
+		</name>
 	</syringe>
 	<muzzlefeed>
-		<en>Muzzlefeed</en>
-		<es>Avancarga</es>
+		<name>
+			<en>Muzzlefeed</en>
+			<es>Avancarga</es>
+		</name>
 	</muzzlefeed>
 	<compressedAir>
-		<en>Compressed air</en>
-		<es>Aire comprimido</es>
+		<name>
+			<en>Compressed air</en>
+			<es>Aire comprimido</es>
+		</name>
 	</compressedAir>
 	<bipod>
-		<en>Bipod</en>
-		<es>Bípode</es>
+		<name>
+			<en>Bipod</en>
+			<es>Bípode</es>
+		</name>
 	</bipod>
 	<tripod>
-		<en>Tripod</en>
-		<es>Trípode</es>
+		<name>
+			<en>Tripod</en>
+			<es>Trípode</es>
+		</name>
 	</tripod>
 	<gunTechKit4>
-		<en>Gun Tech Kit (TL4)</en>
-		<es>Kit de tecnología para el arma (NT4)</es>
+		<name>
+			<en>Gun Tech Kit (TL4)</en>
+			<es>Kit de tecnología para el arma (NT4)</es>
+		</name>
 	</gunTechKit4>
 	<armour1>
-		<en>+1d Armour</en>
-		<es>+1d Armadura</es>
+		<name>
+			<en>+1d Armour</en>
+			<es>+1d Armadura</es>
+		</name>
 	</armour1>
 	<armour2>
-		<en>+2d Armour</en>
-		<es>+2d Armadura</es>
+		<name>
+			<en>+2d Armour</en>
+			<es>+2d Armadura</es>
+		</name>
 	</armour2>
 	<armour3>
-		<en>+3d Armour</en>
-		<es>+3d Armadura</es>
+		<name>
+			<en>+3d Armour</en>
+			<es>+3d Armadura</es>
+		</name>
 	</armour3>
 	<poison5>
-		<en>Holds poison (5 doses)</en>
-		<es>Contiene veneno (5 dosis)</es>
+		<name>
+			<en>Holds poison (5 doses)</en>
+			<es>Contiene veneno (5 dosis)</es>
+		</name>
 	</poison5>
 	<resistDisarm3>
-		<en>+3 resisting disarm</en>
-		<es>+3 resistir desarme</es>
+		<name>
+			<en>+3 resisting disarm</en>
+			<es>+3 resistir desarme</es>
+		</name>
 	</resistDisarm3>
 	<revolver>
-		<en>Revolver</en>
-		<es>Revolver</es>
+		<name>
+			<en>Revolver</en>
+			<es>Revolver</es>
+		</name>
 	</revolver>
 </accessories>

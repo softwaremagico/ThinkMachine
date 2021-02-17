@@ -90,7 +90,7 @@ public class JsonCacheLoaderTests {
         }
         end = Instant.now();
         Duration jsonMethod = Duration.between(start, end);
-        System.out.println("Skills [Xml: " + xmlMethod + ", Json: " + jsonMethod+ " ]");
+        //System.out.println("Skills [Xml: " + xmlMethod + ", Json: " + jsonMethod+ " ]");
 
     }
 

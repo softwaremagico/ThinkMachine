@@ -41,7 +41,7 @@ import java.util.Set;
 public class WeaponsFactoryTests {
     private static final String LANGUAGE = "es";
 
-    private static final int DEFINED_WEAPONS = 189;
+    private static final int DEFINED_WEAPONS = 192;
     private static final int VERSION = 1;
 
     @Test
@@ -59,7 +59,7 @@ public class WeaponsFactoryTests {
 
     @Test
     public void readWeapons() throws InvalidXmlElementException {
-        Assert.assertEquals(DEFINED_WEAPONS, WeaponFactory.getInstance().getElements(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).size());
+        Assert.assertEquals(WeaponFactory.getInstance().getElements(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).size(), DEFINED_WEAPONS);
     }
 
     @Test
