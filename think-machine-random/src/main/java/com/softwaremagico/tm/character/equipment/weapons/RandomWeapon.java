@@ -24,9 +24,6 @@ package com.softwaremagico.tm.character.equipment.weapons;
  * #L%
  */
 
-import java.util.Collection;
-import java.util.Set;
-
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.equipment.EquipmentSelector;
@@ -34,6 +31,9 @@ import com.softwaremagico.tm.log.RandomGenerationLog;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.DifficultLevelPreferences;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
+
+import java.util.Collection;
+import java.util.Set;
 
 public abstract class RandomWeapon extends EquipmentSelector<Weapon> {
 
@@ -92,11 +92,13 @@ public abstract class RandomWeapon extends EquipmentSelector<Weapon> {
         weight /= costModificator;
 
         // Skill modifications.
-        final int skillMultiplier = getCharacterPlayer().getSkillTotalRanks(weapon.getSkill());
-        if (skillMultiplier > 0) {
-            RandomGenerationLog.debug(this.getClass().getName(),
-                    "Skill multiplication for weight for '{}' is '{}'.", weapon, skillMultiplier);
-            weight = (weight + skillMultiplier) * skillMultiplier;
+        if (!weapon.getWeaponDamages().isEmpty()) {
+            final int skillMultiplier = getCharacterPlayer().getSkillTotalRanks(weapon.getWeaponDamages().get(0).getSkill());
+            if (skillMultiplier > 0) {
+                RandomGenerationLog.debug(this.getClass().getName(),
+                        "Skill multiplication for weight for '{}' is '{}'.", weapon, skillMultiplier);
+                weight = (weight + skillMultiplier) * skillMultiplier;
+            }
         }
 
         RandomGenerationLog.debug(this.getClass().getName(), "Total weight for '{}' is '{}'.", weapon, weight);
@@ -109,34 +111,38 @@ public abstract class RandomWeapon extends EquipmentSelector<Weapon> {
 
         // Difficulty modification
         final DifficultLevelPreferences preference = DifficultLevelPreferences.getSelected(getPreferences());
+        if (weapon.getWeaponDamages().isEmpty()) {
+            throw new InvalidRandomElementSelectedException("Weapons without damage '" + weapon
+                    + "' is not allowed for random characters.");
+        }
         switch (preference) {
             case VERY_EASY:
-                if (weapon.getMainDamage() >= 3) {
-                    throw new InvalidRandomElementSelectedException("Weapons with a damage '" + weapon.getDamage()
+                if (weapon.getWeaponDamages().get(0).getMainDamage() >= 3) {
+                    throw new InvalidRandomElementSelectedException("Weapons with a damage '" + weapon.getWeaponDamages().get(0).getDamage()
                             + "' are not allowed by selected preference '" + preference + "'.");
                 }
                 break;
             case EASY:
-                if (weapon.getMainDamage() >= 5) {
-                    throw new InvalidRandomElementSelectedException("Weapons with a damage '" + weapon.getDamage()
+                if (weapon.getWeaponDamages().get(0).getMainDamage() >= 5) {
+                    throw new InvalidRandomElementSelectedException("Weapons with a damage '" + weapon.getWeaponDamages().get(0).getDamage()
                             + "' are not allowed by selected preference '" + preference + "'.");
                 }
                 break;
             case MEDIUM:
-                if (weapon.getMainDamage() >= 8) {
-                    throw new InvalidRandomElementSelectedException("Weapons with a damage '" + weapon.getDamage()
+                if (weapon.getWeaponDamages().get(0).getMainDamage() >= 8) {
+                    throw new InvalidRandomElementSelectedException("Weapons with a damage '" + weapon.getWeaponDamages().get(0).getDamage()
                             + "' are not allowed by selected preference '" + preference + "'.");
                 }
                 break;
             case HARD:
-                if (weapon.getMainDamage() <= 3) {
-                    throw new InvalidRandomElementSelectedException("Weapons with a damage '" + weapon.getDamage()
+                if (weapon.getWeaponDamages().get(0).getMainDamage() <= 3) {
+                    throw new InvalidRandomElementSelectedException("Weapons with a damage '" + weapon.getWeaponDamages().get(0).getDamage()
                             + "' are not allowed by selected preference '" + preference + "'.");
                 }
                 break;
             case VERY_HARD:
-                if (weapon.getMainDamage() <= 4 || weapon.getDamageTypes().isEmpty()) {
-                    throw new InvalidRandomElementSelectedException("Weapons with a damage '" + weapon.getDamage()
+                if (weapon.getWeaponDamages().get(0).getMainDamage() <= 4 || weapon.getDamageTypes().isEmpty()) {
+                    throw new InvalidRandomElementSelectedException("Weapons with a damage '" + weapon.getWeaponDamages().get(0).getDamage()
                             + "' or without damage perforation are not allowed by selected preference '" + preference
                             + "'.");
                 }

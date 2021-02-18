@@ -30,6 +30,7 @@ import com.softwaremagico.tm.XmlFactory;
 import com.softwaremagico.tm.character.characteristics.CharacteristicDefinition;
 import com.softwaremagico.tm.character.characteristics.CharacteristicsDefinitionFactory;
 import com.softwaremagico.tm.character.equipment.weapons.Weapon;
+import com.softwaremagico.tm.character.equipment.weapons.WeaponDamage;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.character.values.Bonification;
@@ -41,10 +42,7 @@ import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.log.MachineXmlReaderLog;
 import com.softwaremagico.tm.log.SuppressFBWarnings;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class CyberneticDeviceFactory extends XmlFactory<CyberneticDevice> {
     private static final String TRANSLATOR_FILE = "cybernetics.xml";
@@ -326,8 +324,11 @@ public class CyberneticDeviceFactory extends XmlFactory<CyberneticDevice> {
             // Not mandatory.
         }
 
-        return new Weapon(cyberneticDeviceId, name, description, language, moduleName, null, goal, characteristicDefinition, skill,
-                damage, 0, range, shots, rate, techLevel, false, null, "", new HashSet<>(), 0,
+        final List<WeaponDamage> weaponDamages = new ArrayList<>();
+        weaponDamages.add(new WeaponDamage(goal, damage, 0, range, shots, rate, characteristicDefinition, skill));
+
+        return new Weapon(cyberneticDeviceId, name, description, language, moduleName, null,
+                weaponDamages, techLevel, false, null, "", new HashSet<>(), 0,
                 new HashSet<>(), new HashSet<>());
 
     }

@@ -279,7 +279,7 @@ public class CharacterPlayer {
             return getSkillAssignedRanks(selectedSkill);
         } else {
             // Use a simple skill if not generalization.
-            if (!skill.getSkillDefinition().isSpecializable() || skill.getSkillDefinition().isNatural()) {
+            if (skill != null && (!skill.getSkillDefinition().isSpecializable() || skill.getSkillDefinition().isNatural())) {
                 return getSkillAssignedRanks((Skill<AvailableSkill>) skill);
             } else {
                 return 0;
@@ -1503,7 +1503,10 @@ public class CharacterPlayer {
      */
     public Weapon hasWeaponWithSkill(AvailableSkill skill) {
         for (final Weapon weapon : getAllWeapons()) {
-            if (Objects.equals(weapon.getSkill(), skill)) {
+            if (weapon.getWeaponDamages().isEmpty()) {
+                continue;
+            }
+            if (Objects.equals(weapon.getWeaponDamages().get(0).getSkill(), skill)) {
                 return weapon;
             }
         }
@@ -1519,10 +1522,13 @@ public class CharacterPlayer {
         Weapon mainWeapon = null;
         int totalValue = 0;
         for (final Weapon weapon : getAllWeapons()) {
-            if (getSkillTotalRanks(weapon.getSkill())
-                    + getCharacteristicValue(weapon.getCharacteristic().getCharacteristicName()) > totalValue) {
-                totalValue = getSkillTotalRanks(weapon.getSkill())
-                        + getCharacteristicValue(weapon.getCharacteristic().getCharacteristicName());
+            if (weapon.getWeaponDamages().isEmpty()) {
+                continue;
+            }
+            if (getSkillTotalRanks(weapon.getWeaponDamages().get(0).getSkill())
+                    + getCharacteristicValue(weapon.getWeaponDamages().get(0).getCharacteristic().getCharacteristicName()) > totalValue) {
+                totalValue = getSkillTotalRanks(weapon.getWeaponDamages().get(0).getSkill())
+                        + getCharacteristicValue(weapon.getWeaponDamages().get(0).getCharacteristic().getCharacteristicName());
                 mainWeapon = weapon;
             }
         }
