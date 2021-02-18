@@ -4042,12 +4042,17 @@
                 <shots>15</shots>
                 <rate>1</rate>
             </weaponDamage>
+            <weaponDamage>
+                <characteristic>dexterity</characteristic>
+                <skill>melee</skill>
+                <damage>5</damage>
+                <strength>5</strength>
+            </weaponDamage>
         </damageList>
         <size>XL</size>
         <cost>3000</cost>
         <damageType>plasma</damageType>
         <others>stock</others>
-        <ammunition>nitobiAxe</ammunition>
         <random>
             <probabilityMultiplier>0.1</probabilityMultiplier>
         </random>

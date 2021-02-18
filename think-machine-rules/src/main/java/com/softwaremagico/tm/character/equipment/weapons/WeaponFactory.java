@@ -54,6 +54,7 @@ public class WeaponFactory extends XmlFactory<Weapon> {
     private static final String SPECIAL = "special";
     private static final String DAMAGE_TYPE = "damageType";
     private static final String DAMAGE_LIST = "damageList";
+    private static final String WEAPON_DAMAGE = "weaponDamage";
     private static final String DAMAGE_NAME = "name";
     private static final String DAMAGE = "damage";
     private static final String GOAL = "goal";
@@ -116,30 +117,33 @@ public class WeaponFactory extends XmlFactory<Weapon> {
         final List<WeaponDamage> damages = new ArrayList<>();
         int node = 0;
         while (true) {
+            if (Objects.equals(weaponId, "nitobiBlasterAxe")) {
+                System.out.println("aa");
+            }
             String damageName = null;
             try {
-                damageName = translator.getNodeValue(weaponId, DAMAGE_LIST, DAMAGE_NAME, node);
+                damageName = translator.getNodeValue(weaponId, DAMAGE_LIST, WEAPON_DAMAGE, DAMAGE_NAME, node);
             } catch (Exception e) {
                 // Not mandatory
             }
 
             String goal = "";
             try {
-                goal = translator.getNodeValue(weaponId, DAMAGE_LIST, GOAL, node);
+                goal = translator.getNodeValue(weaponId, DAMAGE_LIST, WEAPON_DAMAGE, GOAL, node);
             } catch (Exception e) {
                 // Not mandatory
             }
 
             String damage = null;
             try {
-                damage = translator.getNodeValue(weaponId, DAMAGE_LIST, DAMAGE, node);
+                damage = translator.getNodeValue(weaponId, DAMAGE_LIST, WEAPON_DAMAGE, DAMAGE, node);
             } catch (Exception e) {
                 // Not mandatory
             }
 
             Integer strength = null;
             try {
-                final String strengthValue = translator.getNodeValue(weaponId, DAMAGE_LIST, STRENGTH, node);
+                final String strengthValue = translator.getNodeValue(weaponId, DAMAGE_LIST, WEAPON_DAMAGE, STRENGTH, node);
                 strength = Integer.parseInt(strengthValue);
             } catch (Exception e) {
                 // Not mandatory
@@ -147,14 +151,14 @@ public class WeaponFactory extends XmlFactory<Weapon> {
 
             String range = null;
             try {
-                range = translator.getNodeValue(weaponId, DAMAGE_LIST, RANGE, node);
+                range = translator.getNodeValue(weaponId, DAMAGE_LIST, WEAPON_DAMAGE, RANGE, node);
             } catch (Exception e) {
                 // Not mandatory.
             }
 
             Integer shots = null;
             try {
-                final String shotsValue = translator.getNodeValue(weaponId, DAMAGE_LIST, SHOTS, node);
+                final String shotsValue = translator.getNodeValue(weaponId, DAMAGE_LIST, WEAPON_DAMAGE, SHOTS, node);
                 shots = Integer.parseInt(shotsValue);
             } catch (Exception e) {
                 // Not mandatory.
@@ -162,7 +166,7 @@ public class WeaponFactory extends XmlFactory<Weapon> {
 
             String rate = "";
             try {
-                rate = translator.getNodeValue(weaponId, DAMAGE_LIST, RATE, node);
+                rate = translator.getNodeValue(weaponId, DAMAGE_LIST, WEAPON_DAMAGE, RATE, node);
             } catch (Exception e) {
                 // Not mandatory.
             }
@@ -176,7 +180,7 @@ public class WeaponFactory extends XmlFactory<Weapon> {
 
             CharacteristicDefinition characteristicDefinition;
             try {
-                final String characteristicName = translator.getNodeValue(weaponId, CHARACTERISTIC);
+                final String characteristicName = translator.getNodeValue(weaponId, DAMAGE_LIST, WEAPON_DAMAGE, CHARACTERISTIC);
                 characteristicDefinition = CharacteristicsDefinitionFactory.getInstance().getElement(characteristicName,
                         language, moduleName);
             } catch (Exception e) {
@@ -185,7 +189,7 @@ public class WeaponFactory extends XmlFactory<Weapon> {
 
             AvailableSkill skill;
             try {
-                final String skillName = translator.getNodeValue(weaponId, SKILL);
+                final String skillName = translator.getNodeValue(weaponId, DAMAGE_LIST, WEAPON_DAMAGE, SKILL);
                 skill = AvailableSkillsFactory.getInstance().getElement(skillName, language, moduleName);
             } catch (Exception e) {
                 throw new InvalidWeaponException("Invalid skill name in weapon '" + weaponId + "'.");

@@ -24,14 +24,6 @@ package com.softwaremagico.tm.export.pdf;
  * #L%
  */
 
-import java.io.File;
-import java.io.IOException;
-import java.net.MalformedURLException;
-
-import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.Test;
-
 import com.itextpdf.text.DocumentException;
 import com.softwaremagico.tm.CacheHandler;
 import com.softwaremagico.tm.InvalidXmlElementException;
@@ -64,6 +56,13 @@ import com.softwaremagico.tm.file.PathManager;
 import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.pdf.complete.CharacterSheet;
 import com.softwaremagico.tm.pdf.small.SmallCharacterSheet;
+import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.Test;
+
+import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
 
 @Test(groups = { "characterPdfGeneration" })
 public class CharacterSheetCreationTest {
@@ -213,7 +212,7 @@ public class CharacterSheetCreationTest {
 
 		player.addWeapon(WeaponFactory.getInstance().getElement("mace", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
 		player.addWeapon(
-				WeaponFactory.getInstance().getElement("martechGold", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+				WeaponFactory.getInstance().getElement("nitobiBlasterAxe", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
 
 		player.setArmour(
 				ArmourFactory.getInstance().getElement("synthsilk", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));

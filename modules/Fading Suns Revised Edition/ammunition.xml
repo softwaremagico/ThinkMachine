@@ -10,16 +10,6 @@
 		<strength>3</strength>
 		<range>30/80</range>
 	</solidSlug>
-	<nitobiAxe>
-		<name>
-			<en>Axe</en>
-			<es>Hacha</es>
-		</name>
-		<goal>0</goal>
-		<damage>5</damage>
-		<strength>5</strength>
-		<range>--</range>
-	</nitobiAxe>
 	<riotSolidSlug>
 		<name>
 			<en>Solid Slug (.47)</en>

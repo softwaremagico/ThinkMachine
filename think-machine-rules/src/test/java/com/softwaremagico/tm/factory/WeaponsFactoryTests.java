@@ -153,4 +153,10 @@ public class WeaponsFactoryTests {
         Assert.assertEquals(0, player.getAllWeapons().size());
     }
 
+    @Test
+    public void checkMultipleDamage() throws InvalidXmlElementException {
+        final Weapon nitobiAxe = WeaponFactory.getInstance().getElement("nitobiBlasterAxe", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        Assert.assertEquals(nitobiAxe.getWeaponDamages().size(), 2);
+    }
+
 }
