@@ -117,9 +117,6 @@ public class WeaponFactory extends XmlFactory<Weapon> {
         final List<WeaponDamage> damages = new ArrayList<>();
         int node = 0;
         while (true) {
-            if (Objects.equals(weaponId, "nitobiBlasterAxe")) {
-                System.out.println("aa");
-            }
             String damageName = null;
             try {
                 damageName = translator.getNodeValue(weaponId, DAMAGE_LIST, WEAPON_DAMAGE, DAMAGE_NAME, node);

@@ -22,5 +22,5 @@ Poderes Ocultos: Mano Lejana (Mano Levitante, Mano Lanzadora), Sexto Sentido (Se
 Wyrd: 9
 Vitalidad: -10/-8/-6/-4/-2/O/O/O
 
-Equipo: Filoespada (8d, Ignora la Armadura), Jonás (4d, 10/20, Ratio 1), Martech Oro (+1RA, 5d, 10/20, Ratio 2, Láser), Maza (5d), Seda Sintética (4d, Blando, Eléctrico), Escudo de Asalto (5/15 20 Cargas).
+Equipo: Filoespada (8d, Ignora la Armadura), Hoja Bláster Nitobi (–1RA, 9*d, 20/30, Ratio 1, Plasma), Jonás (4d, 10/20, Ratio 1), Maza (5d), Seda Sintética (4d, Blando, Eléctrico), Escudo de Asalto (5/15 20 Cargas).
 Cibernética: Jonás, Ojo de Ingeniero (Oculto).
