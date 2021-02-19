@@ -92,31 +92,31 @@ public class WeaponsFactoryTests {
 
     @Test
     public void getMainDamage() throws InvalidXmlElementException {
-        Assert.assertEquals(6, WeaponFactory.getInstance().getElement("arbata", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).getMainDamage());
+        Assert.assertEquals(6, WeaponFactory.getInstance().getElement("arbata", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).getWeaponDamages().get(0).getMainDamage());
         Assert.assertEquals(8, WeaponFactory.getInstance().getElement("typicalShotgun", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)
-                .getMainDamage());
-        Assert.assertEquals(12, WeaponFactory.getInstance().getElement("wireGrenade", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).getMainDamage());
+                .getWeaponDamages().get(0).getMainDamage());
+        Assert.assertEquals(12, WeaponFactory.getInstance().getElement("wireGrenade", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).getWeaponDamages().get(0).getMainDamage());
     }
 
     @Test
     public void getAreaDamage() throws InvalidXmlElementException {
         Assert.assertEquals(1, WeaponFactory.getInstance().getElement("goboLobberJetPistol", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)
-                .getAreaMeters());
+                .getWeaponDamages().get(0).getAreaMeters());
         Assert.assertEquals(2, WeaponFactory.getInstance().getElement("goboGarbageChucker", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)
-                .getAreaMeters());
+                .getWeaponDamages().get(0).getAreaMeters());
         Assert.assertEquals(3, WeaponFactory.getInstance().getElement("musterNightstorm", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)
-                .getAreaMeters());
-        Assert.assertEquals(5, WeaponFactory.getInstance().getElement("fragGrenades", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).getAreaMeters());
+                .getWeaponDamages().get(0).getAreaMeters());
+        Assert.assertEquals(5, WeaponFactory.getInstance().getElement("fragGrenades", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).getWeaponDamages().get(0).getAreaMeters());
     }
 
     @Test
     public void getDamageWithoutArea() throws InvalidXmlElementException {
         Assert.assertEquals("3", WeaponFactory.getInstance().getElement("blastPellet", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)
-                .getDamageWithoutArea());
+                .getWeaponDamages().get(0).getDamageWithoutArea());
         Assert.assertEquals("6", WeaponFactory.getInstance().getElement("blastPelletHeavy", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)
-                .getDamageWithoutArea());
+                .getWeaponDamages().get(0).getDamageWithoutArea());
         Assert.assertEquals("12", WeaponFactory.getInstance().getElement("fragGrenades", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)
-                .getDamageWithoutArea());
+                .getWeaponDamages().get(0).getDamageWithoutArea());
     }
 
     @Test
@@ -151,6 +151,12 @@ public class WeaponsFactoryTests {
         weaponsToAdd = new HashSet<>();
         player.setMeleeWeapons(weaponsToAdd);
         Assert.assertEquals(0, player.getAllWeapons().size());
+    }
+
+    @Test
+    public void checkMultipleDamage() throws InvalidXmlElementException {
+        final Weapon nitobiAxe = WeaponFactory.getInstance().getElement("nitobiBlasterAxe", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        Assert.assertEquals(nitobiAxe.getWeaponDamages().size(), 2);
     }
 
 }

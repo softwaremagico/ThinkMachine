@@ -36,11 +36,7 @@ import com.softwaremagico.tm.character.blessings.BlessingAlreadyAddedException;
 import com.softwaremagico.tm.character.blessings.BlessingFactory;
 import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
-import com.softwaremagico.tm.character.cybernetics.CyberneticDeviceFactory;
-import com.softwaremagico.tm.character.cybernetics.CyberneticDeviceTraitFactory;
-import com.softwaremagico.tm.character.cybernetics.RequiredCyberneticDevicesException;
-import com.softwaremagico.tm.character.cybernetics.SelectedCyberneticDevice;
-import com.softwaremagico.tm.character.cybernetics.TooManyCyberneticDevicesException;
+import com.softwaremagico.tm.character.cybernetics.*;
 import com.softwaremagico.tm.character.equipment.armours.ArmourFactory;
 import com.softwaremagico.tm.character.equipment.shields.ShieldFactory;
 import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
@@ -50,7 +46,6 @@ import com.softwaremagico.tm.character.occultism.OccultismTypeFactory;
 import com.softwaremagico.tm.character.planets.PlanetFactory;
 import com.softwaremagico.tm.character.races.RaceFactory;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
-import com.softwaremagico.tm.file.PathManager;
 
 public class CustomCharacter {
 	public final static int COST = 58;
@@ -152,7 +147,7 @@ public class CustomCharacter {
 
 		player.addWeapon(WeaponFactory.getInstance().getElement("mace", player.getLanguage(), player.getModuleName()));
 		player.addWeapon(
-				WeaponFactory.getInstance().getElement("martechGold", player.getLanguage(), player.getModuleName()));
+				WeaponFactory.getInstance().getElement("nitobiBlasterAxe", player.getLanguage(), player.getModuleName()));
 
 		player.setArmour(
 				ArmourFactory.getInstance().getElement("synthsilk", player.getLanguage(), player.getModuleName()));

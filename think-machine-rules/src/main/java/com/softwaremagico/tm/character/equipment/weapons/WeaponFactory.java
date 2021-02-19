@@ -47,19 +47,21 @@ public class WeaponFactory extends XmlFactory<Weapon> {
     private static final String SKILL = "skill";
     private static final String TECH_LEVEL = "techLevel";
     private static final String TECH_LEVEL_SPECIAL = "techLevelSpecial";
-    private static final String GOAL = "goal";
-    private static final String DAMAGE = "damage";
-    private static final String STRENGTH = "strength";
-    private static final String RANGE = "range";
-    private static final String SHOTS = "shots";
-    private static final String RATE = "rate";
     private static final String SIZE = "size";
     private static final String COST = "cost";
 
     private static final String TYPE = "type";
     private static final String SPECIAL = "special";
     private static final String DAMAGE_TYPE = "damageType";
-    private static final String PRIMARY_DAMAGE = "primaryDamage";
+    private static final String DAMAGE_LIST = "damageList";
+    private static final String WEAPON_DAMAGE = "weaponDamage";
+    private static final String DAMAGE_NAME = "name";
+    private static final String DAMAGE = "damage";
+    private static final String GOAL = "goal";
+    private static final String STRENGTH = "strength";
+    private static final String RANGE = "range";
+    private static final String SHOTS = "shots";
+    private static final String RATE = "rate";
 
     private static final String AMMUNITION = "ammunition";
     private static final String ACCESSORIES = "others";
@@ -95,22 +97,6 @@ public class WeaponFactory extends XmlFactory<Weapon> {
                                    String language, String moduleName)
             throws InvalidXmlElementException {
 
-        CharacteristicDefinition characteristicDefinition;
-        try {
-            final String characteristicName = translator.getNodeValue(weaponId, CHARACTERISTIC);
-            characteristicDefinition = CharacteristicsDefinitionFactory.getInstance().getElement(characteristicName,
-                    language, moduleName);
-        } catch (Exception e) {
-            throw new InvalidWeaponException("Invalid characteristic name in weapon '" + weaponId + "'.");
-        }
-
-        AvailableSkill skill;
-        try {
-            final String skillName = translator.getNodeValue(weaponId, SKILL);
-            skill = AvailableSkillsFactory.getInstance().getElement(skillName, language, moduleName);
-        } catch (Exception e) {
-            throw new InvalidWeaponException("Invalid skill name in weapon '" + weaponId + "'.");
-        }
 
         int techLevel;
         try {
@@ -128,52 +114,90 @@ public class WeaponFactory extends XmlFactory<Weapon> {
             throw new InvalidWeaponException("Invalid tech level special in weapon '" + weaponId + "'.");
         }
 
-        String goal = "";
-        try {
-            goal = translator.getNodeValue(weaponId, PRIMARY_DAMAGE, GOAL);
-        } catch (Exception e) {
-            // Not mandatory
-        }
-
-        String damage;
-        try {
-            damage = translator.getNodeValue(weaponId, PRIMARY_DAMAGE, DAMAGE);
-            if (damage == null) {
-                throw new InvalidWeaponException("Invalid damage null value in weapon '" + weaponId + "'.");
+        final List<WeaponDamage> damages = new ArrayList<>();
+        int node = 0;
+        while (true) {
+            String damageName = null;
+            try {
+                damageName = translator.getNodeValue(weaponId, DAMAGE_LIST, WEAPON_DAMAGE, DAMAGE_NAME, node);
+            } catch (Exception e) {
+                // Not mandatory
             }
-        } catch (Exception e) {
-            throw new InvalidWeaponException("Invalid damage value in weapon '" + weaponId + "'.", e);
+
+            String goal = "";
+            try {
+                goal = translator.getNodeValue(weaponId, DAMAGE_LIST, WEAPON_DAMAGE, GOAL, node);
+            } catch (Exception e) {
+                // Not mandatory
+            }
+
+            String damage = null;
+            try {
+                damage = translator.getNodeValue(weaponId, DAMAGE_LIST, WEAPON_DAMAGE, DAMAGE, node);
+            } catch (Exception e) {
+                // Not mandatory
+            }
+
+            Integer strength = null;
+            try {
+                final String strengthValue = translator.getNodeValue(weaponId, DAMAGE_LIST, WEAPON_DAMAGE, STRENGTH, node);
+                strength = Integer.parseInt(strengthValue);
+            } catch (Exception e) {
+                // Not mandatory
+            }
+
+            String range = null;
+            try {
+                range = translator.getNodeValue(weaponId, DAMAGE_LIST, WEAPON_DAMAGE, RANGE, node);
+            } catch (Exception e) {
+                // Not mandatory.
+            }
+
+            Integer shots = null;
+            try {
+                final String shotsValue = translator.getNodeValue(weaponId, DAMAGE_LIST, WEAPON_DAMAGE, SHOTS, node);
+                shots = Integer.parseInt(shotsValue);
+            } catch (Exception e) {
+                // Not mandatory.
+            }
+
+            String rate = "";
+            try {
+                rate = translator.getNodeValue(weaponId, DAMAGE_LIST, WEAPON_DAMAGE, RATE, node);
+            } catch (Exception e) {
+                // Not mandatory.
+            }
+
+            if (damage == null && strength == null && range == null && shots == null && damageName == null) {
+                if (damages.isEmpty()) {
+                    throw new InvalidWeaponException("No damage defined for weapon '" + weaponId + "'.");
+                }
+                break;
+            }
+
+            CharacteristicDefinition characteristicDefinition;
+            try {
+                final String characteristicName = translator.getNodeValue(weaponId, DAMAGE_LIST, WEAPON_DAMAGE, CHARACTERISTIC);
+                characteristicDefinition = CharacteristicsDefinitionFactory.getInstance().getElement(characteristicName,
+                        language, moduleName);
+            } catch (Exception e) {
+                throw new InvalidWeaponException("Invalid characteristic name in weapon '" + weaponId + "'.");
+            }
+
+            AvailableSkill skill;
+            try {
+                final String skillName = translator.getNodeValue(weaponId, DAMAGE_LIST, WEAPON_DAMAGE, SKILL);
+                skill = AvailableSkillsFactory.getInstance().getElement(skillName, language, moduleName);
+            } catch (Exception e) {
+                throw new InvalidWeaponException("Invalid skill name in weapon '" + weaponId + "'.");
+            }
+
+            final WeaponDamage weaponDamage = new WeaponDamage(damageName, goal, damage, strength, range, shots, rate,
+                    characteristicDefinition, skill);
+            damages.add(weaponDamage);
+            node++;
         }
 
-        int strength;
-        try {
-            final String strengthValue = translator.getNodeValue(weaponId, PRIMARY_DAMAGE, STRENGTH);
-            strength = Integer.parseInt(strengthValue);
-        } catch (Exception e) {
-            throw new InvalidWeaponException("Invalid strength value in weapon '" + weaponId + "'.", e);
-        }
-
-        String range = null;
-        try {
-            range = translator.getNodeValue(weaponId, PRIMARY_DAMAGE, RANGE);
-        } catch (Exception e) {
-            // Not mandatory.
-        }
-
-        Integer shots = null;
-        try {
-            final String shotsValue = translator.getNodeValue(weaponId, PRIMARY_DAMAGE, SHOTS);
-            shots = Integer.parseInt(shotsValue);
-        } catch (Exception e) {
-            // Not mandatory.
-        }
-
-        String rate = "";
-        try {
-            rate = translator.getNodeValue(weaponId, PRIMARY_DAMAGE, RATE);
-        } catch (Exception e) {
-            // Not mandatory.
-        }
 
         Size size;
         try {
@@ -255,8 +279,8 @@ public class WeaponFactory extends XmlFactory<Weapon> {
             }
         }
 
-        return new Weapon(weaponId, name, description, language, moduleName, type, goal, characteristicDefinition, skill, damage,
-                strength, range, shots, rate, techLevel, techLevelSpecial, size, special, damageOfWeapon, cost,
+        return new Weapon(weaponId, name, description, language, moduleName, type, damages,
+                techLevel, techLevelSpecial, size, special, damageOfWeapon, cost,
                 ammunition, accessories);
     }
 

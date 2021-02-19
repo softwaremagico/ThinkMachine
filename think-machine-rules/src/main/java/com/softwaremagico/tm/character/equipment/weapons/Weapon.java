@@ -1,6 +1,10 @@
 package com.softwaremagico.tm.character.equipment.weapons;
 
-import java.util.HashSet;
+import com.softwaremagico.tm.character.equipment.DamageType;
+import com.softwaremagico.tm.character.equipment.Equipment;
+import com.softwaremagico.tm.character.equipment.Size;
+
+import java.util.*;
 
 /*-
  * #%L
@@ -26,47 +30,21 @@ import java.util.HashSet;
  * #L%
  */
 
-import java.util.Set;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import com.softwaremagico.tm.character.characteristics.CharacteristicDefinition;
-import com.softwaremagico.tm.character.equipment.DamageType;
-import com.softwaremagico.tm.character.equipment.Equipment;
-import com.softwaremagico.tm.character.equipment.Size;
-import com.softwaremagico.tm.character.skills.AvailableSkill;
-import com.softwaremagico.tm.log.MachineLog;
-
 public class Weapon extends Equipment<Weapon> {
-    private static final String NUMBER_EXTRACTOR_PATTERN = "^[^\\d]*(\\d+)";
-    private static final Pattern FIRST_NUMBER_PATTERN = Pattern.compile(NUMBER_EXTRACTOR_PATTERN);
-    private static final String AREA_DAMAGE = "\\((\\d+)\\s*m\\)$";
-    private static final Pattern AREA_DAMAGE_PATTERN = Pattern.compile(AREA_DAMAGE);
-    private static final String DAMAGE_WITHOUT_AREA = "^(.*?)\\(";
-    private static final Pattern DAMAGE_WITHOUT_AREA_PATTERN = Pattern.compile(DAMAGE_WITHOUT_AREA);
-    private static final int SPECIAL_DAMAGE_THREAT = 5;
 
-    private final String goal;
-    private final String damage;
-    private final int strength;
-    private final String range;
-    private final Integer shots;
-    private final String rate;
+    private final List<WeaponDamage> weaponDamages;
+
+
     private final Size size;
     private final boolean techLevelSpecial;
 
     private final String special;
     private final Set<DamageType> damageTypes;
-    private final AvailableSkill skill;
-    private final CharacteristicDefinition characteristic;
     private final WeaponType type;
 
     private final Set<Ammunition> ammunition;
     private final Set<Accessory> accessories;
 
-    private transient Integer mainDamage = null;
-    private transient Integer areaDamage = null;
-    private transient String areaWithoutDamage = null;
 
     /**
      * For creating empty elements.
@@ -76,33 +54,18 @@ public class Weapon extends Equipment<Weapon> {
         this.ammunition = new HashSet<>();
         this.accessories = new HashSet<>();
         this.damageTypes = new HashSet<>();
+        this.weaponDamages = new ArrayList<>();
         this.type = null;
         this.techLevelSpecial = false;
-        this.goal = "";
-        this.strength = 0;
-        this.range = "";
-        this.shots = 0;
-        this.rate = "";
         this.special = "";
-        this.skill = null;
-        this.characteristic = null;
         this.size = null;
-        this.damage = "";
     }
 
-    public Weapon(String id, String name, String description, String language, String moduleName, WeaponType type, String goal,
-                  CharacteristicDefinition characteristic, AvailableSkill skill, String damage, int strength, String range,
-                  Integer shots, String rate, int techLevel, boolean techLevelSpecial, Size size, String special, Set<DamageType> damageTypes,
-                  float cost, Set<Ammunition> ammunition, Set<Accessory> accessories) {
+    public Weapon(String id, String name, String description, String language, String moduleName, WeaponType type,
+                  List<WeaponDamage> damages, int techLevel, boolean techLevelSpecial, Size size, String special,
+                  Set<DamageType> damageTypes, float cost, Set<Ammunition> ammunition, Set<Accessory> accessories) {
         super(id, name, description, cost, techLevel, language, moduleName);
-        this.characteristic = characteristic;
-        this.skill = skill;
-        this.goal = goal;
-        this.damage = damage;
-        this.strength = strength;
-        this.range = range;
-        this.shots = shots;
-        this.rate = rate;
+        this.weaponDamages = damages;
         this.size = size;
         this.techLevelSpecial = techLevelSpecial;
         this.type = type;
@@ -112,109 +75,10 @@ public class Weapon extends Equipment<Weapon> {
         this.accessories = accessories;
     }
 
-    public String getRoll() {
-        try {
-            return characteristic.getAbbreviature() + "+" + skill.getName();
-        } catch (Exception e) {
-            return "";
-        }
-    }
-
     public WeaponType getType() {
         return type;
     }
 
-    public String getGoal() {
-        if (goal == null) {
-            return "";
-        }
-        return goal;
-    }
-
-    public String getDamage() {
-        return damage;
-    }
-
-    public String getDamageWithoutArea() {
-        if (areaWithoutDamage == null) {
-            try {
-                final Matcher matcher = DAMAGE_WITHOUT_AREA_PATTERN.matcher(getDamage());
-                if (matcher.find()) {
-                    areaWithoutDamage = matcher.group(1);
-                } else {
-                    areaWithoutDamage = getDamage();
-                }
-            } catch (NullPointerException e) {
-                // No area
-                areaWithoutDamage = getDamage();
-            }
-            areaWithoutDamage = areaWithoutDamage.trim();
-        }
-        return areaWithoutDamage;
-    }
-
-    public int getMainDamage() {
-        if (mainDamage == null) {
-            try {
-                final Matcher matcher = FIRST_NUMBER_PATTERN.matcher(getDamage());
-                if (matcher.find()) {
-                    mainDamage = Integer.parseInt(matcher.group());
-                } else {
-                    mainDamage = 0;
-                }
-            } catch (NullPointerException e) {
-                // No damage
-                mainDamage = 0;
-            } catch (NumberFormatException e) {
-                if (getDamage().contains("*")) {
-                    // Special damage!
-                    mainDamage = SPECIAL_DAMAGE_THREAT;
-                } else {
-                    MachineLog.severe(this.getClass().getName(), "Invalid main damage in '{}' for '{}'.", getDamage(), this);
-                }
-            }
-        }
-        return mainDamage;
-    }
-
-    public int getAreaMeters() {
-        if (areaDamage == null) {
-            try {
-                final Matcher matcher = AREA_DAMAGE_PATTERN.matcher(getDamage());
-                if (matcher.find()) {
-                    areaDamage = Integer.parseInt(matcher.group(1));
-                } else {
-                    areaDamage = 0;
-                }
-            } catch (NullPointerException e) {
-                // No area
-                areaDamage = 0;
-            } catch (NumberFormatException e) {
-                MachineLog.severe(this.getClass().getName(), "Invalid area damage in '{}' for '{}'.", getDamage(), this);
-            }
-        }
-        return areaDamage;
-    }
-
-    public Integer getShots() {
-        return shots;
-    }
-
-    public String getRate() {
-        return rate;
-    }
-
-    public int getMainRate() {
-        try {
-            final Matcher matcher = FIRST_NUMBER_PATTERN.matcher(getRate());
-            if (matcher.find()) {
-                return Integer.parseInt(matcher.group());
-            }
-        } catch (NullPointerException e) {
-            // Melee weapon.
-        }
-        return 0;
-    }
 
     public boolean isMeleeWeapon() {
         return getType() == WeaponType.MELEE || getType() == WeaponType.MELEE_ARTIFACT || getType() == WeaponType.MELEE_SHIELD;
@@ -225,8 +89,10 @@ public class Weapon extends Equipment<Weapon> {
     }
 
     public boolean isAutomaticWeapon() {
-        if (getRate() != null) {
-            return getRate().toLowerCase().contains("a");
+        if (!weaponDamages.isEmpty()) {
+            if (weaponDamages.get(0).getRate() != null) {
+                return weaponDamages.get(0).getRate().toLowerCase().contains("a");
+            }
         }
         return false;
     }
@@ -237,41 +103,6 @@ public class Weapon extends Equipment<Weapon> {
 
     public String getSpecial() {
         return special;
-    }
-
-    public int getStrength() {
-        return strength;
-    }
-
-    public String getRange() {
-        return range;
-    }
-
-    public int getMainRange() {
-        try {
-            final Matcher matcher = FIRST_NUMBER_PATTERN.matcher(getRange());
-            if (matcher.find()) {
-                return Integer.parseInt(matcher.group());
-            }
-        } catch (NullPointerException e) {
-            // Melee weapon.
-        }
-        return 0;
-    }
-
-    public AvailableSkill getSkill() {
-        return skill;
-    }
-
-    public CharacteristicDefinition getCharacteristic() {
-        return characteristic;
-    }
-
-    public String getStrengthOrRange() {
-        if (range == null) {
-            return strength + "";
-        }
-        return range;
     }
 
     public Set<DamageType> getDamageTypes() {
@@ -317,8 +148,10 @@ public class Weapon extends Equipment<Weapon> {
             }
             stringBuilder.append(getSpecial());
         }
-
         return stringBuilder.toString();
+    }
 
+    public List<WeaponDamage> getWeaponDamages() {
+        return weaponDamages;
     }
 }

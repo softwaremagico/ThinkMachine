@@ -24,10 +24,6 @@ package com.softwaremagico.tm.txt;
  * #L%
  */
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.ThreatLevel;
@@ -56,6 +52,10 @@ import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.language.Translator;
 import com.softwaremagico.tm.log.MachineLog;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class CharacterSheet {
     private static final String TRANSLATOR_FILE = "character_sheet.xml";
@@ -345,28 +345,29 @@ public class CharacterSheet {
         for (final Weapon weapon : getCharacterPlayer().getAllWeapons()) {
             stringBuilder.append(weapon.getName());
             stringBuilder.append(" (");
-            if (weapon.getGoal() != null && weapon.getGoal().length() > 0 && !weapon.getGoal().equals("0")) {
-                stringBuilder.append(weapon.getGoal());
+            if (weapon.getWeaponDamages().get(0).getGoal() != null && weapon.getWeaponDamages().get(0).getGoal().length() > 0
+                    && !weapon.getWeaponDamages().get(0).getGoal().equals("0")) {
+                stringBuilder.append(weapon.getWeaponDamages().get(0).getGoal());
                 stringBuilder.append(getTranslator().getTranslatedText("weaponGoal"));
                 stringBuilder.append(ELEMENT_SEPARATOR);
             }
-            stringBuilder.append(weapon.getDamageWithoutArea());
-            if (!weapon.getDamageWithoutArea().endsWith("d")) {
+            stringBuilder.append(weapon.getWeaponDamages().get(0).getDamageWithoutArea());
+            if (!weapon.getWeaponDamages().get(0).getDamageWithoutArea().endsWith("d")) {
                 stringBuilder.append("d");
             }
-            if (weapon.getAreaMeters() > 0) {
+            if (weapon.getWeaponDamages().get(0).getAreaMeters() > 0) {
                 stringBuilder.append(" ");
-                stringBuilder.append(weapon.getAreaMeters());
+                stringBuilder.append(weapon.getWeaponDamages().get(0).getAreaMeters());
             }
             stringBuilder.append(ELEMENT_SEPARATOR);
-            if (weapon.getRange() != null && weapon.getRange().length() > 0) {
-                stringBuilder.append(weapon.getRange());
+            if (weapon.getWeaponDamages().get(0).getRange() != null && weapon.getWeaponDamages().get(0).getRange().length() > 0) {
+                stringBuilder.append(weapon.getWeaponDamages().get(0).getRange());
                 stringBuilder.append(ELEMENT_SEPARATOR);
             }
-            if (weapon.getRate() != null && weapon.getRate().length() > 0) {
+            if (weapon.getWeaponDamages().get(0).getRate() != null && weapon.getWeaponDamages().get(0).getRate().length() > 0) {
                 stringBuilder.append(getTranslator().getTranslatedText("weaponRate"));
                 stringBuilder.append(" ");
-                stringBuilder.append(weapon.getRate());
+                stringBuilder.append(weapon.getWeaponDamages().get(0).getRate());
                 stringBuilder.append(ELEMENT_SEPARATOR);
             }
             for (final DamageType damageType : weapon.getDamageTypes()) {
