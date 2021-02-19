@@ -1,5 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <artifactId>think-machine-rules</artifactId>
     <packaging>jar</packaging>
@@ -10,7 +9,7 @@
     <parent>
         <groupId>com.softwaremagico</groupId>
         <artifactId>think-machine</artifactId>
-        <version>0.9.0-SNAPSHOT</version>
+        <version>0.9.1-SNAPSHOT</version>
     </parent>
 
     <properties>
@@ -75,12 +74,12 @@
                             <failOnError>false</failOnError>
                             <target>
                                 <!-- delete old tmp folder -->
-                                <delete dir="${gson.cache.folder}" failonerror="false" includeemptydirs="true"/>
+                                <delete dir="${gson.cache.folder}" failonerror="false" includeemptydirs="true" />
                                 <!-- create tmp folder -->
-                                <mkdir dir="${gson.cache.folder}"/>
+                                <mkdir dir="${gson.cache.folder}" />
                                 <!-- copy json files -->
                                 <copy todir="${gson.cache.folder}" overwrite="true">
-                                    <fileset dir="${gson.cache.tmp.folder}" includes="**"/>
+                                    <fileset dir="${gson.cache.tmp.folder}" includes="**" />
                                 </copy>
                             </target>
                         </configuration>
