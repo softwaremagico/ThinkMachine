@@ -211,13 +211,13 @@ public class CyberneticDeviceFactory extends XmlFactory<CyberneticDevice> {
             while (true) {
                 try {
                     final String bonificationValue = translator.getNodeValue(cyberneticDeviceId, SKILL_STATIC_VALUE,
-                            SKILL_VALUE, VALUE, node);
+                            SKILL_VALUE, node, VALUE);
                     final String skillName = translator.getNodeValue(cyberneticDeviceId, SKILL_STATIC_VALUE,
-                            SKILL_VALUE, AFFECTS, node);
+                            SKILL_VALUE, node, AFFECTS);
                     String skillSpeciality = null;
                     try {
                         skillSpeciality = translator.getNodeValue(cyberneticDeviceId, SKILL_STATIC_VALUE, SKILL_VALUE,
-                                SKILL_SPECIALITY, node);
+                                node, SKILL_SPECIALITY);
                     } catch (NullPointerException e) {
                         // Not mandatory
                     }

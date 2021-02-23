@@ -150,7 +150,7 @@ public class RandomProfileFactory extends XmlFactory<RandomProfile> {
                 String requiredSkillId;
                 try {
                     requiredSkillId = translator.getNodeValue(profileId, REQUIRED_SKILLS, REQUIRED_SKILL,
-                            REQUIRED_SKILLS_ID, node);
+                            node, REQUIRED_SKILLS_ID);
                     if (requiredSkillId == null) {
                         break;
                     }
@@ -161,7 +161,7 @@ public class RandomProfileFactory extends XmlFactory<RandomProfile> {
                 String skillSpeciality = null;
                 try {
                     skillSpeciality = translator.getNodeValue(profileId, REQUIRED_SKILLS, REQUIRED_SKILL,
-                            REQUIRED_SKILLS_SPECIALIZATION, node);
+                            node, REQUIRED_SKILLS_SPECIALIZATION);
                 } catch (NullPointerException e) {
                     // Not mandatory
                 }
@@ -190,7 +190,7 @@ public class RandomProfileFactory extends XmlFactory<RandomProfile> {
                 String suggestedSkillId;
                 try {
                     suggestedSkillId = translator.getNodeValue(profileId, SUGGESTED_SKILLS, REQUIRED_SKILL,
-                            REQUIRED_SKILLS_ID, node);
+                            node, REQUIRED_SKILLS_ID);
                     if (suggestedSkillId == null) {
                         break;
                     }
@@ -201,7 +201,7 @@ public class RandomProfileFactory extends XmlFactory<RandomProfile> {
                 String skillSpeciality = null;
                 try {
                     skillSpeciality = translator.getNodeValue(profileId, SUGGESTED_SKILLS, REQUIRED_SKILL,
-                            REQUIRED_SKILLS_SPECIALIZATION, node);
+                            node, REQUIRED_SKILLS_SPECIALIZATION);
                 } catch (NullPointerException e) {
                     // Not mandatory
                 }

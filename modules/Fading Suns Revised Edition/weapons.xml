@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <weapons>
     <version>1</version>
-    <totalElements>192</totalElements>
+    <totalElements>187</totalElements>
     <arbata>
         <name>
             <en>Arbat’a (Crystal Sword)</en>
@@ -64,6 +64,14 @@
                 <skill>melee</skill>
                 <goal>0</goal>
                 <damage>7</damage>
+                <strength>5</strength>
+            </weaponDamage>
+            <weaponDamage>
+                <characteristic>dexterity</characteristic>
+                <skill>melee</skill>
+                <damageTechLevel>2</damageTechLevel>
+                <goal>0</goal>
+                <damage>6</damage>
                 <strength>5</strength>
             </weaponDamage>
         </damageList>
@@ -278,6 +286,14 @@
                 <damage>4</damage>
                 <strength>2</strength>
             </weaponDamage>
+            <weaponDamage>
+                <characteristic>dexterity</characteristic>
+                <skill>melee</skill>
+                <damageTechLevel>1</damageTechLevel>
+                <goal>0</goal>
+                <damage>3</damage>
+                <strength>2</strength>
+            </weaponDamage>
         </damageList>
         <size>L</size>
         <cost>0.5</cost>
@@ -304,6 +320,14 @@
             <weaponDamage>
                 <characteristic>dexterity</characteristic>
                 <skill>melee</skill>
+                <goal>0</goal>
+                <damage>4</damage>
+                <strength>2</strength>
+            </weaponDamage>
+            <weaponDamage>
+                <characteristic>dexterity</characteristic>
+                <skill>melee</skill>
+                <damageTechLevel>1</damageTechLevel>
                 <goal>0</goal>
                 <damage>3</damage>
                 <strength>2</strength>
@@ -340,7 +364,7 @@
         <size>L</size>
         <cost>20</cost>
     </curvedSword>
-    <dagger1>
+    <dagger>
         <name>
             <en>Dagger</en>
             <es>Daga</es>
@@ -363,29 +387,10 @@
                 <damage>4</damage>
                 <strength>2</strength>
             </weaponDamage>
-        </damageList>
-        <size>M</size>
-        <cost>4</cost>
-    </dagger1>
-    <dagger2>
-        <name>
-            <en>Dagger</en>
-            <es>Daga</es>
-        </name>
-        <description>
-            <en>A large knife or short sword, depending on the manufacture (DMG 3 for TL2+). Similar to the Ghurka
-                kukri, the Bowie knife, or the Roman gladius.
-            </en>
-            <es>Un gran cuchillo o una espada corta, en función de cómo haya sido fabricado (Daño 3 en un NT2+). Similar
-                al kukri Ghurka, al cuchillo Bowie o al Gladius romano.
-            </es>
-        </description>
-        <techLevel>2</techLevel>
-        <type>MELEE</type>
-        <damageList>
             <weaponDamage>
                 <characteristic>dexterity</characteristic>
                 <skill>melee</skill>
+                <damageTechLevel>2</damageTechLevel>
                 <goal>0</goal>
                 <damage>3</damage>
                 <strength>2</strength>
@@ -393,8 +398,8 @@
         </damageList>
         <size>M</size>
         <cost>4</cost>
-    </dagger2>
-    <flail1>
+    </dagger>
+    <flail>
         <name>
             <en>Flail</en>
             <es>Mayal</es>
@@ -418,30 +423,10 @@
                 <damage>4</damage>
                 <strength>4</strength>
             </weaponDamage>
-        </damageList>
-        <size>L</size>
-        <cost>4</cost>
-    </flail1>
-    <flail2>
-        <name>
-            <en>Flail</en>
-            <es>Mayal</es>
-        </name>
-        <description>
-            <en>Two long sticks connected by a chain. This could be the standard medieval weapon or the more modern
-                nunchaku. Metal flails and morning stars are the business versions of this weapon (DMG 5 for TL2+).
-            </en>
-            <es>Dos palos largos unidos por una cadena. Esta podría ser el arma medieval estándar o el nunchaku moderno.
-                Los Mayales con cuchillas metálicas y las Estrellas de la Mañana son las versiones comerciales de este
-                arma (Daño 5 en un NT2+).
-            </es>
-        </description>
-        <techLevel>2</techLevel>
-        <type>MELEE</type>
-        <damageList>
             <weaponDamage>
                 <characteristic>dexterity</characteristic>
                 <skill>melee</skill>
+                <damageTechLevel>2</damageTechLevel>
                 <goal>0</goal>
                 <damage>5</damage>
                 <strength>4</strength>
@@ -449,7 +434,7 @@
         </damageList>
         <size>L</size>
         <cost>4</cost>
-    </flail2>
+    </flail>
     <frapStick>
         <name>
             <en>Frap Stick</en>
@@ -639,6 +624,14 @@
                 <damage>3</damage>
                 <strength>1</strength>
             </weaponDamage>
+            <weaponDamage>
+                <characteristic>dexterity</characteristic>
+                <skill>melee</skill>
+                <damageTechLevel>2</damageTechLevel>
+                <goal>0</goal>
+                <damage>2</damage>
+                <strength>1</strength>
+            </weaponDamage>
         </damageList>
         <size>S</size>
         <cost>2</cost>
@@ -746,6 +739,14 @@
                 <damage>5</damage>
                 <strength>3</strength>
             </weaponDamage>
+            <weaponDamage>
+                <characteristic>dexterity</characteristic>
+                <skill>melee</skill>
+                <damageTechLevel>2</damageTechLevel>
+                <goal>0</goal>
+                <damage>5</damage>
+                <strength>3</strength>
+            </weaponDamage>
         </damageList>
         <size>L</size>
         <cost>10</cost>
@@ -845,6 +846,14 @@
                 <damage>5</damage>
                 <strength>3</strength>
             </weaponDamage>
+            <weaponDamage>
+                <characteristic>dexterity</characteristic>
+                <skill>melee</skill>
+                <damageTechLevel>3</damageTechLevel>
+                <goal>0</goal>
+                <damage>5</damage>
+                <strength>3</strength>
+            </weaponDamage>
         </damageList>
         <size>L</size>
         <cost>20</cost>
@@ -921,6 +930,14 @@
                 <damage>5</damage>
                 <strength>3</strength>
             </weaponDamage>
+            <weaponDamage>
+                <characteristic>dexterity</characteristic>
+                <skill>melee</skill>
+                <damageTechLevel>1</damageTechLevel>
+                <goal>0</goal>
+                <damage>4</damage>
+                <strength>3</strength>
+            </weaponDamage>
         </damageList>
         <size>XL</size>
         <cost>2</cost>
@@ -993,6 +1010,14 @@
                 <skill>melee</skill>
                 <goal>0</goal>
                 <damage>4</damage>
+                <strength>3</strength>
+            </weaponDamage>
+            <weaponDamage>
+                <characteristic>dexterity</characteristic>
+                <skill>melee</skill>
+                <damageTechLevel>1</damageTechLevel>
+                <goal>0</goal>
+                <damage>3</damage>
                 <strength>3</strength>
             </weaponDamage>
         </damageList>
@@ -1098,6 +1123,14 @@
                 <damage>8</damage>
                 <strength>6</strength>
             </weaponDamage>
+            <weaponDamage>
+                <characteristic>dexterity</characteristic>
+                <skill>melee</skill>
+                <damageTechLevel>2</damageTechLevel>
+                <goal>0</goal>
+                <damage>8</damage>
+                <strength>6</strength>
+            </weaponDamage>
         </damageList>
         <size>XL</size>
         <cost>30</cost>
@@ -1133,6 +1166,14 @@
                 <damage>8</damage>
                 <strength>6</strength>
             </weaponDamage>
+            <weaponDamage>
+                <characteristic>dexterity</characteristic>
+                <skill>melee</skill>
+                <damageTechLevel>2</damageTechLevel>
+                <goal>0</goal>
+                <damage>8</damage>
+                <strength>6</strength>
+            </weaponDamage>
         </damageList>
         <size>XL</size>
         <cost>40</cost>
@@ -1160,6 +1201,14 @@
             <weaponDamage>
                 <characteristic>dexterity</characteristic>
                 <skill>melee</skill>
+                <goal>0</goal>
+                <damage>6</damage>
+                <strength>4</strength>
+            </weaponDamage>
+            <weaponDamage>
+                <characteristic>dexterity</characteristic>
+                <skill>melee</skill>
+                <damageTechLevel>2</damageTechLevel>
                 <goal>0</goal>
                 <damage>6</damage>
                 <strength>4</strength>
@@ -1347,6 +1396,20 @@
                 <shots>Handful</shots>
                 <rate>2</rate>
             </weaponDamage>
+            <weaponDamage>
+                <damageName>
+                    <en>Unfletched</en>
+                    <es>Sin alas</es>
+                </damageName>
+                <characteristic>dexterity</characteristic>
+                <skill>throwing</skill>
+                <goal>0</goal>
+                <damage>1</damage>
+                <strength>1</strength>
+                <range>3/5</range>
+                <shots>Handful</shots>
+                <rate>2</rate>
+            </weaponDamage>
         </damageList>
         <size>XS</size>
         <cost>2</cost>
@@ -1357,8 +1420,15 @@
             <es>Jabalina</es>
         </name>
         <description>
-            <en></en>
-            <es></es>
+            <en>A thin thrown spear that may include a Roman Verutum, Anglo-Saxon Angon, a Zulu Assegai or even a
+                harpoon (DMG 4 for TL1+). Although made for short-range attacks, hunting, or to soften up an enemy
+                before melee, most javelins can also be used as stabbing spears in close combat.
+            </en>
+            <es>Una lanza arrojadiza delgada como puede ser una verutum romana, la Angon anglosajona, la Azagaya zulú o
+                incluso un arpón (Daño 4 en un NT1+). Aunque está pensada para los ataques de corto alcance, para cazar,
+                o para ablandar a un enemigo antes del cuerpo a cuerpo, la mayoría de las jabalinas también se pueden
+                utilizar como lanzas en combate de cortas distancias.
+            </es>
         </description>
         <techLevel>0</techLevel>
         <type>THROWING</type>
@@ -1373,24 +1443,10 @@
                 <shots>Handful</shots>
                 <rate>2</rate>
             </weaponDamage>
-        </damageList>
-        <size>L</size>
-        <cost>2</cost>
-        <random>
-            <probabilityMultiplier>0.01</probabilityMultiplier>
-        </random>
-    </javelin>
-    <advancedJavelin>
-        <name>
-            <en>Javelin</en>
-            <es>Jabalina</es>
-        </name>
-        <techLevel>1</techLevel>
-        <type>THROWING</type>
-        <damageList>
             <weaponDamage>
                 <characteristic>dexterity</characteristic>
                 <skill>throwing</skill>
+                <damageTechLevel>1</damageTechLevel>
                 <goal>0</goal>
                 <damage>4</damage>
                 <strength>3</strength>
@@ -1404,16 +1460,28 @@
         <random>
             <probabilityMultiplier>0.01</probabilityMultiplier>
         </random>
-    </advancedJavelin>
-    <lightRock>
+    </javelin>
+    <rock>
         <name>
-            <en>Light Rock</en>
-            <es>Piedra Ligera</es>
+            <en>Rock</en>
+            <es>Piedra</es>
         </name>
+        <description>
+            <en>A good fist-sized rock can be hurled as a deadly weapon at an opponent. The rock’s DMG varies depending
+                on size and mass.
+            </en>
+            <es>una buena piedra del tamaño de un puño puede lanzarse como un arma mortal a un adversario. El Daño de la
+                piedra varía en función del tamaño y masa.
+            </es>
+        </description>
         <techLevel>0</techLevel>
         <type>THROWING</type>
         <damageList>
             <weaponDamage>
+                <damageName>
+                    <en>Light Rock</en>
+                    <es>Piedra Ligera</es>
+                </damageName>
                 <characteristic>dexterity</characteristic>
                 <skill>throwing</skill>
                 <goal>0</goal>
@@ -1423,22 +1491,11 @@
                 <shots>Handful</shots>
                 <rate>2</rate>
             </weaponDamage>
-        </damageList>
-        <size>XS</size>
-        <cost>0</cost>
-        <random>
-            <probabilityMultiplier>0</probabilityMultiplier>
-        </random>
-    </lightRock>
-    <mediumRock>
-        <name>
-            <en>Medium Rock</en>
-            <es>Piedra Media</es>
-        </name>
-        <techLevel>0</techLevel>
-        <type>THROWING</type>
-        <damageList>
             <weaponDamage>
+                <damageName>
+                    <en>Medium Rock</en>
+                    <es>Piedra Media</es>
+                </damageName>
                 <characteristic>dexterity</characteristic>
                 <skill>throwing</skill>
                 <goal>0</goal>
@@ -1448,22 +1505,11 @@
                 <shots>Handful</shots>
                 <rate>2</rate>
             </weaponDamage>
-        </damageList>
-        <size>S</size>
-        <cost>0</cost>
-        <random>
-            <probabilityMultiplier>0</probabilityMultiplier>
-        </random>
-    </mediumRock>
-    <heavyRock>
-        <name>
-            <en>Heavy Rock</en>
-            <es>Piedra Pesada</es>
-        </name>
-        <techLevel>0</techLevel>
-        <type>THROWING</type>
-        <damageList>
             <weaponDamage>
+                <damageName>
+                    <en>Heavy Rock</en>
+                    <es>Piedra Pesada</es>
+                </damageName>
                 <characteristic>dexterity</characteristic>
                 <skill>throwing</skill>
                 <goal>0</goal>
@@ -1473,22 +1519,11 @@
                 <shots>Handful</shots>
                 <rate>2</rate>
             </weaponDamage>
-        </damageList>
-        <size>M</size>
-        <cost>0</cost>
-        <random>
-            <probabilityMultiplier>0</probabilityMultiplier>
-        </random>
-    </heavyRock>
-    <largeRock>
-        <name>
-            <en>Large Rock</en>
-            <es>Piedra Grande</es>
-        </name>
-        <techLevel>0</techLevel>
-        <type>THROWING</type>
-        <damageList>
             <weaponDamage>
+                <damageName>
+                    <en>Large Rock</en>
+                    <es>Piedra Grande</es>
+                </damageName>
                 <characteristic>dexterity</characteristic>
                 <skill>throwing</skill>
                 <goal>-1</goal>
@@ -1498,22 +1533,11 @@
                 <shots>1</shots>
                 <rate>1</rate>
             </weaponDamage>
-        </damageList>
-        <size>L</size>
-        <cost>0</cost>
-        <random>
-            <probabilityMultiplier>0</probabilityMultiplier>
-        </random>
-    </largeRock>
-    <veryLargeRock>
-        <name>
-            <en>Very Large Rock</en>
-            <es>Piedra Enorme</es>
-        </name>
-        <techLevel>0</techLevel>
-        <type>THROWING</type>
-        <damageList>
             <weaponDamage>
+                <damageName>
+                    <en>Huge Rock</en>
+                    <es>Piedra Enorme</es>
+                </damageName>
                 <characteristic>dexterity</characteristic>
                 <skill>throwing</skill>
                 <goal>-1</goal>
@@ -1524,17 +1548,25 @@
                 <rate>1</rate>
             </weaponDamage>
         </damageList>
-        <size>XL</size>
+        <size>XS</size>
         <cost>0</cost>
         <random>
             <probabilityMultiplier>0</probabilityMultiplier>
         </random>
-    </veryLargeRock>
+    </rock>
     <star>
         <name>
             <en>Star</en>
             <es>Estrella</es>
         </name>
+        <description>
+            <en>A small disk with serrated edges designed to be thrown quickly at targets (DMG 2 for TL2+). This can
+                include any variety of shuriken ("throwing stars").
+            </en>
+            <es>Un pequeño disco con filos dentados diseñado para lanzarse con rapidez a los objetivos (Daño 2 en un
+                NT2+). Esta estrella puede incluir cualquier variedad de shuriken (estrellas ninja).
+            </es>
+        </description>
         <techLevel>1</techLevel>
         <type>THROWING</type>
         <damageList>
@@ -1543,6 +1575,17 @@
                 <skill>throwing</skill>
                 <goal>-1</goal>
                 <damage>1</damage>
+                <strength>1</strength>
+                <range>5/10</range>
+                <shots>Handful</shots>
+                <rate>2</rate>
+            </weaponDamage>
+            <weaponDamage>
+                <characteristic>dexterity</characteristic>
+                <skill>throwing</skill>
+                <damageTechLevel>2</damageTechLevel>
+                <goal>-1</goal>
+                <damage>2</damage>
                 <strength>1</strength>
                 <range>5/10</range>
                 <shots>Handful</shots>
@@ -1557,6 +1600,10 @@
             <en>Throwing Axe</en>
             <es>Hacha Arrojadiza</es>
         </name>
+        <description>
+            <en></en>
+            <es></es>
+        </description>
         <techLevel>1</techLevel>
         <type>THROWING</type>
         <damageList>
@@ -1579,6 +1626,10 @@
             <en>Throwing Knife</en>
             <es>Cuchillo Arrojadizo</es>
         </name>
+        <description>
+            <en></en>
+            <es></es>
+        </description>
         <techLevel>1</techLevel>
         <type>THROWING</type>
         <damageList>

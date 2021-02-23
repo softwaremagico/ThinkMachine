@@ -43,7 +43,7 @@ public class RandomDefinitions {
 
 	@Test
 	public void checkRandomProbabilityMultiplier() throws InvalidXmlElementException {
-		Assert.assertEquals(WeaponFactory.getInstance().getElement("veryLargeRock", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).getRandomDefinition().getProbabilityMultiplier(), 0d);
+		Assert.assertEquals(WeaponFactory.getInstance().getElement("rock", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).getRandomDefinition().getProbabilityMultiplier(), 0d);
 	}
 
 	@Test

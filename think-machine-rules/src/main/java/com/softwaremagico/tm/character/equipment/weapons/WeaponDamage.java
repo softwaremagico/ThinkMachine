@@ -43,6 +43,7 @@ public class WeaponDamage {
 
     private final String name;
     private final String goal;
+    private final Integer damageTechLevel;
     private final String damage;
     private final int strength;
     private final String range;
@@ -57,18 +58,19 @@ public class WeaponDamage {
     private transient String areaWithoutDamage = null;
 
     protected WeaponDamage() {
-        this(null, "", "", 0, "", 0, "", null, null);
+        this(null, null, "", "", 0, "", 0, "", null, null);
     }
 
     public WeaponDamage(String goal, String damage, Integer strength, String range, Integer shots, String rate,
                         CharacteristicDefinition characteristic, AvailableSkill skill) {
-        this(null, goal, damage, strength, range, shots, rate, characteristic, skill);
+        this(null, null, goal, damage, strength, range, shots, rate, characteristic, skill);
     }
 
-    public WeaponDamage(String name, String goal, String damage, Integer strength, String range, Integer shots, String rate,
+    public WeaponDamage(String name, Integer damageTechLevel, String goal, String damage, Integer strength, String range, Integer shots, String rate,
                         CharacteristicDefinition characteristic, AvailableSkill skill) {
         this.name = name;
         this.goal = goal;
+        this.damageTechLevel = damageTechLevel;
         if (strength == null) {
             this.strength = 0;
         } else {
@@ -202,6 +204,10 @@ public class WeaponDamage {
             // Melee weapon.
         }
         return 0;
+    }
+
+    public Integer getDamageTechLevel() {
+        return damageTechLevel;
     }
 
     public String getName() {

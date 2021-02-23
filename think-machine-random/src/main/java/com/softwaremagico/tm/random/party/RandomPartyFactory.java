@@ -100,7 +100,7 @@ public class RandomPartyFactory extends XmlFactory<RandomParty> {
 		while (true) {
 			try {
 				final String profile = translator.getNodeValue(partyId, MEMBER, PROFILE, node);
-				final String profileName = translator.getNodeValue(partyId, MEMBER, NAME, language, node);
+				final String profileName = translator.getNodeValue(partyId, MEMBER, NAME, node, language);
 				final String minNumberTag = translator.getNodeValue(partyId, MEMBER, MINIMUM_NUMBER, node);
 				Integer minNumber = null;
 				if (minNumberTag != null) {

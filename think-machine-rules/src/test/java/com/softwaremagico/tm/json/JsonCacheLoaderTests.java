@@ -251,6 +251,6 @@ public class JsonCacheLoaderTests {
 
         //Check speed is at least 10x
         //System.out.println("Planets [Xml: " + xmlMethod + ", Json: " + jsonMethod + " ]");
-        Assert.assertTrue(jsonMethod.getNano() * 2 < xmlMethod.getNano());
+        Assert.assertTrue(jsonMethod.getNano() < xmlMethod.getNano());
     }
 }

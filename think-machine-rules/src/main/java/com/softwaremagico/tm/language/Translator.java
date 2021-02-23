@@ -275,7 +275,7 @@ public class Translator implements ITranslator {
     }
 
     @Override
-    public String getNodeValue(String grandparent, String parent, String tag, String node, int nodeNumber) {
+    public String getNodeValue(String grandparent, String parent, String tag, int nodeNumber, String node) {
         final NodeList nodeList = doc.getElementsByTagName(grandparent);
         for (int child = 0; child < nodeList.getLength(); child++) {
             final Node grandParentNode = nodeList.item(child);
@@ -306,6 +306,46 @@ public class Translator implements ITranslator {
         }
         return null;
     }
+
+    @Override
+    public String getNodeValue(String root, String grandparent, String parent, int nodeNumber, String tag, String node) {
+        final NodeList nodeList = doc.getElementsByTagName(root);
+        for (int child = 0; child < nodeList.getLength(); child++) {
+            final Node rootNode = nodeList.item(child);
+            // Remove text values
+            if (rootNode.getNodeType() == Node.ELEMENT_NODE) {
+                final Element rootElement = (Element) rootNode;
+                try {
+                    final NodeList grandParentElementList = rootElement.getElementsByTagName(grandparent);
+                    final Element grandParentElement = (Element) grandParentElementList.item(0);
+                    try {
+                        final NodeList parentElementList = grandParentElement.getElementsByTagName(parent);
+                        final Element parentElement = (Element) parentElementList.item(nodeNumber);
+                        try {
+                            final NodeList childrenElementList = parentElement.getElementsByTagName(tag);
+                            final Element childrenElement = (Element) childrenElementList.item(0);
+                            try {
+                                final NodeList firstNodeElementList = childrenElement.getElementsByTagName(node);
+                                final Element firstNodeElement = (Element) firstNodeElementList.item(0);
+                                return firstNodeElement.getChildNodes().item(0).getNodeValue().trim();
+                            } catch (NullPointerException npe) {
+                                MachineXmlReaderLog.debug(this.getClass().getName(), "Node '{}/{}/{}' not found on xml.", parent, tag, node);
+                                return null;
+                            }
+                        } catch (NullPointerException npe) {
+                            return null;
+                        }
+                    } catch (NullPointerException npe) {
+                        return null;
+                    }
+                } catch (NullPointerException npe) {
+                    return null;
+                }
+            }
+        }
+        return null;
+    }
+
 
     @Override
     public boolean existsNode(String parent, String tag, String node, int nodeNumber) {

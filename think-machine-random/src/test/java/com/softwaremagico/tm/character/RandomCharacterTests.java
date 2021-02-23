@@ -1,5 +1,41 @@
 package com.softwaremagico.tm.character;
 
+import com.softwaremagico.tm.InvalidXmlElementException;
+import com.softwaremagico.tm.character.benefices.AvailableBenefice;
+import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
+import com.softwaremagico.tm.character.benefices.BeneficeAlreadyAddedException;
+import com.softwaremagico.tm.character.benefices.RandomBeneficeDefinition;
+import com.softwaremagico.tm.character.blessings.BlessingClassification;
+import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
+import com.softwaremagico.tm.character.characteristics.Characteristic;
+import com.softwaremagico.tm.character.characteristics.CharacteristicName;
+import com.softwaremagico.tm.character.characteristics.CharacteristicType;
+import com.softwaremagico.tm.character.creation.CostCalculator;
+import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
+import com.softwaremagico.tm.character.cybernetics.CyberneticDeviceFactory;
+import com.softwaremagico.tm.character.cybernetics.RequiredCyberneticDevicesException;
+import com.softwaremagico.tm.character.cybernetics.TooManyCyberneticDevicesException;
+import com.softwaremagico.tm.character.equipment.weapons.RandomRangeWeapon;
+import com.softwaremagico.tm.character.equipment.weapons.RandomWeapon;
+import com.softwaremagico.tm.character.equipment.weapons.Weapon;
+import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
+import com.softwaremagico.tm.character.factions.FactionGroup;
+import com.softwaremagico.tm.character.factions.FactionsFactory;
+import com.softwaremagico.tm.character.occultism.OccultismType;
+import com.softwaremagico.tm.character.occultism.OccultismTypeFactory;
+import com.softwaremagico.tm.character.races.RaceFactory;
+import com.softwaremagico.tm.character.skills.*;
+import com.softwaremagico.tm.file.PathManager;
+import com.softwaremagico.tm.language.LanguagePool;
+import com.softwaremagico.tm.log.MachineLog;
+import com.softwaremagico.tm.random.exceptions.DuplicatedPreferenceException;
+import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
+import com.softwaremagico.tm.random.selectors.*;
+import com.softwaremagico.tm.txt.CharacterSheet;
+import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.Test;
+
 import java.util.HashSet;
 
 /*-
@@ -25,61 +61,6 @@ import java.util.HashSet;
  * this program; If not, see <http://www.gnu.org/licenses/gpl-3.0.html>.
  * #L%
  */
-
-import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.Test;
-
-import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.character.benefices.AvailableBenefice;
-import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
-import com.softwaremagico.tm.character.benefices.BeneficeAlreadyAddedException;
-import com.softwaremagico.tm.character.benefices.RandomBeneficeDefinition;
-import com.softwaremagico.tm.character.blessings.BlessingClassification;
-import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
-import com.softwaremagico.tm.character.characteristics.Characteristic;
-import com.softwaremagico.tm.character.characteristics.CharacteristicName;
-import com.softwaremagico.tm.character.characteristics.CharacteristicType;
-import com.softwaremagico.tm.character.creation.CostCalculator;
-import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
-import com.softwaremagico.tm.character.cybernetics.CyberneticDeviceFactory;
-import com.softwaremagico.tm.character.cybernetics.RequiredCyberneticDevicesException;
-import com.softwaremagico.tm.character.cybernetics.TooManyCyberneticDevicesException;
-import com.softwaremagico.tm.character.equipment.weapons.RandomRangeWeapon;
-import com.softwaremagico.tm.character.equipment.weapons.RandomWeapon;
-import com.softwaremagico.tm.character.equipment.weapons.Weapon;
-import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
-import com.softwaremagico.tm.character.factions.FactionGroup;
-import com.softwaremagico.tm.character.factions.FactionsFactory;
-import com.softwaremagico.tm.character.occultism.OccultismType;
-import com.softwaremagico.tm.character.occultism.OccultismTypeFactory;
-import com.softwaremagico.tm.character.races.RaceFactory;
-import com.softwaremagico.tm.character.skills.AvailableSkill;
-import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
-import com.softwaremagico.tm.character.skills.RandomSkills;
-import com.softwaremagico.tm.character.skills.SkillDefinition;
-import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
-import com.softwaremagico.tm.file.PathManager;
-import com.softwaremagico.tm.language.LanguagePool;
-import com.softwaremagico.tm.log.MachineLog;
-import com.softwaremagico.tm.random.exceptions.DuplicatedPreferenceException;
-import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
-import com.softwaremagico.tm.random.selectors.AgePreferences;
-import com.softwaremagico.tm.random.selectors.BlessingNumberPreferences;
-import com.softwaremagico.tm.random.selectors.CombatPreferences;
-import com.softwaremagico.tm.random.selectors.CurseNumberPreferences;
-import com.softwaremagico.tm.random.selectors.CyberneticPointsPreferences;
-import com.softwaremagico.tm.random.selectors.CyberneticTotalDevicesPreferences;
-import com.softwaremagico.tm.random.selectors.FactionPreferences;
-import com.softwaremagico.tm.random.selectors.NamesPreferences;
-import com.softwaremagico.tm.random.selectors.PsiqueLevelPreferences;
-import com.softwaremagico.tm.random.selectors.PsiquePathLevelPreferences;
-import com.softwaremagico.tm.random.selectors.RacePreferences;
-import com.softwaremagico.tm.random.selectors.SkillGroupPreferences;
-import com.softwaremagico.tm.random.selectors.SpecializationPreferences;
-import com.softwaremagico.tm.random.selectors.StatusPreferences;
-import com.softwaremagico.tm.random.selectors.TechnologicalPreferences;
-import com.softwaremagico.tm.txt.CharacterSheet;
 
 @Test(groups = {"randomCharacter"})
 public class RandomCharacterTests {
@@ -137,7 +118,7 @@ public class RandomCharacterTests {
             throws InvalidXmlElementException, DuplicatedPreferenceException, InvalidRandomElementSelectedException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         final RandomWeapon randomWeapons = new RandomRangeWeapon(characterPlayer, null, new HashSet<Weapon>());
-        final Weapon largeRock = WeaponFactory.getInstance().getElement("veryLargeRock", LANGUAGE,
+        final Weapon largeRock = WeaponFactory.getInstance().getElement("rock", LANGUAGE,
                 PathManager.DEFAULT_MODULE_FOLDER);
         Assert.assertEquals(randomWeapons.getTotalWeight(largeRock), 0);
     }

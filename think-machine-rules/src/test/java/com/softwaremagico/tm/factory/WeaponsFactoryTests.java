@@ -41,7 +41,7 @@ import java.util.Set;
 public class WeaponsFactoryTests {
     private static final String LANGUAGE = "es";
 
-    private static final int DEFINED_WEAPONS = 192;
+    private static final int DEFINED_WEAPONS = 187;
     private static final int VERSION = 1;
 
     @Test
@@ -157,6 +157,20 @@ public class WeaponsFactoryTests {
     public void checkMultipleDamage() throws InvalidXmlElementException {
         final Weapon nitobiAxe = WeaponFactory.getInstance().getElement("nitobiBlasterAxe", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         Assert.assertEquals(nitobiAxe.getWeaponDamages().size(), 2);
+    }
+
+    @Test
+    public void checkMultipleDamageDifferentTechLevel() throws InvalidXmlElementException {
+        final Weapon javelin = WeaponFactory.getInstance().getElement("javelin", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        Assert.assertEquals(javelin.getWeaponDamages().size(), 2);
+        Assert.assertEquals((int) javelin.getWeaponDamages().get(1).getDamageTechLevel(), 1);
+    }
+
+    @Test
+    public void checkMultipleDamageNames() throws InvalidXmlElementException {
+        final Weapon rock = WeaponFactory.getInstance().getElement("rock", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        Assert.assertEquals(rock.getWeaponDamages().size(), 5);
+        Assert.assertEquals(rock.getWeaponDamages().get(1).getName(), "Piedra Media");
     }
 
 }
