@@ -177,4 +177,11 @@ public class WeaponsFactoryTests {
         Assert.assertEquals(heavyFuthangaBow.getWeaponDamages().get(1).getName(), "Arco Compuesto");
     }
 
+    @Test
+    public void extraCost() throws InvalidXmlElementException {
+        final Weapon heavyFuthangaBow = WeaponFactory.getInstance().getElement("heavyFuthangaBow", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        Assert.assertEquals(heavyFuthangaBow.getWeaponDamages().size(), 2);
+        Assert.assertEquals(heavyFuthangaBow.getWeaponDamages().get(1).getExtraCost(), 30);
+    }
+
 }

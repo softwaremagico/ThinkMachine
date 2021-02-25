@@ -63,6 +63,7 @@ public class WeaponFactory extends XmlFactory<Weapon> {
     private static final String RANGE = "range";
     private static final String SHOTS = "shots";
     private static final String RATE = "rate";
+    private static final String EXTRA_COST = "extraCost";
 
     private static final String AMMUNITION = "ammunition";
     private static final String ACCESSORIES = "others";
@@ -201,8 +202,16 @@ public class WeaponFactory extends XmlFactory<Weapon> {
                 throw new InvalidWeaponException("Invalid skill name in weapon '" + weaponId + "'.");
             }
 
+            Integer extraCost = null;
+            try {
+                final String extraCostValue = translator.getNodeValue(weaponId, DAMAGE_LIST, WEAPON_DAMAGE, node, EXTRA_COST);
+                extraCost = Integer.parseInt(extraCostValue);
+            } catch (Exception e) {
+                // Not mandatory.
+            }
+
             final WeaponDamage weaponDamage = new WeaponDamage(damageName, damageTechLevel, goal, damage, strength, range, shots, rate,
-                    characteristicDefinition, skill);
+                    characteristicDefinition, skill, extraCost);
             damages.add(weaponDamage);
             node++;
         }

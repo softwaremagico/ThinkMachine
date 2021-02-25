@@ -53,21 +53,23 @@ public class WeaponDamage {
     private final AvailableSkill skill;
     private final CharacteristicDefinition characteristic;
 
+    private final int extraCost;
+
     private transient Integer mainDamage = null;
     private transient Integer areaDamage = null;
     private transient String areaWithoutDamage = null;
 
     protected WeaponDamage() {
-        this(null, null, "", "", 0, "", 0, "", null, null);
+        this(null, null, "", "", 0, "", 0, "", null, null, null);
     }
 
     public WeaponDamage(String goal, String damage, Integer strength, String range, Integer shots, String rate,
                         CharacteristicDefinition characteristic, AvailableSkill skill) {
-        this(null, null, goal, damage, strength, range, shots, rate, characteristic, skill);
+        this(null, null, goal, damage, strength, range, shots, rate, characteristic, skill, null);
     }
 
     public WeaponDamage(String name, Integer damageTechLevel, String goal, String damage, Integer strength, String range, Integer shots, String rate,
-                        CharacteristicDefinition characteristic, AvailableSkill skill) {
+                        CharacteristicDefinition characteristic, AvailableSkill skill, Integer extraCost) {
         this.name = name;
         this.goal = goal;
         this.damageTechLevel = damageTechLevel;
@@ -82,6 +84,11 @@ public class WeaponDamage {
         this.damage = damage;
         this.characteristic = characteristic;
         this.skill = skill;
+        if (extraCost == null) {
+            this.extraCost = 0;
+        } else {
+            this.extraCost = extraCost.intValue();
+        }
     }
 
     public String getGoal() {
@@ -228,5 +235,9 @@ public class WeaponDamage {
         } catch (Exception e) {
             return "";
         }
+    }
+
+    public int getExtraCost() {
+        return extraCost;
     }
 }
