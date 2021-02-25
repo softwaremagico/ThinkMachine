@@ -1479,8 +1479,8 @@
         <damageList>
             <weaponDamage>
                 <damageName>
-                    <en>Light Rock</en>
-                    <es>Piedra Ligera</es>
+                    <en>Light</en>
+                    <es>Ligera</es>
                 </damageName>
                 <characteristic>dexterity</characteristic>
                 <skill>throwing</skill>
@@ -1493,8 +1493,8 @@
             </weaponDamage>
             <weaponDamage>
                 <damageName>
-                    <en>Medium Rock</en>
-                    <es>Piedra Media</es>
+                    <en>Rock</en>
+                    <es>Piedra</es>
                 </damageName>
                 <characteristic>dexterity</characteristic>
                 <skill>throwing</skill>
@@ -1507,8 +1507,8 @@
             </weaponDamage>
             <weaponDamage>
                 <damageName>
-                    <en>Heavy Rock</en>
-                    <es>Piedra Pesada</es>
+                    <en>Heavy</en>
+                    <es>Pesada</es>
                 </damageName>
                 <characteristic>dexterity</characteristic>
                 <skill>throwing</skill>
@@ -1521,8 +1521,8 @@
             </weaponDamage>
             <weaponDamage>
                 <damageName>
-                    <en>Large Rock</en>
-                    <es>Piedra Grande</es>
+                    <en>Large</en>
+                    <es>Grande</es>
                 </damageName>
                 <characteristic>dexterity</characteristic>
                 <skill>throwing</skill>
@@ -1535,8 +1535,8 @@
             </weaponDamage>
             <weaponDamage>
                 <damageName>
-                    <en>Huge Rock</en>
-                    <es>Piedra Enorme</es>
+                    <en>Huge</en>
+                    <es>Enorme</es>
                 </damageName>
                 <characteristic>dexterity</characteristic>
                 <skill>throwing</skill>
@@ -1601,8 +1601,13 @@
             <es>Hacha Arrojadiza</es>
         </name>
         <description>
-            <en></en>
-            <es></es>
+            <en>A sleek hand axe balanced for use as a thrown missile weapon, hopefully hitting the target with the
+                blade rather than the handle (DMG 3 for TL2+). They can also act as a small axe in melee.
+            </en>
+            <es>Un hacha de mano elegante a la par que equilibrada, que sirve para usarse como arma arrojadiza, para
+                golpear, si hay suerte, al objetivo con la hoja en vez de la empuñadura (Daño 3 En un NT2+). También
+                pueden usarse como un pequeño hacha en combates cuerpo a cuerpo.
+            </es>
         </description>
         <techLevel>1</techLevel>
         <type>THROWING</type>
@@ -1612,6 +1617,17 @@
                 <skill>throwing</skill>
                 <goal>0</goal>
                 <damage>4</damage>
+                <strength>3</strength>
+                <range>5/10</range>
+                <shots>Handful</shots>
+                <rate>2</rate>
+            </weaponDamage>
+            <weaponDamage>
+                <characteristic>dexterity</characteristic>
+                <skill>throwing</skill>
+                <damageTechLevel>2</damageTechLevel>
+                <goal>0</goal>
+                <damage>3</damage>
                 <strength>3</strength>
                 <range>5/10</range>
                 <shots>Handful</shots>
@@ -1627,8 +1643,14 @@
             <es>Cuchillo Arrojadizo</es>
         </name>
         <description>
-            <en></en>
-            <es></es>
+            <en>Throwing knives are not like normal kitchen implements; they are usually specially balanced to fly
+                through the air and to hit a target with the blade rather than the pommel (DMG 2 for TL2+). They can
+                also act as small knives in melee if required.
+            </en>
+            <es>Los cuchillos arrojadizos no son utensilios de cocina estándar; por lo general son especialmente
+                equilibrados para que puedan volar y golpear a un objetivo con la hoja en vez de la empuñadura (Daño 2
+                en un NT2+). También pueden usarse como pequeños cuchillos de combate cuerpo a cuerpo si es necesario.
+            </es>
         </description>
         <techLevel>1</techLevel>
         <type>THROWING</type>
@@ -1638,6 +1660,17 @@
                 <skill>throwing</skill>
                 <goal>0</goal>
                 <damage>3</damage>
+                <strength>2</strength>
+                <range>5/10</range>
+                <shots>Handful</shots>
+                <rate>2</rate>
+            </weaponDamage>
+            <weaponDamage>
+                <characteristic>dexterity</characteristic>
+                <skill>throwing</skill>
+                <damageTechLevel>2</damageTechLevel>
+                <goal>0</goal>
+                <damage>2</damage>
                 <strength>2</strength>
                 <range>5/10</range>
                 <shots>Handful</shots>
@@ -1655,6 +1688,12 @@
             <en>Heavy Futhanga Bow</en>
             <es>Arco Pesado Futhanga</es>
         </name>
+        <description>
+            <en>A 75 kg pull version of the light Futhanga bow (see below), built for warfare and macho prowess.</en>
+            <es>Una versión de 75kg de tensión del arco ligero Futhanga (ver más abajo), construido para la guerra y
+                para los Vorox más fuertes
+            </es>
+        </description>
         <techLevel>0</techLevel>
         <type>BOW</type>
         <damageList>
@@ -1668,6 +1707,21 @@
                 <shots>Quiver</shots>
                 <rate>1/2</rate>
             </weaponDamage>
+            <weaponDamage>
+                <name>
+                    <en>Compound Bow</en>
+                    <es>Arco Compuesto</es>
+                </name>
+                <characteristic>dexterity</characteristic>
+                <skill>archery</skill>
+                <goal>1</goal>
+                <damage>10</damage>
+                <strength>5</strength>
+                <range>40/65</range>
+                <shots>Quiver</shots>
+                <rate>1/2</rate>
+                <extraCost>30</extraCost>
+            </weaponDamage>
         </damageList>
         <size>L</size>
         <cost>30</cost>
@@ -1680,6 +1734,17 @@
             <en>Hunting Bow</en>
             <es>Arco de Caza</es>
         </name>
+        <description>
+            <en>A 30 kg pull bow designed to be drawn and fired quickly (as a deer bolts from the woods or a bird takes
+                flight). It is smaller than other bows since it must be carried through thick underbrush. The rarer
+                recurve bows have the same traits as a hunting bow, but are designed to be fired from beastback.
+            </en>
+            <es>Un arco de 30kg de tensión diseñado para hacer disparos rápidos (mientras un ciervo huye del bosque o un
+                pájaro emprende el vuelo). Es más pequeño que otros arcos, ya que se debe cargar con él a través de la
+                maleza espesa. Los arcos recurvos más raros cuentan con las mismas características que las de un arco de
+                caza, pero están diseñados para ser disparados desde una montura.
+            </es>
+        </description>
         <techLevel>1</techLevel>
         <type>BOW</type>
         <damageList>
@@ -1693,6 +1758,21 @@
                 <shots>Quiver</shots>
                 <rate>3</rate>
             </weaponDamage>
+            <weaponDamage>
+                <name>
+                    <en>Compound</en>
+                    <es>Compuesto</es>
+                </name>
+                <characteristic>dexterity</characteristic>
+                <skill>archery</skill>
+                <goal>1</goal>
+                <damage>4</damage>
+                <strength>2</strength>
+                <range>20/30</range>
+                <shots>Quiver</shots>
+                <rate>1</rate>
+                <extraCost>30</extraCost>
+            </weaponDamage>
         </damageList>
         <size>M</size>
         <cost>5</cost>
@@ -1702,6 +1782,19 @@
             <en>Light Futhanga Bow</en>
             <es>Arco Ligero Futhanga</es>
         </name>
+        <description>
+            <en>A 60 kg pull Vorox bow designed to be operated with three limbs, two to hold the bow shaft and one to
+                draw the string. Futhanga often have two strings running parallel to one another, each of which can be
+                nocked and drawn at the same time, increasing its rate of fire, but requiring all four Vorox limbs to
+                use.
+            </en>
+            <es>Un arco Vorox de 60kg de tensión diseñado para ser utilizado con tres extremidades, dos para sujetar el
+                mango del arco y uno para tensar la cuerda. El Futhanga a menudo cuenta con dos cuerdas en paralelo la
+                una a la otra, cada una de las cuales pueden colocarse en línea con respecto a la flecha y tensarse a la
+                vez, incrementando su ratio de disparo, pero para usar esta característica se precisan las cuatro
+                extremidades del Vorox.
+            </es>
+        </description>
         <techLevel>0</techLevel>
         <type>BOW</type>
         <damageList>
@@ -1715,6 +1808,21 @@
                 <shots>Quiver</shots>
                 <rate>1/2</rate>
             </weaponDamage>
+            <weaponDamage>
+                <name>
+                    <en>Compound</en>
+                    <es>Compuesto</es>
+                </name>
+                <characteristic>dexterity</characteristic>
+                <skill>archery</skill>
+                <goal>1</goal>
+                <damage>8</damage>
+                <strength>3</strength>
+                <range>40/60</range>
+                <shots>Quiver</shots>
+                <rate>1/2</rate>
+                <extraCost>30</extraCost>
+            </weaponDamage>
         </damageList>
         <size>L</size>
         <cost>20</cost>
@@ -1727,6 +1835,14 @@
             <en>Self Bow</en>
             <es>Arco Sencillo</es>
         </name>
+        <description>
+            <en>A 15 kg pull bow used in primitive societies as both a hunting and battle bow. It is constructed from a
+                single piece of wood strung with gut
+            </en>
+            <es>Un arco de 15kg de tensión utilizado en sociedades primitivas tanto para la caza como para la guerra. Se
+                construye a partir de una sola pieza de madera tensada con intestinos.
+            </es>
+        </description>
         <techLevel>0</techLevel>
         <type>BOW</type>
         <damageList>
@@ -1740,6 +1856,21 @@
                 <shots>Quiver</shots>
                 <rate>3</rate>
             </weaponDamage>
+            <weaponDamage>
+                <name>
+                    <en>Compound</en>
+                    <es>Compuesto</es>
+                </name>
+                <characteristic>dexterity</characteristic>
+                <skill>archery</skill>
+                <goal>1</goal>
+                <damage>2</damage>
+                <strength>0</strength>
+                <range>15/25</range>
+                <shots>Quiver</shots>
+                <rate>1</rate>
+                <extraCost>30</extraCost>
+            </weaponDamage>
         </damageList>
         <size>M</size>
         <cost>3</cost>
@@ -1749,6 +1880,16 @@
             <en>Target Bow</en>
             <es>Arco de Feria</es>
         </name>
+        <description>
+            <en>A 22.5 kg pull bow designed for target shooting at tourneys or carnivals rather than for killing. It is
+                larger than a hunting bow but not as large as a military bow. The balance gives a +1 bonus to the
+                archer’s Shoot goal rolls.
+            </en>
+            <es>Un arco de 22,5kg de tensión diseñado para apuntar a un objetivo y dispararle en torneos y carnavales y
+                no para el asesinato. Es más grande que un arco de caza, pero no tan grande como un arco militar. El
+                balance le concede un bonificador de +1 al rango de acierto de las tiradas de Disparar del arquero.
+            </es>
+        </description>
         <techLevel>2</techLevel>
         <type>BOW</type>
         <damageList>
@@ -1762,6 +1903,21 @@
                 <shots>Quiver</shots>
                 <rate>2</rate>
             </weaponDamage>
+            <weaponDamage>
+                <name>
+                    <en>Compound</en>
+                    <es>Compuesto</es>
+                </name>
+                <characteristic>dexterity</characteristic>
+                <skill>archery</skill>
+                <goal>1</goal>
+                <damage>3</damage>
+                <strength>1</strength>
+                <range>30/40</range>
+                <shots>Quiver</shots>
+                <rate>1</rate>
+                <extraCost>30</extraCost>
+            </weaponDamage>
         </damageList>
         <size>M</size>
         <cost>7</cost>
@@ -1771,6 +1927,17 @@
             <en>War Bow</en>
             <es>Arco de Guerra</es>
         </name>
+        <description>
+            <en>A 45 kg pull bow designed for warfare, to fling arrows over long distances -usually over battlements or
+                onto armies across the field. It is as tall as, or taller than, most people. This is based off the
+                English longbow but could just as easily be a Japanese yumi bow.
+            </en>
+            <es>Un arco de 45kg de tensión diseñado para la guerra, para lanzar flechas a largas distancias, por lo
+                general a las almenas o sobre los ejércitos que inundan todo el campo de batalla. Es igual (o más) alto
+                que la mayoría de la gente. Esta referencia se basa en el arco largo Inglés, pero fácilmente podría ser
+                también el arco japonés yumi.
+            </es>
+        </description>
         <techLevel>1</techLevel>
         <type>BOW</type>
         <damageList>
@@ -1783,6 +1950,21 @@
                 <range>40/60</range>
                 <shots>Quiver</shots>
                 <rate>2</rate>
+            </weaponDamage>
+            <weaponDamage>
+                <name>
+                    <en>Compound</en>
+                    <es>Compuesto</es>
+                </name>
+                <characteristic>dexterity</characteristic>
+                <skill>archery</skill>
+                <goal>1</goal>
+                <damage>6</damage>
+                <strength>4</strength>
+                <range>40/60</range>
+                <shots>Quiver</shots>
+                <rate>1</rate>
+                <extraCost>30</extraCost>
             </weaponDamage>
         </damageList>
         <size>L</size>
