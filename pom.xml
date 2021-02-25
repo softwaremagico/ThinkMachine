@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.softwaremagico</groupId>
     <artifactId>think-machine</artifactId>
@@ -154,6 +155,7 @@
                     <!-- This action is used by release:perform -->
                     <!-- During release:perform, enable the "release" profile -->
                     <releaseProfiles>release</releaseProfiles>
+                    <arguments>-Dmaven.test.skipTests=true -Dmaven.test.skip=true</arguments>
                     <!-- This goal is used by release:perform -->
                     <goals>deploy</goals>
                 </configuration>
@@ -178,7 +180,7 @@
                 <extensions>true</extensions>
                 <configuration>
                     <serverId>ossrh</serverId>
-                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                    <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
                     <autoReleaseAfterClose>true</autoReleaseAfterClose>
                 </configuration>
             </plugin>
@@ -250,9 +252,9 @@
                             <target>
                                 <!-- version number -->
                                 <copy todir="src/main/resources/" overwrite="true">
-                                    <fileset dir="${basedir}" includes="version.txt" />
+                                    <fileset dir="${basedir}" includes="version.txt"/>
                                     <filterset>
-                                        <filter value="${project.version}" token="version" />
+                                        <filter value="${project.version}" token="version"/>
                                     </filterset>
                                 </copy>
                             </target>
@@ -270,6 +272,9 @@
         <!-- GPG Signature on release -->
         <profile>
             <id>release-sign-artifacts</id>
+            <properties>
+                <maven.test.skip>true</maven.test.skip>
+            </properties>
             <activation>
                 <property>
                     <name>performRelease</name>
