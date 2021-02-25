@@ -41,7 +41,7 @@ import java.util.Set;
 public class WeaponsFactoryTests {
     private static final String LANGUAGE = "es";
 
-    private static final int DEFINED_WEAPONS = 187;
+    private static final int DEFINED_WEAPONS = 185;
     private static final int VERSION = 1;
 
     @Test
@@ -170,7 +170,11 @@ public class WeaponsFactoryTests {
     public void checkMultipleDamageNames() throws InvalidXmlElementException {
         final Weapon rock = WeaponFactory.getInstance().getElement("rock", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         Assert.assertEquals(rock.getWeaponDamages().size(), 5);
-        Assert.assertEquals(rock.getWeaponDamages().get(1).getName(), "Piedra Media");
+        Assert.assertEquals(rock.getWeaponDamages().get(1).getName(), "Media");
+
+        final Weapon heavyFuthangaBow = WeaponFactory.getInstance().getElement("heavyFuthangaBow", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        Assert.assertEquals(heavyFuthangaBow.getWeaponDamages().size(), 2);
+        Assert.assertEquals(heavyFuthangaBow.getWeaponDamages().get(1).getName(), "Arco Compuesto");
     }
 
 }

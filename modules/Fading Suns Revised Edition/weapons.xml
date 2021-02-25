@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <weapons>
     <version>1</version>
-    <totalElements>187</totalElements>
+    <totalElements>185</totalElements>
     <arbata>
         <name>
             <en>Arbat’a (Crystal Sword)</en>
@@ -1493,8 +1493,8 @@
             </weaponDamage>
             <weaponDamage>
                 <damageName>
-                    <en>Rock</en>
-                    <es>Piedra</es>
+                    <en>Medium</en>
+                    <es>Media</es>
                 </damageName>
                 <characteristic>dexterity</characteristic>
                 <skill>throwing</skill>
@@ -1708,10 +1708,10 @@
                 <rate>1/2</rate>
             </weaponDamage>
             <weaponDamage>
-                <name>
+                <damageName>
                     <en>Compound Bow</en>
                     <es>Arco Compuesto</es>
-                </name>
+                </damageName>
                 <characteristic>dexterity</characteristic>
                 <skill>archery</skill>
                 <goal>1</goal>
@@ -1759,10 +1759,10 @@
                 <rate>3</rate>
             </weaponDamage>
             <weaponDamage>
-                <name>
+                <damageName>
                     <en>Compound</en>
                     <es>Compuesto</es>
-                </name>
+                </damageName>
                 <characteristic>dexterity</characteristic>
                 <skill>archery</skill>
                 <goal>1</goal>
@@ -1809,10 +1809,10 @@
                 <rate>1/2</rate>
             </weaponDamage>
             <weaponDamage>
-                <name>
+                <damageName>
                     <en>Compound</en>
                     <es>Compuesto</es>
-                </name>
+                </damageName>
                 <characteristic>dexterity</characteristic>
                 <skill>archery</skill>
                 <goal>1</goal>
@@ -1857,10 +1857,10 @@
                 <rate>3</rate>
             </weaponDamage>
             <weaponDamage>
-                <name>
+                <damageName>
                     <en>Compound</en>
                     <es>Compuesto</es>
-                </name>
+                </damageName>
                 <characteristic>dexterity</characteristic>
                 <skill>archery</skill>
                 <goal>1</goal>
@@ -1904,10 +1904,10 @@
                 <rate>2</rate>
             </weaponDamage>
             <weaponDamage>
-                <name>
+                <damageName>
                     <en>Compound</en>
                     <es>Compuesto</es>
-                </name>
+                </damageName>
                 <characteristic>dexterity</characteristic>
                 <skill>archery</skill>
                 <goal>1</goal>
@@ -1952,10 +1952,10 @@
                 <rate>2</rate>
             </weaponDamage>
             <weaponDamage>
-                <name>
+                <damageName>
                     <en>Compound</en>
                     <es>Compuesto</es>
-                </name>
+                </damageName>
                 <characteristic>dexterity</characteristic>
                 <skill>archery</skill>
                 <goal>1</goal>
