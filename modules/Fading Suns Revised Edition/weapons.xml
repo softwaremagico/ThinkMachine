@@ -1975,6 +1975,14 @@
             <en>Hand Crossbow</en>
             <es>Ballesta de Mano</es>
         </name>
+        <description>
+            <en>A small, handheld 15 kg pull crossbow. The bolts are smaller than usual and so must be specially
+                manufactured.
+            </en>
+            <es>Una ballesta de mano pequeña de 15kg de tensión. Los pernos son más pequeños de lo normal de modo que
+                deben fabricarse especialmente para estas ballestas.
+            </es>
+        </description>
         <techLevel>2</techLevel>
         <type>CROSSBOW</type>
         <damageList>
@@ -1997,6 +2005,10 @@
             <en>Light Crossbow</en>
             <es>Ballesta Ligera</es>
         </name>
+        <description>
+            <en>A 30 kg pull crossbow used for hunting in many rural areas.</en>
+            <es>Una ballesta de 30kg de tensión utilizada para cazar en muchas zonas rurales.</es>
+        </description>
         <techLevel>2</techLevel>
         <type>CROSSBOW</type>
         <damageList>
@@ -2020,6 +2032,14 @@
             <en>Heavy Crossbow</en>
             <es>Ballesta Pesada</es>
         </name>
+        <description>
+            <en>A 60 kg pull crossbow used for warfare. This monster can pound through shields, but usually takes longer
+                to reload than lighter crossbows.
+            </en>
+            <es>Una ballesta de 60kg de tensión utilizada para la guerra. Este monstruo puede golpear a través de los
+                escudos, pero por lo general requiere de un tiempo mayor para recargar que el de las ballestas ligeras.
+            </es>
+        </description>
         <techLevel>2</techLevel>
         <type>CROSSBOW</type>
         <damageList>
@@ -2043,6 +2063,12 @@
             <en>Medium Crossbow</en>
             <es>Ballesta Mediana</es>
         </name>
+        <description>
+            <en>A 45 kg pull crossbow that is the standard for most low-tech, but important, guardsmen.</en>
+            <es>Una ballesta de 45kg de tensión que es el estándar para la mayoría de los guardias y en entornos con
+                bajos niveles de tecnología.
+            </es>
+        </description>
         <techLevel>2</techLevel>
         <type>CROSSBOW</type>
         <damageList>
@@ -2066,6 +2092,17 @@
             <en>Wrist Crossbow</en>
             <es>Ballesta de Muñeca</es>
         </name>
+        <description>
+            <en>A 7.5 kg pull mini-crossbow, often strapped to the wrist and fired with a flick of the wrist or by
+                pulling a thread-trigger (just don’t scratch your nose the wrong way!). This is an easily-concealable
+                weapon. The bolts are smaller than usual and so must be specially manufactured (but cost the same).
+            </en>
+            <es>Una mini-ballesta de 7,5kg de tensión. Generalmente se ata a la muñeca y se dispara con un movimiento de
+                muñeca o tirando de un hilo que acciona el gatillo fácilmente (¡no te rasques la nariz con la mano que
+                no es!). Esta es un arma que puede esconderse con facilidad. Los pernos son más pequeños de lo normal
+                por lo que deben fabricarse especialmente para ellas (pero cuestan lo mismo).
+            </es>
+        </description>
         <techLevel>2</techLevel>
         <type>CROSSBOW</type>
         <damageList>
