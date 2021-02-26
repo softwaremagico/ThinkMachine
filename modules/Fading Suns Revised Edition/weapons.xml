@@ -1490,6 +1490,7 @@
                 <range>5/10</range>
                 <shots>Handful</shots>
                 <rate>2</rate>
+                <damageSize>XS</damageSize>
             </weaponDamage>
             <weaponDamage>
                 <damageName>
@@ -1504,6 +1505,7 @@
                 <range>5/10</range>
                 <shots>Handful</shots>
                 <rate>2</rate>
+                <damageSize>S</damageSize>
             </weaponDamage>
             <weaponDamage>
                 <damageName>
@@ -1518,6 +1520,7 @@
                 <range>5/10</range>
                 <shots>Handful</shots>
                 <rate>2</rate>
+                <damageSize>M</damageSize>
             </weaponDamage>
             <weaponDamage>
                 <damageName>
@@ -1532,6 +1535,7 @@
                 <range>3/5</range>
                 <shots>1</shots>
                 <rate>1</rate>
+                <damageSize>L</damageSize>
             </weaponDamage>
             <weaponDamage>
                 <damageName>
@@ -1546,6 +1550,7 @@
                 <range>5</range>
                 <shots>1</shots>
                 <rate>1</rate>
+                <damageSize>XL</damageSize>
             </weaponDamage>
         </damageList>
         <size>XS</size>

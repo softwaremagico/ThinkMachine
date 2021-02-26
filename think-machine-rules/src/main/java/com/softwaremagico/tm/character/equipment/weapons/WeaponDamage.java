@@ -25,6 +25,7 @@ package com.softwaremagico.tm.character.equipment.weapons;
  */
 
 import com.softwaremagico.tm.character.characteristics.CharacteristicDefinition;
+import com.softwaremagico.tm.character.equipment.Size;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.log.MachineLog;
 
@@ -49,6 +50,7 @@ public class WeaponDamage {
     private final String range;
     private final Integer shots;
     private final String rate;
+    private final Size size;
 
     private final AvailableSkill skill;
     private final CharacteristicDefinition characteristic;
@@ -60,16 +62,16 @@ public class WeaponDamage {
     private transient String areaWithoutDamage = null;
 
     protected WeaponDamage() {
-        this(null, null, "", "", 0, "", 0, "", null, null, null);
+        this(null, null, "", "", 0, "", 0, "", null, null, null, null);
     }
 
     public WeaponDamage(String goal, String damage, Integer strength, String range, Integer shots, String rate,
                         CharacteristicDefinition characteristic, AvailableSkill skill) {
-        this(null, null, goal, damage, strength, range, shots, rate, characteristic, skill, null);
+        this(null, null, goal, damage, strength, range, shots, rate, characteristic, skill, null, null);
     }
 
     public WeaponDamage(String name, Integer damageTechLevel, String goal, String damage, Integer strength, String range, Integer shots, String rate,
-                        CharacteristicDefinition characteristic, AvailableSkill skill, Integer extraCost) {
+                        CharacteristicDefinition characteristic, AvailableSkill skill, Size damageSize, Integer extraCost) {
         this.name = name;
         this.goal = goal;
         this.damageTechLevel = damageTechLevel;
@@ -89,6 +91,7 @@ public class WeaponDamage {
         } else {
             this.extraCost = extraCost.intValue();
         }
+        this.size = damageSize;
     }
 
     public String getGoal() {
@@ -239,5 +242,9 @@ public class WeaponDamage {
 
     public int getExtraCost() {
         return extraCost;
+    }
+
+    public Size getSize() {
+        return size;
     }
 }

@@ -57,6 +57,7 @@ public class WeaponFactory extends XmlFactory<Weapon> {
     private static final String DAMAGE_LIST = "damageList";
     private static final String WEAPON_DAMAGE = "weaponDamage";
     private static final String DAMAGE_NAME = "damageName";
+    private static final String DAMAGE_SIZE = "damageSize";
     private static final String DAMAGE = "damage";
     private static final String GOAL = "goal";
     private static final String STRENGTH = "strength";
@@ -210,8 +211,16 @@ public class WeaponFactory extends XmlFactory<Weapon> {
                 // Not mandatory.
             }
 
+
+            Size damageSize = null;
+            try {
+                damageSize = Size.get(translator.getNodeValue(weaponId, DAMAGE_LIST, WEAPON_DAMAGE, node, DAMAGE_SIZE));
+            } catch (Exception e) {
+                // Not mandatory.
+            }
+
             final WeaponDamage weaponDamage = new WeaponDamage(damageName, damageTechLevel, goal, damage, strength, range, shots, rate,
-                    characteristicDefinition, skill, extraCost);
+                    characteristicDefinition, skill, damageSize, extraCost);
             damages.add(weaponDamage);
             node++;
         }

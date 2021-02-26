@@ -26,6 +26,7 @@ package com.softwaremagico.tm.factory;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.character.equipment.Size;
 import com.softwaremagico.tm.character.equipment.weapons.AccessoryFactory;
 import com.softwaremagico.tm.character.equipment.weapons.AmmunitionFactory;
 import com.softwaremagico.tm.character.equipment.weapons.Weapon;
@@ -175,6 +176,14 @@ public class WeaponsFactoryTests {
         final Weapon heavyFuthangaBow = WeaponFactory.getInstance().getElement("heavyFuthangaBow", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         Assert.assertEquals(heavyFuthangaBow.getWeaponDamages().size(), 2);
         Assert.assertEquals(heavyFuthangaBow.getWeaponDamages().get(1).getName(), "Arco Compuesto");
+    }
+
+    @Test
+    public void checkMultipleDamageSize() throws InvalidXmlElementException {
+        final Weapon rock = WeaponFactory.getInstance().getElement("rock", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        Assert.assertEquals(rock.getWeaponDamages().size(), 5);
+        Assert.assertEquals(rock.getWeaponDamages().get(1).getSize(), Size.S);
+        Assert.assertEquals(rock.getWeaponDamages().get(4).getSize(), Size.XL);
     }
 
     @Test
