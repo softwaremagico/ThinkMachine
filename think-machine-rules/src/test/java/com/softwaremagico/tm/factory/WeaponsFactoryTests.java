@@ -41,7 +41,7 @@ import java.util.Set;
 public class WeaponsFactoryTests {
     private static final String LANGUAGE = "es";
 
-    private static final int DEFINED_WEAPONS = 185;
+    private static final int DEFINED_WEAPONS = 183;
     private static final int VERSION = 1;
 
     @Test

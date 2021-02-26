@@ -369,7 +369,7 @@ public class CustomCharacters {
 
         player.addWeapon(
                 WeaponFactory.getInstance().getElement("typicalShotgun", player.getLanguage(), player.getModuleName()));
-        player.addWeapon(WeaponFactory.getInstance().getElement("mediumAutofeedHandgun", LANGUAGE,
+        player.addWeapon(WeaponFactory.getInstance().getElement("typicalMed.Autofeed", LANGUAGE,
                 PathManager.DEFAULT_MODULE_FOLDER));
 
         LanguagePool.clearCache();
@@ -384,7 +384,7 @@ public class CustomCharacters {
         Assert.assertEquals(CostCalculator.getCost(player),
                 FreeStyleCharacterCreation.getFreeAvailablePoints(player.getInfo().getAge()));
         Assert.assertEquals(player.getRank(), "Genin");
-        Assert.assertEquals(500, player.getMoney());
+        Assert.assertEquals(450, player.getMoney());
 
         party.addMember(player);
     }

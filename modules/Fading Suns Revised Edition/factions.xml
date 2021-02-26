@@ -684,10 +684,10 @@
 		<benefices>bite, extraLimbs, noOccult, ostraziced</benefices>
 		<random>
 			<names>
-				<male>Gelu, Gresh, Malum, Kirbold, Strakk, Roxtus</male>
-				<female>Velika, Orde, Kabrua</female>
+				<male>Gelu, Gresh, Malum, Kirbold, Strakk, Roxtus, Sorgulg, Cabugbu, Zoughat, Gomatug, Narhbub, Ignorg, Togugh, Nubu, Poogugh</male>
+				<female>Velika, Orde, Kabrua, Orbul, Shelur, Shelur, Atub, Bula, Ghorza, Shagar</female>
 			</names>
-			<surnames></surnames>		
+			<surnames>Rolfish, Gashnakh, Ragash, Oghash, Yazgash, Rogmesh, Borgakh, Lagakh, Sharamph</surnames>
 		</random>
 		<suggestedBenefices>
 			<benefice>

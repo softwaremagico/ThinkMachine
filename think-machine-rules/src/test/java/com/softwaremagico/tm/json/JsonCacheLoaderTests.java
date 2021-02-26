@@ -84,8 +84,6 @@ public class JsonCacheLoaderTests {
         end = Instant.now();
         Duration jsonMethod = Duration.between(start, end);
         Assert.assertTrue(jsonMethod.getNano() * 10 < xmlMethod.getNano());
-        //System.out.println("Weapons [Xml: " + xmlMethod + ", Json: " + jsonMethod + " ]");
-
     }
 
     @Test()
@@ -118,8 +116,6 @@ public class JsonCacheLoaderTests {
 
         //Check speed is at least 10x
         Assert.assertTrue(jsonMethod.getNano() * 10 < xmlMethod.getNano());
-        //System.out.println("Skills [Xml: " + xmlMethod + ", Json: " + jsonMethod + " ]");
-
     }
 
     @Test()
@@ -152,7 +148,6 @@ public class JsonCacheLoaderTests {
 
         //Check speed is at least 10x
         Assert.assertTrue(jsonMethod.getNano() * 10 < xmlMethod.getNano());
-        //System.out.println("Skills [Xml: " + xmlMethod + ", Json: " + jsonMethod + " ]");
     }
 
     @Test()
@@ -184,7 +179,6 @@ public class JsonCacheLoaderTests {
         Duration jsonMethod = Duration.between(start, end);
 
         //Check speed is at least 10x
-        //System.out.println("Benefices [Xml: " + xmlMethod + ", Json: " + jsonMethod + " ]");
         Assert.assertTrue(jsonMethod.getNano() * 5 < xmlMethod.getNano());
     }
 
@@ -217,7 +211,6 @@ public class JsonCacheLoaderTests {
         Duration jsonMethod = Duration.between(start, end);
 
         //Check speed is at least 10x
-        //System.out.println("Armour [Xml: " + xmlMethod + ", Json: " + jsonMethod + " ]");
         Assert.assertTrue(jsonMethod.getNano() * 2 < xmlMethod.getNano());
     }
 
@@ -250,7 +243,6 @@ public class JsonCacheLoaderTests {
         Duration jsonMethod = Duration.between(start, end);
 
         //Check speed is at least 10x
-        //System.out.println("Planets [Xml: " + xmlMethod + ", Json: " + jsonMethod + " ]");
         Assert.assertTrue(jsonMethod.getNano() < xmlMethod.getNano());
     }
 }
