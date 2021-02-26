@@ -1533,7 +1533,7 @@
                 <damage>6</damage>
                 <strength>5</strength>
                 <range>3/5</range>
-                <shots>1</shots>
+                <shots>Handful</shots>
                 <rate>1</rate>
                 <damageSize>L</damageSize>
             </weaponDamage>
@@ -1548,7 +1548,7 @@
                 <damage>8</damage>
                 <strength>5</strength>
                 <range>5</range>
-                <shots>1</shots>
+                <shots>Handful</shots>
                 <rate>1</rate>
                 <damageSize>XL</damageSize>
             </weaponDamage>
