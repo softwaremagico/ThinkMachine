@@ -628,6 +628,26 @@
 			</benefice>
 		</suggestedBenefices>
 	</freeMen>
+	<alba>
+		<name>
+			<en>Alba</en>
+			<es>Alba</es>
+		</name>
+		<group>nobility</group>
+		<race>human</race>
+		<blessings>connected, uncouth</blessings>
+		<restrictedBenefices>
+			<benefice>
+				<id>nobility</id>
+				<maxValue>12</maxValue>
+			</benefice>
+		</restrictedBenefices>
+		<suggestedBenefices>
+			<benefice>
+				<id>nobility</id>
+			</benefice>
+		</suggestedBenefices>
+	</alba>
 	
 	<obun>
 		<name>
