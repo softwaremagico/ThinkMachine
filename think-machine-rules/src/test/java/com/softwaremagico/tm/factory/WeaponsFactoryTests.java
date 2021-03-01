@@ -42,7 +42,7 @@ import java.util.Set;
 public class WeaponsFactoryTests {
     private static final String LANGUAGE = "es";
 
-    private static final int DEFINED_WEAPONS = 183;
+    private static final int DEFINED_WEAPONS = 176;
     private static final int VERSION = 1;
 
     @Test
@@ -113,8 +113,6 @@ public class WeaponsFactoryTests {
     @Test
     public void getDamageWithoutArea() throws InvalidXmlElementException {
         Assert.assertEquals("3", WeaponFactory.getInstance().getElement("blastPellet", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)
-                .getWeaponDamages().get(0).getDamageWithoutArea());
-        Assert.assertEquals("6", WeaponFactory.getInstance().getElement("blastPelletHeavy", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)
                 .getWeaponDamages().get(0).getDamageWithoutArea());
         Assert.assertEquals("12", WeaponFactory.getInstance().getElement("fragGrenades", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)
                 .getWeaponDamages().get(0).getDamageWithoutArea());

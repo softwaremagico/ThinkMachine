@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <weapons>
     <version>1</version>
-    <totalElements>182</totalElements>
+    <totalElements>176</totalElements>
     <arbata>
         <name>
             <en>Arbat’a (Crystal Sword)</en>
@@ -6963,6 +6963,46 @@
             <en>Kalomite Flamegun</en>
             <es>Lanzallamas Kalomite</es>
         </name>
+        <description>
+            <en>A popular weapon among Avestites, the Kalomite Flameguns hold canisters of Ka-plant oil (an alien plant
+                native to Pyre). With the pull of a trigger, this highly combustible oil is sprayed past a spark at the
+                tip of the barrel, igniting into a flume of burning and smoking oil. The Ka oil is kept cool by
+                refrigerants in the canisters powered by fusion cells (considered to last for 10 shots, until the
+                canister is empty), but after even two firings, the oil heats up enough to send billows of black and
+                awful smelling smoke pluming out of the barrel. It is this smell which often reveals the impending
+                presence of Temple Avesti zealot. A Ka oil canister costs 5 fb and can be refilled at any Temple Avesti
+                chapel (as well as with some chemists) for 2 fb. Flameguns can deliver heat damage which may ignore
+                physical armor (except certain types of fireproof armor). Roll damage normally, but those effect dice
+                which roll 1 ignore armor. The second amount listed on the weapon chart is the continuous damage caused
+                by the burning Ka plant oil sprayed over the target. Roll this damage (without adding the attack Victory
+                dice) on each subsequent turn. If no damage is rolled in any turn, the flames go out. A simpler and
+                bulkier flamegun is the Kendra Dragon, which sprays napalm from a pressurized tank carried on the firers
+                back. Compared to the Kalomite Flamegun, this cruder design releases a lot more flammable liquid over
+                the target are (reflected in the higher secondary burn DMG) but burns less efficiently (lower overall
+                DMG).
+            </en>
+            <es>Un arma popular entre los Avestitas, los Lanzallamas Kalomite emplean botes de aceite de la planta Ka
+                (una planta alienígena nativa de Pira). Al tirar del gatillo, este aceite altamente combustible se rocía
+                por la zona, atravesando una chispa que se genera en la punta del cañón, lo que prende el aceite y
+                produce una llama ardiente y mucho humo. El aceite Ka se mantiene fresco mediante el uso de
+                refrigerantes en los botes alimentados por pilas de fusión (se considera que tiene una capacidad de 10
+                disparos, hasta que el recipiente se vacía), pero incluso después de dos disparos, el aceite se calienta
+                lo suficiente como para empezar a emitir un gas negro y maloliente fuera del cañón. Es este olor lo que
+                a menudo revela la presencia de un fanático del Templo Avesta. Un bote de aceite Ka cuesta 5 fénix y se
+                puede rellenar en cualquier capilla del templo Avesta (así como mediante algunos químicos) por un coste
+                de 2 fénix. Los Lanzallamas pueden infligir daño por calor lo que puede ignorar la armadura física (a
+                excepción de las armaduras de tipo a prueba de fuego). Las tiradas de daño se realizan con normalidad,
+                pero los dados de efecto que se lanzan ignoran 1 de armadura. El segundo número que aparece en la tabla
+                de las armas es el daño continuo causado por las quemaduras del aceite vegetal Ka que ha sido
+                previamente rociado sobre el objetivo. Lanza este daño (sin añadir los dados de Victoria del ataque) en
+                cada turno posterior. Si no se inflige daño con ninguna tirada en ningún turno, las llamas se apagan. Un
+                Lanzallamas más simple y más voluminoso es el Kendra Dragón, que pulveriza el napalm desde un tanque a
+                presión cargado en la espalda del usuario del lanzallamas. En comparación con el Lanzallamas Kalomite,
+                este diseño más primitivo libera mucho más líquido inflamable sobre el objetivo (esto se refleja en el
+                daño por quemaduras secundario, que es más alto) pero quema con menos eficacia (el daño general es más
+                bajo).
+            </es>
+        </description>
         <techLevel>4</techLevel>
         <type>FLAMMER</type>
         <damageList>
@@ -6990,6 +7030,46 @@
             <en>Kendra Dragon</en>
             <es>Kendra Dragon</es>
         </name>
+        <description>
+            <en>A popular weapon among Avestites, the Kalomite Flameguns hold canisters of Ka-plant oil (an alien plant
+                native to Pyre). With the pull of a trigger, this highly combustible oil is sprayed past a spark at the
+                tip of the barrel, igniting into a flume of burning and smoking oil. The Ka oil is kept cool by
+                refrigerants in the canisters powered by fusion cells (considered to last for 10 shots, until the
+                canister is empty), but after even two firings, the oil heats up enough to send billows of black and
+                awful smelling smoke pluming out of the barrel. It is this smell which often reveals the impending
+                presence of Temple Avesti zealot. A Ka oil canister costs 5 fb and can be refilled at any Temple Avesti
+                chapel (as well as with some chemists) for 2 fb. Flameguns can deliver heat damage which may ignore
+                physical armor (except certain types of fireproof armor). Roll damage normally, but those effect dice
+                which roll 1 ignore armor. The second amount listed on the weapon chart is the continuous damage caused
+                by the burning Ka plant oil sprayed over the target. Roll this damage (without adding the attack Victory
+                dice) on each subsequent turn. If no damage is rolled in any turn, the flames go out. A simpler and
+                bulkier flamegun is the Kendra Dragon, which sprays napalm from a pressurized tank carried on the firers
+                back. Compared to the Kalomite Flamegun, this cruder design releases a lot more flammable liquid over
+                the target are (reflected in the higher secondary burn DMG) but burns less efficiently (lower overall
+                DMG).
+            </en>
+            <es>Un arma popular entre los Avestitas, los Lanzallamas Kalomite emplean botes de aceite de la planta Ka
+                (una planta alienígena nativa de Pira). Al tirar del gatillo, este aceite altamente combustible se rocía
+                por la zona, atravesando una chispa que se genera en la punta del cañón, lo que prende el aceite y
+                produce una llama ardiente y mucho humo. El aceite Ka se mantiene fresco mediante el uso de
+                refrigerantes en los botes alimentados por pilas de fusión (se considera que tiene una capacidad de 10
+                disparos, hasta que el recipiente se vacía), pero incluso después de dos disparos, el aceite se calienta
+                lo suficiente como para empezar a emitir un gas negro y maloliente fuera del cañón. Es este olor lo que
+                a menudo revela la presencia de un fanático del Templo Avesta. Un bote de aceite Ka cuesta 5 fénix y se
+                puede rellenar en cualquier capilla del templo Avesta (así como mediante algunos químicos) por un coste
+                de 2 fénix. Los Lanzallamas pueden infligir daño por calor lo que puede ignorar la armadura física (a
+                excepción de las armaduras de tipo a prueba de fuego). Las tiradas de daño se realizan con normalidad,
+                pero los dados de efecto que se lanzan ignoran 1 de armadura. El segundo número que aparece en la tabla
+                de las armas es el daño continuo causado por las quemaduras del aceite vegetal Ka que ha sido
+                previamente rociado sobre el objetivo. Lanza este daño (sin añadir los dados de Victoria del ataque) en
+                cada turno posterior. Si no se inflige daño con ninguna tirada en ningún turno, las llamas se apagan. Un
+                Lanzallamas más simple y más voluminoso es el Kendra Dragón, que pulveriza el napalm desde un tanque a
+                presión cargado en la espalda del usuario del lanzallamas. En comparación con el Lanzallamas Kalomite,
+                este diseño más primitivo libera mucho más líquido inflamable sobre el objetivo (esto se refleja en el
+                daño por quemaduras secundario, que es más alto) pero quema con menos eficacia (el daño general es más
+                bajo).
+            </es>
+        </description>
         <techLevel>3</techLevel>
         <type>FLAMMER</type>
         <damageList>
@@ -7016,6 +7096,20 @@
             <en>SOE Howler</en>
             <es>SOE Howler</es>
         </name>
+        <description>
+            <en>A sonic gun, emitting a concussive force and a high-pitched squeal that damages hearing and cause
+                internal injuries in the target. Screechers ignore all forms of armor (including Energy Shields),
+                although hearing protection halves the wounds caused (characters with their hands over their ears also
+                get this benefit). Various models are known, including the SOE Howler and its smaller but more
+                user-friendly Zenic Pacifier.
+            </en>
+            <es>Un arma sónica que emite un chillido agudo conmocionante que daña la audición y causa lesiones internas
+                en el objetivo. Los altavoces sónicos ignoran todas las clases de armadura (incluyendo los Escudos de
+                Energía), aunque la protección auditiva reduce a la mitad las heridas que causa el altavoz (los
+                personajes que se cubran los oídos con las manos también obtendrán este beneficio). Se conocen varios
+                modelos, incluyendo el SOE Howler y su versión más pequeña pero más fácil de usar el Pacificador Zenic.
+            </es>
+        </description>
         <techLevel>5</techLevel>
         <type>SCREECHER</type>
         <damageList>
@@ -7042,6 +7136,20 @@
             <en>Zenic Pacifier</en>
             <es>Pacificador Zenic</es>
         </name>
+        <description>
+            <en>A sonic gun, emitting a concussive force and a high-pitched squeal that damages hearing and cause
+                internal injuries in the target. Screechers ignore all forms of armor (including Energy Shields),
+                although hearing protection halves the wounds caused (characters with their hands over their ears also
+                get this benefit). Various models are known, including the SOE Howler and its smaller but more
+                user-friendly Zenic Pacifier.
+            </en>
+            <es>Un arma sónica que emite un chillido agudo conmocionante que daña la audición y causa lesiones internas
+                en el objetivo. Los altavoces sónicos ignoran todas las clases de armadura (incluyendo los Escudos de
+                Energía), aunque la protección auditiva reduce a la mitad las heridas que causa el altavoz (los
+                personajes que se cubran los oídos con las manos también obtendrán este beneficio). Se conocen varios
+                modelos, incluyendo el SOE Howler y su versión más pequeña pero más fácil de usar el Pacificador Zenic.
+            </es>
+        </description>
         <techLevel>5</techLevel>
         <type>SCREECHER</type>
         <damageList>
@@ -7068,6 +7176,36 @@
             <en>Arbogast Sleeper</en>
             <es>Arbogast Sleeper</es>
         </name>
+        <description>
+            <en>Stunners emit a concussive force field which causes nervous system shock, effectively stunning a target
+                or knocking her unconscious. If a target takes any damage from a stunner, she must roll Endurance +
+                Vigor. If successful, there is no further effect, but if the roll fails, she is stunned for a number of
+                turns equal to the damage rolled (although no actual wounds are suffered). A Critical Failure means the
+                character falls unconscious for a number of minutes equal to the damage rolled. Stunner damage heals
+                naturally after one span (mark stunner damage with an “S” rather than a checkmark on the character’s
+                Vitality levels). However, this system shock damage is cumulative with other damage taken. Should a
+                stunnedcharacter suffer other damage which takes her below zero Vitality, she dies. These were Second
+                Republic riot police weapons. Due to the constant lawsuits brought against police by stunner victims, it
+                became illegal to manufacture stunners with too much power. It is rumored that the Engineers have
+                developed a more powerful version called SOE Tesla 16B5002, although the Guild refuse to confirm or deny
+                whether or not the weapon is theirs. The most popular regular stunner is the Arbogast Sleeper.
+            </en>
+            <es>Los aturdidores emiten un campo de fuerza de conmoción, lo que provoca una descarga del sistema
+                nervioso, que conmociona a un objetivo o lo deja inconsciente. Si un objetivo recibe cualquier tipo de
+                daño de un Aturdidor, debe realizar una tirada de Fortaleza + Vigor. Si tiene éxito, no hay efecto, pero
+                si la tirada falla, el personaje estará aturdido durante un número de turnos igual al daño que se sacó
+                en la tirada (aunque no se sufren heridas realmente). Un fallo crítico significa que el personaje cae
+                inconsciente por un número de minutos igual al daño obtenido en la tirada. El daño de un aturdidor se
+                sana de forma natural después de una escena (señala el daño de conmoción con una “C” en lugar de marcar
+                con una “X” los puntos de vitalidad perdidos). Ahora bien, este daño se acumula con cualquier otro tipo
+                de daño recibido. Si un personaje aturdido sufre otros daños que lo lleven a estar por debajo de cero en
+                Vitalidad, el personaje muere. Estas fueron las armas de la policía antidisturbios durante la Segunda
+                República. Debido a las constantes demandas interpuestas contra la policía por las víctimas de los
+                aturdidores, se hizo ilegal fabricar aturdidores con demasiada potencia. Se rumorea que los ingenieros
+                han desarrollado una versión más potente llamada SOE Tesla 16B5002, aunque el Gremio se niega a
+                confirmar o negar si el arma es de ellos. El aturdidor regular más popular es el Arbogast Sleeper.
+            </es>
+        </description>
         <techLevel>6</techLevel>
         <type>STUNNER</type>
         <damageList>
@@ -7093,6 +7231,36 @@
             <en>SOE Tesla 16B50002</en>
             <es>SOE Tesla 16B50002</es>
         </name>
+        <description>
+            <en>Stunners emit a concussive force field which causes nervous system shock, effectively stunning a target
+                or knocking her unconscious. If a target takes any damage from a stunner, she must roll Endurance +
+                Vigor. If successful, there is no further effect, but if the roll fails, she is stunned for a number of
+                turns equal to the damage rolled (although no actual wounds are suffered). A Critical Failure means the
+                character falls unconscious for a number of minutes equal to the damage rolled. Stunner damage heals
+                naturally after one span (mark stunner damage with an “S” rather than a checkmark on the character’s
+                Vitality levels). However, this system shock damage is cumulative with other damage taken. Should a
+                stunnedcharacter suffer other damage which takes her below zero Vitality, she dies. These were Second
+                Republic riot police weapons. Due to the constant lawsuits brought against police by stunner victims, it
+                became illegal to manufacture stunners with too much power. It is rumored that the Engineers have
+                developed a more powerful version called SOE Tesla 16B5002, although the Guild refuse to confirm or deny
+                whether or not the weapon is theirs. The most popular regular stunner is the Arbogast Sleeper.
+            </en>
+            <es>Los aturdidores emiten un campo de fuerza de conmoción, lo que provoca una descarga del sistema
+                nervioso, que conmociona a un objetivo o lo deja inconsciente. Si un objetivo recibe cualquier tipo de
+                daño de un Aturdidor, debe realizar una tirada de Fortaleza + Vigor. Si tiene éxito, no hay efecto, pero
+                si la tirada falla, el personaje estará aturdido durante un número de turnos igual al daño que se sacó
+                en la tirada (aunque no se sufren heridas realmente). Un fallo crítico significa que el personaje cae
+                inconsciente por un número de minutos igual al daño obtenido en la tirada. El daño de un aturdidor se
+                sana de forma natural después de una escena (señala el daño de conmoción con una “C” en lugar de marcar
+                con una “X” los puntos de vitalidad perdidos). Ahora bien, este daño se acumula con cualquier otro tipo
+                de daño recibido. Si un personaje aturdido sufre otros daños que lo lleven a estar por debajo de cero en
+                Vitalidad, el personaje muere. Estas fueron las armas de la policía antidisturbios durante la Segunda
+                República. Debido a las constantes demandas interpuestas contra la policía por las víctimas de los
+                aturdidores, se hizo ilegal fabricar aturdidores con demasiada potencia. Se rumorea que los ingenieros
+                han desarrollado una versión más potente llamada SOE Tesla 16B5002, aunque el Gremio se niega a
+                confirmar o negar si el arma es de ellos. El aturdidor regular más popular es el Arbogast Sleeper.
+            </es>
+        </description>
         <techLevel>6</techLevel>
         <type>STUNNER</type>
         <damageList>
@@ -7118,6 +7286,27 @@
             <en>Republic Arms 3000</en>
             <es>Republican Arms 3000</es>
         </name>
+        <description>
+            <en>Few hand weapons could hope to surpass the Second Republic’s fusion gun, the pinnacle of Human
+                civilization’s personal weaponry development. These large, sleek black rifles generates an energy
+                discharge capable of liquefying even ceramsteel. The balance on these weapons is near perfect, making
+                them seem lighter than they actually are. The immense power of this weapon makes it unstable and
+                dangerous. A Critical Failure results in the gun blowing up in the shooter’s hands, inflicting full
+                damage upon the wielder. These weapons were issued only to elite commando and assault units in the
+                Second Republic military and are highly sought after; the best known example is the Republican Arms
+                3000. The Phoenix Guard is believed to control the largest cache of such weapons in the Empire.
+            </en>
+            <es>Pocas armas de mano tendrían la esperanza de superar al arma de fusión de la Segunda República, el
+                pináculo del desarrollo de armamento personal de la civilización humana. Estos rifles grandes, negros y
+                elegantes generan una descarga de energía capaz de atravesar incluso la acerámica. El balance de estas
+                armas es casi perfecto, haciéndolas parecer más ligeras de lo que realmente son. El inmenso poder de
+                este arma hace que sea inestable y peligrosa. Un resultado de fallo crítico supone que el arma explote
+                en las manos del tirador, infligiendo al portador el daño máximo. Estas armas se fabricaron sólo para
+                las unidades comando de élite y de asalto durante la Segunda República y son muy buscadas; los ejemplos
+                de ello más conocidos son el Republican Arms 3.000. Se cree que la Guardia del Fénix controla el mayor
+                alijo de estas armas en todo el Imperio.
+            </es>
+        </description>
         <techLevel>8</techLevel>
         <type>ARTIFACT_ENERGY</type>
         <damageList>
@@ -7144,6 +7333,30 @@
             <en>Varsotech Model 331</en>
             <es>Varsotech Model 331</es>
         </name>
+        <description>
+            <en>These small palm guns fire a nearly invisible and slightly erratic stream of energy which causes
+                destruction to nerve cells and brain matter. If damage exceeds Endurance (or Psi, whichever is higher),
+                the target falls unconscious. If damage exceeds the Vitality track, the target is dead. Armor does not
+                protect against this damage (although a Psi cloak does). Psychics may defend against neural disrupter
+                attacks. To deflect the energy stream, roll Psi + Self Control contested against the attacker’s
+                successes. The Neural Disrupter had only just begun production as a prototype when the Fall of the
+                Second Republic came to pass. Very few of these weapons are known to exist. The best known examples of
+                Neural Disruptors are, the heavy-pistol-sized Varsotech Model 331, and the clunky shotgunsized
+                Cunningham Demeantor (Cost: 3700 fb).
+            </en>
+            <es>Estas pequeñas armas de un palmo de tamaño disparan un flujo de energía casi invisible y ligeramente
+                errático que causa la destrucción de las células nerviosas y de la materia cerebral. Si el daño excede
+                la puntuación de Fortaleza (o de Psique, la que sea mayor), el objetivo cae inconsciente. Si el daño
+                excede la puntuación actual de Vitalidad, el objetivo está muerto. La armadura no protege contra esta
+                clase de daños (aunque un Manto de Psique sí que protege contra este artefacto). Los psíquicos pueden
+                tratar de defenderse de los ataques de un disruptor neuronal. Para desviar el flujo de la energía,
+                realiza una tirada de Psique + Autocontrol enfrentada a los éxitos del atacante. Tan solo se empezó a
+                fabricar el Disruptor Neuronal a modo de prototipo cuando aconteció la Caída de la Segunda República. Se
+                tiene muy poca constancia de la existencia de estas armas. Los ejemplos más conocidos de Disruptores
+                Neuronales son, la pistola de tamaño pesada Modelo 331 Varsotech y la pistola del tamaño de una robusta
+                escopeta conocida como la Dementor Cunningham (Coste: 3.700 fénix)
+            </es>
+        </description>
         <techLevel>8</techLevel>
         <type>ARTIFACT_ENERGY</type>
         <damageList>
@@ -7190,6 +7403,30 @@
         <random>
             <probabilityMultiplier>0.0001</probabilityMultiplier>
         </random>
+        <description>
+            <en>These small palm guns fire a nearly invisible and slightly erratic stream of energy which causes
+                destruction to nerve cells and brain matter. If damage exceeds Endurance (or Psi, whichever is higher),
+                the target falls unconscious. If damage exceeds the Vitality track, the target is dead. Armor does not
+                protect against this damage (although a Psi cloak does). Psychics may defend against neural disrupter
+                attacks. To deflect the energy stream, roll Psi + Self Control contested against the attacker’s
+                successes. The Neural Disrupter had only just begun production as a prototype when the Fall of the
+                Second Republic came to pass. Very few of these weapons are known to exist. The best known examples of
+                Neural Disruptors are, the heavy-pistol-sized Varsotech Model 331, and the clunky shotgunsized
+                Cunningham Demeantor (Cost: 3700 fb).
+            </en>
+            <es>Estas pequeñas armas de un palmo de tamaño disparan un flujo de energía casi invisible y ligeramente
+                errático que causa la destrucción de las células nerviosas y de la materia cerebral. Si el daño excede
+                la puntuación de Fortaleza (o de Psique, la que sea mayor), el objetivo cae inconsciente. Si el daño
+                excede la puntuación actual de Vitalidad, el objetivo está muerto. La armadura no protege contra esta
+                clase de daños (aunque un Manto de Psique sí que protege contra este artefacto). Los psíquicos pueden
+                tratar de defenderse de los ataques de un disruptor neuronal. Para desviar el flujo de la energía,
+                realiza una tirada de Psique + Autocontrol enfrentada a los éxitos del atacante. Tan solo se empezó a
+                fabricar el Disruptor Neuronal a modo de prototipo cuando aconteció la Caída de la Segunda República. Se
+                tiene muy poca constancia de la existencia de estas armas. Los ejemplos más conocidos de Disruptores
+                Neuronales son, la pistola de tamaño pesada Modelo 331 Varsotech y la pistola del tamaño de una robusta
+                escopeta conocida como la Dementor Cunningham (Coste: 3.700 fénix)
+            </es>
+        </description>
     </cunninghamDemeantor>
 
 
@@ -7198,6 +7435,33 @@
             <en>Typical Lt. Mg (10mm)</en>
             <es>Ametralladora Ligera Típica (10mm)</es>
         </name>
+        <description>
+            <en>Machineguns come in many sizes, although a few types have come to be established as standard models. The
+                Jahnisak 0.40 machinegun, manufactured by the Jahnisak weaponsmiths, is one of the more common support
+                weapons currently available, and had users on all sides of the Emperor Wars. Although small and not
+                particularly effective, the Jahnisak 0.40 does continue the Jahnisak reputation for ruggedness and
+                reliability. Its larger cousin, the Jahnisak 0.51 machinegun, however, has failed to attract the same
+                attention and fame. This is partially due to its poorer automatic fire mechanics, which led the
+                Jahnisaks to quickly halt marketing the gun. The Jahnisak 16mm Autocannon is a low-tech favorite weapon
+                for tanks and other mechanized cavalry. The Furystorm Chaingun is the most widely recognized heavy
+                machinegun, built to suppress both personnel and light vehicles from dug-in positions. It barely
+                qualifies as a heavy weapon, and is more commonly used as a stationed machinegun in gun-boxes or on
+                vehicles.
+            </en>
+            <es>Existen muchos tamaños de ametralladoras, aunque unos cuantos tipos han llegado a establecerse como
+                modelos estándar. La Jahnisak 0.40 es una ametralladora, fabricada por los armeros Jahnisak y es una de
+                las armas de apoyo más comunes actualmente disponibles, y la usaron todos los bandos de las Guerras del
+                Emperador. Aunque es pequeña y no es particularmente eficaz, la Jahnisak 0.40 mantiene la reputación de
+                los Jahnisak como fabricantes de armas robustas y fiables. Su prima más grande, laametralladora Jahnisak
+                del 0.51, sin embargo, no ha logrado atraer la misma atención y fama. En parte se debe a su pobre
+                mecánica de fuego automática, que llevó a los Jahnisaks a detener a toda prisa la comercialización del
+                arma. El Cañón Automático de los Jahnisak de 16mm es el arma de baja tecnología preferida contra tanques
+                y contra la caballería mecanizada en general. La Furystorm Chaingun es la ametralladora pesada más
+                reconocida universalmente, construida para propinar fuego de supresión contra vehículos personales y
+                ligeros desde posiciones de trinchera. Pocas veces se la considera como un arma pesada, y normalmente se
+                suele usar más como una ametralladora estacionada en cajas de armas o en los vehículos.
+            </es>
+        </description>
         <techLevel>4</techLevel>
         <type>HEAVY</type>
         <damageList>
@@ -7221,6 +7485,33 @@
             <en>Jahnisak 0.40 MG</en>
             <es>Jahnisak 0.40 MG</es>
         </name>
+        <description>
+            <en>Machineguns come in many sizes, although a few types have come to be established as standard models. The
+                Jahnisak 0.40 machinegun, manufactured by the Jahnisak weaponsmiths, is one of the more common support
+                weapons currently available, and had users on all sides of the Emperor Wars. Although small and not
+                particularly effective, the Jahnisak 0.40 does continue the Jahnisak reputation for ruggedness and
+                reliability. Its larger cousin, the Jahnisak 0.51 machinegun, however, has failed to attract the same
+                attention and fame. This is partially due to its poorer automatic fire mechanics, which led the
+                Jahnisaks to quickly halt marketing the gun. The Jahnisak 16mm Autocannon is a low-tech favorite weapon
+                for tanks and other mechanized cavalry. The Furystorm Chaingun is the most widely recognized heavy
+                machinegun, built to suppress both personnel and light vehicles from dug-in positions. It barely
+                qualifies as a heavy weapon, and is more commonly used as a stationed machinegun in gun-boxes or on
+                vehicles.
+            </en>
+            <es>Existen muchos tamaños de ametralladoras, aunque unos cuantos tipos han llegado a establecerse como
+                modelos estándar. La Jahnisak 0.40 es una ametralladora, fabricada por los armeros Jahnisak y es una de
+                las armas de apoyo más comunes actualmente disponibles, y la usaron todos los bandos de las Guerras del
+                Emperador. Aunque es pequeña y no es particularmente eficaz, la Jahnisak 0.40 mantiene la reputación de
+                los Jahnisak como fabricantes de armas robustas y fiables. Su prima más grande, laametralladora Jahnisak
+                del 0.51, sin embargo, no ha logrado atraer la misma atención y fama. En parte se debe a su pobre
+                mecánica de fuego automática, que llevó a los Jahnisaks a detener a toda prisa la comercialización del
+                arma. El Cañón Automático de los Jahnisak de 16mm es el arma de baja tecnología preferida contra tanques
+                y contra la caballería mecanizada en general. La Furystorm Chaingun es la ametralladora pesada más
+                reconocida universalmente, construida para propinar fuego de supresión contra vehículos personales y
+                ligeros desde posiciones de trinchera. Pocas veces se la considera como un arma pesada, y normalmente se
+                suele usar más como una ametralladora estacionada en cajas de armas o en los vehículos.
+            </es>
+        </description>
         <techLevel>4</techLevel>
         <type>HEAVY</type>
         <damageList>
@@ -7244,6 +7535,33 @@
             <en>Jahnisak 0.51 MG</en>
             <es>Jahnisak 0.51 MG</es>
         </name>
+        <description>
+            <en>Machineguns come in many sizes, although a few types have come to be established as standard models. The
+                Jahnisak 0.40 machinegun, manufactured by the Jahnisak weaponsmiths, is one of the more common support
+                weapons currently available, and had users on all sides of the Emperor Wars. Although small and not
+                particularly effective, the Jahnisak 0.40 does continue the Jahnisak reputation for ruggedness and
+                reliability. Its larger cousin, the Jahnisak 0.51 machinegun, however, has failed to attract the same
+                attention and fame. This is partially due to its poorer automatic fire mechanics, which led the
+                Jahnisaks to quickly halt marketing the gun. The Jahnisak 16mm Autocannon is a low-tech favorite weapon
+                for tanks and other mechanized cavalry. The Furystorm Chaingun is the most widely recognized heavy
+                machinegun, built to suppress both personnel and light vehicles from dug-in positions. It barely
+                qualifies as a heavy weapon, and is more commonly used as a stationed machinegun in gun-boxes or on
+                vehicles.
+            </en>
+            <es>Existen muchos tamaños de ametralladoras, aunque unos cuantos tipos han llegado a establecerse como
+                modelos estándar. La Jahnisak 0.40 es una ametralladora, fabricada por los armeros Jahnisak y es una de
+                las armas de apoyo más comunes actualmente disponibles, y la usaron todos los bandos de las Guerras del
+                Emperador. Aunque es pequeña y no es particularmente eficaz, la Jahnisak 0.40 mantiene la reputación de
+                los Jahnisak como fabricantes de armas robustas y fiables. Su prima más grande, laametralladora Jahnisak
+                del 0.51, sin embargo, no ha logrado atraer la misma atención y fama. En parte se debe a su pobre
+                mecánica de fuego automática, que llevó a los Jahnisaks a detener a toda prisa la comercialización del
+                arma. El Cañón Automático de los Jahnisak de 16mm es el arma de baja tecnología preferida contra tanques
+                y contra la caballería mecanizada en general. La Furystorm Chaingun es la ametralladora pesada más
+                reconocida universalmente, construida para propinar fuego de supresión contra vehículos personales y
+                ligeros desde posiciones de trinchera. Pocas veces se la considera como un arma pesada, y normalmente se
+                suele usar más como una ametralladora estacionada en cajas de armas o en los vehículos.
+            </es>
+        </description>
         <techLevel>4</techLevel>
         <type>HEAVY</type>
         <damageList>
@@ -7267,6 +7585,33 @@
             <en>Jahnisak Autocannon (16mm)</en>
             <es>Auto cañón Jahnisak (16mm)</es>
         </name>
+        <description>
+            <en>Machineguns come in many sizes, although a few types have come to be established as standard models. The
+                Jahnisak 0.40 machinegun, manufactured by the Jahnisak weaponsmiths, is one of the more common support
+                weapons currently available, and had users on all sides of the Emperor Wars. Although small and not
+                particularly effective, the Jahnisak 0.40 does continue the Jahnisak reputation for ruggedness and
+                reliability. Its larger cousin, the Jahnisak 0.51 machinegun, however, has failed to attract the same
+                attention and fame. This is partially due to its poorer automatic fire mechanics, which led the
+                Jahnisaks to quickly halt marketing the gun. The Jahnisak 16mm Autocannon is a low-tech favorite weapon
+                for tanks and other mechanized cavalry. The Furystorm Chaingun is the most widely recognized heavy
+                machinegun, built to suppress both personnel and light vehicles from dug-in positions. It barely
+                qualifies as a heavy weapon, and is more commonly used as a stationed machinegun in gun-boxes or on
+                vehicles.
+            </en>
+            <es>Existen muchos tamaños de ametralladoras, aunque unos cuantos tipos han llegado a establecerse como
+                modelos estándar. La Jahnisak 0.40 es una ametralladora, fabricada por los armeros Jahnisak y es una de
+                las armas de apoyo más comunes actualmente disponibles, y la usaron todos los bandos de las Guerras del
+                Emperador. Aunque es pequeña y no es particularmente eficaz, la Jahnisak 0.40 mantiene la reputación de
+                los Jahnisak como fabricantes de armas robustas y fiables. Su prima más grande, laametralladora Jahnisak
+                del 0.51, sin embargo, no ha logrado atraer la misma atención y fama. En parte se debe a su pobre
+                mecánica de fuego automática, que llevó a los Jahnisaks a detener a toda prisa la comercialización del
+                arma. El Cañón Automático de los Jahnisak de 16mm es el arma de baja tecnología preferida contra tanques
+                y contra la caballería mecanizada en general. La Furystorm Chaingun es la ametralladora pesada más
+                reconocida universalmente, construida para propinar fuego de supresión contra vehículos personales y
+                ligeros desde posiciones de trinchera. Pocas veces se la considera como un arma pesada, y normalmente se
+                suele usar más como una ametralladora estacionada en cajas de armas o en los vehículos.
+            </es>
+        </description>
         <techLevel>4</techLevel>
         <type>HEAVY</type>
         <damageList>
@@ -7290,6 +7635,33 @@
             <en>Furystorm Chaingun (20mm)</en>
             <es>Furystorm Chaingun (20mm)</es>
         </name>
+        <description>
+            <en>Machineguns come in many sizes, although a few types have come to be established as standard models. The
+                Jahnisak 0.40 machinegun, manufactured by the Jahnisak weaponsmiths, is one of the more common support
+                weapons currently available, and had users on all sides of the Emperor Wars. Although small and not
+                particularly effective, the Jahnisak 0.40 does continue the Jahnisak reputation for ruggedness and
+                reliability. Its larger cousin, the Jahnisak 0.51 machinegun, however, has failed to attract the same
+                attention and fame. This is partially due to its poorer automatic fire mechanics, which led the
+                Jahnisaks to quickly halt marketing the gun. The Jahnisak 16mm Autocannon is a low-tech favorite weapon
+                for tanks and other mechanized cavalry. The Furystorm Chaingun is the most widely recognized heavy
+                machinegun, built to suppress both personnel and light vehicles from dug-in positions. It barely
+                qualifies as a heavy weapon, and is more commonly used as a stationed machinegun in gun-boxes or on
+                vehicles.
+            </en>
+            <es>Existen muchos tamaños de ametralladoras, aunque unos cuantos tipos han llegado a establecerse como
+                modelos estándar. La Jahnisak 0.40 es una ametralladora, fabricada por los armeros Jahnisak y es una de
+                las armas de apoyo más comunes actualmente disponibles, y la usaron todos los bandos de las Guerras del
+                Emperador. Aunque es pequeña y no es particularmente eficaz, la Jahnisak 0.40 mantiene la reputación de
+                los Jahnisak como fabricantes de armas robustas y fiables. Su prima más grande, laametralladora Jahnisak
+                del 0.51, sin embargo, no ha logrado atraer la misma atención y fama. En parte se debe a su pobre
+                mecánica de fuego automática, que llevó a los Jahnisaks a detener a toda prisa la comercialización del
+                arma. El Cañón Automático de los Jahnisak de 16mm es el arma de baja tecnología preferida contra tanques
+                y contra la caballería mecanizada en general. La Furystorm Chaingun es la ametralladora pesada más
+                reconocida universalmente, construida para propinar fuego de supresión contra vehículos personales y
+                ligeros desde posiciones de trinchera. Pocas veces se la considera como un arma pesada, y normalmente se
+                suele usar más como una ametralladora estacionada en cajas de armas o en los vehículos.
+            </es>
+        </description>
         <techLevel>4</techLevel>
         <type>HEAVY</type>
         <damageList>
@@ -7313,6 +7685,29 @@
             <en>Deamasine Terrakin (Borer)</en>
             <es>Deamasine Terrakin (Perforante)</es>
         </name>
+        <description>
+            <en>Weapons designed specifically to defeat battle armored vehicles are rare in the Phoenix Empire, although
+                they do exist. The Terrakin Borer is a single-shot anti-tank “can-opener” sniper rifle, classified as a
+                heavy weapon. The Deamasine weaponsmith family of Midian specializes in these high-velocity, largebore
+                firearms. Designed to punch through thick armor, these weapons are ideally used against foes in cover,
+                heavy armor, or in vehicles. Its ammo (16mm) is a specially designed ultra-hard bullet, coated to punch
+                through metal and ceramsteel. The Bosark Cannoneer is a Second Republic weapon that was intended for
+                large game hunting, however it continues to serve adequately to this day and is frequently used as an
+                anti-armor weapon. It has seen considerable use on Stigmata where it is used to bring down the larger
+                Symbiot creatures.
+            </en>
+            <es>Armas diseñadas específicamente para derrotar a los vehículos de batalla blindados que rara vez podrás
+                encontrar en el Imperio del Fénix, a pesar de que existan. El Terrakin Borer es un rifle de
+                francotirador antitanque “abrelatas” de un solo disparo, clasificado como arma pesada. La familia de
+                armeros Deamasine de Madián está especializada en estas armas de fuego de gran calibre y de alta
+                velocidad. Diseñadas para atravesar una armadura gruesa, estas armas suelen emplearse contra los
+                enemigos bajo cobertura, contra armaduras pesadas, o contra vehículos. Su munición (16 mm) es un diseño
+                especial de bala ultra dura, revestida para atravesar el metal y la acerámica. El Cañonero Bosark es un
+                arma de la Segunda República que se diseñó para la caza mayor, sin embargo, continúa siendo utilizada a
+                día de hoy, y suele emplearse como un arma anti-armadura. Se usó bastante en Estigmata, donde se empleó
+                para derrotar a las criaturas simbiontes más grandes.
+            </es>
+        </description>
         <techLevel>5</techLevel>
         <type>HEAVY</type>
         <damageList>
@@ -7337,6 +7732,29 @@
             <en>Bosark Cannoneer (Borer)</en>
             <es>Cañonero Bosark (Perforante)</es>
         </name>
+        <description>
+            <en>Weapons designed specifically to defeat battle armored vehicles are rare in the Phoenix Empire, although
+                they do exist. The Terrakin Borer is a single-shot anti-tank “can-opener” sniper rifle, classified as a
+                heavy weapon. The Deamasine weaponsmith family of Midian specializes in these high-velocity, largebore
+                firearms. Designed to punch through thick armor, these weapons are ideally used against foes in cover,
+                heavy armor, or in vehicles. Its ammo (16mm) is a specially designed ultra-hard bullet, coated to punch
+                through metal and ceramsteel. The Bosark Cannoneer is a Second Republic weapon that was intended for
+                large game hunting, however it continues to serve adequately to this day and is frequently used as an
+                anti-armor weapon. It has seen considerable use on Stigmata where it is used to bring down the larger
+                Symbiot creatures.
+            </en>
+            <es>Armas diseñadas específicamente para derrotar a los vehículos de batalla blindados que rara vez podrás
+                encontrar en el Imperio del Fénix, a pesar de que existan. El Terrakin Borer es un rifle de
+                francotirador antitanque “abrelatas” de un solo disparo, clasificado como arma pesada. La familia de
+                armeros Deamasine de Madián está especializada en estas armas de fuego de gran calibre y de alta
+                velocidad. Diseñadas para atravesar una armadura gruesa, estas armas suelen emplearse contra los
+                enemigos bajo cobertura, contra armaduras pesadas, o contra vehículos. Su munición (16 mm) es un diseño
+                especial de bala ultra dura, revestida para atravesar el metal y la acerámica. El Cañonero Bosark es un
+                arma de la Segunda República que se diseñó para la caza mayor, sin embargo, continúa siendo utilizada a
+                día de hoy, y suele emplearse como un arma anti-armadura. Se usó bastante en Estigmata, donde se empleó
+                para derrotar a las criaturas simbiontes más grandes.
+            </es>
+        </description>
         <techLevel>5</techLevel>
         <type>HEAVY</type>
         <damageList>
@@ -7360,6 +7778,47 @@
             <en>Gobo Lobber Jet Pistol</en>
             <es>Pistola a Chorro Gobo Lobber</es>
         </name>
+        <description>
+            <en>Rocketeer weapons fire either guided (missile launchers) or unguided explosive rockets; most are little
+                more than tubes with a firing mechanism. The Gobo Lobber Jet Pistol fires jet-propelled Blast Pellets,
+                and is manufactured by the Gobo weaponsmiths guild of Bannockburn. While this bulky pistol is not very
+                concealable, its small size makes it a favorite of mercenaries who like to destroy things. The Gobo
+                Garbage Chucker Cluster Gun, a rifle-sized version of the Jet Pistol, spray a cluster of five Blast
+                Pellets over a 2-meter area, causing massive damage and suppressing anyone in the vicinity. It Is a
+                single-fire rocketeer, emptying it’s entire ammo storage with a single pull on the trigger. This weapon
+                is favored by those who need to clean out an area quickly without regard for making a mess. The
+                Nightstorm is a handheld rocket launcher about twice the size of a common shotgun, is the most famous
+                rocketeer weapon. It is manufactured by the Muster Guild, who are quite fond of this model, as it won
+                them the decisive victory during the Emperor Wars at the Battle of Barga Gully on Sutek. Another popular
+                model is the Model Hazat R–25 missile launcher, a reliable personal artillery weapon employed in large
+                numbers on the Hira front. Typically, this weapon is manned by two soldiers, one being the shooter and
+                the other acting as a spotter and loader, although a single firer can operate the weapon if necessary
+                (it just takes longer to reload and the R–25 is quite heavy to lug around on your own). Another two-team
+                missile launcher is the Dreskel Bazooka, a multi-purpose missile launcher that has proven effective
+                against, land, sea, and air vehicles, fortifications, starships, and infantry alike.
+            </en>
+            <es>Incluyen tanto las de misiles guiados (lanzamisiles) como las de misiles no guiados; la mayoría son poco
+                más que unos simples tubos con un mecanismo de disparo. La pistola a chorro Gobo Lobber dispara
+                perdigones explosivos a chorro, y la fabrica el gremio de armeros de Gobo en Bannockburn. Aunque esta
+                voluminosa pistola no pueda ocultarse así como así, su pequeño tamaño hace que sea una de las armas
+                favoritas de los mercenarios a los que les guste destruir cosas. El arma de racimo Gobo Garbage Chucker,
+                es una versión de la pistola a chorro con tamaño de rifle, que esparce un racimo de cinco perdigones
+                explosivos sobre un área de 2 metros, causando daño masivo y también ofrece fuego de supresión sobre
+                cualquiera que esté cerca. Es un arma de cohetes de un solo disparo, vaciando todo su cargador con tan
+                solo apretar el gatillo. Este arma es la idónea para aquellos que necesitan limpiar un área rápidamente
+                sin preocuparse de hacer un destrozo. El Nightstorm es un lanzacohetes portátil aproximadamente con el
+                doble del tamaño de una escopeta común; es el arma de cohetes más famosa. La fabrica el gremio de la
+                Asamblea, que son muy aficionados a este modelo, dado que les consiguió la victoria decisiva durante las
+                Guerras del Emperador en la batalla de Barga Gully en Sutek. Otro modelo popular es el lanzamisiles
+                modelo Hazat R-25, un arma de artillería personal fiable, muy utilizada en el frente de Hira. Por lo
+                general, este arma la manejan dos soldados, uno es el tirador y el otro es un observador y el que
+                recarga el arma, aunque un solo tirador se las puede apañar con el arma si es necesario (sólo se
+                necesitará más tiempo para recargar y el R-25 es bastante pesado como para cargarlo por tu cuenta). Otro
+                lanzamisiles de dos soldados es el Bazooka Dreskel, un lanzamisiles multiuso que ha demostrado su
+                eficacia contra vehículos de tierra, mar y aire, fortificaciones, naves espaciales, y contra la
+                infantería por igual.
+            </es>
+        </description>
         <techLevel>4</techLevel>
         <type>ROCKETEER</type>
         <damageList>
@@ -7383,6 +7842,47 @@
             <en>Gobo Garbage Chucker</en>
             <es>Gobo Garbage Chucker</es>
         </name>
+        <description>
+            <en>Rocketeer weapons fire either guided (missile launchers) or unguided explosive rockets; most are little
+                more than tubes with a firing mechanism. The Gobo Lobber Jet Pistol fires jet-propelled Blast Pellets,
+                and is manufactured by the Gobo weaponsmiths guild of Bannockburn. While this bulky pistol is not very
+                concealable, its small size makes it a favorite of mercenaries who like to destroy things. The Gobo
+                Garbage Chucker Cluster Gun, a rifle-sized version of the Jet Pistol, spray a cluster of five Blast
+                Pellets over a 2-meter area, causing massive damage and suppressing anyone in the vicinity. It Is a
+                single-fire rocketeer, emptying it’s entire ammo storage with a single pull on the trigger. This weapon
+                is favored by those who need to clean out an area quickly without regard for making a mess. The
+                Nightstorm is a handheld rocket launcher about twice the size of a common shotgun, is the most famous
+                rocketeer weapon. It is manufactured by the Muster Guild, who are quite fond of this model, as it won
+                them the decisive victory during the Emperor Wars at the Battle of Barga Gully on Sutek. Another popular
+                model is the Model Hazat R–25 missile launcher, a reliable personal artillery weapon employed in large
+                numbers on the Hira front. Typically, this weapon is manned by two soldiers, one being the shooter and
+                the other acting as a spotter and loader, although a single firer can operate the weapon if necessary
+                (it just takes longer to reload and the R–25 is quite heavy to lug around on your own). Another two-team
+                missile launcher is the Dreskel Bazooka, a multi-purpose missile launcher that has proven effective
+                against, land, sea, and air vehicles, fortifications, starships, and infantry alike.
+            </en>
+            <es>Incluyen tanto las de misiles guiados (lanzamisiles) como las de misiles no guiados; la mayoría son poco
+                más que unos simples tubos con un mecanismo de disparo. La pistola a chorro Gobo Lobber dispara
+                perdigones explosivos a chorro, y la fabrica el gremio de armeros de Gobo en Bannockburn. Aunque esta
+                voluminosa pistola no pueda ocultarse así como así, su pequeño tamaño hace que sea una de las armas
+                favoritas de los mercenarios a los que les guste destruir cosas. El arma de racimo Gobo Garbage Chucker,
+                es una versión de la pistola a chorro con tamaño de rifle, que esparce un racimo de cinco perdigones
+                explosivos sobre un área de 2 metros, causando daño masivo y también ofrece fuego de supresión sobre
+                cualquiera que esté cerca. Es un arma de cohetes de un solo disparo, vaciando todo su cargador con tan
+                solo apretar el gatillo. Este arma es la idónea para aquellos que necesitan limpiar un área rápidamente
+                sin preocuparse de hacer un destrozo. El Nightstorm es un lanzacohetes portátil aproximadamente con el
+                doble del tamaño de una escopeta común; es el arma de cohetes más famosa. La fabrica el gremio de la
+                Asamblea, que son muy aficionados a este modelo, dado que les consiguió la victoria decisiva durante las
+                Guerras del Emperador en la batalla de Barga Gully en Sutek. Otro modelo popular es el lanzamisiles
+                modelo Hazat R-25, un arma de artillería personal fiable, muy utilizada en el frente de Hira. Por lo
+                general, este arma la manejan dos soldados, uno es el tirador y el otro es un observador y el que
+                recarga el arma, aunque un solo tirador se las puede apañar con el arma si es necesario (sólo se
+                necesitará más tiempo para recargar y el R-25 es bastante pesado como para cargarlo por tu cuenta). Otro
+                lanzamisiles de dos soldados es el Bazooka Dreskel, un lanzamisiles multiuso que ha demostrado su
+                eficacia contra vehículos de tierra, mar y aire, fortificaciones, naves espaciales, y contra la
+                infantería por igual.
+            </es>
+        </description>
         <techLevel>4</techLevel>
         <type>ROCKETEER</type>
         <damageList>
@@ -7407,6 +7907,47 @@
             <en>Muster Nightstorm</en>
             <es>Nightstorm de la Asamblea</es>
         </name>
+        <description>
+            <en>Rocketeer weapons fire either guided (missile launchers) or unguided explosive rockets; most are little
+                more than tubes with a firing mechanism. The Gobo Lobber Jet Pistol fires jet-propelled Blast Pellets,
+                and is manufactured by the Gobo weaponsmiths guild of Bannockburn. While this bulky pistol is not very
+                concealable, its small size makes it a favorite of mercenaries who like to destroy things. The Gobo
+                Garbage Chucker Cluster Gun, a rifle-sized version of the Jet Pistol, spray a cluster of five Blast
+                Pellets over a 2-meter area, causing massive damage and suppressing anyone in the vicinity. It Is a
+                single-fire rocketeer, emptying it’s entire ammo storage with a single pull on the trigger. This weapon
+                is favored by those who need to clean out an area quickly without regard for making a mess. The
+                Nightstorm is a handheld rocket launcher about twice the size of a common shotgun, is the most famous
+                rocketeer weapon. It is manufactured by the Muster Guild, who are quite fond of this model, as it won
+                them the decisive victory during the Emperor Wars at the Battle of Barga Gully on Sutek. Another popular
+                model is the Model Hazat R–25 missile launcher, a reliable personal artillery weapon employed in large
+                numbers on the Hira front. Typically, this weapon is manned by two soldiers, one being the shooter and
+                the other acting as a spotter and loader, although a single firer can operate the weapon if necessary
+                (it just takes longer to reload and the R–25 is quite heavy to lug around on your own). Another two-team
+                missile launcher is the Dreskel Bazooka, a multi-purpose missile launcher that has proven effective
+                against, land, sea, and air vehicles, fortifications, starships, and infantry alike.
+            </en>
+            <es>Incluyen tanto las de misiles guiados (lanzamisiles) como las de misiles no guiados; la mayoría son poco
+                más que unos simples tubos con un mecanismo de disparo. La pistola a chorro Gobo Lobber dispara
+                perdigones explosivos a chorro, y la fabrica el gremio de armeros de Gobo en Bannockburn. Aunque esta
+                voluminosa pistola no pueda ocultarse así como así, su pequeño tamaño hace que sea una de las armas
+                favoritas de los mercenarios a los que les guste destruir cosas. El arma de racimo Gobo Garbage Chucker,
+                es una versión de la pistola a chorro con tamaño de rifle, que esparce un racimo de cinco perdigones
+                explosivos sobre un área de 2 metros, causando daño masivo y también ofrece fuego de supresión sobre
+                cualquiera que esté cerca. Es un arma de cohetes de un solo disparo, vaciando todo su cargador con tan
+                solo apretar el gatillo. Este arma es la idónea para aquellos que necesitan limpiar un área rápidamente
+                sin preocuparse de hacer un destrozo. El Nightstorm es un lanzacohetes portátil aproximadamente con el
+                doble del tamaño de una escopeta común; es el arma de cohetes más famosa. La fabrica el gremio de la
+                Asamblea, que son muy aficionados a este modelo, dado que les consiguió la victoria decisiva durante las
+                Guerras del Emperador en la batalla de Barga Gully en Sutek. Otro modelo popular es el lanzamisiles
+                modelo Hazat R-25, un arma de artillería personal fiable, muy utilizada en el frente de Hira. Por lo
+                general, este arma la manejan dos soldados, uno es el tirador y el otro es un observador y el que
+                recarga el arma, aunque un solo tirador se las puede apañar con el arma si es necesario (sólo se
+                necesitará más tiempo para recargar y el R-25 es bastante pesado como para cargarlo por tu cuenta). Otro
+                lanzamisiles de dos soldados es el Bazooka Dreskel, un lanzamisiles multiuso que ha demostrado su
+                eficacia contra vehículos de tierra, mar y aire, fortificaciones, naves espaciales, y contra la
+                infantería por igual.
+            </es>
+        </description>
         <techLevel>4</techLevel>
         <type>ROCKETEER</type>
         <damageList>
@@ -7433,6 +7974,47 @@
             <en>Model Hazat R-25 (HEAT)</en>
             <es>Modelo Hazat R-25 (CALOR)</es>
         </name>
+        <description>
+            <en>Rocketeer weapons fire either guided (missile launchers) or unguided explosive rockets; most are little
+                more than tubes with a firing mechanism. The Gobo Lobber Jet Pistol fires jet-propelled Blast Pellets,
+                and is manufactured by the Gobo weaponsmiths guild of Bannockburn. While this bulky pistol is not very
+                concealable, its small size makes it a favorite of mercenaries who like to destroy things. The Gobo
+                Garbage Chucker Cluster Gun, a rifle-sized version of the Jet Pistol, spray a cluster of five Blast
+                Pellets over a 2-meter area, causing massive damage and suppressing anyone in the vicinity. It Is a
+                single-fire rocketeer, emptying it’s entire ammo storage with a single pull on the trigger. This weapon
+                is favored by those who need to clean out an area quickly without regard for making a mess. The
+                Nightstorm is a handheld rocket launcher about twice the size of a common shotgun, is the most famous
+                rocketeer weapon. It is manufactured by the Muster Guild, who are quite fond of this model, as it won
+                them the decisive victory during the Emperor Wars at the Battle of Barga Gully on Sutek. Another popular
+                model is the Model Hazat R–25 missile launcher, a reliable personal artillery weapon employed in large
+                numbers on the Hira front. Typically, this weapon is manned by two soldiers, one being the shooter and
+                the other acting as a spotter and loader, although a single firer can operate the weapon if necessary
+                (it just takes longer to reload and the R–25 is quite heavy to lug around on your own). Another two-team
+                missile launcher is the Dreskel Bazooka, a multi-purpose missile launcher that has proven effective
+                against, land, sea, and air vehicles, fortifications, starships, and infantry alike.
+            </en>
+            <es>Incluyen tanto las de misiles guiados (lanzamisiles) como las de misiles no guiados; la mayoría son poco
+                más que unos simples tubos con un mecanismo de disparo. La pistola a chorro Gobo Lobber dispara
+                perdigones explosivos a chorro, y la fabrica el gremio de armeros de Gobo en Bannockburn. Aunque esta
+                voluminosa pistola no pueda ocultarse así como así, su pequeño tamaño hace que sea una de las armas
+                favoritas de los mercenarios a los que les guste destruir cosas. El arma de racimo Gobo Garbage Chucker,
+                es una versión de la pistola a chorro con tamaño de rifle, que esparce un racimo de cinco perdigones
+                explosivos sobre un área de 2 metros, causando daño masivo y también ofrece fuego de supresión sobre
+                cualquiera que esté cerca. Es un arma de cohetes de un solo disparo, vaciando todo su cargador con tan
+                solo apretar el gatillo. Este arma es la idónea para aquellos que necesitan limpiar un área rápidamente
+                sin preocuparse de hacer un destrozo. El Nightstorm es un lanzacohetes portátil aproximadamente con el
+                doble del tamaño de una escopeta común; es el arma de cohetes más famosa. La fabrica el gremio de la
+                Asamblea, que son muy aficionados a este modelo, dado que les consiguió la victoria decisiva durante las
+                Guerras del Emperador en la batalla de Barga Gully en Sutek. Otro modelo popular es el lanzamisiles
+                modelo Hazat R-25, un arma de artillería personal fiable, muy utilizada en el frente de Hira. Por lo
+                general, este arma la manejan dos soldados, uno es el tirador y el otro es un observador y el que
+                recarga el arma, aunque un solo tirador se las puede apañar con el arma si es necesario (sólo se
+                necesitará más tiempo para recargar y el R-25 es bastante pesado como para cargarlo por tu cuenta). Otro
+                lanzamisiles de dos soldados es el Bazooka Dreskel, un lanzamisiles multiuso que ha demostrado su
+                eficacia contra vehículos de tierra, mar y aire, fortificaciones, naves espaciales, y contra la
+                infantería por igual.
+            </es>
+        </description>
         <techLevel>4</techLevel>
         <type>ROCKETEER</type>
         <damageList>
@@ -7460,6 +8042,47 @@
             <en>Dreskel Bazooka</en>
             <es>Bazooka Dreskel</es>
         </name>
+        <description>
+            <en>Rocketeer weapons fire either guided (missile launchers) or unguided explosive rockets; most are little
+                more than tubes with a firing mechanism. The Gobo Lobber Jet Pistol fires jet-propelled Blast Pellets,
+                and is manufactured by the Gobo weaponsmiths guild of Bannockburn. While this bulky pistol is not very
+                concealable, its small size makes it a favorite of mercenaries who like to destroy things. The Gobo
+                Garbage Chucker Cluster Gun, a rifle-sized version of the Jet Pistol, spray a cluster of five Blast
+                Pellets over a 2-meter area, causing massive damage and suppressing anyone in the vicinity. It Is a
+                single-fire rocketeer, emptying it’s entire ammo storage with a single pull on the trigger. This weapon
+                is favored by those who need to clean out an area quickly without regard for making a mess. The
+                Nightstorm is a handheld rocket launcher about twice the size of a common shotgun, is the most famous
+                rocketeer weapon. It is manufactured by the Muster Guild, who are quite fond of this model, as it won
+                them the decisive victory during the Emperor Wars at the Battle of Barga Gully on Sutek. Another popular
+                model is the Model Hazat R–25 missile launcher, a reliable personal artillery weapon employed in large
+                numbers on the Hira front. Typically, this weapon is manned by two soldiers, one being the shooter and
+                the other acting as a spotter and loader, although a single firer can operate the weapon if necessary
+                (it just takes longer to reload and the R–25 is quite heavy to lug around on your own). Another two-team
+                missile launcher is the Dreskel Bazooka, a multi-purpose missile launcher that has proven effective
+                against, land, sea, and air vehicles, fortifications, starships, and infantry alike.
+            </en>
+            <es>Incluyen tanto las de misiles guiados (lanzamisiles) como las de misiles no guiados; la mayoría son poco
+                más que unos simples tubos con un mecanismo de disparo. La pistola a chorro Gobo Lobber dispara
+                perdigones explosivos a chorro, y la fabrica el gremio de armeros de Gobo en Bannockburn. Aunque esta
+                voluminosa pistola no pueda ocultarse así como así, su pequeño tamaño hace que sea una de las armas
+                favoritas de los mercenarios a los que les guste destruir cosas. El arma de racimo Gobo Garbage Chucker,
+                es una versión de la pistola a chorro con tamaño de rifle, que esparce un racimo de cinco perdigones
+                explosivos sobre un área de 2 metros, causando daño masivo y también ofrece fuego de supresión sobre
+                cualquiera que esté cerca. Es un arma de cohetes de un solo disparo, vaciando todo su cargador con tan
+                solo apretar el gatillo. Este arma es la idónea para aquellos que necesitan limpiar un área rápidamente
+                sin preocuparse de hacer un destrozo. El Nightstorm es un lanzacohetes portátil aproximadamente con el
+                doble del tamaño de una escopeta común; es el arma de cohetes más famosa. La fabrica el gremio de la
+                Asamblea, que son muy aficionados a este modelo, dado que les consiguió la victoria decisiva durante las
+                Guerras del Emperador en la batalla de Barga Gully en Sutek. Otro modelo popular es el lanzamisiles
+                modelo Hazat R-25, un arma de artillería personal fiable, muy utilizada en el frente de Hira. Por lo
+                general, este arma la manejan dos soldados, uno es el tirador y el otro es un observador y el que
+                recarga el arma, aunque un solo tirador se las puede apañar con el arma si es necesario (sólo se
+                necesitará más tiempo para recargar y el R-25 es bastante pesado como para cargarlo por tu cuenta). Otro
+                lanzamisiles de dos soldados es el Bazooka Dreskel, un lanzamisiles multiuso que ha demostrado su
+                eficacia contra vehículos de tierra, mar y aire, fortificaciones, naves espaciales, y contra la
+                infantería por igual.
+            </es>
+        </description>
         <techLevel>4</techLevel>
         <type>ROCKETEER</type>
         <damageList>
@@ -7484,6 +8107,22 @@
             <en>Dreskel Bombardier</en>
             <es>Dreskel Bombardier</es>
         </name>
+        <description>
+            <en>Most slug rifles of the 51st century can be fitted with a grenade launcher below the barrel. This gives
+                the shooter the choice of weapon to use without needing to switch between his armaments. The Masseri
+                Devastator is a cheap and popular model, although the Hawkwood family model Lion Roar is more reliable
+                and accurate.The Dreskel Bombardier is a singular weapon (i.e. not attacked to a rifle). It has a large
+                revolving drum magazine giving it a great ammo capacity, although the bulky construction makes the
+                Bombardier somewhat inaccurate.
+            </en>
+            <es>La mayoría de los rifles del Siglo 51 pueden equiparse con un lanzagranadas por debajo del cañón. Esto
+                le da al tirador la posibilidad de usar otro arma sin necesidad de cambiar de arma. El Masseri
+                Devastator es un modelo barato y popular, aunque el modelo de la familia Hawkwood “Rugido de León” es
+                más fiable y preciso. El Dreskel Bombardier es un arma singular (es decir, no se acopla a un rifle).
+                Tiene un gran cargador de tambor giratorio que le da una enorme capacidad de munición, pero su aparatoso
+                diseño hace que el Bombardier sea algo impreciso.
+            </es>
+        </description>
         <techLevel>4</techLevel>
         <type>GRENADE_LAUNCHER</type>
         <damageList>
@@ -7507,6 +8146,22 @@
             <en>Hawkwood Lion Roar</en>
             <es>Hawkwood "Rugido de León"</es>
         </name>
+        <description>
+            <en>Most slug rifles of the 51st century can be fitted with a grenade launcher below the barrel. This gives
+                the shooter the choice of weapon to use without needing to switch between his armaments. The Masseri
+                Devastator is a cheap and popular model, although the Hawkwood family model Lion Roar is more reliable
+                and accurate.The Dreskel Bombardier is a singular weapon (i.e. not attacked to a rifle). It has a large
+                revolving drum magazine giving it a great ammo capacity, although the bulky construction makes the
+                Bombardier somewhat inaccurate.
+            </en>
+            <es>La mayoría de los rifles del Siglo 51 pueden equiparse con un lanzagranadas por debajo del cañón. Esto
+                le da al tirador la posibilidad de usar otro arma sin necesidad de cambiar de arma. El Masseri
+                Devastator es un modelo barato y popular, aunque el modelo de la familia Hawkwood “Rugido de León” es
+                más fiable y preciso. El Dreskel Bombardier es un arma singular (es decir, no se acopla a un rifle).
+                Tiene un gran cargador de tambor giratorio que le da una enorme capacidad de munición, pero su aparatoso
+                diseño hace que el Bombardier sea algo impreciso.
+            </es>
+        </description>
         <techLevel>4</techLevel>
         <type>GRENADE_LAUNCHER</type>
         <damageList>
@@ -7530,6 +8185,22 @@
             <en>Masseri Devastator</en>
             <es>Masseri Devastator</es>
         </name>
+        <description>
+            <en>Most slug rifles of the 51st century can be fitted with a grenade launcher below the barrel. This gives
+                the shooter the choice of weapon to use without needing to switch between his armaments. The Masseri
+                Devastator is a cheap and popular model, although the Hawkwood family model Lion Roar is more reliable
+                and accurate.The Dreskel Bombardier is a singular weapon (i.e. not attacked to a rifle). It has a large
+                revolving drum magazine giving it a great ammo capacity, although the bulky construction makes the
+                Bombardier somewhat inaccurate.
+            </en>
+            <es>La mayoría de los rifles del Siglo 51 pueden equiparse con un lanzagranadas por debajo del cañón. Esto
+                le da al tirador la posibilidad de usar otro arma sin necesidad de cambiar de arma. El Masseri
+                Devastator es un modelo barato y popular, aunque el modelo de la familia Hawkwood “Rugido de León” es
+                más fiable y preciso. El Dreskel Bombardier es un arma singular (es decir, no se acopla a un rifle).
+                Tiene un gran cargador de tambor giratorio que le da una enorme capacidad de munición, pero su aparatoso
+                diseño hace que el Bombardier sea algo impreciso.
+            </es>
+        </description>
         <techLevel>4</techLevel>
         <type>GRENADE_LAUNCHER</type>
         <damageList>
@@ -7555,6 +8226,21 @@
             <en>Gatling Laser</en>
             <es>Láser Gatling</es>
         </name>
+        <description>
+            <en>Essentially five laser rifles linked together, this is the most prevalent energy support weapon In the
+                Known Worlds (but that doesn’t make it common). Up to shots are fired as a single action (one goal
+                roll), at the same target (DMG is rolled separately for each shot). When fired at energy shields, there
+                is a chance the force field burns out, similar to long bursts hitting energy shields (p. 320). The
+                weapon is loaded with 5 fusion cells.
+            </en>
+            <es>Esencialmente son cinco rifles láser dispuestos en conjunto, lo que hace de este arma el arma de energía
+                de apoyo más prevalente en los Mundos Conocidos (pero eso no la hace más común). El arma dispara cinco
+                veces en una sola acción (una tirada de acierto), al mismo objetivo (el daño se lanza por separado por
+                cada disparo). Cuando se dispara contra escudos de energía, existe la posibilidad de que el campo de
+                fuerza se sobrecaliente, similar a una ráfaga larga que impacta contra los escudos de energía (página
+                266). El arma se carga con 5 pilas de fusión.
+            </es>
+        </description>
         <techLevel>6</techLevel>
         <type>HEAVY</type>
         <damageList>
@@ -7579,6 +8265,18 @@
             <en>Blaster Cannon</en>
             <es>Cañón Blaster</es>
         </name>
+        <description>
+            <en>Blaster Cannons are antitank guns, too big to be carried. Usually they are mounted on armored vehicles
+                or set up on powerful tripod feet. They use custom fusion cells (Cost: 25) and fire shells that are
+                basically enormous blast capsules, giving these artillery weapons both the Plasma and Hard weapon
+                properties.
+            </en>
+            <es>Son armas antitanque, demasiado grandes para poder transportarlas a mano. Por lo general se montan en
+                vehículos blindados o se montan sobre un poderoso trípode. Utilizan pilas de fusión personalizadas
+                (Coste: 25) y disparan balas que son, básicamente, enormes cápsulas explosivas, lo que le concede a
+                estas armas de artillería las propiedades de arma tanto de Plasma como de Duro.
+            </es>
+        </description>
         <techLevel>7</techLevel>
         <type>HEAVY</type>
         <damageList>
@@ -7605,6 +8303,18 @@
             <en>Blast Pellet</en>
             <es>Perdigón Explosivo</es>
         </name>
+        <description>
+            <en>A mini plasma pellet that explode upon impact. Blast pellets come in various sizes, from marble
+                ball-sized (3 dice damage) to tennisball- sized (6 dice damage), with a 1 meter blast radius. As with
+                most plasma weapons, blast pellets can leak through energy shields (on a damage dice roll of 1 or 2).
+            </en>
+            <es>Un mini perdigón de plasma que explota tras impactar. Existen varios tamaños de perdigones explosivos,
+                desde perdigones de mármol con forma de bola (3 dados de daño), con forma de pelota de tenis (6 dados de
+                daño), con un radio de explosión de 1 metro. Al igual que la mayoría de las armas de plasma, los
+                perdigones explosivos pueden atravesar escudos de energía (obteniendo un 1 o un 2 en la tirada de los
+                dados de daño).
+            </es>
+        </description>
         <techLevel>6</techLevel>
         <type>GRENADE</type>
         <damageList>
@@ -7618,20 +8328,11 @@
                 <shots>handful</shots>
                 <rate>2</rate>
             </weaponDamage>
-        </damageList>
-        <size>S</size>
-        <cost>20</cost>
-        <damageType>plasma</damageType>
-    </blastPellet>
-    <blastPelletHeavy>
-        <name>
-            <en>Blast Pellet</en>
-            <es>Perdigón Explosivo Pesado</es>
-        </name>
-        <techLevel>6</techLevel>
-        <type>GRENADE</type>
-        <damageList>
             <weaponDamage>
+                <damageName>
+                    <en>Heavy</en>
+                    <es>Pesado</es>
+                </damageName>
                 <characteristic>dexterity</characteristic>
                 <skill>throwing</skill>
                 <goal>0</goal>
@@ -7640,17 +8341,31 @@
                 <range>10/20</range>
                 <shots>handful</shots>
                 <rate>2</rate>
+                <extraCost>10</extraCost>
             </weaponDamage>
         </damageList>
         <size>S</size>
-        <cost>30</cost>
+        <cost>20</cost>
         <damageType>plasma</damageType>
-    </blastPelletHeavy>
+    </blastPellet>
     <concussionGrenade>
         <name>
             <en>Concussion Grenade</en>
             <es>Granada de Confusión</es>
         </name>
+        <description>
+            <en>A grenade with a small explosive charge designed to cause a concussion wave in the blast area; usually
+                about 4 meter blast radius. If struck in the blast of a Concussion Grenade, the character suffer a
+                Knockout attack. Armor does not protect against concussion grenades, except for full-body suits, in
+                which case the shock wave is deflected as normal. Energy Shields protect as normal.
+            </en>
+            <es>Una granada con una pequeña carga explosiva diseñada para provocar una onda de conmoción cerebral en el
+                área de la explosión; generalmente se trata de un radio de explosión de unos 4 metros. Si te alcanza la
+                explosión de una granada de conmoción cerebral, el personaje sufre un ataque de Noqueo usando 8 dados de
+                daño. La armadura no protege contra las granadas de confusión, a excepción de los trajes de cuerpo
+                entero, en cuyo caso la onda de choque es desviada. Los Escudos de Energía protegen con normalidad.
+            </es>
+        </description>
         <techLevel>4</techLevel>
         <type>GRENADE</type>
         <damageList>
@@ -7673,6 +8388,28 @@
             <en>Frag Grenades</en>
             <es>Granada de Fragmentación</es>
         </name>
+        <description>
+            <en>These come in all sizes and shapes, but their common feature is that they damage people and things in a
+                wide area from where they explode. Each grenade is rated for the number of meters its radius encompasses
+                and the damage it delivers at ground zero. The standard radius for a hand grenade is 5 meters, but this
+                can increase with Tech Levels above 4. Standard damage is 12 effect dice (this can also increase at
+                higher Tech Levels). A character tossing a grenade does not get to add his Victory Points to the
+                damage—the grenade does all the work; all the character has to do is get it to its destination. However,
+                anyone standing in the radius will suffer the damage rolled (after subtracting armor). One point is
+                subtracted from the grenade’s damage for each meter away from its point of explosion.
+            </en>
+            <es>Existen de todos los tamaños y formas, pero su característica común es que dañan a las personas y a
+                todas las cosas dentro de un amplio rango de expansión a partir de la zona donde explotan. Cada granada
+                está clasificada en función de la distancia en metros que su radio puede abarcar y en función del daño
+                que inflige a esa zona de impacto. El radio estándar de una granada de mano es de 5 metros, pero esto
+                puede incrementarse en niveles de tecnología que estén por encima de 4. El daño estándar son 12 dados de
+                efecto (también puede incrementarse en los niveles de tecnología más altos). Un personaje que lance una
+                granada no añade sus Puntos de Victoria al daño, puesto que la granada hace todo el trabajo; todo lo que
+                el personaje tiene que hacer es encargarse de que la granada llegue a su destino. Sin embargo, cualquier
+                persona de pie dentro del adio sufrirá el daño de la tirada (después de restar la armadura). Se resta un
+                punto al daño de la granada por cada metro que se aleje del centro de la explosión.
+            </es>
+        </description>
         <techLevel>4</techLevel>
         <type>GRENADE</type>
         <damageList>
@@ -7690,11 +8427,37 @@
         <size>S</size>
         <cost>50</cost>
     </fragGrenades>
-    <pipeBomb3>
+    <pipeBomb>
         <name>
             <en>Pipe Bomb</en>
             <es>Bomba Casera</es>
         </name>
+        <description>
+            <en>This category covers all types of ‘home made’ bombs and explosives, for use as primitive thrown grenades
+                or for demolition purposes. They require a Tech + Demolition to manufacture, and cannot be constructed
+                at a TL higher than the creator’s Tech Characteristic (roll once for the entire batch). A Critical
+                Failure results in one or more of the bombs blowing up prematurely, possibly setting off a chain
+                reaction if stored together with other Pipe Bombs. Every Pipe Bomb has a blast radius of 1 meter, but
+                the strength of the explosion depends on the materials and know-how that goes into its construction; DMG
+                is equal to TL+1 per ‘stick’. Several Pipe Bombs can be huddled together to form a larger bomb. A stick
+                of dynamite is treated as a special (professionally made) pipe bomb, costing twice as much, but doing
+                twice the DMG within a 2 meter blast radius, and it doesn’t explode on a Critical Failure (unless it was
+                made with poor workmanship).
+            </en>
+            <es>Esta categoría abarca todos los tipos de bombas y explosivos ‘hecho en casa’, para su uso como granada
+                primitiva o con fines de demolición. A fin de fabricarlas se requiere de una tirada de Tecnología +
+                Demolición; no pueden fabricarse granadas con un nivel de tecnología mayor que la puntuación de la
+                característica de Tecnología del personaje, (realiza una sola tirada para todo el lote). Un resultado de
+                Fallo Crítico supone que una o más de las bombas exploten antes de tiempo, lo que posiblemente puede
+                llegar a desencadenar una reacción en cadena si almacena todas las bombas caseras juntas. Cada bomba
+                casera cuenta con un radio de explosión de 1 metro, pero la fuerza de la explosión depende de los
+                materiales y del saber cómo construirla; el Daño es igual a NT+1 por unidad. Pueden amontonarse varias
+                bombas caseras para crear una bomba más grande. Un cartucho de dinamita a efectos de reglas se considera
+                como una bomba casera (de creación profesional), que cuesta el doble, pero inflige el doble de daño en
+                un radio de explosión de 2 metros, y que no explota con un fallo crítico (a menos que lo fabricara una
+                mala mano de obra).
+            </es>
+        </description>
         <techLevel>3</techLevel>
         <type>GRENADE</type>
         <damageList>
@@ -7709,21 +8472,6 @@
                 <shots>handful</shots>
                 <rate>2</rate>
             </weaponDamage>
-        </damageList>
-        <size>S</size>
-        <cost>30</cost>
-        <random>
-            <probabilityMultiplier>0.01</probabilityMultiplier>
-        </random>
-    </pipeBomb3>
-    <pipeBomb4>
-        <name>
-            <en>Pipe Bomb</en>
-            <es>Bomba Casera</es>
-        </name>
-        <techLevel>4</techLevel>
-        <type>GRENADE</type>
-        <damageList>
             <weaponDamage>
                 <characteristic>dexterity</characteristic>
                 <skill>throwing</skill>
@@ -7734,123 +8482,82 @@
                 <range>10/20</range>
                 <shots>handful</shots>
                 <rate>2</rate>
+                <damageTechLevel>4</damageTechLevel>
+                <extraCost>10</extraCost>
             </weaponDamage>
-        </damageList>
-        <size>S</size>
-        <cost>40</cost>
-        <random>
-            <probabilityMultiplier>0.01</probabilityMultiplier>
-        </random>
-    </pipeBomb4>
-    <pipeBomb5>
-        <name>
-            <en>Pipe Bomb</en>
-            <es>Bomba Casera</es>
-        </name>
-        <techLevel>5</techLevel>
-        <type>GRENADE</type>
-        <damageList>
             <weaponDamage>
                 <characteristic>dexterity</characteristic>
                 <skill>throwing</skill>
                 <techLevelSpecial>true</techLevelSpecial>
                 <goal>0</goal>
-                <damage>6 (1 m)</damage>
+                <damage>5 (1 m)</damage>
                 <strength>1</strength>
                 <range>10/20</range>
                 <shots>handful</shots>
                 <rate>2</rate>
+                <damageTechLevel>5</damageTechLevel>
+                <extraCost>20</extraCost>
             </weaponDamage>
-        </damageList>
-        <size>S</size>
-        <cost>50</cost>
-        <random>
-            <probabilityMultiplier>0.01</probabilityMultiplier>
-        </random>
-    </pipeBomb5>
-    <pipeBomb6>
-        <name>
-            <en>Pipe Bomb</en>
-            <es>Bomba Casera</es>
-        </name>
-        <techLevel>6</techLevel>
-        <type>GRENADE</type>
-        <damageList>
             <weaponDamage>
                 <characteristic>dexterity</characteristic>
                 <skill>throwing</skill>
                 <techLevelSpecial>true</techLevelSpecial>
                 <goal>0</goal>
-                <damage>7 (1 m)</damage>
+                <damage>5 (1 m)</damage>
                 <strength>1</strength>
                 <range>10/20</range>
                 <shots>handful</shots>
                 <rate>2</rate>
+                <damageTechLevel>6</damageTechLevel>
+                <extraCost>30</extraCost>
             </weaponDamage>
-        </damageList>
-        <size>S</size>
-        <cost>60</cost>
-        <random>
-            <probabilityMultiplier>0.01</probabilityMultiplier>
-        </random>
-    </pipeBomb6>
-    <pipeBomb7>
-        <name>
-            <en>Pipe Bomb</en>
-            <es>Bomba Casera</es>
-        </name>
-        <techLevel>7</techLevel>
-        <type>GRENADE</type>
-        <damageList>
             <weaponDamage>
                 <characteristic>dexterity</characteristic>
                 <skill>throwing</skill>
                 <techLevelSpecial>true</techLevelSpecial>
                 <goal>0</goal>
-                <damage>8 (1 m)</damage>
+                <damage>5 (1 m)</damage>
                 <strength>1</strength>
                 <range>10/20</range>
                 <shots>handful</shots>
                 <rate>2</rate>
+                <damageTechLevel>7</damageTechLevel>
+                <extraCost>40</extraCost>
             </weaponDamage>
-        </damageList>
-        <size>S</size>
-        <cost>70</cost>
-        <random>
-            <probabilityMultiplier>0.01</probabilityMultiplier>
-        </random>
-    </pipeBomb7>
-    <pipeBomb8>
-        <name>
-            <en>Pipe Bomb</en>
-            <es>Bomba Casera</es>
-        </name>
-        <techLevel>8</techLevel>
-        <type>GRENADE</type>
-        <damageList>
             <weaponDamage>
                 <characteristic>dexterity</characteristic>
                 <skill>throwing</skill>
                 <techLevelSpecial>true</techLevelSpecial>
                 <goal>0</goal>
-                <damage>9 (1 m)</damage>
+                <damage>5 (1 m)</damage>
                 <strength>1</strength>
                 <range>10/20</range>
                 <shots>handful</shots>
                 <rate>2</rate>
+                <damageTechLevel>8</damageTechLevel>
+                <extraCost>50</extraCost>
             </weaponDamage>
         </damageList>
         <size>S</size>
-        <cost>80</cost>
+        <cost>30</cost>
         <random>
             <probabilityMultiplier>0.01</probabilityMultiplier>
         </random>
-    </pipeBomb8>
+    </pipeBomb>
     <plasmaGrenade>
         <name>
             <en>Plasma Grenade</en>
             <es>Granada de Plasma</es>
         </name>
+        <description>
+            <en>A plasma grenade, larger than a blast pellet. These devastating weapons do 18 effect dice of damage,
+                which can leak through energy shields (on a damage dice roll of 1 or 2). The blast radius is 6 meters.
+            </en>
+            <es>Una granada de plasma, más grande que un perdigón explosivo. Estas armas devastadoras infligen 18 dados
+                de efecto de daño, que pueden atravesar los escudos de energía (con resultados de 1 o 2 en la tirada de
+                daño). El radio de explosión es de 6 metros.
+            </es>
+        </description>
         <techLevel>6</techLevel>
         <type>GRENADE</type>
         <damageList>
@@ -7874,6 +8581,21 @@
             <en>Flash-Bang Grenade</en>
             <es>Granada Aturdidora</es>
         </name>
+        <description>
+            <en>Upon detonation, these grenades explode with a blinding flash and a deafening thunderclap. Anyone caught
+                in the 4 meter blast radius is left disoriented and suffering a –8 penalty to all actions until they can
+                shake off the effect with a successful Will + Self-Control goal roll. Armor does not protect against
+                flash bangs, except for full-body suits with dark visors or fully insulated helmets, in which case the
+                flash bang effect can be ignored.
+            </en>
+            <es>Tras la detonación, éstas granadas estallan con un destello cegador y un estruendo ensordecedor.
+                Cualquiera que sea sorprendido dentro de un rango de unos 4 metros de la explosión quedará desorientado
+                y sufrirá un penalizador de -8 a todas las acciones hasta que supere los efectos superando una tirada de
+                Voluntad + Autocontrol. La armadura no protege contra las granadas aturdidoras, a excepción de los
+                trajes de cuerpo completo con viseras oscuras o de los cascos totalmente aislados, en cuyo caso el
+                efecto de la explosión del flash puede ser ignorado.
+            </es>
+        </description>
         <techLevel>4</techLevel>
         <type>GRENADE</type>
         <damageList>
@@ -7896,6 +8618,15 @@
             <en>Wire Grenade</en>
             <es>Granada Eléctrica</es>
         </name>
+        <description>
+            <en>A grenade that unspools a monofilament wire in all directions. The damage is the same as a regular
+                grenade (12d), but the armor defense effect dice of anyone in the radius is halved. Radius is 3 meters.
+            </en>
+            <es>Una granada que esparce un cable basado en monofilamentos por todas partes. El daño es el mismo que el
+                de una granada normal (12d), pero los dados de efecto de armadura de cualquier persona dentro del radio
+                quedan reducidos a la mitad. El radio de explosión es de 3 metros.
+            </es>
+        </description>
         <techLevel>5</techLevel>
         <type>GRENADE</type>
         <damageList>
