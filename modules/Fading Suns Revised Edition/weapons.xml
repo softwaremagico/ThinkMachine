@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <weapons>
     <version>1</version>
-    <totalElements>183</totalElements>
+    <totalElements>182</totalElements>
     <arbata>
         <name>
             <en>Arbat’a (Crystal Sword)</en>
@@ -6134,6 +6134,19 @@
             <en>Martech Midget Palm Laser</en>
             <es>Láser de Mano Martech Midget</es>
         </name>
+        <description>
+            <en>A derringer-sized laser, used for selfdefense when it is not possible to carry a larger gun. The Martech
+                Midget is the most popular model, manufactured by Martech, a sub-guild of the Engineers. Like all
+                lasers, this gun suffers a –2 penalty to its damage effect dice when shooting through thick fog or
+                smoke, or anything which could scatter or defuse the coherent beam.
+            </en>
+            <es>Un láser del tamaño de un Derringer, utilizado para la autodefensa cuando no es posible llevar un arma
+                más grande. El Martech Enano es el modelo más popular, fabricado por los Martech, un subclan de los
+                Ingenieros. Al igual que todos los láseres, este arma sufre un penalizador de -2 a sus dados de efecto
+                de daño cuando se dispara a través de la espesa niebla o del humo, o de cualquier cosa que pudiere
+                dispersar o desactivar el haz de luz.
+            </es>
+        </description>
         <techLevel>6</techLevel>
         <type>LASER</type>
         <damageList>
@@ -6147,20 +6160,11 @@
                 <shots>7</shots>
                 <rate>2</rate>
             </weaponDamage>
-        </damageList>
-        <size>XS</size>
-        <cost>200</cost>
-        <damageType>laser</damageType>
-    </martechMidgetPalmLaser>
-    <martechMidgetPalmLaserRing>
-        <name>
-            <en>Martech Midget Ring Laser</en>
-            <es>Láser Anillo Martech Midget</es>
-        </name>
-        <techLevel>6</techLevel>
-        <type>LASER</type>
-        <damageList>
             <weaponDamage>
+                <damageName>
+                    <en>Ring Laser</en>
+                    <es>Anillo Láser</es>
+                </damageName>
                 <characteristic>dexterity</characteristic>
                 <skill>energyGuns</skill>
                 <goal>0</goal>
@@ -6169,20 +6173,48 @@
                 <range>5/10</range>
                 <shots>1</shots>
                 <rate>1</rate>
+                <extraCost>400</extraCost>
             </weaponDamage>
         </damageList>
         <size>XS</size>
-        <cost>400</cost>
+        <cost>200</cost>
         <damageType>laser</damageType>
         <random>
             <probabilityMultiplier>0.01</probabilityMultiplier>
         </random>
-    </martechMidgetPalmLaserRing>
+    </martechMidgetPalmLaser>
     <martechGold>
         <name>
             <en>Martech Gold</en>
             <es>Martech Oro</es>
         </name>
+        <description>
+            <en>About the size of a medium autofeed slug gun, the Martech Gold (so called because it emits a yellow
+                beam) is the standard laser handgun of the Known Worlds. The Martech Amber is a variant (its beam a warm
+                orange), tuned to sacrifice damage for a higher ammo capacity. Lasers suffer a –2 penalty to their
+                damage effect dice when shooting through thick fog/smoke or anything which could scatter or defuse the
+                coherent beam. The Banner Cabal xaser pistol is weaker than a standard laser pistol, but armor offers
+                less protection against its shorter wavelength beam (ignore 4 successful armor penetration effect dice
+                regardless of the type of armor or its properties). Similarly, the Banner Cabal graser pistol is equally
+                powerful to the Martech Gold laser pistol, but completely ignores all physical armors, including bunker
+                walls and tank hulls! Energy shields protect against grasers and xasers exactly as they do against
+                lasers, however, and the neither weapon suffers from smoke or fog penalties.
+            </en>
+            <es>Más o menos del tamaño de un arma de fuego de autorecarga mediana, el Martech Oro (llamado así porque
+                emite un rayo amarillo) es el arma láser estándar de los Mundos Conocidos. El Martech Ámbar es una
+                variante (su haz es de un naranja intenso), enfocado a sacrificar daño a cambio de una capacidad de
+                munición superior. Los láseres sufren un penalizador de -2 a sus dados de efecto de daño cuando se
+                disparan a través de niebla / humo espesos o a través de cualquier cosa que pudiere dispersar o
+                desactivar el haz de luz. La pistola xáser de la camarilla del Estandarte es más débil que una pistola
+                láser estándar, pero una armadura ofrece menos protección contra la longitud de onda más corta de su haz
+                (ignora 4 éxitos de los dados de efecto de penetración de armadura, sin importar el tipo de armadura o
+                sus propiedades). Del mismo modo, la pistola gráser de la camarilla del Estandarte es igual de poderosa
+                que la pistola láser Martech Oro, pero ignora completamente todas las armaduras físicas, ¡incluyendo los
+                muros de un bunker y el blindaje de un tanque! Sin embargo los escudos de energía protegen contra los
+                grásers y xásers del mismo modo que protegen contra los láseres; este arma no sufre penalizadores por el
+                humo o la niebla.
+            </es>
+        </description>
         <techLevel>6</techLevel>
         <type>LASER</type>
         <damageList>
@@ -6206,6 +6238,33 @@
             <en>Martech Amber</en>
             <es>Martech Ámbar</es>
         </name>
+        <description>
+            <en>About the size of a medium autofeed slug gun, the Martech Gold (so called because it emits a yellow
+                beam) is the standard laser handgun of the Known Worlds. The Martech Amber is a variant (its beam a warm
+                orange), tuned to sacrifice damage for a higher ammo capacity. Lasers suffer a –2 penalty to their
+                damage effect dice when shooting through thick fog/smoke or anything which could scatter or defuse the
+                coherent beam. The Banner Cabal xaser pistol is weaker than a standard laser pistol, but armor offers
+                less protection against its shorter wavelength beam (ignore 4 successful armor penetration effect dice
+                regardless of the type of armor or its properties). Similarly, the Banner Cabal graser pistol is equally
+                powerful to the Martech Gold laser pistol, but completely ignores all physical armors, including bunker
+                walls and tank hulls! Energy shields protect against grasers and xasers exactly as they do against
+                lasers, however, and the neither weapon suffers from smoke or fog penalties.
+            </en>
+            <es>Más o menos del tamaño de un arma de fuego de autorecarga mediana, el Martech Oro (llamado así porque
+                emite un rayo amarillo) es el arma láser estándar de los Mundos Conocidos. El Martech Ámbar es una
+                variante (su haz es de un naranja intenso), enfocado a sacrificar daño a cambio de una capacidad de
+                munición superior. Los láseres sufren un penalizador de -2 a sus dados de efecto de daño cuando se
+                disparan a través de niebla / humo espesos o a través de cualquier cosa que pudiere dispersar o
+                desactivar el haz de luz. La pistola xáser de la camarilla del Estandarte es más débil que una pistola
+                láser estándar, pero una armadura ofrece menos protección contra la longitud de onda más corta de su haz
+                (ignora 4 éxitos de los dados de efecto de penetración de armadura, sin importar el tipo de armadura o
+                sus propiedades). Del mismo modo, la pistola gráser de la camarilla del Estandarte es igual de poderosa
+                que la pistola láser Martech Oro, pero ignora completamente todas las armaduras físicas, ¡incluyendo los
+                muros de un bunker y el blindaje de un tanque! Sin embargo los escudos de energía protegen contra los
+                grásers y xásers del mismo modo que protegen contra los láseres; este arma no sufre penalizadores por el
+                humo o la niebla.
+            </es>
+        </description>
         <techLevel>6</techLevel>
         <type>LASER</type>
         <damageList>
@@ -6229,6 +6288,33 @@
             <en>Banner Cabal Xaser Pistol</en>
             <es>Pistola Camarilla del Estandarte Xáser</es>
         </name>
+        <description>
+            <en>About the size of a medium autofeed slug gun, the Martech Gold (so called because it emits a yellow
+                beam) is the standard laser handgun of the Known Worlds. The Martech Amber is a variant (its beam a warm
+                orange), tuned to sacrifice damage for a higher ammo capacity. Lasers suffer a –2 penalty to their
+                damage effect dice when shooting through thick fog/smoke or anything which could scatter or defuse the
+                coherent beam. The Banner Cabal xaser pistol is weaker than a standard laser pistol, but armor offers
+                less protection against its shorter wavelength beam (ignore 4 successful armor penetration effect dice
+                regardless of the type of armor or its properties). Similarly, the Banner Cabal graser pistol is equally
+                powerful to the Martech Gold laser pistol, but completely ignores all physical armors, including bunker
+                walls and tank hulls! Energy shields protect against grasers and xasers exactly as they do against
+                lasers, however, and the neither weapon suffers from smoke or fog penalties.
+            </en>
+            <es>Más o menos del tamaño de un arma de fuego de autorecarga mediana, el Martech Oro (llamado así porque
+                emite un rayo amarillo) es el arma láser estándar de los Mundos Conocidos. El Martech Ámbar es una
+                variante (su haz es de un naranja intenso), enfocado a sacrificar daño a cambio de una capacidad de
+                munición superior. Los láseres sufren un penalizador de -2 a sus dados de efecto de daño cuando se
+                disparan a través de niebla / humo espesos o a través de cualquier cosa que pudiere dispersar o
+                desactivar el haz de luz. La pistola xáser de la camarilla del Estandarte es más débil que una pistola
+                láser estándar, pero una armadura ofrece menos protección contra la longitud de onda más corta de su haz
+                (ignora 4 éxitos de los dados de efecto de penetración de armadura, sin importar el tipo de armadura o
+                sus propiedades). Del mismo modo, la pistola gráser de la camarilla del Estandarte es igual de poderosa
+                que la pistola láser Martech Oro, pero ignora completamente todas las armaduras físicas, ¡incluyendo los
+                muros de un bunker y el blindaje de un tanque! Sin embargo los escudos de energía protegen contra los
+                grásers y xásers del mismo modo que protegen contra los láseres; este arma no sufre penalizadores por el
+                humo o la niebla.
+            </es>
+        </description>
         <techLevel>7</techLevel>
         <type>LASER</type>
         <damageList>
@@ -6253,8 +6339,35 @@
     <bannerCabalGraserPistol>
         <name>
             <en>Banner Cabal Graser Pistol</en>
-            <es>Pistola Camarilla del Estandarte Xáser</es>
+            <es>Pistola Camarilla del Estandarte Graser</es>
         </name>
+        <description>
+            <en>About the size of a medium autofeed slug gun, the Martech Gold (so called because it emits a yellow
+                beam) is the standard laser handgun of the Known Worlds. The Martech Amber is a variant (its beam a warm
+                orange), tuned to sacrifice damage for a higher ammo capacity. Lasers suffer a –2 penalty to their
+                damage effect dice when shooting through thick fog/smoke or anything which could scatter or defuse the
+                coherent beam. The Banner Cabal xaser pistol is weaker than a standard laser pistol, but armor offers
+                less protection against its shorter wavelength beam (ignore 4 successful armor penetration effect dice
+                regardless of the type of armor or its properties). Similarly, the Banner Cabal graser pistol is equally
+                powerful to the Martech Gold laser pistol, but completely ignores all physical armors, including bunker
+                walls and tank hulls! Energy shields protect against grasers and xasers exactly as they do against
+                lasers, however, and the neither weapon suffers from smoke or fog penalties.
+            </en>
+            <es>Más o menos del tamaño de un arma de fuego de autorecarga mediana, el Martech Oro (llamado así porque
+                emite un rayo amarillo) es el arma láser estándar de los Mundos Conocidos. El Martech Ámbar es una
+                variante (su haz es de un naranja intenso), enfocado a sacrificar daño a cambio de una capacidad de
+                munición superior. Los láseres sufren un penalizador de -2 a sus dados de efecto de daño cuando se
+                disparan a través de niebla / humo espesos o a través de cualquier cosa que pudiere dispersar o
+                desactivar el haz de luz. La pistola xáser de la camarilla del Estandarte es más débil que una pistola
+                láser estándar, pero una armadura ofrece menos protección contra la longitud de onda más corta de su haz
+                (ignora 4 éxitos de los dados de efecto de penetración de armadura, sin importar el tipo de armadura o
+                sus propiedades). Del mismo modo, la pistola gráser de la camarilla del Estandarte es igual de poderosa
+                que la pistola láser Martech Oro, pero ignora completamente todas las armaduras físicas, ¡incluyendo los
+                muros de un bunker y el blindaje de un tanque! Sin embargo los escudos de energía protegen contra los
+                grásers y xásers del mismo modo que protegen contra los láseres; este arma no sufre penalizadores por el
+                humo o la niebla.
+            </es>
+        </description>
         <techLevel>7</techLevel>
         <type>LASER</type>
         <damageList>
@@ -6281,6 +6394,37 @@
             <en>Martech Indigo</en>
             <es>Martech Índigo</es>
         </name>
+        <description>
+            <en>The Martech Indigo is the most popular laser rifle model, about the size of a sniper rifle. The Martech
+                Safire sniper laser is a variant of the Indigo, tuned to sacrifice capacity and rate of fire for an
+                extended range. Lasers suffer a –2 penalty to their damage effect dice when shooting through thick fog
+                or smoke, or anything which could scatter or defuse the coherent beam. Banner Cabal Xaser Rifles are
+                considerably weaker than common laser rifles, but penetrate armor quite efficiently just like its xaser
+                pistol cousin (ignore 4 armor protection effect dice successes). Banner Cabal Graser Rifles are only
+                slightly weaker then laser rifles, but completely ignore all physical protection! Energy shields protect
+                against grasers and xasers, exactly as they do against lasers however, and neither weapon suffers from
+                smoke or fog penalties.
+            </en>
+            <es>El Martech Indigo es el modelo de rifle láser más popular, aproximadamente es del tamaño de un rifle de
+                francotirador. El láser de francotirador Martech Safire es una variante del Indigo, centrado en
+                sacrificar la capacidad y el ratio de disparo para poder tener un mayor alcance. Los láseres sufren un
+                penalizador de -2 a sus dados de efecto de daño cuando se disparan a través de la niebla o humo espesos,
+                o a través de cualquier cosa que pudiere dispersaro desactivar el haz de luz. Los rifles xáser de la
+                camarilla del Estandarte son considerablemente más débiles que los rifles lásermás comunes, pero son
+                capaces de penetrar cualquier armadura con mayor efectividad, al igual que su prima la pistola xáser
+                (ignora 4 éxitos de los dados de efectode protección de armadura). Los rifles gráser de la camarilla del
+                Estandarte son ligeramente más débiles que los rifles láser, ¡pero ignoran completamente toda protección
+                física! Los escudos de energía protegen contra grásers y xásers, exactamente como lo hacen contra los
+                láseres, y el arma tampoco sufre los penalizadores por humo o niebla. Láser de Asalto: la carabina
+                Varsten Blacklight compite con el Martech Rojo de renombre como el arma láser del soldado. Las carabinas
+                Varsten las fabrica la Casa Decados y eso no le gusta al gremio Martech, sobre todo desde que ciertas
+                tropas de la aristocracia parece que prefieren los láseres Varsten. El Varsten Blacklight viene con un
+                enchufe eléctrico para conectar el arma a un microgenerador de fusión eterno, lo que le proporciona
+                munición ilimitada cuando el arma está estacionada. Los láseres sufren un penalizador de -2 a sus dados
+                de efecto de daño cuando se disparan a través de niebla/humo espesos o a través de cualquier cosa que
+                pudiere dispersar o desactivar el haz de luz.
+            </es>
+        </description>
         <techLevel>6</techLevel>
         <type>LASER</type>
         <damageList>
@@ -6305,6 +6449,37 @@
             <en>Martech Safire (Sniper)</en>
             <es>Martech Zafiro (Francotirador)</es>
         </name>
+        <description>
+            <en>The Martech Indigo is the most popular laser rifle model, about the size of a sniper rifle. The Martech
+                Safire sniper laser is a variant of the Indigo, tuned to sacrifice capacity and rate of fire for an
+                extended range. Lasers suffer a –2 penalty to their damage effect dice when shooting through thick fog
+                or smoke, or anything which could scatter or defuse the coherent beam. Banner Cabal Xaser Rifles are
+                considerably weaker than common laser rifles, but penetrate armor quite efficiently just like its xaser
+                pistol cousin (ignore 4 armor protection effect dice successes). Banner Cabal Graser Rifles are only
+                slightly weaker then laser rifles, but completely ignore all physical protection! Energy shields protect
+                against grasers and xasers, exactly as they do against lasers however, and neither weapon suffers from
+                smoke or fog penalties.
+            </en>
+            <es>El Martech Indigo es el modelo de rifle láser más popular, aproximadamente es del tamaño de un rifle de
+                francotirador. El láser de francotirador Martech Safire es una variante del Indigo, centrado en
+                sacrificar la capacidad y el ratio de disparo para poder tener un mayor alcance. Los láseres sufren un
+                penalizador de -2 a sus dados de efecto de daño cuando se disparan a través de la niebla o humo espesos,
+                o a través de cualquier cosa que pudiere dispersaro desactivar el haz de luz. Los rifles xáser de la
+                camarilla del Estandarte son considerablemente más débiles que los rifles lásermás comunes, pero son
+                capaces de penetrar cualquier armadura con mayor efectividad, al igual que su prima la pistola xáser
+                (ignora 4 éxitos de los dados de efectode protección de armadura). Los rifles gráser de la camarilla del
+                Estandarte son ligeramente más débiles que los rifles láser, ¡pero ignoran completamente toda protección
+                física! Los escudos de energía protegen contra grásers y xásers, exactamente como lo hacen contra los
+                láseres, y el arma tampoco sufre los penalizadores por humo o niebla. Láser de Asalto: la carabina
+                Varsten Blacklight compite con el Martech Rojo de renombre como el arma láser del soldado. Las carabinas
+                Varsten las fabrica la Casa Decados y eso no le gusta al gremio Martech, sobre todo desde que ciertas
+                tropas de la aristocracia parece que prefieren los láseres Varsten. El Varsten Blacklight viene con un
+                enchufe eléctrico para conectar el arma a un microgenerador de fusión eterno, lo que le proporciona
+                munición ilimitada cuando el arma está estacionada. Los láseres sufren un penalizador de -2 a sus dados
+                de efecto de daño cuando se disparan a través de niebla/humo espesos o a través de cualquier cosa que
+                pudiere dispersar o desactivar el haz de luz.
+            </es>
+        </description>
         <techLevel>6</techLevel>
         <type>LASER</type>
         <damageList>
@@ -6332,6 +6507,37 @@
             <en>Banner Cabal Xaser Rifle</en>
             <es>Rifle Camarilla del Estandarte Xáser</es>
         </name>
+        <description>
+            <en>The Martech Indigo is the most popular laser rifle model, about the size of a sniper rifle. The Martech
+                Safire sniper laser is a variant of the Indigo, tuned to sacrifice capacity and rate of fire for an
+                extended range. Lasers suffer a –2 penalty to their damage effect dice when shooting through thick fog
+                or smoke, or anything which could scatter or defuse the coherent beam. Banner Cabal Xaser Rifles are
+                considerably weaker than common laser rifles, but penetrate armor quite efficiently just like its xaser
+                pistol cousin (ignore 4 armor protection effect dice successes). Banner Cabal Graser Rifles are only
+                slightly weaker then laser rifles, but completely ignore all physical protection! Energy shields protect
+                against grasers and xasers, exactly as they do against lasers however, and neither weapon suffers from
+                smoke or fog penalties.
+            </en>
+            <es>El Martech Indigo es el modelo de rifle láser más popular, aproximadamente es del tamaño de un rifle de
+                francotirador. El láser de francotirador Martech Safire es una variante del Indigo, centrado en
+                sacrificar la capacidad y el ratio de disparo para poder tener un mayor alcance. Los láseres sufren un
+                penalizador de -2 a sus dados de efecto de daño cuando se disparan a través de la niebla o humo espesos,
+                o a través de cualquier cosa que pudiere dispersaro desactivar el haz de luz. Los rifles xáser de la
+                camarilla del Estandarte son considerablemente más débiles que los rifles lásermás comunes, pero son
+                capaces de penetrar cualquier armadura con mayor efectividad, al igual que su prima la pistola xáser
+                (ignora 4 éxitos de los dados de efectode protección de armadura). Los rifles gráser de la camarilla del
+                Estandarte son ligeramente más débiles que los rifles láser, ¡pero ignoran completamente toda protección
+                física! Los escudos de energía protegen contra grásers y xásers, exactamente como lo hacen contra los
+                láseres, y el arma tampoco sufre los penalizadores por humo o niebla. Láser de Asalto: la carabina
+                Varsten Blacklight compite con el Martech Rojo de renombre como el arma láser del soldado. Las carabinas
+                Varsten las fabrica la Casa Decados y eso no le gusta al gremio Martech, sobre todo desde que ciertas
+                tropas de la aristocracia parece que prefieren los láseres Varsten. El Varsten Blacklight viene con un
+                enchufe eléctrico para conectar el arma a un microgenerador de fusión eterno, lo que le proporciona
+                munición ilimitada cuando el arma está estacionada. Los láseres sufren un penalizador de -2 a sus dados
+                de efecto de daño cuando se disparan a través de niebla/humo espesos o a través de cualquier cosa que
+                pudiere dispersar o desactivar el haz de luz.
+            </es>
+        </description>
         <techLevel>7</techLevel>
         <type>LASER</type>
         <damageList>
@@ -6359,6 +6565,30 @@
             <en>Banner Cabal Graser Rifle</en>
             <es>Rifle Camarilla del Estandarte Gráser</es>
         </name>
+        <description>
+            <en>The Martech Indigo is the most popular laser rifle model, about the size of a sniper rifle. The Martech
+                Safire sniper laser is a variant of the Indigo, tuned to sacrifice capacity and rate of fire for an
+                extended range. Lasers suffer a –2 penalty to their damage effect dice when shooting through thick fog
+                or smoke, or anything which could scatter or defuse the coherent beam. Banner Cabal Xaser Rifles are
+                considerably weaker than common laser rifles, but penetrate armor quite efficiently just like its xaser
+                pistol cousin (ignore 4 armor protection effect dice successes). Banner Cabal Graser Rifles are only
+                slightly weaker then laser rifles, but completely ignore all physical protection! Energy shields protect
+                against grasers and xasers, exactly as they do against lasers however, and neither weapon suffers from
+                smoke or fog penalties.
+            </en>
+            <es>El Martech Indigo es el modelo de rifle láser más popular, aproximadamente es del tamaño de un rifle de
+                francotirador. El láser de francotirador Martech Safire es una variante del Indigo, centrado en
+                sacrificar la capacidad y el ratio de disparo para poder tener un mayor alcance. Los láseres sufren un
+                penalizador de -2 a sus dados de efecto de daño cuando se disparan a través de la niebla o humo espesos,
+                o a través de cualquier cosa que pudiere dispersaro desactivar el haz de luz. Los rifles xáser de la
+                camarilla del Estandarte son considerablemente más débiles que los rifles lásermás comunes, pero son
+                capaces de penetrar cualquier armadura con mayor efectividad, al igual que su prima la pistola xáser
+                (ignora 4 éxitos de los dados de efectode protección de armadura). Los rifles gráser de la camarilla del
+                Estandarte son ligeramente más débiles que los rifles láser, ¡pero ignoran completamente toda protección
+                física! Los escudos de energía protegen contra grásers y xásers, exactamente como lo hacen contra los
+                láseres, y el arma tampoco sufre los penalizadores por humo o niebla.
+            </es>
+        </description>
         <techLevel>7</techLevel>
         <type>LASER</type>
         <damageList>
@@ -6386,6 +6616,23 @@
             <en>Martech Red</en>
             <es>Martech Rojo</es>
         </name>
+        <description>
+            <en>The Varsten Blacklight carbine competes with the Martech Red for popularity as a soldier’s laser weapon.
+                The Varsten carbines are being manufactured by House Decados, and the Martech guild is not happy about
+                this, especially since certain aristocrat troops seem to prefer Varsten lasers. The Varsten Blacklight
+                comes with a Volt socket for connecting the gun to an eternal fusion micro-generator, giving it a
+                potential unlimited ammo supply when stationary. Lasers suffer a –2 penalty to their damage effect dice
+                when shooting through thick fog or smoke, or anything which could scatter or defuse the coherent beam.
+            </en>
+            <es>La carabina Varsten Blacklight compite con el Martech Rojo de renombre como el arma láser del soldado.
+                Las carabinas Varsten las fabrica la Casa Decados y eso no le gusta al gremio Martech, sobre todo desde
+                que ciertas tropas de la aristocracia parece que prefieren los láseres Varsten. El Varsten Blacklight
+                viene con un enchufe eléctrico para conectar el arma a un microgenerador de fusión eterno, lo que le
+                proporciona munición ilimitada cuando el arma está estacionada. Los láseres sufren un penalizador de -2
+                a sus dados de efecto de daño cuando se disparan a través de niebla/humo espesos o a través de cualquier
+                cosa que pudiere dispersar o desactivar el haz de luz.
+            </es>
+        </description>
         <techLevel>6</techLevel>
         <type>LASER</type>
         <damageList>
@@ -6410,6 +6657,23 @@
             <en>Varsten Blacklight</en>
             <es>Varsten Blacklight</es>
         </name>
+        <description>
+            <en>The Varsten Blacklight carbine competes with the Martech Red for popularity as a soldier’s laser weapon.
+                The Varsten carbines are being manufactured by House Decados, and the Martech guild is not happy about
+                this, especially since certain aristocrat troops seem to prefer Varsten lasers. The Varsten Blacklight
+                comes with a Volt socket for connecting the gun to an eternal fusion micro-generator, giving it a
+                potential unlimited ammo supply when stationary. Lasers suffer a –2 penalty to their damage effect dice
+                when shooting through thick fog or smoke, or anything which could scatter or defuse the coherent beam.
+            </en>
+            <es>La carabina Varsten Blacklight compite con el Martech Rojo de renombre como el arma láser del soldado.
+                Las carabinas Varsten las fabrica la Casa Decados y eso no le gusta al gremio Martech, sobre todo desde
+                que ciertas tropas de la aristocracia parece que prefieren los láseres Varsten. El Varsten Blacklight
+                viene con un enchufe eléctrico para conectar el arma a un microgenerador de fusión eterno, lo que le
+                proporciona munición ilimitada cuando el arma está estacionada. Los láseres sufren un penalizador de -2
+                a sus dados de efecto de daño cuando se disparan a través de niebla/humo espesos o a través de cualquier
+                cosa que pudiere dispersar o desactivar el haz de luz.
+            </es>
+        </description>
         <techLevel>6</techLevel>
         <type>LASER</type>
         <damageList>
@@ -6437,6 +6701,25 @@
             <en>SOE Alembic</en>
             <es>SOE Alembic</es>
         </name>
+        <description>
+            <en>The only blaster pistol that nobles trust is the SOE Alembic, manufactured by the Supreme Order of
+                Engineers under various contracts. The Lank Eruptor Blaster Pistol popular with Scravers and criminals,
+                is similar to the Alembic except that it is capable of autofire. It is an unstable gun however, its
+                barrel requiring supreme craftsmanship as the slightest imperfection in the forging can cause disaster.
+                A Critical Failure while using autofire will cause an Eruptor to explode, inflicting its DMG upon the
+                user (Premium Craftsmanship quality models will have the explosion delayed by one turn, allowing the
+                user to discard it or try spot repairs).
+            </en>
+            <es>La única pistola desintegradora en la que confían los nobles es el SOE Alembic, fabricada por la Orden
+                Suprema de Ingenieros bajo diversos contratos. La pistola Bláster “Eruptor Lank” es popular entre los
+                Carroñeros y los criminales; es similar a la Alembic a excepción de que esta tiene capacidad de fuego
+                automático. Sin embargo se trata de un arma inestable, el cañón requiere de artesanía suprema puesto que
+                la más mínima imperfección en el proceso de fabricación puede causar incontables desastres. Un Fallo
+                Crítico al emplear su capacidad de fuego automático supondrá la explosión de un Eruptor, infligiendo su
+                Daño en el propio usuario (La calidad artesanal Premium retrasaría un turno la acción, lo que permitiría
+                al usuario deshacerse del arma o tratar de arreglarla en el momento).
+            </es>
+        </description>
         <techLevel>7</techLevel>
         <type>BLASTER</type>
         <damageList>
@@ -6463,6 +6746,25 @@
             <en>Lank Eruptor</en>
             <es>Eruptor Lank</es>
         </name>
+        <description>
+            <en>The only blaster pistol that nobles trust is the SOE Alembic, manufactured by the Supreme Order of
+                Engineers under various contracts. The Lank Eruptor Blaster Pistol popular with Scravers and criminals,
+                is similar to the Alembic except that it is capable of autofire. It is an unstable gun however, its
+                barrel requiring supreme craftsmanship as the slightest imperfection in the forging can cause disaster.
+                A Critical Failure while using autofire will cause an Eruptor to explode, inflicting its DMG upon the
+                user (Premium Craftsmanship quality models will have the explosion delayed by one turn, allowing the
+                user to discard it or try spot repairs).
+            </en>
+            <es>La única pistola desintegradora en la que confían los nobles es el SOE Alembic, fabricada por la Orden
+                Suprema de Ingenieros bajo diversos contratos. La pistola Bláster “Eruptor Lank” es popular entre los
+                Carroñeros y los criminales; es similar a la Alembic a excepción de que esta tiene capacidad de fuego
+                automático. Sin embargo se trata de un arma inestable, el cañón requiere de artesanía suprema puesto que
+                la más mínima imperfección en el proceso de fabricación puede causar incontables desastres. Un Fallo
+                Crítico al emplear su capacidad de fuego automático supondrá la explosión de un Eruptor, infligiendo su
+                Daño en el propio usuario (La calidad artesanal Premium retrasaría un turno la acción, lo que permitiría
+                al usuario deshacerse del arma o tratar de arreglarla en el momento).
+            </es>
+        </description>
         <techLevel>7</techLevel>
         <type>BLASTER</type>
         <damageList>
@@ -6489,6 +6791,14 @@
             <en>SOE Crucible</en>
             <es>SOE Crucible</es>
         </name>
+        <description>
+            <en>A more dangerous version of Blaster weapons, the best-known model which is the SOE Crucible Blaster
+                Rifle.
+            </en>
+            <es>Una versión más peligrosa de las armas Bláster, el modelo más conocido es el rifle SOE Bláster
+                Crucible.
+            </es>
+        </description>
         <techLevel>7</techLevel>
         <type>BLASTER</type>
         <damageList>
@@ -6513,6 +6823,31 @@
             <en>Nitobi Blaster Axe</en>
             <es>Hoja Bláster Nitobi</es>
         </name>
+        <description>
+            <en>This long-range and hand-to-hand hybrid weapon was an experimental design for the Second Republic
+                anti-rebel insurgents. Designed by Nitobi Corp, the blaster axe combines devastating energy damage with
+                a hightensile steel blade. The insurgents would sneak into rebel (often noble) territory, blast away at
+                the fortifications and then charge through the breech to engage the rebels within. The Fall however, saw
+                the downfall of Nitobi and thus the end of the production for this short-lived weapon, although it has
+                recently been resurrected by Master Ermin Jalon , a weaponsmith in the employ of House Li Halan on
+                Rampart. Like the Lank weaponsmiths’ blasters, the blaster axe is highly volatile and will explode on a
+                Critical Failure.
+            </en>
+            <es>Este arma híbrida de largo alcance y de mano a mano fue diseñada por los insurgentes anti rebelión de la
+                Segunda República. Creada por Nitobi Corp, la hoja bláster combina el devastador daño de energía con
+                hoja de acero extensible cuyo inicio se encuentra en la parte inferior del arma, y que se extiende hasta
+                terminar en un punto mortal que sobresale por debajo de la boca del cañón del rifle. Los insurgentes se
+                colarían con regularidad en territorio rebelde (a menudo noble), dinamitarían las fortificaciones y a
+                continuación, entrarían cargando por las brechas contra los rebeldes de dentro. Sin embargo, la Caída
+                presenció la desaparición de Nitobi y el cese de la producción de estas mortíferas armas. El liderazgo
+                de la compañía pasó a la clandestinidad durante muchos años, pero ha resurgido recientemente en lo
+                profundo de las estructuras de la Liga Mercantil. Actuando en voz baja, la Familia Nitobi está
+                produciendo de nuevo armamento de alta calidad (así como otros artículos de alta tecnología),
+                principalmente a instancias y por ahora, bajo la etiqueta de diseño del Maestro Ermin Jalón, un armero
+                empleado de la Casa de los Li Halan en Rampart. No es tan volátil como los blásters de los armeros Lank,
+                la Hoja Bláster sólo explota si se saca un segundo Fallo Crítico después del primer Fallo Crítico
+            </es>
+        </description>
         <techLevel>7</techLevel>
         <type>BLASTER</type>
         <damageList>
@@ -6546,6 +6881,19 @@
             <en>SOE Volcano</en>
             <es>SOE Volcano</es>
         </name>
+        <description>
+            <en>An awesomely deadly weapon, firing a scattering discharge of plasma balls with one pull of the trigger.
+                The SOE Volcano is the model feared by anyone with an ounce of sense, while the Lank Incinerator Blaster
+                Shotgun, with it’s autofire capability, is even more deadly. The Lank Incinerator carries the same risks
+                of explosion as the Lank Eruptor Blaster Pistol.
+            </en>
+            <es>Un arma increíblemente mortal, dispara una descarga de bolas de plasma que se dispersan por todas partes
+                con tan solo accionar el gatillo. La SOE Volcano es el modelo más temido por cualquier persona con dos
+                dedos de frente, mientras que la escopeta Bláster “Incinerador Lank”, con su capacidad de fuego
+                automático, es aún más mortal. Emplear el Incinerador Lank conlleva los mismos riesgos de explosión que
+                la pistola Bláster “Eruptor Lank”.
+            </es>
+        </description>
         <techLevel>7</techLevel>
         <type>BLASTER</type>
         <damageList>
@@ -6573,6 +6921,19 @@
             <en>Lank Incinerator</en>
             <es>Incinerador Lank</es>
         </name>
+        <description>
+            <en>An awesomely deadly weapon, firing a scattering discharge of plasma balls with one pull of the trigger.
+                The SOE Volcano is the model feared by anyone with an ounce of sense, while the Lank Incinerator Blaster
+                Shotgun, with it’s autofire capability, is even more deadly. The Lank Incinerator carries the same risks
+                of explosion as the Lank Eruptor Blaster Pistol.
+            </en>
+            <es>Un arma increíblemente mortal, dispara una descarga de bolas de plasma que se dispersan por todas partes
+                con tan solo accionar el gatillo. La SOE Volcano es el modelo más temido por cualquier persona con dos
+                dedos de frente, mientras que la escopeta Bláster “Incinerador Lank”, con su capacidad de fuego
+                automático, es aún más mortal. Emplear el Incinerador Lank conlleva los mismos riesgos de explosión que
+                la pistola Bláster “Eruptor Lank”.
+            </es>
+        </description>
         <techLevel>7</techLevel>
         <type>BLASTER</type>
         <damageList>
