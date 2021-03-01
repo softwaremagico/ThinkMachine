@@ -24,11 +24,6 @@ package com.softwaremagico.tm.character;
  * #L%
  */
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
-
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.benefices.BeneficeDefinition;
 import com.softwaremagico.tm.character.benefices.RandomBeneficeDefinition;
@@ -66,17 +61,12 @@ import com.softwaremagico.tm.random.exceptions.DuplicatedPreferenceException;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.profiles.IRandomProfile;
 import com.softwaremagico.tm.random.profiles.ProfileMerger;
-import com.softwaremagico.tm.random.selectors.AgePreferences;
-import com.softwaremagico.tm.random.selectors.ArmourPreferences;
-import com.softwaremagico.tm.random.selectors.CombatPreferences;
-import com.softwaremagico.tm.random.selectors.DifficultLevelPreferences;
-import com.softwaremagico.tm.random.selectors.IGaussianDistribution;
-import com.softwaremagico.tm.random.selectors.IRandomPreference;
-import com.softwaremagico.tm.random.selectors.PsiqueLevelPreferences;
-import com.softwaremagico.tm.random.selectors.ShieldPreferences;
-import com.softwaremagico.tm.random.selectors.SpecializationPreferences;
-import com.softwaremagico.tm.random.selectors.TraitCostPreferences;
-import com.softwaremagico.tm.random.selectors.WeaponsPreferences;
+import com.softwaremagico.tm.random.selectors.*;
+
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
 
 public class RandomizeCharacter {
     private CharacterPlayer characterPlayer;
@@ -228,7 +218,7 @@ public class RandomizeCharacter {
 
         if (characterPlayer.getInfo().getNames() == null || characterPlayer.getInfo().getNames().isEmpty() ||
                 (!characterPlayer.getInfo().getNames().stream().
-                        filter(name -> !name.getName().equals("")).findAny().isPresent())) {
+                        anyMatch(name -> !name.getName().equals("")))) {
             final RandomName randomName = new RandomName(characterPlayer, preferences);
             randomName.assign();
         }

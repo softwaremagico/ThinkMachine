@@ -24,11 +24,6 @@ package com.softwaremagico.tm.character;
  * #L%
  */
 
-import java.util.Collection;
-import java.util.Objects;
-import java.util.Set;
-
-import com.softwaremagico.tm.Element;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.factions.Faction;
 import com.softwaremagico.tm.character.factions.FactionGroup;
@@ -38,6 +33,10 @@ import com.softwaremagico.tm.log.RandomGenerationLog;
 import com.softwaremagico.tm.random.RandomSelector;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
+
+import java.util.Collection;
+import java.util.Objects;
+import java.util.Set;
 
 public class RandomSurname extends RandomSelector<Surname> {
 
@@ -80,7 +79,7 @@ public class RandomSurname extends RandomSelector<Surname> {
         // Name already set, use same faction to avoid weird mix.
         if (!getCharacterPlayer().getInfo().getNames().isEmpty()) {
             final Name firstName = getCharacterPlayer().getInfo().getNames().get(0);
-            if (!Objects.equals(firstName.getFaction(), surname.getFaction())) {
+            if (firstName.getFaction() != null && !Objects.equals(firstName.getFaction(), surname.getFaction())) {
                 return 0;
             } else {
                 return BASIC_PROBABILITY;
@@ -107,12 +106,10 @@ public class RandomSurname extends RandomSelector<Surname> {
 
     @Override
     protected void assignIfMandatory(Surname element) throws InvalidXmlElementException {
-        return;
     }
 
     @Override
     protected void assignMandatoryValues(Set<Surname> mandatoryValues) throws InvalidXmlElementException {
-        return;
     }
 
 }
