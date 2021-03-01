@@ -1,718 +1,1142 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <factions>
-	<version>1</version>
-	<totalElements>20</totalElements>
-	<hawkwood>
-		<name>
-			<en>Hawkwood</en>
-			<es>Hawkwood</es>
-		</name>
-		<group>nobility</group>
-		<race>human</race>
-		<blessings>unyielding, prideful</blessings>
-		<suggestedBenefices>
-			<benefice>
-				<id>nobility</id>
-			</benefice>
-			<benefice>
-				<id>cash</id>
-			</benefice>
-		</suggestedBenefices>
-		<random>
-			<names>
-				<male>George, Jake, Gilfoyle, Charlie, Henry, Jacob, John, Thomas, Lawrence, Richard, James, Alfred, Edward, Vincent, Richard, Christopher, Geoffrey, Robert, William, Chester, Phipps, Josephus, James, Shed, Anderson, Percy, Calvin, Dominic, Wallace, Xavier, Oliver, Mark, Ethan, Alexander, Amos, Klaes, Anderson, Russell, Philip, Matthew, Anthony, Steven, Brian, Edward, Samuel, Dennis, Adam, Harold, Roger, Arthur, Ralph, Davion, Alistair, Terrance, Marcellus, Henrik, Ariel, Boden, Hausen</male>
-				<female>Elizabeth, Amelia, Emily, Isabella, Sophie, Lilym, Catherine, Anne, Mary, Victoria, Fiona, Electra, Elle, Eli, Orisha, Ross, Vicky, Margaret, Samantha, Bethany, Elizabeth, Lauren, Tracy, Charlotte, Jennifer, Isabella, Kayla, Amber, Denise, Janice, Kathryn, Jacqueline, Martha, Megan, Kelly, Diane, Janet, Ruth, Emma, Nicole, Rebecca, Sarah, Ariel</female>
-			</names>
-			<surnames>Hawkwood, Dresden, Norfolk, Walsingham, Leicester, Burghley, Tudor, Derby, Ballard, Harewood, Lancasters, Koln, Hapsburg, Adamse, Plantagenet, Dawes, Fenris, Gesar, Gaelgran, Nimitz, Jervis, Cook, Drake, Miller, Holden, Garvey, Edelweis, Smith, Jones, Williams, Taylor, Davies, Wilson, Evans, Murphy, O'Kelly, O'Sullivan, O'Brien, Byrne, O'Ryan, O'Connor, Morton, Drummer, Dawes</surnames>		
-		</random>
-	</hawkwood>
-	<decados>
-		<name>
-			<en>The Decados</en>
-			<es>Los Decados</es>
-		</name>
-		<group>nobility</group>
-		<race>human</race>
-		<blessings>suspicious, vain</blessings>
-		<suggestedBenefices>
-			<benefice>
-				<id>nobility</id>
-			</benefice>
-			<benefice>
-				<id>cash</id>
-			</benefice>
-		</suggestedBenefices>
-		<random>
-			<names>
-				<male>Anatoly, Zach, Mordecai, Misha, Vaughn, Lev, Oleg, Yunek, Luka, Aidan, Gregory, Vasily, Aleksei, Rodion, Grigory, Gennadi, Evgeny, Pyotr, Vladimir, Nikitin, Dmitri, Nikoli, Alun, Zaretsky, Guillot, Triquet, Gregor, Alun, Igor, Ilya, Vladyslav, Denys, Dmytro, Maksym, Bogdan, Maksym, Ladislao</male>
-				<female>Tatyana,  Tanya, Lena, Natalia, Yana, Alla, Dinara, Nastasia, Lubov, Jekaterina, Tashia, Annushka, Olga, Lada, Anichka, Alina, Katiusha, Catriona, Anisia, Nadia, Nydia, Nanya, Lucretia, Yulia, Sigourney</female>
-			</names>
-			<surnames>Decados, Negin, Lensky, Korshunov, Volovodov, Larina, Petrovitch, Volkonsky, Malevik, Romanov, Vladislav, Ivanoviche, Aleksandrov, Shtina, Sfilli, Slava, Sharm, Bogakov, Czerny, Gurov, Innokenti, Valushnya, Krusczek, Knyazev, Kuzmenko, Bule, Reznichenko, Kamliuk, Dudak, Pomazan, Solomashenko, Chmutov, Korkishko, Maslyukov</surnames>		
-		</random>
-	</decados>
-	<hazat>
-		<name>
-			<en>The Hazat</en>
-			<es>Los Hazat</es>
-		</name>
-		<group>nobility</group>
-		<race>human</race>
-		<blessings>disciplined, vengeful</blessings>
-		<suggestedBenefices>
-			<benefice>
-				<id>nobility</id>
-			</benefice>
-			<benefice>
-				<id>cash</id>
-			</benefice>
-		</suggestedBenefices>
-		<random>
-			<names>
-				<male>Alonso, Rodrigo, Mardoqueo, Íñigo, Lucius, Augusto, Florentino, Simon, Mauricio, Guillermo, Quintino, Federico, Edgardo, Beremundo, Quinciano, Gustavo, Fausto, Constantin, Alain, Armando, Alfred, Álvaro, Antón, Max, León, Acoidan, Atugio, Beyanor, Bentago, Himar, Adolfo, Abelardo, Ademar, Agapito, Ambrosio, Arcadio, Artemio, Aurelio, Baldomero, Balvino, Berenguer, Braulio, Blas, Cancio, Casio, Cecilio, Clelio, Cenobio, Clodomiro, Conrado, Crescencio, Dalmiro, Delfo, Diaco, Donato, Eladio, Eleodoro, Eliodoro, Elvio, Ercilio, Eusebio, Eustaquio, Evaristo, Florencio, Froilán, Genaro, Gregorio, German, Gumersindo, Higinio, Honorato, Ireneo, Lauro, Leoncio, Lisandro, Longino, Lidovico, Mamerto, Marcindo, Melitón, Modestino, Nemesio, Nicanor, Nolasco, Normando, Pascasio, Pilaro, Pomposo, Prudencio, Raimundo, Rufino, Ruperto, Sandalio, Segismundo, Serapio, Severo, Seveso, Sisebuto, Toribicio, Trifón, Tristán, Tubal, Ubaldo, Urko, Valeriano, Werino, Zacarías, Zenón, Marco, Sigmundo, Sigfrido, Manrique, Baudilio, Avelino, Calixto, Custodio, Donaldo, Danilo</male>
-				<female>Rosaria, Ligeia, Roberta, Octavia, Daniela, Helena, Aldagracia, Zoe, Pandora, Dara, Daza, Naira, Alba, Aniseta, Arcadia, Arminda, Artemia, Aurea, Brigida, Bartola, Bella, Cándida, Ciriaca, Casilda, Cleotilde, Cleofe, Delfa, Diana, Diega, Domitilia, Dorila, Elegia, Emilse, Enriqueta, Emelinda, Esperanza, Eufamia, Eutilia, Eufrocina, Feliciana, Fortunata, Florinda, Flora, Fructuosa, Genoveva, Gerturdes, Gregoria, Gumersinda, Hercilia, Higinia, Honorata, Indalecia, Irina, Idinea, Isaura, Isidora, Italia, Jacinta, Jovita, Leonarda, Leopoldina, Livia, Liboria, Librada, Ludovica, Lugarda, Macaria, Marcelina, Matiana, Mauricia, Melitona, Molinaria, Mucia, Minervina, Nefer, Nemesia, Nicanora, Nigia, Ofelia, Octaviana, Ogaria, Oliva, Olivia, Pánfila, Peregrina, Petrona, Policarpa, Polonia, Primitiva, Prudencia, Refugia, Restituta, Romidia, Serafina, Sinesia, Sinforosa, Sesebuta, Tecla, Teodolina, Tiburcia, Trinidad, Uberlinda, Ulpiana, Vitalia, Zenobia, Zoila, Clarissa, Camina, Juliette, Matilda, Ambrosia, Antolina, Arundina, Basilisa, Cayetana, Calista, Donora, Dosinda</female>
-			</names>
-			<surnames>Hazat, Lafayette, Bursandra, Peñano, Iturbi, Mariana, Justus, Castenda, Leon, Rolan, Escovedo, Serra, Méndez, Elcano, Azatlan, Abarca, Alfaro, Azagra, Badia, Borja, Bravo, Colombo, Durán, Fragoso, Fuertes, Gobea, Hidalgo, Lázaro, Maese, Mendo, Moreno, Ortega, Pacheco, Pardo, Perianes, Periañez, Rivas, Rosellón, Sandoval, Sousa, Vadillo, Viera, Villalobos, Ballesteros, Baudelaire, Dalton, Defoe, Alquezar, Albiac, Balda, Bolado, Bortia, Berna, Bastida, Capella, Cota, Duat, Guijarro, Iñigo, Ivorra, Lacorte, Luna, Lloria, Monzos, Marsa, Marc, Millán, Noguera, Olmos, Palmer, Palafox, Rubio, Saborido, Solaz, Sans, Timor, Toro, Urrea, Beldevere, Lampiño, Audaz, Delfino, González, Del Toro, Rosales, De la Vega, Salazar, Camacho, Varela, Vargas, Velez, Quintero, Rodríguez, Saucedo, Rivera, Castro, Cervantes, Ciarfalio, Jovellanos, Miranda, Navia, Riego, Vega, Ayamonte, Cenete, Comares, Medina, Quesada, Torres, Alba, Lara, Castro, Cifuentes, Calderón, Villegas, Medinaceli, Miranda, Osuna, Valverde, Pizarro, Feijóo, Silvela, Robles, Santalla, Trénor, Balboa, Bazán, Lezo, Doria</surnames>
-		</random>
-	</hazat>
-	<liHalan>
-		<name>
-			<en>Li Halan</en>
-			<es>Li Halan</es>
-		</name>
-		<group>nobility</group>
-		<race>human</race>
-		<blessings>pious, guilty</blessings>
-		<suggestedBenefices>
-			<benefice>
-				<id>nobility</id>
-			</benefice>
-			<benefice>
-				<id>cash</id>
-			</benefice>
-			<benefice>
-				<id>ally</id>
-			</benefice>
-		</suggestedBenefices>
-		<random>
-			<names>
-				<male>Kiri, Naomasa, Akira, Batu, Kazuo, Kei, Shinsuke, Hideaki, Shirô, Yôko, Yutaka, Shintarou, Takashi, Hikaru, Makoto, Goru, Goro, Shinjitsu, Isamu, Kenshin, Yoshi, Heihachiro, Isoroku</male>
-				<female>Yumiko, Yuki, Akira, Amaya, Midori, Keiko, Motoko, Yoko, Aya, Kiki</female>
-			</names>
-			<surnames>Li Halan, Tsukamoto, Harari, Yao, Meng, Ito, Shaku, Numata, Shimada, Maki, Musaka, Sonooka, Chôsokabe, Kaimura, Koike, Kunii, Sato, Yeuw, Lextius, Misamoto, Han, Wei-To, Naganaka, Kung-Zhau, Okemo, Teng, Hidejiri, Jong, Togo, Yamamoto, Nagata</surnames>		
-		</random>
-	</liHalan>
-	<alMalik>
-		<name>
-			<en>Al-Malik</en>
-			<es>Al-Malik</es>
-		</name>
-		<group>nobility</group>
-		<race>human</race>
-		<blessings>gracious, impetuous</blessings>
-		<suggestedBenefices>
-			<benefice>
-				<id>nobility</id>
-			</benefice>
-			<benefice>
-				<id>cash</id>
-			</benefice>
-			<benefice>
-				<id>passageContracts</id>
-				<value>8</value>
-			</benefice>
-		</suggestedBenefices>
-		<random>
-			<names>
-				<male>Aban, Abbas, Abbud, Abbudin, Abdul, Abdel, 'Abd al, Abdullah, 'Abid, 'Abidin, Abu Bakr, Abu al Khayr, Adan, Adel, 'Adil, Adham, Adib, 'Adli, Adnan, 'Adnan, 'Afif, Afeef, Ahmad, Ahmed, 'Ajib, 'Akif, Akil, Akram,  Ala' al Din, Al 'Abbas, Aladdin, Ala' al din, Al Bara', Al Hakam, Al Harith, Alhasan, Alhusain, Alhusayn, Ali, 'Ali, 'Aliyy, Alim, Almahdi, Al Safi, Altaf, Altair, Al Tayyib, Al Tijani, Al Tufail, Al Tufayl, Amid, 'Amid, Amin, Ameen, Amir, Ameer, 'Amir, Amjad, Ammar, 'Ammar, 'Amro, Anas, Anis, 'Antarah, Anwar, 'Aqil, Arfan, Arif, 'Arif, Asad, As'ad, Asadel, Ashraf, Asif, Asim, 'Asim, Aswad, Ata', 'Ataa, Ata' Allah, Ata' al Rahman, Athil, Athir, Atif, 'Atif, Awad, 'Awad, 'Awf, Aws, Awwab, Ayham, Ayman, Ayser, Ayyub, Ayoob, Aza, 'Azab, Azhar, Azeem, Azim, Aziz, 'Aziz, Azzam, 'Azzam, Badi, Badi al Zaman, Badr, Badr al Din, Badri, Baha, Baha', Baha al Din, Bahiyy al Din, Bahij, Bahir, Bakr, Bakri, Baligh, Bandar, Barakah, Barir, Bashir, Bashshar, Basil, Basim, Bassam, Bayhas, Bilal, Bishr, Boulos, Budail, Budayl, Burhan, Bushr, Butrus, Dabir, Dani, Darwish, Da'ud, Dawud, Dhakir, Dhakiy, Dhakwan, Dhul Fiqar, Dirar, Diya, Diya al Din, Duqaq, Fadi, Fadil, Fadl, Fadl Allah, Fahd, Fahad, Fahmi, Faisal, Faysal, Fa'iz, Fakhir, Fakhr al Din, Fakhri, Fakhry, Fakih, Falah, Falih, Faraj, Farraj, Farhan, Farid, Fareed, Fariq, Fareeq, Faris, Faruq, Farooq, Fath, Fathi, Fatih, Fatin, Fateen, Fawwaz, Fawzan, Fawzi, Fayyad, Ferran, Fida, Fikri, Firas, Fouad, Fu'ad, Fudail, Gamal, Gamali, Ghaith, Ghayth, Ghali, Ghalib, Ghanim, Ghassan, Ghawth, Ghazi, Ghazwan, Ghiyath, Habbab, Habib, Hadad, Haddad, Hadi, Hafiz, Hakem, Hakim, Hakeem, Halim, Hamal, Hamas, Hamdan, Hamdi, Hamid, Hamim, Hamzah, Hana, Hana'i, Hanbal, Hani, Hanif, Hannad, Haris, Harith, Haroun, Harun, Hashim, Hassan, Hatim, Haydar, Haytham, Hayyan, Hazim, Hilal, Hilel, Hilmi, Hisham, Hud, Houd, Hudad, Hudhafah, Hudhaifah, Hudhayfah, Humam, Husain, Husayn, Hussein, Husam, Husam al Din, Ibrahim, 'Id, Idris, Ihsan, Ihtisham, 'Ikrimah, Ilias, Imad, 'Imad, Imad al Din, Imam, Imran, 'Imran, Imtiyaz, In'am, Iqbal, Irfan, 'Irfan, Isa, 'Isa, Eisa, Isam, 'Isam, Issam, Ishaq, Isma'il, Iyad, Iyas, Izz al Din, Jabalah, Jabbar, Jabr, Jabir, Jad Allah, Jafar, Ja'far, Jal, Jalal, Jalal al Din, Jalil, Jaleel, Jamal, Jamal al Din, Jamil, Jameel, Jarir, Jasim, Jaul, Jaun, Jawad, Jawdah, Jawhar, Jibran, Jibril, Jihad, Jubair, Jubayr, Jul, Jumah, Jumu'ah, Junaid, Junayd, Juwain, Juwayn, Kadar, Kedar, Kadeen, Kadin, Kadeer, Kadir, Kahil, Kaliq, Kamal, Kamil, Kameel, Karam, Kardal, Karif, Kareef, Karim, Kareem, Kasib, Kaseeb, Kaseem, Kasim, Kateb, Katib, Kazim, Khalaf, Khaldun, Khaldoon, Khalid, Khaled, Khalifah, Khalil, Khaleel, Kalil, Khalil al Allah, Khalis, Khatib, Khair al Din, Khairi, Khairy, Khayri, Khoury, Khulus, Khuzaimah, Khuzaymah, Kutaiba, Labib, Labeeb, Lablab, Latif, Layth, Lu'ay, Lubaid, Lubayd, Luqman, Lut, Lutfi, Ma'd, Madani, Mahbub, Mahdi, Mahfuz, Mahir, Mahjub, Mahmud, Mahmoud, Mahrus, Maimun, Maymun, Majd, Majdy, Majd al Din, Majid, Makin, Malik, Mamdouh, Mamduh, Ma'mun, Ma'n, Ma'in, Mandhur, Mansur, Marghub, Marid, Ma'ruf, Marwan, Marzuq, Mash'al, Mashhur, Masrur, Mas'ud, Masun, Maysarah, Mazhar, Mazin, Mihran, Mihyar, Mika'il, Miqdad, Misbah, Mishaal, Mish'al, Miyaz, Mu'adh, Mu'awiyah, Mu'ayyad, Mubarak, Mubin, Mudar, Muddaththir, Mufid, Mufeed, Muflih, Muhab, Muhair, Muhayr, Muhammad, Mohammed, Muhanna, Muhannad, Muhanned, Muhib, Muhibb, Muhsin, Muhtadi, Muhyi al Din, Mu'in, Mu'izz, Mujab, Mujahid, Mukarram, Mukhlis, Mukhtar, Mulham, Mulhim, Mu'mmar, Mu'min, Mumtaz, Munahid, Mundhir, Munib, Munif, Munir, Muneer, Mu'nis, Munjid, Munsif, Muntasir, Murad, Murshid, Murtada, Murtadi, Murtadhy, Musa, Moosa, Mus'ab, Mus'ad, Musa'id, Mushtaq, Muslih, Muslim, Mustafa, Muta', Mu'tasim, Mutawalli, Mu'tazz, Muthanna, Muti, Muwaffaq, Muyassar, Muzaffar, Muzzammil, Nabhan, Nabih, Nabighah, Nabih, Nabil, Nabeel, Nadhir, Nadim, Nadeem, Nadir, Nafi', Nahid, Na'il, Na'im, Naji, Najib, Najeeb, Najid, Najjar, Najm al Din, Na'man, Namir, Nash'ah, Nash'at, Nashwan, Nasib, Nasih, Nasim, Nasir, Nasir al Din, Nasr, Nasser, Nasri, Nasuh, Nawaf, Nawwaf, Nawfal, Nayif, Naif, Nazih, Nazeeh, Nazim, Nazeem, Nazmi, Nibras, Nidal, Nijad, Nimr, Nizar, Nu'aim, Nu'aym, Nuh, Nooh, Nuhaid, Nuhayd, Numair, Nu'man, Nur al Din, Nuri, Noori, Nusrah, Nusrat, Qasim, Qays, Qais, Qudamah, Qusay, Qatadah, Qutaybah, Qutaibah, Qutb, Qutuz, R, Rabah, Rabi, Radi, Rafi, Rafid, Rafiq, Raghib, Ragheb, Raghid, Rahman, Ra'id, Ra'if, Rais, Raja, Rajab, Raji, Rajih, Rakin, Ramadan, Rami, Ramih, Ramiz, Ramzi, Rani, Rashad, Rashid, Rasil, Rasin, Rasmi, Rasul, Ratib, Ra'uf, Rayhan, Rayyan, Razin, Reda, Rida, Ridha, Ridwan, Rihab, Riyad, Riyadh, Rizq, Ruhi, Rushd, Rushdi, Ruwaid, Ruwayd, Saad, Sa'adah, Sab, Sabih, Sabeeh, Sabir, Sabeer, Sabri, Sa'd, Sa'd al Din, Sadad, Sadid, Sadiq, Sa'dun, Sa'eed, Sa'id, Safi, Safiy, Safiy al Din, Safuh, Safwah, Safwat, Safwan, Sahib, Sahir, Sahl, Sa'ib, Saif, Sayf, Seif, Saif al Din, Sajid, Sajjad, Sakhr, Salah, Salah al Din, Salamah, Saleh, Salih, Salim, Saleem, Salman, Sami, Samih, Samir, Sameer, Samman, Saqr, Sariyah, Sati, Saud, Sayyid, Sha'ban, Shadi, Shadin, Shafi, Shafiq, Shafeeq, Shahid, Shahin, Shahir, Shakib, Shakir, Shams al Din, Shamal, Shamil, Shamim, Sharaf, Sharif, Shareef, Shawqi, Shihab, Shihab al Din, Shihad, Shu'aib, Shu'ayb, Shukri, Shumayl, Siddiq, Sinan, Siraj, Siraj al Din, Sofian, Subhi, Sufyan, Suhaib, Suhayb, Suhail, Suhayl, Suhaim, Suhaym, Sulaiman, Sulayman, Sultan, Sumrah, Suraqah, Su'ud, Suoud, Tahir, Tahsin, Taim Allah, Taym Allah, Taj, Taj al Din, Talal, Talib, Tamim, Tamir, Tamam, Tammam, Taqiy, Tarif, Tareef, Tariq, Taslim, Tawfiq, Tawhid, Taymullah, Taysir, Tayyib, Thabit, Thamer, Thamir, Thaqib, Thawab, Thawban, 'Ubaidah, 'Ubaydah, Ubaid, Ubayy, 'Udail, 'Udayl, 'Uday, 'Umar, Omar, Umarah, Umayr, Umair, Umayyah, 'Urwah, Usaim, Usaym, Usama, Usamah, 'Utbah, Uthal, Uthman, Waddah, Wadi, Wadid, Wafiq, Wafeeq, Wahab, Wahhab, Wahid, Wa'il, Wajdi, Wajid, Wajih, Wakil, Walid, Waleed, Walif, Waliy Allah, Waliy al Din, Waqar, Waqqas, Ward, Wasif, Wasil, Wasim, Waseem, Wazir, Yahya, Yaman, Ya'qub, Yasar, Yasser, Yasin, Yaseen, Yasir, Yazan, Yazid, Yazeed, Youssef, Yusef, Yusuf, Yunus, Yoonus, Yushua, Yusri, Yusuf, Zafar, Zafir, Zahid, Zahir, Zaid, Zayd, Zaim, Zain, Zayn, Zarif, Zakariyya, Zaki, Zaky, Zakwan, Ziad, Ziyad, Zubair, Zubayr, Zuhair, Zuhayr, Arjun</male>
-				<female>Aamaal, Aaminah, Aanisa, Aasiyah, Aadab, Abda, Abeer, Abia, Abir, Abla, Adab, Adeela, Adila, Adina, Adira, Afaf, Afrah, Ahd, Ahlam, Aida, Aini, Aisha, Alia, Almas, Amani, Amal, Amara, Amatullah, Ameera, Ameena, Amina, Amira, Anaan, Anbar, Aneesa, Anisa, Anjum, Anthea, Anwar, Annakiya, Aquilah, Ardah, Ariba, Arij, Ariel, Arella, Areebah, Areej, Aroob, Arub, Asalah, Asiya, Asalah, Ashaki, Ashia, Ashira, Asma, Aasmaa, Atira, Atiya, Aviva, Ayana, Ayeh, Aysel, Azah, Azhaar, Azeeza, Azima, Aziza, Azhar, Baasima, Badi'a, Badra, Badriya, Bahira, Bahiya, Balqis, Banan, Baraa'a, Baseema, Basma, Bashira, Batool, Benazir, Bilquees, Binnaz, Buthayna, Bushra, Callista, Candance, Carissa, Charis, Charo, Coral, Chyrstal, Celina, Daima, Dalia, Dana, Dahara, Daria, Dayeah, Deka, Delia, Delila, Dena , Dinah, Deniz, Devra, Dilber, Dilshad, Dincer, Dione, Ditzah, Dolunay, Dhuha, Durriyyah, Ebediyet, Ebru, Edibe, Elmas, Emel, Eris, Esma, Esmer, Eshe, Etana, Eve, Evona, Faatin, Faatina, Faaria, Fadila, Fadhila, Fadwa, Fadheela, Faghira, Fahima, Falak, Farah, Farhannah, Fareeda, Fareeha, Farida, Fariha, Fathia, Faatina, Fatima, Fatin, Fawziya, Fikriyyah, Filiz, Firdus, Firuze, Firyal, Firdoos, Geliah, Geelah, Ghazala, Gia, Gulbadan, ( turca), Gulfiliz, Gulgzel, Gulnar, Gulrang, Gulseren, Gulsham, Ghaada, Ghaaliya, Ghaydaa, Ghusoon, Haala, Habiba, Hadarah, Hadassah, Hadiya, Haadiya, Hafiza, Haifa, Hafsa, Halima, Hamida, Hana, Hanan, Haneefa, Hanife, Hasna, Hasseeanah, Harika, Hayat, Hayal, Hayaam, Hazine, Hessa, Hind, Hilal, Hooriya, Hulya, Huraiva, Husn, Huda, Hlya, Ibtihaaj, Ilhaam, Ihshan, Ilanah, Ikraam, Imtithal, Iman, Inaam, Inas, Inci, Inaya, Intisaar, Ipek, Iris, Izdihaar, Jahan, Jala, Jalila, Jameela, Jamila, Janna, Janaan, Jessenia, Johari, Jumaana, Jwahir, Jawahir, , Kamila, Kaamla, Kala, Kadriya, Kaela, Kahina, Kardelen, Kassia, Kayla, Kareemah, Kelia, Khadiha, Khadiha, Karima, Kayra, Khadiha, Khalida, Khairiya, Khawala, Kamila, Kamaria, Kamra, Karima, Khadija, Kadija, Kawkab, Kawthar, Khalida, Khawlah, Kirvi, Kralice, Kouther, Khulood, Kulthoom, Lale, Lamees, Lamya, Lama, Latifa, Larissa, Layla, Leyla, Leyli, Leena, Leda, Levana, Leylak, Lina, Liynaa, Lubaaba, Lubina, LuuLuu, Mahasin, Maha, Mahaila, Mahin, Mahirimah, Mahsati, Mahira, Mahtab, Maia, Maisha, Majida, Makaarim, Malak, Malika, Malkia, Manaar, Manishie, Manolya, Maraam, Marjanna, Marjani, Marilla, Marinna, Marna, Marisa, Marjanna, Marjani, Maisha, Maryah, Maryam, May, Maysoon, Mawiya, Mazana, Mehira, Meira, Melani, Melita, Melissa, Meltem, Menekse, Meral, Mercan, Merhamet, Merla, Mele, Mersin, Meryem, Mia, Milena, Mine, Minnetar, Minnet, Mirit, Mirella, Miriam, Moira, Moriae, Morgan, Mouna, Moyna, Munira, Muneerah, Musherrah, Mushtaree, Nabila, Nabiha, Nabeeha, Nabeelah, Nada, Nadia, Nadima, Nadina, Nadira, Nadiya, Nadwa, Nafeesah, Nageena, Nagmah, Nahid, Nahla, Na'imah, Naia, Naiad, Naila, Naima, Naja, Najah, Najaah, Najibah, Najida, Najiya, Najla, Najlah, Najma, Najya, Najma, Najmah, Nara, Nargis, Naranj, Narin, Nashida, Naseelah, Nasila, Nasiha, Nasira, Nasirah, Nasreen, Nava, Nawar, Nawal, Nayyirah, Nazaaha, Nazima, Nazira, Naziya, Nazli, Nena, Neelam, Nezayem, Nibaal, Nimaat, Nida, Nouf, Noor, Nudhar, Nuha, Nur, Nura, Nusayba, Nuzha, , Odella, Odele, Ofra, Ohelah, Orah, Ora, Oriana, Oria, Orial, Orna, , Parijan, Parvane, Parvana, Parvin, Pazia, Paz, Penda, Peninah, Phedre, (griego), Phemia, Phila, Philana, Pisliskurja, , Rabab, Rabia, Rabie, Rabhiya, Radhiya, Ra'eesah, Rafa, Rafiqa, Rafiya, Raghd, Rahibe, Raheemah, Raihaanah, Raissa, Raizel, Raaida, Raja, Rajeeyah, esperanza., Rakhshanda, Ranaa, Ra'naa, Ramah, Ramla, Ranaa, Ra'naa, Rana, Rananah, Raniya, Rashida, Rashieka, Rashiqa, Raushana, Rayyah, Rehena, Renana, Reem, Reema, Riesa, Roni, Rukshana, Rukan, Ruwayda, Rawnie, Rawiyah, Ruqaya, Raziya, , Saar, Saba, Sabba, Sabina, Sabira, Sabrin, Sabira, Sabra, Sabreen, Sadiqah, Sadira, Sadya, Sadiya, Safiya, Safi, Saghira, Sagheerah, Sahar, Sahira, Sahla, Sahra, Sakina, Salma, Salima, Salihah, Salwa, Samaah, Samar, Samia, Samiya, Samiha, Samira, Sana, Sanobar, Selma, Sara, Sarafina, Sauda, Sefa, Segulah, Seher, Selvi, Sevda, Sevgi, Sevgili, Sevine, Seyyal, Sezen, Shabanna, Shabibah, Shadiya, Shaadiya, Shakila, Shakira, Shahlaa, Shakeelah, Shala , Shahla, Shamina, Shamsia, Shana , Shaina, Shara, Shariykah, Selena, Selima, Sharifa, Shamaamah, Shamela, Shameena, Shamina, Shamoodah, Shamsa, Shani, Shazadi, Sihaam, Soraia, Soraya, Songl, Soraya, Suad, Suha, Suhaila, Suhaima, Suhair, Sumaya, Sumayaa, Sura, Suraya, Suhailah, Tabitha, Tahmina, Tahira, Taahira, Tahiya, Thalia, Tajah, Talibah, Talya, Talibah, Tamar , Tamara, Tarana, Taroob, Taslimah, Tavi, Tamadhur, Tharaa, Tayyibah, Temirah, Timora, Tikvah, Tirza, Tova, Tuhfah, Thuraya, Tzafrirah, Uhuru, Warda, Wajeeha, Wafa, Wafeeqa, Wafiya, Wisaal, Widad, Wijdan, Xenia, Ximena, Yasira, Yasmin, Yakootah, Yafiah, Yalanda, Yaminah, Yamha, Yegane, Yeira, Yemina, Yildiz, Yosefa, Yumn, Yusraa, Zaahira, Zafira, Zaina, Zayna, Zeina, Zena, Zahira, Zahra, Zahara, Zaib, Zambak, Zaraa', Zahavah, Zareen, Zarifah, Zayn, Zainab, Zahraa, Zakiyaa, Zaina, Zenat, Zel, Zeinab, Zena, Zikiya, Zimra, Zemira, Ziva, Zohar, Zuhairah, Zuhra, Zurah, Zulaikhah, Zumarrad</female>
-			</names>
-			<surnames>Al-Malik, Kapur, Jedidi, Draa, Massoud, Topic, Aboumerieme, Nabawy, TarikMemarzia, Sarouf, Lanjeri,  Sarouf,  Benkiran,  Balla, Karmouche, Hassan, Ouardi, Reis, Belhachmi, Kawouk, Maamori, El Kadiri, Kamal, Avasarala</surnames>		
-		</random>
-	</alMalik>
-	
-	<orthodox>
-		<name>
-			<en>Orthodox</en>
-			<es>Ortodoxos</es>
-		</name>
-		<group>church</group>
-		<race>human</race>
-		<blessings>pious, austere</blessings>
-		<suggestedBenefices>
-			<benefice>
-				<id>vestments</id>
-			</benefice>
-			<benefice>
-				<id>ordained</id>
-			</benefice>
-			<benefice>
-				<id>ally</id>
-			</benefice>
-		</suggestedBenefices>
-		<restrictedBenefices>
-			<benefice>
-				<id>cash</id>
-				<maxValue>8</maxValue>
-			</benefice>
-		</restrictedBenefices>
-	</orthodox>
-	<brotherBattle>
-		<name>
-			<en>Brother Battle</en>
-			<es>Hermanos de Batalla</es>
-		</name>
-		<group>church</group>
-		<ranks>
-			<novitiate>
-				<translation>
-					<en>Apprentice</en>
-					<es>Aprendiz</es>
-				</translation>
-			</novitiate>
-			<canon>
-				<translation>
-					<en>Oblate</en>
-					<es>Oblato</es>
-				</translation>
-			</canon>
-			<deacon>
-				<translation>
-					<en>Acolyte</en>
-					<es>Acólito</es>
-				</translation>
-			</deacon>
-			<priest>
-				<translation>
-					<en>Adept</en>
-					<es>Adepto</es>
-				</translation>
-			</priest>
-			<bishop>
-				<translation>
-					<en>Master</en>
-					<es>Maestro</es>
-				</translation>
-			</bishop>
-			<archbishop>
-				<translation>
-					<en>Grand Master</en>
-					<es>Gran Maestre</es>
-				</translation>
-			</archbishop>
-		</ranks>
-		<race>human</race>
-		<blessings>disciplined, clueless</blessings>
-		<suggestedBenefices>
-			<benefice>
-				<id>vestments</id>
-			</benefice>
-			<benefice>
-				<id>ordained</id>
-			</benefice>
-		</suggestedBenefices>
-		<restrictedBenefices>
-			<benefice>
-				<id>cash</id>
-				<maxValue>8</maxValue>
-			</benefice>
-		</restrictedBenefices>
-	</brotherBattle>
-	<eskatonic>
-		<name>
-			<en>Eskatonics</en>
-			<es>Eskatónicos</es>
-		</name>
-		<group>church</group>
-		<ranks>
-			<novitiate>
-				<translation>
-					<en>Novitiate</en>
-					<es>Novicio</es>
-				</translation>
-			</novitiate>
-			<canon>
-				<translation>
-					<en>Provost</en>
-					<es>Rector</es>
-				</translation>
-			</canon>
-			<deacon>
-				<translation>
-					<en>Illuminatus</en>
-					<es>Iluminati</es>
-				</translation>
-			</deacon>
-			<priest>
-				<translation>
-					<en>Phylosophus</en>
-					<es>Filósofo</es>
-				</translation>
-			</priest>
-			<bishop>
-				<translation>
-					<en>Magister</en>
-					<es>Magister</es>
-				</translation>
-			</bishop>
-			<archbishop>
-				<translation>
-					<en>Presbuteros</en>
-					<es>Presbítero</es>
-				</translation>
-			</archbishop>
-		</ranks>
-		<race>human</race>
-		<blessings>curious, subtle</blessings>
-		<suggestedBenefices>
-			<benefice>
-				<id>vestments</id>
-			</benefice>
-			<benefice>
-				<id>ordained</id>
-			</benefice>
-			<benefice>
-				<id>refuge</id>
-				<value>6</value>
-			</benefice>
-			<benefice>
-				<id>secrets</id>
-				<value>2</value>
-			</benefice>
-		</suggestedBenefices>
-		<restrictedBenefices>
-			<benefice>
-				<id>cash</id>
-				<maxValue>8</maxValue>
-			</benefice>
-		</restrictedBenefices>
-	</eskatonic>
-	<avestites>
-		<name>
-			<en>Avestites</en>
-			<es>Avestitas</es>
-		</name>
-		<group>church</group>
-		<race>human</race>
-		<blessings>pious, righteous</blessings>
-		<suggestedBenefices>
-			<benefice>
-				<id>vestments</id>
-			</benefice>
-			<benefice>
-				<id>ordained</id>
-			</benefice>
-		</suggestedBenefices>
-		<restrictedBenefices>
-			<benefice>
-				<id>cash</id>
-				<maxValue>8</maxValue>
-			</benefice>
-		</restrictedBenefices>
-	</avestites>
-	<amaltheans>
-		<name>
-			<en>Amaltheans</en>
-			<es>Amalteanos</es>
-		</name>
-		<group>church</group>
-		<race>human</race>
-		<blessings>compassionate, gullible</blessings>
-		<suggestedBenefices>
-			<benefice>
-				<id>vestments</id>
-			</benefice>
-			<benefice>
-				<id>ordained</id>
-			</benefice>
-			<benefice>
-				<id>ally</id>
-			</benefice>
-		</suggestedBenefices>
-		<restrictedBenefices>
-			<benefice>
-				<id>cash</id>
-				<maxValue>8</maxValue>
-			</benefice>
-		</restrictedBenefices>
-	</amaltheans>
-	<mendicantMonks>
-		<name>
-			<en>Mendicant Monks</en>
-			<es>Monjes Mendicantes</es>
-		</name>
-		<group>church</group>
-		<race>human</race>
-		<suggestedBenefices>
-			<benefice>
-				<id>vestments</id>
-			</benefice>
-			<benefice>
-				<id>ordained</id>
-			</benefice>
-			<benefice>
-				<id>cloistered</id>
-			</benefice>
-		</suggestedBenefices>
-		<restrictedBenefices>
-			<benefice>
-				<id>cash</id>
-				<maxValue>8</maxValue>
-			</benefice>
-		</restrictedBenefices>
-	</mendicantMonks>
+    <version>1</version>
+    <totalElements>31</totalElements>
+    <hawkwood>
+        <name>
+            <en>Hawkwood</en>
+            <es>Hawkwood</es>
+        </name>
+        <group>nobility</group>
+        <race>human</race>
+        <blessings>unyielding, prideful</blessings>
+        <suggestedBenefices>
+            <benefice>
+                <id>nobility</id>
+            </benefice>
+            <benefice>
+                <id>cash</id>
+            </benefice>
+        </suggestedBenefices>
+        <random>
+            <names>
+                <male>George, Jake, Gilfoyle, Charlie, Henry, Jacob, John, Thomas, Lawrence, Richard, James, Alfred,
+                    Edward, Vincent, Richard, Christopher, Geoffrey, Robert, William, Chester, Phipps, Josephus, James,
+                    Shed, Anderson, Percy, Calvin, Dominic, Wallace, Xavier, Oliver, Mark, Ethan, Alexander, Amos,
+                    Klaes, Anderson, Russell, Philip, Matthew, Anthony, Steven, Brian, Edward, Samuel, Dennis, Adam,
+                    Harold, Roger, Arthur, Ralph, Davion, Alistair, Terrance, Marcellus, Henrik, Ariel, Boden, Hausen
+                </male>
+                <female>Elizabeth, Amelia, Emily, Isabella, Sophie, Lilym, Catherine, Anne, Mary, Victoria, Fiona,
+                    Electra, Elle, Eli, Orisha, Ross, Vicky, Margaret, Samantha, Bethany, Elizabeth, Lauren, Tracy,
+                    Charlotte, Jennifer, Isabella, Kayla, Amber, Denise, Janice, Kathryn, Jacqueline, Martha, Megan,
+                    Kelly, Diane, Janet, Ruth, Emma, Nicole, Rebecca, Sarah, Ariel
+                </female>
+            </names>
+            <surnames>Hawkwood, Dresden, Norfolk, Walsingham, Leicester, Burghley, Tudor, Derby, Ballard, Harewood,
+                Lancasters, Koln, Hapsburg, Adamse, Plantagenet, Dawes, Fenris, Gesar, Gaelgran, Nimitz, Jervis, Cook,
+                Drake, Miller, Holden, Garvey, Edelweis, Smith, Jones, Williams, Taylor, Davies, Wilson, Evans, Murphy,
+                O'Kelly, O'Sullivan, O'Brien, Byrne, O'Ryan, O'Connor, Morton, Drummer, Dawes
+            </surnames>
+        </random>
+    </hawkwood>
+    <decados>
+        <name>
+            <en>The Decados</en>
+            <es>Los Decados</es>
+        </name>
+        <group>nobility</group>
+        <race>human</race>
+        <blessings>suspicious, vain</blessings>
+        <suggestedBenefices>
+            <benefice>
+                <id>nobility</id>
+            </benefice>
+            <benefice>
+                <id>cash</id>
+            </benefice>
+        </suggestedBenefices>
+        <random>
+            <names>
+                <male>Anatoly, Zach, Mordecai, Misha, Vaughn, Lev, Oleg, Yunek, Luka, Aidan, Gregory, Vasily, Aleksei,
+                    Rodion, Grigory, Gennadi, Evgeny, Pyotr, Vladimir, Nikitin, Dmitri, Nikoli, Alun, Zaretsky, Guillot,
+                    Triquet, Gregor, Alun, Igor, Ilya, Vladyslav, Denys, Dmytro, Maksym, Bogdan, Maksym, Ladislao
+                </male>
+                <female>Tatyana, Tanya, Lena, Natalia, Yana, Alla, Dinara, Nastasia, Lubov, Jekaterina, Tashia,
+                    Annushka, Olga, Lada, Anichka, Alina, Katiusha, Catriona, Anisia, Nadia, Nydia, Nanya, Lucretia,
+                    Yulia, Sigourney
+                </female>
+            </names>
+            <surnames>Decados, Negin, Lensky, Korshunov, Volovodov, Larina, Petrovitch, Volkonsky, Malevik, Romanov,
+                Vladislav, Ivanoviche, Aleksandrov, Shtina, Sfilli, Slava, Sharm, Bogakov, Czerny, Gurov, Innokenti,
+                Valushnya, Krusczek, Knyazev, Kuzmenko, Bule, Reznichenko, Kamliuk, Dudak, Pomazan, Solomashenko,
+                Chmutov, Korkishko, Maslyukov
+            </surnames>
+        </random>
+    </decados>
+    <hazat>
+        <name>
+            <en>The Hazat</en>
+            <es>Los Hazat</es>
+        </name>
+        <group>nobility</group>
+        <race>human</race>
+        <blessings>disciplined, vengeful</blessings>
+        <suggestedBenefices>
+            <benefice>
+                <id>nobility</id>
+            </benefice>
+            <benefice>
+                <id>cash</id>
+            </benefice>
+        </suggestedBenefices>
+        <random>
+            <names>
+                <male>Alonso, Rodrigo, Mardoqueo, Íñigo, Lucius, Augusto, Florentino, Simon, Mauricio, Guillermo,
+                    Quintino, Federico, Edgardo, Beremundo, Quinciano, Gustavo, Fausto, Constantin, Alain, Armando,
+                    Alfred, Álvaro, Antón, Max, León, Acoidan, Atugio, Beyanor, Bentago, Himar, Adolfo, Abelardo,
+                    Ademar, Agapito, Ambrosio, Arcadio, Artemio, Aurelio, Baldomero, Balvino, Berenguer, Braulio, Blas,
+                    Cancio, Casio, Cecilio, Clelio, Cenobio, Clodomiro, Conrado, Crescencio, Dalmiro, Delfo, Diaco,
+                    Donato, Eladio, Eleodoro, Eliodoro, Elvio, Ercilio, Eusebio, Eustaquio, Evaristo, Florencio,
+                    Froilán, Genaro, Gregorio, German, Gumersindo, Higinio, Honorato, Ireneo, Lauro, Leoncio, Lisandro,
+                    Longino, Lidovico, Mamerto, Marcindo, Melitón, Modestino, Nemesio, Nicanor, Nolasco, Normando,
+                    Pascasio, Pilaro, Pomposo, Prudencio, Raimundo, Rufino, Ruperto, Sandalio, Segismundo, Serapio,
+                    Severo, Seveso, Sisebuto, Toribicio, Trifón, Tristán, Tubal, Ubaldo, Urko, Valeriano, Werino,
+                    Zacarías, Zenón, Marco, Sigmundo, Sigfrido, Manrique, Baudilio, Avelino, Calixto, Custodio, Donaldo,
+                    Danilo
+                </male>
+                <female>Rosaria, Ligeia, Roberta, Octavia, Daniela, Helena, Aldagracia, Zoe, Pandora, Dara, Daza, Naira,
+                    Alba, Aniseta, Arcadia, Arminda, Artemia, Aurea, Brigida, Bartola, Bella, Cándida, Ciriaca, Casilda,
+                    Cleotilde, Cleofe, Delfa, Diana, Diega, Domitilia, Dorila, Elegia, Emilse, Enriqueta, Emelinda,
+                    Esperanza, Eufamia, Eutilia, Eufrocina, Feliciana, Fortunata, Florinda, Flora, Fructuosa, Genoveva,
+                    Gerturdes, Gregoria, Gumersinda, Hercilia, Higinia, Honorata, Indalecia, Irina, Idinea, Isaura,
+                    Isidora, Italia, Jacinta, Jovita, Leonarda, Leopoldina, Livia, Liboria, Librada, Ludovica, Lugarda,
+                    Macaria, Marcelina, Matiana, Mauricia, Melitona, Molinaria, Mucia, Minervina, Nefer, Nemesia,
+                    Nicanora, Nigia, Ofelia, Octaviana, Ogaria, Oliva, Olivia, Pánfila, Peregrina, Petrona, Policarpa,
+                    Polonia, Primitiva, Prudencia, Refugia, Restituta, Romidia, Serafina, Sinesia, Sinforosa, Sesebuta,
+                    Tecla, Teodolina, Tiburcia, Trinidad, Uberlinda, Ulpiana, Vitalia, Zenobia, Zoila, Clarissa, Camina,
+                    Juliette, Matilda, Ambrosia, Antolina, Arundina, Basilisa, Cayetana, Calista, Donora, Dosinda
+                </female>
+            </names>
+            <surnames>Hazat, Lafayette, Bursandra, Peñano, Iturbi, Mariana, Justus, Castenda, Leon, Rolan, Escovedo,
+                Serra, Méndez, Elcano, Azatlan, Abarca, Alfaro, Azagra, Badia, Borja, Bravo, Colombo, Durán, Fragoso,
+                Fuertes, Gobea, Hidalgo, Lázaro, Maese, Mendo, Moreno, Ortega, Pacheco, Pardo, Perianes, Periañez,
+                Rivas, Rosellón, Sandoval, Sousa, Vadillo, Viera, Villalobos, Ballesteros, Baudelaire, Dalton, Defoe,
+                Alquezar, Albiac, Balda, Bolado, Bortia, Berna, Bastida, Capella, Cota, Duat, Guijarro, Iñigo, Ivorra,
+                Lacorte, Luna, Lloria, Monzos, Marsa, Marc, Millán, Noguera, Olmos, Palmer, Palafox, Rubio, Saborido,
+                Solaz, Sans, Timor, Toro, Urrea, Beldevere, Lampiño, Audaz, Delfino, González, Del Toro, Rosales, De la
+                Vega, Salazar, Camacho, Varela, Vargas, Velez, Quintero, Rodríguez, Saucedo, Rivera, Castro, Cervantes,
+                Ciarfalio, Jovellanos, Miranda, Navia, Riego, Vega, Ayamonte, Cenete, Comares, Medina, Quesada, Torres,
+                Alba, Lara, Castro, Cifuentes, Calderón, Villegas, Medinaceli, Miranda, Osuna, Valverde, Pizarro,
+                Feijóo, Silvela, Robles, Santalla, Trénor, Balboa, Bazán, Lezo, Doria
+            </surnames>
+        </random>
+    </hazat>
+    <liHalan>
+        <name>
+            <en>Li Halan</en>
+            <es>Li Halan</es>
+        </name>
+        <group>nobility</group>
+        <race>human</race>
+        <blessings>pious, guilty</blessings>
+        <suggestedBenefices>
+            <benefice>
+                <id>nobility</id>
+            </benefice>
+            <benefice>
+                <id>cash</id>
+            </benefice>
+            <benefice>
+                <id>ally</id>
+            </benefice>
+        </suggestedBenefices>
+        <random>
+            <names>
+                <male>Kiri, Naomasa, Akira, Batu, Kazuo, Kei, Shinsuke, Hideaki, Shirô, Yôko, Yutaka, Shintarou,
+                    Takashi, Hikaru, Makoto, Goru, Goro, Shinjitsu, Isamu, Kenshin, Yoshi, Heihachiro, Isoroku
+                </male>
+                <female>Yumiko, Yuki, Akira, Amaya, Midori, Keiko, Motoko, Yoko, Aya, Kiki</female>
+            </names>
+            <surnames>Li Halan, Tsukamoto, Harari, Yao, Meng, Ito, Shaku, Numata, Shimada, Maki, Musaka, Sonooka,
+                Chôsokabe, Kaimura, Koike, Kunii, Sato, Yeuw, Lextius, Misamoto, Han, Wei-To, Naganaka, Kung-Zhau,
+                Okemo, Teng, Hidejiri, Jong, Togo, Yamamoto, Nagata
+            </surnames>
+        </random>
+    </liHalan>
+    <alMalik>
+        <name>
+            <en>Al-Malik</en>
+            <es>Al-Malik</es>
+        </name>
+        <group>nobility</group>
+        <race>human</race>
+        <blessings>gracious, impetuous</blessings>
+        <suggestedBenefices>
+            <benefice>
+                <id>nobility</id>
+            </benefice>
+            <benefice>
+                <id>cash</id>
+            </benefice>
+            <benefice>
+                <id>passageContracts</id>
+                <value>8</value>
+            </benefice>
+        </suggestedBenefices>
+        <random>
+            <names>
+                <male>Aban, Abbas, Abbud, Abbudin, Abdul, Abdel, 'Abd al, Abdullah, 'Abid, 'Abidin, Abu Bakr, Abu al
+                    Khayr, Adan, Adel, 'Adil, Adham, Adib, 'Adli, Adnan, 'Adnan, 'Afif, Afeef, Ahmad, Ahmed, 'Ajib,
+                    'Akif, Akil, Akram, Ala' al Din, Al 'Abbas, Aladdin, Ala' al din, Al Bara', Al Hakam, Al Harith,
+                    Alhasan, Alhusain, Alhusayn, Ali, 'Ali, 'Aliyy, Alim, Almahdi, Al Safi, Altaf, Altair, Al Tayyib, Al
+                    Tijani, Al Tufail, Al Tufayl, Amid, 'Amid, Amin, Ameen, Amir, Ameer, 'Amir, Amjad, Ammar, 'Ammar,
+                    'Amro, Anas, Anis, 'Antarah, Anwar, 'Aqil, Arfan, Arif, 'Arif, Asad, As'ad, Asadel, Ashraf, Asif,
+                    Asim, 'Asim, Aswad, Ata', 'Ataa, Ata' Allah, Ata' al Rahman, Athil, Athir, Atif, 'Atif, Awad, 'Awad,
+                    'Awf, Aws, Awwab, Ayham, Ayman, Ayser, Ayyub, Ayoob, Aza, 'Azab, Azhar, Azeem, Azim, Aziz, 'Aziz,
+                    Azzam, 'Azzam, Badi, Badi al Zaman, Badr, Badr al Din, Badri, Baha, Baha', Baha al Din, Bahiyy al
+                    Din, Bahij, Bahir, Bakr, Bakri, Baligh, Bandar, Barakah, Barir, Bashir, Bashshar, Basil, Basim,
+                    Bassam, Bayhas, Bilal, Bishr, Boulos, Budail, Budayl, Burhan, Bushr, Butrus, Dabir, Dani, Darwish,
+                    Da'ud, Dawud, Dhakir, Dhakiy, Dhakwan, Dhul Fiqar, Dirar, Diya, Diya al Din, Duqaq, Fadi, Fadil,
+                    Fadl, Fadl Allah, Fahd, Fahad, Fahmi, Faisal, Faysal, Fa'iz, Fakhir, Fakhr al Din, Fakhri, Fakhry,
+                    Fakih, Falah, Falih, Faraj, Farraj, Farhan, Farid, Fareed, Fariq, Fareeq, Faris, Faruq, Farooq,
+                    Fath, Fathi, Fatih, Fatin, Fateen, Fawwaz, Fawzan, Fawzi, Fayyad, Ferran, Fida, Fikri, Firas, Fouad,
+                    Fu'ad, Fudail, Gamal, Gamali, Ghaith, Ghayth, Ghali, Ghalib, Ghanim, Ghassan, Ghawth, Ghazi,
+                    Ghazwan, Ghiyath, Habbab, Habib, Hadad, Haddad, Hadi, Hafiz, Hakem, Hakim, Hakeem, Halim, Hamal,
+                    Hamas, Hamdan, Hamdi, Hamid, Hamim, Hamzah, Hana, Hana'i, Hanbal, Hani, Hanif, Hannad, Haris,
+                    Harith, Haroun, Harun, Hashim, Hassan, Hatim, Haydar, Haytham, Hayyan, Hazim, Hilal, Hilel, Hilmi,
+                    Hisham, Hud, Houd, Hudad, Hudhafah, Hudhaifah, Hudhayfah, Humam, Husain, Husayn, Hussein, Husam,
+                    Husam al Din, Ibrahim, 'Id, Idris, Ihsan, Ihtisham, 'Ikrimah, Ilias, Imad, 'Imad, Imad al Din, Imam,
+                    Imran, 'Imran, Imtiyaz, In'am, Iqbal, Irfan, 'Irfan, Isa, 'Isa, Eisa, Isam, 'Isam, Issam, Ishaq,
+                    Isma'il, Iyad, Iyas, Izz al Din, Jabalah, Jabbar, Jabr, Jabir, Jad Allah, Jafar, Ja'far, Jal, Jalal,
+                    Jalal al Din, Jalil, Jaleel, Jamal, Jamal al Din, Jamil, Jameel, Jarir, Jasim, Jaul, Jaun, Jawad,
+                    Jawdah, Jawhar, Jibran, Jibril, Jihad, Jubair, Jubayr, Jul, Jumah, Jumu'ah, Junaid, Junayd, Juwain,
+                    Juwayn, Kadar, Kedar, Kadeen, Kadin, Kadeer, Kadir, Kahil, Kaliq, Kamal, Kamil, Kameel, Karam,
+                    Kardal, Karif, Kareef, Karim, Kareem, Kasib, Kaseeb, Kaseem, Kasim, Kateb, Katib, Kazim, Khalaf,
+                    Khaldun, Khaldoon, Khalid, Khaled, Khalifah, Khalil, Khaleel, Kalil, Khalil al Allah, Khalis,
+                    Khatib, Khair al Din, Khairi, Khairy, Khayri, Khoury, Khulus, Khuzaimah, Khuzaymah, Kutaiba, Labib,
+                    Labeeb, Lablab, Latif, Layth, Lu'ay, Lubaid, Lubayd, Luqman, Lut, Lutfi, Ma'd, Madani, Mahbub,
+                    Mahdi, Mahfuz, Mahir, Mahjub, Mahmud, Mahmoud, Mahrus, Maimun, Maymun, Majd, Majdy, Majd al Din,
+                    Majid, Makin, Malik, Mamdouh, Mamduh, Ma'mun, Ma'n, Ma'in, Mandhur, Mansur, Marghub, Marid, Ma'ruf,
+                    Marwan, Marzuq, Mash'al, Mashhur, Masrur, Mas'ud, Masun, Maysarah, Mazhar, Mazin, Mihran, Mihyar,
+                    Mika'il, Miqdad, Misbah, Mishaal, Mish'al, Miyaz, Mu'adh, Mu'awiyah, Mu'ayyad, Mubarak, Mubin,
+                    Mudar, Muddaththir, Mufid, Mufeed, Muflih, Muhab, Muhair, Muhayr, Muhammad, Mohammed, Muhanna,
+                    Muhannad, Muhanned, Muhib, Muhibb, Muhsin, Muhtadi, Muhyi al Din, Mu'in, Mu'izz, Mujab, Mujahid,
+                    Mukarram, Mukhlis, Mukhtar, Mulham, Mulhim, Mu'mmar, Mu'min, Mumtaz, Munahid, Mundhir, Munib, Munif,
+                    Munir, Muneer, Mu'nis, Munjid, Munsif, Muntasir, Murad, Murshid, Murtada, Murtadi, Murtadhy, Musa,
+                    Moosa, Mus'ab, Mus'ad, Musa'id, Mushtaq, Muslih, Muslim, Mustafa, Muta', Mu'tasim, Mutawalli,
+                    Mu'tazz, Muthanna, Muti, Muwaffaq, Muyassar, Muzaffar, Muzzammil, Nabhan, Nabih, Nabighah, Nabih,
+                    Nabil, Nabeel, Nadhir, Nadim, Nadeem, Nadir, Nafi', Nahid, Na'il, Na'im, Naji, Najib, Najeeb, Najid,
+                    Najjar, Najm al Din, Na'man, Namir, Nash'ah, Nash'at, Nashwan, Nasib, Nasih, Nasim, Nasir, Nasir al
+                    Din, Nasr, Nasser, Nasri, Nasuh, Nawaf, Nawwaf, Nawfal, Nayif, Naif, Nazih, Nazeeh, Nazim, Nazeem,
+                    Nazmi, Nibras, Nidal, Nijad, Nimr, Nizar, Nu'aim, Nu'aym, Nuh, Nooh, Nuhaid, Nuhayd, Numair, Nu'man,
+                    Nur al Din, Nuri, Noori, Nusrah, Nusrat, Qasim, Qays, Qais, Qudamah, Qusay, Qatadah, Qutaybah,
+                    Qutaibah, Qutb, Qutuz, R, Rabah, Rabi, Radi, Rafi, Rafid, Rafiq, Raghib, Ragheb, Raghid, Rahman,
+                    Ra'id, Ra'if, Rais, Raja, Rajab, Raji, Rajih, Rakin, Ramadan, Rami, Ramih, Ramiz, Ramzi, Rani,
+                    Rashad, Rashid, Rasil, Rasin, Rasmi, Rasul, Ratib, Ra'uf, Rayhan, Rayyan, Razin, Reda, Rida, Ridha,
+                    Ridwan, Rihab, Riyad, Riyadh, Rizq, Ruhi, Rushd, Rushdi, Ruwaid, Ruwayd, Saad, Sa'adah, Sab, Sabih,
+                    Sabeeh, Sabir, Sabeer, Sabri, Sa'd, Sa'd al Din, Sadad, Sadid, Sadiq, Sa'dun, Sa'eed, Sa'id, Safi,
+                    Safiy, Safiy al Din, Safuh, Safwah, Safwat, Safwan, Sahib, Sahir, Sahl, Sa'ib, Saif, Sayf, Seif,
+                    Saif al Din, Sajid, Sajjad, Sakhr, Salah, Salah al Din, Salamah, Saleh, Salih, Salim, Saleem,
+                    Salman, Sami, Samih, Samir, Sameer, Samman, Saqr, Sariyah, Sati, Saud, Sayyid, Sha'ban, Shadi,
+                    Shadin, Shafi, Shafiq, Shafeeq, Shahid, Shahin, Shahir, Shakib, Shakir, Shams al Din, Shamal,
+                    Shamil, Shamim, Sharaf, Sharif, Shareef, Shawqi, Shihab, Shihab al Din, Shihad, Shu'aib, Shu'ayb,
+                    Shukri, Shumayl, Siddiq, Sinan, Siraj, Siraj al Din, Sofian, Subhi, Sufyan, Suhaib, Suhayb, Suhail,
+                    Suhayl, Suhaim, Suhaym, Sulaiman, Sulayman, Sultan, Sumrah, Suraqah, Su'ud, Suoud, Tahir, Tahsin,
+                    Taim Allah, Taym Allah, Taj, Taj al Din, Talal, Talib, Tamim, Tamir, Tamam, Tammam, Taqiy, Tarif,
+                    Tareef, Tariq, Taslim, Tawfiq, Tawhid, Taymullah, Taysir, Tayyib, Thabit, Thamer, Thamir, Thaqib,
+                    Thawab, Thawban, 'Ubaidah, 'Ubaydah, Ubaid, Ubayy, 'Udail, 'Udayl, 'Uday, 'Umar, Omar, Umarah,
+                    Umayr, Umair, Umayyah, 'Urwah, Usaim, Usaym, Usama, Usamah, 'Utbah, Uthal, Uthman, Waddah, Wadi,
+                    Wadid, Wafiq, Wafeeq, Wahab, Wahhab, Wahid, Wa'il, Wajdi, Wajid, Wajih, Wakil, Walid, Waleed, Walif,
+                    Waliy Allah, Waliy al Din, Waqar, Waqqas, Ward, Wasif, Wasil, Wasim, Waseem, Wazir, Yahya, Yaman,
+                    Ya'qub, Yasar, Yasser, Yasin, Yaseen, Yasir, Yazan, Yazid, Yazeed, Youssef, Yusef, Yusuf, Yunus,
+                    Yoonus, Yushua, Yusri, Yusuf, Zafar, Zafir, Zahid, Zahir, Zaid, Zayd, Zaim, Zain, Zayn, Zarif,
+                    Zakariyya, Zaki, Zaky, Zakwan, Ziad, Ziyad, Zubair, Zubayr, Zuhair, Zuhayr, Arjun
+                </male>
+                <female>Aamaal, Aaminah, Aanisa, Aasiyah, Aadab, Abda, Abeer, Abia, Abir, Abla, Adab, Adeela, Adila,
+                    Adina, Adira, Afaf, Afrah, Ahd, Ahlam, Aida, Aini, Aisha, Alia, Almas, Amani, Amal, Amara,
+                    Amatullah, Ameera, Ameena, Amina, Amira, Anaan, Anbar, Aneesa, Anisa, Anjum, Anthea, Anwar,
+                    Annakiya, Aquilah, Ardah, Ariba, Arij, Ariel, Arella, Areebah, Areej, Aroob, Arub, Asalah, Asiya,
+                    Asalah, Ashaki, Ashia, Ashira, Asma, Aasmaa, Atira, Atiya, Aviva, Ayana, Ayeh, Aysel, Azah, Azhaar,
+                    Azeeza, Azima, Aziza, Azhar, Baasima, Badi'a, Badra, Badriya, Bahira, Bahiya, Balqis, Banan,
+                    Baraa'a, Baseema, Basma, Bashira, Batool, Benazir, Bilquees, Binnaz, Buthayna, Bushra, Callista,
+                    Candance, Carissa, Charis, Charo, Coral, Chyrstal, Celina, Daima, Dalia, Dana, Dahara, Daria,
+                    Dayeah, Deka, Delia, Delila, Dena , Dinah, Deniz, Devra, Dilber, Dilshad, Dincer, Dione, Ditzah,
+                    Dolunay, Dhuha, Durriyyah, Ebediyet, Ebru, Edibe, Elmas, Emel, Eris, Esma, Esmer, Eshe, Etana, Eve,
+                    Evona, Faatin, Faatina, Faaria, Fadila, Fadhila, Fadwa, Fadheela, Faghira, Fahima, Falak, Farah,
+                    Farhannah, Fareeda, Fareeha, Farida, Fariha, Fathia, Faatina, Fatima, Fatin, Fawziya, Fikriyyah,
+                    Filiz, Firdus, Firuze, Firyal, Firdoos, Geliah, Geelah, Ghazala, Gia, Gulbadan, ( turca), Gulfiliz,
+                    Gulgzel, Gulnar, Gulrang, Gulseren, Gulsham, Ghaada, Ghaaliya, Ghaydaa, Ghusoon, Haala, Habiba,
+                    Hadarah, Hadassah, Hadiya, Haadiya, Hafiza, Haifa, Hafsa, Halima, Hamida, Hana, Hanan, Haneefa,
+                    Hanife, Hasna, Hasseeanah, Harika, Hayat, Hayal, Hayaam, Hazine, Hessa, Hind, Hilal, Hooriya, Hulya,
+                    Huraiva, Husn, Huda, Hlya, Ibtihaaj, Ilhaam, Ihshan, Ilanah, Ikraam, Imtithal, Iman, Inaam, Inas,
+                    Inci, Inaya, Intisaar, Ipek, Iris, Izdihaar, Jahan, Jala, Jalila, Jameela, Jamila, Janna, Janaan,
+                    Jessenia, Johari, Jumaana, Jwahir, Jawahir, , Kamila, Kaamla, Kala, Kadriya, Kaela, Kahina,
+                    Kardelen, Kassia, Kayla, Kareemah, Kelia, Khadiha, Khadiha, Karima, Kayra, Khadiha, Khalida,
+                    Khairiya, Khawala, Kamila, Kamaria, Kamra, Karima, Khadija, Kadija, Kawkab, Kawthar, Khalida,
+                    Khawlah, Kirvi, Kralice, Kouther, Khulood, Kulthoom, Lale, Lamees, Lamya, Lama, Latifa, Larissa,
+                    Layla, Leyla, Leyli, Leena, Leda, Levana, Leylak, Lina, Liynaa, Lubaaba, Lubina, LuuLuu, Mahasin,
+                    Maha, Mahaila, Mahin, Mahirimah, Mahsati, Mahira, Mahtab, Maia, Maisha, Majida, Makaarim, Malak,
+                    Malika, Malkia, Manaar, Manishie, Manolya, Maraam, Marjanna, Marjani, Marilla, Marinna, Marna,
+                    Marisa, Marjanna, Marjani, Maisha, Maryah, Maryam, May, Maysoon, Mawiya, Mazana, Mehira, Meira,
+                    Melani, Melita, Melissa, Meltem, Menekse, Meral, Mercan, Merhamet, Merla, Mele, Mersin, Meryem, Mia,
+                    Milena, Mine, Minnetar, Minnet, Mirit, Mirella, Miriam, Moira, Moriae, Morgan, Mouna, Moyna, Munira,
+                    Muneerah, Musherrah, Mushtaree, Nabila, Nabiha, Nabeeha, Nabeelah, Nada, Nadia, Nadima, Nadina,
+                    Nadira, Nadiya, Nadwa, Nafeesah, Nageena, Nagmah, Nahid, Nahla, Na'imah, Naia, Naiad, Naila, Naima,
+                    Naja, Najah, Najaah, Najibah, Najida, Najiya, Najla, Najlah, Najma, Najya, Najma, Najmah, Nara,
+                    Nargis, Naranj, Narin, Nashida, Naseelah, Nasila, Nasiha, Nasira, Nasirah, Nasreen, Nava, Nawar,
+                    Nawal, Nayyirah, Nazaaha, Nazima, Nazira, Naziya, Nazli, Nena, Neelam, Nezayem, Nibaal, Nimaat,
+                    Nida, Nouf, Noor, Nudhar, Nuha, Nur, Nura, Nusayba, Nuzha, , Odella, Odele, Ofra, Ohelah, Orah, Ora,
+                    Oriana, Oria, Orial, Orna, , Parijan, Parvane, Parvana, Parvin, Pazia, Paz, Penda, Peninah, Phedre,
+                    (griego), Phemia, Phila, Philana, Pisliskurja, , Rabab, Rabia, Rabie, Rabhiya, Radhiya, Ra'eesah,
+                    Rafa, Rafiqa, Rafiya, Raghd, Rahibe, Raheemah, Raihaanah, Raissa, Raizel, Raaida, Raja, Rajeeyah,
+                    esperanza., Rakhshanda, Ranaa, Ra'naa, Ramah, Ramla, Ranaa, Ra'naa, Rana, Rananah, Raniya, Rashida,
+                    Rashieka, Rashiqa, Raushana, Rayyah, Rehena, Renana, Reem, Reema, Riesa, Roni, Rukshana, Rukan,
+                    Ruwayda, Rawnie, Rawiyah, Ruqaya, Raziya, , Saar, Saba, Sabba, Sabina, Sabira, Sabrin, Sabira,
+                    Sabra, Sabreen, Sadiqah, Sadira, Sadya, Sadiya, Safiya, Safi, Saghira, Sagheerah, Sahar, Sahira,
+                    Sahla, Sahra, Sakina, Salma, Salima, Salihah, Salwa, Samaah, Samar, Samia, Samiya, Samiha, Samira,
+                    Sana, Sanobar, Selma, Sara, Sarafina, Sauda, Sefa, Segulah, Seher, Selvi, Sevda, Sevgi, Sevgili,
+                    Sevine, Seyyal, Sezen, Shabanna, Shabibah, Shadiya, Shaadiya, Shakila, Shakira, Shahlaa, Shakeelah,
+                    Shala , Shahla, Shamina, Shamsia, Shana , Shaina, Shara, Shariykah, Selena, Selima, Sharifa,
+                    Shamaamah, Shamela, Shameena, Shamina, Shamoodah, Shamsa, Shani, Shazadi, Sihaam, Soraia, Soraya,
+                    Songl, Soraya, Suad, Suha, Suhaila, Suhaima, Suhair, Sumaya, Sumayaa, Sura, Suraya, Suhailah,
+                    Tabitha, Tahmina, Tahira, Taahira, Tahiya, Thalia, Tajah, Talibah, Talya, Talibah, Tamar , Tamara,
+                    Tarana, Taroob, Taslimah, Tavi, Tamadhur, Tharaa, Tayyibah, Temirah, Timora, Tikvah, Tirza, Tova,
+                    Tuhfah, Thuraya, Tzafrirah, Uhuru, Warda, Wajeeha, Wafa, Wafeeqa, Wafiya, Wisaal, Widad, Wijdan,
+                    Xenia, Ximena, Yasira, Yasmin, Yakootah, Yafiah, Yalanda, Yaminah, Yamha, Yegane, Yeira, Yemina,
+                    Yildiz, Yosefa, Yumn, Yusraa, Zaahira, Zafira, Zaina, Zayna, Zeina, Zena, Zahira, Zahra, Zahara,
+                    Zaib, Zambak, Zaraa', Zahavah, Zareen, Zarifah, Zayn, Zainab, Zahraa, Zakiyaa, Zaina, Zenat, Zel,
+                    Zeinab, Zena, Zikiya, Zimra, Zemira, Ziva, Zohar, Zuhairah, Zuhra, Zurah, Zulaikhah, Zumarrad
+                </female>
+            </names>
+            <surnames>Al-Malik, Kapur, Jedidi, Draa, Massoud, Topic, Aboumerieme, Nabawy, TarikMemarzia, Sarouf,
+                Lanjeri, Sarouf, Benkiran, Balla, Karmouche, Hassan, Ouardi, Reis, Belhachmi, Kawouk, Maamori, El
+                Kadiri, Kamal, Avasarala
+            </surnames>
+        </random>
+    </alMalik>
 
-	<charioteers>
-		<name>
-			<en>Charioteers</en>
-			<es>Aurigas</es>
-		</name>
-		<group>guild</group>
-		<ranks>
-			<apprentice>
-				<translation>
-					<en>Ensign</en>
-					<es>Alférez</es>
-				</translation>
-			</apprentice>
-			<entered>
-				<translation>
-					<en>Lieutenant</en>
-					<es>Teniente</es>
-				</translation>
-			</entered>
-			<fellow>
-				<translation>
-					<en>Commander</en>
-					<es>Comandante</es>
-				</translation>
-			</fellow>
-			<crafter>
-				<translation>
-					<en>Captain</en>
-					<es>Capitán</es>
-				</translation>
-			</crafter>
-			<engineer>
-				<translation>
-					<en>Consul</en>
-					<es>Cónsul</es>
-				</translation>
-			</engineer>
-			<master>
-				<translation>
-					<en>Dean</en>
-					<es>Decano</es>
-				</translation>
-			</master>
-		</ranks>
-		<race>human</race>
-		<blessings>curious, nosy</blessings>
-		<suggestedBenefices>
-			<benefice>
-				<id>cash</id>
-			</benefice>
-			<benefice>
-				<id>passageContracts</id>
-			</benefice>
-			<benefice>
-				<id>commission</id>
-			</benefice>
-		</suggestedBenefices>
-	</charioteers>
-	<engineers>
-		<name>
-			<en>Engineers</en>
-			<es>Ingenieros</es>
-		</name>
-		<group>guild</group>
-		<race>human</race>
-		<blessings>innovative, unnerving</blessings>
-		<suggestedBenefices>
-			<benefice>
-				<id>cash</id>
-			</benefice>
-			<benefice>
-				<id>passageContracts</id>
-			</benefice>
-			<benefice>
-				<id>commission</id>
-			</benefice>
-		</suggestedBenefices>
-	</engineers>
-	<scravers>
-		<name>
-			<en>Scravers</en>
-			<es>Carroñeros</es>
-		</name>
-		<group>guild</group>
-		<ranks>
-			<apprentice>
-				<translation>
-					<en>Associate</en>
-					<es>Asociado</es>
-				</translation>
-			</apprentice>
-			<entered>
-				<translation>
-					<en>Genin</en>
-					<es>Genin</es>
-				</translation>
-			</entered>
-			<fellow>
-				<translation>
-					<en>Boss</en>
-					<es>Jefe</es>
-				</translation>
-			</fellow>
-			<crafter>
-				<translation>
-					<en>Jonin</en>
-					<es>Jonin</es>
-				</translation>
-			</crafter>
-			<engineer>
-				<translation>
-					<en>Consul</en>
-					<es>Cónsul</es>
-				</translation>
-			</engineer>
-			<master>
-				<translation>
-					<en>Dean</en>
-					<es>Decano</es>
-				</translation>
-			</master>
-		</ranks>
-		<race>human</race>
-		<blessings>theman, possessive</blessings>
-		<suggestedBenefices>
-			<benefice>
-				<id>cash</id>
-			</benefice>
-			<benefice>
-				<id>passageContracts</id>
-			</benefice>
-			<benefice>
-				<id>commission</id>
-			</benefice>
-		</suggestedBenefices>
-	</scravers>
-	<muster>
-		<name>
-			<en>Musters</en>
-			<es>Esclavistas</es>
-		</name>
-		<group>guild</group>
-		<ranks>
-			<apprentice>
-				<translation>
-					<en>Private</en>
-					<es>Raso</es>
-				</translation>
-			</apprentice>
-			<entered>
-				<translation>
-					<en>Sergeant</en>
-					<es>Sargento</es>
-				</translation>
-			</entered>
-			<fellow>
-				<translation>
-					<en>Liutenant</en>
-					<es>Teniente</es>
-				</translation>
-			</fellow>
-			<crafter>
-				<translation>
-					<en>Captain</en>
-					<es>Capitán</es>
-				</translation>
-			</crafter>
-			<engineer>
-				<translation>
-					<en>Major</en>
-					<es>Mayor</es>
-				</translation>
-			</engineer>
-			<master>
-				<translation>
-					<en>Colonel</en>
-					<es>Coronel</es>
-				</translation>
-			</master>
-		</ranks>
-		<race>human</race>
-		<blessings>bold, callous</blessings>
-		<suggestedBenefices>
-			<benefice>
-				<id>cash</id>
-			</benefice>
-			<benefice>
-				<id>passageContracts</id>
-			</benefice>
-			<benefice>
-				<id>commission</id>
-			</benefice>
-		</suggestedBenefices>
-	</muster>
-	<reeves>
-		<name>
-			<en>Reeves</en>
-			<es>Magistrados</es>
-		</name>
-		<group>guild</group>
-		<ranks>
-			<apprentice>
-				<translation>
-					<en>Associate</en>
-					<es>Asociado</es>
-				</translation>
-			</apprentice>
-			<entered>
-				<translation>
-					<en>Chief</en>
-					<es>Líder</es>
-				</translation>
-			</entered>
-			<fellow>
-				<translation>
-					<en>Manager</en>
-					<es>Agente</es>
-				</translation>
-			</fellow>
-			<crafter>
-				<translation>
-					<en>Director</en>
-					<es>Director</es>
-				</translation>
-			</crafter>
-			<engineer>
-				<translation>
-					<en>Consul</en>
-					<es>Cónsul</es>
-				</translation>
-			</engineer>
-			<master>
-				<translation>
-					<en>Dean</en>
-					<es>Decano</es>
-				</translation>
-			</master>
-		</ranks>
-		<race>human</race>
-		<blessings>shrewd, mammon</blessings>
-		<suggestedBenefices>
-			<benefice>
-				<id>cash</id>
-			</benefice>
-			<benefice>
-				<id>passageContracts</id>
-			</benefice>
-			<benefice>
-				<id>commission</id>
-			</benefice>
-		</suggestedBenefices>
-	</reeves>
-	<freeMen>
-		<name>
-			<en>Yeoman</en>
-			<es>Hombre Libre</es>
-		</name>
-		<group>none</group>
-		<race>human</race>
-		<benefices>darkSecret_3</benefices>
-		<suggestedBenefices>
-			<benefice>
-				<id>darkSecret</id>
-				<value>3</value>
-			</benefice>
-		</suggestedBenefices>
-	</freeMen>
-	<alba>
-		<name>
-			<en>Alba</en>
-			<es>Alba</es>
-		</name>
-		<group>nobility</group>
-		<race>human</race>
-		<blessings>connected, uncouth</blessings>
-		<restrictedBenefices>
-			<benefice>
-				<id>nobility</id>
-				<maxValue>12</maxValue>
-			</benefice>
-		</restrictedBenefices>
-		<suggestedBenefices>
-			<benefice>
-				<id>nobility</id>
-			</benefice>
-		</suggestedBenefices>
-	</alba>
-	
-	<obun>
-		<name>
-			<en>Ur-Obun</en>
-			<es>Ur-Obun</es>
-		</name>
-		<group>xeno</group>
-		<race>obun</race>
-		<blessings>just, condescending</blessings>
-		<random>
-			<names>
-				<male>Soleel, Virta, Akamai, Akoni, Koi, Keanu, Kale, Kaleo, Kekoa, Makani, Akamu, Hilo, Pekelo, Tangi</male>
-				<female>Loaana, Alana, Leilani, Kalani, Lea, Kaila, Noelani, Kailani, Ailani, Kahikina, Nohealani</female>
-			</names>
-			<surnames>HanSeer, HanLoaaj, Harn, Haleigha, Haulani, Kahiau, Maylee, Pazhani, Pualani</surnames>		
-		</random>
-		<suggestedBenefices>
-			<benefice>
-				<id>refuge</id>
-				<value>4</value>
-			</benefice>
-		</suggestedBenefices>
-	</obun>
-	<ukar>
-		<name>
-			<en>Ur-Ukar</en>
-			<es>Ur-Ukar</es>
-		</name>
-		<group>xeno</group>
-		<race>ukar</race>
-		<blessings>sensitiveTouch, bitter</blessings>
-		<benefices>ostraziced</benefices>
-		<random>
-			<names>
-				<male>Thollo, Anikrunta, Shelkoro, Teddeth, Ronga, Rajan, Zotos, Aedwir, Dyn'dran, Torquil, Shavik, Varkellin, Taudwon, Mipar</male>
-				<female>Gisdrom, Sadra-Syn, Abril, Amena, Aischa, Rasha, Aseel, Nooda, Ranim, Reem</female>
-			</names>
-			<surnames>Nadakira, Wahind, Malak, Nolents, Oed Nata, Borduk, Nont, Veldiryn, Nilite, Tushan</surnames>		
-		</random>
-		<suggestedBenefices>
-			<benefice>
-				<id>familiyTies</id>
-			</benefice>
-		</suggestedBenefices>
-	</ukar>
-	<vorox>
-		<name>
-			<en>Vorox</en>
-			<es>Vorox</es>
-		</name>
-		<group>xeno</group>
-		<race>vorox</race>
-		<blessings>predatory, giant, sensitiveSmell, uncouth</blessings>
-		<benefices>bite, extraLimbs, noOccult, ostraziced</benefices>
-		<random>
-			<names>
-				<male>Gelu, Gresh, Malum, Kirbold, Strakk, Roxtus, Sorgulg, Cabugbu, Zoughat, Gomatug, Narhbub, Ignorg, Togugh, Nubu, Poogugh</male>
-				<female>Velika, Orde, Kabrua, Orbul, Shelur, Shelur, Atub, Bula, Ghorza, Shagar</female>
-			</names>
-			<surnames>Rolfish, Gashnakh, Ragash, Oghash, Yazgash, Rogmesh, Borgakh, Lagakh, Sharamph</surnames>
-		</random>
-		<suggestedBenefices>
-			<benefice>
-				<id>familiyTies</id>
-			</benefice>
-		</suggestedBenefices>
-	</vorox>
+    <orthodox>
+        <name>
+            <en>Orthodox</en>
+            <es>Ortodoxos</es>
+        </name>
+        <group>church</group>
+        <race>human</race>
+        <blessings>pious, austere</blessings>
+        <suggestedBenefices>
+            <benefice>
+                <id>vestments</id>
+            </benefice>
+            <benefice>
+                <id>ordained</id>
+            </benefice>
+            <benefice>
+                <id>ally</id>
+            </benefice>
+        </suggestedBenefices>
+        <restrictedBenefices>
+            <benefice>
+                <id>cash</id>
+                <maxValue>8</maxValue>
+            </benefice>
+        </restrictedBenefices>
+    </orthodox>
+    <brotherBattle>
+        <name>
+            <en>Brother Battle</en>
+            <es>Hermanos de Batalla</es>
+        </name>
+        <group>church</group>
+        <ranks>
+            <novitiate>
+                <translation>
+                    <en>Apprentice</en>
+                    <es>Aprendiz</es>
+                </translation>
+            </novitiate>
+            <canon>
+                <translation>
+                    <en>Oblate</en>
+                    <es>Oblato</es>
+                </translation>
+            </canon>
+            <deacon>
+                <translation>
+                    <en>Acolyte</en>
+                    <es>Acólito</es>
+                </translation>
+            </deacon>
+            <priest>
+                <translation>
+                    <en>Adept</en>
+                    <es>Adepto</es>
+                </translation>
+            </priest>
+            <bishop>
+                <translation>
+                    <en>Master</en>
+                    <es>Maestro</es>
+                </translation>
+            </bishop>
+            <archbishop>
+                <translation>
+                    <en>Grand Master</en>
+                    <es>Gran Maestre</es>
+                </translation>
+            </archbishop>
+        </ranks>
+        <race>human</race>
+        <blessings>disciplined, clueless</blessings>
+        <suggestedBenefices>
+            <benefice>
+                <id>vestments</id>
+            </benefice>
+            <benefice>
+                <id>ordained</id>
+            </benefice>
+        </suggestedBenefices>
+        <restrictedBenefices>
+            <benefice>
+                <id>cash</id>
+                <maxValue>8</maxValue>
+            </benefice>
+        </restrictedBenefices>
+    </brotherBattle>
+    <eskatonic>
+        <name>
+            <en>Eskatonics</en>
+            <es>Eskatónicos</es>
+        </name>
+        <group>church</group>
+        <ranks>
+            <novitiate>
+                <translation>
+                    <en>Novitiate</en>
+                    <es>Novicio</es>
+                </translation>
+            </novitiate>
+            <canon>
+                <translation>
+                    <en>Provost</en>
+                    <es>Rector</es>
+                </translation>
+            </canon>
+            <deacon>
+                <translation>
+                    <en>Illuminatus</en>
+                    <es>Iluminati</es>
+                </translation>
+            </deacon>
+            <priest>
+                <translation>
+                    <en>Phylosophus</en>
+                    <es>Filósofo</es>
+                </translation>
+            </priest>
+            <bishop>
+                <translation>
+                    <en>Magister</en>
+                    <es>Magister</es>
+                </translation>
+            </bishop>
+            <archbishop>
+                <translation>
+                    <en>Presbuteros</en>
+                    <es>Presbítero</es>
+                </translation>
+            </archbishop>
+        </ranks>
+        <race>human</race>
+        <blessings>curious, subtle</blessings>
+        <suggestedBenefices>
+            <benefice>
+                <id>vestments</id>
+            </benefice>
+            <benefice>
+                <id>ordained</id>
+            </benefice>
+            <benefice>
+                <id>refuge</id>
+                <value>6</value>
+            </benefice>
+            <benefice>
+                <id>secrets</id>
+                <value>2</value>
+            </benefice>
+        </suggestedBenefices>
+        <restrictedBenefices>
+            <benefice>
+                <id>cash</id>
+                <maxValue>8</maxValue>
+            </benefice>
+        </restrictedBenefices>
+    </eskatonic>
+    <avestites>
+        <name>
+            <en>Avestites</en>
+            <es>Avestitas</es>
+        </name>
+        <group>church</group>
+        <race>human</race>
+        <blessings>pious, righteous</blessings>
+        <suggestedBenefices>
+            <benefice>
+                <id>vestments</id>
+            </benefice>
+            <benefice>
+                <id>ordained</id>
+            </benefice>
+        </suggestedBenefices>
+        <restrictedBenefices>
+            <benefice>
+                <id>cash</id>
+                <maxValue>8</maxValue>
+            </benefice>
+        </restrictedBenefices>
+    </avestites>
+    <amaltheans>
+        <name>
+            <en>Amaltheans</en>
+            <es>Amalteanos</es>
+        </name>
+        <group>church</group>
+        <race>human</race>
+        <blessings>compassionate, gullible</blessings>
+        <suggestedBenefices>
+            <benefice>
+                <id>vestments</id>
+            </benefice>
+            <benefice>
+                <id>ordained</id>
+            </benefice>
+            <benefice>
+                <id>ally</id>
+            </benefice>
+        </suggestedBenefices>
+        <restrictedBenefices>
+            <benefice>
+                <id>cash</id>
+                <maxValue>8</maxValue>
+            </benefice>
+        </restrictedBenefices>
+    </amaltheans>
+    <mendicantMonks>
+        <name>
+            <en>Mendicant Monks</en>
+            <es>Monjes Mendicantes</es>
+        </name>
+        <group>church</group>
+        <race>human</race>
+        <suggestedBenefices>
+            <benefice>
+                <id>vestments</id>
+            </benefice>
+            <benefice>
+                <id>ordained</id>
+            </benefice>
+            <benefice>
+                <id>cloistered</id>
+            </benefice>
+        </suggestedBenefices>
+        <restrictedBenefices>
+            <benefice>
+                <id>cash</id>
+                <maxValue>8</maxValue>
+            </benefice>
+        </restrictedBenefices>
+    </mendicantMonks>
+
+    <charioteers>
+        <name>
+            <en>Charioteers</en>
+            <es>Aurigas</es>
+        </name>
+        <group>guild</group>
+        <ranks>
+            <apprentice>
+                <translation>
+                    <en>Ensign</en>
+                    <es>Alférez</es>
+                </translation>
+            </apprentice>
+            <entered>
+                <translation>
+                    <en>Lieutenant</en>
+                    <es>Teniente</es>
+                </translation>
+            </entered>
+            <fellow>
+                <translation>
+                    <en>Commander</en>
+                    <es>Comandante</es>
+                </translation>
+            </fellow>
+            <crafter>
+                <translation>
+                    <en>Captain</en>
+                    <es>Capitán</es>
+                </translation>
+            </crafter>
+            <engineer>
+                <translation>
+                    <en>Consul</en>
+                    <es>Cónsul</es>
+                </translation>
+            </engineer>
+            <master>
+                <translation>
+                    <en>Dean</en>
+                    <es>Decano</es>
+                </translation>
+            </master>
+        </ranks>
+        <race>human</race>
+        <blessings>curious, nosy</blessings>
+        <suggestedBenefices>
+            <benefice>
+                <id>cash</id>
+            </benefice>
+            <benefice>
+                <id>passageContracts</id>
+            </benefice>
+            <benefice>
+                <id>commission</id>
+            </benefice>
+        </suggestedBenefices>
+    </charioteers>
+    <engineers>
+        <name>
+            <en>Engineers</en>
+            <es>Ingenieros</es>
+        </name>
+        <group>guild</group>
+        <race>human</race>
+        <blessings>innovative, unnerving</blessings>
+        <suggestedBenefices>
+            <benefice>
+                <id>cash</id>
+            </benefice>
+            <benefice>
+                <id>passageContracts</id>
+            </benefice>
+            <benefice>
+                <id>commission</id>
+            </benefice>
+        </suggestedBenefices>
+    </engineers>
+    <scravers>
+        <name>
+            <en>Scravers</en>
+            <es>Carroñeros</es>
+        </name>
+        <group>guild</group>
+        <ranks>
+            <apprentice>
+                <translation>
+                    <en>Associate</en>
+                    <es>Asociado</es>
+                </translation>
+            </apprentice>
+            <entered>
+                <translation>
+                    <en>Genin</en>
+                    <es>Genin</es>
+                </translation>
+            </entered>
+            <fellow>
+                <translation>
+                    <en>Boss</en>
+                    <es>Jefe</es>
+                </translation>
+            </fellow>
+            <crafter>
+                <translation>
+                    <en>Jonin</en>
+                    <es>Jonin</es>
+                </translation>
+            </crafter>
+            <engineer>
+                <translation>
+                    <en>Consul</en>
+                    <es>Cónsul</es>
+                </translation>
+            </engineer>
+            <master>
+                <translation>
+                    <en>Dean</en>
+                    <es>Decano</es>
+                </translation>
+            </master>
+        </ranks>
+        <race>human</race>
+        <blessings>theman, possessive</blessings>
+        <suggestedBenefices>
+            <benefice>
+                <id>cash</id>
+            </benefice>
+            <benefice>
+                <id>passageContracts</id>
+            </benefice>
+            <benefice>
+                <id>commission</id>
+            </benefice>
+        </suggestedBenefices>
+    </scravers>
+    <muster>
+        <name>
+            <en>Musters</en>
+            <es>Esclavistas</es>
+        </name>
+        <group>guild</group>
+        <ranks>
+            <apprentice>
+                <translation>
+                    <en>Private</en>
+                    <es>Raso</es>
+                </translation>
+            </apprentice>
+            <entered>
+                <translation>
+                    <en>Sergeant</en>
+                    <es>Sargento</es>
+                </translation>
+            </entered>
+            <fellow>
+                <translation>
+                    <en>Liutenant</en>
+                    <es>Teniente</es>
+                </translation>
+            </fellow>
+            <crafter>
+                <translation>
+                    <en>Captain</en>
+                    <es>Capitán</es>
+                </translation>
+            </crafter>
+            <engineer>
+                <translation>
+                    <en>Major</en>
+                    <es>Mayor</es>
+                </translation>
+            </engineer>
+            <master>
+                <translation>
+                    <en>Colonel</en>
+                    <es>Coronel</es>
+                </translation>
+            </master>
+        </ranks>
+        <race>human</race>
+        <blessings>bold, callous</blessings>
+        <suggestedBenefices>
+            <benefice>
+                <id>cash</id>
+            </benefice>
+            <benefice>
+                <id>passageContracts</id>
+            </benefice>
+            <benefice>
+                <id>commission</id>
+            </benefice>
+        </suggestedBenefices>
+    </muster>
+    <reeves>
+        <name>
+            <en>Reeves</en>
+            <es>Magistrados</es>
+        </name>
+        <group>guild</group>
+        <ranks>
+            <apprentice>
+                <translation>
+                    <en>Associate</en>
+                    <es>Asociado</es>
+                </translation>
+            </apprentice>
+            <entered>
+                <translation>
+                    <en>Chief</en>
+                    <es>Líder</es>
+                </translation>
+            </entered>
+            <fellow>
+                <translation>
+                    <en>Manager</en>
+                    <es>Agente</es>
+                </translation>
+            </fellow>
+            <crafter>
+                <translation>
+                    <en>Director</en>
+                    <es>Director</es>
+                </translation>
+            </crafter>
+            <engineer>
+                <translation>
+                    <en>Consul</en>
+                    <es>Cónsul</es>
+                </translation>
+            </engineer>
+            <master>
+                <translation>
+                    <en>Dean</en>
+                    <es>Decano</es>
+                </translation>
+            </master>
+        </ranks>
+        <race>human</race>
+        <blessings>shrewd, mammon</blessings>
+        <suggestedBenefices>
+            <benefice>
+                <id>cash</id>
+            </benefice>
+            <benefice>
+                <id>passageContracts</id>
+            </benefice>
+            <benefice>
+                <id>commission</id>
+            </benefice>
+        </suggestedBenefices>
+    </reeves>
+    <freeMen>
+        <name>
+            <en>Yeoman</en>
+            <es>Hombre Libre</es>
+        </name>
+        <group>none</group>
+        <race>human</race>
+        <benefices>darkSecret_3</benefices>
+        <suggestedBenefices>
+            <benefice>
+                <id>darkSecret</id>
+                <value>3</value>
+            </benefice>
+        </suggestedBenefices>
+    </freeMen>
+    <alba>
+        <name>
+            <en>Alba</en>
+            <es>Alba</es>
+        </name>
+        <group>nobility</group>
+        <race>human</race>
+        <blessings>connected, uncouth</blessings>
+        <restrictedBenefices>
+            <benefice>
+                <id>nobility</id>
+                <maxValue>12</maxValue>
+            </benefice>
+        </restrictedBenefices>
+        <suggestedBenefices>
+            <benefice>
+                <id>nobility</id>
+            </benefice>
+        </suggestedBenefices>
+        <random>
+            <probabilityMultiplier>0.05</probabilityMultiplier>
+        </random>
+    </alba>
+    <juandaastas>
+        <name>
+            <en>Juandaastas</en>
+            <es>Juandaastas</es>
+        </name>
+        <group>nobility</group>
+        <race>human</race>
+        <blessings>strongWilled, outraged</blessings>
+        <restrictedBenefices>
+            <benefice>
+                <id>nobility</id>
+                <maxValue>12</maxValue>
+            </benefice>
+        </restrictedBenefices>
+        <suggestedBenefices>
+            <benefice>
+                <id>nobility</id>
+            </benefice>
+        </suggestedBenefices>
+        <random>
+            <probabilityMultiplier>0.05</probabilityMultiplier>
+        </random>
+    </juandaastas>
+    <justinian>
+        <name>
+            <en>Justinian</en>
+            <es>Justinian</es>
+        </name>
+        <group>nobility</group>
+        <race>human</race>
+        <blessings>loyal, stubborn</blessings>
+        <restrictedBenefices>
+            <benefice>
+                <id>nobility</id>
+                <maxValue>12</maxValue>
+            </benefice>
+        </restrictedBenefices>
+        <suggestedBenefices>
+            <benefice>
+                <id>nobility</id>
+            </benefice>
+        </suggestedBenefices>
+        <random>
+            <probabilityMultiplier>0.05</probabilityMultiplier>
+        </random>
+    </justinian>
+    <keddah>
+        <name>
+            <en>Keddah</en>
+            <es>Keddah</es>
+        </name>
+        <group>nobility</group>
+        <race>human</race>
+        <blessings>alert, untrusthworthy</blessings>
+        <restrictedBenefices>
+            <benefice>
+                <id>nobility</id>
+                <maxValue>12</maxValue>
+            </benefice>
+        </restrictedBenefices>
+        <suggestedBenefices>
+            <benefice>
+                <id>nobility</id>
+            </benefice>
+        </suggestedBenefices>
+        <random>
+            <probabilityMultiplier>0.05</probabilityMultiplier>
+        </random>
+    </keddah>
+    <masseri>
+        <name>
+            <en>Masseri</en>
+            <es>Masseri</es>
+        </name>
+        <group>nobility</group>
+        <race>human</race>
+        <blessings>hardy, bitter</blessings>
+        <restrictedBenefices>
+            <benefice>
+                <id>nobility</id>
+                <maxValue>12</maxValue>
+            </benefice>
+        </restrictedBenefices>
+        <suggestedBenefices>
+            <benefice>
+                <id>nobility</id>
+            </benefice>
+        </suggestedBenefices>
+        <random>
+            <probabilityMultiplier>0.05</probabilityMultiplier>
+        </random>
+    </masseri>
+    <shelit>
+        <name>
+            <en>Shelt</en>
+            <es>Shelt</es>
+        </name>
+        <group>nobility</group>
+        <race>human</race>
+        <blessings>cybersympathy, weird</blessings>
+        <restrictedBenefices>
+            <benefice>
+                <id>nobility</id>
+                <maxValue>12</maxValue>
+            </benefice>
+        </restrictedBenefices>
+        <suggestedBenefices>
+            <benefice>
+                <id>nobility</id>
+            </benefice>
+        </suggestedBenefices>
+        <random>
+            <probabilityMultiplier>0.05</probabilityMultiplier>
+        </random>
+    </shelit>
+    <thana>
+        <name>
+            <en>Thana</en>
+            <es>Thana</es>
+        </name>
+        <group>nobility</group>
+        <race>human</race>
+        <blessings>angelic, guilty</blessings>
+        <restrictedBenefices>
+            <benefice>
+                <id>nobility</id>
+                <maxValue>12</maxValue>
+            </benefice>
+        </restrictedBenefices>
+        <suggestedBenefices>
+            <benefice>
+                <id>nobility</id>
+            </benefice>
+        </suggestedBenefices>
+        <random>
+            <probabilityMultiplier>0.05</probabilityMultiplier>
+        </random>
+    </thana>
+    <torenson>
+        <name>
+            <en>Torenson</en>
+            <es>Torenson</es>
+        </name>
+        <group>nobility</group>
+        <race>human</race>
+        <blessings>elan, indignant</blessings>
+        <restrictedBenefices>
+            <benefice>
+                <id>nobility</id>
+                <maxValue>12</maxValue>
+            </benefice>
+        </restrictedBenefices>
+        <suggestedBenefices>
+            <benefice>
+                <id>nobility</id>
+            </benefice>
+        </suggestedBenefices>
+        <random>
+            <probabilityMultiplier>0.05</probabilityMultiplier>
+        </random>
+    </torenson>
+    <trusnikron>
+        <name>
+            <en>Trusnikron</en>
+            <es>Trusnikron</es>
+        </name>
+        <group>nobility</group>
+        <race>human</race>
+        <blessings>xenoEquestrian, uncouth</blessings>
+        <restrictedBenefices>
+            <benefice>
+                <id>nobility</id>
+                <maxValue>12</maxValue>
+            </benefice>
+        </restrictedBenefices>
+        <suggestedBenefices>
+            <benefice>
+                <id>nobility</id>
+            </benefice>
+        </suggestedBenefices>
+        <random>
+            <probabilityMultiplier>0.05</probabilityMultiplier>
+        </random>
+    </trusnikron>
+    <vanGelder>
+        <name>
+            <en>Van Gelder</en>
+            <es>Van Gelder</es>
+        </name>
+        <group>nobility</group>
+        <race>human</race>
+        <blessings>chameleon, alienated</blessings>
+        <restrictedBenefices>
+            <benefice>
+                <id>nobility</id>
+                <maxValue>12</maxValue>
+            </benefice>
+        </restrictedBenefices>
+        <suggestedBenefices>
+            <benefice>
+                <id>nobility</id>
+            </benefice>
+        </suggestedBenefices>
+        <random>
+            <probabilityMultiplier>0.05</probabilityMultiplier>
+        </random>
+    </vanGelder>
+    <xanthippe>
+        <name>
+            <en>Xanthippe</en>
+            <es>Xanthippe</es>
+        </name>
+        <group>nobility</group>
+        <race>human</race>
+        <blessings>disciplined, condescending2</blessings>
+        <restrictedBenefices>
+            <benefice>
+                <id>nobility</id>
+                <maxValue>12</maxValue>
+            </benefice>
+        </restrictedBenefices>
+        <suggestedBenefices>
+            <benefice>
+                <id>nobility</id>
+            </benefice>
+        </suggestedBenefices>
+        <random>
+            <probabilityMultiplier>0.05</probabilityMultiplier>
+        </random>
+    </xanthippe>
+
+    <obun>
+        <name>
+            <en>Ur-Obun</en>
+            <es>Ur-Obun</es>
+        </name>
+        <group>xeno</group>
+        <race>obun</race>
+        <blessings>just, condescending</blessings>
+        <random>
+            <names>
+                <male>Soleel, Virta, Akamai, Akoni, Koi, Keanu, Kale, Kaleo, Kekoa, Makani, Akamu, Hilo, Pekelo, Tangi
+                </male>
+                <female>Loaana, Alana, Leilani, Kalani, Lea, Kaila, Noelani, Kailani, Ailani, Kahikina, Nohealani
+                </female>
+            </names>
+            <surnames>HanSeer, HanLoaaj, Harn, Haleigha, Haulani, Kahiau, Maylee, Pazhani, Pualani</surnames>
+        </random>
+        <suggestedBenefices>
+            <benefice>
+                <id>refuge</id>
+                <value>4</value>
+            </benefice>
+        </suggestedBenefices>
+    </obun>
+    <ukar>
+        <name>
+            <en>Ur-Ukar</en>
+            <es>Ur-Ukar</es>
+        </name>
+        <group>xeno</group>
+        <race>ukar</race>
+        <blessings>sensitiveTouch, bitter</blessings>
+        <benefices>ostraziced</benefices>
+        <random>
+            <names>
+                <male>Thollo, Anikrunta, Shelkoro, Teddeth, Ronga, Rajan, Zotos, Aedwir, Dyn'dran, Torquil, Shavik,
+                    Varkellin, Taudwon, Mipar
+                </male>
+                <female>Gisdrom, Sadra-Syn, Abril, Amena, Aischa, Rasha, Aseel, Nooda, Ranim, Reem</female>
+            </names>
+            <surnames>Nadakira, Wahind, Malak, Nolents, Oed Nata, Borduk, Nont, Veldiryn, Nilite, Tushan</surnames>
+        </random>
+        <suggestedBenefices>
+            <benefice>
+                <id>familiyTies</id>
+            </benefice>
+        </suggestedBenefices>
+    </ukar>
+    <vorox>
+        <name>
+            <en>Vorox</en>
+            <es>Vorox</es>
+        </name>
+        <group>xeno</group>
+        <race>vorox</race>
+        <blessings>predatory, giant, sensitiveSmell, uncouth</blessings>
+        <benefices>bite, extraLimbs, noOccult, ostraziced</benefices>
+        <random>
+            <names>
+                <male>Gelu, Gresh, Malum, Kirbold, Strakk, Roxtus, Sorgulg, Cabugbu, Zoughat, Gomatug, Narhbub, Ignorg,
+                    Togugh, Nubu, Poogugh
+                </male>
+                <female>Velika, Orde, Kabrua, Orbul, Shelur, Shelur, Atub, Bula, Ghorza, Shagar</female>
+            </names>
+            <surnames>Rolfish, Gashnakh, Ragash, Oghash, Yazgash, Rogmesh, Borgakh, Lagakh, Sharamph</surnames>
+        </random>
+        <suggestedBenefices>
+            <benefice>
+                <id>familiyTies</id>
+            </benefice>
+        </suggestedBenefices>
+    </vorox>
 </factions>

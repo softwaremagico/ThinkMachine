@@ -1300,7 +1300,7 @@ public class CharacterPlayer {
         if (!Objects.equals(this.faction, faction)) {
             MachineLog.debug(this.getClass().getName(), "Faction set to '{}'.", faction);
             this.faction = faction;
-            for (AvailableBenefice benefice : new ArrayList<>(getSelectedBenefices())) {
+            for (final AvailableBenefice benefice : new ArrayList<>(getSelectedBenefices())) {
                 try {
                     checkBenefices(benefice);
                 } catch (InvalidBeneficeException e) {
