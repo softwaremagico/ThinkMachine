@@ -8490,7 +8490,7 @@
                 <skill>throwing</skill>
                 <techLevelSpecial>true</techLevelSpecial>
                 <goal>0</goal>
-                <damage>5 (1 m)</damage>
+                <damage>6 (1 m)</damage>
                 <strength>1</strength>
                 <range>10/20</range>
                 <shots>handful</shots>
@@ -8503,7 +8503,7 @@
                 <skill>throwing</skill>
                 <techLevelSpecial>true</techLevelSpecial>
                 <goal>0</goal>
-                <damage>5 (1 m)</damage>
+                <damage>7 (1 m)</damage>
                 <strength>1</strength>
                 <range>10/20</range>
                 <shots>handful</shots>
@@ -8516,7 +8516,7 @@
                 <skill>throwing</skill>
                 <techLevelSpecial>true</techLevelSpecial>
                 <goal>0</goal>
-                <damage>5 (1 m)</damage>
+                <damage>8 (1 m)</damage>
                 <strength>1</strength>
                 <range>10/20</range>
                 <shots>handful</shots>
@@ -8529,7 +8529,7 @@
                 <skill>throwing</skill>
                 <techLevelSpecial>true</techLevelSpecial>
                 <goal>0</goal>
-                <damage>5 (1 m)</damage>
+                <damage>9 (1 m)</damage>
                 <strength>1</strength>
                 <range>10/20</range>
                 <shots>handful</shots>
