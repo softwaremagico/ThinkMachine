@@ -681,7 +681,7 @@ public class CharacterPlayer {
     }
 
     public void addWeapon(Weapon weapon) {
-        if (weapons.addElement(weapon)) {
+        if (weapon.getId() != Element.DEFAULT_NULL_ID && weapons.addElement(weapon)) {
             getCharacterModificationHandler().launchEquipmentUpdatedListener(weapon, false);
         }
     }
@@ -1251,7 +1251,8 @@ public class CharacterPlayer {
         for (final Weapon weapon : weapons.getElements()) {
             // Skip weapons payed by benefices.
             try {
-                if (!getAllBenefices().contains(AvailableBeneficeFactory.getInstance().getElement(weapon.getId(),
+                if (weapon != null &&
+                        !getAllBenefices().contains(AvailableBeneficeFactory.getInstance().getElement(weapon.getId(),
                         getLanguage(), getModuleName()))) {
                     total += weapon.getCost();
                 }

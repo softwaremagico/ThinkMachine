@@ -16,7 +16,7 @@
                 strike). There is no real consumer market for these weapons, although some specimens fetch high prices
                 with collectors.
             </en>
-            <es>Esta increíble "espada de cristal" de Ascorbito está fabricada con una sustancia cristalina única que
+            <es>Esta increíble "espada de cristal" de los Ascorbitas está fabricada con una sustancia cristalina única que
                 sólo se encuentra en las profundas grutas subterráneas de Severus. El cristal fluye en un estado casi
                 líquido en pequeños arroyos que se "desangran" a través de cortes tallados en duras rocas cristalinas, y
                 a partir de esta forma puede modelarse. Una vez que se haya expuesto a la luz, el material se endurece a
@@ -1367,10 +1367,10 @@
         </random>
     </mistSword>
 
-    <dartfletched>
+    <dart>
         <name>
-            <en>Dart fletched</en>
-            <es>Dardo (Disparado)</es>
+            <en>Dart</en>
+            <es>Dardo</es>
         </name>
         <description>
             <en>A pointed needle with small guiding wings designed for accuracy in throwing (un-winged darts have their
@@ -1413,7 +1413,7 @@
         </damageList>
         <size>XS</size>
         <cost>2</cost>
-    </dartfletched>
+    </dart>
     <javelin>
         <name>
             <en>Javelin</en>
