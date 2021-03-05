@@ -1,323 +1,562 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <cybernetics>
-	<version>1</version>
-	<totalElements>18</totalElements>
-	<centurionKnife>
-		<name>
-			<en>Centurion Knife</en>
-			<es>Cuchillo Centurión</es>
-		</name>
-		<techLevel>5</techLevel>
-		<points>2</points>
-		<incompatibility>2</incompatibility>
-		<traits>removable, metal, incognito</traits>
-		<cost>365</cost>
-		<weapon>
-			<characteristic>dexterity</characteristic>
-			<skill>melee</skill>
-			<goal>0</goal>
-			<damage>4</damage>
-		</weapon>
-		<classification>combat</classification>
-	</centurionKnife>
-	<viperSword>
-		<name>
-			<en>Viper Sword Arm</en>
-			<es>Espada Víbora de Brazo</es>
-		</name>
-		<techLevel>5</techLevel>
-		<points>6</points>
-		<incompatibility>3</incompatibility>
-		<traits>attached, metal, incognito</traits>
-		<cost>740</cost>
-		<weapon>
-			<characteristic>dexterity</characteristic>
-			<skill>melee</skill>
-			<goal>0</goal>
-			<damage>5</damage>
-		</weapon>
-		<classification>combat</classification>
-	</viperSword>
-	<armHarpoon>
-		<name>
-			<en>Arm Harpoon</en>
-			<es>Arpón de Brazo</es>
-		</name>
-		<techLevel>5</techLevel>
-		<points>4</points>
-		<incompatibility>3</incompatibility>
-		<traits>attached, metal, incognito</traits>
-		<cost>725</cost>
-		<weapon>
-			<characteristic>dexterity</characteristic>
-			<skill>archery</skill>
-			<goal>0</goal>
-			<damage>3</damage>
-			<range>10/20</range>
-			<shots>5</shots>
-			<rate>1</rate>
-		</weapon>
-		<classification>combat</classification>
-	</armHarpoon>
-	<jonah>
-		<name>
-			<en>Jonah</en>
-			<es>Jonás</es>
-		</name>
-		<techLevel>5</techLevel>
-		<points>7</points>
-		<incompatibility>4</incompatibility>
-		<traits>attached, metal, incognito</traits>
-		<cost>2440</cost>
-		<weapon>
-			<characteristic>dexterity</characteristic>
-			<skill>archery</skill>
-			<goal>0</goal>
-			<damage>4</damage>
-			<range>10/20</range>
-			<shots>5</shots>
-			<rate>1</rate>
-		</weapon>
-		<classification>combat</classification>
-	</jonah>
-	<aquaLung>
-		<name>
-			<en>Aqua-Lung</en>
-			<es>Pulmón de Agua</es>
-		</name>
-		<techLevel>6</techLevel>
-		<points>3</points>
-		<incompatibility>3</incompatibility>
-		<traits>organic, obvious, automatic, selfPowered</traits>
-		<cost>1655</cost>
-		<others>ciberLungWater</others>
-		<classification>enhancement</classification>
-	</aquaLung>
-	<advancedAquaLung>
-		<name>
-			<en>Aqua-Lung (Advanced)</en>
-			<es>Pulmón de Agua (Avanzado)</es>
-		</name>
-		<techLevel>6</techLevel>
-		<points>5</points>
-		<incompatibility>4</incompatibility>
-		<traits>organic, hidden, automatic, selfPowered</traits>
-		<cost>1805</cost>
-		<others>ciberLungWater</others>
-		<classification>enhancement</classification>
-	</advancedAquaLung>
-	<engineersEye>
-		<name>
-			<en>Engineer's Eye</en>
-			<es>Ojo de Ingeniero</es>
-		</name>
-		<techLevel>6</techLevel>
-		<points>6</points>
-		<incompatibility>5</incompatibility>
-		<cost>2440</cost>
-		<traits>attached, obvious, automatic, selfPowered, cybersenseMagnifier, cybersenseIr</traits>
-		<bonifications>
-			<bonification>
-				<value>1</value>
-				<affects>perception</affects>
-				<situation>
-					<en>Sight</en>
-					<es>Vista</es>
-				</situation>
-			</bonification>
-		</bonifications>
-		<random>
-			<recommendedFactionGroups>engineer</recommendedFactionGroups>
-		</random>
-		<classification>enhancement</classification>
-	</engineersEye>
-	<etherEar>
-		<name>
-			<en>Ether Ear</en>
-			<es>Oído Inalámbrico</es>
-		</name>
-		<techLevel>6</techLevel>
-		<points>6</points>
-		<incompatibility>5</incompatibility>
-		<traits>attached, hidden, skillUse, selfPowered, cybersenseRadio</traits>
-		<cost>1245</cost>
-		<classification>enhancement</classification>
-	</etherEar>
-	<goliathSkin>
-		<name>
-			<en>Goliath Skin</en>
-			<es>Piel de Goliath</es>
-		</name>
-		<techLevel>6</techLevel>
-		<points>10</points>
-		<incompatibility>6</incompatibility>
-		<traits>organic, metal, obvious, automatic, selfPowered</traits>
-		<cost>3715</cost>
-		<bonifications>
-			<bonification>
-				<value>3</value>
-				<affects>strength</affects>
-			</bonification>
-			<bonification>
-				<value>2</value>
-				<affects>endurance</affects>
-			</bonification>
-		</bonifications>
-		<classification>combat</classification>
-	</goliathSkin>
-	<litheWire>
-		<name>
-			<en>Lithe Wire</en>
-			<es>Cable Flexible</es>
-		</name>
-		<techLevel>6</techLevel>
-		<points>5</points>
-		<incompatibility>4</incompatibility>
-		<cost>3025</cost>
-		<traits>organic, metal, obvious, automatic, selfPowered</traits>
-		<bonifications>
-			<bonification>
-				<value>3</value>
-				<affects>dexterity</affects>
-			</bonification>
-		</bonifications>
-		<classification>combat</classification>
-	</litheWire>
-	<oxyLung>
-		<name>
-			<en>Oxy-Lung</en>
-			<es>Oxi-Pulmón</es>
-		</name>
-		<techLevel>7</techLevel>
-		<points>9</points>
-		<incompatibility>7</incompatibility>
-		<cost>5250</cost>
-		<traits>organic, synthflesh, hidden, automatic, selfPowered, proscribed, ciberLungVoid</traits>
-		<classification>enhancement</classification>
-	</oxyLung>
-	<secondBrain>
-		<name>
-			<en>Second Brain</en>
-			<es>Segundo Cerebro</es>
-		</name>
-		<techLevel>6</techLevel>
-		<points>11</points>
-		<incompatibility>10</incompatibility>
-		<traits>attached, synthflesh, hidden, automatic, selfPowered</traits>
-		<cost>5915</cost>
-		<bonifications>
-			<bonification>
-				<value>2</value>
-				<affects>wits</affects>
-			</bonification>
-			<bonification>
-				<value>4</value>
-				<affects>thinkMachine</affects>
-			</bonification>
-		</bonifications>
-		<classification>enhancement</classification>
-	</secondBrain>
-	<secondBrainJumpLoreSoftware>
-		<name>
-			<en>Prg. Jumpweb</en>
-			<es>Prg. Red de Salto</es>
-		</name>
-		<techLevel>6</techLevel>
-		<points>0</points>
-		<incompatibility>0</incompatibility>
-		<traits>removable, hidden, automatic</traits>
-		<cost>1200</cost>
-		<skillsStaticValues>
-			<skillValue>
-				<value>4</value>
-				<affects>lore</affects>
-				<speciality>jumpwebLore</speciality>
-			</skillValue>
-		</skillsStaticValues>
-		<requires>secondBrain</requires>
-		<classification>enhancement</classification>
-	</secondBrainJumpLoreSoftware>
-	<secondBrainEnergyPistolsLore>
-		<name>
-			<en>Prg. Energy Pistols</en>
-			<es>Prg. Pistola Energía</es>
-		</name>
-		<techLevel>6</techLevel>
-		<points>0</points>
-		<incompatibility>0</incompatibility>
-		<traits>removable, hidden, automatic</traits>
-		<cost>1200</cost>
-		<skillsStaticValues>
-			<skillValue>
-				<value>4</value>
-				<affects>lore</affects>
-				<speciality>energyPistolsLore</speciality>
-			</skillValue>
-		</skillsStaticValues>
-		<requires>secondBrain</requires>
-		<classification>enhancement</classification>
-	</secondBrainEnergyPistolsLore>
-	<secondBrainThinkMachineLore>
-		<name>
-			<en>Prg. Think Machine</en>
-			<es>Prg. Máquina Pensante</es>
-		</name>
-		<techLevel>6</techLevel>
-		<points>0</points>
-		<incompatibility>0</incompatibility>
-		<cost>1200</cost>
-		<traits>removable, hidden, automatic</traits>
-		<skillsStaticValues>
-			<skillValue>
-				<value>4</value>
-				<affects>lore</affects>
-				<speciality>thinkMachineLore</speciality>
-			</skillValue>
-		</skillsStaticValues>
-		<requires>secondBrain</requires> 
-		<classification>enhancement</classification>
-	</secondBrainThinkMachineLore>
-	<spyEye>
-		<name>
-			<en>Spy Eye</en>
-			<es>Ojo Espía</es>
-		</name>
-		<techLevel>6</techLevel>
-		<points>6</points>
-		<incompatibility>5</incompatibility>
-		<cost>2655</cost>
-		<traits>organic, synthflesh, hidden, skillUse, selfPowered, cybersenseMagnifier, cybersenseVideo</traits>
-		<classification>enhancement</classification>
-	</spyEye>
-	<stimusim>
-		<name>
-			<en>Stimusim</en>
-			<es>Consolador</es>
-		</name>
-		<techLevel>6</techLevel>
-		<points>3</points>
-		<incompatibility>5</incompatibility>
-		<traits>organic, synthflesh, incognito, automatic, selfPowered, proscribed</traits>
-		<cost>3115</cost>
-		<bonifications>
-			<bonification>
-				<value>2</value>
-				<affects>perception</affects>
-			</bonification>
-		</bonifications>
-		<others>cybersenseHypertouch</others>
-		<classification>others</classification>
-	</stimusim>
-	<xEyes>
-		<name>
-			<en>X-Eyes</en>
-			<es>Ojos con Rayos X</es>
-		</name>
-		<techLevel>7</techLevel>
-		<points>4</points>
-		<incompatibility>7</incompatibility>
-		<traits>organic, synthflesh, incognito, skillUse, selfPowered, cybersenseHypertouch</traits>
-		<cost>2150</cost>
-		<classification>enhancement</classification>
-	</xEyes>
+    <version>1</version>
+    <totalElements>18</totalElements>
+    <centurionKnife>
+        <name>
+            <en>Centurion Knife</en>
+            <es>Cuchillo Centurión</es>
+        </name>
+        <description>
+            <en>Centurions and Vipers are the best examples of simple holdout cybernetic weapons. The Centurion
+                stores a 20 cm blade in the forearm along the ulna. Upon activation, the blade springs up through the
+                palm, where it can be grasped by a simple hilt. The blade is not actually attached to the character; it
+                is simply stored in the cavity
+            </en>
+            <es>Los Centuriones y las Víboras son los mejores ejemplos de armas cibernéticas para rechazar a un enemigo.
+                El Centurión almacena una hoja de 20 cm en el antebrazo a lo largo del cúbito. Tras la activación, la
+                hoja surge a través de la palma, donde puede agarrarse gracias a una sencilla empuñadura. La hoja no
+                está realmente unida al personaje, simplemente se almacena en la cavidad.
+            </es>
+        </description>
+        <techLevel>5</techLevel>
+        <points>2</points>
+        <incompatibility>2</incompatibility>
+        <traits>removable, metal, incognito</traits>
+        <cost>365</cost>
+        <weapon>
+            <characteristic>dexterity</characteristic>
+            <skill>melee</skill>
+            <goal>0</goal>
+            <damage>4</damage>
+        </weapon>
+        <classification>combat</classification>
+    </centurionKnife>
+    <viperSword>
+        <name>
+            <en>Viper Sword Arm</en>
+            <es>Espada Víbora de Brazo</es>
+        </name>
+        <description>
+            <en>An extendible fencing sword surgically attached to the character in the forearm along the ulna (hence,
+                it cannot be disarmed). Once the telescopic blade is extended and locked in position (which takes one
+                action), the fencer has an elegant blade at his disposal. Installing the blade back into the compartment
+                takes one turn, although it is wise to clean it with alcohol first. Careless practitioners of this art
+                will require daily maintenance to prevent disease and infection.
+            </en>
+            <es>Una espada de esgrima extensible unida quirúrgicamente al personaje en el antebrazo a lo largo del
+                cúbito (razón por la que no puede ser desarmado). Una vez que la hoja telescópica se ha extendido del
+                todo y bloqueado en su posición (lo que requiere de una acción), el esgrimista tiene una elegante hoja a
+                su disposición. Guardar la hoja de nuevo en el compartimento requiere un turno, aunque es aconsejable
+                limpiarla primero con alcohol. Los practicantes descuidados de este arte requerirán de un mantenimiento
+                diario, para prevenir cualquier tipo de enfermedad y/o infección.
+            </es>
+        </description>
+        <techLevel>5</techLevel>
+        <points>6</points>
+        <incompatibility>3</incompatibility>
+        <traits>attached, metal, incognito</traits>
+        <cost>740</cost>
+        <weapon>
+            <characteristic>dexterity</characteristic>
+            <skill>melee</skill>
+            <goal>0</goal>
+            <damage>5</damage>
+        </weapon>
+        <classification>combat</classification>
+    </viperSword>
+    <armHarpoon>
+        <name>
+            <en>Arm Harpoon</en>
+            <es>Arpón de Brazo</es>
+        </name>
+        <description>
+            <en>The Arm Harpoon is similar to the Centurion save that it is used as a missile weapon. A groove in the
+                forearm is concealed by a layer of fake skin (synthflesh for TL6 version), and specially modified steel
+                rods can be loaded into the device. The internal mechanism can, upon activation, launch the projectile
+                through the palm of the hand up to 30 feet. Up to five of these arm harpoons can be stored in the
+                forearm at a time.
+            </en>
+            <es>El Arpón de Brazo es similar al Centurión salvo que se utiliza como arma propulsada. Este
+                ciberdispositivo consiste en una ranura en el antebrazo oculta por una capa de piel falsa (carne
+                sintética en el caso de la versión de NT6) y unas varillas de acero especialmente modificadas que pueden
+                introducirse en el dispositivo a modo de munición. Los mecanismos internos pueden, tras la activación,
+                lanzar un proyectil a través de la palma de la mano hasta una distancia de 9 metros. Pueden almacenarse
+                hasta cinco de estos arpones de brazo a la vez.
+            </es>
+        </description>
+        <techLevel>5</techLevel>
+        <points>4</points>
+        <incompatibility>3</incompatibility>
+        <traits>attached, metal, incognito</traits>
+        <cost>725</cost>
+        <weapon>
+            <characteristic>dexterity</characteristic>
+            <skill>archery</skill>
+            <goal>0</goal>
+            <damage>3</damage>
+            <range>10/20</range>
+            <shots>5</shots>
+            <rate>1</rate>
+        </weapon>
+        <classification>combat</classification>
+    </armHarpoon>
+    <jonah>
+        <name>
+            <en>Jonah</en>
+            <es>Jonás</es>
+        </name>
+        <description>
+            <en>A slightly more expensive version of the Arm Harpoon involves a cable attachment and an internal pulley
+                mechanism. Citizens on water-worlds refer to these as Jonahs, since they’re popular among fishermen. The
+                internal winch is capable of pulling up to 100 kilograms. To capture a person with the Jonah, the Jonah
+                user must first hit his target (Dexterity + Shoot) and then win a contest of his Strength + Vigor versus
+                the target’s Strength + Vigor; the Jonah user may add the Victory Points from his goal roll to his
+                Strength + Vigor roll.
+            </en>
+            <es>Es una versión un poco más cara del Arpón de Brazo que consiste en el uso de un cable unido a un
+                mecanismo de poleas interno. Los ciudadanos de los mundos de agua suelen referirse a estos
+                ciberdispositivos como Jonás, ya que son populares entre los pescadores. El torno interno es capaz de
+                elevar hasta 100 kilogramos. Para capturar a una persona con el Jonás, el usuario en primer lugar deberá
+                alcanzar a su objetivo (Destreza + Arquería) y luego superar una tirada enfrentada de Fuerza + Vigor
+                contra la Fuerza + Vigor del objetivo. El usuario que emplee el Jonás puede añadir los Puntos de
+                Victoria de su tirada de acierto a su tirada de Fuerza + Vigor.
+            </es>
+        </description>
+        <techLevel>5</techLevel>
+        <points>7</points>
+        <incompatibility>4</incompatibility>
+        <traits>attached, metal, incognito</traits>
+        <cost>2440</cost>
+        <weapon>
+            <characteristic>dexterity</characteristic>
+            <skill>archery</skill>
+            <goal>0</goal>
+            <damage>4</damage>
+            <range>10/20</range>
+            <shots>5</shots>
+            <rate>1</rate>
+        </weapon>
+        <classification>combat</classification>
+    </jonah>
+    <aquaLung>
+        <name>
+            <en>Aqua-Lung</en>
+            <es>Pulmón de Agua</es>
+        </name>
+        <description>
+            <en>Artificial gills that can extract oxygen from water. More advanced versions are known that hide the
+                gills (+2 pts; Hidden; +1 Incompatibility; +150 fb).
+            </en>
+            <es>Este ciberdispositivo consiste en unas branquias artificiales que pueden extraer el oxígeno del agua. Se
+                sabe que las versiones más avanzadas logran ocultar estas branquias (+ 2 Pts; Oculto; 1
+                Incompatibilidad; + 150 fénix).
+            </es>
+        </description>
+        <techLevel>6</techLevel>
+        <points>3</points>
+        <incompatibility>3</incompatibility>
+        <traits>organic, obvious, automatic, selfPowered</traits>
+        <cost>1655</cost>
+        <others>ciberLungWater</others>
+        <classification>enhancement</classification>
+    </aquaLung>
+    <advancedAquaLung>
+        <name>
+            <en>Aqua-Lung (Advanced)</en>
+            <es>Pulmón de Agua (Avanzado)</es>
+        </name>
+        <description>
+            <en>Artificial gills that can extract oxygen from water. More advanced versions are known that hide the
+                gills (+2 pts; Hidden; +1 Incompatibility; +150 fb).
+            </en>
+            <es>Este ciberdispositivo consiste en unas branquias artificiales que pueden extraer el oxígeno del agua. Se
+                sabe que las versiones más avanzadas logran ocultar estas branquias (+ 2 Pts; Oculto; 1
+                Incompatibilidad; + 150 fénix).
+            </es>
+        </description>
+        <techLevel>6</techLevel>
+        <points>5</points>
+        <incompatibility>4</incompatibility>
+        <traits>organic, hidden, automatic, selfPowered</traits>
+        <cost>1805</cost>
+        <others>ciberLungWater</others>
+        <classification>enhancement</classification>
+    </advancedAquaLung>
+    <engineersEye>
+        <name>
+            <en>Engineer's Eye</en>
+            <es>Ojo de Ingeniero</es>
+        </name>
+        <description>
+            <en>These devices are popular with many guild Engineers, who are often seen scrutinizing people through the
+                large lens. They look like monocles studded with wires and small lights attached over the left (or
+                right) eye socket.
+            </en>
+            <es>Estos dispositivos son populares entre muchos miembros del gremio de Ingenieros, que a menudo son vistos
+                espiando a las personas mediante unas lentes muy grandes. Parecen monóculos adornados con cables y con
+                pequeñas luces presentes en la cuenca izquierda (o derecha) del ojo.
+            </es>
+        </description>
+        <techLevel>6</techLevel>
+        <points>6</points>
+        <incompatibility>5</incompatibility>
+        <cost>2440</cost>
+        <traits>attached, obvious, automatic, selfPowered, cybersenseMagnifier, cybersenseIr</traits>
+        <bonifications>
+            <bonification>
+                <value>1</value>
+                <affects>perception</affects>
+                <situation>
+                    <en>Sight</en>
+                    <es>Vista</es>
+                </situation>
+            </bonification>
+        </bonifications>
+        <random>
+            <recommendedFactionGroups>engineer</recommendedFactionGroups>
+        </random>
+        <classification>enhancement</classification>
+    </engineersEye>
+    <etherEar>
+        <name>
+            <en>Ether Ear</en>
+            <es>Oído Inalámbrico</es>
+        </name>
+        <description>
+            <en>A radio concealed in the character’s inner ear. The character must learn a special skill (Ether Ear
+                learned skill) for receiving transmissions, or else he may not get the band or frequency he wants (he
+                gets the Charioteer muzak meant for the local market instead of the Charioteer pilot chatter). Use of
+                the radio is not necessarily obvious to other people, although the Ether Ear skill can help in
+                concealing any of the radio listener’s telling behavior when tuning in to transmissions.
+            </en>
+            <es>Este ciberdispositivo consiste en una radio oculta en el oído interno del personaje. Este debe aprender
+                una habilidad especial (habilidad de Oído Inalámbrico) para poder recibir las transmisiones, o de lo
+                contrario no podrá captar la banda o frecuencia que desee (escucha la música ambiental que ponen los
+                aurigas en el mercado local en lugar de la conversación del piloto Auriga). El uso de la radio no es
+                necesariamente “evidente” para otras personas, aunque la habilidad de Oído Inalámbrico puede ocultar
+                cualquier tipo de actitud o conducta que pudiere revelar que el oyente de la radio está tratando de
+                sintonizar las transmisiones.
+            </es>
+        </description>
+        <techLevel>6</techLevel>
+        <points>6</points>
+        <incompatibility>5</incompatibility>
+        <traits>attached, hidden, skillUse, selfPowered, cybersenseRadio</traits>
+        <cost>1245</cost>
+        <classification>enhancement</classification>
+    </etherEar>
+    <goliathSkin>
+        <name>
+            <en>Goliath Skin</en>
+            <es>Piel de Goliath</es>
+        </name>
+        <description>
+            <en>This device is a sheath of synthetic muscles, surgically implanted into the owner, replacing much of his
+                natural musculature. This model only replaces muscles involved in lifting (biceps, triceps, deltoids,
+                hamstrings, and quads). Other models are known which are strong enough to protect the owner from damage
+                or pain (Armor). This model does not conceal the muscles; they are bulkier than natural muscles and have
+                a metallic sheen and ribbing, instantly recognizable as cybernetic.
+            </en>
+            <es>Este dispositivo es una funda de músculos sintéticos que se implanta quirúrgicamente en el propietario,
+                reemplazando gran parte de su musculatura natural. Este modelo sólo reemplaza los músculos implicados en
+                toda acción que suponga un levantamiento (bíceps, tríceps, deltoides, los isquiotibiales y cuádriceps).
+                Se sabe que otros modelos son lo suficientemente fuertes para proteger al propietario del daño o del
+                dolor (Armadura). Este modelo no oculta los músculos; que son más robustos que los músculos naturales y
+                tienen un brillo metálico y nervaduras, lo que hace que sea reconocido instantáneamente como un
+                dispositivo cibernético.
+            </es>
+        </description>
+        <techLevel>6</techLevel>
+        <points>10</points>
+        <incompatibility>6</incompatibility>
+        <traits>organic, metal, obvious, automatic, selfPowered</traits>
+        <cost>3715</cost>
+        <bonifications>
+            <bonification>
+                <value>3</value>
+                <affects>strength</affects>
+            </bonification>
+            <bonification>
+                <value>2</value>
+                <affects>endurance</affects>
+            </bonification>
+        </bonifications>
+        <classification>combat</classification>
+    </goliathSkin>
+    <litheWire>
+        <name>
+            <en>Lithe Wire</en>
+            <es>Cable Flexible</es>
+        </name>
+        <description>
+            <en>This device is a network of synthetic nerves cabling over and inside the owner’s body, connected to hubs
+                up and down the spine and augmenting the nervous system. It allows for superb motor control, including
+                manual and fine dexterity. These cables are not concealed although they are durable enough (encased in
+                flexible metal sheaths).
+            </en>
+            <es>Este dispositivo es una red de nervios sintéticos estructurados en un cableado que entra y sale del
+                cuerpo del dueño, conectado a los centros superior e inferior de la columna vertebral, aumentando en
+                consecuencia el sistema nervioso. Permite un excelente control motriz, incluyendo una destreza manual y
+                delicada. Estos cables no están ocultos aunque son bastante resistentes (cubiertos por las flexibles
+                fundas metálicas).
+            </es>
+        </description>
+        <techLevel>6</techLevel>
+        <points>5</points>
+        <incompatibility>4</incompatibility>
+        <cost>3025</cost>
+        <traits>organic, metal, obvious, automatic, selfPowered</traits>
+        <bonifications>
+            <bonification>
+                <value>3</value>
+                <affects>dexterity</affects>
+            </bonification>
+        </bonifications>
+        <classification>combat</classification>
+    </litheWire>
+    <oxyLung>
+        <name>
+            <en>Oxy-Lung</en>
+            <es>Oxi-Pulmón</es>
+        </name>
+        <description>
+            <en>The Oxy-Lung is a device that allows humans to survive for long periods without an outside oxygen
+                source, such as in deep space. One lung is replaced with an efficient recycling system that allows the
+                body to convert carbon dioxide back into oxygen. However, the user must still have a spacesuit to
+                protect the body from a vacuum.
+            </en>
+            <es>El Oxi-pulmón es un dispositivo que permite sobrevivir a los seres humanos durante largos periodos de
+                tiempo en lugares sin una fuente de oxígeno externa, como puede ser el espacio profundo. Uno de los
+                pulmones es sustituido por un eficiente sistema de reciclaje, que permite al cuerpo convertir dióxido de
+                carbono en oxígeno. Sin embargo, el usuario debe tener un traje espacial para proteger su cuerpo del
+                vacío.
+            </es>
+        </description>
+        <techLevel>7</techLevel>
+        <points>9</points>
+        <incompatibility>7</incompatibility>
+        <cost>5250</cost>
+        <traits>organic, synthflesh, hidden, automatic, selfPowered, proscribed, ciberLungVoid</traits>
+        <classification>enhancement</classification>
+    </oxyLung>
+    <secondBrain>
+        <name>
+            <en>Second Brain</en>
+            <es>Segundo Cerebro</es>
+        </name>
+        <description>
+            <en>A computer that is surgically hidden in the owner’s skull. It can be accessed for maintenance by
+                removing a flap of synthflesh and bone at the base of the skull. Programs can be loaded by slipping
+                chips into a socket usually placed behind the left ear (again, hidden beneath synthflesh).
+            </en>
+            <es>Una máquina pensante (ordenador) que se oculta quirúrgicamente en el cráneo del propietario. Puede
+                accederse a él para el mantenimiento quitando una pequeña “tapa” de carne sintética y hueso en la base
+                del cráneo. Pueden cargarse programas introduciendo chips en el enchufe, que generalmente se encuentra
+                detrás de la oreja izquierda (de nuevo, escondido bajo carne sintética).
+            </es>
+        </description>
+        <techLevel>6</techLevel>
+        <points>11</points>
+        <incompatibility>10</incompatibility>
+        <traits>attached, synthflesh, hidden, automatic, selfPowered</traits>
+        <cost>5915</cost>
+        <bonifications>
+            <bonification>
+                <value>2</value>
+                <affects>wits</affects>
+            </bonification>
+            <bonification>
+                <value>4</value>
+                <affects>thinkMachine</affects>
+            </bonification>
+        </bonifications>
+        <classification>enhancement</classification>
+    </secondBrain>
+    <secondBrainJumpLoreSoftware>
+        <name>
+            <en>Prg. Jumpweb</en>
+            <es>Prg. Red de Salto</es>
+        </name>
+        <techLevel>6</techLevel>
+        <points>0</points>
+        <incompatibility>0</incompatibility>
+        <traits>removable, hidden, automatic</traits>
+        <cost>1200</cost>
+        <skillsStaticValues>
+            <skillValue>
+                <value>4</value>
+                <affects>lore</affects>
+                <speciality>jumpwebLore</speciality>
+            </skillValue>
+        </skillsStaticValues>
+        <requires>secondBrain</requires>
+        <classification>enhancement</classification>
+    </secondBrainJumpLoreSoftware>
+    <secondBrainEnergyPistolsLore>
+        <name>
+            <en>Prg. Energy Pistols</en>
+            <es>Prg. Pistola Energía</es>
+        </name>
+        <techLevel>6</techLevel>
+        <points>0</points>
+        <incompatibility>0</incompatibility>
+        <traits>removable, hidden, automatic</traits>
+        <cost>1200</cost>
+        <skillsStaticValues>
+            <skillValue>
+                <value>4</value>
+                <affects>lore</affects>
+                <speciality>energyPistolsLore</speciality>
+            </skillValue>
+        </skillsStaticValues>
+        <requires>secondBrain</requires>
+        <classification>enhancement</classification>
+    </secondBrainEnergyPistolsLore>
+    <secondBrainThinkMachineLore>
+        <name>
+            <en>Prg. Think Machine</en>
+            <es>Prg. Máquina Pensante</es>
+        </name>
+        <techLevel>6</techLevel>
+        <points>0</points>
+        <incompatibility>0</incompatibility>
+        <cost>1200</cost>
+        <traits>removable, hidden, automatic</traits>
+        <skillsStaticValues>
+            <skillValue>
+                <value>4</value>
+                <affects>lore</affects>
+                <speciality>thinkMachineLore</speciality>
+            </skillValue>
+        </skillsStaticValues>
+        <requires>secondBrain</requires>
+        <classification>enhancement</classification>
+    </secondBrainThinkMachineLore>
+    <spyEye>
+        <name>
+            <en>Spy Eye</en>
+            <es>Ojo Espía</es>
+        </name>
+        <description>
+            <en>A video camera hidden in a synthetic eye. The character’s natural eye (right or left) has been removed
+                and replaced with this device, which resembles his original eye. The recording medium is a standard mini
+                data crystal. These crystals were developed in the Second Republic for wristwatch entertainment cameras
+                and music players and lend themselves perfectly for hidden surveillance. The basic model can record
+                video up to one hour in length before changing crystals (which cost about 30 fb each). The crystal is
+                usually housed in a small cavity behind the left or right ear underneath a flap of synthflesh. The
+                character must learn a special skill (Spy Eye learned skill) for taping with this camera, or else he may
+                not get the picture he wants (the target will be out of frame, the image overexposed, etc.). Use of the
+                camera is not necessarily obvious to other people, although the Spy Eye skill can help in concealing any
+                of the videotaper’s telling behavior.
+            </en>
+            <es>Una cámara de vídeo oculta en un ojo sintético. El ojo natural del personaje (derecho o izquierdo) es
+                extraído y se reemplaza con este dispositivo que se asemeja bastante a su ojo original. El medio donde
+                se almacenan todas las grabaciones es un mini cristal de datos estándar. Estos cristales se
+                desarrollaron durante la Segunda República para las cámaras pulsera y para los reproductores de música y
+                se prestaban sin ningún problema a la vigilancia oculta. El modelo básico puede grabar vídeos de hasta
+                una hora de duración antes de precisar de un cristal nuevo (que cuestan alrededor de unos 30 fénix cada
+                uno). El cristal normalmente se encuentra en una pequeña cavidad detrás la oreja izquierda o derecha
+                bajo una pequeña “tapa” de carne sintética. El personaje debe aprender una habilidad especial (la
+                habilidad de Ojo Espía) para grabar con esta cámara, o de lo contrario no podrá obtener la imagen que
+                quiere (el objetivo estará fuera de encuadre, la imagen sobreexpuesta, etc.). El uso de la cámara no es
+                necesariamente “evidente” para otras personas, aunque la habilidad de Ojo Espía puede ayudar a ocultar
+                cualquier tipo de actitud o conducta que haga evidente que el personaje está grabando.
+            </es>
+        </description>
+        <techLevel>6</techLevel>
+        <points>6</points>
+        <incompatibility>5</incompatibility>
+        <cost>2655</cost>
+        <traits>organic, synthflesh, hidden, skillUse, selfPowered, cybersenseMagnifier, cybersenseVideo</traits>
+        <classification>enhancement</classification>
+    </spyEye>
+    <stimusim>
+        <name>
+            <en>Stimusim</en>
+            <es>Consolador</es>
+        </name>
+        <description>
+            <en>Cyberfetishism and xenophilia were not unknown during the height of the Second Republic. Xenophiles who
+                wanted to try to understand alien culture would pay handsomely to augment their human body with
+                simulations of alien physiognomy. This rather expensive version of synthflesh demonstrates the somewhat
+                decadent and perverse impulses of cyberfetishists. Stimusim replicates the sensitivity of flesh covering
+                reproductive organs, both human and otherwise. Layers can be placed over any part of the body, although
+                weaving the nerve network required is a meticulous process. With this implant, almost any part of the
+                body can be used for pleasure in the same manner as a sexual organ (although with no extra reproductive
+                capabilities). This is particularly useful for xenophiles who, for whatever reason, seek congress with
+                alien life forms using unusual techniques. The Church, for obvious reasons, does not care for the idea.
+            </en>
+            <es>El ciberfetichismo y la xenofilia no eran desconocidos durante el apogeo de la Segunda República. Los
+                xenófilos que querían tratar de entender la cultura alienígena, pagaban generosamente para aumentar el
+                tamaño de su cuerpo humano con imitaciones de la fisonomía alienígena. Esta versión, bastante cara, de
+                carne sintética, demuestra los impulsos decadentes y perversos del ciberfetichismo. El consolador imita
+                la sensibilidad de la carne que recubre los órganos reproductivos, tanto los humanos como los de
+                cualquier otra especie. Pueden colocarse capas de este material sobre cualquier parte del cuerpo, aunque
+                entretejer una red de nervios es un proceso que requiere mucha meticulosidad. Con este implante, casi
+                cualquier parte del cuerpo puede utilizarse a modo de órgano sexual para satisfacer cualquier deseo
+                (aunque sin la capacidad de reproducirse con otra especie). Esto es particularmente útil para los
+                xenófilos que, por la razón que sea, buscan integrarse con formas de vida extraterrestres empleando
+                técnicas inusuales. A la Iglesia, por razones obvias, no le gusta la idea.
+            </es>
+        </description>
+        <techLevel>6</techLevel>
+        <points>3</points>
+        <incompatibility>5</incompatibility>
+        <traits>organic, synthflesh, incognito, automatic, selfPowered, proscribed</traits>
+        <cost>3115</cost>
+        <bonifications>
+            <bonification>
+                <value>2</value>
+                <affects>perception</affects>
+            </bonification>
+        </bonifications>
+        <others>cybersenseHypertouch</others>
+        <classification>others</classification>
+    </stimusim>
+    <xEyes>
+        <name>
+            <en>X-Eyes</en>
+            <es>Ojos con Rayos X</es>
+        </name>
+        <description>
+            <en>This costly enhancement is detested by both law enforcement officials and would-be criminals. It allows
+                the user to see through layers of solid matter, both organic and inorganic. The simplest use (at TL6)
+                involves modified x-rays, although this often results in a variety of cancers in the flesh and olfactory
+                centers. More progressive variants reflect the history of passive scanning devices—TL7 X-Eyes can see
+                through TL7 shielding, and so on. Adjusting to X-Eyes can be an extremely tedious process. In fact,
+                learning the fine points of operation is a skill in itself. Proficient users can effectively see in the
+                dark, learn to scan organic life forms for tech or disease, or diagnose mechanical devices. Untrained
+                users may become blinded by sudden revelations of electromagnetic fields, overreact to misjudged
+                distances or imagined threats, or simply go violently and psychopathically insane after observing the
+                viscera of too many passers-by. It is impossible to fully conceal X-Eyes when they are activated. Unlike
+                the Engineer’s Eye, this device resembles a normal human pair of eyes when it is not in use. When
+                activated, however, X-Eyes emit a dim, red glow. Usually, a cyborg who needs to use this device
+                surreptitiously either wears dark sunglasses or places a hand over her eyes.
+            </en>
+            <es>Los agentes del orden y los que aspiran a ser criminales detestan esta costosa mejora, que permite al
+                usuario ver a través de capas de materia sólida, tanto orgánica como inorgánica. El uso más sencillo (en
+                NT6) emplea rayos X modificados, aunque esto a menudo provoque diversos cánceres en la zona torácica y
+                en el centro olfativo. Las variantes más avanzadas reflejan la evolución de los dispositivos pasivos de
+                escaneo: los ojos de rayos X de NT7 pueden ver a través de un blindaje de NT7 y así sucesivamente.
+                Adaptarse a la visión de rayos X puede ser un proceso muy tedioso. De hecho, aprender cómo utilizarlos
+                correctamente es una habilidad en sí misma. Los usuarios que la dominen a la perfección pueden ver en la
+                oscuridad, diagnosticar dispositivos mecánicos o escanear formas de vida orgánicas en busca de
+                tecnología o enfermedades. Los usuarios inexpertos pueden quedar cegados por apariciones repentinas de
+                campos electromagnéticos, reaccionar exageradamente al calcular mal las distancias o al imaginar
+                amenazas que no existen, o simplemente transformarse en unos psicópatas después de observar las vísceras
+                de demasiados transeúntes. Es imposible ocultar por completo los ojos de rayos X cuando se activan. A
+                diferencia de los ojos del Ingeniero, este dispositivo se asemeja a un par de ojos humano normales
+                cuando no se usa. Sin embargo, al activarse, los ojos de rayos X emiten un tenue resplandor rojo. Por lo
+                general, un cíborg que necesite utilizar este dispositivo discretamente o bien llevará gafas de sol
+                oscuras o bien se tapará los ojos con una mano.
+            </es>
+        </description>
+        <techLevel>7</techLevel>
+        <points>4</points>
+        <incompatibility>7</incompatibility>
+        <traits>organic, synthflesh, incognito, skillUse, selfPowered, cybersenseHypertouch</traits>
+        <cost>2150</cost>
+        <classification>enhancement</classification>
+    </xEyes>
 </cybernetics>
