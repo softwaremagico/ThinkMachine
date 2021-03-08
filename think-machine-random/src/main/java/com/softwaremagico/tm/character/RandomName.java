@@ -24,20 +24,19 @@ package com.softwaremagico.tm.character;
  * #L%
  */
 
-import java.util.Collection;
-import java.util.Objects;
-import java.util.Set;
-
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.benefices.BeneficeSpecialization;
 import com.softwaremagico.tm.character.factions.FactionGroup;
 import com.softwaremagico.tm.character.factions.FactionsFactory;
 import com.softwaremagico.tm.character.races.InvalidRaceException;
-import com.softwaremagico.tm.log.RandomGenerationLog;
 import com.softwaremagico.tm.random.RandomSelector;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
 import com.softwaremagico.tm.random.selectors.NamesPreferences;
+
+import java.util.Collection;
+import java.util.Objects;
+import java.util.Set;
 
 public class RandomName extends RandomSelector<Name> {
 
@@ -90,7 +89,8 @@ public class RandomName extends RandomSelector<Name> {
         }
         // Nobility almost always names of her planet.
         if (getCharacterPlayer().getFaction() != null
-                && getCharacterPlayer().getFaction().getFactionGroup() == FactionGroup.NOBILITY) {
+                && getCharacterPlayer().getFaction().getFactionGroup() == FactionGroup.NOBILITY &&
+                !FactionsFactory.getInstance().getAllNames(getCharacterPlayer().getFaction()).isEmpty()) {
             if (getCharacterPlayer().getFaction().equals(name.getFaction())) {
                 return BASIC_PROBABILITY;
             } else {
@@ -121,11 +121,9 @@ public class RandomName extends RandomSelector<Name> {
 
     @Override
     protected void assignIfMandatory(Name element) throws InvalidXmlElementException {
-        return;
     }
 
     @Override
     protected void assignMandatoryValues(Set<Name> mandatoryValues) throws InvalidXmlElementException {
-        return;
     }
 }
