@@ -158,7 +158,7 @@ public class CostCalculator {
                     - (characterPlayer.getRace() != null ? characterPlayer.getRace().getTheurgy() : 0));
             currentOccultismPowersExtraPoints.set(getPsiPathsCosts(characterPlayer));
             currentWyrdExtraPoints.set(Math.max(characterPlayer.getExtraWyrd(), 0));
-            currentCyberneticsExtraPoints.set(Math.max(getCyberneticsCost(characterPlayer), 0));
+            currentCyberneticsExtraPoints.set(Math.max(getCyberneticsPoints(characterPlayer), 0));
             fireBirdsExpend = characterPlayer.getSpentMoney();
         }
     }
@@ -226,7 +226,7 @@ public class CostCalculator {
         });
         characterPlayer.getCharacterModificationHandler().addCyberneticDeviceUpdatedListener((device, removed) -> {
             updateCost(new AtomicInteger(0), 0,
-                    currentCyberneticsExtraPoints, removed ? device.getCost() : 0, removed ? 0 : device.getCost(), 0,
+                    currentCyberneticsExtraPoints, removed ? device.getPoints() : 0, removed ? 0 : device.getPoints(), 0,
                     null,
                     value -> getCostCharacterModificationHandler().launchCyberneticExtraPointsListeners(value));
         });
@@ -347,7 +347,7 @@ public class CostCalculator {
         cost += getSkillCosts(characterPlayer, extraSkillPoints);
         cost += getTraitsCosts(characterPlayer);
         cost += getPsiPowersCosts(characterPlayer);
-        cost += getCyberneticsCost(characterPlayer);
+        cost += getCyberneticsPoints(characterPlayer);
         CostCalculatorLog.debug(CostCalculator.class.getName(),
                 "Character '{}' total cost '{}'.\n", characterPlayer.getCompleteNameRepresentation(), cost);
         return cost;
@@ -378,9 +378,9 @@ public class CostCalculator {
         cost += getPsiPowersCosts(characterPlayer);
         CostCalculatorLog.info(CostCalculator.class.getName(),
                 "Psi powers cost: " + getPsiPowersCosts(characterPlayer));
-        cost += getCyberneticsCost(characterPlayer);
+        cost += getCyberneticsPoints(characterPlayer);
         CostCalculatorLog.info(CostCalculator.class.getName(),
-                "Cybernetics cost: " + getCyberneticsCost(characterPlayer));
+                "Cybernetics cost: " + getCyberneticsPoints(characterPlayer));
         CostCalculatorLog.info(CostCalculator.class.getName(), "Total cost '{}'.\n", cost);
         return cost;
     }
@@ -471,7 +471,7 @@ public class CostCalculator {
         return cost;
     }
 
-    private static int getCyberneticsCost(CharacterPlayer characterPlayer) {
+    private static int getCyberneticsPoints(CharacterPlayer characterPlayer) {
         int cost = 0;
         for (final ICyberneticDevice device : characterPlayer.getCybernetics()) {
             cost += device.getPoints() * CYBERNETIC_DEVICE_COST;
