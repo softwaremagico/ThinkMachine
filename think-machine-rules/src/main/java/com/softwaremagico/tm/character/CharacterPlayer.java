@@ -493,7 +493,7 @@ public class CharacterPlayer {
         if (benefice.getBeneficeDefinition().getGroup() == BeneficeGroup.RESTRICTED) {
             throw new InvalidBeneficeException("Benefice '" + benefice + "' is restricted and cannot be added.");
         }
-        //Check if is incompatible with others.
+        //Check if it is incompatible with others.
         for (final AvailableBenefice existingBenefice : benefices) {
             if (benefice.getBeneficeDefinition().getIncompatibleWith().contains(existingBenefice.getId())) {
                 throw new IncompatibleBeneficeException("Benefice '" + benefice + "' is incompatible with '" + existingBenefice + "'.",
@@ -528,14 +528,7 @@ public class CharacterPlayer {
             throw new BeneficeAlreadyAddedException("Character already has benefice '" + benefice + "'!");
         }
         if (getFaction() != null) {
-            for (final RestrictedBenefice restrictedBenefice : getFaction().getRestrictedBenefices()) {
-                if (Objects.equals(restrictedBenefice.getBeneficeDefinition(), benefice.getBeneficeDefinition())) {
-                    if (benefice.getCost() > restrictedBenefice.getMaxValue()) {
-                        throw new InvalidBeneficeException("Faction '" + getFaction()
-                                + "' limits the cost of benefit to '" + restrictedBenefice.getMaxValue() + "'");
-                    }
-                }
-            }
+            checkBenefices(benefice);
         }
         benefices.add(benefice);
         getCharacterModificationHandler().launchBeneficesUpdatedListener(benefice, false);
@@ -1308,6 +1301,26 @@ public class CharacterPlayer {
         if (!Objects.equals(this.faction, faction)) {
             MachineLog.debug(this.getClass().getName(), "Faction set to '{}'.", faction);
             this.faction = faction;
+            for (final AvailableBenefice benefice : new ArrayList<>(getSelectedBenefices())) {
+                try {
+                    checkBenefices(benefice);
+                } catch (InvalidBeneficeException e) {
+                    //Remove invalid benefice.
+                    MachineLog.warning(this.getClass().getName(), "Removing benefice '" + benefice + "' do to restrictions to faction '" + faction + "'.");
+                    removeBenefice(benefice);
+                }
+            }
+        }
+    }
+
+    private void checkBenefices(AvailableBenefice benefice) throws InvalidBeneficeException {
+        for (final RestrictedBenefice restrictedBenefice : getFaction().getRestrictedBenefices()) {
+            if (Objects.equals(restrictedBenefice.getBeneficeDefinition(), benefice.getBeneficeDefinition())) {
+                if (benefice.getCost() > restrictedBenefice.getMaxValue()) {
+                    throw new InvalidBeneficeException("Faction '" + getFaction()
+                            + "' limits the cost of benefit to '" + restrictedBenefice.getMaxValue() + "'");
+                }
+            }
         }
     }
 

@@ -9,7 +9,7 @@
 [![GitHub commit activity](https://img.shields.io/github/commit-activity/y/softwaremagico/ThinkMachine)](https://github.com/softwaremagico/ThinkMachine)
 [![GitHub last commit](https://img.shields.io/github/last-commit/softwaremagico/ThinkMachine)](https://github.com/softwaremagico/ThinkMachine)
 
-This software generated in Java includes all rules needed for the creation of a character sheet for the role play game called **Fading Suns** (Revised Edition). Personally, I do not like the provided character sheet in the Player's Guide book, and I have designed a new one, based on some old files I have found ten years ago for previous versions of this game. Also, I have added some custom rules for random character generation that can be used for PC or NPC generation. This software only includes the rules, that can be included as a dependency on other softwares, but cannot be used in a desktop environment. If you are looking for a complete software to generata characters, take a look on [Think Machine: Advisor](https://github.com/softwaremagico/ThinkMachineAdvisor), a desktop application for character generation. 
+This software generated in Java includes all rules needed for the creation of a character sheet for the role play game called **Fading Suns** (Revised Edition). Personally, I do not like the provided character sheet in the Player's Guide book, and I have designed a new one based on some old sheets for previous versions of this game. Also, I have added some custom rules for random character generation that can be used for PC or NPC generation. This software only includes the rules, that can be included as a dependency on other softwares, but cannot be used in a desktop environment. If you are looking for a complete software to generata characters, take a look on [Think Machine: Advisor](https://github.com/softwaremagico/ThinkMachineAdvisor), a desktop application for character generation. 
 
 To get an idea of the final result, here you have a preview: 
 
@@ -129,4 +129,6 @@ Fonts used in this project: DejaVuSans, ArchitectsDaughter and Roman Antique.
 - 0.8.1 Android SDK compatibility.
 - 0.8.2 Cost changes interaction with UX. 
 
-0.9.0 Element descriptions
+0.9.0 Element descriptions and extra content.
+- 0.9.1 Equipment descriptions.
+- 0.9.2 Minor houses included.
