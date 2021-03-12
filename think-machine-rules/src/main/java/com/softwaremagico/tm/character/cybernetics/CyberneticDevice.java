@@ -1,34 +1,28 @@
 package com.softwaremagico.tm.character.cybernetics;
 
-import java.util.ArrayList;
-
 /*-
  * #%L
- * Think Machine (Core)
+ * Think Machine (Rules)
  * %%
- * Copyright (C) 2017 Softwaremagico
+ * Copyright (C) 2017 - 2021 Softwaremagico
  * %%
  * This software is designed by Jorge Hortelano Otero. Jorge Hortelano Otero
  * <softwaremagico@gmail.com> Valencia (Spain).
- *
+ *  
  * This program is free software; you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software
  * Foundation; either version 2 of the License, or (at your option) any later
  * version.
- *
+ *  
  * This program is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
  * details.
- *
+ *  
  * You should have received a copy of the GNU General Public License along with
  * this program; If not, see <http://www.gnu.org/licenses/gpl-3.0.html>.
  * #L%
  */
-
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
 
 import com.softwaremagico.tm.Element;
 import com.softwaremagico.tm.ElementClassification;
@@ -38,6 +32,8 @@ import com.softwaremagico.tm.character.equipment.weapons.Weapon;
 import com.softwaremagico.tm.character.values.Bonification;
 import com.softwaremagico.tm.character.values.StaticValue;
 import com.softwaremagico.tm.log.MachineLog;
+
+import java.util.*;
 
 public class CyberneticDevice extends Element<CyberneticDevice> implements IElementWithBonification, ICyberneticDevice {
     private final int points;
@@ -50,6 +46,23 @@ public class CyberneticDevice extends Element<CyberneticDevice> implements IElem
     private final Set<Bonification> bonifications;
     private final Set<StaticValue> staticValues;
     private final ElementClassification classification;
+
+    /**
+     * For creating empty elements.
+     */
+    public CyberneticDevice() {
+        super();
+        this.points = 0;
+        this.incompatibility = 0;
+        this.cost = 0;
+        this.techLevel = 0;
+        this.traits = new ArrayList<>();
+        this.requirement = null;
+        this.weapon = null;
+        this.bonifications = new HashSet<>();
+        this.staticValues = new HashSet<>();
+        this.classification = ElementClassification.OTHERS;
+    }
 
     public CyberneticDevice(String id, String name, String description, String language, String moduleName, int points,
                             int incompatibility, int cost, int techLevel, String requirement, Weapon weapon,
