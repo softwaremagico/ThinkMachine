@@ -177,68 +177,60 @@ public class CostCalculator {
         fireBirdsExpend = 0f;
 
         characterPlayer.getCharacterModificationHandler().addCharacteristicUpdatedListener(
-                (characteristic, previousRank, newRank, minimumRank) -> {
-                    updateCost(currentCharacteristicPoints, FreeStyleCharacterCreation.getCharacteristicsPoints(characterAge(characterPlayer)
+                (characteristic, previousRank, newRank, minimumRank) ->
+                        updateCost(currentCharacteristicPoints, FreeStyleCharacterCreation.getCharacteristicsPoints(characterAge(characterPlayer)
 ),
-                            currentCharacteristicExtraPoints, previousRank, newRank, minimumRank,
-                            value -> getCostCharacterModificationHandler().launchCharacteristicPointsUpdatedListeners(value),
-                            value -> getCostCharacterModificationHandler().launchCharacteristicExtraPointsUpdatedListeners(value));
-                });
-        characterPlayer.getCharacterModificationHandler().addSkillUpdateListener((skill, previousRank, newRank, minimumRank) -> {
-            updateCost(currentSkillsPoints, FreeStyleCharacterCreation.getSkillsPoints(characterAge(characterPlayer)
+                        currentCharacteristicExtraPoints, previousRank, newRank, minimumRank,
+                        value -> getCostCharacterModificationHandler().launchCharacteristicPointsUpdatedListeners(value),
+                        value -> getCostCharacterModificationHandler().launchCharacteristicExtraPointsUpdatedListeners(value)));
+        characterPlayer.getCharacterModificationHandler().addSkillUpdateListener((skill, previousRank, newRank, minimumRank) ->
+                updateCost(currentSkillsPoints, FreeStyleCharacterCreation.getSkillsPoints(characterAge(characterPlayer)
 ),
-                    currentSkillsExtraPoints, previousRank, newRank, minimumRank,
-                    value -> getCostCharacterModificationHandler().launchSkillsPointsUpdatedListeners(value),
-                    value -> getCostCharacterModificationHandler().launchSkillsExtraPointsUpdatedListeners(value));
-        });
-        characterPlayer.getCharacterModificationHandler().addBeneficesUpdatedListener((benefice, removed) -> {
-            updateCost(currentTraitsPoints, FreeStyleCharacterCreation.getTraitsPoints(characterAge(characterPlayer)
+                currentSkillsExtraPoints, previousRank, newRank, minimumRank,
+                value -> getCostCharacterModificationHandler().launchSkillsPointsUpdatedListeners(value),
+                value -> getCostCharacterModificationHandler().launchSkillsExtraPointsUpdatedListeners(value)));
+        characterPlayer.getCharacterModificationHandler().addBeneficesUpdatedListener((benefice, removed) ->
+                updateCost(currentTraitsPoints, FreeStyleCharacterCreation.getTraitsPoints(characterAge(characterPlayer)
 ),
-                    currentTraitsExtraPoints, removed ? benefice.getCost() : 0, removed ? 0 : benefice.getCost(), null,
-                    value -> getCostCharacterModificationHandler().launchTraitsPointsUpdatedListeners(value),
-                    value -> getCostCharacterModificationHandler().launchTraitsExtraPointsUpdatedListeners(value));
-        });
-        characterPlayer.getCharacterModificationHandler().addBlessingUpdatedListener((blessing, removed) -> {
-            updateCost(currentTraitsPoints, FreeStyleCharacterCreation.getTraitsPoints(characterAge(characterPlayer)
+                currentTraitsExtraPoints, removed ? benefice.getCost() : 0, removed ? 0 : benefice.getCost(), null,
+                value -> getCostCharacterModificationHandler().launchTraitsPointsUpdatedListeners(value),
+                value -> getCostCharacterModificationHandler().launchTraitsExtraPointsUpdatedListeners(value)));
+        characterPlayer.getCharacterModificationHandler().addBlessingUpdatedListener((blessing, removed) ->
+                updateCost(currentTraitsPoints, FreeStyleCharacterCreation.getTraitsPoints(characterAge(characterPlayer)
 ),
-                    currentTraitsExtraPoints, removed ? blessing.getCost() : 0, removed ? 0 : blessing.getCost(), null,
-                    value -> getCostCharacterModificationHandler().launchTraitsPointsUpdatedListeners(value),
-                    value -> getCostCharacterModificationHandler().launchTraitsExtraPointsUpdatedListeners(value));
-        });
+                currentTraitsExtraPoints, removed ? blessing.getCost() : 0, removed ? 0 : blessing.getCost(), null,
+                value -> getCostCharacterModificationHandler().launchTraitsPointsUpdatedListeners(value),
+                value -> getCostCharacterModificationHandler().launchTraitsExtraPointsUpdatedListeners(value)));
         characterPlayer.getCharacterModificationHandler().addOccultismLevelUpdatedListener(
-                (occultismType, previousPsyValue, newPsyValue, minimumPsyValue) -> {
-                    updateCost(new AtomicInteger(0), 0,
-                            currentOccultismLevelExtraPoints, previousPsyValue, newPsyValue, minimumPsyValue,
-                            null,
-                            value -> getCostCharacterModificationHandler().launchOccultismLevelExtraPointUpdatedListeners(value));
-                });
-        characterPlayer.getCharacterModificationHandler().addOccultismPowerUpdatedListener((power, removed) -> {
-            updateCost(new AtomicInteger(0), 0,
-                    currentOccultismPowersExtraPoints, removed ? power.getCost() : 0, removed ? 0 : power.getCost(), 0,
-                    null,
-                    value -> getCostCharacterModificationHandler().launchOccultismPowerExtraPointUpdatedListeners(value));
-        });
+                (occultismType, previousPsyValue, newPsyValue, minimumPsyValue) ->
+                        updateCost(new AtomicInteger(0), 0,
+                        currentOccultismLevelExtraPoints, previousPsyValue, newPsyValue, minimumPsyValue,
+                        null,
+                        value -> getCostCharacterModificationHandler().launchOccultismLevelExtraPointUpdatedListeners(value)));
+        characterPlayer.getCharacterModificationHandler().addOccultismPowerUpdatedListener((power, removed) ->
+                updateCost(new AtomicInteger(0), 0,
+                currentOccultismPowersExtraPoints, removed ? power.getCost() : 0, removed ? 0 : power.getCost(), 0,
+                null,
+                value -> getCostCharacterModificationHandler().launchOccultismPowerExtraPointUpdatedListeners(value)));
         characterPlayer.getCharacterModificationHandler().addWyrdUpdatedListener(wyrdValue -> {
             if (currentWyrdExtraPoints.get() != wyrdValue) {
                 currentWyrdExtraPoints.set(wyrdValue);
                 getCostCharacterModificationHandler().launchWyrdExtraPointUpdatedListeners(wyrdValue);
             }
         });
-        characterPlayer.getCharacterModificationHandler().addCyberneticDeviceUpdatedListener((device, removed) -> {
-            updateCost(new AtomicInteger(0), 0,
-                    currentCyberneticsExtraPoints, removed ? device.getPoints() : 0, removed ? 0 : device.getPoints(), 0,
-                    null,
-                    value -> getCostCharacterModificationHandler().launchCyberneticExtraPointsListeners(value));
-        });
+        characterPlayer.getCharacterModificationHandler().addCyberneticDeviceUpdatedListener((device, removed) ->
+                updateCost(new AtomicInteger(0), 0,
+                currentCyberneticsExtraPoints, removed ? device.getPoints() : 0, removed ? 0 : device.getPoints(), 0,
+                null,
+                value -> getCostCharacterModificationHandler().launchCyberneticExtraPointsListeners(value)));
         characterPlayer.getCharacterModificationHandler().addEquipmentUpdatedListener((equipment, removed) -> {
             if (equipment != null) {
                 fireBirdsExpend += (removed ? -equipment.getCost() : equipment.getCost());
                 getCostCharacterModificationHandler().launchFirebirdSpendListeners((removed ? -equipment.getCost() : equipment.getCost()));
             }
         });
-        characterPlayer.getCharacterModificationHandler().addFirebirdsUpdatedListener(initialMoney -> {
-            getCostCharacterModificationHandler().launchInitialFirebirdListeners(initialMoney);
-        });
+        characterPlayer.getCharacterModificationHandler().addFirebirdsUpdatedListener(initialMoney ->
+                getCostCharacterModificationHandler().launchInitialFirebirdListeners(initialMoney));
     }
 
     /**

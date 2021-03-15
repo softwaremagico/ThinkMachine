@@ -24,9 +24,6 @@ package com.softwaremagico.tm.character;
  * #L%
  */
 
-import java.util.HashSet;
-import java.util.Set;
-
 import com.softwaremagico.tm.character.benefices.AvailableBenefice;
 import com.softwaremagico.tm.character.blessings.Blessing;
 import com.softwaremagico.tm.character.characteristics.Characteristic;
@@ -35,6 +32,9 @@ import com.softwaremagico.tm.character.equipment.Equipment;
 import com.softwaremagico.tm.character.occultism.OccultismPower;
 import com.softwaremagico.tm.character.occultism.OccultismType;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
+
+import java.util.HashSet;
+import java.util.Set;
 
 public class CharacterModificationHandler {
     private Set<ISkillUpdated> skillUpdatedListeners;
@@ -105,44 +105,94 @@ public class CharacterModificationHandler {
         firebirdsUpdatedListeners = new HashSet<>();
     }
 
-    public void addSkillUpdateListener(ISkillUpdated listener) {
+    public ISkillUpdated addSkillUpdateListener(ISkillUpdated listener) {
         skillUpdatedListeners.add(listener);
+        return listener;
     }
 
-    public void addCharacteristicUpdatedListener(ICharacteristicUpdated listener) {
+    public void removeSkillUpdateListener(ISkillUpdated listener) {
+        skillUpdatedListeners.remove(listener);
+    }
+
+    public ICharacteristicUpdated addCharacteristicUpdatedListener(ICharacteristicUpdated listener) {
         characteristicUpdatedListeners.add(listener);
+        return listener;
     }
 
-    public void addBlessingUpdatedListener(IBlessingUpdated listener) {
+    public void removeCharacteristicUpdatedListener(ICharacteristicUpdated listener) {
+        characteristicUpdatedListeners.remove(listener);
+    }
+
+    public IBlessingUpdated addBlessingUpdatedListener(IBlessingUpdated listener) {
         blessingUpdatedListeners.add(listener);
+        return listener;
     }
 
-    public void addBeneficesUpdatedListener(IBeneficesUpdated listener) {
+    public void removeBlessingUpdatedListener(IBlessingUpdated listener) {
+        blessingUpdatedListeners.remove(listener);
+    }
+
+    public IBeneficesUpdated addBeneficesUpdatedListener(IBeneficesUpdated listener) {
         beneficesUpdatedListeners.add(listener);
+        return listener;
     }
 
-    public void addOccultismLevelUpdatedListener(IOccultismLevelUpdated listener) {
+    public void removeBeneficesUpdatedListener(IBeneficesUpdated listener) {
+        beneficesUpdatedListeners.remove(listener);
+    }
+
+    public IOccultismLevelUpdated addOccultismLevelUpdatedListener(IOccultismLevelUpdated listener) {
         occultismLevelUpdatedListeners.add(listener);
+        return listener;
     }
 
-    public void addOccultismPowerUpdatedListener(IOccultismPowerUpdated listener) {
+    public void removeOccultismLevelUpdatedListener(IOccultismLevelUpdated listener) {
+        occultismLevelUpdatedListeners.remove(listener);
+    }
+
+    public IOccultismPowerUpdated addOccultismPowerUpdatedListener(IOccultismPowerUpdated listener) {
         occultismPowerUpdatedListeners.add(listener);
+        return listener;
     }
 
-    public void addWyrdUpdatedListener(IWyrdUpdated listener) {
+    public void removeOccultismPowerUpdatedListener(IOccultismPowerUpdated listener) {
+        occultismPowerUpdatedListeners.remove(listener);
+    }
+
+    public IWyrdUpdated addWyrdUpdatedListener(IWyrdUpdated listener) {
         wyrdUpdatedListener.add(listener);
+        return listener;
     }
 
-    public void addCyberneticDeviceUpdatedListener(ICyberneticDeviceUpdated listener) {
+    public void removeWyrdUpdatedListener(IWyrdUpdated listener) {
+        wyrdUpdatedListener.remove(listener);
+    }
+
+    public ICyberneticDeviceUpdated addCyberneticDeviceUpdatedListener(ICyberneticDeviceUpdated listener) {
         cyberneticDeviceUpdatedListeners.add(listener);
+        return listener;
     }
 
-    public void addEquipmentUpdatedListener(IEquipmentUpdated listener) {
+    public void removeCyberneticDeviceUpdatedListener(ICyberneticDeviceUpdated listener) {
+        cyberneticDeviceUpdatedListeners.remove(listener);
+    }
+
+    public IEquipmentUpdated addEquipmentUpdatedListener(IEquipmentUpdated listener) {
         equipmentUpdatedListeners.add(listener);
+        return listener;
     }
 
-    public void addFirebirdsUpdatedListener(IInitialFirebirdsUpdated listener) {
+    public void removeEquipmentUpdatedListener(IEquipmentUpdated listener) {
+        equipmentUpdatedListeners.remove(listener);
+    }
+
+    public IInitialFirebirdsUpdated addFirebirdsUpdatedListener(IInitialFirebirdsUpdated listener) {
         firebirdsUpdatedListeners.add(listener);
+        return listener;
+    }
+
+    public void removeFirebirdsUpdatedListener(IInitialFirebirdsUpdated listener) {
+        firebirdsUpdatedListeners.remove(listener);
     }
 
     public void launchSkillUpdatedListener(AvailableSkill skill, int previousRank, int newRank, int minimumRank) {
