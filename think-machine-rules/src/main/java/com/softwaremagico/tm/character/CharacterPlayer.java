@@ -627,8 +627,29 @@ public class CharacterPlayer {
         return false;
     }
 
+    public void setCybernetics(Collection<CyberneticDevice> cyberneticDevices) throws TooManyCyberneticDevicesException,
+            RequiredCyberneticDevicesException {
+        while (cyberneticDevices.remove(null)) {
+            ;
+        }
+        //Get all CyberneticDevice that will be removed.
+        final Set<CyberneticDevice> cyberneticDevicesToRemove = getCybernetics().stream().map(SelectedCyberneticDevice::getCyberneticDevice)
+                .collect(Collectors.toSet());
+        cyberneticDevicesToRemove.removeAll(cyberneticDevices);
+        cyberneticDevicesToRemove.forEach(this::removeCybernetics);
+
+        for (final CyberneticDevice cyberneticDevice : cyberneticDevices) {
+            if (!hasCyberneticDevice(cyberneticDevice)) {
+                addCybernetics(cyberneticDevice);
+            }
+        }
+    }
+
     public SelectedCyberneticDevice addCybernetics(CyberneticDevice cyberneticDevice)
             throws TooManyCyberneticDevicesException, RequiredCyberneticDevicesException {
+        if (hasCyberneticDevice(cyberneticDevice)) {
+            return null;
+        }
         if (getCyberneticsIncompatibility() + cyberneticDevice.getIncompatibility() > Cybernetics
                 .getMaxCyberneticIncompatibility(this)) {
             throw new TooManyCyberneticDevicesException(
@@ -1246,7 +1267,7 @@ public class CharacterPlayer {
             try {
                 if (weapon != null &&
                         !getAllBenefices().contains(AvailableBeneficeFactory.getInstance().getElement(weapon.getId(),
-                        getLanguage(), getModuleName()))) {
+                                getLanguage(), getModuleName()))) {
                     total += weapon.getCost();
                 }
             } catch (InvalidXmlElementException ibe) {
