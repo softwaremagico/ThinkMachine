@@ -619,18 +619,22 @@ public class CharacterPlayer {
     }
 
     public boolean hasCyberneticDevice(CyberneticDevice cyberneticDevice) {
-        for (final SelectedCyberneticDevice device : getCybernetics()) {
-            if (Objects.equals(device.getCyberneticDevice(), cyberneticDevice)) {
-                return true;
-            }
-        }
-        return false;
+        return getCybernetics().stream().anyMatch(c -> Objects.equals(c.getCyberneticDevice(), cyberneticDevice));
     }
 
     public void setCybernetics(Collection<CyberneticDevice> cyberneticDevices) throws TooManyCyberneticDevicesException,
             RequiredCyberneticDevicesException {
         while (cyberneticDevices.remove(null)) {
             ;
+        }
+        //Check if possible
+        if (getCyberneticsIncompatibility(cyberneticDevices) > Cybernetics
+                .getMaxCyberneticIncompatibility(this)) {
+            throw new TooManyCyberneticDevicesException(
+                    "Collection of cybernetic devices cannot be set. Max incompatibility allowed '"
+                            + Cybernetics.getMaxCyberneticIncompatibility(this) + "', total device incompatibility '"
+                            + getCyberneticsIncompatibility(cyberneticDevices)
+                            + "''.");
         }
         //Get all CyberneticDevice that will be removed.
         final Set<CyberneticDevice> cyberneticDevicesToRemove = getCybernetics().stream().map(SelectedCyberneticDevice::getCyberneticDevice)
@@ -694,10 +698,22 @@ public class CharacterPlayer {
         return incompatibility;
     }
 
+    public int getCyberneticsIncompatibility(Collection<CyberneticDevice> cyberneticDevices) {
+        int incompatibility = 0;
+        for (final CyberneticDevice device : cyberneticDevices) {
+            incompatibility += device.getIncompatibility();
+        }
+        return incompatibility;
+    }
+
     public void addWeapon(Weapon weapon) {
         if (weapon.getId() != Element.DEFAULT_NULL_ID && weapons.addElement(weapon)) {
             getCharacterModificationHandler().launchEquipmentUpdatedListener(weapon, false);
         }
+    }
+
+    public boolean hasWeapon(Weapon weapon) {
+        return weapons.getElements().stream().anyMatch(w -> Objects.equals(w, weapon));
     }
 
     public void removeWeapon(Weapon weapon) {
