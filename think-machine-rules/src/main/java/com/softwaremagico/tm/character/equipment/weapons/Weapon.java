@@ -81,7 +81,8 @@ public class Weapon extends Equipment<Weapon> {
 
 
     public boolean isMeleeWeapon() {
-        return getType() == WeaponType.MELEE || getType() == WeaponType.MELEE_ARTIFACT || getType() == WeaponType.MELEE_SHIELD;
+        return getType() == WeaponType.MELEE || getType() == WeaponType.MELEE_ARTIFACT || getType() == WeaponType.MELEE_SHIELD ||
+                (getWeaponDamages().stream().findFirst().isPresent() && getWeaponDamages().stream().findFirst().get().getRange() == null);
     }
 
     public boolean isRangedWeapon() {
