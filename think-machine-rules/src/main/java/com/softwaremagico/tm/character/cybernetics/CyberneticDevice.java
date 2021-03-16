@@ -28,6 +28,7 @@ import com.softwaremagico.tm.Element;
 import com.softwaremagico.tm.ElementClassification;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.IElementWithBonification;
+import com.softwaremagico.tm.character.equipment.IElementWithTechnologyLevel;
 import com.softwaremagico.tm.character.equipment.weapons.Weapon;
 import com.softwaremagico.tm.character.values.Bonification;
 import com.softwaremagico.tm.character.values.StaticValue;
@@ -35,7 +36,7 @@ import com.softwaremagico.tm.log.MachineLog;
 
 import java.util.*;
 
-public class CyberneticDevice extends Element<CyberneticDevice> implements IElementWithBonification, ICyberneticDevice {
+public class CyberneticDevice extends Element<CyberneticDevice> implements IElementWithBonification, ICyberneticDevice, IElementWithTechnologyLevel {
     private final int points;
     private final int incompatibility;
     private final int cost;
