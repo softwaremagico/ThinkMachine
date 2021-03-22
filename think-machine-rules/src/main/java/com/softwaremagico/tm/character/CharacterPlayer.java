@@ -353,9 +353,7 @@ public class CharacterPlayer {
     }
 
     public void setBlessings(Collection<Blessing> blessings) throws TooManyBlessingsException {
-        while (blessings.remove(null)) {
-            ;
-        }
+        blessings.removeIf(Objects::isNull);
         //Get all blessings that will be removed.
         final Set<Blessing> blessingsToRemove = new HashSet<>(this.blessings);
         blessingsToRemove.removeAll(blessings);
@@ -470,9 +468,7 @@ public class CharacterPlayer {
     }
 
     public void setBenefices(Collection<AvailableBenefice> benefices) throws InvalidBeneficeException {
-        while (benefices.remove(null)) {
-            ;
-        }
+        benefices.removeIf(Objects::isNull);
         //Get all benefices that will be removed.
         final Set<AvailableBenefice> beneficesToRemove = new HashSet<>(this.benefices);
         beneficesToRemove.removeAll(benefices);
@@ -624,9 +620,7 @@ public class CharacterPlayer {
 
     public void setCybernetics(Collection<CyberneticDevice> cyberneticDevices) throws TooManyCyberneticDevicesException,
             RequiredCyberneticDevicesException {
-        while (cyberneticDevices.remove(null)) {
-            ;
-        }
+        cyberneticDevices.removeIf(Objects::isNull);
         //Check if possible
         if (getCyberneticsIncompatibility(cyberneticDevices) > Cybernetics
                 .getMaxCyberneticIncompatibility(this)) {
@@ -707,7 +701,7 @@ public class CharacterPlayer {
     }
 
     public void addWeapon(Weapon weapon) {
-        if (weapon.getId() != Element.DEFAULT_NULL_ID && weapons.addElement(weapon)) {
+        if (!weapon.getId().equals(Element.DEFAULT_NULL_ID) && weapons.addElement(weapon)) {
             getCharacterModificationHandler().launchEquipmentUpdatedListener(weapon, false);
         }
     }
@@ -1089,7 +1083,7 @@ public class CharacterPlayer {
                     ((Characteristic) element).getCharacteristicDefinition().getCharacteristicName())
                     + getExperienceIncrease(element).size();
         } else if (element instanceof OccultismType) {
-            previousRanks = getBasicPsiqueLevel((OccultismType) element)
+            previousRanks = getBasicOccultismLevel((OccultismType) element)
                     + getExperienceIncrease(element).size();
         } else if (element instanceof Wyrd) {
             previousRanks = getBasicWyrdValue() + getExtraWyrd();
@@ -1463,7 +1457,7 @@ public class CharacterPlayer {
         getCharacterModificationHandler().launchWyrdUpdatedListener(extraWyrd);
     }
 
-    public int getBasicPsiqueLevel(OccultismType occultismType) {
+    public int getBasicOccultismLevel(OccultismType occultismType) {
         if (getRace() != null) {
             if (occultismType.getId().equals(OccultismTypeFactory.PSI_TAG)) {
                 return Math.max(getRace().getPsi(), getOccultism().getPsiqueLevel(occultismType));
@@ -1475,11 +1469,11 @@ public class CharacterPlayer {
         return getOccultism().getPsiqueLevel(occultismType);
     }
 
-    public int getPsiqueLevel(OccultismType occultismType) {
-        return getBasicPsiqueLevel(occultismType) + getExperiencePsiLevel(occultismType).size();
+    public int getOccultismLevel(OccultismType occultismType) {
+        return getBasicOccultismLevel(occultismType) + getExperiencePsiLevel(occultismType).size();
     }
 
-    public void setPsiqueLevel(OccultismType occultismType, int psyValue) throws InvalidPsiqueLevelException {
+    public void setOccultismLevel(OccultismType occultismType, int psyValue) throws InvalidPsiqueLevelException {
         int defaultValue = 0;
         if (getRace() != null) {
             if (Objects.equals(occultismType.getId(), OccultismTypeFactory.PSI_TAG) ||
@@ -1487,11 +1481,11 @@ public class CharacterPlayer {
                 defaultValue = 1;
             }
         }
+        getOccultism().setPsiqueLevel(occultismType, psyValue, getLanguage(), getModuleName(), getFaction());
         if (getOccultism().getPsiqueLevel(occultismType) != psyValue) {
             getCharacterModificationHandler().launchOccultismLevelUpdatedListener(occultismType,
                     getOccultism().getPsiqueLevel(occultismType), psyValue, defaultValue);
         }
-        getOccultism().setPsiqueLevel(occultismType, psyValue, getLanguage(), getModuleName(), getFaction());
     }
 
     public int getDarkSideLevel(OccultismType occultismType) {

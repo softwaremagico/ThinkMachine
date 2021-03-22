@@ -73,7 +73,7 @@ public class OccultismTests {
 			TooManyCyberneticDevicesException, RequiredCyberneticDevicesException, BlessingAlreadyAddedException,
 			BeneficeAlreadyAddedException {
 		final CharacterPlayer player = CustomCharacter.create(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
-		player.setPsiqueLevel(OccultismTypeFactory.getPsi(player.getLanguage(), player.getModuleName()), 6);
+		player.setOccultismLevel(OccultismTypeFactory.getPsi(player.getLanguage(), player.getModuleName()), 6);
 		player.addOccultismPower(OccultismPathFactory.getInstance()
 				.getElement("farHand", player.getLanguage(), player.getModuleName()).getOccultismPowers()
 				.get("farWall"));
@@ -84,7 +84,7 @@ public class OccultismTests {
 			TooManyCyberneticDevicesException, RequiredCyberneticDevicesException, BlessingAlreadyAddedException,
 			BeneficeAlreadyAddedException {
 		final CharacterPlayer player = CustomCharacter.create(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
-		player.setPsiqueLevel(OccultismTypeFactory.getTheurgy(player.getLanguage(), player.getModuleName()), 5);
+		player.setOccultismLevel(OccultismTypeFactory.getTheurgy(player.getLanguage(), player.getModuleName()), 5);
 		player.addOccultismPower(OccultismPathFactory.getInstance()
 				.getElement("orthodoxRituals", player.getLanguage(), player.getModuleName()).getOccultismPowers()
 				.get("consecration"));
@@ -95,7 +95,7 @@ public class OccultismTests {
 		final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
 		player.setRace(RaceFactory.getInstance().getElement("vorox", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
 		player.setFaction(FactionsFactory.getInstance().getElement("vorox", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
-		player.setPsiqueLevel(OccultismTypeFactory.getPsi(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER), 1);
+		player.setOccultismLevel(OccultismTypeFactory.getPsi(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER), 1);
 	}
 
 }

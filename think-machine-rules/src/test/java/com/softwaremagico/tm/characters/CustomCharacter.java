@@ -93,7 +93,7 @@ public class CustomCharacter {
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("lore", "beastsLore", language, moduleName),
 				2);
 
-		player.setPsiqueLevel(OccultismTypeFactory.getPsi(language, moduleName), 4);
+		player.setOccultismLevel(OccultismTypeFactory.getPsi(language, moduleName), 4);
 		player.setDarkSideLevel(OccultismTypeFactory.getPsi(language, moduleName), 1);
 
 		player.addOccultismPower(

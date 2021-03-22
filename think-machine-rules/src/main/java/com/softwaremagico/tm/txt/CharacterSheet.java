@@ -281,17 +281,17 @@ public class CharacterSheet {
     }
 
     private void setOccultism(StringBuilder stringBuilder) {
-        if (getCharacterPlayer().getPsiqueLevel(OccultismTypeFactory.getTheurgy(getCharacterPlayer().getLanguage(), getCharacterPlayer().getModuleName())) > 0
-                || getCharacterPlayer()
-                .getPsiqueLevel(OccultismTypeFactory.getPsi(getCharacterPlayer().getLanguage(), getCharacterPlayer().getModuleName())) > 0) {
+        if (getCharacterPlayer().getOccultismLevel(OccultismTypeFactory.getTheurgy(getCharacterPlayer().getLanguage(),
+                getCharacterPlayer().getModuleName())) > 0 || getCharacterPlayer()
+                .getOccultismLevel(OccultismTypeFactory.getPsi(getCharacterPlayer().getLanguage(), getCharacterPlayer().getModuleName())) > 0) {
             stringBuilder.append(getTranslator().getTranslatedText("occultism") + ": ");
             String separator = "";
             OccultismTypeFactory.getInstance();
             if (getCharacterPlayer()
-                    .getPsiqueLevel(OccultismTypeFactory.getPsi(getCharacterPlayer().getLanguage(), getCharacterPlayer().getModuleName())) > 0) {
+                    .getOccultismLevel(OccultismTypeFactory.getPsi(getCharacterPlayer().getLanguage(), getCharacterPlayer().getModuleName())) > 0) {
                 stringBuilder.append(getTranslator().getTranslatedText("psi") + " ");
                 stringBuilder.append(getCharacterPlayer()
-                        .getPsiqueLevel(OccultismTypeFactory.getPsi(getCharacterPlayer().getLanguage(), getCharacterPlayer().getModuleName())));
+                        .getOccultismLevel(OccultismTypeFactory.getPsi(getCharacterPlayer().getLanguage(), getCharacterPlayer().getModuleName())));
                 stringBuilder.append(ELEMENT_SEPARATOR);
                 stringBuilder.append(getTranslator().getTranslatedText("urge") + " ");
                 stringBuilder.append(getCharacterPlayer()
@@ -300,11 +300,11 @@ public class CharacterSheet {
             }
             OccultismTypeFactory.getInstance();
             if (getCharacterPlayer()
-                    .getPsiqueLevel(OccultismTypeFactory.getTheurgy(getCharacterPlayer().getLanguage(), getCharacterPlayer().getModuleName())) > 0) {
+                    .getOccultismLevel(OccultismTypeFactory.getTheurgy(getCharacterPlayer().getLanguage(), getCharacterPlayer().getModuleName())) > 0) {
                 stringBuilder.append(separator);
                 stringBuilder.append(getTranslator().getTranslatedText("theurgy") + " ");
                 stringBuilder.append(getCharacterPlayer()
-                        .getPsiqueLevel(OccultismTypeFactory.getTheurgy(getCharacterPlayer().getLanguage(), getCharacterPlayer().getModuleName())));
+                        .getOccultismLevel(OccultismTypeFactory.getTheurgy(getCharacterPlayer().getLanguage(), getCharacterPlayer().getModuleName())));
                 stringBuilder.append(ELEMENT_SEPARATOR);
                 stringBuilder.append(getTranslator().getTranslatedText("hubris") + " ");
                 stringBuilder.append(getCharacterPlayer()

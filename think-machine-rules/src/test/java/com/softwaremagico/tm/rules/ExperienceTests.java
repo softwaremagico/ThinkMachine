@@ -185,18 +185,18 @@ public class ExperienceTests {
 		final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
 		player.setFaction(
 				FactionsFactory.getInstance().getElement("hazat", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
-		player.setPsiqueLevel(OccultismTypeFactory.getPsi(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER), 4);
+		player.setOccultismLevel(OccultismTypeFactory.getPsi(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER), 4);
 
 		player.setExperienceEarned(33);
 		player.setExperiencePsiLevel(OccultismTypeFactory.getPsi(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER), 2);
 		Assert.assertEquals(
-				(int) player.getPsiqueLevel(OccultismTypeFactory.getPsi(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)),
+				(int) player.getOccultismLevel(OccultismTypeFactory.getPsi(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)),
 				6);
 		Assert.assertEquals(player.getExperienceExpended(), (15 + 18));
 
 		player.removeExperiencePsiLevel(OccultismTypeFactory.getPsi(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER), 6);
 		Assert.assertEquals(
-				(int) player.getPsiqueLevel(OccultismTypeFactory.getPsi(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)),
+				(int) player.getOccultismLevel(OccultismTypeFactory.getPsi(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)),
 				5);
 		Assert.assertEquals(player.getExperienceExpended(), (15));
 	}
@@ -207,7 +207,7 @@ public class ExperienceTests {
 		final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
 		player.setFaction(
 				FactionsFactory.getInstance().getElement("hazat", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
-		player.setPsiqueLevel(OccultismTypeFactory.getPsi(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER), 4);
+		player.setOccultismLevel(OccultismTypeFactory.getPsi(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER), 4);
 
 		player.setExperienceEarned(6);
 		player.setExperienceInOccultism(
@@ -229,7 +229,7 @@ public class ExperienceTests {
 		final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
 		player.setFaction(
 				FactionsFactory.getInstance().getElement("hazat", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
-		player.setPsiqueLevel(OccultismTypeFactory.getPsi(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER), 4);
+		player.setOccultismLevel(OccultismTypeFactory.getPsi(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER), 4);
 
 		player.setExperienceEarned(6);
 		player.setExperienceInOccultism(
@@ -254,7 +254,7 @@ public class ExperienceTests {
 		final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
 		player.setFaction(
 				FactionsFactory.getInstance().getElement("hazat", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
-		player.setPsiqueLevel(OccultismTypeFactory.getPsi(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER), 4);
+		player.setOccultismLevel(OccultismTypeFactory.getPsi(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER), 4);
 
 		player.setExperienceEarned(6);
 		player.setExperienceInOccultism(

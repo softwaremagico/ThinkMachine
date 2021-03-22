@@ -161,7 +161,7 @@ public class CharacterSheetCreationTest {
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("lore", "beastsLore", LANGUAGE,
 				PathManager.DEFAULT_MODULE_FOLDER), 2);
 
-		player.setPsiqueLevel(OccultismTypeFactory.getPsi(player.getLanguage(), player.getModuleName()), 4);
+		player.setOccultismLevel(OccultismTypeFactory.getPsi(player.getLanguage(), player.getModuleName()), 4);
 		player.setDarkSideLevel(OccultismTypeFactory.getPsi(player.getLanguage(), player.getModuleName()), 1);
 
 		player.addOccultismPower(

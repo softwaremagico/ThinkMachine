@@ -24,17 +24,13 @@ package com.softwaremagico.tm.character.occultism;
  * #L%
  */
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Objects;
-
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.benefices.AvailableBenefice;
 import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
 import com.softwaremagico.tm.character.factions.Faction;
+
+import java.util.*;
+import java.util.Map.Entry;
 
 public class Occultism {
 	private Map<String, Integer> psiqueValue;
@@ -78,12 +74,12 @@ public class Occultism {
 		try {
 			noOccult = AvailableBeneficeFactory.getInstance().getElement("noOccult", language, moduleName);
 		} catch (InvalidXmlElementException e) {
-			// Module without noocc benefice.
+			// Module without noOccult benefice.
 		}
 		if (psyValue != 0 && (faction == null || faction.getBenefices().contains(noOccult))) {
 			throw new InvalidPsiqueLevelException("Faction '" + faction + "' cannot have psique levels.");
 		}
-		psiqueValue.put(occultismType.getId(), Integer.valueOf(psyValue));
+		psiqueValue.put(occultismType.getId(), psyValue);
 	}
 
 	public int getDarkSideLevel(OccultismType occultismType) {

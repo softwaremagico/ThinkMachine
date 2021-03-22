@@ -57,7 +57,7 @@ public class OccultismTable extends VerticalTable {
 					Element.ALIGN_LEFT));
 
 			if (characterPlayer != null) {
-				addCell(createValueLine("" + characterPlayer.getPsiqueLevel(occultismType),
+				addCell(createValueLine("" + characterPlayer.getOccultismLevel(occultismType),
 						FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE));
 			} else {
 				addCell(createValueLine(" ", FadingSunsTheme.CHARACTER_SMALL_TABLE_LINE_FONT_SIZE));

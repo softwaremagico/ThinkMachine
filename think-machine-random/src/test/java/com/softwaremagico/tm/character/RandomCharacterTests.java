@@ -278,7 +278,7 @@ public class RandomCharacterTests {
                 .getElement("noOccult", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)));
         for (final OccultismType occultismType : OccultismTypeFactory.getInstance().getElements(LANGUAGE,
                 PathManager.DEFAULT_MODULE_FOLDER)) {
-            Assert.assertEquals(characterPlayer.getPsiqueLevel(occultismType), 0);
+            Assert.assertEquals(characterPlayer.getOccultismLevel(occultismType), 0);
         }
         Assert.assertEquals(characterPlayer.getTotalSelectedPowers(), 0);
     }

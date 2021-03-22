@@ -150,10 +150,10 @@ public class CostCalculator {
             } catch (InvalidXmlElementException e) {
                 MachineLog.errorMessage(this.getClass().getName(), e);
             }
-            currentOccultismLevelExtraPoints.set(characterPlayer.getBasicPsiqueLevel(
+            currentOccultismLevelExtraPoints.set(characterPlayer.getBasicOccultismLevel(
                     OccultismTypeFactory.getPsi(characterPlayer.getLanguage(), characterPlayer.getModuleName()))
                     - (characterPlayer.getRace() != null ? characterPlayer.getRace().getPsi() : 0) +
-                    characterPlayer.getBasicPsiqueLevel(
+                    characterPlayer.getBasicOccultismLevel(
                             OccultismTypeFactory.getTheurgy(characterPlayer.getLanguage(), characterPlayer.getModuleName()))
                     - (characterPlayer.getRace() != null ? characterPlayer.getRace().getTheurgy() : 0));
             currentOccultismPowersExtraPoints.set(getPsiPathsCosts(characterPlayer));
@@ -451,12 +451,12 @@ public class CostCalculator {
         int cost = getPsiPathsCosts(characterPlayer);
         cost += characterPlayer.getExtraWyrd() * EXTRA_WYRD_COST;
         cost += Math.max(0,
-                (characterPlayer.getBasicPsiqueLevel(
+                (characterPlayer.getBasicOccultismLevel(
                         OccultismTypeFactory.getPsi(characterPlayer.getLanguage(), characterPlayer.getModuleName()))
                         - (characterPlayer.getRace() != null ? characterPlayer.getRace().getPsi() : 0))
                         * PSIQUE_LEVEL_COST);
         cost += Math.max(0,
-                (characterPlayer.getBasicPsiqueLevel(
+                (characterPlayer.getBasicOccultismLevel(
                         OccultismTypeFactory.getTheurgy(characterPlayer.getLanguage(), characterPlayer.getModuleName()))
                         - (characterPlayer.getRace() != null ? characterPlayer.getRace().getTheurgy() : 0))
                         * PSIQUE_LEVEL_COST);

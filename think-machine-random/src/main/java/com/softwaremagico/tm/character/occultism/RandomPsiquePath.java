@@ -96,7 +96,7 @@ public class RandomPsiquePath extends RandomSelector<OccultismPath> {
         try {
             for (final OccultismType occultismType : OccultismTypeFactory.getInstance().getElements(
                     getCharacterPlayer().getLanguage(), getCharacterPlayer().getModuleName())) {
-                if (getCharacterPlayer().getPsiqueLevel(occultismType) == 0) {
+                if (getCharacterPlayer().getOccultismLevel(occultismType) == 0) {
                     if (Objects.equals(element.getOccultismType(), occultismType)) {
                         throw new InvalidRandomElementSelectedException(
                                 "Character must have a minimum psi level for path '" + element + "'.");
@@ -123,8 +123,8 @@ public class RandomPsiquePath extends RandomSelector<OccultismPath> {
         if (maxLevelSelected > psiqueLevelSelector.maximum()) {
             maxLevelSelected = psiqueLevelSelector.maximum();
         }
-        if (maxLevelSelected > getCharacterPlayer().getPsiqueLevel(path.getOccultismType())) {
-            maxLevelSelected = getCharacterPlayer().getPsiqueLevel(path.getOccultismType());
+        if (maxLevelSelected > getCharacterPlayer().getOccultismLevel(path.getOccultismType())) {
+            maxLevelSelected = getCharacterPlayer().getOccultismLevel(path.getOccultismType());
         }
         return maxLevelSelected;
     }

@@ -57,7 +57,7 @@ public class RandomPsique extends RandomSelector<OccultismType> {
 		final int level = assignLevelOfPsique(selectedOccultismType);
 		RandomGenerationLog.info(this.getClass().getName(), "Assinged psique level of '{}'.", level);
 		// Assign to the character.
-		getCharacterPlayer().setPsiqueLevel(selectedOccultismType, level);
+		getCharacterPlayer().setOccultismLevel(selectedOccultismType, level);
 	}
 
 	@Override

@@ -204,9 +204,9 @@ public class ThreatLevel {
             }
         }
         threatLevel += characterPlayer.getExtraWyrd() * EXTRA_WYRD_THREAT_MULTIPLICATOR;
-        threatLevel += characterPlayer.getPsiqueLevel(OccultismTypeFactory.getPsi(characterPlayer.getLanguage(), characterPlayer.getModuleName()))
+        threatLevel += characterPlayer.getOccultismLevel(OccultismTypeFactory.getPsi(characterPlayer.getLanguage(), characterPlayer.getModuleName()))
                 * PSI_LEVEL_THREAT_MULTIPLICATOR;
-        threatLevel += characterPlayer.getPsiqueLevel(OccultismTypeFactory.getTheurgy(characterPlayer.getLanguage(), characterPlayer.getModuleName()))
+        threatLevel += characterPlayer.getOccultismLevel(OccultismTypeFactory.getTheurgy(characterPlayer.getLanguage(), characterPlayer.getModuleName()))
                 * PSI_LEVEL_THREAT_MULTIPLICATOR;
         occultismThreatLevel += threatLevel;
         return threatLevel;

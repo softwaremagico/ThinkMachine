@@ -80,7 +80,7 @@ public class OccultismTable extends LateralHeaderPdfPTable {
 				table.addCell(createRectangle());
 				table.addCell(createRectangle());
 			} else {
-				table.addCell(createRectangle(characterPlayer.getPsiqueLevel(occulstimType)));
+				table.addCell(createRectangle(characterPlayer.getOccultismLevel(occulstimType)));
 				table.addCell(createRectangle(characterPlayer.getDarkSideLevel(occulstimType)));
 			}
 

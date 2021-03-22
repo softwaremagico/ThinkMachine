@@ -24,12 +24,8 @@ package com.softwaremagico.tm.characters;
  * #L%
  */
 
-import com.softwaremagico.tm.CacheHandler;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.character.Gender;
-import com.softwaremagico.tm.character.Name;
-import com.softwaremagico.tm.character.Surname;
 import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
 import com.softwaremagico.tm.character.benefices.BeneficeAlreadyAddedException;
 import com.softwaremagico.tm.character.blessings.BlessingAlreadyAddedException;
@@ -195,55 +191,55 @@ public class CostCalculatorTests {
 
         CostCalculator costCalculator = new CostCalculator(player);
 
-        player.setPsiqueLevel(OccultismTypeFactory.getPsi(LANGUAGE, MODULE), 4);
+        player.setOccultismLevel(OccultismTypeFactory.getPsi(LANGUAGE, MODULE), 4);
         Assert.assertEquals(costCalculator.getCurrentOccultismLevelExtraPoints(), 3);
 
-        player.setPsiqueLevel(OccultismTypeFactory.getPsi(LANGUAGE, MODULE), 0);
+        player.setOccultismLevel(OccultismTypeFactory.getPsi(LANGUAGE, MODULE), 0);
         Assert.assertEquals(costCalculator.getCurrentOccultismLevelExtraPoints(), 0);
 
-        player.setPsiqueLevel(OccultismTypeFactory.getPsi(LANGUAGE, MODULE), 3);
+        player.setOccultismLevel(OccultismTypeFactory.getPsi(LANGUAGE, MODULE), 3);
         Assert.assertEquals(costCalculator.getCurrentOccultismLevelExtraPoints(), 2);
 
-        player.setPsiqueLevel(OccultismTypeFactory.getPsi(LANGUAGE, MODULE), 4);
+        player.setOccultismLevel(OccultismTypeFactory.getPsi(LANGUAGE, MODULE), 4);
         Assert.assertEquals(costCalculator.getCurrentOccultismLevelExtraPoints(), 3);
 
-        player.setPsiqueLevel(OccultismTypeFactory.getPsi(LANGUAGE, MODULE), 1);
+        player.setOccultismLevel(OccultismTypeFactory.getPsi(LANGUAGE, MODULE), 1);
         Assert.assertEquals(costCalculator.getCurrentOccultismLevelExtraPoints(), 0);
 
-        player.setPsiqueLevel(OccultismTypeFactory.getPsi(LANGUAGE, MODULE), 4);
+        player.setOccultismLevel(OccultismTypeFactory.getPsi(LANGUAGE, MODULE), 4);
         Assert.assertEquals(costCalculator.getCurrentOccultismLevelExtraPoints(), 3);
 
-        player.setPsiqueLevel(OccultismTypeFactory.getPsi(LANGUAGE, MODULE), 0);
+        player.setOccultismLevel(OccultismTypeFactory.getPsi(LANGUAGE, MODULE), 0);
         Assert.assertEquals(costCalculator.getCurrentOccultismLevelExtraPoints(), 0);
 
-        player.setPsiqueLevel(OccultismTypeFactory.getPsi(LANGUAGE, MODULE), 1);
+        player.setOccultismLevel(OccultismTypeFactory.getPsi(LANGUAGE, MODULE), 1);
         Assert.assertEquals(costCalculator.getCurrentOccultismLevelExtraPoints(), 0);
 
-        player.setPsiqueLevel(OccultismTypeFactory.getPsi(LANGUAGE, MODULE), 1);
+        player.setOccultismLevel(OccultismTypeFactory.getPsi(LANGUAGE, MODULE), 1);
         Assert.assertEquals(costCalculator.getCurrentOccultismLevelExtraPoints(), 0);
 
-        player.setPsiqueLevel(OccultismTypeFactory.getPsi(LANGUAGE, MODULE), 0);
+        player.setOccultismLevel(OccultismTypeFactory.getPsi(LANGUAGE, MODULE), 0);
         Assert.assertEquals(costCalculator.getCurrentOccultismLevelExtraPoints(), 0);
 
-        player.setPsiqueLevel(OccultismTypeFactory.getPsi(LANGUAGE, MODULE), 6);
+        player.setOccultismLevel(OccultismTypeFactory.getPsi(LANGUAGE, MODULE), 6);
         Assert.assertEquals(costCalculator.getCurrentOccultismLevelExtraPoints(), 5);
 
-        player.setPsiqueLevel(OccultismTypeFactory.getPsi(LANGUAGE, MODULE), 5);
+        player.setOccultismLevel(OccultismTypeFactory.getPsi(LANGUAGE, MODULE), 5);
         Assert.assertEquals(costCalculator.getCurrentOccultismLevelExtraPoints(), 4);
 
-        player.setPsiqueLevel(OccultismTypeFactory.getPsi(LANGUAGE, MODULE), 6);
+        player.setOccultismLevel(OccultismTypeFactory.getPsi(LANGUAGE, MODULE), 6);
         Assert.assertEquals(costCalculator.getCurrentOccultismLevelExtraPoints(), 5);
 
-        player.setPsiqueLevel(OccultismTypeFactory.getPsi(LANGUAGE, MODULE), 7);
+        player.setOccultismLevel(OccultismTypeFactory.getPsi(LANGUAGE, MODULE), 7);
         Assert.assertEquals(costCalculator.getCurrentOccultismLevelExtraPoints(), 6);
 
-        player.setPsiqueLevel(OccultismTypeFactory.getPsi(LANGUAGE, MODULE), 1);
+        player.setOccultismLevel(OccultismTypeFactory.getPsi(LANGUAGE, MODULE), 1);
         Assert.assertEquals(costCalculator.getCurrentOccultismLevelExtraPoints(), 0);
 
-        player.setPsiqueLevel(OccultismTypeFactory.getPsi(LANGUAGE, MODULE), 0);
+        player.setOccultismLevel(OccultismTypeFactory.getPsi(LANGUAGE, MODULE), 0);
         Assert.assertEquals(costCalculator.getCurrentOccultismLevelExtraPoints(), 0);
 
-        player.setPsiqueLevel(OccultismTypeFactory.getPsi(LANGUAGE, MODULE), 6);
+        player.setOccultismLevel(OccultismTypeFactory.getPsi(LANGUAGE, MODULE), 6);
         Assert.assertEquals(costCalculator.getCurrentOccultismLevelExtraPoints(), 5);
     }
 
@@ -256,7 +252,7 @@ public class CostCalculatorTests {
 
         CostCalculator costCalculator = new CostCalculator(player);
 
-        player.setPsiqueLevel(OccultismTypeFactory.getPsi(LANGUAGE, MODULE), 6);
+        player.setOccultismLevel(OccultismTypeFactory.getPsi(LANGUAGE, MODULE), 6);
         Assert.assertEquals(costCalculator.getCurrentOccultismLevelExtraPoints(), 5);
 
         player.addOccultismPower(

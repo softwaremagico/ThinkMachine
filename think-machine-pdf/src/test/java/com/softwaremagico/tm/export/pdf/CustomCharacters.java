@@ -437,7 +437,7 @@ public class CustomCharacters {
         player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("lore", "kelantiLore", LANGUAGE,
                 PathManager.DEFAULT_MODULE_FOLDER), 3);
 
-        player.setPsiqueLevel(OccultismTypeFactory.getPsi(player.getLanguage(), player.getModuleName()), 6);
+        player.setOccultismLevel(OccultismTypeFactory.getPsi(player.getLanguage(), player.getModuleName()), 6);
 
         player.addOccultismPower(
                 OccultismPathFactory.getInstance().getElement("farHand", player.getLanguage(), player.getModuleName())
