@@ -46,7 +46,6 @@ public class CostCalculator {
     public static final int SKILL_EXTRA_POINTS_COST = 1;
     public static final int TRAITS_EXTRA_POINTS_COST = 1;
     public static final int PSIQUE_LEVEL_COST = 3;
-    public static final int PATH_LEVEL_COST = 1;
     public static final int EXTRA_WYRD_COST = 2;
     public static final int OCCULTISM_POWER_LEVEL_COST = 1;
 
@@ -315,7 +314,7 @@ public class CostCalculator {
                 currentSkillsExtraPoints.get() * SKILL_EXTRA_POINTS_COST +
                 currentTraitsExtraPoints.get() * TRAITS_EXTRA_POINTS_COST +
                 currentOccultismLevelExtraPoints.get() * PSIQUE_LEVEL_COST +
-                currentOccultismPowersExtraPoints.get() * PATH_LEVEL_COST +
+                currentOccultismPowersExtraPoints.get() * OCCULTISM_POWER_LEVEL_COST +
                 currentCyberneticsExtraPoints.get() * CYBERNETIC_DEVICE_COST +
                 currentWyrdExtraPoints.get() * EXTRA_WYRD_COST;
     }
