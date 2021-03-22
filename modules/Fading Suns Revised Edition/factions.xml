@@ -24,18 +24,23 @@
                     Edward, Vincent, Richard, Christopher, Geoffrey, Robert, William, Chester, Phipps, Josephus, James,
                     Shed, Anderson, Percy, Calvin, Dominic, Wallace, Xavier, Oliver, Mark, Ethan, Alexander, Amos,
                     Klaes, Anderson, Russell, Philip, Matthew, Anthony, Steven, Brian, Edward, Samuel, Dennis, Adam,
-                    Harold, Roger, Arthur, Ralph, Davion, Alistair, Terrance, Marcellus, Henrik, Ariel, Boden, Hausen
+                    Harold, Roger, Arthur, Ralph, Davion, Alistair, Terrance, Marcellus, Henrik, Ariel, Boden, Hausen, Harru
+		    Aarik, Adler, Benton, Blake, Brandt, Cayden, Clive, Conrad, Daemon, Devan, Dustin, Ezra, Finn, Gavin, Garret
+		    Hal, Hudson, Keane, Kilian, Kirk, Leighton, Logan, Maxwell, Morgan, Nathaniel, Osian, Pierce, Reese, Trey,
+		    Warren, Wesley
                 </male>
                 <female>Elizabeth, Amelia, Emily, Isabella, Sophie, Lilym, Catherine, Anne, Mary, Victoria, Fiona,
                     Electra, Elle, Eli, Orisha, Ross, Vicky, Margaret, Samantha, Bethany, Elizabeth, Lauren, Tracy,
                     Charlotte, Jennifer, Isabella, Kayla, Amber, Denise, Janice, Kathryn, Jacqueline, Martha, Megan,
-                    Kelly, Diane, Janet, Ruth, Emma, Nicole, Rebecca, Sarah, Ariel
+                    Kelly, Diane, Janet, Ruth, Emma, Nicole, Rebecca, Sarah, Ariel, Arlette, Beverly, Brittania, Bette, Carrie
+		    Celine, Cleo, Delphina, Deirdre, Eartha, Edra, Eirena, Flaire, Gwenhwyfar, Harriet, Hester, Ivy, Jolie, Kara
+		    Keira, Leah, Lucienne, Odella, Nidia, Queenie, Paige, Stasia, Trinity, Teagan
                 </female>
             </names>
             <surnames>Hawkwood, Dresden, Norfolk, Walsingham, Leicester, Burghley, Tudor, Derby, Ballard, Harewood,
                 Lancasters, Koln, Hapsburg, Adamse, Plantagenet, Dawes, Fenris, Gesar, Gaelgran, Nimitz, Jervis, Cook,
                 Drake, Miller, Holden, Garvey, Edelweis, Smith, Jones, Williams, Taylor, Davies, Wilson, Evans, Murphy,
-                O'Kelly, O'Sullivan, O'Brien, Byrne, O'Ryan, O'Connor, Morton, Drummer, Dawes
+                O'Kelly, O'Sullivan, O'Brien, Byrne, O'Ryan, O'Connor, Morton, Drummer, Dawes, Garyson
             </surnames>
         </random>
     </hawkwood>
@@ -102,7 +107,8 @@
                     Pascasio, Pilaro, Pomposo, Prudencio, Raimundo, Rufino, Ruperto, Sandalio, Segismundo, Serapio,
                     Severo, Seveso, Sisebuto, Toribicio, Trifón, Tristán, Tubal, Ubaldo, Urko, Valeriano, Werino,
                     Zacarías, Zenón, Marco, Sigmundo, Sigfrido, Manrique, Baudilio, Avelino, Calixto, Custodio, Donaldo,
-                    Danilo
+                    Danilo, Alessio, Amador, Ángelo, Arcadio, Ares, Casio, Ceclilio, Cornelio, Dacio, Elio, Fabio, Flavio, Lucio, Máximo
+		    Patricio, Prisco, Romeo, Valeriano
                 </male>
                 <female>Rosaria, Ligeia, Roberta, Octavia, Daniela, Helena, Aldagracia, Zoe, Pandora, Dara, Daza, Naira,
                     Alba, Aniseta, Arcadia, Arminda, Artemia, Aurea, Brigida, Bartola, Bella, Cándida, Ciriaca, Casilda,
@@ -114,7 +120,9 @@
                     Nicanora, Nigia, Ofelia, Octaviana, Ogaria, Oliva, Olivia, Pánfila, Peregrina, Petrona, Policarpa,
                     Polonia, Primitiva, Prudencia, Refugia, Restituta, Romidia, Serafina, Sinesia, Sinforosa, Sesebuta,
                     Tecla, Teodolina, Tiburcia, Trinidad, Uberlinda, Ulpiana, Vitalia, Zenobia, Zoila, Clarissa, Camina,
-                    Juliette, Matilda, Ambrosia, Antolina, Arundina, Basilisa, Cayetana, Calista, Donora, Dosinda
+                    Juliette, Matilda, Ambrosia, Antolina, Arundina, Basilisa, Cayetana, Calista, Donora, Dosinda, Adriana,
+		    Aracelis, Celia, Decia, Desideria, Diana, Estela, Fabia, Gala, Justina, Lilia, Loreto, Maira, Paulina, Severina, 
+		    Sira, Valeria
                 </female>
             </names>
             <surnames>Hazat, Lafayette, Bursandra, Peñano, Iturbi, Mariana, Justus, Castenda, Leon, Rolan, Escovedo,
