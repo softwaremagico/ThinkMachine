@@ -915,6 +915,9 @@ public class CharacterPlayer {
         if (race == null) {
             throw new InvalidRaceException("Race is null!");
         }
+        if (getFaction() != null && !getFaction().getRestrictedToRaces().isEmpty() && !getFaction().getRestrictedToRaces().contains(race)) {
+            throw new InvalidRaceException("Faction is restricted to '" + getFaction().getRestrictedToRaces() + "'");
+        }
         if (!Objects.equals(this.race, race)) {
             MachineLog.debug(this.getClass().getName(), "Race set to '{}'.", race);
             this.race = race;
@@ -1329,6 +1332,11 @@ public class CharacterPlayer {
         if (faction == null) {
             throw new InvalidFactionException("Faction is null!");
         }
+        //Race must have an id to avoid custom races.
+        if (getRace() != null && getRace().getId() != null && !faction.getRestrictedToRaces().isEmpty() &&
+                !faction.getRestrictedToRaces().contains(getRace())) {
+            throw new InvalidFactionException("Faction '" + faction + "' is restricted to '" + faction.getRestrictedToRaces() + "'");
+        }
         if (!Objects.equals(this.faction, faction)) {
             MachineLog.debug(this.getClass().getName(), "Faction set to '{}'.", faction);
             this.faction = faction;
@@ -1337,7 +1345,8 @@ public class CharacterPlayer {
                     checkBenefices(benefice);
                 } catch (InvalidBeneficeException e) {
                     //Remove invalid benefice.
-                    MachineLog.warning(this.getClass().getName(), "Removing benefice '" + benefice + "' do to restrictions to faction '" + faction + "'.");
+                    MachineLog.warning(this.getClass().getName(), "Removing benefice '" + benefice + "' do to restrictions to faction '"
+                            + faction + "'.");
                     removeBenefice(benefice);
                 }
             }
@@ -1481,11 +1490,12 @@ public class CharacterPlayer {
                 defaultValue = 1;
             }
         }
-        getOccultism().setPsiqueLevel(occultismType, psyValue, getLanguage(), getModuleName(), getFaction());
+
         if (getOccultism().getPsiqueLevel(occultismType) != psyValue) {
             getCharacterModificationHandler().launchOccultismLevelUpdatedListener(occultismType,
                     getOccultism().getPsiqueLevel(occultismType), psyValue, defaultValue);
         }
+        getOccultism().setPsiqueLevel(occultismType, psyValue, getLanguage(), getModuleName(), getFaction());
     }
 
     public int getDarkSideLevel(OccultismType occultismType) {

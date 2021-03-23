@@ -121,7 +121,7 @@
                     Polonia, Primitiva, Prudencia, Refugia, Restituta, Romidia, Serafina, Sinesia, Sinforosa, Sesebuta,
                     Tecla, Teodolina, Tiburcia, Trinidad, Uberlinda, Ulpiana, Vitalia, Zenobia, Zoila, Clarissa, Camina,
                     Juliette, Matilda, Ambrosia, Antolina, Arundina, Basilisa, Cayetana, Calista, Donora, Dosinda, Adriana,
-		    Aracelis, Celia, Decia, Desideria, Diana, Estela, Fabia, Gala, Justina, Lilia, Loreto, Maira, Paulina, Severina, 
+		    Aracelis, Celia, Decia, Desideria, Diana, Estela, Fabia, Gala, Justina, Lilia, Loreto, Maira, Paulina, Severina,
 		    Sira, Valeria
                 </female>
             </names>
@@ -329,7 +329,7 @@
             <es>Ortodoxos</es>
         </name>
         <group>church</group>
-        <race>human</race>
+        <race>human, obun</race>
         <blessings>pious, austere</blessings>
         <suggestedBenefices>
             <benefice>
@@ -393,7 +393,7 @@
                 </translation>
             </archbishop>
         </ranks>
-        <race>human</race>
+        <race>human, obun</race>
         <blessings>disciplined, clueless</blessings>
         <suggestedBenefices>
             <benefice>
@@ -454,7 +454,7 @@
                 </translation>
             </archbishop>
         </ranks>
-        <race>human</race>
+        <race>human, obun</race>
         <blessings>curious, subtle</blessings>
         <suggestedBenefices>
             <benefice>
@@ -485,7 +485,7 @@
             <es>Avestitas</es>
         </name>
         <group>church</group>
-        <race>human</race>
+        <race>human, obun</race>
         <blessings>pious, righteous</blessings>
         <suggestedBenefices>
             <benefice>
@@ -508,7 +508,7 @@
             <es>Amalteanos</es>
         </name>
         <group>church</group>
-        <race>human</race>
+        <race>human, obun</race>
         <blessings>compassionate, gullible</blessings>
         <suggestedBenefices>
             <benefice>
@@ -534,7 +534,7 @@
             <es>Monjes Mendicantes</es>
         </name>
         <group>church</group>
-        <race>human</race>
+        <race>human, obun</race>
         <suggestedBenefices>
             <benefice>
                 <id>vestments</id>
@@ -598,7 +598,7 @@
                 </translation>
             </master>
         </ranks>
-        <race>human</race>
+        <race>human, obun, ukar, vorox</race>
         <blessings>curious, nosy</blessings>
         <suggestedBenefices>
             <benefice>
@@ -618,7 +618,7 @@
             <es>Ingenieros</es>
         </name>
         <group>guild</group>
-        <race>human</race>
+        <race>human, obun, ukar, vorox</race>
         <blessings>innovative, unnerving</blessings>
         <suggestedBenefices>
             <benefice>
@@ -676,7 +676,7 @@
                 </translation>
             </master>
         </ranks>
-        <race>human</race>
+        <race>human, obun, ukar, vorox</race>
         <blessings>theman, possessive</blessings>
         <suggestedBenefices>
             <benefice>
@@ -734,7 +734,7 @@
                 </translation>
             </master>
         </ranks>
-        <race>human</race>
+        <race>human, obun, ukar, vorox</race>
         <blessings>bold, callous</blessings>
         <suggestedBenefices>
             <benefice>
@@ -792,7 +792,7 @@
                 </translation>
             </master>
         </ranks>
-        <race>human</race>
+        <race>human, obun, ukar, vorox</race>
         <blessings>shrewd, mammon</blessings>
         <suggestedBenefices>
             <benefice>
@@ -812,7 +812,7 @@
             <es>Hombre Libre</es>
         </name>
         <group>none</group>
-        <race>human</race>
+        <race>human, obun, ukar, vorox</race>
         <benefices>darkSecret_3</benefices>
         <suggestedBenefices>
             <benefice>

@@ -24,15 +24,15 @@ package com.softwaremagico.tm.character.races;
  * #L%
  */
 
-import java.util.Collection;
-import java.util.Set;
-
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.random.RandomSelector;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
 import com.softwaremagico.tm.random.selectors.RacePreferences;
+
+import java.util.Collection;
+import java.util.Set;
 
 public class RandomRace extends RandomSelector<Race> {
 
@@ -67,6 +67,12 @@ public class RandomRace extends RandomSelector<Race> {
                     throw new InvalidRandomElementSelectedException("Race '" + race + "' restricted by user preferences.");
                 }
             }
+        }
+
+        //Factions aligned with its race
+        if (race.isXeno() && getCharacterPlayer().getFaction() != null && getCharacterPlayer().getFaction().getRestrictedToRaces().size() == 1 &&
+                getCharacterPlayer().getFaction().getRestrictedToRaces().contains(race)) {
+            return 100;
         }
 
         return 1;

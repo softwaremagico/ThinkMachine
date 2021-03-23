@@ -24,13 +24,6 @@ package com.softwaremagico.tm.character.occultism;
  * #L%
  */
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
-
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.creation.CostCalculator;
@@ -39,13 +32,9 @@ import com.softwaremagico.tm.log.RandomGenerationLog;
 import com.softwaremagico.tm.random.RandomSelector;
 import com.softwaremagico.tm.random.exceptions.ImpossibleToAssignMandatoryElementException;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
-import com.softwaremagico.tm.random.selectors.CombatPreferences;
-import com.softwaremagico.tm.random.selectors.DifficultLevelPreferences;
-import com.softwaremagico.tm.random.selectors.IGaussianDistribution;
-import com.softwaremagico.tm.random.selectors.IRandomPreference;
-import com.softwaremagico.tm.random.selectors.PsiqueLevelPreferences;
-import com.softwaremagico.tm.random.selectors.PsiquePathLevelPreferences;
-import com.softwaremagico.tm.random.selectors.SpecializationPreferences;
+import com.softwaremagico.tm.random.selectors.*;
+
+import java.util.*;
 
 public class RandomPsiquePath extends RandomSelector<OccultismPath> {
     private static final int TOTAL_PDF_PSI_ROWS = 7;
@@ -178,10 +167,10 @@ public class RandomPsiquePath extends RandomSelector<OccultismPath> {
                 RandomGenerationLog.info(this.getClass().getName(), "No more psi power room is left.");
                 break;
             }
-            if (remainingPoints - power.getLevel() * CostCalculator.PATH_LEVEL_COST >= 0) {
+            if (remainingPoints - power.getLevel() * CostCalculator.OCCULTISM_POWER_LEVEL_COST >= 0) {
                 getCharacterPlayer().addOccultismPower(power);
                 RandomGenerationLog.info(this.getClass().getName(), "Assinged power '{}' to path '{}'.", power, path);
-                remainingPoints -= power.getLevel() * CostCalculator.PATH_LEVEL_COST;
+                remainingPoints -= power.getLevel() * CostCalculator.OCCULTISM_POWER_LEVEL_COST;
                 totalPowers++;
             }
 

@@ -8,17 +8,17 @@ package com.softwaremagico.tm.character.factions;
  * %%
  * This software is designed by Jorge Hortelano Otero. Jorge Hortelano Otero
  * <softwaremagico@gmail.com> Valencia (Spain).
- *  
+ *
  * This program is free software; you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software
  * Foundation; either version 2 of the License, or (at your option) any later
  * version.
- *  
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
  * details.
- *  
+ *
  * You should have received a copy of the GNU General Public License along with
  * this program; If not, see <http://www.gnu.org/licenses/gpl-3.0.html>.
  * #L%
@@ -43,250 +43,254 @@ import java.util.*;
 import java.util.Map.Entry;
 
 public class FactionsFactory extends XmlFactory<Faction> {
-	private static final String TRANSLATOR_FILE = "factions.xml";
+    private static final String TRANSLATOR_FILE = "factions.xml";
 
-	private static final String GROUP = "group";
-	private static final String RANKS_TAG = "ranks";
-	private static final String RANKS_TRANSLATION_TAG = "translation";
-	private static final String RACE = "race";
-	private static final String BLESSINGS = "blessings";
-	private static final String BENEFICES = "benefices";
-	private static final String SUGGESTED_BENEFICES = "suggestedBenefices";
-	private static final String RESTRICTED_BENEFICES = "restrictedBenefices";
-	private static final String BENEFICE_ID = "id";
-	private static final String BENEFICE_MAX_VALUE = "maxValue";
-	private static final String BENEFICE_VALUE = "value";
+    private static final String GROUP = "group";
+    private static final String RANKS_TAG = "ranks";
+    private static final String RANKS_TRANSLATION_TAG = "translation";
+    private static final String RACE = "race";
+    private static final String BLESSINGS = "blessings";
+    private static final String BENEFICES = "benefices";
+    private static final String SUGGESTED_BENEFICES = "suggestedBenefices";
+    private static final String RESTRICTED_BENEFICES = "restrictedBenefices";
+    private static final String BENEFICE_ID = "id";
+    private static final String BENEFICE_MAX_VALUE = "maxValue";
+    private static final String BENEFICE_VALUE = "value";
 
-	private static final String RANDOM_NAMES = "names";
-	private static final String MALE_NAMES = "male";
-	private static final String FEMALE_NAMES = "female";
-	private static final String SURNAMES = "surnames";
+    private static final String RANDOM_NAMES = "names";
+    private static final String MALE_NAMES = "male";
+    private static final String FEMALE_NAMES = "female";
+    private static final String SURNAMES = "surnames";
 
-	private Map<Faction, Map<Gender, Set<Name>>> namesByFaction;
-	private Map<Faction, Set<Surname>> surnamesByFaction;
+    private Map<Faction, Map<Gender, Set<Name>>> namesByFaction;
+    private Map<Faction, Set<Surname>> surnamesByFaction;
 
-	private static class FactionsFactoryInit {
-		public static final FactionsFactory INSTANCE = new FactionsFactory();
-	}
+    private static class FactionsFactoryInit {
+        public static final FactionsFactory INSTANCE = new FactionsFactory();
+    }
 
-	public static FactionsFactory getInstance() {
-		return FactionsFactoryInit.INSTANCE;
-	}
+    public static FactionsFactory getInstance() {
+        return FactionsFactoryInit.INSTANCE;
+    }
 
-	@Override
-	public FactoryCacheLoader<Faction> getFactoryCacheLoader() {
-		return null;
-	}
+    @Override
+    public FactoryCacheLoader<Faction> getFactoryCacheLoader() {
+        return null;
+    }
 
-	@Override
-	public void refreshCache() {
-		if (namesByFaction != null) {
-			namesByFaction.clear();
-		}
-		if (surnamesByFaction != null) {
-			surnamesByFaction.clear();
-		}
-		super.refreshCache();
-	}
+    @Override
+    public void refreshCache() {
+        if (namesByFaction != null) {
+            namesByFaction.clear();
+        }
+        if (surnamesByFaction != null) {
+            surnamesByFaction.clear();
+        }
+        super.refreshCache();
+    }
 
-	@Override
-	public String getTranslatorFile() {
-		return TRANSLATOR_FILE;
-	}
+    @Override
+    public String getTranslatorFile() {
+        return TRANSLATOR_FILE;
+    }
 
-	public void setBlessings(Faction faction, String language) throws InvalidFactionException {
-		final Set<Blessing> mandatoryBlessings;
-		try {
-			mandatoryBlessings = getCommaSeparatedValues(faction.getId(), BLESSINGS, language, faction.getModuleName(),
-					BlessingFactory.getInstance());
-		} catch (InvalidXmlElementException ixe) {
-			throw new InvalidFactionException(
-					"Error in faction '" + faction + "' structure. Invalid blessing defintion. ", ixe);
-		}
-		faction.setBlessings(mandatoryBlessings);
-	}
+    public void setBlessings(Faction faction, String language) throws InvalidFactionException {
+        final Set<Blessing> mandatoryBlessings;
+        try {
+            mandatoryBlessings = getCommaSeparatedValues(faction.getId(), BLESSINGS, language, faction.getModuleName(),
+                    BlessingFactory.getInstance());
+        } catch (InvalidXmlElementException ixe) {
+            throw new InvalidFactionException(
+                    "Error in faction '" + faction + "' structure. Invalid blessing defintion. ", ixe);
+        }
+        faction.setBlessings(mandatoryBlessings);
+    }
 
-	public void setBenefices(Faction faction, String language) throws InvalidFactionException {
-		final String mandatoryBeneficesList = getTranslator(faction.getModuleName()).getNodeValue(faction.getId(),
-				BENEFICES);
-		final Set<AvailableBenefice> mandatoryBenefices = new HashSet<>();
-		if (mandatoryBeneficesList != null) {
-			final StringTokenizer mandatoyBeneficesTokenizer = new StringTokenizer(mandatoryBeneficesList, ",");
-			while (mandatoyBeneficesTokenizer.hasMoreTokens()) {
-				final String beneficeName = mandatoyBeneficesTokenizer.nextToken().trim();
-				try {
-					mandatoryBenefices.add(AvailableBeneficeFactory.getInstance().getElement(beneficeName, language,
-							faction.getModuleName()));
-				} catch (InvalidXmlElementException ixe) {
-					throw new InvalidFactionException("Error in faction '" + faction.getId()
-							+ "' structure. Invalid benefice '" + beneficeName + "' defintion. ", ixe);
-				}
-			}
-		}
-		faction.setBenefices(mandatoryBenefices);
-	}
+    public void setBenefices(Faction faction, String language) throws InvalidFactionException {
+        final String mandatoryBeneficesList = getTranslator(faction.getModuleName()).getNodeValue(faction.getId(),
+                BENEFICES);
+        final Set<AvailableBenefice> mandatoryBenefices = new HashSet<>();
+        if (mandatoryBeneficesList != null) {
+            final StringTokenizer mandatoyBeneficesTokenizer = new StringTokenizer(mandatoryBeneficesList, ",");
+            while (mandatoyBeneficesTokenizer.hasMoreTokens()) {
+                final String beneficeName = mandatoyBeneficesTokenizer.nextToken().trim();
+                try {
+                    mandatoryBenefices.add(AvailableBeneficeFactory.getInstance().getElement(beneficeName, language,
+                            faction.getModuleName()));
+                } catch (InvalidXmlElementException ixe) {
+                    throw new InvalidFactionException("Error in faction '" + faction.getId()
+                            + "' structure. Invalid benefice '" + beneficeName + "' defintion. ", ixe);
+                }
+            }
+        }
+        faction.setBenefices(mandatoryBenefices);
+    }
 
-	public void setSuggestedBenefices(Faction faction, String language)
-			throws NumberFormatException, InvalidXmlElementException {
-		final Set<SuggestedBenefice> restrictedBenefices = new HashSet<>();
-		for (final String restrictedBeneficeId : getTranslator(faction.getModuleName())
-				.getAllChildrenTags(faction.getId(), SUGGESTED_BENEFICES)) {
-			final String beneficeName = getTranslator(faction.getModuleName()).getNodeValue(faction.getId(), SUGGESTED_BENEFICES,
-					restrictedBeneficeId, BENEFICE_ID);
-			final String valueTag = getTranslator(faction.getModuleName()).getNodeValue(faction.getId(), SUGGESTED_BENEFICES,
-					restrictedBeneficeId, BENEFICE_VALUE);
-			final Integer value = valueTag != null ? Integer.parseInt(valueTag) : null;
-			restrictedBenefices.add(new SuggestedBenefice(
-					BeneficeDefinitionFactory.getInstance().getElement(beneficeName, language, faction.getModuleName()),
-					value));
-		}
-		faction.setSuggestedBenefices(restrictedBenefices);
-	}
+    public void setSuggestedBenefices(Faction faction, String language)
+            throws NumberFormatException, InvalidXmlElementException {
+        final Set<SuggestedBenefice> restrictedBenefices = new HashSet<>();
+        for (final String restrictedBeneficeId : getTranslator(faction.getModuleName())
+                .getAllChildrenTags(faction.getId(), SUGGESTED_BENEFICES)) {
+            final String beneficeName = getTranslator(faction.getModuleName()).getNodeValue(faction.getId(), SUGGESTED_BENEFICES,
+                    restrictedBeneficeId, BENEFICE_ID);
+            final String valueTag = getTranslator(faction.getModuleName()).getNodeValue(faction.getId(), SUGGESTED_BENEFICES,
+                    restrictedBeneficeId, BENEFICE_VALUE);
+            final Integer value = valueTag != null ? Integer.parseInt(valueTag) : null;
+            restrictedBenefices.add(new SuggestedBenefice(
+                    BeneficeDefinitionFactory.getInstance().getElement(beneficeName, language, faction.getModuleName()),
+                    value));
+        }
+        faction.setSuggestedBenefices(restrictedBenefices);
+    }
 
-	public void setRestrictedBenefices(Faction faction, String language)
-			throws NumberFormatException, InvalidXmlElementException {
-		final Set<RestrictedBenefice> restrictedBenefices = new HashSet<>();
-		for (final String restrictedBeneficeId : getTranslator(faction.getModuleName())
-				.getAllChildrenTags(faction.getId(), RESTRICTED_BENEFICES)) {
-			final String beneficeName = getTranslator(faction.getModuleName()).getNodeValue(faction.getId(), RESTRICTED_BENEFICES,
-					restrictedBeneficeId, BENEFICE_ID);
-			final String maxValueTag = getTranslator(faction.getModuleName()).getNodeValue(faction.getId(), RESTRICTED_BENEFICES,
-					restrictedBeneficeId, BENEFICE_MAX_VALUE);
-			final Integer maxValue = maxValueTag != null ? Integer.parseInt(maxValueTag) : null;
-			restrictedBenefices.add(new RestrictedBenefice(
-					BeneficeDefinitionFactory.getInstance().getElement(beneficeName, language, faction.getModuleName()),
-					maxValue));
-		}
-		faction.setRestrictedBenefices(restrictedBenefices);
-	}
+    public void setRestrictedBenefices(Faction faction, String language)
+            throws NumberFormatException, InvalidXmlElementException {
+        final Set<RestrictedBenefice> restrictedBenefices = new HashSet<>();
+        for (final String restrictedBeneficeId : getTranslator(faction.getModuleName())
+                .getAllChildrenTags(faction.getId(), RESTRICTED_BENEFICES)) {
+            final String beneficeName = getTranslator(faction.getModuleName()).getNodeValue(faction.getId(), RESTRICTED_BENEFICES,
+                    restrictedBeneficeId, BENEFICE_ID);
+            final String maxValueTag = getTranslator(faction.getModuleName()).getNodeValue(faction.getId(), RESTRICTED_BENEFICES,
+                    restrictedBeneficeId, BENEFICE_MAX_VALUE);
+            final Integer maxValue = maxValueTag != null ? Integer.parseInt(maxValueTag) : null;
+            restrictedBenefices.add(new RestrictedBenefice(
+                    BeneficeDefinitionFactory.getInstance().getElement(beneficeName, language, faction.getModuleName()),
+                    maxValue));
+        }
+        faction.setRestrictedBenefices(restrictedBenefices);
+    }
 
-	@Override
-	@SuppressFBWarnings("REC_CATCH_EXCEPTION")
-	protected Faction createElement(ITranslator translator, String factionId, String name, String description,
-									String language, String moduleName)
-			throws InvalidXmlElementException {
-		try {
-			FactionGroup factionGroup;
+    @Override
+    @SuppressFBWarnings("REC_CATCH_EXCEPTION")
+    protected Faction createElement(ITranslator translator, String factionId, String name, String description,
+                                    String language, String moduleName)
+            throws InvalidXmlElementException {
+        try {
+            FactionGroup factionGroup;
 
-			try {
-				final String groupName = translator.getNodeValue(factionId, GROUP);
-				factionGroup = FactionGroup.get(groupName);
-			} catch (Exception e) {
-				MachineXmlReaderLog.errorMessage(this.getClass().getName(), e);
-				factionGroup = FactionGroup.NONE;
-			}
+            try {
+                final String groupName = translator.getNodeValue(factionId, GROUP);
+                factionGroup = FactionGroup.get(groupName);
+            } catch (Exception e) {
+                MachineXmlReaderLog.errorMessage(this.getClass().getName(), e);
+                factionGroup = FactionGroup.NONE;
+            }
 
-			final String raceRestrictionName = translator.getNodeValue(factionId, RACE);
-			Race raceRestriction;
-			if (raceRestrictionName == null) {
-				throw new InvalidFactionException(
-						"Race not defined in faction '" + factionId + "'. Factions must have a race restriction.");
-			}
-			try {
-				raceRestriction = RaceFactory.getInstance().getElement(raceRestrictionName, language, moduleName);
-			} catch (InvalidXmlElementException ixe) {
-				throw new InvalidFactionException("Error in faction '" + factionId + "' structure. Invalid race. ",
-						ixe);
-			}
-			final Faction faction = new Faction(factionId, name, description, factionGroup, raceRestriction, language, moduleName);
+            final String raceRestrictionNames = translator.getNodeValue(factionId, RACE);
+            final Set<Race> raceRestrictions = new HashSet<>();
+            if (raceRestrictionNames == null) {
+                throw new InvalidFactionException(
+                        "Race not defined in faction '" + factionId + "'. Factions must have a race restriction.");
+            }
 
-			for (final String rankId : translator.getAllChildrenTags(factionId, RANKS_TAG)) {
-				final String rankName = translator.getNodeValue(factionId, rankId, RANKS_TRANSLATION_TAG, language);
-				final FactionRankTranslation factionRank = new FactionRankTranslation(rankId, rankName, language,
-						moduleName);
-				faction.addRankTranslation(factionRank);
-			}
+            final StringTokenizer raceNamesTokenizer = new StringTokenizer(raceRestrictionNames, ",");
+            try {
+                while (raceNamesTokenizer.hasMoreTokens()) {
+                    raceRestrictions.add(RaceFactory.getInstance().getElement(raceNamesTokenizer.nextToken().trim(), language, moduleName));
+                }
+            } catch (InvalidXmlElementException ixe) {
+                throw new InvalidFactionException("Error in faction '" + factionId + "' structure. Invalid race on '" + raceNamesTokenizer + "'. ",
+                        ixe);
+            }
+            final Faction faction = new Faction(factionId, name, description, factionGroup, raceRestrictions, language, moduleName);
 
-			// Random options
-			final String maleNames = translator.getNodeValue(factionId, RANDOM_NAMES, MALE_NAMES);
-			if (maleNames != null) {
-				final StringTokenizer maleNamesTokenizer = new StringTokenizer(maleNames, ",");
-				while (maleNamesTokenizer.hasMoreTokens()) {
-					addName(new Name(maleNamesTokenizer.nextToken().trim(), language, moduleName, Gender.MALE,
-							faction));
-				}
-			}
+            for (final String rankId : translator.getAllChildrenTags(factionId, RANKS_TAG)) {
+                final String rankName = translator.getNodeValue(factionId, rankId, RANKS_TRANSLATION_TAG, language);
+                final FactionRankTranslation factionRank = new FactionRankTranslation(rankId, rankName, language,
+                        moduleName);
+                faction.addRankTranslation(factionRank);
+            }
 
-			final String femaleNames = translator.getNodeValue(factionId, RANDOM_NAMES, FEMALE_NAMES);
-			if (femaleNames != null) {
-				final StringTokenizer femaleNamesTokenizer = new StringTokenizer(femaleNames, ",");
-				while (femaleNamesTokenizer.hasMoreTokens()) {
-					addName(new Name(femaleNamesTokenizer.nextToken().trim(), language, moduleName, Gender.FEMALE,
-							faction));
-				}
-			}
+            // Random options
+            final String maleNames = translator.getNodeValue(factionId, RANDOM_NAMES, MALE_NAMES);
+            if (maleNames != null) {
+                final StringTokenizer maleNamesTokenizer = new StringTokenizer(maleNames, ",");
+                while (maleNamesTokenizer.hasMoreTokens()) {
+                    addName(new Name(maleNamesTokenizer.nextToken().trim(), language, moduleName, Gender.MALE,
+                            faction));
+                }
+            }
 
-			final String surnames = translator.getNodeValue(factionId, SURNAMES);
-			if (surnames != null) {
-				final StringTokenizer surnamesTokenizer = new StringTokenizer(surnames, ",");
-				while (surnamesTokenizer.hasMoreTokens()) {
-					addSurname(new Surname(surnamesTokenizer.nextToken().trim(), language, moduleName, faction));
-				}
-			}
+            final String femaleNames = translator.getNodeValue(factionId, RANDOM_NAMES, FEMALE_NAMES);
+            if (femaleNames != null) {
+                final StringTokenizer femaleNamesTokenizer = new StringTokenizer(femaleNames, ",");
+                while (femaleNamesTokenizer.hasMoreTokens()) {
+                    addName(new Name(femaleNamesTokenizer.nextToken().trim(), language, moduleName, Gender.FEMALE,
+                            faction));
+                }
+            }
 
-			return faction;
-		} catch (Exception e) {
-			throw new InvalidFactionException("Invalid structure in faction '" + factionId + "'.", e);
-		}
-	}
+            final String surnames = translator.getNodeValue(factionId, SURNAMES);
+            if (surnames != null) {
+                final StringTokenizer surnamesTokenizer = new StringTokenizer(surnames, ",");
+                while (surnamesTokenizer.hasMoreTokens()) {
+                    addSurname(new Surname(surnamesTokenizer.nextToken().trim(), language, moduleName, faction));
+                }
+            }
 
-	private void addName(Name name) {
-		if (namesByFaction == null) {
-			namesByFaction = new HashMap<>();
-		}
-		namesByFaction.computeIfAbsent(name.getFaction(), k -> new HashMap<>());
-		namesByFaction.get(name.getFaction()).computeIfAbsent(name.getGender(), k -> new HashSet<>());
-		namesByFaction.get(name.getFaction()).get(name.getGender()).add(name);
-	}
+            return faction;
+        } catch (Exception e) {
+            throw new InvalidFactionException("Invalid structure in faction '" + factionId + "'.", e);
+        }
+    }
 
-	private void addSurname(Surname surname) {
-		if (surnamesByFaction == null) {
-			surnamesByFaction = new HashMap<>();
-		}
-		surnamesByFaction.computeIfAbsent(surname.getFaction(), k -> new HashSet<>());
-		surnamesByFaction.get(surname.getFaction()).add(surname);
-	}
+    private void addName(Name name) {
+        if (namesByFaction == null) {
+            namesByFaction = new HashMap<>();
+        }
+        namesByFaction.computeIfAbsent(name.getFaction(), k -> new HashMap<>());
+        namesByFaction.get(name.getFaction()).computeIfAbsent(name.getGender(), k -> new HashSet<>());
+        namesByFaction.get(name.getFaction()).get(name.getGender()).add(name);
+    }
 
-	public Set<Name> getAllNames(Faction faction, Gender gender) {
-		if (faction == null || gender == null || namesByFaction.get(faction) == null) {
-			return new HashSet<>();
-		}
-		if (namesByFaction.get(faction).get(gender) == null) {
-			return null;
-		}
-		return namesByFaction.get(faction).get(gender);
-	}
+    private void addSurname(Surname surname) {
+        if (surnamesByFaction == null) {
+            surnamesByFaction = new HashMap<>();
+        }
+        surnamesByFaction.computeIfAbsent(surname.getFaction(), k -> new HashSet<>());
+        surnamesByFaction.get(surname.getFaction()).add(surname);
+    }
 
-	public Set<Name> getAllNames(Faction faction) {
-		final Set<Name> names = new HashSet<>();
-		for (final Gender gender : Gender.values()) {
-			names.addAll(getAllNames(faction, gender));
-		}
-		return names;
-	}
+    public Set<Name> getAllNames(Faction faction, Gender gender) {
+        if (faction == null || gender == null || namesByFaction.get(faction) == null) {
+            return new HashSet<>();
+        }
+        if (namesByFaction.get(faction).get(gender) == null) {
+            return null;
+        }
+        return namesByFaction.get(faction).get(gender);
+    }
 
-	public Set<Name> getAllNames() {
-		final Set<Name> names = new HashSet<>();
-		for (final Faction faction : namesByFaction.keySet()) {
-			names.addAll(getAllNames(faction));
-		}
-		return names;
-	}
+    public Set<Name> getAllNames(Faction faction) {
+        final Set<Name> names = new HashSet<>();
+        for (final Gender gender : Gender.values()) {
+            names.addAll(getAllNames(faction, gender));
+        }
+        return names;
+    }
 
-	public Set<Surname> getAllSurnames(Faction faction) {
-		final Set<Surname> surnames = new HashSet<>();
-		if (surnamesByFaction.get(faction) != null) {
-			surnames.addAll(surnamesByFaction.get(faction));
-		}
-		return surnames;
-	}
+    public Set<Name> getAllNames() {
+        final Set<Name> names = new HashSet<>();
+        for (final Faction faction : namesByFaction.keySet()) {
+            names.addAll(getAllNames(faction));
+        }
+        return names;
+    }
 
-	public Set<Surname> getAllSurnames() {
-		final Set<Surname> surnames = new HashSet<>();
-		for (final Entry<Faction, Set<Surname>> faction : surnamesByFaction.entrySet()) {
-			surnames.addAll(faction.getValue());
-		}
-		return surnames;
-	}
+    public Set<Surname> getAllSurnames(Faction faction) {
+        final Set<Surname> surnames = new HashSet<>();
+        if (surnamesByFaction.get(faction) != null) {
+            surnames.addAll(surnamesByFaction.get(faction));
+        }
+        return surnames;
+    }
+
+    public Set<Surname> getAllSurnames() {
+        final Set<Surname> surnames = new HashSet<>();
+        for (final Entry<Faction, Set<Surname>> faction : surnamesByFaction.entrySet()) {
+            surnames.addAll(faction.getValue());
+        }
+        return surnames;
+    }
 
 }

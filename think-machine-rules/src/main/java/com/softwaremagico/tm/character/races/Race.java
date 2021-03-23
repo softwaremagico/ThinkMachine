@@ -24,11 +24,11 @@ package com.softwaremagico.tm.character.races;
  * #L%
  */
 
-import java.lang.reflect.Field;
-
 import com.softwaremagico.tm.Element;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.log.MachineLog;
+
+import java.lang.reflect.Field;
 
 @SuppressWarnings("unused")
 public class Race extends Element<Race> {
@@ -173,5 +173,9 @@ public class Race extends Element<Race> {
     @Override
     public boolean equals(Object obj) {
         return super.equals(obj);
+    }
+
+    public boolean isXeno() {
+        return !getId().equals("human");
     }
 }

@@ -24,10 +24,6 @@ package com.softwaremagico.tm.character.factions;
  * #L%
  */
 
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
-
 import com.softwaremagico.tm.Element;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.benefices.AvailableBenefice;
@@ -38,20 +34,24 @@ import com.softwaremagico.tm.character.blessings.BlessingClassification;
 import com.softwaremagico.tm.character.races.Race;
 import com.softwaremagico.tm.log.MachineLog;
 
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
+
 public class Faction extends Element<Faction> {
     private final FactionGroup factionGroup;
     private final Set<FactionRankTranslation> ranksTranslations = new HashSet<>();
-    private final Race restrictedRace;
+    private final Set<Race> restrictedToRaces;
     private Set<Blessing> blessings = null;
     private Set<AvailableBenefice> benefices = null;
     private Set<SuggestedBenefice> suggestedBenefices = null;
     private Set<RestrictedBenefice> restrictedBenefices = null;
 
-    public Faction(String id, String name, String description, FactionGroup factionGroup, Race restrictedRace, String language,
+    public Faction(String id, String name, String description, FactionGroup factionGroup, Set<Race> restrictedToRace, String language,
                    String moduleName) {
         super(id, name, description, language, moduleName);
         this.factionGroup = factionGroup;
-        this.restrictedRace = restrictedRace;
+        this.restrictedToRaces = restrictedToRace;
     }
 
     public FactionGroup getFactionGroup() {
@@ -75,8 +75,8 @@ public class Faction extends Element<Faction> {
         return null;
     }
 
-    public Race getRestrictedRace() {
-        return restrictedRace;
+    public Set<Race> getRestrictedToRaces() {
+        return restrictedToRaces;
     }
 
     public Set<Blessing> getBlessings() {
