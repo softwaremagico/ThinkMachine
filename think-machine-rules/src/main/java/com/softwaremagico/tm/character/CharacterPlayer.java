@@ -357,7 +357,7 @@ public class CharacterPlayer {
         //Get all blessings that will be removed.
         final Set<Blessing> blessingsToRemove = new HashSet<>(this.blessings);
         blessingsToRemove.removeAll(blessings);
-        blessingsToRemove.forEach(blessingToRemove -> removeBlessing(blessingToRemove));
+        blessingsToRemove.forEach(this::removeBlessing);
 
         for (final Blessing blessing : blessings) {
             try {
@@ -952,12 +952,12 @@ public class CharacterPlayer {
         return 0;
     }
 
-    public List<AvailableSkill> getNaturalSkills() throws InvalidXmlElementException {
+    public List<AvailableSkill> getNaturalSkills() {
         return new ArrayList<>(AvailableSkillsFactory.getInstance().getNaturalSkills(getLanguage(),
                 getModuleName()));
     }
 
-    public List<AvailableSkill> getLearnedSkills() throws InvalidXmlElementException {
+    public List<AvailableSkill> getLearnedSkills() {
         final List<AvailableSkill> learnedSkills = new ArrayList<>();
         for (final AvailableSkill skill : AvailableSkillsFactory.getInstance().getLearnedSkills(getLanguage(),
                 getModuleName())) {
@@ -1482,20 +1482,23 @@ public class CharacterPlayer {
         return getBasicOccultismLevel(occultismType) + getExperiencePsiLevel(occultismType).size();
     }
 
-    public void setOccultismLevel(OccultismType occultismType, int psyValue) throws InvalidPsiqueLevelException {
+    public void setOccultismLevel(OccultismType occultismType, int newPsiValue) throws InvalidPsiqueLevelException {
         int defaultValue = 0;
         if (getRace() != null) {
-            if (Objects.equals(occultismType.getId(), OccultismTypeFactory.PSI_TAG) ||
-                    Objects.equals(occultismType.getId(), OccultismTypeFactory.THEURGY_TAG)) {
-                defaultValue = 1;
+            if (Objects.equals(occultismType.getId(), OccultismTypeFactory.PSI_TAG)) {
+                defaultValue = getRace().getPsi();
+            }
+            if (Objects.equals(occultismType.getId(), OccultismTypeFactory.THEURGY_TAG)) {
+                defaultValue = getRace().getTheurgy();
             }
         }
 
-        if (getOccultism().getPsiqueLevel(occultismType) != psyValue) {
+        final int previousPsiValue = getOccultism().getPsiqueLevel(occultismType);
+        getOccultism().setPsiqueLevel(occultismType, newPsiValue, getLanguage(), getModuleName(), getFaction());
+        if (previousPsiValue != newPsiValue) {
             getCharacterModificationHandler().launchOccultismLevelUpdatedListener(occultismType,
-                    getOccultism().getPsiqueLevel(occultismType), psyValue, defaultValue);
+                    previousPsiValue, newPsiValue, defaultValue);
         }
-        getOccultism().setPsiqueLevel(occultismType, psyValue, getLanguage(), getModuleName(), getFaction());
     }
 
     public int getDarkSideLevel(OccultismType occultismType) {
@@ -1512,6 +1515,40 @@ public class CharacterPlayer {
 
     public int getTotalSelectedPowers() {
         return getOccultism().getTotalSelectedPowers();
+    }
+
+    /**
+     * Returns the selected option by the character.
+     *
+     * @return an occultism type or null if nothing has been selected.
+     */
+    public OccultismType getOccultismType() {
+
+        try {
+            //Check if has some path purchased already. Get its occultismType;
+            if (!getOccultism().getSelectedPowers().isEmpty()) {
+                final OccultismPower occultismPower = getOccultism().getSelectedPowers().entrySet().iterator().next().getValue().iterator().next();
+                return OccultismPathFactory.getInstance().getOccultismPath(occultismPower).getOccultismType();
+            }
+            //Check if has some occultism level added already.
+            for (final OccultismType occultismType : OccultismTypeFactory.getInstance().getElements(getLanguage(), getModuleName())) {
+                int defaultPsi = 0;
+                if (getRace() != null) {
+                    if (occultismType.getId().equals(OccultismTypeFactory.PSI_TAG)) {
+                        defaultPsi = getRace().getPsi();
+                    }
+                    if (occultismType.getId().equals(OccultismTypeFactory.THEURGY_TAG)) {
+                        defaultPsi = getRace().getTheurgy();
+                    }
+                }
+                if (getOccultism().getPsiqueLevel(occultismType) > defaultPsi) {
+                    return occultismType;
+                }
+            }
+        } catch (InvalidXmlElementException e) {
+            MachineLog.errorMessage(this.getClass().getName(), e);
+        }
+        return null;
     }
 
     public void addOccultismPower(OccultismPower power) throws InvalidOccultismPowerException {
@@ -1538,7 +1575,7 @@ public class CharacterPlayer {
      * @return the number of ranks
      * @throws InvalidXmlElementException if malformed file in translations.
      */
-    public int getRanksAssigned(SkillGroup skillGroup) throws InvalidXmlElementException {
+    public int getRanksAssigned(SkillGroup skillGroup) {
         int ranks = 0;
         for (final AvailableSkill skill : AvailableSkillsFactory.getInstance().getSkillsByGroup(skillGroup,
                 getLanguage(), getModuleName())) {
