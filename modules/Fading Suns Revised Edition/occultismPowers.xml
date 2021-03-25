@@ -214,7 +214,7 @@
 			</emote>
 			<mindSight>
 				<name>
-					<en>MindSight</en>
+					<en>Mind Sight</en>
 					<es>Visión Mental</es>
 				</name>
 				<level>3</level>
@@ -227,7 +227,7 @@
 			</mindSight>
 			<mindSpeech>
 				<name>
-					<en>MindSpeech</en>
+					<en>Mind Speech</en>
 					<es>Diálogo Mental</es>
 				</name>
 				<level>4</level>
@@ -253,7 +253,7 @@
 			</heartsCommand>
 			<mindSearch>
 				<name>
-					<en>MindSearch</en>
+					<en>Mind Search</en>
 					<es>Escrutinio Mental</es>
 				</name>
 				<level>5</level>
@@ -266,7 +266,7 @@
 			</mindSearch>
 			<headShackle>
 				<name>
-					<en>HeadShackle</en>
+					<en>Head Shackle</en>
 					<es>Dominar Persona</es>
 				</name>
 				<level>6</level>
@@ -1488,7 +1488,7 @@
 				<components></components>
 				<wyrd>1</wyrd>
 			</faultOfTheSoulless>
-			<fearsomeMajesty>
+			<fearsomeMajestyAvesti>
 				<name>
 					<en>Fearsome Majesty</en>
 					<es>Majestuosidad Aterradora</es>
@@ -1501,7 +1501,7 @@
 				
 				<components>LG</components>
 				<wyrd>1</wyrd>
-			</fearsomeMajesty>
+			</fearsomeMajestyAvesti>
 			<prophetsProjectedFlame>
 				<name>
 					<en>Prophet's Projected Flame</en>

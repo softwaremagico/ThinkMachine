@@ -461,7 +461,7 @@ public class CustomCharacters {
         player.addOccultismPower(
                 OccultismPathFactory.getInstance().getElement("psyche", player.getLanguage(), player.getModuleName())
                         .getOccultismPowers().get("mindSight"));
-        player.setExtraWyrd(3);
+        player.addExtraWyrd(3);
 
         player.addBlessing(
                 BlessingFactory.getInstance().getElement("horribleScar", player.getLanguage(), player.getModuleName()));

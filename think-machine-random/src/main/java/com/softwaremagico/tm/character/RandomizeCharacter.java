@@ -268,7 +268,7 @@ public class RandomizeCharacter {
         // Set Wyrd
         final IGaussianDistribution wyrdDistribution = PsiqueLevelPreferences.getSelected(preferences);
         final int extraWyrd = wyrdDistribution.randomGaussian();
-        characterPlayer.setExtraWyrd(extraWyrd - characterPlayer.getBasicWyrdValue());
+        characterPlayer.addExtraWyrd(extraWyrd - characterPlayer.getBasicWyrdValue());
         RandomGenerationLog.info(this.getClass().getName(), "Added extra wyrd '{}'.", extraWyrd);
         // Set psi paths.
         final RandomPsiquePath randomPsiquePath = new RandomPsiquePath(characterPlayer, preferences);

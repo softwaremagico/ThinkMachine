@@ -215,6 +215,7 @@ public class CostCalculator {
             if (currentWyrdExtraPoints.get() != wyrdValue) {
                 currentWyrdExtraPoints.set(wyrdValue);
                 getCostCharacterModificationHandler().launchWyrdExtraPointUpdatedListeners(wyrdValue);
+                getCostCharacterModificationHandler().launchExtraPointsUpdatedListeners();
             }
         });
         characterPlayer.getCharacterModificationHandler().addCyberneticDeviceUpdatedListener((device, removed) ->

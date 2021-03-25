@@ -222,12 +222,25 @@ public class CharacterPlayer {
     }
 
     public Integer getBasicWyrdValue() {
+        if (getOccultismType() != null) {
+            if (getOccultismType().getId().equals(OccultismTypeFactory.PSI_TAG)) {
+                return getValue(CharacteristicName.WILL);
+            }
+            if (getOccultismType().getId().equals(OccultismTypeFactory.THEURGY_TAG)) {
+                return getValue(CharacteristicName.FAITH);
+            }
+        }
         return Math.max(getValue(CharacteristicName.WILL), getValue(CharacteristicName.FAITH));
     }
 
-    public Integer getWyrdValue() throws InvalidXmlElementException {
-        return getBasicWyrdValue() + getExtraWyrd() + getExperienceExtraWyrd().size() + getBlessingModificationAlways(
-                SpecialValuesFactory.getInstance().getElement(SpecialValue.WYRD, getLanguage(), getModuleName()));
+    public Integer getWyrdValue() {
+        try {
+            return getBasicWyrdValue() + getExtraWyrd() + getExperienceExtraWyrd().size() + getBlessingModificationAlways(
+                    SpecialValuesFactory.getInstance().getElement(SpecialValue.WYRD, getLanguage(), getModuleName()));
+        } catch (InvalidXmlElementException e) {
+            MachineLog.errorMessage(this.getClass().getName(), e);
+            return getBasicWyrdValue() + getExtraWyrd() + getExperienceExtraWyrd().size();
+        }
     }
 
     public void setSkillRank(AvailableSkill availableSkill, int value) throws InvalidSkillException {
@@ -1461,9 +1474,19 @@ public class CharacterPlayer {
         return getOccultism().getExtraWyrd() != null ? getOccultism().getExtraWyrd().getValue() : 0;
     }
 
-    public void setExtraWyrd(int extraWyrd) {
+    public void addExtraWyrd(int extraWyrd) {
         getOccultism().setExtraWyrd(extraWyrd, getLanguage(), getModuleName());
         getCharacterModificationHandler().launchWyrdUpdatedListener(extraWyrd);
+    }
+
+    public void setWyrd(int totalWyrd) {
+        try {
+            addExtraWyrd(totalWyrd - getBasicWyrdValue() - getExperienceExtraWyrd().size() + getBlessingModificationAlways(
+                    SpecialValuesFactory.getInstance().getElement(SpecialValue.WYRD, getLanguage(), getModuleName())));
+        } catch (InvalidXmlElementException e) {
+            MachineLog.errorMessage(this.getClass().getName(), e);
+            addExtraWyrd(totalWyrd - getBasicWyrdValue() - getExperienceExtraWyrd().size());
+        }
     }
 
     public int getBasicOccultismLevel(OccultismType occultismType) {
@@ -1523,7 +1546,6 @@ public class CharacterPlayer {
      * @return an occultism type or null if nothing has been selected.
      */
     public OccultismType getOccultismType() {
-
         try {
             //Check if has some path purchased already. Get its occultismType;
             if (!getOccultism().getSelectedPowers().isEmpty()) {
@@ -1551,11 +1573,33 @@ public class CharacterPlayer {
         return null;
     }
 
+    public boolean canAddOccultismPower(OccultismPower power) {
+        final OccultismPath path = OccultismPathFactory.getInstance().getOccultismPath(power);
+        try {
+            getOccultism().canAddPower(path, power, getLanguage(), getFaction());
+            return true;
+        } catch (InvalidOccultismPowerException e) {
+            return false;
+        }
+    }
+
     public void addOccultismPower(OccultismPower power) throws InvalidOccultismPowerException {
         final OccultismPath path = OccultismPathFactory.getInstance().getOccultismPath(power);
         if (getOccultism().addPower(path, power, getLanguage(), getFaction())) {
             getCharacterModificationHandler().launchOccultismPowerUpdatedListener(power, false);
         }
+    }
+
+    public void removeOccultismPower(OccultismPower power) {
+        final OccultismPath path = OccultismPathFactory.getInstance().getOccultismPath(power);
+        if (getOccultism().removePower(path, power)) {
+            getCharacterModificationHandler().launchOccultismPowerUpdatedListener(power, false);
+        }
+    }
+
+    public boolean hasOccultismPower(OccultismPower power) {
+        final OccultismPath path = OccultismPathFactory.getInstance().getOccultismPath(power);
+        return getOccultism().hasPower(path, power);
     }
 
     public String getCompleteNameRepresentation() {
