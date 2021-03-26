@@ -33,7 +33,6 @@ import java.util.*;
 import java.util.Map.Entry;
 
 public class Occultism {
-    public static final int MAX_WYRD = 20;
     private final Map<String, Integer> psiqueValue;
     private final Map<String, Integer> darkSideValue;
     private Wyrd extraWyrd;
@@ -155,7 +154,7 @@ public class Occultism {
         return selectedPowers.get(path.getId()).add(power);
     }
 
-    public boolean removePower(OccultismPath path, OccultismPower power){
+    public boolean removePower(OccultismPath path, OccultismPower power) {
         selectedPowers.computeIfAbsent(path.getId(), k -> new ArrayList<>());
         return selectedPowers.get(path.getId()).remove(power);
 

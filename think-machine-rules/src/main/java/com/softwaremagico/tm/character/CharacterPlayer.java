@@ -222,15 +222,11 @@ public class CharacterPlayer {
     }
 
     public Integer getBasicWyrdValue() {
-        if (getOccultismType() != null) {
-            if (getOccultismType().getId().equals(OccultismTypeFactory.PSI_TAG)) {
-                return getValue(CharacteristicName.WILL);
-            }
-            if (getOccultismType().getId().equals(OccultismTypeFactory.THEURGY_TAG)) {
-                return getValue(CharacteristicName.FAITH);
-            }
-        }
         return Math.max(getValue(CharacteristicName.WILL), getValue(CharacteristicName.FAITH));
+    }
+
+    public Integer getMaxWyrdValue() {
+        return getBasicWyrdValue() * 2;
     }
 
     public Integer getWyrdValue() {
