@@ -49,6 +49,7 @@ import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
 import com.softwaremagico.tm.character.equipment.weapons.WeaponType;
 import com.softwaremagico.tm.character.equipment.weapons.Weapons;
 import com.softwaremagico.tm.character.factions.Faction;
+import com.softwaremagico.tm.character.factions.FactionGroup;
 import com.softwaremagico.tm.character.factions.InvalidFactionException;
 import com.softwaremagico.tm.character.occultism.*;
 import com.softwaremagico.tm.character.races.InvalidRaceException;
@@ -1542,6 +1543,9 @@ public class CharacterPlayer {
      * @return an occultism type or null if nothing has been selected.
      */
     public OccultismType getOccultismType() {
+        if (getFaction() != null && getFaction().getFactionGroup() == FactionGroup.CHURCH) {
+            return OccultismTypeFactory.getTheurgy(getLanguage(), getModuleName());
+        }
         try {
             //Check if has some path purchased already. Get its occultismType;
             if (!getOccultism().getSelectedPowers().isEmpty()) {

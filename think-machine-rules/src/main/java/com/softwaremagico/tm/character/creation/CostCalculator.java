@@ -102,7 +102,7 @@ public class CostCalculator {
             return CharacterProgressionStatus.DRAFT;
         }
         if (getTotalExtraCost() < FreeStyleCharacterCreation.getFreeAvailablePoints(characterAge(characterPlayer)
-)) {
+        )) {
             return CharacterProgressionStatus.IN_PROGRESS;
         }
         if (characterPlayer.getExperienceExpended() > 0) {
@@ -118,29 +118,29 @@ public class CostCalculator {
         if (characterPlayer != null && characterPlayer.getInfo() != null) {
             currentCharacteristicPoints.set(Math.min(characterPlayer.getCharacteristicsTotalPoints(),
                     FreeStyleCharacterCreation.getCharacteristicsPoints(characterAge(characterPlayer)
-)));
+                    )));
             currentCharacteristicExtraPoints.set(Math.max(characterPlayer.getCharacteristicsTotalPoints() -
                             (FreeStyleCharacterCreation.getCharacteristicsPoints(characterAge(characterPlayer)
-))
+                            ))
                     , 0));
             try {
                 currentSkillsPoints.set(Math.min(characterPlayer.getSkillsTotalPoints(),
                         FreeStyleCharacterCreation.getSkillsPoints(characterAge(characterPlayer)
-)));
+                        )));
             } catch (InvalidXmlElementException e) {
                 MachineLog.errorMessage(this.getClass().getName(), e);
             }
             try {
                 currentSkillsExtraPoints.set(Math.max(characterPlayer.getSkillsTotalPoints() -
                         FreeStyleCharacterCreation.getSkillsPoints(characterAge(characterPlayer)
-), 0));
+                        ), 0));
             } catch (InvalidXmlElementException e) {
                 MachineLog.errorMessage(this.getClass().getName(), e);
             }
             try {
                 currentTraitsPoints.set(Math.min(getBlessingCosts(characterPlayer) + getBeneficesCosts(characterPlayer),
                         FreeStyleCharacterCreation.getTraitsPoints(characterAge(characterPlayer)
-)));
+                        )));
             } catch (InvalidXmlElementException e) {
                 MachineLog.errorMessage(this.getClass().getName(), e);
             }
@@ -178,39 +178,39 @@ public class CostCalculator {
         characterPlayer.getCharacterModificationHandler().addCharacteristicUpdatedListener(
                 (characteristic, previousRank, newRank, minimumRank) ->
                         updateCost(currentCharacteristicPoints, FreeStyleCharacterCreation.getCharacteristicsPoints(characterAge(characterPlayer)
-),
-                        currentCharacteristicExtraPoints, previousRank, newRank, minimumRank,
-                        value -> getCostCharacterModificationHandler().launchCharacteristicPointsUpdatedListeners(value),
-                        value -> getCostCharacterModificationHandler().launchCharacteristicExtraPointsUpdatedListeners(value)));
+                                ),
+                                currentCharacteristicExtraPoints, previousRank, newRank, minimumRank,
+                                value -> getCostCharacterModificationHandler().launchCharacteristicPointsUpdatedListeners(value),
+                                value -> getCostCharacterModificationHandler().launchCharacteristicExtraPointsUpdatedListeners(value)));
         characterPlayer.getCharacterModificationHandler().addSkillUpdateListener((skill, previousRank, newRank, minimumRank) ->
                 updateCost(currentSkillsPoints, FreeStyleCharacterCreation.getSkillsPoints(characterAge(characterPlayer)
-),
-                currentSkillsExtraPoints, previousRank, newRank, minimumRank,
-                value -> getCostCharacterModificationHandler().launchSkillsPointsUpdatedListeners(value),
-                value -> getCostCharacterModificationHandler().launchSkillsExtraPointsUpdatedListeners(value)));
+                        ),
+                        currentSkillsExtraPoints, previousRank, newRank, minimumRank,
+                        value -> getCostCharacterModificationHandler().launchSkillsPointsUpdatedListeners(value),
+                        value -> getCostCharacterModificationHandler().launchSkillsExtraPointsUpdatedListeners(value)));
         characterPlayer.getCharacterModificationHandler().addBeneficesUpdatedListener((benefice, removed) ->
                 updateCost(currentTraitsPoints, FreeStyleCharacterCreation.getTraitsPoints(characterAge(characterPlayer)
-),
-                currentTraitsExtraPoints, removed ? benefice.getCost() : 0, removed ? 0 : benefice.getCost(), null,
-                value -> getCostCharacterModificationHandler().launchTraitsPointsUpdatedListeners(value),
-                value -> getCostCharacterModificationHandler().launchTraitsExtraPointsUpdatedListeners(value)));
+                        ),
+                        currentTraitsExtraPoints, removed ? benefice.getCost() : 0, removed ? 0 : benefice.getCost(), null,
+                        value -> getCostCharacterModificationHandler().launchTraitsPointsUpdatedListeners(value),
+                        value -> getCostCharacterModificationHandler().launchTraitsExtraPointsUpdatedListeners(value)));
         characterPlayer.getCharacterModificationHandler().addBlessingUpdatedListener((blessing, removed) ->
                 updateCost(currentTraitsPoints, FreeStyleCharacterCreation.getTraitsPoints(characterAge(characterPlayer)
-),
-                currentTraitsExtraPoints, removed ? blessing.getCost() : 0, removed ? 0 : blessing.getCost(), null,
-                value -> getCostCharacterModificationHandler().launchTraitsPointsUpdatedListeners(value),
-                value -> getCostCharacterModificationHandler().launchTraitsExtraPointsUpdatedListeners(value)));
+                        ),
+                        currentTraitsExtraPoints, removed ? blessing.getCost() : 0, removed ? 0 : blessing.getCost(), null,
+                        value -> getCostCharacterModificationHandler().launchTraitsPointsUpdatedListeners(value),
+                        value -> getCostCharacterModificationHandler().launchTraitsExtraPointsUpdatedListeners(value)));
         characterPlayer.getCharacterModificationHandler().addOccultismLevelUpdatedListener(
                 (occultismType, previousPsyValue, newPsyValue, minimumPsyValue) ->
                         updateCost(new AtomicInteger(0), 0,
-                        currentOccultismLevelExtraPoints, previousPsyValue, newPsyValue, minimumPsyValue,
-                        null,
-                        value -> getCostCharacterModificationHandler().launchOccultismLevelExtraPointUpdatedListeners(value)));
+                                currentOccultismLevelExtraPoints, previousPsyValue, newPsyValue, minimumPsyValue,
+                                null,
+                                value -> getCostCharacterModificationHandler().launchOccultismLevelExtraPointUpdatedListeners(value)));
         characterPlayer.getCharacterModificationHandler().addOccultismPowerUpdatedListener((power, removed) ->
                 updateCost(new AtomicInteger(0), 0,
-                currentOccultismPowersExtraPoints, removed ? power.getCost() : 0, removed ? 0 : power.getCost(), 0,
-                null,
-                value -> getCostCharacterModificationHandler().launchOccultismPowerExtraPointUpdatedListeners(value)));
+                        currentOccultismPowersExtraPoints, removed ? power.getCost() : 0, removed ? 0 : power.getCost(), 0,
+                        null,
+                        value -> getCostCharacterModificationHandler().launchOccultismPowerExtraPointUpdatedListeners(value)));
         characterPlayer.getCharacterModificationHandler().addWyrdUpdatedListener(wyrdValue -> {
             if (currentWyrdExtraPoints.get() != wyrdValue) {
                 currentWyrdExtraPoints.set(wyrdValue);
@@ -220,9 +220,9 @@ public class CostCalculator {
         });
         characterPlayer.getCharacterModificationHandler().addCyberneticDeviceUpdatedListener((device, removed) ->
                 updateCost(new AtomicInteger(0), 0,
-                currentCyberneticsExtraPoints, removed ? device.getPoints() : 0, removed ? 0 : device.getPoints(), 0,
-                null,
-                value -> getCostCharacterModificationHandler().launchCyberneticExtraPointsListeners(value)));
+                        currentCyberneticsExtraPoints, removed ? device.getPoints() : 0, removed ? 0 : device.getPoints(), 0,
+                        null,
+                        value -> getCostCharacterModificationHandler().launchCyberneticExtraPointsListeners(value)));
         characterPlayer.getCharacterModificationHandler().addEquipmentUpdatedListener((equipment, removed) -> {
             if (equipment != null) {
                 fireBirdsExpend += (removed ? -equipment.getCost() : equipment.getCost());
@@ -380,7 +380,7 @@ public class CostCalculator {
     private static int getCharacteristicsCost(CharacterPlayer characterPlayer, int extraCharacteristicsPoints) {
         return (characterPlayer.getCharacteristicsTotalPoints() - Math.max(CharacteristicName.values().length,
                 (FreeStyleCharacterCreation.getCharacteristicsPoints(characterAge(characterPlayer)
-))
+                ))
                         + extraCharacteristicsPoints))
                 * CHARACTERISTIC_EXTRA_POINTS_COST;
     }
@@ -389,7 +389,7 @@ public class CostCalculator {
             throws InvalidXmlElementException {
         return (characterPlayer.getSkillsTotalPoints() - Math.max(0,
                 (FreeStyleCharacterCreation.getSkillsPoints(characterAge(characterPlayer)
-)) + extraSkillPoints))
+                )) + extraSkillPoints))
                 * SKILL_EXTRA_POINTS_COST;
     }
 
@@ -398,7 +398,7 @@ public class CostCalculator {
         cost += getBlessingCosts(characterPlayer);
         cost += getBeneficesCosts(characterPlayer);
         return cost - FreeStyleCharacterCreation.getTraitsPoints(characterAge(characterPlayer)
-);
+        );
     }
 
     private static int getBlessingCosts(CharacterPlayer characterPlayer) {
