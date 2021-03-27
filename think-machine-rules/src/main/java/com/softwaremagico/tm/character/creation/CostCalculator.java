@@ -208,7 +208,8 @@ public class CostCalculator {
                                 value -> getCostCharacterModificationHandler().launchOccultismLevelExtraPointUpdatedListeners(value)));
         characterPlayer.getCharacterModificationHandler().addOccultismPowerUpdatedListener((power, removed) ->
                 updateCost(new AtomicInteger(0), 0,
-                        currentOccultismPowersExtraPoints, removed ? power.getCost() : 0, removed ? 0 : power.getCost(), 0,
+                        currentOccultismPowersExtraPoints, removed ? power.getLevel() * OCCULTISM_POWER_LEVEL_COST : 0,
+                        removed ? 0 : power.getLevel() * OCCULTISM_POWER_LEVEL_COST, 0,
                         null,
                         value -> getCostCharacterModificationHandler().launchOccultismPowerExtraPointUpdatedListeners(value)));
         characterPlayer.getCharacterModificationHandler().addWyrdUpdatedListener(wyrdValue -> {
