@@ -1549,8 +1549,11 @@ public class CharacterPlayer {
         try {
             //Check if has some path purchased already. Get its occultismType;
             if (!getOccultism().getSelectedPowers().isEmpty()) {
-                final OccultismPower occultismPower = getOccultism().getSelectedPowers().entrySet().iterator().next().getValue().iterator().next();
-                return OccultismPathFactory.getInstance().getOccultismPath(occultismPower).getOccultismType();
+                final Entry<String, List<OccultismPower>> occultismPowers = getOccultism().getSelectedPowers().entrySet().iterator().next();
+                if (occultismPowers.getValue() != null && !occultismPowers.getValue().isEmpty()) {
+                    final OccultismPower occultismPower = occultismPowers.getValue().iterator().next();
+                    return OccultismPathFactory.getInstance().getOccultismPath(occultismPower).getOccultismType();
+                }
             }
             //Check if has some occultism level added already.
             for (final OccultismType occultismType : OccultismTypeFactory.getInstance().getElements(getLanguage(), getModuleName())) {
@@ -1593,7 +1596,7 @@ public class CharacterPlayer {
     public void removeOccultismPower(OccultismPower power) {
         final OccultismPath path = OccultismPathFactory.getInstance().getOccultismPath(power);
         if (getOccultism().removePower(path, power)) {
-            getCharacterModificationHandler().launchOccultismPowerUpdatedListener(power, false);
+            getCharacterModificationHandler().launchOccultismPowerUpdatedListener(power, true);
         }
     }
 
