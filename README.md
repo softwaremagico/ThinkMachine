@@ -131,4 +131,6 @@ Fonts used in this project: DejaVuSans, ArchitectsDaughter and Roman Antique.
 
 0.9.0 Element descriptions and extra content.
 - 0.9.1 Equipment descriptions.
-- 0.9.2 Minor houses included.
+- 0.9.2 Occultism descriptions.
+
+
