@@ -10,16 +10,32 @@
 		<characteristicsMinimumValues>
 			<dexterity>6</dexterity>
 		</characteristicsMinimumValues>
+		<requiredSkills>
+			<skill>
+				<id>slugGuns</id>
+			</skill>
+			<skill>
+				<id>fight</id>
+			</skill>
+			<skill>
+				<id>vigor</id>
+			</skill>
+		</requiredSkills>
 	</soldier>
 	<soldierLiHalan>
 		<name>
-			<en>Li Halan Soldier</en>
-			<es>Soldado Li Halan</es>
+			<en>Hi Tech Soldier</en>
+			<es>Soldado Alta Tecnología</es>
 		</name>
 		<parent>soldier</parent>
 		<characteristicsMinimumValues>
 			<tech>7</tech>
 		</characteristicsMinimumValues>
+		<requiredSkills>
+			<skill>
+				<id>energyGuns</id>
+			</skill>
+		</requiredSkills>
 	</soldierLiHalan>
 	<serf>
 		<name>
@@ -110,12 +126,9 @@
 		<characteristicsMinimumValues>
 			<endurance>6</endurance>
 		</characteristicsMinimumValues>
-		<suggestedSkills>
+		<requiredSkills>
 			<skill>
 				<id>slugGuns</id>
-			</skill>
-			<skill>
-				<id>melee</id>
 			</skill>
 			<skill>
 				<id>fight</id>
@@ -123,34 +136,47 @@
 			<skill>
 				<id>vigor</id>
 			</skill>
+		</requiredSkills>
+		<suggestedSkills>
+			<skill>
+				<id>melee</id>
+			</skill>
 			<skill>
 				<id>survival</id>
 			</skill>
-			<weapons>imperialRifle</weapons>
-			<armours>scaleMailMetal</armours>
 		</suggestedSkills>
+		<weapons>imperialRifle</weapons>
+		<armours>scaleMailMetal</armours>
 	</infantry>
 	<heavyInfantry>
 		<name>
-			<en>Infantry</en>
-			<es>Infantería</es>
+			<en>Heavy Infantry</en>
+			<es>Infantería Pesada</es>
 		</name>
 		<preferences>CombatPreferences.FAIR, CharacteristicsPreferences.BODY, TechnologicalPreferences.MODERN</preferences>
 		<characteristicsMinimumValues>
 			<strength>6</strength>
 		</characteristicsMinimumValues>
-		<suggestedSkills>
+		<requiredSkills>
 			<skill>
 				<id>slugGuns</id>
-			</skill>
-			<skill>
-				<id>melee</id>
 			</skill>
 			<skill>
 				<id>fight</id>
 			</skill>
 			<skill>
 				<id>vigor</id>
+			</skill>
+		</requiredSkills>
+		<suggestedSkills>
+			<skill>
+				<id>melee</id>
+			</skill>
+			<skill>
+				<id>gunnery</id>
+			</skill>
+			<skill>
+				<id>artillery</id>
 			</skill>
 			<skill>
 				<id>survival</id>
@@ -167,11 +193,11 @@
 			<en>Tracker</en>
 			<es>Rastreador</es>
 		</name>
-		<preferences>CombatPreferences.FAIR, TechnologicalPreferences.MODERN</preferences>
+		<preferences>CombatPreferences.FAIR, TechnologicalPreferences.MODERN, CharacteristicsPreferences.BODY</preferences>
 		<characteristicsMinimumValues>
 			<perception>6</perception>
 		</characteristicsMinimumValues>
-		<suggestedSkills>
+				<requiredSkills>
 			<skill>
 				<id>slugGuns</id>
 			</skill>
@@ -187,12 +213,17 @@
 			<skill>
 				<id>observe</id>
 			</skill>
+		</requiredSkills>
+		<suggestedSkills>
 			<skill>
 				<id>survival</id>
 			</skill>
-			<weapons>typicalSniperRifle</weapons>
-			<armours>leatherJerkin</armours>
+			<skill>
+				<id>ride</id>
+			</skill>
 		</suggestedSkills>
+		<weapons>typicalSniperRifle</weapons>
+		<armours>leatherJerkin</armours>
 	</tracker>
 	<slayer>
 		<name>

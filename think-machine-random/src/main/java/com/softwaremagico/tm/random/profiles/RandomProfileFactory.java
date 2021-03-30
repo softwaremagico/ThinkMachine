@@ -121,8 +121,13 @@ public class RandomProfileFactory extends XmlFactory<RandomProfile> {
         if (preferencesSelectedNames != null) {
             final StringTokenizer preferencesSelectedTokenizer = new StringTokenizer(preferencesSelectedNames, ",");
             while (preferencesSelectedTokenizer.hasMoreTokens()) {
-                preferencesSelected.add(RandomPreferenceUtils.getSelectedPreference(preferencesSelectedTokenizer
-                        .nextToken().trim()));
+                try {
+                    preferencesSelected.add(RandomPreferenceUtils.getSelectedPreference(preferencesSelectedTokenizer
+                            .nextToken().trim()));
+                } catch (StringIndexOutOfBoundsException e) {
+                    throw new InvalidProfileException("Invalid preferences '"
+                            + preferencesSelectedNames + "' on profile '" + profileId + "'.");
+                }
             }
         }
 

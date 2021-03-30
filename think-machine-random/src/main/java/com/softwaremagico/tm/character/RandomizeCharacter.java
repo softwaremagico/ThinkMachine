@@ -188,6 +188,7 @@ public class RandomizeCharacter {
             final CombatPreferences combatPreferences = CombatPreferences.getSelected(preferences);
             preferences.add(combatPreferences.getDefaultShieldPreferences());
         }
+        preferences.removeIf(Objects::isNull);
     }
 
     protected void setCharacterDefinition() throws InvalidXmlElementException, InvalidRandomElementSelectedException {

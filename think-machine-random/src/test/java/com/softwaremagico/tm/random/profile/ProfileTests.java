@@ -1,9 +1,5 @@
 package com.softwaremagico.tm.random.profile;
 
-import java.util.Objects;
-
-import org.testng.annotations.Test;
-
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.RandomizeCharacter;
@@ -20,6 +16,11 @@ import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedExcep
 import com.softwaremagico.tm.random.profiles.RandomProfileFactory;
 import com.softwaremagico.tm.random.selectors.CombatPreferences;
 import com.softwaremagico.tm.txt.CharacterSheet;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+import java.util.Objects;
+
 /*-
  * #%L
  * Think Machine (Core)
@@ -28,22 +29,21 @@ import com.softwaremagico.tm.txt.CharacterSheet;
  * %%
  * This software is designed by Jorge Hortelano Otero. Jorge Hortelano Otero
  * <softwaremagico@gmail.com> Valencia (Spain).
- *  
+ *
  * This program is free software; you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software
  * Foundation; either version 2 of the License, or (at your option) any later
  * version.
- *  
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
  * details.
- *  
+ *
  * You should have received a copy of the GNU General Public License along with
  * this program; If not, see <http://www.gnu.org/licenses/gpl-3.0.html>.
  * #L%
  */
-import org.testng.Assert;
 
 @Test(groups = "profile")
 public class ProfileTests {
@@ -76,8 +76,7 @@ public class ProfileTests {
 	}
 
 	@Test
-	public void checkPreferencesReader() throws DuplicatedPreferenceException, InvalidXmlElementException,
-			InvalidRandomElementSelectedException, TooManyBlessingsException {
+	public void checkPreferencesReader() throws InvalidXmlElementException {
 		Assert.assertEquals(RandomProfileFactory.getInstance().getElement("soldier", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).getPreferences().size(),
 				7);
 		Assert.assertTrue(RandomProfileFactory.getInstance().getElement("soldier", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).getPreferences()
@@ -87,8 +86,7 @@ public class ProfileTests {
 	}
 
 	@Test
-	public void checkParent() throws DuplicatedPreferenceException, InvalidXmlElementException,
-			InvalidRandomElementSelectedException, TooManyBlessingsException {
+	public void checkParent() throws InvalidXmlElementException {
 		Assert.assertEquals(
 				RandomProfileFactory.getInstance().getElement("soldierLiHalan", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).getPreferences().size(), 7);
 		Assert.assertTrue(RandomProfileFactory.getInstance().getElement("soldierLiHalan", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).getPreferences()
@@ -106,8 +104,6 @@ public class ProfileTests {
 		final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
 				RandomProfileFactory.getInstance().getElement("soldier", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
 		randomizeCharacter.createCharacter();
-		// CharacterSheet characterSheet = new CharacterSheet(characterPlayer);
-		// System.out.println(characterSheet.toString());
 	}
 
 	@Test
@@ -123,8 +119,6 @@ public class ProfileTests {
 		randomizeCharacter.createCharacter();
 		Assert.assertTrue(characterPlayer.getSkillTotalRanks(
 				AvailableSkillsFactory.getInstance().getElement("craft", "household", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)) > 0);
-		// CharacterSheet characterSheet = new CharacterSheet(characterPlayer);
-		// System.out.println(characterSheet.toString());
 	}
 
 	@Test
