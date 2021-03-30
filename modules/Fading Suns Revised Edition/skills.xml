@@ -329,6 +329,9 @@
 			<caligraphy>
 				<en>Caligraphy</en>
 				<es>Caligrafía</es>
+				<random>
+					<generalProbability>low</generalProbability>
+				</random>
 			</caligraphy>
 			<drawing>
 				<en>Drawing</en>
@@ -337,6 +340,10 @@
 			<embroidery>
 				<en>Embroidery</en>
 				<es>Bordado</es>
+				<random>
+					<generalProbability>minimum</generalProbability>
+					<recommendedFactionGroups>nobility</recommendedFactionGroups>
+				</random>
 			</embroidery>
 		</specializations>
 		<numberToShow>2</numberToShow>

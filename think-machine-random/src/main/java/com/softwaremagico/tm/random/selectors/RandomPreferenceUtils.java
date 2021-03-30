@@ -24,43 +24,29 @@ package com.softwaremagico.tm.random.selectors;
  * #L%
  */
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
-
-import com.softwaremagico.tm.file.PathManager;
 import com.softwaremagico.tm.log.MachineLog;
 import org.reflections.Reflections;
-import org.reflections.scanners.ResourcesScanner;
-import org.reflections.util.ClasspathHelper;
-import org.reflections.util.ConfigurationBuilder;
-import org.reflections.util.FilterBuilder;
+
+import java.lang.reflect.InvocationTargetException;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 @SuppressWarnings({"unchecked", "rawtypes"})
 public class RandomPreferenceUtils {
-
-    private static Set<Class<? extends Enum>> availablePreferences;
     private static HashMap<Class<? extends IRandomPreference>, Set<Class<? extends IRandomPreference>>> preferencesByGroup;
 
-    private static Set<Class<? extends Enum>> getAvailablePreferences() {
-        if (availablePreferences == null) {
-            // We use age preference to obtain the package path.
-            final Reflections reflections = new Reflections(AgePreferences.class.getPackage().getName());
-            availablePreferences = reflections.getSubTypesOf(Enum.class);
-        }
-        return availablePreferences;
-    }
 
     public static IRandomPreference getSelectedPreference(String preferenceName) {
-        for (final Class<? extends Enum> classPreference : getAvailablePreferences()) {
-            if (Objects.equals(classPreference.getSimpleName(),
-                    preferenceName.substring(0, preferenceName.indexOf('.')))) {
-                return (IRandomPreference) Enum.valueOf(classPreference,
-                        preferenceName.substring(preferenceName.indexOf('.') + 1));
+        final String preferenceClassName = AgePreferences.class.getPackage().getName() + "." + preferenceName.substring(0, preferenceName.indexOf('.'));
+        final String preferenceValue = preferenceName.substring(preferenceName.indexOf('.') + 1);
+        try {
+            final Class enumPreference = Class.forName(preferenceClassName);
+            if (enumPreference.isEnum()) {
+                return (IRandomPreference) Enum.valueOf(enumPreference, preferenceValue);
             }
+        } catch (ClassNotFoundException e) {
+            MachineLog.errorMessage(RandomPreferenceUtils.class.getName(), e);
         }
         return null;
     }
