@@ -197,7 +197,7 @@
 		<characteristicsMinimumValues>
 			<perception>6</perception>
 		</characteristicsMinimumValues>
-				<requiredSkills>
+		<requiredSkills>
 			<skill>
 				<id>slugGuns</id>
 			</skill>
@@ -271,4 +271,57 @@
 			<suggestedBenefices>passageContracts, professionalContract, secrets, darkSecret</suggestedBenefices>
 		</suggestedSkills>
 	</slayer>
+	<nobility>
+		<name>
+			<en>Noble</en>
+			<es>Noble</es>
+		</name>
+		<characteristicsMinimumValues>
+			<presence>5</presence>
+		</characteristicsMinimumValues>
+		<requiredSkills>
+			<skill>
+				<id>etiquette</id>
+			</skill>
+		</requiredSkills>
+		<suggestedSkills>
+			<skill>
+				<id>influence</id>
+			</skill>
+			<skill>
+				<id>ride</id>
+			</skill>
+			<skill>
+				<id>leadership</id>
+			</skill>
+		</suggestedSkills>
+		<suggestedBenefices>assets</suggestedBenefices>
+		<mandatoryBenefices>nobility</mandatoryBenefices>
+	</nobility>
+	<clergy>
+		<name>
+			<en>Clergy</en>
+			<es>Clero</es>
+		</name>
+		<parent>soldier</parent>
+		<characteristicsMinimumValues>
+			<presence>5</presence>
+		</characteristicsMinimumValues>
+		<suggestedSkills>
+			<skill>
+				<id>influence</id>
+			</skill>
+			<skill>
+				<id>selfControl</id>
+			</skill>
+			<skill>
+				<id>leadership</id>
+			</skill>
+			<skill>
+				<id>bureaucracy</id>
+			</skill>
+		</suggestedSkills>
+		<suggestedBenefices>oathOfFealty</suggestedBenefices>
+		<mandatoryBenefices>ordained</mandatoryBenefices>
+	</clergy>
 </profiles>
