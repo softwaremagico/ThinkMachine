@@ -89,6 +89,8 @@ public class ProfileMerger {
 
             mergeArmours(finalProfile.getMandatoryArmours(), profile.getMandatoryArmours());
 
+            mergeShields(finalProfile.getMandatoryShields(), profile.getMandatoryShields());
+
         }
 
         // Add selected preferences with more priority.
@@ -178,19 +180,34 @@ public class ProfileMerger {
         }
     }
 
-    private static void mergePreferences(Set<IRandomPreference> originalPreferences, Set<IRandomPreference> preferredPreferences) {
-        for (final IRandomPreference preferredPreference : preferredPreferences) {
-            removeAny(originalPreferences, preferredPreference);
+    private static void mergeShields(Set<Shield> originalShields, Set<Shield> shields) {
+        final List<Shield> sortedShields = new ArrayList<>();
+        sortedShields.addAll(originalShields);
+        sortedShields.addAll(shields);
+        sortedShields.sort((shield0, shield1) -> Float.compare(shield0.getCost(), shield1.getCost()));
+        // Keep the most expensive one
+        if (!sortedShields.isEmpty()) {
+            originalShields.clear();
+            originalShields.add(sortedShields.get(0));
         }
-        originalPreferences.addAll(preferredPreferences);
     }
 
-    private static void removeAny(Set<IRandomPreference> originalPreferences, IRandomPreference preferenceToRemove) {
-        for (final IRandomPreference randomPreference : new HashSet<>(originalPreferences)) {
-            if (randomPreference.getClass().equals(preferenceToRemove.getClass())) {
-                originalPreferences.remove(randomPreference);
+    public static void mergePreferences(Set<IRandomPreference> originalPreferences, Set<IRandomPreference> preferredPreferences) {
+        for (final IRandomPreference preferredPreference : new HashSet<>(preferredPreferences)) {
+            //Get preference average.
+            for (final IRandomPreference randomPreference : new HashSet<>(originalPreferences)) {
+                if (randomPreference.getClass().equals(preferredPreference.getClass())) {
+                    if (randomPreference.getClass().isEnum()) {
+                        int average = (int) Math.ceil((((Enum) randomPreference).ordinal() + ((Enum) preferredPreference).ordinal()) / 2);
+                        IRandomPreference averagePreference = randomPreference.getClass().getEnumConstants()[average];
+                        originalPreferences.remove(randomPreference);
+                        preferredPreferences.remove(preferredPreference);
+                        originalPreferences.add(averagePreference);
+                    }
+                }
             }
         }
+        originalPreferences.addAll(preferredPreferences);
     }
 
 }

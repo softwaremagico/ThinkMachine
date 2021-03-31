@@ -13,13 +13,21 @@ import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.file.PathManager;
 import com.softwaremagico.tm.random.exceptions.DuplicatedPreferenceException;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
+import com.softwaremagico.tm.random.profiles.ProfileMerger;
 import com.softwaremagico.tm.random.profiles.RandomProfileFactory;
+import com.softwaremagico.tm.random.selectors.AgePreferences;
+import com.softwaremagico.tm.random.selectors.BlessingPreferences;
 import com.softwaremagico.tm.random.selectors.CombatPreferences;
+import com.softwaremagico.tm.random.selectors.IRandomPreference;
 import com.softwaremagico.tm.txt.CharacterSheet;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /*-
  * #%L
@@ -47,162 +55,198 @@ import java.util.Objects;
 
 @Test(groups = "profile")
 public class ProfileTests {
-	private static final String LANGUAGE = "en";
+    private static final String LANGUAGE = "en";
 
-	private void checkCharacterisic(CharacterPlayer characterPlayer, CharacteristicName characteristicName, int value) {
-		try {
-			Assert.assertTrue(characterPlayer.getValue(characteristicName) >= value);
-		} catch (AssertionError e) {
-			System.out.println("################ ERROR ################");
-			final CharacterSheet characterSheet = new CharacterSheet(characterPlayer);
-			System.out.println(characterSheet.toString());
-			throw e;
-		}
-	}
+    private void checkCharacterisic(CharacterPlayer characterPlayer, CharacteristicName characteristicName, int value) {
+        try {
+            Assert.assertTrue(characterPlayer.getValue(characteristicName) >= value);
+        } catch (AssertionError e) {
+            System.out.println("################ ERROR ################");
+            final CharacterSheet characterSheet = new CharacterSheet(characterPlayer);
+            System.out.println(characterSheet.toString());
+            throw e;
+        }
+    }
 
-	private void checkContainsWeapon(CharacterPlayer characterPlayer, Weapon weapon) {
-		for (Weapon characterWeapon : characterPlayer.getAllWeapons()) {
-			if (Objects.equals(characterWeapon, weapon)) {
-				return;
-			}
-		}
-		throw new AssertionError();
-	}
+    private void checkContainsWeapon(CharacterPlayer characterPlayer, Weapon weapon) {
+        for (Weapon characterWeapon : characterPlayer.getAllWeapons()) {
+            if (Objects.equals(characterWeapon, weapon)) {
+                return;
+            }
+        }
+        throw new AssertionError();
+    }
 
-	private void checkContainsArmour(CharacterPlayer characterPlayer, Armour armour) {
-		if (!Objects.equals(characterPlayer.getArmour(), armour)) {
-			throw new AssertionError();
-		}
-	}
+    private void checkContainsArmour(CharacterPlayer characterPlayer, Armour armour) {
+        if (!Objects.equals(characterPlayer.getArmour(), armour)) {
+            throw new AssertionError();
+        }
+    }
 
-	@Test
-	public void checkPreferencesReader() throws InvalidXmlElementException {
-		Assert.assertEquals(RandomProfileFactory.getInstance().getElement("soldier", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).getPreferences().size(),
-				7);
-		Assert.assertTrue(RandomProfileFactory.getInstance().getElement("soldier", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).getPreferences()
-				.contains(CombatPreferences.BELLIGERENT));
-		Assert.assertEquals(RandomProfileFactory.getInstance().getElement("soldier", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)
-				.getCharacteristicMinimumValues(CharacteristicName.DEXTERITY).getValue(), 6);
-	}
+    @Test
+    public void checkPreferencesReader() throws InvalidXmlElementException {
+        Assert.assertEquals(RandomProfileFactory.getInstance().getElement("soldier", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).getPreferences().size(),
+                7);
+        Assert.assertTrue(RandomProfileFactory.getInstance().getElement("soldier", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).getPreferences()
+                .contains(CombatPreferences.BELLIGERENT));
+        Assert.assertEquals(RandomProfileFactory.getInstance().getElement("soldier", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)
+                .getCharacteristicMinimumValues(CharacteristicName.DEXTERITY).getValue(), 6);
+    }
 
-	@Test
-	public void checkParent() throws InvalidXmlElementException {
-		Assert.assertEquals(
-				RandomProfileFactory.getInstance().getElement("soldierLiHalan", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).getPreferences().size(), 7);
-		Assert.assertTrue(RandomProfileFactory.getInstance().getElement("soldierLiHalan", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).getPreferences()
-				.contains(CombatPreferences.BELLIGERENT));
-		Assert.assertEquals(RandomProfileFactory.getInstance().getElement("soldierLiHalan", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)
-				.getCharacteristicMinimumValues(CharacteristicName.DEXTERITY).getValue(), 6);
-		Assert.assertEquals(RandomProfileFactory.getInstance().getElement("soldierLiHalan", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)
-				.getCharacteristicMinimumValues(CharacteristicName.TECH).getValue(), 7);
-	}
+    @Test
+    public void checkParent() throws InvalidXmlElementException {
+        Assert.assertEquals(
+                RandomProfileFactory.getInstance().getElement("soldierLiHalan", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).getPreferences().size(), 7);
+        Assert.assertTrue(RandomProfileFactory.getInstance().getElement("soldierLiHalan", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).getPreferences()
+                .contains(CombatPreferences.BELLIGERENT));
+        Assert.assertEquals(RandomProfileFactory.getInstance().getElement("soldierLiHalan", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)
+                .getCharacteristicMinimumValues(CharacteristicName.DEXTERITY).getValue(), 6);
+        Assert.assertEquals(RandomProfileFactory.getInstance().getElement("soldierLiHalan", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)
+                .getCharacteristicMinimumValues(CharacteristicName.TECH).getValue(), 7);
+    }
 
-	@Test
-	public void soldier() throws DuplicatedPreferenceException, InvalidXmlElementException,
-			InvalidRandomElementSelectedException, TooManyBlessingsException {
-		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
-		final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
-				RandomProfileFactory.getInstance().getElement("soldier", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
-		randomizeCharacter.createCharacter();
-	}
+    @Test
+    public void soldier() throws DuplicatedPreferenceException, InvalidXmlElementException,
+            InvalidRandomElementSelectedException, TooManyBlessingsException {
+        final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
+                RandomProfileFactory.getInstance().getElement("soldier", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+        randomizeCharacter.createCharacter();
+    }
 
-	@Test
-	public void serf() throws DuplicatedPreferenceException, InvalidXmlElementException,
-			InvalidRandomElementSelectedException, TooManyBlessingsException {
-		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
-		final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
-				RandomProfileFactory.getInstance().getElement("serf", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
-		Assert.assertEquals(RandomProfileFactory.getInstance().getElement("serf", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).getRequiredSkills().size(),
-				1);
-		Assert.assertEquals(RandomProfileFactory.getInstance().getElement("serf", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).getSuggestedSkills().size(),
-				2);
-		randomizeCharacter.createCharacter();
-		Assert.assertTrue(characterPlayer.getSkillTotalRanks(
-				AvailableSkillsFactory.getInstance().getElement("craft", "household", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)) > 0);
-	}
+    @Test
+    public void serf() throws DuplicatedPreferenceException, InvalidXmlElementException,
+            InvalidRandomElementSelectedException, TooManyBlessingsException {
+        final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
+                RandomProfileFactory.getInstance().getElement("serf", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+        Assert.assertEquals(RandomProfileFactory.getInstance().getElement("serf", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).getRequiredSkills().size(),
+                1);
+        Assert.assertEquals(RandomProfileFactory.getInstance().getElement("serf", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).getSuggestedSkills().size(),
+                2);
+        randomizeCharacter.createCharacter();
+        Assert.assertTrue(characterPlayer.getSkillTotalRanks(
+                AvailableSkillsFactory.getInstance().getElement("craft", "household", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)) > 0);
+    }
 
-	@Test
-	public void thug() throws DuplicatedPreferenceException, InvalidXmlElementException,
-			InvalidRandomElementSelectedException, TooManyBlessingsException {
-		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
-		final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
-				RandomProfileFactory.getInstance().getElement("thug", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
-		Assert.assertEquals(
-				RandomProfileFactory.getInstance().getElement("thug", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).getMandatoryBenefices().size(), 1);
-		Assert.assertEquals(
-				RandomProfileFactory.getInstance().getElement("thug", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).getSuggestedBenefices().size(), 5);
-		randomizeCharacter.createCharacter();
-		Assert.assertNotNull(characterPlayer.getBenefice("outlaw"));
-	}
+    @Test
+    public void thug() throws DuplicatedPreferenceException, InvalidXmlElementException,
+            InvalidRandomElementSelectedException, TooManyBlessingsException {
+        final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
+                RandomProfileFactory.getInstance().getElement("thug", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+        Assert.assertEquals(
+                RandomProfileFactory.getInstance().getElement("thug", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).getMandatoryBenefices().size(), 1);
+        Assert.assertEquals(
+                RandomProfileFactory.getInstance().getElement("thug", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).getSuggestedBenefices().size(), 5);
+        randomizeCharacter.createCharacter();
+        Assert.assertNotNull(characterPlayer.getBenefice("outlaw"));
+    }
 
-	@Test
-	public void slayer() throws DuplicatedPreferenceException, InvalidXmlElementException,
-			InvalidRandomElementSelectedException, TooManyBlessingsException {
-		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
-		final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
-				RandomProfileFactory.getInstance().getElement("slayer", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
-		Assert.assertEquals(
-				RandomProfileFactory.getInstance().getElement("slayer", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).getSuggestedBenefices().size(), 4);
-		randomizeCharacter.createCharacter();
-	}
+    @Test
+    public void slayer() throws DuplicatedPreferenceException, InvalidXmlElementException,
+            InvalidRandomElementSelectedException, TooManyBlessingsException {
+        final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
+                RandomProfileFactory.getInstance().getElement("slayer", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+        Assert.assertEquals(
+                RandomProfileFactory.getInstance().getElement("slayer", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).getSuggestedBenefices().size(), 4);
+        randomizeCharacter.createCharacter();
+    }
 
-	@Test
-	public void militia() throws DuplicatedPreferenceException, InvalidXmlElementException,
-			InvalidRandomElementSelectedException, TooManyBlessingsException {
-		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
-		final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
-				RandomProfileFactory.getInstance().getElement("militia", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
-		Assert.assertEquals(RandomProfileFactory.getInstance().getElement("militia", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)
-				.getCharacteristicMinimumValues(CharacteristicName.STRENGTH).getValue(), 6);
-		randomizeCharacter.createCharacter();
-		checkCharacterisic(characterPlayer, CharacteristicName.STRENGTH, 6);
-	}
+    @Test
+    public void militia() throws DuplicatedPreferenceException, InvalidXmlElementException,
+            InvalidRandomElementSelectedException, TooManyBlessingsException {
+        final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
+                RandomProfileFactory.getInstance().getElement("militia", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+        Assert.assertEquals(RandomProfileFactory.getInstance().getElement("militia", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)
+                .getCharacteristicMinimumValues(CharacteristicName.STRENGTH).getValue(), 6);
+        randomizeCharacter.createCharacter();
+        checkCharacterisic(characterPlayer, CharacteristicName.STRENGTH, 6);
+    }
 
-	@Test
-	public void infantry() throws DuplicatedPreferenceException, InvalidXmlElementException,
-			InvalidRandomElementSelectedException, TooManyBlessingsException {
-		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
-		final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
-				RandomProfileFactory.getInstance().getElement("infantry", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
-		Assert.assertEquals(RandomProfileFactory.getInstance().getElement("infantry", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)
-				.getCharacteristicMinimumValues(CharacteristicName.ENDURANCE).getValue(), 6);
-		randomizeCharacter.createCharacter();
-		checkCharacterisic(characterPlayer, CharacteristicName.ENDURANCE, 6);
-		checkContainsWeapon(characterPlayer, WeaponFactory.getInstance().getElement("imperialRifle", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
-		checkContainsArmour(characterPlayer, ArmourFactory.getInstance().getElement("scaleMailMetal", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
-	}
+    @Test
+    public void infantry() throws DuplicatedPreferenceException, InvalidXmlElementException,
+            InvalidRandomElementSelectedException, TooManyBlessingsException {
+        final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
+                RandomProfileFactory.getInstance().getElement("infantry", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+        Assert.assertEquals(RandomProfileFactory.getInstance().getElement("infantry", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)
+                .getCharacteristicMinimumValues(CharacteristicName.ENDURANCE).getValue(), 6);
+        randomizeCharacter.createCharacter();
+        checkCharacterisic(characterPlayer, CharacteristicName.ENDURANCE, 6);
+        checkContainsWeapon(characterPlayer, WeaponFactory.getInstance().getElement("imperialRifle", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+        checkContainsArmour(characterPlayer, ArmourFactory.getInstance().getElement("scaleMailMetal", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+    }
 
-	@Test
-	public void heavyInfantry() throws DuplicatedPreferenceException, InvalidXmlElementException,
-			InvalidRandomElementSelectedException, TooManyBlessingsException {
-		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
-		final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
-				RandomProfileFactory.getInstance().getElement("heavyInfantry", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
-		Assert.assertEquals(RandomProfileFactory.getInstance().getElement("heavyInfantry", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)
-				.getCharacteristicMinimumValues(CharacteristicName.STRENGTH).getValue(), 6);
-		Assert.assertEquals(RandomProfileFactory.getInstance().getElement("heavyInfantry", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)
-				.getMandatoryWeapons().size(), 1);
-		randomizeCharacter.createCharacter();
-		checkCharacterisic(characterPlayer, CharacteristicName.STRENGTH, 6);
-		checkContainsWeapon(characterPlayer, WeaponFactory.getInstance().getElement("jahnisak040MG", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
-		checkContainsArmour(characterPlayer, ArmourFactory.getInstance().getElement("leatherJerkin", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
-	}
+    @Test
+    public void heavyInfantry() throws DuplicatedPreferenceException, InvalidXmlElementException,
+            InvalidRandomElementSelectedException, TooManyBlessingsException {
+        final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
+                RandomProfileFactory.getInstance().getElement("heavyInfantry", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+        Assert.assertEquals(RandomProfileFactory.getInstance().getElement("heavyInfantry", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)
+                .getCharacteristicMinimumValues(CharacteristicName.STRENGTH).getValue(), 6);
+        Assert.assertEquals(RandomProfileFactory.getInstance().getElement("heavyInfantry", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)
+                .getMandatoryWeapons().size(), 1);
+        randomizeCharacter.createCharacter();
+        checkCharacterisic(characterPlayer, CharacteristicName.STRENGTH, 6);
+        checkContainsWeapon(characterPlayer, WeaponFactory.getInstance().getElement("jahnisak040MG", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+        checkContainsArmour(characterPlayer, ArmourFactory.getInstance().getElement("leatherJerkin", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+    }
 
-	@Test
-	public void tracker() throws DuplicatedPreferenceException, InvalidXmlElementException,
-			InvalidRandomElementSelectedException, TooManyBlessingsException {
-		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
-		final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
-				RandomProfileFactory.getInstance().getElement("tracker", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
-		Assert.assertEquals(RandomProfileFactory.getInstance().getElement("tracker", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)
-				.getCharacteristicMinimumValues(CharacteristicName.PERCEPTION).getValue(), 6);
-		Assert.assertEquals(RandomProfileFactory.getInstance().getElement("tracker", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)
-				.getMandatoryWeapons().size(), 1);
-		randomizeCharacter.createCharacter();
-		checkCharacterisic(characterPlayer, CharacteristicName.PERCEPTION, 6);
-		checkContainsWeapon(characterPlayer, WeaponFactory.getInstance().getElement("typicalSniperRifle", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
-		checkContainsArmour(characterPlayer,
-				ArmourFactory.getInstance().getElement("leatherJerkin", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
-	}
+    @Test
+    public void tracker() throws DuplicatedPreferenceException, InvalidXmlElementException,
+            InvalidRandomElementSelectedException, TooManyBlessingsException {
+        final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
+                RandomProfileFactory.getInstance().getElement("tracker", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+        Assert.assertEquals(RandomProfileFactory.getInstance().getElement("tracker", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)
+                .getCharacteristicMinimumValues(CharacteristicName.PERCEPTION).getValue(), 6);
+        Assert.assertEquals(RandomProfileFactory.getInstance().getElement("tracker", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)
+                .getMandatoryWeapons().size(), 1);
+        randomizeCharacter.createCharacter();
+        checkCharacterisic(characterPlayer, CharacteristicName.PERCEPTION, 6);
+        checkContainsWeapon(characterPlayer, WeaponFactory.getInstance().getElement("typicalSniperRifle", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+        checkContainsArmour(characterPlayer,
+                ArmourFactory.getInstance().getElement("leatherJerkin", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+    }
+
+    @Test
+    public void mergingPreferences() {
+        Set<IRandomPreference> originalPreferences = Stream.of(CombatPreferences.PEACEFUL, AgePreferences.ADULT)
+                .collect(Collectors.toCollection(HashSet::new));
+        Set<IRandomPreference> newPreferences = Stream.of(CombatPreferences.BELLIGERENT, BlessingPreferences.APPEARANCE)
+                .collect(Collectors.toCollection(HashSet::new));
+        ProfileMerger.mergePreferences(originalPreferences, newPreferences);
+        Assert.assertEquals(originalPreferences.size(), 3);
+        boolean found = false;
+        for (IRandomPreference preference : originalPreferences) {
+            if (Objects.equals(preference.getClass().getName(), CombatPreferences.class.getName())) {
+                Assert.assertEquals(preference, CombatPreferences.FAIR);
+                found = true;
+            }
+        }
+        Assert.assertTrue(found);
+    }
+
+    @Test
+    public void mergingPreferencesRounded() {
+        Set<IRandomPreference> originalPreferences = Stream.of(AgePreferences.CHILD)
+                .collect(Collectors.toCollection(HashSet::new));
+        Set<IRandomPreference> newPreferences = Stream.of(AgePreferences.VERY_OLD)
+                .collect(Collectors.toCollection(HashSet::new));
+        ProfileMerger.mergePreferences(originalPreferences, newPreferences);
+        Assert.assertEquals(originalPreferences.size(), 1);
+        boolean found = false;
+        for (IRandomPreference preference : originalPreferences) {
+            if (Objects.equals(preference.getClass().getName(), AgePreferences.class.getName())) {
+                Assert.assertEquals(preference, AgePreferences.ADULT);
+                found = true;
+            }
+        }
+        Assert.assertTrue(found);
+    }
 
 }
