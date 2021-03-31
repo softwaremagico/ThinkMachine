@@ -198,8 +198,8 @@ public class ProfileMerger {
             for (final IRandomPreference randomPreference : new HashSet<>(originalPreferences)) {
                 if (randomPreference.getClass().equals(preferredPreference.getClass())) {
                     if (randomPreference.getClass().isEnum()) {
-                        int average = (int) Math.ceil((((Enum) randomPreference).ordinal() + ((Enum) preferredPreference).ordinal()) / 2);
-                        IRandomPreference averagePreference = randomPreference.getClass().getEnumConstants()[average];
+                        final int average = ((((Enum) randomPreference).ordinal() + ((Enum) preferredPreference).ordinal()) + 1) / 2;
+                        final IRandomPreference averagePreference = randomPreference.getClass().getEnumConstants()[average];
                         originalPreferences.remove(randomPreference);
                         preferredPreferences.remove(preferredPreference);
                         originalPreferences.add(averagePreference);
