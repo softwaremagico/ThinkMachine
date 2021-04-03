@@ -8,24 +8,21 @@ package com.softwaremagico.tm.random.profiles;
  * %%
  * This software is designed by Jorge Hortelano Otero. Jorge Hortelano Otero
  * <softwaremagico@gmail.com> Valencia (Spain).
- *  
+ *
  * This program is free software; you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software
  * Foundation; either version 2 of the License, or (at your option) any later
  * version.
- *  
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
  * details.
- *  
+ *
  * You should have received a copy of the GNU General Public License along with
  * this program; If not, see <http://www.gnu.org/licenses/gpl-3.0.html>.
  * #L%
  */
-
-import java.util.Map;
-import java.util.Set;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.benefices.AvailableBenefice;
@@ -39,40 +36,43 @@ import com.softwaremagico.tm.character.equipment.weapons.Weapon;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
 
+import java.util.Map;
+import java.util.Set;
+
 public interface IRandomProfile {
 
-	int getExperiencePoints();
+    int getExperiencePoints();
 
-	Set<IRandomPreference> getPreferences();
+    Set<IRandomPreference> getPreferences();
 
-	Set<Characteristic> getCharacteristicsMinimumValues();
+    Set<Characteristic> getCharacteristicsMinimumValues();
 
-	Map<AvailableSkill, Integer> getSkillsMinimumValues();
+    Map<AvailableSkill, Integer> getSkillsMinimumValues();
 
-	Set<Blessing> getBlessings();
+    Set<Blessing> getBlessings();
 
-	Set<AvailableBenefice> getBenefices();
+    Set<AvailableBenefice> getBenefices();
 
-	void setParent(IRandomProfile randomProfile) throws InvalidXmlElementException;
+    void setParent(IRandomProfile randomProfile) throws InvalidXmlElementException;
 
-	public String getLanguage();
-	
-	public String getModuleName();
+    public String getLanguage();
 
-	Set<AvailableSkill> getRequiredSkills();
+    public String getModuleName();
 
-	Set<AvailableSkill> getSuggestedSkills();
+    Set<AvailableSkill> getRequiredSkills();
 
-	Set<BeneficeDefinition> getSuggestedBenefices();
+    Set<AvailableSkill> getSuggestedSkills();
 
-	Set<BeneficeDefinition> getMandatoryBenefices();
+    Set<BeneficeDefinition> getSuggestedBenefices();
 
-	Characteristic getCharacteristicMinimumValues(CharacteristicName characteristicName);
+    Set<BeneficeDefinition> getMandatoryBenefices();
 
-	Set<Weapon> getMandatoryWeapons();
+    Characteristic getCharacteristicMinimumValues(CharacteristicName characteristicName);
 
-	Set<Armour> getMandatoryArmours();
+    Set<Weapon> getMandatoryWeapons();
 
-	Set<Shield> getMandatoryShields();
+    Set<Armour> getMandatoryArmours();
+
+    Set<Shield> getMandatoryShields();
 
 }

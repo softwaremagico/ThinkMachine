@@ -122,6 +122,10 @@ public class ProfileMerger {
         finalProfile.getMandatoryArmours().clear();
         finalProfile.getMandatoryArmours().addAll(mandatoryArmours);
 
+        mergeShields(mandatoryShields, finalProfile.getMandatoryShields());
+        finalProfile.getMandatoryShields().clear();
+        finalProfile.getMandatoryShields().addAll(mandatoryShields);
+
         return finalProfile;
     }
 
@@ -193,21 +197,27 @@ public class ProfileMerger {
     }
 
     public static void mergePreferences(Set<IRandomPreference> originalPreferences, Set<IRandomPreference> preferredPreferences) {
-        for (final IRandomPreference preferredPreference : new HashSet<>(preferredPreferences)) {
+        originalPreferences.addAll(preferredPreferences);
+        mergePreferences(originalPreferences);
+    }
+
+    public static void mergePreferences(Set<IRandomPreference> originalPreferences) {
+        final Random random = new Random();
+        for (final IRandomPreference preference1 : new HashSet<>(originalPreferences)) {
             //Get preference average.
-            for (final IRandomPreference randomPreference : new HashSet<>(originalPreferences)) {
-                if (randomPreference.getClass().equals(preferredPreference.getClass())) {
-                    if (randomPreference.getClass().isEnum()) {
-                        final int average = ((((Enum) randomPreference).ordinal() + ((Enum) preferredPreference).ordinal()) + 1) / 2;
-                        final IRandomPreference averagePreference = randomPreference.getClass().getEnumConstants()[average];
-                        originalPreferences.remove(randomPreference);
-                        preferredPreferences.remove(preferredPreference);
-                        originalPreferences.add(averagePreference);
+            for (final IRandomPreference preference2 : new HashSet<>(originalPreferences)) {
+                if (preference1.getClass().equals(preference2.getClass()) && preference1 != preference2) {
+                    if (preference1.getClass().isEnum()) {
+                        //Select randomly
+                        if (random.nextBoolean()) {
+                            originalPreferences.remove(preference1);
+                        } else {
+                            originalPreferences.remove(preference2);
+                        }
                     }
                 }
             }
         }
-        originalPreferences.addAll(preferredPreferences);
     }
 
 }

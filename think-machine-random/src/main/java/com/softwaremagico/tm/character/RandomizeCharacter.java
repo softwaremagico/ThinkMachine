@@ -30,7 +30,6 @@ import com.softwaremagico.tm.character.benefices.RandomBeneficeDefinition;
 import com.softwaremagico.tm.character.benefices.RandomExtraBeneficeDefinition;
 import com.softwaremagico.tm.character.blessings.RandomBlessingDefinition;
 import com.softwaremagico.tm.character.blessings.RandomCursesDefinition;
-import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
 import com.softwaremagico.tm.character.characteristics.Characteristic;
 import com.softwaremagico.tm.character.characteristics.RandomCharacteristics;
 import com.softwaremagico.tm.character.characteristics.RandomCharacteristicsExperience;
@@ -69,7 +68,7 @@ import java.util.Objects;
 import java.util.Set;
 
 public class RandomizeCharacter {
-    private CharacterPlayer characterPlayer;
+    private final CharacterPlayer characterPlayer;
     private final Set<IRandomPreference> preferences;
     private final Set<AvailableSkill> requiredSkills;
     private final Set<AvailableSkill> suggestedSkills;
@@ -81,30 +80,30 @@ public class RandomizeCharacter {
     private final Set<Shield> mandatoryShields;
 
     public RandomizeCharacter(CharacterPlayer characterPlayer, int experiencePoints, IRandomPreference... preferences)
-            throws DuplicatedPreferenceException, TooManyBlessingsException, InvalidXmlElementException {
-        this(characterPlayer, experiencePoints, null, new HashSet<>(Arrays.asList(preferences)), new HashSet<AvailableSkill>(), new HashSet<AvailableSkill>(),
-                new HashSet<BeneficeDefinition>(), new HashSet<BeneficeDefinition>(), new HashSet<Weapon>(), new HashSet<Armour>(), new HashSet<Shield>());
+            throws DuplicatedPreferenceException {
+        this(characterPlayer, experiencePoints, null, new HashSet<>(Arrays.asList(preferences)), new HashSet<>(), new HashSet<>(),
+                new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>());
     }
 
     public RandomizeCharacter(CharacterPlayer characterPlayer, IRandomProfile... profiles)
-            throws DuplicatedPreferenceException, TooManyBlessingsException, InvalidXmlElementException {
-        this(characterPlayer, null, new HashSet<IRandomProfile>(Arrays.asList(profiles)), new HashSet<IRandomPreference>(), new HashSet<AvailableSkill>(),
-                new HashSet<AvailableSkill>(), new HashSet<BeneficeDefinition>(), new HashSet<BeneficeDefinition>(), new HashSet<Weapon>(),
-                new HashSet<Armour>(), new HashSet<Shield>());
+            throws DuplicatedPreferenceException {
+        this(characterPlayer, null, new HashSet<>(Arrays.asList(profiles)), new HashSet<>(), new HashSet<>(),
+                new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(),
+                new HashSet<>(), new HashSet<>());
     }
 
     public RandomizeCharacter(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences, IRandomProfile... profiles)
-            throws DuplicatedPreferenceException, TooManyBlessingsException, InvalidXmlElementException {
-        this(characterPlayer, null, new HashSet<IRandomProfile>(Arrays.asList(profiles)), new HashSet<IRandomPreference>(), new HashSet<AvailableSkill>(),
-                new HashSet<AvailableSkill>(), new HashSet<BeneficeDefinition>(), new HashSet<BeneficeDefinition>(), new HashSet<Weapon>(),
-                new HashSet<Armour>(), new HashSet<Shield>());
+            throws DuplicatedPreferenceException {
+        this(characterPlayer, null, new HashSet<>(Arrays.asList(profiles)), preferences, new HashSet<>(),
+                new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(),
+                new HashSet<>(), new HashSet<>());
     }
 
     public RandomizeCharacter(CharacterPlayer characterPlayer, Integer experiencePoints, Set<IRandomProfile> profiles, Set<IRandomPreference> preferences,
                               Set<AvailableSkill> requiredSkills, Set<AvailableSkill> suggestedSkills, Set<BeneficeDefinition> mandatoryBenefices,
                               Set<BeneficeDefinition> suggestedBenefices, Set<Weapon> mandatoryWeapons, Set<Armour> mandatoryArmours,
                               Set<Shield> mandatoryShields)
-            throws DuplicatedPreferenceException, TooManyBlessingsException, InvalidXmlElementException {
+            throws DuplicatedPreferenceException {
         this.characterPlayer = characterPlayer;
 
         final IRandomProfile finalProfile = ProfileMerger.merge(profiles, preferences, requiredSkills, suggestedSkills, mandatoryBenefices, suggestedBenefices,
@@ -218,8 +217,8 @@ public class RandomizeCharacter {
         }
 
         if (characterPlayer.getInfo().getNames() == null || characterPlayer.getInfo().getNames().isEmpty() ||
-                (!characterPlayer.getInfo().getNames().stream().
-                        anyMatch(name -> !name.getName().equals("")))) {
+                (characterPlayer.getInfo().getNames().stream().
+                        allMatch(name -> name.getName().equals("")))) {
             final RandomName randomName = new RandomName(characterPlayer, preferences);
             randomName.assign();
         }
@@ -357,8 +356,6 @@ public class RandomizeCharacter {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder();
-        sb.append(characterPlayer.getCompleteNameRepresentation() + " (" + characterPlayer.getRace() + ") [" + characterPlayer.getFaction() + "]");
-        return sb.toString();
+        return characterPlayer.getCompleteNameRepresentation() + " (" + characterPlayer.getRace() + ") [" + characterPlayer.getFaction() + "]";
     }
 }
