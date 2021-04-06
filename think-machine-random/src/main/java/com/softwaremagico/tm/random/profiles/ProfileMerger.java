@@ -38,7 +38,7 @@ import java.util.*;
 public class ProfileMerger {
     private static final String DEFAULT_ID = "merged_profile";
 
-    public static RandomProfile merge(String language, String moduleName, IRandomProfile... profiles) {
+    public static IRandomProfile merge(String language, String moduleName, IRandomProfile... profiles) {
         if (profiles == null || profiles.length == 0) {
             return null;
         }
@@ -46,16 +46,20 @@ public class ProfileMerger {
         return merge(new HashSet<>(Arrays.asList(profiles)), language, moduleName);
     }
 
-    public static RandomProfile merge(Set<IRandomProfile> profiles, String language, String moduleName) {
+    public static IRandomProfile merge(Set<IRandomProfile> profiles, String language, String moduleName) {
         return merge(profiles, new HashSet<>(), new HashSet<>(), new HashSet<>(),
                 new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(),
                 language, moduleName);
     }
 
-    public static RandomProfile merge(Set<IRandomProfile> profiles, Set<IRandomPreference> extraPreferences, Set<AvailableSkill> requiredSkills,
-                                      Set<AvailableSkill> suggestedSkills, Set<BeneficeDefinition> mandatoryBenefices,
-                                      Set<BeneficeDefinition> suggestedBenefices, Set<Weapon> mandatoryWeapons, Set<Armour> mandatoryArmours,
-                                      Set<Shield> mandatoryShields, String language, String moduleName) {
+    private static IRandomProfile getEmptyProfile(String language, String moduleName) {
+        return new RandomProfile(DEFAULT_ID, "", null, language, moduleName);
+    }
+
+    public static IRandomProfile merge(Set<IRandomProfile> profiles, Set<IRandomPreference> extraPreferences, Set<AvailableSkill> requiredSkills,
+                                       Set<AvailableSkill> suggestedSkills, Set<BeneficeDefinition> mandatoryBenefices,
+                                       Set<BeneficeDefinition> suggestedBenefices, Set<Weapon> mandatoryWeapons, Set<Armour> mandatoryArmours,
+                                       Set<Shield> mandatoryShields, String language, String moduleName) {
         if (profiles == null) {
             profiles = new HashSet<>();
         }
@@ -65,7 +69,7 @@ public class ProfileMerger {
         }
 
         // Store all information in a new profile.
-        final RandomProfile finalProfile = new RandomProfile(DEFAULT_ID, "", null, language, moduleName);
+        final IRandomProfile finalProfile = getEmptyProfile(language, moduleName);
 
         // Merge profiles
         for (final IRandomProfile profile : profiles) {
@@ -197,27 +201,21 @@ public class ProfileMerger {
     }
 
     public static void mergePreferences(Set<IRandomPreference> originalPreferences, Set<IRandomPreference> preferredPreferences) {
-        originalPreferences.addAll(preferredPreferences);
-        mergePreferences(originalPreferences);
-    }
-
-    public static void mergePreferences(Set<IRandomPreference> originalPreferences) {
-        final Random random = new Random();
-        for (final IRandomPreference preference1 : new HashSet<>(originalPreferences)) {
+        for (final IRandomPreference preferredPreference : new HashSet<>(preferredPreferences)) {
             //Get preference average.
-            for (final IRandomPreference preference2 : new HashSet<>(originalPreferences)) {
-                if (preference1.getClass().equals(preference2.getClass()) && preference1 != preference2) {
-                    if (preference1.getClass().isEnum()) {
-                        //Select randomly
-                        if (random.nextBoolean()) {
-                            originalPreferences.remove(preference1);
-                        } else {
-                            originalPreferences.remove(preference2);
-                        }
+            for (final IRandomPreference randomPreference : new HashSet<>(originalPreferences)) {
+                if (randomPreference.getClass().equals(preferredPreference.getClass())) {
+                    if (randomPreference.getClass().isEnum()) {
+                        final int average = ((((Enum) randomPreference).ordinal() + ((Enum) preferredPreference).ordinal()) + 1) / 2;
+                        final IRandomPreference averagePreference = randomPreference.getClass().getEnumConstants()[average];
+                        originalPreferences.remove(randomPreference);
+                        preferredPreferences.remove(preferredPreference);
+                        originalPreferences.add(averagePreference);
                     }
                 }
             }
         }
+        originalPreferences.addAll(preferredPreferences);
     }
 
 }

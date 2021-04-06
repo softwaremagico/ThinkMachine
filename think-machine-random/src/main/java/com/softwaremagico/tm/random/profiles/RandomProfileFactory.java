@@ -31,12 +31,6 @@ import com.softwaremagico.tm.character.benefices.BeneficeDefinitionFactory;
 import com.softwaremagico.tm.character.characteristics.Characteristic;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.characteristics.CharacteristicsDefinitionFactory;
-import com.softwaremagico.tm.character.equipment.armours.Armour;
-import com.softwaremagico.tm.character.equipment.armours.ArmourFactory;
-import com.softwaremagico.tm.character.equipment.shields.Shield;
-import com.softwaremagico.tm.character.equipment.shields.ShieldFactory;
-import com.softwaremagico.tm.character.equipment.weapons.Weapon;
-import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.json.factories.cache.FactoryCacheLoader;
@@ -60,9 +54,6 @@ public class RandomProfileFactory extends XmlFactory<RandomProfile> {
     private static final String REQUIRED_SKILLS_SPECIALIZATION = "speciality";
     private static final String SUGGESTED_BENEFICES = "suggestedBenefices";
     private static final String MANDATORY_BENEFICES = "mandatoryBenefices";
-    private static final String MANDATORY_WEAPONS = "weapons";
-    private static final String MANDATORY_ARMOURS = "armours";
-    private static final String MANDATORY_SHIELDS = "shields";
     private static final String PARENT = "parent";
 
     private static class RandomProfileFactoryInit {
@@ -71,10 +62,6 @@ public class RandomProfileFactory extends XmlFactory<RandomProfile> {
 
     public static RandomProfileFactory getInstance() {
         return RandomProfileFactoryInit.INSTANCE;
-    }
-
-    public static <T extends Enum<T>> T getEnum(final String value, final Class<T> enumClass) {
-        return Enum.valueOf(enumClass, value);
     }
 
     @Override
@@ -234,17 +221,7 @@ public class RandomProfileFactory extends XmlFactory<RandomProfile> {
         final Set<BeneficeDefinition> suggestedBenefices = getCommaSeparatedValues(profileId, SUGGESTED_BENEFICES,
                 language, moduleName, BeneficeDefinitionFactory.getInstance());
 
-        final Set<Weapon> mandatoryWeapons = getCommaSeparatedValues(profileId, MANDATORY_WEAPONS, language,
-                moduleName, WeaponFactory.getInstance());
-
-        final Set<Armour> mandatoryArmours = getCommaSeparatedValues(profileId, MANDATORY_ARMOURS, language,
-                moduleName, ArmourFactory.getInstance());
-
-        final Set<Shield> mandatoryShields = getCommaSeparatedValues(profileId, MANDATORY_SHIELDS, language,
-                moduleName, ShieldFactory.getInstance());
-
         return new RandomProfile(profileId, name, description, language, moduleName, preferencesSelected,
-                characteristicsMinimumValues, requiredSkills, suggestedSkills, mandatoryBenefices, suggestedBenefices,
-                mandatoryWeapons, mandatoryArmours, mandatoryShields);
+                characteristicsMinimumValues, requiredSkills, suggestedSkills, mandatoryBenefices, suggestedBenefices);
     }
 }

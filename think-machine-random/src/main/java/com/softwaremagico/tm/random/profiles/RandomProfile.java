@@ -24,14 +24,7 @@ package com.softwaremagico.tm.random.profiles;
  * #L%
  */
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
-
 import com.softwaremagico.tm.Element;
-import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.benefices.AvailableBenefice;
 import com.softwaremagico.tm.character.benefices.BeneficeDefinition;
 import com.softwaremagico.tm.character.blessings.Blessing;
@@ -44,6 +37,8 @@ import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.json.ExcludeFromJson;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
 
+import java.util.*;
+
 public class RandomProfile extends Element<RandomProfile> implements IRandomProfile {
     private final Set<IRandomPreference> randomPreferences;
     private final Set<Characteristic> characteristicsMinimumValues;
@@ -51,9 +46,6 @@ public class RandomProfile extends Element<RandomProfile> implements IRandomProf
     private final Set<AvailableSkill> suggestedSkills;
     private final Set<BeneficeDefinition> suggestedBenefices;
     private final Set<BeneficeDefinition> mandatoryBenefices;
-    private final Set<Weapon> mandatoryWeapons;
-    private final Set<Armour> mandatoryArmours;
-    private final Set<Shield> mandatoryShields;
 
     @ExcludeFromJson
     public boolean parentMerged = false;
@@ -61,8 +53,7 @@ public class RandomProfile extends Element<RandomProfile> implements IRandomProf
     public RandomProfile(String id, String name, String description, String language, String moduleName,
                          Set<IRandomPreference> randomPreferences, Set<Characteristic> characteristicsMinimumValues,
                          Set<AvailableSkill> requiredSkills, Set<AvailableSkill> suggestedSkills,
-                         Set<BeneficeDefinition> mandatoryBenefices, Set<BeneficeDefinition> suggestedBenefices,
-                         Set<Weapon> mandatoryWeapons, Set<Armour> mandatoryArmours, Set<Shield> mandatoryShields) {
+                         Set<BeneficeDefinition> mandatoryBenefices, Set<BeneficeDefinition> suggestedBenefices) {
         super(id, name, description, language, moduleName);
         this.randomPreferences = randomPreferences;
         this.characteristicsMinimumValues = characteristicsMinimumValues;
@@ -70,22 +61,18 @@ public class RandomProfile extends Element<RandomProfile> implements IRandomProf
         this.suggestedSkills = suggestedSkills;
         this.suggestedBenefices = suggestedBenefices;
         this.mandatoryBenefices = mandatoryBenefices;
-        this.mandatoryWeapons = mandatoryWeapons;
-        this.mandatoryArmours = mandatoryArmours;
-        this.mandatoryShields = mandatoryShields;
     }
 
     public RandomProfile(String id, String name, String description, String language, String moduleName) {
         this(id, name, description, language, moduleName, new HashSet<>(), new HashSet<>(),
-                new HashSet<>(), new HashSet<>(), new HashSet<>(),
                 new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>());
     }
 
     @Override
-    public void setParent(IRandomProfile parentProfile) throws InvalidXmlElementException {
+    public void setParent(IRandomProfile parentProfile) {
         if (!parentMerged && parentProfile != null) {
             // Merge preferences. This has preference over parent profile.
-            final RandomProfile mergedProfile = ProfileMerger.merge(parentProfile.getLanguage(),
+            final IRandomProfile mergedProfile = ProfileMerger.merge(parentProfile.getLanguage(),
                     parentProfile.getModuleName(), parentProfile, this);
 
             randomPreferences.clear();
@@ -177,18 +164,19 @@ public class RandomProfile extends Element<RandomProfile> implements IRandomProf
         return super.equals(obj);
     }
 
+
     @Override
     public Set<Weapon> getMandatoryWeapons() {
-        return mandatoryWeapons;
+        return new HashSet<>();
     }
 
     @Override
     public Set<Armour> getMandatoryArmours() {
-        return mandatoryArmours;
+        return new HashSet<>();
     }
 
     @Override
     public Set<Shield> getMandatoryShields() {
-        return mandatoryShields;
+        return new HashSet<>();
     }
 }

@@ -120,25 +120,12 @@ public class RandomizeCharacter {
         this.mandatoryArmours = finalProfile.getMandatoryArmours();
         this.mandatoryShields = finalProfile.getMandatoryShields();
 
-        checkValidPreferences();
-
         // Assign experience
         if (experiencePoints == null) {
             final DifficultLevelPreferences difficultLevel = DifficultLevelPreferences.getSelected(this.preferences);
             this.characterPlayer.setExperienceEarned(difficultLevel.getExperienceBonus());
         } else {
             this.characterPlayer.setExperienceEarned(experiencePoints);
-        }
-    }
-
-    private void checkValidPreferences() throws DuplicatedPreferenceException {
-        final Set<Class<? extends IRandomPreference>> existingPreferences = new HashSet<>();
-        // Only one of each class allowed.
-        for (final IRandomPreference preference : preferences) {
-            if (existingPreferences.contains(preference.getClass())) {
-                throw new DuplicatedPreferenceException("Preference '" + preference + "' collides with another preference. Only one of each type is allowed.");
-            }
-            existingPreferences.add(preference.getClass());
         }
     }
 

@@ -4,10 +4,6 @@ import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.RandomizeCharacter;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
-import com.softwaremagico.tm.character.equipment.armours.Armour;
-import com.softwaremagico.tm.character.equipment.armours.ArmourFactory;
-import com.softwaremagico.tm.character.equipment.weapons.Weapon;
-import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
 import com.softwaremagico.tm.character.factions.FactionGroup;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.file.PathManager;
@@ -65,21 +61,6 @@ public class ProfileTests {
             final CharacterSheet characterSheet = new CharacterSheet(characterPlayer);
             System.out.println(characterSheet.toString());
             throw e;
-        }
-    }
-
-    private void checkContainsWeapon(CharacterPlayer characterPlayer, Weapon weapon) {
-        for (Weapon characterWeapon : characterPlayer.getAllWeapons()) {
-            if (Objects.equals(characterWeapon, weapon)) {
-                return;
-            }
-        }
-        throw new AssertionError();
-    }
-
-    private void checkContainsArmour(CharacterPlayer characterPlayer, Armour armour) {
-        if (!Objects.equals(characterPlayer.getArmour(), armour)) {
-            throw new AssertionError();
         }
     }
 
@@ -163,12 +144,8 @@ public class ProfileTests {
                 RandomProfileFactory.getInstance().getElement("heavySoldier", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         Assert.assertEquals(RandomProfileFactory.getInstance().getElement("heavySoldier", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)
                 .getCharacteristicMinimumValues(CharacteristicName.STRENGTH).getValue(), 6);
-        Assert.assertEquals(RandomProfileFactory.getInstance().getElement("heavySoldier", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)
-                .getMandatoryWeapons().size(), 1);
         randomizeCharacter.createCharacter();
         checkCharacterisic(characterPlayer, CharacteristicName.STRENGTH, 6);
-        checkContainsWeapon(characterPlayer, WeaponFactory.getInstance().getElement("jahnisak040MG", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
-        checkContainsArmour(characterPlayer, ArmourFactory.getInstance().getElement("leatherJerkin", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
     }
 
     @Test
@@ -179,13 +156,8 @@ public class ProfileTests {
                 RandomProfileFactory.getInstance().getElement("tracker", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         Assert.assertEquals(RandomProfileFactory.getInstance().getElement("tracker", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)
                 .getCharacteristicMinimumValues(CharacteristicName.PERCEPTION).getValue(), 6);
-        Assert.assertEquals(RandomProfileFactory.getInstance().getElement("tracker", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)
-                .getMandatoryWeapons().size(), 1);
         randomizeCharacter.createCharacter();
         checkCharacterisic(characterPlayer, CharacteristicName.PERCEPTION, 6);
-        checkContainsWeapon(characterPlayer, WeaponFactory.getInstance().getElement("typicalSniperRifle", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
-        checkContainsArmour(characterPlayer,
-                ArmourFactory.getInstance().getElement("leatherJerkin", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
     }
 
     @Test

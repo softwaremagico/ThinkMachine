@@ -7,7 +7,7 @@
         </name>
         <preferences>CombatPreferences.BELLIGERENT, CharacteristicsPreferences.BODY, SkillGroupPreferences.COMBAT,
             SpecializationPreferences.SPECIALIZED, StatusPreferences.LOW, TechnologicalPreferences.MODERN,
-            WeaponsPreferences.HIGH
+            WeaponsPreferences.HIGH, SpecializationPreferences.SPECIALIZED
         </preferences>
         <characteristicsMinimumValues>
             <dexterity>6</dexterity>
@@ -28,8 +28,6 @@
                 <id>melee</id>
             </skill>
         </suggestedSkills>
-        <weapons>imperialRifle</weapons>
-        <armours>scaleMailMetal</armours>
     </soldier>
     <hiTechSolider>
         <name>
@@ -38,7 +36,7 @@
         </name>
         <characteristicsMinimumValues>
             <dexterity>6</dexterity>
-            <tech>5</tech>
+            <tech>6</tech>
         </characteristicsMinimumValues>
         <requiredSkills>
             <skill>
@@ -80,8 +78,6 @@
             <skill>
                 <id>landcarft</id>
             </skill>
-            <weapons>jahnisak040MG</weapons>
-            <armours>leatherJerkin</armours>
         </suggestedSkills>
     </heavySoldier>
     <serf>
@@ -158,7 +154,8 @@
             <en>Tracker</en>
             <es>Rastreador</es>
         </name>
-        <preferences>CombatPreferences.FAIR, TechnologicalPreferences.MODERN, CharacteristicsPreferences.BODY
+        <preferences>CombatPreferences.FAIR, TechnologicalPreferences.MODERN, CharacteristicsPreferences.BODY,
+            SpecializationPreferences.SPECIALIZED
         </preferences>
         <characteristicsMinimumValues>
             <dexterity>6</dexterity>
@@ -189,8 +186,6 @@
                 <id>ride</id>
             </skill>
         </suggestedSkills>
-        <weapons>typicalSniperRifle</weapons>
-        <armours>leatherJerkin</armours>
     </tracker>
     <slayer>
         <name>
@@ -198,8 +193,8 @@
             <es>Asesino</es>
         </name>
         <preferences>CombatPreferences.BELLIGERENT, SkillGroupPreferences.MALEFACTION, FactionPreferences.NONE,
-            CharacteristicsPreferences.BODY,
-            SpecializationPreferences.SPECIALIZED, TechnologicalPreferences.SPACE_CITIZEN, WeaponsPreferences.HIGH
+            CharacteristicsPreferences.BODY, SpecializationPreferences.VERY_SPECIALIZED,
+            TechnologicalPreferences.SPACE_CITIZEN, WeaponsPreferences.HIGH
         </preferences>
         <characteristicsMinimumValues>
             <tech>6</tech>
@@ -291,6 +286,7 @@
             <en>General</en>
             <es>General</es>
         </name>
+        <preferences>SpecializationPreferences.SPECIALIZED</preferences>
         <characteristicsMinimumValues>
             <presence>5</presence>
         </characteristicsMinimumValues>
