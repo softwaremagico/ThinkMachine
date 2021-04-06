@@ -77,6 +77,9 @@
             <skill>
                 <id>techRedemption</id>
             </skill>
+	     <skill>
+                <id>landcarft</id>
+            </skill>
             <weapons>jahnisak040MG</weapons>
             <armours>leatherJerkin</armours>
         </suggestedSkills>
@@ -194,8 +197,7 @@
             <en>Slayer</en>
             <es>Asesino</es>
         </name>
-        <preferences>CombatPreferences.BELLIGERENT, SpecializationPreferences.SPECIALIZED,
-            SkillGroupPreferences.MALEFACTION, FactionPreferences.NONE, CharacteristicsPreferences.BODY,
+        <preferences>CombatPreferences.BELLIGERENT, SkillGroupPreferences.MALEFACTION, FactionPreferences.NONE, CharacteristicsPreferences.BODY,
             SpecializationPreferences.SPECIALIZED, TechnologicalPreferences.SPACE_CITIZEN, WeaponsPreferences.HIGH
         </preferences>
         <characteristicsMinimumValues>
@@ -213,8 +215,17 @@
             <skill>
                 <id>observe</id>
             </skill>
-            <skill>
+	     <skill>
                 <id>energyGuns</id>
+            </skill>
+	     <skill>
+                <id>slugGuns</id>
+            </skill>
+		<skill>
+                <id>archery</id>
+            </skill>
+	     <skill>
+                <id>knavery</id>
             </skill>
             <skill>
                 <id>sneak</id>
@@ -238,6 +249,42 @@
             <suggestedBenefices>passageContracts, professionalContract, secrets, darkSecret</suggestedBenefices>
         </suggestedSkills>
     </slayer>
+    <spy>
+        <name>
+            <en>Spy</en>
+            <es>Espía</es>
+        </name>
+        <preferences>SpecializationPreferences.SPECIALIZED, SkillGroupPreferences.MALEFACTION, FactionPreferences.NONE
+        </preferences>
+        <characteristicsMinimumValues>
+            <perception>6</perception>
+            <wits>6</wits>
+            <will>6</will>
+        </characteristicsMinimumValues>
+        <suggestedSkills>
+            <skill>
+                <id>observe</id>
+            </skill>
+            <skill>
+                <id>sneak</id>
+            </skill>
+            <skill>
+                <id>bureaucracy</id>
+            </skill>	    
+	     <skill>
+                <id>knavery</id>
+            </skill>
+            <skill>
+                <id>lockpicking</id>
+            </skill>
+            <skill>
+                <id>sleightOfHand</id>
+            </skill>
+            <skill>
+                <id>streetWise</id>
+            </skill>
+        </suggestedSkills>
+    </spy>
     <general>
         <name>
             <en>General</en>
@@ -336,13 +383,27 @@
             <en>Young</en>
             <es>Joven</es>
         </name>
-        <preferences>AgePreferences.TEENAGER, AgePreferences.YOUNG</preferences>
+        <preferences>AgePreferences.TEENAGER, AgePreferences.YOUNG, SpecializationPreferences.GENERALIZED</preferences>
     </young>
     <old>
         <name>
             <en>Old</en>
             <es>Viejo</es>
         </name>
-        <preferences>AgePreferences.OLD, AgePreferences.VERY_OLD</preferences>
+        <preferences>AgePreferences.OLD, AgePreferences.VERY_OLD, SpecializationPreferences.SPECIALIZED, TraitCostPreferences.HIGH</preferences>
     </old>
+    <cyberchanged>
+        <name>
+            <en>Cyberchanged</en>
+            <es>Cibercambiado</es>
+        </name>
+        <preferences>CyberneticPointsPreferences.HIGH, CyberneticTotalDevicesPreferences.HIGH, TechnologicalPreferences.SPACE_CITIZEN</preferences>
+    </cyberchanged>
+    <occultist>
+        <name>
+            <en>Occultist</en>
+            <es>Ocultista</es>
+        </name>
+        <preferences>PsiquePathLevelPreferences.GOOD, PsiqueLevelPreferences.FAIR</preferences>
+    </occultist>
 </profiles>
