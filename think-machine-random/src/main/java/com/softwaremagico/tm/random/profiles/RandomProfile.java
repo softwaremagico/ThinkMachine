@@ -72,7 +72,7 @@ public class RandomProfile extends Element<RandomProfile> implements IRandomProf
     public void setParent(IRandomProfile parentProfile) {
         if (!parentMerged && parentProfile != null) {
             // Merge preferences. This has preference over parent profile.
-            final IRandomProfile mergedProfile = ProfileMerger.merge(parentProfile.getLanguage(),
+            final IRandomProfile mergedProfile = new ProfileMerger().merge(parentProfile.getLanguage(),
                     parentProfile.getModuleName(), parentProfile, this);
 
             randomPreferences.clear();

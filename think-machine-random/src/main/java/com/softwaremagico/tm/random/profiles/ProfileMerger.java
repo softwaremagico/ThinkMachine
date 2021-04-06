@@ -7,6 +7,7 @@ import com.softwaremagico.tm.character.equipment.armours.Armour;
 import com.softwaremagico.tm.character.equipment.shields.Shield;
 import com.softwaremagico.tm.character.equipment.weapons.Weapon;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
+import com.softwaremagico.tm.random.characters.Npc;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
 
 import java.util.*;
@@ -53,7 +54,7 @@ public class ProfileMerger {
     }
 
     private static IRandomProfile getEmptyProfile(String language, String moduleName) {
-        return new RandomProfile(DEFAULT_ID, "", null, language, moduleName);
+        return new Npc(DEFAULT_ID, "", null, language, moduleName);
     }
 
     public static IRandomProfile merge(Set<IRandomProfile> profiles, Set<IRandomPreference> extraPreferences, Set<AvailableSkill> requiredSkills,
@@ -167,12 +168,12 @@ public class ProfileMerger {
         final List<Weapon> sortedWeapons = new ArrayList<>();
         sortedWeapons.addAll(originalWeapons);
         sortedWeapons.addAll(weapons);
-        sortedWeapons.sort((weapon0, weapon1) -> Float.compare(weapon0.getCost(), weapon1.getCost()));
+        sortedWeapons.sort((weapon0, weapon1) -> Float.compare(weapon1.getCost(), weapon0.getCost()));
         // Keep only the most expensive ones.
         if (!sortedWeapons.isEmpty()) {
             originalWeapons.clear();
             originalWeapons
-                    .addAll(sortedWeapons.subList(0, sortedWeapons.size() / 2 > sortedWeapons.size() ? sortedWeapons.size() / 2 + 1 : sortedWeapons.size()));
+                    .addAll(sortedWeapons.subList(0, sortedWeapons.size() % 2 == 0 ? sortedWeapons.size() / 2 : (sortedWeapons.size() / 2) + 1));
         }
     }
 

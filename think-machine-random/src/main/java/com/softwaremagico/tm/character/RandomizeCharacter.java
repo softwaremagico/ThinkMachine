@@ -56,7 +56,6 @@ import com.softwaremagico.tm.character.skills.RandomSkillExperience;
 import com.softwaremagico.tm.character.skills.RandomSkillExtraPoints;
 import com.softwaremagico.tm.character.skills.RandomSkills;
 import com.softwaremagico.tm.log.RandomGenerationLog;
-import com.softwaremagico.tm.random.exceptions.DuplicatedPreferenceException;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.profiles.IRandomProfile;
 import com.softwaremagico.tm.random.profiles.ProfileMerger;
@@ -79,21 +78,18 @@ public class RandomizeCharacter {
     private final Set<Armour> mandatoryArmours;
     private final Set<Shield> mandatoryShields;
 
-    public RandomizeCharacter(CharacterPlayer characterPlayer, int experiencePoints, IRandomPreference... preferences)
-            throws DuplicatedPreferenceException {
+    public RandomizeCharacter(CharacterPlayer characterPlayer, int experiencePoints, IRandomPreference... preferences) {
         this(characterPlayer, experiencePoints, null, new HashSet<>(Arrays.asList(preferences)), new HashSet<>(), new HashSet<>(),
                 new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>());
     }
 
-    public RandomizeCharacter(CharacterPlayer characterPlayer, IRandomProfile... profiles)
-            throws DuplicatedPreferenceException {
+    public RandomizeCharacter(CharacterPlayer characterPlayer, IRandomProfile... profiles) {
         this(characterPlayer, null, new HashSet<>(Arrays.asList(profiles)), new HashSet<>(), new HashSet<>(),
                 new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(),
                 new HashSet<>(), new HashSet<>());
     }
 
-    public RandomizeCharacter(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences, IRandomProfile... profiles)
-            throws DuplicatedPreferenceException {
+    public RandomizeCharacter(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences, IRandomProfile... profiles) {
         this(characterPlayer, null, new HashSet<>(Arrays.asList(profiles)), preferences, new HashSet<>(),
                 new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(),
                 new HashSet<>(), new HashSet<>());
@@ -102,8 +98,7 @@ public class RandomizeCharacter {
     public RandomizeCharacter(CharacterPlayer characterPlayer, Integer experiencePoints, Set<IRandomProfile> profiles, Set<IRandomPreference> preferences,
                               Set<AvailableSkill> requiredSkills, Set<AvailableSkill> suggestedSkills, Set<BeneficeDefinition> mandatoryBenefices,
                               Set<BeneficeDefinition> suggestedBenefices, Set<Weapon> mandatoryWeapons, Set<Armour> mandatoryArmours,
-                              Set<Shield> mandatoryShields)
-            throws DuplicatedPreferenceException {
+                              Set<Shield> mandatoryShields) {
         this.characterPlayer = characterPlayer;
 
         final IRandomProfile finalProfile = ProfileMerger.merge(profiles, preferences, requiredSkills, suggestedSkills, mandatoryBenefices, suggestedBenefices,

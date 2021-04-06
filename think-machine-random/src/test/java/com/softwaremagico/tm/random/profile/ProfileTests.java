@@ -87,7 +87,7 @@ public class ProfileTests {
     }
 
     @Test
-    public void soldier() throws DuplicatedPreferenceException, InvalidXmlElementException,
+    public void soldier() throws InvalidXmlElementException,
             InvalidRandomElementSelectedException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
@@ -96,7 +96,7 @@ public class ProfileTests {
     }
 
     @Test
-    public void serf() throws DuplicatedPreferenceException, InvalidXmlElementException,
+    public void serf() throws InvalidXmlElementException,
             InvalidRandomElementSelectedException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
@@ -111,7 +111,7 @@ public class ProfileTests {
     }
 
     @Test
-    public void thug() throws DuplicatedPreferenceException, InvalidXmlElementException,
+    public void thug() throws InvalidXmlElementException,
             InvalidRandomElementSelectedException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,

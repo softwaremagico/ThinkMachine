@@ -71,14 +71,6 @@ public class RandomCharacterTests {
         LanguagePool.clearCache();
     }
 
-    @Test(expectedExceptions = {DuplicatedPreferenceException.class})
-    public void preferencesCollision()
-            throws InvalidXmlElementException, DuplicatedPreferenceException, TooManyBlessingsException {
-        final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
-        new RandomizeCharacter(characterPlayer, 0, TechnologicalPreferences.MEDIEVAL,
-                TechnologicalPreferences.FUTURIST);
-    }
-
     @Test
     public void chooseRaceAndFactionTest() throws InvalidXmlElementException, DuplicatedPreferenceException,
             InvalidRandomElementSelectedException, TooManyBlessingsException {
