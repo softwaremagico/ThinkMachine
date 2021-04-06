@@ -77,7 +77,7 @@
             <skill>
                 <id>techRedemption</id>
             </skill>
-	     <skill>
+            <skill>
                 <id>landcarft</id>
             </skill>
             <weapons>jahnisak040MG</weapons>
@@ -197,7 +197,8 @@
             <en>Slayer</en>
             <es>Asesino</es>
         </name>
-        <preferences>CombatPreferences.BELLIGERENT, SkillGroupPreferences.MALEFACTION, FactionPreferences.NONE, CharacteristicsPreferences.BODY,
+        <preferences>CombatPreferences.BELLIGERENT, SkillGroupPreferences.MALEFACTION, FactionPreferences.NONE,
+            CharacteristicsPreferences.BODY,
             SpecializationPreferences.SPECIALIZED, TechnologicalPreferences.SPACE_CITIZEN, WeaponsPreferences.HIGH
         </preferences>
         <characteristicsMinimumValues>
@@ -215,16 +216,16 @@
             <skill>
                 <id>observe</id>
             </skill>
-	     <skill>
+            <skill>
                 <id>energyGuns</id>
             </skill>
-	     <skill>
+            <skill>
                 <id>slugGuns</id>
             </skill>
-		<skill>
+            <skill>
                 <id>archery</id>
             </skill>
-	     <skill>
+            <skill>
                 <id>knavery</id>
             </skill>
             <skill>
@@ -270,8 +271,8 @@
             </skill>
             <skill>
                 <id>bureaucracy</id>
-            </skill>	    
-	     <skill>
+            </skill>
+            <skill>
                 <id>knavery</id>
             </skill>
             <skill>
@@ -390,14 +391,18 @@
             <en>Old</en>
             <es>Viejo</es>
         </name>
-        <preferences>AgePreferences.OLD, AgePreferences.VERY_OLD, SpecializationPreferences.SPECIALIZED, TraitCostPreferences.HIGH</preferences>
+        <preferences>AgePreferences.OLD, AgePreferences.VERY_OLD, SpecializationPreferences.SPECIALIZED,
+            TraitCostPreferences.HIGH
+        </preferences>
     </old>
     <cyberchanged>
         <name>
             <en>Cyberchanged</en>
             <es>Cibercambiado</es>
         </name>
-        <preferences>CyberneticPointsPreferences.HIGH, CyberneticTotalDevicesPreferences.HIGH, TechnologicalPreferences.SPACE_CITIZEN</preferences>
+        <preferences>CyberneticPointsPreferences.HIGH, CyberneticTotalDevicesPreferences.HIGH,
+            TechnologicalPreferences.SPACE_CITIZEN
+        </preferences>
     </cyberchanged>
     <occultist>
         <name>
