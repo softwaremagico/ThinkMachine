@@ -296,7 +296,7 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
 
         // Faction groups restriction.
         if (getCharacterPlayer() != null && getCharacterPlayer().getFaction() != null
-                && !randomDefinition.getRestrictedFactions().isEmpty()
+                && !randomDefinition.getRestrictedFactionGroups().isEmpty()
                 && (getCharacterPlayer().getFaction().getFactionGroup() == null || !randomDefinition
                 .getRestrictedFactionGroups().contains(getCharacterPlayer().getFaction().getFactionGroup()))) {
             throw new InvalidRandomElementSelectedException(

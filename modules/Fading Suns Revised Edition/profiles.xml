@@ -306,6 +306,12 @@
                 <id>factionLore</id>
             </skill>
             <skill>
+                <id>phoenixEmpireLore</id>
+            </skill>
+            <skill>
+                <id>planetaryLore</id>
+            </skill>
+            <skill>
                 <id>ride</id>
             </skill>
             <skill>
@@ -341,6 +347,12 @@
             </skill>
             <skill>
                 <id>leadership</id>
+            </skill>
+            <skill>
+                <id>planetaryLore</id>
+            </skill>
+            <skill>
+                <id>phoenixEmpireLore</id>
             </skill>
         </suggestedSkills>
         <suggestedBenefices>assets</suggestedBenefices>
