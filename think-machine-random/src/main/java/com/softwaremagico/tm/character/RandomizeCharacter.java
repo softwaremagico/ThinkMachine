@@ -65,6 +65,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class RandomizeCharacter {
     private final CharacterPlayer characterPlayer;
@@ -169,6 +170,15 @@ public class RandomizeCharacter {
         if (shieldPreferences == null) {
             final CombatPreferences combatPreferences = CombatPreferences.getSelected(preferences);
             preferences.add(combatPreferences.getDefaultShieldPreferences());
+        }
+
+        final CashPreferences cashPreferences = CashPreferences.getSelected(preferences);
+        if (cashPreferences == null) {
+            AtomicReference<Float> equipmentCost = new AtomicReference<>((float) 0);
+            mandatoryWeapons.forEach(weapon -> equipmentCost.updateAndGet(v -> (v + weapon.getCost())));
+            mandatoryArmours.forEach(armour -> equipmentCost.updateAndGet(v -> (v + armour.getCost())));
+            mandatoryShields.forEach(shield -> equipmentCost.updateAndGet(v -> (v + shield.getCost())));
+            preferences.add(CashPreferences.get(equipmentCost.get()));
         }
         preferences.removeIf(Objects::isNull);
     }

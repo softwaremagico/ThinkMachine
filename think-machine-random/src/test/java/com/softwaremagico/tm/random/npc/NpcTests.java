@@ -82,6 +82,11 @@ public class NpcTests {
     }
 
     @Test
+    public void getGroups() {
+        Assert.assertFalse(NpcFactory.getInstance().getGroups(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).isEmpty());
+    }
+
+    @Test
     public void checkPreferencesReader() throws InvalidXmlElementException {
         Assert.assertEquals(NpcFactory.getInstance().getElement("infantry", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).getPreferences().size(),
                 7);

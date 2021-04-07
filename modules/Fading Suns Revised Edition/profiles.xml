@@ -341,7 +341,7 @@
             <es>Noble</es>
         </name>
         <group>faction</group>
-        <preferences>FactionPreferences.NOBILITY</preferences>
+        <preferences>FactionPreferences.NOBILITY, CashPreferences.GOOD</preferences>
         <characteristicsMinimumValues>
             <presence>5</presence>
         </characteristicsMinimumValues>
