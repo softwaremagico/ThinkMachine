@@ -37,7 +37,9 @@ public enum StatusPreferences implements ICharacterDescriptionPreference, IGauss
 
     GOOD(4, 16, 8, 4),
 
-    HIGH(12, 24, 16, 8);
+    HIGH(12, 24, 16, 8),
+
+    ANY(4, 24, 14, 10);
 
     private final int minimum;
     private final int maximum;

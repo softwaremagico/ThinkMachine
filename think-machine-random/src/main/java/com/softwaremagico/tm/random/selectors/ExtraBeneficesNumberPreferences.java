@@ -35,7 +35,9 @@ public enum ExtraBeneficesNumberPreferences implements ICharacterCreationPrefere
 
     FAIR(2, 5, 2, 2),
 
-    HIGH(3, 7, 4, 3);
+    HIGH(3, 7, 5, 3),
+
+    ANY(1, 7, 4, 3);
 
     private final int minimum;
     private final int maximum;

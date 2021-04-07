@@ -38,7 +38,9 @@ public enum CyberneticTotalDevicesPreferences implements ICyberneticsPreference,
 
     CYBORG(3, 5, 4, 2),
 
-    SOUL_LESS(4, 8, 5, 1);
+    SOUL_LESS(4, 8, 5, 2),
+
+    ANY(1, 8, 5, 4);
 
     private final int minimum;
     private final int maximum;

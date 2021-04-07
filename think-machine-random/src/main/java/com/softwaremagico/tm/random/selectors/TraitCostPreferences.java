@@ -36,7 +36,9 @@ public enum TraitCostPreferences implements ICharacterCreationPreference, IGauss
 
     HIGH(4, 24, 4, 12),
 
-    VERY_HIGH(8, 24, 12, 10);
+    VERY_HIGH(8, 24, 18, 10),
+
+    ANY(1, 24, 12, 12);
 
     private final int minimum;
     private final int maximum;

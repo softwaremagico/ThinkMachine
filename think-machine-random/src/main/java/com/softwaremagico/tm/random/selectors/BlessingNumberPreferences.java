@@ -33,9 +33,11 @@ public enum BlessingNumberPreferences implements ICharacterCreationPreference, I
 
     LOW(1, 2, 1, 1),
 
-    FAIR(2, 5, 2, 2),
+    FAIR(2, 5, 3, 2),
 
-    HIGH(3, 7, 4, 3);
+    HIGH(4, 7, 5, 2),
+
+    ANY(1, 7, 4, 3);
 
     private final int minimum;
     private final int maximum;
