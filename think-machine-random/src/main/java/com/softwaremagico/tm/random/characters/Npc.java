@@ -8,17 +8,17 @@ package com.softwaremagico.tm.random.characters;
  * %%
  * This software is designed by Jorge Hortelano Otero. Jorge Hortelano Otero
  * <softwaremagico@gmail.com> Valencia (Spain).
- *  
+ *
  * This program is free software; you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software
  * Foundation; either version 2 of the License, or (at your option) any later
  * version.
- *  
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
  * details.
- *  
+ *
  * You should have received a copy of the GNU General Public License along with
  * this program; If not, see <http://www.gnu.org/licenses/gpl-3.0.html>.
  * #L%
@@ -58,8 +58,7 @@ public class Npc extends Element<Npc> implements IRandomProfile {
     public Npc(String id, String name, String description, String language, String moduleName,
                Set<IRandomPreference> randomPreferences, Set<Characteristic> characteristicsMinimumValues,
                Set<AvailableSkill> requiredSkills, Set<AvailableSkill> suggestedSkills,
-               Set<BeneficeDefinition> mandatoryBenefices, Set<BeneficeDefinition> suggestedBenefices,
-               Set<Weapon> mandatoryWeapons, Set<Armour> mandatoryArmours, Set<Shield> mandatoryShields) {
+               Set<BeneficeDefinition> mandatoryBenefices, Set<BeneficeDefinition> suggestedBenefices) {
         super(id, name, description, language, moduleName);
         this.randomPreferences = randomPreferences;
         this.characteristicsMinimumValues = characteristicsMinimumValues;
@@ -67,14 +66,13 @@ public class Npc extends Element<Npc> implements IRandomProfile {
         this.suggestedSkills = suggestedSkills;
         this.suggestedBenefices = suggestedBenefices;
         this.mandatoryBenefices = mandatoryBenefices;
-        this.mandatoryWeapons = mandatoryWeapons;
-        this.mandatoryArmours = mandatoryArmours;
-        this.mandatoryShields = mandatoryShields;
+        this.mandatoryWeapons = new HashSet<>();
+        this.mandatoryArmours = new HashSet<>();
+        this.mandatoryShields = new HashSet<>();
     }
 
     public Npc(String id, String name, String description, String language, String moduleName) {
         this(id, name, description, language, moduleName, new HashSet<>(), new HashSet<>(),
-                new HashSet<>(), new HashSet<>(), new HashSet<>(),
                 new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>());
     }
 
@@ -177,6 +175,18 @@ public class Npc extends Element<Npc> implements IRandomProfile {
     @Override
     public boolean equals(Object obj) {
         return super.equals(obj);
+    }
+
+    public void addMandatoryWeapons(Set<Weapon> weapons) {
+        mandatoryWeapons.addAll(weapons);
+    }
+
+    public void addMandatoryArmours(Set<Armour> armours) {
+        mandatoryArmours.addAll(armours);
+    }
+
+    public void addMandatoryShields(Set<Shield> shields) {
+        mandatoryShields.addAll(shields);
     }
 
     @Override

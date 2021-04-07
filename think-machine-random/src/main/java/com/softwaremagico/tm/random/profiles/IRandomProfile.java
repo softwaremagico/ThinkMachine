@@ -43,6 +43,8 @@ public interface IRandomProfile {
 
     int getExperiencePoints();
 
+    boolean isParentMerged();
+
     Set<IRandomPreference> getPreferences();
 
     Set<Characteristic> getCharacteristicsMinimumValues();

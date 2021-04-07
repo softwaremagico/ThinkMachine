@@ -126,6 +126,7 @@ public class RandomProfile extends Element<RandomProfile> implements IRandomProf
         return randomPreferences;
     }
 
+    @Override
     public boolean isParentMerged() {
         return parentMerged;
     }
