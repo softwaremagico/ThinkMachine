@@ -57,8 +57,8 @@ import com.softwaremagico.tm.character.skills.RandomSkillExtraPoints;
 import com.softwaremagico.tm.character.skills.RandomSkills;
 import com.softwaremagico.tm.log.RandomGenerationLog;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
-import com.softwaremagico.tm.random.profiles.IRandomProfile;
-import com.softwaremagico.tm.random.profiles.ProfileMerger;
+import com.softwaremagico.tm.random.predefined.IRandomPredefined;
+import com.softwaremagico.tm.random.predefined.PredefinedMerger;
 import com.softwaremagico.tm.random.selectors.*;
 
 import java.util.Arrays;
@@ -83,26 +83,27 @@ public class RandomizeCharacter {
                 new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>());
     }
 
-    public RandomizeCharacter(CharacterPlayer characterPlayer, IRandomProfile... profiles) {
+    public RandomizeCharacter(CharacterPlayer characterPlayer, IRandomPredefined... profiles) {
         this(characterPlayer, null, new HashSet<>(Arrays.asList(profiles)), new HashSet<>(), new HashSet<>(),
                 new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(),
                 new HashSet<>(), new HashSet<>());
     }
 
-    public RandomizeCharacter(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences, IRandomProfile... profiles) {
+    public RandomizeCharacter(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences, IRandomPredefined... profiles) {
         this(characterPlayer, null, new HashSet<>(Arrays.asList(profiles)), preferences, new HashSet<>(),
                 new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(),
                 new HashSet<>(), new HashSet<>());
     }
 
-    public RandomizeCharacter(CharacterPlayer characterPlayer, Integer experiencePoints, Set<IRandomProfile> profiles, Set<IRandomPreference> preferences,
+    public RandomizeCharacter(CharacterPlayer characterPlayer, Integer experiencePoints, Set<IRandomPredefined> profiles, Set<IRandomPreference> preferences,
                               Set<AvailableSkill> requiredSkills, Set<AvailableSkill> suggestedSkills, Set<BeneficeDefinition> mandatoryBenefices,
                               Set<BeneficeDefinition> suggestedBenefices, Set<Weapon> mandatoryWeapons, Set<Armour> mandatoryArmours,
                               Set<Shield> mandatoryShields) {
         this.characterPlayer = characterPlayer;
 
-        final IRandomProfile finalProfile = ProfileMerger.merge(profiles, preferences, requiredSkills, suggestedSkills, mandatoryBenefices, suggestedBenefices,
-                mandatoryWeapons, mandatoryArmours, mandatoryShields, characterPlayer.getLanguage(), characterPlayer.getModuleName());
+        final IRandomPredefined finalProfile = PredefinedMerger.merge(profiles, preferences, requiredSkills, suggestedSkills,
+                mandatoryBenefices, suggestedBenefices, mandatoryWeapons, mandatoryArmours, mandatoryShields, characterPlayer.getLanguage(),
+                characterPlayer.getModuleName());
 
         // Assign preferences
         this.preferences = finalProfile.getPreferences();
@@ -214,9 +215,6 @@ public class RandomizeCharacter {
     /**
      * Using free style character generation. Only the first points to expend in a
      * character.
-     *
-     * @throws InvalidXmlElementException
-     * @throws InvalidRandomElementSelectedException
      */
     private void setStartingValues() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
         // Characteristics

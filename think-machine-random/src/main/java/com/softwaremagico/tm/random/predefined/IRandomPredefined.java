@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.random.profiles;
+package com.softwaremagico.tm.random.predefined;
 
 /*-
  * #%L
@@ -39,7 +39,7 @@ import com.softwaremagico.tm.random.selectors.IRandomPreference;
 import java.util.Map;
 import java.util.Set;
 
-public interface IRandomProfile {
+public interface IRandomPredefined {
 
     int getExperiencePoints();
 
@@ -55,7 +55,7 @@ public interface IRandomProfile {
 
     Set<AvailableBenefice> getBenefices();
 
-    void setParent(IRandomProfile randomProfile) throws InvalidXmlElementException;
+    void setParent(IRandomPredefined randomProfile) throws InvalidXmlElementException;
 
     public String getLanguage();
 

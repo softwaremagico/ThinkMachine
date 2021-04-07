@@ -5,6 +5,7 @@
             <en>Soldier</en>
             <es>Soldado</es>
         </name>
+        <group>occupation</group>
         <preferences>CombatPreferences.BELLIGERENT, CharacteristicsPreferences.BODY, SkillGroupPreferences.COMBAT,
             SpecializationPreferences.SPECIALIZED, StatusPreferences.LOW, TechnologicalPreferences.MODERN,
             WeaponsPreferences.HIGH, SpecializationPreferences.SPECIALIZED
@@ -34,6 +35,7 @@
             <en>Hi Tech Soldier</en>
             <es>Soldado Alta Tecnología</es>
         </name>
+        <group>occupation</group>
         <characteristicsMinimumValues>
             <dexterity>6</dexterity>
             <tech>6</tech>
@@ -55,6 +57,7 @@
             <en>Heavy Soldier</en>
             <es>Soldado Pesado</es>
         </name>
+        <group>occupation</group>
         <parent>soldier</parent>
         <characteristicsMinimumValues>
             <strength>6</strength>
@@ -85,6 +88,7 @@
             <en>Serf</en>
             <es>Siervo</es>
         </name>
+        <group>occupation</group>
         <preferences>CombatPreferences.PEACEFUL, CharacteristicsPreferences.BODY, SpecializationPreferences.GENERALIZED,
             StatusPreferences.NONE, TechnologicalPreferences.BASIC, WeaponsPreferences.NONE
         </preferences>
@@ -109,6 +113,7 @@
             <en>Peasant</en>
             <es>Campesino</es>
         </name>
+        <group>occupation</group>
         <preferences>CombatPreferences.FAIR, CharacteristicsPreferences.BODY, SpecializationPreferences.FAIR,
             StatusPreferences.NONE, TechnologicalPreferences.MEDIEVAL, WeaponsPreferences.NONE
         </preferences>
@@ -139,6 +144,7 @@
             <en>Thug</en>
             <es>Rufián</es>
         </name>
+        <group>occupation</group>
         <preferences>CombatPreferences.BELLIGERENT, CharacteristicsPreferences.BODY,
             SpecializationPreferences.SPECIALIZED, StatusPreferences.NONE, WeaponsPreferences.MEDIUM,
             SkillGroupPreferences.MALEFACTION, FactionPreferences.NONE
@@ -154,6 +160,7 @@
             <en>Tracker</en>
             <es>Rastreador</es>
         </name>
+        <group>occupation</group>
         <preferences>CombatPreferences.FAIR, TechnologicalPreferences.MODERN, CharacteristicsPreferences.BODY,
             SpecializationPreferences.SPECIALIZED
         </preferences>
@@ -192,6 +199,7 @@
             <en>Slayer</en>
             <es>Asesino</es>
         </name>
+        <group>occupation</group>
         <preferences>CombatPreferences.BELLIGERENT, SkillGroupPreferences.MALEFACTION, FactionPreferences.NONE,
             CharacteristicsPreferences.BODY, SpecializationPreferences.VERY_SPECIALIZED,
             TechnologicalPreferences.SPACE_CITIZEN, WeaponsPreferences.HIGH
@@ -250,6 +258,7 @@
             <en>Spy</en>
             <es>Espía</es>
         </name>
+        <group>occupation</group>
         <preferences>SpecializationPreferences.SPECIALIZED, SkillGroupPreferences.MALEFACTION, FactionPreferences.NONE
         </preferences>
         <characteristicsMinimumValues>
@@ -283,9 +292,10 @@
     </spy>
     <general>
         <name>
-            <en>General</en>
-            <es>General</es>
+            <en>Marshal</en>
+            <es>Mariscal</es>
         </name>
+        <group>occupation</group>
         <preferences>SpecializationPreferences.SPECIALIZED</preferences>
         <characteristicsMinimumValues>
             <presence>5</presence>
@@ -326,6 +336,7 @@
             <en>Noble</en>
             <es>Noble</es>
         </name>
+        <group>faction</group>
         <preferences>FactionPreferences.NOBILITY</preferences>
         <characteristicsMinimumValues>
             <presence>5</presence>
@@ -363,6 +374,7 @@
             <en>Clergy</en>
             <es>Clero</es>
         </name>
+        <group>faction</group>
         <preferences>FactionPreferences.CHURCH</preferences>
         <characteristicsMinimumValues>
             <presence>5</presence>
@@ -392,6 +404,7 @@
             <en>Young</en>
             <es>Joven</es>
         </name>
+        <group>age</group>
         <preferences>AgePreferences.TEENAGER, AgePreferences.YOUNG, SpecializationPreferences.GENERALIZED</preferences>
     </young>
     <old>
@@ -399,6 +412,7 @@
             <en>Old</en>
             <es>Viejo</es>
         </name>
+        <group>age</group>
         <preferences>AgePreferences.OLD, AgePreferences.VERY_OLD, SpecializationPreferences.SPECIALIZED,
             TraitCostPreferences.HIGH
         </preferences>
@@ -408,6 +422,7 @@
             <en>Cyberchanged</en>
             <es>Cibercambiado</es>
         </name>
+        <group>specials</group>
         <preferences>CyberneticPointsPreferences.HIGH, CyberneticTotalDevicesPreferences.HIGH,
             TechnologicalPreferences.SPACE_CITIZEN
         </preferences>
@@ -417,6 +432,7 @@
             <en>Occultist</en>
             <es>Ocultista</es>
         </name>
+        <group>specials</group>
         <preferences>PsiquePathLevelPreferences.GOOD, PsiqueLevelPreferences.FAIR</preferences>
     </occultist>
 </profiles>

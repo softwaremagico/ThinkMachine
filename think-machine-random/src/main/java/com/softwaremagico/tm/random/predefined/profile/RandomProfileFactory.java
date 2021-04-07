@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.random.profiles;
+package com.softwaremagico.tm.random.predefined.profile;
 
 /*-
  * #%L
@@ -28,6 +28,7 @@ import com.softwaremagico.tm.character.benefices.BeneficeDefinition;
 import com.softwaremagico.tm.character.characteristics.Characteristic;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.json.factories.cache.FactoryCacheLoader;
+import com.softwaremagico.tm.random.predefined.RandomPredefinedFactory;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
 
 import java.util.Set;
@@ -61,6 +62,5 @@ public class RandomProfileFactory extends RandomPredefinedFactory<RandomProfile>
         return new RandomProfile(id, name, description, language, moduleName, randomPreferences,
                 characteristicsMinimumValues, requiredSkills, suggestedSkills, mandatoryBenefices, suggestedBenefices);
     }
-
 
 }

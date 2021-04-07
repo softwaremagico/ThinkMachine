@@ -1,10 +1,10 @@
-package com.softwaremagico.tm.random.characters;
+package com.softwaremagico.tm.random.predefined;
 
 /*-
  * #%L
- * Think Machine (Random Generator)
+ * Think Machine (Core)
  * %%
- * Copyright (C) 2017 - 2021 Softwaremagico
+ * Copyright (C) 2017 - 2018 Softwaremagico
  * %%
  * This software is designed by Jorge Hortelano Otero. Jorge Hortelano Otero
  * <softwaremagico@gmail.com> Valencia (Spain).
@@ -35,30 +35,25 @@ import com.softwaremagico.tm.character.equipment.shields.Shield;
 import com.softwaremagico.tm.character.equipment.weapons.Weapon;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.json.ExcludeFromJson;
-import com.softwaremagico.tm.random.profiles.IRandomProfile;
-import com.softwaremagico.tm.random.profiles.ProfileMerger;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
 
 import java.util.*;
 
-public class Npc extends Element<Npc> implements IRandomProfile {
+public abstract class RandomPredefined<Predefined extends Element<Predefined>> extends Element<Predefined> implements IRandomPredefined {
     private final Set<IRandomPreference> randomPreferences;
     private final Set<Characteristic> characteristicsMinimumValues;
     private final Set<AvailableSkill> requiredSkills;
     private final Set<AvailableSkill> suggestedSkills;
     private final Set<BeneficeDefinition> suggestedBenefices;
     private final Set<BeneficeDefinition> mandatoryBenefices;
-    private final Set<Weapon> mandatoryWeapons;
-    private final Set<Armour> mandatoryArmours;
-    private final Set<Shield> mandatoryShields;
 
     @ExcludeFromJson
     public boolean parentMerged = false;
 
-    public Npc(String id, String name, String description, String language, String moduleName,
-               Set<IRandomPreference> randomPreferences, Set<Characteristic> characteristicsMinimumValues,
-               Set<AvailableSkill> requiredSkills, Set<AvailableSkill> suggestedSkills,
-               Set<BeneficeDefinition> mandatoryBenefices, Set<BeneficeDefinition> suggestedBenefices) {
+    public RandomPredefined(String id, String name, String description, String language, String moduleName,
+                            Set<IRandomPreference> randomPreferences, Set<Characteristic> characteristicsMinimumValues,
+                            Set<AvailableSkill> requiredSkills, Set<AvailableSkill> suggestedSkills,
+                            Set<BeneficeDefinition> mandatoryBenefices, Set<BeneficeDefinition> suggestedBenefices) {
         super(id, name, description, language, moduleName);
         this.randomPreferences = randomPreferences;
         this.characteristicsMinimumValues = characteristicsMinimumValues;
@@ -66,21 +61,18 @@ public class Npc extends Element<Npc> implements IRandomProfile {
         this.suggestedSkills = suggestedSkills;
         this.suggestedBenefices = suggestedBenefices;
         this.mandatoryBenefices = mandatoryBenefices;
-        this.mandatoryWeapons = new HashSet<>();
-        this.mandatoryArmours = new HashSet<>();
-        this.mandatoryShields = new HashSet<>();
     }
 
-    public Npc(String id, String name, String description, String language, String moduleName) {
+    public RandomPredefined(String id, String name, String description, String language, String moduleName) {
         this(id, name, description, language, moduleName, new HashSet<>(), new HashSet<>(),
                 new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>());
     }
 
     @Override
-    public void setParent(IRandomProfile parentProfile) {
+    public void setParent(IRandomPredefined parentProfile) {
         if (!parentMerged && parentProfile != null) {
             // Merge preferences. This has preference over parent profile.
-            final IRandomProfile mergedProfile = ProfileMerger.merge(parentProfile.getLanguage(),
+            final IRandomPredefined mergedProfile = new PredefinedMerger().merge(parentProfile.getLanguage(),
                     parentProfile.getModuleName(), parentProfile, this);
 
             randomPreferences.clear();
@@ -139,6 +131,7 @@ public class Npc extends Element<Npc> implements IRandomProfile {
         return randomPreferences;
     }
 
+    @Override
     public boolean isParentMerged() {
         return parentMerged;
     }
@@ -177,30 +170,19 @@ public class Npc extends Element<Npc> implements IRandomProfile {
         return super.equals(obj);
     }
 
-    public void addMandatoryWeapons(Set<Weapon> weapons) {
-        mandatoryWeapons.addAll(weapons);
-    }
-
-    public void addMandatoryArmours(Set<Armour> armours) {
-        mandatoryArmours.addAll(armours);
-    }
-
-    public void addMandatoryShields(Set<Shield> shields) {
-        mandatoryShields.addAll(shields);
-    }
 
     @Override
     public Set<Weapon> getMandatoryWeapons() {
-        return mandatoryWeapons;
+        return new HashSet<>();
     }
 
     @Override
     public Set<Armour> getMandatoryArmours() {
-        return mandatoryArmours;
+        return new HashSet<>();
     }
 
     @Override
     public Set<Shield> getMandatoryShields() {
-        return mandatoryShields;
+        return new HashSet<>();
     }
 }

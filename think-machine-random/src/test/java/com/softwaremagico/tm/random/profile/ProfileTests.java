@@ -9,8 +9,8 @@ import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.file.PathManager;
 import com.softwaremagico.tm.random.exceptions.DuplicatedPreferenceException;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
-import com.softwaremagico.tm.random.profiles.ProfileMerger;
-import com.softwaremagico.tm.random.profiles.RandomProfileFactory;
+import com.softwaremagico.tm.random.predefined.PredefinedMerger;
+import com.softwaremagico.tm.random.predefined.profile.RandomProfileFactory;
 import com.softwaremagico.tm.random.selectors.AgePreferences;
 import com.softwaremagico.tm.random.selectors.BlessingPreferences;
 import com.softwaremagico.tm.random.selectors.CombatPreferences;
@@ -62,6 +62,11 @@ public class ProfileTests {
             System.out.println(characterSheet.toString());
             throw e;
         }
+    }
+
+    @Test
+    public void getGroups() {
+        Assert.assertFalse(RandomProfileFactory.getInstance().getGroups(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).isEmpty());
     }
 
     @Test
@@ -206,7 +211,7 @@ public class ProfileTests {
                 .collect(Collectors.toCollection(HashSet::new));
         Set<IRandomPreference> newPreferences = Stream.of(CombatPreferences.BELLIGERENT, BlessingPreferences.APPEARANCE)
                 .collect(Collectors.toCollection(HashSet::new));
-        ProfileMerger.mergePreferences(originalPreferences, newPreferences);
+        PredefinedMerger.mergePreferences(originalPreferences, newPreferences);
         Assert.assertEquals(originalPreferences.size(), 3);
         boolean found = false;
         for (IRandomPreference preference : originalPreferences) {
@@ -224,7 +229,7 @@ public class ProfileTests {
                 .collect(Collectors.toCollection(HashSet::new));
         Set<IRandomPreference> newPreferences = Stream.of(AgePreferences.VERY_OLD)
                 .collect(Collectors.toCollection(HashSet::new));
-        ProfileMerger.mergePreferences(originalPreferences, newPreferences);
+        PredefinedMerger.mergePreferences(originalPreferences, newPreferences);
         Assert.assertEquals(originalPreferences.size(), 1);
         boolean found = false;
         for (IRandomPreference preference : originalPreferences) {

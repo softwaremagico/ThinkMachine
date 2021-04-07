@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.random.characters;
+package com.softwaremagico.tm.random.predefined.characters;
 
 /*-
  * #%L
@@ -36,7 +36,7 @@ import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.json.factories.cache.FactoryCacheLoader;
 import com.softwaremagico.tm.language.ITranslator;
-import com.softwaremagico.tm.random.profiles.RandomPredefinedFactory;
+import com.softwaremagico.tm.random.predefined.RandomPredefinedFactory;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
 
 import java.util.Set;
@@ -75,18 +75,18 @@ public class NpcFactory extends RandomPredefinedFactory<Npc> {
     }
 
     @Override
-    protected Npc createElement(ITranslator translator, String profileId, String name, String description,
+    protected Npc createElement(ITranslator translator, String predefinedId, String name, String description,
                                 String language, String moduleName)
             throws InvalidXmlElementException {
-        Npc npc = super.createElement(translator, profileId, name, description, language, moduleName);
+        final Npc npc = super.createElement(translator, predefinedId, name, description, language, moduleName);
 
-        final Set<Weapon> mandatoryWeapons = getCommaSeparatedValues(profileId, MANDATORY_WEAPONS, language,
+        final Set<Weapon> mandatoryWeapons = getCommaSeparatedValues(predefinedId, MANDATORY_WEAPONS, language,
                 moduleName, WeaponFactory.getInstance());
 
-        final Set<Armour> mandatoryArmours = getCommaSeparatedValues(profileId, MANDATORY_ARMOURS, language,
+        final Set<Armour> mandatoryArmours = getCommaSeparatedValues(predefinedId, MANDATORY_ARMOURS, language,
                 moduleName, ArmourFactory.getInstance());
 
-        final Set<Shield> mandatoryShields = getCommaSeparatedValues(profileId, MANDATORY_SHIELDS, language,
+        final Set<Shield> mandatoryShields = getCommaSeparatedValues(predefinedId, MANDATORY_SHIELDS, language,
                 moduleName, ShieldFactory.getInstance());
 
 

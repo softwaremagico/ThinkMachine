@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.random.profiles;
+package com.softwaremagico.tm.random.predefined;
 
 import com.google.common.base.Objects;
 import com.softwaremagico.tm.character.benefices.BeneficeDefinition;
@@ -7,7 +7,7 @@ import com.softwaremagico.tm.character.equipment.armours.Armour;
 import com.softwaremagico.tm.character.equipment.shields.Shield;
 import com.softwaremagico.tm.character.equipment.weapons.Weapon;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
-import com.softwaremagico.tm.random.characters.Npc;
+import com.softwaremagico.tm.random.predefined.characters.Npc;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
 
 import java.util.*;
@@ -36,10 +36,10 @@ import java.util.*;
  * #L%
  */
 
-public class ProfileMerger {
+public class PredefinedMerger {
     private static final String DEFAULT_ID = "merged_profile";
 
-    public static IRandomProfile merge(String language, String moduleName, IRandomProfile... profiles) {
+    public static IRandomPredefined merge(String language, String moduleName, IRandomPredefined... profiles) {
         if (profiles == null || profiles.length == 0) {
             return null;
         }
@@ -47,20 +47,20 @@ public class ProfileMerger {
         return merge(new HashSet<>(Arrays.asList(profiles)), language, moduleName);
     }
 
-    public static IRandomProfile merge(Set<IRandomProfile> profiles, String language, String moduleName) {
+    public static IRandomPredefined merge(Set<IRandomPredefined> profiles, String language, String moduleName) {
         return merge(profiles, new HashSet<>(), new HashSet<>(), new HashSet<>(),
                 new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(),
                 language, moduleName);
     }
 
-    private static IRandomProfile getEmptyProfile(String language, String moduleName) {
+    private static IRandomPredefined getEmptyProfile(String language, String moduleName) {
         return new Npc(DEFAULT_ID, "", null, language, moduleName);
     }
 
-    public static IRandomProfile merge(Set<IRandomProfile> profiles, Set<IRandomPreference> extraPreferences, Set<AvailableSkill> requiredSkills,
-                                       Set<AvailableSkill> suggestedSkills, Set<BeneficeDefinition> mandatoryBenefices,
-                                       Set<BeneficeDefinition> suggestedBenefices, Set<Weapon> mandatoryWeapons, Set<Armour> mandatoryArmours,
-                                       Set<Shield> mandatoryShields, String language, String moduleName) {
+    public static IRandomPredefined merge(Set<IRandomPredefined> profiles, Set<IRandomPreference> extraPreferences, Set<AvailableSkill> requiredSkills,
+                                          Set<AvailableSkill> suggestedSkills, Set<BeneficeDefinition> mandatoryBenefices,
+                                          Set<BeneficeDefinition> suggestedBenefices, Set<Weapon> mandatoryWeapons, Set<Armour> mandatoryArmours,
+                                          Set<Shield> mandatoryShields, String language, String moduleName) {
         if (profiles == null) {
             profiles = new HashSet<>();
         }
@@ -70,12 +70,12 @@ public class ProfileMerger {
         }
 
         // Store all information in a new profile.
-        final IRandomProfile finalProfile = getEmptyProfile(language, moduleName);
+        final IRandomPredefined finalProfile = getEmptyProfile(language, moduleName);
 
         // Merge profiles
-        for (final IRandomProfile profile : profiles) {
+        for (final IRandomPredefined profile : profiles) {
             // Merge preferences.
-            mergePreferences(finalProfile.getPreferences(), profile.getPreferences());
+            mergePreferences(finalProfile.getPreferences(), removeDuplicates(profile.getPreferences()));
 
             // Merge characteristics.
             mergeCharacteristics(finalProfile.getCharacteristicsMinimumValues(), profile.getCharacteristicsMinimumValues());
@@ -99,7 +99,7 @@ public class ProfileMerger {
         }
 
         // Add selected preferences with more priority.
-        mergePreferences(extraPreferences, finalProfile.getPreferences());
+        mergePreferences(removeDuplicates(extraPreferences), finalProfile.getPreferences());
         finalProfile.getPreferences().clear();
         finalProfile.getPreferences().addAll(extraPreferences);
 
@@ -217,6 +217,26 @@ public class ProfileMerger {
             }
         }
         originalPreferences.addAll(preferredPreferences);
+    }
+
+    public static Set<IRandomPreference> removeDuplicates(Set<IRandomPreference> originalPreferences) {
+        final Random random = new Random();
+        for (final IRandomPreference preference1 : new HashSet<>(originalPreferences)) {
+            //Get preference average.
+            for (final IRandomPreference preference2 : new HashSet<>(originalPreferences)) {
+                if (preference1.getClass().equals(preference2.getClass()) && preference1 != preference2) {
+                    if (preference1.getClass().isEnum()) {
+                        //Select randomly
+                        if (random.nextBoolean()) {
+                            originalPreferences.remove(preference1);
+                        } else {
+                            originalPreferences.remove(preference2);
+                        }
+                    }
+                }
+            }
+        }
+        return originalPreferences;
     }
 
 }

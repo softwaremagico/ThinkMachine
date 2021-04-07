@@ -1,705 +1,968 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <armours>
-	<version>1</version>
-	<totalElements>30</totalElements>
-	<ceramsteelExoframe>
-		<name>
-			<en>Ceramsteel Exoframe</en>
-			<es>Exoesqueleto de Acerámica</es>
-		</name>
-		<description>
-			<en>This heavy-duty, thickformed armor is designed to withstand amazing impacts. It is composed of the high-tech ceramics and metal combination used to make starship hulls. Most suits are lacquered or painted by the owner to represent their house, sect or guild affiliation. Few ceramsteel exoframes are made nowadays, the majority of suits have been handed down from parent to child over the course of many centuries, and in some families the household ceramsteel exoframe has taken on an almost mythological quality, sometimes revered as a household genius or eternal family member. Unless powered by a fusion cell pack (TL6; Cost: 200 fb), this armor is simply too heavy to lift without a substantial penalty to mobility (–5 penalty to all physical actions and cannot run while in environments with approximately 1G and Urth-like atmospheric pressure). Once powered, however, the armor seems remarkably light. The fusion cell pack, hidden behind the thick back plating, typically lasts for 24 hours of continued use, and also supplies the wearer with heat regulation for comfort. Although sturdy pieces of wargear, ceramsteel exoframes are typically many centuries old, having seen numerous battles and suffered many blows, and maintenance is likely to have been scarce; it is therefore not uncommon for these suits of armor to malfunction and power down for a couple of turns after sustaining a hit, even if no actual damage is done (however, this typically occurs only with Critical Success attacks or Critical Failure on a relevant wearer’s action).</en>
-			<es>Es una armadura pesada pero de poco grosor que está diseñada para soportar impactos tremendos. Está compuesta de una cerámica de alta tecnología y la combinación de metales que se utiliza para fabricar los cascos de naves espaciales. El propietario laca o pinta la mayoría del traje para representar a su casa, secta o gremio. Hoy en día se fabrican pocos exoesqueletos de acerámica, la mayoría de trajes se han transmitido de padres a hijos a lo largo de muchos siglos, y en algunas familias el exoesqueleto de acerámica ha llegado a convertirse en una reliquia familiar, adquiriendo una cualidad casi mitológica, recibiendo en ocasiones una veneración digna de un genio o de un miembro eterno de la familia. A menos que un pack de pilas de fusión (NT6; Coste: 200 fénix) suministre la energía suficiente para el funcionamiento, esta armadura será demasiado pesada para levantarla sin un penalizador sustancial a la movilidad (penalizador de -5 a todas las acciones físicas y no se puede correr mientras se esté presente en ambientes de 1G y con una presión atmosférica similar a la de la Tierra). Sin embargo, una vez que recibe la energía necesaria, la armadura parece notablemente ligera. El pack de pilas de fusión, escondido detrás de una gruesa placa en la espalda, por lo general tiene una duración de 24 horas de uso continuo, y también proporciona al usuario un regulador del calor para mayor comodidad. Aunque sean unas piezas aparatosas que forman parte de un equipo militar, los exoesqueletos de acerámica suelen tener siglos de antigüedad, con lo que han presenciado numerosas batallas y han sufrido muchos golpes, y es altamente probable que el mantenimiento haya sido escaso; por lo tanto, no es raro que esta armaduras funcionen mal y que se desactiven durante un par de turnos después de recibir un impacto, incluso si no se recibe daño (sin embargo, esto solamente suele ocurrir con éxitos críticos o fallos críticos obtenidos durante una acción relevante que esté llevando a cabo el usuario).</es>  
-		</description>
-		<techLevel>6</techLevel>
-		<protection>14</protection>
-		<standardPenalizations>
-			<strength>0</strength>
-			<dexterity>0</dexterity>
-			<endurance>0</endurance>
-			<initiative>0</initiative>
-		</standardPenalizations>
-		<specialPenalizations>
-			<strength>-5</strength>
-			<dexterity>-5</dexterity>
-			<endurance>-5</endurance>
-			<initiative>-5</initiative>
-		</specialPenalizations>
-		<cost>2000</cost>
-		<damageType>hard, laser, impact, shock</damageType>
-		<shield>battleShield</shield>
-		<others>abcProtection, powerPack</others>
-	</ceramsteelExoframe>
-	<adeptRobes>
-		<name>
-			<en>Adept Robes</en>
-			<es>Túnicas de Adepto</es>
-		</name>
-		<description>
-			<en>The legendary powered battle armor of the Brother Battle order, its liturgical name being the “Cassock Superior” (not to be confused with Kossacks!). It is an enhanced ceramsteel exoframe suit that boosts its wearer’s abilities and provides an array of extras: 30 minutes of life support, built in range-finders, 10× binoculars, radio sending and receiving, and protection from skincontact poisons and dangerous levels of radiation. Some models even provide hoverpacks, leg servos for faster running and incredible leaps, built in weapons (flamers) and more. These suits cannot be bought with firebirds; they must be earned by Brother Battle monks.</en>
-			<es>La armadura de batalla legendaria de la orden de los Hermanos de Batalla. Su nombre litúrgico es la “Sotana Superior”. Es una mejora del exoesqueleto de acerámica que potencia las habilidades de su portador y proporciona una serie de extras: 30 minutos de soporte de vida, incorporado en telémetros, binoculares 10×, emisores y receptores, y protección contra venenos que reaccionan al contacto con la piel así como protección contra niveles peligrosos de radiación. Algunos modelos incluso proporcionan mochilas propulsoras, servo piernas para correr más rápido y realizar saltos increíbles, incorporan armas (lanzallamas) y demás. Estas ropas no se pueden comprar con fénix; los Hermanos de Batalla han de demostrar ser dignos de ellas.</es>
-		</description>
-		<techLevel>6</techLevel>
-		<protection>14</protection>
-		<standardPenalizations>
-			<strength>2</strength>
-			<dexterity>1</dexterity>
-			<endurance>0</endurance>
-			<initiative>0</initiative>
-		</standardPenalizations>
-		<specialPenalizations>
-			<strength>-5</strength>
-			<dexterity>-5</dexterity>
-			<endurance>-5</endurance>
-			<initiative>-5</initiative>
-		</specialPenalizations>
-		<cost>10000</cost>
-		<damageType>hard, laser, impact, shock</damageType>
-		<shield>battleShield</shield>
-		<others>abcProtection, powerPack, lifeSupport30m, rangeFinder, radio, binoculars, radiationProtection</others>
-	</adeptRobes>
-	<chainMailMetal>
-		<name>
-			<en>Chain Mail (Metal)</en>
-			<es>Cota de Mallas (Metal)</es>
-		</name>
-		<description>
-			<en>Woven layers of metal links. Higher tech versions are known using lightweight but strong plastics (no Dex penalty). Common among low-tech but well-equipped militias.</en>
-			<es>Distintas capas de eslabones de metal tejidas entre sí. Las versiones de una tecnología más alta suelen emplear plásticos ligeros pero resistentes (sin penalizador de Destreza). Suele encontrarse comúnmente entre las milicias de baja tecnología pero que van bien equipadas.</es> 
-		</description>
-		<techLevel>2</techLevel>
-		<protection>8</protection>
-		<standardPenalizations>
-			<strength>0</strength>
-			<dexterity>-1</dexterity>
-			<endurance>-2</endurance>
-			<initiative>-2</initiative>
-		</standardPenalizations>
-		<cost>50</cost>
-		<damageType>hard</damageType>
-		<shield>assaultShield, battleShield</shield>
-		<others>metal</others>
-	</chainMailMetal>
-	<chainMailPlastic>
-		<name>
-			<en>Chain Mail (Plastic)</en>
-			<es>Cota de Mallas (Plástico)</es>
-		</name>
-		<description>
-			<en>Woven layers of metal links. Higher tech versions are known using lightweight but strong plastics (no Dex penalty). Common among low-tech but well-equipped militias.</en>
-			<es>Distintas capas de eslabones de metal tejidas entre sí. Las versiones de una tecnología más alta suelen emplear plásticos ligeros pero resistentes (sin penalizador de Destreza). Suele encontrarse comúnmente entre las milicias de baja tecnología pero que van bien equipadas.</es> 
-		</description>
-		<techLevel>5</techLevel>
-		<protection>8</protection>
-		<standardPenalizations>
-			<strength>0</strength>
-			<dexterity>-1</dexterity>
-			<endurance>-1</endurance>
-			<initiative>-1</initiative>
-		</standardPenalizations>
-		<cost>80</cost>
-		<damageType>soft, shock</damageType>
-		<shield>assaultShield, battleShield</shield>
-		<others></others>
-	</chainMailPlastic>
-	<chainMailPlasteel>
-		<name>
-			<en>Chain Mail (Plasteel)</en>
-			<es>Cota de Mallas (Plastiacero)</es>
-		</name>
-		<description>
-			<en>Woven layers of metal links. Higher tech versions are known using lightweight but strong plastics (no Dex penalty). Common among low-tech but well-equipped militias.</en>
-			<es>Distintas capas de eslabones de metal tejidas entre sí. Las versiones de una tecnología más alta suelen emplear plásticos ligeros pero resistentes (sin penalizador de Destreza). Suele encontrarse comúnmente entre las milicias de baja tecnología pero que van bien equipadas.</es> 
-		</description>
-		<techLevel>5</techLevel>
-		<protection>8</protection>
-		<standardPenalizations>
-			<strength>0</strength>
-			<dexterity>-1</dexterity>
-			<endurance>0</endurance>
-			<initiative>0</initiative>
-		</standardPenalizations>
-		<cost>100</cost>
-		<damageType>soft, shock</damageType>
-		<shield>assaultShield, battleShield</shield>
-		<others></others>
-	</chainMailPlasteel>
-	<frictionlessGel>
-		<name>
-			<en>Frictionless Gel</en>
-			<es>Gel Antifricción</es>
-		</name>
-		<description>
-			<en>This amazing substance was first created during the Second Republic for use as a frictionless oil in advanced engines. However, someone early on realized its potential as a toy, and began marketing it as a “slimy fun gel for slick, slippery play.” It is applied to a surface (such as a piston or gear or human skin); after an hour of drying, its dried surface becomes frictionless. Obviously, this can avoid a lot of kinetic damage, but if misapplied, can lead to pratfalls. Game Masters and players are encouraged to get creative with the possibilities. The effects only last for a day before the substance dries out completely. Frictionless gel can be smeared over any type of armor; modifiers are cumulative.</en>
-			<es>Esta sustancia increíble se creó durante la Segunda República, en un primer momento se usaba como un aceite antifricción en los motores avanzados. Sin embargo, alguien se dio cuenta pronto de su potencial como juguete, y comenzó a comercializarlo como un “gel viscoso para la máxima diversión”. Se aplica sobre una superficie (como un pistón o engranajes o la piel humana); después de una hora de secado, su superficie seca pierde toda la fricción. Obviamente, esto puede anular un montón de daño cinético, pero si no se aplica bien, puede provocar batacazos. Se anima a los Directores de Juego y a los jugadores a que sean creativos con las posibilidades. Los efectos sólo duran un día antes de que la sustancia se seque por completo. El gel antifricción se puede untar sobre cualquier tipo de armadura; los modificadores son acumulativos.</es>
-		</description>
-		<techLevel>7</techLevel>
-		<protection>6</protection>
-		<standardPenalizations>
-			<strength>0</strength>
-			<dexterity>-2</dexterity>
-			<endurance>0</endurance>
-			<initiative>0</initiative>
-		</standardPenalizations>
-		<cost>500</cost>
-		<damageType>hard</damageType>
-		<shield>assaultShield, battleShield</shield>
-		<others></others>
-	</frictionlessGel>
-	<halfPlateMetal>
-		<name>
-			<en>Half Plate (Metal)</en>
-			<es>Coraza (Metal)</es>
-		</name>
-		<description>
-			<en>Conquistador-style chest plate with light vambraces and greaves. Usually worn only by commanding officers, but also the armor of choice for Brother Battle priests. Often decorated or enameled with fanciful designs or depictions of animals. Plastic versions are available at Tech Level 5 and above.</en>
-			<es>Consiste en una placa de pecho de estilo conquistador, brazales y grebas ligeras. Por lo general, tan sólo la visten los oficiales al mando, pero también suelen ser las armaduras de referencia para los sacerdotes Hermanos de Batalla. A menudo se suele decorar o esmaltar con diseños de fantasía o representaciones de animales. Las versiones de plástico están disponibles a un NT5 y superiores.</es> 
-		</description>
-		<techLevel>2</techLevel>
-		<protection>6</protection>
-		<standardPenalizations>
-			<strength>0</strength>
-			<dexterity>-1</dexterity>
-			<endurance>0</endurance>
-			<initiative>-3</initiative>
-		</standardPenalizations>
-		<cost>30</cost>
-		<damageType>hard</damageType>
-		<shield>battleShield</shield>
-		<others>metal</others>
-	</halfPlateMetal>
-	<halfPlatePlastic>
-		<name>
-			<en>Half Plate (Plastic)</en>
-			<es>Coraza (Plástico)</es>
-		</name>
-		<description>
-			<en>Conquistador-style chest plate with light vambraces and greaves. Usually worn only by commanding officers, but also the armor of choice for Brother Battle priests. Often decorated or enameled with fanciful designs or depictions of animals. Plastic versions are available at Tech Level 5 and above.</en>
-			<es>Consiste en una placa de pecho de estilo conquistador, brazales y grebas ligeras. Por lo general, tan sólo la visten los oficiales al mando, pero también suelen ser las armaduras de referencia para los sacerdotes Hermanos de Batalla. A menudo se suele decorar o esmaltar con diseños de fantasía o representaciones de animales. Las versiones de plástico están disponibles a un NT5 y superiores.</es> 
-		</description>
-		<techLevel>5</techLevel>
-		<protection>6</protection>
-		<standardPenalizations>
-			<strength>0</strength>
-			<dexterity>0</dexterity>
-			<endurance>0</endurance>
-			<initiative>-2</initiative>
-		</standardPenalizations>
-		<cost>60</cost>
-		<damageType>soft, shock</damageType>
-		<shield>battleShield</shield>
-		<others></others>
-	</halfPlatePlastic>
-	<halfPlatePlasteel>
-		<name>
-			<en>Half Plate (Plasteel)</en>
-			<es>Coraza (Plastiacero)</es>
-		</name>
-		<description>
-			<en>Conquistador-style chest plate with light vambraces and greaves. Usually worn only by commanding officers, but also the armor of choice for Brother Battle priests. Often decorated or enameled with fanciful designs or depictions of animals. Plastic versions are available at Tech Level 5 and above.</en>
-			<es>Consiste en una placa de pecho de estilo conquistador, brazales y grebas ligeras. Por lo general, tan sólo la visten los oficiales al mando, pero también suelen ser las armaduras de referencia para los sacerdotes Hermanos de Batalla. A menudo se suele decorar o esmaltar con diseños de fantasía o representaciones de animales. Las versiones de plástico están disponibles a un NT5 y superiores.</es> 
-		</description>
-		<techLevel>5</techLevel>
-		<protection>0</protection>
-		<standardPenalizations>
-			<strength>0</strength>
-			<dexterity>0</dexterity>
-			<endurance>0</endurance>
-			<initiative>-1</initiative>
-		</standardPenalizations>
-		<cost>100</cost>
-		<damageType>hard, shock</damageType>
-		<shield>battleShield</shield>
-		<others></others>
-	</halfPlatePlasteel>
-	<heavyClothing>
-		<name>
-			<en>Heavy Clothing</en>
-			<es>Ropa Pesada</es>
-		</name>
-		<description>
-			<en>A heavier and stiffer fabric than padded clothing, sometimes designed as fashionable armor where thick leathers or metals would be too “barbaric.” This can include light leather, but not heavy or thick leather. Heavy clothing can be worn with an energy shield.</en> 
-			<es>Fabricada con una tela más pesada y más rígida que la ropa acolchada, a veces se diseña a modo de armadura de moda, puesto que los cueros o los metales le darían al noble un aire demasiado "bárbaro". Esto puede incluir cuero ligero, pero no el cuero pesado o grueso. La ropa pesada puede usarse con un escudo de energía.</es>
-		</description>
-		<techLevel>0</techLevel>
-		<protection>2</protection>
-		<standardPenalizations>
-			<strength>0</strength>
-			<dexterity>0</dexterity>
-			<endurance>0</endurance>
-			<initiative>-2</initiative>
-		</standardPenalizations>
-		<cost>4</cost>
-		<damageType>soft, shock</damageType>
-		<shield>standardShield, duelingShield, assaultShield, battleShield
-		</shield>
-		<others></others>
-	</heavyClothing>
-	<leatherJerkin>
-		<name>
-			<en>Leather Jerkin</en>
-			<es>Jubón de Cuero</es>
-		</name>
-		<description>
-			<en>Popular among many as an elegant armor, leather is often worn when heavier armors would be too “brutish.” In fact, Brute-hide leather is a fine, supple material that is heavy enough to work well as armor. Most guards wear leather in addition to whatever other armor they might have.</en>
-			<es>Popularmente empleada como si fuera una armadura elegante, el cuero se usa a menudo cuando el uso de armaduras más pesadas resultaría demasiado “burdo”. De hecho, el cuero es un material fino y flexible que además es lo suficientemente pesado como para funcionar bien como armadura. La mayoría de los guardias visten de cuero, a parte de cualquier otra armadura que pudieran tener.</es> 
-		</description>
-		<techLevel>1</techLevel>
-		<protection>4</protection>
-		<standardPenalizations>
-			<strength>0</strength>
-			<dexterity>0</dexterity>
-			<endurance>0</endurance>
-			<initiative>-1</initiative>
-		</standardPenalizations>
-		<cost>5</cost>
-		<damageType>soft, shock</damageType>
-		<shield>assaultShield, battleShield</shield>
-		<others></others>
-	</leatherJerkin>
-	<leatherJerkinStuddedMetal>
-		<name>
-			<en>Leather Jerkin Studded (Metal)</en>
-			<es>Jubón de Cuero Tachonado (Metal)</es>
-		</name>
-		<description>
-			<en>Popular among many as an elegant armor, leather is often worn when heavier armors would be too “brutish.” In fact, Brute-hide leather is a fine, supple material that is heavy enough to work well as armor. Most guards wear leather in addition to whatever other armor they might have.</en>
-			<es>Popularmente empleada como si fuera una armadura elegante, el cuero se usa a menudo cuando el uso de armaduras más pesadas resultaría demasiado “burdo”. De hecho, el cuero es un material fino y flexible que además es lo suficientemente pesado como para funcionar bien como armadura. La mayoría de los guardias visten de cuero, a parte de cualquier otra armadura que pudieran tener.</es> 
-		</description>
-		<techLevel>1</techLevel>
-		<protection>5</protection>
-		<standardPenalizations>
-			<strength>0</strength>
-			<dexterity>-1</dexterity>
-			<endurance>0</endurance>
-			<initiative>-2</initiative>
-		</standardPenalizations>
-		<cost>8</cost>
-		<damageType>soft</damageType>
-		<shield>assaultShield, battleShield</shield>
-		<others>metal</others>
-	</leatherJerkinStuddedMetal>
-	<leatherJerkinStuddedPlastic>
-		<name>
-			<en>Leather Jerkin Studded (Plastic)</en>
-			<es>Jubón de Cuero Tachonado (Plástico)</es>
-		</name>
-		<description>
-			<en>Popular among many as an elegant armor, leather is often worn when heavier armors would be too “brutish.” In fact, Brute-hide leather is a fine, supple material that is heavy enough to work well as armor. Most guards wear leather in addition to whatever other armor they might have.</en>
-			<es>Popularmente empleada como si fuera una armadura elegante, el cuero se usa a menudo cuando el uso de armaduras más pesadas resultaría demasiado “burdo”. De hecho, el cuero es un material fino y flexible que además es lo suficientemente pesado como para funcionar bien como armadura. La mayoría de los guardias visten de cuero, a parte de cualquier otra armadura que pudieran tener.</es> 
-		</description>
-		<techLevel>5</techLevel>
-		<protection>5</protection>
-		<standardPenalizations>
-			<strength>0</strength>
-			<dexterity>0</dexterity>
-			<endurance>0</endurance>
-			<initiative>-1</initiative>
-		</standardPenalizations>
-		<cost>15</cost>
-		<damageType>soft, shock</damageType>
-		<shield>assaultShield, battleShield</shield>
-		<others></others>
-	</leatherJerkinStuddedPlastic>
-	<leatherJerkinStuddedPlasteel>
-		<name>
-			<en>Leather Jerkin Studded (Plasteel)</en>
-			<es>Jubón de Cuero Tachonado (Plastiacero)</es>
-		</name>
-		<description>
-			<en>Popular among many as an elegant armor, leather is often worn when heavier armors would be too “brutish.” In fact, Brute-hide leather is a fine, supple material that is heavy enough to work well as armor. Most guards wear leather in addition to whatever other armor they might have.</en>
-			<es>Popularmente empleada como si fuera una armadura elegante, el cuero se usa a menudo cuando el uso de armaduras más pesadas resultaría demasiado “burdo”. De hecho, el cuero es un material fino y flexible que además es lo suficientemente pesado como para funcionar bien como armadura. La mayoría de los guardias visten de cuero, a parte de cualquier otra armadura que pudieran tener.</es> 
-		</description>
-		<techLevel>5</techLevel>
-		<protection>5</protection>
-		<standardPenalizations>
-			<strength>0</strength>
-			<dexterity>0</dexterity>
-			<endurance>0</endurance>
-			<initiative>0</initiative>
-		</standardPenalizations>
-		<cost>30</cost>
-		<damageType>hard, shock</damageType>
-		<shield>assaultShield, battleShield</shield>
-		<others></others>
-	</leatherJerkinStuddedPlasteel>
-	<paddedClothing>
-		<name>
-			<en>Padded Clothing</en>
-			<es>Ropa Acolchada</es>
-		</name>
-		<description>
-			<en>Clothing two layers thick -a jacket or thick sweatshirt. Not usually intended to be used as armor, it will nonetheless prevent some damage. This is the most protection a serf can be expected to wear. Padded clothing can be worn with an energy shield.</en>
-			<es>Ropa de dos capas de grosor, lo que vendría a ser una chaqueta o una sudadera gruesa. No está diseñada, por lo general, para utilizarse a modo de armadura, no obstante, evitará algunos puntos de daño. Esta es la mayor protección que un siervo puede tener la esperanza de llevar consigo. La Ropa Acolchada puede usarse con un escudo de energía.</es> 
-		</description>
-		<techLevel>0</techLevel>
-		<protection>1</protection>
-		<standardPenalizations>
-			<strength>0</strength>
-			<dexterity>0</dexterity>
-			<endurance>0</endurance>
-			<initiative>-1</initiative>
-		</standardPenalizations>
-		<cost>2</cost>
-		<damageType>soft</damageType>
-		<shield>standardShield, duelingShield, assaultShield, battleShield
-		</shield>
-		<others></others>
-	</paddedClothing>
-	<polymerKnit>
-		<name>
-			<en>Polymer Knit</en>
-			<es>Tejido de Polímero</es>
-		</name>
-		<description>
-			<en>A plastic and cloth weave highly resistant to bullets. Very rare -the tech knowhow to make polymer knit (such as Kevlar) was lost after the Fall, since it was rarely made during the later Second Republic time of energy shields and guns. Only the Nymex Guild on Pyre retains the ability to craft polymer knit and they provide materials to Temple Avesti for the making of fire-resistant robes popular with Temple Avesti zealots. Polymer knit can be worn with an energy shield.</en>
-			<es>Un plástico y un tejido altamente resistentes a las balas. Son muy raros puesto que la tecnología necesaria para fabricar tejidos de polímero (como el Kevlar) se perdió después de la Caída, ya que no era usual ver fábricas de estos materiales durante los tiempos más tardíos de la Segunda República, cuando surgieron los escudos de energía y las armas de fuego. Sólo el Gremio Nymex en Pira conserva la capacidad de fabricar un tejido de polímero y proporcionan materiales al Templo de Avesti para la confección de los trajes resistentes al fuego, tan populares entre los fanáticos del Templo Avesta. El Tejido de Polímero puede usarse con un escudo de energía.</es> 
-		</description>
-		<techLevel>4</techLevel>
-		<protection>3</protection>
-		<standardPenalizations>
-			<strength>0</strength>
-			<dexterity>0</dexterity>
-			<endurance>0</endurance>
-			<initiative>-2</initiative>
-		</standardPenalizations>
-		<cost>200</cost>
-		<damageType>hard, shock</damageType>
-		<shield>standardShield, duelingShield, assaultShield, battleShield
-		</shield>
-		<others></others>
-	</polymerKnit>
-	<plateMailSuitMetal>
-		<name>
-			<en>Plate Mail Suit (Metal)</en>
-			<es>Armadura de Placas Completa (Metal)</es>
-		</name>
-		<description>
-			<en>Large, metal interlocking plates strapped over an undersuit of leather and used by well-equipped troops on many worlds. At higher Tech Levels the introduction of TL5 plastics make the suits lighter, and TL5 plasteel make them effective protection against firearms. Most high-tech versions incorporate an environmental body-sleeve that protects the wearer from hostile environments.</en> 
-			<es>Consiste en placas grandes y metálicas entrelazadas, atadas mediante una correa a través de una armadura interior de cuero y utilizada por tropas bien equipadas a lo largo de muchos mundos. Con la introducción de plásticos en el NT5 los conjuntos de armadura completos empiezan a fabricarse con la idea de que sean más ligeros, y el plastiacero del NT5 hace que sean más efectivos a la hora de proteger contra las armas de fuego. La mayoría de las versiones de la alta tecnología incorporan materiales que protegen al portador de los entornos hostiles.</es>
-		</description>
-		<techLevel>2</techLevel>
-		<protection>10</protection>
-		<standardPenalizations>
-			<strength>-1</strength>
-			<dexterity>-2</dexterity>
-			<endurance>-2</endurance>
-			<initiative>-4</initiative>
-		</standardPenalizations>
-		<cost>70</cost>
-		<damageType>hard</damageType>
-		<shield>battleShield</shield>
-		<others>metal</others>
-	</plateMailSuitMetal>
-	<plateMailSuitPlastic>
-		<name>
-			<en>Plate Mail Suit (Plastic)</en>
-			<es>Armadura de Placas Completa (Plástico)</es>
-		</name>
-		<description>
-			<en>Large, metal interlocking plates strapped over an undersuit of leather and used by well-equipped troops on many worlds. At higher Tech Levels the introduction of TL5 plastics make the suits lighter, and TL5 plasteel make them effective protection against firearms. Most high-tech versions incorporate an environmental body-sleeve that protects the wearer from hostile environments.</en> 
-			<es>Consiste en placas grandes y metálicas entrelazadas, atadas mediante una correa a través de una armadura interior de cuero y utilizada por tropas bien equipadas a lo largo de muchos mundos. Con la introducción de plásticos en el NT5 los conjuntos de armadura completos empiezan a fabricarse con la idea de que sean más ligeros, y el plastiacero del NT5 hace que sean más efectivos a la hora de proteger contra las armas de fuego. La mayoría de las versiones de la alta tecnología incorporan materiales que protegen al portador de los entornos hostiles.</es>
-		</description>
-		<techLevel>5</techLevel>
-		<protection>10</protection>
-		<standardPenalizations>
-			<strength>0</strength>
-			<dexterity>-1</dexterity>
-			<endurance>-1</endurance>
-			<initiative>-3</initiative>
-		</standardPenalizations>
-		<cost>100</cost>
-		<damageType>soft, shock</damageType>
-		<shield>battleShield</shield>
-		<others>abcProtection</others>
-	</plateMailSuitPlastic>
-	<plateMailSuitPlasteel>
-		<name>
-			<en>Plate Mail Suit (Plasteel)</en>
-			<es>Armadura de Placas Completa (Plastiacero)</es>
-		</name>
-		<description>
-			<en>Large, metal interlocking plates strapped over an undersuit of leather and used by well-equipped troops on many worlds. At higher Tech Levels the introduction of TL5 plastics make the suits lighter, and TL5 plasteel make them effective protection against firearms. Most high-tech versions incorporate an environmental body-sleeve that protects the wearer from hostile environments.</en> 
-			<es>Consiste en placas grandes y metálicas entrelazadas, atadas mediante una correa a través de una armadura interior de cuero y utilizada por tropas bien equipadas a lo largo de muchos mundos. Con la introducción de plásticos en el NT5 los conjuntos de armadura completos empiezan a fabricarse con la idea de que sean más ligeros, y el plastiacero del NT5 hace que sean más efectivos a la hora de proteger contra las armas de fuego. La mayoría de las versiones de la alta tecnología incorporan materiales que protegen al portador de los entornos hostiles.</es>
-		</description>
-		<techLevel>5</techLevel>
-		<protection>10</protection>
-		<standardPenalizations>
-			<strength>0</strength>
-			<dexterity>-1</dexterity>
-			<endurance>-1</endurance>
-			<initiative>-2</initiative>
-		</standardPenalizations>
-		<cost>150</cost>
-		<damageType>hard, shock</damageType>
-		<shield>battleShield</shield>
-		<others>abcProtection</others>
-	</plateMailSuitPlasteel>
-	<psiCloak>
-		<name>
-			<en>Psi Cloak</en>
-			<es>Manto de Psique</es>
-		</name>
-		<description>
-			<en>A Psi cloak defends against mental powers and neural disrupters. It isn’t so much a physical cloak as an energy aura around the wearer. The aura is not visible to the naked eye, but is revealed in the ultraviolet or infrared spectrum (as a shimmering haze around the wearer). Most occult perception powers (Subtle Sight, Second Sight, etc.) will also perceive the cloak. Physically, the cloak is like a dueling shield core, and can be concealed in a casing, such as a belt buckle, brooch or wristwatch. It requires a fusion cell and will take 10 hits (just like a shield) before shutting down. Some rarer models are known which can take more hits or defend with more dice. These are no longer manufactured and are highly sought by everyone.</en>
-			<es>Un manto de psique defiende contra los poderes mentales y los disruptores neuronales. Más que un verdadero manto de propiedades físicas es un aura de energía que rodea al portador. El aura no es visible a simple vista, pero puede observarse en los espectros de ultravioleta o infrarrojos (como una especie de neblina brillante alrededor del usuario). La mayoría de poderes ocultos de percepción (Visión Sutil, Segunda Visión, etc.) también percibirán la capa. Físicamente, el manto es como el núcleo de un escudo de duelo, y puede ocultarse en una carcasa, como en una hebilla de un cinturón, en un broche o en un reloj de pulsera. Precisa de una pila de fusión y puede recibir 10 impactos (como un escudo) antes de apagarse. De todos es sabido que algunos modelos más raros pueden recibir más impactos o defenderse con más dados. Esta clase de mantos ya no se fabrican y suelen ser muy codiciados.</es> 
-		</description>
-		<techLevel>8</techLevel>
-		<protection>10</protection>
-		<standardPenalizations>
-			<strength>0</strength>
-			<dexterity>0</dexterity>
-			<endurance>0</endurance>
-			<initiative>0</initiative>
-		</standardPenalizations>
-		<cost>3000</cost>
-		<damageType></damageType>
-		<shield></shield>
-		<others>occult, neural</others>
-	</psiCloak>
-	<scaleMailMetal>
-		<name>
-			<en>Scale Mail (Metal)</en>
-			<es>Cota de Placas (Metal)</es>
-		</name>
-		<description>
-			<en>Overlapping metal scales in a variety of shapes and sizes bolted to a leather jerkin. Common among low-tech militias but disfavored by those who can afford better.</en> 
-			<es>Consiste en una superposición de las placas de metal de distintas formas y tamaños atornilladas a un jubón de cuero. Suele encontrarse comúnmente entre las milicias de bajo Nivel Tecnológico, pero los que pueden permitirse cosas mejores suelen despreciarlas.</es>
-		</description>
-		<techLevel>1</techLevel>
-		<protection>7</protection>
-		<standardPenalizations>
-			<strength>0</strength>
-			<dexterity>-1</dexterity>
-			<endurance>-1</endurance>
-			<initiative>-2</initiative>
-		</standardPenalizations>
-		<cost>20</cost>
-		<damageType>hard</damageType>
-		<shield>battleShield</shield>
-		<others>metal</others>
-	</scaleMailMetal>
-	<scaleMailPlastic>
-		<name>
-			<en>Scale Mail (Plastic)</en>
-			<es>Cota de Placas (Plástico)</es>
-		</name>
-		<description>
-			<en>Overlapping metal scales in a variety of shapes and sizes bolted to a leather jerkin. Common among low-tech militias but disfavored by those who can afford better.</en> 
-			<es>Consiste en una superposición de las placas de metal de distintas formas y tamaños atornilladas a un jubón de cuero. Suele encontrarse comúnmente entre las milicias de bajo Nivel Tecnológico, pero los que pueden permitirse cosas mejores suelen despreciarlas.</es>
-		</description>
-		<techLevel>5</techLevel>
-		<protection>7</protection>
-		<standardPenalizations>
-			<strength>0</strength>
-			<dexterity>-1</dexterity>
-			<endurance>-1</endurance>
-			<initiative>0</initiative>
-		</standardPenalizations>
-		<cost>50</cost>
-		<damageType>soft, shock</damageType>
-		<shield>battleShield</shield>
-		<others></others>
-	</scaleMailPlastic>
-	<scaleMailPlasteel>
-		<name>
-			<en>Scale Mail (Plasteel)</en>
-			<es>Cota de Placas (Plastiacero)</es>
-		</name>
-		<description>
-			<en>Overlapping metal scales in a variety of shapes and sizes bolted to a leather jerkin. Common among low-tech militias but disfavored by those who can afford better.</en> 
-			<es>Consiste en una superposición de las placas de metal de distintas formas y tamaños atornilladas a un jubón de cuero. Suele encontrarse comúnmente entre las milicias de bajo Nivel Tecnológico, pero los que pueden permitirse cosas mejores suelen despreciarlas.</es>
-		</description>
-		<techLevel>5</techLevel>
-		<protection>7</protection>
-		<standardPenalizations>
-			<strength>0</strength>
-			<dexterity>-1</dexterity>
-			<endurance>0</endurance>
-			<initiative>0</initiative>
-		</standardPenalizations>
-		<cost>80</cost>
-		<damageType>hard, shock</damageType>
-		<shield>battleShield</shield>
-		<others></others>
-	</scaleMailPlasteel>
-	<spacesuit>
-		<name>
-			<en>Spacesuit</en>
-			<es>Traje Espacial</es>
-		</name>
-		<description>
-			<en>A standard spacesuit is designed to resist common tears but does not stand up well against swords or gunshots. It is airtight and pressurized when completely assembled (gloves, boots, helmet). TL4 versions exist, but they are excruciatingly bulky and very rarely used.</en>
-			<es>Un traje espacial estándar está diseñado para resistir los destrozos comunes del vacío espacial, pero no resiste bien contra espadas o disparos. Es hermético y presurizado cuando está completamente ensamblado (guantes, botas, casco). Existen versiones de un NT4, pero son terriblemente aparatosos y se utilizan en muy raras ocasiones.</es>
-		</description>
-		<techLevel>5</techLevel>
-		<protection>3</protection>
-		<standardPenalizations>
-			<strength>0</strength>
-			<dexterity>0</dexterity>
-			<endurance>0</endurance>
-			<initiative>-2</initiative>
-		</standardPenalizations>
-		<specialPenalizations>
-			<strength>-2</strength>
-			<dexterity>-2</dexterity>
-			<endurance>-2</endurance>
-			<initiative>-2</initiative>
-		</specialPenalizations>
-		<cost>100</cost>
-		<damageType>hard, fire, impact, shock</damageType>
-		<shield>battleShield</shield>
-		<others>lifeSupport24h, abcProtection, radiationProtection</others>
-	</spacesuit>
-	<antiquarianSpacesuit>
-		<name>
-			<en>Antiquarian Spacesuit</en>
-			<es>Traje Espacial Antiguo</es>
-		</name>
-		<description>
-			<en>A standard spacesuit is designed to resist common tears but does not stand up well against swords or gunshots. It is airtight and pressurized when completely assembled (gloves, boots, helmet). TL4 versions exist, but they are excruciatingly bulky and very rarely used.</en>
-			<es>Un traje espacial estándar está diseñado para resistir los destrozos comunes del vacío espacial, pero no resiste bien contra espadas o disparos. Es hermético y presurizado cuando está completamente ensamblado (guantes, botas, casco). Existen versiones de un NT4, pero son terriblemente aparatosos y se utilizan en muy raras ocasiones.</es>
-		</description>
-		<techLevel>4</techLevel>
-		<protection>1</protection>
-		<standardPenalizations>
-			<strength>-2</strength>
-			<dexterity>-3</dexterity>
-			<endurance>-2</endurance>
-			<initiative>-6</initiative>
-		</standardPenalizations>
-		<specialPenalizations>
-			<strength>-5</strength>
-			<dexterity>-5</dexterity>
-			<endurance>-5</endurance>
-			<initiative>-6</initiative>
-		</specialPenalizations>
-		<cost>50</cost>
-		<damageType>impact, shock</damageType>
-		<shield>battleShield</shield>
-		<others>lifeSupport12h, abcProtection, radiationProtection</others>
-	</antiquarianSpacesuit>
-	<armoredSpacesuit>
-		<name>
-			<en>Armored Spacesuit</en>
-			<es>Traje Espacial Blindado</es>
-		</name>
-		<description>
-			<en>The armored spacesuit was designed for working in hazardous zones. Commonly used by prospectors and belters working in the many asteroid belts throughout the Known Worlds, these suits provide some protection against fast moving micro-meteors.</en>
-			<es>El traje espacial blindado fue diseñado para trabajar en zonas peligrosas. Los prospectores y los belters los utilizan comúnmente, puesto que trabajan en los muchos cinturones de asteroides esparcidos por todos los Mundos Conocidos. Estos trajes proporcionan cierta protección contra los meteoritos pequeños que se mueven con muchísima rapidez.</es>
-		</description>
-		<techLevel>5</techLevel>
-		<protection>8</protection>
-		<standardPenalizations>
-			<strength>0</strength>
-			<dexterity>-1</dexterity>
-			<endurance>0</endurance>
-			<initiative>-4</initiative>
-		</standardPenalizations>
-		<specialPenalizations>
-			<strength>-2</strength>
-			<dexterity>-3</dexterity>
-			<endurance>-2</endurance>
-			<initiative>-4</initiative>
-		</specialPenalizations>
-		<cost>400</cost>
-		<damageType>plasma, hard, fire, impact, laser, shock</damageType>
-		<shield>battleShield</shield>
-		<others>lifeSupport24h, abcProtection, radiationProtection</others>
-	</armoredSpacesuit>
-	<marauderSpacesuit>
-		<name>
-			<en>Marauder Spacesuit</en>
-			<es>Traje Espacial de Saqueador</es>
-		</name>
-		<description>
-			<en>This space armor was used by the elite space forces of the Second Republic. These days, the largest cache of these rare armor suits is possessed by the Phoenix Guard (most Marauders in the Known Worlds must make do with regular armored spacesuits).</en>
-			<es>Esta armadura espacial era utilizada por las fuerzas espaciales de élite de la Segunda República. A día de hoy, la guardia del Fénix posee el mayor alijo de estos atípicos trajes-armadura (la mayoría de los Saqueadores de los Mundos Conocidos deben conformarse con trajes espaciales blindados estándar).</es> 
-		</description>
-		<techLevel>6</techLevel>
-		<protection>9</protection>
-		<standardPenalizations>
-			<strength>0</strength>
-			<dexterity>-1</dexterity>
-			<endurance>0</endurance>
-			<initiative>-2</initiative>
-		</standardPenalizations>
-		<specialPenalizations>
-			<strength>-2</strength>
-			<dexterity>-3</dexterity>
-			<endurance>-2</endurance>
-			<initiative>-2</initiative>
-		</specialPenalizations>
-		<cost>1000</cost>
-		<damageType>plasma, hard, fire, impact, laser, shock</damageType>
-		<shield>battleShield</shield>
-		<others>lifeSupport24h, abcProtection, radiationProtection</others>
-	</marauderSpacesuit>
-	<synthsilk>
-		<name>
-			<en>Synthsilk</en>
-			<es>Seda Sintética</es>
-		</name>
-		<description>
-			<en>One of the finest inconspicuous armors, synthsilk is comfortable and lightweight. Used for construction and utility worker uniforms during the Second Republic, it comes in a variety of colors, but is quite expensive. Most of the synthsilk made today is manufactured using precariously maintained Second Republic textile mills. Synthsilk was first designed and used in the Diaspora era. Later improvements allowed for thinner, lighter materials until, by the time of the Second Republic, the fabric was as light as cotton and just as comfortable to wear. Synthsilk can be worn with an energy shield.</en> 
-			<es>Una de las mejores armaduras discretas; la seda sintética es cómoda y ligera. Normalmente solía utilizarse para uniformes de la construcción y de los trabajadores de los servicios públicos durante la Segunda República. Existe una gran variedad de colores, pero acostumbra a ser cara. La mayor parte de la seda sintética que se fabrica hoy en día precisa del uso de fábricas textiles de la Segunda República que han logrado mantenerse con cierta precariedad. La Seda Sintética se diseñó y usó por vez primera en la era de la Diáspora. Las mejoras posteriores permitieron el uso de materiales más finos y ligeros hasta que, en tiempos de la Segunda República, la tela llegó a ser tan ligera como el algodón y muy cómoda de llevar. La Seda Sintética puede usarse con un escudo de energía.</es> 
-		</description>
-		<techLevel>5</techLevel>
-		<protection>4</protection>
-		<standardPenalizations>
-			<strength>0</strength>
-			<dexterity>0</dexterity>
-			<endurance>0</endurance>
-			<initiative>0</initiative>
-		</standardPenalizations>
-		<cost>300</cost>
-		<damageType>soft, shock</damageType>
-		<shield>standardShield, duelingShield, assaultShield, battleShield
-		</shield>
-		<others></others>
-	</synthsilk>
-	<stiffsynth>
-		<name>
-			<en>Stiffsynth</en>
-			<es>Cuero Sintético</es>
-		</name>
-		<description>
-			<en>Heavy, leather-like material, stiffsynth even looks like leather until it is struck. Upon impact, stiffsynth hardens temporarily into an inflexible shell, and then softens a second later. Stiffsynth was originally used as protective gear by Second Republic athletes during vigorous sporting events. Stiffsynth suits are passed down from generation to generation. The secret of their manufacture has been lost (except perhaps among a few secret guilds). Most existing suits still bear the insignias of various sporting teams. It is stretchable and can fit just about anyone of the same relative height it was originally manufactured for.</en>
-			<es>es un material pesado, similar al cuero. El cuero sintético tiene apariencia de cuero real hasta que recibe un golpe. Tras el impacto, el cuero sintético se endurece temporalmente, transformándose en una cáscara inflexible, para después reblandecerse al segundo. El cuero sintético originariamente lo empleaban los atletas de la Segunda República como equipo de protección durante los eventos deportivos que requerían de un gran vigor. Los trajes de Cuero Sintético se pasan de generación en generación. Se perdió hace mucho el secreto sobre su fabricación (a excepción quizá de unos cuantos gremios secretos). La mayoría de los trajes que existen todavía llevan las insignias de varios equipos deportivos. Es elástico y se ajusta a casi cualquier persona que cuente, relativamente, con la misma altura que la de la persona para la que fue originalmente diseñada la pieza.</es> 
-		</description>
-		<techLevel>6</techLevel>
-		<protection>7</protection>
-		<standardPenalizations>
-			<strength>0</strength>
-			<dexterity>-1</dexterity>
-			<endurance>0</endurance>
-			<initiative>0</initiative>
-		</standardPenalizations>
-		<cost>500</cost>
-		<damageType>hard, shock</damageType>
-		<shield>assaultShield, battleShield</shield>
-		<others></others>
-	</stiffsynth>
-	<smartsynth>
-		<name>
-			<en>Smartsynth</en>
-			<es>Inteligencia Sintética</es>
-		</name>
-		<description>
-			<en>The ultimate refinement of synthsilk technology, built with a smart gel weave that spreads and reacts to impact. Some of these suits make use of mimetic fibers that can be used to change the shape and feel of the fabric. During the Second Republic, these were employed for dangerous sports.</en> 
-			<es>Lo más avanzado en cuanto a tecnología sintética se refiere. Fabricado mediante un tejido de gel inteligente que se extiende y reacciona a los impactos. Algunos de estos trajes hacen uso de las fibras miméticas que pueden emplearse para cambiar la forma y el tacto de la tela. Durante la Segunda República, esta clase de material se empleaba para los deportes peligrosos.</es> 
-		</description>
-		<techLevel>7</techLevel>
-		<protection>7</protection>
-		<standardPenalizations>
-			<strength>0</strength>
-			<dexterity>0</dexterity>
-			<endurance>0</endurance>
-			<initiative>0</initiative>
-		</standardPenalizations>
-		<cost>600</cost>
-		<damageType>hard, impact, shock</damageType>
-		<shield>assaultShield, battleShield</shield>
-		<others></others>
-	</smartsynth>
+    <version>1</version>
+    <totalElements>30</totalElements>
+    <ceramsteelExoframe>
+        <name>
+            <en>Ceramsteel Exoframe</en>
+            <es>Exoesqueleto de Acerámica</es>
+        </name>
+        <description>
+            <en>This heavy-duty, thickformed armor is designed to withstand amazing impacts. It is composed of the
+                high-tech ceramics and metal combination used to make starship hulls. Most suits are lacquered or
+                painted by the owner to represent their house, sect or guild affiliation. Few ceramsteel exoframes are
+                made nowadays, the majority of suits have been handed down from parent to child over the course of many
+                centuries, and in some families the household ceramsteel exoframe has taken on an almost mythological
+                quality, sometimes revered as a household genius or eternal family member. Unless powered by a fusion
+                cell pack (TL6; Cost: 200 fb), this armor is simply too heavy to lift without a substantial penalty to
+                mobility (–5 penalty to all physical actions and cannot run while in environments with approximately 1G
+                and Urth-like atmospheric pressure). Once powered, however, the armor seems remarkably light. The fusion
+                cell pack, hidden behind the thick back plating, typically lasts for 24 hours of continued use, and also
+                supplies the wearer with heat regulation for comfort. Although sturdy pieces of wargear, ceramsteel
+                exoframes are typically many centuries old, having seen numerous battles and suffered many blows, and
+                maintenance is likely to have been scarce; it is therefore not uncommon for these suits of armor to
+                malfunction and power down for a couple of turns after sustaining a hit, even if no actual damage is
+                done (however, this typically occurs only with Critical Success attacks or Critical Failure on a
+                relevant wearer’s action).
+            </en>
+            <es>Es una armadura pesada pero de poco grosor que está diseñada para soportar impactos tremendos. Está
+                compuesta de una cerámica de alta tecnología y la combinación de metales que se utiliza para fabricar
+                los cascos de naves espaciales. El propietario laca o pinta la mayoría del traje para representar a su
+                casa, secta o gremio. Hoy en día se fabrican pocos exoesqueletos de acerámica, la mayoría de trajes se
+                han transmitido de padres a hijos a lo largo de muchos siglos, y en algunas familias el exoesqueleto de
+                acerámica ha llegado a convertirse en una reliquia familiar, adquiriendo una cualidad casi mitológica,
+                recibiendo en ocasiones una veneración digna de un genio o de un miembro eterno de la familia. A menos
+                que un pack de pilas de fusión (NT6; Coste: 200 fénix) suministre la energía suficiente para el
+                funcionamiento, esta armadura será demasiado pesada para levantarla sin un penalizador sustancial a la
+                movilidad (penalizador de -5 a todas las acciones físicas y no se puede correr mientras se esté presente
+                en ambientes de 1G y con una presión atmosférica similar a la de la Tierra). Sin embargo, una vez que
+                recibe la energía necesaria, la armadura parece notablemente ligera. El pack de pilas de fusión,
+                escondido detrás de una gruesa placa en la espalda, por lo general tiene una duración de 24 horas de uso
+                continuo, y también proporciona al usuario un regulador del calor para mayor comodidad. Aunque sean unas
+                piezas aparatosas que forman parte de un equipo militar, los exoesqueletos de acerámica suelen tener
+                siglos de antigüedad, con lo que han presenciado numerosas batallas y han sufrido muchos golpes, y es
+                altamente probable que el mantenimiento haya sido escaso; por lo tanto, no es raro que esta armaduras
+                funcionen mal y que se desactiven durante un par de turnos después de recibir un impacto, incluso si no
+                se recibe daño (sin embargo, esto solamente suele ocurrir con éxitos críticos o fallos críticos
+                obtenidos durante una acción relevante que esté llevando a cabo el usuario).
+            </es>
+        </description>
+        <techLevel>6</techLevel>
+        <protection>14</protection>
+        <standardPenalizations>
+            <strength>0</strength>
+            <dexterity>0</dexterity>
+            <endurance>0</endurance>
+            <initiative>0</initiative>
+        </standardPenalizations>
+        <specialPenalizations>
+            <strength>-5</strength>
+            <dexterity>-5</dexterity>
+            <endurance>-5</endurance>
+            <initiative>-5</initiative>
+        </specialPenalizations>
+        <cost>2000</cost>
+        <damageType>hard, laser, impact, shock</damageType>
+        <shield>battleShield</shield>
+        <others>abcProtection, powerPack</others>
+    </ceramsteelExoframe>
+    <adeptRobes>
+        <name>
+            <en>Adept Robes</en>
+            <es>Túnicas de Adepto</es>
+        </name>
+        <description>
+            <en>The legendary powered battle armor of the Brother Battle order, its liturgical name being the “Cassock
+                Superior” (not to be confused with Kossacks!). It is an enhanced ceramsteel exoframe suit that boosts
+                its wearer’s abilities and provides an array of extras: 30 minutes of life support, built in
+                range-finders, 10× binoculars, radio sending and receiving, and protection from skincontact poisons and
+                dangerous levels of radiation. Some models even provide hoverpacks, leg servos for faster running and
+                incredible leaps, built in weapons (flamers) and more. These suits cannot be bought with firebirds; they
+                must be earned by Brother Battle monks.
+            </en>
+            <es>La armadura de batalla legendaria de la orden de los Hermanos de Batalla. Su nombre litúrgico es la
+                “Sotana Superior”. Es una mejora del exoesqueleto de acerámica que potencia las habilidades de su
+                portador y proporciona una serie de extras: 30 minutos de soporte de vida, incorporado en telémetros,
+                binoculares 10×, emisores y receptores, y protección contra venenos que reaccionan al contacto con la
+                piel así como protección contra niveles peligrosos de radiación. Algunos modelos incluso proporcionan
+                mochilas propulsoras, servo piernas para correr más rápido y realizar saltos increíbles, incorporan
+                armas (lanzallamas) y demás. Estas ropas no se pueden comprar con fénix; los Hermanos de Batalla han de
+                demostrar ser dignos de ellas.
+            </es>
+        </description>
+        <techLevel>6</techLevel>
+        <protection>14</protection>
+        <standardPenalizations>
+            <strength>2</strength>
+            <dexterity>1</dexterity>
+            <endurance>0</endurance>
+            <initiative>0</initiative>
+        </standardPenalizations>
+        <specialPenalizations>
+            <strength>-5</strength>
+            <dexterity>-5</dexterity>
+            <endurance>-5</endurance>
+            <initiative>-5</initiative>
+        </specialPenalizations>
+        <cost>10000</cost>
+        <damageType>hard, laser, impact, shock</damageType>
+        <shield>battleShield</shield>
+        <others>abcProtection, powerPack, lifeSupport30m, rangeFinder, radio, binoculars, radiationProtection</others>
+    </adeptRobes>
+    <chainMailMetal>
+        <name>
+            <en>Chain Mail (Metal)</en>
+            <es>Cota de Mallas (Metal)</es>
+        </name>
+        <description>
+            <en>Woven layers of metal links. Higher tech versions are known using lightweight but strong plastics (no
+                Dex penalty). Common among low-tech but well-equipped militias.
+            </en>
+            <es>Distintas capas de eslabones de metal tejidas entre sí. Las versiones de una tecnología más alta suelen
+                emplear plásticos ligeros pero resistentes (sin penalizador de Destreza). Suele encontrarse comúnmente
+                entre las milicias de baja tecnología pero que van bien equipadas.
+            </es>
+        </description>
+        <techLevel>2</techLevel>
+        <protection>8</protection>
+        <standardPenalizations>
+            <strength>0</strength>
+            <dexterity>-1</dexterity>
+            <endurance>-2</endurance>
+            <initiative>-2</initiative>
+        </standardPenalizations>
+        <cost>50</cost>
+        <damageType>hard</damageType>
+        <shield>assaultShield, battleShield</shield>
+        <others>metal</others>
+    </chainMailMetal>
+    <chainMailPlastic>
+        <name>
+            <en>Chain Mail (Plastic)</en>
+            <es>Cota de Mallas (Plástico)</es>
+        </name>
+        <description>
+            <en>Woven layers of metal links. Higher tech versions are known using lightweight but strong plastics (no
+                Dex penalty). Common among low-tech but well-equipped militias.
+            </en>
+            <es>Distintas capas de eslabones de metal tejidas entre sí. Las versiones de una tecnología más alta suelen
+                emplear plásticos ligeros pero resistentes (sin penalizador de Destreza). Suele encontrarse comúnmente
+                entre las milicias de baja tecnología pero que van bien equipadas.
+            </es>
+        </description>
+        <techLevel>5</techLevel>
+        <protection>8</protection>
+        <standardPenalizations>
+            <strength>0</strength>
+            <dexterity>-1</dexterity>
+            <endurance>-1</endurance>
+            <initiative>-1</initiative>
+        </standardPenalizations>
+        <cost>80</cost>
+        <damageType>soft, shock</damageType>
+        <shield>assaultShield, battleShield</shield>
+    </chainMailPlastic>
+    <chainMailPlasteel>
+        <name>
+            <en>Chain Mail (Plasteel)</en>
+            <es>Cota de Mallas (Plastiacero)</es>
+        </name>
+        <description>
+            <en>Woven layers of metal links. Higher tech versions are known using lightweight but strong plastics (no
+                Dex penalty). Common among low-tech but well-equipped militias.
+            </en>
+            <es>Distintas capas de eslabones de metal tejidas entre sí. Las versiones de una tecnología más alta suelen
+                emplear plásticos ligeros pero resistentes (sin penalizador de Destreza). Suele encontrarse comúnmente
+                entre las milicias de baja tecnología pero que van bien equipadas.
+            </es>
+        </description>
+        <techLevel>5</techLevel>
+        <protection>8</protection>
+        <standardPenalizations>
+            <strength>0</strength>
+            <dexterity>-1</dexterity>
+            <endurance>0</endurance>
+            <initiative>0</initiative>
+        </standardPenalizations>
+        <cost>100</cost>
+        <damageType>soft, shock</damageType>
+        <shield>assaultShield, battleShield</shield>
+    </chainMailPlasteel>
+    <frictionlessGel>
+        <name>
+            <en>Frictionless Gel</en>
+            <es>Gel Antifricción</es>
+        </name>
+        <description>
+            <en>This amazing substance was first created during the Second Republic for use as a frictionless oil in
+                advanced engines. However, someone early on realized its potential as a toy, and began marketing it as a
+                “slimy fun gel for slick, slippery play.” It is applied to a surface (such as a piston or gear or human
+                skin); after an hour of drying, its dried surface becomes frictionless. Obviously, this can avoid a lot
+                of kinetic damage, but if misapplied, can lead to pratfalls. Game Masters and players are encouraged to
+                get creative with the possibilities. The effects only last for a day before the substance dries out
+                completely. Frictionless gel can be smeared over any type of armor; modifiers are cumulative.
+            </en>
+            <es>Esta sustancia increíble se creó durante la Segunda República, en un primer momento se usaba como un
+                aceite antifricción en los motores avanzados. Sin embargo, alguien se dio cuenta pronto de su potencial
+                como juguete, y comenzó a comercializarlo como un “gel viscoso para la máxima diversión”. Se aplica
+                sobre una superficie (como un pistón o engranajes o la piel humana); después de una hora de secado, su
+                superficie seca pierde toda la fricción. Obviamente, esto puede anular un montón de daño cinético, pero
+                si no se aplica bien, puede provocar batacazos. Se anima a los Directores de Juego y a los jugadores a
+                que sean creativos con las posibilidades. Los efectos sólo duran un día antes de que la sustancia se
+                seque por completo. El gel antifricción se puede untar sobre cualquier tipo de armadura; los
+                modificadores son acumulativos.
+            </es>
+        </description>
+        <techLevel>7</techLevel>
+        <protection>6</protection>
+        <standardPenalizations>
+            <strength>0</strength>
+            <dexterity>-2</dexterity>
+            <endurance>0</endurance>
+            <initiative>0</initiative>
+        </standardPenalizations>
+        <cost>500</cost>
+        <damageType>hard</damageType>
+        <shield>assaultShield, battleShield</shield>
+    </frictionlessGel>
+    <halfPlateMetal>
+        <name>
+            <en>Half Plate (Metal)</en>
+            <es>Coraza (Metal)</es>
+        </name>
+        <description>
+            <en>Conquistador-style chest plate with light vambraces and greaves. Usually worn only by commanding
+                officers, but also the armor of choice for Brother Battle priests. Often decorated or enameled with
+                fanciful designs or depictions of animals. Plastic versions are available at Tech Level 5 and above.
+            </en>
+            <es>Consiste en una placa de pecho de estilo conquistador, brazales y grebas ligeras. Por lo general, tan
+                sólo la visten los oficiales al mando, pero también suelen ser las armaduras de referencia para los
+                sacerdotes Hermanos de Batalla. A menudo se suele decorar o esmaltar con diseños de fantasía o
+                representaciones de animales. Las versiones de plástico están disponibles a un NT5 y superiores.
+            </es>
+        </description>
+        <techLevel>2</techLevel>
+        <protection>6</protection>
+        <standardPenalizations>
+            <strength>0</strength>
+            <dexterity>-1</dexterity>
+            <endurance>0</endurance>
+            <initiative>-3</initiative>
+        </standardPenalizations>
+        <cost>30</cost>
+        <damageType>hard</damageType>
+        <shield>battleShield</shield>
+        <others>metal</others>
+    </halfPlateMetal>
+    <halfPlatePlastic>
+        <name>
+            <en>Half Plate (Plastic)</en>
+            <es>Coraza (Plástico)</es>
+        </name>
+        <description>
+            <en>Conquistador-style chest plate with light vambraces and greaves. Usually worn only by commanding
+                officers, but also the armor of choice for Brother Battle priests. Often decorated or enameled with
+                fanciful designs or depictions of animals. Plastic versions are available at Tech Level 5 and above.
+            </en>
+            <es>Consiste en una placa de pecho de estilo conquistador, brazales y grebas ligeras. Por lo general, tan
+                sólo la visten los oficiales al mando, pero también suelen ser las armaduras de referencia para los
+                sacerdotes Hermanos de Batalla. A menudo se suele decorar o esmaltar con diseños de fantasía o
+                representaciones de animales. Las versiones de plástico están disponibles a un NT5 y superiores.
+            </es>
+        </description>
+        <techLevel>5</techLevel>
+        <protection>6</protection>
+        <standardPenalizations>
+            <strength>0</strength>
+            <dexterity>0</dexterity>
+            <endurance>0</endurance>
+            <initiative>-2</initiative>
+        </standardPenalizations>
+        <cost>60</cost>
+        <damageType>soft, shock</damageType>
+        <shield>battleShield</shield>
+    </halfPlatePlastic>
+    <halfPlatePlasteel>
+        <name>
+            <en>Half Plate (Plasteel)</en>
+            <es>Coraza (Plastiacero)</es>
+        </name>
+        <description>
+            <en>Conquistador-style chest plate with light vambraces and greaves. Usually worn only by commanding
+                officers, but also the armor of choice for Brother Battle priests. Often decorated or enameled with
+                fanciful designs or depictions of animals. Plastic versions are available at Tech Level 5 and above.
+            </en>
+            <es>Consiste en una placa de pecho de estilo conquistador, brazales y grebas ligeras. Por lo general, tan
+                sólo la visten los oficiales al mando, pero también suelen ser las armaduras de referencia para los
+                sacerdotes Hermanos de Batalla. A menudo se suele decorar o esmaltar con diseños de fantasía o
+                representaciones de animales. Las versiones de plástico están disponibles a un NT5 y superiores.
+            </es>
+        </description>
+        <techLevel>5</techLevel>
+        <protection>0</protection>
+        <standardPenalizations>
+            <strength>0</strength>
+            <dexterity>0</dexterity>
+            <endurance>0</endurance>
+            <initiative>-1</initiative>
+        </standardPenalizations>
+        <cost>100</cost>
+        <damageType>hard, shock</damageType>
+        <shield>battleShield</shield>
+    </halfPlatePlasteel>
+    <heavyClothing>
+        <name>
+            <en>Heavy Clothing</en>
+            <es>Ropa Pesada</es>
+        </name>
+        <description>
+            <en>A heavier and stiffer fabric than padded clothing, sometimes designed as fashionable armor where thick
+                leathers or metals would be too “barbaric.” This can include light leather, but not heavy or thick
+                leather. Heavy clothing can be worn with an energy shield.
+            </en>
+            <es>Fabricada con una tela más pesada y más rígida que la ropa acolchada, a veces se diseña a modo de
+                armadura de moda, puesto que los cueros o los metales le darían al noble un aire demasiado "bárbaro".
+                Esto puede incluir cuero ligero, pero no el cuero pesado o grueso. La ropa pesada puede usarse con un
+                escudo de energía.
+            </es>
+        </description>
+        <techLevel>0</techLevel>
+        <protection>2</protection>
+        <standardPenalizations>
+            <strength>0</strength>
+            <dexterity>0</dexterity>
+            <endurance>0</endurance>
+            <initiative>-2</initiative>
+        </standardPenalizations>
+        <cost>4</cost>
+        <damageType>soft, shock</damageType>
+        <shield>standardShield, duelingShield, assaultShield, battleShield
+        </shield>
+    </heavyClothing>
+    <leatherJerkin>
+        <name>
+            <en>Leather Jerkin</en>
+            <es>Jubón de Cuero</es>
+        </name>
+        <description>
+            <en>Popular among many as an elegant armor, leather is often worn when heavier armors would be too
+                “brutish.” In fact, Brute-hide leather is a fine, supple material that is heavy enough to work well as
+                armor. Most guards wear leather in addition to whatever other armor they might have.
+            </en>
+            <es>Popularmente empleada como si fuera una armadura elegante, el cuero se usa a menudo cuando el uso de
+                armaduras más pesadas resultaría demasiado “burdo”. De hecho, el cuero es un material fino y flexible
+                que además es lo suficientemente pesado como para funcionar bien como armadura. La mayoría de los
+                guardias visten de cuero, a parte de cualquier otra armadura que pudieran tener.
+            </es>
+        </description>
+        <techLevel>1</techLevel>
+        <protection>4</protection>
+        <standardPenalizations>
+            <strength>0</strength>
+            <dexterity>0</dexterity>
+            <endurance>0</endurance>
+            <initiative>-1</initiative>
+        </standardPenalizations>
+        <cost>5</cost>
+        <damageType>soft, shock</damageType>
+        <shield>assaultShield, battleShield</shield>
+    </leatherJerkin>
+    <leatherJerkinStuddedMetal>
+        <name>
+            <en>Leather Jerkin Studded (Metal)</en>
+            <es>Jubón de Cuero Tachonado (Metal)</es>
+        </name>
+        <description>
+            <en>Popular among many as an elegant armor, leather is often worn when heavier armors would be too
+                “brutish.” In fact, Brute-hide leather is a fine, supple material that is heavy enough to work well as
+                armor. Most guards wear leather in addition to whatever other armor they might have.
+            </en>
+            <es>Popularmente empleada como si fuera una armadura elegante, el cuero se usa a menudo cuando el uso de
+                armaduras más pesadas resultaría demasiado “burdo”. De hecho, el cuero es un material fino y flexible
+                que además es lo suficientemente pesado como para funcionar bien como armadura. La mayoría de los
+                guardias visten de cuero, a parte de cualquier otra armadura que pudieran tener.
+            </es>
+        </description>
+        <techLevel>1</techLevel>
+        <protection>5</protection>
+        <standardPenalizations>
+            <strength>0</strength>
+            <dexterity>-1</dexterity>
+            <endurance>0</endurance>
+            <initiative>-2</initiative>
+        </standardPenalizations>
+        <cost>8</cost>
+        <damageType>soft</damageType>
+        <shield>assaultShield, battleShield</shield>
+        <others>metal</others>
+    </leatherJerkinStuddedMetal>
+    <leatherJerkinStuddedPlastic>
+        <name>
+            <en>Leather Jerkin Studded (Plastic)</en>
+            <es>Jubón de Cuero Tachonado (Plástico)</es>
+        </name>
+        <description>
+            <en>Popular among many as an elegant armor, leather is often worn when heavier armors would be too
+                “brutish.” In fact, Brute-hide leather is a fine, supple material that is heavy enough to work well as
+                armor. Most guards wear leather in addition to whatever other armor they might have.
+            </en>
+            <es>Popularmente empleada como si fuera una armadura elegante, el cuero se usa a menudo cuando el uso de
+                armaduras más pesadas resultaría demasiado “burdo”. De hecho, el cuero es un material fino y flexible
+                que además es lo suficientemente pesado como para funcionar bien como armadura. La mayoría de los
+                guardias visten de cuero, a parte de cualquier otra armadura que pudieran tener.
+            </es>
+        </description>
+        <techLevel>5</techLevel>
+        <protection>5</protection>
+        <standardPenalizations>
+            <strength>0</strength>
+            <dexterity>0</dexterity>
+            <endurance>0</endurance>
+            <initiative>-1</initiative>
+        </standardPenalizations>
+        <cost>15</cost>
+        <damageType>soft, shock</damageType>
+        <shield>assaultShield, battleShield</shield>
+    </leatherJerkinStuddedPlastic>
+    <leatherJerkinStuddedPlasteel>
+        <name>
+            <en>Leather Jerkin Studded (Plasteel)</en>
+            <es>Jubón de Cuero Tachonado (Plastiacero)</es>
+        </name>
+        <description>
+            <en>Popular among many as an elegant armor, leather is often worn when heavier armors would be too
+                “brutish.” In fact, Brute-hide leather is a fine, supple material that is heavy enough to work well as
+                armor. Most guards wear leather in addition to whatever other armor they might have.
+            </en>
+            <es>Popularmente empleada como si fuera una armadura elegante, el cuero se usa a menudo cuando el uso de
+                armaduras más pesadas resultaría demasiado “burdo”. De hecho, el cuero es un material fino y flexible
+                que además es lo suficientemente pesado como para funcionar bien como armadura. La mayoría de los
+                guardias visten de cuero, a parte de cualquier otra armadura que pudieran tener.
+            </es>
+        </description>
+        <techLevel>5</techLevel>
+        <protection>5</protection>
+        <standardPenalizations>
+            <strength>0</strength>
+            <dexterity>0</dexterity>
+            <endurance>0</endurance>
+            <initiative>0</initiative>
+        </standardPenalizations>
+        <cost>30</cost>
+        <damageType>hard, shock</damageType>
+        <shield>assaultShield, battleShield</shield>
+    </leatherJerkinStuddedPlasteel>
+    <paddedClothing>
+        <name>
+            <en>Padded Clothing</en>
+            <es>Ropa Acolchada</es>
+        </name>
+        <description>
+            <en>Clothing two layers thick -a jacket or thick sweatshirt. Not usually intended to be used as armor, it
+                will nonetheless prevent some damage. This is the most protection a serf can be expected to wear. Padded
+                clothing can be worn with an energy shield.
+            </en>
+            <es>Ropa de dos capas de grosor, lo que vendría a ser una chaqueta o una sudadera gruesa. No está diseñada,
+                por lo general, para utilizarse a modo de armadura, no obstante, evitará algunos puntos de daño. Esta es
+                la mayor protección que un siervo puede tener la esperanza de llevar consigo. La Ropa Acolchada puede
+                usarse con un escudo de energía.
+            </es>
+        </description>
+        <techLevel>0</techLevel>
+        <protection>1</protection>
+        <standardPenalizations>
+            <strength>0</strength>
+            <dexterity>0</dexterity>
+            <endurance>0</endurance>
+            <initiative>-1</initiative>
+        </standardPenalizations>
+        <cost>2</cost>
+        <damageType>soft</damageType>
+        <shield>standardShield, duelingShield, assaultShield, battleShield</shield>
+    </paddedClothing>
+    <polymerKnit>
+        <name>
+            <en>Polymer Knit</en>
+            <es>Tejido de Polímero</es>
+        </name>
+        <description>
+            <en>A plastic and cloth weave highly resistant to bullets. Very rare -the tech knowhow to make polymer knit
+                (such as Kevlar) was lost after the Fall, since it was rarely made during the later Second Republic time
+                of energy shields and guns. Only the Nymex Guild on Pyre retains the ability to craft polymer knit and
+                they provide materials to Temple Avesti for the making of fire-resistant robes popular with Temple
+                Avesti zealots. Polymer knit can be worn with an energy shield.
+            </en>
+            <es>Un plástico y un tejido altamente resistentes a las balas. Son muy raros puesto que la tecnología
+                necesaria para fabricar tejidos de polímero (como el Kevlar) se perdió después de la Caída, ya que no
+                era usual ver fábricas de estos materiales durante los tiempos más tardíos de la Segunda República,
+                cuando surgieron los escudos de energía y las armas de fuego. Sólo el Gremio Nymex en Pira conserva la
+                capacidad de fabricar un tejido de polímero y proporcionan materiales al Templo de Avesti para la
+                confección de los trajes resistentes al fuego, tan populares entre los fanáticos del Templo Avesta. El
+                Tejido de Polímero puede usarse con un escudo de energía.
+            </es>
+        </description>
+        <techLevel>4</techLevel>
+        <protection>3</protection>
+        <standardPenalizations>
+            <strength>0</strength>
+            <dexterity>0</dexterity>
+            <endurance>0</endurance>
+            <initiative>-2</initiative>
+        </standardPenalizations>
+        <cost>200</cost>
+        <damageType>hard, shock</damageType>
+        <shield>standardShield, duelingShield, assaultShield, battleShield</shield>
+    </polymerKnit>
+    <plateMailSuitMetal>
+        <name>
+            <en>Plate Mail Suit (Metal)</en>
+            <es>Armadura de Placas Completa (Metal)</es>
+        </name>
+        <description>
+            <en>Large, metal interlocking plates strapped over an undersuit of leather and used by well-equipped troops
+                on many worlds. At higher Tech Levels the introduction of TL5 plastics make the suits lighter, and TL5
+                plasteel make them effective protection against firearms. Most high-tech versions incorporate an
+                environmental body-sleeve that protects the wearer from hostile environments.
+            </en>
+            <es>Consiste en placas grandes y metálicas entrelazadas, atadas mediante una correa a través de una armadura
+                interior de cuero y utilizada por tropas bien equipadas a lo largo de muchos mundos. Con la introducción
+                de plásticos en el NT5 los conjuntos de armadura completos empiezan a fabricarse con la idea de que sean
+                más ligeros, y el plastiacero del NT5 hace que sean más efectivos a la hora de proteger contra las armas
+                de fuego. La mayoría de las versiones de la alta tecnología incorporan materiales que protegen al
+                portador de los entornos hostiles.
+            </es>
+        </description>
+        <techLevel>2</techLevel>
+        <protection>10</protection>
+        <standardPenalizations>
+            <strength>-1</strength>
+            <dexterity>-2</dexterity>
+            <endurance>-2</endurance>
+            <initiative>-4</initiative>
+        </standardPenalizations>
+        <cost>70</cost>
+        <damageType>hard</damageType>
+        <shield>battleShield</shield>
+        <others>metal</others>
+    </plateMailSuitMetal>
+    <plateMailSuitPlastic>
+        <name>
+            <en>Plate Mail Suit (Plastic)</en>
+            <es>Armadura de Placas Completa (Plástico)</es>
+        </name>
+        <description>
+            <en>Large, metal interlocking plates strapped over an undersuit of leather and used by well-equipped troops
+                on many worlds. At higher Tech Levels the introduction of TL5 plastics make the suits lighter, and TL5
+                plasteel make them effective protection against firearms. Most high-tech versions incorporate an
+                environmental body-sleeve that protects the wearer from hostile environments.
+            </en>
+            <es>Consiste en placas grandes y metálicas entrelazadas, atadas mediante una correa a través de una armadura
+                interior de cuero y utilizada por tropas bien equipadas a lo largo de muchos mundos. Con la introducción
+                de plásticos en el NT5 los conjuntos de armadura completos empiezan a fabricarse con la idea de que sean
+                más ligeros, y el plastiacero del NT5 hace que sean más efectivos a la hora de proteger contra las armas
+                de fuego. La mayoría de las versiones de la alta tecnología incorporan materiales que protegen al
+                portador de los entornos hostiles.
+            </es>
+        </description>
+        <techLevel>5</techLevel>
+        <protection>10</protection>
+        <standardPenalizations>
+            <strength>0</strength>
+            <dexterity>-1</dexterity>
+            <endurance>-1</endurance>
+            <initiative>-3</initiative>
+        </standardPenalizations>
+        <cost>100</cost>
+        <damageType>soft, shock</damageType>
+        <shield>battleShield</shield>
+        <others>abcProtection</others>
+    </plateMailSuitPlastic>
+    <plateMailSuitPlasteel>
+        <name>
+            <en>Plate Mail Suit (Plasteel)</en>
+            <es>Armadura de Placas Completa (Plastiacero)</es>
+        </name>
+        <description>
+            <en>Large, metal interlocking plates strapped over an undersuit of leather and used by well-equipped troops
+                on many worlds. At higher Tech Levels the introduction of TL5 plastics make the suits lighter, and TL5
+                plasteel make them effective protection against firearms. Most high-tech versions incorporate an
+                environmental body-sleeve that protects the wearer from hostile environments.
+            </en>
+            <es>Consiste en placas grandes y metálicas entrelazadas, atadas mediante una correa a través de una armadura
+                interior de cuero y utilizada por tropas bien equipadas a lo largo de muchos mundos. Con la introducción
+                de plásticos en el NT5 los conjuntos de armadura completos empiezan a fabricarse con la idea de que sean
+                más ligeros, y el plastiacero del NT5 hace que sean más efectivos a la hora de proteger contra las armas
+                de fuego. La mayoría de las versiones de la alta tecnología incorporan materiales que protegen al
+                portador de los entornos hostiles.
+            </es>
+        </description>
+        <techLevel>5</techLevel>
+        <protection>10</protection>
+        <standardPenalizations>
+            <strength>0</strength>
+            <dexterity>-1</dexterity>
+            <endurance>-1</endurance>
+            <initiative>-2</initiative>
+        </standardPenalizations>
+        <cost>150</cost>
+        <damageType>hard, shock</damageType>
+        <shield>battleShield</shield>
+        <others>abcProtection</others>
+    </plateMailSuitPlasteel>
+    <psiCloak>
+        <name>
+            <en>Psi Cloak</en>
+            <es>Manto de Psique</es>
+        </name>
+        <description>
+            <en>A Psi cloak defends against mental powers and neural disrupters. It isn’t so much a physical cloak as an
+                energy aura around the wearer. The aura is not visible to the naked eye, but is revealed in the
+                ultraviolet or infrared spectrum (as a shimmering haze around the wearer). Most occult perception powers
+                (Subtle Sight, Second Sight, etc.) will also perceive the cloak. Physically, the cloak is like a dueling
+                shield core, and can be concealed in a casing, such as a belt buckle, brooch or wristwatch. It requires
+                a fusion cell and will take 10 hits (just like a shield) before shutting down. Some rarer models are
+                known which can take more hits or defend with more dice. These are no longer manufactured and are highly
+                sought by everyone.
+            </en>
+            <es>Un manto de psique defiende contra los poderes mentales y los disruptores neuronales. Más que un
+                verdadero manto de propiedades físicas es un aura de energía que rodea al portador. El aura no es
+                visible a simple vista, pero puede observarse en los espectros de ultravioleta o infrarrojos (como una
+                especie de neblina brillante alrededor del usuario). La mayoría de poderes ocultos de percepción (Visión
+                Sutil, Segunda Visión, etc.) también percibirán la capa. Físicamente, el manto es como el núcleo de un
+                escudo de duelo, y puede ocultarse en una carcasa, como en una hebilla de un cinturón, en un broche o en
+                un reloj de pulsera. Precisa de una pila de fusión y puede recibir 10 impactos (como un escudo) antes de
+                apagarse. De todos es sabido que algunos modelos más raros pueden recibir más impactos o defenderse con
+                más dados. Esta clase de mantos ya no se fabrican y suelen ser muy codiciados.
+            </es>
+        </description>
+        <techLevel>8</techLevel>
+        <protection>10</protection>
+        <standardPenalizations>
+            <strength>0</strength>
+            <dexterity>0</dexterity>
+            <endurance>0</endurance>
+            <initiative>0</initiative>
+        </standardPenalizations>
+        <cost>3000</cost>
+        <others>occult, neural</others>
+    </psiCloak>
+    <scaleMailMetal>
+        <name>
+            <en>Scale Mail (Metal)</en>
+            <es>Cota de Placas (Metal)</es>
+        </name>
+        <description>
+            <en>Overlapping metal scales in a variety of shapes and sizes bolted to a leather jerkin. Common among
+                low-tech militias but disfavored by those who can afford better.
+            </en>
+            <es>Consiste en una superposición de las placas de metal de distintas formas y tamaños atornilladas a un
+                jubón de cuero. Suele encontrarse comúnmente entre las milicias de bajo Nivel Tecnológico, pero los que
+                pueden permitirse cosas mejores suelen despreciarlas.
+            </es>
+        </description>
+        <techLevel>1</techLevel>
+        <protection>7</protection>
+        <standardPenalizations>
+            <strength>0</strength>
+            <dexterity>-1</dexterity>
+            <endurance>-1</endurance>
+            <initiative>-2</initiative>
+        </standardPenalizations>
+        <cost>20</cost>
+        <damageType>hard</damageType>
+        <shield>battleShield</shield>
+        <others>metal</others>
+    </scaleMailMetal>
+    <scaleMailPlastic>
+        <name>
+            <en>Scale Mail (Plastic)</en>
+            <es>Cota de Placas (Plástico)</es>
+        </name>
+        <description>
+            <en>Overlapping metal scales in a variety of shapes and sizes bolted to a leather jerkin. Common among
+                low-tech militias but disfavored by those who can afford better.
+            </en>
+            <es>Consiste en una superposición de las placas de metal de distintas formas y tamaños atornilladas a un
+                jubón de cuero. Suele encontrarse comúnmente entre las milicias de bajo Nivel Tecnológico, pero los que
+                pueden permitirse cosas mejores suelen despreciarlas.
+            </es>
+        </description>
+        <techLevel>5</techLevel>
+        <protection>7</protection>
+        <standardPenalizations>
+            <strength>0</strength>
+            <dexterity>-1</dexterity>
+            <endurance>-1</endurance>
+            <initiative>0</initiative>
+        </standardPenalizations>
+        <cost>50</cost>
+        <damageType>soft, shock</damageType>
+        <shield>battleShield</shield>
+    </scaleMailPlastic>
+    <scaleMailPlasteel>
+        <name>
+            <en>Scale Mail (Plasteel)</en>
+            <es>Cota de Placas (Plastiacero)</es>
+        </name>
+        <description>
+            <en>Overlapping metal scales in a variety of shapes and sizes bolted to a leather jerkin. Common among
+                low-tech militias but disfavored by those who can afford better.
+            </en>
+            <es>Consiste en una superposición de las placas de metal de distintas formas y tamaños atornilladas a un
+                jubón de cuero. Suele encontrarse comúnmente entre las milicias de bajo Nivel Tecnológico, pero los que
+                pueden permitirse cosas mejores suelen despreciarlas.
+            </es>
+        </description>
+        <techLevel>5</techLevel>
+        <protection>7</protection>
+        <standardPenalizations>
+            <strength>0</strength>
+            <dexterity>-1</dexterity>
+            <endurance>0</endurance>
+            <initiative>0</initiative>
+        </standardPenalizations>
+        <cost>80</cost>
+        <damageType>hard, shock</damageType>
+        <shield>battleShield</shield>
+    </scaleMailPlasteel>
+    <spacesuit>
+        <name>
+            <en>Spacesuit</en>
+            <es>Traje Espacial</es>
+        </name>
+        <description>
+            <en>A standard spacesuit is designed to resist common tears but does not stand up well against swords or
+                gunshots. It is airtight and pressurized when completely assembled (gloves, boots, helmet). TL4 versions
+                exist, but they are excruciatingly bulky and very rarely used.
+            </en>
+            <es>Un traje espacial estándar está diseñado para resistir los destrozos comunes del vacío espacial, pero no
+                resiste bien contra espadas o disparos. Es hermético y presurizado cuando está completamente ensamblado
+                (guantes, botas, casco). Existen versiones de un NT4, pero son terriblemente aparatosos y se utilizan en
+                muy raras ocasiones.
+            </es>
+        </description>
+        <techLevel>5</techLevel>
+        <protection>3</protection>
+        <standardPenalizations>
+            <strength>0</strength>
+            <dexterity>0</dexterity>
+            <endurance>0</endurance>
+            <initiative>-2</initiative>
+        </standardPenalizations>
+        <specialPenalizations>
+            <strength>-2</strength>
+            <dexterity>-2</dexterity>
+            <endurance>-2</endurance>
+            <initiative>-2</initiative>
+        </specialPenalizations>
+        <cost>100</cost>
+        <damageType>hard, fire, impact, shock</damageType>
+        <shield>battleShield</shield>
+        <others>lifeSupport24h, abcProtection, radiationProtection</others>
+    </spacesuit>
+    <antiquarianSpacesuit>
+        <name>
+            <en>Antiquarian Spacesuit</en>
+            <es>Traje Espacial Antiguo</es>
+        </name>
+        <description>
+            <en>A standard spacesuit is designed to resist common tears but does not stand up well against swords or
+                gunshots. It is airtight and pressurized when completely assembled (gloves, boots, helmet). TL4 versions
+                exist, but they are excruciatingly bulky and very rarely used.
+            </en>
+            <es>Un traje espacial estándar está diseñado para resistir los destrozos comunes del vacío espacial, pero no
+                resiste bien contra espadas o disparos. Es hermético y presurizado cuando está completamente ensamblado
+                (guantes, botas, casco). Existen versiones de un NT4, pero son terriblemente aparatosos y se utilizan en
+                muy raras ocasiones.
+            </es>
+        </description>
+        <techLevel>4</techLevel>
+        <protection>1</protection>
+        <standardPenalizations>
+            <strength>-2</strength>
+            <dexterity>-3</dexterity>
+            <endurance>-2</endurance>
+            <initiative>-6</initiative>
+        </standardPenalizations>
+        <specialPenalizations>
+            <strength>-5</strength>
+            <dexterity>-5</dexterity>
+            <endurance>-5</endurance>
+            <initiative>-6</initiative>
+        </specialPenalizations>
+        <cost>50</cost>
+        <damageType>impact, shock</damageType>
+        <shield>battleShield</shield>
+        <others>lifeSupport12h, abcProtection, radiationProtection</others>
+    </antiquarianSpacesuit>
+    <armoredSpacesuit>
+        <name>
+            <en>Armored Spacesuit</en>
+            <es>Traje Espacial Blindado</es>
+        </name>
+        <description>
+            <en>The armored spacesuit was designed for working in hazardous zones. Commonly used by prospectors and
+                belters working in the many asteroid belts throughout the Known Worlds, these suits provide some
+                protection against fast moving micro-meteors.
+            </en>
+            <es>El traje espacial blindado fue diseñado para trabajar en zonas peligrosas. Los prospectores y los
+                belters los utilizan comúnmente, puesto que trabajan en los muchos cinturones de asteroides esparcidos
+                por todos los Mundos Conocidos. Estos trajes proporcionan cierta protección contra los meteoritos
+                pequeños que se mueven con muchísima rapidez.
+            </es>
+        </description>
+        <techLevel>5</techLevel>
+        <protection>8</protection>
+        <standardPenalizations>
+            <strength>0</strength>
+            <dexterity>-1</dexterity>
+            <endurance>0</endurance>
+            <initiative>-4</initiative>
+        </standardPenalizations>
+        <specialPenalizations>
+            <strength>-2</strength>
+            <dexterity>-3</dexterity>
+            <endurance>-2</endurance>
+            <initiative>-4</initiative>
+        </specialPenalizations>
+        <cost>400</cost>
+        <damageType>plasma, hard, fire, impact, laser, shock</damageType>
+        <shield>battleShield</shield>
+        <others>lifeSupport24h, abcProtection, radiationProtection</others>
+    </armoredSpacesuit>
+    <marauderSpacesuit>
+        <name>
+            <en>Marauder Spacesuit</en>
+            <es>Traje Espacial de Saqueador</es>
+        </name>
+        <description>
+            <en>This space armor was used by the elite space forces of the Second Republic. These days, the largest
+                cache of these rare armor suits is possessed by the Phoenix Guard (most Marauders in the Known Worlds
+                must make do with regular armored spacesuits).
+            </en>
+            <es>Esta armadura espacial era utilizada por las fuerzas espaciales de élite de la Segunda República. A día
+                de hoy, la guardia del Fénix posee el mayor alijo de estos atípicos trajes-armadura (la mayoría de los
+                Saqueadores de los Mundos Conocidos deben conformarse con trajes espaciales blindados estándar).
+            </es>
+        </description>
+        <techLevel>6</techLevel>
+        <protection>9</protection>
+        <standardPenalizations>
+            <strength>0</strength>
+            <dexterity>-1</dexterity>
+            <endurance>0</endurance>
+            <initiative>-2</initiative>
+        </standardPenalizations>
+        <specialPenalizations>
+            <strength>-2</strength>
+            <dexterity>-3</dexterity>
+            <endurance>-2</endurance>
+            <initiative>-2</initiative>
+        </specialPenalizations>
+        <cost>1000</cost>
+        <damageType>plasma, hard, fire, impact, laser, shock</damageType>
+        <shield>battleShield</shield>
+        <others>lifeSupport24h, abcProtection, radiationProtection</others>
+    </marauderSpacesuit>
+    <synthsilk>
+        <name>
+            <en>Synthsilk</en>
+            <es>Seda Sintética</es>
+        </name>
+        <description>
+            <en>One of the finest inconspicuous armors, synthsilk is comfortable and lightweight. Used for construction
+                and utility worker uniforms during the Second Republic, it comes in a variety of colors, but is quite
+                expensive. Most of the synthsilk made today is manufactured using precariously maintained Second
+                Republic textile mills. Synthsilk was first designed and used in the Diaspora era. Later improvements
+                allowed for thinner, lighter materials until, by the time of the Second Republic, the fabric was as
+                light as cotton and just as comfortable to wear. Synthsilk can be worn with an energy shield.
+            </en>
+            <es>Una de las mejores armaduras discretas; la seda sintética es cómoda y ligera. Normalmente solía
+                utilizarse para uniformes de la construcción y de los trabajadores de los servicios públicos durante la
+                Segunda República. Existe una gran variedad de colores, pero acostumbra a ser cara. La mayor parte de la
+                seda sintética que se fabrica hoy en día precisa del uso de fábricas textiles de la Segunda República
+                que han logrado mantenerse con cierta precariedad. La Seda Sintética se diseñó y usó por vez primera en
+                la era de la Diáspora. Las mejoras posteriores permitieron el uso de materiales más finos y ligeros
+                hasta que, en tiempos de la Segunda República, la tela llegó a ser tan ligera como el algodón y muy
+                cómoda de llevar. La Seda Sintética puede usarse con un escudo de energía.
+            </es>
+        </description>
+        <techLevel>5</techLevel>
+        <protection>4</protection>
+        <standardPenalizations>
+            <strength>0</strength>
+            <dexterity>0</dexterity>
+            <endurance>0</endurance>
+            <initiative>0</initiative>
+        </standardPenalizations>
+        <cost>300</cost>
+        <damageType>soft, shock</damageType>
+        <shield>standardShield, duelingShield, assaultShield, battleShield
+        </shield>
+    </synthsilk>
+    <stiffsynth>
+        <name>
+            <en>Stiffsynth</en>
+            <es>Cuero Sintético</es>
+        </name>
+        <description>
+            <en>Heavy, leather-like material, stiffsynth even looks like leather until it is struck. Upon impact,
+                stiffsynth hardens temporarily into an inflexible shell, and then softens a second later. Stiffsynth was
+                originally used as protective gear by Second Republic athletes during vigorous sporting events.
+                Stiffsynth suits are passed down from generation to generation. The secret of their manufacture has been
+                lost (except perhaps among a few secret guilds). Most existing suits still bear the insignias of various
+                sporting teams. It is stretchable and can fit just about anyone of the same relative height it was
+                originally manufactured for.
+            </en>
+            <es>es un material pesado, similar al cuero. El cuero sintético tiene apariencia de cuero real hasta que
+                recibe un golpe. Tras el impacto, el cuero sintético se endurece temporalmente, transformándose en una
+                cáscara inflexible, para después reblandecerse al segundo. El cuero sintético originariamente lo
+                empleaban los atletas de la Segunda República como equipo de protección durante los eventos deportivos
+                que requerían de un gran vigor. Los trajes de Cuero Sintético se pasan de generación en generación. Se
+                perdió hace mucho el secreto sobre su fabricación (a excepción quizá de unos cuantos gremios secretos).
+                La mayoría de los trajes que existen todavía llevan las insignias de varios equipos deportivos. Es
+                elástico y se ajusta a casi cualquier persona que cuente, relativamente, con la misma altura que la de
+                la persona para la que fue originalmente diseñada la pieza.
+            </es>
+        </description>
+        <techLevel>6</techLevel>
+        <protection>7</protection>
+        <standardPenalizations>
+            <strength>0</strength>
+            <dexterity>-1</dexterity>
+            <endurance>0</endurance>
+            <initiative>0</initiative>
+        </standardPenalizations>
+        <cost>500</cost>
+        <damageType>hard, shock</damageType>
+        <shield>assaultShield, battleShield</shield>
+    </stiffsynth>
+    <smartsynth>
+        <name>
+            <en>Smartsynth</en>
+            <es>Inteligencia Sintética</es>
+        </name>
+        <description>
+            <en>The ultimate refinement of synthsilk technology, built with a smart gel weave that spreads and reacts to
+                impact. Some of these suits make use of mimetic fibers that can be used to change the shape and feel of
+                the fabric. During the Second Republic, these were employed for dangerous sports.
+            </en>
+            <es>Lo más avanzado en cuanto a tecnología sintética se refiere. Fabricado mediante un tejido de gel
+                inteligente que se extiende y reacciona a los impactos. Algunos de estos trajes hacen uso de las fibras
+                miméticas que pueden emplearse para cambiar la forma y el tacto de la tela. Durante la Segunda
+                República, esta clase de material se empleaba para los deportes peligrosos.
+            </es>
+        </description>
+        <techLevel>7</techLevel>
+        <protection>7</protection>
+        <standardPenalizations>
+            <strength>0</strength>
+            <dexterity>0</dexterity>
+            <endurance>0</endurance>
+            <initiative>0</initiative>
+        </standardPenalizations>
+        <cost>600</cost>
+        <damageType>hard, impact, shock</damageType>
+        <shield>assaultShield, battleShield</shield>
+    </smartsynth>
 </armours>
