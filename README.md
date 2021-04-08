@@ -133,4 +133,6 @@ Fonts used in this project: DejaVuSans, ArchitectsDaughter and Roman Antique.
 - 0.9.1 Equipment descriptions.
 - 0.9.2 Occultism descriptions.
 
+0.10.0 NPC generator.
+
 
