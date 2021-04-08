@@ -36,7 +36,9 @@ public enum PsiquePathLevelPreferences implements IPsiPreference, IGaussianDistr
 
     GOOD(1, 6, 3, 3),
 
-    HIGH(1, 9, 6, 3);
+    HIGH(1, 9, 6, 3),
+
+    ANY(1, 9, 5, 4);
 
     private final int minimum;
     private final int maximum;

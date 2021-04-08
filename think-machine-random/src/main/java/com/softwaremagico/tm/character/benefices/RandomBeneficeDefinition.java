@@ -45,10 +45,11 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
     private static final int MAX_AFFLICTIONS = 2;
     private static final String CASH_BENEFICE_ID = "cash";
     private static final String ESCAPED_PREFIX = "escaped";
+    private Integer requiredMoney;
 
     public RandomBeneficeDefinition(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences)
             throws InvalidXmlElementException {
-        this(characterPlayer, preferences, new HashSet<BeneficeDefinition>(), new HashSet<BeneficeDefinition>());
+        this(characterPlayer, preferences, new HashSet<>(), new HashSet<>());
     }
 
     public RandomBeneficeDefinition(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences,
@@ -345,6 +346,16 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
             }
         } catch (InvalidRandomElementSelectedException e) {
             // Weight is zero. Do nothing.
+        }
+
+        // Money requirements for equipment.
+        if (Objects.equals(benefice.getId(), "cash")) {
+            final IGaussianDistribution selectedCash = CashPreferences.getSelected(getPreferences());
+            if (selectedCash != null) {
+                RandomGenerationLog.debug(this.getClass().getName(),
+                        "Searching grade '{}' of benefice '{}'.", selectedCash.maximum(), benefice);
+                assignBenefice(benefice, selectedCash.maximum());
+            }
         }
     }
 

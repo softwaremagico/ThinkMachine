@@ -47,6 +47,7 @@ import com.softwaremagico.tm.character.equipment.weapons.RandomMeleeWeapon;
 import com.softwaremagico.tm.character.equipment.weapons.RandomRangeWeapon;
 import com.softwaremagico.tm.character.equipment.weapons.RandomWeapon;
 import com.softwaremagico.tm.character.equipment.weapons.Weapon;
+import com.softwaremagico.tm.character.factions.Faction;
 import com.softwaremagico.tm.character.factions.RandomFaction;
 import com.softwaremagico.tm.character.occultism.RandomPsique;
 import com.softwaremagico.tm.character.occultism.RandomPsiquePath;
@@ -56,16 +57,16 @@ import com.softwaremagico.tm.character.skills.RandomSkillExperience;
 import com.softwaremagico.tm.character.skills.RandomSkillExtraPoints;
 import com.softwaremagico.tm.character.skills.RandomSkills;
 import com.softwaremagico.tm.log.RandomGenerationLog;
-import com.softwaremagico.tm.random.exceptions.DuplicatedPreferenceException;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
-import com.softwaremagico.tm.random.profiles.IRandomProfile;
-import com.softwaremagico.tm.random.profiles.ProfileMerger;
+import com.softwaremagico.tm.random.predefined.IRandomPredefined;
+import com.softwaremagico.tm.random.predefined.PredefinedMerger;
 import com.softwaremagico.tm.random.selectors.*;
 
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class RandomizeCharacter {
     private final CharacterPlayer characterPlayer;
@@ -78,36 +79,34 @@ public class RandomizeCharacter {
     private final Set<Weapon> mandatoryWeapons;
     private final Set<Armour> mandatoryArmours;
     private final Set<Shield> mandatoryShields;
+    private Faction requiredFaction;
 
-    public RandomizeCharacter(CharacterPlayer characterPlayer, int experiencePoints, IRandomPreference... preferences)
-            throws DuplicatedPreferenceException {
+    public RandomizeCharacter(CharacterPlayer characterPlayer, int experiencePoints, IRandomPreference... preferences) {
         this(characterPlayer, experiencePoints, null, new HashSet<>(Arrays.asList(preferences)), new HashSet<>(), new HashSet<>(),
                 new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>());
     }
 
-    public RandomizeCharacter(CharacterPlayer characterPlayer, IRandomProfile... profiles)
-            throws DuplicatedPreferenceException {
+    public RandomizeCharacter(CharacterPlayer characterPlayer, IRandomPredefined... profiles) {
         this(characterPlayer, null, new HashSet<>(Arrays.asList(profiles)), new HashSet<>(), new HashSet<>(),
                 new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(),
                 new HashSet<>(), new HashSet<>());
     }
 
-    public RandomizeCharacter(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences, IRandomProfile... profiles)
-            throws DuplicatedPreferenceException {
+    public RandomizeCharacter(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences, IRandomPredefined... profiles) {
         this(characterPlayer, null, new HashSet<>(Arrays.asList(profiles)), preferences, new HashSet<>(),
                 new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(),
                 new HashSet<>(), new HashSet<>());
     }
 
-    public RandomizeCharacter(CharacterPlayer characterPlayer, Integer experiencePoints, Set<IRandomProfile> profiles, Set<IRandomPreference> preferences,
+    public RandomizeCharacter(CharacterPlayer characterPlayer, Integer experiencePoints, Set<IRandomPredefined> profiles, Set<IRandomPreference> preferences,
                               Set<AvailableSkill> requiredSkills, Set<AvailableSkill> suggestedSkills, Set<BeneficeDefinition> mandatoryBenefices,
                               Set<BeneficeDefinition> suggestedBenefices, Set<Weapon> mandatoryWeapons, Set<Armour> mandatoryArmours,
-                              Set<Shield> mandatoryShields)
-            throws DuplicatedPreferenceException {
+                              Set<Shield> mandatoryShields) {
         this.characterPlayer = characterPlayer;
 
-        final IRandomProfile finalProfile = ProfileMerger.merge(profiles, preferences, requiredSkills, suggestedSkills, mandatoryBenefices, suggestedBenefices,
-                mandatoryWeapons, mandatoryArmours, mandatoryShields, characterPlayer.getLanguage(), characterPlayer.getModuleName());
+        final IRandomPredefined finalProfile = PredefinedMerger.merge(profiles, preferences, requiredSkills, suggestedSkills,
+                mandatoryBenefices, suggestedBenefices, mandatoryWeapons, mandatoryArmours, mandatoryShields, characterPlayer.getLanguage(),
+                characterPlayer.getModuleName());
 
         // Assign preferences
         this.preferences = finalProfile.getPreferences();
@@ -119,8 +118,7 @@ public class RandomizeCharacter {
         this.mandatoryWeapons = finalProfile.getMandatoryWeapons();
         this.mandatoryArmours = finalProfile.getMandatoryArmours();
         this.mandatoryShields = finalProfile.getMandatoryShields();
-
-        checkValidPreferences();
+        this.requiredFaction = finalProfile.getFaction();
 
         // Assign experience
         if (experiencePoints == null) {
@@ -128,17 +126,6 @@ public class RandomizeCharacter {
             this.characterPlayer.setExperienceEarned(difficultLevel.getExperienceBonus());
         } else {
             this.characterPlayer.setExperienceEarned(experiencePoints);
-        }
-    }
-
-    private void checkValidPreferences() throws DuplicatedPreferenceException {
-        final Set<Class<? extends IRandomPreference>> existingPreferences = new HashSet<>();
-        // Only one of each class allowed.
-        for (final IRandomPreference preference : preferences) {
-            if (existingPreferences.contains(preference.getClass())) {
-                throw new DuplicatedPreferenceException("Preference '" + preference + "' collides with another preference. Only one of each type is allowed.");
-            }
-            existingPreferences.add(preference.getClass());
         }
     }
 
@@ -187,6 +174,15 @@ public class RandomizeCharacter {
             final CombatPreferences combatPreferences = CombatPreferences.getSelected(preferences);
             preferences.add(combatPreferences.getDefaultShieldPreferences());
         }
+
+        final CashPreferences cashPreferences = CashPreferences.getSelected(preferences);
+        if (cashPreferences == null) {
+            final AtomicReference<Float> equipmentCost = new AtomicReference<>((float) 0);
+            mandatoryWeapons.forEach(weapon -> equipmentCost.updateAndGet(v -> (v + weapon.getCost())));
+            mandatoryArmours.forEach(armour -> equipmentCost.updateAndGet(v -> (v + armour.getCost())));
+            mandatoryShields.forEach(shield -> equipmentCost.updateAndGet(v -> (v + shield.getCost())));
+            preferences.add(CashPreferences.get(equipmentCost.get()));
+        }
         preferences.removeIf(Objects::isNull);
     }
 
@@ -207,8 +203,12 @@ public class RandomizeCharacter {
         }
 
         if (characterPlayer.getFaction() == null) {
-            final RandomFaction randomFaction = new RandomFaction(characterPlayer, preferences);
-            randomFaction.assign();
+            if (requiredFaction != null) {
+                characterPlayer.setFaction(requiredFaction);
+            } else {
+                final RandomFaction randomFaction = new RandomFaction(characterPlayer, preferences);
+                randomFaction.assign();
+            }
         }
 
         if (characterPlayer.getInfo().getPlanet() == null) {
@@ -232,9 +232,6 @@ public class RandomizeCharacter {
     /**
      * Using free style character generation. Only the first points to expend in a
      * character.
-     *
-     * @throws InvalidXmlElementException
-     * @throws InvalidRandomElementSelectedException
      */
     private void setStartingValues() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
         // Characteristics

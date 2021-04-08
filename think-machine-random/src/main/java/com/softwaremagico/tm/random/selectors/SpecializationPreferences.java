@@ -38,7 +38,9 @@ public enum SpecializationPreferences implements ICharacterCreationPreference, I
 
     SPECIALIZED(2, 9, 4, 3),
 
-    VERY_SPECIALIZED(2, 10, 5, 5);
+    VERY_SPECIALIZED(4, 10, 7, 3),
+
+    ANY(1, 10, 5, 5);
 
     private final int minimum;
     private final int maximum;

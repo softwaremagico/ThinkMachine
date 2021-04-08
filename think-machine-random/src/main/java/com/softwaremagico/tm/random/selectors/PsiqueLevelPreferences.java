@@ -34,9 +34,11 @@ public enum PsiqueLevelPreferences implements IPsiPreference, IGaussianDistribut
 
     FEW(1, 2, 1, 1),
 
-    FAIR(1, 3, 2, 1),
+    FAIR(1, 5, 3, 1),
 
-    HIGH(3, 5, 4, 2);
+    HIGH(3, 8, 5, 3),
+
+    ANY(1, 8, 5, 4);
 
     private final int minimum;
     private final int maximum;

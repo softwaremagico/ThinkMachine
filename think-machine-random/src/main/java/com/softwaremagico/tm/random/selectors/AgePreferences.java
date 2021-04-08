@@ -42,7 +42,9 @@ public enum AgePreferences implements ICharacterDescriptionPreference, IGaussian
 
     OLD(51, 70, 60, 8),
 
-    VERY_OLD(71, 110, 85, 10);
+    VERY_OLD(71, 110, 85, 10),
+
+    ANY(6, 110, 50, 50);
 
     private final int minimum;
     private final int maximum;

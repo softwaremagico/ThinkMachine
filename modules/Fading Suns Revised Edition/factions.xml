@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <factions>
     <version>1</version>
-    <totalElements>31</totalElements>
+    <totalElements>33</totalElements>
     <hawkwood>
         <name>
             <en>Hawkwood</en>
@@ -813,7 +813,6 @@
         </name>
         <group>none</group>
         <race>human, obun, ukar, vorox</race>
-        <benefices>darkSecret_3</benefices>
         <suggestedBenefices>
             <benefice>
                 <id>darkSecret</id>
@@ -1147,4 +1146,20 @@
             </benefice>
         </suggestedBenefices>
     </vorox>
+    <noFaction>
+        <name>
+            <en>No Faction</en>
+            <es>Sin Facción</es>
+        </name>
+        <group>minor</group>
+        <race>human, vorox, obun, ukar</race>
+    </noFaction>
+    <minorFaction>
+        <name>
+            <en>Minor Faction</en>
+            <es>Facción Menor</es>
+        </name>
+        <group>minor</group>
+        <race>human, vorox, obun, ukar</race>
+    </minorFaction>
 </factions>

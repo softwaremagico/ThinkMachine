@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.random.profiles;
+package com.softwaremagico.tm.random.predefined.profile;
 
 /*-
  * #%L
@@ -26,14 +26,14 @@ package com.softwaremagico.tm.random.profiles;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 
-public class InvalidProfileException extends InvalidXmlElementException {
+public class InvalidRandomPredefinedException extends InvalidXmlElementException {
 	private static final long serialVersionUID = 1243337930745480002L;
 
-	public InvalidProfileException(String message) {
+	public InvalidRandomPredefinedException(String message) {
 		super(message);
 	}
 
-	public InvalidProfileException(String message, Exception e) {
+	public InvalidRandomPredefinedException(String message, Exception e) {
 		super(message, e);
 	}
 }

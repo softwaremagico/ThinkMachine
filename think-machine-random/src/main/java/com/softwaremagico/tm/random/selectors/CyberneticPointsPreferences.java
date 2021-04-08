@@ -38,7 +38,9 @@ public enum CyberneticPointsPreferences implements ICyberneticsPreference, IGaus
 
     CYBORG(12, 20, 16, 4),
 
-    SOUL_LESS(20, 29, 20, 5);
+    SOUL_LESS(20, 29, 20, 5),
+
+    ANY(5, 29, 17, 10);
 
     private final int minimum;
     private final int maximum;

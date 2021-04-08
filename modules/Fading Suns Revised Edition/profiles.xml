@@ -5,9 +5,10 @@
             <en>Soldier</en>
             <es>Soldado</es>
         </name>
+        <group>occupation</group>
         <preferences>CombatPreferences.BELLIGERENT, CharacteristicsPreferences.BODY, SkillGroupPreferences.COMBAT,
             SpecializationPreferences.SPECIALIZED, StatusPreferences.LOW, TechnologicalPreferences.MODERN,
-            WeaponsPreferences.HIGH
+            WeaponsPreferences.HIGH, SpecializationPreferences.SPECIALIZED
         </preferences>
         <characteristicsMinimumValues>
             <dexterity>6</dexterity>
@@ -28,17 +29,20 @@
                 <id>melee</id>
             </skill>
         </suggestedSkills>
-        <weapons>imperialRifle</weapons>
-        <armours>scaleMailMetal</armours>
     </soldier>
     <hiTechSolider>
         <name>
             <en>Hi Tech Soldier</en>
             <es>Soldado Alta Tecnología</es>
         </name>
+        <group>occupation</group>
+        <preferences>CombatPreferences.BELLIGERENT, CharacteristicsPreferences.BODY, SkillGroupPreferences.COMBAT,
+            SpecializationPreferences.SPECIALIZED, StatusPreferences.LOW, TechnologicalPreferences.SPACE_CITIZEN,
+            WeaponsPreferences.HIGH, SpecializationPreferences.SPECIALIZED
+        </preferences>
         <characteristicsMinimumValues>
             <dexterity>6</dexterity>
-            <tech>5</tech>
+            <tech>6</tech>
         </characteristicsMinimumValues>
         <requiredSkills>
             <skill>
@@ -57,6 +61,7 @@
             <en>Heavy Soldier</en>
             <es>Soldado Pesado</es>
         </name>
+        <group>occupation</group>
         <parent>soldier</parent>
         <characteristicsMinimumValues>
             <strength>6</strength>
@@ -80,8 +85,6 @@
             <skill>
                 <id>landcarft</id>
             </skill>
-            <weapons>jahnisak040MG</weapons>
-            <armours>leatherJerkin</armours>
         </suggestedSkills>
     </heavySoldier>
     <serf>
@@ -89,6 +92,7 @@
             <en>Serf</en>
             <es>Siervo</es>
         </name>
+        <group>occupation</group>
         <preferences>CombatPreferences.PEACEFUL, CharacteristicsPreferences.BODY, SpecializationPreferences.GENERALIZED,
             StatusPreferences.NONE, TechnologicalPreferences.BASIC, WeaponsPreferences.NONE
         </preferences>
@@ -113,6 +117,7 @@
             <en>Peasant</en>
             <es>Campesino</es>
         </name>
+        <group>occupation</group>
         <preferences>CombatPreferences.FAIR, CharacteristicsPreferences.BODY, SpecializationPreferences.FAIR,
             StatusPreferences.NONE, TechnologicalPreferences.MEDIEVAL, WeaponsPreferences.NONE
         </preferences>
@@ -143,6 +148,7 @@
             <en>Thug</en>
             <es>Rufián</es>
         </name>
+        <group>occupation</group>
         <preferences>CombatPreferences.BELLIGERENT, CharacteristicsPreferences.BODY,
             SpecializationPreferences.SPECIALIZED, StatusPreferences.NONE, WeaponsPreferences.MEDIUM,
             SkillGroupPreferences.MALEFACTION, FactionPreferences.NONE
@@ -158,7 +164,9 @@
             <en>Tracker</en>
             <es>Rastreador</es>
         </name>
-        <preferences>CombatPreferences.FAIR, TechnologicalPreferences.MODERN, CharacteristicsPreferences.BODY
+        <group>occupation</group>
+        <preferences>CombatPreferences.FAIR, TechnologicalPreferences.MODERN, CharacteristicsPreferences.BODY,
+            SpecializationPreferences.SPECIALIZED
         </preferences>
         <characteristicsMinimumValues>
             <dexterity>6</dexterity>
@@ -189,17 +197,16 @@
                 <id>ride</id>
             </skill>
         </suggestedSkills>
-        <weapons>typicalSniperRifle</weapons>
-        <armours>leatherJerkin</armours>
     </tracker>
     <slayer>
         <name>
             <en>Slayer</en>
             <es>Asesino</es>
         </name>
+        <group>occupation</group>
         <preferences>CombatPreferences.BELLIGERENT, SkillGroupPreferences.MALEFACTION, FactionPreferences.NONE,
-            CharacteristicsPreferences.BODY,
-            SpecializationPreferences.SPECIALIZED, TechnologicalPreferences.SPACE_CITIZEN, WeaponsPreferences.HIGH
+            CharacteristicsPreferences.BODY, SpecializationPreferences.VERY_SPECIALIZED,
+            TechnologicalPreferences.SPACE_CITIZEN, WeaponsPreferences.HIGH
         </preferences>
         <characteristicsMinimumValues>
             <tech>6</tech>
@@ -255,6 +262,7 @@
             <en>Spy</en>
             <es>Espía</es>
         </name>
+        <group>occupation</group>
         <preferences>SpecializationPreferences.SPECIALIZED, SkillGroupPreferences.MALEFACTION, FactionPreferences.NONE
         </preferences>
         <characteristicsMinimumValues>
@@ -288,9 +296,11 @@
     </spy>
     <general>
         <name>
-            <en>General</en>
-            <es>General</es>
+            <en>Marshal</en>
+            <es>Mariscal</es>
         </name>
+        <group>occupation</group>
+        <preferences>SpecializationPreferences.SPECIALIZED</preferences>
         <characteristicsMinimumValues>
             <presence>5</presence>
         </characteristicsMinimumValues>
@@ -310,6 +320,12 @@
                 <id>factionLore</id>
             </skill>
             <skill>
+                <id>phoenixEmpireLore</id>
+            </skill>
+            <skill>
+                <id>planetaryLore</id>
+            </skill>
+            <skill>
                 <id>ride</id>
             </skill>
             <skill>
@@ -324,7 +340,8 @@
             <en>Noble</en>
             <es>Noble</es>
         </name>
-        <preferences>FactionPreferences.NOBILITY</preferences>
+        <group>faction</group>
+        <preferences>FactionPreferences.NOBILITY, CashPreferences.GOOD</preferences>
         <characteristicsMinimumValues>
             <presence>5</presence>
         </characteristicsMinimumValues>
@@ -346,6 +363,12 @@
             <skill>
                 <id>leadership</id>
             </skill>
+            <skill>
+                <id>planetaryLore</id>
+            </skill>
+            <skill>
+                <id>phoenixEmpireLore</id>
+            </skill>
         </suggestedSkills>
         <suggestedBenefices>assets</suggestedBenefices>
         <mandatoryBenefices>nobility</mandatoryBenefices>
@@ -355,6 +378,7 @@
             <en>Clergy</en>
             <es>Clero</es>
         </name>
+        <group>faction</group>
         <preferences>FactionPreferences.CHURCH</preferences>
         <characteristicsMinimumValues>
             <presence>5</presence>
@@ -384,6 +408,7 @@
             <en>Young</en>
             <es>Joven</es>
         </name>
+        <group>age</group>
         <preferences>AgePreferences.TEENAGER, AgePreferences.YOUNG, SpecializationPreferences.GENERALIZED</preferences>
     </young>
     <old>
@@ -391,6 +416,7 @@
             <en>Old</en>
             <es>Viejo</es>
         </name>
+        <group>age</group>
         <preferences>AgePreferences.OLD, AgePreferences.VERY_OLD, SpecializationPreferences.SPECIALIZED,
             TraitCostPreferences.HIGH
         </preferences>
@@ -400,7 +426,8 @@
             <en>Cyberchanged</en>
             <es>Cibercambiado</es>
         </name>
-        <preferences>CyberneticPointsPreferences.HIGH, CyberneticTotalDevicesPreferences.HIGH,
+        <group>specials</group>
+        <preferences>CyberneticPointsPreferences.ANY, CyberneticTotalDevicesPreferences.ANY,
             TechnologicalPreferences.SPACE_CITIZEN
         </preferences>
     </cyberchanged>
@@ -409,6 +436,7 @@
             <en>Occultist</en>
             <es>Ocultista</es>
         </name>
-        <preferences>PsiquePathLevelPreferences.GOOD, PsiqueLevelPreferences.FAIR</preferences>
+        <group>specials</group>
+        <preferences>PsiquePathLevelPreferences.ANY, PsiqueLevelPreferences.ANY</preferences>
     </occultist>
 </profiles>

@@ -27,19 +27,19 @@ package com.softwaremagico.tm.random.selectors;
 import java.util.Random;
 import java.util.Set;
 
-public enum StatusPreferences implements ICharacterDescriptionPreference, IGaussianDistribution {
+public enum CashPreferences implements ICharacterDescriptionPreference, IGaussianDistribution {
 
-    NONE(0, 0, 0, 0),
+    LOW(0, 4, 0, 4),
 
-    LOW(4, 8, 4, 1),
+    FAIR(4, 8, 4, 4),
 
-    FAIR(4, 8, 6, 2),
-
-    GOOD(4, 16, 8, 4),
+    GOOD(8, 16, 12, 4),
 
     HIGH(12, 24, 16, 8),
 
-    ANY(4, 24, 14, 10);
+    VERY_HIGH(16, 24, 20, 4),
+
+    ANY(0, 24, 14, 10);
 
     private final int minimum;
     private final int maximum;
@@ -47,7 +47,7 @@ public enum StatusPreferences implements ICharacterDescriptionPreference, IGauss
     private final int variance;
     private final Random random = new Random();
 
-    private StatusPreferences(int minimumValue, int maximumValue, int mean, int variance) {
+    private CashPreferences(int minimumValue, int maximumValue, int mean, int variance) {
         this.maximum = maximumValue;
         this.minimum = minimumValue;
         this.variance = variance;
@@ -74,10 +74,10 @@ public enum StatusPreferences implements ICharacterDescriptionPreference, IGauss
         return mean;
     }
 
-    public static StatusPreferences getSelected(Set<IRandomPreference> preferences) {
+    public static CashPreferences getSelected(Set<IRandomPreference> preferences) {
         for (final IRandomPreference preference : preferences) {
-            if (preference instanceof StatusPreferences) {
-                return (StatusPreferences) preference;
+            if (preference instanceof CashPreferences) {
+                return (CashPreferences) preference;
             }
         }
         return FAIR;
@@ -92,12 +92,22 @@ public enum StatusPreferences implements ICharacterDescriptionPreference, IGauss
         return selectedValue;
     }
 
+    public static CashPreferences get(Float money) {
+        final int cashCost = (int) (money / 250);
+        for (final CashPreferences preference : CashPreferences.values()) {
+            if (preference.minimum() >= cashCost) {
+                return preference;
+            }
+        }
+        return VERY_HIGH;
+    }
+
     @Override
     public IRandomPreference getDefault() {
         return getDefaultOption();
     }
 
-    public static StatusPreferences getDefaultOption() {
-        return StatusPreferences.FAIR;
+    public static CashPreferences getDefaultOption() {
+        return CashPreferences.FAIR;
     }
 }

@@ -24,20 +24,20 @@ package com.softwaremagico.tm.random.party;
  * #L%
  */
 
-import java.util.Set;
-
 import com.softwaremagico.tm.Element;
-import com.softwaremagico.tm.random.profiles.RandomProfile;
+import com.softwaremagico.tm.random.predefined.RandomPredefined;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
 
+import java.util.Set;
+
 public class RandomPartyMember extends Element<RandomPartyMember> {
-    private final RandomProfile randomProfile;
+    private final RandomPredefined randomProfile;
     private final Integer minNumber;
     private final Integer maxNumber;
     private final Integer weight;
     private final Set<IRandomPreference> randomPreferences;
 
-    public RandomPartyMember(String id, String name, String language, String moduleName, RandomProfile randomProfile, Integer minNumber,
+    public RandomPartyMember(String id, String name, String language, String moduleName, RandomPredefined randomProfile, Integer minNumber,
                              Integer maxNumber, Integer weight, Set<IRandomPreference> randomPreferences) {
         super(id, name, null, language, moduleName);
         this.randomProfile = randomProfile;
@@ -47,7 +47,7 @@ public class RandomPartyMember extends Element<RandomPartyMember> {
         this.randomPreferences = randomPreferences;
     }
 
-    public RandomProfile getRandomProfile() {
+    public RandomPredefined getRandomProfile() {
         return randomProfile;
     }
 

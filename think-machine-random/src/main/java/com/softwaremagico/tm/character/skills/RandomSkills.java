@@ -24,13 +24,6 @@ package com.softwaremagico.tm.character.skills;
  * #L%
  */
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map.Entry;
-import java.util.Objects;
-import java.util.Set;
-
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
@@ -44,11 +37,10 @@ import com.softwaremagico.tm.character.occultism.OccultismTypeFactory;
 import com.softwaremagico.tm.log.RandomGenerationLog;
 import com.softwaremagico.tm.random.RandomSelector;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
-import com.softwaremagico.tm.random.selectors.CombatPreferences;
-import com.softwaremagico.tm.random.selectors.DifficultLevelPreferences;
-import com.softwaremagico.tm.random.selectors.IRandomPreference;
-import com.softwaremagico.tm.random.selectors.SkillGroupPreferences;
-import com.softwaremagico.tm.random.selectors.SpecializationPreferences;
+import com.softwaremagico.tm.random.selectors.*;
+
+import java.util.*;
+import java.util.Map.Entry;
 
 public class RandomSkills extends RandomSelector<AvailableSkill> {
     private List<Entry<CharacteristicType, Integer>> preferredCharacteristicsTypeSorted;

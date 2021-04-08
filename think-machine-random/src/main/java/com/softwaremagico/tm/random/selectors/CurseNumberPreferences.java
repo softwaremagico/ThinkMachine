@@ -35,7 +35,9 @@ public enum CurseNumberPreferences implements ICharacterCreationPreference, IGau
 
     FAIR(2, 4, 2, 1),
 
-    HIGH(3, 7, 4, 3);
+    HIGH(3, 7, 4, 3),
+
+    ANY(0, 7, 3, 4);
 
     private final int minimum;
     private final int maximum;

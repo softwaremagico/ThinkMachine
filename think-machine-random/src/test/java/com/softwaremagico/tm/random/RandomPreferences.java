@@ -24,7 +24,7 @@ package com.softwaremagico.tm.random;
  * #L%
  */
 
-import com.softwaremagico.tm.InvalidXmlElementException;
+import com.softwaremagico.tm.random.selectors.CashPreferences;
 import com.softwaremagico.tm.random.selectors.IPsiPreference;
 import com.softwaremagico.tm.random.selectors.RandomPreferenceUtils;
 import org.testng.Assert;
@@ -42,6 +42,15 @@ public class RandomPreferences {
     @Test
     public void checkGroupReader() {
         Assert.assertFalse(RandomPreferenceUtils.getByGroup(IPsiPreference.class).isEmpty());
+    }
+
+    @Test
+    public void checkMoneyRequirements() {
+        Assert.assertEquals(CashPreferences.get(0f), CashPreferences.LOW);
+        Assert.assertEquals(CashPreferences.get(250f), CashPreferences.FAIR);
+        Assert.assertEquals(CashPreferences.get(1800f), CashPreferences.GOOD);
+        Assert.assertEquals(CashPreferences.get(2800f), CashPreferences.HIGH);
+        Assert.assertEquals(CashPreferences.get(5800f), CashPreferences.VERY_HIGH);
     }
 
 

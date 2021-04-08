@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.random.profiles;
+package com.softwaremagico.tm.random.predefined;
 
 /*-
  * #%L
@@ -33,15 +33,18 @@ import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.equipment.armours.Armour;
 import com.softwaremagico.tm.character.equipment.shields.Shield;
 import com.softwaremagico.tm.character.equipment.weapons.Weapon;
+import com.softwaremagico.tm.character.factions.Faction;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
 
 import java.util.Map;
 import java.util.Set;
 
-public interface IRandomProfile {
+public interface IRandomPredefined {
 
     int getExperiencePoints();
+
+    boolean isParentMerged();
 
     Set<IRandomPreference> getPreferences();
 
@@ -53,7 +56,7 @@ public interface IRandomProfile {
 
     Set<AvailableBenefice> getBenefices();
 
-    void setParent(IRandomProfile randomProfile) throws InvalidXmlElementException;
+    void setParent(IRandomPredefined randomProfile) throws InvalidXmlElementException;
 
     public String getLanguage();
 
@@ -74,5 +77,9 @@ public interface IRandomProfile {
     Set<Armour> getMandatoryArmours();
 
     Set<Shield> getMandatoryShields();
+
+    Faction getFaction();
+
+    void setFaction(Faction faction);
 
 }
