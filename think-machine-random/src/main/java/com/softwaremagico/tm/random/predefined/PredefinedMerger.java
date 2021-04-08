@@ -96,6 +96,8 @@ public class PredefinedMerger {
 
             mergeShields(finalProfile.getMandatoryShields(), profile.getMandatoryShields());
 
+            mergeFactions(finalProfile, profile);
+
         }
 
         // Add selected preferences with more priority.
@@ -198,6 +200,18 @@ public class PredefinedMerger {
         if (!sortedShields.isEmpty()) {
             originalShields.clear();
             originalShields.add(sortedShields.get(0));
+        }
+    }
+
+    private static void mergeFactions(IRandomPredefined finalProfile, IRandomPredefined profile) {
+        if (finalProfile.getFaction() == null) {
+            finalProfile.setFaction(profile.getFaction());
+        } else if (profile.getFaction() != null) {
+            final Random random = new Random();
+            //Choose randomly one or other.
+            if (random.nextBoolean()) {
+                finalProfile.setFaction(profile.getFaction());
+            }
         }
     }
 

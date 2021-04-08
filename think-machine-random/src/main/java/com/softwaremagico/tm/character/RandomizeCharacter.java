@@ -47,6 +47,7 @@ import com.softwaremagico.tm.character.equipment.weapons.RandomMeleeWeapon;
 import com.softwaremagico.tm.character.equipment.weapons.RandomRangeWeapon;
 import com.softwaremagico.tm.character.equipment.weapons.RandomWeapon;
 import com.softwaremagico.tm.character.equipment.weapons.Weapon;
+import com.softwaremagico.tm.character.factions.Faction;
 import com.softwaremagico.tm.character.factions.RandomFaction;
 import com.softwaremagico.tm.character.occultism.RandomPsique;
 import com.softwaremagico.tm.character.occultism.RandomPsiquePath;
@@ -78,6 +79,7 @@ public class RandomizeCharacter {
     private final Set<Weapon> mandatoryWeapons;
     private final Set<Armour> mandatoryArmours;
     private final Set<Shield> mandatoryShields;
+    private Faction requiredFaction;
 
     public RandomizeCharacter(CharacterPlayer characterPlayer, int experiencePoints, IRandomPreference... preferences) {
         this(characterPlayer, experiencePoints, null, new HashSet<>(Arrays.asList(preferences)), new HashSet<>(), new HashSet<>(),
@@ -116,6 +118,7 @@ public class RandomizeCharacter {
         this.mandatoryWeapons = finalProfile.getMandatoryWeapons();
         this.mandatoryArmours = finalProfile.getMandatoryArmours();
         this.mandatoryShields = finalProfile.getMandatoryShields();
+        this.requiredFaction = finalProfile.getFaction();
 
         // Assign experience
         if (experiencePoints == null) {
@@ -174,7 +177,7 @@ public class RandomizeCharacter {
 
         final CashPreferences cashPreferences = CashPreferences.getSelected(preferences);
         if (cashPreferences == null) {
-            AtomicReference<Float> equipmentCost = new AtomicReference<>((float) 0);
+            final AtomicReference<Float> equipmentCost = new AtomicReference<>((float) 0);
             mandatoryWeapons.forEach(weapon -> equipmentCost.updateAndGet(v -> (v + weapon.getCost())));
             mandatoryArmours.forEach(armour -> equipmentCost.updateAndGet(v -> (v + armour.getCost())));
             mandatoryShields.forEach(shield -> equipmentCost.updateAndGet(v -> (v + shield.getCost())));
@@ -200,8 +203,12 @@ public class RandomizeCharacter {
         }
 
         if (characterPlayer.getFaction() == null) {
-            final RandomFaction randomFaction = new RandomFaction(characterPlayer, preferences);
-            randomFaction.assign();
+            if (requiredFaction != null) {
+                characterPlayer.setFaction(requiredFaction);
+            } else {
+                final RandomFaction randomFaction = new RandomFaction(characterPlayer, preferences);
+                randomFaction.assign();
+            }
         }
 
         if (characterPlayer.getInfo().getPlanet() == null) {

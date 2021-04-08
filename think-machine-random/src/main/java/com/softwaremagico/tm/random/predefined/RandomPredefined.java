@@ -33,6 +33,7 @@ import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.equipment.armours.Armour;
 import com.softwaremagico.tm.character.equipment.shields.Shield;
 import com.softwaremagico.tm.character.equipment.weapons.Weapon;
+import com.softwaremagico.tm.character.factions.Faction;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.json.ExcludeFromJson;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
@@ -46,6 +47,7 @@ public abstract class RandomPredefined<Predefined extends Element<Predefined>> e
     private final Set<AvailableSkill> suggestedSkills;
     private final Set<BeneficeDefinition> suggestedBenefices;
     private final Set<BeneficeDefinition> mandatoryBenefices;
+    private Faction faction;
 
     @ExcludeFromJson
     public boolean parentMerged = false;
@@ -53,7 +55,7 @@ public abstract class RandomPredefined<Predefined extends Element<Predefined>> e
     public RandomPredefined(String id, String name, String description, String language, String moduleName,
                             Set<IRandomPreference> randomPreferences, Set<Characteristic> characteristicsMinimumValues,
                             Set<AvailableSkill> requiredSkills, Set<AvailableSkill> suggestedSkills,
-                            Set<BeneficeDefinition> mandatoryBenefices, Set<BeneficeDefinition> suggestedBenefices) {
+                            Set<BeneficeDefinition> mandatoryBenefices, Set<BeneficeDefinition> suggestedBenefices, Faction faction) {
         super(id, name, description, language, moduleName);
         this.randomPreferences = randomPreferences;
         this.characteristicsMinimumValues = characteristicsMinimumValues;
@@ -61,11 +63,12 @@ public abstract class RandomPredefined<Predefined extends Element<Predefined>> e
         this.suggestedSkills = suggestedSkills;
         this.suggestedBenefices = suggestedBenefices;
         this.mandatoryBenefices = mandatoryBenefices;
+        this.faction = faction;
     }
 
     public RandomPredefined(String id, String name, String description, String language, String moduleName) {
         this(id, name, description, language, moduleName, new HashSet<>(), new HashSet<>(),
-                new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>());
+                new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), null);
     }
 
     @Override
@@ -184,5 +187,15 @@ public abstract class RandomPredefined<Predefined extends Element<Predefined>> e
     @Override
     public Set<Shield> getMandatoryShields() {
         return new HashSet<>();
+    }
+
+    @Override
+    public Faction getFaction() {
+        return faction;
+    }
+
+    @Override
+    public void setFaction(Faction faction) {
+        this.faction = faction;
     }
 }

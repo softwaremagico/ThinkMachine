@@ -93,7 +93,7 @@ public enum CashPreferences implements ICharacterDescriptionPreference, IGaussia
     }
 
     public static CashPreferences get(Float money) {
-        int cashCost = (int) (money / 250);
+        final int cashCost = (int) (money / 250);
         for (final CashPreferences preference : CashPreferences.values()) {
             if (preference.minimum() >= cashCost) {
                 return preference;

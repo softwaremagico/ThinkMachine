@@ -26,6 +26,7 @@ package com.softwaremagico.tm.random.predefined.profile;
 
 import com.softwaremagico.tm.character.benefices.BeneficeDefinition;
 import com.softwaremagico.tm.character.characteristics.Characteristic;
+import com.softwaremagico.tm.character.factions.Faction;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.json.factories.cache.FactoryCacheLoader;
 import com.softwaremagico.tm.random.predefined.RandomPredefinedFactory;
@@ -58,9 +59,9 @@ public class RandomProfileFactory extends RandomPredefinedFactory<RandomProfile>
     protected RandomProfile createNew(String id, String name, String description, String language, String moduleName,
                                       Set<IRandomPreference> randomPreferences, Set<Characteristic> characteristicsMinimumValues,
                                       Set<AvailableSkill> requiredSkills, Set<AvailableSkill> suggestedSkills, Set<BeneficeDefinition> mandatoryBenefices,
-                                      Set<BeneficeDefinition> suggestedBenefices) {
+                                      Set<BeneficeDefinition> suggestedBenefices, Faction faction) {
         return new RandomProfile(id, name, description, language, moduleName, randomPreferences,
-                characteristicsMinimumValues, requiredSkills, suggestedSkills, mandatoryBenefices, suggestedBenefices);
+                characteristicsMinimumValues, requiredSkills, suggestedSkills, mandatoryBenefices, suggestedBenefices, faction);
     }
 
 }

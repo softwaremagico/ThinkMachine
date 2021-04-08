@@ -32,6 +32,9 @@ import com.softwaremagico.tm.character.benefices.BeneficeDefinitionFactory;
 import com.softwaremagico.tm.character.characteristics.Characteristic;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.characteristics.CharacteristicsDefinitionFactory;
+import com.softwaremagico.tm.character.factions.Faction;
+import com.softwaremagico.tm.character.factions.FactionsFactory;
+import com.softwaremagico.tm.character.factions.InvalidFactionException;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.language.ITranslator;
@@ -54,6 +57,7 @@ public abstract class RandomPredefinedFactory<Predefined extends Element<Predefi
     private static final String SUGGESTED_BENEFICES = "suggestedBenefices";
     private static final String MANDATORY_BENEFICES = "mandatoryBenefices";
     private static final String PARENT = "parent";
+    private static final String FACTION = "faction";
 
     private final Map<String, Set<Predefined>> predefinedByGroup = new HashMap<>();
 
@@ -83,7 +87,7 @@ public abstract class RandomPredefinedFactory<Predefined extends Element<Predefi
     protected abstract Predefined createNew(String id, String name, String description, String language, String moduleName,
                                             Set<IRandomPreference> randomPreferences, Set<Characteristic> characteristicsMinimumValues,
                                             Set<AvailableSkill> requiredSkills, Set<AvailableSkill> suggestedSkills,
-                                            Set<BeneficeDefinition> mandatoryBenefices, Set<BeneficeDefinition> suggestedBenefices);
+                                            Set<BeneficeDefinition> mandatoryBenefices, Set<BeneficeDefinition> suggestedBenefices, Faction faction);
 
     private void classify(Predefined predefined, String groupName) {
         predefinedByGroup.computeIfAbsent(groupName, k -> new HashSet<>());
@@ -235,9 +239,19 @@ public abstract class RandomPredefinedFactory<Predefined extends Element<Predefi
             throw new InvalidRandomPredefinedException("Invalid group for '" + predefinedId + "'.");
         }
 
+        Faction faction = null;
+        final String factionName = translator.getNodeValue(predefinedId, FACTION);
+        if (factionName != null) {
+            try {
+                faction = FactionsFactory.getInstance().getElement(factionName, language, moduleName);
+            } catch (InvalidXmlElementException e) {
+                throw new InvalidFactionException("Faction '" + factionName + "' invalid on predefined profile '" + predefinedId + "'.");
+            }
+        }
+
 
         final Predefined predefined = createNew(predefinedId, name, description, language, moduleName, preferencesSelected,
-                characteristicsMinimumValues, requiredSkills, suggestedSkills, mandatoryBenefices, suggestedBenefices);
+                characteristicsMinimumValues, requiredSkills, suggestedSkills, mandatoryBenefices, suggestedBenefices, faction);
 
         classify(predefined, group);
 

@@ -8,6 +8,7 @@ import com.softwaremagico.tm.character.equipment.armours.Armour;
 import com.softwaremagico.tm.character.equipment.armours.ArmourFactory;
 import com.softwaremagico.tm.character.equipment.weapons.Weapon;
 import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
+import com.softwaremagico.tm.character.factions.FactionsFactory;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.file.PathManager;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
@@ -94,6 +95,15 @@ public class NpcTests {
                 .contains(CombatPreferences.BELLIGERENT));
         Assert.assertEquals(NpcFactory.getInstance().getElement("infantry", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)
                 .getCharacteristicMinimumValues(CharacteristicName.DEXTERITY).getValue(), 6);
+    }
+
+    @Test
+    public void checkFaction() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
+        final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
+                NpcFactory.getInstance().getElement("peasant", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+        randomizeCharacter.createCharacter();
+        Assert.assertEquals(characterPlayer.getFaction(), FactionsFactory.getInstance().getElement("noFaction", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
     }
 
     @Test

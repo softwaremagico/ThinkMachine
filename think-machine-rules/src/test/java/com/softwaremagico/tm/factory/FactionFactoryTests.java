@@ -37,7 +37,7 @@ import org.testng.annotations.Test;
 
 @Test(groups = {"factionsFactory"})
 public class FactionFactoryTests {
-    private static final int DEFINED_FACTIONS = 31;
+    private static final int DEFINED_FACTIONS = 33;
     private static final int DEFINED_MALE_NAMES = 103;
     private static final int DEFINED_FEMALE_NAMES = 100;
     private static final int DEFINED_SURNAMES = 125;
@@ -74,14 +74,6 @@ public class FactionFactoryTests {
                 PathManager.DEFAULT_MODULE_FOLDER);
         Assert.assertTrue(vorox.getBenefices().contains(AvailableBeneficeFactory.getInstance().getElement("noOccult",
                 LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)));
-    }
-
-    @Test
-    public void readAfflictionsWithRank() throws InvalidXmlElementException {
-        final Faction freeMen = FactionsFactory.getInstance().getElement("freeMen", LANGUAGE,
-                PathManager.DEFAULT_MODULE_FOLDER);
-        Assert.assertTrue(freeMen.getBenefices().contains(AvailableBeneficeFactory.getInstance()
-                .getElement("darkSecret_3", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)));
     }
 
     @Test
