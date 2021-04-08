@@ -24,23 +24,25 @@
                     Edward, Vincent, Richard, Christopher, Geoffrey, Robert, William, Chester, Phipps, Josephus, James,
                     Shed, Anderson, Percy, Calvin, Dominic, Wallace, Xavier, Oliver, Mark, Ethan, Alexander, Amos,
                     Klaes, Anderson, Russell, Philip, Matthew, Anthony, Steven, Brian, Edward, Samuel, Dennis, Adam,
-                    Harold, Roger, Arthur, Ralph, Davion, Alistair, Terrance, Marcellus, Henrik, Ariel, Boden, Hausen, Harru
-		    Aarik, Adler, Benton, Blake, Brandt, Cayden, Clive, Conrad, Daemon, Devan, Dustin, Ezra, Finn, Gavin, Garret
-		    Hal, Hudson, Keane, Kilian, Kirk, Leighton, Logan, Maxwell, Morgan, Nathaniel, Osian, Pierce, Reese, Trey,
-		    Warren, Wesley
+                    Harold, Roger, Arthur, Ralph, Davion, Alistair, Terrance, Marcellus, Henrik, Ariel, Boden, Hausen,
+                    Harru, Aarik, Adler, Benton, Blake, Brandt, Cayden, Clive, Conrad, Daemon, Devan, Dustin, Ezra,
+                    Finn, Gavin, Garret, Hal, Hudson, Keane, Kilian, Kirk, Leighton, Logan, Maxwell, Morgan, Nathaniel,
+                    Osian, Pierce, Reese, Trey, Dean, Warren, Wesley, Rizwan, Justin
                 </male>
                 <female>Elizabeth, Amelia, Emily, Isabella, Sophie, Lilym, Catherine, Anne, Mary, Victoria, Fiona,
                     Electra, Elle, Eli, Orisha, Ross, Vicky, Margaret, Samantha, Bethany, Elizabeth, Lauren, Tracy,
                     Charlotte, Jennifer, Isabella, Kayla, Amber, Denise, Janice, Kathryn, Jacqueline, Martha, Megan,
-                    Kelly, Diane, Janet, Ruth, Emma, Nicole, Rebecca, Sarah, Ariel, Arlette, Beverly, Brittania, Bette, Carrie
-		    Celine, Cleo, Delphina, Deirdre, Eartha, Edra, Eirena, Flaire, Gwenhwyfar, Harriet, Hester, Ivy, Jolie, Kara
-		    Keira, Leah, Lucienne, Odella, Nidia, Queenie, Paige, Stasia, Trinity, Teagan
+                    Kelly, Diane, Janet, Ruth, Emma, Nicole, Rebecca, Sarah, Ariel, Arlette, Beverly, Brittania, Bette,
+                    Carrie Celine, Cleo, Delphina, Deirdre, Eartha, Edra, Eirena, Flaire, Gwenhwyfar, Harriet, Hester,
+                    Ivy, Jolie, Kara Keira, Leah, Lucienne, Odella, Nidia, Queenie, Paige, Stasia, Trinity, Teagan,
+                    Adele, Lisa, Hannah
                 </female>
             </names>
             <surnames>Hawkwood, Dresden, Norfolk, Walsingham, Leicester, Burghley, Tudor, Derby, Ballard, Harewood,
                 Lancasters, Koln, Hapsburg, Adamse, Plantagenet, Dawes, Fenris, Gesar, Gaelgran, Nimitz, Jervis, Cook,
                 Drake, Miller, Holden, Garvey, Edelweis, Smith, Jones, Williams, Taylor, Davies, Wilson, Evans, Murphy,
-                O'Kelly, O'Sullivan, O'Brien, Byrne, O'Ryan, O'Connor, Morton, Drummer, Dawes, Garyson
+                O'Kelly, O'Sullivan, O'Brien, Byrne, O'Ryan, O'Connor, Morton, Drummer, Dawes, Garyson, Gibb, Virk,
+                Spalding, Partridge, Schafer, Kreger, Rowan
             </surnames>
         </random>
     </hawkwood>
@@ -64,17 +66,24 @@
             <names>
                 <male>Anatoly, Zach, Mordecai, Misha, Vaughn, Lev, Oleg, Yunek, Luka, Aidan, Gregory, Vasily, Aleksei,
                     Rodion, Grigory, Gennadi, Evgeny, Pyotr, Vladimir, Nikitin, Dmitri, Nikoli, Alun, Zaretsky, Guillot,
-                    Triquet, Gregor, Alun, Igor, Ilya, Vladyslav, Denys, Dmytro, Maksym, Bogdan, Maksym, Ladislao
+                    Triquet, Gregor, Alun, Igor, Ilya, Vladyslav, Denys, Dmytro, Maksym, Bogdan, Maksym, Ladislao,
+                    Nikola, Milutin, Igor, Bojan, Rados, Dejan, Branko, Dejan, Nemanja, Milan, Damir, Nenad, Boriboje,
+                    Vladan, Boris, Dorde, Aleksandar, Chad, Dane, Lazar, Sasha, Feliks
                 </male>
                 <female>Tatyana, Tanya, Lena, Natalia, Yana, Alla, Dinara, Nastasia, Lubov, Jekaterina, Tashia,
                     Annushka, Olga, Lada, Anichka, Alina, Katiusha, Catriona, Anisia, Nadia, Nydia, Nanya, Lucretia,
-                    Yulia, Sigourney
+                    Yulia, Sigourney, Tiana, Milica, Hana, Ivana, Natasa, Anja, Sonja, Slavisa, Jovana, Borjana,
+                    Sladana, Dusica, Olga, Corinne, Nevena, Mirjana, Elizaveta, Alena, Zoya
                 </female>
             </names>
             <surnames>Decados, Negin, Lensky, Korshunov, Volovodov, Larina, Petrovitch, Volkonsky, Malevik, Romanov,
                 Vladislav, Ivanoviche, Aleksandrov, Shtina, Sfilli, Slava, Sharm, Bogakov, Czerny, Gurov, Innokenti,
                 Valushnya, Krusczek, Knyazev, Kuzmenko, Bule, Reznichenko, Kamliuk, Dudak, Pomazan, Solomashenko,
-                Chmutov, Korkishko, Maslyukov
+                Chmutov, Korkishko, Maslyukov, Devlin, Upcheva, Jovanovic, Dordevic, Vrzik, Dapcevik, Bestic, Sunter,
+                Kosovic, Vasic, Ivic, Vucic, Dordevic, Slepcevic, Plazinic, Maksimovic, Ceko, Ivanovic, Mihajlovic,
+                Nikolic, Komatina, Vidic, Bardic, Aleksic, Santrac, Platisa, Vukadinovic, Veselinovic, Vuksanovic,
+                Saletovic, Midzoski, Jankovic, Momcilovic, Todorovic, Sebez, Stamenkovic, Kosaric, Letic, Perlic, Protic,
+                Perisc, Spasic, Gvozdenvic, Jankovic, Vlaisavljevic, Pavlov, Vinogradova, Volkov, Bognadov
             </surnames>
         </random>
     </decados>
@@ -107,8 +116,8 @@
                     Pascasio, Pilaro, Pomposo, Prudencio, Raimundo, Rufino, Ruperto, Sandalio, Segismundo, Serapio,
                     Severo, Seveso, Sisebuto, Toribicio, Trifón, Tristán, Tubal, Ubaldo, Urko, Valeriano, Werino,
                     Zacarías, Zenón, Marco, Sigmundo, Sigfrido, Manrique, Baudilio, Avelino, Calixto, Custodio, Donaldo,
-                    Danilo, Alessio, Amador, Ángelo, Arcadio, Ares, Casio, Ceclilio, Cornelio, Dacio, Elio, Fabio, Flavio, Lucio, Máximo
-		    Patricio, Prisco, Romeo, Valeriano
+                    Danilo, Alessio, Amador, Ángelo, Arcadio, Ares, Casio, Ceclilio, Cornelio, Dacio, Elio, Fabio,
+                    Flavio, Lucio, Máximo, Patricio, Prisco, Romeo, Valeriano
                 </male>
                 <female>Rosaria, Ligeia, Roberta, Octavia, Daniela, Helena, Aldagracia, Zoe, Pandora, Dara, Daza, Naira,
                     Alba, Aniseta, Arcadia, Arminda, Artemia, Aurea, Brigida, Bartola, Bella, Cándida, Ciriaca, Casilda,
@@ -120,9 +129,9 @@
                     Nicanora, Nigia, Ofelia, Octaviana, Ogaria, Oliva, Olivia, Pánfila, Peregrina, Petrona, Policarpa,
                     Polonia, Primitiva, Prudencia, Refugia, Restituta, Romidia, Serafina, Sinesia, Sinforosa, Sesebuta,
                     Tecla, Teodolina, Tiburcia, Trinidad, Uberlinda, Ulpiana, Vitalia, Zenobia, Zoila, Clarissa, Camina,
-                    Juliette, Matilda, Ambrosia, Antolina, Arundina, Basilisa, Cayetana, Calista, Donora, Dosinda, Adriana,
-		    Aracelis, Celia, Decia, Desideria, Diana, Estela, Fabia, Gala, Justina, Lilia, Loreto, Maira, Paulina, Severina,
-		    Sira, Valeria
+                    Juliette, Matilda, Ambrosia, Antolina, Arundina, Basilisa, Cayetana, Calista, Donora, Dosinda,
+                    Adriana, Aracelis, Celia, Decia, Desideria, Diana, Estela, Fabia, Gala, Justina, Lilia, Loreto,
+                    Maira, Paulina, Severina, Sira, Valeria
                 </female>
             </names>
             <surnames>Hazat, Lafayette, Bursandra, Peñano, Iturbi, Mariana, Justus, Castenda, Leon, Rolan, Escovedo,
@@ -135,7 +144,7 @@
                 Vega, Salazar, Camacho, Varela, Vargas, Velez, Quintero, Rodríguez, Saucedo, Rivera, Castro, Cervantes,
                 Ciarfalio, Jovellanos, Miranda, Navia, Riego, Vega, Ayamonte, Cenete, Comares, Medina, Quesada, Torres,
                 Alba, Lara, Castro, Cifuentes, Calderón, Villegas, Medinaceli, Miranda, Osuna, Valverde, Pizarro,
-                Feijóo, Silvela, Robles, Santalla, Trénor, Balboa, Bazán, Lezo, Doria
+                Feijóo, Silvela, Robles, Santalla, Trénor, Balboa, Bazán, Lezo, Doria, Masciale
             </surnames>
         </random>
     </hazat>
