@@ -156,4 +156,12 @@ public class CombatStylesFactoryTests {
         Assert.assertEquals(RaceFactory.getInstance().getElement("vorox", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER),
                 graa.getRestrictedRaces().iterator().next());
     }
+
+    @Test
+    public void checkRestrictedRToCharacter() throws InvalidXmlElementException {
+        final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        characterPlayer.setRace(RaceFactory.getInstance().getElement("human", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+        Assert.assertFalse(CombatStyleFactory.getInstance().getElement("graa", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)
+                .canUseCombatStyle(characterPlayer));
+    }
 }

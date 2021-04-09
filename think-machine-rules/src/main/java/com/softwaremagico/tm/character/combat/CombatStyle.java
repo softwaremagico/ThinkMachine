@@ -86,7 +86,7 @@ public class CombatStyle extends Element<CombatStyle> {
     }
 
     public boolean isAvailable(CharacterPlayer characterPlayer) {
-        return (characterPlayer.getRace() != null && !getRestrictedRaces().contains(characterPlayer.getRace()));
+        return getRestrictedRaces().isEmpty() || (characterPlayer.getRace() != null && getRestrictedRaces().contains(characterPlayer.getRace()));
     }
 
     public void addCombatAction(CombatAction combatAction) {
