@@ -24,7 +24,6 @@ package com.softwaremagico.tm.export.pdf;
  * #L%
  */
 
-import com.itextpdf.text.DocumentException;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.Gender;
@@ -39,7 +38,6 @@ import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.creation.CostCalculator;
 import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
 import com.softwaremagico.tm.character.cybernetics.*;
-import com.softwaremagico.tm.character.equipment.DamageType;
 import com.softwaremagico.tm.character.equipment.armours.Armour;
 import com.softwaremagico.tm.character.equipment.shields.ShieldFactory;
 import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
@@ -64,8 +62,6 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import java.io.File;
-import java.io.IOException;
-import java.net.MalformedURLException;
 import java.util.HashSet;
 
 @Test(groups = {"customCharacterGeneration"})
@@ -86,8 +82,7 @@ public class CustomCharacters {
     }
 
     @Test
-    public void createPaolaCharacter() throws MalformedURLException, DocumentException, IOException,
-            InvalidXmlElementException, TooManyBlessingsException, TooManyCyberneticDevicesException,
+    public void createPaolaCharacter() throws InvalidXmlElementException, TooManyBlessingsException, TooManyCyberneticDevicesException,
             RequiredCyberneticDevicesException, BeneficeAlreadyAddedException, BlessingAlreadyAddedException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.getInfo().addName(new Name("#5", player.getLanguage(), player.getModuleName(), Gender.FEMALE, null));
@@ -201,8 +196,7 @@ public class CustomCharacters {
 
     @Test
     public void characterAnaCharacter()
-            throws MalformedURLException, DocumentException, IOException, InvalidXmlElementException,
-            TooManyBlessingsException, BeneficeAlreadyAddedException, BlessingAlreadyAddedException {
+            throws InvalidXmlElementException, TooManyBlessingsException, BeneficeAlreadyAddedException, BlessingAlreadyAddedException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.getInfo().addName(new Name("Arya", player.getLanguage(), player.getModuleName(), Gender.FEMALE, null));
         player.getInfo().setSurname(new Surname("Hawkwood", player.getLanguage(), player.getModuleName(), null));
@@ -288,8 +282,7 @@ public class CustomCharacters {
 
     @Test
     public void createCarlosCharacter()
-            throws MalformedURLException, DocumentException, IOException, InvalidXmlElementException,
-            TooManyBlessingsException, BeneficeAlreadyAddedException, BlessingAlreadyAddedException {
+            throws InvalidXmlElementException, TooManyBlessingsException, BeneficeAlreadyAddedException, BlessingAlreadyAddedException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.getInfo().addName(new Name("Carlos", player.getLanguage(), player.getModuleName(), Gender.MALE, null));
         player.getInfo().setPlayer("Carlos");
@@ -391,8 +384,7 @@ public class CustomCharacters {
 
     @Test
     public void createNoeliaCharacer()
-            throws MalformedURLException, DocumentException, IOException, InvalidXmlElementException,
-            TooManyBlessingsException, BeneficeAlreadyAddedException, BlessingAlreadyAddedException {
+            throws InvalidXmlElementException, TooManyBlessingsException, BeneficeAlreadyAddedException, BlessingAlreadyAddedException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.getInfo().addName(new Name("Noelia", player.getLanguage(), player.getModuleName(), Gender.FEMALE, null));
         player.getInfo().setPlayer("Noelia");
@@ -491,8 +483,7 @@ public class CustomCharacters {
     }
 
     @Test
-    public void createGolemCharacer() throws MalformedURLException, DocumentException, IOException,
-            InvalidXmlElementException, TooManyBlessingsException, BlessingAlreadyAddedException {
+    public void createGolemCharacer() throws InvalidXmlElementException, TooManyBlessingsException, BlessingAlreadyAddedException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.getInfo().setPlayer("PNJ");
         player.getInfo().addName(new Name("A", player.getLanguage(), player.getModuleName(), Gender.FEMALE, null));
@@ -550,7 +541,7 @@ public class CustomCharacters {
                 BlessingFactory.getInstance().getElement("righteous", player.getLanguage(), player.getModuleName()));
 
         player.setArmour(new Armour("skin", "Piel", null, player.getLanguage(), player.getModuleName(), 5, 2,
-                new HashSet<DamageType>(), 0));
+                new HashSet<>(), 0));
 
         LanguagePool.clearCache();
         final CharacterSheet sheet = new CharacterSheet(player);
