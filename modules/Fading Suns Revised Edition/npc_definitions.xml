@@ -654,6 +654,88 @@
         <weapons>typicalAutoRifle</weapons>
         <armours>leatherJerkin</armours>
     </freedomFighter>
+    <pilot>
+        <name>
+            <en>Pilot</en>
+            <es>Piloto</es>
+        </name>
+        <group>army</group>
+        <faction>minorFaction</faction>
+        <preferences>SpecializationPreferences.SPECIALIZED, StatusPreferences.LOW, TechnologicalPreferences.FUTURIST
+        </preferences>
+        <characteristicsMinimumValues>
+            <dexterity>6</dexterity>
+            <wits>6</wits>
+            <tech>6</tech>
+            <perception>6</perception>
+        </characteristicsMinimumValues>
+        <requiredSkills>
+            <skill>
+                <id>aircraft</id>
+            </skill>
+            <skill>
+                <id>thinkMachine</id>
+            </skill>
+            <skill>
+                <id>artillery</id>
+            </skill>
+        </requiredSkills>
+        <suggestedSkills>
+            <skill>
+                <id>planetaryLore</id>
+            </skill>
+        </suggestedSkills>
+        <weapons>typicalMediumAutofeed, knife</weapons>
+        <armours>leatherJerkin</armours>
+    </pilot>
+    <marine>
+        <name>
+            <en>Marine</en>
+            <es>Marine</es>
+        </name>
+        <group>army</group>
+        <faction>minorFaction</faction>
+        <preferences>CombatPreferences.BELLIGERENT, SkillGroupPreferences.COMBAT, CharacteristicsPreferences.BODY,
+            SpecializationPreferences.VERY_SPECIALIZED, TechnologicalPreferences.SPACE_CITIZEN,
+            WeaponsPreferences.HIGH, CombatActionsPreferences.HIGH
+        </preferences>
+        <characteristicsMinimumValues>
+            <strength>6</strength>
+            <dexterity>6</dexterity>
+            <endurance>6</endurance>
+            <perception>6</perception>
+        </characteristicsMinimumValues>
+        <requiredSkills>
+            <skill>
+                <id>fight</id>
+            </skill>
+            <skill>
+                <id>melee</id>
+            </skill>
+            <skill>
+                <id>observe</id>
+            </skill>
+            <skill>
+                <id>slugGuns</id>
+            </skill>
+            <skill>
+                <id>vigor</id>
+            </skill>
+            <skill>
+                <id>athletics</id>
+            </skill>
+        </requiredSkills>
+        <suggestedSkills>
+            <skill>
+                <id>demolitions</id>
+            </skill>
+            <skill>
+                <id>warfare</id>
+            </skill>
+        </suggestedSkills>
+        <weapons>typicalMediumAutofeed, knife</weapons>
+        <armours>leatherJerkin</armours>
+    </marine>
     <slayer>
         <name>
             <en>Slayer</en>

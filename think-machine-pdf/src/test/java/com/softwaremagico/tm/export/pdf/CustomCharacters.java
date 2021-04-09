@@ -362,7 +362,7 @@ public class CustomCharacters {
 
         player.addWeapon(
                 WeaponFactory.getInstance().getElement("typicalShotgun", player.getLanguage(), player.getModuleName()));
-        player.addWeapon(WeaponFactory.getInstance().getElement("typicalMed.Autofeed", LANGUAGE,
+        player.addWeapon(WeaponFactory.getInstance().getElement("typicalMediumAutofeed", LANGUAGE,
                 PathManager.DEFAULT_MODULE_FOLDER));
 
         LanguagePool.clearCache();

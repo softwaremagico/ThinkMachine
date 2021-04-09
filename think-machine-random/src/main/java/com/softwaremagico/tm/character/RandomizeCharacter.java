@@ -151,10 +151,20 @@ public class RandomizeCharacter {
             preferences.add(SpecializationPreferences.getDefaultOption());
         }
 
+        final CombatActionsPreferences combatActionsPreferences = CombatActionsPreferences.getSelected(preferences);
+        if (combatActionsPreferences == null) {
+            preferences.add(CombatActionsPreferences.getDefaultOption());
+        }
+
         // Low traits by default.
         final TraitCostPreferences traitCostPreferences = TraitCostPreferences.getSelected(preferences);
-        if (traitCostPreferences == null) {
-            preferences.add(TraitCostPreferences.getDefaultOption());
+        if (traitCostPreferences == null || traitCostPreferences == TraitCostPreferences.LOW) {
+            if (combatActionsPreferences != null) {
+                preferences.remove(TraitCostPreferences.LOW);
+                preferences.add(TraitCostPreferences.GOOD);
+            } else {
+                preferences.add(TraitCostPreferences.getDefaultOption());
+            }
         }
 
         // Weapons, armors and shield depending on combatPreferences if not

@@ -29,6 +29,12 @@ public class IncompatibleBeneficeException extends InvalidBeneficeException {
     private final AvailableBenefice newBenefice;
     private final AvailableBenefice incompatibleBenefice;
 
+    public IncompatibleBeneficeException(String message, AvailableBenefice newBenefice) {
+        super(message);
+        this.newBenefice = newBenefice;
+        this.incompatibleBenefice = null;
+    }
+
     public IncompatibleBeneficeException(String message, AvailableBenefice newBenefice, AvailableBenefice incompatibleBenefice) {
         super(message);
         this.newBenefice = newBenefice;

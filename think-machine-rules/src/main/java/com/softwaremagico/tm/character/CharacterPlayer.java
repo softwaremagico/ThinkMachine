@@ -499,6 +499,9 @@ public class CharacterPlayer {
         if (benefice.getBeneficeDefinition().getGroup() == BeneficeGroup.RESTRICTED) {
             throw new InvalidBeneficeException("Benefice '" + benefice + "' is restricted and cannot be added.");
         }
+        if (benefice.getBeneficeDefinition().getGroup() == BeneficeGroup.FIGHTING && !canUseCombatStyle(benefice.getBeneficeDefinition())) {
+            throw new IncompatibleBeneficeException("User has no skills or race for benefice '" + benefice + " '.", benefice);
+        }
         //Check if it is incompatible with others.
         for (final AvailableBenefice existingBenefice : benefices) {
             if (benefice.getBeneficeDefinition().getIncompatibleWith().contains(existingBenefice.getId())) {
@@ -553,6 +556,14 @@ public class CharacterPlayer {
      */
     public List<AvailableBenefice> getSelectedBenefices() {
         return benefices;
+    }
+
+    public List<AvailableBenefice> getSelectedBenefices(BeneficeGroup beneficeGroup) {
+        if (benefices == null) {
+            return new ArrayList<>();
+        }
+        return benefices.stream().filter(availableBenefice -> availableBenefice.getBeneficeDefinition().getGroup() == beneficeGroup)
+                .collect(Collectors.toList());
     }
 
     /**
@@ -886,12 +897,28 @@ public class CharacterPlayer {
         this.shield = shield;
     }
 
-    public List<CombatStyle> getMeleeCombatStyles() throws InvalidXmlElementException {
+    public CombatStyle getCombatStyle(BeneficeDefinition beneficeDefinition) {
+        try {
+            return CombatStyleFactory.getInstance().getElement(beneficeDefinition.getId(),
+                    getLanguage(), getModuleName());
+        } catch (InvalidXmlElementException e) {
+            return null;
+        }
+    }
+
+    public boolean canUseCombatStyle(BeneficeDefinition beneficeDefinition) {
+        final CombatStyle combatStyle = getCombatStyle(beneficeDefinition);
+        if (combatStyle == null) {
+            return false;
+        }
+        return combatStyle.canUseCombatStyle(this);
+    }
+
+    public List<CombatStyle> getMeleeCombatStyles() {
         final List<CombatStyle> meleeCombatActions = new ArrayList<>();
         for (final AvailableBenefice beneficeDefinition : getAllBenefices()) {
             if (beneficeDefinition.getBeneficeDefinition().getGroup() == BeneficeGroup.FIGHTING) {
-                final CombatStyle combatStyle = CombatStyleFactory.getInstance().getElement(beneficeDefinition.getId(),
-                        getLanguage(), getModuleName());
+                final CombatStyle combatStyle = getCombatStyle(beneficeDefinition.getBeneficeDefinition());
                 if (combatStyle.getGroup() == CombatStyleGroup.MELEE
                         || combatStyle.getGroup() == CombatStyleGroup.FIGHT) {
                     meleeCombatActions.add(combatStyle);

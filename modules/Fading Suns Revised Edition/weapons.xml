@@ -2905,7 +2905,7 @@
         <size>S</size>
         <cost>200</cost>
     </nerewPeacetrunk>
-    <typicalMed.Autofeed>
+    <typicalMediumAutofeed>
         <name>
             <en>Typical Med. Autofeed (.40)</en>
             <es>Autorrecarga Mediana Típica</es>
@@ -2940,7 +2940,7 @@
         <random>
             <probabilityMultiplier>10</probabilityMultiplier>
         </random>
-    </typicalMed.Autofeed>
+    </typicalMediumAutofeed>
     <immanVorton>
         <name>
             <en>Imman Vorton (.40)</en>

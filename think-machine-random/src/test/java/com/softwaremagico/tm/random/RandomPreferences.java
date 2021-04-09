@@ -24,7 +24,15 @@ package com.softwaremagico.tm.random;
  * #L%
  */
 
+import com.softwaremagico.tm.InvalidXmlElementException;
+import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.character.RandomizeCharacter;
+import com.softwaremagico.tm.character.benefices.BeneficeGroup;
+import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
+import com.softwaremagico.tm.file.PathManager;
+import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.CashPreferences;
+import com.softwaremagico.tm.random.selectors.CombatActionsPreferences;
 import com.softwaremagico.tm.random.selectors.IPsiPreference;
 import com.softwaremagico.tm.random.selectors.RandomPreferenceUtils;
 import org.testng.Assert;
@@ -51,6 +59,17 @@ public class RandomPreferences {
         Assert.assertEquals(CashPreferences.get(1800f), CashPreferences.GOOD);
         Assert.assertEquals(CashPreferences.get(2800f), CashPreferences.HIGH);
         Assert.assertEquals(CashPreferences.get(5800f), CashPreferences.VERY_HIGH);
+    }
+
+    @Test
+    public void checkCombatStylesRequirements() throws InvalidRandomElementSelectedException, InvalidXmlElementException {
+        final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0,
+                CombatActionsPreferences.HIGH);
+        characterPlayer.setSkillRank(AvailableSkillsFactory.getInstance().getElement("melee", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER), 8);
+        characterPlayer.setSkillRank(AvailableSkillsFactory.getInstance().getElement("fight", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER), 8);
+        randomizeCharacter.createCharacter();
+        Assert.assertFalse(characterPlayer.getSelectedBenefices(BeneficeGroup.FIGHTING).isEmpty());
     }
 
 

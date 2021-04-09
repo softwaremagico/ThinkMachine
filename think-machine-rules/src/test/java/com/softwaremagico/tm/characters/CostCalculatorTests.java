@@ -311,14 +311,10 @@ public class CostCalculatorTests {
                 player.getModuleName()));
         Assert.assertEquals(costCalculator.getCurrentTraitsPoints(), 10);
         Assert.assertEquals(costCalculator.getCurrentTraitsExtraPoints(), 5);
-        player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("pistola", player.getLanguage(),
+        player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("advisor", player.getLanguage(),
                 player.getModuleName()));
         Assert.assertEquals(costCalculator.getCurrentTraitsPoints(), 10);
         Assert.assertEquals(costCalculator.getCurrentTraitsExtraPoints(), 10);
-        player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("shaidan", player.getLanguage(),
-                player.getModuleName()));
-        Assert.assertEquals(costCalculator.getCurrentTraitsPoints(), 10);
-        Assert.assertEquals(costCalculator.getCurrentTraitsExtraPoints(), 15);
     }
 
     @Test

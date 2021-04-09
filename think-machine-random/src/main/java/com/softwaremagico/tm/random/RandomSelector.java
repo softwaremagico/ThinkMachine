@@ -80,7 +80,7 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
         this.elementWithRandomElements = elementWithRandomElements;
         updateWeights();
         assignMandatoryValues(mandatoryValues);
-        assignMandatories();
+        assignMandatory();
     }
 
     protected void updateWeights() throws InvalidXmlElementException {
@@ -133,8 +133,10 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
     protected abstract void assignIfMandatory(Element element)
             throws InvalidXmlElementException, ImpossibleToAssignMandatoryElementException;
 
-    private void assignMandatories() throws InvalidXmlElementException {
-        for (final Element element : getAllElements()) {
+    private void assignMandatory() throws InvalidXmlElementException {
+        final List<Element> shuffledList = new ArrayList<>(getAllElements());
+        Collections.shuffle(shuffledList);
+        for (final Element element : shuffledList) {
             try {
                 assignIfMandatory(element);
             } catch (ImpossibleToAssignMandatoryElementException e) {

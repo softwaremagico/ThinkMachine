@@ -29,10 +29,10 @@ import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.combat.CombatStyle;
 import com.softwaremagico.tm.character.combat.CombatStyleFactory;
+import com.softwaremagico.tm.character.races.RaceFactory;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
-import com.softwaremagico.tm.character.skills.InvalidSkillException;
 import com.softwaremagico.tm.file.PathManager;
-import junit.framework.Assert;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 @Test(groups = {"combatStyleFactory"})
@@ -89,7 +89,7 @@ public class CombatStylesFactoryTests {
     }
 
     @Test
-    public void checkSkillRestrictions() throws InvalidSkillException, InvalidXmlElementException {
+    public void checkSkillRestrictions() throws InvalidXmlElementException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         characterPlayer.setSkillRank(
                 AvailableSkillsFactory.getInstance().getElement("melee", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER),
@@ -105,7 +105,7 @@ public class CombatStylesFactoryTests {
     }
 
     @Test
-    public void checkOptionalSkillRestrictions() throws InvalidSkillException, InvalidXmlElementException {
+    public void checkOptionalSkillRestrictions() throws InvalidXmlElementException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         characterPlayer.setSkillRank(AvailableSkillsFactory.getInstance().getElement("slugGuns", LANGUAGE,
                 PathManager.DEFAULT_MODULE_FOLDER), 6);
@@ -120,7 +120,7 @@ public class CombatStylesFactoryTests {
     }
 
     @Test
-    public void checkOptionalSkillRestrictionsAgain() throws InvalidSkillException, InvalidXmlElementException {
+    public void checkOptionalSkillRestrictionsAgain() throws InvalidXmlElementException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         characterPlayer.setSkillRank(AvailableSkillsFactory.getInstance().getElement("energyGuns", LANGUAGE,
                 PathManager.DEFAULT_MODULE_FOLDER), 6);
@@ -135,7 +135,7 @@ public class CombatStylesFactoryTests {
     }
 
     @Test
-    public void checkCharacteristicsRestrictions() throws InvalidSkillException, InvalidXmlElementException {
+    public void checkCharacteristicsRestrictions() throws InvalidXmlElementException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         characterPlayer.setSkillRank(
                 AvailableSkillsFactory.getInstance().getElement("fight", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER),
@@ -147,5 +147,13 @@ public class CombatStylesFactoryTests {
         Assert.assertTrue(mantok.getCombatAction("closePalmReachHeart").isAvailable(characterPlayer));
         Assert.assertTrue(mantok.getCombatAction("crossArmsDonTheRobe").isAvailable(characterPlayer));
         Assert.assertFalse(mantok.getCombatAction("strechSpineSpeakTheWord").isAvailable(characterPlayer));
+    }
+
+    @Test
+    public void checkRestrictedRaces() throws InvalidXmlElementException {
+        final CombatStyle graa = CombatStyleFactory.getInstance().getElement("graa", LANGUAGE,
+                PathManager.DEFAULT_MODULE_FOLDER);
+        Assert.assertEquals(RaceFactory.getInstance().getElement("vorox", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER),
+                graa.getRestrictedRaces().iterator().next());
     }
 }

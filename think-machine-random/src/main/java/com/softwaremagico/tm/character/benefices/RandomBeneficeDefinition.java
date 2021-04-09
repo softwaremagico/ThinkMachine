@@ -45,7 +45,7 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
     private static final int MAX_AFFLICTIONS = 2;
     private static final String CASH_BENEFICE_ID = "cash";
     private static final String ESCAPED_PREFIX = "escaped";
-    private Integer requiredMoney;
+    private Integer totalCombatActions;
 
     public RandomBeneficeDefinition(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences)
             throws InvalidXmlElementException {
@@ -69,6 +69,18 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
                     FreeStyleCharacterCreation.getTraitsPoints(getCharacterPlayer().getInfo().getAge())
                             - CostCalculator.getBeneficesCosts(getCharacterPlayer()));
         }
+    }
+
+    protected void assignBenefice(BeneficeDefinition benefice) throws InvalidXmlElementException {
+        final Set<AvailableBenefice> beneficeLevels = AvailableBeneficeFactory.getInstance()
+                .getAvailableBeneficesByDefinition(getCharacterPlayer().getLanguage(),
+                        getCharacterPlayer().getModuleName(), benefice);
+        if (beneficeLevels.size() != 1) {
+            throw new InvalidBeneficeException("Only benefices without multiples specializations can be use here.");
+        }
+        final AvailableBenefice availableBenefice = beneficeLevels.stream().findAny().get();
+        addBenefice(availableBenefice);
+        removeElementWeight(availableBenefice.getBeneficeDefinition());
     }
 
     protected void assignBenefice(BeneficeDefinition selectedBenefice, int maxPoints)
@@ -111,36 +123,17 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
                 }
             }
 
-            try {
-                getCharacterPlayer().addBenefice(selectedBeneficeWithLevel);
-                RandomGenerationLog.info(this.getClass().getName(),
-                        "Added benefice '{}'.", selectedBeneficeWithLevel);
-            } catch (BeneficeAlreadyAddedException e) {
-                // If level is bigger... replace it.
-                final AvailableBenefice originalBenefice = getCharacterPlayer()
-                        .getBenefice(selectedBenefice.getId());
-                if (originalBenefice.getCost() < selectedBeneficeWithLevel.getCost()) {
-                    getCharacterPlayer().removeBenefice(originalBenefice);
-                    try {
-                        getCharacterPlayer().addBenefice(selectedBeneficeWithLevel);
-                        RandomGenerationLog.info(this.getClass().getName(), "Replacing benefice '{}' with '{}'.",
-                                originalBenefice, selectedBeneficeWithLevel);
-                    } catch (BeneficeAlreadyAddedException e1) {
-                        RandomGenerationLog.errorMessage(this.getClass().getName(), e1);
-                    }
-                }
-            } catch (IncompatibleBeneficeException e) {
-                //Incompatible. Cannot be added.
-            }
-
+            addBenefice(selectedBeneficeWithLevel);
         }
         removeElementWeight(selectedBenefice);
 
-        // Only one fighting style by character.
-        if (selectedBenefice.getGroup().equals(BeneficeGroup.FIGHTING)) {
-            for (final BeneficeDefinition beneficeDefinition : BeneficeDefinitionFactory.getInstance().getBenefices(
-                    BeneficeGroup.FIGHTING, getCharacterPlayer().getLanguage(), getCharacterPlayer().getModuleName())) {
-                removeElementWeight(beneficeDefinition);
+        // Only few fighting style by character.
+        if (getCharacterPlayer().getSelectedBenefices(BeneficeGroup.FIGHTING).size() >= getTotalCombatActions()) {
+            if (selectedBenefice.getGroup().equals(BeneficeGroup.FIGHTING)) {
+                for (final BeneficeDefinition beneficeDefinition : BeneficeDefinitionFactory.getInstance().getBenefices(
+                        BeneficeGroup.FIGHTING, getCharacterPlayer().getLanguage(), getCharacterPlayer().getModuleName())) {
+                    removeElementWeight(beneficeDefinition);
+                }
             }
         }
 
@@ -152,6 +145,38 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
                 }
             }
         }
+    }
+
+    private void addBenefice(AvailableBenefice availableBenefice) throws InvalidBeneficeException {
+        try {
+            getCharacterPlayer().addBenefice(availableBenefice);
+            RandomGenerationLog.info(this.getClass().getName(),
+                    "Added benefice '{}'.", availableBenefice);
+        } catch (BeneficeAlreadyAddedException e) {
+            // If level is bigger... replace it.
+            final AvailableBenefice originalBenefice = getCharacterPlayer()
+                    .getBenefice(availableBenefice.getBeneficeDefinition().getId());
+            if (originalBenefice.getCost() < availableBenefice.getCost()) {
+                getCharacterPlayer().removeBenefice(originalBenefice);
+                try {
+                    getCharacterPlayer().addBenefice(availableBenefice);
+                    RandomGenerationLog.info(this.getClass().getName(), "Replacing benefice '{}' with '{}'.",
+                            originalBenefice, availableBenefice);
+                } catch (BeneficeAlreadyAddedException e1) {
+                    RandomGenerationLog.errorMessage(this.getClass().getName(), e1);
+                }
+            }
+        } catch (IncompatibleBeneficeException e) {
+            //Incompatible. Cannot be added.
+        }
+    }
+
+    private int getTotalCombatActions() {
+        if (totalCombatActions == null) {
+            final CombatActionsPreferences combatActionsPreferences = CombatActionsPreferences.getSelected(getPreferences());
+            totalCombatActions = combatActionsPreferences.randomGaussian();
+        }
+        return totalCombatActions;
     }
 
     @Override
@@ -201,6 +226,12 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
 
         // PNJs likes money changes.
         if (benefice.getId().equalsIgnoreCase(CASH_BENEFICE_ID)) {
+            return GOOD_PROBABILITY;
+        }
+
+        // Add extra probability to fight styles
+        final CombatActionsPreferences combatActionsPreferences = CombatActionsPreferences.getSelected(getPreferences());
+        if (benefice.getGroup() == BeneficeGroup.FIGHTING && combatActionsPreferences.minimum() > 0) {
             return GOOD_PROBABILITY;
         }
 
@@ -297,18 +328,14 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
         final List<AvailableBenefice> sortedBenefices = new ArrayList<>(beneficeLevels);
         // Sort by cost (descending). Adding if a benefice has preferences
         // (ascending).
-        Collections.sort(sortedBenefices, new Comparator<AvailableBenefice>() {
+        sortedBenefices.sort((o1, o2) -> {
+            final double o1Preferred = getRandomDefinitionBonus(o1.getRandomDefinition());
+            final double o2Preferred = getRandomDefinitionBonus(o2.getRandomDefinition());
 
-            @Override
-            public int compare(AvailableBenefice o1, AvailableBenefice o2) {
-                final double o1Preferred = getRandomDefinitionBonus(o1.getRandomDefinition());
-                final double o2Preferred = getRandomDefinitionBonus(o2.getRandomDefinition());
-
-                if ((int) (o1Preferred - o2Preferred) != 0) {
-                    return (int) (o1Preferred - o2Preferred);
-                }
-                return Integer.compare(o2.getCost(), o1.getCost());
+            if ((int) (o1Preferred - o2Preferred) != 0) {
+                return (int) (o1Preferred - o2Preferred);
             }
+            return Integer.compare(o2.getCost(), o1.getCost());
         });
         RandomGenerationLog.info(this.getClass().getName(),
                 "Available benefice levels of '{}' are '{}'.", benefice, sortedBenefices);
@@ -355,6 +382,16 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
                 RandomGenerationLog.debug(this.getClass().getName(),
                         "Searching grade '{}' of benefice '{}'.", selectedCash.maximum(), benefice);
                 assignBenefice(benefice, selectedCash.maximum());
+            }
+        }
+
+        //Some combat styles are mandatory.
+        if (benefice.getGroup() == BeneficeGroup.FIGHTING &&
+                getCharacterPlayer().getSelectedBenefices(BeneficeGroup.FIGHTING).size() < getTotalCombatActions()) {
+            try {
+                assignBenefice(benefice);
+            } catch (InvalidBeneficeException e) {
+                //Try with next.
             }
         }
     }
