@@ -30,6 +30,6 @@
 			<en>Control Skills</en>
 			<es>Habilidades de Control</es>
 		</name>
-		<affects>beastcraft, watercraft, ride, aircraft, spacecraft, landcarft</affects>
+		<affects>beastcraft, watercraft, ride, aircraft, spacecraft, landcraft</affects>
 	</controlSkills>
 </specialValues>

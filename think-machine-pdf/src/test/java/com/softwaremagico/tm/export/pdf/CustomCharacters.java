@@ -130,7 +130,7 @@ public class CustomCharacters {
                 player.getModuleName()), 1);
         player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("spacecraft", player.getLanguage(),
                 player.getModuleName()), 2);
-        player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("landcarft", player.getLanguage(),
+        player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("landcraft", player.getLanguage(),
                 player.getModuleName()), 3);
         player.setSkillRank(
                 AvailableSkillsFactory.getInstance().getElement("melee", player.getLanguage(), player.getModuleName()),
@@ -350,7 +350,7 @@ public class CustomCharacters {
                 player.getModuleName()), 3);
         player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("torture", player.getLanguage(),
                 player.getModuleName()), 3);
-        player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("landcarft", player.getLanguage(),
+        player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("landcraft", player.getLanguage(),
                 player.getModuleName()), 2);
         player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("investigation", player.getLanguage(),
                 player.getModuleName()), 3);
@@ -529,7 +529,7 @@ public class CustomCharacters {
                 player.getModuleName()), 5);
         player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("spacecraft", player.getLanguage(),
                 player.getModuleName()), 1);
-        player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("landcarft", player.getLanguage(),
+        player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("landcraft", player.getLanguage(),
                 player.getModuleName()), 3);
         player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("spacecraftOperations", LANGUAGE,
                 PathManager.DEFAULT_MODULE_FOLDER), 3);

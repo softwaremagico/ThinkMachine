@@ -36,10 +36,7 @@
         <preferences>CombatPreferences.FAIR, CharacteristicsPreferences.BODY, SpecializationPreferences.FAIR,
             StatusPreferences.NONE, TechnologicalPreferences.MEDIEVAL, WeaponsPreferences.NONE
         </preferences>
-        <suggestedSkills>
-            <skill>
-                <id>archery</id>
-            </skill>
+        <requiredSkills>
             <skill>
                 <id>beastcraft</id>
             </skill>
@@ -49,6 +46,11 @@
             </skill>
             <skill>
                 <id>survival</id>
+            </skill>
+        </requiredSkills>
+        <suggestedSkills>
+            <skill>
+                <id>archery</id>
             </skill>
             <skill>
                 <id>melee</id>
@@ -85,7 +87,7 @@
         <characteristicsMinimumValues>
             <strength>6</strength>
         </characteristicsMinimumValues>
-        <suggestedSkills>
+        <requiredSkills>
             <skill>
                 <id>slugGuns</id>
             </skill>
@@ -94,6 +96,11 @@
             </skill>
             <skill>
                 <id>fight</id>
+            </skill>
+        </requiredSkills>
+        <suggestedSkills>
+            <skill>
+                <id>gaming</id>
             </skill>
         </suggestedSkills>
     </militia>
@@ -112,7 +119,7 @@
             <endurance>6</endurance>
             <dexterity>6</dexterity>
         </characteristicsMinimumValues>
-        <suggestedSkills>
+        <requiredSkills>
             <skill>
                 <id>slugGuns</id>
             </skill>
@@ -127,6 +134,11 @@
             </skill>
             <skill>
                 <id>survival</id>
+            </skill>
+        </requiredSkills>
+        <suggestedSkills>
+            <skill>
+                <id>gaming</id>
             </skill>
         </suggestedSkills>
         <weapons>imperialRifle</weapons>
@@ -163,7 +175,7 @@
         <characteristicsMinimumValues>
             <perception>6</perception>
         </characteristicsMinimumValues>
-        <suggestedSkills>
+        <requiredSkills>
             <skill>
                 <id>slugGuns</id>
             </skill>
@@ -182,7 +194,7 @@
             <skill>
                 <id>survival</id>
             </skill>
-        </suggestedSkills>
+        </requiredSkills>
         <weapons>typicalSniperRifle</weapons>
         <armours>leatherJerkin</armours>
     </tracker>
@@ -193,6 +205,10 @@
         </name>
         <group>army</group>
         <faction>minorFaction</faction>
+        <preferences>CombatPreferences.BELLIGERENT, CharacteristicsPreferences.BODY, SkillGroupPreferences.COMBAT,
+            SpecializationPreferences.SPECIALIZED, StatusPreferences.LOW, TechnologicalPreferences.MODERN,
+            WeaponsPreferences.HIGH
+        </preferences>
         <characteristicsMinimumValues>
             <dexterity>6</dexterity>
         </characteristicsMinimumValues>
@@ -231,13 +247,17 @@
         </name>
         <group>army</group>
         <faction>minorFaction</faction>
+        <preferences>CombatPreferences.BELLIGERENT, CharacteristicsPreferences.BODY, SkillGroupPreferences.COMBAT,
+            SpecializationPreferences.SPECIALIZED, StatusPreferences.LOW, TechnologicalPreferences.MODERN,
+            WeaponsPreferences.HIGH
+        </preferences>
         <characteristicsMinimumValues>
             <dexterity>6</dexterity>
             <wits>6</wits>
         </characteristicsMinimumValues>
         <requiredSkills>
             <skill>
-                <id>landcarft</id>
+                <id>landcraft</id>
             </skill>
             <skill>
                 <id>techRedemption</id>
@@ -263,6 +283,10 @@
         </name>
         <group>army</group>
         <faction>minorFaction</faction>
+        <preferences>CombatPreferences.BELLIGERENT, CharacteristicsPreferences.BODY, SkillGroupPreferences.COMBAT,
+            SpecializationPreferences.SPECIALIZED, StatusPreferences.LOW, TechnologicalPreferences.FUTURIST,
+            WeaponsPreferences.HIGH
+        </preferences>
         <characteristicsMinimumValues>
             <dexterity>6</dexterity>
             <wits>6</wits>
@@ -292,6 +316,10 @@
         </name>
         <group>army</group>
         <faction>minorFaction</faction>
+        <preferences>CombatPreferences.BELLIGERENT, SkillGroupPreferences.COMBAT,
+            SpecializationPreferences.SPECIALIZED, StatusPreferences.LOW, TechnologicalPreferences.FUTURIST,
+            WeaponsPreferences.HIGH
+        </preferences>
         <characteristicsMinimumValues>
             <strength>6</strength>
             <tech>6</tech>
@@ -325,9 +353,14 @@
         </name>
         <group>army</group>
         <faction>minorFaction</faction>
+        <preferences>CombatPreferences.BELLIGERENT, CharacteristicsPreferences.BODY, SkillGroupPreferences.COMBAT,
+            SpecializationPreferences.SPECIALIZED, StatusPreferences.LOW, TechnologicalPreferences.MODERN,
+            WeaponsPreferences.HIGH, PsiqueLevelPreferences.FAIR
+        </preferences>
         <characteristicsMinimumValues>
             <wits>6</wits>
             <faith>6</faith>
+            <presence>5</presence>
         </characteristicsMinimumValues>
         <requiredSkills>
             <skill>
@@ -355,6 +388,10 @@
         </name>
         <group>army</group>
         <faction>minorFaction</faction>
+        <preferences>CombatPreferences.BELLIGERENT, SkillGroupPreferences.COMBAT,
+            SpecializationPreferences.SPECIALIZED, StatusPreferences.LOW, TechnologicalPreferences.MODERN,
+            WeaponsPreferences.HIGH
+        </preferences>
         <characteristicsMinimumValues>
             <strength>6</strength>
             <endurance>6</endurance>
@@ -391,6 +428,10 @@
         </name>
         <group>specialForces</group>
         <faction>minorFaction</faction>
+        <preferences>CombatPreferences.BELLIGERENT, SkillGroupPreferences.COMBAT,
+            SpecializationPreferences.SPECIALIZED, StatusPreferences.LOW, TechnologicalPreferences.MODERN,
+            WeaponsPreferences.HIGH
+        </preferences>
         <characteristicsMinimumValues>
             <dexterity>6</dexterity>
             <endurance>6</endurance>
@@ -428,6 +469,191 @@
         </suggestedSkills>
         <weapons>typicalAutoRifle</weapons>
     </rangers>
+    <cybercops>
+        <name>
+            <en>Cybercops</en>
+            <es>Cybercuerpos</es>
+        </name>
+        <group>specialForces</group>
+        <faction>minorFaction</faction>
+        <preferences>CombatPreferences.BELLIGERENT, SkillGroupPreferences.COMBAT,
+            SpecializationPreferences.SPECIALIZED, StatusPreferences.LOW, TechnologicalPreferences.SPACE_CITIZEN,
+            WeaponsPreferences.HIGH, CyberneticPointsPreferences.CYBORG, CyberneticTotalDevicesPreferences.HIGH
+        </preferences>
+        <characteristicsMinimumValues>
+            <tech>6</tech>
+            <will>6</will>
+        </characteristicsMinimumValues>
+        <requiredSkills>
+            <skill>
+                <id>energyGuns</id>
+            </skill>
+            <skill>
+                <id>melee</id>
+            </skill>
+            <skill>
+                <id>fight</id>
+            </skill>
+            <skill>
+                <id>vigor</id>
+            </skill>
+            <skill>
+                <id>techRedemption</id>
+            </skill>
+        </requiredSkills>
+        <suggestedSkills>
+            <skill>
+                <id>warfare</id>
+            </skill>
+        </suggestedSkills>
+        <weapons>typicalAutoRifle</weapons>
+    </cybercops>
+    <stigmataGarrison>
+        <name>
+            <en>The Stigmata Garrison</en>
+            <es>La Guarnición de Estigma</es>
+        </name>
+        <group>specialForces</group>
+        <faction>minorFaction</faction>
+        <preferences>CombatPreferences.BELLIGERENT, SkillGroupPreferences.COMBAT, CharacteristicsPreferences.BODY,
+            SpecializationPreferences.SPECIALIZED, StatusPreferences.LOW, TechnologicalPreferences.SPACE_CITIZEN,
+            WeaponsPreferences.HIGH
+        </preferences>
+        <characteristicsMinimumValues>
+            <strength>6</strength>
+            <dexterity>6</dexterity>
+            <endurance>6</endurance>
+            <perception>6</perception>
+        </characteristicsMinimumValues>
+        <requiredSkills>
+            <skill>
+                <id>energyGuns</id>
+            </skill>
+            <skill>
+                <id>slugGuns</id>
+            </skill>
+            <skill>
+                <id>melee</id>
+            </skill>
+            <skill>
+                <id>fight</id>
+            </skill>
+            <skill>
+                <id>observe</id>
+            </skill>
+            <skill>
+                <id>lore</id>
+                <speciality>symbiots</speciality>
+            </skill>
+        </requiredSkills>
+        <suggestedSkills>
+            <skill>
+                <id>warfare</id>
+            </skill>
+            <skill>
+                <id>landcraft</id>
+            </skill>
+            <skill>
+                <id>selfControl</id>
+            </skill>
+        </suggestedSkills>
+        <weapons>kendraDragon, soeAlembic</weapons>
+        <armours>plateMailSuitPlastic</armours>
+    </stigmataGarrison>
+    <phoenixGuard>
+        <name>
+            <en>The Phoenix Guard</en>
+            <es>La Guardia del Fénix</es>
+        </name>
+        <group>specialForces</group>
+        <faction>minorFaction</faction>
+        <preferences>CombatPreferences.BELLIGERENT, SkillGroupPreferences.COMBAT, CharacteristicsPreferences.BODY,
+            SpecializationPreferences.VERY_SPECIALIZED, TechnologicalPreferences.SPACE_CITIZEN,
+            WeaponsPreferences.HIGH
+        </preferences>
+        <characteristicsMinimumValues>
+            <strength>6</strength>
+            <dexterity>6</dexterity>
+            <endurance>6</endurance>
+            <perception>6</perception>
+        </characteristicsMinimumValues>
+        <requiredSkills>
+            <skill>
+                <id>energyGuns</id>
+            </skill>
+            <skill>
+                <id>melee</id>
+            </skill>
+            <skill>
+                <id>fight</id>
+            </skill>
+            <skill>
+                <id>observe</id>
+            </skill>
+            <skill>
+                <id>vigor</id>
+            </skill>
+            <skill>
+                <id>surival</id>
+            </skill>
+        </requiredSkills>
+        <suggestedSkills>
+            <skill>
+                <id>landcraft</id>
+            </skill>
+            <skill>
+                <id>selfControl</id>
+            </skill>
+        </suggestedSkills>
+        <weapons>soeCrucible</weapons>
+        <armours>ceramsteelExoframe</armours>
+    </phoenixGuard>
+    <freedomFighter>
+        <name>
+            <en>Freedom Fighter</en>
+            <es>Luchador por la Libertad</es>
+        </name>
+        <group>guerrilla</group>
+        <faction>minorFaction</faction>
+        <preferences>CombatPreferences.FAIR, CharacteristicsPreferences.BODY</preferences>
+        <characteristicsMinimumValues>
+            <dexterity>6</dexterity>
+            <presence>6</presence>
+        </characteristicsMinimumValues>
+        <requiredSkills>
+            <skill>
+                <id>slugGuns</id>
+            </skill>
+            <skill>
+                <id>melee</id>
+            </skill>
+            <skill>
+                <id>fight</id>
+            </skill>
+            <skill>
+                <id>observe</id>
+            </skill>
+            <skill>
+                <id>sneak</id>
+            </skill>
+            <skill>
+                <id>influence</id>
+            </skill>
+            <skill>
+                <id>planetaryLore</id>
+            </skill>
+            <skill>
+                <id>survival</id>
+            </skill>
+        </requiredSkills>
+        <suggestedSkills>
+            <skill>
+                <id>knavery</id>
+            </skill>
+        </suggestedSkills>
+        <weapons>typicalAutoRifle</weapons>
+        <armours>leatherJerkin</armours>
+    </freedomFighter>
     <slayer>
         <name>
             <en>Slayer</en>

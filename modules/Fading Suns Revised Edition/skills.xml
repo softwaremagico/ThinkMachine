@@ -305,7 +305,7 @@
 			<recommendedFactions>charioteers</recommendedFactions>
 		</random>
 	</spacecraft>
-	<landcarft>
+	<landcraft>
 		<name>
 			<en>Landcraft</en>
 			<es>Controlar Vehíc. Terrestre</es>
@@ -314,7 +314,7 @@
 		<random>
 			<minTechLevel>3</minTechLevel>
 		</random>
-	</landcarft>
+	</landcraft>
 	<arts>
 		<name>
 			<en>Arts</en>
@@ -539,6 +539,13 @@
 					<generalProbability>low</generalProbability>
 				</random>
 			</poisons>
+			<symbiots>
+				<en>Symbiots</en>
+				<es>Simbiontes</es>
+				<random>
+					<generalProbability>minimum</generalProbability>
+				</random>
+			</symbiots>
 		</specializations>
 		<numberToShow>4</numberToShow>
 	</lore>

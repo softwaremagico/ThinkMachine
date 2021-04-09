@@ -51,7 +51,7 @@ public class SkillFactoryTests {
 
     @Test
     public void readSkills() throws InvalidXmlElementException {
-        Assert.assertEquals(NATURAL_SKILLS, SkillsDefinitionsFactory.getInstance().getNaturalSkills(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).size());
-        Assert.assertEquals(LEARNED_SKILLS, SkillsDefinitionsFactory.getInstance().getLearnedSkills(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).size());
+        Assert.assertEquals(SkillsDefinitionsFactory.getInstance().getNaturalSkills(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).size(), NATURAL_SKILLS);
+        Assert.assertEquals(SkillsDefinitionsFactory.getInstance().getLearnedSkills(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).size(), LEARNED_SKILLS);
     }
 }
