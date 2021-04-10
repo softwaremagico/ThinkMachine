@@ -439,4 +439,23 @@
         <group>specials</group>
         <preferences>PsiquePathLevelPreferences.ANY, PsiqueLevelPreferences.ANY</preferences>
     </occultist>
+    <martialArtist>
+        <name>
+            <en>Martial Artist</en>
+            <es>Artista Marcial</es>
+        </name>
+        <group>occupation</group>
+        <preferences>CombatPreferences.BELLIGERENT, CharacteristicsPreferences.BODY,
+            SpecializationPreferences.VERY_SPECIALIZED, WeaponsPreferences.MELEE, CombatActionsGroupPreferences.FIGHT,
+            CombatActionsPreferences.HIGH
+        </preferences>
+        <requiredSkills>
+            <skill>
+                <id>fight</id>
+            </skill>
+            <skill>
+                <id>melee</id>
+            </skill>
+        </requiredSkills>
+    </martialArtist>
 </profiles>

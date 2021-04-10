@@ -897,17 +897,8 @@ public class CharacterPlayer {
         this.shield = shield;
     }
 
-    public CombatStyle getCombatStyle(BeneficeDefinition beneficeDefinition) {
-        try {
-            return CombatStyleFactory.getInstance().getElement(beneficeDefinition.getId(),
-                    getLanguage(), getModuleName());
-        } catch (InvalidXmlElementException e) {
-            return null;
-        }
-    }
-
     public boolean canUseCombatStyle(BeneficeDefinition beneficeDefinition) {
-        final CombatStyle combatStyle = getCombatStyle(beneficeDefinition);
+        final CombatStyle combatStyle = CombatStyle.getCombatStyle(beneficeDefinition, getLanguage(), getModuleName());
         if (combatStyle == null) {
             return false;
         }
@@ -918,7 +909,7 @@ public class CharacterPlayer {
         final List<CombatStyle> meleeCombatActions = new ArrayList<>();
         for (final AvailableBenefice beneficeDefinition : getAllBenefices()) {
             if (beneficeDefinition.getBeneficeDefinition().getGroup() == BeneficeGroup.FIGHTING) {
-                final CombatStyle combatStyle = getCombatStyle(beneficeDefinition.getBeneficeDefinition());
+                final CombatStyle combatStyle = CombatStyle.getCombatStyle(beneficeDefinition.getBeneficeDefinition(), getLanguage(), getModuleName());
                 if (combatStyle.getGroup() == CombatStyleGroup.MELEE
                         || combatStyle.getGroup() == CombatStyleGroup.FIGHT) {
                     meleeCombatActions.add(combatStyle);

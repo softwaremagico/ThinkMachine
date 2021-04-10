@@ -697,7 +697,7 @@
         <faction>minorFaction</faction>
         <preferences>CombatPreferences.BELLIGERENT, SkillGroupPreferences.COMBAT, CharacteristicsPreferences.BODY,
             SpecializationPreferences.VERY_SPECIALIZED, TechnologicalPreferences.SPACE_CITIZEN,
-            WeaponsPreferences.HIGH, CombatActionsPreferences.HIGH
+            WeaponsPreferences.HIGH, CombatActionsPreferences.HIGH, CombatActionsGroupPreferences.FIGHT
         </preferences>
         <characteristicsMinimumValues>
             <strength>6</strength>

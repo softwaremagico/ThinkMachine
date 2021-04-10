@@ -30,6 +30,10 @@ public enum WeaponsPreferences implements ICharacterCreationPreference {
 
     NONE(0f, 0f),
 
+    MELEE(0.3f, 0f),
+
+    RANGED(0f, 0.3f),
+
     LOW(0.2f, 0.1f),
 
     MEDIUM(0.4f, 0.6f),

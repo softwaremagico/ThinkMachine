@@ -27,6 +27,8 @@ package com.softwaremagico.tm.character.benefices;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
+import com.softwaremagico.tm.character.combat.CombatStyle;
+import com.softwaremagico.tm.character.combat.CombatStyleGroup;
 import com.softwaremagico.tm.character.creation.CostCalculator;
 import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
 import com.softwaremagico.tm.character.equipment.armours.Armour;
@@ -37,6 +39,7 @@ import com.softwaremagico.tm.log.RandomGenerationLog;
 import com.softwaremagico.tm.random.RandomSelector;
 import com.softwaremagico.tm.random.exceptions.ImpossibleToAssignMandatoryElementException;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
+import com.softwaremagico.tm.random.exceptions.NotExistingPreferenceException;
 import com.softwaremagico.tm.random.selectors.*;
 
 import java.util.*;
@@ -179,6 +182,35 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
         return totalCombatActions;
     }
 
+    private boolean getCombatStyleGroupSelected(BeneficeDefinition benefice) throws NotExistingPreferenceException {
+        final CombatActionsGroupPreferences combatActionsGroupPreferences = CombatActionsGroupPreferences.getSelected(getPreferences());
+        if (combatActionsGroupPreferences == null) {
+            throw new NotExistingPreferenceException("No combat action group selected.");
+        }
+        final CombatStyle combatStyle = CombatStyle.getCombatStyle(benefice, getCharacterPlayer().getLanguage(),
+                getCharacterPlayer().getModuleName());
+        if (combatStyle != null) {
+            switch (combatActionsGroupPreferences) {
+                case FIGHT:
+                    if (combatStyle.getGroup() == CombatStyleGroup.FIGHT) {
+                        return true;
+                    }
+                    break;
+                case MELEE:
+                    if (combatStyle.getGroup() == CombatStyleGroup.MELEE) {
+                        return true;
+                    }
+                    break;
+                case RANGED:
+                    if (combatStyle.getGroup() == CombatStyleGroup.RANGED) {
+                        return true;
+                    }
+                    break;
+            }
+        }
+        return false;
+    }
+
     @Override
     protected Collection<BeneficeDefinition> getAllElements() throws InvalidXmlElementException {
         return BeneficeDefinitionFactory.getInstance().getElements(getCharacterPlayer().getLanguage(),
@@ -231,8 +263,15 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
 
         // Add extra probability to fight styles
         final CombatActionsPreferences combatActionsPreferences = CombatActionsPreferences.getSelected(getPreferences());
+        final CombatActionsGroupPreferences combatActionsGroupPreferences = CombatActionsGroupPreferences.getSelected(getPreferences());
         if (benefice.getGroup() == BeneficeGroup.FIGHTING && combatActionsPreferences.minimum() > 0) {
-            return GOOD_PROBABILITY;
+            try {
+                if (getCombatStyleGroupSelected(benefice)) {
+                    return VERY_GOOD_PROBABILITY;
+                }
+            } catch (NotExistingPreferenceException e) {
+                return GOOD_PROBABILITY;
+            }
         }
 
         // No faction preference selected. All benefices has the same
@@ -242,11 +281,6 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
 
     /**
      * Returns a cost for a benefice depending on the preferences of the character.
-     *
-     * @param benefice
-     * @param maxPoints
-     * @return
-     * @throws InvalidXmlElementException
      */
     private AvailableBenefice assignLevelOfBenefice(BeneficeDefinition benefice, int maxPoints)
             throws InvalidXmlElementException {
@@ -389,9 +423,12 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
         if (benefice.getGroup() == BeneficeGroup.FIGHTING &&
                 getCharacterPlayer().getSelectedBenefices(BeneficeGroup.FIGHTING).size() < getTotalCombatActions()) {
             try {
+                if (getCombatStyleGroupSelected(benefice)) {
+                    assignBenefice(benefice);
+                }
+            } catch (NotExistingPreferenceException e) {
+                //No special group selected, choose any.
                 assignBenefice(benefice);
-            } catch (InvalidBeneficeException e) {
-                //Try with next.
             }
         }
     }

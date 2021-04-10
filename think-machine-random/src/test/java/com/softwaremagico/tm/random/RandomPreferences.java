@@ -28,13 +28,12 @@ import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.RandomizeCharacter;
 import com.softwaremagico.tm.character.benefices.BeneficeGroup;
+import com.softwaremagico.tm.character.combat.CombatStyle;
+import com.softwaremagico.tm.character.combat.CombatStyleGroup;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.file.PathManager;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
-import com.softwaremagico.tm.random.selectors.CashPreferences;
-import com.softwaremagico.tm.random.selectors.CombatActionsPreferences;
-import com.softwaremagico.tm.random.selectors.IPsiPreference;
-import com.softwaremagico.tm.random.selectors.RandomPreferenceUtils;
+import com.softwaremagico.tm.random.selectors.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -70,6 +69,18 @@ public class RandomPreferences {
         characterPlayer.setSkillRank(AvailableSkillsFactory.getInstance().getElement("fight", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER), 8);
         randomizeCharacter.createCharacter();
         Assert.assertFalse(characterPlayer.getSelectedBenefices(BeneficeGroup.FIGHTING).isEmpty());
+    }
+
+    @Test
+    public void checkCombatStylesPreferences() throws InvalidRandomElementSelectedException, InvalidXmlElementException {
+        final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0,
+                CombatActionsPreferences.HIGH, CombatActionsGroupPreferences.MELEE);
+        characterPlayer.setSkillRank(AvailableSkillsFactory.getInstance().getElement("melee", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER), 8);
+        randomizeCharacter.createCharacter();
+        Assert.assertFalse(characterPlayer.getSelectedBenefices(BeneficeGroup.FIGHTING).isEmpty());
+        Assert.assertTrue(CombatStyle.getCombatStyle(characterPlayer.getSelectedBenefices(BeneficeGroup.FIGHTING).iterator().next().getBeneficeDefinition(),
+                LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).getGroup() == CombatStyleGroup.MELEE);
     }
 
 

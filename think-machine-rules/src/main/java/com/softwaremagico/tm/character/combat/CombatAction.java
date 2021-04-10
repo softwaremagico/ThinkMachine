@@ -24,13 +24,14 @@ package com.softwaremagico.tm.character.combat;
  * #L%
  */
 
-import java.util.Set;
-
 import com.softwaremagico.tm.Element;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.characteristics.CharacteristicDefinition;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.character.values.IValue;
+
+import java.util.Objects;
+import java.util.Set;
 
 public class CombatAction extends Element<CombatAction> {
     private final String goal;
@@ -82,6 +83,31 @@ public class CombatAction extends Element<CombatAction> {
             }
         }
         return true;
+    }
+
+    private boolean checkRestriction(String skillId) {
+        for (final CombatActionRequirement requirement : getRequirements()) {
+            for (final IValue restriction : requirement.getRequirements()) {
+                if (restriction instanceof AvailableSkill) {
+                    if (Objects.equals(restriction.getId(), skillId)) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    public boolean isMeleeAction() {
+        return checkRestriction("melee");
+    }
+
+    public boolean isFightAction() {
+        return checkRestriction("fight");
+    }
+
+    public boolean isShootAction() {
+        return checkRestriction("slugGuns") || checkRestriction("energyGuns");
     }
 
     @Override
