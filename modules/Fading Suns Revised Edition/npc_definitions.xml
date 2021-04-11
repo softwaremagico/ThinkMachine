@@ -659,7 +659,7 @@
             <en>Pilot</en>
             <es>Piloto</es>
         </name>
-        <group>army</group>
+        <group>airForce</group>
         <faction>minorFaction</faction>
         <preferences>SpecializationPreferences.SPECIALIZED, StatusPreferences.LOW, TechnologicalPreferences.FUTURIST
         </preferences>
@@ -688,12 +688,175 @@
         <weapons>typicalMediumAutofeed, knife</weapons>
         <armours>leatherJerkin</armours>
     </pilot>
+    <helmsman>
+        <name>
+            <en>Helmsman</en>
+            <es>Timonel</es>
+        </name>
+        <group>navy</group>
+        <faction>minorFaction</faction>
+        <preferences>SpecializationPreferences.VERY_SPECIALIZED, TechnologicalPreferences.FUTURIST</preferences>
+        <characteristicsMinimumValues>
+            <wits>6</wits>
+            <dexterity>6</dexterity>
+            <perception>6</perception>
+        </characteristicsMinimumValues>
+        <requiredSkills>
+            <skill>
+                <id>watercraft</id>
+            </skill>
+            <skill>
+                <id>planetaryLore</id>
+            </skill>
+            <skill>
+                <id>observe</id>
+            </skill>
+            <skill>
+                <id>thinkMachine</id>
+            </skill>
+            <skill>
+                <id>vigor</id>
+            </skill>
+            <skill>
+                <id>warfare</id>
+            </skill>
+        </requiredSkills>
+        <armours>leatherJerkin</armours>
+    </helmsman>
+    <frogman>
+        <name>
+            <en>Frogman</en>
+            <es>Buzo</es>
+        </name>
+        <group>navy</group>
+        <faction>minorFaction</faction>
+        <preferences>CombatPreferences.BELLIGERENT, SkillGroupPreferences.COMBAT,
+            SpecializationPreferences.VERY_SPECIALIZED, TechnologicalPreferences.FUTURIST,
+            WeaponsPreferences.HIGH, CombatActionsPreferences.HIGH, CombatActionsGroupPreferences.FIGHT
+        </preferences>
+        <characteristicsMinimumValues>
+            <wits>6</wits>
+            <dexterity>6</dexterity>
+            <endurance>6</endurance>
+            <will>6</will>
+        </characteristicsMinimumValues>
+        <requiredSkills>
+            <skill>
+                <id>sneak</id>
+            </skill>
+            <skill>
+                <id>melee</id>
+            </skill>
+            <skill>
+                <id>slugGuns</id>
+            </skill>
+            <skill>
+                <id>vigor</id>
+            </skill>
+            <skill>
+                <id>watercraft</id>
+            </skill>
+        </requiredSkills>
+        <suggestedSkills>
+            <skill>
+                <id>demolitions</id>
+            </skill>
+            <skill>
+                <id>warfare</id>
+            </skill>
+            <skill>
+                <id>selfControl</id>
+            </skill>
+            <skill>
+                <id>athletics</id>
+            </skill>
+        </suggestedSkills>
+        <weapons>cupidLongarm, knife</weapons>
+        <armours>leatherJerkin</armours>
+    </frogman>
+    <gunner>
+        <name>
+            <en>Gunner</en>
+            <es>Artillero</es>
+        </name>
+        <group>army</group>
+        <faction>minorFaction</faction>
+        <preferences>CombatPreferences.BELLIGERENT, CharacteristicsPreferences.BODY, SkillGroupPreferences.COMBAT,
+            SpecializationPreferences.SPECIALIZED, StatusPreferences.LOW, TechnologicalPreferences.FUTURIST,
+            WeaponsPreferences.HIGH
+        </preferences>
+        <characteristicsMinimumValues>
+            <tech>6</tech>
+            <dexterity>6</dexterity>
+            <perception>6</perception>
+        </characteristicsMinimumValues>
+        <requiredSkills>
+            <skill>
+                <id>techRedemption</id>
+            </skill>
+            <skill>
+                <id>artillery</id>
+            </skill>
+            <skill>
+                <id>gunnery</id>
+            </skill>
+            <skill>
+                <id>slugGuns</id>
+            </skill>
+            <skill>
+                <id>vigor</id>
+            </skill>
+        </requiredSkills>
+        <armours>leatherJerkin</armours>
+    </gunner>
+    <costGuard>
+        <name>
+            <en>Cost Guard Tradewatchmen</en>
+            <es>Guardacostas</es>
+        </name>
+        <group>navy</group>
+        <faction>minorFaction</faction>
+        <preferences>CombatPreferences.BELLIGERENT, SkillGroupPreferences.COMBAT, CharacteristicsPreferences.BODY,
+            SpecializationPreferences.VERY_SPECIALIZED, TechnologicalPreferences.SPACE_CITIZEN, WeaponsPreferences.HIGH
+        </preferences>
+        <characteristicsMinimumValues>
+            <wits>6</wits>
+            <dexterity>6</dexterity>
+            <perception>6</perception>
+        </characteristicsMinimumValues>
+        <requiredSkills>
+            <skill>
+                <id>watercraft</id>
+            </skill>
+            <skill>
+                <id>observe</id>
+            </skill>
+            <skill>
+                <id>techRedemption</id>
+            </skill>
+            <skill>
+                <id>vigor</id>
+            </skill>
+            <skill>
+                <id>fight</id>
+            </skill>
+            <skill>
+                <id>melee</id>
+            </skill>
+            <skill>
+                <id>slugGuns</id>
+            </skill>
+        </requiredSkills>
+        <suggestedBenefices>gossipNetwork</suggestedBenefices>
+        <weapons>typicalMediumAutofeed</weapons>
+        <armours>leatherJerkin</armours>
+    </costGuard>
     <marine>
         <name>
             <en>Marine</en>
             <es>Marine</es>
         </name>
-        <group>army</group>
+        <group>navy</group>
         <faction>minorFaction</faction>
         <preferences>CombatPreferences.BELLIGERENT, SkillGroupPreferences.COMBAT, CharacteristicsPreferences.BODY,
             SpecializationPreferences.VERY_SPECIALIZED, TechnologicalPreferences.SPACE_CITIZEN,
