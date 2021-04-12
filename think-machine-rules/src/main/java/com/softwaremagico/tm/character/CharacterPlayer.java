@@ -246,10 +246,12 @@ public class CharacterPlayer {
         }
 
         if (!availableSkill.getSkillDefinition().getRequiredSkills().isEmpty()) {
-            for (String requiredSkillId : availableSkill.getSkillDefinition().getRequiredSkills()) {
+            for (final String requiredSkillId : availableSkill.getSkillDefinition().getRequiredSkills()) {
                 try {
-                    if (value > getSkillAssignedRanks(AvailableSkillsFactory.getInstance().getElement(requiredSkillId, getLanguage(), getModuleName()))) {
-                        throw new InvalidRanksException("Skill '" + availableSkill + "' requires ranks on '" + availableSkill.getSkillDefinition().getRequiredSkills() + "'.");
+                    if (value > getSkillAssignedRanks(AvailableSkillsFactory.getInstance().getElement(requiredSkillId, getLanguage(),
+                            getModuleName()))) {
+                        throw new InvalidRanksException("Skill '" + availableSkill.getId() + "' requires ranks on '" +
+                                availableSkill.getSkillDefinition().getRequiredSkills() + "'.");
                     }
                 } catch (InvalidXmlElementException e) {
                     MachineLog.errorMessage(this.getClass().getName(), e);
