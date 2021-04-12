@@ -147,7 +147,7 @@
     <heavyInfantry>
         <name>
             <en>Heavy Infantry</en>
-            <es>Infantería Pesada</es>
+            <es>Especialista en Armas Pesadas</es>
         </name>
         <group>army</group>
         <faction>minorFaction</faction>
@@ -201,7 +201,7 @@
     <rider>
         <name>
             <en>Cavalry Raider</en>
-            <es>Caballería</es>
+            <es>Jinete de Caballería</es>
         </name>
         <group>army</group>
         <faction>minorFaction</faction>
@@ -243,7 +243,7 @@
     <tankDriver>
         <name>
             <en>Tank Driver</en>
-            <es>Conductor de Tanque</es>
+            <es>Piloto de Tanque</es>
         </name>
         <group>army</group>
         <faction>minorFaction</faction>
@@ -372,15 +372,54 @@
             <skill>
                 <id>influence</id>
             </skill>
-        </requiredSkills>
-        <suggestedSkills>
             <skill>
                 <id>physick</id>
             </skill>
+        </requiredSkills>
+        <suggestedSkills>
+            <skill>
+                <id>leadership</id>
+            </skill>
         </suggestedSkills>
+        <mandatoryBenefices>language_latinLanguage</mandatoryBenefices>
         <weapons>typicalShotgun</weapons>
         <armours>leatherJerkin</armours>
     </chaplain>
+    <combatPhysic>
+        <name>
+            <en>Combat Physic</en>
+            <es>Médico de Combate</es>
+        </name>
+        <group>army</group>
+        <faction>minorFaction</faction>
+        <preferences>SpecializationPreferences.SPECIALIZED, StatusPreferences.LOW, TechnologicalPreferences.MODERN
+        </preferences>
+        <characteristicsMinimumValues>
+            <wits>6</wits>
+            <dexterity>6</dexterity>
+            <tech>5</tech>
+        </characteristicsMinimumValues>
+        <requiredSkills>
+            <skill>
+                <id>vigor</id>
+            </skill>
+            <skill>
+                <id>observe</id>
+            </skill>
+            <skill>
+                <id>physick</id>
+            </skill>
+            <skill>
+                <id>empathy</id>
+            </skill>
+        </requiredSkills>
+        <suggestedSkills>
+            <skill>
+                <id>leadership</id>
+            </skill>
+        </suggestedSkills>
+        <mandatoryBenefices>language_latinLanguage</mandatoryBenefices>
+    </combatPhysic>
     <militaryPolice>
         <name>
             <en>Military Police</en>
@@ -421,6 +460,27 @@
         <weapons>arbogastSleeper, club1</weapons>
         <armours>leatherJerkinStuddedPlastic</armours>
     </militaryPolice>
+    <nco>
+        <name>
+            <en>Non-Commissioned Officers</en>
+            <es>Suboficiales</es>
+        </name>
+        <group>army</group>
+        <faction>minorFaction</faction>
+        <preferences>CombatPreferences.BELLIGERENT, SkillGroupPreferences.COMBAT,
+            SpecializationPreferences.SPECIALIZED, StatusPreferences.LOW, TechnologicalPreferences.MODERN,
+            WeaponsPreferences.HIGH
+        </preferences>
+        <characteristicsMinimumValues>
+            <presence>6</presence>
+        </characteristicsMinimumValues>
+        <requiredSkills>
+            <skill>
+                <id>leadership</id>
+            </skill>
+        </requiredSkills>
+        <weapons>typicalHvyAutofeed</weapons>
+    </nco>
     <rangers>
         <name>
             <en>Rangers</en>

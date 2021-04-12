@@ -246,6 +246,7 @@ public class PredefinedMerger {
                         } else {
                             originalPreferences.remove(preference2);
                         }
+                        return removeDuplicates(originalPreferences);
                     }
                 }
             }

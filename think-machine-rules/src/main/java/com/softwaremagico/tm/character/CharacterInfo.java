@@ -24,14 +24,14 @@ package com.softwaremagico.tm.character;
  * #L%
  */
 
+import com.softwaremagico.tm.character.planets.Planet;
+import com.softwaremagico.tm.language.ITranslator;
+import com.softwaremagico.tm.language.LanguagePool;
+
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import com.softwaremagico.tm.character.planets.Planet;
-import com.softwaremagico.tm.language.ITranslator;
-import com.softwaremagico.tm.language.LanguagePool;
 
 public class CharacterInfo {
     private static final String TRANSLATOR_FILE = "character_values.xml";
@@ -145,8 +145,8 @@ public class CharacterInfo {
     public void setAge(Integer age) {
         if (age == null) {
             this.age = null;
-        } else if (age > 99) {
-            this.age = 99;
+        } else if (age > 110) {
+            this.age = 110;
         } else if (age < 1) {
             this.age = 1;
         } else {
