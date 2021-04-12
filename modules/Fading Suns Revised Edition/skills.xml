@@ -300,7 +300,7 @@
 			<es>Controlar Nave Espacial</es>
 		</name>
 		<group>control</group>
-		<factionSkill>charioteers</factionSkill>
+		<factionSkill>charioteers, engineers, scravers</factionSkill>
 		<random>
 			<minTechLevel>5</minTechLevel>
 			<recommendedFactions>charioteers</recommendedFactions>
@@ -634,7 +634,7 @@
 			<en>Spacecraft Operations</en>
 			<es>Mantenimiento de Naves</es>
 		</name>
-		<factionSkill>engineers, charioteers</factionSkill>
+		<factionSkill>engineers, charioteers, scravers</factionSkill>
 		<group>technical</group>
 		<random>
 			<minTechLevel>5</minTechLevel>
@@ -644,14 +644,14 @@
 	<techRedemption>
 		<name>
 			<en>Tech Redemption</en>
-			<es>Recuperación Tecnológic.</es>
+			<es>Recuperación Tecnológica</es>
 		</name>
-		<factionSkill>engineers</factionSkill>
+		<factionSkill>engineers, charioteers, scravers</factionSkill>
 		<group>technical</group>
 		<random>
 			<minTechLevel>3</minTechLevel>
 			<recommendedFactionGroups>guild</recommendedFactionGroups>
-			<recommendedFactions>engineers</recommendedFactions>
+			<recommendedFactions>engineers, scravers</recommendedFactions>
 		</random>
 	</techRedemption>
 	<thinkMachine>
@@ -659,11 +659,11 @@
 			<en>Think Machine</en>
 			<es>Máquina Pensante</es>
 		</name>
-		<factionSkill>engineers, charioteers</factionSkill>
+		<factionSkill>engineers, charioteers, scravers</factionSkill>
 		<group>technical</group>
 		<random>
 			<minTechLevel>4</minTechLevel>
-			<recommendedFactions>engineers, charioteers</recommendedFactions>
+			<recommendedFactions>engineers, charioteers, scravers</recommendedFactions>
 		</random>
 	</thinkMachine>
 	
