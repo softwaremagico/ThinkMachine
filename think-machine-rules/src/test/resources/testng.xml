@@ -44,6 +44,7 @@
                 <include name="moduleEnforcer"/>
                 <include name="faction"/>
                 <include name="race"/>
+                <include name="skills"/>
             </run>
         </groups>
         <classes>
@@ -77,6 +78,7 @@
             <class name="com.softwaremagico.tm.file.ModuleManagerTests"/>
             <class name="com.softwaremagico.tm.rules.FactionTests"/>
             <class name="com.softwaremagico.tm.rules.RaceTests"/>
+            <class name="com.softwaremagico.tm.rules.SkillTests"/>
         </classes>
     </test>
 </suite>

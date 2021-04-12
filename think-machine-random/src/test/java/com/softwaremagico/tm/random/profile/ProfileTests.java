@@ -130,7 +130,7 @@ public class ProfileTests {
     }
 
     @Test
-    public void slayer() throws DuplicatedPreferenceException, InvalidXmlElementException,
+    public void slayer() throws InvalidXmlElementException,
             InvalidRandomElementSelectedException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
@@ -142,7 +142,7 @@ public class ProfileTests {
 
 
     @Test
-    public void heavySoldier() throws DuplicatedPreferenceException, InvalidXmlElementException,
+    public void heavySoldier() throws InvalidXmlElementException,
             InvalidRandomElementSelectedException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
@@ -154,7 +154,7 @@ public class ProfileTests {
     }
 
     @Test
-    public void tracker() throws DuplicatedPreferenceException, InvalidXmlElementException,
+    public void tracker() throws InvalidXmlElementException,
             InvalidRandomElementSelectedException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
@@ -166,7 +166,7 @@ public class ProfileTests {
     }
 
     @Test
-    public void nobility() throws DuplicatedPreferenceException, InvalidXmlElementException,
+    public void nobility() throws InvalidXmlElementException,
             InvalidRandomElementSelectedException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
@@ -176,7 +176,7 @@ public class ProfileTests {
     }
 
     @Test
-    public void clergy() throws DuplicatedPreferenceException, InvalidXmlElementException,
+    public void clergy() throws InvalidXmlElementException,
             InvalidRandomElementSelectedException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,

@@ -42,10 +42,11 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
     private static final String DESCRIPTION = "description";
 
     private static final String FACTION_SKILL_TAG = "factionSkill";
-    private static final String SPECIALIZABLE_SKILL_TAG = "specializations";
+    private static final String SPECIALIZE_SKILL_TAG = "specializations";
     private static final String GROUP_SKILL_TAG = "group";
     private static final String NATURAL_SKILL_TAG = "natural";
     private static final String NUMBER_TO_SHOW_TAG = "numberToShow";
+    private static final String REQUIRED_SKILLS = "requiredSkills";
 
     private static Map<String, Map<String, List<SkillDefinition>>> naturalSkills = new HashMap<>();
     private static Map<String, Map<String, List<SkillDefinition>>> learnedSkills = new HashMap<>();
@@ -165,7 +166,7 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
             final SkillDefinition skill = new SkillDefinition(skillId, name, description, language, moduleName);
             try {
                 final Set<Specialization> specializations = new HashSet<>();
-                for (final String specializationId : translator.getAllChildrenTags(skillId, SPECIALIZABLE_SKILL_TAG)) {
+                for (final String specializationId : translator.getAllChildrenTags(skillId, SPECIALIZE_SKILL_TAG)) {
                     final String specializationName = translator.getNodeValue(specializationId, language);
                     final Specialization specialization = new Specialization(specializationId, specializationName, description,
                             language, moduleName);
@@ -184,19 +185,16 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
             } catch (NumberFormatException nfe) {
                 throw new InvalidSkillException("Invalid number value for skill '" + skillId + "'.");
             }
-            final String factionSkill = translator.getNodeValue(skillId, FACTION_SKILL_TAG);
-            if (factionSkill != null) {
-                final StringTokenizer factionsOfSkill = new StringTokenizer(factionSkill, ",");
-                while (factionsOfSkill.hasMoreTokens()) {
-                    try {
-                        skill.addFaction(FactionsFactory.getInstance().getElement(factionsOfSkill.nextToken().trim(),
-                                language, moduleName));
-                    } catch (InvalidXmlElementException ixe) {
-                        throw new InvalidSkillException("Error in skill '" + skillId
-                                + "' structure. Invalid faction defintion. ", ixe);
-                    }
+            final String requiredSkills = translator.getNodeValue(skillId, REQUIRED_SKILLS);
+            if (requiredSkills != null) {
+                final StringTokenizer requiredSkillsTokenizer = new StringTokenizer(requiredSkills, ",");
+                while (requiredSkillsTokenizer.hasMoreTokens()) {
+                    skill.addRequiredSkill(requiredSkillsTokenizer.nextToken().trim());
                 }
             }
+
+            skill.addFactions(getCommaSeparatedValues(skillId, FACTION_SKILL_TAG,
+                    language, moduleName, FactionsFactory.getInstance()));
 
             final String group = translator.getNodeValue(skillId, GROUP_SKILL_TAG);
             skill.setSkillGroup(SkillGroup.getSkillGroup(group));

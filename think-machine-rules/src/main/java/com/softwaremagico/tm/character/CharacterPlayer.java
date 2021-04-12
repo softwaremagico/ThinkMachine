@@ -240,9 +240,21 @@ public class CharacterPlayer {
         }
     }
 
-    public void setSkillRank(AvailableSkill availableSkill, int value) throws InvalidSkillException {
+    public void setSkillRank(AvailableSkill availableSkill, int value) throws InvalidSkillException, InvalidRanksException {
         if (availableSkill == null) {
             throw new InvalidSkillException("Null skill is not allowed here.");
+        }
+
+        if (!availableSkill.getSkillDefinition().getRequiredSkills().isEmpty()) {
+            for (String requiredSkillId : availableSkill.getSkillDefinition().getRequiredSkills()) {
+                try {
+                    if (value > getSkillAssignedRanks(AvailableSkillsFactory.getInstance().getElement(requiredSkillId, getLanguage(), getModuleName()))) {
+                        throw new InvalidRanksException("Skill '" + availableSkill + "' requires ranks on '" + availableSkill.getSkillDefinition().getRequiredSkills() + "'.");
+                    }
+                } catch (InvalidXmlElementException e) {
+                    MachineLog.errorMessage(this.getClass().getName(), e);
+                }
+            }
         }
 
         int previousValue = 0;
@@ -251,6 +263,11 @@ public class CharacterPlayer {
         }
         if (availableSkill.getSkillDefinition().isNatural() && value <= FreeStyleCharacterCreation.getMinInitialNaturalSkillsValues(getInfo().getAge())) {
             value = 0;
+        }
+        if (availableSkill.getSkillDefinition().isLimitedToFaction() && !availableSkill.getSkillDefinition().getFactions().contains(getFaction()) &&
+                (getBenefice("professionalContract") == null || value > getBenefice("professionalContract").getCost())) {
+            throw new InvalidRanksException("Skill '" + availableSkill + "' is limited to '" + availableSkill.getSkillDefinition().getFactions() + "'.");
+
         }
         if (previousValue != value) {
             getCharacterModificationHandler().launchSkillUpdatedListener(availableSkill,

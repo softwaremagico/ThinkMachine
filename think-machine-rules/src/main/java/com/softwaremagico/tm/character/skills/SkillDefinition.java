@@ -3,6 +3,7 @@ package com.softwaremagico.tm.character.skills;
 import com.softwaremagico.tm.character.factions.Faction;
 import com.softwaremagico.tm.character.values.IValue;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -31,12 +32,14 @@ import java.util.Set;
  */
 
 public class SkillDefinition extends Skill<SkillDefinition> implements ISkillRandomDefintions, IValue {
+    public static final int MAX_RANKS_TO_SKILLS_FACTION_LIMITED = 5;
     public static final String FACTION_LORE_ID = "factionLore";
     public static final String PLANETARY_LORE_ID = "planetaryLore";
 
     private final Set<Faction> factions = new HashSet<>();
     private boolean natural = false;
     private Set<Specialization> specializations = new HashSet<>();
+    private final Set<String> requiredSkills = new HashSet<>();
     private SkillGroup skillGroup;
     // Number of times that a skill (generalizable) is shown in the PDF.
     private int numberToShow = 1;
@@ -95,6 +98,22 @@ public class SkillDefinition extends Skill<SkillDefinition> implements ISkillRan
 
     public void addFaction(Faction faction) {
         factions.add(faction);
+    }
+
+    public void addFactions(Collection<Faction> factions) {
+        this.factions.addAll(factions);
+    }
+
+    public void addRequiredSkill(String requiredSkillId) {
+        this.requiredSkills.add(requiredSkillId);
+    }
+
+    public void addRequiredSkills(Collection<String> requiredSkills) {
+        this.requiredSkills.addAll(requiredSkills);
+    }
+
+    public Set<String> getRequiredSkills() {
+        return requiredSkills;
     }
 
     public boolean isLimitedToFaction() {

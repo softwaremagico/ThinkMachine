@@ -165,6 +165,7 @@
 		<random>
 			<minTechLevel>6</minTechLevel>
 		</random>
+		<requiredSkills>physicalScience, lifeScience</requiredSkills>
 	</terraforming>
 	<energyGuns>
 		<name>
