@@ -1216,27 +1216,30 @@
         </characteristicsMinimumValues>
         <requiredSkills>
             <skill>
+                <id>slugGuns</id>
+            </skill>
+            <skill>
+                <id>melee</id>
+            </skill>
+            <skill>
+                <id>fight</id>
+            </skill>
+            <skill>
+                <id>vigor</id>
+            </skill>
+            <skill>
                 <id>observe</id>
             </skill>
             <skill>
-                <id>sneak</id>
-            </skill>
-            <skill>
-                <id>bureaucracy</id>
-            </skill>
-            <skill>
-                <id>knavery</id>
-            </skill>
-            <skill>
-                <id>lockpicking</id>
-            </skill>
-            <skill>
-                <id>sleightOfHand</id>
-            </skill>
-            <skill>
-                <id>streetWise</id>
+                <id>survival</id>
             </skill>
         </requiredSkills>
-        <weapons>typicalDerringer</weapons>
+        <suggestedSkills>
+            <skill>
+                <id>influence</id>
+            </skill>
+        </suggestedSkills>
+        <weapons>typicalAutoRifle, glankesh</weapons>
+        <armours>halfPlateMetal</armours>
     </voroxCommand>
 </profiles>
