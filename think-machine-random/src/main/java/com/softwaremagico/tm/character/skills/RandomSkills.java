@@ -80,7 +80,10 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
         for (final AvailableSkill requiredSkill : mandatoryValues) {
             if (getCharacterPlayer().getSkillsTotalPoints() < FreeStyleCharacterCreation
                     .getSkillsPoints(getCharacterPlayer().getInfo().getAge()) + difficultLevel.getSkillsBonus()) {
-                assignRandomRanks(requiredSkill);
+                if (requiredSkill.getRandomDefinition().getMinimumTechLevel() != null && requiredSkill.getRandomDefinition().getMinimumTechLevel() >=
+                        getCharacterPlayer().getCharacteristicValue(CharacteristicName.TECH)) {
+                    assignRandomRanks(requiredSkill);
+                }
             }
         }
     }

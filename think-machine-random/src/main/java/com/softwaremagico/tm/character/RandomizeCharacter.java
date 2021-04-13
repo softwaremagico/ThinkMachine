@@ -30,10 +30,7 @@ import com.softwaremagico.tm.character.benefices.RandomBeneficeDefinition;
 import com.softwaremagico.tm.character.benefices.RandomExtraBeneficeDefinition;
 import com.softwaremagico.tm.character.blessings.RandomBlessingDefinition;
 import com.softwaremagico.tm.character.blessings.RandomCursesDefinition;
-import com.softwaremagico.tm.character.characteristics.Characteristic;
-import com.softwaremagico.tm.character.characteristics.RandomCharacteristics;
-import com.softwaremagico.tm.character.characteristics.RandomCharacteristicsExperience;
-import com.softwaremagico.tm.character.characteristics.RandomCharacteristicsExtraPoints;
+import com.softwaremagico.tm.character.characteristics.*;
 import com.softwaremagico.tm.character.creation.CostCalculator;
 import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
 import com.softwaremagico.tm.character.cybernetics.RandomCybernetics;
@@ -120,12 +117,36 @@ public class RandomizeCharacter {
         this.mandatoryShields = finalProfile.getMandatoryShields();
         this.requiredFaction = finalProfile.getFaction();
 
+        setMandatoryTech();
+
         // Assign experience
         if (experiencePoints == null) {
             final DifficultLevelPreferences difficultLevel = DifficultLevelPreferences.getSelected(this.preferences);
             this.characterPlayer.setExperienceEarned(difficultLevel.getExperienceBonus());
         } else {
             this.characterPlayer.setExperienceEarned(experiencePoints);
+        }
+    }
+
+    /**
+     * Some skills requires a minimum tech.
+     */
+    private void setMandatoryTech() {
+        Characteristic tech = characteristicsMinimumValues.stream().filter(characteristic -> characteristic.getCharacteristicDefinition().getCharacteristicName() ==
+                CharacteristicName.TECH).findAny().orElse(null);
+        for (AvailableSkill availableSkill : requiredSkills) {
+            if (availableSkill.getRandomDefinition().getMinimumTechLevel() != null) {
+                if (tech == null) {
+                    tech = new Characteristic(CharacteristicsDefinitionFactory
+                            .getInstance().get(CharacteristicName.TECH, characterPlayer.getLanguage(), characterPlayer.getModuleName()));
+                    tech.setValue(availableSkill.getRandomDefinition().getMinimumTechLevel());
+                    characteristicsMinimumValues.add(tech);
+                } else {
+                    if (tech.getValue() < availableSkill.getRandomDefinition().getMinimumTechLevel()) {
+                        tech.setValue(availableSkill.getRandomDefinition().getMinimumTechLevel());
+                    }
+                }
+            }
         }
     }
 

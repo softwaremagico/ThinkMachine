@@ -28,14 +28,18 @@ import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.RandomizeCharacter;
 import com.softwaremagico.tm.character.benefices.BeneficeGroup;
+import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.combat.CombatStyle;
 import com.softwaremagico.tm.character.combat.CombatStyleGroup;
+import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.file.PathManager;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import java.util.HashSet;
 
 @Test(groups = {"randomPreferences"})
 public class RandomPreferences {
@@ -81,6 +85,21 @@ public class RandomPreferences {
         Assert.assertFalse(characterPlayer.getSelectedBenefices(BeneficeGroup.FIGHTING).isEmpty());
         Assert.assertTrue(CombatStyle.getCombatStyle(characterPlayer.getSelectedBenefices(BeneficeGroup.FIGHTING).iterator().next().getBeneficeDefinition(),
                 LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).getGroup() == CombatStyleGroup.MELEE);
+    }
+
+    @Test
+    public void checkMinimumTech() throws InvalidRandomElementSelectedException, InvalidXmlElementException {
+        final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        AvailableSkill artifactMelee = AvailableSkillsFactory.getInstance().getElement("artifactMelee", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        HashSet<AvailableSkill> requiredSkills = new HashSet<>();
+        requiredSkills.add(artifactMelee);
+        final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0,
+                new HashSet<>(), new HashSet<>(), requiredSkills, new HashSet<>(), new HashSet<>(),
+                new HashSet<>(), new HashSet<>(), new HashSet<>(),
+                new HashSet<>());
+        randomizeCharacter.createCharacter();
+        Assert.assertTrue(characterPlayer.getCharacteristic(CharacteristicName.TECH).getValue() >=
+                artifactMelee.getRandomDefinition().getMinimumTechLevel());
     }
 
 
