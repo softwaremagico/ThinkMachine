@@ -919,7 +919,7 @@
         <group>navy</group>
         <faction>minorFaction</faction>
         <preferences>CombatPreferences.BELLIGERENT, SkillGroupPreferences.COMBAT, CharacteristicsPreferences.BODY,
-            SpecializationPreferences.VERY_SPECIALIZED, TechnologicalPreferences.SPACE_CITIZEN,
+            SpecializationPreferences.VERY_SPECIALIZED, TechnologicalPreferences.FUTURIST,
             WeaponsPreferences.HIGH, CombatActionsPreferences.HIGH, CombatActionsGroupPreferences.FIGHT
         </preferences>
         <characteristicsMinimumValues>
@@ -959,6 +959,180 @@
         <weapons>typicalMediumAutofeed, knife</weapons>
         <armours>leatherJerkin</armours>
     </marine>
+    <sailor>
+        <name>
+            <en>Sailor</en>
+            <es>Marinero</es>
+        </name>
+        <group>spaceLegions</group>
+        <faction>minorFaction</faction>
+        <preferences>SpecializationPreferences.SPECIALIZED, StatusPreferences.LOW,
+            TechnologicalPreferences.SPACE_CITIZEN
+        </preferences>
+        <characteristicsMinimumValues>
+            <tech>6</tech>
+        </characteristicsMinimumValues>
+        <requiredSkills>
+            <skill>
+                <id>spacecraft</id>
+            </skill>
+            <skill>
+                <id>fight</id>
+            </skill>
+            <skill>
+                <id>melee</id>
+            </skill>
+            <skill>
+                <id>techRedemption</id>
+            </skill>
+            <skill>
+                <id>thinkMachine</id>
+            </skill>
+            <skill>
+                <id>gunnery</id>
+            </skill>
+        </requiredSkills>
+        <suggestedSkills>
+            <skill>
+                <id>gaming</id>
+            </skill>
+        </suggestedSkills>
+        <mandatoryBenefices>spacer</mandatoryBenefices>
+        <suggestedBenefices>wellTraveled</suggestedBenefices>
+        <weapons>typicalLightAutofeed, knife</weapons>
+    </sailor>
+    <fighterPilot>
+        <name>
+            <en>Fighter Pilot</en>
+            <es>Piloto de Caza</es>
+        </name>
+        <group>spaceLegions</group>
+        <faction>minorFaction</faction>
+        <preferences>SpecializationPreferences.SPECIALIZED, StatusPreferences.LOW,
+            TechnologicalPreferences.SPACE_CITIZEN
+        </preferences>
+        <characteristicsMinimumValues>
+            <tech>6</tech>
+            <dexterity>6</dexterity>
+        </characteristicsMinimumValues>
+        <requiredSkills>
+            <skill>
+                <id>slugGuns</id>
+            </skill>
+            <skill>
+                <id>vigor</id>
+            </skill>
+            <skill>
+                <id>melee</id>
+            </skill>
+            <skill>
+                <id>influence</id>
+            </skill>
+            <skill>
+                <id>techRedemption</id>
+            </skill>
+            <skill>
+                <id>thinkMachine</id>
+            </skill>
+            <skill>
+                <id>artillery</id>
+            </skill>
+        </requiredSkills>
+        <suggestedSkills>
+            <skill>
+                <id>gaming</id>
+            </skill>
+            <skill>
+                <id>physicalScience</id>
+            </skill>
+        </suggestedSkills>
+        <mandatoryBenefices>spacer</mandatoryBenefices>
+        <suggestedBenefices>wellTraveled</suggestedBenefices>
+        <weapons>typicalLightAutofeed, knife</weapons>
+    </fighterPilot>
+    <marauder>
+        <name>
+            <en>Marauder</en>
+            <es>Merodeador</es>
+        </name>
+        <group>spaceLegions</group>
+        <faction>minorFaction</faction>
+        <preferences>CombatPreferences.BELLIGERENT, SkillGroupPreferences.COMBAT, CharacteristicsPreferences.BODY,
+            SpecializationPreferences.VERY_SPECIALIZED, TechnologicalPreferences.SPACE_CITIZEN,
+            WeaponsPreferences.HIGH, CombatActionsPreferences.HIGH, CombatActionsGroupPreferences.FIGHT
+        </preferences>
+        <characteristicsMinimumValues>
+            <strength>6</strength>
+            <dexterity>6</dexterity>
+        </characteristicsMinimumValues>
+        <requiredSkills>
+            <skill>
+                <id>slugGuns</id>
+            </skill>
+            <skill>
+                <id>melee</id>
+            </skill>
+            <skill>
+                <id>fight</id>
+            </skill>
+            <skill>
+                <id>vigor</id>
+            </skill>
+            <skill>
+                <id>demolitions</id>
+            </skill>
+            <skill>
+                <id>lockpicking</id>
+            </skill>
+        </requiredSkills>
+        <suggestedSkills>
+            <skill>
+                <id>gaming</id>
+            </skill>
+        </suggestedSkills>
+        <mandatoryBenefices>spacer</mandatoryBenefices>
+        <suggestedBenefices>wellTraveled</suggestedBenefices>
+        <weapons>cancanaghDartgunPistol, axe</weapons>
+        <armours>armoredSpacesuit</armours>
+    </marauder>
+    <spy>
+        <name>
+            <en>Spy</en>
+            <es>Espía</es>
+        </name>
+        <group>intelligence</group>
+        <preferences>SpecializationPreferences.SPECIALIZED, SkillGroupPreferences.MALEFACTION
+        </preferences>
+        <characteristicsMinimumValues>
+            <perception>6</perception>
+            <wits>6</wits>
+            <will>6</will>
+        </characteristicsMinimumValues>
+        <requiredSkills>
+            <skill>
+                <id>observe</id>
+            </skill>
+            <skill>
+                <id>sneak</id>
+            </skill>
+            <skill>
+                <id>bureaucracy</id>
+            </skill>
+            <skill>
+                <id>knavery</id>
+            </skill>
+            <skill>
+                <id>lockpicking</id>
+            </skill>
+            <skill>
+                <id>sleightOfHand</id>
+            </skill>
+            <skill>
+                <id>streetWise</id>
+            </skill>
+        </requiredSkills>
+        <weapons>typicalDerringer</weapons>
+    </spy>
     <slayer>
         <name>
             <en>Slayer</en>
@@ -971,14 +1145,11 @@
             SpecializationPreferences.VERY_SPECIALIZED, TechnologicalPreferences.SPACE_CITIZEN, WeaponsPreferences.HIGH
         </preferences>
         <characteristicsMinimumValues>
-            <tech>6</tech>
+            <perception>6</perception>
             <wits>6</wits>
             <dexterity>6</dexterity>
         </characteristicsMinimumValues>
-        <suggestedSkills>
-            <skill>
-                <id>fight</id>
-            </skill>
+        <requiredSkills>
             <skill>
                 <id>melee</id>
             </skill>
@@ -986,10 +1157,10 @@
                 <id>observe</id>
             </skill>
             <skill>
-                <id>energyGuns</id>
+                <id>slugGuns</id>
             </skill>
             <skill>
-                <id>slugGuns</id>
+                <id>energyGuns</id>
             </skill>
             <skill>
                 <id>archery</id>
@@ -999,9 +1170,6 @@
             </skill>
             <skill>
                 <id>sneak</id>
-            </skill>
-            <skill>
-                <id>vigor</id>
             </skill>
             <skill>
                 <id>lore</id>
@@ -1016,7 +1184,16 @@
             <skill>
                 <id>streetWise</id>
             </skill>
-            <suggestedBenefices>passageContracts, professionalContract, secrets, darkSecret</suggestedBenefices>
+            <skill>
+                <id>disguise</id>
+            </skill>
+        </requiredSkills>
+        <suggestedSkills>
+            <skill>
+                <id>demolitions</id>
+            </skill>
         </suggestedSkills>
+        <suggestedBenefices>vendetta, secrets</suggestedBenefices>
+        <weapons>typicalSniperRifle, martechMidgetPalmLaser, garrote, hollowKnife</weapons>
     </slayer>
 </profiles>

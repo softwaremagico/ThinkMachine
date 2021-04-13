@@ -132,9 +132,10 @@ public class RandomizeCharacter {
      * Some skills requires a minimum tech.
      */
     private void setMandatoryTech() {
-        Characteristic tech = characteristicsMinimumValues.stream().filter(characteristic -> characteristic.getCharacteristicDefinition().getCharacteristicName() ==
-                CharacteristicName.TECH).findAny().orElse(null);
-        for (AvailableSkill availableSkill : requiredSkills) {
+        Characteristic tech = characteristicsMinimumValues.stream().filter(characteristic ->
+                characteristic.getCharacteristicDefinition().getCharacteristicName() ==
+                        CharacteristicName.TECH).findAny().orElse(null);
+        for (final AvailableSkill availableSkill : requiredSkills) {
             if (availableSkill.getRandomDefinition().getMinimumTechLevel() != null) {
                 if (tech == null) {
                     tech = new Characteristic(CharacteristicsDefinitionFactory
