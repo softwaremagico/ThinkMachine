@@ -1101,6 +1101,7 @@
             <es>Espía</es>
         </name>
         <group>intelligence</group>
+        <faction>minorFaction</faction>
         <preferences>SpecializationPreferences.SPECIALIZED, SkillGroupPreferences.MALEFACTION
         </preferences>
         <characteristicsMinimumValues>
@@ -1196,4 +1197,46 @@
         <suggestedBenefices>vendetta, secrets</suggestedBenefices>
         <weapons>typicalSniperRifle, martechMidgetPalmLaser, garrote, hollowKnife</weapons>
     </slayer>
+    <voroxCommand>
+        <name>
+            <en>Vorox Commandos</en>
+            <es>Comandos Vorox</es>
+        </name>
+        <group>weirdForces</group>
+        <faction>vorox</faction>
+        <race>vorox</race>
+        <preferences>CombatPreferences.BELLIGERENT, SpecializationPreferences.SPECIALIZED,
+            CharacteristicsPreferences.BODY, SpecializationPreferences.VERY_SPECIALIZED,
+            TechnologicalPreferences.MODERN, WeaponsPreferences.HIGH
+        </preferences>
+        <characteristicsMinimumValues>
+            <strength>7</strength>
+            <dexterity>7</dexterity>
+            <endurance>7</endurance>
+        </characteristicsMinimumValues>
+        <requiredSkills>
+            <skill>
+                <id>observe</id>
+            </skill>
+            <skill>
+                <id>sneak</id>
+            </skill>
+            <skill>
+                <id>bureaucracy</id>
+            </skill>
+            <skill>
+                <id>knavery</id>
+            </skill>
+            <skill>
+                <id>lockpicking</id>
+            </skill>
+            <skill>
+                <id>sleightOfHand</id>
+            </skill>
+            <skill>
+                <id>streetWise</id>
+            </skill>
+        </requiredSkills>
+        <weapons>typicalDerringer</weapons>
+    </voroxCommand>
 </profiles>

@@ -34,6 +34,7 @@ import com.softwaremagico.tm.character.equipment.armours.Armour;
 import com.softwaremagico.tm.character.equipment.shields.Shield;
 import com.softwaremagico.tm.character.equipment.weapons.Weapon;
 import com.softwaremagico.tm.character.factions.Faction;
+import com.softwaremagico.tm.character.races.Race;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
 
@@ -81,5 +82,9 @@ public interface IRandomPredefined {
     Faction getFaction();
 
     void setFaction(Faction faction);
+
+    Race getRace();
+
+    void setRace(Race race);
 
 }

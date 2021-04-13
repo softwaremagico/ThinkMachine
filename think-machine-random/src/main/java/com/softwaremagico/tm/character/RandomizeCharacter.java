@@ -48,6 +48,7 @@ import com.softwaremagico.tm.character.factions.Faction;
 import com.softwaremagico.tm.character.factions.RandomFaction;
 import com.softwaremagico.tm.character.occultism.RandomPsique;
 import com.softwaremagico.tm.character.occultism.RandomPsiquePath;
+import com.softwaremagico.tm.character.races.Race;
 import com.softwaremagico.tm.character.races.RandomRace;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.character.skills.RandomSkillExperience;
@@ -77,6 +78,7 @@ public class RandomizeCharacter {
     private final Set<Armour> mandatoryArmours;
     private final Set<Shield> mandatoryShields;
     private Faction requiredFaction;
+    private Race requiredRace;
 
     public RandomizeCharacter(CharacterPlayer characterPlayer, int experiencePoints, IRandomPreference... preferences) {
         this(characterPlayer, experiencePoints, null, new HashSet<>(Arrays.asList(preferences)), new HashSet<>(), new HashSet<>(),
@@ -116,6 +118,7 @@ public class RandomizeCharacter {
         this.mandatoryArmours = finalProfile.getMandatoryArmours();
         this.mandatoryShields = finalProfile.getMandatoryShields();
         this.requiredFaction = finalProfile.getFaction();
+        this.requiredRace = finalProfile.getRace();
 
         setMandatoryTech();
 
@@ -221,8 +224,12 @@ public class RandomizeCharacter {
     protected void setCharacterDefinition() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
         // Check if race is set.
         if (characterPlayer.getRace() == null) {
-            final RandomRace randomRace = new RandomRace(characterPlayer, preferences);
-            randomRace.assign();
+            if (requiredRace != null) {
+                characterPlayer.setRace(requiredRace);
+            } else {
+                final RandomRace randomRace = new RandomRace(characterPlayer, preferences);
+                randomRace.assign();
+            }
         }
 
         if (characterPlayer.getInfo().getGender() == null) {

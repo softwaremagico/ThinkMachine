@@ -9,6 +9,7 @@ import com.softwaremagico.tm.character.equipment.armours.ArmourFactory;
 import com.softwaremagico.tm.character.equipment.weapons.Weapon;
 import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
 import com.softwaremagico.tm.character.factions.FactionsFactory;
+import com.softwaremagico.tm.character.races.RaceFactory;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.file.PathManager;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
@@ -104,6 +105,15 @@ public class NpcTests {
                 NpcFactory.getInstance().getElement("peasant", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         randomizeCharacter.createCharacter();
         Assert.assertEquals(characterPlayer.getFaction(), FactionsFactory.getInstance().getElement("noFaction", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+    }
+
+    @Test
+    public void checkRace() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
+        final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
+                NpcFactory.getInstance().getElement("voroxCommand", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+        randomizeCharacter.createCharacter();
+        Assert.assertEquals(characterPlayer.getRace(), RaceFactory.getInstance().getElement("vorox", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
     }
 
     @Test

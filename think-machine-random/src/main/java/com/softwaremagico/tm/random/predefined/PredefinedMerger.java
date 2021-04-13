@@ -98,6 +98,8 @@ public class PredefinedMerger {
 
             mergeFactions(finalProfile, profile);
 
+            mergeRace(finalProfile, profile);
+
         }
 
         // Add selected preferences with more priority.
@@ -211,6 +213,18 @@ public class PredefinedMerger {
             //Choose randomly one or other.
             if (random.nextBoolean()) {
                 finalProfile.setFaction(profile.getFaction());
+            }
+        }
+    }
+
+    private static void mergeRace(IRandomPredefined finalProfile, IRandomPredefined profile) {
+        if (finalProfile.getRace() == null) {
+            finalProfile.setRace(profile.getRace());
+        } else if (profile.getRace() != null) {
+            final Random random = new Random();
+            //Choose randomly one or other.
+            if (random.nextBoolean()) {
+                finalProfile.setRace(profile.getRace());
             }
         }
     }

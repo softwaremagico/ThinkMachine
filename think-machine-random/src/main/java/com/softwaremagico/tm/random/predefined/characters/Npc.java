@@ -30,6 +30,7 @@ import com.softwaremagico.tm.character.equipment.armours.Armour;
 import com.softwaremagico.tm.character.equipment.shields.Shield;
 import com.softwaremagico.tm.character.equipment.weapons.Weapon;
 import com.softwaremagico.tm.character.factions.Faction;
+import com.softwaremagico.tm.character.races.Race;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.random.predefined.IRandomPredefined;
 import com.softwaremagico.tm.random.predefined.RandomPredefined;
@@ -45,10 +46,10 @@ public class Npc extends RandomPredefined<Npc> implements IRandomPredefined {
 
     public Npc(String id, String name, String description, String language, String moduleName,
                Set<IRandomPreference> randomPreferences, Set<Characteristic> characteristicsMinimumValues,
-               Set<AvailableSkill> requiredSkills, Set<AvailableSkill> suggestedSkills,
-               Set<BeneficeDefinition> mandatoryBenefices, Set<BeneficeDefinition> suggestedBenefices, Faction faction) {
+               Set<AvailableSkill> requiredSkills, Set<AvailableSkill> suggestedSkills, Set<BeneficeDefinition> mandatoryBenefices,
+               Set<BeneficeDefinition> suggestedBenefices, Faction faction, Race race) {
         super(id, name, description, language, moduleName, randomPreferences, characteristicsMinimumValues, requiredSkills,
-                suggestedSkills, mandatoryBenefices, suggestedBenefices, faction);
+                suggestedSkills, mandatoryBenefices, suggestedBenefices, faction, race);
         this.mandatoryWeapons = new HashSet<>();
         this.mandatoryArmours = new HashSet<>();
         this.mandatoryShields = new HashSet<>();
@@ -56,7 +57,7 @@ public class Npc extends RandomPredefined<Npc> implements IRandomPredefined {
 
     public Npc(String id, String name, String description, String language, String moduleName) {
         this(id, name, description, language, moduleName, new HashSet<>(), new HashSet<>(),
-                new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), null);
+                new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), null, null);
     }
 
     public void addMandatoryWeapons(Set<Weapon> weapons) {

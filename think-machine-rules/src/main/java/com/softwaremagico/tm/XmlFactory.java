@@ -26,6 +26,7 @@ package com.softwaremagico.tm;
 
 import com.softwaremagico.tm.character.factions.FactionGroup;
 import com.softwaremagico.tm.character.factions.FactionsFactory;
+import com.softwaremagico.tm.character.factions.InvalidFactionException;
 import com.softwaremagico.tm.character.races.RaceFactory;
 import com.softwaremagico.tm.file.modules.ModuleManager;
 import com.softwaremagico.tm.json.factories.cache.FactoryCacheLoader;
@@ -342,6 +343,20 @@ public abstract class XmlFactory<T extends Element<T>> {
 
     protected abstract T createElement(ITranslator translator, String elementId, String name, String description, String language,
                                        String moduleName) throws InvalidXmlElementException;
+
+    protected <E extends Element<E>, F extends XmlFactory<E>> E getElement(String elementId, String node, String language, String moduleName,
+                                                                          F factory) throws InvalidXmlElementException {
+        E element = null;
+        final String elementName = getTranslator(moduleName).getNodeValue(elementId, node);
+        if (elementName != null) {
+            try {
+                element = factory.getElement(elementName, language, moduleName);
+            } catch (InvalidXmlElementException e) {
+                throw new InvalidFactionException("Element tag '" + elementName + "' in element '" + elementId + "'.", e);
+            }
+        }
+        return element;
+    }
 
     protected <E extends Element<E>, F extends XmlFactory<E>> Set<E> getCommaSeparatedValues(String elementId, String node, String language, String moduleName,
                                                                                              F factory) throws InvalidXmlElementException {
