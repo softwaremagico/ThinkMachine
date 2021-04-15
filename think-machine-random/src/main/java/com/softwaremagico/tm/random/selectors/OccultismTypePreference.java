@@ -50,7 +50,7 @@ public enum OccultismTypePreference implements IPsiPreference {
 
     public static OccultismTypePreference getSelected(Set<IRandomPreference> preferences) {
         for (final IRandomPreference preference : preferences) {
-            if (preference instanceof OccultismLevelPreferences) {
+            if (preference instanceof OccultismTypePreference) {
                 return (OccultismTypePreference) preference;
             }
         }

@@ -5,6 +5,8 @@ import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.RandomizeCharacter;
 import com.softwaremagico.tm.character.benefices.AvailableBenefice;
 import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
+import com.softwaremagico.tm.character.blessings.Blessing;
+import com.softwaremagico.tm.character.blessings.BlessingFactory;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.equipment.armours.Armour;
 import com.softwaremagico.tm.character.equipment.armours.ArmourFactory;
@@ -70,6 +72,15 @@ public class NpcTests {
             System.out.println(characterSheet.toString());
             throw e;
         }
+    }
+
+    private void checkContainsBlessing(CharacterPlayer characterPlayer, Blessing blessing) {
+        for (Blessing existingBlessing : characterPlayer.getAllBlessings()) {
+            if (Objects.equals(existingBlessing, blessing)) {
+                return;
+            }
+        }
+        throw new AssertionError();
     }
 
     private void checkContainsBenefice(CharacterPlayer characterPlayer, AvailableBenefice availableBenefice) {
@@ -264,5 +275,7 @@ public class NpcTests {
                 LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         checkContainsShield(characterPlayer,
                 ShieldFactory.getInstance().getElement("standardShield", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+        checkContainsBlessing(characterPlayer,
+                BlessingFactory.getInstance().getElement("disciplined", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
     }
 }

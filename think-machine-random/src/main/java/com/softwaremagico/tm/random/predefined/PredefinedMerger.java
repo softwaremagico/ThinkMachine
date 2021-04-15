@@ -3,6 +3,7 @@ package com.softwaremagico.tm.random.predefined;
 import com.google.common.base.Objects;
 import com.softwaremagico.tm.character.benefices.AvailableBenefice;
 import com.softwaremagico.tm.character.benefices.BeneficeDefinition;
+import com.softwaremagico.tm.character.blessings.Blessing;
 import com.softwaremagico.tm.character.characteristics.Characteristic;
 import com.softwaremagico.tm.character.equipment.armours.Armour;
 import com.softwaremagico.tm.character.equipment.shields.Shield;
@@ -49,8 +50,8 @@ public class PredefinedMerger {
     }
 
     public static IRandomPredefined merge(Set<IRandomPredefined> profiles, String language, String moduleName) {
-        return merge(profiles, new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(),
-                new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(),
+        return merge(profiles, new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(),
+                new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(),
                 language, moduleName);
     }
 
@@ -59,8 +60,9 @@ public class PredefinedMerger {
     }
 
     public static IRandomPredefined merge(Set<IRandomPredefined> profiles, Set<IRandomPreference> extraPreferences, Set<AvailableSkill> requiredSkills,
-                                          Set<AvailableSkill> suggestedSkills, Set<BeneficeDefinition> mandatoryBenefices,
-                                          Set<BeneficeDefinition> suggestedBenefices, Set<AvailableBenefice> mandatoryAvailableBenefices,
+                                          Set<AvailableSkill> suggestedSkills, Set<Blessing> mandatoryBlessings, Set<Blessing> suggestedBlessings,
+                                          Set<BeneficeDefinition> mandatoryBenefices, Set<BeneficeDefinition> suggestedBenefices,
+                                          Set<AvailableBenefice> mandatoryAvailableBenefices,
                                           Set<Weapon> mandatoryWeapons, Set<Armour> mandatoryArmours,
                                           Set<Shield> mandatoryShields, String language, String moduleName) {
         if (profiles == null) {
@@ -87,6 +89,10 @@ public class PredefinedMerger {
 
             // Merge Skills
             mergeSkills(finalProfile.getSuggestedSkills(), profile.getSuggestedSkills());
+
+            mergeBlessings(finalProfile.getMandatoryBlessings(), profile.getMandatoryBlessings());
+
+            mergeBlessings(finalProfile.getSuggestedBlessings(), profile.getSuggestedBlessings());
 
             mergeBenefices(finalProfile.getMandatoryBenefices(), profile.getMandatoryBenefices());
 
@@ -118,6 +124,14 @@ public class PredefinedMerger {
         mergeSkills(suggestedSkills, finalProfile.getSuggestedSkills());
         finalProfile.getSuggestedSkills().clear();
         finalProfile.getSuggestedSkills().addAll(suggestedSkills);
+
+        mergeBlessings(mandatoryBlessings, finalProfile.getMandatoryBlessings());
+        finalProfile.getMandatoryBlessings().clear();
+        finalProfile.getMandatoryBlessings().addAll(mandatoryBlessings);
+
+        mergeBlessings(suggestedBlessings, finalProfile.getSuggestedBlessings());
+        finalProfile.getSuggestedBlessings().clear();
+        finalProfile.getSuggestedBlessings().addAll(suggestedBlessings);
 
         mergeBenefices(mandatoryBenefices, finalProfile.getMandatoryBenefices());
         finalProfile.getMandatoryBenefices().clear();
@@ -173,6 +187,10 @@ public class PredefinedMerger {
 
     private static void mergeBenefices(Set<BeneficeDefinition> originalBenefices, Set<BeneficeDefinition> extraBenefices) {
         originalBenefices.addAll(extraBenefices);
+    }
+
+    private static void mergeBlessings(Set<Blessing> originalBlessings, Set<Blessing> extraBlessings) {
+        originalBlessings.addAll(extraBlessings);
     }
 
     private static void mergeSkills(Set<AvailableSkill> originalRequiredSkills, Set<AvailableSkill> requiredSkills) {

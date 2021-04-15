@@ -24,9 +24,6 @@ package com.softwaremagico.tm.character.blessings;
  * #L%
  */
 
-import java.util.Collection;
-import java.util.Set;
-
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
@@ -34,16 +31,16 @@ import com.softwaremagico.tm.log.RandomGenerationLog;
 import com.softwaremagico.tm.random.RandomSelector;
 import com.softwaremagico.tm.random.exceptions.ImpossibleToAssignMandatoryElementException;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
-import com.softwaremagico.tm.random.selectors.BlessingNumberPreferences;
-import com.softwaremagico.tm.random.selectors.BlessingPreferences;
-import com.softwaremagico.tm.random.selectors.IGaussianDistribution;
-import com.softwaremagico.tm.random.selectors.IRandomPreference;
-import com.softwaremagico.tm.random.selectors.SpecializationPreferences;
+import com.softwaremagico.tm.random.selectors.*;
+
+import java.util.Collection;
+import java.util.Set;
 
 public class RandomBlessingDefinition extends RandomSelector<Blessing> {
 
-    public RandomBlessingDefinition(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences) throws InvalidXmlElementException {
-        super(characterPlayer, preferences);
+    public RandomBlessingDefinition(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences, Set<Blessing> mandatoryBlessings,
+                                    Set<Blessing> suggestedBlessings) throws InvalidXmlElementException {
+        super(characterPlayer, null, preferences, mandatoryBlessings, suggestedBlessings);
     }
 
     @Override
@@ -120,6 +117,18 @@ public class RandomBlessingDefinition extends RandomSelector<Blessing> {
 
     @Override
     protected void assignMandatoryValues(Set<Blessing> mandatoryValues) throws InvalidXmlElementException {
-        return;
+        for (final Blessing blessing : mandatoryValues) {
+            try {
+                getCharacterPlayer().addBlessing(blessing);
+                RandomGenerationLog.info(this.getClass().getName(), "Added mandatory blessing '{}'.", blessing);
+                removeElementWeight(blessing);
+            } catch (TooManyBlessingsException e) {
+                // No more possible.
+                break;
+            } catch (BlessingAlreadyAddedException e) {
+                removeElementWeight(blessing);
+                continue;
+            }
+        }
     }
 }

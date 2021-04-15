@@ -26,6 +26,7 @@ package com.softwaremagico.tm.character;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.benefices.*;
+import com.softwaremagico.tm.character.blessings.Blessing;
 import com.softwaremagico.tm.character.blessings.RandomBlessingDefinition;
 import com.softwaremagico.tm.character.blessings.RandomCursesDefinition;
 import com.softwaremagico.tm.character.characteristics.*;
@@ -69,6 +70,8 @@ public class RandomizeCharacter {
     private final Set<IRandomPreference> preferences;
     private final Set<AvailableSkill> requiredSkills;
     private final Set<AvailableSkill> suggestedSkills;
+    private final Set<Blessing> mandatoryBlessings;
+    private final Set<Blessing> suggestedBlessings;
     private final Set<BeneficeDefinition> mandatoryBenefices;
     private final Set<BeneficeDefinition> suggestedBenefices;
     private final Set<Characteristic> characteristicsMinimumValues;
@@ -80,29 +83,34 @@ public class RandomizeCharacter {
 
     public RandomizeCharacter(CharacterPlayer characterPlayer, int experiencePoints, IRandomPreference... preferences) {
         this(characterPlayer, experiencePoints, null, new HashSet<>(Arrays.asList(preferences)), new HashSet<>(), new HashSet<>(),
-                new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>());
+                new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(),
+                new HashSet<>(), new HashSet<>());
     }
 
     public RandomizeCharacter(CharacterPlayer characterPlayer, IRandomPredefined... profiles) {
-        this(characterPlayer, null, new HashSet<>(Arrays.asList(profiles)), new HashSet<>(), new HashSet<>(),
-                new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(),
+        this(characterPlayer, null, new HashSet<>(Arrays.asList(profiles)), new HashSet<>(), new HashSet<>(), new HashSet<>(),
+                new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(),
                 new HashSet<>(), new HashSet<>());
     }
 
     public RandomizeCharacter(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences, IRandomPredefined... profiles) {
-        this(characterPlayer, null, new HashSet<>(Arrays.asList(profiles)), preferences, new HashSet<>(),
-                new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(),
+        this(characterPlayer, null, new HashSet<>(Arrays.asList(profiles)), preferences, new HashSet<>(), new HashSet<>(),
+                new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(),
                 new HashSet<>(), new HashSet<>());
     }
 
     public RandomizeCharacter(CharacterPlayer characterPlayer, Integer experiencePoints, Set<IRandomPredefined> profiles, Set<IRandomPreference> preferences,
-                              Set<AvailableSkill> requiredSkills, Set<AvailableSkill> suggestedSkills, Set<BeneficeDefinition> mandatoryBenefices,
-                              Set<BeneficeDefinition> suggestedBenefices, Set<AvailableBenefice> mandatoryAvailableBenefices,
+                              Set<AvailableSkill> requiredSkills, Set<AvailableSkill> suggestedSkills,
+                              Set<Blessing> mandatoryBlessings, Set<Blessing> suggestedBlessings,
+                              Set<BeneficeDefinition> mandatoryBenefices, Set<BeneficeDefinition> suggestedBenefices,
+                              Set<AvailableBenefice> mandatoryAvailableBenefices,
                               Set<Weapon> mandatoryWeapons, Set<Armour> mandatoryArmours, Set<Shield> mandatoryShields) {
         this.characterPlayer = characterPlayer;
 
         final IRandomPredefined finalProfile = PredefinedMerger.merge(profiles, preferences, requiredSkills, suggestedSkills,
-                mandatoryBenefices, suggestedBenefices, mandatoryAvailableBenefices, mandatoryWeapons, mandatoryArmours, mandatoryShields,
+                mandatoryBlessings, suggestedBlessings,
+                mandatoryBenefices, suggestedBenefices, mandatoryAvailableBenefices,
+                mandatoryWeapons, mandatoryArmours, mandatoryShields,
                 characterPlayer.getLanguage(), characterPlayer.getModuleName());
 
         // Assign preferences
@@ -117,6 +125,8 @@ public class RandomizeCharacter {
         this.mandatoryShields = finalProfile.getMandatoryShields();
         this.requiredFaction = finalProfile.getFaction();
         this.requiredRace = finalProfile.getRace();
+        this.mandatoryBlessings = finalProfile.getMandatoryBlessings();
+        this.suggestedBlessings = finalProfile.getSuggestedBlessings();
 
         setMandatoryTech();
 
@@ -303,7 +313,7 @@ public class RandomizeCharacter {
         final RandomCursesDefinition randomCurses = new RandomCursesDefinition(characterPlayer, preferences);
         randomCurses.assign();
         // Set blessings.
-        final RandomBlessingDefinition randomBlessing = new RandomBlessingDefinition(characterPlayer, preferences);
+        final RandomBlessingDefinition randomBlessing = new RandomBlessingDefinition(characterPlayer, preferences, mandatoryBlessings, suggestedBlessings);
         randomBlessing.assign();
         // Set benefices.
         final RandomBeneficeDefinition randomBenefice = new RandomExtraBeneficeDefinition(characterPlayer, preferences, suggestedBenefices);

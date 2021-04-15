@@ -26,6 +26,7 @@ package com.softwaremagico.tm.random.predefined.profile;
 
 import com.softwaremagico.tm.character.benefices.AvailableBenefice;
 import com.softwaremagico.tm.character.benefices.BeneficeDefinition;
+import com.softwaremagico.tm.character.blessings.Blessing;
 import com.softwaremagico.tm.character.characteristics.Characteristic;
 import com.softwaremagico.tm.character.factions.Faction;
 import com.softwaremagico.tm.character.races.Race;
@@ -38,12 +39,16 @@ import java.util.Set;
 
 public class RandomProfile extends RandomPredefined<RandomProfile> implements IRandomPredefined {
 
-    public RandomProfile(String id, String name, String description, String language, String moduleName, Set<IRandomPreference> randomPreferences,
-                         Set<Characteristic> characteristicsMinimumValues, Set<AvailableSkill> requiredSkills, Set<AvailableSkill> suggestedSkills,
+    public RandomProfile(String id, String name, String description, String language, String moduleName,
+                         Set<IRandomPreference> randomPreferences, Set<Characteristic> characteristicsMinimumValues,
+                         Set<AvailableSkill> requiredSkills, Set<AvailableSkill> suggestedSkills,
+                         Set<Blessing> mandatoryBlessings, Set<Blessing> suggestedBlessings,
                          Set<BeneficeDefinition> mandatoryBenefices, Set<BeneficeDefinition> suggestedBenefices,
-                         Set<AvailableBenefice> mandatoryBeneficeSpecializations, Faction faction, Race race) {
-        super(id, name, description, language, moduleName, randomPreferences, characteristicsMinimumValues, requiredSkills, suggestedSkills,
-                mandatoryBenefices, suggestedBenefices, mandatoryBeneficeSpecializations, faction, race);
+                         Set<AvailableBenefice> mandatoryBeneficeSpecializations,
+                         Faction faction, Race race) {
+        super(id, name, description, language, moduleName, randomPreferences, characteristicsMinimumValues, requiredSkills,
+                suggestedSkills, mandatoryBlessings, suggestedBlessings, mandatoryBenefices, suggestedBenefices,
+                mandatoryBeneficeSpecializations, faction, race);
     }
 
     public RandomProfile(String id, String name, String description, String language, String moduleName) {

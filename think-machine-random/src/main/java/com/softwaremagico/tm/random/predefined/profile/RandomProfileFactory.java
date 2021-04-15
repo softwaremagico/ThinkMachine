@@ -26,6 +26,7 @@ package com.softwaremagico.tm.random.predefined.profile;
 
 import com.softwaremagico.tm.character.benefices.AvailableBenefice;
 import com.softwaremagico.tm.character.benefices.BeneficeDefinition;
+import com.softwaremagico.tm.character.blessings.Blessing;
 import com.softwaremagico.tm.character.characteristics.Characteristic;
 import com.softwaremagico.tm.character.factions.Faction;
 import com.softwaremagico.tm.character.races.Race;
@@ -60,11 +61,14 @@ public class RandomProfileFactory extends RandomPredefinedFactory<RandomProfile>
     @Override
     protected RandomProfile createNew(String id, String name, String description, String language, String moduleName,
                                       Set<IRandomPreference> randomPreferences, Set<Characteristic> characteristicsMinimumValues,
-                                      Set<AvailableSkill> requiredSkills, Set<AvailableSkill> suggestedSkills, Set<BeneficeDefinition> mandatoryBenefices,
-                                      Set<BeneficeDefinition> suggestedBenefices, Set<AvailableBenefice> mandatoryBeneficeSpecializations,
+                                      Set<AvailableSkill> requiredSkills, Set<AvailableSkill> suggestedSkills,
+                                      Set<Blessing> mandatoryBlessings, Set<Blessing> suggestedBlessings,
+                                      Set<BeneficeDefinition> mandatoryBenefices, Set<BeneficeDefinition> suggestedBenefices,
+                                      Set<AvailableBenefice> mandatoryBeneficeSpecializations,
                                       Faction faction, Race race) {
         return new RandomProfile(id, name, description, language, moduleName, randomPreferences, characteristicsMinimumValues,
-                requiredSkills, suggestedSkills, mandatoryBenefices, suggestedBenefices, mandatoryBeneficeSpecializations, faction, race);
+                requiredSkills, suggestedSkills, mandatoryBlessings, suggestedBlessings, mandatoryBenefices, suggestedBenefices,
+                mandatoryBeneficeSpecializations, faction, race);
     }
 
 }

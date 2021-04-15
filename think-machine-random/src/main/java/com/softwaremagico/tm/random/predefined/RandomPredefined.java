@@ -49,6 +49,8 @@ public abstract class RandomPredefined<Predefined extends Element<Predefined>> e
     private final Set<BeneficeDefinition> suggestedBenefices;
     private final Set<BeneficeDefinition> mandatoryBenefices;
     private final Set<AvailableBenefice> mandatoryBeneficeSpecializations;
+    private final Set<Blessing> mandatoryBlessings;
+    private final Set<Blessing> suggestedBlessings;
     private Faction faction;
     private Race race;
 
@@ -57,8 +59,10 @@ public abstract class RandomPredefined<Predefined extends Element<Predefined>> e
 
     public RandomPredefined(String id, String name, String description, String language, String moduleName,
                             Set<IRandomPreference> randomPreferences, Set<Characteristic> characteristicsMinimumValues,
-                            Set<AvailableSkill> requiredSkills, Set<AvailableSkill> suggestedSkills, Set<BeneficeDefinition> mandatoryBenefices,
-                            Set<BeneficeDefinition> suggestedBenefices, Set<AvailableBenefice> mandatoryBeneficeSpecializations,
+                            Set<AvailableSkill> requiredSkills, Set<AvailableSkill> suggestedSkills,
+                            Set<Blessing> mandatoryBlessings, Set<Blessing> suggestedBlessings,
+                            Set<BeneficeDefinition> mandatoryBenefices, Set<BeneficeDefinition> suggestedBenefices,
+                            Set<AvailableBenefice> mandatoryBeneficeSpecializations,
                             Faction faction, Race race) {
         super(id, name, description, language, moduleName);
         this.randomPreferences = randomPreferences;
@@ -68,12 +72,14 @@ public abstract class RandomPredefined<Predefined extends Element<Predefined>> e
         this.suggestedBenefices = suggestedBenefices;
         this.mandatoryBenefices = mandatoryBenefices;
         this.mandatoryBeneficeSpecializations = mandatoryBeneficeSpecializations;
+        this.mandatoryBlessings = mandatoryBlessings;
+        this.suggestedBlessings = suggestedBlessings;
         this.faction = faction;
         this.race = race;
     }
 
     public RandomPredefined(String id, String name, String description, String language, String moduleName) {
-        this(id, name, description, language, moduleName, new HashSet<>(), new HashSet<>(),
+        this(id, name, description, language, moduleName, new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(),
                 new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), null, null);
     }
 
@@ -169,8 +175,19 @@ public abstract class RandomPredefined<Predefined extends Element<Predefined>> e
         return mandatoryBenefices;
     }
 
+    @Override
     public Set<AvailableBenefice> getMandatoryBeneficeSpecializations() {
         return mandatoryBeneficeSpecializations;
+    }
+
+    @Override
+    public Set<Blessing> getMandatoryBlessings() {
+        return mandatoryBlessings;
+    }
+
+    @Override
+    public Set<Blessing> getSuggestedBlessings() {
+        return suggestedBlessings;
     }
 
     @Override
