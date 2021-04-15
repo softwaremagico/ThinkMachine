@@ -1,5 +1,6 @@
 package com.softwaremagico.tm.character.benefices;
 
+import com.softwaremagico.tm.IElementRetriever;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.random.definition.RandomElementDefinition;
 
@@ -31,7 +32,7 @@ import java.util.stream.Collectors;
  * #L%
  */
 
-public class AvailableBeneficeFactory {
+public class AvailableBeneficeFactory implements IElementRetriever<AvailableBenefice> {
     private Map<String, Map<String, Map<String, AvailableBenefice>>> availableBenefices;
     private Map<String, Map<String, Map<BeneficeDefinition, Set<AvailableBenefice>>>> availableBeneficesByDefinition;
 
@@ -109,6 +110,7 @@ public class AvailableBeneficeFactory {
         availableBeneficesByDefinition.get(language).get(moduleName).get(beneficeDefinition).add(availableBenefice);
     }
 
+    @Override
     public AvailableBenefice getElement(String beneficeId, String language, String moduleName) throws InvalidXmlElementException {
         if (availableBenefices.get(language) == null || availableBenefices.get(language).isEmpty()) {
             getElements(language, moduleName);

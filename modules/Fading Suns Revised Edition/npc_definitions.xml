@@ -355,7 +355,7 @@
         <faction>minorFaction</faction>
         <preferences>CombatPreferences.BELLIGERENT, CharacteristicsPreferences.BODY, SkillGroupPreferences.COMBAT,
             SpecializationPreferences.SPECIALIZED, StatusPreferences.LOW, TechnologicalPreferences.MODERN,
-            WeaponsPreferences.HIGH, PsiqueLevelPreferences.FAIR
+            WeaponsPreferences.HIGH, OccultismLevelPreferences.FAIR
         </preferences>
         <characteristicsMinimumValues>
             <wits>6</wits>
@@ -381,7 +381,7 @@
                 <id>leadership</id>
             </skill>
         </suggestedSkills>
-        <mandatoryBenefices>language_latinLanguage</mandatoryBenefices>
+        <mandatoryBeneficesSpecialization>language [latinLanguage]</mandatoryBeneficesSpecialization>
         <weapons>typicalShotgun</weapons>
         <armours>leatherJerkin</armours>
     </chaplain>
@@ -418,7 +418,7 @@
                 <id>leadership</id>
             </skill>
         </suggestedSkills>
-        <mandatoryBenefices>language_latinLanguage</mandatoryBenefices>
+        <mandatoryBeneficesSpecialization>language [latinLanguage]</mandatoryBeneficesSpecialization>
     </combatPhysic>
     <militaryPolice>
         <name>
@@ -654,7 +654,7 @@
                 <id>vigor</id>
             </skill>
             <skill>
-                <id>surival</id>
+                <id>survival</id>
             </skill>
         </requiredSkills>
         <suggestedSkills>
@@ -1242,4 +1242,54 @@
         <weapons>typicalAutoRifle, glankesh</weapons>
         <armours>halfPlateMetal</armours>
     </voroxCommand>
+    <manifestLight>
+        <name>
+            <en>Manifest Light</en>
+            <es>La Luz Manifiesta</es>
+        </name>
+        <group>weirdForces</group>
+        <faction>vorox</faction>
+        <race>vorox</race>
+        <preferences>CombatPreferences.BELLIGERENT, SpecializationPreferences.SPECIALIZED,
+            CharacteristicsPreferences.BODY, SpecializationPreferences.VERY_SPECIALIZED,
+            TechnologicalPreferences.MODERN, WeaponsPreferences.HIGH, OccultismLevelPreferences.ANY,
+            OccultismTypePreference.THEURGY
+        </preferences>
+        <characteristicsMinimumValues>
+            <wits>6</wits>
+            <presence>6</presence>
+            <faith>7</faith>
+        </characteristicsMinimumValues>
+        <requiredSkills>
+            <skill>
+                <id>slugGuns</id>
+            </skill>
+            <skill>
+                <id>melee</id>
+            </skill>
+            <skill>
+                <id>vigor</id>
+            </skill>
+            <skill>
+                <id>survival</id>
+            </skill>
+        </requiredSkills>
+        <suggestedSkills>
+            <skill>
+                <id>physick</id>
+            </skill>
+            <skill>
+                <id>selfControl</id>
+            </skill>
+            <skill>
+                <id>investigation</id>
+            </skill>
+            <skill>
+                <id>warfare</id>
+            </skill>
+        </suggestedSkills>
+        <mandatoryBeneficesSpecialization>language [latinLanguage]</mandatoryBeneficesSpecialization>
+        <weapons>kendraDragon</weapons>
+        <shields>standardShield</shields>
+    </manifestLight>
 </profiles>

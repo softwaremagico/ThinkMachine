@@ -225,7 +225,7 @@ public class RandomCharacterTests {
         characterPlayer
                 .setRace(RaceFactory.getInstance().getElement("human", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0,
-                SpecializationPreferences.SPECIALIZED, PsiquePathLevelPreferences.HIGH, PsiqueLevelPreferences.HIGH,
+                SpecializationPreferences.SPECIALIZED, OccultismPathLevelPreferences.HIGH, OccultismLevelPreferences.HIGH,
                 StatusPreferences.FAIR);
         randomizeCharacter.createCharacter();
         try {
@@ -246,7 +246,7 @@ public class RandomCharacterTests {
         characterPlayer.setFaction(
                 FactionsFactory.getInstance().getElement("orthodox", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0,
-                SpecializationPreferences.SPECIALIZED, PsiquePathLevelPreferences.HIGH, PsiqueLevelPreferences.HIGH,
+                SpecializationPreferences.SPECIALIZED, OccultismPathLevelPreferences.HIGH, OccultismLevelPreferences.HIGH,
                 StatusPreferences.FAIR);
         randomizeCharacter.createCharacter();
         Assert.assertTrue(characterPlayer.getTotalSelectedPowers() > 0);
@@ -261,7 +261,7 @@ public class RandomCharacterTests {
         characterPlayer
                 .setFaction(FactionsFactory.getInstance().getElement("vorox", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0,
-                SpecializationPreferences.SPECIALIZED, PsiquePathLevelPreferences.HIGH, PsiqueLevelPreferences.HIGH);
+                SpecializationPreferences.SPECIALIZED, OccultismPathLevelPreferences.HIGH, OccultismLevelPreferences.HIGH);
         randomizeCharacter.createCharacter();
         Assert.assertTrue(characterPlayer.getFaction().getBenefices().contains(AvailableBeneficeFactory.getInstance()
                 .getElement("noOccult", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)));

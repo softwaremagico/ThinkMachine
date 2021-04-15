@@ -49,7 +49,7 @@ public class RandomPsiquePath extends RandomSelector<OccultismPath> {
     @Override
     public void assign() throws InvalidRandomElementSelectedException, InvalidXmlElementException {
         // Random number of paths.
-        final IGaussianDistribution pathNumber = PsiquePathLevelPreferences.getSelected(getPreferences());
+        final IGaussianDistribution pathNumber = OccultismPathLevelPreferences.getSelected(getPreferences());
         final int totalPaths = pathNumber.randomGaussian();
         totalPowers = getCharacterPlayer().getTotalSelectedPowers();
         for (int i = totalPowers; i < totalPaths; i++) {
@@ -107,7 +107,7 @@ public class RandomPsiquePath extends RandomSelector<OccultismPath> {
 
     private int assignMaxLevelOfPath(OccultismPath path) throws InvalidXmlElementException {
         // Use psique level preferences for the path level.
-        final IGaussianDistribution psiqueLevelSelector = PsiqueLevelPreferences.getSelected(getPreferences());
+        final IGaussianDistribution psiqueLevelSelector = OccultismLevelPreferences.getSelected(getPreferences());
         int maxLevelSelected = psiqueLevelSelector.randomGaussian();
         if (maxLevelSelected > psiqueLevelSelector.maximum()) {
             maxLevelSelected = psiqueLevelSelector.maximum();

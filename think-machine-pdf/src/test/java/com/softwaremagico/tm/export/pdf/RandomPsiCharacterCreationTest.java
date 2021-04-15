@@ -24,14 +24,6 @@ package com.softwaremagico.tm.export.pdf;
  * #L%
  */
 
-import java.io.File;
-import java.io.IOException;
-import java.net.MalformedURLException;
-
-import org.testng.Assert;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
-
 import com.itextpdf.text.DocumentException;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
@@ -44,9 +36,16 @@ import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.pdf.small.SmallCharacterSheet;
 import com.softwaremagico.tm.random.exceptions.DuplicatedPreferenceException;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
-import com.softwaremagico.tm.random.selectors.PsiqueLevelPreferences;
-import com.softwaremagico.tm.random.selectors.PsiquePathLevelPreferences;
+import com.softwaremagico.tm.random.selectors.OccultismLevelPreferences;
+import com.softwaremagico.tm.random.selectors.OccultismPathLevelPreferences;
 import com.softwaremagico.tm.random.selectors.SpecializationPreferences;
+import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
+import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
 
 @Test(groups = { "randomPsiCharacterTest" })
 public class RandomPsiCharacterCreationTest {
@@ -63,7 +62,7 @@ public class RandomPsiCharacterCreationTest {
 			InvalidRandomElementSelectedException {
 		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
 		final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0,
-				SpecializationPreferences.SPECIALIZED, PsiquePathLevelPreferences.HIGH, PsiqueLevelPreferences.HIGH);
+				SpecializationPreferences.SPECIALIZED, OccultismPathLevelPreferences.HIGH, OccultismLevelPreferences.HIGH);
 		randomizeCharacter.createCharacter();
 
 		try {

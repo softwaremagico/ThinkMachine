@@ -71,6 +71,8 @@ public interface IRandomPredefined {
 
     Set<BeneficeDefinition> getMandatoryBenefices();
 
+    Set<AvailableBenefice> getMandatoryBeneficeSpecializations();
+
     Characteristic getCharacteristicMinimumValues(CharacteristicName characteristicName);
 
     Set<Weapon> getMandatoryWeapons();

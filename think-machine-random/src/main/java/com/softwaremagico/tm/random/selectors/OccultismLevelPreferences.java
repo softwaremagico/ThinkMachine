@@ -27,7 +27,7 @@ package com.softwaremagico.tm.random.selectors;
 import java.util.Random;
 import java.util.Set;
 
-public enum PsiqueLevelPreferences implements IPsiPreference, IGaussianDistribution {
+public enum OccultismLevelPreferences implements IPsiPreference, IGaussianDistribution {
 
     // Gaussian distribution.
     NONE(0, 0, 0, 0),
@@ -46,7 +46,7 @@ public enum PsiqueLevelPreferences implements IPsiPreference, IGaussianDistribut
     private final int variance;
     private final Random random = new Random();
 
-    private PsiqueLevelPreferences(int minimumValue, int maximumValue, int mean, int variance) {
+    private OccultismLevelPreferences(int minimumValue, int maximumValue, int mean, int variance) {
         this.maximum = maximumValue;
         this.minimum = minimumValue;
         this.variance = variance;
@@ -73,10 +73,10 @@ public enum PsiqueLevelPreferences implements IPsiPreference, IGaussianDistribut
         return mean;
     }
 
-    public static PsiqueLevelPreferences getSelected(Set<IRandomPreference> preferences) {
+    public static OccultismLevelPreferences getSelected(Set<IRandomPreference> preferences) {
         for (final IRandomPreference preference : preferences) {
-            if (preference instanceof PsiqueLevelPreferences) {
-                return (PsiqueLevelPreferences) preference;
+            if (preference instanceof OccultismLevelPreferences) {
+                return (OccultismLevelPreferences) preference;
             }
         }
         return NONE;
@@ -96,7 +96,7 @@ public enum PsiqueLevelPreferences implements IPsiPreference, IGaussianDistribut
         return getDefaultOption();
     }
 
-    public static PsiqueLevelPreferences getDefaultOption() {
+    public static OccultismLevelPreferences getDefaultOption() {
         return null;
     }
 }

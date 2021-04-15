@@ -194,7 +194,7 @@ public class RandomCharacteristics extends RandomSelector<Characteristic> {
 
         // Psique
         if (characteristic.getCharacteristicDefinition().getCharacteristicName() == CharacteristicName.WILL) {
-            final PsiqueLevelPreferences psique = PsiqueLevelPreferences.getSelected(getPreferences());
+            final OccultismLevelPreferences psique = OccultismLevelPreferences.getSelected(getPreferences());
             switch (psique) {
                 case FAIR:
                 case HIGH:
@@ -290,7 +290,7 @@ public class RandomCharacteristics extends RandomSelector<Characteristic> {
 
         // Theurgy
         if (characteristic.getCharacteristicDefinition().getCharacteristicName() == CharacteristicName.FAITH) {
-            final PsiqueLevelPreferences psique = PsiqueLevelPreferences.getSelected(getPreferences());
+            final OccultismLevelPreferences psique = OccultismLevelPreferences.getSelected(getPreferences());
             if (psique.maximum() > 2) {
                 if (getCharacterPlayer().getFaction() != null
                         && getCharacterPlayer().getFaction().getFactionGroup() == FactionGroup.CHURCH) {
@@ -308,7 +308,7 @@ public class RandomCharacteristics extends RandomSelector<Characteristic> {
         }
         // Psique
         if (characteristic.getCharacteristicDefinition().getCharacteristicName() == CharacteristicName.WILL) {
-            final PsiqueLevelPreferences psique = PsiqueLevelPreferences.getSelected(getPreferences());
+            final OccultismLevelPreferences psique = OccultismLevelPreferences.getSelected(getPreferences());
             if (psique.maximum() > 2) {
                 if (characteristic.getValue() < Math.min(MIN_WILL_FOR_PSIQUE,
                         FreeStyleCharacterCreation.getMaxInitialCharacteristicsValues(

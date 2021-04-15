@@ -3,9 +3,13 @@ package com.softwaremagico.tm.random.npc;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.RandomizeCharacter;
+import com.softwaremagico.tm.character.benefices.AvailableBenefice;
+import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.equipment.armours.Armour;
 import com.softwaremagico.tm.character.equipment.armours.ArmourFactory;
+import com.softwaremagico.tm.character.equipment.shields.Shield;
+import com.softwaremagico.tm.character.equipment.shields.ShieldFactory;
 import com.softwaremagico.tm.character.equipment.weapons.Weapon;
 import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
 import com.softwaremagico.tm.character.factions.FactionsFactory;
@@ -68,6 +72,15 @@ public class NpcTests {
         }
     }
 
+    private void checkContainsBenefice(CharacterPlayer characterPlayer, AvailableBenefice availableBenefice) {
+        for (AvailableBenefice benefice : characterPlayer.getAllBenefices()) {
+            if (Objects.equals(benefice, availableBenefice)) {
+                return;
+            }
+        }
+        throw new AssertionError();
+    }
+
     private void checkContainsWeapon(CharacterPlayer characterPlayer, Weapon weapon) {
         for (Weapon characterWeapon : characterPlayer.getAllWeapons()) {
             if (Objects.equals(characterWeapon, weapon)) {
@@ -79,6 +92,12 @@ public class NpcTests {
 
     private void checkContainsArmour(CharacterPlayer characterPlayer, Armour armour) {
         if (!Objects.equals(characterPlayer.getArmour(), armour)) {
+            throw new AssertionError();
+        }
+    }
+
+    private void checkContainsShield(CharacterPlayer characterPlayer, Shield shield) {
+        if (!Objects.equals(characterPlayer.getShield(), shield)) {
             throw new AssertionError();
         }
     }
@@ -233,5 +252,17 @@ public class NpcTests {
             }
         }
         Assert.assertTrue(found);
+    }
+
+    @Test
+    public void manifestLight() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
+        final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
+                NpcFactory.getInstance().getElement("manifestLight", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+        randomizeCharacter.createCharacter();
+        checkContainsBenefice(characterPlayer, AvailableBeneficeFactory.getInstance().getElement("language [latinLanguage]",
+                LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+        checkContainsShield(characterPlayer,
+                ShieldFactory.getInstance().getElement("standardShield", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
     }
 }

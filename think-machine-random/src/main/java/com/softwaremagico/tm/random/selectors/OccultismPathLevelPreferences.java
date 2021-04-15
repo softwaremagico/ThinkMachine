@@ -27,7 +27,7 @@ package com.softwaremagico.tm.random.selectors;
 import java.util.Random;
 import java.util.Set;
 
-public enum PsiquePathLevelPreferences implements IPsiPreference, IGaussianDistribution {
+public enum OccultismPathLevelPreferences implements IPsiPreference, IGaussianDistribution {
 
     // Gaussian distribution.
     NONE(0, 0, 0, 0),
@@ -46,7 +46,7 @@ public enum PsiquePathLevelPreferences implements IPsiPreference, IGaussianDistr
     private final int variance;
     private final Random random = new Random();
 
-    private PsiquePathLevelPreferences(int minimumValue, int maximumValue, int mean, int variance) {
+    private OccultismPathLevelPreferences(int minimumValue, int maximumValue, int mean, int variance) {
         this.maximum = maximumValue;
         this.minimum = minimumValue;
         this.variance = variance;
@@ -73,10 +73,10 @@ public enum PsiquePathLevelPreferences implements IPsiPreference, IGaussianDistr
         return mean;
     }
 
-    public static PsiquePathLevelPreferences getSelected(Set<IRandomPreference> preferences) {
+    public static OccultismPathLevelPreferences getSelected(Set<IRandomPreference> preferences) {
         for (final IRandomPreference preference : preferences) {
-            if (preference instanceof PsiquePathLevelPreferences) {
-                return (PsiquePathLevelPreferences) preference;
+            if (preference instanceof OccultismPathLevelPreferences) {
+                return (OccultismPathLevelPreferences) preference;
             }
         }
         return NONE;
@@ -96,7 +96,7 @@ public enum PsiquePathLevelPreferences implements IPsiPreference, IGaussianDistr
         return getDefaultOption();
     }
 
-    public static PsiquePathLevelPreferences getDefaultOption() {
+    public static OccultismPathLevelPreferences getDefaultOption() {
         return null;
     }
 }

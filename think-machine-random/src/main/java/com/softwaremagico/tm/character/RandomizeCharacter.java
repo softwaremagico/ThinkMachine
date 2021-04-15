@@ -25,9 +25,7 @@ package com.softwaremagico.tm.character;
  */
 
 import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.character.benefices.BeneficeDefinition;
-import com.softwaremagico.tm.character.benefices.RandomBeneficeDefinition;
-import com.softwaremagico.tm.character.benefices.RandomExtraBeneficeDefinition;
+import com.softwaremagico.tm.character.benefices.*;
 import com.softwaremagico.tm.character.blessings.RandomBlessingDefinition;
 import com.softwaremagico.tm.character.blessings.RandomCursesDefinition;
 import com.softwaremagico.tm.character.characteristics.*;
@@ -77,35 +75,35 @@ public class RandomizeCharacter {
     private final Set<Weapon> mandatoryWeapons;
     private final Set<Armour> mandatoryArmours;
     private final Set<Shield> mandatoryShields;
-    private Faction requiredFaction;
-    private Race requiredRace;
+    private final Faction requiredFaction;
+    private final Race requiredRace;
 
     public RandomizeCharacter(CharacterPlayer characterPlayer, int experiencePoints, IRandomPreference... preferences) {
         this(characterPlayer, experiencePoints, null, new HashSet<>(Arrays.asList(preferences)), new HashSet<>(), new HashSet<>(),
-                new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>());
+                new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>());
     }
 
     public RandomizeCharacter(CharacterPlayer characterPlayer, IRandomPredefined... profiles) {
         this(characterPlayer, null, new HashSet<>(Arrays.asList(profiles)), new HashSet<>(), new HashSet<>(),
-                new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(),
+                new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(),
                 new HashSet<>(), new HashSet<>());
     }
 
     public RandomizeCharacter(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences, IRandomPredefined... profiles) {
         this(characterPlayer, null, new HashSet<>(Arrays.asList(profiles)), preferences, new HashSet<>(),
-                new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(),
+                new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(),
                 new HashSet<>(), new HashSet<>());
     }
 
     public RandomizeCharacter(CharacterPlayer characterPlayer, Integer experiencePoints, Set<IRandomPredefined> profiles, Set<IRandomPreference> preferences,
                               Set<AvailableSkill> requiredSkills, Set<AvailableSkill> suggestedSkills, Set<BeneficeDefinition> mandatoryBenefices,
-                              Set<BeneficeDefinition> suggestedBenefices, Set<Weapon> mandatoryWeapons, Set<Armour> mandatoryArmours,
-                              Set<Shield> mandatoryShields) {
+                              Set<BeneficeDefinition> suggestedBenefices, Set<AvailableBenefice> mandatoryAvailableBenefices,
+                              Set<Weapon> mandatoryWeapons, Set<Armour> mandatoryArmours, Set<Shield> mandatoryShields) {
         this.characterPlayer = characterPlayer;
 
         final IRandomPredefined finalProfile = PredefinedMerger.merge(profiles, preferences, requiredSkills, suggestedSkills,
-                mandatoryBenefices, suggestedBenefices, mandatoryWeapons, mandatoryArmours, mandatoryShields, characterPlayer.getLanguage(),
-                characterPlayer.getModuleName());
+                mandatoryBenefices, suggestedBenefices, mandatoryAvailableBenefices, mandatoryWeapons, mandatoryArmours, mandatoryShields,
+                characterPlayer.getLanguage(), characterPlayer.getModuleName());
 
         // Assign preferences
         this.preferences = finalProfile.getPreferences();
@@ -121,6 +119,9 @@ public class RandomizeCharacter {
         this.requiredRace = finalProfile.getRace();
 
         setMandatoryTech();
+
+        setMandatoryAvailableBenefices(finalProfile.getMandatoryBeneficeSpecializations());
+
 
         // Assign experience
         if (experiencePoints == null) {
@@ -150,6 +151,18 @@ public class RandomizeCharacter {
                         tech.setValue(availableSkill.getRandomDefinition().getMinimumTechLevel());
                     }
                 }
+            }
+        }
+    }
+
+    private void setMandatoryAvailableBenefices(Set<AvailableBenefice> mandatoryAvailableBenefices) {
+        for (final AvailableBenefice availableBenefice : mandatoryAvailableBenefices) {
+            try {
+                characterPlayer.addBenefice(availableBenefice);
+            } catch (InvalidBeneficeException e) {
+                RandomGenerationLog.errorMessage(this.getClass().getName(), e);
+            } catch (BeneficeAlreadyAddedException e) {
+                //Ignore it.
             }
         }
     }
@@ -302,7 +315,7 @@ public class RandomizeCharacter {
         final RandomCybernetics randomCybernetics = new RandomCybernetics(characterPlayer, preferences);
         randomCybernetics.assign();
         // Set Wyrd
-        final IGaussianDistribution wyrdDistribution = PsiqueLevelPreferences.getSelected(preferences);
+        final IGaussianDistribution wyrdDistribution = OccultismLevelPreferences.getSelected(preferences);
         final int extraWyrd = wyrdDistribution.randomGaussian();
         characterPlayer.addExtraWyrd(extraWyrd - characterPlayer.getBasicWyrdValue());
         RandomGenerationLog.info(this.getClass().getName(), "Added extra wyrd '{}'.", extraWyrd);

@@ -24,6 +24,7 @@ package com.softwaremagico.tm.random.predefined.characters;
  * #L%
  */
 
+import com.softwaremagico.tm.character.benefices.AvailableBenefice;
 import com.softwaremagico.tm.character.benefices.BeneficeDefinition;
 import com.softwaremagico.tm.character.characteristics.Characteristic;
 import com.softwaremagico.tm.character.equipment.armours.Armour;
@@ -47,9 +48,10 @@ public class Npc extends RandomPredefined<Npc> implements IRandomPredefined {
     public Npc(String id, String name, String description, String language, String moduleName,
                Set<IRandomPreference> randomPreferences, Set<Characteristic> characteristicsMinimumValues,
                Set<AvailableSkill> requiredSkills, Set<AvailableSkill> suggestedSkills, Set<BeneficeDefinition> mandatoryBenefices,
-               Set<BeneficeDefinition> suggestedBenefices, Faction faction, Race race) {
+               Set<BeneficeDefinition> suggestedBenefices, Set<AvailableBenefice> mandatoryBeneficeSpecializations,
+               Faction faction, Race race) {
         super(id, name, description, language, moduleName, randomPreferences, characteristicsMinimumValues, requiredSkills,
-                suggestedSkills, mandatoryBenefices, suggestedBenefices, faction, race);
+                suggestedSkills, mandatoryBenefices, suggestedBenefices, mandatoryBeneficeSpecializations, faction, race);
         this.mandatoryWeapons = new HashSet<>();
         this.mandatoryArmours = new HashSet<>();
         this.mandatoryShields = new HashSet<>();
@@ -57,7 +59,7 @@ public class Npc extends RandomPredefined<Npc> implements IRandomPredefined {
 
     public Npc(String id, String name, String description, String language, String moduleName) {
         this(id, name, description, language, moduleName, new HashSet<>(), new HashSet<>(),
-                new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), null, null);
+                new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), null, null);
     }
 
     public void addMandatoryWeapons(Set<Weapon> weapons) {

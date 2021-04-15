@@ -48,6 +48,7 @@ public abstract class RandomPredefined<Predefined extends Element<Predefined>> e
     private final Set<AvailableSkill> suggestedSkills;
     private final Set<BeneficeDefinition> suggestedBenefices;
     private final Set<BeneficeDefinition> mandatoryBenefices;
+    private final Set<AvailableBenefice> mandatoryBeneficeSpecializations;
     private Faction faction;
     private Race race;
 
@@ -57,7 +58,8 @@ public abstract class RandomPredefined<Predefined extends Element<Predefined>> e
     public RandomPredefined(String id, String name, String description, String language, String moduleName,
                             Set<IRandomPreference> randomPreferences, Set<Characteristic> characteristicsMinimumValues,
                             Set<AvailableSkill> requiredSkills, Set<AvailableSkill> suggestedSkills, Set<BeneficeDefinition> mandatoryBenefices,
-                            Set<BeneficeDefinition> suggestedBenefices, Faction faction, Race race) {
+                            Set<BeneficeDefinition> suggestedBenefices, Set<AvailableBenefice> mandatoryBeneficeSpecializations,
+                            Faction faction, Race race) {
         super(id, name, description, language, moduleName);
         this.randomPreferences = randomPreferences;
         this.characteristicsMinimumValues = characteristicsMinimumValues;
@@ -65,13 +67,14 @@ public abstract class RandomPredefined<Predefined extends Element<Predefined>> e
         this.suggestedSkills = suggestedSkills;
         this.suggestedBenefices = suggestedBenefices;
         this.mandatoryBenefices = mandatoryBenefices;
+        this.mandatoryBeneficeSpecializations = mandatoryBeneficeSpecializations;
         this.faction = faction;
         this.race = race;
     }
 
     public RandomPredefined(String id, String name, String description, String language, String moduleName) {
         this(id, name, description, language, moduleName, new HashSet<>(), new HashSet<>(),
-                new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), null, null);
+                new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), null, null);
     }
 
     @Override
@@ -164,6 +167,10 @@ public abstract class RandomPredefined<Predefined extends Element<Predefined>> e
     @Override
     public Set<BeneficeDefinition> getMandatoryBenefices() {
         return mandatoryBenefices;
+    }
+
+    public Set<AvailableBenefice> getMandatoryBeneficeSpecializations() {
+        return mandatoryBeneficeSpecializations;
     }
 
     @Override

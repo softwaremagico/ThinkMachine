@@ -263,7 +263,6 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
 
         // Add extra probability to fight styles
         final CombatActionsPreferences combatActionsPreferences = CombatActionsPreferences.getSelected(getPreferences());
-        final CombatActionsGroupPreferences combatActionsGroupPreferences = CombatActionsGroupPreferences.getSelected(getPreferences());
         if (benefice.getGroup() == BeneficeGroup.FIGHTING && combatActionsPreferences.minimum() > 0) {
             try {
                 if (getCombatStyleGroupSelected(benefice)) {

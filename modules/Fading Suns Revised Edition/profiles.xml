@@ -437,7 +437,7 @@
             <es>Ocultista</es>
         </name>
         <group>specials</group>
-        <preferences>PsiquePathLevelPreferences.ANY, PsiqueLevelPreferences.ANY</preferences>
+        <preferences>OccultismPathLevelPreferences.ANY, OccultismLevelPreferences.ANY</preferences>
     </occultist>
     <martialArtist>
         <name>

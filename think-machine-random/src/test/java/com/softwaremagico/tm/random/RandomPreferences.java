@@ -95,7 +95,7 @@ public class RandomPreferences {
         requiredSkills.add(artifactMelee);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0,
                 new HashSet<>(), new HashSet<>(), requiredSkills, new HashSet<>(), new HashSet<>(),
-                new HashSet<>(), new HashSet<>(), new HashSet<>(),
+                new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(),
                 new HashSet<>());
         randomizeCharacter.createCharacter();
         Assert.assertTrue(characterPlayer.getCharacteristic(CharacteristicName.TECH).getValue() >=

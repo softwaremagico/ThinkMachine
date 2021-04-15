@@ -27,6 +27,8 @@ package com.softwaremagico.tm.random.predefined;
 import com.softwaremagico.tm.Element;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
+import com.softwaremagico.tm.character.benefices.AvailableBenefice;
+import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
 import com.softwaremagico.tm.character.benefices.BeneficeDefinition;
 import com.softwaremagico.tm.character.benefices.BeneficeDefinitionFactory;
 import com.softwaremagico.tm.character.characteristics.Characteristic;
@@ -34,7 +36,6 @@ import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.characteristics.CharacteristicsDefinitionFactory;
 import com.softwaremagico.tm.character.factions.Faction;
 import com.softwaremagico.tm.character.factions.FactionsFactory;
-import com.softwaremagico.tm.character.factions.InvalidFactionException;
 import com.softwaremagico.tm.character.races.Race;
 import com.softwaremagico.tm.character.races.RaceFactory;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
@@ -58,6 +59,7 @@ public abstract class RandomPredefinedFactory<Predefined extends Element<Predefi
     private static final String REQUIRED_SKILLS_SPECIALIZATION = "speciality";
     private static final String SUGGESTED_BENEFICES = "suggestedBenefices";
     private static final String MANDATORY_BENEFICES = "mandatoryBenefices";
+    private static final String MANDATORY_BENEFICES_SPECIALIZATIONS = "mandatoryBeneficesSpecialization";
     private static final String PARENT = "parent";
     private static final String FACTION = "faction";
     private static final String RACE = "race";
@@ -91,7 +93,7 @@ public abstract class RandomPredefinedFactory<Predefined extends Element<Predefi
                                             Set<IRandomPreference> randomPreferences, Set<Characteristic> characteristicsMinimumValues,
                                             Set<AvailableSkill> requiredSkills, Set<AvailableSkill> suggestedSkills,
                                             Set<BeneficeDefinition> mandatoryBenefices, Set<BeneficeDefinition> suggestedBenefices,
-                                            Faction faction, Race race);
+                                            Set<AvailableBenefice> mandatoryBeneficeSpecializations, Faction faction, Race race);
 
     private void classify(Predefined predefined, String groupName) {
         predefinedByGroup.computeIfAbsent(groupName, k -> new HashSet<>());
@@ -234,6 +236,9 @@ public abstract class RandomPredefinedFactory<Predefined extends Element<Predefi
         final Set<BeneficeDefinition> mandatoryBenefices = getCommaSeparatedValues(predefinedId, MANDATORY_BENEFICES,
                 language, moduleName, BeneficeDefinitionFactory.getInstance());
 
+        final Set<AvailableBenefice> mandatoryBeneficeSpecializations = getCommaSeparatedValues(predefinedId, MANDATORY_BENEFICES_SPECIALIZATIONS,
+                language, moduleName, AvailableBeneficeFactory.getInstance());
+
         final Set<BeneficeDefinition> suggestedBenefices = getCommaSeparatedValues(predefinedId, SUGGESTED_BENEFICES,
                 language, moduleName, BeneficeDefinitionFactory.getInstance());
 
@@ -248,7 +253,8 @@ public abstract class RandomPredefinedFactory<Predefined extends Element<Predefi
         final Race race = getElement(predefinedId, RACE, language, moduleName, RaceFactory.getInstance());
 
         final Predefined predefined = createNew(predefinedId, name, description, language, moduleName, preferencesSelected,
-                characteristicsMinimumValues, requiredSkills, suggestedSkills, mandatoryBenefices, suggestedBenefices, faction, race);
+                characteristicsMinimumValues, requiredSkills, suggestedSkills, mandatoryBenefices, suggestedBenefices, mandatoryBeneficeSpecializations,
+                faction, race);
 
         classify(predefined, group);
 

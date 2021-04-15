@@ -25,6 +25,7 @@ package com.softwaremagico.tm.random.predefined.characters;
  */
 
 import com.softwaremagico.tm.InvalidXmlElementException;
+import com.softwaremagico.tm.character.benefices.AvailableBenefice;
 import com.softwaremagico.tm.character.benefices.BeneficeDefinition;
 import com.softwaremagico.tm.character.characteristics.Characteristic;
 import com.softwaremagico.tm.character.equipment.armours.Armour;
@@ -71,9 +72,10 @@ public class NpcFactory extends RandomPredefinedFactory<Npc> {
     protected Npc createNew(String id, String name, String description, String language, String moduleName,
                             Set<IRandomPreference> randomPreferences, Set<Characteristic> characteristicsMinimumValues,
                             Set<AvailableSkill> requiredSkills, Set<AvailableSkill> suggestedSkills, Set<BeneficeDefinition> mandatoryBenefices,
-                            Set<BeneficeDefinition> suggestedBenefices, Faction faction, Race race) {
+                            Set<BeneficeDefinition> suggestedBenefices, Set<AvailableBenefice> mandatoryBeneficeSpecializations,
+                            Faction faction, Race race) {
         return new Npc(id, name, description, language, moduleName, randomPreferences, characteristicsMinimumValues, requiredSkills,
-                suggestedSkills, mandatoryBenefices, suggestedBenefices, faction, race);
+                suggestedSkills, mandatoryBenefices, suggestedBenefices, mandatoryBeneficeSpecializations, faction, race);
     }
 
     @Override

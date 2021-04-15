@@ -39,7 +39,7 @@ import com.softwaremagico.tm.random.definition.RandomProbabilityDefinition;
 
 import java.util.*;
 
-public abstract class XmlFactory<T extends Element<T>> {
+public abstract class XmlFactory<T extends Element<T>> implements IElementRetriever<T> {
     protected Map<String, Map<String, List<T>>> elements = new HashMap<>();
 
     private static final String RANDOM = "random";
@@ -329,6 +329,7 @@ public abstract class XmlFactory<T extends Element<T>> {
         return elements.get(language).get(moduleName);
     }
 
+    @Override
     public T getElement(String elementId, String language, String moduleName) throws InvalidXmlElementException {
         final List<T> elements = getElements(language, moduleName);
         for (final T element : elements) {
@@ -345,7 +346,7 @@ public abstract class XmlFactory<T extends Element<T>> {
                                        String moduleName) throws InvalidXmlElementException;
 
     protected <E extends Element<E>, F extends XmlFactory<E>> E getElement(String elementId, String node, String language, String moduleName,
-                                                                          F factory) throws InvalidXmlElementException {
+                                                                           F factory) throws InvalidXmlElementException {
         E element = null;
         final String elementName = getTranslator(moduleName).getNodeValue(elementId, node);
         if (elementName != null) {
@@ -358,8 +359,8 @@ public abstract class XmlFactory<T extends Element<T>> {
         return element;
     }
 
-    protected <E extends Element<E>, F extends XmlFactory<E>> Set<E> getCommaSeparatedValues(String elementId, String node, String language, String moduleName,
-                                                                                             F factory) throws InvalidXmlElementException {
+    protected <E extends Element<E>, F extends IElementRetriever<E>> Set<E> getCommaSeparatedValues(
+            String elementId, String node, String language, String moduleName, F factory) throws InvalidXmlElementException {
         final String elementTags = getTranslator(moduleName).getNodeValue(elementId, node);
         final Set<E> elements = new HashSet<>();
         try {

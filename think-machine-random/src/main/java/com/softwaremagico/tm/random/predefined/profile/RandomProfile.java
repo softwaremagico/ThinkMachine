@@ -24,6 +24,7 @@ package com.softwaremagico.tm.random.predefined.profile;
  * #L%
  */
 
+import com.softwaremagico.tm.character.benefices.AvailableBenefice;
 import com.softwaremagico.tm.character.benefices.BeneficeDefinition;
 import com.softwaremagico.tm.character.characteristics.Characteristic;
 import com.softwaremagico.tm.character.factions.Faction;
@@ -39,9 +40,10 @@ public class RandomProfile extends RandomPredefined<RandomProfile> implements IR
 
     public RandomProfile(String id, String name, String description, String language, String moduleName, Set<IRandomPreference> randomPreferences,
                          Set<Characteristic> characteristicsMinimumValues, Set<AvailableSkill> requiredSkills, Set<AvailableSkill> suggestedSkills,
-                         Set<BeneficeDefinition> mandatoryBenefices, Set<BeneficeDefinition> suggestedBenefices, Faction faction, Race race) {
+                         Set<BeneficeDefinition> mandatoryBenefices, Set<BeneficeDefinition> suggestedBenefices,
+                         Set<AvailableBenefice> mandatoryBeneficeSpecializations, Faction faction, Race race) {
         super(id, name, description, language, moduleName, randomPreferences, characteristicsMinimumValues, requiredSkills, suggestedSkills,
-                mandatoryBenefices, suggestedBenefices, faction, race);
+                mandatoryBenefices, suggestedBenefices, mandatoryBeneficeSpecializations, faction, race);
     }
 
     public RandomProfile(String id, String name, String description, String language, String moduleName) {

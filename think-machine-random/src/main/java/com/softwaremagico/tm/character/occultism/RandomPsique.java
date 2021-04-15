@@ -24,10 +24,6 @@ package com.softwaremagico.tm.character.occultism;
  * #L%
  */
 
-import java.util.Collection;
-import java.util.Objects;
-import java.util.Set;
-
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
@@ -39,7 +35,11 @@ import com.softwaremagico.tm.random.exceptions.ImpossibleToAssignMandatoryElemen
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.IGaussianDistribution;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
-import com.softwaremagico.tm.random.selectors.PsiqueLevelPreferences;
+import com.softwaremagico.tm.random.selectors.OccultismLevelPreferences;
+
+import java.util.Collection;
+import java.util.Objects;
+import java.util.Set;
 
 public class RandomPsique extends RandomSelector<OccultismType> {
 
@@ -95,7 +95,7 @@ public class RandomPsique extends RandomSelector<OccultismType> {
 		} catch (InvalidBeneficeException e) {
 			// Module without noocc benefice.
 		}
-		final IGaussianDistribution psiqueLevelSelector = PsiqueLevelPreferences.getSelected(getPreferences());
+		final IGaussianDistribution psiqueLevelSelector = OccultismLevelPreferences.getSelected(getPreferences());
 		int maxLevelSelected = psiqueLevelSelector.randomGaussian();
 		if (maxLevelSelected > psiqueLevelSelector.maximum()) {
 			maxLevelSelected = psiqueLevelSelector.maximum();
