@@ -41,9 +41,9 @@ public class RandomPsiquePath extends RandomSelector<OccultismPath> {
 
     private int totalPowers;
 
-    public RandomPsiquePath(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences)
+    public RandomPsiquePath(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences, Set<OccultismPath> mandatoryOccultismPaths)
             throws InvalidXmlElementException {
-        super(characterPlayer, preferences);
+        super(characterPlayer, null, preferences, mandatoryOccultismPaths, new HashSet<>());
     }
 
     @Override
@@ -56,7 +56,7 @@ public class RandomPsiquePath extends RandomSelector<OccultismPath> {
             try {
                 final OccultismPath selectedOccultismPath = selectElementByWeight();
                 // Select a level of psique.
-                final int pathLevel = assignMaxLevelOfPath(selectedOccultismPath);
+                final int pathLevel = assignLevelOfPath(selectedOccultismPath);
                 // Assign path to the character.
                 assignPowersOfPath(selectedOccultismPath, pathLevel);
                 removeElementWeight(selectedOccultismPath);
@@ -105,7 +105,7 @@ public class RandomPsiquePath extends RandomSelector<OccultismPath> {
         return 1;
     }
 
-    private int assignMaxLevelOfPath(OccultismPath path) throws InvalidXmlElementException {
+    private int assignLevelOfPath(OccultismPath path) {
         // Use psique level preferences for the path level.
         final IGaussianDistribution psiqueLevelSelector = OccultismLevelPreferences.getSelected(getPreferences());
         int maxLevelSelected = psiqueLevelSelector.randomGaussian();
@@ -140,7 +140,6 @@ public class RandomPsiquePath extends RandomSelector<OccultismPath> {
                 if (!powers.isEmpty()) {
                     Collections.shuffle(powers);
                     powersToAdd.add(powers.get(0));
-
                 }
             }
         }
@@ -183,7 +182,7 @@ public class RandomPsiquePath extends RandomSelector<OccultismPath> {
         // Own factions paths are a must.
         if (path.getFactionsAllowed().contains(getCharacterPlayer().getFaction())) {
             // Select a level of psique.
-            final int pathLevel = assignMaxLevelOfPath(path);
+            final int pathLevel = assignLevelOfPath(path);
             // Assign path to the character.
             assignPowersOfPath(path, pathLevel);
             removeElementWeight(path);
@@ -191,7 +190,14 @@ public class RandomPsiquePath extends RandomSelector<OccultismPath> {
     }
 
     @Override
-    protected void assignMandatoryValues(Set<OccultismPath> mandatoryValues) throws InvalidXmlElementException {
-        return;
+    protected void assignMandatoryValues(Set<OccultismPath> mandatoryValues) {
+        mandatoryValues.forEach(mandatoryValue -> {
+            final int pathLevel = assignLevelOfPath(mandatoryValue);
+            try {
+                assignPowersOfPath(mandatoryValue, pathLevel);
+            } catch (InvalidXmlElementException e) {
+                RandomGenerationLog.errorMessage(this.getClass().getName(), e);
+            }
+        });
     }
 }

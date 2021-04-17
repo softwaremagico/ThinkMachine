@@ -45,6 +45,7 @@ import com.softwaremagico.tm.character.equipment.weapons.RandomWeapon;
 import com.softwaremagico.tm.character.equipment.weapons.Weapon;
 import com.softwaremagico.tm.character.factions.Faction;
 import com.softwaremagico.tm.character.factions.RandomFaction;
+import com.softwaremagico.tm.character.occultism.OccultismPath;
 import com.softwaremagico.tm.character.occultism.RandomPsique;
 import com.softwaremagico.tm.character.occultism.RandomPsiquePath;
 import com.softwaremagico.tm.character.races.Race;
@@ -75,6 +76,7 @@ public class RandomizeCharacter {
     private final Set<BeneficeDefinition> mandatoryBenefices;
     private final Set<BeneficeDefinition> suggestedBenefices;
     private final Set<Characteristic> characteristicsMinimumValues;
+    private final Set<OccultismPath> mandatoryOccultismPaths;
     private final Set<Weapon> mandatoryWeapons;
     private final Set<Armour> mandatoryArmours;
     private final Set<Shield> mandatoryShields;
@@ -84,32 +86,32 @@ public class RandomizeCharacter {
     public RandomizeCharacter(CharacterPlayer characterPlayer, int experiencePoints, IRandomPreference... preferences) {
         this(characterPlayer, experiencePoints, null, new HashSet<>(Arrays.asList(preferences)), new HashSet<>(), new HashSet<>(),
                 new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(),
-                new HashSet<>(), new HashSet<>());
+                new HashSet<>(), new HashSet<>(), new HashSet<>());
     }
 
     public RandomizeCharacter(CharacterPlayer characterPlayer, IRandomPredefined... profiles) {
         this(characterPlayer, null, new HashSet<>(Arrays.asList(profiles)), new HashSet<>(), new HashSet<>(), new HashSet<>(),
                 new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(),
-                new HashSet<>(), new HashSet<>());
+                new HashSet<>(), new HashSet<>(), new HashSet<>());
     }
 
     public RandomizeCharacter(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences, IRandomPredefined... profiles) {
         this(characterPlayer, null, new HashSet<>(Arrays.asList(profiles)), preferences, new HashSet<>(), new HashSet<>(),
                 new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(),
-                new HashSet<>(), new HashSet<>());
+                new HashSet<>(), new HashSet<>(), new HashSet<>());
     }
 
     public RandomizeCharacter(CharacterPlayer characterPlayer, Integer experiencePoints, Set<IRandomPredefined> profiles, Set<IRandomPreference> preferences,
                               Set<AvailableSkill> requiredSkills, Set<AvailableSkill> suggestedSkills,
                               Set<Blessing> mandatoryBlessings, Set<Blessing> suggestedBlessings,
                               Set<BeneficeDefinition> mandatoryBenefices, Set<BeneficeDefinition> suggestedBenefices,
-                              Set<AvailableBenefice> mandatoryAvailableBenefices,
+                              Set<AvailableBenefice> mandatoryAvailableBenefices, Set<OccultismPath> mandatoryOccultismPaths,
                               Set<Weapon> mandatoryWeapons, Set<Armour> mandatoryArmours, Set<Shield> mandatoryShields) {
         this.characterPlayer = characterPlayer;
 
         final IRandomPredefined finalProfile = PredefinedMerger.merge(profiles, preferences, requiredSkills, suggestedSkills,
                 mandatoryBlessings, suggestedBlessings,
-                mandatoryBenefices, suggestedBenefices, mandatoryAvailableBenefices,
+                mandatoryBenefices, suggestedBenefices, mandatoryAvailableBenefices, mandatoryOccultismPaths,
                 mandatoryWeapons, mandatoryArmours, mandatoryShields,
                 characterPlayer.getLanguage(), characterPlayer.getModuleName());
 
@@ -127,6 +129,7 @@ public class RandomizeCharacter {
         this.requiredRace = finalProfile.getRace();
         this.mandatoryBlessings = finalProfile.getMandatoryBlessings();
         this.suggestedBlessings = finalProfile.getSuggestedBlessings();
+        this.mandatoryOccultismPaths = finalProfile.getMandatoryOccultismPaths();
 
         setMandatoryTech();
 
@@ -330,7 +333,7 @@ public class RandomizeCharacter {
         characterPlayer.addExtraWyrd(extraWyrd - characterPlayer.getBasicWyrdValue());
         RandomGenerationLog.info(this.getClass().getName(), "Added extra wyrd '{}'.", extraWyrd);
         // Set psi paths.
-        final RandomPsiquePath randomPsiquePath = new RandomPsiquePath(characterPlayer, preferences);
+        final RandomPsiquePath randomPsiquePath = new RandomPsiquePath(characterPlayer, preferences, mandatoryOccultismPaths);
         randomPsiquePath.assign();
 
         final DifficultLevelPreferences difficultLevel = DifficultLevelPreferences.getSelected(preferences);

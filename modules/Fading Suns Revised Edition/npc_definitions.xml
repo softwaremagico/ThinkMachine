@@ -1295,6 +1295,7 @@
             <es>Derviches</es>
         </name>
         <group>weirdForces</group>
+        <faction>minorFaction</faction>
         <preferences>CombatPreferences.BELLIGERENT, CharacteristicsPreferences.BODY,
             SpecializationPreferences.VERY_SPECIALIZED, TechnologicalPreferences.MODERN, WeaponsPreferences.HIGH,
             OccultismLevelPreferences.ANY, OccultismTypePreference.PSI, CombatActionsPreferences.HIGH,
@@ -1334,7 +1335,7 @@
             </skill>
         </suggestedSkills>
         <mandatoryBlessings>weird</mandatoryBlessings>
-        <mandatoryBeneficesSpecialization>language [latinLanguage]</mandatoryBeneficesSpecialization>
+        <mandatoryOccultismPaths>farHand, soma</mandatoryOccultismPaths>
         <weapons>typicalSMG, curvedSword</weapons>
         <armours>stiffsynth</armours>
     </dervishes>

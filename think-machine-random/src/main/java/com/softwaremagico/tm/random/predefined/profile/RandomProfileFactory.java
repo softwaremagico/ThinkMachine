@@ -29,6 +29,7 @@ import com.softwaremagico.tm.character.benefices.BeneficeDefinition;
 import com.softwaremagico.tm.character.blessings.Blessing;
 import com.softwaremagico.tm.character.characteristics.Characteristic;
 import com.softwaremagico.tm.character.factions.Faction;
+import com.softwaremagico.tm.character.occultism.OccultismPath;
 import com.softwaremagico.tm.character.races.Race;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.json.factories.cache.FactoryCacheLoader;
@@ -64,11 +65,11 @@ public class RandomProfileFactory extends RandomPredefinedFactory<RandomProfile>
                                       Set<AvailableSkill> requiredSkills, Set<AvailableSkill> suggestedSkills,
                                       Set<Blessing> mandatoryBlessings, Set<Blessing> suggestedBlessings,
                                       Set<BeneficeDefinition> mandatoryBenefices, Set<BeneficeDefinition> suggestedBenefices,
-                                      Set<AvailableBenefice> mandatoryBeneficeSpecializations,
+                                      Set<AvailableBenefice> mandatoryBeneficeSpecializations, Set<OccultismPath> mandatoryOccultismPaths,
                                       Faction faction, Race race) {
         return new RandomProfile(id, name, description, language, moduleName, randomPreferences, characteristicsMinimumValues,
                 requiredSkills, suggestedSkills, mandatoryBlessings, suggestedBlessings, mandatoryBenefices, suggestedBenefices,
-                mandatoryBeneficeSpecializations, faction, race);
+                mandatoryBeneficeSpecializations, mandatoryOccultismPaths, faction, race);
     }
 
 }

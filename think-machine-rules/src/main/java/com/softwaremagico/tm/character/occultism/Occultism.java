@@ -166,4 +166,8 @@ public class Occultism {
         }
         return selectedPowers.get(path.getId()).contains(power);
     }
+
+    public boolean hasPath(OccultismPath path) {
+        return selectedPowers.containsKey(path.getId());
+    }
 }

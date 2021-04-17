@@ -8,6 +8,7 @@ import com.softwaremagico.tm.character.characteristics.Characteristic;
 import com.softwaremagico.tm.character.equipment.armours.Armour;
 import com.softwaremagico.tm.character.equipment.shields.Shield;
 import com.softwaremagico.tm.character.equipment.weapons.Weapon;
+import com.softwaremagico.tm.character.occultism.OccultismPath;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.random.predefined.characters.Npc;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
@@ -52,6 +53,7 @@ public class PredefinedMerger {
     public static IRandomPredefined merge(Set<IRandomPredefined> profiles, String language, String moduleName) {
         return merge(profiles, new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(),
                 new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(),
+                new HashSet<>(),
                 language, moduleName);
     }
 
@@ -62,7 +64,7 @@ public class PredefinedMerger {
     public static IRandomPredefined merge(Set<IRandomPredefined> profiles, Set<IRandomPreference> extraPreferences, Set<AvailableSkill> requiredSkills,
                                           Set<AvailableSkill> suggestedSkills, Set<Blessing> mandatoryBlessings, Set<Blessing> suggestedBlessings,
                                           Set<BeneficeDefinition> mandatoryBenefices, Set<BeneficeDefinition> suggestedBenefices,
-                                          Set<AvailableBenefice> mandatoryAvailableBenefices,
+                                          Set<AvailableBenefice> mandatoryAvailableBenefices, Set<OccultismPath> mandatoryOccultismPaths,
                                           Set<Weapon> mandatoryWeapons, Set<Armour> mandatoryArmours,
                                           Set<Shield> mandatoryShields, String language, String moduleName) {
         if (profiles == null) {
@@ -110,6 +112,8 @@ public class PredefinedMerger {
 
             mergeRace(finalProfile, profile);
 
+            mergeOccultismPaths(finalProfile.getMandatoryOccultismPaths(), profile.getMandatoryOccultismPaths());
+
         }
 
         // Add selected preferences with more priority.
@@ -145,6 +149,10 @@ public class PredefinedMerger {
         finalProfile.getSuggestedBenefices().clear();
         finalProfile.getSuggestedBenefices().addAll(suggestedBenefices);
 
+        mergeOccultismPaths(mandatoryOccultismPaths, finalProfile.getMandatoryOccultismPaths());
+        finalProfile.getMandatoryOccultismPaths().clear();
+        finalProfile.getMandatoryOccultismPaths().addAll(mandatoryOccultismPaths);
+
         mergeWeapons(mandatoryWeapons, finalProfile.getMandatoryWeapons());
         finalProfile.getMandatoryWeapons().clear();
         finalProfile.getMandatoryWeapons().addAll(mandatoryWeapons);
@@ -179,6 +187,10 @@ public class PredefinedMerger {
                 originalCharacteristicsMinimumValues.add(newCharacteristic);
             }
         }
+    }
+
+    private static void mergeOccultismPaths(Set<OccultismPath> originalOccultismPaths, Set<OccultismPath> extraOccultismPaths) {
+        originalOccultismPaths.addAll(extraOccultismPaths);
     }
 
     private static void mergeAvailableBenefices(Set<AvailableBenefice> originalBenefices, Set<AvailableBenefice> extraBenefices) {

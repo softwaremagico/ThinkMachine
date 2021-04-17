@@ -15,6 +15,8 @@ import com.softwaremagico.tm.character.equipment.shields.ShieldFactory;
 import com.softwaremagico.tm.character.equipment.weapons.Weapon;
 import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
 import com.softwaremagico.tm.character.factions.FactionsFactory;
+import com.softwaremagico.tm.character.occultism.OccultismPathFactory;
+import com.softwaremagico.tm.character.occultism.OccultismTypeFactory;
 import com.softwaremagico.tm.character.races.RaceFactory;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.file.PathManager;
@@ -277,5 +279,16 @@ public class NpcTests {
                 ShieldFactory.getInstance().getElement("standardShield", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         checkContainsBlessing(characterPlayer,
                 BlessingFactory.getInstance().getElement("disciplined", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+    }
+
+    @Test
+    public void dervishes() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
+        final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
+                NpcFactory.getInstance().getElement("dervishes", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+        randomizeCharacter.createCharacter();
+        Assert.assertTrue(characterPlayer.getOccultismLevel(OccultismTypeFactory.getPsi(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)) > 0);
+        Assert.assertTrue(characterPlayer.hasOccultismPath(OccultismPathFactory.getInstance().getElement("farHand", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)));
+        Assert.assertTrue(characterPlayer.hasOccultismPath(OccultismPathFactory.getInstance().getElement("soma", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)));
     }
 }

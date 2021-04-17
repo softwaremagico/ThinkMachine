@@ -34,6 +34,7 @@ import com.softwaremagico.tm.character.equipment.armours.Armour;
 import com.softwaremagico.tm.character.equipment.shields.Shield;
 import com.softwaremagico.tm.character.equipment.weapons.Weapon;
 import com.softwaremagico.tm.character.factions.Faction;
+import com.softwaremagico.tm.character.occultism.OccultismPath;
 import com.softwaremagico.tm.character.races.Race;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.json.ExcludeFromJson;
@@ -51,6 +52,7 @@ public abstract class RandomPredefined<Predefined extends Element<Predefined>> e
     private final Set<AvailableBenefice> mandatoryBeneficeSpecializations;
     private final Set<Blessing> mandatoryBlessings;
     private final Set<Blessing> suggestedBlessings;
+    private final Set<OccultismPath> mandatoryOccultismPaths;
     private Faction faction;
     private Race race;
 
@@ -62,7 +64,7 @@ public abstract class RandomPredefined<Predefined extends Element<Predefined>> e
                             Set<AvailableSkill> requiredSkills, Set<AvailableSkill> suggestedSkills,
                             Set<Blessing> mandatoryBlessings, Set<Blessing> suggestedBlessings,
                             Set<BeneficeDefinition> mandatoryBenefices, Set<BeneficeDefinition> suggestedBenefices,
-                            Set<AvailableBenefice> mandatoryBeneficeSpecializations,
+                            Set<AvailableBenefice> mandatoryBeneficeSpecializations, Set<OccultismPath> mandatoryOccultismPaths,
                             Faction faction, Race race) {
         super(id, name, description, language, moduleName);
         this.randomPreferences = randomPreferences;
@@ -74,13 +76,14 @@ public abstract class RandomPredefined<Predefined extends Element<Predefined>> e
         this.mandatoryBeneficeSpecializations = mandatoryBeneficeSpecializations;
         this.mandatoryBlessings = mandatoryBlessings;
         this.suggestedBlessings = suggestedBlessings;
+        this.mandatoryOccultismPaths = mandatoryOccultismPaths;
         this.faction = faction;
         this.race = race;
     }
 
     public RandomPredefined(String id, String name, String description, String language, String moduleName) {
         this(id, name, description, language, moduleName, new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(),
-                new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), null, null);
+                new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), null, null);
     }
 
     @Override
@@ -214,6 +217,11 @@ public abstract class RandomPredefined<Predefined extends Element<Predefined>> e
     @Override
     public Set<Shield> getMandatoryShields() {
         return new HashSet<>();
+    }
+
+    @Override
+    public Set<OccultismPath> getMandatoryOccultismPaths() {
+        return mandatoryOccultismPaths;
     }
 
     @Override

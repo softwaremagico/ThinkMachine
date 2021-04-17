@@ -38,6 +38,8 @@ import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.characteristics.CharacteristicsDefinitionFactory;
 import com.softwaremagico.tm.character.factions.Faction;
 import com.softwaremagico.tm.character.factions.FactionsFactory;
+import com.softwaremagico.tm.character.occultism.OccultismPath;
+import com.softwaremagico.tm.character.occultism.OccultismPathFactory;
 import com.softwaremagico.tm.character.races.Race;
 import com.softwaremagico.tm.character.races.RaceFactory;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
@@ -64,6 +66,7 @@ public abstract class RandomPredefinedFactory<Predefined extends Element<Predefi
     private static final String SUGGESTED_BLESSINGS = "suggestedBlessings";
     private static final String MANDATORY_BLESSINGS = "mandatoryBlessings";
     private static final String MANDATORY_BENEFICES_SPECIALIZATIONS = "mandatoryBeneficesSpecialization";
+    private static final String MANDATORY_OCCULTISM_PATHS = "mandatoryOccultismPaths";
     private static final String PARENT = "parent";
     private static final String FACTION = "faction";
     private static final String RACE = "race";
@@ -98,7 +101,7 @@ public abstract class RandomPredefinedFactory<Predefined extends Element<Predefi
                                             Set<AvailableSkill> requiredSkills, Set<AvailableSkill> suggestedSkills,
                                             Set<Blessing> mandatoryBlessings, Set<Blessing> suggestedBlessings,
                                             Set<BeneficeDefinition> mandatoryBenefices, Set<BeneficeDefinition> suggestedBenefices,
-                                            Set<AvailableBenefice> mandatoryBeneficeSpecializations,
+                                            Set<AvailableBenefice> mandatoryBeneficeSpecializations, Set<OccultismPath> mandatoryOccultismPaths,
                                             Faction faction, Race race);
 
     private void classify(Predefined predefined, String groupName) {
@@ -253,6 +256,9 @@ public abstract class RandomPredefinedFactory<Predefined extends Element<Predefi
         final Set<BeneficeDefinition> suggestedBenefices = getCommaSeparatedValues(predefinedId, SUGGESTED_BENEFICES,
                 language, moduleName, BeneficeDefinitionFactory.getInstance());
 
+        final Set<OccultismPath> mandatoryOccultismPaths = getCommaSeparatedValues(predefinedId, MANDATORY_OCCULTISM_PATHS, language,
+                moduleName, OccultismPathFactory.getInstance());
+
 
         final String group = translator.getNodeValue(predefinedId, GROUP);
         if (group == null) {
@@ -265,7 +271,7 @@ public abstract class RandomPredefinedFactory<Predefined extends Element<Predefi
 
         final Predefined predefined = createNew(predefinedId, name, description, language, moduleName, preferencesSelected,
                 characteristicsMinimumValues, requiredSkills, suggestedSkills, mandatoryBlessings, suggestedBlessings,
-                mandatoryBenefices, suggestedBenefices, mandatoryBeneficeSpecializations, faction, race);
+                mandatoryBenefices, suggestedBenefices, mandatoryBeneficeSpecializations, mandatoryOccultismPaths, faction, race);
 
         classify(predefined, group);
 

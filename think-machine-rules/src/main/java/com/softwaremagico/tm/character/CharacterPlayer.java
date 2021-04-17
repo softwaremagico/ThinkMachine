@@ -1642,6 +1642,10 @@ public class CharacterPlayer {
         return getOccultism().hasPower(path, power);
     }
 
+    public boolean hasOccultismPath(OccultismPath path) {
+        return getOccultism().hasPath(path);
+    }
+
     public String getCompleteNameRepresentation() {
         final StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(getInfo().getNameRepresentation());

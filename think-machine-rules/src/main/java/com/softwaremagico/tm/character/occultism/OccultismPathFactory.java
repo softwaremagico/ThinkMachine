@@ -42,7 +42,7 @@ import com.softwaremagico.tm.log.SuppressFBWarnings;
 import java.util.*;
 
 public class OccultismPathFactory extends XmlFactory<OccultismPath> {
-    private static final String TRANSLATOR_FILE = "occultismPowers.xml";
+    private static final String TRANSLATOR_FILE = "occultismPaths.xml";
 
     private static final String TYPE = "type";
     private static final String FACTIONS = "factions";

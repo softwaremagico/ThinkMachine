@@ -47,7 +47,7 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 
     public RandomSkills(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences)
             throws InvalidXmlElementException {
-        this(characterPlayer, preferences, new HashSet<AvailableSkill>(), new HashSet<AvailableSkill>());
+        this(characterPlayer, preferences, new HashSet<>(), new HashSet<>());
     }
 
     public RandomSkills(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences,
