@@ -76,19 +76,25 @@ public class RandomPsique extends RandomSelector<OccultismType> {
             if (getCharacterPlayer().getFaction().getFactionGroup() == FactionGroup.CHURCH) {
                 throw new InvalidRandomElementSelectedException("Psi not allowed to church factions");
             }
-            // No church factions have psi.
-        } else if (Objects.equals(element, OccultismTypeFactory.getTheurgy(getCharacterPlayer().getLanguage(),
-                getCharacterPlayer().getModuleName()))) {
-            if (getCharacterPlayer().getFaction().getFactionGroup() != FactionGroup.CHURCH) {
-                throw new InvalidRandomElementSelectedException("Theurgy restricted to church factions");
-            }
         }
+
+        //remove not selected types
         final OccultismTypePreference psiqueLevelSelector = OccultismTypePreference.getSelected(getPreferences());
         if (psiqueLevelSelector != OccultismTypePreference.ANY &&
-                !Objects.equals(psiqueLevelSelector.name().toLowerCase(), element.getName().toLowerCase(Locale.ROOT))) {
+                !Objects.equals(psiqueLevelSelector.name().toLowerCase(), element.getName().toLowerCase())) {
             return 0;
         }
-        return 1;
+
+        // No church factions usually have psi.
+        if (Objects.equals(element, OccultismTypeFactory.getTheurgy(getCharacterPlayer().getLanguage(),
+                getCharacterPlayer().getModuleName()))) {
+            if (getCharacterPlayer().getFaction().getFactionGroup() != FactionGroup.CHURCH) {
+                return BASIC_PROBABILITY;
+            }
+        }
+
+        //No theurgy, then psi has better probability
+        return VERY_GOOD_PROBABILITY;
     }
 
     private int assignLevelOfPsique(OccultismType psique) throws InvalidXmlElementException {

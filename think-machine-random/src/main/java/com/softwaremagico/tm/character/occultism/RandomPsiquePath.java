@@ -131,8 +131,9 @@ public class RandomPsiquePath extends RandomSelector<OccultismPath> {
         final SpecializationPreferences specializationPreferences = SpecializationPreferences
                 .getSelected(getPreferences());
         // Psi must have at least one power by level.
-        if (Objects.equals(path.getOccultismType(),
-                OccultismTypeFactory.getPsi(getCharacterPlayer().getLanguage(), getCharacterPlayer().getModuleName()))) {
+        if ((getCharacterPlayer().getOccultismType() == null || Objects.equals(getCharacterPlayer().getOccultismType(), path.getOccultismType()) &&
+                Objects.equals(path.getOccultismType(),
+                        OccultismTypeFactory.getPsi(getCharacterPlayer().getLanguage(), getCharacterPlayer().getModuleName())))) {
             for (int i = 1; i <= maxLevelSelected; i++) {
                 final List<OccultismPower> powers = new ArrayList<>(path.getPowersOfLevel(i));
                 // If has more than one power at one level, choose one of them
@@ -144,8 +145,9 @@ public class RandomPsiquePath extends RandomSelector<OccultismPath> {
             }
         }
         // Theurgy does not need to have all levels.
-        if (Objects.equals(path.getOccultismType(), OccultismTypeFactory.getTheurgy(getCharacterPlayer().getLanguage(),
-                getCharacterPlayer().getModuleName()))) {
+        if ((getCharacterPlayer().getOccultismType() == null || Objects.equals(getCharacterPlayer().getOccultismType(), path.getOccultismType()) &&
+                Objects.equals(path.getOccultismType(), OccultismTypeFactory.getTheurgy(getCharacterPlayer().getLanguage(),
+                        getCharacterPlayer().getModuleName())))) {
             // Levels to add.
             final int numberOfPowers = specializationPreferences.randomGaussian();
             final List<OccultismPower> powers = new ArrayList<>(path.getOccultismPowers().values());
