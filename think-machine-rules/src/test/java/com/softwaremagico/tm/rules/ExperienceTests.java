@@ -24,6 +24,7 @@ package com.softwaremagico.tm.rules;
  * #L%
  */
 
+import com.softwaremagico.tm.character.races.RaceFactory;
 import com.softwaremagico.tm.character.skills.InvalidRanksException;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -184,6 +185,8 @@ public class ExperienceTests {
     public void setPsiLevel() throws ElementCannotBeUpgradeWithExperienceException, InvalidXmlElementException,
             NotEnoughExperienceException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        player.setRace(
+                RaceFactory.getInstance().getElement("human", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         player.setFaction(
                 FactionsFactory.getInstance().getElement("hazat", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         player.setOccultismLevel(OccultismTypeFactory.getPsi(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER), 4);
@@ -206,6 +209,8 @@ public class ExperienceTests {
     public void setPsiPowers() throws ElementCannotBeUpgradeWithExperienceException, InvalidXmlElementException,
             NotEnoughExperienceException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        player.setRace(
+                RaceFactory.getInstance().getElement("human", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         player.setFaction(
                 FactionsFactory.getInstance().getElement("hazat", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         player.setOccultismLevel(OccultismTypeFactory.getPsi(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER), 4);
@@ -228,6 +233,8 @@ public class ExperienceTests {
     public void removeInvalidPsiPowers() throws ElementCannotBeUpgradeWithExperienceException,
             InvalidXmlElementException, NotEnoughExperienceException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        player.setRace(
+                RaceFactory.getInstance().getElement("human", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         player.setFaction(
                 FactionsFactory.getInstance().getElement("hazat", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         player.setOccultismLevel(OccultismTypeFactory.getPsi(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER), 4);
@@ -253,6 +260,8 @@ public class ExperienceTests {
     public void removeValidOrderPsiPowers() throws ElementCannotBeUpgradeWithExperienceException,
             InvalidXmlElementException, NotEnoughExperienceException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        player.setRace(
+                RaceFactory.getInstance().getElement("human", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         player.setFaction(
                 FactionsFactory.getInstance().getElement("hazat", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         player.setOccultismLevel(OccultismTypeFactory.getPsi(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER), 4);

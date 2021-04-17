@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <races>
 	<version>1</version>
-	<totalElements>4</totalElements>
+	<totalElements>5</totalElements>
 	<human>
 		<name>
 			<en>Human</en>
@@ -64,7 +64,7 @@
 		<theurgy>0</theurgy>
 		<hubris>0</hubris>
 		<random>
-			<staticProbability>100</staticProbability>
+			<staticProbability>1000</staticProbability>
 		</random>
 	</human>
 	<obun>
@@ -128,8 +128,9 @@
 		<urge>0</urge>
 		<theurgy>1</theurgy>
 		<hubris>0</hubris>
+		<blessings>just, condescending</blessings>
 		<random>
-			<staticProbability>1</staticProbability>
+			<staticProbability>10</staticProbability>
 		</random>
 	</obun>
 	<ukar>
@@ -193,8 +194,10 @@
 		<urge>1</urge>
 		<theurgy>0</theurgy>
 		<hubris>0</hubris>
+		<blessings>sensitiveTouch, bitter</blessings>
+		<benefices>ostraziced2</benefices>
 		<random>
-			<staticProbability>1</staticProbability>
+			<staticProbability>10</staticProbability>
 		</random>
 	</ukar>
 	<vorox>
@@ -258,8 +261,77 @@
 		<urge>0</urge>
 		<theurgy>0</theurgy>
 		<hubris>0</hubris>
+		<blessings>predatory, giant, sensitiveSmell, uncouth</blessings>
+		<benefices>bite, extraLimbs, noOccult, ostraziced2</benefices>
+		<random>
+			<staticProbability>10</staticProbability>
+		</random>
+	</vorox>
+	<shantor>
+		<name>
+			<en>Shantor</en>
+			<es>Shantor</es>
+		</name>
+		<cost>8</cost>
+		<strength>
+			<value>5</value>
+			<maximumInitialValue>12</maximumInitialValue>
+			<maximumValue>14</maximumValue>
+		</strength>
+		<dexterity>
+			<value>3</value>
+			<maximumInitialValue>10</maximumInitialValue>
+			<maximumValue>10</maximumValue>
+		</dexterity>
+		<endurance>
+			<value>4</value>
+			<maximumInitialValue>11</maximumInitialValue>
+			<maximumValue>13</maximumValue>
+		</endurance>
+		<wits>
+			<value>2</value>
+			<maximumInitialValue>8</maximumInitialValue>
+			<maximumValue>10</maximumValue>
+		</wits>
+		<perception>
+			<value>3</value>
+			<maximumInitialValue>8</maximumInitialValue>
+			<maximumValue>10</maximumValue>
+		</perception>
+		<tech>
+			<value>3</value>
+			<maximumInitialValue>8</maximumInitialValue>
+			<maximumValue>10</maximumValue>
+		</tech>
+		<presence>
+			<value>3</value>
+			<maximumInitialValue>8</maximumInitialValue>
+			<maximumValue>10</maximumValue>
+		</presence>
+		<will>
+			<value>3</value>
+			<maximumInitialValue>8</maximumInitialValue>
+			<maximumValue>10</maximumValue>
+		</will>
+		<faith>
+			<value>3</value>
+			<maximumInitialValue>8</maximumInitialValue>
+			<maximumValue>10</maximumValue>
+		</faith>
+		<movement>
+			<value>16</value>
+		</movement>
+		<defense>
+			<value>1</value>
+		</defense>
+		<psi>0</psi>
+		<urge>0</urge>
+		<theurgy>0</theurgy>
+		<hubris>0</hubris>
+		<blessings>alertSleeping, awkward, huge, receptiveEars, noFineManipulation</blessings>
+		<benefices>restrictedLanguage [urthish], ostraziced4, noOccult</benefices>
 		<random>
 			<staticProbability>1</staticProbability>
 		</random>
-	</vorox>
+	</shantor>
 </races>

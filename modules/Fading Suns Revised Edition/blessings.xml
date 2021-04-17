@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <blessings>
     <version>1</version>
-    <totalElements>112</totalElements>
+    <totalElements>120</totalElements>
     <handsome>
         <name>
             <en>Handsome</en>
@@ -2030,6 +2030,28 @@
         </bonifications>
         <group>knacks</group>
     </keenEars>
+    <receptiveEars>
+        <name>
+            <en>Receptive Ears</en>
+            <es>Oído Receptivo</es>
+        </name>
+        <description>
+            <en>The following Blessing or Curse is only available for some specific races or factions</en>
+            <es>Esta bendición o maldición únicamente está disponible para algunas razas o facciones</es>
+        </description>
+        <cost>1</cost>
+        <bonifications>
+            <bonification>
+                <value>0</value>
+                <affects>perception</affects>
+                <situation>
+                    <en>Hear in higher ranges</en>
+                    <es>Escuchar altas frecuencias</es>
+                </situation>
+            </bonification>
+        </bonifications>
+        <group>restricted</group>
+    </receptiveEars>
     <keenEyes>
         <name>
             <en>Keen Eyes</en>
@@ -2791,18 +2813,10 @@
             <bonification>
                 <value>1</value>
                 <affects>vitality</affects>
-                <situation>
-                    <en></en>
-                    <es></es>
-                </situation>
             </bonification>
             <bonification>
                 <value>1</value>
                 <affects>movement</affects>
-                <situation>
-                    <en></en>
-                    <es></es>
-                </situation>
             </bonification>
         </bonifications>
         <group>size</group>
@@ -2821,22 +2835,36 @@
             <bonification>
                 <value>2</value>
                 <affects>vitality</affects>
-                <situation>
-                    <en></en>
-                    <es></es>
-                </situation>
             </bonification>
             <bonification>
                 <value>2</value>
                 <affects>movement</affects>
-                <situation>
-                    <en></en>
-                    <es></es>
-                </situation>
             </bonification>
         </bonifications>
         <group>size</group>
     </giant>
+    <huge>
+        <name>
+            <en>Huge</en>
+            <es>Enorme</es>
+        </name>
+        <description>
+            <en>The following Blessing or Curse is only available for some specific races or factions</en>
+            <es>Esta bendición o maldición únicamente está disponible para algunas razas o facciones</es>
+        </description>
+        <cost>6</cost>
+        <bonifications>
+            <bonification>
+                <value>3</value>
+                <affects>vitality</affects>
+            </bonification>
+            <bonification>
+                <value>6</value>
+                <affects>movement</affects>
+            </bonification>
+        </bonifications>
+        <group>size</group>
+    </huge>
     <short>
         <name>
             <en>Short</en>
@@ -2851,18 +2879,10 @@
             <bonification>
                 <value>-1</value>
                 <affects>vitality</affects>
-                <situation>
-                    <en></en>
-                    <es></es>
-                </situation>
             </bonification>
             <bonification>
                 <value>-1</value>
                 <affects>movement</affects>
-                <situation>
-                    <en></en>
-                    <es></es>
-                </situation>
             </bonification>
         </bonifications>
         <group>size</group>
@@ -2882,18 +2902,10 @@
             <bonification>
                 <value>-2</value>
                 <affects>vitality</affects>
-                <situation>
-                    <en></en>
-                    <es></es>
-                </situation>
             </bonification>
             <bonification>
                 <value>-2</value>
                 <affects>movement</affects>
-                <situation>
-                    <en></en>
-                    <es></es>
-                </situation>
             </bonification>
         </bonifications>
         <group>size</group>
@@ -3091,6 +3103,28 @@
         </bonifications>
         <group>restricted</group>
     </alert>
+    <alertSleeping>
+        <name>
+            <en>Alert</en>
+            <es>Alerta</es>
+        </name>
+        <description>
+            <en>The following Blessing or Curse is only available for some specific races or factions</en>
+            <es>Esta bendición o maldición únicamente está disponible para algunas razas o facciones</es>
+        </description>
+        <cost>1</cost>
+        <bonifications>
+            <bonification>
+                <value>1</value>
+                <affects>perception</affects>
+                <situation>
+                    <en>While sleeping</en>
+                    <es>Mientras duerme</es>
+                </situation>
+            </bonification>
+        </bonifications>
+        <group>restricted</group>
+    </alertSleeping>
     <untrusthworthy>
         <name>
             <en>Untrustworthy</en>
@@ -3312,6 +3346,120 @@
         <group>restricted</group>
         <curse>true</curse>
     </condescending2>
+    <awkward>
+        <name>
+            <en>Awkward</en>
+            <es>Desgarbado</es>
+        </name>
+        <description>
+            <en>The following Blessing or Curse is only available for some specific races or factions</en>
+            <es>Esta bendición o maldición únicamente está disponible para algunas razas o facciones</es>
+        </description>
+        <cost>3</cost>
+        <bonifications>
+            <bonification>
+                <value>-3</value>
+                <affects>dexterity</affects>
+                <situation>
+                    <en>Cramped quarters</en>
+                    <es>Sitios estrechos</es>
+                </situation>
+            </bonification>
+        </bonifications>
+        <group>restricted</group>
+        <curse>true</curse>
+    </awkward>
+    <noFineManipulation>
+        <name>
+            <en>Awkward</en>
+            <es>Desgarbado</es>
+        </name>
+        <description>
+            <en>The following Blessing or Curse is only available for some specific races or factions</en>
+            <es>Esta bendición o maldición únicamente está disponible para algunas razas o facciones</es>
+        </description>
+        <cost>3</cost>
+        <bonifications>
+            <bonification>
+                <value>-3</value>
+                <affects>dexterity</affects>
+                <situation>
+                    <en>Cramped quarters</en>
+                    <es>Sitios estrechos</es>
+                </situation>
+            </bonification>
+        </bonifications>
+        <group>restricted</group>
+        <curse>true</curse>
+    </noFineManipulation>
+    <mnemocnic>
+        <name>
+            <en>Mnemonic</en>
+            <es>Mnemotecnia</es>
+        </name>
+        <description>
+            <en>The following Blessing or Curse is only available for some specific races or factions</en>
+            <es>Esta bendición o maldición únicamente está disponible para algunas razas o facciones</es>
+        </description>
+        <cost>2</cost>
+        <bonifications>
+            <bonification>
+                <value>2</value>
+                <affects>wits</affects>
+                <situation>
+                    <en>Remember things</en>
+                    <es>Recordar cosas</es>
+                </situation>
+            </bonification>
+        </bonifications>
+        <group>restricted</group>
+    </mnemocnic>
+    <claustrophobic>
+        <name>
+            <en>Claustrophobic</en>
+            <es>Claustrofóbico</es>
+        </name>
+        <description>
+            <en>The following Blessing or Curse is only available for some specific races or factions</en>
+            <es>Esta bendición o maldición únicamente está disponible para algunas razas o facciones</es>
+        </description>
+        <cost>2</cost>
+        <bonifications>
+            <bonification>
+                <value>2</value>
+                <affects>will</affects>
+                <situation>
+                    <en>Cramped areas</en>
+                    <es>Sitios estrechos</es>
+                </situation>
+            </bonification>
+        </bonifications>
+        <group>restricted</group>
+        <curse>true</curse>
+    </claustrophobic>
+    <neurotic>
+        <name>
+            <en>Neurotic</en>
+            <es>Neurótico</es>
+        </name>
+        <description>
+            <en>The following Blessing or Curse is only available for some specific races or factions</en>
+            <es>Esta bendición o maldición únicamente está disponible para algunas razas o facciones</es>
+        </description>
+        <cost>2</cost>
+        <bonifications>
+            <bonification>
+                <value>2</value>
+                <affects>will</affects>
+                <situation>
+                    <en>When nervous</en>
+                    <es>Cuando está nervioso</es>
+                </situation>
+            </bonification>
+        </bonifications>
+        <group>restricted</group>
+        <curse>true</curse>
+    </neurotic>
 
 
 </blessings>

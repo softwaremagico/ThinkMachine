@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <factions>
     <version>1</version>
-    <totalElements>33</totalElements>
+    <totalElements>36</totalElements>
     <hawkwood>
         <name>
             <en>Hawkwood</en>
@@ -82,7 +82,8 @@
                 Chmutov, Korkishko, Maslyukov, Devlin, Upcheva, Jovanovic, Dordevic, Vrzik, Dapcevik, Bestic, Sunter,
                 Kosovic, Vasic, Ivic, Vucic, Dordevic, Slepcevic, Plazinic, Maksimovic, Ceko, Ivanovic, Mihajlovic,
                 Nikolic, Komatina, Vidic, Bardic, Aleksic, Santrac, Platisa, Vukadinovic, Veselinovic, Vuksanovic,
-                Saletovic, Midzoski, Jankovic, Momcilovic, Todorovic, Sebez, Stamenkovic, Kosaric, Letic, Perlic, Protic,
+                Saletovic, Midzoski, Jankovic, Momcilovic, Todorovic, Sebez, Stamenkovic, Kosaric, Letic, Perlic,
+                Protic,
                 Perisc, Spasic, Gvozdenvic, Jankovic, Vlaisavljevic, Pavlov, Vinogradova, Volkov, Bognadov
             </surnames>
         </random>
@@ -1090,7 +1091,12 @@
         </name>
         <group>xeno</group>
         <race>obun</race>
-        <blessings>just, condescending</blessings>
+        <suggestedBenefices>
+            <benefice>
+                <id>refuge</id>
+                <value>4</value>
+            </benefice>
+        </suggestedBenefices>
         <random>
             <names>
                 <male>Soleel, Virta, Akamai, Akoni, Koi, Keanu, Kale, Kaleo, Kekoa, Makani, Akamu, Hilo, Pekelo, Tangi
@@ -1100,12 +1106,6 @@
             </names>
             <surnames>HanSeer, HanLoaaj, Harn, Haleigha, Haulani, Kahiau, Maylee, Pazhani, Pualani</surnames>
         </random>
-        <suggestedBenefices>
-            <benefice>
-                <id>refuge</id>
-                <value>4</value>
-            </benefice>
-        </suggestedBenefices>
     </obun>
     <ukar>
         <name>
@@ -1114,8 +1114,11 @@
         </name>
         <group>xeno</group>
         <race>ukar</race>
-        <blessings>sensitiveTouch, bitter</blessings>
-        <benefices>ostraziced</benefices>
+        <suggestedBenefices>
+            <benefice>
+                <id>familyTies</id>
+            </benefice>
+        </suggestedBenefices>
         <random>
             <names>
                 <male>Thollo, Anikrunta, Shelkoro, Teddeth, Ronga, Rajan, Zotos, Aedwir, Dyn'dran, Torquil, Shavik,
@@ -1125,11 +1128,6 @@
             </names>
             <surnames>Nadakira, Wahind, Malak, Nolents, Oed Nata, Borduk, Nont, Veldiryn, Nilite, Tushan</surnames>
         </random>
-        <suggestedBenefices>
-            <benefice>
-                <id>familiyTies</id>
-            </benefice>
-        </suggestedBenefices>
     </ukar>
     <vorox>
         <name>
@@ -1138,8 +1136,6 @@
         </name>
         <group>xeno</group>
         <race>vorox</race>
-        <blessings>predatory, giant, sensitiveSmell, uncouth</blessings>
-        <benefices>bite, extraLimbs, noOccult, ostraziced</benefices>
         <random>
             <names>
                 <male>Gelu, Gresh, Malum, Kirbold, Strakk, Roxtus, Sorgulg, Cabugbu, Zoughat, Gomatug, Narhbub, Ignorg,
@@ -1151,10 +1147,69 @@
         </random>
         <suggestedBenefices>
             <benefice>
-                <id>familiyTies</id>
+                <id>familyTies</id>
             </benefice>
         </suggestedBenefices>
     </vorox>
+    <royalVorox>
+        <name>
+            <en>Royal Vorox</en>
+            <es>Vorox Real</es>
+        </name>
+        <group>nobility</group>
+        <race>vorox</race>
+        <suggestedBenefices>
+            <benefice>
+                <id>poisonousClaw</id>
+            </benefice>
+            <benefice>
+                <id>familyTies</id>
+            </benefice>
+        </suggestedBenefices>
+        <random>
+            <names>
+                <male>Gelu, Gresh, Malum, Kirbold, Strakk, Roxtus, Sorgulg, Cabugbu, Zoughat, Gomatug, Narhbub, Ignorg,
+                    Togugh, Nubu, Poogugh
+                </male>
+                <female>Velika, Orde, Kabrua, Orbul, Shelur, Shelur, Atub, Bula, Ghorza, Shagar</female>
+            </names>
+            <surnames>Rolfish, Gashnakh, Ragash, Oghash, Yazgash, Rogmesh, Borgakh, Lagakh, Sharamph</surnames>
+        </random>
+    </royalVorox>
+    <oldShantor>
+        <name>
+            <en>Old Shantor</en>
+            <es>Antiguos Shantor</es>
+        </name>
+        <group>xeno</group>
+        <race>shantor</race>
+        <blessings>mnemocnic, claustrophobic</blessings>
+        <benefices>dolomei</benefices>
+        <random>
+            <names>
+                <male></male>
+                <female>Aluuuuraloraaa</female>
+            </names>
+            <surnames></surnames>
+        </random>
+    </oldShantor>
+    <darkwalker>
+        <name>
+            <en>Darkwalker</en>
+            <es>Caminante Oscuro</es>
+        </name>
+        <group>xeno</group>
+        <race>shantor</race>
+        <blessings>neurotic</blessings>
+        <benefices>dolomei, muzzleManipulator</benefices>
+        <random>
+            <names>
+                <male></male>
+                <female>Aluuuuraloraaa</female>
+            </names>
+            <surnames></surnames>
+        </random>
+    </darkwalker>
     <noFaction>
         <name>
             <en>No Faction</en>

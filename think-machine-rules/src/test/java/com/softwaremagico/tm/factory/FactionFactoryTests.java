@@ -27,7 +27,6 @@ package com.softwaremagico.tm.factory;
 import com.softwaremagico.tm.CacheHandler;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.Gender;
-import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
 import com.softwaremagico.tm.character.factions.Faction;
 import com.softwaremagico.tm.character.factions.FactionsFactory;
 import com.softwaremagico.tm.file.PathManager;
@@ -37,7 +36,7 @@ import org.testng.annotations.Test;
 
 @Test(groups = {"factionsFactory"})
 public class FactionFactoryTests {
-    private static final int DEFINED_FACTIONS = 33;
+    private static final int DEFINED_FACTIONS = 36;
     private static final int DEFINED_MALE_NAMES = 103;
     private static final int DEFINED_FEMALE_NAMES = 100;
     private static final int DEFINED_SURNAMES = 125;
@@ -66,14 +65,6 @@ public class FactionFactoryTests {
     public void readFactions() throws InvalidXmlElementException {
         Assert.assertEquals(DEFINED_FACTIONS,
                 FactionsFactory.getInstance().getElements(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).size());
-    }
-
-    @Test
-    public void readAfflictions() throws InvalidXmlElementException {
-        final Faction vorox = FactionsFactory.getInstance().getElement("vorox", LANGUAGE,
-                PathManager.DEFAULT_MODULE_FOLDER);
-        Assert.assertTrue(vorox.getBenefices().contains(AvailableBeneficeFactory.getInstance().getElement("noOccult",
-                LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)));
     }
 
     @Test

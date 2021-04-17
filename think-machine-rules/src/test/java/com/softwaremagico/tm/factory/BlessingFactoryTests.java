@@ -34,8 +34,8 @@ import org.testng.annotations.Test;
 public class BlessingFactoryTests {
     private static final String LANGUAGE = "es";
 
-    private static final int DEFINED_BLESSINGS = 112;
-    private static final int DEFINED_BONIFICATIONS_MISSING_EYE = 2;
+    private static final int DEFINED_BLESSINGS = 120;
+    private static final int DEFINED_BONUS_MISSING_EYE = 2;
     private static final int VERSION = 1;
 
     @Test
@@ -57,7 +57,7 @@ public class BlessingFactoryTests {
 
     @Test
     public void multiplesBonifications() throws InvalidXmlElementException {
-        Assert.assertEquals(DEFINED_BONIFICATIONS_MISSING_EYE,
+        Assert.assertEquals(DEFINED_BONUS_MISSING_EYE,
                 BlessingFactory.getInstance().getElement("missingEye", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).getBonifications().size());
     }
 }

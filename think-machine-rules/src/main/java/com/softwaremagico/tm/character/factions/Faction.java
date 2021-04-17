@@ -84,7 +84,7 @@ public class Faction extends Element<Faction> {
             // Blessings are not read with factions due to a loop
             // factions->blessings->skills->factions
             try {
-                FactionsFactory.getInstance().setBlessings(this, getLanguage());
+                FactionsFactory.getInstance().setBlessings(this);
             } catch (InvalidFactionException e) {
                 MachineLog.errorMessage(this.getClass().getName(), e);
             }
@@ -107,7 +107,7 @@ public class Faction extends Element<Faction> {
             // Benefices are not read with factions due to a loop
             // factions->benefices->skills->factions
             try {
-                FactionsFactory.getInstance().setBenefices(this, getLanguage());
+                FactionsFactory.getInstance().setBenefices(this);
             } catch (InvalidFactionException e) {
                 MachineLog.errorMessage(this.getClass().getName(), e);
             }

@@ -26,10 +26,12 @@ package com.softwaremagico.tm.rules;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
 import com.softwaremagico.tm.character.factions.FactionsFactory;
 import com.softwaremagico.tm.character.races.InvalidRaceException;
 import com.softwaremagico.tm.character.races.RaceFactory;
 import com.softwaremagico.tm.file.PathManager;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 @Test(groups = {"race"})
@@ -41,5 +43,22 @@ public class RaceTests {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.setFaction(FactionsFactory.getInstance().getElement("vorox", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         player.setRace(RaceFactory.getInstance().getElement("human", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+    }
+
+    @Test
+    public void checkRaceBenefices() throws InvalidXmlElementException {
+        final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        player.setFaction(FactionsFactory.getInstance().getElement("vorox", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+        player.setRace(RaceFactory.getInstance().getElement("vorox", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+        Assert.assertTrue(player.getAfflictions().contains(AvailableBeneficeFactory.getInstance().getElement("noOccult",
+                LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)));
+    }
+
+    @Test
+    public void checkShantor() throws InvalidXmlElementException {
+        final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        player.setRace(RaceFactory.getInstance().getElement("shantor", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+        Assert.assertTrue(player.getAfflictions().contains(AvailableBeneficeFactory.getInstance().getElement("noOccult",
+                LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)));
     }
 }

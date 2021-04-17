@@ -25,10 +25,13 @@ package com.softwaremagico.tm.character.races;
  */
 
 import com.softwaremagico.tm.Element;
+import com.softwaremagico.tm.character.benefices.AvailableBenefice;
+import com.softwaremagico.tm.character.blessings.Blessing;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.log.MachineLog;
 
 import java.lang.reflect.Field;
+import java.util.Set;
 
 @SuppressWarnings("unused")
 public class Race extends Element<Race> {
@@ -45,6 +48,9 @@ public class Race extends Element<Race> {
     private final RaceCharacteristic movement = new RaceCharacteristic(CharacteristicName.MOVEMENT);
     private final RaceCharacteristic initiative = new RaceCharacteristic(CharacteristicName.INITIATIVE);
     private final RaceCharacteristic defense = new RaceCharacteristic(CharacteristicName.DEFENSE);
+
+    private Set<Blessing> blessings = null;
+    private Set<AvailableBenefice> benefices = null;
 
     private int psi;
     private int theurgy;
@@ -177,5 +183,39 @@ public class Race extends Element<Race> {
 
     public boolean isXeno() {
         return !getId().equals("human");
+    }
+
+    public Set<Blessing> getBlessings() {
+        if (blessings == null) {
+            // Blessings are not read with factions due to a loop
+            // factions->blessings->skills->factions
+            try {
+                RaceFactory.getInstance().setBlessings(this);
+            } catch (InvalidRaceException e) {
+                MachineLog.errorMessage(this.getClass().getName(), e);
+            }
+        }
+        return blessings;
+    }
+
+    public Set<AvailableBenefice> getBenefices() {
+        if (benefices == null) {
+            // Benefices are not read with factions due to a loop
+            // factions->benefices->skills->factions
+            try {
+                RaceFactory.getInstance().setBenefices(this);
+            } catch (InvalidRaceException e) {
+                MachineLog.errorMessage(this.getClass().getName(), e);
+            }
+        }
+        return benefices;
+    }
+
+    public void setBlessings(Set<Blessing> blessings) {
+        this.blessings = blessings;
+    }
+
+    public void setBenefices(Set<AvailableBenefice> benefices) {
+        this.benefices = benefices;
     }
 }

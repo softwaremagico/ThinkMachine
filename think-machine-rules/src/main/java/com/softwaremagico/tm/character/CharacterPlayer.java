@@ -492,6 +492,10 @@ public class CharacterPlayer {
         if (getFaction() != null) {
             allBlessings.addAll(getFaction().getBlessings());
         }
+        //Add race blessings
+        if (getRace() != null) {
+            allBlessings.addAll(getRace().getBlessings());
+        }
         Collections.sort(allBlessings);
         return Collections.unmodifiableList(allBlessings);
     }
@@ -605,6 +609,14 @@ public class CharacterPlayer {
                 }
             }
         }
+        // Add race benefices
+        if (getRace() != null && getRace().getBenefices() != null) {
+            for (final AvailableBenefice benefice : getRace().getBenefices()) {
+                if (benefice.getBeneficeClassification() == BeneficeClassification.BENEFICE) {
+                    positiveBenefices.add(benefice);
+                }
+            }
+        }
         Collections.sort(positiveBenefices);
         return Collections.unmodifiableList(positiveBenefices);
     }
@@ -638,6 +650,14 @@ public class CharacterPlayer {
         // Add faction afflictions
         if (getFaction() != null && getFaction().getBenefices() != null) {
             for (final AvailableBenefice affliction : getFaction().getBenefices()) {
+                if (affliction.getBeneficeClassification() == BeneficeClassification.AFFLICTION) {
+                    afflictions.add(affliction);
+                }
+            }
+        }
+        // Add race afflictions
+        if (getRace() != null && getRace().getBenefices() != null) {
+            for (final AvailableBenefice affliction : getRace().getBenefices()) {
                 if (affliction.getBeneficeClassification() == BeneficeClassification.AFFLICTION) {
                     afflictions.add(affliction);
                 }
@@ -1551,7 +1571,7 @@ public class CharacterPlayer {
         }
 
         final int previousPsiValue = getOccultism().getPsiqueLevel(occultismType);
-        getOccultism().setPsiqueLevel(occultismType, newPsiValue, getLanguage(), getModuleName(), getFaction());
+        getOccultism().setPsiqueLevel(occultismType, newPsiValue, getLanguage(), getModuleName(), getRace());
         if (previousPsiValue != newPsiValue) {
             getCharacterModificationHandler().launchOccultismLevelUpdatedListener(occultismType,
                     previousPsiValue, newPsiValue, defaultValue);

@@ -263,7 +263,7 @@ public class RandomCharacterTests {
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0,
                 SpecializationPreferences.SPECIALIZED, OccultismPathLevelPreferences.HIGH, OccultismLevelPreferences.HIGH);
         randomizeCharacter.createCharacter();
-        Assert.assertTrue(characterPlayer.getFaction().getBenefices().contains(AvailableBeneficeFactory.getInstance()
+        Assert.assertTrue(characterPlayer.getRace().getBenefices().contains(AvailableBeneficeFactory.getInstance()
                 .getElement("noOccult", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)));
         Assert.assertTrue(characterPlayer.getAfflictions().contains(AvailableBeneficeFactory.getInstance()
                 .getElement("noOccult", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)));

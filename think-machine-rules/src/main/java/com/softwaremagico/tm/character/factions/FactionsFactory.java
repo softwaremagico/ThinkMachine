@@ -29,8 +29,10 @@ import com.softwaremagico.tm.XmlFactory;
 import com.softwaremagico.tm.character.Gender;
 import com.softwaremagico.tm.character.Name;
 import com.softwaremagico.tm.character.Surname;
-import com.softwaremagico.tm.character.benefices.*;
-import com.softwaremagico.tm.character.blessings.Blessing;
+import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
+import com.softwaremagico.tm.character.benefices.BeneficeDefinitionFactory;
+import com.softwaremagico.tm.character.benefices.RestrictedBenefice;
+import com.softwaremagico.tm.character.benefices.SuggestedBenefice;
 import com.softwaremagico.tm.character.blessings.BlessingFactory;
 import com.softwaremagico.tm.character.races.Race;
 import com.softwaremagico.tm.character.races.RaceFactory;
@@ -94,36 +96,24 @@ public class FactionsFactory extends XmlFactory<Faction> {
         return TRANSLATOR_FILE;
     }
 
-    public void setBlessings(Faction faction, String language) throws InvalidFactionException {
-        final Set<Blessing> mandatoryBlessings;
+    public void setBlessings(Faction faction) throws InvalidFactionException {
         try {
-            mandatoryBlessings = getCommaSeparatedValues(faction.getId(), BLESSINGS, language, faction.getModuleName(),
-                    BlessingFactory.getInstance());
+            faction.setBlessings(getCommaSeparatedValues(faction.getId(), BLESSINGS, faction.getLanguage(),
+                    faction.getModuleName(), BlessingFactory.getInstance()));
         } catch (InvalidXmlElementException ixe) {
             throw new InvalidFactionException(
-                    "Error in faction '" + faction + "' structure. Invalid blessing defintion. ", ixe);
+                    "Error in faction '" + faction + "' structure. Invalid blessing definition. ", ixe);
         }
-        faction.setBlessings(mandatoryBlessings);
     }
 
-    public void setBenefices(Faction faction, String language) throws InvalidFactionException {
-        final String mandatoryBeneficesList = getTranslator(faction.getModuleName()).getNodeValue(faction.getId(),
-                BENEFICES);
-        final Set<AvailableBenefice> mandatoryBenefices = new HashSet<>();
-        if (mandatoryBeneficesList != null) {
-            final StringTokenizer mandatoyBeneficesTokenizer = new StringTokenizer(mandatoryBeneficesList, ",");
-            while (mandatoyBeneficesTokenizer.hasMoreTokens()) {
-                final String beneficeName = mandatoyBeneficesTokenizer.nextToken().trim();
-                try {
-                    mandatoryBenefices.add(AvailableBeneficeFactory.getInstance().getElement(beneficeName, language,
-                            faction.getModuleName()));
-                } catch (InvalidXmlElementException ixe) {
-                    throw new InvalidFactionException("Error in faction '" + faction.getId()
-                            + "' structure. Invalid benefice '" + beneficeName + "' defintion. ", ixe);
-                }
-            }
+    public void setBenefices(Faction faction) throws InvalidFactionException {
+        try {
+            faction.setBenefices(getCommaSeparatedValues(faction.getId(), BENEFICES, faction.getLanguage(),
+                    faction.getModuleName(), AvailableBeneficeFactory.getInstance()));
+        } catch (InvalidXmlElementException ixe) {
+            throw new InvalidFactionException("Error in faction '" + faction.getId()
+                    + "' structure. Invalid benefices definition. ", ixe);
         }
-        faction.setBenefices(mandatoryBenefices);
     }
 
     public void setSuggestedBenefices(Faction faction, String language)
@@ -264,7 +254,11 @@ public class FactionsFactory extends XmlFactory<Faction> {
     public Set<Name> getAllNames(Faction faction) {
         final Set<Name> names = new HashSet<>();
         for (final Gender gender : Gender.values()) {
-            names.addAll(getAllNames(faction, gender));
+            try {
+                names.addAll(getAllNames(faction, gender));
+            } catch (NullPointerException e) {
+                //No names defined.
+            }
         }
         return names;
     }

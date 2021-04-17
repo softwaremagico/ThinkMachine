@@ -25,6 +25,8 @@ package com.softwaremagico.tm.factory;
  */
 
 import com.softwaremagico.tm.InvalidXmlElementException;
+import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
+import com.softwaremagico.tm.character.races.Race;
 import com.softwaremagico.tm.character.races.RaceFactory;
 import com.softwaremagico.tm.file.PathManager;
 import org.testng.Assert;
@@ -33,7 +35,7 @@ import org.testng.annotations.Test;
 @Test(groups = {"raceFactory"})
 public class RaceFactoryTests {
     private static final String LANGUAGE = "en";
-    private static final int DEFINED_RACES = 4;
+    private static final int DEFINED_RACES = 5;
     private static final int VERSION = 1;
 
     @Test
@@ -52,5 +54,14 @@ public class RaceFactoryTests {
     public void readRaces() throws InvalidXmlElementException {
         Assert.assertEquals(RaceFactory.getInstance().getElements(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)
                 .size(), DEFINED_RACES);
+    }
+
+
+    @Test
+    public void readAfflictions() throws InvalidXmlElementException {
+        final Race vorox = RaceFactory.getInstance().getElement("vorox", LANGUAGE,
+                PathManager.DEFAULT_MODULE_FOLDER);
+        Assert.assertTrue(vorox.getBenefices().contains(AvailableBeneficeFactory.getInstance().getElement("noOccult",
+                LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)));
     }
 }

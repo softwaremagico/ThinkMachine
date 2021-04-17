@@ -361,21 +361,25 @@ public abstract class XmlFactory<T extends Element<T>> implements IElementRetrie
 
     protected <E extends Element<E>, F extends IElementRetriever<E>> Set<E> getCommaSeparatedValues(
             String elementId, String node, String language, String moduleName, F factory) throws InvalidXmlElementException {
-        final String elementTags = getTranslator(moduleName).getNodeValue(elementId, node);
         final Set<E> elements = new HashSet<>();
         try {
-            if (elementTags != null) {
-                final StringTokenizer elementsTokenizer = new StringTokenizer(elementTags, ",");
-                while (elementsTokenizer.hasMoreTokens()) {
-                    try {
-                        elements.add(factory.getElement(elementsTokenizer.nextToken().trim(), language, moduleName));
-                    } catch (InvalidXmlElementException e) {
-                        throw new InvalidXmlElementException("Invalid elements '" + elementTags + "' for element '" + elementId + "'.", e);
+            final String elementTags = getTranslator(moduleName).getNodeValue(elementId, node);
+            try {
+                if (elementTags != null) {
+                    final StringTokenizer elementsTokenizer = new StringTokenizer(elementTags, ",");
+                    while (elementsTokenizer.hasMoreTokens()) {
+                        try {
+                            elements.add(factory.getElement(elementsTokenizer.nextToken().trim(), language, moduleName));
+                        } catch (InvalidXmlElementException e) {
+                            throw new InvalidXmlElementException("Invalid elements '" + elementTags + "' for element '" + elementId + "'.", e);
+                        }
                     }
                 }
+            } catch (NullPointerException e) {
+                throw new InvalidXmlElementException("Invalid tag list '" + elementTags + "' in element '" + elementId + "'.", e);
             }
         } catch (NullPointerException e) {
-            throw new InvalidXmlElementException("Invalid tag list '" + elementTags + "' in element '" + elementId + "'.", e);
+            return elements;
         }
         return elements;
     }
