@@ -33,6 +33,7 @@ import com.softwaremagico.tm.character.combat.CombatStyle;
 import com.softwaremagico.tm.character.combat.CombatStyleGroup;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
+import com.softwaremagico.tm.character.skills.InvalidRanksException;
 import com.softwaremagico.tm.file.PathManager;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.*;
@@ -65,7 +66,7 @@ public class RandomPreferences {
     }
 
     @Test
-    public void checkCombatStylesRequirements() throws InvalidRandomElementSelectedException, InvalidXmlElementException {
+    public void checkCombatStylesRequirements() throws InvalidRandomElementSelectedException, InvalidXmlElementException, InvalidRanksException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0,
                 CombatActionsPreferences.HIGH);
@@ -76,7 +77,7 @@ public class RandomPreferences {
     }
 
     @Test
-    public void checkCombatStylesPreferences() throws InvalidRandomElementSelectedException, InvalidXmlElementException {
+    public void checkCombatStylesPreferences() throws InvalidRandomElementSelectedException, InvalidXmlElementException, InvalidRanksException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0,
                 CombatActionsPreferences.HIGH, CombatActionsGroupPreferences.MELEE);

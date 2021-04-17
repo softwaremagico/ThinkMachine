@@ -24,9 +24,6 @@ package com.softwaremagico.tm.character.skills;
  * #L%
  */
 
-import java.util.HashSet;
-import java.util.Set;
-
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.creation.CostCalculator;
@@ -34,6 +31,9 @@ import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
 import com.softwaremagico.tm.log.RandomGenerationLog;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
+
+import java.util.HashSet;
+import java.util.Set;
 
 public class RandomSkillExtraPoints extends RandomSkills {
 
@@ -61,8 +61,12 @@ public class RandomSkillExtraPoints extends RandomSkills {
                 .getSkillAssignedRanks(selectedSkill)) {
             return 0;
         }
-        getCharacterPlayer().setSkillRank(selectedSkill,
-                getCharacterPlayer().getSkillAssignedRanks(selectedSkill) + addedRanks);
+        try {
+            getCharacterPlayer().setSkillRank(selectedSkill,
+                    getCharacterPlayer().getSkillAssignedRanks(selectedSkill) + addedRanks);
+        } catch (InvalidRanksException e) {
+            addedRanks = 0;
+        }
         return addedRanks * CostCalculator.SKILL_EXTRA_POINTS_COST;
     }
 

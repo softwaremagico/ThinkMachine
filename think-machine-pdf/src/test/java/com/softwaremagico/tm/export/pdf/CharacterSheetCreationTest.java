@@ -50,6 +50,7 @@ import com.softwaremagico.tm.character.occultism.OccultismTypeFactory;
 import com.softwaremagico.tm.character.planets.PlanetFactory;
 import com.softwaremagico.tm.character.races.RaceFactory;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
+import com.softwaremagico.tm.character.skills.InvalidRanksException;
 import com.softwaremagico.tm.character.xp.ElementCannotBeUpgradeWithExperienceException;
 import com.softwaremagico.tm.character.xp.NotEnoughExperienceException;
 import com.softwaremagico.tm.file.PathManager;
@@ -108,7 +109,7 @@ public class CharacterSheetCreationTest {
 	public void characterPdfSpanish() throws MalformedURLException, DocumentException, IOException,
 			InvalidXmlElementException, TooManyBlessingsException, TooManyCyberneticDevicesException,
 			RequiredCyberneticDevicesException, BlessingAlreadyAddedException, BeneficeAlreadyAddedException,
-			NotEnoughExperienceException, ElementCannotBeUpgradeWithExperienceException {
+			NotEnoughExperienceException, ElementCannotBeUpgradeWithExperienceException, InvalidRanksException {
 		CacheHandler.clearCache();
 
 		player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);

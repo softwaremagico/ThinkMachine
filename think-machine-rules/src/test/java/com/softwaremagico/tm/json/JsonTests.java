@@ -24,19 +24,6 @@ package com.softwaremagico.tm.json;
  * #L%
  */
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.net.URISyntaxException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-
-import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
-
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.benefices.BeneficeAlreadyAddedException;
@@ -45,11 +32,20 @@ import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
 import com.softwaremagico.tm.character.creation.CostCalculator;
 import com.softwaremagico.tm.character.cybernetics.RequiredCyberneticDevicesException;
 import com.softwaremagico.tm.character.cybernetics.TooManyCyberneticDevicesException;
+import com.softwaremagico.tm.character.skills.InvalidRanksException;
 import com.softwaremagico.tm.characters.CustomCharacter;
 import com.softwaremagico.tm.file.PathManager;
 import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.party.Party;
 import com.softwaremagico.tm.txt.CharacterSheet;
+import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+
+import java.io.*;
+import java.net.URISyntaxException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 @Test(groups = { "jsonExporter" })
 public class JsonTests {
@@ -68,7 +64,7 @@ public class JsonTests {
 	@BeforeClass
 	public void init()
 			throws InvalidXmlElementException, TooManyBlessingsException, TooManyCyberneticDevicesException,
-			RequiredCyberneticDevicesException, BlessingAlreadyAddedException, BeneficeAlreadyAddedException {
+			RequiredCyberneticDevicesException, BlessingAlreadyAddedException, BeneficeAlreadyAddedException, InvalidRanksException {
 		LanguagePool.clearCache();
 		player = CustomCharacter.create(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
 		Assert.assertEquals(CostCalculator.getCost(player), CustomCharacter.COST);

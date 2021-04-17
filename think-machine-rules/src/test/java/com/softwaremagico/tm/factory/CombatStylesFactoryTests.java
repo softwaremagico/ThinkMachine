@@ -31,6 +31,7 @@ import com.softwaremagico.tm.character.combat.CombatStyle;
 import com.softwaremagico.tm.character.combat.CombatStyleFactory;
 import com.softwaremagico.tm.character.races.RaceFactory;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
+import com.softwaremagico.tm.character.skills.InvalidRanksException;
 import com.softwaremagico.tm.file.PathManager;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -89,7 +90,7 @@ public class CombatStylesFactoryTests {
     }
 
     @Test
-    public void checkSkillRestrictions() throws InvalidXmlElementException {
+    public void checkSkillRestrictions() throws InvalidXmlElementException, InvalidRanksException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         characterPlayer.setSkillRank(
                 AvailableSkillsFactory.getInstance().getElement("melee", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER),
@@ -105,7 +106,7 @@ public class CombatStylesFactoryTests {
     }
 
     @Test
-    public void checkOptionalSkillRestrictions() throws InvalidXmlElementException {
+    public void checkOptionalSkillRestrictions() throws InvalidXmlElementException, InvalidRanksException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         characterPlayer.setSkillRank(AvailableSkillsFactory.getInstance().getElement("slugGuns", LANGUAGE,
                 PathManager.DEFAULT_MODULE_FOLDER), 6);
@@ -120,7 +121,7 @@ public class CombatStylesFactoryTests {
     }
 
     @Test
-    public void checkOptionalSkillRestrictionsAgain() throws InvalidXmlElementException {
+    public void checkOptionalSkillRestrictionsAgain() throws InvalidXmlElementException, InvalidRanksException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         characterPlayer.setSkillRank(AvailableSkillsFactory.getInstance().getElement("energyGuns", LANGUAGE,
                 PathManager.DEFAULT_MODULE_FOLDER), 6);
@@ -135,7 +136,7 @@ public class CombatStylesFactoryTests {
     }
 
     @Test
-    public void checkCharacteristicsRestrictions() throws InvalidXmlElementException {
+    public void checkCharacteristicsRestrictions() throws InvalidXmlElementException, InvalidRanksException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         characterPlayer.setSkillRank(
                 AvailableSkillsFactory.getInstance().getElement("fight", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER),

@@ -31,6 +31,7 @@ import com.softwaremagico.tm.character.blessings.BlessingAlreadyAddedException;
 import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
 import com.softwaremagico.tm.character.cybernetics.RequiredCyberneticDevicesException;
 import com.softwaremagico.tm.character.cybernetics.TooManyCyberneticDevicesException;
+import com.softwaremagico.tm.character.skills.InvalidRanksException;
 import com.softwaremagico.tm.characters.CustomCharacter;
 import com.softwaremagico.tm.file.PathManager;
 import org.testng.Assert;
@@ -48,7 +49,7 @@ public class ExportTxtTests {
 	@Test
 	public void checkCustomCharacter() throws TooManyBlessingsException, InvalidXmlElementException, IOException,
 			URISyntaxException, TooManyCyberneticDevicesException, RequiredCyberneticDevicesException,
-			BlessingAlreadyAddedException, BeneficeAlreadyAddedException {
+			BlessingAlreadyAddedException, BeneficeAlreadyAddedException, InvalidRanksException {
 		final CharacterPlayer player = CustomCharacter.create(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
 		final CharacterSheet characterSheet = new CharacterSheet(player);
 

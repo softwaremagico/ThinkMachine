@@ -24,6 +24,7 @@ package com.softwaremagico.tm.rules;
  * #L%
  */
 
+import com.softwaremagico.tm.character.skills.InvalidRanksException;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -128,7 +129,7 @@ public class CyberneticsTests {
 
 	@Test
 	public void cyberneticSkillStaticValue()
-			throws InvalidXmlElementException, TooManyCyberneticDevicesException, RequiredCyberneticDevicesException {
+			throws InvalidXmlElementException, TooManyCyberneticDevicesException, RequiredCyberneticDevicesException, InvalidRanksException {
 		final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
 		player.setCharacteristic(CharacteristicName.WILL, 8);
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("lore", "energyPistolsLore", LANGUAGE,
@@ -145,7 +146,7 @@ public class CyberneticsTests {
 
 	@Test
 	public void cyberneticSkillStaticValueSurpassed()
-			throws InvalidXmlElementException, TooManyCyberneticDevicesException, RequiredCyberneticDevicesException {
+			throws InvalidXmlElementException, TooManyCyberneticDevicesException, RequiredCyberneticDevicesException, InvalidRanksException {
 		final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
 		player.setCharacteristic(CharacteristicName.WILL, 8);
 		player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("lore", "energyPistolsLore", LANGUAGE,

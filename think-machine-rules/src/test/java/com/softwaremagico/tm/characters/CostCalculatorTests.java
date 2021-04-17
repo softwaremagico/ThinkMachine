@@ -42,6 +42,7 @@ import com.softwaremagico.tm.character.occultism.OccultismPathFactory;
 import com.softwaremagico.tm.character.occultism.OccultismTypeFactory;
 import com.softwaremagico.tm.character.races.RaceFactory;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
+import com.softwaremagico.tm.character.skills.InvalidRanksException;
 import com.softwaremagico.tm.file.PathManager;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -79,7 +80,7 @@ public class CostCalculatorTests {
     }
 
     @Test
-    public void checkNaturalSkillsCost() throws InvalidXmlElementException {
+    public void checkNaturalSkillsCost() throws InvalidXmlElementException, InvalidRanksException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.getInfo().setAge(31);
         player.setRace(RaceFactory.getInstance().getElement("human", LANGUAGE, MODULE));
@@ -104,7 +105,7 @@ public class CostCalculatorTests {
     }
 
     @Test
-    public void checkSkillsCost() throws InvalidXmlElementException {
+    public void checkSkillsCost() throws InvalidXmlElementException, InvalidRanksException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.getInfo().setAge(31);
         player.setRace(RaceFactory.getInstance().getElement("human", LANGUAGE, MODULE));

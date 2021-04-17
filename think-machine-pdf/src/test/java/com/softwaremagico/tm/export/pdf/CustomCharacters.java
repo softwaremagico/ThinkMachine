@@ -48,6 +48,7 @@ import com.softwaremagico.tm.character.planets.PlanetFactory;
 import com.softwaremagico.tm.character.races.Race;
 import com.softwaremagico.tm.character.races.RaceFactory;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
+import com.softwaremagico.tm.character.skills.InvalidRanksException;
 import com.softwaremagico.tm.file.PathManager;
 import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.party.Party;
@@ -83,7 +84,7 @@ public class CustomCharacters {
 
     @Test
     public void createPaolaCharacter() throws InvalidXmlElementException, TooManyBlessingsException, TooManyCyberneticDevicesException,
-            RequiredCyberneticDevicesException, BeneficeAlreadyAddedException, BlessingAlreadyAddedException {
+            RequiredCyberneticDevicesException, BeneficeAlreadyAddedException, BlessingAlreadyAddedException, InvalidRanksException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.getInfo().addName(new Name("#5", player.getLanguage(), player.getModuleName(), Gender.FEMALE, null));
         player.getInfo().setPlayer("Paola");
@@ -196,7 +197,7 @@ public class CustomCharacters {
 
     @Test
     public void characterAnaCharacter()
-            throws InvalidXmlElementException, TooManyBlessingsException, BeneficeAlreadyAddedException, BlessingAlreadyAddedException {
+            throws InvalidXmlElementException, TooManyBlessingsException, BeneficeAlreadyAddedException, BlessingAlreadyAddedException, InvalidRanksException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.getInfo().addName(new Name("Arya", player.getLanguage(), player.getModuleName(), Gender.FEMALE, null));
         player.getInfo().setSurname(new Surname("Hawkwood", player.getLanguage(), player.getModuleName(), null));
@@ -282,7 +283,7 @@ public class CustomCharacters {
 
     @Test
     public void createCarlosCharacter()
-            throws InvalidXmlElementException, TooManyBlessingsException, BeneficeAlreadyAddedException, BlessingAlreadyAddedException {
+            throws InvalidXmlElementException, TooManyBlessingsException, BeneficeAlreadyAddedException, BlessingAlreadyAddedException, InvalidRanksException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.getInfo().addName(new Name("Carlos", player.getLanguage(), player.getModuleName(), Gender.MALE, null));
         player.getInfo().setPlayer("Carlos");
@@ -384,7 +385,7 @@ public class CustomCharacters {
 
     @Test
     public void createNoeliaCharacer()
-            throws InvalidXmlElementException, TooManyBlessingsException, BeneficeAlreadyAddedException, BlessingAlreadyAddedException {
+            throws InvalidXmlElementException, TooManyBlessingsException, BeneficeAlreadyAddedException, BlessingAlreadyAddedException, InvalidRanksException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.getInfo().addName(new Name("Noelia", player.getLanguage(), player.getModuleName(), Gender.FEMALE, null));
         player.getInfo().setPlayer("Noelia");
@@ -483,7 +484,7 @@ public class CustomCharacters {
     }
 
     @Test
-    public void createGolemCharacer() throws InvalidXmlElementException, TooManyBlessingsException, BlessingAlreadyAddedException {
+    public void createGolemCharacer() throws InvalidXmlElementException, TooManyBlessingsException, BlessingAlreadyAddedException, InvalidRanksException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.getInfo().setPlayer("PNJ");
         player.getInfo().addName(new Name("A", player.getLanguage(), player.getModuleName(), Gender.FEMALE, null));

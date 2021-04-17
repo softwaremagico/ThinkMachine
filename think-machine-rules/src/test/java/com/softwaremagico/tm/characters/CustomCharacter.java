@@ -46,13 +46,14 @@ import com.softwaremagico.tm.character.occultism.OccultismTypeFactory;
 import com.softwaremagico.tm.character.planets.PlanetFactory;
 import com.softwaremagico.tm.character.races.RaceFactory;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
+import com.softwaremagico.tm.character.skills.InvalidRanksException;
 
 public class CustomCharacter {
 	public final static int COST = 58;
 
 	public static CharacterPlayer create(String language, String moduleName)
 			throws InvalidXmlElementException, TooManyBlessingsException, TooManyCyberneticDevicesException,
-			RequiredCyberneticDevicesException, BlessingAlreadyAddedException, BeneficeAlreadyAddedException {
+			RequiredCyberneticDevicesException, BlessingAlreadyAddedException, BeneficeAlreadyAddedException, InvalidRanksException {
 		CacheHandler.clearCache();
 		final CharacterPlayer player = new CharacterPlayer(language, moduleName);
 		player.getInfo().addName(new Name("Oliver", language, moduleName, Gender.MALE, null));

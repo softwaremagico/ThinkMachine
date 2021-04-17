@@ -34,6 +34,7 @@ import com.softwaremagico.tm.character.cybernetics.TooManyCyberneticDevicesExcep
 import com.softwaremagico.tm.character.factions.FactionsFactory;
 import com.softwaremagico.tm.character.occultism.*;
 import com.softwaremagico.tm.character.races.RaceFactory;
+import com.softwaremagico.tm.character.skills.InvalidRanksException;
 import com.softwaremagico.tm.characters.CustomCharacter;
 import com.softwaremagico.tm.file.PathManager;
 import org.testng.Assert;
@@ -47,7 +48,7 @@ public class OccultismTests {
     @Test(expectedExceptions = {InvalidPowerLevelException.class})
     public void cannotAddPowersIncorrectPsiqueLevel() throws InvalidXmlElementException, TooManyBlessingsException,
             TooManyCyberneticDevicesException, RequiredCyberneticDevicesException, BlessingAlreadyAddedException,
-            BeneficeAlreadyAddedException {
+            BeneficeAlreadyAddedException, InvalidRanksException {
         final CharacterPlayer player = CustomCharacter.create(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.addOccultismPower(OccultismPathFactory.getInstance()
                 .getElement("psyche", player.getLanguage(), player.getModuleName()).getOccultismPowers().get("emote"));
@@ -56,7 +57,7 @@ public class OccultismTests {
     @Test(expectedExceptions = {InvalidPsiqueLevelException.class})
     public void cannotAddPowersIncorrectPathLevel() throws InvalidXmlElementException, TooManyBlessingsException,
             TooManyCyberneticDevicesException, RequiredCyberneticDevicesException, BlessingAlreadyAddedException,
-            BeneficeAlreadyAddedException {
+            BeneficeAlreadyAddedException, InvalidRanksException {
         final CharacterPlayer player = CustomCharacter.create(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.addOccultismPower(OccultismPathFactory.getInstance()
                 .getElement("farHand", player.getLanguage(), player.getModuleName()).getOccultismPowers()
@@ -66,7 +67,7 @@ public class OccultismTests {
     @Test(expectedExceptions = {InvalidPowerLevelException.class})
     public void cannotAddPsiPowersWithMissingLevels() throws InvalidXmlElementException, TooManyBlessingsException,
             TooManyCyberneticDevicesException, RequiredCyberneticDevicesException, BlessingAlreadyAddedException,
-            BeneficeAlreadyAddedException {
+            BeneficeAlreadyAddedException, InvalidRanksException {
         final CharacterPlayer player = CustomCharacter.create(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.setOccultismLevel(OccultismTypeFactory.getPsi(player.getLanguage(), player.getModuleName()), 6);
         player.addOccultismPower(OccultismPathFactory.getInstance()
@@ -77,7 +78,7 @@ public class OccultismTests {
     @Test(expectedExceptions = {InvalidFactionOfPowerException.class})
     public void cannotAddPowerOfDifferentFaction() throws TooManyBlessingsException, InvalidXmlElementException,
             TooManyCyberneticDevicesException, RequiredCyberneticDevicesException, BlessingAlreadyAddedException,
-            BeneficeAlreadyAddedException {
+            BeneficeAlreadyAddedException, InvalidRanksException {
         final CharacterPlayer player = CustomCharacter.create(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.setOccultismLevel(OccultismTypeFactory.getTheurgy(player.getLanguage(), player.getModuleName()), 5);
         player.addOccultismPower(OccultismPathFactory.getInstance()

@@ -286,7 +286,7 @@ public class RandomCharacterTests {
 
     @Test
     public void weapons() throws InvalidXmlElementException,
-            InvalidRandomElementSelectedException, BeneficeAlreadyAddedException {
+            InvalidRandomElementSelectedException, BeneficeAlreadyAddedException, InvalidRanksException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         characterPlayer.setSkillRank(AvailableSkillsFactory.getInstance().getElement("slugGuns", LANGUAGE,
                 PathManager.DEFAULT_MODULE_FOLDER), 5);

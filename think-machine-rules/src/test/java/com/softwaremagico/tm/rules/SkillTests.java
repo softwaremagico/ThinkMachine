@@ -39,14 +39,14 @@ public class SkillTests {
     private static final String LANGUAGE = "es";
 
     @Test(expectedExceptions = InvalidRanksException.class)
-    public void checkSkillLimitedToFaction() throws InvalidXmlElementException {
+    public void checkSkillLimitedToFaction() throws InvalidXmlElementException, InvalidRanksException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.setFaction(FactionsFactory.getInstance().getElement("vorox", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("spacecraftOperations", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER), 1);
     }
 
     @Test
-    public void checkSkillAllowedWithProfessionalContract() throws InvalidXmlElementException, BeneficeAlreadyAddedException {
+    public void checkSkillAllowedWithProfessionalContract() throws InvalidXmlElementException, BeneficeAlreadyAddedException, InvalidRanksException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.setFaction(FactionsFactory.getInstance().getElement("vorox", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("professionalContract_2", LANGUAGE,
@@ -55,7 +55,7 @@ public class SkillTests {
     }
 
     @Test(expectedExceptions = InvalidRanksException.class)
-    public void checkSkillNotAllowedWithProfessionalContractLowLevel() throws InvalidXmlElementException, BeneficeAlreadyAddedException {
+    public void checkSkillNotAllowedWithProfessionalContractLowLevel() throws InvalidXmlElementException, BeneficeAlreadyAddedException, InvalidRanksException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.setFaction(FactionsFactory.getInstance().getElement("vorox", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("professionalContract_2", LANGUAGE,
@@ -64,13 +64,13 @@ public class SkillTests {
     }
 
     @Test(expectedExceptions = InvalidRanksException.class)
-    public void checkSkillHasOtherSkillsRestrictions() throws InvalidXmlElementException {
+    public void checkSkillHasOtherSkillsRestrictions() throws InvalidXmlElementException, InvalidRanksException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("terraforming", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER), 3);
     }
 
     @Test
-    public void checkSkillHasOtherSkillsRestrictionsResolved() throws InvalidXmlElementException {
+    public void checkSkillHasOtherSkillsRestrictionsResolved() throws InvalidXmlElementException, InvalidRanksException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.setFaction(FactionsFactory.getInstance().getElement("engineers", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("physicalScience", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER), 3);

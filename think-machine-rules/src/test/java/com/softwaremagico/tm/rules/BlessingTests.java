@@ -24,6 +24,7 @@ package com.softwaremagico.tm.rules;
  * #L%
  */
 
+import com.softwaremagico.tm.character.skills.InvalidRanksException;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -49,7 +50,7 @@ public class BlessingTests {
 	@Test
 	public void checkVitalityModifications() throws InvalidXmlElementException, TooManyBlessingsException,
 			TooManyCyberneticDevicesException, RequiredCyberneticDevicesException, BlessingAlreadyAddedException,
-			BeneficeAlreadyAddedException {
+			BeneficeAlreadyAddedException, InvalidRanksException {
 		final CharacterPlayer player = CustomCharacter.create(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
 		final int vitality = player.getVitalityValue();
 		player.addBlessing(BlessingFactory.getInstance().getElement("incurableDisease", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
@@ -59,7 +60,7 @@ public class BlessingTests {
 	@Test
 	public void checkMovementModifications() throws InvalidXmlElementException, TooManyBlessingsException,
 			TooManyCyberneticDevicesException, RequiredCyberneticDevicesException, BlessingAlreadyAddedException,
-			BeneficeAlreadyAddedException {
+			BeneficeAlreadyAddedException, InvalidRanksException {
 		final CharacterPlayer player = CustomCharacter.create(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
 		final int movement = player.getValue(CharacteristicName.MOVEMENT);
 		player.addBlessing(BlessingFactory.getInstance().getElement("limp", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
@@ -69,7 +70,7 @@ public class BlessingTests {
 	@Test
 	public void checkRangedAttacksModifications() throws InvalidXmlElementException, TooManyBlessingsException,
 			TooManyCyberneticDevicesException, RequiredCyberneticDevicesException, BlessingAlreadyAddedException,
-			BeneficeAlreadyAddedException {
+			BeneficeAlreadyAddedException, InvalidRanksException {
 		final CharacterPlayer player = CustomCharacter.create(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
 		Assert.assertEquals(
 				(int) player.getSkillTotalRanks(AvailableSkillsFactory.getInstance().getElement("energyGuns", LANGUAGE,
