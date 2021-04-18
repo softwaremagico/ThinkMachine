@@ -166,7 +166,7 @@ public class RandomCharacterTests {
         randomizeCharacter.createCharacter();
 
         Assert.assertEquals(CostCalculator.getCost(characterPlayer),
-                FreeStyleCharacterCreation.getFreeAvailablePoints(characterPlayer.getInfo().getAge()));
+                FreeStyleCharacterCreation.getFreeAvailablePoints(characterPlayer.getInfo().getAge(), characterPlayer.getRace()));
         Assert.assertTrue(characterPlayer.getRanksAssigned(SkillGroupPreferences.COMBAT.getSkillGroup()) > 10);
     }
 
@@ -183,7 +183,7 @@ public class RandomCharacterTests {
         randomizeCharacter.createCharacter();
         Assert.assertNotNull(characterPlayer.getRank());
         Assert.assertEquals(CostCalculator.getCost(characterPlayer),
-                FreeStyleCharacterCreation.getFreeAvailablePoints(characterPlayer.getInfo().getAge()));
+                FreeStyleCharacterCreation.getFreeAvailablePoints(characterPlayer.getInfo().getAge(), characterPlayer.getRace()));
     }
 
     @Test

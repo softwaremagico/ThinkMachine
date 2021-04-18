@@ -464,6 +464,7 @@
             <es>Shantor</es>
         </name>
         <group>xenos</group>
+        <race>shantor</race>
         <preferences>CharacteristicsPreferences.BODY, WeaponsPreferences.MELEE
         </preferences>
         <requiredSkills>

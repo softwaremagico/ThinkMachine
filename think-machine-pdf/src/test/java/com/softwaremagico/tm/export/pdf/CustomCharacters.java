@@ -189,7 +189,7 @@ public class CustomCharacters {
                 smallSheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Paola_Small.pdf"), 1);
 
         Assert.assertEquals(CostCalculator.getCost(player),
-                FreeStyleCharacterCreation.getFreeAvailablePoints(player.getInfo().getAge()));
+                FreeStyleCharacterCreation.getFreeAvailablePoints(player.getInfo().getAge(), player.getRace()));
         Assert.assertEquals(player.getMoney(), 300);
 
         party.addMember(player);
@@ -275,7 +275,7 @@ public class CustomCharacters {
                 smallSheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Ana_Small.pdf"), 1);
 
         Assert.assertEquals(CostCalculator.getCost(player),
-                FreeStyleCharacterCreation.getFreeAvailablePoints(player.getInfo().getAge()));
+                FreeStyleCharacterCreation.getFreeAvailablePoints(player.getInfo().getAge(), player.getRace()));
         Assert.assertEquals(player.getMoney(), 250);
 
         party.addMember(player);
@@ -376,7 +376,7 @@ public class CustomCharacters {
                 smallSheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Carlos_Small.pdf"), 1);
 
         Assert.assertEquals(CostCalculator.getCost(player),
-                FreeStyleCharacterCreation.getFreeAvailablePoints(player.getInfo().getAge()));
+                FreeStyleCharacterCreation.getFreeAvailablePoints(player.getInfo().getAge(), player.getRace()));
         Assert.assertEquals(player.getRank(), "Genin");
         Assert.assertEquals(450, player.getMoney());
 
@@ -478,7 +478,7 @@ public class CustomCharacters {
                 smallSheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Noelia_Small.pdf"), 1);
 
         Assert.assertEquals(CostCalculator.getCost(player),
-                FreeStyleCharacterCreation.getFreeAvailablePoints(player.getInfo().getAge()));
+                FreeStyleCharacterCreation.getFreeAvailablePoints(player.getInfo().getAge(), player.getRace()));
 
         party.addMember(player);
     }

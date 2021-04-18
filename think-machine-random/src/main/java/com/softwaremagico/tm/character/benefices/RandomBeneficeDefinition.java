@@ -437,7 +437,7 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
         for (final BeneficeDefinition selectedBenefice : mandatoryValues) {
             // Mandatory benefices can exceed the initial traits points.
             assignBenefice(selectedBenefice,
-                    FreeStyleCharacterCreation.getFreeAvailablePoints(getCharacterPlayer().getInfo().getAge()));
+                    FreeStyleCharacterCreation.getFreeAvailablePoints(getCharacterPlayer().getInfo().getAge(), getCharacterPlayer().getRace()));
         }
     }
 }

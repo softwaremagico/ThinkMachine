@@ -24,10 +24,6 @@ package com.softwaremagico.tm.character.cybernetics;
  * #L%
  */
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
-
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.characteristics.CharacteristicDefinition;
@@ -41,12 +37,11 @@ import com.softwaremagico.tm.character.values.Bonification;
 import com.softwaremagico.tm.log.RandomGenerationLog;
 import com.softwaremagico.tm.random.RandomSelector;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
-import com.softwaremagico.tm.random.selectors.CombatPreferences;
-import com.softwaremagico.tm.random.selectors.CyberneticPointsPreferences;
-import com.softwaremagico.tm.random.selectors.CyberneticTotalDevicesPreferences;
-import com.softwaremagico.tm.random.selectors.CyberneticVisibilityPreferences;
-import com.softwaremagico.tm.random.selectors.DifficultLevelPreferences;
-import com.softwaremagico.tm.random.selectors.IRandomPreference;
+import com.softwaremagico.tm.random.selectors.*;
+
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 public class RandomCybernetics extends RandomSelector<CyberneticDevice> {
 	private int totalDevices;
@@ -64,7 +59,7 @@ public class RandomCybernetics extends RandomSelector<CyberneticDevice> {
 		final DifficultLevelPreferences difficultyLevel = DifficultLevelPreferences.getSelected(getPreferences());
 
 		int remainingPoints = FreeStyleCharacterCreation
-				.getFreeAvailablePoints(getCharacterPlayer().getInfo().getAge())
+				.getFreeAvailablePoints(getCharacterPlayer().getInfo().getAge(), getCharacterPlayer().getRace())
 				- CostCalculator.getCost(getCharacterPlayer(), difficultyLevel.getSkillsBonus(),
 						difficultyLevel.getCharacteristicsBonus());
 		// Select a cybernetic device.

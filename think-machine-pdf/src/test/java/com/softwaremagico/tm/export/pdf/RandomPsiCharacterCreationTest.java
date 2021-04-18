@@ -67,7 +67,7 @@ public class RandomPsiCharacterCreationTest {
 
 		try {
 			Assert.assertEquals(CostCalculator.getCost(characterPlayer),
-					FreeStyleCharacterCreation.getFreeAvailablePoints(characterPlayer.getInfo().getAge()));
+					FreeStyleCharacterCreation.getFreeAvailablePoints(characterPlayer.getInfo().getAge(), characterPlayer.getRace()));
 		} catch (AssertionError e) {
 			CostCalculator.logCost(characterPlayer);
 			throw e;

@@ -122,7 +122,7 @@ public class RandomPsiquePath extends RandomSelector<OccultismPath> {
         final DifficultLevelPreferences difficultyLevel = DifficultLevelPreferences.getSelected(getPreferences());
 
         int remainingPoints = FreeStyleCharacterCreation
-                .getFreeAvailablePoints(getCharacterPlayer().getInfo().getAge())
+                .getFreeAvailablePoints(getCharacterPlayer().getInfo().getAge(), getCharacterPlayer().getRace())
                 - CostCalculator.getCost(getCharacterPlayer(), difficultyLevel.getSkillsBonus(),
                 difficultyLevel.getCharacteristicsBonus());
         // Select powers to set.

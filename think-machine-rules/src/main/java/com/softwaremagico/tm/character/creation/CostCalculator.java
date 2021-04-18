@@ -40,7 +40,7 @@ import java.util.Map.Entry;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class CostCalculator {
-    private static final int DEFAULT_AGE = 31;
+    public static final int DEFAULT_AGE = 31;
 
     public static final int CHARACTERISTIC_EXTRA_POINTS_COST = 3;
     public static final int SKILL_EXTRA_POINTS_COST = 1;
@@ -101,8 +101,8 @@ public class CostCalculator {
         if (currentSkillsPoints.get() == 0) {
             return CharacterProgressionStatus.DRAFT;
         }
-        if (getTotalExtraCost() < FreeStyleCharacterCreation.getFreeAvailablePoints(characterAge(characterPlayer)
-        )) {
+        if (getTotalExtraCost() < FreeStyleCharacterCreation.getFreeAvailablePoints(characterAge(characterPlayer),
+                characterPlayer.getRace())) {
             return CharacterProgressionStatus.IN_PROGRESS;
         }
         if (characterPlayer.getExperienceExpended() > 0) {
@@ -155,7 +155,7 @@ public class CostCalculator {
                     characterPlayer.getBasicOccultismLevel(
                             OccultismTypeFactory.getTheurgy(characterPlayer.getLanguage(), characterPlayer.getModuleName()))
                     - (characterPlayer.getRace() != null ? characterPlayer.getRace().getTheurgy() : 0));
-            currentOccultismPowersExtraPoints.set(getPsiPathsCosts(characterPlayer));
+            currentOccultismPowersExtraPoints.set(getOccultismPathsCosts(characterPlayer));
             currentWyrdExtraPoints.set(Math.max(characterPlayer.getExtraWyrd(), 0));
             currentCyberneticsExtraPoints.set(Math.max(getCyberneticsPoints(characterPlayer), 0));
             fireBirdsExpend = characterPlayer.getSpentMoney();
@@ -333,13 +333,10 @@ public class CostCalculator {
     public static int getCost(CharacterPlayer characterPlayer, int extraSkillPoints, int extraCharacteristicsPoints)
             throws InvalidXmlElementException {
         int cost = 0;
-        if (characterPlayer.getRace() != null) {
-            cost += characterPlayer.getRace().getCost();
-        }
         cost += getCharacteristicsCost(characterPlayer, extraCharacteristicsPoints);
         cost += getSkillCosts(characterPlayer, extraSkillPoints);
         cost += getTraitsCosts(characterPlayer);
-        cost += getPsiPowersCosts(characterPlayer);
+        cost += getOccultismPowersCosts(characterPlayer);
         cost += getCyberneticsPoints(characterPlayer);
         CostCalculatorLog.debug(CostCalculator.class.getName(),
                 "Character '{}' total cost '{}'.\n", characterPlayer.getCompleteNameRepresentation(), cost);
@@ -368,9 +365,9 @@ public class CostCalculator {
                 "Skills cost: " + getSkillCosts(characterPlayer, extraSkillPoints));
         cost += getTraitsCosts(characterPlayer);
         CostCalculatorLog.info(CostCalculator.class.getName(), "Traits cost '{}'.", getTraitsCosts(characterPlayer));
-        cost += getPsiPowersCosts(characterPlayer);
+        cost += getOccultismPowersCosts(characterPlayer);
         CostCalculatorLog.info(CostCalculator.class.getName(),
-                "Psi powers cost: " + getPsiPowersCosts(characterPlayer));
+                "Psi powers cost: " + getOccultismPowersCosts(characterPlayer));
         cost += getCyberneticsPoints(characterPlayer);
         CostCalculatorLog.info(CostCalculator.class.getName(),
                 "Cybernetics cost: " + getCyberneticsPoints(characterPlayer));
@@ -378,7 +375,7 @@ public class CostCalculator {
         return cost;
     }
 
-    private static int getCharacteristicsCost(CharacterPlayer characterPlayer, int extraCharacteristicsPoints) {
+    public static int getCharacteristicsCost(CharacterPlayer characterPlayer, int extraCharacteristicsPoints) {
         return (characterPlayer.getCharacteristicsTotalPoints() - Math.max(CharacteristicName.values().length,
                 (FreeStyleCharacterCreation.getCharacteristicsPoints(characterAge(characterPlayer)
                 ))
@@ -386,7 +383,7 @@ public class CostCalculator {
                 * CHARACTERISTIC_EXTRA_POINTS_COST;
     }
 
-    private static int getSkillCosts(CharacterPlayer characterPlayer, int extraSkillPoints)
+    public static int getSkillCosts(CharacterPlayer characterPlayer, int extraSkillPoints)
             throws InvalidXmlElementException {
         return (characterPlayer.getSkillsTotalPoints() - Math.max(0,
                 (FreeStyleCharacterCreation.getSkillsPoints(characterAge(characterPlayer)
@@ -394,7 +391,7 @@ public class CostCalculator {
                 * SKILL_EXTRA_POINTS_COST;
     }
 
-    private static int getTraitsCosts(CharacterPlayer characterPlayer) throws InvalidXmlElementException {
+    public static int getTraitsCosts(CharacterPlayer characterPlayer) throws InvalidXmlElementException {
         int cost = 0;
         cost += getBlessingCosts(characterPlayer);
         cost += getBeneficesCosts(characterPlayer);
@@ -402,9 +399,9 @@ public class CostCalculator {
         );
     }
 
-    private static int getBlessingCosts(CharacterPlayer characterPlayer) {
+    public static int getBlessingCosts(CharacterPlayer characterPlayer) {
         int cost = 0;
-        for (final Blessing blessing : characterPlayer.getAllBlessings()) {
+        for (final Blessing blessing : characterPlayer.getSelectedBlessings()) {
             cost += blessing.getCost();
         }
         return cost;
@@ -418,26 +415,23 @@ public class CostCalculator {
         return cost;
     }
 
-    public int getBeneficesCosts() throws InvalidXmlElementException {
+    private int getBeneficesCosts() throws InvalidXmlElementException {
         return getBeneficesCosts(characterPlayer);
     }
 
     public static int getBeneficesCosts(CharacterPlayer characterPlayer) throws InvalidXmlElementException {
         int cost = 0;
-        for (final AvailableBenefice benefit : characterPlayer.getAllBenefices()) {
+        for (final AvailableBenefice benefit : characterPlayer.getSelectedBenefices()) {
             cost += benefit.getCost();
-        }
-        for (final AvailableBenefice affliction : characterPlayer.getAfflictions()) {
-            cost += affliction.getCost();
         }
         return cost;
     }
 
-    private int getPsiPathsCosts() {
-        return getPsiPathsCosts(characterPlayer);
+    private int getOccultismPathsCosts() {
+        return getOccultismPathsCosts(characterPlayer);
     }
 
-    private static int getPsiPathsCosts(CharacterPlayer characterPlayer) {
+    private static int getOccultismPathsCosts(CharacterPlayer characterPlayer) {
         int cost = 0;
         for (final Entry<String, List<OccultismPower>> occultismPathEntry : characterPlayer.getSelectedPowers()
                 .entrySet()) {
@@ -448,8 +442,8 @@ public class CostCalculator {
         return cost;
     }
 
-    private static int getPsiPowersCosts(CharacterPlayer characterPlayer) throws InvalidXmlElementException {
-        int cost = getPsiPathsCosts(characterPlayer);
+    private static int getOccultismPowersCosts(CharacterPlayer characterPlayer) {
+        int cost = getOccultismPathsCosts(characterPlayer);
         cost += characterPlayer.getExtraWyrd() * EXTRA_WYRD_COST;
         cost += Math.max(0,
                 (characterPlayer.getBasicOccultismLevel(

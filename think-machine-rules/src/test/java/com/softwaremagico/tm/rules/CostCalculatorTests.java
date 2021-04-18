@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.characters;
+package com.softwaremagico.tm.rules;
 
 /*-
  * #%L
@@ -385,4 +385,17 @@ public class CostCalculatorTests {
         Assert.assertEquals(costCalculator.getFireBirdsExpend(), money);
         Assert.assertEquals(player.getMoney(), 5000);
     }
+
+    @Test
+    public void checkRaceCosts() throws InvalidXmlElementException {
+        final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        player.setFaction(FactionsFactory.getInstance().getElement("vorox", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+        player.setRace(RaceFactory.getInstance().getElement("vorox", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+
+        Assert.assertEquals(CostCalculator.getCharacteristicsCost(player, 0), 0);
+        Assert.assertEquals(CostCalculator.getSkillCosts(player, 0), 0);
+        Assert.assertEquals(CostCalculator.getTraitsCosts(player), 0);
+        Assert.assertEquals(CostCalculator.getCost(player), 9);
+    }
+
 }

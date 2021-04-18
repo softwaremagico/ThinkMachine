@@ -175,7 +175,8 @@ public class CharacterPlayer {
             return FreeStyleCharacterCreation.getMinInitialCharacteristicsValues(characteristicName, getInfo().getAge(),
                     getRace());
         }
-        return getRaceCharacteristicStartingValue(characteristicName);
+        return FreeStyleCharacterCreation.getMinInitialCharacteristicsValues(characteristicName, CostCalculator.DEFAULT_AGE,
+                getRace());
     }
 
     public Integer getStartingValue(AvailableSkill skill) {

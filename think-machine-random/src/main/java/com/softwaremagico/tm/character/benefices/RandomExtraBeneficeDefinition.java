@@ -24,9 +24,6 @@ package com.softwaremagico.tm.character.benefices;
  * #L%
  */
 
-import java.util.HashSet;
-import java.util.Set;
-
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
@@ -34,6 +31,9 @@ import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedExcep
 import com.softwaremagico.tm.random.selectors.ExtraBeneficesNumberPreferences;
 import com.softwaremagico.tm.random.selectors.IGaussianDistribution;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
+
+import java.util.HashSet;
+import java.util.Set;
 
 public class RandomExtraBeneficeDefinition extends RandomBeneficeDefinition {
 	private static final int MAX_COMBAT_STYLES = 2;
@@ -69,7 +69,7 @@ public class RandomExtraBeneficeDefinition extends RandomBeneficeDefinition {
 			}
 
 			assignBenefice(selectedBenefice,
-					FreeStyleCharacterCreation.getFreeAvailablePoints(getCharacterPlayer().getInfo().getAge()));
+					FreeStyleCharacterCreation.getFreeAvailablePoints(getCharacterPlayer().getInfo().getAge(), getCharacterPlayer().getRace()));
 		}
 	}
 }

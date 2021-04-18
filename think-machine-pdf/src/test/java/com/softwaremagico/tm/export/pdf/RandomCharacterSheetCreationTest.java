@@ -24,12 +24,6 @@ package com.softwaremagico.tm.export.pdf;
  * #L%
  */
 
-import java.io.File;
-
-import org.testng.Assert;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
-
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.RandomizeCharacter;
@@ -42,6 +36,11 @@ import com.softwaremagico.tm.pdf.complete.CharacterSheet;
 import com.softwaremagico.tm.pdf.small.SmallCharacterSheet;
 import com.softwaremagico.tm.random.exceptions.DuplicatedPreferenceException;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
+import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
+import java.io.File;
 
 @Test(groups = { "randomCharacterSheetCreation" })
 public class RandomCharacterSheetCreationTest {
@@ -59,7 +58,7 @@ public class RandomCharacterSheetCreationTest {
 		randomizeCharacter.createCharacter();
 
 		Assert.assertEquals(CostCalculator.logCost(characterPlayer),
-				FreeStyleCharacterCreation.getFreeAvailablePoints(characterPlayer.getInfo().getAge()));
+				FreeStyleCharacterCreation.getFreeAvailablePoints(characterPlayer.getInfo().getAge(), characterPlayer.getRace()));
 
 		LanguagePool.clearCache();
 		final CharacterSheet sheet = new CharacterSheet(characterPlayer);
@@ -75,7 +74,7 @@ public class RandomCharacterSheetCreationTest {
 		randomizeCharacter.createCharacter();
 
 		Assert.assertEquals(CostCalculator.logCost(characterPlayer),
-				FreeStyleCharacterCreation.getFreeAvailablePoints(characterPlayer.getInfo().getAge()));
+				FreeStyleCharacterCreation.getFreeAvailablePoints(characterPlayer.getInfo().getAge(), characterPlayer.getRace()));
 
 		LanguagePool.clearCache();
 		final SmallCharacterSheet sheet = new SmallCharacterSheet(characterPlayer);
@@ -92,7 +91,7 @@ public class RandomCharacterSheetCreationTest {
 		randomizeCharacter.createCharacter();
 
 		Assert.assertEquals(CostCalculator.logCost(characterPlayer),
-				FreeStyleCharacterCreation.getFreeAvailablePoints(characterPlayer.getInfo().getAge()));
+				FreeStyleCharacterCreation.getFreeAvailablePoints(characterPlayer.getInfo().getAge(), characterPlayer.getRace()));
 
 		LanguagePool.clearCache();
 		final SmallCharacterSheet sheet = new SmallCharacterSheet(characterPlayer);

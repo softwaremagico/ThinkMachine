@@ -339,7 +339,7 @@ public class RandomizeCharacter {
         final DifficultLevelPreferences difficultLevel = DifficultLevelPreferences.getSelected(preferences);
 
         // Spend remaining points in skills and characteristics.
-        int remainingPoints = FreeStyleCharacterCreation.getFreeAvailablePoints(characterPlayer.getInfo().getAge())
+        int remainingPoints = FreeStyleCharacterCreation.getFreeAvailablePoints(characterPlayer.getInfo().getAge(), characterPlayer.getRace())
                 - CostCalculator.getCost(characterPlayer, difficultLevel.getSkillsBonus(), difficultLevel.getCharacteristicsBonus());
 
         RandomGenerationLog.info(this.getClass().getName(), "Remaining points '{}'.", remainingPoints);

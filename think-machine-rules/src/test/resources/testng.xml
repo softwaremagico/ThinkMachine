@@ -73,7 +73,7 @@
             <class name="com.softwaremagico.tm.txt.ExportTxtTests"/>
             <class name="com.softwaremagico.tm.txt.ExportTxtTests"/>
             <class name="com.softwaremagico.tm.json.JsonTests"/>
-            <class name="com.softwaremagico.tm.characters.CostCalculatorTests"/>
+            <class name="com.softwaremagico.tm.rules.CostCalculatorTests"/>
             <class name="com.softwaremagico.tm.json.JsonCacheLoaderTests"/>
             <class name="com.softwaremagico.tm.file.ModuleManagerTests"/>
             <class name="com.softwaremagico.tm.rules.FactionTests"/>

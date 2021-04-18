@@ -64,4 +64,11 @@ public class RaceFactoryTests {
         Assert.assertTrue(vorox.getBenefices().contains(AvailableBeneficeFactory.getInstance().getElement("noOccult",
                 LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)));
     }
+
+    @Test
+    public void readRaceExtraPoints() throws InvalidXmlElementException {
+        final Race vorox = RaceFactory.getInstance().getElement("vorox", LANGUAGE,
+                PathManager.DEFAULT_MODULE_FOLDER);
+        Assert.assertEquals(vorox.getCost(), 9);
+    }
 }
