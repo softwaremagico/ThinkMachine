@@ -33,6 +33,7 @@ import com.softwaremagico.tm.character.blessings.BlessingFactory;
 import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.creation.CostCalculator;
+import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
 import com.softwaremagico.tm.character.cybernetics.*;
 import com.softwaremagico.tm.character.equipment.armours.ArmourFactory;
 import com.softwaremagico.tm.character.equipment.shields.ShieldFactory;
@@ -388,14 +389,17 @@ public class CostCalculatorTests {
 
     @Test
     public void checkRaceCosts() throws InvalidXmlElementException {
-        final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
-        player.setFaction(FactionsFactory.getInstance().getElement("vorox", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
-        player.setRace(RaceFactory.getInstance().getElement("vorox", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+        final CharacterPlayer character = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        character.setFaction(FactionsFactory.getInstance().getElement("vorox", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+        character.setRace(RaceFactory.getInstance().getElement("vorox", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
 
-        Assert.assertEquals(CostCalculator.getCharacteristicsCost(player, 0), 0);
-        Assert.assertEquals(CostCalculator.getSkillCosts(player, 0), 0);
-        Assert.assertEquals(CostCalculator.getTraitsCosts(player), 0);
-        Assert.assertEquals(CostCalculator.getCost(player), 9);
+        CostCalculator costCalculator = new CostCalculator(character);
+        Assert.assertEquals(FreeStyleCharacterCreation.getCharacteristicsPoints(character.getInfo().getAge()) - costCalculator.getCurrentCharacteristicPoints(), 20);
+        Assert.assertEquals(FreeStyleCharacterCreation.getSkillsPoints(character.getInfo().getAge()) - costCalculator.getCurrentSkillsPoints(), 30);
+        Assert.assertEquals(FreeStyleCharacterCreation.getTraitsPoints(character.getInfo().getAge()) - costCalculator.getCurrentTraitsPoints(), 10);
+        //Race costs 9 points
+        Assert.assertEquals(FreeStyleCharacterCreation.getFreeAvailablePoints(character.getInfo().getAge(), character.getRace())
+                - Math.max(0, costCalculator.getTotalExtraCost()), 31);
     }
 
 }
