@@ -1465,7 +1465,7 @@
         <faction>minorFaction</faction>
         <preferences>CombatPreferences.BELLIGERENT, CharacteristicsPreferences.BODY,
             SpecializationPreferences.VERY_SPECIALIZED, CombatActionsPreferences.HIGH,
-            TechnologicalPreferences.SPACE_CITIZEN, WeaponsPreferences.VERY_HIGH, ArmourPreferences.MEDIUM,
+            TechnologicalPreferences.SPACE_CITIZEN, WeaponsPreferences.WARLORD, ArmourPreferences.MEDIUM,
             ShieldPreferences.HIGH
         </preferences>
         <characteristicsMinimumValues>
@@ -1506,7 +1506,7 @@
         <faction>minorFaction</faction>
         <preferences>CombatPreferences.BELLIGERENT, CharacteristicsPreferences.BODY,
             SpecializationPreferences.VERY_SPECIALIZED, CombatActionsPreferences.HIGH,
-            TechnologicalPreferences.SPACE_CITIZEN, WeaponsPreferences.VERY_HIGH, ArmourPreferences.MEDIUM,
+            TechnologicalPreferences.SPACE_CITIZEN, WeaponsPreferences.MEDIUM, ArmourPreferences.MEDIUM,
             ShieldPreferences.HIGH
         </preferences>
         <characteristicsMinimumValues>
@@ -1587,4 +1587,25 @@
         <weapons>typicalMedRevolver</weapons>
         <armours>leatherJerkin</armours>
     </thoughtPolice>
+    <shantor>
+        <name>
+            <en>Shantor</en>
+            <es>Shantor</es>
+        </name>
+        <group>xenos</group>
+        <preferences>CharacteristicsPreferences.BODY, WeaponsPreferences.MELEE
+        </preferences>
+        <requiredSkills>
+            <skill>
+                <id>vigor</id>
+            </skill>
+            <skill>
+                <id>melee</id>
+            </skill>
+            <skill>
+                <id>performance</id>
+            </skill>
+        </requiredSkills>
+        <weapons>javelin</weapons>
+    </shantor>
 </profiles>

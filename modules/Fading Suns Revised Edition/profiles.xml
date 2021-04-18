@@ -458,4 +458,26 @@
             </skill>
         </requiredSkills>
     </martialArtist>
+    <shantor>
+        <name>
+            <en>Shantor</en>
+            <es>Shantor</es>
+        </name>
+        <group>xenos</group>
+        <preferences>CharacteristicsPreferences.BODY, WeaponsPreferences.MELEE
+        </preferences>
+        <requiredSkills>
+            <skill>
+                <id>vigor</id>
+            </skill>
+            <skill>
+                <id>melee</id>
+            </skill>
+            <skill>
+                <id>performance</id>
+            </skill>
+        </requiredSkills>
+        <suggestedSkills>
+        </suggestedSkills>
+    </shantor>
 </profiles>
