@@ -421,7 +421,7 @@ public class CharacterPlayer {
                             + "' and adding '" + blessing + "'.");
         }
         // Only 7 blessings as max.
-        if (getAllBlessings().size() > FreeStyleCharacterCreation.getMaxBlessingModifications(getInfo().getAge())) {
+        if (getSelectedBlessings().size() > FreeStyleCharacterCreation.getMaxBlessingModifications(getInfo().getAge())) {
             throw new TooManyBlessingsException(
                     "Only a total of '" + FreeStyleCharacterCreation.getMaxBlessingModifications(getInfo().getAge())
                             + "' modifications are allowed for blessings. Now exists '" + getAllBlessings()
@@ -440,7 +440,7 @@ public class CharacterPlayer {
 
     private int getBlessingModificationsNumber() {
         int counter = 0;
-        for (final Blessing blessing : getAllBlessings()) {
+        for (final Blessing blessing : getSelectedBlessings()) {
             counter += blessing.getBonifications().size();
         }
         return counter;

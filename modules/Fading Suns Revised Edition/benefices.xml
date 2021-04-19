@@ -1706,7 +1706,7 @@
     </bite>
     <extraLimbs>
         <name>
-            <en>Extra Libs</en>
+            <en>Extra Limbs</en>
             <es>Miembros Extra</es>
         </name>
         <cost>6</cost>
@@ -1715,7 +1715,7 @@
     <noOccult>
         <name>
             <en>No Occult</en>
-            <es>No Oculstista</es>
+            <es>No Ocultista</es>
         </name>
         <description>
             <en>Cannot awaken Psi or Theurgy</en>

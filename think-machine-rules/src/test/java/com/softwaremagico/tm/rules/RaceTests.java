@@ -27,6 +27,9 @@ package com.softwaremagico.tm.rules;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
+import com.softwaremagico.tm.character.blessings.BlessingAlreadyAddedException;
+import com.softwaremagico.tm.character.blessings.BlessingFactory;
+import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
 import com.softwaremagico.tm.character.factions.FactionsFactory;
 import com.softwaremagico.tm.character.races.InvalidRaceException;
 import com.softwaremagico.tm.character.races.RaceFactory;
@@ -52,6 +55,28 @@ public class RaceTests {
         player.setRace(RaceFactory.getInstance().getElement("vorox", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         Assert.assertTrue(player.getAfflictions().contains(AvailableBeneficeFactory.getInstance().getElement("noOccult",
                 LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)));
+    }
+
+    @Test
+    public void checkRaceBeneficesMaxNumber() throws InvalidXmlElementException, TooManyBlessingsException, BlessingAlreadyAddedException {
+        final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        player.setFaction(FactionsFactory.getInstance().getElement("scravers", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+        player.setRace(RaceFactory.getInstance().getElement("vorox", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+        //I can add 7 benefices despite faction and race benefices
+        player.addBlessing(BlessingFactory.getInstance().getElement("handsome", player.getLanguage(),
+                player.getModuleName()));
+        player.addBlessing(BlessingFactory.getInstance().getElement("nosy", player.getLanguage(),
+                player.getModuleName()));
+        player.addBlessing(BlessingFactory.getInstance().getElement("phobic", player.getLanguage(),
+                player.getModuleName()));
+        player.addBlessing(BlessingFactory.getInstance().getElement("badHeart", player.getLanguage(),
+                player.getModuleName()));
+        player.addBlessing(BlessingFactory.getInstance().getElement("secretive", player.getLanguage(),
+                player.getModuleName()));
+        player.addBlessing(BlessingFactory.getInstance().getElement("surly", player.getLanguage(),
+                player.getModuleName()));
+        player.addBlessing(BlessingFactory.getInstance().getElement("vain", player.getLanguage(),
+                player.getModuleName()));
     }
 
     @Test
