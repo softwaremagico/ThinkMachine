@@ -482,6 +482,17 @@ public class CharacterPlayer {
         return blessings;
     }
 
+    public List<Blessing> getDefaultBlessings() {
+        final List<Blessing> defaultBlessings = new ArrayList<>();
+        if (getRace() != null) {
+            defaultBlessings.addAll(getRace().getBlessings());
+        }
+        if (getFaction() != null) {
+            defaultBlessings.addAll(getFaction().getBlessings());
+        }
+        return defaultBlessings;
+    }
+
     /**
      * Return all blessings include the factions blessings and curses.
      *
@@ -580,6 +591,17 @@ public class CharacterPlayer {
      */
     public List<AvailableBenefice> getSelectedBenefices() {
         return benefices;
+    }
+
+    public List<AvailableBenefice> getDefaultBenefices() {
+        final List<AvailableBenefice> defaultBenefices = new ArrayList<>();
+        if (getRace() != null) {
+            defaultBenefices.addAll(getRace().getBenefices());
+        }
+        if (getFaction() != null) {
+            defaultBenefices.addAll(getFaction().getBenefices());
+        }
+        return defaultBenefices;
     }
 
     public List<AvailableBenefice> getSelectedBenefices(BeneficeGroup beneficeGroup) {
