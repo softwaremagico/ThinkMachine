@@ -1073,7 +1073,7 @@ public class CharacterPlayer {
         for (final CharacteristicName characteristicName : CharacteristicName.getBasicCharacteristics()) {
             characteristicPoints += getRawValue(characteristicName) - getStartingValue(characteristicName);
         }
-        return characteristicPoints;
+        return Math.max(0, characteristicPoints);
     }
 
     /**
