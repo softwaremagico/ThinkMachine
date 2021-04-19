@@ -29,7 +29,9 @@ import com.softwaremagico.tm.json.ExcludeFromJson;
  */
 
 public class Characteristic extends Element<Characteristic> implements IValue {
-    public static final int DEFAULT_INITIAL_VALUE = 3;
+    //Default value is 1, and later race will set as the correct minimum value.
+    public static final int DEFAULT_INITIAL_VALUE = 1;
+    public static final int DEFAULT_HUMAN_INITIAL_VALUE = 3;
     public static final int DEFAULT_INITIAL_MAX_VALUE = 8;
     public static final int MAX_VALUE = 12;
     private int value = DEFAULT_INITIAL_VALUE;

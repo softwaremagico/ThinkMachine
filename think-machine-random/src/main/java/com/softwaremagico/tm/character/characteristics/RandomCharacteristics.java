@@ -138,13 +138,13 @@ public class RandomCharacteristics extends RandomSelector<Characteristic> {
 
         // Race
         if (getCharacterPlayer().getRace() != null) {
-            // Races with better initial value.
+            // Races with better than human initial value.
             if (getCharacterPlayer().getRace().get(characteristic.getCharacteristicDefinition().getCharacteristicName())
-                    .getInitialValue() > Characteristic.DEFAULT_INITIAL_VALUE) {
+                    .getInitialValue() > Characteristic.DEFAULT_HUMAN_INITIAL_VALUE) {
                 weight += FAIR_PROBABILITY;
             } else if (getCharacterPlayer().getRace()
                     .get(characteristic.getCharacteristicDefinition().getCharacteristicName())
-                    .getInitialValue() < Characteristic.DEFAULT_INITIAL_VALUE) {
+                    .getInitialValue() < Characteristic.DEFAULT_HUMAN_INITIAL_VALUE) {
                 weight += BAD_PROBABILITY;
             }
 

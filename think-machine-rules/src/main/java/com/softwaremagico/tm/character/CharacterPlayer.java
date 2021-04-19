@@ -1015,7 +1015,7 @@ public class CharacterPlayer {
             if (value != null) {
                 return value.getInitialValue();
             }
-            return Characteristic.DEFAULT_INITIAL_VALUE;
+            return Characteristic.DEFAULT_HUMAN_INITIAL_VALUE;
         }
         return 0;
     }

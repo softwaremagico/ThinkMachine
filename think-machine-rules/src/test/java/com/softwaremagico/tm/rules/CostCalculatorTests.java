@@ -394,6 +394,7 @@ public class CostCalculatorTests {
         character.setRace(RaceFactory.getInstance().getElement("vorox", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
 
         CostCalculator costCalculator = new CostCalculator(character);
+
         Assert.assertEquals(FreeStyleCharacterCreation.getCharacteristicsPoints(character.getInfo().getAge()) - costCalculator.getCurrentCharacteristicPoints(), 20);
         Assert.assertEquals(FreeStyleCharacterCreation.getSkillsPoints(character.getInfo().getAge()) - costCalculator.getCurrentSkillsPoints(), 30);
         Assert.assertEquals(FreeStyleCharacterCreation.getTraitsPoints(character.getInfo().getAge()) - costCalculator.getCurrentTraitsPoints(), 10);
