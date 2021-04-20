@@ -38,9 +38,6 @@ import java.util.*;
 public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
     private static final String TRANSLATOR_FILE = "skills.xml";
 
-    private static final String NAME = "name";
-    private static final String DESCRIPTION = "description";
-
     private static final String FACTION_SKILL_TAG = "factionSkill";
     private static final String SPECIALIZE_SKILL_TAG = "specializations";
     private static final String GROUP_SKILL_TAG = "group";
