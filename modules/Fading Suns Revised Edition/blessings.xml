@@ -2863,7 +2863,7 @@
                 <affects>movement</affects>
             </bonification>
         </bonifications>
-        <group>size</group>
+        <group>restricted</group>
     </huge>
     <short>
         <name>
@@ -3460,6 +3460,24 @@
         <group>restricted</group>
         <curse>true</curse>
     </neurotic>
+    <fourLegged>
+        <name>
+            <en>Fourlegged</en>
+            <es>Quadrúpedo</es>
+        </name>
+        <description>
+            <en>The following Blessing or Curse is only available for some specific races or factions</en>
+            <es>Esta bendición o maldición únicamente está disponible para algunas razas o facciones</es>
+        </description>
+        <cost>3</cost>
+         <bonifications>
+            <bonification>
+                <value>6</value>
+                <affects>movement</affects>
+            </bonification>
+        </bonifications>
+        <group>restricted</group>
+    </fourLegged>
 
 
 </blessings>

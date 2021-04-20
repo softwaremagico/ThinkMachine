@@ -328,7 +328,7 @@
 		<urge>0</urge>
 		<theurgy>0</theurgy>
 		<hubris>0</hubris>
-		<blessings>alertSleeping, awkward, huge, receptiveEars, noFineManipulation</blessings>
+		<blessings>alertSleeping, awkward, huge, receptiveEars, fourLegged, noFineManipulation</blessings>
 		<benefices>restrictedLanguage [urthish], ostraziced4, noOccult</benefices>
 		<random>
 			<staticProbability>1</staticProbability>
