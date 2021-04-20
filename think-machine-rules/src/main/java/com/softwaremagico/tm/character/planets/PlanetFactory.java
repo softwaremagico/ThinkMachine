@@ -36,7 +36,7 @@ import java.util.Set;
 public class PlanetFactory extends XmlFactory<Planet> {
     private static final String TRANSLATOR_FILE = "planets.xml";
 
-    private static final String FACTION = "factions";
+    private static final String FACTIONS = "factions";
 
     private static class PlanetFactoryInit {
         public static final PlanetFactory INSTANCE = new PlanetFactory();
@@ -58,11 +58,11 @@ public class PlanetFactory extends XmlFactory<Planet> {
         try {
             final Set<Faction> factions;
             try {
-                factions = getCommaSeparatedValues(planetId, FACTION, language, moduleName,
+                factions = getCommaSeparatedValues(planetId, FACTIONS, language, moduleName,
                         FactionsFactory.getInstance());
             } catch (InvalidXmlElementException ixe) {
                 throw new InvalidPlanetException("Error in planet '" + planetId
-                        + "' structure. Invalid faction defintion.", ixe);
+                        + "' structure. Invalid faction definition.", ixe);
             }
 
             return new Planet(planetId, name, description, language, moduleName, factions);

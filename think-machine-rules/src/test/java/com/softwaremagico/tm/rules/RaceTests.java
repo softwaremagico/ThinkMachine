@@ -86,4 +86,12 @@ public class RaceTests {
         Assert.assertTrue(player.getAfflictions().contains(AvailableBeneficeFactory.getInstance().getElement("noOccult",
                 LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)));
     }
+
+    @Test
+    public void checkNullRace() throws InvalidXmlElementException {
+        final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        player.setRace(RaceFactory.getInstance().getElement("human", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+        player.setRace(null);
+        Assert.assertNull(player.getRace());
+    }
 }

@@ -1002,9 +1002,6 @@ public class CharacterPlayer {
     }
 
     public void setRace(Race race) throws InvalidRaceException {
-        if (race == null) {
-            throw new InvalidRaceException("Race is null!");
-        }
         if (getFaction() != null && !getFaction().getRestrictedToRaces().isEmpty() && !getFaction().getRestrictedToRaces().contains(race)) {
             throw new InvalidRaceException("Faction is restricted to '" + getFaction().getRestrictedToRaces() + "'");
         }
@@ -1012,16 +1009,16 @@ public class CharacterPlayer {
             MachineLog.debug(this.getClass().getName(), "Race set to '{}'.", race);
             this.race = race;
             for (final Characteristic characteristic : characteristics.values()) {
-                final int raceInitialValue = race
-                        .get(characteristic.getCharacteristicDefinition().getCharacteristicName()).getInitialValue();
+                final int raceInitialValue = (race == null ? Characteristic.DEFAULT_INITIAL_VALUE : race
+                        .get(characteristic.getCharacteristicDefinition().getCharacteristicName()).getInitialValue());
                 if (getRawValue(
                         characteristic.getCharacteristicDefinition().getCharacteristicName()) < raceInitialValue) {
                     this.characteristics
                             .get(characteristic.getCharacteristicDefinition().getCharacteristicName().getId())
                             .setValue(raceInitialValue);
                 }
-                final int raceMaxValue = race.get(characteristic.getCharacteristicDefinition().getCharacteristicName())
-                        .getMaximumInitialValue();
+                final int raceMaxValue = (race == null ? Characteristic.DEFAULT_INITIAL_VALUE : race
+                        .get(characteristic.getCharacteristicDefinition().getCharacteristicName()).getMaximumInitialValue());
                 if (getRawValue(characteristic.getCharacteristicDefinition().getCharacteristicName()) > raceMaxValue) {
                     this.characteristics
                             .get(characteristic.getCharacteristicDefinition().getCharacteristicName().getId())

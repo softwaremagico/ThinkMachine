@@ -71,4 +71,10 @@ public class RaceFactoryTests {
                 PathManager.DEFAULT_MODULE_FOLDER);
         Assert.assertEquals(vorox.getCost(), 9);
     }
+
+    @Test
+    public void readPlanets() throws InvalidXmlElementException {
+        Assert.assertEquals(RaceFactory.getInstance().getElement("shantor", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)
+                .getPlanets().size(), 1);
+    }
 }

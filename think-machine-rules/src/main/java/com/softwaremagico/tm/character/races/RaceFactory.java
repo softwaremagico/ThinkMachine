@@ -29,6 +29,7 @@ import com.softwaremagico.tm.XmlFactory;
 import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
 import com.softwaremagico.tm.character.blessings.BlessingFactory;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
+import com.softwaremagico.tm.character.planets.PlanetFactory;
 import com.softwaremagico.tm.json.factories.cache.FactoryCacheLoader;
 import com.softwaremagico.tm.language.ITranslator;
 
@@ -47,6 +48,8 @@ public class RaceFactory extends XmlFactory<Race> {
 
     private static final String BLESSINGS = "blessings";
     private static final String BENEFICES = "benefices";
+
+    private static final String PLANETS = "planets";
 
     private static class RaceFactoryInit {
         public static final RaceFactory INSTANCE = new RaceFactory();
@@ -82,6 +85,16 @@ public class RaceFactory extends XmlFactory<Race> {
         } catch (InvalidXmlElementException ixe) {
             throw new InvalidRaceException("Error in race '" + race.getId()
                     + "' structure. Invalid benefices definition. ", ixe);
+        }
+    }
+
+    public void setPlanets(Race race) throws InvalidRaceException {
+        try {
+            race.setPlanets(getCommaSeparatedValues(race.getId(), PLANETS, race.getLanguage(), race.getModuleName(),
+                    PlanetFactory.getInstance()));
+        } catch (InvalidXmlElementException ixe) {
+            throw new InvalidRaceException("Error in race '" + race.getId()
+                    + "' structure. Invalid planets definition. ", ixe);
         }
     }
 

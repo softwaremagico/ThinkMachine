@@ -28,6 +28,7 @@ import com.softwaremagico.tm.Element;
 import com.softwaremagico.tm.character.benefices.AvailableBenefice;
 import com.softwaremagico.tm.character.blessings.Blessing;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
+import com.softwaremagico.tm.character.planets.Planet;
 import com.softwaremagico.tm.log.MachineLog;
 
 import java.lang.reflect.Field;
@@ -51,6 +52,7 @@ public class Race extends Element<Race> {
 
     private Set<Blessing> blessings = null;
     private Set<AvailableBenefice> benefices = null;
+    private Set<Planet> planets = null;
 
     private int psi;
     private int theurgy;
@@ -217,5 +219,22 @@ public class Race extends Element<Race> {
 
     public void setBenefices(Set<AvailableBenefice> benefices) {
         this.benefices = benefices;
+    }
+
+    public Set<Planet> getPlanets() {
+        if (planets == null) {
+            // Blessings are not read with factions due to a loop
+            // factions->blessings->skills->factions
+            try {
+                RaceFactory.getInstance().setPlanets(this);
+            } catch (InvalidRaceException e) {
+                MachineLog.errorMessage(this.getClass().getName(), e);
+            }
+        }
+        return planets;
+    }
+
+    public void setPlanets(Set<Planet> planets) {
+        this.planets = planets;
     }
 }

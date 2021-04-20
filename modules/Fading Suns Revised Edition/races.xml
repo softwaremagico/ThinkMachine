@@ -330,8 +330,9 @@
 		<hubris>0</hubris>
 		<blessings>alertSleeping, awkward, huge, receptiveEars, fourLegged, noFineManipulation</blessings>
 		<benefices>restrictedLanguage [urthish], ostraziced4, noOccult</benefices>
+		<planets>shaprut</planets>
 		<random>
-			<staticProbability>1</staticProbability>
+			<staticProbability>0</staticProbability>
 		</random>
 	</shantor>
 </races>

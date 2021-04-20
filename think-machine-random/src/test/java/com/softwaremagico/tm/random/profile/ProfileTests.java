@@ -11,14 +11,12 @@ import com.softwaremagico.tm.random.exceptions.DuplicatedPreferenceException;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.predefined.PredefinedMerger;
 import com.softwaremagico.tm.random.predefined.profile.RandomProfileFactory;
-import com.softwaremagico.tm.random.selectors.AgePreferences;
-import com.softwaremagico.tm.random.selectors.BlessingPreferences;
-import com.softwaremagico.tm.random.selectors.CombatPreferences;
-import com.softwaremagico.tm.random.selectors.IRandomPreference;
+import com.softwaremagico.tm.random.selectors.*;
 import com.softwaremagico.tm.txt.CharacterSheet;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -169,7 +167,7 @@ public class ProfileTests {
     public void nobility() throws InvalidXmlElementException,
             InvalidRandomElementSelectedException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
-        final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
+        final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, new HashSet<>(Arrays.asList(RacePreferences.HUMAN)),
                 RandomProfileFactory.getInstance().getElement("nobility", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         randomizeCharacter.createCharacter();
         Assert.assertEquals(characterPlayer.getFaction().getFactionGroup(), FactionGroup.NOBILITY);
@@ -179,7 +177,7 @@ public class ProfileTests {
     public void clergy() throws InvalidXmlElementException,
             InvalidRandomElementSelectedException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
-        final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
+        final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, new HashSet<>(Arrays.asList(RacePreferences.HUMAN)),
                 RandomProfileFactory.getInstance().getElement("clergy", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         randomizeCharacter.createCharacter();
         Assert.assertEquals(characterPlayer.getFaction().getFactionGroup(), FactionGroup.CHURCH);
