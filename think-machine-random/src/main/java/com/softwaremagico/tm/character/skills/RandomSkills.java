@@ -124,7 +124,7 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
     }
 
     public void mergeSkills(AvailableSkill availableSkill, SkillGroup skillGroup)
-            throws InvalidXmlElementException, InvalidRandomElementSelectedException {
+            throws InvalidRandomElementSelectedException {
         int weight = getWeight(availableSkill);
         while (weight > 0) {
             for (final AvailableSkill selectedSkill : AvailableSkillsFactory.getInstance().getSkillsByGroup(skillGroup,
@@ -140,13 +140,11 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 
     @Override
     protected Collection<AvailableSkill> getAllElements() throws InvalidXmlElementException {
-        final Set<AvailableSkill> availableSkills = new HashSet<AvailableSkill>();
+        final Set<AvailableSkill> availableSkills = new HashSet<>();
         for (final SkillDefinition skillDefinition : SkillsDefinitionsFactory.getInstance()
                 .getElements(getCharacterPlayer().getLanguage(), getCharacterPlayer().getModuleName())) {
-            for (final AvailableSkill skill : AvailableSkillsFactory.getInstance().getAvailableSkills(skillDefinition,
-                    getCharacterPlayer().getLanguage(), getCharacterPlayer().getModuleName())) {
-                availableSkills.add(skill);
-            }
+            availableSkills.addAll(AvailableSkillsFactory.getInstance().getAvailableSkills(skillDefinition,
+                    getCharacterPlayer().getLanguage(), getCharacterPlayer().getModuleName()));
         }
         return availableSkills;
     }
@@ -197,7 +195,7 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
         return weight * specializationMultiplier;
     }
 
-    private int weightByCharacteristics(AvailableSkill skill) throws InvalidRandomElementSelectedException {
+    private int weightByCharacteristics(AvailableSkill skill) {
         if (skill.getSkillDefinition().getSkillGroup().getPreferredCharacteristicsGroups() != null
                 && !getPreferredCharacteristicsTypeSorted().isEmpty()) {
             if (Objects.equals(skill.getSkillDefinition().getSkillGroup().getPreferredCharacteristicsGroups(),
@@ -230,12 +228,11 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
                 / skill.getSkillDefinition().getSpecializations().size();
     }
 
-    private int weightByFactions(AvailableSkill skill) throws InvalidRandomElementSelectedException {
+    private int weightByFactions(AvailableSkill skill) {
         // No faction skills
         if (skill.getSkillDefinition().isLimitedToFaction()) {
             if (!skill.getSkillDefinition().getFactions().contains(getCharacterPlayer().getFaction())) {
-                throw new InvalidRandomElementSelectedException("Skill '" + skill + "' restricted to factions '"
-                        + skill.getSkillDefinition().getFactions() + "'.");
+                return BAD_PROBABILITY;
             } else if (getCharacterPlayer().getFaction() != null
                     // Recommended to my faction and only this faction can do it.
                     && skill.getRandomDefinition().getRecommendedFactions()
@@ -320,6 +317,13 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 
         finalRanks = checkMaxSkillRanksValues(availableSkill, finalRanks);
 
+        //Faction skills cannot have too many ranks if the character is not from the faction.
+        if (availableSkill.getSkillDefinition().isLimitedToFaction()) {
+            if (!availableSkill.getSkillDefinition().getFactions().contains(getCharacterPlayer().getFaction())) {
+                finalRanks = Math.max(1, finalRanks / 2);
+            }
+        }
+
         try {
             getCharacterPlayer().setSkillRank(availableSkill, finalRanks);
         } catch (InvalidRanksException e) {
@@ -348,8 +352,8 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
         return finalRanks;
     }
 
-    protected int getRankValue(AvailableSkill availableSkill) throws InvalidXmlElementException {
-        int finalSkillValue = 0;
+    protected int getRankValue(AvailableSkill availableSkill) {
+        int finalSkillValue;
         final SpecializationPreferences selectedSpecialization = SpecializationPreferences
                 .getSelected(getPreferences());
         int minimumValue = selectedSpecialization.minimum();
@@ -401,9 +405,6 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 
     /**
      * Combat skills must be interesting for fighters.
-     *
-     * @param availableSkill
-     * @return
      */
     private int weightByCombat(AvailableSkill availableSkill) {
         final CombatPreferences combatPreferences = CombatPreferences.getSelected(getPreferences());
