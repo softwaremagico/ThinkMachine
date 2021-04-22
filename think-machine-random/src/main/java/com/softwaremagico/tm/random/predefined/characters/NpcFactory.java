@@ -37,12 +37,13 @@ import com.softwaremagico.tm.character.equipment.weapons.Weapon;
 import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
 import com.softwaremagico.tm.character.factions.Faction;
 import com.softwaremagico.tm.character.occultism.OccultismPath;
-import com.softwaremagico.tm.character.occultism.OccultismPathFactory;
 import com.softwaremagico.tm.character.races.Race;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.json.factories.cache.FactoryCacheLoader;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.random.predefined.RandomPredefinedFactory;
+import com.softwaremagico.tm.random.predefined.profile.RandomProfile;
+import com.softwaremagico.tm.random.predefined.profile.RandomProfileFactory;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
 
 import java.util.Set;
@@ -52,6 +53,7 @@ public class NpcFactory extends RandomPredefinedFactory<Npc> {
     private static final String MANDATORY_WEAPONS = "weapons";
     private static final String MANDATORY_ARMOURS = "armours";
     private static final String MANDATORY_SHIELDS = "shields";
+    private static final String PROFILE = "profile";
 
     private static class NpcFactoryInit {
         public static final NpcFactory INSTANCE = new NpcFactory();
@@ -89,6 +91,8 @@ public class NpcFactory extends RandomPredefinedFactory<Npc> {
                                 String language, String moduleName)
             throws InvalidXmlElementException {
         final Npc npc = super.createElement(translator, predefinedId, name, description, language, moduleName);
+
+        final RandomProfile profile = getElement(predefinedId, PROFILE, language, moduleName, RandomProfileFactory.getInstance());
 
         final Set<Weapon> mandatoryWeapons = getCommaSeparatedValues(predefinedId, MANDATORY_WEAPONS, language,
                 moduleName, WeaponFactory.getInstance());

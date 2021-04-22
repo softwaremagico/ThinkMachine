@@ -458,6 +458,67 @@
             </skill>
         </requiredSkills>
     </martialArtist>
+    <obun>
+        <name>
+            <en>Ur-Obun</en>
+            <es>Ur-Obun</es>
+        </name>
+        <group>xenos</group>
+        <race>obun</race>
+        <suggestedSkills>
+            <skill>
+                <id>vigor</id>
+            </skill>
+            <skill>
+                <id>melee</id>
+            </skill>
+            <skill>
+                <id>performance</id>
+            </skill>
+        </suggestedSkills>
+        <suggestedBenefices>refuge_4, language [urthish]</suggestedBenefices>
+    </obun>
+    <ukar>
+        <name>
+            <en>Ur-Ukar</en>
+            <es>Ur-Ukar</es>
+        </name>
+        <group>xenos</group>
+        <race>ukar</race>
+        <preferences>OccultismTypePreference.PSI</preferences>
+        <suggestedSkills>
+            <skill>
+                <id>vigor</id>
+            </skill>
+            <skill>
+                <id>melee</id>
+            </skill>
+            <skill>
+                <id>performance</id>
+            </skill>
+        </suggestedSkills>
+        <suggestedBenefices>familyTies, language [urthish]</suggestedBenefices>
+    </ukar>
+    <vorox>
+        <name>
+            <en>Vorox</en>
+            <es>Vorox</es>
+        </name>
+        <preferences>CombatPreferences.BELLIGERENT, CharacteristicsPreferences.BODY,
+            WeaponsPreferences.MELEE, TechnologicalPreferences.MODERN
+        </preferences>
+        <group>xenos</group>
+        <race>vorox</race>
+        <suggestedSkills>
+            <skill>
+                <id>vigor</id>
+            </skill>
+            <skill>
+                <id>fight</id>
+            </skill>
+        </suggestedSkills>
+        <suggestedBenefices>familyTies, language [urthish]</suggestedBenefices>
+    </vorox>
     <shantor>
         <name>
             <en>Shantor</en>

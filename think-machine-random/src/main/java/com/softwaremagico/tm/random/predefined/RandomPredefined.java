@@ -86,6 +86,28 @@ public abstract class RandomPredefined<Predefined extends Element<Predefined>> e
                 new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), null, null);
     }
 
+    public void copy(IRandomPredefined randomPredefined) {
+        if (randomPredefined == null) {
+            return;
+        }
+        randomPreferences.addAll(randomPredefined.getPreferences());
+        characteristicsMinimumValues.addAll(randomPredefined.getCharacteristicsMinimumValues());
+        requiredSkills.addAll(randomPredefined.getRequiredSkills());
+        suggestedSkills.addAll(randomPredefined.getSuggestedSkills());
+        suggestedBenefices.addAll(randomPredefined.getSuggestedBenefices());
+        mandatoryBenefices.addAll(randomPredefined.getMandatoryBenefices());
+        mandatoryBeneficeSpecializations.addAll(randomPredefined.getMandatoryBeneficeSpecializations());
+        mandatoryBlessings.addAll(randomPredefined.getMandatoryBlessings());
+        suggestedBlessings.addAll(randomPredefined.getSuggestedBlessings());
+        mandatoryOccultismPaths.addAll(randomPredefined.getMandatoryOccultismPaths());
+        if (randomPredefined.getFaction() != null) {
+            faction = randomPredefined.getFaction();
+        }
+        if (randomPredefined.getRace() != null) {
+            race = randomPredefined.getRace();
+        }
+    }
+
     @Override
     public void setParent(IRandomPredefined parentProfile) {
         if (!parentMerged && parentProfile != null) {

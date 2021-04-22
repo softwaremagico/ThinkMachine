@@ -291,4 +291,13 @@ public class NpcTests {
         Assert.assertTrue(characterPlayer.hasOccultismPath(OccultismPathFactory.getInstance().getElement("farHand", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)));
         Assert.assertTrue(characterPlayer.hasOccultismPath(OccultismPathFactory.getInstance().getElement("soma", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)));
     }
+
+    @Test
+    public void checkRaceInherit() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
+        final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
+                NpcFactory.getInstance().getElement("obunt", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+        randomizeCharacter.createCharacter();
+        Assert.assertEquals(characterPlayer.getRace(), RaceFactory.getInstance().getElement("obun", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+    }
 }

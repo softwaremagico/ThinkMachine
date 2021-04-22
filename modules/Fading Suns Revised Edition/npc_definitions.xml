@@ -1583,30 +1583,42 @@
                 <id>torture</id>
             </skill>
         </suggestedSkills>
-        <mandatoryOccultismPaths>sympathy, psyche, sixthSense, orthodoxRituals, templeAvestiRituals</mandatoryOccultismPaths>
+        <mandatoryOccultismPaths>sympathy, psyche, sixthSense, orthodoxRituals, templeAvestiRituals
+        </mandatoryOccultismPaths>
         <weapons>typicalMedRevolver</weapons>
         <armours>leatherJerkin</armours>
     </thoughtPolice>
+    <obun>
+        <name>
+            <en>Ur-Obun</en>
+            <es>Ur-Obun</es>
+        </name>
+        <group>xenos</group>
+        <profile>obun</profile>
+    </obun>
+    <ukar>
+        <name>
+            <en>Ur-Ukar</en>
+            <es>Ur-Ukar</es>
+        </name>
+        <group>xenos</group>
+        <profile>ukar</profile>
+    </ukar>
+    <vorox>
+        <name>
+            <en>Vorox</en>
+            <es>Vorox</es>
+        </name>
+        <group>xenos</group>
+        <profile>vorox</profile>
+    </vorox>
     <shantor>
         <name>
             <en>Shantor</en>
             <es>Shantor</es>
         </name>
         <group>xenos</group>
-        <race>shantor</race>
-        <preferences>CharacteristicsPreferences.BODY, WeaponsPreferences.MELEE
-        </preferences>
-        <requiredSkills>
-            <skill>
-                <id>vigor</id>
-            </skill>
-            <skill>
-                <id>melee</id>
-            </skill>
-            <skill>
-                <id>performance</id>
-            </skill>
-        </requiredSkills>
+        <profile>shantor</profile>
         <weapons>javelin</weapons>
     </shantor>
     <gannok>
@@ -1615,28 +1627,6 @@
             <es>Gannok</es>
         </name>
         <group>xenos</group>
-        <race>gannok</race>
-        <preferences>CharacteristicsPreferences.BODY</preferences>
-        <characteristicsMinimumValues>
-            <tech>6</tech>
-            <endurance>6</endurance>
-            <dexterity>6</dexterity>
-        </characteristicsMinimumValues>
-        <requiredSkills>
-            <skill>
-                <id>vigor</id>
-            </skill>
-            <skill>
-                <id>techRedemption</id>
-            </skill>
-            <skill>
-                <id>athletics</id>
-            </skill>
-        </requiredSkills>
-        <suggestedSkills>
-            <skill>
-                <id>influence</id>
-            </skill>
-        </suggestedSkills>
+        <profile>gannok</profile>
     </gannok>
 </profiles>
