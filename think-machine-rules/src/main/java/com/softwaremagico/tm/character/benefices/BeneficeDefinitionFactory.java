@@ -27,6 +27,8 @@ package com.softwaremagico.tm.character.benefices;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
 import com.softwaremagico.tm.character.factions.FactionGroup;
+import com.softwaremagico.tm.character.races.Race;
+import com.softwaremagico.tm.character.races.RaceFactory;
 import com.softwaremagico.tm.json.factories.cache.FactoryCacheLoader;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.log.SuppressFBWarnings;
@@ -41,6 +43,7 @@ public class BeneficeDefinitionFactory extends XmlFactory<BeneficeDefinition> {
     private static final String COST = "cost";
     private static final String GROUP = "group";
     private static final String AFFLICTION = "affliction";
+    private static final String RACES = "races";
     private static final String SPECIALIZATION_AFFLICTION = "specializationIsAffliction";
     private static final String SPECIALIZABLE_BENEFICE_TAG = "specializations";
     private static final String RESTRICTED_TAG = "restricted";
@@ -168,9 +171,12 @@ public class BeneficeDefinitionFactory extends XmlFactory<BeneficeDefinition> {
                 // Optional
             }
 
+            final Set<Race> races = getCommaSeparatedValues(benefitId, RACES, language, moduleName, RaceFactory.getInstance());
+
             final BeneficeDefinition benefice = new BeneficeDefinition(benefitId, name, description, language, moduleName, costs,
                     benefitGroup, classification, restrictedToGroup, incompatibleWith);
             benefice.addSpecializations(specializations);
+            benefice.setRestrictedToRaces(races);
             return benefice;
 
         } catch (Exception e) {

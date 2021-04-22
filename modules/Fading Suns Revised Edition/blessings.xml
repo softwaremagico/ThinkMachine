@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <blessings>
     <version>1</version>
-    <totalElements>121</totalElements>
+    <totalElements>129</totalElements>
     <handsome>
         <name>
             <en>Handsome</en>
@@ -3478,6 +3478,144 @@
         </bonifications>
         <group>restricted</group>
     </fourLegged>
+    <agileToes>
+        <name>
+            <en>Agile Toes</en>
+            <es>Pies Ágiles</es>
+        </name>
+        <description>
+            <en>Feet can operate as well as hands for manipulation but not for combat tasks.</en>
+            <es>Los pies pueden funcionar como manos para laobres de manipulación, per no en combate.</es>
+        </description>
+        <cost>1</cost>
+        <group>restricted</group>
+    </agileToes>
+    <simbiotImmunity>
+        <name>
+            <en>Immunity</en>
+            <es>Inmunidad</es>
+        </name>
+        <description>
+            <en>Symbiot taint</en>
+            <es>Infección simbionte</es>
+        </description>
+        <cost>2</cost>
+        <group>restricted</group>
+    </simbiotImmunity>
+    <longFingersAndToes>
+        <name>
+            <en>Long Fingers and Toes</en>
+            <es>Dedos largos en manos y piés</es>
+        </name>
+        <description>
+            <en>The following Blessing or Curse is only available for some specific races or factions</en>
+            <es>Esta bendición o maldición únicamente está disponible para algunas razas o facciones</es>
+        </description>
+        <cost>2</cost>
+        <bonifications>
+            <bonification>
+                <value>2</value>
+                <affects>dexterity</affects>
+                <situation>
+                    <en>Fine manipulation tasks</en>
+                    <es>Manipulación delicada</es>
+                </situation>
+            </bonification>
+        </bonifications>
+        <group>restricted</group>
+    </longFingersAndToes>
+    <omnidigestion>
+        <name>
+            <en>Omnidigestion</en>
+            <es>Omnidigestión</es>
+        </name>
+        <description>
+            <en>Vast diet, but no immunity to deadly toxins.</en>
+            <es>Dieta amplia, pero no inmune a toxinas mortales.</es>
+        </description>
+        <cost>2</cost>
+        <group>restricted</group>
+    </omnidigestion>
+    <prehensileTail>
+        <name>
+            <en>Prehensile Tail</en>
+            <es>Cola Prensil</es>
+        </name>
+        <description>
+            <en>The following Blessing or Curse is only available for some specific races or factions</en>
+            <es>Esta bendición o maldición únicamente está disponible para algunas razas o facciones</es>
+        </description>
+        <cost>2</cost>
+        <bonifications>
+            <bonification>
+                <value>2</value>
+                <affects>grab</affects>
+                <situation>
+                    <en>No fine manipulation</en>
+                    <es>No en manipulaciones delicadas</es>
+                </situation>
+            </bonification>
+        </bonifications>
+        <group>restricted</group>
+    </prehensileTail>
+    <regeneration>
+        <name>
+            <en>Regeneration</en>
+            <es>Regeneración</es>
+        </name>
+        <description>
+            <en>Heal 1 of vitality per span.</en>
+            <es>cura 1 Vitalidad por escena.</es>
+        </description>
+        <cost>2</cost>
+        <bonifications>
+            <bonification>
+                <value>1</value>
+                <affects>vitality</affects>
+                <situation>
+                    <en>By span</en>
+                    <es>Por escena</es>
+                </situation>
+            </bonification>
+        </bonifications>
+        <group>restricted</group>
+    </regeneration>
+    <hungry>
+        <name>
+            <en>Hungry</en>
+            <es>Hambriento</es>
+        </name>
+        <description>
+            <en>Voracious appetite when healing wounds</en>
+            <es>Apetito voraz en período de curación</es>
+        </description>
+        <cost>2</cost>
+        <group>restricted</group>
+        <curse>true</curse>
+    </hungry>
+    <stench>
+        <name>
+            <en>Stench</en>
+            <es>Hedor</es>
+        </name>
+        <description>
+            <en>The following Blessing or Curse is only available for some specific races or factions</en>
+            <es>Esta bendición o maldición únicamente está disponible para algunas razas o facciones</es>
+        </description>
+        <cost>2</cost>
+        <bonifications>
+            <bonification>
+                <value>2</value>
+                <affects>vitality</affects>
+                <situation>
+                    <en>Among non Gannok</en>
+                    <es>Entre no Gannok</es>
+                </situation>
+            </bonification>
+        </bonifications>
+        <group>restricted</group>
+        <curse>true</curse>
+    </stench>
 
 
 </blessings>

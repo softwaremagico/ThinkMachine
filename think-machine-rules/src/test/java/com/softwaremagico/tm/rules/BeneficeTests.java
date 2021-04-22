@@ -26,11 +26,13 @@ package com.softwaremagico.tm.rules;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
-import com.softwaremagico.tm.character.benefices.BeneficeAlreadyAddedException;
-import com.softwaremagico.tm.character.benefices.InvalidBeneficeException;
+import com.softwaremagico.tm.character.benefices.*;
+import com.softwaremagico.tm.character.creation.CostCalculator;
+import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
 import com.softwaremagico.tm.character.factions.FactionsFactory;
+import com.softwaremagico.tm.character.races.RaceFactory;
 import com.softwaremagico.tm.file.PathManager;
+import junit.framework.Assert;
 import org.testng.annotations.Test;
 
 @Test(groups = {"benefices"})
@@ -61,5 +63,93 @@ public class BeneficeTests {
         player.setFaction(FactionsFactory.getInstance().getElement("alba", LANGUAGE,
                 PathManager.DEFAULT_MODULE_FOLDER));
         player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("nobility [earl]", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+    }
+
+    @Test
+    public void getMoneyStandard() {
+        final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        Assert.assertEquals(250, player.getInitialMoney());
+    }
+
+    @Test
+    public void getMoneyBenefice() throws InvalidXmlElementException, BeneficeAlreadyAddedException {
+        final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("cash [firebirds1000]", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+        Assert.assertEquals(1000, player.getInitialMoney());
+    }
+
+    @Test
+    public void getMoneyRemaining() throws InvalidXmlElementException, BeneficeAlreadyAddedException {
+        final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        // Weapon without cost.
+        player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("fluxSword", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+        // Weapon with cost.
+        player.addWeapon(WeaponFactory.getInstance().getElement("typicalShotgun", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+        player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("cash [firebirds1000]", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+        Assert.assertEquals(2, player.getAllWeapons().size());
+        Assert.assertEquals(700, player.getMoney());
+    }
+
+    @Test
+    public void getMoneyAsAfflictionCost() throws InvalidXmlElementException, BeneficeAlreadyAddedException {
+        final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        final int remainingCost = CostCalculator.getCost(player);
+        final AvailableBenefice cash50 = AvailableBeneficeFactory.getInstance().getElement("cash [firebirds50]",
+                LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        Assert.assertEquals(BeneficeClassification.AFFLICTION, cash50.getBeneficeClassification());
+        Assert.assertEquals(-2, cash50.getCost());
+        player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("cash [firebirds50]", LANGUAGE,
+                PathManager.DEFAULT_MODULE_FOLDER));
+        Assert.assertEquals(remainingCost - 2, CostCalculator.getCost(player));
+    }
+
+    @Test
+    public void getAssetsBenefice() throws InvalidXmlElementException, BeneficeAlreadyAddedException {
+        final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("assets [assets3000]", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+        Assert.assertEquals(300, player.getInitialMoney());
+    }
+
+    @Test
+    public void getAssetsAndMoneyBenefice() throws InvalidXmlElementException, BeneficeAlreadyAddedException {
+        final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("cash [firebirds1000]", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+        player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("assets [assets3000]", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+        Assert.assertEquals(1300, player.getInitialMoney());
+    }
+
+    @Test(expectedExceptions = IncompatibleBeneficeException.class)
+    public void checkIncompatibilities() throws InvalidXmlElementException, BeneficeAlreadyAddedException {
+        final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("orphan", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+        player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("alienUpbringing", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+    }
+
+    @Test(expectedExceptions = IncompatibleBeneficeException.class)
+    public void checkIncompatibilitiesOpposite() throws InvalidXmlElementException, BeneficeAlreadyAddedException {
+        final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("alienUpbringing", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+        player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("orphan", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+    }
+
+    @Test(expectedExceptions = IncompatibleBeneficeException.class)
+    public void checkIncompatibilitiesSpecializations() throws InvalidXmlElementException, BeneficeAlreadyAddedException {
+        final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("cash [firebirds0]", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+        player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("assets [assets3000]", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+    }
+
+    @Test(expectedExceptions = IncompatibleBeneficeException.class)
+    public void checkIncompatibilitiesWithSpecializations() throws InvalidXmlElementException, BeneficeAlreadyAddedException {
+        final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("indebted_4", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+        player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("assets [assets5000]", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+    }
+
+    @Test(expectedExceptions = InvalidBeneficeException.class)
+    public void checkIncompatibilitiesWithRace() throws InvalidXmlElementException, BeneficeAlreadyAddedException {
+        final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        player.setRace(RaceFactory.getInstance().getElement("human", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+        player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("prominentFamily", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
     }
 }

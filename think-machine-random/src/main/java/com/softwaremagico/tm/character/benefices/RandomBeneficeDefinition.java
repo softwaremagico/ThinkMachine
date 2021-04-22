@@ -231,6 +231,11 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
             throw new InvalidRandomElementSelectedException("Benefice '" + benefice + "' is restricted.");
         }
 
+        // No benefices limited to race
+        if (!benefice.getRestrictedToRaces().isEmpty() && !benefice.getRestrictedToRaces().contains(getCharacterPlayer().getRace())) {
+            throw new InvalidRandomElementSelectedException("Benefice '" + benefice + "' is restricted to races '" + benefice.getRestrictedToRaces() + "'.");
+        }
+
         // Set faction limitations.
         if (getCharacterPlayer().getFaction() != null) {
             for (final RestrictedBenefice restrictedBenefice : getCharacterPlayer().getFaction()

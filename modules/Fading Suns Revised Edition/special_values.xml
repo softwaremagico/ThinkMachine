@@ -32,4 +32,10 @@
 		</name>
 		<affects>beastcraft, watercraft, ride, aircraft, spacecraft, landcraft</affects>
 	</controlSkills>
+	<grab>
+		<name>
+			<en>Grab</en>
+			<es>Agarrar</es>
+		</name>
+	</grab>
 </specialValues>

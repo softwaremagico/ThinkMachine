@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <benefices>
     <version>1</version>
-    <totalElements>80</totalElements>
+    <totalElements>81</totalElements>
     <alienUpbringing>
         <name>
             <en>Alien Upbringing</en>
@@ -146,6 +146,15 @@
                     <forbiddenRaces>shantor</forbiddenRaces>
                 </random>
             </shantorLanguage>
+            <toktok>
+                <name>
+                    <en>Tok Tok</en>
+                    <es>Tok Tok</es>
+                </name>
+                <random>
+                    <forbiddenRaces>gannok</forbiddenRaces>
+                </random>
+            </toktok>
         </specializations>
         <cost>2</cost>
         <group>background</group>
@@ -1816,4 +1825,24 @@
         <cost>3</cost>
         <group>restricted</group>
     </muzzleManipulator>
+    <prominentFamily>
+        <name>
+            <en>Prominent Family</en>
+            <es>Familia Importante</es>
+        </name>
+        <description>
+            <en>The character's family is well-known in Gannok society for either its political abilities or some craft
+                or skill. One point signifies a craft family while two points signifies a political family (usually with
+                strong ties to one or more of the Known Worlds power factions).
+            </en>
+            <es>La familia del personaje es muy conocida en la sociedad Gannok, bien por su habilidad política, bien por
+                un oficio o conocimiento. Un punto significa una familia dedicada a un oficio, mientras que dos indica
+                que una dedicada a la política (normalmente con fuertes lazos con una o varias de las facciones de poder
+                de los Mundos Conocidos).
+            </es>
+        </description>
+        <cost>1-2</cost>
+        <group>background</group>
+        <races>gannok</races>
+    </prominentFamily>
 </benefices>

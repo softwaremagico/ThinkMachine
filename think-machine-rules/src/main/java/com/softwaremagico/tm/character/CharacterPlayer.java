@@ -534,6 +534,11 @@ public class CharacterPlayer {
         if (benefice.getBeneficeDefinition().getGroup() == BeneficeGroup.RESTRICTED) {
             throw new InvalidBeneficeException("Benefice '" + benefice + "' is restricted and cannot be added.");
         }
+        if (!benefice.getBeneficeDefinition().getRestrictedToRaces().isEmpty() &&
+                !benefice.getBeneficeDefinition().getRestrictedToRaces().contains(getRace())) {
+            throw new InvalidBeneficeException("Benefice '" + benefice + "' is restricted to races "
+                    + benefice.getBeneficeDefinition().getRestrictedToRaces() + " and cannot be added.");
+        }
         if (benefice.getBeneficeDefinition().getGroup() == BeneficeGroup.FIGHTING && !canUseCombatStyle(benefice.getBeneficeDefinition())) {
             throw new IncompatibleBeneficeException("User has no skills or race for benefice '" + benefice + " '.", benefice);
         }
@@ -619,14 +624,18 @@ public class CharacterPlayer {
      */
     public List<AvailableBenefice> getAllBenefices() {
         final List<AvailableBenefice> positiveBenefices = new ArrayList<>();
-        for (final AvailableBenefice benefice : benefices) {
+        final List<AvailableBenefice> selectedBenefices = new ArrayList<>(benefices);
+        Collections.sort(selectedBenefices);
+        for (final AvailableBenefice benefice : selectedBenefices) {
             if (benefice.getBeneficeClassification() == BeneficeClassification.BENEFICE) {
                 positiveBenefices.add(benefice);
             }
         }
         // Add faction benefices
         if (getFaction() != null && getFaction().getBenefices() != null) {
-            for (final AvailableBenefice benefice : getFaction().getBenefices()) {
+            final List<AvailableBenefice> factionBenefices = new ArrayList<>(getFaction().getBenefices());
+            Collections.sort(factionBenefices);
+            for (final AvailableBenefice benefice : factionBenefices) {
                 if (benefice.getBeneficeClassification() == BeneficeClassification.BENEFICE) {
                     positiveBenefices.add(benefice);
                 }
@@ -634,13 +643,14 @@ public class CharacterPlayer {
         }
         // Add race benefices
         if (getRace() != null && getRace().getBenefices() != null) {
-            for (final AvailableBenefice benefice : getRace().getBenefices()) {
+            final List<AvailableBenefice> raceBenefices = new ArrayList<>(getRace().getBenefices());
+            Collections.sort(raceBenefices);
+            for (final AvailableBenefice benefice : raceBenefices) {
                 if (benefice.getBeneficeClassification() == BeneficeClassification.BENEFICE) {
                     positiveBenefices.add(benefice);
                 }
             }
         }
-        Collections.sort(positiveBenefices);
         return Collections.unmodifiableList(positiveBenefices);
     }
 
@@ -665,14 +675,18 @@ public class CharacterPlayer {
 
     public List<AvailableBenefice> getAfflictions() {
         final List<AvailableBenefice> afflictions = new ArrayList<>();
-        for (final AvailableBenefice affliction : benefices) {
+        final List<AvailableBenefice> selectedAfflictions = new ArrayList<>(benefices);
+        Collections.sort(selectedAfflictions);
+        for (final AvailableBenefice affliction : selectedAfflictions) {
             if (affliction.getBeneficeClassification() == BeneficeClassification.AFFLICTION) {
                 afflictions.add(affliction);
             }
         }
         // Add faction afflictions
         if (getFaction() != null && getFaction().getBenefices() != null) {
-            for (final AvailableBenefice affliction : getFaction().getBenefices()) {
+            final List<AvailableBenefice> factionAfflictions = new ArrayList<>(getFaction().getBenefices());
+            Collections.sort(factionAfflictions);
+            for (final AvailableBenefice affliction : factionAfflictions) {
                 if (affliction.getBeneficeClassification() == BeneficeClassification.AFFLICTION) {
                     afflictions.add(affliction);
                 }
@@ -680,7 +694,9 @@ public class CharacterPlayer {
         }
         // Add race afflictions
         if (getRace() != null && getRace().getBenefices() != null) {
-            for (final AvailableBenefice affliction : getRace().getBenefices()) {
+            final List<AvailableBenefice> raceAfflictions = new ArrayList<>(getRace().getBenefices());
+            Collections.sort(raceAfflictions);
+            for (final AvailableBenefice affliction : raceAfflictions) {
                 if (affliction.getBeneficeClassification() == BeneficeClassification.AFFLICTION) {
                     afflictions.add(affliction);
                 }

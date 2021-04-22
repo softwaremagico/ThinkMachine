@@ -24,12 +24,13 @@ package com.softwaremagico.tm.character.benefices;
  * #L%
  */
 
+import com.softwaremagico.tm.Element;
+import com.softwaremagico.tm.character.factions.FactionGroup;
+import com.softwaremagico.tm.character.races.Race;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
-import com.softwaremagico.tm.Element;
-import com.softwaremagico.tm.character.factions.FactionGroup;
 
 public class BeneficeDefinition extends Element<BeneficeDefinition> {
     private final List<Integer> costs;
@@ -38,6 +39,7 @@ public class BeneficeDefinition extends Element<BeneficeDefinition> {
     private final BeneficeGroup group;
     private final BeneficeClassification beneficeClassification;
     private final FactionGroup restrictedFactionGroup;
+    private Set<Race> restrictedToRaces = new HashSet<>();
 
     public BeneficeDefinition(String id, String name, String description, String language, String moduleName, List<Integer> costs, BeneficeGroup group,
                               BeneficeClassification beneficeClassification, FactionGroup restricted, Set<String> incompatibleWith) {
@@ -87,4 +89,11 @@ public class BeneficeDefinition extends Element<BeneficeDefinition> {
         return incompatibleWith;
     }
 
+    public Set<Race> getRestrictedToRaces() {
+        return restrictedToRaces;
+    }
+
+    public void setRestrictedToRaces(Set<Race> restrictedToRaces) {
+        this.restrictedToRaces = restrictedToRaces;
+    }
 }

@@ -346,6 +346,30 @@
                     <recommendedFactionGroups>nobility</recommendedFactionGroups>
                 </random>
             </embroidery>
+            <music>
+                <en>Music</en>
+                <es>Música</es>
+            </music>
+            <painting>
+                <en>Painting</en>
+                <es>Pintura</es>
+            </painting>
+            <writting>
+                <en>Creative Writting</en>
+                <es>Escritor</es>
+            </writting>
+            <sculpting>
+                <en>Sculpting</en>
+                <es>Escultor</es>
+            </sculpting>
+            <poetry>
+                <en>Poetry</en>
+                <es>Poesía</es>
+            </poetry>
+            <stainedGlass>
+                <en>Stained Glass</en>
+                <es>Vitral</es>
+            </stainedGlass>
         </specializations>
         <numberToShow>2</numberToShow>
     </arts>
@@ -363,6 +387,51 @@
         </name>
         <group>creative</group>
         <specializations>true</specializations>
+        <specializations>
+            <acting>
+                <en>Acting</en>
+                <es>Actuar</es>
+            </acting>
+            <dancing>
+                <en>Dancing</en>
+                <es>Bailar</es>
+            </dancing>
+            <singing>
+                <en>Singing</en>
+                <es>Canto</es>
+            </singing>
+            <storytelling>
+                <en>Storytelling</en>
+                <es>Cuentacuentos</es>
+            </storytelling>
+            <recital>
+                <en>Recital</en>
+                <es>Recital</es>
+            </recital>
+            <flute>
+                <en>Flute</en>
+                <es>Flauta</es>
+            </flute>
+            <lute>
+                <en>Lute</en>
+                <es>Laúd</es>
+            </lute>
+            <guitar>
+                <en>Guitar</en>
+                <es>Guitarra</es>
+            </guitar>
+            <drums>
+                <en>Drums</en>
+                <es>Percusión</es>
+            </drums>
+            <piano>
+                <en>Piano</en>
+                <es>Piano</es>
+                <random>
+                    <recommendedFactionGroups>nobility</recommendedFactionGroups>
+                </random>
+            </piano>
+        </specializations>
         <numberToShow>2</numberToShow>
     </performance>
     <gaming>
