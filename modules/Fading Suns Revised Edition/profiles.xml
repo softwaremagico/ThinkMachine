@@ -476,7 +476,8 @@
                 <id>performance</id>
             </skill>
         </suggestedSkills>
-        <suggestedBenefices>refuge_4, language [urthish]</suggestedBenefices>
+        <mandatoryBeneficesSpecialization>language [urthish]</mandatoryBeneficesSpecialization>
+        <suggestedBeneficesSpecialization>refuge_4</suggestedBeneficesSpecialization>
     </obun>
     <ukar>
         <name>
@@ -497,7 +498,8 @@
                 <id>performance</id>
             </skill>
         </suggestedSkills>
-        <suggestedBenefices>familyTies, language [urthish]</suggestedBenefices>
+        <mandatoryBeneficesSpecialization>language [urthish]</mandatoryBeneficesSpecialization>
+        <suggestedBenefices>familyTies</suggestedBenefices>
     </ukar>
     <vorox>
         <name>
@@ -517,7 +519,8 @@
                 <id>fight</id>
             </skill>
         </suggestedSkills>
-        <suggestedBenefices>familyTies, language [urthish]</suggestedBenefices>
+        <mandatoryBeneficesSpecialization>language [urthish]</mandatoryBeneficesSpecialization>
+        <suggestedBenefices>familyTies</suggestedBenefices>
     </vorox>
     <shantor>
         <name>

@@ -53,6 +53,7 @@ public abstract class RandomPredefined<Predefined extends Element<Predefined>> e
     private final Set<Blessing> mandatoryBlessings;
     private final Set<Blessing> suggestedBlessings;
     private final Set<OccultismPath> mandatoryOccultismPaths;
+    private final Set<AvailableBenefice> suggestedBeneficeSpecializations;
     private Faction faction;
     private Race race;
 
@@ -64,8 +65,8 @@ public abstract class RandomPredefined<Predefined extends Element<Predefined>> e
                             Set<AvailableSkill> requiredSkills, Set<AvailableSkill> suggestedSkills,
                             Set<Blessing> mandatoryBlessings, Set<Blessing> suggestedBlessings,
                             Set<BeneficeDefinition> mandatoryBenefices, Set<BeneficeDefinition> suggestedBenefices,
-                            Set<AvailableBenefice> mandatoryBeneficeSpecializations, Set<OccultismPath> mandatoryOccultismPaths,
-                            Faction faction, Race race) {
+                            Set<AvailableBenefice> mandatoryBeneficeSpecializations, Set<AvailableBenefice> suggestedBeneficeSpecializations,
+                            Set<OccultismPath> mandatoryOccultismPaths, Faction faction, Race race) {
         super(id, name, description, language, moduleName);
         this.randomPreferences = randomPreferences;
         this.characteristicsMinimumValues = characteristicsMinimumValues;
@@ -76,6 +77,7 @@ public abstract class RandomPredefined<Predefined extends Element<Predefined>> e
         this.mandatoryBeneficeSpecializations = mandatoryBeneficeSpecializations;
         this.mandatoryBlessings = mandatoryBlessings;
         this.suggestedBlessings = suggestedBlessings;
+        this.suggestedBeneficeSpecializations = suggestedBeneficeSpecializations;
         this.mandatoryOccultismPaths = mandatoryOccultismPaths;
         this.faction = faction;
         this.race = race;
@@ -83,7 +85,8 @@ public abstract class RandomPredefined<Predefined extends Element<Predefined>> e
 
     public RandomPredefined(String id, String name, String description, String language, String moduleName) {
         this(id, name, description, language, moduleName, new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(),
-                new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), null, null);
+                new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(),
+                null, null);
     }
 
     public void copy(IRandomPredefined randomPredefined) {
@@ -97,13 +100,14 @@ public abstract class RandomPredefined<Predefined extends Element<Predefined>> e
         suggestedBenefices.addAll(randomPredefined.getSuggestedBenefices());
         mandatoryBenefices.addAll(randomPredefined.getMandatoryBenefices());
         mandatoryBeneficeSpecializations.addAll(randomPredefined.getMandatoryBeneficeSpecializations());
+        suggestedBeneficeSpecializations.addAll(randomPredefined.getSuggestedBeneficeSpecializations());
         mandatoryBlessings.addAll(randomPredefined.getMandatoryBlessings());
         suggestedBlessings.addAll(randomPredefined.getSuggestedBlessings());
         mandatoryOccultismPaths.addAll(randomPredefined.getMandatoryOccultismPaths());
-        if (randomPredefined.getFaction() != null) {
+        if (faction == null) {
             faction = randomPredefined.getFaction();
         }
-        if (randomPredefined.getRace() != null) {
+        if (race == null) {
             race = randomPredefined.getRace();
         }
     }
@@ -203,6 +207,11 @@ public abstract class RandomPredefined<Predefined extends Element<Predefined>> e
     @Override
     public Set<AvailableBenefice> getMandatoryBeneficeSpecializations() {
         return mandatoryBeneficeSpecializations;
+    }
+
+    @Override
+    public Set<AvailableBenefice> getSuggestedBeneficeSpecializations() {
+        return suggestedBeneficeSpecializations;
     }
 
     @Override

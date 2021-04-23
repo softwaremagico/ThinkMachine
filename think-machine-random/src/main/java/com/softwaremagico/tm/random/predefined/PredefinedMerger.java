@@ -52,8 +52,8 @@ public class PredefinedMerger {
 
     public static IRandomPredefined merge(Set<IRandomPredefined> profiles, String language, String moduleName) {
         return merge(profiles, new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(),
-                new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(),
-                new HashSet<>(),
+                new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(),
+                new HashSet<>(), new HashSet<>(), new HashSet<>(),
                 language, moduleName);
     }
 
@@ -64,7 +64,8 @@ public class PredefinedMerger {
     public static IRandomPredefined merge(Set<IRandomPredefined> profiles, Set<IRandomPreference> extraPreferences, Set<AvailableSkill> requiredSkills,
                                           Set<AvailableSkill> suggestedSkills, Set<Blessing> mandatoryBlessings, Set<Blessing> suggestedBlessings,
                                           Set<BeneficeDefinition> mandatoryBenefices, Set<BeneficeDefinition> suggestedBenefices,
-                                          Set<AvailableBenefice> mandatoryAvailableBenefices, Set<OccultismPath> mandatoryOccultismPaths,
+                                          Set<AvailableBenefice> mandatoryAvailableBenefices, Set<AvailableBenefice> suggestedAvailableBenefices,
+                                          Set<OccultismPath> mandatoryOccultismPaths,
                                           Set<Weapon> mandatoryWeapons, Set<Armour> mandatoryArmours,
                                           Set<Shield> mandatoryShields, String language, String moduleName) {
         if (profiles == null) {
@@ -99,6 +100,8 @@ public class PredefinedMerger {
             mergeBenefices(finalProfile.getMandatoryBenefices(), profile.getMandatoryBenefices());
 
             mergeAvailableBenefices(finalProfile.getMandatoryBeneficeSpecializations(), profile.getMandatoryBeneficeSpecializations());
+
+            mergeAvailableBenefices(finalProfile.getSuggestedBeneficeSpecializations(), profile.getSuggestedBeneficeSpecializations());
 
             mergeBenefices(finalProfile.getSuggestedBenefices(), profile.getSuggestedBenefices());
 
@@ -144,6 +147,10 @@ public class PredefinedMerger {
         mergeAvailableBenefices(mandatoryAvailableBenefices, finalProfile.getMandatoryBeneficeSpecializations());
         finalProfile.getMandatoryBeneficeSpecializations().clear();
         finalProfile.getMandatoryBeneficeSpecializations().addAll(mandatoryAvailableBenefices);
+
+        mergeAvailableBenefices(suggestedAvailableBenefices, finalProfile.getSuggestedBeneficeSpecializations());
+        finalProfile.getSuggestedBeneficeSpecializations().clear();
+        finalProfile.getSuggestedBeneficeSpecializations().addAll(suggestedAvailableBenefices);
 
         mergeBenefices(suggestedBenefices, finalProfile.getSuggestedBenefices());
         finalProfile.getSuggestedBenefices().clear();

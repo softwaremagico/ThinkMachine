@@ -79,11 +79,11 @@ public class NpcFactory extends RandomPredefinedFactory<Npc> {
                             Set<AvailableSkill> requiredSkills, Set<AvailableSkill> suggestedSkills,
                             Set<Blessing> mandatoryBlessings, Set<Blessing> suggestedBlessings,
                             Set<BeneficeDefinition> mandatoryBenefices, Set<BeneficeDefinition> suggestedBenefices,
-                            Set<AvailableBenefice> mandatoryBeneficeSpecializations, Set<OccultismPath> mandatoryOccultismPaths,
-                            Faction faction, Race race) {
+                            Set<AvailableBenefice> mandatoryBeneficeSpecializations, Set<AvailableBenefice> suggestedBeneficeSpecializations,
+                            Set<OccultismPath> mandatoryOccultismPaths, Faction faction, Race race) {
         return new Npc(id, name, description, language, moduleName, randomPreferences, characteristicsMinimumValues, requiredSkills,
                 suggestedSkills, mandatoryBlessings, suggestedBlessings, mandatoryBenefices, suggestedBenefices,
-                mandatoryBeneficeSpecializations, mandatoryOccultismPaths, faction, race);
+                mandatoryBeneficeSpecializations, suggestedBeneficeSpecializations, mandatoryOccultismPaths, faction, race);
     }
 
     @Override
@@ -93,6 +93,7 @@ public class NpcFactory extends RandomPredefinedFactory<Npc> {
         final Npc npc = super.createElement(translator, predefinedId, name, description, language, moduleName);
 
         final RandomProfile profile = getElement(predefinedId, PROFILE, language, moduleName, RandomProfileFactory.getInstance());
+        npc.copy(profile);
 
         final Set<Weapon> mandatoryWeapons = getCommaSeparatedValues(predefinedId, MANDATORY_WEAPONS, language,
                 moduleName, WeaponFactory.getInstance());

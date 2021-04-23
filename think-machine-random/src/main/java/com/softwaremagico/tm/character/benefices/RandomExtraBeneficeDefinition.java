@@ -39,9 +39,8 @@ public class RandomExtraBeneficeDefinition extends RandomBeneficeDefinition {
 	private static final int MAX_COMBAT_STYLES = 2;
 
 	public RandomExtraBeneficeDefinition(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences,
-			Set<BeneficeDefinition> suggestedBenefices)
-			throws InvalidXmlElementException {
-		super(characterPlayer, preferences, new HashSet<BeneficeDefinition>(), suggestedBenefices);
+			Set<BeneficeDefinition> suggestedBenefices, Set<AvailableBenefice> suggestedAvailableBenefices) throws InvalidXmlElementException {
+		super(characterPlayer, preferences, new HashSet<BeneficeDefinition>(), suggestedBenefices, suggestedAvailableBenefices);
 	}
 
 	@Override

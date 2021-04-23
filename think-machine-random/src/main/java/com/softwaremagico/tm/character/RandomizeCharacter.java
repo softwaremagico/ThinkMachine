@@ -65,6 +65,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.stream.Collectors;
 
 public class RandomizeCharacter {
     private final CharacterPlayer characterPlayer;
@@ -75,6 +76,7 @@ public class RandomizeCharacter {
     private final Set<Blessing> suggestedBlessings;
     private final Set<BeneficeDefinition> mandatoryBenefices;
     private final Set<BeneficeDefinition> suggestedBenefices;
+    private final Set<AvailableBenefice> suggestedAvailableBenefices;
     private final Set<Characteristic> characteristicsMinimumValues;
     private final Set<OccultismPath> mandatoryOccultismPaths;
     private final Set<Weapon> mandatoryWeapons;
@@ -85,19 +87,19 @@ public class RandomizeCharacter {
 
     public RandomizeCharacter(CharacterPlayer characterPlayer, int experiencePoints, IRandomPreference... preferences) {
         this(characterPlayer, experiencePoints, null, new HashSet<>(Arrays.asList(preferences)), new HashSet<>(), new HashSet<>(),
-                new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(),
+                new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(),
                 new HashSet<>(), new HashSet<>(), new HashSet<>());
     }
 
     public RandomizeCharacter(CharacterPlayer characterPlayer, IRandomPredefined... profiles) {
         this(characterPlayer, null, new HashSet<>(Arrays.asList(profiles)), new HashSet<>(), new HashSet<>(), new HashSet<>(),
-                new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(),
+                new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(),
                 new HashSet<>(), new HashSet<>(), new HashSet<>());
     }
 
     public RandomizeCharacter(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences, IRandomPredefined... profiles) {
         this(characterPlayer, null, new HashSet<>(Arrays.asList(profiles)), preferences, new HashSet<>(), new HashSet<>(),
-                new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(),
+                new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(),
                 new HashSet<>(), new HashSet<>(), new HashSet<>());
     }
 
@@ -105,14 +107,14 @@ public class RandomizeCharacter {
                               Set<AvailableSkill> requiredSkills, Set<AvailableSkill> suggestedSkills,
                               Set<Blessing> mandatoryBlessings, Set<Blessing> suggestedBlessings,
                               Set<BeneficeDefinition> mandatoryBenefices, Set<BeneficeDefinition> suggestedBenefices,
-                              Set<AvailableBenefice> mandatoryAvailableBenefices, Set<OccultismPath> mandatoryOccultismPaths,
+                              Set<AvailableBenefice> mandatoryAvailableBenefices, Set<AvailableBenefice> suggestedAvailableBenefices,
+                              Set<OccultismPath> mandatoryOccultismPaths,
                               Set<Weapon> mandatoryWeapons, Set<Armour> mandatoryArmours, Set<Shield> mandatoryShields) {
         this.characterPlayer = characterPlayer;
 
         final IRandomPredefined finalProfile = PredefinedMerger.merge(profiles, preferences, requiredSkills, suggestedSkills,
-                mandatoryBlessings, suggestedBlessings,
-                mandatoryBenefices, suggestedBenefices, mandatoryAvailableBenefices, mandatoryOccultismPaths,
-                mandatoryWeapons, mandatoryArmours, mandatoryShields,
+                mandatoryBlessings, suggestedBlessings, mandatoryBenefices, suggestedBenefices, mandatoryAvailableBenefices,
+                suggestedAvailableBenefices, mandatoryOccultismPaths, mandatoryWeapons, mandatoryArmours, mandatoryShields,
                 characterPlayer.getLanguage(), characterPlayer.getModuleName());
 
         // Assign preferences
@@ -121,6 +123,7 @@ public class RandomizeCharacter {
         this.suggestedSkills = finalProfile.getSuggestedSkills();
         this.mandatoryBenefices = finalProfile.getMandatoryBenefices();
         this.suggestedBenefices = finalProfile.getSuggestedBenefices();
+        this.suggestedAvailableBenefices = finalProfile.getSuggestedBeneficeSpecializations();
         this.characteristicsMinimumValues = finalProfile.getCharacteristicsMinimumValues();
         this.mandatoryWeapons = finalProfile.getMandatoryWeapons();
         this.mandatoryArmours = finalProfile.getMandatoryArmours();
@@ -130,6 +133,9 @@ public class RandomizeCharacter {
         this.mandatoryBlessings = finalProfile.getMandatoryBlessings();
         this.suggestedBlessings = finalProfile.getSuggestedBlessings();
         this.mandatoryOccultismPaths = finalProfile.getMandatoryOccultismPaths();
+
+        //Include AvailableBenefices as beneficedefinitions to random calculation probability.
+        this.suggestedBenefices.addAll(suggestedAvailableBenefices.stream().map(AvailableBenefice::getBeneficeDefinition).collect(Collectors.toList()));
 
         setMandatoryTech();
 
@@ -306,7 +312,8 @@ public class RandomizeCharacter {
         final RandomSkills randomSkills = new RandomSkills(characterPlayer, preferences, requiredSkills, suggestedSkills);
         randomSkills.assign();
         // Traits
-        final RandomBeneficeDefinition randomBenefice = new RandomBeneficeDefinition(characterPlayer, preferences, mandatoryBenefices, suggestedBenefices);
+        final RandomBeneficeDefinition randomBenefice = new RandomBeneficeDefinition(characterPlayer, preferences, mandatoryBenefices, suggestedBenefices,
+                suggestedAvailableBenefices);
         randomBenefice.assign();
     }
 
@@ -319,7 +326,8 @@ public class RandomizeCharacter {
         final RandomBlessingDefinition randomBlessing = new RandomBlessingDefinition(characterPlayer, preferences, mandatoryBlessings, suggestedBlessings);
         randomBlessing.assign();
         // Set benefices.
-        final RandomBeneficeDefinition randomBenefice = new RandomExtraBeneficeDefinition(characterPlayer, preferences, suggestedBenefices);
+        final RandomBeneficeDefinition randomBenefice = new RandomExtraBeneficeDefinition(characterPlayer, preferences, suggestedBenefices,
+                suggestedAvailableBenefices);
         randomBenefice.assign();
         // Set psique level
         final RandomPsique randomPsique = new RandomPsique(characterPlayer, preferences);

@@ -364,19 +364,15 @@ public abstract class XmlFactory<T extends Element<T>> implements IElementRetrie
         final Set<E> elements = new HashSet<>();
         try {
             final String elementTags = getTranslator(moduleName).getNodeValue(elementId, node);
-            try {
-                if (elementTags != null) {
-                    final StringTokenizer elementsTokenizer = new StringTokenizer(elementTags, ",");
-                    while (elementsTokenizer.hasMoreTokens()) {
-                        try {
-                            elements.add(factory.getElement(elementsTokenizer.nextToken().trim(), language, moduleName));
-                        } catch (InvalidXmlElementException e) {
-                            throw new InvalidXmlElementException("Invalid elements '" + elementTags + "' for element '" + elementId + "'.", e);
-                        }
+            if (elementTags != null) {
+                final StringTokenizer elementsTokenizer = new StringTokenizer(elementTags, ",");
+                while (elementsTokenizer.hasMoreTokens()) {
+                    try {
+                        elements.add(factory.getElement(elementsTokenizer.nextToken().trim(), language, moduleName));
+                    } catch (InvalidXmlElementException e) {
+                        throw new InvalidXmlElementException("Invalid elements '" + elementTags + "' for element '" + elementId + "'.", e);
                     }
                 }
-            } catch (NullPointerException e) {
-                throw new InvalidXmlElementException("Invalid tag list '" + elementTags + "' in element '" + elementId + "'.", e);
             }
         } catch (NullPointerException e) {
             return elements;

@@ -62,10 +62,11 @@ public abstract class RandomPredefinedFactory<Predefined extends Element<Predefi
     private static final String REQUIRED_SKILLS_ID = "id";
     private static final String REQUIRED_SKILLS_SPECIALIZATION = "speciality";
     private static final String SUGGESTED_BENEFICES = "suggestedBenefices";
+    private static final String SUGGESTED_BENEFICES_SPECIALIZATIONS = "suggestedBeneficesSpecialization";
     private static final String MANDATORY_BENEFICES = "mandatoryBenefices";
+    private static final String MANDATORY_BENEFICES_SPECIALIZATIONS = "mandatoryBeneficesSpecialization";
     private static final String SUGGESTED_BLESSINGS = "suggestedBlessings";
     private static final String MANDATORY_BLESSINGS = "mandatoryBlessings";
-    private static final String MANDATORY_BENEFICES_SPECIALIZATIONS = "mandatoryBeneficesSpecialization";
     private static final String MANDATORY_OCCULTISM_PATHS = "mandatoryOccultismPaths";
     private static final String PARENT = "parent";
     private static final String FACTION = "faction";
@@ -101,8 +102,8 @@ public abstract class RandomPredefinedFactory<Predefined extends Element<Predefi
                                             Set<AvailableSkill> requiredSkills, Set<AvailableSkill> suggestedSkills,
                                             Set<Blessing> mandatoryBlessings, Set<Blessing> suggestedBlessings,
                                             Set<BeneficeDefinition> mandatoryBenefices, Set<BeneficeDefinition> suggestedBenefices,
-                                            Set<AvailableBenefice> mandatoryBeneficeSpecializations, Set<OccultismPath> mandatoryOccultismPaths,
-                                            Faction faction, Race race);
+                                            Set<AvailableBenefice> mandatoryBeneficeSpecializations, Set<AvailableBenefice> suggestedBeneficeSpecializations,
+                                            Set<OccultismPath> mandatoryOccultismPaths, Faction faction, Race race);
 
     private void classify(Predefined predefined, String groupName) {
         predefinedByGroup.computeIfAbsent(groupName, k -> new HashSet<>());
@@ -256,6 +257,9 @@ public abstract class RandomPredefinedFactory<Predefined extends Element<Predefi
         final Set<BeneficeDefinition> suggestedBenefices = getCommaSeparatedValues(predefinedId, SUGGESTED_BENEFICES,
                 language, moduleName, BeneficeDefinitionFactory.getInstance());
 
+        final Set<AvailableBenefice> suggestedBeneficeSpecializations = getCommaSeparatedValues(predefinedId, SUGGESTED_BENEFICES_SPECIALIZATIONS,
+                language, moduleName, AvailableBeneficeFactory.getInstance());
+
         final Set<OccultismPath> mandatoryOccultismPaths = getCommaSeparatedValues(predefinedId, MANDATORY_OCCULTISM_PATHS, language,
                 moduleName, OccultismPathFactory.getInstance());
 
@@ -271,7 +275,8 @@ public abstract class RandomPredefinedFactory<Predefined extends Element<Predefi
 
         final Predefined predefined = createNew(predefinedId, name, description, language, moduleName, preferencesSelected,
                 characteristicsMinimumValues, requiredSkills, suggestedSkills, mandatoryBlessings, suggestedBlessings,
-                mandatoryBenefices, suggestedBenefices, mandatoryBeneficeSpecializations, mandatoryOccultismPaths, faction, race);
+                mandatoryBenefices, suggestedBenefices, mandatoryBeneficeSpecializations, suggestedBeneficeSpecializations,
+                mandatoryOccultismPaths, faction, race);
 
         classify(predefined, group);
 

@@ -49,16 +49,19 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
     private static final String CASH_BENEFICE_ID = "cash";
     private static final String ESCAPED_PREFIX = "escaped";
     private Integer totalCombatActions;
+    private final Set<AvailableBenefice> suggestedAvailableBenefices;
 
     public RandomBeneficeDefinition(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences)
             throws InvalidXmlElementException {
-        this(characterPlayer, preferences, new HashSet<>(), new HashSet<>());
+        this(characterPlayer, preferences, new HashSet<>(), new HashSet<>(), new HashSet<>());
     }
 
     public RandomBeneficeDefinition(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences,
-                                    Set<BeneficeDefinition> mandatoryBenefices, Set<BeneficeDefinition> suggestedBenefices)
+                                    Set<BeneficeDefinition> mandatoryBenefices, Set<BeneficeDefinition> suggestedBenefices,
+                                    Set<AvailableBenefice> suggestedAvailableBenefices)
             throws InvalidXmlElementException {
         super(characterPlayer, null, preferences, mandatoryBenefices, suggestedBenefices);
+        this.suggestedAvailableBenefices = suggestedAvailableBenefices;
     }
 
     @Override
@@ -288,6 +291,15 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
      */
     private AvailableBenefice assignLevelOfBenefice(BeneficeDefinition benefice, int maxPoints)
             throws InvalidXmlElementException {
+
+        if (suggestedAvailableBenefices != null) {
+            for (final AvailableBenefice availableBenefice : suggestedAvailableBenefices) {
+                if (Objects.equals(availableBenefice.getBeneficeDefinition(), benefice)) {
+                    return availableBenefice;
+                }
+            }
+        }
+
         IGaussianDistribution selectedTraitCost = TraitCostPreferences.getSelected(getPreferences());
 
         if (benefice.getId().equalsIgnoreCase(CASH_BENEFICE_ID)) {

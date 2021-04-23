@@ -74,6 +74,8 @@ public interface IRandomPredefined {
 
     Set<AvailableBenefice> getMandatoryBeneficeSpecializations();
 
+    Set<AvailableBenefice> getSuggestedBeneficeSpecializations();
+
     Set<Blessing> getMandatoryBlessings();
 
     Set<Blessing> getSuggestedBlessings();

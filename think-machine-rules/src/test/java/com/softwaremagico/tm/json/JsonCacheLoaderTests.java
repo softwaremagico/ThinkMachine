@@ -83,7 +83,7 @@ public class JsonCacheLoaderTests {
         }
         end = Instant.now();
         Duration jsonMethod = Duration.between(start, end);
-        Assert.assertTrue(jsonMethod.getNano() * 3 < xmlMethod.getNano());
+        Assert.assertTrue(jsonMethod.getNano() < xmlMethod.getNano());
     }
 
     @Test()

@@ -5,6 +5,7 @@ import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.RandomizeCharacter;
 import com.softwaremagico.tm.character.benefices.AvailableBenefice;
 import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
+import com.softwaremagico.tm.character.benefices.BeneficeDefinitionFactory;
 import com.softwaremagico.tm.character.blessings.Blessing;
 import com.softwaremagico.tm.character.blessings.BlessingFactory;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
@@ -296,8 +297,27 @@ public class NpcTests {
     public void checkRaceInherit() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
-                NpcFactory.getInstance().getElement("obunt", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+                NpcFactory.getInstance().getElement("obun", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         randomizeCharacter.createCharacter();
         Assert.assertEquals(characterPlayer.getRace(), RaceFactory.getInstance().getElement("obun", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+    }
+
+    @Test
+    public void checkSuggestedAvailableBenefices() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
+        final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
+                NpcFactory.getInstance().getElement("obun", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+        randomizeCharacter.createCharacter();
+        characterPlayer.getAllBenefices().parallelStream().forEach(availableBenefice -> {
+            try {
+                if (Objects.equals(availableBenefice.getBeneficeDefinition(), BeneficeDefinitionFactory.getInstance().getElement("refuge",
+                        LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER))) {
+                    //If has refuge, must be refuge (4).
+                    Assert.assertEquals(availableBenefice.getId(), "refuge_4");
+                }
+            } catch (InvalidXmlElementException e) {
+                Assert.fail();
+            }
+        });
     }
 }
