@@ -55,6 +55,8 @@ public abstract class XmlFactory<T extends Element<T>> implements IElementRetrie
     private static final String RECOMMENDED_RACES = "recommendedRaces";
     private static final String GENERAL_PROBABILITY = "generalProbability";
     private static final String STATIC_PROBABILITY = "staticProbability";
+    private static final String RESTRICTED = "restricted";
+    private static final String OFFICIAL = "official";
 
     private static final String NAME = "name";
     private static final String DESCRIPTION = "description";
@@ -317,8 +319,30 @@ public abstract class XmlFactory<T extends Element<T>> implements IElementRetrie
                 } catch (Exception e) {
                     //Description is not mandatory.
                 }
+
+                Boolean restricted = null;
+                try {
+                    restricted = Boolean.parseBoolean(getTranslator(moduleName).getNodeValue(elementId, RESTRICTED));
+                } catch (Exception e) {
+                    //Restriction is not mandatory.
+                }
+
+                Boolean official = null;
+                try {
+                    official = Boolean.parseBoolean(getTranslator(moduleName).getNodeValue(elementId, OFFICIAL));
+                } catch (Exception e) {
+                    //Restriction is not mandatory.
+                }
+
+
                 final T element = createElement(getTranslator(moduleName), elementId, name, description, language, moduleName);
                 setRandomConfiguration(element, getTranslator(moduleName), language, moduleName);
+                if (restricted != null) {
+                    element.setRestricted(restricted);
+                }
+                if (official != null) {
+                    element.setOfficial(official);
+                }
                 if (elements.get(language).get(moduleName).contains(element)) {
                     throw new ElementAlreadyExistsException("Element '" + element + "' already is inserted. Probably the ID is duplicated.");
                 }

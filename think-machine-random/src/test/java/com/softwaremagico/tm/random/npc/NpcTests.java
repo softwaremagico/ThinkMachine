@@ -336,4 +336,10 @@ public class NpcTests {
                 NpcFactory.getInstance().getElement("hironemWarrior", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         randomizeCharacter.createCharacter();
     }
+
+
+    @Test
+    public void restricted() throws InvalidXmlElementException {
+        Assert.assertFalse(NpcFactory.getInstance().getElement("shantor", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).isOfficial());
+    }
 }

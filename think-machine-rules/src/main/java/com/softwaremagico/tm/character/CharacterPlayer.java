@@ -531,7 +531,7 @@ public class CharacterPlayer {
     }
 
     public void addBenefice(AvailableBenefice benefice) throws InvalidBeneficeException, BeneficeAlreadyAddedException {
-        if (benefice.getBeneficeDefinition().getGroup() == BeneficeGroup.RESTRICTED) {
+        if (benefice.getBeneficeDefinition().isRestricted()) {
             throw new InvalidBeneficeException("Benefice '" + benefice + "' is restricted and cannot be added.");
         }
         if (!benefice.getBeneficeDefinition().getRestrictedToRaces().isEmpty() &&

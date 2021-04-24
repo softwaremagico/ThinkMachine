@@ -230,7 +230,7 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
         }
 
         // No special benefices
-        if (benefice.getGroup() == BeneficeGroup.RESTRICTED) {
+        if (benefice.isRestricted()) {
             throw new InvalidRandomElementSelectedException("Benefice '" + benefice + "' is restricted.");
         }
 

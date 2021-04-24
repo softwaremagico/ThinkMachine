@@ -25,7 +25,7 @@ package com.softwaremagico.tm.character.benefices;
  */
 
 public enum BeneficeGroup {
-	BACKGROUND, COMMUNITY, TECHNOLOGY, RELICS, POSSESSIONS, RICHES, STATUS, FIGHTING, RESTRICTED;
+	BACKGROUND, COMMUNITY, TECHNOLOGY, RELICS, POSSESSIONS, RICHES, STATUS, FIGHTING;
 
 	public static BeneficeGroup get(String tag) {
 		if (tag != null) {

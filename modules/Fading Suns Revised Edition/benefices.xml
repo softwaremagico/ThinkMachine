@@ -1244,10 +1244,6 @@
                     <en>Apprentice</en>
                     <es>Aprendiz</es>
                 </name>
-                <description>
-                    <en></en>
-                    <es></es>
-                </description>
                 <cost>4</cost>
             </apprentice>
             <entered>
@@ -1588,7 +1584,10 @@
             <es>Caído en Desgracia</es>
         </name>
         <description>
-            <en></en>
+            <en>This Affliction is similar to the Black Sheep Affliction, but is applied to a sect/order or guild. The
+                character has lost face before his peers and superiors, and will only make up for it after years of
+                penance—if ever. Characters must be Commissioned or Ordained to take this Affliction.
+            </en>
             <es>Esta aflicción es similar a la de Oveja Negra, pero se aplica a una secta/orden o gremio. El personaje
                 ha perdido la credibilidad frente a sus colegas y superiores, y sólo la recuperará tras años de
                 penitencia, si cabe. Los personajes deben tener el beneficio de Cargo u Ordenado para escoger esta
@@ -1723,7 +1722,8 @@
             <es>Mordisco</es>
         </name>
         <cost>3</cost>
-        <group>restricted</group>
+        <group>background</group>
+        <restricted>true</restricted>
     </bite>
     <extraLimbs>
         <name>
@@ -1731,7 +1731,8 @@
             <es>Miembros Extra</es>
         </name>
         <cost>6</cost>
-        <group>restricted</group>
+        <group>background</group>
+        <restricted>true</restricted>
     </extraLimbs>
     <noOccult>
         <name>
@@ -1744,7 +1745,8 @@
         </description>
         <cost>6</cost>
         <affliction>true</affliction>
-        <group>restricted</group>
+        <group>background</group>
+        <restricted>true</restricted>
     </noOccult>
     <noPsi>
         <name>
@@ -1757,7 +1759,9 @@
         </description>
         <cost>6</cost>
         <affliction>true</affliction>
-        <group>restricted</group>
+        <group>background</group>
+        <official>false</official>
+        <restricted>true</restricted>
     </noPsi>
     <poisonousClaw>
         <name>
@@ -1769,7 +1773,8 @@
             <es>Daño 3. Veneno</es>
         </description>
         <cost>6</cost>
-        <group>restricted</group>
+        <group>background</group>
+        <restricted>true</restricted>
     </poisonousClaw>
     <ostraziced2>
         <name>
@@ -1778,7 +1783,9 @@
         </name>
         <cost>2</cost>
         <affliction>true</affliction>
-        <group>restricted</group>
+        <group>background</group>
+        <official>false</official>
+        <restricted>true</restricted>
     </ostraziced2>
     <ostraziced4>
         <name>
@@ -1787,7 +1794,9 @@
         </name>
         <cost>4</cost>
         <affliction>true</affliction>
-        <group>restricted</group>
+        <group>background</group>
+        <official>false</official>
+        <restricted>true</restricted>
     </ostraziced4>
     <restrictedLanguage>
         <name>
@@ -1811,7 +1820,9 @@
         </specializations>
         <cost>1</cost>
         <affliction>true</affliction>
-        <group>restricted</group>
+        <group>background</group>
+        <official>false</official>
+        <restricted>true</restricted>
     </restrictedLanguage>
     <noFineManipulation>
         <name>
@@ -1824,7 +1835,9 @@
         </description>
         <cost>4</cost>
         <affliction>true</affliction>
-        <group>restricted</group>
+        <group>background</group>
+        <official>false</official>
+        <restricted>true</restricted>
     </noFineManipulation>
     <dolomei>
         <name>
@@ -1836,7 +1849,9 @@
             <es>Permite hablar Terráqueo</es>
         </description>
         <cost>2</cost>
-        <group>restricted</group>
+        <group>possessions</group>
+        <official>false</official>
+        <restricted>true</restricted>
     </dolomei>
     <muzzleManipulator>
         <name>
@@ -1848,7 +1863,9 @@
             <es>Permite manipulación fina</es>
         </description>
         <cost>3</cost>
-        <group>restricted</group>
+        <group>possessions</group>
+        <official>false</official>
+        <restricted>true</restricted>
     </muzzleManipulator>
     <prominentFamily>
         <name>
@@ -1868,6 +1885,7 @@
         </description>
         <cost>1-2</cost>
         <group>background</group>
+        <official>false</official>
         <races>gannok</races>
     </prominentFamily>
     <coldBlood>
@@ -1878,11 +1896,14 @@
         <description>
             <en>-2 a Endurance for every 10 degrees below 60ºF. -1 a Perception for every 10 degrees over 100ºF.
             </en>
-            <es>-2 a Fortaleza por cada 5 grados por debajo de 15ºC. -1 a Percepción por cada 5 grados por encima de 35ºC.
+            <es>-2 a Fortaleza por cada 5 grados por debajo de 15ºC. -1 a Percepción por cada 5 grados por encima de
+                35ºC.
             </es>
         </description>
         <cost>3</cost>
         <group>background</group>
+        <restricted>true</restricted>
+        <official>false</official>
         <races>hironem</races>
         <affliction>true</affliction>
     </coldBlood>
@@ -1939,6 +1960,8 @@
                 <cost>11</cost>
             </archbishop>
         </specializations>
-        <group>restricted</group>
+        <group>status</group>
+        <restricted>true</restricted>
+        <official>false</official>
     </ordainedHironem>
 </benefices>

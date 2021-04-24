@@ -48,6 +48,12 @@ public class Element<T extends Element<?>> implements Comparable<T> {
     @ExcludeFromJson
     private final RandomElementDefinition randomDefinition;
 
+    @ExcludeFromJson
+    private boolean restricted = false;
+
+    @ExcludeFromJson
+    private boolean official = true;
+
     /**
      * For creating empty elements.
      */
@@ -58,13 +64,15 @@ public class Element<T extends Element<?>> implements Comparable<T> {
         this.moduleName = "";
         this.language = "";
         this.randomDefinition = new RandomElementDefinition();
+        this.restricted = false;
     }
 
     public Element(String id, String name, String description, String language, String moduleName) {
         this(id, name, description, language, new RandomElementDefinition(), moduleName);
     }
 
-    public Element(String id, String name, String description, String language, RandomElementDefinition randomDefinition, String moduleName) {
+    public Element(String id, String name, String description, String language, RandomElementDefinition randomDefinition,
+                   String moduleName) {
         this.id = id != null ? id.trim() : null;
         this.name = name != null ? name.trim() : null;
         this.description = description != null ? description.trim() : null;
@@ -155,5 +163,21 @@ public class Element<T extends Element<?>> implements Comparable<T> {
             return true;
         }
         return Objects.equal(element.getId(), DEFAULT_NULL_ID);
+    }
+
+    public boolean isRestricted() {
+        return restricted;
+    }
+
+    public void setRestricted(boolean restricted) {
+        this.restricted = restricted;
+    }
+
+    public boolean isOfficial() {
+        return official;
+    }
+
+    public void setOfficial(boolean official) {
+        this.official = official;
     }
 }

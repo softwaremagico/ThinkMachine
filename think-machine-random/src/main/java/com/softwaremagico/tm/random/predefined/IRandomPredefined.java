@@ -98,4 +98,8 @@ public interface IRandomPredefined {
 
     void setRace(Race race);
 
+    boolean isRestricted();
+
+    boolean isOfficial();
+
 }

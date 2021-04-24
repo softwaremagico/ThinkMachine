@@ -110,6 +110,8 @@ public abstract class RandomPredefined<Predefined extends Element<Predefined>> e
         if (race == null) {
             race = randomPredefined.getRace();
         }
+        this.setRestricted(randomPredefined.isRestricted());
+        this.setOfficial(randomPredefined.isOfficial());
     }
 
     @Override

@@ -542,6 +542,7 @@
                 <id>performance</id>
             </skill>
         </requiredSkills>
+        <official>false</official>
     </shantor>
     <gannok>
         <name>
@@ -572,6 +573,7 @@
                 <id>influence</id>
             </skill>
         </suggestedSkills>
+        <official>false</official>
     </gannok>
     <hironem>
         <name>
@@ -580,5 +582,6 @@
         </name>
         <group>xenos</group>
         <race>hironem</race>
+        <official>false</official>
     </hironem>
 </profiles>

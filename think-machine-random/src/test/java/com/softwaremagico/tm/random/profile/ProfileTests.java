@@ -194,6 +194,11 @@ public class ProfileTests {
     }
 
     @Test
+    public void restricted() throws InvalidXmlElementException {
+        Assert.assertFalse(RandomProfileFactory.getInstance().getElement("shantor", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).isOfficial());
+    }
+
+    @Test
     public void old() throws DuplicatedPreferenceException, InvalidXmlElementException,
             InvalidRandomElementSelectedException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);

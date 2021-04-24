@@ -1192,6 +1192,8 @@
             </names>
             <surnames></surnames>
         </random>
+        <restricted>true</restricted>
+        <official>false</official>
     </oldShantor>
     <darkwalker>
         <name>
@@ -1209,6 +1211,8 @@
             </names>
             <surnames></surnames>
         </random>
+        <restricted>true</restricted>
+        <official>false</official>
     </darkwalker>
     <sibanzi>
         <name>
@@ -1241,6 +1245,8 @@
             </names>
             <surnames>Baalaaji,Baalaraju, Caddaham, Bemossed, Bagwunagijik, Ayawamat</surnames>
         </random>
+        <restricted>true</restricted>
+        <official>false</official>
     </sibanzi>
     <warriorHironem>
         <name>
@@ -1267,6 +1273,8 @@
             </names>
             <surnames>Baalaaji,Baalaraju, Caddaham, Bemossed, Bagwunagijik, Ayawamat</surnames>
         </random>
+        <restricted>true</restricted>
+        <official>false</official>
     </warriorHironem>
     <noFaction>
         <name>
@@ -1275,6 +1283,8 @@
         </name>
         <group>minor</group>
         <race>human, vorox, obun, ukar</race>
+        <restricted>true</restricted>
+        <official>false</official>
     </noFaction>
     <minorFaction>
         <name>
@@ -1283,5 +1293,7 @@
         </name>
         <group>minor</group>
         <race>human, vorox, obun, ukar</race>
+        <restricted>true</restricted>
+        <official>false</official>
     </minorFaction>
 </factions>
