@@ -72,13 +72,24 @@ public class Occultism {
             throw new InvalidPsiqueLevelException("Psique level cannot be less than zero.");
         }
         AvailableBenefice noOccult = null;
+        AvailableBenefice noPsi = null;
         try {
             noOccult = AvailableBeneficeFactory.getInstance().getElement("noOccult", language, moduleName);
         } catch (InvalidXmlElementException e) {
             // Module without noOccult benefice.
         }
+        try {
+            noPsi = AvailableBeneficeFactory.getInstance().getElement("noPsi", language, moduleName);
+        } catch (InvalidXmlElementException e) {
+            // Module without noOccult benefice.
+        }
+
         if (psyValue != 0 && (race == null || race.getBenefices().contains(noOccult))) {
             throw new InvalidPsiqueLevelException("Race '" + race + "' cannot have psique levels.");
+        }
+        if (Objects.equals(occultismType, OccultismTypeFactory.getPsi(language, moduleName)) &&
+                psyValue != 0 && (race == null || race.getBenefices().contains(noPsi))) {
+            throw new InvalidPsiqueLevelException("Race '" + race + "' cannot have psi levels.");
         }
         psiqueValue.put(occultismType.getId(), psyValue);
     }

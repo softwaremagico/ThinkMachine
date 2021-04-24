@@ -573,4 +573,12 @@
             </skill>
         </suggestedSkills>
     </gannok>
+    <hironem>
+        <name>
+            <en>Hironem</en>
+            <es>Hironem</es>
+        </name>
+        <group>xenos</group>
+        <race>hironem</race>
+    </hironem>
 </profiles>

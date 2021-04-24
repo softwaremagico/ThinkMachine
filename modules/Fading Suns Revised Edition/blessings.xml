@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <blessings>
     <version>1</version>
-    <totalElements>129</totalElements>
+    <totalElements>133</totalElements>
     <handsome>
         <name>
             <en>Handsome</en>
@@ -3616,6 +3616,86 @@
         <group>restricted</group>
         <curse>true</curse>
     </stench>
+    <ssuVision>
+        <name>
+            <en>S'su Vision</en>
+            <es>Visión S'su</es>
+        </name>
+        <description>
+            <en>The following Blessing or Curse is only available for some specific races or factions</en>
+            <es>Esta bendición o maldición únicamente está disponible para algunas razas o facciones</es>
+        </description>
+        <cost>5</cost>
+        <group>restricted</group>
+    </ssuVision>
+    <commanding>
+        <name>
+            <en>Commanding</en>
+            <es>Dominante</es>
+        </name>
+        <description>
+            <en>The following Blessing or Curse is only available for some specific races or factions</en>
+            <es>Esta bendición o maldición únicamente está disponible para algunas razas o facciones</es>
+        </description>
+        <cost>2</cost>
+        <bonifications>
+            <bonification>
+                <value>2</value>
+                <affects>presence</affects>
+                <situation>
+                    <en>Leading Hironem</en>
+                    <es>Dirigiendo Hironem</es>
+                </situation>
+            </bonification>
+        </bonifications>
+        <group>restricted</group>
+    </commanding>
+    <arrogant>
+        <name>
+            <en>Arrogant</en>
+            <es>Arrogante</es>
+        </name>
+        <description>
+            <en>The following Blessing or Curse is only available for some specific races or factions</en>
+            <es>Esta bendición o maldición únicamente está disponible para algunas razas o facciones</es>
+        </description>
+        <cost>2</cost>
+        <bonifications>
+            <bonification>
+                <value>-2</value>
+                <affects>will</affects>
+                <situation>
+                    <en>Around lesser castes</en>
+                    <es>Entre castas inferiores</es>
+                </situation>
+            </bonification>
+        </bonifications>
+        <group>restricted</group>
+        <curse>true</curse>
+    </arrogant>
+    <obedient>
+        <name>
+            <en>Obediente</en>
+            <es>Obedient</es>
+        </name>
+        <description>
+            <en>The following Blessing or Curse is only available for some specific races or factions</en>
+            <es>Esta bendición o maldición únicamente está disponible para algunas razas o facciones</es>
+        </description>
+        <cost>2</cost>
+        <bonifications>
+            <bonification>
+                <value>-2</value>
+                <affects>will</affects>
+                <situation>
+                    <en>Around authorities</en>
+                    <es>Entre autoridades</es>
+                </situation>
+            </bonification>
+        </bonifications>
+        <group>restricted</group>
+        <curse>true</curse>
+    </obedient>
 
 
 </blessings>

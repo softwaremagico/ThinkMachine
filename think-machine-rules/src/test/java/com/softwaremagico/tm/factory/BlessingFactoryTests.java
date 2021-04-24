@@ -34,7 +34,7 @@ import org.testng.annotations.Test;
 public class BlessingFactoryTests {
     private static final String LANGUAGE = "es";
 
-    private static final int DEFINED_BLESSINGS = 129;
+    private static final int DEFINED_BLESSINGS = 133;
     private static final int DEFINED_BONUS_MISSING_EYE = 2;
     private static final int VERSION = 1;
 

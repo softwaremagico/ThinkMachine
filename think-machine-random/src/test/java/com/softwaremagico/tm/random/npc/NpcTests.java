@@ -320,4 +320,20 @@ public class NpcTests {
             }
         });
     }
+
+    @Test
+    public void hironemPriest() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
+        final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
+                NpcFactory.getInstance().getElement("hironemPriest", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+        randomizeCharacter.createCharacter();
+    }
+
+    @Test
+    public void hironemWarrior() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
+        final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
+                NpcFactory.getInstance().getElement("hironemWarrior", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+        randomizeCharacter.createCharacter();
+    }
 }

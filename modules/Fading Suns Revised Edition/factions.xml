@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <factions>
     <version>1</version>
-    <totalElements>36</totalElements>
+    <totalElements>38</totalElements>
     <hawkwood>
         <name>
             <en>Hawkwood</en>
@@ -1210,6 +1210,64 @@
             <surnames></surnames>
         </random>
     </darkwalker>
+    <sibanzi>
+        <name>
+            <en>Sibanzi</en>
+            <es>Sibanzi</es>
+        </name>
+        <group>xeno</group>
+        <race>hironem</race>
+        <blessings>commanding, arrogant</blessings>
+        <benefices>vestments</benefices>
+        <suggestedBenefices>
+            <benefice>
+                <id>gossipNetwork</id>
+                <value>1</value>
+            </benefice>
+            <benefice>
+                <id>secrets</id>
+            </benefice>
+            <benefice>
+                <id>ordainedHironem</id>
+            </benefice>
+        </suggestedBenefices>
+        <random>
+            <names>
+                <male>Abooksigun, Abornazine, Abukcheech, Achak, Adahy, Adoeete, Ahiga, Ahote, Arapoosh, Baadal,
+                    Baal-berith, Baal-hermon, Baalkrishan, C“ng
+                </male>
+                <female>Aiyana, Alaqua, Aleshanee, Alona, Amitola, Aponi, Baaji, Baako, Baala, Baani, Ca, Cacey, Cacia
+                </female>
+            </names>
+            <surnames>Baalaaji,Baalaraju, Caddaham, Bemossed, Bagwunagijik, Ayawamat</surnames>
+        </random>
+    </sibanzi>
+    <warriorHironem>
+        <name>
+            <en>Warrior</en>
+            <es>Guerrero</es>
+        </name>
+        <group>xeno</group>
+        <race>hironem</race>
+        <blessings>disciplined, obedient</blessings>
+        <benefices></benefices>
+        <suggestedBenefices>
+            <benefice>
+                <id>gossipNetwork</id>
+                <value>1</value>
+            </benefice>
+        </suggestedBenefices>
+        <random>
+            <names>
+                <male>Abooksigun, Abornazine, Abukcheech, Achak, Adahy, Adoeete, Ahiga, Ahote, Arapoosh, Baadal,
+                    Baal-berith, Baal-hermon, Baalkrishan, C“ng
+                </male>
+                <female>Aiyana, Alaqua, Aleshanee, Alona, Amitola, Aponi, Baaji, Baako, Baala, Baani, Ca, Cacey, Cacia
+                </female>
+            </names>
+            <surnames>Baalaaji,Baalaraju, Caddaham, Bemossed, Bagwunagijik, Ayawamat</surnames>
+        </random>
+    </warriorHironem>
     <noFaction>
         <name>
             <en>No Faction</en>

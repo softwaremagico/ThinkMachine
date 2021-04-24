@@ -1629,4 +1629,62 @@
         <group>xenos</group>
         <profile>gannok</profile>
     </gannok>
+    <hironemPriest>
+        <name>
+            <en>Hironem Priest</en>
+            <es>Sacerdote Hironem</es>
+        </name>
+        <group>xenos</group>
+        <profile>hironem</profile>
+        <preferences>CharacteristicsPreferences.SPIRIT</preferences>
+        <characteristicsMinimumValues>
+            <wits>6</wits>
+            <faith>6</faith>
+        </characteristicsMinimumValues>
+        <requiredSkills>
+            <skill>
+                <id>observe</id>
+            </skill>
+            <skill>
+                <id>influence</id>
+            </skill>
+            <skill>
+                <id>leadership</id>
+            </skill>
+        </requiredSkills>
+        <suggestedSkills>
+            <skill>
+                <id>physick</id>
+            </skill>
+        </suggestedSkills>
+    </hironemPriest>
+    <hironemWarrior>
+        <name>
+            <en>Hironem Warrior</en>
+            <es>Guerrero Hironem</es>
+        </name>
+        <group>xenos</group>
+        <profile>hironem</profile>
+        <preferences>CharacteristicsPreferences.BODY, CombatActionsPreferences.HIGH,
+            CombatActionsGroupPreferences.FIGHT
+        </preferences>
+        <characteristicsMinimumValues>
+            <perception>6</perception>
+            <dexterity>6</dexterity>
+        </characteristicsMinimumValues>
+        <requiredSkills>
+            <skill>
+                <id>fight</id>
+            </skill>
+            <skill>
+                <id>melee</id>
+            </skill>
+            <skill>
+                <id>slugGuns</id>
+            </skill>
+            <skill>
+                <id>survival</id>
+            </skill>
+        </requiredSkills>
+    </hironemWarrior>
 </profiles>

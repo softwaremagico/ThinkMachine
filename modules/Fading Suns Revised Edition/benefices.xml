@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <benefices>
     <version>1</version>
-    <totalElements>81</totalElements>
+    <totalElements>84</totalElements>
     <alienUpbringing>
         <name>
             <en>Alien Upbringing</en>
@@ -144,6 +144,7 @@
                 </name>
                 <random>
                     <forbiddenRaces>shantor</forbiddenRaces>
+                    <probabilityMultiplier>0.1</probabilityMultiplier>
                 </random>
             </shantorLanguage>
             <toktok>
@@ -153,8 +154,19 @@
                 </name>
                 <random>
                     <forbiddenRaces>gannok</forbiddenRaces>
+                    <probabilityMultiplier>0.1</probabilityMultiplier>
                 </random>
             </toktok>
+            <salsu>
+                <name>
+                    <en>Salsu</en>
+                    <es>Salsu</es>
+                </name>
+                <random>
+                    <forbiddenRaces>hironem</forbiddenRaces>
+                    <probabilityMultiplier>0.1</probabilityMultiplier>
+                </random>
+            </salsu>
         </specializations>
         <cost>2</cost>
         <group>background</group>
@@ -1734,6 +1746,19 @@
         <affliction>true</affliction>
         <group>restricted</group>
     </noOccult>
+    <noPsi>
+        <name>
+            <en>No Psi</en>
+            <es>No Psí</es>
+        </name>
+        <description>
+            <en>Cannot awaken Psi</en>
+            <es>No puede despertar Psi</es>
+        </description>
+        <cost>6</cost>
+        <affliction>true</affliction>
+        <group>restricted</group>
+    </noPsi>
     <poisonousClaw>
         <name>
             <en>Poisonous Claw</en>
@@ -1845,4 +1870,75 @@
         <group>background</group>
         <races>gannok</races>
     </prominentFamily>
+    <coldBlood>
+        <name>
+            <en>Cold-blooded</en>
+            <es>Sangre Fría</es>
+        </name>
+        <description>
+            <en>-2 a Endurance for every 10 degrees below 60ºF. -1 a Perception for every 10 degrees over 100ºF.
+            </en>
+            <es>-2 a Fortaleza por cada 5 grados por debajo de 15ºC. -1 a Percepción por cada 5 grados por encima de 35ºC.
+            </es>
+        </description>
+        <cost>3</cost>
+        <group>background</group>
+        <races>hironem</races>
+        <affliction>true</affliction>
+    </coldBlood>
+    <ordainedHironem>
+        <name>
+            <en>Ordained</en>
+            <es>Ordenado</es>
+        </name>
+        <description>
+            <en>The character is not able to perform fine manipulation actions.</en>
+            <es>El personaje es incapaz de realizar acciones que requieran de una manipulación fina.</es>
+        </description>
+        <specializations>
+            <novitiate>
+                <name>
+                    <en>Initiate</en>
+                    <es>Iniciado</es>
+                </name>
+                <cost>1</cost>
+            </novitiate>
+            <canon>
+                <name>
+                    <en>Master</en>
+                    <es>Maestro</es>
+                </name>
+                <cost>3</cost>
+            </canon>
+            <deacon>
+                <name>
+                    <en>Etan</en>
+                    <es>Etan</es>
+                </name>
+                <cost>5</cost>
+            </deacon>
+            <priest>
+                <name>
+                    <en>Prefect</en>
+                    <es>Prefecto</es>
+                </name>
+                <cost>7</cost>
+            </priest>
+            <bishop>
+                <name>
+                    <en>Shin</en>
+                    <es>Shin</es>
+                </name>
+                <cost>9</cost>
+            </bishop>
+            <archbishop>
+                <name>
+                    <en>Vizier</en>
+                    <es>Visir</es>
+                </name>
+                <cost>11</cost>
+            </archbishop>
+        </specializations>
+        <group>restricted</group>
+    </ordainedHironem>
 </benefices>

@@ -35,7 +35,7 @@ import org.testng.annotations.Test;
 @Test(groups = {"raceFactory"})
 public class RaceFactoryTests {
     private static final String LANGUAGE = "en";
-    private static final int DEFINED_RACES = 6;
+    private static final int DEFINED_RACES = 7;
     private static final int VERSION = 1;
 
     @Test
@@ -62,6 +62,14 @@ public class RaceFactoryTests {
         final Race vorox = RaceFactory.getInstance().getElement("vorox", LANGUAGE,
                 PathManager.DEFAULT_MODULE_FOLDER);
         Assert.assertTrue(vorox.getBenefices().contains(AvailableBeneficeFactory.getInstance().getElement("noOccult",
+                LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)));
+    }
+
+    @Test
+    public void readMoreAfflictions() throws InvalidXmlElementException {
+        final Race hironem = RaceFactory.getInstance().getElement("hironem", LANGUAGE,
+                PathManager.DEFAULT_MODULE_FOLDER);
+        Assert.assertTrue(hironem.getBenefices().contains(AvailableBeneficeFactory.getInstance().getElement("noPsi",
                 LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)));
     }
 

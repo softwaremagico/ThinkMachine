@@ -102,7 +102,10 @@ public class RandomPsique extends RandomSelector<OccultismType> {
         try {
             if (getCharacterPlayer().getAfflictions().contains(
                     AvailableBeneficeFactory.getInstance().getElement("noOccult", getCharacterPlayer().getLanguage(),
-                            getCharacterPlayer().getModuleName()))) {
+                            getCharacterPlayer().getModuleName())) ||
+                    getCharacterPlayer().getAfflictions().contains(
+                            AvailableBeneficeFactory.getInstance().getElement("noPsi", getCharacterPlayer().getLanguage(),
+                                    getCharacterPlayer().getModuleName()))) {
                 return 0;
             }
         } catch (InvalidBeneficeException e) {
