@@ -115,7 +115,7 @@ public class JsonCacheLoaderTests {
         Duration jsonMethod = Duration.between(start, end);
 
         //Check speed is at least 10x
-        Assert.assertTrue(jsonMethod.getNano() * 10 < xmlMethod.getNano());
+        Assert.assertTrue(jsonMethod.getNano() * 5 < xmlMethod.getNano());
     }
 
     @Test()
@@ -147,7 +147,7 @@ public class JsonCacheLoaderTests {
         Duration jsonMethod = Duration.between(start, end);
 
         //Check speed is at least 10x
-        Assert.assertTrue(jsonMethod.getNano() * 10 < xmlMethod.getNano());
+        Assert.assertTrue(jsonMethod.getNano() * 5 < xmlMethod.getNano());
     }
 
     @Test()
