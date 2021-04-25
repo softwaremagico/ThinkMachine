@@ -1588,6 +1588,26 @@
         <weapons>typicalMedRevolver</weapons>
         <armours>leatherJerkin</armours>
     </thoughtPolice>
+    <kurgan>
+        <name>
+            <en>Kurgan</en>
+            <es>Kurgano</es>
+        </name>
+        <group>barbarian</group>
+        <profile>kurgan</profile>
+        <weapons>rapier, sword</weapons>
+        <armours>leatherJerkin</armours>
+    </kurgan>
+    <vuldrok>
+        <name>
+            <en>Vuldrok</en>
+            <es>Vuldrok</es>
+        </name>
+        <group>barbarian</group>
+        <profile>vuldrok</profile>
+        <weapons>typicalAutoRifle, axe</weapons>
+        <armours>scaleMailMetal</armours>
+    </vuldrok>
     <obun>
         <name>
             <en>Ur-Obun</en>

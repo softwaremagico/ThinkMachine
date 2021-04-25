@@ -1083,6 +1083,26 @@
             <probabilityMultiplier>0.05</probabilityMultiplier>
         </random>
     </xanthippe>
+    <kurganos>
+        <name>
+            <en>Kurgans</en>
+            <es>Kurganos</es>
+        </name>
+        <group>barbarian</group>
+        <race>human</race>
+        <official>false</official>
+        <blessings>gracious, haughty</blessings>
+    </kurganos>
+    <vuldrok>
+        <name>
+            <en>Vuldrok</en>
+            <es>Vuldrok</es>
+        </name>
+        <group>barbarian</group>
+        <race>human</race>
+        <official>false</official>
+        <blessings>bold, uncouth</blessings>
+    </vuldrok>
 
     <obun>
         <name>

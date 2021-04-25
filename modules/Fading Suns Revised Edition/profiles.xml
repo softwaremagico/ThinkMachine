@@ -458,6 +458,59 @@
             </skill>
         </requiredSkills>
     </martialArtist>
+    <kurgan>
+        <name>
+            <en>Kurgan</en>
+            <es>Kurgano</es>
+        </name>
+        <group>barbarian</group>
+        <preferences>CombatPreferences.FAIR, TechnologicalPreferences.FUTURIST, SpecializationPreferences.SPECIALIZED
+        </preferences>
+        <characteristicsMinimumValues>
+            <presence>6</presence>
+            <will>6</will>
+        </characteristicsMinimumValues>
+        <requiredSkills>
+            <skill>
+                <id>slugGuns</id>
+            </skill>
+            <skill>
+                <id>melee</id>
+            </skill>
+            <skill>
+                <id>influence</id>
+            </skill>
+        </requiredSkills>
+        <mandatoryBeneficesSpecialization>language [urthish]</mandatoryBeneficesSpecialization>
+        <official>false</official>
+    </kurgan>
+    <vuldrok>
+        <name>
+            <en>Vuldrok</en>
+            <es>Vuldrok</es>
+        </name>
+        <group>barbarian</group>
+        <preferences>CombatPreferences.BELLIGERENT, TechnologicalPreferences.MODERN, SpecializationPreferences.SPECIALIZED,
+            CharacteristicsPreferences.BODY,
+        </preferences>
+        <characteristicsMinimumValues>
+            <presence>6</presence>
+            <will>6</will>
+        </characteristicsMinimumValues>
+        <requiredSkills>
+            <skill>
+                <id>slugGuns</id>
+            </skill>
+            <skill>
+                <id>melee</id>
+            </skill>
+            <skill>
+                <id>vigor</id>
+            </skill>
+        </requiredSkills>
+        <mandatoryBeneficesSpecialization>language [urthish]</mandatoryBeneficesSpecialization>
+        <official>false</official>
+    </vuldrok>
     <obun>
         <name>
             <en>Ur-Obun</en>

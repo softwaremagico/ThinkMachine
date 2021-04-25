@@ -31,6 +31,8 @@ public enum FactionGroup {
 
 	CHURCH,
 
+	BARBARIAN,
+
 	XENO,
 
 	NONE;
