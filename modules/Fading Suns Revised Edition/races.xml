@@ -331,6 +331,7 @@
         <blessings>alertSleeping, awkward, huge, receptiveEars, fourLegged, noFineManipulation</blessings>
         <benefices>restrictedLanguage [urthish], ostraziced4, noOccult</benefices>
         <planets>shaprut</planets>
+        <official>false</official>
         <random>
             <staticProbability>0</staticProbability>
         </random>
@@ -401,6 +402,7 @@
         </blessings>
         <benefices>ostraziced2</benefices>
         <planets>bannockburn, leagueheim</planets>
+        <official>false</official>
         <random>
             <staticProbability>0</staticProbability>
         </random>
@@ -468,7 +470,8 @@
         <hubris>0</hubris>
         <blessings>ssuVision</blessings>
         <benefices>ostraziced2, noPsi, coldBlood</benefices>
-        <planets>bannockburn, leagueheim</planets>
+        <planets>cadiz</planets>
+        <official>false</official>
         <random>
             <staticProbability>0</staticProbability>
         </random>
