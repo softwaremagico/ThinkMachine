@@ -24,9 +24,6 @@ package com.softwaremagico.tm.character.blessings;
  * #L%
  */
 
-import java.util.Collection;
-import java.util.Set;
-
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
@@ -34,12 +31,10 @@ import com.softwaremagico.tm.log.RandomGenerationLog;
 import com.softwaremagico.tm.random.RandomSelector;
 import com.softwaremagico.tm.random.exceptions.ImpossibleToAssignMandatoryElementException;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
-import com.softwaremagico.tm.random.selectors.BlessingPreferences;
-import com.softwaremagico.tm.random.selectors.CombatPreferences;
-import com.softwaremagico.tm.random.selectors.CurseNumberPreferences;
-import com.softwaremagico.tm.random.selectors.IGaussianDistribution;
-import com.softwaremagico.tm.random.selectors.IRandomPreference;
-import com.softwaremagico.tm.random.selectors.SpecializationPreferences;
+import com.softwaremagico.tm.random.selectors.*;
+
+import java.util.Collection;
+import java.util.Set;
 
 public class RandomCursesDefinition extends RandomSelector<Blessing> {
 
@@ -80,7 +75,7 @@ public class RandomCursesDefinition extends RandomSelector<Blessing> {
         if (curse == null) {
             return 0;
         }
-        if (curse.getBlessingGroup() == BlessingGroup.RESTRICTED) {
+        if (curse.isRestricted()) {
             throw new InvalidRandomElementSelectedException("Curse '" + curse + "' is restricted.");
         }
         // Only curses.

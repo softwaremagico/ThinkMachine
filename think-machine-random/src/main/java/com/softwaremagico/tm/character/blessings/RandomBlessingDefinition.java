@@ -75,7 +75,7 @@ public class RandomBlessingDefinition extends RandomSelector<Blessing> {
         if (blessing == null) {
             return 0;
         }
-        if (blessing.getBlessingGroup() == BlessingGroup.RESTRICTED) {
+        if (blessing.isRestricted()) {
             throw new InvalidRandomElementSelectedException("Blessing '" + blessing + "' is restricted.");
         }
         // Only curses.

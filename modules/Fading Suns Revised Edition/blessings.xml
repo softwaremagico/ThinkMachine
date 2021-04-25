@@ -2933,6 +2933,7 @@
             </bonification>
         </bonifications>
         <group>behaviour</group>
+        <restricted>true</restricted>
     </predatory>
     <bitter>
         <name>
@@ -2956,6 +2957,7 @@
         </bonifications>
         <group>knacks</group>
         <curse>true</curse>
+        <restricted>true</restricted>
     </bitter>
     <poisonClaw>
         <name>
@@ -2968,6 +2970,7 @@
         </description>
         <cost>6</cost>
         <group>knacks</group>
+        <restricted>true</restricted>
     </poisonClaw>
     <austere>
         <name>
@@ -2990,6 +2993,7 @@
             </bonification>
         </bonifications>
         <group>behaviour</group>
+        <restricted>true</restricted>
     </austere>
     <connected>
         <name>
@@ -3012,6 +3016,7 @@
             </bonification>
         </bonifications>
         <group>behaviour</group>
+        <restricted>true</restricted>
     </connected>
     <strongWilled>
         <name>
@@ -3034,6 +3039,7 @@
             </bonification>
         </bonifications>
         <group>knacks</group>
+        <restricted>true</restricted>
     </strongWilled>
     <outraged>
         <name>
@@ -3057,6 +3063,7 @@
         </bonifications>
         <group>behaviour</group>
         <curse>true</curse>
+        <restricted>true</restricted>
     </outraged>
     <stubborn>
         <name>
@@ -3080,6 +3087,7 @@
         </bonifications>
         <group>behaviour</group>
         <curse>true</curse>
+        <restricted>true</restricted>
     </stubborn>
     <alert>
         <name>
@@ -3102,6 +3110,7 @@
             </bonification>
         </bonifications>
         <group>behaviour</group>
+        <restricted>true</restricted>
     </alert>
     <alertSleeping>
         <name>
@@ -3124,7 +3133,7 @@
             </bonification>
         </bonifications>
         <group>knacks</group>
-        <official>false</official>
+        <restricted>true</restricted>
     </alertSleeping>
     <untrusthworthy>
         <name>
@@ -3143,7 +3152,7 @@
             </bonification>
         </bonifications>
         <group>behaviour</group>
-        <official>false</official>
+        <restricted>true</restricted>
         <curse>true</curse>
     </untrusthworthy>
     <hardy>
@@ -3167,7 +3176,7 @@
             </bonification>
         </bonifications>
         <group>knacks</group>
-        <official>false</official>
+        <restricted>true</restricted>
     </hardy>
     <cybersympathy>
         <name>
@@ -3190,7 +3199,7 @@
             </bonification>
         </bonifications>
         <group>knacks</group>
-        <official>false</official>
+        <restricted>true</restricted>
     </cybersympathy>
     <weird>
         <name>
@@ -3213,7 +3222,7 @@
             </bonification>
         </bonifications>
         <group>behaviour</group>
-        <official>false</official>
+        <restricted>true</restricted>
         <curse>true</curse>
     </weird>
     <elan>
@@ -3237,7 +3246,7 @@
             </bonification>
         </bonifications>
         <group>behaviour</group>
-        <official>false</official>
+        <restricted>true</restricted>
     </elan>
     <indignant>
         <name>
@@ -3260,7 +3269,7 @@
             </bonification>
         </bonifications>
         <group>behaviour</group>
-        <official>false</official>
+        <restricted>true</restricted>
         <curse>true</curse>
     </indignant>
     <xenoEquestrian>
@@ -3284,7 +3293,7 @@
             </bonification>
         </bonifications>
         <group>knacks</group>
-        <official>false</official>
+        <restricted>true</restricted>
     </xenoEquestrian>
     <chameleon>
         <name>
@@ -3307,7 +3316,7 @@
             </bonification>
         </bonifications>
         <group>knacks</group>
-        <official>false</official>
+        <restricted>true</restricted>
     </chameleon>
     <alienated>
         <name>
@@ -3330,7 +3339,7 @@
             </bonification>
         </bonifications>
         <group>knacks</group>
-        <official>false</official>
+        <restricted>true</restricted>
         <curse>true</curse>
     </alienated>
     <condescending2>
@@ -3354,7 +3363,7 @@
             </bonification>
         </bonifications>
         <group>behaviour</group>
-        <official>false</official>
+        <restricted>true</restricted>
         <curse>true</curse>
     </condescending2>
     <awkward>
@@ -3379,6 +3388,7 @@
         </bonifications>
         <group>knacks</group>
         <official>false</official>
+        <restricted>true</restricted>
         <curse>true</curse>
     </awkward>
     <noFineManipulation>
@@ -3395,6 +3405,7 @@
         </bonifications>
         <group>knacks</group>
         <official>false</official>
+        <restricted>true</restricted>
         <curse>true</curse>
     </noFineManipulation>
     <mnemocnic>
@@ -3419,6 +3430,7 @@
         </bonifications>
         <group>knacks</group>
         <official>false</official>
+        <restricted>true</restricted>
     </mnemocnic>
     <claustrophobic>
         <name>
@@ -3442,6 +3454,7 @@
         </bonifications>
         <group>behaviour</group>
         <official>false</official>
+        <restricted>true</restricted>
         <curse>true</curse>
     </claustrophobic>
     <neurotic>
@@ -3466,6 +3479,7 @@
         </bonifications>
         <group>behaviour</group>
         <official>false</official>
+        <restricted>true</restricted>
         <curse>true</curse>
     </neurotic>
     <fourLegged>
@@ -3486,6 +3500,7 @@
         </bonifications>
         <group>knacks</group>
         <official>false</official>
+        <restricted>true</restricted>
     </fourLegged>
     <agileToes>
         <name>
@@ -3499,6 +3514,7 @@
         <cost>1</cost>
         <group>knacks</group>
         <official>false</official>
+        <restricted>true</restricted>
     </agileToes>
     <simbiotImmunity>
         <name>
@@ -3512,6 +3528,7 @@
         <cost>2</cost>
         <group>knacks</group>
         <official>false</official>
+        <restricted>true</restricted>
     </simbiotImmunity>
     <longFingersAndToes>
         <name>
@@ -3535,6 +3552,7 @@
         </bonifications>
         <group>knacks</group>
         <official>false</official>
+        <restricted>true</restricted>
     </longFingersAndToes>
     <omnidigestion>
         <name>
@@ -3548,6 +3566,7 @@
         <cost>2</cost>
         <group>knacks</group>
         <official>false</official>
+        <restricted>true</restricted>
     </omnidigestion>
     <prehensileTail>
         <name>
@@ -3571,6 +3590,7 @@
         </bonifications>
         <group>knacks</group>
         <official>false</official>
+        <restricted>true</restricted>
     </prehensileTail>
     <regeneration>
         <name>
@@ -3594,6 +3614,7 @@
         </bonifications>
         <group>knacks</group>
         <official>false</official>
+        <restricted>true</restricted>
     </regeneration>
     <hungry>
         <name>
@@ -3607,6 +3628,7 @@
         <cost>2</cost>
         <group>behaviour</group>
         <official>false</official>
+        <restricted>true</restricted>
         <curse>true</curse>
     </hungry>
     <stench>
@@ -3631,6 +3653,7 @@
         </bonifications>
         <group>appearance</group>
         <official>false</official>
+        <restricted>true</restricted>
         <curse>true</curse>
     </stench>
     <ssuVision>
@@ -3645,6 +3668,7 @@
         <cost>5</cost>
         <group>knacks</group>
         <official>false</official>
+        <restricted>true</restricted>
     </ssuVision>
     <commanding>
         <name>
@@ -3668,6 +3692,7 @@
         </bonifications>
         <group>behaviour</group>
         <official>false</official>
+        <restricted>true</restricted>
     </commanding>
     <arrogant>
         <name>
@@ -3691,6 +3716,7 @@
         </bonifications>
         <group>behaviour</group>
         <official>false</official>
+        <restricted>true</restricted>
         <curse>true</curse>
     </arrogant>
     <obedient>
@@ -3715,6 +3741,7 @@
         </bonifications>
         <group>behaviour</group>
         <official>false</official>
+        <restricted>true</restricted>
         <curse>true</curse>
     </obedient>
 
