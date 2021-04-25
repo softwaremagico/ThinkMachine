@@ -2050,7 +2050,7 @@
                 </situation>
             </bonification>
         </bonifications>
-        <group>restricted</group>
+        <group>knacks</group>
     </receptiveEars>
     <keenEyes>
         <name>
@@ -2863,7 +2863,7 @@
                 <affects>movement</affects>
             </bonification>
         </bonifications>
-        <group>restricted</group>
+        <group>size</group>
     </huge>
     <short>
         <name>
@@ -2932,7 +2932,7 @@
                 </situation>
             </bonification>
         </bonifications>
-        <group>restricted</group>
+        <group>behaviour</group>
     </predatory>
     <bitter>
         <name>
@@ -2954,7 +2954,7 @@
                 </situation>
             </bonification>
         </bonifications>
-        <group>restricted</group>
+        <group>knacks</group>
         <curse>true</curse>
     </bitter>
     <poisonClaw>
@@ -2967,7 +2967,7 @@
             <es>Esta bendición o maldición únicamente está disponible para algunas razas o facciones</es>
         </description>
         <cost>6</cost>
-        <group>restricted</group>
+        <group>knacks</group>
     </poisonClaw>
     <austere>
         <name>
@@ -2989,7 +2989,7 @@
                 </situation>
             </bonification>
         </bonifications>
-        <group>restricted</group>
+        <group>behaviour</group>
     </austere>
     <connected>
         <name>
@@ -3011,7 +3011,7 @@
                 </situation>
             </bonification>
         </bonifications>
-        <group>restricted</group>
+        <group>behaviour</group>
     </connected>
     <strongWilled>
         <name>
@@ -3033,7 +3033,7 @@
                 </situation>
             </bonification>
         </bonifications>
-        <group>restricted</group>
+        <group>knacks</group>
     </strongWilled>
     <outraged>
         <name>
@@ -3055,7 +3055,7 @@
                 </situation>
             </bonification>
         </bonifications>
-        <group>restricted</group>
+        <group>behaviour</group>
         <curse>true</curse>
     </outraged>
     <stubborn>
@@ -3078,7 +3078,7 @@
                 </situation>
             </bonification>
         </bonifications>
-        <group>restricted</group>
+        <group>behaviour</group>
         <curse>true</curse>
     </stubborn>
     <alert>
@@ -3101,7 +3101,7 @@
                 </situation>
             </bonification>
         </bonifications>
-        <group>restricted</group>
+        <group>behaviour</group>
     </alert>
     <alertSleeping>
         <name>
@@ -3123,7 +3123,7 @@
                 </situation>
             </bonification>
         </bonifications>
-        <group>restricted</group>
+        <group>knacks</group>
         <official>false</official>
     </alertSleeping>
     <untrusthworthy>
@@ -3142,7 +3142,7 @@
                 <affects>knavery</affects>
             </bonification>
         </bonifications>
-        <group>restricted</group>
+        <group>behaviour</group>
         <official>false</official>
         <curse>true</curse>
     </untrusthworthy>
@@ -3166,7 +3166,7 @@
                 </situation>
             </bonification>
         </bonifications>
-        <group>restricted</group>
+        <group>knacks</group>
         <official>false</official>
     </hardy>
     <cybersympathy>
@@ -3189,7 +3189,7 @@
                 </situation>
             </bonification>
         </bonifications>
-        <group>restricted</group>
+        <group>knacks</group>
         <official>false</official>
     </cybersympathy>
     <weird>
@@ -3212,7 +3212,7 @@
                 </situation>
             </bonification>
         </bonifications>
-        <group>restricted</group>
+        <group>behaviour</group>
         <official>false</official>
         <curse>true</curse>
     </weird>
@@ -3236,7 +3236,7 @@
                 </situation>
             </bonification>
         </bonifications>
-        <group>restricted</group>
+        <group>behaviour</group>
         <official>false</official>
     </elan>
     <indignant>
@@ -3259,7 +3259,7 @@
                 </situation>
             </bonification>
         </bonifications>
-        <group>restricted</group>
+        <group>behaviour</group>
         <official>false</official>
         <curse>true</curse>
     </indignant>
@@ -3283,7 +3283,7 @@
                 </situation>
             </bonification>
         </bonifications>
-        <group>restricted</group>
+        <group>knacks</group>
         <official>false</official>
     </xenoEquestrian>
     <chameleon>
@@ -3306,7 +3306,7 @@
                 </situation>
             </bonification>
         </bonifications>
-        <group>restricted</group>
+        <group>knacks</group>
         <official>false</official>
     </chameleon>
     <alienated>
@@ -3329,7 +3329,7 @@
                 </situation>
             </bonification>
         </bonifications>
-        <group>restricted</group>
+        <group>knacks</group>
         <official>false</official>
         <curse>true</curse>
     </alienated>
@@ -3353,7 +3353,7 @@
                 </situation>
             </bonification>
         </bonifications>
-        <group>restricted</group>
+        <group>behaviour</group>
         <official>false</official>
         <curse>true</curse>
     </condescending2>
@@ -3377,31 +3377,23 @@
                 </situation>
             </bonification>
         </bonifications>
-        <group>restricted</group>
+        <group>knacks</group>
         <official>false</official>
         <curse>true</curse>
     </awkward>
     <noFineManipulation>
         <name>
-            <en>Awkward</en>
-            <es>Desgarbado</es>
+            <en>No Fine Manipulation</en>
+            <es>Sin Manipulación Fina</es>
         </name>
         <description>
             <en>The following Blessing or Curse is only available for some specific races or factions</en>
             <es>Esta bendición o maldición únicamente está disponible para algunas razas o facciones</es>
         </description>
-        <cost>3</cost>
+        <cost>4</cost>
         <bonifications>
-            <bonification>
-                <value>-3</value>
-                <affects>dexterity</affects>
-                <situation>
-                    <en>Cramped quarters</en>
-                    <es>Sitios estrechos</es>
-                </situation>
-            </bonification>
         </bonifications>
-        <group>restricted</group>
+        <group>knacks</group>
         <official>false</official>
         <curse>true</curse>
     </noFineManipulation>
@@ -3425,7 +3417,7 @@
                 </situation>
             </bonification>
         </bonifications>
-        <group>restricted</group>
+        <group>knacks</group>
         <official>false</official>
     </mnemocnic>
     <claustrophobic>
@@ -3448,7 +3440,7 @@
                 </situation>
             </bonification>
         </bonifications>
-        <group>restricted</group>
+        <group>behaviour</group>
         <official>false</official>
         <curse>true</curse>
     </claustrophobic>
@@ -3472,7 +3464,7 @@
                 </situation>
             </bonification>
         </bonifications>
-        <group>restricted</group>
+        <group>behaviour</group>
         <official>false</official>
         <curse>true</curse>
     </neurotic>
@@ -3492,7 +3484,7 @@
                 <affects>movement</affects>
             </bonification>
         </bonifications>
-        <group>restricted</group>
+        <group>knacks</group>
         <official>false</official>
     </fourLegged>
     <agileToes>
@@ -3505,7 +3497,7 @@
             <es>Los pies pueden funcionar como manos para laobres de manipulación, per no en combate.</es>
         </description>
         <cost>1</cost>
-        <group>restricted</group>
+        <group>knacks</group>
         <official>false</official>
     </agileToes>
     <simbiotImmunity>
@@ -3518,7 +3510,7 @@
             <es>Infección simbionte</es>
         </description>
         <cost>2</cost>
-        <group>restricted</group>
+        <group>knacks</group>
         <official>false</official>
     </simbiotImmunity>
     <longFingersAndToes>
@@ -3541,7 +3533,7 @@
                 </situation>
             </bonification>
         </bonifications>
-        <group>restricted</group>
+        <group>knacks</group>
         <official>false</official>
     </longFingersAndToes>
     <omnidigestion>
@@ -3554,7 +3546,7 @@
             <es>Dieta amplia, pero no inmune a toxinas mortales.</es>
         </description>
         <cost>2</cost>
-        <group>restricted</group>
+        <group>knacks</group>
         <official>false</official>
     </omnidigestion>
     <prehensileTail>
@@ -3577,7 +3569,7 @@
                 </situation>
             </bonification>
         </bonifications>
-        <group>restricted</group>
+        <group>knacks</group>
         <official>false</official>
     </prehensileTail>
     <regeneration>
@@ -3600,7 +3592,7 @@
                 </situation>
             </bonification>
         </bonifications>
-        <group>restricted</group>
+        <group>knacks</group>
         <official>false</official>
     </regeneration>
     <hungry>
@@ -3613,7 +3605,7 @@
             <es>Apetito voraz en período de curación</es>
         </description>
         <cost>2</cost>
-        <group>restricted</group>
+        <group>behaviour</group>
         <official>false</official>
         <curse>true</curse>
     </hungry>
@@ -3637,7 +3629,7 @@
                 </situation>
             </bonification>
         </bonifications>
-        <group>restricted</group>
+        <group>appearance</group>
         <official>false</official>
         <curse>true</curse>
     </stench>
@@ -3651,7 +3643,7 @@
             <es>Esta bendición o maldición únicamente está disponible para algunas razas o facciones</es>
         </description>
         <cost>5</cost>
-        <group>restricted</group>
+        <group>knacks</group>
         <official>false</official>
     </ssuVision>
     <commanding>
@@ -3674,7 +3666,7 @@
                 </situation>
             </bonification>
         </bonifications>
-        <group>restricted</group>
+        <group>behaviour</group>
         <official>false</official>
     </commanding>
     <arrogant>
@@ -3697,7 +3689,7 @@
                 </situation>
             </bonification>
         </bonifications>
-        <group>restricted</group>
+        <group>behaviour</group>
         <official>false</official>
         <curse>true</curse>
     </arrogant>
@@ -3721,7 +3713,7 @@
                 </situation>
             </bonification>
         </bonifications>
-        <group>restricted</group>
+        <group>behaviour</group>
         <official>false</official>
         <curse>true</curse>
     </obedient>
