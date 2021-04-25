@@ -329,7 +329,8 @@ public abstract class XmlFactory<T extends Element<T>> implements IElementRetrie
 
                 Boolean official = null;
                 try {
-                    official = Boolean.parseBoolean(getTranslator(moduleName).getNodeValue(elementId, OFFICIAL));
+                    final String officialTag = getTranslator(moduleName).getNodeValue(elementId, OFFICIAL);
+                    official = (officialTag == null || Boolean.parseBoolean(officialTag));
                 } catch (Exception e) {
                     //Restriction is not mandatory.
                 }

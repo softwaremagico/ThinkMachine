@@ -194,8 +194,13 @@ public class ProfileTests {
     }
 
     @Test
-    public void restricted() throws InvalidXmlElementException {
+    public void notOfficial() throws InvalidXmlElementException {
         Assert.assertFalse(RandomProfileFactory.getInstance().getElement("shantor", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).isOfficial());
+    }
+
+    @Test
+    public void official() throws InvalidXmlElementException {
+        Assert.assertTrue(RandomProfileFactory.getInstance().getElement("vorox", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).isOfficial());
     }
 
     @Test
