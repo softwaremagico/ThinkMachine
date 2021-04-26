@@ -384,7 +384,7 @@ public class CustomCharacters {
     }
 
     @Test
-    public void createNoeliaCharacer()
+    public void createNoeliaCharacter()
             throws InvalidXmlElementException, TooManyBlessingsException, BeneficeAlreadyAddedException, BlessingAlreadyAddedException, InvalidRanksException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.getInfo().addName(new Name("Noelia", player.getLanguage(), player.getModuleName(), Gender.FEMALE, null));
@@ -454,13 +454,11 @@ public class CustomCharacters {
         player.addOccultismPower(
                 OccultismPathFactory.getInstance().getElement("psyche", player.getLanguage(), player.getModuleName())
                         .getOccultismPowers().get("mindSight"));
-        player.addExtraWyrd(3);
+        player.addExtraWyrd(5);
 
         player.addBlessing(
                 BlessingFactory.getInstance().getElement("horribleScar", player.getLanguage(), player.getModuleName()));
 
-        player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("ordained [novitiate]",
-                player.getLanguage(), player.getModuleName()));
         player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("language [urthish]", player.getLanguage(),
                 player.getModuleName()));
         player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("stigma_3", player.getLanguage(),

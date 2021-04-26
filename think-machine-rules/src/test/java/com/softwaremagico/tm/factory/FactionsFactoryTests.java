@@ -35,8 +35,8 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 @Test(groups = {"factionsFactory"})
-public class FactionFactoryTests {
-    private static final int DEFINED_FACTIONS = 38;
+public class FactionsFactoryTests {
+    private static final int DEFINED_FACTIONS = 40;
     private static final int DEFINED_MALE_NAMES = 103;
     private static final int DEFINED_FEMALE_NAMES = 100;
     private static final int DEFINED_SURNAMES = 125;
@@ -63,8 +63,7 @@ public class FactionFactoryTests {
 
     @Test
     public void readFactions() throws InvalidXmlElementException {
-        Assert.assertEquals(DEFINED_FACTIONS,
-                FactionsFactory.getInstance().getElements(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).size());
+        Assert.assertEquals(FactionsFactory.getInstance().getElements(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).size(), DEFINED_FACTIONS);
     }
 
     @Test

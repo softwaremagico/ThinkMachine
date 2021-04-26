@@ -1595,7 +1595,7 @@
         </name>
         <group>barbarian</group>
         <profile>kurgan</profile>
-        <weapons>rapier, sword</weapons>
+        <weapons>rapier, curvedSword</weapons>
         <armours>leatherJerkin</armours>
     </kurgan>
     <vuldrok>

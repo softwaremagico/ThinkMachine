@@ -53,7 +53,7 @@
             <class name="com.softwaremagico.tm.factory.SkillFactoryTests"/>
             <class name="com.softwaremagico.tm.factory.RaceFactoryTests"/>
             <class name="com.softwaremagico.tm.factory.DamageTypeFactoryTests"/>
-            <class name="com.softwaremagico.tm.factory.FactionFactoryTests"/>
+            <class name="com.softwaremagico.tm.factory.FactionsFactoryTests"/>
             <class
                     name="com.softwaremagico.tm.factory.CharacteristicsDefinitionFactoryTests"/>
             <class name="com.softwaremagico.tm.factory.WeaponsFactoryTests"/>

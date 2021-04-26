@@ -576,9 +576,7 @@ public class CharacterPlayer {
         if (getBenefice(benefice.getBeneficeDefinition().getId()) != null) {
             throw new BeneficeAlreadyAddedException("Character already has benefice '" + benefice + "'!");
         }
-        if (getFaction() != null) {
-            checkBenefices(benefice);
-        }
+        checkBeneficesRestrictions(benefice);
         benefices.add(benefice);
         getCharacterModificationHandler().launchBeneficesUpdatedListener(benefice, false);
         Collections.sort(benefices);
@@ -1041,6 +1039,16 @@ public class CharacterPlayer {
                             .setValue(raceMaxValue);
                 }
             }
+            for (final AvailableBenefice benefice : new ArrayList<>(getSelectedBenefices())) {
+                try {
+                    checkBeneficesRestrictions(benefice);
+                } catch (InvalidBeneficeException e) {
+                    //Remove invalid benefice.
+                    MachineLog.warning(this.getClass().getName(), "Removing benefice '" + benefice + "' do to restrictions to race '"
+                            + race + "'.");
+                    removeBenefice(benefice);
+                }
+            }
         }
     }
 
@@ -1436,7 +1444,7 @@ public class CharacterPlayer {
             throw new InvalidFactionException("Faction is null!");
         }
         //Race must have an id to avoid custom races.
-        if (getRace() != null && getRace().getId() != null && !faction.getRestrictedToRaces().isEmpty() &&
+        if (faction != null && getRace() != null && getRace().getId() != null && !faction.getRestrictedToRaces().isEmpty() &&
                 !faction.getRestrictedToRaces().contains(getRace())) {
             throw new InvalidFactionException("Faction '" + faction + "' is restricted to '" + faction.getRestrictedToRaces() + "'");
         }
@@ -1445,7 +1453,7 @@ public class CharacterPlayer {
             this.faction = faction;
             for (final AvailableBenefice benefice : new ArrayList<>(getSelectedBenefices())) {
                 try {
-                    checkBenefices(benefice);
+                    checkBeneficesRestrictions(benefice);
                 } catch (InvalidBeneficeException e) {
                     //Remove invalid benefice.
                     MachineLog.warning(this.getClass().getName(), "Removing benefice '" + benefice + "' do to restrictions to faction '"
@@ -1456,14 +1464,26 @@ public class CharacterPlayer {
         }
     }
 
-    private void checkBenefices(AvailableBenefice benefice) throws InvalidBeneficeException {
-        for (final RestrictedBenefice restrictedBenefice : getFaction().getRestrictedBenefices()) {
-            if (Objects.equals(restrictedBenefice.getBeneficeDefinition(), benefice.getBeneficeDefinition())) {
-                if (benefice.getCost() > restrictedBenefice.getMaxValue()) {
-                    throw new InvalidBeneficeException("Faction '" + getFaction()
-                            + "' limits the cost of benefit to '" + restrictedBenefice.getMaxValue() + "'");
+    private void checkBeneficesRestrictions(AvailableBenefice benefice) throws InvalidBeneficeException {
+        if (getFaction() != null) {
+            for (final RestrictedBenefice restrictedBenefice : getFaction().getRestrictedBenefices()) {
+                if (Objects.equals(restrictedBenefice.getBeneficeDefinition(), benefice.getBeneficeDefinition())) {
+                    if (benefice.getCost() > restrictedBenefice.getMaxValue()) {
+                        throw new InvalidBeneficeException("Faction '" + getFaction()
+                                + "' limits the cost of benefit to '" + restrictedBenefice.getMaxValue() + "'");
+                    }
                 }
             }
+        }
+        if (benefice.getBeneficeDefinition().getRestrictedFactionGroup() != null && (getFaction() == null ||
+                !Objects.equals(benefice.getBeneficeDefinition().getRestrictedFactionGroup(), getFaction().getFactionGroup()))) {
+            throw new InvalidBeneficeException("Benefice '" + benefice
+                    + "' is restricted to faction '" + benefice.getBeneficeDefinition().getRestrictedFactionGroup() + "'");
+        }
+        if (!benefice.getBeneficeDefinition().getRestrictedToRaces().isEmpty() &&
+                !benefice.getBeneficeDefinition().getRestrictedToRaces().contains(getRace())) {
+            throw new InvalidBeneficeException("Benefice '" + benefice
+                    + "' is restricted to race '" + benefice.getBeneficeDefinition().getRestrictedToRaces() + "'");
         }
     }
 
