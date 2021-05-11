@@ -1660,20 +1660,20 @@
                     <es>Escudo de Vis</es>
                 </name>
                 <description>
-                    <en>El psíquico puede usar su propia energía bioeléctrica para levantar un escudo personal de
+                    <en>The psychic may use his own bioelectrical energy to erect a personal energy shield around
+                        himself. This acts similar a standard energy shield; it allows 1 hit per Victory Point at
+                        activation and the Protection rating is 5/10. In addition, the field fluctuates at need, so the
+                        character can wear any form of armor he desires without compromising the field. Note that this
+                        field does not interfere with the Vis Flow power (above); attacks absorbed by this power can be
+                        transferred elsewhere.
+                    </en>
+                    <es>El psíquico puede usar su propia energía bioeléctrica para levantar un escudo personal de
                         energía a su alrededor. Este actúa de manera similar a un escudo de energía estándar; permite 1
                         impacto por cada PV a la hora de activarse y la puntuación de Protección es de 5/10. Además, el
                         campo fluctúa según se necesite, de modo que el personaje puede llevar cualquier tipo de
                         armadura que desee sin comprometer la integridad del campo de fuerza. Nótese que este campo no
                         interfiere con el poder de Flujo de Vis (visto anteriormente). Los ataques que sean absorbidos
                         por este poder pueden transferirse a donde se desee.
-                    </en>
-                    <es>The psychic may use his own bioelectrical energy to erect a personal energy shield around
-                        himself. This acts similar a standard energy shield; it allows 1 hit per Victory Point at
-                        activation and the Protection rating is 5/10. In addition, the field fluctuates at need, so the
-                        character can wear any form of armor he desires without compromising the field. Note that this
-                        field does not interfere with the Vis Flow power (above); attacks absorbed by this power can be
-                        transferred elsewhere.
                     </es>
                 </description>
                 <level>5</level>
@@ -1697,7 +1697,7 @@
                         up to a maximum of 3. Extra shots in this way work just like other ranged weapons for rate of
                         fire rules (see Chapter 9: Combat, p. 226).
                     </en>
-                    <es>Armas de Energía, Sensorial, Instantáneo, 1W). El psíquico puede proyectar energía a un objetivo
+                    <es>El psíquico puede proyectar energía a un objetivo
                         desde la distancia. El daño es igual a la fortaleza en puntos de daño, más un dado por cada
                         Punto de Victoria, hasta un máximo igual a la puntuación de Psique. Además, este daño puede
                         colarse a través de un escudo de energía si en los dados de daño se obtiene como resultado un 1
