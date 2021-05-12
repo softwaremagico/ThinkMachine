@@ -78,7 +78,7 @@
 				</description>
 			</gripppingHand>
 		</stances>
-		<restrictedRaces>vorox</restrictedRaces>
+		<restrictedToRaces>vorox</restrictedToRaces>
 	</graa>
 	<joxKaiVon>
 		<name>

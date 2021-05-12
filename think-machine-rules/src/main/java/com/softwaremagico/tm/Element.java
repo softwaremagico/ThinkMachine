@@ -1,8 +1,13 @@
 package com.softwaremagico.tm;
 
 import com.google.common.base.Objects;
+import com.softwaremagico.tm.character.factions.FactionGroup;
+import com.softwaremagico.tm.character.races.Race;
 import com.softwaremagico.tm.json.ExcludeFromJson;
 import com.softwaremagico.tm.random.definition.RandomElementDefinition;
+
+import java.util.HashSet;
+import java.util.Set;
 
 /*-
  * #%L
@@ -53,6 +58,12 @@ public class Element<T extends Element<?>> implements Comparable<T> {
 
     @ExcludeFromJson
     private boolean official = true;
+
+    @ExcludeFromJson
+    private Set<Race> restrictedToRaces = new HashSet<>();
+
+    @ExcludeFromJson
+    private FactionGroup restrictedToFactionGroup = null;
 
     /**
      * For creating empty elements.
@@ -179,5 +190,21 @@ public class Element<T extends Element<?>> implements Comparable<T> {
 
     public void setOfficial(boolean official) {
         this.official = official;
+    }
+
+    public Set<Race> getRestrictedToRaces() {
+        return restrictedToRaces;
+    }
+
+    public void setRestrictedToRaces(Set<Race> restrictedToRaces) {
+        this.restrictedToRaces = restrictedToRaces;
+    }
+
+    public FactionGroup getRestrictedToFactionGroup() {
+        return restrictedToFactionGroup;
+    }
+
+    public void setRestrictedToFactionGroup(FactionGroup restrictedToFactionGroup) {
+        this.restrictedToFactionGroup = restrictedToFactionGroup;
     }
 }

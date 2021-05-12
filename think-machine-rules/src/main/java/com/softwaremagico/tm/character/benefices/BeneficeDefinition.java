@@ -25,8 +25,6 @@ package com.softwaremagico.tm.character.benefices;
  */
 
 import com.softwaremagico.tm.Element;
-import com.softwaremagico.tm.character.factions.FactionGroup;
-import com.softwaremagico.tm.character.races.Race;
 
 import java.util.HashSet;
 import java.util.List;
@@ -38,16 +36,13 @@ public class BeneficeDefinition extends Element<BeneficeDefinition> {
     private final Set<String> incompatibleWith = new HashSet<>();
     private final BeneficeGroup group;
     private final BeneficeClassification beneficeClassification;
-    private final FactionGroup restrictedFactionGroup;
-    private Set<Race> restrictedToRaces = new HashSet<>();
 
     public BeneficeDefinition(String id, String name, String description, String language, String moduleName, List<Integer> costs, BeneficeGroup group,
-                              BeneficeClassification beneficeClassification, FactionGroup restricted, Set<String> incompatibleWith) {
+                              BeneficeClassification beneficeClassification, Set<String> incompatibleWith) {
         super(id, name, description, language, moduleName);
         this.costs = costs;
         this.group = group;
         this.beneficeClassification = beneficeClassification;
-        this.restrictedFactionGroup = restricted;
         this.incompatibleWith.addAll(incompatibleWith);
     }
 
@@ -71,10 +66,6 @@ public class BeneficeDefinition extends Element<BeneficeDefinition> {
         return beneficeClassification;
     }
 
-    public FactionGroup getRestrictedFactionGroup() {
-        return restrictedFactionGroup;
-    }
-
     @Override
     public int hashCode() {
         return super.hashCode();
@@ -89,11 +80,5 @@ public class BeneficeDefinition extends Element<BeneficeDefinition> {
         return incompatibleWith;
     }
 
-    public Set<Race> getRestrictedToRaces() {
-        return restrictedToRaces;
-    }
 
-    public void setRestrictedToRaces(Set<Race> restrictedToRaces) {
-        this.restrictedToRaces = restrictedToRaces;
-    }
 }

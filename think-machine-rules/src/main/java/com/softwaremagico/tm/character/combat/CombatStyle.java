@@ -28,9 +28,10 @@ import com.softwaremagico.tm.Element;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.benefices.BeneficeDefinition;
-import com.softwaremagico.tm.character.races.Race;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class CombatStyle extends Element<CombatStyle> {
@@ -38,14 +39,12 @@ public class CombatStyle extends Element<CombatStyle> {
     private final CombatStyleGroup group;
     private final List<CombatStance> combatStances;
     private final List<CombatAction> combatActions;
-    private final Set<Race> restrictedRaces;
 
     public CombatStyle(String id, String name, String description, String language, String moduleName, CombatStyleGroup group) {
         super(id, name, description, language, moduleName);
         combatActions = new ArrayList<>();
         this.group = group;
         combatStances = new ArrayList<>();
-        restrictedRaces = new HashSet<>();
     }
 
     public int getCost() {
@@ -88,8 +87,8 @@ public class CombatStyle extends Element<CombatStyle> {
     }
 
     public boolean isAvailable(CharacterPlayer characterPlayer) {
-        return getRestrictedRaces().isEmpty() || (characterPlayer.getRace() != null &&
-                getRestrictedRaces().contains(characterPlayer.getRace()));
+        return getRestrictedToRaces().isEmpty() || (characterPlayer.getRace() != null &&
+                getRestrictedToRaces().contains(characterPlayer.getRace()));
     }
 
     public void addCombatAction(CombatAction combatAction) {
@@ -117,14 +116,6 @@ public class CombatStyle extends Element<CombatStyle> {
         } catch (InvalidXmlElementException e) {
             return null;
         }
-    }
-
-    public void addRestrictedRace(Race race) {
-        restrictedRaces.add(race);
-    }
-
-    public Set<Race> getRestrictedRaces() {
-        return restrictedRaces;
     }
 
     @Override

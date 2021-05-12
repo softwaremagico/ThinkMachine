@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <skills>
     <version>1</version>
-    <totalElements>56</totalElements>
+    <totalElements>57</totalElements>
     <influence>
         <name>
             <en>Influence</en>
@@ -808,5 +808,18 @@
             <probabilityMultiplier>0</probabilityMultiplier>
         </random>
     </xEyes>
+    <fly>
+        <name>
+            <en>Fly</en>
+            <es>Volar</es>
+        </name>
+        <group>physical</group>
+        <random>
+            <probabilityMultiplier>0</probabilityMultiplier>
+        </random>
+        <official>false</official>
+        <restricted>true</restricted>
+        <restrictedToRaces>etyri</restrictedToRaces>
+    </fly>
 
 </skills>

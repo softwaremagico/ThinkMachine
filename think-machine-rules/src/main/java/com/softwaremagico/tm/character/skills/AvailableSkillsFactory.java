@@ -44,7 +44,7 @@ public class AvailableSkillsFactory {
         return AvailableSkillsFactoryInit.INSTANCE;
     }
 
-    public void clearCache() {
+    public void refreshCache() {
         elements = new HashMap<>();
         naturalSkills = new HashMap<>();
         learnedSkills = new HashMap<>();

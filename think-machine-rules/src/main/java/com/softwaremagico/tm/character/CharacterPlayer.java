@@ -1475,10 +1475,10 @@ public class CharacterPlayer {
                 }
             }
         }
-        if (benefice.getBeneficeDefinition().getRestrictedFactionGroup() != null && (getFaction() == null ||
-                !Objects.equals(benefice.getBeneficeDefinition().getRestrictedFactionGroup(), getFaction().getFactionGroup()))) {
+        if (benefice.getBeneficeDefinition().getRestrictedToFactionGroup() != null && (getFaction() == null ||
+                !Objects.equals(benefice.getBeneficeDefinition().getRestrictedToFactionGroup(), getFaction().getRestrictedToFactionGroup()))) {
             throw new InvalidBeneficeException("Benefice '" + benefice
-                    + "' is restricted to faction '" + benefice.getBeneficeDefinition().getRestrictedFactionGroup() + "'");
+                    + "' is restricted to faction '" + benefice.getBeneficeDefinition().getRestrictedToFactionGroup() + "'");
         }
         if (!benefice.getBeneficeDefinition().getRestrictedToRaces().isEmpty() &&
                 !benefice.getBeneficeDefinition().getRestrictedToRaces().contains(getRace())) {
@@ -1656,7 +1656,7 @@ public class CharacterPlayer {
      * @return an occultism type or null if nothing has been selected.
      */
     public OccultismType getOccultismType() {
-        if (getFaction() != null && getFaction().getFactionGroup() == FactionGroup.CHURCH) {
+        if (getFaction() != null && getFaction().getRestrictedToFactionGroup() == FactionGroup.CHURCH) {
             return OccultismTypeFactory.getTheurgy(getLanguage(), getModuleName());
         }
         try {

@@ -35,7 +35,6 @@ import com.softwaremagico.tm.character.benefices.RestrictedBenefice;
 import com.softwaremagico.tm.character.benefices.SuggestedBenefice;
 import com.softwaremagico.tm.character.blessings.BlessingFactory;
 import com.softwaremagico.tm.character.races.Race;
-import com.softwaremagico.tm.character.races.RaceFactory;
 import com.softwaremagico.tm.json.factories.cache.FactoryCacheLoader;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.log.MachineXmlReaderLog;
@@ -50,7 +49,6 @@ public class FactionsFactory extends XmlFactory<Faction> {
     private static final String GROUP = "group";
     private static final String RANKS_TAG = "ranks";
     private static final String RANKS_TRANSLATION_TAG = "translation";
-    private static final String RACE = "race";
     private static final String BLESSINGS = "blessings";
     private static final String BENEFICES = "benefices";
     private static final String SUGGESTED_BENEFICES = "suggestedBenefices";
@@ -166,23 +164,7 @@ public class FactionsFactory extends XmlFactory<Faction> {
                 factionGroup = FactionGroup.NONE;
             }
 
-            final String raceRestrictionNames = translator.getNodeValue(factionId, RACE);
-            final Set<Race> raceRestrictions = new HashSet<>();
-            if (raceRestrictionNames == null) {
-                throw new InvalidFactionException(
-                        "Race not defined in faction '" + factionId + "'. Factions must have a race restriction.");
-            }
-
-            final StringTokenizer raceNamesTokenizer = new StringTokenizer(raceRestrictionNames, ",");
-            try {
-                while (raceNamesTokenizer.hasMoreTokens()) {
-                    raceRestrictions.add(RaceFactory.getInstance().getElement(raceNamesTokenizer.nextToken().trim(), language, moduleName));
-                }
-            } catch (InvalidXmlElementException ixe) {
-                throw new InvalidFactionException("Error in faction '" + factionId + "' structure. Invalid race on '" + raceNamesTokenizer + "'. ",
-                        ixe);
-            }
-            final Faction faction = new Faction(factionId, name, description, factionGroup, raceRestrictions, language, moduleName);
+            final Faction faction = new Faction(factionId, name, description, language, moduleName);
 
             for (final String rankId : translator.getAllChildrenTags(factionId, RANKS_TAG)) {
                 final String rankName = translator.getNodeValue(factionId, rankId, RANKS_TRANSLATION_TAG, language);
@@ -222,6 +204,15 @@ public class FactionsFactory extends XmlFactory<Faction> {
         } catch (Exception e) {
             throw new InvalidFactionException("Invalid structure in faction '" + factionId + "'.", e);
         }
+    }
+
+    @Override
+    protected void setRestrictedToRaces(Faction faction, Set<Race> races) throws InvalidFactionException {
+        if (races == null || races.isEmpty()) {
+            throw new InvalidFactionException(
+                    "Race not defined in faction '" + faction.getId() + "'. Factions must have a race restriction.");
+        }
+        faction.setRestrictedToRaces(races);
     }
 
     private void addName(Name name) {

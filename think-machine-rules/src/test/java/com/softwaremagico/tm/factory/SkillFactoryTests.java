@@ -34,7 +34,7 @@ import org.testng.annotations.Test;
 public class SkillFactoryTests {
     private static final String LANGUAGE = "es";
     private static final int NATURAL_SKILLS = 9;
-    private static final int LEARNED_SKILLS = 47;
+    private static final int LEARNED_SKILLS = 48;
     private static final int VERSION = 1;
 
     @Test

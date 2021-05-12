@@ -37,7 +37,7 @@ public class AvailableBeneficeFactory implements IElementRetriever<AvailableBene
     private Map<String, Map<String, Map<BeneficeDefinition, Set<AvailableBenefice>>>> availableBeneficesByDefinition;
 
     private AvailableBeneficeFactory() {
-        clearCache();
+        refreshCache();
     }
 
     private static class AvailableBeneficeFactoryInit {
@@ -48,7 +48,7 @@ public class AvailableBeneficeFactory implements IElementRetriever<AvailableBene
         return AvailableBeneficeFactoryInit.INSTANCE;
     }
 
-    public void clearCache() {
+    public void refreshCache() {
         availableBenefices = new HashMap<>();
         availableBeneficesByDefinition = new HashMap<>();
     }

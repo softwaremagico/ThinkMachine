@@ -68,7 +68,7 @@ public class RandomPlanet extends RandomSelector<Planet> {
             return FACTION_PLANET;
         }
         for (final Faction factionsOfPlanet : planet.getFactions()) {
-            if (factionsOfPlanet.getFactionGroup() == getCharacterPlayer().getFaction().getFactionGroup()) {
+            if (factionsOfPlanet.getRestrictedToFactionGroup() == getCharacterPlayer().getFaction().getRestrictedToFactionGroup()) {
                 return ENEMY_PLANET;
             }
         }

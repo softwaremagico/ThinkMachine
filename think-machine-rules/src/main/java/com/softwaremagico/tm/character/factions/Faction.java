@@ -31,7 +31,6 @@ import com.softwaremagico.tm.character.benefices.RestrictedBenefice;
 import com.softwaremagico.tm.character.benefices.SuggestedBenefice;
 import com.softwaremagico.tm.character.blessings.Blessing;
 import com.softwaremagico.tm.character.blessings.BlessingClassification;
-import com.softwaremagico.tm.character.races.Race;
 import com.softwaremagico.tm.log.MachineLog;
 
 import java.util.HashSet;
@@ -39,24 +38,17 @@ import java.util.Objects;
 import java.util.Set;
 
 public class Faction extends Element<Faction> {
-    private final FactionGroup factionGroup;
     private final Set<FactionRankTranslation> ranksTranslations = new HashSet<>();
-    private final Set<Race> restrictedToRaces;
     private Set<Blessing> blessings = null;
     private Set<AvailableBenefice> benefices = null;
     private Set<SuggestedBenefice> suggestedBenefices = null;
     private Set<RestrictedBenefice> restrictedBenefices = null;
 
-    public Faction(String id, String name, String description, FactionGroup factionGroup, Set<Race> restrictedToRace, String language,
+    public Faction(String id, String name, String description, String language,
                    String moduleName) {
         super(id, name, description, language, moduleName);
-        this.factionGroup = factionGroup;
-        this.restrictedToRaces = restrictedToRace;
     }
 
-    public FactionGroup getFactionGroup() {
-        return factionGroup;
-    }
 
     public void addRankTranslation(FactionRankTranslation factionRank) {
         ranksTranslations.add(factionRank);
@@ -73,10 +65,6 @@ public class Faction extends Element<Faction> {
             }
         }
         return null;
-    }
-
-    public Set<Race> getRestrictedToRaces() {
-        return restrictedToRaces;
     }
 
     public Set<Blessing> getBlessings() {

@@ -27,6 +27,7 @@ package com.softwaremagico.tm;
 import com.softwaremagico.tm.character.factions.FactionGroup;
 import com.softwaremagico.tm.character.factions.FactionsFactory;
 import com.softwaremagico.tm.character.factions.InvalidFactionException;
+import com.softwaremagico.tm.character.races.Race;
 import com.softwaremagico.tm.character.races.RaceFactory;
 import com.softwaremagico.tm.file.modules.ModuleManager;
 import com.softwaremagico.tm.json.factories.cache.FactoryCacheLoader;
@@ -44,13 +45,14 @@ public abstract class XmlFactory<T extends Element<T>> implements IElementRetrie
 
     private static final String RANDOM = "random";
     private static final String ELEMENT_PROBABILITY_MULTIPLIER = "probabilityMultiplier";
-    private static final String RESTRICTED_FACTIONS = "restrictedFactions";
+    private static final String RESTRICTED_RANDOM_FACTIONS = "restrictedFactions";
+    private static final String RESTRICTED_FACTIONGROUP_TAG = "restrictedToFactionGroup";
     private static final String MIN_TECH_LEVEL = "minTechLevel";
     private static final String MAX_TECH_LEVEL = "maxTechLevel";
     private static final String RECOMMENDED_FACTIONS = "recommendedFactions";
     private static final String RECOMMENDED_FACTION_GROUPS = "recommendedFactionGroups";
     private static final String RESTRICTED_FACTION_GROUPS = "restrictedFactionGroups";
-    private static final String RESTRICTED_RACES = "restrictedRaces";
+    private static final String RESTRICTED_RACES = "restrictedToRaces";
     private static final String FORBIDDEN_RACES = "forbiddenRaces";
     private static final String RECOMMENDED_RACES = "recommendedRaces";
     private static final String GENERAL_PROBABILITY = "generalProbability";
@@ -100,7 +102,7 @@ public abstract class XmlFactory<T extends Element<T>> implements IElementRetrie
     protected void setRandomConfiguration(Element<?> element, ITranslator translator, String language, String moduleName) throws InvalidXmlElementException {
         // Is an element restricted to a faction?
         try {
-            final String restrictedFactionsId = translator.getNodeValue(element.getId(), RANDOM, RESTRICTED_FACTIONS);
+            final String restrictedFactionsId = translator.getNodeValue(element.getId(), RANDOM, RESTRICTED_RANDOM_FACTIONS);
             if (restrictedFactionsId != null) {
                 final StringTokenizer factionTokenizer = new StringTokenizer(restrictedFactionsId, ",");
                 while (factionTokenizer.hasMoreTokens()) {
@@ -335,9 +337,19 @@ public abstract class XmlFactory<T extends Element<T>> implements IElementRetrie
                     //Restriction is not mandatory.
                 }
 
+                final Set<Race> races = getCommaSeparatedValues(elementId, RESTRICTED_RACES, language, moduleName, RaceFactory.getInstance());
+
+                final String restriction = getTranslator(moduleName).getNodeValue(elementId, RESTRICTED_FACTIONGROUP_TAG);
+                FactionGroup restrictedToGroup = null;
+                if (restriction != null) {
+                    restrictedToGroup = FactionGroup.get(restriction);
+                }
+
 
                 final T element = createElement(getTranslator(moduleName), elementId, name, description, language, moduleName);
                 setRandomConfiguration(element, getTranslator(moduleName), language, moduleName);
+                setRestrictedToRaces(element, races);
+                setRestrictedFactionGroup(element, restrictedToGroup);
                 if (restricted != null) {
                     element.setRestricted(restricted);
                 }
@@ -352,6 +364,14 @@ public abstract class XmlFactory<T extends Element<T>> implements IElementRetrie
             Collections.sort(elements.get(language).get(moduleName));
         }
         return elements.get(language).get(moduleName);
+    }
+
+    protected void setRestrictedToRaces(T element, Set<Race> races) throws InvalidXmlElementException {
+        element.setRestrictedToRaces(races);
+    }
+
+    protected void setRestrictedFactionGroup(T element, FactionGroup factionGroup) throws InvalidXmlElementException {
+        element.setRestrictedToFactionGroup(factionGroup);
     }
 
     @Override

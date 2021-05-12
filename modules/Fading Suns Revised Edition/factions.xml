@@ -7,8 +7,8 @@
             <en>Hawkwood</en>
             <es>Hawkwood</es>
         </name>
-        <group>nobility</group>
-        <race>human</race>
+        <restrictedToFactionGroup>nobility</restrictedToFactionGroup>
+        <restrictedToRaces>human</restrictedToRaces>
         <blessings>unyielding, prideful</blessings>
         <suggestedBenefices>
             <benefice>
@@ -51,8 +51,8 @@
             <en>The Decados</en>
             <es>Los Decados</es>
         </name>
-        <group>nobility</group>
-        <race>human</race>
+        <restrictedToFactionGroup>nobility</restrictedToFactionGroup>
+        <restrictedToRaces>human</restrictedToRaces>
         <blessings>suspicious, vain</blessings>
         <suggestedBenefices>
             <benefice>
@@ -93,8 +93,8 @@
             <en>The Hazat</en>
             <es>Los Hazat</es>
         </name>
-        <group>nobility</group>
-        <race>human</race>
+        <restrictedToFactionGroup>nobility</restrictedToFactionGroup>
+        <restrictedToRaces>human</restrictedToRaces>
         <blessings>disciplined, vengeful</blessings>
         <suggestedBenefices>
             <benefice>
@@ -131,7 +131,7 @@
                     Polonia, Primitiva, Prudencia, Refugia, Restituta, Romidia, Serafina, Sinesia, Sinforosa, Sesebuta,
                     Tecla, Teodolina, Tiburcia, Trinidad, Uberlinda, Ulpiana, Vitalia, Zenobia, Zoila, Clarissa, Camina,
                     Juliette, Matilda, Ambrosia, Antolina, Arundina, Basilisa, Cayetana, Calista, Donora, Dosinda,
-                    Adriana, Aracelis, Celia, Decia, Desideria, Diana, Estela, Fabia, Gala, Justina, Lilia, Loreto,
+                    Adriana, ArestrictedToRaceslis, Celia, Decia, Desideria, Diana, Estela, Fabia, Gala, Justina, Lilia, Loreto,
                     Maira, Paulina, Severina, Sira, Valeria
                 </female>
             </names>
@@ -154,8 +154,8 @@
             <en>Li Halan</en>
             <es>Li Halan</es>
         </name>
-        <group>nobility</group>
-        <race>human</race>
+        <restrictedToFactionGroup>nobility</restrictedToFactionGroup>
+        <restrictedToRaces>human</restrictedToRaces>
         <blessings>pious, guilty</blessings>
         <suggestedBenefices>
             <benefice>
@@ -186,8 +186,8 @@
             <en>Al-Malik</en>
             <es>Al-Malik</es>
         </name>
-        <group>nobility</group>
-        <race>human</race>
+        <restrictedToFactionGroup>nobility</restrictedToFactionGroup>
+        <restrictedToRaces>human</restrictedToRaces>
         <blessings>gracious, impetuous</blessings>
         <suggestedBenefices>
             <benefice>
@@ -338,8 +338,8 @@
             <en>Orthodox</en>
             <es>Ortodoxos</es>
         </name>
-        <group>church</group>
-        <race>human, obun</race>
+        <restrictedToFactionGroup>church</restrictedToFactionGroup>
+        <restrictedToRaces>human, obun</restrictedToRaces>
         <blessings>pious, austere</blessings>
         <suggestedBenefices>
             <benefice>
@@ -364,7 +364,7 @@
             <en>Brother Battle</en>
             <es>Hermanos de Batalla</es>
         </name>
-        <group>church</group>
+        <restrictedToFactionGroup>church</restrictedToFactionGroup>
         <ranks>
             <novitiate>
                 <translation>
@@ -403,7 +403,7 @@
                 </translation>
             </archbishop>
         </ranks>
-        <race>human, obun</race>
+        <restrictedToRaces>human, obun</restrictedToRaces>
         <blessings>disciplined, clueless</blessings>
         <suggestedBenefices>
             <benefice>
@@ -425,7 +425,7 @@
             <en>Eskatonics</en>
             <es>Eskatónicos</es>
         </name>
-        <group>church</group>
+        <restrictedToFactionGroup>church</restrictedToFactionGroup>
         <ranks>
             <novitiate>
                 <translation>
@@ -464,7 +464,7 @@
                 </translation>
             </archbishop>
         </ranks>
-        <race>human, obun</race>
+        <restrictedToRaces>human, obun</restrictedToRaces>
         <blessings>curious, subtle</blessings>
         <suggestedBenefices>
             <benefice>
@@ -494,8 +494,8 @@
             <en>Avestites</en>
             <es>Avestitas</es>
         </name>
-        <group>church</group>
-        <race>human, obun</race>
+        <restrictedToFactionGroup>church</restrictedToFactionGroup>
+        <restrictedToRaces>human, obun</restrictedToRaces>
         <blessings>pious, righteous</blessings>
         <suggestedBenefices>
             <benefice>
@@ -517,8 +517,8 @@
             <en>Amaltheans</en>
             <es>Amalteanos</es>
         </name>
-        <group>church</group>
-        <race>human, obun</race>
+        <restrictedToFactionGroup>church</restrictedToFactionGroup>
+        <restrictedToRaces>human, obun</restrictedToRaces>
         <blessings>compassionate, gullible</blessings>
         <suggestedBenefices>
             <benefice>
@@ -543,8 +543,8 @@
             <en>Mendicant Monks</en>
             <es>Monjes Mendicantes</es>
         </name>
-        <group>church</group>
-        <race>human, obun</race>
+        <restrictedToFactionGroup>church</restrictedToFactionGroup>
+        <restrictedToRaces>human, obun</restrictedToRaces>
         <suggestedBenefices>
             <benefice>
                 <id>vestments</id>
@@ -569,7 +569,7 @@
             <en>Charioteers</en>
             <es>Aurigas</es>
         </name>
-        <group>guild</group>
+        <restrictedToFactionGroup>guild</restrictedToFactionGroup>
         <ranks>
             <apprentice>
                 <translation>
@@ -608,7 +608,7 @@
                 </translation>
             </master>
         </ranks>
-        <race>human, obun, ukar, vorox</race>
+        <restrictedToRaces>human, obun, ukar, vorox</restrictedToRaces>
         <blessings>curious, nosy</blessings>
         <suggestedBenefices>
             <benefice>
@@ -627,8 +627,8 @@
             <en>Engineers</en>
             <es>Ingenieros</es>
         </name>
-        <group>guild</group>
-        <race>human, obun, ukar, vorox</race>
+        <restrictedToFactionGroup>guild</restrictedToFactionGroup>
+        <restrictedToRaces>human, obun, ukar, vorox</restrictedToRaces>
         <blessings>innovative, unnerving</blessings>
         <suggestedBenefices>
             <benefice>
@@ -647,7 +647,7 @@
             <en>Scravers</en>
             <es>Carroñeros</es>
         </name>
-        <group>guild</group>
+        <restrictedToFactionGroup>guild</restrictedToFactionGroup>
         <ranks>
             <apprentice>
                 <translation>
@@ -686,7 +686,7 @@
                 </translation>
             </master>
         </ranks>
-        <race>human, obun, ukar, vorox</race>
+        <restrictedToRaces>human, obun, ukar, vorox</restrictedToRaces>
         <blessings>theman, possessive</blessings>
         <suggestedBenefices>
             <benefice>
@@ -705,7 +705,7 @@
             <en>Musters</en>
             <es>Esclavistas</es>
         </name>
-        <group>guild</group>
+        <restrictedToFactionGroup>guild</restrictedToFactionGroup>
         <ranks>
             <apprentice>
                 <translation>
@@ -744,7 +744,7 @@
                 </translation>
             </master>
         </ranks>
-        <race>human, obun, ukar, vorox</race>
+        <restrictedToRaces>human, obun, ukar, vorox</restrictedToRaces>
         <blessings>bold, callous</blessings>
         <suggestedBenefices>
             <benefice>
@@ -763,7 +763,7 @@
             <en>Reeves</en>
             <es>Magistrados</es>
         </name>
-        <group>guild</group>
+        <restrictedToFactionGroup>guild</restrictedToFactionGroup>
         <ranks>
             <apprentice>
                 <translation>
@@ -802,7 +802,7 @@
                 </translation>
             </master>
         </ranks>
-        <race>human, obun, ukar, vorox</race>
+        <restrictedToRaces>human, obun, ukar, vorox</restrictedToRaces>
         <blessings>shrewd, mammon</blessings>
         <suggestedBenefices>
             <benefice>
@@ -821,8 +821,8 @@
             <en>Yeoman</en>
             <es>Hombre Libre</es>
         </name>
-        <group>none</group>
-        <race>human, obun, ukar, vorox</race>
+        <restrictedToFactionGroup>none</restrictedToFactionGroup>
+        <restrictedToRaces>human, obun, ukar, vorox</restrictedToRaces>
         <suggestedBenefices>
             <benefice>
                 <id>darkSecret</id>
@@ -835,8 +835,8 @@
             <en>Alba</en>
             <es>Alba</es>
         </name>
-        <group>nobility</group>
-        <race>human</race>
+        <restrictedToFactionGroup>nobility</restrictedToFactionGroup>
+        <restrictedToRaces>human</restrictedToRaces>
         <blessings>connected, uncouth</blessings>
         <restrictedBenefices>
             <benefice>
@@ -858,8 +858,8 @@
             <en>Juandaastas</en>
             <es>Juandaastas</es>
         </name>
-        <group>nobility</group>
-        <race>human</race>
+        <restrictedToFactionGroup>nobility</restrictedToFactionGroup>
+        <restrictedToRaces>human</restrictedToRaces>
         <blessings>strongWilled, outraged</blessings>
         <restrictedBenefices>
             <benefice>
@@ -881,8 +881,8 @@
             <en>Justinian</en>
             <es>Justinian</es>
         </name>
-        <group>nobility</group>
-        <race>human</race>
+        <restrictedToFactionGroup>nobility</restrictedToFactionGroup>
+        <restrictedToRaces>human</restrictedToRaces>
         <blessings>loyal, stubborn</blessings>
         <restrictedBenefices>
             <benefice>
@@ -904,8 +904,8 @@
             <en>Keddah</en>
             <es>Keddah</es>
         </name>
-        <group>nobility</group>
-        <race>human</race>
+        <restrictedToFactionGroup>nobility</restrictedToFactionGroup>
+        <restrictedToRaces>human</restrictedToRaces>
         <blessings>alert, untrusthworthy</blessings>
         <restrictedBenefices>
             <benefice>
@@ -927,8 +927,8 @@
             <en>Masseri</en>
             <es>Masseri</es>
         </name>
-        <group>nobility</group>
-        <race>human</race>
+        <restrictedToFactionGroup>nobility</restrictedToFactionGroup>
+        <restrictedToRaces>human</restrictedToRaces>
         <blessings>hardy, bitter</blessings>
         <restrictedBenefices>
             <benefice>
@@ -950,8 +950,8 @@
             <en>Shelt</en>
             <es>Shelt</es>
         </name>
-        <group>nobility</group>
-        <race>human</race>
+        <restrictedToFactionGroup>nobility</restrictedToFactionGroup>
+        <restrictedToRaces>human</restrictedToRaces>
         <blessings>cybersympathy, weird</blessings>
         <restrictedBenefices>
             <benefice>
@@ -973,8 +973,8 @@
             <en>Thana</en>
             <es>Thana</es>
         </name>
-        <group>nobility</group>
-        <race>human</race>
+        <restrictedToFactionGroup>nobility</restrictedToFactionGroup>
+        <restrictedToRaces>human</restrictedToRaces>
         <blessings>angelic, guilty</blessings>
         <restrictedBenefices>
             <benefice>
@@ -996,8 +996,8 @@
             <en>Torenson</en>
             <es>Torenson</es>
         </name>
-        <group>nobility</group>
-        <race>human</race>
+        <restrictedToFactionGroup>nobility</restrictedToFactionGroup>
+        <restrictedToRaces>human</restrictedToRaces>
         <blessings>elan, indignant</blessings>
         <restrictedBenefices>
             <benefice>
@@ -1019,8 +1019,8 @@
             <en>Trusnikron</en>
             <es>Trusnikron</es>
         </name>
-        <group>nobility</group>
-        <race>human</race>
+        <restrictedToFactionGroup>nobility</restrictedToFactionGroup>
+        <restrictedToRaces>human</restrictedToRaces>
         <blessings>xenoEquestrian, uncouth</blessings>
         <restrictedBenefices>
             <benefice>
@@ -1042,8 +1042,8 @@
             <en>Van Gelder</en>
             <es>Van Gelder</es>
         </name>
-        <group>nobility</group>
-        <race>human</race>
+        <restrictedToFactionGroup>nobility</restrictedToFactionGroup>
+        <restrictedToRaces>human</restrictedToRaces>
         <blessings>chameleon, alienated</blessings>
         <restrictedBenefices>
             <benefice>
@@ -1065,8 +1065,8 @@
             <en>Xanthippe</en>
             <es>Xanthippe</es>
         </name>
-        <group>nobility</group>
-        <race>human</race>
+        <restrictedToFactionGroup>nobility</restrictedToFactionGroup>
+        <restrictedToRaces>human</restrictedToRaces>
         <blessings>disciplined, condescending2</blessings>
         <restrictedBenefices>
             <benefice>
@@ -1088,8 +1088,8 @@
             <en>Kurgans</en>
             <es>Kurganos</es>
         </name>
-        <group>barbarian</group>
-        <race>human</race>
+        <restrictedToFactionGroup>barbarian</restrictedToFactionGroup>
+        <restrictedToRaces>human</restrictedToRaces>
         <official>false</official>
         <blessings>gracious, haughty</blessings>
         <random>
@@ -1124,8 +1124,8 @@
             <en>Vuldrok</en>
             <es>Vuldrok</es>
         </name>
-        <group>barbarian</group>
-        <race>human</race>
+        <restrictedToFactionGroup>barbarian</restrictedToFactionGroup>
+        <restrictedToRaces>human</restrictedToRaces>
         <official>false</official>
         <blessings>bold, uncouth</blessings>
         <random>
@@ -1153,8 +1153,8 @@
             <en>Ur-Obun</en>
             <es>Ur-Obun</es>
         </name>
-        <group>xeno</group>
-        <race>obun</race>
+        <restrictedToFactionGroup>xeno</restrictedToFactionGroup>
+        <restrictedToRaces>obun</restrictedToRaces>
         <suggestedBenefices>
             <benefice>
                 <id>refuge</id>
@@ -1176,8 +1176,8 @@
             <en>Ur-Ukar</en>
             <es>Ur-Ukar</es>
         </name>
-        <group>xeno</group>
-        <race>ukar</race>
+        <restrictedToFactionGroup>xeno</restrictedToFactionGroup>
+        <restrictedToRaces>ukar</restrictedToRaces>
         <suggestedBenefices>
             <benefice>
                 <id>familyTies</id>
@@ -1198,8 +1198,8 @@
             <en>Vorox</en>
             <es>Vorox</es>
         </name>
-        <group>xeno</group>
-        <race>vorox</race>
+        <restrictedToFactionGroup>xeno</restrictedToFactionGroup>
+        <restrictedToRaces>vorox</restrictedToRaces>
         <random>
             <names>
                 <male>Gelu, Gresh, Malum, Kirbold, Strakk, Roxtus, Sorgulg, Cabugbu, Zoughat, Gomatug, Narhbub, Ignorg,
@@ -1220,8 +1220,8 @@
             <en>Royal Vorox</en>
             <es>Vorox Real</es>
         </name>
-        <group>nobility</group>
-        <race>vorox</race>
+        <restrictedToFactionGroup>nobility</restrictedToFactionGroup>
+        <restrictedToRaces>vorox</restrictedToRaces>
         <suggestedBenefices>
             <benefice>
                 <id>poisonousClaw</id>
@@ -1246,8 +1246,8 @@
             <en>Old Shantor</en>
             <es>Antiguos Shantor</es>
         </name>
-        <group>xeno</group>
-        <race>shantor</race>
+        <restrictedToFactionGroup>xeno</restrictedToFactionGroup>
+        <restrictedToRaces>shantor</restrictedToRaces>
         <blessings>mnemocnic, claustrophobic</blessings>
         <benefices>dolomei</benefices>
         <random>
@@ -1265,8 +1265,8 @@
             <en>Darkwalker</en>
             <es>Caminante Oscuro</es>
         </name>
-        <group>xeno</group>
-        <race>shantor</race>
+        <restrictedToFactionGroup>xeno</restrictedToFactionGroup>
+        <restrictedToRaces>shantor</restrictedToRaces>
         <blessings>neurotic</blessings>
         <benefices>dolomei, muzzleManipulator</benefices>
         <random>
@@ -1284,8 +1284,8 @@
             <en>Sibanzi</en>
             <es>Sibanzi</es>
         </name>
-        <group>xeno</group>
-        <race>hironem</race>
+        <restrictedToFactionGroup>xeno</restrictedToFactionGroup>
+        <restrictedToRaces>hironem</restrictedToRaces>
         <blessings>commanding, arrogant</blessings>
         <benefices>vestments</benefices>
         <suggestedBenefices>
@@ -1318,8 +1318,8 @@
             <en>Warrior</en>
             <es>Guerrero</es>
         </name>
-        <group>xeno</group>
-        <race>hironem</race>
+        <restrictedToFactionGroup>xeno</restrictedToFactionGroup>
+        <restrictedToRaces>hironem</restrictedToRaces>
         <blessings>disciplined, obedient</blessings>
         <suggestedBenefices>
             <benefice>
@@ -1345,8 +1345,8 @@
             <en>No Faction</en>
             <es>Sin Facción</es>
         </name>
-        <group>minor</group>
-        <race>human, vorox, obun, ukar</race>
+        <restrictedToFactionGroup>minor</restrictedToFactionGroup>
+        <restrictedToRaces>human, vorox, obun, ukar</restrictedToRaces>
         <restricted>true</restricted>
         <official>false</official>
     </noFaction>
@@ -1355,8 +1355,8 @@
             <en>Minor Faction</en>
             <es>Facción Menor</es>
         </name>
-        <group>minor</group>
-        <race>human, vorox, obun, ukar</race>
+        <restrictedToFactionGroup>minor</restrictedToFactionGroup>
+        <restrictedToRaces>human, vorox, obun, ukar</restrictedToRaces>
         <restricted>true</restricted>
         <official>false</official>
     </minorFaction>

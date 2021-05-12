@@ -35,7 +35,7 @@ import org.testng.annotations.Test;
 @Test(groups = {"raceFactory"})
 public class RaceFactoryTests {
     private static final String LANGUAGE = "en";
-    private static final int DEFINED_RACES = 7;
+    private static final int DEFINED_RACES = 8;
     private static final int VERSION = 1;
 
     @Test

@@ -170,7 +170,7 @@ public class ProfileTests {
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, new HashSet<>(Arrays.asList(RacePreferences.HUMAN)),
                 RandomProfileFactory.getInstance().getElement("nobility", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         randomizeCharacter.createCharacter();
-        Assert.assertEquals(characterPlayer.getFaction().getFactionGroup(), FactionGroup.NOBILITY);
+        Assert.assertEquals(characterPlayer.getFaction().getRestrictedToFactionGroup(), FactionGroup.NOBILITY);
     }
 
     @Test
@@ -180,7 +180,7 @@ public class ProfileTests {
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, new HashSet<>(Arrays.asList(RacePreferences.HUMAN)),
                 RandomProfileFactory.getInstance().getElement("clergy", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         randomizeCharacter.createCharacter();
-        Assert.assertEquals(characterPlayer.getFaction().getFactionGroup(), FactionGroup.CHURCH);
+        Assert.assertEquals(characterPlayer.getFaction().getRestrictedToFactionGroup(), FactionGroup.CHURCH);
     }
 
     @Test

@@ -223,10 +223,10 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
     @Override
     protected int getWeight(BeneficeDefinition benefice) throws InvalidRandomElementSelectedException {
         // No restricted benefices.
-        if (benefice.getRestrictedFactionGroup() != null && getCharacterPlayer().getFaction() != null
-                && benefice.getRestrictedFactionGroup() != getCharacterPlayer().getFaction().getFactionGroup()) {
+        if (benefice.getRestrictedToFactionGroup() != null && getCharacterPlayer().getFaction() != null
+                && benefice.getRestrictedToFactionGroup() != getCharacterPlayer().getFaction().getRestrictedToFactionGroup()) {
             throw new InvalidRandomElementSelectedException(
-                    "Benefice '" + benefice + "' is restricted to '" + benefice.getRestrictedFactionGroup() + "'.");
+                    "Benefice '" + benefice + "' is restricted to '" + benefice.getRestrictedToFactionGroup() + "'.");
         }
 
         // No special benefices
@@ -412,8 +412,8 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
         try {
             if ((benefice.getGroup() != null && benefice.getGroup().equals(BeneficeGroup.STATUS))
                     && getWeight(benefice) > 0 && getCharacterPlayer().getFaction() != null
-                    && Objects.equals(benefice.getRestrictedFactionGroup(),
-                    getCharacterPlayer().getFaction().getFactionGroup())) {
+                    && Objects.equals(benefice.getRestrictedToFactionGroup(),
+                    getCharacterPlayer().getFaction().getRestrictedToFactionGroup())) {
                 final IGaussianDistribution selectedStatus = StatusPreferences.getSelected(getPreferences());
                 if (selectedStatus != null) {
                     RandomGenerationLog.debug(this.getClass().getName(),

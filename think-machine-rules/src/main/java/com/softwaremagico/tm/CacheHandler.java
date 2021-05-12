@@ -49,12 +49,12 @@ public class CacheHandler {
 	public static void clearCache() {
 		LanguagePool.clearCache();
 
-		AvailableSkillsFactory.getInstance().clearCache();
+		AvailableSkillsFactory.getInstance().refreshCache();
 		SkillsDefinitionsFactory.getInstance().refreshCache();
 		BlessingFactory.getInstance().refreshCache();
 		RaceFactory.getInstance().refreshCache();
 		BeneficeDefinitionFactory.getInstance().refreshCache();
-		AvailableBeneficeFactory.getInstance().clearCache();
+		AvailableBeneficeFactory.getInstance().refreshCache();
 		WeaponFactory.getInstance().refreshCache();
 		AmmunitionFactory.getInstance().refreshCache();
 		ShieldFactory.getInstance().refreshCache();

@@ -155,7 +155,7 @@ public class CombatStylesFactoryTests {
         final CombatStyle graa = CombatStyleFactory.getInstance().getElement("graa", LANGUAGE,
                 PathManager.DEFAULT_MODULE_FOLDER);
         Assert.assertEquals(RaceFactory.getInstance().getElement("vorox", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER),
-                graa.getRestrictedRaces().iterator().next());
+                graa.getRestrictedToRaces().iterator().next());
     }
 
     @Test

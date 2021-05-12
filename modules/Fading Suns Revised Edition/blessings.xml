@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <blessings>
     <version>1</version>
-    <totalElements>133</totalElements>
+    <totalElements>137</totalElements>
     <handsome>
         <name>
             <en>Handsome</en>
@@ -3744,6 +3744,64 @@
         <restricted>true</restricted>
         <curse>true</curse>
     </obedient>
+    <etyriClaw>
+        <name>
+            <en>Claw</en>
+            <es>Garra</es>
+        </name>
+        <description>
+            <en>The following Blessing or Curse is only available for some specific races or factions</en>
+            <es>Esta bendición o maldición únicamente está disponible para algunas razas o facciones</es>
+        </description>
+        <cost>2</cost>
+        <group>knacks</group>
+        <restricted>true</restricted>
+    </etyriClaw>
+    <etyriBeak>
+        <name>
+            <en>Beak</en>
+            <es>Pico</es>
+        </name>
+        <description>
+            <en>The following Blessing or Curse is only available for some specific races or factions</en>
+            <es>Esta bendición o maldición únicamente está disponible para algunas razas o facciones</es>
+        </description>
+        <cost>1</cost>
+        <group>knacks</group>
+        <restricted>true</restricted>
+    </etyriBeak>
+    <flight>
+        <name>
+            <en>Flight</en>
+            <es>Vuelo</es>
+        </name>
+        <description>
+            <en>The following Blessing or Curse is only available for some specific races or factions</en>
+            <es>Esta bendición o maldición únicamente está disponible para algunas razas o facciones</es>
+        </description>
+        <cost>5</cost>
+        <group>knacks</group>
+        <restricted>true</restricted>
+    </flight>
+    <hollowBones>
+        <name>
+            <en>Hollow Bones</en>
+            <es>Huesos Huecos</es>
+        </name>
+        <description>
+            <en>The following Blessings and Curses apply at all times (unless specified otherwise).</en>
+            <es>Las siguientes bendiciones y maldiciones se aplican todo el tiempo.</es>
+        </description>
+        <cost>6</cost>
+        <bonifications>
+            <bonification>
+                <value>-2</value>
+                <affects>vitality</affects>
+            </bonification>
+        </bonifications>
+        <group>injuries</group>
+        <curse>true</curse>
+    </hollowBones>
 
 
 </blessings>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <races>
     <version>1</version>
-    <totalElements>7</totalElements>
+    <totalElements>8</totalElements>
     <human>
         <name>
             <en>Human</en>
@@ -476,4 +476,73 @@
             <staticProbability>0</staticProbability>
         </random>
     </hironem>
+    <etyri>
+        <name>
+            <en>Etyri</en>
+            <es>Etyri</es>
+        </name>
+        <cost>3</cost>
+        <strength>
+            <value>2</value>
+            <maximumInitialValue>8</maximumInitialValue>
+            <maximumValue>8</maximumValue>
+        </strength>
+        <dexterity>
+            <value>4</value>
+            <maximumInitialValue>8</maximumInitialValue>
+            <maximumValue>11</maximumValue>
+        </dexterity>
+        <endurance>
+            <value>3</value>
+            <maximumInitialValue>8</maximumInitialValue>
+            <maximumValue>10</maximumValue>
+        </endurance>
+        <wits>
+            <value>3</value>
+            <maximumInitialValue>8</maximumInitialValue>
+            <maximumValue>10</maximumValue>
+        </wits>
+        <perception>
+            <value>4</value>
+            <maximumInitialValue>8</maximumInitialValue>
+            <maximumValue>12</maximumValue>
+        </perception>
+        <tech>
+            <value>3</value>
+            <maximumInitialValue>8</maximumInitialValue>
+            <maximumValue>10</maximumValue>
+        </tech>
+        <presence>
+            <value>3</value>
+            <maximumInitialValue>8</maximumInitialValue>
+            <maximumValue>10</maximumValue>
+        </presence>
+        <will>
+            <value>3</value>
+            <maximumInitialValue>8</maximumInitialValue>
+            <maximumValue>10</maximumValue>
+        </will>
+        <faith>
+            <value>3</value>
+            <maximumInitialValue>8</maximumInitialValue>
+            <maximumValue>10</maximumValue>
+        </faith>
+        <movement>
+            <value>5</value>
+        </movement>
+        <defense>
+            <value>1</value>
+        </defense>
+        <psi>0</psi>
+        <urge>0</urge>
+        <theurgy>0</theurgy>
+        <hubris>0</hubris>
+        <blessings>keenEyes, etyriClaw, etyriBeak, flight</blessings>
+        <benefices>ostraziced2, claustrophobic, hollowBones</benefices>
+        <planets>grail</planets>
+        <official>false</official>
+        <random>
+            <staticProbability>0</staticProbability>
+        </random>
+    </etyri>
 </races>

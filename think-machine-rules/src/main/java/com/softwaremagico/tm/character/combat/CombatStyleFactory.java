@@ -29,7 +29,6 @@ import com.softwaremagico.tm.XmlFactory;
 import com.softwaremagico.tm.character.benefices.AvailableBenefice;
 import com.softwaremagico.tm.character.benefices.BeneficeGroup;
 import com.softwaremagico.tm.character.characteristics.CharacteristicsDefinitionFactory;
-import com.softwaremagico.tm.character.races.RaceFactory;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.character.values.IValue;
 import com.softwaremagico.tm.json.factories.cache.FactoryCacheLoader;
@@ -46,7 +45,6 @@ public class CombatStyleFactory extends XmlFactory<CombatStyle> {
     private static final String NAME = "name";
     private static final String DESCRIPTION = "description";
     private static final String COMBAT_STYLE_GROUP = "combatStyleGroup";
-    private static final String RESTRICTED_RACES = "restrictedRaces";
 
     private static final String COMBAT_ACTIONS = "combatActions";
     private static final String COMBAT_ACTION_REQUIREMENTS = "requirements";
@@ -96,19 +94,6 @@ public class CombatStyleFactory extends XmlFactory<CombatStyle> {
             }
 
             final CombatStyle combatStyle = new CombatStyle(combatStyleId, name, description, language, moduleName, combatStyleGroup);
-
-            try {
-                final String restrictedRaces = translator.getNodeValue(combatStyleId, RESTRICTED_RACES);
-                if (restrictedRaces != null) {
-                    final StringTokenizer restrictedRacesOfAction = new StringTokenizer(restrictedRaces, ",");
-                    while (restrictedRacesOfAction.hasMoreTokens()) {
-                        combatStyle.
-                                addRestrictedRace(RaceFactory.getInstance().getElement(restrictedRacesOfAction.nextToken().trim(), language, moduleName));
-                    }
-                }
-            } catch (NullPointerException npe) {
-                // Optional
-            }
 
             // Adding combat actions
             final Set<String> combatActionsIds = translator.getAllChildrenTags(combatStyleId, COMBAT_ACTIONS);

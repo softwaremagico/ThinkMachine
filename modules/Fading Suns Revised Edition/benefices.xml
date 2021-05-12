@@ -745,7 +745,7 @@
         </description>
         <cost>20</cost>
         <group>relics</group>
-        <restricted>church</restricted>
+        <restrictedToFactionGroup>church</restrictedToFactionGroup>
         <random>
             <minTechLevel>6</minTechLevel>
         </random>
@@ -767,7 +767,7 @@
         </description>
         <cost>1-4</cost>
         <group>relics</group>
-        <restricted>church</restricted>
+        <restrictedToFactionGroup>church</restrictedToFactionGroup>
     </articleOfFaith>
     <saintLore>
         <name>
@@ -784,7 +784,7 @@
         </description>
         <cost>3-22</cost>
         <group>relics</group>
-        <restricted>church</restricted>
+        <restrictedToFactionGroup>church</restrictedToFactionGroup>
         <random>
             <probabilityMultiplier>0</probabilityMultiplier>
         </random>
@@ -805,7 +805,7 @@
         </description>
         <cost>1</cost>
         <group>relics</group>
-        <restricted>church</restricted>
+        <restrictedToFactionGroup>church</restrictedToFactionGroup>
     </vestments>
     <wyrdTabernacle>
         <name>
@@ -822,7 +822,7 @@
         </description>
         <cost>2-20</cost>
         <group>relics</group>
-        <restricted>church</restricted>
+        <restrictedToFactionGroup>church</restrictedToFactionGroup>
     </wyrdTabernacle>
 
     <jumpkey>
@@ -1283,7 +1283,7 @@
             </master>
         </specializations>
         <group>status</group>
-        <restricted>guild</restricted>
+        <restrictedToFactionGroup>guild</restrictedToFactionGroup>
     </commission>
     <nobility>
         <name>
@@ -1354,7 +1354,7 @@
             </duke>
         </specializations>
         <group>status</group>
-        <restricted>nobility</restricted>
+       <restrictedToFactionGroup>nobility</restrictedToFactionGroup>
     </nobility>
     <ordained>
         <name>
@@ -1424,7 +1424,7 @@
             </archbishop>
         </specializations>
         <group>status</group>
-        <restricted>church</restricted>
+        <restrictedToFactionGroup>church</restrictedToFactionGroup>
     </ordained>
     <professionalContract>
         <name>
@@ -1886,7 +1886,7 @@
         <cost>1-2</cost>
         <group>background</group>
         <official>false</official>
-        <races>gannok</races>
+        <restrictedToRaces>gannok</restrictedToRaces>
     </prominentFamily>
     <coldBlood>
         <name>
@@ -1904,7 +1904,7 @@
         <group>background</group>
         <restricted>true</restricted>
         <official>false</official>
-        <races>hironem</races>
+        <restrictedToRaces>hironem</restrictedToRaces>
         <affliction>true</affliction>
     </coldBlood>
     <ordainedHironem>
