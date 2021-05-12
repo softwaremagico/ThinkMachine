@@ -59,7 +59,7 @@ public class RandomSurname extends RandomSelector<Surname> {
     protected int getWeight(Surname surname) {
         // Nobility has faction as surname
         if (getCharacterPlayer().getFaction() != null
-                && getCharacterPlayer().getFaction().getRestrictedToFactionGroup() == FactionGroup.NOBILITY) {
+                && getCharacterPlayer().getFaction().getFactionGroup() == FactionGroup.NOBILITY) {
             if (getCharacterPlayer().getFaction().getName().contains(surname.getName())) {
                 return BASIC_PROBABILITY;
             } else {

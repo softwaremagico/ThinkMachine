@@ -89,7 +89,7 @@ public class RandomName extends RandomSelector<Name> {
         }
         // Nobility almost always names of her planet.
         if (getCharacterPlayer().getFaction() != null
-                && getCharacterPlayer().getFaction().getRestrictedToFactionGroup() == FactionGroup.NOBILITY &&
+                && getCharacterPlayer().getFaction().getFactionGroup() == FactionGroup.NOBILITY &&
                 !FactionsFactory.getInstance().getAllNames(getCharacterPlayer().getFaction()).isEmpty()) {
             if (getCharacterPlayer().getFaction().equals(name.getFaction())) {
                 return BASIC_PROBABILITY;

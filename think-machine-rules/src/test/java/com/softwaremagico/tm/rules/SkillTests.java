@@ -29,8 +29,10 @@ import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
 import com.softwaremagico.tm.character.benefices.BeneficeAlreadyAddedException;
 import com.softwaremagico.tm.character.factions.FactionsFactory;
+import com.softwaremagico.tm.character.races.RaceFactory;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.character.skills.InvalidRanksException;
+import com.softwaremagico.tm.character.skills.InvalidSkillException;
 import com.softwaremagico.tm.file.PathManager;
 import org.testng.annotations.Test;
 
@@ -76,5 +78,12 @@ public class SkillTests {
         player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("physicalScience", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER), 3);
         player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("lifeScience", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER), 3);
         player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("terraforming", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER), 3);
+    }
+
+    @Test(expectedExceptions = InvalidSkillException.class)
+    public void checkSkillRestrictedToRace() throws InvalidXmlElementException, InvalidRanksException {
+        final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        player.setRace(RaceFactory.getInstance().getElement("vorox", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+        player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("fly", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER), 3);
     }
 }

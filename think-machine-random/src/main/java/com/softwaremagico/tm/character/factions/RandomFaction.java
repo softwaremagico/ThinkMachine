@@ -61,11 +61,11 @@ public class RandomFaction extends RandomSelector<Faction> {
         // Specialization desired.
         final FactionPreferences selectedFactionGroup = FactionPreferences.getSelected(getPreferences());
         if (selectedFactionGroup != null) {
-            if (faction.getRestrictedToFactionGroup() != null && faction.getRestrictedToFactionGroup().name().equalsIgnoreCase(selectedFactionGroup.name())) {
+            if (faction.getFactionGroup() != null && faction.getFactionGroup().name().equalsIgnoreCase(selectedFactionGroup.name())) {
                 return 1;
             }
             // Different faction than selected.
-            throw new InvalidRandomElementSelectedException("Faction '" + faction + "' not in prefereces selection '" + selectedFactionGroup + "'.");
+            throw new InvalidRandomElementSelectedException("Faction '" + faction + "' not in preferences selection '" + selectedFactionGroup + "'.");
         }
         // No faction preference selected. Xeno factions has preferences by its own factions.
         if (getCharacterPlayer().getRace().isXeno() && faction.getRestrictedToRaces().size() == 1 &&

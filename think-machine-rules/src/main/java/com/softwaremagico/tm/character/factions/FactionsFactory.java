@@ -164,7 +164,7 @@ public class FactionsFactory extends XmlFactory<Faction> {
                 factionGroup = FactionGroup.NONE;
             }
 
-            final Faction faction = new Faction(factionId, name, description, language, moduleName);
+            final Faction faction = new Faction(factionId, name, description, factionGroup, language, moduleName);
 
             for (final String rankId : translator.getAllChildrenTags(factionId, RANKS_TAG)) {
                 final String rankName = translator.getNodeValue(factionId, rankId, RANKS_TRANSLATION_TAG, language);

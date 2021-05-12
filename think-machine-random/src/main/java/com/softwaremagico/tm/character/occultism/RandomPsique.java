@@ -72,7 +72,7 @@ public class RandomPsique extends RandomSelector<OccultismType> {
         // Church factions must have always theurgy.
         if (Objects.equals(element,
                 OccultismTypeFactory.getPsi(getCharacterPlayer().getLanguage(), getCharacterPlayer().getModuleName()))) {
-            if (getCharacterPlayer().getFaction().getRestrictedToFactionGroup() == FactionGroup.CHURCH) {
+            if (getCharacterPlayer().getFaction().getFactionGroup() == FactionGroup.CHURCH) {
                 throw new InvalidRandomElementSelectedException("Psi not allowed to church factions");
             }
         }
@@ -87,7 +87,7 @@ public class RandomPsique extends RandomSelector<OccultismType> {
         // No church factions usually have psi.
         if (Objects.equals(element, OccultismTypeFactory.getTheurgy(getCharacterPlayer().getLanguage(),
                 getCharacterPlayer().getModuleName()))) {
-            if (getCharacterPlayer().getFaction().getRestrictedToFactionGroup() != FactionGroup.CHURCH) {
+            if (getCharacterPlayer().getFaction().getFactionGroup() != FactionGroup.CHURCH) {
                 return BASIC_PROBABILITY;
             }
         }

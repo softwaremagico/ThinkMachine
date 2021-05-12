@@ -77,7 +77,7 @@ public class RandomCharacterTests {
                 FactionPreferences.NOBILITY);
         randomizeCharacter.setCharacterDefinition();
 
-        Assert.assertEquals(characterPlayer.getFaction().getRestrictedToFactionGroup(), FactionGroup.NOBILITY);
+        Assert.assertEquals(characterPlayer.getFaction().getFactionGroup(), FactionGroup.NOBILITY);
         Assert.assertEquals(characterPlayer.getRace(), RaceFactory.getInstance()
                 .getElement(RacePreferences.HUMAN.name(), LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
     }
@@ -89,7 +89,7 @@ public class RandomCharacterTests {
                 FactionPreferences.GUILD);
         randomizeCharacter.setCharacterDefinition();
 
-        Assert.assertEquals(characterPlayer.getFaction().getRestrictedToFactionGroup(), FactionGroup.GUILD);
+        Assert.assertEquals(characterPlayer.getFaction().getFactionGroup(), FactionGroup.GUILD);
         Assert.assertNotEquals(characterPlayer.getRace(), RaceFactory.getInstance().getElement(RacePreferences.HUMAN.name(),
                 LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
     }

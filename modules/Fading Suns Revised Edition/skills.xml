@@ -814,12 +814,12 @@
             <es>Volar</es>
         </name>
         <group>physical</group>
-        <random>
-            <probabilityMultiplier>0</probabilityMultiplier>
-        </random>
         <official>false</official>
         <restricted>true</restricted>
         <restrictedToRaces>etyri</restrictedToRaces>
+        <random>
+            <probabilityMultiplier>0</probabilityMultiplier>
+        </random>
     </fly>
 
 </skills>

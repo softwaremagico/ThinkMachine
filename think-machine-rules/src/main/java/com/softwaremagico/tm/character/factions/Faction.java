@@ -38,17 +38,22 @@ import java.util.Objects;
 import java.util.Set;
 
 public class Faction extends Element<Faction> {
+    private final FactionGroup factionGroup;
     private final Set<FactionRankTranslation> ranksTranslations = new HashSet<>();
     private Set<Blessing> blessings = null;
     private Set<AvailableBenefice> benefices = null;
     private Set<SuggestedBenefice> suggestedBenefices = null;
     private Set<RestrictedBenefice> restrictedBenefices = null;
 
-    public Faction(String id, String name, String description, String language,
+    public Faction(String id, String name, String description, FactionGroup factionGroup, String language,
                    String moduleName) {
         super(id, name, description, language, moduleName);
+        this.factionGroup = factionGroup;
     }
 
+    public FactionGroup getFactionGroup() {
+        return factionGroup;
+    }
 
     public void addRankTranslation(FactionRankTranslation factionRank) {
         ranksTranslations.add(factionRank);

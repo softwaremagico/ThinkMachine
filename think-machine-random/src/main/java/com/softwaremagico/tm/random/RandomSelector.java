@@ -213,9 +213,9 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
 
         // Recommended to my faction group.
         if (getCharacterPlayer() != null && getCharacterPlayer().getFaction() != null && randomDefinition
-                .getRecommendedFactionsGroups().contains(getCharacterPlayer().getFaction().getRestrictedToFactionGroup())) {
+                .getRecommendedFactionsGroups().contains(getCharacterPlayer().getFaction().getFactionGroup())) {
             RandomGenerationLog.debug(this.getClass().getName(), "Random definition as recommended for '{}'.",
-                    getCharacterPlayer().getFaction().getRestrictedToFactionGroup());
+                    getCharacterPlayer().getFaction().getFactionGroup());
             multiplier *= BASIC_MULTIPLICATOR;
         }
 
@@ -242,6 +242,17 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
     public void validateElement(Element element) throws InvalidRandomElementSelectedException {
         if (element == null) {
             throw new InvalidRandomElementSelectedException("Null elements not allowed.");
+        }
+
+        if (!element.getRestrictedToRaces().isEmpty() && !element.getRestrictedToRaces().contains(getCharacterPlayer().getRace())) {
+            throw new InvalidRandomElementSelectedException("Element '" + element + "' is restricted to '" +
+                    element.getRestrictedToRaces() + "'.");
+        }
+
+        if (element.getRestrictedToFactionGroup() != null && (getCharacterPlayer().getFaction() == null ||
+                !Objects.equals(element.getRestrictedToFactionGroup(), getCharacterPlayer().getFaction().getFactionGroup()))) {
+            throw new InvalidRandomElementSelectedException("Element '" + element + "' is restricted to '" +
+                    element.getRestrictedToFactionGroup() + "'.");
         }
 
         try {
@@ -291,7 +302,7 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
 
         if (getCharacterPlayer() != null && getCharacterPlayer().getFaction() != null
                 && !randomDefinition.getRecommendedFactionsGroups().isEmpty() && !randomDefinition
-                .getRecommendedFactionsGroups().contains(getCharacterPlayer().getFaction().getRestrictedToFactionGroup())) {
+                .getRecommendedFactionsGroups().contains(getCharacterPlayer().getFaction().getFactionGroup())) {
             throw new InvalidRandomElementSelectedException(
                     "Element restricted to factions '" + randomDefinition.getRecommendedFactionsGroups() + "'.");
         }
@@ -299,8 +310,7 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
         // Faction groups restriction.
         if (getCharacterPlayer() != null && getCharacterPlayer().getFaction() != null
                 && !randomDefinition.getRestrictedFactionGroups().isEmpty()
-                && (getCharacterPlayer().getFaction().getRestrictedToFactionGroup() == null || !randomDefinition
-                .getRestrictedFactionGroups().contains(getCharacterPlayer().getFaction().getRestrictedToFactionGroup()))) {
+                && !randomDefinition.getRestrictedFactionGroups().contains(getCharacterPlayer().getFaction().getFactionGroup())) {
             throw new InvalidRandomElementSelectedException(
                     "Element restricted to factions groups '" + randomDefinition.getRestrictedFactionGroups() + "'.");
         }

@@ -246,6 +246,11 @@ public class CharacterPlayer {
             throw new InvalidSkillException("Null skill is not allowed here.");
         }
 
+        if (!availableSkill.getRestrictedToRaces().isEmpty() && !availableSkill.getRestrictedToRaces().contains(getRace())) {
+            throw new InvalidSkillException("Skill '" + availableSkill + "' is restricted to '" +
+                    availableSkill.getRestrictedToRaces() + "'.");
+        }
+
         if (!availableSkill.getSkillDefinition().getRequiredSkills().isEmpty()) {
             for (final String requiredSkillId : availableSkill.getSkillDefinition().getRequiredSkills()) {
                 try {
@@ -1476,7 +1481,7 @@ public class CharacterPlayer {
             }
         }
         if (benefice.getBeneficeDefinition().getRestrictedToFactionGroup() != null && (getFaction() == null ||
-                !Objects.equals(benefice.getBeneficeDefinition().getRestrictedToFactionGroup(), getFaction().getRestrictedToFactionGroup()))) {
+                !Objects.equals(benefice.getBeneficeDefinition().getRestrictedToFactionGroup(), getFaction().getFactionGroup()))) {
             throw new InvalidBeneficeException("Benefice '" + benefice
                     + "' is restricted to faction '" + benefice.getBeneficeDefinition().getRestrictedToFactionGroup() + "'");
         }
@@ -1656,7 +1661,7 @@ public class CharacterPlayer {
      * @return an occultism type or null if nothing has been selected.
      */
     public OccultismType getOccultismType() {
-        if (getFaction() != null && getFaction().getRestrictedToFactionGroup() == FactionGroup.CHURCH) {
+        if (getFaction() != null && getFaction().getFactionGroup() == FactionGroup.CHURCH) {
             return OccultismTypeFactory.getTheurgy(getLanguage(), getModuleName());
         }
         try {

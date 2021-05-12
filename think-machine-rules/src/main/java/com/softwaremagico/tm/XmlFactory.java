@@ -46,7 +46,7 @@ public abstract class XmlFactory<T extends Element<T>> implements IElementRetrie
     private static final String RANDOM = "random";
     private static final String ELEMENT_PROBABILITY_MULTIPLIER = "probabilityMultiplier";
     private static final String RESTRICTED_RANDOM_FACTIONS = "restrictedFactions";
-    private static final String RESTRICTED_FACTIONGROUP_TAG = "restrictedToFactionGroup";
+    private static final String RESTRICTED_FACTION_GROUP_TAG = "restrictedToFactionGroup";
     private static final String MIN_TECH_LEVEL = "minTechLevel";
     private static final String MAX_TECH_LEVEL = "maxTechLevel";
     private static final String RECOMMENDED_FACTIONS = "recommendedFactions";
@@ -339,7 +339,7 @@ public abstract class XmlFactory<T extends Element<T>> implements IElementRetrie
 
                 final Set<Race> races = getCommaSeparatedValues(elementId, RESTRICTED_RACES, language, moduleName, RaceFactory.getInstance());
 
-                final String restriction = getTranslator(moduleName).getNodeValue(elementId, RESTRICTED_FACTIONGROUP_TAG);
+                final String restriction = getTranslator(moduleName).getNodeValue(elementId, RESTRICTED_FACTION_GROUP_TAG);
                 FactionGroup restrictedToGroup = null;
                 if (restriction != null) {
                     restrictedToGroup = FactionGroup.get(restriction);
@@ -349,7 +349,7 @@ public abstract class XmlFactory<T extends Element<T>> implements IElementRetrie
                 final T element = createElement(getTranslator(moduleName), elementId, name, description, language, moduleName);
                 setRandomConfiguration(element, getTranslator(moduleName), language, moduleName);
                 setRestrictedToRaces(element, races);
-                setRestrictedFactionGroup(element, restrictedToGroup);
+                setRestrictedToFactionGroup(element, restrictedToGroup);
                 if (restricted != null) {
                     element.setRestricted(restricted);
                 }
@@ -370,7 +370,7 @@ public abstract class XmlFactory<T extends Element<T>> implements IElementRetrie
         element.setRestrictedToRaces(races);
     }
 
-    protected void setRestrictedFactionGroup(T element, FactionGroup factionGroup) throws InvalidXmlElementException {
+    protected void setRestrictedToFactionGroup(T element, FactionGroup factionGroup) throws InvalidXmlElementException {
         element.setRestrictedToFactionGroup(factionGroup);
     }
 

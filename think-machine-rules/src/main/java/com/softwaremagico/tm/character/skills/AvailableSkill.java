@@ -1,8 +1,11 @@
 package com.softwaremagico.tm.character.skills;
 
+import com.softwaremagico.tm.character.races.Race;
 import com.softwaremagico.tm.character.values.IValue;
 import com.softwaremagico.tm.json.ExcludeFromJson;
 import com.softwaremagico.tm.random.definition.RandomElementDefinition;
+
+import java.util.Set;
 
 /*-
  * #%L
@@ -141,5 +144,9 @@ public class AvailableSkill extends Skill<AvailableSkill> implements IValue {
             return 1;
         }
         return getCompleteName().compareTo(element.getCompleteName());
+    }
+
+    public Set<Race> getRestrictedToRaces() {
+        return getSkillDefinition().getRestrictedToRaces();
     }
 }

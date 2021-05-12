@@ -224,7 +224,7 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
     protected int getWeight(BeneficeDefinition benefice) throws InvalidRandomElementSelectedException {
         // No restricted benefices.
         if (benefice.getRestrictedToFactionGroup() != null && getCharacterPlayer().getFaction() != null
-                && benefice.getRestrictedToFactionGroup() != getCharacterPlayer().getFaction().getRestrictedToFactionGroup()) {
+                && benefice.getRestrictedToFactionGroup() != getCharacterPlayer().getFaction().getFactionGroup()) {
             throw new InvalidRandomElementSelectedException(
                     "Benefice '" + benefice + "' is restricted to '" + benefice.getRestrictedToFactionGroup() + "'.");
         }
@@ -413,7 +413,7 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
             if ((benefice.getGroup() != null && benefice.getGroup().equals(BeneficeGroup.STATUS))
                     && getWeight(benefice) > 0 && getCharacterPlayer().getFaction() != null
                     && Objects.equals(benefice.getRestrictedToFactionGroup(),
-                    getCharacterPlayer().getFaction().getRestrictedToFactionGroup())) {
+                    getCharacterPlayer().getFaction().getFactionGroup())) {
                 final IGaussianDistribution selectedStatus = StatusPreferences.getSelected(getPreferences());
                 if (selectedStatus != null) {
                     RandomGenerationLog.debug(this.getClass().getName(),
