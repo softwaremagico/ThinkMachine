@@ -464,6 +464,7 @@
             <es>Kurgano</es>
         </name>
         <group>barbarian</group>
+        <faction>kurgan</faction>
         <preferences>CombatPreferences.FAIR, TechnologicalPreferences.FUTURIST, SpecializationPreferences.SPECIALIZED
         </preferences>
         <characteristicsMinimumValues>
@@ -490,6 +491,7 @@
             <es>Vuldrok</es>
         </name>
         <group>barbarian</group>
+        <faction>vuldrok</faction>
         <preferences>CombatPreferences.BELLIGERENT, TechnologicalPreferences.MODERN, SpecializationPreferences.SPECIALIZED,
             CharacteristicsPreferences.BODY,
         </preferences>
@@ -637,4 +639,13 @@
         <race>hironem</race>
         <official>false</official>
     </hironem>
+    <etyri>
+        <name>
+            <en>Etyri</en>
+            <es>Etyri</es>
+        </name>
+        <group>xenos</group>
+        <race>etyri</race>
+        <official>false</official>
+    </etyri>
 </profiles>

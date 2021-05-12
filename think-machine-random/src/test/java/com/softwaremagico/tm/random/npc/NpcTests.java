@@ -337,6 +337,14 @@ public class NpcTests {
         randomizeCharacter.createCharacter();
     }
 
+    @Test
+    public void etyriHuarrayghq() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
+        final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
+                NpcFactory.getInstance().getElement("etyriHuarrayghq", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+        randomizeCharacter.createCharacter();
+    }
+
 
     @Test
     public void restricted() throws InvalidXmlElementException {

@@ -398,7 +398,7 @@ public abstract class XmlFactory<T extends Element<T>> implements IElementRetrie
             try {
                 element = factory.getElement(elementName, language, moduleName);
             } catch (InvalidXmlElementException e) {
-                throw new InvalidFactionException("Element tag '" + elementName + "' in element '" + elementId + "'.", e);
+                throw new InvalidFactionException("Element tag '" + elementName + "' in element '" + elementId + "' on '" + node + "'.", e);
             }
         }
         return element;

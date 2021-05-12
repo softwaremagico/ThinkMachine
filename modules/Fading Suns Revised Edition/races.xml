@@ -537,8 +537,8 @@
         <urge>0</urge>
         <theurgy>0</theurgy>
         <hubris>0</hubris>
-        <blessings>keenEyes, etyriClaw, etyriBeak, flight</blessings>
-        <benefices>ostraziced2, claustrophobic, hollowBones</benefices>
+        <blessings>keenEyes, etyriClaw, etyriBeak, flight, claustrophobic, hollowBones</blessings>
+        <benefices>ostraziced2</benefices>
         <planets>grail</planets>
         <official>false</official>
         <random>

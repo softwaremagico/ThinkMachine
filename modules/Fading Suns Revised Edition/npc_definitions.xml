@@ -1595,7 +1595,7 @@
         </name>
         <group>barbarian</group>
         <profile>kurgan</profile>
-        <weapons>rapier, curvedSword</weapons>
+        <weapons>kurganSideSword, curvedSword</weapons>
         <armours>leatherJerkin</armours>
     </kurgan>
     <vuldrok>
@@ -1707,4 +1707,82 @@
             </skill>
         </requiredSkills>
     </hironemWarrior>
+    <etyriHuarrayghq>
+        <name>
+            <en>Etyri Huar'raughq</en>
+            <es>Etyri Huar'raughq</es>
+        </name>
+        <group>xenos</group>
+        <profile>etyri</profile>
+        <faction>huarrayghq</faction>
+        <preferences>CharacteristicsPreferences.BODY</preferences>
+        <characteristicsMinimumValues>
+            <dexterity>6</dexterity>
+            <strength>6</strength>
+        </characteristicsMinimumValues>
+        <requiredSkills>
+            <skill>
+                <id>fight</id>
+            </skill>
+            <skill>
+                <id>slugGuns</id>
+            </skill>
+            <skill>
+                <id>fly</id>
+            </skill>
+        </requiredSkills>
+        <weapons>spear, typicalManfeedRifle</weapons>
+    </etyriHuarrayghq>
+    <etyriChaarkut>
+        <name>
+            <en>Etyri Cha'arkut</en>
+            <es>Etyri Cha'arkut</es>
+        </name>
+        <group>xenos</group>
+        <profile>etyri</profile>
+        <faction>chaarkut</faction>
+        <preferences>CharacteristicsPreferences.MIND</preferences>
+        <requiredSkills>
+            <skill>
+                <id>influence</id>
+            </skill>
+        </requiredSkills>
+    </etyriChaarkut>
+    <etyriChirikiti>
+        <name>
+            <en>Etyri Chirikiti</en>
+            <es>Etyri Chirikiti</es>
+        </name>
+        <group>xenos</group>
+        <profile>etyri</profile>
+        <faction>chirikiti</faction>
+        <preferences>CharacteristicsPreferences.MIND</preferences>
+        <characteristicsMinimumValues>
+            <will>6</will>
+        </characteristicsMinimumValues>
+        <requiredSkills>
+            <skill>
+                <id>influence</id>
+            </skill>
+        </requiredSkills>
+    </etyriChirikiti>
+    <etyriGhekdaaz>
+        <name>
+            <en>Etyri Ghek-da'az</en>
+            <es>Etyri Ghek-da'az</es>
+        </name>
+        <group>xenos</group>
+        <profile>etyri</profile>
+        <faction>ghekdaaz</faction>
+        <preferences>CharacteristicsPreferences.MIND</preferences>
+        <characteristicsMinimumValues>
+            <endurance>6</endurance>
+            <strength>6</strength>
+        </characteristicsMinimumValues>
+        <requiredSkills>
+            <skill>
+                <id>vigor</id>
+            </skill>
+        </requiredSkills>
+    </etyriGhekdaaz>
 </profiles>

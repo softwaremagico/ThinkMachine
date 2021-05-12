@@ -1083,7 +1083,7 @@
             <probabilityMultiplier>0.05</probabilityMultiplier>
         </random>
     </xanthippe>
-    <kurganos>
+    <kurgan>
         <name>
             <en>Kurgans</en>
             <es>Kurganos</es>
@@ -1118,7 +1118,7 @@
             </surnames>
         </random>
         <probabilityMultiplier>0.01</probabilityMultiplier>
-    </kurganos>
+    </kurgan>
     <vuldrok>
         <name>
             <en>Vuldrok</en>
@@ -1340,6 +1340,78 @@
         <restricted>true</restricted>
         <official>false</official>
     </warriorHironem>
+    <huarrayghq>
+        <name>
+            <en>Huar'raughq</en>
+            <es>Huar'raughq</es>
+        </name>
+        <group>xeno</group>
+        <restrictedToRaces>etyri</restrictedToRaces>
+        <blessings>hawkEye</blessings>
+        <random>
+            <names>
+                <male></male>
+                <female></female>
+            </names>
+            <surnames></surnames>
+        </random>
+        <restricted>true</restricted>
+        <official>false</official>
+    </huarrayghq>
+    <chaarkut>
+        <name>
+            <en>Cha'arkut</en>
+            <es>Cha'arkut</es>
+        </name>
+        <group>xeno</group>
+        <restrictedToRaces>etyri</restrictedToRaces>
+        <blessings>short</blessings>
+        <random>
+            <names>
+                <male></male>
+                <female></female>
+            </names>
+            <surnames></surnames>
+        </random>
+        <restricted>true</restricted>
+        <official>false</official>
+    </chaarkut>
+    <chirikiti>
+        <name>
+            <en>Chirikiti</en>
+            <es>Chirikiti</es>
+        </name>
+        <group>xeno</group>
+        <restrictedToRaces>etyri</restrictedToRaces>
+        <blessings>short</blessings>
+        <random>
+            <names>
+                <male></male>
+                <female></female>
+            </names>
+            <surnames></surnames>
+        </random>
+        <restricted>true</restricted>
+        <official>false</official>
+    </chirikiti>
+    <ghekdaaz>
+        <name>
+            <en>Ghek-da'az</en>
+            <es>Ghek-da'az</es>
+        </name>
+        <group>xeno</group>
+        <restrictedToRaces>etyri</restrictedToRaces>
+        <blessings>flightless</blessings>
+        <random>
+            <names>
+                <male></male>
+                <female></female>
+            </names>
+            <surnames></surnames>
+        </random>
+        <restricted>true</restricted>
+        <official>false</official>
+    </ghekdaaz>
     <noFaction>
         <name>
             <en>No Faction</en>

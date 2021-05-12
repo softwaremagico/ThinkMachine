@@ -5,6 +5,7 @@ import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.RandomizeCharacter;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.factions.FactionGroup;
+import com.softwaremagico.tm.character.factions.FactionsFactory;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.file.PathManager;
 import com.softwaremagico.tm.random.exceptions.DuplicatedPreferenceException;
@@ -211,6 +212,17 @@ public class ProfileTests {
                 RandomProfileFactory.getInstance().getElement("old", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         randomizeCharacter.createCharacter();
         Assert.assertTrue(characterPlayer.getInfo().getAge() >= 51 && characterPlayer.getInfo().getAge() <= 110);
+    }
+
+    @Test
+    public void kurgan() throws InvalidXmlElementException,
+            InvalidRandomElementSelectedException {
+        final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
+                RandomProfileFactory.getInstance().getElement("kurgan", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+        randomizeCharacter.createCharacter();
+        Assert.assertEquals(characterPlayer.getFaction(), FactionsFactory.getInstance().getElement("kurgan", characterPlayer.getLanguage(),
+                characterPlayer.getModuleName()));
     }
 
     @Test
