@@ -630,15 +630,6 @@
         </suggestedSkills>
         <official>false</official>
     </gannok>
-    <hironem>
-        <name>
-            <en>Hironem</en>
-            <es>Hironem</es>
-        </name>
-        <group>xenos</group>
-        <race>hironem</race>
-        <official>false</official>
-    </hironem>
     <etyri>
         <name>
             <en>Etyri</en>
@@ -648,4 +639,39 @@
         <race>etyri</race>
         <official>false</official>
     </etyri>
+    <hironem>
+        <name>
+            <en>Hironem</en>
+            <es>Hironem</es>
+        </name>
+        <group>xenos</group>
+        <race>hironem</race>
+        <official>false</official>
+    </hironem>
+    <ascorbite>
+        <name>
+            <en>Ascorbite</en>
+            <es>Ascorbita</es>
+        </name>
+        <group>xenos</group>
+        <race>ascorbite</race>
+        <official>false</official>
+        <characteristicsMinimumValues>
+            <will>6</will>
+            <perception>6</perception>
+        </characteristicsMinimumValues>
+        <requiredSkills>
+            <skill>
+                <id>vigor</id>
+            </skill>
+            <skill>
+                <id>perception</id>
+            </skill>
+            <skill>
+                <id>survival</id>
+            </skill>
+        </requiredSkills>
+        <official>false</official>
+    </ascorbite>
+
 </profiles>

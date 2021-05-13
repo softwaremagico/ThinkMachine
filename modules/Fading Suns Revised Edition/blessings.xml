@@ -3492,7 +3492,7 @@
             <es>Esta bendición o maldición únicamente está disponible para algunas razas o facciones</es>
         </description>
         <cost>3</cost>
-         <bonifications>
+        <bonifications>
             <bonification>
                 <value>6</value>
                 <affects>movement</affects>
@@ -3792,8 +3792,8 @@
             <es>Huesos Huecos</es>
         </name>
         <description>
-            <en>The following Blessings and Curses apply at all times (unless specified otherwise).</en>
-            <es>Las siguientes bendiciones y maldiciones se aplican todo el tiempo.</es>
+            <en>The following Blessing or Curse is only available for some specific races or factions</en>
+            <es>Esta bendición o maldición únicamente está disponible para algunas razas o facciones</es>
         </description>
         <cost>6</cost>
         <bonifications>
@@ -3813,8 +3813,8 @@
             <es>Ojo de Águila</es>
         </name>
         <description>
-            <en>The following Blessings and Curses apply at all times (unless specified otherwise).</en>
-            <es>Las siguientes bendiciones y maldiciones se aplican todo el tiempo.</es>
+            <en>The following Blessing or Curse is only available for some specific races or factions</en>
+            <es>Esta bendición o maldición únicamente está disponible para algunas razas o facciones</es>
         </description>
         <cost>2</cost>
         <bonifications>
@@ -3844,8 +3844,8 @@
             <es>Incapaz de Volar</es>
         </name>
         <description>
-            <en>The following Blessings and Curses apply at all times (unless specified otherwise).</en>
-            <es>Las siguientes bendiciones y maldiciones se aplican todo el tiempo.</es>
+            <en>The following Blessing or Curse is only available for some specific races or factions</en>
+            <es>Esta bendición o maldición únicamente está disponible para algunas razas o facciones</es>
         </description>
         <cost>5</cost>
         <group>injuries</group>
@@ -3853,6 +3853,154 @@
         <official>false</official>
         <curse>true</curse>
     </flightless>
+    <adaptability>
+        <name>
+            <en>Adaptability</en>
+            <es>Adaptabilidad</es>
+        </name>
+        <description>
+            <en>Immunity to any toxin or disease which the Ascobirte survives.</en>
+            <es>Inmunidad a cualquier toxina o enfermedad a la que sobreviva el Ascorbita.</es>
+        </description>
+        <cost>3</cost>
+        <group>knacks</group>
+        <restricted>true</restricted>
+        <official>false</official>
+    </adaptability>
+    <caparace>
+        <name>
+            <en>Caparace</en>
+            <es>Caparazón</es>
+        </name>
+        <description>
+            <en>6d of Armour.</en>
+            <es>Armadura de 6d.</es>
+        </description>
+        <cost>7</cost>
+        <group>knacks</group>
+        <restricted>true</restricted>
+        <official>false</official>
+    </caparace>
+    <doubleJointed>
+        <name>
+            <en>Double Jointed</en>
+            <es>Articulaciones Flexibles</es>
+        </name>
+        <description>
+            <en>The following Blessing or Curse is only available for some specific races or factions</en>
+            <es>Esta bendición o maldición únicamente está disponible para algunas razas o facciones</es>
+        </description>
+        <cost>7</cost>
+        <group>knacks</group>
+        <bonifications>
+            <bonification>
+                <value>2</value>
+                <affects>dexterity</affects>
+                <situation>
+                    <en>To escape tight places/bonds</en>
+                    <es>Para escapar de ataduras/lugares estrechos</es>
+                </situation>
+            </bonification>
+        </bonifications>
+        <restricted>true</restricted>
+        <official>false</official>
+    </doubleJointed>
+    <farLeap>
+        <name>
+            <en>Far Leap</en>
+            <es>Gran Saltador</es>
+        </name>
+        <description>
+            <en>Vertical Jump: 5 feet + 3 feet by VP.</en>
+            <es>Salto Vertical: 1,5m + 1 por PV.</es>
+        </description>
+        <cost>2</cost>
+        <group>knacks</group>
+        <restricted>true</restricted>
+        <official>false</official>
+    </farLeap>
+    <obstinate>
+        <name>
+            <en>Obstinate</en>
+            <es>Obstinado</es>
+        </name>
+        <description>
+            <en>The following Blessing or Curse is only available for some specific races or factions</en>
+            <es>Esta bendición o maldición únicamente está disponible para algunas razas o facciones</es>
+        </description>
+        <cost>2</cost>
+        <bonifications>
+            <bonification>
+                <value>2</value>
+                <affects>selfControl</affects>
+                <situation>
+                    <en>Against divulging secrets.</en>
+                    <es>Resistir el divulgar un secreto.</es>
+                </situation>
+            </bonification>
+        </bonifications>
+        <group>knacks</group>
+        <restricted>true</restricted>
+        <official>false</official>
+    </obstinate>
+    <strongGrip>
+        <name>
+            <en>Strong Grip</en>
+            <es>Presa Fuerte</es>
+        </name>
+        <description>
+            <en>The following Blessing or Curse is only available for some specific races or factions</en>
+            <es>Esta bendición o maldición únicamente está disponible para algunas razas o facciones</es>
+        </description>
+        <cost>2</cost>
+        <bonifications>
+            <bonification>
+                <value>2</value>
+                <affects>strength</affects>
+                <situation>
+                    <en>To grasp objects.</en>
+                    <es>Asir objetos</es>
+                </situation>
+            </bonification>
+        </bonifications>
+        <group>knacks</group>
+        <restricted>true</restricted>
+        <official>false</official>
+    </strongGrip>
+    <bloodsucker>
+        <name>
+            <en>Blood Sucker</en>
+            <es>Chupasangre</es>
+        </name>
+        <description>
+            <en>Strict diet of blood, cannot eat meat or vegetables.</en>
+            <es>Diesta estricta de sangre, no puede comer carne o vegatales.</es>
+        </description>
+        <cost>3</cost>
+        <group>knacks</group>
+        <restricted>true</restricted>
+        <official>false</official>
+        <curse>true</curse>
+    </bloodsucker>
+    <fixedDevelopment>
+        <name>
+            <en>Fixed Development</en>
+            <es>Desarrollo Rígido</es>
+        </name>
+        <description>
+            <en>Once an adult, the Ascorbite must spend 3x the current rating in experience points to lear a new skill
+                and 2x cost to raised an already learned skill.
+            </en>
+            <es>All legar a la madurez, el Ascorbita debe gastar el triple de puntos de experiencia para aprender una
+                nueva habilidad adquirida, y el doble para subir una ya conocida.
+            </es>
+        </description>
+        <cost>3</cost>
+        <group>knacks</group>
+        <restricted>true</restricted>
+        <official>false</official>
+        <curse>true</curse>
+    </fixedDevelopment>
 
 
 </blessings>

@@ -608,7 +608,7 @@
                 </translation>
             </master>
         </ranks>
-        <restrictedToRaces>human, obun, ukar, vorox</restrictedToRaces>
+        <restrictedToRaces>human, obun, ukar, vorox, etyri, gannok, hironem</restrictedToRaces>
         <blessings>curious, nosy</blessings>
         <suggestedBenefices>
             <benefice>
@@ -628,7 +628,7 @@
             <es>Ingenieros</es>
         </name>
         <group>guild</group>
-        <restrictedToRaces>human, obun, ukar, vorox</restrictedToRaces>
+        <restrictedToRaces>human, obun, ukar, vorox, gannok</restrictedToRaces>
         <blessings>innovative, unnerving</blessings>
         <suggestedBenefices>
             <benefice>
@@ -686,7 +686,7 @@
                 </translation>
             </master>
         </ranks>
-        <restrictedToRaces>human, obun, ukar, vorox</restrictedToRaces>
+        <restrictedToRaces>human, obun, ukar, vorox, etyri, gannok</restrictedToRaces>
         <blessings>theman, possessive</blessings>
         <suggestedBenefices>
             <benefice>
@@ -744,7 +744,7 @@
                 </translation>
             </master>
         </ranks>
-        <restrictedToRaces>human, obun, ukar, vorox</restrictedToRaces>
+        <restrictedToRaces>human, obun, ukar, vorox, etyri, gannok, shantor, hironem, ascorbite</restrictedToRaces>
         <blessings>bold, callous</blessings>
         <suggestedBenefices>
             <benefice>
@@ -802,7 +802,7 @@
                 </translation>
             </master>
         </ranks>
-        <restrictedToRaces>human, obun, ukar, vorox</restrictedToRaces>
+        <restrictedToRaces>human, obun, ukar, vorox, etyri, gannok, hironem</restrictedToRaces>
         <blessings>shrewd, mammon</blessings>
         <suggestedBenefices>
             <benefice>
@@ -822,7 +822,7 @@
             <es>Hombre Libre</es>
         </name>
         <group>none</group>
-        <restrictedToRaces>human, obun, ukar, vorox</restrictedToRaces>
+        <restrictedToRaces>human, obun, ukar, vorox, etyri, gannok, shantor, hironem</restrictedToRaces>
         <suggestedBenefices>
             <benefice>
                 <id>darkSecret</id>
@@ -1256,6 +1256,7 @@
                 <female>Aluuuuraloraaa</female>
             </names>
             <surnames></surnames>
+            <probabilityMultiplier>20</probabilityMultiplier>
         </random>
         <restricted>true</restricted>
         <official>false</official>
@@ -1275,6 +1276,7 @@
                 <female>Aluuuuraloraaa</female>
             </names>
             <surnames></surnames>
+            <probabilityMultiplier>20</probabilityMultiplier>
         </random>
         <restricted>true</restricted>
         <official>false</official>
@@ -1309,6 +1311,7 @@
                 </female>
             </names>
             <surnames>Baalaaji,Baalaraju, Caddaham, Bemossed, Bagwunagijik, Ayawamat</surnames>
+            <probabilityMultiplier>20</probabilityMultiplier>
         </random>
         <restricted>true</restricted>
         <official>false</official>
@@ -1336,6 +1339,7 @@
                 </female>
             </names>
             <surnames>Baalaaji,Baalaraju, Caddaham, Bemossed, Bagwunagijik, Ayawamat</surnames>
+            <probabilityMultiplier>20</probabilityMultiplier>
         </random>
         <restricted>true</restricted>
         <official>false</official>
@@ -1354,6 +1358,7 @@
                 <female></female>
             </names>
             <surnames></surnames>
+            <probabilityMultiplier>20</probabilityMultiplier>
         </random>
         <restricted>true</restricted>
         <official>false</official>
@@ -1372,6 +1377,7 @@
                 <female></female>
             </names>
             <surnames></surnames>
+            <probabilityMultiplier>20</probabilityMultiplier>
         </random>
         <restricted>true</restricted>
         <official>false</official>
@@ -1390,6 +1396,7 @@
                 <female></female>
             </names>
             <surnames></surnames>
+            <probabilityMultiplier>20</probabilityMultiplier>
         </random>
         <restricted>true</restricted>
         <official>false</official>
@@ -1408,6 +1415,7 @@
                 <female></female>
             </names>
             <surnames></surnames>
+            <probabilityMultiplier>20</probabilityMultiplier>
         </random>
         <restricted>true</restricted>
         <official>false</official>
@@ -1418,7 +1426,7 @@
             <es>Sin Facción</es>
         </name>
         <group>minor</group>
-        <restrictedToRaces>human, vorox, obun, ukar</restrictedToRaces>
+        <restrictedToRaces>human, vorox, obun, ukar, ascorbite</restrictedToRaces>
         <restricted>true</restricted>
         <official>false</official>
     </noFaction>

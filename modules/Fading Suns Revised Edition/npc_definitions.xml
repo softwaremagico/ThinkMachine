@@ -1785,4 +1785,14 @@
             </skill>
         </requiredSkills>
     </etyriGhekdaaz>
+    <ascorbite>
+        <name>
+            <en>Ascorbite</en>
+            <es>Ascorbita</es>
+        </name>
+        <group>xenos</group>
+        <profile>ascorbite</profile>
+        <faction>nofaction</faction>
+        <weapons>arbata</weapons>
+    </ascorbite>
 </profiles>
