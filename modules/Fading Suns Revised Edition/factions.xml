@@ -608,7 +608,7 @@
                 </translation>
             </master>
         </ranks>
-        <restrictedToRaces>human, obun, ukar, vorox, etyri, gannok, hironem</restrictedToRaces>
+        <restrictedToRaces>human, obun, ukar, vorox, etyri, gannok</restrictedToRaces>
         <blessings>curious, nosy</blessings>
         <suggestedBenefices>
             <benefice>
@@ -744,7 +744,7 @@
                 </translation>
             </master>
         </ranks>
-        <restrictedToRaces>human, obun, ukar, vorox, etyri, gannok, shantor, hironem, ascorbite</restrictedToRaces>
+        <restrictedToRaces>human, obun, ukar, vorox</restrictedToRaces>
         <blessings>bold, callous</blessings>
         <suggestedBenefices>
             <benefice>
@@ -802,7 +802,7 @@
                 </translation>
             </master>
         </ranks>
-        <restrictedToRaces>human, obun, ukar, vorox, etyri, gannok, hironem</restrictedToRaces>
+        <restrictedToRaces>human, obun, ukar, vorox, gannok, hironem</restrictedToRaces>
         <blessings>shrewd, mammon</blessings>
         <suggestedBenefices>
             <benefice>
