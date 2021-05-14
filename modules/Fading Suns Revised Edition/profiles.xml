@@ -492,7 +492,8 @@
         </name>
         <group>barbarian</group>
         <faction>vuldrok</faction>
-        <preferences>CombatPreferences.BELLIGERENT, TechnologicalPreferences.MODERN, SpecializationPreferences.SPECIALIZED,
+        <preferences>CombatPreferences.BELLIGERENT, TechnologicalPreferences.MODERN,
+            SpecializationPreferences.SPECIALIZED,
             CharacteristicsPreferences.BODY,
         </preferences>
         <characteristicsMinimumValues>
@@ -520,16 +521,19 @@
         </name>
         <group>xenos</group>
         <race>obun</race>
+        <preferences>OccultismTypePreference.PSI</preferences>
         <suggestedSkills>
             <skill>
-                <id>vigor</id>
+                <id>empathy</id>
             </skill>
             <skill>
-                <id>melee</id>
+                <id>influence</id>
             </skill>
             <skill>
-                <id>performance</id>
-                <speciality>acting</speciality>
+                <id>etiquette</id>
+            </skill>
+            <skill>
+                <id>selfControl</id>
             </skill>
         </suggestedSkills>
         <mandatoryBeneficesSpecialization>language [urthish]</mandatoryBeneficesSpecialization>
@@ -542,13 +546,28 @@
         </name>
         <group>xenos</group>
         <race>ukar</race>
-        <preferences>OccultismTypePreference.PSI</preferences>
+        <preferences>OccultismTypePreference.PSI, CombatPreferences.BELLIGERENT, CharacteristicsPreferences.BODY,
+            CombatActionsGroupPreferences.FIGHT, CombatActionsPreferences.FAIR
+        </preferences>
         <suggestedSkills>
             <skill>
                 <id>vigor</id>
             </skill>
             <skill>
                 <id>melee</id>
+            </skill>
+            <skill>
+                <id>sneak</id>
+            </skill>
+            <skill>
+                <id>survival</id>
+            </skill>
+            <skill>
+                <id>knavery</id>
+            </skill>
+            <skill>
+                <id>lore</id>
+                <speciality>poisonsLore</speciality>
             </skill>
         </suggestedSkills>
         <mandatoryBeneficesSpecialization>language [urthish]</mandatoryBeneficesSpecialization>
@@ -560,7 +579,7 @@
             <es>Vorox</es>
         </name>
         <preferences>CombatPreferences.BELLIGERENT, CharacteristicsPreferences.BODY,
-            WeaponsPreferences.MELEE, TechnologicalPreferences.MODERN
+            WeaponsPreferences.MELEE, TechnologicalPreferences.MODERN, CombatActionsPreferences.HIGH
         </preferences>
         <group>xenos</group>
         <race>vorox</race>
@@ -570,6 +589,9 @@
             </skill>
             <skill>
                 <id>fight</id>
+            </skill>
+            <skill>
+                <id>survival</id>
             </skill>
         </suggestedSkills>
         <mandatoryBeneficesSpecialization>language [urthish]</mandatoryBeneficesSpecialization>
@@ -593,7 +615,7 @@
             </skill>
             <skill>
                 <id>performance</id>
-                <speciality>acting</speciality>
+                <speciality>storytelling</speciality>
             </skill>
         </requiredSkills>
         <official>false</official>
