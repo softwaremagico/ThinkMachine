@@ -99,8 +99,8 @@ public class RandomCharacterTests {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         characterPlayer.setRace(RaceFactory.getInstance().getElement("shantor", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0,
-                FactionPreferences.GUILD);
-        //Shantors cannot be on a guild.
+                FactionPreferences.NOBILITY);
+        //Shantors cannot be on a nobility.
         randomizeCharacter.setCharacterDefinition();
     }
 

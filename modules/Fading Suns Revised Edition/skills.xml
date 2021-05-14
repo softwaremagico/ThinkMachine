@@ -597,25 +597,39 @@
             <kelantiLore>
                 <en>Kelanti</en>
                 <es>Kelanti</es>
+                <restrictedToRaces>obun</restrictedToRaces>
                 <random>
                     <recommendedRaces>obun</recommendedRaces>
                     <generalProbability>minimum</generalProbability>
                 </random>
             </kelantiLore>
-            <poisons>
+            <poisonsLore>
                 <en>Poisons</en>
                 <es>Venenos</es>
                 <random>
                     <generalProbability>low</generalProbability>
                 </random>
-            </poisons>
-            <symbiots>
+            </poisonsLore>
+            <symbiotsLore>
                 <en>Symbiots</en>
                 <es>Simbiontes</es>
                 <random>
                     <generalProbability>minimum</generalProbability>
                 </random>
-            </symbiots>
+            </symbiotsLore>
+            <godLore>
+                <name>
+                    <en>God</en>
+                    <es>Dioses</es>
+                </name>
+                <official>false</official>
+                <restricted>true</restricted>
+                <restrictedToRaces>oroym</restrictedToRaces>
+                <random>
+                    <recommendedRaces>oroym</recommendedRaces>
+                    <generalProbability>minimum</generalProbability>
+                </random>
+            </godLore>
         </specializations>
         <numberToShow>4</numberToShow>
     </lore>
@@ -821,5 +835,6 @@
             <probabilityMultiplier>0</probabilityMultiplier>
         </random>
     </fly>
+
 
 </skills>

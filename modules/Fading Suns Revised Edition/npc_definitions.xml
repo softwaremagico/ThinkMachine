@@ -603,7 +603,7 @@
             </skill>
             <skill>
                 <id>lore</id>
-                <speciality>symbiots</speciality>
+                <speciality>symbiotsLore</speciality>
             </skill>
         </requiredSkills>
         <suggestedSkills>
@@ -1291,7 +1291,7 @@
             </skill>
             <skill>
                 <id>lore</id>
-                <speciality>poisons</speciality>
+                <speciality>poisonsLore</speciality>
             </skill>
             <skill>
                 <id>lockpicking</id>
@@ -1795,4 +1795,14 @@
         <faction>nofaction</faction>
         <weapons>arbata</weapons>
     </ascorbite>
+    <oroym>
+        <name>
+            <en>Oro'ym</en>
+            <es>Oro'ym</es>
+        </name>
+        <group>xenos</group>
+        <profile>oroym</profile>
+        <faction>nofaction</faction>
+        <weapons>capekAquaRifle</weapons>
+    </oroym>
 </profiles>

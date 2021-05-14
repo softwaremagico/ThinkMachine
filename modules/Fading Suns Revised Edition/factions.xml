@@ -608,7 +608,7 @@
                 </translation>
             </master>
         </ranks>
-        <restrictedToRaces>human, obun, ukar, vorox, etyri, gannok</restrictedToRaces>
+        <restrictedToRaces>human, obun, ukar, vorox</restrictedToRaces>
         <blessings>curious, nosy</blessings>
         <suggestedBenefices>
             <benefice>
@@ -686,7 +686,7 @@
                 </translation>
             </master>
         </ranks>
-        <restrictedToRaces>human, obun, ukar, vorox, etyri, gannok</restrictedToRaces>
+        <restrictedToRaces>human, obun, ukar, vorox, shantor, gannok, etyri, hironem, oroym</restrictedToRaces>
         <blessings>theman, possessive</blessings>
         <suggestedBenefices>
             <benefice>
@@ -744,7 +744,7 @@
                 </translation>
             </master>
         </ranks>
-        <restrictedToRaces>human, obun, ukar, vorox</restrictedToRaces>
+        <restrictedToRaces>human, obun, ukar, vorox, shantor, gannok, etyri, hironem, oroym</restrictedToRaces>
         <blessings>bold, callous</blessings>
         <suggestedBenefices>
             <benefice>
@@ -802,7 +802,7 @@
                 </translation>
             </master>
         </ranks>
-        <restrictedToRaces>human, obun, ukar, vorox, gannok, hironem</restrictedToRaces>
+        <restrictedToRaces>human, obun, ukar, vorox, gannok, hironem, shantor</restrictedToRaces>
         <blessings>shrewd, mammon</blessings>
         <suggestedBenefices>
             <benefice>
@@ -822,7 +822,7 @@
             <es>Hombre Libre</es>
         </name>
         <group>none</group>
-        <restrictedToRaces>human, obun, ukar, vorox, etyri, gannok, shantor, hironem</restrictedToRaces>
+        <restrictedToRaces>human, obun, ukar, vorox, shantor, gannok, etyri, hironem</restrictedToRaces>
         <suggestedBenefices>
             <benefice>
                 <id>darkSecret</id>
@@ -1256,7 +1256,7 @@
                 <female>Aluuuuraloraaa</female>
             </names>
             <surnames></surnames>
-            <probabilityMultiplier>20</probabilityMultiplier>
+            <probabilityMultiplier>50</probabilityMultiplier>
         </random>
         <restricted>true</restricted>
         <official>false</official>
@@ -1276,7 +1276,7 @@
                 <female>Aluuuuraloraaa</female>
             </names>
             <surnames></surnames>
-            <probabilityMultiplier>20</probabilityMultiplier>
+            <probabilityMultiplier>50</probabilityMultiplier>
         </random>
         <restricted>true</restricted>
         <official>false</official>
@@ -1311,7 +1311,7 @@
                 </female>
             </names>
             <surnames>Baalaaji,Baalaraju, Caddaham, Bemossed, Bagwunagijik, Ayawamat</surnames>
-            <probabilityMultiplier>20</probabilityMultiplier>
+            <probabilityMultiplier>50</probabilityMultiplier>
         </random>
         <restricted>true</restricted>
         <official>false</official>
@@ -1339,7 +1339,7 @@
                 </female>
             </names>
             <surnames>Baalaaji,Baalaraju, Caddaham, Bemossed, Bagwunagijik, Ayawamat</surnames>
-            <probabilityMultiplier>20</probabilityMultiplier>
+            <probabilityMultiplier>50</probabilityMultiplier>
         </random>
         <restricted>true</restricted>
         <official>false</official>
@@ -1358,7 +1358,7 @@
                 <female></female>
             </names>
             <surnames></surnames>
-            <probabilityMultiplier>20</probabilityMultiplier>
+            <probabilityMultiplier>50</probabilityMultiplier>
         </random>
         <restricted>true</restricted>
         <official>false</official>
@@ -1396,7 +1396,7 @@
                 <female></female>
             </names>
             <surnames></surnames>
-            <probabilityMultiplier>20</probabilityMultiplier>
+            <probabilityMultiplier>50</probabilityMultiplier>
         </random>
         <restricted>true</restricted>
         <official>false</official>
@@ -1415,7 +1415,7 @@
                 <female></female>
             </names>
             <surnames></surnames>
-            <probabilityMultiplier>20</probabilityMultiplier>
+            <probabilityMultiplier>50</probabilityMultiplier>
         </random>
         <restricted>true</restricted>
         <official>false</official>

@@ -167,6 +167,7 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
                     final String specializationName = translator.getNodeValue(specializationId, language);
                     final Specialization specialization = new Specialization(specializationId, specializationName, description,
                             language, moduleName);
+                    setRestrictions(specialization, translator, language, moduleName);
                     setRandomConfiguration(specialization, translator, language, moduleName);
                     specializations.add(specialization);
                 }

@@ -209,7 +209,10 @@ public class Translator implements ITranslator {
                 try {
                     final NodeList firstNodeElementList = firstElement.getElementsByTagName(node);
                     final Element firstNodeElement = (Element) firstNodeElementList.item(0);
-                    return firstNodeElement.getChildNodes().item(nodeNumber).getNodeValue().trim();
+                    //Check is not an inner element, only first level.
+                    if (firstNodeElement.getParentNode().getNodeName().equals(tag)) {
+                        return firstNodeElement.getChildNodes().item(nodeNumber).getNodeValue().trim();
+                    }
                 } catch (NullPointerException npe) {
                     return null;
                 }

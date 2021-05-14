@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <races>
     <version>1</version>
-    <totalElements>9</totalElements>
+    <totalElements>10</totalElements>
     <human>
         <name>
             <en>Human</en>
@@ -616,4 +616,73 @@
             <staticProbability>0</staticProbability>
         </random>
     </ascorbite>
+    <oroym>
+        <name>
+            <en>Oro'ym</en>
+            <es>Oro'ym</es>
+        </name>
+        <cost>5</cost>
+        <strength>
+            <value>3</value>
+            <maximumInitialValue>8</maximumInitialValue>
+            <maximumValue>11</maximumValue>
+        </strength>
+        <dexterity>
+            <value>3</value>
+            <maximumInitialValue>8</maximumInitialValue>
+            <maximumValue>10</maximumValue>
+        </dexterity>
+        <endurance>
+            <value>3</value>
+            <maximumInitialValue>8</maximumInitialValue>
+            <maximumValue>11</maximumValue>
+        </endurance>
+        <wits>
+            <value>3</value>
+            <maximumInitialValue>8</maximumInitialValue>
+            <maximumValue>10</maximumValue>
+        </wits>
+        <perception>
+            <value>4</value>
+            <maximumInitialValue>9</maximumInitialValue>
+            <maximumValue>11</maximumValue>
+        </perception>
+        <tech>
+            <value>3</value>
+            <maximumInitialValue>8</maximumInitialValue>
+            <maximumValue>10</maximumValue>
+        </tech>
+        <presence>
+            <value>3</value>
+            <maximumInitialValue>8</maximumInitialValue>
+            <maximumValue>10</maximumValue>
+        </presence>
+        <will>
+            <value>3</value>
+            <maximumInitialValue>8</maximumInitialValue>
+            <maximumValue>10</maximumValue>
+        </will>
+        <faith>
+            <value>3</value>
+            <maximumInitialValue>8</maximumInitialValue>
+            <maximumValue>10</maximumValue>
+        </faith>
+        <movement>
+            <value>5</value>
+        </movement>
+        <defense>
+            <value>1</value>
+        </defense>
+        <psi>0</psi>
+        <urge>0</urge>
+        <theurgy>0</theurgy>
+        <hubris>0</hubris>
+        <blessings>fangs, gills, regrowth, strongTail, webbedHands, coldBlooded, requiresMoisture</blessings>
+        <benefices>ostraziced2</benefices>
+        <planets>severus</planets>
+        <official>false</official>
+        <random>
+            <staticProbability>0</staticProbability>
+        </random>
+    </oroym>
 </races>

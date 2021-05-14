@@ -37,7 +37,7 @@ import java.util.Set;
 public class AvailableSkill extends Skill<AvailableSkill> implements IValue {
     private Specialization specialization = null;
     @ExcludeFromJson
-    private SkillDefinition skillDefinition;
+    private final SkillDefinition skillDefinition;
 
     public AvailableSkill(SkillDefinition skillDefinition) {
         super(skillDefinition.getId(), skillDefinition.getName(), skillDefinition.getDescription(), skillDefinition.getLanguage(),
@@ -147,6 +147,11 @@ public class AvailableSkill extends Skill<AvailableSkill> implements IValue {
     }
 
     public Set<Race> getRestrictedToRaces() {
+        if (getSpecialization() != null) {
+            if (!getSpecialization().getRestrictedToRaces().isEmpty()) {
+                return getSpecialization().getRestrictedToRaces();
+            }
+        }
         return getSkillDefinition().getRestrictedToRaces();
     }
 }

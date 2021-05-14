@@ -86,4 +86,11 @@ public class SkillTests {
         player.setRace(RaceFactory.getInstance().getElement("vorox", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("fly", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER), 3);
     }
+
+    @Test(expectedExceptions = InvalidSkillException.class)
+    public void checkSkillSpecializationRestrictedToRace() throws InvalidXmlElementException, InvalidRanksException {
+        final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        player.setRace(RaceFactory.getInstance().getElement("vorox", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+        player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("lore", "kelantiLore", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER), 3);
+    }
 }

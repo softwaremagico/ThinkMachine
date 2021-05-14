@@ -243,7 +243,7 @@
             </skill>
             <skill>
                 <id>lore</id>
-                <speciality>poisons</speciality>
+                <speciality>poisonsLore</speciality>
             </skill>
             <skill>
                 <id>lockpicking</id>
@@ -254,8 +254,8 @@
             <skill>
                 <id>streetWise</id>
             </skill>
-            <suggestedBenefices>passageContracts, professionalContract, secrets, darkSecret</suggestedBenefices>
         </suggestedSkills>
+        <suggestedBenefices>passageContracts, professionalContract, secrets, darkSecret</suggestedBenefices>
     </slayer>
     <spy>
         <name>
@@ -673,5 +673,34 @@
         </requiredSkills>
         <official>false</official>
     </ascorbite>
+    <oroym>
+        <name>
+            <en>Oro'ym</en>
+            <es>Oro'ym</es>
+        </name>
+        <group>xenos</group>
+        <race>oroym</race>
+        <official>false</official>
+        <characteristicsMinimumValues>
+            <will>6</will>
+            <perception>6</perception>
+        </characteristicsMinimumValues>
+        <requiredSkills>
+            <skill>
+                <id>vigor</id>
+            </skill>
+            <skill>
+                <id>fight</id>
+            </skill>
+            <skill>
+                <id>survival</id>
+            </skill>
+            <skill>
+                <id>lore</id>
+                <speciality>beastsLore</speciality>
+            </skill>
+        </requiredSkills>
+        <official>false</official>
+    </oroym>
 
 </profiles>

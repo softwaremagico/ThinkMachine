@@ -167,6 +167,16 @@
                     <probabilityMultiplier>0.1</probabilityMultiplier>
                 </random>
             </salsu>
+            <oroym>
+                <name>
+                    <en>Oro'ym</en>
+                    <es>Oro'ym</es>
+                </name>
+                <random>
+                    <forbiddenRaces>oroym</forbiddenRaces>
+                    <probabilityMultiplier>0.1</probabilityMultiplier>
+                </random>
+            </oroym>
         </specializations>
         <cost>2</cost>
         <group>background</group>

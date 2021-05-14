@@ -107,10 +107,10 @@ public class BeneficeDefinitionFactory extends XmlFactory<BeneficeDefinition> {
                 setRandomConfiguration(specialization, translator, language, moduleName);
 
                 // Set specific cost.
-                final String specizalizationCost = translator.getNodeValue(specializationId, COST);
-                if (specizalizationCost != null) {
+                final String specializationCost = translator.getNodeValue(specializationId, COST);
+                if (specializationCost != null) {
                     try {
-                        specialization.setCost(Integer.parseInt(specizalizationCost));
+                        specialization.setCost(Integer.parseInt(specializationCost));
                     } catch (NumberFormatException e) {
                         throw new InvalidBeneficeException("Invalid cost in benefit '" + benefitId
                                 + "' and specialization '" + specializationId + "'.", e);
@@ -132,19 +132,21 @@ public class BeneficeDefinitionFactory extends XmlFactory<BeneficeDefinition> {
             }
 
             final List<Integer> costs = new ArrayList<>();
-            if (costRange.contains("-")) {
-                final int minValue = Integer.parseInt(costRange.substring(0, costRange.indexOf('-')));
-                final int maxValue = Integer.parseInt(costRange.substring(costRange.indexOf('-') + 1));
-                for (int i = minValue; i <= maxValue; i++) {
-                    costs.add(i);
+            if (costRange != null) {
+                if (costRange.contains("-")) {
+                    final int minValue = Integer.parseInt(costRange.substring(0, costRange.indexOf('-')));
+                    final int maxValue = Integer.parseInt(costRange.substring(costRange.indexOf('-') + 1));
+                    for (int i = minValue; i <= maxValue; i++) {
+                        costs.add(i);
+                    }
+                } else if (costRange.contains(",")) {
+                    final StringTokenizer costsOfBenefice = new StringTokenizer(costRange, ",");
+                    while (costsOfBenefice.hasMoreTokens()) {
+                        costs.add(Integer.parseInt(costsOfBenefice.nextToken().trim()));
+                    }
+                } else {
+                    costs.add(Integer.parseInt(costRange));
                 }
-            } else if (costRange.contains(",")) {
-                final StringTokenizer costsOfBenefice = new StringTokenizer(costRange, ",");
-                while (costsOfBenefice.hasMoreTokens()) {
-                    costs.add(Integer.parseInt(costsOfBenefice.nextToken().trim()));
-                }
-            } else {
-                costs.add(Integer.parseInt(costRange));
             }
 
             final Set<String> incompatibleWith = new HashSet<>();

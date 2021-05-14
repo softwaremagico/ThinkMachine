@@ -24,6 +24,7 @@ package com.softwaremagico.tm.character.factions;
  * #L%
  */
 
+import com.softwaremagico.tm.Element;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
 import com.softwaremagico.tm.character.Gender;
@@ -57,6 +58,7 @@ public class FactionsFactory extends XmlFactory<Faction> {
     private static final String BENEFICE_MAX_VALUE = "maxValue";
     private static final String BENEFICE_VALUE = "value";
 
+    private static final String RANDOM = "random";
     private static final String RANDOM_NAMES = "names";
     private static final String MALE_NAMES = "male";
     private static final String FEMALE_NAMES = "female";
@@ -174,7 +176,7 @@ public class FactionsFactory extends XmlFactory<Faction> {
             }
 
             // Random options
-            final String maleNames = translator.getNodeValue(factionId, RANDOM_NAMES, MALE_NAMES);
+            final String maleNames = translator.getNodeValue(factionId, RANDOM, RANDOM_NAMES, MALE_NAMES);
             if (maleNames != null) {
                 final StringTokenizer maleNamesTokenizer = new StringTokenizer(maleNames, ",");
                 while (maleNamesTokenizer.hasMoreTokens()) {
@@ -183,7 +185,7 @@ public class FactionsFactory extends XmlFactory<Faction> {
                 }
             }
 
-            final String femaleNames = translator.getNodeValue(factionId, RANDOM_NAMES, FEMALE_NAMES);
+            final String femaleNames = translator.getNodeValue(factionId, RANDOM, RANDOM_NAMES, FEMALE_NAMES);
             if (femaleNames != null) {
                 final StringTokenizer femaleNamesTokenizer = new StringTokenizer(femaleNames, ",");
                 while (femaleNamesTokenizer.hasMoreTokens()) {
@@ -192,7 +194,7 @@ public class FactionsFactory extends XmlFactory<Faction> {
                 }
             }
 
-            final String surnames = translator.getNodeValue(factionId, SURNAMES);
+            final String surnames = translator.getNodeValue(factionId, RANDOM,  SURNAMES);
             if (surnames != null) {
                 final StringTokenizer surnamesTokenizer = new StringTokenizer(surnames, ",");
                 while (surnamesTokenizer.hasMoreTokens()) {
@@ -207,7 +209,7 @@ public class FactionsFactory extends XmlFactory<Faction> {
     }
 
     @Override
-    protected void setRestrictedToRaces(Faction faction, Set<Race> races) throws InvalidFactionException {
+    protected void setRestrictedToRaces(Element<?> faction, Set<Race> races) throws InvalidFactionException {
         if (races == null || races.isEmpty()) {
             throw new InvalidFactionException(
                     "Race not defined in faction '" + faction.getId() + "'. Factions must have a race restriction.");
@@ -264,7 +266,7 @@ public class FactionsFactory extends XmlFactory<Faction> {
 
     public Set<Surname> getAllSurnames(Faction faction) {
         final Set<Surname> surnames = new HashSet<>();
-        if (surnamesByFaction.get(faction) != null) {
+        if (surnamesByFaction != null && surnamesByFaction.get(faction) != null) {
             surnames.addAll(surnamesByFaction.get(faction));
         }
         return surnames;

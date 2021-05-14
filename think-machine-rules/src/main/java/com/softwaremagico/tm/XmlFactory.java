@@ -99,6 +99,19 @@ public abstract class XmlFactory<T extends Element<T>> implements IElementRetrie
         initialize();
     }
 
+    protected void setRestrictions(Element<?> element, ITranslator translator, String language, String moduleName) throws InvalidXmlElementException {
+        final Set<Race> races = getCommaSeparatedValues(element.getId(), RESTRICTED_RACES, language, moduleName, RaceFactory.getInstance());
+
+        final String restriction = getTranslator(moduleName).getNodeValue(element.getId(), RESTRICTED_FACTION_GROUP_TAG);
+        FactionGroup restrictedToGroup = null;
+        if (restriction != null) {
+            restrictedToGroup = FactionGroup.get(restriction);
+        }
+
+        setRestrictedToRaces(element, races);
+        setRestrictedToFactionGroup(element, restrictedToGroup);
+    }
+
     protected void setRandomConfiguration(Element<?> element, ITranslator translator, String language, String moduleName) throws InvalidXmlElementException {
         // Is an element restricted to a faction?
         try {
@@ -337,19 +350,11 @@ public abstract class XmlFactory<T extends Element<T>> implements IElementRetrie
                     //Restriction is not mandatory.
                 }
 
-                final Set<Race> races = getCommaSeparatedValues(elementId, RESTRICTED_RACES, language, moduleName, RaceFactory.getInstance());
-
-                final String restriction = getTranslator(moduleName).getNodeValue(elementId, RESTRICTED_FACTION_GROUP_TAG);
-                FactionGroup restrictedToGroup = null;
-                if (restriction != null) {
-                    restrictedToGroup = FactionGroup.get(restriction);
-                }
 
 
                 final T element = createElement(getTranslator(moduleName), elementId, name, description, language, moduleName);
                 setRandomConfiguration(element, getTranslator(moduleName), language, moduleName);
-                setRestrictedToRaces(element, races);
-                setRestrictedToFactionGroup(element, restrictedToGroup);
+                setRestrictions(element, getTranslator(moduleName), language, moduleName);
                 if (restricted != null) {
                     element.setRestricted(restricted);
                 }
@@ -366,11 +371,11 @@ public abstract class XmlFactory<T extends Element<T>> implements IElementRetrie
         return elements.get(language).get(moduleName);
     }
 
-    protected void setRestrictedToRaces(T element, Set<Race> races) throws InvalidXmlElementException {
+    protected void setRestrictedToRaces(Element<?> element, Set<Race> races) throws InvalidXmlElementException {
         element.setRestrictedToRaces(races);
     }
 
-    protected void setRestrictedToFactionGroup(T element, FactionGroup factionGroup) throws InvalidXmlElementException {
+    protected void setRestrictedToFactionGroup(Element<?> element, FactionGroup factionGroup) throws InvalidXmlElementException {
         element.setRestrictedToFactionGroup(factionGroup);
     }
 

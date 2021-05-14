@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <blessings>
     <version>1</version>
-    <totalElements>147</totalElements>
+    <totalElements>154</totalElements>
     <handsome>
         <name>
             <en>Handsome</en>
@@ -4001,6 +4001,121 @@
         <official>false</official>
         <curse>true</curse>
     </fixedDevelopment>
+    <fangs>
+        <name>
+            <en>Fangs</en>
+            <es>Colmillos</es>
+        </name>
+        <description>
+            <en>2D of damage.</en>
+            <es>2D de daño.</es>
+        </description>
+        <cost>1</cost>
+        <group>knacks</group>
+        <restricted>true</restricted>
+        <official>false</official>
+    </fangs>
+    <gills>
+        <name>
+            <en>Gills</en>
+            <es>Agallas</es>
+        </name>
+        <description>
+            <en>Breath under water.</en>
+            <es>Respira bajo el agua.</es>
+        </description>
+        <cost>3</cost>
+        <group>knacks</group>
+        <restricted>true</restricted>
+        <official>false</official>
+    </gills>
+    <regrowth>
+        <name>
+            <en>Regrowth</en>
+            <es>Regeneración</es>
+        </name>
+        <description>
+            <en>The Oro'ym will regrow a severed limb or tail within four months of losing it. However, each time this
+                occurs, the Oro'ym permanently loses one level of Endurance, although this may be raised again with
+                experience points.
+            </en>
+            <es>El Oro'ym recupera una cola o miembro perdido en cuatro meses. Sin embargo, cada vez se pierde un nivel
+                permanente de Fortaleza, que puede recuperarse con puntos de experiencia.
+            </es>
+        </description>
+        <cost>4</cost>
+        <group>knacks</group>
+        <restricted>true</restricted>
+        <official>false</official>
+    </regrowth>
+    <strongTail>
+        <name>
+            <en>Strong Tail</en>
+            <es>Cola Poderosa</es>
+        </name>
+        <description>
+            <en>3D of damage. +1m/VP when swimming.</en>
+            <es>3D de daño. +1m/PV al nadar.</es>
+        </description>
+        <cost>3</cost>
+        <group>knacks</group>
+        <restricted>true</restricted>
+        <official>false</official>
+    </strongTail>
+    <webbedHands>
+        <name>
+            <en>Webbed Hands</en>
+            <es>Manos Palmeadas</es>
+        </name>
+        <description>
+            <en>+2m/VP when swimming.</en>
+            <es>+2m/PV al nadar.</es>
+        </description>
+        <cost>3</cost>
+        <group>knacks</group>
+        <restricted>true</restricted>
+        <official>false</official>
+    </webbedHands>
+    <coldBlooded>
+        <name>
+            <en>Cold-blooded</en>
+            <es>Sangre Fría</es>
+        </name>
+        <description>
+            <en>-2 a Endurance for every 10º degrees below 60ºF; -1 Perception for every 10 degrees over 100ºF</en>
+            <es>-2 a Fortaleza por cada 5 grados por debajo de 15ºC; -1 Percepción por cada 5 grados por encima de
+                35ºC
+            </es>
+        </description>
+        <cost>3</cost>
+        <group>knacks</group>
+        <restricted>true</restricted>
+        <official>false</official>
+        <curse>true</curse>
+    </coldBlooded>
+    <requiresMoisture>
+        <name>
+            <en>Requires Moisture</en>
+            <es>Requiere Humedad</es>
+        </name>
+        <description>
+            <en>While an Oro'ym can survive without moisture for three days, he/she loses one level of Endurance per
+                hour after that limit. Once Endurance is zero, he/she suffers the loss of one Vitality point per hour
+                until he/she is dead. Immersion in water at any point will reverse the effects at the rate of one
+                point/level per minute.
+            </en>
+            <es>Aunque pueden sobrevivir hasta 3 días sin humedad, los Oro'ym pierden un nivel de Fortaleza por hora
+                después de alcancar este límite. Cuando llega a cero perderá un punto de Vitalidad por hora. Cuando los
+                pierda todos, morirá. La inmersión en cualquier momento del proceso anulará estos efectos a la velocidad
+                de un punto/nivel por minuto.
+            </es>
+        </description>
+        <cost>3</cost>
+        <group>knacks</group>
+        <restricted>true</restricted>
+        <official>false</official>
+        <curse>true</curse>
+    </requiresMoisture>
 
 
 </blessings>
