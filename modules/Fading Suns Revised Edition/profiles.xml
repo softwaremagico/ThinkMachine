@@ -591,6 +591,10 @@
             <skill>
                 <id>melee</id>
             </skill>
+            <skill>
+                <id>performance</id>
+                <speciality>acting</speciality>
+            </skill>
         </requiredSkills>
         <official>false</official>
     </shantor>
