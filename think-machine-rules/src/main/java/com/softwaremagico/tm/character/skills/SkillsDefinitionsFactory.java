@@ -38,6 +38,7 @@ import java.util.*;
 public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
     private static final String TRANSLATOR_FILE = "skills.xml";
 
+    private static final String NAME = "name";
     private static final String FACTION_SKILL_TAG = "factionSkill";
     private static final String SPECIALIZE_SKILL_TAG = "specializations";
     private static final String GROUP_SKILL_TAG = "group";
@@ -163,7 +164,7 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
             final SkillDefinition skill = new SkillDefinition(skillId, name, description, language, moduleName);
             try {
                 final Set<Specialization> specializations = new HashSet<>();
-                for (final String specializationId : translator.getAllChildrenTags(skillId, SPECIALIZE_SKILL_TAG)) {
+                for (final String specializationId : translator.getAllChildrenTags(skillId, NAME, SPECIALIZE_SKILL_TAG)) {
                     final String specializationName = translator.getNodeValue(specializationId, language);
                     final Specialization specialization = new Specialization(specializationId, specializationName, description,
                             language, moduleName);

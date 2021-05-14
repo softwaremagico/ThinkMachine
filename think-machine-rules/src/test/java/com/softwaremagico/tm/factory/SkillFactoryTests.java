@@ -57,7 +57,12 @@ public class SkillFactoryTests {
     }
 
     @Test
-    public void availableSkillOfficial() throws InvalidXmlElementException {
+    public void availableSkillNoOfficial() throws InvalidXmlElementException {
         Assert.assertFalse(AvailableSkillsFactory.getInstance().getElement("fly", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).isOfficial());
+    }
+
+    @Test
+    public void availableSkillSpecializationNoOfficial() throws InvalidXmlElementException {
+        Assert.assertFalse(AvailableSkillsFactory.getInstance().getElement("lore", "godLore", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).isOfficial());
     }
 }

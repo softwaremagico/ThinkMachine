@@ -51,6 +51,8 @@ public interface ITranslator {
 
 	Set<String> getAllChildrenTags(String parent, String tag);
 
+	Set<String> getAllChildrenTags(String grandparent, String parent, String group);
+
 	List<Language> getAvailableLanguages();
 
 	String getNodeValue(String grandparent, String parent, String tag, String node);

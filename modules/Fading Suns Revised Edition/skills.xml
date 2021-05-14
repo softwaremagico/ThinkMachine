@@ -324,51 +324,71 @@
         <group>creative</group>
         <specializations>
             <music>
-                <en>Music</en>
-                <es>Música</es>
+                <name>
+                    <en>Music</en>
+                    <es>Música</es>
+                </name>
             </music>
             <caligraphy>
-                <en>Caligraphy</en>
-                <es>Caligrafía</es>
+                <name>
+                    <en>Caligraphy</en>
+                    <es>Caligrafía</es>
+                </name>
                 <random>
                     <generalProbability>low</generalProbability>
                 </random>
             </caligraphy>
             <drawing>
-                <en>Drawing</en>
-                <es>Dibujo</es>
+                <name>
+                    <en>Drawing</en>
+                    <es>Dibujo</es>
+                </name>
             </drawing>
             <embroidery>
-                <en>Embroidery</en>
-                <es>Bordado</es>
+                <name>
+                    <en>Embroidery</en>
+                    <es>Bordado</es>
+                </name>
                 <random>
                     <generalProbability>minimum</generalProbability>
                     <recommendedFactionGroups>nobility</recommendedFactionGroups>
                 </random>
             </embroidery>
             <music>
-                <en>Music</en>
-                <es>Música</es>
+                <name>
+                    <en>Music</en>
+                    <es>Música</es>
+                </name>
             </music>
             <painting>
-                <en>Painting</en>
-                <es>Pintura</es>
+                <name>
+                    <en>Painting</en>
+                    <es>Pintura</es>
+                </name>
             </painting>
             <writting>
-                <en>Creative Writting</en>
-                <es>Escritor</es>
+                <name>
+                    <en>Creative Writting</en>
+                    <es>Escritor</es>
+                </name>
             </writting>
             <sculpting>
-                <en>Sculpting</en>
-                <es>Escultor</es>
+                <name>
+                    <en>Sculpting</en>
+                    <es>Escultor</es>
+                </name>
             </sculpting>
             <poetry>
-                <en>Poetry</en>
-                <es>Poesía</es>
+                <name>
+                    <en>Poetry</en>
+                    <es>Poesía</es>
+                </name>
             </poetry>
             <stainedGlass>
-                <en>Stained Glass</en>
-                <es>Vitral</es>
+                <name>
+                    <en>Stained Glass</en>
+                    <es>Vitral</es>
+                </name>
             </stainedGlass>
         </specializations>
         <numberToShow>2</numberToShow>
@@ -386,47 +406,66 @@
             <es>Interpretar</es>
         </name>
         <group>creative</group>
-        <specializations>true</specializations>
         <specializations>
             <acting>
-                <en>Acting</en>
-                <es>Actuar</es>
+                <name>
+                    <en>Acting</en>
+                    <es>Actuar</es>
+                </name>
             </acting>
             <dancing>
-                <en>Dancing</en>
-                <es>Bailar</es>
+                <name>
+                    <en>Dancing</en>
+                    <es>Bailar</es>
+                </name>
             </dancing>
             <singing>
-                <en>Singing</en>
-                <es>Canto</es>
+                <name>
+                    <en>Singing</en>
+                    <es>Canto</es>
+                </name>
             </singing>
             <storytelling>
-                <en>Storytelling</en>
-                <es>Cuentacuentos</es>
+                <name>
+                    <en>Storytelling</en>
+                    <es>Cuentacuentos</es>
+                </name>
             </storytelling>
             <recital>
-                <en>Recital</en>
-                <es>Recital</es>
+                <name>
+                    <en>Recital</en>
+                    <es>Recital</es>
+                </name>
             </recital>
             <flute>
-                <en>Flute</en>
-                <es>Flauta</es>
+                <name>
+                    <en>Flute</en>
+                    <es>Flauta</es>
+                </name>
             </flute>
             <lute>
-                <en>Lute</en>
-                <es>Laúd</es>
+                <name>
+                    <en>Lute</en>
+                    <es>Laúd</es>
+                </name>
             </lute>
             <guitar>
-                <en>Guitar</en>
-                <es>Guitarra</es>
+                <name>
+                    <en>Guitar</en>
+                    <es>Guitarra</es>
+                </name>
             </guitar>
             <drums>
-                <en>Drums</en>
-                <es>Percusión</es>
+                <name>
+                    <en>Drums</en>
+                    <es>Percusión</es>
+                </name>
             </drums>
             <piano>
-                <en>Piano</en>
-                <es>Piano</es>
+                <name>
+                    <en>Piano</en>
+                    <es>Piano</es>
+                </name>
                 <random>
                     <recommendedFactionGroups>nobility</recommendedFactionGroups>
                 </random>
@@ -449,55 +488,79 @@
         <group>creative</group>
         <specializations>
             <blacksmith>
-                <en>Blacksmith</en>
-                <es>Herrero</es>
+                <name>
+                    <en>Blacksmith</en>
+                    <es>Herrero</es>
+                </name>
             </blacksmith>
             <carpenter>
-                <en>Carpenter</en>
-                <es>Carpintero</es>
+                <name>
+                    <en>Carpenter</en>
+                    <es>Carpintero</es>
+                </name>
             </carpenter>
             <cartographer>
-                <en>Cartographer</en>
-                <es>Cartógrafo</es>
+                <name>
+                    <en>Cartographer</en>
+                    <es>Cartógrafo</es>
+                </name>
             </cartographer>
             <cook>
-                <en>Cook</en>
-                <es>Cocinero</es>
+                <name>
+                    <en>Cook</en>
+                    <es>Cocinero</es>
+                </name>
             </cook>
             <jeweler>
-                <en>Jeweler</en>
-                <es>Joyero</es>
+                <name>
+                    <en>Jeweler</en>
+                    <es>Joyero</es>
+                </name>
             </jeweler>
             <leatherworker>
-                <en>Leatherworker</en>
-                <es>Curtidor</es>
+                <name>
+                    <en>Leatherworker</en>
+                    <es>Curtidor</es>
+                </name>
             </leatherworker>
             <locksmith>
-                <en>Locksmith</en>
-                <es>Cerrajero</es>
+                <name>
+                    <en>Locksmith</en>
+                    <es>Cerrajero</es>
+                </name>
             </locksmith>
             <mason>
-                <en>Mason</en>
-                <es>Masón</es>
+                <name>
+                    <en>Mason</en>
+                    <es>Masón</es>
+                </name>
                 <random>
                     <generalProbability>minimum</generalProbability>
                 </random>
             </mason>
             <potter>
-                <en>Potter</en>
-                <es>Alfarero</es>
+                <name>
+                    <en>Potter</en>
+                    <es>Alfarero</es>
+                </name>
             </potter>
             <tailor>
-                <en>Tailor</en>
-                <es>Sastre</es>
+                <name>
+                    <en>Tailor</en>
+                    <es>Sastre</es>
+                </name>
             </tailor>
             <weaver>
-                <en>Weaver</en>
-                <es>Tejedor</es>
+                <name>
+                    <en>Weaver</en>
+                    <es>Tejedor</es>
+                </name>
             </weaver>
             <household>
-                <en>Household</en>
-                <es>Doméstico</es>
+                <name>
+                    <en>Household</en>
+                    <es>Doméstico</es>
+                </name>
             </household>
         </specializations>
         <numberToShow>2</numberToShow>
@@ -564,10 +627,13 @@
             <es>Saber</es>
         </name>
         <group>lore</group>
+        <official>true</official>
         <specializations>
             <jumpwebLore>
-                <en>Jumpweb</en>
-                <es>Red de Salto</es>
+                <name>
+                    <en>Jumpweb</en>
+                    <es>Red de Salto</es>
+                </name>
                 <random>
                     <minTechLevel>5</minTechLevel>
                     <generalProbability>low</generalProbability>
@@ -575,28 +641,36 @@
                 </random>
             </jumpwebLore>
             <beastsLore>
-                <en>Beasts</en>
-                <es>Bestias</es>
+                <name>
+                    <en>Beasts</en>
+                    <es>Bestias</es>
+                </name>
             </beastsLore>
             <energyPistolsLore>
-                <en>Energy Pistols</en>
-                <es>Pistola Energía</es>
+                <name>
+                    <en>Energy Pistols</en>
+                    <es>Pistola Energía</es>
+                </name>
                 <random>
                     <minTechLevel>5</minTechLevel>
                     <generalProbability>low</generalProbability>
                 </random>
             </energyPistolsLore>
             <thinkMachineLore>
-                <en>Think Machine</en>
-                <es>Máquina Pensante</es>
+                <name>
+                    <en>Think Machine</en>
+                    <es>Máquina Pensante</es>
+                </name>
                 <random>
                     <minTechLevel>5</minTechLevel>
                     <recommendedFactions>engineers</recommendedFactions>
                 </random>
             </thinkMachineLore>
             <kelantiLore>
-                <en>Kelanti</en>
-                <es>Kelanti</es>
+                <name>
+                    <en>Kelanti</en>
+                    <es>Kelanti</es>
+                </name>
                 <restrictedToRaces>obun</restrictedToRaces>
                 <random>
                     <recommendedRaces>obun</recommendedRaces>
@@ -604,15 +678,19 @@
                 </random>
             </kelantiLore>
             <poisonsLore>
-                <en>Poisons</en>
-                <es>Venenos</es>
+                <name>
+                    <en>Poisons</en>
+                    <es>Venenos</es>
+                </name>
                 <random>
                     <generalProbability>low</generalProbability>
                 </random>
             </poisonsLore>
             <symbiotsLore>
-                <en>Symbiots</en>
-                <es>Simbiontes</es>
+                <name>
+                    <en>Symbiots</en>
+                    <es>Simbiontes</es>
+                </name>
                 <random>
                     <generalProbability>minimum</generalProbability>
                 </random>
@@ -641,71 +719,91 @@
         <group>lore</group>
         <specializations>
             <urObun>
-                <en>Ur-Obun</en>
-                <es>Ur-Obun</es>
+                <name>
+                    <en>Ur-Obun</en>
+                    <es>Ur-Obun</es>
+                </name>
                 <random>
                     <generalProbability>low</generalProbability>
                 </random>
             </urObun>
             <urUkar>
-                <en>Ur-Ukar</en>
-                <es>Ur-Ukar</es>
+                <name>
+                    <en>Ur-Ukar</en>
+                    <es>Ur-Ukar</es>
+                </name>
                 <random>
                     <generalProbability>low</generalProbability>
                 </random>
             </urUkar>
             <vorox>
-                <en>Vorox</en>
-                <es>Vorox</es>
+                <name>
+                    <en>Vorox</en>
+                    <es>Vorox</es>
+                </name>
                 <random>
                     <generalProbability>low</generalProbability>
                 </random>
             </vorox>
             <shantor>
-                <en>Shantor</en>
-                <es>Shantor</es>
+                <name>
+                    <en>Shantor</en>
+                    <es>Shantor</es>
+                </name>
                 <random>
                     <generalProbability>minimum</generalProbability>
                 </random>
             </shantor>
             <gannok>
-                <en>Gannok</en>
-                <es>Gannok</es>
+                <name>
+                    <en>Gannok</en>
+                    <es>Gannok</es>
+                </name>
                 <random>
                     <generalProbability>minimum</generalProbability>
                 </random>
             </gannok>
             <etyri>
-                <en>Etyri</en>
-                <es>Etyri</es>
+                <name>
+                    <en>Etyri</en>
+                    <es>Etyri</es>
+                </name>
                 <random>
                     <generalProbability>minimum</generalProbability>
                 </random>
             </etyri>
             <hironem>
-                <en>Hironem</en>
-                <es>Hironem</es>
+                <name>
+                    <en>Hironem</en>
+                    <es>Hironem</es>
+                </name>
                 <random>
                     <generalProbability>minimum</generalProbability>
                 </random>
             </hironem>
             <ascorbites>
-                <en>Ascorbites</en>
-                <es>Ascorbitas</es>
+                <name>
+                    <en>Ascorbites</en>
+                    <es>Ascorbitas</es>
+                </name>
                 <random>
                     <generalProbability>minimum</generalProbability>
                 </random>
             </ascorbites>
             <oroym>
-                <en>Oro'ym</en>
-                <es>Oro'ym</es>
+                <name>
+                    <en>Oro'ym</en>
+                    <es>Oro'ym</es>
+                </name>
                 <random>
                     <generalProbability>minimum</generalProbability>
                 </random>
             </oroym>
             <annuaki>
-                <es>Anunnaki</es>
-                <en>Anunnaki</en>
+                <name>
+                    <es>Anunnaki</es>
+                    <en>Anunnaki</en>
+                </name>
                 <random>
                     <generalProbability>none</generalProbability>
                 </random>

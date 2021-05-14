@@ -470,6 +470,44 @@ public class Translator implements ITranslator {
         return childrenTags;
     }
 
+    @Override
+    public Set<String> getAllChildrenTags(String grandparent, String parent, String group) {
+        final Set<String> childrenTags = new HashSet<>();
+        final NodeList nodeList = doc.getElementsByTagName(grandparent);
+        for (int child = 0; child < nodeList.getLength(); child++) {
+            final Node grandParentNode = nodeList.item(child);
+            // Remove text values
+            if (grandParentNode.getNodeType() == Node.ELEMENT_NODE) {
+                final Element grandParentElement = (Element) grandParentNode;
+                try {
+                    final NodeList parentElementList = grandParentElement.getElementsByTagName(parent);
+                    final Element parentElement = (Element) parentElementList.item(0);
+                    try {
+                        final NodeList groupList = parentElement.getElementsByTagName(group);
+                        final Element groupElement = (Element) groupList.item(0);
+                        try {
+                            final NodeList childrenList = groupElement.getChildNodes();
+                            for (int childIndex = 0; childIndex < childrenList.getLength(); childIndex++) {
+                                final Node childNode = childrenList.item(childIndex);
+                                // Remove text values
+                                if (childNode.getNodeType() == Node.ELEMENT_NODE) {
+                                    childrenTags.add(childNode.getNodeName());
+                                }
+                            }
+                        } catch (NullPointerException npe) {
+                            return childrenTags;
+                        }
+                    } catch (NullPointerException npe) {
+                        return childrenTags;
+                    }
+                } catch (NullPointerException npe) {
+                    return childrenTags;
+                }
+            }
+        }
+        return childrenTags;
+    }
+
     private String readTag(String tag, String language) {
         try {
             final NodeList nodeList = doc.getElementsByTagName(tag);
@@ -553,7 +591,7 @@ public class Translator implements ITranslator {
                     return file;
                 }
             }
-        } catch (URISyntaxException e) {
+        } catch (URISyntaxException | NullPointerException e) {
             //Nothing
         }
 
@@ -564,7 +602,7 @@ public class Translator implements ITranslator {
                     return file;
                 }
             }
-        } catch (URISyntaxException e) {
+        } catch (URISyntaxException | NullPointerException e) {
             //Nothing
         }
         return null;
