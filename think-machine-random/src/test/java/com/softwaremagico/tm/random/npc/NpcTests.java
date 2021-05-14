@@ -351,6 +351,7 @@ public class NpcTests {
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
                 NpcFactory.getInstance().getElement("ascorbite", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         randomizeCharacter.createCharacter();
+        Assert.assertEquals(characterPlayer.getFaction(), FactionsFactory.getInstance().getElement("nofaction", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
     }
 
 
