@@ -27,6 +27,7 @@ package com.softwaremagico.tm.random;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.RandomizeCharacter;
+import com.softwaremagico.tm.character.RestrictedElementException;
 import com.softwaremagico.tm.character.ThreatLevel;
 import com.softwaremagico.tm.file.PathManager;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
@@ -43,7 +44,7 @@ public class RandomCharacterThreatAverage {
     private static final int NUMBER_OF_TESTS = 100;
 
     public int calculateThread(IRandomPreference... preferences) throws InvalidXmlElementException,
-            InvalidRandomElementSelectedException {
+            InvalidRandomElementSelectedException, RestrictedElementException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0, preferences);
         randomizeCharacter.createCharacter();
@@ -51,7 +52,7 @@ public class RandomCharacterThreatAverage {
     }
 
     public float calculateThreatAverage(IRandomPreference... preferences) throws
-            InvalidXmlElementException, InvalidRandomElementSelectedException {
+            InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException {
         float threatLevel = 0f;
         ThreatLevel.resetStatistics();
         for (int i = 0; i < NUMBER_OF_TESTS; i++) {
@@ -64,49 +65,49 @@ public class RandomCharacterThreatAverage {
 
     @Test
     public void peacefulCharacterAverage() throws InvalidXmlElementException,
-            InvalidRandomElementSelectedException {
+            InvalidRandomElementSelectedException, RestrictedElementException {
         calculateThreatAverage(CombatPreferences.PEACEFUL);
     }
 
     @Test
     public void fairCharacterAverage() throws InvalidXmlElementException,
-            InvalidRandomElementSelectedException {
+            InvalidRandomElementSelectedException, RestrictedElementException {
         calculateThreatAverage(CombatPreferences.FAIR);
     }
 
     @Test
     public void belligerentCharacterAverage() throws InvalidXmlElementException,
-            InvalidRandomElementSelectedException {
+            InvalidRandomElementSelectedException, RestrictedElementException {
         calculateThreatAverage(CombatPreferences.BELLIGERENT);
     }
 
     @Test
     public void easyCharacterAverage() throws InvalidXmlElementException,
-            InvalidRandomElementSelectedException {
+            InvalidRandomElementSelectedException, RestrictedElementException {
         calculateThreatAverage(DifficultLevelPreferences.EASY);
     }
 
     @Test
     public void hardCharacterAverage() throws InvalidXmlElementException,
-            InvalidRandomElementSelectedException {
+            InvalidRandomElementSelectedException, RestrictedElementException {
         calculateThreatAverage(DifficultLevelPreferences.HARD);
     }
 
     @Test
     public void mediumCharacterAverage() throws InvalidXmlElementException,
-            InvalidRandomElementSelectedException {
+            InvalidRandomElementSelectedException, RestrictedElementException {
         calculateThreatAverage(DifficultLevelPreferences.MEDIUM);
     }
 
     @Test
     public void veryEasyCharacterAverage() throws InvalidXmlElementException,
-            InvalidRandomElementSelectedException {
+            InvalidRandomElementSelectedException, RestrictedElementException {
         calculateThreatAverage(DifficultLevelPreferences.VERY_EASY);
     }
 
     @Test
     public void veryHardCharacterAverage() throws InvalidXmlElementException,
-            InvalidRandomElementSelectedException {
+            InvalidRandomElementSelectedException, RestrictedElementException {
         calculateThreatAverage(DifficultLevelPreferences.VERY_HARD);
     }
 }

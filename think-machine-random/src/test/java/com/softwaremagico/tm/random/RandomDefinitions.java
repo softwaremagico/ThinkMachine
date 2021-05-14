@@ -24,6 +24,7 @@ package com.softwaremagico.tm.random;
  * #L%
  */
 
+import com.softwaremagico.tm.character.RestrictedElementException;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -47,7 +48,7 @@ public class RandomDefinitions {
 	}
 
 	@Test
-	public void removeElementWeight() throws DuplicatedPreferenceException, InvalidXmlElementException, InvalidRandomElementSelectedException {
+	public void removeElementWeight() throws DuplicatedPreferenceException, InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException {
 		final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
 
 		final AvailableSkill sneak = AvailableSkillsFactory.getInstance().getElement("sneak", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);

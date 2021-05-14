@@ -124,7 +124,7 @@ public class RandomCharacterTests {
 
     @Test(expectedExceptions = {InvalidRandomElementSelectedException.class})
     public void checkSkillLimitationByTechnology()
-            throws InvalidXmlElementException, InvalidRandomElementSelectedException {
+            throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         characterPlayer.setCharacteristic(CharacteristicName.TECH, 7);
 
@@ -136,7 +136,7 @@ public class RandomCharacterTests {
 
     @Test(expectedExceptions = {InvalidRandomElementSelectedException.class})
     public void checkSkillLimitationByLowTechnology()
-            throws InvalidXmlElementException, InvalidRandomElementSelectedException {
+            throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         characterPlayer.setCharacteristic(CharacteristicName.TECH, 1);
 
