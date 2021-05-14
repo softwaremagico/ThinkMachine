@@ -26,6 +26,7 @@ package com.softwaremagico.tm.json;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.character.RestrictedElementException;
 import com.softwaremagico.tm.character.benefices.BeneficeAlreadyAddedException;
 import com.softwaremagico.tm.character.blessings.BlessingAlreadyAddedException;
 import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
@@ -64,7 +65,8 @@ public class JsonTests {
 	@BeforeClass
 	public void init()
 			throws InvalidXmlElementException, TooManyBlessingsException, TooManyCyberneticDevicesException,
-			RequiredCyberneticDevicesException, BlessingAlreadyAddedException, BeneficeAlreadyAddedException, InvalidRanksException {
+			RequiredCyberneticDevicesException, BlessingAlreadyAddedException, BeneficeAlreadyAddedException, InvalidRanksException,
+			RestrictedElementException {
 		LanguagePool.clearCache();
 		player = CustomCharacter.create(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
 		Assert.assertEquals(CostCalculator.getCost(player), CustomCharacter.COST);

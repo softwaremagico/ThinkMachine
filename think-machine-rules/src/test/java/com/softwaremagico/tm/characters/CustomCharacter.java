@@ -26,10 +26,7 @@ package com.softwaremagico.tm.characters;
 
 import com.softwaremagico.tm.CacheHandler;
 import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.character.Gender;
-import com.softwaremagico.tm.character.Name;
-import com.softwaremagico.tm.character.Surname;
+import com.softwaremagico.tm.character.*;
 import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
 import com.softwaremagico.tm.character.benefices.BeneficeAlreadyAddedException;
 import com.softwaremagico.tm.character.blessings.BlessingAlreadyAddedException;
@@ -53,7 +50,7 @@ public class CustomCharacter {
 
 	public static CharacterPlayer create(String language, String moduleName)
 			throws InvalidXmlElementException, TooManyBlessingsException, TooManyCyberneticDevicesException,
-			RequiredCyberneticDevicesException, BlessingAlreadyAddedException, BeneficeAlreadyAddedException, InvalidRanksException {
+			RequiredCyberneticDevicesException, BlessingAlreadyAddedException, BeneficeAlreadyAddedException, InvalidRanksException, RestrictedElementException {
 		CacheHandler.clearCache();
 		final CharacterPlayer player = new CharacterPlayer(language, moduleName);
 		player.getInfo().addName(new Name("Oliver", language, moduleName, Gender.MALE, null));

@@ -24,20 +24,21 @@ package com.softwaremagico.tm.character.equipment;
  * #L%
  */
 
-import java.util.Set;
-
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.character.RestrictedElementException;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.random.RandomSelector;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
 
+import java.util.Set;
+
 public abstract class EquipmentSelector<E extends Equipment<?>> extends RandomSelector<E> {
 	private Integer currentMoney = null;
 
 	protected EquipmentSelector(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences,
-			Set<E> mandatoryElements) throws InvalidXmlElementException {
+			Set<E> mandatoryElements) throws InvalidXmlElementException, RestrictedElementException {
 		super(characterPlayer, null, preferences, mandatoryElements, null);
 	}
 
@@ -51,7 +52,7 @@ public abstract class EquipmentSelector<E extends Equipment<?>> extends RandomSe
 	/**
 	 * Not so expensive weapons.
 	 * 
-	 * @param weapon
+	 * @param equipment
 	 * @return
 	 */
 	protected abstract int getWeightCostModificator(E equipment);

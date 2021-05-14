@@ -24,12 +24,9 @@ package com.softwaremagico.tm.character.equipment.armours;
  * #L%
  */
 
-import java.util.Collection;
-import java.util.Random;
-import java.util.Set;
-
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.character.RestrictedElementException;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.equipment.EquipmentSelector;
 import com.softwaremagico.tm.log.RandomGenerationLog;
@@ -40,10 +37,14 @@ import com.softwaremagico.tm.random.selectors.CombatPreferences;
 import com.softwaremagico.tm.random.selectors.DifficultLevelPreferences;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
 
+import java.util.Collection;
+import java.util.Random;
+import java.util.Set;
+
 public class RandomArmour extends EquipmentSelector<Armour> {
 
     public RandomArmour(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences,
-                        Set<Armour> mandatoryArmours) throws InvalidXmlElementException {
+                        Set<Armour> mandatoryArmours) throws InvalidXmlElementException, RestrictedElementException {
         super(characterPlayer, preferences, mandatoryArmours);
     }
 

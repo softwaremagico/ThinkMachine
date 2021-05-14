@@ -26,6 +26,7 @@ package com.softwaremagico.tm.txt;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.character.RestrictedElementException;
 import com.softwaremagico.tm.character.benefices.BeneficeAlreadyAddedException;
 import com.softwaremagico.tm.character.blessings.BlessingAlreadyAddedException;
 import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
@@ -49,7 +50,7 @@ public class ExportTxtTests {
 	@Test
 	public void checkCustomCharacter() throws TooManyBlessingsException, InvalidXmlElementException, IOException,
 			URISyntaxException, TooManyCyberneticDevicesException, RequiredCyberneticDevicesException,
-			BlessingAlreadyAddedException, BeneficeAlreadyAddedException, InvalidRanksException {
+			BlessingAlreadyAddedException, BeneficeAlreadyAddedException, InvalidRanksException, RestrictedElementException {
 		final CharacterPlayer player = CustomCharacter.create(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
 		final CharacterSheet characterSheet = new CharacterSheet(player);
 

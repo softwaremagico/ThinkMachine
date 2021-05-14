@@ -180,13 +180,13 @@ public class RandomizeCharacter {
                 characterPlayer.addBenefice(availableBenefice);
             } catch (InvalidBeneficeException e) {
                 RandomGenerationLog.errorMessage(this.getClass().getName(), e);
-            } catch (BeneficeAlreadyAddedException e) {
+            } catch (BeneficeAlreadyAddedException | RestrictedElementException e) {
                 //Ignore it.
             }
         }
     }
 
-    public void createCharacter() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
+    public void createCharacter() throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException {
         setDefaultPreferences();
         setCharacterDefinition();
         setStartingValues();
@@ -253,11 +253,15 @@ public class RandomizeCharacter {
         preferences.removeIf(Objects::isNull);
     }
 
-    protected void setCharacterDefinition() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
+    protected void setCharacterDefinition() throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException {
         // Check if race is set.
         if (characterPlayer.getRace() == null) {
             if (requiredRace != null) {
-                characterPlayer.setRace(requiredRace);
+                try {
+                    characterPlayer.setRace(requiredRace);
+                } catch (RestrictedElementException e) {
+                    //Race cannot be added.
+                }
             } else {
                 final RandomRace randomRace = new RandomRace(characterPlayer, preferences);
                 randomRace.assign();
@@ -275,7 +279,11 @@ public class RandomizeCharacter {
 
         if (characterPlayer.getFaction() == null) {
             if (requiredFaction != null) {
-                characterPlayer.setFaction(requiredFaction);
+                try {
+                    characterPlayer.setFaction(requiredFaction);
+                } catch (RestrictedElementException e) {
+                    //Faction cannot be added.
+                }
             } else {
                 final RandomFaction randomFaction = new RandomFaction(characterPlayer, preferences);
                 randomFaction.assign();
@@ -304,7 +312,7 @@ public class RandomizeCharacter {
      * Using free style character generation. Only the first points to expend in a
      * character.
      */
-    private void setStartingValues() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
+    private void setStartingValues() throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException {
         // Characteristics
         final RandomCharacteristics randomCharacteristics = new RandomCharacteristics(characterPlayer, preferences, characteristicsMinimumValues);
         randomCharacteristics.assign();
@@ -317,7 +325,7 @@ public class RandomizeCharacter {
         randomBenefice.assign();
     }
 
-    private void setExtraPoints() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
+    private void setExtraPoints() throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException {
         // Traits.
         // First, assign curses.
         final RandomCursesDefinition randomCurses = new RandomCursesDefinition(characterPlayer, preferences);
@@ -369,7 +377,7 @@ public class RandomizeCharacter {
         }
     }
 
-    private void setInitialEquipment() throws InvalidXmlElementException {
+    private void setInitialEquipment() throws InvalidXmlElementException, RestrictedElementException {
         // Set weapons.
         final RandomWeapon randomRangedWeapon = new RandomRangeWeapon(characterPlayer, preferences, mandatoryWeapons);
         try {
@@ -406,7 +414,7 @@ public class RandomizeCharacter {
         }
     }
 
-    private void setExperiencePoints() throws InvalidXmlElementException {
+    private void setExperiencePoints() throws InvalidXmlElementException, RestrictedElementException {
         if (characterPlayer.getExperienceEarned() > 0) {
             final RandomCharacteristicsExperience randomCharacteristicsExperience = new RandomCharacteristicsExperience(characterPlayer, preferences);
             try {

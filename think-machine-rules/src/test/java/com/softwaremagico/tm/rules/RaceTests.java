@@ -26,12 +26,12 @@ package com.softwaremagico.tm.rules;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.character.RestrictedElementException;
 import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
 import com.softwaremagico.tm.character.blessings.BlessingAlreadyAddedException;
 import com.softwaremagico.tm.character.blessings.BlessingFactory;
 import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
 import com.softwaremagico.tm.character.factions.FactionsFactory;
-import com.softwaremagico.tm.character.races.InvalidRaceException;
 import com.softwaremagico.tm.character.races.RaceFactory;
 import com.softwaremagico.tm.file.PathManager;
 import org.testng.Assert;
@@ -41,15 +41,15 @@ import org.testng.annotations.Test;
 public class RaceTests {
     private static final String LANGUAGE = "es";
 
-    @Test(expectedExceptions = InvalidRaceException.class)
-    public void checkRaceRestriction() throws InvalidXmlElementException {
+    @Test(expectedExceptions = RestrictedElementException.class)
+    public void checkRaceRestriction() throws InvalidXmlElementException, RestrictedElementException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.setFaction(FactionsFactory.getInstance().getElement("vorox", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         player.setRace(RaceFactory.getInstance().getElement("human", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
     }
 
     @Test
-    public void checkRaceBenefices() throws InvalidXmlElementException {
+    public void checkRaceBenefices() throws InvalidXmlElementException, RestrictedElementException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.setFaction(FactionsFactory.getInstance().getElement("vorox", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         player.setRace(RaceFactory.getInstance().getElement("vorox", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
@@ -58,7 +58,7 @@ public class RaceTests {
     }
 
     @Test
-    public void checkRaceBeneficesMaxNumber() throws InvalidXmlElementException, TooManyBlessingsException, BlessingAlreadyAddedException {
+    public void checkRaceBeneficesMaxNumber() throws InvalidXmlElementException, TooManyBlessingsException, BlessingAlreadyAddedException, RestrictedElementException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.setFaction(FactionsFactory.getInstance().getElement("scravers", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         player.setRace(RaceFactory.getInstance().getElement("vorox", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
@@ -80,7 +80,7 @@ public class RaceTests {
     }
 
     @Test
-    public void checkShantor() throws InvalidXmlElementException {
+    public void checkShantor() throws InvalidXmlElementException, RestrictedElementException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.setRace(RaceFactory.getInstance().getElement("shantor", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         Assert.assertTrue(player.getAfflictions().contains(AvailableBeneficeFactory.getInstance().getElement("noOccult",
@@ -88,7 +88,7 @@ public class RaceTests {
     }
 
     @Test
-    public void checkNullRace() throws InvalidXmlElementException {
+    public void checkNullRace() throws InvalidXmlElementException, RestrictedElementException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.setRace(RaceFactory.getInstance().getElement("human", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         player.setRace(null);

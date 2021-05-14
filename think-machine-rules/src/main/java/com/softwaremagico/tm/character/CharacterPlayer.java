@@ -241,13 +241,14 @@ public class CharacterPlayer {
         }
     }
 
-    public void setSkillRank(AvailableSkill availableSkill, int value) throws InvalidSkillException, InvalidRanksException {
+    public void setSkillRank(AvailableSkill availableSkill, int value) throws InvalidSkillException, InvalidRanksException,
+            RestrictedElementException {
         if (availableSkill == null) {
             throw new InvalidSkillException("Null skill is not allowed here.");
         }
 
-        if (!availableSkill.getRestrictedToRaces().isEmpty() && !availableSkill.getRestrictedToRaces().contains(getRace())) {
-            throw new InvalidSkillException("Skill '" + availableSkill + "' is restricted to '" +
+        if (availableSkill.isRestricted(this)) {
+            throw new RestrictedElementException("Skill '" + availableSkill + "' is restricted to '" +
                     availableSkill.getRestrictedToRaces() + "'.");
         }
 
@@ -529,19 +530,20 @@ public class CharacterPlayer {
                 if (!this.benefices.contains(benefice)) {
                     addBenefice(benefice);
                 }
-            } catch (BeneficeAlreadyAddedException e) {
+            } catch (BeneficeAlreadyAddedException | RestrictedElementException e) {
                 // Nothing to do.
             }
         }
     }
 
-    public void addBenefice(AvailableBenefice benefice) throws InvalidBeneficeException, BeneficeAlreadyAddedException {
+    public void addBenefice(AvailableBenefice benefice) throws InvalidBeneficeException, BeneficeAlreadyAddedException,
+            RestrictedElementException {
         if (benefice.getBeneficeDefinition().isRestricted()) {
-            throw new InvalidBeneficeException("Benefice '" + benefice + "' is restricted and cannot be added.");
+            throw new RestrictedElementException("Benefice '" + benefice + "' is restricted and cannot be added.");
         }
         if (!benefice.getBeneficeDefinition().getRestrictedToRaces().isEmpty() &&
                 !benefice.getBeneficeDefinition().getRestrictedToRaces().contains(getRace())) {
-            throw new InvalidBeneficeException("Benefice '" + benefice + "' is restricted to races "
+            throw new RestrictedElementException("Benefice '" + benefice + "' is restricted to races "
                     + benefice.getBeneficeDefinition().getRestrictedToRaces() + " and cannot be added.");
         }
         if (benefice.getBeneficeDefinition().getGroup() == BeneficeGroup.FIGHTING && !canUseCombatStyle(benefice.getBeneficeDefinition())) {
@@ -1020,9 +1022,9 @@ public class CharacterPlayer {
         return race;
     }
 
-    public void setRace(Race race) throws InvalidRaceException {
+    public void setRace(Race race) throws InvalidRaceException, RestrictedElementException {
         if (getFaction() != null && !getFaction().getRestrictedToRaces().isEmpty() && !getFaction().getRestrictedToRaces().contains(race)) {
-            throw new InvalidRaceException("Faction is restricted to '" + getFaction().getRestrictedToRaces() + "'");
+            throw new RestrictedElementException("Faction is restricted to '" + getFaction().getRestrictedToRaces() + "'");
         }
         if (!Objects.equals(this.race, race)) {
             MachineLog.debug(this.getClass().getName(), "Race set to '{}'.", race);
@@ -1444,14 +1446,14 @@ public class CharacterPlayer {
         return faction;
     }
 
-    public void setFaction(Faction faction) throws InvalidFactionException {
+    public void setFaction(Faction faction) throws InvalidFactionException, RestrictedElementException {
         if (faction == null) {
             throw new InvalidFactionException("Faction is null!");
         }
         //Race must have an id to avoid custom races.
-        if (faction != null && getRace() != null && getRace().getId() != null && !faction.getRestrictedToRaces().isEmpty() &&
-                !faction.getRestrictedToRaces().contains(getRace())) {
-            throw new InvalidFactionException("Faction '" + faction + "' is restricted to '" + faction.getRestrictedToRaces() + "'");
+        if (getRace() != null && getRace().getId() != null && !faction.getRestrictedToRaces().isEmpty()
+                && !faction.getRestrictedToRaces().contains(getRace())) {
+            throw new RestrictedElementException("Faction '" + faction + "' is restricted to '" + faction.getRestrictedToRaces() + "'");
         }
         if (!Objects.equals(this.faction, faction)) {
             MachineLog.debug(this.getClass().getName(), "Faction set to '{}'.", faction);
@@ -1469,7 +1471,7 @@ public class CharacterPlayer {
         }
     }
 
-    private void checkBeneficesRestrictions(AvailableBenefice benefice) throws InvalidBeneficeException {
+    private void checkBeneficesRestrictions(AvailableBenefice benefice) throws InvalidBeneficeException, RestrictedElementException {
         if (getFaction() != null) {
             for (final RestrictedBenefice restrictedBenefice : getFaction().getRestrictedBenefices()) {
                 if (Objects.equals(restrictedBenefice.getBeneficeDefinition(), benefice.getBeneficeDefinition())) {
@@ -1482,12 +1484,12 @@ public class CharacterPlayer {
         }
         if (benefice.getBeneficeDefinition().getRestrictedToFactionGroup() != null && (getFaction() == null ||
                 !Objects.equals(benefice.getBeneficeDefinition().getRestrictedToFactionGroup(), getFaction().getFactionGroup()))) {
-            throw new InvalidBeneficeException("Benefice '" + benefice
+            throw new RestrictedElementException("Benefice '" + benefice
                     + "' is restricted to faction '" + benefice.getBeneficeDefinition().getRestrictedToFactionGroup() + "'");
         }
         if (!benefice.getBeneficeDefinition().getRestrictedToRaces().isEmpty() &&
                 !benefice.getBeneficeDefinition().getRestrictedToRaces().contains(getRace())) {
-            throw new InvalidBeneficeException("Benefice '" + benefice
+            throw new RestrictedElementException("Benefice '" + benefice
                     + "' is restricted to race '" + benefice.getBeneficeDefinition().getRestrictedToRaces() + "'");
         }
     }

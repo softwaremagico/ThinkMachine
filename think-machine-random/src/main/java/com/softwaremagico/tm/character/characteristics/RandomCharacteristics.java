@@ -26,6 +26,7 @@ package com.softwaremagico.tm.character.characteristics;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.character.RestrictedElementException;
 import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
 import com.softwaremagico.tm.character.factions.FactionGroup;
 import com.softwaremagico.tm.log.RandomGenerationLog;
@@ -43,8 +44,9 @@ public class RandomCharacteristics extends RandomSelector<Characteristic> {
     private static final int MIN_WILL_FOR_PSIQUE = 5;
 
     public RandomCharacteristics(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences,
-                                 Set<Characteristic> characteristicsMinimumValues) throws InvalidXmlElementException {
-        super(characterPlayer, null, preferences, characteristicsMinimumValues, new HashSet<Characteristic>());
+                                 Set<Characteristic> characteristicsMinimumValues) throws InvalidXmlElementException,
+            RestrictedElementException {
+        super(characterPlayer, null, preferences, characteristicsMinimumValues, new HashSet<>());
     }
 
     @Override

@@ -26,6 +26,7 @@ package com.softwaremagico.tm.character.blessings;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.character.RestrictedElementException;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.log.RandomGenerationLog;
 import com.softwaremagico.tm.random.RandomSelector;
@@ -39,7 +40,7 @@ import java.util.Set;
 public class RandomBlessingDefinition extends RandomSelector<Blessing> {
 
     public RandomBlessingDefinition(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences, Set<Blessing> mandatoryBlessings,
-                                    Set<Blessing> suggestedBlessings) throws InvalidXmlElementException {
+                                    Set<Blessing> suggestedBlessings) throws InvalidXmlElementException, RestrictedElementException {
         super(characterPlayer, null, preferences, mandatoryBlessings, suggestedBlessings);
     }
 

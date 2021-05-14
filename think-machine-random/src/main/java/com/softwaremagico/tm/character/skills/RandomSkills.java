@@ -26,6 +26,7 @@ package com.softwaremagico.tm.character.skills;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.character.RestrictedElementException;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.characteristics.CharacteristicType;
 import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
@@ -46,12 +47,12 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
     private List<Entry<CharacteristicType, Integer>> preferredCharacteristicsTypeSorted;
 
     public RandomSkills(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences)
-            throws InvalidXmlElementException {
+            throws InvalidXmlElementException, RestrictedElementException {
         this(characterPlayer, preferences, new HashSet<>(), new HashSet<>());
     }
 
     public RandomSkills(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences,
-                        Set<AvailableSkill> requiredSkills, Set<AvailableSkill> suggestedSkills) throws InvalidXmlElementException {
+                        Set<AvailableSkill> requiredSkills, Set<AvailableSkill> suggestedSkills) throws InvalidXmlElementException, RestrictedElementException {
         super(characterPlayer, null, preferences, requiredSkills, suggestedSkills);
     }
 
@@ -326,7 +327,7 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 
         try {
             getCharacterPlayer().setSkillRank(availableSkill, finalRanks);
-        } catch (InvalidRanksException e) {
+        } catch (InvalidRanksException | RestrictedElementException e) {
             finalRanks = 0;
         }
         return finalRanks;

@@ -25,10 +25,7 @@ package com.softwaremagico.tm.export.pdf;
  */
 
 import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.character.Gender;
-import com.softwaremagico.tm.character.Name;
-import com.softwaremagico.tm.character.Surname;
+import com.softwaremagico.tm.character.*;
 import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
 import com.softwaremagico.tm.character.benefices.BeneficeAlreadyAddedException;
 import com.softwaremagico.tm.character.blessings.BlessingAlreadyAddedException;
@@ -84,7 +81,7 @@ public class CustomCharacters {
 
     @Test
     public void createPaolaCharacter() throws InvalidXmlElementException, TooManyBlessingsException, TooManyCyberneticDevicesException,
-            RequiredCyberneticDevicesException, BeneficeAlreadyAddedException, BlessingAlreadyAddedException, InvalidRanksException {
+            RequiredCyberneticDevicesException, BeneficeAlreadyAddedException, BlessingAlreadyAddedException, InvalidRanksException, RestrictedElementException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.getInfo().addName(new Name("#5", player.getLanguage(), player.getModuleName(), Gender.FEMALE, null));
         player.getInfo().setPlayer("Paola");
@@ -197,7 +194,7 @@ public class CustomCharacters {
 
     @Test
     public void characterAnaCharacter()
-            throws InvalidXmlElementException, TooManyBlessingsException, BeneficeAlreadyAddedException, BlessingAlreadyAddedException, InvalidRanksException {
+            throws InvalidXmlElementException, TooManyBlessingsException, BeneficeAlreadyAddedException, BlessingAlreadyAddedException, InvalidRanksException, RestrictedElementException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.getInfo().addName(new Name("Arya", player.getLanguage(), player.getModuleName(), Gender.FEMALE, null));
         player.getInfo().setSurname(new Surname("Hawkwood", player.getLanguage(), player.getModuleName(), null));
@@ -283,7 +280,7 @@ public class CustomCharacters {
 
     @Test
     public void createCarlosCharacter()
-            throws InvalidXmlElementException, TooManyBlessingsException, BeneficeAlreadyAddedException, BlessingAlreadyAddedException, InvalidRanksException {
+            throws InvalidXmlElementException, TooManyBlessingsException, BeneficeAlreadyAddedException, BlessingAlreadyAddedException, InvalidRanksException, RestrictedElementException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.getInfo().addName(new Name("Carlos", player.getLanguage(), player.getModuleName(), Gender.MALE, null));
         player.getInfo().setPlayer("Carlos");
@@ -385,7 +382,7 @@ public class CustomCharacters {
 
     @Test
     public void createNoeliaCharacter()
-            throws InvalidXmlElementException, TooManyBlessingsException, BeneficeAlreadyAddedException, BlessingAlreadyAddedException, InvalidRanksException {
+            throws InvalidXmlElementException, TooManyBlessingsException, BeneficeAlreadyAddedException, BlessingAlreadyAddedException, InvalidRanksException, RestrictedElementException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.getInfo().addName(new Name("Noelia", player.getLanguage(), player.getModuleName(), Gender.FEMALE, null));
         player.getInfo().setPlayer("Noelia");
@@ -482,7 +479,7 @@ public class CustomCharacters {
     }
 
     @Test
-    public void createGolemCharacer() throws InvalidXmlElementException, TooManyBlessingsException, BlessingAlreadyAddedException, InvalidRanksException {
+    public void createGolemCharacer() throws InvalidXmlElementException, TooManyBlessingsException, BlessingAlreadyAddedException, InvalidRanksException, RestrictedElementException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.getInfo().setPlayer("PNJ");
         player.getInfo().addName(new Name("A", player.getLanguage(), player.getModuleName(), Gender.FEMALE, null));

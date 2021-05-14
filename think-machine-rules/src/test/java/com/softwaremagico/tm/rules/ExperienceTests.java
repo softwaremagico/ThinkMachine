@@ -24,13 +24,9 @@ package com.softwaremagico.tm.rules;
  * #L%
  */
 
-import com.softwaremagico.tm.character.races.RaceFactory;
-import com.softwaremagico.tm.character.skills.InvalidRanksException;
-import org.testng.Assert;
-import org.testng.annotations.Test;
-
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.character.RestrictedElementException;
 import com.softwaremagico.tm.character.benefices.BeneficeAlreadyAddedException;
 import com.softwaremagico.tm.character.blessings.BlessingAlreadyAddedException;
 import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
@@ -42,7 +38,9 @@ import com.softwaremagico.tm.character.factions.FactionsFactory;
 import com.softwaremagico.tm.character.occultism.InvalidPowerLevelException;
 import com.softwaremagico.tm.character.occultism.OccultismPathFactory;
 import com.softwaremagico.tm.character.occultism.OccultismTypeFactory;
+import com.softwaremagico.tm.character.races.RaceFactory;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
+import com.softwaremagico.tm.character.skills.InvalidRanksException;
 import com.softwaremagico.tm.character.skills.InvalidSkillException;
 import com.softwaremagico.tm.character.xp.ElementCannotBeUpgradeWithExperienceException;
 import com.softwaremagico.tm.character.xp.NotEnoughExperienceException;
@@ -50,6 +48,8 @@ import com.softwaremagico.tm.characters.CustomCharacter;
 import com.softwaremagico.tm.file.PathManager;
 import com.softwaremagico.tm.json.CharacterJsonManager;
 import com.softwaremagico.tm.json.InvalidJsonException;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
 @Test(groups = {"experience"})
 public class ExperienceTests {
@@ -57,7 +57,7 @@ public class ExperienceTests {
 
     @Test
     public void addOneByOneRankToSkill() throws InvalidXmlElementException,
-            NotEnoughExperienceException, ElementCannotBeUpgradeWithExperienceException, InvalidRanksException {
+            NotEnoughExperienceException, ElementCannotBeUpgradeWithExperienceException, InvalidRanksException, RestrictedElementException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("influence", LANGUAGE,
                 PathManager.DEFAULT_MODULE_FOLDER), 5);
@@ -83,7 +83,7 @@ public class ExperienceTests {
 
     @Test
     public void addTwoRanksToSkill() throws InvalidXmlElementException,
-            NotEnoughExperienceException, ElementCannotBeUpgradeWithExperienceException, InvalidRanksException {
+            NotEnoughExperienceException, ElementCannotBeUpgradeWithExperienceException, InvalidRanksException, RestrictedElementException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("influence", LANGUAGE,
                 PathManager.DEFAULT_MODULE_FOLDER), 5);
@@ -106,7 +106,7 @@ public class ExperienceTests {
 
     @Test
     public void addOneByOneRankToLoreSkill() throws InvalidXmlElementException,
-            NotEnoughExperienceException, ElementCannotBeUpgradeWithExperienceException, InvalidRanksException {
+            NotEnoughExperienceException, ElementCannotBeUpgradeWithExperienceException, InvalidRanksException, RestrictedElementException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("phoenixEmpireLore", LANGUAGE,
                 PathManager.DEFAULT_MODULE_FOLDER), 5);
@@ -132,7 +132,7 @@ public class ExperienceTests {
 
     @Test(expectedExceptions = {NotEnoughExperienceException.class})
     public void addOneRankToSkillNotPossible() throws InvalidXmlElementException,
-            NotEnoughExperienceException, ElementCannotBeUpgradeWithExperienceException, InvalidRanksException {
+            NotEnoughExperienceException, ElementCannotBeUpgradeWithExperienceException, InvalidRanksException, RestrictedElementException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("influence", LANGUAGE,
                 PathManager.DEFAULT_MODULE_FOLDER), 5);
@@ -183,7 +183,7 @@ public class ExperienceTests {
 
     @Test
     public void setPsiLevel() throws ElementCannotBeUpgradeWithExperienceException, InvalidXmlElementException,
-            NotEnoughExperienceException {
+            NotEnoughExperienceException, RestrictedElementException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.setRace(
                 RaceFactory.getInstance().getElement("human", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
@@ -207,7 +207,7 @@ public class ExperienceTests {
 
     @Test
     public void setPsiPowers() throws ElementCannotBeUpgradeWithExperienceException, InvalidXmlElementException,
-            NotEnoughExperienceException {
+            NotEnoughExperienceException, RestrictedElementException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.setRace(
                 RaceFactory.getInstance().getElement("human", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
@@ -231,7 +231,7 @@ public class ExperienceTests {
 
     @Test(expectedExceptions = {InvalidPowerLevelException.class})
     public void removeInvalidPsiPowers() throws ElementCannotBeUpgradeWithExperienceException,
-            InvalidXmlElementException, NotEnoughExperienceException {
+            InvalidXmlElementException, NotEnoughExperienceException, RestrictedElementException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.setRace(
                 RaceFactory.getInstance().getElement("human", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
@@ -258,7 +258,7 @@ public class ExperienceTests {
 
     @Test
     public void removeValidOrderPsiPowers() throws ElementCannotBeUpgradeWithExperienceException,
-            InvalidXmlElementException, NotEnoughExperienceException {
+            InvalidXmlElementException, NotEnoughExperienceException, RestrictedElementException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.setRace(
                 RaceFactory.getInstance().getElement("human", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
@@ -290,7 +290,7 @@ public class ExperienceTests {
     public void checkJsonConverter()
             throws TooManyBlessingsException, BlessingAlreadyAddedException, BeneficeAlreadyAddedException,
             InvalidXmlElementException, TooManyCyberneticDevicesException, RequiredCyberneticDevicesException,
-            NotEnoughExperienceException, ElementCannotBeUpgradeWithExperienceException, InvalidJsonException, InvalidRanksException {
+            NotEnoughExperienceException, ElementCannotBeUpgradeWithExperienceException, InvalidJsonException, InvalidRanksException, RestrictedElementException {
         CharacterPlayer player = CustomCharacter.create(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         Assert.assertEquals(CostCalculator.getCost(player), CustomCharacter.COST);
 

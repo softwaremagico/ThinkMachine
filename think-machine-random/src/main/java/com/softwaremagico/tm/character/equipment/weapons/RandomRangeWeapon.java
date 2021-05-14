@@ -1,6 +1,16 @@
 package com.softwaremagico.tm.character.equipment.weapons;
 
+import com.softwaremagico.tm.InvalidXmlElementException;
+import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.character.RestrictedElementException;
+import com.softwaremagico.tm.character.characteristics.CharacteristicName;
+import com.softwaremagico.tm.log.RandomGenerationLog;
+import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
+import com.softwaremagico.tm.random.selectors.IRandomPreference;
+import com.softwaremagico.tm.random.selectors.WeaponsPreferences;
+
 import java.util.Random;
+import java.util.Set;
 
 /*-
  * #%L
@@ -26,20 +36,10 @@ import java.util.Random;
  * #L%
  */
 
-import java.util.Set;
-
-import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.character.characteristics.CharacteristicName;
-import com.softwaremagico.tm.log.RandomGenerationLog;
-import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
-import com.softwaremagico.tm.random.selectors.IRandomPreference;
-import com.softwaremagico.tm.random.selectors.WeaponsPreferences;
-
 public class RandomRangeWeapon extends RandomWeapon {
 
     public RandomRangeWeapon(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences,
-                             Set<Weapon> mandatoryWeapons) throws InvalidXmlElementException {
+                             Set<Weapon> mandatoryWeapons) throws InvalidXmlElementException, RestrictedElementException {
         super(characterPlayer, preferences, mandatoryWeapons);
     }
 

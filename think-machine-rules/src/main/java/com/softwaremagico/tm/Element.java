@@ -1,6 +1,7 @@
 package com.softwaremagico.tm;
 
 import com.google.common.base.Objects;
+import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.factions.FactionGroup;
 import com.softwaremagico.tm.character.races.Race;
 import com.softwaremagico.tm.json.ExcludeFromJson;
@@ -178,6 +179,12 @@ public class Element<T extends Element<?>> implements Comparable<T> {
 
     public boolean isRestricted() {
         return restricted;
+    }
+
+    public boolean isRestricted(CharacterPlayer characterPlayer) {
+        return ((!getRestrictedToRaces().isEmpty() && !getRestrictedToRaces().contains(characterPlayer.getRace()))
+                || (getRestrictedToFactionGroup() != null && !java.util.Objects.equals(getRestrictedToFactionGroup(),
+                characterPlayer.getFaction().getFactionGroup())));
     }
 
     public void setRestricted(boolean restricted) {

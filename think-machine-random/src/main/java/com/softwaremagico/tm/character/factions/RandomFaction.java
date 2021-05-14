@@ -26,6 +26,7 @@ package com.softwaremagico.tm.character.factions;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.character.RestrictedElementException;
 import com.softwaremagico.tm.random.RandomSelector;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.FactionPreferences;
@@ -36,13 +37,18 @@ import java.util.Set;
 
 public class RandomFaction extends RandomSelector<Faction> {
 
-    public RandomFaction(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences) throws InvalidXmlElementException {
+    public RandomFaction(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences) throws InvalidXmlElementException,
+            RestrictedElementException {
         super(characterPlayer, preferences);
     }
 
     @Override
     public void assign() throws InvalidFactionException, InvalidRandomElementSelectedException {
-        getCharacterPlayer().setFaction(selectElementByWeight());
+        try {
+            getCharacterPlayer().setFaction(selectElementByWeight());
+        } catch (RestrictedElementException e) {
+            throw new InvalidFactionException("Faction is restricted.", e);
+        }
     }
 
     @Override

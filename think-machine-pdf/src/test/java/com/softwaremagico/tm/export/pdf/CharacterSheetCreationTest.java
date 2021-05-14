@@ -27,10 +27,7 @@ package com.softwaremagico.tm.export.pdf;
 import com.itextpdf.text.DocumentException;
 import com.softwaremagico.tm.CacheHandler;
 import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.character.Gender;
-import com.softwaremagico.tm.character.Name;
-import com.softwaremagico.tm.character.Surname;
+import com.softwaremagico.tm.character.*;
 import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
 import com.softwaremagico.tm.character.benefices.BeneficeAlreadyAddedException;
 import com.softwaremagico.tm.character.blessings.BlessingAlreadyAddedException;
@@ -109,7 +106,7 @@ public class CharacterSheetCreationTest {
 	public void characterPdfSpanish() throws MalformedURLException, DocumentException, IOException,
 			InvalidXmlElementException, TooManyBlessingsException, TooManyCyberneticDevicesException,
 			RequiredCyberneticDevicesException, BlessingAlreadyAddedException, BeneficeAlreadyAddedException,
-			NotEnoughExperienceException, ElementCannotBeUpgradeWithExperienceException, InvalidRanksException {
+			NotEnoughExperienceException, ElementCannotBeUpgradeWithExperienceException, InvalidRanksException, RestrictedElementException {
 		CacheHandler.clearCache();
 
 		player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);

@@ -26,6 +26,7 @@ package com.softwaremagico.tm.character.equipment.weapons;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.character.RestrictedElementException;
 import com.softwaremagico.tm.character.equipment.EquipmentSelector;
 import com.softwaremagico.tm.log.RandomGenerationLog;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
@@ -38,7 +39,7 @@ import java.util.Set;
 public abstract class RandomWeapon extends EquipmentSelector<Weapon> {
 
     protected RandomWeapon(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences,
-                           Set<Weapon> mandatoryWeapons) throws InvalidXmlElementException {
+                           Set<Weapon> mandatoryWeapons) throws InvalidXmlElementException, RestrictedElementException {
         super(characterPlayer, preferences, mandatoryWeapons);
     }
 

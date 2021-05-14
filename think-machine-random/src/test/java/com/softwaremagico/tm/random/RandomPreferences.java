@@ -27,6 +27,7 @@ package com.softwaremagico.tm.random;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.RandomizeCharacter;
+import com.softwaremagico.tm.character.RestrictedElementException;
 import com.softwaremagico.tm.character.benefices.BeneficeGroup;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.combat.CombatStyle;
@@ -66,7 +67,7 @@ public class RandomPreferences {
     }
 
     @Test
-    public void checkCombatStylesRequirements() throws InvalidRandomElementSelectedException, InvalidXmlElementException, InvalidRanksException {
+    public void checkCombatStylesRequirements() throws InvalidRandomElementSelectedException, InvalidXmlElementException, InvalidRanksException, RestrictedElementException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0,
                 CombatActionsPreferences.HIGH);
@@ -77,7 +78,8 @@ public class RandomPreferences {
     }
 
     @Test
-    public void checkCombatStylesPreferences() throws InvalidRandomElementSelectedException, InvalidXmlElementException, InvalidRanksException {
+    public void checkCombatStylesPreferences() throws InvalidRandomElementSelectedException, InvalidXmlElementException, InvalidRanksException,
+            RestrictedElementException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0,
                 CombatActionsPreferences.HIGH, CombatActionsGroupPreferences.MELEE);
@@ -89,7 +91,7 @@ public class RandomPreferences {
     }
 
     @Test
-    public void checkMinimumTech() throws InvalidRandomElementSelectedException, InvalidXmlElementException {
+    public void checkMinimumTech() throws InvalidRandomElementSelectedException, InvalidXmlElementException, RestrictedElementException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         AvailableSkill artifactMelee = AvailableSkillsFactory.getInstance().getElement("artifactMelee", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         HashSet<AvailableSkill> requiredSkills = new HashSet<>();

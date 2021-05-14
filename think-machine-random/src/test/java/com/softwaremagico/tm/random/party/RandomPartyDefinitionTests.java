@@ -24,22 +24,21 @@ package com.softwaremagico.tm.random.party;
  * #L%
  */
 
-import java.util.HashSet;
-
+import com.softwaremagico.tm.InvalidXmlElementException;
+import com.softwaremagico.tm.character.RestrictedElementException;
+import com.softwaremagico.tm.file.PathManager;
+import com.softwaremagico.tm.random.selectors.IRandomPreference;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.file.PathManager;
-import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
-import com.softwaremagico.tm.random.selectors.IRandomPreference;
+import java.util.HashSet;
 
 @Test(groups = { "randomParty" })
 public class RandomPartyDefinitionTests {
 	private static final String LANGUAGE = "es";
 
 	@Test
-	public void mandatoryMembersAdded() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
+	public void mandatoryMembersAdded() throws InvalidXmlElementException, RestrictedElementException {
 		final RandomParty thugParty = RandomPartyFactory.getInstance().getElement("thugBand", LANGUAGE,
 				PathManager.DEFAULT_MODULE_FOLDER);
 		final RandomPartyDefinition randomPartyDefinition = new RandomPartyDefinition(thugParty, 0,
@@ -52,7 +51,7 @@ public class RandomPartyDefinitionTests {
 
 	@Test
 	public void threatLevelAddMoreMembersToParty() throws InvalidXmlElementException,
-			InvalidRandomElementSelectedException {
+			RestrictedElementException {
 		final RandomParty thugParty = RandomPartyFactory.getInstance().getElement("thugBand", LANGUAGE,
 				PathManager.DEFAULT_MODULE_FOLDER);
 		final RandomPartyDefinition randomPartyDefinition = new RandomPartyDefinition(thugParty, 200,

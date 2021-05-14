@@ -24,11 +24,9 @@ package com.softwaremagico.tm.character.characteristics;
  * #L%
  */
 
-import java.util.HashSet;
-import java.util.Set;
-
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.character.RestrictedElementException;
 import com.softwaremagico.tm.character.creation.CostCalculator;
 import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
 import com.softwaremagico.tm.log.RandomGenerationLog;
@@ -39,9 +37,13 @@ import com.softwaremagico.tm.random.selectors.IRandomPreference;
 import com.softwaremagico.tm.random.selectors.SpecializationPreferences;
 import com.softwaremagico.tm.random.selectors.TechnologicalPreferences;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class RandomCharacteristicsExtraPoints extends RandomCharacteristics {
 
-	public RandomCharacteristicsExtraPoints(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences) throws InvalidXmlElementException {
+	public RandomCharacteristicsExtraPoints(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences) throws InvalidXmlElementException,
+			RestrictedElementException {
 		super(characterPlayer, preferences, new HashSet<Characteristic>());
 	}
 

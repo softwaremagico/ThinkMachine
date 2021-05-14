@@ -26,6 +26,7 @@ package com.softwaremagico.tm.character.occultism;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.character.RestrictedElementException;
 import com.softwaremagico.tm.character.creation.CostCalculator;
 import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
 import com.softwaremagico.tm.log.RandomGenerationLog;
@@ -42,7 +43,7 @@ public class RandomPsiquePath extends RandomSelector<OccultismPath> {
     private int totalPowers;
 
     public RandomPsiquePath(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences, Set<OccultismPath> mandatoryOccultismPaths)
-            throws InvalidXmlElementException {
+            throws InvalidXmlElementException, RestrictedElementException {
         super(characterPlayer, null, preferences, mandatoryOccultismPaths, new HashSet<>());
     }
 

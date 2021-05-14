@@ -26,6 +26,7 @@ package com.softwaremagico.tm.character.benefices;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.character.RestrictedElementException;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.combat.CombatStyle;
 import com.softwaremagico.tm.character.combat.CombatStyleGroup;
@@ -52,14 +53,14 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
     private final Set<AvailableBenefice> suggestedAvailableBenefices;
 
     public RandomBeneficeDefinition(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences)
-            throws InvalidXmlElementException {
+            throws InvalidXmlElementException, RestrictedElementException {
         this(characterPlayer, preferences, new HashSet<>(), new HashSet<>(), new HashSet<>());
     }
 
     public RandomBeneficeDefinition(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences,
                                     Set<BeneficeDefinition> mandatoryBenefices, Set<BeneficeDefinition> suggestedBenefices,
                                     Set<AvailableBenefice> suggestedAvailableBenefices)
-            throws InvalidXmlElementException {
+            throws InvalidXmlElementException, RestrictedElementException {
         super(characterPlayer, null, preferences, mandatoryBenefices, suggestedBenefices);
         this.suggestedAvailableBenefices = suggestedAvailableBenefices;
     }
@@ -71,13 +72,17 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
                 .getTraitsPoints(getCharacterPlayer().getInfo().getAge()) && !getWeightedElements().isEmpty()) {
             // Select a benefice
             final BeneficeDefinition selectedBenefice = selectElementByWeight();
-            assignBenefice(selectedBenefice,
-                    FreeStyleCharacterCreation.getTraitsPoints(getCharacterPlayer().getInfo().getAge())
-                            - CostCalculator.getBeneficesCosts(getCharacterPlayer()));
+            try {
+                assignBenefice(selectedBenefice,
+                        FreeStyleCharacterCreation.getTraitsPoints(getCharacterPlayer().getInfo().getAge())
+                                - CostCalculator.getBeneficesCosts(getCharacterPlayer()));
+            } catch (RestrictedElementException e) {
+                //Ignore restricted benefice.
+            }
         }
     }
 
-    protected void assignBenefice(BeneficeDefinition benefice) throws InvalidXmlElementException {
+    protected void assignBenefice(BeneficeDefinition benefice) throws InvalidXmlElementException, RestrictedElementException {
         final Set<AvailableBenefice> beneficeLevels = AvailableBeneficeFactory.getInstance()
                 .getAvailableBeneficesByDefinition(getCharacterPlayer().getLanguage(),
                         getCharacterPlayer().getModuleName(), benefice);
@@ -90,7 +95,7 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
     }
 
     protected void assignBenefice(BeneficeDefinition selectedBenefice, int maxPoints)
-            throws InvalidXmlElementException {
+            throws InvalidXmlElementException, RestrictedElementException {
         // Select the range of the benefice.
         final AvailableBenefice selectedBeneficeWithLevel = assignLevelOfBenefice(selectedBenefice, maxPoints);
         if (selectedBeneficeWithLevel != null) {
@@ -128,7 +133,6 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
                     // Benefice is not an armour.
                 }
             }
-
             addBenefice(selectedBeneficeWithLevel);
         }
         removeElementWeight(selectedBenefice);
@@ -153,7 +157,7 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
         }
     }
 
-    private void addBenefice(AvailableBenefice availableBenefice) throws InvalidBeneficeException {
+    private void addBenefice(AvailableBenefice availableBenefice) throws InvalidBeneficeException, RestrictedElementException {
         try {
             getCharacterPlayer().addBenefice(availableBenefice);
             RandomGenerationLog.info(this.getClass().getName(),
@@ -407,7 +411,7 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
 
     @Override
     protected void assignIfMandatory(BeneficeDefinition benefice)
-            throws InvalidXmlElementException, ImpossibleToAssignMandatoryElementException {
+            throws InvalidXmlElementException, ImpossibleToAssignMandatoryElementException, RestrictedElementException {
         // Set status of the character.
         try {
             if ((benefice.getGroup() != null && benefice.getGroup().equals(BeneficeGroup.STATUS))
@@ -450,7 +454,7 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
     }
 
     @Override
-    protected void assignMandatoryValues(Set<BeneficeDefinition> mandatoryValues) throws InvalidXmlElementException {
+    protected void assignMandatoryValues(Set<BeneficeDefinition> mandatoryValues) throws InvalidXmlElementException, RestrictedElementException {
         for (final BeneficeDefinition selectedBenefice : mandatoryValues) {
             // Mandatory benefices can exceed the initial traits points.
             assignBenefice(selectedBenefice,

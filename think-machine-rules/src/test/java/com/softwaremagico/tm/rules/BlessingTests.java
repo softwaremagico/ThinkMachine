@@ -24,12 +24,9 @@ package com.softwaremagico.tm.rules;
  * #L%
  */
 
-import com.softwaremagico.tm.character.skills.InvalidRanksException;
-import org.testng.Assert;
-import org.testng.annotations.Test;
-
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.character.RestrictedElementException;
 import com.softwaremagico.tm.character.benefices.BeneficeAlreadyAddedException;
 import com.softwaremagico.tm.character.blessings.Blessing;
 import com.softwaremagico.tm.character.blessings.BlessingAlreadyAddedException;
@@ -39,8 +36,11 @@ import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.cybernetics.RequiredCyberneticDevicesException;
 import com.softwaremagico.tm.character.cybernetics.TooManyCyberneticDevicesException;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
+import com.softwaremagico.tm.character.skills.InvalidRanksException;
 import com.softwaremagico.tm.characters.CustomCharacter;
 import com.softwaremagico.tm.file.PathManager;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
 @Test(groups = { "blessings" })
 public class BlessingTests {
@@ -50,7 +50,7 @@ public class BlessingTests {
 	@Test
 	public void checkVitalityModifications() throws InvalidXmlElementException, TooManyBlessingsException,
 			TooManyCyberneticDevicesException, RequiredCyberneticDevicesException, BlessingAlreadyAddedException,
-			BeneficeAlreadyAddedException, InvalidRanksException {
+			BeneficeAlreadyAddedException, InvalidRanksException, RestrictedElementException {
 		final CharacterPlayer player = CustomCharacter.create(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
 		final int vitality = player.getVitalityValue();
 		player.addBlessing(BlessingFactory.getInstance().getElement("incurableDisease", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
@@ -60,7 +60,7 @@ public class BlessingTests {
 	@Test
 	public void checkMovementModifications() throws InvalidXmlElementException, TooManyBlessingsException,
 			TooManyCyberneticDevicesException, RequiredCyberneticDevicesException, BlessingAlreadyAddedException,
-			BeneficeAlreadyAddedException, InvalidRanksException {
+			BeneficeAlreadyAddedException, InvalidRanksException, RestrictedElementException {
 		final CharacterPlayer player = CustomCharacter.create(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
 		final int movement = player.getValue(CharacteristicName.MOVEMENT);
 		player.addBlessing(BlessingFactory.getInstance().getElement("limp", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
@@ -70,7 +70,7 @@ public class BlessingTests {
 	@Test
 	public void checkRangedAttacksModifications() throws InvalidXmlElementException, TooManyBlessingsException,
 			TooManyCyberneticDevicesException, RequiredCyberneticDevicesException, BlessingAlreadyAddedException,
-			BeneficeAlreadyAddedException, InvalidRanksException {
+			BeneficeAlreadyAddedException, InvalidRanksException, RestrictedElementException {
 		final CharacterPlayer player = CustomCharacter.create(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
 		Assert.assertEquals(
 				(int) player.getSkillTotalRanks(AvailableSkillsFactory.getInstance().getElement("energyGuns", LANGUAGE,

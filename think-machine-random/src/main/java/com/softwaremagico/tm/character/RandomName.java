@@ -41,7 +41,7 @@ import java.util.Set;
 public class RandomName extends RandomSelector<Name> {
 
     public RandomName(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences)
-            throws InvalidXmlElementException {
+            throws InvalidXmlElementException, RestrictedElementException {
         super(characterPlayer, preferences);
     }
 

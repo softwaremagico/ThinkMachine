@@ -26,6 +26,7 @@ package com.softwaremagico.tm.character.occultism;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.character.RestrictedElementException;
 import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
 import com.softwaremagico.tm.character.benefices.InvalidBeneficeException;
 import com.softwaremagico.tm.character.factions.FactionGroup;
@@ -45,7 +46,7 @@ import java.util.Set;
 public class RandomPsique extends RandomSelector<OccultismType> {
 
     public RandomPsique(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences)
-            throws InvalidXmlElementException {
+            throws InvalidXmlElementException, RestrictedElementException {
         super(characterPlayer, preferences);
     }
 

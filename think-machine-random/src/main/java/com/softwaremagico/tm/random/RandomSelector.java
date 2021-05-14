@@ -26,6 +26,7 @@ package com.softwaremagico.tm.random;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.character.RestrictedElementException;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.log.RandomGenerationLog;
 import com.softwaremagico.tm.random.definition.RandomElementDefinition;
@@ -66,13 +67,13 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
     private final IElementWithRandomElements<Element> elementWithRandomElements;
 
     protected RandomSelector(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences)
-            throws InvalidXmlElementException {
+            throws InvalidXmlElementException, RestrictedElementException {
         this(characterPlayer, null, preferences, new HashSet<>(), new HashSet<>());
     }
 
     protected RandomSelector(CharacterPlayer characterPlayer,
                              IElementWithRandomElements<Element> elementWithRandomElements, Set<IRandomPreference> preferences,
-                             Set<Element> mandatoryValues, Set<Element> suggestedElements) throws InvalidXmlElementException {
+                             Set<Element> mandatoryValues, Set<Element> suggestedElements) throws InvalidXmlElementException, RestrictedElementException {
         this.characterPlayer = characterPlayer;
         this.preferences = preferences;
         this.suggestedElements = suggestedElements;
@@ -119,7 +120,7 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
      * @param mandatoryValues set of elements to be assigned.
      * @throws InvalidXmlElementException
      */
-    protected abstract void assignMandatoryValues(Set<Element> mandatoryValues) throws InvalidXmlElementException;
+    protected abstract void assignMandatoryValues(Set<Element> mandatoryValues) throws InvalidXmlElementException, RestrictedElementException;
 
     /**
      * Must check if an element is mandatory, and if it is, it must be assigned.
@@ -131,7 +132,7 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
      * @throws ImpossibleToAssignMandatoryElementException
      */
     protected abstract void assignIfMandatory(Element element)
-            throws InvalidXmlElementException, ImpossibleToAssignMandatoryElementException;
+            throws InvalidXmlElementException, ImpossibleToAssignMandatoryElementException, RestrictedElementException;
 
     private void assignMandatory() throws InvalidXmlElementException {
         final List<Element> shuffledList = new ArrayList<>(getAllElements());
@@ -139,7 +140,7 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
         for (final Element element : shuffledList) {
             try {
                 assignIfMandatory(element);
-            } catch (ImpossibleToAssignMandatoryElementException e) {
+            } catch (ImpossibleToAssignMandatoryElementException | RestrictedElementException e) {
                 throw new InvalidXmlElementException("Mandatory element cannot be assigned.", e);
             }
         }
@@ -167,6 +168,11 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
 
     public int getTotalWeight(Element element) {
         try {
+            //Restricted elements has 0 weight.
+            if (element.isRestricted(characterPlayer)) {
+                return 0;
+            }
+
             int weight = getWeight(element);
             weight = (int) ((weight) * getRandomDefinitionBonus(element));
             if (weight > 0) {
