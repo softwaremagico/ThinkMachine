@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <factions>
     <version>1</version>
-    <totalElements>40</totalElements>
+    <totalElements>44</totalElements>
     <hawkwood>
         <name>
             <en>Hawkwood</en>

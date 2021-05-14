@@ -345,6 +345,14 @@ public class NpcTests {
         randomizeCharacter.createCharacter();
     }
 
+    @Test
+    public void ascorbite() throws InvalidXmlElementException, InvalidRandomElementSelectedException {
+        final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
+                NpcFactory.getInstance().getElement("ascorbite", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+        randomizeCharacter.createCharacter();
+    }
+
 
     @Test
     public void restricted() throws InvalidXmlElementException {

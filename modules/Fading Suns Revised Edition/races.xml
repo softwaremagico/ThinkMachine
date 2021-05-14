@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <races>
     <version>1</version>
-    <totalElements>8</totalElements>
+    <totalElements>9</totalElements>
     <human>
         <name>
             <en>Human</en>
