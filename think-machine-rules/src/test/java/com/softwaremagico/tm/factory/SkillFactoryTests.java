@@ -57,6 +57,11 @@ public class SkillFactoryTests {
     }
 
     @Test
+    public void readSkillSpecialization() throws InvalidXmlElementException {
+       Assert.assertEquals(AvailableSkillsFactory.getInstance().getElement("lore", "thinkMachineLore", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).getCompleteName(), "Saber [Máquina Pensante]");
+    }
+
+    @Test
     public void availableSkillNoOfficial() throws InvalidXmlElementException {
         Assert.assertFalse(AvailableSkillsFactory.getInstance().getElement("fly", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).isOfficial());
     }

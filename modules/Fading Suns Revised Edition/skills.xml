@@ -701,7 +701,6 @@
                     <es>Dioses</es>
                 </name>
                 <official>false</official>
-                <restricted>true</restricted>
                 <restrictedToRaces>oroym</restrictedToRaces>
                 <random>
                     <recommendedRaces>oroym</recommendedRaces>

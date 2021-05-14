@@ -529,6 +529,7 @@
             </skill>
             <skill>
                 <id>performance</id>
+                <speciality>acting</speciality>
             </skill>
         </suggestedSkills>
         <mandatoryBeneficesSpecialization>language [urthish]</mandatoryBeneficesSpecialization>
@@ -548,9 +549,6 @@
             </skill>
             <skill>
                 <id>melee</id>
-            </skill>
-            <skill>
-                <id>performance</id>
             </skill>
         </suggestedSkills>
         <mandatoryBeneficesSpecialization>language [urthish]</mandatoryBeneficesSpecialization>
@@ -592,9 +590,6 @@
             </skill>
             <skill>
                 <id>melee</id>
-            </skill>
-            <skill>
-                <id>performance</id>
             </skill>
         </requiredSkills>
         <official>false</official>

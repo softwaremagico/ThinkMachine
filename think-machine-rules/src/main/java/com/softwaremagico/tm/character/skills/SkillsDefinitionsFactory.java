@@ -164,8 +164,8 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
             final SkillDefinition skill = new SkillDefinition(skillId, name, description, language, moduleName);
             try {
                 final Set<Specialization> specializations = new HashSet<>();
-                for (final String specializationId : translator.getAllChildrenTags(skillId, NAME, SPECIALIZE_SKILL_TAG)) {
-                    final String specializationName = translator.getNodeValue(specializationId, language);
+                for (final String specializationId : translator.getAllChildrenTags(skillId, SPECIALIZE_SKILL_TAG)) {
+                    final String specializationName = translator.getNodeValue(specializationId, NAME, language);
                     final Specialization specialization = new Specialization(specializationId, specializationName, description,
                             language, moduleName);
                     setRestrictions(specialization, language, moduleName);
