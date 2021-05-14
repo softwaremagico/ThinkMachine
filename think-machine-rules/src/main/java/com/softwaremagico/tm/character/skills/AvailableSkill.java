@@ -1,5 +1,6 @@
 package com.softwaremagico.tm.character.skills;
 
+import com.softwaremagico.tm.character.factions.FactionGroup;
 import com.softwaremagico.tm.character.races.Race;
 import com.softwaremagico.tm.character.values.IValue;
 import com.softwaremagico.tm.json.ExcludeFromJson;
@@ -115,13 +116,8 @@ public class AvailableSkill extends Skill<AvailableSkill> implements IValue {
         }
         final AvailableSkill other = (AvailableSkill) obj;
         if (specialization == null) {
-            if (other.specialization != null) {
-                return false;
-            }
-        } else if (!specialization.equals(other.specialization)) {
-            return false;
-        }
-        return true;
+            return other.specialization == null;
+        } else return specialization.equals(other.specialization);
     }
 
     @Override
@@ -146,6 +142,7 @@ public class AvailableSkill extends Skill<AvailableSkill> implements IValue {
         return getCompleteName().compareTo(element.getCompleteName());
     }
 
+    @Override
     public Set<Race> getRestrictedToRaces() {
         if (getSpecialization() != null) {
             if (!getSpecialization().getRestrictedToRaces().isEmpty()) {
@@ -153,5 +150,35 @@ public class AvailableSkill extends Skill<AvailableSkill> implements IValue {
             }
         }
         return getSkillDefinition().getRestrictedToRaces();
+    }
+
+    @Override
+    public FactionGroup getRestrictedToFactionGroup() {
+        if (getSpecialization() != null) {
+            if (getSpecialization().getRestrictedToFactionGroup() != null) {
+                return getSpecialization().getRestrictedToFactionGroup();
+            }
+        }
+        return getSkillDefinition().getRestrictedToFactionGroup();
+    }
+
+    @Override
+    public boolean isOfficial() {
+        if (getSpecialization() != null) {
+            if (!getSpecialization().isOfficial()) {
+                return false;
+            }
+        }
+        return getSkillDefinition().isOfficial();
+    }
+
+    @Override
+    public boolean isRestricted() {
+        if (getSpecialization() != null) {
+            if (!getSpecialization().isRestricted()) {
+                return false;
+            }
+        }
+        return getSkillDefinition().isRestricted();
     }
 }

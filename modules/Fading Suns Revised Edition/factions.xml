@@ -1426,7 +1426,7 @@
             <es>Sin Facción</es>
         </name>
         <group>minor</group>
-        <restrictedToRaces>human, vorox, obun, ukar, ascorbite</restrictedToRaces>
+        <restrictedToRaces>human, vorox, obun, ukar, ascorbite, oroym</restrictedToRaces>
         <restricted>true</restricted>
         <official>false</official>
     </noFaction>

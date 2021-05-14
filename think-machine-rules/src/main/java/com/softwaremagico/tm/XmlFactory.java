@@ -99,17 +99,37 @@ public abstract class XmlFactory<T extends Element<T>> implements IElementRetrie
         initialize();
     }
 
-    protected void setRestrictions(Element<?> element, ITranslator translator, String language, String moduleName) throws InvalidXmlElementException {
+    protected void setRestrictions(Element<?> element, String language, String moduleName) throws InvalidXmlElementException {
+        Boolean restricted = null;
+        try {
+            restricted = Boolean.parseBoolean(getTranslator(moduleName).getNodeValue(element.getId(), RESTRICTED));
+        } catch (Exception e) {
+            //Restriction is not mandatory.
+        }
+        if (restricted != null) {
+            element.setRestricted(restricted);
+        }
+
         final Set<Race> races = getCommaSeparatedValues(element.getId(), RESTRICTED_RACES, language, moduleName, RaceFactory.getInstance());
+        setRestrictedToRaces(element, races);
 
         final String restriction = getTranslator(moduleName).getNodeValue(element.getId(), RESTRICTED_FACTION_GROUP_TAG);
         FactionGroup restrictedToGroup = null;
         if (restriction != null) {
             restrictedToGroup = FactionGroup.get(restriction);
         }
-
-        setRestrictedToRaces(element, races);
         setRestrictedToFactionGroup(element, restrictedToGroup);
+
+        Boolean official = null;
+        try {
+            final String officialTag = getTranslator(moduleName).getNodeValue(element.getId(), OFFICIAL);
+            official = (officialTag == null || Boolean.parseBoolean(officialTag));
+        } catch (Exception e) {
+            //Restriction is not mandatory.
+        }
+        if (official != null) {
+            element.setOfficial(official);
+        }
     }
 
     protected void setRandomConfiguration(Element<?> element, ITranslator translator, String language, String moduleName) throws InvalidXmlElementException {
@@ -335,32 +355,11 @@ public abstract class XmlFactory<T extends Element<T>> implements IElementRetrie
                     //Description is not mandatory.
                 }
 
-                Boolean restricted = null;
-                try {
-                    restricted = Boolean.parseBoolean(getTranslator(moduleName).getNodeValue(elementId, RESTRICTED));
-                } catch (Exception e) {
-                    //Restriction is not mandatory.
-                }
-
-                Boolean official = null;
-                try {
-                    final String officialTag = getTranslator(moduleName).getNodeValue(elementId, OFFICIAL);
-                    official = (officialTag == null || Boolean.parseBoolean(officialTag));
-                } catch (Exception e) {
-                    //Restriction is not mandatory.
-                }
-
-
 
                 final T element = createElement(getTranslator(moduleName), elementId, name, description, language, moduleName);
                 setRandomConfiguration(element, getTranslator(moduleName), language, moduleName);
-                setRestrictions(element, getTranslator(moduleName), language, moduleName);
-                if (restricted != null) {
-                    element.setRestricted(restricted);
-                }
-                if (official != null) {
-                    element.setOfficial(official);
-                }
+                setRestrictions(element, language, moduleName);
+
                 if (elements.get(language).get(moduleName).contains(element)) {
                     throw new ElementAlreadyExistsException("Element '" + element + "' already is inserted. Probably the ID is duplicated.");
                 }

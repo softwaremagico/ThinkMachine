@@ -25,6 +25,7 @@ package com.softwaremagico.tm.factory;
  */
 
 import com.softwaremagico.tm.InvalidXmlElementException;
+import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
 import com.softwaremagico.tm.file.PathManager;
 import org.testng.Assert;
@@ -50,8 +51,13 @@ public class SkillFactoryTests {
     }
 
     @Test
-    public void readSkills() throws InvalidXmlElementException {
+    public void readSkills() {
         Assert.assertEquals(SkillsDefinitionsFactory.getInstance().getNaturalSkills(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).size(), NATURAL_SKILLS);
         Assert.assertEquals(SkillsDefinitionsFactory.getInstance().getLearnedSkills(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).size(), LEARNED_SKILLS);
+    }
+
+    @Test
+    public void availableSkillOfficial() throws InvalidXmlElementException {
+        Assert.assertFalse(AvailableSkillsFactory.getInstance().getElement("fly", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).isOfficial());
     }
 }
