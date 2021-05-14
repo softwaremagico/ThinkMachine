@@ -3,6 +3,7 @@ package com.softwaremagico.tm.random.profile;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.RandomizeCharacter;
+import com.softwaremagico.tm.character.RestrictedElementException;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.factions.FactionGroup;
 import com.softwaremagico.tm.character.factions.FactionsFactory;
@@ -92,7 +93,7 @@ public class ProfileTests {
 
     @Test
     public void soldier() throws InvalidXmlElementException,
-            InvalidRandomElementSelectedException {
+            InvalidRandomElementSelectedException, RestrictedElementException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
                 RandomProfileFactory.getInstance().getElement("soldier", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
@@ -101,7 +102,7 @@ public class ProfileTests {
 
     @Test
     public void serf() throws InvalidXmlElementException,
-            InvalidRandomElementSelectedException {
+            InvalidRandomElementSelectedException, RestrictedElementException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
                 RandomProfileFactory.getInstance().getElement("serf", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
@@ -116,7 +117,7 @@ public class ProfileTests {
 
     @Test
     public void thug() throws InvalidXmlElementException,
-            InvalidRandomElementSelectedException {
+            InvalidRandomElementSelectedException, RestrictedElementException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
                 RandomProfileFactory.getInstance().getElement("thug", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
@@ -130,7 +131,7 @@ public class ProfileTests {
 
     @Test
     public void slayer() throws InvalidXmlElementException,
-            InvalidRandomElementSelectedException {
+            InvalidRandomElementSelectedException, RestrictedElementException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
                 RandomProfileFactory.getInstance().getElement("slayer", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
@@ -142,7 +143,7 @@ public class ProfileTests {
 
     @Test
     public void heavySoldier() throws InvalidXmlElementException,
-            InvalidRandomElementSelectedException {
+            InvalidRandomElementSelectedException, RestrictedElementException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
                 RandomProfileFactory.getInstance().getElement("heavySoldier", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
@@ -154,7 +155,7 @@ public class ProfileTests {
 
     @Test
     public void tracker() throws InvalidXmlElementException,
-            InvalidRandomElementSelectedException {
+            InvalidRandomElementSelectedException, RestrictedElementException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
                 RandomProfileFactory.getInstance().getElement("tracker", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
@@ -166,7 +167,7 @@ public class ProfileTests {
 
     @Test
     public void nobility() throws InvalidXmlElementException,
-            InvalidRandomElementSelectedException {
+            InvalidRandomElementSelectedException, RestrictedElementException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, new HashSet<>(Arrays.asList(RacePreferences.HUMAN)),
                 RandomProfileFactory.getInstance().getElement("nobility", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
@@ -176,7 +177,7 @@ public class ProfileTests {
 
     @Test
     public void clergy() throws InvalidXmlElementException,
-            InvalidRandomElementSelectedException {
+            InvalidRandomElementSelectedException, RestrictedElementException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, new HashSet<>(Arrays.asList(RacePreferences.HUMAN)),
                 RandomProfileFactory.getInstance().getElement("clergy", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
@@ -186,7 +187,7 @@ public class ProfileTests {
 
     @Test
     public void teenager() throws InvalidXmlElementException,
-            InvalidRandomElementSelectedException {
+            InvalidRandomElementSelectedException, RestrictedElementException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
                 RandomProfileFactory.getInstance().getElement("young", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
@@ -206,7 +207,7 @@ public class ProfileTests {
 
     @Test
     public void old() throws DuplicatedPreferenceException, InvalidXmlElementException,
-            InvalidRandomElementSelectedException {
+            InvalidRandomElementSelectedException, RestrictedElementException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
                 RandomProfileFactory.getInstance().getElement("old", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
@@ -216,7 +217,7 @@ public class ProfileTests {
 
     @Test
     public void kurgan() throws InvalidXmlElementException,
-            InvalidRandomElementSelectedException {
+            InvalidRandomElementSelectedException, RestrictedElementException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
                 RandomProfileFactory.getInstance().getElement("kurgan", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
