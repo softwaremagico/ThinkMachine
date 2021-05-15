@@ -42,7 +42,6 @@ import com.softwaremagico.tm.character.races.RaceFactory;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.character.skills.InvalidRanksException;
-import com.softwaremagico.tm.character.skills.InvalidSkillException;
 import com.softwaremagico.tm.character.xp.ElementCannotBeUpgradeWithExperienceException;
 import com.softwaremagico.tm.character.xp.Experience;
 import com.softwaremagico.tm.character.xp.NotEnoughExperienceException;
@@ -145,8 +144,7 @@ public class ExperienceTests {
     }
 
     @Test
-    public void addOneRankToCharacteristic() throws InvalidSkillException, InvalidXmlElementException,
-            NotEnoughExperienceException, ElementCannotBeUpgradeWithExperienceException {
+    public void addOneRankToCharacteristic() throws NotEnoughExperienceException, ElementCannotBeUpgradeWithExperienceException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.setCharacteristic(CharacteristicName.STRENGTH, 5);
 
@@ -158,8 +156,7 @@ public class ExperienceTests {
     }
 
     @Test(expectedExceptions = {NotEnoughExperienceException.class})
-    public void addOneRankToCharacteristicNotPossible() throws InvalidSkillException, InvalidXmlElementException,
-            NotEnoughExperienceException, ElementCannotBeUpgradeWithExperienceException {
+    public void addOneRankToCharacteristicNotPossible() throws NotEnoughExperienceException, ElementCannotBeUpgradeWithExperienceException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.setCharacteristic(CharacteristicName.STRENGTH, 5);
 
@@ -168,8 +165,7 @@ public class ExperienceTests {
     }
 
     @Test
-    public void addWyrd() throws ElementCannotBeUpgradeWithExperienceException, InvalidXmlElementException,
-            NotEnoughExperienceException {
+    public void addWyrd() throws ElementCannotBeUpgradeWithExperienceException, NotEnoughExperienceException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.setCharacteristic(CharacteristicName.WILL, 5);
 
@@ -196,13 +192,13 @@ public class ExperienceTests {
         player.setExperienceEarned(33);
         player.setExperiencePsiLevel(OccultismTypeFactory.getPsi(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER), 2);
         Assert.assertEquals(
-                (int) player.getOccultismLevel(OccultismTypeFactory.getPsi(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)),
+                player.getOccultismLevel(OccultismTypeFactory.getPsi(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)),
                 6);
         Assert.assertEquals(player.getExperienceExpended(), (15 + 18));
 
         player.removeExperiencePsiLevel(OccultismTypeFactory.getPsi(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER), 6);
         Assert.assertEquals(
-                (int) player.getOccultismLevel(OccultismTypeFactory.getPsi(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)),
+                player.getOccultismLevel(OccultismTypeFactory.getPsi(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)),
                 5);
         Assert.assertEquals(player.getExperienceExpended(), (15));
     }
@@ -304,7 +300,7 @@ public class ExperienceTests {
         String jsonText = CharacterJsonManager.toJson(player);
         final CharacterPlayer playerImported = CharacterJsonManager.fromJson(jsonText);
 
-        Assert.assertEquals((int) playerImported.getExperienceEarned(), 100);
+        Assert.assertEquals(playerImported.getExperienceEarned(), 100);
         Assert.assertEquals((int) playerImported.getSkillTotalRanks(AvailableSkillsFactory.getInstance()
                 .getElement("influence", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)), 7);
         Assert.assertEquals((int) playerImported.getValue(CharacteristicName.PERCEPTION), 6);
@@ -315,7 +311,7 @@ public class ExperienceTests {
 
     @Test
     public void checkAscorbitesExtraCost() throws ElementCannotBeUpgradeWithExperienceException,
-            InvalidXmlElementException, RestrictedElementException, InvalidRanksException {
+            InvalidXmlElementException, RestrictedElementException {
         final CharacterPlayer ascorbite = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         ascorbite.setRace(RaceFactory.getInstance().getElement("ascorbite", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         ascorbite.getInfo().setAge(32);
@@ -325,10 +321,10 @@ public class ExperienceTests {
         human.getInfo().setAge(32);
 
         AvailableSkill survival = AvailableSkillsFactory.getInstance().getElement("survival", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
-        Assert.assertTrue(Experience.getExperienceCostFor(survival, 1, ascorbite) ==
-                Experience.getExperienceCostFor(survival, 1, human) * 3);
+        Assert.assertEquals(Experience.getExperienceCostFor(survival, 1, human) * 3,
+                Experience.getExperienceCostFor(survival, 1, ascorbite));
 
-        Assert.assertTrue(Experience.getExperienceCostFor(survival, 2, ascorbite) ==
-                Experience.getExperienceCostFor(survival, 2, human) * 2);
+        Assert.assertEquals(Experience.getExperienceCostFor(survival, 2, human) * 2,
+                Experience.getExperienceCostFor(survival, 2, ascorbite));
     }
 }

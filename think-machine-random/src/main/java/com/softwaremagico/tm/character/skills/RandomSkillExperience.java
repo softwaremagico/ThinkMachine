@@ -65,8 +65,8 @@ public class RandomSkillExperience extends RandomSkills {
             final int newValue = getCharacterPlayer().getSkillAssignedRanks(selectedSkill)
                     + getCharacterPlayer().getExperienceIncrease(selectedSkill).size() + 1;
             try {
-                if (getCharacterPlayer().getExperienceExpended() + Experience.getExperienceCostFor(selectedSkill, newValue, getCharacterPlayer()) <= getCharacterPlayer()
-                        .getExperienceEarned()) {
+                if (getCharacterPlayer().getExperienceExpended() + Experience.getExperienceCostFor(selectedSkill, newValue, getCharacterPlayer())
+                        <= getCharacterPlayer().getExperienceEarned()) {
                     RandomGenerationLog
                             .debug(this.getClass().getName(),
                                     "Spent '"

@@ -679,7 +679,7 @@ public class CharacterPlayer {
     }
 
     public boolean hasBlessing(String blessingId) {
-        Blessing selectedBlessing = blessings.stream().filter(b -> b.getId().equals(blessingId)).
+        final Blessing selectedBlessing = blessings.stream().filter(b -> b.getId().equals(blessingId)).
                 findFirst().orElse(null);
         if (selectedBlessing != null) {
             return true;

@@ -117,7 +117,9 @@ public class AvailableSkill extends Skill<AvailableSkill> implements IValue {
         final AvailableSkill other = (AvailableSkill) obj;
         if (specialization == null) {
             return other.specialization == null;
-        } else return specialization.equals(other.specialization);
+        } else {
+            return specialization.equals(other.specialization);
+        }
     }
 
     @Override

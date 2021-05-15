@@ -59,14 +59,14 @@ public class RandomCharacteristicsExperience extends RandomCharacteristics {
             final int newValue = getCharacterPlayer().getRawValue(characteristic.getCharacteristicDefinition().getCharacteristicName())
                     + getCharacterPlayer().getExperienceIncrease(characteristic).size() + 1;
             try {
-                if (getCharacterPlayer().getExperienceExpended() + Experience.getExperienceCostFor(characteristic, newValue, getCharacterPlayer()) <= getCharacterPlayer()
-                        .getExperienceEarned()) {
+                if (getCharacterPlayer().getExperienceExpended() + Experience.getExperienceCostFor(characteristic, newValue, getCharacterPlayer()) <=
+                        getCharacterPlayer().getExperienceEarned()) {
                     RandomGenerationLog
                             .debug(this.getClass().getName(),
                                     "Spent '" + Experience.getExperienceCostFor(characteristic, newValue, getCharacterPlayer()) +
-                                            "' experience points on '" + characteristic + "'. Remaining experience '" + (getCharacterPlayer().getExperienceEarned()
-                                            - getCharacterPlayer().getExperienceExpended() - Experience.getExperienceCostFor(characteristic, newValue, getCharacterPlayer()))
-                                            + "'.");
+                                            "' experience points on '" + characteristic + "'. Remaining experience '" +
+                                            (getCharacterPlayer().getExperienceEarned() - getCharacterPlayer().getExperienceExpended() -
+                                                    Experience.getExperienceCostFor(characteristic, newValue, getCharacterPlayer())) + "'.");
                     getCharacterPlayer().setExperienceIncreasedRanks(characteristic, 1);
                 } else {
                     // Remove characteristic from options to avoid adding more
