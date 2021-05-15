@@ -65,17 +65,17 @@ public class RandomSkillExperience extends RandomSkills {
             final int newValue = getCharacterPlayer().getSkillAssignedRanks(selectedSkill)
                     + getCharacterPlayer().getExperienceIncrease(selectedSkill).size() + 1;
             try {
-                if (getCharacterPlayer().getExperienceExpended() + Experience.getExperienceCostFor(selectedSkill, newValue) <= getCharacterPlayer()
+                if (getCharacterPlayer().getExperienceExpended() + Experience.getExperienceCostFor(selectedSkill, newValue, getCharacterPlayer()) <= getCharacterPlayer()
                         .getExperienceEarned()) {
                     RandomGenerationLog
                             .debug(this.getClass().getName(),
                                     "Spent '"
-                                            + Experience.getExperienceCostFor(selectedSkill, newValue)
+                                            + Experience.getExperienceCostFor(selectedSkill, newValue, getCharacterPlayer())
                                             + "' experience points on '"
                                             + selectedSkill
                                             + "'. Remaining experience '"
                                             + (getCharacterPlayer().getExperienceEarned() - getCharacterPlayer().getExperienceExpended() - Experience
-                                            .getExperienceCostFor(selectedSkill, newValue)) + "'.");
+                                            .getExperienceCostFor(selectedSkill, newValue, getCharacterPlayer())) + "'.");
                     getCharacterPlayer().setExperienceIncreasedRanks(selectedSkill, 1);
                 } else {
                     // Remove skill from options to avoid adding more ranks.

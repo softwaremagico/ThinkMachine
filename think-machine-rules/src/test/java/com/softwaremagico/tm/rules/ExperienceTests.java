@@ -39,10 +39,12 @@ import com.softwaremagico.tm.character.occultism.InvalidPowerLevelException;
 import com.softwaremagico.tm.character.occultism.OccultismPathFactory;
 import com.softwaremagico.tm.character.occultism.OccultismTypeFactory;
 import com.softwaremagico.tm.character.races.RaceFactory;
+import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.character.skills.InvalidRanksException;
 import com.softwaremagico.tm.character.skills.InvalidSkillException;
 import com.softwaremagico.tm.character.xp.ElementCannotBeUpgradeWithExperienceException;
+import com.softwaremagico.tm.character.xp.Experience;
 import com.softwaremagico.tm.character.xp.NotEnoughExperienceException;
 import com.softwaremagico.tm.characters.CustomCharacter;
 import com.softwaremagico.tm.file.PathManager;
@@ -308,5 +310,25 @@ public class ExperienceTests {
         Assert.assertEquals((int) playerImported.getValue(CharacteristicName.PERCEPTION), 6);
         Assert.assertEquals(player.getExperienceExpended(), (18 + 12 + 14));
 
+    }
+
+
+    @Test
+    public void checkAscorbitesExtraCost() throws ElementCannotBeUpgradeWithExperienceException,
+            InvalidXmlElementException, RestrictedElementException, InvalidRanksException {
+        final CharacterPlayer ascorbite = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        ascorbite.setRace(RaceFactory.getInstance().getElement("ascorbite", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+        ascorbite.getInfo().setAge(32);
+
+        final CharacterPlayer human = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        human.setRace(RaceFactory.getInstance().getElement("human", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+        human.getInfo().setAge(32);
+
+        AvailableSkill survival = AvailableSkillsFactory.getInstance().getElement("survival", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        Assert.assertTrue(Experience.getExperienceCostFor(survival, 1, ascorbite) ==
+                Experience.getExperienceCostFor(survival, 1, human) * 3);
+
+        Assert.assertTrue(Experience.getExperienceCostFor(survival, 2, ascorbite) ==
+                Experience.getExperienceCostFor(survival, 2, human) * 2);
     }
 }

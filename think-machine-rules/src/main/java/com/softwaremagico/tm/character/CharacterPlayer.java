@@ -678,6 +678,23 @@ public class CharacterPlayer {
         return null;
     }
 
+    public boolean hasBlessing(String blessingId) {
+        Blessing selectedBlessing = blessings.stream().filter(b -> b.getId().equals(blessingId)).
+                findFirst().orElse(null);
+        if (selectedBlessing != null) {
+            return true;
+        }
+        if (getRace() != null) {
+            return getRace().getBlessings().stream().filter(b -> b.getId().equals(blessingId)).
+                    findFirst().orElse(null) != null;
+        }
+        if (getFaction() != null) {
+            return getFaction().getBlessings().stream().filter(b -> b.getId().equals(blessingId)).
+                    findFirst().orElse(null) != null;
+        }
+        return false;
+    }
+
     public List<AvailableBenefice> getAfflictions() {
         final List<AvailableBenefice> afflictions = new ArrayList<>();
         final List<AvailableBenefice> selectedAfflictions = new ArrayList<>(benefices);
@@ -1176,7 +1193,7 @@ public class CharacterPlayer {
     public void setExperienceInOccultism(OccultismPath occultismPath, OccultismPower occultismPower)
             throws NotEnoughExperienceException, ElementCannotBeUpgradeWithExperienceException {
         final ExperienceIncrease increase = experience.setExperienceIncrease(occultismPath, occultismPower,
-                occultismPower.getLevel(), Experience.getExperienceCostFor(occultismPower, occultismPower.getLevel()));
+                occultismPower.getLevel(), Experience.getExperienceCostFor(occultismPower, occultismPower.getLevel(), this));
         if (getExperienceExpended() > getExperienceEarned()) {
             experience.remove(occultismPath, increase);
             throw new NotEnoughExperienceException(
@@ -1214,7 +1231,7 @@ public class CharacterPlayer {
 
         for (int addedValue = 1; addedValue <= addedValues; addedValue++) {
             final ExperienceIncrease increase = experience.setExperienceIncrease(element, previousRanks + addedValue,
-                    Experience.getExperienceCostFor(element, previousRanks + addedValue));
+                    Experience.getExperienceCostFor(element, previousRanks + addedValue, this));
             if (getExperienceExpended() > getExperienceEarned()) {
                 experience.remove(element, increase);
                 throw new NotEnoughExperienceException(
