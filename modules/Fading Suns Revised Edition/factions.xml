@@ -1429,11 +1429,13 @@
         <blessings>short</blessings>
         <random>
             <names>
-                <male>Suparman, Bayu, Fajar, Buidi, Deeza, Adhiarja, Arief, Batara, Bimo, Chahaya, Cipta, Darma, Eas,
-                    Eka, Ismaya, Pramana, Setiawan, Vikal, Yuda, Susila, Mego, Joyo, Gesang, Fadhlan
+                <male>Ciarlan, Ianiel, Mhoirnard, Balgan, Taslan, Peadein, Benluim, Màntainn, Pàdad, Elain, Marran,
+                    Seòsnall, Coleil, Laoair, Granall, Somghas, Adchar, Solluim, Nialneach, Tamnard, Dòmhair, Marbeart,
+                    Prainan, Balnall, Solard, Grandainn, Laobeart, Sanart, Iansaidh, Adlaibh
                 </male>
-                <female>Wulandari, Indah, Nur, Fitri, Annisa, Kartika, Dewi, Adiratna, Aninda, Budiwati, Bulan, Dwi,
-                    Kirana, Lestari, Mawar, Melati, Ndari, Nurul, Puspita, Sarwendah, Roro
+                <female>Knekos, Glaïeul, Orcanette, Circaea, Prasothes, Réséda, Inule, Sonchus, Fumaria,Aster, Buglosse,
+                    Andryale, Moricandia, Listère, Bruyère, Potentille, Dactyle, Abutilon, Pilosella, Withaine, Lis,
+                    Carillon, Adénostyles, Botryche, Crépide, Achillée
                 </female>
             </names>
             <surnames>Darmawan, Djajadiningrat, Soerjaatmadja, Prawiranegara, Nasution, Hutagaol, Sitompul, Karokaro,
@@ -1459,11 +1461,13 @@
         <blessings>flightless</blessings>
         <random>
             <names>
-                <male>Suparman, Bayu, Fajar, Buidi, Deeza, Adhiarja, Arief, Batara, Bimo, Chahaya, Cipta, Darma, Eas,
-                    Eka, Ismaya, Pramana, Setiawan, Vikal, Yuda, Susila, Mego, Joyo, Gesang, Fadhlan
+                <male>Suzous, Zaqeh, Nachat, Yugre, Nisuc, Sekucu, Shoguxi, Nukachua, Ucukhush, Chaszazis, Chase,
+                    Shaukux, Uksa, Sugyuth, Hozu, Ekesiz, Juansuajus, Recuaze, Shaanecra, Hacregshau, Yizash, Hikshuq,
+                    Yunoh, Zehxu, Nenqah, Sicroucuaz, Uqhuja, Xucehne, Asaasze, Hunouzhax,
                 </male>
-                <female>Wulandari, Indah, Nur, Fitri, Annisa, Kartika, Dewi, Adiratna, Aninda, Budiwati, Bulan, Dwi,
-                    Kirana, Lestari, Mawar, Melati, Ndari, Nurul, Puspita, Sarwendah, Roro
+                <female>Caellya, Nelyne, Lysinore, Vyneanor, Peralin, Nephyrea, Veryth, Faenethe, Noryne, Xirophine,
+                    Crelialle, Xynynea, Uemonia, Hephynore, Yororis, Crelara, Solerin, Vaelynore, Calyrea, Ferete,
+                    Veryrea, Yeso, Orophine, Verora, Ierena, Florera, Tyrinis, Xylielle, Zelia, Florophis
                 </female>
             </names>
             <surnames>Darmawan, Djajadiningrat, Soerjaatmadja, Prawiranegara, Nasution, Hutagaol, Sitompul, Karokaro,
@@ -1479,13 +1483,43 @@
         <restricted>true</restricted>
         <official>false</official>
     </ghekdaaz>
+    <ascorbite>
+        <name>
+            <en>Ascorbite</en>
+            <es>Ascorbita</es>
+        </name>
+        <group>minor</group>
+        <random>
+            <names>
+                <male>Rooth, Gaiwk, Skreeth, Ewut, Quwoww, Rasek, Zeye, Sqritath, Gayuniww, Kinieceth, Kiaw, Krieth,
+                    Krooww, Grataq, Ebuawk, Zabuat, Kiyeq, Sqinnath, Ziwikik, Kreetiyiwk, Kiewk, Skoow, Goowk, Karreww,
+                    Qashreewk, Qurriw, Qriseq, Cishraik, Gishrarrow, Kraiserot, Kriaww, Sqiew, Sqaith, Gayi, Skeesuq,
+                    Grieyi, Grissewk, Qotoot, Sqrineebeewk, Krossariq
+                </male>
+                <female>Qheet, Qeath, Grein, Qharre, Ciayoh, Sqetith, Irre, Griroow, Gallireith, Zallishea, Zreaww,
+                    Giak, Ziew, Grireww, Eshuw, Grarit, Ghialit, Zhorah, Zreshabba, Roturi, Sceeww, Kiak, Keek, Zhotiet,
+                    Rhabi, Eyit, Sqasheww, Eirrea, Zhashireen, Rhataba, Reaww, Zhean, Geath, Zece, Sqebiww, Qherath,
+                    Keboon, Gillew, Coyeeshin, Uluyuh
+                </female>
+            </names>
+            <surnames>Ziek, Zheiwk, Rieh, Kietak, Khicca, Ziwah, Eerah, Ennot, Kherralliet, Girrenni, Creaww, Sqait,
+                Qheith, Creibooh, Cino, Kriyiaw, Skoorra, Rhokuat, Greshenneiwk, Ushrabbaw, Reah, Scait, Qheah, Gricak,
+                Skisheiwk, Sqeashe, Crareiw, Skreayie, Obeshrooth, Grelinneth, Skiaww, Kuaw, Khiath, Ghineh, Khassi,
+                Sqoneeh, Aiwe, Elleet, Rillerrai, Anashroo,
+            </surnames>
+            <probabilityMultiplier>50</probabilityMultiplier>
+        </random>
+        <restrictedToRaces>ascorbite</restrictedToRaces>
+        <restricted>true</restricted>
+        <official>false</official>
+    </ascorbite>
     <noFaction>
         <name>
             <en>No Faction</en>
             <es>Sin Facción</es>
         </name>
         <group>minor</group>
-        <restrictedToRaces>human, vorox, obun, ukar, ascorbite, oroym</restrictedToRaces>
+        <restrictedToRaces>human, vorox, obun, ukar, oroym</restrictedToRaces>
         <restricted>true</restricted>
         <official>false</official>
     </noFaction>
