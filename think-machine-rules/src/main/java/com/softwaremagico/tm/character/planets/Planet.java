@@ -24,43 +24,51 @@ package com.softwaremagico.tm.character.planets;
  * #L%
  */
 
-import java.util.HashSet;
-import java.util.Set;
-
 import com.softwaremagico.tm.Element;
 import com.softwaremagico.tm.character.Name;
 import com.softwaremagico.tm.character.Surname;
 import com.softwaremagico.tm.character.factions.Faction;
 import com.softwaremagico.tm.character.factions.FactionsFactory;
-import com.softwaremagico.tm.json.ExcludeFromJson;
+
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Planet extends Element<Planet> {
-    @ExcludeFromJson
     private final Set<Faction> factions;
+    private final Set<Faction> humanFactions;
 
     public Planet(String id, String name, String description, String language, String moduleName, Set<Faction> factions) {
         super(id, name, description, language, moduleName);
+
+        // Get only human factions from the planet. Ignore Xeno factions.
         this.factions = factions;
+        this.humanFactions = factions.stream().filter(Faction::isOnlyForHuman).
+                collect(Collectors.toSet());
     }
 
     public Set<Faction> getFactions() {
         return factions;
     }
 
+    public Set<Faction> getHumanFactions() {
+        return humanFactions;
+    }
+
     public Set<Name> getNames() {
         final Set<Name> names = new HashSet<>();
-        for (final Faction faction : factions) {
+        for (final Faction faction : getHumanFactions()) {
             names.addAll(FactionsFactory.getInstance().getAllNames(faction));
         }
         return names;
     }
 
     public Set<Surname> getSurnames() {
-        final Set<Surname> names = new HashSet<>();
-        for (final Faction faction : factions) {
-            names.addAll(FactionsFactory.getInstance().getAllSurnames(faction));
+        final Set<Surname> surnames = new HashSet<>();
+        for (final Faction faction : getHumanFactions()) {
+            surnames.addAll(FactionsFactory.getInstance().getAllSurnames(faction));
         }
-        return names;
+        return surnames;
     }
 
     @Override

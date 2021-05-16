@@ -31,6 +31,7 @@ import com.softwaremagico.tm.character.benefices.RestrictedBenefice;
 import com.softwaremagico.tm.character.benefices.SuggestedBenefice;
 import com.softwaremagico.tm.character.blessings.Blessing;
 import com.softwaremagico.tm.character.blessings.BlessingClassification;
+import com.softwaremagico.tm.character.races.RaceFactory;
 import com.softwaremagico.tm.log.MachineLog;
 
 import java.util.HashSet;
@@ -44,6 +45,7 @@ public class Faction extends Element<Faction> {
     private Set<AvailableBenefice> benefices = null;
     private Set<SuggestedBenefice> suggestedBenefices = null;
     private Set<RestrictedBenefice> restrictedBenefices = null;
+    private Boolean isOnlyForHuman;
 
     public Faction(String id, String name, String description, FactionGroup factionGroup, String language,
                    String moduleName) {
@@ -158,5 +160,18 @@ public class Faction extends Element<Faction> {
     @Override
     public boolean equals(Object obj) {
         return super.equals(obj);
+    }
+
+    public boolean isOnlyForHuman() {
+        if (isOnlyForHuman == null) {
+            try {
+                isOnlyForHuman = getRestrictedToRaces().size() == 1 &&
+                        getRestrictedToRaces().contains(RaceFactory.getInstance().getElement("human", getLanguage(), getModuleName()));
+            } catch (InvalidXmlElementException e) {
+                MachineLog.errorMessage(this.getClass().getName(), e);
+                isOnlyForHuman = true;
+            }
+        }
+        return isOnlyForHuman;
     }
 }

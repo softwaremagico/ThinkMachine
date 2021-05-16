@@ -89,7 +89,7 @@ public class RandomSurname extends RandomSelector<Surname> {
         // Not nobility and not name set, use surnames of the planet.
         if (getCharacterPlayer().getInfo().getPlanet() != null
                 && !getCharacterPlayer().getInfo().getPlanet().getSurnames().isEmpty()) {
-            if (getCharacterPlayer().getInfo().getPlanet().getFactions().contains(surname.getFaction())) {
+            if (getCharacterPlayer().getInfo().getPlanet().getHumanFactions().contains(surname.getFaction())) {
                 return BASIC_PROBABILITY;
             } else {
                 return 0;

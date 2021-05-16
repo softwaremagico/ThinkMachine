@@ -101,7 +101,8 @@ public class RandomName extends RandomSelector<Name> {
         // Not nobility, use names available on the planet.
         if (getCharacterPlayer().getInfo().getPlanet() != null
                 && !getCharacterPlayer().getInfo().getPlanet().getNames().isEmpty()) {
-            if (getCharacterPlayer().getInfo().getPlanet().getFactions().contains(name.getFaction())) {
+            //Only human names. Ignore xenos.
+            if (getCharacterPlayer().getInfo().getPlanet().getHumanFactions().contains(name.getFaction())) {
                 return BASIC_PROBABILITY;
             } else {
                 throw new InvalidRandomElementSelectedException("Name '" + name + "' not existing in planet '"
