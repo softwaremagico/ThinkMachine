@@ -1170,6 +1170,7 @@
                 </female>
             </names>
             <surnames>HanSeer, HanLoaaj, Harn, Haleigha, Haulani, Kahiau, Maylee, Pazhani, Pualani</surnames>
+            <probabilityMultiplier>20</probabilityMultiplier>
         </random>
     </obun>
     <ukar>
@@ -1192,6 +1193,7 @@
                 <female>Gisdrom, Sadra-Syn, Abril, Amena, Aischa, Rasha, Aseel, Nooda, Ranim, Reem</female>
             </names>
             <surnames>Nadakira, Wahind, Malak, Nolents, Oed Nata, Borduk, Nont, Veldiryn, Nilite, Tushan</surnames>
+            <probabilityMultiplier>20</probabilityMultiplier>
         </random>
     </ukar>
     <vorox>
@@ -1209,6 +1211,7 @@
                 <female>Velika, Orde, Kabrua, Orbul, Shelur, Shelur, Atub, Bula, Ghorza, Shagar</female>
             </names>
             <surnames>Rolfish, Gashnakh, Ragash, Oghash, Yazgash, Rogmesh, Borgakh, Lagakh, Sharamph</surnames>
+            <probabilityMultiplier>20</probabilityMultiplier>
         </random>
         <suggestedBenefices>
             <benefice>
@@ -1239,7 +1242,7 @@
                 <female>Velika, Orde, Kabrua, Orbul, Shelur, Shelur, Atub, Bula, Ghorza, Shagar</female>
             </names>
             <surnames>Rolfish, Gashnakh, Ragash, Oghash, Yazgash, Rogmesh, Borgakh, Lagakh, Sharamph</surnames>
-            <probabilityMultiplier>0.05</probabilityMultiplier>
+            <probabilityMultiplier>5</probabilityMultiplier>
         </random>
     </royalVorox>
     <oldShantor>
@@ -1264,7 +1267,7 @@
             <surnames>Amateeeraaa, Varsahhh, Seeeema, Nuuuuit, Hanneeuuuuul, Alizéeeeee, Ahanaha, Shuuu, Niiivel,
                 Eriiioon, Brontes, Andiiil
             </surnames>
-            <probabilityMultiplier>50</probabilityMultiplier>
+            <probabilityMultiplier>100</probabilityMultiplier>
         </random>
         <restricted>true</restricted>
         <official>false</official>
@@ -1291,7 +1294,7 @@
             <surnames>Amateeeraaa, Varsahhh, Seeeema, Nuuuuit, Hanneeuuuuul, Alizéeeeee, Ahanaha, Shuuu, Niiivel,
                 Eriiioon, Brontes, Andiiil
             </surnames>
-            <probabilityMultiplier>50</probabilityMultiplier>
+            <probabilityMultiplier>100</probabilityMultiplier>
         </random>
         <restricted>true</restricted>
         <official>false</official>
@@ -1326,7 +1329,7 @@
                 </female>
             </names>
             <surnames>Baalaaji,Baalaraju, Caddaham, Bemossed, Bagwunagijik, Ayawamat</surnames>
-            <probabilityMultiplier>50</probabilityMultiplier>
+            <probabilityMultiplier>100</probabilityMultiplier>
         </random>
         <restricted>true</restricted>
         <official>false</official>
@@ -1354,7 +1357,7 @@
                 </female>
             </names>
             <surnames>Baalaaji,Baalaraju, Caddaham, Bemossed, Bagwunagijik, Ayawamat</surnames>
-            <probabilityMultiplier>50</probabilityMultiplier>
+            <probabilityMultiplier>100</probabilityMultiplier>
         </random>
         <restricted>true</restricted>
         <official>false</official>
@@ -1384,7 +1387,7 @@
                 Tatengkeng, Batusura, Lumba, Rambulangi, Manganan, Malaiholo, Hehamahua, Sahanaya, Sahilatua, Hurek,
                 Riberu, Lamaborak, Leyn, Suebu, Solossa, Maniani, Wanggai Wonda
             </surnames>
-            <probabilityMultiplier>50</probabilityMultiplier>
+            <probabilityMultiplier>100</probabilityMultiplier>
         </random>
         <restricted>true</restricted>
         <official>false</official>
@@ -1446,7 +1449,7 @@
                 Tatengkeng, Batusura, Lumba, Rambulangi, Manganan, Malaiholo, Hehamahua, Sahanaya, Sahilatua, Hurek,
                 Riberu, Lamaborak, Leyn, Suebu, Solossa, Maniani, Wanggai Wonda
             </surnames>
-            <probabilityMultiplier>50</probabilityMultiplier>
+            <probabilityMultiplier>100</probabilityMultiplier>
         </random>
         <restricted>true</restricted>
         <official>false</official>
@@ -1478,7 +1481,7 @@
                 Tatengkeng, Batusura, Lumba, Rambulangi, Manganan, Malaiholo, Hehamahua, Sahanaya, Sahilatua, Hurek,
                 Riberu, Lamaborak, Leyn, Suebu, Solossa, Maniani, Wanggai Wonda
             </surnames>
-            <probabilityMultiplier>50</probabilityMultiplier>
+            <probabilityMultiplier>100</probabilityMultiplier>
         </random>
         <restricted>true</restricted>
         <official>false</official>
@@ -1505,21 +1508,47 @@
             <surnames>Ziek, Zheiwk, Rieh, Kietak, Khicca, Ziwah, Eerah, Ennot, Kherralliet, Girrenni, Creaww, Sqait,
                 Qheith, Creibooh, Cino, Kriyiaw, Skoorra, Rhokuat, Greshenneiwk, Ushrabbaw, Reah, Scait, Qheah, Gricak,
                 Skisheiwk, Sqeashe, Crareiw, Skreayie, Obeshrooth, Grelinneth, Skiaww, Kuaw, Khiath, Ghineh, Khassi,
-                Sqoneeh, Aiwe, Elleet, Rillerrai, Anashroo,
+                Sqoneeh, Aiwe, Elleet, Rillerrai, Anashroo
             </surnames>
-            <probabilityMultiplier>50</probabilityMultiplier>
+            <probabilityMultiplier>100</probabilityMultiplier>
         </random>
         <restrictedToRaces>ascorbite</restrictedToRaces>
         <restricted>true</restricted>
         <official>false</official>
     </ascorbite>
+    <oroym>
+        <name>
+            <en>Oro'ym</en>
+            <es>Oro'ym</es>
+        </name>
+        <group>minor</group>
+        <random>
+            <names>
+                <male>Methreh, Mnephah, Calo, Thripof, Sthestroth, Dhuistrori, Zuimnosi, Memrory, Vuireby, Drarlah,
+                    Adnoh, Necho, Ethro, Theflof, Dyrrin, Sthuimne, Zhaerlif, Zharri, Llecheh, Gelme, Talene,
+                    Scylmovish, Lleomoreo, Dytsotas
+                </male>
+                <female>
+                    Niafa, Deafripy, Gharmify, Tystena, Anzolem, Llimra, Sthitras, Scanshi, Calme, Phiaras, Sibiph,
+                    Mnyntony, Zybenysh, Scabevy, Phemnafe
+                </female>
+            </names>
+            <surnames>Iestaf, Cecho, Phirli, Dyne, Dampe, Attos, Lensaleas, Dhanzapa, Dhiffepi, Peathradef, Vesa,
+                Grisho, Tydo, Llaphroh, Sthymri, Mnymo, Imradoe, Cyffamy, Pefovie, Cemlese
+            </surnames>
+            <probabilityMultiplier>100</probabilityMultiplier>
+        </random>
+        <restrictedToRaces>oroym</restrictedToRaces>
+        <restricted>true</restricted>
+        <official>false</official>
+    </oroym>
     <noFaction>
         <name>
             <en>No Faction</en>
             <es>Sin Facción</es>
         </name>
         <group>minor</group>
-        <restrictedToRaces>human, vorox, obun, ukar, oroym</restrictedToRaces>
+        <restrictedToRaces>human, vorox, obun, ukar</restrictedToRaces>
         <restricted>true</restricted>
         <official>false</official>
     </noFaction>
