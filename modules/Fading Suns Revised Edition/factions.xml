@@ -131,7 +131,8 @@
                     Polonia, Primitiva, Prudencia, Refugia, Restituta, Romidia, Serafina, Sinesia, Sinforosa, Sesebuta,
                     Tecla, Teodolina, Tiburcia, Trinidad, Uberlinda, Ulpiana, Vitalia, Zenobia, Zoila, Clarissa, Camina,
                     Juliette, Matilda, Ambrosia, Antolina, Arundina, Basilisa, Cayetana, Calista, Donora, Dosinda,
-                    Adriana, ArestrictedToRaceslis, Celia, Decia, Desideria, Diana, Estela, Fabia, Gala, Justina, Lilia, Loreto,
+                    Adriana, ArestrictedToRaceslis, Celia, Decia, Desideria, Diana, Estela, Fabia, Gala, Justina, Lilia,
+                    Loreto,
                     Maira, Paulina, Severina, Sira, Valeria
                 </female>
             </names>
@@ -209,7 +210,7 @@
                     Alhasan, Alhusain, Alhusayn, Ali, 'Ali, 'Aliyy, Alim, Almahdi, Al Safi, Altaf, Altair, Al Tayyib, Al
                     Tijani, Al Tufail, Al Tufayl, Amid, 'Amid, Amin, Ameen, Amir, Ameer, 'Amir, Amjad, Ammar, 'Ammar,
                     'Amro, Anas, Anis, 'Antarah, Anwar, 'Aqil, Arfan, Arif, 'Arif, Asad, As'ad, Asadel, Ashraf, Asif,
-                    Asim, 'Asim, Aswad, Ata', 'Ataa, Ata'  Ata' al Rahman, Athil, Athir, Atif, 'Atif, Awad, 'Awad,
+                    Asim, 'Asim, Aswad, Ata', 'Ataa, Ata' Ata' al Rahman, Athil, Athir, Atif, 'Atif, Awad, 'Awad,
                     'Awf, Aws, Awwab, Ayham, Ayman, Ayser, Ayyub, Ayoob, Aza, 'Azab, Azhar, Azeem, Azim, Aziz, 'Aziz,
                     Azzam, 'Azzam, Badi, Badi al Zaman, Badr, Badr al Din, Badri, Baha, Baha', Baha al Din, Bahiyy al
                     Din, Bahij, Bahir, Bakr, Bakri, Baligh, Bandar, Barakah, Barir, Bashir, Bashshar, Basil, Basim,
@@ -1252,10 +1253,17 @@
         <benefices>dolomei</benefices>
         <random>
             <names>
-                <male></male>
-                <female>Aluuuuraloraaa</female>
+                <male>Aamphooorn, Amuuuun, Aaanaaan, Aniiil, Aaanoooreee, Baaaraaaak, Baraaaaan, Caaaeeeluus,
+                    Keiiieeeaanuuu, Matuu
+                </male>
+                <female>Aluuuuraloraaa, Akaashh, Coreeeentiiineeee, Enliiiiil, Eseeeeen, Naaaaseeem, Aelaaaaa,
+                    Ahaaannaaaaa, Aniiiilaaa, Auuudraaa, Ĉieeeelaaaa, Haaizzzeeeea, Innaaaannaaaa, Ninliiiiilii,
+                    Tuuuulikkiii
+                </female>
             </names>
-            <surnames></surnames>
+            <surnames>Amateeeraaa, Varsahhh, Seeeema, Nuuuuit, Hanneeuuuuul, Alizéeeeee, Ahanaha, Shuuu, Niiivel,
+                Eriiioon, Brontes, Andiiil
+            </surnames>
             <probabilityMultiplier>50</probabilityMultiplier>
         </random>
         <restricted>true</restricted>
@@ -1272,10 +1280,17 @@
         <benefices>dolomei, muzzleManipulator</benefices>
         <random>
             <names>
-                <male></male>
-                <female>Aluuuuraloraaa</female>
+                <male>Aamphooorn, Amuuuun, Aaanaaan, Aniiil, Aaanoooreee, Baaaraaaak, Baraaaaan, Caaaeeeluus,
+                    Keiiieeeaanuuu, Matuu
+                </male>
+                <female>Aluuuuraloraaa, Akaashh, Coreeeentiiineeee, Enliiiiil, Eseeeeen, Naaaaseeem, Aelaaaaa,
+                    Ahaaannaaaaa, Aniiiilaaa, Auuudraaa, Ĉieeeelaaaa, Haaizzzeeeea, Innaaaannaaaa, Ninliiiiilii,
+                    Tuuuulikkiii
+                </female>
             </names>
-            <surnames></surnames>
+            <surnames>Amateeeraaa, Varsahhh, Seeeema, Nuuuuit, Hanneeuuuuul, Alizéeeeee, Ahanaha, Shuuu, Niiivel,
+                Eriiioon, Brontes, Andiiil
+            </surnames>
             <probabilityMultiplier>50</probabilityMultiplier>
         </random>
         <restricted>true</restricted>
@@ -1354,10 +1369,21 @@
         <blessings>hawkEye</blessings>
         <random>
             <names>
-                <male></male>
-                <female></female>
+                <male>Suparman, Bayu, Fajar, Buidi, Deeza, Adhiarja, Arief, Batara, Bimo, Chahaya, Cipta, Darma, Eas,
+                    Eka, Ismaya, Pramana, Setiawan, Vikal, Yuda, Susila, Mego, Joyo, Gesang, Fadhlan
+                </male>
+                <female>Wulandari, Indah, Nur, Fitri, Annisa, Kartika, Dewi, Adiratna, Aninda, Budiwati, Bulan, Dwi,
+                    Kirana, Lestari, Mawar, Melati, Ndari, Nurul, Puspita, Sarwendah, Roro
+                </female>
             </names>
-            <surnames></surnames>
+            <surnames>Darmawan, Djajadiningrat, Soerjaatmadja, Prawiranegara, Nasution, Hutagaol, Sitompul, Karokaro,
+                Rajagukguk, Sinaga, Amuata, Falakhi, Laoly, Marunduri, Ote, Wau, Bodi, Caniago, Sikumbang, Koto,
+                Piliang, Baidan, Djaim, Senen, Sastrowardoyo, Djojohadikusumo, Kolopaking, Natalegawa, Rakeyan, Raden,
+                Tumenggung, Hadiningrat, Sudrajat Belawan, Manuwu, Ngayoh, Kuntai, Unus, Apui, Usat, Laing, Djalung,
+                Merang, Gerung, Mogot, Rawung, Pangemanan, Sondakh, Wowor, Tendean, Kansil, Manganang, Mohede,
+                Tatengkeng, Batusura, Lumba, Rambulangi, Manganan, Malaiholo, Hehamahua, Sahanaya, Sahilatua, Hurek,
+                Riberu, Lamaborak, Leyn, Suebu, Solossa, Maniani, Wanggai Wonda
+            </surnames>
             <probabilityMultiplier>50</probabilityMultiplier>
         </random>
         <restricted>true</restricted>
@@ -1373,10 +1399,21 @@
         <blessings>short</blessings>
         <random>
             <names>
-                <male></male>
-                <female></female>
+                <male>Suparman, Bayu, Fajar, Buidi, Deeza, Adhiarja, Arief, Batara, Bimo, Chahaya, Cipta, Darma, Eas,
+                    Eka, Ismaya, Pramana, Setiawan, Vikal, Yuda, Susila, Mego, Joyo, Gesang, Fadhlan
+                </male>
+                <female>Wulandari, Indah, Nur, Fitri, Annisa, Kartika, Dewi, Adiratna, Aninda, Budiwati, Bulan, Dwi,
+                    Kirana, Lestari, Mawar, Melati, Ndari, Nurul, Puspita, Sarwendah, Roro
+                </female>
             </names>
-            <surnames></surnames>
+            <surnames>Darmawan, Djajadiningrat, Soerjaatmadja, Prawiranegara, Nasution, Hutagaol, Sitompul, Karokaro,
+                Rajagukguk, Sinaga, Amuata, Falakhi, Laoly, Marunduri, Ote, Wau, Bodi, Caniago, Sikumbang, Koto,
+                Piliang, Baidan, Djaim, Senen, Sastrowardoyo, Djojohadikusumo, Kolopaking, Natalegawa, Rakeyan, Raden,
+                Tumenggung, Hadiningrat, Sudrajat Belawan, Manuwu, Ngayoh, Kuntai, Unus, Apui, Usat, Laing, Djalung,
+                Merang, Gerung, Mogot, Rawung, Pangemanan, Sondakh, Wowor, Tendean, Kansil, Manganang, Mohede,
+                Tatengkeng, Batusura, Lumba, Rambulangi, Manganan, Malaiholo, Hehamahua, Sahanaya, Sahilatua, Hurek,
+                Riberu, Lamaborak, Leyn, Suebu, Solossa, Maniani, Wanggai Wonda
+            </surnames>
             <probabilityMultiplier>20</probabilityMultiplier>
         </random>
         <restricted>true</restricted>
@@ -1392,10 +1429,21 @@
         <blessings>short</blessings>
         <random>
             <names>
-                <male></male>
-                <female></female>
+                <male>Suparman, Bayu, Fajar, Buidi, Deeza, Adhiarja, Arief, Batara, Bimo, Chahaya, Cipta, Darma, Eas,
+                    Eka, Ismaya, Pramana, Setiawan, Vikal, Yuda, Susila, Mego, Joyo, Gesang, Fadhlan
+                </male>
+                <female>Wulandari, Indah, Nur, Fitri, Annisa, Kartika, Dewi, Adiratna, Aninda, Budiwati, Bulan, Dwi,
+                    Kirana, Lestari, Mawar, Melati, Ndari, Nurul, Puspita, Sarwendah, Roro
+                </female>
             </names>
-            <surnames></surnames>
+            <surnames>Darmawan, Djajadiningrat, Soerjaatmadja, Prawiranegara, Nasution, Hutagaol, Sitompul, Karokaro,
+                Rajagukguk, Sinaga, Amuata, Falakhi, Laoly, Marunduri, Ote, Wau, Bodi, Caniago, Sikumbang, Koto,
+                Piliang, Baidan, Djaim, Senen, Sastrowardoyo, Djojohadikusumo, Kolopaking, Natalegawa, Rakeyan, Raden,
+                Tumenggung, Hadiningrat, Sudrajat Belawan, Manuwu, Ngayoh, Kuntai, Unus, Apui, Usat, Laing, Djalung,
+                Merang, Gerung, Mogot, Rawung, Pangemanan, Sondakh, Wowor, Tendean, Kansil, Manganang, Mohede,
+                Tatengkeng, Batusura, Lumba, Rambulangi, Manganan, Malaiholo, Hehamahua, Sahanaya, Sahilatua, Hurek,
+                Riberu, Lamaborak, Leyn, Suebu, Solossa, Maniani, Wanggai Wonda
+            </surnames>
             <probabilityMultiplier>50</probabilityMultiplier>
         </random>
         <restricted>true</restricted>
@@ -1411,10 +1459,21 @@
         <blessings>flightless</blessings>
         <random>
             <names>
-                <male></male>
-                <female></female>
+                <male>Suparman, Bayu, Fajar, Buidi, Deeza, Adhiarja, Arief, Batara, Bimo, Chahaya, Cipta, Darma, Eas,
+                    Eka, Ismaya, Pramana, Setiawan, Vikal, Yuda, Susila, Mego, Joyo, Gesang, Fadhlan
+                </male>
+                <female>Wulandari, Indah, Nur, Fitri, Annisa, Kartika, Dewi, Adiratna, Aninda, Budiwati, Bulan, Dwi,
+                    Kirana, Lestari, Mawar, Melati, Ndari, Nurul, Puspita, Sarwendah, Roro
+                </female>
             </names>
-            <surnames></surnames>
+            <surnames>Darmawan, Djajadiningrat, Soerjaatmadja, Prawiranegara, Nasution, Hutagaol, Sitompul, Karokaro,
+                Rajagukguk, Sinaga, Amuata, Falakhi, Laoly, Marunduri, Ote, Wau, Bodi, Caniago, Sikumbang, Koto,
+                Piliang, Baidan, Djaim, Senen, Sastrowardoyo, Djojohadikusumo, Kolopaking, Natalegawa, Rakeyan, Raden,
+                Tumenggung, Hadiningrat, Sudrajat Belawan, Manuwu, Ngayoh, Kuntai, Unus, Apui, Usat, Laing, Djalung,
+                Merang, Gerung, Mogot, Rawung, Pangemanan, Sondakh, Wowor, Tendean, Kansil, Manganang, Mohede,
+                Tatengkeng, Batusura, Lumba, Rambulangi, Manganan, Malaiholo, Hehamahua, Sahanaya, Sahilatua, Hurek,
+                Riberu, Lamaborak, Leyn, Suebu, Solossa, Maniani, Wanggai Wonda
+            </surnames>
             <probabilityMultiplier>50</probabilityMultiplier>
         </random>
         <restricted>true</restricted>
