@@ -36,7 +36,7 @@ import org.testng.annotations.Test;
 
 @Test(groups = {"factionsFactory"})
 public class FactionsFactoryTests {
-    private static final int DEFINED_FACTIONS = 45;
+    private static final int DEFINED_FACTIONS = 46;
     private static final int DEFINED_MALE_NAMES = 103;
     private static final int DEFINED_FEMALE_NAMES = 100;
     private static final int DEFINED_SURNAMES = 125;
