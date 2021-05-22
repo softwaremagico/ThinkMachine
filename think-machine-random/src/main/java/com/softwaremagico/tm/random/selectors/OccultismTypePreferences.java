@@ -26,7 +26,7 @@ package com.softwaremagico.tm.random.selectors;
 
 import java.util.Set;
 
-public enum OccultismTypePreference implements IPsiPreference {
+public enum OccultismTypePreferences implements IPsiPreference {
 
     // Gaussian distribution.
     ANY,
@@ -48,16 +48,16 @@ public enum OccultismTypePreference implements IPsiPreference {
         return getDefaultOption();
     }
 
-    public static OccultismTypePreference getSelected(Set<IRandomPreference> preferences) {
+    public static OccultismTypePreferences getSelected(Set<IRandomPreference> preferences) {
         for (final IRandomPreference preference : preferences) {
-            if (preference instanceof OccultismTypePreference) {
-                return (OccultismTypePreference) preference;
+            if (preference instanceof OccultismTypePreferences) {
+                return (OccultismTypePreferences) preference;
             }
         }
         return ANY;
     }
 
-    public static OccultismTypePreference getDefaultOption() {
+    public static OccultismTypePreferences getDefaultOption() {
         return null;
     }
 }

@@ -521,7 +521,7 @@
         </name>
         <group>xenos</group>
         <race>obun</race>
-        <preferences>OccultismTypePreference.PSI</preferences>
+        <preferences>OccultismTypePreferences.PSI</preferences>
         <suggestedSkills>
             <skill>
                 <id>empathy</id>
@@ -546,7 +546,7 @@
         </name>
         <group>xenos</group>
         <race>ukar</race>
-        <preferences>OccultismTypePreference.PSI, CombatPreferences.BELLIGERENT, CharacteristicsPreferences.BODY,
+        <preferences>OccultismTypePreferences.PSI, CombatPreferences.BELLIGERENT, CharacteristicsPreferences.BODY,
             CombatActionsGroupPreferences.FIGHT, CombatActionsPreferences.FAIR
         </preferences>
         <suggestedSkills>

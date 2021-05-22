@@ -1365,7 +1365,7 @@
         </name>
         <group>weirdForces</group>
         <preferences>CombatPreferences.BELLIGERENT, SpecializationPreferences.VERY_SPECIALIZED,
-            TechnologicalPreferences.MODERN, OccultismLevelPreferences.ANY, OccultismTypePreference.THEURGY,
+            TechnologicalPreferences.MODERN, OccultismLevelPreferences.ANY, OccultismTypePreferences.THEURGY,
             FactionPreferences.CHURCH
         </preferences>
         <characteristicsMinimumValues>
@@ -1415,7 +1415,7 @@
         <faction>minorFaction</faction>
         <preferences>CombatPreferences.BELLIGERENT, CharacteristicsPreferences.BODY,
             SpecializationPreferences.VERY_SPECIALIZED, TechnologicalPreferences.MODERN, WeaponsPreferences.HIGH,
-            OccultismLevelPreferences.ANY, OccultismTypePreference.PSI, CombatActionsPreferences.HIGH,
+            OccultismLevelPreferences.ANY, OccultismTypePreferences.PSI, CombatActionsPreferences.HIGH,
             CombatActionsGroupPreferences.FIGHT
         </preferences>
         <characteristicsMinimumValues>

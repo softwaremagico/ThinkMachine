@@ -37,7 +37,7 @@ import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedExcep
 import com.softwaremagico.tm.random.selectors.IGaussianDistribution;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
 import com.softwaremagico.tm.random.selectors.OccultismLevelPreferences;
-import com.softwaremagico.tm.random.selectors.OccultismTypePreference;
+import com.softwaremagico.tm.random.selectors.OccultismTypePreferences;
 
 import java.util.Collection;
 import java.util.Objects;
@@ -79,8 +79,8 @@ public class RandomPsique extends RandomSelector<OccultismType> {
         }
 
         //remove not selected types
-        final OccultismTypePreference psiqueLevelSelector = OccultismTypePreference.getSelected(getPreferences());
-        if (psiqueLevelSelector != OccultismTypePreference.ANY &&
+        final OccultismTypePreferences psiqueLevelSelector = OccultismTypePreferences.getSelected(getPreferences());
+        if (psiqueLevelSelector != OccultismTypePreferences.ANY &&
                 !Objects.equals(psiqueLevelSelector.name().toLowerCase(), element.getName().toLowerCase())) {
             return 0;
         }
