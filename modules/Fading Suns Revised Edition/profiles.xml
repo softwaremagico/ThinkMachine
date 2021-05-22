@@ -87,213 +87,6 @@
             </skill>
         </suggestedSkills>
     </heavySoldier>
-    <serf>
-        <name>
-            <en>Serf</en>
-            <es>Siervo</es>
-        </name>
-        <group>occupation</group>
-        <preferences>CombatPreferences.PEACEFUL, CharacteristicsPreferences.BODY, SpecializationPreferences.GENERALIZED,
-            StatusPreferences.NONE, TechnologicalPreferences.BASIC, WeaponsPreferences.NONE
-        </preferences>
-        <requiredSkills>
-            <skill>
-                <id>craft</id>
-                <speciality>household</speciality>
-            </skill>
-        </requiredSkills>
-        <suggestedSkills>
-            <skill>
-                <id>beastcraft</id>
-            </skill>
-            <skill>
-                <id>lore</id>
-                <speciality>beastsLore</speciality>
-            </skill>
-        </suggestedSkills>
-    </serf>
-    <peasant>
-        <name>
-            <en>Peasant</en>
-            <es>Campesino</es>
-        </name>
-        <group>occupation</group>
-        <preferences>CombatPreferences.FAIR, CharacteristicsPreferences.BODY, SpecializationPreferences.FAIR,
-            StatusPreferences.NONE, TechnologicalPreferences.MEDIEVAL, WeaponsPreferences.NONE
-        </preferences>
-        <suggestedSkills>
-            <skill>
-                <id>archery</id>
-            </skill>
-            <skill>
-                <id>planetaryLore</id>
-            </skill>
-            <skill>
-                <id>beastcraft</id>
-            </skill>
-            <skill>
-                <id>lore</id>
-                <speciality>beastsLore</speciality>
-            </skill>
-            <skill>
-                <id>survival</id>
-            </skill>
-            <skill>
-                <id>melee</id>
-            </skill>
-        </suggestedSkills>
-    </peasant>
-    <thug>
-        <name>
-            <en>Thug</en>
-            <es>Rufián</es>
-        </name>
-        <group>occupation</group>
-        <preferences>CombatPreferences.BELLIGERENT, CharacteristicsPreferences.BODY,
-            SpecializationPreferences.SPECIALIZED, StatusPreferences.NONE, WeaponsPreferences.MEDIUM,
-            SkillGroupPreferences.MALEFACTION, FactionPreferences.NONE
-        </preferences>
-        <skill>
-            <id>streetWise</id>
-        </skill>
-        <suggestedBenefices>escapedSerf, branded, escapedSlave, addiction, orphan</suggestedBenefices>
-        <mandatoryBenefices>outlaw</mandatoryBenefices>
-    </thug>
-    <tracker>
-        <name>
-            <en>Tracker</en>
-            <es>Rastreador</es>
-        </name>
-        <group>occupation</group>
-        <preferences>CombatPreferences.FAIR, TechnologicalPreferences.MODERN, CharacteristicsPreferences.BODY,
-            SpecializationPreferences.SPECIALIZED
-        </preferences>
-        <characteristicsMinimumValues>
-            <dexterity>6</dexterity>
-            <perception>6</perception>
-        </characteristicsMinimumValues>
-        <requiredSkills>
-            <skill>
-                <id>slugGuns</id>
-            </skill>
-            <skill>
-                <id>melee</id>
-            </skill>
-            <skill>
-                <id>vigor</id>
-            </skill>
-            <skill>
-                <id>sneak</id>
-            </skill>
-            <skill>
-                <id>observe</id>
-            </skill>
-        </requiredSkills>
-        <suggestedSkills>
-            <skill>
-                <id>survival</id>
-            </skill>
-            <skill>
-                <id>ride</id>
-            </skill>
-        </suggestedSkills>
-    </tracker>
-    <slayer>
-        <name>
-            <en>Slayer</en>
-            <es>Asesino</es>
-        </name>
-        <group>occupation</group>
-        <preferences>CombatPreferences.BELLIGERENT, SkillGroupPreferences.MALEFACTION, FactionPreferences.NONE,
-            CharacteristicsPreferences.BODY, SpecializationPreferences.VERY_SPECIALIZED,
-            TechnologicalPreferences.SPACE_CITIZEN, WeaponsPreferences.HIGH
-        </preferences>
-        <characteristicsMinimumValues>
-            <tech>6</tech>
-            <wits>6</wits>
-            <dexterity>6</dexterity>
-        </characteristicsMinimumValues>
-        <suggestedSkills>
-            <skill>
-                <id>fight</id>
-            </skill>
-            <skill>
-                <id>melee</id>
-            </skill>
-            <skill>
-                <id>observe</id>
-            </skill>
-            <skill>
-                <id>energyGuns</id>
-            </skill>
-            <skill>
-                <id>slugGuns</id>
-            </skill>
-            <skill>
-                <id>archery</id>
-            </skill>
-            <skill>
-                <id>knavery</id>
-            </skill>
-            <skill>
-                <id>sneak</id>
-            </skill>
-            <skill>
-                <id>vigor</id>
-            </skill>
-            <skill>
-                <id>lore</id>
-                <speciality>poisonsLore</speciality>
-            </skill>
-            <skill>
-                <id>lockpicking</id>
-            </skill>
-            <skill>
-                <id>sleightOfHand</id>
-            </skill>
-            <skill>
-                <id>streetWise</id>
-            </skill>
-        </suggestedSkills>
-        <suggestedBenefices>passageContracts, professionalContract, secrets, darkSecret</suggestedBenefices>
-    </slayer>
-    <spy>
-        <name>
-            <en>Spy</en>
-            <es>Espía</es>
-        </name>
-        <group>occupation</group>
-        <preferences>SpecializationPreferences.SPECIALIZED, SkillGroupPreferences.MALEFACTION, FactionPreferences.NONE
-        </preferences>
-        <characteristicsMinimumValues>
-            <perception>6</perception>
-            <wits>6</wits>
-            <will>6</will>
-        </characteristicsMinimumValues>
-        <suggestedSkills>
-            <skill>
-                <id>observe</id>
-            </skill>
-            <skill>
-                <id>sneak</id>
-            </skill>
-            <skill>
-                <id>bureaucracy</id>
-            </skill>
-            <skill>
-                <id>knavery</id>
-            </skill>
-            <skill>
-                <id>lockpicking</id>
-            </skill>
-            <skill>
-                <id>sleightOfHand</id>
-            </skill>
-            <skill>
-                <id>streetWise</id>
-            </skill>
-        </suggestedSkills>
-    </spy>
     <general>
         <name>
             <en>Marshal</en>
@@ -403,6 +196,18 @@
         <suggestedBenefices>oathOfFealty</suggestedBenefices>
         <mandatoryBenefices>ordained</mandatoryBenefices>
     </clergy>
+    <guild>
+        <name>
+            <en>Guild</en>
+            <es>Grémio</es>
+        </name>
+        <group>faction</group>
+        <preferences>FactionPreferences.GUILD</preferences>
+        <characteristicsMinimumValues>
+            <tech>5</tech>
+        </characteristicsMinimumValues>
+        <mandatoryBenefices>commission</mandatoryBenefices>
+    </guild>
     <young>
         <name>
             <en>Young</en>
@@ -458,62 +263,6 @@
             </skill>
         </requiredSkills>
     </martialArtist>
-    <kurgan>
-        <name>
-            <en>Kurgan</en>
-            <es>Kurgano</es>
-        </name>
-        <group>barbarian</group>
-        <faction>kurgan</faction>
-        <preferences>CombatPreferences.FAIR, TechnologicalPreferences.FUTURIST, SpecializationPreferences.SPECIALIZED
-        </preferences>
-        <characteristicsMinimumValues>
-            <presence>6</presence>
-            <will>6</will>
-        </characteristicsMinimumValues>
-        <requiredSkills>
-            <skill>
-                <id>slugGuns</id>
-            </skill>
-            <skill>
-                <id>melee</id>
-            </skill>
-            <skill>
-                <id>influence</id>
-            </skill>
-        </requiredSkills>
-        <mandatoryBeneficesSpecialization>language [urthish]</mandatoryBeneficesSpecialization>
-        <official>false</official>
-    </kurgan>
-    <vuldrok>
-        <name>
-            <en>Vuldrok</en>
-            <es>Vuldrok</es>
-        </name>
-        <group>barbarian</group>
-        <faction>vuldrok</faction>
-        <preferences>CombatPreferences.BELLIGERENT, TechnologicalPreferences.MODERN,
-            SpecializationPreferences.SPECIALIZED,
-            CharacteristicsPreferences.BODY,
-        </preferences>
-        <characteristicsMinimumValues>
-            <presence>6</presence>
-            <will>6</will>
-        </characteristicsMinimumValues>
-        <requiredSkills>
-            <skill>
-                <id>slugGuns</id>
-            </skill>
-            <skill>
-                <id>melee</id>
-            </skill>
-            <skill>
-                <id>vigor</id>
-            </skill>
-        </requiredSkills>
-        <mandatoryBeneficesSpecialization>language [urthish]</mandatoryBeneficesSpecialization>
-        <official>false</official>
-    </vuldrok>
     <obun>
         <name>
             <en>Ur-Obun</en>

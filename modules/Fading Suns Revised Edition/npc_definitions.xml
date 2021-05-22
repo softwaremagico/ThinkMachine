@@ -198,6 +198,14 @@
         <weapons>typicalSniperRifle</weapons>
         <armours>leatherJerkin</armours>
     </tracker>
+    <general>
+        <name>
+            <en>Marshal</en>
+            <es>Mariscal</es>
+        </name>
+        <group>army</group>
+        <profile>general</profile>
+    </general>
     <rider>
         <name>
             <en>Cavalry Raider</en>
@@ -1594,7 +1602,26 @@
             <es>Kurgano</es>
         </name>
         <group>barbarian</group>
-        <profile>kurgan</profile>
+        <faction>kurgan</faction>
+        <preferences>CombatPreferences.FAIR, TechnologicalPreferences.FUTURIST, SpecializationPreferences.SPECIALIZED
+        </preferences>
+        <characteristicsMinimumValues>
+            <presence>6</presence>
+            <will>6</will>
+        </characteristicsMinimumValues>
+        <requiredSkills>
+            <skill>
+                <id>slugGuns</id>
+            </skill>
+            <skill>
+                <id>melee</id>
+            </skill>
+            <skill>
+                <id>influence</id>
+            </skill>
+        </requiredSkills>
+        <mandatoryBeneficesSpecialization>language [urthish]</mandatoryBeneficesSpecialization>
+        <official>false</official>
         <weapons>kurganSideSword, curvedSword</weapons>
         <armours>leatherJerkin</armours>
     </kurgan>
@@ -1604,7 +1631,28 @@
             <es>Vuldrok</es>
         </name>
         <group>barbarian</group>
-        <profile>vuldrok</profile>
+        <faction>vuldrok</faction>
+        <preferences>CombatPreferences.BELLIGERENT, TechnologicalPreferences.MODERN,
+            SpecializationPreferences.SPECIALIZED,
+            CharacteristicsPreferences.BODY,
+        </preferences>
+        <characteristicsMinimumValues>
+            <presence>6</presence>
+            <will>6</will>
+        </characteristicsMinimumValues>
+        <requiredSkills>
+            <skill>
+                <id>slugGuns</id>
+            </skill>
+            <skill>
+                <id>melee</id>
+            </skill>
+            <skill>
+                <id>vigor</id>
+            </skill>
+        </requiredSkills>
+        <mandatoryBeneficesSpecialization>language [urthish]</mandatoryBeneficesSpecialization>
+        <official>false</official>
         <weapons>typicalAutoRifle, axe</weapons>
         <armours>scaleMailMetal</armours>
     </vuldrok>
