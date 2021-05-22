@@ -49,19 +49,21 @@ public class RandomCursesDefinition extends RandomSelector<Blessing> {
         final IGaussianDistribution cursesDistribution = CurseNumberPreferences.getSelected(getPreferences());
         // Select a curse
         final int totalSelectedCurses = cursesDistribution.randomGaussian();
-        while (getCharacterPlayer().getCurses().size() < totalSelectedCurses
-                + getCharacterPlayer().getFaction().getBlessings(BlessingClassification.CURSE).size()) {
-            final Blessing selectedCurse = selectElementByWeight();
-            try {
-                getCharacterPlayer().addBlessing(selectedCurse);
-                RandomGenerationLog.info(this.getClass().getName(), "Added curse '{}'.", selectedCurse);
-                removeElementWeight(selectedCurse);
-            } catch (TooManyBlessingsException e) {
-                // No more possible.
-                break;
-            } catch (BlessingAlreadyAddedException e) {
-                removeElementWeight(selectedCurse);
-                continue;
+        if (getCharacterPlayer().getFaction() != null) {
+            while (getCharacterPlayer().getCurses().size() < totalSelectedCurses
+                    + getCharacterPlayer().getFaction().getBlessings(BlessingClassification.CURSE).size()) {
+                final Blessing selectedCurse = selectElementByWeight();
+                try {
+                    getCharacterPlayer().addBlessing(selectedCurse);
+                    RandomGenerationLog.info(this.getClass().getName(), "Added curse '{}'.", selectedCurse);
+                    removeElementWeight(selectedCurse);
+                } catch (TooManyBlessingsException e) {
+                    // No more possible.
+                    break;
+                } catch (BlessingAlreadyAddedException e) {
+                    removeElementWeight(selectedCurse);
+                    continue;
+                }
             }
         }
     }

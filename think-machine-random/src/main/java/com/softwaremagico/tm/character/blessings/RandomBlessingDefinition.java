@@ -49,19 +49,21 @@ public class RandomBlessingDefinition extends RandomSelector<Blessing> {
         final IGaussianDistribution blessingDistribution = BlessingNumberPreferences.getSelected(getPreferences());
         // Select a blessing
         final int totalSelectedBlessings = blessingDistribution.randomGaussian();
-        while (getCharacterPlayer().getBlessings().size() < totalSelectedBlessings
-                + getCharacterPlayer().getFaction().getBlessings(BlessingClassification.BLESSING).size()) {
-            final Blessing selectedBlessing = selectElementByWeight();
-            try {
-                getCharacterPlayer().addBlessing(selectedBlessing);
-                RandomGenerationLog.info(this.getClass().getName(), "Added blessing '{}'.", selectedBlessing);
-                removeElementWeight(selectedBlessing);
-            } catch (TooManyBlessingsException e) {
-                // No more possible.
-                break;
-            } catch (BlessingAlreadyAddedException e) {
-                removeElementWeight(selectedBlessing);
-                continue;
+        if (getCharacterPlayer().getFaction() != null) {
+            while (getCharacterPlayer().getBlessings().size() < totalSelectedBlessings
+                    + getCharacterPlayer().getFaction().getBlessings(BlessingClassification.BLESSING).size()) {
+                final Blessing selectedBlessing = selectElementByWeight();
+                try {
+                    getCharacterPlayer().addBlessing(selectedBlessing);
+                    RandomGenerationLog.info(this.getClass().getName(), "Added blessing '{}'.", selectedBlessing);
+                    removeElementWeight(selectedBlessing);
+                } catch (TooManyBlessingsException e) {
+                    // No more possible.
+                    break;
+                } catch (BlessingAlreadyAddedException e) {
+                    removeElementWeight(selectedBlessing);
+                    continue;
+                }
             }
         }
     }

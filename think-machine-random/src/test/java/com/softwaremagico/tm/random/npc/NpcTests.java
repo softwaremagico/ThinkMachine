@@ -355,6 +355,15 @@ public class NpcTests {
         Assert.assertEquals(characterPlayer.getFaction(), FactionsFactory.getInstance().getElement("nofaction", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
     }
 
+    @Test
+    public void oroym() throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException {
+        final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
+                NpcFactory.getInstance().getElement("oroym", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+        randomizeCharacter.createCharacter();
+        Assert.assertNotNull(characterPlayer.getFaction());
+    }
+
 
     @Test
     public void restricted() throws InvalidXmlElementException {

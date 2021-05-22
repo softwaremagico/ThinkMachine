@@ -1802,7 +1802,6 @@
         </name>
         <group>xenos</group>
         <profile>oroym</profile>
-        <faction>nofaction</faction>
         <weapons>capekAquaRifle</weapons>
     </oroym>
 </profiles>
