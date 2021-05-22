@@ -63,16 +63,7 @@
             <es>Rufián</es>
         </name>
         <group>underground</group>
-        <faction>noFaction</faction>
-        <preferences>CombatPreferences.BELLIGERENT, CharacteristicsPreferences.BODY,
-            SpecializationPreferences.SPECIALIZED, StatusPreferences.NONE, WeaponsPreferences.MEDIUM,
-            SkillGroupPreferences.MALEFACTION, FactionPreferences.NONE
-        </preferences>
-        <skill>
-            <id>streetWise</id>
-        </skill>
-        <suggestedBenefices>escapedSerf, branded, escapedSlave, addiction, orphan</suggestedBenefices>
-        <mandatoryBenefices>outlaw</mandatoryBenefices>
+        <profile>thug</profile>
     </thug>
     <militia>
         <name>

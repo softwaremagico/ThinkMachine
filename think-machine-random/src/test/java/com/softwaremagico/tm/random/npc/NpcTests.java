@@ -25,6 +25,7 @@ import com.softwaremagico.tm.file.PathManager;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.predefined.PredefinedMerger;
 import com.softwaremagico.tm.random.predefined.characters.NpcFactory;
+import com.softwaremagico.tm.random.predefined.profile.RandomProfileFactory;
 import com.softwaremagico.tm.random.selectors.AgePreferences;
 import com.softwaremagico.tm.random.selectors.BlessingPreferences;
 import com.softwaremagico.tm.random.selectors.CombatPreferences;
@@ -362,6 +363,17 @@ public class NpcTests {
                 NpcFactory.getInstance().getElement("oroym", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         randomizeCharacter.createCharacter();
         Assert.assertNotNull(characterPlayer.getFaction());
+    }
+
+    @Test
+    public void kurgan() throws InvalidXmlElementException,
+            InvalidRandomElementSelectedException, RestrictedElementException {
+        final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
+                NpcFactory.getInstance().getElement("kurgan", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+        randomizeCharacter.createCharacter();
+        Assert.assertEquals(characterPlayer.getFaction(), FactionsFactory.getInstance().getElement("kurgan", characterPlayer.getLanguage(),
+                characterPlayer.getModuleName()));
     }
 
 

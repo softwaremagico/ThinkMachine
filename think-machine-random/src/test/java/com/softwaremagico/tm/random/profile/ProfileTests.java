@@ -100,46 +100,6 @@ public class ProfileTests {
         randomizeCharacter.createCharacter();
     }
 
-    @Test
-    public void serf() throws InvalidXmlElementException,
-            InvalidRandomElementSelectedException, RestrictedElementException {
-        final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
-        final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
-                RandomProfileFactory.getInstance().getElement("serf", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
-        Assert.assertEquals(RandomProfileFactory.getInstance().getElement("serf", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).getRequiredSkills().size(),
-                1);
-        Assert.assertEquals(RandomProfileFactory.getInstance().getElement("serf", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).getSuggestedSkills().size(),
-                2);
-        randomizeCharacter.createCharacter();
-        Assert.assertTrue(characterPlayer.getSkillTotalRanks(
-                AvailableSkillsFactory.getInstance().getElement("craft", "household", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)) > 0);
-    }
-
-    @Test
-    public void thug() throws InvalidXmlElementException,
-            InvalidRandomElementSelectedException, RestrictedElementException {
-        final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
-        final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
-                RandomProfileFactory.getInstance().getElement("thug", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
-        Assert.assertEquals(
-                RandomProfileFactory.getInstance().getElement("thug", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).getMandatoryBenefices().size(), 1);
-        Assert.assertEquals(
-                RandomProfileFactory.getInstance().getElement("thug", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).getSuggestedBenefices().size(), 5);
-        randomizeCharacter.createCharacter();
-        Assert.assertNotNull(characterPlayer.getBenefice("outlaw"));
-    }
-
-    @Test
-    public void slayer() throws InvalidXmlElementException,
-            InvalidRandomElementSelectedException, RestrictedElementException {
-        final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
-        final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
-                RandomProfileFactory.getInstance().getElement("slayer", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
-        Assert.assertEquals(
-                RandomProfileFactory.getInstance().getElement("slayer", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).getSuggestedBenefices().size(), 4);
-        randomizeCharacter.createCharacter();
-    }
-
 
     @Test
     public void heavySoldier() throws InvalidXmlElementException,
@@ -151,18 +111,6 @@ public class ProfileTests {
                 .getCharacteristicMinimumValues(CharacteristicName.STRENGTH).getValue(), 6);
         randomizeCharacter.createCharacter();
         checkCharacterisic(characterPlayer, CharacteristicName.STRENGTH, 6);
-    }
-
-    @Test
-    public void tracker() throws InvalidXmlElementException,
-            InvalidRandomElementSelectedException, RestrictedElementException {
-        final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
-        final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
-                RandomProfileFactory.getInstance().getElement("tracker", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
-        Assert.assertEquals(RandomProfileFactory.getInstance().getElement("tracker", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)
-                .getCharacteristicMinimumValues(CharacteristicName.PERCEPTION).getValue(), 6);
-        randomizeCharacter.createCharacter();
-        checkCharacterisic(characterPlayer, CharacteristicName.PERCEPTION, 6);
     }
 
     @Test
@@ -215,16 +163,7 @@ public class ProfileTests {
         Assert.assertTrue(characterPlayer.getInfo().getAge() >= 51 && characterPlayer.getInfo().getAge() <= 110);
     }
 
-    @Test
-    public void kurgan() throws InvalidXmlElementException,
-            InvalidRandomElementSelectedException, RestrictedElementException {
-        final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
-        final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
-                RandomProfileFactory.getInstance().getElement("kurgan", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
-        randomizeCharacter.createCharacter();
-        Assert.assertEquals(characterPlayer.getFaction(), FactionsFactory.getInstance().getElement("kurgan", characterPlayer.getLanguage(),
-                characterPlayer.getModuleName()));
-    }
+
 
     @Test
     public void mergingPreferences() {

@@ -128,6 +128,22 @@
         <suggestedBenefices>assets</suggestedBenefices>
         <mandatoryBenefices>nobility</mandatoryBenefices>
     </general>
+    <thug>
+        <name>
+            <en>Thug</en>
+            <es>Rufián</es>
+        </name>
+        <group>occupation</group>
+        <preferences>CombatPreferences.BELLIGERENT, CharacteristicsPreferences.BODY,
+            SpecializationPreferences.SPECIALIZED, StatusPreferences.NONE, WeaponsPreferences.MEDIUM,
+            SkillGroupPreferences.MALEFACTION, FactionPreferences.NONE
+        </preferences>
+        <skill>
+            <id>streetWise</id>
+        </skill>
+        <suggestedBenefices>escapedSerf, branded, escapedSlave, addiction, orphan</suggestedBenefices>
+        <mandatoryBenefices>outlaw</mandatoryBenefices>
+    </thug>
     <nobility>
         <name>
             <en>Noble</en>
