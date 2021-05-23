@@ -25,7 +25,6 @@ import com.softwaremagico.tm.file.PathManager;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.predefined.PredefinedMerger;
 import com.softwaremagico.tm.random.predefined.characters.NpcFactory;
-import com.softwaremagico.tm.random.predefined.profile.RandomProfileFactory;
 import com.softwaremagico.tm.random.selectors.AgePreferences;
 import com.softwaremagico.tm.random.selectors.BlessingPreferences;
 import com.softwaremagico.tm.random.selectors.CombatPreferences;

@@ -185,13 +185,13 @@
             <skill>
                 <id>etiquette</id>
             </skill>
+            <skill>
+                <id>factionLore</id>
+            </skill>
         </requiredSkills>
         <suggestedSkills>
             <skill>
                 <id>influence</id>
-            </skill>
-            <skill>
-                <id>factionLore</id>
             </skill>
             <skill>
                 <id>ride</id>
@@ -219,6 +219,12 @@
         <characteristicsMinimumValues>
             <presence>5</presence>
         </characteristicsMinimumValues>
+        <requiredSkills>
+            <skill>
+                <id>lore</id>
+                <speciality>theologyLore</speciality>
+            </skill>
+        </requiredSkills>
         <suggestedSkills>
             <skill>
                 <id>influence</id>

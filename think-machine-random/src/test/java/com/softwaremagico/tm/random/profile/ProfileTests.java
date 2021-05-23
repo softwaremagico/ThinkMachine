@@ -6,8 +6,6 @@ import com.softwaremagico.tm.character.RandomizeCharacter;
 import com.softwaremagico.tm.character.RestrictedElementException;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.factions.FactionGroup;
-import com.softwaremagico.tm.character.factions.FactionsFactory;
-import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.file.PathManager;
 import com.softwaremagico.tm.random.exceptions.DuplicatedPreferenceException;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
@@ -100,7 +98,6 @@ public class ProfileTests {
         randomizeCharacter.createCharacter();
     }
 
-
     @Test
     public void heavySoldier() throws InvalidXmlElementException,
             InvalidRandomElementSelectedException, RestrictedElementException {
@@ -162,8 +159,6 @@ public class ProfileTests {
         randomizeCharacter.createCharacter();
         Assert.assertTrue(characterPlayer.getInfo().getAge() >= 51 && characterPlayer.getInfo().getAge() <= 110);
     }
-
-
 
     @Test
     public void mergingPreferences() {

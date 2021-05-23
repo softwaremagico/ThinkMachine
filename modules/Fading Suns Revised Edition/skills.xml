@@ -390,6 +390,12 @@
                     <es>Vitral</es>
                 </name>
             </stainedGlass>
+            <rhetoric>
+                <name>
+                    <en>Rhetoric</en>
+                    <es>Retórica</es>
+                </name>
+            </rhetoric>
         </specializations>
         <numberToShow>2</numberToShow>
     </arts>
@@ -707,6 +713,53 @@
                     <generalProbability>minimum</generalProbability>
                 </random>
             </godLore>
+            <theologyLore>
+                <name>
+                    <en>Theology</en>
+                    <es>Teología</es>
+                </name>
+                <random>
+                    <generalProbability>low</generalProbability>
+                    <recommendedFactions>mendicantMonks, amaltheans, avestites, eskatonic, brotherBattle, orthodox</recommendedFactions>
+                </random>
+            </theologyLore>
+            <tradeLore>
+                <name>
+                    <en>Trade</en>
+                    <es>Comercio</es>
+                </name>
+                <random>
+                    <generalProbability>low</generalProbability>
+                </random>
+            </tradeLore>
+            <occultismLore>
+                <name>
+                    <en>Occultism</en>
+                    <es>Ocultismo</es>
+                </name>
+                <official>false</official>
+                <random>
+                    <generalProbability>low</generalProbability>
+                </random>
+            </occultismLore>
+            <lawLore>
+                <name>
+                    <en>Laws</en>
+                    <es>Leyes</es>
+                </name>
+                <random>
+                    <generalProbability>low</generalProbability>
+                </random>
+            </lawLore>
+            <financeLore>
+                <name>
+                    <en>Finances</en>
+                    <es>Finanzas</es>
+                </name>
+                <random>
+                    <generalProbability>low</generalProbability>
+                </random>
+            </financeLore>
         </specializations>
         <numberToShow>4</numberToShow>
     </lore>
