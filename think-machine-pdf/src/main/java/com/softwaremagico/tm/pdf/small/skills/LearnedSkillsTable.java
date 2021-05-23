@@ -41,18 +41,17 @@ public class LearnedSkillsTable extends SkillsTable {
 	private static final int MAX_SKILL_COLUMN_WIDTH = 115;
 	private static final int MAX_SKILL_RANK_WIDTH = 15;
 
-	public static PdfPTable getSkillsTable(CharacterPlayer characterPlayer, String language)
+	public static PdfPTable getSkillsTable(CharacterPlayer characterPlayer)
 			throws InvalidXmlElementException {
 		final float[] widths = { 1f };
 		final PdfPTable table = new PdfPTable(widths);
 		setTablePropierties(table);
 		table.getDefaultCell().setBorder(0);
-		table.addCell(getSkillsColumnTable(characterPlayer, language));
+		table.addCell(getSkillsColumnTable(characterPlayer));
 		return table;
 	}
 
-	private static PdfPCell getSkillsColumnTable(CharacterPlayer characterPlayer, String language)
-			throws InvalidXmlElementException {
+	private static PdfPCell getSkillsColumnTable(CharacterPlayer characterPlayer) {
 		final float[] widths = { 4f, 1f };
 		final PdfPTable table = new PdfPTable(widths);
 		setTablePropierties(table);

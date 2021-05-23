@@ -173,6 +173,11 @@ public class CustomCharacters {
         player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("secondBrainThinkMachineLore", LANGUAGE,
                 PathManager.DEFAULT_MODULE_FOLDER));
 
+        Assert.assertEquals((int) player.getSkillTotalRanks(AvailableSkillsFactory.getInstance().getElement("lore", "thinkMachineLore",
+                LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)), 4);
+        Assert.assertEquals((int) player.getSkillTotalRanks(AvailableSkillsFactory.getInstance().getElement("lore", "beastsLore",
+                LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)), 0);
+
         player.setShield(
                 ShieldFactory.getInstance().getElement("duelingShield", player.getLanguage(), player.getModuleName()));
 

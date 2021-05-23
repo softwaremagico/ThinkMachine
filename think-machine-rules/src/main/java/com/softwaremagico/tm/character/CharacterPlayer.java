@@ -351,9 +351,21 @@ public class CharacterPlayer {
         int maxValue = 0;
         for (final ICyberneticDevice device : cybernetics.getElements()) {
             for (final StaticValue staticValue : device.getStaticValues()) {
-                if (Objects.equals(staticValue.getAffects().getId(), skill.getId())) {
-                    if (maxValue < staticValue.getValue()) {
-                        maxValue = staticValue.getValue();
+                if (!(skill instanceof AvailableSkill) || ((AvailableSkill) skill).getSpecialization() == null) {
+                    if (Objects.equals(staticValue.getAffects().getId(), skill.getId())) {
+                        if (maxValue < staticValue.getValue()) {
+                            maxValue = staticValue.getValue();
+                        }
+                    }
+                } else {
+                    //Check cybernetic skill specialization.
+                    if (staticValue.getAffects() instanceof AvailableSkill) {
+                        if (Objects.equals(((AvailableSkill) staticValue.getAffects()).getSpecialization().getId(),
+                                ((AvailableSkill) skill).getSpecialization().getId())) {
+                            if (maxValue < staticValue.getValue()) {
+                                maxValue = staticValue.getValue();
+                            }
+                        }
                     }
                 }
             }
@@ -1096,7 +1108,8 @@ public class CharacterPlayer {
         final List<AvailableSkill> learnedSkills = new ArrayList<>();
         for (final AvailableSkill skill : AvailableSkillsFactory.getInstance().getLearnedSkills(getLanguage(),
                 getModuleName())) {
-            if (getSkillTotalRanks(skill) != null) {
+            final Integer skillRanks = getSkillTotalRanks(skill);
+            if (skillRanks != null && skillRanks > 0) {
                 learnedSkills.add(skill);
             }
         }

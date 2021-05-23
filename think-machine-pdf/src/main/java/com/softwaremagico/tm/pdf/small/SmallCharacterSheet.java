@@ -103,7 +103,7 @@ public class SmallCharacterSheet extends PdfDocument {
 		infoCell.setBorderWidthBottom(1);
 		mainTable.addCell(infoCell);
 
-		final PdfPTable learnedSkillsTable = LearnedSkillsTable.getSkillsTable(characterPlayer, getLanguage());
+		final PdfPTable learnedSkillsTable = LearnedSkillsTable.getSkillsTable(characterPlayer);
 		final PdfPCell learnedSkillsCell = new PdfPCell(learnedSkillsTable);
 		learnedSkillsCell.setColspan(2);
 		learnedSkillsCell.setRowspan(3);
