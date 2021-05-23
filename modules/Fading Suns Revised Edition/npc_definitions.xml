@@ -65,6 +65,14 @@
         <group>underground</group>
         <profile>thug</profile>
     </thug>
+    <burglar>
+        <name>
+            <en>Burglar</en>
+            <es>Ladrón</es>
+        </name>
+        <group>underground</group>
+        <profile>burglar</profile>
+    </burglar>
     <militia>
         <name>
             <en>Militia</en>

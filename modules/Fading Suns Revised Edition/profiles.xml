@@ -118,12 +118,6 @@
             <skill>
                 <id>planetaryLore</id>
             </skill>
-            <skill>
-                <id>ride</id>
-            </skill>
-            <skill>
-                <id>leadership</id>
-            </skill>
         </suggestedSkills>
         <suggestedBenefices>assets</suggestedBenefices>
         <mandatoryBenefices>nobility</mandatoryBenefices>
@@ -138,12 +132,45 @@
             SpecializationPreferences.SPECIALIZED, StatusPreferences.NONE, WeaponsPreferences.MEDIUM,
             SkillGroupPreferences.MALEFACTION, FactionPreferences.NONE
         </preferences>
-        <skill>
-            <id>streetWise</id>
-        </skill>
+        <requiredSkills>
+            <skill>
+                <id>streetWise</id>
+            </skill>
+        </requiredSkills>
+        <suggestedSkills>
+            <skill>
+                <id>fight</id>
+            </skill>
+        </suggestedSkills>
         <suggestedBenefices>escapedSerf, branded, escapedSlave, addiction, orphan</suggestedBenefices>
         <mandatoryBenefices>outlaw</mandatoryBenefices>
     </thug>
+    <burglar>
+        <name>
+            <en>Burglar</en>
+            <es>Ladrón</es>
+        </name>
+        <group>occupation</group>
+        <group>occupation</group>
+        <preferences>CharacteristicsPreferences.BODY, SpecializationPreferences.SPECIALIZED, StatusPreferences.NONE,
+            SkillGroupPreferences.MALEFACTION, FactionPreferences.NONE
+        </preferences>
+        <requiredSkills>
+            <skill>
+                <id>sneak</id>
+            </skill>
+            <skill>
+                <id>lockpicking</id>
+            </skill>
+            <skill>
+                <id>streetWise</id>
+            </skill>
+            <skill>
+                <id>sleightOfHand</id>
+            </skill>
+        </requiredSkills>
+        <suggestedBenefices>wellTraveled, orphan, contact, gossipNetwork, indebted, branded, outlaw</suggestedBenefices>
+    </burglar>
     <nobility>
         <name>
             <en>Noble</en>

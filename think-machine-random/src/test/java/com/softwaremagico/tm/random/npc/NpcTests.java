@@ -193,6 +193,19 @@ public class NpcTests {
     }
 
     @Test
+    public void burglar() throws InvalidXmlElementException,
+            InvalidRandomElementSelectedException, RestrictedElementException {
+        final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
+                NpcFactory.getInstance().getElement("burglar", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+        Assert.assertEquals(
+                NpcFactory.getInstance().getElement("burglar", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).getMandatoryBenefices().size(), 0);
+        Assert.assertEquals(
+                NpcFactory.getInstance().getElement("burglar", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).getSuggestedBenefices().size(), 7);
+        randomizeCharacter.createCharacter();
+    }
+
+    @Test
     public void slayer() throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
