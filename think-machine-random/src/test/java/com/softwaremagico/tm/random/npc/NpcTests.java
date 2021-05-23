@@ -24,6 +24,7 @@ import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.file.PathManager;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.predefined.PredefinedMerger;
+import com.softwaremagico.tm.random.predefined.characters.Npc;
 import com.softwaremagico.tm.random.predefined.characters.NpcFactory;
 import com.softwaremagico.tm.random.selectors.AgePreferences;
 import com.softwaremagico.tm.random.selectors.BlessingPreferences;
@@ -160,6 +161,15 @@ public class NpcTests {
                 .getCharacteristicMinimumValues(CharacteristicName.DEXTERITY).getValue(), 6);
         Assert.assertEquals(NpcFactory.getInstance().getElement("heavyInfantry", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)
                 .getCharacteristicMinimumValues(CharacteristicName.STRENGTH).getValue(), 6);
+    }
+
+    @Test
+    public void checkNoError() throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException {
+        for (Npc npc : NpcFactory.getInstance().getElements(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)) {
+            final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+            final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, npc);
+            randomizeCharacter.createCharacter();
+        }
     }
 
     @Test

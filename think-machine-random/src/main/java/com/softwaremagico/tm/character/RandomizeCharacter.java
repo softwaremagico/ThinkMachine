@@ -49,6 +49,7 @@ import com.softwaremagico.tm.character.occultism.OccultismPath;
 import com.softwaremagico.tm.character.occultism.RandomPsique;
 import com.softwaremagico.tm.character.occultism.RandomPsiquePath;
 import com.softwaremagico.tm.character.races.Race;
+import com.softwaremagico.tm.character.races.RaceFactory;
 import com.softwaremagico.tm.character.races.RandomRace;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.character.skills.RandomSkillExperience;
@@ -280,6 +281,11 @@ public class RandomizeCharacter {
         if (characterPlayer.getFaction() == null) {
             if (requiredFaction != null) {
                 try {
+                    //Race not correct for this faction. Correct it.
+                    if (!requiredFaction.getRestrictedToRaces().isEmpty() && !requiredFaction.getRestrictedToRaces().contains(characterPlayer.getRace())) {
+                        characterPlayer.setRace(RaceFactory.getInstance().getElement("human", characterPlayer.getLanguage(),
+                                characterPlayer.getModuleName()));
+                    }
                     characterPlayer.setFaction(requiredFaction);
                 } catch (RestrictedElementException e) {
                     //Faction cannot be added.

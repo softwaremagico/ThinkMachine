@@ -1515,7 +1515,8 @@ public class CharacterPlayer {
         if (benefice.getBeneficeDefinition().getRestrictedToFactionGroup() != null && (getFaction() == null ||
                 !Objects.equals(benefice.getBeneficeDefinition().getRestrictedToFactionGroup(), getFaction().getFactionGroup()))) {
             throw new RestrictedElementException("Benefice '" + benefice
-                    + "' is restricted to faction '" + benefice.getBeneficeDefinition().getRestrictedToFactionGroup() + "'");
+                    + "' is restricted to faction '" + benefice.getBeneficeDefinition().getRestrictedToFactionGroup() + "' and currently is" +
+                    "'" + getFaction() + "'.");
         }
         if (!benefice.getBeneficeDefinition().getRestrictedToRaces().isEmpty() &&
                 !benefice.getBeneficeDefinition().getRestrictedToRaces().contains(getRace())) {

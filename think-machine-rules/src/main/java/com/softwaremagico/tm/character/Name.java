@@ -50,7 +50,7 @@ public class Name extends Element<Name> {
     }
 
     public Name(String name, String language, String moduleName, Gender gender, Faction faction) {
-        super(getId(name, moduleName), name, null, language, moduleName);
+        super(getId(name, faction, moduleName), name, null, language, moduleName);
         this.gender = gender;
         this.faction = faction;
         this.customName = name;
@@ -78,11 +78,9 @@ public class Name extends Element<Name> {
         return super.equals(obj);
     }
 
-    private static String getId(String name, String moduleName) {
-        if (moduleName == null) {
-            return name.toLowerCase();
-        }
-        return name.replaceAll("\\s+", "_").toLowerCase() + "_" + moduleName.replaceAll("\\s+", "_").toLowerCase();
+    private static String getId(String name, Faction faction, String moduleName) {
+        return name.replaceAll("\\s+", "_").toLowerCase() + (faction != null ? "_" + faction : "") +
+                (moduleName != null ? "_" + moduleName.replaceAll("\\s+", "_").toLowerCase() : "");
     }
 
     public String getCustomName() {

@@ -170,10 +170,14 @@ public class RandomPsiquePath extends RandomSelector<OccultismPath> {
                 break;
             }
             if (remainingPoints - power.getLevel() * CostCalculator.OCCULTISM_POWER_LEVEL_COST >= 0) {
-                getCharacterPlayer().addOccultismPower(power);
-                RandomGenerationLog.info(this.getClass().getName(), "Assinged power '{}' to path '{}'.", power, path);
-                remainingPoints -= power.getLevel() * CostCalculator.OCCULTISM_POWER_LEVEL_COST;
-                totalPowers++;
+                try {
+                    getCharacterPlayer().addOccultismPower(power);
+                    RandomGenerationLog.info(this.getClass().getName(), "Assigned power '{}' to path '{}'.", power, path);
+                    remainingPoints -= power.getLevel() * CostCalculator.OCCULTISM_POWER_LEVEL_COST;
+                    totalPowers++;
+                } catch (InvalidFactionOfPowerException e) {
+                    //Restricted to faction. Ignore.
+                }
             }
 
         }

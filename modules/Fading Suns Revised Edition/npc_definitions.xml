@@ -625,7 +625,7 @@
         </suggestedSkills>
         <mandatoryBeneficesSpecialization>passageContracts_2</mandatoryBeneficesSpecialization>
         <mandatoryBenefices>cash</mandatoryBenefices>
-        <weapons>typicalHeavyAutofeed, typicalShotgun</weapons>
+        <weapons>typicalHvyAutofeed, typicalShotgun</weapons>
         <armours>chainMailMetal</armours>
     </muster>
     <reeves>
@@ -670,7 +670,7 @@
                 <speciality>rhetoric</speciality>
             </skill>
         </suggestedSkills>
-        <mandatoryBeneficesSpecialization>passageContracts_6, cash_6, language [latinLanguage]
+        <mandatoryBeneficesSpecialization>passageContracts_6, cash [firebirds2000], language [latinLanguage]
         </mandatoryBeneficesSpecialization>
     </reeves>
     <freeMen>
@@ -680,7 +680,6 @@
         </name>
         <group>faction</group>
         <faction>freeMen</faction>
-        <profile>guild</profile>
     </freeMen>
     <militia>
         <name>

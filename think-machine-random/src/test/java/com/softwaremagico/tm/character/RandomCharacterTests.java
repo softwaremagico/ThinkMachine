@@ -450,4 +450,15 @@ public class RandomCharacterTests {
         Assert.assertTrue(characterPlayer.getExperienceEarned() - characterPlayer.getExperienceExpended() < 2);
     }
 
+    @Test
+    public void royalVorox() throws InvalidXmlElementException, RestrictedElementException, InvalidRandomElementSelectedException {
+        final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        characterPlayer
+                .setRace(RaceFactory.getInstance().getElement("vorox", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+        characterPlayer
+                .setFaction(FactionsFactory.getInstance().getElement("royalVorox", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+        final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer);
+        randomizeCharacter.createCharacter();
+    }
+
 }

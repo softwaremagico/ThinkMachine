@@ -46,7 +46,7 @@ public class Surname extends Element<Surname> {
     }
 
     public Surname(String surname, String language, String moduleName, Faction faction) {
-        super(getId(surname, moduleName), surname, null, language, moduleName);
+        super(getId(surname, faction, moduleName), surname, null, language, moduleName);
         this.faction = faction;
         this.customSurname = surname;
     }
@@ -69,11 +69,9 @@ public class Surname extends Element<Surname> {
         return super.getName();
     }
 
-    private static String getId(String surname, String moduleName) {
-        if (moduleName == null) {
-            return surname.toLowerCase();
-        }
-        return surname.toLowerCase() + "_" + moduleName.replaceAll("\\s+", "_").toLowerCase();
+    private static String getId(String surname, Faction faction, String moduleName) {
+        return surname.replaceAll("\\s+", "_").toLowerCase() + (faction != null ? "_" + faction : "") +
+                (moduleName != null ? "_" + moduleName.replaceAll("\\s+", "_").toLowerCase() : "");
     }
 
     public String getCustomSurname() {
