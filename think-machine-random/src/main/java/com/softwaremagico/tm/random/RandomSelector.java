@@ -54,7 +54,7 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
     protected static final int HIGH_MULTIPLICATOR = 10;
 
     private final CharacterPlayer characterPlayer;
-    private final Set<IRandomPreference> preferences;
+    private final Set<IRandomPreference<?>> preferences;
     protected Random rand = new Random();
 
     private final Set<Element> suggestedElements;
@@ -66,13 +66,13 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
 
     private final IElementWithRandomElements<Element> elementWithRandomElements;
 
-    protected RandomSelector(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences)
+    protected RandomSelector(CharacterPlayer characterPlayer, Set<IRandomPreference<?>> preferences)
             throws InvalidXmlElementException, RestrictedElementException {
         this(characterPlayer, null, preferences, new HashSet<>(), new HashSet<>());
     }
 
     protected RandomSelector(CharacterPlayer characterPlayer,
-                             IElementWithRandomElements<Element> elementWithRandomElements, Set<IRandomPreference> preferences,
+                             IElementWithRandomElements<Element> elementWithRandomElements, Set<IRandomPreference<?>> preferences,
                              Set<Element> mandatoryValues, Set<Element> suggestedElements) throws InvalidXmlElementException, RestrictedElementException {
         this.characterPlayer = characterPlayer;
         this.preferences = preferences;
@@ -101,7 +101,7 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
         return characterPlayer;
     }
 
-    protected Set<IRandomPreference> getPreferences() {
+    protected Set<IRandomPreference<?>> getPreferences() {
         if (preferences == null) {
             return new HashSet<>();
         }

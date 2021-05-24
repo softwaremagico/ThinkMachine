@@ -38,7 +38,7 @@ import java.util.Set;
 
 public class RandomSkillExtraPoints extends RandomSkills {
 
-    public RandomSkillExtraPoints(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences,
+    public RandomSkillExtraPoints(CharacterPlayer characterPlayer, Set<IRandomPreference<?>> preferences,
                                   Set<AvailableSkill> suggestedSkills) throws InvalidXmlElementException, RestrictedElementException {
         super(characterPlayer, preferences, new HashSet<>(), suggestedSkills);
     }

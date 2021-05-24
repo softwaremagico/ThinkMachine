@@ -39,7 +39,7 @@ import java.util.*;
 
 public class RandomShield extends EquipmentSelector<Shield> {
 
-    public RandomShield(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences,
+    public RandomShield(CharacterPlayer characterPlayer, Set<IRandomPreference<?>> preferences,
                         Set<Shield> mandatoryShields) throws InvalidXmlElementException, RestrictedElementException {
         super(characterPlayer, preferences, mandatoryShields);
     }
@@ -138,13 +138,7 @@ public class RandomShield extends EquipmentSelector<Shield> {
         // We only assign the most expensive one.
         if (!mandatoryValues.isEmpty()) {
             final List<Shield> sortedShields = new ArrayList<>(mandatoryValues);
-            Collections.sort(sortedShields, new Comparator<Shield>() {
-
-                @Override
-                public int compare(Shield shield0, Shield shield1) {
-                    return Float.compare(shield0.getCost(), shield1.getCost());
-                }
-            });
+            sortedShields.sort((shield0, shield1) -> Float.compare(shield0.getCost(), shield1.getCost()));
             getCharacterPlayer().setShield(sortedShields.get(0));
         }
     }

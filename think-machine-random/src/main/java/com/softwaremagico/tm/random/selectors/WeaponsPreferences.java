@@ -26,7 +26,7 @@ package com.softwaremagico.tm.random.selectors;
 
 import java.util.Set;
 
-public enum WeaponsPreferences implements ICharacterCreationPreference {
+public enum WeaponsPreferences implements ICharacterCreationPreference<WeaponsPreferences> {
 
     NONE(0f, 0f),
 
@@ -45,13 +45,13 @@ public enum WeaponsPreferences implements ICharacterCreationPreference {
     private final float meleeWeaponProbability;
     private final float rangeWeaponProbability;
 
-    private WeaponsPreferences(float meleeWeaponProbability, float rangeWeaponProbability) {
+    WeaponsPreferences(float meleeWeaponProbability, float rangeWeaponProbability) {
         this.meleeWeaponProbability = meleeWeaponProbability;
         this.rangeWeaponProbability = rangeWeaponProbability;
     }
 
-    public static WeaponsPreferences getSelected(Set<IRandomPreference> preferences) {
-        for (final IRandomPreference preference : preferences) {
+    public static WeaponsPreferences getSelected(Set<IRandomPreference<?>> preferences) {
+        for (final IRandomPreference<?> preference : preferences) {
             if (preference instanceof WeaponsPreferences) {
                 return (WeaponsPreferences) preference;
             }
@@ -78,7 +78,7 @@ public enum WeaponsPreferences implements ICharacterCreationPreference {
     }
 
     @Override
-    public IRandomPreference getDefault() {
+    public IRandomPreference<WeaponsPreferences> getDefault() {
         return getDefaultOption();
     }
 

@@ -26,7 +26,7 @@ package com.softwaremagico.tm.random.selectors;
 
 import java.util.Set;
 
-public enum FactionPreferences implements ICharacterDescriptionPreference {
+public enum FactionPreferences implements ICharacterDescriptionPreference<FactionPreferences> {
 
     NOBILITY,
 
@@ -48,8 +48,8 @@ public enum FactionPreferences implements ICharacterDescriptionPreference {
         return 0;
     }
 
-    public static FactionPreferences getSelected(Set<IRandomPreference> preferences) {
-        for (final IRandomPreference preference : preferences) {
+    public static FactionPreferences getSelected(Set<IRandomPreference<?>> preferences) {
+        for (final IRandomPreference<?> preference : preferences) {
             if (preference instanceof FactionPreferences) {
                 return (FactionPreferences) preference;
             }
@@ -58,7 +58,7 @@ public enum FactionPreferences implements ICharacterDescriptionPreference {
     }
 
     @Override
-    public IRandomPreference getDefault() {
+    public IRandomPreference<FactionPreferences> getDefault() {
         return getDefaultOption();
     }
 

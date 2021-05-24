@@ -37,7 +37,7 @@ import java.util.Set;
 
 public class RandomRace extends RandomSelector<Race> {
 
-    public RandomRace(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences)
+    public RandomRace(CharacterPlayer characterPlayer, Set<IRandomPreference<?>> preferences)
             throws InvalidXmlElementException, RestrictedElementException {
         super(characterPlayer, preferences);
     }

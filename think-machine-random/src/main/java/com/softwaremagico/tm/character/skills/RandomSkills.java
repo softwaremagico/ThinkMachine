@@ -46,12 +46,12 @@ import java.util.Map.Entry;
 public class RandomSkills extends RandomSelector<AvailableSkill> {
     private List<Entry<CharacteristicType, Integer>> preferredCharacteristicsTypeSorted;
 
-    public RandomSkills(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences)
+    public RandomSkills(CharacterPlayer characterPlayer, Set<IRandomPreference<?>> preferences)
             throws InvalidXmlElementException, RestrictedElementException {
         this(characterPlayer, preferences, new HashSet<>(), new HashSet<>());
     }
 
-    public RandomSkills(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences,
+    public RandomSkills(CharacterPlayer characterPlayer, Set<IRandomPreference<?>> preferences,
                         Set<AvailableSkill> requiredSkills, Set<AvailableSkill> suggestedSkills) throws InvalidXmlElementException, RestrictedElementException {
         super(characterPlayer, null, preferences, requiredSkills, suggestedSkills);
     }

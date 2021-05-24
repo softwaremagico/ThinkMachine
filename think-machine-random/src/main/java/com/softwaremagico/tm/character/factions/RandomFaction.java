@@ -37,7 +37,7 @@ import java.util.Set;
 
 public class RandomFaction extends RandomSelector<Faction> {
 
-    public RandomFaction(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences) throws InvalidXmlElementException,
+    public RandomFaction(CharacterPlayer characterPlayer, Set<IRandomPreference<?>> preferences) throws InvalidXmlElementException,
             RestrictedElementException {
         super(characterPlayer, preferences);
     }
@@ -67,17 +67,16 @@ public class RandomFaction extends RandomSelector<Faction> {
         // Specialization desired.
         final FactionPreferences selectedFactionGroup = FactionPreferences.getSelected(getPreferences());
         if (selectedFactionGroup != null) {
-            if (faction.getFactionGroup() != null && faction.getFactionGroup().name().equalsIgnoreCase(selectedFactionGroup.name())) {
-                return 1;
+            if (faction.getFactionGroup() != null && !faction.getFactionGroup().name().equalsIgnoreCase(selectedFactionGroup.name())) {
+                // Different faction than selected.
+                throw new InvalidRandomElementSelectedException("Faction '" + faction + "' not in preferences selection '" + selectedFactionGroup + "'.");
             }
-            // Different faction than selected.
-            throw new InvalidRandomElementSelectedException("Faction '" + faction + "' not in preferences selection '" + selectedFactionGroup + "'.");
-        }
-        // No faction preference selected. Xeno factions has preferences by its own factions.
-        if (getCharacterPlayer().getRace().isXeno() && faction.getRestrictedToRaces().size() == 1 &&
-                faction.getRestrictedToRaces().contains(getCharacterPlayer().getRace())) {
-            return 100;
-        }
+        } else
+            // No faction preference selected. Xeno factions has preferences by its own factions.
+            if (getCharacterPlayer().getRace().isXeno() && faction.getRestrictedToRaces().size() == 1 &&
+                    faction.getRestrictedToRaces().contains(getCharacterPlayer().getRace())) {
+                return 100;
+            }
         return 1;
     }
 

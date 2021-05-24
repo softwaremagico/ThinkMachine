@@ -26,7 +26,7 @@ import java.util.Set;
  * #L%
  */
 
-public enum BlessingPreferences implements ICharacterCreationPreference {
+public enum BlessingPreferences implements ICharacterCreationPreference<BlessingPreferences> {
     APPEARANCE,
 
     BEHAVIOUR,
@@ -49,8 +49,8 @@ public enum BlessingPreferences implements ICharacterCreationPreference {
         return 0;
     }
 
-    public static BlessingPreferences getSelected(Set<IRandomPreference> preferences) {
-        for (final IRandomPreference preference : preferences) {
+    public static BlessingPreferences getSelected(Set<IRandomPreference<?>> preferences) {
+        for (final IRandomPreference<?> preference : preferences) {
             if (preference instanceof BlessingPreferences) {
                 return (BlessingPreferences) preference;
             }
@@ -59,7 +59,7 @@ public enum BlessingPreferences implements ICharacterCreationPreference {
     }
 
     @Override
-    public IRandomPreference getDefault() {
+    public IRandomPreference<BlessingPreferences> getDefault() {
         return getDefaultOption();
     }
 

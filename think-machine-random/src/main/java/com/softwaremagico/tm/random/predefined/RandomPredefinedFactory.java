@@ -98,7 +98,7 @@ public abstract class RandomPredefinedFactory<Predefined extends Element<Predefi
     }
 
     protected abstract Predefined createNew(String id, String name, String description, String language, String moduleName,
-                                            Set<IRandomPreference> randomPreferences, Set<Characteristic> characteristicsMinimumValues,
+                                            Set<IRandomPreference<?>> randomPreferences, Set<Characteristic> characteristicsMinimumValues,
                                             Set<AvailableSkill> requiredSkills, Set<AvailableSkill> suggestedSkills,
                                             Set<Blessing> mandatoryBlessings, Set<Blessing> suggestedBlessings,
                                             Set<BeneficeDefinition> mandatoryBenefices, Set<BeneficeDefinition> suggestedBenefices,
@@ -131,7 +131,7 @@ public abstract class RandomPredefinedFactory<Predefined extends Element<Predefi
                                        String language, String moduleName)
             throws InvalidXmlElementException {
 
-        final Set<IRandomPreference> preferencesSelected = new HashSet<>();
+        final Set<IRandomPreference<?>> preferencesSelected = new HashSet<>();
         final String preferencesSelectedNames = translator.getNodeValue(predefinedId, PREFERENCES);
         if (preferencesSelectedNames != null) {
             final StringTokenizer preferencesSelectedTokenizer = new StringTokenizer(preferencesSelectedNames, ",");

@@ -27,7 +27,7 @@ package com.softwaremagico.tm.random.selectors;
 import java.util.Random;
 import java.util.Set;
 
-public enum TraitCostPreferences implements ICharacterCreationPreference, IGaussianDistribution {
+public enum TraitCostPreferences implements ICharacterCreationPreference<TraitCostPreferences>, IGaussianDistribution {
 
     // Gaussian distribution.
     LOW(1, 4, 2, 1),
@@ -46,7 +46,7 @@ public enum TraitCostPreferences implements ICharacterCreationPreference, IGauss
     private final int variance;
     private final Random random = new Random();
 
-    private TraitCostPreferences(int minimumValue, int maximumValue, int mean, int variance) {
+    TraitCostPreferences(int minimumValue, int maximumValue, int mean, int variance) {
         this.maximum = maximumValue;
         this.minimum = minimumValue;
         this.variance = variance;
@@ -73,8 +73,8 @@ public enum TraitCostPreferences implements ICharacterCreationPreference, IGauss
         return mean;
     }
 
-    public static TraitCostPreferences getSelected(Set<IRandomPreference> preferences) {
-        for (final IRandomPreference preference : preferences) {
+    public static TraitCostPreferences getSelected(Set<IRandomPreference<?>> preferences) {
+        for (final IRandomPreference<?> preference : preferences) {
             if (preference instanceof TraitCostPreferences) {
                 return (TraitCostPreferences) preference;
             }
@@ -92,7 +92,7 @@ public enum TraitCostPreferences implements ICharacterCreationPreference, IGauss
     }
 
     @Override
-    public IRandomPreference getDefault() {
+    public IRandomPreference<TraitCostPreferences> getDefault() {
         return getDefaultOption();
     }
 

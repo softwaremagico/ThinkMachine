@@ -24,5 +24,5 @@ package com.softwaremagico.tm.random.selectors;
  * #L%
  */
 
-public interface IEquipmentPreference extends IRandomPreference {
+public interface IEquipmentPreference<T> extends IRandomPreference<T> {
 }

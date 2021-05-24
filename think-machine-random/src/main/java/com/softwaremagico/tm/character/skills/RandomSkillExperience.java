@@ -40,7 +40,7 @@ import java.util.Set;
 
 public class RandomSkillExperience extends RandomSkills {
 
-    public RandomSkillExperience(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences) throws InvalidXmlElementException,
+    public RandomSkillExperience(CharacterPlayer characterPlayer, Set<IRandomPreference<?>> preferences) throws InvalidXmlElementException,
             RestrictedElementException {
         super(characterPlayer, preferences, new HashSet<>(), new HashSet<>());
     }

@@ -27,7 +27,7 @@ package com.softwaremagico.tm.random.selectors;
 import java.util.Random;
 import java.util.Set;
 
-public enum CyberneticPointsPreferences implements ICyberneticsPreference, IGaussianDistribution {
+public enum CyberneticPointsPreferences implements ICyberneticsPreference<CyberneticPointsPreferences>, IGaussianDistribution {
 
     // Gaussian distribution.
     NONE(0, 0, 0, 0),
@@ -48,7 +48,7 @@ public enum CyberneticPointsPreferences implements ICyberneticsPreference, IGaus
     private final int variance;
     private final Random random = new Random();
 
-    private CyberneticPointsPreferences(int minimumValue, int maximumValue, int mean, int variance) {
+    CyberneticPointsPreferences(int minimumValue, int maximumValue, int mean, int variance) {
         this.maximum = maximumValue;
         this.minimum = minimumValue;
         this.variance = variance;
@@ -76,8 +76,8 @@ public enum CyberneticPointsPreferences implements ICyberneticsPreference, IGaus
     }
 
 
-    public static CyberneticPointsPreferences getSelected(Set<IRandomPreference> preferences) {
-        for (final IRandomPreference preference : preferences) {
+    public static CyberneticPointsPreferences getSelected(Set<IRandomPreference<?>> preferences) {
+        for (final IRandomPreference<?> preference : preferences) {
             if (preference instanceof CyberneticPointsPreferences) {
                 return (CyberneticPointsPreferences) preference;
             }
@@ -95,7 +95,7 @@ public enum CyberneticPointsPreferences implements ICyberneticsPreference, IGaus
     }
 
     @Override
-    public IRandomPreference getDefault() {
+    public IRandomPreference<CyberneticPointsPreferences> getDefault() {
         return getDefaultOption();
     }
 

@@ -27,7 +27,7 @@ import java.util.Set;
  * #L%
  */
 
-public enum SpecializationPreferences implements ICharacterCreationPreference, IGaussianDistribution {
+public enum SpecializationPreferences implements ICharacterCreationPreference<SpecializationPreferences>, IGaussianDistribution {
 
     // Gaussian distribution.
     VERY_GENERALIZED(1, 6, 1, 4),
@@ -48,7 +48,7 @@ public enum SpecializationPreferences implements ICharacterCreationPreference, I
     private final int variance;
     private final Random random = new Random();
 
-    private SpecializationPreferences(int minimumValue, int maximumValue, int mean, int variance) {
+    SpecializationPreferences(int minimumValue, int maximumValue, int mean, int variance) {
         this.maximum = maximumValue;
         this.minimum = minimumValue;
         this.variance = variance;
@@ -75,8 +75,8 @@ public enum SpecializationPreferences implements ICharacterCreationPreference, I
         return mean;
     }
 
-    public static SpecializationPreferences getSelected(Set<IRandomPreference> preferences) {
-        for (final IRandomPreference preference : preferences) {
+    public static SpecializationPreferences getSelected(Set<IRandomPreference<?>> preferences) {
+        for (final IRandomPreference<?> preference : preferences) {
             if (preference instanceof SpecializationPreferences) {
                 return (SpecializationPreferences) preference;
             }
@@ -94,7 +94,7 @@ public enum SpecializationPreferences implements ICharacterCreationPreference, I
     }
 
     @Override
-    public IRandomPreference getDefault() {
+    public IRandomPreference<SpecializationPreferences> getDefault() {
         return getDefaultOption();
     }
 

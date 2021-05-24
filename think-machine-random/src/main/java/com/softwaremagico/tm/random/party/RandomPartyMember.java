@@ -31,14 +31,14 @@ import com.softwaremagico.tm.random.selectors.IRandomPreference;
 import java.util.Set;
 
 public class RandomPartyMember extends Element<RandomPartyMember> {
-    private final RandomPredefined randomProfile;
+    private final RandomPredefined<?> randomProfile;
     private final Integer minNumber;
     private final Integer maxNumber;
     private final Integer weight;
-    private final Set<IRandomPreference> randomPreferences;
+    private final Set<IRandomPreference<?>> randomPreferences;
 
-    public RandomPartyMember(String id, String name, String language, String moduleName, RandomPredefined randomProfile, Integer minNumber,
-                             Integer maxNumber, Integer weight, Set<IRandomPreference> randomPreferences) {
+    public RandomPartyMember(String id, String name, String language, String moduleName, RandomPredefined<?> randomProfile, Integer minNumber,
+                             Integer maxNumber, Integer weight, Set<IRandomPreference<?>> randomPreferences) {
         super(id, name, null, language, moduleName);
         this.randomProfile = randomProfile;
         this.minNumber = minNumber;
@@ -47,7 +47,7 @@ public class RandomPartyMember extends Element<RandomPartyMember> {
         this.randomPreferences = randomPreferences;
     }
 
-    public RandomPredefined getRandomProfile() {
+    public RandomPredefined<?> getRandomProfile() {
         return randomProfile;
     }
 
@@ -63,7 +63,7 @@ public class RandomPartyMember extends Element<RandomPartyMember> {
         return weight;
     }
 
-    public Set<IRandomPreference> getRandomPreferences() {
+    public Set<IRandomPreference<?>> getRandomPreferences() {
         return randomPreferences;
     }
 

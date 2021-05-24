@@ -24,5 +24,5 @@ package com.softwaremagico.tm.random.selectors;
  * #L%
  */
 
-public interface ICharacterCreationPreference extends IRandomPreference {
+public interface ICharacterCreationPreference<T> extends IRandomPreference<T> {
 }

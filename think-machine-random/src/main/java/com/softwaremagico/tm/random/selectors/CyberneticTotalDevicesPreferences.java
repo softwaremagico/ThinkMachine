@@ -27,7 +27,7 @@ package com.softwaremagico.tm.random.selectors;
 import java.util.Random;
 import java.util.Set;
 
-public enum CyberneticTotalDevicesPreferences implements ICyberneticsPreference, IGaussianDistribution {
+public enum CyberneticTotalDevicesPreferences implements ICyberneticsPreference<CyberneticTotalDevicesPreferences>, IGaussianDistribution {
 
     // Gaussian distribution.
     NONE(0, 0, 0, 0),
@@ -48,7 +48,7 @@ public enum CyberneticTotalDevicesPreferences implements ICyberneticsPreference,
     private final int variance;
     private final Random random = new Random();
 
-    private CyberneticTotalDevicesPreferences(int minimumValue, int maximumValue, int mean, int variance) {
+    CyberneticTotalDevicesPreferences(int minimumValue, int maximumValue, int mean, int variance) {
         this.maximum = maximumValue;
         this.minimum = minimumValue;
         this.variance = variance;
@@ -75,8 +75,8 @@ public enum CyberneticTotalDevicesPreferences implements ICyberneticsPreference,
         return mean;
     }
 
-    public static CyberneticTotalDevicesPreferences getSelected(Set<IRandomPreference> preferences) {
-        for (final IRandomPreference preference : preferences) {
+    public static CyberneticTotalDevicesPreferences getSelected(Set<IRandomPreference<?>> preferences) {
+        for (final IRandomPreference<?> preference : preferences) {
             if (preference instanceof CyberneticTotalDevicesPreferences) {
                 return (CyberneticTotalDevicesPreferences) preference;
             }
@@ -94,7 +94,7 @@ public enum CyberneticTotalDevicesPreferences implements ICyberneticsPreference,
     }
 
     @Override
-    public IRandomPreference getDefault() {
+    public IRandomPreference<CyberneticTotalDevicesPreferences> getDefault() {
         return getDefaultOption();
     }
 

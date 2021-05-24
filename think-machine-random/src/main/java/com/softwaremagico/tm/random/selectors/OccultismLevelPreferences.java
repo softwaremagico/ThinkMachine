@@ -27,7 +27,7 @@ package com.softwaremagico.tm.random.selectors;
 import java.util.Random;
 import java.util.Set;
 
-public enum OccultismLevelPreferences implements IPsiPreference, IGaussianDistribution {
+public enum OccultismLevelPreferences implements IPsiPreference<OccultismLevelPreferences>, IGaussianDistribution {
 
     // Gaussian distribution.
     NONE(0, 0, 0, 0),
@@ -46,7 +46,7 @@ public enum OccultismLevelPreferences implements IPsiPreference, IGaussianDistri
     private final int variance;
     private final Random random = new Random();
 
-    private OccultismLevelPreferences(int minimumValue, int maximumValue, int mean, int variance) {
+    OccultismLevelPreferences(int minimumValue, int maximumValue, int mean, int variance) {
         this.maximum = maximumValue;
         this.minimum = minimumValue;
         this.variance = variance;
@@ -73,8 +73,8 @@ public enum OccultismLevelPreferences implements IPsiPreference, IGaussianDistri
         return mean;
     }
 
-    public static OccultismLevelPreferences getSelected(Set<IRandomPreference> preferences) {
-        for (final IRandomPreference preference : preferences) {
+    public static OccultismLevelPreferences getSelected(Set<IRandomPreference<?>> preferences) {
+        for (final IRandomPreference<?> preference : preferences) {
             if (preference instanceof OccultismLevelPreferences) {
                 return (OccultismLevelPreferences) preference;
             }
@@ -92,7 +92,7 @@ public enum OccultismLevelPreferences implements IPsiPreference, IGaussianDistri
     }
 
     @Override
-    public IRandomPreference getDefault() {
+    public IRandomPreference<OccultismLevelPreferences> getDefault() {
         return getDefaultOption();
     }
 

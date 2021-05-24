@@ -41,7 +41,7 @@ import java.util.Set;
 
 public class RandomCharacteristicsExperience extends RandomCharacteristics {
 
-    public RandomCharacteristicsExperience(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences) throws InvalidXmlElementException,
+    public RandomCharacteristicsExperience(CharacterPlayer characterPlayer, Set<IRandomPreference<?>> preferences) throws InvalidXmlElementException,
             RestrictedElementException {
         super(characterPlayer, preferences, new HashSet<>());
     }

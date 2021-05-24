@@ -27,7 +27,7 @@ package com.softwaremagico.tm.random.selectors;
 import java.util.Random;
 import java.util.Set;
 
-public enum CurseNumberPreferences implements ICharacterCreationPreference, IGaussianDistribution {
+public enum CurseNumberPreferences implements ICharacterCreationPreference<CurseNumberPreferences>, IGaussianDistribution {
 
     NONE(0, 0, 0, 0),
 
@@ -45,7 +45,7 @@ public enum CurseNumberPreferences implements ICharacterCreationPreference, IGau
     private final int variance;
     private final Random random = new Random();
 
-    private CurseNumberPreferences(int minimumValue, int maximumValue, int mean, int variance) {
+    CurseNumberPreferences(int minimumValue, int maximumValue, int mean, int variance) {
         this.maximum = maximumValue;
         this.minimum = minimumValue;
         this.variance = variance;
@@ -72,8 +72,8 @@ public enum CurseNumberPreferences implements ICharacterCreationPreference, IGau
         return mean;
     }
 
-    public static CurseNumberPreferences getSelected(Set<IRandomPreference> preferences) {
-        for (final IRandomPreference preference : preferences) {
+    public static CurseNumberPreferences getSelected(Set<IRandomPreference<?>> preferences) {
+        for (final IRandomPreference<?> preference : preferences) {
             if (preference instanceof CurseNumberPreferences) {
                 return (CurseNumberPreferences) preference;
             }
@@ -91,7 +91,7 @@ public enum CurseNumberPreferences implements ICharacterCreationPreference, IGau
     }
 
     @Override
-    public IRandomPreference getDefault() {
+    public IRandomPreference<CurseNumberPreferences> getDefault() {
         return getDefaultOption();
     }
 

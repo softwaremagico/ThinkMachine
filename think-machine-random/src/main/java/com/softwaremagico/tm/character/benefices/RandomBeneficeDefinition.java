@@ -52,12 +52,12 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
     private Integer totalCombatActions;
     private final Set<AvailableBenefice> suggestedAvailableBenefices;
 
-    public RandomBeneficeDefinition(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences)
+    public RandomBeneficeDefinition(CharacterPlayer characterPlayer, Set<IRandomPreference<?>> preferences)
             throws InvalidXmlElementException, RestrictedElementException {
         this(characterPlayer, preferences, new HashSet<>(), new HashSet<>(), new HashSet<>());
     }
 
-    public RandomBeneficeDefinition(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences,
+    public RandomBeneficeDefinition(CharacterPlayer characterPlayer, Set<IRandomPreference<?>> preferences,
                                     Set<BeneficeDefinition> mandatoryBenefices, Set<BeneficeDefinition> suggestedBenefices,
                                     Set<AvailableBenefice> suggestedAvailableBenefices)
             throws InvalidXmlElementException, RestrictedElementException {

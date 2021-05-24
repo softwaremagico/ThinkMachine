@@ -48,7 +48,7 @@ public class RandomCybernetics extends RandomSelector<CyberneticDevice> {
     private int totalDevices;
     private int desiredCyberneticsPoints;
 
-    public RandomCybernetics(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences)
+    public RandomCybernetics(CharacterPlayer characterPlayer, Set<IRandomPreference<?>> preferences)
             throws InvalidXmlElementException, RestrictedElementException {
         super(characterPlayer, preferences);
         totalDevices = CyberneticTotalDevicesPreferences.getSelected(getPreferences()).randomGaussian();

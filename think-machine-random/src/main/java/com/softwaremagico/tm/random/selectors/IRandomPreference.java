@@ -24,7 +24,7 @@ package com.softwaremagico.tm.random.selectors;
  * #L%
  */
 
-public interface IRandomPreference {
+public interface IRandomPreference<T> extends Comparable<T> {
 
     int maximum();
 
@@ -32,5 +32,5 @@ public interface IRandomPreference {
 
     String name();
 
-    IRandomPreference getDefault();
+    IRandomPreference<T> getDefault();
 }

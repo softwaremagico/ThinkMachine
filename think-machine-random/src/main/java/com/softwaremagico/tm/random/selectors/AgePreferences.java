@@ -27,7 +27,7 @@ package com.softwaremagico.tm.random.selectors;
 import java.util.Random;
 import java.util.Set;
 
-public enum AgePreferences implements ICharacterDescriptionPreference, IGaussianDistribution {
+public enum AgePreferences implements ICharacterDescriptionPreference<AgePreferences>, IGaussianDistribution {
 
     // Gaussian distribution.
     CHILD(6, 12, 9, 2),
@@ -52,7 +52,7 @@ public enum AgePreferences implements ICharacterDescriptionPreference, IGaussian
     private final int variance;
     private final Random random = new Random();
 
-    private AgePreferences(int minimumValue, int maximumValue, int mean, int variance) {
+    AgePreferences(int minimumValue, int maximumValue, int mean, int variance) {
         this.maximum = maximumValue;
         this.minimum = minimumValue;
         this.variance = variance;
@@ -79,8 +79,8 @@ public enum AgePreferences implements ICharacterDescriptionPreference, IGaussian
         return mean;
     }
 
-    public static AgePreferences getSelected(Set<IRandomPreference> preferences) {
-        for (final IRandomPreference preference : preferences) {
+    public static AgePreferences getSelected(Set<IRandomPreference<?>> preferences) {
+        for (final IRandomPreference<?> preference : preferences) {
             if (preference instanceof AgePreferences) {
                 return (AgePreferences) preference;
             }
@@ -98,7 +98,7 @@ public enum AgePreferences implements ICharacterDescriptionPreference, IGaussian
     }
 
     @Override
-    public IRandomPreference getDefault() {
+    public IRandomPreference<AgePreferences> getDefault() {
         return getDefaultOption();
     }
 

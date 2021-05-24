@@ -24,7 +24,7 @@ package com.softwaremagico.tm.random.selectors;
  * #L%
  */
 
-public enum CharacteristicsPreferences implements ICharacterCreationPreference {
+public enum CharacteristicsPreferences implements ICharacterCreationPreference<CharacteristicsPreferences> {
     BODY(3, 8),
 
     MIND(3, 8),
@@ -50,7 +50,7 @@ public enum CharacteristicsPreferences implements ICharacterCreationPreference {
     }
 
     @Override
-    public IRandomPreference getDefault() {
+    public IRandomPreference<CharacteristicsPreferences> getDefault() {
         return getDefaultOption();
     }
 

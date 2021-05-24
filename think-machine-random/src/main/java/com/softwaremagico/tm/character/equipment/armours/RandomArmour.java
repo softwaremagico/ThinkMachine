@@ -43,7 +43,7 @@ import java.util.Set;
 
 public class RandomArmour extends EquipmentSelector<Armour> {
 
-    public RandomArmour(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences,
+    public RandomArmour(CharacterPlayer characterPlayer, Set<IRandomPreference<?>> preferences,
                         Set<Armour> mandatoryArmours) throws InvalidXmlElementException, RestrictedElementException {
         super(characterPlayer, preferences, mandatoryArmours);
     }

@@ -48,7 +48,7 @@ public interface IRandomPredefined {
 
     boolean isParentMerged();
 
-    Set<IRandomPreference> getPreferences();
+    Set<IRandomPreference<?>> getPreferences();
 
     Set<Characteristic> getCharacteristicsMinimumValues();
 
@@ -60,9 +60,9 @@ public interface IRandomPredefined {
 
     void setParent(IRandomPredefined randomProfile) throws InvalidXmlElementException;
 
-    public String getLanguage();
+    String getLanguage();
 
-    public String getModuleName();
+    String getModuleName();
 
     Set<AvailableSkill> getRequiredSkills();
 

@@ -42,7 +42,7 @@ public class RandomPsiquePath extends RandomSelector<OccultismPath> {
 
     private int totalPowers;
 
-    public RandomPsiquePath(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences, Set<OccultismPath> mandatoryOccultismPaths)
+    public RandomPsiquePath(CharacterPlayer characterPlayer, Set<IRandomPreference<?>> preferences, Set<OccultismPath> mandatoryOccultismPaths)
             throws InvalidXmlElementException, RestrictedElementException {
         super(characterPlayer, null, preferences, mandatoryOccultismPaths, new HashSet<>());
     }

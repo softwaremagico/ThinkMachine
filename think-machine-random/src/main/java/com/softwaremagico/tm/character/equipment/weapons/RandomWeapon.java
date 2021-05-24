@@ -38,7 +38,7 @@ import java.util.Set;
 
 public abstract class RandomWeapon extends EquipmentSelector<Weapon> {
 
-    protected RandomWeapon(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences,
+    protected RandomWeapon(CharacterPlayer characterPlayer, Set<IRandomPreference<?>> preferences,
                            Set<Weapon> mandatoryWeapons) throws InvalidXmlElementException, RestrictedElementException {
         super(characterPlayer, preferences, mandatoryWeapons);
     }

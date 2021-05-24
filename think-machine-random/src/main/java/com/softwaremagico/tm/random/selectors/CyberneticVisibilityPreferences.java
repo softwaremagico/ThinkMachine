@@ -26,7 +26,7 @@ package com.softwaremagico.tm.random.selectors;
 
 import java.util.Set;
 
-public enum CyberneticVisibilityPreferences implements ICyberneticsPreference {
+public enum CyberneticVisibilityPreferences implements ICyberneticsPreference<CyberneticVisibilityPreferences> {
 
     HIDDEN,
 
@@ -45,8 +45,8 @@ public enum CyberneticVisibilityPreferences implements ICyberneticsPreference {
         return 0;
     }
 
-    public static CyberneticVisibilityPreferences getSelected(Set<IRandomPreference> preferences) {
-        for (final IRandomPreference preference : preferences) {
+    public static CyberneticVisibilityPreferences getSelected(Set<IRandomPreference<?>> preferences) {
+        for (final IRandomPreference<?> preference : preferences) {
             if (preference instanceof CyberneticVisibilityPreferences) {
                 return (CyberneticVisibilityPreferences) preference;
             }
@@ -55,7 +55,7 @@ public enum CyberneticVisibilityPreferences implements ICyberneticsPreference {
     }
 
     @Override
-    public IRandomPreference getDefault() {
+    public IRandomPreference<CyberneticVisibilityPreferences> getDefault() {
         return getDefaultOption();
     }
 

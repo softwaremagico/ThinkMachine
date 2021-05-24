@@ -26,7 +26,7 @@ package com.softwaremagico.tm.random.selectors;
 
 import java.util.Set;
 
-public enum ShieldPreferences implements IEquipmentPreference {
+public enum ShieldPreferences implements IEquipmentPreference<ShieldPreferences> {
 
     NONE(0f),
 
@@ -42,8 +42,8 @@ public enum ShieldPreferences implements IEquipmentPreference {
         this.shieldProbability = shieldProbability;
     }
 
-    public static ShieldPreferences getSelected(Set<IRandomPreference> preferences) {
-        for (final IRandomPreference preference : preferences) {
+    public static ShieldPreferences getSelected(Set<IRandomPreference<?>> preferences) {
+        for (final IRandomPreference<?> preference : preferences) {
             if (preference instanceof ShieldPreferences) {
                 return (ShieldPreferences) preference;
             }
@@ -78,7 +78,7 @@ public enum ShieldPreferences implements IEquipmentPreference {
     }
 
     @Override
-    public IRandomPreference getDefault() {
+    public IRandomPreference<ShieldPreferences> getDefault() {
         return getDefaultOption();
     }
 

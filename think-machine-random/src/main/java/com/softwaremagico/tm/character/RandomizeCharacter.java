@@ -66,7 +66,7 @@ import java.util.stream.Collectors;
 
 public class RandomizeCharacter {
     private final CharacterPlayer characterPlayer;
-    private final Set<IRandomPreference> preferences;
+    private final Set<IRandomPreference<?>> preferences;
     private final Set<AvailableSkill> requiredSkills;
     private final Set<AvailableSkill> suggestedSkills;
     private final Set<Blessing> mandatoryBlessings;
@@ -82,7 +82,7 @@ public class RandomizeCharacter {
     private final Faction requiredFaction;
     private final Race requiredRace;
 
-    public RandomizeCharacter(CharacterPlayer characterPlayer, int experiencePoints, IRandomPreference... preferences) {
+    public RandomizeCharacter(CharacterPlayer characterPlayer, int experiencePoints, IRandomPreference<?>... preferences) {
         this(characterPlayer, experiencePoints, null, new HashSet<>(Arrays.asList(preferences)), new HashSet<>(), new HashSet<>(),
                 new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(),
                 new HashSet<>(), new HashSet<>(), new HashSet<>());
@@ -94,13 +94,13 @@ public class RandomizeCharacter {
                 new HashSet<>(), new HashSet<>(), new HashSet<>());
     }
 
-    public RandomizeCharacter(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences, IRandomPredefined... profiles) {
+    public RandomizeCharacter(CharacterPlayer characterPlayer, Set<IRandomPreference<?>> preferences, IRandomPredefined... profiles) {
         this(characterPlayer, null, new HashSet<>(Arrays.asList(profiles)), preferences, new HashSet<>(), new HashSet<>(),
                 new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(),
                 new HashSet<>(), new HashSet<>(), new HashSet<>());
     }
 
-    public RandomizeCharacter(CharacterPlayer characterPlayer, Integer experiencePoints, Set<IRandomPredefined> profiles, Set<IRandomPreference> preferences,
+    public RandomizeCharacter(CharacterPlayer characterPlayer, Integer experiencePoints, Set<IRandomPredefined> profiles, Set<IRandomPreference<?>> preferences,
                               Set<AvailableSkill> requiredSkills, Set<AvailableSkill> suggestedSkills,
                               Set<Blessing> mandatoryBlessings, Set<Blessing> suggestedBlessings,
                               Set<BeneficeDefinition> mandatoryBenefices, Set<BeneficeDefinition> suggestedBenefices,
@@ -193,7 +193,7 @@ public class RandomizeCharacter {
         setExperiencePoints();
     }
 
-    private void setDefaultPreferences() {
+    public void setDefaultPreferences() {
         final AgePreferences agePreferences = AgePreferences.getSelected(preferences);
         if (agePreferences == null) {
             preferences.add(AgePreferences.getDefaultOption());
@@ -241,11 +241,22 @@ public class RandomizeCharacter {
 
         final CashPreferences cashPreferences = CashPreferences.getSelected(preferences);
         if (cashPreferences == null) {
+            //Faction and status also change the cash amount.
+            final CashPreferences factionCashPreference = CashPreferences.get(FactionPreferences.getSelected(preferences));
+            final CashPreferences statusCashPreference = CashPreferences.get(StatusPreferences.getSelected(preferences));
+
+            //Equipment minimum cash.
             final AtomicReference<Float> equipmentCost = new AtomicReference<>((float) 0);
             mandatoryWeapons.forEach(weapon -> equipmentCost.updateAndGet(v -> (v + weapon.getCost())));
             mandatoryArmours.forEach(armour -> equipmentCost.updateAndGet(v -> (v + armour.getCost())));
             mandatoryShields.forEach(shield -> equipmentCost.updateAndGet(v -> (v + shield.getCost())));
-            preferences.add(CashPreferences.get(equipmentCost.get()));
+            final CashPreferences equipmentCostPreference = CashPreferences.get(equipmentCost.get());
+
+            //Select higher value.
+            final List<IRandomPreference> list = Arrays.asList(factionCashPreference,
+                    statusCashPreference, equipmentCostPreference);
+            final Optional<IRandomPreference> cashSelected = list.stream().filter(Objects::nonNull).max(Comparator.naturalOrder());
+            cashSelected.ifPresent(preferences::add);
         }
         preferences.removeIf(Objects::isNull);
     }
@@ -449,5 +460,9 @@ public class RandomizeCharacter {
     @Override
     public String toString() {
         return characterPlayer.getCompleteNameRepresentation() + " (" + characterPlayer.getRace() + ") [" + characterPlayer.getFaction() + "]";
+    }
+
+    public Set<IRandomPreference<?>> getPreferences() {
+        return preferences;
     }
 }

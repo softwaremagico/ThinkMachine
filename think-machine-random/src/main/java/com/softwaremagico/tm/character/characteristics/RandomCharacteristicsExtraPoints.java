@@ -42,16 +42,16 @@ import java.util.Set;
 
 public class RandomCharacteristicsExtraPoints extends RandomCharacteristics {
 
-	public RandomCharacteristicsExtraPoints(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences) throws InvalidXmlElementException,
+	public RandomCharacteristicsExtraPoints(CharacterPlayer characterPlayer, Set<IRandomPreference<?>> preferences) throws InvalidXmlElementException,
 			RestrictedElementException {
-		super(characterPlayer, preferences, new HashSet<Characteristic>());
+		super(characterPlayer, preferences, new HashSet<>());
 	}
 
 	public int spendCharacteristicsPoints(int remainingPoints) throws InvalidRandomElementSelectedException {
 		final IGaussianDistribution specialization = SpecializationPreferences.getSelected(getPreferences());
 
-		IRandomPreference techPreference = null;
-		for (final IRandomPreference preference : getPreferences()) {
+		IRandomPreference<?> techPreference = null;
+		for (final IRandomPreference<?> preference : getPreferences()) {
 			if (preference instanceof TechnologicalPreferences) {
 				techPreference = preference;
 			}

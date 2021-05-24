@@ -27,7 +27,7 @@ import java.util.Set;
  * #L%
  */
 
-public enum CombatActionsPreferences implements ICharacterDescriptionPreference, IGaussianDistribution {
+public enum CombatActionsPreferences implements ICharacterDescriptionPreference<CombatActionsPreferences>, IGaussianDistribution {
     PEACEFUL(0, 0, 0, 0),
 
     FAIR(1, 2, 1, 0),
@@ -40,7 +40,7 @@ public enum CombatActionsPreferences implements ICharacterDescriptionPreference,
     private final int variance;
     private final Random random = new Random();
 
-    private CombatActionsPreferences(int minimumValue, int maximumValue, int mean, int variance) {
+    CombatActionsPreferences(int minimumValue, int maximumValue, int mean, int variance) {
         this.maximum = maximumValue;
         this.minimum = minimumValue;
         this.variance = variance;
@@ -77,8 +77,8 @@ public enum CombatActionsPreferences implements ICharacterDescriptionPreference,
     }
 
 
-    public static CombatActionsPreferences getSelected(Set<IRandomPreference> preferences) {
-        for (final IRandomPreference preference : preferences) {
+    public static CombatActionsPreferences getSelected(Set<IRandomPreference<?>> preferences) {
+        for (final IRandomPreference<?> preference : preferences) {
             if (preference instanceof CombatActionsPreferences) {
                 return (CombatActionsPreferences) preference;
             }
@@ -87,7 +87,7 @@ public enum CombatActionsPreferences implements ICharacterDescriptionPreference,
     }
 
     @Override
-    public IRandomPreference getDefault() {
+    public IRandomPreference<CombatActionsPreferences> getDefault() {
         return getDefaultOption();
     }
 

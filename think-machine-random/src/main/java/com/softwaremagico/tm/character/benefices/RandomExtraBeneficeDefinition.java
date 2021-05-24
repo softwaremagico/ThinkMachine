@@ -39,7 +39,7 @@ import java.util.Set;
 public class RandomExtraBeneficeDefinition extends RandomBeneficeDefinition {
     private static final int MAX_COMBAT_STYLES = 2;
 
-    public RandomExtraBeneficeDefinition(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences,
+    public RandomExtraBeneficeDefinition(CharacterPlayer characterPlayer, Set<IRandomPreference<?>> preferences,
                                          Set<BeneficeDefinition> suggestedBenefices, Set<AvailableBenefice> suggestedAvailableBenefices) throws
             InvalidXmlElementException, RestrictedElementException {
         super(characterPlayer, preferences, new HashSet<>(), suggestedBenefices, suggestedAvailableBenefices);

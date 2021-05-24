@@ -27,7 +27,7 @@ package com.softwaremagico.tm.random.selectors;
 import java.util.Random;
 import java.util.Set;
 
-public enum StatusPreferences implements ICharacterDescriptionPreference, IGaussianDistribution {
+public enum StatusPreferences implements ICharacterDescriptionPreference<StatusPreferences>, IGaussianDistribution {
 
     NONE(0, 0, 0, 0),
 
@@ -47,7 +47,7 @@ public enum StatusPreferences implements ICharacterDescriptionPreference, IGauss
     private final int variance;
     private final Random random = new Random();
 
-    private StatusPreferences(int minimumValue, int maximumValue, int mean, int variance) {
+    StatusPreferences(int minimumValue, int maximumValue, int mean, int variance) {
         this.maximum = maximumValue;
         this.minimum = minimumValue;
         this.variance = variance;
@@ -74,8 +74,8 @@ public enum StatusPreferences implements ICharacterDescriptionPreference, IGauss
         return mean;
     }
 
-    public static StatusPreferences getSelected(Set<IRandomPreference> preferences) {
-        for (final IRandomPreference preference : preferences) {
+    public static StatusPreferences getSelected(Set<IRandomPreference<?>> preferences) {
+        for (final IRandomPreference<?> preference : preferences) {
             if (preference instanceof StatusPreferences) {
                 return (StatusPreferences) preference;
             }
@@ -93,7 +93,7 @@ public enum StatusPreferences implements ICharacterDescriptionPreference, IGauss
     }
 
     @Override
-    public IRandomPreference getDefault() {
+    public IRandomPreference<StatusPreferences> getDefault() {
         return getDefaultOption();
     }
 

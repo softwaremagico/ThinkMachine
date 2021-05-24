@@ -26,7 +26,7 @@ package com.softwaremagico.tm.random.selectors;
 
 import java.util.Set;
 
-public enum CombatActionsGroupPreferences implements ICharacterDescriptionPreference {
+public enum CombatActionsGroupPreferences implements ICharacterDescriptionPreference<CombatActionsGroupPreferences> {
     MELEE,
     FIGHT,
     RANGED;
@@ -42,12 +42,12 @@ public enum CombatActionsGroupPreferences implements ICharacterDescriptionPrefer
     }
 
     @Override
-    public IRandomPreference getDefault() {
+    public IRandomPreference<CombatActionsGroupPreferences> getDefault() {
         return null;
     }
 
-    public static CombatActionsGroupPreferences getSelected(Set<IRandomPreference> preferences) {
-        for (final IRandomPreference preference : preferences) {
+    public static CombatActionsGroupPreferences getSelected(Set<IRandomPreference<?>> preferences) {
+        for (final IRandomPreference<?> preference : preferences) {
             if (preference instanceof CombatActionsGroupPreferences) {
                 return (CombatActionsGroupPreferences) preference;
             }

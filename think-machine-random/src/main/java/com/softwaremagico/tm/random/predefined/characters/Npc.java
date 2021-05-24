@@ -48,7 +48,7 @@ public class Npc extends RandomPredefined<Npc> implements IRandomPredefined {
     private final Set<Shield> mandatoryShields;
 
     public Npc(String id, String name, String description, String language, String moduleName,
-               Set<IRandomPreference> randomPreferences, Set<Characteristic> characteristicsMinimumValues,
+               Set<IRandomPreference<?>> randomPreferences, Set<Characteristic> characteristicsMinimumValues,
                Set<AvailableSkill> requiredSkills, Set<AvailableSkill> suggestedSkills,
                Set<Blessing> mandatoryBlessings, Set<Blessing> suggestedBlessings,
                Set<BeneficeDefinition> mandatoryBenefices, Set<BeneficeDefinition> suggestedBenefices,

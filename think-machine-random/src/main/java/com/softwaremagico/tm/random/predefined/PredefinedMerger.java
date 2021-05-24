@@ -61,7 +61,7 @@ public class PredefinedMerger {
         return new Npc(DEFAULT_ID, "", null, language, moduleName);
     }
 
-    public static IRandomPredefined merge(Set<IRandomPredefined> profiles, Set<IRandomPreference> extraPreferences, Set<AvailableSkill> requiredSkills,
+    public static IRandomPredefined merge(Set<IRandomPredefined> profiles, Set<IRandomPreference<?>> extraPreferences, Set<AvailableSkill> requiredSkills,
                                           Set<AvailableSkill> suggestedSkills, Set<Blessing> mandatoryBlessings, Set<Blessing> suggestedBlessings,
                                           Set<BeneficeDefinition> mandatoryBenefices, Set<BeneficeDefinition> suggestedBenefices,
                                           Set<AvailableBenefice> mandatoryAvailableBenefices, Set<AvailableBenefice> suggestedAvailableBenefices,
@@ -278,7 +278,7 @@ public class PredefinedMerger {
         }
     }
 
-    public static void mergePreferences(Set<IRandomPreference> originalPreferences, Set<IRandomPreference> preferredPreferences) {
+    public static void mergePreferences(Set<IRandomPreference<?>> originalPreferences, Set<IRandomPreference<?>> preferredPreferences) {
         for (final IRandomPreference preferredPreference : new HashSet<>(preferredPreferences)) {
             //Get preference average.
             for (final IRandomPreference randomPreference : new HashSet<>(originalPreferences)) {
@@ -296,7 +296,7 @@ public class PredefinedMerger {
         originalPreferences.addAll(preferredPreferences);
     }
 
-    public static Set<IRandomPreference> removeDuplicates(Set<IRandomPreference> originalPreferences) {
+    public static Set<IRandomPreference<?>> removeDuplicates(Set<IRandomPreference<?>> originalPreferences) {
         final Random random = new Random();
         for (final IRandomPreference preference1 : new HashSet<>(originalPreferences)) {
             //Get preference average.

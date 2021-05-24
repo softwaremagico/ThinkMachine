@@ -40,7 +40,7 @@ import java.util.Set;
 
 public class RandomName extends RandomSelector<Name> {
 
-    public RandomName(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences)
+    public RandomName(CharacterPlayer characterPlayer, Set<IRandomPreference<?>> preferences)
             throws InvalidXmlElementException, RestrictedElementException {
         super(characterPlayer, preferences);
     }

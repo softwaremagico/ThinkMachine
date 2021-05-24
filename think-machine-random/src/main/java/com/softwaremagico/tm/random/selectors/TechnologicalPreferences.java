@@ -26,7 +26,7 @@ import java.util.Set;
  * #L%
  */
 
-public enum TechnologicalPreferences implements IEquipmentPreference {
+public enum TechnologicalPreferences implements IEquipmentPreference<TechnologicalPreferences> {
 
     PREHISTORIC(0, 1),
 
@@ -70,8 +70,8 @@ public enum TechnologicalPreferences implements IEquipmentPreference {
         return maximum >= preference.maximum;
     }
 
-    public static TechnologicalPreferences getSelected(Set<IRandomPreference> preferences) {
-        for (final IRandomPreference preference : preferences) {
+    public static TechnologicalPreferences getSelected(Set<IRandomPreference<?>> preferences) {
+        for (final IRandomPreference<?> preference : preferences) {
             if (preference instanceof TechnologicalPreferences) {
                 return (TechnologicalPreferences) preference;
             }
@@ -80,7 +80,7 @@ public enum TechnologicalPreferences implements IEquipmentPreference {
     }
 
     @Override
-    public IRandomPreference getDefault() {
+    public IRandomPreference<TechnologicalPreferences> getDefault() {
         return getDefaultOption();
     }
 

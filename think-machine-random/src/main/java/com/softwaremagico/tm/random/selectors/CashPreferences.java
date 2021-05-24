@@ -27,7 +27,7 @@ package com.softwaremagico.tm.random.selectors;
 import java.util.Random;
 import java.util.Set;
 
-public enum CashPreferences implements ICharacterDescriptionPreference, IGaussianDistribution {
+public enum CashPreferences implements ICharacterDescriptionPreference<CashPreferences>, IGaussianDistribution {
 
     LOW(0, 4, 0, 4),
 
@@ -47,7 +47,7 @@ public enum CashPreferences implements ICharacterDescriptionPreference, IGaussia
     private final int variance;
     private final Random random = new Random();
 
-    private CashPreferences(int minimumValue, int maximumValue, int mean, int variance) {
+    CashPreferences(int minimumValue, int maximumValue, int mean, int variance) {
         this.maximum = maximumValue;
         this.minimum = minimumValue;
         this.variance = variance;
@@ -74,13 +74,43 @@ public enum CashPreferences implements ICharacterDescriptionPreference, IGaussia
         return mean;
     }
 
-    public static CashPreferences getSelected(Set<IRandomPreference> preferences) {
-        for (final IRandomPreference preference : preferences) {
+    public static CashPreferences getSelected(Set<IRandomPreference<?>> preferences) {
+        for (final IRandomPreference<?> preference : preferences) {
             if (preference instanceof CashPreferences) {
                 return (CashPreferences) preference;
             }
         }
-        return FAIR;
+        return null;
+    }
+
+    public static CashPreferences get(FactionPreferences factionPreferences) {
+        if (factionPreferences != null) {
+            switch (factionPreferences) {
+                case NOBILITY:
+                    return CashPreferences.HIGH;
+                case GUILD:
+                    return CashPreferences.GOOD;
+                case CHURCH:
+                    return CashPreferences.FAIR;
+                default:
+                    return null;
+            }
+        }
+        return null;
+    }
+
+    public static CashPreferences get(StatusPreferences statusPreferences) {
+        if (statusPreferences != null) {
+            switch (statusPreferences) {
+                case GOOD:
+                    return CashPreferences.GOOD;
+                case HIGH:
+                    return CashPreferences.HIGH;
+                default:
+                    return null;
+            }
+        }
+        return null;
     }
 
     @Override
@@ -103,7 +133,7 @@ public enum CashPreferences implements ICharacterDescriptionPreference, IGaussia
     }
 
     @Override
-    public IRandomPreference getDefault() {
+    public IRandomPreference<CashPreferences> getDefault() {
         return getDefaultOption();
     }
 

@@ -61,7 +61,7 @@ public class RandomProfileFactory extends RandomPredefinedFactory<RandomProfile>
 
     @Override
     protected RandomProfile createNew(String id, String name, String description, String language, String moduleName,
-                                      Set<IRandomPreference> randomPreferences, Set<Characteristic> characteristicsMinimumValues,
+                                      Set<IRandomPreference<?>> randomPreferences, Set<Characteristic> characteristicsMinimumValues,
                                       Set<AvailableSkill> requiredSkills, Set<AvailableSkill> suggestedSkills,
                                       Set<Blessing> mandatoryBlessings, Set<Blessing> suggestedBlessings,
                                       Set<BeneficeDefinition> mandatoryBenefices, Set<BeneficeDefinition> suggestedBenefices,

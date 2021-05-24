@@ -26,7 +26,7 @@ import java.util.Set;
  * #L%
  */
 
-public enum CombatPreferences implements ICharacterDescriptionPreference {
+public enum CombatPreferences implements ICharacterDescriptionPreference<CombatPreferences> {
     // Threat level ~40
     PEACEFUL(0, 1, WeaponsPreferences.LOW, ArmourPreferences.NONE, ShieldPreferences.NONE),
 
@@ -43,7 +43,7 @@ public enum CombatPreferences implements ICharacterDescriptionPreference {
     private final ArmourPreferences defaultArmourPreferences;
     private final ShieldPreferences defaultShieldPreferences;
 
-    private CombatPreferences(int minimum, int maximum, WeaponsPreferences defaultWeaponPreferences, ArmourPreferences defaultArmourPreferences,
+    CombatPreferences(int minimum, int maximum, WeaponsPreferences defaultWeaponPreferences, ArmourPreferences defaultArmourPreferences,
                               ShieldPreferences defaultShieldPreferences) {
         this.maximum = maximum;
         this.minimum = minimum;
@@ -62,8 +62,8 @@ public enum CombatPreferences implements ICharacterDescriptionPreference {
         return minimum;
     }
 
-    public static CombatPreferences getSelected(Set<IRandomPreference> preferences) {
-        for (final IRandomPreference preference : preferences) {
+    public static CombatPreferences getSelected(Set<IRandomPreference<?>> preferences) {
+        for (final IRandomPreference<?> preference : preferences) {
             if (preference instanceof CombatPreferences) {
                 return (CombatPreferences) preference;
             }
@@ -94,7 +94,7 @@ public enum CombatPreferences implements ICharacterDescriptionPreference {
     }
 
     @Override
-    public IRandomPreference getDefault() {
+    public IRandomPreference<CombatPreferences> getDefault() {
         return getDefaultOption();
     }
 

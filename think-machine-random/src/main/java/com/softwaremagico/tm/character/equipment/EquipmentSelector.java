@@ -37,7 +37,7 @@ import java.util.Set;
 public abstract class EquipmentSelector<E extends Equipment<?>> extends RandomSelector<E> {
 	private Integer currentMoney = null;
 
-	protected EquipmentSelector(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences,
+	protected EquipmentSelector(CharacterPlayer characterPlayer, Set<IRandomPreference<?>> preferences,
 			Set<E> mandatoryElements) throws InvalidXmlElementException, RestrictedElementException {
 		super(characterPlayer, null, preferences, mandatoryElements, null);
 	}

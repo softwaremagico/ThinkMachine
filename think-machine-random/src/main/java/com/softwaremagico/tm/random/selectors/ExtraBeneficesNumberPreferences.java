@@ -27,7 +27,7 @@ package com.softwaremagico.tm.random.selectors;
 import java.util.Random;
 import java.util.Set;
 
-public enum ExtraBeneficesNumberPreferences implements ICharacterCreationPreference, IGaussianDistribution {
+public enum ExtraBeneficesNumberPreferences implements ICharacterCreationPreference<ExtraBeneficesNumberPreferences>, IGaussianDistribution {
 
     NONE(0, 0, 0, 0),
 
@@ -45,7 +45,7 @@ public enum ExtraBeneficesNumberPreferences implements ICharacterCreationPrefere
     private final int variance;
     private final Random random = new Random();
 
-    private ExtraBeneficesNumberPreferences(int minimumValue, int maximumValue, int mean, int variance) {
+    ExtraBeneficesNumberPreferences(int minimumValue, int maximumValue, int mean, int variance) {
         this.maximum = maximumValue;
         this.minimum = minimumValue;
         this.variance = variance;
@@ -72,8 +72,8 @@ public enum ExtraBeneficesNumberPreferences implements ICharacterCreationPrefere
         return mean;
     }
 
-    public static ExtraBeneficesNumberPreferences getSelected(Set<IRandomPreference> preferences) {
-        for (final IRandomPreference preference : preferences) {
+    public static ExtraBeneficesNumberPreferences getSelected(Set<IRandomPreference<?>> preferences) {
+        for (final IRandomPreference<?> preference : preferences) {
             if (preference instanceof ExtraBeneficesNumberPreferences) {
                 return (ExtraBeneficesNumberPreferences) preference;
             }
@@ -91,7 +91,7 @@ public enum ExtraBeneficesNumberPreferences implements ICharacterCreationPrefere
     }
 
     @Override
-    public IRandomPreference getDefault() {
+    public IRandomPreference<ExtraBeneficesNumberPreferences> getDefault() {
         return getDefaultOption();
     }
 

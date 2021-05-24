@@ -26,7 +26,7 @@ import com.softwaremagico.tm.character.skills.SkillGroup;
  * #L%
  */
 
-public enum SkillGroupPreferences implements ICharacterCreationPreference {
+public enum SkillGroupPreferences implements ICharacterCreationPreference<SkillGroupPreferences> {
 
     ANALYTICAL(SkillGroup.ANALYTICAL),
 
@@ -50,7 +50,7 @@ public enum SkillGroupPreferences implements ICharacterCreationPreference {
 
     private final SkillGroup skillGroup;
 
-    private SkillGroupPreferences(SkillGroup skillGroup) {
+    SkillGroupPreferences(SkillGroup skillGroup) {
         this.skillGroup = skillGroup;
     }
 
@@ -80,7 +80,7 @@ public enum SkillGroupPreferences implements ICharacterCreationPreference {
     }
 
     @Override
-    public IRandomPreference getDefault() {
+    public IRandomPreference<SkillGroupPreferences> getDefault() {
         return getDefaultOption();
     }
 

@@ -258,14 +258,14 @@ public class NpcTests {
 
     @Test
     public void mergingPreferences() {
-        Set<IRandomPreference> originalPreferences = Stream.of(CombatPreferences.PEACEFUL, AgePreferences.ADULT)
+        Set<IRandomPreference<?>> originalPreferences = Stream.of(CombatPreferences.PEACEFUL, AgePreferences.ADULT)
                 .collect(Collectors.toCollection(HashSet::new));
-        Set<IRandomPreference> newPreferences = Stream.of(CombatPreferences.BELLIGERENT, BlessingPreferences.APPEARANCE)
+        Set<IRandomPreference<?>> newPreferences = Stream.of(CombatPreferences.BELLIGERENT, BlessingPreferences.APPEARANCE)
                 .collect(Collectors.toCollection(HashSet::new));
         PredefinedMerger.mergePreferences(originalPreferences, newPreferences);
         Assert.assertEquals(originalPreferences.size(), 3);
         boolean found = false;
-        for (IRandomPreference preference : originalPreferences) {
+        for (IRandomPreference<?> preference : originalPreferences) {
             if (Objects.equals(preference.getClass().getName(), CombatPreferences.class.getName())) {
                 Assert.assertEquals(preference, CombatPreferences.FAIR);
                 found = true;
@@ -276,14 +276,14 @@ public class NpcTests {
 
     @Test
     public void mergingPreferencesRounded() {
-        Set<IRandomPreference> originalPreferences = Stream.of(AgePreferences.CHILD)
+        Set<IRandomPreference<?>> originalPreferences = Stream.of(AgePreferences.CHILD)
                 .collect(Collectors.toCollection(HashSet::new));
-        Set<IRandomPreference> newPreferences = Stream.of(AgePreferences.VERY_OLD)
+        Set<IRandomPreference<?>> newPreferences = Stream.of(AgePreferences.VERY_OLD)
                 .collect(Collectors.toCollection(HashSet::new));
         PredefinedMerger.mergePreferences(originalPreferences, newPreferences);
         Assert.assertEquals(originalPreferences.size(), 1);
         boolean found = false;
-        for (IRandomPreference preference : originalPreferences) {
+        for (IRandomPreference<?> preference : originalPreferences) {
             if (Objects.equals(preference.getClass().getName(), AgePreferences.class.getName())) {
                 Assert.assertEquals(preference, AgePreferences.ADULT);
                 found = true;

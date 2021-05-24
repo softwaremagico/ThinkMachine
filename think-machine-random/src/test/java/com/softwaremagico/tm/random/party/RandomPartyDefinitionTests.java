@@ -27,7 +27,6 @@ package com.softwaremagico.tm.random.party;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.RestrictedElementException;
 import com.softwaremagico.tm.file.PathManager;
-import com.softwaremagico.tm.random.selectors.IRandomPreference;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -42,7 +41,7 @@ public class RandomPartyDefinitionTests {
 		final RandomParty thugParty = RandomPartyFactory.getInstance().getElement("thugBand", LANGUAGE,
 				PathManager.DEFAULT_MODULE_FOLDER);
 		final RandomPartyDefinition randomPartyDefinition = new RandomPartyDefinition(thugParty, 0,
-				PathManager.DEFAULT_MODULE_FOLDER, new HashSet<IRandomPreference>());
+				PathManager.DEFAULT_MODULE_FOLDER, new HashSet<>());
 		randomPartyDefinition.assign();
 		// One mandatory and one random element that is always added.
 		Assert.assertEquals(randomPartyDefinition.getParty().getMembers().size(), 1 + 1);
@@ -55,14 +54,14 @@ public class RandomPartyDefinitionTests {
 		final RandomParty thugParty = RandomPartyFactory.getInstance().getElement("thugBand", LANGUAGE,
 				PathManager.DEFAULT_MODULE_FOLDER);
 		final RandomPartyDefinition randomPartyDefinition = new RandomPartyDefinition(thugParty, 200,
-				PathManager.DEFAULT_MODULE_FOLDER, new HashSet<IRandomPreference>());
+				PathManager.DEFAULT_MODULE_FOLDER, new HashSet<>());
 		randomPartyDefinition.assign();
 		Assert.assertNotNull(randomPartyDefinition.getParty().getPartyName());
 
 		final RandomParty thugParty2 = RandomPartyFactory.getInstance().getElement("thugBand", LANGUAGE,
 				PathManager.DEFAULT_MODULE_FOLDER);
 		final RandomPartyDefinition randomPartyDefinition2 = new RandomPartyDefinition(thugParty2, 450,
-				PathManager.DEFAULT_MODULE_FOLDER, new HashSet<IRandomPreference>());
+				PathManager.DEFAULT_MODULE_FOLDER, new HashSet<>());
 		randomPartyDefinition2.assign();
 
 		Assert.assertTrue(randomPartyDefinition2.getParty().getMembers().size() > randomPartyDefinition.getParty()

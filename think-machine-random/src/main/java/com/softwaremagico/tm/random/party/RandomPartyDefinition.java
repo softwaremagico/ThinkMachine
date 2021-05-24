@@ -49,7 +49,7 @@ public class RandomPartyDefinition extends RandomSelector<RandomPartyMember> {
     private final String moduleName;
 
     protected RandomPartyDefinition(RandomParty randomParty, int threatLevel, String moduleName,
-                                    Set<IRandomPreference> preferences) throws InvalidXmlElementException, RestrictedElementException {
+                                    Set<IRandomPreference<?>> preferences) throws InvalidXmlElementException, RestrictedElementException {
         super(null, randomParty, preferences, new HashSet<>(), new HashSet<>());
         this.moduleName = moduleName;
         this.threatLevel = threatLevel;

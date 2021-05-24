@@ -45,7 +45,7 @@ import java.util.Set;
 
 public class RandomPsique extends RandomSelector<OccultismType> {
 
-    public RandomPsique(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences)
+    public RandomPsique(CharacterPlayer characterPlayer, Set<IRandomPreference<?>> preferences)
             throws InvalidXmlElementException, RestrictedElementException {
         super(characterPlayer, preferences);
     }

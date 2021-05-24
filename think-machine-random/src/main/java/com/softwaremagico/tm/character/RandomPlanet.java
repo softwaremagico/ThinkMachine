@@ -41,7 +41,7 @@ public class RandomPlanet extends RandomSelector<Planet> {
     private static final int NEUTRAL_PLANET = 8;
     private static final int ENEMY_PLANET = 1;
 
-    public RandomPlanet(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences)
+    public RandomPlanet(CharacterPlayer characterPlayer, Set<IRandomPreference<?>> preferences)
             throws InvalidXmlElementException, RestrictedElementException {
         super(characterPlayer, preferences);
     }

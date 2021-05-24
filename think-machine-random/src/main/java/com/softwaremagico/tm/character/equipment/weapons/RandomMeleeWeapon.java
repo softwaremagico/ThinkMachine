@@ -38,7 +38,7 @@ import java.util.Set;
 
 public class RandomMeleeWeapon extends RandomWeapon {
 
-    public RandomMeleeWeapon(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences,
+    public RandomMeleeWeapon(CharacterPlayer characterPlayer, Set<IRandomPreference<?>> preferences,
                              Set<Weapon> mandatoryWeapons) throws InvalidXmlElementException, RestrictedElementException {
         super(characterPlayer, preferences, mandatoryWeapons);
     }
@@ -69,7 +69,7 @@ public class RandomMeleeWeapon extends RandomWeapon {
 
     @Override
     protected int getWeightCostModificator(Weapon weapon) {
-        if (weapon.getCost() > getCurrentMoney() / (double) 1.1) {
+        if (weapon.getCost() > getCurrentMoney() / 1.1) {
             return 10;
         } else if (weapon.getCost() > getCurrentMoney() / (double) 2) {
             return 7;

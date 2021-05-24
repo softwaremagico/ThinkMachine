@@ -43,7 +43,7 @@ import com.softwaremagico.tm.random.selectors.IRandomPreference;
 import java.util.*;
 
 public abstract class RandomPredefined<Predefined extends Element<Predefined>> extends Element<Predefined> implements IRandomPredefined {
-    private final Set<IRandomPreference> randomPreferences;
+    private final Set<IRandomPreference<?>> randomPreferences;
     private final Set<Characteristic> characteristicsMinimumValues;
     private final Set<AvailableSkill> requiredSkills;
     private final Set<AvailableSkill> suggestedSkills;
@@ -61,7 +61,7 @@ public abstract class RandomPredefined<Predefined extends Element<Predefined>> e
     public boolean parentMerged = false;
 
     public RandomPredefined(String id, String name, String description, String language, String moduleName,
-                            Set<IRandomPreference> randomPreferences, Set<Characteristic> characteristicsMinimumValues,
+                            Set<IRandomPreference<?>> randomPreferences, Set<Characteristic> characteristicsMinimumValues,
                             Set<AvailableSkill> requiredSkills, Set<AvailableSkill> suggestedSkills,
                             Set<Blessing> mandatoryBlessings, Set<Blessing> suggestedBlessings,
                             Set<BeneficeDefinition> mandatoryBenefices, Set<BeneficeDefinition> suggestedBenefices,
@@ -173,7 +173,7 @@ public abstract class RandomPredefined<Predefined extends Element<Predefined>> e
     }
 
     @Override
-    public Set<IRandomPreference> getPreferences() {
+    public Set<IRandomPreference<?>> getPreferences() {
         return randomPreferences;
     }
 

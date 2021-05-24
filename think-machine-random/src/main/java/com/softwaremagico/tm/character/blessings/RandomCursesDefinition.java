@@ -39,7 +39,7 @@ import java.util.Set;
 
 public class RandomCursesDefinition extends RandomSelector<Blessing> {
 
-    public RandomCursesDefinition(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences)
+    public RandomCursesDefinition(CharacterPlayer characterPlayer, Set<IRandomPreference<?>> preferences)
             throws InvalidXmlElementException, RestrictedElementException {
         super(characterPlayer, preferences);
     }

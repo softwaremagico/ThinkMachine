@@ -26,7 +26,7 @@ package com.softwaremagico.tm.random.selectors;
 
 import java.util.Set;
 
-public enum RacePreferences implements ICharacterDescriptionPreference {
+public enum RacePreferences implements ICharacterDescriptionPreference<RacePreferences> {
     HUMAN,
 
     XENO;
@@ -41,8 +41,8 @@ public enum RacePreferences implements ICharacterDescriptionPreference {
         return 0;
     }
 
-    public static RacePreferences getSelected(Set<IRandomPreference> preferences) {
-        for (final IRandomPreference preference : preferences) {
+    public static RacePreferences getSelected(Set<IRandomPreference<?>> preferences) {
+        for (final IRandomPreference<?> preference : preferences) {
             if (preference instanceof RacePreferences) {
                 return (RacePreferences) preference;
             }
@@ -51,7 +51,7 @@ public enum RacePreferences implements ICharacterDescriptionPreference {
     }
 
     @Override
-    public IRandomPreference getDefault() {
+    public IRandomPreference<RacePreferences> getDefault() {
         return getDefaultOption();
     }
 

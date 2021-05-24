@@ -43,7 +43,7 @@ public class RandomCharacteristics extends RandomSelector<Characteristic> {
     private static final int MIN_FAITH_FOR_THEURGY = 6;
     private static final int MIN_WILL_FOR_PSIQUE = 5;
 
-    public RandomCharacteristics(CharacterPlayer characterPlayer, Set<IRandomPreference> preferences,
+    public RandomCharacteristics(CharacterPlayer characterPlayer, Set<IRandomPreference<?>> preferences,
                                  Set<Characteristic> characteristicsMinimumValues) throws InvalidXmlElementException,
             RestrictedElementException {
         super(characterPlayer, null, preferences, characteristicsMinimumValues, new HashSet<>());
@@ -54,8 +54,8 @@ public class RandomCharacteristics extends RandomSelector<Characteristic> {
         final SpecializationPreferences selectedSpecialization = SpecializationPreferences
                 .getSelected(getPreferences());
 
-        IRandomPreference techPreference = null;
-        for (final IRandomPreference preference : getPreferences()) {
+        IRandomPreference<?> techPreference = null;
+        for (final IRandomPreference<?> preference : getPreferences()) {
             if (preference instanceof TechnologicalPreferences) {
                 techPreference = preference;
             }

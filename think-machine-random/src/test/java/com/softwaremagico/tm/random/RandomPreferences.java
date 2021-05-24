@@ -32,6 +32,7 @@ import com.softwaremagico.tm.character.benefices.BeneficeGroup;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.combat.CombatStyle;
 import com.softwaremagico.tm.character.combat.CombatStyleGroup;
+import com.softwaremagico.tm.character.equipment.shields.ShieldFactory;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.character.skills.InvalidRanksException;
@@ -41,6 +42,7 @@ import com.softwaremagico.tm.random.selectors.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.Collections;
 import java.util.HashSet;
 
 @Test(groups = {"randomPreferences"})
@@ -86,8 +88,8 @@ public class RandomPreferences {
         characterPlayer.setSkillRank(AvailableSkillsFactory.getInstance().getElement("melee", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER), 8);
         randomizeCharacter.createCharacter();
         Assert.assertFalse(characterPlayer.getSelectedBenefices(BeneficeGroup.FIGHTING).isEmpty());
-        Assert.assertTrue(CombatStyle.getCombatStyle(characterPlayer.getSelectedBenefices(BeneficeGroup.FIGHTING).iterator().next().getBeneficeDefinition(),
-                LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).getGroup() == CombatStyleGroup.MELEE);
+        Assert.assertSame(CombatStyle.getCombatStyle(characterPlayer.getSelectedBenefices(BeneficeGroup.FIGHTING).iterator().next().getBeneficeDefinition(),
+                LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).getGroup(), CombatStyleGroup.MELEE);
     }
 
     @Test
@@ -103,6 +105,28 @@ public class RandomPreferences {
         randomizeCharacter.createCharacter();
         Assert.assertTrue(characterPlayer.getCharacteristic(CharacteristicName.TECH).getValue() >=
                 artifactMelee.getRandomDefinition().getMinimumTechLevel());
+    }
+
+    @Test
+    public void checkNobilityPreferencesHasDefaultCash() {
+        final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0,
+                FactionPreferences.NOBILITY);
+        randomizeCharacter.setDefaultPreferences();
+        //At least, FAIR cash must be selected for a noble.
+        Assert.assertTrue(CashPreferences.getSelected(randomizeCharacter.getPreferences()).ordinal() > 0);
+    }
+
+    @Test
+    public void checkWeaponsCostDefaultCash() throws InvalidXmlElementException {
+        final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0,
+                new HashSet<>(), new HashSet<>(Collections.singletonList(FactionPreferences.NOBILITY)), new HashSet<>(), new HashSet<>(), new HashSet<>(),
+                new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(),
+                new HashSet<>(), new HashSet<>(), new HashSet<>(Collections.singletonList(ShieldFactory.getInstance().getElement("battleShield", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER))));
+        randomizeCharacter.setDefaultPreferences();
+        //At least, FAIR cash must be selected for a noble.
+        Assert.assertTrue(CashPreferences.getSelected(randomizeCharacter.getPreferences()).ordinal() > 3);
     }
 
 

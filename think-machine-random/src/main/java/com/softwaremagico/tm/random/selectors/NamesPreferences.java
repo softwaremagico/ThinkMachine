@@ -27,7 +27,7 @@ package com.softwaremagico.tm.random.selectors;
 import java.util.Random;
 import java.util.Set;
 
-public enum NamesPreferences implements ICharacterDescriptionPreference, IGaussianDistribution {
+public enum NamesPreferences implements ICharacterDescriptionPreference<NamesPreferences>, IGaussianDistribution {
 
     // Gaussian distribution.
     LOW(1, 1, 1, 1),
@@ -44,7 +44,7 @@ public enum NamesPreferences implements ICharacterDescriptionPreference, IGaussi
     private final int variance;
     private final Random random = new Random();
 
-    private NamesPreferences(int minimumValue, int maximumValue, int mean, int variance) {
+    NamesPreferences(int minimumValue, int maximumValue, int mean, int variance) {
         this.maximum = maximumValue;
         this.minimum = minimumValue;
         this.variance = variance;
@@ -63,7 +63,7 @@ public enum NamesPreferences implements ICharacterDescriptionPreference, IGaussi
 
     @Override
     public int variance() {
-        return (int) variance;
+        return variance;
     }
 
     @Override
@@ -71,8 +71,8 @@ public enum NamesPreferences implements ICharacterDescriptionPreference, IGaussi
         return mean;
     }
 
-    public static NamesPreferences getSelected(Set<IRandomPreference> preferences) {
-        for (final IRandomPreference preference : preferences) {
+    public static NamesPreferences getSelected(Set<IRandomPreference<?>> preferences) {
+        for (final IRandomPreference<?> preference : preferences) {
             if (preference instanceof NamesPreferences) {
                 return (NamesPreferences) preference;
             }
@@ -102,7 +102,7 @@ public enum NamesPreferences implements ICharacterDescriptionPreference, IGaussi
     }
 
     @Override
-    public IRandomPreference getDefault() {
+    public IRandomPreference<NamesPreferences> getDefault() {
         return getDefaultOption();
     }
 

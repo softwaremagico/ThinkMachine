@@ -135,7 +135,7 @@ public class RandomPartyFactory extends XmlFactory<RandomParty> {
 					}
 				}
 
-				final Set<IRandomPreference> randomPreferences = new HashSet<>();
+				final Set<IRandomPreference<?>> randomPreferences = new HashSet<>();
 				final String preferencesSelectedNames = translator.getNodeValue(partyId, MEMBER, EXTRA_PREFERENCES,
 						node);
 				if (preferencesSelectedNames != null) {

@@ -27,7 +27,7 @@ package com.softwaremagico.tm.random.selectors;
 import java.util.Random;
 import java.util.Set;
 
-public enum BlessingNumberPreferences implements ICharacterCreationPreference, IGaussianDistribution {
+public enum BlessingNumberPreferences implements ICharacterCreationPreference<BlessingNumberPreferences>, IGaussianDistribution {
 
     NONE(0, 0, 0, 0),
 
@@ -45,7 +45,7 @@ public enum BlessingNumberPreferences implements ICharacterCreationPreference, I
     private final int variance;
     private final Random random = new Random();
 
-    private BlessingNumberPreferences(int minimumValue, int maximumValue, int mean, int variance) {
+    BlessingNumberPreferences(int minimumValue, int maximumValue, int mean, int variance) {
         this.maximum = maximumValue;
         this.minimum = minimumValue;
         this.variance = variance;
@@ -72,8 +72,8 @@ public enum BlessingNumberPreferences implements ICharacterCreationPreference, I
         return mean;
     }
 
-    public static BlessingNumberPreferences getSelected(Set<IRandomPreference> preferences) {
-        for (final IRandomPreference preference : preferences) {
+    public static BlessingNumberPreferences getSelected(Set<IRandomPreference<?>> preferences) {
+        for (final IRandomPreference<?> preference : preferences) {
             if (preference instanceof BlessingNumberPreferences) {
                 return (BlessingNumberPreferences) preference;
             }
@@ -91,7 +91,7 @@ public enum BlessingNumberPreferences implements ICharacterCreationPreference, I
     }
 
     @Override
-    public IRandomPreference getDefault() {
+    public IRandomPreference<BlessingNumberPreferences> getDefault() {
         return getDefaultOption();
     }
 

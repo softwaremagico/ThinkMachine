@@ -26,7 +26,7 @@ package com.softwaremagico.tm.random.selectors;
 
 import java.util.Set;
 
-public enum DifficultLevelPreferences implements ICharacterDescriptionPreference {
+public enum DifficultLevelPreferences implements ICharacterDescriptionPreference<DifficultLevelPreferences> {
 
     // Threat level ~50
     VERY_EASY(-5, -15, 0),
@@ -47,7 +47,7 @@ public enum DifficultLevelPreferences implements ICharacterDescriptionPreference
     private final int skillsBonus;
     private final int characteristicsBonus;
 
-    private DifficultLevelPreferences(int characteristicsBonus, int skillsBonus, int extraExperience) {
+    DifficultLevelPreferences(int characteristicsBonus, int skillsBonus, int extraExperience) {
         this.characteristicsBonus = characteristicsBonus;
         this.skillsBonus = skillsBonus;
         this.experienceBonus = extraExperience;
@@ -63,8 +63,8 @@ public enum DifficultLevelPreferences implements ICharacterDescriptionPreference
         return 0;
     }
 
-    public static DifficultLevelPreferences getSelected(Set<IRandomPreference> preferences) {
-        for (final IRandomPreference preference : preferences) {
+    public static DifficultLevelPreferences getSelected(Set<IRandomPreference<?>> preferences) {
+        for (final IRandomPreference<?> preference : preferences) {
             if (preference instanceof DifficultLevelPreferences) {
                 return (DifficultLevelPreferences) preference;
             }
@@ -85,7 +85,7 @@ public enum DifficultLevelPreferences implements ICharacterDescriptionPreference
     }
 
     @Override
-    public IRandomPreference getDefault() {
+    public IRandomPreference<DifficultLevelPreferences> getDefault() {
         return getDefaultOption();
     }
 
