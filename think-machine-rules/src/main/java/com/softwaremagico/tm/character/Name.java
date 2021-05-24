@@ -79,7 +79,7 @@ public class Name extends Element<Name> {
     }
 
     private static String getId(String name, Faction faction, String moduleName) {
-        return name.replaceAll("\\s+", "_").toLowerCase() + (faction != null ? "_" + faction : "") +
+        return name.replaceAll("\\s+", "_").toLowerCase() + (faction != null ? "_" + faction.getId() : "") +
                 (moduleName != null ? "_" + moduleName.replaceAll("\\s+", "_").toLowerCase() : "");
     }
 
