@@ -49,7 +49,6 @@ import com.softwaremagico.tm.character.occultism.OccultismPath;
 import com.softwaremagico.tm.character.occultism.RandomPsique;
 import com.softwaremagico.tm.character.occultism.RandomPsiquePath;
 import com.softwaremagico.tm.character.races.Race;
-import com.softwaremagico.tm.character.races.RaceFactory;
 import com.softwaremagico.tm.character.races.RandomRace;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.character.skills.RandomSkillExperience;
@@ -61,10 +60,7 @@ import com.softwaremagico.tm.random.predefined.IRandomPredefined;
 import com.softwaremagico.tm.random.predefined.PredefinedMerger;
 import com.softwaremagico.tm.random.selectors.*;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
@@ -283,8 +279,20 @@ public class RandomizeCharacter {
                 try {
                     //Race not correct for this faction. Correct it.
                     if (!requiredFaction.getRestrictedToRaces().isEmpty() && !requiredFaction.getRestrictedToRaces().contains(characterPlayer.getRace())) {
-                        characterPlayer.setRace(RaceFactory.getInstance().getElement("human", characterPlayer.getLanguage(),
-                                characterPlayer.getModuleName()));
+                        //Gets random restricted to race.
+                        Optional<Race> selectedRace = requiredFaction.getRestrictedToRaces().stream().skip((int)
+                                (requiredFaction.getRestrictedToRaces().size() * Math.random())).findAny();
+                        if (selectedRace.isPresent()) {
+                            characterPlayer.setRace(selectedRace.get());
+                        } else {
+                            selectedRace = requiredFaction.getRestrictedToRaces().stream().findAny();
+                            if (selectedRace.isPresent()) {
+                                characterPlayer.setRace(selectedRace.get());
+                            } else {
+                                RandomGenerationLog.severe(this.getClass().getName(), "No race selected for mandatory faction '" +
+                                        requiredFaction + "'.");
+                            }
+                        }
                     }
                     characterPlayer.setFaction(requiredFaction);
                 } catch (RestrictedElementException e) {
