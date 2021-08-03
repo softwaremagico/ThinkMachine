@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <blessings>
     <version>1</version>
-    <totalElements>154</totalElements>
+    <totalElements>157</totalElements>
     <handsome>
         <name>
             <en>Handsome</en>
@@ -4116,6 +4116,85 @@
         <official>false</official>
         <curse>true</curse>
     </requiresMoisture>
-
+    <paranoid>
+        <name>
+            <en>Paranoid</en>
+            <es>Paranoico</es>
+        </name>
+        <description>
+            <en>Personality quirks can be simulated with Blessings or Curses. For instance, most Hawkwoods are
+                excessively Prideful, and find it hard to turn the other cheek when insulted. Thus, a Hawkwood may have
+                a –3 modifier to her Will, in case she ever had to roll to maintain her composure -it’s important not to
+                lose one’s temper at the gala ball.
+            </en>
+            <es>Las peculiaridades de la personalidad pueden simularse con las Bendiciones y Maldiciones. Por ejemplo,
+                la mayoría de los Hawkwoods son excesivamente Orgullosos, y les resulta difícil poner la otra mejilla
+                cuando se les insulta. Por este motivo, un Hawkwood puede tener un modificador de -3 a su Voluntad, en
+                el caso de que tuviera que realizar una tirada para mantener su compostura, dado que es importante no
+                perder el temple en un baile de gala.
+            </es>
+        </description>
+        <cost>2</cost>
+        <bonifications>
+            <bonification>
+                <value>2</value>
+                <affects>wits</affects>
+                <situation>
+                    <en>When scrutinized</en>
+                    <es>Se le escruta</es>
+                </situation>
+            </bonification>
+        </bonifications>
+        <group>behaviour</group>
+        <official>false</official>
+        <curse>true</curse>
+    </paranoid>
+    <competitive>
+        <name>
+            <es>Competitivo</es>
+            <en>Competitive</en>
+        </name>
+        <description>
+            <en>The following Blessing or Curse is only available for some specific races or factions</en>
+            <es>Esta bendición o maldición únicamente está disponible para algunas razas o facciones</es>
+        </description>
+        <cost>2</cost>
+        <bonifications>
+            <bonification>
+                <value>2</value>
+                <affects>will</affects>
+                <situation>
+                    <en>Around rivals</en>
+                    <es>Entre rivales</es>
+                </situation>
+            </bonification>
+        </bonifications>
+        <curse>true</curse>
+        <group>behaviour</group>
+        <restricted>true</restricted>
+    </competitive>
+    <popular>
+        <name>
+            <en>Popular</en>
+            <es>Popular</es>
+        </name>
+        <description>
+            <en>The following Blessing or Curse is only available for some specific races or factions</en>
+            <es>Esta bendición o maldición únicamente está disponible para algunas razas o facciones</es>
+        </description>
+        <cost>2</cost>
+        <bonifications>
+            <bonification>
+                <value>2</value>
+                <affects>influence</affects>
+                <situation>
+                    <en>Among customers</en>
+                    <es>Entre clientes</es>
+                </situation>
+            </bonification>
+        </bonifications>
+        <group>behaviour</group>
+        <restricted>true</restricted>
+    </popular>
 
 </blessings>

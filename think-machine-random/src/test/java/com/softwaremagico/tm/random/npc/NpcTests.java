@@ -398,6 +398,72 @@ public class NpcTests {
                 characterPlayer.getModuleName()));
     }
 
+    @Test
+    public void theMasque() throws InvalidXmlElementException,
+            InvalidRandomElementSelectedException, RestrictedElementException {
+        final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
+                NpcFactory.getInstance().getElement("theMasque", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+        randomizeCharacter.createCharacter();
+        Assert.assertEquals(characterPlayer.getFaction(), FactionsFactory.getInstance().getElement("theMasque", characterPlayer.getLanguage(),
+                characterPlayer.getModuleName()));
+    }
+
+    @Test
+    public void vagabonds() throws InvalidXmlElementException,
+            InvalidRandomElementSelectedException, RestrictedElementException {
+        final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
+                NpcFactory.getInstance().getElement("vagabonds", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+        randomizeCharacter.createCharacter();
+        Assert.assertEquals(characterPlayer.getFaction(), FactionsFactory.getInstance().getElement("vagabonds", characterPlayer.getLanguage(),
+                characterPlayer.getModuleName()));
+    }
+
+    @Test
+    public void prospectors() throws InvalidXmlElementException,
+            InvalidRandomElementSelectedException, RestrictedElementException {
+        final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
+                NpcFactory.getInstance().getElement("prospectors", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+        randomizeCharacter.createCharacter();
+        Assert.assertEquals(characterPlayer.getFaction(), FactionsFactory.getInstance().getElement("prospectors", characterPlayer.getLanguage(),
+                characterPlayer.getModuleName()));
+    }
+
+    @Test
+    public void apothecaries() throws InvalidXmlElementException,
+            InvalidRandomElementSelectedException, RestrictedElementException {
+        final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
+                NpcFactory.getInstance().getElement("apothecaries", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+        randomizeCharacter.createCharacter();
+        Assert.assertEquals(characterPlayer.getFaction(), FactionsFactory.getInstance().getElement("apothecaries", characterPlayer.getLanguage(),
+                characterPlayer.getModuleName()));
+    }
+
+    @Test
+    public void weaponsmiths() throws InvalidXmlElementException,
+            InvalidRandomElementSelectedException, RestrictedElementException {
+        final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
+                NpcFactory.getInstance().getElement("weaponsmiths", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+        randomizeCharacter.createCharacter();
+        Assert.assertEquals(characterPlayer.getFaction(), FactionsFactory.getInstance().getElement("weaponsmiths", characterPlayer.getLanguage(),
+                characterPlayer.getModuleName()));
+    }
+
+    @Test
+    public void courtesan() throws InvalidXmlElementException,
+            InvalidRandomElementSelectedException, RestrictedElementException {
+        final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
+                NpcFactory.getInstance().getElement("courtesans", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+        randomizeCharacter.createCharacter();
+        Assert.assertEquals(characterPlayer.getFaction(), FactionsFactory.getInstance().getElement("courtesans", characterPlayer.getLanguage(),
+                characterPlayer.getModuleName()));
+    }
+
 
     @Test
     public void restricted() throws InvalidXmlElementException {

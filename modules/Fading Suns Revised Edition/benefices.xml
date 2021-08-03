@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <benefices>
     <version>1</version>
-    <totalElements>84</totalElements>
+    <totalElements>86</totalElements>
     <alienUpbringing>
         <name>
             <en>Alien Upbringing</en>
@@ -177,6 +177,16 @@
                     <probabilityMultiplier>0.1</probabilityMultiplier>
                 </random>
             </oroym>
+            <vagabondPatois>
+                <name>
+                    <en>Vagabond Patois</en>
+                    <es>Jerga Vagabunda</es>
+                </name>
+                <official>false</official>
+                <random>
+                    <probabilityMultiplier>0</probabilityMultiplier>
+                </random>
+            </vagabondPatois>
         </specializations>
         <cost>2</cost>
         <group>background</group>
@@ -1364,7 +1374,7 @@
             </duke>
         </specializations>
         <group>status</group>
-       <restrictedToFactionGroup>nobility</restrictedToFactionGroup>
+        <restrictedToFactionGroup>nobility</restrictedToFactionGroup>
     </nobility>
     <ordained>
         <name>
@@ -1974,4 +1984,74 @@
         <restricted>true</restricted>
         <official>false</official>
     </ordainedHironem>
+    <fame>
+        <name>
+            <en>Fama</en>
+            <es>Fame</es>
+        </name>
+        <description>
+            <en>Fame comes with its own rewards. Many nobles like beign seen with celebrities; in order to assure that
+                they are spotted with the famous, they'll often treat the celebrity better thann they do members of
+                their own family. There's a certan prestige that comes with working in an entertainer's guild, and
+                almost every performer has a rating in this Benefice. The higher the rating, the more famous the
+                individual. Career-wise, being very famous is usually a boon, unless the celebrity tends to speak out of
+                turn or say the wrong things in high society.
+            </en>
+            <es>La fama tiene algunas recompensas. A muchos nobles les gusta dejarse ver con celebridades. Para
+                asegurarse, a veces tratan a los famosos mejor que a los miembros de sus propias familias. Trabajar en
+                uno de los gremios de entretenimiento siempre da algo de prestigio, y prácticamente todos los artistas
+                tienen algún punto en este Beneficio. CUando mayor sea la puntuación, más famoso es el personaje. Desde
+                el punto de vista profesional la fama suele ser una ventaja, pero los famosos tienden a hablar a
+                destiempo y a decir lo que no deben en las reuniones sociales.
+            </es>
+        </description>
+        <specializations>
+            <novitiate>
+                <name>
+                    <en>Locally known</en>
+                    <es>Conocido localmente</es>
+                </name>
+                <cost>1</cost>
+            </novitiate>
+            <canon>
+                <name>
+                    <en>Known on a number of worlds</en>
+                    <es>Conocido en algunos mundos</es>
+                </name>
+                <cost>3</cost>
+            </canon>
+            <deacon>
+                <name>
+                    <en>Famous across the Known Worlds</en>
+                    <es>Famoso en todos los Mundos Conocidos</es>
+                </name>
+                <cost>5</cost>
+            </deacon>
+        </specializations>
+        <group>status</group>
+        <official>false</official>
+    </fame>
+    <secretIdentity>
+        <name>
+            <en>Secret Identity</en>
+            <es>Identidad Secreta</es>
+        </name>
+        <description>
+            <en>This Benefice is one of the most wide-ranging in the game. The secret the character knows can range from
+                blackmail on a minor noble to the location of a forgotten planet. Game Masters should work closely with
+                players to ensure their secrets fit into the game he wants to run. What follows are guidelines on how to
+                handle this since only the Game Master knows what secrets most influence her campaign
+            </en>
+            <es>Este Beneficio es uno de los más polivalentes del juego. El secreto que un personaje sabe puede abarcar
+                desde el chantaje a un noble menor, hasta la localización de un planeta olvidado. El Director de Juego
+                debería trabajar codo con codo con los jugadores para asegurar que sus secretos encajan con la partida
+                que quiere llevar a cabo. Lo que sigue son unas pautas sobre cómo manejarse con esto, ya que tan solo el
+                DJ sabe cuánto puede influenciar en
+                la campaña un secreto.
+            </es>
+        </description>
+        <cost>1</cost>
+        <group>status</group>
+        <official>false</official>
+    </secretIdentity>
 </benefices>
