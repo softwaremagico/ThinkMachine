@@ -2270,7 +2270,7 @@
             <en>The Masque</en>
             <es>La Máscara</es>
         </name>
-        <group>guild</group>
+        <group>secondaryGuild</group>
         <faction>theMasque</faction>
         <preferences>StatusPreferences.LOW
         </preferences>
@@ -2318,10 +2318,10 @@
     </theMasque>
     <carnivalers>
         <name>
-            <en>Feriantes</en>
-            <es>Carnivalers</es>
+            <es>Feriantes</es>
+            <en>Carnivalers</en>
         </name>
-        <group>guild</group>
+        <group>secondaryGuild</group>
         <faction>carnivalers</faction>
         <preferences>StatusPreferences.LOW
         </preferences>
@@ -2375,9 +2375,9 @@
     <slayer>
         <name>
             <en>Slayer</en>
-            <es>slayer</es>
+            <es>Asesino</es>
         </name>
-        <group>guild</group>
+        <group>secondaryGuild</group>
         <faction>slayer</faction>
         <preferences>StatusPreferences.LOW
         </preferences>
@@ -2437,10 +2437,10 @@
     </slayer>
     <vagabonds>
         <name>
-            <en>Vagabundos</en>
-            <es>Vagabonds</es>
+            <es>Vagabundos</es>
+            <en>Vagabonds</en>
         </name>
-        <group>guild</group>
+        <group>secondaryGuild</group>
         <faction>vagabonds</faction>
         <preferences>StatusPreferences.LOW, CombatActionsPreferences.HIGH,
             CombatActionsGroupPreferences.FIGHT
@@ -2488,7 +2488,7 @@
             <en>Prospectors</en>
             <es>Prospectores</es>
         </name>
-        <group>guild</group>
+        <group>secondaryGuild</group>
         <faction>prospectors</faction>
         <preferences>StatusPreferences.LOW, TechnologicalPreferences.SPACE_CITIZEN
         </preferences>
@@ -2514,10 +2514,10 @@
     </prospectors>
     <apothecaries>
         <name>
-            <en>Apotecarios</en>
-            <es>Apothecaries</es>
+            <es>Apotecarios</es>
+            <en>Apothecaries</en>
         </name>
-        <group>guild</group>
+        <group>secondaryGuild</group>
         <faction>apothecaries</faction>
         <preferences>TechnologicalPreferences.SPACE_CITIZEN
         </preferences>
@@ -2547,10 +2547,10 @@
     </apothecaries>
     <weaponsmiths>
         <name>
-            <en>Armeros</en>
-            <es>Weaponsmiths</es>
+            <es>Armeros</es>
+            <en>Weaponsmiths</en>
         </name>
-        <group>guild</group>
+        <group>secondaryGuild</group>
         <faction>weaponsmiths</faction>
         <preferences>TechnologicalPreferences.SPACE_CITIZEN
         </preferences>
@@ -2592,7 +2592,7 @@
             <es>Cortesanas</es>
             <en>Courtesans</en>
         </name>
-        <group>guild</group>
+        <group>secondaryGuild</group>
         <faction>courtesans</faction>
         <characteristicsMinimumValues>
             <dexterity>7</dexterity>
@@ -2626,7 +2626,7 @@
             <es>Bromistas</es>
             <en>Mercurians</en>
         </name>
-        <group>guild</group>
+        <group>secondaryGuild</group>
         <faction>mercurians</faction>
         <official>false</official>
     </mercurians>
