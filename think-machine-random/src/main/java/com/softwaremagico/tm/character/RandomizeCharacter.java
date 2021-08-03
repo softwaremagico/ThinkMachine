@@ -384,7 +384,7 @@ public class RandomizeCharacter {
                 - CostCalculator.getCost(characterPlayer, difficultLevel.getSkillsBonus(), difficultLevel.getCharacteristicsBonus());
 
         RandomGenerationLog.info(this.getClass().getName(), "Remaining points '{}'.", remainingPoints);
-        final IGaussianDistribution specialization = SpecializationPreferences.getSelected(preferences);
+        final SpecializationPreferences specialization = SpecializationPreferences.getSelected(preferences);
 
         if (remainingPoints > 0) {
             final RandomCharacteristicsExtraPoints randomCharacteristicsExtraPoints = new RandomCharacteristicsExtraPoints(characterPlayer, preferences);
@@ -392,7 +392,32 @@ public class RandomizeCharacter {
             while (remainingPoints > 0) {
                 // Characteristics only if is a little specialized.
                 if (remainingPoints >= CostCalculator.CHARACTERISTIC_EXTRA_POINTS_COST && specialization.randomGaussian() > 5) {
-                    remainingPoints -= randomCharacteristicsExtraPoints.spendCharacteristicsPoints(remainingPoints);
+                    //Avoid too much points on characteristics.
+                    int maxCharacteristicsExtraPoints;
+                    switch (specialization) {
+                        case VERY_GENERALIZED:
+                            maxCharacteristicsExtraPoints = 3 * CostCalculator.CHARACTERISTIC_EXTRA_POINTS_COST;
+                            break;
+                        case GENERALIZED:
+                            maxCharacteristicsExtraPoints = 4 * CostCalculator.CHARACTERISTIC_EXTRA_POINTS_COST;
+                            break;
+                        case FAIR:
+                            maxCharacteristicsExtraPoints = 6 * CostCalculator.CHARACTERISTIC_EXTRA_POINTS_COST;
+                            break;
+                        case SPECIALIZED:
+                            maxCharacteristicsExtraPoints = 8 * CostCalculator.CHARACTERISTIC_EXTRA_POINTS_COST;
+                            break;
+                        case VERY_SPECIALIZED:
+                            maxCharacteristicsExtraPoints = 9 * CostCalculator.CHARACTERISTIC_EXTRA_POINTS_COST;
+                            break;
+                        case ANY:
+                        default:
+                            maxCharacteristicsExtraPoints = 5 * CostCalculator.CHARACTERISTIC_EXTRA_POINTS_COST;
+                    }
+                    if (CostCalculator.getCharacteristicsCost(characterPlayer, difficultLevel.getCharacteristicsBonus()) <=
+                            maxCharacteristicsExtraPoints) {
+                        remainingPoints -= randomCharacteristicsExtraPoints.spendCharacteristicsPoints(remainingPoints);
+                    }
                 }
 
                 if (remainingPoints > 0) {
