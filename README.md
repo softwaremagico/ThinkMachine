@@ -134,5 +134,5 @@ Fonts used in this project: DejaVuSans, ArchitectsDaughter and Roman Antique.
 - 0.9.2 Occultism descriptions.
 
 0.10.0 NPC generator.
-
+- 0.10.1 Players Companion NPCs
 
