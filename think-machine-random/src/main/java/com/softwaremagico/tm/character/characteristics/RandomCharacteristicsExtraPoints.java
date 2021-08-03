@@ -32,7 +32,6 @@ import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
 import com.softwaremagico.tm.log.RandomGenerationLog;
 import com.softwaremagico.tm.random.exceptions.ImpossibleToAssignMandatoryElementException;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
-import com.softwaremagico.tm.random.selectors.DifficultLevelPreferences;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
 import com.softwaremagico.tm.random.selectors.SpecializationPreferences;
 import com.softwaremagico.tm.random.selectors.TechnologicalPreferences;
@@ -58,36 +57,6 @@ public class RandomCharacteristicsExtraPoints extends RandomCharacteristics {
         }
 
         if (remainingPoints >= CostCalculator.CHARACTERISTIC_EXTRA_POINTS_COST) {
-            //Avoid too much points on characteristics.
-            final DifficultLevelPreferences difficultLevelPreferences = DifficultLevelPreferences.getSelected(getPreferences());
-            int maxCharacteristicsExtraPoints = 3 * CostCalculator.CHARACTERISTIC_EXTRA_POINTS_COST;
-            switch (specialization) {
-                case VERY_GENERALIZED:
-                    maxCharacteristicsExtraPoints = 3 * CostCalculator.CHARACTERISTIC_EXTRA_POINTS_COST;
-                    break;
-                case GENERALIZED:
-                    maxCharacteristicsExtraPoints = 4 * CostCalculator.CHARACTERISTIC_EXTRA_POINTS_COST;
-                    break;
-                case FAIR:
-                    maxCharacteristicsExtraPoints = 6 * CostCalculator.CHARACTERISTIC_EXTRA_POINTS_COST;
-                    break;
-                case SPECIALIZED:
-                    maxCharacteristicsExtraPoints = 8 * CostCalculator.CHARACTERISTIC_EXTRA_POINTS_COST;
-                    break;
-                case VERY_SPECIALIZED:
-                    maxCharacteristicsExtraPoints = 9 * CostCalculator.CHARACTERISTIC_EXTRA_POINTS_COST;
-                    break;
-                case ANY:
-                    break;
-                default:
-                    maxCharacteristicsExtraPoints = 5 * CostCalculator.CHARACTERISTIC_EXTRA_POINTS_COST;
-            }
-            if (CostCalculator.getCharacteristicsCost(getCharacterPlayer(), difficultLevelPreferences.getCharacteristicsBonus()) >
-                    maxCharacteristicsExtraPoints) {
-                return 0;
-            }
-
-
             final Characteristic selectedCharacteristic = selectElementByWeight();
             // If specialization allows it.
             if (specialization.randomGaussian() > selectedCharacteristic.getValue() && selectedCharacteristic.getValue() < specialization.maximum()) {

@@ -390,33 +390,7 @@ public class RandomizeCharacter {
             final RandomCharacteristicsExtraPoints randomCharacteristicsExtraPoints = new RandomCharacteristicsExtraPoints(characterPlayer, preferences);
             final RandomSkillExtraPoints randomSkillExtraPoints = new RandomSkillExtraPoints(characterPlayer, preferences, suggestedSkills);
             while (remainingPoints > 0) {
-                // Characteristics only if is a little specialized.
-                if (remainingPoints >= CostCalculator.CHARACTERISTIC_EXTRA_POINTS_COST && specialization.randomGaussian() > 5) {
-                    //Avoid too much points on characteristics.
-                    int maxCharacteristicsExtraPoints;
-                    switch (specialization) {
-                        case VERY_GENERALIZED:
-                            maxCharacteristicsExtraPoints = 4 * CostCalculator.CHARACTERISTIC_EXTRA_POINTS_COST;
-                            break;
-                        case FAIR:
-                            maxCharacteristicsExtraPoints = 6 * CostCalculator.CHARACTERISTIC_EXTRA_POINTS_COST;
-                            break;
-                        case SPECIALIZED:
-                            maxCharacteristicsExtraPoints = 8 * CostCalculator.CHARACTERISTIC_EXTRA_POINTS_COST;
-                            break;
-                        case VERY_SPECIALIZED:
-                            maxCharacteristicsExtraPoints = 9 * CostCalculator.CHARACTERISTIC_EXTRA_POINTS_COST;
-                            break;
-                        case ANY:
-                        case GENERALIZED:
-                        default:
-                            maxCharacteristicsExtraPoints = 5 * CostCalculator.CHARACTERISTIC_EXTRA_POINTS_COST;
-                    }
-                    if (CostCalculator.getCharacteristicsCost(characterPlayer, difficultLevel.getCharacteristicsBonus()) <=
-                            maxCharacteristicsExtraPoints) {
-                        remainingPoints -= randomCharacteristicsExtraPoints.spendCharacteristicsPoints(remainingPoints);
-                    }
-                }
+                remainingPoints -= randomCharacteristicsExtraPoints.spendCharacteristicsPoints(remainingPoints);
 
                 if (remainingPoints > 0) {
                     //Two skills checks for not specialized characters.
