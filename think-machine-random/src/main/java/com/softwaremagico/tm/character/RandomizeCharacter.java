@@ -396,9 +396,6 @@ public class RandomizeCharacter {
                     int maxCharacteristicsExtraPoints;
                     switch (specialization) {
                         case VERY_GENERALIZED:
-                            maxCharacteristicsExtraPoints = 3 * CostCalculator.CHARACTERISTIC_EXTRA_POINTS_COST;
-                            break;
-                        case GENERALIZED:
                             maxCharacteristicsExtraPoints = 4 * CostCalculator.CHARACTERISTIC_EXTRA_POINTS_COST;
                             break;
                         case FAIR:
@@ -411,6 +408,7 @@ public class RandomizeCharacter {
                             maxCharacteristicsExtraPoints = 9 * CostCalculator.CHARACTERISTIC_EXTRA_POINTS_COST;
                             break;
                         case ANY:
+                        case GENERALIZED:
                         default:
                             maxCharacteristicsExtraPoints = 5 * CostCalculator.CHARACTERISTIC_EXTRA_POINTS_COST;
                     }
@@ -421,6 +419,10 @@ public class RandomizeCharacter {
                 }
 
                 if (remainingPoints > 0) {
+                    //Two skills checks for not specialized characters.
+                    if (specialization.ordinal() <= SpecializationPreferences.FAIR.ordinal()) {
+                        remainingPoints -= randomSkillExtraPoints.spendSkillsPoints(remainingPoints);
+                    }
                     remainingPoints -= randomSkillExtraPoints.spendSkillsPoints(remainingPoints);
                 }
             }
