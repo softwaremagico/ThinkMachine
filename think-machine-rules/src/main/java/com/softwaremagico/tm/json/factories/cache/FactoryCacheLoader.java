@@ -24,30 +24,16 @@ package com.softwaremagico.tm.json.factories.cache;
  * #L%
  */
 
-import ch.qos.logback.classic.Level;
-import ch.qos.logback.classic.Logger;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.softwaremagico.tm.Element;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
-import com.softwaremagico.tm.character.benefices.BeneficeDefinitionFactory;
-import com.softwaremagico.tm.character.blessings.BlessingFactory;
-import com.softwaremagico.tm.character.equipment.armours.ArmourFactory;
-import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
-import com.softwaremagico.tm.character.planets.PlanetFactory;
-import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
 import com.softwaremagico.tm.file.PathManager;
-import com.softwaremagico.tm.file.modules.ModuleManager;
 import com.softwaremagico.tm.json.factories.FactoryElements;
 import com.softwaremagico.tm.language.Language;
 import com.softwaremagico.tm.language.LanguagePool;
-import com.softwaremagico.tm.log.ConfigurationLog;
 import com.softwaremagico.tm.log.MachineLog;
-import com.softwaremagico.tm.log.MachineModulesLog;
-import com.softwaremagico.tm.log.MachineXmlReaderLog;
-import org.reflections.Reflections;
-import org.slf4j.LoggerFactory;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -64,47 +50,6 @@ import java.util.List;
 
 public abstract class FactoryCacheLoader<E extends Element<E>> {
     protected static final String GSON_TEMPORAL_FOLDER = "json";
-
-    public static void main(String[] args) throws InvalidXmlElementException {
-        disableLogs();
-        final WeaponsFactoryCacheLoader weaponsFactoryCacheLoader = new WeaponsFactoryCacheLoader();
-        for (final String moduleName : ModuleManager.getAvailableModules()) {
-            weaponsFactoryCacheLoader.save(WeaponFactory.class, moduleName, WeaponFactory.getInstance().getTranslatorFile());
-        }
-        final ArmourFactoryCacheLoader armourFactoryCacheLoader = new ArmourFactoryCacheLoader();
-        for (final String moduleName : ModuleManager.getAvailableModules()) {
-            armourFactoryCacheLoader.save(ArmourFactory.class, moduleName, ArmourFactory.getInstance().getTranslatorFile());
-        }
-        final SkillDefinitionsFactoryCacheLoader skillDefinitionsFactoryCacheLoader = new SkillDefinitionsFactoryCacheLoader();
-        for (final String moduleName : ModuleManager.getAvailableModules()) {
-            skillDefinitionsFactoryCacheLoader.save(SkillsDefinitionsFactory.class, moduleName, SkillsDefinitionsFactory.getInstance().getTranslatorFile());
-        }
-        final BlessingFactoryCacheLoader blessingFactoryCacheLoader = new BlessingFactoryCacheLoader();
-        for (final String moduleName : ModuleManager.getAvailableModules()) {
-            blessingFactoryCacheLoader.save(BlessingFactory.class, moduleName, BlessingFactory.getInstance().getTranslatorFile());
-        }
-        final BeneficeDefinitionFactoryCacheLoader beneficeDefinitionFactoryCacheLoader = new BeneficeDefinitionFactoryCacheLoader();
-        for (final String moduleName : ModuleManager.getAvailableModules()) {
-            beneficeDefinitionFactoryCacheLoader.save(BeneficeDefinitionFactory.class, moduleName,
-                    BeneficeDefinitionFactory.getInstance().getTranslatorFile());
-        }
-        final PlanetFactoryCacheLoader planetFactoryCacheLoader = new PlanetFactoryCacheLoader();
-        for (final String moduleName : ModuleManager.getAvailableModules()) {
-            planetFactoryCacheLoader.save(PlanetFactory.class, moduleName,
-                    PlanetFactory.getInstance().getTranslatorFile());
-        }
-    }
-
-    private static void disableLogs() {
-        Logger logger = (Logger) LoggerFactory.getLogger(MachineXmlReaderLog.class);
-        logger.setLevel(Level.OFF);
-        logger = (Logger) LoggerFactory.getLogger(ConfigurationLog.class);
-        logger.setLevel(Level.OFF);
-        logger = (Logger) LoggerFactory.getLogger(MachineModulesLog.class);
-        logger.setLevel(Level.OFF);
-        logger = (Logger) LoggerFactory.getLogger(Reflections.class);
-        logger.setLevel(Level.OFF);
-    }
 
     protected static String getJsonContent(String moduleName, String language, String file) throws InvalidCacheFile {
         return readFile(getPath(moduleName, language, file));

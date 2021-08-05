@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.random.cache;
+package com.softwaremagico.tm.cache;
 
 /*-
  * #%L
@@ -53,7 +53,5 @@ public class NpcFactoryElements extends FactoryElements<Npc> {
         };
 
         setElements(npcFactory.getElements(language, moduleName));
-        setVersion(npcFactory.getVersion(moduleName));
-        setTotalElements(npcFactory.getNumberOfElements(moduleName));
     }
 }

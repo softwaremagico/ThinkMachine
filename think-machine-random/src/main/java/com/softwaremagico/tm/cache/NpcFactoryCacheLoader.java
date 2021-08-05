@@ -1,4 +1,4 @@
-package com.softwaremagico.tm.random.cache;
+package com.softwaremagico.tm.cache;
 
 /*-
  * #%L
