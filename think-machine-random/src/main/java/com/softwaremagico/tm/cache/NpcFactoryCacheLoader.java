@@ -26,11 +26,18 @@ package com.softwaremagico.tm.cache;
 
 import com.google.gson.GsonBuilder;
 import com.softwaremagico.tm.InvalidXmlElementException;
+import com.softwaremagico.tm.character.benefices.AvailableBenefice;
+import com.softwaremagico.tm.character.benefices.BeneficeDefinition;
+import com.softwaremagico.tm.character.blessings.Blessing;
 import com.softwaremagico.tm.character.characteristics.CharacteristicDefinition;
 import com.softwaremagico.tm.character.equipment.DamageType;
+import com.softwaremagico.tm.character.equipment.armours.Armour;
+import com.softwaremagico.tm.character.equipment.shields.Shield;
 import com.softwaremagico.tm.character.equipment.weapons.Accessory;
 import com.softwaremagico.tm.character.equipment.weapons.Ammunition;
+import com.softwaremagico.tm.character.equipment.weapons.Weapon;
 import com.softwaremagico.tm.character.factions.Faction;
+import com.softwaremagico.tm.character.occultism.OccultismPath;
 import com.softwaremagico.tm.character.races.Race;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.json.*;
@@ -73,6 +80,13 @@ public class NpcFactoryCacheLoader extends FactoryCacheLoader<Npc> {
         gsonBuilder.registerTypeAdapter(Ammunition.class, new AmmunitionAdapter(language, moduleName));
         gsonBuilder.registerTypeAdapter(Race.class, new RaceAdapter(language, moduleName));
         gsonBuilder.registerTypeAdapter(Faction.class, new FactionAdapter(language, moduleName));
+        gsonBuilder.registerTypeAdapter(Weapon.class, new WeaponAdapter(language, moduleName));
+        gsonBuilder.registerTypeAdapter(Armour.class, new ArmourAdapter(language, moduleName));
+        gsonBuilder.registerTypeAdapter(Shield.class, new ShieldAdapter(language, moduleName));
+        gsonBuilder.registerTypeAdapter(BeneficeDefinition.class, new BeneficeDefinitionAdapter(language, moduleName));
+        gsonBuilder.registerTypeAdapter(AvailableBenefice.class, new AvailableBeneficeAdapter(language, moduleName));
+        gsonBuilder.registerTypeAdapter(Blessing.class, new BlessingAdapter(language, moduleName));
+        gsonBuilder.registerTypeAdapter(OccultismPath.class, new OccultismPathAdapter(language, moduleName));
         return gsonBuilder;
     }
 
