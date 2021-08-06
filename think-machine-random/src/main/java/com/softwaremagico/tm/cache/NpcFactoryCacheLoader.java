@@ -29,6 +29,7 @@ import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.benefices.AvailableBenefice;
 import com.softwaremagico.tm.character.benefices.BeneficeDefinition;
 import com.softwaremagico.tm.character.blessings.Blessing;
+import com.softwaremagico.tm.character.characteristics.Characteristic;
 import com.softwaremagico.tm.character.characteristics.CharacteristicDefinition;
 import com.softwaremagico.tm.character.equipment.DamageType;
 import com.softwaremagico.tm.character.equipment.armours.Armour;
@@ -46,6 +47,7 @@ import com.softwaremagico.tm.json.factories.cache.FactoryCacheLoader;
 import com.softwaremagico.tm.json.factories.cache.InvalidCacheFile;
 import com.softwaremagico.tm.random.predefined.characters.Npc;
 import com.softwaremagico.tm.random.predefined.characters.NpcFactory;
+import com.softwaremagico.tm.random.selectors.IRandomPreference;
 
 import java.util.List;
 
@@ -75,6 +77,7 @@ public class NpcFactoryCacheLoader extends FactoryCacheLoader<Npc> {
         gsonBuilder.setPrettyPrinting();
         gsonBuilder.registerTypeAdapter(AvailableSkill.class, new AvailableSkillAdapter(language, moduleName));
         gsonBuilder.registerTypeAdapter(CharacteristicDefinition.class, new CharacteristicDefinitionAdapter(language, moduleName));
+        gsonBuilder.registerTypeAdapter(Characteristic.class, new CharacteristicAdapter(language, moduleName));
         gsonBuilder.registerTypeAdapter(Accessory.class, new AccessoryAdapter(language, moduleName));
         gsonBuilder.registerTypeAdapter(DamageType.class, new DamageTypeAdapter(language, moduleName));
         gsonBuilder.registerTypeAdapter(Ammunition.class, new AmmunitionAdapter(language, moduleName));
@@ -87,6 +90,7 @@ public class NpcFactoryCacheLoader extends FactoryCacheLoader<Npc> {
         gsonBuilder.registerTypeAdapter(AvailableBenefice.class, new AvailableBeneficeAdapter(language, moduleName));
         gsonBuilder.registerTypeAdapter(Blessing.class, new BlessingAdapter(language, moduleName));
         gsonBuilder.registerTypeAdapter(OccultismPath.class, new OccultismPathAdapter(language, moduleName));
+        gsonBuilder.registerTypeAdapter(IRandomPreference.class, new RandomPreferenceAdapter());
         return gsonBuilder;
     }
 
