@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <artifactId>think-machine-rules</artifactId>
     <packaging>jar</packaging>
@@ -14,13 +15,11 @@
 
     <properties>
         <main.basedir>${basedir}/..</main.basedir>
-        <gson.cache.folder>${main.basedir}/modules/Fading Suns Revised Edition/json</gson.cache.folder>
-        <gson.cache.tmp.folder>${main.basedir}/think-machine-rules/target/classes/Fading Suns Revised Edition/json
-        </gson.cache.tmp.folder>
         <maven-assembly-plugin.version>2.5.3</maven-assembly-plugin.version>
         <mainClass>com.softwaremagico.tm.Main</mainClass>
         <splashImage>images/ThinkingMachine_logo.png</splashImage>
-        <exec-maven-plugin.version>3.0.0</exec-maven-plugin.version>
+        <gson.cache.tmp.folder>${main.basedir}/think-machine-rules/target/classes/Fading Suns Revised Edition/json
+        </gson.cache.tmp.folder>
     </properties>
 
     <build>
@@ -58,7 +57,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <mainClass>com.softwaremagico.tm.json.factories.cache.FactoryCacheLoader</mainClass>
+                    <mainClass>com.softwaremagico.tm.json.factories.cache.FactoryCacheGenerator</mainClass>
                     <skip>false</skip>
                     <quietLogs>true</quietLogs>
                 </configuration>
@@ -74,12 +73,12 @@
                             <failOnError>false</failOnError>
                             <target>
                                 <!-- delete old tmp folder -->
-                                <delete dir="${gson.cache.folder}" failonerror="false" includeemptydirs="true" />
+                                <delete dir="${gson.cache.folder}" failonerror="false" includeemptydirs="true"/>
                                 <!-- create tmp folder -->
-                                <mkdir dir="${gson.cache.folder}" />
+                                <mkdir dir="${gson.cache.folder}"/>
                                 <!-- copy json files -->
                                 <copy todir="${gson.cache.folder}" overwrite="true">
-                                    <fileset dir="${gson.cache.tmp.folder}" includes="**" />
+                                    <fileset dir="${gson.cache.tmp.folder}" includes="**"/>
                                 </copy>
                             </target>
                         </configuration>

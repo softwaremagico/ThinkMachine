@@ -24,8 +24,6 @@ package com.softwaremagico.tm.json;
  * #L%
  */
 
-import java.lang.reflect.Type;
-
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
@@ -34,9 +32,11 @@ import com.softwaremagico.tm.character.equipment.weapons.Weapon;
 import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
 import com.softwaremagico.tm.log.MachineLog;
 
+import java.lang.reflect.Type;
+
 public class WeaponAdapter extends ElementAdapter<Weapon> {
 
-	protected WeaponAdapter(String language, String moduleName) {
+	public WeaponAdapter(String language, String moduleName) {
 		super(language, moduleName);
 	}
 
