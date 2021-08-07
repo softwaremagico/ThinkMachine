@@ -30,6 +30,7 @@ import com.softwaremagico.tm.character.RestrictedElementException;
 import com.softwaremagico.tm.character.equipment.EquipmentSelector;
 import com.softwaremagico.tm.log.RandomGenerationLog;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
+import com.softwaremagico.tm.random.selectors.CombatPreferences;
 import com.softwaremagico.tm.random.selectors.DifficultLevelPreferences;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
 
@@ -62,8 +63,8 @@ public abstract class RandomWeapon extends EquipmentSelector<Weapon> {
     /**
      * Similar tech level weapons preferred.
      *
-     * @param weapon
-     * @return
+     * @param weapon the weapon
+     * @return the weight
      */
     protected abstract int getWeightTechModificator(Weapon weapon);
 
@@ -100,6 +101,14 @@ public abstract class RandomWeapon extends EquipmentSelector<Weapon> {
                         "Skill multiplication for weight for '{}' is '{}'.", weapon, skillMultiplier);
                 weight = (weight + skillMultiplier) * skillMultiplier;
             }
+        }
+
+        //Grandes and big guns appear too often for normal characters.
+        final CombatPreferences combatPreferences = CombatPreferences.getSelected(getPreferences());
+        if (combatPreferences != CombatPreferences.BELLIGERENT && (weapon.getType() == WeaponType.GRENADE ||
+                weapon.getType() == WeaponType.GRENADE_LAUNCHER || weapon.getType() == WeaponType.ROCKETEER ||
+                weapon.getType() == WeaponType.HEAVY || weapon.getType() == WeaponType.MINE)) {
+            weight /= 10;
         }
 
         RandomGenerationLog.debug(this.getClass().getName(), "Total weight for '{}' is '{}'.", weapon, weight);
@@ -153,7 +162,7 @@ public abstract class RandomWeapon extends EquipmentSelector<Weapon> {
 
     @Override
     protected void assignIfMandatory(Weapon weapon) throws InvalidXmlElementException {
-        return;
+        // Ignored
     }
 
     @Override
