@@ -2629,8 +2629,7 @@
         </name>
         <group>secondaryGuild</group>
         <faction>mercurians</faction>
-        <preferences>TechnologicalPreferences.ANY, SpecializationPreferences.ANY, CashPreferences.ANY
-        </preferences>
+        <preferences>SpecializationPreferences.ANY, CashPreferences.ANY</preferences>
         <official>false</official>
     </mercurians>
 

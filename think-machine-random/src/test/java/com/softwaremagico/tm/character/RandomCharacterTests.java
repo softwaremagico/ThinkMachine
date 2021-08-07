@@ -83,6 +83,16 @@ public class RandomCharacterTests {
     }
 
     @Test
+    public void chooseMinorGuild() throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException {
+        final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0, RacePreferences.HUMAN,
+                FactionPreferences.MINOR_GUILD);
+        randomizeCharacter.setCharacterDefinition();
+
+        Assert.assertEquals(characterPlayer.getFaction().getFactionGroup(), FactionGroup.MINOR_GUILD);
+    }
+
+    @Test
     public void chooseRaceAndFactionTestXeno() throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0, RacePreferences.XENO,
@@ -212,7 +222,7 @@ public class RandomCharacterTests {
                     + characterPlayer.getFaction().getBlessings(BlessingClassification.CURSE).size());
         } catch (Error ae) {
             final CharacterSheet characterSheet = new CharacterSheet(characterPlayer);
-            System.out.println(characterSheet.toString());
+            System.out.println(characterSheet);
             throw ae;
         }
 
@@ -223,7 +233,7 @@ public class RandomCharacterTests {
                     + characterPlayer.getFaction().getBlessings().size());
         } catch (Exception e) {
             final CharacterSheet characterSheet = new CharacterSheet(characterPlayer);
-            System.out.println(characterSheet.toString());
+            System.out.println(characterSheet);
             throw e;
         }
     }
@@ -242,7 +252,7 @@ public class RandomCharacterTests {
             Assert.assertTrue(characterPlayer.getSelectedPowers().values().size() > 0);
         } catch (Exception e) {
             final CharacterSheet characterSheet = new CharacterSheet(characterPlayer);
-            System.out.println(characterSheet.toString());
+            System.out.println(characterSheet);
             throw e;
         }
     }

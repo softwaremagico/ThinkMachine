@@ -27,6 +27,8 @@ package com.softwaremagico.tm.character.factions;
 public enum FactionGroup {
 	GUILD,
 
+	MINOR_GUILD,
+
 	NOBILITY,
 
 	CHURCH,

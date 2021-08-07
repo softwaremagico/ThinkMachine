@@ -92,6 +92,8 @@ public enum CashPreferences implements ICharacterDescriptionPreference<CashPrefe
                     return CashPreferences.GOOD;
                 case CHURCH:
                     return CashPreferences.FAIR;
+                case MINOR_GUILD:
+                    return CashPreferences.LOW;
                 default:
                     return null;
             }

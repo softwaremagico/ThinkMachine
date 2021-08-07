@@ -1154,7 +1154,7 @@
             <en>The Masque</en>
             <es>La Máscara</es>
         </name>
-        <group>guild</group>
+        <group>minor_guild</group>
         <restrictedToRaces>human, vorox, obun, ukar</restrictedToRaces>
         <official>false</official>
         <blessings>shrewd, possessive</blessings>
@@ -1174,7 +1174,7 @@
             <es>Feriantes</es>
             <en>Carnivalers</en>
         </name>
-        <group>guild</group>
+        <group>minor_guild</group>
         <restrictedToRaces>human, vorox, obun, ukar</restrictedToRaces>
         <official>false</official>
         <blessings>bold, untrusthworthy</blessings>
@@ -1202,7 +1202,7 @@
             <en>Slayer</en>
             <es>Asesino</es>
         </name>
-        <group>guild</group>
+        <group>minor_guild</group>
         <restrictedToRaces>human, vorox, obun, ukar</restrictedToRaces>
         <official>false</official>
         <blessings>obstinate, paranoid</blessings>
@@ -1231,7 +1231,7 @@
             <en>Vagabonds</en>
             <es>Vagabundos</es>
         </name>
-        <group>guild</group>
+        <group>minor_guild</group>
         <restrictedToRaces>human, vorox, obun, ukar</restrictedToRaces>
         <official>false</official>
         <blessings>compassionate, uncouth</blessings>
@@ -1250,7 +1250,7 @@
             <en>Prospectors</en>
             <es>Prospectores</es>
         </name>
-        <group>guild</group>
+        <group>minor_guild</group>
         <restrictedToRaces>human, vorox, obun, ukar</restrictedToRaces>
         <official>false</official>
         <suggestedBenefices>
@@ -1277,7 +1277,7 @@
             <es>Apotecarios</es>
             <en>Apothecaries</en>
         </name>
-        <group>guild</group>
+        <group>minor_guild</group>
         <restrictedToRaces>human, obun</restrictedToRaces>
         <official>false</official>
         <blessings>innovative, callous</blessings>
@@ -1293,7 +1293,7 @@
             <es>Armeros</es>
             <en>Weaponsmiths</en>
         </name>
-        <group>guild</group>
+        <group>minor_guild</group>
         <restrictedToRaces>human</restrictedToRaces>
         <official>false</official>
         <blessings>curious, competitive</blessings>
@@ -1308,7 +1308,7 @@
             <es>Cortesanas</es>
             <en>Courtesans</en>
         </name>
-        <group>guild</group>
+        <group>minor_guild</group>
         <restrictedToRaces>human, obun, ukar</restrictedToRaces>
         <official>false</official>
         <blessings>vain, popular</blessings>
@@ -1327,7 +1327,7 @@
             <es>Bromistas</es>
             <en>Mercurians</en>
         </name>
-        <group>guild</group>
+        <group>minor_guild</group>
         <restrictedToRaces>human, obun, ukar, vorox</restrictedToRaces>
         <official>false</official>
         <blessings>vain, popular</blessings>

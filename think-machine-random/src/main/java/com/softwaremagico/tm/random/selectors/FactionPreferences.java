@@ -34,6 +34,8 @@ public enum FactionPreferences implements ICharacterDescriptionPreference<Factio
 
     GUILD,
 
+    MINOR_GUILD,
+
     NONE,
 
     XENO;
