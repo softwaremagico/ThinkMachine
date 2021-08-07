@@ -2240,8 +2240,7 @@
         <group>barbarian</group>
         <faction>vuldrok</faction>
         <preferences>CombatPreferences.BELLIGERENT, TechnologicalPreferences.MODERN,
-            SpecializationPreferences.SPECIALIZED,
-            CharacteristicsPreferences.BODY,
+            SpecializationPreferences.SPECIALIZED, CharacteristicsPreferences.BODY
         </preferences>
         <characteristicsMinimumValues>
             <presence>6</presence>
@@ -2272,7 +2271,7 @@
         </name>
         <group>secondaryGuild</group>
         <faction>theMasque</faction>
-        <preferences>StatusPreferences.LOW
+        <preferences>StatusPreferences.LOW, CashPreferences.LOW
         </preferences>
         <characteristicsMinimumValues>
             <wits>7</wits>
@@ -2323,7 +2322,7 @@
         </name>
         <group>secondaryGuild</group>
         <faction>carnivalers</faction>
-        <preferences>StatusPreferences.LOW
+        <preferences>StatusPreferences.LOW, CashPreferences.LOW
         </preferences>
         <characteristicsMinimumValues>
             <wits>6</wits>
@@ -2443,7 +2442,7 @@
         <group>secondaryGuild</group>
         <faction>vagabonds</faction>
         <preferences>StatusPreferences.LOW, CombatActionsPreferences.HIGH,
-            CombatActionsGroupPreferences.FIGHT
+            CombatActionsGroupPreferences.FIGHT, CashPreferences.LOW
         </preferences>
         <characteristicsMinimumValues>
             <wits>6</wits>
@@ -2490,7 +2489,7 @@
         </name>
         <group>secondaryGuild</group>
         <faction>prospectors</faction>
-        <preferences>StatusPreferences.LOW, TechnologicalPreferences.SPACE_CITIZEN
+        <preferences>StatusPreferences.LOW, TechnologicalPreferences.SPACE_CITIZEN, CashPreferences.LOW
         </preferences>
         <characteristicsMinimumValues>
             <tech>7</tech>
@@ -2519,7 +2518,7 @@
         </name>
         <group>secondaryGuild</group>
         <faction>apothecaries</faction>
-        <preferences>TechnologicalPreferences.SPACE_CITIZEN
+        <preferences>TechnologicalPreferences.FUTURIST, SpecializationPreferences.SPECIALIZED
         </preferences>
         <characteristicsMinimumValues>
             <tech>7</tech>
@@ -2552,7 +2551,7 @@
         </name>
         <group>secondaryGuild</group>
         <faction>weaponsmiths</faction>
-        <preferences>TechnologicalPreferences.SPACE_CITIZEN
+        <preferences>TechnologicalPreferences.SPACE_CITIZEN, SpecializationPreferences.SPECIALIZED, CashPreferences.FAIR
         </preferences>
         <characteristicsMinimumValues>
             <tech>7</tech>
@@ -2594,6 +2593,8 @@
         </name>
         <group>secondaryGuild</group>
         <faction>courtesans</faction>
+        <preferences>BlessingPreferences.APPEARANCE, CurseNumberPreferences.NONE, CashPreferences.FAIR
+        </preferences>
         <characteristicsMinimumValues>
             <dexterity>7</dexterity>
             <presence>6</presence>
@@ -2628,6 +2629,8 @@
         </name>
         <group>secondaryGuild</group>
         <faction>mercurians</faction>
+        <preferences>TechnologicalPreferences.ANY, SpecializationPreferences.ANY, CashPreferences.ANY
+        </preferences>
         <official>false</official>
     </mercurians>
 
