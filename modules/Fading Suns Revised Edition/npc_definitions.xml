@@ -2591,9 +2591,10 @@
             <es>Cortesanas</es>
             <en>Courtesans</en>
         </name>
+        <gender>female</gender>
         <group>secondaryGuild</group>
         <faction>courtesans</faction>
-        <preferences>BlessingPreferences.APPEARANCE, CurseNumberPreferences.NONE, CashPreferences.FAIR
+        <preferences>BlessingPreferences.APPEARANCE, CurseNumberPreferences.NONE, CashPreferences.FAIR, GenderPreferences.USUALLY_FEMALE
         </preferences>
         <characteristicsMinimumValues>
             <dexterity>7</dexterity>

@@ -277,7 +277,8 @@ public class RandomizeCharacter {
         }
 
         if (characterPlayer.getInfo().getGender() == null) {
-            characterPlayer.getInfo().setGender(Gender.randomGender());
+            final GenderPreferences genderPreference = GenderPreferences.getSelected(preferences);
+            characterPlayer.getInfo().setGender(genderPreference.randomGender());
         }
 
         if (characterPlayer.getInfo().getAge() == null) {
