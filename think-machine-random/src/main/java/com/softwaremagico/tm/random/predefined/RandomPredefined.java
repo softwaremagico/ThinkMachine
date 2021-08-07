@@ -276,4 +276,10 @@ public abstract class RandomPredefined<Predefined extends Element<Predefined>> e
     public void setRace(Race race) {
         this.race = race;
     }
+
+    @Override
+    public boolean isOfficial() {
+        return super.isOfficial() && (getFaction() == null || getFaction().isOfficial()) &&
+                (getRace() == null || getRace().isOfficial());
+    }
 }

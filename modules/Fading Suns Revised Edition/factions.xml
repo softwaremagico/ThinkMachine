@@ -1739,7 +1739,6 @@
         <group>minor</group>
         <restrictedToRaces>human, vorox, obun, ukar</restrictedToRaces>
         <restricted>true</restricted>
-        <official>false</official>
     </noFaction>
     <minorFaction>
         <name>
@@ -1749,6 +1748,5 @@
         <group>minor</group>
         <restrictedToRaces>human, vorox, obun, ukar</restrictedToRaces>
         <restricted>true</restricted>
-        <official>false</official>
     </minorFaction>
 </factions>
