@@ -38,7 +38,7 @@ public enum ArmourPreferences implements IEquipmentPreference<ArmourPreferences>
 
     private final float armourProbability;
 
-    private ArmourPreferences(float armourProbability) {
+    ArmourPreferences(float armourProbability) {
         this.armourProbability = armourProbability;
     }
 

@@ -52,10 +52,10 @@ public abstract class EquipmentSelector<E extends Equipment<?>> extends RandomSe
 	/**
 	 * Not so expensive weapons.
 	 * 
-	 * @param equipment
-	 * @return
+	 * @param  equipment element.
+	 * @return weight
 	 */
-	protected abstract int getWeightCostModificator(E equipment);
+	protected abstract int getWeightCostModificator(E equipment) throws InvalidRandomElementSelectedException;
 
 	@Override
 	protected int getWeight(E equipment) throws InvalidRandomElementSelectedException {

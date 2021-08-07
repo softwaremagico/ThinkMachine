@@ -52,7 +52,7 @@ public class RandomArmour extends EquipmentSelector<Armour> {
     public void assign() throws InvalidRandomElementSelectedException, InvalidArmourException {
         final Random random = new Random();
         final ArmourPreferences armourPreferences = ArmourPreferences.getSelected(getPreferences());
-        if (random.nextFloat() < armourPreferences.getArmourProbability()) {
+        if (armourPreferences != null && random.nextFloat() < armourPreferences.getArmourProbability()) {
             final Armour selectedArmour = selectElementByWeight();
             if (getCharacterPlayer().getArmour() == null) {
                 getCharacterPlayer().setArmour(selectedArmour);
@@ -70,12 +70,14 @@ public class RandomArmour extends EquipmentSelector<Armour> {
     /**
      * Not so expensive armours.
      *
-     * @param armour
-     * @return
+     * @param armour the armour
+     * @return the weight
      */
     @Override
-    protected int getWeightCostModificator(Armour armour) {
-        if (armour.getCost() > getCurrentMoney() / 2d) {
+    protected int getWeightCostModificator(Armour armour) throws InvalidRandomElementSelectedException {
+        if (armour.getCost() > getCurrentMoney()) {
+            throw new InvalidRandomElementSelectedException("Not enough money!");
+        } else if (armour.getCost() > getCurrentMoney() / 2d) {
             return 100;
         } else if (armour.getCost() > getCurrentMoney() / 3d) {
             return 50;
@@ -93,8 +95,8 @@ public class RandomArmour extends EquipmentSelector<Armour> {
     /**
      * Similar tech level armours preferred.
      *
-     * @param armour
-     * @return
+     * @param armour the armour
+     * @return the weight
      */
     protected int getWeightTechModificator(Armour armour) {
         int weight = 0;
@@ -118,7 +120,7 @@ public class RandomArmour extends EquipmentSelector<Armour> {
 
     @Override
     protected int getWeight(Armour armour) throws InvalidRandomElementSelectedException {
-        super.getWeight(armour);
+        int weight = super.getWeight(armour);
 
         // Heavy armours only for real warriors.
         if (!getPreferences().contains(CombatPreferences.BELLIGERENT)) {
@@ -128,7 +130,6 @@ public class RandomArmour extends EquipmentSelector<Armour> {
             }
         }
 
-        int weight = 1;
         // Similar tech level preferred.
         final int weightTech = getWeightTechModificator(armour);
         RandomGenerationLog.debug(this.getClass().getName(),
@@ -157,14 +158,13 @@ public class RandomArmour extends EquipmentSelector<Armour> {
         final DifficultLevelPreferences preference = DifficultLevelPreferences.getSelected(getPreferences());
         switch (preference) {
             case VERY_EASY:
+            case MEDIUM:
                 break;
             case EASY:
                 if (armour.isHeavy()) {
                     throw new InvalidRandomElementSelectedException(
                             "Heavy armour '" + armour + "' are not allowed by selected preference '" + preference + "'.");
                 }
-                break;
-            case MEDIUM:
                 break;
             case HARD:
                 if (armour.getProtection() < 3) {
@@ -184,7 +184,7 @@ public class RandomArmour extends EquipmentSelector<Armour> {
     @Override
     protected void assignIfMandatory(Armour element)
             throws InvalidXmlElementException, ImpossibleToAssignMandatoryElementException {
-        return;
+        //Ignored
     }
 
     @Override

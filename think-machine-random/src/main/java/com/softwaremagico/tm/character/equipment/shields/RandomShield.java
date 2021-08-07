@@ -49,7 +49,7 @@ public class RandomShield extends EquipmentSelector<Shield> {
         final Random random = new Random();
 
         final ShieldPreferences shieldPreferences = ShieldPreferences.getSelected(getPreferences());
-        if (random.nextFloat() < shieldPreferences.getShieldProbability()) {
+        if (shieldPreferences != null && random.nextFloat() < shieldPreferences.getShieldProbability()) {
             final Shield selectedShield = selectElementByWeight();
             if (getCharacterPlayer().getShield() == null) {
                 getCharacterPlayer().setShield(selectedShield);
@@ -66,12 +66,14 @@ public class RandomShield extends EquipmentSelector<Shield> {
     /**
      * Not so expensive shields.
      *
-     * @param shield
-     * @return
+     * @param shield the shield
+     * @return the weight
      */
     @Override
-    protected int getWeightCostModificator(Shield shield) {
-        if (shield.getCost() > getCurrentMoney() / (double) 2) {
+    protected int getWeightCostModificator(Shield shield) throws InvalidRandomElementSelectedException {
+        if (shield.getCost() > getCurrentMoney()) {
+            throw new InvalidRandomElementSelectedException("Not enough money!");
+        } else if (shield.getCost() > getCurrentMoney() / (double) 2) {
             return 5;
         } else {
             return 1;
@@ -130,7 +132,7 @@ public class RandomShield extends EquipmentSelector<Shield> {
 
     @Override
     protected void assignIfMandatory(Shield element) throws InvalidXmlElementException {
-        return;
+        //Nothing
     }
 
     @Override

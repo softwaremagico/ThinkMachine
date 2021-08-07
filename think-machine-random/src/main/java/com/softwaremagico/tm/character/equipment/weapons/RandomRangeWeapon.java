@@ -48,17 +48,19 @@ public class RandomRangeWeapon extends RandomWeapon {
         final Random random = new Random();
 
         final WeaponsPreferences weaponPreferences = WeaponsPreferences.getSelected(getPreferences());
-        float probabilityOfRangedWeapon = weaponPreferences.getRangeWeaponProbability();
-        while (probabilityOfRangedWeapon > 0) {
-            if (probabilityOfRangedWeapon > 0 && random.nextFloat() < probabilityOfRangedWeapon) {
-                try {
-                    super.assign();
-                } catch (InvalidRandomElementSelectedException ires) {
-                    RandomGenerationLog.warning(this.getClass().getName(),
-                            "No ranged weapons available for '{}'.", getCharacterPlayer());
+        if (weaponPreferences != null) {
+            float probabilityOfRangedWeapon = weaponPreferences.getRangeWeaponProbability();
+            while (probabilityOfRangedWeapon > 0) {
+                if (random.nextFloat() < probabilityOfRangedWeapon) {
+                    try {
+                        super.assign();
+                    } catch (InvalidRandomElementSelectedException ires) {
+                        RandomGenerationLog.warning(this.getClass().getName(),
+                                "No ranged weapons available for '{}'.", getCharacterPlayer());
+                    }
                 }
+                probabilityOfRangedWeapon -= 0.3f;
             }
-            probabilityOfRangedWeapon -= 0.3f;
         }
     }
 
@@ -68,8 +70,10 @@ public class RandomRangeWeapon extends RandomWeapon {
     }
 
     @Override
-    protected int getWeightCostModificator(Weapon weapon) {
-        if (weapon.getCost() > getCurrentMoney() / 1.1) {
+    protected int getWeightCostModificator(Weapon weapon) throws InvalidRandomElementSelectedException {
+        if (weapon.getCost() > getCurrentMoney()) {
+            throw new InvalidRandomElementSelectedException("Not enough money!");
+        } else if (weapon.getCost() > getCurrentMoney() / 1.1) {
             return 100;
         } else if (weapon.getCost() > getCurrentMoney() / (double) 2) {
             return 7;
