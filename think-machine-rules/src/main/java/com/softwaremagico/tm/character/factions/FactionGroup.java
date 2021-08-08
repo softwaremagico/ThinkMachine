@@ -33,6 +33,10 @@ public enum FactionGroup {
 
 	CHURCH,
 
+	MINOR_CHURCH,
+
+	KNIGHTLY_ORDERS,
+
 	BARBARIAN,
 
 	XENO,

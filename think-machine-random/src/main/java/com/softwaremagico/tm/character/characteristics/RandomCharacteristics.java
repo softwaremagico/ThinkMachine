@@ -189,7 +189,8 @@ public class RandomCharacteristics extends RandomSelector<Characteristic> {
         // Theurgy
         if (characteristic.getCharacteristicDefinition().getCharacteristicName() == CharacteristicName.FAITH) {
             if (getCharacterPlayer().getFaction() != null
-                    && getCharacterPlayer().getFaction().getFactionGroup() == FactionGroup.CHURCH) {
+                    && (getCharacterPlayer().getFaction().getFactionGroup() == FactionGroup.CHURCH ||
+                    getCharacterPlayer().getFaction().getFactionGroup() == FactionGroup.MINOR_CHURCH)) {
                 return FAIR_PROBABILITY;
             }
         }
@@ -295,7 +296,8 @@ public class RandomCharacteristics extends RandomSelector<Characteristic> {
             final OccultismLevelPreferences psique = OccultismLevelPreferences.getSelected(getPreferences());
             if (psique.maximum() > 2) {
                 if (getCharacterPlayer().getFaction() != null
-                        && getCharacterPlayer().getFaction().getFactionGroup() == FactionGroup.CHURCH) {
+                        && (getCharacterPlayer().getFaction().getFactionGroup() == FactionGroup.CHURCH ||
+                        getCharacterPlayer().getFaction().getFactionGroup() == FactionGroup.MINOR_CHURCH)) {
                     if (characteristic.getValue() < Math.min(MIN_FAITH_FOR_THEURGY,
                             FreeStyleCharacterCreation.getMaxInitialCharacteristicsValues(
                                     characteristic.getCharacteristicDefinition().getCharacteristicName(),

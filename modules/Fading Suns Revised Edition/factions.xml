@@ -1341,6 +1341,55 @@
             </benefice>
         </suggestedBenefices>
     </mercurians>
+    <questingKnights>
+        <name>
+            <es>Caballeros de la Búsqueda</es>
+            <en>Questing Knights</en>
+        </name>
+        <group>knightly_orders</group>
+        <restrictedToRaces>human</restrictedToRaces>
+        <official>false</official>
+        <blessings>just, prideful</blessings>
+        <suggestedBenefices>
+            <benefice>
+                <id>imperialCharter</id>
+            </benefice>
+            <benefice>
+                <id>wellTraveled</id>
+            </benefice>
+        </suggestedBenefices>
+    </questingKnights>
+    <swordsOfLextius>
+        <name>
+            <es>Las Espadas de Lextius</es>
+            <en>Swords of Lextius</en>
+        </name>
+        <group>knightly_orders</group>
+        <restrictedToRaces>human</restrictedToRaces>
+        <official>false</official>
+        <blessings>pious, righteous</blessings>
+        <suggestedBenefices>
+            <benefice>
+                <id>churchCharter</id>
+            </benefice>
+        </suggestedBenefices>
+    </swordsOfLextius>
+
+    <chorali>
+        <name>
+            <es>Los Chorali</es>
+            <en>The Chorali</en>
+        </name>
+        <group>minor_church</group>
+        <restrictedToRaces>human</restrictedToRaces>
+        <official>false</official>
+        <blessings>wellLiked</blessings>
+        <suggestedBenefices>
+            <benefice>
+                <id>chorali</id>
+            </benefice>
+        </suggestedBenefices>
+    </chorali>
 
 
     <obun>

@@ -2269,7 +2269,7 @@
             <en>The Masque</en>
             <es>La Máscara</es>
         </name>
-        <group>secondaryGuild</group>
+        <group>minor_guild</group>
         <faction>theMasque</faction>
         <preferences>StatusPreferences.LOW, CashPreferences.LOW
         </preferences>
@@ -2320,7 +2320,7 @@
             <es>Feriantes</es>
             <en>Carnivalers</en>
         </name>
-        <group>secondaryGuild</group>
+        <group>minor_guild</group>
         <faction>carnivalers</faction>
         <preferences>StatusPreferences.LOW, CashPreferences.LOW
         </preferences>
@@ -2376,7 +2376,7 @@
             <en>Slayer</en>
             <es>Asesino</es>
         </name>
-        <group>secondaryGuild</group>
+        <group>minor_guild</group>
         <faction>slayer</faction>
         <preferences>StatusPreferences.LOW
         </preferences>
@@ -2439,7 +2439,7 @@
             <es>Vagabundos</es>
             <en>Vagabonds</en>
         </name>
-        <group>secondaryGuild</group>
+        <group>minor_guild</group>
         <faction>vagabonds</faction>
         <preferences>StatusPreferences.LOW, CombatActionsPreferences.HIGH,
             CombatActionsGroupPreferences.FIGHT, CashPreferences.LOW
@@ -2487,7 +2487,7 @@
             <en>Prospectors</en>
             <es>Prospectores</es>
         </name>
-        <group>secondaryGuild</group>
+        <group>minor_guild</group>
         <faction>prospectors</faction>
         <preferences>StatusPreferences.LOW, TechnologicalPreferences.SPACE_CITIZEN, CashPreferences.LOW
         </preferences>
@@ -2516,7 +2516,7 @@
             <es>Apotecarios</es>
             <en>Apothecaries</en>
         </name>
-        <group>secondaryGuild</group>
+        <group>minor_guild</group>
         <faction>apothecaries</faction>
         <preferences>TechnologicalPreferences.FUTURIST, SpecializationPreferences.SPECIALIZED
         </preferences>
@@ -2549,7 +2549,7 @@
             <es>Armeros</es>
             <en>Weaponsmiths</en>
         </name>
-        <group>secondaryGuild</group>
+        <group>minor_guild</group>
         <faction>weaponsmiths</faction>
         <preferences>TechnologicalPreferences.SPACE_CITIZEN, SpecializationPreferences.SPECIALIZED, CashPreferences.FAIR
         </preferences>
@@ -2591,10 +2591,10 @@
             <es>Cortesanas</es>
             <en>Courtesans</en>
         </name>
-        <gender>female</gender>
-        <group>secondaryGuild</group>
+        <group>minor_guild</group>
         <faction>courtesans</faction>
-        <preferences>BlessingPreferences.APPEARANCE, CurseNumberPreferences.NONE, CashPreferences.FAIR, GenderPreferences.USUALLY_FEMALE
+        <preferences>BlessingPreferences.APPEARANCE, CurseNumberPreferences.NONE, CashPreferences.FAIR,
+            GenderPreferences.USUALLY_FEMALE
         </preferences>
         <characteristicsMinimumValues>
             <dexterity>7</dexterity>
@@ -2628,11 +2628,148 @@
             <es>Bromistas</es>
             <en>Mercurians</en>
         </name>
-        <group>secondaryGuild</group>
+        <group>minor_guild</group>
         <faction>mercurians</faction>
         <preferences>SpecializationPreferences.ANY, CashPreferences.ANY</preferences>
         <official>false</official>
     </mercurians>
+
+    <questingKnights>
+        <name>
+            <es>Caballeros de la Búsqueda</es>
+            <en>Questing Knights</en>
+        </name>
+        <group>knightly_orders</group>
+        <faction>questingKnights</faction>
+        <preferences>CashPreferences.GOOD, CombatPreferences.BELLIGERENT, SpecializationPreferences.VERY_SPECIALIZED,
+            TechnologicalPreferences.SPACE_CITIZEN, WeaponsPreferences.HIGH, CombatActionsGroupPreferences.FIGHT,
+            CombatActionsPreferences.FAIR
+        </preferences>
+        <characteristicsMinimumValues>
+            <dexterity>7</dexterity>
+            <endurance>7</endurance>
+        </characteristicsMinimumValues>
+        <requiredSkills>
+            <skill>
+                <id>fight</id>
+            </skill>
+            <skill>
+                <id>melee</id>
+            </skill>
+            <skill>
+                <id>energyGuns</id>
+            </skill>
+            <skill>
+                <id>vigor</id>
+            </skill>
+            <skill>
+                <id>influence</id>
+            </skill>
+            <skill>
+                <id>etiquette</id>
+            </skill>
+        </requiredSkills>
+        <suggestedSkills>
+            <skill>
+                <id>archery</id>
+            </skill>
+            <skill>
+                <id>landcraft</id>
+            </skill>
+            <skill>
+                <id>aircraft</id>
+            </skill>
+            <skill>
+                <id>leadership</id>
+            </skill>
+            <skill>
+                <id>warfare</id>
+            </skill>
+        </suggestedSkills>
+        <official>false</official>
+        <weapons>soeCrucible, soeAlembic</weapons>
+        <armours>ceramsteelExoframe</armours>
+    </questingKnights>
+    <swordsOfLextius>
+        <name>
+            <es>Las Espadas de Lextius</es>
+            <en>Swords of Lextius</en>
+        </name>
+        <group>knightly_orders</group>
+        <faction>swordsOfLextius</faction>
+        <preferences>CashPreferences.FAIR, CombatPreferences.BELLIGERENT, SpecializationPreferences.VERY_SPECIALIZED,
+            TechnologicalPreferences.SPACE_CITIZEN, WeaponsPreferences.HIGH, CombatActionsGroupPreferences.FIGHT,
+            CombatActionsPreferences.FAIR
+        </preferences>
+        <characteristicsMinimumValues>
+            <dexterity>7</dexterity>
+            <endurance>7</endurance>
+            <faith>7</faith>
+        </characteristicsMinimumValues>
+        <requiredSkills>
+            <skill>
+                <id>fight</id>
+            </skill>
+            <skill>
+                <id>observe</id>
+            </skill>
+            <skill>
+                <id>vigor</id>
+            </skill>
+            <skill>
+                <id>etiquette</id>
+            </skill>
+        </requiredSkills>
+        <suggestedSkills>
+            <skill>
+                <id>landcraft</id>
+            </skill>
+            <skill>
+                <id>aircraft</id>
+            </skill>
+            <skill>
+                <id>selfControl</id>
+            </skill>
+        </suggestedSkills>
+        <official>false</official>
+        <mandatoryBeneficesSpecialization>language [latinLanguage]</mandatoryBeneficesSpecialization>
+        <weapons>typicalHvyAutofeed, typicalAutoRifle</weapons>
+        <shields>standardShield</shields>
+    </swordsOfLextius>
+    <chorali>
+        <name>
+            <es>Los Chorali</es>
+            <en>The Chorali</en>
+        </name>
+        <group>minor_church</group>
+        <faction>chorali</faction>
+        <characteristicsMinimumValues>
+            <presence>6</presence>
+            <faith>7</faith>
+        </characteristicsMinimumValues>
+        <requiredSkills>
+            <skill>
+                <id>influence</id>
+            </skill>
+            <skill>
+                <id>etiquette</id>
+            </skill>
+            <skill>
+                <id>arts</id>
+                <speciality>music</speciality>
+            </skill>
+            <skill>
+                <id>performance</id>
+            </skill>
+        </requiredSkills>
+        <suggestedSkills>
+            <skill>
+                <id>selfControl</id>
+            </skill>
+        </suggestedSkills>
+        <official>false</official>
+        <mandatoryBeneficesSpecialization>language [latinLanguage]</mandatoryBeneficesSpecialization>
+    </chorali>
 
     <obun>
         <name>

@@ -390,6 +390,16 @@
                     <es>Retórica</es>
                 </name>
             </rhetoric>
+            <composition>
+                <name>
+                    <en>Composition</en>
+                    <es>Composición</es>
+                </name>
+                <official>false</official>
+                <random>
+                    <generalProbability>minimum</generalProbability>
+                </random>
+            </composition>
         </specializations>
         <numberToShow>2</numberToShow>
     </arts>

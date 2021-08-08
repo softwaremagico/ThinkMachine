@@ -1243,6 +1243,41 @@
         <cost>4</cost>
         <group>status</group>
     </imperialCharter>
+    <churchCharter>
+        <name>
+            <en>Church Charter</en>
+            <es>Decreto Eclesiástico</es>
+        </name>
+        <description>
+            <en>Granted to those knights who swear a vow to serve a Church sect, this charter provides certain legal and
+                monetary powers to its mighty faithful but ties them to strict duties and behaviour. Poor knights are
+                given a small stipend while major house knights are provided a stipend from their own houses. All
+                knights are allowed free travel aboard Church ships, regardless of sect (as a 4 pts a Passage Contract).
+                In
+                adition, knights may accuse others of crimes against Church law and they are empowered to collect
+                overdue Church tithes, and can cross feudal borders to do so. Each knight must answer the call to duty
+                of the sect or priest she serves, even in situations of bodily or spiritual danger (as a 3 pts Oath of
+                Fealty). Once a knight's vow is over, he may elect to leave Church service. In which case he is no
+                longer bound by the charter, but likewise does not receive tis benefits.
+            </en>
+            <es>Esta carta, otorgada a aquellos caballeros que juran servir a una secta de la Iglesia, concede limitados
+                poderes legales y económicos a sus poderosos fieles, que quedan obligados a cumplir ciertas tareas y a
+                mantener un determinado comportamiento. Los caballeros pobres reciben un pequeño salario, pero los de
+                las grandes casas deben ser mantenidos por sus familias. A todos ellos se les permite viajar en las
+                naves de la Iglesia, sin importar su secta (un Contrato de Pasaje de 4pts). Además, los caballeros
+                pueden acusar a todos aquellos que cometan crímenes en contra de las leyes de la Iglesia y están
+                autorizados para recaudar diezmos impagados, pudiendo cruzar fronteras feudales en este cometido. Todo
+                caballero tiene la obligación de responder a la llamada de la secta o del sacerdote a quien sirve
+                siempre que sea necesario, incluso en situaciones de peligro físico o espiritual (un Juramento de
+                Fidelidad de 3 pts). UNa vez finalizado el voto, el caballero puede elegir abandonar el servicio a la
+                Iglesia, en cuyo caso queda libre de las obligaciones de esta Carta de Privilegios, pero deja asimismo
+                de disfrutar sus beneficios.
+            </es>
+        </description>
+        <cost>4</cost>
+        <group>status</group>
+        <official>false</official>
+    </churchCharter>
     <commission>
         <name>
             <en>Comission</en>
@@ -2054,4 +2089,24 @@
         <group>status</group>
         <official>false</official>
     </secretIdentity>
+    <chorali>
+        <name>
+            <en>Chorali</en>
+            <es>Chorali</es>
+        </name>
+        <description>
+            <en>Other Chorali recognize the character as one of their own, and so do the faithful. They welcome the
+                character anywhere, offering whatever hospitality and assistance they can (without putting themselves at
+                risk). The character is expected to reciprocate with songs and news from afar.
+            </en>
+            <es>Los demás Chorali reconocerán al personaje como uno de los suyos, igual que los creyentes. Le darán la
+                bienvenida en cualquier parte, ofreciéndole toda la hospitalidad y la ayuda de la que sean capaces (sin
+                incurrir en ningún riesgo). Del personaje se espera que corresponda con canciones y noticias de las
+                tierras lejanas.
+            </es>
+        </description>
+        <cost>1</cost>
+        <group>status</group>
+        <official>false</official>
+    </chorali>
 </benefices>

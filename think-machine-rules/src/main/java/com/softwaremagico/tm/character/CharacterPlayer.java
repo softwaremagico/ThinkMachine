@@ -1694,7 +1694,8 @@ public class CharacterPlayer {
      * @return an occultism type or null if nothing has been selected.
      */
     public OccultismType getOccultismType() {
-        if (getFaction() != null && getFaction().getFactionGroup() == FactionGroup.CHURCH) {
+        if (getFaction() != null && (getFaction().getFactionGroup() == FactionGroup.CHURCH ||
+                getFaction().getFactionGroup() == FactionGroup.MINOR_CHURCH)) {
             return OccultismTypeFactory.getTheurgy(getLanguage(), getModuleName());
         }
         try {
