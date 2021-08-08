@@ -2,6 +2,7 @@ package com.softwaremagico.tm;
 
 import com.google.common.base.Objects;
 import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.character.factions.Faction;
 import com.softwaremagico.tm.character.factions.FactionGroup;
 import com.softwaremagico.tm.character.races.Race;
 import com.softwaremagico.tm.json.ExcludeFromJson;
@@ -65,6 +66,9 @@ public class Element<T extends Element<?>> implements Comparable<T> {
 
     @ExcludeFromJson
     private FactionGroup restrictedToFactionGroup = null;
+
+    @ExcludeFromJson
+    private Set<Faction> restrictedToFactions = new HashSet<>();
 
     /**
      * For creating empty elements.
@@ -149,13 +153,8 @@ public class Element<T extends Element<?>> implements Comparable<T> {
         }
         @SuppressWarnings("unchecked") final T other = (T) obj;
         if (id == null) {
-            if (other.getId() != null) {
-                return false;
-            }
-        } else if (!id.equals(other.getId())) {
-            return false;
-        }
-        return true;
+            return other.getId() == null;
+        } else return id.equals(other.getId());
     }
 
     public RandomElementDefinition getRandomDefinition() {
@@ -184,7 +183,9 @@ public class Element<T extends Element<?>> implements Comparable<T> {
     public boolean isRestricted(CharacterPlayer characterPlayer) {
         return ((!getRestrictedToRaces().isEmpty() && (characterPlayer.getRace() == null || !getRestrictedToRaces().contains(characterPlayer.getRace())))
                 || (getRestrictedToFactionGroup() != null && (characterPlayer.getFaction() == null &&
-                !java.util.Objects.equals(getRestrictedToFactionGroup(), characterPlayer.getFaction().getFactionGroup()))));
+                !java.util.Objects.equals(getRestrictedToFactionGroup(), characterPlayer.getFaction().getFactionGroup()))) ||
+                (!getRestrictedToFactions().isEmpty() && (characterPlayer.getFaction() == null ||
+                        !getRestrictedToFactions().contains(characterPlayer.getFaction()))));
     }
 
     public void setRestricted(boolean restricted) {
@@ -203,8 +204,16 @@ public class Element<T extends Element<?>> implements Comparable<T> {
         return restrictedToRaces;
     }
 
+    public Set<Faction> getRestrictedToFactions() {
+        return restrictedToFactions;
+    }
+
     public void setRestrictedToRaces(Set<Race> restrictedToRaces) {
         this.restrictedToRaces = restrictedToRaces;
+    }
+
+    public void setRestrictedToFactions(Set<Faction> restrictedToFactions) {
+        this.restrictedToFactions = restrictedToFactions;
     }
 
     public FactionGroup getRestrictedToFactionGroup() {

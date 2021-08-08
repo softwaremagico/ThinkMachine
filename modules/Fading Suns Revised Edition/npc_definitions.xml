@@ -2743,6 +2743,7 @@
         </name>
         <group>minor_church</group>
         <faction>chorali</faction>
+        <preferences>OccultismLevelPreferences.ANY, OccultismTypePreferences.THEURGY</preferences>
         <characteristicsMinimumValues>
             <presence>6</presence>
             <faith>7</faith>
@@ -2760,6 +2761,41 @@
             </skill>
             <skill>
                 <id>performance</id>
+                <speciality>singing</speciality>
+            </skill>
+        </requiredSkills>
+        <suggestedSkills>
+            <skill>
+                <id>selfControl</id>
+            </skill>
+            <skill>
+                <id>performance</id>
+                <speciality>lute</speciality>
+            </skill>
+        </suggestedSkills>
+        <official>false</official>
+        <mandatoryBeneficesSpecialization>language [latinLanguage]</mandatoryBeneficesSpecialization>
+    </chorali>
+    <gjarti>
+        <name>
+            <es>Gjarti</es>
+            <en>Gjarti</en>
+        </name>
+        <group>minor_church</group>
+        <faction>gjarti</faction>
+        <preferences>OccultismLevelPreferences.ANY, OccultismTypePreferences.THEURGY, TechnologicalPreferences.BASIC, CashPreferences.LOW</preferences>
+        <characteristicsMinimumValues>
+            <faith>7</faith>
+        </characteristicsMinimumValues>
+        <requiredSkills>
+            <skill>
+                <id>influence</id>
+            </skill>
+            <skill>
+                <id>vigor</id>
+            </skill>
+            <skill>
+                <id>survival</id>
             </skill>
         </requiredSkills>
         <suggestedSkills>
@@ -2768,8 +2804,28 @@
             </skill>
         </suggestedSkills>
         <official>false</official>
-        <mandatoryBeneficesSpecialization>language [latinLanguage]</mandatoryBeneficesSpecialization>
-    </chorali>
+    </gjarti>
+    <manja>
+        <name>
+            <es>Manja</es>
+            <en>Manja</en>
+        </name>
+        <group>minor_church</group>
+        <faction>manja</faction>
+        <preferences>OccultismLevelPreferences.ANY, OccultismTypePreferences.THEURGY, StatusPreferences.ANY</preferences>
+        <characteristicsMinimumValues>
+            <wits>7</wits>
+        </characteristicsMinimumValues>
+        <requiredSkills>
+            <skill>
+                <id>influence</id>
+            </skill>
+            <skill>
+                <id>selfControl</id>
+            </skill>
+        </requiredSkills>
+        <official>false</official>
+    </manja>
 
     <obun>
         <name>

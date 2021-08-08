@@ -74,7 +74,7 @@ public class NpcTests {
         } catch (AssertionError e) {
             System.out.println("################ ERROR ################");
             final CharacterSheet characterSheet = new CharacterSheet(characterPlayer);
-            System.out.println(characterSheet.toString());
+            System.out.println(characterSheet);
             throw e;
         }
     }
@@ -118,12 +118,12 @@ public class NpcTests {
         }
     }
 
-    @Test
+    @Test(timeOut = 5000)
     public void getGroups() {
         Assert.assertFalse(NpcFactory.getInstance().getGroups(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).isEmpty());
     }
 
-    @Test
+    @Test(timeOut = 5000)
     public void checkPreferencesReader() throws InvalidXmlElementException {
         Assert.assertEquals(NpcFactory.getInstance().getElement("infantry", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).getPreferences().size(),
                 7);
@@ -133,7 +133,7 @@ public class NpcTests {
                 .getCharacteristicMinimumValues(CharacteristicName.DEXTERITY).getValue(), 6);
     }
 
-    @Test
+    @Test(timeOut = 5000)
     public void checkFaction() throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
@@ -142,7 +142,7 @@ public class NpcTests {
         Assert.assertEquals(characterPlayer.getFaction(), FactionsFactory.getInstance().getElement("noFaction", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
     }
 
-    @Test
+    @Test(timeOut = 5000)
     public void checkRace() throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
@@ -151,7 +151,7 @@ public class NpcTests {
         Assert.assertEquals(characterPlayer.getRace(), RaceFactory.getInstance().getElement("vorox", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
     }
 
-    @Test
+    @Test(timeOut = 5000)
     public void checkParent() throws InvalidXmlElementException {
         Assert.assertEquals(
                 NpcFactory.getInstance().getElement("heavyInfantry", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).getPreferences().size(), 7);
@@ -163,7 +163,7 @@ public class NpcTests {
                 .getCharacteristicMinimumValues(CharacteristicName.STRENGTH).getValue(), 6);
     }
 
-    @Test
+    @Test(timeOut = 5000)
     public void checkNoError() throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException {
         for (Npc npc : NpcFactory.getInstance().getElements(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)) {
             final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
@@ -172,7 +172,7 @@ public class NpcTests {
         }
     }
 
-    @Test
+    @Test(timeOut = 5000)
     public void serf() throws InvalidXmlElementException,
             InvalidRandomElementSelectedException, RestrictedElementException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
@@ -187,7 +187,7 @@ public class NpcTests {
                 AvailableSkillsFactory.getInstance().getElement("craft", "household", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)) > 0);
     }
 
-    @Test
+    @Test(timeOut = 5000)
     public void thug() throws InvalidXmlElementException,
             InvalidRandomElementSelectedException, RestrictedElementException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
@@ -201,7 +201,7 @@ public class NpcTests {
         Assert.assertNotNull(characterPlayer.getBenefice("outlaw"));
     }
 
-    @Test
+    @Test(timeOut = 5000)
     public void burglar() throws InvalidXmlElementException,
             InvalidRandomElementSelectedException, RestrictedElementException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
@@ -214,7 +214,7 @@ public class NpcTests {
         randomizeCharacter.createCharacter();
     }
 
-    @Test
+    @Test(timeOut = 5000)
     public void slayer() throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
@@ -225,7 +225,7 @@ public class NpcTests {
     }
 
 
-    @Test
+    @Test(timeOut = 5000)
     public void heavySoldier() throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
@@ -240,7 +240,7 @@ public class NpcTests {
         checkContainsArmour(characterPlayer, ArmourFactory.getInstance().getElement("leatherJerkin", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
     }
 
-    @Test
+    @Test(timeOut = 5000)
     public void tracker() throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
@@ -256,7 +256,7 @@ public class NpcTests {
                 ArmourFactory.getInstance().getElement("leatherJerkin", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
     }
 
-    @Test
+    @Test(timeOut = 5000)
     public void mergingPreferences() {
         Set<IRandomPreference<?>> originalPreferences = Stream.of(CombatPreferences.PEACEFUL, AgePreferences.ADULT)
                 .collect(Collectors.toCollection(HashSet::new));
@@ -274,7 +274,7 @@ public class NpcTests {
         Assert.assertTrue(found);
     }
 
-    @Test
+    @Test(timeOut = 5000)
     public void mergingPreferencesRounded() {
         Set<IRandomPreference<?>> originalPreferences = Stream.of(AgePreferences.CHILD)
                 .collect(Collectors.toCollection(HashSet::new));
@@ -292,7 +292,7 @@ public class NpcTests {
         Assert.assertTrue(found);
     }
 
-    @Test
+    @Test(timeOut = 5000)
     public void manifestLight() throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
@@ -306,7 +306,7 @@ public class NpcTests {
                 BlessingFactory.getInstance().getElement("disciplined", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
     }
 
-    @Test
+    @Test(timeOut = 5000)
     public void dervishes() throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
@@ -317,7 +317,7 @@ public class NpcTests {
         Assert.assertTrue(characterPlayer.hasOccultismPath(OccultismPathFactory.getInstance().getElement("soma", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)));
     }
 
-    @Test
+    @Test(timeOut = 5000)
     public void checkRaceInherit() throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
@@ -326,7 +326,7 @@ public class NpcTests {
         Assert.assertEquals(characterPlayer.getRace(), RaceFactory.getInstance().getElement("obun", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
     }
 
-    @Test
+    @Test(timeOut = 5000)
     public void checkSuggestedAvailableBenefices() throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
@@ -345,7 +345,7 @@ public class NpcTests {
         });
     }
 
-    @Test
+    @Test(timeOut = 5000)
     public void hironemPriest() throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
@@ -353,7 +353,7 @@ public class NpcTests {
         randomizeCharacter.createCharacter();
     }
 
-    @Test
+    @Test(timeOut = 5000)
     public void hironemWarrior() throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
@@ -361,7 +361,7 @@ public class NpcTests {
         randomizeCharacter.createCharacter();
     }
 
-    @Test
+    @Test(timeOut = 5000)
     public void etyriHuarrayghq() throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
@@ -369,7 +369,7 @@ public class NpcTests {
         randomizeCharacter.createCharacter();
     }
 
-    @Test
+    @Test(timeOut = 5000)
     public void ascorbite() throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
@@ -378,7 +378,7 @@ public class NpcTests {
         Assert.assertEquals(characterPlayer.getFaction(), FactionsFactory.getInstance().getElement("nofaction", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
     }
 
-    @Test
+    @Test(timeOut = 5000)
     public void oroym() throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
@@ -387,7 +387,7 @@ public class NpcTests {
         Assert.assertNotNull(characterPlayer.getFaction());
     }
 
-    @Test
+    @Test(timeOut = 5000)
     public void kurgan() throws InvalidXmlElementException,
             InvalidRandomElementSelectedException, RestrictedElementException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
@@ -398,7 +398,7 @@ public class NpcTests {
                 characterPlayer.getModuleName()));
     }
 
-    @Test
+    @Test(timeOut = 5000)
     public void theMasque() throws InvalidXmlElementException,
             InvalidRandomElementSelectedException, RestrictedElementException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
@@ -409,7 +409,7 @@ public class NpcTests {
                 characterPlayer.getModuleName()));
     }
 
-    @Test
+    @Test(timeOut = 5000)
     public void vagabonds() throws InvalidXmlElementException,
             InvalidRandomElementSelectedException, RestrictedElementException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
@@ -420,7 +420,7 @@ public class NpcTests {
                 characterPlayer.getModuleName()));
     }
 
-    @Test
+    @Test(timeOut = 5000)
     public void prospectors() throws InvalidXmlElementException,
             InvalidRandomElementSelectedException, RestrictedElementException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
@@ -431,7 +431,7 @@ public class NpcTests {
                 characterPlayer.getModuleName()));
     }
 
-    @Test
+    @Test(timeOut = 5000)
     public void apothecaries() throws InvalidXmlElementException,
             InvalidRandomElementSelectedException, RestrictedElementException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
@@ -442,7 +442,7 @@ public class NpcTests {
                 characterPlayer.getModuleName()));
     }
 
-    @Test
+    @Test(timeOut = 5000)
     public void weaponsmiths() throws InvalidXmlElementException,
             InvalidRandomElementSelectedException, RestrictedElementException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
@@ -453,7 +453,7 @@ public class NpcTests {
                 characterPlayer.getModuleName()));
     }
 
-    @Test
+    @Test(timeOut = 5000)
     public void courtesan() throws InvalidXmlElementException,
             InvalidRandomElementSelectedException, RestrictedElementException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
@@ -465,7 +465,7 @@ public class NpcTests {
     }
 
 
-    @Test
+    @Test(timeOut = 5000)
     public void restricted() throws InvalidXmlElementException {
         Assert.assertFalse(NpcFactory.getInstance().getElement("shantor", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).isOfficial());
     }

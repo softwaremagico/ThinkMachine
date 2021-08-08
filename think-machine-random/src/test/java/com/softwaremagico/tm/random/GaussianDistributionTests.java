@@ -24,13 +24,12 @@ package com.softwaremagico.tm.random;
  * #L%
  */
 
-import java.util.HashMap;
-import java.util.Map;
-
-import org.testng.annotations.Test;
-
 import com.softwaremagico.tm.random.selectors.IGaussianDistribution;
 import com.softwaremagico.tm.random.selectors.StatusPreferences;
+import org.testng.annotations.Test;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Test(groups = { "gaussianDistribution" })
 public class GaussianDistributionTests {
@@ -39,16 +38,12 @@ public class GaussianDistributionTests {
 		final Map<Integer, Integer> totalValues = new HashMap<>();
 		for (int i = 0; i < maxIterations; i++) {
 			final int value = gaussianDistributionToTest.randomGaussian();
-			if (totalValues.get(value) == null) {
-				totalValues.put(value, 1);
-			} else {
-				totalValues.put(value, totalValues.get(value) + 1);
-			}
+			totalValues.merge(value, 1, Integer::sum);
 		}
 		return totalValues;
 	}
 
-	@Test
+	@Test(timeOut = 5000)
 	public void checkGaussianValuesForPreference() {
 		System.out.println(getValues(StatusPreferences.HIGH, 10000));
 		System.out.println(getValues(StatusPreferences.GOOD, 10000));

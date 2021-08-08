@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <benefices>
     <version>1</version>
-    <totalElements>86</totalElements>
+    <totalElements>89</totalElements>
     <alienUpbringing>
         <name>
             <en>Alien Upbringing</en>
@@ -1410,6 +1410,7 @@
         </specializations>
         <group>status</group>
         <restrictedToFactionGroup>nobility</restrictedToFactionGroup>
+        <restrictedToFactions>manja</restrictedToFactions>
     </nobility>
     <ordained>
         <name>
@@ -1672,6 +1673,17 @@
         <group>status</group>
         <affliction>true</affliction>
     </outlaw>
+    <persecutedByChurch>
+        <name>
+            <en>Persecuted by Church</en>
+            <es>Perseguido por la Iglesia</es>
+        </name>
+        <cost>2-3</cost>
+        <group>status</group>
+        <affliction>true</affliction>
+        <official>false</official>
+        <restricted>true</restricted>
+    </persecutedByChurch>
 
 
     <graa>
@@ -2065,6 +2077,7 @@
         </specializations>
         <group>status</group>
         <official>false</official>
+        <restricted>true</restricted>
     </fame>
     <secretIdentity>
         <name>
@@ -2088,6 +2101,7 @@
         <cost>1</cost>
         <group>status</group>
         <official>false</official>
+        <restricted>true</restricted>
     </secretIdentity>
     <chorali>
         <name>
@@ -2108,5 +2122,6 @@
         <cost>1</cost>
         <group>status</group>
         <official>false</official>
+        <restricted>true</restricted>
     </chorali>
 </benefices>

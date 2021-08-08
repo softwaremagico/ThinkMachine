@@ -44,7 +44,7 @@ public class JsonCacheLoaderTests {
     private static final String LANGUAGE = "es";
     private static final int ITERATIONS = 5;
 
-    @Test
+    @Test(timeOut = 10000)
     public void loadNpcCache() {
         NpcFactoryCacheLoader npcFactoryCacheLoader = new NpcFactoryCacheLoader();
         List<Npc> npcs = npcFactoryCacheLoader.load(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
@@ -55,7 +55,7 @@ public class JsonCacheLoaderTests {
         Assert.assertTrue(alMalik.getPreferences().contains(SpecializationPreferences.SPECIALIZED));
     }
 
-    @Test()
+    @Test(enabled = false)
     public void checkNpcsImprovement() throws InvalidXmlElementException {
         //Skip Json generation.
         NpcFactory npcFactory = new NpcFactory() {

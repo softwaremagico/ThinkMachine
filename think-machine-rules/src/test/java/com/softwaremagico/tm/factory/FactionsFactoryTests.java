@@ -30,13 +30,13 @@ import com.softwaremagico.tm.character.Gender;
 import com.softwaremagico.tm.character.factions.Faction;
 import com.softwaremagico.tm.character.factions.FactionsFactory;
 import com.softwaremagico.tm.file.PathManager;
-import org.junit.BeforeClass;
 import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 @Test(groups = {"factionsFactory"})
 public class FactionsFactoryTests {
-    private static final int DEFINED_FACTIONS = 55;
+    private static final int DEFINED_FACTIONS = 60;
     private static final int DEFINED_MALE_NAMES = 103;
     private static final int DEFINED_FEMALE_NAMES = 100;
     private static final int DEFINED_SURNAMES = 125;

@@ -227,8 +227,10 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
     @Override
     protected int getWeight(BeneficeDefinition benefice) throws InvalidRandomElementSelectedException {
         // No restricted benefices.
-        if (benefice.getRestrictedToFactionGroup() != null && getCharacterPlayer().getFaction() != null
-                && benefice.getRestrictedToFactionGroup() != getCharacterPlayer().getFaction().getFactionGroup()) {
+        if ((benefice.getRestrictedToFactionGroup() != null && getCharacterPlayer().getFaction() != null
+                && benefice.getRestrictedToFactionGroup() != getCharacterPlayer().getFaction().getFactionGroup()) &&
+                (!benefice.getRestrictedToFactions().isEmpty() && (getCharacterPlayer().getFaction() == null ||
+                        !benefice.getRestrictedToFactions().contains(getCharacterPlayer().getFaction())))) {
             throw new InvalidRandomElementSelectedException(
                     "Benefice '" + benefice + "' is restricted to '" + benefice.getRestrictedToFactionGroup() + "'.");
         }
@@ -415,9 +417,12 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
         // Set status of the character.
         try {
             if ((benefice.getGroup() != null && benefice.getGroup().equals(BeneficeGroup.STATUS))
-                    && getWeight(benefice) > 0 && getCharacterPlayer().getFaction() != null
-                    && Objects.equals(benefice.getRestrictedToFactionGroup(),
-                    getCharacterPlayer().getFaction().getFactionGroup())) {
+                    && getWeight(benefice) > 0 && getCharacterPlayer().getFaction() != null &&
+                    //Restricted to faction group or restricted to factions.
+                    ((benefice.getRestrictedToFactionGroup() == null && benefice.getRestrictedToFactions().isEmpty()) ||
+                    (Objects.equals(benefice.getRestrictedToFactionGroup(),
+                            getCharacterPlayer().getFaction().getFactionGroup()) ||
+                            benefice.getRestrictedToFactions().contains(getCharacterPlayer().getFaction())))){
                 final IGaussianDistribution selectedStatus = StatusPreferences.getSelected(getPreferences());
                 if (selectedStatus != null) {
                     RandomGenerationLog.debug(this.getClass().getName(),

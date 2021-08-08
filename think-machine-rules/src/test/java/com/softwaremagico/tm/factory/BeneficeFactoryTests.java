@@ -39,8 +39,8 @@ import java.util.Set;
 public class BeneficeFactoryTests {
     private static final String LANGUAGE = "es";
 
-    private static final int DEFINED_BENEFICES = 86;
-    private static final int AVAILABLE_BENEFICES = 259;
+    private static final int DEFINED_BENEFICES = 89;
+    private static final int AVAILABLE_BENEFICES = 263;
     private static final int VERSION = 1;
 
     @Test

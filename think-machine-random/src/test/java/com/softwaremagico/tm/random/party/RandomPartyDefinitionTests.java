@@ -36,7 +36,7 @@ import java.util.HashSet;
 public class RandomPartyDefinitionTests {
 	private static final String LANGUAGE = "es";
 
-	@Test
+	@Test(timeOut = 5000)
 	public void mandatoryMembersAdded() throws InvalidXmlElementException, RestrictedElementException {
 		final RandomParty thugParty = RandomPartyFactory.getInstance().getElement("thugBand", LANGUAGE,
 				PathManager.DEFAULT_MODULE_FOLDER);
@@ -48,7 +48,7 @@ public class RandomPartyDefinitionTests {
 		Assert.assertNotNull(randomPartyDefinition.getParty().getPartyName());
 	}
 
-	@Test
+	@Test(timeOut = 5000)
 	public void threatLevelAddMoreMembersToParty() throws InvalidXmlElementException,
 			RestrictedElementException {
 		final RandomParty thugParty = RandomPartyFactory.getInstance().getElement("thugBand", LANGUAGE,

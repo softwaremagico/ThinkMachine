@@ -24,6 +24,7 @@ package com.softwaremagico.tm;
  * #L%
  */
 
+import com.softwaremagico.tm.character.factions.Faction;
 import com.softwaremagico.tm.character.factions.FactionGroup;
 import com.softwaremagico.tm.character.factions.FactionsFactory;
 import com.softwaremagico.tm.character.factions.InvalidFactionException;
@@ -53,6 +54,7 @@ public abstract class XmlFactory<T extends Element<T>> implements IElementRetrie
     private static final String RECOMMENDED_FACTION_GROUPS = "recommendedFactionGroups";
     private static final String RESTRICTED_FACTION_GROUPS = "restrictedFactionGroups";
     private static final String RESTRICTED_RACES = "restrictedToRaces";
+    private static final String RESTRICTED_FACTIONS = "restrictedToFactions";
     private static final String FORBIDDEN_RACES = "forbiddenRaces";
     private static final String RECOMMENDED_RACES = "recommendedRaces";
     private static final String GENERAL_PROBABILITY = "generalProbability";
@@ -112,6 +114,9 @@ public abstract class XmlFactory<T extends Element<T>> implements IElementRetrie
 
         final Set<Race> races = getCommaSeparatedValues(element.getId(), RESTRICTED_RACES, language, moduleName, RaceFactory.getInstance());
         setRestrictedToRaces(element, races);
+
+        final Set<Faction> factions = getCommaSeparatedValues(element.getId(), RESTRICTED_FACTIONS, language, moduleName, FactionsFactory.getInstance());
+        setRestrictedToFactions(element, factions);
 
         final String restriction = getTranslator(moduleName).getNodeValue(element.getId(), RESTRICTED_FACTION_GROUP_TAG);
         FactionGroup restrictedToGroup = null;
@@ -374,7 +379,11 @@ public abstract class XmlFactory<T extends Element<T>> implements IElementRetrie
         element.setRestrictedToRaces(races);
     }
 
-    protected void setRestrictedToFactionGroup(Element<?> element, FactionGroup factionGroup) throws InvalidXmlElementException {
+    protected void setRestrictedToFactions(Element<?> element, Set<Faction> factions) {
+        element.setRestrictedToFactions(factions);
+    }
+
+    protected void setRestrictedToFactionGroup(Element<?> element, FactionGroup factionGroup) {
         element.setRestrictedToFactionGroup(factionGroup);
     }
 

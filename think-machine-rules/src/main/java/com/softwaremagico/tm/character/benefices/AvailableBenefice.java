@@ -25,7 +25,12 @@ package com.softwaremagico.tm.character.benefices;
  */
 
 import com.softwaremagico.tm.Element;
+import com.softwaremagico.tm.character.factions.Faction;
+import com.softwaremagico.tm.character.factions.FactionGroup;
+import com.softwaremagico.tm.character.races.Race;
 import com.softwaremagico.tm.random.definition.RandomElementDefinition;
+
+import java.util.Set;
 
 public class AvailableBenefice extends Element<AvailableBenefice> {
     private BeneficeSpecialization specialization = null;
@@ -79,6 +84,21 @@ public class AvailableBenefice extends Element<AvailableBenefice> {
 
     public BeneficeClassification getBeneficeClassification() {
         return beneficeClassification;
+    }
+
+    @Override
+    public Set<Faction> getRestrictedToFactions() {
+        return beneficeDefinition.getRestrictedToFactions();
+    }
+
+    @Override
+    public FactionGroup getRestrictedToFactionGroup() {
+        return beneficeDefinition.getRestrictedToFactionGroup();
+    }
+
+    @Override
+    public Set<Race> getRestrictedToRaces() {
+        return beneficeDefinition.getRestrictedToRaces();
     }
 
     @Override

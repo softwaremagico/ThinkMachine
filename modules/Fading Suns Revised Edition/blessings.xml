@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <blessings>
     <version>1</version>
-    <totalElements>157</totalElements>
+    <totalElements>159</totalElements>
     <handsome>
         <name>
             <en>Handsome</en>
@@ -371,6 +371,7 @@
                 </situation>
             </bonification>
         </bonifications>
+        <group>behaviour</group>
     </innovative>
     <just>
         <name>
@@ -1219,7 +1220,6 @@
         <bonifications>
             <bonification>
                 <value>-2</value>
-                <affects></affects>
                 <situation>
                     <en>Around strangers</en>
                     <es>Entre extraños</es>
@@ -1548,10 +1548,6 @@
             <bonification>
                 <value>-1</value>
                 <affects>vitality</affects>
-                <situation>
-                    <en></en>
-                    <es></es>
-                </situation>
             </bonification>
         </bonifications>
         <group>injuries</group>
@@ -1575,10 +1571,6 @@
             <bonification>
                 <value>-1</value>
                 <affects>movement</affects>
-                <situation>
-                    <en></en>
-                    <es></es>
-                </situation>
             </bonification>
         </bonifications>
         <group>injuries</group>
@@ -1664,26 +1656,14 @@
             <bonification>
                 <value>-2</value>
                 <affects>vigor</affects>
-                <situation>
-                    <en></en>
-                    <es></es>
-                </situation>
             </bonification>
             <bonification>
                 <value>-2</value>
                 <affects>atheltics</affects>
-                <situation>
-                    <en></en>
-                    <es></es>
-                </situation>
             </bonification>
             <bonification>
                 <value>-2</value>
                 <affects>movement</affects>
-                <situation>
-                    <en></en>
-                    <es></es>
-                </situation>
             </bonification>
         </bonifications>
         <group>injuries</group>
@@ -1892,10 +1872,6 @@
             <bonification>
                 <value>2</value>
                 <affects>controlSkills</affects>
-                <situation>
-                    <en></en>
-                    <es></es>
-                </situation>
             </bonification>
         </bonifications>
         <group>knacks</group>
@@ -1996,10 +1972,6 @@
             <bonification>
                 <value>2</value>
                 <affects>thinkMachine</affects>
-                <situation>
-                    <en></en>
-                    <es></es>
-                </situation>
             </bonification>
         </bonifications>
         <group>knacks</group>
@@ -2333,10 +2305,6 @@
             <bonification>
                 <value>-2</value>
                 <affects>techRedemption</affects>
-                <situation>
-                    <en></en>
-                    <es></es>
-                </situation>
             </bonification>
         </bonifications>
         <group>knacks</group>
@@ -4196,5 +4164,48 @@
         <group>behaviour</group>
         <restricted>true</restricted>
     </popular>
+    <greenlore>
+        <name>
+            <en>Greenlore</en>
+            <es>Silvano</es>
+        </name>
+        <description>
+            <en>The following Blessing or Curse is only available for some specific races or factions</en>
+            <es>Esta bendición o maldición únicamente está disponible para algunas razas o facciones</es>
+        </description>
+        <cost>2</cost>
+        <bonifications>
+            <bonification>
+                <value>2</value>
+                <affects>perception</affects>
+                <situation>
+                    <en>In the wild</en>
+                    <es>En la naturaleza</es>
+                </situation>
+            </bonification>
+        </bonifications>
+        <group>knacks</group>
+        <restricted>true</restricted>
+    </greenlore>
+    <nonInnovative>
+        <name>
+            <en>Non-innovative</en>
+            <es>Poco Innovador</es>
+        </name>
+        <cost>2</cost>
+        <bonifications>
+            <bonification>
+                <value>2</value>
+                <affects>tech</affects>
+                <situation>
+                    <en>To invent something new</en>
+                    <es>Inventar algo nuevo</es>
+                </situation>
+            </bonification>
+        </bonifications>
+        <group>behaviour</group>
+        <curse>true</curse>
+        <restricted>true</restricted>
+    </nonInnovative>
 
 </blessings>

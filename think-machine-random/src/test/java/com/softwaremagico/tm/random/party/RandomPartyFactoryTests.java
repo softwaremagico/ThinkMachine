@@ -38,12 +38,12 @@ public class RandomPartyFactoryTests {
 	private static final int DEFINED_PARTIES = 1;
 	private static final String LANGUAGE = "en";
 
-	@Test
+	@Test(timeOut = 5000)
 	public void readParties() throws InvalidXmlElementException {
 		Assert.assertEquals(RandomPartyFactory.getInstance().getElements(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).size(), DEFINED_PARTIES);
 	}
 
-	@Test
+	@Test(timeOut = 5000)
 	public void readNames() throws InvalidXmlElementException {
 		Assert.assertNotNull(RandomPartyFactory.getInstance().getNames(
 				RandomPartyFactory.getInstance().getElement("thugBand", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)));
@@ -51,7 +51,7 @@ public class RandomPartyFactoryTests {
 				RandomPartyFactory.getInstance().getElement("thugBand", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)));
 	}
 
-	@Test
+	@Test(timeOut = 5000)
 	public void readThugParty() throws InvalidXmlElementException {
 		Assert.assertEquals(RandomPartyFactory.getInstance().getElement("thugBand", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).getRandomPartyMembers()
 				.size(), 3);
@@ -59,18 +59,22 @@ public class RandomPartyFactoryTests {
 		for (final RandomPartyMember member : RandomPartyFactory.getInstance()
 				.getElement("thugBand", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)
 				.getRandomPartyMembers()) {
-			if (member.getId().equals("thugBand_0")) {
-				checkedMemebers++;
-				Assert.assertEquals((int) member.getMinNumber(), 1);
-				Assert.assertEquals((int) member.getMaxNumber(), 1);
-				Assert.assertTrue(member.getRandomPreferences().contains(DifficultLevelPreferences.HARD));
-			} else if (member.getId().equals("thugBand_1")) {
-				checkedMemebers++;
-				Assert.assertEquals((int) member.getWeight(), 3);
-			} else if (member.getId().equals("thugBand_2")) {
-				checkedMemebers++;
-				Assert.assertEquals((int) member.getWeight(), 1);
-				Assert.assertTrue(member.getRandomPreferences().contains(AgePreferences.TEENAGER));
+			switch (member.getId()) {
+				case "thugBand_0":
+					checkedMemebers++;
+					Assert.assertEquals((int) member.getMinNumber(), 1);
+					Assert.assertEquals((int) member.getMaxNumber(), 1);
+					Assert.assertTrue(member.getRandomPreferences().contains(DifficultLevelPreferences.HARD));
+					break;
+				case "thugBand_1":
+					checkedMemebers++;
+					Assert.assertEquals((int) member.getWeight(), 3);
+					break;
+				case "thugBand_2":
+					checkedMemebers++;
+					Assert.assertEquals((int) member.getWeight(), 1);
+					Assert.assertTrue(member.getRandomPreferences().contains(AgePreferences.TEENAGER));
+					break;
 			}
 		}
 		Assert.assertEquals(checkedMemebers, 3);

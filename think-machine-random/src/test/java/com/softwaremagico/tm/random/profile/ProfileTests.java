@@ -57,17 +57,17 @@ public class ProfileTests {
         } catch (AssertionError e) {
             System.out.println("################ ERROR ################");
             final CharacterSheet characterSheet = new CharacterSheet(characterPlayer);
-            System.out.println(characterSheet.toString());
+            System.out.println(characterSheet);
             throw e;
         }
     }
 
-    @Test
+    @Test(timeOut = 5000)
     public void getGroups() {
         Assert.assertFalse(RandomProfileFactory.getInstance().getGroups(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).isEmpty());
     }
 
-    @Test
+    @Test(timeOut = 5000)
     public void checkPreferencesReader() throws InvalidXmlElementException {
         Assert.assertEquals(RandomProfileFactory.getInstance().getElement("soldier", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).getPreferences().size(),
                 7);
@@ -77,7 +77,7 @@ public class ProfileTests {
                 .getCharacteristicMinimumValues(CharacteristicName.DEXTERITY).getValue(), 6);
     }
 
-    @Test
+    @Test(timeOut = 5000)
     public void checkParent() throws InvalidXmlElementException {
         Assert.assertEquals(
                 RandomProfileFactory.getInstance().getElement("heavySoldier", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).getPreferences().size(), 7);
@@ -89,7 +89,7 @@ public class ProfileTests {
                 .getCharacteristicMinimumValues(CharacteristicName.STRENGTH).getValue(), 6);
     }
 
-    @Test
+    @Test(timeOut = 5000)
     public void soldier() throws InvalidXmlElementException,
             InvalidRandomElementSelectedException, RestrictedElementException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
@@ -98,7 +98,7 @@ public class ProfileTests {
         randomizeCharacter.createCharacter();
     }
 
-    @Test
+    @Test(timeOut = 5000)
     public void heavySoldier() throws InvalidXmlElementException,
             InvalidRandomElementSelectedException, RestrictedElementException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
@@ -110,7 +110,7 @@ public class ProfileTests {
         checkCharacterisic(characterPlayer, CharacteristicName.STRENGTH, 6);
     }
 
-    @Test
+    @Test(timeOut = 5000)
     public void nobility() throws InvalidXmlElementException,
             InvalidRandomElementSelectedException, RestrictedElementException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
@@ -120,7 +120,7 @@ public class ProfileTests {
         Assert.assertEquals(characterPlayer.getFaction().getFactionGroup(), FactionGroup.NOBILITY);
     }
 
-    @Test
+    @Test(timeOut = 5000)
     public void clergy() throws InvalidXmlElementException,
             InvalidRandomElementSelectedException, RestrictedElementException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
@@ -130,7 +130,7 @@ public class ProfileTests {
         Assert.assertEquals(characterPlayer.getFaction().getFactionGroup(), FactionGroup.CHURCH);
     }
 
-    @Test
+    @Test(timeOut = 5000)
     public void teenager() throws InvalidXmlElementException,
             InvalidRandomElementSelectedException, RestrictedElementException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
@@ -140,17 +140,17 @@ public class ProfileTests {
         Assert.assertTrue(characterPlayer.getInfo().getAge() >= 13 && characterPlayer.getInfo().getAge() <= 20);
     }
 
-    @Test
+    @Test(timeOut = 5000)
     public void notOfficial() throws InvalidXmlElementException {
         Assert.assertFalse(RandomProfileFactory.getInstance().getElement("shantor", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).isOfficial());
     }
 
-    @Test
+    @Test(timeOut = 5000)
     public void official() throws InvalidXmlElementException {
         Assert.assertTrue(RandomProfileFactory.getInstance().getElement("vorox", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).isOfficial());
     }
 
-    @Test
+    @Test(timeOut = 5000)
     public void old() throws DuplicatedPreferenceException, InvalidXmlElementException,
             InvalidRandomElementSelectedException, RestrictedElementException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
@@ -160,7 +160,7 @@ public class ProfileTests {
         Assert.assertTrue(characterPlayer.getInfo().getAge() >= 51 && characterPlayer.getInfo().getAge() <= 110);
     }
 
-    @Test
+    @Test(timeOut = 5000)
     public void mergingPreferences() {
         Set<IRandomPreference<?>> originalPreferences = Stream.of(CombatPreferences.PEACEFUL, AgePreferences.ADULT)
                 .collect(Collectors.toCollection(HashSet::new));
@@ -178,7 +178,7 @@ public class ProfileTests {
         Assert.assertTrue(found);
     }
 
-    @Test
+    @Test(timeOut = 5000)
     public void mergingPreferencesRounded() {
         Set<IRandomPreference<?>> originalPreferences = Stream.of(AgePreferences.CHILD)
                 .collect(Collectors.toCollection(HashSet::new));

@@ -1512,14 +1512,24 @@ public class CharacterPlayer {
                 }
             }
         }
-        if (benefice.getBeneficeDefinition().getRestrictedToFactionGroup() != null && (getFaction() == null ||
-                !Objects.equals(benefice.getBeneficeDefinition().getRestrictedToFactionGroup(), getFaction().getFactionGroup()))) {
+        if (benefice.getRestrictedToFactionGroup() != null && benefice.getRestrictedToFactions().isEmpty() && (getFaction() == null ||
+                !Objects.equals(benefice.getRestrictedToFactionGroup(), getFaction().getFactionGroup()))) {
             throw new RestrictedElementException("Benefice '" + benefice
-                    + "' is restricted to faction '" + benefice.getBeneficeDefinition().getRestrictedToFactionGroup() + "' and currently is" +
+                    + "' is restricted to faction '" + benefice.getRestrictedToFactionGroup() + "' and currently is" +
                     "'" + getFaction() + "'.");
+        } else if (benefice.getRestrictedToFactionGroup() == null && !benefice.getRestrictedToFactions().isEmpty() && (getFaction() == null ||
+                !benefice.getRestrictedToFactions().contains(getFaction()))) {
+            throw new RestrictedElementException("Benefice '" + benefice
+                    + "' is restricted to faction '" + benefice.getRestrictedToFactions() + "' and currently is" +
+                    "'" + getFaction() + "'.");
+        } else if (benefice.getRestrictedToFactionGroup() != null && !benefice.getRestrictedToFactions().isEmpty() && (getFaction() == null ||
+                !benefice.getRestrictedToFactions().contains(getFaction())) &&
+                !Objects.equals(benefice.getRestrictedToFactionGroup(), getFaction().getFactionGroup())) {
+            throw new RestrictedElementException("Benefice '" + benefice
+                    + "' is restricted to faction '" + benefice.getRestrictedToFactionGroup() + "' and '" + benefice.getRestrictedToFactions()
+                    + "' and currently is" + "'" + getFaction() + "'.");
         }
-        if (!benefice.getBeneficeDefinition().getRestrictedToRaces().isEmpty() &&
-                !benefice.getBeneficeDefinition().getRestrictedToRaces().contains(getRace())) {
+        if (!benefice.getRestrictedToRaces().isEmpty() && !benefice.getRestrictedToRaces().contains(getRace())) {
             throw new RestrictedElementException("Benefice '" + benefice
                     + "' is restricted to race '" + benefice.getBeneficeDefinition().getRestrictedToRaces() + "'");
         }
@@ -1776,7 +1786,6 @@ public class CharacterPlayer {
      *
      * @param skillGroup group to check.
      * @return the number of ranks
-     * @throws InvalidXmlElementException if malformed file in translations.
      */
     public int getRanksAssigned(SkillGroup skillGroup) {
         int ranks = 0;
