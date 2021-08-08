@@ -47,7 +47,13 @@ public class RandomSurname extends RandomSelector<Surname> {
 
     @Override
     public void assign() throws InvalidRaceException, InvalidRandomElementSelectedException {
-        getCharacterPlayer().getInfo().setSurname(selectElementByWeight());
+        try {
+            getCharacterPlayer().getInfo().setSurname(selectElementByWeight());
+        } catch (InvalidRandomElementSelectedException e) {
+            //If no surnames available choose any.
+            getCharacterPlayer().getInfo().setSurname(FactionsFactory.getInstance().getAllSurnames().stream()
+                    .skip(rand.nextInt(FactionsFactory.getInstance().getAllSurnames().size())).findFirst().orElse(null));
+        }
     }
 
     @Override

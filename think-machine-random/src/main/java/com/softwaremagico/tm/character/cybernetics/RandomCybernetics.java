@@ -67,6 +67,7 @@ public class RandomCybernetics extends RandomSelector<CyberneticDevice> {
         int guard = 0;
         while (guard < 20 && getCharacterPlayer().getCybernetics().size() < totalDevices
                 && getCharacterPlayer().getCyberneticsIncompatibility() < desiredCyberneticsPoints) {
+            guard++;
             final CyberneticDevice selectedDevice = selectElementByWeight();
             if (selectedDevice.getPoints() > remainingPoints) {
                 continue;
@@ -90,7 +91,7 @@ public class RandomCybernetics extends RandomSelector<CyberneticDevice> {
                     if (skill != null) {
                         try {
                             final RandomSkillExtraPoints randomSkillExtraPoints = new RandomSkillExtraPoints(
-                                    getCharacterPlayer(), getPreferences(), new HashSet<AvailableSkill>());
+                                    getCharacterPlayer(), getPreferences(), new HashSet<>());
                             // Assign random ranks to the skill.
                             remainingPoints -= randomSkillExtraPoints.spendSkillsPoints(skill, remainingPoints);
                         } catch (RestrictedElementException e) {
@@ -108,7 +109,6 @@ public class RandomCybernetics extends RandomSelector<CyberneticDevice> {
                 // Cannot be added due to a requirement.
             }
             removeElementWeight(selectedDevice);
-            guard++;
         }
     }
 
@@ -190,11 +190,11 @@ public class RandomCybernetics extends RandomSelector<CyberneticDevice> {
 
     @Override
     protected void assignIfMandatory(CyberneticDevice element) throws InvalidXmlElementException {
-        return;
+        // Ignore
     }
 
     @Override
     protected void assignMandatoryValues(Set<CyberneticDevice> mandatoryValues) throws InvalidXmlElementException {
-        return;
+        // Ignore
     }
 }

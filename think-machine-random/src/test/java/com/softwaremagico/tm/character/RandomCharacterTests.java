@@ -187,7 +187,7 @@ public class RandomCharacterTests {
 
         Assert.assertEquals(CostCalculator.getCost(characterPlayer),
                 FreeStyleCharacterCreation.getFreeAvailablePoints(characterPlayer.getInfo().getAge(), characterPlayer.getRace()));
-        Assert.assertTrue(characterPlayer.getRanksAssigned(SkillGroupPreferences.COMBAT.getSkillGroup()) > 10);
+        Assert.assertTrue(characterPlayer.getRanksAssigned(SkillGroupPreferences.COMBAT.getSkillGroup()) >= 10);
     }
 
     @Test(timeOut = 5000)
@@ -443,7 +443,7 @@ public class RandomCharacterTests {
                 .getElement("energyGuns", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)) > 0);
     }
 
-    @Test(timeOut = 5000)
+    @Test(timeOut = 8000)
     public void cybernetics() throws InvalidXmlElementException,
             InvalidRandomElementSelectedException, RestrictedElementException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);

@@ -31,7 +31,7 @@ import com.softwaremagico.tm.pdf.complete.elements.VerticalTable;
 
 public class BeneficesTable extends VerticalTable {
     private static final String GAP = "__________________";
-    private static final int NAME_COLUMN_WIDTH = 80;
+    private static final int NAME_COLUMN_WIDTH = 75;
     private static final int COST_COLUMN_WIDTH = 25;
     private static final float[] WIDTHS = {2f, 5f, 2f, 5f};
 
