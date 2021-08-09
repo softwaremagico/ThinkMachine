@@ -72,4 +72,9 @@ public class SelectedSkill extends Skill<SelectedSkill> {
     public boolean equals(Object obj) {
         return super.equals(obj);
     }
+
+    @Override
+    public boolean isOfficial() {
+        return availableSkill.isOfficial();
+    }
 }

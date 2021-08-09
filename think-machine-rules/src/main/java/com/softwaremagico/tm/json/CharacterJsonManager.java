@@ -69,8 +69,6 @@ public class CharacterJsonManager extends JsonManager {
             final GsonBuilder gsonBuilder = initGsonBuilder(characterPlayer.getLanguage(), characterPlayer.getModuleName());
             gsonBuilder.setExclusionStrategies(new AnnotationExclusionStrategy()).create();
             gsonBuilder.registerTypeAdapter(IValue.class, new IValueSerializer<IValue>());
-            // final Gson gson = new
-            // GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
             final Gson gson = gsonBuilder.create();
             return gson.toJson(characterPlayer);
         }
@@ -122,6 +120,9 @@ public class CharacterJsonManager extends JsonManager {
                             .setSurname(new Surname(characterPlayer.getInfo().getSurname().getId(), characterPlayer.getInfo().getSurname().getName(),
                                     characterPlayer.getInfo().getSurname().getCustomSurname(), language, moduleName, characterPlayer.getFaction()));
                 }
+            }
+            if (!characterPlayer.checkIsOfficial()) {
+                characterPlayer.getSettings().setOnlyOfficialAllowed(false);
             }
             return characterPlayer;
         }

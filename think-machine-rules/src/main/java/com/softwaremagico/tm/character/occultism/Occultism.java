@@ -102,7 +102,7 @@ public class Occultism {
     }
 
     public void setDarkSideLevel(OccultismType occultismType, int darkSideValue) {
-        this.darkSideValue.put(occultismType.getId(), Integer.valueOf(darkSideValue));
+        this.darkSideValue.put(occultismType.getId(), darkSideValue);
     }
 
     public Map<String, List<OccultismPower>> getSelectedPowers() {

@@ -1980,4 +1980,45 @@ public class CharacterPlayer {
     public Settings getSettings() {
         return settings;
     }
+
+    public boolean checkIsOfficial() {
+        if ((getFaction() != null && !getFaction().isOfficial()) ||
+                (getRace() != null && !getRace().isOfficial()) ||
+                (getArmour() != null && !getArmour().isOfficial() ||
+                        getShield() != null && !getShield().isOfficial())) {
+            return false;
+        }
+
+        if (!weapons.getElements().stream().allMatch(Weapon::isOfficial)) {
+            return false;
+        }
+
+        if (!skills.values().stream().allMatch(SelectedSkill::isOfficial)) {
+            return false;
+        }
+
+        if (!blessings.stream().allMatch(Blessing::isOfficial)) {
+            return false;
+        }
+
+        if (!benefices.stream().allMatch(AvailableBenefice::isOfficial)) {
+            return false;
+        }
+
+        if (!cybernetics.getElements().stream().allMatch(SelectedCyberneticDevice::isOfficial)) {
+            return false;
+        }
+
+        for (String occultismPathId : occultism.getSelectedPowers().keySet()) {
+            try {
+                if (!OccultismPathFactory.getInstance().getElement(occultismPathId, getLanguage(), getModuleName()).isOfficial()) {
+                    return false;
+                }
+            } catch (InvalidXmlElementException e) {
+                // Ignore.
+            }
+        }
+
+        return true;
+    }
 }
