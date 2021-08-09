@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <factions>
     <version>1</version>
-    <totalElements>60</totalElements>
+    <totalElements>61</totalElements>
     <hawkwood>
         <name>
             <en>Hawkwood</en>
@@ -1510,6 +1510,19 @@
             <probabilityMultiplier>1</probabilityMultiplier>
         </random>
     </manja>
+    <dervishes>
+        <name>
+            <en>Dervishes</en>
+            <es>Derviches</es>
+        </name>
+        <group>military</group>
+        <restrictedToRaces>human</restrictedToRaces>
+        <official>false</official>
+        <blessings>weird</blessings>
+        <random>
+            <probabilityMultiplier>1</probabilityMultiplier>
+        </random>
+    </dervishes>
 
 
     <obun>
@@ -1849,7 +1862,7 @@
             <en>Ascorbite</en>
             <es>Ascorbita</es>
         </name>
-        <group>minor</group>
+        <group>xeno</group>
         <random>
             <names>
                 <male>Rooth, Gaiwk, Skreeth, Ewut, Quwoww, Rasek, Zeye, Sqritath, Gayuniww, Kinieceth, Kiaw, Krieth,
@@ -1879,7 +1892,7 @@
             <en>Oro'ym</en>
             <es>Oro'ym</es>
         </name>
-        <group>minor</group>
+        <group>xeno</group>
         <random>
             <names>
                 <male>Methreh, Mnephah, Calo, Thripof, Sthestroth, Dhuistrori, Zuimnosi, Memrory, Vuireby, Drarlah,

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <occultism>
     <version>1</version>
-    <totalElements>17</totalElements>
+    <totalElements>18</totalElements>
     <farHand>
         <name>
             <en>Far Hand</en>
@@ -4416,4 +4416,142 @@
             </summonLordOfTheLords>
         </powers>
     </manjaRites>
+
+    <bedlam>
+        <name>
+            <en>Bedlam</en>
+            <es>Confusión</es>
+        </name>
+        <type>psi</type>
+        <factions>dervishes</factions>
+        <classification>combat</classification>
+        <official>false</official>
+        <powers>
+            <prana>
+                <name>
+                    <en>Prana</en>
+                    <es>Prana</es>
+                </name>
+                <level>1</level>
+                <characteristic>will</characteristic>
+                <skill>selfControl</skill>
+                <duration>temporary</duration>
+                <wyrd>1</wyrd>
+            </prana>
+            <forcedEntry>
+                <name>
+                    <en>Forced Entry</en>
+                    <es>Forzar la Entrada</es>
+                </name>
+                <level>2</level>
+                <characteristic>dexterity</characteristic>
+                <skill>observe</skill>
+                <duration>temporary</duration>
+                <wyrd>1</wyrd>
+            </forcedEntry>
+            <confusion>
+                <name>
+                    <en>Confusion</en>
+                    <es>Desorientación</es>
+                </name>
+                <level>3</level>
+                <characteristic>will</characteristic>
+                <skill>empathy</skill>
+                <range>touch</range>
+                <duration>instant</duration>
+                <wyrd>1</wyrd>
+            </confusion>
+            <whirlingDervish>
+                <name>
+                    <en>Whirling Dervish</en>
+                    <es>Remolino Derviche</es>
+                </name>
+                <level>4</level>
+                <characteristic>presence</characteristic>
+                <skill>selfControl</skill>
+                <duration>temporary</duration>
+                <wyrd>1</wyrd>
+            </whirlingDervish>
+            <externalVibrations>
+                <name>
+                    <en>External Vibrations</en>
+                    <es>Vibraciones Externas</es>
+                </name>
+                <level>5</level>
+                <characteristic>will</characteristic>
+                <skill>vigor</skill>
+                <range>touch</range>
+                <duration>instant</duration>
+                <wyrd>1</wyrd>
+            </externalVibrations>
+            <internalVibrations>
+                <name>
+                    <en>Internal Vibrations</en>
+                    <es>Vibraciones Internas</es>
+                </name>
+                <level>5</level>
+                <characteristic>will</characteristic>
+                <skill>vigor</skill>
+                <duration>temporary</duration>
+                <wyrd>1</wyrd>
+            </internalVibrations>
+            <blur>
+                <name>
+                    <en>Blur</en>
+                    <es>Borrón</es>
+                </name>
+                <level>6</level>
+                <characteristic>presence</characteristic>
+                <skill>vigor</skill>
+                <duration>temporary</duration>
+                <wyrd>1</wyrd>
+            </blur>
+            <pranaBurst>
+                <name>
+                    <en>Prana Burst</en>
+                    <es>Estallido Prana</es>
+                </name>
+                <level>7</level>
+                <characteristic>presence</characteristic>
+                <skill>vigor</skill>
+                <duration>instant</duration>
+                <wyrd>1</wyrd>
+            </pranaBurst>
+            <resonate>
+                <name>
+                    <en>Resonate</en>
+                    <es>Resonancia</es>
+                </name>
+                <level>7</level>
+                <characteristic>presence</characteristic>
+                <skill>influence</skill>
+                <duration>instant</duration>
+                <wyrd>1</wyrd>
+            </resonate>
+            <nerveBurn>
+                <name>
+                    <en>Nerve Burn</en>
+                    <es>Descarga Nerviosa</es>
+                </name>
+                <level>8</level>
+                <characteristic>will</characteristic>
+                <skill>physick</skill>
+                <range>touch</range>
+                <duration>temporary</duration>
+                <wyrd>1</wyrd>
+            </nerveBurn>
+            <stupefy>
+                <name>
+                    <en>Stupefy</en>
+                    <es>Estupefacción</es>
+                </name>
+                <level>9</level>
+                <characteristic>will</characteristic>
+                <skill>empathy</skill>
+                <range>touch</range>
+                <duration>instant</duration>
+                <wyrd>2</wyrd>
+            </stupefy>
+        </powers>
+    </bedlam>
 </occultism>
