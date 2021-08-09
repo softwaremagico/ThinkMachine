@@ -27,6 +27,7 @@ package com.softwaremagico.tm.json;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.RestrictedElementException;
+import com.softwaremagico.tm.character.UnofficialElementNotAllowedException;
 import com.softwaremagico.tm.character.benefices.BeneficeAlreadyAddedException;
 import com.softwaremagico.tm.character.blessings.BlessingAlreadyAddedException;
 import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
@@ -66,7 +67,7 @@ public class JsonTests {
 	public void init()
 			throws InvalidXmlElementException, TooManyBlessingsException, TooManyCyberneticDevicesException,
 			RequiredCyberneticDevicesException, BlessingAlreadyAddedException, BeneficeAlreadyAddedException, InvalidRanksException,
-			RestrictedElementException {
+			RestrictedElementException, UnofficialElementNotAllowedException {
 		LanguagePool.clearCache();
 		player = CustomCharacter.create(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
 		Assert.assertEquals(CostCalculator.getCost(player), CustomCharacter.COST);
@@ -76,7 +77,7 @@ public class JsonTests {
 	}
 
 	@Test
-	public void exportCharacterPlayerToJson() throws InvalidXmlElementException, IOException {
+	public void exportCharacterPlayerToJson() throws IOException {
 		originalPlayerJson = CharacterJsonManager.toJson(player);
 		try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(OUTPUT_CHARACTER_PATH)), true)) {
 			out.println(originalPlayerJson);
@@ -98,7 +99,7 @@ public class JsonTests {
 	}
 
 	@Test
-	public void exportPartyToJson() throws InvalidXmlElementException, IOException {
+	public void exportPartyToJson() throws IOException {
 		originalPartyJson = PartyJsonManager.toJson(party);
 		try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(OUTPUT_PARTY_PATH)), true)) {
 			out.println(originalPartyJson);

@@ -50,7 +50,7 @@ public class CustomCharacter {
 
 	public static CharacterPlayer create(String language, String moduleName)
 			throws InvalidXmlElementException, TooManyBlessingsException, TooManyCyberneticDevicesException,
-			RequiredCyberneticDevicesException, BlessingAlreadyAddedException, BeneficeAlreadyAddedException, InvalidRanksException, RestrictedElementException {
+			RequiredCyberneticDevicesException, BlessingAlreadyAddedException, BeneficeAlreadyAddedException, InvalidRanksException, RestrictedElementException, UnofficialElementNotAllowedException {
 		CacheHandler.clearCache();
 		final CharacterPlayer player = new CharacterPlayer(language, moduleName);
 		player.getInfo().addName(new Name("Oliver", language, moduleName, Gender.MALE, null));

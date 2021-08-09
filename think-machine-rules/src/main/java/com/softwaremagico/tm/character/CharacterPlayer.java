@@ -113,10 +113,13 @@ public class CharacterPlayer {
 
     private transient Integer initialMoney;
 
+    private final Settings settings;
+
     public CharacterPlayer(String language, String moduleName) {
         comparisonId = IdGenerator.createId();
         this.language = language;
         this.moduleName = moduleName;
+        settings = new Settings();
         reset();
     }
 
@@ -132,12 +135,12 @@ public class CharacterPlayer {
         experience = new Experience();
         try {
             setArmour(null);
-        } catch (InvalidArmourException e) {
+        } catch (InvalidArmourException | UnofficialElementNotAllowedException e) {
             MachineLog.errorMessage(this.getClass().getName(), e);
         }
         try {
             setShield(null);
-        } catch (InvalidShieldException e) {
+        } catch (InvalidShieldException | UnofficialElementNotAllowedException e) {
             MachineLog.errorMessage(this.getClass().getName(), e);
         }
     }
@@ -246,9 +249,14 @@ public class CharacterPlayer {
     }
 
     public void setSkillRank(AvailableSkill availableSkill, int value) throws InvalidSkillException, InvalidRanksException,
-            RestrictedElementException {
+            RestrictedElementException, UnofficialElementNotAllowedException {
         if (availableSkill == null) {
             throw new InvalidSkillException("Null skill is not allowed here.");
+        }
+
+        if (!availableSkill.isOfficial() && getSettings().isOnlyOfficialAllowed()) {
+            throw new UnofficialElementNotAllowedException("Skill '" + availableSkill + "' is not official and cannot be added due " +
+                    "to configuration limitations.");
         }
 
         if (availableSkill.isRestricted(this)) {
@@ -404,7 +412,7 @@ public class CharacterPlayer {
         return occultism;
     }
 
-    public void setBlessings(Collection<Blessing> blessings) throws TooManyBlessingsException {
+    public void setBlessings(Collection<Blessing> blessings) throws TooManyBlessingsException, UnofficialElementNotAllowedException {
         blessings.removeIf(Objects::isNull);
         //Get all blessings that will be removed.
         final Set<Blessing> blessingsToRemove = new HashSet<>(this.blessings);
@@ -422,7 +430,14 @@ public class CharacterPlayer {
         }
     }
 
-    public void addBlessing(Blessing blessing) throws TooManyBlessingsException, BlessingAlreadyAddedException {
+    public void addBlessing(Blessing blessing) throws TooManyBlessingsException, BlessingAlreadyAddedException, UnofficialElementNotAllowedException {
+        if (blessing == null) {
+            return;
+        }
+        if (!blessing.isOfficial() && getSettings().isOnlyOfficialAllowed()) {
+            throw new UnofficialElementNotAllowedException("Blessing '" + blessing + "' is not official and cannot be added due " +
+                    "to configuration limitations.");
+        }
         if (getAllBlessings().contains(blessing)) {
             throw new BlessingAlreadyAddedException("Character already has blessing '" + blessing + "'!");
         }
@@ -534,7 +549,7 @@ public class CharacterPlayer {
         return Collections.unmodifiableList(allBlessings);
     }
 
-    public void setBenefices(Collection<AvailableBenefice> benefices) throws InvalidBeneficeException {
+    public void setBenefices(Collection<AvailableBenefice> benefices) throws InvalidBeneficeException, UnofficialElementNotAllowedException {
         benefices.removeIf(Objects::isNull);
         //Get all benefices that will be removed.
         final Set<AvailableBenefice> beneficesToRemove = new HashSet<>(this.benefices);
@@ -553,7 +568,14 @@ public class CharacterPlayer {
     }
 
     public void addBenefice(AvailableBenefice benefice) throws InvalidBeneficeException, BeneficeAlreadyAddedException,
-            RestrictedElementException {
+            RestrictedElementException, UnofficialElementNotAllowedException {
+        if (benefice == null) {
+            throw new InvalidBeneficeException("Null value not allowed");
+        }
+        if (!benefice.isOfficial() && getSettings().isOnlyOfficialAllowed()) {
+            throw new UnofficialElementNotAllowedException("Benefice '" + benefice + "' is not official and cannot be added due " +
+                    "to configuration limitations.");
+        }
         if (benefice.getBeneficeDefinition().isRestricted()) {
             throw new RestrictedElementException("Benefice '" + benefice + "' is restricted and cannot be added.");
         }
@@ -756,7 +778,7 @@ public class CharacterPlayer {
     }
 
     public void setCybernetics(Collection<CyberneticDevice> cyberneticDevices) throws TooManyCyberneticDevicesException,
-            RequiredCyberneticDevicesException {
+            RequiredCyberneticDevicesException, UnofficialElementNotAllowedException, InvalidCyberneticDeviceException {
         cyberneticDevices.removeIf(Objects::isNull);
         //Check if possible
         if (getCyberneticsIncompatibility(cyberneticDevices) > Cybernetics
@@ -780,8 +802,15 @@ public class CharacterPlayer {
         }
     }
 
-    public SelectedCyberneticDevice addCybernetics(CyberneticDevice cyberneticDevice)
-            throws TooManyCyberneticDevicesException, RequiredCyberneticDevicesException {
+    public SelectedCyberneticDevice addCybernetics(CyberneticDevice cyberneticDevice) throws TooManyCyberneticDevicesException,
+            RequiredCyberneticDevicesException, UnofficialElementNotAllowedException, InvalidCyberneticDeviceException {
+        if (cyberneticDevice == null) {
+            throw new InvalidCyberneticDeviceException("Null value not allowed");
+        }
+        if (!cyberneticDevice.isOfficial() && getSettings().isOnlyOfficialAllowed()) {
+            throw new UnofficialElementNotAllowedException("Cybernetic Device '" + cyberneticDevice + "' is not official and cannot be added due " +
+                    "to configuration limitations.");
+        }
         if (hasCyberneticDevice(cyberneticDevice)) {
             return null;
         }
@@ -837,8 +866,12 @@ public class CharacterPlayer {
         return incompatibility;
     }
 
-    public void addWeapon(Weapon weapon) {
-        if (!weapon.getId().equals(Element.DEFAULT_NULL_ID) && weapons.addElement(weapon)) {
+    public void addWeapon(Weapon weapon) throws UnofficialElementNotAllowedException {
+        if (weapon != null && !weapon.isOfficial() && getSettings().isOnlyOfficialAllowed()) {
+            throw new UnofficialElementNotAllowedException("Weapon '" + weapon + "' is not official and cannot be added due " +
+                    "to configuration limitations.");
+        }
+        if (weapon != null && !weapon.getId().equals(Element.DEFAULT_NULL_ID) && weapons.addElement(weapon)) {
             getCharacterModificationHandler().launchEquipmentUpdatedListener(weapon, false);
         }
     }
@@ -853,7 +886,7 @@ public class CharacterPlayer {
         }
     }
 
-    public void setMeleeWeapons(Collection<Weapon> weapons) {
+    public void setMeleeWeapons(Collection<Weapon> weapons) throws UnofficialElementNotAllowedException {
         //Get all benefices that will be removed.
         final Set<Weapon> weaponsToRemove = new HashSet<>(this.weapons.getElements()).stream().
                 filter(Weapon::isMeleeWeapon).collect(Collectors.toSet());
@@ -867,7 +900,7 @@ public class CharacterPlayer {
         }
     }
 
-    public void setRangedWeapons(Collection<Weapon> weapons) {
+    public void setRangedWeapons(Collection<Weapon> weapons) throws UnofficialElementNotAllowedException {
         //Get all benefices that will be removed.
         final Set<Weapon> weaponsToRemove = new HashSet<>(this.weapons.getElements()).stream().
                 filter(Weapon::isRangedWeapon).collect(Collectors.toSet());
@@ -881,7 +914,7 @@ public class CharacterPlayer {
         }
     }
 
-    public void setWeapons(Collection<Weapon> weapons) {
+    public void setWeapons(Collection<Weapon> weapons) throws UnofficialElementNotAllowedException {
         //Get all benefices that will be removed.
         final Set<Weapon> weaponsToRemove = new HashSet<>(this.weapons.getElements());
         weaponsToRemove.removeAll(weapons);
@@ -961,7 +994,11 @@ public class CharacterPlayer {
         return armour;
     }
 
-    public void setArmour(Armour armour) throws InvalidArmourException {
+    public void setArmour(Armour armour) throws InvalidArmourException, UnofficialElementNotAllowedException {
+        if (armour != null && !armour.isOfficial() && getSettings().isOnlyOfficialAllowed()) {
+            throw new UnofficialElementNotAllowedException("Armour '" + armour + "' is not official and cannot be added due " +
+                    "to configuration limitations.");
+        }
         if (getShield() != null && armour != null && !armour.getAllowedShields().contains(getShield())) {
             throw new InvalidArmourException(
                     "Armour '" + armour + "' is not compatible with shield '" + getShield() + "'.");
@@ -997,7 +1034,11 @@ public class CharacterPlayer {
         return shield;
     }
 
-    public void setShield(Shield shield) throws InvalidShieldException {
+    public void setShield(Shield shield) throws InvalidShieldException, UnofficialElementNotAllowedException {
+        if (shield != null && !shield.isOfficial() && getSettings().isOnlyOfficialAllowed()) {
+            throw new UnofficialElementNotAllowedException("Shield '" + shield + "' is not official and cannot be added due " +
+                    "to configuration limitations.");
+        }
         if (getArmour() != null && shield != null && !getArmour().getAllowedShields().contains(shield)) {
             throw new InvalidShieldException(
                     "Shield '" + shield + "' is not compatible with armour '" + getArmour() + "'.");
@@ -1055,7 +1096,11 @@ public class CharacterPlayer {
         return race;
     }
 
-    public void setRace(Race race) throws InvalidRaceException, RestrictedElementException {
+    public void setRace(Race race) throws InvalidRaceException, RestrictedElementException, UnofficialElementNotAllowedException {
+        if (race != null && !race.isOfficial() && getSettings().isOnlyOfficialAllowed()) {
+            throw new UnofficialElementNotAllowedException("Race '" + race + "' is not official and cannot be added due " +
+                    "to configuration limitations.");
+        }
         if (getFaction() != null && !getFaction().getRestrictedToRaces().isEmpty() && !getFaction().getRestrictedToRaces().contains(race)) {
             throw new RestrictedElementException("Faction is restricted to '" + getFaction().getRestrictedToRaces() + "'");
         }
@@ -1480,9 +1525,13 @@ public class CharacterPlayer {
         return faction;
     }
 
-    public void setFaction(Faction faction) throws InvalidFactionException, RestrictedElementException {
+    public void setFaction(Faction faction) throws InvalidFactionException, RestrictedElementException, UnofficialElementNotAllowedException {
         if (faction == null) {
             throw new InvalidFactionException("Faction is null!");
+        }
+        if (!faction.isOfficial() && getSettings().isOnlyOfficialAllowed()) {
+            throw new UnofficialElementNotAllowedException("Faction '" + faction + "' is not official and cannot be added due " +
+                    "to configuration limitations.");
         }
         //Race must have an id to avoid custom races.
         if (getRace() != null && getRace().getId() != null && !faction.getRestrictedToRaces().isEmpty()
@@ -1762,7 +1811,14 @@ public class CharacterPlayer {
         }
     }
 
-    public void addOccultismPower(OccultismPower power) throws InvalidOccultismPowerException {
+    public void addOccultismPower(OccultismPower power) throws InvalidOccultismPowerException, UnofficialElementNotAllowedException {
+        if (power == null) {
+            throw new InvalidOccultismPowerException("Null value not allowed");
+        }
+        if (!power.isOfficial() && getSettings().isOnlyOfficialAllowed()) {
+            throw new UnofficialElementNotAllowedException("Occultism Power '" + power + "' is not official and cannot be added due " +
+                    "to configuration limitations.");
+        }
         final OccultismPath path = OccultismPathFactory.getInstance().getOccultismPath(power);
         if (getOccultism().addPower(path, power, getLanguage(), getFaction())) {
             getCharacterModificationHandler().launchOccultismPowerUpdatedListener(power, false);
@@ -1919,5 +1975,9 @@ public class CharacterPlayer {
         } catch (InvalidJsonException e) {
             throw new InvalidGeneratedCharacter("Error duplicating character", e);
         }
+    }
+
+    public Settings getSettings() {
+        return settings;
     }
 }

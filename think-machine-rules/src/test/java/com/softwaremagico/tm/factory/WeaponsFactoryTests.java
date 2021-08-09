@@ -26,6 +26,7 @@ package com.softwaremagico.tm.factory;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.character.UnofficialElementNotAllowedException;
 import com.softwaremagico.tm.character.equipment.Size;
 import com.softwaremagico.tm.character.equipment.weapons.AccessoryFactory;
 import com.softwaremagico.tm.character.equipment.weapons.AmmunitionFactory;
@@ -119,7 +120,7 @@ public class WeaponsFactoryTests {
     }
 
     @Test
-    public void setRangeWeapons() throws InvalidXmlElementException {
+    public void setRangeWeapons() throws InvalidXmlElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         Set<Weapon> weaponsToAdd = new HashSet<>();
         weaponsToAdd.add(WeaponFactory.getInstance().getElement("typicalShotgun", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));

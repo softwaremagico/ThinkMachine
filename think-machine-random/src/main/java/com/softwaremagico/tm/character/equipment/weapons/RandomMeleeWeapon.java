@@ -3,6 +3,7 @@ package com.softwaremagico.tm.character.equipment.weapons;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.RestrictedElementException;
+import com.softwaremagico.tm.character.UnofficialElementNotAllowedException;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.log.RandomGenerationLog;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
@@ -39,7 +40,8 @@ import java.util.Set;
 public class RandomMeleeWeapon extends RandomWeapon {
 
     public RandomMeleeWeapon(CharacterPlayer characterPlayer, Set<IRandomPreference<?>> preferences,
-                             Set<Weapon> mandatoryWeapons) throws InvalidXmlElementException, RestrictedElementException {
+                             Set<Weapon> mandatoryWeapons) throws InvalidXmlElementException, RestrictedElementException,
+            UnofficialElementNotAllowedException {
         super(characterPlayer, preferences, mandatoryWeapons);
     }
 
@@ -57,6 +59,8 @@ public class RandomMeleeWeapon extends RandomWeapon {
                     } catch (InvalidRandomElementSelectedException ires) {
                         RandomGenerationLog.warning(this.getClass().getName(),
                                 "No melee weapons available for '" + getCharacterPlayer() + "'.");
+                    } catch (UnofficialElementNotAllowedException e) {
+                        //Ignore this weapon.
                     }
                 }
                 probabilityOfMeleeWeapon -= 0.4f;

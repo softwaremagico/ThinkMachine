@@ -54,6 +54,7 @@ import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.character.skills.RandomSkillExperience;
 import com.softwaremagico.tm.character.skills.RandomSkillExtraPoints;
 import com.softwaremagico.tm.character.skills.RandomSkills;
+import com.softwaremagico.tm.log.MachineLog;
 import com.softwaremagico.tm.log.RandomGenerationLog;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.predefined.IRandomPredefined;
@@ -158,10 +159,14 @@ public class RandomizeCharacter {
         for (final AvailableSkill availableSkill : requiredSkills) {
             if (availableSkill.getRandomDefinition().getMinimumTechLevel() != null) {
                 if (tech == null) {
-                    tech = new Characteristic(CharacteristicsDefinitionFactory
-                            .getInstance().get(CharacteristicName.TECH, characterPlayer.getLanguage(), characterPlayer.getModuleName()));
-                    tech.setValue(availableSkill.getRandomDefinition().getMinimumTechLevel());
-                    characteristicsMinimumValues.add(tech);
+                    try {
+                        tech = new Characteristic(CharacteristicsDefinitionFactory
+                                .getInstance().get(CharacteristicName.TECH, characterPlayer.getLanguage(), characterPlayer.getModuleName()));
+                        tech.setValue(availableSkill.getRandomDefinition().getMinimumTechLevel());
+                        characteristicsMinimumValues.add(tech);
+                    } catch (InvalidCharacteristicException e) {
+                        MachineLog.errorMessage(this.getClass().getName(), e);
+                    }
                 } else {
                     if (tech.getValue() < availableSkill.getRandomDefinition().getMinimumTechLevel()) {
                         tech.setValue(availableSkill.getRandomDefinition().getMinimumTechLevel());
@@ -177,13 +182,14 @@ public class RandomizeCharacter {
                 characterPlayer.addBenefice(availableBenefice);
             } catch (InvalidBeneficeException e) {
                 RandomGenerationLog.errorMessage(this.getClass().getName(), e);
-            } catch (BeneficeAlreadyAddedException | RestrictedElementException e) {
+            } catch (BeneficeAlreadyAddedException | RestrictedElementException | UnofficialElementNotAllowedException e) {
                 //Ignore it.
             }
         }
     }
 
-    public void createCharacter() throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException {
+    public void createCharacter() throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException,
+            UnofficialElementNotAllowedException {
         setDefaultPreferences();
         setCharacterDefinition();
         setStartingValues();
@@ -261,7 +267,8 @@ public class RandomizeCharacter {
         preferences.removeIf(Objects::isNull);
     }
 
-    protected void setCharacterDefinition() throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException {
+    protected void setCharacterDefinition() throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException,
+            UnofficialElementNotAllowedException {
         // Check if race is set.
         if (characterPlayer.getRace() == null) {
             if (requiredRace != null) {
@@ -338,7 +345,8 @@ public class RandomizeCharacter {
      * Using free style character generation. Only the first points to expend in a
      * character.
      */
-    private void setStartingValues() throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException {
+    private void setStartingValues() throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException,
+            UnofficialElementNotAllowedException {
         // Characteristics
         final RandomCharacteristics randomCharacteristics = new RandomCharacteristics(characterPlayer, preferences, characteristicsMinimumValues);
         randomCharacteristics.assign();
@@ -351,7 +359,8 @@ public class RandomizeCharacter {
         randomBenefice.assign();
     }
 
-    private void setExtraPoints() throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException {
+    private void setExtraPoints() throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException,
+            UnofficialElementNotAllowedException {
         // Traits.
         // First, assign curses.
         final RandomCursesDefinition randomCurses = new RandomCursesDefinition(characterPlayer, preferences);
@@ -404,7 +413,7 @@ public class RandomizeCharacter {
         }
     }
 
-    private void setInitialEquipment() throws InvalidXmlElementException, RestrictedElementException {
+    private void setInitialEquipment() throws InvalidXmlElementException, RestrictedElementException, UnofficialElementNotAllowedException {
         // Set weapons.
         final RandomWeapon randomRangedWeapon = new RandomRangeWeapon(characterPlayer, preferences, mandatoryWeapons);
         try {
@@ -441,7 +450,7 @@ public class RandomizeCharacter {
         }
     }
 
-    private void setExperiencePoints() throws InvalidXmlElementException, RestrictedElementException {
+    private void setExperiencePoints() throws InvalidXmlElementException, RestrictedElementException, UnofficialElementNotAllowedException {
         if (characterPlayer.getExperienceEarned() > 0) {
             final RandomCharacteristicsExperience randomCharacteristicsExperience = new RandomCharacteristicsExperience(characterPlayer, preferences);
             try {
@@ -449,7 +458,7 @@ public class RandomizeCharacter {
             } catch (InvalidRandomElementSelectedException e) {
                 // Not valid characteristic. Ignore it.
             }
-            // Spend remaingin XP on skills.
+            // Spend remaining XP on skills.
             final RandomSkillExperience randomSkillExperience = new RandomSkillExperience(characterPlayer, preferences);
             try {
                 randomSkillExperience.assign();

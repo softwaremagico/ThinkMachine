@@ -154,7 +154,9 @@ public class Element<T extends Element<?>> implements Comparable<T> {
         @SuppressWarnings("unchecked") final T other = (T) obj;
         if (id == null) {
             return other.getId() == null;
-        } else return id.equals(other.getId());
+        } else {
+            return id.equals(other.getId());
+        }
     }
 
     public RandomElementDefinition getRandomDefinition() {

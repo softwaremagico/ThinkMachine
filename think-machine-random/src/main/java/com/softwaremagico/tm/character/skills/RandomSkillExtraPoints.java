@@ -27,6 +27,7 @@ package com.softwaremagico.tm.character.skills;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.RestrictedElementException;
+import com.softwaremagico.tm.character.UnofficialElementNotAllowedException;
 import com.softwaremagico.tm.character.creation.CostCalculator;
 import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
 import com.softwaremagico.tm.log.RandomGenerationLog;
@@ -39,7 +40,8 @@ import java.util.Set;
 public class RandomSkillExtraPoints extends RandomSkills {
 
     public RandomSkillExtraPoints(CharacterPlayer characterPlayer, Set<IRandomPreference<?>> preferences,
-                                  Set<AvailableSkill> suggestedSkills) throws InvalidXmlElementException, RestrictedElementException {
+                                  Set<AvailableSkill> suggestedSkills) throws InvalidXmlElementException, RestrictedElementException,
+            UnofficialElementNotAllowedException {
         super(characterPlayer, preferences, new HashSet<>(), suggestedSkills);
     }
 
@@ -65,7 +67,7 @@ public class RandomSkillExtraPoints extends RandomSkills {
         try {
             getCharacterPlayer().setSkillRank(selectedSkill,
                     getCharacterPlayer().getSkillAssignedRanks(selectedSkill) + addedRanks);
-        } catch (InvalidRanksException | RestrictedElementException e) {
+        } catch (InvalidRanksException | RestrictedElementException | UnofficialElementNotAllowedException e) {
             addedRanks = 0;
         }
         return addedRanks * CostCalculator.SKILL_EXTRA_POINTS_COST;

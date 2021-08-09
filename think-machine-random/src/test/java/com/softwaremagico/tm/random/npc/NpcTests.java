@@ -4,6 +4,7 @@ import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.RandomizeCharacter;
 import com.softwaremagico.tm.character.RestrictedElementException;
+import com.softwaremagico.tm.character.UnofficialElementNotAllowedException;
 import com.softwaremagico.tm.character.benefices.AvailableBenefice;
 import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
 import com.softwaremagico.tm.character.benefices.BeneficeDefinitionFactory;
@@ -134,7 +135,7 @@ public class NpcTests {
     }
 
     @Test(timeOut = 5000)
-    public void checkFaction() throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException {
+    public void checkFaction() throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
                 NpcFactory.getInstance().getElement("peasant", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
@@ -143,7 +144,7 @@ public class NpcTests {
     }
 
     @Test(timeOut = 5000)
-    public void checkRace() throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException {
+    public void checkRace() throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
                 NpcFactory.getInstance().getElement("voroxCommand", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
@@ -164,7 +165,7 @@ public class NpcTests {
     }
 
     @Test(timeOut = 5000)
-    public void checkNoError() throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException {
+    public void checkNoError() throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException, UnofficialElementNotAllowedException {
         for (Npc npc : NpcFactory.getInstance().getElements(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)) {
             final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
             final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, npc);
@@ -174,7 +175,7 @@ public class NpcTests {
 
     @Test(timeOut = 5000)
     public void serf() throws InvalidXmlElementException,
-            InvalidRandomElementSelectedException, RestrictedElementException {
+            InvalidRandomElementSelectedException, RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
                 NpcFactory.getInstance().getElement("serf", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
@@ -189,7 +190,7 @@ public class NpcTests {
 
     @Test(timeOut = 5000)
     public void thug() throws InvalidXmlElementException,
-            InvalidRandomElementSelectedException, RestrictedElementException {
+            InvalidRandomElementSelectedException, RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
                 NpcFactory.getInstance().getElement("thug", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
@@ -203,7 +204,7 @@ public class NpcTests {
 
     @Test(timeOut = 5000)
     public void burglar() throws InvalidXmlElementException,
-            InvalidRandomElementSelectedException, RestrictedElementException {
+            InvalidRandomElementSelectedException, RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
                 NpcFactory.getInstance().getElement("burglar", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
@@ -215,8 +216,9 @@ public class NpcTests {
     }
 
     @Test(timeOut = 5000)
-    public void slayer() throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException {
+    public void slayer() throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        characterPlayer.getSettings().setOnlyOfficialAllowed(false);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
                 NpcFactory.getInstance().getElement("slayer", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         Assert.assertEquals(
@@ -226,7 +228,7 @@ public class NpcTests {
 
 
     @Test(timeOut = 5000)
-    public void heavySoldier() throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException {
+    public void heavySoldier() throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
                 NpcFactory.getInstance().getElement("heavyInfantry", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
@@ -241,7 +243,7 @@ public class NpcTests {
     }
 
     @Test(timeOut = 5000)
-    public void tracker() throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException {
+    public void tracker() throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
                 NpcFactory.getInstance().getElement("tracker", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
@@ -293,8 +295,9 @@ public class NpcTests {
     }
 
     @Test(timeOut = 5000)
-    public void manifestLight() throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException {
+    public void manifestLight() throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        characterPlayer.getSettings().setOnlyOfficialAllowed(false);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
                 NpcFactory.getInstance().getElement("manifestLight", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         randomizeCharacter.createCharacter();
@@ -307,8 +310,10 @@ public class NpcTests {
     }
 
     @Test(timeOut = 5000)
-    public void dervishes() throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException {
+    public void dervishes() throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException,
+            UnofficialElementNotAllowedException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        characterPlayer.getSettings().setOnlyOfficialAllowed(false);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
                 NpcFactory.getInstance().getElement("dervishes", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         randomizeCharacter.createCharacter();
@@ -318,7 +323,8 @@ public class NpcTests {
     }
 
     @Test(timeOut = 5000)
-    public void checkRaceInherit() throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException {
+    public void checkRaceInherit() throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException,
+            UnofficialElementNotAllowedException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
                 NpcFactory.getInstance().getElement("obun", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
@@ -327,7 +333,8 @@ public class NpcTests {
     }
 
     @Test(timeOut = 5000)
-    public void checkSuggestedAvailableBenefices() throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException {
+    public void checkSuggestedAvailableBenefices() throws InvalidXmlElementException, InvalidRandomElementSelectedException,
+            RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
                 NpcFactory.getInstance().getElement("obun", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
@@ -346,32 +353,39 @@ public class NpcTests {
     }
 
     @Test(timeOut = 5000)
-    public void hironemPriest() throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException {
+    public void hironemPriest() throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException,
+            UnofficialElementNotAllowedException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        characterPlayer.getSettings().setOnlyOfficialAllowed(false);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
                 NpcFactory.getInstance().getElement("hironemPriest", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         randomizeCharacter.createCharacter();
     }
 
     @Test(timeOut = 5000)
-    public void hironemWarrior() throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException {
+    public void hironemWarrior() throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException,
+            UnofficialElementNotAllowedException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        characterPlayer.getSettings().setOnlyOfficialAllowed(false);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
                 NpcFactory.getInstance().getElement("hironemWarrior", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         randomizeCharacter.createCharacter();
     }
 
     @Test(timeOut = 5000)
-    public void etyriHuarrayghq() throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException {
+    public void etyriHuarrayghq() throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException,
+            UnofficialElementNotAllowedException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        characterPlayer.getSettings().setOnlyOfficialAllowed(false);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
                 NpcFactory.getInstance().getElement("etyriHuarrayghq", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         randomizeCharacter.createCharacter();
     }
 
     @Test(timeOut = 5000)
-    public void ascorbite() throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException {
+    public void ascorbite() throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        characterPlayer.getSettings().setOnlyOfficialAllowed(false);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
                 NpcFactory.getInstance().getElement("ascorbite", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         randomizeCharacter.createCharacter();
@@ -379,8 +393,10 @@ public class NpcTests {
     }
 
     @Test(timeOut = 5000)
-    public void oroym() throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException {
+    public void oroym() throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException,
+            UnofficialElementNotAllowedException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        characterPlayer.getSettings().setOnlyOfficialAllowed(false);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
                 NpcFactory.getInstance().getElement("oroym", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         randomizeCharacter.createCharacter();
@@ -389,8 +405,9 @@ public class NpcTests {
 
     @Test(timeOut = 5000)
     public void kurgan() throws InvalidXmlElementException,
-            InvalidRandomElementSelectedException, RestrictedElementException {
+            InvalidRandomElementSelectedException, RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        characterPlayer.getSettings().setOnlyOfficialAllowed(false);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
                 NpcFactory.getInstance().getElement("kurgan", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         randomizeCharacter.createCharacter();
@@ -400,8 +417,9 @@ public class NpcTests {
 
     @Test(timeOut = 5000)
     public void theMasque() throws InvalidXmlElementException,
-            InvalidRandomElementSelectedException, RestrictedElementException {
+            InvalidRandomElementSelectedException, RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        characterPlayer.getSettings().setOnlyOfficialAllowed(false);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
                 NpcFactory.getInstance().getElement("theMasque", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         randomizeCharacter.createCharacter();
@@ -411,8 +429,9 @@ public class NpcTests {
 
     @Test(timeOut = 5000)
     public void vagabonds() throws InvalidXmlElementException,
-            InvalidRandomElementSelectedException, RestrictedElementException {
+            InvalidRandomElementSelectedException, RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        characterPlayer.getSettings().setOnlyOfficialAllowed(false);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
                 NpcFactory.getInstance().getElement("vagabonds", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         randomizeCharacter.createCharacter();
@@ -422,8 +441,9 @@ public class NpcTests {
 
     @Test(timeOut = 5000)
     public void prospectors() throws InvalidXmlElementException,
-            InvalidRandomElementSelectedException, RestrictedElementException {
+            InvalidRandomElementSelectedException, RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        characterPlayer.getSettings().setOnlyOfficialAllowed(false);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
                 NpcFactory.getInstance().getElement("prospectors", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         randomizeCharacter.createCharacter();
@@ -433,8 +453,9 @@ public class NpcTests {
 
     @Test(timeOut = 5000)
     public void apothecaries() throws InvalidXmlElementException,
-            InvalidRandomElementSelectedException, RestrictedElementException {
+            InvalidRandomElementSelectedException, RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        characterPlayer.getSettings().setOnlyOfficialAllowed(false);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
                 NpcFactory.getInstance().getElement("apothecaries", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         randomizeCharacter.createCharacter();
@@ -444,8 +465,9 @@ public class NpcTests {
 
     @Test(timeOut = 5000)
     public void weaponsmiths() throws InvalidXmlElementException,
-            InvalidRandomElementSelectedException, RestrictedElementException {
+            InvalidRandomElementSelectedException, RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        characterPlayer.getSettings().setOnlyOfficialAllowed(false);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
                 NpcFactory.getInstance().getElement("weaponsmiths", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         randomizeCharacter.createCharacter();
@@ -455,8 +477,9 @@ public class NpcTests {
 
     @Test(timeOut = 5000)
     public void courtesan() throws InvalidXmlElementException,
-            InvalidRandomElementSelectedException, RestrictedElementException {
+            InvalidRandomElementSelectedException, RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        characterPlayer.getSettings().setOnlyOfficialAllowed(false);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
                 NpcFactory.getInstance().getElement("courtesans", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         randomizeCharacter.createCharacter();

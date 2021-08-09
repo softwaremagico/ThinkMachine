@@ -27,6 +27,7 @@ package com.softwaremagico.tm.character.blessings;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.RestrictedElementException;
+import com.softwaremagico.tm.character.UnofficialElementNotAllowedException;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.log.RandomGenerationLog;
 import com.softwaremagico.tm.random.RandomSelector;
@@ -40,7 +41,8 @@ import java.util.Set;
 public class RandomBlessingDefinition extends RandomSelector<Blessing> {
 
     public RandomBlessingDefinition(CharacterPlayer characterPlayer, Set<IRandomPreference<?>> preferences, Set<Blessing> mandatoryBlessings,
-                                    Set<Blessing> suggestedBlessings) throws InvalidXmlElementException, RestrictedElementException {
+                                    Set<Blessing> suggestedBlessings) throws InvalidXmlElementException, RestrictedElementException,
+            UnofficialElementNotAllowedException {
         super(characterPlayer, null, preferences, mandatoryBlessings, suggestedBlessings);
     }
 
@@ -60,7 +62,7 @@ public class RandomBlessingDefinition extends RandomSelector<Blessing> {
                 } catch (TooManyBlessingsException e) {
                     // No more possible.
                     break;
-                } catch (BlessingAlreadyAddedException e) {
+                } catch (BlessingAlreadyAddedException | UnofficialElementNotAllowedException e) {
                     removeElementWeight(selectedBlessing);
                     continue;
                 }
@@ -112,7 +114,7 @@ public class RandomBlessingDefinition extends RandomSelector<Blessing> {
             try {
                 getCharacterPlayer().addBlessing(blessing);
                 RandomGenerationLog.info(this.getClass().getName(), "Added blessing '{}'.", blessing);
-            } catch (TooManyBlessingsException | BlessingAlreadyAddedException e) {
+            } catch (TooManyBlessingsException | BlessingAlreadyAddedException | UnofficialElementNotAllowedException e) {
                 throw new ImpossibleToAssignMandatoryElementException("Impossible to assign mandatory blessing '" + blessing + "'.", e);
             }
         }
@@ -128,7 +130,7 @@ public class RandomBlessingDefinition extends RandomSelector<Blessing> {
             } catch (TooManyBlessingsException e) {
                 // No more possible.
                 break;
-            } catch (BlessingAlreadyAddedException e) {
+            } catch (BlessingAlreadyAddedException | UnofficialElementNotAllowedException e) {
                 removeElementWeight(blessing);
                 continue;
             }

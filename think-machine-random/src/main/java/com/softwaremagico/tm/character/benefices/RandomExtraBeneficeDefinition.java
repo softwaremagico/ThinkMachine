@@ -27,6 +27,7 @@ package com.softwaremagico.tm.character.benefices;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.RestrictedElementException;
+import com.softwaremagico.tm.character.UnofficialElementNotAllowedException;
 import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.ExtraBeneficesNumberPreferences;
@@ -41,7 +42,7 @@ public class RandomExtraBeneficeDefinition extends RandomBeneficeDefinition {
 
     public RandomExtraBeneficeDefinition(CharacterPlayer characterPlayer, Set<IRandomPreference<?>> preferences,
                                          Set<BeneficeDefinition> suggestedBenefices, Set<AvailableBenefice> suggestedAvailableBenefices) throws
-            InvalidXmlElementException, RestrictedElementException {
+            InvalidXmlElementException, RestrictedElementException, UnofficialElementNotAllowedException {
         super(characterPlayer, preferences, new HashSet<>(), suggestedBenefices, suggestedAvailableBenefices);
     }
 

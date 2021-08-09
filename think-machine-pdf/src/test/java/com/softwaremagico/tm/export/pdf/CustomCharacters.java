@@ -81,7 +81,7 @@ public class CustomCharacters {
 
     @Test
     public void createPaolaCharacter() throws InvalidXmlElementException, TooManyBlessingsException, TooManyCyberneticDevicesException,
-            RequiredCyberneticDevicesException, BeneficeAlreadyAddedException, BlessingAlreadyAddedException, InvalidRanksException, RestrictedElementException {
+            RequiredCyberneticDevicesException, BeneficeAlreadyAddedException, BlessingAlreadyAddedException, InvalidRanksException, RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.getInfo().addName(new Name("#5", player.getLanguage(), player.getModuleName(), Gender.FEMALE, null));
         player.getInfo().setPlayer("Paola");
@@ -199,7 +199,7 @@ public class CustomCharacters {
 
     @Test
     public void characterAnaCharacter()
-            throws InvalidXmlElementException, TooManyBlessingsException, BeneficeAlreadyAddedException, BlessingAlreadyAddedException, InvalidRanksException, RestrictedElementException {
+            throws InvalidXmlElementException, TooManyBlessingsException, BeneficeAlreadyAddedException, BlessingAlreadyAddedException, InvalidRanksException, RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.getInfo().addName(new Name("Arya", player.getLanguage(), player.getModuleName(), Gender.FEMALE, null));
         player.getInfo().setSurname(new Surname("Hawkwood", player.getLanguage(), player.getModuleName(), null));
@@ -285,7 +285,7 @@ public class CustomCharacters {
 
     @Test
     public void createCarlosCharacter()
-            throws InvalidXmlElementException, TooManyBlessingsException, BeneficeAlreadyAddedException, BlessingAlreadyAddedException, InvalidRanksException, RestrictedElementException {
+            throws InvalidXmlElementException, TooManyBlessingsException, BeneficeAlreadyAddedException, BlessingAlreadyAddedException, InvalidRanksException, RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.getInfo().addName(new Name("Carlos", player.getLanguage(), player.getModuleName(), Gender.MALE, null));
         player.getInfo().setPlayer("Carlos");
@@ -387,7 +387,7 @@ public class CustomCharacters {
 
     @Test
     public void createNoeliaCharacter()
-            throws InvalidXmlElementException, TooManyBlessingsException, BeneficeAlreadyAddedException, BlessingAlreadyAddedException, InvalidRanksException, RestrictedElementException {
+            throws InvalidXmlElementException, TooManyBlessingsException, BeneficeAlreadyAddedException, BlessingAlreadyAddedException, InvalidRanksException, RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.getInfo().addName(new Name("Noelia", player.getLanguage(), player.getModuleName(), Gender.FEMALE, null));
         player.getInfo().setPlayer("Noelia");
@@ -484,7 +484,7 @@ public class CustomCharacters {
     }
 
     @Test
-    public void createGolemCharacer() throws InvalidXmlElementException, TooManyBlessingsException, BlessingAlreadyAddedException, InvalidRanksException, RestrictedElementException {
+    public void createGolemCharacter() throws InvalidXmlElementException, TooManyBlessingsException, BlessingAlreadyAddedException, InvalidRanksException, RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.getInfo().setPlayer("PNJ");
         player.getInfo().addName(new Name("A", player.getLanguage(), player.getModuleName(), Gender.FEMALE, null));

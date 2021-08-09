@@ -27,6 +27,7 @@ package com.softwaremagico.tm.character.cybernetics;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.RestrictedElementException;
+import com.softwaremagico.tm.character.UnofficialElementNotAllowedException;
 import com.softwaremagico.tm.character.characteristics.CharacteristicDefinition;
 import com.softwaremagico.tm.character.characteristics.CharacteristicType;
 import com.softwaremagico.tm.character.creation.CostCalculator;
@@ -49,7 +50,7 @@ public class RandomCybernetics extends RandomSelector<CyberneticDevice> {
     private int desiredCyberneticsPoints;
 
     public RandomCybernetics(CharacterPlayer characterPlayer, Set<IRandomPreference<?>> preferences)
-            throws InvalidXmlElementException, RestrictedElementException {
+            throws InvalidXmlElementException, RestrictedElementException, UnofficialElementNotAllowedException {
         super(characterPlayer, preferences);
         totalDevices = CyberneticTotalDevicesPreferences.getSelected(getPreferences()).randomGaussian();
         desiredCyberneticsPoints = CyberneticPointsPreferences.getSelected(getPreferences()).randomGaussian();
@@ -105,8 +106,8 @@ public class RandomCybernetics extends RandomSelector<CyberneticDevice> {
                         .getMaxCyberneticIncompatibility(getCharacterPlayer())) {
                     break;
                 }
-            } catch (RequiredCyberneticDevicesException e) {
-                // Cannot be added due to a requirement.
+            } catch (RequiredCyberneticDevicesException | UnofficialElementNotAllowedException e) {
+                // Cannot be added due to a requirement or setting limitation.
             }
             removeElementWeight(selectedDevice);
         }

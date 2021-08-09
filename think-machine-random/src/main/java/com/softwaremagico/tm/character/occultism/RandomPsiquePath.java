@@ -27,6 +27,7 @@ package com.softwaremagico.tm.character.occultism;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.RestrictedElementException;
+import com.softwaremagico.tm.character.UnofficialElementNotAllowedException;
 import com.softwaremagico.tm.character.creation.CostCalculator;
 import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
 import com.softwaremagico.tm.log.RandomGenerationLog;
@@ -43,7 +44,7 @@ public class RandomPsiquePath extends RandomSelector<OccultismPath> {
     private int totalPowers;
 
     public RandomPsiquePath(CharacterPlayer characterPlayer, Set<IRandomPreference<?>> preferences, Set<OccultismPath> mandatoryOccultismPaths)
-            throws InvalidXmlElementException, RestrictedElementException {
+            throws InvalidXmlElementException, RestrictedElementException, UnofficialElementNotAllowedException {
         super(characterPlayer, null, preferences, mandatoryOccultismPaths, new HashSet<>());
     }
 
@@ -175,7 +176,7 @@ public class RandomPsiquePath extends RandomSelector<OccultismPath> {
                     RandomGenerationLog.info(this.getClass().getName(), "Assigned power '{}' to path '{}'.", power, path);
                     remainingPoints -= power.getLevel() * CostCalculator.OCCULTISM_POWER_LEVEL_COST;
                     totalPowers++;
-                } catch (InvalidFactionOfPowerException e) {
+                } catch (InvalidFactionOfPowerException | UnofficialElementNotAllowedException e) {
                     //Restricted to faction. Ignore.
                 }
             }

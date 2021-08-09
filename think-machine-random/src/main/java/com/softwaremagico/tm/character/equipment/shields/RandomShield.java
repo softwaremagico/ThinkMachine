@@ -3,6 +3,7 @@ package com.softwaremagico.tm.character.equipment.shields;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.RestrictedElementException;
+import com.softwaremagico.tm.character.UnofficialElementNotAllowedException;
 import com.softwaremagico.tm.character.equipment.EquipmentSelector;
 import com.softwaremagico.tm.log.RandomGenerationLog;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
@@ -40,12 +41,13 @@ import java.util.*;
 public class RandomShield extends EquipmentSelector<Shield> {
 
     public RandomShield(CharacterPlayer characterPlayer, Set<IRandomPreference<?>> preferences,
-                        Set<Shield> mandatoryShields) throws InvalidXmlElementException, RestrictedElementException {
+                        Set<Shield> mandatoryShields) throws InvalidXmlElementException, RestrictedElementException,
+            UnofficialElementNotAllowedException {
         super(characterPlayer, preferences, mandatoryShields);
     }
 
     @Override
-    public void assign() throws InvalidRandomElementSelectedException, InvalidShieldException {
+    public void assign() throws InvalidRandomElementSelectedException, InvalidShieldException, UnofficialElementNotAllowedException {
         final Random random = new Random();
 
         final ShieldPreferences shieldPreferences = ShieldPreferences.getSelected(getPreferences());
@@ -136,7 +138,7 @@ public class RandomShield extends EquipmentSelector<Shield> {
     }
 
     @Override
-    protected void assignMandatoryValues(Set<Shield> mandatoryValues) throws InvalidXmlElementException {
+    protected void assignMandatoryValues(Set<Shield> mandatoryValues) throws InvalidXmlElementException, UnofficialElementNotAllowedException {
         // We only assign the most expensive one.
         if (!mandatoryValues.isEmpty()) {
             final List<Shield> sortedShields = new ArrayList<>(mandatoryValues);

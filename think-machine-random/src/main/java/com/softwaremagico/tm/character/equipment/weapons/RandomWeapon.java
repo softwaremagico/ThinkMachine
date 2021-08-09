@@ -27,6 +27,7 @@ package com.softwaremagico.tm.character.equipment.weapons;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.RestrictedElementException;
+import com.softwaremagico.tm.character.UnofficialElementNotAllowedException;
 import com.softwaremagico.tm.character.equipment.EquipmentSelector;
 import com.softwaremagico.tm.log.RandomGenerationLog;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
@@ -40,12 +41,13 @@ import java.util.Set;
 public abstract class RandomWeapon extends EquipmentSelector<Weapon> {
 
     protected RandomWeapon(CharacterPlayer characterPlayer, Set<IRandomPreference<?>> preferences,
-                           Set<Weapon> mandatoryWeapons) throws InvalidXmlElementException, RestrictedElementException {
+                           Set<Weapon> mandatoryWeapons) throws InvalidXmlElementException, RestrictedElementException,
+            UnofficialElementNotAllowedException {
         super(characterPlayer, preferences, mandatoryWeapons);
     }
 
     @Override
-    public void assign() throws InvalidRandomElementSelectedException {
+    public void assign() throws InvalidRandomElementSelectedException, UnofficialElementNotAllowedException {
         final Weapon selectedWeapon = selectElementByWeight();
         if (!getCharacterPlayer().getAllWeapons().contains(selectedWeapon)) {
             getCharacterPlayer().addWeapon(selectedWeapon);
@@ -166,7 +168,7 @@ public abstract class RandomWeapon extends EquipmentSelector<Weapon> {
     }
 
     @Override
-    protected void assignMandatoryValues(Set<Weapon> mandatoryValues) throws InvalidXmlElementException {
+    protected void assignMandatoryValues(Set<Weapon> mandatoryValues) throws InvalidXmlElementException, UnofficialElementNotAllowedException {
         for (final Weapon weapon : mandatoryValues) {
             if (weaponTypesFilter().contains(weapon.getType())) {
                 getCharacterPlayer().addWeapon(weapon);

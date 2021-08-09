@@ -27,6 +27,7 @@ package com.softwaremagico.tm.character.benefices;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.RestrictedElementException;
+import com.softwaremagico.tm.character.UnofficialElementNotAllowedException;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.combat.CombatStyle;
 import com.softwaremagico.tm.character.combat.CombatStyleGroup;
@@ -53,14 +54,14 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
     private final Set<AvailableBenefice> suggestedAvailableBenefices;
 
     public RandomBeneficeDefinition(CharacterPlayer characterPlayer, Set<IRandomPreference<?>> preferences)
-            throws InvalidXmlElementException, RestrictedElementException {
+            throws InvalidXmlElementException, RestrictedElementException, UnofficialElementNotAllowedException {
         this(characterPlayer, preferences, new HashSet<>(), new HashSet<>(), new HashSet<>());
     }
 
     public RandomBeneficeDefinition(CharacterPlayer characterPlayer, Set<IRandomPreference<?>> preferences,
                                     Set<BeneficeDefinition> mandatoryBenefices, Set<BeneficeDefinition> suggestedBenefices,
                                     Set<AvailableBenefice> suggestedAvailableBenefices)
-            throws InvalidXmlElementException, RestrictedElementException {
+            throws InvalidXmlElementException, RestrictedElementException, UnofficialElementNotAllowedException {
         super(characterPlayer, null, preferences, mandatoryBenefices, suggestedBenefices);
         this.suggestedAvailableBenefices = suggestedAvailableBenefices;
     }
@@ -172,11 +173,11 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
                     getCharacterPlayer().addBenefice(availableBenefice);
                     RandomGenerationLog.info(this.getClass().getName(), "Replacing benefice '{}' with '{}'.",
                             originalBenefice, availableBenefice);
-                } catch (BeneficeAlreadyAddedException e1) {
+                } catch (BeneficeAlreadyAddedException | UnofficialElementNotAllowedException e1) {
                     RandomGenerationLog.errorMessage(this.getClass().getName(), e1);
                 }
             }
-        } catch (IncompatibleBeneficeException e) {
+        } catch (IncompatibleBeneficeException | UnofficialElementNotAllowedException e) {
             //Incompatible. Cannot be added.
         }
     }

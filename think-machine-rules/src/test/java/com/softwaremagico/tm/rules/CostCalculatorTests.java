@@ -27,6 +27,7 @@ package com.softwaremagico.tm.rules;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.RestrictedElementException;
+import com.softwaremagico.tm.character.UnofficialElementNotAllowedException;
 import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
 import com.softwaremagico.tm.character.benefices.BeneficeAlreadyAddedException;
 import com.softwaremagico.tm.character.blessings.BlessingAlreadyAddedException;
@@ -57,7 +58,7 @@ public class CostCalculatorTests {
     private static final String MODULE = PathManager.DEFAULT_MODULE_FOLDER;
 
     @Test
-    public void checkCharacteristicsCost() throws InvalidXmlElementException, RestrictedElementException {
+    public void checkCharacteristicsCost() throws InvalidXmlElementException, RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.getInfo().setAge(31);
         player.setRace(RaceFactory.getInstance().getElement("human", LANGUAGE, MODULE));
@@ -82,7 +83,8 @@ public class CostCalculatorTests {
     }
 
     @Test
-    public void checkNaturalSkillsCost() throws InvalidXmlElementException, InvalidRanksException, RestrictedElementException {
+    public void checkNaturalSkillsCost() throws InvalidXmlElementException, InvalidRanksException, RestrictedElementException,
+            UnofficialElementNotAllowedException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.getInfo().setAge(31);
         player.setRace(RaceFactory.getInstance().getElement("human", LANGUAGE, MODULE));
@@ -107,7 +109,8 @@ public class CostCalculatorTests {
     }
 
     @Test
-    public void checkSkillsCost() throws InvalidXmlElementException, InvalidRanksException, RestrictedElementException {
+    public void checkSkillsCost() throws InvalidXmlElementException, InvalidRanksException, RestrictedElementException,
+            UnofficialElementNotAllowedException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.getInfo().setAge(31);
         player.setRace(RaceFactory.getInstance().getElement("human", LANGUAGE, MODULE));
@@ -186,7 +189,7 @@ public class CostCalculatorTests {
 
 
     @Test
-    public void checkOccultismLevelCost() throws InvalidXmlElementException, RestrictedElementException {
+    public void checkOccultismLevelCost() throws InvalidXmlElementException, RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.getInfo().setAge(31);
         player.setRace(RaceFactory.getInstance().getElement("obun", LANGUAGE, MODULE));
@@ -247,7 +250,7 @@ public class CostCalculatorTests {
     }
 
     @Test
-    public void checkOccultismPowerCost() throws InvalidXmlElementException, RestrictedElementException {
+    public void checkOccultismPowerCost() throws InvalidXmlElementException, RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.getInfo().setAge(31);
         player.setRace(RaceFactory.getInstance().getElement("obun", LANGUAGE, MODULE));
@@ -283,7 +286,7 @@ public class CostCalculatorTests {
 
     @Test
     public void checkTraitsCost() throws InvalidXmlElementException, TooManyBlessingsException,
-            BlessingAlreadyAddedException, BeneficeAlreadyAddedException, RestrictedElementException {
+            BlessingAlreadyAddedException, BeneficeAlreadyAddedException, RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.getInfo().setAge(31);
         player.setRace(RaceFactory.getInstance().getElement("human", LANGUAGE, MODULE));
@@ -322,7 +325,7 @@ public class CostCalculatorTests {
 
     @Test
     public void checkCyberneticsCost()
-            throws InvalidXmlElementException, TooManyCyberneticDevicesException, RequiredCyberneticDevicesException, RestrictedElementException {
+            throws InvalidXmlElementException, TooManyCyberneticDevicesException, RequiredCyberneticDevicesException, RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.getInfo().setAge(31);
         player.setRace(RaceFactory.getInstance().getElement("human", LANGUAGE, MODULE));
@@ -338,7 +341,7 @@ public class CostCalculatorTests {
 
     @Test
     public void checkEquipmentCost()
-            throws InvalidXmlElementException, BeneficeAlreadyAddedException, RestrictedElementException {
+            throws InvalidXmlElementException, BeneficeAlreadyAddedException, RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.getInfo().setAge(31);
         player.setRace(RaceFactory.getInstance().getElement("human", LANGUAGE, MODULE));
@@ -387,7 +390,7 @@ public class CostCalculatorTests {
     }
 
     @Test
-    public void checkRaceCosts() throws InvalidXmlElementException, RestrictedElementException {
+    public void checkRaceCosts() throws InvalidXmlElementException, RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer character = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         character.setFaction(FactionsFactory.getInstance().getElement("vorox", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         character.setRace(RaceFactory.getInstance().getElement("vorox", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));

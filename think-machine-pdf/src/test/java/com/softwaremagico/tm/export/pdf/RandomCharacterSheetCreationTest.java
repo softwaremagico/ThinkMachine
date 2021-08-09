@@ -28,6 +28,7 @@ import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.RandomizeCharacter;
 import com.softwaremagico.tm.character.RestrictedElementException;
+import com.softwaremagico.tm.character.UnofficialElementNotAllowedException;
 import com.softwaremagico.tm.character.creation.CostCalculator;
 import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
 import com.softwaremagico.tm.file.PathManager;
@@ -50,7 +51,8 @@ public class RandomCharacterSheetCreationTest {
     }
 
     @Test
-    public void completeRandomCharacter() throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException {
+    public void completeRandomCharacter() throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException,
+            UnofficialElementNotAllowedException {
         final CharacterPlayer characterPlayer = new CharacterPlayer("es", PathManager.DEFAULT_MODULE_FOLDER);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0);
         randomizeCharacter.createCharacter();
@@ -66,7 +68,7 @@ public class RandomCharacterSheetCreationTest {
 
     @Test
     public void completeRandomCharacterSmallEs() throws InvalidXmlElementException,
-            InvalidRandomElementSelectedException, RestrictedElementException {
+            InvalidRandomElementSelectedException, RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer characterPlayer = new CharacterPlayer("es", PathManager.DEFAULT_MODULE_FOLDER);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0);
         randomizeCharacter.createCharacter();
@@ -83,7 +85,7 @@ public class RandomCharacterSheetCreationTest {
 
     @Test
     public void completeRandomCharacterSmallEn() throws InvalidXmlElementException,
-            InvalidRandomElementSelectedException, RestrictedElementException {
+            InvalidRandomElementSelectedException, RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer characterPlayer = new CharacterPlayer("en", PathManager.DEFAULT_MODULE_FOLDER);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0);
         randomizeCharacter.createCharacter();

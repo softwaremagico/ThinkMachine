@@ -27,6 +27,7 @@ package com.softwaremagico.tm.character.equipment;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.RestrictedElementException;
+import com.softwaremagico.tm.character.UnofficialElementNotAllowedException;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.random.RandomSelector;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
@@ -38,7 +39,7 @@ public abstract class EquipmentSelector<E extends Equipment<?>> extends RandomSe
 	private Integer currentMoney = null;
 
 	protected EquipmentSelector(CharacterPlayer characterPlayer, Set<IRandomPreference<?>> preferences,
-			Set<E> mandatoryElements) throws InvalidXmlElementException, RestrictedElementException {
+			Set<E> mandatoryElements) throws InvalidXmlElementException, RestrictedElementException, UnofficialElementNotAllowedException {
 		super(characterPlayer, null, preferences, mandatoryElements, null);
 	}
 

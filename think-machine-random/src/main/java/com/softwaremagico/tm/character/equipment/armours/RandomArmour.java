@@ -27,6 +27,7 @@ package com.softwaremagico.tm.character.equipment.armours;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.RestrictedElementException;
+import com.softwaremagico.tm.character.UnofficialElementNotAllowedException;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.equipment.EquipmentSelector;
 import com.softwaremagico.tm.log.RandomGenerationLog;
@@ -44,12 +45,13 @@ import java.util.Set;
 public class RandomArmour extends EquipmentSelector<Armour> {
 
     public RandomArmour(CharacterPlayer characterPlayer, Set<IRandomPreference<?>> preferences,
-                        Set<Armour> mandatoryArmours) throws InvalidXmlElementException, RestrictedElementException {
+                        Set<Armour> mandatoryArmours) throws InvalidXmlElementException, RestrictedElementException,
+            UnofficialElementNotAllowedException {
         super(characterPlayer, preferences, mandatoryArmours);
     }
 
     @Override
-    public void assign() throws InvalidRandomElementSelectedException, InvalidArmourException {
+    public void assign() throws InvalidRandomElementSelectedException, InvalidArmourException, UnofficialElementNotAllowedException {
         final Random random = new Random();
         final ArmourPreferences armourPreferences = ArmourPreferences.getSelected(getPreferences());
         if (armourPreferences != null && random.nextFloat() < armourPreferences.getArmourProbability()) {
@@ -188,7 +190,7 @@ public class RandomArmour extends EquipmentSelector<Armour> {
     }
 
     @Override
-    protected void assignMandatoryValues(Set<Armour> mandatoryValues) throws InvalidXmlElementException {
+    protected void assignMandatoryValues(Set<Armour> mandatoryValues) throws InvalidXmlElementException, UnofficialElementNotAllowedException {
         // We only assign one armour of the mandatory list.
         if (!mandatoryValues.isEmpty()) {
             getCharacterPlayer().setArmour(mandatoryValues.iterator().next());
