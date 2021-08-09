@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <occultism>
     <version>1</version>
-    <totalElements>13</totalElements>
+    <totalElements>17</totalElements>
     <farHand>
         <name>
             <en>Far Hand</en>
@@ -3869,4 +3869,551 @@
             </invitationToHamomeyelos>
         </powers>
     </aeonSancturayRituals>
+
+    <Hymns>
+        <name>
+            <en>Hymns</en>
+            <es>Himnos</es>
+        </name>
+        <type>theurgy</type>
+        <factions>chorali</factions>
+        <classification>others</classification>
+        <official>false</official>
+        <powers>
+            <avevIgna>
+                <name>
+                    <en>Ave Igna</en>
+                    <es>Ave Igna</es>
+                </name>
+                <level>1</level>
+                <characteristic>presence</characteristic>
+                <skill>influence</skill>
+                <range>sensory</range>
+                <duration>instant</duration>
+                <wyrd>1</wyrd>
+            </avevIgna>
+            <blessedDisciple>
+                <name>
+                    <en>Blessed Discipled</en>
+                    <es>El Discípulo Bendecido</es>
+                </name>
+                <level>2</level>
+                <characteristic>presence</characteristic>
+                <skill>influence</skill>
+                <components>L</components>
+                <range>sensory</range>
+                <duration>temporary</duration>
+                <wyrd>1</wyrd>
+            </blessedDisciple>
+            <blessTheFaithful>
+                <name>
+                    <en>Bless the Faithful</en>
+                    <es>La Bendición de los Creyentes</es>
+                </name>
+                <level>3</level>
+                <characteristic>faith</characteristic>
+                <skill>selfControl</skill>
+                <components>L</components>
+                <range>sensory</range>
+                <duration>temporary</duration>
+                <wyrd>1</wyrd>
+            </blessTheFaithful>
+            <fearOfTheProphet>
+                <name>
+                    <en>Fear of the Prophet</en>
+                    <es>El miedo del profeta</es>
+                </name>
+                <level>4</level>
+                <characteristic>faith</characteristic>
+                <skill>influence</skill>
+                <components>L</components>
+                <range>sensory</range>
+                <duration>temporary</duration>
+                <wyrd>1</wyrd>
+            </fearOfTheProphet>
+            <songOfPeace>
+                <name>
+                    <en>Song of Peace</en>
+                    <es>La Canción de la Paz</es>
+                </name>
+                <level>5</level>
+                <characteristic>will</characteristic>
+                <skill>influence</skill>
+                <components>L</components>
+                <range>sensory</range>
+                <duration>temporary</duration>
+                <wyrd>1</wyrd>
+            </songOfPeace>
+            <theChorusOfManyFlames>
+                <name>
+                    <en>The Chorus Of Many Flames</en>
+                    <es>El Coro de las Múltiples Llamas</es>
+                </name>
+                <level>5</level>
+                <characteristic>presence</characteristic>
+                <skill>vigor</skill>
+                <components>L</components>
+                <range>sensory</range>
+                <duration>temporary</duration>
+                <wyrd>1</wyrd>
+            </theChorusOfManyFlames>
+            <shepherdsLament>
+                <name>
+                    <en>Shepherd's Lament</en>
+                    <es>El Lamento del Pastor</es>
+                </name>
+                <level>6</level>
+                <characteristic>will</characteristic>
+                <skill>selfControl</skill>
+                <components>L</components>
+                <range>sensory</range>
+                <duration>temporary</duration>
+                <wyrd>1</wyrd>
+            </shepherdsLament>
+            <theUpliftingWord>
+                <name>
+                    <en>The Uplifting Word</en>
+                    <es>La Palabra que Anima</es>
+                </name>
+                <level>6</level>
+                <characteristic>presence</characteristic>
+                <skill>vigor</skill>
+                <components>L</components>
+                <range>sensory</range>
+                <duration>prolonged</duration>
+                <wyrd>1</wyrd>
+            </theUpliftingWord>
+            <hornOfJoshua>
+                <name>
+                    <en>Horn of Joshua</en>
+                    <es>El Cuerno de Josué</es>
+                </name>
+                <level>7</level>
+                <characteristic>strength</characteristic>
+                <skill>vigor</skill>
+                <components>L</components>
+                <range>sensory</range>
+                <duration>instant</duration>
+                <wyrd>1</wyrd>
+            </hornOfJoshua>
+            <theLordsChampion>
+                <name>
+                    <en>The Lord's Champion</en>
+                    <es>El Campeón del Señor</es>
+                </name>
+                <level>8</level>
+                <characteristic>faith</characteristic>
+                <skill>influence</skill>
+                <components>L</components>
+                <range>sensory</range>
+                <duration>temporary</duration>
+                <wyrd>1</wyrd>
+            </theLordsChampion>
+            <graceOfEmpyrean>
+                <name>
+                    <en>Grace of Empyrean</en>
+                    <es>La Gracia del Empíreo</es>
+                </name>
+                <level>9</level>
+                <characteristic>faith</characteristic>
+                <skill>performance</skill>
+                <components>L</components>
+                <range>sensory</range>
+                <duration>instant</duration>
+                <wyrd>1</wyrd>
+            </graceOfEmpyrean>
+        </powers>
+    </Hymns>
+    <folkRites>
+        <name>
+            <en>Folk Rites</en>
+            <es>Rituales Tradicionales</es>
+        </name>
+        <type>theurgy</type>
+        <factions>gjarti</factions>
+        <classification>others</classification>
+        <official>false</official>
+        <powers>
+            <purification>
+                <name>
+                    <en>Purification</en>
+                    <es>Purificación</es>
+                </name>
+                <level>1</level>
+                <characteristic>faith</characteristic>
+                <skill>selfControl</skill>
+                <components>LPG</components>
+                <range>touch</range>
+                <duration>prolonged</duration>
+                <wyrd>0</wyrd>
+            </purification>
+            <gjartisBlessing>
+                <name>
+                    <en>Gjarti's Blessing</en>
+                    <es>La Bendición de Gjarti</es>
+                </name>
+                <level>2</level>
+                <characteristic>faith</characteristic>
+                <skill>selfControl</skill>
+                <components>G</components>
+                <range>touch</range>
+                <wyrd>1</wyrd>
+            </gjartisBlessing>
+            <gjartisKiss>
+                <name>
+                    <en>Gjarti's Kiss</en>
+                    <es>El Beso de Gjarti</es>
+                </name>
+                <level>3</level>
+                <characteristic>will</characteristic>
+                <skill>physick</skill>
+                <components>P</components>
+                <range>touch</range>
+                <duration>instant</duration>
+                <wyrd>1</wyrd>
+            </gjartisKiss>
+            <weatherWay>
+                <name>
+                    <en>Weather Way</en>
+                    <es>La Senda del Clima</es>
+                </name>
+                <level>4</level>
+                <characteristic>perception</characteristic>
+                <skill>selfControl</skill>
+                <components>G</components>
+                <range>sensory</range>
+                <duration>prolonged</duration>
+                <wyrd>1</wyrd>
+            </weatherWay>
+            <voiceOfTheAnimalPowers>
+                <name>
+                    <en>Voice of the Animal Powers</en>
+                    <es>La Voz de los Animales</es>
+                </name>
+                <level>4</level>
+                <characteristic>faith</characteristic>
+                <skill>empathy</skill>
+                <components>P</components>
+                <range>sensory</range>
+                <wyrd>1</wyrd>
+            </voiceOfTheAnimalPowers>
+            <voiceOfThePlantPowers>
+                <name>
+                    <en>Voice of the Plant Powers</en>
+                    <es>La Voz de las Plantas</es>
+                </name>
+                <level>4</level>
+                <characteristic>will</characteristic>
+                <skill>empathy</skill>
+                <components>P</components>
+                <duration>prolonged</duration>
+                <wyrd>1</wyrd>
+            </voiceOfThePlantPowers>
+            <sacredSpace>
+                <name>
+                    <en>Sacred Space</en>
+                    <es>Espacio Sagrado</es>
+                </name>
+                <level>5</level>
+                <characteristic>presence</characteristic>
+                <skill>selfControl</skill>
+                <components>PG</components>
+                <duration>prolonged</duration>
+                <wyrd>1</wyrd>
+            </sacredSpace>
+            <callCreature>
+                <name>
+                    <en>Call Creature</en>
+                    <es>Llamar a una Criatura</es>
+                </name>
+                <level>6</level>
+                <characteristic>presence</characteristic>
+                <skill>empathy</skill>
+                <components>L</components>
+                <range>sensory</range>
+                <wyrd>1</wyrd>
+            </callCreature>
+            <commandCreature>
+                <name>
+                    <en>Command Creature</en>
+                    <es>Dominar a una Criatura</es>
+                </name>
+                <level>7</level>
+                <characteristic>presence</characteristic>
+                <skill>influence</skill>
+                <components>L</components>
+                <range>sensory</range>
+                <duration>temporary</duration>
+                <wyrd>1</wyrd>
+            </commandCreature>
+            <stormLord>
+                <name>
+                    <en>Storm Lord</en>
+                    <es>Señor de la Tormenta</es>
+                </name>
+                <level>7</level>
+                <characteristic>presence</characteristic>
+                <skill>influence</skill>
+                <components>L</components>
+                <range>sensory</range>
+                <duration>instant</duration>
+                <wyrd>1</wyrd>
+            </stormLord>
+            <strengthOfTheAnimalPowers>
+                <name>
+                    <en>Strength of the Animal Powers</en>
+                    <es>La Fuerza de los Animales</es>
+                </name>
+                <level>8</level>
+                <characteristic>presence</characteristic>
+                <skill>vigor</skill>
+                <components>GP</components>
+                <range>sensory</range>
+                <duration>prolonged</duration>
+                <wyrd>1</wyrd>
+            </strengthOfTheAnimalPowers>
+            <summonTheLordOfTheQuarters>
+                <name>
+                    <en>Summon the Lord of the Quarters</en>
+                    <es>Convocar al Señor de Todos los Rincones</es>
+                </name>
+                <level>9</level>
+                <characteristic>will</characteristic>
+                <skill>selfControl</skill>
+                <components>LGP</components>
+                <wyrd>1</wyrd>
+            </summonTheLordOfTheQuarters>
+        </powers>
+    </folkRites>
+    <contemplativeRites>
+        <name>
+            <en>Contemplative Rites</en>
+            <es>Ritos Contemplativos</es>
+        </name>
+        <type>theurgy</type>
+        <factions>gjarti</factions>
+        <classification>others</classification>
+        <official>false</official>
+        <powers>
+            <subtleMemory>
+                <name>
+                    <en>Subtle Memory</en>
+                    <es>Memoria Sutil</es>
+                </name>
+                <level>1</level>
+                <characteristic>will</characteristic>
+                <skill>selfControl</skill>
+                <components>P</components>
+                <wyrd>0</wyrd>
+            </subtleMemory>
+            <foreboding>
+                <name>
+                    <en>Foreboding</en>
+                    <es>Premonición</es>
+                </name>
+                <level>2</level>
+                <characteristic>will</characteristic>
+                <skill>observe</skill>
+                <components>P</components>
+                <wyrd>1</wyrd>
+            </foreboding>
+            <shareDream>
+                <name>
+                    <en>Share Dream</en>
+                    <es>Compartir los Sueños</es>
+                </name>
+                <level>3</level>
+                <characteristic>will</characteristic>
+                <skill>influence</skill>
+                <components>P</components>
+                <wyrd>1</wyrd>
+            </shareDream>
+            <dreamSign>
+                <name>
+                    <en>DreamSign</en>
+                    <es>Señal Onírica</es>
+                </name>
+                <level>4</level>
+                <characteristic>wits</characteristic>
+                <skill>investigation</skill>
+                <components>P</components>
+                <wyrd>1</wyrd>
+            </dreamSign>
+            <mentor>
+                <name>
+                    <en>Mentor</en>
+                    <es>Maestro</es>
+                </name>
+                <level>5</level>
+                <characteristic>presence</characteristic>
+                <skill>selfControl</skill>
+                <components>P</components>
+                <wyrd>1</wyrd>
+            </mentor>
+            <dreamSkill>
+                <name>
+                    <en>Dream Skill</en>
+                    <es>Habilidad Onírica</es>
+                </name>
+                <level>6</level>
+                <characteristic>wits</characteristic>
+                <skill>selfControl</skill>
+                <components>P</components>
+                <wyrd>1</wyrd>
+            </dreamSkill>
+            <wakingDream>
+                <name>
+                    <en>Waking Dream</en>
+                    <es>Sueño en la Vigilia</es>
+                </name>
+                <level>7</level>
+                <characteristic>wits</characteristic>
+                <skill>selfControl</skill>
+                <components>P</components>
+                <duration>temporary</duration>
+                <wyrd>1</wyrd>
+            </wakingDream>
+            <timesGoneBy>
+                <name>
+                    <en>Times Gone By</en>
+                    <es>Tiempos Pasados</es>
+                </name>
+                <level>8</level>
+                <characteristic>will</characteristic>
+                <skill>observe</skill>
+                <components>P</components>
+                <wyrd>1</wyrd>
+            </timesGoneBy>
+            <portents>
+                <name>
+                    <en>Portents</en>
+                    <es>Presagios</es>
+                </name>
+                <level>9</level>
+                <characteristic>faith</characteristic>
+                <skill>observe</skill>
+                <components>P</components>
+                <wyrd>1</wyrd>
+            </portents>
+        </powers>
+    </contemplativeRites>
+    <manjaRites>
+        <name>
+            <en>Contemplative Rites</en>
+            <es>Ritos Contemplativos</es>
+        </name>
+        <type>theurgy</type>
+        <factions>manja</factions>
+        <classification>others</classification>
+        <official>false</official>
+        <powers>
+            <birthright>
+                <name>
+                    <en>Birthright</en>
+                    <es>Derecho de Nacimiento</es>
+                </name>
+                <level>1</level>
+                <characteristic>wits</characteristic>
+                <skill>observe</skill>
+                <components>L</components>
+                <wyrd>1</wyrd>
+            </birthright>
+            <advisor>
+                <name>
+                    <en>Advisor</en>
+                    <es>Consejero</es>
+                </name>
+                <level>2</level>
+                <characteristic>Presence</characteristic>
+                <skill>influence</skill>
+                <components>L</components>
+                <wyrd>1</wyrd>
+            </advisor>
+            <schemes>
+                <name>
+                    <en>Schemes</en>
+                    <es>Intrigas</es>
+                </name>
+                <level>3</level>
+                <characteristic>perception</characteristic>
+                <skill>selfControl</skill>
+                <components>L</components>
+                <wyrd>1</wyrd>
+            </schemes>
+            <sightFromBeyond>
+                <name>
+                    <en>Sight from Beyond</en>
+                    <es>Visiones desde el Más Allá</es>
+                </name>
+                <level>4</level>
+                <characteristic>perception</characteristic>
+                <skill>selfControl</skill>
+                <components>P</components>
+                <range>sensory</range>
+                <duration>prolonged</duration>
+                <wyrd>1</wyrd>
+            </sightFromBeyond>
+            <protectFief>
+                <name>
+                    <en>Protect Fief</en>
+                    <es>Proteger el Feudo</es>
+                </name>
+                <level>5</level>
+                <characteristic>wits</characteristic>
+                <skill>influence</skill>
+                <components>P</components>
+                <duration>prolonged</duration>
+                <wyrd>1</wyrd>
+            </protectFief>
+            <foilRival>
+                <name>
+                    <en>Foil Rival</en>
+                    <es>Frustar a un Rival</es>
+                </name>
+                <level>6</level>
+                <characteristic>presence</characteristic>
+                <skill>influence</skill>
+                <components>P</components>
+                <range>distant</range>
+                <duration>prolonged</duration>
+                <wyrd>1</wyrd>
+            </foilRival>
+            <thwartAssassin>
+                <name>
+                    <en>Thwart Assassin</en>
+                    <es>Detener a un Asesino</es>
+                </name>
+                <level>7</level>
+                <characteristic>presence</characteristic>
+                <skill>selfControl</skill>
+                <components>P</components>
+                <duration>prolonged</duration>
+                <wyrd>1</wyrd>
+            </thwartAssassin>
+            <commandKin>
+                <name>
+                    <en>Command Kin</en>
+                    <es>Dominar a la Familia</es>
+                </name>
+                <level>8</level>
+                <characteristic>presence</characteristic>
+                <skill>leadership</skill>
+                <range>sight</range>
+                <components>P</components>
+                <duration>instant</duration>
+                <wyrd>1</wyrd>
+            </commandKin>
+            <summonLordOfTheLords>
+                <name>
+                    <en>Summon Lord of the Lords</en>
+                    <es>Invocar al Señor Supremo</es>
+                </name>
+                <level>9</level>
+                <characteristic>presence</characteristic>
+                <skill>etiquette</skill>
+                <components>P</components>
+                <wyrd>1</wyrd>
+            </summonLordOfTheLords>
+        </powers>
+    </manjaRites>
 </occultism>

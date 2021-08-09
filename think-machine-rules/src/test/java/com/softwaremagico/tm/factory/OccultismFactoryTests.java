@@ -37,7 +37,7 @@ public class OccultismFactoryTests {
 
 
     private static final int DEFINED_PSI_PATHS = 7;
-    private static final int DEFINED_THEURGY_PATHS = 6;
+    private static final int DEFINED_THEURGY_PATHS = 10;
     private static final int DEFINED_RANGES = 5;
     private static final int DEFINED_DURATIONS = 7;
     private static final int DEFINED_THEURGY_COMPONENTS = 3;
@@ -58,30 +58,30 @@ public class OccultismFactoryTests {
 
     @Test
     public void readPaths() throws InvalidXmlElementException {
-        Assert.assertEquals(DEFINED_PSI_PATHS + DEFINED_THEURGY_PATHS,
-                OccultismPathFactory.getInstance().getElements(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).size());
+        Assert.assertEquals(OccultismPathFactory.getInstance().getElements(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).size(),
+                DEFINED_PSI_PATHS + DEFINED_THEURGY_PATHS);
     }
 
     @Test
-    public void readPsiPaths() throws InvalidXmlElementException {
-        Assert.assertEquals(DEFINED_PSI_PATHS, OccultismPathFactory.getInstance().getPsiPaths(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).size());
+    public void readPsiPaths() {
+        Assert.assertEquals(OccultismPathFactory.getInstance().getPsiPaths(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).size(), DEFINED_PSI_PATHS);
     }
 
     @Test
-    public void readTheurgyPaths() throws InvalidXmlElementException {
-        Assert.assertEquals(DEFINED_THEURGY_PATHS, OccultismPathFactory.getInstance().getTheurgyPaths(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)
-                .size());
+    public void readTheurgyPaths() {
+        Assert.assertEquals(OccultismPathFactory.getInstance().getTheurgyPaths(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)
+                .size(), DEFINED_THEURGY_PATHS);
     }
 
     @Test
     public void readRanges() throws InvalidXmlElementException {
-        Assert.assertEquals(DEFINED_RANGES, OccultismRangeFactory.getInstance().getElements(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).size());
+        Assert.assertEquals(OccultismRangeFactory.getInstance().getElements(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).size(), DEFINED_RANGES);
     }
 
     @Test
     public void readDurations() throws InvalidXmlElementException {
-        Assert.assertEquals(DEFINED_DURATIONS, OccultismDurationFactory.getInstance().getElements(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)
-                .size());
+        Assert.assertEquals(OccultismDurationFactory.getInstance().getElements(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)
+                .size(), DEFINED_DURATIONS);
     }
 
     @Test

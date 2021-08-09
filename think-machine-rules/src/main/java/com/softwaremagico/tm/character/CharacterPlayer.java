@@ -212,8 +212,12 @@ public class CharacterPlayer {
         value += getCyberneticsModificationAlways(getCharacteristic(characteristicName));
 
         // Add modifications always applied.
-        value += getBlessingModificationAlways(
-                CharacteristicsDefinitionFactory.getInstance().get(characteristicName, getLanguage(), getModuleName()));
+        try {
+            value += getBlessingModificationAlways(
+                    CharacteristicsDefinitionFactory.getInstance().get(characteristicName, getLanguage(), getModuleName()));
+        } catch (InvalidCharacteristicException e) {
+            MachineLog.errorMessage(this.getClass().getName(), e);
+        }
 
         return value;
     }
@@ -1022,8 +1026,8 @@ public class CharacterPlayer {
         for (final AvailableBenefice beneficeDefinition : getAllBenefices()) {
             if (beneficeDefinition.getBeneficeDefinition().getGroup() == BeneficeGroup.FIGHTING) {
                 final CombatStyle combatStyle = CombatStyle.getCombatStyle(beneficeDefinition.getBeneficeDefinition(), getLanguage(), getModuleName());
-                if (combatStyle.getGroup() == CombatStyleGroup.MELEE
-                        || combatStyle.getGroup() == CombatStyleGroup.FIGHT) {
+                if (combatStyle != null && (combatStyle.getGroup() == CombatStyleGroup.MELEE
+                        || combatStyle.getGroup() == CombatStyleGroup.FIGHT)) {
                     meleeCombatActions.add(combatStyle);
                 }
             }
@@ -1611,21 +1615,31 @@ public class CharacterPlayer {
     }
 
     public boolean hasCharacteristicTemporalModificator(CharacteristicName characteristicName) {
-        if (getBlessingModificationSituation(CharacteristicsDefinitionFactory.getInstance().get(characteristicName,
-                getLanguage(), getModuleName())) != 0) {
-            return true;
+        try {
+            if (getBlessingModificationSituation(CharacteristicsDefinitionFactory.getInstance().get(characteristicName,
+                    getLanguage(), getModuleName())) != 0) {
+                return true;
+            }
+            return getCyberneticsModificationSituation(CharacteristicsDefinitionFactory.getInstance().get(characteristicName,
+                    getLanguage(), getModuleName())) != 0;
+        } catch (InvalidCharacteristicException e) {
+            MachineLog.errorMessage(this.getClass().getName(), e);
         }
-        return getCyberneticsModificationSituation(CharacteristicsDefinitionFactory.getInstance().get(characteristicName,
-                getLanguage(), getModuleName())) != 0;
+        return false;
     }
 
     public boolean hasCharacteristicModificator(CharacteristicName characteristicName) {
-        if (getBlessingModificationAlways(CharacteristicsDefinitionFactory.getInstance().get(characteristicName,
-                getLanguage(), getModuleName())) != 0) {
-            return true;
+        try {
+            if (getBlessingModificationAlways(CharacteristicsDefinitionFactory.getInstance().get(characteristicName,
+                    getLanguage(), getModuleName())) != 0) {
+                return true;
+            }
+            return getCyberneticsModificationAlways(CharacteristicsDefinitionFactory.getInstance().get(characteristicName,
+                    getLanguage(), getModuleName())) != 0;
+        } catch (InvalidCharacteristicException e) {
+            MachineLog.errorMessage(this.getClass().getName(), e);
         }
-        return getCyberneticsModificationAlways(CharacteristicsDefinitionFactory.getInstance().get(characteristicName,
-                getLanguage(), getModuleName())) != 0;
+        return false;
     }
 
     public int getExtraWyrd() {
