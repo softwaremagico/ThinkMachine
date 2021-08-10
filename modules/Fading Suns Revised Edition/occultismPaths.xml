@@ -4142,7 +4142,7 @@
                 <characteristic>presence</characteristic>
                 <skill>influence</skill>
                 <components>L</components>
-                <range>sensory</range>
+                <range>sight</range>
                 <duration>temporary</duration>
                 <wyrd>1</wyrd>
             </commandCreature>
@@ -4349,7 +4349,7 @@
                 <characteristic>perception</characteristic>
                 <skill>selfControl</skill>
                 <components>P</components>
-                <range>sensory</range>
+                <range>sight</range>
                 <duration>prolonged</duration>
                 <wyrd>1</wyrd>
             </sightFromBeyond>
@@ -4554,4 +4554,358 @@
             </stupefy>
         </powers>
     </bedlam>
+    <visioning>
+        <name>
+            <en>Visioning</en>
+            <es>Visualización</es>
+        </name>
+        <type>psi</type>
+        <classification>others</classification>
+        <official>false</official>
+        <powers>
+            <falseGlimpse>
+                <name>
+                    <en>False Glimpse</en>
+                    <es>Falsa Impresión</es>
+                </name>
+                <level>1</level>
+                <characteristic>wits</characteristic>
+                <skill>influence</skill>
+                <range>sensory</range>
+                <duration>instant</duration>
+                <wyrd>1</wyrd>
+            </falseGlimpse>
+            <falseSight>
+                <name>
+                    <en>False Sight</en>
+                    <es>Visión Falsa</es>
+                </name>
+                <level>2</level>
+                <characteristic>presence</characteristic>
+                <skill>selfControl</skill>
+                <range>sensory</range>
+                <duration>temporary</duration>
+                <wyrd>1</wyrd>
+            </falseSight>
+            <lyingSenses>
+                <name>
+                    <en>Lying Senses</en>
+                    <es>Sentidos Mentirosos</es>
+                </name>
+                <level>3</level>
+                <characteristic>presence</characteristic>
+                <skill>selfControl</skill>
+                <range>sensory</range>
+                <duration>temporary</duration>
+                <wyrd>1</wyrd>
+            </lyingSenses>
+            <falseObject>
+                <name>
+                    <en>False Object</en>
+                    <es>Objeto Falso</es>
+                </name>
+                <level>4</level>
+                <characteristic>wits</characteristic>
+                <skill>selfControl</skill>
+                <range>sensory</range>
+                <duration>prolonged</duration>
+                <wyrd>1</wyrd>
+            </falseObject>
+            <falseScenery>
+                <name>
+                    <en>False Scenery</en>
+                    <es>Escenario Falso</es>
+                </name>
+                <level>5</level>
+                <characteristic>wits</characteristic>
+                <skill>arts</skill>
+                <range>sensory</range>
+                <duration>prolonged</duration>
+                <wyrd>1</wyrd>
+            </falseScenery>
+            <falseCreature>
+                <name>
+                    <en>False Creature</en>
+                    <es>Criatura Falsa</es>
+                </name>
+                <level>6</level>
+                <characteristic>presence</characteristic>
+                <skill>performance</skill>
+                <range>sensory</range>
+                <duration>prolonged</duration>
+                <wyrd>1</wyrd>
+            </falseCreature>
+            <falseWorld>
+                <name>
+                    <en>False World</en>
+                    <es>Mundo Falso</es>
+                </name>
+                <level>7</level>
+                <characteristic>wits</characteristic>
+                <skill>arts</skill>
+                <range>sensory</range>
+                <duration>prolonged</duration>
+                <wyrd>1</wyrd>
+            </falseWorld>
+            <persistenceOfVisioning>
+                <name>
+                    <en>Persistence of Visioning</en>
+                    <es>Visualización Persistente</es>
+                </name>
+                <level>8</level>
+                <characteristic>wits</characteristic>
+                <skill>selfControl</skill>
+                <range>distant</range>
+                <duration>perpetual</duration>
+                <wyrd>1</wyrd>
+            </persistenceOfVisioning>
+            <massHallucination>
+                <name>
+                    <en>Mass Hallucination</en>
+                    <es>Alucinación en Masa</es>
+                </name>
+                <level>9</level>
+                <characteristic>will</characteristic>
+                <skill>selfControl</skill>
+                <range>distant</range>
+                <duration>perpetual</duration>
+                <wyrd>1</wyrd>
+            </massHallucination>
+        </powers>
+    </visioning>
+    <cloaking>
+        <name>
+            <en>Cloaking</en>
+            <es>Ocultación</es>
+        </name>
+        <type>psi</type>
+        <classification>others</classification>
+        <official>false</official>
+        <powers>
+            <shadowDance>
+                <name>
+                    <en>Shadow Dance</en>
+                    <es>Baile de las Sombras</es>
+                </name>
+                <level>1</level>
+                <characteristic>wits</characteristic>
+                <skill>sneak</skill>
+                <duration>temporary</duration>
+                <wyrd>1</wyrd>
+            </shadowDance>
+            <multipleShadowDance>
+                <name>
+                    <en>Multiple Shadow Dance</en>
+                    <es>Baile de las Sombras Múltiple</es>
+                </name>
+                <level>2</level>
+                <characteristic>wits</characteristic>
+                <skill>sneak</skill>
+                <duration>prolonged</duration>
+                <wyrd>1</wyrd>
+            </multipleShadowDance>
+            <stoneWall>
+                <name>
+                    <en>Stone Wall</en>
+                    <es>Muro de Piedra</es>
+                </name>
+                <level>3</level>
+                <characteristic>will</characteristic>
+                <skill>selfControl</skill>
+                <duration>temporary</duration>
+                <wyrd>1</wyrd>
+            </stoneWall>
+            <multipleStoneWall>
+                <name>
+                    <en>Multiple Stone Wall</en>
+                    <es>Muro de Piedra Múltiple</es>
+                </name>
+                <level>4</level>
+                <characteristic>will</characteristic>
+                <skill>selfControl</skill>
+                <duration>prolonged</duration>
+                <wyrd>1</wyrd>
+            </multipleStoneWall>
+            <veiledFace>
+                <name>
+                    <en>Veiled Face</en>
+                    <es>Rostro Velado</es>
+                </name>
+                <level>5</level>
+                <characteristic>will</characteristic>
+                <skill>influence</skill>
+                <duration>temporary</duration>
+                <wyrd>1</wyrd>
+            </veiledFace>
+            <multipleEeiledFace>
+                <name>
+                    <en>Multiple Veiled Face</en>
+                    <es>Rostro Velado Múltiple</es>
+                </name>
+                <level>6</level>
+                <characteristic>will</characteristic>
+                <skill>influence</skill>
+                <duration>prolonged</duration>
+                <wyrd>1</wyrd>
+            </multipleEeiledFace>
+            <ironBrow>
+                <name>
+                    <en>Iron Brow</en>
+                    <es>Frente de Hierro</es>
+                </name>
+                <level>7</level>
+                <characteristic>will</characteristic>
+                <skill>selfControl</skill>
+                <duration>temporary</duration>
+                <wyrd>1</wyrd>
+            </ironBrow>
+            <multipleIronBrow>
+                <name>
+                    <en>Multiple Iron Brow</en>
+                    <es>Frente de Hierro Múltiple</es>
+                </name>
+                <level>8</level>
+                <characteristic>will</characteristic>
+                <skill>selfControl</skill>
+                <duration>prolonged</duration>
+                <wyrd>1</wyrd>
+            </multipleIronBrow>
+            <invisibility>
+                <name>
+                    <en>Invisibility</en>
+                    <es>Invisibilidad</es>
+                </name>
+                <level>9</level>
+                <characteristic>will</characteristic>
+                <skill>sneak</skill>
+                <duration>prolongued</duration>
+                <wyrd>1</wyrd>
+            </invisibility>
+        </powers>
+        <random>
+            <probabilityMultiplier>0.01</probabilityMultiplier>
+        </random>
+    </cloaking>
+    <turning>
+        <name>
+            <en>Turning</en>
+            <es>Reflejo</es>
+        </name>
+        <type>psi</type>
+        <classification>others</classification>
+        <official>false</official>
+        <powers>
+            <psiSense>
+                <name>
+                    <en>Psi Sense</en>
+                    <es>Sentido Psí</es>
+                </name>
+                <level>1</level>
+                <characteristic>perception</characteristic>
+                <skill>selfControl</skill>
+                <range>sensory</range>
+                <duration>prolonged</duration>
+                <wyrd>1</wyrd>
+            </psiSense>
+            <diffusion>
+                <name>
+                    <en>Diffusion</en>
+                    <es>Difusión</es>
+                </name>
+                <level>2</level>
+                <characteristic>wits</characteristic>
+                <skill>selfControl</skill>
+                <range>sight</range>
+                <duration>instant</duration>
+                <wyrd>1</wyrd>
+            </diffusion>
+            <absorption>
+                <name>
+                    <en>Absorption</en>
+                    <es>Absorción</es>
+                </name>
+                <level>3</level>
+                <characteristic>will</characteristic>
+                <skill>selfControl</skill>
+                <range>sensory</range>
+                <duration>prolonged</duration>
+                <wyrd>1</wyrd>
+            </absorption>
+            <allSeingEyes>
+                <name>
+                    <en>All-Seeing Eyes</en>
+                    <es>Visión Escrutadora</es>
+                </name>
+                <level>4</level>
+                <characteristic>will</characteristic>
+                <skill>observe</skill>
+                <range>sight</range>
+                <duration>instant</duration>
+                <wyrd>1</wyrd>
+            </allSeingEyes>
+            <refraction>
+                <name>
+                    <en>Refraction</en>
+                    <es>Refracción</es>
+                </name>
+                <level>5</level>
+                <characteristic>wits</characteristic>
+                <skill>selfControl</skill>
+                <range>sight</range>
+                <duration>instant</duration>
+                <wyrd>1</wyrd>
+            </refraction>
+            <reflection>
+                <name>
+                    <en>Reflection</en>
+                    <es>Reflexión</es>
+                </name>
+                <level>6</level>
+                <characteristic>will</characteristic>
+                <skill>selfControl</skill>
+                <range>sensory</range>
+                <duration>temporary</duration>
+                <wyrd>1</wyrd>
+            </reflection>
+            <wyrdHarvest>
+                <name>
+                    <en>Wyrd Harvest</en>
+                    <es>Cosecha de Wyrd</es>
+                </name>
+                <level>7</level>
+                <characteristic>will</characteristic>
+                <skill>influence</skill>
+                <range>touch</range>
+                <duration>instant</duration>
+                <wyrd>1</wyrd>
+            </wyrdHarvest>
+            <redirection>
+                <name>
+                    <en>Redirection</en>
+                    <es>Redirección</es>
+                </name>
+                <level>8</level>
+                <characteristic>will</characteristic>
+                <skill>selfControl</skill>
+                <range>sensory</range>
+                <duration>prolonged</duration>
+                <wyrd>1</wyrd>
+            </redirection>
+            <darkHarvest>
+                <name>
+                    <en>Dark Harvest</en>
+                    <es>Cosecha Oscura</es>
+                </name>
+                <level>9</level>
+                <characteristic>presence</characteristic>
+                <skill>influence</skill>
+                <range>touch</range>
+                <duration>instant</duration>
+                <wyrd>1</wyrd>
+            </darkHarvest>
+        </powers>
+        <random>
+            <probabilityMultiplier>0.01</probabilityMultiplier>
+        </random>
+    </turning>
 </occultism>
