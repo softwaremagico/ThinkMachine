@@ -4592,6 +4592,30 @@
             </songsOfDistantHeights>
         </powers>
     </deathGaze>
+    <hiveMind>
+        <name>
+            <en>Hive Mind</en>
+            <es>Mentalidad de Colmena</es>
+        </name>
+        <type>psi</type>
+        <classification>others</classification>
+        <official>false</official>
+        <restrictedToRaces>ascorbite</restrictedToRaces>
+        <powers>
+            <hiveMindPath>
+                <name>
+                    <en>Hive Mind</en>
+                    <es>Mentalidad de Colmena</es>
+                </name>
+                <level>2</level>
+                <characteristic>presence</characteristic>
+                <skill>empathy</skill>
+                <range>sight</range>
+                <duration>temporary</duration>
+                <wyrd>1</wyrd>
+            </hiveMindPath>
+        </powers>
+    </hiveMind>
 
     <bedlam>
         <name>
