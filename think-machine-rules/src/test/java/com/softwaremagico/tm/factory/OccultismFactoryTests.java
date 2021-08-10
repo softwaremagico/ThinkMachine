@@ -36,7 +36,7 @@ public class OccultismFactoryTests {
     private static final String LANGUAGE = "es";
 
 
-    private static final int DEFINED_PSI_PATHS = 11;
+    private static final int DEFINED_PSI_PATHS = 12;
     private static final int DEFINED_THEURGY_PATHS = 12;
     private static final int DEFINED_RANGES = 5;
     private static final int DEFINED_DURATIONS = 7;
