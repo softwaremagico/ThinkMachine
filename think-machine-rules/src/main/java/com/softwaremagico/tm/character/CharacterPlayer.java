@@ -778,7 +778,7 @@ public class CharacterPlayer {
     }
 
     public void setCybernetics(Collection<CyberneticDevice> cyberneticDevices) throws TooManyCyberneticDevicesException,
-            RequiredCyberneticDevicesException, UnofficialElementNotAllowedException, InvalidCyberneticDeviceException {
+            RequiredCyberneticDevicesException, UnofficialElementNotAllowedException {
         cyberneticDevices.removeIf(Objects::isNull);
         //Check if possible
         if (getCyberneticsIncompatibility(cyberneticDevices) > Cybernetics
@@ -803,11 +803,8 @@ public class CharacterPlayer {
     }
 
     public SelectedCyberneticDevice addCybernetics(CyberneticDevice cyberneticDevice) throws TooManyCyberneticDevicesException,
-            RequiredCyberneticDevicesException, UnofficialElementNotAllowedException, InvalidCyberneticDeviceException {
-        if (cyberneticDevice == null) {
-            throw new InvalidCyberneticDeviceException("Null value not allowed");
-        }
-        if (!cyberneticDevice.isOfficial() && getSettings().isOnlyOfficialAllowed()) {
+            RequiredCyberneticDevicesException, UnofficialElementNotAllowedException {
+        if (cyberneticDevice != null && !cyberneticDevice.isOfficial() && getSettings().isOnlyOfficialAllowed()) {
             throw new UnofficialElementNotAllowedException("Cybernetic Device '" + cyberneticDevice + "' is not official and cannot be added due " +
                     "to configuration limitations.");
         }
@@ -1768,8 +1765,15 @@ public class CharacterPlayer {
      */
     public OccultismType getOccultismType() {
         if (getFaction() != null && (getFaction().getFactionGroup() == FactionGroup.CHURCH ||
-                getFaction().getFactionGroup() == FactionGroup.MINOR_CHURCH)) {
+                getFaction().getFactionGroup() == FactionGroup.MINOR_CHURCH || Objects.equals(getFaction().getId(), "sibanzi") ||
+                Objects.equals(getFaction().getId(), "vagabonds") || Objects.equals(getFaction().getId(), "swordsOfLextius"))) {
             return OccultismTypeFactory.getTheurgy(getLanguage(), getModuleName());
+        }
+        if (getFaction() != null && (Objects.equals(getFaction().getId(), "dervishes"))) {
+            return OccultismTypeFactory.getPsi(getLanguage(), getModuleName());
+        }
+        if (getRace() != null && (Objects.equals(getRace().getId(), "ascorbite"))) {
+            return OccultismTypeFactory.getPsi(getLanguage(), getModuleName());
         }
         try {
             //Check if has some path purchased already. Get its occultismType;
@@ -1804,7 +1808,7 @@ public class CharacterPlayer {
     public boolean canAddOccultismPower(OccultismPower power) {
         final OccultismPath path = OccultismPathFactory.getInstance().getOccultismPath(power);
         try {
-            getOccultism().canAddPower(path, power, getLanguage(), getFaction());
+            getOccultism().canAddPower(path, power, getLanguage(), getFaction(), getRace());
             return true;
         } catch (InvalidOccultismPowerException e) {
             return false;
@@ -1823,7 +1827,7 @@ public class CharacterPlayer {
             throw new InvalidOccultismPowerException("Occultism Power '" + power + "' is limited to races '" + power.getRestrictedToRaces() + "'.");
         }
         final OccultismPath path = OccultismPathFactory.getInstance().getOccultismPath(power);
-        if (getOccultism().addPower(path, power, getLanguage(), getFaction())) {
+        if (getOccultism().addPower(path, power, getLanguage(), getFaction(), getRace())) {
             getCharacterModificationHandler().launchOccultismPowerUpdatedListener(power, false);
         }
     }

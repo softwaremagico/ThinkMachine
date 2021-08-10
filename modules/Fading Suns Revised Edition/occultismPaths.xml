@@ -1816,6 +1816,7 @@
         </name>
         <type>theurgy</type>
         <classification>combat</classification>
+        <factions>orthodox, brotherBattle, eskatonic, avestites, amaltheans, mendicantMonks, chorali</factions>
         <powers>
             <prophetsHolyBlessing>
                 <name>
@@ -4299,8 +4300,8 @@
     </contemplativeRites>
     <manjaRites>
         <name>
-            <en>Contemplative Rites</en>
-            <es>Ritos Contemplativos</es>
+            <en>Manja Rites</en>
+            <es>Ritos Manja</es>
         </name>
         <type>theurgy</type>
         <factions>manja</factions>
