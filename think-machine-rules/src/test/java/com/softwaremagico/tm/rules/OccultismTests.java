@@ -107,6 +107,7 @@ public class OccultismTests {
         player.setOccultismLevel(OccultismTypeFactory.getPsi(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER), 1);
     }
 
+    @Test
     public void checkOccultismTypeByLevel() throws InvalidXmlElementException, RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.setRace(RaceFactory.getInstance().getElement("human", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
@@ -117,16 +118,19 @@ public class OccultismTests {
         Assert.assertNull(player.getOccultismType());
     }
 
+    @Test
     public void checkOccultismTypeByLevelWithRace() throws InvalidXmlElementException, RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.setRace(RaceFactory.getInstance().getElement("obun", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         player.setFaction(FactionsFactory.getInstance().getElement("obun", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         player.setOccultismLevel(OccultismTypeFactory.getPsi(player.getLanguage(), player.getModuleName()), 2);
-        Assert.assertEquals(player.getOccultismType(), OccultismTypeFactory.getInstance().getElement(OccultismTypeFactory.PSI_TAG, LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+        Assert.assertEquals(player.getOccultismType(), OccultismTypeFactory.getInstance().getElement(OccultismTypeFactory.PSI_TAG, LANGUAGE,
+                PathManager.DEFAULT_MODULE_FOLDER));
         player.setOccultismLevel(OccultismTypeFactory.getPsi(player.getLanguage(), player.getModuleName()), 0);
         Assert.assertNull(player.getOccultismType());
     }
 
+    @Test
     public void checkOccultismTypeByPath() throws InvalidXmlElementException, RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.setRace(RaceFactory.getInstance().getElement("human", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
@@ -136,6 +140,28 @@ public class OccultismTests {
                 .getElement("orthodoxRituals", player.getLanguage(), player.getModuleName()).getOccultismPowers()
                 .get("consecration"));
         Assert.assertEquals(player.getOccultismType(), OccultismTypeFactory.getInstance().getElement(OccultismTypeFactory.THEURGY_TAG, LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+    }
+
+    @Test(expectedExceptions = {InvalidOccultismPowerException.class})
+    public void checkRaceOccultismRestrictions() throws InvalidXmlElementException, UnofficialElementNotAllowedException, RestrictedElementException {
+        final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        player.setRace(RaceFactory.getInstance().getElement("human", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+        player.setFaction(FactionsFactory.getInstance().getElement("orthodox", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+        player.setOccultismLevel(OccultismTypeFactory.getTheurgy(player.getLanguage(), player.getModuleName()), 5);
+        player.addOccultismPower(OccultismPathFactory.getInstance()
+                .getElement("deathGaze", player.getLanguage(), player.getModuleName()).getOccultismPowers()
+                .get("horuspication"));
+    }
+
+    @Test
+    public void checkRaceOccultismRestrictionsAllowed() throws InvalidXmlElementException, UnofficialElementNotAllowedException, RestrictedElementException {
+        final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        player.setRace(RaceFactory.getInstance().getElement("etyri", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+        player.setFaction(FactionsFactory.getInstance().getElement("huarrayghq", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+        player.setOccultismLevel(OccultismTypeFactory.getTheurgy(player.getLanguage(), player.getModuleName()), 5);
+        player.addOccultismPower(OccultismPathFactory.getInstance()
+                .getElement("deathGaze", player.getLanguage(), player.getModuleName()).getOccultismPowers()
+                .get("horuspication"));
     }
 
 }

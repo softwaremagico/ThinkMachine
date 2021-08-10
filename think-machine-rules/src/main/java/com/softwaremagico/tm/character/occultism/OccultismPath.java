@@ -24,19 +24,12 @@ package com.softwaremagico.tm.character.occultism;
  * #L%
  */
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import com.softwaremagico.tm.Element;
 import com.softwaremagico.tm.ElementClassification;
 import com.softwaremagico.tm.character.factions.Faction;
+import com.softwaremagico.tm.character.races.Race;
+
+import java.util.*;
 
 public class OccultismPath extends Element<OccultismPath> {
 
@@ -74,29 +67,22 @@ public class OccultismPath extends Element<OccultismPath> {
         if (previousLevel != null) {
             return getPowersOfLevel(previousLevel);
         }
-        return new HashSet<OccultismPower>();
+        return new HashSet<>();
     }
 
     private Integer getPreviousLevelWithPowers(OccultismPower power) {
         final List<OccultismPower> powersOfPath = new ArrayList<>(occultismPowers.values());
 
         // Sort by level inverse.
-        Collections.sort(powersOfPath, new Comparator<OccultismPower>() {
-
-            @Override
-            public int compare(OccultismPower power0, OccultismPower power1) {
-                if (power1.getLevel() != power1.getLevel()) {
-                    return power1.getLevel() - power0.getLevel();
-                }
-                return power1.compareTo(power0);
+        powersOfPath.sort((power0, power1) -> {
+            if (power1.getLevel() != power1.getLevel()) {
+                return power1.getLevel() - power0.getLevel();
             }
-
+            return power1.compareTo(power0);
         });
 
         // From up to down.
-        final Iterator<OccultismPower> powerIterator = powersOfPath.iterator();
-        while (powerIterator.hasNext()) {
-            final OccultismPower next = powerIterator.next();
+        for (final OccultismPower next : powersOfPath) {
             if (next.getLevel() < power.getLevel()) {
                 return next.getLevel();
             }
@@ -130,5 +116,17 @@ public class OccultismPath extends Element<OccultismPath> {
     @Override
     public boolean equals(Object obj) {
         return super.equals(obj);
+    }
+
+    @Override
+    public void setRestrictedToRaces(Set<Race> restrictedToRaces) {
+        super.setRestrictedToRaces(restrictedToRaces);
+        occultismPowers.forEach((s, occultismPower) -> occultismPower.setRestrictedToRaces(restrictedToRaces));
+    }
+
+    @Override
+    public void setRestrictedToFactions(Set<Faction> restrictedToFactions) {
+        super.setRestrictedToFactions(restrictedToFactions);
+        occultismPowers.forEach((s, occultismPower) -> occultismPower.setRestrictedToFactions(restrictedToFactions));
     }
 }

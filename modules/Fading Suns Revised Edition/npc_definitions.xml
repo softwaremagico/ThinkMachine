@@ -687,7 +687,7 @@
             <es>Milicia</es>
         </name>
         <group>army</group>
-        <faction>minorFaction</faction>
+        <faction>military</faction>
         <preferences>CombatPreferences.FAIR, CharacteristicsPreferences.BODY, TechnologicalPreferences.BASIC,
             DifficultLevelPreferences.EASY
         </preferences>
@@ -717,7 +717,7 @@
             <es>Infantería</es>
         </name>
         <group>army</group>
-        <faction>minorFaction</faction>
+        <faction>military</faction>
         <preferences>CombatPreferences.BELLIGERENT, CharacteristicsPreferences.BODY, SkillGroupPreferences.COMBAT,
             SpecializationPreferences.SPECIALIZED, StatusPreferences.LOW, TechnologicalPreferences.MODERN,
             WeaponsPreferences.HIGH
@@ -757,7 +757,7 @@
             <es>Especialista en Armas Pesadas</es>
         </name>
         <group>army</group>
-        <faction>minorFaction</faction>
+        <faction>military</faction>
         <parent>infantry</parent>
         <characteristicsMinimumValues>
             <strength>6</strength>
@@ -776,7 +776,7 @@
             <es>Rastreador</es>
         </name>
         <group>army</group>
-        <faction>minorFaction</faction>
+        <faction>military</faction>
         <preferences>CombatPreferences.FAIR, TechnologicalPreferences.MODERN, SpecializationPreferences.SPECIALIZED
         </preferences>
         <characteristicsMinimumValues>
@@ -812,6 +812,7 @@
         </name>
         <group>army</group>
         <profile>general</profile>
+        <faction>military</faction>
     </general>
     <rider>
         <name>
@@ -819,7 +820,7 @@
             <es>Jinete de Caballería</es>
         </name>
         <group>army</group>
-        <faction>minorFaction</faction>
+        <faction>military</faction>
         <preferences>CombatPreferences.BELLIGERENT, CharacteristicsPreferences.BODY, SkillGroupPreferences.COMBAT,
             SpecializationPreferences.SPECIALIZED, StatusPreferences.LOW, TechnologicalPreferences.MODERN,
             WeaponsPreferences.HIGH
@@ -861,7 +862,7 @@
             <es>Piloto de Tanque</es>
         </name>
         <group>army</group>
-        <faction>minorFaction</faction>
+        <faction>military</faction>
         <preferences>CombatPreferences.BELLIGERENT, CharacteristicsPreferences.BODY, SkillGroupPreferences.COMBAT,
             SpecializationPreferences.SPECIALIZED, StatusPreferences.LOW, TechnologicalPreferences.MODERN,
             WeaponsPreferences.HIGH
@@ -897,7 +898,7 @@
             <es>Artillero</es>
         </name>
         <group>army</group>
-        <faction>minorFaction</faction>
+        <faction>military</faction>
         <preferences>CombatPreferences.BELLIGERENT, CharacteristicsPreferences.BODY, SkillGroupPreferences.COMBAT,
             SpecializationPreferences.SPECIALIZED, StatusPreferences.LOW, TechnologicalPreferences.FUTURIST,
             WeaponsPreferences.HIGH
@@ -930,7 +931,7 @@
             <es>Ingeniero de Combate</es>
         </name>
         <group>army</group>
-        <faction>minorFaction</faction>
+        <faction>military</faction>
         <preferences>CombatPreferences.BELLIGERENT, SkillGroupPreferences.COMBAT,
             SpecializationPreferences.SPECIALIZED, StatusPreferences.LOW, TechnologicalPreferences.FUTURIST,
             WeaponsPreferences.HIGH
@@ -967,7 +968,7 @@
             <es>Capellán</es>
         </name>
         <group>army</group>
-        <faction>minorFaction</faction>
+        <faction>military</faction>
         <preferences>CombatPreferences.BELLIGERENT, CharacteristicsPreferences.BODY, SkillGroupPreferences.COMBAT,
             SpecializationPreferences.SPECIALIZED, StatusPreferences.LOW, TechnologicalPreferences.MODERN,
             WeaponsPreferences.HIGH, OccultismLevelPreferences.FAIR
@@ -1006,7 +1007,7 @@
             <es>Médico de Combate</es>
         </name>
         <group>army</group>
-        <faction>minorFaction</faction>
+        <faction>military</faction>
         <preferences>SpecializationPreferences.SPECIALIZED, StatusPreferences.LOW, TechnologicalPreferences.MODERN
         </preferences>
         <characteristicsMinimumValues>
@@ -1041,7 +1042,7 @@
             <es>Policía Militar</es>
         </name>
         <group>army</group>
-        <faction>minorFaction</faction>
+        <faction>military</faction>
         <preferences>CombatPreferences.BELLIGERENT, SkillGroupPreferences.COMBAT,
             SpecializationPreferences.SPECIALIZED, StatusPreferences.LOW, TechnologicalPreferences.MODERN,
             WeaponsPreferences.HIGH
@@ -1081,7 +1082,7 @@
             <es>Suboficiales</es>
         </name>
         <group>army</group>
-        <faction>minorFaction</faction>
+        <faction>military</faction>
         <preferences>CombatPreferences.BELLIGERENT, SkillGroupPreferences.COMBAT,
             SpecializationPreferences.SPECIALIZED, StatusPreferences.LOW, TechnologicalPreferences.MODERN,
             WeaponsPreferences.HIGH
@@ -2440,8 +2441,8 @@
         </name>
         <group>minor_guild</group>
         <faction>vagabonds</faction>
-        <preferences>StatusPreferences.LOW, CombatActionsPreferences.HIGH,
-            CombatActionsGroupPreferences.FIGHT, CashPreferences.LOW
+        <preferences>StatusPreferences.LOW, CombatActionsPreferences.HIGH, CombatActionsGroupPreferences.FIGHT,
+            CashPreferences.LOW, OccultismLevelPreferences.FAIR, OccultismTypePreferences.THEURGY
         </preferences>
         <characteristicsMinimumValues>
             <wits>6</wits>
@@ -2782,7 +2783,9 @@
         </name>
         <group>minor_church</group>
         <faction>gjarti</faction>
-        <preferences>OccultismLevelPreferences.ANY, OccultismTypePreferences.THEURGY, TechnologicalPreferences.BASIC, CashPreferences.LOW</preferences>
+        <preferences>OccultismLevelPreferences.ANY, OccultismTypePreferences.THEURGY, TechnologicalPreferences.BASIC,
+            CashPreferences.LOW
+        </preferences>
         <characteristicsMinimumValues>
             <faith>7</faith>
         </characteristicsMinimumValues>
@@ -2811,7 +2814,8 @@
         </name>
         <group>minor_church</group>
         <faction>manja</faction>
-        <preferences>OccultismLevelPreferences.ANY, OccultismTypePreferences.THEURGY, StatusPreferences.ANY</preferences>
+        <preferences>OccultismLevelPreferences.ANY, OccultismTypePreferences.THEURGY, StatusPreferences.ANY
+        </preferences>
         <characteristicsMinimumValues>
             <wits>7</wits>
         </characteristicsMinimumValues>

@@ -36,8 +36,8 @@ public class OccultismFactoryTests {
     private static final String LANGUAGE = "es";
 
 
-    private static final int DEFINED_PSI_PATHS = 8;
-    private static final int DEFINED_THEURGY_PATHS = 10;
+    private static final int DEFINED_PSI_PATHS = 11;
+    private static final int DEFINED_THEURGY_PATHS = 12;
     private static final int DEFINED_RANGES = 5;
     private static final int DEFINED_DURATIONS = 7;
     private static final int DEFINED_THEURGY_COMPONENTS = 3;
@@ -91,7 +91,7 @@ public class OccultismFactoryTests {
     }
 
     @Test
-    public void getOcculstimTypes() throws InvalidXmlElementException {
+    public void getOccultismTypes() throws InvalidXmlElementException {
         Assert.assertEquals(OCCULTISM_TYPES, OccultismTypeFactory.getInstance().getElements(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).size());
     }
 

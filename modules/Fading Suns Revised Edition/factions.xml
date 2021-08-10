@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <factions>
     <version>1</version>
-    <totalElements>61</totalElements>
+    <totalElements>62</totalElements>
     <hawkwood>
         <name>
             <en>Hawkwood</en>
@@ -1936,4 +1936,15 @@
             <probabilityMultiplier>1</probabilityMultiplier>
         </random>
     </minorFaction>
+    <military>
+        <name>
+            <en>Military</en>
+            <es>Militar</es>
+        </name>
+        <group>minor</group>
+        <restrictedToRaces>human, vorox, obun, ukar</restrictedToRaces>
+        <random>
+            <probabilityMultiplier>1</probabilityMultiplier>
+        </random>
+    </military>
 </factions>

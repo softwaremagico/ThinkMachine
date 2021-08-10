@@ -1819,6 +1819,9 @@ public class CharacterPlayer {
             throw new UnofficialElementNotAllowedException("Occultism Power '" + power + "' is not official and cannot be added due " +
                     "to configuration limitations.");
         }
+        if (!power.getRestrictedToRaces().isEmpty() && (getRace() == null || !power.getRestrictedToRaces().contains(getRace()))) {
+            throw new InvalidOccultismPowerException("Occultism Power '" + power + "' is limited to races '" + power.getRestrictedToRaces() + "'.");
+        }
         final OccultismPath path = OccultismPathFactory.getInstance().getOccultismPath(power);
         if (getOccultism().addPower(path, power, getLanguage(), getFaction())) {
             getCharacterModificationHandler().launchOccultismPowerUpdatedListener(power, false);
@@ -2009,7 +2012,7 @@ public class CharacterPlayer {
             return false;
         }
 
-        for (String occultismPathId : occultism.getSelectedPowers().keySet()) {
+        for (final String occultismPathId : occultism.getSelectedPowers().keySet()) {
             try {
                 if (!OccultismPathFactory.getInstance().getElement(occultismPathId, getLanguage(), getModuleName()).isOfficial()) {
                     return false;

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <occultism>
     <version>1</version>
-    <totalElements>18</totalElements>
+    <totalElements>23</totalElements>
     <farHand>
         <name>
             <en>Far Hand</en>
@@ -4416,6 +4416,182 @@
             </summonLordOfTheLords>
         </powers>
     </manjaRites>
+    <hexery>
+        <name>
+            <en>Hexery</en>
+            <es>Brujería</es>
+        </name>
+        <type>theurgy</type>
+        <factions>vagabonds</factions>
+        <classification>others</classification>
+        <official>false</official>
+        <powers>
+            <twigHex>
+                <name>
+                    <en>Twig Hex</en>
+                    <es>Hechizo de las Ramas</es>
+                </name>
+                <level>1</level>
+                <characteristic>dexterity</characteristic>
+                <skill>influence</skill>
+                <components>G</components>
+                <range>sensory</range>
+                <duration>prolonged</duration>
+                <wyrd>1</wyrd>
+            </twigHex>
+            <luckyWink>
+                <name>
+                    <en>Lucky Wink</en>
+                    <es>Guiño de la Suerte</es>
+                </name>
+                <level>2</level>
+                <characteristic>wits</characteristic>
+                <skill>influence</skill>
+                <components>G</components>
+                <range>sight</range>
+                <duration>temporary</duration>
+                <wyrd>1</wyrd>
+            </luckyWink>
+            <gitGone>
+                <name>
+                    <en>Git Gone</en>
+                    <es>Largo de Aquí</es>
+                </name>
+                <level>3</level>
+                <characteristic>wits</characteristic>
+                <skill>knavery</skill>
+                <components>L</components>
+                <range>sensory</range>
+                <duration>temporary</duration>
+                <wyrd>1</wyrd>
+            </gitGone>
+        </powers>
+    </hexery>
+    <deathGaze>
+        <name>
+            <en>Death Gaze</en>
+            <es>Visión de la Muerta</es>
+        </name>
+        <type>theurgy</type>
+        <restrictedToRaces>etyri</restrictedToRaces>
+        <classification>combat</classification>
+        <official>false</official>
+        <powers>
+            <horuspication>
+                <name>
+                    <en>Horuspication</en>
+                    <es>Horuspicación</es>
+                </name>
+                <level>1</level>
+                <characteristic>perception</characteristic>
+                <skill>investigation</skill>
+                <components>LG</components>
+                <range>touch</range>
+                <duration>temporary</duration>
+                <wyrd>1</wyrd>
+            </horuspication>
+            <deathScent>
+                <name>
+                    <en>Death Scent</en>
+                    <es>Aroma de la Muerte</es>
+                </name>
+                <level>2</level>
+                <characteristic>faith</characteristic>
+                <skill>observe</skill>
+                <components>P</components>
+                <range>sight</range>
+                <duration>temporary</duration>
+                <wyrd>1</wyrd>
+            </deathScent>
+            <endStrike>
+                <name>
+                    <en>End Strike</en>
+                    <es>Ataque Final</es>
+                </name>
+                <level>3</level>
+                <characteristic>perception</characteristic>
+                <skill>fight,melee,slugGuns,energyGuns,artifactMelee</skill>
+                <components>LG</components>
+                <duration>temporary</duration>
+                <wyrd>1</wyrd>
+            </endStrike>
+            <hunterSense>
+                <name>
+                    <en>Hunter Sense</en>
+                    <es>Sentir al Cazador</es>
+                </name>
+                <level>4</level>
+                <characteristic>perception</characteristic>
+                <skill>empathy</skill>
+                <components>P</components>
+                <range>sight</range>
+                <duration>temporary</duration>
+                <wyrd>1</wyrd>
+            </hunterSense>
+            <finalSight>
+                <name>
+                    <en>Final Sight</en>
+                    <es>La Última Visión</es>
+                </name>
+                <level>5</level>
+                <characteristic>perception</characteristic>
+                <skill>selfControl</skill>
+                <components>GP</components>
+                <range>touch</range>
+                <duration>temporary</duration>
+                <wyrd>1</wyrd>
+            </finalSight>
+            <finalSong>
+                <name>
+                    <en>Final Song</en>
+                    <es>La Última Canción</es>
+                </name>
+                <level>6</level>
+                <characteristic>perception</characteristic>
+                <skill>selfControl</skill>
+                <components>GP</components>
+                <duration>temporary</duration>
+                <wyrd>1</wyrd>
+            </finalSong>
+            <deadSight>
+                <name>
+                    <en>Dead Sight</en>
+                    <es>Visión Muerta</es>
+                </name>
+                <level>7</level>
+                <characteristic>will</characteristic>
+                <skill>selfControl</skill>
+                <components>LGP</components>
+                <range>sight</range>
+                <duration>prolonged</duration>
+                <wyrd>1</wyrd>
+            </deadSight>
+            <funeraryCommunion>
+                <name>
+                    <en>Funerary Communion</en>
+                    <es>Comunión Funeraria</es>
+                </name>
+                <level>8</level>
+                <characteristic>faith</characteristic>
+                <skill>influence</skill>
+                <components>LGP</components>
+                <duration>prolonged</duration>
+                <wyrd>1</wyrd>
+            </funeraryCommunion>
+            <songsOfDistantHeights>
+                <name>
+                    <en>Songs of Distant Heights</en>
+                    <es>Canciones de Cumbres Lejanas</es>
+                </name>
+                <level>9</level>
+                <characteristic>faith</characteristic>
+                <skill>influence</skill>
+                <components>LGP</components>
+                <duration>prolonged</duration>
+                <wyrd>1</wyrd>
+            </songsOfDistantHeights>
+        </powers>
+    </deathGaze>
 
     <bedlam>
         <name>
@@ -4778,7 +4954,7 @@
                 <level>9</level>
                 <characteristic>will</characteristic>
                 <skill>sneak</skill>
-                <duration>prolongued</duration>
+                <duration>prolonged</duration>
                 <wyrd>1</wyrd>
             </invisibility>
         </powers>
