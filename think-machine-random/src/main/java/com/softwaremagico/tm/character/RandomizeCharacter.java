@@ -372,20 +372,24 @@ public class RandomizeCharacter {
         final RandomBeneficeDefinition randomBenefice = new RandomExtraBeneficeDefinition(characterPlayer, preferences, suggestedBenefices,
                 suggestedAvailableBenefices);
         randomBenefice.assign();
-        // Set psique level
-        final RandomPsique randomPsique = new RandomPsique(characterPlayer, preferences);
-        randomPsique.assign();
+
         // Set cybernetics
         final RandomCybernetics randomCybernetics = new RandomCybernetics(characterPlayer, preferences);
         randomCybernetics.assign();
+
+        // Set psique level
+        final RandomPsique randomPsique = new RandomPsique(characterPlayer, preferences);
+        randomPsique.assign();
+
+        // Set psi paths.
+        final RandomPsiquePath randomPsiquePath = new RandomPsiquePath(characterPlayer, preferences, mandatoryOccultismPaths);
+        randomPsiquePath.assign();
+
         // Set Wyrd
         final IGaussianDistribution wyrdDistribution = OccultismLevelPreferences.getSelected(preferences);
         final int extraWyrd = wyrdDistribution.randomGaussian();
         characterPlayer.addExtraWyrd(extraWyrd - characterPlayer.getBasicWyrdValue());
         RandomGenerationLog.info(this.getClass().getName(), "Added extra wyrd '{}'.", extraWyrd);
-        // Set psi paths.
-        final RandomPsiquePath randomPsiquePath = new RandomPsiquePath(characterPlayer, preferences, mandatoryOccultismPaths);
-        randomPsiquePath.assign();
 
         final DifficultLevelPreferences difficultLevel = DifficultLevelPreferences.getSelected(preferences);
 

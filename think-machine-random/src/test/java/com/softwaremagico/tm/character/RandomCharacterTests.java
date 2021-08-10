@@ -266,7 +266,7 @@ public class RandomCharacterTests {
         characterPlayer
                 .setRace(RaceFactory.getInstance().getElement("human", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0,
-                SpecializationPreferences.SPECIALIZED, OccultismPathLevelPreferences.HIGH, OccultismLevelPreferences.HIGH,
+                SpecializationPreferences.GENERALIZED, OccultismPathLevelPreferences.HIGH, OccultismLevelPreferences.HIGH,
                 StatusPreferences.FAIR);
         randomizeCharacter.createCharacter();
         try {

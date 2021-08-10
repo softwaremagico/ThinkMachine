@@ -2186,7 +2186,7 @@
             <es>Rituales Ortodoxos</es>
         </name>
         <type>theurgy</type>
-        <factions>orthodox</factions>
+        <factions>orthodox, sibanzi</factions>
         <classification>others</classification>
         <powers>
             <consecration>
@@ -2489,7 +2489,7 @@
             <es>Rituales de los Hermanos de Batalla</es>
         </name>
         <type>theurgy</type>
-        <factions>brotherBattle</factions>
+        <factions>brotherBattle, warriorHironem</factions>
         <classification>combat</classification>
         <powers>
             <soulsVessel>
@@ -3550,7 +3550,7 @@
             <es>Rituales del Santuario de Aeón</es>
         </name>
         <type>theurgy</type>
-        <factions>amaltheans</factions>
+        <factions>amaltheans, sibanzi</factions>
         <classification>alteration</classification>
         <powers>
             <cleansing>

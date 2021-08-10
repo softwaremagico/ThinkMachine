@@ -30,15 +30,14 @@ import com.softwaremagico.tm.character.RestrictedElementException;
 import com.softwaremagico.tm.character.UnofficialElementNotAllowedException;
 import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
 import com.softwaremagico.tm.character.benefices.InvalidBeneficeException;
+import com.softwaremagico.tm.character.creation.CostCalculator;
+import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
 import com.softwaremagico.tm.character.factions.FactionGroup;
 import com.softwaremagico.tm.log.RandomGenerationLog;
 import com.softwaremagico.tm.random.RandomSelector;
 import com.softwaremagico.tm.random.exceptions.ImpossibleToAssignMandatoryElementException;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
-import com.softwaremagico.tm.random.selectors.IGaussianDistribution;
-import com.softwaremagico.tm.random.selectors.IRandomPreference;
-import com.softwaremagico.tm.random.selectors.OccultismLevelPreferences;
-import com.softwaremagico.tm.random.selectors.OccultismTypePreferences;
+import com.softwaremagico.tm.random.selectors.*;
 
 import java.util.Collection;
 import java.util.Objects;
@@ -119,6 +118,23 @@ public class RandomPsique extends RandomSelector<OccultismType> {
         if (maxLevelSelected > psiqueLevelSelector.maximum()) {
             maxLevelSelected = psiqueLevelSelector.maximum();
         }
+
+        //Check if there are points enough
+        final DifficultLevelPreferences difficultyLevel = DifficultLevelPreferences.getSelected(getPreferences());
+        final int remainingPoints = FreeStyleCharacterCreation
+                .getFreeAvailablePoints(getCharacterPlayer().getInfo().getAge(), getCharacterPlayer().getRace())
+                - CostCalculator.getCost(getCharacterPlayer(), difficultyLevel.getSkillsBonus(),
+                difficultyLevel.getCharacteristicsBonus());
+
+        //Ensure enough points also for acquiring paths.
+        if (maxLevelSelected * CostCalculator.PSIQUE_LEVEL_COST > remainingPoints - maxLevelSelected) {
+            maxLevelSelected = (remainingPoints - maxLevelSelected) / CostCalculator.PSIQUE_LEVEL_COST;
+        }
+
+        if (maxLevelSelected < 0) {
+            maxLevelSelected = 0;
+        }
+
         return maxLevelSelected;
     }
 

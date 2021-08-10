@@ -132,14 +132,14 @@ public class RandomPsiquePath extends RandomSelector<OccultismPath> {
 
         final SpecializationPreferences specializationPreferences = SpecializationPreferences
                 .getSelected(getPreferences());
+
         // Psi must have at least one power by level.
         if ((getCharacterPlayer().getOccultismType() == null || Objects.equals(getCharacterPlayer().getOccultismType(), path.getOccultismType()) &&
                 Objects.equals(path.getOccultismType(),
                         OccultismTypeFactory.getPsi(getCharacterPlayer().getLanguage(), getCharacterPlayer().getModuleName())))) {
             for (int i = 1; i <= maxLevelSelected; i++) {
                 final List<OccultismPower> powers = new ArrayList<>(path.getPowersOfLevel(i));
-                // If has more than one power at one level, choose one of them
-                // at least.
+                // If has more than one power at one level, choose one of them at least.
                 if (!powers.isEmpty()) {
                     Collections.shuffle(powers);
                     powersToAdd.add(powers.get(0));
@@ -155,7 +155,7 @@ public class RandomPsiquePath extends RandomSelector<OccultismPath> {
             final List<OccultismPower> powers = new ArrayList<>(path.getOccultismPowers().values());
             Collections.shuffle(powers);
             while (numberOfPowers > 0 && !powers.isEmpty()) {
-                // It is possible to add this power.
+                // If it is possible to add this power.
                 if (powers.get(0).getLevel() <= maxLevelSelected) {
                     powersToAdd.add(powers.get(0));
                 }
@@ -163,7 +163,7 @@ public class RandomPsiquePath extends RandomSelector<OccultismPath> {
             }
         }
 
-        // Add selected powers if enough point
+        // Add selected powers if enough points
         for (final OccultismPower power : powersToAdd) {
             // Enough points
             if (totalPowers >= TOTAL_PDF_PSI_ROWS) {
