@@ -48,6 +48,10 @@ import com.softwaremagico.tm.character.equipment.weapons.Weapon;
 import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
 import com.softwaremagico.tm.character.equipment.weapons.WeaponType;
 import com.softwaremagico.tm.character.equipment.weapons.Weapons;
+import com.softwaremagico.tm.character.exceptions.InvalidGeneratedCharacter;
+import com.softwaremagico.tm.character.exceptions.RestrictedElementException;
+import com.softwaremagico.tm.character.exceptions.UnofficialCharacterException;
+import com.softwaremagico.tm.character.exceptions.UnofficialElementNotAllowedException;
 import com.softwaremagico.tm.character.factions.Faction;
 import com.softwaremagico.tm.character.factions.FactionGroup;
 import com.softwaremagico.tm.character.factions.InvalidFactionException;
@@ -1988,44 +1992,93 @@ public class CharacterPlayer {
         return settings;
     }
 
-    public boolean checkIsOfficial() {
-        if ((getFaction() != null && !getFaction().isOfficial()) ||
-                (getRace() != null && !getRace().isOfficial()) ||
-                (getArmour() != null && !getArmour().isOfficial() ||
-                        getShield() != null && !getShield().isOfficial())) {
-            return false;
+    public void checkIsOfficial() throws UnofficialCharacterException {
+        if ((getFaction() != null && !getFaction().isOfficial())) {
+            throw new UnofficialCharacterException("Faction '" + getFaction() + "' is not official.");
+        }
+        if ((getRace() != null && !getRace().isOfficial())) {
+            throw new UnofficialCharacterException("Race '" + getRace() + "' is not official.");
+        }
+        if ((getArmour() != null && !getArmour().isOfficial())) {
+            throw new UnofficialCharacterException("Armour '" + getArmour() + "' is not official.");
+        }
+        if ((getShield() != null && !getShield().isOfficial())) {
+            throw new UnofficialCharacterException("Shield '" + getShield() + "' is not official.");
         }
 
         if (!weapons.getElements().stream().allMatch(Weapon::isOfficial)) {
-            return false;
+            throw new UnofficialCharacterException("Weapon '" + weapons + "' are not all official.");
         }
 
         if (!skills.values().stream().allMatch(SelectedSkill::isOfficial)) {
-            return false;
+            throw new UnofficialCharacterException("Skills '" + skills + "' are not all official.");
         }
 
         if (!blessings.stream().allMatch(Blessing::isOfficial)) {
-            return false;
+            throw new UnofficialCharacterException("Blessings '" + blessings + "' are not all official.");
         }
 
         if (!benefices.stream().allMatch(AvailableBenefice::isOfficial)) {
-            return false;
+            throw new UnofficialCharacterException("Benefices '" + benefices + "' are not all official.");
         }
 
         if (!cybernetics.getElements().stream().allMatch(SelectedCyberneticDevice::isOfficial)) {
-            return false;
+            throw new UnofficialCharacterException("Cybernetics '" + cybernetics + "' are not all official.");
         }
 
         for (final String occultismPathId : occultism.getSelectedPowers().keySet()) {
             try {
                 if (!OccultismPathFactory.getInstance().getElement(occultismPathId, getLanguage(), getModuleName()).isOfficial()) {
-                    return false;
+                    throw new UnofficialCharacterException("Occultism path '" + occultismPathId + "' is not official.");
                 }
             } catch (InvalidXmlElementException e) {
                 // Ignore.
             }
         }
+    }
 
-        return true;
+    public void checkIsNotRestricted() throws UnofficialCharacterException {
+        if ((getFaction() != null && !getFaction().isRestricted(this))) {
+            throw new UnofficialCharacterException("Faction '" + getFaction() + "' is restricted.");
+        }
+        if ((getRace() != null && !getRace().isOfficial())) {
+            throw new UnofficialCharacterException("Race '" + getRace() + "' is restricted.");
+        }
+        if ((getArmour() != null && !getArmour().isOfficial())) {
+            throw new UnofficialCharacterException("Armour '" + getArmour() + "' is restricted.");
+        }
+        if ((getShield() != null && !getShield().isOfficial())) {
+            throw new UnofficialCharacterException("Shield '" + getShield() + "' is restricted.");
+        }
+
+        if (!weapons.getElements().stream().allMatch(Weapon::isOfficial)) {
+            throw new UnofficialCharacterException("Weapon '" + weapons + "' have some restricted element.");
+        }
+
+        if (!skills.values().stream().allMatch(SelectedSkill::isOfficial)) {
+            throw new UnofficialCharacterException("Skills '" + skills + "' have some restricted element.");
+        }
+
+        if (!blessings.stream().allMatch(Blessing::isOfficial)) {
+            throw new UnofficialCharacterException("Blessings '" + blessings + "' have some restricted element.");
+        }
+
+        if (!benefices.stream().allMatch(AvailableBenefice::isOfficial)) {
+            throw new UnofficialCharacterException("Benefices '" + benefices + "' have some restricted element.");
+        }
+
+        if (!cybernetics.getElements().stream().allMatch(SelectedCyberneticDevice::isOfficial)) {
+            throw new UnofficialCharacterException("Cybernetics '" + cybernetics + "' have some restricted element.");
+        }
+
+        for (final String occultismPathId : occultism.getSelectedPowers().keySet()) {
+            try {
+                if (!OccultismPathFactory.getInstance().getElement(occultismPathId, getLanguage(), getModuleName()).isOfficial()) {
+                    throw new UnofficialCharacterException("Occultism path '" + occultismPathId + "' is restricted.");
+                }
+            } catch (InvalidXmlElementException e) {
+                // Ignore.
+            }
+        }
     }
 }

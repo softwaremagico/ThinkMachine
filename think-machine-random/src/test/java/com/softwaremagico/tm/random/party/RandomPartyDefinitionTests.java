@@ -25,8 +25,8 @@ package com.softwaremagico.tm.random.party;
  */
 
 import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.character.RestrictedElementException;
-import com.softwaremagico.tm.character.UnofficialElementNotAllowedException;
+import com.softwaremagico.tm.character.exceptions.RestrictedElementException;
+import com.softwaremagico.tm.character.exceptions.UnofficialElementNotAllowedException;
 import com.softwaremagico.tm.file.PathManager;
 import org.testng.Assert;
 import org.testng.annotations.Test;

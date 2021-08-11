@@ -27,6 +27,8 @@ package com.softwaremagico.tm.random.party;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.*;
 import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
+import com.softwaremagico.tm.character.exceptions.RestrictedElementException;
+import com.softwaremagico.tm.character.exceptions.UnofficialElementNotAllowedException;
 import com.softwaremagico.tm.log.MachineLog;
 import com.softwaremagico.tm.party.Party;
 import com.softwaremagico.tm.random.RandomSelector;
