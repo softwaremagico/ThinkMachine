@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <skills>
     <version>1</version>
-    <totalElements>58</totalElements>
+    <totalElements>57</totalElements>
     <influence>
         <name>
             <en>Influence</en>
@@ -139,7 +139,7 @@
             <es>Ciencia de la Física</es>
         </name>
         <group>science</group>
-        <factionSkill>engineers, prospectors</factionSkill>
+        <factionSkill>engineers, prospectors, apothecaries</factionSkill>
         <random>
             <minTechLevel>2</minTechLevel>
         </random>
@@ -577,6 +577,7 @@
                     <en>Household</en>
                     <es>Doméstico</es>
                 </name>
+                <official>true</official>
             </household>
         </specializations>
         <numberToShow>2</numberToShow>
@@ -989,29 +990,11 @@
         </name>
         <group>physical</group>
         <official>false</official>
-        <restricted>true</restricted>
         <restrictedToRaces>etyri</restrictedToRaces>
         <random>
             <probabilityMultiplier>0</probabilityMultiplier>
         </random>
     </fly>
-    <alchemy>
-        <name>
-            <en>Alchemy</en>
-            <es>Alquímia</es>
-        </name>
-        <group>analytical</group>
-        <factionSkill>apothecaries</factionSkill>
-        <random>
-            <minTechLevel>2</minTechLevel>
-        </random>
-        <official>false</official>
-        <restricted>true</restricted>
-        <random>
-            <minTechLevel>2</minTechLevel>
-            <probabilityMultiplier>0</probabilityMultiplier>
-        </random>
-    </alchemy>
 
 
 </skills>

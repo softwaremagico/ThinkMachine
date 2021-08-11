@@ -68,7 +68,7 @@ public class AvailableSkillsFactory {
         return skillsByGroup.get(language).get(skillGroup);
     }
 
-    public List<AvailableSkill> getNaturalSkills(String language, String moduleName) {
+    public synchronized List<AvailableSkill> getNaturalSkills(String language, String moduleName) {
         if (naturalSkills.get(language) == null || naturalSkills.get(language).get(moduleName) == null) {
             naturalSkills.computeIfAbsent(language, k -> new HashMap<>());
             naturalSkills.get(language).computeIfAbsent(moduleName, k -> new ArrayList<>());
@@ -87,7 +87,7 @@ public class AvailableSkillsFactory {
         return naturalSkills.get(language).get(moduleName);
     }
 
-    public List<AvailableSkill> getLearnedSkills(String language, String moduleName) {
+    public synchronized List<AvailableSkill> getLearnedSkills(String language, String moduleName) {
         if (learnedSkills.get(language) == null || learnedSkills.get(language).get(moduleName) == null) {
             learnedSkills.computeIfAbsent(language, k -> new HashMap<>());
             learnedSkills.get(language).computeIfAbsent(moduleName, k -> new ArrayList<>());

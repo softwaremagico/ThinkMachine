@@ -1155,7 +1155,7 @@ public class CharacterPlayer {
         for (final AvailableSkill skill : AvailableSkillsFactory.getInstance().getLearnedSkills(getLanguage(),
                 getModuleName())) {
             final Integer skillRanks = getSkillTotalRanks(skill);
-            if (skillRanks != null && skillRanks > 0) {
+            if (skillRanks != null) {
                 learnedSkills.add(skill);
             }
         }
