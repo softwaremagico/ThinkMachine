@@ -174,12 +174,6 @@ public class OccultismPathFactory extends XmlFactory<OccultismPath> {
                                     language, moduleName), values, Integer.parseInt(level), occultismRange, occultismDuration, wyrd,
                             theurgyComponents);
 
-                    occultismPower.setRestrictedToRaces(occultismPath.getRestrictedToRaces());
-                    occultismPower.setRestrictedToFactions(occultismPath.getRestrictedToFactions());
-                    occultismPower.setRestricted(occultismPower.isRestricted());
-                    occultismPower.setOfficial(occultismPath.isOfficial());
-                    occultismPower.setRestrictedToFactionGroup(occultismPath.getRestrictedToFactionGroup());
-
                     occultismPath.getOccultismPowers().put(powerId, occultismPower);
                 } catch (Exception e) {
                     throw new InvalidOccultismPowerException("Invalid structure in occultism path '" + occultismId + "' and power '" + powerId + "'.", e);

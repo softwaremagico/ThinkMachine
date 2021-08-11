@@ -107,4 +107,12 @@ public class OccultismFactoryTests {
                 OccultismPathFactory.getInstance().getElement("templeAvestiRituals", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)
                         .getClassification());
     }
+
+
+    @Test
+    public void checkNonOfficialPaths() throws InvalidXmlElementException {
+        Assert.assertFalse(OccultismPathFactory.getInstance()
+                .getElement("bedlam", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).getOccultismPowers()
+                .get("prana").isOfficial());
+    }
 }

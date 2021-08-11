@@ -27,6 +27,8 @@ package com.softwaremagico.tm.character.occultism;
 import com.softwaremagico.tm.Element;
 import com.softwaremagico.tm.ElementClassification;
 import com.softwaremagico.tm.character.factions.Faction;
+import com.softwaremagico.tm.character.factions.FactionGroup;
+import com.softwaremagico.tm.character.races.Race;
 
 import java.util.*;
 
@@ -115,5 +117,35 @@ public class OccultismPath extends Element<OccultismPath> {
     @Override
     public boolean equals(Object obj) {
         return super.equals(obj);
+    }
+
+    @Override
+    public void setRestrictedToRaces(Set<Race> restrictedToRaces) {
+        super.setRestrictedToRaces(restrictedToRaces);
+        occultismPowers.forEach((s, occultismPower) -> occultismPower.setRestrictedToRaces(restrictedToRaces));
+    }
+
+    @Override
+    public void setRestrictedToFactions(Set<Faction> restrictedToFactions) {
+        super.setRestrictedToFactions(restrictedToFactions);
+        occultismPowers.forEach((s, occultismPower) -> occultismPower.setRestrictedToFactions(restrictedToFactions));
+    }
+
+    @Override
+    public void setRestricted(boolean restricted) {
+        super.setRestricted(restricted);
+        occultismPowers.forEach((s, occultismPower) -> occultismPower.setRestricted(restricted));
+    }
+
+    @Override
+    public void setRestrictedToFactionGroup(FactionGroup factionGroup) {
+        super.setRestrictedToFactionGroup(factionGroup);
+        occultismPowers.forEach((s, occultismPower) -> occultismPower.setRestrictedToFactionGroup(factionGroup));
+    }
+
+    @Override
+    public void setOfficial(boolean official) {
+        super.setOfficial(official);
+        occultismPowers.forEach((s, occultismPower) -> occultismPower.setOfficial(official));
     }
 }
