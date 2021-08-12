@@ -183,6 +183,7 @@
                     <es>Jerga Vagabunda</es>
                 </name>
                 <official>false</official>
+                <restricted>true</restricted>
                 <random>
                     <probabilityMultiplier>0</probabilityMultiplier>
                 </random>
@@ -1682,7 +1683,6 @@
         <group>status</group>
         <affliction>true</affliction>
         <official>false</official>
-        <restricted>true</restricted>
     </persecutedByChurch>
 
 
@@ -2077,7 +2077,6 @@
         </specializations>
         <group>status</group>
         <official>false</official>
-        <restricted>true</restricted>
     </fame>
     <secretIdentity>
         <name>
@@ -2101,7 +2100,6 @@
         <cost>1</cost>
         <group>status</group>
         <official>false</official>
-        <restricted>true</restricted>
     </secretIdentity>
     <chorali>
         <name>

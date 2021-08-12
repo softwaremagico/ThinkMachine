@@ -466,7 +466,7 @@ public class CostCalculator {
         return cost;
     }
 
-    public CostCalculatorModificationHandler getCostCharacterModificationHandler() {
+    public synchronized CostCalculatorModificationHandler getCostCharacterModificationHandler() {
         if (costCalculatorModificationHandler == null) {
             costCalculatorModificationHandler = new CostCalculatorModificationHandler();
         }

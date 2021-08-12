@@ -2037,44 +2037,44 @@ public class CharacterPlayer {
         }
     }
 
-    public void checkIsNotRestricted() throws UnofficialCharacterException {
-        if ((getFaction() != null && !getFaction().isRestricted(this))) {
-            throw new UnofficialCharacterException("Faction '" + getFaction() + "' is restricted.");
+    public void checkIsNotRestricted() throws RestrictedElementException {
+        if ((getFaction() != null && getFaction().isRestricted(this))) {
+            throw new RestrictedElementException("Faction '" + getFaction() + "' is restricted.");
         }
-        if ((getRace() != null && !getRace().isOfficial())) {
-            throw new UnofficialCharacterException("Race '" + getRace() + "' is restricted.");
+        if ((getRace() != null && getRace().isRestricted(this))) {
+            throw new RestrictedElementException("Race '" + getRace() + "' is restricted.");
         }
-        if ((getArmour() != null && !getArmour().isOfficial())) {
-            throw new UnofficialCharacterException("Armour '" + getArmour() + "' is restricted.");
+        if ((getArmour() != null && getArmour().isRestricted(this))) {
+            throw new RestrictedElementException("Armour '" + getArmour() + "' is restricted.");
         }
-        if ((getShield() != null && !getShield().isOfficial())) {
-            throw new UnofficialCharacterException("Shield '" + getShield() + "' is restricted.");
-        }
-
-        if (!weapons.getElements().stream().allMatch(Weapon::isOfficial)) {
-            throw new UnofficialCharacterException("Weapon '" + weapons + "' have some restricted element.");
+        if ((getShield() != null && getShield().isRestricted(this))) {
+            throw new RestrictedElementException("Shield '" + getShield() + "' is restricted.");
         }
 
-        if (!skills.values().stream().allMatch(SelectedSkill::isOfficial)) {
-            throw new UnofficialCharacterException("Skills '" + skills + "' have some restricted element.");
+        if (!weapons.getElements().stream().allMatch(w -> w.isRestricted(this))) {
+            throw new RestrictedElementException("Weapon '" + weapons + "' have some restricted element.");
         }
 
-        if (!blessings.stream().allMatch(Blessing::isOfficial)) {
-            throw new UnofficialCharacterException("Blessings '" + blessings + "' have some restricted element.");
+        if (!skills.values().stream().allMatch(s -> s.isRestricted(this))) {
+            throw new RestrictedElementException("Skills '" + skills + "' have some restricted element.");
         }
 
-        if (!benefices.stream().allMatch(AvailableBenefice::isOfficial)) {
-            throw new UnofficialCharacterException("Benefices '" + benefices + "' have some restricted element.");
+        if (!blessings.stream().allMatch(b -> b.isRestricted(this))) {
+            throw new RestrictedElementException("Blessings '" + blessings + "' have some restricted element.");
         }
 
-        if (!cybernetics.getElements().stream().allMatch(SelectedCyberneticDevice::isOfficial)) {
-            throw new UnofficialCharacterException("Cybernetics '" + cybernetics + "' have some restricted element.");
+        if (!benefices.stream().allMatch(b -> b.isRestricted(this))) {
+            throw new RestrictedElementException("Benefices '" + benefices + "' have some restricted element.");
+        }
+
+        if (!cybernetics.getElements().stream().allMatch(c -> c.isRestricted(this))) {
+            throw new RestrictedElementException("Cybernetics '" + cybernetics + "' have some restricted element.");
         }
 
         for (final String occultismPathId : occultism.getSelectedPowers().keySet()) {
             try {
-                if (!OccultismPathFactory.getInstance().getElement(occultismPathId, getLanguage(), getModuleName()).isOfficial()) {
-                    throw new UnofficialCharacterException("Occultism path '" + occultismPathId + "' is restricted.");
+                if (!OccultismPathFactory.getInstance().getElement(occultismPathId, getLanguage(), getModuleName()).isRestricted(this)) {
+                    throw new RestrictedElementException("Occultism path '" + occultismPathId + "' is restricted.");
                 }
             } catch (InvalidXmlElementException e) {
                 // Ignore.
