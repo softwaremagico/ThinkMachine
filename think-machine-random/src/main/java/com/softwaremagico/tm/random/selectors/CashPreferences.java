@@ -101,9 +101,9 @@ public enum CashPreferences implements ICharacterDescriptionPreference<CashPrefe
         return null;
     }
 
-    public static CashPreferences get(StatusPreferences statusPreferences) {
-        if (statusPreferences != null) {
-            switch (statusPreferences) {
+    public static CashPreferences get(RankPreferences rankPreferences) {
+        if (rankPreferences != null) {
+            switch (rankPreferences) {
                 case GOOD:
                     return CashPreferences.GOOD;
                 case HIGH:

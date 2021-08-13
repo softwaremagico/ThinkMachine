@@ -1338,7 +1338,7 @@
                 <cost>24</cost>
             </master>
         </specializations>
-        <group>status</group>
+        <group>rank</group>
         <restrictedToFactionGroup>guild</restrictedToFactionGroup>
     </commission>
     <nobility>
@@ -1409,7 +1409,7 @@
                 <cost>24</cost>
             </duke>
         </specializations>
-        <group>status</group>
+        <group>rank</group>
         <restrictedToFactionGroup>nobility</restrictedToFactionGroup>
         <restrictedToFactions>manja</restrictedToFactions>
     </nobility>
@@ -1480,7 +1480,7 @@
                 <cost>24</cost>
             </archbishop>
         </specializations>
-        <group>status</group>
+        <group>rank</group>
         <restrictedToFactionGroup>church</restrictedToFactionGroup>
     </ordained>
     <professionalContract>

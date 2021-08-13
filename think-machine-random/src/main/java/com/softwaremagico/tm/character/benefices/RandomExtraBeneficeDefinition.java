@@ -26,10 +26,12 @@ package com.softwaremagico.tm.character.benefices;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.character.creation.CostCalculator;
+import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
 import com.softwaremagico.tm.character.exceptions.RestrictedElementException;
 import com.softwaremagico.tm.character.exceptions.UnofficialElementNotAllowedException;
-import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
+import com.softwaremagico.tm.random.exceptions.NotRemainingPointsException;
 import com.softwaremagico.tm.random.selectors.ExtraBeneficesNumberPreferences;
 import com.softwaremagico.tm.random.selectors.IGaussianDistribution;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
@@ -62,7 +64,7 @@ public class RandomExtraBeneficeDefinition extends RandomBeneficeDefinition {
             // Select a benefice
             final BeneficeDefinition selectedBenefice = selectElementByWeight();
 
-            // Only a few fighting style by character.
+            // Only some fighting style by character.
             if (selectedBenefice.getGroup().equals(BeneficeGroup.FIGHTING)) {
                 if (existingCombatStyles >= MAX_COMBAT_STYLES) {
                     removeElementWeight(selectedBenefice);
@@ -72,10 +74,13 @@ public class RandomExtraBeneficeDefinition extends RandomBeneficeDefinition {
 
             try {
                 assignBenefice(selectedBenefice,
-                        FreeStyleCharacterCreation.getFreeAvailablePoints(getCharacterPlayer().getInfo().getAge(), getCharacterPlayer().getRace()));
+                        FreeStyleCharacterCreation.getFreeAvailablePoints(getCharacterPlayer().getInfo().getAge(), getCharacterPlayer().getRace())
+                                - CostCalculator.getCost(getCharacterPlayer()));
             } catch (RestrictedElementException e) {
                 removeElementWeight(selectedBenefice);
                 //Ignore the restricted one.
+            } catch (NotRemainingPointsException e) {
+                break;
             }
         }
     }

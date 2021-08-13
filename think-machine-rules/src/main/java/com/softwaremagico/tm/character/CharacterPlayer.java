@@ -812,7 +812,7 @@ public class CharacterPlayer {
             throw new UnofficialElementNotAllowedException("Cybernetic Device '" + cyberneticDevice + "' is not official and cannot be added due " +
                     "to configuration limitations.");
         }
-        if (hasCyberneticDevice(cyberneticDevice)) {
+        if (hasCyberneticDevice(cyberneticDevice) || cyberneticDevice == null) {
             return null;
         }
         if (getCyberneticsIncompatibility() + cyberneticDevice.getIncompatibility() > Cybernetics
@@ -1417,8 +1417,8 @@ public class CharacterPlayer {
 
     public BeneficeSpecialization getStatus() {
         for (final AvailableBenefice benefice : getAllBenefices()) {
-            if (benefice.getBeneficeDefinition().getGroup() == BeneficeGroup.STATUS) {
-                // Must have an specialization.
+            if (benefice.getBeneficeDefinition().getGroup() == BeneficeGroup.RANK) {
+                // Must have a specialization.
                 if (benefice.getSpecialization() != null) {
                     return benefice.getSpecialization();
                 }

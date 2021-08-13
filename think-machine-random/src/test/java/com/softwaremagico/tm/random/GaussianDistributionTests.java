@@ -25,7 +25,7 @@ package com.softwaremagico.tm.random;
  */
 
 import com.softwaremagico.tm.random.selectors.IGaussianDistribution;
-import com.softwaremagico.tm.random.selectors.StatusPreferences;
+import com.softwaremagico.tm.random.selectors.RankPreferences;
 import org.testng.annotations.Test;
 
 import java.util.HashMap;
@@ -45,8 +45,8 @@ public class GaussianDistributionTests {
 
 	@Test(timeOut = 5000)
 	public void checkGaussianValuesForPreference() {
-		System.out.println(getValues(StatusPreferences.HIGH, 10000));
-		System.out.println(getValues(StatusPreferences.GOOD, 10000));
-		System.out.println(getValues(StatusPreferences.LOW, 10000));
+		System.out.println(getValues(RankPreferences.HIGH, 10000));
+		System.out.println(getValues(RankPreferences.GOOD, 10000));
+		System.out.println(getValues(RankPreferences.LOW, 10000));
 	}
 }

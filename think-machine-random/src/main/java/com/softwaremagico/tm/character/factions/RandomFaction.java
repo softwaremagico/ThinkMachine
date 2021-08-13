@@ -76,7 +76,7 @@ public class RandomFaction extends RandomSelector<Faction> {
             }
         } else
             // No faction preference selected. Xeno factions has preferences by its own factions.
-            if (getCharacterPlayer().getRace().isXeno() && faction.getRestrictedToRaces().size() == 1 &&
+            if (getCharacterPlayer().getRace() != null && getCharacterPlayer().getRace().isXeno() && faction.getRestrictedToRaces().size() == 1 &&
                     faction.getRestrictedToRaces().contains(getCharacterPlayer().getRace())) {
                 return 100;
             }
@@ -85,11 +85,11 @@ public class RandomFaction extends RandomSelector<Faction> {
 
     @Override
     protected void assignIfMandatory(Faction element) throws InvalidXmlElementException {
-        return;
+        //Nothing yet.
     }
 
     @Override
     protected void assignMandatoryValues(Set<Faction> mandatoryValues) throws InvalidXmlElementException {
-        return;
+        //Nothing yet.
     }
 }

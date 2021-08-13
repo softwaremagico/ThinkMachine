@@ -26,6 +26,8 @@ package com.softwaremagico.tm.character.blessings;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.character.creation.CostCalculator;
+import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
 import com.softwaremagico.tm.character.exceptions.RestrictedElementException;
 import com.softwaremagico.tm.character.exceptions.UnofficialElementNotAllowedException;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
@@ -33,6 +35,7 @@ import com.softwaremagico.tm.log.RandomGenerationLog;
 import com.softwaremagico.tm.random.RandomSelector;
 import com.softwaremagico.tm.random.exceptions.ImpossibleToAssignMandatoryElementException;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
+import com.softwaremagico.tm.random.exceptions.NotRemainingPointsException;
 import com.softwaremagico.tm.random.selectors.*;
 
 import java.util.Collection;
@@ -51,23 +54,36 @@ public class RandomBlessingDefinition extends RandomSelector<Blessing> {
         final IGaussianDistribution blessingDistribution = BlessingNumberPreferences.getSelected(getPreferences());
         // Select a blessing
         final int totalSelectedBlessings = blessingDistribution.randomGaussian();
+        int remainingPoints = FreeStyleCharacterCreation.getFreeAvailablePoints(getCharacterPlayer().getInfo().getAge(), getCharacterPlayer().getRace())
+                - CostCalculator.getCost(getCharacterPlayer());
         if (getCharacterPlayer().getFaction() != null) {
             while (getCharacterPlayer().getBlessings().size() < totalSelectedBlessings
                     + getCharacterPlayer().getFaction().getBlessings(BlessingClassification.BLESSING).size()) {
                 final Blessing selectedBlessing = selectElementByWeight();
                 try {
-                    getCharacterPlayer().addBlessing(selectedBlessing);
+                    remainingPoints -= assignBlessing(selectedBlessing, remainingPoints);
                     RandomGenerationLog.info(this.getClass().getName(), "Added blessing '{}'.", selectedBlessing);
                     removeElementWeight(selectedBlessing);
-                } catch (TooManyBlessingsException e) {
+                } catch (TooManyBlessingsException | NotRemainingPointsException e) {
                     // No more possible.
                     break;
                 } catch (BlessingAlreadyAddedException | UnofficialElementNotAllowedException e) {
                     removeElementWeight(selectedBlessing);
-                    continue;
                 }
             }
         }
+    }
+
+    protected int assignBlessing(Blessing selectedBlessing, int maxPoints)
+            throws NotRemainingPointsException, UnofficialElementNotAllowedException, TooManyBlessingsException, BlessingAlreadyAddedException {
+        if (maxPoints <= 0) {
+            throw new NotRemainingPointsException();
+        }
+        if (selectedBlessing.getCost() > maxPoints) {
+            return 0;
+        }
+        getCharacterPlayer().addBlessing(selectedBlessing);
+        return selectedBlessing.getCost();
     }
 
     @Override
@@ -122,17 +138,18 @@ public class RandomBlessingDefinition extends RandomSelector<Blessing> {
 
     @Override
     protected void assignMandatoryValues(Set<Blessing> mandatoryValues) throws InvalidXmlElementException {
+        int remainingPoints = FreeStyleCharacterCreation.getFreeAvailablePoints(getCharacterPlayer().getInfo().getAge(), getCharacterPlayer().getRace())
+                - CostCalculator.getCost(getCharacterPlayer());
         for (final Blessing blessing : mandatoryValues) {
             try {
-                getCharacterPlayer().addBlessing(blessing);
+                remainingPoints -= assignBlessing(blessing, remainingPoints);
                 RandomGenerationLog.info(this.getClass().getName(), "Added mandatory blessing '{}'.", blessing);
                 removeElementWeight(blessing);
-            } catch (TooManyBlessingsException e) {
+            } catch (TooManyBlessingsException | NotRemainingPointsException e) {
                 // No more possible.
                 break;
             } catch (BlessingAlreadyAddedException | UnofficialElementNotAllowedException e) {
                 removeElementWeight(blessing);
-                continue;
             }
         }
     }

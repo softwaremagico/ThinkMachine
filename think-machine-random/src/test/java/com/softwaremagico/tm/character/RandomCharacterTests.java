@@ -205,14 +205,14 @@ public class RandomCharacterTests {
         characterPlayer.setFaction(
                 FactionsFactory.getInstance().getElement("hazat", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0,
-                StatusPreferences.HIGH);
+                RankPreferences.HIGH);
         randomizeCharacter.createCharacter();
         Assert.assertNotNull(characterPlayer.getRank());
         Assert.assertEquals(CostCalculator.getCost(characterPlayer),
                 FreeStyleCharacterCreation.getFreeAvailablePoints(characterPlayer.getInfo().getAge(), characterPlayer.getRace()));
     }
 
-    @Test(timeOut = 5000)
+    @Test(timeOut = 50000)
     public void manjaMustHaveStatus() throws InvalidXmlElementException,
             InvalidRandomElementSelectedException, RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
@@ -222,7 +222,7 @@ public class RandomCharacterTests {
         characterPlayer.setFaction(
                 FactionsFactory.getInstance().getElement("manja", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0,
-                StatusPreferences.HIGH);
+                RankPreferences.HIGH);
         randomizeCharacter.createCharacter();
         Assert.assertNotNull(characterPlayer.getRank());
         Assert.assertEquals(CostCalculator.getCost(characterPlayer),
@@ -269,7 +269,7 @@ public class RandomCharacterTests {
                 .setRace(RaceFactory.getInstance().getElement("human", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0,
                 SpecializationPreferences.GENERALIZED, OccultismPathLevelPreferences.HIGH, OccultismLevelPreferences.HIGH,
-                StatusPreferences.FAIR);
+                RankPreferences.FAIR);
         randomizeCharacter.createCharacter();
         try {
             Assert.assertTrue(characterPlayer.getSelectedPowers().values().size() > 0);
@@ -290,7 +290,7 @@ public class RandomCharacterTests {
                 FactionsFactory.getInstance().getElement("orthodox", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0,
                 SpecializationPreferences.SPECIALIZED, OccultismPathLevelPreferences.HIGH, OccultismLevelPreferences.HIGH,
-                StatusPreferences.FAIR);
+                RankPreferences.FAIR);
         randomizeCharacter.createCharacter();
         Assert.assertTrue(characterPlayer.getTotalSelectedPowers() > 0);
     }

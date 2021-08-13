@@ -251,7 +251,7 @@ public class RandomizeCharacter {
         if (cashPreferences == null) {
             //Faction and status also change the cash amount.
             final CashPreferences factionCashPreference = CashPreferences.get(FactionPreferences.getSelected(preferences));
-            final CashPreferences statusCashPreference = CashPreferences.get(StatusPreferences.getSelected(preferences));
+            final CashPreferences statusCashPreference = CashPreferences.get(RankPreferences.getSelected(preferences));
 
             //Equipment minimum cash.
             final AtomicReference<Float> equipmentCost = new AtomicReference<>((float) 0);
