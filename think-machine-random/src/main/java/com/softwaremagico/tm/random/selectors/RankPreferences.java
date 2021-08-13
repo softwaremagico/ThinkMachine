@@ -31,13 +31,13 @@ public enum RankPreferences implements ICharacterDescriptionPreference<RankPrefe
 
     NONE(0, 0, 0, 0),
 
-    LOW(4, 8, 4, 1),
+    LOW(4, 8, 4, 4),
 
-    FAIR(4, 8, 6, 2),
+    FAIR(8, 12, 8, 4),
 
-    GOOD(4, 16, 8, 4),
+    GOOD(12, 16, 12, 4),
 
-    HIGH(12, 24, 16, 8),
+    HIGH(16, 24, 18, 6),
 
     ANY(4, 24, 14, 10);
 
