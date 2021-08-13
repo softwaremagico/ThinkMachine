@@ -462,7 +462,7 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
         if (Objects.equals(benefice.getId(), "cash")) {
             final IGaussianDistribution selectedCash = CashPreferences.getSelected(getPreferences());
             if (selectedCash != null) {
-                int grade = selectedCash.randomGaussian();
+                final int grade = selectedCash.randomGaussian();
                 RandomGenerationLog.debug(this.getClass().getName(),
                         "Searching grade '{}' of benefice '{}'.", grade, benefice);
                 try {

@@ -8,7 +8,7 @@
         <group>servitude</group>
         <faction>noFaction</faction>
         <preferences>CombatPreferences.PEACEFUL, CharacteristicsPreferences.BODY, SpecializationPreferences.GENERALIZED,
-            StatusPreferences.NONE, TechnologicalPreferences.BASIC, WeaponsPreferences.NONE
+            RankPreferences.NONE, TechnologicalPreferences.BASIC, WeaponsPreferences.NONE
         </preferences>
         <requiredSkills>
             <skill>
@@ -34,7 +34,7 @@
         <group>servitude</group>
         <faction>noFaction</faction>
         <preferences>CombatPreferences.FAIR, CharacteristicsPreferences.BODY, SpecializationPreferences.FAIR,
-            StatusPreferences.NONE, TechnologicalPreferences.MEDIEVAL, WeaponsPreferences.NONE
+            RankPreferences.NONE, TechnologicalPreferences.MEDIEVAL, WeaponsPreferences.NONE
         </preferences>
         <requiredSkills>
             <skill>
@@ -719,7 +719,7 @@
         <group>army</group>
         <faction>military</faction>
         <preferences>CombatPreferences.BELLIGERENT, CharacteristicsPreferences.BODY, SkillGroupPreferences.COMBAT,
-            SpecializationPreferences.SPECIALIZED, StatusPreferences.LOW, TechnologicalPreferences.MODERN,
+            SpecializationPreferences.SPECIALIZED, RankPreferences.LOW, TechnologicalPreferences.MODERN,
             WeaponsPreferences.HIGH
         </preferences>
         <characteristicsMinimumValues>
@@ -822,7 +822,7 @@
         <group>army</group>
         <faction>military</faction>
         <preferences>CombatPreferences.BELLIGERENT, CharacteristicsPreferences.BODY, SkillGroupPreferences.COMBAT,
-            SpecializationPreferences.SPECIALIZED, StatusPreferences.LOW, TechnologicalPreferences.MODERN,
+            SpecializationPreferences.SPECIALIZED, RankPreferences.LOW, TechnologicalPreferences.MODERN,
             WeaponsPreferences.HIGH
         </preferences>
         <characteristicsMinimumValues>
@@ -864,7 +864,7 @@
         <group>army</group>
         <faction>military</faction>
         <preferences>CombatPreferences.BELLIGERENT, CharacteristicsPreferences.BODY, SkillGroupPreferences.COMBAT,
-            SpecializationPreferences.SPECIALIZED, StatusPreferences.LOW, TechnologicalPreferences.MODERN,
+            SpecializationPreferences.SPECIALIZED, RankPreferences.LOW, TechnologicalPreferences.MODERN,
             WeaponsPreferences.HIGH
         </preferences>
         <characteristicsMinimumValues>
@@ -900,7 +900,7 @@
         <group>army</group>
         <faction>military</faction>
         <preferences>CombatPreferences.BELLIGERENT, CharacteristicsPreferences.BODY, SkillGroupPreferences.COMBAT,
-            SpecializationPreferences.SPECIALIZED, StatusPreferences.LOW, TechnologicalPreferences.FUTURIST,
+            SpecializationPreferences.SPECIALIZED, RankPreferences.LOW, TechnologicalPreferences.FUTURIST,
             WeaponsPreferences.HIGH
         </preferences>
         <characteristicsMinimumValues>
@@ -933,7 +933,7 @@
         <group>army</group>
         <faction>military</faction>
         <preferences>CombatPreferences.BELLIGERENT, SkillGroupPreferences.COMBAT,
-            SpecializationPreferences.SPECIALIZED, StatusPreferences.LOW, TechnologicalPreferences.FUTURIST,
+            SpecializationPreferences.SPECIALIZED, RankPreferences.LOW, TechnologicalPreferences.FUTURIST,
             WeaponsPreferences.HIGH
         </preferences>
         <characteristicsMinimumValues>
@@ -970,7 +970,7 @@
         <group>army</group>
         <faction>military</faction>
         <preferences>CombatPreferences.BELLIGERENT, CharacteristicsPreferences.BODY, SkillGroupPreferences.COMBAT,
-            SpecializationPreferences.SPECIALIZED, StatusPreferences.LOW, TechnologicalPreferences.MODERN,
+            SpecializationPreferences.SPECIALIZED, RankPreferences.LOW, TechnologicalPreferences.MODERN,
             WeaponsPreferences.HIGH, OccultismLevelPreferences.FAIR
         </preferences>
         <characteristicsMinimumValues>
@@ -1008,7 +1008,7 @@
         </name>
         <group>army</group>
         <faction>military</faction>
-        <preferences>SpecializationPreferences.SPECIALIZED, StatusPreferences.LOW, TechnologicalPreferences.MODERN
+        <preferences>SpecializationPreferences.SPECIALIZED, RankPreferences.LOW, TechnologicalPreferences.MODERN
         </preferences>
         <characteristicsMinimumValues>
             <wits>6</wits>
@@ -1044,7 +1044,7 @@
         <group>army</group>
         <faction>military</faction>
         <preferences>CombatPreferences.BELLIGERENT, SkillGroupPreferences.COMBAT,
-            SpecializationPreferences.SPECIALIZED, StatusPreferences.LOW, TechnologicalPreferences.MODERN,
+            SpecializationPreferences.SPECIALIZED, RankPreferences.LOW, TechnologicalPreferences.MODERN,
             WeaponsPreferences.HIGH
         </preferences>
         <characteristicsMinimumValues>
@@ -1084,7 +1084,7 @@
         <group>army</group>
         <faction>military</faction>
         <preferences>CombatPreferences.BELLIGERENT, SkillGroupPreferences.COMBAT,
-            SpecializationPreferences.SPECIALIZED, StatusPreferences.LOW, TechnologicalPreferences.MODERN,
+            SpecializationPreferences.SPECIALIZED, RankPreferences.LOW, TechnologicalPreferences.MODERN,
             WeaponsPreferences.HIGH
         </preferences>
         <characteristicsMinimumValues>
@@ -1105,7 +1105,7 @@
         <group>specialForces</group>
         <faction>minorFaction</faction>
         <preferences>CombatPreferences.BELLIGERENT, SkillGroupPreferences.COMBAT,
-            SpecializationPreferences.SPECIALIZED, StatusPreferences.LOW, TechnologicalPreferences.MODERN,
+            SpecializationPreferences.SPECIALIZED, RankPreferences.LOW, TechnologicalPreferences.MODERN,
             WeaponsPreferences.HIGH
         </preferences>
         <characteristicsMinimumValues>
@@ -1153,7 +1153,7 @@
         <group>specialForces</group>
         <faction>minorFaction</faction>
         <preferences>CombatPreferences.BELLIGERENT, SkillGroupPreferences.COMBAT,
-            SpecializationPreferences.SPECIALIZED, StatusPreferences.LOW, TechnologicalPreferences.SPACE_CITIZEN,
+            SpecializationPreferences.SPECIALIZED, RankPreferences.LOW, TechnologicalPreferences.SPACE_CITIZEN,
             WeaponsPreferences.HIGH, CyberneticPointsPreferences.CYBORG, CyberneticTotalDevicesPreferences.HIGH
         </preferences>
         <characteristicsMinimumValues>
@@ -1192,7 +1192,7 @@
         <group>specialForces</group>
         <faction>minorFaction</faction>
         <preferences>CombatPreferences.BELLIGERENT, SkillGroupPreferences.COMBAT, CharacteristicsPreferences.BODY,
-            SpecializationPreferences.SPECIALIZED, StatusPreferences.LOW, TechnologicalPreferences.SPACE_CITIZEN,
+            SpecializationPreferences.SPECIALIZED, RankPreferences.LOW, TechnologicalPreferences.SPACE_CITIZEN,
             WeaponsPreferences.HIGH
         </preferences>
         <characteristicsMinimumValues>
@@ -1337,7 +1337,7 @@
         </name>
         <group>airForce</group>
         <faction>minorFaction</faction>
-        <preferences>SpecializationPreferences.SPECIALIZED, StatusPreferences.LOW, TechnologicalPreferences.FUTURIST
+        <preferences>SpecializationPreferences.SPECIALIZED, RankPreferences.LOW, TechnologicalPreferences.FUTURIST
         </preferences>
         <characteristicsMinimumValues>
             <dexterity>6</dexterity>
@@ -1371,7 +1371,7 @@
         </name>
         <group>airForce</group>
         <faction>minorFaction</faction>
-        <preferences>SpecializationPreferences.SPECIALIZED, StatusPreferences.LOW, TechnologicalPreferences.FUTURIST
+        <preferences>SpecializationPreferences.SPECIALIZED, RankPreferences.LOW, TechnologicalPreferences.FUTURIST
         </preferences>
         <characteristicsMinimumValues>
             <dexterity>6</dexterity>
@@ -1405,7 +1405,7 @@
         </name>
         <group>airForce</group>
         <faction>minorFaction</faction>
-        <preferences>SpecializationPreferences.VERY_SPECIALIZED, StatusPreferences.LOW,
+        <preferences>SpecializationPreferences.VERY_SPECIALIZED, RankPreferences.LOW,
             TechnologicalPreferences.FUTURIST
         </preferences>
         <characteristicsMinimumValues>
@@ -1428,7 +1428,7 @@
         </name>
         <group>airForce</group>
         <faction>minorFaction</faction>
-        <preferences>SpecializationPreferences.VERY_SPECIALIZED, StatusPreferences.LOW,
+        <preferences>SpecializationPreferences.VERY_SPECIALIZED, RankPreferences.LOW,
             TechnologicalPreferences.FUTURIST,
             CharacteristicsPreferences.MIND
         </preferences>
@@ -1575,7 +1575,7 @@
         <group>navy</group>
         <faction>minorFaction</faction>
         <preferences>CombatPreferences.BELLIGERENT, CharacteristicsPreferences.BODY, SkillGroupPreferences.COMBAT,
-            SpecializationPreferences.SPECIALIZED, StatusPreferences.LOW, TechnologicalPreferences.FUTURIST,
+            SpecializationPreferences.SPECIALIZED, RankPreferences.LOW, TechnologicalPreferences.FUTURIST,
             WeaponsPreferences.HIGH
         </preferences>
         <characteristicsMinimumValues>
@@ -1699,7 +1699,7 @@
         </name>
         <group>spaceLegions</group>
         <faction>minorFaction</faction>
-        <preferences>SpecializationPreferences.SPECIALIZED, StatusPreferences.LOW,
+        <preferences>SpecializationPreferences.SPECIALIZED, RankPreferences.LOW,
             TechnologicalPreferences.SPACE_CITIZEN
         </preferences>
         <characteristicsMinimumValues>
@@ -1741,7 +1741,7 @@
         </name>
         <group>spaceLegions</group>
         <faction>minorFaction</faction>
-        <preferences>SpecializationPreferences.SPECIALIZED, StatusPreferences.LOW,
+        <preferences>SpecializationPreferences.SPECIALIZED, RankPreferences.LOW,
             TechnologicalPreferences.SPACE_CITIZEN
         </preferences>
         <characteristicsMinimumValues>
@@ -2271,7 +2271,7 @@
         </name>
         <group>minor_guild</group>
         <faction>theMasque</faction>
-        <preferences>StatusPreferences.LOW, CashPreferences.LOW
+        <preferences>RankPreferences.LOW, CashPreferences.LOW
         </preferences>
         <characteristicsMinimumValues>
             <wits>7</wits>
@@ -2322,7 +2322,7 @@
         </name>
         <group>minor_guild</group>
         <faction>carnivalers</faction>
-        <preferences>StatusPreferences.LOW, CashPreferences.LOW
+        <preferences>RankPreferences.LOW, CashPreferences.LOW
         </preferences>
         <characteristicsMinimumValues>
             <wits>6</wits>
@@ -2378,7 +2378,7 @@
         </name>
         <group>minor_guild</group>
         <faction>slayer</faction>
-        <preferences>StatusPreferences.LOW
+        <preferences>RankPreferences.LOW
         </preferences>
         <preferences>CombatPreferences.BELLIGERENT, FactionPreferences.NONE, SpecializationPreferences.VERY_SPECIALIZED,
             TechnologicalPreferences.SPACE_CITIZEN, WeaponsPreferences.HIGH
@@ -2441,7 +2441,7 @@
         </name>
         <group>minor_guild</group>
         <faction>vagabonds</faction>
-        <preferences>StatusPreferences.LOW, CombatActionsPreferences.HIGH, CombatActionsGroupPreferences.FIGHT,
+        <preferences>RankPreferences.LOW, CombatActionsPreferences.HIGH, CombatActionsGroupPreferences.FIGHT,
             CashPreferences.LOW, OccultismLevelPreferences.FAIR, OccultismTypePreferences.THEURGY
         </preferences>
         <characteristicsMinimumValues>
@@ -2489,7 +2489,7 @@
         </name>
         <group>minor_guild</group>
         <faction>prospectors</faction>
-        <preferences>StatusPreferences.LOW, TechnologicalPreferences.SPACE_CITIZEN, CashPreferences.LOW
+        <preferences>RankPreferences.LOW, TechnologicalPreferences.SPACE_CITIZEN, CashPreferences.LOW
         </preferences>
         <characteristicsMinimumValues>
             <tech>7</tech>
@@ -2814,7 +2814,7 @@
         </name>
         <group>minor_church</group>
         <faction>manja</faction>
-        <preferences>OccultismLevelPreferences.ANY, OccultismTypePreferences.THEURGY, StatusPreferences.ANY
+        <preferences>OccultismLevelPreferences.ANY, OccultismTypePreferences.THEURGY, RankPreferences.ANY
         </preferences>
         <characteristicsMinimumValues>
             <wits>7</wits>
