@@ -183,11 +183,12 @@ public class Element<T extends Element<?>> implements Comparable<T> {
     }
 
     public boolean isRestricted(CharacterPlayer characterPlayer) {
-        return ((!getRestrictedToRaces().isEmpty() && (characterPlayer.getRace() == null || !getRestrictedToRaces().contains(characterPlayer.getRace())))
-                || (getRestrictedToFactionGroup() != null && (characterPlayer.getFaction() == null &&
-                !java.util.Objects.equals(getRestrictedToFactionGroup(), characterPlayer.getFaction().getFactionGroup()))) ||
-                (!getRestrictedToFactions().isEmpty() && (characterPlayer.getFaction() == null ||
-                        !getRestrictedToFactions().contains(characterPlayer.getFaction()))));
+        return characterPlayer != null && !characterPlayer.getSettings().isRestrictionsIgnored() &&
+                ((!getRestrictedToRaces().isEmpty() && (characterPlayer.getRace() == null || !getRestrictedToRaces().contains(characterPlayer.getRace())))
+                        || (getRestrictedToFactionGroup() != null && (characterPlayer.getFaction() == null &&
+                        !java.util.Objects.equals(getRestrictedToFactionGroup(), characterPlayer.getFaction().getFactionGroup()))) ||
+                        (!getRestrictedToFactions().isEmpty() && (characterPlayer.getFaction() == null ||
+                                !getRestrictedToFactions().contains(characterPlayer.getFaction()))));
     }
 
     public void setRestricted(boolean restricted) {

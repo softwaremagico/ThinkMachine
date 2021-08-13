@@ -263,7 +263,7 @@ public class CharacterPlayer {
                     "to configuration limitations.");
         }
 
-        if (availableSkill.isRestricted(this)) {
+        if (availableSkill.isRestricted(this) && !getSettings().isRestrictionsIgnored()) {
             throw new RestrictedElementException("Skill '" + availableSkill + "' is restricted to '" +
                     availableSkill.getRestrictedToRaces() + "'.");
         }
@@ -580,10 +580,10 @@ public class CharacterPlayer {
             throw new UnofficialElementNotAllowedException("Benefice '" + benefice + "' is not official and cannot be added due " +
                     "to configuration limitations.");
         }
-        if (benefice.getBeneficeDefinition().isRestricted()) {
+        if (benefice.getBeneficeDefinition().isRestricted() && !getSettings().isRestrictionsIgnored()) {
             throw new RestrictedElementException("Benefice '" + benefice + "' is restricted and cannot be added.");
         }
-        if (!benefice.getBeneficeDefinition().getRestrictedToRaces().isEmpty() &&
+        if (!getSettings().isRestrictionsIgnored() && !benefice.getBeneficeDefinition().getRestrictedToRaces().isEmpty() &&
                 !benefice.getBeneficeDefinition().getRestrictedToRaces().contains(getRace())) {
             throw new RestrictedElementException("Benefice '" + benefice + "' is restricted to races "
                     + benefice.getBeneficeDefinition().getRestrictedToRaces() + " and cannot be added.");
@@ -1102,7 +1102,8 @@ public class CharacterPlayer {
             throw new UnofficialElementNotAllowedException("Race '" + race + "' is not official and cannot be added due " +
                     "to configuration limitations.");
         }
-        if (getFaction() != null && !getFaction().getRestrictedToRaces().isEmpty() && !getFaction().getRestrictedToRaces().contains(race)) {
+        if (getFaction() != null && !getSettings().isRestrictionsIgnored() && !getFaction().getRestrictedToRaces().isEmpty() &&
+                !getFaction().getRestrictedToRaces().contains(race)) {
             throw new RestrictedElementException("Faction is restricted to '" + getFaction().getRestrictedToRaces() + "'");
         }
         if (!Objects.equals(this.race, race)) {
@@ -1535,7 +1536,7 @@ public class CharacterPlayer {
                     "to configuration limitations.");
         }
         //Race must have an id to avoid custom races.
-        if (getRace() != null && getRace().getId() != null && !faction.getRestrictedToRaces().isEmpty()
+        if (getRace() != null && getRace().getId() != null && !getSettings().isRestrictionsIgnored() && !faction.getRestrictedToRaces().isEmpty()
                 && !faction.getRestrictedToRaces().contains(getRace())) {
             throw new RestrictedElementException("Faction '" + faction + "' is restricted to '" + faction.getRestrictedToRaces() + "'");
         }
@@ -1558,7 +1559,8 @@ public class CharacterPlayer {
     private void checkBeneficesRestrictions(AvailableBenefice benefice) throws InvalidBeneficeException, RestrictedElementException {
         if (getFaction() != null) {
             for (final RestrictedBenefice restrictedBenefice : getFaction().getRestrictedBenefices()) {
-                if (Objects.equals(restrictedBenefice.getBeneficeDefinition(), benefice.getBeneficeDefinition())) {
+                if (!getSettings().isRestrictionsIgnored() &&
+                        Objects.equals(restrictedBenefice.getBeneficeDefinition(), benefice.getBeneficeDefinition())) {
                     if (benefice.getCost() > restrictedBenefice.getMaxValue()) {
                         throw new InvalidBeneficeException("Faction '" + getFaction()
                                 + "' limits the cost of benefit to '" + restrictedBenefice.getMaxValue() + "'");
@@ -1566,24 +1568,28 @@ public class CharacterPlayer {
                 }
             }
         }
-        if (benefice.getRestrictedToFactionGroup() != null && benefice.getRestrictedToFactions().isEmpty() && (getFaction() == null ||
+        if (benefice.getRestrictedToFactionGroup() != null && !getSettings().isRestrictionsIgnored()
+                && benefice.getRestrictedToFactions().isEmpty() && (getFaction() == null ||
                 !Objects.equals(benefice.getRestrictedToFactionGroup(), getFaction().getFactionGroup()))) {
             throw new RestrictedElementException("Benefice '" + benefice
                     + "' is restricted to faction '" + benefice.getRestrictedToFactionGroup() + "' and currently is" +
                     "'" + getFaction() + "'.");
-        } else if (benefice.getRestrictedToFactionGroup() == null && !benefice.getRestrictedToFactions().isEmpty() && (getFaction() == null ||
+        } else if (benefice.getRestrictedToFactionGroup() == null && !getSettings().isRestrictionsIgnored()
+                && !benefice.getRestrictedToFactions().isEmpty() && (getFaction() == null ||
                 !benefice.getRestrictedToFactions().contains(getFaction()))) {
             throw new RestrictedElementException("Benefice '" + benefice
                     + "' is restricted to faction '" + benefice.getRestrictedToFactions() + "' and currently is" +
                     "'" + getFaction() + "'.");
-        } else if (benefice.getRestrictedToFactionGroup() != null && !benefice.getRestrictedToFactions().isEmpty() && (getFaction() == null ||
+        } else if (benefice.getRestrictedToFactionGroup() != null && !getSettings().isRestrictionsIgnored()
+                && !benefice.getRestrictedToFactions().isEmpty() && (getFaction() == null ||
                 !benefice.getRestrictedToFactions().contains(getFaction())) &&
                 !Objects.equals(benefice.getRestrictedToFactionGroup(), getFaction().getFactionGroup())) {
             throw new RestrictedElementException("Benefice '" + benefice
                     + "' is restricted to faction '" + benefice.getRestrictedToFactionGroup() + "' and '" + benefice.getRestrictedToFactions()
                     + "' and currently is" + "'" + getFaction() + "'.");
         }
-        if (!benefice.getRestrictedToRaces().isEmpty() && !benefice.getRestrictedToRaces().contains(getRace())) {
+        if (!benefice.getRestrictedToRaces().isEmpty() && !getSettings().isRestrictionsIgnored()
+                && !benefice.getRestrictedToRaces().contains(getRace())) {
             throw new RestrictedElementException("Benefice '" + benefice
                     + "' is restricted to race '" + benefice.getBeneficeDefinition().getRestrictedToRaces() + "'");
         }
@@ -1812,7 +1818,7 @@ public class CharacterPlayer {
     public boolean canAddOccultismPower(OccultismPower power) {
         final OccultismPath path = OccultismPathFactory.getInstance().getOccultismPath(power);
         try {
-            getOccultism().canAddPower(path, power, getLanguage(), getFaction(), getRace());
+            getOccultism().canAddPower(path, power, getLanguage(), getFaction(), getRace(), getSettings());
             return true;
         } catch (InvalidOccultismPowerException e) {
             return false;
@@ -1827,11 +1833,12 @@ public class CharacterPlayer {
             throw new UnofficialElementNotAllowedException("Occultism Power '" + power + "' is not official and cannot be added due " +
                     "to configuration limitations.");
         }
-        if (!power.getRestrictedToRaces().isEmpty() && (getRace() == null || !power.getRestrictedToRaces().contains(getRace()))) {
+        if (!power.getRestrictedToRaces().isEmpty() && !getSettings().isRestrictionsIgnored() &&
+                (getRace() == null || !power.getRestrictedToRaces().contains(getRace()))) {
             throw new InvalidOccultismPowerException("Occultism Power '" + power + "' is limited to races '" + power.getRestrictedToRaces() + "'.");
         }
         final OccultismPath path = OccultismPathFactory.getInstance().getOccultismPath(power);
-        if (getOccultism().addPower(path, power, getLanguage(), getFaction(), getRace())) {
+        if (getOccultism().addPower(path, power, getLanguage(), getFaction(), getRace(), getSettings())) {
             getCharacterModificationHandler().launchOccultismPowerUpdatedListener(power, false);
         }
     }
