@@ -51,6 +51,7 @@ import com.softwaremagico.tm.random.selectors.IRandomPreference;
 import com.softwaremagico.tm.random.selectors.RandomPreferenceUtils;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public abstract class RandomPredefinedFactory<Predefined extends Element<Predefined> & IRandomPredefined> extends XmlFactory<Predefined> {
     private static final String GROUP = "group";
@@ -108,6 +109,15 @@ public abstract class RandomPredefinedFactory<Predefined extends Element<Predefi
     private void classify(Predefined predefined, String groupName) {
         predefinedByGroup.computeIfAbsent(groupName, k -> new HashSet<>());
         predefinedByGroup.get(groupName).add(predefined);
+    }
+
+    public Set<String> getGroups(boolean nonOfficial, String language, String moduleName) {
+        final Set<String> predefinedGroups = getGroups(language, moduleName);
+        if (nonOfficial) {
+            return predefinedGroups;
+        }
+        //Remove all non-official groups.
+        return predefinedGroups.stream().filter(g -> predefinedByGroup.get(g).stream().anyMatch(Element::isOfficial)).collect(Collectors.toSet());
     }
 
     public Set<String> getGroups(String language, String moduleName) {

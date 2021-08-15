@@ -26,7 +26,7 @@ package com.softwaremagico.tm.character;
 
 public class Settings {
     private boolean onlyOfficialAllowed = false;
-    private boolean restrictionsIgnored = false;
+    private boolean restrictionsChecked = true;
 
 
     public boolean isOnlyOfficialAllowed() {
@@ -37,16 +37,18 @@ public class Settings {
         this.onlyOfficialAllowed = onlyOfficialAllowed;
     }
 
-    public boolean isRestrictionsIgnored() {
-        return restrictionsIgnored;
+    public boolean isRestrictionsChecked() {
+        return restrictionsChecked;
     }
 
-    public void setRestrictionsIgnored(boolean restrictionsIgnored) {
-        this.restrictionsIgnored = restrictionsIgnored;
+    public void setRestrictionsChecked(boolean restrictionsChecked) {
+        this.restrictionsChecked = restrictionsChecked;
     }
 
     public void copy(Settings settings) {
-        this.onlyOfficialAllowed = settings.onlyOfficialAllowed;
-        this.restrictionsIgnored = settings.restrictionsIgnored;
+        if (settings != null) {
+            this.onlyOfficialAllowed = settings.onlyOfficialAllowed;
+            this.restrictionsChecked = settings.restrictionsChecked;
+        }
     }
 }

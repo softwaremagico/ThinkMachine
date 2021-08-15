@@ -1932,6 +1932,7 @@
         </name>
         <group>minor</group>
         <restrictedToRaces>human, vorox, obun, ukar</restrictedToRaces>
+        <official>false</official>
         <random>
             <probabilityMultiplier>1</probabilityMultiplier>
         </random>
@@ -1943,6 +1944,7 @@
         </name>
         <group>minor</group>
         <restrictedToRaces>human, vorox, obun, ukar</restrictedToRaces>
+        <official>false</official>
         <random>
             <probabilityMultiplier>1</probabilityMultiplier>
         </random>

@@ -125,7 +125,7 @@ public class Occultism {
         if (power == null) {
             throw new InvalidOccultismPowerException("Power cannot be null.");
         }
-        if (faction == null && !settings.isRestrictionsIgnored()) {
+        if (faction == null && settings.isRestrictionsChecked()) {
             throw new InvalidOccultismPowerException("Faction cannot be null.");
         }
         // Correct level of psi or theurgy
@@ -133,12 +133,12 @@ public class Occultism {
             throw new InvalidPsiqueLevelException("Insufficient psi/theurgy level to acquire '" + power + "'.");
         }
         // Limited to some factions
-        if (!path.getFactionsAllowed().isEmpty() && !settings.isRestrictionsIgnored() && !path.getFactionsAllowed().contains(faction)) {
+        if (!path.getFactionsAllowed().isEmpty() && settings.isRestrictionsChecked() && !path.getFactionsAllowed().contains(faction)) {
             throw new InvalidFactionOfPowerException("Power '" + power + "' can only be acquired by  '"
                     + path.getFactionsAllowed() + "' character faction is '" + faction + "'.");
         }
         // Limited to some races
-        if (!path.getRestrictedToRaces().isEmpty() && !settings.isRestrictionsIgnored() && !path.getRestrictedToRaces().contains(race)) {
+        if (!path.getRestrictedToRaces().isEmpty() && settings.isRestrictionsChecked() && !path.getRestrictedToRaces().contains(race)) {
             throw new InvalidFactionOfPowerException("Power '" + power + "' can only be acquired by  '"
                     + path.getFactionsAllowed() + "' character faction is '" + faction + "'.");
         }
