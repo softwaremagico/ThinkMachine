@@ -493,4 +493,15 @@ public class NpcTests {
     public void restricted() throws InvalidXmlElementException {
         Assert.assertFalse(NpcFactory.getInstance().getElement("shantor", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).isOfficial());
     }
+
+    @Test(timeOut = 50000)
+    public void pilot() throws InvalidXmlElementException,
+            InvalidRandomElementSelectedException, RestrictedElementException, UnofficialElementNotAllowedException {
+        final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        characterPlayer.getSettings().setOnlyOfficialAllowed(false);
+        final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,
+                NpcFactory.getInstance().getElement("pilot", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+        randomizeCharacter.createCharacter();
+        Assert.assertTrue(characterPlayer.getMoney() >= 0);
+    }
 }

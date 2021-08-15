@@ -313,13 +313,6 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
                     "Element restricted to factions '" + randomDefinition.getRestrictedFactions() + "'.");
         }
 
-        if (getCharacterPlayer() != null && getCharacterPlayer().getFaction() != null
-                && !randomDefinition.getRecommendedFactionsGroups().isEmpty() && !randomDefinition
-                .getRecommendedFactionsGroups().contains(getCharacterPlayer().getFaction().getFactionGroup())) {
-            throw new InvalidRandomElementSelectedException(
-                    "Element restricted to factions '" + randomDefinition.getRecommendedFactionsGroups() + "'.");
-        }
-
         // Faction groups restriction.
         if (getCharacterPlayer() != null && getCharacterPlayer().getFaction() != null
                 && !randomDefinition.getRestrictedFactionGroups().isEmpty()

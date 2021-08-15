@@ -324,22 +324,9 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
         IGaussianDistribution selectedTraitCost = TraitCostPreferences.getSelected(getPreferences());
 
         if (benefice.getId().equalsIgnoreCase(CASH_BENEFICE_ID)) {
-            final DifficultLevelPreferences difficultPreferences = DifficultLevelPreferences
-                    .getSelected(getPreferences());
-            switch (difficultPreferences) {
-                case EASY:
-                case VERY_EASY:
-                    selectedTraitCost = TraitCostPreferences.LOW;
-                    break;
-                case MEDIUM:
-                case HARD:
-                    // Be careful. maxPoints can limit this value.
-                    selectedTraitCost = TraitCostPreferences.GOOD;
-                    break;
-                case VERY_HARD:
-                    // Be careful. maxPoints can limit this value.
-                    selectedTraitCost = TraitCostPreferences.VERY_HIGH;
-                    break;
+            CashPreferences cashPreferences = CashPreferences.getSelected(getPreferences());
+            if (cashPreferences != null) {
+                selectedTraitCost = cashPreferences;
             }
         }
 
