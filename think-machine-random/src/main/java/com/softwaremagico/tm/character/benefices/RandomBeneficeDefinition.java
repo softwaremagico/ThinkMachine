@@ -324,7 +324,7 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
         IGaussianDistribution selectedTraitCost = TraitCostPreferences.getSelected(getPreferences());
 
         if (benefice.getId().equalsIgnoreCase(CASH_BENEFICE_ID)) {
-            CashPreferences cashPreferences = CashPreferences.getSelected(getPreferences());
+            final CashPreferences cashPreferences = CashPreferences.getSelected(getPreferences());
             if (cashPreferences != null) {
                 selectedTraitCost = cashPreferences;
             }

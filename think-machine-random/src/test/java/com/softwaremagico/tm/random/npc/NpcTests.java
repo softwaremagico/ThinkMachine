@@ -494,7 +494,7 @@ public class NpcTests {
         Assert.assertFalse(NpcFactory.getInstance().getElement("shantor", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).isOfficial());
     }
 
-    @Test(timeOut = 50000)
+    @Test(timeOut = 5000)
     public void pilot() throws InvalidXmlElementException,
             InvalidRandomElementSelectedException, RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
