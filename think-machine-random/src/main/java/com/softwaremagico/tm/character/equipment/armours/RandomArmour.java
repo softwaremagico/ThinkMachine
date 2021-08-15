@@ -26,12 +26,13 @@ package com.softwaremagico.tm.character.equipment.armours;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.character.exceptions.RestrictedElementException;
-import com.softwaremagico.tm.character.exceptions.UnofficialElementNotAllowedException;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.equipment.EquipmentSelector;
+import com.softwaremagico.tm.character.exceptions.RestrictedElementException;
+import com.softwaremagico.tm.character.exceptions.UnofficialElementNotAllowedException;
 import com.softwaremagico.tm.log.RandomGenerationLog;
 import com.softwaremagico.tm.random.exceptions.ImpossibleToAssignMandatoryElementException;
+import com.softwaremagico.tm.random.exceptions.InvalidCostElementSelectedException;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.ArmourPreferences;
 import com.softwaremagico.tm.random.selectors.CombatPreferences;
@@ -57,6 +58,11 @@ public class RandomArmour extends EquipmentSelector<Armour> {
         if (armourPreferences != null && random.nextFloat() < armourPreferences.getArmourProbability()) {
             final Armour selectedArmour = selectElementByWeight();
             if (getCharacterPlayer().getArmour() == null) {
+                if (selectedArmour.getCost() > getCharacterPlayer().getMoney()) {
+                    removeElementWeight(selectedArmour);
+                    throw new InvalidCostElementSelectedException(selectedArmour, "Armour '" + selectedArmour + "' has a cost of '" +
+                            selectedArmour.getCost() + "'. Current money is '" + getCharacterPlayer().getMoney() + "'.");
+                }
                 getCharacterPlayer().setArmour(selectedArmour);
                 RandomGenerationLog.info(this.getClass().getName(), "Selected armour '{}'.", selectedArmour);
             }

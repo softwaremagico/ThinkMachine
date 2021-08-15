@@ -58,6 +58,7 @@ import com.softwaremagico.tm.character.skills.RandomSkillExtraPoints;
 import com.softwaremagico.tm.character.skills.RandomSkills;
 import com.softwaremagico.tm.log.MachineLog;
 import com.softwaremagico.tm.log.RandomGenerationLog;
+import com.softwaremagico.tm.random.exceptions.InvalidCostElementSelectedException;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.predefined.IRandomPredefined;
 import com.softwaremagico.tm.random.predefined.PredefinedMerger;
@@ -420,34 +421,40 @@ public class RandomizeCharacter {
     }
 
     private void setInitialEquipment() throws InvalidXmlElementException, RestrictedElementException, UnofficialElementNotAllowedException {
-        // Set weapons.
+        // Assign mandatory first.
         final RandomWeapon randomRangedWeapon = new RandomRangeWeapon(characterPlayer, preferences, mandatoryWeapons);
+        final RandomWeapon randomMeleeWeapon = new RandomMeleeWeapon(characterPlayer, preferences, mandatoryWeapons);
+        final RandomArmour randomArmour = new RandomArmour(characterPlayer, preferences, mandatoryArmours);
+        final RandomShield randomShield = new RandomShield(characterPlayer, preferences, mandatoryShields);
+
         try {
             randomRangedWeapon.assign();
         } catch (InvalidRandomElementSelectedException ires) {
             RandomGenerationLog.warning(this.getClass().getName(), "No ranged weapons available for '{}'.", characterPlayer);
         }
-        final RandomWeapon randomMeleeWeapon = new RandomMeleeWeapon(characterPlayer, preferences, mandatoryWeapons);
+
         try {
             randomMeleeWeapon.assign();
         } catch (InvalidRandomElementSelectedException ires) {
             RandomGenerationLog.warning(this.getClass().getName(), "No melee weapons available for '{}'.", characterPlayer);
         }
 
-        final RandomShield randomShield = new RandomShield(characterPlayer, preferences, mandatoryShields);
         try {
             randomShield.assign();
         } catch (InvalidShieldException e) {
             // Probably already has a shield.
             RandomGenerationLog.warning(this.getClass().getName(), e.getMessage());
+        } catch (InvalidCostElementSelectedException e) {
+            RandomGenerationLog.warning(this.getClass().getName(), "No enough  money for selected shield '{}'.", e.getElement());
         } catch (InvalidRandomElementSelectedException e) {
-            RandomGenerationLog.warning(this.getClass().getName(), "No shields available for '{}}'.", characterPlayer);
+            RandomGenerationLog.warning(this.getClass().getName(), "No shields available for '{}'.", characterPlayer);
         }
 
         // Set armours
-        final RandomArmour randomArmour = new RandomArmour(characterPlayer, preferences, mandatoryArmours);
         try {
             randomArmour.assign();
+        } catch (InvalidCostElementSelectedException e) {
+            RandomGenerationLog.warning(this.getClass().getName(), "No enough  money for selected armour '{}'.", e.getElement());
         } catch (InvalidArmourException e) {
             // Probably already has a shield.
             RandomGenerationLog.warning(this.getClass().getName(), e.getMessage());

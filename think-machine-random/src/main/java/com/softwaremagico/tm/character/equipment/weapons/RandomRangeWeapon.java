@@ -2,10 +2,11 @@ package com.softwaremagico.tm.character.equipment.weapons;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.exceptions.RestrictedElementException;
 import com.softwaremagico.tm.character.exceptions.UnofficialElementNotAllowedException;
-import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.log.RandomGenerationLog;
+import com.softwaremagico.tm.random.exceptions.InvalidCostElementSelectedException;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
 import com.softwaremagico.tm.random.selectors.WeaponsPreferences;
@@ -55,11 +56,12 @@ public class RandomRangeWeapon extends RandomWeapon {
                 if (random.nextFloat() < probabilityOfRangedWeapon) {
                     try {
                         super.assign();
+                    } catch (InvalidCostElementSelectedException | UnofficialElementNotAllowedException e) {
+                        //Try again with a different weapon.
+                        continue;
                     } catch (InvalidRandomElementSelectedException ires) {
                         RandomGenerationLog.warning(this.getClass().getName(),
                                 "No ranged weapons available for '{}'.", getCharacterPlayer());
-                    } catch (UnofficialElementNotAllowedException e) {
-                        //Ignore it.
                     }
                 }
                 probabilityOfRangedWeapon -= 0.3f;

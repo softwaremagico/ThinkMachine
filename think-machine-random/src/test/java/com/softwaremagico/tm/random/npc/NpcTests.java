@@ -3,8 +3,6 @@ package com.softwaremagico.tm.random.npc;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.RandomizeCharacter;
-import com.softwaremagico.tm.character.exceptions.RestrictedElementException;
-import com.softwaremagico.tm.character.exceptions.UnofficialElementNotAllowedException;
 import com.softwaremagico.tm.character.benefices.AvailableBenefice;
 import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
 import com.softwaremagico.tm.character.benefices.BeneficeDefinitionFactory;
@@ -17,6 +15,8 @@ import com.softwaremagico.tm.character.equipment.shields.Shield;
 import com.softwaremagico.tm.character.equipment.shields.ShieldFactory;
 import com.softwaremagico.tm.character.equipment.weapons.Weapon;
 import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
+import com.softwaremagico.tm.character.exceptions.RestrictedElementException;
+import com.softwaremagico.tm.character.exceptions.UnofficialElementNotAllowedException;
 import com.softwaremagico.tm.character.factions.FactionsFactory;
 import com.softwaremagico.tm.character.occultism.OccultismPathFactory;
 import com.softwaremagico.tm.character.occultism.OccultismTypeFactory;
@@ -413,6 +413,7 @@ public class NpcTests {
         randomizeCharacter.createCharacter();
         Assert.assertEquals(characterPlayer.getFaction(), FactionsFactory.getInstance().getElement("kurgan", characterPlayer.getLanguage(),
                 characterPlayer.getModuleName()));
+        Assert.assertTrue(characterPlayer.getMoney() >= 0);
     }
 
     @Test(timeOut = 5000)

@@ -26,10 +26,11 @@ package com.softwaremagico.tm.character.equipment.weapons;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.character.equipment.EquipmentSelector;
 import com.softwaremagico.tm.character.exceptions.RestrictedElementException;
 import com.softwaremagico.tm.character.exceptions.UnofficialElementNotAllowedException;
-import com.softwaremagico.tm.character.equipment.EquipmentSelector;
 import com.softwaremagico.tm.log.RandomGenerationLog;
+import com.softwaremagico.tm.random.exceptions.InvalidCostElementSelectedException;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.CombatPreferences;
 import com.softwaremagico.tm.random.selectors.DifficultLevelPreferences;
@@ -50,6 +51,12 @@ public abstract class RandomWeapon extends EquipmentSelector<Weapon> {
     public void assign() throws InvalidRandomElementSelectedException, UnofficialElementNotAllowedException {
         final Weapon selectedWeapon = selectElementByWeight();
         if (!getCharacterPlayer().getAllWeapons().contains(selectedWeapon)) {
+            if (selectedWeapon.getCost() > getCharacterPlayer().getMoney()) {
+                removeElementWeight(selectedWeapon);
+                RandomGenerationLog.warning(this.getClass().getName(), "Not enough money for weapon '{}'.", selectedWeapon);
+                throw new InvalidCostElementSelectedException(selectedWeapon, "Weapon '" + selectedWeapon + "' has a cost of '" +
+                        selectedWeapon.getCost() + "'. Current money is '" + getCharacterPlayer().getMoney() + "'.");
+            }
             getCharacterPlayer().addWeapon(selectedWeapon);
             RandomGenerationLog.info(this.getClass().getName(), "Selected weapon '{}'.", selectedWeapon);
         }

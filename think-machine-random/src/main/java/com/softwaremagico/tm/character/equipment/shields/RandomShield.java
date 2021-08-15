@@ -2,10 +2,11 @@ package com.softwaremagico.tm.character.equipment.shields;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.character.equipment.EquipmentSelector;
 import com.softwaremagico.tm.character.exceptions.RestrictedElementException;
 import com.softwaremagico.tm.character.exceptions.UnofficialElementNotAllowedException;
-import com.softwaremagico.tm.character.equipment.EquipmentSelector;
 import com.softwaremagico.tm.log.RandomGenerationLog;
+import com.softwaremagico.tm.random.exceptions.InvalidCostElementSelectedException;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.CombatPreferences;
 import com.softwaremagico.tm.random.selectors.DifficultLevelPreferences;
@@ -54,6 +55,11 @@ public class RandomShield extends EquipmentSelector<Shield> {
         if (shieldPreferences != null && random.nextFloat() < shieldPreferences.getShieldProbability()) {
             final Shield selectedShield = selectElementByWeight();
             if (getCharacterPlayer().getShield() == null) {
+                if (selectedShield.getCost() > getCharacterPlayer().getMoney()) {
+                    removeElementWeight(selectedShield);
+                    throw new InvalidCostElementSelectedException(selectedShield, "Shield '" + selectedShield + "' has a cost of '" +
+                            selectedShield.getCost() + "'. Current money is '" + getCharacterPlayer().getMoney() + "'.");
+                }
                 getCharacterPlayer().setShield(selectedShield);
                 RandomGenerationLog.info(this.getClass().getName(), "Selected shield '{}'.", selectedShield);
             }
