@@ -24,10 +24,6 @@ package com.softwaremagico.tm.json;
  * #L%
  */
 
-import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.List;
-
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 import com.softwaremagico.tm.InvalidXmlElementException;
@@ -36,10 +32,14 @@ import com.softwaremagico.tm.character.cybernetics.CyberneticDeviceTrait;
 import com.softwaremagico.tm.character.cybernetics.SelectedCyberneticDevice;
 import com.softwaremagico.tm.log.MachineLog;
 
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
+
 public class SelectedCyberneticDeviceAdapter extends ElementAdapter<SelectedCyberneticDevice> {
 	private static final String CUSTOMIZATIONS = "customizations";
 
-	protected SelectedCyberneticDeviceAdapter(String language, String moduleName) {
+	public SelectedCyberneticDeviceAdapter(String language, String moduleName) {
 		super(language, moduleName);
 	}
 
@@ -50,7 +50,7 @@ public class SelectedCyberneticDeviceAdapter extends ElementAdapter<SelectedCybe
 			if (customizations != null && !customizations.isJsonNull() && customizations.size() > 0) {
 				final Type cyberneticDeviceTraitType = new TypeToken<ArrayList<CyberneticDeviceTrait>>() {
 				}.getType();
-				return (List<CyberneticDeviceTrait>) context.deserialize(jsonObject.get(name), cyberneticDeviceTraitType);
+				return context.deserialize(jsonObject.get(name), cyberneticDeviceTraitType);
 			}
 		}
 		return new ArrayList<>();

@@ -26,30 +26,32 @@ package com.softwaremagico.tm.cache;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.json.factories.FactoryElements;
-import com.softwaremagico.tm.json.factories.cache.InvalidCacheFile;
-import com.softwaremagico.tm.random.predefined.characters.Npc;
-import com.softwaremagico.tm.random.predefined.characters.NpcFactory;
+import com.softwaremagico.tm.json.factories.cache.FactoryCacheLoader;
+import com.softwaremagico.tm.random.predefined.profile.RandomProfile;
+import com.softwaremagico.tm.random.predefined.profile.RandomProfileFactory;
 
-import java.util.List;
+import java.sql.Timestamp;
+import java.util.Date;
 
-public class NpcFactoryCacheLoader extends RandomFactoryCacheLoader<Npc> {
+public class RandomProfileElements extends FactoryElements<RandomProfile> {
 
-    @Override
-    public List<Npc> load(String language, String moduleName) {
-        try {
-            final FactoryElements<Npc> factoryElements = load(NpcFactory.class, NpcFactoryElements.class, language, moduleName);
-            if (factoryElements != null && !factoryElements.getElements().isEmpty()) {
-                return factoryElements.getElements();
+    public RandomProfileElements() {
+        super();
+        creationTime = new Timestamp(new Date().getTime());
+    }
+
+    public RandomProfileElements(String language, String moduleName) throws InvalidXmlElementException {
+        this();
+        creationTime = new Timestamp(new Date().getTime());
+
+        //Skip Json generation in loop.
+        final RandomProfileFactory randomProfileFactory = new RandomProfileFactory() {
+            @Override
+            public FactoryCacheLoader<RandomProfile> getFactoryCacheLoader() {
+                return null;
             }
-        } catch (InvalidCacheFile invalidCacheFile) {
-            // Not cache file on this module.
-        }
-        return null;
-    }
+        };
 
-    @Override
-    protected FactoryElements<Npc> getFactoryElements(String moduleName, String language) throws InvalidXmlElementException {
-        return new NpcFactoryElements(language, moduleName);
+        setElements(randomProfileFactory.getElements(language, moduleName));
     }
-
 }

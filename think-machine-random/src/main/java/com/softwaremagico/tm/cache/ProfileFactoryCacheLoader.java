@@ -27,29 +27,29 @@ package com.softwaremagico.tm.cache;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.json.factories.FactoryElements;
 import com.softwaremagico.tm.json.factories.cache.InvalidCacheFile;
-import com.softwaremagico.tm.random.predefined.characters.Npc;
-import com.softwaremagico.tm.random.predefined.characters.NpcFactory;
+import com.softwaremagico.tm.random.predefined.profile.RandomProfile;
+import com.softwaremagico.tm.random.predefined.profile.RandomProfileFactory;
 
 import java.util.List;
 
-public class NpcFactoryCacheLoader extends RandomFactoryCacheLoader<Npc> {
+public class ProfileFactoryCacheLoader extends RandomFactoryCacheLoader<RandomProfile> {
 
     @Override
-    public List<Npc> load(String language, String moduleName) {
+    public List<RandomProfile> load(String language, String moduleName) {
         try {
-            final FactoryElements<Npc> factoryElements = load(NpcFactory.class, NpcFactoryElements.class, language, moduleName);
+            final FactoryElements<RandomProfile> factoryElements = load(RandomProfileFactory.class, RandomProfileElements.class, language, moduleName);
             if (factoryElements != null && !factoryElements.getElements().isEmpty()) {
                 return factoryElements.getElements();
             }
         } catch (InvalidCacheFile invalidCacheFile) {
-            // Not cache file on this module.
+           // Not cache file on this module.
         }
         return null;
     }
 
     @Override
-    protected FactoryElements<Npc> getFactoryElements(String moduleName, String language) throws InvalidXmlElementException {
-        return new NpcFactoryElements(language, moduleName);
+    protected FactoryElements<RandomProfile> getFactoryElements(String moduleName, String language) throws InvalidXmlElementException {
+        return new RandomProfileElements(language, moduleName);
     }
 
 }

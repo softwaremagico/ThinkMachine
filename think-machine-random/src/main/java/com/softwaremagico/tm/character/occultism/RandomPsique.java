@@ -72,7 +72,8 @@ public class RandomPsique extends RandomSelector<OccultismType> {
     protected int getWeight(OccultismType element) throws InvalidRandomElementSelectedException {
         //Check if you have a path for your faction.
         try {
-            for (final OccultismPath occultismPath : OccultismPathFactory.getInstance().getElements(getCharacterPlayer().getLanguage(), getCharacterPlayer().getModuleName())) {
+            for (final OccultismPath occultismPath : OccultismPathFactory.getInstance().getElements(getCharacterPlayer().getLanguage(),
+                    getCharacterPlayer().getModuleName())) {
                 if (!occultismPath.getFactionsAllowed().isEmpty() && occultismPath.getFactionsAllowed().contains(getCharacterPlayer().getFaction())) {
                     if (Objects.equals(element, occultismPath.getOccultismType())) {
                         return 1;

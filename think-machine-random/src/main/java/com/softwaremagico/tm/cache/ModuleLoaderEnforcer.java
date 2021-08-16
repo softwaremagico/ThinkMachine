@@ -26,8 +26,8 @@ package com.softwaremagico.tm.cache;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.log.MachineLog;
-import com.softwaremagico.tm.random.party.RandomPartyFactory;
 import com.softwaremagico.tm.random.predefined.characters.NpcFactory;
+import com.softwaremagico.tm.random.predefined.profile.RandomProfileFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,7 +46,7 @@ public class ModuleLoaderEnforcer {
 
         futures.add(CompletableFuture.runAsync(() -> {
             try {
-                loadedElements.addAndGet(RandomPartyFactory.getInstance().getElements(language, moduleName).size());
+                loadedElements.addAndGet(RandomProfileFactory.getInstance().getElements(language, moduleName).size());
             } catch (InvalidXmlElementException e) {
                 MachineLog.errorMessage(com.softwaremagico.tm.file.modules.ModuleLoaderEnforcer.class.getName(), e);
             }

@@ -65,7 +65,7 @@ public class OccultismPathFactory extends XmlFactory<OccultismPath> {
     private final Set<OccultismPath> psiPaths;
     private final Set<OccultismPath> theurgyPaths;
 
-    private OccultismPathFactory() {
+    public OccultismPathFactory() {
         psiPaths = new HashSet<>();
         theurgyPaths = new HashSet<>();
     }

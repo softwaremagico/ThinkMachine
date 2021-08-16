@@ -32,6 +32,7 @@ import com.softwaremagico.tm.log.ConfigurationLog;
 import com.softwaremagico.tm.log.MachineModulesLog;
 import com.softwaremagico.tm.log.MachineXmlReaderLog;
 import com.softwaremagico.tm.random.predefined.characters.NpcFactory;
+import com.softwaremagico.tm.random.predefined.profile.RandomProfileFactory;
 import org.reflections.Reflections;
 import org.slf4j.LoggerFactory;
 
@@ -39,6 +40,10 @@ public class FactoryCacheGenerator {
 
     public static void main(String[] args) throws InvalidXmlElementException {
         disableLogs();
+        final ProfileFactoryCacheLoader profileFactoryCacheLoader = new ProfileFactoryCacheLoader();
+        for (final String moduleName : ModuleManager.getAvailableModules()) {
+            profileFactoryCacheLoader.save(RandomProfileFactory.class, moduleName, RandomProfileFactory.getInstance().getTranslatorFile());
+        }
         final NpcFactoryCacheLoader npcFactoryCacheLoader = new NpcFactoryCacheLoader();
         for (final String moduleName : ModuleManager.getAvailableModules()) {
             npcFactoryCacheLoader.save(NpcFactory.class, moduleName, NpcFactory.getInstance().getTranslatorFile());
