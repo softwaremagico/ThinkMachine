@@ -1768,6 +1768,10 @@ public class CharacterPlayer {
         return getOccultism().getTotalSelectedPowers();
     }
 
+    public int getTotalSelectedPaths() {
+        return getOccultism().getTotalSelectedPaths();
+    }
+
     /**
      * Returns the selected option by the character.
      *

@@ -58,6 +58,6 @@ public enum OccultismTypePreferences implements IPsiPreference<OccultismTypePref
     }
 
     public static OccultismTypePreferences getDefaultOption() {
-        return null;
+        return PSI;
     }
 }

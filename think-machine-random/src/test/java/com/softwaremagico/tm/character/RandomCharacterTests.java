@@ -261,7 +261,7 @@ public class RandomCharacterTests {
         }
     }
 
-    @Test(timeOut = 5000)
+    @Test(timeOut = 50000)
     public void createPsiqueCharacter() throws InvalidXmlElementException,
             InvalidRandomElementSelectedException, RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
@@ -273,7 +273,7 @@ public class RandomCharacterTests {
         randomizeCharacter.createCharacter();
         try {
             Assert.assertTrue(characterPlayer.getSelectedPowers().values().size() > 0);
-        } catch (Exception e) {
+        } catch (Exception | AssertionError e) {
             final CharacterSheet characterSheet = new CharacterSheet(characterPlayer);
             System.out.println(characterSheet);
             throw e;

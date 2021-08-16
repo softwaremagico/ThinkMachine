@@ -208,6 +208,11 @@ public class RandomizeCharacter {
             preferences.add(AgePreferences.getDefaultOption());
         }
 
+        final OccultismTypePreferences occultismTypePreferences = OccultismTypePreferences.getSelected(preferences);
+        if (occultismTypePreferences == null) {
+            preferences.add(OccultismTypePreferences.getDefaultOption());
+        }
+
         // Point distribution is "Fair" by default.
         final SpecializationPreferences selectedSpecialization = SpecializationPreferences.getSelected(preferences);
         if (selectedSpecialization == null) {

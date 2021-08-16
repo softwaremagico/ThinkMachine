@@ -438,6 +438,7 @@ public class NpcTests {
         randomizeCharacter.createCharacter();
         Assert.assertEquals(characterPlayer.getFaction(), FactionsFactory.getInstance().getElement("vagabonds", characterPlayer.getLanguage(),
                 characterPlayer.getModuleName()));
+        Assert.assertEquals(characterPlayer.getOccultismType(), OccultismTypeFactory.getTheurgy(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
     }
 
     @Test(timeOut = 5000)

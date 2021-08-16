@@ -120,6 +120,10 @@ public class Occultism {
         return total;
     }
 
+    public int getTotalSelectedPaths() {
+        return getSelectedPowers().keySet().size();
+    }
+
     public void canAddPower(OccultismPath path, OccultismPower power, String language, Faction faction, Race race, Settings settings)
             throws InvalidOccultismPowerException {
         if (power == null) {

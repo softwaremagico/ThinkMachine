@@ -8368,6 +8368,9 @@
         <size>S</size>
         <cost>20</cost>
         <damageType>plasma</damageType>
+        <random>
+            <probabilityMultiplier>0.01</probabilityMultiplier>
+        </random>
     </blastPellet>
     <concussionGrenade>
         <name>

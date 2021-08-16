@@ -96,12 +96,6 @@ public abstract class RandomWeapon extends EquipmentSelector<Weapon> {
                 "Weight value by tech level for '{}}' is '{}'.", weapon, weightTech);
         weight += weightTech;
 
-        // Weapons depending on the purchasing power of the character.
-        final int costModificator = getWeightCostModificator(weapon);
-        RandomGenerationLog.debug(this.getClass().getName(),
-                "Cost multiplication for weight for '{}' is '{}'.", weapon, costModificator);
-        weight /= costModificator;
-
         // Skill modifications.
         if (!weapon.getWeaponDamages().isEmpty()) {
             final int skillMultiplier = getCharacterPlayer().getSkillTotalRanks(weapon.getWeaponDamages().get(0).getSkill());
@@ -112,12 +106,22 @@ public abstract class RandomWeapon extends EquipmentSelector<Weapon> {
             }
         }
 
+        // Weapons depending on the purchasing power of the character.
+        final int costModificator = getWeightCostModificator(weapon);
+        RandomGenerationLog.debug(this.getClass().getName(),
+                "Cost multiplication for weight for '{}' is '{}'.", weapon, costModificator);
+        weight /= costModificator;
+
         //Grandes and big guns appear too often for normal characters.
         final CombatPreferences combatPreferences = CombatPreferences.getSelected(getPreferences());
-        if (combatPreferences != CombatPreferences.BELLIGERENT && (weapon.getType() == WeaponType.GRENADE ||
+        if (weapon.getType() == WeaponType.GRENADE ||
                 weapon.getType() == WeaponType.GRENADE_LAUNCHER || weapon.getType() == WeaponType.ROCKETEER ||
-                weapon.getType() == WeaponType.HEAVY || weapon.getType() == WeaponType.MINE)) {
-            weight /= 10;
+                weapon.getType() == WeaponType.HEAVY || weapon.getType() == WeaponType.MINE) {
+            if (combatPreferences != CombatPreferences.BELLIGERENT) {
+                weight /= 10;
+            } else {
+                weight /= 5;
+            }
         }
 
         RandomGenerationLog.debug(this.getClass().getName(), "Total weight for '{}' is '{}'.", weapon, weight);
