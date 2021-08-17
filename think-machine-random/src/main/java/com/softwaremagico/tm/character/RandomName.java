@@ -49,6 +49,9 @@ public class RandomName extends RandomSelector<Name> {
 
     @Override
     public void assign() throws InvalidRaceException, InvalidRandomElementSelectedException {
+        if (getCharacterPlayer().getFaction() == null || getCharacterPlayer().getRace() == null || getCharacterPlayer().getInfo().getPlanet() == null) {
+            throw new InvalidRandomElementSelectedException("Please, set faction, race and planet first.");
+        }
         NamesPreferences namesPreference = NamesPreferences.getSelected(getPreferences());
         final BeneficeSpecialization status = getCharacterPlayer().getStatus();
         // Nobility with more names. Unless set by the user.
