@@ -122,6 +122,14 @@ public class RandomName extends RandomSelector<Name> {
                     + getCharacterPlayer().getFaction() + "'.");
         }
 
+        // Surname already set, use same faction to avoid weird mix.
+        if (getCharacterPlayer().getInfo().getSurname() != null) {
+            if (getCharacterPlayer().getInfo().getSurname().getFaction() != null &&
+                    !Objects.equals(name.getFaction(), getCharacterPlayer().getInfo().getSurname().getFaction())) {
+                return 0;
+            }
+        }
+
         return BASIC_PROBABILITY;
     }
 

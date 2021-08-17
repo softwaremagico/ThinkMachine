@@ -89,7 +89,7 @@ public class RandomSurname extends RandomSelector<Surname> {
             RandomGenerationLog.errorMessage(this.getClass().getName(), e);
         }
         // Name already set, use same faction to avoid weird mix.
-        if (!getCharacterPlayer().getInfo().getNames().isEmpty()) {
+        if (getCharacterPlayer().getInfo().getNames() != null && !getCharacterPlayer().getInfo().getNames().isEmpty()) {
             final Name firstName = getCharacterPlayer().getInfo().getNames().get(0);
             if (firstName.getFaction() != null && !Objects.equals(firstName.getFaction(), surname.getFaction())) {
                 return 0;
