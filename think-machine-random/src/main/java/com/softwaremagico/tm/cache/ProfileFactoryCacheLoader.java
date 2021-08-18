@@ -37,7 +37,7 @@ public class ProfileFactoryCacheLoader extends RandomFactoryCacheLoader<RandomPr
     @Override
     public List<RandomProfile> load(String language, String moduleName) {
         try {
-            final FactoryElements<RandomProfile> factoryElements = load(RandomProfileFactory.class, RandomProfileElements.class, language, moduleName);
+            final FactoryElements<RandomProfile> factoryElements = load(RandomProfileFactory.class, RandomProfileFactoryElements.class, language, moduleName);
             if (factoryElements != null && !factoryElements.getElements().isEmpty()) {
                 return factoryElements.getElements();
             }
@@ -49,7 +49,7 @@ public class ProfileFactoryCacheLoader extends RandomFactoryCacheLoader<RandomPr
 
     @Override
     protected FactoryElements<RandomProfile> getFactoryElements(String moduleName, String language) throws InvalidXmlElementException {
-        return new RandomProfileElements(language, moduleName);
+        return new RandomProfileFactoryElements(language, moduleName);
     }
 
 }

@@ -33,14 +33,14 @@ import com.softwaremagico.tm.random.predefined.profile.RandomProfileFactory;
 import java.sql.Timestamp;
 import java.util.Date;
 
-public class RandomProfileElements extends FactoryElements<RandomProfile> {
+public class RandomProfileFactoryElements extends FactoryElements<RandomProfile> {
 
-    public RandomProfileElements() {
+    public RandomProfileFactoryElements() {
         super();
         creationTime = new Timestamp(new Date().getTime());
     }
 
-    public RandomProfileElements(String language, String moduleName) throws InvalidXmlElementException {
+    public RandomProfileFactoryElements(String language, String moduleName) throws InvalidXmlElementException {
         this();
         creationTime = new Timestamp(new Date().getTime());
 
