@@ -31,6 +31,7 @@ import com.softwaremagico.tm.character.benefices.BeneficeDefinitionFactory;
 import com.softwaremagico.tm.character.blessings.BlessingFactory;
 import com.softwaremagico.tm.character.equipment.armours.ArmourFactory;
 import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
+import com.softwaremagico.tm.character.occultism.OccultismPathFactory;
 import com.softwaremagico.tm.character.planets.PlanetFactory;
 import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
 import com.softwaremagico.tm.file.modules.ModuleManager;
@@ -69,6 +70,11 @@ public class FactoryCacheGenerator {
         for (final String moduleName : ModuleManager.getAvailableModules()) {
             planetFactoryCacheLoader.save(PlanetFactory.class, moduleName,
                     PlanetFactory.getInstance().getTranslatorFile());
+        }
+        final OccultismPathFactoryCacheLoader occultismPathFactoryCacheLoader = new OccultismPathFactoryCacheLoader();
+        for (final String moduleName : ModuleManager.getAvailableModules()) {
+            occultismPathFactoryCacheLoader.save(OccultismPathFactory.class, moduleName,
+                    OccultismPathFactory.getInstance().getTranslatorFile());
         }
     }
 

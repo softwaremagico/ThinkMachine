@@ -33,6 +33,8 @@ import com.softwaremagico.tm.character.equipment.armours.Armour;
 import com.softwaremagico.tm.character.equipment.armours.ArmourFactory;
 import com.softwaremagico.tm.character.equipment.weapons.Weapon;
 import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
+import com.softwaremagico.tm.character.occultism.OccultismPath;
+import com.softwaremagico.tm.character.occultism.OccultismPathFactory;
 import com.softwaremagico.tm.character.planets.Planet;
 import com.softwaremagico.tm.character.planets.PlanetFactory;
 import com.softwaremagico.tm.character.skills.SkillDefinition;
@@ -238,6 +240,38 @@ public class JsonCacheLoaderTests {
             PlanetFactoryCacheLoader planetFactoryCacheLoader = new PlanetFactoryCacheLoader();
             Assert.assertTrue(planetFactoryCacheLoader.load(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).size() > 0);
             PlanetFactory.getInstance().removeData();
+        }
+        end = Instant.now();
+        Duration jsonMethod = Duration.between(start, end);
+
+        //Check speed is at least 10x
+        Assert.assertTrue(jsonMethod.getNano() < xmlMethod.getNano());
+    }
+
+    @Test()
+    public void checkOccultismPathImprovement() throws InvalidXmlElementException {
+        //Force Json generation.
+
+        OccultismPathFactory occultismPathFactory = new OccultismPathFactory() {
+            @Override
+            public FactoryCacheLoader<OccultismPath> getFactoryCacheLoader() {
+                return null;
+            }
+        };
+
+        Instant start = Instant.now();
+        for (int i = 0; i < ITERATIONS; i++) {
+            occultismPathFactory.getElements(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+            occultismPathFactory.removeData();
+        }
+        Instant end = Instant.now();
+        Duration xmlMethod = Duration.between(start, end);
+
+        start = Instant.now();
+        for (int i = 0; i < ITERATIONS; i++) {
+            OccultismPathFactoryCacheLoader occultismPathFactoryCacheLoader = new OccultismPathFactoryCacheLoader();
+            Assert.assertTrue(occultismPathFactoryCacheLoader.load(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).size() > 0);
+            OccultismPathFactory.getInstance().removeData();
         }
         end = Instant.now();
         Duration jsonMethod = Duration.between(start, end);
