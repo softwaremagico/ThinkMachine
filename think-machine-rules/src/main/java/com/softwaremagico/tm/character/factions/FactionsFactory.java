@@ -36,13 +36,13 @@ import com.softwaremagico.tm.character.benefices.RestrictedBenefice;
 import com.softwaremagico.tm.character.benefices.SuggestedBenefice;
 import com.softwaremagico.tm.character.blessings.BlessingFactory;
 import com.softwaremagico.tm.character.races.Race;
+import com.softwaremagico.tm.json.factories.cache.FactionFactoryCacheLoader;
 import com.softwaremagico.tm.json.factories.cache.FactoryCacheLoader;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.log.MachineXmlReaderLog;
 import com.softwaremagico.tm.log.SuppressFBWarnings;
 
 import java.util.*;
-import java.util.Map.Entry;
 
 public class FactionsFactory extends XmlFactory<Faction> {
     private static final String TRANSLATOR_FILE = "factions.xml";
@@ -67,6 +67,8 @@ public class FactionsFactory extends XmlFactory<Faction> {
     private Map<Faction, Map<Gender, Set<Name>>> namesByFaction;
     private Map<Faction, Set<Surname>> surnamesByFaction;
 
+    private FactionFactoryCacheLoader factionFactoryCacheLoader;
+
     private static class FactionsFactoryInit {
         public static final FactionsFactory INSTANCE = new FactionsFactory();
     }
@@ -77,7 +79,10 @@ public class FactionsFactory extends XmlFactory<Faction> {
 
     @Override
     public FactoryCacheLoader<Faction> getFactoryCacheLoader() {
-        return null;
+        if (factionFactoryCacheLoader == null) {
+            factionFactoryCacheLoader = new FactionFactoryCacheLoader();
+        }
+        return factionFactoryCacheLoader;
     }
 
     @Override
@@ -180,8 +185,10 @@ public class FactionsFactory extends XmlFactory<Faction> {
             if (maleNames != null) {
                 final StringTokenizer maleNamesTokenizer = new StringTokenizer(maleNames, ",");
                 while (maleNamesTokenizer.hasMoreTokens()) {
-                    addName(new Name(maleNamesTokenizer.nextToken().trim(), language, moduleName, Gender.MALE,
-                            faction));
+                    final Name maleName = new Name(maleNamesTokenizer.nextToken().trim(), language, moduleName, Gender.MALE,
+                            faction);
+                    addName(maleName);
+                    faction.addName(maleName);
                 }
             }
 
@@ -189,16 +196,20 @@ public class FactionsFactory extends XmlFactory<Faction> {
             if (femaleNames != null) {
                 final StringTokenizer femaleNamesTokenizer = new StringTokenizer(femaleNames, ",");
                 while (femaleNamesTokenizer.hasMoreTokens()) {
-                    addName(new Name(femaleNamesTokenizer.nextToken().trim(), language, moduleName, Gender.FEMALE,
-                            faction));
+                    final Name femaleName = new Name(femaleNamesTokenizer.nextToken().trim(), language, moduleName, Gender.FEMALE,
+                            faction);
+                    addName(femaleName);
+                    faction.addName(femaleName);
                 }
             }
 
-            final String surnames = translator.getNodeValue(factionId, RANDOM,  SURNAMES);
+            final String surnames = translator.getNodeValue(factionId, RANDOM, SURNAMES);
             if (surnames != null) {
                 final StringTokenizer surnamesTokenizer = new StringTokenizer(surnames, ",");
                 while (surnamesTokenizer.hasMoreTokens()) {
-                    addSurname(new Surname(surnamesTokenizer.nextToken().trim(), language, moduleName, faction));
+                    final Surname surname = new Surname(surnamesTokenizer.nextToken().trim(), language, moduleName, faction);
+                    addSurname(surname);
+                    faction.addSurname(surname);
                 }
             }
 
@@ -217,7 +228,7 @@ public class FactionsFactory extends XmlFactory<Faction> {
         faction.setRestrictedToRaces(races);
     }
 
-    private void addName(Name name) {
+    public void addName(Name name) {
         if (namesByFaction == null) {
             namesByFaction = new HashMap<>();
         }
@@ -226,7 +237,7 @@ public class FactionsFactory extends XmlFactory<Faction> {
         namesByFaction.get(name.getFaction()).get(name.getGender()).add(name);
     }
 
-    private void addSurname(Surname surname) {
+    public void addSurname(Surname surname) {
         if (surnamesByFaction == null) {
             surnamesByFaction = new HashMap<>();
         }
@@ -274,7 +285,7 @@ public class FactionsFactory extends XmlFactory<Faction> {
 
     public Set<Surname> getAllSurnames() {
         final Set<Surname> surnames = new HashSet<>();
-        for (final Entry<Faction, Set<Surname>> faction : surnamesByFaction.entrySet()) {
+        for (final Map.Entry<Faction, Set<Surname>> faction : surnamesByFaction.entrySet()) {
             surnames.addAll(faction.getValue());
         }
         return surnames;

@@ -36,11 +36,7 @@ public class Name extends Element<Name> {
     private final Gender gender;
 
     @ExcludeFromJson
-    private final Faction faction;
-
-    public Faction getFaction() {
-        return faction;
-    }
+    private Faction faction;
 
     public Name(String id, String name, String customName, String language, String moduleName, Gender gender, Faction faction) {
         super(id, name, null, language, moduleName);
@@ -91,4 +87,11 @@ public class Name extends Element<Name> {
         this.customName = customName;
     }
 
+    public Faction getFaction() {
+        return faction;
+    }
+
+    public void setFaction(Faction faction) {
+        this.faction = faction;
+    }
 }

@@ -200,6 +200,7 @@ public class WeaponFactory extends XmlFactory<Weapon> {
                 final String skillName = translator.getNodeValue(weaponId, DAMAGE_LIST, WEAPON_DAMAGE, SKILL);
                 skill = AvailableSkillsFactory.getInstance().getElement(skillName, language, moduleName);
             } catch (Exception e) {
+                e.printStackTrace();
                 throw new InvalidWeaponException("Invalid skill name in weapon '" + weaponId + "'.");
             }
 

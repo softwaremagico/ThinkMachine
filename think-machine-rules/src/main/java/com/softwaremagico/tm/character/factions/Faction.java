@@ -26,6 +26,9 @@ package com.softwaremagico.tm.character.factions;
 
 import com.softwaremagico.tm.Element;
 import com.softwaremagico.tm.InvalidXmlElementException;
+import com.softwaremagico.tm.character.Gender;
+import com.softwaremagico.tm.character.Name;
+import com.softwaremagico.tm.character.Surname;
 import com.softwaremagico.tm.character.benefices.AvailableBenefice;
 import com.softwaremagico.tm.character.benefices.RestrictedBenefice;
 import com.softwaremagico.tm.character.benefices.SuggestedBenefice;
@@ -34,9 +37,8 @@ import com.softwaremagico.tm.character.blessings.BlessingClassification;
 import com.softwaremagico.tm.character.races.RaceFactory;
 import com.softwaremagico.tm.log.MachineLog;
 
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Faction extends Element<Faction> {
     private final FactionGroup factionGroup;
@@ -45,6 +47,8 @@ public class Faction extends Element<Faction> {
     private Set<AvailableBenefice> benefices = null;
     private Set<SuggestedBenefice> suggestedBenefices = null;
     private Set<RestrictedBenefice> restrictedBenefices = null;
+    private Map<Gender, Set<Name>> names = new HashMap<>();
+    private Set<Surname> surnames = new HashSet<>();
     private Boolean isOnlyForHuman;
 
     public Faction(String id, String name, String description, FactionGroup factionGroup, String language,
@@ -173,5 +177,26 @@ public class Faction extends Element<Faction> {
             }
         }
         return isOnlyForHuman;
+    }
+
+    public void addName(Name name) {
+        names.computeIfAbsent(name.getGender(), k -> new HashSet<>());
+        names.get(name.getGender()).add(name);
+    }
+
+    public void addSurname(Surname surname) {
+        surnames.add(surname);
+    }
+
+    public Set<Name> getNames() {
+        return names.values().stream().flatMap(Collection::stream).collect(Collectors.toSet());
+    }
+
+    public Set<Name> getNames(Gender gender) {
+        return names.get(gender);
+    }
+
+    public Set<Surname> getSurnames() {
+        return surnames;
     }
 }
