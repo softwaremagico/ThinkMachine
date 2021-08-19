@@ -39,7 +39,9 @@ public class NpcFactoryCacheLoader extends RandomFactoryCacheLoader<Npc> {
         try {
             final FactoryElements<Npc> factoryElements = load(NpcFactory.class, NpcFactoryElements.class, language, moduleName);
             if (factoryElements != null && !factoryElements.getElements().isEmpty()) {
-                return factoryElements.getElements();
+                final List<Npc> npcs = factoryElements.getElements();
+                NpcFactory.getInstance().updateGroups(npcs);
+                return npcs;
             }
         } catch (InvalidCacheFile invalidCacheFile) {
             // Not cache file on this module.

@@ -104,7 +104,7 @@ public abstract class RandomPredefinedFactory<Predefined extends Element<Predefi
                                             Set<Blessing> mandatoryBlessings, Set<Blessing> suggestedBlessings,
                                             Set<BeneficeDefinition> mandatoryBenefices, Set<BeneficeDefinition> suggestedBenefices,
                                             Set<AvailableBenefice> mandatoryBeneficeSpecializations, Set<AvailableBenefice> suggestedBeneficeSpecializations,
-                                            Set<OccultismPath> mandatoryOccultismPaths, Faction faction, Race race);
+                                            Set<OccultismPath> mandatoryOccultismPaths, Faction faction, Race race, String group);
 
     private void classify(Predefined predefined, String groupName) {
         predefinedByGroup.computeIfAbsent(groupName, k -> new HashSet<>());
@@ -129,6 +129,14 @@ public abstract class RandomPredefinedFactory<Predefined extends Element<Predefi
             }
         }
         return predefinedByGroup.keySet();
+    }
+
+    public void updateGroups(Collection<Predefined> elements) {
+        if (predefinedByGroup.isEmpty()) {
+            elements.forEach(e -> {
+                classify(e, e.getGroup());
+            });
+        }
     }
 
     public Set<Predefined> getByGroup(String groupName) {
@@ -286,7 +294,7 @@ public abstract class RandomPredefinedFactory<Predefined extends Element<Predefi
         final Predefined predefined = createNew(predefinedId, name, description, language, moduleName, preferencesSelected,
                 characteristicsMinimumValues, requiredSkills, suggestedSkills, mandatoryBlessings, suggestedBlessings,
                 mandatoryBenefices, suggestedBenefices, mandatoryBeneficeSpecializations, suggestedBeneficeSpecializations,
-                mandatoryOccultismPaths, faction, race);
+                mandatoryOccultismPaths, faction, race, group);
 
         classify(predefined, group);
 

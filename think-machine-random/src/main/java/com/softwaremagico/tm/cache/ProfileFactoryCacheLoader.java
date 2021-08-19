@@ -39,10 +39,12 @@ public class ProfileFactoryCacheLoader extends RandomFactoryCacheLoader<RandomPr
         try {
             final FactoryElements<RandomProfile> factoryElements = load(RandomProfileFactory.class, RandomProfileFactoryElements.class, language, moduleName);
             if (factoryElements != null && !factoryElements.getElements().isEmpty()) {
-                return factoryElements.getElements();
+                final List<RandomProfile> randomProfiles = factoryElements.getElements();
+                RandomProfileFactory.getInstance().updateGroups(randomProfiles);
+                return randomProfiles;
             }
         } catch (InvalidCacheFile invalidCacheFile) {
-           // Not cache file on this module.
+            // Not cache file on this module.
         }
         return null;
     }

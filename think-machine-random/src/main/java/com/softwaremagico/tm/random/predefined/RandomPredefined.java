@@ -56,6 +56,7 @@ public abstract class RandomPredefined<Predefined extends Element<Predefined>> e
     private final Set<AvailableBenefice> suggestedBeneficeSpecializations;
     private Faction faction;
     private Race race;
+    private final String group;
 
     @ExcludeFromJson
     public boolean parentMerged = false;
@@ -66,7 +67,7 @@ public abstract class RandomPredefined<Predefined extends Element<Predefined>> e
                             Set<Blessing> mandatoryBlessings, Set<Blessing> suggestedBlessings,
                             Set<BeneficeDefinition> mandatoryBenefices, Set<BeneficeDefinition> suggestedBenefices,
                             Set<AvailableBenefice> mandatoryBeneficeSpecializations, Set<AvailableBenefice> suggestedBeneficeSpecializations,
-                            Set<OccultismPath> mandatoryOccultismPaths, Faction faction, Race race) {
+                            Set<OccultismPath> mandatoryOccultismPaths, Faction faction, Race race, String group) {
         super(id, name, description, language, moduleName);
         this.randomPreferences = randomPreferences;
         this.characteristicsMinimumValues = characteristicsMinimumValues;
@@ -81,12 +82,13 @@ public abstract class RandomPredefined<Predefined extends Element<Predefined>> e
         this.mandatoryOccultismPaths = mandatoryOccultismPaths;
         this.faction = faction;
         this.race = race;
+        this.group = group;
     }
 
-    public RandomPredefined(String id, String name, String description, String language, String moduleName) {
+    public RandomPredefined(String id, String name, String description, String language, String moduleName, String group) {
         this(id, name, description, language, moduleName, new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(),
                 new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(),
-                null, null);
+                null, null, group);
     }
 
     public void copy(IRandomPredefined randomPredefined) {
@@ -281,5 +283,10 @@ public abstract class RandomPredefined<Predefined extends Element<Predefined>> e
     public boolean isOfficial() {
         return super.isOfficial() && (getFaction() == null || getFaction().isOfficial()) &&
                 (getRace() == null || getRace().isOfficial());
+    }
+
+    @Override
+    public String getGroup() {
+        return group;
     }
 }

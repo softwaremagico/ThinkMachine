@@ -72,10 +72,10 @@ public class RandomProfileFactory extends RandomPredefinedFactory<RandomProfile>
                                       Set<Blessing> mandatoryBlessings, Set<Blessing> suggestedBlessings,
                                       Set<BeneficeDefinition> mandatoryBenefices, Set<BeneficeDefinition> suggestedBenefices,
                                       Set<AvailableBenefice> mandatoryBeneficeSpecializations, Set<AvailableBenefice> suggestedBeneficeSpecializations,
-                                      Set<OccultismPath> mandatoryOccultismPaths, Faction faction, Race race) {
+                                      Set<OccultismPath> mandatoryOccultismPaths, Faction faction, Race race, String group) {
         return new RandomProfile(id, name, description, language, moduleName, randomPreferences, characteristicsMinimumValues,
                 requiredSkills, suggestedSkills, mandatoryBlessings, suggestedBlessings, mandatoryBenefices, suggestedBenefices,
-                mandatoryBeneficeSpecializations, suggestedBeneficeSpecializations, mandatoryOccultismPaths, faction, race);
+                mandatoryBeneficeSpecializations, suggestedBeneficeSpecializations, mandatoryOccultismPaths, faction, race, group);
     }
 
 }
