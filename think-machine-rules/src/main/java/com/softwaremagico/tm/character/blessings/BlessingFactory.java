@@ -29,6 +29,7 @@ import com.softwaremagico.tm.XmlFactory;
 import com.softwaremagico.tm.character.values.Bonification;
 import com.softwaremagico.tm.character.values.IValue;
 import com.softwaremagico.tm.character.values.SpecialValue;
+import com.softwaremagico.tm.json.factories.cache.BlessingFactoryCacheLoader;
 import com.softwaremagico.tm.json.factories.cache.FactoryCacheLoader;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.log.SuppressFBWarnings;
@@ -47,6 +48,8 @@ public class BlessingFactory extends XmlFactory<Blessing> {
     private static final String CURSE = "curse";
     private static final String GROUP = "group";
 
+    private BlessingFactoryCacheLoader blessingFactoryCacheLoader;
+
     private static class BlessingFactoryInit {
         public static final BlessingFactory INSTANCE = new BlessingFactory();
     }
@@ -62,8 +65,10 @@ public class BlessingFactory extends XmlFactory<Blessing> {
 
     @Override
     public FactoryCacheLoader<Blessing> getFactoryCacheLoader() {
-        // return new BlessingFactoryCacheLoader();
-        return null;
+        if (blessingFactoryCacheLoader == null) {
+            blessingFactoryCacheLoader = new BlessingFactoryCacheLoader();
+        }
+        return blessingFactoryCacheLoader;
     }
 
     @Override

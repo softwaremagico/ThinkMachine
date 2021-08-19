@@ -4,7 +4,7 @@ package com.softwaremagico.tm.random.predefined.profile;
  * #%L
  * Think Machine (Random Generator)
  * %%
- * Copyright (C) 2017 - 2019 Softwaremagico
+ * Copyright (C) 2017 - 2021 Softwaremagico
  * %%
  * This software is designed by Jorge Hortelano Otero. Jorge Hortelano Otero
  * <softwaremagico@gmail.com> Valencia (Spain).
@@ -24,6 +24,7 @@ package com.softwaremagico.tm.random.predefined.profile;
  * #L%
  */
 
+import com.softwaremagico.tm.cache.ProfileFactoryCacheLoader;
 import com.softwaremagico.tm.character.benefices.AvailableBenefice;
 import com.softwaremagico.tm.character.benefices.BeneficeDefinition;
 import com.softwaremagico.tm.character.blessings.Blessing;
@@ -41,6 +42,8 @@ import java.util.Set;
 public class RandomProfileFactory extends RandomPredefinedFactory<RandomProfile> {
     private static final String TRANSLATOR_FILE = "profiles.xml";
 
+    private ProfileFactoryCacheLoader profileFactoryCacheLoader;
+
     private static class RandomProfileFactoryInit {
         public static final RandomProfileFactory INSTANCE = new RandomProfileFactory();
     }
@@ -56,7 +59,10 @@ public class RandomProfileFactory extends RandomPredefinedFactory<RandomProfile>
 
     @Override
     public FactoryCacheLoader<RandomProfile> getFactoryCacheLoader() {
-        return null;
+        if (profileFactoryCacheLoader == null) {
+            profileFactoryCacheLoader = new ProfileFactoryCacheLoader();
+        }
+        return profileFactoryCacheLoader;
     }
 
     @Override

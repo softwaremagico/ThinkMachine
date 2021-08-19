@@ -26,21 +26,25 @@ package com.softwaremagico.tm.json.factories.cache;
 
 import com.google.gson.GsonBuilder;
 import com.softwaremagico.tm.InvalidXmlElementException;
+import com.softwaremagico.tm.character.benefices.AvailableBenefice;
 import com.softwaremagico.tm.character.blessings.Blessing;
-import com.softwaremagico.tm.character.blessings.BlessingFactory;
-import com.softwaremagico.tm.character.values.IValue;
-import com.softwaremagico.tm.json.IValueAdapter;
-import com.softwaremagico.tm.json.factories.BlessingFactoryElements;
+import com.softwaremagico.tm.character.planets.Planet;
+import com.softwaremagico.tm.character.races.Race;
+import com.softwaremagico.tm.character.races.RaceFactory;
+import com.softwaremagico.tm.json.AvailableSkillAdapter;
+import com.softwaremagico.tm.json.BlessingAdapter;
+import com.softwaremagico.tm.json.PlanetAdapter;
 import com.softwaremagico.tm.json.factories.FactoryElements;
+import com.softwaremagico.tm.json.factories.RaceFactoryElements;
 
 import java.util.List;
 
-public class BlessingFactoryCacheLoader extends FactoryCacheLoader<Blessing> {
+public class RaceFactoryCacheLoader extends FactoryCacheLoader<Race> {
 
     @Override
-    public List<Blessing> load(String language, String moduleName) {
+    public List<Race> load(String language, String moduleName) {
         try {
-            final FactoryElements<Blessing> factoryElements = load(BlessingFactory.class, BlessingFactoryElements.class, language, moduleName);
+            final FactoryElements<Race> factoryElements = load(RaceFactory.class, RaceFactoryElements.class, language, moduleName);
             if (factoryElements != null && !factoryElements.getElements().isEmpty()) {
                 return factoryElements.getElements();
             }
@@ -51,16 +55,17 @@ public class BlessingFactoryCacheLoader extends FactoryCacheLoader<Blessing> {
     }
 
     @Override
-    protected FactoryElements<Blessing> getFactoryElements(String moduleName, String language) throws InvalidXmlElementException {
-        return new BlessingFactoryElements(language, moduleName);
+    protected FactoryElements<Race> getFactoryElements(String moduleName, String language) throws InvalidXmlElementException {
+        return new RaceFactoryElements(language, moduleName);
     }
 
     @Override
     protected GsonBuilder initGsonBuilder(final String language, final String moduleName) {
         final GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.setPrettyPrinting();
-        gsonBuilder.registerTypeAdapter(IValue.class, new IValueAdapter(language, moduleName));
-
+        gsonBuilder.registerTypeAdapter(Planet.class, new PlanetAdapter(language, moduleName));
+        gsonBuilder.registerTypeAdapter(Blessing.class, new BlessingAdapter(language, moduleName));
+        gsonBuilder.registerTypeAdapter(AvailableBenefice.class, new AvailableSkillAdapter(language, moduleName));
         return gsonBuilder;
     }
 

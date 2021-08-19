@@ -31,6 +31,7 @@ import com.softwaremagico.tm.character.blessings.BlessingFactory;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.planets.PlanetFactory;
 import com.softwaremagico.tm.json.factories.cache.FactoryCacheLoader;
+import com.softwaremagico.tm.json.factories.cache.RaceFactoryCacheLoader;
 import com.softwaremagico.tm.language.ITranslator;
 
 public class RaceFactory extends XmlFactory<Race> {
@@ -51,6 +52,8 @@ public class RaceFactory extends XmlFactory<Race> {
 
     private static final String PLANETS = "planets";
 
+    private RaceFactoryCacheLoader raceFactoryCacheLoader;
+
     private static class RaceFactoryInit {
         public static final RaceFactory INSTANCE = new RaceFactory();
     }
@@ -66,7 +69,10 @@ public class RaceFactory extends XmlFactory<Race> {
 
     @Override
     public FactoryCacheLoader<Race> getFactoryCacheLoader() {
-        return null;
+        if (raceFactoryCacheLoader == null) {
+            raceFactoryCacheLoader = new RaceFactoryCacheLoader();
+        }
+        return raceFactoryCacheLoader;
     }
 
     public void setBlessings(Race race) throws InvalidRaceException {

@@ -25,6 +25,7 @@ package com.softwaremagico.tm.random.predefined.characters;
  */
 
 import com.softwaremagico.tm.InvalidXmlElementException;
+import com.softwaremagico.tm.cache.NpcFactoryCacheLoader;
 import com.softwaremagico.tm.character.benefices.AvailableBenefice;
 import com.softwaremagico.tm.character.benefices.BeneficeDefinition;
 import com.softwaremagico.tm.character.blessings.Blessing;
@@ -55,6 +56,8 @@ public class NpcFactory extends RandomPredefinedFactory<Npc> {
     private static final String MANDATORY_SHIELDS = "shields";
     private static final String PROFILE = "profile";
 
+    private NpcFactoryCacheLoader npcFactoryCacheLoader;
+
     private static class NpcFactoryInit {
         public static final NpcFactory INSTANCE = new NpcFactory();
     }
@@ -70,7 +73,10 @@ public class NpcFactory extends RandomPredefinedFactory<Npc> {
 
     @Override
     public FactoryCacheLoader<Npc> getFactoryCacheLoader() {
-        return null;
+        if (npcFactoryCacheLoader == null) {
+            npcFactoryCacheLoader = new NpcFactoryCacheLoader();
+        }
+        return npcFactoryCacheLoader;
     }
 
     @Override

@@ -29,6 +29,7 @@ import com.softwaremagico.tm.XmlFactory;
 import com.softwaremagico.tm.character.factions.Faction;
 import com.softwaremagico.tm.character.factions.FactionsFactory;
 import com.softwaremagico.tm.json.factories.cache.FactoryCacheLoader;
+import com.softwaremagico.tm.json.factories.cache.PlanetFactoryCacheLoader;
 import com.softwaremagico.tm.language.ITranslator;
 
 import java.util.Set;
@@ -37,6 +38,8 @@ public class PlanetFactory extends XmlFactory<Planet> {
     private static final String TRANSLATOR_FILE = "planets.xml";
 
     private static final String FACTIONS = "factions";
+
+    private PlanetFactoryCacheLoader planetFactoryCacheLoader;
 
     private static class PlanetFactoryInit {
         public static final PlanetFactory INSTANCE = new PlanetFactory();
@@ -48,7 +51,10 @@ public class PlanetFactory extends XmlFactory<Planet> {
 
     @Override
     public FactoryCacheLoader<Planet> getFactoryCacheLoader() {
-        return null;
+        if (planetFactoryCacheLoader == null) {
+            planetFactoryCacheLoader = new PlanetFactoryCacheLoader();
+        }
+        return planetFactoryCacheLoader;
     }
 
     @Override

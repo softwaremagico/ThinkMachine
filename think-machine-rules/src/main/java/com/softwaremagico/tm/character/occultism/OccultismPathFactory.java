@@ -35,6 +35,7 @@ import com.softwaremagico.tm.character.factions.FactionsFactory;
 import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
 import com.softwaremagico.tm.character.values.IValue;
 import com.softwaremagico.tm.json.factories.cache.FactoryCacheLoader;
+import com.softwaremagico.tm.json.factories.cache.OccultismPathFactoryCacheLoader;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.log.MachineXmlReaderLog;
 import com.softwaremagico.tm.log.SuppressFBWarnings;
@@ -64,6 +65,8 @@ public class OccultismPathFactory extends XmlFactory<OccultismPath> {
 
     private final Set<OccultismPath> psiPaths;
     private final Set<OccultismPath> theurgyPaths;
+
+    private OccultismPathFactoryCacheLoader occultismPathFactoryCacheLoader;
 
     public OccultismPathFactory() {
         psiPaths = new HashSet<>();
@@ -193,7 +196,10 @@ public class OccultismPathFactory extends XmlFactory<OccultismPath> {
 
     @Override
     public FactoryCacheLoader<OccultismPath> getFactoryCacheLoader() {
-        return null;
+        if (occultismPathFactoryCacheLoader == null) {
+            occultismPathFactoryCacheLoader = new OccultismPathFactoryCacheLoader();
+        }
+        return occultismPathFactoryCacheLoader;
     }
 
     public OccultismPath getOccultismPath(OccultismPower power) {

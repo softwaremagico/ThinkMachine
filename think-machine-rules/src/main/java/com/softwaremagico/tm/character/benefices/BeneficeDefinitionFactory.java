@@ -26,6 +26,7 @@ package com.softwaremagico.tm.character.benefices;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
+import com.softwaremagico.tm.json.factories.cache.BeneficeDefinitionFactoryCacheLoader;
 import com.softwaremagico.tm.json.factories.cache.FactoryCacheLoader;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.log.SuppressFBWarnings;
@@ -45,6 +46,8 @@ public class BeneficeDefinitionFactory extends XmlFactory<BeneficeDefinition> {
     private static final String INCOMPATIBLE_WITH = "incompatibleWith";
 
     private Map<BeneficeGroup, Set<BeneficeDefinition>> beneficesByGroup = new HashMap<>();
+
+    private BeneficeDefinitionFactoryCacheLoader beneficeDefinitionFactoryCacheLoader;
 
     private static class BeneficeDefinitionFactoryInit {
         public static final BeneficeDefinitionFactory INSTANCE = new BeneficeDefinitionFactory();
@@ -198,6 +201,9 @@ public class BeneficeDefinitionFactory extends XmlFactory<BeneficeDefinition> {
 
     @Override
     public FactoryCacheLoader<BeneficeDefinition> getFactoryCacheLoader() {
-        return null;
+        if (beneficeDefinitionFactoryCacheLoader == null) {
+            beneficeDefinitionFactoryCacheLoader = new BeneficeDefinitionFactoryCacheLoader();
+        }
+        return beneficeDefinitionFactoryCacheLoader;
     }
 }
