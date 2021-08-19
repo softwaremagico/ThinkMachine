@@ -28,12 +28,11 @@ import com.google.gson.GsonBuilder;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.benefices.AvailableBenefice;
 import com.softwaremagico.tm.character.blessings.Blessing;
+import com.softwaremagico.tm.character.factions.Faction;
 import com.softwaremagico.tm.character.planets.Planet;
 import com.softwaremagico.tm.character.races.Race;
 import com.softwaremagico.tm.character.races.RaceFactory;
-import com.softwaremagico.tm.json.AvailableSkillAdapter;
-import com.softwaremagico.tm.json.BlessingAdapter;
-import com.softwaremagico.tm.json.PlanetAdapter;
+import com.softwaremagico.tm.json.*;
 import com.softwaremagico.tm.json.factories.FactoryElements;
 import com.softwaremagico.tm.json.factories.RaceFactoryElements;
 
@@ -66,6 +65,7 @@ public class RaceFactoryCacheLoader extends FactoryCacheLoader<Race> {
         gsonBuilder.registerTypeAdapter(Planet.class, new PlanetAdapter(language, moduleName));
         gsonBuilder.registerTypeAdapter(Blessing.class, new BlessingAdapter(language, moduleName));
         gsonBuilder.registerTypeAdapter(AvailableBenefice.class, new AvailableSkillAdapter(language, moduleName));
+        gsonBuilder.registerTypeAdapter(Faction.class, new FactionAdapter(language, moduleName));
         return gsonBuilder;
     }
 

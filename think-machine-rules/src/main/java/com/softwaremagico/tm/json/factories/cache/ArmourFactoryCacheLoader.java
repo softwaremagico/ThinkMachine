@@ -31,9 +31,9 @@ import com.softwaremagico.tm.character.equipment.armours.Armour;
 import com.softwaremagico.tm.character.equipment.armours.ArmourFactory;
 import com.softwaremagico.tm.character.equipment.armours.ArmourSpecification;
 import com.softwaremagico.tm.character.equipment.shields.Shield;
-import com.softwaremagico.tm.json.ArmourSpecificationAdapter;
-import com.softwaremagico.tm.json.DamageTypeAdapter;
-import com.softwaremagico.tm.json.ShieldAdapter;
+import com.softwaremagico.tm.character.factions.Faction;
+import com.softwaremagico.tm.character.races.Race;
+import com.softwaremagico.tm.json.*;
 import com.softwaremagico.tm.json.factories.ArmourFactoryElements;
 import com.softwaremagico.tm.json.factories.FactoryElements;
 
@@ -49,7 +49,7 @@ public class ArmourFactoryCacheLoader extends FactoryCacheLoader<Armour> {
                 return factoryElements.getElements();
             }
         } catch (InvalidCacheFile invalidCacheFile) {
-           // Not cache file on this module.
+            // Not cache file on this module.
         }
         return null;
     }
@@ -66,6 +66,8 @@ public class ArmourFactoryCacheLoader extends FactoryCacheLoader<Armour> {
         gsonBuilder.registerTypeAdapter(DamageType.class, new DamageTypeAdapter(language, moduleName));
         gsonBuilder.registerTypeAdapter(Shield.class, new ShieldAdapter(language, moduleName));
         gsonBuilder.registerTypeAdapter(ArmourSpecification.class, new ArmourSpecificationAdapter(language, moduleName));
+        gsonBuilder.registerTypeAdapter(Race.class, new RaceAdapter(language, moduleName));
+        gsonBuilder.registerTypeAdapter(Faction.class, new FactionAdapter(language, moduleName));
         return gsonBuilder;
     }
 

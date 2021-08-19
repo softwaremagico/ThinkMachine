@@ -29,6 +29,7 @@ import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.characteristics.CharacteristicDefinition;
 import com.softwaremagico.tm.character.factions.Faction;
 import com.softwaremagico.tm.character.occultism.*;
+import com.softwaremagico.tm.character.races.Race;
 import com.softwaremagico.tm.character.values.IValue;
 import com.softwaremagico.tm.json.*;
 import com.softwaremagico.tm.json.factories.FactoryElements;
@@ -61,6 +62,7 @@ public class OccultismPathFactoryCacheLoader extends FactoryCacheLoader<Occultis
         final GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.setPrettyPrinting();
         gsonBuilder.registerTypeAdapter(OccultismType.class, new OccultismTypeAdapter(language, moduleName));
+        gsonBuilder.registerTypeAdapter(Race.class, new RaceAdapter(language, moduleName));
         gsonBuilder.registerTypeAdapter(Faction.class, new FactionAdapter(language, moduleName));
         gsonBuilder.registerTypeAdapter(CharacteristicDefinition.class, new CharacteristicDefinitionAdapter(language, moduleName));
         gsonBuilder.registerTypeAdapter(IValue.class, new IValueAdapter(language, moduleName));
