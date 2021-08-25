@@ -25,6 +25,8 @@ package com.softwaremagico.tm.character;
  */
 
 import com.softwaremagico.tm.InvalidXmlElementException;
+import com.softwaremagico.tm.character.exceptions.RestrictedElementException;
+import com.softwaremagico.tm.character.exceptions.UnofficialElementNotAllowedException;
 import com.softwaremagico.tm.character.factions.Faction;
 import com.softwaremagico.tm.character.factions.FactionGroup;
 import com.softwaremagico.tm.character.factions.FactionsFactory;
@@ -41,13 +43,22 @@ import java.util.Set;
 public class RandomSurname extends RandomSelector<Surname> {
 
     public RandomSurname(CharacterPlayer characterPlayer, Set<IRandomPreference<?>> preferences)
-            throws InvalidXmlElementException, RestrictedElementException {
+            throws InvalidXmlElementException, RestrictedElementException, UnofficialElementNotAllowedException {
         super(characterPlayer, preferences);
     }
 
     @Override
     public void assign() throws InvalidRaceException, InvalidRandomElementSelectedException {
-        getCharacterPlayer().getInfo().setSurname(selectElementByWeight());
+        if (getCharacterPlayer().getFaction() == null || getCharacterPlayer().getRace() == null || getCharacterPlayer().getInfo().getPlanet() == null) {
+            throw new InvalidRandomElementSelectedException("Please, set faction, race and planet first.");
+        }
+        try {
+            getCharacterPlayer().getInfo().setSurname(selectElementByWeight());
+        } catch (InvalidRandomElementSelectedException e) {
+            //If no surnames available choose any.
+            getCharacterPlayer().getInfo().setSurname(FactionsFactory.getInstance().getAllSurnames().stream()
+                    .skip(rand.nextInt(FactionsFactory.getInstance().getAllSurnames().size())).findFirst().orElse(null));
+        }
     }
 
     @Override
@@ -56,28 +67,29 @@ public class RandomSurname extends RandomSelector<Surname> {
     }
 
     @Override
-    protected int getWeight(Surname surname) {
+    protected int getWeight(Surname surname) throws InvalidRandomElementSelectedException {
         // Human nobility has faction as surname
-        if (!getCharacterPlayer().getRace().isXeno() && getCharacterPlayer().getFaction() != null
+        if (getCharacterPlayer().getRace() != null && !getCharacterPlayer().getRace().isXeno() && getCharacterPlayer().getFaction() != null
                 && getCharacterPlayer().getFaction().getFactionGroup() == FactionGroup.NOBILITY) {
             if (getCharacterPlayer().getFaction().getName().contains(surname.getName())) {
                 return BASIC_PROBABILITY;
             } else {
-                return 0;
+                throw new InvalidRandomElementSelectedException("Surname '" + surname + "' is restricted to non nobility factions.");
             }
         }
         // Not nobility no faction as surname.
         try {
             for (final Faction faction : FactionsFactory.getInstance().getElements(getCharacterPlayer().getLanguage(), getCharacterPlayer().getModuleName())) {
                 if (faction.getName().contains(surname.getName())) {
-                    return 0;
+                    throw new InvalidRandomElementSelectedException("Surname '" + surname + "' is restricted to faction '"
+                            + faction + "'.");
                 }
             }
         } catch (InvalidXmlElementException e) {
             RandomGenerationLog.errorMessage(this.getClass().getName(), e);
         }
         // Name already set, use same faction to avoid weird mix.
-        if (!getCharacterPlayer().getInfo().getNames().isEmpty()) {
+        if (getCharacterPlayer().getInfo().getNames() != null && !getCharacterPlayer().getInfo().getNames().isEmpty()) {
             final Name firstName = getCharacterPlayer().getInfo().getNames().get(0);
             if (firstName.getFaction() != null && !Objects.equals(firstName.getFaction(), surname.getFaction())) {
                 return 0;
@@ -92,16 +104,18 @@ public class RandomSurname extends RandomSelector<Surname> {
             if (getCharacterPlayer().getInfo().getPlanet().getHumanFactions().contains(surname.getFaction())) {
                 return BASIC_PROBABILITY;
             } else {
-                return 0;
+                throw new InvalidRandomElementSelectedException("Surname '" + surname + "' not existing in planet '"
+                        + getCharacterPlayer().getInfo().getPlanet() + "'.");
             }
         }
         // Planet without factions. Then choose own faction names
         if (getCharacterPlayer().getFaction() != null
                 && !FactionsFactory.getInstance().getAllSurnames(getCharacterPlayer().getFaction()).isEmpty()
                 && !getCharacterPlayer().getFaction().equals(surname.getFaction())) {
-            return 0;
+            throw new InvalidRandomElementSelectedException("Surname '" + surname + "' from an invalid faction '"
+                    + getCharacterPlayer().getFaction() + "'.");
         }
-        return 1;
+        return BASIC_PROBABILITY;
     }
 
     @Override

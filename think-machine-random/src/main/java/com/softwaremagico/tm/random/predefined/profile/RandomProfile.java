@@ -46,13 +46,13 @@ public class RandomProfile extends RandomPredefined<RandomProfile> implements IR
                          Set<Blessing> mandatoryBlessings, Set<Blessing> suggestedBlessings,
                          Set<BeneficeDefinition> mandatoryBenefices, Set<BeneficeDefinition> suggestedBenefices,
                          Set<AvailableBenefice> mandatoryBeneficeSpecializations, Set<AvailableBenefice> suggestedBeneficeSpecializations,
-                         Set<OccultismPath> mandatoryOccultismPaths, Faction faction, Race race) {
+                         Set<OccultismPath> mandatoryOccultismPaths, Faction faction, Race race, String group) {
         super(id, name, description, language, moduleName, randomPreferences, characteristicsMinimumValues, requiredSkills,
                 suggestedSkills, mandatoryBlessings, suggestedBlessings, mandatoryBenefices, suggestedBenefices,
-                mandatoryBeneficeSpecializations, suggestedBeneficeSpecializations, mandatoryOccultismPaths, faction, race);
+                mandatoryBeneficeSpecializations, suggestedBeneficeSpecializations, mandatoryOccultismPaths, faction, race, group);
     }
 
-    public RandomProfile(String id, String name, String description, String language, String moduleName) {
-        super(id, name, description, language, moduleName);
+    public RandomProfile(String id, String name, String description, String language, String moduleName, String group) {
+        super(id, name, description, language, moduleName, group);
     }
 }

@@ -45,7 +45,7 @@ public enum TechnologicalPreferences implements IEquipmentPreference<Technologic
     private final int minimum;
     private final int maximum;
 
-    private TechnologicalPreferences(int minimum, int maximum) {
+    TechnologicalPreferences(int minimum, int maximum) {
         this.maximum = maximum;
         this.minimum = minimum;
     }

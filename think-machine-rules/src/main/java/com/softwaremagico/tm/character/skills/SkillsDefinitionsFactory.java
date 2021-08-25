@@ -72,7 +72,7 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
         super.refreshCache();
     }
 
-    public List<SkillDefinition> getNaturalSkills(String language, String moduleName) {
+    public synchronized List<SkillDefinition> getNaturalSkills(String language, String moduleName) {
         if (naturalSkills.get(language) == null || naturalSkills.get(language).get(moduleName) == null) {
             try {
                 getElements(language, moduleName);
@@ -83,7 +83,7 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
         return naturalSkills.get(language).get(moduleName);
     }
 
-    public List<SkillDefinition> getLearnedSkills(String language, String moduleName) {
+    public synchronized List<SkillDefinition> getLearnedSkills(String language, String moduleName) {
         if (learnedSkills.get(language) == null || learnedSkills.get(language).get(moduleName) == null) {
             try {
                 getElements(language, moduleName);

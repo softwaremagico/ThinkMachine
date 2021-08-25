@@ -41,6 +41,8 @@ import com.softwaremagico.tm.character.cybernetics.TooManyCyberneticDevicesExcep
 import com.softwaremagico.tm.character.equipment.armours.ArmourFactory;
 import com.softwaremagico.tm.character.equipment.shields.ShieldFactory;
 import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
+import com.softwaremagico.tm.character.exceptions.RestrictedElementException;
+import com.softwaremagico.tm.character.exceptions.UnofficialElementNotAllowedException;
 import com.softwaremagico.tm.character.factions.FactionsFactory;
 import com.softwaremagico.tm.character.occultism.OccultismPathFactory;
 import com.softwaremagico.tm.character.occultism.OccultismTypeFactory;
@@ -106,7 +108,7 @@ public class CharacterSheetCreationTest {
 	public void characterPdfSpanish() throws MalformedURLException, DocumentException, IOException,
 			InvalidXmlElementException, TooManyBlessingsException, TooManyCyberneticDevicesException,
 			RequiredCyberneticDevicesException, BlessingAlreadyAddedException, BeneficeAlreadyAddedException,
-			NotEnoughExperienceException, ElementCannotBeUpgradeWithExperienceException, InvalidRanksException, RestrictedElementException {
+			NotEnoughExperienceException, ElementCannotBeUpgradeWithExperienceException, InvalidRanksException, RestrictedElementException, UnofficialElementNotAllowedException {
 		CacheHandler.clearCache();
 
 		player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);

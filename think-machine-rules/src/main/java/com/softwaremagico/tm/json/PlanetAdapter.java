@@ -24,8 +24,6 @@ package com.softwaremagico.tm.json;
  * #L%
  */
 
-import java.lang.reflect.Type;
-
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
@@ -34,9 +32,11 @@ import com.softwaremagico.tm.character.planets.Planet;
 import com.softwaremagico.tm.character.planets.PlanetFactory;
 import com.softwaremagico.tm.log.MachineLog;
 
+import java.lang.reflect.Type;
+
 public class PlanetAdapter extends ElementAdapter<Planet> {
 
-	protected PlanetAdapter(String language, String moduleName) {
+	public PlanetAdapter(String language, String moduleName) {
 		super(language, moduleName);
 	}
 

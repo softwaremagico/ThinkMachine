@@ -26,18 +26,18 @@ package com.softwaremagico.tm.character.occultism;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.character.RestrictedElementException;
 import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
 import com.softwaremagico.tm.character.benefices.InvalidBeneficeException;
+import com.softwaremagico.tm.character.creation.CostCalculator;
+import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
+import com.softwaremagico.tm.character.exceptions.RestrictedElementException;
+import com.softwaremagico.tm.character.exceptions.UnofficialElementNotAllowedException;
 import com.softwaremagico.tm.character.factions.FactionGroup;
 import com.softwaremagico.tm.log.RandomGenerationLog;
 import com.softwaremagico.tm.random.RandomSelector;
 import com.softwaremagico.tm.random.exceptions.ImpossibleToAssignMandatoryElementException;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
-import com.softwaremagico.tm.random.selectors.IGaussianDistribution;
-import com.softwaremagico.tm.random.selectors.IRandomPreference;
-import com.softwaremagico.tm.random.selectors.OccultismLevelPreferences;
-import com.softwaremagico.tm.random.selectors.OccultismTypePreferences;
+import com.softwaremagico.tm.random.selectors.*;
 
 import java.util.Collection;
 import java.util.Objects;
@@ -46,7 +46,7 @@ import java.util.Set;
 public class RandomPsique extends RandomSelector<OccultismType> {
 
     public RandomPsique(CharacterPlayer characterPlayer, Set<IRandomPreference<?>> preferences)
-            throws InvalidXmlElementException, RestrictedElementException {
+            throws InvalidXmlElementException, RestrictedElementException, UnofficialElementNotAllowedException {
         super(characterPlayer, preferences);
     }
 
@@ -70,11 +70,28 @@ public class RandomPsique extends RandomSelector<OccultismType> {
 
     @Override
     protected int getWeight(OccultismType element) throws InvalidRandomElementSelectedException {
+        //Check if you have a path for your faction.
+        try {
+            for (final OccultismPath occultismPath : OccultismPathFactory.getInstance().getElements(getCharacterPlayer().getLanguage(),
+                    getCharacterPlayer().getModuleName())) {
+                if (!occultismPath.getFactionsAllowed().isEmpty() && occultismPath.getFactionsAllowed().contains(getCharacterPlayer().getFaction())) {
+                    if (Objects.equals(element, occultismPath.getOccultismType())) {
+                        return 1;
+                    } else {
+                        throw new InvalidRandomElementSelectedException("Faction '" + getCharacterPlayer().getFaction() + "' cannot use '" + element + "'.");
+                    }
+                }
+            }
+        } catch (InvalidXmlElementException e) {
+            RandomGenerationLog.errorMessage(this.getClass().getName(), e);
+        }
+
         // Church factions must have always theurgy.
         if (Objects.equals(element,
                 OccultismTypeFactory.getPsi(getCharacterPlayer().getLanguage(), getCharacterPlayer().getModuleName()))) {
-            if (getCharacterPlayer().getFaction() != null && getCharacterPlayer().getFaction().getFactionGroup() == FactionGroup.CHURCH) {
-                throw new InvalidRandomElementSelectedException("Psi not allowed to church factions");
+            if (getCharacterPlayer().getFaction() != null && (getCharacterPlayer().getFaction().getFactionGroup() == FactionGroup.CHURCH ||
+                    getCharacterPlayer().getFaction().getFactionGroup() == FactionGroup.MINOR_CHURCH)) {
+                throw new InvalidRandomElementSelectedException("Psi not allowed to church factions.");
             }
         }
 
@@ -85,11 +102,12 @@ public class RandomPsique extends RandomSelector<OccultismType> {
             return 0;
         }
 
-        // No church factions usually have psi.
+        // No church factions have psi or cannot have any path.
         if (Objects.equals(element, OccultismTypeFactory.getTheurgy(getCharacterPlayer().getLanguage(),
                 getCharacterPlayer().getModuleName()))) {
-            if (getCharacterPlayer().getFaction() != null && getCharacterPlayer().getFaction().getFactionGroup() != FactionGroup.CHURCH) {
-                return BASIC_PROBABILITY;
+            if (getCharacterPlayer().getFaction() != null && getCharacterPlayer().getFaction().getFactionGroup() != FactionGroup.CHURCH &&
+                    getCharacterPlayer().getFaction().getFactionGroup() != FactionGroup.MINOR_CHURCH) {
+                return 0;
             }
         }
 
@@ -116,6 +134,23 @@ public class RandomPsique extends RandomSelector<OccultismType> {
         if (maxLevelSelected > psiqueLevelSelector.maximum()) {
             maxLevelSelected = psiqueLevelSelector.maximum();
         }
+
+        //Check if there are points enough
+        final DifficultLevelPreferences difficultyLevel = DifficultLevelPreferences.getSelected(getPreferences());
+        final int remainingPoints = FreeStyleCharacterCreation
+                .getFreeAvailablePoints(getCharacterPlayer().getInfo().getAge(), getCharacterPlayer().getRace())
+                - CostCalculator.getCost(getCharacterPlayer(), difficultyLevel.getSkillsBonus(),
+                difficultyLevel.getCharacteristicsBonus());
+
+        //Ensure enough points also for acquiring paths.
+        if (maxLevelSelected * CostCalculator.PSIQUE_LEVEL_COST > remainingPoints - maxLevelSelected) {
+            maxLevelSelected = (remainingPoints - maxLevelSelected) / CostCalculator.PSIQUE_LEVEL_COST;
+        }
+
+        if (maxLevelSelected < 0) {
+            maxLevelSelected = 0;
+        }
+
         return maxLevelSelected;
     }
 

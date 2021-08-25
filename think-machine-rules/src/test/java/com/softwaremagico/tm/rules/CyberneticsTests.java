@@ -26,7 +26,8 @@ package com.softwaremagico.tm.rules;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.character.RestrictedElementException;
+import com.softwaremagico.tm.character.exceptions.RestrictedElementException;
+import com.softwaremagico.tm.character.exceptions.UnofficialElementNotAllowedException;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.cybernetics.CyberneticDeviceFactory;
 import com.softwaremagico.tm.character.cybernetics.Cybernetics;
@@ -47,7 +48,7 @@ public class CyberneticsTests {
 
     @Test(expectedExceptions = {TooManyCyberneticDevicesException.class})
     public void tooManyCybernetics()
-            throws TooManyCyberneticDevicesException, InvalidXmlElementException, RequiredCyberneticDevicesException {
+            throws TooManyCyberneticDevicesException, InvalidXmlElementException, RequiredCyberneticDevicesException, UnofficialElementNotAllowedException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.setCharacteristic(CharacteristicName.WILL, 7);
 
@@ -84,7 +85,7 @@ public class CyberneticsTests {
 
     @Test(expectedExceptions = {RequiredCyberneticDevicesException.class})
     public void restrictedDevice()
-            throws InvalidXmlElementException, TooManyCyberneticDevicesException, RequiredCyberneticDevicesException {
+            throws InvalidXmlElementException, TooManyCyberneticDevicesException, RequiredCyberneticDevicesException, UnofficialElementNotAllowedException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.setCharacteristic(CharacteristicName.WILL, 8);
 
@@ -94,7 +95,7 @@ public class CyberneticsTests {
 
     @Test
     public void restrictedDeviceAcepted()
-            throws InvalidXmlElementException, TooManyCyberneticDevicesException, RequiredCyberneticDevicesException {
+            throws InvalidXmlElementException, TooManyCyberneticDevicesException, RequiredCyberneticDevicesException, UnofficialElementNotAllowedException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.setCharacteristic(CharacteristicName.WILL, 8);
 
@@ -106,7 +107,7 @@ public class CyberneticsTests {
 
     @Test
     public void cyberneticAsAWeapon()
-            throws TooManyCyberneticDevicesException, InvalidXmlElementException, RequiredCyberneticDevicesException {
+            throws TooManyCyberneticDevicesException, InvalidXmlElementException, RequiredCyberneticDevicesException, UnofficialElementNotAllowedException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.setCharacteristic(CharacteristicName.WILL, 7);
 
@@ -117,7 +118,8 @@ public class CyberneticsTests {
 
     @Test
     public void cyberneticCharacteristicsImprovement()
-            throws InvalidXmlElementException, TooManyCyberneticDevicesException, RequiredCyberneticDevicesException {
+            throws InvalidXmlElementException, TooManyCyberneticDevicesException, RequiredCyberneticDevicesException,
+            UnofficialElementNotAllowedException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.setCharacteristic(CharacteristicName.WILL, 8);
         player.setCharacteristic(CharacteristicName.WITS, 6);
@@ -130,7 +132,7 @@ public class CyberneticsTests {
     @Test
     public void cyberneticSkillStaticValue()
             throws InvalidXmlElementException, TooManyCyberneticDevicesException, RequiredCyberneticDevicesException, InvalidRanksException,
-            RestrictedElementException {
+            RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.setCharacteristic(CharacteristicName.WILL, 8);
         player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("lore", "energyPistolsLore", LANGUAGE,
@@ -148,7 +150,7 @@ public class CyberneticsTests {
     @Test
     public void cyberneticSkillStaticValueSurpassed()
             throws InvalidXmlElementException, TooManyCyberneticDevicesException, RequiredCyberneticDevicesException, InvalidRanksException,
-            RestrictedElementException {
+            RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.setCharacteristic(CharacteristicName.WILL, 8);
         player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("lore", "energyPistolsLore", LANGUAGE,

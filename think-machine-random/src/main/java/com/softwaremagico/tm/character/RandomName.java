@@ -26,6 +26,8 @@ package com.softwaremagico.tm.character;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.benefices.BeneficeSpecialization;
+import com.softwaremagico.tm.character.exceptions.RestrictedElementException;
+import com.softwaremagico.tm.character.exceptions.UnofficialElementNotAllowedException;
 import com.softwaremagico.tm.character.factions.FactionGroup;
 import com.softwaremagico.tm.character.factions.FactionsFactory;
 import com.softwaremagico.tm.character.races.InvalidRaceException;
@@ -41,12 +43,15 @@ import java.util.Set;
 public class RandomName extends RandomSelector<Name> {
 
     public RandomName(CharacterPlayer characterPlayer, Set<IRandomPreference<?>> preferences)
-            throws InvalidXmlElementException, RestrictedElementException {
+            throws InvalidXmlElementException, RestrictedElementException, UnofficialElementNotAllowedException {
         super(characterPlayer, preferences);
     }
 
     @Override
     public void assign() throws InvalidRaceException, InvalidRandomElementSelectedException {
+        if (getCharacterPlayer().getFaction() == null || getCharacterPlayer().getRace() == null || getCharacterPlayer().getInfo().getPlanet() == null) {
+            throw new InvalidRandomElementSelectedException("Please, set faction, race and planet first.");
+        }
         NamesPreferences namesPreference = NamesPreferences.getSelected(getPreferences());
         final BeneficeSpecialization status = getCharacterPlayer().getStatus();
         // Nobility with more names. Unless set by the user.
@@ -115,6 +120,14 @@ public class RandomName extends RandomSelector<Name> {
                 && !getCharacterPlayer().getFaction().equals(name.getFaction())) {
             throw new InvalidRandomElementSelectedException("Name '" + name + "' from an invalid faction '"
                     + getCharacterPlayer().getFaction() + "'.");
+        }
+
+        // Surname already set, use same faction to avoid weird mix.
+        if (getCharacterPlayer().getInfo().getSurname() != null) {
+            if (getCharacterPlayer().getInfo().getSurname().getFaction() != null &&
+                    !Objects.equals(name.getFaction(), getCharacterPlayer().getInfo().getSurname().getFaction())) {
+                return 0;
+            }
         }
 
         return BASIC_PROBABILITY;

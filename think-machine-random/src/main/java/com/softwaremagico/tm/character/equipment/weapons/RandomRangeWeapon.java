@@ -2,9 +2,11 @@ package com.softwaremagico.tm.character.equipment.weapons;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.character.RestrictedElementException;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
+import com.softwaremagico.tm.character.exceptions.RestrictedElementException;
+import com.softwaremagico.tm.character.exceptions.UnofficialElementNotAllowedException;
 import com.softwaremagico.tm.log.RandomGenerationLog;
+import com.softwaremagico.tm.random.exceptions.InvalidCostElementSelectedException;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
 import com.softwaremagico.tm.random.selectors.WeaponsPreferences;
@@ -39,7 +41,7 @@ import java.util.Set;
 public class RandomRangeWeapon extends RandomWeapon {
 
     public RandomRangeWeapon(CharacterPlayer characterPlayer, Set<IRandomPreference<?>> preferences,
-                             Set<Weapon> mandatoryWeapons) throws InvalidXmlElementException, RestrictedElementException {
+                             Set<Weapon> mandatoryWeapons) throws InvalidXmlElementException, RestrictedElementException, UnofficialElementNotAllowedException {
         super(characterPlayer, preferences, mandatoryWeapons);
     }
 
@@ -48,17 +50,22 @@ public class RandomRangeWeapon extends RandomWeapon {
         final Random random = new Random();
 
         final WeaponsPreferences weaponPreferences = WeaponsPreferences.getSelected(getPreferences());
-        float probabilityOfRangedWeapon = weaponPreferences.getRangeWeaponProbability();
-        while (probabilityOfRangedWeapon > 0) {
-            if (probabilityOfRangedWeapon > 0 && random.nextFloat() < probabilityOfRangedWeapon) {
-                try {
-                    super.assign();
-                } catch (InvalidRandomElementSelectedException ires) {
-                    RandomGenerationLog.warning(this.getClass().getName(),
-                            "No ranged weapons available for '{}'.", getCharacterPlayer());
+        if (weaponPreferences != null) {
+            float probabilityOfRangedWeapon = weaponPreferences.getRangeWeaponProbability();
+            while (probabilityOfRangedWeapon > 0) {
+                if (random.nextFloat() < probabilityOfRangedWeapon) {
+                    try {
+                        super.assign();
+                    } catch (InvalidCostElementSelectedException | UnofficialElementNotAllowedException e) {
+                        //Try again with a different weapon.
+                        continue;
+                    } catch (InvalidRandomElementSelectedException ires) {
+                        RandomGenerationLog.warning(this.getClass().getName(),
+                                "No ranged weapons available for '{}'.", getCharacterPlayer());
+                    }
                 }
+                probabilityOfRangedWeapon -= 0.3f;
             }
-            probabilityOfRangedWeapon -= 0.3f;
         }
     }
 
@@ -68,8 +75,10 @@ public class RandomRangeWeapon extends RandomWeapon {
     }
 
     @Override
-    protected int getWeightCostModificator(Weapon weapon) {
-        if (weapon.getCost() > getCurrentMoney() / 1.1) {
+    protected int getWeightCostModificator(Weapon weapon) throws InvalidRandomElementSelectedException {
+        if (weapon.getCost() > getCurrentMoney()) {
+            throw new InvalidRandomElementSelectedException("Not enough money!");
+        } else if (weapon.getCost() > getCurrentMoney() / 1.1) {
             return 100;
         } else if (weapon.getCost() > getCurrentMoney() / (double) 2) {
             return 7;

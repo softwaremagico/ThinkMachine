@@ -25,10 +25,9 @@ package com.softwaremagico.tm.random;
  */
 
 import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.character.RandomizeCharacter;
-import com.softwaremagico.tm.character.RestrictedElementException;
-import com.softwaremagico.tm.character.ThreatLevel;
+import com.softwaremagico.tm.character.*;
+import com.softwaremagico.tm.character.exceptions.RestrictedElementException;
+import com.softwaremagico.tm.character.exceptions.UnofficialElementNotAllowedException;
 import com.softwaremagico.tm.file.PathManager;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.CombatPreferences;
@@ -43,16 +42,16 @@ public class RandomCharacterThreatAverage {
     private static final String LANGUAGE = "en";
     private static final int NUMBER_OF_TESTS = 100;
 
-    public int calculateThread(IRandomPreference... preferences) throws InvalidXmlElementException,
-            InvalidRandomElementSelectedException, RestrictedElementException {
+    public int calculateThread(IRandomPreference<?>... preferences) throws InvalidXmlElementException,
+            InvalidRandomElementSelectedException, RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0, preferences);
         randomizeCharacter.createCharacter();
         return ThreatLevel.getThreatLevel(characterPlayer);
     }
 
-    public float calculateThreatAverage(IRandomPreference... preferences) throws
-            InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException {
+    public float calculateThreatAverage(IRandomPreference<?>... preferences) throws
+            InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException, UnofficialElementNotAllowedException {
         float threatLevel = 0f;
         ThreatLevel.resetStatistics();
         for (int i = 0; i < NUMBER_OF_TESTS; i++) {
@@ -63,51 +62,51 @@ public class RandomCharacterThreatAverage {
         return threatLevel / NUMBER_OF_TESTS;
     }
 
-    @Test
+    @Test(timeOut = 5000)
     public void peacefulCharacterAverage() throws InvalidXmlElementException,
-            InvalidRandomElementSelectedException, RestrictedElementException {
+            InvalidRandomElementSelectedException, RestrictedElementException, UnofficialElementNotAllowedException {
         calculateThreatAverage(CombatPreferences.PEACEFUL);
     }
 
-    @Test
+    @Test(timeOut = 5000)
     public void fairCharacterAverage() throws InvalidXmlElementException,
-            InvalidRandomElementSelectedException, RestrictedElementException {
+            InvalidRandomElementSelectedException, RestrictedElementException, UnofficialElementNotAllowedException {
         calculateThreatAverage(CombatPreferences.FAIR);
     }
 
-    @Test
+    @Test(timeOut = 5000)
     public void belligerentCharacterAverage() throws InvalidXmlElementException,
-            InvalidRandomElementSelectedException, RestrictedElementException {
+            InvalidRandomElementSelectedException, RestrictedElementException, UnofficialElementNotAllowedException {
         calculateThreatAverage(CombatPreferences.BELLIGERENT);
     }
 
-    @Test
+    @Test(timeOut = 5000)
     public void easyCharacterAverage() throws InvalidXmlElementException,
-            InvalidRandomElementSelectedException, RestrictedElementException {
+            InvalidRandomElementSelectedException, RestrictedElementException, UnofficialElementNotAllowedException {
         calculateThreatAverage(DifficultLevelPreferences.EASY);
     }
 
-    @Test
+    @Test(timeOut = 5000)
     public void hardCharacterAverage() throws InvalidXmlElementException,
-            InvalidRandomElementSelectedException, RestrictedElementException {
+            InvalidRandomElementSelectedException, RestrictedElementException, UnofficialElementNotAllowedException {
         calculateThreatAverage(DifficultLevelPreferences.HARD);
     }
 
-    @Test
+    @Test(timeOut = 5000)
     public void mediumCharacterAverage() throws InvalidXmlElementException,
-            InvalidRandomElementSelectedException, RestrictedElementException {
+            InvalidRandomElementSelectedException, RestrictedElementException, UnofficialElementNotAllowedException {
         calculateThreatAverage(DifficultLevelPreferences.MEDIUM);
     }
 
-    @Test
+    @Test(timeOut = 5000)
     public void veryEasyCharacterAverage() throws InvalidXmlElementException,
-            InvalidRandomElementSelectedException, RestrictedElementException {
+            InvalidRandomElementSelectedException, RestrictedElementException, UnofficialElementNotAllowedException {
         calculateThreatAverage(DifficultLevelPreferences.VERY_EASY);
     }
 
-    @Test
+    @Test(timeOut = 5000)
     public void veryHardCharacterAverage() throws InvalidXmlElementException,
-            InvalidRandomElementSelectedException, RestrictedElementException {
+            InvalidRandomElementSelectedException, RestrictedElementException, UnofficialElementNotAllowedException {
         calculateThreatAverage(DifficultLevelPreferences.VERY_HARD);
     }
 }

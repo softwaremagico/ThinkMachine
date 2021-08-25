@@ -25,6 +25,7 @@ package com.softwaremagico.tm.random.predefined.characters;
  */
 
 import com.softwaremagico.tm.InvalidXmlElementException;
+import com.softwaremagico.tm.cache.NpcFactoryCacheLoader;
 import com.softwaremagico.tm.character.benefices.AvailableBenefice;
 import com.softwaremagico.tm.character.benefices.BeneficeDefinition;
 import com.softwaremagico.tm.character.blessings.Blessing;
@@ -55,6 +56,8 @@ public class NpcFactory extends RandomPredefinedFactory<Npc> {
     private static final String MANDATORY_SHIELDS = "shields";
     private static final String PROFILE = "profile";
 
+    private NpcFactoryCacheLoader npcFactoryCacheLoader;
+
     private static class NpcFactoryInit {
         public static final NpcFactory INSTANCE = new NpcFactory();
     }
@@ -70,7 +73,10 @@ public class NpcFactory extends RandomPredefinedFactory<Npc> {
 
     @Override
     public FactoryCacheLoader<Npc> getFactoryCacheLoader() {
-        return null;
+        if (npcFactoryCacheLoader == null) {
+            npcFactoryCacheLoader = new NpcFactoryCacheLoader();
+        }
+        return npcFactoryCacheLoader;
     }
 
     @Override
@@ -80,10 +86,10 @@ public class NpcFactory extends RandomPredefinedFactory<Npc> {
                             Set<Blessing> mandatoryBlessings, Set<Blessing> suggestedBlessings,
                             Set<BeneficeDefinition> mandatoryBenefices, Set<BeneficeDefinition> suggestedBenefices,
                             Set<AvailableBenefice> mandatoryBeneficeSpecializations, Set<AvailableBenefice> suggestedBeneficeSpecializations,
-                            Set<OccultismPath> mandatoryOccultismPaths, Faction faction, Race race) {
+                            Set<OccultismPath> mandatoryOccultismPaths, Faction faction, Race race, String group) {
         return new Npc(id, name, description, language, moduleName, randomPreferences, characteristicsMinimumValues, requiredSkills,
                 suggestedSkills, mandatoryBlessings, suggestedBlessings, mandatoryBenefices, suggestedBenefices,
-                mandatoryBeneficeSpecializations, suggestedBeneficeSpecializations, mandatoryOccultismPaths, faction, race);
+                mandatoryBeneficeSpecializations, suggestedBeneficeSpecializations, mandatoryOccultismPaths, faction, race, group);
     }
 
     @Override

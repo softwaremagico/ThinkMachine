@@ -26,7 +26,8 @@ package com.softwaremagico.tm.character.skills;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.character.RestrictedElementException;
+import com.softwaremagico.tm.character.exceptions.RestrictedElementException;
+import com.softwaremagico.tm.character.exceptions.UnofficialElementNotAllowedException;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.characteristics.CharacteristicType;
 import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
@@ -47,12 +48,13 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
     private List<Entry<CharacteristicType, Integer>> preferredCharacteristicsTypeSorted;
 
     public RandomSkills(CharacterPlayer characterPlayer, Set<IRandomPreference<?>> preferences)
-            throws InvalidXmlElementException, RestrictedElementException {
+            throws InvalidXmlElementException, RestrictedElementException, UnofficialElementNotAllowedException {
         this(characterPlayer, preferences, new HashSet<>(), new HashSet<>());
     }
 
     public RandomSkills(CharacterPlayer characterPlayer, Set<IRandomPreference<?>> preferences,
-                        Set<AvailableSkill> requiredSkills, Set<AvailableSkill> suggestedSkills) throws InvalidXmlElementException, RestrictedElementException {
+                        Set<AvailableSkill> requiredSkills, Set<AvailableSkill> suggestedSkills) throws InvalidXmlElementException,
+            RestrictedElementException, UnofficialElementNotAllowedException {
         super(characterPlayer, null, preferences, requiredSkills, suggestedSkills);
     }
 
@@ -327,7 +329,7 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
 
         try {
             getCharacterPlayer().setSkillRank(availableSkill, finalRanks);
-        } catch (InvalidRanksException | RestrictedElementException e) {
+        } catch (InvalidRanksException | RestrictedElementException | UnofficialElementNotAllowedException e) {
             finalRanks = 0;
         }
         return finalRanks;

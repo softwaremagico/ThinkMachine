@@ -26,7 +26,8 @@ package com.softwaremagico.tm.character.equipment;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.character.RestrictedElementException;
+import com.softwaremagico.tm.character.exceptions.RestrictedElementException;
+import com.softwaremagico.tm.character.exceptions.UnofficialElementNotAllowedException;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.random.RandomSelector;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
@@ -38,7 +39,7 @@ public abstract class EquipmentSelector<E extends Equipment<?>> extends RandomSe
 	private Integer currentMoney = null;
 
 	protected EquipmentSelector(CharacterPlayer characterPlayer, Set<IRandomPreference<?>> preferences,
-			Set<E> mandatoryElements) throws InvalidXmlElementException, RestrictedElementException {
+			Set<E> mandatoryElements) throws InvalidXmlElementException, RestrictedElementException, UnofficialElementNotAllowedException {
 		super(characterPlayer, null, preferences, mandatoryElements, null);
 	}
 
@@ -52,10 +53,10 @@ public abstract class EquipmentSelector<E extends Equipment<?>> extends RandomSe
 	/**
 	 * Not so expensive weapons.
 	 * 
-	 * @param equipment
-	 * @return
+	 * @param  equipment element.
+	 * @return weight
 	 */
-	protected abstract int getWeightCostModificator(E equipment);
+	protected abstract int getWeightCostModificator(E equipment) throws InvalidRandomElementSelectedException;
 
 	@Override
 	protected int getWeight(E equipment) throws InvalidRandomElementSelectedException {

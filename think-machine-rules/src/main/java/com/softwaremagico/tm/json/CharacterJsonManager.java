@@ -42,6 +42,7 @@ import com.softwaremagico.tm.character.equipment.shields.Shield;
 import com.softwaremagico.tm.character.equipment.weapons.Accessory;
 import com.softwaremagico.tm.character.equipment.weapons.Ammunition;
 import com.softwaremagico.tm.character.equipment.weapons.Weapon;
+import com.softwaremagico.tm.character.exceptions.UnofficialCharacterException;
 import com.softwaremagico.tm.character.factions.Faction;
 import com.softwaremagico.tm.character.factions.FactionsFactory;
 import com.softwaremagico.tm.character.occultism.OccultismPower;
@@ -69,8 +70,6 @@ public class CharacterJsonManager extends JsonManager {
             final GsonBuilder gsonBuilder = initGsonBuilder(characterPlayer.getLanguage(), characterPlayer.getModuleName());
             gsonBuilder.setExclusionStrategies(new AnnotationExclusionStrategy()).create();
             gsonBuilder.registerTypeAdapter(IValue.class, new IValueSerializer<IValue>());
-            // final Gson gson = new
-            // GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
             final Gson gson = gsonBuilder.create();
             return gson.toJson(characterPlayer);
         }
@@ -123,6 +122,12 @@ public class CharacterJsonManager extends JsonManager {
                                     characterPlayer.getInfo().getSurname().getCustomSurname(), language, moduleName, characterPlayer.getFaction()));
                 }
             }
+            try {
+                characterPlayer.checkIsOfficial();
+            } catch (UnofficialCharacterException e) {
+                characterPlayer.getSettings().setOnlyOfficialAllowed(false);
+            }
+
             return characterPlayer;
         }
         return null;

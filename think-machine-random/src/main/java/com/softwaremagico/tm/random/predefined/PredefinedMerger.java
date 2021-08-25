@@ -58,7 +58,7 @@ public class PredefinedMerger {
     }
 
     private static IRandomPredefined getEmptyProfile(String language, String moduleName) {
-        return new Npc(DEFAULT_ID, "", null, language, moduleName);
+        return new Npc(DEFAULT_ID, "", null, language, moduleName, null);
     }
 
     public static IRandomPredefined merge(Set<IRandomPredefined> profiles, Set<IRandomPreference<?>> extraPreferences, Set<AvailableSkill> requiredSkills,

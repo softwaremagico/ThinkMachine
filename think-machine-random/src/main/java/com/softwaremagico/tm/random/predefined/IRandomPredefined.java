@@ -102,4 +102,5 @@ public interface IRandomPredefined {
 
     boolean isOfficial();
 
+    String getGroup();
 }

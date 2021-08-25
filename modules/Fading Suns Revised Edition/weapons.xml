@@ -16,7 +16,8 @@
                 strike). There is no real consumer market for these weapons, although some specimens fetch high prices
                 with collectors.
             </en>
-            <es>Esta increíble "espada de cristal" de los Ascorbitas está fabricada con una sustancia cristalina única que
+            <es>Esta increíble "espada de cristal" de los Ascorbitas está fabricada con una sustancia cristalina única
+                que
                 sólo se encuentra en las profundas grutas subterráneas de Severus. El cristal fluye en un estado casi
                 líquido en pequeños arroyos que se "desangran" a través de cortes tallados en duras rocas cristalinas, y
                 a partir de esta forma puede modelarse. Una vez que se haya expuesto a la luz, el material se endurece a
@@ -1061,6 +1062,10 @@
         </damageList>
         <size>XL</size>
         <cost>100</cost>
+        <random>
+            <probabilityMultiplier>0.01</probabilityMultiplier>
+            <recommendedFactions>muster</recommendedFactions>
+        </random>
     </suresnakeWhip>
     <trenchKnife>
         <name>
@@ -1089,6 +1094,9 @@
         </damageList>
         <size>M</size>
         <cost>6</cost>
+        <random>
+            <recommendedFactions>military</recommendedFactions>
+        </random>
     </trenchKnife>
     <twoHandedAxe>
         <name>
@@ -1134,6 +1142,9 @@
         </damageList>
         <size>XL</size>
         <cost>30</cost>
+        <random>
+            <recommendedFactions>vuldrok</recommendedFactions>
+        </random>
     </twoHandedAxe>
     <twoHandedSword>
         <name>
@@ -1177,6 +1188,9 @@
         </damageList>
         <size>XL</size>
         <cost>40</cost>
+        <random>
+            <recommendedFactions>vuldrok</recommendedFactions>
+        </random>
     </twoHandedSword>
     <warSword>
         <name>
@@ -1216,6 +1230,9 @@
         </damageList>
         <size>L</size>
         <cost>20</cost>
+        <random>
+            <recommendedFactions>military</recommendedFactions>
+        </random>
     </warSword>
     <whip>
         <name>
@@ -1247,6 +1264,10 @@
         </damageList>
         <size>XL</size>
         <cost>5</cost>
+        <random>
+            <probabilityMultiplier>0.1</probabilityMultiplier>
+            <recommendedFactions>muster</recommendedFactions>
+        </random>
     </whip>
     <wireblade>
         <name>
@@ -8347,6 +8368,9 @@
         <size>S</size>
         <cost>20</cost>
         <damageType>plasma</damageType>
+        <random>
+            <probabilityMultiplier>0.01</probabilityMultiplier>
+        </random>
     </blastPellet>
     <concussionGrenade>
         <name>

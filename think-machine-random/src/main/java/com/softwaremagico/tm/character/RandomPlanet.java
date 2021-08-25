@@ -25,6 +25,8 @@ package com.softwaremagico.tm.character;
  */
 
 import com.softwaremagico.tm.InvalidXmlElementException;
+import com.softwaremagico.tm.character.exceptions.RestrictedElementException;
+import com.softwaremagico.tm.character.exceptions.UnofficialElementNotAllowedException;
 import com.softwaremagico.tm.character.factions.Faction;
 import com.softwaremagico.tm.character.planets.Planet;
 import com.softwaremagico.tm.character.planets.PlanetFactory;
@@ -42,7 +44,7 @@ public class RandomPlanet extends RandomSelector<Planet> {
     private static final int ENEMY_PLANET = 1;
 
     public RandomPlanet(CharacterPlayer characterPlayer, Set<IRandomPreference<?>> preferences)
-            throws InvalidXmlElementException, RestrictedElementException {
+            throws InvalidXmlElementException, RestrictedElementException, UnofficialElementNotAllowedException {
         super(characterPlayer, preferences);
     }
 

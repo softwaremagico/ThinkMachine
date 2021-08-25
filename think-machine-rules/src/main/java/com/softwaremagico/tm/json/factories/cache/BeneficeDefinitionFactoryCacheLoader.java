@@ -28,6 +28,10 @@ import com.google.gson.GsonBuilder;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.benefices.BeneficeDefinition;
 import com.softwaremagico.tm.character.benefices.BeneficeDefinitionFactory;
+import com.softwaremagico.tm.character.factions.Faction;
+import com.softwaremagico.tm.character.races.Race;
+import com.softwaremagico.tm.json.FactionAdapter;
+import com.softwaremagico.tm.json.RaceAdapter;
 import com.softwaremagico.tm.json.factories.BeneficeDefinitionFactoryElements;
 import com.softwaremagico.tm.json.factories.FactoryElements;
 
@@ -58,7 +62,8 @@ public class BeneficeDefinitionFactoryCacheLoader extends FactoryCacheLoader<Ben
     protected GsonBuilder initGsonBuilder(final String language, final String moduleName) {
         final GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.setPrettyPrinting();
-
+        gsonBuilder.registerTypeAdapter(Race.class, new RaceAdapter(language, moduleName));
+        gsonBuilder.registerTypeAdapter(Faction.class, new FactionAdapter(language, moduleName));
         return gsonBuilder;
     }
 

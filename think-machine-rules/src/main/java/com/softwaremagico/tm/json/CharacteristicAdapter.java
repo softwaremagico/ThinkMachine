@@ -35,7 +35,7 @@ import java.lang.reflect.Type;
 public class CharacteristicAdapter extends ElementAdapter<Characteristic> {
 	private static final String VALUE = "value";
 
-	protected CharacteristicAdapter(String language, String moduleName) {
+	public CharacteristicAdapter(String language, String moduleName) {
 		super(language, moduleName);
 	}
 

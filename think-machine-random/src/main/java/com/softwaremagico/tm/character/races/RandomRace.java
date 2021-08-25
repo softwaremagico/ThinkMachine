@@ -26,7 +26,8 @@ package com.softwaremagico.tm.character.races;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.character.RestrictedElementException;
+import com.softwaremagico.tm.character.exceptions.RestrictedElementException;
+import com.softwaremagico.tm.character.exceptions.UnofficialElementNotAllowedException;
 import com.softwaremagico.tm.random.RandomSelector;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
@@ -38,7 +39,7 @@ import java.util.Set;
 public class RandomRace extends RandomSelector<Race> {
 
     public RandomRace(CharacterPlayer characterPlayer, Set<IRandomPreference<?>> preferences)
-            throws InvalidXmlElementException, RestrictedElementException {
+            throws InvalidXmlElementException, RestrictedElementException, UnofficialElementNotAllowedException {
         super(characterPlayer, preferences);
     }
 
@@ -46,7 +47,7 @@ public class RandomRace extends RandomSelector<Race> {
     public void assign() throws InvalidRaceException, InvalidRandomElementSelectedException {
         try {
             getCharacterPlayer().setRace(selectElementByWeight());
-        } catch (RestrictedElementException e) {
+        } catch (RestrictedElementException | UnofficialElementNotAllowedException e) {
             throw new InvalidRaceException("Race is restricted", e);
         }
     }

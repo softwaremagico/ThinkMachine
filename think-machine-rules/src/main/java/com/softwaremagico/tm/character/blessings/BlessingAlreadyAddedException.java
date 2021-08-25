@@ -1,6 +1,6 @@
 package com.softwaremagico.tm.character.blessings;
 
-import com.softwaremagico.tm.character.InvalidGeneratedCharacter;
+import com.softwaremagico.tm.character.exceptions.InvalidGeneratedCharacter;
 
 /*-
  * #%L

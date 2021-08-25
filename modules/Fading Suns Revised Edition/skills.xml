@@ -139,7 +139,7 @@
             <es>Ciencia de la Física</es>
         </name>
         <group>science</group>
-        <factionSkill>engineers</factionSkill>
+        <factionSkill>engineers, prospectors, apothecaries</factionSkill>
         <random>
             <minTechLevel>2</minTechLevel>
         </random>
@@ -150,7 +150,7 @@
             <es>Ciencia de la Vida</es>
         </name>
         <group>science</group>
-        <factionSkill>engineers</factionSkill>
+        <factionSkill>engineers, apothecaries</factionSkill>
         <random>
             <minTechLevel>2</minTechLevel>
         </random>
@@ -354,12 +354,6 @@
                     <recommendedFactionGroups>nobility</recommendedFactionGroups>
                 </random>
             </embroidery>
-            <music>
-                <name>
-                    <en>Music</en>
-                    <es>Música</es>
-                </name>
-            </music>
             <painting>
                 <name>
                     <en>Painting</en>
@@ -396,6 +390,16 @@
                     <es>Retórica</es>
                 </name>
             </rhetoric>
+            <composition>
+                <name>
+                    <en>Composition</en>
+                    <es>Composición</es>
+                </name>
+                <official>false</official>
+                <random>
+                    <generalProbability>minimum</generalProbability>
+                </random>
+            </composition>
         </specializations>
         <numberToShow>2</numberToShow>
     </arts>
@@ -499,6 +503,12 @@
                     <es>Herrero</es>
                 </name>
             </blacksmith>
+            <weaponsmith>
+                <name>
+                    <en>Weaponsmith</en>
+                    <es>Armero</es>
+                </name>
+            </weaponsmith>
             <carpenter>
                 <name>
                     <en>Carpenter</en>
@@ -567,6 +577,7 @@
                     <en>Household</en>
                     <es>Doméstico</es>
                 </name>
+                <official>true</official>
             </household>
         </specializations>
         <numberToShow>2</numberToShow>
@@ -979,7 +990,6 @@
         </name>
         <group>physical</group>
         <official>false</official>
-        <restricted>true</restricted>
         <restrictedToRaces>etyri</restrictedToRaces>
         <random>
             <probabilityMultiplier>0</probabilityMultiplier>

@@ -27,12 +27,11 @@ package com.softwaremagico.tm.random;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.RandomizeCharacter;
-import com.softwaremagico.tm.character.RestrictedElementException;
-import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
+import com.softwaremagico.tm.character.exceptions.RestrictedElementException;
+import com.softwaremagico.tm.character.exceptions.UnofficialElementNotAllowedException;
 import com.softwaremagico.tm.character.creation.CostCalculator;
 import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
 import com.softwaremagico.tm.file.PathManager;
-import com.softwaremagico.tm.random.exceptions.DuplicatedPreferenceException;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.DifficultLevelPreferences;
 import org.junit.Assert;
@@ -42,8 +41,8 @@ import org.testng.annotations.Test;
 public class RandomCharacterDifficultyTests {
     private static final String LANGUAGE = "en";
 
-    @Test
-    public void easy() throws DuplicatedPreferenceException, InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException {
+    @Test(timeOut = 5000)
+    public void easy() throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0, DifficultLevelPreferences.EASY);
         randomizeCharacter.createCharacter();
@@ -51,8 +50,8 @@ public class RandomCharacterDifficultyTests {
                 characterPlayer.getRace()));
     }
 
-    @Test
-    public void hard() throws DuplicatedPreferenceException, InvalidXmlElementException, InvalidRandomElementSelectedException, TooManyBlessingsException, RestrictedElementException {
+    @Test(timeOut = 5000)
+    public void hard() throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0, DifficultLevelPreferences.HARD);
         randomizeCharacter.createCharacter();
@@ -64,8 +63,8 @@ public class RandomCharacterDifficultyTests {
                 characterPlayer.getRace()));
     }
 
-    @Test
-    public void veryHard() throws DuplicatedPreferenceException, InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException {
+    @Test(timeOut = 5000)
+    public void veryHard() throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0, DifficultLevelPreferences.VERY_HARD);
         randomizeCharacter.createCharacter();

@@ -51,6 +51,7 @@ import com.softwaremagico.tm.random.selectors.IRandomPreference;
 import com.softwaremagico.tm.random.selectors.RandomPreferenceUtils;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public abstract class RandomPredefinedFactory<Predefined extends Element<Predefined> & IRandomPredefined> extends XmlFactory<Predefined> {
     private static final String GROUP = "group";
@@ -103,11 +104,20 @@ public abstract class RandomPredefinedFactory<Predefined extends Element<Predefi
                                             Set<Blessing> mandatoryBlessings, Set<Blessing> suggestedBlessings,
                                             Set<BeneficeDefinition> mandatoryBenefices, Set<BeneficeDefinition> suggestedBenefices,
                                             Set<AvailableBenefice> mandatoryBeneficeSpecializations, Set<AvailableBenefice> suggestedBeneficeSpecializations,
-                                            Set<OccultismPath> mandatoryOccultismPaths, Faction faction, Race race);
+                                            Set<OccultismPath> mandatoryOccultismPaths, Faction faction, Race race, String group);
 
     private void classify(Predefined predefined, String groupName) {
         predefinedByGroup.computeIfAbsent(groupName, k -> new HashSet<>());
         predefinedByGroup.get(groupName).add(predefined);
+    }
+
+    public Set<String> getGroups(boolean nonOfficial, String language, String moduleName) {
+        final Set<String> predefinedGroups = getGroups(language, moduleName);
+        if (nonOfficial) {
+            return predefinedGroups;
+        }
+        //Remove all non-official groups.
+        return predefinedGroups.stream().filter(g -> predefinedByGroup.get(g).stream().anyMatch(Element::isOfficial)).collect(Collectors.toSet());
     }
 
     public Set<String> getGroups(String language, String moduleName) {
@@ -119,6 +129,14 @@ public abstract class RandomPredefinedFactory<Predefined extends Element<Predefi
             }
         }
         return predefinedByGroup.keySet();
+    }
+
+    public void updateGroups(Collection<Predefined> elements) {
+        if (predefinedByGroup.isEmpty()) {
+            elements.forEach(e -> {
+                classify(e, e.getGroup());
+            });
+        }
     }
 
     public Set<Predefined> getByGroup(String groupName) {
@@ -276,7 +294,7 @@ public abstract class RandomPredefinedFactory<Predefined extends Element<Predefi
         final Predefined predefined = createNew(predefinedId, name, description, language, moduleName, preferencesSelected,
                 characteristicsMinimumValues, requiredSkills, suggestedSkills, mandatoryBlessings, suggestedBlessings,
                 mandatoryBenefices, suggestedBenefices, mandatoryBeneficeSpecializations, suggestedBeneficeSpecializations,
-                mandatoryOccultismPaths, faction, race);
+                mandatoryOccultismPaths, faction, race, group);
 
         classify(predefined, group);
 

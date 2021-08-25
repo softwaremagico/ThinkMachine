@@ -144,12 +144,16 @@ public class CharacteristicsDefinitionFactory extends XmlFactory<CharacteristicD
         return getCharacteristics(language, moduleName).get(type);
     }
 
-    public CharacteristicDefinition get(CharacteristicName characteristicName, String language, String moduleName) {
+    public CharacteristicDefinition get(CharacteristicName characteristicName, String language, String moduleName) throws InvalidCharacteristicException {
         for (final CharacteristicType type : CharacteristicType.values()) {
             if (getCharacteristics(language, moduleName) != null && getCharacteristics(language, moduleName).get(type) != null) {
                 for (final CharacteristicDefinition characteristic : getCharacteristics(language, moduleName).get(type)) {
-                    if (Objects.equals(characteristic.getId().toLowerCase(), characteristicName.getId().toLowerCase())) {
-                        return characteristic;
+                    try {
+                        if (Objects.equals(characteristic.getId().toLowerCase(), characteristicName.getId().toLowerCase())) {
+                            return characteristic;
+                        }
+                    } catch (NullPointerException e) {
+                        throw new InvalidCharacteristicException("Invalid characteristic '" + characteristicName + "'.");
                     }
                 }
             }

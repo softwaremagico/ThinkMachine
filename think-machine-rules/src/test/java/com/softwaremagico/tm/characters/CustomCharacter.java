@@ -37,6 +37,8 @@ import com.softwaremagico.tm.character.cybernetics.*;
 import com.softwaremagico.tm.character.equipment.armours.ArmourFactory;
 import com.softwaremagico.tm.character.equipment.shields.ShieldFactory;
 import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
+import com.softwaremagico.tm.character.exceptions.RestrictedElementException;
+import com.softwaremagico.tm.character.exceptions.UnofficialElementNotAllowedException;
 import com.softwaremagico.tm.character.factions.FactionsFactory;
 import com.softwaremagico.tm.character.occultism.OccultismPathFactory;
 import com.softwaremagico.tm.character.occultism.OccultismTypeFactory;
@@ -50,7 +52,7 @@ public class CustomCharacter {
 
 	public static CharacterPlayer create(String language, String moduleName)
 			throws InvalidXmlElementException, TooManyBlessingsException, TooManyCyberneticDevicesException,
-			RequiredCyberneticDevicesException, BlessingAlreadyAddedException, BeneficeAlreadyAddedException, InvalidRanksException, RestrictedElementException {
+			RequiredCyberneticDevicesException, BlessingAlreadyAddedException, BeneficeAlreadyAddedException, InvalidRanksException, RestrictedElementException, UnofficialElementNotAllowedException {
 		CacheHandler.clearCache();
 		final CharacterPlayer player = new CharacterPlayer(language, moduleName);
 		player.getInfo().addName(new Name("Oliver", language, moduleName, Gender.MALE, null));

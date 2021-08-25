@@ -26,11 +26,13 @@ package com.softwaremagico.tm.character.equipment.armours;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.character.RestrictedElementException;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.equipment.EquipmentSelector;
+import com.softwaremagico.tm.character.exceptions.RestrictedElementException;
+import com.softwaremagico.tm.character.exceptions.UnofficialElementNotAllowedException;
 import com.softwaremagico.tm.log.RandomGenerationLog;
 import com.softwaremagico.tm.random.exceptions.ImpossibleToAssignMandatoryElementException;
+import com.softwaremagico.tm.random.exceptions.InvalidCostElementSelectedException;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.ArmourPreferences;
 import com.softwaremagico.tm.random.selectors.CombatPreferences;
@@ -44,17 +46,23 @@ import java.util.Set;
 public class RandomArmour extends EquipmentSelector<Armour> {
 
     public RandomArmour(CharacterPlayer characterPlayer, Set<IRandomPreference<?>> preferences,
-                        Set<Armour> mandatoryArmours) throws InvalidXmlElementException, RestrictedElementException {
+                        Set<Armour> mandatoryArmours) throws InvalidXmlElementException, RestrictedElementException,
+            UnofficialElementNotAllowedException {
         super(characterPlayer, preferences, mandatoryArmours);
     }
 
     @Override
-    public void assign() throws InvalidRandomElementSelectedException, InvalidArmourException {
+    public void assign() throws InvalidRandomElementSelectedException, InvalidArmourException, UnofficialElementNotAllowedException {
         final Random random = new Random();
         final ArmourPreferences armourPreferences = ArmourPreferences.getSelected(getPreferences());
-        if (random.nextFloat() < armourPreferences.getArmourProbability()) {
+        if (armourPreferences != null && random.nextFloat() < armourPreferences.getArmourProbability()) {
             final Armour selectedArmour = selectElementByWeight();
             if (getCharacterPlayer().getArmour() == null) {
+                if (selectedArmour.getCost() > getCharacterPlayer().getMoney()) {
+                    removeElementWeight(selectedArmour);
+                    throw new InvalidCostElementSelectedException(selectedArmour, "Armour '" + selectedArmour + "' has a cost of '" +
+                            selectedArmour.getCost() + "'. Current money is '" + getCharacterPlayer().getMoney() + "'.");
+                }
                 getCharacterPlayer().setArmour(selectedArmour);
                 RandomGenerationLog.info(this.getClass().getName(), "Selected armour '{}'.", selectedArmour);
             }
@@ -70,12 +78,14 @@ public class RandomArmour extends EquipmentSelector<Armour> {
     /**
      * Not so expensive armours.
      *
-     * @param armour
-     * @return
+     * @param armour the armour
+     * @return the weight
      */
     @Override
-    protected int getWeightCostModificator(Armour armour) {
-        if (armour.getCost() > getCurrentMoney() / 2d) {
+    protected int getWeightCostModificator(Armour armour) throws InvalidRandomElementSelectedException {
+        if (armour.getCost() > getCurrentMoney()) {
+            throw new InvalidRandomElementSelectedException("Not enough money!");
+        } else if (armour.getCost() > getCurrentMoney() / 2d) {
             return 100;
         } else if (armour.getCost() > getCurrentMoney() / 3d) {
             return 50;
@@ -93,8 +103,8 @@ public class RandomArmour extends EquipmentSelector<Armour> {
     /**
      * Similar tech level armours preferred.
      *
-     * @param armour
-     * @return
+     * @param armour the armour
+     * @return the weight
      */
     protected int getWeightTechModificator(Armour armour) {
         int weight = 0;
@@ -118,7 +128,7 @@ public class RandomArmour extends EquipmentSelector<Armour> {
 
     @Override
     protected int getWeight(Armour armour) throws InvalidRandomElementSelectedException {
-        super.getWeight(armour);
+        int weight = super.getWeight(armour);
 
         // Heavy armours only for real warriors.
         if (!getPreferences().contains(CombatPreferences.BELLIGERENT)) {
@@ -128,7 +138,6 @@ public class RandomArmour extends EquipmentSelector<Armour> {
             }
         }
 
-        int weight = 1;
         // Similar tech level preferred.
         final int weightTech = getWeightTechModificator(armour);
         RandomGenerationLog.debug(this.getClass().getName(),
@@ -157,14 +166,13 @@ public class RandomArmour extends EquipmentSelector<Armour> {
         final DifficultLevelPreferences preference = DifficultLevelPreferences.getSelected(getPreferences());
         switch (preference) {
             case VERY_EASY:
+            case MEDIUM:
                 break;
             case EASY:
                 if (armour.isHeavy()) {
                     throw new InvalidRandomElementSelectedException(
                             "Heavy armour '" + armour + "' are not allowed by selected preference '" + preference + "'.");
                 }
-                break;
-            case MEDIUM:
                 break;
             case HARD:
                 if (armour.getProtection() < 3) {
@@ -184,11 +192,11 @@ public class RandomArmour extends EquipmentSelector<Armour> {
     @Override
     protected void assignIfMandatory(Armour element)
             throws InvalidXmlElementException, ImpossibleToAssignMandatoryElementException {
-        return;
+        //Ignored
     }
 
     @Override
-    protected void assignMandatoryValues(Set<Armour> mandatoryValues) throws InvalidXmlElementException {
+    protected void assignMandatoryValues(Set<Armour> mandatoryValues) throws InvalidXmlElementException, UnofficialElementNotAllowedException {
         // We only assign one armour of the mandatory list.
         if (!mandatoryValues.isEmpty()) {
             getCharacterPlayer().setArmour(mandatoryValues.iterator().next());

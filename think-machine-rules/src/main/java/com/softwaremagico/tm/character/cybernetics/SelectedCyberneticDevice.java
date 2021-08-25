@@ -161,4 +161,10 @@ public class SelectedCyberneticDevice extends Element<SelectedCyberneticDevice> 
         this.customizations = customizations;
     }
 
+
+    @Override
+    public boolean isOfficial() {
+        return cyberneticDevice.isOfficial() && customizations.stream().allMatch(CyberneticDeviceTrait::isOfficial);
+    }
+
 }

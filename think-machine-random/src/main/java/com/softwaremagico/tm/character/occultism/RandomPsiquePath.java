@@ -26,9 +26,10 @@ package com.softwaremagico.tm.character.occultism;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.character.RestrictedElementException;
 import com.softwaremagico.tm.character.creation.CostCalculator;
 import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
+import com.softwaremagico.tm.character.exceptions.RestrictedElementException;
+import com.softwaremagico.tm.character.exceptions.UnofficialElementNotAllowedException;
 import com.softwaremagico.tm.log.RandomGenerationLog;
 import com.softwaremagico.tm.random.RandomSelector;
 import com.softwaremagico.tm.random.exceptions.ImpossibleToAssignMandatoryElementException;
@@ -43,7 +44,7 @@ public class RandomPsiquePath extends RandomSelector<OccultismPath> {
     private int totalPowers;
 
     public RandomPsiquePath(CharacterPlayer characterPlayer, Set<IRandomPreference<?>> preferences, Set<OccultismPath> mandatoryOccultismPaths)
-            throws InvalidXmlElementException, RestrictedElementException {
+            throws InvalidXmlElementException, RestrictedElementException, UnofficialElementNotAllowedException {
         super(characterPlayer, null, preferences, mandatoryOccultismPaths, new HashSet<>());
     }
 
@@ -53,7 +54,7 @@ public class RandomPsiquePath extends RandomSelector<OccultismPath> {
         final IGaussianDistribution pathNumber = OccultismPathLevelPreferences.getSelected(getPreferences());
         final int totalPaths = pathNumber.randomGaussian();
         totalPowers = getCharacterPlayer().getTotalSelectedPowers();
-        for (int i = totalPowers; i < totalPaths; i++) {
+        while (getCharacterPlayer().getTotalSelectedPaths() < totalPaths && getWeightedElements().size() > 0) {
             try {
                 final OccultismPath selectedOccultismPath = selectElementByWeight();
                 // Select a level of psique.
@@ -61,8 +62,9 @@ public class RandomPsiquePath extends RandomSelector<OccultismPath> {
                 // Assign path to the character.
                 assignPowersOfPath(selectedOccultismPath, pathLevel);
                 removeElementWeight(selectedOccultismPath);
-            } catch (InvalidRandomElementSelectedException irese) {
+            } catch (InvalidRandomElementSelectedException e) {
                 // No elements to select, probably no power is available.
+                continue;
             }
         }
 
@@ -110,9 +112,6 @@ public class RandomPsiquePath extends RandomSelector<OccultismPath> {
         // Use psique level preferences for the path level.
         final IGaussianDistribution psiqueLevelSelector = OccultismLevelPreferences.getSelected(getPreferences());
         int maxLevelSelected = psiqueLevelSelector.randomGaussian();
-        if (maxLevelSelected > psiqueLevelSelector.maximum()) {
-            maxLevelSelected = psiqueLevelSelector.maximum();
-        }
         if (maxLevelSelected > getCharacterPlayer().getOccultismLevel(path.getOccultismType())) {
             maxLevelSelected = getCharacterPlayer().getOccultismLevel(path.getOccultismType());
         }
@@ -131,14 +130,14 @@ public class RandomPsiquePath extends RandomSelector<OccultismPath> {
 
         final SpecializationPreferences specializationPreferences = SpecializationPreferences
                 .getSelected(getPreferences());
+
         // Psi must have at least one power by level.
         if ((getCharacterPlayer().getOccultismType() == null || Objects.equals(getCharacterPlayer().getOccultismType(), path.getOccultismType()) &&
                 Objects.equals(path.getOccultismType(),
                         OccultismTypeFactory.getPsi(getCharacterPlayer().getLanguage(), getCharacterPlayer().getModuleName())))) {
             for (int i = 1; i <= maxLevelSelected; i++) {
                 final List<OccultismPower> powers = new ArrayList<>(path.getPowersOfLevel(i));
-                // If has more than one power at one level, choose one of them
-                // at least.
+                // If has more than one power at one level, choose one of them at least.
                 if (!powers.isEmpty()) {
                     Collections.shuffle(powers);
                     powersToAdd.add(powers.get(0));
@@ -154,7 +153,7 @@ public class RandomPsiquePath extends RandomSelector<OccultismPath> {
             final List<OccultismPower> powers = new ArrayList<>(path.getOccultismPowers().values());
             Collections.shuffle(powers);
             while (numberOfPowers > 0 && !powers.isEmpty()) {
-                // It is possible to add this power.
+                // If it is possible to add this power.
                 if (powers.get(0).getLevel() <= maxLevelSelected) {
                     powersToAdd.add(powers.get(0));
                 }
@@ -162,7 +161,7 @@ public class RandomPsiquePath extends RandomSelector<OccultismPath> {
             }
         }
 
-        // Add selected powers if enough point
+        // Add selected powers if enough points
         for (final OccultismPower power : powersToAdd) {
             // Enough points
             if (totalPowers >= TOTAL_PDF_PSI_ROWS) {
@@ -175,7 +174,7 @@ public class RandomPsiquePath extends RandomSelector<OccultismPath> {
                     RandomGenerationLog.info(this.getClass().getName(), "Assigned power '{}' to path '{}'.", power, path);
                     remainingPoints -= power.getLevel() * CostCalculator.OCCULTISM_POWER_LEVEL_COST;
                     totalPowers++;
-                } catch (InvalidFactionOfPowerException e) {
+                } catch (InvalidFactionOfPowerException | UnofficialElementNotAllowedException e) {
                     //Restricted to faction. Ignore.
                 }
             }

@@ -53,19 +53,19 @@ public class Npc extends RandomPredefined<Npc> implements IRandomPredefined {
                Set<Blessing> mandatoryBlessings, Set<Blessing> suggestedBlessings,
                Set<BeneficeDefinition> mandatoryBenefices, Set<BeneficeDefinition> suggestedBenefices,
                Set<AvailableBenefice> mandatoryBeneficeSpecializations, Set<AvailableBenefice> suggestedBeneficeSpecializations,
-               Set<OccultismPath> mandatoryOccultismPaths, Faction faction, Race race) {
+               Set<OccultismPath> mandatoryOccultismPaths, Faction faction, Race race, String group) {
         super(id, name, description, language, moduleName, randomPreferences, characteristicsMinimumValues, requiredSkills,
                 suggestedSkills, mandatoryBlessings, suggestedBlessings, mandatoryBenefices, suggestedBenefices,
-                mandatoryBeneficeSpecializations, suggestedBeneficeSpecializations, mandatoryOccultismPaths, faction, race);
+                mandatoryBeneficeSpecializations, suggestedBeneficeSpecializations, mandatoryOccultismPaths, faction, race, group);
         this.mandatoryWeapons = new HashSet<>();
         this.mandatoryArmours = new HashSet<>();
         this.mandatoryShields = new HashSet<>();
     }
 
-    public Npc(String id, String name, String description, String language, String moduleName) {
+    public Npc(String id, String name, String description, String language, String moduleName, String group) {
         this(id, name, description, language, moduleName, new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(),
                 new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(),
-                null, null);
+                null, null, group);
     }
 
     public void addMandatoryWeapons(Set<Weapon> weapons) {

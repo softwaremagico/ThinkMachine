@@ -2,9 +2,11 @@ package com.softwaremagico.tm.character.equipment.shields;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.character.RestrictedElementException;
 import com.softwaremagico.tm.character.equipment.EquipmentSelector;
+import com.softwaremagico.tm.character.exceptions.RestrictedElementException;
+import com.softwaremagico.tm.character.exceptions.UnofficialElementNotAllowedException;
 import com.softwaremagico.tm.log.RandomGenerationLog;
+import com.softwaremagico.tm.random.exceptions.InvalidCostElementSelectedException;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.CombatPreferences;
 import com.softwaremagico.tm.random.selectors.DifficultLevelPreferences;
@@ -40,18 +42,24 @@ import java.util.*;
 public class RandomShield extends EquipmentSelector<Shield> {
 
     public RandomShield(CharacterPlayer characterPlayer, Set<IRandomPreference<?>> preferences,
-                        Set<Shield> mandatoryShields) throws InvalidXmlElementException, RestrictedElementException {
+                        Set<Shield> mandatoryShields) throws InvalidXmlElementException, RestrictedElementException,
+            UnofficialElementNotAllowedException {
         super(characterPlayer, preferences, mandatoryShields);
     }
 
     @Override
-    public void assign() throws InvalidRandomElementSelectedException, InvalidShieldException {
+    public void assign() throws InvalidRandomElementSelectedException, InvalidShieldException, UnofficialElementNotAllowedException {
         final Random random = new Random();
 
         final ShieldPreferences shieldPreferences = ShieldPreferences.getSelected(getPreferences());
-        if (random.nextFloat() < shieldPreferences.getShieldProbability()) {
+        if (shieldPreferences != null && random.nextFloat() < shieldPreferences.getShieldProbability()) {
             final Shield selectedShield = selectElementByWeight();
             if (getCharacterPlayer().getShield() == null) {
+                if (selectedShield.getCost() > getCharacterPlayer().getMoney()) {
+                    removeElementWeight(selectedShield);
+                    throw new InvalidCostElementSelectedException(selectedShield, "Shield '" + selectedShield + "' has a cost of '" +
+                            selectedShield.getCost() + "'. Current money is '" + getCharacterPlayer().getMoney() + "'.");
+                }
                 getCharacterPlayer().setShield(selectedShield);
                 RandomGenerationLog.info(this.getClass().getName(), "Selected shield '{}'.", selectedShield);
             }
@@ -66,12 +74,14 @@ public class RandomShield extends EquipmentSelector<Shield> {
     /**
      * Not so expensive shields.
      *
-     * @param shield
-     * @return
+     * @param shield the shield
+     * @return the weight
      */
     @Override
-    protected int getWeightCostModificator(Shield shield) {
-        if (shield.getCost() > getCurrentMoney() / (double) 2) {
+    protected int getWeightCostModificator(Shield shield) throws InvalidRandomElementSelectedException {
+        if (shield.getCost() > getCurrentMoney()) {
+            throw new InvalidRandomElementSelectedException("Not enough money!");
+        } else if (shield.getCost() > getCurrentMoney() / (double) 2) {
             return 5;
         } else {
             return 1;
@@ -130,11 +140,11 @@ public class RandomShield extends EquipmentSelector<Shield> {
 
     @Override
     protected void assignIfMandatory(Shield element) throws InvalidXmlElementException {
-        return;
+        //Nothing
     }
 
     @Override
-    protected void assignMandatoryValues(Set<Shield> mandatoryValues) throws InvalidXmlElementException {
+    protected void assignMandatoryValues(Set<Shield> mandatoryValues) throws InvalidXmlElementException, UnofficialElementNotAllowedException {
         // We only assign the most expensive one.
         if (!mandatoryValues.isEmpty()) {
             final List<Shield> sortedShields = new ArrayList<>(mandatoryValues);

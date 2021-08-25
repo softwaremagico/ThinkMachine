@@ -92,6 +92,8 @@ public enum CashPreferences implements ICharacterDescriptionPreference<CashPrefe
                     return CashPreferences.GOOD;
                 case CHURCH:
                     return CashPreferences.FAIR;
+                case MINOR_GUILD:
+                    return CashPreferences.LOW;
                 default:
                     return null;
             }
@@ -99,9 +101,29 @@ public enum CashPreferences implements ICharacterDescriptionPreference<CashPrefe
         return null;
     }
 
-    public static CashPreferences get(StatusPreferences statusPreferences) {
-        if (statusPreferences != null) {
-            switch (statusPreferences) {
+    public static CashPreferences get(DifficultLevelPreferences difficultLevelPreferences) {
+        if (difficultLevelPreferences != null) {
+            switch (difficultLevelPreferences) {
+                case EASY:
+                case VERY_EASY:
+                    return CashPreferences.LOW;
+                case MEDIUM:
+                case HARD:
+                    // Be careful. maxPoints can limit this value.
+                    return CashPreferences.GOOD;
+                case VERY_HARD:
+                    // Be careful. maxPoints can limit this value.
+                    return CashPreferences.HIGH;
+                default:
+                    return null;
+            }
+        }
+        return null;
+    }
+
+    public static CashPreferences get(RankPreferences rankPreferences) {
+        if (rankPreferences != null) {
+            switch (rankPreferences) {
                 case GOOD:
                     return CashPreferences.GOOD;
                 case HIGH:
@@ -123,7 +145,7 @@ public enum CashPreferences implements ICharacterDescriptionPreference<CashPrefe
     }
 
     public static CashPreferences get(Float money) {
-        final int cashCost = (int) (money / 250);
+        final int cashCost = (int) Math.ceil(money / 250);
         for (final CashPreferences preference : CashPreferences.values()) {
             if (preference.minimum() >= cashCost) {
                 return preference;

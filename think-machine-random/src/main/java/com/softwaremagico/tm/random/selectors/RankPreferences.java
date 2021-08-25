@@ -27,17 +27,17 @@ package com.softwaremagico.tm.random.selectors;
 import java.util.Random;
 import java.util.Set;
 
-public enum StatusPreferences implements ICharacterDescriptionPreference<StatusPreferences>, IGaussianDistribution {
+public enum RankPreferences implements ICharacterDescriptionPreference<RankPreferences>, IGaussianDistribution {
 
     NONE(0, 0, 0, 0),
 
-    LOW(4, 8, 4, 1),
+    LOW(4, 8, 4, 4),
 
-    FAIR(4, 8, 6, 2),
+    FAIR(8, 12, 8, 4),
 
-    GOOD(4, 16, 8, 4),
+    GOOD(12, 16, 12, 4),
 
-    HIGH(12, 24, 16, 8),
+    HIGH(16, 24, 18, 6),
 
     ANY(4, 24, 14, 10);
 
@@ -47,7 +47,7 @@ public enum StatusPreferences implements ICharacterDescriptionPreference<StatusP
     private final int variance;
     private final Random random = new Random();
 
-    StatusPreferences(int minimumValue, int maximumValue, int mean, int variance) {
+    RankPreferences(int minimumValue, int maximumValue, int mean, int variance) {
         this.maximum = maximumValue;
         this.minimum = minimumValue;
         this.variance = variance;
@@ -74,10 +74,10 @@ public enum StatusPreferences implements ICharacterDescriptionPreference<StatusP
         return mean;
     }
 
-    public static StatusPreferences getSelected(Set<IRandomPreference<?>> preferences) {
+    public static RankPreferences getSelected(Set<IRandomPreference<?>> preferences) {
         for (final IRandomPreference<?> preference : preferences) {
-            if (preference instanceof StatusPreferences) {
-                return (StatusPreferences) preference;
+            if (preference instanceof RankPreferences) {
+                return (RankPreferences) preference;
             }
         }
         return FAIR;
@@ -93,11 +93,11 @@ public enum StatusPreferences implements ICharacterDescriptionPreference<StatusP
     }
 
     @Override
-    public IRandomPreference<StatusPreferences> getDefault() {
+    public IRandomPreference<RankPreferences> getDefault() {
         return getDefaultOption();
     }
 
-    public static StatusPreferences getDefaultOption() {
-        return StatusPreferences.FAIR;
+    public static RankPreferences getDefaultOption() {
+        return RankPreferences.FAIR;
     }
 }

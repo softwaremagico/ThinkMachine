@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <factions>
     <version>1</version>
-    <totalElements>46</totalElements>
+    <totalElements>62</totalElements>
     <hawkwood>
         <name>
             <en>Hawkwood</en>
@@ -44,6 +44,7 @@
                 O'Kelly, O'Sullivan, O'Brien, Byrne, O'Ryan, O'Connor, Morton, Drummer, Dawes, Garyson, Gibb, Virk,
                 Spalding, Partridge, Schafer, Kreger, Rowan
             </surnames>
+            <probabilityMultiplier>20</probabilityMultiplier>
         </random>
     </hawkwood>
     <decados>
@@ -86,6 +87,7 @@
                 Protic,
                 Perisc, Spasic, Gvozdenvic, Jankovic, Vlaisavljevic, Pavlov, Vinogradova, Volkov, Bognadov
             </surnames>
+            <probabilityMultiplier>20</probabilityMultiplier>
         </random>
     </decados>
     <hazat>
@@ -146,8 +148,9 @@
                 Vega, Salazar, Camacho, Varela, Vargas, Velez, Quintero, Rodríguez, Saucedo, Rivera, Castro, Cervantes,
                 Ciarfalio, Jovellanos, Miranda, Navia, Riego, Vega, Ayamonte, Cenete, Comares, Medina, Quesada, Torres,
                 Alba, Lara, Castro, Cifuentes, Calderón, Villegas, Medinaceli, Miranda, Osuna, Valverde, Pizarro,
-                Feijóo, Silvela, Robles, Santalla, Trénor, Balboa, Bazán, Lezo, Doria, Masciale
+                Feijóo, Silvela, Robles, Santalla, Trénor, Balboa, Bazán, Lezo, Doria, Masciale, Malerba
             </surnames>
+            <probabilityMultiplier>20</probabilityMultiplier>
         </random>
     </hazat>
     <liHalan>
@@ -180,6 +183,7 @@
                 Chôsokabe, Kaimura, Koike, Kunii, Sato, Yeuw, Lextius, Misamoto, Han, Wei-To, Naganaka, Kung-Zhau,
                 Okemo, Teng, Hidejiri, Jong, Togo, Yamamoto, Nagata
             </surnames>
+            <probabilityMultiplier>20</probabilityMultiplier>
         </random>
     </liHalan>
     <alMalik>
@@ -328,9 +332,10 @@
                 </female>
             </names>
             <surnames>Al-Malik, Kapur, Jedidi, Draa, Massoud, Topic, Aboumerieme, Nabawy, TarikMemarzia, Sarouf,
-                Lanjeri, Sarouf, Benkiran, Balla, Karmouche, Hassan, Ouardi, Reis, Belhachmi, Kawouk, Maamori, El
-                Kadiri, Kamal, Avasarala
+                Lanjeri, Sarouf, Benkiran, Balla, Karmouche, Hassan, Ouardi, Reis, Belhachmi, Kawouk, Maamori, Kamal,
+                Avasarala, El Kadiri
             </surnames>
+            <probabilityMultiplier>20</probabilityMultiplier>
         </random>
     </alMalik>
 
@@ -359,6 +364,9 @@
                 <maxValue>8</maxValue>
             </benefice>
         </restrictedBenefices>
+        <random>
+            <probabilityMultiplier>20</probabilityMultiplier>
+        </random>
     </orthodox>
     <brotherBattle>
         <name>
@@ -420,6 +428,9 @@
                 <maxValue>8</maxValue>
             </benefice>
         </restrictedBenefices>
+        <random>
+            <probabilityMultiplier>20</probabilityMultiplier>
+        </random>
     </brotherBattle>
     <eskatonic>
         <name>
@@ -489,6 +500,9 @@
                 <maxValue>8</maxValue>
             </benefice>
         </restrictedBenefices>
+        <random>
+            <probabilityMultiplier>20</probabilityMultiplier>
+        </random>
     </eskatonic>
     <avestites>
         <name>
@@ -512,6 +526,9 @@
                 <maxValue>8</maxValue>
             </benefice>
         </restrictedBenefices>
+        <random>
+            <probabilityMultiplier>20</probabilityMultiplier>
+        </random>
     </avestites>
     <amaltheans>
         <name>
@@ -538,6 +555,9 @@
                 <maxValue>8</maxValue>
             </benefice>
         </restrictedBenefices>
+        <random>
+            <probabilityMultiplier>20</probabilityMultiplier>
+        </random>
     </amaltheans>
     <mendicantMonks>
         <name>
@@ -563,6 +583,9 @@
                 <maxValue>8</maxValue>
             </benefice>
         </restrictedBenefices>
+        <random>
+            <probabilityMultiplier>20</probabilityMultiplier>
+        </random>
     </mendicantMonks>
 
     <charioteers>
@@ -622,6 +645,9 @@
                 <id>commission</id>
             </benefice>
         </suggestedBenefices>
+        <random>
+            <probabilityMultiplier>20</probabilityMultiplier>
+        </random>
     </charioteers>
     <engineers>
         <name>
@@ -642,6 +668,9 @@
                 <id>commission</id>
             </benefice>
         </suggestedBenefices>
+        <random>
+            <probabilityMultiplier>20</probabilityMultiplier>
+        </random>
     </engineers>
     <scravers>
         <name>
@@ -700,6 +729,9 @@
                 <id>commission</id>
             </benefice>
         </suggestedBenefices>
+        <random>
+            <probabilityMultiplier>20</probabilityMultiplier>
+        </random>
     </scravers>
     <muster>
         <name>
@@ -758,6 +790,9 @@
                 <id>commission</id>
             </benefice>
         </suggestedBenefices>
+        <random>
+            <probabilityMultiplier>20</probabilityMultiplier>
+        </random>
     </muster>
     <reeves>
         <name>
@@ -816,6 +851,9 @@
                 <id>commission</id>
             </benefice>
         </suggestedBenefices>
+        <random>
+            <probabilityMultiplier>20</probabilityMultiplier>
+        </random>
     </reeves>
     <freeMen>
         <name>
@@ -830,6 +868,9 @@
                 <value>3</value>
             </benefice>
         </suggestedBenefices>
+        <random>
+            <probabilityMultiplier>20</probabilityMultiplier>
+        </random>
     </freeMen>
     <alba>
         <name>
@@ -851,7 +892,7 @@
             </benefice>
         </suggestedBenefices>
         <random>
-            <probabilityMultiplier>0.05</probabilityMultiplier>
+            <probabilityMultiplier>1</probabilityMultiplier>
         </random>
     </alba>
     <juandaastas>
@@ -874,7 +915,7 @@
             </benefice>
         </suggestedBenefices>
         <random>
-            <probabilityMultiplier>0.05</probabilityMultiplier>
+            <probabilityMultiplier>1</probabilityMultiplier>
         </random>
     </juandaastas>
     <justinian>
@@ -897,7 +938,7 @@
             </benefice>
         </suggestedBenefices>
         <random>
-            <probabilityMultiplier>0.05</probabilityMultiplier>
+            <probabilityMultiplier>1</probabilityMultiplier>
         </random>
     </justinian>
     <keddah>
@@ -920,7 +961,7 @@
             </benefice>
         </suggestedBenefices>
         <random>
-            <probabilityMultiplier>0.05</probabilityMultiplier>
+            <probabilityMultiplier>1</probabilityMultiplier>
         </random>
     </keddah>
     <masseri>
@@ -943,7 +984,7 @@
             </benefice>
         </suggestedBenefices>
         <random>
-            <probabilityMultiplier>0.05</probabilityMultiplier>
+            <probabilityMultiplier>1</probabilityMultiplier>
         </random>
     </masseri>
     <shelit>
@@ -966,7 +1007,7 @@
             </benefice>
         </suggestedBenefices>
         <random>
-            <probabilityMultiplier>0.05</probabilityMultiplier>
+            <probabilityMultiplier>1</probabilityMultiplier>
         </random>
     </shelit>
     <thana>
@@ -989,7 +1030,7 @@
             </benefice>
         </suggestedBenefices>
         <random>
-            <probabilityMultiplier>0.05</probabilityMultiplier>
+            <probabilityMultiplier>1</probabilityMultiplier>
         </random>
     </thana>
     <torenson>
@@ -1012,7 +1053,7 @@
             </benefice>
         </suggestedBenefices>
         <random>
-            <probabilityMultiplier>0.05</probabilityMultiplier>
+            <probabilityMultiplier>1</probabilityMultiplier>
         </random>
     </torenson>
     <trusnikron>
@@ -1035,7 +1076,7 @@
             </benefice>
         </suggestedBenefices>
         <random>
-            <probabilityMultiplier>0.05</probabilityMultiplier>
+            <probabilityMultiplier>1</probabilityMultiplier>
         </random>
     </trusnikron>
     <vanGelder>
@@ -1058,7 +1099,7 @@
             </benefice>
         </suggestedBenefices>
         <random>
-            <probabilityMultiplier>0.05</probabilityMultiplier>
+            <probabilityMultiplier>1</probabilityMultiplier>
         </random>
     </vanGelder>
     <xanthippe>
@@ -1081,7 +1122,7 @@
             </benefice>
         </suggestedBenefices>
         <random>
-            <probabilityMultiplier>0.05</probabilityMultiplier>
+            <probabilityMultiplier>1</probabilityMultiplier>
         </random>
     </xanthippe>
     <kurgan>
@@ -1118,7 +1159,7 @@
                 Barak, Asker, Aga
             </surnames>
         </random>
-        <probabilityMultiplier>0.01</probabilityMultiplier>
+        <probabilityMultiplier>0.1</probabilityMultiplier>
     </kurgan>
     <vuldrok>
         <name>
@@ -1146,8 +1187,343 @@
                 Turgot, Turgis, Varanger, Varangot, Yver
             </surnames>
         </random>
-        <probabilityMultiplier>0.01</probabilityMultiplier>
+        <probabilityMultiplier>0.1</probabilityMultiplier>
     </vuldrok>
+
+    <theMasque>
+        <name>
+            <en>The Masque</en>
+            <es>La Máscara</es>
+        </name>
+        <group>minor_guild</group>
+        <restrictedToRaces>human, vorox, obun, ukar</restrictedToRaces>
+        <official>false</official>
+        <blessings>shrewd, possessive</blessings>
+        <suggestedBenefices>
+            <benefice>
+                <id>passageContracts</id>
+                <value>4</value>
+            </benefice>
+            <benefice>
+                <id>fame</id>
+            </benefice>
+        </suggestedBenefices>
+        <random>
+            <probabilityMultiplier>1</probabilityMultiplier>
+        </random>
+    </theMasque>
+    <carnivalers>
+        <name>
+            <es>Feriantes</es>
+            <en>Carnivalers</en>
+        </name>
+        <group>minor_guild</group>
+        <restrictedToRaces>human, vorox, obun, ukar</restrictedToRaces>
+        <official>false</official>
+        <blessings>bold, untrusthworthy</blessings>
+        <suggestedBenefices>
+            <benefice>
+                <id>passageContracts</id>
+                <value>4</value>
+            </benefice>
+            <benefice>
+                <id>fame</id>
+            </benefice>
+            <benefice>
+                <id>gossipNetwork</id>
+                <value>4</value>
+            </benefice>
+            <benefice>
+                <id>refuge</id>
+                <value>3</value>
+            </benefice>
+        </suggestedBenefices>
+        <random>
+            <probabilityMultiplier>1</probabilityMultiplier>
+        </random>
+    </carnivalers>
+    <slayer>
+        <name>
+            <en>Slayer</en>
+            <es>Asesino</es>
+        </name>
+        <group>minor_guild</group>
+        <restrictedToRaces>human, vorox, obun, ukar</restrictedToRaces>
+        <official>false</official>
+        <blessings>obstinate, paranoid</blessings>
+        <suggestedBenefices>
+            <benefice>
+                <id>passageContracts</id>
+                <value>2</value>
+            </benefice>
+            <benefice>
+                <id>professionalContract</id>
+            </benefice>
+            <benefice>
+                <id>secrets</id>
+            </benefice>
+            <benefice>
+                <id>secretIdentity</id>
+            </benefice>
+            <benefice>
+                <id>darkSecret</id>
+                <value>3</value>
+            </benefice>
+        </suggestedBenefices>
+        <random>
+            <probabilityMultiplier>1</probabilityMultiplier>
+        </random>
+    </slayer>
+    <vagabonds>
+        <name>
+            <en>Vagabonds</en>
+            <es>Vagabundos</es>
+        </name>
+        <group>minor_guild</group>
+        <restrictedToRaces>human, vorox, obun, ukar</restrictedToRaces>
+        <official>false</official>
+        <blessings>compassionate, uncouth</blessings>
+        <suggestedBenefices>
+            <benefice>
+                <id>wellTraveled</id>
+            </benefice>
+            <benefice>
+                <id>gossipNetwork</id>
+                <value>4</value>
+            </benefice>
+        </suggestedBenefices>
+        <random>
+            <probabilityMultiplier>1</probabilityMultiplier>
+        </random>
+    </vagabonds>
+    <prospectors>
+        <name>
+            <en>Prospectors</en>
+            <es>Prospectores</es>
+        </name>
+        <group>minor_guild</group>
+        <restrictedToRaces>human, vorox, obun, ukar</restrictedToRaces>
+        <official>false</official>
+        <suggestedBenefices>
+            <benefice>
+                <id>spacer</id>
+            </benefice>
+            <benefice>
+                <id>greaseMonkey</id>
+            </benefice>
+            <benefice>
+                <id>weird</id>
+            </benefice>
+            <benefice>
+                <id>stigma</id>
+                <value>2</value>
+            </benefice>
+            <benefice>
+                <id>cloistered</id>
+            </benefice>
+        </suggestedBenefices>
+        <random>
+            <probabilityMultiplier>1</probabilityMultiplier>
+        </random>
+    </prospectors>
+    <apothecaries>
+        <name>
+            <es>Apotecarios</es>
+            <en>Apothecaries</en>
+        </name>
+        <group>minor_guild</group>
+        <restrictedToRaces>human, obun</restrictedToRaces>
+        <official>false</official>
+        <blessings>innovative, callous</blessings>
+        <suggestedBenefices>
+            <benefice>
+                <id>passageContracts</id>
+                <value>6</value>
+            </benefice>
+        </suggestedBenefices>
+        <random>
+            <probabilityMultiplier>1</probabilityMultiplier>
+        </random>
+    </apothecaries>
+    <weaponsmiths>
+        <name>
+            <es>Armeros</es>
+            <en>Weaponsmiths</en>
+        </name>
+        <group>minor_guild</group>
+        <restrictedToRaces>human</restrictedToRaces>
+        <official>false</official>
+        <blessings>curious, competitive</blessings>
+        <suggestedBenefices>
+            <benefice>
+                <id>protection</id>
+            </benefice>
+        </suggestedBenefices>
+        <random>
+            <probabilityMultiplier>1</probabilityMultiplier>
+        </random>
+    </weaponsmiths>
+    <courtesans>
+        <name>
+            <es>Cortesanas</es>
+            <en>Courtesans</en>
+        </name>
+        <group>minor_guild</group>
+        <restrictedToRaces>human, obun, ukar</restrictedToRaces>
+        <official>false</official>
+        <blessings>vain, popular</blessings>
+        <suggestedBenefices>
+            <benefice>
+                <id>gossipNetwork</id>
+                <value>1</value>
+            </benefice>
+            <benefice>
+                <id>secrets</id>
+            </benefice>
+        </suggestedBenefices>
+        <random>
+            <probabilityMultiplier>1</probabilityMultiplier>
+        </random>
+    </courtesans>
+    <mercurians>
+        <name>
+            <es>Bromistas</es>
+            <en>Mercurians</en>
+        </name>
+        <group>minor_guild</group>
+        <restrictedToRaces>human, obun, ukar, vorox</restrictedToRaces>
+        <official>false</official>
+        <blessings>vain, popular</blessings>
+        <suggestedBenefices>
+            <benefice>
+                <id>protection</id>
+            </benefice>
+            <benefice>
+                <id>darkSecret</id>
+                <value>2</value>
+            </benefice>
+        </suggestedBenefices>
+        <random>
+            <probabilityMultiplier>1</probabilityMultiplier>
+        </random>
+    </mercurians>
+    <questingKnights>
+        <name>
+            <es>Caballeros de la Búsqueda</es>
+            <en>Questing Knights</en>
+        </name>
+        <group>knightly_orders</group>
+        <restrictedToRaces>human</restrictedToRaces>
+        <official>false</official>
+        <blessings>just, prideful</blessings>
+        <suggestedBenefices>
+            <benefice>
+                <id>imperialCharter</id>
+            </benefice>
+            <benefice>
+                <id>wellTraveled</id>
+            </benefice>
+        </suggestedBenefices>
+        <random>
+            <probabilityMultiplier>1</probabilityMultiplier>
+        </random>
+    </questingKnights>
+    <swordsOfLextius>
+        <name>
+            <es>Las Espadas de Lextius</es>
+            <en>Swords of Lextius</en>
+        </name>
+        <group>knightly_orders</group>
+        <restrictedToRaces>human</restrictedToRaces>
+        <official>false</official>
+        <blessings>pious, righteous</blessings>
+        <suggestedBenefices>
+            <benefice>
+                <id>churchCharter</id>
+            </benefice>
+        </suggestedBenefices>
+        <random>
+            <probabilityMultiplier>1</probabilityMultiplier>
+        </random>
+    </swordsOfLextius>
+
+    <chorali>
+        <name>
+            <es>Los Chorali</es>
+            <en>The Chorali</en>
+        </name>
+        <group>minor_church</group>
+        <restrictedToRaces>human</restrictedToRaces>
+        <official>false</official>
+        <blessings>wellLiked</blessings>
+        <suggestedBenefices>
+            <benefice>
+                <id>chorali</id>
+            </benefice>
+        </suggestedBenefices>
+        <random>
+            <probabilityMultiplier>1</probabilityMultiplier>
+        </random>
+    </chorali>
+    <gjarti>
+        <name>
+            <es>Gjarti</es>
+            <en>Gjarti</en>
+        </name>
+        <group>minor_church</group>
+        <restrictedToRaces>human</restrictedToRaces>
+        <official>false</official>
+        <blessings>greenlore, nonInnovative</blessings>
+        <suggestedBenefices>
+            <benefice>
+                <id>refuge</id>
+                <value>2</value>
+            </benefice>
+            <benefice>
+                <id>persecutedByChurch</id>
+            </benefice>
+        </suggestedBenefices>
+        <random>
+            <probabilityMultiplier>1</probabilityMultiplier>
+        </random>
+    </gjarti>
+    <manja>
+        <name>
+            <es>Manja</es>
+            <en>Manja</en>
+        </name>
+        <group>minor_church</group>
+        <restrictedToRaces>human</restrictedToRaces>
+        <official>false</official>
+        <suggestedBenefices>
+            <benefice>
+                <id>persecutedByChurch</id>
+            </benefice>
+            <benefice>
+                <id>nobility</id>
+            </benefice>
+            <benefice>
+                <id>cash</id>
+            </benefice>
+        </suggestedBenefices>
+        <random>
+            <probabilityMultiplier>1</probabilityMultiplier>
+        </random>
+    </manja>
+    <dervishes>
+        <name>
+            <en>Dervishes</en>
+            <es>Derviches</es>
+        </name>
+        <group>military</group>
+        <restrictedToRaces>human</restrictedToRaces>
+        <official>false</official>
+        <blessings>weird</blessings>
+        <random>
+            <probabilityMultiplier>1</probabilityMultiplier>
+        </random>
+    </dervishes>
+
 
     <obun>
         <name>
@@ -1267,7 +1643,7 @@
             <surnames>Amateeeraaa, Varsahhh, Seeeema, Nuuuuit, Hanneeuuuuul, Alizéeeeee, Ahanaha, Shuuu, Niiivel,
                 Eriiioon, Brontes, Andiiil
             </surnames>
-            <probabilityMultiplier>100</probabilityMultiplier>
+            <probabilityMultiplier>1</probabilityMultiplier>
         </random>
         <restricted>true</restricted>
         <official>false</official>
@@ -1294,7 +1670,7 @@
             <surnames>Amateeeraaa, Varsahhh, Seeeema, Nuuuuit, Hanneeuuuuul, Alizéeeeee, Ahanaha, Shuuu, Niiivel,
                 Eriiioon, Brontes, Andiiil
             </surnames>
-            <probabilityMultiplier>100</probabilityMultiplier>
+            <probabilityMultiplier>1</probabilityMultiplier>
         </random>
         <restricted>true</restricted>
         <official>false</official>
@@ -1329,7 +1705,7 @@
                 </female>
             </names>
             <surnames>Baalaaji,Baalaraju, Caddaham, Bemossed, Bagwunagijik, Ayawamat</surnames>
-            <probabilityMultiplier>100</probabilityMultiplier>
+            <probabilityMultiplier>1</probabilityMultiplier>
         </random>
         <restricted>true</restricted>
         <official>false</official>
@@ -1357,7 +1733,7 @@
                 </female>
             </names>
             <surnames>Baalaaji,Baalaraju, Caddaham, Bemossed, Bagwunagijik, Ayawamat</surnames>
-            <probabilityMultiplier>100</probabilityMultiplier>
+            <probabilityMultiplier>10</probabilityMultiplier>
         </random>
         <restricted>true</restricted>
         <official>false</official>
@@ -1382,7 +1758,7 @@
             <surnames>Sari, Hidayat, Saputra, Wati, Rahayu, Kurniawan, Santoso, Susanti, Wahyuni, Ningsih, Gunawan,
                 Arifin, Siregar, Astuti, Wijaya, Handayani, Irawan
             </surnames>
-            <probabilityMultiplier>100</probabilityMultiplier>
+            <probabilityMultiplier>10</probabilityMultiplier>
         </random>
         <restricted>true</restricted>
         <official>false</official>
@@ -1412,7 +1788,7 @@
                 Tatengkeng, Batusura, Lumba, Rambulangi, Manganan, Malaiholo, Hehamahua, Sahanaya, Sahilatua, Hurek,
                 Riberu, Lamaborak, Leyn, Suebu, Solossa, Maniani, Wanggai Wonda
             </surnames>
-            <probabilityMultiplier>20</probabilityMultiplier>
+            <probabilityMultiplier>1</probabilityMultiplier>
         </random>
         <restricted>true</restricted>
         <official>false</official>
@@ -1444,7 +1820,7 @@
                 Tatengkeng, Batusura, Lumba, Rambulangi, Manganan, Malaiholo, Hehamahua, Sahanaya, Sahilatua, Hurek,
                 Riberu, Lamaborak, Leyn, Suebu, Solossa, Maniani, Wanggai Wonda
             </surnames>
-            <probabilityMultiplier>100</probabilityMultiplier>
+            <probabilityMultiplier>10</probabilityMultiplier>
         </random>
         <restricted>true</restricted>
         <official>false</official>
@@ -1476,7 +1852,7 @@
                 Tatengkeng, Batusura, Lumba, Rambulangi, Manganan, Malaiholo, Hehamahua, Sahanaya, Sahilatua, Hurek,
                 Riberu, Lamaborak, Leyn, Suebu, Solossa, Maniani, Wanggai Wonda
             </surnames>
-            <probabilityMultiplier>100</probabilityMultiplier>
+            <probabilityMultiplier>10</probabilityMultiplier>
         </random>
         <restricted>true</restricted>
         <official>false</official>
@@ -1486,7 +1862,7 @@
             <en>Ascorbite</en>
             <es>Ascorbita</es>
         </name>
-        <group>minor</group>
+        <group>xeno</group>
         <random>
             <names>
                 <male>Rooth, Gaiwk, Skreeth, Ewut, Quwoww, Rasek, Zeye, Sqritath, Gayuniww, Kinieceth, Kiaw, Krieth,
@@ -1505,7 +1881,7 @@
                 Skisheiwk, Sqeashe, Crareiw, Skreayie, Obeshrooth, Grelinneth, Skiaww, Kuaw, Khiath, Ghineh, Khassi,
                 Sqoneeh, Aiwe, Elleet, Rillerrai, Anashroo
             </surnames>
-            <probabilityMultiplier>100</probabilityMultiplier>
+            <probabilityMultiplier>1</probabilityMultiplier>
         </random>
         <restrictedToRaces>ascorbite</restrictedToRaces>
         <restricted>true</restricted>
@@ -1516,7 +1892,7 @@
             <en>Oro'ym</en>
             <es>Oro'ym</es>
         </name>
-        <group>minor</group>
+        <group>xeno</group>
         <random>
             <names>
                 <male>Methreh, Mnephah, Calo, Thripof, Sthestroth, Dhuistrori, Zuimnosi, Memrory, Vuireby, Drarlah,
@@ -1531,7 +1907,7 @@
             <surnames>Iestaf, Cecho, Phirli, Dyne, Dampe, Attos, Lensaleas, Dhanzapa, Dhiffepi, Peathradef, Vesa,
                 Grisho, Tydo, Llaphroh, Sthymri, Mnymo, Imradoe, Cyffamy, Pefovie, Cemlese
             </surnames>
-            <probabilityMultiplier>100</probabilityMultiplier>
+            <probabilityMultiplier>1</probabilityMultiplier>
         </random>
         <restrictedToRaces>oroym</restrictedToRaces>
         <restricted>true</restricted>
@@ -1545,7 +1921,9 @@
         <group>minor</group>
         <restrictedToRaces>human, vorox, obun, ukar</restrictedToRaces>
         <restricted>true</restricted>
-        <official>false</official>
+        <random>
+            <probabilityMultiplier>1</probabilityMultiplier>
+        </random>
     </noFaction>
     <minorFaction>
         <name>
@@ -1554,7 +1932,21 @@
         </name>
         <group>minor</group>
         <restrictedToRaces>human, vorox, obun, ukar</restrictedToRaces>
-        <restricted>true</restricted>
         <official>false</official>
+        <random>
+            <probabilityMultiplier>1</probabilityMultiplier>
+        </random>
     </minorFaction>
+    <military>
+        <name>
+            <en>Military</en>
+            <es>Militar</es>
+        </name>
+        <group>minor</group>
+        <restrictedToRaces>human, vorox, obun, ukar</restrictedToRaces>
+        <official>false</official>
+        <random>
+            <probabilityMultiplier>1</probabilityMultiplier>
+        </random>
+    </military>
 </factions>

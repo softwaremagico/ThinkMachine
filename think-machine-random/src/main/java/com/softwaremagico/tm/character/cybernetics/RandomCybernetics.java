@@ -26,7 +26,8 @@ package com.softwaremagico.tm.character.cybernetics;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.character.RestrictedElementException;
+import com.softwaremagico.tm.character.exceptions.RestrictedElementException;
+import com.softwaremagico.tm.character.exceptions.UnofficialElementNotAllowedException;
 import com.softwaremagico.tm.character.characteristics.CharacteristicDefinition;
 import com.softwaremagico.tm.character.characteristics.CharacteristicType;
 import com.softwaremagico.tm.character.creation.CostCalculator;
@@ -49,7 +50,7 @@ public class RandomCybernetics extends RandomSelector<CyberneticDevice> {
     private int desiredCyberneticsPoints;
 
     public RandomCybernetics(CharacterPlayer characterPlayer, Set<IRandomPreference<?>> preferences)
-            throws InvalidXmlElementException, RestrictedElementException {
+            throws InvalidXmlElementException, RestrictedElementException, UnofficialElementNotAllowedException {
         super(characterPlayer, preferences);
         totalDevices = CyberneticTotalDevicesPreferences.getSelected(getPreferences()).randomGaussian();
         desiredCyberneticsPoints = CyberneticPointsPreferences.getSelected(getPreferences()).randomGaussian();
@@ -67,6 +68,7 @@ public class RandomCybernetics extends RandomSelector<CyberneticDevice> {
         int guard = 0;
         while (guard < 20 && getCharacterPlayer().getCybernetics().size() < totalDevices
                 && getCharacterPlayer().getCyberneticsIncompatibility() < desiredCyberneticsPoints) {
+            guard++;
             final CyberneticDevice selectedDevice = selectElementByWeight();
             if (selectedDevice.getPoints() > remainingPoints) {
                 continue;
@@ -90,7 +92,7 @@ public class RandomCybernetics extends RandomSelector<CyberneticDevice> {
                     if (skill != null) {
                         try {
                             final RandomSkillExtraPoints randomSkillExtraPoints = new RandomSkillExtraPoints(
-                                    getCharacterPlayer(), getPreferences(), new HashSet<AvailableSkill>());
+                                    getCharacterPlayer(), getPreferences(), new HashSet<>());
                             // Assign random ranks to the skill.
                             remainingPoints -= randomSkillExtraPoints.spendSkillsPoints(skill, remainingPoints);
                         } catch (RestrictedElementException e) {
@@ -104,11 +106,10 @@ public class RandomCybernetics extends RandomSelector<CyberneticDevice> {
                         .getMaxCyberneticIncompatibility(getCharacterPlayer())) {
                     break;
                 }
-            } catch (RequiredCyberneticDevicesException e) {
-                // Cannot be added due to a requirement.
+            } catch (RequiredCyberneticDevicesException | UnofficialElementNotAllowedException e) {
+                // Cannot be added due to a requirement or setting limitation.
             }
             removeElementWeight(selectedDevice);
-            guard++;
         }
     }
 
@@ -190,11 +191,11 @@ public class RandomCybernetics extends RandomSelector<CyberneticDevice> {
 
     @Override
     protected void assignIfMandatory(CyberneticDevice element) throws InvalidXmlElementException {
-        return;
+        // Ignore
     }
 
     @Override
     protected void assignMandatoryValues(Set<CyberneticDevice> mandatoryValues) throws InvalidXmlElementException {
-        return;
+        // Ignore
     }
 }

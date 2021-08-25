@@ -32,5 +32,7 @@ public interface IRandomPreference<T> extends Comparable<T> {
 
     String name();
 
+
+
     IRandomPreference<T> getDefault();
 }

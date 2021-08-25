@@ -24,9 +24,6 @@ package com.softwaremagico.tm.json;
  * #L%
  */
 
-import java.lang.reflect.Type;
-import java.util.List;
-
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
@@ -36,20 +33,23 @@ import com.softwaremagico.tm.character.occultism.OccultismPathFactory;
 import com.softwaremagico.tm.character.occultism.OccultismPower;
 import com.softwaremagico.tm.log.MachineLog;
 
+import java.lang.reflect.Type;
+import java.util.List;
+
 public class OccultismPowerAdapter extends ElementAdapter<OccultismPower> {
 
-	protected OccultismPowerAdapter(String language, String moduleName) {
+	public OccultismPowerAdapter(String language, String moduleName) {
 		super(language, moduleName);
 	}
 
 	@Override
 	public OccultismPower deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
 		try {
-			final String occulstimPowerName = getElementId(jsonElement);
+			final String occultismPowerName = getElementId(jsonElement);
 			final List<OccultismPath> occultismPaths = OccultismPathFactory.getInstance().getElements(super.getLanguage(), super.getModuleName());
 			for (final OccultismPath occultismPath : occultismPaths) {
-				if (occultismPath.getOccultismPowers().get(occulstimPowerName) != null) {
-					return occultismPath.getOccultismPowers().get(occulstimPowerName);
+				if (occultismPath.getOccultismPowers().get(occultismPowerName) != null) {
+					return occultismPath.getOccultismPowers().get(occultismPowerName);
 				}
 			}
 		} catch (InvalidXmlElementException e) {

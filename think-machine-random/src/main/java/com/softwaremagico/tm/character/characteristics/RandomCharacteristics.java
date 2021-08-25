@@ -26,7 +26,8 @@ package com.softwaremagico.tm.character.characteristics;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.character.RestrictedElementException;
+import com.softwaremagico.tm.character.exceptions.RestrictedElementException;
+import com.softwaremagico.tm.character.exceptions.UnofficialElementNotAllowedException;
 import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
 import com.softwaremagico.tm.character.factions.FactionGroup;
 import com.softwaremagico.tm.log.RandomGenerationLog;
@@ -45,7 +46,7 @@ public class RandomCharacteristics extends RandomSelector<Characteristic> {
 
     public RandomCharacteristics(CharacterPlayer characterPlayer, Set<IRandomPreference<?>> preferences,
                                  Set<Characteristic> characteristicsMinimumValues) throws InvalidXmlElementException,
-            RestrictedElementException {
+            RestrictedElementException, UnofficialElementNotAllowedException {
         super(characterPlayer, null, preferences, characteristicsMinimumValues, new HashSet<>());
     }
 
@@ -189,7 +190,8 @@ public class RandomCharacteristics extends RandomSelector<Characteristic> {
         // Theurgy
         if (characteristic.getCharacteristicDefinition().getCharacteristicName() == CharacteristicName.FAITH) {
             if (getCharacterPlayer().getFaction() != null
-                    && getCharacterPlayer().getFaction().getFactionGroup() == FactionGroup.CHURCH) {
+                    && (getCharacterPlayer().getFaction().getFactionGroup() == FactionGroup.CHURCH ||
+                    getCharacterPlayer().getFaction().getFactionGroup() == FactionGroup.MINOR_CHURCH)) {
                 return FAIR_PROBABILITY;
             }
         }
@@ -295,7 +297,8 @@ public class RandomCharacteristics extends RandomSelector<Characteristic> {
             final OccultismLevelPreferences psique = OccultismLevelPreferences.getSelected(getPreferences());
             if (psique.maximum() > 2) {
                 if (getCharacterPlayer().getFaction() != null
-                        && getCharacterPlayer().getFaction().getFactionGroup() == FactionGroup.CHURCH) {
+                        && (getCharacterPlayer().getFaction().getFactionGroup() == FactionGroup.CHURCH ||
+                        getCharacterPlayer().getFaction().getFactionGroup() == FactionGroup.MINOR_CHURCH)) {
                     if (characteristic.getValue() < Math.min(MIN_FAITH_FOR_THEURGY,
                             FreeStyleCharacterCreation.getMaxInitialCharacteristicsValues(
                                     characteristic.getCharacteristicDefinition().getCharacteristicName(),

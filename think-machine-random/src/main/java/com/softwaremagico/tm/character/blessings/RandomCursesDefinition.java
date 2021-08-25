@@ -26,7 +26,8 @@ package com.softwaremagico.tm.character.blessings;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.character.RestrictedElementException;
+import com.softwaremagico.tm.character.exceptions.RestrictedElementException;
+import com.softwaremagico.tm.character.exceptions.UnofficialElementNotAllowedException;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.log.RandomGenerationLog;
 import com.softwaremagico.tm.random.RandomSelector;
@@ -40,7 +41,7 @@ import java.util.Set;
 public class RandomCursesDefinition extends RandomSelector<Blessing> {
 
     public RandomCursesDefinition(CharacterPlayer characterPlayer, Set<IRandomPreference<?>> preferences)
-            throws InvalidXmlElementException, RestrictedElementException {
+            throws InvalidXmlElementException, RestrictedElementException, UnofficialElementNotAllowedException {
         super(characterPlayer, preferences);
     }
 
@@ -60,7 +61,7 @@ public class RandomCursesDefinition extends RandomSelector<Blessing> {
                 } catch (TooManyBlessingsException e) {
                     // No more possible.
                     break;
-                } catch (BlessingAlreadyAddedException e) {
+                } catch (BlessingAlreadyAddedException | UnofficialElementNotAllowedException e) {
                     removeElementWeight(selectedCurse);
                     continue;
                 }
@@ -118,7 +119,7 @@ public class RandomCursesDefinition extends RandomSelector<Blessing> {
         if (blessingPreferences != null && element.getBlessingGroup() == BlessingGroup.get(blessingPreferences.name())) {
             try {
                 getCharacterPlayer().addBlessing(element);
-            } catch (TooManyBlessingsException | BlessingAlreadyAddedException e) {
+            } catch (TooManyBlessingsException | BlessingAlreadyAddedException | UnofficialElementNotAllowedException e) {
                 throw new ImpossibleToAssignMandatoryElementException("Impossible to assign mandatory blessing '"
                         + element + "'.", e);
             }

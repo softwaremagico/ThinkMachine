@@ -28,13 +28,12 @@ import com.google.gson.GsonBuilder;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.blessings.Blessing;
 import com.softwaremagico.tm.character.blessings.BlessingFactory;
-import com.softwaremagico.tm.character.characteristics.CharacteristicDefinition;
-import com.softwaremagico.tm.character.occultism.OccultismType;
-import com.softwaremagico.tm.character.skills.AvailableSkill;
-import com.softwaremagico.tm.character.skills.SkillDefinition;
+import com.softwaremagico.tm.character.factions.Faction;
+import com.softwaremagico.tm.character.races.Race;
 import com.softwaremagico.tm.character.values.IValue;
-import com.softwaremagico.tm.character.values.SpecialValue;
-import com.softwaremagico.tm.json.*;
+import com.softwaremagico.tm.json.FactionAdapter;
+import com.softwaremagico.tm.json.IValueAdapter;
+import com.softwaremagico.tm.json.RaceAdapter;
 import com.softwaremagico.tm.json.factories.BlessingFactoryElements;
 import com.softwaremagico.tm.json.factories.FactoryElements;
 
@@ -50,7 +49,7 @@ public class BlessingFactoryCacheLoader extends FactoryCacheLoader<Blessing> {
                 return factoryElements.getElements();
             }
         } catch (InvalidCacheFile invalidCacheFile) {
-           // Not cache file on this module.
+            // Not cache file on this module.
         }
         return null;
     }
@@ -64,13 +63,9 @@ public class BlessingFactoryCacheLoader extends FactoryCacheLoader<Blessing> {
     protected GsonBuilder initGsonBuilder(final String language, final String moduleName) {
         final GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.setPrettyPrinting();
-        gsonBuilder.registerTypeAdapter(IValue.class, new InterfaceAdapter<IValue>());
-        gsonBuilder.registerTypeAdapter(AvailableSkill.class, new AvailableSkillAdapter(language, moduleName));
-        gsonBuilder.registerTypeAdapter(CharacteristicDefinition.class, new CharacteristicDefinitionAdapter(language, moduleName));
-        gsonBuilder.registerTypeAdapter(SpecialValue.class, new SpecialValueAdapter(language, moduleName));
-        gsonBuilder.registerTypeAdapter(OccultismType.class, new OccultismTypeAdapter(language, moduleName));
-        gsonBuilder.registerTypeAdapter(SkillDefinition.class, new SkillDefinitionAdapter(language, moduleName));
-
+        gsonBuilder.registerTypeAdapter(IValue.class, new IValueAdapter(language, moduleName));
+        gsonBuilder.registerTypeAdapter(Race.class, new RaceAdapter(language, moduleName));
+        gsonBuilder.registerTypeAdapter(Faction.class, new FactionAdapter(language, moduleName));
         return gsonBuilder;
     }
 

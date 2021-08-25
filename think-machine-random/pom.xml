@@ -13,6 +13,8 @@
 
 	<properties>
 		<main.basedir>${basedir}/..</main.basedir>
+		<gson.cache.tmp.folder>${main.basedir}/think-machine-random/target/classes/Fading Suns Revised Edition/json
+		</gson.cache.tmp.folder>
 	</properties>
 
 	<build>
@@ -29,7 +31,48 @@
 					</suiteXmlFiles>
 					<useSystemClassLoader>false</useSystemClassLoader>
 				</configuration>
+			</plugin><!-- Generates new json cached -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<version>${exec-maven-plugin.version}</version>
+				<executions>
+					<execution>
+						<phase>compile</phase>
+						<goals>
+							<goal>java</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<mainClass>com.softwaremagico.tm.cache.FactoryCacheGenerator</mainClass>
+					<skip>false</skip>
+					<quietLogs>true</quietLogs>
+				</configuration>
 			</plugin>
+			<!-- Copies and replace json cached -->
+			<plugin>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>${maven-antrun-plugin.version}</version>
+				<executions>
+					<execution>
+						<phase>compile</phase>
+						<configuration>
+							<failOnError>false</failOnError>
+							<target>
+								<!-- copy json files -->
+								<copy todir="${gson.cache.folder}" overwrite="true">
+									<fileset dir="${gson.cache.tmp.folder}" includes="**" />
+								</copy>
+							</target>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
 		</plugins>
 	</build>
 

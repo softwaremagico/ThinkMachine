@@ -18,6 +18,8 @@ import com.softwaremagico.tm.character.equipment.weapons.RandomRangeWeapon;
 import com.softwaremagico.tm.character.equipment.weapons.RandomWeapon;
 import com.softwaremagico.tm.character.equipment.weapons.Weapon;
 import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
+import com.softwaremagico.tm.character.exceptions.RestrictedElementException;
+import com.softwaremagico.tm.character.exceptions.UnofficialElementNotAllowedException;
 import com.softwaremagico.tm.character.factions.FactionGroup;
 import com.softwaremagico.tm.character.factions.FactionsFactory;
 import com.softwaremagico.tm.character.occultism.OccultismType;
@@ -69,9 +71,9 @@ public class RandomCharacterTests {
         LanguagePool.clearCache();
     }
 
-    @Test
+    @Test(timeOut = 5000)
     public void chooseRaceAndFactionTest() throws InvalidXmlElementException,
-            InvalidRandomElementSelectedException, RestrictedElementException {
+            InvalidRandomElementSelectedException, RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0, RacePreferences.HUMAN,
                 FactionPreferences.NOBILITY);
@@ -82,8 +84,20 @@ public class RandomCharacterTests {
                 .getElement(RacePreferences.HUMAN.name(), LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
     }
 
-    @Test
-    public void chooseRaceAndFactionTestXeno() throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException {
+    @Test(timeOut = 5000)
+    public void chooseMinorGuild() throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException,
+            UnofficialElementNotAllowedException {
+        final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0, RacePreferences.HUMAN,
+                FactionPreferences.MINOR_GUILD);
+        randomizeCharacter.setCharacterDefinition();
+
+        Assert.assertEquals(characterPlayer.getFaction().getFactionGroup(), FactionGroup.MINOR_GUILD);
+    }
+
+    @Test(timeOut = 5000)
+    public void chooseRaceAndFactionTestXeno() throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException,
+            UnofficialElementNotAllowedException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0, RacePreferences.XENO,
                 FactionPreferences.GUILD);
@@ -94,9 +108,11 @@ public class RandomCharacterTests {
                 LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
     }
 
-    @Test(expectedExceptions = InvalidRandomElementSelectedException.class)
-    public void chooseFactionForShantorTest() throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException {
+    @Test(timeOut = 5000, expectedExceptions = InvalidRandomElementSelectedException.class)
+    public void chooseFactionForShantorTest() throws InvalidXmlElementException, InvalidRandomElementSelectedException,
+            RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        characterPlayer.getSettings().setOnlyOfficialAllowed(false);
         characterPlayer.setRace(RaceFactory.getInstance().getElement("shantor", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0,
                 FactionPreferences.NOBILITY);
@@ -104,7 +120,7 @@ public class RandomCharacterTests {
         randomizeCharacter.setCharacterDefinition();
     }
 
-    @Test
+    @Test(timeOut = 5000)
     public void readRandomSkillConfigurationArchery() {
         final SkillDefinition skillDefinition = SkillsDefinitionsFactory.getInstance().get("archery", "en",
                 PathManager.DEFAULT_MODULE_FOLDER);
@@ -112,9 +128,9 @@ public class RandomCharacterTests {
         Assert.assertEquals(skillDefinition.getRandomDefinition().getMaximumTechLevel().intValue(), 2);
     }
 
-    @Test
+    @Test(timeOut = 5000)
     public void checkWeightLimitedByDefinition()
-            throws InvalidXmlElementException, RestrictedElementException {
+            throws InvalidXmlElementException, RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         final RandomWeapon randomWeapons = new RandomRangeWeapon(characterPlayer, null, new HashSet<>());
         final Weapon largeRock = WeaponFactory.getInstance().getElement("rock", LANGUAGE,
@@ -122,9 +138,9 @@ public class RandomCharacterTests {
         Assert.assertEquals(randomWeapons.getTotalWeight(largeRock), 0);
     }
 
-    @Test(expectedExceptions = {InvalidRandomElementSelectedException.class})
+    @Test(timeOut = 5000, expectedExceptions = {InvalidRandomElementSelectedException.class})
     public void checkSkillLimitationByTechnology()
-            throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException {
+            throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         characterPlayer.setCharacteristic(CharacteristicName.TECH, 7);
 
@@ -134,9 +150,9 @@ public class RandomCharacterTests {
         randomSkills.validateElement(availableSkill);
     }
 
-    @Test(expectedExceptions = {InvalidRandomElementSelectedException.class})
+    @Test(timeOut = 5000, expectedExceptions = {InvalidRandomElementSelectedException.class})
     public void checkSkillLimitationByLowTechnology()
-            throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException {
+            throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         characterPlayer.setCharacteristic(CharacteristicName.TECH, 1);
 
@@ -146,9 +162,9 @@ public class RandomCharacterTests {
         randomSkills.validateElement(availableSkill);
     }
 
-    @Test(expectedExceptions = {InvalidRandomElementSelectedException.class})
+    @Test(timeOut = 5000, expectedExceptions = {InvalidRandomElementSelectedException.class})
     public void checkBeneficeLimitationByRace()
-            throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException {
+            throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         characterPlayer
                 .setRace(RaceFactory.getInstance().getElement("human", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
@@ -159,7 +175,7 @@ public class RandomCharacterTests {
         randomBenefice.validateElement(benefice.getRandomDefinition());
     }
 
-    @Test
+    @Test(timeOut = 5000)
     public void readRandomSkillConfigurationSlugs() {
         final SkillDefinition skillDefinition = SkillsDefinitionsFactory.getInstance().get("slugGuns", "en",
                 PathManager.DEFAULT_MODULE_FOLDER);
@@ -167,9 +183,9 @@ public class RandomCharacterTests {
         Assert.assertEquals(skillDefinition.getRandomDefinition().getMaximumTechLevel().intValue(), 6);
     }
 
-    @Test
+    @Test(timeOut = 5000)
     public void selectSkillGroup() throws InvalidXmlElementException,
-            InvalidRandomElementSelectedException, RestrictedElementException {
+            InvalidRandomElementSelectedException, RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0,
                 SkillGroupPreferences.COMBAT);
@@ -177,28 +193,45 @@ public class RandomCharacterTests {
 
         Assert.assertEquals(CostCalculator.getCost(characterPlayer),
                 FreeStyleCharacterCreation.getFreeAvailablePoints(characterPlayer.getInfo().getAge(), characterPlayer.getRace()));
-        Assert.assertTrue(characterPlayer.getRanksAssigned(SkillGroupPreferences.COMBAT.getSkillGroup()) > 10);
+        Assert.assertTrue(characterPlayer.getRanksAssigned(SkillGroupPreferences.COMBAT.getSkillGroup()) >= 10);
     }
 
-    @Test
-    public void mustHaveStatus() throws InvalidXmlElementException,
-            InvalidRandomElementSelectedException, RestrictedElementException {
+    @Test(timeOut = 5000)
+    public void nobilityMustHaveStatus() throws InvalidXmlElementException,
+            InvalidRandomElementSelectedException, RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         characterPlayer
                 .setRace(RaceFactory.getInstance().getElement("human", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         characterPlayer.setFaction(
                 FactionsFactory.getInstance().getElement("hazat", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0,
-                StatusPreferences.HIGH);
+                RankPreferences.HIGH);
         randomizeCharacter.createCharacter();
         Assert.assertNotNull(characterPlayer.getRank());
         Assert.assertEquals(CostCalculator.getCost(characterPlayer),
                 FreeStyleCharacterCreation.getFreeAvailablePoints(characterPlayer.getInfo().getAge(), characterPlayer.getRace()));
     }
 
-    @Test
+    @Test(timeOut = 50000)
+    public void manjaMustHaveStatus() throws InvalidXmlElementException,
+            InvalidRandomElementSelectedException, RestrictedElementException, UnofficialElementNotAllowedException {
+        final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        characterPlayer.getSettings().setOnlyOfficialAllowed(false);
+        characterPlayer
+                .setRace(RaceFactory.getInstance().getElement("human", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+        characterPlayer.setFaction(
+                FactionsFactory.getInstance().getElement("manja", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+        final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0,
+                RankPreferences.HIGH);
+        randomizeCharacter.createCharacter();
+        Assert.assertNotNull(characterPlayer.getRank());
+        Assert.assertEquals(CostCalculator.getCost(characterPlayer),
+                FreeStyleCharacterCreation.getFreeAvailablePoints(characterPlayer.getInfo().getAge(), characterPlayer.getRace()));
+    }
+
+    @Test(timeOut = 5000)
     public void checkBlessingPreferences() throws InvalidXmlElementException,
-            InvalidRandomElementSelectedException, RestrictedElementException {
+            InvalidRandomElementSelectedException, RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0,
                 CurseNumberPreferences.FAIR, BlessingNumberPreferences.HIGH);
@@ -212,7 +245,7 @@ public class RandomCharacterTests {
                     + characterPlayer.getFaction().getBlessings(BlessingClassification.CURSE).size());
         } catch (Error ae) {
             final CharacterSheet characterSheet = new CharacterSheet(characterPlayer);
-            System.out.println(characterSheet.toString());
+            System.out.println(characterSheet);
             throw ae;
         }
 
@@ -223,33 +256,33 @@ public class RandomCharacterTests {
                     + characterPlayer.getFaction().getBlessings().size());
         } catch (Exception e) {
             final CharacterSheet characterSheet = new CharacterSheet(characterPlayer);
-            System.out.println(characterSheet.toString());
+            System.out.println(characterSheet);
             throw e;
         }
     }
 
-    @Test
+    @Test(timeOut = 50000)
     public void createPsiqueCharacter() throws InvalidXmlElementException,
-            InvalidRandomElementSelectedException, RestrictedElementException {
+            InvalidRandomElementSelectedException, RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         characterPlayer
                 .setRace(RaceFactory.getInstance().getElement("human", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0,
-                SpecializationPreferences.SPECIALIZED, OccultismPathLevelPreferences.HIGH, OccultismLevelPreferences.HIGH,
-                StatusPreferences.FAIR);
+                SpecializationPreferences.GENERALIZED, OccultismPathLevelPreferences.HIGH, OccultismLevelPreferences.HIGH,
+                RankPreferences.FAIR);
         randomizeCharacter.createCharacter();
         try {
             Assert.assertTrue(characterPlayer.getSelectedPowers().values().size() > 0);
-        } catch (Exception e) {
+        } catch (Exception | AssertionError e) {
             final CharacterSheet characterSheet = new CharacterSheet(characterPlayer);
-            System.out.println(characterSheet.toString());
+            System.out.println(characterSheet);
             throw e;
         }
     }
 
-    @Test
+    @Test(timeOut = 5000)
     public void createChurchCharacter() throws InvalidXmlElementException,
-            InvalidRandomElementSelectedException, RestrictedElementException {
+            InvalidRandomElementSelectedException, RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         characterPlayer
                 .setRace(RaceFactory.getInstance().getElement("human", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
@@ -257,14 +290,14 @@ public class RandomCharacterTests {
                 FactionsFactory.getInstance().getElement("orthodox", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0,
                 SpecializationPreferences.SPECIALIZED, OccultismPathLevelPreferences.HIGH, OccultismLevelPreferences.HIGH,
-                StatusPreferences.FAIR);
+                RankPreferences.FAIR);
         randomizeCharacter.createCharacter();
         Assert.assertTrue(characterPlayer.getTotalSelectedPowers() > 0);
     }
 
-    @Test
+    @Test(timeOut = 5000)
     public void voroxCannotHavePsique() throws InvalidXmlElementException,
-            InvalidRandomElementSelectedException, RestrictedElementException {
+            InvalidRandomElementSelectedException, RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         characterPlayer
                 .setRace(RaceFactory.getInstance().getElement("vorox", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
@@ -284,8 +317,9 @@ public class RandomCharacterTests {
         Assert.assertEquals(characterPlayer.getTotalSelectedPowers(), 0);
     }
 
-    @Test
-    public void namesByStatus() throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException {
+    @Test(timeOut = 5000)
+    public void namesByStatus() throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException,
+            UnofficialElementNotAllowedException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0,
                 NamesPreferences.VERY_HIGH);
@@ -294,9 +328,9 @@ public class RandomCharacterTests {
         Assert.assertNotNull(characterPlayer.getInfo().getSurname());
     }
 
-    @Test
-    public void weapons() throws InvalidXmlElementException,
-            InvalidRandomElementSelectedException, BeneficeAlreadyAddedException, InvalidRanksException, RestrictedElementException {
+    @Test(timeOut = 5000)
+    public void weapons() throws InvalidXmlElementException, InvalidRandomElementSelectedException, BeneficeAlreadyAddedException,
+            InvalidRanksException, RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         characterPlayer.setSkillRank(AvailableSkillsFactory.getInstance().getElement("slugGuns", LANGUAGE,
                 PathManager.DEFAULT_MODULE_FOLDER), 5);
@@ -314,9 +348,21 @@ public class RandomCharacterTests {
         Assert.assertTrue(characterPlayer.getAllWeapons().size() >= 2);
     }
 
-    @Test
+    @Test(timeOut = 5000)
+    public void female() throws InvalidXmlElementException, RestrictedElementException, InvalidRandomElementSelectedException,
+            UnofficialElementNotAllowedException {
+        final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        characterPlayer
+                .setRace(RaceFactory.getInstance().getElement("human", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+        final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0,
+                GenderPreferences.FEMALE);
+        randomizeCharacter.createCharacter();
+        Assert.assertEquals(characterPlayer.getInfo().getGender(), Gender.FEMALE);
+    }
+
+    @Test(timeOut = 5000)
     public void age() throws InvalidXmlElementException,
-            InvalidRandomElementSelectedException, RestrictedElementException {
+            InvalidRandomElementSelectedException, RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         characterPlayer
                 .setRace(RaceFactory.getInstance().getElement("human", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
@@ -373,9 +419,9 @@ public class RandomCharacterTests {
         }
     }
 
-    @Test
+    @Test(timeOut = 5000)
     public void weaponsSkills() throws InvalidXmlElementException,
-            InvalidRandomElementSelectedException, RestrictedElementException {
+            InvalidRandomElementSelectedException, RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         characterPlayer
                 .addWeapon(WeaponFactory.getInstance().getElement("axe", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
@@ -406,9 +452,9 @@ public class RandomCharacterTests {
                 .getElement("energyGuns", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)) > 0);
     }
 
-    @Test
+    @Test(timeOut = 8000)
     public void cybernetics() throws InvalidXmlElementException,
-            InvalidRandomElementSelectedException, RestrictedElementException {
+            InvalidRandomElementSelectedException, RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0,
                 CyberneticTotalDevicesPreferences.CYBORG, CyberneticPointsPreferences.SOUL_LESS);
@@ -418,10 +464,10 @@ public class RandomCharacterTests {
                 characterPlayer.getCybernetics().size() >= CyberneticTotalDevicesPreferences.CYBORG.minimum());
     }
 
-    @Test
+    @Test(timeOut = 5000)
     public void cyberneticsSkills()
-            throws InvalidXmlElementException, InvalidRandomElementSelectedException,
-            TooManyCyberneticDevicesException, RequiredCyberneticDevicesException, RestrictedElementException {
+            throws InvalidXmlElementException, InvalidRandomElementSelectedException, TooManyCyberneticDevicesException,
+            RequiredCyberneticDevicesException, RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         characterPlayer.setCharacteristic(CharacteristicName.WILL, 6);
         characterPlayer.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("spyEye", LANGUAGE,
@@ -437,9 +483,9 @@ public class RandomCharacterTests {
                 LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)) > 0);
     }
 
-    @Test
+    @Test(timeOut = 5000)
     public void experience() throws
-            InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException {
+            InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         int experiencePoints = 100;
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, experiencePoints,
@@ -450,8 +496,9 @@ public class RandomCharacterTests {
         Assert.assertTrue(characterPlayer.getExperienceEarned() - characterPlayer.getExperienceExpended() < 2);
     }
 
-    @Test
-    public void royalVorox() throws InvalidXmlElementException, RestrictedElementException, InvalidRandomElementSelectedException {
+    @Test(timeOut = 5000)
+    public void royalVorox() throws InvalidXmlElementException, RestrictedElementException, InvalidRandomElementSelectedException,
+            UnofficialElementNotAllowedException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         characterPlayer
                 .setRace(RaceFactory.getInstance().getElement("vorox", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));

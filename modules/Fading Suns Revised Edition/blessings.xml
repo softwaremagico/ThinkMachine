@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <blessings>
     <version>1</version>
-    <totalElements>154</totalElements>
+    <totalElements>159</totalElements>
     <handsome>
         <name>
             <en>Handsome</en>
@@ -371,6 +371,7 @@
                 </situation>
             </bonification>
         </bonifications>
+        <group>behaviour</group>
     </innovative>
     <just>
         <name>
@@ -1219,7 +1220,6 @@
         <bonifications>
             <bonification>
                 <value>-2</value>
-                <affects></affects>
                 <situation>
                     <en>Around strangers</en>
                     <es>Entre extraños</es>
@@ -1548,10 +1548,6 @@
             <bonification>
                 <value>-1</value>
                 <affects>vitality</affects>
-                <situation>
-                    <en></en>
-                    <es></es>
-                </situation>
             </bonification>
         </bonifications>
         <group>injuries</group>
@@ -1575,10 +1571,6 @@
             <bonification>
                 <value>-1</value>
                 <affects>movement</affects>
-                <situation>
-                    <en></en>
-                    <es></es>
-                </situation>
             </bonification>
         </bonifications>
         <group>injuries</group>
@@ -1664,26 +1656,14 @@
             <bonification>
                 <value>-2</value>
                 <affects>vigor</affects>
-                <situation>
-                    <en></en>
-                    <es></es>
-                </situation>
             </bonification>
             <bonification>
                 <value>-2</value>
                 <affects>atheltics</affects>
-                <situation>
-                    <en></en>
-                    <es></es>
-                </situation>
             </bonification>
             <bonification>
                 <value>-2</value>
                 <affects>movement</affects>
-                <situation>
-                    <en></en>
-                    <es></es>
-                </situation>
             </bonification>
         </bonifications>
         <group>injuries</group>
@@ -1892,10 +1872,6 @@
             <bonification>
                 <value>2</value>
                 <affects>controlSkills</affects>
-                <situation>
-                    <en></en>
-                    <es></es>
-                </situation>
             </bonification>
         </bonifications>
         <group>knacks</group>
@@ -1996,10 +1972,6 @@
             <bonification>
                 <value>2</value>
                 <affects>thinkMachine</affects>
-                <situation>
-                    <en></en>
-                    <es></es>
-                </situation>
             </bonification>
         </bonifications>
         <group>knacks</group>
@@ -2333,10 +2305,6 @@
             <bonification>
                 <value>-2</value>
                 <affects>techRedemption</affects>
-                <situation>
-                    <en></en>
-                    <es></es>
-                </situation>
             </bonification>
         </bonifications>
         <group>knacks</group>
@@ -3742,6 +3710,7 @@
         <group>behaviour</group>
         <official>false</official>
         <restricted>true</restricted>
+        <official>false</official>
         <curse>true</curse>
     </obedient>
     <etyriClaw>
@@ -3837,6 +3806,7 @@
         </bonifications>
         <group>injuries</group>
         <restricted>true</restricted>
+        <official>false</official>
     </hawkEye>
     <flightless>
         <name>
@@ -4116,6 +4086,132 @@
         <official>false</official>
         <curse>true</curse>
     </requiresMoisture>
-
+    <paranoid>
+        <name>
+            <en>Paranoid</en>
+            <es>Paranoico</es>
+        </name>
+        <description>
+            <en>Personality quirks can be simulated with Blessings or Curses. For instance, most Hawkwoods are
+                excessively Prideful, and find it hard to turn the other cheek when insulted. Thus, a Hawkwood may have
+                a –3 modifier to her Will, in case she ever had to roll to maintain her composure -it’s important not to
+                lose one’s temper at the gala ball.
+            </en>
+            <es>Las peculiaridades de la personalidad pueden simularse con las Bendiciones y Maldiciones. Por ejemplo,
+                la mayoría de los Hawkwoods son excesivamente Orgullosos, y les resulta difícil poner la otra mejilla
+                cuando se les insulta. Por este motivo, un Hawkwood puede tener un modificador de -3 a su Voluntad, en
+                el caso de que tuviera que realizar una tirada para mantener su compostura, dado que es importante no
+                perder el temple en un baile de gala.
+            </es>
+        </description>
+        <cost>2</cost>
+        <bonifications>
+            <bonification>
+                <value>2</value>
+                <affects>wits</affects>
+                <situation>
+                    <en>When scrutinized</en>
+                    <es>Se le escruta</es>
+                </situation>
+            </bonification>
+        </bonifications>
+        <group>behaviour</group>
+        <official>false</official>
+        <curse>true</curse>
+    </paranoid>
+    <competitive>
+        <name>
+            <es>Competitivo</es>
+            <en>Competitive</en>
+        </name>
+        <description>
+            <en>The following Blessing or Curse is only available for some specific races or factions</en>
+            <es>Esta bendición o maldición únicamente está disponible para algunas razas o facciones</es>
+        </description>
+        <cost>2</cost>
+        <bonifications>
+            <bonification>
+                <value>2</value>
+                <affects>will</affects>
+                <situation>
+                    <en>Around rivals</en>
+                    <es>Entre rivales</es>
+                </situation>
+            </bonification>
+        </bonifications>
+        <curse>true</curse>
+        <group>behaviour</group>
+        <restricted>true</restricted>
+        <official>false</official>
+    </competitive>
+    <popular>
+        <name>
+            <en>Popular</en>
+            <es>Popular</es>
+        </name>
+        <description>
+            <en>The following Blessing or Curse is only available for some specific races or factions</en>
+            <es>Esta bendición o maldición únicamente está disponible para algunas razas o facciones</es>
+        </description>
+        <cost>2</cost>
+        <bonifications>
+            <bonification>
+                <value>2</value>
+                <affects>influence</affects>
+                <situation>
+                    <en>Among customers</en>
+                    <es>Entre clientes</es>
+                </situation>
+            </bonification>
+        </bonifications>
+        <group>behaviour</group>
+        <restricted>true</restricted>
+        <official>false</official>
+    </popular>
+    <greenlore>
+        <name>
+            <en>Greenlore</en>
+            <es>Silvano</es>
+        </name>
+        <description>
+            <en>The following Blessing or Curse is only available for some specific races or factions</en>
+            <es>Esta bendición o maldición únicamente está disponible para algunas razas o facciones</es>
+        </description>
+        <cost>2</cost>
+        <bonifications>
+            <bonification>
+                <value>2</value>
+                <affects>perception</affects>
+                <situation>
+                    <en>In the wild</en>
+                    <es>En la naturaleza</es>
+                </situation>
+            </bonification>
+        </bonifications>
+        <group>knacks</group>
+        <restricted>true</restricted>
+        <official>false</official>
+    </greenlore>
+    <nonInnovative>
+        <name>
+            <en>Non-innovative</en>
+            <es>Poco Innovador</es>
+        </name>
+        <cost>2</cost>
+        <bonifications>
+            <bonification>
+                <value>2</value>
+                <affects>tech</affects>
+                <situation>
+                    <en>To invent something new</en>
+                    <es>Inventar algo nuevo</es>
+                </situation>
+            </bonification>
+        </bonifications>
+        <group>behaviour</group>
+        <curse>true</curse>
+        <official>false</official>
+        <restricted>true</restricted>
+    </nonInnovative>
 
 </blessings>

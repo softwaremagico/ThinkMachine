@@ -29,7 +29,9 @@ import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.factions.Faction;
 import com.softwaremagico.tm.character.planets.Planet;
 import com.softwaremagico.tm.character.planets.PlanetFactory;
+import com.softwaremagico.tm.character.races.Race;
 import com.softwaremagico.tm.json.FactionAdapter;
+import com.softwaremagico.tm.json.RaceAdapter;
 import com.softwaremagico.tm.json.factories.FactoryElements;
 import com.softwaremagico.tm.json.factories.PlanetFactoryElements;
 
@@ -59,6 +61,8 @@ public class PlanetFactoryCacheLoader extends FactoryCacheLoader<Planet> {
     protected GsonBuilder initGsonBuilder(final String language, final String moduleName) {
         final GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.setPrettyPrinting();
+        gsonBuilder.registerTypeAdapter(Faction.class, new FactionAdapter(language, moduleName));
+        gsonBuilder.registerTypeAdapter(Race.class, new RaceAdapter(language, moduleName));
         gsonBuilder.registerTypeAdapter(Faction.class, new FactionAdapter(language, moduleName));
         return gsonBuilder;
     }

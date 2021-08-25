@@ -25,10 +25,10 @@ package com.softwaremagico.tm.random.party;
  */
 
 import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.character.RandomizeCharacter;
-import com.softwaremagico.tm.character.RestrictedElementException;
+import com.softwaremagico.tm.character.*;
 import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
+import com.softwaremagico.tm.character.exceptions.RestrictedElementException;
+import com.softwaremagico.tm.character.exceptions.UnofficialElementNotAllowedException;
 import com.softwaremagico.tm.log.MachineLog;
 import com.softwaremagico.tm.party.Party;
 import com.softwaremagico.tm.random.RandomSelector;
@@ -47,10 +47,13 @@ public class RandomPartyDefinition extends RandomSelector<RandomPartyMember> {
     // RandomParty id --> Threat
     private Map<RandomPartyMember, Integer> threatByProfile = new HashMap<>();
     private final String moduleName;
+    private final Settings settings;
 
     protected RandomPartyDefinition(RandomParty randomParty, int threatLevel, String moduleName,
-                                    Set<IRandomPreference<?>> preferences) throws InvalidXmlElementException, RestrictedElementException {
+                                    Set<IRandomPreference<?>> preferences) throws InvalidXmlElementException,
+            UnofficialElementNotAllowedException, RestrictedElementException {
         super(null, randomParty, preferences, new HashSet<>(), new HashSet<>());
+        settings = new Settings();
         this.moduleName = moduleName;
         this.threatLevel = threatLevel;
     }
@@ -72,7 +75,7 @@ public class RandomPartyDefinition extends RandomSelector<RandomPartyMember> {
     }
 
     private void assignProfile(RandomPartyMember member) throws TooManyBlessingsException, InvalidXmlElementException,
-            DuplicatedPreferenceException, InvalidRandomElementSelectedException, RestrictedElementException {
+            DuplicatedPreferenceException, InvalidRandomElementSelectedException, RestrictedElementException, UnofficialElementNotAllowedException {
         if (member.getMaxNumber() != null && member.getMaxNumber() >= getProfileAssigned(member)) {
             return;
         }
@@ -113,7 +116,7 @@ public class RandomPartyDefinition extends RandomSelector<RandomPartyMember> {
                     // Party threat increased. Update weights.
                     updateWeights();
                 } catch (TooManyBlessingsException | DuplicatedPreferenceException | InvalidRandomElementSelectedException |
-                        RestrictedElementException e) {
+                        RestrictedElementException | UnofficialElementNotAllowedException e) {
                     MachineLog.errorMessage(this.getClass().getName(), e);
                 }
             } catch (InvalidRandomElementSelectedException e) {
@@ -148,8 +151,9 @@ public class RandomPartyDefinition extends RandomSelector<RandomPartyMember> {
     }
 
     private CharacterPlayer createCharacter(RandomPartyMember member) throws InvalidXmlElementException, InvalidRandomElementSelectedException,
-            RestrictedElementException {
+            RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(member.getLanguage(), member.getModuleName());
+        characterPlayer.getSettings().copy(settings);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, getPreferences(),
                 member.getRandomProfile());
         randomizeCharacter.createCharacter();
@@ -163,7 +167,8 @@ public class RandomPartyDefinition extends RandomSelector<RandomPartyMember> {
             while (member.getMinNumber() != null && member.getMinNumber() < getProfileAssigned(member)) {
                 assignProfile(member);
             }
-        } catch (TooManyBlessingsException | DuplicatedPreferenceException | InvalidRandomElementSelectedException | RestrictedElementException e) {
+        } catch (TooManyBlessingsException | DuplicatedPreferenceException | InvalidRandomElementSelectedException | RestrictedElementException |
+                UnofficialElementNotAllowedException e) {
             throw new ImpossibleToAssignMandatoryElementException("Character Player could not be generated.", e);
         }
     }

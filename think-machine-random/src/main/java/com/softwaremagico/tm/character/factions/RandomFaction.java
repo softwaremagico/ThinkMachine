@@ -26,7 +26,8 @@ package com.softwaremagico.tm.character.factions;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.character.RestrictedElementException;
+import com.softwaremagico.tm.character.exceptions.RestrictedElementException;
+import com.softwaremagico.tm.character.exceptions.UnofficialElementNotAllowedException;
 import com.softwaremagico.tm.random.RandomSelector;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.FactionPreferences;
@@ -38,7 +39,7 @@ import java.util.Set;
 public class RandomFaction extends RandomSelector<Faction> {
 
     public RandomFaction(CharacterPlayer characterPlayer, Set<IRandomPreference<?>> preferences) throws InvalidXmlElementException,
-            RestrictedElementException {
+            RestrictedElementException, UnofficialElementNotAllowedException {
         super(characterPlayer, preferences);
     }
 
@@ -48,6 +49,8 @@ public class RandomFaction extends RandomSelector<Faction> {
             getCharacterPlayer().setFaction(selectElementByWeight());
         } catch (RestrictedElementException e) {
             throw new InvalidFactionException("Faction is restricted.", e);
+        } catch (UnofficialElementNotAllowedException e) {
+            throw new InvalidFactionException("Faction is not official.", e);
         }
     }
 
@@ -73,7 +76,7 @@ public class RandomFaction extends RandomSelector<Faction> {
             }
         } else
             // No faction preference selected. Xeno factions has preferences by its own factions.
-            if (getCharacterPlayer().getRace().isXeno() && faction.getRestrictedToRaces().size() == 1 &&
+            if (getCharacterPlayer().getRace() != null && getCharacterPlayer().getRace().isXeno() && faction.getRestrictedToRaces().size() == 1 &&
                     faction.getRestrictedToRaces().contains(getCharacterPlayer().getRace())) {
                 return 100;
             }
@@ -82,11 +85,11 @@ public class RandomFaction extends RandomSelector<Faction> {
 
     @Override
     protected void assignIfMandatory(Faction element) throws InvalidXmlElementException {
-        return;
+        //Nothing yet.
     }
 
     @Override
     protected void assignMandatoryValues(Set<Faction> mandatoryValues) throws InvalidXmlElementException {
-        return;
+        //Nothing yet.
     }
 }

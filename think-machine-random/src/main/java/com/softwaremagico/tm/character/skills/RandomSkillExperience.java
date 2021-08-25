@@ -26,7 +26,8 @@ package com.softwaremagico.tm.character.skills;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.character.RestrictedElementException;
+import com.softwaremagico.tm.character.exceptions.RestrictedElementException;
+import com.softwaremagico.tm.character.exceptions.UnofficialElementNotAllowedException;
 import com.softwaremagico.tm.character.xp.ElementCannotBeUpgradeWithExperienceException;
 import com.softwaremagico.tm.character.xp.Experience;
 import com.softwaremagico.tm.character.xp.NotEnoughExperienceException;
@@ -41,7 +42,7 @@ import java.util.Set;
 public class RandomSkillExperience extends RandomSkills {
 
     public RandomSkillExperience(CharacterPlayer characterPlayer, Set<IRandomPreference<?>> preferences) throws InvalidXmlElementException,
-            RestrictedElementException {
+            RestrictedElementException, UnofficialElementNotAllowedException {
         super(characterPlayer, preferences, new HashSet<>(), new HashSet<>());
     }
 

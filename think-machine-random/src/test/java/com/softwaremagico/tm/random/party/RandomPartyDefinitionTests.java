@@ -25,7 +25,8 @@ package com.softwaremagico.tm.random.party;
  */
 
 import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.character.RestrictedElementException;
+import com.softwaremagico.tm.character.exceptions.RestrictedElementException;
+import com.softwaremagico.tm.character.exceptions.UnofficialElementNotAllowedException;
 import com.softwaremagico.tm.file.PathManager;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -36,8 +37,8 @@ import java.util.HashSet;
 public class RandomPartyDefinitionTests {
 	private static final String LANGUAGE = "es";
 
-	@Test
-	public void mandatoryMembersAdded() throws InvalidXmlElementException, RestrictedElementException {
+	@Test(timeOut = 5000)
+	public void mandatoryMembersAdded() throws InvalidXmlElementException, RestrictedElementException, UnofficialElementNotAllowedException {
 		final RandomParty thugParty = RandomPartyFactory.getInstance().getElement("thugBand", LANGUAGE,
 				PathManager.DEFAULT_MODULE_FOLDER);
 		final RandomPartyDefinition randomPartyDefinition = new RandomPartyDefinition(thugParty, 0,
@@ -48,9 +49,9 @@ public class RandomPartyDefinitionTests {
 		Assert.assertNotNull(randomPartyDefinition.getParty().getPartyName());
 	}
 
-	@Test
+	@Test(timeOut = 5000)
 	public void threatLevelAddMoreMembersToParty() throws InvalidXmlElementException,
-			RestrictedElementException {
+			RestrictedElementException, UnofficialElementNotAllowedException {
 		final RandomParty thugParty = RandomPartyFactory.getInstance().getElement("thugBand", LANGUAGE,
 				PathManager.DEFAULT_MODULE_FOLDER);
 		final RandomPartyDefinition randomPartyDefinition = new RandomPartyDefinition(thugParty, 200,

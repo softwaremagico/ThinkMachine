@@ -26,7 +26,8 @@ package com.softwaremagico.tm.rules;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.character.RestrictedElementException;
+import com.softwaremagico.tm.character.exceptions.RestrictedElementException;
+import com.softwaremagico.tm.character.exceptions.UnofficialElementNotAllowedException;
 import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
 import com.softwaremagico.tm.character.benefices.BeneficeAlreadyAddedException;
 import com.softwaremagico.tm.character.factions.FactionsFactory;
@@ -41,14 +42,16 @@ public class SkillTests {
     private static final String LANGUAGE = "es";
 
     @Test(expectedExceptions = InvalidRanksException.class)
-    public void checkSkillLimitedToFaction() throws InvalidXmlElementException, InvalidRanksException, RestrictedElementException {
+    public void checkSkillLimitedToFaction() throws InvalidXmlElementException, InvalidRanksException, RestrictedElementException,
+            UnofficialElementNotAllowedException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.setFaction(FactionsFactory.getInstance().getElement("vorox", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("spacecraftOperations", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER), 1);
     }
 
     @Test
-    public void checkSkillAllowedWithProfessionalContract() throws InvalidXmlElementException, BeneficeAlreadyAddedException, InvalidRanksException, RestrictedElementException {
+    public void checkSkillAllowedWithProfessionalContract() throws InvalidXmlElementException, BeneficeAlreadyAddedException, InvalidRanksException,
+            RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.setFaction(FactionsFactory.getInstance().getElement("vorox", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("professionalContract_2", LANGUAGE,
@@ -57,7 +60,8 @@ public class SkillTests {
     }
 
     @Test(expectedExceptions = InvalidRanksException.class)
-    public void checkSkillNotAllowedWithProfessionalContractLowLevel() throws InvalidXmlElementException, BeneficeAlreadyAddedException, InvalidRanksException, RestrictedElementException {
+    public void checkSkillNotAllowedWithProfessionalContractLowLevel() throws InvalidXmlElementException, BeneficeAlreadyAddedException,
+            InvalidRanksException, RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.setFaction(FactionsFactory.getInstance().getElement("vorox", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("professionalContract_2", LANGUAGE,
@@ -66,13 +70,15 @@ public class SkillTests {
     }
 
     @Test(expectedExceptions = InvalidRanksException.class)
-    public void checkSkillHasOtherSkillsRestrictions() throws InvalidXmlElementException, InvalidRanksException, RestrictedElementException {
+    public void checkSkillHasOtherSkillsRestrictions() throws InvalidXmlElementException, InvalidRanksException, RestrictedElementException,
+            UnofficialElementNotAllowedException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("terraforming", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER), 3);
     }
 
     @Test
-    public void checkSkillHasOtherSkillsRestrictionsResolved() throws InvalidXmlElementException, InvalidRanksException, RestrictedElementException {
+    public void checkSkillHasOtherSkillsRestrictionsResolved() throws InvalidXmlElementException, InvalidRanksException, RestrictedElementException,
+            UnofficialElementNotAllowedException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.setFaction(FactionsFactory.getInstance().getElement("engineers", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("physicalScience", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER), 3);
@@ -81,14 +87,16 @@ public class SkillTests {
     }
 
     @Test(expectedExceptions = RestrictedElementException.class)
-    public void checkSkillRestrictedToRace() throws InvalidXmlElementException, InvalidRanksException, RestrictedElementException {
+    public void checkSkillRestrictedToRace() throws InvalidXmlElementException, InvalidRanksException, RestrictedElementException,
+            UnofficialElementNotAllowedException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.setRace(RaceFactory.getInstance().getElement("vorox", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("fly", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER), 3);
     }
 
     @Test(expectedExceptions = RestrictedElementException.class)
-    public void checkSkillSpecializationRestrictedToRace() throws InvalidXmlElementException, InvalidRanksException, RestrictedElementException {
+    public void checkSkillSpecializationRestrictedToRace() throws InvalidXmlElementException, InvalidRanksException,
+            RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.setRace(RaceFactory.getInstance().getElement("vorox", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         player.setSkillRank(AvailableSkillsFactory.getInstance().getElement("lore", "kelantiLore", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER), 3);

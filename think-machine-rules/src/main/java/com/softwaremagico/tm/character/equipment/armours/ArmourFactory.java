@@ -30,6 +30,7 @@ import com.softwaremagico.tm.character.equipment.DamageType;
 import com.softwaremagico.tm.character.equipment.DamageTypeFactory;
 import com.softwaremagico.tm.character.equipment.shields.Shield;
 import com.softwaremagico.tm.character.equipment.shields.ShieldFactory;
+import com.softwaremagico.tm.json.factories.cache.ArmourFactoryCacheLoader;
 import com.softwaremagico.tm.json.factories.cache.FactoryCacheLoader;
 import com.softwaremagico.tm.language.ITranslator;
 
@@ -55,6 +56,8 @@ public class ArmourFactory extends XmlFactory<Armour> {
     private static final String SHIELD = "shield";
     private static final String OTHER = "others";
 
+    private ArmourFactoryCacheLoader armourFactoryCacheLoader;
+
     private static class ArmourFactoryInit {
         public static final ArmourFactory INSTANCE = new ArmourFactory();
     }
@@ -70,7 +73,10 @@ public class ArmourFactory extends XmlFactory<Armour> {
 
     @Override
     public FactoryCacheLoader<Armour> getFactoryCacheLoader() {
-        return null;
+        if (armourFactoryCacheLoader == null) {
+            armourFactoryCacheLoader = new ArmourFactoryCacheLoader();
+        }
+        return armourFactoryCacheLoader;
     }
 
     @Override

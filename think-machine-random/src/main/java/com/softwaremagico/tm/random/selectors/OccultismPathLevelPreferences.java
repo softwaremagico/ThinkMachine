@@ -32,11 +32,11 @@ public enum OccultismPathLevelPreferences implements IPsiPreference<OccultismPat
     // Gaussian distribution.
     NONE(0, 0, 0, 0),
 
-    LOW(1, 3, 2, 1),
+    LOW(1, 2, 1, 1),
 
-    GOOD(1, 6, 3, 3),
+    GOOD(1, 3, 2, 1),
 
-    HIGH(1, 9, 6, 3),
+    HIGH(2, 4, 2, 2),
 
     ANY(1, 9, 5, 4);
 

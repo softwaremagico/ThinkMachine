@@ -8,7 +8,7 @@
         <group>servitude</group>
         <faction>noFaction</faction>
         <preferences>CombatPreferences.PEACEFUL, CharacteristicsPreferences.BODY, SpecializationPreferences.GENERALIZED,
-            StatusPreferences.NONE, TechnologicalPreferences.BASIC, WeaponsPreferences.NONE
+            RankPreferences.NONE, TechnologicalPreferences.BASIC, WeaponsPreferences.NONE
         </preferences>
         <requiredSkills>
             <skill>
@@ -34,7 +34,7 @@
         <group>servitude</group>
         <faction>noFaction</faction>
         <preferences>CombatPreferences.FAIR, CharacteristicsPreferences.BODY, SpecializationPreferences.FAIR,
-            StatusPreferences.NONE, TechnologicalPreferences.MEDIEVAL, WeaponsPreferences.NONE
+            RankPreferences.NONE, TechnologicalPreferences.MEDIEVAL, WeaponsPreferences.NONE
         </preferences>
         <requiredSkills>
             <skill>
@@ -687,7 +687,8 @@
             <es>Milicia</es>
         </name>
         <group>army</group>
-        <faction>minorFaction</faction>
+        <faction>military</faction>
+        <official>false</official>
         <preferences>CombatPreferences.FAIR, CharacteristicsPreferences.BODY, TechnologicalPreferences.BASIC,
             DifficultLevelPreferences.EASY
         </preferences>
@@ -717,9 +718,10 @@
             <es>Infantería</es>
         </name>
         <group>army</group>
-        <faction>minorFaction</faction>
+        <faction>military</faction>
+        <official>false</official>
         <preferences>CombatPreferences.BELLIGERENT, CharacteristicsPreferences.BODY, SkillGroupPreferences.COMBAT,
-            SpecializationPreferences.SPECIALIZED, StatusPreferences.LOW, TechnologicalPreferences.MODERN,
+            SpecializationPreferences.SPECIALIZED, RankPreferences.LOW, TechnologicalPreferences.MODERN,
             WeaponsPreferences.HIGH
         </preferences>
         <characteristicsMinimumValues>
@@ -757,7 +759,8 @@
             <es>Especialista en Armas Pesadas</es>
         </name>
         <group>army</group>
-        <faction>minorFaction</faction>
+        <faction>military</faction>
+        <official>false</official>
         <parent>infantry</parent>
         <characteristicsMinimumValues>
             <strength>6</strength>
@@ -776,7 +779,8 @@
             <es>Rastreador</es>
         </name>
         <group>army</group>
-        <faction>minorFaction</faction>
+        <faction>military</faction>
+        <official>false</official>
         <preferences>CombatPreferences.FAIR, TechnologicalPreferences.MODERN, SpecializationPreferences.SPECIALIZED
         </preferences>
         <characteristicsMinimumValues>
@@ -812,6 +816,8 @@
         </name>
         <group>army</group>
         <profile>general</profile>
+        <faction>military</faction>
+        <official>false</official>
     </general>
     <rider>
         <name>
@@ -819,9 +825,10 @@
             <es>Jinete de Caballería</es>
         </name>
         <group>army</group>
-        <faction>minorFaction</faction>
+        <faction>military</faction>
+        <official>false</official>
         <preferences>CombatPreferences.BELLIGERENT, CharacteristicsPreferences.BODY, SkillGroupPreferences.COMBAT,
-            SpecializationPreferences.SPECIALIZED, StatusPreferences.LOW, TechnologicalPreferences.MODERN,
+            SpecializationPreferences.SPECIALIZED, RankPreferences.LOW, TechnologicalPreferences.MODERN,
             WeaponsPreferences.HIGH
         </preferences>
         <characteristicsMinimumValues>
@@ -861,9 +868,10 @@
             <es>Piloto de Tanque</es>
         </name>
         <group>army</group>
-        <faction>minorFaction</faction>
+        <faction>military</faction>
+        <official>false</official>
         <preferences>CombatPreferences.BELLIGERENT, CharacteristicsPreferences.BODY, SkillGroupPreferences.COMBAT,
-            SpecializationPreferences.SPECIALIZED, StatusPreferences.LOW, TechnologicalPreferences.MODERN,
+            SpecializationPreferences.SPECIALIZED, RankPreferences.LOW, TechnologicalPreferences.MODERN,
             WeaponsPreferences.HIGH
         </preferences>
         <characteristicsMinimumValues>
@@ -897,9 +905,10 @@
             <es>Artillero</es>
         </name>
         <group>army</group>
-        <faction>minorFaction</faction>
+        <faction>military</faction>
+        <official>false</official>
         <preferences>CombatPreferences.BELLIGERENT, CharacteristicsPreferences.BODY, SkillGroupPreferences.COMBAT,
-            SpecializationPreferences.SPECIALIZED, StatusPreferences.LOW, TechnologicalPreferences.FUTURIST,
+            SpecializationPreferences.SPECIALIZED, RankPreferences.LOW, TechnologicalPreferences.FUTURIST,
             WeaponsPreferences.HIGH
         </preferences>
         <characteristicsMinimumValues>
@@ -930,9 +939,10 @@
             <es>Ingeniero de Combate</es>
         </name>
         <group>army</group>
-        <faction>minorFaction</faction>
+        <faction>military</faction>
+        <official>false</official>
         <preferences>CombatPreferences.BELLIGERENT, SkillGroupPreferences.COMBAT,
-            SpecializationPreferences.SPECIALIZED, StatusPreferences.LOW, TechnologicalPreferences.FUTURIST,
+            SpecializationPreferences.SPECIALIZED, RankPreferences.LOW, TechnologicalPreferences.FUTURIST,
             WeaponsPreferences.HIGH
         </preferences>
         <characteristicsMinimumValues>
@@ -967,9 +977,10 @@
             <es>Capellán</es>
         </name>
         <group>army</group>
-        <faction>minorFaction</faction>
+        <faction>military</faction>
+        <official>false</official>
         <preferences>CombatPreferences.BELLIGERENT, CharacteristicsPreferences.BODY, SkillGroupPreferences.COMBAT,
-            SpecializationPreferences.SPECIALIZED, StatusPreferences.LOW, TechnologicalPreferences.MODERN,
+            SpecializationPreferences.SPECIALIZED, RankPreferences.LOW, TechnologicalPreferences.MODERN,
             WeaponsPreferences.HIGH, OccultismLevelPreferences.FAIR
         </preferences>
         <characteristicsMinimumValues>
@@ -1006,8 +1017,9 @@
             <es>Médico de Combate</es>
         </name>
         <group>army</group>
-        <faction>minorFaction</faction>
-        <preferences>SpecializationPreferences.SPECIALIZED, StatusPreferences.LOW, TechnologicalPreferences.MODERN
+        <faction>military</faction>
+        <official>false</official>
+        <preferences>SpecializationPreferences.SPECIALIZED, RankPreferences.LOW, TechnologicalPreferences.MODERN
         </preferences>
         <characteristicsMinimumValues>
             <wits>6</wits>
@@ -1041,9 +1053,10 @@
             <es>Policía Militar</es>
         </name>
         <group>army</group>
-        <faction>minorFaction</faction>
+        <faction>military</faction>
+        <official>false</official>
         <preferences>CombatPreferences.BELLIGERENT, SkillGroupPreferences.COMBAT,
-            SpecializationPreferences.SPECIALIZED, StatusPreferences.LOW, TechnologicalPreferences.MODERN,
+            SpecializationPreferences.SPECIALIZED, RankPreferences.LOW, TechnologicalPreferences.MODERN,
             WeaponsPreferences.HIGH
         </preferences>
         <characteristicsMinimumValues>
@@ -1081,9 +1094,10 @@
             <es>Suboficiales</es>
         </name>
         <group>army</group>
-        <faction>minorFaction</faction>
+        <faction>military</faction>
+        <official>false</official>
         <preferences>CombatPreferences.BELLIGERENT, SkillGroupPreferences.COMBAT,
-            SpecializationPreferences.SPECIALIZED, StatusPreferences.LOW, TechnologicalPreferences.MODERN,
+            SpecializationPreferences.SPECIALIZED, RankPreferences.LOW, TechnologicalPreferences.MODERN,
             WeaponsPreferences.HIGH
         </preferences>
         <characteristicsMinimumValues>
@@ -1102,9 +1116,10 @@
             <es>Rangers</es>
         </name>
         <group>specialForces</group>
-        <faction>minorFaction</faction>
+        <faction>military</faction>
+        <official>false</official>
         <preferences>CombatPreferences.BELLIGERENT, SkillGroupPreferences.COMBAT,
-            SpecializationPreferences.SPECIALIZED, StatusPreferences.LOW, TechnologicalPreferences.MODERN,
+            SpecializationPreferences.SPECIALIZED, RankPreferences.LOW, TechnologicalPreferences.MODERN,
             WeaponsPreferences.HIGH
         </preferences>
         <characteristicsMinimumValues>
@@ -1150,9 +1165,10 @@
             <es>Cybercuerpos</es>
         </name>
         <group>specialForces</group>
-        <faction>minorFaction</faction>
+        <faction>military</faction>
+        <official>false</official>
         <preferences>CombatPreferences.BELLIGERENT, SkillGroupPreferences.COMBAT,
-            SpecializationPreferences.SPECIALIZED, StatusPreferences.LOW, TechnologicalPreferences.SPACE_CITIZEN,
+            SpecializationPreferences.SPECIALIZED, RankPreferences.LOW, TechnologicalPreferences.SPACE_CITIZEN,
             WeaponsPreferences.HIGH, CyberneticPointsPreferences.CYBORG, CyberneticTotalDevicesPreferences.HIGH
         </preferences>
         <characteristicsMinimumValues>
@@ -1189,9 +1205,10 @@
             <es>La Guarnición de Estigma</es>
         </name>
         <group>specialForces</group>
-        <faction>minorFaction</faction>
+        <faction>military</faction>
+        <official>false</official>
         <preferences>CombatPreferences.BELLIGERENT, SkillGroupPreferences.COMBAT, CharacteristicsPreferences.BODY,
-            SpecializationPreferences.SPECIALIZED, StatusPreferences.LOW, TechnologicalPreferences.SPACE_CITIZEN,
+            SpecializationPreferences.SPECIALIZED, RankPreferences.LOW, TechnologicalPreferences.SPACE_CITIZEN,
             WeaponsPreferences.HIGH
         </preferences>
         <characteristicsMinimumValues>
@@ -1241,7 +1258,8 @@
             <es>La Guardia del Fénix</es>
         </name>
         <group>specialForces</group>
-        <faction>minorFaction</faction>
+        <faction>military</faction>
+        <official>false</official>
         <preferences>CombatPreferences.BELLIGERENT, SkillGroupPreferences.COMBAT, CharacteristicsPreferences.BODY,
             SpecializationPreferences.VERY_SPECIALIZED, TechnologicalPreferences.SPACE_CITIZEN,
             WeaponsPreferences.HIGH
@@ -1289,7 +1307,8 @@
             <es>Luchador por la Libertad</es>
         </name>
         <group>guerrilla</group>
-        <faction>minorFaction</faction>
+        <faction>military</faction>
+        <official>false</official>
         <preferences>CombatPreferences.FAIR, CharacteristicsPreferences.BODY</preferences>
         <characteristicsMinimumValues>
             <dexterity>6</dexterity>
@@ -1335,8 +1354,9 @@
             <es>Piloto</es>
         </name>
         <group>airForce</group>
-        <faction>minorFaction</faction>
-        <preferences>SpecializationPreferences.SPECIALIZED, StatusPreferences.LOW, TechnologicalPreferences.FUTURIST
+        <faction>military</faction>
+        <official>false</official>
+        <preferences>SpecializationPreferences.SPECIALIZED, RankPreferences.LOW, TechnologicalPreferences.FUTURIST
         </preferences>
         <characteristicsMinimumValues>
             <dexterity>6</dexterity>
@@ -1369,8 +1389,9 @@
             <es>Bombardero</es>
         </name>
         <group>airForce</group>
-        <faction>minorFaction</faction>
-        <preferences>SpecializationPreferences.SPECIALIZED, StatusPreferences.LOW, TechnologicalPreferences.FUTURIST
+        <faction>military</faction>
+        <official>false</official>
+        <preferences>SpecializationPreferences.SPECIALIZED, RankPreferences.LOW, TechnologicalPreferences.FUTURIST
         </preferences>
         <characteristicsMinimumValues>
             <dexterity>6</dexterity>
@@ -1403,8 +1424,9 @@
             <es>Mecánico</es>
         </name>
         <group>airForce</group>
-        <faction>minorFaction</faction>
-        <preferences>SpecializationPreferences.VERY_SPECIALIZED, StatusPreferences.LOW,
+        <faction>military</faction>
+        <official>false</official>
+        <preferences>SpecializationPreferences.VERY_SPECIALIZED, RankPreferences.LOW,
             TechnologicalPreferences.FUTURIST
         </preferences>
         <characteristicsMinimumValues>
@@ -1426,8 +1448,9 @@
             <es>Especialista de Radar</es>
         </name>
         <group>airForce</group>
-        <faction>minorFaction</faction>
-        <preferences>SpecializationPreferences.VERY_SPECIALIZED, StatusPreferences.LOW,
+        <faction>military</faction>
+        <official>false</official>
+        <preferences>SpecializationPreferences.VERY_SPECIALIZED, RankPreferences.LOW,
             TechnologicalPreferences.FUTURIST,
             CharacteristicsPreferences.MIND
         </preferences>
@@ -1458,7 +1481,8 @@
             <es>Técnicos</es>
         </name>
         <group>navy</group>
-        <faction>minorFaction</faction>
+        <faction>military</faction>
+        <official>false</official>
         <preferences>SpecializationPreferences.VERY_SPECIALIZED, TechnologicalPreferences.FUTURIST</preferences>
         <characteristicsMinimumValues>
             <dexterity>6</dexterity>
@@ -1486,7 +1510,8 @@
             <es>Timonel</es>
         </name>
         <group>navy</group>
-        <faction>minorFaction</faction>
+        <faction>military</faction>
+        <official>false</official>
         <preferences>SpecializationPreferences.VERY_SPECIALIZED, TechnologicalPreferences.FUTURIST</preferences>
         <characteristicsMinimumValues>
             <wits>6</wits>
@@ -1521,7 +1546,8 @@
             <es>Buzo</es>
         </name>
         <group>navy</group>
-        <faction>minorFaction</faction>
+        <faction>military</faction>
+        <official>false</official>
         <preferences>CombatPreferences.BELLIGERENT, SkillGroupPreferences.COMBAT,
             SpecializationPreferences.VERY_SPECIALIZED, TechnologicalPreferences.FUTURIST,
             WeaponsPreferences.HIGH, CombatActionsPreferences.HIGH, CombatActionsGroupPreferences.FIGHT
@@ -1572,9 +1598,10 @@
             <es>Artillero</es>
         </name>
         <group>navy</group>
-        <faction>minorFaction</faction>
+        <faction>military</faction>
+        <official>false</official>
         <preferences>CombatPreferences.BELLIGERENT, CharacteristicsPreferences.BODY, SkillGroupPreferences.COMBAT,
-            SpecializationPreferences.SPECIALIZED, StatusPreferences.LOW, TechnologicalPreferences.FUTURIST,
+            SpecializationPreferences.SPECIALIZED, RankPreferences.LOW, TechnologicalPreferences.FUTURIST,
             WeaponsPreferences.HIGH
         </preferences>
         <characteristicsMinimumValues>
@@ -1607,7 +1634,8 @@
             <es>Guardacostas</es>
         </name>
         <group>navy</group>
-        <faction>minorFaction</faction>
+        <faction>military</faction>
+        <official>false</official>
         <preferences>CombatPreferences.BELLIGERENT, SkillGroupPreferences.COMBAT, CharacteristicsPreferences.BODY,
             SpecializationPreferences.VERY_SPECIALIZED, TechnologicalPreferences.SPACE_CITIZEN, WeaponsPreferences.HIGH
         </preferences>
@@ -1649,7 +1677,8 @@
             <es>Marine</es>
         </name>
         <group>navy</group>
-        <faction>minorFaction</faction>
+        <faction>military</faction>
+        <official>false</official>
         <preferences>CombatPreferences.BELLIGERENT, SkillGroupPreferences.COMBAT, CharacteristicsPreferences.BODY,
             SpecializationPreferences.VERY_SPECIALIZED, TechnologicalPreferences.FUTURIST,
             WeaponsPreferences.HIGH, CombatActionsPreferences.HIGH, CombatActionsGroupPreferences.FIGHT
@@ -1697,8 +1726,9 @@
             <es>Marinero</es>
         </name>
         <group>spaceLegions</group>
-        <faction>minorFaction</faction>
-        <preferences>SpecializationPreferences.SPECIALIZED, StatusPreferences.LOW,
+        <faction>military</faction>
+        <official>false</official>
+        <preferences>SpecializationPreferences.SPECIALIZED, RankPreferences.LOW,
             TechnologicalPreferences.SPACE_CITIZEN
         </preferences>
         <characteristicsMinimumValues>
@@ -1739,8 +1769,9 @@
             <es>Piloto de Caza</es>
         </name>
         <group>spaceLegions</group>
-        <faction>minorFaction</faction>
-        <preferences>SpecializationPreferences.SPECIALIZED, StatusPreferences.LOW,
+        <faction>military</faction>
+        <official>false</official>
+        <preferences>SpecializationPreferences.SPECIALIZED, RankPreferences.LOW,
             TechnologicalPreferences.SPACE_CITIZEN
         </preferences>
         <characteristicsMinimumValues>
@@ -1788,7 +1819,8 @@
             <es>Merodeador</es>
         </name>
         <group>spaceLegions</group>
-        <faction>minorFaction</faction>
+        <faction>military</faction>
+        <official>false</official>
         <preferences>CombatPreferences.BELLIGERENT, SkillGroupPreferences.COMBAT, CharacteristicsPreferences.BODY,
             SpecializationPreferences.VERY_SPECIALIZED, TechnologicalPreferences.SPACE_CITIZEN,
             WeaponsPreferences.HIGH, CombatActionsPreferences.HIGH, CombatActionsGroupPreferences.FIGHT
@@ -1833,7 +1865,8 @@
             <es>Espía</es>
         </name>
         <group>intelligence</group>
-        <faction>minorFaction</faction>
+        <faction>military</faction>
+        <official>false</official>
         <preferences>SpecializationPreferences.SPECIALIZED, SkillGroupPreferences.MALEFACTION
         </preferences>
         <characteristicsMinimumValues>
@@ -1866,13 +1899,14 @@
         </requiredSkills>
         <weapons>typicalDerringer</weapons>
     </spy>
-    <slayer>
+    <militarSlayer>
         <name>
             <en>Slayer</en>
             <es>Ejecutor</es>
         </name>
         <group>intelligence</group>
-        <faction>minorFaction</faction>
+        <faction>military</faction>
+        <official>false</official>
         <preferences>CombatPreferences.BELLIGERENT, SkillGroupPreferences.MALEFACTION, FactionPreferences.NONE,
             CharacteristicsPreferences.BODY, SpecializationPreferences.VERY_SPECIALIZED,
             TechnologicalPreferences.SPACE_CITIZEN, WeaponsPreferences.HIGH
@@ -1928,7 +1962,7 @@
         </suggestedSkills>
         <suggestedBenefices>vendetta, secrets</suggestedBenefices>
         <weapons>typicalSniperRifle, martechMidgetPalmLaser, garrote, hollowKnife</weapons>
-    </slayer>
+    </militarSlayer>
     <voroxCommand>
         <name>
             <en>Vorox Commandos</en>
@@ -1936,6 +1970,7 @@
         </name>
         <group>weirdForces</group>
         <faction>vorox</faction>
+        <official>false</official>
         <race>vorox</race>
         <preferences>CombatPreferences.BELLIGERENT, CharacteristicsPreferences.BODY,
             SpecializationPreferences.VERY_SPECIALIZED, TechnologicalPreferences.MODERN, WeaponsPreferences.HIGH
@@ -1979,6 +2014,7 @@
             <es>La Luz Manifiesta</es>
         </name>
         <group>weirdForces</group>
+        <official>false</official>
         <preferences>CombatPreferences.BELLIGERENT, SpecializationPreferences.VERY_SPECIALIZED,
             TechnologicalPreferences.MODERN, OccultismLevelPreferences.ANY, OccultismTypePreferences.THEURGY,
             FactionPreferences.CHURCH
@@ -2027,7 +2063,8 @@
             <es>Derviches</es>
         </name>
         <group>weirdForces</group>
-        <faction>minorFaction</faction>
+        <official>false</official>
+        <faction>dervishes</faction>
         <preferences>CombatPreferences.BELLIGERENT, CharacteristicsPreferences.BODY,
             SpecializationPreferences.VERY_SPECIALIZED, TechnologicalPreferences.MODERN, WeaponsPreferences.HIGH,
             OccultismLevelPreferences.ANY, OccultismTypePreferences.PSI, CombatActionsPreferences.HIGH,
@@ -2066,8 +2103,7 @@
                 <id>warfare</id>
             </skill>
         </suggestedSkills>
-        <mandatoryBlessings>weird</mandatoryBlessings>
-        <mandatoryOccultismPaths>farHand, soma</mandatoryOccultismPaths>
+        <mandatoryOccultismPaths>farHand, soma, bedlam</mandatoryOccultismPaths>
         <weapons>typicalSMG, curvedSword</weapons>
         <armours>stiffsynth</armours>
     </dervishes>
@@ -2078,6 +2114,7 @@
         </name>
         <group>weirdForces</group>
         <faction>minorFaction</faction>
+        <official>false</official>
         <preferences>CombatPreferences.BELLIGERENT, CharacteristicsPreferences.BODY,
             SpecializationPreferences.VERY_SPECIALIZED, CombatActionsPreferences.HIGH,
             TechnologicalPreferences.SPACE_CITIZEN, WeaponsPreferences.WARLORD, ArmourPreferences.MEDIUM,
@@ -2119,6 +2156,7 @@
         </name>
         <group>weirdForces</group>
         <faction>minorFaction</faction>
+        <official>false</official>
         <preferences>CombatPreferences.BELLIGERENT, CharacteristicsPreferences.BODY,
             SpecializationPreferences.VERY_SPECIALIZED, CombatActionsPreferences.HIGH,
             TechnologicalPreferences.SPACE_CITIZEN, WeaponsPreferences.MEDIUM, ArmourPreferences.MEDIUM,
@@ -2151,6 +2189,7 @@
         </name>
         <group>weirdForces</group>
         <faction>minorFaction</faction>
+        <official>false</official>
         <preferences>CombatPreferences.BELLIGERENT, SpecializationPreferences.VERY_SPECIALIZED,
             TechnologicalPreferences.MODERN, OccultismLevelPreferences.HIGH,
         </preferences>
@@ -2240,8 +2279,7 @@
         <group>barbarian</group>
         <faction>vuldrok</faction>
         <preferences>CombatPreferences.BELLIGERENT, TechnologicalPreferences.MODERN,
-            SpecializationPreferences.SPECIALIZED,
-            CharacteristicsPreferences.BODY,
+            SpecializationPreferences.SPECIALIZED, CharacteristicsPreferences.BODY
         </preferences>
         <characteristicsMinimumValues>
             <presence>6</presence>
@@ -2263,6 +2301,574 @@
         <weapons>typicalAutoRifle, axe</weapons>
         <armours>scaleMailMetal</armours>
     </vuldrok>
+
+
+    <theMasque>
+        <name>
+            <en>The Masque</en>
+            <es>La Máscara</es>
+        </name>
+        <group>minor_guild</group>
+        <faction>theMasque</faction>
+        <preferences>RankPreferences.LOW, CashPreferences.LOW
+        </preferences>
+        <characteristicsMinimumValues>
+            <wits>7</wits>
+            <will>6</will>
+        </characteristicsMinimumValues>
+        <requiredSkills>
+            <skill>
+                <id>influence</id>
+            </skill>
+            <skill>
+                <id>observe</id>
+            </skill>
+            <skill>
+                <id>arts</id>
+                <speciality>music</speciality>
+            </skill>
+            <skill>
+                <id>etiquette</id>
+            </skill>
+        </requiredSkills>
+        <suggestedSkills>
+            <skill>
+                <id>bureaucracy</id>
+            </skill>
+            <skill>
+                <id>performance</id>
+                <speciality>acting</speciality>
+            </skill>
+            <skill>
+                <id>performance</id>
+                <speciality>dancing</speciality>
+            </skill>
+            <skill>
+                <id>performance</id>
+                <speciality>singing</speciality>
+            </skill>
+            <skill>
+                <id>performance</id>
+                <speciality>storytelling</speciality>
+            </skill>
+        </suggestedSkills>
+        <official>false</official>
+    </theMasque>
+    <carnivalers>
+        <name>
+            <es>Feriantes</es>
+            <en>Carnivalers</en>
+        </name>
+        <group>minor_guild</group>
+        <faction>carnivalers</faction>
+        <preferences>RankPreferences.LOW, CashPreferences.LOW
+        </preferences>
+        <characteristicsMinimumValues>
+            <wits>6</wits>
+            <strength>6</strength>
+        </characteristicsMinimumValues>
+        <requiredSkills>
+            <skill>
+                <id>influence</id>
+            </skill>
+            <skill>
+                <id>observe</id>
+            </skill>
+            <skill>
+                <id>streetWise</id>
+            </skill>
+            <skill>
+                <id>disguise</id>
+            </skill>
+        </requiredSkills>
+        <suggestedSkills>
+            <skill>
+                <id>investigation</id>
+            </skill>
+            <skill>
+                <id>fight</id>
+            </skill>
+            <skill>
+                <id>knavery</id>
+            </skill>
+            <skill>
+                <id>performance</id>
+                <speciality>acting</speciality>
+            </skill>
+            <skill>
+                <id>performance</id>
+                <speciality>dancing</speciality>
+            </skill>
+            <skill>
+                <id>performance</id>
+                <speciality>singing</speciality>
+            </skill>
+            <skill>
+                <id>performance</id>
+                <speciality>storytelling</speciality>
+            </skill>
+        </suggestedSkills>
+        <official>false</official>
+    </carnivalers>
+    <slayer>
+        <name>
+            <en>Slayer</en>
+            <es>Asesino</es>
+        </name>
+        <group>minor_guild</group>
+        <faction>slayer</faction>
+        <preferences>RankPreferences.LOW
+        </preferences>
+        <preferences>CombatPreferences.BELLIGERENT, FactionPreferences.NONE, SpecializationPreferences.VERY_SPECIALIZED,
+            TechnologicalPreferences.SPACE_CITIZEN, WeaponsPreferences.HIGH
+        </preferences>
+        <characteristicsMinimumValues>
+            <perception>6</perception>
+            <will>6</will>
+            <wits>6</wits>
+            <dexterity>6</dexterity>
+            <tech>6</tech>
+        </characteristicsMinimumValues>
+        <requiredSkills>
+            <skill>
+                <id>melee</id>
+            </skill>
+            <skill>
+                <id>observe</id>
+            </skill>
+            <skill>
+                <id>slugGuns</id>
+            </skill>
+            <skill>
+                <id>energyGuns</id>
+            </skill>
+            <skill>
+                <id>archery</id>
+            </skill>
+            <skill>
+                <id>knavery</id>
+            </skill>
+            <skill>
+                <id>sneak</id>
+            </skill>
+            <skill>
+                <id>lore</id>
+                <speciality>poisonsLore</speciality>
+            </skill>
+            <skill>
+                <id>lockpicking</id>
+            </skill>
+            <skill>
+                <id>sleightOfHand</id>
+            </skill>
+            <skill>
+                <id>streetWise</id>
+            </skill>
+            <skill>
+                <id>disguise</id>
+            </skill>
+            <skill>
+                <id>vigor</id>
+            </skill>
+        </requiredSkills>
+        <weapons>typicalSniperRifle, martechMidgetPalmLaser, garrote, hollowKnife</weapons>
+    </slayer>
+    <vagabonds>
+        <name>
+            <es>Vagabundos</es>
+            <en>Vagabonds</en>
+        </name>
+        <group>minor_guild</group>
+        <faction>vagabonds</faction>
+        <preferences>RankPreferences.LOW, CombatActionsPreferences.HIGH, CombatActionsGroupPreferences.FIGHT,
+            CashPreferences.LOW, OccultismLevelPreferences.FAIR, OccultismTypePreferences.THEURGY
+        </preferences>
+        <characteristicsMinimumValues>
+            <wits>6</wits>
+            <will>6</will>
+            <dexterity>6</dexterity>
+        </characteristicsMinimumValues>
+        <requiredSkills>
+            <skill>
+                <id>influence</id>
+            </skill>
+            <skill>
+                <id>observe</id>
+            </skill>
+            <skill>
+                <id>vigor</id>
+            </skill>
+            <skill>
+                <id>sneak</id>
+            </skill>
+            <skill>
+                <id>fight</id>
+            </skill>
+            <skill>
+                <id>streetWise</id>
+            </skill>
+            <skill>
+                <id>survival</id>
+            </skill>
+        </requiredSkills>
+        <suggestedSkills>
+            <skill>
+                <id>sleightOfHand</id>
+            </skill>
+            <skill>
+                <id>knavery</id>
+            </skill>
+        </suggestedSkills>
+        <official>false</official>
+    </vagabonds>
+    <prospectors>
+        <name>
+            <en>Prospectors</en>
+            <es>Prospectores</es>
+        </name>
+        <group>minor_guild</group>
+        <faction>prospectors</faction>
+        <preferences>RankPreferences.LOW, TechnologicalPreferences.SPACE_CITIZEN, CashPreferences.LOW
+        </preferences>
+        <characteristicsMinimumValues>
+            <tech>7</tech>
+            <endurance>6</endurance>
+        </characteristicsMinimumValues>
+        <requiredSkills>
+            <skill>
+                <id>vigor</id>
+            </skill>
+            <skill>
+                <id>gaming</id>
+            </skill>
+            <skill>
+                <id>physicalScience</id>
+            </skill>
+            <skill>
+                <id>techRedemption</id>
+            </skill>
+        </requiredSkills>
+        <official>false</official>
+    </prospectors>
+    <apothecaries>
+        <name>
+            <es>Apotecarios</es>
+            <en>Apothecaries</en>
+        </name>
+        <group>minor_guild</group>
+        <faction>apothecaries</faction>
+        <preferences>TechnologicalPreferences.FUTURIST, SpecializationPreferences.SPECIALIZED
+        </preferences>
+        <characteristicsMinimumValues>
+            <tech>7</tech>
+            <wits>7</wits>
+            <will>6</will>
+        </characteristicsMinimumValues>
+        <requiredSkills>
+            <skill>
+                <id>influence</id>
+            </skill>
+            <skill>
+                <id>observe</id>
+            </skill>
+            <skill>
+                <id>lifeScience</id>
+            </skill>
+            <skill>
+                <id>physicalScience</id>
+            </skill>
+            <skill>
+                <id>physick</id>
+            </skill>
+        </requiredSkills>
+        <official>false</official>
+    </apothecaries>
+    <weaponsmiths>
+        <name>
+            <es>Armeros</es>
+            <en>Weaponsmiths</en>
+        </name>
+        <group>minor_guild</group>
+        <faction>weaponsmiths</faction>
+        <preferences>TechnologicalPreferences.SPACE_CITIZEN, SpecializationPreferences.SPECIALIZED, CashPreferences.FAIR
+        </preferences>
+        <characteristicsMinimumValues>
+            <tech>7</tech>
+            <dexterity>7</dexterity>
+            <wits>6</wits>
+        </characteristicsMinimumValues>
+        <requiredSkills>
+            <skill>
+                <id>observe</id>
+            </skill>
+            <skill>
+                <id>slugGuns</id>
+            </skill>
+            <skill>
+                <id>energyGuns</id>
+            </skill>
+            <skill>
+                <id>techRedemption</id>
+            </skill>
+            <skill>
+                <skill>
+                    <id>craft</id>
+                    <speciality>weaponsmith</speciality>
+                </skill>
+            </skill>
+            <skill>
+                <skill>
+                    <id>lore</id>
+                    <speciality>energyPistolsLore</speciality>
+                </skill>
+            </skill>
+        </requiredSkills>
+        <official>false</official>
+    </weaponsmiths>
+    <courtesans>
+        <name>
+            <es>Cortesanas</es>
+            <en>Courtesans</en>
+        </name>
+        <group>minor_guild</group>
+        <faction>courtesans</faction>
+        <preferences>BlessingPreferences.APPEARANCE, CurseNumberPreferences.NONE, CashPreferences.FAIR,
+            GenderPreferences.USUALLY_FEMALE
+        </preferences>
+        <characteristicsMinimumValues>
+            <dexterity>7</dexterity>
+            <presence>6</presence>
+        </characteristicsMinimumValues>
+        <requiredSkills>
+            <skill>
+                <id>influence</id>
+            </skill>
+            <skill>
+                <id>observe</id>
+            </skill>
+            <skill>
+                <id>vigor</id>
+            </skill>
+            <skill>
+                <id>arts</id>
+                <speciality>music</speciality>
+            </skill>
+            <skill>
+                <id>etiquette</id>
+            </skill>
+            <skill>
+                <id>investigation</id>
+            </skill>
+        </requiredSkills>
+        <official>false</official>
+    </courtesans>
+    <mercurians>
+        <name>
+            <es>Bromistas</es>
+            <en>Mercurians</en>
+        </name>
+        <group>minor_guild</group>
+        <faction>mercurians</faction>
+        <preferences>SpecializationPreferences.ANY, CashPreferences.ANY</preferences>
+        <official>false</official>
+    </mercurians>
+
+    <questingKnights>
+        <name>
+            <es>Caballeros de la Búsqueda</es>
+            <en>Questing Knights</en>
+        </name>
+        <group>knightly_orders</group>
+        <faction>questingKnights</faction>
+        <preferences>CashPreferences.GOOD, CombatPreferences.BELLIGERENT, SpecializationPreferences.VERY_SPECIALIZED,
+            TechnologicalPreferences.SPACE_CITIZEN, WeaponsPreferences.HIGH, CombatActionsGroupPreferences.FIGHT,
+            CombatActionsPreferences.FAIR
+        </preferences>
+        <characteristicsMinimumValues>
+            <dexterity>7</dexterity>
+            <endurance>7</endurance>
+        </characteristicsMinimumValues>
+        <requiredSkills>
+            <skill>
+                <id>fight</id>
+            </skill>
+            <skill>
+                <id>melee</id>
+            </skill>
+            <skill>
+                <id>energyGuns</id>
+            </skill>
+            <skill>
+                <id>vigor</id>
+            </skill>
+            <skill>
+                <id>influence</id>
+            </skill>
+            <skill>
+                <id>etiquette</id>
+            </skill>
+        </requiredSkills>
+        <suggestedSkills>
+            <skill>
+                <id>archery</id>
+            </skill>
+            <skill>
+                <id>landcraft</id>
+            </skill>
+            <skill>
+                <id>aircraft</id>
+            </skill>
+            <skill>
+                <id>leadership</id>
+            </skill>
+            <skill>
+                <id>warfare</id>
+            </skill>
+        </suggestedSkills>
+        <official>false</official>
+        <weapons>soeCrucible, soeAlembic</weapons>
+        <armours>ceramsteelExoframe</armours>
+    </questingKnights>
+    <swordsOfLextius>
+        <name>
+            <es>Las Espadas de Lextius</es>
+            <en>Swords of Lextius</en>
+        </name>
+        <group>knightly_orders</group>
+        <faction>swordsOfLextius</faction>
+        <preferences>CashPreferences.FAIR, CombatPreferences.BELLIGERENT, SpecializationPreferences.VERY_SPECIALIZED,
+            TechnologicalPreferences.SPACE_CITIZEN, WeaponsPreferences.HIGH, CombatActionsGroupPreferences.FIGHT,
+            CombatActionsPreferences.FAIR
+        </preferences>
+        <characteristicsMinimumValues>
+            <dexterity>7</dexterity>
+            <endurance>7</endurance>
+            <faith>7</faith>
+        </characteristicsMinimumValues>
+        <requiredSkills>
+            <skill>
+                <id>fight</id>
+            </skill>
+            <skill>
+                <id>observe</id>
+            </skill>
+            <skill>
+                <id>vigor</id>
+            </skill>
+            <skill>
+                <id>etiquette</id>
+            </skill>
+        </requiredSkills>
+        <suggestedSkills>
+            <skill>
+                <id>landcraft</id>
+            </skill>
+            <skill>
+                <id>aircraft</id>
+            </skill>
+            <skill>
+                <id>selfControl</id>
+            </skill>
+        </suggestedSkills>
+        <official>false</official>
+        <mandatoryBeneficesSpecialization>language [latinLanguage]</mandatoryBeneficesSpecialization>
+        <weapons>typicalHvyAutofeed, typicalAutoRifle</weapons>
+        <shields>standardShield</shields>
+    </swordsOfLextius>
+    <chorali>
+        <name>
+            <es>Los Chorali</es>
+            <en>The Chorali</en>
+        </name>
+        <group>minor_church</group>
+        <faction>chorali</faction>
+        <preferences>OccultismLevelPreferences.ANY, OccultismTypePreferences.THEURGY</preferences>
+        <characteristicsMinimumValues>
+            <presence>6</presence>
+            <faith>7</faith>
+        </characteristicsMinimumValues>
+        <requiredSkills>
+            <skill>
+                <id>influence</id>
+            </skill>
+            <skill>
+                <id>etiquette</id>
+            </skill>
+            <skill>
+                <id>arts</id>
+                <speciality>music</speciality>
+            </skill>
+            <skill>
+                <id>performance</id>
+                <speciality>singing</speciality>
+            </skill>
+        </requiredSkills>
+        <suggestedSkills>
+            <skill>
+                <id>selfControl</id>
+            </skill>
+            <skill>
+                <id>performance</id>
+                <speciality>lute</speciality>
+            </skill>
+        </suggestedSkills>
+        <official>false</official>
+        <mandatoryBeneficesSpecialization>language [latinLanguage]</mandatoryBeneficesSpecialization>
+    </chorali>
+    <gjarti>
+        <name>
+            <es>Gjarti</es>
+            <en>Gjarti</en>
+        </name>
+        <group>minor_church</group>
+        <faction>gjarti</faction>
+        <preferences>OccultismLevelPreferences.ANY, OccultismTypePreferences.THEURGY, TechnologicalPreferences.BASIC,
+            CashPreferences.LOW
+        </preferences>
+        <characteristicsMinimumValues>
+            <faith>7</faith>
+        </characteristicsMinimumValues>
+        <requiredSkills>
+            <skill>
+                <id>influence</id>
+            </skill>
+            <skill>
+                <id>vigor</id>
+            </skill>
+            <skill>
+                <id>survival</id>
+            </skill>
+        </requiredSkills>
+        <suggestedSkills>
+            <skill>
+                <id>selfControl</id>
+            </skill>
+        </suggestedSkills>
+        <official>false</official>
+    </gjarti>
+    <manja>
+        <name>
+            <es>Manja</es>
+            <en>Manja</en>
+        </name>
+        <group>minor_church</group>
+        <faction>manja</faction>
+        <preferences>OccultismLevelPreferences.ANY, OccultismTypePreferences.THEURGY, RankPreferences.ANY
+        </preferences>
+        <characteristicsMinimumValues>
+            <wits>7</wits>
+        </characteristicsMinimumValues>
+        <requiredSkills>
+            <skill>
+                <id>influence</id>
+            </skill>
+            <skill>
+                <id>selfControl</id>
+            </skill>
+        </requiredSkills>
+        <official>false</official>
+    </manja>
+
     <obun>
         <name>
             <en>Ur-Obun</en>
@@ -2447,7 +3053,7 @@
         </name>
         <group>xenos</group>
         <profile>ascorbite</profile>
-        <faction>nofaction</faction>
+        <faction>ascorbite</faction>
         <weapons>arbata</weapons>
     </ascorbite>
     <oroym>

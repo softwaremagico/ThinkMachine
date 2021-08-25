@@ -26,7 +26,8 @@ package com.softwaremagico.tm.rules;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.character.RestrictedElementException;
+import com.softwaremagico.tm.character.exceptions.RestrictedElementException;
+import com.softwaremagico.tm.character.exceptions.UnofficialElementNotAllowedException;
 import com.softwaremagico.tm.character.benefices.*;
 import com.softwaremagico.tm.character.creation.CostCalculator;
 import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
@@ -42,7 +43,7 @@ public class BeneficeTests {
 
     @Test(expectedExceptions = InvalidBeneficeException.class)
     public void checkBeneficeRestrictionByFaction()
-            throws InvalidXmlElementException, BeneficeAlreadyAddedException, RestrictedElementException {
+            throws InvalidXmlElementException, BeneficeAlreadyAddedException, RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.setFaction(
                 FactionsFactory.getInstance().getElement("amaltheans", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
@@ -51,7 +52,7 @@ public class BeneficeTests {
     }
 
     @Test
-    public void checkRNobilityBeneficesMinorHouses() throws InvalidXmlElementException, BeneficeAlreadyAddedException, RestrictedElementException {
+    public void checkRNobilityBeneficesMinorHouses() throws InvalidXmlElementException, BeneficeAlreadyAddedException, RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.setFaction(FactionsFactory.getInstance().getElement("alba", LANGUAGE,
                 PathManager.DEFAULT_MODULE_FOLDER));
@@ -59,7 +60,7 @@ public class BeneficeTests {
     }
 
     @Test(expectedExceptions = InvalidBeneficeException.class)
-    public void checkRestrictedBeneficesMinorHouses() throws InvalidXmlElementException, BeneficeAlreadyAddedException, RestrictedElementException {
+    public void checkRestrictedBeneficesMinorHouses() throws InvalidXmlElementException, BeneficeAlreadyAddedException, RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.setFaction(FactionsFactory.getInstance().getElement("alba", LANGUAGE,
                 PathManager.DEFAULT_MODULE_FOLDER));
@@ -73,14 +74,16 @@ public class BeneficeTests {
     }
 
     @Test
-    public void getMoneyBenefice() throws InvalidXmlElementException, BeneficeAlreadyAddedException, RestrictedElementException {
+    public void getMoneyBenefice() throws InvalidXmlElementException, BeneficeAlreadyAddedException, RestrictedElementException,
+            UnofficialElementNotAllowedException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("cash [firebirds1000]", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         Assert.assertEquals(1000, player.getInitialMoney());
     }
 
     @Test
-    public void getMoneyRemaining() throws InvalidXmlElementException, BeneficeAlreadyAddedException, RestrictedElementException {
+    public void getMoneyRemaining() throws InvalidXmlElementException, BeneficeAlreadyAddedException, RestrictedElementException,
+            UnofficialElementNotAllowedException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         // Weapon without cost.
         player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("fluxSword", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
@@ -92,7 +95,8 @@ public class BeneficeTests {
     }
 
     @Test
-    public void getMoneyAsAfflictionCost() throws InvalidXmlElementException, BeneficeAlreadyAddedException, RestrictedElementException {
+    public void getMoneyAsAfflictionCost() throws InvalidXmlElementException, BeneficeAlreadyAddedException, RestrictedElementException,
+            UnofficialElementNotAllowedException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         final int remainingCost = CostCalculator.getCost(player);
         final AvailableBenefice cash50 = AvailableBeneficeFactory.getInstance().getElement("cash [firebirds50]",
@@ -105,14 +109,16 @@ public class BeneficeTests {
     }
 
     @Test
-    public void getAssetsBenefice() throws InvalidXmlElementException, BeneficeAlreadyAddedException, RestrictedElementException {
+    public void getAssetsBenefice() throws InvalidXmlElementException, BeneficeAlreadyAddedException, RestrictedElementException,
+            UnofficialElementNotAllowedException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("assets [assets3000]", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         Assert.assertEquals(300, player.getInitialMoney());
     }
 
     @Test
-    public void getAssetsAndMoneyBenefice() throws InvalidXmlElementException, BeneficeAlreadyAddedException, RestrictedElementException {
+    public void getAssetsAndMoneyBenefice() throws InvalidXmlElementException, BeneficeAlreadyAddedException, RestrictedElementException,
+            UnofficialElementNotAllowedException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("cash [firebirds1000]", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("assets [assets3000]", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
@@ -120,35 +126,40 @@ public class BeneficeTests {
     }
 
     @Test(expectedExceptions = IncompatibleBeneficeException.class)
-    public void checkIncompatibilities() throws InvalidXmlElementException, BeneficeAlreadyAddedException, RestrictedElementException {
+    public void checkIncompatibilities() throws InvalidXmlElementException, BeneficeAlreadyAddedException, RestrictedElementException,
+            UnofficialElementNotAllowedException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("orphan", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("alienUpbringing", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
     }
 
     @Test(expectedExceptions = IncompatibleBeneficeException.class)
-    public void checkIncompatibilitiesOpposite() throws InvalidXmlElementException, BeneficeAlreadyAddedException, RestrictedElementException {
+    public void checkIncompatibilitiesOpposite() throws InvalidXmlElementException, BeneficeAlreadyAddedException, RestrictedElementException,
+            UnofficialElementNotAllowedException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("alienUpbringing", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("orphan", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
     }
 
     @Test(expectedExceptions = IncompatibleBeneficeException.class)
-    public void checkIncompatibilitiesSpecializations() throws InvalidXmlElementException, BeneficeAlreadyAddedException, RestrictedElementException {
+    public void checkIncompatibilitiesSpecializations() throws InvalidXmlElementException, BeneficeAlreadyAddedException, RestrictedElementException,
+            UnofficialElementNotAllowedException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("cash [firebirds0]", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("assets [assets3000]", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
     }
 
     @Test(expectedExceptions = IncompatibleBeneficeException.class)
-    public void checkIncompatibilitiesWithSpecializations() throws InvalidXmlElementException, BeneficeAlreadyAddedException, RestrictedElementException {
+    public void checkIncompatibilitiesWithSpecializations() throws InvalidXmlElementException, BeneficeAlreadyAddedException,
+            RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("indebted_4", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("assets [assets5000]", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
     }
 
     @Test(expectedExceptions = InvalidBeneficeException.class)
-    public void checkIncompatibilitiesWithRace() throws InvalidXmlElementException, BeneficeAlreadyAddedException, RestrictedElementException {
+    public void checkIncompatibilitiesWithRace() throws InvalidXmlElementException, BeneficeAlreadyAddedException, RestrictedElementException,
+            UnofficialElementNotAllowedException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.setRace(RaceFactory.getInstance().getElement("human", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("prominentFamily", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
