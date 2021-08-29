@@ -299,7 +299,7 @@ public class PredefinedMerger {
     }
 
     public static Set<IRandomPreference<?>> removeDuplicates(Set<IRandomPreference<?>> originalPreferences) {
-        Set<IRandomPreference<?>> filteredPreferences = originalPreferences.stream().filter(java.util.Objects::nonNull).
+        final Set<IRandomPreference<?>> filteredPreferences = originalPreferences.stream().filter(java.util.Objects::nonNull).
                 collect(Collectors.toSet());
         final Random random = new Random();
         for (final IRandomPreference<?> preference1 : new HashSet<>(filteredPreferences)) {
