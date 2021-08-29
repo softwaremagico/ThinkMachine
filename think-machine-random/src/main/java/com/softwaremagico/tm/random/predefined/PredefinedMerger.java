@@ -14,6 +14,7 @@ import com.softwaremagico.tm.random.predefined.characters.Npc;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /*-
  * #%L
@@ -120,7 +121,7 @@ public class PredefinedMerger {
         }
 
         // Add selected preferences with more priority.
-        mergePreferences(removeDuplicates(extraPreferences), finalProfile.getPreferences());
+        extraPreferences = mergePreferences(removeDuplicates(extraPreferences), finalProfile.getPreferences());
         finalProfile.getPreferences().clear();
         finalProfile.getPreferences().addAll(extraPreferences);
 
@@ -278,14 +279,14 @@ public class PredefinedMerger {
         }
     }
 
-    public static void mergePreferences(Set<IRandomPreference<?>> originalPreferences, Set<IRandomPreference<?>> preferredPreferences) {
-        for (final IRandomPreference preferredPreference : new HashSet<>(preferredPreferences)) {
+    public static Set<IRandomPreference<?>> mergePreferences(Set<IRandomPreference<?>> originalPreferences, Set<IRandomPreference<?>> preferredPreferences) {
+        for (final IRandomPreference<?> preferredPreference : new HashSet<>(preferredPreferences)) {
             //Get preference average.
-            for (final IRandomPreference randomPreference : new HashSet<>(originalPreferences)) {
+            for (final IRandomPreference<?> randomPreference : new HashSet<>(originalPreferences)) {
                 if (randomPreference.getClass().equals(preferredPreference.getClass())) {
                     if (randomPreference.getClass().isEnum()) {
-                        final int average = ((((Enum) randomPreference).ordinal() + ((Enum) preferredPreference).ordinal()) + 1) / 2;
-                        final IRandomPreference averagePreference = randomPreference.getClass().getEnumConstants()[average];
+                        final int average = ((((Enum<?>) randomPreference).ordinal() + ((Enum<?>) preferredPreference).ordinal()) + 1) / 2;
+                        final IRandomPreference<?> averagePreference = randomPreference.getClass().getEnumConstants()[average];
                         originalPreferences.remove(randomPreference);
                         preferredPreferences.remove(preferredPreference);
                         originalPreferences.add(averagePreference);
@@ -294,27 +295,30 @@ public class PredefinedMerger {
             }
         }
         originalPreferences.addAll(preferredPreferences);
+        return originalPreferences;
     }
 
     public static Set<IRandomPreference<?>> removeDuplicates(Set<IRandomPreference<?>> originalPreferences) {
+        Set<IRandomPreference<?>> filteredPreferences = originalPreferences.stream().filter(java.util.Objects::nonNull).
+                collect(Collectors.toSet());
         final Random random = new Random();
-        for (final IRandomPreference preference1 : new HashSet<>(originalPreferences)) {
+        for (final IRandomPreference<?> preference1 : new HashSet<>(filteredPreferences)) {
             //Get preference average.
-            for (final IRandomPreference preference2 : new HashSet<>(originalPreferences)) {
-                if (preference1.getClass().equals(preference2.getClass()) && preference1 != preference2) {
+            for (final IRandomPreference<?> preference2 : new HashSet<>(filteredPreferences)) {
+                if (preference1 != preference2 && Objects.equal(preference1.getClass(), preference2.getClass())) {
                     if (preference1.getClass().isEnum()) {
                         //Select randomly
                         if (random.nextBoolean()) {
-                            originalPreferences.remove(preference1);
+                            filteredPreferences.remove(preference1);
                         } else {
-                            originalPreferences.remove(preference2);
+                            filteredPreferences.remove(preference2);
                         }
-                        return removeDuplicates(originalPreferences);
+                        return removeDuplicates(filteredPreferences);
                     }
                 }
             }
         }
-        return originalPreferences;
+        return filteredPreferences;
     }
 
 }

@@ -2308,7 +2308,7 @@
             <en>The Masque</en>
             <es>La Máscara</es>
         </name>
-        <group>minor_guild</group>
+        <group>minorGuild</group>
         <faction>theMasque</faction>
         <preferences>RankPreferences.LOW, CashPreferences.LOW
         </preferences>
@@ -2359,7 +2359,7 @@
             <es>Feriantes</es>
             <en>Carnivalers</en>
         </name>
-        <group>minor_guild</group>
+        <group>minorGuild</group>
         <faction>carnivalers</faction>
         <preferences>RankPreferences.LOW, CashPreferences.LOW
         </preferences>
@@ -2415,7 +2415,7 @@
             <en>Slayer</en>
             <es>Asesino</es>
         </name>
-        <group>minor_guild</group>
+        <group>minorGuild</group>
         <faction>slayer</faction>
         <preferences>RankPreferences.LOW
         </preferences>
@@ -2478,7 +2478,7 @@
             <es>Vagabundos</es>
             <en>Vagabonds</en>
         </name>
-        <group>minor_guild</group>
+        <group>minorGuild</group>
         <faction>vagabonds</faction>
         <preferences>RankPreferences.LOW, CombatActionsPreferences.HIGH, CombatActionsGroupPreferences.FIGHT,
             CashPreferences.LOW, OccultismLevelPreferences.FAIR, OccultismTypePreferences.THEURGY
@@ -2526,7 +2526,7 @@
             <en>Prospectors</en>
             <es>Prospectores</es>
         </name>
-        <group>minor_guild</group>
+        <group>minorGuild</group>
         <faction>prospectors</faction>
         <preferences>RankPreferences.LOW, TechnologicalPreferences.SPACE_CITIZEN, CashPreferences.LOW
         </preferences>
@@ -2555,7 +2555,7 @@
             <es>Apotecarios</es>
             <en>Apothecaries</en>
         </name>
-        <group>minor_guild</group>
+        <group>minorGuild</group>
         <faction>apothecaries</faction>
         <preferences>TechnologicalPreferences.FUTURIST, SpecializationPreferences.SPECIALIZED
         </preferences>
@@ -2588,7 +2588,7 @@
             <es>Armeros</es>
             <en>Weaponsmiths</en>
         </name>
-        <group>minor_guild</group>
+        <group>minorGuild</group>
         <faction>weaponsmiths</faction>
         <preferences>TechnologicalPreferences.SPACE_CITIZEN, SpecializationPreferences.SPECIALIZED, CashPreferences.FAIR
         </preferences>
@@ -2630,7 +2630,7 @@
             <es>Cortesanas</es>
             <en>Courtesans</en>
         </name>
-        <group>minor_guild</group>
+        <group>minorGuild</group>
         <faction>courtesans</faction>
         <preferences>BlessingPreferences.APPEARANCE, CurseNumberPreferences.NONE, CashPreferences.FAIR,
             GenderPreferences.USUALLY_FEMALE
@@ -2667,7 +2667,7 @@
             <es>Bromistas</es>
             <en>Mercurians</en>
         </name>
-        <group>minor_guild</group>
+        <group>minorGuild</group>
         <faction>mercurians</faction>
         <preferences>SpecializationPreferences.ANY, CashPreferences.ANY</preferences>
         <official>false</official>
@@ -2678,7 +2678,7 @@
             <es>Caballeros de la Búsqueda</es>
             <en>Questing Knights</en>
         </name>
-        <group>knightly_orders</group>
+        <group>knightlyOrders</group>
         <faction>questingKnights</faction>
         <preferences>CashPreferences.GOOD, CombatPreferences.BELLIGERENT, SpecializationPreferences.VERY_SPECIALIZED,
             TechnologicalPreferences.SPACE_CITIZEN, WeaponsPreferences.HIGH, CombatActionsGroupPreferences.FIGHT,
@@ -2734,7 +2734,7 @@
             <es>Las Espadas de Lextius</es>
             <en>Swords of Lextius</en>
         </name>
-        <group>knightly_orders</group>
+        <group>knightlyOrders</group>
         <faction>swordsOfLextius</faction>
         <preferences>CashPreferences.FAIR, CombatPreferences.BELLIGERENT, SpecializationPreferences.VERY_SPECIALIZED,
             TechnologicalPreferences.SPACE_CITIZEN, WeaponsPreferences.HIGH, CombatActionsGroupPreferences.FIGHT,
@@ -2780,7 +2780,7 @@
             <es>Los Chorali</es>
             <en>The Chorali</en>
         </name>
-        <group>minor_church</group>
+        <group>minorChurch</group>
         <faction>chorali</faction>
         <preferences>OccultismLevelPreferences.ANY, OccultismTypePreferences.THEURGY</preferences>
         <characteristicsMinimumValues>
@@ -2820,7 +2820,7 @@
             <es>Gjarti</es>
             <en>Gjarti</en>
         </name>
-        <group>minor_church</group>
+        <group>minorChurch</group>
         <faction>gjarti</faction>
         <preferences>OccultismLevelPreferences.ANY, OccultismTypePreferences.THEURGY, TechnologicalPreferences.BASIC,
             CashPreferences.LOW
@@ -2851,7 +2851,7 @@
             <es>Manja</es>
             <en>Manja</en>
         </name>
-        <group>minor_church</group>
+        <group>minorChurch</group>
         <faction>manja</faction>
         <preferences>OccultismLevelPreferences.ANY, OccultismTypePreferences.THEURGY, RankPreferences.ANY
         </preferences>
