@@ -202,8 +202,8 @@ public class ProfileTests {
             InvalidRandomElementSelectedException, RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, new HashSet<>(Collections.singletonList(RacePreferences.HUMAN)),
-                RandomProfileFactory.getInstance().getElement("clergy", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER),
                 RandomProfileFactory.getInstance().getElement("young", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER),
+                RandomProfileFactory.getInstance().getElement("clergy", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER),
                 RandomProfileFactory.getInstance().getElement("occultist", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         randomizeCharacter.createCharacter();
         Assert.assertEquals(characterPlayer.getFaction().getFactionGroup(), FactionGroup.CHURCH);
