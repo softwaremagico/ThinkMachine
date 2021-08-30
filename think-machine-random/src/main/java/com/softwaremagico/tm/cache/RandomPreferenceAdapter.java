@@ -29,16 +29,14 @@ import com.softwaremagico.tm.random.selectors.IRandomPreference;
 import org.reflections.Reflections;
 
 import java.lang.reflect.Type;
-import java.util.Set;
 
 public class RandomPreferenceAdapter implements JsonSerializer<IRandomPreference>, JsonDeserializer<IRandomPreference> {
     private static final String PREFERENCE = "preference";
     private static final String VALUE = "value";
-    private final Set<Class<? extends IRandomPreference>> classes;
 
     public RandomPreferenceAdapter() {
         final Reflections reflections = new Reflections("com.softwaremagico.tm");
-        classes = reflections.getSubTypesOf(IRandomPreference.class);
+        RandomPreferenceClassLoader.addClasses(reflections.getSubTypesOf(IRandomPreference.class));
     }
 
 
@@ -53,7 +51,7 @@ public class RandomPreferenceAdapter implements JsonSerializer<IRandomPreference
     @Override
     public IRandomPreference deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
         final JsonObject jsonObject = jsonElement.getAsJsonObject();
-        for (final Class<? extends IRandomPreference> preference : classes) {
+        for (final Class<? extends IRandomPreference> preference : RandomPreferenceClassLoader.getClasses()) {
             if (preference.getSimpleName().equals(jsonObject.get(PREFERENCE).getAsString())) {
                 for (final Object constant : preference.getEnumConstants()) {
                     if (constant.toString().equals(jsonObject.get(VALUE).getAsString())) {
