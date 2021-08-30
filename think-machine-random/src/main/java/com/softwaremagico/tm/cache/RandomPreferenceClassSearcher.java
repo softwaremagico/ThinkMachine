@@ -31,7 +31,7 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class RandomPreferenceClassLoader {
+public class RandomPreferenceClassSearcher {
     private static final Set<Class<? extends IRandomPreference>> classes = new HashSet<>();
 
     /**
