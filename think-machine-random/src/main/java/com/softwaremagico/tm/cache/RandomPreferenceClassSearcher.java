@@ -25,6 +25,7 @@ package com.softwaremagico.tm.cache;
  */
 
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
+import org.reflections.Reflections;
 
 import java.util.HashSet;
 import java.util.Objects;
@@ -32,6 +33,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class RandomPreferenceClassSearcher {
+    private static final String SEARCH_PACKAGE = "com.softwaremagico.tm";
     private static final Set<Class<? extends IRandomPreference>> classes = new HashSet<>();
 
     /**
@@ -45,5 +47,10 @@ public class RandomPreferenceClassSearcher {
 
     public static Set<Class<? extends IRandomPreference>> getClasses() {
         return classes.stream().filter(Objects::nonNull).collect(Collectors.toSet());
+    }
+
+    public static void loadClassesFromProject() {
+        final Reflections reflections = new Reflections(SEARCH_PACKAGE);
+        addClasses(reflections.getSubTypesOf(IRandomPreference.class));
     }
 }

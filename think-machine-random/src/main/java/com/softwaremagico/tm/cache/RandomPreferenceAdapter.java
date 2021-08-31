@@ -26,7 +26,6 @@ package com.softwaremagico.tm.cache;
 
 import com.google.gson.*;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
-import org.reflections.Reflections;
 
 import java.lang.reflect.Type;
 
@@ -35,8 +34,7 @@ public class RandomPreferenceAdapter implements JsonSerializer<IRandomPreference
     private static final String VALUE = "value";
 
     public RandomPreferenceAdapter() {
-        final Reflections reflections = new Reflections("com.softwaremagico.tm");
-        RandomPreferenceClassSearcher.addClasses(reflections.getSubTypesOf(IRandomPreference.class));
+        RandomPreferenceClassSearcher.loadClassesFromProject();
     }
 
 
