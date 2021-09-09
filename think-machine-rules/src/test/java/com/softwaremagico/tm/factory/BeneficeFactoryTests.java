@@ -28,6 +28,7 @@ import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.benefices.AvailableBenefice;
 import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
 import com.softwaremagico.tm.character.benefices.BeneficeDefinitionFactory;
+import com.softwaremagico.tm.character.factions.FactionsFactory;
 import com.softwaremagico.tm.character.races.RaceFactory;
 import com.softwaremagico.tm.file.PathManager;
 import junit.framework.Assert;
@@ -93,6 +94,12 @@ public class BeneficeFactoryTests {
     public void getRestrictedRaces() throws InvalidXmlElementException {
         Assert.assertTrue(BeneficeDefinitionFactory.getInstance().getElement("prominentFamily", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)
                 .getRestrictedToRaces().contains(RaceFactory.getInstance().getElement("gannok", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)));
+    }
+
+    @Test
+    public void getSpecializationRestrictedFactions() throws InvalidXmlElementException {
+        Assert.assertTrue(AvailableBeneficeFactory.getInstance().getElement("language [vagabondPatois]", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)
+                .getRestrictedToFactions().contains(FactionsFactory.getInstance().getElement("vagabonds", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)));
     }
 
 }

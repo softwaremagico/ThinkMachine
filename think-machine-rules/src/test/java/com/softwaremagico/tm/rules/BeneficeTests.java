@@ -164,4 +164,12 @@ public class BeneficeTests {
         player.setRace(RaceFactory.getInstance().getElement("human", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
         player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("prominentFamily", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
     }
+
+    @Test(expectedExceptions = InvalidBeneficeException.class)
+    public void checkIncompatibilitiesWithFaction() throws InvalidXmlElementException, BeneficeAlreadyAddedException, RestrictedElementException,
+            UnofficialElementNotAllowedException {
+        final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        player.setFaction(FactionsFactory.getInstance().getElement("slayer", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+        player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("language [vagabondPatois]", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+    }
 }

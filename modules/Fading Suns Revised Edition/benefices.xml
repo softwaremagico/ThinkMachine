@@ -184,6 +184,7 @@
                 </name>
                 <official>false</official>
                 <restricted>true</restricted>
+                <restrictedToFactions>vagabonds</restrictedToFactions>
                 <random>
                     <probabilityMultiplier>0</probabilityMultiplier>
                 </random>
