@@ -26,11 +26,11 @@ package com.softwaremagico.tm.rules;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.character.exceptions.RestrictedElementException;
-import com.softwaremagico.tm.character.exceptions.UnofficialElementNotAllowedException;
 import com.softwaremagico.tm.character.benefices.*;
 import com.softwaremagico.tm.character.creation.CostCalculator;
 import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
+import com.softwaremagico.tm.character.exceptions.RestrictedElementException;
+import com.softwaremagico.tm.character.exceptions.UnofficialElementNotAllowedException;
 import com.softwaremagico.tm.character.factions.FactionsFactory;
 import com.softwaremagico.tm.character.races.RaceFactory;
 import com.softwaremagico.tm.file.PathManager;
@@ -165,7 +165,7 @@ public class BeneficeTests {
         player.addBenefice(AvailableBeneficeFactory.getInstance().getElement("prominentFamily", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
     }
 
-    @Test(expectedExceptions = InvalidBeneficeException.class)
+    @Test(expectedExceptions = RestrictedElementException.class)
     public void checkIncompatibilitiesWithFaction() throws InvalidXmlElementException, BeneficeAlreadyAddedException, RestrictedElementException,
             UnofficialElementNotAllowedException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);

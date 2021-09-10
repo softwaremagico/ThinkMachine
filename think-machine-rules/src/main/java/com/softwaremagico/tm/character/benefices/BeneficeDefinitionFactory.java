@@ -26,6 +26,10 @@ package com.softwaremagico.tm.character.benefices;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.XmlFactory;
+import com.softwaremagico.tm.character.factions.Faction;
+import com.softwaremagico.tm.character.factions.FactionsFactory;
+import com.softwaremagico.tm.character.races.Race;
+import com.softwaremagico.tm.character.races.RaceFactory;
 import com.softwaremagico.tm.json.factories.cache.BeneficeDefinitionFactoryCacheLoader;
 import com.softwaremagico.tm.json.factories.cache.FactoryCacheLoader;
 import com.softwaremagico.tm.language.ITranslator;
@@ -108,6 +112,13 @@ public class BeneficeDefinitionFactory extends XmlFactory<BeneficeDefinition> {
                 specializations.add(specialization);
                 // Set random option.
                 setRandomConfiguration(specialization, translator, language, moduleName);
+
+                final Set<Race> races = getCommaSeparatedValues(specializationId, RESTRICTED_RACES, language, moduleName, RaceFactory.getInstance());
+                setRestrictedToRaces(specialization, races);
+
+                final Set<Faction> factions = getCommaSeparatedValues(specializationId, RESTRICTED_FACTIONS, language, moduleName,
+                        FactionsFactory.getInstance());
+                setRestrictedToFactions(specialization, factions);
 
                 // Set specific cost.
                 final String specializationCost = translator.getNodeValue(specializationId, COST);

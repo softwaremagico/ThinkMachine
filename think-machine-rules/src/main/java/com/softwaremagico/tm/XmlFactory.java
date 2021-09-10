@@ -53,8 +53,8 @@ public abstract class XmlFactory<T extends Element<T>> implements IElementRetrie
     private static final String RECOMMENDED_FACTIONS = "recommendedFactions";
     private static final String RECOMMENDED_FACTION_GROUPS = "recommendedFactionGroups";
     private static final String RESTRICTED_FACTION_GROUPS = "restrictedFactionGroups";
-    private static final String RESTRICTED_RACES = "restrictedToRaces";
-    private static final String RESTRICTED_FACTIONS = "restrictedToFactions";
+    protected static final String RESTRICTED_RACES = "restrictedToRaces";
+    protected static final String RESTRICTED_FACTIONS = "restrictedToFactions";
     private static final String FORBIDDEN_RACES = "forbiddenRaces";
     private static final String RECOMMENDED_RACES = "recommendedRaces";
     private static final String GENERAL_PROBABILITY = "generalProbability";

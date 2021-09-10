@@ -30,6 +30,7 @@ import com.softwaremagico.tm.character.factions.FactionGroup;
 import com.softwaremagico.tm.character.races.Race;
 import com.softwaremagico.tm.random.definition.RandomElementDefinition;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class AvailableBenefice extends Element<AvailableBenefice> {
@@ -88,17 +89,34 @@ public class AvailableBenefice extends Element<AvailableBenefice> {
 
     @Override
     public Set<Faction> getRestrictedToFactions() {
-        return beneficeDefinition.getRestrictedToFactions();
+        final HashSet<Faction> restrictedFactions = new HashSet<>();
+        if (getSpecialization() != null && getSpecialization().getRestrictedToFactions() != null) {
+            restrictedFactions.addAll(getSpecialization().getRestrictedToFactions());
+        }
+        if (beneficeDefinition.getRestrictedToFactions() != null) {
+            restrictedFactions.addAll(beneficeDefinition.getRestrictedToFactions());
+        }
+        return restrictedFactions;
     }
 
     @Override
     public FactionGroup getRestrictedToFactionGroup() {
+        if (getSpecialization() != null && getSpecialization().getRestrictedToFactionGroup() != null) {
+            return getSpecialization().getRestrictedToFactionGroup();
+        }
         return beneficeDefinition.getRestrictedToFactionGroup();
     }
 
     @Override
     public Set<Race> getRestrictedToRaces() {
-        return beneficeDefinition.getRestrictedToRaces();
+        final HashSet<Race> restrictedRaces = new HashSet<>();
+        if (getSpecialization() != null && getSpecialization().getRestrictedToRaces() != null) {
+            restrictedRaces.addAll(getSpecialization().getRestrictedToRaces());
+        }
+        if (beneficeDefinition.getRestrictedToRaces() != null) {
+            restrictedRaces.addAll(beneficeDefinition.getRestrictedToRaces());
+        }
+        return restrictedRaces;
     }
 
     @Override
