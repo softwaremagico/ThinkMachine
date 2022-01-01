@@ -589,9 +589,10 @@ public class CharacterPlayer {
                     + benefice.getBeneficeDefinition().getRestrictedToRaces() + " and cannot be added.");
         }
         if (getSettings().isRestrictionsChecked() && !benefice.getBeneficeDefinition().getRestrictedToFactions().isEmpty() &&
-                !benefice.getBeneficeDefinition().getRestrictedToFactions().contains(getFaction())) {
-            throw new RestrictedElementException("Benefice '" + benefice + "' is restricted to races "
-                    + benefice.getBeneficeDefinition().getRestrictedToRaces() + " and cannot be added.");
+                !benefice.getBeneficeDefinition().getRestrictedToFactions().contains(getFaction()) &&
+                benefice.getRestrictedToFactions().isEmpty() && !Objects.equals(benefice.getRestrictedToFactionGroup(), getFaction().getFactionGroup())) {
+            throw new RestrictedElementException("Benefice '" + benefice + "' is restricted to factions "
+                    + benefice.getBeneficeDefinition().getRestrictedToFactions() + " and cannot be added.");
         }
         if (benefice.getBeneficeDefinition().getGroup() == BeneficeGroup.FIGHTING && !canUseCombatStyle(benefice.getBeneficeDefinition())) {
             throw new IncompatibleBeneficeException("User has no skills or race for benefice '" + benefice + " '.", benefice);

@@ -52,7 +52,7 @@ public class BeneficeTests {
     }
 
     @Test
-    public void checkRNobilityBeneficesMinorHouses() throws InvalidXmlElementException, BeneficeAlreadyAddedException, RestrictedElementException, UnofficialElementNotAllowedException {
+    public void checkNobilityBeneficesMinorHouses() throws InvalidXmlElementException, BeneficeAlreadyAddedException, RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.setFaction(FactionsFactory.getInstance().getElement("alba", LANGUAGE,
                 PathManager.DEFAULT_MODULE_FOLDER));
