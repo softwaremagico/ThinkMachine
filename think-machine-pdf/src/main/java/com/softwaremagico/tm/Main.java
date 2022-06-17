@@ -44,9 +44,9 @@ public class Main {
     public static void main(String[] args) {
         if (args.length < 2) {
             System.out.println("Execute with parameters:");
-            System.out.println("\t	language	The language to print the sheet file.");
-            System.out.println("\t	path		The path to store the file.");
-            System.out.println("\t	character	The character definition (as Json) to fill up the sheet.");
+            System.out.println("\t	language\tThe language to print the sheet file.");
+            System.out.println("\t	path\t\tThe path to store the file.");
+            System.out.println("\t	character\tThe character definition (as Json) to fill up the sheet.");
             System.out.println();
             System.out.println("Example:");
             System.out.println("\tmvn exec:java -Dexec.args=\"en /tmp character.json\"");
