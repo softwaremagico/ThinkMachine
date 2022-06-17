@@ -1,13 +1,14 @@
 <img src="./images/ThinkMachine_logo_fenix.svg" width="800" alt="Think Machine" align="middle"> 
 
 # Think Machine
-[![Supported Languages](https://img.shields.io/badge/Supported-%F0%9F%87%AA%F0%9F%87%B8%20%F0%9F%87%AC%F0%9F%87%A7languages-blue.svg)](https://github.com/softwaremagico/ThinkMachine/blob/master/modules/languages.xml)
+[![Supported Languages](https://img.shields.io/badge/supported-%F0%9F%87%AA%F0%9F%87%B8%20%F0%9F%87%AC%F0%9F%87%A7languages-blue.svg)](https://github.com/softwaremagico/ThinkMachine/blob/master/modules/languages.xml)
 [![Build Status](https://travis-ci.org/softwaremagico/ThinkMachine.svg?branch=master)](https://travis-ci.org/softwaremagico/ThinkMachine)
 [![GNU GPL 3.0 License](https://img.shields.io/badge/license-GNU_GPL_3.0-brightgreen.svg)](https://github.com/softwaremagico/ThinkMachine/blob/master/license/gnugpl/license.txt)
 [![Issues](https://img.shields.io/github/issues/softwaremagico/ThinkMachine.svg)](https://github.com/softwaremagico/ThinkMachine/issues)
 [![think-machine-core](https://img.shields.io/maven-central/v/com.softwaremagico/think-machine.svg)](https://search.maven.org/remote_content?g=com.softwaremagico&a=think-machine-rules&v=latest)
 [![GitHub commit activity](https://img.shields.io/github/commit-activity/y/softwaremagico/ThinkMachine)](https://github.com/softwaremagico/ThinkMachine)
 [![GitHub last commit](https://img.shields.io/github/last-commit/softwaremagico/ThinkMachine)](https://github.com/softwaremagico/ThinkMachine)
+[![SonarCloud Rating](https://sonarcloud.io/api/project_badges/measure?project=softwaremagico_ThinkMachine&metric=sqale_rating)](https://sonarcloud.io/component_measures?id=softwaremagico_ThinkMachine&metric=sqale_rating&view=list)
 [![SonarCloud Bugs](https://sonarcloud.io/api/project_badges/measure?project=softwaremagico_ThinkMachine&metric=bugs)](https://sonarcloud.io/component_measures/metric/reliability_rating/list?id=softwaremagico_ThinkMachine)
 [![SonarCloud Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=softwaremagico_ThinkMachine&metric=vulnerabilities)](https://sonarcloud.io/component_measures/metric/security_rating/list?id=softwaremagico_ThinkMachine)
 
