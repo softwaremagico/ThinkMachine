@@ -68,7 +68,7 @@ public abstract class XmlFactory<T extends Element<T>> implements IElementRetrie
     protected static final String VERSION = "version";
 
     private Integer totalElements;
-    private Integer version;
+    private Integer versionNumber;
 
     protected void initialize() {
         for (final String moduleName : ModuleManager.getAvailableModules()) {
@@ -313,12 +313,12 @@ public abstract class XmlFactory<T extends Element<T>> implements IElementRetrie
     }
 
     public Integer getVersion(String moduleName) {
-        if (version != null) {
-            return version;
+        if (versionNumber != null) {
+            return versionNumber;
         }
         try {
-            version = Integer.parseInt(getTranslator(moduleName).getNodeValue(VERSION));
-            return version;
+            versionNumber = Integer.parseInt(getTranslator(moduleName).getNodeValue(VERSION));
+            return versionNumber;
         } catch (Exception e) {
             //Not mandatory.
             MachineLog.debug(this.getClass().getName(), "No version set on the xml '" + getTranslatorFile()

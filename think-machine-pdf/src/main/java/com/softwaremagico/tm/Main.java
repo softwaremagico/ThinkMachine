@@ -36,9 +36,9 @@ import java.io.IOException;
  */
 
 public class Main {
-    private static final int LANGUAGE = 0;
-    private static final int FILE_DESTINATION_PATH = 1;
-    private static final int JSON_FILE = 2;
+    private static final int LANGUAGE_ARG = 0;
+    private static final int FILE_DESTINATION_PATH_ARG = 1;
+    private static final int JSON_FILE_ARG = 2;
     private static String language, destinationPath, jsonFile;
 
     public static void main(String[] args) {
@@ -71,22 +71,22 @@ public class Main {
     }
 
     private static void setArguments(String[] args) {
-        if (args.length <= LANGUAGE) {
+        if (args.length <= LANGUAGE_ARG) {
             language = "en";
         } else {
-            language = args[LANGUAGE];
+            language = args[LANGUAGE_ARG];
         }
 
-        if (args.length <= FILE_DESTINATION_PATH) {
+        if (args.length <= FILE_DESTINATION_PATH_ARG) {
             destinationPath = System.getProperty("java.io.tmpdir");
         } else {
-            destinationPath = args[FILE_DESTINATION_PATH] + File.separator;
+            destinationPath = args[FILE_DESTINATION_PATH_ARG] + File.separator;
         }
 
-        if (args.length <= JSON_FILE) {
+        if (args.length <= JSON_FILE_ARG) {
             jsonFile = null;
         } else {
-            jsonFile = args[JSON_FILE];
+            jsonFile = args[JSON_FILE_ARG];
         }
     }
 }
