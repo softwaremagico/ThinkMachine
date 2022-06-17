@@ -86,7 +86,7 @@ public class VerticalVictoryPointsTable extends VerticalTable {
 
 	private static PdfPCell createSubTitle(String text, BaseColor color) {
 		final PdfPCell cell = BaseElement.getCell(text, 0, 1, Element.ALIGN_CENTER, color,
-				FadingSunsTheme.getLineFontBold(), FadingSunsTheme.VICTORY_SMALL_POINTS_FONT_SIZE + 1);
+				FadingSunsTheme.getLineFontBold(), FadingSunsTheme.VICTORY_SMALL_POINTS_FONT_SIZE + 1f);
 		cell.setMinimumHeight(18);
 		cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		return cell;

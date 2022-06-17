@@ -53,7 +53,7 @@ public class VitalityTable extends CounterTable {
 
 		for (int i = 1; i <= MODIFICATORS_SPAN; i++) {
 			addCell(createValue("-" + (i * 2), new Font(FadingSunsTheme.getLineFont(),
-					FadingSunsTheme.CHARACTERISTICS_TITLE_FONT_SIZE - 6), Element.ALIGN_MIDDLE));
+					FadingSunsTheme.CHARACTERISTICS_TITLE_FONT_SIZE - 6f), Element.ALIGN_MIDDLE));
 			addCell(getCircle(characterPlayer));
 			addedCircle++;
 		}
@@ -63,7 +63,7 @@ public class VitalityTable extends CounterTable {
 	protected int getSelectedValue(CharacterPlayer characterPlayer) {
 		if (characterPlayer != null) {
 			try {
-				return characterPlayer.getVitalityValue().intValue();
+				return characterPlayer.getVitalityValue();
 			} catch (InvalidXmlElementException e) {
 				PdfExporterLog.errorMessage(this.getClass().getName(), e);
 			}

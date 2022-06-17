@@ -24,19 +24,12 @@ package com.softwaremagico.tm.file.configurator;
  * #L%
  */
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
-import java.util.Set;
-
 import com.softwaremagico.tm.file.configurator.exceptions.PropertyNotFoundException;
 import com.softwaremagico.tm.file.configurator.exceptions.PropertyNotStoredException;
 import com.softwaremagico.tm.log.ConfigurationLog;
+
+import java.io.File;
+import java.util.*;
 
 public abstract class ConfigurationReader {
 	private static final String VALUES_SEPARATOR_REGEX = " *, *";
@@ -49,10 +42,10 @@ public abstract class ConfigurationReader {
 	private final Map<IPropertiesSource, Map<String, String>> propertiesBySourceValues;
 
 	public ConfigurationReader() {
-		converter = new HashMap<Class<?>, IValueConverter<?>>();
-		propertiesDefault = new HashMap<String, String>();
-		propertiesFinalValue = new HashMap<String, String>();
-		propertiesSources = new ArrayList<IPropertiesSource>();
+		converter = new HashMap<>();
+		propertiesDefault = new HashMap<>();
+		propertiesFinalValue = new HashMap<>();
+		propertiesSources = new ArrayList<>();
 		propertyChangedListeners = new HashSet<>();
 		propertiesBySourceValues = new HashMap<>();
 
@@ -125,9 +118,7 @@ public abstract class ConfigurationReader {
 		for (final String propertyId : new HashSet<String>(propertiesFinalValue.keySet())) {
 			final String value = propertyFile.getProperty(propertyId, propertiesFinalValue.get(propertyId));
 			// Notify property change
-			if (propertiesBySourceValues.get(propertiesSource) == null) {
-				propertiesBySourceValues.put(propertiesSource, new HashMap<String, String>());
-			}
+			propertiesBySourceValues.computeIfAbsent(propertiesSource, k -> new HashMap<String, String>());
 
 			if (propertiesBySourceValues.get(propertiesSource).get(propertyId) != null
 					&& propertiesBySourceValues.get(propertiesSource).get(propertyId).length() > 0

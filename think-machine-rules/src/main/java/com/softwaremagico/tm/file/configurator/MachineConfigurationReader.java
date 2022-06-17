@@ -24,10 +24,6 @@ package com.softwaremagico.tm.file.configurator;
  * #L%
  */
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Path;
-
 import com.softwaremagico.tm.file.FileManager;
 import com.softwaremagico.tm.file.configurator.exceptions.PropertyNotFoundException;
 import com.softwaremagico.tm.file.configurator.exceptions.PropertyNotStoredException;
@@ -36,6 +32,10 @@ import com.softwaremagico.tm.file.watcher.FileWatcher;
 import com.softwaremagico.tm.file.watcher.FileWatcher.FileModifiedListener;
 import com.softwaremagico.tm.log.ConfigurationLog;
 import com.softwaremagico.tm.log.SuppressFBWarnings;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Path;
 
 public class MachineConfigurationReader extends ConfigurationReader {
 	private static final String DEFAULT_CONFIG_FILE = "settings.conf";
@@ -48,7 +48,7 @@ public class MachineConfigurationReader extends ConfigurationReader {
 
 	// Default
 
-	private static MachineConfigurationReader instance;
+	private static volatile MachineConfigurationReader instance;
 	private PropertiesSourceFile userSourceFile;
 
 	@SuppressFBWarnings(value = "DC_DOUBLECHECK")

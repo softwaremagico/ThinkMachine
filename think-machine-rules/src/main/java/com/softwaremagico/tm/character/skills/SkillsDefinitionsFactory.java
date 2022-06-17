@@ -130,7 +130,7 @@ public class SkillsDefinitionsFactory extends XmlFactory<SkillDefinition> {
 
 
     @Override
-    public List<SkillDefinition> getElements(String language, String moduleName) throws InvalidXmlElementException {
+    public synchronized List<SkillDefinition> getElements(String language, String moduleName) throws InvalidXmlElementException {
         boolean initialization = false;
         if (elements.get(language) == null || elements.get(language).get(moduleName) == null) {
             initialization = true;

@@ -34,7 +34,7 @@ import com.softwaremagico.tm.pdf.complete.utils.CellUtils;
 
 public class AnnotationsTable extends LateralHeaderPdfPTable {
 	private static final float[] WIDTHS = { 1f, 24f };
-	private static final int CELL_HEIGHT = 65;
+	private static final float CELL_HEIGHT = 65;
 	private static final int DESCRIPTION_WIDTH = 2500;
 
 	public AnnotationsTable(CharacterPlayer characterPlayer) {
