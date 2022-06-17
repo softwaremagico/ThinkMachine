@@ -27,7 +27,7 @@ package com.softwaremagico.tm.factory;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.characteristics.CharacteristicsDefinitionFactory;
 import com.softwaremagico.tm.file.PathManager;
-import junit.framework.Assert;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 @Test(groups = {"characteristicsFactory"})

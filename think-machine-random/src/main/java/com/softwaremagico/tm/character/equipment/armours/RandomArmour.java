@@ -40,7 +40,6 @@ import com.softwaremagico.tm.random.selectors.DifficultLevelPreferences;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
 
 import java.util.Collection;
-import java.util.Random;
 import java.util.Set;
 
 public class RandomArmour extends EquipmentSelector<Armour> {
@@ -53,7 +52,6 @@ public class RandomArmour extends EquipmentSelector<Armour> {
 
     @Override
     public void assign() throws InvalidRandomElementSelectedException, InvalidArmourException, UnofficialElementNotAllowedException {
-        final Random random = new Random();
         final ArmourPreferences armourPreferences = ArmourPreferences.getSelected(getPreferences());
         if (armourPreferences != null && random.nextFloat() < armourPreferences.getArmourProbability()) {
             final Armour selectedArmour = selectElementByWeight();
@@ -153,7 +151,7 @@ public class RandomArmour extends EquipmentSelector<Armour> {
         // More protection is better.
         weight *= armour.getProtection();
         RandomGenerationLog.debug(this.getClass().getName(),
-                "Protection multiplicator for '{}' is '{}'.", armour, armour.getProtection());
+                "Protection multiplier for '{}' is '{}'.", armour, armour.getProtection());
 
         RandomGenerationLog.debug(this.getClass().getName(), "Total weight for '{}' is '{}'.", armour, weight);
         return weight;

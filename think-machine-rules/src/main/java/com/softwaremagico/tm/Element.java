@@ -1,6 +1,5 @@
 package com.softwaremagico.tm;
 
-import com.google.common.base.Objects;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.factions.Faction;
 import com.softwaremagico.tm.character.factions.FactionGroup;
@@ -9,6 +8,7 @@ import com.softwaremagico.tm.json.ExcludeFromJson;
 import com.softwaremagico.tm.random.definition.RandomElementDefinition;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 /*-
@@ -175,7 +175,7 @@ public class Element<T extends Element<?>> implements Comparable<T> {
         if (element == null) {
             return true;
         }
-        return Objects.equal(element.getId(), DEFAULT_NULL_ID);
+        return Objects.equals(element.getId(), DEFAULT_NULL_ID);
     }
 
     public boolean isRestricted() {

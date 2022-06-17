@@ -26,12 +26,12 @@ package com.softwaremagico.tm.character.cybernetics;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.character.exceptions.RestrictedElementException;
-import com.softwaremagico.tm.character.exceptions.UnofficialElementNotAllowedException;
 import com.softwaremagico.tm.character.characteristics.CharacteristicDefinition;
 import com.softwaremagico.tm.character.characteristics.CharacteristicType;
 import com.softwaremagico.tm.character.creation.CostCalculator;
 import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
+import com.softwaremagico.tm.character.exceptions.RestrictedElementException;
+import com.softwaremagico.tm.character.exceptions.UnofficialElementNotAllowedException;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.character.skills.RandomSkillExtraPoints;
@@ -138,7 +138,7 @@ public class RandomCybernetics extends RandomSelector<CyberneticDevice> {
         if (combatPreferences == CombatPreferences.BELLIGERENT) {
             // Preferred weapons
             if (cyberneticDevice.getWeapon() != null) {
-                weight *= BASIC_MULTIPLICATOR;
+                weight *= BASIC_MULTIPLIER;
             }
 
             // Preferred body bonus.
@@ -146,7 +146,7 @@ public class RandomCybernetics extends RandomSelector<CyberneticDevice> {
                 if (bonification.getAffects() instanceof CharacteristicDefinition) {
                     if (((CharacteristicDefinition) bonification.getAffects()).getType()
                             .equals(CharacteristicType.BODY)) {
-                        weight *= BASIC_MULTIPLICATOR;
+                        weight *= BASIC_MULTIPLIER;
                     }
                 }
             }
@@ -158,9 +158,9 @@ public class RandomCybernetics extends RandomSelector<CyberneticDevice> {
             case HIDDEN:
                 if (visibility != null) {
                     if (visibility.getId().equalsIgnoreCase("simulacra") || visibility.getId().equalsIgnoreCase("hidden")) {
-                        weight *= HIGH_MULTIPLICATOR;
+                        weight *= HIGH_MULTIPLIER;
                     } else if (visibility.getId().equalsIgnoreCase("incognito")) {
-                        weight *= BASIC_MULTIPLICATOR;
+                        weight *= BASIC_MULTIPLIER;
                     } else {
                         // No visible devices.
                         throw new InvalidRandomElementSelectedException("Visible cyberntics as '" + cyberneticDevice

@@ -198,7 +198,7 @@
 		<dependency>
 			<groupId>com.itextpdf</groupId>
 			<artifactId>itextg</artifactId>
-			<version>${itext.version}</version>
+			<version>${itextg.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.testng</groupId>

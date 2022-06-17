@@ -29,8 +29,8 @@ import com.softwaremagico.tm.ElementClassification;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.cybernetics.CyberneticDeviceFactory;
 import com.softwaremagico.tm.file.PathManager;
-import org.junit.BeforeClass;
 import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 @Test(groups = {"cyberneticFactory"})

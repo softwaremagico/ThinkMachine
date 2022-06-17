@@ -13,7 +13,10 @@ import com.softwaremagico.tm.random.selectors.DifficultLevelPreferences;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
 import com.softwaremagico.tm.random.selectors.ShieldPreferences;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Set;
 
 /*-
  * #%L
@@ -49,8 +52,6 @@ public class RandomShield extends EquipmentSelector<Shield> {
 
     @Override
     public void assign() throws InvalidRandomElementSelectedException, InvalidShieldException, UnofficialElementNotAllowedException {
-        final Random random = new Random();
-
         final ShieldPreferences shieldPreferences = ShieldPreferences.getSelected(getPreferences());
         if (shieldPreferences != null && random.nextFloat() < shieldPreferences.getShieldProbability()) {
             final Shield selectedShield = selectElementByWeight();
@@ -109,7 +110,7 @@ public class RandomShield extends EquipmentSelector<Shield> {
         if (getPreferences().contains(CombatPreferences.BELLIGERENT)) {
             weight *= shield.getHits();
             RandomGenerationLog.debug(this.getClass().getName(),
-                    "Protection multiplicator for '" + shield + "' is '" + shield.getHits() + "'.");
+                    "Protection multiplier for '" + shield + "' is '" + shield.getHits() + "'.");
         }
 
         // shields depending on the purchasing power of the character.

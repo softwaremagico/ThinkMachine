@@ -11,7 +11,6 @@ import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedExcep
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
 import com.softwaremagico.tm.random.selectors.WeaponsPreferences;
 
-import java.util.Random;
 import java.util.Set;
 
 /*-
@@ -47,8 +46,6 @@ public class RandomRangeWeapon extends RandomWeapon {
 
     @Override
     public void assign() throws InvalidRandomElementSelectedException {
-        final Random random = new Random();
-
         final WeaponsPreferences weaponPreferences = WeaponsPreferences.getSelected(getPreferences());
         if (weaponPreferences != null) {
             float probabilityOfRangedWeapon = weaponPreferences.getRangeWeaponProbability();

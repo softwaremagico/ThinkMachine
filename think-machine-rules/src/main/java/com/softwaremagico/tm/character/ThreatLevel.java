@@ -72,7 +72,7 @@ public class ThreatLevel {
         threatLevel += getVitalityThreatLevel(characterPlayer);
         threatLevel += getThreatLevel(characterPlayer.getCybernetics());
         threatLevel += getOccultismThreatLevel(characterPlayer);
-        threatLevel *= getThreatLevelMultiplicator(characterPlayer.getShield());
+        threatLevel *= getThreatLevelMultiplier(characterPlayer.getShield());
         totalThreatLevel += threatLevel;
         totalMoney += characterPlayer.getInitialMoney();
         total++;
@@ -212,7 +212,7 @@ public class ThreatLevel {
         return threatLevel;
     }
 
-    private static float getThreatLevelMultiplicator(Shield shield) {
+    private static float getThreatLevelMultiplier(Shield shield) {
         if (shield == null) {
             return 1;
         }

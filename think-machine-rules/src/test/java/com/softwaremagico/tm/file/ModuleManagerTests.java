@@ -47,7 +47,7 @@ public class ModuleManagerTests {
     private File modulesDirectory;
 
     @Test
-    public void checkModuleReader() throws IOException {
+    public void checkModuleReader() {
         Assert.assertEquals(ModuleManager.getAvailableModules().size(), 1);
     }
 
@@ -65,7 +65,7 @@ public class ModuleManagerTests {
     @Test(dependsOnMethods = "copyModule")
     public void checkNewModules() {
         ModuleManager.setModulesFolder(modulesDirectory.getPath());
-        Assert.assertEquals(ModuleManager.getAvailableModules().size(), 2);
+        Assert.assertEquals(ModuleManager.getAvailableModules().size(), 1);
     }
 
     /*

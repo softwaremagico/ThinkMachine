@@ -25,8 +25,8 @@ package com.softwaremagico.tm.random.selectors;
  */
 
 import com.softwaremagico.tm.character.Gender;
+import com.softwaremagico.tm.random.RandomSelector;
 
-import java.util.Random;
 import java.util.Set;
 
 public enum GenderPreferences implements ICharacterDescriptionPreference<GenderPreferences> {
@@ -48,7 +48,6 @@ public enum GenderPreferences implements ICharacterDescriptionPreference<GenderP
 
     private final int maleProbability;
     private final int femaleProbability;
-    private final Random random = new Random();
 
     GenderPreferences(int maleProbability, int femaleProbability) {
         this.maleProbability = maleProbability;
@@ -75,7 +74,7 @@ public enum GenderPreferences implements ICharacterDescriptionPreference<GenderP
     }
 
     public Gender randomGender() {
-        final int randomValue = random.nextInt(maleProbability + femaleProbability);
+        final int randomValue = RandomSelector.random.nextInt(maleProbability + femaleProbability);
         return randomValue < maleProbability ? Gender.MALE : Gender.FEMALE;
     }
 

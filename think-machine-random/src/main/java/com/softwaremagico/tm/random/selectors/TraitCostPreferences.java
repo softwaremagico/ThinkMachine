@@ -24,7 +24,8 @@ package com.softwaremagico.tm.random.selectors;
  * #L%
  */
 
-import java.util.Random;
+import com.softwaremagico.tm.random.RandomSelector;
+
 import java.util.Set;
 
 public enum TraitCostPreferences implements ICharacterCreationPreference<TraitCostPreferences>, IGaussianDistribution {
@@ -44,7 +45,6 @@ public enum TraitCostPreferences implements ICharacterCreationPreference<TraitCo
     private final int maximum;
     private final int mean;
     private final int variance;
-    private final Random random = new Random();
 
     TraitCostPreferences(int minimumValue, int maximumValue, int mean, int variance) {
         this.maximum = maximumValue;
@@ -86,7 +86,7 @@ public enum TraitCostPreferences implements ICharacterCreationPreference<TraitCo
     public int randomGaussian() {
         int selectedValue;
         do {
-            selectedValue = (int) (random.nextGaussian() * Math.sqrt(variance) + mean);
+            selectedValue = (int) (RandomSelector.random.nextGaussian() * Math.sqrt(variance) + mean);
         } while (selectedValue < minimum() || selectedValue > maximum());
         return selectedValue;
     }

@@ -32,7 +32,7 @@ import com.softwaremagico.tm.random.predefined.characters.Npc;
 import com.softwaremagico.tm.random.predefined.characters.NpcFactory;
 import com.softwaremagico.tm.random.selectors.SpecializationPreferences;
 import com.softwaremagico.tm.random.selectors.TechnologicalPreferences;
-import org.junit.Assert;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.time.Duration;

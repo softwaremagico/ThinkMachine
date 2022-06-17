@@ -25,7 +25,9 @@ package com.softwaremagico.tm.random.party;
  */
 
 import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.character.*;
+import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.character.RandomizeCharacter;
+import com.softwaremagico.tm.character.Settings;
 import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
 import com.softwaremagico.tm.character.exceptions.RestrictedElementException;
 import com.softwaremagico.tm.character.exceptions.UnofficialElementNotAllowedException;
@@ -137,7 +139,7 @@ public class RandomPartyDefinition extends RandomSelector<RandomPartyMember> {
         if (elements == null || elements.isEmpty()) {
             return null;
         }
-        final int index = rand.nextInt(elements.size());
+        final int index = random.nextInt(elements.size());
         final Iterator<T> iter = elements.iterator();
         for (int i = 0; i < index; i++) {
             iter.next();

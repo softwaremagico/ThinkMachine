@@ -26,9 +26,9 @@ package com.softwaremagico.tm.random;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.exceptions.RestrictedElementException;
 import com.softwaremagico.tm.character.exceptions.UnofficialElementNotAllowedException;
-import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.log.RandomGenerationLog;
 import com.softwaremagico.tm.random.definition.RandomElementDefinition;
 import com.softwaremagico.tm.random.exceptions.ImpossibleToAssignMandatoryElementException;
@@ -51,12 +51,13 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
     protected static final int GOOD_PROBABILITY = 21;
     protected static final int VERY_GOOD_PROBABILITY = 31;
 
-    protected static final int BASIC_MULTIPLICATOR = 5;
-    protected static final int HIGH_MULTIPLICATOR = 10;
+    protected static final int BASIC_MULTIPLIER = 5;
+    protected static final int HIGH_MULTIPLIER = 10;
+
+    public static final Random random = new Random();
 
     private final CharacterPlayer characterPlayer;
     private final Set<IRandomPreference<?>> preferences;
-    protected Random rand = new Random();
 
     private final Set<Element> suggestedElements;
     private final Set<Element> mandatoryValues;
@@ -212,7 +213,7 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
 
         if (randomDefinition.getProbabilityMultiplier() != null) {
             RandomGenerationLog.debug(this.getClass().getName(),
-                    "Random definition multiplicator is '{}'.", randomDefinition.getProbabilityMultiplier());
+                    "Random definition multiplier is '{}'.", randomDefinition.getProbabilityMultiplier());
             multiplier *= randomDefinition.getProbabilityMultiplier();
         }
 
@@ -221,7 +222,7 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
                 && randomDefinition.getRecommendedRaces().contains(getCharacterPlayer().getRace())) {
             RandomGenerationLog.debug(this.getClass().getName(),
                     "Random definition as recommended for '{}'.", getCharacterPlayer().getRace());
-            multiplier *= BASIC_MULTIPLICATOR;
+            multiplier *= BASIC_MULTIPLIER;
         }
 
         // Recommended to my faction group.
@@ -229,7 +230,7 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
                 .getRecommendedFactionsGroups().contains(getCharacterPlayer().getFaction().getFactionGroup())) {
             RandomGenerationLog.debug(this.getClass().getName(), "Random definition as recommended for '{}'.",
                     getCharacterPlayer().getFaction().getFactionGroup());
-            multiplier *= BASIC_MULTIPLICATOR;
+            multiplier *= BASIC_MULTIPLIER;
         }
 
         // Recommended to my faction.
@@ -237,14 +238,14 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
                 && randomDefinition.getRecommendedFactions().contains(getCharacterPlayer().getFaction())) {
             RandomGenerationLog.debug(this.getClass().getName(),
                     "Random definition as recommended for '{}'.", getCharacterPlayer().getFaction());
-            multiplier *= HIGH_MULTIPLICATOR;
+            multiplier *= HIGH_MULTIPLIER;
         }
 
         // Probability definition by preference.
         if (randomDefinition.getProbability() != null) {
-            multiplier *= randomDefinition.getProbability().getProbabilityMultiplicator();
+            multiplier *= randomDefinition.getProbability().getProbabilityMultiplier();
             RandomGenerationLog.debug(this.getClass().getName(), "Random definition defines with bonus probability of '"
-                    + randomDefinition.getProbability().getProbabilityMultiplicator() + "'.");
+                    + randomDefinition.getProbability().getProbabilityMultiplier() + "'.");
         }
 
         RandomGenerationLog.debug(this.getClass().getName(),
@@ -339,7 +340,7 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
         if (weightedElements == null || weightedElements.isEmpty() || totalWeight == 0) {
             throw new InvalidRandomElementSelectedException("No elements to select");
         }
-        final int value = rand.nextInt(totalWeight) + 1;
+        final int value = random.nextInt(totalWeight) + 1;
         Element selectedElement = weightedElements.values().iterator().next();
         final SortedMap<Integer, Element> view = weightedElements.headMap(value, true);
         try {

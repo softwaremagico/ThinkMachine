@@ -24,7 +24,8 @@ package com.softwaremagico.tm.random.selectors;
  * #L%
  */
 
-import java.util.Random;
+import com.softwaremagico.tm.random.RandomSelector;
+
 import java.util.Set;
 
 public enum CyberneticTotalDevicesPreferences implements ICyberneticsPreference<CyberneticTotalDevicesPreferences>, IGaussianDistribution {
@@ -46,7 +47,6 @@ public enum CyberneticTotalDevicesPreferences implements ICyberneticsPreference<
     private final int maximum;
     private final int mean;
     private final int variance;
-    private final Random random = new Random();
 
     CyberneticTotalDevicesPreferences(int minimumValue, int maximumValue, int mean, int variance) {
         this.maximum = maximumValue;
@@ -88,7 +88,7 @@ public enum CyberneticTotalDevicesPreferences implements ICyberneticsPreference<
     public int randomGaussian() {
         int selectedValue;
         do {
-            selectedValue = (int) (random.nextGaussian() * Math.sqrt(variance) + mean);
+            selectedValue = (int) (RandomSelector.random.nextGaussian() * Math.sqrt(variance) + mean);
         } while (selectedValue < minimum() || selectedValue > maximum());
         return selectedValue;
     }

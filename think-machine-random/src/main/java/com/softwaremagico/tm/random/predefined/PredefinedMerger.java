@@ -1,6 +1,5 @@
 package com.softwaremagico.tm.random.predefined;
 
-import com.google.common.base.Objects;
 import com.softwaremagico.tm.character.benefices.AvailableBenefice;
 import com.softwaremagico.tm.character.benefices.BeneficeDefinition;
 import com.softwaremagico.tm.character.blessings.Blessing;
@@ -10,6 +9,7 @@ import com.softwaremagico.tm.character.equipment.shields.Shield;
 import com.softwaremagico.tm.character.equipment.weapons.Weapon;
 import com.softwaremagico.tm.character.occultism.OccultismPath;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
+import com.softwaremagico.tm.random.RandomSelector;
 import com.softwaremagico.tm.random.predefined.characters.Npc;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
 
@@ -182,7 +182,7 @@ public class PredefinedMerger {
         for (final Characteristic newCharacteristic : preferredCharacteristicsMinimumValues) {
             boolean added = false;
             for (final Characteristic characteristic : originalCharacteristicsMinimumValues) {
-                if (Objects.equal(characteristic.getCharacteristicDefinition().getCharacteristicName(),
+                if (Objects.equals(characteristic.getCharacteristicDefinition().getCharacteristicName(),
                         newCharacteristic.getCharacteristicDefinition().getCharacteristicName())) {
                     if (characteristic.getValue() < newCharacteristic.getValue()) {
                         characteristic.setValue(newCharacteristic.getValue());
@@ -259,9 +259,8 @@ public class PredefinedMerger {
         if (finalProfile.getFaction() == null) {
             finalProfile.setFaction(profile.getFaction());
         } else if (profile.getFaction() != null) {
-            final Random random = new Random();
             //Choose randomly one or other.
-            if (random.nextBoolean()) {
+            if (RandomSelector.random.nextBoolean()) {
                 finalProfile.setFaction(profile.getFaction());
             }
         }
@@ -271,9 +270,8 @@ public class PredefinedMerger {
         if (finalProfile.getRace() == null) {
             finalProfile.setRace(profile.getRace());
         } else if (profile.getRace() != null) {
-            final Random random = new Random();
             //Choose randomly one or other.
-            if (random.nextBoolean()) {
+            if (RandomSelector.random.nextBoolean()) {
                 finalProfile.setRace(profile.getRace());
             }
         }
@@ -301,14 +299,13 @@ public class PredefinedMerger {
     public static Set<IRandomPreference<?>> removeDuplicates(Set<IRandomPreference<?>> originalPreferences) {
         final Set<IRandomPreference<?>> filteredPreferences = originalPreferences.stream().filter(java.util.Objects::nonNull).
                 collect(Collectors.toSet());
-        final Random random = new Random();
         for (final IRandomPreference<?> preference1 : new HashSet<>(filteredPreferences)) {
             //Get preference average.
             for (final IRandomPreference<?> preference2 : new HashSet<>(filteredPreferences)) {
-                if (preference1 != preference2 && Objects.equal(preference1.getClass(), preference2.getClass())) {
+                if (preference1 != preference2 && Objects.equals(preference1.getClass(), preference2.getClass())) {
                     if (preference1.getClass().isEnum()) {
                         //Select randomly
-                        if (random.nextBoolean()) {
+                        if (RandomSelector.random.nextBoolean()) {
                             filteredPreferences.remove(preference1);
                         } else {
                             filteredPreferences.remove(preference2);
