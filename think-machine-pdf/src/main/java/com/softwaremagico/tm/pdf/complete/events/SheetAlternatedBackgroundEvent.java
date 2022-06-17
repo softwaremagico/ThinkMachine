@@ -77,7 +77,7 @@ public class SheetAlternatedBackgroundEvent extends PdfPageEventHelper {
 			// document.getPageSize().getHeight() - IMAGE_HEIGHT -
 			// IMAGE_BORDER);
 			final float barWidth = document.getPageSize().getWidth() - IMAGE_WIDTH - IMAGE_BORDER * 2f;
-			mainTitleRight.setAbsolutePosition(IMAGE_HEIGHT + IMAGE_BORDER * 2 + 3,
+			mainTitleRight.setAbsolutePosition(IMAGE_HEIGHT + IMAGE_BORDER * 2f + 3,
 					document.getPageSize().getHeight() - BAR_HEIGHT - IMAGE_TOP_BORDER - 2);
 			mainTitleRight.scaleAbsolute(barWidth, BAR_HEIGHT);
 		} catch (BadElementException | IOException e) {
@@ -91,7 +91,7 @@ public class SheetAlternatedBackgroundEvent extends PdfPageEventHelper {
 			// document.getPageSize().getHeight() - IMAGE_HEIGHT -
 			// IMAGE_BORDER);
 			final float barWidth = document.getPageSize().getWidth() - IMAGE_WIDTH - IMAGE_BORDER * 2f;
-			mainTitleLeft.setAbsolutePosition(IMAGE_BORDER * 2 + 3,
+			mainTitleLeft.setAbsolutePosition(IMAGE_BORDER * 2f + 3,
 					document.getPageSize().getHeight() - BAR_HEIGHT - IMAGE_TOP_BORDER - 2);
 			mainTitleLeft.scaleAbsolute(barWidth, BAR_HEIGHT);
 		} catch (BadElementException | IOException e) {
