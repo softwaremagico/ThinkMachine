@@ -8,6 +8,7 @@
 [![think-machine-core](https://img.shields.io/maven-central/v/com.softwaremagico/think-machine.svg)](https://search.maven.org/remote_content?g=com.softwaremagico&a=think-machine-rules&v=latest)
 [![GitHub commit activity](https://img.shields.io/github/commit-activity/y/softwaremagico/ThinkMachine)](https://github.com/softwaremagico/ThinkMachine)
 [![GitHub last commit](https://img.shields.io/github/last-commit/softwaremagico/ThinkMachine)](https://github.com/softwaremagico/ThinkMachine)
+[![CircleCI](https://circleci.com/gh/softwaremagico/ThinkMachine.svg?style=shield)](https://circleci.com/gh/softwaremagico/ThinkMachine)
 [![SonarCloud Rating](https://sonarcloud.io/api/project_badges/measure?project=softwaremagico_ThinkMachine&metric=sqale_rating)](https://sonarcloud.io/component_measures?id=softwaremagico_ThinkMachine&metric=sqale_rating&view=list)
 [![SonarCloud Bugs](https://sonarcloud.io/api/project_badges/measure?project=softwaremagico_ThinkMachine&metric=bugs)](https://sonarcloud.io/component_measures/metric/reliability_rating/list?id=softwaremagico_ThinkMachine)
 [![SonarCloud Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=softwaremagico_ThinkMachine&metric=vulnerabilities)](https://sonarcloud.io/component_measures/metric/security_rating/list?id=softwaremagico_ThinkMachine)
