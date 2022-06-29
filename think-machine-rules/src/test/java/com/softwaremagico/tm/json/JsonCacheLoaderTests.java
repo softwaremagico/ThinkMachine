@@ -58,7 +58,7 @@ public class JsonCacheLoaderTests {
         Assert.assertTrue(weaponsFactoryCacheLoader.load(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).size() > 0);
     }
 
-    @Test(enabled = false)
+    @Test
     public void checkWeaponsImprovement() throws InvalidXmlElementException {
         //Skip Json generation.
         WeaponFactory weaponFactory = new WeaponFactory() {
@@ -88,7 +88,7 @@ public class JsonCacheLoaderTests {
         Assert.assertTrue(jsonMethod.getNano() < xmlMethod.getNano());
     }
 
-    @Test()
+    @Test
     public void checkSkillsImprovement() throws InvalidXmlElementException {
         //Force Json generation.
 
@@ -120,7 +120,7 @@ public class JsonCacheLoaderTests {
         Assert.assertTrue(jsonMethod.getNano() * 5 < xmlMethod.getNano());
     }
 
-    @Test()
+    @Test
     public void checkBlessingsImprovement() throws InvalidXmlElementException {
         //Force Json generation.
 
@@ -152,7 +152,7 @@ public class JsonCacheLoaderTests {
         Assert.assertTrue(jsonMethod.getNano() < xmlMethod.getNano());
     }
 
-    @Test()
+    @Test
     public void checkBeneficesImprovement() throws InvalidXmlElementException {
         //Force Json generation.
 
@@ -184,7 +184,7 @@ public class JsonCacheLoaderTests {
         Assert.assertTrue(jsonMethod.getNano() * 5 < xmlMethod.getNano());
     }
 
-    @Test()
+    @Test
     public void checkArmoursImprovement() throws InvalidXmlElementException {
         //Force Json generation.
 
@@ -216,7 +216,7 @@ public class JsonCacheLoaderTests {
         Assert.assertTrue(jsonMethod.getNano() * 2 < xmlMethod.getNano());
     }
 
-    @Test()
+    @Test
     public void checkPlanetsImprovement() throws InvalidXmlElementException {
         //Force Json generation.
 
@@ -248,7 +248,7 @@ public class JsonCacheLoaderTests {
         Assert.assertTrue(jsonMethod.getNano() < xmlMethod.getNano());
     }
 
-    @Test()
+    @Test
     public void checkOccultismPathImprovement() throws InvalidXmlElementException {
         //Force Json generation.
 

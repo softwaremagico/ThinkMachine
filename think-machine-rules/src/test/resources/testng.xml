@@ -40,7 +40,7 @@
                 <include name="exportTxt"/>
                 <include name="experience"/>
                 <include name="costCalculator"/>
-                <include name="jsonCache"/>
+                <exclude name="jsonCache"/>
                 <include name="moduleEnforcer"/>
                 <include name="faction"/>
                 <include name="race"/>
