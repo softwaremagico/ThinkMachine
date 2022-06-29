@@ -58,7 +58,7 @@ public class JsonCacheLoaderTests {
         Assert.assertTrue(weaponsFactoryCacheLoader.load(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).size() > 0);
     }
 
-    @Test()
+    @Test(enabled = false)
     public void checkWeaponsImprovement() throws InvalidXmlElementException {
         //Skip Json generation.
         WeaponFactory weaponFactory = new WeaponFactory() {
