@@ -76,7 +76,7 @@ public class OccultismPath extends Element<OccultismPath> {
 
         // Sort by level inverse.
         powersOfPath.sort((power0, power1) -> {
-            if (power1.getLevel() != power1.getLevel()) {
+            if (power0.getLevel() != power1.getLevel()) {
                 return power1.getLevel() - power0.getLevel();
             }
             return power1.compareTo(power0);

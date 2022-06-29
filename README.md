@@ -1,13 +1,17 @@
 <img src="./images/ThinkMachine_logo_fenix.svg" width="800" alt="Think Machine" align="middle"> 
 
 # Think Machine
-[![Supported Languages](https://img.shields.io/badge/Supported-%F0%9F%87%AA%F0%9F%87%B8%20%F0%9F%87%AC%F0%9F%87%A7languages-blue.svg)](https://github.com/softwaremagico/ThinkMachine/blob/master/modules/languages.xml)
+[![Supported Languages](https://img.shields.io/badge/supported-%F0%9F%87%AA%F0%9F%87%B8%20%F0%9F%87%AC%F0%9F%87%A7languages-blue.svg)](https://github.com/softwaremagico/ThinkMachine/blob/master/modules/languages.xml)
 [![Build Status](https://travis-ci.org/softwaremagico/ThinkMachine.svg?branch=master)](https://travis-ci.org/softwaremagico/ThinkMachine)
 [![GNU GPL 3.0 License](https://img.shields.io/badge/license-GNU_GPL_3.0-brightgreen.svg)](https://github.com/softwaremagico/ThinkMachine/blob/master/license/gnugpl/license.txt)
 [![Issues](https://img.shields.io/github/issues/softwaremagico/ThinkMachine.svg)](https://github.com/softwaremagico/ThinkMachine/issues)
 [![think-machine-core](https://img.shields.io/maven-central/v/com.softwaremagico/think-machine.svg)](https://search.maven.org/remote_content?g=com.softwaremagico&a=think-machine-rules&v=latest)
 [![GitHub commit activity](https://img.shields.io/github/commit-activity/y/softwaremagico/ThinkMachine)](https://github.com/softwaremagico/ThinkMachine)
 [![GitHub last commit](https://img.shields.io/github/last-commit/softwaremagico/ThinkMachine)](https://github.com/softwaremagico/ThinkMachine)
+[![CircleCI](https://circleci.com/gh/softwaremagico/ThinkMachine.svg?style=shield)](https://circleci.com/gh/softwaremagico/ThinkMachine)
+[![SonarCloud Rating](https://sonarcloud.io/api/project_badges/measure?project=softwaremagico_ThinkMachine&metric=sqale_rating)](https://sonarcloud.io/component_measures?id=softwaremagico_ThinkMachine&metric=sqale_rating&view=list)
+[![SonarCloud Bugs](https://sonarcloud.io/api/project_badges/measure?project=softwaremagico_ThinkMachine&metric=bugs)](https://sonarcloud.io/component_measures/metric/reliability_rating/list?id=softwaremagico_ThinkMachine)
+[![SonarCloud Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=softwaremagico_ThinkMachine&metric=vulnerabilities)](https://sonarcloud.io/component_measures/metric/security_rating/list?id=softwaremagico_ThinkMachine)
 
 This software generated in Java includes all rules needed for the creation of a character sheet for the role play game called **Fading Suns** (Revised Edition). Personally, I do not like the provided character sheet in the Player's Guide book, and I have designed a new one based on some old sheets for previous versions of this game. Also, I have added some custom rules for random character generation that can be used for PC or NPC generation. This software only includes the rules, that can be included as a dependency on other softwares, but cannot be used as a standalone application. If you are looking for a complete software to generate characters, **take a look on [Think Machine: Advisor](https://github.com/softwaremagico/ThinkMachineAdvisor)**, a mobile application for character generation based on Android devices. This app includes everything that you are looking for. 
 

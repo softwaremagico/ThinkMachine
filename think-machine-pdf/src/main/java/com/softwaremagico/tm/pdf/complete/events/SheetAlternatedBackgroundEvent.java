@@ -24,8 +24,6 @@ package com.softwaremagico.tm.pdf.complete.events;
  * #L%
  */
 
-import java.io.IOException;
-
 import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -34,6 +32,8 @@ import com.itextpdf.text.pdf.PdfPageEventHelper;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.softwaremagico.tm.log.PdfExporterLog;
 import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
+
+import java.io.IOException;
 
 public class SheetAlternatedBackgroundEvent extends PdfPageEventHelper {
 	private static final int IMAGE_HEIGHT = 100;
@@ -76,8 +76,8 @@ public class SheetAlternatedBackgroundEvent extends PdfPageEventHelper {
 			// leftCorner.setAbsolutePosition(IMAGE_BORDER,
 			// document.getPageSize().getHeight() - IMAGE_HEIGHT -
 			// IMAGE_BORDER);
-			final float barWidth = document.getPageSize().getWidth() - IMAGE_WIDTH - IMAGE_BORDER * 2;
-			mainTitleRight.setAbsolutePosition(IMAGE_HEIGHT + IMAGE_BORDER * 2 + 3,
+			final float barWidth = document.getPageSize().getWidth() - IMAGE_WIDTH - IMAGE_BORDER * 2f;
+			mainTitleRight.setAbsolutePosition(IMAGE_HEIGHT + IMAGE_BORDER * 2f + 3,
 					document.getPageSize().getHeight() - BAR_HEIGHT - IMAGE_TOP_BORDER - 2);
 			mainTitleRight.scaleAbsolute(barWidth, BAR_HEIGHT);
 		} catch (BadElementException | IOException e) {
@@ -90,8 +90,8 @@ public class SheetAlternatedBackgroundEvent extends PdfPageEventHelper {
 			// leftCorner.setAbsolutePosition(IMAGE_BORDER,
 			// document.getPageSize().getHeight() - IMAGE_HEIGHT -
 			// IMAGE_BORDER);
-			final float barWidth = document.getPageSize().getWidth() - IMAGE_WIDTH - IMAGE_BORDER * 2;
-			mainTitleLeft.setAbsolutePosition(IMAGE_BORDER * 2 + 3,
+			final float barWidth = document.getPageSize().getWidth() - IMAGE_WIDTH - IMAGE_BORDER * 2f;
+			mainTitleLeft.setAbsolutePosition(IMAGE_BORDER * 2f + 3,
 					document.getPageSize().getHeight() - BAR_HEIGHT - IMAGE_TOP_BORDER - 2);
 			mainTitleLeft.scaleAbsolute(barWidth, BAR_HEIGHT);
 		} catch (BadElementException | IOException e) {

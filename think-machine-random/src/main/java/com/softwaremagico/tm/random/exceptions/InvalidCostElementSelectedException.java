@@ -28,14 +28,14 @@ import com.softwaremagico.tm.character.equipment.Equipment;
 
 public class InvalidCostElementSelectedException extends InvalidRandomElementSelectedException {
     private static final long serialVersionUID = -5121789853146056470L;
-    private final Equipment<?> element;
+    private final transient Equipment<?> element;
 
     public <T extends Equipment<T>> InvalidCostElementSelectedException(Equipment<T> element, String message) {
         super(message);
         this.element = element;
     }
 
-    public Equipment<?> getElement() {
-        return element;
+    public <T extends Equipment<T>> Equipment<T> getElement() {
+        return (Equipment<T>) element;
     }
 }

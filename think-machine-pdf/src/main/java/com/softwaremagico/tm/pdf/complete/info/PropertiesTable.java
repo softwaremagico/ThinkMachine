@@ -56,7 +56,7 @@ public class PropertiesTable extends VerticalTable {
 		if (characterPlayer != null) {
 			moneyText = "  " + characterPlayer.getMoney() + "- ";
 			usedWidth = FadingSunsTheme.getHandwrittingFont().getWidthPoint(moneyText,
-					FadingSunsTheme.TABLE_LINE_FONT_SIZE - 1);
+					FadingSunsTheme.TABLE_LINE_FONT_SIZE - 1f);
 			paragraph.add(new Paragraph(moneyText, new Font(FadingSunsTheme.getHandwrittingFont(), FadingSunsTheme
 					.getHandWrittingFontSize(FadingSunsTheme.TABLE_LINE_FONT_SIZE - 1))));
 		}

@@ -59,7 +59,7 @@ public class SmallPartySheet extends SmallCharacterSheetWithDescriptions {
 		return PageSize.A4.rotate();
 	}
 
-	private void initializeTableContent() {
+	private void initializeSmallPartyTableContent() {
 		final float[] widths = { 1f, 1f };
 		mainTable = new PdfPTable(widths);
 		BaseElement.setTablePropierties(mainTable);
@@ -70,7 +70,7 @@ public class SmallPartySheet extends SmallCharacterSheetWithDescriptions {
 
 	@Override
 	protected void createContent(Document document) throws DocumentException, InvalidXmlElementException  {
-		initializeTableContent();
+		initializeSmallPartyTableContent();
 		boolean hasDescription = false;
 		for (final CharacterPlayer characterPlayer : party.getMembers()) {
 			if ((characterPlayer.getInfo().getBackgroundDecription() != null && !characterPlayer.getInfo()
@@ -84,7 +84,7 @@ public class SmallPartySheet extends SmallCharacterSheetWithDescriptions {
 		for (final CharacterPlayer characterPlayer : party.getMembers()) {
 			createCharacterPDF(document, characterPlayer);
 			if (hasDescription) {
-				createDescriptionPage(characterPlayer);
+				createSmallPartyDescriptionPage(characterPlayer);
 			}
 		}
 		if (party.getMembers().size() % 2 > 0 && !hasDescription) {
@@ -98,7 +98,7 @@ public class SmallPartySheet extends SmallCharacterSheetWithDescriptions {
 		mainTable.addCell(createCharacterContent(characterPlayer));
 	}
 
-	private void createDescriptionPage(CharacterPlayer characterPlayer) {
+	private void createSmallPartyDescriptionPage(CharacterPlayer characterPlayer) {
 		mainTable.addCell(DescriptionTableFactory.getDescriptionTable(characterPlayer, getLanguage(), getModuleName()));
 	}
 

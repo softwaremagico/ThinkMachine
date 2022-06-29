@@ -25,16 +25,14 @@ package com.softwaremagico.tm.configurator;
  */
 
 import com.softwaremagico.tm.file.configurator.MachineConfigurationReader;
-import com.softwaremagico.tm.log.SuppressFBWarnings;
 
 public class MachinePdfConfigurationReader extends MachineConfigurationReader {
 	// Tags
 	private static final String SMALL_PDF_CHARACTER_SHIELDS = "sheet.small.shields";
 	private static final String SMALL_PDF_CHARACTER_BLESSINGS_NAME = "sheet.small.blessings.name";
 
-	private static MachinePdfConfigurationReader instance;
+	private static volatile MachinePdfConfigurationReader instance;
 
-	@SuppressFBWarnings(value = "DC_DOUBLECHECK")
 	public static MachinePdfConfigurationReader getInstance() {
 		if (instance == null) {
 			synchronized (MachinePdfConfigurationReader.class) {

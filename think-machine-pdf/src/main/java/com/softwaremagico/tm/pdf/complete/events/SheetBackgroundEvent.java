@@ -24,8 +24,6 @@ package com.softwaremagico.tm.pdf.complete.events;
  * #L%
  */
 
-import java.io.IOException;
-
 import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -34,6 +32,8 @@ import com.itextpdf.text.pdf.PdfPageEventHelper;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.softwaremagico.tm.log.PdfExporterLog;
 import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
+
+import java.io.IOException;
 
 public class SheetBackgroundEvent extends PdfPageEventHelper {
 	private static final int IMAGE_HEIGHT = 100;
@@ -65,7 +65,7 @@ public class SheetBackgroundEvent extends PdfPageEventHelper {
 		try {
 			mainTitle = Image.getInstance(SheetBackgroundEvent.class.getResource("/" + FadingSunsTheme.MAIN_TITLE_IMAGE));
 			final float barWeight = document.getPageSize().getWidth() - IMAGE_WIDTH * 2;
-			mainTitle.setAbsolutePosition(IMAGE_HEIGHT + IMAGE_BORDER * 2 + 3, document.getPageSize().getHeight() - BAR_HEIGHT - IMAGE_BORDER);
+			mainTitle.setAbsolutePosition(IMAGE_HEIGHT + IMAGE_BORDER * 2f + 3, document.getPageSize().getHeight() - BAR_HEIGHT - IMAGE_BORDER);
 			mainTitle.scaleAbsolute(barWeight, BAR_HEIGHT);
 		} catch (BadElementException | IOException e) {
 			PdfExporterLog.errorMessage(this.getClass().getName(), e);

@@ -26,8 +26,8 @@ package com.softwaremagico.tm.character.benefices;
 
 public class IncompatibleBeneficeException extends InvalidBeneficeException {
     private static final long serialVersionUID = 3558660253411869827L;
-    private final AvailableBenefice newBenefice;
-    private final AvailableBenefice incompatibleBenefice;
+    private final transient AvailableBenefice newBenefice;
+    private final transient AvailableBenefice incompatibleBenefice;
 
     public IncompatibleBeneficeException(String message, AvailableBenefice newBenefice) {
         super(message);

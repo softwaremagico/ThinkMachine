@@ -32,11 +32,11 @@ import java.util.List;
 
 public abstract class FactoryElements<E extends Element<E>> extends BaseElement {
 
-    public int version;
+    private int version;
 
-    public int totalElements;
+    private int totalElements;
 
-    public List<E> elements;
+    private List<E> elements;
 
     public FactoryElements() {
         super();

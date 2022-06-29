@@ -111,7 +111,7 @@ public class RandomArmour extends EquipmentSelector<Armour> {
                 (getCharacterPlayer().getCharacteristicValue(CharacteristicName.TECH) - armour.getTechLevel()));
         RandomGenerationLog.debug(this.getClass().getName(),
                 "Weight tech bonus for '{}' is '{}'.", armour, MAX_PROBABILITY
-                        / Math.pow(10, 2 * (getCharacterPlayer().getCharacteristicValue(CharacteristicName.TECH)
+                        / Math.pow(10, 2d * (getCharacterPlayer().getCharacteristicValue(CharacteristicName.TECH)
                         - armour.getTechLevel())));
         if (weight <= 0) {
             if (armour.getTechLevel() < 3) {

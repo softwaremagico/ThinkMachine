@@ -24,31 +24,27 @@ package com.softwaremagico.tm.file.modules;
  * #L%
  */
 
-import java.io.File;
-import java.io.FilenameFilter;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLClassLoader;
-import java.nio.file.Path;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
-import java.util.regex.Pattern;
-
+import com.softwaremagico.tm.file.InvalidJarFileException;
+import com.softwaremagico.tm.file.PathManager;
+import com.softwaremagico.tm.file.configurator.MachineConfigurationReader;
+import com.softwaremagico.tm.log.MachineModulesLog;
 import org.reflections.Reflections;
 import org.reflections.ReflectionsException;
 import org.reflections.scanners.ResourcesScanner;
 import org.reflections.util.ClasspathHelper;
 import org.reflections.util.ConfigurationBuilder;
 
-import com.softwaremagico.tm.file.InvalidJarFileException;
-import com.softwaremagico.tm.file.PathManager;
-import com.softwaremagico.tm.file.configurator.MachineConfigurationReader;
-import com.softwaremagico.tm.file.watcher.FileWatcher.FileModifiedListener;
-import com.softwaremagico.tm.log.MachineModulesLog;
+import java.io.File;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLClassLoader;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
+import java.util.regex.Pattern;
 
 public class ModuleManager {
     public static final String DEFAULT_MODULE = "Fading Suns Revised Edition";
@@ -105,7 +101,7 @@ public class ModuleManager {
                             modules.add(path[1]);
                         }
                     }
-                } catch (ArrayIndexOutOfBoundsException e) {
+                } catch (ArrayIndexOutOfBoundsException ignored) {
 
                 }
             }
@@ -115,7 +111,7 @@ public class ModuleManager {
             } else {
                 MachineModulesLog.info(ModuleManager.class.getName(), "Found modules '{}'.", modules);
             }
-        } catch (ReflectionsException e) {
+        } catch (ReflectionsException ignored) {
 
         }
 
@@ -142,9 +138,9 @@ public class ModuleManager {
                 }
             }
 
-            final Method method = URLClassLoader.class.getDeclaredMethod("addURL", new Class[]{URL.class});
+            final Method method = URLClassLoader.class.getDeclaredMethod("addURL", URL.class);
             method.setAccessible(true); // promote the method to public access.
-            method.invoke(loader, new Object[]{url});
+            method.invoke(loader, url);
             MachineModulesLog.info(ModuleManager.class.getName(), "Loaded JAR file '{}'.", jar.toURI().getPath());
         } catch (final NoSuchMethodException | IllegalAccessException | MalformedURLException | InvocationTargetException e) {
             throw new InvalidJarFileException("Unable to load JAR file '" + jar.toURI().getPath() + "'.", e);
@@ -152,14 +148,10 @@ public class ModuleManager {
     }
 
     public static void setModulesFolder(final String modulesFolderpath) {
-        MachineConfigurationReader.getInstance().setModulesPath(modulesFolderpath, new FileModifiedListener() {
-
-            @Override
-            public void changeDetected(Path pathToFile) {
-                if (pathToFile.toString().endsWith(".jar")) {
-                    MachineModulesLog.info(ModuleManager.class.getName(), "New module '{}' detected!", pathToFile);
-                    loadModules(modulesFolderpath);
-                }
+        MachineConfigurationReader.getInstance().setModulesPath(modulesFolderpath, pathToFile -> {
+            if (pathToFile.toString().endsWith(".jar")) {
+                MachineModulesLog.info(ModuleManager.class.getName(), "New module '{}' detected!", pathToFile);
+                loadModules(modulesFolderpath);
             }
         });
         loadModules(modulesFolderpath);
@@ -183,12 +175,18 @@ public class ModuleManager {
 
     public static File[] getAllJarFiles(String folderPath) {
         final File dir = new File(folderPath);
-        final File[] files = dir.listFiles(new FilenameFilter() {
-            @Override
-            public boolean accept(File dir, String name) {
-                return name.endsWith(".jar");
-            }
-        });
+        final File[] files = dir.listFiles((dir1, name) -> name.endsWith(".jar"));
         return files;
+    }
+
+    public static class MyClassloader extends URLClassLoader {
+
+        public MyClassloader(URL[] urls, ClassLoader parent) {
+            super(urls, parent);
+        }
+
+        public void addURL(URL url) {
+            super.addURL(url);
+        }
     }
 }

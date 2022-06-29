@@ -1,6 +1,14 @@
 package com.softwaremagico.tm.file.watcher;
 
+import com.softwaremagico.tm.log.MachineLog;
+
 import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.file.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 /*-
  * #%L
@@ -25,22 +33,6 @@ import java.io.File;
  * this program; If not, see <http://www.gnu.org/licenses/gpl-3.0.html>.
  * #L%
  */
-
-import java.io.FileReader;
-import java.io.IOException;
-import java.nio.file.ClosedWatchServiceException;
-import java.nio.file.NoSuchFileException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardWatchEventKinds;
-import java.nio.file.WatchEvent;
-import java.nio.file.WatchKey;
-import java.nio.file.WatchService;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
-
-import com.softwaremagico.tm.log.MachineLog;
 
 public class FileWatcher {
     private WatchQueueReader fileWatcher = null;
@@ -218,6 +210,7 @@ public class FileWatcher {
                 }
             } catch (InterruptedException e) {
                 MachineLog.errorMessage(this.getClass().getName(), e);
+                Thread.currentThread().interrupt();
             } catch (ClosedWatchServiceException e) {
                 // watcher closed. Do nothing.
                 return;
