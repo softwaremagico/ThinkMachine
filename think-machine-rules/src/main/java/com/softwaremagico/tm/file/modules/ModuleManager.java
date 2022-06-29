@@ -40,7 +40,6 @@ import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -131,7 +130,7 @@ public class ModuleManager {
             final URLClassLoader loader = (URLClassLoader) ClassLoader.getSystemClassLoader();
             final URL url = jar.toURI().toURL();
             // Disallow if already loaded
-            for (final URL it : Arrays.asList(loader.getURLs())) {
+            for (final URL it : loader.getURLs()) {
                 if (Objects.equals(it.toString(), (url.toString()))) {
                     MachineModulesLog.info(ModuleManager.class.getName(), "JAR file '{}' already loaded.", jar.toURI().getPath());
                     return;
@@ -147,15 +146,15 @@ public class ModuleManager {
         }
     }
 
-    public static void setModulesFolder(final String modulesFolderpath) {
-        MachineConfigurationReader.getInstance().setModulesPath(modulesFolderpath, pathToFile -> {
+    public static void setModulesFolder(final String modulesFolderPath) {
+        MachineConfigurationReader.getInstance().setModulesPath(modulesFolderPath, pathToFile -> {
             if (pathToFile.toString().endsWith(".jar")) {
                 MachineModulesLog.info(ModuleManager.class.getName(), "New module '{}' detected!", pathToFile);
-                loadModules(modulesFolderpath);
+                loadModules(modulesFolderPath);
             }
         });
-        loadModules(modulesFolderpath);
-        currentModuleFolder = modulesFolderpath;
+        loadModules(modulesFolderPath);
+        currentModuleFolder = modulesFolderPath;
     }
 
     private static void loadModules(String modulesFolder) {
@@ -175,8 +174,7 @@ public class ModuleManager {
 
     public static File[] getAllJarFiles(String folderPath) {
         final File dir = new File(folderPath);
-        final File[] files = dir.listFiles((dir1, name) -> name.endsWith(".jar"));
-        return files;
+        return dir.listFiles((dir1, name) -> name.endsWith(".jar"));
     }
 
     public static class MyClassloader extends URLClassLoader {
