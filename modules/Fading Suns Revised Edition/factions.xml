@@ -959,6 +959,11 @@
         </suggestedBenefices>
         <random>
             <probabilityMultiplier>1</probabilityMultiplier>
+	     <names>
+                <male>Digarn, Riman, Darsiv, Miarrard, Alis, Kadwind, Thelilland, Denarn, Kal, Rudhens, Terdilen, Nadrel, Rarsird, Hellins, Thuldav, Kellenirn</male>
+                <female>Tren, Kles, Sevri, Than, Dri, Ane, Cirve, Tralnitess, Kless, Fine, Klass, Vede, Vendatte, Tinnis, Nilni, Fan, Thelnis, Virvi</female>
+            </names>
+            <surnames>Caurba, Inedias, Tredrall, Eeffe, Yenne, Aizer, Urbanier, Intona, Ruze, Pauser, Truking, Lort, Benner, Lus, Trall, Adrilaitt, Jovett, Stratt, Senranies, Shordral, Virdro, Sastanieng, Hodro</surnames>
         </random>
     </justinian>
     <keddah>
@@ -1143,6 +1148,14 @@
         </suggestedBenefices>
         <random>
             <probabilityMultiplier>1</probabilityMultiplier>
+	     <names>
+                <male>Aerix, Arxen, Bexari, Boxal, Broxnan, Daranix, Davox, Dexar, Lexis, Loxan, Loxinus, Noxian, Omaxun, Oxis, Oxmon, Pax, Adavax, Raxmet, Ruxus, Salax, Soluxin, Tux, Vaxianian,
+		Xaeran, Xakin, Xarina, Xario, Xein, Yarlax, Kenxi
+                </male>
+                <female>Amaraxa, Axlin, Elexin, Filixa, Grixin, Kinaxi, Lediax, Lixet, Luxia, Oxania, Prixia, Raxala, Raxni, Rexel, Roxima, Rox, Trix, Valexa, Vix, Xalana, Xalora, Xantra, Xeira, Xiala, Xirai
+                </female>
+            </names>
+            <surnames>De Brixaen, De Elexin, De Fadaxi, De Galuxen, De Kandrax, De Lixia, De Xanaril, De Zaoxis, Del Mananxial</surnames>
         </random>
     </xanthippe>
     <kurgan>
