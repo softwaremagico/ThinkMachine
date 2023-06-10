@@ -51,7 +51,7 @@ public class RandomMeleeWeapon extends RandomWeapon {
         if (weaponPreferences != null) {
             float probabilityOfMeleeWeapon = weaponPreferences.getMeleeWeaponProbability();
             while (probabilityOfMeleeWeapon > 0) {
-                if (random.nextFloat() < probabilityOfMeleeWeapon) {
+                if (RANDOM.nextFloat() < probabilityOfMeleeWeapon) {
                     try {
                         super.assign();
                     } catch (InvalidCostElementSelectedException | UnofficialElementNotAllowedException e) {

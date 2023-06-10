@@ -74,7 +74,7 @@ public enum GenderPreferences implements ICharacterDescriptionPreference<GenderP
     }
 
     public Gender randomGender() {
-        final int randomValue = RandomSelector.random.nextInt(maleProbability + femaleProbability);
+        final int randomValue = RandomSelector.RANDOM.nextInt(maleProbability + femaleProbability);
         return randomValue < maleProbability ? Gender.MALE : Gender.FEMALE;
     }
 

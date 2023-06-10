@@ -53,7 +53,7 @@ public class RandomArmour extends EquipmentSelector<Armour> {
     @Override
     public void assign() throws InvalidRandomElementSelectedException, InvalidArmourException, UnofficialElementNotAllowedException {
         final ArmourPreferences armourPreferences = ArmourPreferences.getSelected(getPreferences());
-        if (armourPreferences != null && random.nextFloat() < armourPreferences.getArmourProbability()) {
+        if (armourPreferences != null && RANDOM.nextFloat() < armourPreferences.getArmourProbability()) {
             final Armour selectedArmour = selectElementByWeight();
             if (getCharacterPlayer().getArmour() == null) {
                 if (selectedArmour.getCost() > getCharacterPlayer().getMoney()) {

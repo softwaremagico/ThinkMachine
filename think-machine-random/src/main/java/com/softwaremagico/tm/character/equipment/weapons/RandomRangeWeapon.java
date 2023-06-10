@@ -50,7 +50,7 @@ public class RandomRangeWeapon extends RandomWeapon {
         if (weaponPreferences != null) {
             float probabilityOfRangedWeapon = weaponPreferences.getRangeWeaponProbability();
             while (probabilityOfRangedWeapon > 0) {
-                if (random.nextFloat() < probabilityOfRangedWeapon) {
+                if (RANDOM.nextFloat() < probabilityOfRangedWeapon) {
                     try {
                         super.assign();
                     } catch (InvalidCostElementSelectedException | UnofficialElementNotAllowedException e) {

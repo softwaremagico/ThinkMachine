@@ -53,7 +53,7 @@ public class RandomShield extends EquipmentSelector<Shield> {
     @Override
     public void assign() throws InvalidRandomElementSelectedException, InvalidShieldException, UnofficialElementNotAllowedException {
         final ShieldPreferences shieldPreferences = ShieldPreferences.getSelected(getPreferences());
-        if (shieldPreferences != null && random.nextFloat() < shieldPreferences.getShieldProbability()) {
+        if (shieldPreferences != null && RANDOM.nextFloat() < shieldPreferences.getShieldProbability()) {
             final Shield selectedShield = selectElementByWeight();
             if (getCharacterPlayer().getShield() == null) {
                 if (selectedShield.getCost() > getCharacterPlayer().getMoney()) {

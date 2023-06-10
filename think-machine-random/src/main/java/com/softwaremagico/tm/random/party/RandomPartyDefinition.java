@@ -148,7 +148,7 @@ public class RandomPartyDefinition extends RandomSelector<RandomPartyMember> {
         if (elements == null || elements.isEmpty()) {
             return null;
         }
-        final int index = random.nextInt(elements.size());
+        final int index = RANDOM.nextInt(elements.size());
         final Iterator<T> iter = elements.iterator();
         for (int i = 0; i < index; i++) {
             iter.next();

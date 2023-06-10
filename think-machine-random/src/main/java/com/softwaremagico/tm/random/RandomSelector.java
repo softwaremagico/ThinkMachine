@@ -35,8 +35,18 @@ import com.softwaremagico.tm.random.exceptions.ImpossibleToAssignMandatoryElemen
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Map.Entry;
+import java.util.NoSuchElementException;
+import java.util.Objects;
+import java.util.Random;
+import java.util.Set;
+import java.util.SortedMap;
+import java.util.TreeMap;
 
 public abstract class RandomSelector<Element extends com.softwaremagico.tm.Element<?>> {
     protected static final int MAX_PROBABILITY = 1000000;
@@ -54,7 +64,7 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
     protected static final int BASIC_MULTIPLIER = 5;
     protected static final int HIGH_MULTIPLIER = 10;
 
-    public static final Random random = new Random();
+    public static final Random RANDOM = new Random();
 
     private final CharacterPlayer characterPlayer;
     private final Set<IRandomPreference<?>> preferences;
@@ -340,7 +350,7 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
         if (weightedElements == null || weightedElements.isEmpty() || totalWeight == 0) {
             throw new InvalidRandomElementSelectedException("No elements to select");
         }
-        final int value = random.nextInt(totalWeight) + 1;
+        final int value = RANDOM.nextInt(totalWeight) + 1;
         Element selectedElement = weightedElements.values().iterator().next();
         final SortedMap<Integer, Element> view = weightedElements.headMap(value, true);
         try {

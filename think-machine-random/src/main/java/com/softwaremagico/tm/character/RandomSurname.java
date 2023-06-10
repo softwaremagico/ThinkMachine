@@ -57,7 +57,7 @@ public class RandomSurname extends RandomSelector<Surname> {
         } catch (InvalidRandomElementSelectedException e) {
             //If no surnames available choose any.
             getCharacterPlayer().getInfo().setSurname(FactionsFactory.getInstance().getAllSurnames().stream()
-                    .skip(random.nextInt(FactionsFactory.getInstance().getAllSurnames().size())).findFirst().orElse(null));
+                    .skip(RANDOM.nextInt(FactionsFactory.getInstance().getAllSurnames().size())).findFirst().orElse(null));
         }
     }
 

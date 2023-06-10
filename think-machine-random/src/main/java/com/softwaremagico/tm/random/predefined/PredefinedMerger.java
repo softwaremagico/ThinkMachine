@@ -13,7 +13,12 @@ import com.softwaremagico.tm.random.RandomSelector;
 import com.softwaremagico.tm.random.predefined.characters.Npc;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Objects;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /*-
@@ -260,7 +265,7 @@ public class PredefinedMerger {
             finalProfile.setFaction(profile.getFaction());
         } else if (profile.getFaction() != null) {
             //Choose randomly one or other.
-            if (RandomSelector.random.nextBoolean()) {
+            if (RandomSelector.RANDOM.nextBoolean()) {
                 finalProfile.setFaction(profile.getFaction());
             }
         }
@@ -271,7 +276,7 @@ public class PredefinedMerger {
             finalProfile.setRace(profile.getRace());
         } else if (profile.getRace() != null) {
             //Choose randomly one or other.
-            if (RandomSelector.random.nextBoolean()) {
+            if (RandomSelector.RANDOM.nextBoolean()) {
                 finalProfile.setRace(profile.getRace());
             }
         }
@@ -305,7 +310,7 @@ public class PredefinedMerger {
                 if (preference1 != preference2 && Objects.equals(preference1.getClass(), preference2.getClass())) {
                     if (preference1.getClass().isEnum()) {
                         //Select randomly
-                        if (RandomSelector.random.nextBoolean()) {
+                        if (RandomSelector.RANDOM.nextBoolean()) {
                             filteredPreferences.remove(preference1);
                         } else {
                             filteredPreferences.remove(preference2);

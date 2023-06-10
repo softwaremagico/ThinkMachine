@@ -86,7 +86,7 @@ public enum OccultismLevelPreferences implements IPsiPreference<OccultismLevelPr
     public int randomGaussian() {
         int selectedValue;
         do {
-            selectedValue = (int) (RandomSelector.random.nextGaussian() * Math.sqrt(variance) + mean);
+            selectedValue = (int) (RandomSelector.RANDOM.nextGaussian() * Math.sqrt(variance) + mean);
         } while (selectedValue < minimum() || selectedValue > maximum());
         return selectedValue;
     }

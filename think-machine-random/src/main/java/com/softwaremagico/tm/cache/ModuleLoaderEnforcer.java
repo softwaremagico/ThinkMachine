@@ -71,4 +71,35 @@ public class ModuleLoaderEnforcer {
                 loadedElements.get(), duration / 1000000);
         return loadedElements.get();
     }
+
+    /**
+     * Loads all factories except occultism, weapons, and armors.
+     *
+     * @param language
+     * @param moduleName
+     * @return
+     */
+    public static int loadBasicFactories(String language, String moduleName) {
+        final long startTime = System.nanoTime();
+        final AtomicInteger loadedElements = new AtomicInteger(0);
+
+        loadedElements.addAndGet(com.softwaremagico.tm.file.modules.ModuleLoaderEnforcer.loadBasicFactories(language, moduleName));
+
+        final List<CompletableFuture<Void>> futures = new ArrayList<>();
+
+        futures.add(CompletableFuture.runAsync(() -> {
+            try {
+                loadedElements.addAndGet(RandomProfileFactory.getInstance().getElements(language, moduleName).size());
+            } catch (InvalidXmlElementException e) {
+                MachineLog.errorMessage(com.softwaremagico.tm.file.modules.ModuleLoaderEnforcer.class.getName(), e);
+            }
+        }));
+        CompletableFuture.allOf(futures.toArray(new CompletableFuture[0])).join();
+
+        final long duration = (System.nanoTime() - startTime);
+        MachineLog.info(com.softwaremagico.tm.file.modules.ModuleLoaderEnforcer.class.getName(),
+                "All factories loaded! Total {} elements loaded in {} milliseconds.",
+                loadedElements.get(), duration / 1000000);
+        return loadedElements.get();
+    }
 }
