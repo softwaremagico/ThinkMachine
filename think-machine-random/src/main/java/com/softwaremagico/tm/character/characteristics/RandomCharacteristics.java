@@ -49,6 +49,7 @@ import java.util.Set;
 
 public class RandomCharacteristics extends RandomSelector<Characteristic> {
     private static final int MIN_FAITH_FOR_THEURGY = 6;
+    private static final int MAX_FAITH_FOR_NON_THEURGY = 6;
     private static final int MIN_WILL_FOR_PSIQUE = 5;
 
     public RandomCharacteristics(CharacterPlayer characterPlayer, Set<IRandomPreference<?>> preferences,
@@ -79,6 +80,19 @@ public class RandomCharacteristics extends RandomSelector<Characteristic> {
             if (selectedCharacteristic.getValue() >= selectedSpecialization.maximum()) {
                 removeElementWeight(selectedCharacteristic);
                 continue;
+            }
+
+            //Faith is sometimes too high for not church based characters.
+            if (selectedCharacteristic.getCharacteristicDefinition().getCharacteristicName() == CharacteristicName.FAITH) {
+                if (getCharacterPlayer().getFaction() != null
+                        && (getCharacterPlayer().getFaction().getFactionGroup() != FactionGroup.CHURCH &&
+                        getCharacterPlayer().getFaction().getFactionGroup() != FactionGroup.MINOR_CHURCH)) {
+                    //Max faith for non theurgy
+                    if (selectedCharacteristic.getValue() < MAX_FAITH_FOR_NON_THEURGY) {
+                        selectedCharacteristic.setValue(selectedCharacteristic.getValue() + 1);
+                    }
+                    continue;
+                }
             }
 
             if (selectedCharacteristic.getValue() < FreeStyleCharacterCreation.getMaxInitialCharacteristicsValues(
