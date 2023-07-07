@@ -144,5 +144,8 @@ Fonts used in this project: DejaVuSans, ArchitectsDaughter and Roman Antique.
 
 0.10.0 NPC generator.
 - 0.10.1 Players Companion NPCs
+- 0.10.2 Added circleci
+- 0.10.3 Some extra content
+- 0.10.4 Fixing sonarqube remarks
 
 
