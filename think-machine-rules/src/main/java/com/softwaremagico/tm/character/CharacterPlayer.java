@@ -26,18 +26,37 @@ package com.softwaremagico.tm.character;
 
 import com.softwaremagico.tm.Element;
 import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.character.benefices.*;
+import com.softwaremagico.tm.character.benefices.AvailableBenefice;
+import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
+import com.softwaremagico.tm.character.benefices.BeneficeAlreadyAddedException;
+import com.softwaremagico.tm.character.benefices.BeneficeClassification;
+import com.softwaremagico.tm.character.benefices.BeneficeDefinition;
+import com.softwaremagico.tm.character.benefices.BeneficeGroup;
+import com.softwaremagico.tm.character.benefices.BeneficeSpecialization;
+import com.softwaremagico.tm.character.benefices.IncompatibleBeneficeException;
+import com.softwaremagico.tm.character.benefices.InvalidBeneficeException;
+import com.softwaremagico.tm.character.benefices.RestrictedBenefice;
 import com.softwaremagico.tm.character.blessings.Blessing;
 import com.softwaremagico.tm.character.blessings.BlessingAlreadyAddedException;
 import com.softwaremagico.tm.character.blessings.BlessingClassification;
 import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
-import com.softwaremagico.tm.character.characteristics.*;
+import com.softwaremagico.tm.character.characteristics.Characteristic;
+import com.softwaremagico.tm.character.characteristics.CharacteristicDefinition;
+import com.softwaremagico.tm.character.characteristics.CharacteristicName;
+import com.softwaremagico.tm.character.characteristics.CharacteristicType;
+import com.softwaremagico.tm.character.characteristics.CharacteristicsDefinitionFactory;
+import com.softwaremagico.tm.character.characteristics.InvalidCharacteristicException;
 import com.softwaremagico.tm.character.combat.CombatStyle;
 import com.softwaremagico.tm.character.combat.CombatStyleFactory;
 import com.softwaremagico.tm.character.combat.CombatStyleGroup;
 import com.softwaremagico.tm.character.creation.CostCalculator;
 import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
-import com.softwaremagico.tm.character.cybernetics.*;
+import com.softwaremagico.tm.character.cybernetics.CyberneticDevice;
+import com.softwaremagico.tm.character.cybernetics.Cybernetics;
+import com.softwaremagico.tm.character.cybernetics.ICyberneticDevice;
+import com.softwaremagico.tm.character.cybernetics.RequiredCyberneticDevicesException;
+import com.softwaremagico.tm.character.cybernetics.SelectedCyberneticDevice;
+import com.softwaremagico.tm.character.cybernetics.TooManyCyberneticDevicesException;
 import com.softwaremagico.tm.character.equipment.armours.Armour;
 import com.softwaremagico.tm.character.equipment.armours.ArmourFactory;
 import com.softwaremagico.tm.character.equipment.armours.InvalidArmourException;
@@ -55,12 +74,32 @@ import com.softwaremagico.tm.character.exceptions.UnofficialElementNotAllowedExc
 import com.softwaremagico.tm.character.factions.Faction;
 import com.softwaremagico.tm.character.factions.FactionGroup;
 import com.softwaremagico.tm.character.factions.InvalidFactionException;
-import com.softwaremagico.tm.character.occultism.*;
+import com.softwaremagico.tm.character.occultism.InvalidOccultismPowerException;
+import com.softwaremagico.tm.character.occultism.InvalidPowerLevelException;
+import com.softwaremagico.tm.character.occultism.InvalidPsiqueLevelException;
+import com.softwaremagico.tm.character.occultism.Occultism;
+import com.softwaremagico.tm.character.occultism.OccultismPath;
+import com.softwaremagico.tm.character.occultism.OccultismPathFactory;
+import com.softwaremagico.tm.character.occultism.OccultismPower;
+import com.softwaremagico.tm.character.occultism.OccultismType;
+import com.softwaremagico.tm.character.occultism.OccultismTypeFactory;
+import com.softwaremagico.tm.character.occultism.Wyrd;
 import com.softwaremagico.tm.character.races.InvalidRaceException;
 import com.softwaremagico.tm.character.races.Race;
 import com.softwaremagico.tm.character.races.RaceCharacteristic;
-import com.softwaremagico.tm.character.skills.*;
-import com.softwaremagico.tm.character.values.*;
+import com.softwaremagico.tm.character.skills.AvailableSkill;
+import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
+import com.softwaremagico.tm.character.skills.InvalidRanksException;
+import com.softwaremagico.tm.character.skills.InvalidSkillException;
+import com.softwaremagico.tm.character.skills.SelectedSkill;
+import com.softwaremagico.tm.character.skills.Skill;
+import com.softwaremagico.tm.character.skills.SkillGroup;
+import com.softwaremagico.tm.character.skills.SkillsDefinitionsFactory;
+import com.softwaremagico.tm.character.values.Bonification;
+import com.softwaremagico.tm.character.values.IValue;
+import com.softwaremagico.tm.character.values.SpecialValue;
+import com.softwaremagico.tm.character.values.SpecialValuesFactory;
+import com.softwaremagico.tm.character.values.StaticValue;
 import com.softwaremagico.tm.character.xp.ElementCannotBeUpgradeWithExperienceException;
 import com.softwaremagico.tm.character.xp.Experience;
 import com.softwaremagico.tm.character.xp.ExperienceIncrease;
@@ -70,8 +109,18 @@ import com.softwaremagico.tm.json.InvalidJsonException;
 import com.softwaremagico.tm.log.MachineLog;
 import com.softwaremagico.tm.txt.CharacterSheet;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Objects;
+import java.util.Set;
+import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 public class CharacterPlayer {
@@ -1733,6 +1782,22 @@ public class CharacterPlayer {
             }
         }
         return getOccultism().getPsiqueLevel(occultismType);
+    }
+
+    public int getOccultismLevel() {
+        try {
+            int level = 0;
+            for (final OccultismType occultismType : OccultismTypeFactory.getInstance().getElements(language, moduleName)) {
+                int typeLevel = getOccultismLevel(occultismType);
+                if (typeLevel > level) {
+                    level = typeLevel;
+                }
+            }
+            return level;
+        } catch (InvalidXmlElementException e) {
+            //Ignore
+        }
+        return 0;
     }
 
     public int getOccultismLevel(OccultismType occultismType) {

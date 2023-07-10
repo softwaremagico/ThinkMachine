@@ -25,11 +25,22 @@ package com.softwaremagico.tm.character;
  */
 
 import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.character.benefices.*;
+import com.softwaremagico.tm.character.benefices.AvailableBenefice;
+import com.softwaremagico.tm.character.benefices.BeneficeAlreadyAddedException;
+import com.softwaremagico.tm.character.benefices.BeneficeDefinition;
+import com.softwaremagico.tm.character.benefices.InvalidBeneficeException;
+import com.softwaremagico.tm.character.benefices.RandomBeneficeDefinition;
+import com.softwaremagico.tm.character.benefices.RandomExtraBeneficeDefinition;
 import com.softwaremagico.tm.character.blessings.Blessing;
 import com.softwaremagico.tm.character.blessings.RandomBlessingDefinition;
 import com.softwaremagico.tm.character.blessings.RandomCursesDefinition;
-import com.softwaremagico.tm.character.characteristics.*;
+import com.softwaremagico.tm.character.characteristics.Characteristic;
+import com.softwaremagico.tm.character.characteristics.CharacteristicName;
+import com.softwaremagico.tm.character.characteristics.CharacteristicsDefinitionFactory;
+import com.softwaremagico.tm.character.characteristics.InvalidCharacteristicException;
+import com.softwaremagico.tm.character.characteristics.RandomCharacteristics;
+import com.softwaremagico.tm.character.characteristics.RandomCharacteristicsExperience;
+import com.softwaremagico.tm.character.characteristics.RandomCharacteristicsExtraPoints;
 import com.softwaremagico.tm.character.creation.CostCalculator;
 import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
 import com.softwaremagico.tm.character.cybernetics.RandomCybernetics;
@@ -62,9 +73,31 @@ import com.softwaremagico.tm.random.exceptions.InvalidCostElementSelectedExcepti
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.predefined.IRandomPredefined;
 import com.softwaremagico.tm.random.predefined.PredefinedMerger;
-import com.softwaremagico.tm.random.selectors.*;
+import com.softwaremagico.tm.random.selectors.AgePreferences;
+import com.softwaremagico.tm.random.selectors.ArmourPreferences;
+import com.softwaremagico.tm.random.selectors.CashPreferences;
+import com.softwaremagico.tm.random.selectors.CombatActionsPreferences;
+import com.softwaremagico.tm.random.selectors.CombatPreferences;
+import com.softwaremagico.tm.random.selectors.DifficultLevelPreferences;
+import com.softwaremagico.tm.random.selectors.FactionPreferences;
+import com.softwaremagico.tm.random.selectors.GenderPreferences;
+import com.softwaremagico.tm.random.selectors.IGaussianDistribution;
+import com.softwaremagico.tm.random.selectors.IRandomPreference;
+import com.softwaremagico.tm.random.selectors.OccultismLevelPreferences;
+import com.softwaremagico.tm.random.selectors.OccultismTypePreferences;
+import com.softwaremagico.tm.random.selectors.RankPreferences;
+import com.softwaremagico.tm.random.selectors.ShieldPreferences;
+import com.softwaremagico.tm.random.selectors.SpecializationPreferences;
+import com.softwaremagico.tm.random.selectors.TraitCostPreferences;
+import com.softwaremagico.tm.random.selectors.WeaponsPreferences;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.Set;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
@@ -135,7 +168,7 @@ public class RandomizeCharacter {
         this.suggestedBlessings = finalProfile.getSuggestedBlessings();
         this.mandatoryOccultismPaths = finalProfile.getMandatoryOccultismPaths();
 
-        //Include AvailableBenefices as beneficedefinitions to random calculation probability.
+        //Include AvailableBenefices as benefice definitions to random calculation probability.
         this.suggestedBenefices.addAll(suggestedAvailableBenefices.stream().map(AvailableBenefice::getBeneficeDefinition).collect(Collectors.toList()));
 
         setMandatoryTech();
@@ -185,7 +218,8 @@ public class RandomizeCharacter {
                 characterPlayer.addBenefice(availableBenefice);
             } catch (InvalidBeneficeException e) {
                 RandomGenerationLog.errorMessage(this.getClass().getName(), e);
-            } catch (BeneficeAlreadyAddedException | RestrictedElementException | UnofficialElementNotAllowedException e) {
+            } catch (BeneficeAlreadyAddedException | RestrictedElementException |
+                     UnofficialElementNotAllowedException e) {
                 //Ignore it.
             }
         }
@@ -394,10 +428,12 @@ public class RandomizeCharacter {
         randomPsiquePath.assign();
 
         // Set Wyrd
-        final IGaussianDistribution wyrdDistribution = OccultismLevelPreferences.getSelected(preferences);
-        final int extraWyrd = wyrdDistribution.randomGaussian();
-        characterPlayer.addExtraWyrd(extraWyrd - characterPlayer.getBasicWyrdValue());
-        RandomGenerationLog.info(this.getClass().getName(), "Added extra wyrd '{}'.", extraWyrd);
+        if (characterPlayer.getOccultismLevel() > 0) {
+            final IGaussianDistribution wyrdDistribution = OccultismLevelPreferences.getSelected(preferences);
+            final int extraWyrd = wyrdDistribution.randomGaussian();
+            characterPlayer.addExtraWyrd(extraWyrd - characterPlayer.getBasicWyrdValue());
+            RandomGenerationLog.info(this.getClass().getName(), "Added extra wyrd '{}'.", extraWyrd);
+        }
 
         final DifficultLevelPreferences difficultLevel = DifficultLevelPreferences.getSelected(preferences);
 

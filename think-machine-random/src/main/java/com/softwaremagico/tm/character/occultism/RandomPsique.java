@@ -37,7 +37,11 @@ import com.softwaremagico.tm.log.RandomGenerationLog;
 import com.softwaremagico.tm.random.RandomSelector;
 import com.softwaremagico.tm.random.exceptions.ImpossibleToAssignMandatoryElementException;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
-import com.softwaremagico.tm.random.selectors.*;
+import com.softwaremagico.tm.random.selectors.DifficultLevelPreferences;
+import com.softwaremagico.tm.random.selectors.IGaussianDistribution;
+import com.softwaremagico.tm.random.selectors.IRandomPreference;
+import com.softwaremagico.tm.random.selectors.OccultismLevelPreferences;
+import com.softwaremagico.tm.random.selectors.OccultismTypePreferences;
 
 import java.util.Collection;
 import java.util.Objects;
@@ -92,6 +96,13 @@ public class RandomPsique extends RandomSelector<OccultismType> {
             if (getCharacterPlayer().getFaction() != null && (getCharacterPlayer().getFaction().getFactionGroup() == FactionGroup.CHURCH ||
                     getCharacterPlayer().getFaction().getFactionGroup() == FactionGroup.MINOR_CHURCH)) {
                 throw new InvalidRandomElementSelectedException("Psi not allowed to church factions.");
+            }
+        }
+        if (Objects.equals(element,
+                OccultismTypeFactory.getTheurgy(getCharacterPlayer().getLanguage(), getCharacterPlayer().getModuleName()))) {
+            if (getCharacterPlayer().getFaction() != null && (getCharacterPlayer().getFaction().getFactionGroup() == FactionGroup.CHURCH ||
+                    getCharacterPlayer().getFaction().getFactionGroup() == FactionGroup.MINOR_CHURCH)) {
+                return VERY_GOOD_PROBABILITY;
             }
         }
 
