@@ -43,9 +43,21 @@ import com.softwaremagico.tm.random.exceptions.ImpossibleToAssignMandatoryElemen
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.exceptions.NotExistingPreferenceException;
 import com.softwaremagico.tm.random.exceptions.NotRemainingPointsException;
-import com.softwaremagico.tm.random.selectors.*;
+import com.softwaremagico.tm.random.selectors.CashPreferences;
+import com.softwaremagico.tm.random.selectors.CombatActionsGroupPreferences;
+import com.softwaremagico.tm.random.selectors.CombatActionsPreferences;
+import com.softwaremagico.tm.random.selectors.IGaussianDistribution;
+import com.softwaremagico.tm.random.selectors.IRandomPreference;
+import com.softwaremagico.tm.random.selectors.RankPreferences;
+import com.softwaremagico.tm.random.selectors.TraitCostPreferences;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.Set;
 
 public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition> {
     private static final int MAX_AFFLICTIONS = 2;
@@ -92,11 +104,13 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
         if (beneficeLevels.size() != 1) {
             throw new InvalidBeneficeException("Only benefices without multiples specializations can be use here.");
         }
-        final AvailableBenefice availableBenefice = beneficeLevels.stream().findAny().get();
-        if (availableBenefice.getCost() <= maxPoints) {
-            cost = addBenefice(availableBenefice);
+        final Optional<AvailableBenefice> availableBenefice = beneficeLevels.stream().findAny();
+        if (availableBenefice.isPresent()) {
+            if (availableBenefice.get().getCost() <= maxPoints) {
+                cost = addBenefice(availableBenefice.get());
+            }
+            removeElementWeight(availableBenefice.get().getBeneficeDefinition());
         }
-        removeElementWeight(availableBenefice.getBeneficeDefinition());
         return cost;
     }
 

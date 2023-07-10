@@ -39,10 +39,16 @@ import com.softwaremagico.tm.random.exceptions.ImpossibleToAssignMandatoryElemen
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.selectors.IRandomPreference;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
 
 public class RandomPartyDefinition extends RandomSelector<RandomPartyMember> {
     private static final int THREAT_MARGIN = 10;
+    private static final int MAX_ITERATIONS = 10000;
     private Party party = null;
     private final int threatLevel;
     private Map<RandomPartyMember, Integer> profilesAssigned = new HashMap<>();
@@ -108,7 +114,8 @@ public class RandomPartyDefinition extends RandomSelector<RandomPartyMember> {
             getParty().setPartyName(createName());
         }
 
-        while (true) {
+        int node = 0;
+        while (node < MAX_ITERATIONS) {
             // Select a skill randomly.
             final RandomPartyMember partyMember;
             try {
@@ -117,10 +124,12 @@ public class RandomPartyDefinition extends RandomSelector<RandomPartyMember> {
                     assignProfile(partyMember);
                     // Party threat increased. Update weights.
                     updateWeights();
-                } catch (TooManyBlessingsException | DuplicatedPreferenceException | InvalidRandomElementSelectedException |
-                        RestrictedElementException | UnofficialElementNotAllowedException e) {
+                } catch (TooManyBlessingsException | DuplicatedPreferenceException |
+                         InvalidRandomElementSelectedException |
+                         RestrictedElementException | UnofficialElementNotAllowedException e) {
                     MachineLog.errorMessage(this.getClass().getName(), e);
                 }
+                node++;
             } catch (InvalidRandomElementSelectedException e) {
                 // No more members available;
                 break;
@@ -169,8 +178,9 @@ public class RandomPartyDefinition extends RandomSelector<RandomPartyMember> {
             while (member.getMinNumber() != null && member.getMinNumber() < getProfileAssigned(member)) {
                 assignProfile(member);
             }
-        } catch (TooManyBlessingsException | DuplicatedPreferenceException | InvalidRandomElementSelectedException | RestrictedElementException |
-                UnofficialElementNotAllowedException e) {
+        } catch (TooManyBlessingsException | DuplicatedPreferenceException | InvalidRandomElementSelectedException |
+                 RestrictedElementException |
+                 UnofficialElementNotAllowedException e) {
             throw new ImpossibleToAssignMandatoryElementException("Character Player could not be generated.", e);
         }
     }

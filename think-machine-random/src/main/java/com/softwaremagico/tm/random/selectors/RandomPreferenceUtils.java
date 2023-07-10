@@ -52,7 +52,7 @@ public class RandomPreferenceUtils {
     }
 
     public static Set<Class<? extends IRandomPreference>> getByGroup(Class<? extends IRandomPreference> preferenceGroup) {
-        if (preferencesByGroup == null || preferencesByGroup.get(preferenceGroup) != null) {
+        if (preferencesByGroup != null && preferencesByGroup.get(preferenceGroup) != null) {
             return preferencesByGroup.get(preferenceGroup);
         }
         try {

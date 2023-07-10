@@ -88,7 +88,7 @@ public class BlessingFactory extends XmlFactory<Blessing> {
 
             final Set<Bonification> bonifications = new HashSet<>();
             int node = 0;
-            while (true) {
+            while (node < MAX_ITERATIONS) {
                 try {
                     final String bonificationValue = translator.getNodeValue(blessingId, BONIFICATION, VALUE, node);
                     final String valueName = translator.getNodeValue(blessingId, BONIFICATION, AFFECTS, node);

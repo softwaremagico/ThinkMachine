@@ -3,8 +3,12 @@ package com.softwaremagico.tm.character.equipment.weapons;
 import com.softwaremagico.tm.character.equipment.DamageType;
 import com.softwaremagico.tm.character.equipment.Equipment;
 import com.softwaremagico.tm.character.equipment.Size;
+import com.softwaremagico.tm.log.SuppressFBWarnings;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /*-
  * #%L
@@ -80,6 +84,7 @@ public class Weapon extends Equipment<Weapon> {
     }
 
 
+    @SuppressFBWarnings
     public boolean isMeleeWeapon() {
         return getType() == WeaponType.MELEE || getType() == WeaponType.MELEE_ARTIFACT || getType() == WeaponType.MELEE_SHIELD ||
                 (getWeaponDamages().stream().findFirst().isPresent() && getWeaponDamages().stream().findFirst().get().getRange() == null);

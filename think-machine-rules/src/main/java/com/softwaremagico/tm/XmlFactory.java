@@ -39,7 +39,15 @@ import com.softwaremagico.tm.log.MachineLog;
 import com.softwaremagico.tm.log.MachineXmlReaderLog;
 import com.softwaremagico.tm.random.definition.RandomProbabilityDefinition;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
+import java.util.StringTokenizer;
 
 public abstract class XmlFactory<T extends Element<T>> implements IElementRetriever<T> {
     protected Map<String, Map<String, List<T>>> elements = new HashMap<>();
@@ -66,6 +74,8 @@ public abstract class XmlFactory<T extends Element<T>> implements IElementRetrie
     private static final String DESCRIPTION = "description";
     protected static final String TOTAL_ELEMENTS = "totalElements";
     protected static final String VERSION = "version";
+
+    protected static final int MAX_ITERATIONS = 100000;
 
     private Integer totalElements;
     private Integer versionNumber;

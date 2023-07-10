@@ -42,7 +42,12 @@ import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.log.MachineXmlReaderLog;
 import com.softwaremagico.tm.log.SuppressFBWarnings;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class CyberneticDeviceFactory extends XmlFactory<CyberneticDevice> {
     private static final String TRANSLATOR_FILE = "cybernetics.xml";
@@ -73,6 +78,7 @@ public class CyberneticDeviceFactory extends XmlFactory<CyberneticDevice> {
     private static final String RANGE = "range";
     private static final String SHOTS = "shots";
     private static final String RATE = "rate";
+
 
     private static final String CLASSIFICATION = "classification";
 
@@ -186,7 +192,7 @@ public class CyberneticDeviceFactory extends XmlFactory<CyberneticDevice> {
 
             final Set<Bonification> bonifications = new HashSet<>();
             int node = 0;
-            while (true) {
+            while (node < MAX_ITERATIONS) {
                 try {
                     final String bonificationValue = translator.getNodeValue(cyberneticDeviceId, BONIFICATION, VALUE,
                             node);
@@ -208,7 +214,7 @@ public class CyberneticDeviceFactory extends XmlFactory<CyberneticDevice> {
 
             final Set<StaticValue> staticValues = new HashSet<>();
             node = 0;
-            while (true) {
+            while (node < MAX_ITERATIONS) {
                 try {
                     final String bonificationValue = translator.getNodeValue(cyberneticDeviceId, SKILL_STATIC_VALUE,
                             SKILL_VALUE, node, VALUE);
