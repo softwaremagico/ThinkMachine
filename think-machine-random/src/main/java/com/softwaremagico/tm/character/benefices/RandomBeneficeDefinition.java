@@ -96,6 +96,7 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
         }
     }
 
+    @SuppressWarnings({"java:S3655"})
     protected int assignBeneficeWithoutLevels(BeneficeDefinition benefice, int maxPoints) throws InvalidXmlElementException, RestrictedElementException {
         final Set<AvailableBenefice> beneficeLevels = AvailableBeneficeFactory.getInstance()
                 .getAvailableBeneficesByDefinition(getCharacterPlayer().getLanguage(),
@@ -105,12 +106,10 @@ public class RandomBeneficeDefinition extends RandomSelector<BeneficeDefinition>
             throw new InvalidBeneficeException("Only benefices without multiples specializations can be use here.");
         }
         final Optional<AvailableBenefice> availableBenefice = beneficeLevels.stream().findAny();
-        if (availableBenefice.isPresent()) {
-            if (availableBenefice.get().getCost() <= maxPoints) {
-                cost = addBenefice(availableBenefice.get());
-            }
-            removeElementWeight(availableBenefice.get().getBeneficeDefinition());
+        if (availableBenefice.get().getCost() <= maxPoints) {
+            cost = addBenefice(availableBenefice.get());
         }
+        removeElementWeight(availableBenefice.get().getBeneficeDefinition());
         return cost;
     }
 

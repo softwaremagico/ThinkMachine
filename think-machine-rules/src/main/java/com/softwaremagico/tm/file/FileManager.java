@@ -25,7 +25,6 @@ package com.softwaremagico.tm.file;
  */
 
 import com.softwaremagico.tm.log.ConfigurationLog;
-import com.softwaremagico.tm.log.SuppressFBWarnings;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -255,7 +254,7 @@ public class FileManager {
         return getResource(FileManager.class, fileName);
     }
 
-    @SuppressFBWarnings
+    @SuppressWarnings({"java:S2259"})
     public static File getResource(Class<?> classWithResources, String fileName) throws NullPointerException {
         final URL url = classWithResources.getClassLoader().getResource(fileName);
         if (url != null) {
