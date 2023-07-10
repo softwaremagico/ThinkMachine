@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.softwaremagico</groupId>
     <artifactId>think-machine</artifactId>
-    <version>0.10.5</version>
+    <version>0.10.6-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>Think Machine</name>
     <url>https://github.com/softwaremagico/ThinkMachine</url>
@@ -23,7 +23,7 @@
         <connection>scm:git:ssh://git@github.com/softwaremagico/ThinkMachine.git</connection>
         <developerConnection>scm:git:ssh://git@github.com/softwaremagico/ThinkMachine.git</developerConnection>
         <url>https://github.com/softwaremagico/ThinkMachine.git</url>
-        <tag>think-machine-0.10.5</tag>
+        <tag>think-machine</tag>
     </scm>
 
     <issueManagement>
