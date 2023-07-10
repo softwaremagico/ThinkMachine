@@ -26,8 +26,6 @@ package com.softwaremagico.tm.character.skills;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.character.exceptions.RestrictedElementException;
-import com.softwaremagico.tm.character.exceptions.UnofficialElementNotAllowedException;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.characteristics.CharacteristicType;
 import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
@@ -35,14 +33,24 @@ import com.softwaremagico.tm.character.cybernetics.CyberneticDeviceTrait;
 import com.softwaremagico.tm.character.cybernetics.CyberneticDeviceTraitCategory;
 import com.softwaremagico.tm.character.cybernetics.SelectedCyberneticDevice;
 import com.softwaremagico.tm.character.equipment.weapons.Weapon;
+import com.softwaremagico.tm.character.exceptions.RestrictedElementException;
+import com.softwaremagico.tm.character.exceptions.UnofficialElementNotAllowedException;
 import com.softwaremagico.tm.character.occultism.OccultismTypeFactory;
 import com.softwaremagico.tm.log.RandomGenerationLog;
 import com.softwaremagico.tm.random.RandomSelector;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
-import com.softwaremagico.tm.random.selectors.*;
+import com.softwaremagico.tm.random.selectors.CombatPreferences;
+import com.softwaremagico.tm.random.selectors.DifficultLevelPreferences;
+import com.softwaremagico.tm.random.selectors.IRandomPreference;
+import com.softwaremagico.tm.random.selectors.SkillGroupPreferences;
+import com.softwaremagico.tm.random.selectors.SpecializationPreferences;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Map.Entry;
+import java.util.Objects;
+import java.util.Set;
 
 public class RandomSkills extends RandomSelector<AvailableSkill> {
     private List<Entry<CharacteristicType, Integer>> preferredCharacteristicsTypeSorted;
@@ -160,6 +168,13 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
             RandomGenerationLog.debug(this.getClass().getName(),
                     "Weight for '{}' as natural skill is increased.", skill);
             weight += 5;
+        }
+
+        //On Madoc, watercraft is common.
+        if (Objects.equals(skill.getSkillDefinition().getId(), "watercraft") &&
+                getCharacterPlayer().getInfo().getPlanet() != null &&
+                Objects.equals(getCharacterPlayer().getInfo().getPlanet().getId(), "madoc")) {
+            return VERY_GOOD_PROBABILITY;
         }
 
         final int characteristicsWeight = weightByCharacteristics(skill);

@@ -1788,7 +1788,7 @@ public class CharacterPlayer {
         try {
             int level = 0;
             for (final OccultismType occultismType : OccultismTypeFactory.getInstance().getElements(language, moduleName)) {
-                int typeLevel = getOccultismLevel(occultismType);
+                final int typeLevel = getOccultismLevel(occultismType);
                 if (typeLevel > level) {
                     level = typeLevel;
                 }
