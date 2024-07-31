@@ -1,6 +1,6 @@
 <img src="./images/ThinkMachine_logo_fenix.svg" width="800" alt="Think Machine" align="middle"> 
 
-# Think Machine
+# Think Machine (3E)
 [![Supported Languages](https://img.shields.io/badge/supported-%F0%9F%87%AA%F0%9F%87%B8%20%F0%9F%87%AC%F0%9F%87%A7languages-blue.svg)](https://github.com/softwaremagico/ThinkMachine/blob/master/modules/languages.xml)
 [![GNU GPL 3.0 License](https://img.shields.io/badge/license-GNU_GPL_3.0-brightgreen.svg)](https://github.com/softwaremagico/ThinkMachine/blob/master/license/gnugpl/license.txt)
 [![Issues](https://img.shields.io/github/issues/softwaremagico/ThinkMachine.svg)](https://github.com/softwaremagico/ThinkMachine/issues)
