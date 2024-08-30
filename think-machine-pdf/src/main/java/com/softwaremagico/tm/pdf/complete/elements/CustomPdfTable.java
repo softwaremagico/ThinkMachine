@@ -1,43 +1,20 @@
 package com.softwaremagico.tm.pdf.complete.elements;
 
-import java.util.Arrays;
-
-import com.itextpdf.text.BaseColor;
-import com.itextpdf.text.Element;
-import com.itextpdf.text.Font;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.Phrase;
-/*-
- * #%L
- * Think Machine (Core)
- * %%
- * Copyright (C) 2017 Softwaremagico
- * %%
- * This software is designed by Jorge Hortelano Otero. Jorge Hortelano Otero
- * <softwaremagico@gmail.com> Valencia (Spain).
- *  
- * This program is free software; you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by the Free Software
- * Foundation; either version 2 of the License, or (at your option) any later
- * version.
- *  
- * This program is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
- * details.
- *  
- * You should have received a copy of the GNU General Public License along with
- * this program; If not, see <http://www.gnu.org/licenses/gpl-3.0.html>.
- * #L%
- */
-import com.itextpdf.text.pdf.BaseFont;
-import com.itextpdf.text.pdf.PdfPCell;
-import com.itextpdf.text.pdf.PdfPTable;
+import com.lowagie.text.Element;
+import com.lowagie.text.Font;
+import com.lowagie.text.Paragraph;
+import com.lowagie.text.Phrase;
+import com.lowagie.text.pdf.BaseFont;
+import com.lowagie.text.pdf.PdfPCell;
+import com.lowagie.text.pdf.PdfPTable;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.complete.elements.CellCompleteBoxEvent.Border;
 import com.softwaremagico.tm.pdf.complete.utils.CellUtils;
+
+import java.awt.Color;
+import java.util.Arrays;
 
 public abstract class CustomPdfTable extends PdfPTable {
 	private static final String TRANSLATOR_FILE = "character_sheet.xml";
@@ -74,7 +51,7 @@ public abstract class CustomPdfTable extends PdfPTable {
 	}
 
 	protected static PdfPCell createEmptyElementLine(int alignment, String text) {
-		final PdfPCell cell = BaseElement.getCell(text, 0, 1, alignment, BaseColor.WHITE,
+		final PdfPCell cell = BaseElement.getCell(text, 0, 1, alignment, Color.WHITE,
 				FadingSunsTheme.getLineFont(), FadingSunsTheme.TABLE_LINE_FONT_SIZE);
 		cell.setMinimumHeight(10);
 		cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
@@ -92,7 +69,7 @@ public abstract class CustomPdfTable extends PdfPTable {
 	}
 
 	private static PdfPCell createBasicElementLine(String text, int fontSize, int horizontalAlignment, BaseFont font) {
-		final PdfPCell cell = BaseElement.getCell(text, 0, 1, horizontalAlignment, BaseColor.WHITE,
+		final PdfPCell cell = BaseElement.getCell(text, 0, 1, horizontalAlignment, Color.WHITE,
 				font, fontSize);
 		cell.setMinimumHeight(12);
 		cell.setVerticalAlignment(Element.ALIGN_MIDDLE);

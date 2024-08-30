@@ -24,12 +24,13 @@ package com.softwaremagico.tm.pdf.complete.elements;
  * #L%
  */
 
-import com.itextpdf.text.BaseColor;
-import com.itextpdf.text.Element;
-import com.itextpdf.text.Font;
-import com.itextpdf.text.Phrase;
-import com.itextpdf.text.pdf.PdfPCell;
+import com.lowagie.text.Element;
+import com.lowagie.text.Font;
+import com.lowagie.text.Phrase;
+import com.lowagie.text.pdf.PdfPCell;
 import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
+
+import java.awt.Color;
 
 public abstract class LateralHeaderPdfPTable extends CustomPdfTable {
 
@@ -48,7 +49,7 @@ public abstract class LateralHeaderPdfPTable extends CustomPdfTable {
 
 	protected PdfPCell createLateralVerticalTitle(String title, int rowspan) {
 		final Font font = new Font(FadingSunsTheme.getTitleFont(), getTitleFontSize());
-		font.setColor(BaseColor.WHITE);
+		font.setColor(Color.WHITE);
 		final Phrase content = new Phrase(title, font);
 		final PdfPCell titleCell = new PdfPCell(content);
 		titleCell.setPadding(0);
@@ -56,7 +57,7 @@ public abstract class LateralHeaderPdfPTable extends CustomPdfTable {
 		titleCell.setRotation(90);
 		titleCell.setHorizontalAlignment(Element.ALIGN_CENTER);
 		// titleCell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-		titleCell.setBackgroundColor(BaseColor.BLACK);
+		titleCell.setBackgroundColor(Color.BLACK);
 		return titleCell;
 	}
 
@@ -66,7 +67,7 @@ public abstract class LateralHeaderPdfPTable extends CustomPdfTable {
 
 	protected static PdfPCell createTableSubtitleElement(String text, int height) {
 		final PdfPCell cell = BaseElement.getCell(text, 0, 1, Element.ALIGN_CENTER,
-				BaseColor.WHITE, FadingSunsTheme.getSubtitleFont(),
+				Color.WHITE, FadingSunsTheme.getSubtitleFont(),
 				FadingSunsTheme.TABLE_LINE_FONT_SIZE);
 		cell.setMinimumHeight(height);
 		cell.setVerticalAlignment(Element.ALIGN_MIDDLE);

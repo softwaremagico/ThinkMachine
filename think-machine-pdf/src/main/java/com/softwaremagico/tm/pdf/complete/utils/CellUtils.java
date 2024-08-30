@@ -24,14 +24,15 @@ package com.softwaremagico.tm.pdf.complete.utils;
  * #L%
  */
 
-import com.itextpdf.text.pdf.BaseFont;
+
+import com.lowagie.text.pdf.BaseFont;
 
 public class CellUtils {
 
 	public static String getSubStringFitsIn(String originalText, BaseFont font, int fontSize, float width) {
 		String text = originalText;
 
-		while (!fitsIn(text, font, fontSize, width) && text.length() > 0) {
+		while (!fitsIn(text, font, fontSize, width) && !text.isEmpty()) {
 			text = text.substring(0, text.length() - 1);
 		}
 		return text;

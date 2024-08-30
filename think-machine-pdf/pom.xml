@@ -196,9 +196,9 @@
 		</dependency>
 		<!-- PDF -->
 		<dependency>
-			<groupId>com.itextpdf</groupId>
-			<artifactId>itextg</artifactId>
-			<version>${itextg.version}</version>
+			<groupId>com.github.librepdf</groupId>
+			<artifactId>openpdf</artifactId>
+			<version>${openpdf.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.testng</groupId>

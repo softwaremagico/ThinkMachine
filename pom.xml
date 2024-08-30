@@ -65,7 +65,7 @@
         <maven-resources-plugin.version>3.2.0</maven-resources-plugin.version>
         <maven-antrun-plugin.version>3.1.0</maven-antrun-plugin.version>
         <plugin.exec.version>1.2.1</plugin.exec.version>
-        <itextg.version>5.5.10</itextg.version>
+        <openpdf.version>2.0.3</openpdf.version>
         <slf4j.version>1.7.36</slf4j.version>
         <logback.version>1.2.11</logback.version>
         <org.testng.version>6.14.3</org.testng.version>
