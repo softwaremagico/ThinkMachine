@@ -77,7 +77,7 @@ public abstract class FactoryCacheLoader<E extends Element<E>> {
             if (resource == null) {
                 throw new InvalidCacheFile("Resource not found on '" + filePath + "' is invalid.");
             }
-            try (BufferedReader read = new BufferedReader(new InputStreamReader(resource.openStream(), StandardCharsets.UTF_8.name()))) {
+            try (BufferedReader read = new BufferedReader(new InputStreamReader(resource.openStream(), StandardCharsets.UTF_8))) {
                 String line;
                 while ((line = read.readLine()) != null) {
                     resultStringBuilder.append(line).append("\n");

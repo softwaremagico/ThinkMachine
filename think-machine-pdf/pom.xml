@@ -186,19 +186,18 @@
 			<groupId>${project.groupId}</groupId>
 			<artifactId>think-machine-rules</artifactId>
 			<version>${project.version}</version>
-			<type>jar</type>
-		</dependency>
-		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>think-machine-random</artifactId>
-			<version>${project.version}</version>
-			<scope>test</scope>
 		</dependency>
 		<!-- PDF -->
 		<dependency>
 			<groupId>com.github.librepdf</groupId>
 			<artifactId>openpdf</artifactId>
 			<version>${openpdf.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>think-machine-random</artifactId>
+			<version>${project.version}</version>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.testng</groupId>
