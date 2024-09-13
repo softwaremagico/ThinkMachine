@@ -24,7 +24,7 @@ package com.softwaremagico.tm.pdf.small.cybernetics;
  * #L%
  */
 
-import com.itextpdf.text.Element;
+import com.lowagie.text.Element;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.cybernetics.SelectedCyberneticDevice;
 import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;

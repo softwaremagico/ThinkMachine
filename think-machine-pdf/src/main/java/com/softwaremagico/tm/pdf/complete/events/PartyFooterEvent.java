@@ -24,14 +24,14 @@ package com.softwaremagico.tm.pdf.complete.events;
  * #L%
  */
 
-import com.itextpdf.text.Document;
-import com.itextpdf.text.Element;
-import com.itextpdf.text.Font;
-import com.itextpdf.text.Phrase;
-import com.itextpdf.text.pdf.ColumnText;
-import com.itextpdf.text.pdf.PdfContentByte;
-import com.itextpdf.text.pdf.PdfPageEventHelper;
-import com.itextpdf.text.pdf.PdfWriter;
+import com.lowagie.text.Document;
+import com.lowagie.text.Element;
+import com.lowagie.text.Font;
+import com.lowagie.text.Phrase;
+import com.lowagie.text.pdf.ColumnText;
+import com.lowagie.text.pdf.PdfContentByte;
+import com.lowagie.text.pdf.PdfPageEventHelper;
+import com.lowagie.text.pdf.PdfWriter;
 import com.softwaremagico.tm.file.Version;
 import com.softwaremagico.tm.party.Party;
 import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
@@ -48,8 +48,8 @@ public class PartyFooterEvent extends PdfPageEventHelper {
 	/**
 	 * Adds a footer to every page
 	 *
-	 * @see com.itextpdf.text.pdf.PdfPageEventHelper#onEndPage(com.itextpdf.text.pdf.PdfWriter,
-	 *      com.itextpdf.text.Document)
+	 * @see com.lowagie.text.pdf.PdfPageEventHelper#onEndPage(com.lowagie.text.pdf.PdfWriter,
+	 *      com.lowagie.text.Document)
 	 */
 	@Override
 	public void onEndPage(PdfWriter writer, Document document) {

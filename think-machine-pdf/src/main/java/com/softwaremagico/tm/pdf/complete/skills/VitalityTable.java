@@ -24,8 +24,8 @@ package com.softwaremagico.tm.pdf.complete.skills;
  * #L%
  */
 
-import com.itextpdf.text.Element;
-import com.itextpdf.text.Font;
+import com.lowagie.text.Element;
+import com.lowagie.text.Font;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.log.PdfExporterLog;

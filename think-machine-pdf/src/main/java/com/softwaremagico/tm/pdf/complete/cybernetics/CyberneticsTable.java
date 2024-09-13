@@ -31,7 +31,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import com.itextpdf.text.Element;
+import com.lowagie.text.Element;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.cybernetics.CyberneticDeviceTrait;
 import com.softwaremagico.tm.character.cybernetics.SelectedCyberneticDevice;

@@ -24,10 +24,10 @@ package com.softwaremagico.tm.pdf.complete.info;
  * #L%
  */
 
-import com.itextpdf.text.Element;
-import com.itextpdf.text.Font;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.pdf.PdfPCell;
+import com.lowagie.text.Element;
+import com.lowagie.text.Font;
+import com.lowagie.text.Paragraph;
+import com.lowagie.text.pdf.PdfPCell;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.complete.elements.VerticalTable;

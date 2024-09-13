@@ -24,10 +24,11 @@ package com.softwaremagico.tm.pdf.complete.elements;
  * #L%
  */
 
-import com.itextpdf.text.BaseColor;
-import com.itextpdf.text.Element;
-import com.itextpdf.text.pdf.PdfPCell;
+import com.lowagie.text.Element;
+import com.lowagie.text.pdf.PdfPCell;
 import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
+
+import java.awt.Color;
 
 public abstract class VerticalTable extends CustomPdfTable {
 
@@ -44,14 +45,14 @@ public abstract class VerticalTable extends CustomPdfTable {
 	}
 
 	protected static PdfPCell createSubtitleLine(String text, int fontSize, int colspan, int alignment) {
-		final PdfPCell cell = BaseElement.getCell(text, 0, colspan, alignment, BaseColor.WHITE, FadingSunsTheme.getSubtitleFont(), fontSize);
+		final PdfPCell cell = BaseElement.getCell(text, 0, colspan, alignment, Color.WHITE, FadingSunsTheme.getSubtitleFont(), fontSize);
 		cell.setMinimumHeight(10);
 		cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		return cell;
 	}
 
 	protected static PdfPCell createValueLine(String text, int fontSize) {
-		final PdfPCell cell = BaseElement.getCell(text, 0, 1, Element.ALIGN_CENTER, BaseColor.WHITE, FadingSunsTheme.getHandwrittingFont(), fontSize);
+		final PdfPCell cell = BaseElement.getCell(text, 0, 1, Element.ALIGN_CENTER, Color.WHITE, FadingSunsTheme.getHandwrittingFont(), fontSize);
 		cell.setMinimumHeight(10);
 		cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		return cell;

@@ -24,12 +24,12 @@ package com.softwaremagico.tm.pdf.small;
  * #L%
  */
 
-import com.itextpdf.text.Document;
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Element;
-import com.itextpdf.text.PageSize;
-import com.itextpdf.text.Rectangle;
-import com.itextpdf.text.pdf.PdfPTable;
+import com.lowagie.text.Document;
+import com.lowagie.text.DocumentException;
+import com.lowagie.text.Element;
+import com.lowagie.text.PageSize;
+import com.lowagie.text.Rectangle;
+import com.lowagie.text.pdf.PdfPTable;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.language.Translator;

@@ -24,18 +24,19 @@ package com.softwaremagico.tm.pdf.complete.skills;
  * #L%
  */
 
-import com.itextpdf.text.BaseColor;
-import com.itextpdf.text.Element;
-import com.itextpdf.text.Font;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.pdf.BaseFont;
-import com.itextpdf.text.pdf.PdfPCell;
+import com.lowagie.text.Element;
+import com.lowagie.text.Font;
+import com.lowagie.text.Paragraph;
+import com.lowagie.text.pdf.BaseFont;
+import com.lowagie.text.pdf.PdfPCell;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.character.skills.SkillDefinition;
 import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.complete.elements.BaseElement;
 import com.softwaremagico.tm.pdf.complete.utils.CellUtils;
+
+import java.awt.Color;
 
 public class SkillsTable extends BaseElement {
     private static final int ROWS = 30;
@@ -52,27 +53,27 @@ public class SkillsTable extends BaseElement {
     }
 
     protected static PdfPCell createCompactTitle(String text, int fontSize) {
-        final PdfPCell cell = getCell(text, 0, 2, Element.ALIGN_CENTER, BaseColor.WHITE, FadingSunsTheme.getTitleFont(), fontSize);
+        final PdfPCell cell = getCell(text, 0, 2, Element.ALIGN_CENTER, Color.WHITE, FadingSunsTheme.getTitleFont(), fontSize);
         cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
         return cell;
     }
 
     protected static PdfPCell createSkillElement(CharacterPlayer characterPlayer, AvailableSkill skill, int fontSize, int maxColumnWidth) {
-        final PdfPCell cell = getCell(createSkillSufix(characterPlayer, skill, fontSize, maxColumnWidth), 0, 1, Element.ALIGN_LEFT, BaseColor.WHITE);
+        final PdfPCell cell = getCell(createSkillSufix(characterPlayer, skill, fontSize, maxColumnWidth), 0, 1, Element.ALIGN_LEFT, Color.WHITE);
         cell.setMinimumHeight((MainSkillsTableFactory.HEIGHT / ROWS));
         cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
         return cell;
     }
 
     protected static PdfPCell createSkillElement(SkillDefinition skill, int fontSize, int maxColumnWidth) {
-        final PdfPCell cell = getCell(createSkillSufix(skill, fontSize, maxColumnWidth), 0, 1, Element.ALIGN_LEFT, BaseColor.WHITE);
+        final PdfPCell cell = getCell(createSkillSufix(skill, fontSize, maxColumnWidth), 0, 1, Element.ALIGN_LEFT, Color.WHITE);
         cell.setMinimumHeight((MainSkillsTableFactory.HEIGHT / ROWS));
         cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
         return cell;
     }
 
     protected static PdfPCell createSkillLine(String text, int fontSize) {
-        final PdfPCell cell = getCell(text, 0, 1, Element.ALIGN_LEFT, BaseColor.WHITE, FadingSunsTheme.getLineFont(), fontSize);
+        final PdfPCell cell = getCell(text, 0, 1, Element.ALIGN_LEFT, Color.WHITE, FadingSunsTheme.getLineFont(), fontSize);
         cell.setMinimumHeight((MainSkillsTableFactory.HEIGHT / ROWS));
         cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
         return cell;
@@ -82,7 +83,7 @@ public class SkillsTable extends BaseElement {
         if (value == null) {
             return createSkillLine(SKILL_VALUE_GAP, fontSize);
         }
-        final PdfPCell cell = getCell(value + (special ? "*" : "") + (modified && value > 0 ? "!" : ""), 0, 1, Element.ALIGN_CENTER, BaseColor.WHITE,
+        final PdfPCell cell = getCell(value + (special ? "*" : "") + (modified && value > 0 ? "!" : ""), 0, 1, Element.ALIGN_CENTER, Color.WHITE,
                 FadingSunsTheme.getHandwrittingFont(), FadingSunsTheme.getHandWrittingFontSize(fontSize));
         cell.setMinimumHeight((MainSkillsTableFactory.HEIGHT / ROWS));
         cell.setVerticalAlignment(Element.ALIGN_MIDDLE);

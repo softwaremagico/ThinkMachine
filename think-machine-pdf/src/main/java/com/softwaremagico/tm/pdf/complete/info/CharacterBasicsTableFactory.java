@@ -24,15 +24,16 @@ package com.softwaremagico.tm.pdf.complete.info;
  * #L%
  */
 
-import com.itextpdf.text.BaseColor;
-import com.itextpdf.text.Element;
-import com.itextpdf.text.pdf.PdfPCell;
-import com.itextpdf.text.pdf.PdfPTable;
+import com.lowagie.text.Element;
+import com.lowagie.text.pdf.PdfPCell;
+import com.lowagie.text.pdf.PdfPTable;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.log.PdfExporterLog;
 import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.complete.elements.BaseElement;
+
+import java.awt.Color;
 
 public abstract class CharacterBasicsTableFactory extends BaseElement {
 
@@ -95,7 +96,7 @@ public abstract class CharacterBasicsTableFactory extends BaseElement {
     }
 
     protected static PdfPCell getCell(String text, int align, int fontSize) {
-        final PdfPCell cell = getCell(text, 0, 1, align, BaseColor.WHITE, FadingSunsTheme.getLineFont(), fontSize);
+        final PdfPCell cell = getCell(text, 0, 1, align, Color.WHITE, FadingSunsTheme.getLineFont(), fontSize);
         return cell;
     }
 
@@ -103,7 +104,7 @@ public abstract class CharacterBasicsTableFactory extends BaseElement {
         if (text != null && text.length() > maxWidth) {
             text = text.substring(0, maxWidth + 1);
         }
-        final PdfPCell cell = getCell(text, 0, 1, align, BaseColor.WHITE, FadingSunsTheme.getHandwrittingFont(),
+        final PdfPCell cell = getCell(text, 0, 1, align, Color.WHITE, FadingSunsTheme.getHandwrittingFont(),
                 FadingSunsTheme.getHandWrittingFontSize(fontSize));
         cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
         return cell;

@@ -24,7 +24,7 @@ package com.softwaremagico.tm.pdf.complete.skills;
  * #L%
  */
 
-import com.itextpdf.text.pdf.PdfPCell;
+import com.lowagie.text.pdf.PdfPCell;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 

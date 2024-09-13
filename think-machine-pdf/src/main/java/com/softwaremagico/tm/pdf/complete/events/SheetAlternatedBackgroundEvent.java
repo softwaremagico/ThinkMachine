@@ -24,12 +24,12 @@ package com.softwaremagico.tm.pdf.complete.events;
  * #L%
  */
 
-import com.itextpdf.text.BadElementException;
-import com.itextpdf.text.Document;
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Image;
-import com.itextpdf.text.pdf.PdfPageEventHelper;
-import com.itextpdf.text.pdf.PdfWriter;
+import com.lowagie.text.BadElementException;
+import com.lowagie.text.Document;
+import com.lowagie.text.DocumentException;
+import com.lowagie.text.Image;
+import com.lowagie.text.pdf.PdfPageEventHelper;
+import com.lowagie.text.pdf.PdfWriter;
 import com.softwaremagico.tm.log.PdfExporterLog;
 import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 

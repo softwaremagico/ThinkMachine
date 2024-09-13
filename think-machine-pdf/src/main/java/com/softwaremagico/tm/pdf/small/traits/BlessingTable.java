@@ -26,8 +26,8 @@ package com.softwaremagico.tm.pdf.small.traits;
 
 import java.util.Iterator;
 
-import com.itextpdf.text.Element;
-import com.itextpdf.text.pdf.PdfPCell;
+import com.lowagie.text.Element;
+import com.lowagie.text.pdf.PdfPCell;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.blessings.Blessing;
 import com.softwaremagico.tm.character.values.Bonification;

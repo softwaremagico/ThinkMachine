@@ -24,14 +24,14 @@ package com.softwaremagico.tm.pdf.small.characteristics;
  * #L%
  */
 
+import java.awt.Color;
 import java.util.List;
 
-import com.itextpdf.text.BaseColor;
-import com.itextpdf.text.Element;
-import com.itextpdf.text.Font;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.pdf.PdfPCell;
-import com.itextpdf.text.pdf.PdfPTable;
+import com.lowagie.text.Element;
+import com.lowagie.text.Font;
+import com.lowagie.text.Paragraph;
+import com.lowagie.text.pdf.PdfPCell;
+import com.lowagie.text.pdf.PdfPTable;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.characteristics.CharacteristicDefinition;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
@@ -112,13 +112,13 @@ public class CharacteristicsColumn extends CustomPdfTable {
 	}
 
 	private static PdfPCell getHandwrittingCell(String text, int align) {
-		final PdfPCell cell = BaseElement.getCell(text, 0, 0, align, BaseColor.WHITE, FadingSunsTheme.getHandwrittingFont(),
+		final PdfPCell cell = BaseElement.getCell(text, 0, 0, align, Color.WHITE, FadingSunsTheme.getHandwrittingFont(),
 				FadingSunsTheme.getHandWrittingFontSize(FadingSunsTheme.CHARACTER_SMALL_CHARACTERISTICS_LINE_FONT_SIZE));
 		return cell;
 	}
 
 	private static PdfPCell createCharacteristicLine(String text) {
-		final PdfPCell cell = BaseElement.getCell(text, 0, 1, Element.ALIGN_LEFT, BaseColor.WHITE, FadingSunsTheme.getLineFont(),
+		final PdfPCell cell = BaseElement.getCell(text, 0, 1, Element.ALIGN_LEFT, Color.WHITE, FadingSunsTheme.getLineFont(),
 				FadingSunsTheme.CHARACTER_SMALL_CHARACTERISTICS_LINE_FONT_SIZE);
 		// cell.setMinimumHeight((MainSkillsTableFactory.HEIGHT / ROWS));
 		// cell.setVerticalAlignment(Element.ALIGN_MIDDLE);

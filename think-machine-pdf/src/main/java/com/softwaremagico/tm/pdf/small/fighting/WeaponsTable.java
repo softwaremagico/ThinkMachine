@@ -24,8 +24,8 @@ package com.softwaremagico.tm.pdf.small.fighting;
  * #L%
  */
 
-import com.itextpdf.text.Element;
-import com.itextpdf.text.pdf.PdfPCell;
+import com.lowagie.text.Element;
+import com.lowagie.text.pdf.PdfPCell;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.equipment.weapons.Ammunition;
 import com.softwaremagico.tm.character.equipment.weapons.Weapon;

@@ -24,7 +24,7 @@ package com.softwaremagico.tm.export.pdf;
  * #L%
  */
 
-import com.itextpdf.text.DocumentException;
+import com.lowagie.text.DocumentException;
 import com.softwaremagico.tm.CacheHandler;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.*;

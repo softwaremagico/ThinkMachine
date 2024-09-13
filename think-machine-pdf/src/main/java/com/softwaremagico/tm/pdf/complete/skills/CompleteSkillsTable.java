@@ -28,9 +28,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Stack;
 
-import com.itextpdf.text.Element;
-import com.itextpdf.text.pdf.PdfPCell;
-import com.itextpdf.text.pdf.PdfPTable;
+import com.lowagie.text.Element;
+import com.lowagie.text.pdf.PdfPCell;
+import com.lowagie.text.pdf.PdfPTable;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.skills.AvailableSkill;

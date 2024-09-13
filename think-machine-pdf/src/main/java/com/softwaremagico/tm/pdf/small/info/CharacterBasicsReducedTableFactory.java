@@ -24,8 +24,8 @@ package com.softwaremagico.tm.pdf.small.info;
  * #L%
  */
 
-import com.itextpdf.text.pdf.PdfPCell;
-import com.itextpdf.text.pdf.PdfPTable;
+import com.lowagie.text.pdf.PdfPCell;
+import com.lowagie.text.pdf.PdfPTable;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.complete.info.CharacterBasicsTableFactory;
