@@ -24,6 +24,7 @@ package com.softwaremagico.tm.pdf.complete.fighting;
  * #L%
  */
 
+import com.lowagie.text.Chunk;
 import com.lowagie.text.Element;
 import com.lowagie.text.Font;
 import com.lowagie.text.Paragraph;
@@ -64,13 +65,13 @@ public class ArmourTable extends LateralHeaderPdfPTable {
                     + getTranslator().getTranslatedText("diceAbbreviature"));
         } else {
             final Paragraph paragraph = new Paragraph();
-            paragraph.add(new Paragraph(getTranslator().getTranslatedText("armorRating") + ": ", new Font(
+            paragraph.add(new Chunk(getTranslator().getTranslatedText("armorRating") + ": ", new Font(
                     FadingSunsTheme.getLineFont(), FadingSunsTheme.TABLE_LINE_FONT_SIZE)));
 
-            paragraph.add(new Paragraph(characterPlayer.getArmour().getProtection() + " ", new Font(FadingSunsTheme
+            paragraph.add(new Chunk(characterPlayer.getArmour().getProtection() + " ", new Font(FadingSunsTheme
                     .getHandwrittingFont(), FadingSunsTheme.ARMOUR_CONTENT_FONT_SIZE)));
 
-            paragraph.add(new Paragraph(getTranslator().getTranslatedText("diceAbbreviature"), new Font(FadingSunsTheme
+            paragraph.add(new Chunk(getTranslator().getTranslatedText("diceAbbreviature"), new Font(FadingSunsTheme
                     .getLineFont(), FadingSunsTheme.TABLE_LINE_FONT_SIZE)));
 
             protectionCell = createEmptyElementLine("");
@@ -88,27 +89,27 @@ public class ArmourTable extends LateralHeaderPdfPTable {
                     + getTranslator().getTranslatedText("iniciativeAbbreviature") + ":__");
         } else {
             final Paragraph paragraph = new Paragraph();
-            paragraph.add(new Paragraph(getTranslator().getTranslatedText("strengthAbbreviature") + ":", new Font(
+            paragraph.add(new Chunk(getTranslator().getTranslatedText("strengthAbbreviature") + ":", new Font(
                     FadingSunsTheme.getLineFont(), FadingSunsTheme.TABLE_LINE_FONT_SIZE)));
-            paragraph.add(new Paragraph(characterPlayer.getArmour().getStandardPenalization()
+            paragraph.add(new Chunk(characterPlayer.getArmour().getStandardPenalization()
                     .getStrengthModification()
                     + " ", new Font(FadingSunsTheme.getHandwrittingFont(), FadingSunsTheme.ARMOUR_CONTENT_FONT_SIZE)));
 
-            paragraph.add(new Paragraph(" " + getTranslator().getTranslatedText("dexterityAbbreviature") + ":",
+            paragraph.add(new Chunk(" " + getTranslator().getTranslatedText("dexterityAbbreviature") + ":",
                     new Font(FadingSunsTheme.getLineFont(), FadingSunsTheme.TABLE_LINE_FONT_SIZE)));
-            paragraph.add(new Paragraph(characterPlayer.getArmour().getStandardPenalization()
+            paragraph.add(new Chunk(characterPlayer.getArmour().getStandardPenalization()
                     .getDexterityModification()
                     + " ", new Font(FadingSunsTheme.getHandwrittingFont(), FadingSunsTheme.ARMOUR_CONTENT_FONT_SIZE)));
 
-            paragraph.add(new Paragraph(" " + getTranslator().getTranslatedText("enduranceAbbreviature") + ":",
+            paragraph.add(new Chunk(" " + getTranslator().getTranslatedText("enduranceAbbreviature") + ":",
                     new Font(FadingSunsTheme.getLineFont(), FadingSunsTheme.TABLE_LINE_FONT_SIZE)));
-            paragraph.add(new Paragraph(characterPlayer.getArmour().getStandardPenalization()
+            paragraph.add(new Chunk(characterPlayer.getArmour().getStandardPenalization()
                     .getEnduranceModification()
                     + " ", new Font(FadingSunsTheme.getHandwrittingFont(), FadingSunsTheme.ARMOUR_CONTENT_FONT_SIZE)));
 
-            paragraph.add(new Paragraph(" " + getTranslator().getTranslatedText("iniciativeAbbreviature") + ":",
+            paragraph.add(new Chunk(" " + getTranslator().getTranslatedText("iniciativeAbbreviature") + ":",
                     new Font(FadingSunsTheme.getLineFont(), FadingSunsTheme.TABLE_LINE_FONT_SIZE)));
-            paragraph.add(new Paragraph(characterPlayer.getArmour().getStandardPenalization()
+            paragraph.add(new Chunk(characterPlayer.getArmour().getStandardPenalization()
                     .getEnduranceModification()
                     + " ", new Font(FadingSunsTheme.getHandwrittingFont(), FadingSunsTheme.ARMOUR_CONTENT_FONT_SIZE)));
 

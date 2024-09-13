@@ -24,6 +24,7 @@ package com.softwaremagico.tm.pdf.small.fighting;
  * #L%
  */
 
+import com.lowagie.text.Chunk;
 import com.lowagie.text.Element;
 import com.lowagie.text.Font;
 import com.lowagie.text.Paragraph;
@@ -50,6 +51,7 @@ public class ArmourTable extends CustomPdfTable {
 				FadingSunsTheme.CHARACTER_SMALL_ARMOR_TITLE_FONT_SIZE);
 		final Phrase content = new Phrase(getTranslator().getTranslatedText("armor"), font);
 		final PdfPCell titleCell = new PdfPCell(content);
+		titleCell.setPaddingLeft(10);
 		titleCell.setBorder(0);
 		addCell(titleCell);
 
@@ -73,10 +75,10 @@ public class ArmourTable extends CustomPdfTable {
 			addCell(getShieldRange(characterPlayer));
 
 			final Paragraph paragraph = new Paragraph();
-			paragraph.add(new Paragraph(getTranslator().getTranslatedText("shieldHits") + ": ", new Font(
+			paragraph.add(new Chunk(getTranslator().getTranslatedText("shieldHits") + ": ", new Font(
 					FadingSunsTheme.getLineFont(), FadingSunsTheme.ARMOUR_CONTENT_FONT_SIZE)));
 			if (characterPlayer != null && characterPlayer.getShield() != null) {
-				paragraph.add(new Paragraph(characterPlayer.getShield().getHits() + "-", new Font(FadingSunsTheme
+				paragraph.add(new Chunk(characterPlayer.getShield().getHits() + "-", new Font(FadingSunsTheme
 						.getHandwrittingFont(), FadingSunsTheme
 						.getHandWrittingFontSize(FadingSunsTheme.ARMOUR_CONTENT_FONT_SIZE))));
 			}

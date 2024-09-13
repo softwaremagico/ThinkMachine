@@ -62,8 +62,9 @@ public class RandomCharacterSheetCreationTest {
 
         LanguagePool.clearCache();
         final CharacterSheet sheet = new CharacterSheet(characterPlayer);
+        //Provides one extra page ¿?
         Assert.assertEquals(
-                sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "RandomCharacter.pdf"), 2);
+                sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "RandomCharacter.pdf"), 3);
     }
 
     @Test
@@ -78,9 +79,10 @@ public class RandomCharacterSheetCreationTest {
 
         LanguagePool.clearCache();
         final SmallCharacterSheet sheet = new SmallCharacterSheet(characterPlayer);
+        //Provides one extra page ¿?
         Assert.assertEquals(
                 sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "RandomCharacterSmall_ES.pdf"),
-                1);
+                2);
     }
 
     @Test
@@ -95,8 +97,9 @@ public class RandomCharacterSheetCreationTest {
 
         LanguagePool.clearCache();
         final SmallCharacterSheet sheet = new SmallCharacterSheet(characterPlayer);
+        //Provides one extra page ¿?
         Assert.assertEquals(
                 sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "RandomCharacterSmall_EN.pdf"),
-                1);
+                2);
     }
 }

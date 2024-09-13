@@ -63,7 +63,6 @@ public abstract class PdfDocument {
     private void generatePDF(Document document, PdfWriter writer) throws EmptyPdfBodyException, InvalidXmlElementException, DocumentException {
         addMetaData(document);
         document.open();
-        // createCharacterPDF(document);
         createContent(document);
         document.close();
     }

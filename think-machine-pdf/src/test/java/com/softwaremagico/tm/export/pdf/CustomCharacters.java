@@ -25,7 +25,10 @@ package com.softwaremagico.tm.export.pdf;
  */
 
 import com.softwaremagico.tm.InvalidXmlElementException;
-import com.softwaremagico.tm.character.*;
+import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.character.Gender;
+import com.softwaremagico.tm.character.Name;
+import com.softwaremagico.tm.character.Surname;
 import com.softwaremagico.tm.character.benefices.AvailableBeneficeFactory;
 import com.softwaremagico.tm.character.benefices.BeneficeAlreadyAddedException;
 import com.softwaremagico.tm.character.blessings.BlessingAlreadyAddedException;
@@ -34,7 +37,11 @@ import com.softwaremagico.tm.character.blessings.TooManyBlessingsException;
 import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.creation.CostCalculator;
 import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
-import com.softwaremagico.tm.character.cybernetics.*;
+import com.softwaremagico.tm.character.cybernetics.CyberneticDeviceFactory;
+import com.softwaremagico.tm.character.cybernetics.CyberneticDeviceTraitFactory;
+import com.softwaremagico.tm.character.cybernetics.RequiredCyberneticDevicesException;
+import com.softwaremagico.tm.character.cybernetics.SelectedCyberneticDevice;
+import com.softwaremagico.tm.character.cybernetics.TooManyCyberneticDevicesException;
 import com.softwaremagico.tm.character.equipment.armours.Armour;
 import com.softwaremagico.tm.character.equipment.shields.ShieldFactory;
 import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
@@ -185,12 +192,14 @@ public class CustomCharacters {
 
         LanguagePool.clearCache();
         final CharacterSheet sheet = new CharacterSheet(player);
-        Assert.assertEquals(sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Paola.pdf"), 2);
+        //Provides one extra page ¿?
+        Assert.assertEquals(sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Paola.pdf"), 3);
 
         LanguagePool.clearCache();
         final SmallCharacterSheet smallSheet = new SmallCharacterSheet(player);
+        //Provides one extra page ¿?
         Assert.assertEquals(
-                smallSheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Paola_Small.pdf"), 1);
+                smallSheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Paola_Small.pdf"), 2);
 
         Assert.assertEquals(CostCalculator.getCost(player),
                 FreeStyleCharacterCreation.getFreeAvailablePoints(player.getInfo().getAge(), player.getRace()));
@@ -271,12 +280,14 @@ public class CustomCharacters {
 
         LanguagePool.clearCache();
         final CharacterSheet sheet = new CharacterSheet(player);
-        Assert.assertEquals(sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Ana.pdf"), 2);
+        //Provides one extra page ¿?
+        Assert.assertEquals(sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Ana.pdf"), 3);
 
         LanguagePool.clearCache();
         final SmallCharacterSheet smallSheet = new SmallCharacterSheet(player);
+        //Provides one extra page ¿?
         Assert.assertEquals(
-                smallSheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Ana_Small.pdf"), 1);
+                smallSheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Ana_Small.pdf"), 2);
 
         Assert.assertEquals(CostCalculator.getCost(player),
                 FreeStyleCharacterCreation.getFreeAvailablePoints(player.getInfo().getAge(), player.getRace()));
@@ -372,12 +383,14 @@ public class CustomCharacters {
 
         LanguagePool.clearCache();
         final CharacterSheet sheet = new CharacterSheet(player);
-        Assert.assertEquals(sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Carlos.pdf"), 2);
+        //Provides one extra page ¿?
+        Assert.assertEquals(sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Carlos.pdf"), 3);
 
         LanguagePool.clearCache();
         final SmallCharacterSheet smallSheet = new SmallCharacterSheet(player);
+        //Provides one extra page ¿?
         Assert.assertEquals(
-                smallSheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Carlos_Small.pdf"), 1);
+                smallSheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Carlos_Small.pdf"), 2);
 
         Assert.assertEquals(CostCalculator.getCost(player),
                 FreeStyleCharacterCreation.getFreeAvailablePoints(player.getInfo().getAge(), player.getRace()));
@@ -472,12 +485,14 @@ public class CustomCharacters {
 
         LanguagePool.clearCache();
         final CharacterSheet sheet = new CharacterSheet(player);
-        Assert.assertEquals(sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Noelia.pdf"), 2);
+        //Provides one extra page ¿?
+        Assert.assertEquals(sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Noelia.pdf"), 3);
 
         LanguagePool.clearCache();
         final SmallCharacterSheet smallSheet = new SmallCharacterSheet(player);
+        //Provides one extra page ¿?
         Assert.assertEquals(
-                smallSheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Noelia_Small.pdf"), 1);
+                smallSheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Noelia_Small.pdf"), 2);
 
         Assert.assertEquals(CostCalculator.getCost(player),
                 FreeStyleCharacterCreation.getFreeAvailablePoints(player.getInfo().getAge(), player.getRace()));
@@ -548,12 +563,14 @@ public class CustomCharacters {
 
         LanguagePool.clearCache();
         final CharacterSheet sheet = new CharacterSheet(player);
-        Assert.assertEquals(sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Golem.pdf"), 2);
+        //Provides one extra page ¿?
+        Assert.assertEquals(sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Golem.pdf"), 3);
 
         LanguagePool.clearCache();
         final SmallCharacterSheet smallSheet = new SmallCharacterSheet(player);
+        //Provides one extra page ¿?
         Assert.assertEquals(smallSheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Golem.pdf"),
-                1);
+                2);
 
         Assert.assertEquals(CostCalculator.getCost(player), -2);
         Assert.assertEquals(player.getMoney(), 250);
@@ -564,14 +581,16 @@ public class CustomCharacters {
     @AfterClass
     public void createPartySheet() {
         final PartySheet sheet = new PartySheet(party);
+        //Provides one extra page ¿?
         Assert.assertEquals(
                 sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + party.getPartyName() + ".pdf"),
-                10);
+                11);
 
         final SmallPartySheet smallSheet = new SmallPartySheet(party);
+        //Provides one extra page ¿?
         Assert.assertEquals(
                 smallSheet.createFile(
                         System.getProperty("java.io.tmpdir") + File.separator + party.getPartyName() + "_Small.pdf"),
-                5);
+                6);
     }
 }

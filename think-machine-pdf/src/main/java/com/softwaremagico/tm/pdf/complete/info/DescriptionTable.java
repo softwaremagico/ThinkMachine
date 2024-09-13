@@ -24,6 +24,7 @@ package com.softwaremagico.tm.pdf.complete.info;
  * #L%
  */
 
+import com.lowagie.text.Chunk;
 import com.lowagie.text.Element;
 import com.lowagie.text.Font;
 import com.lowagie.text.Paragraph;
@@ -64,15 +65,15 @@ public class DescriptionTable extends VerticalTable {
 		final float textWidth = FadingSunsTheme.getLineFont().getWidthPoint(text + " :",
 				FadingSunsTheme.TABLE_LINE_FONT_SIZE);
 
-		paragraph.add(new Paragraph(text + ": ", new Font(FadingSunsTheme.getLineFont(),
+		paragraph.add(new Chunk(text + ": ", new Font(FadingSunsTheme.getLineFont(),
 				FadingSunsTheme.TABLE_LINE_FONT_SIZE)));
 		if (characterPlayer == null
 				|| characterPlayer.getInfo().getTranslatedParameter(tag, characterPlayer.getModuleName()) == null) {
-			paragraph.add(new Paragraph(CellUtils.getSubStringFitsIn(GAP, FadingSunsTheme.getLineFont(),
+			paragraph.add(new Chunk(CellUtils.getSubStringFitsIn(GAP, FadingSunsTheme.getLineFont(),
 					FadingSunsTheme.TABLE_LINE_FONT_SIZE, COLUMN_WIDTH - textWidth), new Font(FadingSunsTheme
 					.getLineFont(), FadingSunsTheme.TABLE_LINE_FONT_SIZE)));
 		} else {
-			paragraph.add(new Paragraph(CellUtils.getSubStringFitsIn(
+			paragraph.add(new Chunk(CellUtils.getSubStringFitsIn(
 					characterPlayer.getInfo().getTranslatedParameter(tag, characterPlayer.getModuleName()),
 					FadingSunsTheme.getHandwrittingFont(), FadingSunsTheme.INFO_CONTENT_FONT_SIZE, COLUMN_WIDTH
 							- textWidth), new Font(FadingSunsTheme.getHandwrittingFont(),

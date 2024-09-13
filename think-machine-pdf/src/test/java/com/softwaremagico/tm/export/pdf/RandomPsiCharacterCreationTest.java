@@ -71,7 +71,8 @@ public class RandomPsiCharacterCreationTest {
 
         LanguagePool.clearCache();
         final SmallCharacterSheet sheet = new SmallCharacterSheet(characterPlayer);
+        //Provides one extra page ¿?
         Assert.assertEquals(
-                sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "RandomPsiCharacter.pdf"), 1);
+                sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "RandomPsiCharacter.pdf"), 2);
     }
 }

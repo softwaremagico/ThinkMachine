@@ -24,6 +24,7 @@ package com.softwaremagico.tm.pdf.complete.others;
  * #L%
  */
 
+import com.lowagie.text.Chunk;
 import com.lowagie.text.Font;
 import com.lowagie.text.Paragraph;
 import com.lowagie.text.pdf.PdfPCell;
@@ -62,10 +63,10 @@ public class AnnotationsTable extends LateralHeaderPdfPTable {
 
 	private static Paragraph getCharacterDescription(CharacterPlayer characterPlayer) {
 		final Paragraph paragraph = new Paragraph();
-		paragraph.add(new Paragraph(getTranslator().getTranslatedText("characterAnnotations") + ": ", new Font(
+		paragraph.add(new Chunk(getTranslator().getTranslatedText("characterAnnotations") + ": ", new Font(
 				FadingSunsTheme.getTitleFont(), FadingSunsTheme.ANNOTATIONS_SUBTITLE_FONT_SIZE)));
 		if (characterPlayer != null) {
-			paragraph.add(new Paragraph(CellUtils.getSubStringFitsIn(characterPlayer.getInfo()
+			paragraph.add(new Chunk(CellUtils.getSubStringFitsIn(characterPlayer.getInfo()
 					.getCharacterDescription(), FadingSunsTheme.getHandwrittingFont(), FadingSunsTheme
 					.getHandWrittingFontSize(FadingSunsTheme.CHARACTER_DESCRIPTION_FONT_SIZE), DESCRIPTION_WIDTH),
 					new Font(FadingSunsTheme.getHandwrittingFont(), FadingSunsTheme
@@ -76,10 +77,10 @@ public class AnnotationsTable extends LateralHeaderPdfPTable {
 
 	private static Paragraph getCharacterBackground(CharacterPlayer characterPlayer) {
 		final Paragraph paragraph = new Paragraph();
-		paragraph.add(new Paragraph(getTranslator().getTranslatedText("historyAnnotations") + ": ", new Font(
+		paragraph.add(new Chunk(getTranslator().getTranslatedText("historyAnnotations") + ": ", new Font(
 				FadingSunsTheme.getTitleFont(), FadingSunsTheme.ANNOTATIONS_SUBTITLE_FONT_SIZE)));
 		if (characterPlayer != null) {
-			paragraph.add(new Paragraph(CellUtils.getSubStringFitsIn(characterPlayer.getInfo()
+			paragraph.add(new Chunk(CellUtils.getSubStringFitsIn(characterPlayer.getInfo()
 					.getBackgroundDecription(), FadingSunsTheme.getHandwrittingFont(), FadingSunsTheme
 					.getHandWrittingFontSize(FadingSunsTheme.CHARACTER_DESCRIPTION_FONT_SIZE), DESCRIPTION_WIDTH),
 					new Font(FadingSunsTheme.getHandwrittingFont(), FadingSunsTheme

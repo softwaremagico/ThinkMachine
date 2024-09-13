@@ -26,6 +26,7 @@ package com.softwaremagico.tm.pdf.complete.characteristics;
 
 import java.util.List;
 
+import com.lowagie.text.Chunk;
 import com.lowagie.text.Font;
 import com.lowagie.text.Paragraph;
 import com.lowagie.text.pdf.PdfPCell;
@@ -58,16 +59,16 @@ public class CharacteristicsColumn extends LateralHeaderPdfPTable {
 		if (content != null) {
 			for (final CharacteristicDefinition characteristic : content) {
 				final Paragraph paragraph = new Paragraph();
-				paragraph.add(new Paragraph(getTranslator().getTranslatedText(characteristic.getId()),
+				paragraph.add(new Chunk(getTranslator().getTranslatedText(characteristic.getId()),
 						new Font(FadingSunsTheme.getLineFont(), FadingSunsTheme.CHARACTERISTICS_LINE_FONT_SIZE)));
-				paragraph.add(new Paragraph(" (", new Font(FadingSunsTheme.getLineFont(), FadingSunsTheme.CHARACTERISTICS_LINE_FONT_SIZE)));
+				paragraph.add(new Chunk(" (", new Font(FadingSunsTheme.getLineFont(), FadingSunsTheme.CHARACTERISTICS_LINE_FONT_SIZE)));
 				if (characterPlayer == null) {
-					paragraph.add(new Paragraph(GAP, new Font(FadingSunsTheme.getLineFont(), FadingSunsTheme.CHARACTERISTICS_LINE_FONT_SIZE)));
+					paragraph.add(new Chunk(GAP, new Font(FadingSunsTheme.getLineFont(), FadingSunsTheme.CHARACTERISTICS_LINE_FONT_SIZE)));
 				} else {
-					paragraph.add(new Paragraph(characterPlayer.getStartingValue(characteristic.getCharacteristicName()) + "", new Font(
+					paragraph.add(new Chunk(characterPlayer.getStartingValue(characteristic.getCharacteristicName()) + "", new Font(
 							FadingSunsTheme.getHandwrittingFont(), FadingSunsTheme.getHandWrittingFontSize(FadingSunsTheme.CHARACTERISTICS_LINE_FONT_SIZE))));
 				}
-				paragraph.add(new Paragraph(")", new Font(FadingSunsTheme.getLineFont(), FadingSunsTheme.CHARACTERISTICS_LINE_FONT_SIZE)));
+				paragraph.add(new Chunk(")", new Font(FadingSunsTheme.getLineFont(), FadingSunsTheme.CHARACTERISTICS_LINE_FONT_SIZE)));
 
 				final PdfPCell characteristicTitle = new PdfPCell(paragraph);
 				characteristicTitle.setBorder(0);

@@ -24,6 +24,7 @@ package com.softwaremagico.tm.pdf.complete.info;
  * #L%
  */
 
+import com.lowagie.text.Chunk;
 import com.lowagie.text.Element;
 import com.lowagie.text.Font;
 import com.lowagie.text.Paragraph;
@@ -49,7 +50,7 @@ public class PropertiesTable extends VerticalTable {
 
 	private Paragraph getMoney(CharacterPlayer characterPlayer) {
 		final Paragraph paragraph = new Paragraph();
-		paragraph.add(new Paragraph(getTranslator().getTranslatedText("firebirds") + ":", new Font(FadingSunsTheme
+		paragraph.add(new Chunk(getTranslator().getTranslatedText("firebirds") + ":", new Font(FadingSunsTheme
 				.getLineFont(), FadingSunsTheme.TABLE_LINE_FONT_SIZE)));
 		String moneyText = "";
 		float usedWidth = 0;
@@ -57,12 +58,12 @@ public class PropertiesTable extends VerticalTable {
 			moneyText = "  " + characterPlayer.getMoney() + "- ";
 			usedWidth = FadingSunsTheme.getHandwrittingFont().getWidthPoint(moneyText,
 					FadingSunsTheme.TABLE_LINE_FONT_SIZE - 1f);
-			paragraph.add(new Paragraph(moneyText, new Font(FadingSunsTheme.getHandwrittingFont(), FadingSunsTheme
+			paragraph.add(new Chunk(moneyText, new Font(FadingSunsTheme.getHandwrittingFont(), FadingSunsTheme
 					.getHandWrittingFontSize(FadingSunsTheme.TABLE_LINE_FONT_SIZE - 1))));
 		}
 		moneyText = CellUtils.getSubStringFitsIn("____________________________________________",
 				FadingSunsTheme.getLineFont(), FadingSunsTheme.TABLE_LINE_FONT_SIZE, 138 - usedWidth);
-		paragraph.add(new Paragraph(moneyText, new Font(FadingSunsTheme.getLineFont(),
+		paragraph.add(new Chunk(moneyText, new Font(FadingSunsTheme.getLineFont(),
 				FadingSunsTheme.TABLE_LINE_FONT_SIZE)));
 		return paragraph;
 	}

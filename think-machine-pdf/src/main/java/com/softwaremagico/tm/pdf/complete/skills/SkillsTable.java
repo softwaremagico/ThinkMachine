@@ -24,6 +24,7 @@ package com.softwaremagico.tm.pdf.complete.skills;
  * #L%
  */
 
+import com.lowagie.text.Chunk;
 import com.lowagie.text.Element;
 import com.lowagie.text.Font;
 import com.lowagie.text.Paragraph;
@@ -101,54 +102,53 @@ public class SkillsTable extends BaseElement {
                 || availableSkill.getId().equalsIgnoreCase(SkillDefinition.PLANETARY_LORE_ID)
                 || availableSkill.getId().equalsIgnoreCase(SkillDefinition.FACTION_LORE_ID)) {
             if (availableSkill.getSkillDefinition().isLimitedToFaction()) {
-                paragraph.add(createSpecializedSkill(characterPlayer, availableSkill, FadingSunsTheme.getLineItalicFont(), fontSize, maxColumnWidth));
+                createSpecializedSkill(paragraph, characterPlayer, availableSkill, FadingSunsTheme.getLineItalicFont(), fontSize, maxColumnWidth);
             } else {
-                paragraph.add(createSpecializedSkill(characterPlayer, availableSkill, FadingSunsTheme.getLineFont(), fontSize, maxColumnWidth));
+                createSpecializedSkill(paragraph, characterPlayer, availableSkill, FadingSunsTheme.getLineFont(), fontSize, maxColumnWidth);
             }
         } else {
             if (availableSkill.getSkillDefinition().isLimitedToFaction()) {
-                paragraph.add(new Paragraph(availableSkill.getName(), new Font(FadingSunsTheme.getLineItalicFont(), fontSize)));
+                paragraph.add(new Chunk(availableSkill.getName(), new Font(FadingSunsTheme.getLineItalicFont(), fontSize)));
             } else {
-                paragraph.add(new Paragraph(availableSkill.getName(), new Font(FadingSunsTheme.getLineFont(), fontSize)));
+                paragraph.add(new Chunk(availableSkill.getName(), new Font(FadingSunsTheme.getLineFont(), fontSize)));
             }
         }
         // Put number at the end.
         if (availableSkill.getSkillDefinition().isNatural()) {
-            paragraph.add(new Paragraph(DEFAULT_NATURAL_SKILL_VALUE, new Font(FadingSunsTheme.getLineFont(), fontSize)));
+            paragraph.add(new Chunk(DEFAULT_NATURAL_SKILL_VALUE, new Font(FadingSunsTheme.getLineFont(), fontSize)));
         }
 
         return paragraph;
     }
 
-    private static Paragraph createSpecializedSkill(CharacterPlayer characterPlayer, AvailableSkill availableSkill, BaseFont font, int fontSize,
-                                                    int maxColumnWidth) {
-        final Paragraph paragraph = new Paragraph();
+    private static void createSpecializedSkill(Paragraph paragraph, CharacterPlayer characterPlayer, AvailableSkill availableSkill,
+                                               BaseFont font, int fontSize, int maxColumnWidth) {
         final float usedWidth = font.getWidthPoint(
                 availableSkill.getName() + " []" + (availableSkill.getSkillDefinition().isNatural() ? DEFAULT_NATURAL_SKILL_VALUE : ""), fontSize);
-        paragraph.add(new Paragraph(availableSkill.getName() + " [", new Font(font, fontSize)));
+        paragraph.add(new Chunk(availableSkill.getName() + " [", new Font(font, fontSize)));
         if (characterPlayer != null) {
             // Lore factions and planet are specials.
             if (availableSkill.getId().equalsIgnoreCase(SkillDefinition.PLANETARY_LORE_ID)) {
                 if (characterPlayer.getInfo().getPlanet() != null) {
-                    paragraph.add(new Paragraph(
+                    paragraph.add(new Chunk(
                             CellUtils.getSubStringFitsIn(characterPlayer.getInfo().getPlanet().getName(), FadingSunsTheme.getHandwrittingFont(),
                                     FadingSunsTheme.getHandWrittingFontSize(fontSize), maxColumnWidth - usedWidth),
                             new Font(FadingSunsTheme.getHandwrittingFont(), FadingSunsTheme.getHandWrittingFontSize(fontSize))));
                 }
             } else if (availableSkill.getId().equalsIgnoreCase(SkillDefinition.FACTION_LORE_ID)) {
                 if (characterPlayer.getFaction() != null) {
-                    paragraph.add(new Paragraph(
+                    paragraph.add(new Chunk(
                             CellUtils.getSubStringFitsIn(characterPlayer.getFaction().getName(), FadingSunsTheme.getHandwrittingFont(),
                                     FadingSunsTheme.getHandWrittingFontSize(fontSize), maxColumnWidth - usedWidth),
                             new Font(FadingSunsTheme.getHandwrittingFont(), FadingSunsTheme.getHandWrittingFontSize(fontSize))));
                 }
             } else if (availableSkill.getSpecialization() != null && availableSkill.getSpecialization().getName() != null) {
-                paragraph.add(new Paragraph(
+                paragraph.add(new Chunk(
                         CellUtils.getSubStringFitsIn(availableSkill.getSpecialization().getName(), FadingSunsTheme.getHandwrittingFont(),
                                 FadingSunsTheme.getHandWrittingFontSize(fontSize), maxColumnWidth - usedWidth),
                         new Font(FadingSunsTheme.getHandwrittingFont(), FadingSunsTheme.getHandWrittingFontSize(fontSize))));
             } else {
-                paragraph.add(new Paragraph(CellUtils.getSubStringFitsIn(DEFAULT_WHITE_SPACES, font, fontSize, maxColumnWidth - usedWidth),
+                paragraph.add(new Chunk(CellUtils.getSubStringFitsIn(DEFAULT_WHITE_SPACES, font, fontSize, maxColumnWidth - usedWidth),
                         new Font(font, fontSize)));
             }
         } else {
@@ -158,8 +158,7 @@ public class SkillsTable extends BaseElement {
                                     FadingSunsTheme.getHandWrittingFontSize(fontSize), maxColumnWidth - usedWidth),
                             new Font(FadingSunsTheme.getHandwrittingFont(), FadingSunsTheme.getHandWrittingFontSize(fontSize))));
         }
-        paragraph.add(new Paragraph("]", new Font(font, fontSize)));
-        return paragraph;
+        paragraph.add(new Chunk("]", new Font(font, fontSize)));
     }
 
     private static Paragraph createSkillSufix(SkillDefinition skillDefinition, int fontSize, int maxColumnWidth) {
@@ -173,14 +172,14 @@ public class SkillsTable extends BaseElement {
             }
         } else {
             if (skillDefinition.isLimitedToFaction()) {
-                paragraph.add(new Paragraph(skillDefinition.getName(), new Font(FadingSunsTheme.getLineItalicFont(), fontSize)));
+                paragraph.add(new Chunk(skillDefinition.getName(), new Font(FadingSunsTheme.getLineItalicFont(), fontSize)));
             } else {
-                paragraph.add(new Paragraph(skillDefinition.getName(), new Font(FadingSunsTheme.getLineFont(), fontSize)));
+                paragraph.add(new Chunk(skillDefinition.getName(), new Font(FadingSunsTheme.getLineFont(), fontSize)));
             }
         }
         // Put number at the end.
         if (skillDefinition.isNatural()) {
-            paragraph.add(new Paragraph(DEFAULT_NATURAL_SKILL_VALUE, new Font(FadingSunsTheme.getLineFont(), fontSize)));
+            paragraph.add(new Chunk(DEFAULT_NATURAL_SKILL_VALUE, new Font(FadingSunsTheme.getLineFont(), fontSize)));
         }
 
         return paragraph;
@@ -190,9 +189,9 @@ public class SkillsTable extends BaseElement {
         final Paragraph paragraph = new Paragraph();
         final float usedWidth = font.getWidthPoint(skillDefinition.getName() + " []" + (skillDefinition.isNatural() ? DEFAULT_NATURAL_SKILL_VALUE : ""),
                 fontSize);
-        paragraph.add(new Paragraph(skillDefinition.getName() + " [", new Font(font, fontSize)));
-        paragraph.add(new Paragraph(CellUtils.getSubStringFitsIn(DEFAULT_WHITE_SPACES, font, fontSize, maxColumnWidth - usedWidth), new Font(font, fontSize)));
-        paragraph.add(new Paragraph("]", new Font(font, fontSize)));
+        paragraph.add(new Chunk(skillDefinition.getName() + " [", new Font(font, fontSize)));
+        paragraph.add(new Chunk(CellUtils.getSubStringFitsIn(DEFAULT_WHITE_SPACES, font, fontSize, maxColumnWidth - usedWidth), new Font(font, fontSize)));
+        paragraph.add(new Chunk("]", new Font(font, fontSize)));
         return paragraph;
     }
 
