@@ -50,7 +50,7 @@
                     Dawid, Marcel, Oliwier, Tomasz, Kamil, Dominik, Patryk, Hubert, Marek, Adrian, Sebastian, Artur,
                     Damian, Rafal, Robert, Arkadiusz, Jan, Jakub, Tomáš, Adam, Matěj, Ondřej, David, Martin, Filip,
                     Vojtěch, Daniel, Lukáš, Michal, Petr, Pavel, Karel, Josef, Marek, Štěpán, Václav, Antonín, Dominik,
-                    Patrik, Miroslav, Roman, Radek, Jaroslav, Stanislav, František, Richard, Jón, Sigurður, Guðmundur,
+                    Patrik, Miroslav, Roman, Radek, František, Richard, Jón, Sigurður, Guðmundur,
                     Gunnar, Ólafur, Einar, Kristján, Magnús, Stefán, Björn, Arnar, Aron, Birkir, Dagur
                 </male>
                 <female>Elizabeth, Amelia, Emily, Isabella, Sophie, Lilym, Catherine, Anne, Mary, Victoria, Fiona,
@@ -118,12 +118,20 @@
                     Rodion, Grigory, Gennadi, Evgeny, Pyotr, Vladimir, Nikitin, Dmitri, Nikoli, Alun, Zaretsky, Guillot,
                     Triquet, Gregor, Alun, Igor, Ilya, Vladyslav, Denys, Dmytro, Maksym, Bogdan, Maksym, Ladislao,
                     Nikola, Milutin, Igor, Bojan, Rados, Dejan, Branko, Dejan, Nemanja, Milan, Damir, Nenad, Boriboje,
-                    Vladan, Boris, Dorde, Aleksandar, Chad, Dane, Lazar, Sasha, Feliks, Fyodor, Emil, Gustav, Nicholas
+                    Vladan, Boris, Dorde, Aleksandar, Chad, Dane, Lazar, Sasha, Feliks, Fyodor, Emil, Gustav, Nicholas,
+                    Dmitri, Aleksandr, Nikolai, Konstantin, Viktor, Valeri, Sergei, Mikhail, Ivan, Yuri, Anatoli, Boris,
+                    Grigori, Leonid, Pavel, Arseni, Fyodor, Yaroslav, Rostislav, Vadim, Oleg, Gennadi, Stanislav,
+                    Evgeni, Svyatoslav, Matvei, Timur, Roman, Ilya, Daniil, Kirill, Maxim, Artem, Alexei, Andrei, Anton,
+                    Denis, Igor, Lev, Nikita, Stepan, Vasili, Vladimir, Vsevolod, Zakhary
                 </male>
                 <female>Tatyana, Tanya, Lena, Natalia, Yana, Alla, Dinara, Nastasia, Lubov, Jekaterina, Tashia,
                     Annushka, Olga, Lada, Anichka, Alina, Katiusha, Catriona, Anisia, Nadia, Nydia, Nanya, Lucretia,
                     Yulia, Sigourney, Tiana, Milica, Hana, Ivana, Natasa, Anja, Sonja, Slavisa, Jovana, Borjana,
-                    Sladana, Dusica, Olga, Corinne, Nevena, Mirjana, Elizaveta, Alena, Zoya
+                    Sladana, Dusica, Olga, Corinne, Nevena, Mirjana, Elizaveta, Alena, Zoya, Anastasia, Ekaterina,
+                    Natalia, Irina, Olga, Yelena, Svetlana, Tatiana, Valentina, Vera, Zoya, Lyubov, Polina, Marina,
+                    Darya, Galina, Kira, Larisa, Milana, Nadezhda, Oksana, Raisa, Sofia, Tamara, Ulyana, Varvara,
+                    Yaroslava, Alina, Diana, Evgenia, Inna, Karina, Lidia, Margarita, Nina, Roza, Stanislava, Viktoria,
+                    Xenia, Zhanna
                 </female>
             </names>
             <surnames>Decados, Negin, Lensky, Korshunov, Volovodov, Larina, Petrovitch, Volkonsky, Malevik, Romanov,
@@ -142,7 +150,10 @@
                 Jovanović, Knežević, Lazarević, Milić, Nenadović, Ognjenović, Pavić, Radosavljević, Stanković,
                 Todorović, Urošević, Vasić, Živković, Ademi, Bytyqi, Cela, Doda, Ejupi, Frasheri, Gashi, Hyseni, Isufi,
                 Jashari, Kabashi, Leka, Mema, Nushi, Osmani, Pllana, Qoku, Rexhepi, Shala, Topalli, Uka, Vogli,
-                Xhemaili, Ymeri, Zeka
+                Xhemaili, Ymeri, Zeka, Volkov, Orlov, Lebedev, Sokolov, Voronin, Morozov, Petrov, Kuznetsov, Ivanov,
+                Smirnov, Popov, Fedorov, Denisov, Romanov, Zaitsev, Medvedev, Gusev, Sorokin, Makarov, Volodin, Karpov,
+                Belov, Koval, Zhukov, Baranov, Kalinin, Titov, Yermolov, Bogdanov, Chernov, Dobrynin, Gavrilov, Ignatov,
+                Korsakov, Lazarev, Mironov, Nazarov, Osipov, Pavlov, Rurikovich, Samsonov, Tarasov, Ushakov, Yakovlev
             </surnames>
             <probabilityMultiplier>20</probabilityMultiplier>
         </random>
