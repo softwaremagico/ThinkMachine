@@ -396,7 +396,7 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
         weightedElements.put(newWeight, element);
     }
 
-    public TreeMap<Integer, Element> getWeightedElements() {
+    public SortedMap<Integer, Element> getWeightedElements() {
         return weightedElements;
     }
 
