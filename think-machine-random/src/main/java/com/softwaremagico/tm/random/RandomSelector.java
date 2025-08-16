@@ -162,7 +162,7 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
 
     private TreeMap<Integer, Element> assignElementsWeight() throws InvalidXmlElementException {
         final TreeMap<Integer, Element> weightedElements = new TreeMap<>();
-        int count = 1;
+        int count = 0;
         for (final Element element : getAllElements()) {
             try {
                 validateElement(element);
@@ -171,17 +171,19 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
                 continue;
             }
 
-            final int weight = getTotalWeight(element);
+            final int weight = getElementWeight(element);
             if (weight > 0) {
                 weightedElements.put(count, element);
                 count += weight;
             }
         }
-        weightedElements.put(count, null);
+        if (!weightedElements.isEmpty()) {
+            weightedElements.put(count, null);
+        }
         return weightedElements;
     }
 
-    public int getTotalWeight(Element element) {
+    public int getElementWeight(Element element) {
         try {
             //Restricted elements has 0 weight.
             if (element.isRestricted(characterPlayer)) {

@@ -135,7 +135,7 @@ public class RandomCharacterTests {
         final RandomWeapon randomWeapons = new RandomRangeWeapon(characterPlayer, null, new HashSet<>());
         final Weapon largeRock = WeaponFactory.getInstance().getElement("rock", LANGUAGE,
                 PathManager.DEFAULT_MODULE_FOLDER);
-        Assert.assertEquals(randomWeapons.getTotalWeight(largeRock), 0);
+        Assert.assertEquals(randomWeapons.getElementWeight(largeRock), 0);
     }
 
     @Test(timeOut = 5000, expectedExceptions = {InvalidRandomElementSelectedException.class})
