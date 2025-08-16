@@ -66,12 +66,12 @@ public class WeaponsFactoryTests {
 
     @Test
     public void readAmmunition() throws InvalidXmlElementException {
-        Assert.assertTrue(AmmunitionFactory.getInstance().getElements(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).size() > 0);
+        Assert.assertTrue(!AmmunitionFactory.getInstance().getElements(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).isEmpty());
     }
 
     @Test
     public void readAccessory() throws InvalidXmlElementException {
-        Assert.assertTrue(AccessoryFactory.getInstance().getElements(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).size() > 0);
+        Assert.assertTrue(!AccessoryFactory.getInstance().getElements(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER).isEmpty());
     }
 
     @Test

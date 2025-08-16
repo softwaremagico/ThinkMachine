@@ -177,6 +177,7 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
                 count += weight;
             }
         }
+        weightedElements.put(count, null);
         return weightedElements;
     }
 
@@ -350,7 +351,7 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
         if (weightedElements == null || weightedElements.isEmpty() || totalWeight == 0) {
             throw new InvalidRandomElementSelectedException("No elements to select");
         }
-        final int value = RANDOM.nextInt(totalWeight) + 1;
+        final int value = RANDOM.nextInt(totalWeight);
         Element selectedElement = weightedElements.values().iterator().next();
         final SortedMap<Integer, Element> view = weightedElements.headMap(value, true);
         try {
