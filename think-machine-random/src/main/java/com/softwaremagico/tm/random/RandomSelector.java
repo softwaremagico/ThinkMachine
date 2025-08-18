@@ -40,6 +40,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
 import java.util.NoSuchElementException;
 import java.util.Objects;
@@ -406,12 +407,14 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
         if (element == null) {
             return null;
         }
-        int previousWeight = 0;
-        for (final Entry<Integer, Element> entry : weightedElements.entrySet()) {
-            if (entry.getValue().equals(element)) {
-                return entry.getKey() - previousWeight;
+        Integer elementWeight = null;
+        for (final Map.Entry<Integer, Element> entry : weightedElements.entrySet()) {
+            if (Objects.equals(entry.getValue(), element)) {
+                elementWeight = entry.getKey();
+                continue;
             }
-            previousWeight = entry.getKey();
+            if (elementWeight != null)
+                return entry.getKey() - elementWeight;
         }
         return null;
     }
