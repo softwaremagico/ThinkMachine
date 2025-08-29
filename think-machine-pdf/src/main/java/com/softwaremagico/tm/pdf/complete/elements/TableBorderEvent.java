@@ -24,26 +24,14 @@ package com.softwaremagico.tm.pdf.complete.elements;
  * #L%
  */
 
-import com.itextpdf.text.Rectangle;
-import com.itextpdf.text.pdf.PdfContentByte;
-import com.itextpdf.text.pdf.PdfPRow;
-import com.itextpdf.text.pdf.PdfPTable;
-import com.itextpdf.text.pdf.PdfPTableEventAfterSplit;
 
-public class TableBorderEvent implements PdfPTableEventAfterSplit {
+import com.lowagie.text.Rectangle;
+import com.lowagie.text.pdf.PdfContentByte;
+import com.lowagie.text.pdf.PdfPTable;
+import com.lowagie.text.pdf.PdfPTableEvent;
+
+public class TableBorderEvent implements PdfPTableEvent {
 	protected int rowCount;
-
-	@Override
-	public void splitTable(PdfPTable table) {
-	}
-
-	@Override
-	public void afterSplitTable(PdfPTable table, PdfPRow startRow, int startIdx) {
-		if (table.getRows().size() != rowCount) {
-			// if the table gains a row, a row was split
-			rowCount = table.getRows().size();
-		}
-	}
 
 	@Override
 	public void tableLayout(PdfPTable table, float[][] widths, float[] heights, int headerRows, int rowStart,

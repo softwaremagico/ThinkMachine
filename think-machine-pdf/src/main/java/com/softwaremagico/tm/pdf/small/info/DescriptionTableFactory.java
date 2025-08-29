@@ -24,11 +24,12 @@ package com.softwaremagico.tm.pdf.small.info;
  * #L%
  */
 
-import com.itextpdf.text.Element;
-import com.itextpdf.text.Font;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.pdf.PdfPCell;
-import com.itextpdf.text.pdf.PdfPTable;
+import com.lowagie.text.Chunk;
+import com.lowagie.text.Element;
+import com.lowagie.text.Font;
+import com.lowagie.text.Paragraph;
+import com.lowagie.text.pdf.PdfPCell;
+import com.lowagie.text.pdf.PdfPTable;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.complete.elements.BaseElement;
@@ -76,10 +77,10 @@ public class DescriptionTableFactory extends BaseElement {
 
 	private static Paragraph getCharacterDescription(CharacterPlayer characterPlayer) {
 		final Paragraph paragraph = new Paragraph();
-		paragraph.add(new Paragraph(getTranslator().getTranslatedText("characterAnnotations") + ": ", new Font(
+		paragraph.add(new Chunk(getTranslator().getTranslatedText("characterAnnotations") + ": ", new Font(
 				FadingSunsTheme.getTitleFont(), FadingSunsTheme.CHARACTER_SMALL_DESCRIPTION_TITLE_FONT_SIZE)));
 		if (characterPlayer != null) {
-			paragraph.add(new Paragraph(characterPlayer.getInfo().getCharacterDescription(), new Font(FadingSunsTheme
+			paragraph.add(new Chunk(characterPlayer.getInfo().getCharacterDescription(), new Font(FadingSunsTheme
 					.getHandwrittingFont(), FadingSunsTheme
 					.getHandWrittingFontSize(FadingSunsTheme.CHARACTER_SMALL_DESCRIPTION_FONT_SIZE))));
 		}
@@ -88,10 +89,10 @@ public class DescriptionTableFactory extends BaseElement {
 
 	private static Paragraph getCharacterBackground(CharacterPlayer characterPlayer) {
 		final Paragraph paragraph = new Paragraph();
-		paragraph.add(new Paragraph(getTranslator().getTranslatedText("historyAnnotations") + ": ", new Font(
+		paragraph.add(new Chunk(getTranslator().getTranslatedText("historyAnnotations") + ": ", new Font(
 				FadingSunsTheme.getTitleFont(), FadingSunsTheme.CHARACTER_SMALL_DESCRIPTION_TITLE_FONT_SIZE)));
 		if (characterPlayer != null) {
-			paragraph.add(new Paragraph(characterPlayer.getInfo().getBackgroundDecription(), new Font(FadingSunsTheme
+			paragraph.add(new Chunk(characterPlayer.getInfo().getBackgroundDecription(), new Font(FadingSunsTheme
 					.getHandwrittingFont(), FadingSunsTheme
 					.getHandWrittingFontSize(FadingSunsTheme.CHARACTER_SMALL_DESCRIPTION_FONT_SIZE))));
 		}

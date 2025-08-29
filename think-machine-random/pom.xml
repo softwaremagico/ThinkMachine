@@ -3,12 +3,12 @@
 	<artifactId>think-machine-random</artifactId>
 	<packaging>jar</packaging>
 	<name>Think Machine (Random Generator)</name>
-	<description>Think Machine - A Fading Suns character generator (random character creation)</description>
+	<description>Think Machine - A Fading Suns (3e) character generator (random character creation)</description>
 
 	<parent>
 		<groupId>com.softwaremagico</groupId>
 		<artifactId>think-machine</artifactId>
-		<version>3.0.1-SNAPSHOT</version>
+		<version>3.0.1</version>
 	</parent>
 
 	<properties>

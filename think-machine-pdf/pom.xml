@@ -3,12 +3,12 @@
 	<artifactId>think-machine-pdf</artifactId>
 	<packaging>jar</packaging>
 	<name>Think Machine (PDF Sheets)</name>
-	<description>Think Machine - A Fading Suns character generator (PDF sheets generation)</description>
+	<description>Think Machine - A Fading Suns (3e) character generator (PDF sheets generation)</description>
 
 	<parent>
 		<groupId>com.softwaremagico</groupId>
 		<artifactId>think-machine</artifactId>
-		<version>3.0.1-SNAPSHOT</version>
+		<version>3.0.1</version>
 	</parent>
 
 	<properties>
@@ -186,19 +186,18 @@
 			<groupId>${project.groupId}</groupId>
 			<artifactId>think-machine-rules</artifactId>
 			<version>${project.version}</version>
-			<type>jar</type>
+		</dependency>
+		<!-- PDF -->
+		<dependency>
+			<groupId>com.github.librepdf</groupId>
+			<artifactId>openpdf</artifactId>
+			<version>${openpdf.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>think-machine-random</artifactId>
 			<version>${project.version}</version>
 			<scope>test</scope>
-		</dependency>
-		<!-- PDF -->
-		<dependency>
-			<groupId>com.itextpdf</groupId>
-			<artifactId>itextg</artifactId>
-			<version>${itextg.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.testng</groupId>

@@ -351,7 +351,7 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
             throw new InvalidRandomElementSelectedException("No elements to select");
         }
         final int value = RANDOM.nextInt(totalWeight) + 1;
-        Element selectedElement = weightedElements.values().iterator().next();
+        Element selectedElement;
         final SortedMap<Integer, Element> view = weightedElements.headMap(value, true);
         try {
             selectedElement = view.get(view.lastKey());
@@ -360,6 +360,7 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
             // the value is less that the first element weight. That means that
             // 'view' would be empty launching a NoSuchElementException. Select
             // the first one by default.
+            selectedElement = weightedElements.values().iterator().next();
         }
         return selectedElement;
     }
@@ -395,7 +396,7 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
         weightedElements.put(newWeight, element);
     }
 
-    public TreeMap<Integer, Element> getWeightedElements() {
+    public SortedMap<Integer, Element> getWeightedElements() {
         return weightedElements;
     }
 

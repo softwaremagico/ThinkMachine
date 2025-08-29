@@ -27,8 +27,8 @@ package com.softwaremagico.tm.pdf.small.occultism;
 import java.util.List;
 import java.util.Map.Entry;
 
-import com.itextpdf.text.Element;
-import com.itextpdf.text.pdf.PdfPCell;
+import com.lowagie.text.Element;
+import com.lowagie.text.pdf.PdfPCell;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.occultism.OccultismPower;
@@ -42,7 +42,7 @@ public class OccultismTable extends VerticalTable {
 	private static final int POWER_COLUMN_WIDTH = 80;
 	private static final int ROLL_COLUMN_WIDTH = 30;
 	private static final float[] WIDTHS = { 2f, 1f, 1f, 1f, 2f };
-	private static final int ROWS = 8;
+	private static final int ROWS = 7;
 
 	public OccultismTable(CharacterPlayer characterPlayer, String language, String moduleName)
 			throws InvalidXmlElementException {

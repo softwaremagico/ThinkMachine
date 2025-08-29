@@ -24,11 +24,12 @@ package com.softwaremagico.tm.pdf.complete.fighting;
  * #L%
  */
 
-import com.itextpdf.text.Element;
-import com.itextpdf.text.Font;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.pdf.PdfPCell;
-import com.itextpdf.text.pdf.PdfPTable;
+import com.lowagie.text.Chunk;
+import com.lowagie.text.Element;
+import com.lowagie.text.Font;
+import com.lowagie.text.Paragraph;
+import com.lowagie.text.pdf.PdfPCell;
+import com.lowagie.text.pdf.PdfPTable;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.complete.elements.BaseElement;
@@ -64,10 +65,10 @@ public class ShieldTable extends LateralHeaderPdfPTable {
 					HITS_COLUMN_WIDTH));
 		} else {
 			final Paragraph paragraph = new Paragraph();
-			paragraph.add(new Paragraph(getTranslator().getTranslatedText("shieldHits") + ": ", new Font(
+			paragraph.add(new Chunk(getTranslator().getTranslatedText("shieldHits") + ": ", new Font(
 					FadingSunsTheme.getLineFont(), FadingSunsTheme.TABLE_LINE_FONT_SIZE)));
 
-			paragraph.add(new Paragraph(characterPlayer.getShield().getHits() + " ", new Font(FadingSunsTheme
+			paragraph.add(new Chunk(characterPlayer.getShield().getHits() + " ", new Font(FadingSunsTheme
 					.getHandwrittingFont(), FadingSunsTheme.SHIELD_CONTENT_FONT_SIZE)));
 
 			final PdfPCell protectionCell = createEmptyElementLine("");

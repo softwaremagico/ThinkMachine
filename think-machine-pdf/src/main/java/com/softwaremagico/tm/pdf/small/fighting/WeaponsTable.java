@@ -24,8 +24,8 @@ package com.softwaremagico.tm.pdf.small.fighting;
  * #L%
  */
 
-import com.itextpdf.text.Element;
-import com.itextpdf.text.pdf.PdfPCell;
+import com.lowagie.text.Element;
+import com.lowagie.text.pdf.PdfPCell;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.equipment.weapons.Ammunition;
 import com.softwaremagico.tm.character.equipment.weapons.Weapon;
@@ -35,7 +35,7 @@ import com.softwaremagico.tm.pdf.complete.elements.VerticalTable;
 public class WeaponsTable extends VerticalTable {
     private static final String GAP = "__________________";
     private static final float[] WIDTHS = {3f, 1f, 1f, 1.5f, 1.5f, 1f};
-    private static final int ROWS = 9;
+    private static final int ROWS = 8;
     private static final int NAME_COLUMN_WIDTH = 60;
     private static final int GOAL_COLUMN_WIDTH = 15;
     private static final int DAMAGE_COLUMN_WIDTH = 15;

@@ -81,7 +81,7 @@ public class Translator implements ITranslator {
             if (Translator.class.getClassLoader().getResource(filePath) != null) {
                 resource = Translator.class.getClassLoader().getResource(filePath);
             } else {
-                // Is inside of a module.
+                // Is inside a module.
                 resource = URLClassLoader.getSystemResource(filePath);
             }
             ConfigurationLog.debug(Translator.class.getName(), "Found resource '" + filePath + "' at '" + resource + "'.");

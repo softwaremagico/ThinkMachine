@@ -24,12 +24,13 @@ package com.softwaremagico.tm.pdf.complete.traits;
  * #L%
  */
 
-import com.itextpdf.text.BaseColor;
-import com.itextpdf.text.Element;
-import com.itextpdf.text.pdf.PdfPCell;
+import com.lowagie.text.Element;
+import com.lowagie.text.pdf.PdfPCell;
 import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.complete.elements.BaseElement;
 import com.softwaremagico.tm.pdf.complete.elements.LateralHeaderPdfPTable;
+
+import java.awt.Color;
 
 public class VictoryPointsTable extends LateralHeaderPdfPTable {
 	private static final float[] WIDTHS = { 3f, 4f, 4f };
@@ -38,45 +39,45 @@ public class VictoryPointsTable extends LateralHeaderPdfPTable {
 		super(WIDTHS);
 		addCell(createLateralVerticalTitle(getTranslator().getTranslatedText("victoryChart"), 12));
 
-		addCell(createSubTitle(getTranslator().getTranslatedText("dice"), BaseColor.WHITE));
-		addCell(createSubTitle(getTranslator().getTranslatedText("victoryPoints"), BaseColor.WHITE));
+		addCell(createSubTitle(getTranslator().getTranslatedText("dice"), Color.WHITE));
+		addCell(createSubTitle(getTranslator().getTranslatedText("victoryPoints"), Color.WHITE));
 
-		addCell(createLine("1", BaseColor.LIGHT_GRAY));
-		addCell(createLine("0", BaseColor.LIGHT_GRAY));
+		addCell(createLine("1", Color.LIGHT_GRAY));
+		addCell(createLine("0", Color.LIGHT_GRAY));
 
-		addCell(createLine("2-3", BaseColor.WHITE));
-		addCell(createLine("1", BaseColor.WHITE));
+		addCell(createLine("2-3", Color.WHITE));
+		addCell(createLine("1", Color.WHITE));
 
-		addCell(createLine("4-5", BaseColor.LIGHT_GRAY));
-		addCell(createLine("2", BaseColor.LIGHT_GRAY));
+		addCell(createLine("4-5", Color.LIGHT_GRAY));
+		addCell(createLine("2", Color.LIGHT_GRAY));
 
-		addCell(createLine("6-7", BaseColor.WHITE));
-		addCell(createLine("3", BaseColor.WHITE));
+		addCell(createLine("6-7", Color.WHITE));
+		addCell(createLine("3", Color.WHITE));
 
-		addCell(createLine("8-9", BaseColor.LIGHT_GRAY));
-		addCell(createLine("4", BaseColor.LIGHT_GRAY));
+		addCell(createLine("8-9", Color.LIGHT_GRAY));
+		addCell(createLine("4", Color.LIGHT_GRAY));
 
-		addCell(createLine("10-11", BaseColor.WHITE));
-		addCell(createLine("5", BaseColor.WHITE));
+		addCell(createLine("10-11", Color.WHITE));
+		addCell(createLine("5", Color.WHITE));
 
-		addCell(createLine("12-13", BaseColor.LIGHT_GRAY));
-		addCell(createLine("6", BaseColor.LIGHT_GRAY));
+		addCell(createLine("12-13", Color.LIGHT_GRAY));
+		addCell(createLine("6", Color.LIGHT_GRAY));
 
-		addCell(createLine("14-15", BaseColor.WHITE));
-		addCell(createLine("7", BaseColor.WHITE));
+		addCell(createLine("14-15", Color.WHITE));
+		addCell(createLine("7", Color.WHITE));
 
-		addCell(createLine("16-17", BaseColor.LIGHT_GRAY));
-		addCell(createLine("8", BaseColor.LIGHT_GRAY));
+		addCell(createLine("16-17", Color.LIGHT_GRAY));
+		addCell(createLine("8", Color.LIGHT_GRAY));
 
-		addCell(createLine("18-19", BaseColor.WHITE));
-		addCell(createLine("9", BaseColor.WHITE));
+		addCell(createLine("18-19", Color.WHITE));
+		addCell(createLine("9", Color.WHITE));
 
-		addCell(createLine("20", BaseColor.LIGHT_GRAY));
-		addCell(createLine("*", BaseColor.LIGHT_GRAY));
+		addCell(createLine("20", Color.LIGHT_GRAY));
+		addCell(createLine("*", Color.LIGHT_GRAY));
 
 	}
 
-	private static PdfPCell createLine(String text, BaseColor color) {
+	private static PdfPCell createLine(String text, Color color) {
 		final PdfPCell cell = BaseElement.getCell(text, 0, 1, Element.ALIGN_CENTER, color,
 				FadingSunsTheme.getLineFont(), FadingSunsTheme.VICTORY_POINTS_FONT_SIZE);
 		cell.setMinimumHeight(11);
@@ -84,7 +85,7 @@ public class VictoryPointsTable extends LateralHeaderPdfPTable {
 		return cell;
 	}
 
-	private static PdfPCell createSubTitle(String text, BaseColor color) {
+	private static PdfPCell createSubTitle(String text, Color color) {
 		final PdfPCell cell = BaseElement.getCell(text, 0, 1, Element.ALIGN_CENTER, color,
 				FadingSunsTheme.getLineFontBold(), FadingSunsTheme.VICTORY_POINTS_FONT_SIZE);
 		cell.setMinimumHeight(13);

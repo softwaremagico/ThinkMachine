@@ -24,30 +24,30 @@ package com.softwaremagico.tm.pdf.complete.elements;
  * #L%
  */
 
-import java.io.IOException;
-
-import com.itextpdf.text.BaseColor;
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Element;
-import com.itextpdf.text.Font;
-import com.itextpdf.text.FontFactory;
-import com.itextpdf.text.Image;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.Phrase;
-import com.itextpdf.text.pdf.BaseFont;
-import com.itextpdf.text.pdf.PdfPCell;
-import com.itextpdf.text.pdf.PdfPTable;
+import com.lowagie.text.DocumentException;
+import com.lowagie.text.Element;
+import com.lowagie.text.Font;
+import com.lowagie.text.FontFactory;
+import com.lowagie.text.Image;
+import com.lowagie.text.Paragraph;
+import com.lowagie.text.Phrase;
+import com.lowagie.text.pdf.BaseFont;
+import com.lowagie.text.pdf.PdfPCell;
+import com.lowagie.text.pdf.PdfPTable;
 import com.softwaremagico.tm.language.ITranslator;
 import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.complete.info.CharacterBasicsCompleteTableFactory;
 
+import java.awt.Color;
+import java.io.IOException;
+
 public class BaseElement {
 	private static final String TRANSLATOR_FILE = "character_sheet.xml";
 	private static ITranslator translator;
 
-	public static PdfPCell getCell(String text, int border, int colspan, int align, BaseColor color, BaseFont font,
-			float fontSize) {
+	public static PdfPCell getCell(String text, int border, int colspan, int align, Color color, BaseFont font,
+								   float fontSize) {
 		if (text == null) {
 			text = "";
 		}
@@ -61,7 +61,7 @@ public class BaseElement {
 		return cell;
 	}
 
-	public static PdfPCell getCell(Paragraph paragraph, int border, int colspan, int align, BaseColor color) {
+	public static PdfPCell getCell(Paragraph paragraph, int border, int colspan, int align, Color color) {
 		final PdfPCell cell = new PdfPCell(paragraph);
 		cell.setColspan(colspan);
 		cell.setBorderWidth(border);
@@ -71,7 +71,7 @@ public class BaseElement {
 		return cell;
 	}
 
-	protected PdfPCell getCell(String text, int border, int colspan, int align, BaseColor color, String font,
+	protected PdfPCell getCell(String text, int border, int colspan, int align, Color color, String font,
 			int fontSize, int fontType) {
 		if (text == null) {
 			text = "";
@@ -145,7 +145,7 @@ public class BaseElement {
 
 	public static PdfPCell createBlackSeparator() {
 		final PdfPCell cell = new PdfPCell();
-		cell.setBackgroundColor(BaseColor.BLACK);
+		cell.setBackgroundColor(Color.BLACK);
 		setCellProperties(cell);
 		cell.setMinimumHeight(10f);
 		return cell;
@@ -153,7 +153,7 @@ public class BaseElement {
 
 	public static PdfPCell createWhiteSeparator() {
 		final PdfPCell cell = new PdfPCell();
-		cell.setBackgroundColor(BaseColor.WHITE);
+		cell.setBackgroundColor(Color.WHITE);
 		setCellProperties(cell);
 		cell.setMinimumHeight(6f);
 		return cell;
@@ -163,7 +163,6 @@ public class BaseElement {
 		table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_LEFT);
 		table.getDefaultCell().setVerticalAlignment(Element.ALIGN_MIDDLE);
 		table.setWidthPercentage(100);
-		table.setPaddingTop(0);
 		table.setSpacingAfter(0);
 		table.setSpacingBefore(0);
 	}
