@@ -382,7 +382,7 @@ public abstract class XmlFactory<T extends Element<T>> implements IElementRetrie
             }
             Collections.sort(elements.get(language).get(moduleName));
         }
-        return elements.get(language).get(moduleName);
+        return new ArrayList<>(elements.get(language).get(moduleName));
     }
 
     protected void setRestrictedToRaces(Element<?> element, Set<Race> races) throws InvalidXmlElementException {

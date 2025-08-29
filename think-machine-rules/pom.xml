@@ -3,13 +3,13 @@
     <artifactId>think-machine-rules</artifactId>
     <packaging>jar</packaging>
     <name>Think Machine (Rules)</name>
-    <description>Think Machine - A Fading Suns character generator (character creation rules implementation)
+    <description>Think Machine - A Fading Suns (3e) character generator (character creation rules implementation)
     </description>
 
     <parent>
         <groupId>com.softwaremagico</groupId>
         <artifactId>think-machine</artifactId>
-        <version>3.0.1-SNAPSHOT</version>
+        <version>3.0.1</version>
     </parent>
 
     <properties>
