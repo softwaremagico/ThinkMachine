@@ -45,8 +45,12 @@ import java.util.stream.Collectors;
  * #L%
  */
 
-public class PredefinedMerger {
+public final class PredefinedMerger {
     private static final String DEFAULT_ID = "merged_profile";
+
+    private PredefinedMerger() {
+        super();
+    }
 
     public static IRandomPredefined merge(String language, String moduleName, IRandomPredefined... profiles) {
         if (profiles == null || profiles.length == 0) {
@@ -289,10 +293,12 @@ public class PredefinedMerger {
                 if (randomPreference.getClass().equals(preferredPreference.getClass())) {
                     if (randomPreference.getClass().isEnum()) {
                         final int average = ((((Enum<?>) randomPreference).ordinal() + ((Enum<?>) preferredPreference).ordinal()) + 1) / 2;
-                        final IRandomPreference<?> averagePreference = randomPreference.getClass().getEnumConstants()[average];
-                        originalPreferences.remove(randomPreference);
-                        preferredPreferences.remove(preferredPreference);
-                        originalPreferences.add(averagePreference);
+                        if (average < randomPreference.getClass().getEnumConstants().length) {
+                            final IRandomPreference<?> averagePreference = randomPreference.getClass().getEnumConstants()[average];
+                            originalPreferences.remove(randomPreference);
+                            preferredPreferences.remove(preferredPreference);
+                            originalPreferences.add(averagePreference);
+                        }
                     }
                 }
             }
