@@ -40,6 +40,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
 import java.util.NoSuchElementException;
 import java.util.Objects;
@@ -162,7 +163,7 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
 
     private TreeMap<Integer, Element> assignElementsWeight() throws InvalidXmlElementException {
         final TreeMap<Integer, Element> weightedElements = new TreeMap<>();
-        int count = 1;
+        int count = 0;
         for (final Element element : getAllElements()) {
             try {
                 validateElement(element);
@@ -171,16 +172,19 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
                 continue;
             }
 
-            final int weight = getTotalWeight(element);
+            final int weight = getElementWeight(element);
             if (weight > 0) {
                 weightedElements.put(count, element);
                 count += weight;
             }
         }
+        if (!weightedElements.isEmpty()) {
+            weightedElements.put(count, null);
+        }
         return weightedElements;
     }
 
-    public int getTotalWeight(Element element) {
+    public int getElementWeight(Element element) {
         try {
             //Restricted elements has 0 weight.
             if (element.isRestricted(characterPlayer)) {
@@ -351,7 +355,7 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
             throw new InvalidRandomElementSelectedException("No elements to select");
         }
         final int value = RANDOM.nextInt(totalWeight) + 1;
-        Element selectedElement;
+        Element selectedElement = weightedElements.values().iterator().next();
         final SortedMap<Integer, Element> view = weightedElements.headMap(value, true);
         try {
             selectedElement = view.get(view.lastKey());
@@ -404,12 +408,14 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
         if (element == null) {
             return null;
         }
-        int previousWeight = 0;
-        for (final Entry<Integer, Element> entry : weightedElements.entrySet()) {
-            if (entry.getValue().equals(element)) {
-                return entry.getKey() - previousWeight;
+        Integer elementWeight = null;
+        for (final Map.Entry<Integer, Element> entry : weightedElements.entrySet()) {
+            if (Objects.equals(entry.getValue(), element)) {
+                elementWeight = entry.getKey();
+                continue;
             }
-            previousWeight = entry.getKey();
+            if (elementWeight != null)
+                return entry.getKey() - elementWeight;
         }
         return null;
     }
