@@ -565,15 +565,10 @@ public class Translator implements ITranslator {
             languagesList = new ArrayList<>();
             try {
                 final Document storedLanguages = parseFile(null, PathManager.getModulePath(null) + LANGUAGES_FILE);
-                final NodeList nodeLst = storedLanguages.getElementsByTagName("languages");
-                for (int s = 0; s < nodeLst.getLength(); s++) {
-                    final Node fstNode = nodeLst.item(s);
-                    try {
-                        final Language lang = new Language(fstNode.getTextContent(), fstNode.getAttributes().getNamedItem("abbrev").getNodeValue(),
-                                fstNode.getAttributes().getNamedItem("flag").getNodeValue());
-                        languagesList.add(lang);
-                    } catch (NullPointerException npe) {
-                        ConfigurationLog.severe(Translator.class.getName(), "Error retrieving the available languages. Check your installation.");
+                if (storedLanguages != null) {
+                    final NodeList nodeLst = storedLanguages.getElementsByTagName("languages");
+                    for (int s = 0; s < nodeLst.getLength(); s++) {
+                        addLanguage(nodeLst.item(s));
                     }
                 }
             } catch (NullPointerException npe) {
@@ -582,6 +577,16 @@ public class Translator implements ITranslator {
             ConfigurationLog.debug(this.getClass().getName(), "Available languages are '{}'.", languagesList);
         }
         return languagesList;
+    }
+
+    private void addLanguage(final Node fstNode) {
+        try {
+            final Language lang = new Language(fstNode.getTextContent(), fstNode.getAttributes().getNamedItem("abbrev").getNodeValue(),
+                    fstNode.getAttributes().getNamedItem("flag").getNodeValue());
+            languagesList.add(lang);
+        } catch (NullPointerException npe) {
+            ConfigurationLog.severe(Translator.class.getName(), "Error retrieving the available languages. Check your installation.");
+        }
     }
 
     public static File getTranslatorPath(String xmlFile, String moduleName) {
