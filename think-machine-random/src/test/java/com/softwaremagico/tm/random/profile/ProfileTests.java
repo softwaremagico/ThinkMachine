@@ -3,16 +3,19 @@ package com.softwaremagico.tm.random.profile;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.RandomizeCharacter;
+import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.exceptions.RestrictedElementException;
 import com.softwaremagico.tm.character.exceptions.UnofficialElementNotAllowedException;
-import com.softwaremagico.tm.character.characteristics.CharacteristicName;
 import com.softwaremagico.tm.character.factions.FactionGroup;
 import com.softwaremagico.tm.file.PathManager;
-import com.softwaremagico.tm.random.exceptions.DuplicatedPreferenceException;
 import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.random.predefined.PredefinedMerger;
 import com.softwaremagico.tm.random.predefined.profile.RandomProfileFactory;
-import com.softwaremagico.tm.random.selectors.*;
+import com.softwaremagico.tm.random.selectors.AgePreferences;
+import com.softwaremagico.tm.random.selectors.BlessingPreferences;
+import com.softwaremagico.tm.random.selectors.CombatPreferences;
+import com.softwaremagico.tm.random.selectors.IRandomPreference;
+import com.softwaremagico.tm.random.selectors.RacePreferences;
 import com.softwaremagico.tm.txt.CharacterSheet;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -152,7 +155,7 @@ public class ProfileTests {
     }
 
     @Test(timeOut = 5000)
-    public void old() throws DuplicatedPreferenceException, InvalidXmlElementException,
+    public void old() throws InvalidXmlElementException,
             InvalidRandomElementSelectedException, RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer,

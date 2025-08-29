@@ -51,8 +51,8 @@ public class CharacteristicsColumn extends LateralHeaderPdfPTable {
 	}
 
 	private PdfPCell createContent(CharacterPlayer characterPlayer, List<CharacteristicDefinition> content) {
-		final float[] widths = { 3f, 1f, 0.1f };
-		final PdfPTable table = new PdfPTable(widths);
+		final float[] contentWidths = { 3f, 1f, 0.1f };
+		final PdfPTable table = new PdfPTable(contentWidths);
 		BaseElement.setTablePropierties(table);
 		table.getDefaultCell().setBorder(0);
 

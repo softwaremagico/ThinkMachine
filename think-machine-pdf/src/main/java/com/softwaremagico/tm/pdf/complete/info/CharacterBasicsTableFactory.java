@@ -27,9 +27,7 @@ package com.softwaremagico.tm.pdf.complete.info;
 import com.lowagie.text.Element;
 import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
-import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
-import com.softwaremagico.tm.log.PdfExporterLog;
 import com.softwaremagico.tm.pdf.complete.FadingSunsTheme;
 import com.softwaremagico.tm.pdf.complete.elements.BaseElement;
 
@@ -96,8 +94,7 @@ public abstract class CharacterBasicsTableFactory extends BaseElement {
     }
 
     protected static PdfPCell getCell(String text, int align, int fontSize) {
-        final PdfPCell cell = getCell(text, 0, 1, align, Color.WHITE, FadingSunsTheme.getLineFont(), fontSize);
-        return cell;
+        return getCell(text, 0, 1, align, Color.WHITE, FadingSunsTheme.getLineFont(), fontSize);
     }
 
     protected static PdfPCell getHandwrittingCell(String text, int align, int fontSize, int maxWidth) {
@@ -113,10 +110,8 @@ public abstract class CharacterBasicsTableFactory extends BaseElement {
     protected static String getTranslatedTag(String tag, int maxWidth) {
         final String value = getTranslator().getTranslatedText(
                 LANGUAGE_PREFIX + tag.substring(0, 1).toUpperCase() + tag.substring(1));
-        if (value != null) {
-            if (value.length() > maxWidth) {
-                return value.substring(0, maxWidth + 1);
-            }
+        if (value != null && value.length() > maxWidth) {
+            return value.substring(0, maxWidth + 1);
         }
         return value;
     }

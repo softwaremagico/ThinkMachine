@@ -43,8 +43,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.net.URLClassLoader;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -82,7 +85,7 @@ public class Translator implements ITranslator {
                 resource = Translator.class.getClassLoader().getResource(filePath);
             } else {
                 // Is inside a module.
-                resource = URLClassLoader.getSystemResource(filePath);
+                resource = ClassLoader.getSystemResource(filePath);
             }
             ConfigurationLog.debug(Translator.class.getName(), "Found resource '" + filePath + "' at '" + resource + "'.");
             return parseContent(usedDoc, resource.openStream());
@@ -209,7 +212,7 @@ public class Translator implements ITranslator {
                 try {
                     final NodeList firstNodeElementList = firstElement.getElementsByTagName(node);
                     final Element firstNodeElement = (Element) firstNodeElementList.item(0);
-                    //Check is not an inner element, only first level.
+                    //Check is not an inner element, only the first level.
                     if (firstNodeElement.getParentNode().getNodeName().equals(tag)) {
                         return firstNodeElement.getChildNodes().item(nodeNumber).getNodeValue().trim();
                     }
@@ -560,17 +563,21 @@ public class Translator implements ITranslator {
     public synchronized List<Language> getAvailableLanguages() {
         if (languagesList == null) {
             languagesList = new ArrayList<>();
-            final Document storedLanguages = parseFile(null, PathManager.getModulePath(null) + LANGUAGES_FILE);
-            final NodeList nodeLst = storedLanguages.getElementsByTagName("languages");
-            for (int s = 0; s < nodeLst.getLength(); s++) {
-                final Node fstNode = nodeLst.item(s);
-                try {
-                    final Language lang = new Language(fstNode.getTextContent(), fstNode.getAttributes().getNamedItem("abbrev").getNodeValue(),
-                            fstNode.getAttributes().getNamedItem("flag").getNodeValue());
-                    languagesList.add(lang);
-                } catch (NullPointerException npe) {
-                    ConfigurationLog.severe(Translator.class.getName(), "Error retrieving the available languages. Check your installation.");
+            try {
+                final Document storedLanguages = parseFile(null, PathManager.getModulePath(null) + LANGUAGES_FILE);
+                final NodeList nodeLst = storedLanguages.getElementsByTagName("languages");
+                for (int s = 0; s < nodeLst.getLength(); s++) {
+                    final Node fstNode = nodeLst.item(s);
+                    try {
+                        final Language lang = new Language(fstNode.getTextContent(), fstNode.getAttributes().getNamedItem("abbrev").getNodeValue(),
+                                fstNode.getAttributes().getNamedItem("flag").getNodeValue());
+                        languagesList.add(lang);
+                    } catch (NullPointerException npe) {
+                        ConfigurationLog.severe(Translator.class.getName(), "Error retrieving the available languages. Check your installation.");
+                    }
                 }
+            } catch (NullPointerException npe) {
+                ConfigurationLog.errorMessage(Translator.class.getName(), npe);
             }
             ConfigurationLog.debug(this.getClass().getName(), "Available languages are '{}'.", languagesList);
         }
