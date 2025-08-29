@@ -163,7 +163,7 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
 
     private TreeMap<Integer, Element> assignElementsWeight() throws InvalidXmlElementException {
         final TreeMap<Integer, Element> weightedElements = new TreeMap<>();
-        int count = 0;
+        int count = 1;
         for (final Element element : getAllElements()) {
             try {
                 validateElement(element);
@@ -177,9 +177,6 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
                 weightedElements.put(count, element);
                 count += weight;
             }
-        }
-        if (!weightedElements.isEmpty()) {
-            weightedElements.put(count, null);
         }
         return weightedElements;
     }
@@ -355,7 +352,7 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
             throw new InvalidRandomElementSelectedException("No elements to select");
         }
         final int value = RANDOM.nextInt(totalWeight) + 1;
-        Element selectedElement = weightedElements.values().iterator().next();
+        Element selectedElement;
         final SortedMap<Integer, Element> view = weightedElements.headMap(value, true);
         try {
             selectedElement = view.get(view.lastKey());
@@ -400,7 +397,7 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
         weightedElements.put(newWeight, element);
     }
 
-    public SortedMap<Integer, Element> getWeightedElements() {
+    public TreeMap<Integer, Element> getWeightedElements() {
         return weightedElements;
     }
 
@@ -408,14 +405,12 @@ public abstract class RandomSelector<Element extends com.softwaremagico.tm.Eleme
         if (element == null) {
             return null;
         }
-        Integer elementWeight = null;
-        for (final Map.Entry<Integer, Element> entry : weightedElements.entrySet()) {
-            if (Objects.equals(entry.getValue(), element)) {
-                elementWeight = entry.getKey();
-                continue;
+        int previousWeight = 0;
+        for (final Entry<Integer, Element> entry : weightedElements.entrySet()) {
+            if (entry.getValue().equals(element)) {
+                return entry.getKey() - previousWeight;
             }
-            if (elementWeight != null)
-                return entry.getKey() - elementWeight;
+            previousWeight = entry.getKey();
         }
         return null;
     }
