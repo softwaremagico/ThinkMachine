@@ -293,7 +293,7 @@ public final class PredefinedMerger {
                 if (randomPreference.getClass().equals(preferredPreference.getClass())) {
                     if (randomPreference.getClass().isEnum()) {
                         final int average = ((((Enum<?>) randomPreference).ordinal() + ((Enum<?>) preferredPreference).ordinal()) + 1) / 2;
-                        if (average < randomPreference.getClass().getEnumConstants().length) {
+                        if (average >= 0 && average < randomPreference.getClass().getEnumConstants().length) {
                             final IRandomPreference<?> averagePreference = randomPreference.getClass().getEnumConstants()[average];
                             originalPreferences.remove(randomPreference);
                             preferredPreferences.remove(preferredPreference);
