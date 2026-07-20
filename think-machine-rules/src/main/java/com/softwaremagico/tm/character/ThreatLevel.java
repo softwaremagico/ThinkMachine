@@ -122,7 +122,7 @@ public class ThreatLevel {
                 threatLevel += 3 * weaponDamage.getMainDamage();
             }
             if (weapon.getDamageTypes().contains(DamageTypeFactory.getInstance().getElement("laser", weapon.getLanguage(), moduleName))) {
-                threatLevel += 1 * weaponDamage.getMainDamage();
+                threatLevel += weaponDamage.getMainDamage();
             }
             if (weapon.getDamageTypes().contains(DamageTypeFactory.getInstance().getElement("xaser", weapon.getLanguage(), moduleName))) {
                 threatLevel += 3 * weaponDamage.getMainDamage();
@@ -142,7 +142,7 @@ public class ThreatLevel {
             if (weapon.getDamageTypes().contains(DamageTypeFactory.getInstance().getElement("ignoreArmour", weapon.getLanguage(), moduleName))) {
                 threatLevel += 6 * weaponDamage.getMainDamage();
             }
-        } catch (InvalidXmlElementException e) {
+        } catch (final InvalidXmlElementException e) {
             MachineLog.errorMessage(ThreatLevel.class.getName(), e);
         }
         threatLevel += weaponDamage.getMainRange() / 10;
@@ -218,7 +218,7 @@ public class ThreatLevel {
         }
         float threatLevel = 0;
         threatLevel += ((shield.getForce() - (double) shield.getImpact()) + 5) / 10;
-        threatLevel += ((float) shield.getImpact()) / 10;
+        threatLevel += ((float) shield.getHits()) / 10;
         shieldThreatLevel += threatLevel;
         return threatLevel;
     }
