@@ -1530,7 +1530,7 @@ public class CharacterPlayer {
     public int getSpentMoney() {
         int total = 0;
         for (final Weapon weapon : weapons.getElements()) {
-            // Skip weapons payed by benefices.
+            // Skip weapons paid by benefices.
             try {
                 if (weapon != null &&
                         !getAllBenefices().contains(AvailableBeneficeFactory.getInstance().getElement(weapon.getId(),

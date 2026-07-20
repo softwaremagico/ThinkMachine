@@ -54,7 +54,7 @@ public class RandomPsiquePath extends RandomSelector<OccultismPath> {
         final IGaussianDistribution pathNumber = OccultismPathLevelPreferences.getSelected(getPreferences());
         final int totalPaths = pathNumber.randomGaussian();
         totalPowers = getCharacterPlayer().getTotalSelectedPowers();
-        while (getCharacterPlayer().getTotalSelectedPaths() < totalPaths && getWeightedElements().size() > 0) {
+        while (getCharacterPlayer().getTotalSelectedPaths() < totalPaths && !getWeightedElements().isEmpty()) {
             try {
                 final OccultismPath selectedOccultismPath = selectElementByWeight();
                 // Select a level of psique.
