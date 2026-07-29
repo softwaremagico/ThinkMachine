@@ -81,7 +81,10 @@ public class Translator implements ITranslator {
     private static Document parseFile(Document usedDoc, String filePath) {
         try {
             URL resource;
-            if (Translator.class.getClassLoader().getResource(filePath) != null) {
+            final ClassLoader contextClassLoader = Thread.currentThread().getContextClassLoader();
+            if (contextClassLoader != null && contextClassLoader.getResource(filePath) != null) {
+                resource = contextClassLoader.getResource(filePath);
+            } else if (Translator.class.getClassLoader().getResource(filePath) != null) {
                 resource = Translator.class.getClassLoader().getResource(filePath);
             } else {
                 // Is inside a module.

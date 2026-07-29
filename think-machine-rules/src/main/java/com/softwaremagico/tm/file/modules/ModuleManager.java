@@ -49,6 +49,8 @@ public class ModuleManager {
     public static final String DEFAULT_MODULE = "Fading Suns Revised Edition";
     private static Set<String> availableModules;
     private static String currentModuleFolder = null;
+    private static final Set<String> loadedJars = new HashSet<>();
+    private static ClassLoader dynamicModulesClassLoader;
 
     public static void resetModules() {
         availableModules = null;
@@ -125,21 +127,38 @@ public class ModuleManager {
      */
     public static synchronized void loadJar(File jar) throws InvalidJarFileException {
         try {
-            // We are using reflection here to circumvent encapsulation; addURL is not
-            // public
-            final URLClassLoader loader = (URLClassLoader) ClassLoader.getSystemClassLoader();
             final URL url = jar.toURI().toURL();
-            // Disallow if already loaded
-            for (final URL it : loader.getURLs()) {
-                if (Objects.equals(it.toString(), (url.toString()))) {
-                    MachineModulesLog.info(ModuleManager.class.getName(), "JAR file '{}' already loaded.", jar.toURI().getPath());
-                    return;
-                }
+            final String jarUrl = url.toString();
+            if (loadedJars.contains(jarUrl)) {
+                MachineModulesLog.info(ModuleManager.class.getName(), "JAR file '{}' already loaded.", jar.toURI().getPath());
+                return;
             }
 
-            final Method method = URLClassLoader.class.getDeclaredMethod("addURL", URL.class);
-            method.setAccessible(true); // promote the method to public access.
-            method.invoke(loader, url);
+            final ClassLoader systemClassLoader = ClassLoader.getSystemClassLoader();
+            if (systemClassLoader instanceof URLClassLoader) {
+                final URLClassLoader loader = (URLClassLoader) systemClassLoader;
+                for (final URL it : loader.getURLs()) {
+                    if (Objects.equals(it.toString(), jarUrl)) {
+                        loadedJars.add(jarUrl);
+                        MachineModulesLog.info(ModuleManager.class.getName(), "JAR file '{}' already loaded.", jar.toURI().getPath());
+                        return;
+                    }
+                }
+
+                // We are using reflection here to circumvent encapsulation; addURL is not
+                // public.
+                final Method method = URLClassLoader.class.getDeclaredMethod("addURL", URL.class);
+                method.setAccessible(true);
+                method.invoke(loader, url);
+            } else {
+                // Java 9+ no longer guarantees a URLClassLoader as system classloader.
+                final ClassLoader parent = dynamicModulesClassLoader != null
+                        ? dynamicModulesClassLoader
+                        : systemClassLoader;
+                dynamicModulesClassLoader = new URLClassLoader(new URL[] {url}, parent);
+                Thread.currentThread().setContextClassLoader(dynamicModulesClassLoader);
+            }
+            loadedJars.add(jarUrl);
             MachineModulesLog.info(ModuleManager.class.getName(), "Loaded JAR file '{}'.", jar.toURI().getPath());
         } catch (final NoSuchMethodException | IllegalAccessException | MalformedURLException | InvocationTargetException e) {
             throw new InvalidJarFileException("Unable to load JAR file '" + jar.toURI().getPath() + "'.", e);

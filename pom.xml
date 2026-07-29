@@ -253,6 +253,8 @@
                     <!-- Enables analysis which takes more memory but finds more bugs.
                         If you run out of memory, changes the value of the effort element to 'Low'. -->
                     <effort>Max</effort>
+                    <!-- Avoid hard-fail when the runtime JDK contains class versions SpotBugs cannot parse. -->
+                    <noClassOk>true</noClassOk>
                     <!-- Build fail if problems are found -->
                     <failOnError>true</failOnError>
                     <!-- Reports all bugs (values are max, medium and max) -->
