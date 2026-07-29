@@ -65,65 +65,73 @@ public abstract class FactoryCacheLoader<E extends Element<E>> {
 
     private static String readFile(String filePath) throws InvalidCacheFile {
         try {
-            URL resource;
+            final URL resource;
             if (FactoryCacheLoader.class.getClassLoader().getResource(filePath) != null) {
                 resource = FactoryCacheLoader.class.getClassLoader().getResource(filePath);
             } else {
                 // Is inside of a module.
                 resource = URLClassLoader.getSystemResource(filePath);
             }
-            MachineLog.debug(FactoryCacheLoader.class.getName(), "Found json factory '" + filePath + "' at '" + resource + "'.");
+            MachineLog.debug(FactoryCacheLoader.class.getName(),
+                    "Found json factory '" + filePath + "' at '" + resource + "'.");
             final StringBuilder resultStringBuilder = new StringBuilder();
             if (resource == null) {
                 throw new InvalidCacheFile("Resource not found on '" + filePath + "' is invalid.");
             }
-            try (BufferedReader read = new BufferedReader(new InputStreamReader(resource.openStream(), StandardCharsets.UTF_8))) {
+            try (final BufferedReader read = new BufferedReader(
+                    new InputStreamReader(resource.openStream(), StandardCharsets.UTF_8))) {
                 String line;
                 while ((line = read.readLine()) != null) {
                     resultStringBuilder.append(line).append("\n");
                 }
             }
             return resultStringBuilder.toString();
-        } catch (NullPointerException | IOException e) {
-            //Do nothing.
+        } catch (final NullPointerException | IOException e) {
+            // Do nothing.
         }
         return null;
     }
 
     protected abstract GsonBuilder initGsonBuilder(final String language, final String moduleName);
 
-    protected abstract FactoryElements<E> getFactoryElements(String moduleName, String language) throws InvalidXmlElementException;
+    protected abstract FactoryElements<E> getFactoryElements(String moduleName, String language)
+            throws InvalidXmlElementException;
 
     public abstract List<E> load(String language, String moduleName);
 
-    public <X extends XmlFactory<E>, F extends FactoryElements<E>> FactoryElements<E> load(Class<X> factoryClass, Class<F> factoryElementsClass,
-                                                                                           String language, String moduleName) throws InvalidCacheFile {
-        final Gson gson = initGsonBuilder(language, moduleName).create();
-        return gson.fromJson(getJsonContent(moduleName, language, getFileName(factoryClass)),
-                (Type) factoryElementsClass);
+    public <X extends XmlFactory<E>, F extends FactoryElements<E>> FactoryElements<E> load(Class<X> factoryClass,
+            Class<F> factoryElementsClass, String language, String moduleName) throws InvalidCacheFile {
+        try {
+            final Gson gson = this.initGsonBuilder(language, moduleName).create();
+            return gson.fromJson(getJsonContent(moduleName, language, getFileName(factoryClass)),
+                    (Type) factoryElementsClass);
+        } catch (final Exception e) {
+            return null;
+        }
     }
 
     public void save(Class<?> factoryClass, String moduleName, String xmlFile) throws InvalidXmlElementException {
         final List<Language> languages = LanguagePool.getTranslator(xmlFile, moduleName).getAvailableLanguages();
         for (final Language language : languages) {
-            final FactoryElements<E> factoryElements = getFactoryElements(moduleName, language.getAbbreviature());
-            final Gson gson = initGsonBuilder(language.getAbbreviature(), moduleName).create();
+            final FactoryElements<E> factoryElements = this.getFactoryElements(moduleName, language.getAbbreviature());
+            final Gson gson = this.initGsonBuilder(language.getAbbreviature(), moduleName).create();
             final String jsonCode = gson.toJson(factoryElements);
-            saveFile(jsonCode, factoryClass, moduleName, language.getAbbreviature());
+            this.saveFile(jsonCode, factoryClass, moduleName, language.getAbbreviature());
         }
     }
 
     private void saveFile(String jsonCode, Class<?> factoryClass, String moduleName, String language) {
-        //Stores it on target folder. Ant will move it later.
+        // Stores it on target folder. Ant will move it later.
         final Path source = Paths.get(FactoryCacheLoader.class.getResource("/").getPath());
-        final Path gsonFolder = Paths.get(source.toAbsolutePath() + "/" + moduleName + "/" + GSON_TEMPORAL_FOLDER + "/" + language + "/");
+        final Path gsonFolder = Paths
+                .get(source.toAbsolutePath() + "/" + moduleName + "/" + GSON_TEMPORAL_FOLDER + "/" + language + "/");
         try {
             Files.createDirectories(gsonFolder);
             final Path gsonFile = gsonFolder.resolve(getFileName(factoryClass));
-            try (BufferedWriter writer = Files.newBufferedWriter(gsonFile, StandardCharsets.UTF_8)) {
+            try (final BufferedWriter writer = Files.newBufferedWriter(gsonFile, StandardCharsets.UTF_8)) {
                 writer.write(jsonCode);
             }
-        } catch (IOException e) {
+        } catch (final IOException e) {
             MachineLog.errorMessage(FactoryCacheLoader.class.getName(), e);
         }
     }
