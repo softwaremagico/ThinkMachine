@@ -27,10 +27,10 @@ package com.softwaremagico.tm.export.pdf;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.RandomizeCharacter;
-import com.softwaremagico.tm.character.exceptions.RestrictedElementException;
-import com.softwaremagico.tm.character.exceptions.UnofficialElementNotAllowedException;
 import com.softwaremagico.tm.character.creation.CostCalculator;
 import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
+import com.softwaremagico.tm.character.exceptions.RestrictedElementException;
+import com.softwaremagico.tm.character.exceptions.UnofficialElementNotAllowedException;
 import com.softwaremagico.tm.file.PathManager;
 import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.pdf.complete.CharacterSheet;
@@ -51,20 +51,19 @@ public class RandomCharacterSheetCreationTest {
     }
 
     @Test
-    public void completeRandomCharacter() throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException,
-            UnofficialElementNotAllowedException {
+    public void completeRandomCharacter() throws InvalidXmlElementException, InvalidRandomElementSelectedException,
+            RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer characterPlayer = new CharacterPlayer("es", PathManager.DEFAULT_MODULE_FOLDER);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0);
         randomizeCharacter.createCharacter();
 
-        Assert.assertEquals(CostCalculator.logCost(characterPlayer),
-                FreeStyleCharacterCreation.getFreeAvailablePoints(characterPlayer.getInfo().getAge(), characterPlayer.getRace()));
+        Assert.assertEquals(CostCalculator.logCost(characterPlayer), FreeStyleCharacterCreation
+                .getFreeAvailablePoints(characterPlayer.getInfo().getAge(), characterPlayer.getRace()));
 
         LanguagePool.clearCache();
         final CharacterSheet sheet = new CharacterSheet(characterPlayer);
-        //Provides one extra page ¿?
         Assert.assertEquals(
-                sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "RandomCharacter.pdf"), 3);
+                sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "RandomCharacter.pdf"), 2);
     }
 
     @Test
@@ -74,15 +73,14 @@ public class RandomCharacterSheetCreationTest {
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0);
         randomizeCharacter.createCharacter();
 
-        Assert.assertEquals(CostCalculator.logCost(characterPlayer),
-                FreeStyleCharacterCreation.getFreeAvailablePoints(characterPlayer.getInfo().getAge(), characterPlayer.getRace()));
+        Assert.assertEquals(CostCalculator.logCost(characterPlayer), FreeStyleCharacterCreation
+                .getFreeAvailablePoints(characterPlayer.getInfo().getAge(), characterPlayer.getRace()));
 
         LanguagePool.clearCache();
         final SmallCharacterSheet sheet = new SmallCharacterSheet(characterPlayer);
-        //Provides one extra page ¿?
         Assert.assertEquals(
                 sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "RandomCharacterSmall_ES.pdf"),
-                2);
+                1);
     }
 
     @Test
@@ -92,14 +90,13 @@ public class RandomCharacterSheetCreationTest {
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0);
         randomizeCharacter.createCharacter();
 
-        Assert.assertEquals(CostCalculator.logCost(characterPlayer),
-                FreeStyleCharacterCreation.getFreeAvailablePoints(characterPlayer.getInfo().getAge(), characterPlayer.getRace()));
+        Assert.assertEquals(CostCalculator.logCost(characterPlayer), FreeStyleCharacterCreation
+                .getFreeAvailablePoints(characterPlayer.getInfo().getAge(), characterPlayer.getRace()));
 
         LanguagePool.clearCache();
         final SmallCharacterSheet sheet = new SmallCharacterSheet(characterPlayer);
-        //Provides one extra page ¿?
         Assert.assertEquals(
                 sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "RandomCharacterSmall_EN.pdf"),
-                2);
+                1);
     }
 }

@@ -10,6 +10,7 @@ import com.softwaremagico.tm.log.PdfExporterLog;
 import com.softwaremagico.tm.pdf.complete.events.FooterEvent;
 
 import java.io.ByteArrayOutputStream;
+import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
@@ -38,10 +39,10 @@ import java.nio.file.Paths;
  */
 
 public abstract class PdfDocument {
-    private int rightMargin = 30;
-    private int leftMargin = 30;
-    private int topMargin = 30;
-    private int bottomMargin = 30;
+    private final int rightMargin = 30;
+    private final int leftMargin = 30;
+    private final int topMargin = 30;
+    private final int bottomMargin = 30;
     private final String language;
     private final String moduleName;
 
@@ -55,15 +56,16 @@ public abstract class PdfDocument {
         document.addAuthor("Software Magico");
         document.addCreator("Think Machine");
         document.addSubject("RPG");
-        document.addKeywords("RPG, Fading Suns, FS, " + language);
+        document.addKeywords("RPG, Fading Suns, FS, " + this.language);
         document.addCreationDate();
         return document;
     }
 
-    private void generatePDF(Document document, PdfWriter writer) throws EmptyPdfBodyException, InvalidXmlElementException, DocumentException {
-        addMetaData(document);
+    private void generatePDF(Document document, PdfWriter writer)
+            throws EmptyPdfBodyException, InvalidXmlElementException, DocumentException {
+        this.addMetaData(document);
         document.open();
-        createContent(document);
+        this.createContent(document);
         document.close();
     }
 
@@ -82,11 +84,12 @@ public abstract class PdfDocument {
      * @throws InvalidXmlElementException
      */
     public final byte[] generate() throws EmptyPdfBodyException, DocumentException, InvalidXmlElementException {
-        final Document document = new Document(getPageSize(), rightMargin, leftMargin, topMargin, bottomMargin);
+        final Document document = new Document(this.getPageSize(), this.rightMargin, this.leftMargin, this.topMargin,
+                this.bottomMargin);
         final ByteArrayOutputStream baos = new ByteArrayOutputStream();
         final PdfWriter writer = PdfWriter.getInstance(document, baos);
-        addEvent(writer);
-        generatePDF(document, writer);
+        this.addEvent(writer);
+        this.generatePDF(document, writer);
         return baos.toByteArray();
 
     }
@@ -99,19 +102,24 @@ public abstract class PdfDocument {
         }
 
         // DIN A6 105 x 148 mm
-        final Document document = new Document(getPageSize(), rightMargin, leftMargin, topMargin, bottomMargin);
+        final Document document = new Document(this.getPageSize(), this.rightMargin, this.leftMargin, this.topMargin,
+                this.bottomMargin);
 
         // if (!MyFile.fileExist(path)) {
-        try {
-            final PdfWriter writer = PdfWriter.getInstance(document, Files.newOutputStream(Paths.get(path)));
-            addEvent(writer);
-            generatePDF(document, writer);
-            return writer.getPageNumber();
-        } catch (Exception e) {
+        try (final OutputStream outputStream = Files.newOutputStream(Paths.get(path))) {
+            final PdfWriter writer = PdfWriter.getInstance(document, outputStream);
+            this.addEvent(writer);
+            this.generatePDF(document, writer);
+            return writer.getPageNumber() - 1;
+        } catch (final Exception e) {
             PdfExporterLog.errorMessage(this.getClass().getName(), e);
             return 0;
         } finally {
-            document.close();
+            // 'generatePDF' already closes the document. Closing it twice raises a NPE on
+            // OpenPDF internals.
+            if (document.isOpen()) {
+                document.close();
+            }
         }
         // }
     }
@@ -121,10 +129,10 @@ public abstract class PdfDocument {
     protected abstract void createCharacterPDF(Document document, CharacterPlayer character) throws Exception;
 
     public String getLanguage() {
-        return language;
+        return this.language;
     }
 
     public String getModuleName() {
-        return moduleName;
+        return this.moduleName;
     }
 }

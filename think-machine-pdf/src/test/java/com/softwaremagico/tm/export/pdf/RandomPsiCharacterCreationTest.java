@@ -27,10 +27,10 @@ package com.softwaremagico.tm.export.pdf;
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.RandomizeCharacter;
-import com.softwaremagico.tm.character.exceptions.RestrictedElementException;
-import com.softwaremagico.tm.character.exceptions.UnofficialElementNotAllowedException;
 import com.softwaremagico.tm.character.creation.CostCalculator;
 import com.softwaremagico.tm.character.creation.FreeStyleCharacterCreation;
+import com.softwaremagico.tm.character.exceptions.RestrictedElementException;
+import com.softwaremagico.tm.character.exceptions.UnofficialElementNotAllowedException;
 import com.softwaremagico.tm.file.PathManager;
 import com.softwaremagico.tm.language.LanguagePool;
 import com.softwaremagico.tm.pdf.small.SmallCharacterSheet;
@@ -54,25 +54,25 @@ public class RandomPsiCharacterCreationTest {
     }
 
     @Test
-    public void createRandomPsiCharacter() throws InvalidXmlElementException, InvalidRandomElementSelectedException, RestrictedElementException,
-            UnofficialElementNotAllowedException {
+    public void createRandomPsiCharacter() throws InvalidXmlElementException, InvalidRandomElementSelectedException,
+            RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         final RandomizeCharacter randomizeCharacter = new RandomizeCharacter(characterPlayer, 0,
-                SpecializationPreferences.SPECIALIZED, OccultismPathLevelPreferences.HIGH, OccultismLevelPreferences.HIGH);
+                SpecializationPreferences.SPECIALIZED, OccultismPathLevelPreferences.HIGH,
+                OccultismLevelPreferences.HIGH);
         randomizeCharacter.createCharacter();
 
         try {
-            Assert.assertEquals(CostCalculator.getCost(characterPlayer),
-                    FreeStyleCharacterCreation.getFreeAvailablePoints(characterPlayer.getInfo().getAge(), characterPlayer.getRace()));
-        } catch (AssertionError e) {
+            Assert.assertEquals(CostCalculator.getCost(characterPlayer), FreeStyleCharacterCreation
+                    .getFreeAvailablePoints(characterPlayer.getInfo().getAge(), characterPlayer.getRace()));
+        } catch (final AssertionError e) {
             CostCalculator.logCost(characterPlayer);
             throw e;
         }
 
         LanguagePool.clearCache();
         final SmallCharacterSheet sheet = new SmallCharacterSheet(characterPlayer);
-        //Provides one extra page ¿?
         Assert.assertEquals(
-                sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "RandomPsiCharacter.pdf"), 2);
+                sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "RandomPsiCharacter.pdf"), 1);
     }
 }

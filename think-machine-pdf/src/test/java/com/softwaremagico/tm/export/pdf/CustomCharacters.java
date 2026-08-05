@@ -84,13 +84,15 @@ public class CustomCharacters {
 
     @BeforeClass
     public void initialize() {
-        party = new Party(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
-        party.setPartyName("Lost Wonderers");
+        this.party = new Party(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        this.party.setPartyName("Lost Wonderers");
     }
 
     @Test
-    public void createPaolaCharacter() throws InvalidXmlElementException, TooManyBlessingsException, TooManyCyberneticDevicesException,
-            RequiredCyberneticDevicesException, BeneficeAlreadyAddedException, BlessingAlreadyAddedException, InvalidRanksException, RestrictedElementException, UnofficialElementNotAllowedException {
+    public void createPaolaCharacter()
+            throws InvalidXmlElementException, TooManyBlessingsException, TooManyCyberneticDevicesException,
+            RequiredCyberneticDevicesException, BeneficeAlreadyAddedException, BlessingAlreadyAddedException,
+            InvalidRanksException, RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.getInfo().addName(new Name("#5", player.getLanguage(), player.getModuleName(), Gender.FEMALE, null));
         player.getInfo().setPlayer("Paola");
@@ -182,35 +184,34 @@ public class CustomCharacters {
         player.addCybernetics(CyberneticDeviceFactory.getInstance().getElement("secondBrainThinkMachineLore", LANGUAGE,
                 PathManager.DEFAULT_MODULE_FOLDER));
 
-        Assert.assertEquals((int) player.getSkillTotalRanks(AvailableSkillsFactory.getInstance().getElement("lore", "thinkMachineLore",
-                LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)), 4);
-        Assert.assertEquals((int) player.getSkillTotalRanks(AvailableSkillsFactory.getInstance().getElement("lore", "beastsLore",
-                LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)), 0);
+        Assert.assertEquals((int) player.getSkillTotalRanks(AvailableSkillsFactory.getInstance().getElement("lore",
+                "thinkMachineLore", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)), 4);
+        Assert.assertEquals((int) player.getSkillTotalRanks(AvailableSkillsFactory.getInstance().getElement("lore",
+                "beastsLore", LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER)), 0);
 
         player.setShield(
                 ShieldFactory.getInstance().getElement("duelingShield", player.getLanguage(), player.getModuleName()));
 
         LanguagePool.clearCache();
         final CharacterSheet sheet = new CharacterSheet(player);
-        //Provides one extra page ¿?
-        Assert.assertEquals(sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Paola.pdf"), 3);
+        Assert.assertEquals(sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Paola.pdf"), 2);
 
         LanguagePool.clearCache();
         final SmallCharacterSheet smallSheet = new SmallCharacterSheet(player);
-        //Provides one extra page ¿?
         Assert.assertEquals(
-                smallSheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Paola_Small.pdf"), 2);
+                smallSheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Paola_Small.pdf"), 1);
 
         Assert.assertEquals(CostCalculator.getCost(player),
                 FreeStyleCharacterCreation.getFreeAvailablePoints(player.getInfo().getAge(), player.getRace()));
         Assert.assertEquals(player.getMoney(), 300);
 
-        party.addMember(player);
+        this.party.addMember(player);
     }
 
     @Test
-    public void characterAnaCharacter()
-            throws InvalidXmlElementException, TooManyBlessingsException, BeneficeAlreadyAddedException, BlessingAlreadyAddedException, InvalidRanksException, RestrictedElementException, UnofficialElementNotAllowedException {
+    public void characterAnaCharacter() throws InvalidXmlElementException, TooManyBlessingsException,
+            BeneficeAlreadyAddedException, BlessingAlreadyAddedException, InvalidRanksException,
+            RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.getInfo().addName(new Name("Arya", player.getLanguage(), player.getModuleName(), Gender.FEMALE, null));
         player.getInfo().setSurname(new Surname("Hawkwood", player.getLanguage(), player.getModuleName(), null));
@@ -280,25 +281,24 @@ public class CustomCharacters {
 
         LanguagePool.clearCache();
         final CharacterSheet sheet = new CharacterSheet(player);
-        //Provides one extra page ¿?
-        Assert.assertEquals(sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Ana.pdf"), 3);
+        Assert.assertEquals(sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Ana.pdf"), 2);
 
         LanguagePool.clearCache();
         final SmallCharacterSheet smallSheet = new SmallCharacterSheet(player);
-        //Provides one extra page ¿?
         Assert.assertEquals(
-                smallSheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Ana_Small.pdf"), 2);
+                smallSheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Ana_Small.pdf"), 1);
 
         Assert.assertEquals(CostCalculator.getCost(player),
                 FreeStyleCharacterCreation.getFreeAvailablePoints(player.getInfo().getAge(), player.getRace()));
         Assert.assertEquals(player.getMoney(), 250);
 
-        party.addMember(player);
+        this.party.addMember(player);
     }
 
     @Test
-    public void createCarlosCharacter()
-            throws InvalidXmlElementException, TooManyBlessingsException, BeneficeAlreadyAddedException, BlessingAlreadyAddedException, InvalidRanksException, RestrictedElementException, UnofficialElementNotAllowedException {
+    public void createCarlosCharacter() throws InvalidXmlElementException, TooManyBlessingsException,
+            BeneficeAlreadyAddedException, BlessingAlreadyAddedException, InvalidRanksException,
+            RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.getInfo().addName(new Name("Carlos", player.getLanguage(), player.getModuleName(), Gender.MALE, null));
         player.getInfo().setPlayer("Carlos");
@@ -383,26 +383,25 @@ public class CustomCharacters {
 
         LanguagePool.clearCache();
         final CharacterSheet sheet = new CharacterSheet(player);
-        //Provides one extra page ¿?
-        Assert.assertEquals(sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Carlos.pdf"), 3);
+        Assert.assertEquals(sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Carlos.pdf"), 2);
 
         LanguagePool.clearCache();
         final SmallCharacterSheet smallSheet = new SmallCharacterSheet(player);
-        //Provides one extra page ¿?
         Assert.assertEquals(
-                smallSheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Carlos_Small.pdf"), 2);
+                smallSheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Carlos_Small.pdf"), 1);
 
         Assert.assertEquals(CostCalculator.getCost(player),
                 FreeStyleCharacterCreation.getFreeAvailablePoints(player.getInfo().getAge(), player.getRace()));
         Assert.assertEquals(player.getRank(), "Genin");
         Assert.assertEquals(450, player.getMoney());
 
-        party.addMember(player);
+        this.party.addMember(player);
     }
 
     @Test
-    public void createNoeliaCharacter()
-            throws InvalidXmlElementException, TooManyBlessingsException, BeneficeAlreadyAddedException, BlessingAlreadyAddedException, InvalidRanksException, RestrictedElementException, UnofficialElementNotAllowedException {
+    public void createNoeliaCharacter() throws InvalidXmlElementException, TooManyBlessingsException,
+            BeneficeAlreadyAddedException, BlessingAlreadyAddedException, InvalidRanksException,
+            RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.getInfo().addName(new Name("Noelia", player.getLanguage(), player.getModuleName(), Gender.FEMALE, null));
         player.getInfo().setPlayer("Noelia");
@@ -485,30 +484,30 @@ public class CustomCharacters {
 
         LanguagePool.clearCache();
         final CharacterSheet sheet = new CharacterSheet(player);
-        //Provides one extra page ¿?
-        Assert.assertEquals(sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Noelia.pdf"), 3);
+        Assert.assertEquals(sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Noelia.pdf"), 2);
 
         LanguagePool.clearCache();
         final SmallCharacterSheet smallSheet = new SmallCharacterSheet(player);
-        //Provides one extra page ¿?
         Assert.assertEquals(
-                smallSheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Noelia_Small.pdf"), 2);
+                smallSheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Noelia_Small.pdf"), 1);
 
         Assert.assertEquals(CostCalculator.getCost(player),
                 FreeStyleCharacterCreation.getFreeAvailablePoints(player.getInfo().getAge(), player.getRace()));
 
-        party.addMember(player);
+        this.party.addMember(player);
     }
 
     @Test
-    public void createGolemCharacter() throws InvalidXmlElementException, TooManyBlessingsException, BlessingAlreadyAddedException, InvalidRanksException, RestrictedElementException, UnofficialElementNotAllowedException {
+    public void createGolemCharacter()
+            throws InvalidXmlElementException, TooManyBlessingsException, BlessingAlreadyAddedException,
+            InvalidRanksException, RestrictedElementException, UnofficialElementNotAllowedException {
         final CharacterPlayer player = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
         player.getInfo().setPlayer("PNJ");
         player.getInfo().addName(new Name("A", player.getLanguage(), player.getModuleName(), Gender.FEMALE, null));
         player.getInfo().setSurname(new Surname("(Prototipo A)", player.getLanguage(), player.getModuleName(), null));
         player.getInfo().setGender(Gender.FEMALE);
-        player.setRace(new Race("Gólem", null, player.getLanguage(), player.getModuleName(), 5, 5, 5, 3, 3, 6, 0, 0, 0, 6, 0,
-                0, 0, 0, 0));
+        player.setRace(new Race("Gólem", null, player.getLanguage(), player.getModuleName(), 5, 5, 5, 3, 3, 6, 0, 0, 0,
+                6, 0, 0, 0, 0, 0));
         player.getInfo().setPlanet(
                 PlanetFactory.getInstance().getElement("leagueheim", player.getLanguage(), player.getModuleName()));
         player.setFaction(
@@ -563,34 +562,31 @@ public class CustomCharacters {
 
         LanguagePool.clearCache();
         final CharacterSheet sheet = new CharacterSheet(player);
-        //Provides one extra page ¿?
-        Assert.assertEquals(sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Golem.pdf"), 3);
+        Assert.assertEquals(sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Golem.pdf"), 2);
 
         LanguagePool.clearCache();
         final SmallCharacterSheet smallSheet = new SmallCharacterSheet(player);
-        //Provides one extra page ¿?
         Assert.assertEquals(smallSheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + "Golem.pdf"),
-                2);
+                1);
 
         Assert.assertEquals(CostCalculator.getCost(player), -2);
         Assert.assertEquals(player.getMoney(), 250);
 
-        party.addMember(player);
+        this.party.addMember(player);
     }
 
     @AfterClass
     public void createPartySheet() {
-        final PartySheet sheet = new PartySheet(party);
-        //Provides one extra page ¿?
+        final PartySheet sheet = new PartySheet(this.party);
+        // Provides one extra page ¿?
         Assert.assertEquals(
-                sheet.createFile(System.getProperty("java.io.tmpdir") + File.separator + party.getPartyName() + ".pdf"),
-                11);
+                sheet.createFile(
+                        System.getProperty("java.io.tmpdir") + File.separator + this.party.getPartyName() + ".pdf"),
+                10);
 
-        final SmallPartySheet smallSheet = new SmallPartySheet(party);
-        //Provides one extra page ¿?
-        Assert.assertEquals(
-                smallSheet.createFile(
-                        System.getProperty("java.io.tmpdir") + File.separator + party.getPartyName() + "_Small.pdf"),
-                6);
+        final SmallPartySheet smallSheet = new SmallPartySheet(this.party);
+        // Provides one extra page ¿?
+        Assert.assertEquals(smallSheet.createFile(
+                System.getProperty("java.io.tmpdir") + File.separator + this.party.getPartyName() + "_Small.pdf"), 5);
     }
 }
