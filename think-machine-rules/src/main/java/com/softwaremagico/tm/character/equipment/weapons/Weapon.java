@@ -82,9 +82,13 @@ public class Weapon extends Equipment<Weapon> {
         return type;
     }
 
+    public WeaponDamage getPrimaryDamage() {
+        return getWeaponDamages().stream().filter(damage -> damage != null).findFirst().orElse(null);
+    }
+
 
     public boolean isMeleeWeapon() {
-        final WeaponDamage firstWeaponDamage = getWeaponDamages().stream().filter(damage -> damage != null).findFirst().orElse(null);
+        final WeaponDamage firstWeaponDamage = getPrimaryDamage();
         return getType() == WeaponType.MELEE || getType() == WeaponType.MELEE_ARTIFACT || getType() == WeaponType.MELEE_SHIELD ||
                 (firstWeaponDamage != null && firstWeaponDamage.getRange() == null);
     }
@@ -94,11 +98,9 @@ public class Weapon extends Equipment<Weapon> {
     }
 
     public boolean isAutomaticWeapon() {
-        if (!weaponDamages.isEmpty()) {
-            final WeaponDamage firstWeaponDamage = weaponDamages.get(0);
-            if (firstWeaponDamage != null && firstWeaponDamage.getRate() != null) {
-                return firstWeaponDamage.getRate().toLowerCase().contains("a");
-            }
+        final WeaponDamage firstWeaponDamage = getPrimaryDamage();
+        if (firstWeaponDamage != null && firstWeaponDamage.getRate() != null) {
+            return firstWeaponDamage.getRate().toLowerCase().contains("a");
         }
         return false;
     }

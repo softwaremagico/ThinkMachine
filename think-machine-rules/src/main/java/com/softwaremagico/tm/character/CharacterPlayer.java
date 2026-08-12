@@ -64,6 +64,7 @@ import com.softwaremagico.tm.character.equipment.shields.InvalidShieldException;
 import com.softwaremagico.tm.character.equipment.shields.Shield;
 import com.softwaremagico.tm.character.equipment.shields.ShieldFactory;
 import com.softwaremagico.tm.character.equipment.weapons.Weapon;
+import com.softwaremagico.tm.character.equipment.weapons.WeaponDamage;
 import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
 import com.softwaremagico.tm.character.equipment.weapons.WeaponType;
 import com.softwaremagico.tm.character.equipment.weapons.Weapons;
@@ -1970,10 +1971,11 @@ public class CharacterPlayer {
      */
     public Weapon hasWeaponWithSkill(AvailableSkill skill) {
         for (final Weapon weapon : getAllWeapons()) {
-            if (weapon.getWeaponDamages().isEmpty()) {
+            final WeaponDamage primaryDamage = weapon.getPrimaryDamage();
+            if (primaryDamage == null) {
                 continue;
             }
-            if (Objects.equals(weapon.getWeaponDamages().get(0).getSkill(), skill)) {
+            if (Objects.equals(primaryDamage.getSkill(), skill)) {
                 return weapon;
             }
         }
@@ -1989,13 +1991,14 @@ public class CharacterPlayer {
         Weapon mainWeapon = null;
         int totalValue = 0;
         for (final Weapon weapon : getAllWeapons()) {
-            if (weapon.getWeaponDamages().isEmpty()) {
+            final WeaponDamage primaryDamage = weapon.getPrimaryDamage();
+            if (primaryDamage == null || primaryDamage.getCharacteristic() == null) {
                 continue;
             }
-            if (getSkillTotalRanks(weapon.getWeaponDamages().get(0).getSkill())
-                    + getCharacteristicValue(weapon.getWeaponDamages().get(0).getCharacteristic().getCharacteristicName()) > totalValue) {
-                totalValue = getSkillTotalRanks(weapon.getWeaponDamages().get(0).getSkill())
-                        + getCharacteristicValue(weapon.getWeaponDamages().get(0).getCharacteristic().getCharacteristicName());
+            if (getSkillTotalRanks(primaryDamage.getSkill())
+                    + getCharacteristicValue(primaryDamage.getCharacteristic().getCharacteristicName()) > totalValue) {
+                totalValue = getSkillTotalRanks(primaryDamage.getSkill())
+                        + getCharacteristicValue(primaryDamage.getCharacteristic().getCharacteristicName());
                 mainWeapon = weapon;
             }
         }

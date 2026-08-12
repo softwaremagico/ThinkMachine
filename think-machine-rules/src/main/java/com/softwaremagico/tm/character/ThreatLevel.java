@@ -90,9 +90,12 @@ public class ThreatLevel {
         int threatLevel = 0;
         if (!characterPlayer.getAllWeapons().isEmpty()) {
             final Weapon mainWeapon = characterPlayer.getMainWeapon();
-            if (!mainWeapon.getWeaponDamages().isEmpty()) {
-                threatLevel += getThreatLevel(characterPlayer, characterPlayer.getCharacteristic(mainWeapon.getWeaponDamages().get(0)
-                        .getCharacteristic().getCharacteristicName()), mainWeapon.getWeaponDamages().get(0).getSkill()) * 2;
+            if (mainWeapon != null) {
+                final WeaponDamage primaryDamage = mainWeapon.getPrimaryDamage();
+                if (primaryDamage != null && primaryDamage.getCharacteristic() != null) {
+                    threatLevel += getThreatLevel(characterPlayer, characterPlayer.getCharacteristic(primaryDamage
+                            .getCharacteristic().getCharacteristicName()), primaryDamage.getSkill()) * 2;
+                }
                 threatLevel += getThreatLevel(mainWeapon, characterPlayer.getModuleName());
                 if (WeaponType.getMeleeTypes().contains(mainWeapon.getType())) {
                     threatLevel += characterPlayer.getStrengthDamangeModification() * DAMAGE_THREAT_MULTIPLICATOR;
@@ -113,7 +116,10 @@ public class ThreatLevel {
             return 0;
         }
         int threatLevel = 0;
-        final WeaponDamage weaponDamage = weapon.getWeaponDamages().get(0);
+        final WeaponDamage weaponDamage = weapon.getPrimaryDamage();
+        if (weaponDamage == null) {
+            return 0;
+        }
         threatLevel += weaponDamage.getMainDamage() * DAMAGE_THREAT_MULTIPLICATOR;
         threatLevel += weaponDamage.getAreaMeters() * DAMAGE_AREA_THREAT_MULTIPLICATOR;
         threatLevel += weapon.getDamageTypes().size() * DAMAGE_TYPES_THREAT_MULTIPLICATOR;

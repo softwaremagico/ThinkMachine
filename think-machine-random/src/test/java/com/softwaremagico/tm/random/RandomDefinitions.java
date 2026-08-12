@@ -29,10 +29,14 @@ import com.softwaremagico.tm.character.CharacterPlayer;
 import com.softwaremagico.tm.character.characteristics.CharacteristicType;
 import com.softwaremagico.tm.character.exceptions.RestrictedElementException;
 import com.softwaremagico.tm.character.exceptions.UnofficialElementNotAllowedException;
+import com.softwaremagico.tm.character.equipment.weapons.RandomRangeWeapon;
+import com.softwaremagico.tm.character.equipment.weapons.Weapon;
 import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
+import com.softwaremagico.tm.character.equipment.weapons.WeaponType;
 import com.softwaremagico.tm.character.skills.AvailableSkill;
 import com.softwaremagico.tm.character.skills.AvailableSkillsFactory;
 import com.softwaremagico.tm.character.skills.RandomSkills;
+import com.softwaremagico.tm.random.exceptions.InvalidRandomElementSelectedException;
 import com.softwaremagico.tm.file.PathManager;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -40,6 +44,8 @@ import org.testng.annotations.Test;
 import java.lang.reflect.Field;
 import java.util.AbstractMap;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 
 @Test(groups = {"randomDefinition"})
@@ -109,5 +115,18 @@ public class RandomDefinitions {
         preferredCharacteristicsField.set(randomSkills, List.of(new AbstractMap.SimpleEntry<>(forcedType, 1)));
 
         Assert.assertTrue(randomSkills.getElementWeight(candidateSkill) >= 0);
+    }
+
+    @Test(timeOut = 5000)
+    public void weaponWithoutPrimaryDamageMustBeRejectedWithoutNpe()
+            throws InvalidXmlElementException, RestrictedElementException, UnofficialElementNotAllowedException {
+        final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        final RandomRangeWeapon randomRangeWeapon = new RandomRangeWeapon(characterPlayer, null, new HashSet<>());
+        final Weapon weaponWithoutDamage = new Weapon("nullDamageWeapon", "Null Damage Weapon", "", LANGUAGE,
+                PathManager.DEFAULT_MODULE_FOLDER, WeaponType.BOW, Collections.singletonList(null), 0, false, null, "",
+                new HashSet<>(), 0f, new HashSet<>(), new HashSet<>());
+
+        Assert.assertThrows(InvalidRandomElementSelectedException.class,
+                () -> randomRangeWeapon.validateElement(weaponWithoutDamage));
     }
 }
