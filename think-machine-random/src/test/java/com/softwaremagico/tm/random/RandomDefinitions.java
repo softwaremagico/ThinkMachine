@@ -26,6 +26,7 @@ package com.softwaremagico.tm.random;
 
 import com.softwaremagico.tm.InvalidXmlElementException;
 import com.softwaremagico.tm.character.CharacterPlayer;
+import com.softwaremagico.tm.character.characteristics.CharacteristicType;
 import com.softwaremagico.tm.character.exceptions.RestrictedElementException;
 import com.softwaremagico.tm.character.exceptions.UnofficialElementNotAllowedException;
 import com.softwaremagico.tm.character.equipment.weapons.WeaponFactory;
@@ -35,6 +36,11 @@ import com.softwaremagico.tm.character.skills.RandomSkills;
 import com.softwaremagico.tm.file.PathManager;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import java.lang.reflect.Field;
+import java.util.AbstractMap;
+import java.util.ArrayList;
+import java.util.List;
 
 @Test(groups = {"randomDefinition"})
 public class RandomDefinitions {
@@ -66,5 +72,42 @@ public class RandomDefinitions {
         Assert.assertNotNull(originalSkills.getAssignedWeight(sneak));
         Assert.assertEquals(originalSkills.getAssignedWeight(warfare), editedSkills.getAssignedWeight(warfare));
 
+    }
+
+    @Test(timeOut = 5000)
+    public void weightByCharacteristicsWithSinglePreferredTypeMustNotFail()
+            throws InvalidXmlElementException, RestrictedElementException, UnofficialElementNotAllowedException, NoSuchFieldException,
+            IllegalAccessException {
+        final CharacterPlayer characterPlayer = new CharacterPlayer(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER);
+        final RandomSkills randomSkills = new RandomSkills(characterPlayer, null);
+
+        final List<AvailableSkill> skills = new ArrayList<>();
+        skills.addAll(AvailableSkillsFactory.getInstance().getNaturalSkills(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+        skills.addAll(AvailableSkillsFactory.getInstance().getLearnedSkills(LANGUAGE, PathManager.DEFAULT_MODULE_FOLDER));
+
+        AvailableSkill candidateSkill = null;
+        for (final AvailableSkill availableSkill : skills) {
+            if (availableSkill.getSkillDefinition().getSkillGroup().getPreferredCharacteristicsGroups() != null) {
+                candidateSkill = availableSkill;
+                break;
+            }
+        }
+        Assert.assertNotNull(candidateSkill);
+        final CharacteristicType candidateType = candidateSkill.getSkillDefinition().getSkillGroup().getPreferredCharacteristicsGroups();
+
+        CharacteristicType forcedType = null;
+        for (final CharacteristicType characteristicType : CharacteristicType.values()) {
+            if (characteristicType != CharacteristicType.OTHERS && characteristicType != candidateType) {
+                forcedType = characteristicType;
+                break;
+            }
+        }
+        Assert.assertNotNull(forcedType);
+
+        final Field preferredCharacteristicsField = RandomSkills.class.getDeclaredField("preferredCharacteristicsTypeSorted");
+        preferredCharacteristicsField.setAccessible(true);
+        preferredCharacteristicsField.set(randomSkills, List.of(new AbstractMap.SimpleEntry<>(forcedType, 1)));
+
+        Assert.assertTrue(randomSkills.getElementWeight(candidateSkill) >= 0);
     }
 }

@@ -214,14 +214,16 @@ public class RandomSkills extends RandomSelector<AvailableSkill> {
     }
 
     private int weightByCharacteristics(AvailableSkill skill) {
+        final List<Entry<CharacteristicType, Integer>> preferredCharacteristics = getPreferredCharacteristicsTypeSorted();
         if (skill.getSkillDefinition().getSkillGroup().getPreferredCharacteristicsGroups() != null
-                && !getPreferredCharacteristicsTypeSorted().isEmpty()) {
+                && preferredCharacteristics != null && !preferredCharacteristics.isEmpty()) {
             if (Objects.equals(skill.getSkillDefinition().getSkillGroup().getPreferredCharacteristicsGroups(),
-                    getPreferredCharacteristicsTypeSorted().get(0).getKey())) {
+                    preferredCharacteristics.get(0).getKey())) {
                 return FAIR_PROBABILITY;
             }
-            if (Objects.equals(skill.getSkillDefinition().getSkillGroup().getPreferredCharacteristicsGroups(),
-                    getPreferredCharacteristicsTypeSorted().get(1).getKey())) {
+            if (preferredCharacteristics.size() > 1
+                    && Objects.equals(skill.getSkillDefinition().getSkillGroup().getPreferredCharacteristicsGroups(),
+                    preferredCharacteristics.get(1).getKey())) {
                 return LITTLE_PROBABILITY;
             }
         }
