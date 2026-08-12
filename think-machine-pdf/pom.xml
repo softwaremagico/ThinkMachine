@@ -8,7 +8,7 @@
 	<parent>
 		<groupId>com.softwaremagico</groupId>
 		<artifactId>think-machine</artifactId>
-		<version>3.0.2-SNAPSHOT</version>
+		<version>3.0.2</version>
 	</parent>
 
 	<properties>

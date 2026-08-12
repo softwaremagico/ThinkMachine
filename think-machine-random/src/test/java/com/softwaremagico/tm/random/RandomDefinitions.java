@@ -112,7 +112,7 @@ public class RandomDefinitions {
 
         final Field preferredCharacteristicsField = RandomSkills.class.getDeclaredField("preferredCharacteristicsTypeSorted");
         preferredCharacteristicsField.setAccessible(true);
-        preferredCharacteristicsField.set(randomSkills, List.of(new AbstractMap.SimpleEntry<>(forcedType, 1)));
+        preferredCharacteristicsField.set(randomSkills, Collections.singletonList(new AbstractMap.SimpleEntry<>(forcedType, 1)));
 
         Assert.assertTrue(randomSkills.getElementWeight(candidateSkill) >= 0);
     }
